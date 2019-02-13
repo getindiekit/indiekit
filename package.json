@@ -1,0 +1,40 @@
+{
+  "name": "@paulrobertlloyd/indiekit",
+  "version": "0.0.1",
+  "description": "IndieWeb publishing toolkit",
+  "keywords": [
+    "indieweb",
+    "micropub"
+  ],
+  "author": "Paul Robert Lloyd",
+  "license": "MIT",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "nyc ava"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "nunjucks": "^3.1.7",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "ava": "^1.2.1",
+    "nyc": "^13.2.0",
+    "supertest": "^3.4.2",
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "space": true,
+    "rules": {
+      "camelcase": "warn",
+      "capitalized-comments": "warn"
+    },
+    "globals": [
+      "__basedir"
+    ]
+  }
+}

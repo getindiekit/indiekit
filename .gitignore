@@ -1,0 +1,17 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache
+
+# Coverage
+coverage
+.nyc_output
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
