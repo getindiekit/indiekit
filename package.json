@@ -11,7 +11,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "nyc ava"
+    "test": "nyc ava --verbose"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "ava": "^1.2.1",
-    "nyc": "^13.2.0",
+    "nyc": "^13.3.0",
     "supertest": "^3.4.2",
     "xo": "^0.24.0"
   },

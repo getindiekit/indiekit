@@ -1,6 +1,7 @@
 const {DateTime} = require('luxon');
 const slugify = require('slugify');
 
+const config = require(__basedir + '/.cache/config.json');
 const utils = require(__basedir + '/app/functions/utils');
 
 /**
@@ -105,42 +106,135 @@ exports.getDate = function (mf2) {
 /**
  * Return object containing error data
  *
- * @param {String} error Identifier
+ * @param {String} id Identifier
  * @returns {Object} Error object
  *
  */
-exports.error = function (error) {
+exports.errorResponse = function (id) {
   let code;
-  let description;
+  let desc;
 
-  switch (error) {
+  switch (id) {
     case ('not_supported'):
       code = 404;
-      description = 'Request is not currently supported';
+      desc = 'Request is not currently supported';
       break;
     case ('forbidden'):
       code = 403;
-      description = 'User does not have permission to perform request';
+      desc = 'User does not have permission to perform request';
       break;
     case ('unauthorized'):
       code = 401;
-      description = 'No access token provided in request';
+      desc = 'No access token provided in request';
       break;
     case ('insufficient_scope'):
       code = 401;
-      description = 'Scope of access token does not meet requirements for request';
+      desc = 'Scope of access token does not meet requirements for request';
       break;
     default:
+      id = 'invalid_request';
       code = 400;
-      error = 'invalid_request';
-      description = 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
+      desc = 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
   }
 
   return {
     code,
     json: {
-      error,
-      error_description: description
+      error: id,
+      error_description: desc
     }
+  };
+};
+
+/**
+ * Return object containing error data
+ *
+ * @param {String} id Identifier
+ * @param {String} location Location of post
+ * @returns {Object} Success object
+ *
+ */
+exports.successResponse = function (id, location) {
+  let code;
+  let desc;
+
+  switch (id) {
+    case ('create'):
+      code = 201;
+      desc = `Post created at ${location}`;
+      break;
+    case ('create_pending'):
+      code = 202;
+      desc = `Post will be created at ${location}`;
+      break;
+    case ('update'):
+      code = 200;
+      desc = `Post updated at ${location}`;
+      break;
+    case ('update_created'):
+      code = 201;
+      desc = `Post updated and moved to ${location}`;
+      break;
+    case ('delete'):
+      code = 200;
+      desc = `Post deleted from ${location}`;
+      break;
+    case ('delete_undelete'):
+      code = 201;
+      desc = `Post undeleted from ${location}`;
+      break;
+    default:
+      code = 200;
+      desc = 'Success';
+  }
+
+  return {
+    code,
+    location,
+    json: {
+      success: id,
+      success_description: desc
+    }
+  };
+};
+
+/**
+ * Return object containing error data
+ *
+ * @param {String} query Identifier
+ * @param {String} appUrl URL of application
+ * @returns {Object} Success object
+ *
+ */
+exports.queryResponse = function (query, appUrl) {
+  let code;
+  let json;
+
+  const mediaEndpoint = config['media-endpoint'] || `${appUrl}/media`;
+  const syndicateTo = config['syndicate-to'] || [];
+
+  switch (query) {
+    case ('config'):
+      code = 200;
+      json = {
+        'media-endpoint': mediaEndpoint,
+        'syndicate-to': syndicateTo
+      };
+      break;
+    case ('source'):
+      return module.exports.errorResponse('not_supported');
+    case ('syndicate-to'):
+      code = 200;
+      json = {
+        'syndicate-to': syndicateTo
+      };
+      break;
+    default:
+      return module.exports.errorResponse('invalid_request');
+  }
+
+  return {
+    code,
+    json
   };
 };

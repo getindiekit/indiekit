@@ -1,6 +1,5 @@
 global.__basedir = __dirname;
-
-console.log(__basedir);
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 const express = require('express');

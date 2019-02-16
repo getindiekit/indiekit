@@ -1,9 +1,12 @@
 const fetch = require('node-fetch');
 
-const micropub = require(__basedir + '/app/functions/micropub');
-
 exports.getAuthorizationResponse = async function (token) {
   const tokenEndpoint = process.env.TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token';
+  const isValidToken = token.startsWith('Bearer ');
+
+  if (!isValidToken) {
+    token = 'Bearer ' + token;
+  }
 
   return fetch(tokenEndpoint, {
     method: 'GET',
@@ -11,12 +14,13 @@ exports.getAuthorizationResponse = async function (token) {
       Accept: 'application/json',
       Authorization: token
     }
-  })
-    .then(response => {
+  }).then(response => {
+    if (response.ok) {
       return response.json();
-    })
-    .catch(error => {
-      console.error('error', error);
-      return micropub.error('forbidden');
-    });
+    }
+
+    throw response.statusText;
+  }).catch(error => {
+    console.error('IndieAuth token endpoint:', error);
+  });
 };

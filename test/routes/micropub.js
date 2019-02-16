@@ -2,74 +2,51 @@ const request = require('supertest');
 const test = require('ava');
 const app = require('../../app');
 
-test('100: Create h-entry post (form-encoded)', async t => {
+test('100: Create h-entry (form-encoded)', async t => {
   const res = await request(app)
     .post('/micropub')
-    .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, {
-    type: ['h-entry'],
-    properties: {
-      content: ['Micropub test of creating a basic h-entry']
-    }
-  });
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('101: Create h-entry post with multiple categories (form-encoded)', async t => {
+test('101: Create h-entry with multiple categories (form-encoded)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+an+h-entry+with+categories.+This+post+should+have+two+categories,+test1+and+test2&category[]=test1&category[]=test2');
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, {
-    type: ['h-entry'],
-    properties: {
-      content: ['Micropub test of creating an h-entry with categories. This post should have two categories, test1 and test2'],
-      category: ['test1', 'test2']
-    }
-  });
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('104: Create an h-entry with a photo referenced by URL (form-encoded)', async t => {
+test('104: Create h-entry with photo referenced by URL (form-encoded)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+a+photo+referenced+by+URL&photo=https%3A%2F%2Fmicropub.rocks%2Fmedia%2Fsunset.jpg');
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, {
-    type: ['h-entry'],
-    properties: {
-      content: ['Micropub test of creating a photo referenced by URL'],
-      photo: ['https://micropub.rocks/media/sunset.jpg']
-    }
-  });
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('107: Create an h-entry post with one category (form-encoded)', async t => {
+test('107: Create h-entry with one category (form-encoded)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+an+h-entry+with+one+category.+This+post+should+have+one+category,+test1&category=test1');
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, {
-    type: ['h-entry'],
-    properties: {
-      content: ['Micropub test of creating an h-entry with one category. This post should have one category, test1'],
-      category: ['test1']
-    }
-  });
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('200: Create an h-entry post (JSON)', async t => {
+test('200: Create h-entry (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -80,14 +57,14 @@ test('200: Create an h-entry post (JSON)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('201: Create an h-entry post with multiple categories (JSON)', async t => {
+test('201: Create h-entry with multiple categories (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -99,14 +76,14 @@ test('201: Create an h-entry post with multiple categories (JSON)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('202: Create an h-entry with HTML content (JSON)', async t => {
+test('202: Create h-entry with HTML content (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -119,14 +96,14 @@ test('202: Create an h-entry with HTML content (JSON)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('203: Create an h-entry with a photo referenced by URL (JSON)', async t => {
+test('203: Create h-entry with photo referenced by URL (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -138,14 +115,14 @@ test('203: Create an h-entry with a photo referenced by URL (JSON)', async t => 
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('204: Create an h-entry post with a nested object (JSON)', async t => {
+test('204: Create h-entry with nested object (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -171,14 +148,14 @@ test('204: Create an h-entry post with a nested object (JSON)', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('205: Create an h-entry post with a photo with alt text (JSON)', async t => {
+test('205: Create h-entry with photo with alt text (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -193,14 +170,14 @@ test('205: Create an h-entry post with a photo with alt text (JSON)', async t =>
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
-test('206: Create an h-entry with multiple photos referenced by URL (JSON)', async t => {
+test('206: Create h-entry with multiple photos referenced by URL (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
@@ -215,10 +192,10 @@ test('206: Create an h-entry with multiple photos referenced by URL (JSON)', asy
   const res = await request(app)
     .post('/micropub')
     .set('Content-type', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 202);
-  t.deepEqual(res.body, mf2);
+  t.is(res.status, 201 || 202);
   t.truthy(res.header.location);
 });
 
@@ -260,4 +237,65 @@ test('6xx: Unknown Endpoint Query', async t => {
 
   t.is(res.status, 400);
   t.is(res.body.error, 'invalid_request');
+});
+
+test('800: Accept access token in HTTP header', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
+    .send('h=entry&content=Testing+accepting+access+token+in+HTTP+Authorization+header');
+
+  t.is(res.status, 201 || 202);
+  t.truthy(res.header.location);
+});
+
+test('801: Accept access token in POST body', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
+
+  t.is(res.status, 201 || 202);
+  t.truthy(res.header.location);
+});
+
+test('802: Does not store access token property', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
+
+  t.is(res.status, 201 || 202);
+  t.truthy(res.header.location);
+  t.fail('Need to support source queries to pass this test.');
+});
+
+test('803: Rejects unauthenticated requests', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send('h=entry&content=Testing+unauthenticated+request.+This+should+not+create+a+post.');
+
+  t.is(res.status, 401);
+});
+
+test('804: Rejects unauthorized access tokens', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NO_SCOPES}`)
+    .send('h=entry&content=Testing+a+request+with+an+unauthorized+access+token.+This+should+not+create+a+post.');
+
+  t.is(res.status, 401);
+});
+
+test('8xx: Rejects invaid access tokens', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_INVALID}`)
+    .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
+
+  t.is(res.status, 403);
 });
