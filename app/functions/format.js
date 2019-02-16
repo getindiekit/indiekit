@@ -1,12 +1,16 @@
-const path = require('path');
+const {DateTime} = require('luxon');
 const nunjucks = require('nunjucks');
 
-const templatePath = path.join(__basedir, '/.cache/template.njk');
+// Configure Nunjucks
+const env = new nunjucks.Environment(new nunjucks.FileSystemLoader('.cache'));
+env.addFilter('date', (date, format) => {
+  return DateTime.fromISO(date).toFormat(format);
+});
 
-exports.string = function (data) {
-  return nunjucks.renderString('{{ content }}', data);
+exports.string = function (string, data) {
+  return env.renderString(string, data);
 };
 
-exports.template = function (data) {
-  return nunjucks.render(templatePath, data);
+exports.template = function (templatePath, data) {
+  return env.render(templatePath, data);
 };
