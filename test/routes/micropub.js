@@ -2,6 +2,15 @@ const request = require('supertest');
 const test = require('ava');
 const app = require('../../app');
 
+test('001: Rejects query with no body data', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
+
+  t.is(res.status, 400);
+});
+
 test('100: Create h-entry (form-encoded)', async t => {
   const res = await request(app)
     .post('/micropub')
@@ -230,7 +239,7 @@ test('603: Source Query (Specific Properties)', async t => {
   t.truthy(res.body.error, 'not_supported');
 });
 
-test('6xx: Unknown Endpoint Query', async t => {
+test('6xx: Rejects unknown endpoint query', async t => {
   const res = await request(app)
     .get('/micropub')
     .query({q: 'unknown'});
@@ -284,13 +293,23 @@ test('804: Rejects unauthorized access tokens', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NO_SCOPES}`)
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_SCOPED}`)
     .send('h=entry&content=Testing+a+request+with+an+unauthorized+access+token.+This+should+not+create+a+post.');
 
   t.is(res.status, 401);
 });
 
-test('8xx: Rejects invaid access tokens', async t => {
+test('8xx: Rejects invalid destination site', async t => {
+  const res = await request(app)
+    .post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_ME}`)
+    .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
+
+  t.is(res.status, 403);
+});
+
+test('8xx: Rejects invalid access tokens', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')

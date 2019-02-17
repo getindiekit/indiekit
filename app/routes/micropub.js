@@ -63,6 +63,13 @@ exports.get = function (request, response) {
 exports.post = async function (request, response) {
   const repoUrl = `https://github.com/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/blob/master/`;
 
+  // Check response has provided body data
+  const {body} = request;
+  const hasBody = Object.entries(body).length !== 0;
+  if (!hasBody) {
+    return error(response, 'invalid_request');
+  }
+
   // Check if token is provided
   const token = request.headers.authorization || request.body.access_token;
   if (!token) {
@@ -76,7 +83,7 @@ exports.post = async function (request, response) {
     return error(response, 'forbidden');
   }
 
-  // Verify that token provides permission to post to configured destination
+  // Check if token provides permission to post to configured destination
   const authenticatedUrl = normalizeUrl(authResponse.me);
   const destinationUrl = normalizeUrl(config.url);
   const isAuthenticated = authenticatedUrl === destinationUrl;
@@ -84,7 +91,7 @@ exports.post = async function (request, response) {
     return error(response, 'forbidden');
   }
 
-  // Verify that token provides permission to create posts
+  // Check if token provides permission to create posts
   const isScoped = authResponse.scope.includes('create');
   if (!isScoped) {
     return error(response, 'insufficient_scope');
@@ -92,14 +99,10 @@ exports.post = async function (request, response) {
 
   // Normalise form-encoded and JSON requests as mf2 JSON
   let mf2;
-  const {body} = request;
-
-  if (body) {
-    if (request.is('json')) {
-      mf2 = body;
-    } else {
-      mf2 = micropub.convertFormEncodedToMf2(body);
-    }
+  if (request.is('json')) {
+    mf2 = body;
+  } else {
+    mf2 = micropub.convertFormEncodedToMf2(body);
   }
 
   // Update mf2 JSON with date and slug values

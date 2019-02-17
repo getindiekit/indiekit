@@ -131,10 +131,14 @@ exports.errorResponse = function (id) {
       code = 401;
       desc = 'Scope of access token does not meet requirements for request';
       break;
-    default:
-      id = 'invalid_request';
+    case ('invalid_request'):
       code = 400;
       desc = 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
+      break;
+    default:
+      id = 'server_error';
+      code = 500;
+      desc = 'Server error';
   }
 
   return {
