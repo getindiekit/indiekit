@@ -1,41 +1,8 @@
 const normalizeUrl = require('normalize-url');
 
 const config = require(__basedir + '/.cache/config.json');
-const format = require(__basedir + '/app/functions/format');
 const indieauth = require(__basedir + '/app/functions/indieauth');
-const microformats = require(__basedir + '/app/functions/microformats');
 const micropub = require(__basedir + '/app/functions/micropub');
-
-/**
- * Respond to errors
- *
- * @private
- * @param {Object} response HTTP response
- * @param {String} id Error identifier
- * @return {Object} Error response
- *
- */
-function error(response, id) {
-  const error = micropub.errorResponse(id);
-  return response.status(error.code).json(error.json);
-}
-
-/**
- * Respond to errors
- *
- * @private
- * @param {Object} response HTTP response
- * @param {String} id Success identifier
- * @param {String} location Post URL
- * @return {Object} Success response
- *
- */
-function success(response, id, location) {
-  const success = micropub.successResponse(id, location);
-  return response.status(success.code).set({
-    location
-  }).json(success.json);
-}
 
 /**
  * Respond to endpoint GET requests
@@ -47,9 +14,9 @@ function success(response, id, location) {
  */
 exports.get = function (request, response) {
   const appUrl = `${request.protocol}://${request.headers.host}`;
-  const queryResponse = micropub.queryResponse(request.query.q, appUrl);
+  const getResponse = micropub.queryResponse(request.query.q, appUrl);
 
-  return response.status(queryResponse.code).json(queryResponse.json);
+  return response.status(getResponse.code).json(getResponse.json);
 };
 
 /**
@@ -60,70 +27,62 @@ exports.get = function (request, response) {
  * @param {Object} next Callback
  *
  */
-exports.post = async function (request, response) {
-  const repoUrl = `https://github.com/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/blob/master/`;
+exports.post = function (request, response) {
+  const getPostResponse = async function (request) {
+    // Check response has provided body data
+    const hasBody = Object.entries(request.body).length !== 0;
+    if (!hasBody) {
+      throw micropub.errorResponse('invalid_request');
+    }
 
-  // Check response has provided body data
-  const {body} = request;
-  const hasBody = Object.entries(body).length !== 0;
-  if (!hasBody) {
-    return error(response, 'invalid_request');
-  }
+    // Check if token is provided
+    const token = request.headers.authorization || request.body.access_token;
+    if (!token) {
+      throw micropub.errorResponse('unauthorized');
+    }
 
-  // Check if token is provided
-  const token = request.headers.authorization || request.body.access_token;
-  if (!token) {
-    error(response, 'unauthorized');
-    return;
-  }
+    // Verify token with IndieAuth endpoint
+    const authResponse = await indieauth.getAuthorizationResponse(token);
+    if (!authResponse) {
+      throw micropub.errorResponse('forbidden');
+    }
 
-  // Verify token with IndieAuth endpoint
-  const authResponse = await indieauth.getAuthorizationResponse(token);
-  if (!authResponse) {
-    return error(response, 'forbidden');
-  }
+    // Check if token provides permission to post to configured destination
+    const authenticatedUrl = normalizeUrl(authResponse.me);
+    const destinationUrl = normalizeUrl(config.url);
+    const isAuthenticated = authenticatedUrl === destinationUrl;
+    if (!isAuthenticated) {
+      throw micropub.errorResponse('forbidden');
+    }
 
-  // Check if token provides permission to post to configured destination
-  const authenticatedUrl = normalizeUrl(authResponse.me);
-  const destinationUrl = normalizeUrl(config.url);
-  const isAuthenticated = authenticatedUrl === destinationUrl;
-  if (!isAuthenticated) {
-    return error(response, 'forbidden');
-  }
+    // Check if token provides permission to create posts
+    const isScoped = authResponse.scope.includes('create');
+    if (!isScoped) {
+      throw micropub.errorResponse('insufficient_scope');
+    }
 
-  // Check if token provides permission to create posts
-  const isScoped = authResponse.scope.includes('create');
-  if (!isScoped) {
-    return error(response, 'insufficient_scope');
-  }
+    // Normalise form-encoded and JSON requests as mf2 JSON
+    let mf2;
+    if (request.is('json')) {
+      mf2 = request.body;
+    } else {
+      mf2 = micropub.convertFormEncodedToMf2(request.body);
+    }
 
-  // Normalise form-encoded and JSON requests as mf2 JSON
-  let mf2;
-  if (request.is('json')) {
-    mf2 = body;
-  } else {
-    mf2 = micropub.convertFormEncodedToMf2(body);
-  }
+    // Determine action
+    switch (request.body.action) {
+      case ('delete'):
+        throw micropub.errorResponse('not_supported');
+      case ('update'):
+        throw micropub.errorResponse('not_supported');
+      default:
+        return micropub.createPost(mf2);
+    }
+  };
 
-  // Update mf2 JSON with date and slug values
-  const slugSeparator = config['slug-separator'] || '-';
-  const postData = mf2.properties;
-  const postDate = micropub.getDate(mf2);
-  const postSlug = micropub.getSlug(mf2, slugSeparator);
-  postData.published = postDate;
-  postData.slug = postSlug;
-
-  // Determine post type
-  const postType = microformats.getType(mf2);
-
-  // Format paths and templates
-  const postConfig = config['post-types'][0][postType];
-  const postFilePath = format.string(postConfig.path, postData);
-  const postTemplate = format.template(`templates/${postType}.njk`, postData);
-
-  // TODO: Push postTemplate to GitHub repo
-
-  // If file successfully pushed to GitHub
-  const location = repoUrl + postFilePath;
-  return success(response, 'create', location);
+  getPostResponse(request).then(postResponse => {
+    return response.status(postResponse.code).json(postResponse.json);
+  }).catch(error => {
+    return response.status(error.code).json(error.json);
+  });
 };

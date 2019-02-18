@@ -2,7 +2,12 @@ const {DateTime} = require('luxon');
 const slugify = require('slugify');
 
 const config = require(__basedir + '/.cache/config.json');
+const format = require(__basedir + '/app/functions/format');
+const github = require(__basedir + '/app/functions/github');
+const microformats = require(__basedir + '/app/functions/microformats');
 const utils = require(__basedir + '/app/functions/utils');
+
+const repoUrl = `https://github.com/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/blob/master/`;
 
 /**
  * Convert x-www-form-urlencoded body to Microformats 2 JSON object
@@ -241,4 +246,75 @@ exports.queryResponse = function (query, appUrl) {
     code,
     json
   };
+};
+
+exports.createPost = async function (mf2) {
+  // Update mf2 JSON with date and slug values
+  const slugSeparator = config['slug-separator'] || '-';
+  const postData = mf2.properties;
+  const postDate = module.exports.getDate(mf2);
+  const postSlug = module.exports.getSlug(mf2, slugSeparator);
+  postData.published = postDate;
+  postData.slug = postSlug;
+
+  // Determine post type
+  const postType = microformats.getType(mf2);
+
+  // Format paths and templates
+  const postConfig = config['post-types'][0][postType];
+  const path = format.string(postConfig.path, postData);
+  const content = format.template(`templates/${postType}.njk`, postData);
+
+  // Push file to GitHub
+  return github.createFile(path, content).then(response => {
+    if (response.ok) {
+      return module.exports.successResponse('create', repoUrl + path);
+    }
+  }).catch(error => {
+    return module.exports.errorResponse(error);
+  });
+};
+
+/**
+ * Update post
+ *
+ * @param {String} path Path to post
+ * @param {String} content Content to update
+ * @returns {Object} Response
+ *
+ */
+exports.updatePost = async function (path, content) {
+  console.log(`Update post at ${path}`);
+
+  return github.updateFile(path, content).then(response => {
+    if (response.ok) {
+      // TODO: If path has changed, return 'update_created'
+      return module.exports.successResponse('update', repoUrl + path);
+    }
+
+    throw response.error;
+  }).catch(error => {
+    console.error('GitHub:', error);
+  });
+};
+
+/**
+ * Delete post
+ *
+ * @param {String} path Path to post
+ * @returns {Object} Response
+ *
+ */
+exports.deletePost = async function (path) {
+  console.log(`Delete post at ${path}`);
+
+  return github.deleteFile(path).then(response => {
+    if (response.ok) {
+      return module.exports.successResponse('delete', repoUrl + path);
+    }
+
+    throw response.error;
+  }).catch(error => {
+    console.error('GitHub:', error);
+  });
 };
