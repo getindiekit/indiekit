@@ -115,35 +115,34 @@ exports.getDate = function (mf2) {
  * @returns {Object} Error object
  *
  */
-exports.errorResponse = function (id) {
+exports.errorResponse = function (id, desc) {
   let code;
-  let desc;
 
   switch (id) {
     case ('not_supported'):
       code = 404;
-      desc = 'Request is not currently supported';
+      desc = desc || 'Request is not currently supported';
       break;
     case ('forbidden'):
       code = 403;
-      desc = 'User does not have permission to perform request';
+      desc = desc || 'User does not have permission to perform request';
       break;
     case ('unauthorized'):
       code = 401;
-      desc = 'No access token provided in request';
+      desc = desc || 'No access token provided in request';
       break;
     case ('insufficient_scope'):
       code = 401;
-      desc = 'Scope of access token does not meet requirements for request';
+      desc = desc || 'Scope of access token does not meet requirements for request';
       break;
     case ('invalid_request'):
       code = 400;
-      desc = 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
+      desc = desc || 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
       break;
     default:
       id = 'server_error';
       code = 500;
-      desc = 'Server error';
+      desc = desc || 'Server error';
   }
 
   return {
@@ -271,6 +270,7 @@ exports.createPost = async function (mf2) {
       return module.exports.successResponse('create', repoUrl + path);
     }
   }).catch(error => {
+    console.log('micropub error', error);
     return module.exports.errorResponse(error);
   });
 };

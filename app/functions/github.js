@@ -42,16 +42,14 @@ const requestWithOptions = async function (args) {
   return fetch(url, options);
 };
 
-exports.createFile = async function (path, content) {
+exports.createFile = function (path, content) {
   return requestWithOptions({
     path,
     content: Buffer.from(content).toString('base64')
   }).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-
-    throw response;
+    return response.json();
+  }).then(json => {
+    return json;
   }).catch(error => {
     return {
       code: error.status,

@@ -1,5 +1,3 @@
-const normalizeUrl = require('normalize-url');
-
 const config = require(__basedir + '/.cache/config.json');
 const indieauth = require(__basedir + '/app/functions/indieauth');
 const micropub = require(__basedir + '/app/functions/micropub');
@@ -24,66 +22,56 @@ exports.get = function (request, response) {
  *
  * @param {Object} request Request
  * @param {Object} response Response
- * @param {Object} next Callback
+ * @return {Object} HTTP response
  *
  */
-exports.post = function (request, response) {
+exports.post = async function (request, response) {
   const getPostResponse = async function (request) {
-    // Check response has body data
-    const hasBody = Object.entries(request.body).length !== 0;
+    let {body} = request;
+
+    // Ensure response has body data
+    const hasBody = Object.entries(body).length !== 0;
     if (!hasBody) {
-      throw micropub.errorResponse('invalid_request');
+      return micropub.errorResponse('invalid_request');
     }
 
-    // Check if token is provided
-    const token = request.headers.authorization || request.body.access_token;
-    if (!token) {
-      throw micropub.errorResponse('unauthorized');
+    // Ensure token is provided
+    const accessToken = request.headers.authorization || body.access_token;
+    if (!accessToken) {
+      return micropub.errorResponse('unauthorized');
     }
 
-    // Verify token with IndieAuth endpoint
-    const authResponse = await indieauth.getAuthorizationResponse(token);
-    if (!authResponse) {
-      throw micropub.errorResponse('forbidden');
+    // Verify token
+    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
+    if (!verifiedToken) {
+      return micropub.errorResponse('forbidden', 'Unable to verify access token');
     }
 
-    // Check if token provides permission to post to configured destination
-    const authenticatedUrl = normalizeUrl(authResponse.me);
-    const destinationUrl = normalizeUrl(config.url);
-    const isAuthenticated = authenticatedUrl === destinationUrl;
-    if (!isAuthenticated) {
-      throw micropub.errorResponse('forbidden');
+    // Normalise form-encoded requests as mf2 JSON
+    if (!request.is('json')) {
+      body = micropub.convertFormEncodedToMf2(body); // Does this break body.action?
     }
 
-    // Check if token provides permission to create posts
-    // TODO: Check for all requested scopes (create, update, delete)
-    const isScoped = authResponse.scope.includes('create');
-    if (!isScoped) {
-      throw micropub.errorResponse('insufficient_scope');
-    }
+    // Determine action, ensuring token includes scope permission
+    const {scope} = verifiedToken;
+    try {
+      if (body.action === 'delete' && scope.includes('delete')) {
+        return micropub.errorResponse('not_supported', 'Delete action not supported');
+      }
 
-    // Normalise form-encoded and JSON requests as mf2 JSON
-    let mf2;
-    if (request.is('json')) {
-      mf2 = request.body;
-    } else {
-      mf2 = micropub.convertFormEncodedToMf2(request.body);
-    }
+      if (body.action === 'update' && scope.includes('update')) {
+        return micropub.errorResponse('not_supported', 'Update action not supported');
+      }
 
-    // Determine action
-    switch (request.body.action) {
-      case ('delete'):
-        throw micropub.errorResponse('not_supported');
-      case ('update'):
-        throw micropub.errorResponse('not_supported');
-      default:
-        return micropub.createPost(mf2);
+      if (scope.includes('create')) {
+        // return micropub.createPost(body);
+        return micropub.errorResponse('not_supported', 'Create action not supported');
+      }
+    } catch {
+      return micropub.errorResponse('insufficient_scope');
     }
   };
 
-  getPostResponse(request).then(postResponse => {
-    return response.status(postResponse.code).json(postResponse.body);
-  }).catch(error => {
-    return response.status(error.code).json(error.body);
-  });
+  const postResponse = await getPostResponse(request);
+  return response.status(postResponse.code).json(postResponse.body);
 };
