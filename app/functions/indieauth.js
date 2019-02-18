@@ -19,8 +19,14 @@ exports.getAuthorizationResponse = async function (token) {
       return response.json();
     }
 
-    throw response.statusText;
+    throw response;
   }).catch(error => {
-    console.error('IndieAuth token endpoint:', error);
+    return {
+      code: error.status,
+      body: {
+        error: 'indieauth',
+        error_description: error.statusText
+      }
+    };
   });
 };

@@ -9,14 +9,14 @@ const micropub = require(__basedir + '/app/functions/micropub');
  *
  * @param {Object} request Request
  * @param {Object} response Response
- * @return {Object} JSON response
+ * @return {Object} HTTP response
  *
  */
 exports.get = function (request, response) {
   const appUrl = `${request.protocol}://${request.headers.host}`;
   const getResponse = micropub.queryResponse(request.query.q, appUrl);
 
-  return response.status(getResponse.code).json(getResponse.json);
+  return response.status(getResponse.code).json(getResponse.body);
 };
 
 /**
@@ -29,7 +29,7 @@ exports.get = function (request, response) {
  */
 exports.post = function (request, response) {
   const getPostResponse = async function (request) {
-    // Check response has provided body data
+    // Check response has body data
     const hasBody = Object.entries(request.body).length !== 0;
     if (!hasBody) {
       throw micropub.errorResponse('invalid_request');
@@ -56,6 +56,7 @@ exports.post = function (request, response) {
     }
 
     // Check if token provides permission to create posts
+    // TODO: Check for all requested scopes (create, update, delete)
     const isScoped = authResponse.scope.includes('create');
     if (!isScoped) {
       throw micropub.errorResponse('insufficient_scope');
@@ -81,8 +82,8 @@ exports.post = function (request, response) {
   };
 
   getPostResponse(request).then(postResponse => {
-    return response.status(postResponse.code).json(postResponse.json);
+    return response.status(postResponse.code).json(postResponse.body);
   }).catch(error => {
-    return response.status(error.code).json(error.json);
+    return response.status(error.code).json(error.body);
   });
 };

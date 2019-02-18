@@ -148,7 +148,7 @@ exports.errorResponse = function (id) {
 
   return {
     code,
-    json: {
+    body: {
       error: id,
       error_description: desc
     }
@@ -200,7 +200,7 @@ exports.successResponse = function (id, location) {
   return {
     code,
     location,
-    json: {
+    body: {
       success: id,
       success_description: desc
     }
@@ -217,7 +217,7 @@ exports.successResponse = function (id, location) {
  */
 exports.queryResponse = function (query, appUrl) {
   let code;
-  let json;
+  let body;
 
   const mediaEndpoint = config['media-endpoint'] || `${appUrl}/media`;
   const syndicateTo = config['syndicate-to'] || [];
@@ -225,7 +225,7 @@ exports.queryResponse = function (query, appUrl) {
   switch (query) {
     case ('config'):
       code = 200;
-      json = {
+      body = {
         'media-endpoint': mediaEndpoint,
         'syndicate-to': syndicateTo
       };
@@ -234,7 +234,7 @@ exports.queryResponse = function (query, appUrl) {
       return module.exports.errorResponse('not_supported');
     case ('syndicate-to'):
       code = 200;
-      json = {
+      body = {
         'syndicate-to': syndicateTo
       };
       break;
@@ -244,7 +244,7 @@ exports.queryResponse = function (query, appUrl) {
 
   return {
     code,
-    json
+    body
   };
 };
 
