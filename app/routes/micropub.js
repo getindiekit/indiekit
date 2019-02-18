@@ -25,7 +25,7 @@ exports.get = function (request, response) {
  * @return {Object} HTTP response
  *
  */
-exports.post = async function (request, response) {
+exports.post = async function (request, response, next) {
   const getPostResponse = async function (request) {
     let {body} = request;
 
@@ -49,7 +49,7 @@ exports.post = async function (request, response) {
 
     // Normalise form-encoded requests as mf2 JSON
     if (!request.is('json')) {
-      body = micropub.convertFormEncodedToMf2(body); // Does this break body.action?
+      body = micropub.convertFormEncodedToMf2(body);
     }
 
     // Determine action, ensuring token includes scope permission
@@ -64,14 +64,29 @@ exports.post = async function (request, response) {
       }
 
       if (scope.includes('create')) {
-        // return micropub.createPost(body);
-        return micropub.errorResponse('not_supported', 'Create action not supported');
+        const location = await micropub.createPost(body);
+
+        try {
+          return micropub.successResponse('create', location);
+        } catch {
+          return micropub.errorResponse('server_error', 'Create action failed');
+        }
       }
-    } catch {
+
       return micropub.errorResponse('insufficient_scope');
+    } catch {
+      return micropub.errorResponse('server_error', 'Micropub action failed');
     }
   };
 
   const postResponse = await getPostResponse(request);
-  return response.status(postResponse.code).json(postResponse.body);
+  try {
+    return response.status(postResponse.code).set({
+      location: postResponse.location
+    }).json(postResponse.body);
+  } catch (error) {
+    console.error('postResponse', error);
+  }
+
+  next();
 };

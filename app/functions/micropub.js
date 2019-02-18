@@ -1,13 +1,14 @@
 const {DateTime} = require('luxon');
 const slugify = require('slugify');
 
+const appConfig = require(__basedir + '/app/config.js');
 const config = require(__basedir + '/.cache/config.json');
 const format = require(__basedir + '/app/functions/format');
 const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
 const utils = require(__basedir + '/app/functions/utils');
 
-const repoUrl = `https://github.com/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/blob/master/`;
+const repoUrl = `https://github.com/${appConfig.github.user}/${appConfig.github.repo}/blob/master/`;
 
 /**
  * Convert x-www-form-urlencoded body to Microformats 2 JSON object
@@ -265,14 +266,17 @@ exports.createPost = async function (mf2) {
   const content = format.template(`templates/${postType}.njk`, postData);
 
   // Push file to GitHub
-  return github.createFile(path, content).then(response => {
-    if (response.ok) {
-      return module.exports.successResponse('create', repoUrl + path);
+  const githubResponse = await github.createFile(path, content, postType);
+
+  try {
+    if (!githubResponse) {
+      throw new Error('No response from GitHub');
     }
-  }).catch(error => {
-    console.log('micropub error', error);
-    return module.exports.errorResponse(error);
-  });
+
+    return repoUrl + path;
+  } catch (error) {
+    console.error(`${error.name}: ${error.message}`);
+  }
 };
 
 /**

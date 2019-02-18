@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 const normalizeUrl = require('normalize-url');
 
+const config = require(__basedir + '/app/config.js');
+
 /**
  * Get authorization response from IndieAuth token endpoint
  *
@@ -9,14 +11,14 @@ const normalizeUrl = require('normalize-url');
  *
  */
 exports.getAuthResponse = function (accessToken) {
-  const tokenEndpoint = process.env.TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token';
+  const endpoint = config.indieauth['token-endpoint'];
   const isValidTokenFormat = accessToken.startsWith('Bearer ');
 
   if (!isValidTokenFormat) {
     accessToken = 'Bearer ' + accessToken;
   }
 
-  return fetch(tokenEndpoint, {
+  return fetch(endpoint, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

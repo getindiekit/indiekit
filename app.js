@@ -4,10 +4,11 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 
+const appConfig = require(__basedir + '/app/config.js');
 const routes = require(__basedir + '/app/routes');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const {port} = appConfig;
 
 // Parse application/json
 app.use(bodyParser.json());

@@ -1,11 +1,14 @@
 const fetch = require('node-fetch');
 
+const appConfig = require(__basedir + '/app/config.js');
+const utils = require(__basedir + '/app/functions/utils');
+
 const requestWithOptions = async function (args) {
-  const url = `https://api.github.com/repos/${process.env.GITHUB_USER}/${process.env.GITHUB_REPO}/contents/${args.path}`;
+  const url = `https://api.github.com/repos/${appConfig.github.user}/${appConfig.github.repo}/contents/${args.path}`;
   const body = {
     path: null,
-    message: 'Create an entry via micropub',
-    branch: process.env.GITHUB_BRANCH || 'master',
+    message: null,
+    branch: appConfig.github.branch,
     content: null
   };
 
@@ -29,8 +32,8 @@ const requestWithOptions = async function (args) {
     method: 'put',
     headers: {
       'content-type': 'application/json',
-      authorization: `token ${process.env.GITHUB_TOKEN}`,
-      'User-Agent': 'IndieKit'
+      authorization: `token ${appConfig.github.token}`,
+      'User-Agent': `${appConfig.name}`
     },
     body: JSON.stringify(body)
   };
@@ -42,21 +45,16 @@ const requestWithOptions = async function (args) {
   return fetch(url, options);
 };
 
-exports.createFile = function (path, content) {
+exports.createFile = async function (path, content, postType) {
   return requestWithOptions({
     path,
-    content: Buffer.from(content).toString('base64')
+    content: Buffer.from(content).toString('base64'),
+    message: `:robot: New ${postType} created via ${appConfig.name}`
   }).then(response => {
     return response.json();
   }).then(json => {
     return json;
   }).catch(error => {
-    return {
-      code: error.status,
-      body: {
-        error: 'create_github_file',
-        error_description: error.statusText
-      }
-    };
+    console.error(error);
   });
 };
