@@ -2,7 +2,6 @@ const {DateTime} = require('luxon');
 const slugify = require('slugify');
 
 const appConfig = require(__basedir + '/app/config.js');
-const config = require(__basedir + '/.cache/config.json');
 const format = require(__basedir + '/app/functions/format');
 const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
@@ -213,12 +212,12 @@ exports.successResponse = function (id, location) {
  * @param {String} appUrl URL of application
  * @returns {Object} Query object
  */
-exports.queryResponse = function (query, appUrl) {
+exports.queryResponse = function (query, pubConfig, appUrl) {
   let code;
   let body;
 
-  const mediaEndpoint = config['media-endpoint'] || `${appUrl}/media`;
-  const syndicateTo = config['syndicate-to'] || [];
+  const mediaEndpoint = pubConfig['media-endpoint'] || `${appUrl}/media`;
+  const syndicateTo = pubConfig['syndicate-to'] || [];
 
   switch (query) {
     case ('config'):
@@ -252,9 +251,9 @@ exports.queryResponse = function (query, appUrl) {
  * @param {String} mf2 microformats2 object
  * @returns {String} Location of created post
  */
-exports.createPost = async function (mf2) {
+exports.createPost = async function (mf2, pubConfig) {
   // Add date and slug values to microformats2 object
-  const slugSeparator = config['slug-separator'] || '-';
+  const slugSeparator = pubConfig['slug-separator'] || '-';
   const postData = mf2.properties;
   const postDate = module.exports.getDate(mf2);
   const postSlug = module.exports.getSlug(mf2, slugSeparator);
@@ -265,7 +264,7 @@ exports.createPost = async function (mf2) {
   const postType = microformats.getType(mf2);
 
   // Format paths and templates
-  const postConfig = config['post-types'][0][postType];
+  const postConfig = pubConfig['post-types'][0][postType];
   const path = format.string(postConfig.path, postData);
   const content = format.template(`templates/${postType}.njk`, postData);
 
@@ -279,7 +278,7 @@ exports.createPost = async function (mf2) {
 
     return repoUrl + path;
   } catch (error) {
-    console.error(`${error.name}: ${error.message}`);
+    console.error(`micropub.createPost: ${error.message}`);
   }
 };
 
@@ -301,7 +300,7 @@ exports.updatePost = async function (path, content) {
 
     throw response.error;
   }).catch(error => {
-    console.error('GitHub:', error);
+    console.error('micropub.updatePost:', error);
   });
 };
 
@@ -321,6 +320,6 @@ exports.deletePost = async function (path) {
 
     throw response.error;
   }).catch(error => {
-    console.error('GitHub:', error);
+    console.error('micropub.deletePost:', error);
   });
 };

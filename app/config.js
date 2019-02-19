@@ -1,6 +1,13 @@
 module.exports = {
   name: 'IndieKit',
   port: process.env.PORT || 3000,
+  cache: {
+    dir: __basedir + '/.cache'
+  },
+  config: {
+    path: process.env.CONFIG_PATH || 'indiekit.json',
+    file: 'config.json'
+  },
   github: {
     user: process.env.GITHUB_USER,
     repo: process.env.GITHUB_REPO,

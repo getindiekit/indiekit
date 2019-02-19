@@ -4,7 +4,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 
-const appConfig = require(__basedir + '/app/config.js');
+const appConfig = require(__basedir + '/app/config');
 const routes = require(__basedir + '/app/routes');
 
 const app = express();

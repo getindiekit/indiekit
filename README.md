@@ -18,15 +18,16 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Accept form-encoded and JSON data
 * [x] Write content to a GitHub repo and return a success status code with the location of the file.
 * [x] Respond to endpoint queries (`config`, `syndicate-to`) with endpoint configuration values
-* [ ] Fetch configuration file from remote repo
-* [ ] Fetch template files from remote repo
+* [x] Fetch configuration file from remote repo and cache locally
+* [ ] Fetch template files from remote repo and cache locally
 * [ ] Cache configuration file and post templates
+* [ ] Expire cache
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
 
 ## Components
 
-### Store (TBD)
+### Cache
 To prevent making too many calls to any APIs, and to ensure the endpoint isn’t slowed down by making requests to third-parties, should be cache configuration and template files.
 
 ### Router
@@ -53,7 +54,7 @@ Provides common utility functions.
 ## Environment variables
 This application requires the following environment variables to be set.
 
-* ~~`CONFIG_PATH` Location of configuration file~~
+* `CONFIG_PATH` Location of configuration file
 
 ### GitHub (Required)
 * `GITHUB_USER` Username

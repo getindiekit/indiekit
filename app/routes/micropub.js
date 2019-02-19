@@ -1,4 +1,5 @@
-const config = require(__basedir + '/.cache/config.json');
+const appConfig = require(__basedir + '/app/config');
+const cache = require(__basedir + '/app/functions/cache');
 const indieauth = require(__basedir + '/app/functions/indieauth');
 const micropub = require(__basedir + '/app/functions/micropub');
 
@@ -9,9 +10,10 @@ const micropub = require(__basedir + '/app/functions/micropub');
  * @param {Object} response Response
  * @return {Object} HTTP response
  */
-exports.get = function (request, response) {
+exports.get = async function (request, response) {
+  const pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
   const appUrl = `${request.protocol}://${request.headers.host}`;
-  const getResponse = micropub.queryResponse(request.query.q, appUrl);
+  const getResponse = micropub.queryResponse(request.query.q, pubConfig, appUrl);
 
   return response.status(getResponse.code).json(getResponse.body);
 };
@@ -25,6 +27,7 @@ exports.get = function (request, response) {
  * @return {Object} HTTP response
  */
 exports.post = async function (request, response, next) {
+  const pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
   const getPostResponse = async function (request) {
     let {body} = request;
 
@@ -41,7 +44,7 @@ exports.post = async function (request, response, next) {
     }
 
     // Verify token
-    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
+    const verifiedToken = await indieauth.verifyToken(accessToken, pubConfig.url);
     if (!verifiedToken) {
       return micropub.errorResponse('forbidden', 'Unable to verify access token');
     }
@@ -63,7 +66,7 @@ exports.post = async function (request, response, next) {
       }
 
       if (scope.includes('create')) {
-        const location = await micropub.createPost(body);
+        const location = await micropub.createPost(body, pubConfig);
 
         try {
           return micropub.successResponse('create', location);
@@ -84,7 +87,7 @@ exports.post = async function (request, response, next) {
       location: postResponse.location
     }).json(postResponse.body);
   } catch (error) {
-    console.error('postResponse', error);
+    console.error(error);
   }
 
   next();

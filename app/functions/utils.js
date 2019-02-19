@@ -3,7 +3,7 @@
  *
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'
  * @example decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
- * @param {String} string Request
+ * @param {String} string String to decode
  * @return {String} Decoded string
  */
 exports.decodeFormEncodedString = function (string) {
@@ -35,4 +35,15 @@ exports.removeEmptyObjectKeys = function (object) {
   }
 
   return object;
+};
+
+/**
+ * Removes / from beginning and end of strings, useful for constructing paths
+ *
+ * @example normalizePath('/foo/bar/') => 'foo/bar'
+ * @param {Object} string String
+ * @return {Object} Normalized object
+ */
+exports.normalizePath = function (string) {
+  return string.replace(/^\/|\/$/g, '');
 };

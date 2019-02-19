@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const normalizeUrl = require('normalize-url');
 
-const config = require(__basedir + '/app/config.js');
+const appConfig = require(__basedir + '/app/config.js');
 
 /**
  * Gets authorization response from IndieAuth token endpoint
@@ -10,7 +10,7 @@ const config = require(__basedir + '/app/config.js');
  * @returns {Promise} Fetch request to IndieAuth token endpoint
  */
 exports.getAuthResponse = function (accessToken) {
-  const endpoint = config.indieauth['token-endpoint'];
+  const endpoint = appConfig.indieauth['token-endpoint'];
   const isValidTokenFormat = accessToken.startsWith('Bearer ');
 
   if (!isValidTokenFormat) {
@@ -28,7 +28,7 @@ exports.getAuthResponse = function (accessToken) {
   }).then(json => {
     return json;
   }).catch(error => {
-    console.error(`${error.name}: ${error.message}`);
+    console.error(`indieauth.getAuthResponse: ${error.message}`);
   });
 };
 
@@ -59,6 +59,6 @@ exports.verifyToken = async function (accessToken, url) {
 
     return authResponse;
   } catch (error) {
-    console.error(`${error.name}: ${error.message}`);
+    console.error(`indieauth.verifyToken: ${error.message}`);
   }
 };
