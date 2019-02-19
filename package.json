@@ -8,6 +8,9 @@
   ],
   "author": "Paul Robert Lloyd",
   "license": "MIT",
+  "homepage": "https://github.com/paulrobertlloyd/indiekit#readme",
+  "repository": "github:paulrobertlloyd/indiekit",
+  "bugs": "https://github.com/paulrobertlloyd/indiekit/issues",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -17,11 +20,10 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "luxon": "^1.11.2",
+    "luxon": "^1.11.3",
     "node-fetch": "^2.3.0",
     "normalize-url": "^4.1.0",
     "nunjucks": "^3.1.7",
-    "request": "^2.88.0",
     "slugify": "^1.3.4",
     "valid-url": "^1.0.9"
   },

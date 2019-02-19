@@ -13,6 +13,9 @@ const repoUrl = `https://github.com/${appConfig.github.user}/${appConfig.github.
 /**
  * Converts form-encoded body to microformats2 object
  *
+ * Adapted from https://github.com/voxpelli/node-micropub-express
+ * Copyright (c) 2016, Pelle Wessman
+ *
  * @param {String} body Form-encoded body
  * @return {Object} mf2 microformats2 object
  */

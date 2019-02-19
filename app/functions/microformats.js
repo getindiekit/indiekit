@@ -28,7 +28,9 @@ const contentIncludesName = function (name, content) {
 
 /**
  * Takes a microformats2 object and discovers its post type.
+ *
  * Adapted from https://github.com/twozeroone/post-type-discovery
+ * Copyright (c) 2017, 201. All rights reserved.
  *
  * @param {Object} mf2 microformats2 object to be checked
  * @return {String} Type of post

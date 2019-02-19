@@ -313,7 +313,7 @@ test('8xx: Rejects invalid access tokens', async t => {
   const res = await request(app)
     .post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_INVALID}`)
+    .set('authorization', 'Bearer invalid')
     .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
 
   t.is(res.status, 403);
