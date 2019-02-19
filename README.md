@@ -15,9 +15,9 @@ A longer term ambition is to build a tool that supports more publishing destinti
 
 ## Project status
 * [x] Use values stored in a local configuration file
-* [x] Accept form-encoded and JSON data
-* [x] Write content to a GitHub repo and return a success status code with the location of the file.
 * [x] Respond to endpoint queries (`config`, `syndicate-to`) with endpoint configuration values
+* [x] Accept form-encoded and JSON data
+* [x] Write content to GitHub repo and return success status code and location of published file.
 * [x] Fetch configuration file from remote repo and cache locally
 * [x] Fetch template files from remote repo and cache locally
 * [x] Expire cache
@@ -39,7 +39,7 @@ Accept form-encoded and JSON data, convert it to a microformats2 object and proc
 Take a microformats2 object and determine its post type. Based on [post-type-discovery](https://github.com/twozeroone/post-type-discovery) by [Prateek Saxena](prtksxna.com).
 
 ### IndieAuth
-Use IndieAuth to ensure only authenticated users can use endpoint to post to configured destination.
+Use [IndieAuth](https://www.w3.org/TR/indieauth/) to ensure only authenticated users can use endpoint to post to configured destination.
 
 ### Formatter
 Render a file/string using context data using Nunjucks templating.
