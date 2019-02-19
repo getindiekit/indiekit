@@ -1,16 +1,30 @@
 const {DateTime} = require('luxon');
 const nunjucks = require('nunjucks');
 
-// Configure Nunjucks
+// Configure Nunjucks environment
 const env = new nunjucks.Environment(new nunjucks.FileSystemLoader('.cache'));
 env.addFilter('date', (date, format) => {
   return DateTime.fromISO(date).toFormat(format);
 });
 
-exports.string = function (string, data) {
-  return env.renderString(string, data);
+/**
+ * Renders a template string using context data
+ *
+ * @param {String} string Template string
+ * @param {String} context Context data
+ * @return {String} Rendered string
+ */
+exports.string = function (string, context) {
+  return env.renderString(string, context);
 };
 
-exports.template = function (templatePath, data) {
-  return env.render(templatePath, data);
+/**
+ * Renders a template using context data
+ *
+ * @param {String} templatePath Path to template file
+ * @param {String} context Context data
+ * @return {String} Rendered string
+ */
+exports.template = function (templatePath, context) {
+  return env.render(templatePath, context);
 };

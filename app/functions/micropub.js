@@ -11,11 +11,10 @@ const utils = require(__basedir + '/app/functions/utils');
 const repoUrl = `https://github.com/${appConfig.github.user}/${appConfig.github.repo}/blob/master/`;
 
 /**
- * Convert x-www-form-urlencoded body to Microformats 2 JSON object
+ * Converts form-encoded body to microformats2 object
  *
- * @param {String} body x-www-form-urlencoded body
- * @return {Object} Microformats 2 JSON object
- *
+ * @param {String} body Form-encoded body
+ * @return {Object} mf2 microformats2 object
  */
 exports.convertFormEncodedToMf2 = function (body) {
   const reservedProperties = Object.freeze([
@@ -66,12 +65,11 @@ exports.convertFormEncodedToMf2 = function (body) {
 };
 
 /**
- * Return slugified string
+ * Gets a slugified string based on microformats2 object
  *
- * @param {String} mf2 Microformats 2 JSON object
- * @param {String} separator Slug sepatator
- * @returns {String} Slugified string
- *
+ * @param {String} mf2 microformats2 object
+ * @param {String} separator Slug separator
+ * @returns {String} Slug
  */
 exports.getSlug = function (mf2, separator) {
   let slug;
@@ -94,11 +92,10 @@ exports.getSlug = function (mf2, separator) {
 };
 
 /**
- * Return ISO formatted date
+ * Returns an ISO formatted date
  *
- * @param {String} mf2 Microformats 2 JSON object
+ * @param {String} mf2 microformats2 object
  * @returns {String} ISO formatted date
- *
  */
 exports.getDate = function (mf2) {
   try {
@@ -110,11 +107,11 @@ exports.getDate = function (mf2) {
 };
 
 /**
- * Return object containing error data
+ * Returns an object containing error information
  *
  * @param {String} id Identifier
+ * @param {String} desc Description
  * @returns {Object} Error object
- *
  */
 exports.errorResponse = function (id, desc) {
   let code;
@@ -156,12 +153,11 @@ exports.errorResponse = function (id, desc) {
 };
 
 /**
- * Return object containing error data
+ * Returns an object containing success information
  *
  * @param {String} id Identifier
  * @param {String} location Location of post
  * @returns {Object} Success object
- *
  */
 exports.successResponse = function (id, location) {
   let code;
@@ -208,12 +204,11 @@ exports.successResponse = function (id, location) {
 };
 
 /**
- * Return object containing error data
+ * Returns an object containing information about this application
  *
  * @param {String} query Identifier
  * @param {String} appUrl URL of application
- * @returns {Object} Success object
- *
+ * @returns {Object} Query object
  */
 exports.queryResponse = function (query, appUrl) {
   let code;
@@ -248,8 +243,14 @@ exports.queryResponse = function (query, appUrl) {
   };
 };
 
+/**
+ * Creates a post
+ *
+ * @param {String} mf2 microformats2 object
+ * @returns {String} Location of created post
+ */
 exports.createPost = async function (mf2) {
-  // Update mf2 JSON with date and slug values
+  // Add date and slug values to microformats2 object
   const slugSeparator = config['slug-separator'] || '-';
   const postData = mf2.properties;
   const postDate = module.exports.getDate(mf2);
@@ -280,12 +281,11 @@ exports.createPost = async function (mf2) {
 };
 
 /**
- * Update post
+ * Updates a post
  *
  * @param {String} path Path to post
  * @param {String} content Content to update
  * @returns {Object} Response
- *
  */
 exports.updatePost = async function (path, content) {
   console.log(`Update post at ${path}`);
@@ -303,11 +303,10 @@ exports.updatePost = async function (path, content) {
 };
 
 /**
- * Delete post
+ * Deletes a post
  *
  * @param {String} path Path to post
  * @returns {Object} Response
- *
  */
 exports.deletePost = async function (path) {
   console.log(`Delete post at ${path}`);

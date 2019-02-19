@@ -3,12 +3,11 @@ const indieauth = require(__basedir + '/app/functions/indieauth');
 const micropub = require(__basedir + '/app/functions/micropub');
 
 /**
- * Respond to endpoint GET requests
+ * Responds to GET requests
  *
  * @param {Object} request Request
  * @param {Object} response Response
  * @return {Object} HTTP response
- *
  */
 exports.get = function (request, response) {
   const appUrl = `${request.protocol}://${request.headers.host}`;
@@ -18,12 +17,12 @@ exports.get = function (request, response) {
 };
 
 /**
- * Respond to endpoint POST requests
+ * Responds to POST requests
  *
  * @param {Object} request Request
  * @param {Object} response Response
+ * @param {Object} next Callback
  * @return {Object} HTTP response
- *
  */
 exports.post = async function (request, response, next) {
   const getPostResponse = async function (request) {

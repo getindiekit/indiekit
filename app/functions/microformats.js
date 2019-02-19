@@ -1,8 +1,3 @@
-/**
- * Adapted from https://github.com/twozeroone/post-type-discovery
- *
- */
-
 const validUrl = require('valid-url');
 
 /**
@@ -17,8 +12,8 @@ const getValue = function (value) {
 };
 
 /**
- * Strip the content and name of non-alphanumeric characters and check if the
- * content includes the name.
+ * Strips the content and name of non-alphanumeric characters and
+ * checks if the content includes the name.
  *
  * @private
  * @param {String} name Name property of the item
@@ -32,9 +27,10 @@ const contentIncludesName = function (name, content) {
 };
 
 /**
- * Takes a microformat object and discovers its post type.
+ * Takes a microformats2 object and discovers its post type.
+ * Adapted from https://github.com/twozeroone/post-type-discovery
  *
- * @param {Object} mf2 Microformat2 object to be checked
+ * @param {Object} mf2 microformats2 object to be checked
  * @return {String} Type of post
  */
 exports.getType = function (mf2) {

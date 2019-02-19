@@ -1,11 +1,10 @@
 /**
- * Decode x-www-form-urlencoded string
+ * Decodes form-encoded string
  *
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'
  * @example decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
  * @param {String} string Request
  * @return {String} Decoded string
- *
  */
 exports.decodeFormEncodedString = function (string) {
   if (typeof string === 'string') {
@@ -16,6 +15,12 @@ exports.decodeFormEncodedString = function (string) {
   return string;
 };
 
+/**
+ * Removes empty keys from an object
+ *
+ * @param {Object} object Object with empty strings
+ * @return {Object} Sanitized object
+ */
 exports.removeEmptyObjectKeys = function (object) {
   for (const key in object) {
     if (!object[key] || typeof object[key] !== 'object') {

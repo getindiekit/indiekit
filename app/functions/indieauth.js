@@ -4,11 +4,10 @@ const normalizeUrl = require('normalize-url');
 const config = require(__basedir + '/app/config.js');
 
 /**
- * Get authorization response from IndieAuth token endpoint
+ * Gets authorization response from IndieAuth token endpoint
  *
  * @param {String} accessToken Access token
- * @returns {Object} JSON object
- *
+ * @returns {Promise} Fetch request to IndieAuth token endpoint
  */
 exports.getAuthResponse = function (accessToken) {
   const endpoint = config.indieauth['token-endpoint'];
@@ -34,12 +33,11 @@ exports.getAuthResponse = function (accessToken) {
 };
 
 /**
- * Verify token provides permission to post to configured destination
+ * Verifies that token provides permission to post to configured destination
  *
  * @param {String} accessToken Access token
  * @param {String} url Destination URL
- * @returns {Boolean} Token validity
- *
+ * @returns {Object} Endpoint response
  */
 exports.verifyToken = async function (accessToken, url) {
   const authResponse = await module.exports.getAuthResponse(accessToken);
@@ -49,13 +47,12 @@ exports.verifyToken = async function (accessToken, url) {
       throw new Error('No response from token endpoint');
     }
 
-    if (authResponse.error) { // TODO: Check if all clients support authResponse.error
+    if (authResponse.error) {
+      // TODO: Check if all clients support authResponse.error
       throw new Error(authResponse.error_description);
     }
 
-    const authenticatedUrl = normalizeUrl(authResponse.me);
-    const destinationUrl = normalizeUrl(url);
-    const isAuthenticated = authenticatedUrl === destinationUrl;
+    const isAuthenticated = normalizeUrl(authResponse.me) === normalizeUrl(url);
     if (!isAuthenticated) {
       throw new Error(`${url} does not match that provided by token endpoint`);
     }
