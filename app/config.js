@@ -2,7 +2,8 @@ module.exports = {
   name: 'IndieKit',
   port: process.env.PORT || 3000,
   cache: {
-    dir: __basedir + '/.cache'
+    dir: __basedir + '/.cache',
+    'max-age': 86400
   },
   config: {
     path: process.env.CONFIG_PATH || 'indiekit.json',

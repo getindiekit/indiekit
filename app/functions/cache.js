@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path');
+const {DateTime} = require('luxon');
 
 const appConfig = require(__basedir + '/app/config.js');
 const github = require(__basedir + '/app/functions/github.js');
@@ -15,16 +15,23 @@ const utils = require(__basedir + '/app/functions/utils.js');
  */
 exports.fetchFile = async function (remotePath, cachePath) {
   const cacheFile = module.exports.readFromCache(cachePath);
-  const {lastFetched} = cacheFile;
 
-  // Only fetch new mentions in production
-  if (!lastFetched) {
+  // Construct dates for cache invalidation
+  const {lastFetched} = cacheFile;
+  const expiryDate = Number(lastFetched) + Number(appConfig.cache['max-age']);
+  const currentDate = DateTime.fromMillis(Date.now()).toFormat('X');
+
+  const hasExpired = currentDate > expiryDate;
+
+  // Fetch if no cache found or cache has expired
+  if (!lastFetched || hasExpired) {
     remotePath = utils.normalizePath(remotePath);
     const remoteData = await github.getContents(remotePath);
+    const date = new Date().toISOString();
 
     if (remoteData) {
       const cacheFile = {
-        lastFetched: new Date().toISOString(),
+        lastFetched: DateTime.fromISO(date).toFormat('X'),
         data: JSON.parse(remoteData)
       };
 

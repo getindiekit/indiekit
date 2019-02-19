@@ -20,8 +20,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Respond to endpoint queries (`config`, `syndicate-to`) with endpoint configuration values
 * [x] Fetch configuration file from remote repo and cache locally
 * [ ] Fetch template files from remote repo and cache locally
-* [ ] Cache configuration file and post templates
-* [ ] Expire cache
+* [x] Expire cache
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
 
