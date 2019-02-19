@@ -19,7 +19,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Write content to a GitHub repo and return a success status code with the location of the file.
 * [x] Respond to endpoint queries (`config`, `syndicate-to`) with endpoint configuration values
 * [x] Fetch configuration file from remote repo and cache locally
-* [ ] Fetch template files from remote repo and cache locally
+* [x] Fetch template files from remote repo and cache locally
 * [x] Expire cache
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action

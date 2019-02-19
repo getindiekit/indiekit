@@ -54,7 +54,7 @@ exports.verifyToken = async function (accessToken, url) {
 
     const isAuthenticated = normalizeUrl(authResponse.me) === normalizeUrl(url);
     if (!isAuthenticated) {
-      throw new Error(`${url} does not match that provided by token endpoint`);
+      throw new Error(`${url} does not match that provided by token`);
     }
 
     return authResponse;

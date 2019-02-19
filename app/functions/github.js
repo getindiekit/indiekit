@@ -13,7 +13,7 @@ const repoContentUrl = `https://api.github.com/repos/${appConfig.github.user}/${
  * @return {Promise} Fetch request to GitHub API
  */
 const requestWithOptions = async function (args) {
-  const url = `${repoContentUrl}/${args.path}`;
+  const url = repoContentUrl + args.path;
   const method = args.method || 'put';
   let body;
 
@@ -68,12 +68,18 @@ const requestWithOptions = async function (args) {
  */
 exports.createFile = async function (path, content, postType) {
   path = utils.normalizePath(path);
+  console.log('github.createFile path', path);
+  console.log('github.createFile path', content);
+
   return requestWithOptions({
     message: `:robot: New ${postType} created via ${appConfig.name}`,
     content: Buffer.from(content).toString('base64'),
     path
   }).then(response => {
-    return response.json();
+    if (response.ok) {
+      console.log('GitHub response', response);
+      return response.json();
+    }
   }).then(json => {
     return json;
   }).catch(error => {

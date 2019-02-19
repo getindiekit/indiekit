@@ -1,9 +1,15 @@
 const fs = require('fs');
+const path = require('path');
 const {DateTime} = require('luxon');
 
 const appConfig = require(__basedir + '/app/config.js');
 const github = require(__basedir + '/app/functions/github.js');
 const utils = require(__basedir + '/app/functions/utils.js');
+
+const getFileUpdatedDate = path => {
+  const stats = fs.statSync(path);
+  return stats.mtimeMs;
+};
 
 /**
  * Reads file from cache, fetching remote version if not found
@@ -14,33 +20,38 @@ const utils = require(__basedir + '/app/functions/utils.js');
  * @returns {Object} Fetched file
  */
 exports.fetchFile = async function (remotePath, cachePath) {
-  const cacheFile = module.exports.readFromCache(cachePath);
+  return new Promise(resolve => {
+    const cacheFile = module.exports.readFromCache(cachePath);
 
-  // Construct dates for cache invalidation
-  const {lastFetched} = cacheFile;
-  const expiryDate = Number(lastFetched) + Number(appConfig.cache['max-age']);
-  const currentDate = DateTime.fromMillis(Date.now()).toFormat('X');
+    // Check if file is cached
+    let hasExpired;
+    const filePath = path.join(appConfig.cache.dir, cachePath);
+    const isCached = fs.existsSync(filePath);
 
-  const hasExpired = currentDate > expiryDate;
+    if (isCached) {
+      let updatedDate = getFileUpdatedDate(filePath);
+      updatedDate = DateTime.fromMillis(updatedDate).toFormat('X');
 
-  // Fetch if no cache found or cache has expired
-  if (!lastFetched || hasExpired) {
-    remotePath = utils.normalizePath(remotePath);
-    const remoteData = await github.getContents(remotePath);
-    const date = new Date().toISOString();
+      let currentDate = Date.now();
+      currentDate = DateTime.fromMillis(currentDate).toFormat('X');
 
-    if (remoteData) {
-      const cacheFile = {
-        lastFetched: DateTime.fromISO(date).toFormat('X'),
-        data: JSON.parse(remoteData)
-      };
-
-      module.exports.writeToCache(cachePath, cacheFile);
-      return cacheFile.data;
+      const expiredDate = Number(updatedDate) + Number(appConfig.cache['max-age']);
+      hasExpired = currentDate > expiredDate;
     }
-  }
 
-  return cacheFile.data;
+    // Fetch if no cache found or cache has expired
+    if (!isCached || hasExpired) {
+      remotePath = utils.normalizePath(remotePath);
+      const remoteData = github.getContents(remotePath);
+
+      if (remoteData) {
+        module.exports.writeToCache(cachePath, remoteData);
+        resolve(remoteData);
+      }
+    }
+
+    resolve(Buffer.from(cacheFile).toString('utf-8'));
+  });
 };
 
 /**
@@ -54,32 +65,29 @@ exports.readFromCache = function (filePath) {
 
   if (fs.existsSync(filePath)) {
     const cacheFile = fs.readFileSync(filePath);
-    return JSON.parse(cacheFile);
+    return cacheFile;
   }
-
-  return {
-    lastFetched: null,
-    data: []
-  };
 };
 
 /**
  * Saves data to cache file
  *
  * @param {Object} filePath Location to save cache file
- * @param {Object} data Cache object
+ * @param {Object} fileData Cache object
  */
-exports.writeToCache = function (filePath, data) {
+exports.writeToCache = function (filePath, fileData) {
   filePath = path.join(appConfig.cache.dir, filePath);
-  const fileContent = JSON.stringify(data, null, 2);
+  const pathToFile = path.parse(filePath).dir;
 
   // Create cache directory if it doesnt exist already
-  if (!fs.existsSync(appConfig.cache.dir)) {
-    fs.mkdirSync(appConfig.cache.dir);
+  if (!fs.existsSync(pathToFile)) {
+    fs.mkdirSync(pathToFile, {
+      recursive: true
+    });
   }
 
   // Write data to disk
-  fs.writeFile(filePath, fileContent, error => {
+  fs.writeFile(filePath, fileData, error => {
     if (error) {
       throw error;
     }

@@ -11,7 +11,9 @@ const micropub = require(__basedir + '/app/functions/micropub');
  * @return {Object} HTTP response
  */
 exports.get = async function (request, response) {
-  const pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
+  let pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
+  pubConfig = JSON.parse(pubConfig);
+
   const appUrl = `${request.protocol}://${request.headers.host}`;
   const getResponse = micropub.queryResponse(request.query.q, pubConfig, appUrl);
 
@@ -27,7 +29,9 @@ exports.get = async function (request, response) {
  * @return {Object} HTTP response
  */
 exports.post = async function (request, response, next) {
-  const pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
+  let pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
+  pubConfig = JSON.parse(pubConfig);
+
   const getPostResponse = async function (request) {
     let {body} = request;
 

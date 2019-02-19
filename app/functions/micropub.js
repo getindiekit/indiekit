@@ -2,6 +2,7 @@ const {DateTime} = require('luxon');
 const slugify = require('slugify');
 
 const appConfig = require(__basedir + '/app/config.js');
+const cache = require(__basedir + '/app/functions/cache');
 const format = require(__basedir + '/app/functions/format');
 const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
@@ -209,6 +210,7 @@ exports.successResponse = function (id, location) {
  * Returns an object containing information about this application
  *
  * @param {String} query Identifier
+ * @param {Object} pubConfig Publication configuration
  * @param {String} appUrl URL of application
  * @returns {Object} Query object
  */
@@ -249,6 +251,7 @@ exports.queryResponse = function (query, pubConfig, appUrl) {
  * Creates a post
  *
  * @param {String} mf2 microformats2 object
+ * @param {Object} pubConfig Publication configuration
  * @returns {String} Location of created post
  */
 exports.createPost = async function (mf2, pubConfig) {
@@ -265,18 +268,33 @@ exports.createPost = async function (mf2, pubConfig) {
 
   // Format paths and templates
   const postConfig = pubConfig['post-types'][0][postType];
-  const path = format.string(postConfig.path, postData);
-  const content = format.template(`templates/${postType}.njk`, postData);
+  const postPath = format.string(postConfig.path, postData);
+
+  // Fetch template and render file
+  let postContent;
+  const remoteTemplatePath = pubConfig['post-types'][0][postType].template;
+  const cachedTemplatePath = `templates/${postType}.njk`;
+  const templateFile = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
+
+  try {
+    if (templateFile) {
+      postContent = format.template(cachedTemplatePath, postData);
+    }
+
+    throw new Error('Unable to fetch template');
+  } catch (error) {
+    console.error(`micropub.createPost: ${error.message}`);
+  }
 
   // Push file to GitHub
-  const githubResponse = await github.createFile(path, content, postType);
+  const githubResponse = await github.createFile(postPath, postContent, postType);
 
   try {
     if (!githubResponse) {
       throw new Error('No response from GitHub');
     }
 
-    return repoUrl + path;
+    return repoUrl + postPath;
   } catch (error) {
     console.error(`micropub.createPost: ${error.message}`);
   }
