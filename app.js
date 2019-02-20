@@ -29,7 +29,7 @@ app.use(favicon(path.join(__dirname, 'www', 'favicon.ico')));
 app.use('/', routes);
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.info(`Server running on port ${port}`);
   cache.clearCache(appConfig.cache.dir);
 });
 

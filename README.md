@@ -14,7 +14,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
 
 ## Project status
-* [x] Respond to endpoint `config` and  `syndicate-to` queries with values stored in a local configuration file
+* [x] Respond to endpoint `config` and `syndicate-to` queries with values stored in a local configuration file
 * [x] Accept form-encoded and JSON requests
 * [x] Post to GitHub and return success status code and location of published file.
 * [x] Fetch configuration file from remote repo and cache locally
@@ -25,10 +25,11 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [ ] Accept multipart encoded requests
 * [ ] Respond to endpoint `source` queries
 * [ ] Support Micropub media endpoint
-* [ ] Support Micropub delete action
+* [x] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
 * [ ] Provide default templates for different post types
 * [ ] Provide better error handling and logging
+* [ ] Generate documentation website
 * [ ] Add local disk as second publishing destination (and use for testing)
 
 ## Components
@@ -65,9 +66,9 @@ This application requires the following environment variables to be set.
 * `GITHUB_TOKEN` Access token
 
 ### IndieAuth (Required to run tests)
-* `TEST_INDIEAUTH_TOKEN` IndieAuth token with `create` and `update` scope. URL *should* match that used in configuration.
+* `TEST_INDIEAUTH_TOKEN` IndieAuth token with `create`, `update` and `delete` scopes. URL *should* match that used in configuration.
 * `TEST_INDIEAUTH_TOKEN_NOT_SCOPED` IndieAuth token without a scope. URL *should* match that used in configuration.
-* `TEST_INDIEAUTH_TOKEN_NOT_ME` IndieAuth token with `create` and `update` scope. URL *should not* match that used in configuration.
+* `TEST_INDIEAUTH_TOKEN_NOT_ME` IndieAuth token with `create` and `update` scopes. URL *should not* match that used in configuration.
 
 You can use [Homebrew Access Token](https://gimme-a-token.5eb.nl) to create tokens for testing locally.
 

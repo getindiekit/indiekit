@@ -14,11 +14,18 @@ const repoContentUrl = `https://api.github.com/repos/${appConfig.github.user}/${
  */
 const requestWithOptions = async function (args) {
   const url = repoContentUrl + args.path;
-  const method = args.method || 'put';
-  let body;
+  const method = args.method || 'get';
+  const options = {
+    method,
+    headers: {
+      'content-type': 'application/json',
+      authorization: `token ${appConfig.github.token}`,
+      'User-Agent': `${appConfig.name}`
+    }
+  };
 
   if (method !== 'get') {
-    body = {
+    const body = {
       message: null,
       content: null,
       branch: appConfig.github.branch,
@@ -41,24 +48,46 @@ const requestWithOptions = async function (args) {
       body.sha = args.sha;
     }
 
-    body = JSON.stringify(body);
+    options.body = JSON.stringify(body);
   }
-
-  const options = {
-    method,
-    headers: {
-      'content-type': 'application/json',
-      authorization: `token ${appConfig.github.token}`,
-      'User-Agent': `${appConfig.name}`
-    },
-    body
-  };
 
   return fetch(url, options);
 };
 
 /**
- * Creates a new file in a GitHub repository.
+ * Gets the contents of a file or directory in a repository
+ * https://developer.github.com/v3/repos/contents/#get-contents
+ *
+ * @param {String} path Path to file
+ * @return {String} GitHub HTTP response
+ */
+exports.getContents = async function (path) {
+  path = utils.normalizePath(path);
+
+  return requestWithOptions({
+    method: 'get',
+    path
+  }).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+  }).then(body => {
+    let content;
+    if (body.content) {
+      content = Buffer.from(body.content, 'base64').toString('utf8');
+    }
+
+    return {
+      content,
+      sha: body.sha
+    };
+  }).catch(error => {
+    console.error('github.getContents', error);
+  });
+};
+
+/**
+ * Creates a new file in a GitHub repository
  * https://developer.github.com/v3/repos/contents/#create-a-file
  *
  * @param {String} path Path to file
@@ -70,7 +99,8 @@ exports.createFile = async function (path, content, postType) {
   path = utils.normalizePath(path);
 
   return requestWithOptions({
-    message: `:robot: New ${postType} created via ${appConfig.name}`,
+    method: 'put',
+    message: `:robot: ${postType} created with ${appConfig.name}`,
     content: Buffer.from(content).toString('base64'),
     path
   }).then(response => {
@@ -84,19 +114,35 @@ exports.createFile = async function (path, content, postType) {
   });
 };
 
-exports.getContents = async function (path) {
-  path = utils.normalizePath(path);
+/**
+ * Deletes a new file in a GitHub repository
+ * https://developer.github.com/v3/repos/contents/#delete-a-file
+ *
+ * @param {String} path Path to file
+ * @param {String} content File content
+ * @param {String} postType Microformats post type
+ * @return {String} GitHub HTTP response
+ */
+exports.deleteFile = async function (path) {
+  path = utils.githubFilePathFromUrl(path);
+  const result = await module.exports.getContents(path);
 
-  return requestWithOptions({
-    path,
-    method: 'get'
-  }).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-  }).then(body => {
-    return Buffer.from(body.content, 'base64').toString('utf8');
-  }).catch(error => {
-    console.error('github.getContents', error);
-  });
+  if (result.error) {
+    console.error(result.error);
+  } else {
+    return requestWithOptions({
+      method: 'delete',
+      message: `:robot: Post deleted with ${appConfig.name}`,
+      sha: result.sha,
+      path
+    }).then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    }).then(json => {
+      return json;
+    }).catch(error => {
+      console.error('github.createFile', error);
+    });
+  }
 };

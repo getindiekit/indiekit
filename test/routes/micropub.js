@@ -11,6 +11,9 @@ test('001: Rejects query with no body data', async t => {
   t.is(res.status, 400);
 });
 
+/**
+ * Creating Posts (Form-Encoded)
+ */
 test('100: Create h-entry (form-encoded)', async t => {
   const res = await request(app)
     .post('/micropub')
@@ -55,6 +58,9 @@ test('107: Create h-entry with one category (form-encoded)', async t => {
   t.truthy(res.header.location);
 });
 
+/**
+ * Creating Posts (JSON)
+ */
 test('200: Create h-entry (JSON)', async t => {
   const mf2 = {
     type: ['h-entry'],
@@ -208,6 +214,9 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
   t.truthy(res.header.location);
 });
 
+/**
+ * Query
+ */
 test('600: Configuration Query', async t => {
   const res = await request(app)
     .get('/micropub')
@@ -248,6 +257,9 @@ test('6xx: Rejects unknown endpoint query', async t => {
   t.is(res.body.error, 'invalid_request');
 });
 
+/**
+ * Authentication
+ */
 test('800: Accept access token in HTTP header', async t => {
   const res = await request(app)
     .post('/micropub')

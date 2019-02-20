@@ -292,42 +292,39 @@ exports.queryResponse = function (query, pubConfig, appUrl) {
  * @returns {String} Location of created post
  */
 exports.createPost = async function (mf2, pubConfig) {
+  const prop = mf2.properties;
+
   // Determine date and slug properties
   const slugSeparator = pubConfig['slug-separator'] || '-';
-  const postData = mf2.properties;
-  const postDate = module.exports.getDate(mf2);
-  const postSlug = module.exports.getSlug(mf2, slugSeparator);
-  postData.published = postDate;
-  postData.slug = postSlug;
+  prop.published = module.exports.getDate(mf2);
+  prop.slug = module.exports.getSlug(mf2, slugSeparator);
 
   // Normalise content and photo properties
-  if (postData.content) {
-    postData.content = module.exports.getContent(postData.content);
+  if (prop.content) {
+    prop.content = module.exports.getContent(prop.content);
   }
 
-  if (postData.photo) {
-    postData.photo = module.exports.getPhotos(postData.photo);
+  if (prop.photo) {
+    prop.photo = module.exports.getPhotos(prop.photo);
   }
 
-  // Determine post type
-  const postType = microformats.getType(mf2);
+  // Render destination path
+  const type = microformats.getType(mf2);
+  const typeConfig = pubConfig['post-types'][0][type];
+  const path = format.string(typeConfig.path, prop);
 
-  // Format paths and templates
-  const postConfig = pubConfig['post-types'][0][postType];
-  const postPath = format.string(postConfig.path, postData);
+  // Render template
+  const remoteTemplatePath = pubConfig['post-types'][0][type].template;
+  const cachedTemplatePath = `templates/${type}.njk`;
+  const template = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
+  const content = format.string(template, prop);
 
-  // Fetch template and render file
-  const remoteTemplatePath = pubConfig['post-types'][0][postType].template;
-  const cachedTemplatePath = `templates/${postType}.njk`;
-  const postTemplate = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
-  const postContent = format.string(postTemplate, postData);
-
-  // Push post content to GitHub
-  const githubResponse = await github.createFile(postPath, postContent, postType);
+  // Create post on GitHub
+  const githubResponse = await github.createFile(path, content, type);
 
   try {
     if (githubResponse) {
-      return repoUrl + postPath;
+      return module.exports.successResponse('create', repoUrl + path);
     }
   } catch (error) {
     console.error(`micropub.createPost: ${error.message}`);
@@ -361,13 +358,13 @@ exports.updatePost = async function (path, content) {
  * @returns {Object} Response
  */
 exports.deletePost = async function (path) {
-  return github.deleteFile(path).then(response => {
-    if (response.ok) {
-      return module.exports.successResponse('delete', repoUrl + path);
-    }
+  const githubResponse = await github.deleteFile(path);
 
-    throw response.error;
-  }).catch(error => {
-    console.error('micropub.deletePost:', error);
-  });
+  try {
+    if (githubResponse) {
+      return module.exports.successResponse('delete', path);
+    }
+  } catch (error) {
+    console.error(`micropub.deletePost: ${error.message}`);
+  }
 };

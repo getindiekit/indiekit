@@ -47,3 +47,15 @@ exports.removeEmptyObjectKeys = function (object) {
 exports.normalizePath = function (string) {
   return string.replace(/^\/|\/$/g, '');
 };
+
+/**
+ * Returns path to repo object from full URL
+ *
+ * @example githubFilePathFromUrl('https://github.com/<username>/<repo>/blob/<branch>/foobar.txt') => 'foobar.txt'
+ * @param {String} url GitHub URL
+ * @return {String} Normalized object
+ */
+exports.githubFilePathFromUrl = function (url) {
+  const regex = /https:\/\/github\.com\/(?<username>[\w-]+)\/(?<repo>[\w-]+)\/blob\/(?<branch>[\w-]+)\//;
+  return url.replace(regex, '');
+};

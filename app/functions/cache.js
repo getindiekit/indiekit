@@ -44,8 +44,9 @@ exports.fetchFile = async function (remotePath, cachePath) {
     const remoteData = await github.getContents(remotePath);
 
     try {
-      module.exports.writeToCache(cachePath, remoteData);
-      return remoteData;
+      const freshData = remoteData.content;
+      module.exports.writeToCache(cachePath, freshData);
+      return freshData;
     } catch (error) {
       console.error('cache.fetchFile', error);
     }
@@ -91,7 +92,7 @@ exports.writeToCache = function (filePath, fileData) {
       throw error;
     }
 
-    console.log(`Cached data written to ${filePath}`);
+    console.info(`Cached data written to ${filePath}`);
   });
 };
 
@@ -105,5 +106,5 @@ exports.clearCache = function (cacheDir) {
     fs.removeSync(cacheDir);
   }
 
-  console.log('Cached cleared');
+  console.info('Cache cleared');
 };

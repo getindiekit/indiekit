@@ -60,29 +60,28 @@ exports.post = async function (request, response, next) {
 
     // Determine action, ensuring token includes scope permission
     const {scope} = verifiedToken;
-    try {
-      if (body.action === 'delete' && scope.includes('delete')) {
-        return micropub.errorResponse('not_supported', 'Delete action not supported');
-      }
 
-      if (body.action === 'update' && scope.includes('update')) {
-        return micropub.errorResponse('not_supported', 'Update action not supported');
-      }
-
-      if (scope.includes('create')) {
-        const location = await micropub.createPost(body, pubConfig);
-
-        try {
-          return micropub.successResponse('create', location);
-        } catch {
-          return micropub.errorResponse('server_error', 'Create action failed');
-        }
+    if (body.action === 'delete') {
+      if (scope.includes('delete')) {
+        return micropub.deletePost(body.url);
       }
 
       return micropub.errorResponse('insufficient_scope');
-    } catch {
-      return micropub.errorResponse('server_error', 'Micropub action failed');
     }
+
+    if (body.action === 'update') {
+      if (scope.includes('update')) {
+        return micropub.errorResponse('not_supported', 'Update action not supported');
+      }
+
+      return micropub.errorResponse('insufficient_scope');
+    }
+
+    if (scope.includes('create')) {
+      return micropub.createPost(body, pubConfig);
+    }
+
+    return micropub.errorResponse('insufficient_scope');
   };
 
   const postResponse = await getPostResponse(request);
