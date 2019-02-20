@@ -1,8 +1,10 @@
 global.__basedir = __dirname;
 require('dotenv').config();
 
+const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
+const favicon = require('serve-favicon');
 
 const appConfig = require(__basedir + '/app/config');
 const cache = require(__basedir + '/app/functions/cache');
@@ -19,6 +21,11 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// Static files
+app.use(express.static('www'));
+app.use(favicon(path.join(__dirname, 'www', 'favicon.ico')));
+
+// Routes
 app.use('/', routes);
 
 app.listen(port, () => {

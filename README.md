@@ -21,6 +21,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Fetch configuration file from remote repo and cache locally
 * [x] Fetch template files from remote repo and cache locally
 * [x] Expire cache
+* [ ] Support variations of mf2 photo content (with/without alternative text)
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
 
@@ -64,3 +65,6 @@ This application requires the following environment variables to be set.
 * `TEST_INDIEAUTH_TOKEN` IndieAuth token with `create` and `update` scope. URL *should* match that used in configuration.
 * `TEST_INDIEAUTH_TOKEN_NOT_SCOPED` IndieAuth token without a scope. URL *should* match that used in configuration.
 * `TEST_INDIEAUTH_TOKEN_NOT_ME` IndieAuth token with `create` and `update` scope. URL *should not* match that used in configuration.
+
+## Credits
+Favicon adapted from [‘to merge’](https://www.toicon.com/icons/afiado_merge) icon by Susana Passinhas.
