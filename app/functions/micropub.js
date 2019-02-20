@@ -257,37 +257,41 @@ exports.successResponse = function (id, location) {
  * @param {String} appUrl URL of application
  * @returns {Object} Query object
  */
-exports.queryResponse = function (query, pubConfig, appUrl) {
-  let code;
-  let body;
-
+exports.queryResponse = async function (query, pubConfig, appUrl) {
   const mediaEndpoint = pubConfig['media-endpoint'] || `${appUrl}/media`;
   const syndicateTo = pubConfig['syndicate-to'] || [];
 
-  switch (query) {
-    case ('config'):
-      code = 200;
-      body = {
+  if (query.q === 'config') {
+    return {
+      code: 200,
+      body: {
         'media-endpoint': mediaEndpoint,
         'syndicate-to': syndicateTo
-      };
-      break;
-    case ('source'):
-      return module.exports.errorResponse('not_supported');
-    case ('syndicate-to'):
-      code = 200;
-      body = {
-        'syndicate-to': syndicateTo
-      };
-      break;
-    default:
-      return module.exports.errorResponse('invalid_request');
+      }
+    };
   }
 
-  return {
-    code,
-    body
-  };
+  if (query.q === 'source') {
+    /* @todo Currently returns markdown with no mf2 properties */
+    const properties = await module.exports.getPost(query.url);
+    return {
+      code: 200,
+      body: {
+        properties
+      }
+    };
+  }
+
+  if (query.q === 'syndicate-to') {
+    return {
+      code: 200,
+      body: {
+        'syndicate-to': syndicateTo
+      }
+    };
+  }
+
+  return module.exports.errorResponse('invalid_request');
 };
 
 /**
@@ -327,14 +331,26 @@ exports.createPost = async function (mf2, pubConfig) {
 
   // Create post on GitHub
   const githubResponse = await github.createFile(path, content, type);
-
-  try {
-    if (githubResponse) {
-      return module.exports.successResponse('create', repoUrl + path);
-    }
-  } catch (error) {
-    console.error(`micropub.createPost: ${error.message}`);
+  if (githubResponse) {
+    return module.exports.successResponse('create', repoUrl + path);
   }
+
+  throw new Error(githubResponse.error);
+};
+
+/**
+ * Gets post to inspect its properties
+ *
+ * @param {String} path Path to post
+ * @returns {Object} Response
+ */
+exports.getPost = async function (path) {
+  const githubResponse = await github.getFile(path);
+  if (githubResponse) {
+    return githubResponse.content;
+  }
+
+  throw new Error(githubResponse.error);
 };
 
 /**
@@ -345,16 +361,13 @@ exports.createPost = async function (mf2, pubConfig) {
  * @returns {Object} Response
  */
 exports.updatePost = async function (path, content) {
-  return github.updateFile(path, content).then(response => {
-    if (response.ok) {
-      /* @todo If path has changed, return 'update_created' */
-      return module.exports.successResponse('update', repoUrl + path);
-    }
+  const githubResponse = github.updateFile(path, content);
+  if (githubResponse) {
+    /* @todo If path has changed, return 'update_created' */
+    return module.exports.successResponse('update', repoUrl + path);
+  }
 
-    throw response.error;
-  }).catch(error => {
-    console.error('micropub.updatePost:', error);
-  });
+  throw new Error(githubResponse.error);
 };
 
 /**
@@ -365,12 +378,9 @@ exports.updatePost = async function (path, content) {
  */
 exports.deletePost = async function (path) {
   const githubResponse = await github.deleteFile(path);
-
-  try {
-    if (githubResponse) {
-      return module.exports.successResponse('delete', path);
-    }
-  } catch (error) {
-    console.error(`micropub.deletePost: ${error.message}`);
+  if (githubResponse) {
+    return module.exports.successResponse('delete', path);
   }
+
+  throw new Error(githubResponse.error);
 };

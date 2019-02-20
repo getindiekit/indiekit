@@ -18,7 +18,7 @@ exports.get = async function (request, response) {
   pubConfig = JSON.parse(pubConfig);
 
   const appUrl = `${request.protocol}://${request.headers.host}`;
-  const getResponse = micropub.queryResponse(request.query.q, pubConfig, appUrl);
+  const getResponse = await micropub.queryResponse(request.query, pubConfig, appUrl);
 
   return response.status(getResponse.code).json(getResponse.body);
 };

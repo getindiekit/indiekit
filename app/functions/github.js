@@ -153,3 +153,14 @@ exports.deleteFile = async function (path) {
     });
   }
 };
+
+exports.getFile = async function (path) {
+  path = utils.githubFilePathFromUrl(path);
+  const result = await module.exports.getContents(path);
+
+  if (result.error) {
+    console.error(result.error);
+  } else {
+    return result;
+  }
+};
