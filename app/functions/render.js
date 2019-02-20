@@ -1,3 +1,9 @@
+/**
+ * Render a template or string using context data using Nunjucks.
+ *
+ * @module functions/render
+ */
+
 const {DateTime} = require('luxon');
 const nunjucks = require('nunjucks');
 

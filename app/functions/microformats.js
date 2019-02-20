@@ -1,3 +1,11 @@
+/**
+ * Take a microformats2 object and determine its post type. Adapted from
+ * {@link https://github.com/twozeroone/post-type-discovery post-type-discovery}
+ * by {@link http://prtksxna.com Prateek Saxena}.
+ *
+ * @module functions/microformats
+ * @copyright Copyright (c) 2017, 201. All rights reserved.
+ */
 const validUrl = require('valid-url');
 
 /**
@@ -28,9 +36,6 @@ const contentIncludesName = function (name, content) {
 
 /**
  * Takes a microformats2 object and discovers its post type.
- *
- * Adapted from https://github.com/twozeroone/post-type-discovery
- * Copyright (c) 2017, 201. All rights reserved.
  *
  * @param {Object} mf2 microformats2 object to be checked
  * @return {String} Type of post

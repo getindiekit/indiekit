@@ -1,21 +1,27 @@
+/**
+ * Accept form-encoded and JSON data, convert it to a microformats2 object
+ * and process the resulting data so that it can be published to a destination.
+ *
+ * @module functions/micropub
+ */
 const {DateTime} = require('luxon');
 const slugify = require('slugify');
 
 const appConfig = require(__basedir + '/app/config.js');
 const cache = require(__basedir + '/app/functions/cache');
-const format = require(__basedir + '/app/functions/format');
 const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
+const render = require(__basedir + '/app/functions/render');
 const utils = require(__basedir + '/app/functions/utils');
 
 const repoUrl = `https://github.com/${appConfig.github.user}/${appConfig.github.repo}/blob/master/`;
 
 /**
- * Converts form-encoded body to microformats2 object
+ * Converts form-encoded body to microformats2 object. Adapted from
+ * {@link https://github.com/voxpelli/node-micropub-express node-micropub-express}
+ * by {@link https://kodfabrik.se Pelle Wessman}
  *
- * Adapted from https://github.com/voxpelli/node-micropub-express
- * Copyright (c) 2016, Pelle Wessman
- *
+ * @copyright (c) 2016, Pelle Wessman
  * @param {String} body Form-encoded body
  * @return {Object} mf2 microformats2 object
  */
@@ -311,13 +317,13 @@ exports.createPost = async function (mf2, pubConfig) {
   // Render destination path
   const type = microformats.getType(mf2);
   const typeConfig = pubConfig['post-types'][0][type];
-  const path = format.string(typeConfig.path, prop);
+  const path = render.string(typeConfig.path, prop);
 
   // Render template
   const remoteTemplatePath = pubConfig['post-types'][0][type].template;
   const cachedTemplatePath = `templates/${type}.njk`;
   const template = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
-  const content = format.string(template, prop);
+  const content = render.string(template, prop);
 
   // Create post on GitHub
   const githubResponse = await github.createFile(path, content, type);
@@ -341,7 +347,7 @@ exports.createPost = async function (mf2, pubConfig) {
 exports.updatePost = async function (path, content) {
   return github.updateFile(path, content).then(response => {
     if (response.ok) {
-      // TODO: If path has changed, return 'update_created'
+      /* @todo If path has changed, return 'update_created' */
       return module.exports.successResponse('update', repoUrl + path);
     }
 

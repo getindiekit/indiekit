@@ -1,3 +1,9 @@
+/**
+ * Cache files to prevent making too many calls to APIs, and to ensure endpoint
+ * isn’t slowed down by excessive requests to third-parties.
+ *
+ * @module functions/cache
+ */
 const path = require('path');
 const fs = require('fs-extra');
 const {DateTime} = require('luxon');
@@ -13,7 +19,6 @@ const getFileUpdatedDate = path => {
 
 /**
  * Reads file from cache, fetching remote version if not found
- * TODO: Expire cache and fetch again after a certain time limit
  *
  * @param {Strong} remotePath Path to file on remote store
  * @param {Strong} cachePath Path to file in local cache

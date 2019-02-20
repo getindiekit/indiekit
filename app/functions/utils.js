@@ -1,4 +1,10 @@
 /**
+ * Common utility functions.
+ *
+ * @module functions/utils
+ */
+
+/**
  * Decodes form-encoded string
  *
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'

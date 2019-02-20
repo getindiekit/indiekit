@@ -1,3 +1,6 @@
+/**
+ * @module routes/micropub
+ */
 const appConfig = require(__basedir + '/app/config');
 const cache = require(__basedir + '/app/functions/cache');
 const indieauth = require(__basedir + '/app/functions/indieauth');

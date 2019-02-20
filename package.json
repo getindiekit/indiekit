@@ -14,6 +14,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "docs": "documentation build app/** -f md -o docs/index.md --markdown-toc false",
     "test": "nyc ava --verbose"
   },
   "dependencies": {
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "ava": "^1.2.1",
+    "documentation": "^9.1.1",
+    "minami": "^1.2.3",
     "nyc": "^13.3.0",
     "supertest": "^3.4.2",
     "xo": "^0.24.0"

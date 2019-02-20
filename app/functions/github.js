@@ -1,3 +1,10 @@
+/**
+ * Get, create, update and delete data at a specified path at configured GitHub
+ * repo.
+ *
+ * @module functions/github
+ */
+
 const fetch = require('node-fetch');
 
 const appConfig = require(__basedir + '/app/config.js');
@@ -56,8 +63,8 @@ const requestWithOptions = async function (args) {
 
 /**
  * Gets the contents of a file or directory in a repository
- * https://developer.github.com/v3/repos/contents/#get-contents
  *
+ * @see {@link https://developer.github.com/v3/repos/contents/#get-contents GitHub REST API v3: Get Contents}
  * @param {String} path Path to file
  * @return {String} GitHub HTTP response
  */
@@ -88,8 +95,8 @@ exports.getContents = async function (path) {
 
 /**
  * Creates a new file in a GitHub repository
- * https://developer.github.com/v3/repos/contents/#create-a-file
  *
+ * @see {@link https://developer.github.com/v3/repos/contents/#create-a-file GitHub REST API v3: Create a file}
  * @param {String} path Path to file
  * @param {String} content File content
  * @param {String} postType Microformats post type
@@ -116,8 +123,8 @@ exports.createFile = async function (path, content, postType) {
 
 /**
  * Deletes a new file in a GitHub repository
- * https://developer.github.com/v3/repos/contents/#delete-a-file
  *
+ * @see {@link https://developer.github.com/v3/repos/contents/#delete-a-file GitHub REST API v3: Delete a file}
  * @param {String} path Path to file
  * @param {String} content File content
  * @param {String} postType Microformats post type

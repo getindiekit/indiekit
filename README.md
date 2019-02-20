@@ -1,9 +1,6 @@
-# IndieKit
-
 *An IndieWeb publishing toolkit*
 
-## Ambition
-The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo. All aspects of the software will be fully documented and tested, including tests that simulate those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
+The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo. All aspects of the software will be [fully documented](https://paulrobertlloyd.github.io/indiekit/docs) and tested, including tests that simulate those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
 
 A longer term ambition is to build a tool that supports more publishing destintions, other social publishing specifications (Webmention, Microsub, ActivityPub etc.) and integrates with a range of content management systems.
 
@@ -29,31 +26,8 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [ ] Support Micropub update (replace) action
 * [ ] Provide default templates for different post types
 * [ ] Provide better error handling and logging
-* [ ] Generate documentation website
+* [x] Generate documentation website
 * [ ] Add local disk as second publishing destination (and use for testing)
-
-## Components
-
-### Cache
-To prevent making too many calls to any APIs, and to ensure the endpoint isn’t slowed down by making requests to third-parties, should be cache configuration and template files.
-
-### Formatter
-Render a file or string using context data using Nunjucks templates.
-
-### GitHub
-Get, create, update and delete data at a specified path at configured GitHub repo.
-
-### IndieAuth
-Use [IndieAuth](https://www.w3.org/TR/indieauth/) to ensure only authenticated users can use endpoint to post to configured destination.
-
-### Micropub
-Accept form-encoded and JSON data, convert it to a microformats2 object and process the resulting data so that it can be published to a destination. Provides error, success and query responses, and should support get, create, update and delete actions.
-
-### Microformats
-Take a microformats2 object and determine its post type. Based on [post-type-discovery](https://github.com/twozeroone/post-type-discovery) by [Prateek Saxena](prtksxna.com).
-
-### Utils
-Common utility functions.
 
 ## Environment variables
 This application requires the following environment variables to be set.

@@ -1,3 +1,10 @@
+/**
+ * Use {@link https://www.w3.org/TR/indieauth/ IndieAuth} to ensure only
+ * authenticated users can use endpoint to post to configured destination.
+ *
+ * @module functions/indieauth
+ */
+
 const fetch = require('node-fetch');
 const normalizeUrl = require('normalize-url');
 
@@ -48,7 +55,7 @@ exports.verifyToken = async function (accessToken, url) {
     }
 
     if (authResponse.error) {
-      // TODO: Check if all clients support authResponse.error
+      /* @todo Check if all clients support authResponse.error */
       throw new Error(authResponse.error_description);
     }
 
