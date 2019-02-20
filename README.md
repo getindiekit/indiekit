@@ -21,7 +21,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Fetch configuration file from remote repo and cache locally
 * [x] Fetch template files from remote repo and cache locally
 * [x] Expire cache
-* [ ] Support variations of mf2 photo content (with/without alternative text)
+* [x] Support variations of mf2 photo property (with/without alternative text)
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
 

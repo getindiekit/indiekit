@@ -68,7 +68,7 @@ exports.convertFormEncodedToMf2 = function (body) {
 };
 
 /**
- * Gets a slugified string based on microformats2 object
+ * Returns a slugified string based on microformats2 object
  *
  * @param {String} mf2 microformats2 object
  * @param {String} separator Slug separator
@@ -107,6 +107,27 @@ exports.getDate = function (mf2) {
   } catch (error) {
     return new Array(DateTime.local().toISO());
   }
+};
+
+/**
+ * Returns an array of photo objects
+ *
+ * @param {String} prop microformats2 `photo` property
+ * @returns {Array} Array of photos
+ */
+exports.getPhotos = function (prop) {
+  const photo = [];
+
+  prop.forEach(item => {
+    if (typeof item === 'object') {
+      photo.push(item);
+    } else {
+      item = {value: item};
+      photo.push(item);
+    }
+  });
+
+  return photo;
 };
 
 /**
@@ -262,6 +283,11 @@ exports.createPost = async function (mf2, pubConfig) {
   const postSlug = module.exports.getSlug(mf2, slugSeparator);
   postData.published = postDate;
   postData.slug = postSlug;
+
+  // Normalise photo property
+  if (postData.photo) {
+    postData.photo = module.exports.getPhotos(postData.photo);
+  }
 
   // Determine post type
   const postType = microformats.getType(mf2);
