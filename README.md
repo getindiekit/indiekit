@@ -14,14 +14,16 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
 
 ## Project status
-* [x] Use values stored in a local configuration file
-* [x] Respond to endpoint queries (`config`, `syndicate-to`) with endpoint configuration values
-* [x] Accept form-encoded and JSON data
-* [x] Write content to GitHub repo and return success status code and location of published file.
+* [x] Respond to endpoint queries (`config`, `syndicate-to`) with values stored in a local configuration file
+* [x] Accept form-encoded and JSON requests
+* [x] Post to GitHub and return success status code and location of published file.
 * [x] Fetch configuration file from remote repo and cache locally
 * [x] Fetch template files from remote repo and cache locally
 * [x] Expire cache
-* [x] Support variations of mf2 photo property (with/without alternative text)
+* [x] Support variations of mf2 `photo` property (with/without objects in array)
+* [ ] Support variations of mf2 `content` property (with/without `html` value)
+* [ ] Accept multipart encoded requests
+* [ ] Support Micropub media endpoint
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
 
@@ -30,8 +32,14 @@ A longer term ambition is to build a tool that supports more publishing destinti
 ### Cache
 To prevent making too many calls to any APIs, and to ensure the endpoint isn’t slowed down by making requests to third-parties, should be cache configuration and template files.
 
-### Router
-Responds to requests and sends data to relevant application component. Should initially support `GET` and `POST` requests to `/micropub`.
+### Formatter
+Render a file or string using context data using Nunjucks templates.
+
+### GitHub
+Get, create, update and delete data at a specified path at configured GitHub repo.
+
+### IndieAuth
+Use [IndieAuth](https://www.w3.org/TR/indieauth/) to ensure only authenticated users can use endpoint to post to configured destination.
 
 ### Micropub
 Accept form-encoded and JSON data, convert it to a microformats2 object and process the resulting data so that it can be published to a destination. Provides error, success and query responses, and should support get, create, update and delete actions.
@@ -39,17 +47,8 @@ Accept form-encoded and JSON data, convert it to a microformats2 object and proc
 ### Microformats
 Take a microformats2 object and determine its post type. Based on [post-type-discovery](https://github.com/twozeroone/post-type-discovery) by [Prateek Saxena](prtksxna.com).
 
-### IndieAuth
-Use [IndieAuth](https://www.w3.org/TR/indieauth/) to ensure only authenticated users can use endpoint to post to configured destination.
-
-### Formatter
-Render a file/string using context data using Nunjucks templating.
-
-### GitHub
-Get, create, update and delete data at a specified path at configured GitHub repo.
-
 ### Utils
-Provides common utility functions.
+Common utility functions.
 
 ## Environment variables
 This application requires the following environment variables to be set.
@@ -65,6 +64,8 @@ This application requires the following environment variables to be set.
 * `TEST_INDIEAUTH_TOKEN` IndieAuth token with `create` and `update` scope. URL *should* match that used in configuration.
 * `TEST_INDIEAUTH_TOKEN_NOT_SCOPED` IndieAuth token without a scope. URL *should* match that used in configuration.
 * `TEST_INDIEAUTH_TOKEN_NOT_ME` IndieAuth token with `create` and `update` scope. URL *should not* match that used in configuration.
+
+You can use [Homebrew Access Token](https://gimme-a-token.5eb.nl) to create tokens for testing locally.
 
 ## Credits
 Favicon adapted from [‘to merge’](https://www.toicon.com/icons/afiado_merge) icon by Susana Passinhas.
