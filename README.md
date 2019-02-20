@@ -21,7 +21,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Fetch template files from remote repo and cache locally
 * [x] Expire cache
 * [x] Support variations of mf2 `photo` property (with/without objects in array)
-* [ ] Support variations of mf2 `content` property (with/without `html` value)
+* [x] Support variations of mf2 `content` property (with/without `html` value)
 * [ ] Accept multipart encoded requests
 * [ ] Support Micropub media endpoint
 * [ ] Support Micropub delete action

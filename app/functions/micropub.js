@@ -70,9 +70,9 @@ exports.convertFormEncodedToMf2 = function (body) {
 /**
  * Returns a slugified string based on microformats2 object
  *
- * @param {String} mf2 microformats2 object
+ * @param {Object} mf2 microformats2 object
  * @param {String} separator Slug separator
- * @returns {String} Slug
+ * @returns {Array} Slug
  */
 exports.getSlug = function (mf2, separator) {
   let slug;
@@ -90,35 +90,40 @@ exports.getSlug = function (mf2, separator) {
     });
   }
 
-  slug = Math.floor(Math.random() * 90000) + 10000;
-  return [slug];
+  slug = String(Math.floor(Math.random() * 90000) + 10000);
+
+  return new Array(slug);
 };
 
 /**
  * Returns an ISO formatted date
  *
- * @param {String} mf2 microformats2 object
- * @returns {String} ISO formatted date
+ * @param {Object} mf2 microformats2 object
+ * @returns {Array} ISO formatted date
  */
 exports.getDate = function (mf2) {
+  let date;
+
   try {
     const published = mf2.properties.published[0];
-    return new Array(published.toISO());
+    date = published.toISO();
   } catch (error) {
-    return new Array(DateTime.local().toISO());
+    date = DateTime.local().toISO();
   }
+
+  return new Array(date);
 };
 
 /**
  * Returns an array of photo objects
  *
- * @param {String} prop microformats2 `photo` property
- * @returns {Array} Array of photos
+ * @param {Array} property microformats2 `photo` property
+ * @returns {Array} Photos
  */
-exports.getPhotos = function (prop) {
+exports.getPhotos = function (property) {
   const photo = [];
 
-  prop.forEach(item => {
+  property.forEach(item => {
     if (typeof item === 'object') {
       photo.push(item);
     } else {
@@ -128,6 +133,17 @@ exports.getPhotos = function (prop) {
   });
 
   return photo;
+};
+
+/**
+ * Returns content (HTML, else object value, else property value)
+ *
+ * @param {Array} property microformats2 `contents` property
+ * @returns {Array} Content
+ */
+exports.getContent = function (property) {
+  const content = property[0].html || property[0].value || property[0];
+  return new Array(content);
 };
 
 /**
@@ -276,7 +292,7 @@ exports.queryResponse = function (query, pubConfig, appUrl) {
  * @returns {String} Location of created post
  */
 exports.createPost = async function (mf2, pubConfig) {
-  // Add date and slug values to microformats2 object
+  // Determine date and slug properties
   const slugSeparator = pubConfig['slug-separator'] || '-';
   const postData = mf2.properties;
   const postDate = module.exports.getDate(mf2);
@@ -284,7 +300,11 @@ exports.createPost = async function (mf2, pubConfig) {
   postData.published = postDate;
   postData.slug = postSlug;
 
-  // Normalise photo property
+  // Normalise content and photo properties
+  if (postData.content) {
+    postData.content = module.exports.getContent(postData.content);
+  }
+
   if (postData.photo) {
     postData.photo = module.exports.getPhotos(postData.photo);
   }
