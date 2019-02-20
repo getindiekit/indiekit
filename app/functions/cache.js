@@ -1,5 +1,5 @@
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs-extra');
 const {DateTime} = require('luxon');
 
 const appConfig = require(__basedir + '/app/config.js');
@@ -92,4 +92,17 @@ exports.writeToCache = function (filePath, fileData) {
 
     console.log(`Cached data written to ${filePath}`);
   });
+};
+
+/**
+ * Cleares the cache directory
+ *
+ * @param {Object} cacheDir Location to save cache directory
+ */
+exports.clearCache = function (cacheDir) {
+  if (fs.existsSync(cacheDir)) {
+    fs.removeSync(cacheDir);
+  }
+
+  console.log('Cached cleared');
 };
