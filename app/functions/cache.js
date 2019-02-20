@@ -49,9 +49,10 @@ exports.fetchFile = async function (remotePath, cachePath) {
     } catch (error) {
       console.error('cache.fetchFile', error);
     }
-
-    return Buffer.from(cacheFile).toString('utf-8');
   }
+
+  const cachedData = Buffer.from(cacheFile).toString('utf-8');
+  return cachedData;
 };
 
 /**
