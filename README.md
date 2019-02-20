@@ -14,7 +14,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
 
 ## Project status
-* [x] Respond to endpoint queries (`config`, `syndicate-to`) with values stored in a local configuration file
+* [x] Respond to endpoint `config` and  `syndicate-to` queries with values stored in a local configuration file
 * [x] Accept form-encoded and JSON requests
 * [x] Post to GitHub and return success status code and location of published file.
 * [x] Fetch configuration file from remote repo and cache locally
@@ -23,9 +23,13 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Support variations of mf2 `photo` property (with/without objects in array)
 * [x] Support variations of mf2 `content` property (with/without `html` value)
 * [ ] Accept multipart encoded requests
+* [ ] Respond to endpoint `source` queries
 * [ ] Support Micropub media endpoint
 * [ ] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
+* [ ] Provide default templates for different post types
+* [ ] Provide better error handling and logging
+* [ ] Add local disk as second publishing destination (and use for testing)
 
 ## Components
 
