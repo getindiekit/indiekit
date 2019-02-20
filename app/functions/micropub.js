@@ -271,30 +271,18 @@ exports.createPost = async function (mf2, pubConfig) {
   const postPath = format.string(postConfig.path, postData);
 
   // Fetch template and render file
-  let postContent;
   const remoteTemplatePath = pubConfig['post-types'][0][postType].template;
   const cachedTemplatePath = `templates/${postType}.njk`;
-  const templateFile = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
+  const postTemplate = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
+  const postContent = format.string(postTemplate, postData);
 
-  try {
-    if (templateFile) {
-      postContent = format.template(cachedTemplatePath, postData);
-    }
-
-    throw new Error('Unable to fetch template');
-  } catch (error) {
-    console.error(`micropub.createPost: ${error.message}`);
-  }
-
-  // Push file to GitHub
+  // Push post content to GitHub
   const githubResponse = await github.createFile(postPath, postContent, postType);
 
   try {
-    if (!githubResponse) {
-      throw new Error('No response from GitHub');
+    if (githubResponse) {
+      return repoUrl + postPath;
     }
-
-    return repoUrl + postPath;
   } catch (error) {
     console.error(`micropub.createPost: ${error.message}`);
   }
@@ -308,8 +296,6 @@ exports.createPost = async function (mf2, pubConfig) {
  * @returns {Object} Response
  */
 exports.updatePost = async function (path, content) {
-  console.log(`Update post at ${path}`);
-
   return github.updateFile(path, content).then(response => {
     if (response.ok) {
       // TODO: If path has changed, return 'update_created'
@@ -329,8 +315,6 @@ exports.updatePost = async function (path, content) {
  * @returns {Object} Response
  */
 exports.deletePost = async function (path) {
-  console.log(`Delete post at ${path}`);
-
   return github.deleteFile(path).then(response => {
     if (response.ok) {
       return module.exports.successResponse('delete', repoUrl + path);

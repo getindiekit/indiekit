@@ -20,38 +20,38 @@ const getFileUpdatedDate = path => {
  * @returns {Object} Fetched file
  */
 exports.fetchFile = async function (remotePath, cachePath) {
-  return new Promise(resolve => {
-    const cacheFile = module.exports.readFromCache(cachePath);
+  const cacheFile = module.exports.readFromCache(cachePath);
 
-    // Check if file is cached
-    let hasExpired;
-    const filePath = path.join(appConfig.cache.dir, cachePath);
-    const isCached = fs.existsSync(filePath);
+  // Check if file is cached
+  let hasExpired;
+  const filePath = path.join(appConfig.cache.dir, cachePath);
+  const isCached = fs.existsSync(filePath);
 
-    if (isCached) {
-      let updatedDate = getFileUpdatedDate(filePath);
-      updatedDate = DateTime.fromMillis(updatedDate).toFormat('X');
+  if (isCached) {
+    let updatedDate = getFileUpdatedDate(filePath);
+    updatedDate = DateTime.fromMillis(updatedDate).toFormat('X');
 
-      let currentDate = Date.now();
-      currentDate = DateTime.fromMillis(currentDate).toFormat('X');
+    let currentDate = Date.now();
+    currentDate = DateTime.fromMillis(currentDate).toFormat('X');
 
-      const expiredDate = Number(updatedDate) + Number(appConfig.cache['max-age']);
-      hasExpired = currentDate > expiredDate;
+    const expiredDate = Number(updatedDate) + Number(appConfig.cache['max-age']);
+    hasExpired = currentDate > expiredDate;
+  }
+
+  // Fetch if no cache found or cache has expired
+  if (!isCached || hasExpired) {
+    remotePath = utils.normalizePath(remotePath);
+    const remoteData = await github.getContents(remotePath);
+
+    try {
+      module.exports.writeToCache(cachePath, remoteData);
+      return remoteData;
+    } catch (error) {
+      console.error('cache.fetchFile', error);
     }
 
-    // Fetch if no cache found or cache has expired
-    if (!isCached || hasExpired) {
-      remotePath = utils.normalizePath(remotePath);
-      const remoteData = github.getContents(remotePath);
-
-      if (remoteData) {
-        module.exports.writeToCache(cachePath, remoteData);
-        resolve(remoteData);
-      }
-    }
-
-    resolve(Buffer.from(cacheFile).toString('utf-8'));
-  });
+    return Buffer.from(cacheFile).toString('utf-8');
+  }
 };
 
 /**
@@ -81,9 +81,7 @@ exports.writeToCache = function (filePath, fileData) {
 
   // Create cache directory if it doesnt exist already
   if (!fs.existsSync(pathToFile)) {
-    fs.mkdirSync(pathToFile, {
-      recursive: true
-    });
+    fs.mkdirSync(pathToFile, {recursive: true});
   }
 
   // Write data to disk

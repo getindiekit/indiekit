@@ -68,8 +68,6 @@ const requestWithOptions = async function (args) {
  */
 exports.createFile = async function (path, content, postType) {
   path = utils.normalizePath(path);
-  console.log('github.createFile path', path);
-  console.log('github.createFile path', content);
 
   return requestWithOptions({
     message: `:robot: New ${postType} created via ${appConfig.name}`,
@@ -77,7 +75,6 @@ exports.createFile = async function (path, content, postType) {
     path
   }).then(response => {
     if (response.ok) {
-      console.log('GitHub response', response);
       return response.json();
     }
   }).then(json => {
