@@ -1,0 +1,34 @@
+{
+  "name": "IndieKit",
+  "description": "An IndieWeb publishing toolkit.",
+  "keywords": [
+    "indieweb",
+    "micropub"
+  ],
+  "website": "https://paulrobertlloyd.github.io/indiekit/",
+  "repository": "https://github.com/paulrobertlloyd/indiekit",
+  "logo": "https://paulrobertlloyd.github.io/indiekit/www/logo.svg",
+  "env": {
+    "INDIEKIT_CONFIG_PATH": {
+      "description": "Location of configuration file, relative to repository root.",
+      "value": "indiekit.json"
+    },
+    "INDIEKIT_GITHUB_TOKEN": {
+      "description": "The number of processes to run.",
+      "required": true
+    },
+    "INDIEKIT_GITHUB_USER": {
+      "description": "GitHub username.",
+      "required": true
+    },
+    "INDIEKIT_GITHUB_REPO": {
+      "description": "GitHub repository in which to save files.",
+      "required": true
+    },
+    "INDIEKIT_GITHUB_BRANCH": {
+      "description": "GitHub branch in which to save files",
+      "value": "master"
+    }
+  },
+  "image": "heroku/nodejs"
+}

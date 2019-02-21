@@ -14,7 +14,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "docs": "documentation build app/** -f md -o docs/index.md --markdown-toc false",
+    "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
     "test": "nyc ava --verbose"
   },
   "dependencies": {

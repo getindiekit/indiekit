@@ -1,17 +1,15 @@
+# IndieKit
+
 *An IndieWeb publishing toolkit*
 
-The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo. All aspects of the software will be [fully documented](https://paulrobertlloyd.github.io/indiekit/docs) and tested, including tests that simulate those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
-
-A longer term ambition is to build a tool that supports more publishing destintions, other social publishing specifications (Webmention, Microsub, ActivityPub etc.) and integrates with a range of content management systems.
-
-## Prior art
-* [SiteWriter](https://github.com/gerwitz/sitewriter) by [Hans Gerwitz](https://hans.gerwitz.com)
-* [Mastr Cntrl](https://github.com/vipickering/mastr-cntrl) by [Vincent Pickering](https://vincentp.me)
-* [Micropub endpoint](https://github.com/muan/micropub-endpoint) by [Mu-An Chiou](https://muan.co)
-* [Micropub Endpoint](https://github.com/grantcodes/micropub-endpoint) by [Grant Richmond](https://grant.codes)
-* [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
+* [Introduction](https://paulrobertlloyd.github.io/indiekit/docs/): About this project.
+* [Getting started](https://paulrobertlloyd.github.io/indiekit/docs/deploy): Deploying the application.
+* [Usage](https://paulrobertlloyd.github.io/indiekit/docs/config): Configuring your website to work with IndieKit.
+* [Testing](https://paulrobertlloyd.github.io/indiekit/docs/test): Testing the service locally and running automated tests.
+* [Application](https://paulrobertlloyd.github.io/indiekit/docs/app): Documentation of the functions used within the application.
 
 ## Project status
+
 * [x] Respond to endpoint `config` and `syndicate-to` queries with values stored in a local configuration file
 * [x] Accept form-encoded and JSON requests
 * [x] Post to GitHub and return success status code and location of published file.
@@ -30,24 +28,3 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [ ] Provide better error handling and logging
 * [x] Generate documentation website
 * [ ] Add local disk as second publishing destination (and use for testing)
-
-## Environment variables
-This application requires the following environment variables to be set.
-
-* `INDIEKIT_CONFIG_PATH` Location of configuration file
-
-### GitHub
-* `INDIEKIT_GITHUB_TOKEN` Access token (required)
-* `INDIEKIT_GITHUB_USER` Username (required)
-* `INDIEKIT_GITHUB_REPO` Repository (required)
-* `INDIEKIT_GITHUB_BRANCH` Branch (optional, defaults to `master`)
-
-### IndieAuth (Required to run tests)
-* `TEST_INDIEAUTH_TOKEN` IndieAuth token with `create`, `update` and `delete` scopes. URL *should* match that used in configuration.
-* `TEST_INDIEAUTH_TOKEN_NOT_SCOPED` IndieAuth token without a scope. URL *should* match that used in configuration.
-* `TEST_INDIEAUTH_TOKEN_NOT_ME` IndieAuth token with `create` and `update` scopes. URL *should not* match that used in configuration.
-
-You can use [Homebrew Access Token](https://gimme-a-token.5eb.nl) to create tokens for testing locally.
-
-## Credits
-Favicon adapted from [‘to merge’](https://www.toicon.com/icons/afiado_merge) icon by Susana Passinhas.
