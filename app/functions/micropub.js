@@ -5,6 +5,7 @@
  * @module functions/micropub
  */
 const {DateTime} = require('luxon');
+const fetch = require('node-fetch');
 const slugify = require('slugify');
 
 const appConfig = require(__basedir + '/app/config.js');
@@ -273,12 +274,18 @@ exports.queryResponse = async function (query, pubConfig, appUrl) {
 
   if (query.q === 'source') {
     /* @todo Currently returns markdown with no mf2 properties */
-    const properties = await module.exports.getPost(query.url);
+    const source = fetch(query.url)
+      .then(response => response.text())
+      .then(body => {
+        return body;
+      }).catch(error => {
+        console.error('github.getContents', error);
+      });
+
+    const properties = await microformats.getProperties(source);
     return {
       code: 200,
-      body: {
-        properties
-      }
+      body: properties
     };
   }
 

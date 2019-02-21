@@ -8,6 +8,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [SiteWriter](https://github.com/gerwitz/sitewriter) by [Hans Gerwitz](https://hans.gerwitz.com)
 * [Mastr Cntrl](https://github.com/vipickering/mastr-cntrl) by [Vincent Pickering](https://vincentp.me)
 * [Micropub endpoint](https://github.com/muan/micropub-endpoint) by [Mu-An Chiou](https://muan.co)
+* [Micropub Endpoint](https://github.com/grantcodes/micropub-endpoint) by [Grant Richmond](https://grant.codes)
 * [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
 
 ## Project status
@@ -20,7 +21,8 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [x] Support variations of mf2 `photo` property (with/without objects in array)
 * [x] Support variations of mf2 `content` property (with/without `html` value)
 * [ ] Accept multipart encoded requests
-* [ ] Respond to endpoint `source` queries
+* [x] Respond to endpoint `source` queries (all properties)
+* [ ] Respond to endpoint `source` queries (select properties)
 * [ ] Support Micropub media endpoint
 * [x] Support Micropub delete action
 * [ ] Support Micropub update (replace) action

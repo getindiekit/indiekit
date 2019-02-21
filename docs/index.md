@@ -116,24 +116,45 @@ Returns **[Object][1]** Endpoint response
 
 ## functions/microformats
 
+Parse microformats2 objects and determine their properties and type.
+
+### getType
+
 Take a microformats2 object and determine its post type. Adapted from
 [post-type-discovery][8]
 by [Prateek Saxena][9].
+
+#### Parameters
+
+-   `mf2` **[Object][1]** microformats2 object to be checked
+
+#### Examples
+
+```javascript
+getType({
+  type: ['h-entry'],
+  properties: {
+    content: ['Foo bar']
+  }
+}) => 'note'
+```
+
+Returns **[String][3]** Type of post
 
 **Meta**
 
 -   **copyright**: Copyright (c) 2017, 201. All rights reserved.
 
 
-### getType
+### getProperties
 
-Takes a microformats2 object and discovers its post type.
+Parses microformats on HTML page.
 
 #### Parameters
 
--   `mf2` **[Object][1]** microformats2 object to be checked
+-   `html` **[String][3]** HTML marked up with microformats
 
-Returns **[String][3]** Type of post
+Returns **[Object][1]** mf2
 
 ## functions/micropub
 

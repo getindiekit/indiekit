@@ -1,12 +1,10 @@
 /**
- * Take a microformats2 object and determine its post type. Adapted from
- * {@link https://github.com/twozeroone/post-type-discovery post-type-discovery}
- * by {@link http://prtksxna.com Prateek Saxena}.
+ * Parse microformats2 objects and determine their properties and type.
  *
  * @module functions/microformats
- * @copyright Copyright (c) 2017, 201. All rights reserved.
  */
 const validUrl = require('valid-url');
+const microformats = require('microformat-node');
 
 /**
  * Gets the plain text value from a value mf2 field.
@@ -35,8 +33,17 @@ const contentIncludesName = function (name, content) {
 };
 
 /**
- * Takes a microformats2 object and discovers its post type.
+ * Take a microformats2 object and determine its post type. Adapted from
+ * {@link https://github.com/twozeroone/post-type-discovery post-type-discovery}
+ * by {@link http://prtksxna.com Prateek Saxena}.
  *
+ * @copyright Copyright (c) 2017, 201. All rights reserved.
+ * @example getType({
+ *   type: ['h-entry'],
+ *   properties: {
+ *     content: ['Foo bar']
+ *   }
+ * }) => 'note'
  * @param {Object} mf2 microformats2 object to be checked
  * @return {String} Type of post
  */
@@ -89,4 +96,28 @@ exports.getType = function (mf2) {
   }
 
   return 'note';
+};
+
+/**
+ * Parses microformats on HTML page.
+ *
+ * @param {String} html HTML marked up with microformats
+ * @return {Object} mf2
+ */
+exports.getProperties = async function (html) {
+  let mf2;
+  const {items} = await microformats.getAsync({
+    html: await html,
+    textFormat: 'normalised'
+  });
+
+  if (items && items.length === 1) {
+    const item = items[0];
+    if (Object.keys(item.properties).length > 1) {
+      // @todo Recursively remove errant \n newlines from object value
+      mf2 = item;
+    }
+  }
+
+  return mf2;
 };
