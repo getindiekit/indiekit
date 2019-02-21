@@ -318,10 +318,11 @@ exports.createPost = async function (mf2, pubConfig) {
     prop.photo = module.exports.getPhotos(prop.photo);
   }
 
-  // Render destination path
+  // Render publish and destination path
   const type = microformats.getType(mf2);
   const typeConfig = pubConfig['post-types'][0][type];
   const path = render.string(typeConfig.path, prop);
+  const url = render.string(typeConfig.url, prop);
 
   // Render template
   const remoteTemplatePath = pubConfig['post-types'][0][type].template;
@@ -332,7 +333,7 @@ exports.createPost = async function (mf2, pubConfig) {
   // Create post on GitHub
   const githubResponse = await github.createFile(path, content, type);
   if (githubResponse) {
-    return module.exports.successResponse('create', repoUrl + path);
+    return module.exports.successResponse('create_pending', pubConfig.url + url);
   }
 
   throw new Error(githubResponse.error);

@@ -243,6 +243,16 @@ Creates a post
 
 Returns **[String][3]** Location of created post
 
+### getPost
+
+Gets post to inspect its properties
+
+#### Parameters
+
+-   `path` **[String][3]** Path to post
+
+Returns **[Object][1]** Response
+
 ### updatePost
 
 Updates a post
