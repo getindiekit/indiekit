@@ -26,7 +26,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [ ] Support Micropub media endpoint
 * [x] Support Micropub delete action
 * [ ] Support Micropub update (replace) action
-* [ ] Provide default templates for different post types
+* [x] Provide configuration defaults
 * [ ] Provide better error handling and logging
 * [x] Generate documentation website
 * [ ] Add local disk as second publishing destination (and use for testing)

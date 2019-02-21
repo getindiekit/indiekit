@@ -1,0 +1,15 @@
+---
+date: {{ published }}
+{%- if category %}
+categories:
+{%- for item in category %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+photo:
+{%- for item in photo %}
+- url: {{ item.value }}
+  alt: {{ item.alt }}
+{%- endfor %}
+---
+{{ content | safe }}

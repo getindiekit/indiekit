@@ -4,11 +4,13 @@
  *
  * @module functions/micropub
  */
+const path = require('path');
 const {DateTime} = require('luxon');
 const fetch = require('node-fetch');
 const slugify = require('slugify');
 
 const appConfig = require(__basedir + '/app/config.js');
+const pubDefaults = appConfig.defaults;
 const cache = require(__basedir + '/app/functions/cache');
 const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
@@ -309,38 +311,48 @@ exports.queryResponse = async function (query, pubConfig, appUrl) {
  * @returns {String} Location of created post
  */
 exports.createPost = async function (mf2, pubConfig) {
-  const prop = mf2.properties;
+  const {properties} = mf2;
 
   // Determine date and slug properties
-  const slugSeparator = pubConfig['slug-separator'] || '-';
-  prop.published = module.exports.getDate(mf2);
-  prop.slug = module.exports.getSlug(mf2, slugSeparator);
+  const slugSeparator = pubConfig['slug-separator'] || pubDefaults['slug-separator'];
+  properties.published = module.exports.getDate(mf2);
+  properties.slug = module.exports.getSlug(mf2, slugSeparator);
 
   // Normalise content and photo properties
-  if (prop.content) {
-    prop.content = module.exports.getContent(prop.content);
+  if (properties.content) {
+    properties.content = module.exports.getContent(properties.content);
   }
 
-  if (prop.photo) {
-    prop.photo = module.exports.getPhotos(prop.photo);
+  if (properties.photo) {
+    properties.photo = module.exports.getPhotos(properties.photo);
   }
 
   // Render publish and destination path
   const type = microformats.getType(mf2);
-  const typeConfig = pubConfig['post-types'][0][type];
-  const path = render.string(typeConfig.path, prop);
-  const url = render.string(typeConfig.url, prop);
+  const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
+  const filePath = render.string(typeConfig.path, properties);
+  const urlPath = render.string(typeConfig.url, properties);
 
-  // Render template
-  const remoteTemplatePath = pubConfig['post-types'][0][type].template;
-  const cachedTemplatePath = `templates/${type}.njk`;
-  const template = await cache.fetchFile(remoteTemplatePath, cachedTemplatePath);
-  const content = render.string(template, prop);
+  // Render post template
+  let template;
+  const templatePathConfig = pubConfig['post-types'][0][type].template;
+  const templatePathCached = path.join('templates', `${type}.njk`);
+  const templatePathDefault = pubDefaults['post-types'][0][type].template;
+
+  if (templatePathConfig) {
+    // Fetch template from remote and cache
+    template = await cache.fetchFile(templatePathConfig, templatePathCached);
+  } else {
+    // Use default template
+    template = templatePathDefault;
+  }
+
+  const content = render.string(template, properties);
 
   // Create post on GitHub
-  const githubResponse = await github.createFile(path, content, type);
+  const githubResponse = await github.createFile(filePath, content, type);
   if (githubResponse) {
-    return module.exports.successResponse('create_pending', pubConfig.url + url);
+    return module.exports.successResponse('create_pending', pubConfig.url + urlPath);
   }
 
   throw new Error(githubResponse.error);

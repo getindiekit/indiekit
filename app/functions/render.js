@@ -4,11 +4,12 @@
  * @module functions/render
  */
 
+const appConfig = require(__basedir + '/app/config.js');
 const {DateTime} = require('luxon');
 const nunjucks = require('nunjucks');
 
 // Configure Nunjucks environment
-const env = new nunjucks.Environment(new nunjucks.FileSystemLoader('.cache'));
+const env = new nunjucks.Environment(new nunjucks.FileSystemLoader(appConfig.cache.dir));
 
 env.addFilter('date', (date, format) => {
   if (!date) {
