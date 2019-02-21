@@ -8,7 +8,7 @@ module.exports = {
     'max-age': 86400
   },
   config: {
-    path: process.env.CONFIG_PATH || 'indiekit.json',
+    path: process.env.INDIEKIT_CONFIG_PATH || 'indiekit.json',
     file: 'config.json'
   },
   defaults: {
@@ -32,10 +32,10 @@ module.exports = {
     'slug-separator': '_'
   },
   github: {
-    user: process.env.GITHUB_USER,
-    repo: process.env.GITHUB_REPO,
-    branch: process.env.GITHUB_BRANCH || 'master',
-    token: process.env.GITHUB_TOKEN
+    user: process.env.INDIEKIT_GITHUB_USER,
+    repo: process.env.INDIEKIT_GITHUB_REPO,
+    branch: process.env.INDIEKIT_GITHUB_BRANCH || 'master',
+    token: process.env.INDIEKIT_GITHUB_TOKEN
   },
   indieauth: {
     'token-endpoint': process.env.TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token'

@@ -34,12 +34,13 @@ A longer term ambition is to build a tool that supports more publishing destinti
 ## Environment variables
 This application requires the following environment variables to be set.
 
-* `CONFIG_PATH` Location of configuration file
+* `INDIEKIT_CONFIG_PATH` Location of configuration file
 
-### GitHub (Required)
-* `GITHUB_USER` Username
-* `GITHUB_REPO` Repository
-* `GITHUB_TOKEN` Access token
+### GitHub
+* `INDIEKIT_GITHUB_TOKEN` Access token (required)
+* `INDIEKIT_GITHUB_USER` Username (required)
+* `INDIEKIT_GITHUB_REPO` Repository (required)
+* `INDIEKIT_GITHUB_BRANCH` Branch (optional, defaults to `master`)
 
 ### IndieAuth (Required to run tests)
 * `TEST_INDIEAUTH_TOKEN` IndieAuth token with `create`, `update` and `delete` scopes. URL *should* match that used in configuration.
