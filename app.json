@@ -9,12 +9,8 @@
   "repository": "https://github.com/paulrobertlloyd/indiekit",
   "logo": "https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true",
   "env": {
-    "INDIEKIT_CONFIG_PATH": {
-      "description": "Location of configuration file, relative to repository root.",
-      "value": "indiekit.json"
-    },
     "INDIEKIT_GITHUB_TOKEN": {
-      "description": "The number of processes to run.",
+      "description": "GitHub access token.",
       "required": true
     },
     "INDIEKIT_GITHUB_USER": {
@@ -26,8 +22,16 @@
       "required": true
     },
     "INDIEKIT_GITHUB_BRANCH": {
-      "description": "GitHub branch in which to save files",
+      "description": "GitHub branch in which to save files.",
       "value": "master"
+    },
+    "INDIEKIT_CONFIG_PATH": {
+      "description": "Location of configuration file, relative to repository root.",
+      "value": "indiekit.json"
+    },
+    "INDIEKIT_CACHE_EXPIRES": {
+      "description": "Time (in seconds) before cache expires.",
+      "value": "86400"
     }
   },
   "image": "heroku/nodejs"
