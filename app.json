@@ -8,6 +8,7 @@
   "website": "https://paulrobertlloyd.github.io/indiekit/",
   "repository": "https://github.com/paulrobertlloyd/indiekit",
   "logo": "https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true",
+  "success_url": "https://paulrobertlloyd.github.io/indiekit/config",
   "env": {
     "INDIEKIT_GITHUB_TOKEN": {
       "description": "GitHub access token.",
