@@ -2,11 +2,10 @@
 
 ![](https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true)
 
-The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo. All aspects of the software will be [fully documented](https://paulrobertlloyd.github.io/indiekit/app) and tested, including tests that simulate those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
+The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo before saving posts to that repo for publishing with a static site generator like [Jekyll](https://jekyllrb.com), [Hugo](https://gohugo.io) or [Eleventy](https://www.11ty.io). All aspects of the software will be [fully documented](https://paulrobertlloyd.github.io/indiekit/app) and tested, including tests that repliacte those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
 
 A longer term ambition is to build a tool that supports more publishing destintions, other social publishing specifications (Webmention, Microsub, ActivityPub etc.) and integrates with a range of content management systems.
 
-<a class="github-button" href="https://github.com/paulrobertlloyd/indiekit/fork" data-size="large" aria-label="Fork IndieKit on GitHub">Fork</a>
 <a class="github-button" href="https://github.com/paulrobertlloyd/indiekit" data-size="large" data-show-count="true" aria-label="Star IndieKit on GitHub">Star</a>
 
 ## Documentation
@@ -14,7 +13,7 @@ A longer term ambition is to build a tool that supports more publishing destinti
 * [Getting started](https://paulrobertlloyd.github.io/indiekit/deploy): Deploying the application.
 * [Usage](https://paulrobertlloyd.github.io/indiekit/config): Configuring your website to work with IndieKit.
 * [Testing](https://paulrobertlloyd.github.io/indiekit/test): Testing the service locally and running automated tests.
-* [Application](https://paulrobertlloyd.github.io/indiekit/app): Documentation of the functions used within the application.
+* [Application](https://paulrobertlloyd.github.io/indiekit/app): Functions used within the application.
 
 ## Credits
 

@@ -31,14 +31,14 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
   * [x] Syndication targets
 * [x] Error response
 
-### Publishing destinations
+### Supported publishing destinations
 
-* [ ] GitHub
+* [x] GitHub
 * [ ] Local disk (for testing)
 
 ### Application features
 
-* [x] Cache fetched configuration and template files
+* [x] Cache user configuration and template files
 * [x] [Easy heroku deployment](https://paulrobertlloyd.github.io/indiekit/docs/deploy)
 * [x] Post-type configuration defaults
   * [x] Article

@@ -1,6 +1,6 @@
 ## Usage
 
-Once you have deployed IndieKit to your own server, next you need to configure your website. Configuration is provided via `indiekit.json`, a JSON file saved in the root of your repository (you can change this location by updating the `INDIEKIT_CONFIG_PATH` variable). The contents of this file allow you to detirmine where posts are saved, how they are formatted and the final URL they appear at. But to get started, you need only provide the `url` of your website:
+Once you have deployed IndieKit to your own server, next you need to configure your website. Configuration is provided via `indiekit.json`, a JSON file saved in the root of your repository (you can change this location by updating the `INDIEKIT_CONFIG_PATH` environment variable). This file lets you to customise where posts are saved, how they are formatted and what URLs they will appear at. But to get started, all you need to provide is the `url` of your website:
 
 ```json
 {
@@ -8,7 +8,15 @@ Once you have deployed IndieKit to your own server, next you need to configure y
 }
 ```
 
-### Options
+To enable automatic discovery of your Micropub (and token) endpoints, ensure the following values are included in your site’s `<head>`, providing the URL of your deployed application for the `micropub` value:
+
+```html
+<link rel="authorization_endpoint" href="https://indieauth.com/auth">
+<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+<link rel="micropub" href="https://<your-endpoint>/micropub">
+```
+
+### Configuration options
 
 #### `url`
 
@@ -16,7 +24,7 @@ The URL of the website where published files appear. **Required**.
 
 #### `media-endpoint`
 
-The URL for your [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media requests. Defaults to `https://<your-endpoint>/media`.
+The URL for your preferred [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media upload requests. Defaults to `https://<your-endpoint>/media`.
 
 #### `syndicate-to`
 
