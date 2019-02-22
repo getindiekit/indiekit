@@ -2,7 +2,7 @@
 
 *An IndieWeb publishing toolkit*
 
-Learn more about this project on the [documentation site](https://paulrobertlloyd.github.io/indiekit/docs/).
+Learn more about this project on the [documentation site](https://paulrobertlloyd.github.io/indiekit/).
 
 ## Project status
 

@@ -2,7 +2,7 @@
 
 IndieKit is a Node.js application, that needs to be hosted on a public server so that it can accept and respond to requests. The easiest way to get started is to deploy to Heroku, which can be done by clicking the button below. This will guide you trough the process of getting the application up and running.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/paulrobertlloyd/indiekit)
 
 ## Environment variables
 
