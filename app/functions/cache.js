@@ -46,14 +46,14 @@ exports.fetchFile = async function (remotePath, cachePath) {
   // Fetch if no cache found or cache has expired
   if (!isCached || hasExpired) {
     remotePath = utils.normalizePath(remotePath);
-    const remoteData = await github.getContents(remotePath);
 
     try {
+      const remoteData = await github.getContents(remotePath);
       const freshData = remoteData.content;
       module.exports.writeToCache(cachePath, freshData);
       return freshData;
     } catch (error) {
-      console.error('cache.fetchFile', error);
+      console.error(error);
     }
   }
 
