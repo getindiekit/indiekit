@@ -7,7 +7,7 @@
   ],
   "website": "https://paulrobertlloyd.github.io/indiekit/",
   "repository": "https://github.com/paulrobertlloyd/indiekit",
-  "logo": "https://paulrobertlloyd.github.io/indiekit/www/logo.svg",
+  "logo": "https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true",
   "env": {
     "INDIEKIT_CONFIG_PATH": {
       "description": "Location of configuration file, relative to repository root.",

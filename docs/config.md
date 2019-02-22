@@ -45,12 +45,12 @@ An array of post-types (with default values currently provided for `article`, `n
   Location of the post template in your repository. Note, this should not be the template used to render your site (using Jekyll, 11ty, Hugo, etc.), but a template specifically for the use of IndieKit. Defaults to templates provided by IndieKit, [which you can find here](https://github.com/paulrobertlloyd/indiekit/tree/master/app/templates).
 
 * ##### `file`
-  Location where posts should be saved to in your repository. Defaults to `_<post-type>/{{ published | date('yyyy-MM-dd') }}-{{ slug }}.md` e.g. `_notes/2019-02-21-12345.md`.
+  Location where posts should be saved to in your repository. Defaults to `_<post-type>/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md` e.g. `_notes/2019-02-21-12345.md`.
 
   To maintain compatability with Jekyll, the `article` post type saves to the `_posts` folder.
 
 * ##### `url`
-  Permalink of post as it appears on your website. Defaults to `<post-type>/{{ published | date('yyyy/MM/dd') }}/{{ slug }}` e.g. `notes/2019/02/21/12345`.
+  Permalink of post as it appears on your website. Defaults to `<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}` e.g. `notes/2019/02/21/12345`.
 
   To maintain compatability with Jekyll, the `article` post type is ommited from the generated path, e.g. `2019/02/21/my-great-post`.
 
@@ -61,18 +61,18 @@ Example:
   "post-types": [{
     "article": {
       "template": "_layouts/indiekit/article.njk",
-      "file": "_articles/{{ published | date('yyyy-MM-dd') }}-{{ slug }}.md",
-      "url": "articles/{{ published | date('yyyy/MM') }}/{{ slug }}"
+      "file": "_articles/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+      "url": "articles/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
     },
     "note": {
       "template": "_layouts/indiekit/note.njk",
-      "file": "_notes/{{ published | date('X') }}.md",
-      "url": "notes/{{ published | date('X') }}"
+      "file": "_notes/{​{ published | date('X') }}.md",
+      "url": "notes/{​{ published | date('X') }}"
     },
     "photo": {
       "template": "_layouts/indiekit/photo.njk",
-      "file": "_photos/{{ published | date('X') }}.md",
-      "url": "photos/{{ published | date('X') }}"
+      "file": "_photos/{​{ published | date('X') }}.md",
+      "url": "photos/{​{ published | date('X') }}"
     }
   }]
 }
@@ -92,14 +92,14 @@ Like paths, templates use [Nunjucks](https://mozilla.github.io/nunjucks/), and a
 
 ```yaml
 ---
-title: '{{ title }}'
-date: {{ published }}
+title: '{​{ title }}'
+date: {​{ published }}
 {%- if category %}
 categories:
 {%- for item in category %}
-- {{ item }}
+- {​{ item }}
 {%- endfor %}
 {%- endif %}
 ---
-{{ content | safe }}
+{​{ content | safe }}
 ```
