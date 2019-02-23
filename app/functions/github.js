@@ -13,14 +13,30 @@ const utils = require(__basedir + '/app/functions/utils.js');
 const repoContentUrl = `https://api.github.com/repos/${appConfig.github.user}/${appConfig.github.repo}/contents/`;
 
 /**
+ * Returns path to repo object from full URL
+ *
+ * @todo Change this function so that it uses config options to translate
+ * destination URL back to repo path.
+ * @private
+ * @example githubFilePathFromUrl('https://github.com/<username>/<repo>/blob/<branch>/foobar.txt') => 'foobar.txt'
+ * @param {String} url GitHub URL
+ * @return {String} Normalized object
+ */
+const githubFilePathFromUrl = url => {
+  const regex = /https:\/\/github\.com\/(?<username>[\w-]+)\/(?<repo>[\w-]+)\/blob\/(?<branch>[\w-]+)\//;
+  return url.replace(regex, '');
+};
+
+/**
  * Makes GitHub request with amended options
  *
  * @private
  * @param {Object} args Arguments to amened
  * @return {Promise} Fetch request to GitHub API
  */
-const requestWithOptions = async function (args) {
+const requestWithOptions = async args => {
   const url = repoContentUrl + args.path;
+  console.log('url', url);
   const method = args.method || 'get';
   const options = {
     method,
@@ -58,7 +74,23 @@ const requestWithOptions = async function (args) {
     options.body = JSON.stringify(body);
   }
 
-  return fetch(url, options);
+  try {
+    const request = await fetch(url, options);
+    return await request.json();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getFile = async path => {
+  path = githubFilePathFromUrl(path);
+  const result = await getContents(path);
+
+  if (result.error) {
+    console.error(result.error);
+  } else {
+    return result;
+  }
 };
 
 /**
@@ -68,29 +100,28 @@ const requestWithOptions = async function (args) {
  * @param {String} path Path to file
  * @return {String} GitHub HTTP response
  */
-exports.getContents = async function (path) {
+const getContents = async path => {
   path = utils.normalizePath(path);
 
-  return requestWithOptions({
-    method: 'get',
-    path
-  }).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-  }).then(body => {
-    let content;
-    if (body.content) {
-      content = Buffer.from(body.content, 'base64').toString('utf8');
+  try {
+    const request = await requestWithOptions({
+      method: 'get',
+      path
+    });
+    let {content} = request;
+    if (content) {
+      content = Buffer.from(content, 'base64').toString('utf8');
+
+      return {
+        content,
+        sha: request.sha
+      };
     }
 
-    return {
-      content,
-      sha: body.sha
-    };
-  }).catch(error => {
-    console.error('github.getContents', error);
-  });
+    throw new Error('No content provided in request');
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -102,23 +133,19 @@ exports.getContents = async function (path) {
  * @param {String} postType Microformats post type
  * @return {String} GitHub HTTP response
  */
-exports.createFile = async function (path, content, postType) {
+const createFile = async (path, content, postType) => {
   path = utils.normalizePath(path);
 
-  return requestWithOptions({
-    method: 'put',
-    message: `:robot: ${postType} created with ${appConfig.name}`,
-    content: Buffer.from(content).toString('base64'),
-    path
-  }).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-  }).then(json => {
-    return json;
-  }).catch(error => {
-    console.error('github.createFile', error);
-  });
+  try {
+    return await requestWithOptions({
+      method: 'put',
+      message: `:robot: ${postType} created with ${appConfig.name}`,
+      content: Buffer.from(content).toString('base64'),
+      path
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -130,37 +157,27 @@ exports.createFile = async function (path, content, postType) {
  * @param {String} postType Microformats post type
  * @return {String} GitHub HTTP response
  */
-exports.deleteFile = async function (path) {
-  path = utils.githubFilePathFromUrl(path);
-  const result = await module.exports.getContents(path);
+const deleteFile = async path => {
+  path = githubFilePathFromUrl(path);
 
-  if (result.error) {
-    console.error(result.error);
-  } else {
-    return requestWithOptions({
-      method: 'delete',
-      message: `:robot: Post deleted with ${appConfig.name}`,
-      sha: result.sha,
-      path
-    }).then(response => {
-      if (response.ok) {
-        return response.json();
-      }
-    }).then(json => {
-      return json;
-    }).catch(error => {
-      console.error('github.createFile', error);
-    });
+  try {
+    const reponse = await getContents(path);
+    if (reponse) {
+      return await requestWithOptions({
+        method: 'delete',
+        message: `:robot: Post deleted with ${appConfig.name}`,
+        sha: reponse.sha,
+        path
+      });
+    }
+  } catch (error) {
+    console.error(error);
   }
 };
 
-exports.getFile = async function (path) {
-  path = utils.githubFilePathFromUrl(path);
-  const result = await module.exports.getContents(path);
-
-  if (result.error) {
-    console.error(result.error);
-  } else {
-    return result;
-  }
+module.exports = {
+  getContents,
+  getFile,
+  createFile,
+  deleteFile
 };

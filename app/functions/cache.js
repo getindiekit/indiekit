@@ -1,6 +1,6 @@
 /**
- * Cache files to prevent making too many calls to APIs, and to ensure endpoint
- * isn’t slowed down by excessive requests to third-parties.
+ * Cache files to ensure endpoint isn’t slowed down by excessive requests to
+ * third-party APIs.
  *
  * @module functions/cache
  */
@@ -12,6 +12,13 @@ const appConfig = require(__basedir + '/app/config.js');
 const github = require(__basedir + '/app/functions/github.js');
 const utils = require(__basedir + '/app/functions/utils.js');
 
+/**
+ * Gets a files modified date ()
+ *
+ * @private
+ * @param {Strong} path Path to file in local cache
+ * @returns {Number} Milliseconds since POSIX Epoch
+ */
 const getFileUpdatedDate = path => {
   const stats = fs.statSync(path);
   return stats.mtimeMs;
@@ -24,8 +31,8 @@ const getFileUpdatedDate = path => {
  * @param {Strong} cachePath Path to file in local cache
  * @returns {Object} Fetched file
  */
-exports.fetchFile = async function (remotePath, cachePath) {
-  const cacheFile = module.exports.readFromCache(cachePath);
+const fetchCache = async (remotePath, cachePath) => {
+  const cacheFile = readCache(cachePath);
 
   // Check if file is cached
   let hasExpired;
@@ -50,7 +57,7 @@ exports.fetchFile = async function (remotePath, cachePath) {
     try {
       const remoteData = await github.getContents(remotePath);
       const freshData = remoteData.content;
-      module.exports.writeToCache(cachePath, freshData);
+      writeCache(cachePath, freshData);
       return freshData;
     } catch (error) {
       console.error(error);
@@ -67,7 +74,7 @@ exports.fetchFile = async function (remotePath, cachePath) {
  * @param {Strong} filePath Path to cache file
  * @returns {Object} Cache object
  */
-exports.readFromCache = function (filePath) {
+const readCache = filePath => {
   filePath = path.join(appConfig.cache.dir, filePath);
 
   if (fs.existsSync(filePath)) {
@@ -77,12 +84,12 @@ exports.readFromCache = function (filePath) {
 };
 
 /**
- * Saves data to cache file
+ * Writes data to cache file
  *
  * @param {Object} filePath Location to save cache file
  * @param {Object} fileData Cache object
  */
-exports.writeToCache = function (filePath, fileData) {
+const writeCache = (filePath, fileData) => {
   filePath = path.join(appConfig.cache.dir, filePath);
   const pathToFile = path.parse(filePath).dir;
 
@@ -93,11 +100,13 @@ exports.writeToCache = function (filePath, fileData) {
 
   // Write data to disk
   fs.writeFile(filePath, fileData, error => {
+    const fileName = path.basename(filePath);
+
     if (error) {
-      throw error;
+      throw new Error(`Could not cache ${fileName}`);
     }
 
-    console.info(`Cached data written to ${filePath}`);
+    console.info(`Cached ${fileName}`);
   });
 };
 
@@ -106,10 +115,17 @@ exports.writeToCache = function (filePath, fileData) {
  *
  * @param {Object} cacheDir Location to save cache directory
  */
-exports.clearCache = function (cacheDir) {
+const clearCache = cacheDir => {
   if (fs.existsSync(cacheDir)) {
     fs.removeSync(cacheDir);
   }
 
   console.info('Cache cleared');
+};
+
+module.exports = {
+  clear: clearCache,
+  fetch: fetchCache,
+  read: readCache,
+  write: writeCache
 };

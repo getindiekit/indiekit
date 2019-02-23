@@ -13,7 +13,7 @@ const microformats = require('microformat-node');
  * @param {Array|Object} value Item from which value needs to be extracted
  * @return {String} Extracted value
  */
-const getValue = function (value) {
+const getValue = value => {
   return value[0].value || value[0];
 };
 
@@ -26,7 +26,7 @@ const getValue = function (value) {
  * @param {String} content Content property of the item
  * @return {Boolean} Whether the content includes the name
  */
-const contentIncludesName = function (name, content) {
+const contentIncludesName = (name, content) => {
   const trimmedName = name.replace(/\W+/g, ' ');
   const trimmedContent = content.replace(/\W+/g, ' ');
   return (trimmedContent.indexOf(trimmedName) !== -1);
@@ -47,7 +47,7 @@ const contentIncludesName = function (name, content) {
  * @param {Object} mf2 microformats2 object to be checked
  * @return {String} Type of post
  */
-exports.getType = function (mf2) {
+const getType = mf2 => {
   const prop = mf2.properties;
   const propNames = Object.keys(prop);
 
@@ -104,7 +104,7 @@ exports.getType = function (mf2) {
  * @param {String} html HTML marked up with microformats
  * @return {Object} mf2
  */
-exports.getProperties = async function (html) {
+const getProperties = async html => {
   let mf2;
   const {items} = await microformats.getAsync({
     html: await html,
@@ -120,4 +120,9 @@ exports.getProperties = async function (html) {
   }
 
   return mf2;
+};
+
+module.exports = {
+  getType,
+  getProperties
 };

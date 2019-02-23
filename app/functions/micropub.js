@@ -28,7 +28,7 @@ const repoUrl = `https://github.com/${appConfig.github.user}/${appConfig.github.
  * @param {String} body Form-encoded body
  * @return {Object} mf2 microformats2 object
  */
-exports.convertFormEncodedToMf2 = function (body) {
+const convertFormEncodedToMf2 = body => {
   const reservedProperties = Object.freeze([
     'access_token',
     'h',
@@ -83,7 +83,7 @@ exports.convertFormEncodedToMf2 = function (body) {
  * @param {String} separator Slug separator
  * @returns {Array} Slug
  */
-exports.getSlug = function (mf2, separator) {
+const getSlug = (mf2, separator) => {
   let slug;
   const hasSlug = ((mf2 || {}).mp || {}).slug;
   const hasTitle = ((mf2 || {}).properties || {}).name;
@@ -110,7 +110,7 @@ exports.getSlug = function (mf2, separator) {
  * @param {Object} mf2 microformats2 object
  * @returns {Array} ISO formatted date
  */
-exports.getDate = function (mf2) {
+const getDate = mf2 => {
   let date;
 
   try {
@@ -129,7 +129,7 @@ exports.getDate = function (mf2) {
  * @param {Array} property microformats2 `photo` property
  * @returns {Array} Photos
  */
-exports.getPhotos = function (property) {
+const getPhotos = property => {
   const photo = [];
 
   property.forEach(item => {
@@ -150,7 +150,7 @@ exports.getPhotos = function (property) {
  * @param {Array} property microformats2 `contents` property
  * @returns {Array} Content
  */
-exports.getContent = function (property) {
+const getContent = property => {
   const content = property[0].html || property[0].value || property[0];
   return new Array(content);
 };
@@ -162,7 +162,7 @@ exports.getContent = function (property) {
  * @param {String} desc Description
  * @returns {Object} Error object
  */
-exports.errorResponse = function (id, desc) {
+const errorResponse = (id, desc) => {
   let code;
 
   switch (id) {
@@ -208,7 +208,7 @@ exports.errorResponse = function (id, desc) {
  * @param {String} location Location of post
  * @returns {Object} Success object
  */
-exports.successResponse = function (id, location) {
+const successResponse = (id, location) => {
   let code;
   let desc;
 
@@ -260,7 +260,7 @@ exports.successResponse = function (id, location) {
  * @param {String} appUrl URL of application
  * @returns {Object} Query object
  */
-exports.queryResponse = async function (query, pubConfig, appUrl) {
+const queryResponse = async (query, pubConfig, appUrl) => {
   const mediaEndpoint = pubConfig['media-endpoint'] || `${appUrl}/media`;
   const syndicateTo = pubConfig['syndicate-to'] || [];
 
@@ -275,16 +275,15 @@ exports.queryResponse = async function (query, pubConfig, appUrl) {
   }
 
   if (query.q === 'source') {
-    /* @todo Currently returns markdown with no mf2 properties */
-    const source = fetch(query.url)
-      .then(response => response.text())
-      .then(body => {
-        return body;
-      }).catch(error => {
-        console.error('github.getContents', error);
-      });
+    let html;
+    try {
+      const response = await fetch(query.url);
+      html = await response.text();
+    } catch (error) {
+      console.error(error);
+    }
 
-    const properties = await microformats.getProperties(source);
+    const properties = await microformats.getProperties(html);
     return {
       code: 200,
       body: properties
@@ -300,7 +299,7 @@ exports.queryResponse = async function (query, pubConfig, appUrl) {
     };
   }
 
-  return module.exports.errorResponse('invalid_request');
+  return errorResponse('invalid_request');
 };
 
 /**
@@ -310,21 +309,21 @@ exports.queryResponse = async function (query, pubConfig, appUrl) {
  * @param {Object} pubConfig Publication configuration
  * @returns {String} Location of created post
  */
-exports.createPost = async function (mf2, pubConfig) {
+const createPost = async (mf2, pubConfig) => {
   const {properties} = mf2;
 
   // Determine date and slug properties
   const slugSeparator = pubConfig['slug-separator'] || pubDefaults['slug-separator'];
-  properties.published = module.exports.getDate(mf2);
-  properties.slug = module.exports.getSlug(mf2, slugSeparator);
+  properties.published = getDate(mf2);
+  properties.slug = getSlug(mf2, slugSeparator);
 
   // Normalise content and photo properties
   if (properties.content) {
-    properties.content = module.exports.getContent(properties.content);
+    properties.content = getContent(properties.content);
   }
 
   if (properties.photo) {
-    properties.photo = module.exports.getPhotos(properties.photo);
+    properties.photo = getPhotos(properties.photo);
   }
 
   // Render publish and destination path
@@ -341,21 +340,22 @@ exports.createPost = async function (mf2, pubConfig) {
 
   if (templatePathConfig) {
     // Fetch template from remote and cache
-    template = await cache.fetchFile(templatePathConfig, templatePathCached);
+    template = await cache.fetch(templatePathConfig, templatePathCached);
   } else {
     // Use default template
     template = templatePathDefault;
   }
 
   const content = render.string(template, properties);
+  const location = pubConfig.url + urlPath;
 
   // Create post on GitHub
   const githubResponse = await github.createFile(filePath, content, type);
   if (githubResponse) {
-    return module.exports.successResponse('create_pending', pubConfig.url + urlPath);
+    return successResponse('create_pending', location);
   }
 
-  throw new Error(githubResponse.error);
+  throw new Error(`Unable to create ${location}`);
 };
 
 /**
@@ -364,13 +364,13 @@ exports.createPost = async function (mf2, pubConfig) {
  * @param {String} path Path to post
  * @returns {Object} Response
  */
-exports.getPost = async function (path) {
+const getPost = async path => {
   const githubResponse = await github.getFile(path);
   if (githubResponse) {
     return githubResponse.content;
   }
 
-  throw new Error(githubResponse.error);
+  throw new Error(`Unable to get ${path}`);
 };
 
 /**
@@ -380,14 +380,14 @@ exports.getPost = async function (path) {
  * @param {String} content Content to update
  * @returns {Object} Response
  */
-exports.updatePost = async function (path, content) {
+const updatePost = async (path, content) => {
   const githubResponse = github.updateFile(path, content);
   if (githubResponse) {
     /* @todo If path has changed, return 'update_created' */
-    return module.exports.successResponse('update', repoUrl + path);
+    return successResponse('update', repoUrl + path);
   }
 
-  throw new Error(githubResponse.error);
+  throw new Error(`Unable to update ${path}`);
 };
 
 /**
@@ -396,11 +396,26 @@ exports.updatePost = async function (path, content) {
  * @param {String} path Path to post
  * @returns {Object} Response
  */
-exports.deletePost = async function (path) {
+const deletePost = async path => {
   const githubResponse = await github.deleteFile(path);
   if (githubResponse) {
-    return module.exports.successResponse('delete', path);
+    return successResponse('delete', path);
   }
 
-  throw new Error(githubResponse.error);
+  throw new Error(`Unable to delete ${path}`);
+};
+
+module.exports = {
+  convertFormEncodedToMf2,
+  getSlug,
+  getDate,
+  getPhotos,
+  getContent,
+  errorResponse,
+  successResponse,
+  queryResponse,
+  createPost,
+  getPost,
+  updatePost,
+  deletePost
 };
