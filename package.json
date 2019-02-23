@@ -14,7 +14,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
+    "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false --sort-order alpha",
     "test": "nyc ava --verbose"
   },
   "dependencies": {
@@ -28,12 +28,11 @@
     "normalize-url": "^4.1.0",
     "nunjucks": "^3.1.7",
     "serve-favicon": "^2.5.0",
-    "slugify": "^1.3.4",
-    "valid-url": "^1.0.9"
+    "slugify": "^1.3.4"
   },
   "devDependencies": {
     "ava": "^1.2.1",
-    "documentation": "^9.1.1",
+    "documentation": "~9.1.1",
     "husky": "^1.3.1",
     "minami": "^1.2.3",
     "nyc": "^13.3.0",

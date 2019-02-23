@@ -12,6 +12,7 @@ const slugify = require('slugify');
 const appConfig = require(__basedir + '/app/config.js');
 const pubDefaults = appConfig.defaults;
 const cache = require(__basedir + '/app/functions/cache');
+const history = require(__basedir + '/app/functions/history');
 const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
 const render = require(__basedir + '/app/functions/render');
@@ -329,7 +330,7 @@ const createPost = async (mf2, pubConfig) => {
   // Render publish and destination path
   const type = microformats.getType(mf2);
   const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
-  const filePath = render.string(typeConfig.path, properties);
+  const filePath = render.string(typeConfig.file, properties);
   const urlPath = render.string(typeConfig.url, properties);
 
   // Render post template
@@ -349,9 +350,16 @@ const createPost = async (mf2, pubConfig) => {
   const content = render.string(template, properties);
   const location = pubConfig.url + urlPath;
 
+  // Create history entry
+  const historyEntry = {
+    file: filePath,
+    url: location
+  };
+
   // Create post on GitHub
   const githubResponse = await github.createFile(filePath, content, type);
   if (githubResponse) {
+    history.update('create', historyEntry);
     return successResponse('create_pending', location);
   }
 
@@ -361,26 +369,33 @@ const createPost = async (mf2, pubConfig) => {
 /**
  * Gets post to inspect its properties
  *
- * @param {String} path Path to post
- * @returns {Object} Response
+ * @param {String} url URL path to post
+ * @returns {Object} mf2
  */
-const getPost = async path => {
-  const githubResponse = await github.getFile(path);
-  if (githubResponse) {
-    return githubResponse.content;
-  }
+const getPost = async url => {
+  try {
+    const response = await fetch(url);
 
-  throw new Error(`Unable to get ${path}`);
+    if (response) {
+      const html = await response.text();
+      return microformats.getProperties(html);
+    }
+
+    throw new Error(`Unable to connect to ${url}`);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
  * Updates a post
  *
- * @param {String} path Path to post
+ * @param {String} url URL path to post
  * @param {String} content Content to update
  * @returns {Object} Response
  */
-const updatePost = async (path, content) => {
+const updatePost = async (url, content) => {
+  const path = utils.filePathFromUrl(url);
   const githubResponse = github.updateFile(path, content);
   if (githubResponse) {
     /* @todo If path has changed, return 'update_created' */
@@ -393,16 +408,36 @@ const updatePost = async (path, content) => {
 /**
  * Deletes a post
  *
- * @param {String} path Path to post
+ * @param {String} url URL of published post
  * @returns {Object} Response
  */
-const deletePost = async path => {
-  const githubResponse = await github.deleteFile(path);
-  if (githubResponse) {
-    return successResponse('delete', path);
+const deletePost = async url => {
+  let path;
+  let entries;
+
+  try {
+    const getHistory = await history.read();
+    entries = getHistory.entries;
+  } catch (error) {
+    throw new Error('No history available');
   }
 
-  throw new Error(`Unable to delete ${path}`);
+  if (entries) {
+    entries.forEach(entry => {
+      if (entry.create.url === url) {
+        path = entry.create.file;
+      }
+    });
+  }
+
+  try {
+    const githubResponse = await github.deleteFile(path);
+    if (githubResponse) {
+      return successResponse('delete', path);
+    }
+  } catch (error) {
+    throw new Error(`Unable to delete ${url}`);
+  }
 };
 
 module.exports = {

@@ -58,16 +58,20 @@ exports.post = async (request, response, next) => {
 
     // Determine action, ensuring token includes scope permission
     const {scope} = verifiedToken;
+    const {action} = body;
+    const {url} = body;
 
-    if (body.action === 'delete') {
+    // Delete action (WIP)
+    if (action === 'delete') {
       if (scope.includes('delete')) {
-        return micropub.deletePost(body.url);
+        return micropub.deletePost(url);
       }
 
       return micropub.errorResponse('insufficient_scope');
     }
 
-    if (body.action === 'update') {
+    // Update action (not yet supported)
+    if (action === 'update') {
       if (scope.includes('update')) {
         return micropub.errorResponse('not_supported', 'Update action not supported');
       }
@@ -75,6 +79,7 @@ exports.post = async (request, response, next) => {
       return micropub.errorResponse('insufficient_scope');
     }
 
+    // Create action
     if (scope.includes('create')) {
       return micropub.createPost(body, pubConfig);
     }
