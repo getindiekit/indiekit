@@ -27,9 +27,9 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
   * [ ] Authetication
   * [ ] Request
   * [ ] Response
-* [ ] Querying
+* [x] Querying
   * [x] Configuration
-  * [ ] Source content
+  * [x] Source content
   * [x] Syndication targets
 * [x] Error response
 
