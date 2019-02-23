@@ -12,7 +12,7 @@
  * @param {String} string String to decode
  * @return {String} Decoded string
  */
-exports.decodeFormEncodedString = function (string) {
+const decodeFormEncodedString = string => {
   if (typeof string === 'string') {
     string = string.replace(/\+/g, '%20');
     string = decodeURIComponent(string);
@@ -27,13 +27,13 @@ exports.decodeFormEncodedString = function (string) {
  * @param {Object} object Object with empty strings
  * @return {Object} Sanitized object
  */
-exports.removeEmptyObjectKeys = function (object) {
+const removeEmptyObjectKeys = object => {
   for (const key in object) {
     if (!object[key] || typeof object[key] !== 'object') {
       continue;
     }
 
-    module.exports.removeEmptyObjectKeys(object[key]);
+    removeEmptyObjectKeys(object[key]);
 
     if (Object.keys(object[key]).length === 0) {
       delete object[key];
@@ -50,18 +50,12 @@ exports.removeEmptyObjectKeys = function (object) {
  * @param {Object} string String
  * @return {Object} Normalized object
  */
-exports.normalizePath = function (string) {
+const normalizePath = string => {
   return string.replace(/^\/|\/$/g, '');
 };
 
-/**
- * Returns path to repo object from full URL
- *
- * @example githubFilePathFromUrl('https://github.com/<username>/<repo>/blob/<branch>/foobar.txt') => 'foobar.txt'
- * @param {String} url GitHub URL
- * @return {String} Normalized object
- */
-exports.githubFilePathFromUrl = function (url) {
-  const regex = /https:\/\/github\.com\/(?<username>[\w-]+)\/(?<repo>[\w-]+)\/blob\/(?<branch>[\w-]+)\//;
-  return url.replace(regex, '');
+module.exports = {
+  decodeFormEncodedString,
+  removeEmptyObjectKeys,
+  normalizePath
 };

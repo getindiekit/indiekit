@@ -18,8 +18,8 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
   * [ ] Add
   * [ ] Update
   * [x] Success response
-* [x] Delete
-  * [x] Success response
+* [ ] Delete
+  * [ ] Success response
 * [ ] Media endpoint
   * [x] Discovery
   * [ ] Authetication
@@ -44,7 +44,7 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
   * [x] Article
   * [x] Note
   * [x] Photo
-* [ ] Improved error handling and logging
+* [ ] Error logging
 
 ## Prior art
 

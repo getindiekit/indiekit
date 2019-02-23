@@ -13,7 +13,7 @@ const env = new nunjucks.Environment(new nunjucks.FileSystemLoader(appConfig.cac
 
 env.addFilter('date', (date, format) => {
   if (!date) {
-    throw new Error('No date provided to filter');
+    throw new Error('No date provided in context data');
   }
 
   return DateTime.fromISO(date).toFormat(format);
@@ -26,7 +26,7 @@ env.addFilter('date', (date, format) => {
  * @param {String} context Context data
  * @return {String} Rendered string
  */
-exports.string = function (string, context) {
+const string = (string, context) => {
   return env.renderString(string, context);
 };
 
@@ -37,6 +37,11 @@ exports.string = function (string, context) {
  * @param {String} context Context data
  * @return {String} Rendered string
  */
-exports.template = function (templatePath, context) {
+const template = (templatePath, context) => {
   return env.render(templatePath, context);
+};
+
+module.exports = {
+  string,
+  template
 };

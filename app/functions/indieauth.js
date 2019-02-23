@@ -16,7 +16,7 @@ const appConfig = require(__basedir + '/app/config.js');
  * @param {String} accessToken Access token
  * @returns {Promise} Fetch request to IndieAuth token endpoint
  */
-exports.getAuthResponse = function (accessToken) {
+const getAuthResponse = async accessToken => {
   const endpoint = appConfig.indieauth['token-endpoint'];
   const isValidTokenFormat = accessToken.startsWith('Bearer ');
 
@@ -24,19 +24,23 @@ exports.getAuthResponse = function (accessToken) {
     accessToken = 'Bearer ' + accessToken;
   }
 
-  return fetch(endpoint, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      Authorization: accessToken
+  try {
+    const response = await fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Authorization: accessToken
+      }
+    });
+
+    if (response) {
+      return await response.json();
     }
-  }).then(endpointResponse => {
-    return endpointResponse.json();
-  }).then(json => {
-    return json;
-  }).catch(error => {
-    console.error(`indieauth.getAuthResponse: ${error.message}`);
-  });
+
+    throw new Error(`Unable to connect to ${endpoint}`);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -46,16 +50,16 @@ exports.getAuthResponse = function (accessToken) {
  * @param {String} url Destination URL
  * @returns {Object} Endpoint response
  */
-exports.verifyToken = async function (accessToken, url) {
-  const authResponse = await module.exports.getAuthResponse(accessToken);
-
+const verifyToken = async (accessToken, url) => {
   try {
+    const authResponse = await module.exports.getAuthResponse(accessToken);
+
     if (!authResponse) {
       throw new Error('No response from token endpoint');
     }
 
+    /* @todo Check if all clients support authResponse.error */
     if (authResponse.error) {
-      /* @todo Check if all clients support authResponse.error */
       throw new Error(authResponse.error_description);
     }
 
@@ -66,6 +70,11 @@ exports.verifyToken = async function (accessToken, url) {
 
     return authResponse;
   } catch (error) {
-    console.error(`indieauth.verifyToken: ${error.message}`);
+    console.error(error);
   }
+};
+
+module.exports = {
+  getAuthResponse,
+  verifyToken
 };

@@ -30,7 +30,7 @@ app.use('/', routes);
 
 app.listen(port, () => {
   console.info(`Server running on port ${port}`);
-  cache.clearCache(appConfig.cache.dir);
+  cache.clear(appConfig.cache.dir);
 });
 
 module.exports = app;

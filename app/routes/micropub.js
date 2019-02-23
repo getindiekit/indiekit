@@ -1,8 +1,7 @@
 /**
  * @module routes/micropub
  */
-const appConfig = require(__basedir + '/app/config');
-const cache = require(__basedir + '/app/functions/cache');
+const config = require(__basedir + '/app/functions/config');
 const indieauth = require(__basedir + '/app/functions/indieauth');
 const micropub = require(__basedir + '/app/functions/micropub');
 
@@ -13,10 +12,8 @@ const micropub = require(__basedir + '/app/functions/micropub');
  * @param {Object} response Response
  * @return {Object} HTTP response
  */
-exports.get = async function (request, response) {
-  let pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
-  pubConfig = JSON.parse(pubConfig);
-
+exports.get = async (request, response) => {
+  const pubConfig = await config();
   const appUrl = `${request.protocol}://${request.headers.host}`;
   const getResponse = await micropub.queryResponse(request.query, pubConfig, appUrl);
 
@@ -31,11 +28,9 @@ exports.get = async function (request, response) {
  * @param {Object} next Callback
  * @return {Object} HTTP response
  */
-exports.post = async function (request, response, next) {
-  let pubConfig = await cache.fetchFile(appConfig.config.path, appConfig.config.file);
-  pubConfig = JSON.parse(pubConfig);
-
-  const getPostResponse = async function (request) {
+exports.post = async (request, response, next) => {
+  const pubConfig = await config();
+  const getPostResponse = async request => {
     let {body} = request;
 
     // Ensure response has body data
@@ -87,8 +82,8 @@ exports.post = async function (request, response, next) {
     return micropub.errorResponse('insufficient_scope');
   };
 
-  const postResponse = await getPostResponse(request);
   try {
+    const postResponse = await getPostResponse(request);
     return response.status(postResponse.code).set({
       location: postResponse.location
     }).json(postResponse.body);
