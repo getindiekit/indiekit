@@ -276,18 +276,35 @@ const queryResponse = async (query, pubConfig, appUrl) => {
   }
 
   if (query.q === 'source') {
+    const {properties} = query;
     let html;
+    let mf2;
+
     try {
       const response = await fetch(query.url);
       html = await response.text();
     } catch (error) {
-      console.error(error);
+      throw new Error(error.message);
     }
 
-    const properties = await microformats.getProperties(html);
+    if (properties) { // Respond only with requested properties
+      mf2 = await microformats.getProperties(html);
+
+      const selected = Object.keys(mf2.properties)
+        .filter(key => properties.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = mf2.properties[key];
+          return obj;
+        }, {});
+
+      mf2 = selected;
+    } else {
+      mf2 = await microformats.getProperties(html);
+    }
+
     return {
       code: 200,
-      body: properties
+      body: mf2
     };
   }
 

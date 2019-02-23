@@ -43,15 +43,11 @@ Cleares the cache directory
 
 -   `cacheDir` **[Object][1]** Location to save cache directory
 
-## functions/render
+## functions/github
 
 Gets a publication’s configuration
 
 Returns **[Object][1]** Configuration options
-
-## functions/render
-
-Render a template or string using context data using Nunjucks.
 
 ## functions/github
 
@@ -305,6 +301,10 @@ Deletes a post
 -   `url` **[String][3]** URL of published post
 
 Returns **[Object][1]** Response
+
+## functions/render
+
+Render a template or string using context data using Nunjucks.
 
 ## string
 
