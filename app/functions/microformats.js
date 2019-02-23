@@ -3,95 +3,105 @@
  *
  * @module functions/microformats
  */
-const validUrl = require('valid-url');
 const microformats = require('microformat-node');
 
 /**
- * Gets the plain text value from a value mf2 field.
+ * Discover the post type from a mf2 json object.
  *
- * @private
- * @param {Array|Object} value Item from which value needs to be extracted
- * @return {String} Extracted value
- */
-const getValue = value => {
-  return value[0].value || value[0];
-};
-
-/**
- * Strips the content and name of non-alphanumeric characters and
- * checks if the content includes the name.
- *
- * @private
- * @param {String} name Name property of the item
- * @param {String} content Content property of the item
- * @return {Boolean} Whether the content includes the name
- */
-const contentIncludesName = (name, content) => {
-  const trimmedName = name.replace(/\W+/g, ' ');
-  const trimmedContent = content.replace(/\W+/g, ' ');
-  return (trimmedContent.indexOf(trimmedName) !== -1);
-};
-
-/**
- * Take a microformats2 object and determine its post type. Adapted from
- * {@link https://github.com/twozeroone/post-type-discovery post-type-discovery}
- * by {@link http://prtksxna.com Prateek Saxena}.
- *
- * @copyright Copyright (c) 2017, 201. All rights reserved.
- * @example getType({
- *   type: ['h-entry'],
- *   properties: {
- *     content: ['Foo bar']
- *   }
- * }) => 'note'
- * @param {Object} mf2 microformats2 object to be checked
+ * @param {object} mf2 A mf2 json object
  * @return {String} Type of post
  */
-const getType = mf2 => {
-  const prop = mf2.properties;
-  const propNames = Object.keys(prop);
+const getType = post => {
+  const {properties} = post;
 
-  // RSVP
-  if (
-    propNames.includes('rsvp') && (
-      prop.rsvp.includes('yes') ||
-      prop.rsvp.includes('no') ||
-      prop.rsvp.includes('maybe') ||
-      prop.rsvp.includes('interested')
-    )
-  ) {
+  if (properties.rsvp) {
     return 'rsvp';
   }
 
-  // Properties that need to have a valid URL
-  const propToType = {
-    'in-reply-to': 'reply',
-    'repost-of': 'repost',
-    'like-of': 'like',
-    video: 'video',
-    photo: 'photo'
-  };
+  if (properties['in-reply-to']) {
+    if (properties.content && properties.content[0]) {
+      let content = properties.content[0];
+      if (typeof content !== 'string') {
+        if (content.value) {
+          content = content.value;
+        } else if (content.html) {
+          content = content.html;
+        }
+      }
+    }
 
-  const matches = Object.keys(propToType).filter(propName => {
-    return (
-      propNames.includes(propName) &&
-      validUrl.isUri(getValue(prop[propName]))
-    );
-  });
-
-  if (matches.length > 0) {
-    return propToType[matches[0]];
+    return 'reply';
   }
 
-  // Are content and name the same?
-  const name = prop.name ? getValue(prop.name) : undefined;
-  const content = getValue(prop.content) || getValue(prop.summary);
+  if (properties['repost-of']) {
+    return 'repost';
+  }
+
+  if (properties['bookmark-of']) {
+    return 'bookmark';
+  }
+
+  if (properties['quotation-of']) {
+    return 'quotation';
+  }
+
+  if (properties['like-of']) {
+    return 'like';
+  }
+
+  if (properties.checkin) {
+    return 'checkin';
+  }
+
+  if (properties['listen-of']) {
+    return 'listen';
+  }
+
+  if (properties['read-of']) {
+    return 'read';
+  }
+
+  if (properties.start) {
+    return 'event';
+  }
 
   if (
-    content !== undefined &&
-    name !== undefined &&
-    !contentIncludesName(name, content)
+    properties['watch-of'] ||
+    properties.show_name ||
+    properties.movie_name
   ) {
+    return 'watch';
+  }
+
+  if (properties.isbn) {
+    return 'book';
+  }
+
+  if (properties.video) {
+    return 'video';
+  }
+
+  if (properties.audio) {
+    return 'audio';
+  }
+
+  if (properties.ate) {
+    return 'ate';
+  }
+
+  if (properties.drank) {
+    return 'drank';
+  }
+
+  if (post.children && Array.isArray(post.children)) {
+    return 'collection';
+  }
+
+  if (properties.photo) {
+    return 'photo';
+  }
+
+  if (properties.name && properties.name !== '') {
     return 'article';
   }
 

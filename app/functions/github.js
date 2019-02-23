@@ -1,6 +1,5 @@
 /**
- * Get, create, update and delete data at a specified path at configured GitHub
- * repo.
+ * Get, create and delete data at a specified path at configured GitHub repo.
  *
  * @module functions/github
  */
@@ -10,23 +9,6 @@ const fetch = require('node-fetch');
 const appConfig = require(__basedir + '/app/config.js');
 const utils = require(__basedir + '/app/functions/utils.js');
 
-const repoContentUrl = `https://api.github.com/repos/${appConfig.github.user}/${appConfig.github.repo}/contents/`;
-
-/**
- * Returns path to repo object from full URL
- *
- * @todo Change this function so that it uses config options to translate
- * destination URL back to repo path.
- * @private
- * @example githubFilePathFromUrl('https://github.com/<username>/<repo>/blob/<branch>/foobar.txt') => 'foobar.txt'
- * @param {String} url GitHub URL
- * @return {String} Normalized object
- */
-const githubFilePathFromUrl = url => {
-  const regex = /https:\/\/github\.com\/(?<username>[\w-]+)\/(?<repo>[\w-]+)\/blob\/(?<branch>[\w-]+)\//;
-  return url.replace(regex, '');
-};
-
 /**
  * Makes GitHub request with amended options
  *
@@ -35,8 +17,7 @@ const githubFilePathFromUrl = url => {
  * @return {Promise} Fetch request to GitHub API
  */
 const requestWithOptions = async args => {
-  const url = repoContentUrl + args.path;
-  console.log('url', url);
+  const url = `https://api.github.com/repos/${appConfig.github.user}/${appConfig.github.repo}/contents/${args.path}`;
   const method = args.method || 'get';
   const options = {
     method,
@@ -79,17 +60,6 @@ const requestWithOptions = async args => {
     return await request.json();
   } catch (error) {
     throw new Error(error.message);
-  }
-};
-
-const getFile = async path => {
-  path = githubFilePathFromUrl(path);
-  const result = await getContents(path);
-
-  if (result.error) {
-    console.error(result.error);
-  } else {
-    return result;
   }
 };
 
@@ -158,8 +128,6 @@ const createFile = async (path, content, postType) => {
  * @return {String} GitHub HTTP response
  */
 const deleteFile = async path => {
-  path = githubFilePathFromUrl(path);
-
   try {
     const reponse = await getContents(path);
     if (reponse) {
@@ -177,7 +145,6 @@ const deleteFile = async path => {
 
 module.exports = {
   getContents,
-  getFile,
   createFile,
   deleteFile
 };

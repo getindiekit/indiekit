@@ -11,6 +11,9 @@ module.exports = {
     path: process.env.INDIEKIT_CONFIG_PATH || 'indiekit.json',
     file: 'config.json'
   },
+  history: {
+    file: 'history.json'
+  },
   defaults: {
     'post-types': [{
       article: {
