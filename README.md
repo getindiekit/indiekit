@@ -19,7 +19,9 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
   * [ ] Update
   * [x] Success response
 * [ ] Delete
-  * [ ] Success response
+  * [x] Delete
+  * [ ] Undelete
+  * [x] Success response
 * [ ] Media endpoint
   * [x] Discovery
   * [ ] Authetication
