@@ -59,3 +59,20 @@ module.exports = {
   removeEmptyObjectKeys,
   normalizePath
 };
+
+/**
+ * Removes newlines, carriage returns, tabs and successive spaces from HTML string
+ *
+ * @param {String} string String
+ * @return {String} Sanitized HTML
+ */
+const sanitizeHtml = string => {
+  return string.replace(/\r?\n|\n|\r|\t|\s{2,}/gm, '');
+};
+
+module.exports = {
+  decodeFormEncodedString,
+  removeEmptyObjectKeys,
+  normalizePath,
+  sanitizeHtml
+};

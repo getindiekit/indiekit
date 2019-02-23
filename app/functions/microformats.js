@@ -5,6 +5,8 @@
  */
 const microformats = require('microformat-node');
 
+const utils = require(__basedir + '/app/functions/utils');
+
 /**
  * Discover the post type from a mf2 json object.
  *
@@ -124,7 +126,11 @@ const getProperties = async html => {
   if (items && items.length === 1) {
     const item = items[0];
     if (Object.keys(item.properties).length > 1) {
-      // @todo Recursively remove errant \n newlines from object value
+      const {html} = item.properties.content[0];
+      if (html) {
+        item.properties.content[0].html = utils.sanitizeHtml(html);
+      }
+
       mf2 = item;
     }
   }

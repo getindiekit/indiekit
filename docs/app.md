@@ -5,6 +5,12 @@
 Cache files to ensure endpoint isn’t slowed down by excessive requests to
 third-party APIs.
 
+## functions/cache
+
+Gets a publication’s configuration
+
+Returns **[Object][1]** Configuration options
+
 ## fetchCache
 
 Reads file from cache, fetching remote version if not found
@@ -42,12 +48,6 @@ Cleares the cache directory
 ### Parameters
 
 -   `cacheDir` **[Object][1]** Location to save cache directory
-
-## functions/github
-
-Gets a publication’s configuration
-
-Returns **[Object][1]** Configuration options
 
 ## functions/github
 
@@ -377,6 +377,16 @@ normalizePath('/foo/bar/') => 'foo/bar'
 ```
 
 Returns **[Object][1]** Normalized object
+
+## sanitizeHtml
+
+Removes newlines, carriage returns, tabs and successive spaces from HTML string
+
+### Parameters
+
+-   `string` **[String][3]** String
+
+Returns **[String][3]** Sanitized HTML
 
 ## routes/micropub
 
