@@ -1,7 +1,7 @@
 const express = require('express');
 
-const router = new express.Router();
 const micropub = require(__basedir + '/app/routes/micropub');
+const router = new express.Router();
 
 // Micropub
 router.get('/micropub', micropub.get);

@@ -3,6 +3,16 @@
  *
  * @module functions/utils
  */
+/**
+ * Decodes form-encoded string
+ *
+ * @example capitalizeFirstLetter('foo bar') => 'Foo bar'
+ * @param {String} string String to capitalize
+ * @return {String} Capitalized string
+ */
+const capitalizeFirstLetter = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 /**
  * Decodes form-encoded string
@@ -71,6 +81,7 @@ const sanitizeHtml = string => {
 };
 
 module.exports = {
+  capitalizeFirstLetter,
   decodeFormEncodedString,
   removeEmptyObjectKeys,
   normalizePath,

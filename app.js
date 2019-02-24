@@ -5,13 +5,15 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
+const multer = require('multer');
 
 const appConfig = require(__basedir + '/app/config');
-const cache = require(__basedir + '/app/functions/cache');
 const routes = require(__basedir + '/app/routes');
 
 const app = express();
 const {port} = appConfig;
+const storage = multer.memoryStorage();
+const upload = multer({storage});
 
 // Parse application/json
 app.use(bodyParser.json());
@@ -20,6 +22,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// Parse multipart/form-data
+app.use(upload.any());
 
 // Static files
 app.use(express.static('www'));

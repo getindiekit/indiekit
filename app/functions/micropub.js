@@ -5,6 +5,7 @@
  * @module functions/micropub
  */
 const path = require('path');
+
 const {DateTime} = require('luxon');
 const fetch = require('node-fetch');
 const slugify = require('slugify');
@@ -17,8 +18,6 @@ const github = require(__basedir + '/app/functions/github');
 const microformats = require(__basedir + '/app/functions/microformats');
 const render = require(__basedir + '/app/functions/render');
 const utils = require(__basedir + '/app/functions/utils');
-
-const repoUrl = `https://github.com/${appConfig.github.user}/${appConfig.github.repo}/blob/master/`;
 
 /**
  * Converts form-encoded body to microformats2 object. Adapted from
@@ -131,18 +130,22 @@ const getDate = mf2 => {
  * @returns {Array} Photos
  */
 const getPhotos = property => {
-  const photo = [];
+  if (property) {
+    const photo = [];
 
-  property.forEach(item => {
-    if (typeof item === 'object') {
-      photo.push(item);
-    } else {
-      item = {value: item};
-      photo.push(item);
-    }
-  });
+    property.forEach(item => {
+      if (typeof item === 'object') {
+        photo.push(item);
+      } else {
+        item = {value: item};
+        photo.push(item);
+      }
+    });
 
-  return photo;
+    return photo;
+  }
+
+  return [];
 };
 
 /**
@@ -152,8 +155,12 @@ const getPhotos = property => {
  * @returns {Array} Content
  */
 const getContent = property => {
-  const content = property[0].html || property[0].value || property[0];
-  return new Array(content);
+  if (property) {
+    const content = property[0].html || property[0].value || property[0];
+    return new Array(content);
+  }
+
+  return null;
 };
 
 /**
@@ -321,66 +328,122 @@ const queryResponse = async (query, pubConfig, appUrl) => {
 };
 
 /**
+ * Creates post data by merging submitted and derived information about a post
+ *
+ * @param {Object} pubConfig Publication configuration
+ * @param {String} body Body content (contains microformats2 object)
+ * @param {String} files File attachments
+ * @returns {Object} New mf2 object
+ */
+const createPostData = async (pubConfig, body, files) => {
+  const {properties} = body;
+  const slugSeparator = pubConfig['slug-separator'] || pubDefaults['slug-separator'];
+
+  // Update content, date and slug properties
+  properties.content = getContent(properties.content);
+  properties.photo = getPhotos(properties.photo);
+  properties.published = getDate(body);
+  properties.slug = getSlug(body, slugSeparator);
+
+  if (files) {
+    /**
+     * Turns out async/await doesn’t work so great with forEach loops. Use
+     * asynchronous `await Promise.all(files.map(async file => {…}))` or
+     * synchronous `for (const file of files) {…}` instead.
+     * (Asynchronous pattern trips up Micropub.rocks! validator)
+     * @see https://stackoverflow.com/a/37576787/11107625
+     */
+    for (const file of files) { /* eslint-disable no-await-in-loop */
+      const fileext = path.extname(file.originalname);
+      let filename = String(Math.floor(Math.random() * 90000) + 10000);
+      filename += fileext;
+
+      // @todo Infer type by `type` using multer field object
+      const typeConfig = pubConfig['post-types'][0].photo || pubDefaults['post-types'][0].photo;
+      const fileProperties = {
+        filetype: 'photo',
+        filename,
+        fileext
+      };
+      const fileContext = {...properties, ...fileProperties};
+      const filePath = render.string(typeConfig.file, fileContext);
+
+      console.log(`Uploading ${filename}`);
+
+      const githubResponse = await github.createFile(filePath, file.buffer, {
+        message: `:framed_picture: ${filename} uploaded with ${appConfig.name}`
+      });
+
+      if (githubResponse) {
+        properties.photo.push({
+          value: filePath
+        });
+      }
+    } /* eslint-enable no-await-in-loop */
+
+    return body;
+  }
+
+  return body;
+};
+
+/**
  * Creates a post
  *
- * @param {String} mf2 microformats2 object
  * @param {Object} pubConfig Publication configuration
+ * @param {String} body Body content (contains microformats2 object)
+ * @param {String} files File attachments
  * @returns {String} Location of created post
  */
-const createPost = async (mf2, pubConfig) => {
-  const {properties} = mf2;
+const createPost = async (pubConfig, body, files) => {
+  try {
+    // Get post data (original mf2 plus ammendments)
+    const postData = await createPostData(pubConfig, body, files);
+    const context = postData.properties;
 
-  // Determine date and slug properties
-  const slugSeparator = pubConfig['slug-separator'] || pubDefaults['slug-separator'];
-  properties.published = getDate(mf2);
-  properties.slug = getSlug(mf2, slugSeparator);
+    // Determine post type
+    const type = microformats.getType(postData);
+    const typeName = utils.capitalizeFirstLetter(type);
+    const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
 
-  // Normalise content and photo properties
-  if (properties.content) {
-    properties.content = getContent(properties.content);
+    // Set publish and destination paths
+    const postPath = render.string(typeConfig.post, context);
+    const urlPath = render.string(typeConfig.url, context);
+
+    // Render template (fetch configured from remote/cache, else use default)
+    let template;
+    const templatePathConfig = pubConfig['post-types'][0][type].template;
+    const templatePathCached = path.join('templates', `${type}.njk`);
+    const templatePathDefault = pubDefaults['post-types'][0][type].template;
+
+    if (templatePathConfig) {
+      template = await cache.fetch(templatePathConfig, templatePathCached);
+    } else {
+      template = templatePathDefault;
+    }
+
+    // Create post on GitHub
+    const content = render.string(template, context);
+    const githubResponse = await github.createFile(postPath, content, {
+      message: `:robot: ${typeName} created with ${appConfig.name}`
+    });
+
+    // Update history and send success reponse
+    const location = pubConfig.url + urlPath;
+    const historyEntry = {
+      post: postPath,
+      url: location
+    };
+
+    if (githubResponse) {
+      history.update('create', historyEntry);
+      return successResponse('create_pending', location);
+    }
+
+    throw new Error(`Unable to create ${location}`);
+  } catch (error) {
+    console.error(error);
   }
-
-  if (properties.photo) {
-    properties.photo = getPhotos(properties.photo);
-  }
-
-  // Render publish and destination path
-  const type = microformats.getType(mf2);
-  const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
-  const filePath = render.string(typeConfig.file, properties);
-  const urlPath = render.string(typeConfig.url, properties);
-
-  // Render post template
-  let template;
-  const templatePathConfig = pubConfig['post-types'][0][type].template;
-  const templatePathCached = path.join('templates', `${type}.njk`);
-  const templatePathDefault = pubDefaults['post-types'][0][type].template;
-
-  if (templatePathConfig) {
-    // Fetch template from remote and cache
-    template = await cache.fetch(templatePathConfig, templatePathCached);
-  } else {
-    // Use default template
-    template = templatePathDefault;
-  }
-
-  const content = render.string(template, properties);
-  const location = pubConfig.url + urlPath;
-
-  // Create history entry
-  const historyEntry = {
-    file: filePath,
-    url: location
-  };
-
-  // Create post on GitHub
-  const githubResponse = await github.createFile(filePath, content, type);
-  if (githubResponse) {
-    history.update('create', historyEntry);
-    return successResponse('create_pending', location);
-  }
-
-  throw new Error(`Unable to create ${location}`);
 };
 
 /**
@@ -412,14 +475,17 @@ const getPost = async url => {
  * @returns {Object} Response
  */
 const updatePost = async (url, content) => {
-  const path = utils.filePathFromUrl(url);
-  const githubResponse = github.updateFile(path, content);
+  const repoPath = utils.filePathFromUrl(url);
+  const typeName = null; // @todo Determine post type
+  const githubResponse = github.updateFile(repoPath, content, {
+    message: `:robot: ${typeName} updated with ${appConfig.name}`
+  });
   if (githubResponse) {
     /* @todo If path has changed, return 'update_created' */
-    return successResponse('update', repoUrl + path);
+    return successResponse('update', url);
   }
 
-  throw new Error(`Unable to update ${path}`);
+  throw new Error(`Unable to update ${url}`);
 };
 
 /**
@@ -429,7 +495,7 @@ const updatePost = async (url, content) => {
  * @returns {Object} Response
  */
 const deletePost = async url => {
-  let path;
+  let repoPath;
   let entries;
 
   try {
@@ -442,15 +508,17 @@ const deletePost = async url => {
   if (entries) {
     entries.forEach(entry => {
       if (entry.create.url === url) {
-        path = entry.create.file;
+        repoPath = entry.create.post;
       }
     });
   }
 
   try {
-    const githubResponse = await github.deleteFile(path);
+    const githubResponse = await github.deleteFile(repoPath, {
+      message: `:robot: Post deleted with ${appConfig.name}`
+    });
     if (githubResponse) {
-      return successResponse('delete', path);
+      return successResponse('delete', url);
     }
   } catch (error) {
     throw new Error(`Unable to delete ${url}`);
