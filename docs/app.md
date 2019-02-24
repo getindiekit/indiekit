@@ -43,11 +43,16 @@ Cleares the cache directory
 
 -   `cacheDir` **[Object][1]** Location to save cache directory
 
-## functions/github
+## functions/indieauth
 
 Gets a publication’s configuration
 
 Returns **[Object][1]** Configuration options
+
+## functions/indieauth
+
+Use [IndieAuth][2] to ensure only
+authenticated users can use endpoint to post to configured destination.
 
 ## functions/github
 
@@ -55,43 +60,42 @@ Get, create and delete data at a specified path at configured GitHub repo.
 
 ## getContents
 
--   **See: [GitHub REST API v3: Get Contents][2]**
+-   **See: [GitHub REST API v3: Get Contents][3]**
 
 Gets the contents of a file or directory in a repository
 
 ### Parameters
 
--   `path` **[String][3]** Path to file
+-   `path` **[String][4]** Path to file
 
-Returns **[String][3]** GitHub HTTP response
+Returns **[String][4]** GitHub HTTP response
 
 ## createFile
 
--   **See: [GitHub REST API v3: Create a file][4]**
+-   **See: [GitHub REST API v3: Create a file][5]**
 
 Creates a new file in a GitHub repository
 
 ### Parameters
 
--   `path` **[String][3]** Path to file
--   `content` **[String][3]** File content
--   `postType` **[String][3]** Microformats post type
+-   `path` **[String][4]** Path to file
+-   `content` **[String][4]** File content
+-   `options` **[String][4]** Options
 
-Returns **[String][3]** GitHub HTTP response
+Returns **[String][4]** GitHub HTTP response
 
 ## deleteFile
 
--   **See: [GitHub REST API v3: Delete a file][5]**
+-   **See: [GitHub REST API v3: Delete a file][6]**
 
 Deletes a new file in a GitHub repository
 
 ### Parameters
 
--   `path` **[String][3]** Path to file
--   `content` **[String][3]** File content
--   `postType` **[String][3]** Microformats post type
+-   `path` **[String][4]** Path to file
+-   `options` **[String][4]** Options
 
-Returns **[String][3]** GitHub HTTP response
+Returns **[String][4]** GitHub HTTP response
 
 ## createHistory
 
@@ -109,13 +113,8 @@ Updates content of the history file by appending new entry
 
 ### Parameters
 
--   `action` **[String][3]** Entry type
+-   `action` **[String][4]** Entry type
 -   `data` **[Object][1]** Entry data
-
-## functions/indieauth
-
-Use [IndieAuth][6] to ensure only
-authenticated users can use endpoint to post to configured destination.
 
 ## getAuthResponse
 
@@ -123,7 +122,7 @@ Gets authorization response from IndieAuth token endpoint
 
 ### Parameters
 
--   `accessToken` **[String][3]** Access token
+-   `accessToken` **[String][4]** Access token
 
 Returns **[Promise][7]** Fetch request to IndieAuth token endpoint
 
@@ -133,8 +132,8 @@ Verifies that token provides permission to post to configured destination
 
 ### Parameters
 
--   `accessToken` **[String][3]** Access token
--   `url` **[String][3]** Destination URL
+-   `accessToken` **[String][4]** Access token
+-   `url` **[String][4]** Destination URL
 
 Returns **[Object][1]** Endpoint response
 
@@ -151,7 +150,7 @@ Discover the post type from a mf2 json object.
 -   `post`  
 -   `mf2` **[object][1]** A mf2 json object
 
-Returns **[String][3]** Type of post
+Returns **[String][4]** Type of post
 
 ## getProperties
 
@@ -159,7 +158,7 @@ Parses microformats on HTML page.
 
 ### Parameters
 
--   `html` **[String][3]** HTML marked up with microformats
+-   `html` **[String][4]** HTML marked up with microformats
 
 Returns **[Object][1]** mf2
 
@@ -176,7 +175,7 @@ by [Pelle Wessman][9]
 
 ### Parameters
 
--   `body` **[String][3]** Form-encoded body
+-   `body` **[String][4]** Form-encoded body
 
 Returns **[Object][1]** mf2 microformats2 object
 
@@ -192,7 +191,7 @@ Returns a slugified string based on microformats2 object
 ### Parameters
 
 -   `mf2` **[Object][1]** microformats2 object
--   `separator` **[String][3]** Slug separator
+-   `separator` **[String][4]** Slug separator
 
 Returns **[Array][10]** Slug
 
@@ -232,8 +231,8 @@ Returns an object containing error information
 
 ### Parameters
 
--   `id` **[String][3]** Identifier
--   `desc` **[String][3]** Description
+-   `id` **[String][4]** Identifier
+-   `desc` **[String][4]** Description
 
 Returns **[Object][1]** Error object
 
@@ -243,8 +242,8 @@ Returns an object containing success information
 
 ### Parameters
 
--   `id` **[String][3]** Identifier
--   `location` **[String][3]** Location of post
+-   `id` **[String][4]** Identifier
+-   `location` **[String][4]** Location of post
 
 Returns **[Object][1]** Success object
 
@@ -254,11 +253,23 @@ Returns an object containing information about this application
 
 ### Parameters
 
--   `query` **[String][3]** Identifier
+-   `query` **[String][4]** Identifier
 -   `pubConfig` **[Object][1]** Publication configuration
--   `appUrl` **[String][3]** URL of application
+-   `appUrl` **[String][4]** URL of application
 
 Returns **[Object][1]** Query object
+
+## createPostData
+
+Creates post data by merging submitted and derived information about a post
+
+### Parameters
+
+-   `pubConfig` **[Object][1]** Publication configuration
+-   `body` **[String][4]** Body content (contains microformats2 object)
+-   `files` **[String][4]** File attachments
+
+Returns **[Object][1]** New mf2 object
 
 ## createPost
 
@@ -266,10 +277,11 @@ Creates a post
 
 ### Parameters
 
--   `mf2` **[String][3]** microformats2 object
 -   `pubConfig` **[Object][1]** Publication configuration
+-   `body` **[String][4]** Body content (contains microformats2 object)
+-   `files` **[String][4]** File attachments
 
-Returns **[String][3]** Location of created post
+Returns **[String][4]** Location of created post
 
 ## getPost
 
@@ -277,7 +289,7 @@ Gets post to inspect its properties
 
 ### Parameters
 
--   `url` **[String][3]** URL path to post
+-   `url` **[String][4]** URL path to post
 
 Returns **[Object][1]** mf2
 
@@ -287,8 +299,8 @@ Updates a post
 
 ### Parameters
 
--   `url` **[String][3]** URL path to post
--   `content` **[String][3]** Content to update
+-   `url` **[String][4]** URL path to post
+-   `content` **[String][4]** Content to update
 
 Returns **[Object][1]** Response
 
@@ -298,7 +310,7 @@ Deletes a post
 
 ### Parameters
 
--   `url` **[String][3]** URL of published post
+-   `url` **[String][4]** URL of published post
 
 Returns **[Object][1]** Response
 
@@ -312,10 +324,10 @@ Renders a template string using context data
 
 ### Parameters
 
--   `string` **[String][3]** Template string
--   `context` **[String][3]** Context data
+-   `string` **[String][4]** Template string
+-   `context` **[String][4]** Context data
 
-Returns **[String][3]** Rendered string
+Returns **[String][4]** Rendered string
 
 ## template
 
@@ -323,14 +335,30 @@ Renders a template using context data
 
 ### Parameters
 
--   `templatePath` **[String][3]** Path to template file
--   `context` **[String][3]** Context data
+-   `templatePath` **[String][4]** Path to template file
+-   `context` **[String][4]** Context data
 
-Returns **[String][3]** Rendered string
+Returns **[String][4]** Rendered string
 
 ## functions/utils
 
 Common utility functions.
+
+## capitalizeFirstLetter
+
+Decodes form-encoded string
+
+### Parameters
+
+-   `string` **[String][4]** String to capitalize
+
+### Examples
+
+```javascript
+capitalizeFirstLetter('foo bar') => 'Foo bar'
+```
+
+Returns **[String][4]** Capitalized string
 
 ## decodeFormEncodedString
 
@@ -338,7 +366,7 @@ Decodes form-encoded string
 
 ### Parameters
 
--   `string` **[String][3]** String to decode
+-   `string` **[String][4]** String to decode
 
 ### Examples
 
@@ -350,7 +378,7 @@ decodeFormEncodedString('foo+bar') => 'foo bar'
 decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
 ```
 
-Returns **[String][3]** Decoded string
+Returns **[String][4]** Decoded string
 
 ## removeEmptyObjectKeys
 
@@ -384,9 +412,9 @@ Removes newlines, carriage returns, tabs and successive spaces from HTML string
 
 ### Parameters
 
--   `string` **[String][3]** String
+-   `string` **[String][4]** String
 
-Returns **[String][3]** Sanitized HTML
+Returns **[String][4]** Sanitized HTML
 
 ## routes/micropub
 
@@ -415,15 +443,15 @@ Returns **[Object][1]** HTTP response
 
 [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[2]: https://developer.github.com/v3/repos/contents/#get-contents
+[2]: https://www.w3.org/TR/indieauth/
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[3]: https://developer.github.com/v3/repos/contents/#get-contents
 
-[4]: https://developer.github.com/v3/repos/contents/#create-a-file
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[5]: https://developer.github.com/v3/repos/contents/#delete-a-file
+[5]: https://developer.github.com/v3/repos/contents/#create-a-file
 
-[6]: https://www.w3.org/TR/indieauth/
+[6]: https://developer.github.com/v3/repos/contents/#delete-a-file
 
 [7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 

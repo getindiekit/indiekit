@@ -8,10 +8,10 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
 
 ### Micropub
 
-* [ ] Create
+* [x] Create
   * [x] Form-encoded
   * [x] JSON syntax
-  * [ ] Uploading files
+  * [x] Uploading files
   * [x] Success response
 * [ ] Update
   * [ ] Replace

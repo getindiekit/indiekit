@@ -18,17 +18,20 @@ module.exports = {
     'post-types': [{
       article: {
         template: `${templateDir}/article.njk`,
-        file: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+        post: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+        file: 'images/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
         url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
       note: {
         template: `${templateDir}/note.njk`,
-        file: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+        post: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+        file: 'images/notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
         url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
       photo: {
         template: `${templateDir}/photo.njk`,
-        file: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+        post: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+        file: 'images/photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
         url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       }
     }],

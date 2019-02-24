@@ -32,6 +32,7 @@ exports.post = async (request, response, next) => {
   const pubConfig = await config();
   const getPostResponse = async request => {
     let {body} = request;
+    const {files} = request;
 
     // Ensure response has body data
     const hasBody = Object.entries(body).length !== 0;
@@ -81,7 +82,7 @@ exports.post = async (request, response, next) => {
 
     // Create action
     if (scope.includes('create')) {
-      return micropub.createPost(body, pubConfig);
+      return micropub.createPost(pubConfig, body, files);
     }
 
     return micropub.errorResponse('insufficient_scope');

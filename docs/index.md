@@ -2,7 +2,7 @@
 
 ![](https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true)
 
-The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo before saving posts to that repo for publishing with a static site generator like [Jekyll](https://jekyllrb.com), [Hugo](https://gohugo.io) or [Eleventy](https://www.11ty.io). All aspects of the software will be [fully documented](https://paulrobertlloyd.github.io/indiekit/app) and tested, including tests that repliacte those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
+The immediate goal of this project is to provide a [Micropub](https://www.w3.org/TR/micropub/) endpoint that can be hosted on a service like Heroku and configured via files stored on a GitHub repo before saving posts to that repo for publishing with a static site generator like [Jekyll](https://jekyllrb.com), [Hugo](https://gohugo.io) or [Eleventy](https://www.11ty.io). All aspects of the software will be [fully documented](https://paulrobertlloyd.github.io/indiekit/app) and tested, including tests that replicate those provided by the [Micropub Rocks!](https://micropub.rocks) validator.
 
 A longer term ambition is to build a tool that supports more publishing destintions, other social publishing specifications (Webmention, Microsub, ActivityPub etc.) and integrates with a range of content management systems.
 

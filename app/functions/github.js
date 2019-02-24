@@ -22,7 +22,7 @@ const requestWithOptions = async args => {
   const options = {
     method,
     headers: {
-      'content-type': 'application/json',
+      'content-type': 'application/vnd.github.v3+json; charset=UTF-8',
       authorization: `token ${appConfig.github.token}`,
       'User-Agent': `${appConfig.name}`
     }
@@ -100,16 +100,16 @@ const getContents = async path => {
  * @see {@link https://developer.github.com/v3/repos/contents/#create-a-file GitHub REST API v3: Create a file}
  * @param {String} path Path to file
  * @param {String} content File content
- * @param {String} postType Microformats post type
+ * @param {String} options Options
  * @return {String} GitHub HTTP response
  */
-const createFile = async (path, content, postType) => {
+const createFile = async (path, content, options) => {
   path = utils.normalizePath(path);
 
   try {
     return await requestWithOptions({
       method: 'put',
-      message: `:robot: ${postType} created with ${appConfig.name}`,
+      message: options.message,
       content: Buffer.from(content).toString('base64'),
       path
     });
@@ -123,17 +123,16 @@ const createFile = async (path, content, postType) => {
  *
  * @see {@link https://developer.github.com/v3/repos/contents/#delete-a-file GitHub REST API v3: Delete a file}
  * @param {String} path Path to file
- * @param {String} content File content
- * @param {String} postType Microformats post type
+ * @param {String} options Options
  * @return {String} GitHub HTTP response
  */
-const deleteFile = async path => {
+const deleteFile = async (path, options) => {
   try {
     const reponse = await getContents(path);
     if (reponse) {
       return await requestWithOptions({
         method: 'delete',
-        message: `:robot: Post deleted with ${appConfig.name}`,
+        message: options.message,
         sha: reponse.sha,
         path
       });
