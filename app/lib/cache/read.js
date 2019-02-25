@@ -51,8 +51,8 @@ module.exports = async (remotePath, cachePath) => {
     remotePath = utils.normalizePath(remotePath);
 
     try {
-      const remoteData = await github.read(remotePath);
-      const freshData = remoteData.content;
+      const remoteData = await github.getContents(remotePath);
+      const freshData = remoteData.data.content;
       createCache(cachePath, freshData);
       return freshData;
     } catch (error) {

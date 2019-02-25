@@ -36,65 +36,55 @@ Returns **([Promise][3] \| [Object][1])** Fetched file object
 
 Get, create and delete data at a specified path at configured GitHub repo.
 
-### create
+## getContents
 
--   **See: [GitHub REST API v3: Create a file][4]**
-
-Creates a new file in a GitHub repository
-
-#### Parameters
-
--   `path` **[String][2]** Path to file
--   `content` **[String][2]** File content
--   `options` **[String][2]** Options
-
-Returns **[Promise][3]** GitHub HTTP response
-
-### delete
-
--   **See: [GitHub REST API v3: Delete a file][5]**
-
-Deletes a file in a GitHub repository
-
-#### Parameters
-
--   `path` **[String][2]** Path to file
--   `options` **[String][2]** Options
-
-Returns **[Promise][3]** GitHub HTTP response
-
-### read
-
--   **See: [GitHub REST API v3: Get Contents][6]**
+-   **See: [GitHub REST API v3: Get Contents][4]**
 
 Reads content of a file or directory in a repository
 
-#### Parameters
+### Parameters
 
 -   `path` **[String][2]** Path to file
 
 Returns **[Promise][3]** GitHub HTTP response
 
-### request
+## createFile
 
-Makes GitHub request with amended options
+-   **See: [GitHub REST API v3: Create a file][5]**
 
-#### Parameters
+Creates a new file in a GitHub repository
 
--   `args` **[Object][1]** Arguments to amened
-
-Returns **[Promise][3]** Fetch request to GitHub API
-
-### update
-
--   **See: [GitHub REST API v3: Update a file][7]**
-
-Updates a file in a GitHub repository
-
-#### Parameters
+### Parameters
 
 -   `path` **[String][2]** Path to file
 -   `content` **[String][2]** File content
+-   `options` **[String][2]** Options
+
+Returns **[Promise][3]** GitHub HTTP response
+
+## updateFile
+
+-   **See: [GitHub REST API v3: Update a file][6]**
+
+Updates a file in a GitHub repository
+
+### Parameters
+
+-   `path` **[String][2]** Path to file
+-   `content` **[String][2]** File content
+-   `options` **[String][2]** Options
+
+Returns **[Promise][3]** GitHub HTTP response
+
+## deleteFile
+
+-   **See: [GitHub REST API v3: Delete a file][7]**
+
+Deletes a file in a GitHub repository
+
+### Parameters
+
+-   `path` **[String][2]** Path to file
 -   `options` **[String][2]** Options
 
 Returns **[Promise][3]** GitHub HTTP response
@@ -474,13 +464,13 @@ Returns **[Object][1]** HTTP response
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[4]: https://developer.github.com/v3/repos/contents/#create-a-file
+[4]: https://developer.github.com/v3/repos/contents/#get-contents
 
-[5]: https://developer.github.com/v3/repos/contents/#delete-a-file
+[5]: https://developer.github.com/v3/repos/contents/#create-a-file
 
-[6]: https://developer.github.com/v3/repos/contents/#get-contents
+[6]: https://developer.github.com/v3/repos/contents/#update-a-file
 
-[7]: https://developer.github.com/v3/repos/contents/#update-a-file
+[7]: https://developer.github.com/v3/repos/contents/#delete-a-file
 
 [8]: https://www.w3.org/TR/indieauth/
 
