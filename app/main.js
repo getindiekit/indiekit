@@ -34,7 +34,7 @@ app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 app.use('/', routes);
 
 app.listen(port, () => {
-  console.info(`Server running on port ${port}`);
+  console.info(`Starting ${appConfig.name} on port ${port}`);
 });
 
 module.exports = app;

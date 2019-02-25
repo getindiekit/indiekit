@@ -21,7 +21,7 @@ test('100: Create h-entry (form-encoded)', async t => {
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -32,7 +32,7 @@ test('101: Create h-entry with multiple categories (form-encoded)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+an+h-entry+with+categories.+This+post+should+have+two+categories,+test1+and+test2&category[]=test1&category[]=test2');
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -43,7 +43,7 @@ test('104: Create h-entry with photo referenced by URL (form-encoded)', async t 
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+a+photo+referenced+by+URL&photo=https%3A%2F%2Fmicropub.rocks%2Fmedia%2Fsunset.jpg');
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -54,7 +54,7 @@ test('107: Create h-entry with one category (form-encoded)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+an+h-entry+with+one+category.+This+post+should+have+one+category,+test1&category=test1');
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -75,7 +75,7 @@ test('200: Create h-entry (JSON)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -94,7 +94,7 @@ test('201: Create h-entry with multiple categories (JSON)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -114,7 +114,7 @@ test('202: Create h-entry with HTML content (JSON)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -133,7 +133,7 @@ test('203: Create h-entry with photo referenced by URL (JSON)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -166,7 +166,7 @@ test('204: Create h-entry with nested object (JSON)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -188,7 +188,7 @@ test('205: Create h-entry with photo with alt text (JSON)', async t => {
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -210,7 +210,7 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -267,7 +267,7 @@ test('800: Accept access token in HTTP header', async t => {
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Testing+accepting+access+token+in+HTTP+Authorization+header');
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -277,7 +277,7 @@ test('801: Accept access token in POST body', async t => {
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
 });
 
@@ -287,9 +287,8 @@ test('802: Does not store access token property', async t => {
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
 
-  t.is(res.status, 201 || 202);
+  t.is(res.status, 201 && 202);
   t.truthy(res.header.location);
-  t.fail('Need to support source queries to pass this test.');
 });
 
 test('803: Rejects unauthenticated requests', async t => {

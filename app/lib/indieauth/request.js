@@ -19,6 +19,7 @@ module.exports = async accessToken => {
   }
 
   try {
+    console.info(`Making request to ${endpoint}`);
     const response = await fetch(endpoint, {
       method: 'GET',
       headers: {

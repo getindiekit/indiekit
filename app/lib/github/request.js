@@ -50,6 +50,7 @@ module.exports = async args => {
   }
 
   try {
+    console.info(`Making request to ${url}`);
     const request = await fetch(url, options);
     return await request.json();
   } catch (error) {

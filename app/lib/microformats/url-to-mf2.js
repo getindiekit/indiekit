@@ -13,6 +13,7 @@ const htmlToMf2 = require(__basedir + '/lib/microformats/html-to-mf2');
  */
 module.exports = async (url, properties) => {
   try {
+    console.info(`Making request to ${url}`);
     const response = await fetch(url);
 
     if (response) {
