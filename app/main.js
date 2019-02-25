@@ -27,8 +27,8 @@ app.use(bodyParser.urlencoded({
 app.use(upload.any());
 
 // Static files
-app.use(express.static('www'));
-app.use(favicon(path.join(__dirname, 'www', 'favicon.ico')));
+app.use(express.static('static'));
+app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 
 // Routes
 app.use('/', routes);
