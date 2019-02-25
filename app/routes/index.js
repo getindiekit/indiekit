@@ -1,6 +1,6 @@
 const express = require('express');
 
-const micropub = require(__basedir + '/app/routes/micropub');
+const micropub = require(__basedir + '/routes/micropub');
 const router = new express.Router();
 
 // Micropub

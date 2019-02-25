@@ -1,5 +1,5 @@
 const test = require('ava');
-const utils = require('../../app/functions/utils');
+const utils = require('../../app/lib/utils');
 
 test('Decode plus-separated string', t => {
   const string = 'foo+bar';

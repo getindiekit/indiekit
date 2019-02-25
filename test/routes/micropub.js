@@ -1,6 +1,6 @@
 const request = require('supertest');
 const test = require('ava');
-const app = require('../../app');
+const app = require('../../app/main');
 
 test('001: Rejects query with no body data', async t => {
   const res = await request(app)
@@ -240,12 +240,12 @@ test('603: Source Query (Specific Properties)', async t => {
     .get('/micropub')
     .query({
       q: 'source',
-      properties: 'content',
-      url: 'https://aaronpk.example/post/1000'
+      properties: 'name',
+      url: 'https://paulrobertlloyd.com/2018/11/warp_and_weft'
     });
 
-  t.is(res.status, 404);
-  t.truthy(res.body.error, 'not_supported');
+  t.is(res.status, 200);
+  t.is(res.body.name[0], 'Warp and Weft');
 });
 
 test('6xx: Rejects unknown endpoint query', async t => {
