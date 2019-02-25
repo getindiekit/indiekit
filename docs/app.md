@@ -107,17 +107,9 @@ Creates log of Micropub actions taken
 
 Creates an empty history file
 
-#### Parameters
-
--   `path` **[String][2]** Path to history file
-
 ### read
 
 Reads contents of the history file
-
-#### Parameters
-
--   `path` **[String][2]** Path to history file
 
 Returns **[Object][1]** Configuration options
 

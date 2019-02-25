@@ -17,7 +17,7 @@ module.exports = async (path, content, options) => {
 
   try {
     return await request({
-      method: 'put',
+      method: 'PUT',
       message: options.message,
       content: Buffer.from(content).toString('base64'),
       path
