@@ -31,7 +31,6 @@ module.exports = async (html, properties) => {
   }
 
   if (properties) { // Respond only with requested properties
-    console.log('Properties requested');
     const selected = Object.keys(mf2.properties)
       .filter(key => properties.includes(key))
       .reduce((obj, key) => {

@@ -4,7 +4,7 @@
  * @module cache
  */
 module.exports = {
+  create: require(__basedir + '/lib/cache/create'),
   delete: require(__basedir + '/lib/cache/delete'),
-  read: require(__basedir + '/lib/cache/read'),
-  update: require(__basedir + '/lib/cache/update')
+  read: require(__basedir + '/lib/cache/read')
 };

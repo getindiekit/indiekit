@@ -8,7 +8,6 @@ const fs = require('fs-extra');
  * @param {String} path Path to history file
  */
 module.exports = path => {
-  console.log('Create history file at:', path);
   try {
     const history = {
       entries: []

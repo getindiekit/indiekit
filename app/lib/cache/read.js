@@ -4,7 +4,7 @@ const {DateTime} = require('luxon');
 
 const appConfig = require(__basedir + '/config.js');
 const github = require(__basedir + '/lib/github');
-const updateCache = require(__basedir + '/lib/cache/update');
+const createCache = require(__basedir + '/lib/cache/create');
 const utils = require(__basedir + '/lib/utils');
 
 /**
@@ -46,14 +46,14 @@ module.exports = async (remotePath, cachePath) => {
     hasExpired = currentDate > expiredDate;
   }
 
-  // No cache exists, or existing cache has expired
   if (!isCached || hasExpired) {
+    console.info('Fetching remote data to populate stale/missing cache');
     remotePath = utils.normalizePath(remotePath);
 
     try {
       const remoteData = await github.read(remotePath);
       const freshData = remoteData.content;
-      updateCache(cachePath, freshData);
+      createCache(cachePath, freshData);
       return freshData;
     } catch (error) {
       console.error(error);
@@ -62,6 +62,7 @@ module.exports = async (remotePath, cachePath) => {
 
   // Cache exists, still fresh
   if (!hasExpired) {
+    console.info(`Reading cache from ${cachePath}`);
     cacheFile = fs.readFileSync(cachePath);
     const cachedData = Buffer.from(cacheFile).toString('utf-8');
     return cachedData;

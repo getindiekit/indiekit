@@ -38,10 +38,10 @@ module.exports = {
     'slug-separator': '-'
   },
   github: {
-    user: process.env.GITHUB_USER,
-    repo: process.env.GITHUB_REPO,
+    user: process.env.GITHUB_USER || console.error('Missing GITHUB_USER'),
+    repo: process.env.GITHUB_REPO || console.error('Missing GITHUB_REPO'),
     branch: process.env.GITHUB_BRANCH || 'master',
-    token: process.env.GITHUB_TOKEN
+    token: process.env.GITHUB_TOKEN || console.error('Missing GITHUB_TOKEN')
   },
   indieauth: {
     'token-endpoint': process.env.INDIEAUTH_TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token'

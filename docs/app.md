@@ -4,6 +4,15 @@
 
 Caches files to prevent application from making excessive requests to APIs
 
+### update
+
+Creates a new file in the cache, populating with content from remote source
+
+#### Parameters
+
+-   `filePath` **[Object][1]** Location to cache file
+-   `fileData` **[Object][1]** Cache object to create
+
 ### delete
 
 Deletes the cache directory
@@ -22,15 +31,6 @@ Reads a file in the cache, fetching remote version if not found
 -   `cachePath` **[String][2]** Path to file in local cache
 
 Returns **([Promise][3] \| [Object][1])** Fetched file object
-
-### update
-
-Updates a file in the cache
-
-#### Parameters
-
--   `filePath` **[Object][1]** Location to cache file
--   `fileData` **[Object][1]** Cache object to update
 
 ## github
 
@@ -272,7 +272,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## update
+## micropub
 
 Returns an object containing information about this application
 
@@ -283,6 +283,43 @@ Returns an object containing information about this application
 -   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object
+
+### update
+
+Creates a new post
+
+#### Parameters
+
+-   `pubConfig` **[Object][1]** Publication configuration
+-   `body` **[String][2]** Body content (contains microformats2 object)
+-   `files` **[String][2]** File attachments
+
+Returns **[String][2]** Location of created post
+
+### update
+
+Updates a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL path to post
+-   `content` **[String][2]** Content to update
+
+Returns **[Object][1]** Response
+
+### delete
+
+Deletes a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL of published post
+
+Returns **[Promise][3]** Response object
+
+### response
+
+Sends HTTP response with error/success information encoded as JSON
 
 ## error
 

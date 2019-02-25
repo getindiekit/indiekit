@@ -27,8 +27,6 @@ module.exports = async path => {
         sha: request.sha
       };
     }
-
-    throw new Error('No content provided in request');
   } catch (error) {
     console.error(error);
   }
