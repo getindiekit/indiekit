@@ -15,7 +15,7 @@ module.exports = async path => {
 
   try {
     const response = await request({
-      method: 'get',
+      method: 'GET',
       path
     });
     let {content} = response;

@@ -12,7 +12,7 @@ const appConfig = require(__basedir + '/config.js');
  */
 module.exports = async args => {
   const url = `https://api.github.com/repos/${appConfig.github.user}/${appConfig.github.repo}/contents/${args.path}`;
-  const method = args.method || 'get';
+  const method = args.method || 'GET';
   const options = {
     method,
     headers: {
@@ -22,7 +22,7 @@ module.exports = async args => {
     }
   };
 
-  if (method !== 'get') {
+  if (method !== 'GET') {
     const body = {
       message: null,
       content: null,
@@ -50,7 +50,7 @@ module.exports = async args => {
   }
 
   try {
-    console.info(`Making request to ${url}`);
+    console.info(`Making ${method} request to ${url}`);
     const request = await fetch(url, options);
     return await request.json();
   } catch (error) {

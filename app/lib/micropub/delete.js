@@ -27,12 +27,14 @@ module.exports = async url => {
       if (entry.create.url === url) {
         repoPath = entry.create.post;
       }
+
+      console.info(`${url} not found in history`);
     });
   }
 
   try {
     const githubResponse = await github.delete(repoPath, {
-      message: `:robot: Post deleted with ${appConfig.name}`
+      message: `:x: Post deleted with ${appConfig.name}`
     });
     if (githubResponse) {
       return response.success('delete', url);

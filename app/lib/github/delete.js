@@ -16,7 +16,7 @@ module.exports = async (path, options) => {
     const reponse = await read(path);
     if (reponse) {
       return await request({
-        method: 'delete',
+        method: 'DELETE',
         message: options.message,
         sha: reponse.sha,
         path
