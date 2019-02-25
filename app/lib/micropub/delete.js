@@ -33,7 +33,7 @@ module.exports = async url => {
   }
 
   try {
-    const githubResponse = await github.delete(repoPath, {
+    const githubResponse = await github.deleteFile(repoPath, {
       message: `:x: Post deleted with ${appConfig.name}`
     });
     if (githubResponse) {

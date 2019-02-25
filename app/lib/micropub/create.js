@@ -50,9 +50,10 @@ module.exports = async (pubConfig, body, files) => {
 
     // Create post on GitHub
     const content = render(template, context);
-    const githubResponse = await github.create(postPath, content, {
+    const githubResponse = await github.createFile(postPath, content, {
       message: `:robot: ${typeName} created with ${appConfig.name}`
     });
+    console.log('githubResponse', githubResponse);
 
     // Update history and send success reponse
     const location = pubConfig.url + urlPath;

@@ -15,7 +15,7 @@ const utils = require(__basedir + '/lib/utils');
 module.exports = async (url, content) => {
   const repoPath = utils.filePathFromUrl(url);
   const typeName = null; // @todo Determine post type
-  const githubResponse = github.update(repoPath, content, {
+  const githubResponse = github.updateFile(repoPath, content, {
     message: `:robot: ${typeName} updated with ${appConfig.name}`
   });
   if (githubResponse) {

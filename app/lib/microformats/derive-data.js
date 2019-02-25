@@ -140,7 +140,7 @@ module.exports = async (pubConfig, mf2, files) => {
       const fileContext = {...properties, ...fileProperties};
       const filePath = render(typeConfig.file, fileContext);
 
-      const githubResponse = await github.create(filePath, file.buffer, {
+      const githubResponse = await github.createFile(filePath, file.buffer, {
         message: `:framed_picture: ${filename} uploaded with ${appConfig.name}`
       });
 
