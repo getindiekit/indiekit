@@ -1,20 +1,24 @@
+const path = require('path');
 const fs = require('fs-extra');
+
+const appConfig = require(__basedir + '/config');
 
 /**
  * Creates an empty history file
  *
  * @memberof history
  * @module create
- * @param {String} path Path to history file
  */
-module.exports = path => {
+module.exports = () => {
+  const filePath = path.join(appConfig.cache.dir, appConfig.history.file);
+
   try {
     const history = {
       entries: []
     };
     const json = JSON.stringify(history, null, 2);
-    fs.writeFileSync(path, json);
+    fs.writeFileSync(filePath, json);
   } catch (error) {
-    throw new Error(`Unable to create ${path}`);
+    throw new Error(`Unable to create ${filePath}`);
   }
 };
