@@ -16,9 +16,9 @@ const error = (id, desc) => {
   let code;
 
   switch (id) {
-    case ('not_supported'):
+    case ('not_found'):
       code = 404;
-      desc = desc || 'Request is not currently supported';
+      desc = desc || 'Resource not found';
       break;
     case ('forbidden'):
       code = 403;
