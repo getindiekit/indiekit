@@ -19,7 +19,7 @@ module.exports = async url => {
     const getHistory = await history.read();
     entries = getHistory.entries;
   } catch (error) {
-    throw new Error('No history available');
+    console.error(error);
   }
 
   if (entries) {

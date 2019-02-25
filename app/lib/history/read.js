@@ -1,5 +1,7 @@
+const path = require('path');
 const fs = require('fs-extra');
 
+const appConfig = require(__basedir + '/config');
 const createHistory = require(__basedir + '/lib/history/create');
 
 /**
@@ -7,20 +9,22 @@ const createHistory = require(__basedir + '/lib/history/create');
  *
  * @memberof history
  * @module read
- * @param {String} path Path to history file
  * @returns {Object} Configuration options
  */
-module.exports = path => {
-  const isCached = fs.existsSync(path);
+module.exports = () => {
+  const filePath = path.join(appConfig.cache.dir, appConfig.history.file);
+  const isCached = fs.existsSync(filePath);
 
   if (!isCached) {
-    createHistory(path);
+    console.info('Creating new history file');
+    createHistory();
   }
 
   try {
-    const historyFile = fs.readFileSync(path);
+    console.info(`Reading history from ${filePath}`);
+    const historyFile = fs.readFileSync(filePath);
     return JSON.parse(historyFile);
   } catch (error) {
-    throw new Error(`Unable to read ${path}`);
+    throw new Error(`Unable to read ${filePath}`);
   }
 };

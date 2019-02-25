@@ -14,10 +14,10 @@ const readHistory = require(__basedir + '/lib/history/read');
  * @param {Object} data Entry data
  */
 module.exports = (action, data) => {
-  const historyFilePath = path.join(appConfig.cache.dir, appConfig.history.file);
+  const filePath = path.join(appConfig.cache.dir, appConfig.history.file);
 
   try {
-    const history = readHistory(historyFilePath);
+    const history = readHistory(filePath);
 
     // Construct entry
     let timestamp = Date.now();
@@ -30,9 +30,9 @@ module.exports = (action, data) => {
 
     history.entries.push(entry);
     const json = JSON.stringify(history, null, 2);
-    fs.writeFileSync(historyFilePath, json);
+    fs.writeFileSync(filePath, json);
   } catch (error) {
     console.error(error);
-    throw new Error(`Unable to update ${historyFilePath}`);
+    throw new Error(`Unable to update ${filePath}`);
   }
 };
