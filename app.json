@@ -10,19 +10,19 @@
   "logo": "https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true",
   "success_url": "https://paulrobertlloyd.github.io/indiekit/config",
   "env": {
-    "INDIEKIT_GITHUB_TOKEN": {
+    "GITHUB_TOKEN": {
       "description": "GitHub access token.",
       "required": true
     },
-    "INDIEKIT_GITHUB_USER": {
+    "GITHUB_USER": {
       "description": "GitHub username.",
       "required": true
     },
-    "INDIEKIT_GITHUB_REPO": {
+    "GITHUB_REPO": {
       "description": "GitHub repository in which to save files.",
       "required": true
     },
-    "INDIEKIT_GITHUB_BRANCH": {
+    "GITHUB_BRANCH": {
       "description": "GitHub branch in which to save files.",
       "value": "master"
     },

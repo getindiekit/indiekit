@@ -1,19 +1,12 @@
 /**
- * Parse microformats2 objects and determine their properties and type.
- *
- * @module functions/microformats
- */
-const microformats = require('microformat-node');
-
-const utils = require(__basedir + '/app/functions/utils');
-
-/**
  * Discover the post type from a mf2 json object.
  *
- * @param {object} mf2 A mf2 json object
+ * @memberof microformats
+ * @module postType
+ * @param {object} post A mf2 json object
  * @return {String} Type of post
  */
-const getType = post => {
+module.exports = post => { /* eslint complexity: 0 */
   const {properties} = post;
 
   if (properties.rsvp) {
@@ -24,11 +17,7 @@ const getType = post => {
     if (properties.content && properties.content[0]) {
       let content = properties.content[0];
       if (typeof content !== 'string') {
-        if (content.value) {
-          content = content.value;
-        } else if (content.html) {
-          content = content.html;
-        }
+        content = content.value || content.html;
       }
     }
 
@@ -108,37 +97,4 @@ const getType = post => {
   }
 
   return 'note';
-};
-
-/**
- * Parses microformats on HTML page.
- *
- * @param {String} html HTML marked up with microformats
- * @return {Object} mf2
- */
-const getProperties = async html => {
-  let mf2;
-  const {items} = await microformats.getAsync({
-    html: await html,
-    textFormat: 'normalised'
-  });
-
-  if (items && items.length === 1) {
-    const item = items[0];
-    if (Object.keys(item.properties).length > 1) {
-      const {html} = item.properties.content[0];
-      if (html) {
-        item.properties.content[0].html = utils.sanitizeHtml(html);
-      }
-
-      mf2 = item;
-    }
-  }
-
-  return mf2;
-};
-
-module.exports = {
-  getType,
-  getProperties
 };

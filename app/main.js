@@ -7,8 +7,8 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const multer = require('multer');
 
-const appConfig = require(__basedir + '/app/config');
-const routes = require(__basedir + '/app/routes');
+const appConfig = require(__basedir + '/config');
+const routes = require(__basedir + '/routes');
 
 const app = express();
 const {port} = appConfig;

@@ -8,9 +8,10 @@ IndieKit is a Node.js application that needs to be hosted on a public server so 
 
 If you’d like to deploy this application somewhere else, make sure the following environment variables are set:
 
-* `INDIEKIT_GITHUB_TOKEN`: GitHub access token. **Required**.
-* `INDIEKIT_GITHUB_USER`: GitHub username. **Required**.
-* `INDIEKIT_GITHUB_REPO`: GitHub repository. **Required**.
-* `INDIEKIT_GITHUB_BRANCH`: GitHub branch. Optional, defaults to `master`.
+* `GITHUB_TOKEN`: GitHub access token. **Required**.
+* `GITHUB_USER`: GitHub username. **Required**.
+* `GITHUB_REPO`: GitHub repository. **Required**.
+* `GITHUB_BRANCH`: GitHub branch. Optional, defaults to `master`.
+* `INDIEAUTH_TOKEN_ENDPOINT`: IndieAuth token endpoint. Optional, defaults [`https://tokens.indieauth.com/token`](https://tokens.indieauth.com/token)
 * `INDIEKIT_CONFIG_PATH`: Location of configuration file, relative to repository root. Optional, defaults to `indiekit.json`.
 * `INDIEKIT_CACHE_EXPIRES`: Time (in seconds) before cache expires. Optional, defaults to `86400` (1 day).

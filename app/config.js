@@ -1,10 +1,10 @@
-const templateDir = __basedir + '/app/templates';
+const templateDir = __basedir + '/templates';
 
 module.exports = {
   name: 'IndieKit',
   port: process.env.PORT || 3000,
   cache: {
-    dir: __basedir + '/.cache',
+    dir: __basedir + '/../.cache',
     'max-age': process.env.INDIEKIT_CACHE_EXPIRES || 86400
   },
   config: {
@@ -38,12 +38,12 @@ module.exports = {
     'slug-separator': '-'
   },
   github: {
-    user: process.env.INDIEKIT_GITHUB_USER,
-    repo: process.env.INDIEKIT_GITHUB_REPO,
-    branch: process.env.INDIEKIT_GITHUB_BRANCH || 'master',
-    token: process.env.INDIEKIT_GITHUB_TOKEN
+    user: process.env.GITHUB_USER,
+    repo: process.env.GITHUB_REPO,
+    branch: process.env.GITHUB_BRANCH || 'master',
+    token: process.env.GITHUB_TOKEN
   },
   indieauth: {
-    'token-endpoint': process.env.TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token'
+    'token-endpoint': process.env.INDIEAUTH_TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token'
   }
 };

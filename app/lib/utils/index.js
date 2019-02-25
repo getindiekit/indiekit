@@ -1,10 +1,11 @@
 /**
  * Common utility functions.
  *
- * @module functions/utils
+ * @module utils
  */
+
 /**
- * Decodes form-encoded string
+ * Capitalizes first letter of a string
  *
  * @example capitalizeFirstLetter('foo bar') => 'Foo bar'
  * @param {String} string String to capitalize
@@ -34,6 +35,14 @@ const decodeFormEncodedString = string => {
 /**
  * Removes empty keys from an object
  *
+ * @example removeEmptyObjectKeys({
+ *   foo: 'bar',
+ *   baz: {
+ *     qux: {
+ *       quux: ''
+ *     }
+ *   }
+ * }) => '{foo: bar}'
  * @param {Object} object Object with empty strings
  * @return {Object} Sanitized object
  */
@@ -54,7 +63,7 @@ const removeEmptyObjectKeys = object => {
 };
 
 /**
- * Removes / from beginning and end of strings, useful for constructing paths
+ * Removes ‘/’ from beginning and end of string. Useful for constructing paths
  *
  * @example normalizePath('/foo/bar/') => 'foo/bar'
  * @param {Object} string String
@@ -62,12 +71,6 @@ const removeEmptyObjectKeys = object => {
  */
 const normalizePath = string => {
   return string.replace(/^\/|\/$/g, '');
-};
-
-module.exports = {
-  decodeFormEncodedString,
-  removeEmptyObjectKeys,
-  normalizePath
 };
 
 /**
