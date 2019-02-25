@@ -1,10 +1,10 @@
 /**
  * @module routes/micropub
  */
-const publication = require(__basedir + '/lib/publication');
 const indieauth = require(__basedir + '/lib/indieauth');
 const microformats = require(__basedir + '/lib/microformats');
 const micropub = require(__basedir + '/lib/micropub');
+const publication = require(__basedir + '/lib/publication');
 
 /**
  * Responds to GET requests
@@ -14,9 +14,8 @@ const micropub = require(__basedir + '/lib/micropub');
  * @return {Object} HTTP response
  */
 exports.get = async (request, response) => {
-  const pubConfig = await publication();
   const appUrl = `${request.protocol}://${request.headers.host}`;
-  const getResponse = await micropub.query(request.query, pubConfig, appUrl);
+  const getResponse = await micropub.query(request.query, appUrl);
 
   return response.status(getResponse.code).json(getResponse.body);
 };
@@ -75,7 +74,7 @@ exports.post = async (request, response, next) => {
     // Update action (not yet supported)
     if (action === 'update') {
       if (scope.includes('update')) {
-        return micropub.response.error('not_supported', 'Update action not supported');
+        return micropub.response.error('invalid_request', 'Update action not supported');
       }
 
       return micropub.response.error('insufficient_scope');

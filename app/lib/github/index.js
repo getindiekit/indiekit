@@ -5,7 +5,10 @@
  */
 const appConfig = require(__basedir + '/config.js');
 const utils = require(__basedir + '/lib/utils');
-const octokit = require('@octokit/rest')({
+
+const Octokit = require('@octokit/rest');
+
+const octokit = new Octokit({
   auth: `token ${appConfig.github.token}`,
   log: console
 });
@@ -27,9 +30,7 @@ const getContents = async path => {
       ref: appConfig.github.branch,
       path
     });
-    console.log('respone, before', response);
     response.data.content = Buffer.from(response.data.content, 'base64').toString('utf8');
-    console.log('respone, after', response);
     return response;
   } catch (error) {
     console.error(error);
@@ -75,7 +76,7 @@ const updateFile = async (path, content, options) => {
   path = utils.normalizePath(path);
 
   try {
-    const response = await updateFile(path);
+    const response = await getContents(path);
     if (response) {
       return await octokit.repos.updateFile({
         owner: appConfig.github.user,
@@ -102,7 +103,7 @@ const updateFile = async (path, content, options) => {
  */
 const deleteFile = async (path, options) => {
   try {
-    const response = await deleteFile(path);
+    const response = await getContents(path);
     if (response) {
       return await octokit.repos.deleteFile({
         owner: appConfig.github.user,

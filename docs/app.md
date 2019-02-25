@@ -261,7 +261,6 @@ Returns an object containing information about this application
 ### Parameters
 
 -   `query` **[String][2]** Identifier
--   `pubConfig` **[Object][1]** Publication configuration
 -   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object

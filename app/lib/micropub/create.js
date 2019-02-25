@@ -53,7 +53,6 @@ module.exports = async (pubConfig, body, files) => {
     const githubResponse = await github.createFile(postPath, content, {
       message: `:robot: ${typeName} created with ${appConfig.name}`
     });
-    console.log('githubResponse', githubResponse);
 
     // Update history and send success reponse
     const location = pubConfig.url + urlPath;
@@ -71,4 +70,6 @@ module.exports = async (pubConfig, body, files) => {
   } catch (error) {
     console.error(error);
   }
+
+  return response.error('server_error');
 };

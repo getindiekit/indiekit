@@ -23,5 +23,5 @@ module.exports = async (url, content) => {
     return response.success('update', url);
   }
 
-  throw new Error(`Unable to update ${url}`);
+  return response.error('not_found');
 };
