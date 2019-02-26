@@ -1,14 +1,12 @@
 const path = require('path');
+const fs = require('fs-extra');
 
 const appConfig = require(__basedir + '/config.js');
-const cache = require(__basedir + '/lib/cache');
 const github = require(__basedir + '/lib/github');
 const history = require(__basedir + '/lib/history');
 const microformats = require(__basedir + '/lib/microformats');
 const render = require(__basedir + '/lib/render');
 const response = require(__basedir + '/lib/micropub/response');
-
-const pubDefaults = appConfig.defaults;
 
 /**
  * Creates a new post
@@ -28,26 +26,20 @@ module.exports = async (pubConfig, body, files) => {
 
     // Determine post type
     const type = microformats.deriveType(postData);
-    const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
+    const typeConfig = pubConfig['post-types'][0][type];
 
-    // Set publish and destination paths
+    // Render publish and destination paths
     const postPath = render(typeConfig.post, context);
     const urlPath = render(typeConfig.url, context);
 
-    // Render template (fetch configured from remote/cache, else use default)
-    let template;
-    const templatePathConfig = pubConfig['post-types'][0][type].template;
-    const templatePathCached = path.join('templates', `${type}.njk`);
-    const templatePathDefault = pubDefaults['post-types'][0][type].template;
-
-    if (templatePathConfig) {
-      template = await cache.read(templatePathConfig, templatePathCached);
-    } else {
-      template = templatePathDefault;
-    }
+    // Render template
+    const templatePath = typeConfig.template;
+    const templateData = fs.readFileSync(templatePath);
+    const template = Buffer.from(templateData).toString('utf-8');
+    console.log('template', template);
+    const content = render(template, context);
 
     // Create post on GitHub
-    const content = render(template, context);
     const githubResponse = await github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${appConfig.name}`
     });
