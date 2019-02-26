@@ -3,11 +3,11 @@
  *
  * @memberof microformats
  * @module postType
- * @param {object} post A mf2 json object
+ * @param {object} mf2 A mf2 json object
  * @return {String} Type of post
  */
-module.exports = post => { /* eslint complexity: 0 */
-  const {properties} = post;
+module.exports = mf2 => { /* eslint complexity: 0 */
+  const {properties} = mf2;
 
   if (properties.rsvp) {
     return 'rsvp';
@@ -84,7 +84,7 @@ module.exports = post => { /* eslint complexity: 0 */
     return 'drank';
   }
 
-  if (post.children && Array.isArray(post.children)) {
+  if (mf2.children && Array.isArray(mf2.children)) {
     return 'collection';
   }
 

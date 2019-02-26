@@ -20,24 +20,43 @@ const response = require(__basedir + '/lib/micropub/response');
  */
 module.exports = async (pubConfig, body, files) => {
   try {
-    // Get post data (original mf2 plus ammendments)
-    const postData = await microformats.deriveData(pubConfig, body, files);
-    const context = postData.properties;
+    const {properties} = body;
 
     // Determine post type
-    const type = microformats.deriveType(postData);
+    // @todo Infer type by `type` using multer field object
+    let type;
+    if (files) {
+      type = 'photo';
+    } else {
+      type = microformats.deriveType(body);
+    }
+
     const typeConfig = pubConfig['post-types'][0][type];
 
+    // Date
+    properties.published = microformats.derivePuplishedProperty(body);
+
+    // Content
+    properties.content = microformats.deriveContentProperty(body);
+
+    // Slug
+    const slugSeparator = pubConfig['slug-separator'];
+    const slug = microformats.deriveSlug(body, slugSeparator);
+    properties.slug = slug;
+
+    // Photos
+    properties.photo = await microformats.derivePhotoProperty(body, files, typeConfig);
+
     // Render publish and destination paths
-    const postPath = render(typeConfig.post, context);
-    const urlPath = render(typeConfig.url, context);
+    const postPath = render(typeConfig.post, properties);
+    const urlPath = render(typeConfig.url, properties);
 
     // Render template
     const templatePath = typeConfig.template;
     const templateData = fs.readFileSync(templatePath);
     const template = Buffer.from(templateData).toString('utf-8');
     console.log('template', template);
-    const content = render(template, context);
+    const content = render(template, properties);
 
     // Create post on GitHub
     const githubResponse = await github.createFile(postPath, content, {
