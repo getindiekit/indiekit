@@ -1,5 +1,7 @@
 const fs = require('fs-extra');
 
+const appConfig = require(__basedir + '/config.js');
+
 /**
  * Deletes the cache directory
  *
@@ -7,9 +9,9 @@ const fs = require('fs-extra');
  * @module delete
  * @param {Object} cacheDir Location to save cache directory
  */
-module.exports = cacheDir => {
-  if (fs.existsSync(cacheDir)) {
-    fs.removeSync(cacheDir);
+module.exports = () => {
+  if (fs.existsSync(appConfig.cache.dir)) {
+    fs.removeSync(appConfig.cache.dir);
   }
 
   console.info('Cache deleted');
