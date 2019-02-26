@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 
 /**
  * Deletes the cache directory

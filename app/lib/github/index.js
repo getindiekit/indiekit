@@ -3,7 +3,7 @@
  *
  * @module github
  */
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 const utils = require(__basedir + '/lib/utils');
 
 const Octokit = require('@octokit/rest');

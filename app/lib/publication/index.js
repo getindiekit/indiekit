@@ -1,11 +1,10 @@
 const path = require('path');
-const util = require('util');
 
 const appConfig = require(__basedir + '/config');
 const cache = require(__basedir + '/lib/cache');
 /**
- * Gets a publication’s configuration (`url` being a required value) and combine
- * it with the defaults set by the application.
+ * Gets a publication’s configuration file and combines its values with defaults
+ * set by the application.
  *
  * @module publication
  * @returns {Promise} Configuration object

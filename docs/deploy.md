@@ -4,14 +4,23 @@ IndieKit is a Node.js application that needs to be hosted on a public server so 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/paulrobertlloyd/indiekit)
 
+To enable automatic discovery of your Micropub (and token) endpoints, ensure the following values are included in your site’s `<head>`, providing the URL of your deployed application for the `micropub` value:
+
+```html
+<link rel="authorization_endpoint" href="https://indieauth.com/auth">
+<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+<link rel="micropub" href="https://<your-endpoint>/micropub">
+```
+
 ## Environment variables
 
-If you’d like to deploy this application somewhere else, make sure the following environment variables are set:
+If you’d like to deploy this application somewhere else, make sure the following environment variables are set, taking note of those that are required:
 
 * `GITHUB_TOKEN`: GitHub access token. **Required**.
 * `GITHUB_USER`: GitHub username. **Required**.
 * `GITHUB_REPO`: GitHub repository. **Required**.
-* `GITHUB_BRANCH`: GitHub branch. Optional, defaults to `master`.
-* `INDIEAUTH_TOKEN_ENDPOINT`: IndieAuth token endpoint. Optional, defaults [`https://tokens.indieauth.com/token`](https://tokens.indieauth.com/token)
-* `INDIEKIT_CONFIG_PATH`: Location of configuration file, relative to repository root. Optional, defaults to `indiekit.json`.
-* `INDIEKIT_CACHE_EXPIRES`: Time (in seconds) before cache expires. Optional, defaults to `86400` (1 day).
+* `GITHUB_BRANCH`: GitHub branch files are to. *Optional*, defaults to `master`.
+* `INDIEAUTH_TOKEN_ENDPOINT`: IndieAuth token endpoint. *Optional*, defaults [`https://tokens.indieauth.com/token`](https://tokens.indieauth.com/token)
+* `INDIEKIT_URL`: URL of the website you want to publish to. **Required**.
+* `INDIEKIT_CONFIG_PATH`: Location of configuration file, relative to repository root. *Optional*, defaults to `indiekit.json`.
+* `INDIEKIT_CACHE_EXPIRES`: Time (in seconds) before cache expires. *Optional*, defaults to `86400` (1 day).

@@ -1,7 +1,6 @@
-const path = require('path');
 const fs = require('fs-extra');
 
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const history = require(__basedir + '/lib/history');
 const microformats = require(__basedir + '/lib/microformats');
@@ -64,7 +63,7 @@ module.exports = async (pubConfig, body, files) => {
     });
 
     // Update history and send success reponse
-    const location = pubConfig.url + urlPath;
+    const location = appConfig.url + urlPath;
     const historyEntry = {
       post: postPath,
       url: location

@@ -1,26 +1,8 @@
 ## Usage
 
-Once you have deployed IndieKit to your own server, next you need to configure your website. Configuration is provided via `indiekit.json`, a JSON file saved in the root of your repository (you can change this location by updating the `INDIEKIT_CONFIG_PATH` environment variable). This file lets you to customise where posts are saved, how they are formatted and what URLs they will appear at. But to get started, all you need to provide is the `url` of your website:
-
-```json
-{
-  "url": "https://example.com/",
-}
-```
-
-To enable automatic discovery of your Micropub (and token) endpoints, ensure the following values are included in your site’s `<head>`, providing the URL of your deployed application for the `micropub` value:
-
-```html
-<link rel="authorization_endpoint" href="https://indieauth.com/auth">
-<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
-<link rel="micropub" href="https://<your-endpoint>/micropub">
-```
+Having deployed IndieKit to your own server, you’ll no doubt want to customise certain aspects of it. Configuration is provided via `indiekit.json`, a JSON file saved in the root of your repository (you can change this location via the `INDIEKIT_CONFIG_PATH` environment variable). This file lets you customise where posts are saved, how they are formatted and what URLs they will appear at.
 
 ### Configuration options
-
-#### `url`
-
-The URL of the website where published files appear. **Required**.
 
 #### `media-endpoint`
 
