@@ -7,7 +7,6 @@ const history = require(__basedir + '/lib/history');
 const microformats = require(__basedir + '/lib/microformats');
 const render = require(__basedir + '/lib/render');
 const response = require(__basedir + '/lib/micropub/response');
-const utils = require(__basedir + '/lib/utils');
 
 const pubDefaults = appConfig.defaults;
 
@@ -28,7 +27,7 @@ module.exports = async (pubConfig, body, files) => {
     const context = postData.properties;
 
     // Determine post type
-    const type = microformats.postType(postData);
+    const type = microformats.deriveType(postData);
     const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
 
     // Set publish and destination paths

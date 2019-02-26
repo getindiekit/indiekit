@@ -125,10 +125,9 @@ module.exports = async (pubConfig, mf2, files) => {
      * (Asynchronous pattern trips up Micropub.rocks! validator)
      * @see https://stackoverflow.com/a/37576787/11107625
      */
-    for (const file of files) { /* eslint-disable no-await-in-loop */
+    for (const [i, file] of files.entries()) { /* eslint-disable no-await-in-loop */
       const fileext = path.extname(file.originalname);
-      let filename = String(Math.floor(Math.random() * 90000) + 10000);
-      filename += fileext;
+      const filename = `${properties.slug}-${i + 1}${fileext}`;
 
       // @todo Infer type by `type` using multer field object
       const typeConfig = pubConfig['post-types'][0].photo || pubDefaults['post-types'][0].photo;

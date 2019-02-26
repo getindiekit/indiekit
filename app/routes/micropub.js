@@ -1,6 +1,7 @@
 /**
  * @module routes/micropub
  */
+const cache = require(__basedir + '/lib/cache');
 const indieauth = require(__basedir + '/lib/indieauth');
 const microformats = require(__basedir + '/lib/microformats');
 const micropub = require(__basedir + '/lib/micropub');
@@ -34,12 +35,6 @@ exports.post = async (request, response, next) => {
     let {body} = request;
     const {files} = request;
 
-    // Ensure response has body data
-    const hasBody = Object.entries(body).length !== 0;
-    if (!hasBody) {
-      return micropub.response.error('invalid_request');
-    }
-
     // Ensure token is provided
     const accessToken = request.headers.authorization || body.access_token;
     if (!accessToken) {
@@ -50,6 +45,18 @@ exports.post = async (request, response, next) => {
     const verifiedToken = await indieauth.verifyToken(accessToken, pubConfig.url);
     if (!verifiedToken) {
       return micropub.response.error('forbidden', 'Unable to verify access token');
+    }
+
+    // Authorized users can purge cache
+    if (request.query.purge === 'cache') {
+      cache.delete();
+      return micropub.response.success();
+    }
+
+    // Ensure response has body data
+    const hasBody = Object.entries(body).length !== 0;
+    if (!hasBody) {
+      return micropub.response.error('invalid_request');
     }
 
     // Normalise form-encoded requests as mf2 JSON
