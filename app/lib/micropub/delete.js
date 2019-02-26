@@ -26,7 +26,7 @@ module.exports = async url => {
     try {
       const repoPath = historyEntry[0].create.post;
       const githubResponse = await github.deleteFile(repoPath, {
-        message: `:x: Post deleted with ${appConfig.name}`
+        message: `:x: Post deleted\nwith ${appConfig.name}`
       });
       if (githubResponse) {
         // @todo Save properties to history to enable undelete action
