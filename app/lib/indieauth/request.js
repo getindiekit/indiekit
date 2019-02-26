@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 
 /**
  * Authenticates an access token with IndieAuth token endpoint

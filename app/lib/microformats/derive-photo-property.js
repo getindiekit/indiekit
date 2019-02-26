@@ -1,6 +1,6 @@
 const path = require('path');
 
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const render = require(__basedir + '/lib/render');
 

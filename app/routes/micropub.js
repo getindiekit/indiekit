@@ -1,6 +1,7 @@
 /**
  * @module routes/micropub
  */
+const appConfig = require(__basedir + '/config');
 const cache = require(__basedir + '/lib/cache');
 const indieauth = require(__basedir + '/lib/indieauth');
 const microformats = require(__basedir + '/lib/microformats');
@@ -42,7 +43,7 @@ exports.post = async (request, response, next) => {
     }
 
     // Verify token
-    const verifiedToken = await indieauth.verifyToken(accessToken, pubConfig.url);
+    const verifiedToken = await indieauth.verifyToken(accessToken, appConfig.url);
     if (!verifiedToken) {
       return micropub.response.error('forbidden', 'Unable to verify access token');
     }

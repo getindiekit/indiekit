@@ -1,4 +1,4 @@
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const response = require(__basedir + '/lib/micropub/response');
 const utils = require(__basedir + '/lib/utils');

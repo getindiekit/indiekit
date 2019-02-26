@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const {DateTime} = require('luxon');
 
-const appConfig = require(__basedir + '/config.js');
+const appConfig = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const createCache = require(__basedir + '/lib/cache/create');
 const utils = require(__basedir + '/lib/utils');
