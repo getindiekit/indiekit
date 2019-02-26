@@ -53,19 +53,25 @@ An array of post-types (with default values currently provided for `article`, `n
   Location of the post template in your repository. Note, this should not be the template used to render your site (using Jekyll, 11ty, Hugo, etc.), but a template specifically for the use of IndieKit. Defaults to templates provided by IndieKit, [which you can find here](https://github.com/paulrobertlloyd/indiekit/tree/master/app/templates).
 
 * ##### `post`
-  Location where posts should be saved to in your repository. Defaults to `_<post-type>/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md` e.g. `_notes/2019-02-21-12345.md`.
+  Location where posts should be saved to in your repository. Defaults to `_<post-type>/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md` e.g. <samp>_notes/2019-02-21-12345.md</samp>.
 
   To maintain compatability with Jekyll, the `article` post type saves to the `_posts` folder.
 
 * ##### `file`
-  Location where media files should be saved to in your repository. Defaults to `images/<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}/{{ filename }}` e.g. `images/notes/2019/02/21/12345/98765.jpg`.
+  Location where media files should be saved to in your repository. Defaults to `images/<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}/{{ filename }}` e.g. <samp>images/notes/2019/02/21/12345/98765.jpg</samp>.
 
   To be match the default permalink style used for articles, `article/` is ommitted from the generated media folder path.
 
-* ##### `url`
-  Permalink of post as it appears on your website. Defaults to `<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}` e.g. `notes/2019/02/21/12345`.
+  Additional variables are available to media files:
 
-  To maintain compatability with Jekyll, the `article` post type is ommited from the generated path, e.g. `2019/02/21/my-great-post`.
+  * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
+  * `filename` is a zero-filled two-digit number with file extension, e.g. <samp>03.jpg</samp>.
+  * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>.jpg</samp>.
+
+* ##### `url`
+  Permalink of post as it appears on your website. Defaults to `<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}` e.g. <samp>notes/2019/02/21/12345</samp>.
+
+  To maintain compatability with Jekyll, the `article` post type is ommited from the generated path, e.g. <samp>2019/02/21/my-great-post</samp>.
 
 Example:
 

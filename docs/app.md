@@ -142,17 +142,49 @@ Returns **[Promise][3]** Token endpoint reponse object
 
 Discover, parse and transform microformats2 objects
 
-### deriveData
+### derviveContentProperty
 
-Generates post data by merging submitted and derived information about a post
+Derives content (HTML, else object value, else property value)
 
 #### Parameters
 
--   `pubConfig` **[Object][1]** Publication configuration
--   `mf2` **[String][2]** microformats2 object
--   `files` **[String][2]** File attachments
+-   `mf2` **[Object][1]** microformats2 object
 
-Returns **[Promise][3]** mf2 object
+Returns **[Array][9]** Content
+
+### derivePhotoProperty
+
+Combines referenced and attached photos into one object which can be used in
+a microformats2 object. Attached photos are uploaded to GitHub.
+
+#### Parameters
+
+-   `mf2` **[Object][1]** microformats2 object
+-   `files` **[String][2]** Photos attached as multipart data
+-   `typeConfig` **[Object][1]** Post type configuration
+
+Returns **[Promise][3]** Array of photo obejcts
+
+### dervivePublishedProperty
+
+Derives published date (based on microformats2 data, else the current date)
+
+#### Parameters
+
+-   `mf2` **[Object][1]** microformats2 object
+
+Returns **[Array][9]** ISO formatted date
+
+### derviveSlug
+
+Derives slug (based on microformats2 data, else a random number)
+
+#### Parameters
+
+-   `mf2` **[Object][1]** microformats2 object
+-   `separator` **[String][2]** Slug separator
+
+Returns **[String][2]** Slug
 
 ### postType
 
@@ -160,15 +192,15 @@ Discover the post type from a mf2 json object.
 
 #### Parameters
 
--   `post` **[object][1]** A mf2 json object
+-   `mf2` **[object][1]** A mf2 json object
 
 Returns **[String][2]** Type of post
 
 ### formEncodedToMf2
 
 Parses microformats in a form-encoded POST request.
-Adapted from [node-micropub-express][9]
-by [Pelle Wessman][10]
+Adapted from [node-micropub-express][10]
+by [Pelle Wessman][11]
 
 #### Parameters
 
@@ -205,7 +237,7 @@ Returns **[Promise][3]** mf2 object
 
 ## githubResponse
 
--   **See: [https://stackoverflow.com/a/37576787/11107625][11]**
+-   **See: [https://stackoverflow.com/a/37576787/11107625][12]**
 
 Turns out async/await doesn’t work so great with forEach loops. Use
 asynchronous `await Promise.all(files.map(async file => {…}))` or
@@ -326,13 +358,14 @@ Returns **[Object][1]** Success object
 
 ## publication
 
-Gets a publication’s configuration
+Gets a publication’s configuration (`url` being a required value) and combine
+it with the defaults set by the application.
 
 Returns **[Promise][3]** Configuration object
 
 ## render
 
--   **See: [Nunjucks API: renderString][12]**
+-   **See: [Nunjucks API: renderString][13]**
 
 Render a Nunjucks template string using context data
 
@@ -473,10 +506,12 @@ Returns **[Object][1]** HTTP response
 
 [8]: https://www.w3.org/TR/indieauth/
 
-[9]: https://github.com/voxpelli/node-micropub-express
+[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[10]: https://kodfabrik.se
+[10]: https://github.com/voxpelli/node-micropub-express
 
-[11]: https://stackoverflow.com/a/37576787/11107625
+[11]: https://kodfabrik.se
 
-[12]: https://mozilla.github.io/nunjucks/api.html#renderstring
+[12]: https://stackoverflow.com/a/37576787/11107625
+
+[13]: https://mozilla.github.io/nunjucks/api.html#renderstring
