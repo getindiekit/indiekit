@@ -29,7 +29,6 @@ module.exports = async (pubConfig, body, files) => {
 
     // Determine post type
     const type = microformats.postType(postData);
-    const typeName = utils.capitalizeFirstLetter(type);
     const typeConfig = pubConfig['post-types'][0][type] || pubDefaults['post-types'][0][type];
 
     // Set publish and destination paths
@@ -51,7 +50,7 @@ module.exports = async (pubConfig, body, files) => {
     // Create post on GitHub
     const content = render(template, context);
     const githubResponse = await github.createFile(postPath, content, {
-      message: `:robot: ${typeName} created with ${appConfig.name}`
+      message: `:robot: New ${type} created\nwith ${appConfig.name}`
     });
 
     // Update history and send success reponse
