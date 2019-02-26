@@ -154,6 +154,16 @@ Generates post data by merging submitted and derived information about a post
 
 Returns **[Promise][3]** mf2 object
 
+### postType
+
+Discover the post type from a mf2 json object.
+
+#### Parameters
+
+-   `post` **[object][1]** A mf2 json object
+
+Returns **[String][2]** Type of post
+
 ### formEncodedToMf2
 
 Parses microformats in a form-encoded POST request.
@@ -182,16 +192,6 @@ Parses microformats on HTML page
 
 Returns **[Promise][3]** mf2 object
 
-### postType
-
-Discover the post type from a mf2 json object.
-
-#### Parameters
-
--   `post` **[object][1]** A mf2 json object
-
-Returns **[String][2]** Type of post
-
 ### urlToMf2
 
 Parses microformats at a given URL
@@ -203,7 +203,7 @@ Parses microformats at a given URL
 
 Returns **[Promise][3]** mf2 object
 
-## files
+## githubResponse
 
 -   **See: [https://stackoverflow.com/a/37576787/11107625][11]**
 
