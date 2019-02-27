@@ -1,8 +1,8 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const config = require(__basedir + '/config');
-const createHistory = require(__basedir + '/lib/history/create');
+const config = require(process.env.PWD + '/app/config');
+const createHistory = require(process.env.PWD + '/app/lib/history/create');
 
 /**
  * Reads contents of the history file

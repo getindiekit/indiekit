@@ -4,7 +4,7 @@
  * @module history
  */
 module.exports = {
-  create: require(__basedir + '/lib/history/create'),
-  read: require(__basedir + '/lib/history/read'),
-  update: require(__basedir + '/lib/history/update')
+  create: require(process.env.PWD + '/app/lib/history/create'),
+  read: require(process.env.PWD + '/app/lib/history/read'),
+  update: require(process.env.PWD + '/app/lib/history/update')
 };

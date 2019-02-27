@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const config = require(__basedir + '/config');
+const config = require(process.env.PWD + '/app/config');
 
 /**
  * Creates an empty history file

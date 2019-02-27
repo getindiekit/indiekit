@@ -1,9 +1,9 @@
 const path = require('path');
 
-const config = require(__basedir + '/config');
+const cache = require(process.env.PWD + '/app/lib/cache');
+const config = require(process.env.PWD + '/app/config');
 const defaults = require('./defaults');
 
-const cache = require(__basedir + '/lib/cache');
 /**
  * Gets a publication’s configuration file and combines it with defaults values
  * set by the application.

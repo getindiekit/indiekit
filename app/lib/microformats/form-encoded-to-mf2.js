@@ -1,4 +1,4 @@
-const utils = require(__basedir + '/lib/utils');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Parses microformats in a form-encoded POST request.

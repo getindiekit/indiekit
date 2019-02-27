@@ -1,11 +1,11 @@
 /**
  * @module routes/micropub
  */
-const config = require(__basedir + '/config');
-const cache = require(__basedir + '/lib/cache');
-const indieauth = require(__basedir + '/lib/indieauth');
-const microformats = require(__basedir + '/lib/microformats');
-const micropub = require(__basedir + '/lib/micropub');
+const config = require(process.env.PWD + '/app/config');
+const cache = require(process.env.PWD + '/app/lib/cache');
+const indieauth = require(process.env.PWD + '/app/lib/indieauth');
+const microformats = require(process.env.PWD + '/app/lib/microformats');
+const micropub = require(process.env.PWD + '/app/lib/micropub');
 
 /**
  * Responds to GET requests
@@ -15,7 +15,7 @@ const micropub = require(__basedir + '/lib/micropub');
  * @return {Object} HTTP response
  */
 exports.get = async (request, response) => {
-  const publication = await require(__basedir + '/lib/publication')();
+  const publication = await require(process.env.PWD + '/app/lib/publication')();
   const appUrl = `${request.protocol}://${request.headers.host}`;
   const getResponse = await micropub.query(request.query, publication, appUrl);
 
@@ -31,7 +31,7 @@ exports.get = async (request, response) => {
  * @return {Object} HTTP response
  */
 exports.post = async (request, response, next) => {
-  const publication = await require(__basedir + '/lib/publication')();
+  const publication = await require(process.env.PWD + '/app/lib/publication')();
   const getPostResponse = async request => {
     let {body} = request;
     const {files} = request;

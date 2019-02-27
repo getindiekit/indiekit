@@ -3,8 +3,8 @@
  *
  * @module github
  */
-const config = require(__basedir + '/config');
-const utils = require(__basedir + '/lib/utils');
+const config = require(process.env.PWD + '/app/config');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 const Octokit = require('@octokit/rest');
 

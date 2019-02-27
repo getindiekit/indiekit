@@ -1,5 +1,5 @@
-const microformats = require(__basedir + '/lib/microformats');
-const response = require(__basedir + '/lib/micropub/response');
+const microformats = require(process.env.PWD + '/app/lib/microformats');
+const response = require(process.env.PWD + '/app/lib/micropub/response');
 
 /**
  * Returns an object containing information about this application
