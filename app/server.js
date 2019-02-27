@@ -1,14 +1,11 @@
-global.__basedir = __dirname;
-require('dotenv').config();
-
 const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
 const multer = require('multer');
 
-const config = require(__basedir + '/config');
-const routes = require(__basedir + '/routes');
+const config = require(process.env.PWD + '/app/config');
+const routes = require(process.env.PWD + '/app/routes');
 
 const app = express();
 const {port} = config;

@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-const config = require(__basedir + '/config');
+const config = require(process.env.PWD + '/app/config');
 
 /**
  * Deletes the cache directory

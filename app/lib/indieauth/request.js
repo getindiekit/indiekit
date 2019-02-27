@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const config = require(__basedir + '/config');
+const config = require(process.env.PWD + '/app/config');
 
 /**
  * Authenticates an access token with IndieAuth token endpoint
@@ -8,10 +8,10 @@ const config = require(__basedir + '/config');
  * @memberof indieauth
  * @module request
  * @param {String} accessToken Access token
+ * @param {String} endpoint IndieAuth token endpoint URL
  * @returns {Promise} Token endpoint reponse object
  */
-module.exports = async accessToken => {
-  const endpoint = config.indieauth['token-endpoint'];
+module.exports = async (accessToken, endpoint = config.indieauth['token-endpoint']) => {
   const isValidTokenFormat = accessToken.startsWith('Bearer ');
 
   if (!isValidTokenFormat) {
@@ -19,7 +19,6 @@ module.exports = async accessToken => {
   }
 
   try {
-    console.info(`Making request to ${endpoint}`);
     const response = await fetch(endpoint, {
       method: 'GET',
       headers: {
@@ -28,12 +27,8 @@ module.exports = async accessToken => {
       }
     });
 
-    if (response) {
-      return await response.json();
-    }
-
-    throw new Error(`Unable to connect to ${endpoint}`);
+    return await response.json();
   } catch (error) {
-    console.error(error);
+    throw new Error(`Unable to connect to ${endpoint}`);
   }
 };

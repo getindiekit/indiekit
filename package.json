@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
-    "test": "NODE_ENV=test ava --verbose",
+    "test": "ava --verbose",
     "coverage": "NODE_ENV=test nyc ava"
   },
   "dependencies": {
@@ -52,9 +52,6 @@
     "rules": {
       "camelcase": "warn",
       "capitalized-comments": "warn"
-    },
-    "globals": [
-      "__basedir"
-    ]
+    }
   }
 }

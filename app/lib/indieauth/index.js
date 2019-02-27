@@ -5,6 +5,6 @@
  * @module indieauth
  */
 module.exports = {
-  request: require(__basedir + '/lib/indieauth/request'),
-  verifyToken: require(__basedir + '/lib/indieauth/verify-token')
+  request: require(process.env.PWD + '/app/lib/indieauth/request'),
+  verifyToken: require(process.env.PWD + '/app/lib/indieauth/verify-token')
 };

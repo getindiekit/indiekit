@@ -2,8 +2,8 @@ const path = require('path');
 const {DateTime} = require('luxon');
 const fs = require('fs-extra');
 
-const config = require(__basedir + '/config');
-const readHistory = require(__basedir + '/lib/history/read');
+const config = require(process.env.PWD + '/app/config');
+const readHistory = require(process.env.PWD + '/app/lib/history/read');
 
 /**
  * Updates contents of history file by appending new entry

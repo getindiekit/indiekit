@@ -1,4 +1,4 @@
-const templateDir = __basedir + '/templates';
+const templateDir = process.env.PWD + '/app/templates';
 
 module.exports = {
   'post-types': [{

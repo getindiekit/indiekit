@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const config = module.exports;
 
 // Server
 config.name = 'IndieKit';
 config.port = process.env.PORT || 3000;
 config.cache = {
-  dir: __basedir + '/../.cache',
+  dir: process.env.PWD + '/.cache',
   'max-age': process.env.INDIEKIT_CACHE_EXPIRES || 86400,
   config: 'config.json',
   history: 'history.json'

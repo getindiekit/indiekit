@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const htmlToMf2 = require(__basedir + '/lib/microformats/html-to-mf2');
+const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2');
 
 /**
  * Parses microformats at a given URL

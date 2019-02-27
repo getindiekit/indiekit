@@ -1,11 +1,11 @@
 const fs = require('fs-extra');
 
-const config = require(__basedir + '/config');
-const github = require(__basedir + '/lib/github');
-const history = require(__basedir + '/lib/history');
-const microformats = require(__basedir + '/lib/microformats');
-const render = require(__basedir + '/lib/render');
-const response = require(__basedir + '/lib/micropub/response');
+const config = require(process.env.PWD + '/app/config');
+const github = require(process.env.PWD + '/app/lib/github');
+const history = require(process.env.PWD + '/app/lib/history');
+const microformats = require(process.env.PWD + '/app/lib/microformats');
+const render = require(process.env.PWD + '/app/lib/render');
+const response = require(process.env.PWD + '/app/lib/micropub/response');
 
 /**
  * Creates a new post

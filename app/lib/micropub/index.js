@@ -5,9 +5,9 @@
  * @module micropub
  */
 module.exports = {
-  create: require(__basedir + '/lib/micropub/create'),
-  delete: require(__basedir + '/lib/micropub/delete'),
-  query: require(__basedir + '/lib/micropub/query'),
-  response: require(__basedir + '/lib/micropub/response'),
-  update: require(__basedir + '/lib/micropub/update')
+  create: require(process.env.PWD + '/app/lib/micropub/create'),
+  delete: require(process.env.PWD + '/app/lib/micropub/delete'),
+  query: require(process.env.PWD + '/app/lib/micropub/query'),
+  response: require(process.env.PWD + '/app/lib/micropub/response'),
+  update: require(process.env.PWD + '/app/lib/micropub/update')
 };

@@ -2,10 +2,10 @@ const path = require('path');
 const fs = require('fs-extra');
 const {DateTime} = require('luxon');
 
-const config = require(__basedir + '/config');
-const github = require(__basedir + '/lib/github');
-const createCache = require(__basedir + '/lib/cache/create');
-const utils = require(__basedir + '/lib/utils');
+const config = require(process.env.PWD + '/app/config');
+const github = require(process.env.PWD + '/app/lib/github');
+const createCache = require(process.env.PWD + '/app/lib/cache/create');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Gets a files modified date ()

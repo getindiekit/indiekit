@@ -1,8 +1,8 @@
 const path = require('path');
 
-const config = require(__basedir + '/config');
-const github = require(__basedir + '/lib/github');
-const render = require(__basedir + '/lib/render');
+const config = require(process.env.PWD + '/app/config');
+const github = require(process.env.PWD + '/app/lib/github');
+const render = require(process.env.PWD + '/app/lib/render');
 
 /**
  * Combines referenced and attached photos into one object which can be used in

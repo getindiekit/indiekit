@@ -1,7 +1,7 @@
-const config = require(__basedir + '/config');
-const github = require(__basedir + '/lib/github');
-const history = require(__basedir + '/lib/history');
-const response = require(__basedir + '/lib/micropub/response');
+const config = require(process.env.PWD + '/app/config');
+const github = require(process.env.PWD + '/app/lib/github');
+const history = require(process.env.PWD + '/app/lib/history');
+const response = require(process.env.PWD + '/app/lib/micropub/response');
 
 /**
  * Deletes a post
