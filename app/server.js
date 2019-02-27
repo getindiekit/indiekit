@@ -7,11 +7,11 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const multer = require('multer');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const routes = require(__basedir + '/routes');
 
 const app = express();
-const {port} = appConfig;
+const {port} = config;
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
@@ -34,7 +34,7 @@ app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 app.use('/', routes);
 
 app.listen(port, () => {
-  console.info(`Starting ${appConfig.name} on port ${port}`);
+  console.info(`Starting ${config.name} on port ${port}`);
 });
 
 module.exports = app;

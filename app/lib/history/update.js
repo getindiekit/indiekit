@@ -2,7 +2,7 @@ const path = require('path');
 const {DateTime} = require('luxon');
 const fs = require('fs-extra');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const readHistory = require(__basedir + '/lib/history/read');
 
 /**
@@ -14,7 +14,7 @@ const readHistory = require(__basedir + '/lib/history/read');
  * @param {Object} data Entry data
  */
 module.exports = (action, data) => {
-  const filePath = path.join(appConfig.cache.dir, appConfig.history.file);
+  const filePath = path.join(config.cache.dir, config.history.file);
 
   try {
     const history = readHistory(filePath);

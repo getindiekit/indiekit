@@ -11,9 +11,8 @@
   "homepage": "https://github.com/paulrobertlloyd/indiekit#readme",
   "repository": "github:paulrobertlloyd/indiekit",
   "bugs": "https://github.com/paulrobertlloyd/indiekit/issues",
-  "main": "app/main.js",
   "scripts": {
-    "start": "node app/main.js",
+    "start": "node app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
     "test": "nyc ava --verbose"
   },

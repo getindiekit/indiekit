@@ -1,4 +1,4 @@
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const response = require(__basedir + '/lib/micropub/response');
 const utils = require(__basedir + '/lib/utils');
@@ -16,7 +16,7 @@ module.exports = async (url, content) => {
   const repoPath = utils.filePathFromUrl(url);
   const type = null; // @todo Determine post type
   const githubResponse = github.updateFile(repoPath, content, {
-    message: `:robot: ${type} updated\nwith ${appConfig.name}`
+    message: `:robot: ${type} updated\nwith ${config.name}`
   });
   if (githubResponse) {
     /* @todo If path has changed, return 'update_created' */

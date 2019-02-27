@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const createHistory = require(__basedir + '/lib/history/create');
 
 /**
@@ -12,7 +12,7 @@ const createHistory = require(__basedir + '/lib/history/create');
  * @returns {Object} Configuration options
  */
 module.exports = () => {
-  const filePath = path.join(appConfig.cache.dir, appConfig.history.file);
+  const filePath = path.join(config.cache.dir, config.history.file);
   const isCached = fs.existsSync(filePath);
 
   if (!isCached) {
