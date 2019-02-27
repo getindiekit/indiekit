@@ -12,21 +12,7 @@ const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2')
  * @returns {Promise} mf2 object
  */
 module.exports = async (url, properties) => {
-  try {
-    console.info(`Making request to ${url}`);
-    const response = await fetch(url);
-
-    if (response) {
-      try {
-        const html = await response.text();
-        return htmlToMf2(html, properties);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    throw new Error(`Unable to connect to ${url}`);
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await fetch(url);
+  const html = await response.text();
+  return htmlToMf2(html, properties);
 };
