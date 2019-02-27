@@ -3,13 +3,13 @@
  *
  * @module github
  */
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const utils = require(__basedir + '/lib/utils');
 
 const Octokit = require('@octokit/rest');
 
 const octokit = new Octokit({
-  auth: `token ${appConfig.github.token}`,
+  auth: `token ${config.github.token}`,
   log: console
 });
 
@@ -25,9 +25,9 @@ const getContents = async path => {
 
   try {
     const response = await octokit.repos.getContents({
-      owner: appConfig.github.user,
-      repo: appConfig.github.repo,
-      ref: appConfig.github.branch,
+      owner: config.github.user,
+      repo: config.github.repo,
+      ref: config.github.branch,
       path
     });
     response.data.content = Buffer.from(response.data.content, 'base64').toString('utf8');
@@ -51,9 +51,9 @@ const createFile = async (path, content, options) => {
 
   try {
     return await octokit.repos.createFile({
-      owner: appConfig.github.user,
-      repo: appConfig.github.repo,
-      branch: appConfig.github.branch,
+      owner: config.github.user,
+      repo: config.github.repo,
+      branch: config.github.branch,
       path,
       content: Buffer.from(content).toString('base64'),
       message: options.message
@@ -79,9 +79,9 @@ const updateFile = async (path, content, options) => {
     const response = await getContents(path);
     if (response) {
       return await octokit.repos.updateFile({
-        owner: appConfig.github.user,
-        repo: appConfig.github.repo,
-        branch: appConfig.github.branch,
+        owner: config.github.user,
+        repo: config.github.repo,
+        branch: config.github.branch,
         path,
         message: options.message,
         content: Buffer.from(content).toString('base64'),
@@ -106,9 +106,9 @@ const deleteFile = async (path, options) => {
     const response = await getContents(path);
     if (response) {
       return await octokit.repos.deleteFile({
-        owner: appConfig.github.user,
-        repo: appConfig.github.repo,
-        branch: appConfig.github.branch,
+        owner: config.github.user,
+        repo: config.github.repo,
+        branch: config.github.branch,
         path,
         message: options.message,
         sha: response.data.sha

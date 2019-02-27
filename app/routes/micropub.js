@@ -1,12 +1,11 @@
 /**
  * @module routes/micropub
  */
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const cache = require(__basedir + '/lib/cache');
 const indieauth = require(__basedir + '/lib/indieauth');
 const microformats = require(__basedir + '/lib/microformats');
 const micropub = require(__basedir + '/lib/micropub');
-const publication = require(__basedir + '/lib/publication');
 
 /**
  * Responds to GET requests
@@ -16,8 +15,9 @@ const publication = require(__basedir + '/lib/publication');
  * @return {Object} HTTP response
  */
 exports.get = async (request, response) => {
+  const publication = await require(__basedir + '/lib/publication')();
   const appUrl = `${request.protocol}://${request.headers.host}`;
-  const getResponse = await micropub.query(request.query, appUrl);
+  const getResponse = await micropub.query(request.query, publication, appUrl);
 
   return response.status(getResponse.code).json(getResponse.body);
 };
@@ -31,7 +31,7 @@ exports.get = async (request, response) => {
  * @return {Object} HTTP response
  */
 exports.post = async (request, response, next) => {
-  const pubConfig = await publication();
+  const publication = await require(__basedir + '/lib/publication')();
   const getPostResponse = async request => {
     let {body} = request;
     const {files} = request;
@@ -43,7 +43,7 @@ exports.post = async (request, response, next) => {
     }
 
     // Verify token
-    const verifiedToken = await indieauth.verifyToken(accessToken, appConfig.url);
+    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
     if (!verifiedToken) {
       return micropub.response.error('forbidden', 'Unable to verify access token');
     }
@@ -90,7 +90,7 @@ exports.post = async (request, response, next) => {
 
     // Create action
     if (scope.includes('create')) {
-      return micropub.create(pubConfig, body, files);
+      return micropub.create(publication, body, files);
     }
 
     return micropub.response.error('insufficient_scope');

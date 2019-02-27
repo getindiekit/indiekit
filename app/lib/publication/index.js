@@ -1,9 +1,11 @@
 const path = require('path');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
+const defaults = require('./defaults');
+
 const cache = require(__basedir + '/lib/cache');
 /**
- * Gets a publication’s configuration file and combines its values with defaults
+ * Gets a publication’s configuration file and combines it with defaults values
  * set by the application.
  *
  * @module publication
@@ -12,18 +14,21 @@ const cache = require(__basedir + '/lib/cache');
 module.exports = async () => {
   try {
     // Fetch and cache remote configuration
-    let remoteConfig = await cache.read(appConfig.config.path, appConfig.config.file);
+    let remoteConfig = await cache.read(config.config.path, config.config.file);
     if (remoteConfig) {
       console.info('Remote has configuration');
       remoteConfig = JSON.parse(remoteConfig);
     }
 
+    console.log('remoteConfig', remoteConfig);
+    console.log('defaults', defaults);
+
     // Merge remote configuration with application defaults
-    const combinedConfig = {...remoteConfig, ...appConfig.defaults};
+    const combinedConfig = {...defaults, ...remoteConfig};
 
     // Fetch and cache remote template files
     let combinedPostTypes;
-    const defaultPostTypes = appConfig.defaults['post-types'][0];
+    const defaultPostTypes = defaults['post-types'][0];
     const remotePostTypes = remoteConfig['post-types'][0];
 
     if (remotePostTypes) {
@@ -34,7 +39,7 @@ module.exports = async () => {
           const postType = remotePostTypes[key];
           const remoteTemplate = postType.template;
           const cacheTemplate = path.join('templates', `${key}.njk`);
-          const cacheTemplatePath = path.join(appConfig.cache.dir, cacheTemplate);
+          const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
           await cache.read(remoteTemplate, cacheTemplate);
 
           // Update `template` value with location of cached template file

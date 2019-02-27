@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 
 /**
  * Authenticates an access token with IndieAuth token endpoint
@@ -11,7 +11,7 @@ const appConfig = require(__basedir + '/config');
  * @returns {Promise} Token endpoint reponse object
  */
 module.exports = async accessToken => {
-  const endpoint = appConfig.indieauth['token-endpoint'];
+  const endpoint = config.indieauth['token-endpoint'];
   const isValidTokenFormat = accessToken.startsWith('Bearer ');
 
   if (!isValidTokenFormat) {

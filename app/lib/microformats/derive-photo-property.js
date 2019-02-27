@@ -1,6 +1,6 @@
 const path = require('path');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const render = require(__basedir + '/lib/render');
 
@@ -57,7 +57,7 @@ module.exports = async (mf2, files, typeConfig) => {
 
       // Create post on GitHub
       const githubResponse = await github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: ${filename} uploaded with ${appConfig.name}`
+        message: `:framed_picture: ${filename} uploaded with ${config.name}`
       });
 
       if (githubResponse) {

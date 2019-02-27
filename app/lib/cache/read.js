@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const {DateTime} = require('luxon');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const createCache = require(__basedir + '/lib/cache/create');
 const utils = require(__basedir + '/lib/utils');
@@ -29,7 +29,7 @@ const getFileUpdatedDate = path => {
  * @returns {Promise|Object} Fetched file object
  */
 module.exports = async (remotePath, cachePath) => {
-  cachePath = path.join(appConfig.cache.dir, cachePath);
+  cachePath = path.join(config.cache.dir, cachePath);
   let cacheFile;
   let hasExpired;
   const isCached = fs.existsSync(cachePath);
@@ -42,7 +42,7 @@ module.exports = async (remotePath, cachePath) => {
     let currentDate = Date.now();
     currentDate = DateTime.fromMillis(currentDate).toFormat('X');
 
-    const expiredDate = Number(updatedDate) + Number(appConfig.cache['max-age']);
+    const expiredDate = Number(updatedDate) + Number(config.cache['max-age']);
     hasExpired = currentDate > expiredDate;
   }
 

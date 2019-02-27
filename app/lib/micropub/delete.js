@@ -1,4 +1,4 @@
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const history = require(__basedir + '/lib/history');
 const response = require(__basedir + '/lib/micropub/response');
@@ -26,7 +26,7 @@ module.exports = async url => {
     try {
       const repoPath = historyEntry[0].create.post;
       const githubResponse = await github.deleteFile(repoPath, {
-        message: `:x: Post deleted\nwith ${appConfig.name}`
+        message: `:x: Post deleted\nwith ${config.name}`
       });
       if (githubResponse) {
         // @todo Save properties to history to enable undelete action

@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 const github = require(__basedir + '/lib/github');
 const history = require(__basedir + '/lib/history');
 const microformats = require(__basedir + '/lib/microformats');
@@ -12,12 +12,12 @@ const response = require(__basedir + '/lib/micropub/response');
  *
  * @memberof micropub
  * @module update
- * @param {Object} pubConfig Publication configuration
+ * @param {Object} publication Publication configuration
  * @param {String} body Body content (contains microformats2 object)
  * @param {String} files File attachments
  * @returns {String} Location of created post
  */
-module.exports = async (pubConfig, body, files) => {
+module.exports = async (publication, body, files) => {
   try {
     const {properties} = body;
 
@@ -30,7 +30,7 @@ module.exports = async (pubConfig, body, files) => {
       type = microformats.deriveType(body);
     }
 
-    const typeConfig = pubConfig['post-types'][0][type];
+    const typeConfig = publication['post-types'][0][type];
 
     // Date
     properties.published = microformats.derivePuplishedProperty(body);
@@ -39,7 +39,7 @@ module.exports = async (pubConfig, body, files) => {
     properties.content = microformats.deriveContentProperty(body);
 
     // Slug
-    const slugSeparator = pubConfig['slug-separator'];
+    const slugSeparator = publication['slug-separator'];
     const slug = microformats.deriveSlug(body, slugSeparator);
     properties.slug = slug;
 
@@ -59,11 +59,11 @@ module.exports = async (pubConfig, body, files) => {
 
     // Create post on GitHub
     const githubResponse = await github.createFile(postPath, content, {
-      message: `:robot: New ${type} created\nwith ${appConfig.name}`
+      message: `:robot: New ${type} created\nwith ${config.name}`
     });
 
     // Update history and send success reponse
-    const location = appConfig.url + urlPath;
+    const location = config.url + urlPath;
     const historyEntry = {
       post: postPath,
       url: location

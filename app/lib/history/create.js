@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 
-const appConfig = require(__basedir + '/config');
+const config = require(__basedir + '/config');
 
 /**
  * Creates an empty history file
@@ -10,7 +10,7 @@ const appConfig = require(__basedir + '/config');
  * @module create
  */
 module.exports = () => {
-  const filePath = path.join(appConfig.cache.dir, appConfig.history.file);
+  const filePath = path.join(config.cache.dir, config.history.file);
 
   try {
     const history = {
