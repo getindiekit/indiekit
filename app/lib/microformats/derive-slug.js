@@ -1,4 +1,4 @@
-const slugify = require('slugify');
+const slugify = require('slug');
 
 /**
  * Derives slug (based on microformats2 data, else a random number)
@@ -7,25 +7,25 @@ const slugify = require('slugify');
  * @module derviveSlug
  * @param {Object} mf2 microformats2 object
  * @param {String} separator Slug separator
- * @returns {String} Slug
+ * @returns {Array} Array containing slug value
  */
 module.exports = (mf2, separator) => {
-  let slug;
-  const hasSlug = ((mf2 || {}).mp || {}).slug;
-  const hasTitle = ((mf2 || {}).properties || {}).name;
+  let slug = mf2['mp-slug'];
+  const {name} = mf2.properties;
+  const random = String(Math.floor(Math.random() * 90000) + 10000);
 
-  if (hasSlug) {
-    slug = mf2.mp.slug[0];
+  if (slug) {
+    return slug;
   }
 
-  if (hasTitle) {
-    slug = slugify(mf2.properties.name[0], {
+  if (name) {
+    slug = slugify(name[0], {
       replacement: separator,
       lower: true
     });
+
+    return new Array(slug);
   }
 
-  slug = String(Math.floor(Math.random() * 90000) + 10000);
-
-  return new Array(slug);
+  return new Array(random);
 };

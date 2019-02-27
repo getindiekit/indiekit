@@ -14,7 +14,8 @@
   "scripts": {
     "start": "node app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
-    "test": "NODE_ENV=test nyc ava app/**/*.test.js --verbose"
+    "test": "NODE_ENV=test ava",
+    "coverage": "NODE_ENV=test nyc ava"
   },
   "dependencies": {
     "@octokit/rest": "^16.16.0",
@@ -30,7 +31,7 @@
     "normalize-url": "^4.1.0",
     "nunjucks": "^3.1.7",
     "serve-favicon": "^2.5.0",
-    "slugify": "^1.3.4"
+    "slug": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^1.2.1",
