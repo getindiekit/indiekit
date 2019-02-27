@@ -286,7 +286,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## response
+## micropub
 
 Returns an object containing information about this application
 
@@ -297,6 +297,43 @@ Returns an object containing information about this application
 -   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object
+
+### update
+
+Creates a new post
+
+#### Parameters
+
+-   `publication` **[Object][1]** Publication configuration
+-   `body` **[String][2]** Body content (contains microformats2 object)
+-   `files` **[String][2]** File attachments
+
+Returns **[String][2]** Location of created post
+
+### update
+
+Updates a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL path to post
+-   `content` **[String][2]** Content to update
+
+Returns **[Object][1]** Response
+
+### delete
+
+Deletes a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL of published post
+
+Returns **[Promise][3]** Response object
+
+### response
+
+Sends HTTP response with error/success information encoded as JSON
 
 ## error
 
@@ -418,16 +455,6 @@ normalizePath('/foo/bar/') => 'foo/bar'
 ```
 
 Returns **[Object][1]** Normalized object
-
-## sanitizeHtml
-
-Removes newlines, carriage returns, tabs and successive spaces from HTML string
-
-### Parameters
-
--   `string` **[String][2]** String
-
-Returns **[String][2]** Sanitized HTML
 
 ## routes/micropub
 
