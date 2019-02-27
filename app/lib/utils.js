@@ -26,10 +26,10 @@ const capitalizeFirstLetter = string => {
 const decodeFormEncodedString = string => {
   if (typeof string === 'string') {
     string = string.replace(/\+/g, '%20');
-    string = decodeURIComponent(string);
+    return decodeURIComponent(string);
   }
 
-  return string;
+  return false;
 };
 
 /**
@@ -73,20 +73,9 @@ const normalizePath = string => {
   return string.replace(/^\/|\/$/g, '');
 };
 
-/**
- * Removes newlines, carriage returns, tabs and successive spaces from HTML string
- *
- * @param {String} string String
- * @return {String} Sanitized HTML
- */
-const sanitizeHtml = string => {
-  return string.replace(/\r?\n|\n|\r|\t|\s{2,}/gm, '');
-};
-
 module.exports = {
   capitalizeFirstLetter,
   decodeFormEncodedString,
   removeEmptyObjectKeys,
-  normalizePath,
-  sanitizeHtml
+  normalizePath
 };

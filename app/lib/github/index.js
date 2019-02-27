@@ -10,7 +10,7 @@ const Octokit = require('@octokit/rest');
 
 const octokit = new Octokit({
   auth: `token ${config.github.token}`,
-  log: console
+  log: require('console-log-level')({level: 'info'})
 });
 
 /**
