@@ -6,17 +6,16 @@ const {DateTime} = require('luxon');
  * @memberof microformats
  * @module dervivePublishedProperty
  * @param {Object} mf2 microformats2 object
- * @returns {Array} ISO formatted date
+ * @returns {Array} Array containing ISO formatted date
  */
 module.exports = mf2 => {
-  let date;
+  let {published} = mf2.properties;
+  const now = DateTime.local().toISO();
 
-  try {
-    const published = mf2.properties.published[0];
-    date = published.toISO();
-  } catch (error) {
-    date = DateTime.local().toISO();
+  if (published) {
+    published = DateTime.fromISO(published[0]).toISO();
+    return new Array(published);
   }
 
-  return new Array(date);
+  return new Array(now);
 };
