@@ -14,11 +14,12 @@
   "scripts": {
     "start": "node app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
-    "test": "NODE_ENV=test nyc ava --verbose"
+    "test": "NODE_ENV=test nyc ava app/**/*.test.js --verbose"
   },
   "dependencies": {
     "@octokit/rest": "^16.16.0",
     "body-parser": "^1.18.3",
+    "console-log-level": "^1.4.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "fs-extra": "^7.0.1",

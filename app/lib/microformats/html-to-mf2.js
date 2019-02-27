@@ -23,7 +23,7 @@ module.exports = async (html, properties) => {
     if (Object.keys(item.properties).length > 1) {
       const {html} = item.properties.content[0];
       if (html) {
-        item.properties.content[0].html = utils.sanitizeHtml(html);
+        item.properties.content[0].html = html.trim().replace(/\s\s+/g, ' ');
       }
 
       mf2 = item;
