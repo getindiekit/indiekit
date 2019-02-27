@@ -12,6 +12,7 @@ const itemMissing = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-item-
 const itemContentPlain = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-item-content-plain.html'));
 const itemContentEmbedded = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-item-content-embedded.html'));
 
+// Tests
 test('Throws error if HTML has no items', async t => {
   const html = Buffer.from(itemsMissing).toString('utf-8');
   const error = await t.throwsAsync(htmlToMf2(html));
