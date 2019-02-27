@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const utils = require('./utils');
+const utils = require('./../utils');
 
 // Tests
 test('Capitalizes first letter of a string', t => {

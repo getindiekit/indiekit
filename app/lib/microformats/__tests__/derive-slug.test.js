@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const derviveSlug = require('./derive-slug.js');
+const derviveSlug = require('./../derive-slug.js');
 
 // Fixtures
 const provided = require('./fixtures/slug-provided');
