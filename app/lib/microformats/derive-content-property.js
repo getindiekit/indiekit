@@ -7,10 +7,10 @@
  * @returns {Array} Content
  */
 module.exports = mf2 => {
-  let content = mf2.properties.content[0];
+  let {content} = mf2.properties;
 
   if (content) {
-    content = content.html || content.value || content;
+    content = content[0].html || content[0].value || content[0];
     return new Array(content);
   }
 
