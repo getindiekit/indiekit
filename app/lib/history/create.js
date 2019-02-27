@@ -10,7 +10,7 @@ const config = require(__basedir + '/config');
  * @module create
  */
 module.exports = () => {
-  const filePath = path.join(config.cache.dir, config.history.file);
+  const filePath = path.join(config.cache.dir, config.cache.history);
 
   try {
     const history = {

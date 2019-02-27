@@ -1,6 +1,6 @@
 const request = require('supertest');
 const test = require('ava');
-const app = require('../../app/main');
+const app = require('../../app/server');
 
 test('001: Rejects query with no body data', async t => {
   const res = await request(app)

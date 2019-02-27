@@ -14,7 +14,7 @@ const readHistory = require(__basedir + '/lib/history/read');
  * @param {Object} data Entry data
  */
 module.exports = (action, data) => {
-  const filePath = path.join(config.cache.dir, config.history.file);
+  const filePath = path.join(config.cache.dir, config.cache.history);
 
   try {
     const history = readHistory(filePath);
