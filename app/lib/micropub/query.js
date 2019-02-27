@@ -24,10 +24,14 @@ module.exports = async (query, publication, appUrl) => {
   }
 
   if (query.q === 'source') {
-    return {
-      code: 200,
-      body: await microformats.urlToMf2(query.url, query.properties)
-    };
+    try {
+      return {
+        code: 200,
+        body: await microformats.urlToMf2(query.url, query.properties)
+      };
+    } catch (error) {
+      return response.error('invalid_request', error.message);
+    }
   }
 
   if (query.q === 'syndicate-to') {

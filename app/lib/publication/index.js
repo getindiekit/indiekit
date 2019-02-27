@@ -20,9 +20,6 @@ module.exports = async () => {
       publicationConfig = JSON.parse(publicationConfig);
     }
 
-    console.log('remoteConfig', publicationConfig);
-    console.log('defaults', defaults);
-
     // Merge remote configuration with application defaults
     const combinedConfig = {...defaults, ...publicationConfig};
 
