@@ -2,7 +2,7 @@ const test = require('ava');
 const {DateTime} = require('luxon');
 
 // Function
-const dervivePublishedProperty = require('./derive-published-property.js');
+const dervivePublishedProperty = require('./../derive-published-property.js');
 
 // Fixtures
 const provided = require('./fixtures/published-provided');

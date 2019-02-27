@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const derviveContentProperty = require('./derive-content-property.js');
+const derviveContentProperty = require('./../derive-content-property.js');
 
 // Fixtures
 const providedHtmlValue = require('./fixtures/content-provided-html-value');
