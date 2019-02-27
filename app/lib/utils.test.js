@@ -2,6 +2,7 @@ const test = require('ava');
 
 const utils = require('./utils');
 
+// Tests
 test('Capitalizes first letter of a string', t => {
   t.is(utils.capitalizeFirstLetter('foo bar'), 'Foo bar');
   t.is(utils.capitalizeFirstLetter('foo-bar'), 'Foo-bar');

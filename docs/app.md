@@ -177,7 +177,7 @@ Returns **[Array][9]** Array containing ISO formatted date
 
 ### derviveSlug
 
-Derives slug (based on microformats2 data, else a random number)
+Derives slug (using `mp-slug` value, slugified name else a random number)
 
 #### Parameters
 

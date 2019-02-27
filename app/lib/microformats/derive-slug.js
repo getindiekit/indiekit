@@ -1,7 +1,7 @@
 const slugify = require('slug');
 
 /**
- * Derives slug (based on microformats2 data, else a random number)
+ * Derives slug (using `mp-slug` value, slugified name else a random number)
  *
  * @memberof microformats
  * @module derviveSlug

@@ -48,7 +48,6 @@ module.exports = async (remotePath, cachePath) => {
 
   if (!isCached || hasExpired) {
     console.info('Fetching remote data to populate stale/missing cache');
-    console.log('remotePth', remotePath);
     remotePath = utils.normalizePath(remotePath);
 
     try {

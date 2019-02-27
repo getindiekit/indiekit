@@ -17,8 +17,12 @@ module.exports = async (url, properties) => {
     const response = await fetch(url);
 
     if (response) {
-      const html = await response.text();
-      return htmlToMf2(html, properties);
+      try {
+        const html = await response.text();
+        return htmlToMf2(html, properties);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     throw new Error(`Unable to connect to ${url}`);

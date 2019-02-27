@@ -54,7 +54,6 @@ module.exports = async (publication, body, files) => {
     const templatePath = typeConfig.template;
     const templateData = fs.readFileSync(templatePath);
     const template = Buffer.from(templateData).toString('utf-8');
-    console.log('template', template);
     const content = render(template, properties);
 
     // Create post on GitHub
