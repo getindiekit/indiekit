@@ -1,0 +1,7 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "name": ["Made a thing? With ‘JavaScript’. That works. 🤯"],
+    "published": ["2019-01-02"]
+  }
+}
