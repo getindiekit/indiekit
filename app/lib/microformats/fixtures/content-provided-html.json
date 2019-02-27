@@ -1,0 +1,8 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "content": [{
+      "html": "<p>Visit this <a href=\"https://example.com/\">example website</a>.</p>"
+    }]
+  }
+}
