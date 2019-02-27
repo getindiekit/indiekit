@@ -12,7 +12,7 @@ const createHistory = require(__basedir + '/lib/history/create');
  * @returns {Object} Configuration options
  */
 module.exports = () => {
-  const filePath = path.join(config.cache.dir, config.history.file);
+  const filePath = path.join(config.cache.dir, config.cache.history);
   const isCached = fs.existsSync(filePath);
 
   if (!isCached) {

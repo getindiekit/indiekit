@@ -255,7 +255,7 @@ Creates a new post
 
 #### Parameters
 
--   `pubConfig` **[Object][1]** Publication configuration
+-   `publication` **[Object][1]** Publication configuration
 -   `body` **[String][2]** Body content (contains microformats2 object)
 -   `files` **[String][2]** File attachments
 
@@ -293,6 +293,7 @@ Returns an object containing information about this application
 ### Parameters
 
 -   `query` **[String][2]** Identifier
+-   `publication` **[String][2]** Publication configuration
 -   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object
@@ -303,7 +304,7 @@ Creates a new post
 
 #### Parameters
 
--   `pubConfig` **[Object][1]** Publication configuration
+-   `publication` **[Object][1]** Publication configuration
 -   `body` **[String][2]** Body content (contains microformats2 object)
 -   `files` **[String][2]** File attachments
 
@@ -358,7 +359,7 @@ Returns **[Object][1]** Success object
 
 ## publication
 
-Gets a publication’s configuration file and combines its values with defaults
+Gets a publication’s configuration file and combines it with defaults values
 set by the application.
 
 Returns **[Promise][3]** Configuration object

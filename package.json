@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
-    "test": "nyc ava --verbose"
+    "test": "NODE_ENV=test nyc ava --verbose"
   },
   "dependencies": {
     "@octokit/rest": "^16.16.0",

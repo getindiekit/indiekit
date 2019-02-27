@@ -14,33 +14,33 @@ const cache = require(__basedir + '/lib/cache');
 module.exports = async () => {
   try {
     // Fetch and cache remote configuration
-    let remoteConfig = await cache.read(config.config.path, config.config.file);
-    if (remoteConfig) {
+    let publicationConfig = await cache.read(config['publication-config'], config.cache.config);
+    if (publicationConfig) {
       console.info('Remote has configuration');
-      remoteConfig = JSON.parse(remoteConfig);
+      publicationConfig = JSON.parse(publicationConfig);
     }
 
-    console.log('remoteConfig', remoteConfig);
+    console.log('remoteConfig', publicationConfig);
     console.log('defaults', defaults);
 
     // Merge remote configuration with application defaults
-    const combinedConfig = {...defaults, ...remoteConfig};
+    const combinedConfig = {...defaults, ...publicationConfig};
 
     // Fetch and cache remote template files
     let combinedPostTypes;
     const defaultPostTypes = defaults['post-types'][0];
-    const remotePostTypes = remoteConfig['post-types'][0];
+    const publicationPostTypes = publicationConfig['post-types'][0];
 
-    if (remotePostTypes) {
+    if (publicationPostTypes) {
       console.info('Remote has configured post types');
       // @todo Make asynchronous
-      for (const key in remotePostTypes) {
-        if (Object.prototype.hasOwnProperty.call(remotePostTypes, key)) {
-          const postType = remotePostTypes[key];
-          const remoteTemplate = postType.template;
+      for (const key in publicationPostTypes) {
+        if (Object.prototype.hasOwnProperty.call(publicationPostTypes, key)) {
+          const postType = publicationPostTypes[key];
+          const publicationTemplate = postType.template;
           const cacheTemplate = path.join('templates', `${key}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
-          await cache.read(remoteTemplate, cacheTemplate);
+          await cache.read(publicationTemplate, cacheTemplate);
 
           // Update `template` value with location of cached template file
           postType.template = cacheTemplatePath;
@@ -48,7 +48,7 @@ module.exports = async () => {
       }
 
       // Merge default post types with remote post types (with cached template paths)
-      combinedPostTypes = {...defaultPostTypes, ...remotePostTypes};
+      combinedPostTypes = {...defaultPostTypes, ...publicationPostTypes};
 
       // Update combined configuration with new post type values
       combinedConfig['post-types'][0] = combinedPostTypes;
