@@ -1,0 +1,33 @@
+const test = require('ava');
+
+const render = require('./../render');
+
+// Tests
+test('Render a template string using context data', t => {
+  const template = '{{ name }} walks into {{ location }}';
+  const context = {
+    name: 'Foo',
+    location: 'Bar'
+  };
+  t.is(render(template, context), 'Foo walks into Bar');
+});
+
+test('Render a template string (containing a date) using context data', t => {
+  const template = 'Published {{ published | date(\'DDD\') }}';
+  const context = {
+    name: 'Foo',
+    published: '2019-02-27'
+  };
+  t.is(render(template, context), 'Published 27 February 2019');
+});
+
+test('Throws error if required context data is missing', t => {
+  const template = 'Published {{ published }}';
+  const context = {
+    name: 'Foo'
+  };
+  const error = t.throws(() => {
+    render()(template, context);
+  });
+  t.is(error.message, 'src must be a string or an object describing the source');
+});
