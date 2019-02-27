@@ -4,10 +4,6 @@ const nunjucks = require('nunjucks');
 const env = new nunjucks.Environment();
 
 env.addFilter('date', (date, format) => {
-  if (!date) {
-    throw new Error('No date provided in context data');
-  }
-
   return DateTime.fromISO(date).toFormat(format);
 });
 
