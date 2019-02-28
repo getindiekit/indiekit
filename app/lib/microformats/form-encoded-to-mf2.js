@@ -1,7 +1,7 @@
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Parses microformats in a form-encoded POST request.
+ * Parses microformats in form-encoded POST request.
  * Adapted from {@link https://github.com/voxpelli/node-micropub-express node-micropub-express}
  * by {@link https://kodfabrik.se Pelle Wessman}
  *
@@ -19,7 +19,7 @@ module.exports = body => {
     'url'
   ]);
 
-  const result = {
+  const mf2 = {
     type: body.h ? ['h-' + body.h] : ['h-entry'],
     properties: {},
     mp: {}
@@ -29,32 +29,32 @@ module.exports = body => {
     delete body.h;
   }
 
-  for (let key in body) {
+  for (const key in body) {
     if (Object.hasOwnProperty.call(body, key)) {
-      const isReservedProperty = reservedProperties.indexOf(key) !== -1;
       const isExtendedProperty = key.indexOf('mp-') === 0;
+      const isReservedProperty = reservedProperties.indexOf(key) !== -1;
 
-      let value = body[key];
-      value = utils.decodeFormEncodedString(value);
-
-      if (isReservedProperty) {
-        result[key] = value;
+      // Decode string values
+      let value;
+      if (typeof body[key] === 'string') {
+        value = utils.decodeFormEncodedString(body[key]);
       } else {
-        let targetProperty;
+        value = body[key];
+      }
 
-        if (isExtendedProperty) {
-          key = key.substr(3);
-          targetProperty = result.mp;
-        } else {
-          targetProperty = result.properties;
-        }
-
+      // Assign values to correct properties in mf2 object
+      if (isExtendedProperty) {
+        mf2[key] = [].concat(value);
+      } else if (isReservedProperty) {
+        delete mf2[key];
+      } else {
+        const targetProperty = mf2.properties;
         targetProperty[key] = [].concat(value);
       }
     }
   }
 
-  utils.removeEmptyObjectKeys(result);
+  utils.removeEmptyObjectKeys(mf2);
 
-  return result;
+  return mf2;
 };
