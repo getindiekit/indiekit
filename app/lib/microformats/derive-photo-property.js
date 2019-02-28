@@ -16,16 +16,22 @@ const render = require(process.env.PWD + '/app/lib/render');
  * @returns {Promise} Array of photo obejcts
  */
 module.exports = async (mf2, files, typeConfig) => {
-  const photo = mf2.properties.photo || [];
-  const {properties} = mf2;
+  let referencedPhotos;
+  const combinedPhotos = [];
+  let properties;
+
+  if (mf2) {
+    referencedPhotos = mf2.properties.photo;
+    properties = mf2.properties;
+  }
 
   // Ensures property is consistently formatted as an array of objects
-  if (photo) {
-    photo.forEach(item => {
+  if (referencedPhotos) {
+    referencedPhotos.forEach(item => {
       if (typeof item === 'object') {
-        photo.push(item);
+        combinedPhotos.push(item);
       } else {
-        photo.push({
+        combinedPhotos.push({
           value: item
         });
       }
@@ -43,30 +49,28 @@ module.exports = async (mf2, files, typeConfig) => {
     for (const [i, file] of files.entries()) { /* eslint-disable no-await-in-loop */
       // Provide additional properties for file path templates
       const fileext = path.extname(file.originalname);
-      const basename = i + 1;
+      const basename = String(i + 1);
       const filename = `${basename.padStart(2, '0')}${fileext}`;
       const fileProperties = {
         originalname: file.originalname,
         filename,
         fileext
       };
-      const fileContext = {...properties, ...photo, ...fileProperties};
+      const fileContext = {...properties, ...referencedPhotos, ...fileProperties};
 
       // Render publish and destination paths
       const filePath = render(typeConfig.file, fileContext);
 
       // Create post on GitHub
-      const githubResponse = await github.createFile(filePath, file.buffer, {
+      await github.createFile(filePath, file.buffer, {
         message: `:framed_picture: ${filename} uploaded with ${config.name}`
       });
 
-      if (githubResponse) {
-        photo.push({
-          value: filePath
-        });
-      }
+      combinedPhotos.push({
+        value: filePath
+      });
     } /* eslint-enable no-await-in-loop */
   }
 
-  return photo;
+  return combinedPhotos;
 };

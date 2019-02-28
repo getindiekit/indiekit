@@ -1,0 +1,8 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "photo": [{
+      "value": "sunset.jpg"
+    }]
+  }
+}
