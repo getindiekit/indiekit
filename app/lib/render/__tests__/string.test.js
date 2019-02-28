@@ -1,9 +1,10 @@
 const test = require('ava');
 
-const render = require('./../render');
+// Functions
+const render = require(process.env.PWD + '/app/lib/render');
 
 // Tests
-test('Render a template string using context data', t => {
+test('Renders a template string using context data', t => {
   const template = '{{ name }} walks into {{ location }}';
   const context = {
     name: 'Foo',
@@ -12,7 +13,7 @@ test('Render a template string using context data', t => {
   t.is(render(template, context), 'Foo walks into Bar');
 });
 
-test('Render a template string (containing a date) using context data', t => {
+test('Renders a template string with a date using context data', t => {
   const template = 'Published {{ published | date(\'DDD\') }}';
   const context = {
     name: 'Foo',

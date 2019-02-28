@@ -199,7 +199,7 @@ Returns **[String][2]** Type of post
 
 ### formEncodedToMf2
 
-Parses microformats in a form-encoded POST request.
+Parses microformats in form-encoded POST request.
 Adapted from [node-micropub-express][10]
 by [Pelle Wessman][11]
 
@@ -287,7 +287,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## micropub
+## update
 
 Returns an object containing information about this application
 
@@ -298,43 +298,6 @@ Returns an object containing information about this application
 -   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object
-
-### update
-
-Creates a new post
-
-#### Parameters
-
--   `publication` **[Object][1]** Publication configuration
--   `body` **[String][2]** Body content (contains microformats2 object)
--   `files` **[String][2]** File attachments
-
-Returns **[String][2]** Location of created post
-
-### update
-
-Updates a post
-
-#### Parameters
-
--   `url` **[String][2]** URL path to post
--   `content` **[String][2]** Content to update
-
-Returns **[Object][1]** Response
-
-### delete
-
-Deletes a post
-
-#### Parameters
-
--   `url` **[String][2]** URL of published post
-
-Returns **[Promise][3]** Response object
-
-### response
-
-Sends HTTP response with error/success information encoded as JSON
 
 ## error
 
@@ -365,7 +328,7 @@ set by the application.
 
 Returns **[Promise][3]** Configuration object
 
-## render
+## string
 
 -   **See: [Nunjucks API: renderString][13]**
 
