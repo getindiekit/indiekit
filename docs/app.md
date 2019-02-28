@@ -143,7 +143,7 @@ Returns **[Promise][3]** Token endpoint reponse object
 
 Discover, parse and transform microformats2 objects
 
-### derviveContentProperty
+### derviveContent
 
 Derives content (HTML, else object value, else property value)
 
@@ -240,6 +240,17 @@ synchronous `for (const file of files) {…}` instead.
 Process and transform microformats in request so that it can be published to
 a destination.
 
+### createMedia
+
+Creates a new post
+
+#### Parameters
+
+-   `publication` **[Object][1]** Publication configuration
+-   `files` **[String][2]** File attachments
+
+Returns **[String][2]** Location of created post
+
 ### update
 
 Creates a new post
@@ -277,13 +288,22 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
+## 
+
+-   **See: [https://stackoverflow.com/a/37576787/11107625][12]**
+
+Turns out async/await doesn’t work so great with forEach loops. Use
+asynchronous `await Promise.all(files.map(async file => {…}))` or
+synchronous `for (const file of files) {…}` instead.
+(Asynchronous pattern trips up Micropub.rocks! validator)
+
 ## delete
 
 Returns an object containing information about this application
 
 ### Parameters
 
--   `query` **[String][2]** Identifier
+-   `request` **[String][2]** HTTP request object
 -   `publication` **[String][2]** Publication configuration
 -   `appUrl` **[String][2]** URL of application
 
@@ -445,14 +465,15 @@ Authentication
 
 ## routes/micropub
 
-### get
+### post
 
-Responds to GET requests
+Responds to POST requests
 
 #### Parameters
 
 -   `request` **[Object][1]** Request
 -   `response` **[Object][1]** Response
+-   `next` **[Object][1]** Callback
 
 Returns **[Object][1]** HTTP response
 
@@ -465,6 +486,54 @@ Responds to POST requests
 -   `request` **[Object][1]** Request
 -   `response` **[Object][1]** Response
 -   `next` **[Object][1]** Callback
+
+Returns **[Object][1]** HTTP response
+
+### get
+
+Responds to GET requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+
+Returns **[Object][1]** HTTP response
+
+## routes/micropub
+
+### post
+
+Responds to POST requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+-   `next` **[Object][1]** Callback
+
+Returns **[Object][1]** HTTP response
+
+### post
+
+Responds to POST requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+-   `next` **[Object][1]** Callback
+
+Returns **[Object][1]** HTTP response
+
+### get
+
+Responds to GET requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
 
 Returns **[Object][1]** HTTP response
 

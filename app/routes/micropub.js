@@ -16,8 +16,7 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
  */
 exports.get = async (request, response) => {
   const publication = await require(process.env.PWD + '/app/lib/publication')();
-  const appUrl = `${request.protocol}://${request.headers.host}`;
-  const getResponse = await micropub.query(request.query, publication, appUrl);
+  const getResponse = await micropub.query(request, publication);
 
   return response.status(getResponse.code).json(getResponse.body);
 };

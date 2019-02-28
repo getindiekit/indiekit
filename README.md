@@ -22,11 +22,11 @@ Learn more about this project on the [documentation site](https://paulrobertlloy
   * [x] Delete
   * [ ] Undelete
   * [x] Success response
-* [ ] Media endpoint
+* [x] Media endpoint
   * [x] Discovery
-  * [ ] Authetication
-  * [ ] Request
-  * [ ] Response
+  * [x] Authetication
+  * [x] Request
+  * [x] Response
 * [x] Querying
   * [x] Configuration
   * [x] Source content

@@ -63,7 +63,7 @@ module.exports = async (mf2, files, typeConfig) => {
 
       // Create post on GitHub
       await github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: ${filename} uploaded with ${config.name}`
+        message: `:framed_picture: ${filename} uploaded\nwith ${config.name}`
       });
 
       combinedPhotos.push({

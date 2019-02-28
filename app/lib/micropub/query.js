@@ -4,15 +4,17 @@ const response = require(process.env.PWD + '/app/lib/micropub/response');
 /**
  * Returns an object containing information about this application
  *
- * @param {String} query Identifier
+ * @param {String} request HTTP request object
  * @param {String} publication Publication configuration
  * @param {String} appUrl URL of application
  * @returns {Promise} Query object
  */
-module.exports = async (query, publication, appUrl) => {
-  const mediaEndpoint = publication['media-endpoint'] || `${appUrl}/media`;
+module.exports = async (request, publication) => {
+  const url = `${request.protocol}://${request.headers.host}`;
+  const mediaEndpoint = publication['media-endpoint'] || `${url}/media`;
   const syndicateTo = publication['syndicate-to'];
 
+  const {query} = request;
   if (query.q === 'config') {
     return {
       code: 200,
