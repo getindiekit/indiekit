@@ -1,6 +1,7 @@
 const test = require('ava');
 
-const utils = require('./../utils');
+// Functions
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 // Tests
 test('Capitalizes first letter of a string', t => {
