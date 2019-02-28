@@ -3,7 +3,7 @@ const path = require('path');
 const test = require('ava');
 
 // Function
-const htmlToMf2 = require('./../html-to-mf2.js');
+const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2.js');
 
 // Fixtures
 const itemsMissing = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-items-none.html'));

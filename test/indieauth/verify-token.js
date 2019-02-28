@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const verifyToken = require('./../verify-token.js');
+const verifyToken = require(process.env.PWD + '/app/lib/indieauth/verify-token.js');
 
 // Tests
 test('Verifies website URL against auth token', async t => {

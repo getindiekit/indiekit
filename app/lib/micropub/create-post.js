@@ -35,10 +35,10 @@ module.exports = async (publication, body, files) => {
   const typeConfig = publication['post-types'][0][type];
 
   // Date
-  properties.published = microformats.derivePuplishedProperty(body);
+  properties.published = microformats.derivePuplished(body);
 
   // Content
-  properties.content = microformats.deriveContentProperty(body);
+  properties.content = microformats.deriveContent(body);
 
   // Slug
   const slugSeparator = publication['slug-separator'];
@@ -47,7 +47,7 @@ module.exports = async (publication, body, files) => {
 
   // Photos
   try {
-    properties.photo = await microformats.derivePhotoProperty(body, files, typeConfig);
+    properties.photo = await microformats.derivePhoto(body, files, typeConfig);
   } catch (error) {
     console.error(error);
   }

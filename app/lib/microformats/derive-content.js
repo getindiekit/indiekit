@@ -2,7 +2,7 @@
  * Derives content (HTML, else object value, else property value)
  *
  * @memberof microformats
- * @module derviveContentProperty
+ * @module derviveContent
  * @param {Object} mf2 microformats2 object
  * @returns {Array} Content
  */

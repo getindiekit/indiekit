@@ -4,7 +4,7 @@ const nock = require('nock');
 const test = require('ava');
 
 // Function
-const createPost = require('./../create-post');
+const createPost = require(process.env.PWD + '/app/lib/micropub/create-post');
 const publication = require('./fixtures/create-config');
 
 // Tests

@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const query = require('./../query');
+const query = require(process.env.PWD + '/app/lib/micropub/query');
 
 // Tests
 test('Returns configuration object with media endpoint', async t => {

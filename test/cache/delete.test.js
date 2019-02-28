@@ -4,8 +4,8 @@ const test = require('ava');
 const outputDir = process.env.PWD + '/.ava_output';
 
 // Function
-const createCache = require('./../create.js');
-const deleteCache = require('./../delete.js');
+const createCache = require(process.env.PWD + '/app/lib/cache/create.js');
+const deleteCache = require(process.env.PWD + '/app/lib/cache/delete.js');
 
 // Tests
 test.beforeEach(async () => {
