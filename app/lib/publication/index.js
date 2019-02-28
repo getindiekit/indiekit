@@ -1,3 +1,4 @@
+/* eslint no-await-in-loop: warn */
 const path = require('path');
 
 const cache = require(process.env.PWD + '/app/lib/cache');

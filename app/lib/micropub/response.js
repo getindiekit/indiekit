@@ -1,3 +1,5 @@
+/* eslint camelcase: 0 */
+
 /**
  * Sends HTTP response with error/success information encoded as JSON
  *
