@@ -287,7 +287,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## update
+## delete
 
 Returns an object containing information about this application
 
