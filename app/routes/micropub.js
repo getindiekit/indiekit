@@ -73,7 +73,7 @@ exports.post = async (request, response, next) => {
     // Delete action (WIP)
     if (action === 'delete') {
       if (scope.includes('delete')) {
-        return micropub.delete(url);
+        return micropub.deletePost(url);
       }
 
       return micropub.response.error('insufficient_scope');
@@ -90,7 +90,7 @@ exports.post = async (request, response, next) => {
 
     // Create action
     if (scope.includes('create')) {
-      return micropub.create(publication, body, files);
+      return micropub.createPost(publication, body, files);
     }
 
     return micropub.response.error('insufficient_scope');

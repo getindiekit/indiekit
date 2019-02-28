@@ -1,5 +1,7 @@
 const slugify = require('slug');
 
+const utils = require(process.env.PWD + '/app/lib/utils');
+
 /**
  * Derives slug (using `mp-slug` value, slugified name else a random number)
  *
@@ -19,7 +21,8 @@ module.exports = (mf2, separator) => {
   }
 
   if (name) {
-    slug = slugify(name[0], {
+    const excerpt = utils.excerptString(name[0], 5);
+    slug = slugify(excerpt, {
       replacement: separator,
       lower: true
     });

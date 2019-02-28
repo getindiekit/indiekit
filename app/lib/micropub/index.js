@@ -5,9 +5,9 @@
  * @module micropub
  */
 module.exports = {
-  create: require(process.env.PWD + '/app/lib/micropub/create'),
-  delete: require(process.env.PWD + '/app/lib/micropub/delete'),
+  createPost: require(process.env.PWD + '/app/lib/micropub/create-post'),
+  deletePost: require(process.env.PWD + '/app/lib/micropub/delete-post'),
   query: require(process.env.PWD + '/app/lib/micropub/query'),
   response: require(process.env.PWD + '/app/lib/micropub/response'),
-  update: require(process.env.PWD + '/app/lib/micropub/update')
+  update: require(process.env.PWD + '/app/lib/micropub/update-post')
 };

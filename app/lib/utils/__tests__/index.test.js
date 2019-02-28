@@ -15,6 +15,12 @@ test('Decodes form-encoded string', t => {
   t.is(utils.decodeFormEncodedString('http%3A%2F%2Ffoo.bar'), 'http://foo.bar');
 });
 
+test('Excerpts string', t => {
+  const string = 'Foo bar baz qux quux.';
+  t.is(utils.excerptString(string, 2), 'Foo bar');
+  t.is(utils.excerptString(string, 10), 'Foo bar baz qux quux.');
+});
+
 test('Removes empty keys from an object', t => {
   const objectWithChildren = {foo: 'bar', baz: {qux: {quux: 'quuz'}}};
   const objectWithEmptyChildren = {foo: 'bar', baz: {}, qux: {quux: {}}};

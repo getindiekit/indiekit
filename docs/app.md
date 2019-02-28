@@ -277,7 +277,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## delete
+## update
 
 Returns an object containing information about this application
 
@@ -370,6 +370,23 @@ decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
 ```
 
 Returns **[String][2]** Decoded string
+
+## excerptString
+
+Gets first n words from a string
+
+### Parameters
+
+-   `string` **[String][2]** String to excerpt
+-   `n` **[Number][14]** Max number of words
+
+### Examples
+
+```javascript
+excerptString('Foo bar baz', 2) => 'Foo bar'
+```
+
+Returns **[String][2]** Excerpt
 
 ## removeEmptyObjectKeys
 
@@ -476,3 +493,5 @@ Returns **[Object][1]** HTTP response
 [12]: https://stackoverflow.com/a/37576787/11107625
 
 [13]: https://mozilla.github.io/nunjucks/api.html#renderstring
+
+[14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
