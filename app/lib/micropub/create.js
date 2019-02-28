@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');
@@ -27,7 +28,9 @@ module.exports = async (publication, body, files) => {
     if (files) {
       type = 'photo';
     } else {
-      type = microformats.deriveType(body);
+      // Create the `items` array getType() expects
+      const mf2 = {items: new Array(body)};
+      type = getType(mf2);
     }
 
     const typeConfig = publication['post-types'][0][type];
