@@ -457,6 +457,22 @@ normalizePath('/foo/bar/') => 'foo/bar'
 
 Returns **[Object][1]** Normalized object
 
+## test
+
+Creating Posts (Form-Encoded)
+
+## test
+
+Creating Posts (JSON)
+
+## test
+
+Query
+
+## test
+
+Authentication
+
 ## routes/micropub
 
 ### get
