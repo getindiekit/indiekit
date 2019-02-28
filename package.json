@@ -17,6 +17,9 @@
     "test": "ava --verbose",
     "coverage": "NODE_ENV=test nyc ava"
   },
+  "engines": {
+    "node": "11.x"
+  },
   "dependencies": {
     "@octokit/rest": "^16.16.0",
     "body-parser": "^1.18.3",
@@ -31,7 +34,7 @@
     "node-fetch": "^2.3.0",
     "normalize-url": "^4.1.0",
     "nunjucks": "^3.1.7",
-    "post-type-discovery": "^1.0.1",
+    "post-type-discovery": "github:paulrobertlloyd/post-type-discovery",
     "serve-favicon": "^2.5.0",
     "slug": "^1.0.0"
   },

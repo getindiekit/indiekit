@@ -19,8 +19,6 @@ const response = require(process.env.PWD + '/app/lib/micropub/response');
  * @returns {String} Location of created post
  */
 module.exports = async (publication, body, files) => {
-  const {properties} = body;
-
   // Determine post type
   // @todo Infer type by `type` using multer field object
   let type;
@@ -28,29 +26,19 @@ module.exports = async (publication, body, files) => {
     type = 'photo';
   } else {
     // Create the `items` array getType() expects
-    const mf2 = {items: new Array(body)};
+    const mf2 = {items: [body]};
     type = getType(mf2);
   }
 
   const typeConfig = publication['post-types'][0][type];
-
-  // Date
-  properties.published = microformats.derivePuplished(body);
-
-  // Content
-  properties.content = microformats.deriveContent(body);
-
-  // Slug
   const slugSeparator = publication['slug-separator'];
-  const slug = microformats.deriveSlug(body, slugSeparator);
-  properties.slug = slug;
 
-  // Photos
-  try {
-    properties.photo = await microformats.derivePhoto(body, files, typeConfig);
-  } catch (error) {
-    console.error(error);
-  }
+  // Update properties
+  const {properties} = body;
+  properties.published = microformats.derivePuplished(body);
+  properties.content = microformats.deriveContent(body);
+  properties.slug = microformats.deriveSlug(body, slugSeparator);
+  properties.photo = await microformats.derivePhoto(body, files, typeConfig);
 
   // Render publish and destination paths
   const postPath = render(typeConfig.post, properties);
@@ -62,18 +50,15 @@ module.exports = async (publication, body, files) => {
   const template = Buffer.from(templateData).toString('utf-8');
   const content = render(template, properties);
 
+  // Prepare location and history entry
+  const location = config.url + urlPath;
+  const historyEntry = {post: postPath, url: location};
+
   // Create post on GitHub
   try {
     const githubResponse = await github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${config.name}`
     });
-
-    // Update history and send success reponse
-    const location = config.url + urlPath;
-    const historyEntry = {
-      post: postPath,
-      url: location
-    };
 
     if (githubResponse) {
       history.update('create', historyEntry);
