@@ -19,7 +19,7 @@ Deletes the cache directory
 
 #### Parameters
 
--   `cacheDir` **[Object][1]** Location to save cache directory
+-   `dir` **[Object][1]** Location of cache directory
 
 ### read
 
@@ -187,16 +187,6 @@ Derives slug (using `mp-slug` value, slugified name else a random number)
 
 Returns **[Array][9]** Array containing slug value
 
-### deviveType
-
-Discover the post type from a microformats2 object.
-
-#### Parameters
-
--   `mf2` **[object][1]** A mf2 json object
-
-Returns **[String][2]** Type of post
-
 ### formEncodedToMf2
 
 Parses microformats in form-encoded POST request.
@@ -287,7 +277,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## update
+## delete
 
 Returns an object containing information about this application
 

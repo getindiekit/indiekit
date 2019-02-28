@@ -17,16 +17,16 @@ module.exports = (filePath, fileData) => {
     fs.mkdirSync(pathToFile, {
       recursive: true
     });
+
+    console.info(`Created ${pathToFile}`);
   }
 
   // Write data to disk
   fs.writeFile(filePath, fileData, error => {
-    const fileName = path.basename(filePath);
-
     if (error) {
-      throw new Error(`Could not cache ${fileName}`);
+      throw error;
     }
 
-    console.info(`Cached ${fileName}`);
+    console.info(`Cached ${filePath}`);
   });
 };
