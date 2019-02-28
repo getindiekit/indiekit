@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const response = require('./../response');
+const response = require(process.env.PWD + '/app/lib/micropub/response');
 
 // Tests
 test('Returns 404 code if error name `not_found`', t => {

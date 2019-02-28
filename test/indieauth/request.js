@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const request = require('./../request.js');
+const request = require(process.env.PWD + '/app/lib/indieauth/request.js');
 
 // Tests
 test('Connects to token endpoint', async t => {

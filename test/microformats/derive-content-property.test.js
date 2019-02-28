@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const derviveContentProperty = require('./../derive-content-property.js');
+const derviveContent = require(process.env.PWD + '/app/lib/microformats/derive-content.js');
 
 // Fixtures
 const providedHtmlValue = require('./fixtures/content-provided-html-value');
@@ -12,26 +12,26 @@ const missing = require('./fixtures/content-missing');
 
 // Tests
 test('Derives content from `content[0].html` property', t => {
-  const content = derviveContentProperty(providedHtmlValue);
+  const content = derviveContent(providedHtmlValue);
   t.is(content[0], '<p>Visit this <a href="https://example.com/">example website</a>.</p>');
 });
 
 test('Derives content from `content[0].html` property (ignores `content.value`)', t => {
-  const content = derviveContentProperty(providedHtml);
+  const content = derviveContent(providedHtml);
   t.is(content[0], '<p>Visit this <a href="https://example.com/">example website</a>.</p>');
 });
 
 test('Derives content from `content[0].value` property', t => {
-  const content = derviveContentProperty(providedValue);
+  const content = derviveContent(providedValue);
   t.is(content[0], 'Visit this example website.');
 });
 
 test('Derives content from `content[0]` property', t => {
-  const content = derviveContentProperty(provided);
+  const content = derviveContent(provided);
   t.is(content[0], 'Visit this example website.');
 });
 
 test('Returns null if no `content[0]` property found', t => {
-  const content = derviveContentProperty(missing);
+  const content = derviveContent(missing);
   t.is(content, null);
 });

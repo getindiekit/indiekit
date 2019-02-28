@@ -4,7 +4,7 @@ const test = require('ava');
 const outputDir = process.env.PWD + '/.ava_output';
 
 // Function
-const createCache = require('./../create.js');
+const createCache = require(process.env.PWD + '/app/lib/cache/create.js');
 
 // Tests
 test('Creates cache', t => {

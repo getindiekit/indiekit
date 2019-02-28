@@ -4,7 +4,7 @@ const nock = require('nock');
 const test = require('ava');
 
 // Function
-const devivePhotoProperty = require('./../derive-photo-property.js');
+const devivePhoto = require(process.env.PWD + '/app/lib/microformats/derive-photo.js');
 
 // Fixtures
 const provided = require('./fixtures/photo-provided');
@@ -15,23 +15,23 @@ const missing = require('./fixtures/photo-missing');
 
 // Tests
 test('Derives photo from `photo` property', async t => {
-  const photo = await devivePhotoProperty(provided);
+  const photo = await devivePhoto(provided);
   t.is(photo[0].value, 'sunset.jpg');
 });
 
 test('Derives photo from `photo.value` property', async t => {
-  const photo = await devivePhotoProperty(providedValue);
+  const photo = await devivePhoto(providedValue);
   t.is(photo[0].value, 'sunset.jpg');
 });
 
 test('Derives photos from `photo` properties', async t => {
-  const photos = await devivePhotoProperty(multipleProvided);
+  const photos = await devivePhoto(multipleProvided);
   const mf2 = [{value: 'sunrise.jpg'}, {value: 'sunset.jpg'}];
   t.deepEqual(photos, mf2);
 });
 
 test('Derives photos from `photo.value` properties', async t => {
-  const photos = await devivePhotoProperty(multipleProvidedValue);
+  const photos = await devivePhoto(multipleProvidedValue);
   const mf2 = [{value: 'sunrise.jpg'}, {value: 'sunset.jpg'}];
   t.deepEqual(photos, mf2);
 });
@@ -46,7 +46,7 @@ test('Derives photo from attached file', async t => {
     file: '{{ filename }}'
   };
   nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
-  const photo = await devivePhotoProperty(null, files, typeConfig);
+  const photo = await devivePhoto(null, files, typeConfig);
   t.is(photo[0].value, '01.gif');
 });
 
@@ -64,7 +64,7 @@ test('Derives photos from attached files', async t => {
     file: '{{ filename }}'
   };
   nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
-  const photos = await devivePhotoProperty(null, files, typeConfig);
+  const photos = await devivePhoto(null, files, typeConfig);
   const mf2 = [{value: '01.gif'}, {value: '02.gif'}];
   t.deepEqual(photos, mf2);
 });
@@ -79,12 +79,12 @@ test('Derives photos from referenced and attached files', async t => {
     file: '{{ filename }}'
   };
   nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
-  const photos = await devivePhotoProperty(provided, files, typeConfig);
+  const photos = await devivePhoto(provided, files, typeConfig);
   const mf2 = [{value: 'sunset.jpg'}, {value: '01.gif'}];
   t.deepEqual(photos, mf2);
 });
 
 test('Returns empty array if no `photo` property found', async t => {
-  const photo = await devivePhotoProperty(missing);
+  const photo = await devivePhoto(missing);
   t.deepEqual(photo, []);
 });
