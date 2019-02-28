@@ -28,3 +28,11 @@ config.github = {
   repo: process.env.GITHUB_REPO || console.error('Missing GITHUB_REPO'),
   branch: process.env.GITHUB_BRANCH || 'master'
 };
+
+if (process.env.NODE_ENV === 'test') {
+  config.github = {
+    token: 'abc123',
+    user: 'username',
+    repo: 'repo'
+  };
+}

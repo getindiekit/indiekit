@@ -236,7 +236,7 @@ Parses microformats at a given URL
 
 Returns **[Promise][3]** mf2 object
 
-## githubResponse
+## push
 
 -   **See: [https://stackoverflow.com/a/37576787/11107625][12]**
 
