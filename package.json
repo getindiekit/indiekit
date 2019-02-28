@@ -31,6 +31,7 @@
     "node-fetch": "^2.3.0",
     "normalize-url": "^4.1.0",
     "nunjucks": "^3.1.7",
+    "post-type-discovery": "^1.0.1",
     "serve-favicon": "^2.5.0",
     "slug": "^1.0.0"
   },

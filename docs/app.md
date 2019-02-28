@@ -187,9 +187,9 @@ Derives slug (using `mp-slug` value, slugified name else a random number)
 
 Returns **[Array][9]** Array containing slug value
 
-### postType
+### deviveType
 
-Discover the post type from a mf2 json object.
+Discover the post type from a microformats2 object.
 
 #### Parameters
 
@@ -287,7 +287,7 @@ Returns **[Promise][3]** Response object
 
 Sends HTTP response with error/success information encoded as JSON
 
-## delete
+## micropub
 
 Returns an object containing information about this application
 
@@ -298,6 +298,43 @@ Returns an object containing information about this application
 -   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object
+
+### update
+
+Creates a new post
+
+#### Parameters
+
+-   `publication` **[Object][1]** Publication configuration
+-   `body` **[String][2]** Body content (contains microformats2 object)
+-   `files` **[String][2]** File attachments
+
+Returns **[String][2]** Location of created post
+
+### update
+
+Updates a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL path to post
+-   `content` **[String][2]** Content to update
+
+Returns **[Object][1]** Response
+
+### delete
+
+Deletes a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL of published post
+
+Returns **[Promise][3]** Response object
+
+### response
+
+Sends HTTP response with error/success information encoded as JSON
 
 ## error
 
