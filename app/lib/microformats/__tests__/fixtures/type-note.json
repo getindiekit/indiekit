@@ -1,0 +1,14 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "url": ["https://paulrobertlloyd.com/notes/1523907802"],
+    "published": ["2018-04-16T20:43:22.000+0100"],
+    "content": [{
+      "value": "Watched Isle of Dogs. A fun yet timely story. An inventive example of stop-motion animation. A beautiful piece of graphic design. A work of art. A visual feast - with dogs!",
+      "html": "<p>Watched <a href=\"https://www.imdb.com/title/tt5104604/\">Isle of Dogs</a>. A fun yet timely story. An inventive example of stop-motion animation. A beautiful piece of graphic design. A work of art. A visual feast – with dogs!</p>"
+    }],
+    "name": [
+      "Watched Isle of Dogs. A fun yet timely story. An inventive example of stop-motion animation. A beautiful piece of graphic design. A work of art. A visual feast - with dogs!"
+    ]
+  }
+}
