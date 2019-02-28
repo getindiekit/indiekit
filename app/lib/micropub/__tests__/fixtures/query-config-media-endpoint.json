@@ -1,0 +1,7 @@
+{
+  "media-endpoint": "https://endpoint.media",
+  "syndicate-to": [{
+    "uid": "https://twitter.com/username/",
+    "name": "@username on Twitter"
+  }]
+}
