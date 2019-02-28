@@ -33,6 +33,21 @@ const decodeFormEncodedString = string => {
 };
 
 /**
+ * Gets first n words from a string
+ *
+ * @example excerptString('Foo bar baz', 2) => 'Foo bar'
+ * @param {String} string String to excerpt
+ * @param {Number} n Max number of words
+ * @return {String} Excerpt
+ */
+const excerptString = (string, n) => {
+  if (typeof string === 'string') {
+    string = string.split(/\s+/).slice(0, n).join(' ');
+    return string;
+  }
+};
+
+/**
  * Removes empty keys from an object
  *
  * @example removeEmptyObjectKeys({
@@ -76,6 +91,7 @@ const normalizePath = string => {
 module.exports = {
   capitalizeFirstLetter,
   decodeFormEncodedString,
+  excerptString,
   removeEmptyObjectKeys,
   normalizePath
 };

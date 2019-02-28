@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const query = require('./../query.js');
+const query = require('./../query');
 
 // Tests
 test('Returns configuration object with media endpoint', async t => {

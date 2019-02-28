@@ -1,7 +1,7 @@
 const test = require('ava');
 
 // Function
-const response = require('./../response.js');
+const response = require('./../response');
 
 // Tests
 test('Returns 404 code if error name `not_found`', t => {

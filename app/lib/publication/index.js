@@ -17,7 +17,6 @@ module.exports = async () => {
     // Fetch and cache remote configuration
     let publicationConfig = await cache.read(config['publication-config'], config.cache.config);
     if (publicationConfig) {
-      console.info('Remote has configuration');
       publicationConfig = JSON.parse(publicationConfig);
     }
 
@@ -30,7 +29,6 @@ module.exports = async () => {
     const publicationPostTypes = publicationConfig['post-types'][0];
 
     if (publicationPostTypes) {
-      console.info('Remote has configured post types');
       // @todo Make asynchronous
       for (const key in publicationPostTypes) {
         if (Object.prototype.hasOwnProperty.call(publicationPostTypes, key)) {

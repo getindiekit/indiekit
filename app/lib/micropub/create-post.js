@@ -19,47 +19,51 @@ const response = require(process.env.PWD + '/app/lib/micropub/response');
  * @returns {String} Location of created post
  */
 module.exports = async (publication, body, files) => {
+  const {properties} = body;
+
+  // Determine post type
+  // @todo Infer type by `type` using multer field object
+  let type;
+  if (files) {
+    type = 'photo';
+  } else {
+    // Create the `items` array getType() expects
+    const mf2 = {items: new Array(body)};
+    type = getType(mf2);
+  }
+
+  const typeConfig = publication['post-types'][0][type];
+
+  // Date
+  properties.published = microformats.derivePuplishedProperty(body);
+
+  // Content
+  properties.content = microformats.deriveContentProperty(body);
+
+  // Slug
+  const slugSeparator = publication['slug-separator'];
+  const slug = microformats.deriveSlug(body, slugSeparator);
+  properties.slug = slug;
+
+  // Photos
   try {
-    const {properties} = body;
-
-    // Determine post type
-    // @todo Infer type by `type` using multer field object
-    let type;
-    if (files) {
-      type = 'photo';
-    } else {
-      // Create the `items` array getType() expects
-      const mf2 = {items: new Array(body)};
-      type = getType(mf2);
-    }
-
-    const typeConfig = publication['post-types'][0][type];
-
-    // Date
-    properties.published = microformats.derivePuplishedProperty(body);
-
-    // Content
-    properties.content = microformats.deriveContentProperty(body);
-
-    // Slug
-    const slugSeparator = publication['slug-separator'];
-    const slug = microformats.deriveSlug(body, slugSeparator);
-    properties.slug = slug;
-
-    // Photos
     properties.photo = await microformats.derivePhotoProperty(body, files, typeConfig);
+  } catch (error) {
+    console.error(error);
+  }
 
-    // Render publish and destination paths
-    const postPath = render(typeConfig.post, properties);
-    const urlPath = render(typeConfig.url, properties);
+  // Render publish and destination paths
+  const postPath = render(typeConfig.post, properties);
+  const urlPath = render(typeConfig.url, properties);
 
-    // Render template
-    const templatePath = typeConfig.template;
-    const templateData = fs.readFileSync(templatePath);
-    const template = Buffer.from(templateData).toString('utf-8');
-    const content = render(template, properties);
+  // Render template
+  const templatePath = typeConfig.template;
+  const templateData = fs.readFileSync(templatePath);
+  const template = Buffer.from(templateData).toString('utf-8');
+  const content = render(template, properties);
 
-    // Create post on GitHub
+  // Create post on GitHub
+  try {
     const githubResponse = await github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${config.name}`
     });
@@ -75,11 +79,7 @@ module.exports = async (publication, body, files) => {
       history.update('create', historyEntry);
       return response.success('create_pending', location);
     }
-
-    throw new Error(`Unable to create ${location}`);
   } catch (error) {
-    console.error(error);
+    return response.error('server_error', error);
   }
-
-  return response.error('server_error');
 };

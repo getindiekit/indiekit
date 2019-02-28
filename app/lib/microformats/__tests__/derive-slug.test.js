@@ -16,7 +16,7 @@ test('Derives slug from `mp-slug` property', t => {
 
 test('Derives slug from `name` property', t => {
   const slug = derviveSlug(missing, '-');
-  t.is(slug[0], 'made-a-thing-with-javascript-that-works');
+  t.is(slug[0], 'made-a-thing-with-javascript');
 });
 
 test('Derives slug by generating random number', t => {

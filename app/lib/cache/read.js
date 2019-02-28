@@ -62,7 +62,6 @@ module.exports = async (remotePath, cachePath) => {
 
   // Cache exists, still fresh
   if (!hasExpired) {
-    console.info(`Reading cache from ${cachePath}`);
     cacheFile = fs.readFileSync(cachePath);
     const cachedData = Buffer.from(cacheFile).toString('utf-8');
     return cachedData;
