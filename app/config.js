@@ -9,7 +9,7 @@ config.cache = {
   dir: process.env.PWD + '/.cache',
   'max-age': process.env.INDIEKIT_CACHE_EXPIRES || 86400,
   config: 'config.json',
-  history: 'history.json'
+  memos: 'memos.json'
 };
 
 // IndieAuth
@@ -19,7 +19,7 @@ config.indieauth = {
 
 // Publication
 config.url = process.env.INDIEKIT_URL || console.error('Missing INDIEKIT_URL');
-config['publication-config'] = process.env.INDIEKIT_CONFIG_PATH || 'indiekit.json';
+config['pub-config'] = process.env.INDIEKIT_CONFIG_PATH || 'indiekit.json';
 
 // Github
 config.github = {

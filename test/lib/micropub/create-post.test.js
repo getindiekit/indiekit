@@ -5,13 +5,13 @@ const test = require('ava');
 
 // Function
 const createPost = require(process.env.PWD + '/app/lib/micropub/create-post');
-const publication = require('./fixtures/create-config');
+const pub = require('./fixtures/create-config');
 
 // Tests
 test('Creates a note', async t => {
   const body = require('./fixtures/type-note');
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
-  const response = await createPost(publication, body);
+  const response = await createPost(pub, body);
   t.is(response.code, 202);
 });
 
@@ -23,6 +23,6 @@ test('Creates a photo', async t => {
     originalname: 'photo1.gif'
   }];
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
-  const response = await createPost(publication, body, files);
+  const response = await createPost(pub, body, files);
   t.is(response.code, 202);
 });

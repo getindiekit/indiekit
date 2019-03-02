@@ -3,25 +3,25 @@ const _ = require('lodash');
 const {DateTime} = require('luxon');
 
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
-const history = require(process.env.PWD + '/app/lib/history');
+const memos = require(process.env.PWD + '/app/lib/memos');
+const micropub = require(process.env.PWD + '/app/lib/micropub');
 const render = require(process.env.PWD + '/app/lib/render');
-const response = require(process.env.PWD + '/app/lib/micropub/response');
+const store = require(process.env.PWD + '/app/lib/store');
 
 /**
  * Creates a new post
  *
  * @memberof micropub
  * @module createMedia
- * @param {Object} publication Publication configuration
+ * @param {Object} pub Publication configuration
  * @param {String} files File attachments
  * @returns {String} Location of created post
  */
-module.exports = async (publication, files) => {
+module.exports = async (pub, files) => {
   // Determine post type
   // @todo Infer type by `type` using multer field object
   const type = 'photo';
-  const typeConfig = _.find(publication['post-types'], {type});
+  const typeConfig = _.find(pub['post-types'], {type});
 
   // Update properties
   const properties = {
@@ -55,22 +55,22 @@ module.exports = async (publication, files) => {
     const filePath = render(typeConfig.path.file, fileContext);
     const urlPath = filePath;
 
-    // Prepare location and history entry
+    // Prepare location and new memo
     const location = config.url + urlPath;
-    const historyEntry = {file: filePath, url: location};
+    const memo = {file: filePath, url: location};
 
     // Upload file to GitHub
     try {
-      const githubResponse = await github.createFile(filePath, file.buffer, {
+      const response = await store.github.createFile(filePath, file.buffer, {
         message: `:framed_picture: ${filename} uploaded\nwith ${config.name}`
       });
 
-      if (githubResponse) {
-        history.update('create', historyEntry);
-        return response.success('create_pending', location);
+      if (response) {
+        memos.update('create', memo);
+        return micropub.response('create_pending', location);
       }
     } catch (error) {
-      return response.error('server_error', error);
+      return micropub.error('server_error', error);
     }
   } /* eslint-enable no-await-in-loop */
 };

@@ -15,8 +15,8 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
  * @return {Object} HTTP response
  */
 exports.get = async (request, response) => {
-  const publication = await require(process.env.PWD + '/app/lib/publication')();
-  const getResponse = await micropub.query(request, publication);
+  const pub = await require(process.env.PWD + '/app/lib/publication')();
+  const getResponse = await micropub.query(request, pub);
 
   return response.status(getResponse.code).json(getResponse.body);
 };
@@ -30,7 +30,7 @@ exports.get = async (request, response) => {
  * @return {Object} HTTP response
  */
 exports.post = async (request, response, next) => {
-  const publication = await require(process.env.PWD + '/app/lib/publication')();
+  const pub = await require(process.env.PWD + '/app/lib/publication')();
   const getPostResponse = async request => {
     let {body} = request;
     const {files} = request;
@@ -38,25 +38,25 @@ exports.post = async (request, response, next) => {
     // Ensure token is provided
     const accessToken = request.headers.authorization || body.access_token;
     if (!accessToken) {
-      return micropub.response.error('unauthorized');
+      return micropub.error('unauthorized');
     }
 
     // Verify token
     const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
     if (!verifiedToken) {
-      return micropub.response.error('forbidden', 'Unable to verify access token');
+      return micropub.error('forbidden', 'Unable to verify access token');
     }
 
     // Authorized users can purge cache
     if (request.query.purge === 'cache') {
       cache.delete();
-      return micropub.response.success();
+      return micropub.response();
     }
 
     // Ensure response has body data
     const hasBody = Object.entries(body).length !== 0;
     if (!hasBody) {
-      return micropub.response.error('invalid_request');
+      return micropub.error('invalid_request');
     }
 
     // Normalise form-encoded requests as mf2 JSON
@@ -75,24 +75,24 @@ exports.post = async (request, response, next) => {
         return micropub.deletePost(url);
       }
 
-      return micropub.response.error('insufficient_scope');
+      return micropub.error('insufficient_scope');
     }
 
     // Update action (not yet supported)
     if (action === 'update') {
       if (scope.includes('update')) {
-        return micropub.response.error('invalid_request', 'Update action not supported');
+        return micropub.error('invalid_request', 'Update action not supported');
       }
 
-      return micropub.response.error('insufficient_scope');
+      return micropub.error('insufficient_scope');
     }
 
     // Create action
     if (scope.includes('create')) {
-      return micropub.createPost(publication, body, files);
+      return micropub.createPost(pub, body, files);
     }
 
-    return micropub.response.error('insufficient_scope');
+    return micropub.error('insufficient_scope');
   };
 
   try {

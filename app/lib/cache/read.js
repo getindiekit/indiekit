@@ -3,8 +3,8 @@ const {DateTime} = require('luxon');
 const fs = require('fs-extra');
 
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
 const createCache = require(process.env.PWD + '/app/lib/cache/create');
+const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -20,15 +20,15 @@ const getFileUpdatedDate = path => {
 };
 
 /**
- * Reads a file in the cache, fetching remote version if not found
+ * Reads a file in the cache, fetching from store if not found
  *
  * @memberof cache
  * @module read
- * @param {String} remotePath Path to file on remote store
- * @param {String} cachePath Path to file in local cache
+ * @param {String} storePath Path to file in store
+ * @param {String} cachePath Path to file in cache
  * @returns {Promise|Object} Fetched file object
  */
-module.exports = async (remotePath, cachePath) => {
+module.exports = async (storePath, cachePath) => {
   cachePath = path.join(config.cache.dir, cachePath);
   let cacheFile;
   let hasExpired;
@@ -47,11 +47,11 @@ module.exports = async (remotePath, cachePath) => {
   }
 
   if (!isCached || hasExpired) {
-    remotePath = utils.normalizePath(remotePath);
+    storePath = utils.normalizePath(storePath);
 
     try {
-      const remoteData = await github.getContents(remotePath);
-      const freshData = remoteData.data.content;
+      const storeData = await store.github.getContents(storePath);
+      const freshData = storeData.data.content;
       createCache(cachePath, freshData);
       return freshData;
     } catch (error) {

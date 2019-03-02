@@ -1,8 +1,8 @@
 const path = require('path');
 
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
 const render = require(process.env.PWD + '/app/lib/render');
+const store = require(process.env.PWD + '/app/lib/store');
 
 /**
  * Combines referenced and attached photos into one object which can be used in
@@ -62,7 +62,7 @@ module.exports = async (mf2, files, typeConfig) => {
       const filePath = render(typeConfig.path.file, fileContext);
 
       // Create post on GitHub
-      await github.createFile(filePath, file.buffer, {
+      await store.github.createFile(filePath, file.buffer, {
         message: `:framed_picture: ${filename} uploaded\nwith ${config.name}`
       });
 

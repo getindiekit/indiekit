@@ -1,6 +1,6 @@
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
-const response = require(process.env.PWD + '/app/lib/micropub/response');
+const micropub = require(process.env.PWD + '/app/lib/micropub');
+const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -13,15 +13,15 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @returns {Object} Response
  */
 module.exports = async (url, content) => {
-  const repoPath = utils.filePathFromUrl(url);
+  const storePath = utils.filePathFromUrl(url);
   const type = null; // @todo Determine post type
-  const githubResponse = github.updateFile(repoPath, content, {
+  const response = store.github.updateFile(storePath, content, {
     message: `:robot: ${type} updated\nwith ${config.name}`
   });
-  if (githubResponse) {
+  if (response) {
     /* @todo If path has changed, return 'update_created' */
-    return response.success('update', url);
+    return micropub.response('update', url);
   }
 
-  return response.error('not_found');
+  return micropub.error('not_found');
 };

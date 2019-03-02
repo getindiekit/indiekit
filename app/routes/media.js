@@ -14,7 +14,7 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
  * @return {Object} HTTP response
  */
 exports.post = async (request, response, next) => {
-  const publication = await require(process.env.PWD + '/app/lib/publication')();
+  const pub = await require(process.env.PWD + '/app/lib/publication')();
   const getPostResponse = async request => {
     const {body} = request;
     const {files} = request;
@@ -22,19 +22,19 @@ exports.post = async (request, response, next) => {
     // Ensure token is provided
     const accessToken = request.headers.authorization || body.access_token;
     if (!accessToken) {
-      return micropub.response.error('unauthorized');
+      return micropub.error('unauthorized');
     }
 
     // Verify token
     const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
     if (!verifiedToken) {
-      return micropub.response.error('forbidden', 'Unable to verify access token');
+      return micropub.error('forbidden', 'Unable to verify access token');
     }
 
     // Ensure response has body data
     const hasFiles = Object.entries(files).length !== 0;
     if (!hasFiles) {
-      return micropub.response.error('invalid_request');
+      return micropub.error('invalid_request');
     }
 
     // Determine action, ensuring token includes scope permission
@@ -42,10 +42,10 @@ exports.post = async (request, response, next) => {
 
     // Create action
     if (scope.includes('create') || scope.includes('media')) {
-      return micropub.createMedia(publication, files);
+      return micropub.createMedia(pub, files);
     }
 
-    return micropub.response.error('insufficient_scope');
+    return micropub.error('insufficient_scope');
   };
 
   try {

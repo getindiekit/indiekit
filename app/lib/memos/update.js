@@ -3,21 +3,21 @@ const {DateTime} = require('luxon');
 const fs = require('fs-extra');
 
 const config = require(process.env.PWD + '/app/config');
-const readHistory = require(process.env.PWD + '/app/lib/history/read');
+const readMemos = require(process.env.PWD + '/app/lib/memos/read');
 
 /**
- * Updates contents of history file by appending new entry
+ * Updates memo (either by updating existing, or appending new)
  *
- * @memberof history
+ * @memberof memos
  * @module update
  * @param {String} action Entry type
  * @param {Object} data Entry data
  */
 module.exports = (action, data) => {
-  const filePath = path.join(config.cache.dir, config.cache.history);
+  const filePath = path.join(config.cache.dir, config.cache.memos);
 
   try {
-    const history = readHistory(filePath);
+    const memos = readMemos(filePath);
 
     // Construct entry
     let timestamp = Date.now();
@@ -28,8 +28,8 @@ module.exports = (action, data) => {
       [action]: data
     };
 
-    history.entries.push(entry);
-    const json = JSON.stringify(history, null, 2);
+    memos.push(entry);
+    const json = JSON.stringify(memos, null, 2);
     fs.writeFileSync(filePath, json);
   } catch (error) {
     console.error(error);

@@ -3,23 +3,23 @@ const _ = require('lodash');
 const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
-const history = require(process.env.PWD + '/app/lib/history');
+const memos = require(process.env.PWD + '/app/lib/memos');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
+const micropub = require(process.env.PWD + '/app/lib/micropub');
 const render = require(process.env.PWD + '/app/lib/render');
-const response = require(process.env.PWD + '/app/lib/micropub/response');
+const store = require(process.env.PWD + '/app/lib/store');
 
 /**
  * Creates a new post
  *
  * @memberof micropub
  * @module update
- * @param {Object} publication Publication configuration
+ * @param {Object} pub Publication configuration
  * @param {String} body Body content (contains microformats2 object)
  * @param {String} files File attachments
  * @returns {String} Location of created post
  */
-module.exports = async (publication, body, files) => {
+module.exports = async (pub, body, files) => {
   // Determine post type
   // @todo Infer type by `type` using multer field object
   let type;
@@ -31,8 +31,8 @@ module.exports = async (publication, body, files) => {
     type = getType(mf2);
   }
 
-  const typeConfig = _.find(publication['post-types'], {type});
-  const slugSeparator = publication['slug-separator'];
+  const typeConfig = _.find(pub['post-types'], {type});
+  const slugSeparator = pub['slug-separator'];
 
   // Update properties
   const {properties} = body;
@@ -51,21 +51,21 @@ module.exports = async (publication, body, files) => {
   const template = Buffer.from(templateData).toString('utf-8');
   const content = render(template, properties);
 
-  // Prepare location and history entry
+  // Prepare location and new memo
   const location = config.url + urlPath;
-  const historyEntry = {post: postPath, url: location};
+  const memo = {post: postPath, url: location};
 
   // Create post on GitHub
   try {
-    const githubResponse = await github.createFile(postPath, content, {
+    const response = await store.github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${config.name}`
     });
 
-    if (githubResponse) {
-      history.update('create', historyEntry);
-      return response.success('create_pending', location);
+    if (response) {
+      memos.update('create', memo);
+      return micropub.response('create_pending', location);
     }
   } catch (error) {
-    return response.error('server_error', error);
+    return micropub.error('server_error', error);
   }
 };
