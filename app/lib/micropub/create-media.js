@@ -32,21 +32,19 @@ module.exports = async (pub, files) => {
    */
   for (const file of files) { /* eslint-disable no-await-in-loop */
     // Provide additional properties for file path templates
-    const fileProperties = utils.deriveFileProperties(file);
+    const properties = utils.deriveFileProperties(file);
 
-    // Render publish and destination paths
-    // TODO: Media items can have seperate file and url paths
-    const filePath = render(typeConfig.path.file, fileProperties);
-    const urlPath = filePath;
+    // Render destination path
+    const filePath = render(typeConfig.path.file, properties);
 
     // Prepare location and new memo
-    const location = config.url + urlPath;
+    const location = config.url + filePath;
     const memo = {file: filePath, url: location};
 
     // Upload file to GitHub
     try {
       const response = await store.github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: ${fileProperties.filename} uploaded\nwith ${config.name}`
+        message: `:framed_picture: ${properties.filename} uploaded\nwith ${config.name}`
       });
 
       if (response) {
