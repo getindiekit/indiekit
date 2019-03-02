@@ -1,5 +1,6 @@
 /* eslint no-await-in-loop: warn */
 const path = require('path');
+const _ = require('lodash');
 
 const cache = require(process.env.PWD + '/app/lib/cache');
 const config = require(process.env.PWD + '/app/config');
@@ -25,29 +26,27 @@ module.exports = async () => {
 
     // Fetch and cache remote template files
     let combinedPostTypes;
-    const defaultPostTypes = defaults['post-types'][0];
-    const publicationPostTypes = publicationConfig['post-types'][0];
+    const defaultPostTypes = defaults['post-types'];
+    const publicationPostTypes = publicationConfig['post-types'];
 
     if (publicationPostTypes) {
-      // @todo Make asynchronous
       for (const key in publicationPostTypes) {
         if (Object.prototype.hasOwnProperty.call(publicationPostTypes, key)) {
           const postType = publicationPostTypes[key];
-          const publicationTemplate = postType.template;
-          const cacheTemplate = path.join('templates', `${key}.njk`);
+          const cacheTemplate = path.join('templates', `${postType.type}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
-          await cache.read(publicationTemplate, cacheTemplate);
+          await cache.read(postType.path.template, cacheTemplate);
 
           // Update `template` value with location of cached template file
-          postType.template = cacheTemplatePath;
+          postType.path.template = cacheTemplatePath;
         }
       }
 
       // Merge default post types with remote post types (with cached template paths)
-      combinedPostTypes = {...defaultPostTypes, ...publicationPostTypes};
+      combinedPostTypes = _.unionBy(publicationPostTypes, defaultPostTypes, 'type');
 
       // Update combined configuration with new post type values
-      combinedConfig['post-types'][0] = combinedPostTypes;
+      combinedConfig['post-types'] = combinedPostTypes;
     }
 
     return combinedConfig;

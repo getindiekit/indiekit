@@ -29,55 +29,45 @@ Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndic
 
 #### `post-types`
 
-An array of post-types (with default values currently provided for `article`, `note` and `photo`). Each type accepts the following values:
+IndieKit provides a set of default paths and [templates](https://github.com/paulrobertlloyd/indiekit/tree/master/app/templates) for `article`, `note` and `photo` post type creation. These defaults can be ammended, and new types can be added. For example, to override the note and photo post types, you would provide the following:
 
-* ##### `template`
-  Location of post type templates within your repository. Note, this should not be the template used to render your site (using Jekyll, 11ty, Hugo, etc.), but a template specifically for the use of IndieKit. Defaults to templates provided by IndieKit, [which you can find here](https://github.com/paulrobertlloyd/indiekit/tree/master/app/templates).
+```json
+{
+  "post-types": [{
+    "type": "note",
+    "name": "Micro note",
+    "path": {
+      "template": "_micropub/templates/note.njk",
+      "post": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+      "url": "notes/{​{ published | date('yyyy/MM') }}/{{ slug }}"
+    },
+    "type": "photo",
+    "name": "Photograph",
+    "path": {
+      "template": "_micropub/templates/photo.njk",
+      "file": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
+      "post": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+      "url": "photos/{​{ published | date('yyyy/MM') }}/{{ slug }}"
+    }
+  }]
+}
 
-* ##### `post`
-  Where posts should be saved to in your repository. Defaults to `_<post-type>/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md` e.g. <samp>_notes/2019-02-21-12345.md</samp>.
+```
+* **`type`**: The type of post being configured. This value must match oneof the [common post-types used across by the IndieWeb](https://indieweb.org/posts#Types_of_Posts).
 
-  To maintain compatability with Jekyll, the `article` post type saves to the `_posts` folder.
+* **`name`**: The name you give to this post type on your own site. You needn’t specify this value, but if you do, certain Micropub clients will expose it in their publishing UI.
 
-* ##### `file`
-  Where media files should be saved to in your repository. Defaults to `images/<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}/{{ filename }}` e.g. <samp>images/notes/2019/02/21/12345/98765.jpg</samp>.
+* **`path.template`**: Where IndieKit can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of IndieKit to render content (typically as a Markdown file with YAML frontmatter).
 
-  To match the default permalink style used for articles, `article/` is ommitted from the generated media folder path.
+* **`path.post`**: Where posts should be saved to in your repository.
 
-  Additional variables are available to media files:
+* **`path.file`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). Additional variables are available to media files:
 
   * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
   * `filename` is a zero-filled two-digit number with file extension, e.g. <samp>03.jpg</samp>.
   * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>.jpg</samp>.
 
-* ##### `url`
-  Permalink of post as it appears on your website. Defaults to `<post-type>/{​{ published | date('yyyy/MM/dd') }}/{​{ slug }}` e.g. <samp>notes/2019/02/21/12345</samp>.
-
-  To maintain compatability with Jekyll, the `article` post type is ommited from the generated path, e.g. <samp>2019/02/21/my-great-post</samp>.
-
-Example:
-
-```json
-{
-  "post-types": [{
-    "article": {
-      "template": "_layouts/indiekit/article.njk",
-      "file": "_articles/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-      "url": "articles/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
-    },
-    "note": {
-      "template": "_layouts/indiekit/note.njk",
-      "file": "_notes/{​{ published | date('X') }}.md",
-      "url": "notes/{​{ published | date('X') }}"
-    },
-    "photo": {
-      "template": "_layouts/indiekit/photo.njk",
-      "file": "_photos/{​{ published | date('X') }}.md",
-      "url": "photos/{​{ published | date('X') }}"
-    }
-  }]
-}
-```
+* **`url`**: Permalink of post as it appears on your website.
 
 #### `slug-separator`
 
