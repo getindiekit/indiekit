@@ -250,16 +250,30 @@ Returns success information
 
 Returns **[Object][1]** Success object
 
-## 
+### get
 
--   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
+Responds to GET requests
 
-Turns out async/await doesn’t work so great with forEach loops. Use
-asynchronous `await Promise.all(files.map(async file => {…}))` or
-synchronous `for (const file of files) {…}` instead.
-(Asynchronous pattern trips up Micropub.rocks! validator)
+#### Parameters
 
-## update
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+
+Returns **[Object][1]** HTTP response
+
+### post
+
+Responds to POST requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+-   `next` **[Object][1]** Callback
+
+Returns **[Object][1]** HTTP response
+
+## micropub
 
 Returns an object containing information about this application
 
@@ -269,6 +283,104 @@ Returns an object containing information about this application
 -   `pub` **[String][2]** Publication configuration
 
 Returns **[Promise][3]** Query object
+
+### createMedia
+
+Creates a new post
+
+#### Parameters
+
+-   `pub` **[Object][1]** Publication configuration
+-   `files` **[String][2]** File attachments
+
+Returns **[String][2]** Location of created post
+
+### update
+
+Creates a new post
+
+#### Parameters
+
+-   `pub` **[Object][1]** Publication configuration
+-   `body` **[String][2]** Body content (contains microformats2 object)
+-   `files` **[String][2]** File attachments
+
+Returns **[String][2]** Location of created post
+
+### update
+
+Updates a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL path to post
+-   `content` **[String][2]** Content to update
+
+Returns **[Object][1]** Response
+
+### delete
+
+Deletes a post
+
+#### Parameters
+
+-   `url` **[String][2]** URL of published post
+
+Returns **[Promise][3]** Response object
+
+### error
+
+Returns error information
+
+#### Parameters
+
+-   `id` **[String][2]** Identifier
+-   `desc` **[String][2]** Description
+
+Returns **[Object][1]** Error object
+
+### response
+
+Returns success information
+
+#### Parameters
+
+-   `id` **[String][2]** Identifier
+-   `location` **[String][2]** Location of post
+
+Returns **[Object][1]** Success object
+
+### get
+
+Responds to GET requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+
+Returns **[Object][1]** HTTP response
+
+### post
+
+Responds to POST requests
+
+#### Parameters
+
+-   `request` **[Object][1]** Request
+-   `response` **[Object][1]** Response
+-   `next` **[Object][1]** Callback
+
+Returns **[Object][1]** HTTP response
+
+## 
+
+-   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
+
+Turns out async/await doesn’t work so great with forEach loops. Use
+asynchronous `await Promise.all(files.map(async file => {…}))` or
+synchronous `for (const file of files) {…}` instead.
+(Asynchronous pattern trips up Micropub.rocks! validator)
 
 ## publication
 
@@ -408,13 +520,17 @@ normalizePath('/foo/bar/') => 'foo/bar'
 
 Returns **[Object][1]** Normalized object
 
-## routes/micropub
+## admin
 
-### post
+## media
+
+## micropub
+
+## post
 
 Responds to POST requests
 
-#### Parameters
+### Parameters
 
 -   `request` **[Object][1]** Request
 -   `response` **[Object][1]** Response
@@ -422,63 +538,15 @@ Responds to POST requests
 
 Returns **[Object][1]** HTTP response
 
-### post
+## post
 
 Responds to POST requests
 
-#### Parameters
+### Parameters
 
 -   `request` **[Object][1]** Request
 -   `response` **[Object][1]** Response
 -   `next` **[Object][1]** Callback
-
-Returns **[Object][1]** HTTP response
-
-### get
-
-Responds to GET requests
-
-#### Parameters
-
--   `request` **[Object][1]** Request
--   `response` **[Object][1]** Response
-
-Returns **[Object][1]** HTTP response
-
-## routes/micropub
-
-### post
-
-Responds to POST requests
-
-#### Parameters
-
--   `request` **[Object][1]** Request
--   `response` **[Object][1]** Response
--   `next` **[Object][1]** Callback
-
-Returns **[Object][1]** HTTP response
-
-### post
-
-Responds to POST requests
-
-#### Parameters
-
--   `request` **[Object][1]** Request
--   `response` **[Object][1]** Response
--   `next` **[Object][1]** Callback
-
-Returns **[Object][1]** HTTP response
-
-### get
-
-Responds to GET requests
-
-#### Parameters
-
--   `request` **[Object][1]** Request
--   `response` **[Object][1]** Response
 
 Returns **[Object][1]** HTTP response
 

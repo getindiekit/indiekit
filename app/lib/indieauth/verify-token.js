@@ -1,5 +1,6 @@
 const normalizeUrl = require('normalize-url');
 
+const micropub = require(process.env.PWD + '/app/lib/micropub');
 const request = require(process.env.PWD + '/app/lib/indieauth/request');
 
 /**
@@ -12,6 +13,10 @@ const request = require(process.env.PWD + '/app/lib/indieauth/request');
  * @returns {Promise} Token endpoint reponse object
  */
 module.exports = async (accessToken, url) => {
+  if (!accessToken) {
+    return micropub.error('unauthorized');
+  }
+
   const response = await request(accessToken);
 
   /* @todo Check if all clients support authResponse.error */
