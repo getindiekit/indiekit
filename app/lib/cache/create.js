@@ -2,12 +2,12 @@ const path = require('path');
 const fs = require('fs-extra');
 
 /**
- * Creates a new file in the cache, populating with content from remote source
+ * Creates a new file in the cache, populating it with specified data
  *
  * @memberof cache
  * @module update
  * @param {Object} filePath Location to cache file
- * @param {Object} fileData Cache object to create
+ * @param {Object} fileData Data to write to file
  */
 module.exports = (filePath, fileData) => {
   const pathToFile = path.parse(filePath).dir;

@@ -6,12 +6,12 @@ Caches files to prevent application from making excessive requests to APIs
 
 ### update
 
-Creates a new file in the cache, populating with content from remote source
+Creates a new file in the cache, populating it with specified data
 
 #### Parameters
 
 -   `filePath` **[Object][1]** Location to cache file
--   `fileData` **[Object][1]** Cache object to create
+-   `fileData` **[Object][1]** Data to write to file
 
 ### delete
 
@@ -23,98 +23,18 @@ Deletes the cache directory
 
 ### read
 
-Reads a file in the cache, fetching remote version if not found
+Reads a file in the cache, fetching from store if not found
 
 #### Parameters
 
--   `remotePath` **[String][2]** Path to file on remote store
--   `cachePath` **[String][2]** Path to file in local cache
+-   `storePath` **[String][2]** Path to file in store
+-   `cachePath` **[String][2]** Path to file in cache
 
 Returns **([Promise][3] \| [Object][1])** Fetched file object
 
-## github
-
-Get, create and delete data at a specified path at configured GitHub repo.
-
-## getContents
-
--   **See: [GitHub REST API v3: Get Contents][4]**
-
-Reads content of a file or directory in a repository
-
-### Parameters
-
--   `path` **[String][2]** Path to file
-
-Returns **[Promise][3]** GitHub HTTP response
-
-## createFile
-
--   **See: [GitHub REST API v3: Create a file][5]**
-
-Creates a new file in a GitHub repository
-
-### Parameters
-
--   `path` **[String][2]** Path to file
--   `content` **[String][2]** File content
--   `options` **[String][2]** Options
-
-Returns **[Promise][3]** GitHub HTTP response
-
-## updateFile
-
--   **See: [GitHub REST API v3: Update a file][6]**
-
-Updates a file in a GitHub repository
-
-### Parameters
-
--   `path` **[String][2]** Path to file
--   `content` **[String][2]** File content
--   `options` **[String][2]** Options
-
-Returns **[Promise][3]** GitHub HTTP response
-
-## deleteFile
-
--   **See: [GitHub REST API v3: Delete a file][7]**
-
-Deletes a file in a GitHub repository
-
-### Parameters
-
--   `path` **[String][2]** Path to file
--   `options` **[String][2]** Options
-
-Returns **[Promise][3]** GitHub HTTP response
-
-## history
-
-Creates log of Micropub actions taken
-
-### create
-
-Creates an empty history file
-
-### read
-
-Reads contents of the history file
-
-Returns **[Object][1]** Configuration options
-
-### update
-
-Updates contents of history file by appending new entry
-
-#### Parameters
-
--   `action` **[String][2]** Entry type
--   `data` **[Object][1]** Entry data
-
 ## indieauth
 
-Use [IndieAuth][8] to ensure only
+Use [IndieAuth][4] to ensure only
 authenticated users can use endpoint for posting to configured destination.
 
 ### request
@@ -139,6 +59,30 @@ Verifies that a token provides permissions to post to configured publication
 
 Returns **[Promise][3]** Token endpoint reponse object
 
+## memos
+
+Records of actions and resulting changes, stored for later retrevial.
+(i.e. for update and undelete actions).
+
+### create
+
+Creates memos file
+
+### update
+
+Updates memo (either by updating existing, or appending new)
+
+#### Parameters
+
+-   `action` **[String][2]** Entry type
+-   `data` **[Object][1]** Entry data
+
+## read
+
+Reads memo
+
+Returns **[Object][1]** Configuration options
+
 ## microformats
 
 Discover, parse and transform microformats2 objects
@@ -151,7 +95,7 @@ Derives content (HTML, else object value, else property value)
 
 -   `mf2` **[Object][1]** microformats2 object
 
-Returns **[Array][9]** Content
+Returns **[Array][5]** Content
 
 ### derivePhotoProperty
 
@@ -174,7 +118,7 @@ Derives published date (based on microformats2 data, else the current date)
 
 -   `mf2` **[Object][1]** microformats2 object
 
-Returns **[Array][9]** Array containing ISO formatted date
+Returns **[Array][5]** Array containing ISO formatted date
 
 ### derviveSlug
 
@@ -185,13 +129,13 @@ Derives slug (using `mp-slug` value, slugified name else a random number)
 -   `mf2` **[Object][1]** microformats2 object
 -   `separator` **[String][2]** Slug separator
 
-Returns **[Array][9]** Array containing slug value
+Returns **[Array][5]** Array containing slug value
 
 ### formEncodedToMf2
 
 Parses microformats in form-encoded POST request.
-Adapted from [node-micropub-express][10]
-by [Pelle Wessman][11]
+Adapted from [node-micropub-express][6]
+by [Pelle Wessman][7]
 
 #### Parameters
 
@@ -228,7 +172,7 @@ Returns **[Promise][3]** mf2 object
 
 ## push
 
--   **See: [https://stackoverflow.com/a/37576787/11107625][12]**
+-   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
 
 Turns out async/await doesn’t work so great with forEach loops. Use
 asynchronous `await Promise.all(files.map(async file => {…}))` or
@@ -246,7 +190,7 @@ Creates a new post
 
 #### Parameters
 
--   `publication` **[Object][1]** Publication configuration
+-   `pub` **[Object][1]** Publication configuration
 -   `files` **[String][2]** File attachments
 
 Returns **[String][2]** Location of created post
@@ -257,7 +201,7 @@ Creates a new post
 
 #### Parameters
 
--   `publication` **[Object][1]** Publication configuration
+-   `pub` **[Object][1]** Publication configuration
 -   `body` **[String][2]** Body content (contains microformats2 object)
 -   `files` **[String][2]** File attachments
 
@@ -284,62 +228,58 @@ Deletes a post
 
 Returns **[Promise][3]** Response object
 
-### response
+### error
 
-Sends HTTP response with error/success information encoded as JSON
+Returns error information
 
-## 
-
--   **See: [https://stackoverflow.com/a/37576787/11107625][12]**
-
-Turns out async/await doesn’t work so great with forEach loops. Use
-asynchronous `await Promise.all(files.map(async file => {…}))` or
-synchronous `for (const file of files) {…}` instead.
-(Asynchronous pattern trips up Micropub.rocks! validator)
-
-## htmlToMf2
-
-Returns an object containing information about this application
-
-### Parameters
-
--   `request` **[String][2]** HTTP request object
--   `publication` **[String][2]** Publication configuration
-
-Returns **[Promise][3]** Query object
-
-## error
-
-Returns an object containing error information
-
-### Parameters
+#### Parameters
 
 -   `id` **[String][2]** Identifier
 -   `desc` **[String][2]** Description
 
 Returns **[Object][1]** Error object
 
-## success
+### response
 
-Returns an object containing success information
+Returns success information
 
-### Parameters
+#### Parameters
 
 -   `id` **[String][2]** Identifier
 -   `location` **[String][2]** Location of post
 
 Returns **[Object][1]** Success object
 
+## 
+
+-   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
+
+Turns out async/await doesn’t work so great with forEach loops. Use
+asynchronous `await Promise.all(files.map(async file => {…}))` or
+synchronous `for (const file of files) {…}` instead.
+(Asynchronous pattern trips up Micropub.rocks! validator)
+
+## update
+
+Returns an object containing information about this application
+
+### Parameters
+
+-   `request` **[String][2]** HTTP request object
+-   `pub` **[String][2]** Publication configuration
+
+Returns **[Promise][3]** Query object
+
 ## publication
 
-Gets a publication’s configuration file and combines it with defaults values
-set by the application.
+Gets a publication’s configuration and combines it with default values set by
+application.
 
 Returns **[Promise][3]** Configuration object
 
 ## string
 
--   **See: [Nunjucks API: renderString][13]**
+-   **See: [Nunjucks API: renderString][9]**
 
 Render a Nunjucks template string using context data
 
@@ -349,6 +289,67 @@ Render a Nunjucks template string using context data
 -   `context` **[String][2]** Context data
 
 Returns **[String][2]** Rendered string
+
+## store
+
+Interfaces to remote locations where files and configuration are stored.
+
+### github
+
+Get, create and delete data at a specified path at configured GitHub repo.
+
+## getContents
+
+-   **See: [GitHub REST API v3: Get Contents][10]**
+
+Reads content of a file or directory in a repository
+
+### Parameters
+
+-   `path` **[String][2]** Path to file
+
+Returns **[Promise][3]** GitHub HTTP response
+
+## createFile
+
+-   **See: [GitHub REST API v3: Create a file][11]**
+
+Creates a new file in a GitHub repository
+
+### Parameters
+
+-   `path` **[String][2]** Path to file
+-   `content` **[String][2]** File content
+-   `options` **[String][2]** Options
+
+Returns **[Promise][3]** GitHub HTTP response
+
+## updateFile
+
+-   **See: [GitHub REST API v3: Update a file][12]**
+
+Updates a file in a GitHub repository
+
+### Parameters
+
+-   `path` **[String][2]** Path to file
+-   `content` **[String][2]** File content
+-   `options` **[String][2]** Options
+
+Returns **[Promise][3]** GitHub HTTP response
+
+## deleteFile
+
+-   **See: [GitHub REST API v3: Delete a file][13]**
+
+Deletes a file in a GitHub repository
+
+### Parameters
+
+-   `path` **[String][2]** Path to file
+-   `options` **[String][2]** Options
+
+Returns **[Promise][3]** GitHub HTTP response
 
 ## utils
 
@@ -487,24 +488,24 @@ Returns **[Object][1]** HTTP response
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[4]: https://developer.github.com/v3/repos/contents/#get-contents
+[4]: https://www.w3.org/TR/indieauth/
 
-[5]: https://developer.github.com/v3/repos/contents/#create-a-file
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[6]: https://developer.github.com/v3/repos/contents/#update-a-file
+[6]: https://github.com/voxpelli/node-micropub-express
 
-[7]: https://developer.github.com/v3/repos/contents/#delete-a-file
+[7]: https://kodfabrik.se
 
-[8]: https://www.w3.org/TR/indieauth/
+[8]: https://stackoverflow.com/a/37576787/11107625
 
-[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[9]: https://mozilla.github.io/nunjucks/api.html#renderstring
 
-[10]: https://github.com/voxpelli/node-micropub-express
+[10]: https://developer.github.com/v3/repos/contents/#get-contents
 
-[11]: https://kodfabrik.se
+[11]: https://developer.github.com/v3/repos/contents/#create-a-file
 
-[12]: https://stackoverflow.com/a/37576787/11107625
+[12]: https://developer.github.com/v3/repos/contents/#update-a-file
 
-[13]: https://mozilla.github.io/nunjucks/api.html#renderstring
+[13]: https://developer.github.com/v3/repos/contents/#delete-a-file
 
 [14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number

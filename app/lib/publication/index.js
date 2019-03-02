@@ -4,52 +4,52 @@ const _ = require('lodash');
 
 const cache = require(process.env.PWD + '/app/lib/cache');
 const config = require(process.env.PWD + '/app/config');
-const defaults = require('./defaults');
+const appConfig = require('./defaults');
 
 /**
- * Gets a publication’s configuration file and combines it with defaults values
- * set by the application.
+ * Gets a publication’s configuration and combines it with default values set by
+ * application.
  *
  * @module publication
  * @returns {Promise} Configuration object
  */
 module.exports = async () => {
   try {
-    // Fetch and cache remote configuration
-    let publicationConfig = await cache.read(config['publication-config'], config.cache.config);
-    if (publicationConfig) {
-      publicationConfig = JSON.parse(publicationConfig);
+    // Fetch configuration from store and cache
+    let pubConfig = await cache.read(config['pub-config'], config.cache.config);
+    if (pubConfig) {
+      pubConfig = JSON.parse(pubConfig);
     }
 
-    // Merge remote configuration with application defaults
-    const combinedConfig = {...defaults, ...publicationConfig};
+    // Merge store configuration with application defaults
+    const newConfig = {...appConfig, ...pubConfig};
 
-    // Fetch and cache remote template files
-    let combinedPostTypes;
-    const defaultPostTypes = defaults['post-types'];
-    const publicationPostTypes = publicationConfig['post-types'];
+    // Fetch templates from store and cache
+    let newPostTypes;
+    const appPostTypes = appConfig['post-types'];
+    const pubPostTypes = pubConfig['post-types'];
 
-    if (publicationPostTypes) {
-      for (const key in publicationPostTypes) {
-        if (Object.prototype.hasOwnProperty.call(publicationPostTypes, key)) {
-          const postType = publicationPostTypes[key];
+    if (pubPostTypes) {
+      for (const key in pubPostTypes) {
+        if (Object.prototype.hasOwnProperty.call(pubPostTypes, key)) {
+          const postType = pubPostTypes[key];
           const cacheTemplate = path.join('templates', `${postType.type}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
           await cache.read(postType.path.template, cacheTemplate);
 
-          // Update `template` value with location of cached template file
+          // Update `template` value with location of cached template
           postType.path.template = cacheTemplatePath;
         }
       }
 
-      // Merge default post types with remote post types (with cached template paths)
-      combinedPostTypes = _.unionBy(publicationPostTypes, defaultPostTypes, 'type');
+      // Merge default and publication post types (with cached template paths)
+      newPostTypes = _.unionBy(pubPostTypes, appPostTypes, 'type');
 
       // Update combined configuration with new post type values
-      combinedConfig['post-types'] = combinedPostTypes;
+      newConfig['post-types'] = newPostTypes;
     }
 
-    return combinedConfig;
+    return newConfig;
   } catch (error) {
     console.error(error);
   }

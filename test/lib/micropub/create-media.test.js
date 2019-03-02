@@ -5,7 +5,7 @@ const test = require('ava');
 
 // Function
 const createMedia = require(process.env.PWD + '/app/lib/micropub/create-media');
-const publication = require('./fixtures/create-config');
+const pub = require('./fixtures/create-config');
 
 // Tests
 test('Uploads a photo via media endpoint', async t => {
@@ -15,6 +15,6 @@ test('Uploads a photo via media endpoint', async t => {
     originalname: 'photo1.gif'
   }];
   nock('https://api.github.com').persist().put(/\b\d{5}\b/g).reply(200);
-  const response = await createMedia(publication, files);
+  const response = await createMedia(pub, files);
   t.is(response.code, 202);
 });

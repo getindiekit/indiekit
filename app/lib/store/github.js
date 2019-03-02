@@ -1,6 +1,7 @@
 /**
  * Get, create and delete data at a specified path at configured GitHub repo.
  *
+ * @memberof store
  * @module github
  */
 const config = require(process.env.PWD + '/app/config');

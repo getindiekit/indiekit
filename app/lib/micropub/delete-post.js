@@ -1,7 +1,7 @@
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
-const history = require(process.env.PWD + '/app/lib/history');
-const response = require(process.env.PWD + '/app/lib/micropub/response');
+const memos = require(process.env.PWD + '/app/lib/memos');
+const micropub = require(process.env.PWD + '/app/lib/micropub');
+const store = require(process.env.PWD + '/app/lib/store');
 
 /**
  * Deletes a post
@@ -12,30 +12,30 @@ const response = require(process.env.PWD + '/app/lib/micropub/response');
  * @returns {Promise} Response object
  */
 module.exports = async url => {
-  let historyEntry;
+  let memo;
 
   try {
-    const getHistory = await history.read();
-    const {entries} = getHistory;
-    historyEntry = entries.filter(entry => entry.create.url === url);
+    const getMemos = await memos.read();
+    const {memos} = getMemos;
+    memo = memos.filter(memo => memo.create.url === url);
   } catch (error) {
     console.error(error);
   }
 
-  if (historyEntry) {
+  if (memo) {
     try {
-      const repoPath = historyEntry[0].create.post;
-      const githubResponse = await github.deleteFile(repoPath, {
+      const storePath = memo[0].create.post;
+      const response = await store.github.deleteFile(storePath, {
         message: `:x: Post deleted\nwith ${config.name}`
       });
-      if (githubResponse) {
-        // @todo Save properties to history to enable undelete action
-        return response.success('delete', url);
+      if (response) {
+        // @todo Save properties to memo to enable undelete action
+        return micropub.response('delete', url);
       }
     } catch (error) {
       throw new Error(`Unable to delete ${url}. ${error.message}`);
     }
   }
 
-  return response.error('not_found');
+  return micropub.error('not_found');
 };
