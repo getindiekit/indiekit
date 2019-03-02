@@ -1,6 +1,6 @@
 const path = require('path');
-const fs = require('fs-extra');
 const {DateTime} = require('luxon');
+const fs = require('fs-extra');
 
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');

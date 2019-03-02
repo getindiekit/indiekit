@@ -14,7 +14,7 @@ test('Uploads a photo via media endpoint', async t => {
     buffer: Buffer.from(photo1),
     originalname: 'photo1.gif'
   }];
-  nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
+  nock('https://api.github.com').persist().put(/\b\d{5}\b/g).reply(200);
   const response = await createMedia(publication, files);
   t.is(response.code, 202);
 });

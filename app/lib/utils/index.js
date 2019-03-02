@@ -5,17 +5,6 @@
  */
 
 /**
- * Capitalizes first letter of a string
- *
- * @example capitalizeFirstLetter('foo bar') => 'Foo bar'
- * @param {String} string String to capitalize
- * @return {String} Capitalized string
- */
-const capitalizeFirstLetter = string => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-/**
  * Decodes form-encoded string
  *
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'
@@ -48,47 +37,6 @@ const excerptString = (string, n) => {
 };
 
 /**
- * Removes empty keys from an object
- *
- * @example removeEmptyObjectKeys({
- *   foo: 'bar',
- *   baz: {
- *     qux: {
- *       quux: ''
- *     }
- *   }
- * }) => '{foo: bar}'
- * @param {Object} object Object with empty strings
- * @return {Object} Sanitized object
- */
-const removeEmptyObjectKeys = object => {
-  for (const key in object) {
-    if (!object[key] || typeof object[key] !== 'object') {
-      continue;
-    }
-
-    removeEmptyObjectKeys(object[key]);
-
-    if (Object.keys(object[key]).length === 0) {
-      delete object[key];
-    }
-  }
-
-  return object;
-};
-
-const pickObjectKeys = (object, picked) => {
-  return Object.keys(object)
-    .filter(key => picked.includes(key))
-    .reduce((obj, key) => {
-      return {
-        ...obj,
-        [key]: object[key]
-      };
-    }, {});
-};
-
-/**
  * Removes ‘/’ from beginning and end of string. Useful for constructing paths
  *
  * @example normalizePath('/foo/bar/') => 'foo/bar'
@@ -100,10 +48,7 @@ const normalizePath = string => {
 };
 
 module.exports = {
-  capitalizeFirstLetter,
   decodeFormEncodedString,
   excerptString,
-  pickObjectKeys,
-  removeEmptyObjectKeys,
   normalizePath
 };

@@ -12,14 +12,15 @@ const request = {
 };
 
 // Tests
-test('Returns configuration object with media endpoint', async t => {
+test('Returns configuration object', async t => {
   request.query = {
     q: 'config'
   };
   const config = require('./fixtures/query-config');
   const expected = {
     'media-endpoint': 'https://indiekit.test/media',
-    'syndicate-to': config['syndicate-to']
+    'syndicate-to': config['syndicate-to'],
+    'post-types': []
   };
   const response = await query(request, config);
   t.is(response.code, 200);
@@ -29,9 +30,14 @@ test('Returns configuration object with media endpoint', async t => {
 test('Returns configuration object with third-party media endpoint', async t => {
   request.query = {q: 'config'};
   const config = require('./fixtures/query-config-media-endpoint');
+  const expected = {
+    'media-endpoint': config['media-endpoint'],
+    'syndicate-to': config['syndicate-to'],
+    'post-types': []
+  };
   const response = await query(request, config);
   t.is(response.code, 200);
-  t.deepEqual(response.body, config);
+  t.deepEqual(response.body, expected);
 });
 
 test('Returns source content object', async t => {

@@ -297,7 +297,7 @@ asynchronous `await Promise.all(files.map(async file => {…}))` or
 synchronous `for (const file of files) {…}` instead.
 (Asynchronous pattern trips up Micropub.rocks! validator)
 
-## delete
+## htmlToMf2
 
 Returns an object containing information about this application
 
@@ -305,7 +305,6 @@ Returns an object containing information about this application
 
 -   `request` **[String][2]** HTTP request object
 -   `publication` **[String][2]** Publication configuration
--   `appUrl` **[String][2]** URL of application
 
 Returns **[Promise][3]** Query object
 
@@ -355,22 +354,6 @@ Returns **[String][2]** Rendered string
 
 Common utility functions.
 
-## capitalizeFirstLetter
-
-Capitalizes first letter of a string
-
-### Parameters
-
--   `string` **[String][2]** String to capitalize
-
-### Examples
-
-```javascript
-capitalizeFirstLetter('foo bar') => 'Foo bar'
-```
-
-Returns **[String][2]** Capitalized string
-
 ## decodeFormEncodedString
 
 Decodes form-encoded string
@@ -408,29 +391,6 @@ excerptString('Foo bar baz', 2) => 'Foo bar'
 
 Returns **[String][2]** Excerpt
 
-## removeEmptyObjectKeys
-
-Removes empty keys from an object
-
-### Parameters
-
--   `object` **[Object][1]** Object with empty strings
-
-### Examples
-
-```javascript
-removeEmptyObjectKeys({
-  foo: 'bar',
-  baz: {
-    qux: {
-      quux: ''
-    }
-  }
-}) => '{foo: bar}'
-```
-
-Returns **[Object][1]** Sanitized object
-
 ## normalizePath
 
 Removes ‘/’ from beginning and end of string. Useful for constructing paths
@@ -446,22 +406,6 @@ normalizePath('/foo/bar/') => 'foo/bar'
 ```
 
 Returns **[Object][1]** Normalized object
-
-## test
-
-Creating Posts (Form-Encoded)
-
-## test
-
-Creating Posts (JSON)
-
-## test
-
-Query
-
-## test
-
-Authentication
 
 ## routes/micropub
 

@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -21,8 +23,7 @@ module.exports = body => {
 
   const mf2 = {
     type: body.h ? ['h-' + body.h] : ['h-entry'],
-    properties: {},
-    mp: {}
+    properties: {}
   };
 
   if (body.h) {
@@ -54,7 +55,8 @@ module.exports = body => {
     }
   }
 
-  utils.removeEmptyObjectKeys(mf2);
+  // Remove empty and null keys
+  _.pickBy(mf2, _.identity);
 
   return mf2;
 };

@@ -59,7 +59,7 @@ module.exports = async (mf2, files, typeConfig) => {
       const fileContext = {...properties, ...referencedPhotos, ...fileProperties};
 
       // Render publish and destination paths
-      const filePath = render(typeConfig.file, fileContext);
+      const filePath = render(typeConfig.path.file, fileContext);
 
       // Create post on GitHub
       await github.createFile(filePath, file.buffer, {

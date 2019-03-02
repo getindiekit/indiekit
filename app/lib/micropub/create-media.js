@@ -1,4 +1,5 @@
 const path = require('path');
+const _ = require('lodash');
 const {DateTime} = require('luxon');
 
 const config = require(process.env.PWD + '/app/config');
@@ -20,7 +21,7 @@ module.exports = async (publication, files) => {
   // Determine post type
   // @todo Infer type by `type` using multer field object
   const type = 'photo';
-  const typeConfig = publication['post-types'][0][type];
+  const typeConfig = _.find(publication['post-types'], {type});
 
   // Update properties
   const properties = {
@@ -51,7 +52,7 @@ module.exports = async (publication, files) => {
 
     // Render publish and destination paths
     // @todo Media items can have seperate file and url paths
-    const filePath = render(typeConfig.file, fileContext);
+    const filePath = render(typeConfig.path.file, fileContext);
     const urlPath = filePath;
 
     // Prepare location and history entry
