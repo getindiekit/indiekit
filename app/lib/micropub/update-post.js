@@ -19,7 +19,7 @@ module.exports = async (url, content) => {
     message: `:robot: ${type} updated\nwith ${config.name}`
   });
   if (response) {
-    /* @todo If path has changed, return 'update_created' */
+    /* TODO: If path has changed, return 'update_created' */
     return micropub.response('update', url);
   }
 
