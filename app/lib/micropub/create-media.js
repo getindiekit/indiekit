@@ -1,12 +1,11 @@
-const path = require('path');
 const _ = require('lodash');
-const {DateTime} = require('luxon');
 
 const config = require(process.env.PWD + '/app/config');
 const memos = require(process.env.PWD + '/app/lib/memos');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Creates a new post
@@ -23,14 +22,7 @@ module.exports = async (pub, files) => {
   const type = 'photo';
   const typeConfig = _.find(pub['post-types'], {type});
 
-  // Update properties
-  const properties = {
-    published: DateTime.local().toISO(),
-    slug: String(Math.floor(Math.random() * 90000) + 10000)
-  };
-
   // Photos
-  // @todo Abstract code into shared function
   /**
    * Turns out async/await doesn’t work so great with forEach loops. Use
    * asynchronous `await Promise.all(files.map(async file => {…}))` or
@@ -38,21 +30,13 @@ module.exports = async (pub, files) => {
    * (Asynchronous pattern trips up Micropub.rocks! validator)
    * @see https://stackoverflow.com/a/37576787/11107625
    */
-  for (const [i, file] of files.entries()) { /* eslint-disable no-await-in-loop */
+  for (const file of files) { /* eslint-disable no-await-in-loop */
     // Provide additional properties for file path templates
-    const fileext = path.extname(file.originalname);
-    const basename = String(i + 1);
-    const filename = `${basename.padStart(2, '0')}${fileext}`;
-    const fileProperties = {
-      originalname: file.originalname,
-      filename,
-      fileext
-    };
-    const fileContext = {...properties, ...fileProperties};
+    const fileProperties = utils.deriveFileProperties(file);
 
     // Render publish and destination paths
-    // @todo Media items can have seperate file and url paths
-    const filePath = render(typeConfig.path.file, fileContext);
+    // TODO: Media items can have seperate file and url paths
+    const filePath = render(typeConfig.path.file, fileProperties);
     const urlPath = filePath;
 
     // Prepare location and new memo
@@ -62,7 +46,7 @@ module.exports = async (pub, files) => {
     // Upload file to GitHub
     try {
       const response = await store.github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: ${filename} uploaded\nwith ${config.name}`
+        message: `:framed_picture: ${fileProperties.filename} uploaded\nwith ${config.name}`
       });
 
       if (response) {

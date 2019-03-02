@@ -61,11 +61,12 @@ IndieKit provides a set of default paths and [templates](https://github.com/paul
 
 * **`path.post`**: Where posts should be saved to in your repository.
 
-* **`path.file`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). Additional variables are available to media files:
+* **`path.file`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). The following template variables are available for media files:
 
   * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
-  * `filename` is a zero-filled two-digit number with file extension, e.g. <samp>03.jpg</samp>.
+  * `filename` is a five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
   * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>.jpg</samp>.
+  * `filedate` is the ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
 
 * **`url`**: Permalink of post as it appears on your website.
 

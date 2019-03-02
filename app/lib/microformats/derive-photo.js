@@ -1,8 +1,7 @@
-const path = require('path');
-
 const config = require(process.env.PWD + '/app/config');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Combines referenced and attached photos into one object which can be used in
@@ -46,16 +45,9 @@ module.exports = async (mf2, files, typeConfig) => {
      * (Asynchronous pattern trips up Micropub.rocks! validator)
      * @see https://stackoverflow.com/a/37576787/11107625
      */
-    for (const [i, file] of files.entries()) { /* eslint-disable no-await-in-loop */
+    for (const file of files) { /* eslint-disable no-await-in-loop */
       // Provide additional properties for file path templates
-      const fileext = path.extname(file.originalname);
-      const basename = String(i + 1);
-      const filename = `${basename.padStart(2, '0')}${fileext}`;
-      const fileProperties = {
-        originalname: file.originalname,
-        filename,
-        fileext
-      };
+      const fileProperties = utils.deriveFileProperties(file);
       const fileContext = {...properties, ...referencedPhotos, ...fileProperties};
 
       // Render publish and destination paths
@@ -63,7 +55,7 @@ module.exports = async (mf2, files, typeConfig) => {
 
       // Create post on GitHub
       await store.github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: ${filename} uploaded\nwith ${config.name}`
+        message: `:framed_picture: ${fileProperties.filename} uploaded\nwith ${config.name}`
       });
 
       combinedPhotos.push({

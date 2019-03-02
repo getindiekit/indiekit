@@ -21,5 +21,5 @@ test('Derives slug from `name` property', t => {
 
 test('Derives slug by generating random number', t => {
   const slug = derviveSlug(missingNoName, '-');
-  t.regex(slug[0], /(\d{5})/g);
+  t.regex(slug[0], /[\d\w]{5}/g);
 });

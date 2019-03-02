@@ -14,7 +14,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 module.exports = (mf2, separator) => {
   let slug = mf2['mp-slug'];
   const {name} = mf2.properties;
-  const random = String(Math.floor(Math.random() * 90000) + 10000);
+  const random = utils.createRandomString();
 
   if (slug) {
     return slug;
