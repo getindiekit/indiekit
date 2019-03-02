@@ -1,8 +1,8 @@
 /**
- * @module routes/micropub
+ * @memberof routes
+ * @module micropub
  */
 const config = require(process.env.PWD + '/app/config');
-const cache = require(process.env.PWD + '/app/lib/cache');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
@@ -35,28 +35,17 @@ exports.post = async (request, response, next) => {
     let {body} = request;
     const {files} = request;
 
-    // Ensure token is provided
-    const accessToken = request.headers.authorization || body.access_token;
-    if (!accessToken) {
-      return micropub.error('unauthorized');
-    }
-
-    // Verify token
-    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
-    if (!verifiedToken) {
-      return micropub.error('forbidden', 'Unable to verify access token');
-    }
-
-    // Authorized users can purge cache
-    if (request.query.purge === 'cache') {
-      cache.delete();
-      return micropub.response();
-    }
-
     // Ensure response has body data
     const hasBody = Object.entries(body).length !== 0;
     if (!hasBody) {
       return micropub.error('invalid_request');
+    }
+
+    // Verify access token
+    const accessToken = request.headers.authorization || body.access_token;
+    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
+    if (!verifiedToken) {
+      return micropub.error('forbidden', 'Unable to verify access token');
     }
 
     // Normalise form-encoded requests as mf2 JSON
@@ -70,21 +59,13 @@ exports.post = async (request, response, next) => {
     const {url} = body;
 
     // Delete action (WIP)
-    if (action === 'delete') {
-      if (scope.includes('delete')) {
-        return micropub.deletePost(url);
-      }
-
-      return micropub.error('insufficient_scope');
+    if (action === 'delete' && scope.includes('delete')) {
+      return micropub.deletePost(url);
     }
 
     // Update action (not yet supported)
-    if (action === 'update') {
-      if (scope.includes('update')) {
-        return micropub.error('invalid_request', 'Update action not supported');
-      }
-
-      return micropub.error('insufficient_scope');
+    if (action === 'update' && scope.includes('update')) {
+      return micropub.error('invalid_request', 'Update action not supported');
     }
 
     // Create action
