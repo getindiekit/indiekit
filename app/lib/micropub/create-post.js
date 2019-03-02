@@ -21,7 +21,7 @@ const store = require(process.env.PWD + '/app/lib/store');
  */
 module.exports = async (pub, body, files) => {
   // Determine post type
-  // @todo Infer type by `type` using multer field object
+  // TODO: Infer type by `type` using multer field object
   let type;
   if (files) {
     type = 'photo';

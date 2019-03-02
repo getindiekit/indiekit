@@ -19,7 +19,7 @@ module.exports = async (accessToken, url) => {
 
   const response = await request(accessToken);
 
-  /* @todo Check if all clients support authResponse.error */
+  /* TODO: Check if all clients support authResponse.error */
   if (response.error) {
     throw new Error(response.error_description);
   }

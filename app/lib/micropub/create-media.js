@@ -18,7 +18,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  */
 module.exports = async (pub, files) => {
   // Determine post type
-  // @todo Infer type by `type` using multer field object
+  // TODO: Infer type by `type` using multer field object
   const type = 'photo';
   const typeConfig = _.find(pub['post-types'], {type});
 

@@ -29,7 +29,7 @@ module.exports = async url => {
         message: `:x: Post deleted\nwith ${config.name}`
       });
       if (response) {
-        // @todo Save properties to memo to enable undelete action
+        // TODO: Save properties to memo to enable undelete action
         return micropub.response('delete', url);
       }
     } catch (error) {
