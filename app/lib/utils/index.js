@@ -1,8 +1,38 @@
+const path = require('path');
+const {DateTime} = require('luxon');
+
 /**
  * Common utility functions.
  *
  * @module utils
  */
+
+/**
+ * Generates random alpha-numeric string, 5 characters long
+ *
+ * @return {Object} Alpha-numeric string
+ */
+const createRandomString = () => {
+  return (Number(new Date())).toString(36).slice(-5);
+};
+
+/**
+ * Derives additional file name properties
+ *
+ * @param {Object} file Original file object
+ * @return {Object} File properties
+ */
+const deriveFileProperties = file => {
+  const filedate = DateTime.local().toISO();
+  const fileext = path.extname(file.originalname);
+  const filename = `${createRandomString()}${fileext}`;
+  return {
+    originalname: file.originalname,
+    filedate,
+    filename,
+    fileext
+  };
+};
 
 /**
  * Decodes form-encoded string
@@ -48,7 +78,9 @@ const normalizePath = string => {
 };
 
 module.exports = {
+  createRandomString,
   decodeFormEncodedString,
+  deriveFileProperties,
   excerptString,
   normalizePath
 };

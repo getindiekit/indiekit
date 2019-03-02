@@ -170,7 +170,16 @@ Parses microformats at a given URL
 
 Returns **[Promise][3]** mf2 object
 
-## push
+## files
+
+-   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
+
+Turns out async/await doesn’t work so great with forEach loops. Use
+asynchronous `await Promise.all(files.map(async file => {…}))` or
+synchronous `for (const file of files) {…}` instead.
+(Asynchronous pattern trips up Micropub.rocks! validator)
+
+## files
 
 -   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
 
@@ -373,15 +382,6 @@ Responds to POST requests
 
 Returns **[Object][1]** HTTP response
 
-## 
-
--   **See: [https://stackoverflow.com/a/37576787/11107625][8]**
-
-Turns out async/await doesn’t work so great with forEach loops. Use
-asynchronous `await Promise.all(files.map(async file => {…}))` or
-synchronous `for (const file of files) {…}` instead.
-(Asynchronous pattern trips up Micropub.rocks! validator)
-
 ## publication
 
 Gets a publication’s configuration and combines it with default values set by
@@ -466,6 +466,22 @@ Returns **[Promise][3]** GitHub HTTP response
 ## utils
 
 Common utility functions.
+
+## createRandomString
+
+Generates random alpha-numeric string, 5 characters long
+
+Returns **[Object][1]** Alpha-numeric string
+
+## deriveFileProperties
+
+Derives additional file name properties
+
+### Parameters
+
+-   `file` **[Object][1]** Original file object
+
+Returns **[Object][1]** File properties
 
 ## decodeFormEncodedString
 

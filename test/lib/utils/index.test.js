@@ -4,6 +4,10 @@ const test = require('ava');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 // Tests
+test('Generates random alpha-numeric string, 5 characters long', t => {
+  t.regex(utils.createRandomString(), /[\d\w]{5}/g);
+});
+
 test('Decodes form-encoded string', t => {
   t.false(utils.decodeFormEncodedString({foo: 'bar'}));
   t.is(utils.decodeFormEncodedString('foo+bar'), 'foo bar');

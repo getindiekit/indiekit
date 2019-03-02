@@ -44,12 +44,12 @@ test('Derives photo from attached file', async t => {
   }];
   const typeConfig = {
     path: {
-      file: '{{ filename }}'
+      file: '{{ originalname }}'
     }
   };
-  nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
+  nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
   const photo = await devivePhoto(null, files, typeConfig);
-  t.is(photo[0].value, '01.gif');
+  t.is(photo[0].value, 'photo1.gif');
 });
 
 test('Derives photos from attached files', async t => {
@@ -64,12 +64,12 @@ test('Derives photos from attached files', async t => {
   }];
   const typeConfig = {
     path: {
-      file: '{{ filename }}'
+      file: '{{ originalname }}'
     }
   };
-  nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
+  nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
   const photos = await devivePhoto(null, files, typeConfig);
-  const mf2 = [{value: '01.gif'}, {value: '02.gif'}];
+  const mf2 = [{value: 'photo1.gif'}, {value: 'photo2.gif'}];
   t.deepEqual(photos, mf2);
 });
 
@@ -81,12 +81,12 @@ test('Derives photos from referenced and attached files', async t => {
   }];
   const typeConfig = {
     path: {
-      file: '{{ filename }}'
+      file: '{{ originalname }}'
     }
   };
-  nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
+  nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
   const photos = await devivePhoto(provided, files, typeConfig);
-  const mf2 = [{value: 'sunset.jpg'}, {value: '01.gif'}];
+  const mf2 = [{value: 'sunset.jpg'}, {value: 'photo1.gif'}];
   t.deepEqual(photos, mf2);
 });
 
