@@ -1,18 +1,21 @@
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const response = require(process.env.PWD + '/app/lib/micropub/response');
+const _ = require('lodash');
 
 /**
  * Returns an object containing information about this application
  *
  * @param {String} request HTTP request object
  * @param {String} publication Publication configuration
- * @param {String} appUrl URL of application
  * @returns {Promise} Query object
  */
 module.exports = async (request, publication) => {
   const url = `${request.protocol}://${request.headers.host}`;
   const mediaEndpoint = publication['media-endpoint'] || `${url}/media`;
   const syndicateTo = publication['syndicate-to'];
+  const postTypes = publication['post-types'].map(postType => {
+    return _.pick(postType, ['name', 'type']);
+  });
 
   const {query} = request;
   if (query.q === 'config') {
@@ -20,7 +23,8 @@ module.exports = async (request, publication) => {
       code: 200,
       body: {
         'media-endpoint': mediaEndpoint,
-        'syndicate-to': syndicateTo
+        'syndicate-to': syndicateTo,
+        'post-types': postTypes
       }
     };
   }

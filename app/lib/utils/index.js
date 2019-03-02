@@ -77,6 +77,17 @@ const removeEmptyObjectKeys = object => {
   return object;
 };
 
+const pickObjectKeys = (object, picked) => {
+  return Object.keys(object)
+    .filter(key => picked.includes(key))
+    .reduce((obj, key) => {
+      return {
+        ...obj,
+        [key]: object[key]
+      };
+    }, {});
+};
+
 /**
  * Removes ‘/’ from beginning and end of string. Useful for constructing paths
  *
@@ -92,6 +103,7 @@ module.exports = {
   capitalizeFirstLetter,
   decodeFormEncodedString,
   excerptString,
+  pickObjectKeys,
   removeEmptyObjectKeys,
   normalizePath
 };
