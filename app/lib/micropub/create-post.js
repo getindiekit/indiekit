@@ -41,15 +41,15 @@ module.exports = async (pub, body, files) => {
   properties.slug = microformats.deriveSlug(body, slugSeparator);
   properties.photo = await microformats.derivePhoto(body, files, typeConfig);
 
-  // Render publish and destination paths
-  const postPath = render(typeConfig.path.post, properties);
-  const urlPath = render(typeConfig.path.url, properties);
-
   // Render template
   const templatePath = typeConfig.path.template;
   const templateData = fs.readFileSync(templatePath);
   const template = Buffer.from(templateData).toString('utf-8');
   const content = render(template, properties);
+
+  // Render publish and destination paths
+  const postPath = render(typeConfig.path.post, properties);
+  const urlPath = render(typeConfig.path.url, properties);
 
   // Prepare location and new memo
   const location = config.url + urlPath;
