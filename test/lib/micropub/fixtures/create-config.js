@@ -1,20 +1,26 @@
-const templateDir = process.env.PWD + '/test/micropub/fixtures';
+const templateDir = process.env.PWD + '/test/lib/micropub/fixtures';
 
 module.exports = {
   'post-types': [{
-    article: {
+    type: 'article',
+    name: 'Article',
+    path: {
       template: `${templateDir}/template-article.njk`,
       post: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
       url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
-    },
-    note: {
+    }
+  }, {
+    type: 'note',
+    name: 'Note',
+    path: {
       template: `${templateDir}/template-note.njk`,
       post: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
       url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
-    },
-    photo: {
+    }
+  }, {
+    type: 'photo',
+    name: 'Photo',
+    path: {
       template: `${templateDir}/template-photo.njk`,
       post: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
       file: 'images/photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',

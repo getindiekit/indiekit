@@ -43,7 +43,9 @@ test('Derives photo from attached file', async t => {
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
-    file: '{{ filename }}'
+    path: {
+      file: '{{ filename }}'
+    }
   };
   nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
   const photo = await devivePhoto(null, files, typeConfig);
@@ -61,7 +63,9 @@ test('Derives photos from attached files', async t => {
     originalname: 'photo2.gif'
   }];
   const typeConfig = {
-    file: '{{ filename }}'
+    path: {
+      file: '{{ filename }}'
+    }
   };
   nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
   const photos = await devivePhoto(null, files, typeConfig);
@@ -76,7 +80,9 @@ test('Derives photos from referenced and attached files', async t => {
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
-    file: '{{ filename }}'
+    path: {
+      file: '{{ filename }}'
+    }
   };
   nock('https://api.github.com').persist().put(/\d{2}.gif$/).reply(200);
   const photos = await devivePhoto(provided, files, typeConfig);

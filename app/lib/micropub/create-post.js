@@ -1,4 +1,5 @@
 const fs = require('fs-extra');
+const _ = require('lodash');
 const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
@@ -30,7 +31,7 @@ module.exports = async (publication, body, files) => {
     type = getType(mf2);
   }
 
-  const typeConfig = publication['post-types'][0][type];
+  const typeConfig = _.find(publication['post-types'], {type});
   const slugSeparator = publication['slug-separator'];
 
   // Update properties
@@ -41,11 +42,11 @@ module.exports = async (publication, body, files) => {
   properties.photo = await microformats.derivePhoto(body, files, typeConfig);
 
   // Render publish and destination paths
-  const postPath = render(typeConfig.post, properties);
-  const urlPath = render(typeConfig.url, properties);
+  const postPath = render(typeConfig.path.post, properties);
+  const urlPath = render(typeConfig.path.url, properties);
 
   // Render template
-  const templatePath = typeConfig.template;
+  const templatePath = typeConfig.path.template;
   const templateData = fs.readFileSync(templatePath);
   const template = Buffer.from(templateData).toString('utf-8');
   const content = render(template, properties);
