@@ -7,7 +7,7 @@ const store = require(process.env.PWD + '/app/lib/store');
  * Deletes a post
  *
  * @memberof micropub
- * @module delete
+ * @module deletePost
  * @param {String} url URL of published post
  * @returns {Promise} Response object
  */

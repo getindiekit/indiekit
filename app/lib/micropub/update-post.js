@@ -7,7 +7,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * Updates a post
  *
  * @memberof micropub
- * @module update
+ * @module updatePost
  * @param {String} url URL path to post
  * @param {String} content Content to update
  * @returns {Object} Response

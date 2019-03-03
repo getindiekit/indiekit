@@ -14,7 +14,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * Creates a new post
  *
  * @memberof micropub
- * @module update
+ * @module createPost
  * @param {Object} pub Publication configuration
  * @param {String} body Body content (contains microformats2 object)
  * @param {String} files File attachments

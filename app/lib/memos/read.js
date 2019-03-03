@@ -7,7 +7,7 @@ const createMemos = require(process.env.PWD + '/app/lib/memos/create');
 /**
  * Reads memo
  *
- * @memberof memo
+ * @memberof memos
  * @module read
  * @returns {Object} Configuration options
  */

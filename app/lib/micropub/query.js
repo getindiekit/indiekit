@@ -6,6 +6,8 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
 /**
  * Returns an object containing information about this application
  *
+ * @memberof micropub
+ * @module query
  * @param {String} request HTTP request object
  * @param {String} pub Publication configuration
  * @returns {Promise} Query object

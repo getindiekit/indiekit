@@ -13,7 +13,7 @@
   "bugs": "https://github.com/paulrobertlloyd/indiekit/issues",
   "scripts": {
     "start": "node app/server.js",
-    "docs": "documentation build app/** -f md -o docs/app.md --markdown-toc false",
+    "docs": "documentation build app/** -f md -o docs/app.md",
     "test": "ava --verbose",
     "coverage": "NODE_ENV=test nyc ava"
   },

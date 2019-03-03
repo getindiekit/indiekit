@@ -1,7 +1,3 @@
-/**
-* @memberof routes
-* @module admin
- */
 const config = require(process.env.PWD + '/app/config');
 const cache = require(process.env.PWD + '/app/lib/cache');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
@@ -10,6 +6,8 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
 /**
  * Responds to POST requests
  *
+ * @memberof routes
+ * @module admin.post
  * @param {Object} request Request
  * @param {Object} response Response
  * @param {Object} next Callback

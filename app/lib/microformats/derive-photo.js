@@ -39,10 +39,10 @@ module.exports = async (mf2, files, typeConfig) => {
 
   if (files) {
     /**
-     * Turns out async/await doesn’t work so great with forEach loops. Use
-     * asynchronous `await Promise.all(files.map(async file => {…}))` or
-     * synchronous `for (const file of files) {…}` instead.
-     * (Asynchronous pattern trips up Micropub.rocks! validator)
+     * @ignore: Turns out async/await doesn’t work so great with forEach loops.
+     * Use asynchronous `await Promise.all(files.map(async file => {…}))` or
+     * synchronous `for (const file of files) {…}` instead. (Asynchronous
+     * pattern trips up Micropub.rocks! validator)
      * @see https://stackoverflow.com/a/37576787/11107625
      */
     for (const file of files) { /* eslint-disable no-await-in-loop */

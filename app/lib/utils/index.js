@@ -10,6 +10,9 @@ const {DateTime} = require('luxon');
 /**
  * Generates random alpha-numeric string, 5 characters long
  *
+ * @memberof utils
+ * @exports createRandomString
+ * @example createRandomString() => 'b3dog'
  * @return {Object} Alpha-numeric string
  */
 const createRandomString = () => {
@@ -19,13 +22,22 @@ const createRandomString = () => {
 /**
  * Derives additional file name properties
  *
+ * @memberof utils
+ * @exports deriveFileProperties
+ * @example deriveFileProperties('brighton-pier.jpg') => {
+ *   originalname: 'brighton-pier.jpg',
+ *   filedate: '2019-03-03T05:07:09+00:00',
+ *   filename: 'ds48s',
+ *   fileext: '.jpg'
+ * }
  * @param {Object} file Original file object
  * @return {Object} File properties
  */
 const deriveFileProperties = file => {
+  const basename = createRandomString();
   const filedate = DateTime.local().toISO();
   const fileext = path.extname(file.originalname);
-  const filename = `${createRandomString()}${fileext}`;
+  const filename = `${basename}${fileext}`;
   return {
     originalname: file.originalname,
     filedate,
@@ -37,6 +49,9 @@ const deriveFileProperties = file => {
 /**
  * Derives media type and returns equivalent IndieWeb post type
  *
+ * @memberof utils
+ * @exports deriveMediaType
+ * @example deriveMediaType('image/jpeg') => 'photo'
  * @param {Object} mimetype MIME type
  * @return {String} Returns either 'photo', 'video' or audio
  */
@@ -57,6 +72,8 @@ const deriveMediaType = mimetype => {
 /**
  * Decodes form-encoded string
  *
+ * @memberof utils
+ * @exports decodeFormEncodedString
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'
  * @example decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
  * @param {String} string String to decode
@@ -74,6 +91,8 @@ const decodeFormEncodedString = string => {
 /**
  * Gets first n words from a string
  *
+ * @memberof utils
+ * @exports excerptString
  * @example excerptString('Foo bar baz', 2) => 'Foo bar'
  * @param {String} string String to excerpt
  * @param {Number} n Max number of words
@@ -89,6 +108,8 @@ const excerptString = (string, n) => {
 /**
  * Removes ‘/’ from beginning and end of string. Useful for constructing paths
  *
+ * @memberof utils
+ * @exports normalizePath
  * @example normalizePath('/foo/bar/') => 'foo/bar'
  * @param {Object} string String
  * @return {Object} Normalized object

@@ -1,14 +1,12 @@
-/**
-* @memberof routes
-* @module media
- */
 const config = require(process.env.PWD + '/app/config');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 
 /**
- * Responds to POST requests
+ * Responds to Micropub media-endpoint POST requests
  *
+ * @memberof routes
+ * @module media.post
  * @param {Object} request Request
  * @param {Object} response Response
  * @param {Object} next Callback
