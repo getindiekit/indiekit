@@ -17,12 +17,6 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @returns {String} Location of created post
  */
 module.exports = async (pub, files) => {
-  // Determine post type
-  // TODO: Infer type by `type` using multer field object
-  const type = 'photo';
-  const typeConfig = _.find(pub['post-types'], {type});
-
-  // Photos
   /**
    * Turns out async/await doesn’t work so great with forEach loops. Use
    * asynchronous `await Promise.all(files.map(async file => {…}))` or
@@ -31,6 +25,10 @@ module.exports = async (pub, files) => {
    * @see https://stackoverflow.com/a/37576787/11107625
    */
   for (const file of files) { /* eslint-disable no-await-in-loop */
+    // Determine post type from media type
+    const type = utils.deriveMediaType(file.mimetype);
+    const typeConfig = _.find(pub['post-types'], {type});
+
     // Provide additional properties for file path templates
     const properties = utils.deriveFileProperties(file);
 

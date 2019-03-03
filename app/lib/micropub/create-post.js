@@ -8,6 +8,7 @@ const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Creates a new post
@@ -21,10 +22,10 @@ const store = require(process.env.PWD + '/app/lib/store');
  */
 module.exports = async (pub, body, files) => {
   // Determine post type
-  // TODO: Infer type by `type` using multer field object
   let type;
   if (files) {
-    type = 'photo';
+    // Infer media type from first file attachment
+    type = utils.deriveMediaType(files[0].mimetype);
   } else {
     // Create the `items` array getType() expects
     const mf2 = {items: [body]};

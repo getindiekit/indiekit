@@ -35,6 +35,26 @@ const deriveFileProperties = file => {
 };
 
 /**
+ * Derives media type and returns equivalent IndieWeb post type
+ *
+ * @param {Object} mimetype MIME type
+ * @return {String} Returns either 'photo', 'video' or audio
+ */
+const deriveMediaType = mimetype => {
+  if (mimetype.includes('audio/')) {
+    return 'audio';
+  }
+
+  if (mimetype.includes('image/')) {
+    return 'photo';
+  }
+
+  if (mimetype.includes('video/')) {
+    return 'video';
+  }
+};
+
+/**
  * Decodes form-encoded string
  *
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'
@@ -81,6 +101,7 @@ module.exports = {
   createRandomString,
   decodeFormEncodedString,
   deriveFileProperties,
+  deriveMediaType,
   excerptString,
   normalizePath
 };

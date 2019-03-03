@@ -14,6 +14,12 @@ test('Decodes form-encoded string', t => {
   t.is(utils.decodeFormEncodedString('http%3A%2F%2Ffoo.bar'), 'http://foo.bar');
 });
 
+test('Derives file type and returns equivalent IndieWeb post type', t => {
+  t.is(utils.deriveMediaType('audio/mp3'), 'audio');
+  t.is(utils.deriveMediaType('video/mp4'), 'video');
+  t.is(utils.deriveMediaType('image/jpeg'), 'photo');
+});
+
 test('Excerpts string', t => {
   const string = 'Foo bar baz qux quux.';
   t.is(utils.excerptString(string, 2), 'Foo bar');

@@ -20,6 +20,7 @@ test('Creates a photo', async t => {
   const photo1 = fs.readFileSync(path.resolve(__dirname, 'fixtures/photo1.gif'));
   const files = [{
     buffer: Buffer.from(photo1),
+    mimetype: 'image/gif',
     originalname: 'photo1.gif'
   }];
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
