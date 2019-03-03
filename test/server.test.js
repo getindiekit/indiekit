@@ -10,6 +10,16 @@ test('Application serves a favicon', async t => {
   t.regex(response.header['content-type'], /^image/);
 });
 
-test.todo('Application displays an home page');
+test('Application displays a home page', async t => {
+  const response = await app.get('/');
 
-test.todo('Application responds to 404’s errors');
+  t.is(response.status, 200);
+  t.regex(response.header['content-type'], /^text\/html/);
+});
+
+test('Application responds to 404 errors', async t => {
+  const response = await app.get('/foobar');
+
+  t.is(response.status, 404);
+  t.regex(response.header['content-type'], /^text\/html/);
+});

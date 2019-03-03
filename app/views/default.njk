@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <title>{% block title %}{% endblock %}{{ name }}</title>
+  </head>
+  <body>
+    <header>
+      {% include 'logo.svg' %}
+      <h1>{{ name }}</h1>
+      <p>{{ description }}</p>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <a href="https://github.com/{{ repository | replace('github:', ".") }}/releases/tag/v{{ version }}">v{{ version }}</a>
+    </footer>
+  </body>
+</html>
