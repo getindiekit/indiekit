@@ -5,8 +5,7 @@ const nunjucks = require('nunjucks');
  * Render a Nunjucks template string using context data
  * @see {@link https://mozilla.github.io/nunjucks/api.html#renderstring Nunjucks API: renderString}
  *
- * @memberof render
- * @module string
+ * @module render
  * @param {String} string Template string
  * @param {String} context Context data
  * @return {String} Rendered string

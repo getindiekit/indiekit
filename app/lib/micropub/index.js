@@ -11,5 +11,5 @@ module.exports = {
   deletePost: require(process.env.PWD + '/app/lib/micropub/delete-post'),
   query: require(process.env.PWD + '/app/lib/micropub/query'),
   response: require(process.env.PWD + '/app/lib/micropub/response'),
-  update: require(process.env.PWD + '/app/lib/micropub/update-post')
+  updatePost: require(process.env.PWD + '/app/lib/micropub/update-post')
 };

@@ -7,6 +7,10 @@ const micropub = require(process.env.PWD + '/app/routes/micropub');
 
 const router = new express.Router();
 
+/**
+ * @module routes
+ */
+
 // Index
 router.get('/', (request, response) => {
   response.render('index', config);

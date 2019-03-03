@@ -1,8 +1,7 @@
 /**
  * Get, create and delete data at a specified path at configured GitHub repo.
  *
- * @memberof store
- * @module github
+ * @module store/github
  */
 const config = require(process.env.PWD + '/app/config');
 const utils = require(process.env.PWD + '/app/lib/utils');
@@ -18,6 +17,8 @@ const octokit = new Octokit({
  * Reads content of a file or directory in a repository
  * @see {@link https://developer.github.com/v3/repos/contents/#get-contents GitHub REST API v3: Get Contents}
  *
+ * @memberof store/github
+ * @exports getContents
  * @param {String} path Path to file
  * @return {Promise} GitHub HTTP response
  */
@@ -42,6 +43,8 @@ const getContents = async path => {
  * Creates a new file in a GitHub repository
  * @see {@link https://developer.github.com/v3/repos/contents/#create-a-file GitHub REST API v3: Create a file}
  *
+ * @memberof store/github
+ * @exports createFile
  * @param {String} path Path to file
  * @param {String} content File content
  * @param {String} options Options
@@ -68,6 +71,8 @@ const createFile = async (path, content, options) => {
  * Updates a file in a GitHub repository
  * @see {@link https://developer.github.com/v3/repos/contents/#update-a-file GitHub REST API v3: Update a file}
  *
+ * @memberof store/github
+ * @exports updateFile
  * @param {String} path Path to file
  * @param {String} content File content
  * @param {String} options Options
@@ -98,6 +103,8 @@ const updateFile = async (path, content, options) => {
  * Deletes a file in a GitHub repository
  * @see {@link https://developer.github.com/v3/repos/contents/#delete-a-file GitHub REST API v3: Delete a file}
  *
+ * @memberof store/github
+ * @exports deleteFile
  * @param {String} path Path to file
  * @param {String} options Options
  * @return {Promise} GitHub HTTP response

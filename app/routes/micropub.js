@@ -1,15 +1,13 @@
-/**
- * @memberof routes
- * @module micropub
- */
 const config = require(process.env.PWD + '/app/config');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 
 /**
- * Responds to GET requests
+ * Responds to Micropub GET requests
  *
+ * @memberof routes
+ * @module micropub.get
  * @param {Object} request Request
  * @param {Object} response Response
  * @return {Object} HTTP response
@@ -22,8 +20,10 @@ exports.get = async (request, response) => {
 };
 
 /**
- * Responds to POST requests
+ * Responds to Micropub POST requests
  *
+ * @memberof routes
+ * @module micropub.post
  * @param {Object} request Request
  * @param {Object} response Response
  * @param {Object} next Callback
