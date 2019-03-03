@@ -1,9 +1,14 @@
 require('dotenv').config();
 
+const pkg = require(process.env.PWD + '/package');
+
 const config = module.exports;
 
 // Server
 config.name = 'IndieKit';
+config.version = pkg.version;
+config.description = pkg.description;
+config.repository = pkg.repository;
 config.port = process.env.PORT || 3000;
 config.cache = {
   dir: process.env.PWD + '/.cache',

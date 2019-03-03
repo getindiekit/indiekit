@@ -1,14 +1,14 @@
 {
   "name": "@paulrobertlloyd/indiekit",
   "version": "0.0.1",
-  "description": "IndieWeb publishing toolkit",
+  "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "indieweb",
     "micropub"
   ],
   "author": "Paul Robert Lloyd",
   "license": "MIT",
-  "homepage": "https://github.com/paulrobertlloyd/indiekit#readme",
+  "homepage": "https://paulrobertlloyd.github.io/indiekit/",
   "repository": "github:paulrobertlloyd/indiekit",
   "bugs": "https://github.com/paulrobertlloyd/indiekit/issues",
   "scripts": {
