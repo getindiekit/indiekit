@@ -16,7 +16,8 @@ const upload = multer({storage});
 // Parse Nunjucks templates
 nunjucks.configure(['./app/views', './app/static'], {
   autoescape: true,
-  express: app
+  express: app,
+  watch: true
 });
 
 app.set('view engine', 'njk');
@@ -33,7 +34,7 @@ app.use(bodyParser.urlencoded({
 app.use(upload.any());
 
 // Static files
-app.use(express.static('static'));
+app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 
 // Routes

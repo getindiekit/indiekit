@@ -1,3 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512">
-  <path fill="#333" d="M336 80l-64 64 64 64H208V0H0v96h112v320H0v96h208V304h128l-64 64 64 64 176-176z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+  <path fill="currentColor" d="M336 80l-64 64 64 64H208V0H0v96h112v320H0v96h208V304h128l-64 64 64 64 176-176z"/>
 </svg>
