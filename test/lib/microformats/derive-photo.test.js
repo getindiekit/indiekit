@@ -40,6 +40,7 @@ test('Derives photo from attached file', async t => {
   const photo1 = fs.readFileSync(path.resolve(__dirname, 'fixtures/photo1.gif'));
   const files = [{
     buffer: Buffer.from(photo1),
+    mimetype: 'image/gif',
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
@@ -57,9 +58,11 @@ test('Derives photos from attached files', async t => {
   const photo2 = fs.readFileSync(path.resolve(__dirname, 'fixtures/photo2.gif'));
   const files = [{
     buffer: Buffer.from(photo1),
+    mimetype: 'image/gif',
     originalname: 'photo1.gif'
   }, {
     buffer: Buffer.from(photo2),
+    mimetype: 'image/gif',
     originalname: 'photo2.gif'
   }];
   const typeConfig = {
@@ -77,6 +80,7 @@ test('Derives photos from referenced and attached files', async t => {
   const attached = fs.readFileSync(path.resolve(__dirname, 'fixtures/photo1.gif'));
   const files = [{
     buffer: Buffer.from(attached),
+    mimetype: 'image/gif',
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
