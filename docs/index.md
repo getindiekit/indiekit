@@ -21,7 +21,6 @@ This tool is inspired by [similar projects](https://paulrobertlloyd.github.io/in
 
 * [Getting started](https://paulrobertlloyd.github.io/indiekit/deploy): Deploying the application.
 * [Usage](https://paulrobertlloyd.github.io/indiekit/config): Configuring your website to work with IndieKit.
-* [Testing](https://paulrobertlloyd.github.io/indiekit/test): Testing the service locally and running automated tests.
 * [Glossary](https://paulrobertlloyd.github.io/indiekit/glossary): Terms used throughout the application and documentation.
 * [Application](https://paulrobertlloyd.github.io/indiekit/app): Functions used within the application.
 
