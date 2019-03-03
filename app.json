@@ -7,32 +7,32 @@
   ],
   "website": "https://paulrobertlloyd.github.io/indiekit/",
   "repository": "https://github.com/paulrobertlloyd/indiekit",
-  "logo": "https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/www/logo.svg?sanitize=true",
+  "logo": "https://raw.githubusercontent.com/paulrobertlloyd/indiekit/master/app/static/logo.svg?sanitize=true",
   "success_url": "https://paulrobertlloyd.github.io/indiekit/config",
   "env": {
     "GITHUB_TOKEN": {
-      "description": "GitHub access token.",
+      "description": "GitHub access token",
       "required": true
     },
     "GITHUB_USER": {
-      "description": "GitHub username.",
+      "description": "GitHub username",
       "required": true
     },
     "GITHUB_REPO": {
-      "description": "GitHub repository in which to save files.",
+      "description": "GitHub repository in which to save files",
       "required": true
     },
     "GITHUB_BRANCH": {
-      "description": "GitHub branch in which to save files.",
+      "description": "GitHub branch in which to save files",
       "value": "master"
     },
-    "INDIEKIT_CONFIG_PATH": {
-      "description": "Location of configuration file, relative to repository root.",
-      "value": "indiekit.json"
+    "INDIEKIT_URL": {
+      "description": "URL of the website you want to publish to",
+      "required": true
     },
-    "INDIEKIT_CACHE_EXPIRES": {
-      "description": "Time (in seconds) before cache expires.",
-      "value": "86400"
+    "INDIEKIT_CONFIG_PATH": {
+      "description": "Location of configuration file, relative to repository root",
+      "value": "indiekit.json"
     }
   },
   "image": "heroku/nodejs"
