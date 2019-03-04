@@ -1,6 +1,9 @@
 ---
 title: '{{ title }}'
 date: {{ published }}
+{%- if summary %}
+excerpt: {{ summary }}
+{%- endif %}
 {%- if category %}
 categories:
 {%- for item in category %}
