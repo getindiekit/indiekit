@@ -1,6 +1,6 @@
-const config = require(process.env.PWD + '/app/config');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Responds to Micropub media-endpoint POST requests
@@ -12,9 +12,9 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
  * @param {Object} next Callback
  * @return {Object} HTTP response
  */
-exports.post = async (request, response, next) => {
+exports.post = async (request, response) => {
   const pub = await require(process.env.PWD + '/app/lib/publication')();
-  const getPostResponse = async request => {
+  const getResult = async request => {
     const {body} = request;
     const {files} = request;
 
@@ -24,30 +24,28 @@ exports.post = async (request, response, next) => {
       return micropub.error('invalid_request');
     }
 
-    // Verify access token
+    // Ensure token is verified and provides scope
     const accessToken = request.headers.authorization || body.access_token;
-    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
-    if (!verifiedToken) {
-      return micropub.error('forbidden', 'Unable to verify access token');
+    const authResponse = await indieauth.verifyToken(accessToken);
+    const {scope} = authResponse;
+    if (!scope) {
+      return authResponse;
     }
 
-    // Create action
-    const {scope} = verifiedToken;
+    // Create media
     if (scope.includes('create') || scope.includes('media')) {
       return micropub.createMedia(pub, files);
     }
 
-    return micropub.error('insufficient_scope');
+    return utils.error('insufficient_scope');
   };
 
   try {
-    const postResponse = await getPostResponse(request);
-    return response.status(postResponse.code).set({
-      location: postResponse.location
-    }).json(postResponse.body);
+    const result = await getResult(request);
+    return response.status(result.code).set({
+      location: result.location || null
+    }).json(result.body);
   } catch (error) {
     console.error(error);
   }
-
-  next();
 };

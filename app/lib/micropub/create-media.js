@@ -2,7 +2,6 @@ const _ = require('lodash');
 
 const config = require(process.env.PWD + '/app/config');
 const memos = require(process.env.PWD + '/app/lib/memos');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
@@ -47,10 +46,10 @@ module.exports = async (pub, files) => {
 
       if (response) {
         memos.update('create', memo);
-        return micropub.response('create_pending', location);
+        return utils.success('create_pending', location);
       }
     } catch (error) {
-      return micropub.error('server_error', error);
+      return utils.error('server_error', error);
     }
   } /* eslint-enable no-await-in-loop */
 };

@@ -5,7 +5,6 @@ const getType = require('post-type-discovery');
 const config = require(process.env.PWD + '/app/config');
 const memos = require(process.env.PWD + '/app/lib/memos');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
@@ -23,7 +22,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 module.exports = async (pub, body, files) => {
   // Determine post type
   let type;
-  if (files) {
+  if (files.length > 0) {
     // Infer media type from first file attachment
     type = utils.deriveMediaType(files[0].mimetype);
   } else {
@@ -58,15 +57,12 @@ module.exports = async (pub, body, files) => {
 
   // Create post on GitHub
   try {
-    const response = await store.github.createFile(postPath, content, {
+    await store.github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${config.name}`
     });
-
-    if (response) {
-      memos.update('create', memo);
-      return micropub.response('create_pending', location);
-    }
+    memos.update('create', memo);
+    return utils.success('create_pending', location);
   } catch (error) {
-    return micropub.error('server_error', error);
+    throw new Error('Unable to connect to GitHub');
   }
 };

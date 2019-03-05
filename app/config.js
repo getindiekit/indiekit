@@ -23,7 +23,7 @@ config.indieauth = {
 };
 
 // Publication
-config.url = process.env.INDIEKIT_URL || console.error('Missing INDIEKIT_URL');
+config.url = process.env.INDIEKIT_URL;
 config['pub-config'] = process.env.INDIEKIT_CONFIG_PATH || 'indiekit.json';
 
 // Github

@@ -1,7 +1,6 @@
-const config = require(process.env.PWD + '/app/config');
 const cache = require(process.env.PWD + '/app/lib/cache');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Responds to POST requests
@@ -13,33 +12,30 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
  * @param {Object} next Callback
  * @return {Object} HTTP response
  */
-exports.post = async (request, response, next) => {
-  const getPostResponse = async request => {
+exports.post = async (request, response) => {
+  const getResult = async request => {
     const {body} = request;
 
-    // Verify access token
+    // Ensure token is verified and provides permissions
     const accessToken = request.headers.authorization || body.access_token;
-    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
-    if (!verifiedToken) {
-      return micropub.error('forbidden', 'Unable to verify access token');
-    }
+    const authResponse = await indieauth.verifyToken(accessToken);
 
-    // Authorized users can purge cache
+    // Determine Admin action
     const {query} = request;
-    if (query.purge === 'cache') {
+    if (query.purge === 'cache' && authResponse) {
       cache.delete();
-      return micropub.response();
+      return utils.success();
     }
 
-    return micropub.error('not_found');
+    return utils.error('not_found');
   };
 
   try {
-    const postResponse = await getPostResponse(request);
-    return response.status(postResponse.code).json(postResponse.body);
+    const result = await getResult(request);
+    return response.status(result.code).set({
+      location: result.location || null
+    }).json(result.body);
   } catch (error) {
     console.error(error);
   }
-
-  next();
 };
