@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 const microformats = require(process.env.PWD + '/app/lib/microformats');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Returns an object containing information about this application
@@ -43,7 +43,7 @@ module.exports = async (request, pub) => {
         body: await microformats.urlToMf2(query.url, query.properties)
       };
     } catch (error) {
-      return micropub.error('invalid_request', error.message);
+      return utils.error('invalid_request', error.message);
     }
   }
 
@@ -56,5 +56,5 @@ module.exports = async (request, pub) => {
     };
   }
 
-  return micropub.error('invalid_request');
+  return utils.error('invalid_request');
 };

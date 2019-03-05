@@ -23,7 +23,7 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@octokit/rest": "^16.16.3",
+    "@octokit/rest": "^16.16.5",
     "body-parser": "^1.18.3",
     "console-log-level": "^1.4.0",
     "dotenv": "^6.2.0",
@@ -36,13 +36,13 @@
     "nock": "^10.0.6",
     "node-fetch": "^2.3.0",
     "normalize-url": "^4.2.0",
-    "nunjucks": "^3.1.7",
+    "nunjucks": "^3.2.0",
     "post-type-discovery": "github:paulrobertlloyd/post-type-discovery",
     "serve-favicon": "^2.5.0",
     "slug": "^1.0.0"
   },
   "devDependencies": {
-    "ava": "^1.2.1",
+    "ava": "^1.3.1",
     "documentation": "^9.3.0",
     "husky": "^1.3.1",
     "nodemon": "^1.18.10",

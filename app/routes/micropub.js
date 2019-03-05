@@ -1,7 +1,7 @@
-const config = require(process.env.PWD + '/app/config');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Responds to Micropub GET requests
@@ -14,9 +14,9 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
  */
 exports.get = async (request, response) => {
   const pub = await require(process.env.PWD + '/app/lib/publication')();
-  const getResponse = await micropub.query(request, pub);
+  const result = await micropub.query(request, pub);
 
-  return response.status(getResponse.code).json(getResponse.body);
+  return response.status(result.code).json(result.body);
 };
 
 /**
@@ -29,23 +29,16 @@ exports.get = async (request, response) => {
  * @param {Object} next Callback
  * @return {Object} HTTP response
  */
-exports.post = async (request, response, next) => {
+exports.post = async (request, response) => {
   const pub = await require(process.env.PWD + '/app/lib/publication')();
-  const getPostResponse = async request => {
+  const getResult = async request => {
     let {body} = request;
     const {files} = request;
 
     // Ensure response has body data
     const hasBody = Object.entries(body).length !== 0;
     if (!hasBody) {
-      return micropub.error('invalid_request');
-    }
-
-    // Verify access token
-    const accessToken = request.headers.authorization || body.access_token;
-    const verifiedToken = await indieauth.verifyToken(accessToken, config.url);
-    if (!verifiedToken) {
-      return micropub.error('forbidden', 'Unable to verify access token');
+      return utils.error('invalid_request');
     }
 
     // Normalise form-encoded requests as mf2 JSON
@@ -53,37 +46,37 @@ exports.post = async (request, response, next) => {
       body = microformats.formEncodedToMf2(body);
     }
 
-    // Determine action, ensuring token includes scope permission
-    const {scope} = verifiedToken;
+    // Ensure token is verified and provides scope
+    const accessToken = request.headers.authorization || body.access_token;
+    const authResponse = await indieauth.verifyToken(accessToken);
+    const {scope} = authResponse;
+    if (!scope) {
+      return authResponse;
+    }
+
+    // Determine Micropub action
     const {action} = body;
-    const {url} = body;
-
-    // Delete action (WIP)
-    if (action === 'delete' && scope.includes('delete')) {
-      return micropub.deletePost(url);
+    if (scope.includes('delete') && action === 'delete') {
+      return micropub.deletePost(body.url);
     }
 
-    // Update action (not yet supported)
-    if (action === 'update' && scope.includes('update')) {
-      return micropub.error('invalid_request', 'Update action not supported');
+    if (scope.includes('update') && action === 'update') {
+      return utils.error('invalid_request', 'Update action not supported');
     }
 
-    // Create action
     if (scope.includes('create')) {
       return micropub.createPost(pub, body, files);
     }
 
-    return micropub.error('insufficient_scope');
+    return utils.error('insufficient_scope');
   };
 
   try {
-    const postResponse = await getPostResponse(request);
-    return response.status(postResponse.code).set({
-      location: postResponse.location
-    }).json(postResponse.body);
+    const result = await getResult(request);
+    return response.status(result.code).set({
+      location: result.location || null
+    }).json(result.body);
   } catch (error) {
     console.error(error);
   }
-
-  next();
 };

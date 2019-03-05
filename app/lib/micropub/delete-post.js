@@ -1,7 +1,7 @@
 const config = require(process.env.PWD + '/app/config');
 const memos = require(process.env.PWD + '/app/lib/memos');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
 const store = require(process.env.PWD + '/app/lib/store');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Deletes a post
@@ -30,12 +30,12 @@ module.exports = async url => {
       });
       if (response) {
         // TODO: Save properties to memo to enable undelete action
-        return micropub.response('delete', url);
+        return utils.success('delete', url);
       }
     } catch (error) {
       throw new Error(`Unable to delete ${url}. ${error.message}`);
     }
   }
 
-  return micropub.error('not_found');
+  return utils.error('not_found');
 };

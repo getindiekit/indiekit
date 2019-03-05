@@ -1,5 +1,4 @@
 const config = require(process.env.PWD + '/app/config');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -20,8 +19,8 @@ module.exports = async (url, content) => {
   });
   if (response) {
     /* TODO: If path has changed, return 'update_created' */
-    return micropub.response('update', url);
+    return utils.success('update', url);
   }
 
-  return micropub.error('not_found');
+  return utils.error('not_found');
 };
