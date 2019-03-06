@@ -22,7 +22,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 module.exports = async (pub, body, files) => {
   // Determine post type
   let type;
-  if (files.length > 0) {
+  if (files && files.length > 0) {
     // Infer media type from first file attachment
     type = utils.deriveMediaType(files[0].mimetype);
   } else {
