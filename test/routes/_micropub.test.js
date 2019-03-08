@@ -1,12 +1,13 @@
+const nock = require('nock');
+const request = require('supertest');
 const test = require('ava');
 
-const app = require(process.env.PWD + '/app/test-server');
+const app = request(require(process.env.PWD + '/app/server'));
 
 test('001: Rejects query with no body data', async t => {
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
-
   t.is(response.status, 400);
 });
 
@@ -14,43 +15,59 @@ test('001: Rejects query with no body data', async t => {
  * Creating Posts (Form-Encoded)
  */
 test('100: Create h-entry (form-encoded)', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('101: Create h-entry with multiple categories (form-encoded)', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+an+h-entry+with+categories.+This+post+should+have+two+categories,+test1+and+test2&category[]=test1&category[]=test2');
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('104: Create h-entry with photo referenced by URL (form-encoded)', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+a+photo+referenced+by+URL&photo=https%3A%2F%2Fmicropub.rocks%2Fmedia%2Fsunset.jpg');
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('107: Create h-entry with one category (form-encoded)', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Micropub+test+of+creating+an+h-entry+with+one+category.+This+post+should+have+one+category,+test1&category=test1');
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 /**
@@ -63,14 +80,17 @@ test('200: Create h-entry (JSON)', async t => {
       content: ['Micropub test of creating an h-entry with a JSON request']
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('201: Create h-entry with multiple categories (JSON)', async t => {
@@ -81,14 +101,17 @@ test('201: Create h-entry with multiple categories (JSON)', async t => {
       category: ['test1', 'test2']
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('202: Create h-entry with HTML content (JSON)', async t => {
@@ -100,14 +123,17 @@ test('202: Create h-entry with HTML content (JSON)', async t => {
       }]
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('203: Create h-entry with photo referenced by URL (JSON)', async t => {
@@ -118,14 +144,17 @@ test('203: Create h-entry with photo referenced by URL (JSON)', async t => {
       photo: ['https://micropub.rocks/media/sunset.jpg']
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('204: Create h-entry with nested object (JSON)', async t => {
@@ -150,14 +179,17 @@ test('204: Create h-entry with nested object (JSON)', async t => {
       }]
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('205: Create h-entry with photo with alt text (JSON)', async t => {
@@ -171,14 +203,17 @@ test('205: Create h-entry with photo with alt text (JSON)', async t => {
       }]
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('206: Create h-entry with multiple photos referenced by URL (JSON)', async t => {
@@ -192,14 +227,17 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
       ]
     }
   };
-
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send(JSON.stringify(mf2));
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 /**
@@ -273,36 +311,52 @@ test('802: Does not store access token property', async t => {
 });
 
 test('803: Rejects unauthenticated requests', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .send('h=entry&content=Testing+unauthenticated+request.+This+should+not+create+a+post.');
-
   t.is(response.status, 401);
+  scope.done();
 });
 
 test('804: Rejects unauthorized access tokens', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_SCOPED}`)
     .send('h=entry&content=Testing+a+request+with+an+unauthorized+access+token.+This+should+not+create+a+post.');
-
   t.is(response.status, 401);
+  scope.done();
 });
 
 test('8xx: Rejects invalid destination site', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_ME}`)
     .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
-
   t.is(response.status, 403);
+  scope.done();
 });
 
 test('8xx: Rejects invalid access tokens', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', 'Bearer invalid')
     .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
-
   t.is(response.status, 403);
+  scope.done();
 });

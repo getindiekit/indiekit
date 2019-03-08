@@ -46,16 +46,16 @@ exports.post = async (request, response) => {
       body = microformats.formEncodedToMf2(body);
     }
 
-    // Ensure token is verified and provides scope
+    // Determine Micropub action, ensuring token is verified and provides scope
     const accessToken = request.headers.authorization || body.access_token;
     const authResponse = await indieauth.verifyToken(accessToken);
     const {scope} = authResponse;
+    const {action} = body;
+
     if (!scope) {
       return authResponse;
     }
 
-    // Determine Micropub action
-    const {action} = body;
     if (scope.includes('delete') && action === 'delete') {
       return micropub.deletePost(body.url);
     }

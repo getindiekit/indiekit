@@ -21,10 +21,10 @@ exports.post = async (request, response) => {
     // Ensure response includes files data
     const hasFiles = Object.entries(files).length !== 0;
     if (!hasFiles) {
-      return micropub.error('invalid_request');
+      return utils.error('invalid_request');
     }
 
-    // Ensure token is verified and provides scope
+    // Create media, ensuring token is verified and provides scope
     const accessToken = request.headers.authorization || body.access_token;
     const authResponse = await indieauth.verifyToken(accessToken);
     const {scope} = authResponse;
@@ -32,7 +32,6 @@ exports.post = async (request, response) => {
       return authResponse;
     }
 
-    // Create media
     if (scope.includes('create') || scope.includes('media')) {
       return micropub.createMedia(pub, files);
     }

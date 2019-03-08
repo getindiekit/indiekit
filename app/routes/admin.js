@@ -14,15 +14,17 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  */
 exports.post = async (request, response) => {
   const getResult = async request => {
-    const {body} = request;
-
-    // Ensure token is verified and provides permissions
-    const accessToken = request.headers.authorization || body.access_token;
+    // Determine admin action, ensuring token is verified and provides scope
+    const accessToken = request.headers.authorization;
     const authResponse = await indieauth.verifyToken(accessToken);
-
-    // Determine Admin action
+    const {scope} = authResponse;
     const {query} = request;
-    if (query.purge === 'cache' && authResponse) {
+
+    if (!scope) {
+      return authResponse;
+    }
+
+    if (scope.includes('delete') && query.purge === 'cache') {
       cache.delete();
       return utils.success();
     }
@@ -32,9 +34,7 @@ exports.post = async (request, response) => {
 
   try {
     const result = await getResult(request);
-    return response.status(result.code).set({
-      location: result.location || null
-    }).json(result.body);
+    return response.status(result.code).json(result.body);
   } catch (error) {
     console.error(error);
   }
