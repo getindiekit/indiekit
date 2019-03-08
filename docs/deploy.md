@@ -22,5 +22,5 @@ If you’d like to deploy this application somewhere else, make sure the followi
 * `GITHUB_BRANCH`: GitHub branch files are to. *Optional*, defaults to `master`.
 * `INDIEAUTH_TOKEN_ENDPOINT`: IndieAuth token endpoint. *Optional*, defaults [`https://tokens.indieauth.com/token`](https://tokens.indieauth.com/token)
 * `INDIEKIT_URL`: URL of the website you want to publish to. **Required**.
-* `INDIEKIT_CONFIG_PATH`: Location of configuration file, relative to repository root. *Optional*, defaults to `indiekit.json`.
+* `INDIEKIT_CONFIG_PATH`: Location of configuration file, relative to repository root. *Optional*, if not provided, default values will be used for templates and file paths.
 * `INDIEKIT_CACHE_EXPIRES`: Time (in seconds) before cache expires. *Optional*, defaults to `86400` (1 day).

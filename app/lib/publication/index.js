@@ -14,11 +14,21 @@ const appConfig = require('./defaults');
  * @returns {Promise} Configuration object
  */
 module.exports = async () => {
+  // If no configuration provided, use application defaults
+  if (!config['pub-config']) {
+    console.info('No configuration provided. Using app defaults.');
+    return appConfig;
+  }
+
   try {
     // Fetch configuration from store and cache
     let pubConfig = await cache.read(config['pub-config'], config.cache.config);
+
+    // If no configuration found in store, use application defaults
     if (pubConfig) {
       pubConfig = JSON.parse(pubConfig);
+    } else {
+      return appConfig;
     }
 
     // Merge store configuration with application defaults

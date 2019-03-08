@@ -36,7 +36,7 @@ module.exports = async (pub, files) => {
 
     // Prepare location and new memo
     const location = config.url + filePath;
-    const memo = {file: filePath, url: location};
+    // TODO: const memo = {file: filePath, url: location};
 
     // Upload file to GitHub
     try {
@@ -45,8 +45,8 @@ module.exports = async (pub, files) => {
       });
 
       if (response) {
-        memos.update('create', memo);
-        return utils.success('create_pending', location);
+        // TODO: memos.update('create', memo);
+        return utils.success('create', location);
       }
     } catch (error) {
       return utils.error('server_error', error);
