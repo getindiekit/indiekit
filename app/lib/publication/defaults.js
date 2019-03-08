@@ -7,7 +7,7 @@ module.exports = {
     path: {
       template: `${templateDir}/article.njk`,
       post: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
+      file: 'images/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
@@ -16,7 +16,7 @@ module.exports = {
     path: {
       template: `${templateDir}/note.njk`,
       post: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
+      file: 'images/notes/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
@@ -25,7 +25,7 @@ module.exports = {
     path: {
       template: `${templateDir}/photo.njk`,
       post: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}',
+      file: 'images/photos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }],

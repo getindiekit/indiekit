@@ -21,6 +21,7 @@ exports.post = async (request, response) => {
     // Ensure response includes files data
     const hasFiles = Object.entries(files).length !== 0;
     if (!hasFiles) {
+      console.log('has no files');
       return utils.error('invalid_request');
     }
 
@@ -41,6 +42,7 @@ exports.post = async (request, response) => {
 
   try {
     const result = await getResult(request);
+    console.log('result.code', result.code);
     return response.status(result.code).set({
       location: result.location || null
     }).json(result.body);

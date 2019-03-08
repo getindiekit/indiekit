@@ -24,7 +24,7 @@ config.indieauth = {
 
 // Publication
 config.url = process.env.INDIEKIT_URL;
-config['pub-config'] = process.env.INDIEKIT_CONFIG_PATH || 'indiekit.json';
+config['pub-config'] = process.env.INDIEKIT_CONFIG_PATH;
 
 // Github
 config.github = {

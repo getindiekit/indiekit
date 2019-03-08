@@ -1,6 +1,6 @@
 ## Usage
 
-Having deployed IndieKit to your own server, you’ll no doubt want to customise certain aspects of it. Configuration is provided via `indiekit.json`, a JSON file saved in the root of your repository (you can change this location via the `INDIEKIT_CONFIG_PATH` environment variable). This file lets you customise where posts are saved, how they are formatted and what URLs they will appear at.
+Having deployed IndieKit to your own server, you’ll no doubt want to customise certain aspects of it. Configuration can be provided via a JSON file by providing a value for the `INDIEKIT_CONFIG_PATH` environment variable. This will let you customise where posts are saved, how they are formatted and what URLs they will appear at.
 
 ### Configuration options
 
