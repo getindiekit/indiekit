@@ -16,12 +16,10 @@ module.exports = () => {
   const isCached = fs.existsSync(filePath);
 
   if (!isCached) {
-    console.info('Creating new memos file');
     createMemos();
   }
 
   try {
-    console.info(`Reading memos from ${filePath}`);
     const memos = fs.readFileSync(filePath);
     return JSON.parse(memos);
   } catch (error) {

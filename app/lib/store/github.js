@@ -9,8 +9,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 const Octokit = require('@octokit/rest');
 
 const octokit = new Octokit({
-  auth: `token ${config.github.token}`,
-  log: require('console-log-level')({level: 'info'})
+  auth: `token ${config.github.token}`
 });
 
 /**

@@ -38,6 +38,7 @@ if (process.env.NODE_ENV === 'test') {
   config.github = {
     token: 'abc123',
     user: 'username',
-    repo: 'repo'
+    repo: 'repo',
+    branch: 'master'
   };
 }

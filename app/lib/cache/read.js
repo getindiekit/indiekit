@@ -51,11 +51,16 @@ module.exports = async (storePath, cachePath) => {
 
     try {
       const storeData = await store.github.getContents(storePath);
-      const freshData = storeData.data.content;
-      createCache(cachePath, freshData);
-      return freshData;
+      if (storeData) {
+        const freshData = storeData.data.content;
+        createCache(cachePath, freshData);
+        return freshData;
+      }
+
+      throw new Error(`Unable to load ${storePath} from store`);
     } catch (error) {
       console.error(error);
+      return false;
     }
   }
 
