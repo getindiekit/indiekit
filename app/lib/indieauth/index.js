@@ -40,7 +40,7 @@ module.exports.verifyToken = async (accessToken, options) => {
     verifiedToken = await verifiedToken.json();
 
     if (verifiedToken.error) {
-      return utils.error(verifiedToken.error, verifiedToken.error_description);
+      return utils.error('unauthorized', verifiedToken.error_description);
     }
 
     const isAuthenticated = normalizeUrl(verifiedToken.me) === normalizeUrl(pubUrl);

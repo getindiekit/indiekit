@@ -17,5 +17,5 @@ test('Uploads a photo via media endpoint', async t => {
   }];
   nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
   const response = await createMedia(pub, files);
-  t.is(response.code, 202);
+  t.is(response.code, 201);
 });

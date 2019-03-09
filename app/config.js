@@ -35,6 +35,7 @@ config.github = {
 };
 
 if (process.env.NODE_ENV === 'test') {
+  config.port = null;
   config.github = {
     token: 'abc123',
     user: 'username',

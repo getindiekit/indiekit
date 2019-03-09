@@ -15,11 +15,11 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @memberof micropub
  * @module createPost
  * @param {Object} pub Publication configuration
- * @param {String} body Body content (contains microformats2 object)
+ * @param {String} mf2 Microformats2 object
  * @param {String} files File attachments
  * @returns {String} Location of created post
  */
-module.exports = async (pub, body, files) => {
+module.exports = async (pub, mf2, files) => {
   // Determine post type
   let type;
   if (files && files.length > 0) {
@@ -27,19 +27,19 @@ module.exports = async (pub, body, files) => {
     type = utils.deriveMediaType(files[0].mimetype);
   } else {
     // Create the `items` array getType() expects
-    const mf2 = {items: [body]};
-    type = getType(mf2);
+    const items = {items: [mf2]};
+    type = getType(items);
   }
 
   const typeConfig = _.find(pub['post-types'], {type});
   const slugSeparator = pub['slug-separator'];
 
   // Update properties
-  const {properties} = body;
-  properties.published = microformats.derivePuplished(body);
-  properties.content = microformats.deriveContent(body);
-  properties.slug = microformats.deriveSlug(body, slugSeparator);
-  properties.photo = await microformats.derivePhoto(body, files, typeConfig);
+  const {properties} = mf2;
+  properties.published = microformats.derivePuplished(mf2);
+  properties.content = microformats.deriveContent(mf2);
+  properties.slug = microformats.deriveSlug(mf2, slugSeparator);
+  properties.photo = await microformats.derivePhoto(mf2, files, typeConfig);
 
   // Render template
   const templatePath = typeConfig.path.template;

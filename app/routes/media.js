@@ -15,25 +15,29 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 exports.post = async (request, response) => {
   const pub = await require(process.env.PWD + '/app/lib/publication')();
   const getResult = async request => {
-    const {body} = request;
     const {files} = request;
 
-    // Ensure response includes files data
-    const hasFiles = Object.entries(files).length !== 0;
+    // Ensure request includes files data
+    const hasFiles = files && files.length > 0;
     if (!hasFiles) {
-      console.log('has no files');
       return utils.error('invalid_request');
     }
 
-    // Create media, ensuring token is verified and provides scope
-    const accessToken = request.headers.authorization || body.access_token;
+    // Verify access token
+    const accessToken = request.headers.authorization;
     const authResponse = await indieauth.verifyToken(accessToken);
-    const {scope} = authResponse;
-    if (!scope) {
+    const authError = authResponse.body && authResponse.body.error;
+
+    // Return any errors from IndieAuth token endpoint
+    if (authError) {
       return authResponse;
     }
 
-    if (scope.includes('create') || scope.includes('media')) {
+    // Ensure token provides enough scope
+    const {scope} = authResponse;
+    const hasScope = scope && scope.length > 0;
+
+    if (hasScope && (scope.includes('create') || scope.includes('media'))) {
       return micropub.createMedia(pub, files);
     }
 
@@ -42,7 +46,6 @@ exports.post = async (request, response) => {
 
   try {
     const result = await getResult(request);
-    console.log('result.code', result.code);
     return response.status(result.code).set({
       location: result.location || null
     }).json(result.body);

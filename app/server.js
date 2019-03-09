@@ -48,8 +48,8 @@ app.use((request, response) => {
   }
 });
 
-app.listen(port, () => {
-  console.info(`Starting ${config.name} on port ${port}`);
+app.listen(port, function () {
+  console.info(`Starting ${config.name} on port ${this.address().port}`);
 });
 
 module.exports = app;
