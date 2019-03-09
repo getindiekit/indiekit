@@ -2,9 +2,13 @@ const nock = require('nock');
 const request = require('supertest');
 const test = require('ava');
 
-const app = request(require(process.env.PWD + '/app/server'));
+// Tests
+test.before(t => {
+  t.context.app = request(require(process.env.PWD + '/app/server'));
+});
 
 test('001: Rejects query with no body data', async t => {
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
@@ -19,6 +23,7 @@ test('100: Create h-entry (form-encoded)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -33,6 +38,7 @@ test('101: Create h-entry with multiple categories (form-encoded)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -47,6 +53,7 @@ test('104: Create h-entry with photo referenced by URL (form-encoded)', async t 
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -61,6 +68,7 @@ test('107: Create h-entry with one category (form-encoded)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -84,6 +92,7 @@ test('200: Create h-entry (JSON)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -105,6 +114,7 @@ test('201: Create h-entry with multiple categories (JSON)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -127,6 +137,7 @@ test('202: Create h-entry with HTML content (JSON)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -148,6 +159,7 @@ test('203: Create h-entry with photo referenced by URL (JSON)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -183,6 +195,7 @@ test('204: Create h-entry with nested object (JSON)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -207,6 +220,7 @@ test('205: Create h-entry with photo with alt text (JSON)', async t => {
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -231,6 +245,7 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Content-type', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
@@ -244,37 +259,37 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
  * Query
  */
 test('600: Configuration Query', async t => {
+  const {app} = t.context;
   const response = await app.get('/micropub')
     .query({q: 'config'});
-
   t.is(response.status, 200);
   t.truthy(response.body['media-endpoint']);
 });
 
 test('601: Syndication Endpoint Query', async t => {
+  const {app} = t.context;
   const response = await app.get('/micropub')
     .query({q: 'syndicate-to'});
-
   t.is(response.status, 200);
   t.truthy(response.body['syndicate-to']);
 });
 
 test('603: Source Query (Specific Properties)', async t => {
+  const {app} = t.context;
   const response = await app.get('/micropub')
     .query({
       q: 'source',
       properties: 'name',
       url: 'https://paulrobertlloyd.com/2018/11/warp_and_weft'
     });
-
   t.is(response.status, 200);
   t.is(response.body.name[0], 'Warp and Weft');
 });
 
 test('6xx: Rejects unknown endpoint query', async t => {
+  const {app} = t.context;
   const response = await app.get('/micropub')
     .query({q: 'unknown'});
-
   t.is(response.status, 400);
   t.is(response.body.error, 'invalid_request');
 });
@@ -283,80 +298,80 @@ test('6xx: Rejects unknown endpoint query', async t => {
  * Authentication
  */
 test('800: Accept access token in HTTP header', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .send('h=entry&content=Testing+accepting+access+token+in+HTTP+Authorization+header');
-
   t.is(response.status, 201 && 202);
   t.truthy(response.header.location);
+  scope.done();
 });
 
 test('801: Accept access token in POST body', async t => {
-  const response = await app.post('/micropub')
-    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
-
-  t.is(response.status, 201 && 202);
-  t.truthy(response.header.location);
-});
-
-test('802: Does not store access token property', async t => {
-  const response = await app.post('/micropub')
-    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
-
-  t.is(response.status, 201 && 202);
-  t.truthy(response.header.location);
-});
-
-test('803: Rejects unauthenticated requests', async t => {
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
     .delay(500)
     .reply(201);
+  const {app} = t.context;
+  const response = await app.post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
+  t.is(response.status, 201 && 202);
+  t.truthy(response.header.location);
+  scope.done();
+});
+
+test('802: Does not store access token property', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
+  const {app} = t.context;
+  const response = await app.post('/micropub')
+    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
+  t.is(response.status, 201 && 202);
+  t.truthy(response.header.location);
+  scope.done();
+});
+
+test('803: Rejects unauthenticated requests', async t => {
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .send('h=entry&content=Testing+unauthenticated+request.+This+should+not+create+a+post.');
   t.is(response.status, 401);
-  scope.done();
 });
 
 test('804: Rejects unauthorized access tokens', async t => {
-  const scope = nock('https://api.github.com')
-    .put(/\b[\d\w]{5}\b/g)
-    .delay(500)
-    .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_SCOPED}`)
     .send('h=entry&content=Testing+a+request+with+an+unauthorized+access+token.+This+should+not+create+a+post.');
   t.is(response.status, 401);
-  scope.done();
 });
 
 test('8xx: Rejects invalid destination site', async t => {
-  const scope = nock('https://api.github.com')
-    .put(/\b[\d\w]{5}\b/g)
-    .delay(500)
-    .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_ME}`)
     .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
   t.is(response.status, 403);
-  scope.done();
 });
 
 test('8xx: Rejects invalid access tokens', async t => {
-  const scope = nock('https://api.github.com')
-    .put(/\b[\d\w]{5}\b/g)
-    .delay(500)
-    .reply(201);
+  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
     .set('authorization', 'Bearer invalid')
     .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
-  t.is(response.status, 403);
-  scope.done();
+  t.is(response.status, 401);
+  t.is(response.body.error, 'unauthorized');
 });

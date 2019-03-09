@@ -1,9 +1,12 @@
 const test = require('ava');
 const request = require('supertest');
 
-const app = request(require(process.env.PWD + '/app/server'));
+test.before(t => {
+  t.context.app = request(require(process.env.PWD + '/app/server'));
+});
 
 test('Application serves a favicon', async t => {
+  const {app} = t.context;
   const response = await app.get('/favicon.ico');
 
   t.is(response.status, 200);
@@ -11,6 +14,7 @@ test('Application serves a favicon', async t => {
 });
 
 test('Application displays a home page', async t => {
+  const {app} = t.context;
   const response = await app.get('/');
 
   t.is(response.status, 200);
@@ -18,6 +22,7 @@ test('Application displays a home page', async t => {
 });
 
 test('Application responds to 404 errors', async t => {
+  const {app} = t.context;
   const response = await app.get('/foobar');
 
   t.is(response.status, 404);
