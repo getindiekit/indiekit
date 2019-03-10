@@ -18,7 +18,7 @@ module.exports = async url => {
     try {
       const storePath = recordData.path.post;
       const response = await store.github.deleteFile(storePath, {
-        message: `:x: Post deleted\nwith ${config.name}`
+        message: `:x: Deleted post\nwith ${config.name}`
       });
       if (response) {
         return utils.success('delete', url);
