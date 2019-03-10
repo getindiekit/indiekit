@@ -67,7 +67,7 @@ module.exports = async (pub, mf2, files) => {
   // Create post on GitHub
   try {
     await store.github.createFile(postPath, content, {
-      message: `:robot: New ${type} created\nwith ${config.name}`
+      message: `${typeConfig.icon} Created ${_.lowerCase(typeConfig.name)} post \nwith ${config.name}`
     });
     record.create(url, recordData);
     return utils.success('create_pending', url);
