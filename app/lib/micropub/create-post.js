@@ -51,16 +51,22 @@ module.exports = async (pub, mf2, files) => {
   const postPath = render(typeConfig.path.post, properties);
   const urlPath = render(typeConfig.path.url, properties);
 
-  // Prepare location and new memo
+  // Prepare location and memo
   const location = config.url + urlPath;
-  // TODO: const memo = {post: postPath, url: location};
+  const memo = {
+    url: location,
+    path: {
+      post: postPath
+    },
+    properties
+  };
 
   // Create post on GitHub
   try {
     await store.github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${config.name}`
     });
-    // TODO: memos.update('create', memo);
+    memos.create(memo);
     return utils.success('create_pending', location);
   } catch (error) {
     throw new Error('Unable to connect to GitHub');

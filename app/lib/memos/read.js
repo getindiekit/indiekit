@@ -1,28 +1,20 @@
 const path = require('path');
-const fs = require('fs-extra');
+const _ = require('lodash');
 
 const config = require(process.env.PWD + '/app/config');
-const createMemos = require(process.env.PWD + '/app/lib/memos/create');
 
 /**
- * Reads memo
+ * Reads a memo
  *
  * @memberof memos
- * @module read
- * @returns {Object} Configuration options
+ * @module create
+ * @param {Object} url URL of post
+ * @return {Object} Memo
  */
-module.exports = () => {
-  const filePath = path.join(config.cache.dir, config.cache.memos);
-  const isCached = fs.existsSync(filePath);
+module.exports = url => {
+  const memosFile = path.join(config.cache.dir, 'memos.json');
+  const memos = require(memosFile) || {};
+  const memo = _.find(memos, {url});
 
-  if (!isCached) {
-    createMemos();
-  }
-
-  try {
-    const memos = fs.readFileSync(filePath);
-    return JSON.parse(memos);
-  } catch (error) {
-    throw new Error(`Unable to read ${filePath}`);
-  }
+  return memo;
 };

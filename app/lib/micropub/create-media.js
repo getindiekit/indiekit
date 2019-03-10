@@ -1,8 +1,8 @@
 const _ = require('lodash');
 
 const config = require(process.env.PWD + '/app/config');
-const memos = require(process.env.PWD + '/app/lib/memos');
 const render = require(process.env.PWD + '/app/lib/render');
+const memos = require(process.env.PWD + '/app/lib/memos');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -34,9 +34,14 @@ module.exports = async (pub, files) => {
     // Render destination path
     const filePath = render(typeConfig.path.file, properties);
 
-    // Prepare location and new memo
+    // Prepare location and memo
     const location = config.url + filePath;
-    // TODO: const memo = {file: filePath, url: location};
+    const memo = {
+      url: location,
+      path: {
+        file: filePath
+      }
+    };
 
     // Upload file to GitHub
     try {
@@ -45,7 +50,7 @@ module.exports = async (pub, files) => {
       });
 
       if (response) {
-        // TODO: memos.update('create', memo);
+        memos.create(memo);
         return utils.success('create', location);
       }
     } catch (error) {

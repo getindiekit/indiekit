@@ -33,7 +33,7 @@ exports.post = async (request, response) => {
       return authResponse;
     }
 
-    // Ensure token provides enough scope
+    // Perform action, ensuring token provides enough scope
     const {scope} = authResponse;
     const hasScope = scope && scope.length > 0;
 
