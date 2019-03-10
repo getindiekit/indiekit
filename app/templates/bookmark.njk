@@ -1,0 +1,15 @@
+---
+title: '{{ title }}'
+date: {{ published }}
+bookmark-of: {{ bookmarkOf }}
+{%- if summary %}
+excerpt: {{ summary }}
+{%- endif %}
+{%- if category %}
+categories:
+{%- for item in category %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+---
+{{ content | safe }}

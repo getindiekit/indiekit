@@ -29,13 +29,21 @@ Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndic
 
 #### `post-types`
 
-IndieKit provides a set of default paths and [templates](https://github.com/paulrobertlloyd/indiekit/tree/master/app/templates) for `article`, `note` and `photo` post type creation. These defaults can be ammended, and new types can be added. For example, to override the note and photo post types, you would provide the following:
+IndieKit provides a set of default paths and templates for the following post types:
+
+* 📄 [`article`](https://indieweb.org/article)
+* 📔 [`note`](https://indieweb.org/note)
+* 📷 [`photo`](https://indieweb.org/photo)
+* 🔖 [`bookmark`](https://indieweb.org/bookmark)
+
+These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
 
 ```json
 {
   "post-types": [{
     "type": "note",
     "name": "Micro note",
+    "icon": ":memo:",
     "path": {
       "template": "_micropub/templates/note.njk",
       "post": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
@@ -56,6 +64,8 @@ IndieKit provides a set of default paths and [templates](https://github.com/paul
 * **`type`**: The type of post being configured. This value must match oneof the [common post-types used across by the IndieWeb](https://indieweb.org/posts#Types_of_Posts).
 
 * **`name`**: The name you give to this post type on your own site. You needn’t specify this value, but if you do, certain Micropub clients will expose it in their publishing UI.
+
+* **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
 * **`path.template`**: Where IndieKit can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of IndieKit to render content (typically as a Markdown file with YAML frontmatter).
 
@@ -80,18 +90,24 @@ Both `file` and `url` paths use [Nunjucks](https://mozilla.github.io/nunjucks/) 
 
 ### Creating templates
 
-Like paths, templates use [Nunjucks](https://mozilla.github.io/nunjucks/), and also accept any values provided in a Micropub request. Additional variables may be made available at a later date. Remember to use [the `safe` filter](https://mozilla.github.io/nunjucks/templating.html#safe) where you wish to output HTML content. Here’s an example:
+Like paths, templates use [Nunjucks](https://mozilla.github.io/nunjucks/), and also accept any values provided in a Micropub request. Additional variables may be made available at a later date.
 
-```yaml
----
-title: '{​{ title }}'
-date: {​{ published }}
-{%- if category %}
-categories:
-{%- for item in category %}
-- {​{ item }}
-{%- endfor %}
-{%- endif %}
----
-{​{ content | safe }}
-```
+A few points to consider when creating templates:
+
+* Microformat properties containing hyphens (i.e. `bookmark-of`, `in-reply-to`), are made available to templates with camelCased variable names (i.e. `bookmarkOf`, `inReplyTo`).
+
+* Use [the `safe` filter](https://mozilla.github.io/nunjucks/templating.html#safe) where you wish to output HTML content. Here’s an example:
+
+  ```yaml
+  ---
+  title: '{​{ title }}'
+  date: {​{ published }}
+  {%- if category %}
+  categories:
+  {%- for item in category %}
+  - {​{ item }}
+  {%- endfor %}
+  {%- endif %}
+  ---
+  {​{ content | safe }}
+  ```

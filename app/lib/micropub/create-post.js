@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const _ = require('lodash');
+const camelcaseKeys = require('camelcase-keys');
 const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
@@ -21,6 +22,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  */
 module.exports = async (pub, mf2, files) => {
   // Determine post type
+  // TODO: Consolidate into separate module
   let type;
   if (files && files.length > 0) {
     // Infer media type from first file attachment
@@ -29,6 +31,12 @@ module.exports = async (pub, mf2, files) => {
     // Create the `items` array getType() expects
     const items = {items: [mf2]};
     type = getType(items);
+  }
+
+  // Override post type to support experimental types
+  // @see: https://indieweb.org/posts
+  if (mf2.properties['bookmark-of']) {
+    type = 'bookmark';
   }
 
   const typeConfig = _.find(pub['post-types'], {type});
@@ -45,7 +53,8 @@ module.exports = async (pub, mf2, files) => {
   const templatePath = typeConfig.path.template;
   const templateData = fs.readFileSync(templatePath);
   const template = Buffer.from(templateData).toString('utf-8');
-  const content = render(template, properties);
+  const context = camelcaseKeys(properties);
+  const content = render(template, context);
 
   // Render publish and destination paths
   const postPath = render(typeConfig.path.post, properties);

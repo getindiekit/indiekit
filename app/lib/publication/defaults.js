@@ -31,6 +31,16 @@ module.exports = {
       file: 'images/photos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
+  }, {
+    type: 'bookmark',
+    name: 'Bookmark',
+    icon: ':bookmark:',
+    path: {
+      template: `${templateDir}/bookmark.njk`,
+      post: '_bookmarks/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      file: 'images/bookmarks/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      url: 'bookmarks/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
   }],
   'slug-separator': '-',
   'syndicate-to': []
