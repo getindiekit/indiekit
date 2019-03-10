@@ -34,10 +34,9 @@ module.exports = async (pub, files) => {
     // Render destination path
     const filePath = render(typeConfig.path.file, properties);
 
-    // Prepare location and memo
-    const location = config.url + filePath;
-    const memo = {
-      url: location,
+    // Prepare memo record
+    const record = {
+      url: config.url + filePath,
       path: {
         file: filePath
       }
@@ -50,8 +49,8 @@ module.exports = async (pub, files) => {
       });
 
       if (response) {
-        memos.create(memo);
-        return utils.success('create', location);
+        memos.create(record);
+        return utils.success('create', record.url);
       }
     } catch (error) {
       return utils.error('server_error', error);

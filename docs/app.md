@@ -143,7 +143,7 @@ Creates a new memo
 
 #### Parameters
 
--   `memo` **[Object][85]** Memo data
+-   `record` **[Object][85]** Memo record
 
 ### create
 

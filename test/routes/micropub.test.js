@@ -248,6 +248,14 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
 });
 
 /**
+ * Deletes
+ */
+test.todo('500: Delete a post (form-encoded)');
+test.todo('501: Delete a post (JSON)');
+test.todo('502: Undelete a post (form-encoded)');
+test.todo('503: Undelete a post (JSON)');
+
+/**
  * Query
  */
 test('600: Configuration Query', async t => {

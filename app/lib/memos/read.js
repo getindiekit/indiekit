@@ -14,7 +14,7 @@ const config = require(process.env.PWD + '/app/config');
 module.exports = url => {
   const memosFile = path.join(config.cache.dir, 'memos.json');
   const memos = require(memosFile) || {};
-  const memo = _.find(memos, {url});
+  const record = _.find(memos, {url});
 
-  return memo;
+  return record;
 };
