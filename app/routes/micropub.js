@@ -1,4 +1,5 @@
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
+const memos = require(process.env.PWD + '/app/lib/memos');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const utils = require(process.env.PWD + '/app/lib/utils');
@@ -60,6 +61,16 @@ exports.post = async (request, response) => {
     if (action === 'delete') {
       if (hasScope && scope.includes('delete')) {
         return micropub.deletePost(url);
+      }
+
+      return utils.error('insufficient_scope');
+    }
+
+    if (action === 'undelete') {
+      if (hasScope && scope.includes('create')) {
+        const memo = memos.read(url);
+        const {mf2} = memo;
+        return micropub.createPost(pub, mf2, files);
       }
 
       return utils.error('insufficient_scope');
