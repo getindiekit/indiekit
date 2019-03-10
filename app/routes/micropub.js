@@ -70,7 +70,6 @@ exports.post = async (request, response) => {
       if (hasScope && scope.includes('create')) {
         const recordData = record.read(url);
         const {mf2} = recordData;
-        console.log('mf2, undelete', mf2);
         return micropub.createPost(pub, mf2, files);
       }
 
@@ -86,7 +85,6 @@ exports.post = async (request, response) => {
     }
 
     if (hasScope && scope.includes('create')) {
-      console.log('mf2, create', mf2);
       return micropub.createPost(pub, mf2, files);
     }
 

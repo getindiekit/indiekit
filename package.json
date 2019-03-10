@@ -25,6 +25,7 @@
   "dependencies": {
     "@octokit/rest": "^16.17.0",
     "body-parser": "^1.18.3",
+    "camelcase-keys": "^5.0.0",
     "data-store": "^3.1.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",

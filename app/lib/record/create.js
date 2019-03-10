@@ -12,7 +12,6 @@ const config = require(process.env.PWD + '/app/config');
  * @param {Object} data Activity data to record
  */
 module.exports = (url, data) => {
-  console.log('url to create', url);
   const recordName = Buffer.from(url).toString('base64');
   const record = new Store({
     path: path.join(config.data.dir, `${recordName}.json`)
