@@ -1,22 +1,22 @@
 const path = require('path');
-const fs = require('fs-extra');
+const {DateTime} = require('luxon');
+const Store = require('data-store');
 
 const config = require(process.env.PWD + '/app/config');
 
 /**
- * Creates memos file
+ * Creates a new memo
  *
  * @memberof memos
  * @module create
+ * @param {Object} memo Memo data
  */
-module.exports = () => {
-  const filePath = path.join(config.cache.dir, config.cache.memos);
+module.exports = memo => {
+  const date = Date.now();
+  const timestamp = DateTime.fromMillis(date).toFormat('X');
+  const memoStore = new Store({
+    path: path.join(config.cache.dir, 'memos.json')
+  });
 
-  try {
-    const memos = [];
-    const json = JSON.stringify(memos, null, 2);
-    fs.writeFileSync(filePath, json);
-  } catch (error) {
-    throw new Error(`Unable to create ${filePath}`);
-  }
+  memoStore.set(timestamp, memo);
 };

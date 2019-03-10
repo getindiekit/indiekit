@@ -7,14 +7,6 @@ test.before(t => {
   t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 
-test('001: Rejects query with no body data', async t => {
-  const {app} = t.context;
-  const response = await app.post('/micropub')
-    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
-  t.is(response.status, 400);
-});
-
 /**
  * Creating Posts (Form-Encoded)
  */
@@ -326,19 +318,7 @@ test('801: Accept access token in POST body', async t => {
   scope.done();
 });
 
-test('802: Does not store access token property', async t => {
-  const scope = nock('https://api.github.com')
-    .put(/\b[\d\w]{5}\b/g)
-    .delay(500)
-    .reply(201);
-  const {app} = t.context;
-  const response = await app.post('/micropub')
-    .set('content-type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .send(`h=entry&content=Testing+accepting+access+token+in+post+body&access_token=${process.env.TEST_INDIEAUTH_TOKEN}`);
-  t.is(response.status, 201 && 202);
-  t.truthy(response.header.location);
-  scope.done();
-});
+test.todo('802: Does not store access token property');
 
 test('803: Rejects unauthenticated requests', async t => {
   const {app} = t.context;

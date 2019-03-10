@@ -34,14 +34,6 @@ exports.post = async (request, response) => {
   const getResult = async request => {
     const {body} = request;
     const {files} = request;
-    const {action} = body;
-    const {url} = body;
-
-    // Ensure request has body data
-    const hasBody = Object.entries(body).length !== 0;
-    if (!hasBody) {
-      return utils.error('invalid_request');
-    }
 
     // Normalise form-encoded requests as mf2 JSON
     let mf2 = body;
@@ -59,16 +51,26 @@ exports.post = async (request, response) => {
       return authResponse;
     }
 
-    // Ensure token provides enough scope
+    // Perform action, ensuring token provides enough scope
     const {scope} = authResponse;
     const hasScope = scope && scope.length > 0;
+    const action = request.query.action || body.action;
+    const url = request.query.url || body;
 
-    if (hasScope && (scope.includes('delete') && action === 'delete')) {
-      return micropub.deletePost(url);
+    if (action === 'delete') {
+      if (hasScope && scope.includes('delete')) {
+        return micropub.deletePost(url);
+      }
+
+      return utils.error('insufficient_scope');
     }
 
-    if (hasScope && (scope.includes('update') && action === 'update')) {
-      return utils.error('invalid_request', 'Update action not supported');
+    if (action === 'update') {
+      if (hasScope && scope.includes('update')) {
+        return utils.error('invalid_request', 'Update action not supported');
+      }
+
+      return utils.error('insufficient_scope');
     }
 
     if (hasScope && scope.includes('create')) {

@@ -13,8 +13,8 @@
     -   [Parameters][9]
 -   [memos][10]
     -   [create][11]
-    -   [read][12]
-    -   [update][13]
+        -   [Parameters][12]
+    -   [create][13]
         -   [Parameters][14]
 -   [microformats][15]
     -   [derviveContent][16]
@@ -134,27 +134,26 @@ Returns **[Promise][87]** Token endpoint reponse object
 
 ## memos
 
-Records of actions and resulting changes, stored for later retrevial.
-(i.e. for update and undelete actions).
+Process and transform microformats in request so that it can be published to
+a destination.
 
 ### create
 
-Creates memos file
-
-### read
-
-Reads memo
-
-Returns **[Object][85]** Configuration options
-
-### update
-
-Updates memo (either by updating existing, or appending new)
+Creates a new memo
 
 #### Parameters
 
--   `action` **[String][86]** Entry type
--   `data` **[Object][85]** Entry data
+-   `memo` **[Object][85]** Memo data
+
+### create
+
+Reads a memo
+
+#### Parameters
+
+-   `url` **[Object][85]** URL of post
+
+Returns **[Object][85]** Memo
 
 ## microformats
 
@@ -266,7 +265,7 @@ Creates a new post
 #### Parameters
 
 -   `pub` **[Object][85]** Publication configuration
--   `body` **[String][86]** Body content (contains microformats2 object)
+-   `mf2` **[String][86]** Microformats2 object
 -   `files` **[String][86]** File attachments
 
 Returns **[String][86]** Location of created post
@@ -583,91 +582,91 @@ Returns **[Object][85]** HTTP response
 
 [11]: #create
 
-[12]: #read-1
+[12]: #parameters-4
 
-[13]: #update-1
+[13]: #create-1
 
-[14]: #parameters-4
+[14]: #parameters-5
 
 [15]: #microformats
 
 [16]: #dervivecontent
 
-[17]: #parameters-5
+[17]: #parameters-6
 
 [18]: #derivephotoproperty
 
-[19]: #parameters-6
+[19]: #parameters-7
 
 [20]: #dervivepublishedproperty
 
-[21]: #parameters-7
+[21]: #parameters-8
 
 [22]: #derviveslug
 
-[23]: #parameters-8
+[23]: #parameters-9
 
 [24]: #formencodedtomf2
 
-[25]: #parameters-9
+[25]: #parameters-10
 
 [26]: #htmltomf2
 
-[27]: #parameters-10
+[27]: #parameters-11
 
 [28]: #urltomf2
 
-[29]: #parameters-11
+[29]: #parameters-12
 
 [30]: #micropub
 
 [31]: #createmedia
 
-[32]: #parameters-12
+[32]: #parameters-13
 
 [33]: #createpost
 
-[34]: #parameters-13
+[34]: #parameters-14
 
 [35]: #deletepost
 
-[36]: #parameters-14
+[36]: #parameters-15
 
 [37]: #query
 
-[38]: #parameters-15
+[38]: #parameters-16
 
 [39]: #updatepost
 
-[40]: #parameters-16
+[40]: #parameters-17
 
 [41]: #response
 
-[42]: #parameters-17
+[42]: #parameters-18
 
 [43]: #publication
 
 [44]: #render
 
-[45]: #parameters-18
+[45]: #parameters-19
 
 [46]: #storegithub
 
 [47]: #getcontents
 
-[48]: #parameters-19
+[48]: #parameters-20
 
 [49]: #createfile
 
-[50]: #parameters-20
+[50]: #parameters-21
 
 [51]: #updatefile
 
-[52]: #parameters-21
+[52]: #parameters-22
 
 [53]: #deletefile
 
-[54]: #parameters-22
+[54]: #parameters-23
 
 [55]: #store
 
@@ -679,35 +678,35 @@ Returns **[Object][85]** HTTP response
 
 [59]: #derivefileproperties
 
-[60]: #parameters-23
+[60]: #parameters-24
 
 [61]: #examples-1
 
 [62]: #derivemediatype
 
-[63]: #parameters-24
+[63]: #parameters-25
 
 [64]: #examples-2
 
 [65]: #decodeformencodedstring
 
-[66]: #parameters-25
+[66]: #parameters-26
 
 [67]: #examples-3
 
 [68]: #error
 
-[69]: #parameters-26
+[69]: #parameters-27
 
 [70]: #excerptstring
 
-[71]: #parameters-27
+[71]: #parameters-28
 
 [72]: #examples-4
 
 [73]: #normalizepath
 
-[74]: #parameters-28
+[74]: #parameters-29
 
 [75]: #examples-5
 
@@ -715,19 +714,19 @@ Returns **[Object][85]** HTTP response
 
 [77]: #adminpost
 
-[78]: #parameters-29
+[78]: #parameters-30
 
 [79]: #mediapost
 
-[80]: #parameters-30
+[80]: #parameters-31
 
 [81]: #micropubget
 
-[82]: #parameters-31
+[82]: #parameters-32
 
 [83]: #micropubpost
 
-[84]: #parameters-32
+[84]: #parameters-33
 
 [85]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
