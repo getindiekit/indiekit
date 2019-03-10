@@ -1,7 +1,7 @@
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
-const memos = require(process.env.PWD + '/app/lib/memos');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
+const record = require(process.env.PWD + '/app/lib/record');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -68,8 +68,9 @@ exports.post = async (request, response) => {
 
     if (action === 'undelete') {
       if (hasScope && scope.includes('create')) {
-        const memo = memos.read(url);
-        const {mf2} = memo;
+        const recordData = record.read(url);
+        const {mf2} = recordData;
+        console.log('mf2, undelete', mf2);
         return micropub.createPost(pub, mf2, files);
       }
 
@@ -85,6 +86,7 @@ exports.post = async (request, response) => {
     }
 
     if (hasScope && scope.includes('create')) {
+      console.log('mf2, create', mf2);
       return micropub.createPost(pub, mf2, files);
     }
 

@@ -6,7 +6,7 @@ The following terms (and associated shorthands) are used throughout the applicat
 
 * **[IndieAuth](https://www.w3.org/TR/indieauth/)**: An identity layer on top of OAuth 2.0, and used to obtain an OAuth 2.0 Bearer Token for use by Micropub clients.
 
-* **Memo**: Record of an action and associated changes, stored for later retrieval, i.e. for updating or undelete a post.
+* **Record**: Record of an action and associated changes, stored for later retrieval, i.e. for updating or undelete a post.
 
 * **[Microformats](http://microformats.org/)** (`mf2`): A simple, open format for marking up data in HTML.
 

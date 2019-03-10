@@ -3,8 +3,8 @@ const _ = require('lodash');
 const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
-const memos = require(process.env.PWD + '/app/lib/memos');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
+const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
@@ -51,15 +51,16 @@ module.exports = async (pub, mf2, files) => {
   const postPath = render(typeConfig.path.post, properties);
   const urlPath = render(typeConfig.path.url, properties);
 
-  // Prepare memo record
-  const record = {
-    url: config.url + urlPath,
+  // Prepare location and activity record
+  const url = config.url + urlPath;
+  const recordData = {
     path: {
       post: postPath
     },
     mf2: {
       type: ['h-entry'],
-      properties
+      properties,
+      'mp-slug': properties.slug
     }
   };
 
@@ -68,9 +69,9 @@ module.exports = async (pub, mf2, files) => {
     await store.github.createFile(postPath, content, {
       message: `:robot: New ${type} created\nwith ${config.name}`
     });
-    memos.create(record);
-    return utils.success('create_pending', record.url);
+    record.create(url, recordData);
+    return utils.success('create_pending', url);
   } catch (error) {
-    throw new Error('Unable to connect to GitHub');
+    throw new Error(error.message);
   }
 };
