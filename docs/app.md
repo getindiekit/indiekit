@@ -11,40 +11,40 @@
         -   [Parameters][7]
 -   [verifyToken][8]
     -   [Parameters][9]
--   [memos][10]
-    -   [create][11]
+-   [microformats][10]
+    -   [derviveContent][11]
         -   [Parameters][12]
-    -   [create][13]
+    -   [derivePhotoProperty][13]
         -   [Parameters][14]
--   [microformats][15]
-    -   [derviveContent][16]
-        -   [Parameters][17]
-    -   [derivePhotoProperty][18]
-        -   [Parameters][19]
-    -   [dervivePublishedProperty][20]
-        -   [Parameters][21]
-    -   [derviveSlug][22]
-        -   [Parameters][23]
-    -   [formEncodedToMf2][24]
-        -   [Parameters][25]
-    -   [htmlToMf2][26]
+    -   [dervivePublishedProperty][15]
+        -   [Parameters][16]
+    -   [derviveSlug][17]
+        -   [Parameters][18]
+    -   [formEncodedToMf2][19]
+        -   [Parameters][20]
+    -   [htmlToMf2][21]
+        -   [Parameters][22]
+    -   [urlToMf2][23]
+        -   [Parameters][24]
+-   [micropub][25]
+    -   [createMedia][26]
         -   [Parameters][27]
-    -   [urlToMf2][28]
+    -   [createPost][28]
         -   [Parameters][29]
--   [micropub][30]
-    -   [createMedia][31]
-        -   [Parameters][32]
-    -   [createPost][33]
-        -   [Parameters][34]
-    -   [deletePost][35]
-        -   [Parameters][36]
-    -   [query][37]
-        -   [Parameters][38]
-    -   [updatePost][39]
-        -   [Parameters][40]
-    -   [response][41]
-        -   [Parameters][42]
--   [publication][43]
+    -   [deletePost][30]
+        -   [Parameters][31]
+    -   [query][32]
+        -   [Parameters][33]
+    -   [updatePost][34]
+        -   [Parameters][35]
+    -   [response][36]
+        -   [Parameters][37]
+-   [publication][38]
+-   [record][39]
+    -   [create][40]
+        -   [Parameters][41]
+    -   [read][42]
+        -   [Parameters][43]
 -   [render][44]
     -   [Parameters][45]
 -   [store/github][46]
@@ -131,29 +131,6 @@ authenticated users can use endpoint for posting to configured destination.
 -   `options` **[String][86]?** Publication URL and IndieAuth token endpoint URL
 
 Returns **[Promise][87]** Token endpoint reponse object
-
-## memos
-
-Process and transform microformats in request so that it can be published to
-a destination.
-
-### create
-
-Creates a new memo
-
-#### Parameters
-
--   `record` **[Object][85]** Memo record
-
-### create
-
-Reads a memo
-
-#### Parameters
-
--   `url` **[Object][85]** URL of post
-
-Returns **[Object][85]** Memo
 
 ## microformats
 
@@ -319,6 +296,30 @@ Gets a publication’s configuration and combines it with default values set by
 application.
 
 Returns **[Promise][87]** Configuration object
+
+## record
+
+Record of an action and associated changes, stored for later retrieval,
+i.e. for updating or undelete a post.
+
+### create
+
+Creates a new record
+
+#### Parameters
+
+-   `url` **[Object][85]** URL activity relates to
+-   `data` **[Object][85]** Activity data to record
+
+### read
+
+Reads a record
+
+#### Parameters
+
+-   `url` **[Object][85]** URL of post
+
+Returns **[Object][85]** Memo
 
 ## render
 
@@ -578,73 +579,73 @@ Returns **[Object][85]** HTTP response
 
 [9]: #parameters-3
 
-[10]: #memos
+[10]: #microformats
 
-[11]: #create
+[11]: #dervivecontent
 
 [12]: #parameters-4
 
-[13]: #create-1
+[13]: #derivephotoproperty
 
 [14]: #parameters-5
 
-[15]: #microformats
+[15]: #dervivepublishedproperty
 
-[16]: #dervivecontent
+[16]: #parameters-6
 
-[17]: #parameters-6
+[17]: #derviveslug
 
-[18]: #derivephotoproperty
+[18]: #parameters-7
 
-[19]: #parameters-7
+[19]: #formencodedtomf2
 
-[20]: #dervivepublishedproperty
+[20]: #parameters-8
 
-[21]: #parameters-8
+[21]: #htmltomf2
 
-[22]: #derviveslug
+[22]: #parameters-9
 
-[23]: #parameters-9
+[23]: #urltomf2
 
-[24]: #formencodedtomf2
+[24]: #parameters-10
 
-[25]: #parameters-10
+[25]: #micropub
 
-[26]: #htmltomf2
+[26]: #createmedia
 
 [27]: #parameters-11
 
-[28]: #urltomf2
+[28]: #createpost
 
 [29]: #parameters-12
 
-[30]: #micropub
+[30]: #deletepost
 
-[31]: #createmedia
+[31]: #parameters-13
 
-[32]: #parameters-13
+[32]: #query
 
-[33]: #createpost
+[33]: #parameters-14
 
-[34]: #parameters-14
+[34]: #updatepost
 
-[35]: #deletepost
+[35]: #parameters-15
 
-[36]: #parameters-15
+[36]: #response
 
-[37]: #query
+[37]: #parameters-16
 
-[38]: #parameters-16
+[38]: #publication
 
-[39]: #updatepost
+[39]: #record
 
-[40]: #parameters-17
+[40]: #create
 
-[41]: #response
+[41]: #parameters-17
 
-[42]: #parameters-18
+[42]: #read-1
 
-[43]: #publication
+[43]: #parameters-18
 
 [44]: #render
 

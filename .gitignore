@@ -3,8 +3,9 @@ logs
 *.log
 npm-debug.log*
 
-# Cache
+# Temporary files
 .cache
+.data
 
 # Testing and coverage
 coverage

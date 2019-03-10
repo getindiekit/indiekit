@@ -1,8 +1,8 @@
 const _ = require('lodash');
 
 const config = require(process.env.PWD + '/app/config');
+const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
-const memos = require(process.env.PWD + '/app/lib/memos');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -34,9 +34,9 @@ module.exports = async (pub, files) => {
     // Render destination path
     const filePath = render(typeConfig.path.file, properties);
 
-    // Prepare memo record
-    const record = {
-      url: config.url + filePath,
+    // Prepare location and activity record
+    const url = config.url + filePath;
+    const recordData = {
       path: {
         file: filePath
       }
@@ -49,8 +49,8 @@ module.exports = async (pub, files) => {
       });
 
       if (response) {
-        memos.create(record);
-        return utils.success('create', record.url);
+        record.create(url, recordData);
+        return utils.success('create', url);
       }
     } catch (error) {
       return utils.error('server_error', error);

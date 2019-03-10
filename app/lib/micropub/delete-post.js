@@ -1,5 +1,5 @@
 const config = require(process.env.PWD + '/app/config');
-const memos = require(process.env.PWD + '/app/lib/memos');
+const record = require(process.env.PWD + '/app/lib/record');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -12,11 +12,11 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @returns {Promise} Response object
  */
 module.exports = async url => {
-  const memo = memos.read(url);
+  const recordData = record.read(url);
 
-  if (memo) {
+  if (recordData) {
     try {
-      const storePath = memo.path.post;
+      const storePath = recordData.path.post;
       const response = await store.github.deleteFile(storePath, {
         message: `:x: Post deleted\nwith ${config.name}`
       });

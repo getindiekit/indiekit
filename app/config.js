@@ -10,11 +10,18 @@ config.version = pkg.version;
 config.description = pkg.description;
 config.repository = pkg.repository;
 config.port = process.env.PORT || 3000;
+
+// Cache
 config.cache = {
   dir: process.env.PWD + '/.cache',
   'max-age': process.env.INDIEKIT_CACHE_EXPIRES || 86400,
-  config: 'config.json',
-  memos: 'memos.json'
+  config: 'config.json'
+};
+
+// Data store
+config.data = {
+  dir: process.env.PWD + '/.data',
+  'max-age': process.env.INDIEKIT_DATA_EXPIRES || 86400
 };
 
 // IndieAuth
