@@ -95,6 +95,15 @@ module.exports = {
       post: '_checkins/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
       url: 'checkins/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
+  }, {
+    type: 'event',
+    name: 'Event',
+    icon: ':calendar:',
+    path: {
+      template: `${templateDir}/event.njk`,
+      post: '_events/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      url: 'events/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
   }],
   'slug-separator': '-',
   'syndicate-to': []
