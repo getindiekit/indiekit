@@ -13,8 +13,8 @@ This tool is inspired by [similar projects](https://paulrobertlloyd.github.io/in
 ## Features
 
 * **Creating posts** using JSON or `x-www-form-urlencoded` syntax
-* **Deleting posts** (`delete` action only)
-* **Uploading media** via a media endpoint or by providing `multipart/form-data` in a request
+* **Deleting posts** with support for `delete` and `undelete` actions
+* **Uploading media** via media endpoint or including `multipart/form-data` in a request
 * **Querying** for configuration, source content and syndication targets. Additonal support for [querying supported vocabularies](https://indieweb.org/Micropub-extensions#Query_for_Supported_Properties).
 
 ## Documentation
