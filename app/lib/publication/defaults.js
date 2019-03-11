@@ -18,7 +18,6 @@ module.exports = {
     path: {
       template: `${templateDir}/note.njk`,
       post: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'media/notes/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
@@ -50,6 +49,33 @@ module.exports = {
       post: '_audio/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
       file: 'media/audio/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'audio/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
+    type: 'reply',
+    name: 'Reply',
+    icon: ':speech_balloon:',
+    path: {
+      template: `${templateDir}/reply.njk`,
+      post: '_replies/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      url: 'replies/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
+    type: 'rsvp',
+    name: 'Reply with RSVP',
+    icon: ':speech_balloon:',
+    path: {
+      template: `${templateDir}/reply.njk`,
+      post: '_replies/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      url: 'replies/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
+    type: 'like',
+    name: 'Like',
+    icon: ':thumbsup:',
+    path: {
+      template: `${templateDir}/like.njk`,
+      post: '_likes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      url: 'likes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
     type: 'bookmark',
