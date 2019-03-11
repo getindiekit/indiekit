@@ -39,6 +39,10 @@ module.exports = async (pub, mf2, files) => {
     type = 'bookmark';
   }
 
+  if (mf2.properties.checkin) {
+    type = 'checkin';
+  }
+
   const typeConfig = _.find(pub['post-types'], {type});
   const slugSeparator = pub['slug-separator'];
 
