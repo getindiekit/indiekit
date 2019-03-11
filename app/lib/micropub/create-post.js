@@ -43,6 +43,10 @@ module.exports = async (pub, mf2, files) => {
     type = 'checkin';
   }
 
+  if (mf2.properties.start) {
+    type = 'event';
+  }
+
   const typeConfig = _.find(pub['post-types'], {type});
   const slugSeparator = pub['slug-separator'];
 
