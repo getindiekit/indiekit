@@ -91,7 +91,7 @@ module.exports = {
     name: 'Checkin',
     icon: ':triangular_flag_on_post:',
     path: {
-      template: `${templateDir}/bookmark.njk`,
+      template: `${templateDir}/checkin.njk`,
       post: '_checkins/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
       url: 'checkins/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
