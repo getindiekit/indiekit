@@ -34,6 +34,8 @@ IndieKit provides a set of default paths and templates for the following post ty
 * 📄 [`article`](https://indieweb.org/article)
 * 📔 [`note`](https://indieweb.org/note)
 * 📷 [`photo`](https://indieweb.org/photo)
+* 📹 [`video`](https://indieweb.org/video)
+* 🎤 [`audio`](https://indieweb.org/audio)
 * 🔖 [`bookmark`](https://indieweb.org/bookmark)
 
 These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
