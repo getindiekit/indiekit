@@ -84,8 +84,16 @@ module.exports = {
     path: {
       template: `${templateDir}/bookmark.njk`,
       post: '_bookmarks/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'media/bookmarks/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'bookmarks/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
+    type: 'checkin',
+    name: 'Checkin',
+    icon: ':triangular_flag_on_post:',
+    path: {
+      template: `${templateDir}/bookmark.njk`,
+      post: '_checkins/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      url: 'checkins/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }],
   'slug-separator': '-',

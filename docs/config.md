@@ -39,6 +39,7 @@ IndieKit provides a set of default paths and templates for the following post ty
 * 💬 [`reply`](https://indieweb.org/reply) (with optional [`rsvp`](https://indieweb.org/rsvp))
 * 👍 [`like`](https://indieweb.org/like)
 * 🔖 [`bookmark`](https://indieweb.org/bookmark)
+* 🚩 [`checkin`](https://indieweb.org/checkin)
 
 These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
 
