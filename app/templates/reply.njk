@@ -1,7 +1,9 @@
 ---
-title: '{{ title }}'
 date: {{ published }}
-bookmark-of: {{ bookmarkOf }}
+in-reply-to: {{ inReplyTo }}
+{%- if rsvp %}
+rsvp: {{ rsvp }}
+{%- endif %}
 {%- if category %}
 categories:
 {%- for item in category %}
