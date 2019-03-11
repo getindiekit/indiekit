@@ -8,7 +8,7 @@ module.exports = {
     path: {
       template: `${templateDir}/article.njk`,
       post: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      file: 'media/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
@@ -18,7 +18,7 @@ module.exports = {
     path: {
       template: `${templateDir}/note.njk`,
       post: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/notes/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      file: 'media/notes/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
@@ -28,8 +28,28 @@ module.exports = {
     path: {
       template: `${templateDir}/photo.njk`,
       post: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/photos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      file: 'media/photos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
+    type: 'video',
+    name: 'Video',
+    icon: ':video_camera:',
+    path: {
+      template: `${templateDir}/video.njk`,
+      post: '_videos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      file: 'media/videos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      url: 'videos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
+    type: 'audio',
+    name: 'Audio',
+    icon: ':microphone:',
+    path: {
+      template: `${templateDir}/audio.njk`,
+      post: '_audio/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      file: 'media/audio/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      url: 'audio/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
     type: 'bookmark',
@@ -38,7 +58,7 @@ module.exports = {
     path: {
       template: `${templateDir}/bookmark.njk`,
       post: '_bookmarks/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-      file: 'images/bookmarks/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
+      file: 'media/bookmarks/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}',
       url: 'bookmarks/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }],
