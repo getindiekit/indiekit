@@ -16,7 +16,7 @@ module.exports = (mf2, separator) => {
   const {name} = mf2.properties;
   const random = utils.createRandomString();
 
-  if (slug) {
+  if (slug && slug[0] !== '') {
     return slug;
   }
 
