@@ -1,0 +1,12 @@
+---
+title: '{{ name }}'
+date: {{ published }}
+repost-of: {{ repostOf }}
+{%- if category %}
+categories:
+{%- for item in category %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+---
+{{ content | safe }}

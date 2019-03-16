@@ -38,6 +38,7 @@ IndieKit provides a set of default paths and templates for the following post ty
 * 🎤 [`audio`](https://indieweb.org/audio)
 * 💬 [`reply`](https://indieweb.org/reply) (with optional [`rsvp`](https://indieweb.org/rsvp))
 * 👍 [`like`](https://indieweb.org/like)
+* ♻️ [`repost`](https://indieweb.org/repost)
 * 🔖 [`bookmark`](https://indieweb.org/bookmark)
 * 🚩 [`checkin`](https://indieweb.org/checkin)
 * 📅 [`event`](https://indieweb.org/event)

@@ -78,6 +78,15 @@ module.exports = {
       url: 'likes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
     }
   }, {
+    type: 'repost',
+    name: 'Repost',
+    icon: ':recycle:',
+    path: {
+      template: `${templateDir}/repost.njk`,
+      post: '_reposts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
+      url: 'reposts/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+    }
+  }, {
     type: 'bookmark',
     name: 'Bookmark',
     icon: ':bookmark:',
