@@ -53,7 +53,7 @@ const createFile = async (path, content, options) => {
   path = utils.normalizePath(path);
 
   try {
-    return await octokit.repos.createFile({
+    return await octokit.repos.createOrUpdateFile({
       owner: config.github.user,
       repo: config.github.repo,
       branch: config.github.branch,
