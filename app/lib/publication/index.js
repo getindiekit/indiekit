@@ -13,16 +13,16 @@ const appConfig = require('./defaults');
  * @module publication
  * @returns {Promise} Configuration object
  */
-module.exports = async () => {
+const resolveConfig = async pubConfig => {
   // If no configuration provided, use application defaults
-  if (!config['pub-config']) {
+  if (!pubConfig) {
     console.info('No configuration provided. Using app defaults.');
     return appConfig;
   }
 
   try {
     // Fetch configuration from store and cache
-    let pubConfig = await cache.read(config['pub-config'], config.cache.config);
+    let pubConfig = await cache.read(pubConfig, config.cache.config);
 
     // If no configuration found in store, use application defaults
     if (pubConfig) {
@@ -63,4 +63,8 @@ module.exports = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+
+module.exports = {
+  resolveConfig
 };
