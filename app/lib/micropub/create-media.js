@@ -1,3 +1,5 @@
+const path = require('path');
+
 const _ = require('lodash');
 
 const config = require(process.env.PWD + '/app/config');
@@ -35,7 +37,7 @@ module.exports = async (pub, files) => {
     const filePath = render(typeConfig.path.file, properties);
 
     // Prepare location and activity record
-    const url = config.url + filePath;
+    const url = path.join(config.url + filePath);
     const recordData = {
       path: {
         file: filePath
