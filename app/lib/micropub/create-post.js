@@ -1,3 +1,5 @@
+const path = require('path');
+
 const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
@@ -69,7 +71,7 @@ module.exports = async (pub, mf2, files) => {
   const urlPath = render(typeConfig.path.url, properties);
 
   // Prepare location and activity record
-  const url = config.url + urlPath;
+  const url = path.join(config.url + urlPath);
   const recordData = {
     path: {
       post: postPath
