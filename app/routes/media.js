@@ -1,5 +1,7 @@
+const config = require(process.env.PWD + '/app/config');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
+const publication = require(process.env.PWD + '/app/lib/publication');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -13,7 +15,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @return {Object} HTTP response
  */
 exports.post = async (request, response) => {
-  const pub = await require(process.env.PWD + '/app/lib/publication')();
+  const pub = await publication.resolveConfig(config['pub-config']);
   const getResult = async request => {
     const {files} = request;
 
