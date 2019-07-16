@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -16,12 +14,17 @@ module.exports = async (request, pub) => {
   const url = `${request.protocol}://${request.headers.host}`;
   const mediaEndpoint = pub['media-endpoint'] || `${url}/media`;
   const syndicateTo = pub['syndicate-to'];
-  let postTypes = [];
+  const pubPostTypes = pub['post-types'];
+  const postTypes = [];
 
-  if (pub['post-types']) {
-    postTypes = pub['post-types'].map(postType => {
-      return _.pick(postType, ['name', 'type']);
-    });
+  if (pubPostTypes) {
+    for (const [key, value] of Object.entries(pubPostTypes)) {
+      const postType = {
+        type: key,
+        name: value.name
+      };
+      postTypes.push(postType);
+    }
   }
 
   const {query} = request;

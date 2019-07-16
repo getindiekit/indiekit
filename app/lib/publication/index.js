@@ -11,18 +11,19 @@ const appConfig = require('./defaults');
  * application.
  *
  * @module publication
+ * @param {Object} configPath Path to publication config
  * @returns {Promise} Configuration object
  */
-const resolveConfig = async pubConfig => {
+const resolveConfig = async configPath => {
   // If no configuration provided, use application defaults
-  if (!pubConfig) {
+  if (!configPath) {
     console.info('No configuration provided. Using app defaults.');
     return appConfig;
   }
 
   try {
     // Fetch configuration from store and cache
-    let pubConfig = await cache.read(pubConfig, config.cache.config);
+    let pubConfig = await cache.read(configPath, 'config.json');
 
     // If no configuration found in store, use application defaults
     if (pubConfig) {
@@ -32,7 +33,7 @@ const resolveConfig = async pubConfig => {
     }
 
     // Merge store configuration with application defaults
-    const newConfig = {...appConfig, ...pubConfig};
+    const newConfig = _.merge(appConfig, pubConfig);
 
     // Fetch templates from store and cache
     let newPostTypes;
@@ -43,7 +44,7 @@ const resolveConfig = async pubConfig => {
       for (const key in pubPostTypes) {
         if (Object.prototype.hasOwnProperty.call(pubPostTypes, key)) {
           const postType = pubPostTypes[key];
-          const cacheTemplate = path.join('templates', `${postType.type}.njk`);
+          const cacheTemplate = path.join('templates', `${key}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
           await cache.read(postType.path.template, cacheTemplate);
 
@@ -53,7 +54,7 @@ const resolveConfig = async pubConfig => {
       }
 
       // Merge default and publication post types (with cached template paths)
-      newPostTypes = _.unionBy(pubPostTypes, appPostTypes, 'type');
+      newPostTypes = _.merge(appPostTypes, pubPostTypes);
 
       // Update combined configuration with new post type values
       newConfig['post-types'] = newPostTypes;
