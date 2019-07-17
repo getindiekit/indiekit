@@ -12,12 +12,12 @@ const missing = require('./fixtures/published-missing');
 // Tests
 test('Derives date from `published` property', t => {
   const published = dervivePublished(provided);
-  t.is(published[0], '2019-01-02T03:04:05.678+00:00');
+  t.is(published[0], '2019-01-02T04:04:05.678+01:00');
 });
 
 test('Derives date from `published` property with short date', t => {
   const published = dervivePublished(providedShortDate);
-  t.is(published[0], '2019-01-02T00:00:00.000+00:00');
+  t.is(published[0], '2019-01-02T00:00:00.000+01:00');
 });
 
 test('Derives date by using current date', t => {
