@@ -33,6 +33,7 @@ module.exports = async (pub, files) => {
 
     // Render destination path
     const filePath = render(typeConfig.path.file, properties);
+    const fileName = path.basename(filePath);
 
     // Prepare location and activity record
     const url = path.join(config.url + filePath);
@@ -45,7 +46,7 @@ module.exports = async (pub, files) => {
     // Upload file to GitHub
     try {
       const response = await store.github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: Uploaded ${properties.filename} \nwith ${config.name}`
+        message: `:framed_picture: Uploaded ${fileName}\nwith ${config.name}`
       });
 
       if (response) {
