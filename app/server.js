@@ -23,11 +23,14 @@ nunjucks.configure(['./app/views', './app/static'], {
 app.set('view engine', 'njk');
 
 // Parse application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  limit: '10mb'
+}));
 
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
+  limit: '10mb'
 }));
 
 // Parse multipart/form-data
