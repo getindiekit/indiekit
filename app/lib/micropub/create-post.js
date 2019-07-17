@@ -86,7 +86,7 @@ module.exports = async (pub, mf2, files) => {
   // Create post on GitHub
   try {
     await store.github.createFile(postPath, content, {
-      message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post \nwith ${config.name}`
+      message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post\nwith ${config.name}`
     });
     record.create(url, recordData);
     return utils.success('create_pending', url);

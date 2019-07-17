@@ -1,3 +1,5 @@
+const path = require('path');
+
 const config = require(process.env.PWD + '/app/config');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
@@ -52,10 +54,11 @@ module.exports = async (mf2, files, typeConfig) => {
 
       // Render publish and destination paths
       const filePath = render(typeConfig.path.file, fileContext);
+      const fileName = path.basename(filePath);
 
       // Create post on GitHub
       await store.github.createFile(filePath, file.buffer, {
-        message: `:framed_picture: ${fileProperties.filename} uploaded\nwith ${config.name}`
+        message: `:framed_picture: ${fileName} uploaded\nwith ${config.name}`
       });
 
       combinedPhotos.push({
