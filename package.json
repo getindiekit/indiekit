@@ -51,6 +51,11 @@
     "supertest": "^4.0.0",
     "xo": "^0.24.0"
   },
+  "ava": {
+    "files": [
+      "**/*.test.js"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run docs"

@@ -1,7 +1,5 @@
 const path = require('path');
 
-const _ = require('lodash');
-
 const config = require(process.env.PWD + '/app/config');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
@@ -28,7 +26,7 @@ module.exports = async (pub, files) => {
   for (const file of files) { /* eslint-disable no-await-in-loop */
     // Determine post type from media type
     const type = utils.deriveMediaType(file.mimetype);
-    const typeConfig = _.find(pub['post-types'], {type});
+    const typeConfig = pub['post-types'][type];
 
     // Provide additional properties for file path templates
     const properties = utils.deriveFileProperties(file);

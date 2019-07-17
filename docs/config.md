@@ -29,7 +29,7 @@ Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndic
 
 #### `post-types`
 
-IndieKit provides a set of default paths and templates for the following post types:
+IndieKit provides a set of default paths and templates for the following [post types](https://indieweb.org/posts#Types_of_Posts):
 
 * 📄 [`article`](https://indieweb.org/article)
 * 📔 [`note`](https://indieweb.org/note)
@@ -47,28 +47,29 @@ These defaults can be ammended, and new types can be added. For example, to over
 
 ```json
 {
-  "post-types": [{
-    "type": "note",
-    "name": "Micro note",
-    "icon": ":memo:",
-    "path": {
-      "template": "_micropub/templates/note.njk",
-      "post": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-      "url": "notes/{​{ published | date('yyyy/MM') }}/{{ slug }}"
+  "post-types": {
+    "note": {
+      "name": "Micro note",
+      "icon": ":memo:",
+      "path": {
+        "template": "_micropub/templates/note.njk",
+        "post": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+        "url": "notes/{​{ published | date('yyyy/MM') }}/{{ slug }}"
+      },
     },
-    "type": "photo",
-    "name": "Photograph",
-    "path": {
-      "template": "_micropub/templates/photo.njk",
-      "file": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
-      "post": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-      "url": "photos/{​{ published | date('yyyy/MM') }}/{{ slug }}"
+    "photo": {
+      "name": "Photograph",
+      "path": {
+        "template": "_micropub/templates/photo.njk",
+        "file": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
+        "post": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+        "url": "photos/{​{ published | date('yyyy/MM') }}/{{ slug }}"
+      }
     }
-  }]
+  }
 }
 
 ```
-* **`type`**: The type of post being configured. This value must match oneof the [common post-types used across by the IndieWeb](https://indieweb.org/posts#Types_of_Posts).
 
 * **`name`**: The name you give to this post type on your own site. You needn’t specify this value, but if you do, certain Micropub clients will expose it in their publishing UI.
 

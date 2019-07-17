@@ -49,7 +49,7 @@ module.exports = async (pub, mf2, files) => {
     type = 'event';
   }
 
-  const typeConfig = _.find(pub['post-types'], {type});
+  const typeConfig = pub['post-types'][type];
   const slugSeparator = pub['slug-separator'];
 
   // Update properties
@@ -86,7 +86,7 @@ module.exports = async (pub, mf2, files) => {
   // Create post on GitHub
   try {
     await store.github.createFile(postPath, content, {
-      message: `${typeConfig.icon} Created ${_.lowerCase(typeConfig.name)} post \nwith ${config.name}`
+      message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post \nwith ${config.name}`
     });
     record.create(url, recordData);
     return utils.success('create_pending', url);
