@@ -83,6 +83,10 @@ module.exports = async (pub, mf2, files) => {
     }
   };
 
+  // TODO: Upload media?
+  // If files in Micropub request, and they’ve not been added via the
+  // media endpoint (how to know?), should they be uploaded here?
+
   // Create post on GitHub
   try {
     await store.github.createFile(postPath, content, {
