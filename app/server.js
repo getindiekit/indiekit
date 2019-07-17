@@ -51,6 +51,9 @@ app.use((request, response) => {
   }
 });
 
+// Ensure correct reporting of secure connections
+app.enable('trust proxy');
+
 app.listen(port, function () {
   console.info(`Starting ${config.name} on port ${this.address().port}`);
 });
