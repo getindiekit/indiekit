@@ -14,7 +14,7 @@
 -   [microformats][10]
     -   [derviveContent][11]
         -   [Parameters][12]
-    -   [derivePhotoProperty][13]
+    -   [derivePhoto][13]
         -   [Parameters][14]
     -   [dervivePublishedProperty][15]
         -   [Parameters][16]
@@ -147,7 +147,7 @@ Derives content (HTML, else object value, else property value)
 
 Returns **[Array][90]** Content
 
-### derivePhotoProperty
+### derivePhoto
 
 Combines referenced and attached photos into one object which can be used in
 a microformats2 object. Attached photos are uploaded to GitHub.
@@ -590,7 +590,7 @@ Returns **[Object][86]** HTTP response
 
 [12]: #parameters-4
 
-[13]: #derivephotoproperty
+[13]: #derivephoto
 
 [14]: #parameters-5
 
