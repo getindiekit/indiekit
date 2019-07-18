@@ -11,6 +11,9 @@ config.description = pkg.description;
 config.repository = pkg.repository;
 config.port = process.env.PORT || 3000;
 
+// Locale
+config.locale = process.env.INDIEKIT_LOCALE || 'en-GB';
+
 // Cache
 config.cache = {
   dir: process.env.PWD + '/.cache',
