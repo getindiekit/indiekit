@@ -24,4 +24,8 @@ router.post('/media', media.post);
 router.get('/micropub', micropub.get);
 router.post('/micropub', micropub.post);
 
+// Support Sunlit, which has a hardcoded media endpoint URL
+// https://github.com/microdotblog/issues/issues/147
+router.post('/media/micropub/media', media.post);
+
 module.exports = router;
