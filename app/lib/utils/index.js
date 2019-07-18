@@ -1,6 +1,7 @@
 /* eslint camelcase: 0 */
 const path = require('path');
 const {DateTime} = require('luxon');
+const mimetypes = require('mime-types');
 
 /**
  * Common utility functions.
@@ -37,7 +38,7 @@ const createRandomString = () => {
 const deriveFileProperties = file => {
   const basename = createRandomString();
   const filedate = DateTime.local().toISO();
-  const fileext = path.extname(file.originalname);
+  const fileext = mimetypes.extension(file.mimetype);
   const filename = `${basename}${fileext}`;
   return {
     originalname: file.originalname,
