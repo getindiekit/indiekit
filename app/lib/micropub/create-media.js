@@ -36,7 +36,8 @@ module.exports = async (pub, files) => {
     const fileName = path.basename(filePath);
 
     // Prepare location and activity record
-    const url = path.join(config.url + filePath);
+    const url = new URL(filePath, config.url);
+    const location = url.href;
     const recordData = {
       path: {
         file: filePath
@@ -50,8 +51,8 @@ module.exports = async (pub, files) => {
       });
 
       if (response) {
-        record.create(url, recordData);
-        return utils.success('create', url);
+        record.create(location, recordData);
+        return utils.success('create', location);
       }
     } catch (error) {
       return utils.error('server_error', error);

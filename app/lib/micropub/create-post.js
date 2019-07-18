@@ -1,5 +1,3 @@
-const path = require('path');
-
 const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
@@ -71,7 +69,8 @@ module.exports = async (pub, mf2, files) => {
   const urlPath = render(typeConfig.path.url, properties);
 
   // Prepare location and activity record
-  const url = path.join(config.url + urlPath);
+  const url = new URL(urlPath, config.url);
+  const location = url.href;
   const recordData = {
     path: {
       post: postPath
@@ -92,8 +91,8 @@ module.exports = async (pub, mf2, files) => {
     await store.github.createFile(postPath, content, {
       message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post\nwith ${config.name}`
     });
-    record.create(url, recordData);
-    return utils.success('create_pending', url);
+    record.create(location, recordData);
+    return utils.success('create_pending', location);
   } catch (error) {
     throw new Error(error.message);
   }
