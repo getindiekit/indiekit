@@ -24,3 +24,4 @@ If you’d like to deploy this application somewhere else, make sure the followi
 * `INDIEKIT_URL`: URL of the website you want to publish to. **Required**.
 * `INDIEKIT_CONFIG_PATH`: Location of configuration file, relative to repository root. *Optional*, if not provided, default values will be used for templates and file paths.
 * `INDIEKIT_CACHE_EXPIRES`: Time (in seconds) before cache expires. *Optional*, defaults to `86400` (1 day).
+* `INDIEKIT_LOCALE`: Local with which to format dates. *Optional*, defaults to `en-GB`.
