@@ -37,14 +37,12 @@ const createRandomString = () => {
  */
 const deriveFileProperties = file => {
   const basename = createRandomString();
-  const filedate = DateTime.local().toISO();
-  const fileext = mimetypes.extension(file.mimetype);
-  const filename = `${basename}.${fileext}`;
+  const extension = mimetypes.extension(file.mimetype).replace(/jpeg/i, 'jpg');
   return {
     originalname: file.originalname,
-    filedate,
-    filename,
-    fileext
+    filedate: DateTime.local().toISO(),
+    filename: `${basename}.${extension}`,
+    fileext: extension
   };
 };
 
