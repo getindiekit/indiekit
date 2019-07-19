@@ -55,7 +55,7 @@ module.exports = async (pub, files) => {
         return utils.success('create', location);
       }
     } catch (error) {
-      return utils.error('server_error', error);
+      return utils.error('server_error', `Unable to create ${location}. ${error.message}`);
     }
   } /* eslint-enable no-await-in-loop */
 };

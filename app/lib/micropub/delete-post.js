@@ -11,8 +11,8 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @param {String} url URL of published post
  * @returns {Promise} Response object
  */
-module.exports = async url => {
-  const recordData = record.read(url);
+module.exports = async location => {
+  const recordData = record.read(location);
 
   if (recordData) {
     try {
@@ -21,10 +21,10 @@ module.exports = async url => {
         message: `:x: Deleted post\nwith ${config.name}`
       });
       if (response) {
-        return utils.success('delete', url);
+        return utils.success('delete', location);
       }
     } catch (error) {
-      throw new Error(`Unable to delete ${url}. ${error.message}`);
+      return utils.error('server_error', `Unable to delete ${location}. ${error.message}`);
     }
   }
 
