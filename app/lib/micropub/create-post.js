@@ -88,12 +88,15 @@ module.exports = async (pub, mf2, files) => {
 
   // Create post on GitHub
   try {
-    await store.github.createFile(postPath, content, {
+    const response = await store.github.createFile(postPath, content, {
       message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post\nwith ${config.name}`
     });
-    record.create(location, recordData);
-    return utils.success('create_pending', location);
+
+    if (response) {
+      record.create(location, recordData);
+      return utils.success('create_pending', location);
+    }
   } catch (error) {
-    throw new Error(error.message);
+    return utils.error('server_error', `Unable to create ${location}. ${error.message}`);
   }
 };
