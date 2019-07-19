@@ -459,7 +459,7 @@ Decodes form-encoded string
 
 #### Parameters
 
--   `string` **[String][87]** String to decode
+-   `str` **[String][87]** String to decode
 
 #### Examples
 
@@ -490,7 +490,7 @@ Gets first n words from a string
 
 #### Parameters
 
--   `string` **[String][87]** String to excerpt
+-   `str` **[String][87]** String to excerpt
 -   `n` **[Number][98]** Max number of words
 
 #### Examples
@@ -507,7 +507,7 @@ Removes ‘/’ from beginning and end of string. Useful for constructing paths
 
 #### Parameters
 
--   `string` **[Object][86]** String
+-   `str` **[Object][86]** String
 
 #### Examples
 

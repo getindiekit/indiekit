@@ -1,5 +1,4 @@
 /* eslint camelcase: 0 */
-const path = require('path');
 const {DateTime} = require('luxon');
 const mimetypes = require('mime-types');
 
@@ -76,13 +75,13 @@ const deriveMediaType = mimetype => {
  * @exports decodeFormEncodedString
  * @example decodeFormEncodedString('foo+bar') => 'foo bar'
  * @example decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
- * @param {String} string String to decode
+ * @param {String} str String to decode
  * @return {String} Decoded string
  */
-const decodeFormEncodedString = string => {
-  if (typeof string === 'string') {
-    string = string.replace(/\+/g, '%20');
-    return decodeURIComponent(string);
+const decodeFormEncodedString = str => {
+  if (typeof str === 'string') {
+    str = str.replace(/\+/g, '%20');
+    return decodeURIComponent(str);
   }
 
   return false;
@@ -142,14 +141,14 @@ const error = (id, desc) => {
  * @memberof utils
  * @exports excerptString
  * @example excerptString('Foo bar baz', 2) => 'Foo bar'
- * @param {String} string String to excerpt
+ * @param {String} str String to excerpt
  * @param {Number} n Max number of words
  * @return {String} Excerpt
  */
-const excerptString = (string, n) => {
-  if (typeof string === 'string') {
-    string = string.split(/\s+/).slice(0, n).join(' ');
-    return string;
+const excerptString = (str, n) => {
+  if (typeof str === 'string') {
+    str = str.split(/\s+/).slice(0, n).join(' ');
+    return str;
   }
 };
 
@@ -159,11 +158,11 @@ const excerptString = (string, n) => {
  * @memberof utils
  * @exports normalizePath
  * @example normalizePath('/foo/bar/') => 'foo/bar'
- * @param {Object} string String
+ * @param {Object} str String
  * @return {Object} Normalized object
  */
-const normalizePath = string => {
-  return string.replace(/^\/|\/$/g, '');
+const normalizePath = str => {
+  return str.replace(/^\/|\/$/g, '');
 };
 
 /**
