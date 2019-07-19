@@ -55,6 +55,36 @@ test('104: Create h-entry with photo referenced by URL (form-encoded)', async t 
   scope.done();
 });
 
+test('10x: Create h-entry with referenced photo and alt text (form-encoded)', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
+  const {app} = t.context;
+  const response = await app.post('/micropub')
+    .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
+    .send('h=entry&content=Micropub+test+of+creating+a+photo+referenced+by+URL&photo=https%3A%2F%2Fmicropub.rocks%2Fmedia%2Fsunset.jpg&mp-photo-alt=Photo%20of%20a%20sunset');
+  t.is(response.status, 201 && 202);
+  t.truthy(response.header.location);
+  scope.done();
+});
+
+test('10x: Create h-entry with multiple referenced photos and alt text (form-encoded)', async t => {
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .delay(500)
+    .reply(201);
+  const {app} = t.context;
+  const response = await app.post('/micropub')
+    .set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
+    .send('h=entry&content=Micropub+test+of+creating+a+photo+referenced+by+URL&photo[]=https%3A%2F%2Fmicropub.rocks%2Fmedia%2Fsunset.jpg&photo[]=https%3A%2F%2Fmicropub.rocks%2Fmedia%2Fcity-at-night.jpg&mp-photo-alt[]=Photo%20of%20a%20sunset&mp-photo-alt[]=Photo%20of%20a%20city%20at%20night');
+  t.is(response.status, 201 && 202);
+  t.truthy(response.header.location);
+  scope.done();
+});
+
 test('107: Create h-entry with one category (form-encoded)', async t => {
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)

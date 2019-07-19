@@ -32,9 +32,6 @@ module.exports = body => {
 
   for (const key in body) {
     if (Object.hasOwnProperty.call(body, key)) {
-      const isExtendedProperty = key.indexOf('mp-') === 0;
-      const isReservedProperty = reservedProperties.indexOf(key) !== -1;
-
       // Decode string values
       let value;
       if (typeof body[key] === 'string') {
@@ -44,15 +41,48 @@ module.exports = body => {
       }
 
       // Assign values to correct properties in mf2 object
-      if (isExtendedProperty) {
-        mf2[key] = [].concat(value);
-      } else if (isReservedProperty) {
+      const isPhotoProperty = (key === 'photo');
+      const isPhotoAltProperty = (key === 'mp-photo-alt');
+      const isExtendedProperty = key.startsWith('mp-');
+      const isReservedProperty = reservedProperties.includes(key);
+
+      if (isReservedProperty) {
+        // Delete reserved properties
         delete mf2[key];
+      } else if (isPhotoProperty) {
+        // Convert `photo` values into mf2 objects
+        // 'foo.gif' => [{value: 'foo.gif'}]
+        // ['foo.gif', 'bar.jpg'] => [{value: 'foo.gif'}, {value: 'bar.jpg'}]
+        mf2.properties[key] = [].concat(value).map(value => ({value}));
+      } else if (isPhotoAltProperty) {
+        // Convert `mp-photo-alt` values into mf2 objects
+        // 'foo' => [{alt: 'foo'}]
+        // ['foo', 'bar'] => [{alt: 'foo'}, {alt: 'bar'}]
+        mf2[key] = [].concat(value).map(alt => ({alt}));
+      } else if (isExtendedProperty) {
+        // Convert extended properties into arrays
+        // 'foo' => ['foo']
+        mf2[key] = [].concat(value);
       } else {
-        const targetProperty = mf2.properties;
-        targetProperty[key] = [].concat(value);
+        // Convert post properties into arrays
+        // 'foo' => ['foo']
+        mf2.properties[key] = [].concat(value);
       }
     }
+  }
+
+  // Merge mf2.properties.photo with mf2['mp-photo-alt']
+  const {photo} = mf2.properties;
+  const alt = mf2['mp-photo-alt'];
+  if (photo && alt) {
+    mf2.properties.photo = photo.map((photo, i) => {
+      return {
+        value: photo.value,
+        alt: alt[i].alt
+      };
+    });
+
+    delete mf2['mp-photo-alt'];
   }
 
   // Remove empty and null keys
