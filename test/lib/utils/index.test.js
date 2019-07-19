@@ -1,3 +1,4 @@
+const {DateTime} = require('luxon');
 const test = require('ava');
 
 // Functions
@@ -6,6 +7,30 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 // Tests
 test('Generates random alpha-numeric string, 5 characters long', t => {
   t.regex(utils.createRandomString(), /[\d\w]{5}/g);
+});
+
+test('Derives file properties', t => {
+  const gif = {
+    mimetype: 'image/gif',
+    originalname: 'image.gif'
+  };
+  const file = utils.deriveFileProperties(gif);
+  t.is(file.originalname, 'image.gif');
+  t.truthy(DateTime.fromISO(file.filedate.isValid));
+  t.regex(file.filename, /[\d\w]{5}.gif/g);
+  t.is(file.fileext, 'gif');
+});
+
+test('Derives JPEG file properties (using .jpg extension)', t => {
+  const jpeg = {
+    mimetype: 'image/jpeg',
+    originalname: 'image.jpg'
+  };
+  const file = utils.deriveFileProperties(jpeg);
+  t.is(file.originalname, 'image.jpg');
+  t.truthy(DateTime.fromISO(file.filedate.isValid));
+  t.regex(file.filename, /[\d\w]{5}.jpg/g);
+  t.is(file.fileext, 'jpg');
 });
 
 test('Decodes form-encoded string', t => {
