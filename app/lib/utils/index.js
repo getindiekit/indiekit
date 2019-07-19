@@ -39,7 +39,7 @@ const deriveFileProperties = file => {
   const basename = createRandomString();
   const filedate = DateTime.local().toISO();
   const fileext = mimetypes.extension(file.mimetype);
-  const filename = `${basename}${fileext}`;
+  const filename = `${basename}.${fileext}`;
   return {
     originalname: file.originalname,
     filedate,
