@@ -1,5 +1,21 @@
 {% extends "default.njk" %}
 
 {% block content %}
-<p>This is the <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint for <a href="{{ url }}">{{ url | replace('https://', '')}}</a>.</p>
+<p>This is the <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint for <a href="{{ app.url }}">{{ app.url | replace('https://', '')}}</a>.</p>
+<dl>
+{% if pub["media-endpoint"] %}
+  <dt>Media endpoint</dt>
+  <dd><a href="{{ pub["media-endpoint"] }}">{{ pub["media-endpoint"] }}</a></dd>
+{% endif %}
+  <dt>Supported post types</dt>
+  <dd>{% for type, config in pub["post-types"] %}
+    <a href="https://indieweb.org/{{ type }}">{{ config.name }}</a>{{ '' if loop.last else ', ' }}
+  {% endfor %}</dd>
+{% if pub["syndicate-to"].length >= 1 %}
+  <dt>Syndicatation targets</dt>
+  <dd>{% for target in pub["syndicate-to"] %}
+    <a href="{{ target.uid }}">{{ target.name }}</a>{{ '' if loop.last else ', ' }}
+  {% endfor %}</dd>
+{% endif %}
+</dl>
 {% endblock %}

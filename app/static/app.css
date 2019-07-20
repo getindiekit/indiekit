@@ -1,4 +1,6 @@
 :root {
+  --flow-inset: 1.5em;
+  --flow-space: 0.5em;
   --spacing-block: 1.5rem;
   --spacing-inline: 0.25rem;
   --color-neutral-darkest: hsl(216, 12%, 16%);
@@ -72,7 +74,25 @@ main {
 }
 
 main * {
+  margin-block-end: var(--flow-space);
+}
+
+main h2,
+main p {
+  --flow-space: 1em;
   font-size: var(--font-size-large);
+}
+
+main dl {
+  font-size: var(--font-size-medium);
+}
+
+main dt {
+  font-weight: 500;
+}
+
+main dd + dt {
+  margin-block-start: calc(var(--flow-space) * 2);
 }
 
 footer {

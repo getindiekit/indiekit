@@ -2,20 +2,20 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/app.css">
-    <title>{{ title + " - " if title }}{{ name }}</title>
+    <title>{{ title + " - " if title }}{{ app.name }}</title>
   </head>
   <body>
     <header>
       <h1>
-        <a href="/" rel="home">{% include 'logo.svg' %}{{ name }}</a>
+        <a href="/" rel="home">{% include 'logo.svg' %}{{ app.name }}</a>
       </h1>
-      <p>{{ description }}</p>
+      <p>{{ app.description }}</p>
     </header>
     <main>
       {% block content %}{% endblock %}
     </main>
     <footer>
-      <a href="https://github.com/{{ repository | replace('github:', '.') }}/releases/tag/v{{ version }}">v{{ version }}</a>
+      <a href="https://github.com/{{ app.repository | replace('github:', '.') }}/releases/tag/v{{ app.version }}">v{{ app.version }}</a>
     </footer>
   </body>
 </html>

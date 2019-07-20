@@ -8,6 +8,7 @@ const nunjucks = require('nunjucks');
 const logger = require(process.env.PWD + '/app/logger');
 const config = require(process.env.PWD + '/app/config');
 const routes = require(process.env.PWD + '/app/routes');
+const publication = require(process.env.PWD + '/app/lib/publication');
 
 const app = express();
 const {port} = config;
@@ -22,6 +23,10 @@ nunjucks.configure(['./app/views', './app/static'], {
 });
 
 app.set('view engine', 'njk');
+app.locals.app = config;
+(async () => {
+  app.locals.pub = await publication.resolveConfig(config['pub-config']);
+})();
 
 // Parse application/json
 app.use(bodyParser.json({
@@ -49,10 +54,11 @@ app.use((request, response) => {
   response.status(404);
 
   if (request.accepts('html')) {
-    response.locals.status = 404;
-    response.locals.message = 'Not Found';
-    response.locals.error = 'The requested resource could not be found.';
-    response.render('error', config);
+    response.render('error', {
+      status: 404,
+      message: 'Not Found',
+      error: 'The requested resource could not be found.'
+    });
   }
 });
 
@@ -65,10 +71,11 @@ app.use((error, request, response, next) => {
 
   // Set locals, only providing error in development
   if (request.accepts('html')) {
-    response.locals.status = status;
-    response.locals.message = message;
-    response.locals.error = error;
-    response.render('error', config);
+    response.render('error', {
+      status,
+      message,
+      error
+    });
   }
 
   response.status(status);
