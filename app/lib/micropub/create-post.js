@@ -1,7 +1,6 @@
 const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
-const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
 const logger = require(process.env.PWD + '/app/logger');
@@ -23,29 +22,11 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  */
 module.exports = async (pub, mf2, files) => {
   // Determine post type
-  // TODO: Consolidate into separate module
   let type;
   if (files && files.length > 0) {
-    // Infer media type from first file attachment
     type = utils.deriveMediaType(files[0].mimetype);
   } else {
-    // Create the `items` array getType() expects
-    const items = {items: [mf2]};
-    type = getType(items);
-  }
-
-  // Override post type to support experimental types
-  // @see: https://indieweb.org/posts
-  if (mf2.properties['bookmark-of']) {
-    type = 'bookmark';
-  }
-
-  if (mf2.properties.checkin) {
-    type = 'checkin';
-  }
-
-  if (mf2.properties.start) {
-    type = 'event';
+    type = microformats.derivePostType(mf2);
   }
 
   const typeConfig = pub['post-types'][type];
