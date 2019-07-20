@@ -1,5 +1,6 @@
 const slugify = require('slug');
 
+const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -17,18 +18,24 @@ module.exports = (mf2, separator) => {
   const random = utils.createRandomString();
 
   if (slug && slug[0] !== '') {
+    logger.info('Slug property provided', slug);
     return slug;
   }
 
-  if (name) {
+  if (name && name[0] !== '') {
     const excerpt = utils.excerptString(name[0], 5);
     slug = slugify(excerpt, {
       replacement: separator,
       lower: true
     });
+    slug = new Array(slug);
 
-    return new Array(slug);
+    logger.info('Slug generated from name property', slug);
+    return slug;
   }
 
-  return new Array(random);
+  slug = new Array(random);
+
+  logger.info('Slug generated using random string', slug);
+  return slug;
 };
