@@ -17,7 +17,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @return {Object} HTTP response
  */
 exports.get = async (request, response) => {
-  logger.info(request.url);
+  logger.info('%s %s', request.method, request.originalUrl);
 
   const pub = await publication.resolveConfig(config['pub-config']);
   const result = await micropub.query(request, pub);

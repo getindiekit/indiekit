@@ -44,15 +44,40 @@ app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 // Routes
 app.use('/', routes);
 
-// Errors
+// 404
 app.use((request, response) => {
+  response.status(404);
+
   if (request.accepts('html')) {
-    response.status(404);
-    response.render('404', config);
+    response.locals.status = 404;
+    response.locals.message = 'Not Found';
+    response.locals.error = 'The requested resource could not be found.';
+    response.render('error', config);
   }
 });
 
-// Ensure correct reporting of secure connections
+// Errors
+app.use((error, request, response, next) => {
+  const status = error.status || 500;
+  const {message} = error;
+
+  logger.error(`${status}: ${message}. ${request.method} ${request.originalUrl}`);
+
+  // Set locals, only providing error in development
+  if (request.accepts('html')) {
+    response.locals.status = status;
+    response.locals.message = message;
+    response.locals.error = error;
+    response.render('error', config);
+  }
+
+  response.status(status);
+  response.send(`${status}: ${message}. ${error}`);
+
+  next();
+});
+
+// Correct reporting of secure connections
 app.enable('trust proxy');
 
 app.listen(port, function () {
