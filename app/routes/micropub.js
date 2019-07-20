@@ -70,7 +70,7 @@ exports.post = async (request, response) => {
     const {scope} = authResponse;
     const hasScope = scope && scope.length > 0;
     const action = request.query.action || body.action;
-    const url = request.query.url || body;
+    const url = request.query.url || body.url;
 
     if (action === 'delete') {
       if (hasScope && scope.includes('delete')) {

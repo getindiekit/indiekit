@@ -267,7 +267,7 @@ Deletes a post
 
 #### Parameters
 
--   `url` **[String][89]** URL of published post
+-   `location` **[String][89]** URL of published post
 
 Returns **[Promise][90]** Response object
 
