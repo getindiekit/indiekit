@@ -22,7 +22,7 @@ test('Uploads image to media endpoint', async t => {
   const gif = path.resolve(__dirname, 'fixtures/image.gif');
   const {app} = t.context;
   const response = await app.post('/media')
-    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`)
     .attach('file', gif);
   t.is(response.status, 201);
   scope.done();
@@ -31,7 +31,7 @@ test('Uploads image to media endpoint', async t => {
 test('Returns 400 if no file attached to request', async t => {
   const {app} = t.context;
   const response = await app.post('/media')
-    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
   t.is(response.status, 400);
   t.is(response.body.error, 'invalid_request');
 });
@@ -40,7 +40,7 @@ test('Returns 401 if access token doesn’t provide sufficient scope', async t =
   const gif = path.resolve(__dirname, 'fixtures/image.gif');
   const {app} = t.context;
   const response = await app.post('/media')
-    .set('authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_SCOPED}`)
+    .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN_NOT_SCOPED}`)
     .attach('file', gif);
   t.is(response.status, 401);
   t.is(response.body.error, 'insufficient_scope');
@@ -50,7 +50,7 @@ test('Returns 401 if access token is invalid', async t => {
   const gif = path.resolve(__dirname, 'fixtures/image.gif');
   const {app} = t.context;
   const response = await app.post('/media')
-    .set('authorization', 'Bearer invalid')
+    .set('Authorization', 'Bearer invalid')
     .attach('file', gif);
   t.is(response.status, 401);
   t.is(response.body.error, 'unauthorized');

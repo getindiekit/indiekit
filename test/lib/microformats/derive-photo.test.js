@@ -11,7 +11,6 @@ const provided = require('./fixtures/photo-provided');
 const providedValue = require('./fixtures/photo-provided-value');
 const multipleProvided = require('./fixtures/photo-multiple-provided');
 const multipleProvidedValue = require('./fixtures/photo-multiple-provided-value');
-const missing = require('./fixtures/photo-missing');
 
 // Tests
 test('Derives photo from `photo` property', async t => {
@@ -92,9 +91,4 @@ test('Derives photos from referenced and attached files', async t => {
   const photos = await devivePhoto(provided, files, typeConfig);
   const mf2 = [{value: 'sunset.jpg'}, {value: 'photo1.gif'}];
   t.deepEqual(photos, mf2);
-});
-
-test('Returns empty array if no `photo` property found', async t => {
-  const photo = await devivePhoto(missing);
-  t.deepEqual(photo, []);
 });
