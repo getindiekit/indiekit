@@ -22,6 +22,10 @@ exports.get = async (request, response) => {
   const pub = await publication.resolveConfig(config['pub-config']);
   const result = await micropub.query(request, pub);
 
+  if (request.accepts('html')) {
+    return response.render('index');
+  }
+
   return response.status(result.code).json(result.body);
 };
 

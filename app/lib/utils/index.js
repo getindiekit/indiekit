@@ -212,7 +212,7 @@ const success = (id, location) => {
     location,
     body: {
       success: id,
-      success_description: desc
+      success_description: desc // eslint-disable-line camelcase
     }
   };
 };
