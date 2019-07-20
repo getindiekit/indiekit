@@ -1,3 +1,4 @@
+/* eslint no-await-in-loop: warn */
 const path = require('path');
 
 const config = require(process.env.PWD + '/app/config');
@@ -23,7 +24,7 @@ module.exports = async (pub, files) => {
    * pattern trips up Micropub.rocks! validator)
    * @see https://stackoverflow.com/a/37576787/11107625
    */
-  for (const file of files) { /* eslint-disable no-await-in-loop */
+  for (const file of files) {
     // Determine post type from media type
     const type = utils.deriveMediaType(file.mimetype);
     const typeConfig = pub['post-types'][type];
@@ -57,5 +58,5 @@ module.exports = async (pub, files) => {
     } catch (error) {
       return utils.error('server_error', `Unable to create ${location}. ${error.message}`);
     }
-  } /* eslint-enable no-await-in-loop */
+  }
 };

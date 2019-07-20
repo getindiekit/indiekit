@@ -1,5 +1,7 @@
 const fs = require('fs-extra');
 
+const logger = require(process.env.PWD + '/app/logger');
+
 /**
  * Deletes the cache directory
  *
@@ -10,6 +12,6 @@ const fs = require('fs-extra');
 module.exports = dir => {
   if (fs.existsSync(dir)) {
     fs.removeSync(dir);
-    console.info(`Deleted ${dir}`);
+    logger.info(`Deleted ${dir}`);
   }
 };

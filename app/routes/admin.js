@@ -1,5 +1,6 @@
 const cache = require(process.env.PWD + '/app/lib/cache');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
+const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -13,6 +14,8 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @return {Object} HTTP response
  */
 exports.post = async (request, response) => {
+  logger.info('%s %s', request.method, request.originalUrl);
+
   const getResult = async request => {
     const {query} = request;
 
@@ -48,6 +51,6 @@ exports.post = async (request, response) => {
     const result = await getResult(request);
     return response.status(result.code).json(result.body);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };

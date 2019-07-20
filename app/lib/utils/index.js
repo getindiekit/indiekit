@@ -1,4 +1,3 @@
-/* eslint camelcase: 0 */
 const {DateTime} = require('luxon');
 const mimetypes = require('mime-types');
 
@@ -130,7 +129,7 @@ const error = (id, desc) => {
     code,
     body: {
       error: id,
-      error_description: desc
+      error_description: desc // eslint-disable-line camelcase
     }
   };
 };
