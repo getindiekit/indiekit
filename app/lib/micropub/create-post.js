@@ -4,6 +4,7 @@ const camelcaseKeys = require('camelcase-keys');
 const getType = require('post-type-discovery');
 
 const config = require(process.env.PWD + '/app/config');
+const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
@@ -56,6 +57,7 @@ module.exports = async (pub, mf2, files) => {
   properties.content = microformats.deriveContent(mf2);
   properties.slug = microformats.deriveSlug(mf2, slugSeparator);
   properties.photo = await microformats.derivePhoto(mf2, files, typeConfig);
+  logger.info('Derived mf2 properties', {properties});
 
   // Render template
   const templatePath = typeConfig.path.template;

@@ -53,6 +53,7 @@ exports.post = async (request, response) => {
     let mf2 = body;
     if (!request.is('json')) {
       mf2 = microformats.formEncodedToMf2(body);
+      logger.info('Normalised form-encoded mf2', {mf2});
     }
 
     // Verify access token
