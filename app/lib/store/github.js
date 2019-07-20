@@ -54,7 +54,7 @@ const createFile = async (path, content, options) => {
   path = utils.normalizePath(path);
 
   try {
-    return await octokit.repos.createOrUpdateFile({
+    const response = await octokit.repos.createOrUpdateFile({
       owner: config.github.user,
       repo: config.github.repo,
       branch: config.github.branch,
@@ -62,8 +62,12 @@ const createFile = async (path, content, options) => {
       content: Buffer.from(content).toString('base64'),
       message: options.message
     });
+
+    logger.info('store.github.createFile', {response});
+    return true;
   } catch (error) {
-    logger.error(error);
+    logger.error('store.github.createFile', {error});
+    throw new Error(error);
   }
 };
 

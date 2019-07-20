@@ -16,7 +16,7 @@
     "start": "node app/server.js",
     "dev": "nodemon app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md",
-    "test": "ava --verbose",
+    "test": "NODE_ENV=test ava --verbose",
     "coverage": "NODE_ENV=test nyc ava"
   },
   "engines": {

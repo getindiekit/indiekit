@@ -99,6 +99,7 @@ module.exports = async (pub, mf2, files) => {
       return utils.success('create_pending', location);
     }
   } catch (error) {
+    logger.error('micropub.createPost', {error});
     return utils.error('server_error', `Unable to create ${location}. ${error.message}`);
   }
 };
