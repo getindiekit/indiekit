@@ -50,5 +50,7 @@ module.exports = async (mf2, files, typeConfig) => {
     }
   }
 
-  return combinedPhotos;
+  if (combinedPhotos.length >= 1) {
+    return combinedPhotos;
+  }
 };
