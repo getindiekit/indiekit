@@ -1,5 +1,6 @@
 const config = require(process.env.PWD + '/app/config');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
+const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const publication = require(process.env.PWD + '/app/lib/publication');
@@ -16,6 +17,8 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @return {Object} HTTP response
  */
 exports.get = async (request, response) => {
+  logger.info(request.url);
+
   const pub = await publication.resolveConfig(config['pub-config']);
   const result = await micropub.query(request, pub);
 
@@ -33,10 +36,14 @@ exports.get = async (request, response) => {
  * @return {Object} HTTP response
  */
 exports.post = async (request, response) => {
+  logger.info('%s %s', request.method, request.originalUrl);
+
   const pub = await publication.resolveConfig(config['pub-config']);
   const getResult = async request => {
     const {body} = request;
     const {files} = request;
+    logger.info('Request body', {body});
+    logger.info('Request file(s)', {files});
 
     // Normalise form-encoded requests as mf2 JSON
     let mf2 = body;
@@ -99,6 +106,6 @@ exports.post = async (request, response) => {
       location: result.location || null
     }).json(result.body);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };

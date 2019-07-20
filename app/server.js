@@ -5,6 +5,7 @@ const favicon = require('serve-favicon');
 const multer = require('multer');
 const nunjucks = require('nunjucks');
 
+const logger = require(process.env.PWD + '/app/logger');
 const config = require(process.env.PWD + '/app/config');
 const routes = require(process.env.PWD + '/app/routes');
 
@@ -36,7 +37,7 @@ app.use(bodyParser.urlencoded({
 // Parse multipart/form-data
 app.use(upload.any());
 
-// Static files
+// Static files and paths
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 
@@ -55,7 +56,7 @@ app.use((request, response) => {
 app.enable('trust proxy');
 
 app.listen(port, function () {
-  console.info(`Starting ${config.name} on port ${this.address().port}`);
+  logger.info(`Starting ${config.name} on port ${this.address().port}`);
 });
 
 module.exports = app;

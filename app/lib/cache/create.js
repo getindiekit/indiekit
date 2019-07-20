@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs-extra');
 
+const logger = require(process.env.PWD + '/app/logger');
+
 /**
  * Creates a new file in the cache, populating it with specified data
  *
@@ -18,7 +20,7 @@ module.exports = (filePath, fileData) => {
       recursive: true
     });
 
-    console.info(`Created ${pathToFile}`);
+    logger.info(`Created ${pathToFile}`);
   }
 
   // Write data to disk
@@ -27,6 +29,6 @@ module.exports = (filePath, fileData) => {
       throw error;
     }
 
-    console.info(`Cached ${filePath}`);
+    logger.info(`Cached ${filePath}`);
   });
 };

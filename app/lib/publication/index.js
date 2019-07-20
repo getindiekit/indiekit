@@ -4,6 +4,7 @@ const _ = require('lodash');
 
 const cache = require(process.env.PWD + '/app/lib/cache');
 const config = require(process.env.PWD + '/app/config');
+const logger = require(process.env.PWD + '/app/logger');
 const appConfig = require('./defaults');
 
 /**
@@ -17,7 +18,7 @@ const appConfig = require('./defaults');
 const resolveConfig = async configPath => {
   // If no configuration provided, use application defaults
   if (!configPath) {
-    console.info('No configuration provided. Using app defaults.');
+    logger.info('No configuration provided. Using app defaults.');
     return appConfig;
   }
 
@@ -62,7 +63,7 @@ const resolveConfig = async configPath => {
 
     return newConfig;
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 

@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "@octokit/rest": "^16.28.4",
+    "@timberio/node": "^0.34.1",
+    "@timberio/winston": "^0.34.1",
     "body-parser": "^1.19.0",
     "camelcase-keys": "^6.0.0",
     "data-store": "^3.1.0",
@@ -40,7 +42,8 @@
     "nunjucks": "^3.2.0",
     "post-type-discovery": "github:paulrobertlloyd/post-type-discovery",
     "serve-favicon": "^2.5.0",
-    "slug": "^1.1.0"
+    "slug": "^1.1.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "ava": "^2.2.0",

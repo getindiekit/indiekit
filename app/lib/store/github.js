@@ -4,6 +4,7 @@
  * @module store/github
  */
 const config = require(process.env.PWD + '/app/config');
+const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 const Octokit = require('@octokit/rest');
@@ -34,7 +35,7 @@ const getContents = async path => {
     response.data.content = Buffer.from(response.data.content, 'base64').toString('utf8');
     return response;
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -62,7 +63,7 @@ const createFile = async (path, content, options) => {
       message: options.message
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -94,7 +95,7 @@ const updateFile = async (path, content, options) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -122,7 +123,7 @@ const deleteFile = async (path, options) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 

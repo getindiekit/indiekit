@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 
 const config = require(process.env.PWD + '/app/config');
 const createCache = require(process.env.PWD + '/app/lib/cache/create');
+const logger = require(process.env.PWD + '/app/logger');
 const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -59,7 +60,7 @@ module.exports = async (storePath, cachePath) => {
 
       throw new Error(`Unable to load ${storePath} from store`);
     } catch (error) {
-      console.error(error);
+      logger.error(error);
       return false;
     }
   }

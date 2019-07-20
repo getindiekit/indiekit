@@ -1,4 +1,3 @@
-/* eslint camelcase: 0 */
 const test = require('ava');
 
 // Function
@@ -36,7 +35,7 @@ test('Excludes reserved properties, retains extended properties', t => {
   const body = {
     h: 'entry',
     content: 'Foo+bar+baz',
-    access_token: 'abc123',
+    access_token: 'abc123', // eslint-disable-line camelcase
     action: 'delete',
     url: 'https://example.com',
     'mp-slug': 'foo-bar',
