@@ -1,0 +1,8 @@
+{% extends "default.njk" %}
+
+{% set title = status %}
+
+{% block content %}
+<h2>{{ status }} - {{ message }}</h2>
+<p>{{ error }}</p>
+{% endblock %}
