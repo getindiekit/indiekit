@@ -4,6 +4,23 @@ const {TimberTransport} = require('@timberio/winston');
 
 const config = require(process.env.PWD + '/app/config');
 
+let level;
+let silent;
+switch (process.env.NODE_ENV) {
+  case 'production':
+    level = 'warning';
+    silent = false;
+    break;
+  case 'test':
+    level = 'error';
+    silent = true;
+    break;
+  default:
+    level = 'debug';
+    silent = false;
+    break;
+}
+
 const logger = new createLogger({ // eslint-disable-line new-cap
   level: 'info',
   format: format.combine(
@@ -21,9 +38,14 @@ const logger = new createLogger({ // eslint-disable-line new-cap
   },
   transports: [
     new transports.Console({
+      level,
+      silent,
+      handleExceptions: true,
       format: format.combine(
         format.colorize(),
-        format.simple()
+        format.printf(
+          info => `${info.level}: ${info.message}`,
+        ),
       )
     })
   ]

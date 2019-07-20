@@ -45,8 +45,8 @@ config.github = {
 
 // Timber
 config.timber = {
-  token: process.env.TIMBER_TOKEN || console.info('Missing TIMBER_TOKEN'),
-  source: process.env.TIMBER_SOURCE || console.info('Missing TIMBER_SOURCE')
+  token: process.env.TIMBER_TOKEN,
+  source: process.env.TIMBER_SOURCE
 };
 
 if (process.env.NODE_ENV === 'test') {
