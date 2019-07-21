@@ -2,6 +2,7 @@
 const path = require('path');
 
 const config = require(process.env.PWD + '/app/config');
+const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
@@ -30,18 +31,20 @@ module.exports = async (pub, files) => {
     const typeConfig = pub['post-types'][type];
 
     // Provide additional properties for file path templates
-    const properties = utils.deriveFileProperties(file);
+    const fileProperties = utils.deriveFileProperties(file);
 
     // Render destination path
-    const filePath = render(typeConfig.path.file, properties);
+    const filePath = render(typeConfig.file.path, fileProperties);
+    const fileUrl = render(typeConfig.file.url || typeConfig.file.path, fileProperties);
     const fileName = path.basename(filePath);
 
     // Prepare location and activity record
-    const url = new URL(filePath, config.url);
+    const url = new URL(fileUrl, config.url);
     const location = url.href;
     const recordData = {
-      path: {
-        file: filePath
+      file: {
+        path: filePath,
+        url: fileUrl
       }
     };
 
@@ -53,9 +56,11 @@ module.exports = async (pub, files) => {
 
       if (response) {
         record.create(location, recordData);
+        logger.info('micropub.createMedia %s', location, {recordData});
         return utils.success('create', location);
       }
     } catch (error) {
+      logger.error('micropub.createMedia', {error});
       return utils.error('server_error', `Unable to create ${location}. ${error.message}`);
     }
   }
