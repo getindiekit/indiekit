@@ -1,5 +1,6 @@
 const express = require('express');
 
+const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const adminRoutes = require(process.env.PWD + '/app/routes/admin');
 const mediaRoutes = require(process.env.PWD + '/app/routes/media');
@@ -17,15 +18,15 @@ router.get('/', (request, response) => {
 });
 
 // Admin
-router.post('/admin', adminRoutes.post);
+router.post('/admin', indieauth, adminRoutes.post);
 
 // Micropub
-router.post('/media', mediaRoutes.post);
+router.post('/media', indieauth, mediaRoutes.post);
+router.post('/micropub', indieauth, micropubRoutes.post);
 router.get('/micropub', micropub.query);
-router.post('/micropub', micropubRoutes.post);
 
 // Support Sunlit, which has a hardcoded media endpoint URL
 // https://github.com/microdotblog/issues/issues/147
-router.post('/media/micropub/media', mediaRoutes.post);
+router.post('/media/micropub/media', indieauth, mediaRoutes.post);
 
 module.exports = router;

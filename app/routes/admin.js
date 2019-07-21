@@ -1,5 +1,5 @@
 const cache = require(process.env.PWD + '/app/lib/cache');
-const indieauth = require(process.env.PWD + '/app/lib/indieauth');
+const config = require(process.env.PWD + '/app/config');
 const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -25,18 +25,8 @@ exports.post = async (request, response) => {
       return utils.error('not_found');
     }
 
-    // Verify access token
-    const accessToken = request.headers.authorization;
-    const authResponse = await indieauth.verifyToken(accessToken);
-    const authError = authResponse.body && authResponse.body.error;
-
-    // Return any errors from IndieAuth token endpoint
-    if (authError) {
-      return authResponse;
-    }
-
     // Ensure token provides enough scope
-    const {scope} = authResponse;
+    const {scope} = config.indieauth.token;
     const hasScope = scope && scope.length > 0;
 
     if (hasScope && (scope.includes('delete') && query.purge === 'cache')) {

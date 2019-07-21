@@ -7,8 +7,8 @@ const publication = require(process.env.PWD + '/app/lib/publication');
  *
  * @memberof micropub
  * @module query
- * @param {Object} request HTTP request object
- * @param {Object} response HTTP response object
+ * @param {Object} request Express request object
+ * @param {Object} response Express response object
  * @returns {Promise} Query object
  */
 module.exports = async (request, response) => {
@@ -31,7 +31,9 @@ module.exports = async (request, response) => {
     }
 
     case 'category': {
-      return response.json(endpointConfig.categories);
+      return response.json({
+        categories: endpointConfig.categories
+      });
     }
 
     case 'source': {
