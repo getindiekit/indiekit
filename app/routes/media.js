@@ -1,5 +1,4 @@
 const config = require(process.env.PWD + '/app/config');
-const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const logger = require(process.env.PWD + '/app/logger');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const publication = require(process.env.PWD + '/app/lib/publication');
@@ -29,18 +28,8 @@ exports.post = async (request, response) => {
       return utils.error('invalid_request');
     }
 
-    // Verify access token
-    const accessToken = request.headers.authorization;
-    const authResponse = await indieauth.verifyToken(accessToken);
-    const authError = authResponse.body && authResponse.body.error;
-
-    // Return any errors from IndieAuth token endpoint
-    if (authError) {
-      return authResponse;
-    }
-
     // Perform action, ensuring token provides enough scope
-    const {scope} = authResponse;
+    const {scope} = config.indieauth.token;
     const hasScope = scope && scope.length > 0;
 
     if (hasScope && (scope.includes('create') || scope.includes('media'))) {

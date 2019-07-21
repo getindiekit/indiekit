@@ -1,5 +1,4 @@
 const config = require(process.env.PWD + '/app/config');
-const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
@@ -34,18 +33,8 @@ exports.post = async (request, response) => {
       logger.info('Normalised form-encoded mf2', {mf2});
     }
 
-    // Verify access token
-    const accessToken = request.headers.authorization || body.access_token;
-    const authResponse = await indieauth.verifyToken(accessToken);
-    const authError = authResponse.body && authResponse.body.error;
-
-    // Return any errors from IndieAuth token endpoint
-    if (authError) {
-      return authResponse;
-    }
-
     // Perform action, ensuring token provides enough scope
-    const {scope} = authResponse;
+    const {scope} = config.indieauth.token;
     const hasScope = scope && scope.length > 0;
     const action = request.query.action || body.action;
     const url = request.query.url || body.url;

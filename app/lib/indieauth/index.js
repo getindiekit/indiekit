@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const normalizeUrl = require('normalize-url');
 
 const config = require(process.env.PWD + '/app/config');
-const utils = require(process.env.PWD + '/app/lib/utils');
+const logger = require(process.env.PWD + '/app/logger');
 
 /**
  * Verifies that a token provides permissions to post to configured publication,
@@ -10,22 +10,30 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * authenticated users can use endpoint for posting to configured destination.
  *
  * @memberof indieauth
- * @module verifyToken
- * @param {String} accessToken Access token
- * @param {String} [options] Publication URL and IndieAuth token endpoint URL
- * @returns {Promise} Token endpoint reponse object
+ * @module indieauth
+ * @param {Object} request Express request object
+ * @param {Object} response Express response object
+ * @param {Function} next Express next function
+ * @return {Function} Call next middleware function
+ * @return {Object} Error response
  */
-module.exports.verifyToken = async (accessToken, options) => {
-  options = options || {};
-  const pubUrl = options.pubUrl || config.url;
-  const endpoint = options.endpoint || config.indieauth['token-endpoint'];
+module.exports = async (request, response, next) => {
+  const accessToken = request.headers.authorization || request.body.access_token;
+  const endpoint = config.indieauth['token-endpoint'];
+  const pubUrl = config.url;
 
   if (!accessToken) {
-    return utils.error('unauthorized');
+    return response.status(401).json({
+      error: 'unauthorized',
+      error_description: 'No access token provided in request' // eslint-disable-line camelcase
+    });
   }
 
   if (!pubUrl) {
-    return utils.error('invalid_request', 'Publication URL not configured');
+    return response.status(400).json({
+      error: 'invalid_request',
+      error_description: 'Publication URL not configured' // eslint-disable-line camelcase
+    });
   }
 
   let verifiedToken;
@@ -40,16 +48,29 @@ module.exports.verifyToken = async (accessToken, options) => {
     verifiedToken = await verifiedToken.json();
 
     if (verifiedToken.error) {
-      return utils.error('unauthorized', verifiedToken.error_description);
+      return response.status(401).json({
+        error: 'unauthorized',
+        error_description: verifiedToken.error_description // eslint-disable-line camelcase
+      });
     }
 
     const isAuthenticated = normalizeUrl(verifiedToken.me) === normalizeUrl(pubUrl);
     if (!isAuthenticated) {
-      return utils.error('forbidden');
+      return response.status(403).json({
+        error: 'forbidden',
+        error_description: 'User does not have permission to perform request' // eslint-disable-line camelcase
+      });
     }
 
-    return verifiedToken;
+    // Save verifiedToken to config
+    config.indieauth.token = verifiedToken;
+
+    next();
   } catch (error) {
-    throw new Error(`Unable to connect to ${endpoint}`);
+    logger.error('indieauth', {error});
+    return response.status(401).json({
+      error: 'invalid_request',
+      error_description: error.description || 'Error validating token' // eslint-disable-line camelcase
+    });
   }
 };
