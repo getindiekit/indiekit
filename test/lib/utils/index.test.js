@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const {DateTime} = require('luxon');
 const test = require('ava');
 
@@ -9,24 +12,10 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
   t.regex(utils.createRandomString(), /[\d\w]{5}/g);
 });
 
-test('Derives file properties', t => {
-  const gif = {
-    mimetype: 'image/gif',
-    originalname: 'image.gif'
-  };
-  const file = utils.deriveFileProperties(gif);
-  t.is(file.originalname, 'image.gif');
-  t.truthy(DateTime.fromISO(file.filedate.isValid));
-  t.regex(file.filename, /[\d\w]{5}.gif/g);
-  t.is(file.fileext, 'gif');
-});
-
-test('Derives JPEG file properties (using .jpg extension)', t => {
-  const jpeg = {
-    mimetype: 'image/jpeg',
-    originalname: 'image.jpg'
-  };
-  const file = utils.deriveFileProperties(jpeg);
+test('Derives file properties', async t => {
+  let file = await fs.readFileSync(path.resolve(__dirname, 'fixtures/image.jpg'));
+  file = Buffer.from(file);
+  file = utils.deriveFileProperties(file);
   t.is(file.originalname, 'image.jpg');
   t.truthy(DateTime.fromISO(file.filedate.isValid));
   t.regex(file.filename, /[\d\w]{5}.jpg/g);

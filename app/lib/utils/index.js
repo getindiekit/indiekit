@@ -1,5 +1,5 @@
 const {DateTime} = require('luxon');
-const mimetypes = require('mime-types');
+const fileType = require('file-type');
 
 /**
  * Common utility functions.
@@ -35,7 +35,7 @@ const createRandomString = () => {
  */
 const deriveFileProperties = file => {
   const basename = createRandomString();
-  const extension = mimetypes.extension(file.mimetype).replace(/jpeg/i, 'jpg');
+  const extension = fileType(file.buffer).ext;
   return {
     originalname: file.originalname,
     filedate: DateTime.local().toISO(),
