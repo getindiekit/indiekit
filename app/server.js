@@ -2,7 +2,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
-const multer = require('multer');
 const nunjucks = require('nunjucks');
 
 const logger = require(process.env.PWD + '/app/logger');
@@ -12,8 +11,6 @@ const publication = require(process.env.PWD + '/app/lib/publication');
 
 const app = express();
 const {port} = config;
-const storage = multer.memoryStorage();
-const upload = multer({storage});
 
 // Parse Nunjucks templates
 nunjucks.configure(['./app/views', './app/static'], {
@@ -38,9 +35,6 @@ app.use(bodyParser.urlencoded({
   extended: true,
   limit: '10mb'
 }));
-
-// Parse multipart/form-data
-app.use(upload.any());
 
 // Static files and paths
 app.use(express.static(path.join(__dirname, 'static')));

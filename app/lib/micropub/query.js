@@ -9,7 +9,7 @@ const publication = require(process.env.PWD + '/app/lib/publication');
  * @module query
  * @param {Object} request Express request object
  * @param {Object} response Express response object
- * @returns {Promise} Query object
+ * @returns {Promise} Express response object
  */
 module.exports = async (request, response) => {
   const pub = await publication.resolveConfig(config['pub-config']);
@@ -44,7 +44,7 @@ module.exports = async (request, response) => {
       } catch (error) {
         return response.status(400).json({
           error: 'invalid_request',
-          error_description: error.message // eslint-disable-line camelcase
+          error_description: error.message
         });
       }
     }
@@ -59,7 +59,7 @@ module.exports = async (request, response) => {
 
       return response.status(400).json({
         error: 'invalid_request',
-        error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided' // eslint-disable-line camelcase
+        error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
       });
     }
   }

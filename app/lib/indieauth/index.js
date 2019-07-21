@@ -25,14 +25,14 @@ module.exports = async (request, response, next) => {
   if (!accessToken) {
     return response.status(401).json({
       error: 'unauthorized',
-      error_description: 'No access token provided in request' // eslint-disable-line camelcase
+      error_description: 'No access token provided in request'
     });
   }
 
   if (!pubUrl) {
     return response.status(400).json({
       error: 'invalid_request',
-      error_description: 'Publication URL not configured' // eslint-disable-line camelcase
+      error_description: 'Publication URL not configured'
     });
   }
 
@@ -50,7 +50,7 @@ module.exports = async (request, response, next) => {
     if (verifiedToken.error) {
       return response.status(401).json({
         error: 'unauthorized',
-        error_description: verifiedToken.error_description // eslint-disable-line camelcase
+        error_description: verifiedToken.error_description
       });
     }
 
@@ -58,7 +58,7 @@ module.exports = async (request, response, next) => {
     if (!isAuthenticated) {
       return response.status(403).json({
         error: 'forbidden',
-        error_description: 'User does not have permission to perform request' // eslint-disable-line camelcase
+        error_description: 'User does not have permission to perform request'
       });
     }
 
@@ -70,7 +70,7 @@ module.exports = async (request, response, next) => {
     logger.error('indieauth', {error});
     return response.status(401).json({
       error: 'invalid_request',
-      error_description: error.description || 'Error validating token' // eslint-disable-line camelcase
+      error_description: error.description || 'Error validating token'
     });
   }
 };

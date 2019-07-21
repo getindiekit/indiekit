@@ -131,7 +131,7 @@ const error = (id, desc) => {
     code,
     body: {
       error: id,
-      error_description: desc // eslint-disable-line camelcase
+      error_description: desc
     }
   };
 };
@@ -214,7 +214,7 @@ const success = (id, location) => {
     location,
     body: {
       success: id,
-      success_description: desc // eslint-disable-line camelcase
+      success_description: desc
     }
   };
 };
