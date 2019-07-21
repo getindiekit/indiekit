@@ -15,20 +15,28 @@ module.exports = async (request, response) => {
   const pub = await publication.resolveConfig(config['pub-config']);
   const endpointBaseUrl = `${request.protocol}://${request.headers.host}`;
   const endpointConfig = {
+    categories: [
+      'indiekit',
+      'indieweb'
+    ], // @todo Allow configuration of this list (from remote JSON?)
     'media-endpoint': pub['media-endpoint'] || `${endpointBaseUrl}/media`,
-    'syndicate-to': pub['syndicate-to'],
-    'post-types': publication.getPostTypes(pub)
+    'post-types': publication.getPostTypes(pub),
+    'syndicate-to': pub['syndicate-to']
   };
 
   const {query} = request;
   switch (query.q) {
     case 'config': {
-      return response.status(200).json(endpointConfig);
+      return response.json(endpointConfig);
+    }
+
+    case 'category': {
+      return response.json(endpointConfig.categories);
     }
 
     case 'source': {
       try {
-        return response.status(200).json(
+        return response.json(
           await microformats.urlToMf2(query.url, query.properties)
         );
       } catch (error) {
@@ -42,7 +50,7 @@ module.exports = async (request, response) => {
     default: {
       // Check if the query is a property in the config object
       if (typeof query.q === 'string' && endpointConfig[query.q]) {
-        return response.status(200).json({
+        return response.json({
           [query.q]: endpointConfig[query.q]
         });
       }
