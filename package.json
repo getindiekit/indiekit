@@ -68,7 +68,13 @@
   "xo": {
     "space": true,
     "rules": {
-      "camelcase": "warn",
+      "camelcase": ["warn", {
+        "allow": [
+          "access_token",
+          "error_description",
+          "success_description"
+        ]
+      }],
       "capitalized-comments": "warn"
     }
   }
