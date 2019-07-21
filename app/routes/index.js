@@ -1,8 +1,9 @@
 const express = require('express');
 
-const admin = require(process.env.PWD + '/app/routes/admin');
-const media = require(process.env.PWD + '/app/routes/media');
-const micropub = require(process.env.PWD + '/app/routes/micropub');
+const micropub = require(process.env.PWD + '/app/lib/micropub');
+const adminRoutes = require(process.env.PWD + '/app/routes/admin');
+const mediaRoutes = require(process.env.PWD + '/app/routes/media');
+const micropubRoutes = require(process.env.PWD + '/app/routes/micropub');
 
 const router = new express.Router();
 
@@ -16,15 +17,15 @@ router.get('/', (request, response) => {
 });
 
 // Admin
-router.post('/admin', admin.post);
+router.post('/admin', adminRoutes.post);
 
 // Micropub
-router.post('/media', media.post);
-router.get('/micropub', micropub.get);
-router.post('/micropub', micropub.post);
+router.post('/media', mediaRoutes.post);
+router.get('/micropub', micropub.query);
+router.post('/micropub', micropubRoutes.post);
 
 // Support Sunlit, which has a hardcoded media endpoint URL
 // https://github.com/microdotblog/issues/issues/147
-router.post('/media/micropub/media', media.post);
+router.post('/media/micropub/media', mediaRoutes.post);
 
 module.exports = router;

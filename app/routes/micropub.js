@@ -8,28 +8,6 @@ const record = require(process.env.PWD + '/app/lib/record');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Responds to Micropub GET requests
- *
- * @memberof routes
- * @module micropub.get
- * @param {Object} request Request
- * @param {Object} response Response
- * @return {Object} HTTP response
- */
-exports.get = async (request, response) => {
-  logger.info('%s %s', request.method, request.originalUrl);
-
-  const pub = await publication.resolveConfig(config['pub-config']);
-  const result = await micropub.query(request, pub);
-
-  if (request.accepts('html')) {
-    return response.render('index');
-  }
-
-  return response.status(result.code).json(result.body);
-};
-
-/**
  * Responds to Micropub POST requests
  *
  * @memberof routes

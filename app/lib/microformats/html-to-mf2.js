@@ -57,6 +57,6 @@ module.exports = async (html, properties) => {
       return mf2;
     }
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error.message);
   }
 };

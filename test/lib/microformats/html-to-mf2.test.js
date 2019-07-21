@@ -16,19 +16,19 @@ const itemContentEmbedded = fs.readFileSync(path.resolve(__dirname, 'fixtures/ht
 test('Throws error if HTML has no items', async t => {
   const html = Buffer.from(itemsMissing).toString('utf-8');
   const error = await t.throwsAsync(htmlToMf2(html));
-  t.is(error.message, 'Error: Page has no items');
+  t.is(error.message, 'Page has no items');
 });
 
 test('Throws error if HTML has more than one item', async t => {
   const html = Buffer.from(itemsProvided).toString('utf-8');
   const error = await t.throwsAsync(htmlToMf2(html));
-  t.is(error.message, 'Error: Page has more than one item');
+  t.is(error.message, 'Page has more than one item');
 });
 
 test('Throws error if item has no properties', async t => {
   const html = Buffer.from(itemMissing).toString('utf-8');
   const error = await t.throwsAsync(htmlToMf2(html));
-  t.is(error.message, 'Error: Item has no properties');
+  t.is(error.message, 'Item has no properties');
 });
 
 test('Returns empty object if requested property not found', async t => {

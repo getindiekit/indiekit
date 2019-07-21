@@ -1,63 +1,56 @@
+const config = require(process.env.PWD + '/app/config');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
-const utils = require(process.env.PWD + '/app/lib/utils');
+const publication = require(process.env.PWD + '/app/lib/publication');
 
 /**
  * Returns an object containing information about this application
  *
  * @memberof micropub
  * @module query
- * @param {String} request HTTP request object
- * @param {String} pub Publication configuration
+ * @param {Object} request HTTP request object
+ * @param {Object} response HTTP response object
  * @returns {Promise} Query object
  */
-module.exports = async (request, pub) => {
-  const url = `${request.protocol}://${request.headers.host}`;
-  const mediaEndpoint = pub['media-endpoint'] || `${url}/media`;
-  const syndicateTo = pub['syndicate-to'];
-  const pubPostTypes = pub['post-types'];
-  const postTypes = [];
-
-  if (pubPostTypes) {
-    for (const [key, value] of Object.entries(pubPostTypes)) {
-      const postType = {
-        type: key,
-        name: value.name
-      };
-      postTypes.push(postType);
-    }
-  }
+module.exports = async (request, response) => {
+  const pub = await publication.resolveConfig(config['pub-config']);
+  const endpointBaseUrl = `${request.protocol}://${request.headers.host}`;
+  const endpointConfig = {
+    'media-endpoint': pub['media-endpoint'] || `${endpointBaseUrl}/media`,
+    'syndicate-to': pub['syndicate-to'],
+    'post-types': publication.getPostTypes(pub)
+  };
 
   const {query} = request;
-  if (query.q === 'config') {
-    return {
-      code: 200,
-      body: {
-        'media-endpoint': mediaEndpoint,
-        'syndicate-to': syndicateTo,
-        'post-types': postTypes
-      }
-    };
-  }
+  switch (query.q) {
+    case 'config': {
+      return response.status(200).json(endpointConfig);
+    }
 
-  if (query.q === 'source') {
-    try {
-      return {
-        code: 200,
-        body: await microformats.urlToMf2(query.url, query.properties)
-      };
-    } catch (error) {
-      return utils.error('invalid_request', error.message);
+    case 'source': {
+      try {
+        return response.status(200).json(
+          await microformats.urlToMf2(query.url, query.properties)
+        );
+      } catch (error) {
+        return response.status(400).json({
+          error: 'invalid_request',
+          error_description: error.message // eslint-disable-line camelcase
+        });
+      }
+    }
+
+    default: {
+      // Check if the query is a property in the config object
+      if (typeof query.q === 'string' && endpointConfig[query.q]) {
+        return response.status(200).json({
+          [query.q]: endpointConfig[query.q]
+        });
+      }
+
+      return response.status(400).json({
+        error: 'invalid_request',
+        error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided' // eslint-disable-line camelcase
+      });
     }
   }
-
-  if (query.q === 'syndicate-to') {
-    return {
-      code: 200,
-      body: {
-        'syndicate-to': syndicateTo
-      }
-    };
-  }
-
-  return utils.error('invalid_request');
 };
