@@ -41,22 +41,23 @@ module.exports = async (pub, mf2, files) => {
   logger.info('Derived mf2 properties', {properties});
 
   // Render template
-  const templatePath = typeConfig.path.template;
+  const templatePath = typeConfig.template;
   const templateData = fs.readFileSync(templatePath);
   const template = Buffer.from(templateData).toString('utf-8');
   const context = camelcaseKeys(properties);
   const content = render(template, context);
 
   // Render publish and destination paths
-  const postPath = render(typeConfig.path.post, properties);
-  const urlPath = render(typeConfig.path.url, properties);
+  const postPath = render(typeConfig.post.path, properties);
+  const postUrl = render(typeConfig.post.url, properties);
 
   // Prepare location and activity record
-  const url = new URL(urlPath, config.url);
+  const url = new URL(postUrl, config.url);
   const location = url.href;
   const recordData = {
-    path: {
-      post: postPath
+    post: {
+      path: postPath,
+      url: postUrl
     },
     mf2: {
       type: ['h-entry'],
@@ -77,6 +78,7 @@ module.exports = async (pub, mf2, files) => {
 
     if (response) {
       record.create(location, recordData);
+      logger.info('micropub.createPost %s', location, {recordData});
       return utils.success('create_pending', location);
     }
   } catch (error) {

@@ -47,10 +47,10 @@ const resolveConfig = async configPath => {
           const postType = pubPostTypes[key];
           const cacheTemplate = path.join('templates', `${key}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
-          await cache.read(postType.path.template, cacheTemplate);
+          await cache.read(postType.template, cacheTemplate);
 
           // Update `template` value with location of cached template
-          postType.path.template = cacheTemplatePath;
+          postType.template = cacheTemplatePath;
         }
       }
 
