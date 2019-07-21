@@ -24,7 +24,7 @@ module.exports = async (pub, mf2, files) => {
   // Determine post type
   let type;
   if (files && files.length > 0) {
-    type = utils.deriveMediaType(files[0].mimetype);
+    type = utils.deriveMediaType(files[0]);
   } else {
     type = microformats.derivePostType(mf2);
   }

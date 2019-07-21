@@ -278,12 +278,20 @@ test('206: Create h-entry with multiple photos referenced by URL (JSON)', async 
 });
 
 /**
- * Deletes
+ * Creating Posts (Multipart)
  */
-test.todo('500: Delete a post (form-encoded)');
-test.todo('501: Delete a post (JSON)');
-test.todo('502: Undelete a post (form-encoded)');
-test.todo('503: Undelete a post (JSON)');
+test.todo('300: Create an h-entry with a photo (multipart)');
+test.todo('301: Create an h-entry with two photos (multipart)');
+
+/**
+ * Updates
+ */
+test.todo('400: Replace a property');
+test.todo('401: Add a value to an existing property');
+test.todo('402: Add a value to a non-existent property');
+test.todo('403: Remove a value from a property');
+test.todo('404: Remove a property');
+test.todo('405: Reject the request if operation is not an array');
 
 /**
  * Query

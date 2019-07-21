@@ -23,10 +23,10 @@ module.exports = {
       template: `${templateDir}/template-photo.njk`,
       post: {
         path: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-        file: 'images/photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}'
+        url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
       file: {
-        path: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+        path: 'images/photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}'
       }
     }
   },

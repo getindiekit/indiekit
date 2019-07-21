@@ -13,10 +13,12 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
 });
 
 test('Derives file properties', async t => {
-  let file = await fs.readFileSync(path.resolve(__dirname, 'fixtures/image.jpg'));
-  file = Buffer.from(file);
+  let file = {
+    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/photo.jpg')),
+    originalname: 'photo.jpg'
+  };
   file = utils.deriveFileProperties(file);
-  t.is(file.originalname, 'image.jpg');
+  t.is(file.originalname, 'photo.jpg');
   t.truthy(DateTime.fromISO(file.filedate.isValid));
   t.regex(file.filename, /[\d\w]{5}.jpg/g);
   t.is(file.fileext, 'jpg');
@@ -28,10 +30,20 @@ test('Decodes form-encoded string', t => {
   t.is(utils.decodeFormEncodedString('http%3A%2F%2Ffoo.bar'), 'http://foo.bar');
 });
 
-test('Derives file type and returns equivalent IndieWeb post type', t => {
-  t.is(utils.deriveMediaType('audio/mp3'), 'audio');
-  t.is(utils.deriveMediaType('video/mp4'), 'video');
-  t.is(utils.deriveMediaType('image/jpeg'), 'photo');
+test('Derives file type and returns equivalent IndieWeb post type', async t => {
+  const audio = {
+    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/audio.mp3'))
+  };
+  const video = {
+    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/video.mp4'))
+  };
+  const photo = {
+    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/photo.jpg'))
+  };
+
+  t.is(utils.deriveMediaType(audio), 'audio');
+  t.is(utils.deriveMediaType(video), 'video');
+  t.is(utils.deriveMediaType(photo), 'photo');
 });
 
 test('Returns 404 code if error name `not_found`', t => {

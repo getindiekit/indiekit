@@ -43,8 +43,8 @@ test('Derives photo from attached file', async t => {
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
-    path: {
-      file: '{{ originalname }}'
+    file: {
+      path: '{{ originalname }}'
     }
   };
   nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
@@ -65,8 +65,8 @@ test('Derives photos from attached files', async t => {
     originalname: 'photo2.gif'
   }];
   const typeConfig = {
-    path: {
-      file: '{{ originalname }}'
+    file: {
+      path: '{{ originalname }}'
     }
   };
   nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
@@ -83,8 +83,8 @@ test('Derives photos from referenced and attached files', async t => {
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
-    path: {
-      file: '{{ originalname }}'
+    file: {
+      path: '{{ originalname }}'
     }
   };
   nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
