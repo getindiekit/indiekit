@@ -23,7 +23,7 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@octokit/rest": "^16.28.4",
+    "@octokit/rest": "^16.28.5",
     "@timberio/node": "^0.34.1",
     "@timberio/winston": "^0.34.1",
     "body-parser": "^1.19.0",
@@ -32,7 +32,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "fs-extra": "^8.1.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "luxon": "^1.17.1",
     "microformat-node": "^2.0.1",
     "mime-types": "^2.1.24",
@@ -47,8 +47,8 @@
   },
   "devDependencies": {
     "ava": "^2.2.0",
-    "documentation": "^12.0.0",
-    "husky": "^3.0.0",
+    "documentation": "^12.0.2",
+    "husky": "^3.0.1",
     "nock": "^10.0.6",
     "nodemon": "^1.19.1",
     "nyc": "^14.0.0",
