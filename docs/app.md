@@ -456,12 +456,12 @@ Derives media type and returns equivalent IndieWeb post type
 
 #### Parameters
 
--   `mimetype` **[Object][88]** MIME type
+-   `file` **[Object][88]** Original file object
 
 #### Examples
 
 ```javascript
-deriveMediaType('image/jpeg') => 'photo'
+deriveMediaType('brighton-pier.jpg') => 'photo'
 ```
 
 Returns **[String][89]** Returns either 'photo', 'video' or audio

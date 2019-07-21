@@ -27,7 +27,7 @@ module.exports = async (pub, files) => {
    */
   for (const file of files) {
     // Determine post type from media type
-    const type = utils.deriveMediaType(file.mimetype);
+    const type = utils.deriveMediaType(file);
     const typeConfig = pub['post-types'][type];
 
     // Provide additional properties for file path templates

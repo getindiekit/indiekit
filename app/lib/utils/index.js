@@ -35,12 +35,12 @@ const createRandomString = () => {
  */
 const deriveFileProperties = file => {
   const basename = createRandomString();
-  const extension = fileType(file.buffer).ext;
+  const {ext} = fileType(file.buffer);
   return {
     originalname: file.originalname,
     filedate: DateTime.local().toISO(),
-    filename: `${basename}.${extension}`,
-    fileext: extension
+    filename: `${basename}.${ext}`,
+    fileext: ext
   };
 };
 
@@ -49,20 +49,22 @@ const deriveFileProperties = file => {
  *
  * @memberof utils
  * @exports deriveMediaType
- * @example deriveMediaType('image/jpeg') => 'photo'
- * @param {Object} mimetype MIME type
+ * @example deriveMediaType('brighton-pier.jpg') => 'photo'
+ * @param {Object} file Original file object
  * @return {String} Returns either 'photo', 'video' or audio
  */
-const deriveMediaType = mimetype => {
-  if (mimetype.includes('audio/')) {
+const deriveMediaType = file => {
+  const {mime} = fileType(file.buffer);
+
+  if (mime.includes('audio/')) {
     return 'audio';
   }
 
-  if (mimetype.includes('image/')) {
+  if (mime.includes('image/')) {
     return 'photo';
   }
 
-  if (mimetype.includes('video/')) {
+  if (mime.includes('video/')) {
     return 'video';
   }
 };
