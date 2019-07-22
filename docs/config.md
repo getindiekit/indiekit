@@ -64,7 +64,7 @@ These defaults can be ammended, and new types can be added. For example, to over
         "path": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
         "url": "photos/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
       },
-      "file": {
+      "media": {
         "path": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
       }
     }
@@ -83,22 +83,22 @@ These defaults can be ammended, and new types can be added. For example, to over
 
 * **`post.url`**: Permalink of post as it appears on your website.
 
-* **`file.path`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). The following template variables are available for media files:
+* **`media.path`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). The following template variables are available for media files:
 
   * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
   * `filename` is a five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
   * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>jpg</samp>.
   * `filedate` is the ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
 
-* **`file.url`**: Public accessible URL for media files. Has access to the same template variables as `file.path`. If no value is provided, defaults to `file.path`.
+* **`media.url`**: Public accessible URL for media files. Has access to the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 
 #### `slug-separator`
 
 The character(s) to use when generating post slugs. Defaults to `-` (dash).
 
-### Creating custom paths
+### Creating custom paths and URLs
 
-Both `file` and `url` paths use [Nunjucks](https://mozilla.github.io/nunjucks/) templating to enable customisation, for which all values provided in a Micropub request are available. To customise date values, the `date()` filter can be used. This accepts the [formatting tokens offered by Luxon](https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens).
+Both `path` and `url` values use [Nunjucks](https://mozilla.github.io/nunjucks/) templating to enable customisation, for which all properties provided in a Micropub request are available. To customise date values, the `date()` filter can be used. This accepts the [formatting tokens offered by Luxon](https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens).
 
 ### Creating templates
 

@@ -25,7 +25,7 @@ module.exports = [
     }
 
     try {
-      const location = await saveFile(file);
+      const location = await saveMedia(file);
 
       if (location) {
         logger.info('micropub.createMedia %s', location);

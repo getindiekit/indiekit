@@ -42,7 +42,7 @@ module.exports = async (mf2, files, typeConfig) => {
       const fileContext = {...properties, ...referencedPhotos, ...fileProperties};
 
       // Render destination path available to templates
-      const filePath = render(typeConfig.file.url || typeConfig.file.path, fileContext);
+      const filePath = render(typeConfig.media.url || typeConfig.media.path, fileContext);
 
       combinedPhotos.push({
         value: filePath

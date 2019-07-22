@@ -43,7 +43,7 @@ test('Derives photo from attached file', async t => {
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
-    file: {
+    media: {
       path: '{{ originalname }}'
     }
   };
@@ -65,7 +65,7 @@ test('Derives photos from attached files', async t => {
     originalname: 'photo2.gif'
   }];
   const typeConfig = {
-    file: {
+    media: {
       path: '{{ originalname }}'
     }
   };
@@ -83,7 +83,7 @@ test('Derives photos from referenced and attached files', async t => {
     originalname: 'photo1.gif'
   }];
   const typeConfig = {
-    file: {
+    media: {
       path: '{{ originalname }}'
     }
   };
