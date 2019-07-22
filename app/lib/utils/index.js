@@ -106,6 +106,25 @@ const excerptString = (str, n) => {
 };
 
 /**
+ * Checks if string is valid URL
+ *
+ * @memberof utils
+ * @exports isValidUrl
+ * @example isValidUrl('https://example.com') => true
+ * @param {Object} str String
+ * @return {Boolean} True or false
+ */
+const isValidUrl = str => {
+  try {
+    if (new URL(str)) {
+      return true;
+    }
+  } catch (_) {
+    return false;
+  }
+};
+
+/**
  * Removes ‘/’ from beginning and end of string. Useful for constructing paths
  *
  * @memberof utils
@@ -124,5 +143,6 @@ module.exports = {
   deriveFileProperties,
   deriveMediaType,
   excerptString,
+  isValidUrl,
   normalizePath
 };

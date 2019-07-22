@@ -3,8 +3,10 @@ const path = require('path');
 const nock = require('nock');
 const test = require('ava');
 
+const utils = require(process.env.PWD + '/app/lib/utils');
+
 // Function
-const saveFile = require(process.env.PWD + '/app/lib/micropub/save-file');
+const saveMedia = require(process.env.PWD + '/app/lib/micropub/save-media');
 
 // Tests
 test('Saves a file to GitHub', async t => {
@@ -15,6 +17,6 @@ test('Saves a file to GitHub', async t => {
     originalname: 'image.gif'
   };
   nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
-  const response = await saveFile(file);
-  t.is(response.code, 201);
+  const response = await saveMedia(file);
+  t.truthy(utils.isValidUrl(response));
 });

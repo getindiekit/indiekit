@@ -13,14 +13,7 @@ const cache = require(process.env.PWD + '/app/lib/cache');
  */
 
 module.exports = [
-  (request, response, next) => {
-    const {action} = request.query || request.body;
-    if (action === 'update') {
-      return auth.scope('delete')(request, response, next);
-    }
-
-    return next();
-  },
+  auth.scope('delete'),
   async (request, response) => {
     const {query} = request;
 

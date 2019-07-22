@@ -6,13 +6,13 @@ test.before(t => {
   t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 
-test('Purges cache', async t => {
+test('Returns 201 if cache successfully purged', async t => {
   const {app} = t.context;
   const response = await app.post('/admin')
     .query('purge=cache')
     .set('Authorization', `Bearer ${process.env.TEST_INDIEAUTH_TOKEN}`);
-  t.is(response.status, 200);
-  t.is(response.body.success_description, 'Success');
+  t.is(response.status, 201);
+  t.is(response.body.success_description, 'Cache deleted');
 });
 
 test('Returns 401 if access token malformed', async t => {

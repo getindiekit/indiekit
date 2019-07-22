@@ -11,18 +11,17 @@ const auth = require(process.env.PWD + '/app/lib/auth');
  * @returns {Object} Express response object
  */
 module.exports = [
-  (request, response, next) => {
+  auth.scope('update'),
+  async (request, response, next) => {
     const {action} = request.query || request.body;
+
     if (action === 'update') {
-      return auth.scope('update')(request, response, next);
+      return response.status(400).json({
+        error: 'invalid_request',
+        error_description: 'Update action not supported'
+      });
     }
 
     return next();
-  },
-  async (request, response) => {
-    return response.status(400).json({
-      error: 'invalid_request',
-      error_description: 'Update action not supported'
-    });
   }
 ];

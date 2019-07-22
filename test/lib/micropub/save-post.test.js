@@ -3,27 +3,28 @@ const path = require('path');
 const nock = require('nock');
 const test = require('ava');
 
+const utils = require(process.env.PWD + '/app/lib/utils');
+
 // Function
-const createPost = require(process.env.PWD + '/app/lib/micropub/create-post');
-const pub = require('./fixtures/create-config');
+const savePost = require(process.env.PWD + '/app/lib/micropub/save-post');
 
 // Tests
 test('Creates a note', async t => {
   const body = require('./fixtures/type-note');
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
-  const response = await createPost(pub, body);
-  t.is(response.code, 202);
+  const response = await savePost(body);
+  t.truthy(utils.isValidUrl(response));
 });
 
 test('Creates a photo', async t => {
   const body = require('./fixtures/type-note');
-  const photo1 = fs.readFileSync(path.resolve(__dirname, 'fixtures/photo1.gif'));
+  const photo = fs.readFileSync(path.resolve(__dirname, 'fixtures/image.gif'));
   const files = [{
-    buffer: Buffer.from(photo1),
+    buffer: Buffer.from(photo),
     mimetype: 'image/gif',
-    originalname: 'photo1.gif'
+    originalname: 'image.gif'
   }];
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
-  const response = await createPost(pub, body, files);
-  t.is(response.code, 202);
+  const response = await savePost(body, files);
+  t.truthy(utils.isValidUrl(response));
 });
