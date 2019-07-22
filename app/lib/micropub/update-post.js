@@ -1,4 +1,4 @@
-const hasScope = require('./has-scope');
+const auth = require(process.env.PWD + '/app/lib/auth');
 
 /**
  * Updates a post
@@ -14,7 +14,7 @@ module.exports = [
   (request, response, next) => {
     const {action} = request.query || request.body;
     if (action === 'update') {
-      return hasScope('update')(request, response, next);
+      return auth.scope('update')(request, response, next);
     }
 
     return next();

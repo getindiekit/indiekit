@@ -9,7 +9,7 @@ const logger = require(process.env.PWD + '/app/logger');
  * using {@link https://www.w3.org/TR/indieauth/ IndieAuth} to ensure only
  * authenticated users can use endpoint for posting to configured destination.
  *
- * @memberof indieauth
+ * @memberof auth
  * @module indieauth
  * @param {Object} request Express request object
  * @param {Object} response Express response object

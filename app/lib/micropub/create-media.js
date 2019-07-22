@@ -1,6 +1,6 @@
+const auth = require(process.env.PWD + '/app/lib/auth');
 const logger = require(process.env.PWD + '/app/logger');
-const hasScope = require('./has-scope');
-const saveFile = require('./save-file');
+const saveMedia = require('./save-media');
 
 /**
  * Creates a new media file
@@ -12,7 +12,7 @@ const saveFile = require('./save-file');
  * @returns {Promise} Express response object
  */
 module.exports = [
-  hasScope('create'),
+  auth.scope('create'),
   async (request, response) => {
     const {file} = request;
     logger.info('Request file', {file});

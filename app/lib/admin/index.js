@@ -1,5 +1,5 @@
+const auth = require(process.env.PWD + '/app/lib/auth');
 const cache = require(process.env.PWD + '/app/lib/cache');
-const hasScope = require(process.env.PWD + '/app/lib/micropub/has-scope');
 
 /**
  * Responds to POST requests
@@ -16,7 +16,7 @@ module.exports = [
   (request, response, next) => {
     const {action} = request.query || request.body;
     if (action === 'update') {
-      return hasScope('delete')(request, response, next);
+      return auth.scope('delete')(request, response, next);
     }
 
     return next();

@@ -1,8 +1,8 @@
+const auth = require(process.env.PWD + '/app/lib/auth');
 const config = require(process.env.PWD + '/app/config');
 const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
 const store = require(process.env.PWD + '/app/lib/store');
-const hasScope = require('./has-scope');
 
 /**
  * Deletes a post
@@ -18,7 +18,7 @@ module.exports = [
   (request, response, next) => {
     const {action} = request.query || request.body;
     if (action === 'delete') {
-      return hasScope('delete')(request, response, next);
+      return auth.scope('delete')(request, response, next);
     }
 
     return next();
