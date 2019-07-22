@@ -25,7 +25,7 @@ module.exports = {
         path: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
-      file: {
+      media: {
         path: 'images/photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}/{{ filename }}'
       }
     }

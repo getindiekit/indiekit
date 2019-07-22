@@ -9,12 +9,12 @@ const publication = require(process.env.PWD + '/app/lib/publication');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Saves a file
+ * Saves a media file
  *
  * @memberof micropub
- * @module saveFile
+ * @module saveMedia
  * @param {Object} file File object
- * @returns {String} Location of created post
+ * @returns {String} Location of created file
  */
 module.exports = async file => {
   const pub = await publication.resolveConfig(config['pub-config']);
@@ -27,24 +27,24 @@ module.exports = async file => {
   const fileProperties = utils.deriveFileProperties(file);
 
   // Render destination path
-  const filePath = render(typeConfig.file.path, fileProperties);
-  const fileUrl = render(typeConfig.file.url || typeConfig.file.path, fileProperties);
-  const fileName = path.basename(filePath);
+  const mediaPath = render(typeConfig.media.path, fileProperties);
+  const mediaUrl = render(typeConfig.media.url || typeConfig.media.path, fileProperties);
+  const mediaName = path.basename(mediaPath);
 
   // Prepare location and activity record
-  const url = new URL(fileUrl, config.url);
+  const url = new URL(mediaUrl, config.url);
   const location = url.href;
   const recordData = {
-    file: {
-      path: filePath,
-      url: fileUrl
+    media: {
+      path: mediaPath,
+      url: mediaUrl
     }
   };
 
   // Upload file to GitHub
   try {
-    const response = await store.github.createFile(filePath, file.buffer, {
-      message: `:framed_picture: Uploaded ${fileName}\nwith ${config.name}`
+    const response = await store.github.createFile(mediaPath, file.buffer, {
+      message: `:framed_picture: Uploaded ${mediaName}\nwith ${config.name}`
     });
 
     if (response) {
@@ -52,6 +52,6 @@ module.exports = async file => {
       return location;
     }
   } catch (error) {
-    logger.error('micropub.saveFile %s', error);
+    logger.error('micropub.saveMedia %s', error);
   }
 };

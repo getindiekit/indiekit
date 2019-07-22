@@ -10,7 +10,7 @@ module.exports = {
         path: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
-      file: {
+      media: {
         path: 'media/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
       }
     },
@@ -32,7 +32,7 @@ module.exports = {
         path: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
-      file: {
+      media: {
         path: 'media/photos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
       }
     },
@@ -44,7 +44,7 @@ module.exports = {
         path: '_videos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'videos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
-      file: {
+      media: {
         path: 'media/videos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
       }
     },
@@ -56,7 +56,7 @@ module.exports = {
         path: '_audio/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'audio/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
       },
-      file: {
+      media: {
         path: 'media/audio/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
       }
     },

@@ -12,13 +12,13 @@ const publication = require(process.env.PWD + '/app/lib/publication');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Creates a new post
+ * Saves a post file
  *
  * @memberof micropub
  * @module savePost
  * @param {String} mf2 Microformats2 object
  * @param {String} files File attachments
- * @returns {String} Location of created post
+ * @returns {String} Location of created file
  */
 module.exports = async (mf2, files) => {
   const pub = await publication.resolveConfig(config['pub-config']);
