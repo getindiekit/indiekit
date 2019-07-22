@@ -1,9 +1,9 @@
 const express = require('express');
 const multer = require('multer');
 
+const admin = require(process.env.PWD + '/app/admin');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
-const adminRoutes = require(process.env.PWD + '/app/routes/admin');
 
 const router = new express.Router();
 const storage = multer.memoryStorage();
@@ -24,7 +24,7 @@ router.get('/', (request, response) => {
 // Admin
 router.post('/admin',
   indieauth,
-  adminRoutes.post
+  admin
 );
 
 // Micropub

@@ -41,58 +41,58 @@
         -   [Parameters][37]
     -   [saveFile][38]
         -   [Parameters][39]
-    -   [updatePost][40]
+    -   [savePost][40]
         -   [Parameters][41]
-    -   [updatePost][42]
+    -   [undeletePost][42]
         -   [Parameters][43]
-    -   [getPostTypes][44]
+    -   [updatePost][44]
         -   [Parameters][45]
-    -   [response][46]
+    -   [getPostTypes][46]
         -   [Parameters][47]
--   [publication][48]
--   [publication][49]
-    -   [Parameters][50]
--   [record][51]
-    -   [create][52]
-        -   [Parameters][53]
-    -   [read][54]
+    -   [response][48]
+        -   [Parameters][49]
+-   [publication][50]
+-   [publication][51]
+    -   [Parameters][52]
+-   [record][53]
+    -   [create][54]
         -   [Parameters][55]
--   [render][56]
-    -   [Parameters][57]
--   [store/github][58]
-    -   [getContents][59]
-        -   [Parameters][60]
-    -   [createFile][61]
+    -   [read][56]
+        -   [Parameters][57]
+-   [render][58]
+    -   [Parameters][59]
+-   [store/github][60]
+    -   [getContents][61]
         -   [Parameters][62]
-    -   [updateFile][63]
+    -   [createFile][63]
         -   [Parameters][64]
-    -   [deleteFile][65]
+    -   [updateFile][65]
         -   [Parameters][66]
--   [store][67]
--   [utils][68]
-    -   [createRandomString][69]
-        -   [Examples][70]
-    -   [deriveFileProperties][71]
-        -   [Parameters][72]
-        -   [Examples][73]
-    -   [deriveMediaType][74]
-        -   [Parameters][75]
-        -   [Examples][76]
-    -   [decodeFormEncodedString][77]
-        -   [Parameters][78]
-        -   [Examples][79]
-    -   [error][80]
-        -   [Parameters][81]
-    -   [excerptString][82]
+    -   [deleteFile][67]
+        -   [Parameters][68]
+-   [store][69]
+-   [utils][70]
+    -   [createRandomString][71]
+        -   [Examples][72]
+    -   [deriveFileProperties][73]
+        -   [Parameters][74]
+        -   [Examples][75]
+    -   [deriveMediaType][76]
+        -   [Parameters][77]
+        -   [Examples][78]
+    -   [decodeFormEncodedString][79]
+        -   [Parameters][80]
+        -   [Examples][81]
+    -   [error][82]
         -   [Parameters][83]
-        -   [Examples][84]
-    -   [normalizePath][85]
-        -   [Parameters][86]
-        -   [Examples][87]
--   [routes][88]
-    -   [admin.post][89]
-        -   [Parameters][90]
-    -   [micropub.post][91]
+    -   [excerptString][84]
+        -   [Parameters][85]
+        -   [Examples][86]
+    -   [normalizePath][87]
+        -   [Parameters][88]
+        -   [Examples][89]
+-   [routes][90]
+    -   [admin.post][91]
         -   [Parameters][92]
 
 ## cache
@@ -259,15 +259,14 @@ Returns **[Promise][95]** Express response object
 
 ### createPost
 
-Creates a new post
+Creates a post
 
 #### Parameters
 
--   `pub` **[Object][93]** Publication configuration
--   `mf2` **[String][94]** Microformats2 object
--   `files` **[String][94]** File attachments
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
 
-Returns **[String][94]** Location of created post
+Returns **[Promise][95]** Express response object
 
 ### deletePost
 
@@ -318,7 +317,18 @@ Saves a file
 
 Returns **[String][94]** Location of created post
 
-### updatePost
+### savePost
+
+Creates a new post
+
+#### Parameters
+
+-   `mf2` **[String][94]** Microformats2 object
+-   `files` **[String][94]** File attachments
+
+Returns **[String][94]** Location of created post
+
+### undeletePost
 
 Updates a post
 
@@ -607,18 +617,6 @@ Responds to POST requests
 
 Returns **[Object][93]** HTTP response
 
-### micropub.post
-
-Responds to Micropub POST requests
-
-#### Parameters
-
--   `request` **[Object][93]** Request
--   `response` **[Object][93]** Response
--   `next` **[Object][93]** Callback
-
-Returns **[Object][93]** HTTP response
-
 [1]: #cache
 
 [2]: #update
@@ -697,109 +695,109 @@ Returns **[Object][93]** HTTP response
 
 [39]: #parameters-17
 
-[40]: #updatepost
+[40]: #savepost
 
 [41]: #parameters-18
 
-[42]: #updatepost-1
+[42]: #undeletepost
 
 [43]: #parameters-19
 
-[44]: #getposttypes
+[44]: #updatepost
 
 [45]: #parameters-20
 
-[46]: #response
+[46]: #getposttypes
 
 [47]: #parameters-21
 
-[48]: #publication
+[48]: #response
 
-[49]: #publication-1
+[49]: #parameters-22
 
-[50]: #parameters-22
+[50]: #publication
 
-[51]: #record
+[51]: #publication-1
 
-[52]: #create
+[52]: #parameters-23
 
-[53]: #parameters-23
+[53]: #record
 
-[54]: #read-1
+[54]: #create
 
 [55]: #parameters-24
 
-[56]: #render
+[56]: #read-1
 
 [57]: #parameters-25
 
-[58]: #storegithub
+[58]: #render
 
-[59]: #getcontents
+[59]: #parameters-26
 
-[60]: #parameters-26
+[60]: #storegithub
 
-[61]: #createfile
+[61]: #getcontents
 
 [62]: #parameters-27
 
-[63]: #updatefile
+[63]: #createfile
 
 [64]: #parameters-28
 
-[65]: #deletefile
+[65]: #updatefile
 
 [66]: #parameters-29
 
-[67]: #store
+[67]: #deletefile
 
-[68]: #utils
+[68]: #parameters-30
 
-[69]: #createrandomstring
+[69]: #store
 
-[70]: #examples
+[70]: #utils
 
-[71]: #derivefileproperties
+[71]: #createrandomstring
 
-[72]: #parameters-30
+[72]: #examples
 
-[73]: #examples-1
+[73]: #derivefileproperties
 
-[74]: #derivemediatype
+[74]: #parameters-31
 
-[75]: #parameters-31
+[75]: #examples-1
 
-[76]: #examples-2
+[76]: #derivemediatype
 
-[77]: #decodeformencodedstring
+[77]: #parameters-32
 
-[78]: #parameters-32
+[78]: #examples-2
 
-[79]: #examples-3
+[79]: #decodeformencodedstring
 
-[80]: #error
+[80]: #parameters-33
 
-[81]: #parameters-33
+[81]: #examples-3
 
-[82]: #excerptstring
+[82]: #error
 
 [83]: #parameters-34
 
-[84]: #examples-4
+[84]: #excerptstring
 
-[85]: #normalizepath
+[85]: #parameters-35
 
-[86]: #parameters-35
+[86]: #examples-4
 
-[87]: #examples-5
+[87]: #normalizepath
 
-[88]: #routes
+[88]: #parameters-36
 
-[89]: #adminpost
+[89]: #examples-5
 
-[90]: #parameters-36
+[90]: #routes
 
-[91]: #micropubpost
+[91]: #adminpost
 
 [92]: #parameters-37
 
