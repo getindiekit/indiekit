@@ -1,6 +1,6 @@
+const auth = require(process.env.PWD + '/app/lib/auth');
 const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
-const hasScope = require('./has-scope');
 const savePost = require('./save-post');
 
 /**
@@ -17,7 +17,7 @@ module.exports = [
   (request, response, next) => {
     const {action} = request.query || request.body;
     if (action === 'undelete') {
-      return hasScope('create')(request, response, next);
+      return auth.scope('create')(request, response, next);
     }
 
     return next();

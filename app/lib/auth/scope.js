@@ -4,8 +4,8 @@ const config = require(process.env.PWD + '/app/config');
  * Checks if scope in authenticated token contains specified scope.
  * Automatically handles `post` and `create` as the same thing
  *
- * @memberof micropub
- * @module hasScope
+ * @memberof auth
+ * @module scope
  * @param {String} requiredScope Scope to check
  * @param {Object} request Express request object
  * @param {Object} response Express response object

@@ -1,6 +1,6 @@
+const auth = require(process.env.PWD + '/app/lib/auth');
 const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
-const hasScope = require('./has-scope');
 const savePost = require('./save-post');
 
 /**
@@ -13,7 +13,7 @@ const savePost = require('./save-post');
  * @returns {Promise} Express response object
  */
 module.exports = [
-  hasScope('create'),
+  auth.scope('create'),
   async (request, response) => {
     const {body} = request;
     const {files} = request;
