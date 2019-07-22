@@ -4,7 +4,6 @@ const multer = require('multer');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 const adminRoutes = require(process.env.PWD + '/app/routes/admin');
-const micropubRoutes = require(process.env.PWD + '/app/routes/micropub');
 
 const router = new express.Router();
 const storage = multer.memoryStorage();
@@ -23,15 +22,32 @@ router.get('/', (request, response) => {
 });
 
 // Admin
-router.post('/admin', indieauth, adminRoutes.post);
+router.post('/admin',
+  indieauth,
+  adminRoutes.post
+);
 
 // Micropub
-router.post('/media', indieauth, file, micropub.createMedia);
-router.post('/micropub', indieauth, files, micropubRoutes.post);
-router.get('/micropub', micropub.query);
+router.post('/micropub',
+  indieauth,
+  files,
+  micropub.updatePost,
+  micropub.deletePost,
+  micropub.undeletePost,
+  micropub.createPost
+);
 
-// Support Sunlit, which has a hardcoded media endpoint URL
+router.get('/micropub',
+  micropub.query
+);
+
+// Media
+// Support Sunlit media endpoint, which has a hardcoded URL
 // https://github.com/microdotblog/issues/issues/147
-router.post('/media/micropub/media', indieauth, micropub.createMedia);
+router.post('/media(/micropub/media)?',
+  indieauth,
+  file,
+  micropub.createMedia
+);
 
 module.exports = router;

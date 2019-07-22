@@ -43,55 +43,57 @@
         -   [Parameters][39]
     -   [updatePost][40]
         -   [Parameters][41]
-    -   [getPostTypes][42]
+    -   [updatePost][42]
         -   [Parameters][43]
-    -   [response][44]
+    -   [getPostTypes][44]
         -   [Parameters][45]
--   [publication][46]
--   [publication][47]
-    -   [Parameters][48]
--   [record][49]
-    -   [create][50]
-        -   [Parameters][51]
-    -   [read][52]
+    -   [response][46]
+        -   [Parameters][47]
+-   [publication][48]
+-   [publication][49]
+    -   [Parameters][50]
+-   [record][51]
+    -   [create][52]
         -   [Parameters][53]
--   [render][54]
-    -   [Parameters][55]
--   [store/github][56]
-    -   [getContents][57]
-        -   [Parameters][58]
-    -   [createFile][59]
+    -   [read][54]
+        -   [Parameters][55]
+-   [render][56]
+    -   [Parameters][57]
+-   [store/github][58]
+    -   [getContents][59]
         -   [Parameters][60]
-    -   [updateFile][61]
+    -   [createFile][61]
         -   [Parameters][62]
-    -   [deleteFile][63]
+    -   [updateFile][63]
         -   [Parameters][64]
--   [store][65]
--   [utils][66]
-    -   [createRandomString][67]
-        -   [Examples][68]
-    -   [deriveFileProperties][69]
-        -   [Parameters][70]
-        -   [Examples][71]
-    -   [deriveMediaType][72]
-        -   [Parameters][73]
-        -   [Examples][74]
-    -   [decodeFormEncodedString][75]
-        -   [Parameters][76]
-        -   [Examples][77]
-    -   [error][78]
-        -   [Parameters][79]
-    -   [excerptString][80]
+    -   [deleteFile][65]
+        -   [Parameters][66]
+-   [store][67]
+-   [utils][68]
+    -   [createRandomString][69]
+        -   [Examples][70]
+    -   [deriveFileProperties][71]
+        -   [Parameters][72]
+        -   [Examples][73]
+    -   [deriveMediaType][74]
+        -   [Parameters][75]
+        -   [Examples][76]
+    -   [decodeFormEncodedString][77]
+        -   [Parameters][78]
+        -   [Examples][79]
+    -   [error][80]
         -   [Parameters][81]
-        -   [Examples][82]
-    -   [normalizePath][83]
-        -   [Parameters][84]
-        -   [Examples][85]
--   [routes][86]
-    -   [admin.post][87]
-        -   [Parameters][88]
-    -   [micropub.post][89]
+    -   [excerptString][82]
+        -   [Parameters][83]
+        -   [Examples][84]
+    -   [normalizePath][85]
+        -   [Parameters][86]
+        -   [Examples][87]
+-   [routes][88]
+    -   [admin.post][89]
         -   [Parameters][90]
+    -   [micropub.post][91]
+        -   [Parameters][92]
 
 ## cache
 
@@ -103,8 +105,8 @@ Creates a new file in the cache, populating it with specified data
 
 #### Parameters
 
--   `filePath` **[Object][91]** Location to cache file
--   `fileData` **[Object][91]** Data to write to file
+-   `filePath` **[Object][93]** Location to cache file
+-   `fileData` **[Object][93]** Data to write to file
 
 ### delete
 
@@ -112,7 +114,7 @@ Deletes the cache directory
 
 #### Parameters
 
--   `dir` **[Object][91]** Location of cache directory
+-   `dir` **[Object][93]** Location of cache directory
 
 ### read
 
@@ -120,26 +122,26 @@ Reads a file in the cache, fetching from store if not found
 
 #### Parameters
 
--   `storePath` **[String][92]** Path to file in store
--   `cachePath` **[String][92]** Path to file in cache
+-   `storePath` **[String][94]** Path to file in store
+-   `cachePath` **[String][94]** Path to file in cache
 
-Returns **([Promise][93] \| [Object][91])** Fetched file object
+Returns **([Promise][95] \| [Object][93])** Fetched file object
 
 ## indieauth
 
 Verifies that a token provides permissions to post to configured publication,
-using [IndieAuth][94] to ensure only
+using [IndieAuth][96] to ensure only
 authenticated users can use endpoint for posting to configured destination.
 
 ### Parameters
 
--   `request` **[Object][91]** Express request object
--   `response` **[Object][91]** Express response object
--   `next` **[Function][95]** Express next function
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
+-   `next` **[Function][97]** Express next function
 
-Returns **[Function][95]** Call next middleware function
+Returns **[Function][97]** Call next middleware function
 
-Returns **[Object][91]** Error response
+Returns **[Object][93]** Error response
 
 ## microformats
 
@@ -151,9 +153,9 @@ Derives content (HTML, else object value, else property value)
 
 #### Parameters
 
--   `mf2` **[Object][91]** microformats2 object
+-   `mf2` **[Object][93]** microformats2 object
 
-Returns **[Array][96]** Content
+Returns **[Array][98]** Content
 
 ### derivePhoto
 
@@ -162,11 +164,11 @@ a microformats2 object. Attached photos are uploaded to GitHub.
 
 #### Parameters
 
--   `mf2` **[Object][91]** microformats2 object
--   `files` **[String][92]** Photos attached as multipart data
--   `typeConfig` **[Object][91]** Post type configuration
+-   `mf2` **[Object][93]** microformats2 object
+-   `files` **[String][94]** Photos attached as multipart data
+-   `typeConfig` **[Object][93]** Post type configuration
 
-Returns **[Promise][93]** Array of photo obejcts
+Returns **[Promise][95]** Array of photo obejcts
 
 ### derivePostType
 
@@ -175,9 +177,9 @@ a microformats2 object. Attached photos are uploaded to GitHub.
 
 #### Parameters
 
--   `mf2` **[Object][91]** microformats2 object
+-   `mf2` **[Object][93]** microformats2 object
 
-Returns **[String][92]** Post type
+Returns **[String][94]** Post type
 
 ### dervivePublishedProperty
 
@@ -185,9 +187,9 @@ Derives published date (based on microformats2 data, else the current date)
 
 #### Parameters
 
--   `mf2` **[Object][91]** microformats2 object
+-   `mf2` **[Object][93]** microformats2 object
 
-Returns **[Array][96]** Array containing ISO formatted date
+Returns **[Array][98]** Array containing ISO formatted date
 
 ### derviveSlug
 
@@ -195,22 +197,22 @@ Derives slug (using `mp-slug` value, slugified name else a random number)
 
 #### Parameters
 
--   `mf2` **[Object][91]** microformats2 object
--   `separator` **[String][92]** Slug separator
+-   `mf2` **[Object][93]** microformats2 object
+-   `separator` **[String][94]** Slug separator
 
-Returns **[Array][96]** Array containing slug value
+Returns **[Array][98]** Array containing slug value
 
 ### formEncodedToMf2
 
 Parses microformats in form-encoded POST request.
-Adapted from [node-micropub-express][97]
-by [Pelle Wessman][98]
+Adapted from [node-micropub-express][99]
+by [Pelle Wessman][100]
 
 #### Parameters
 
--   `body` **[String][92]** Form-encoded body
+-   `body` **[String][94]** Form-encoded body
 
-Returns **[Object][91]** mf2 object
+Returns **[Object][93]** mf2 object
 
 **Meta**
 
@@ -223,10 +225,10 @@ Parses microformats on HTML page
 
 #### Parameters
 
--   `html` **[String][92]** HTML marked up with microformats
--   `properties` **[String][92]** mf2 properties to return
+-   `html` **[String][94]** HTML marked up with microformats
+-   `properties` **[String][94]** mf2 properties to return
 
-Returns **[Promise][93]** mf2 object
+Returns **[Promise][95]** mf2 object
 
 ### urlToMf2
 
@@ -234,10 +236,10 @@ Parses microformats at a given URL
 
 #### Parameters
 
--   `url` **[String][92]** URL path to post
--   `properties` **[String][92]** mf2 properties to return
+-   `url` **[String][94]** URL path to post
+-   `properties` **[String][94]** mf2 properties to return
 
-Returns **[Promise][93]** mf2 object
+Returns **[Promise][95]** mf2 object
 
 ## micropub
 
@@ -250,10 +252,10 @@ Creates a new media file
 
 #### Parameters
 
--   `request` **[Object][91]** Express request object
--   `response` **[Object][91]** Express response object
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
 
-Returns **[Promise][93]** Express response object
+Returns **[Promise][95]** Express response object
 
 ### createPost
 
@@ -261,11 +263,11 @@ Creates a new post
 
 #### Parameters
 
--   `pub` **[Object][91]** Publication configuration
--   `mf2` **[String][92]** Microformats2 object
--   `files` **[String][92]** File attachments
+-   `pub` **[Object][93]** Publication configuration
+-   `mf2` **[String][94]** Microformats2 object
+-   `files` **[String][94]** File attachments
 
-Returns **[String][92]** Location of created post
+Returns **[String][94]** Location of created post
 
 ### deletePost
 
@@ -273,9 +275,11 @@ Deletes a post
 
 #### Parameters
 
--   `location` **[String][92]** URL of published post
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
+-   `next` **[Function][97]** Express next function
 
-Returns **[Promise][93]** Response object
+Returns **[Promise][95]** Express response object
 
 ### hasScope
 
@@ -284,14 +288,14 @@ Automatically handles `post` and `create` as the same thing
 
 #### Parameters
 
--   `requiredScope` **[String][92]** Scope to check
--   `request` **[Object][91]** Express request object
--   `response` **[Object][91]** Express response object
--   `next` **[Function][95]** Express next function
+-   `requiredScope` **[String][94]** Scope to check
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
+-   `next` **[Function][97]** Express next function
 
-Returns **[Function][95]** Call next middleware function
+Returns **[Function][97]** Call next middleware function
 
-Returns **[Object][91]** Error response
+Returns **[Object][93]** Error response
 
 ### query
 
@@ -299,10 +303,10 @@ Returns an object containing information about this application
 
 #### Parameters
 
--   `request` **[Object][91]** Express request object
--   `response` **[Object][91]** Express response object
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
 
-Returns **[Promise][93]** Express response object
+Returns **[Promise][95]** Express response object
 
 ### saveFile
 
@@ -310,9 +314,9 @@ Saves a file
 
 #### Parameters
 
--   `file` **[Object][91]** File object
+-   `file` **[Object][93]** File object
 
-Returns **[String][92]** Location of created post
+Returns **[String][94]** Location of created post
 
 ### updatePost
 
@@ -320,10 +324,23 @@ Updates a post
 
 #### Parameters
 
--   `url` **[String][92]** URL path to post
--   `content` **[String][92]** Content to update
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
+-   `next` **[Function][97]** Express next function
 
-Returns **[Object][91]** Response
+Returns **[Object][93]** Express response object
+
+### updatePost
+
+Updates a post
+
+#### Parameters
+
+-   `request` **[Object][93]** Express request object
+-   `response` **[Object][93]** Express response object
+-   `next` **[Function][97]** Express next function
+
+Returns **[Object][93]** Express response object
 
 ### getPostTypes
 
@@ -331,9 +348,9 @@ Returns an array of supported post types
 
 #### Parameters
 
--   `pub` **[String][92]** Publication configuration
+-   `pub` **[String][94]** Publication configuration
 
-Returns **[Array][96]** Array of post types
+Returns **[Array][98]** Array of post types
 
 ### response
 
@@ -341,10 +358,10 @@ Returns success information
 
 #### Parameters
 
--   `id` **[String][92]** Identifier
--   `location` **[String][92]** Location of post
+-   `id` **[String][94]** Identifier
+-   `location` **[String][94]** Location of post
 
-Returns **[Object][91]** Success object
+Returns **[Object][93]** Success object
 
 ## publication
 
@@ -357,9 +374,9 @@ application.
 
 ### Parameters
 
--   `configPath` **[Object][91]** Path to publication config
+-   `configPath` **[Object][93]** Path to publication config
 
-Returns **[Promise][93]** Configuration object
+Returns **[Promise][95]** Configuration object
 
 ## record
 
@@ -372,8 +389,8 @@ Creates a new record
 
 #### Parameters
 
--   `url` **[Object][91]** URL activity relates to
--   `data` **[Object][91]** Activity data to record
+-   `url` **[Object][93]** URL activity relates to
+-   `data` **[Object][93]** Activity data to record
 
 ### read
 
@@ -381,22 +398,22 @@ Reads a record
 
 #### Parameters
 
--   `url` **[Object][91]** URL of post
+-   `url` **[Object][93]** URL of post
 
-Returns **[Object][91]** Memo
+Returns **[Object][93]** Memo
 
 ## render
 
--   **See: [Nunjucks API: renderString][99]**
+-   **See: [Nunjucks API: renderString][101]**
 
 Render a Nunjucks template string using context data
 
 ### Parameters
 
--   `string` **[String][92]** Template string
--   `context` **[String][92]** Context data
+-   `string` **[String][94]** Template string
+-   `context` **[String][94]** Context data
 
-Returns **[String][92]** Rendered string
+Returns **[String][94]** Rendered string
 
 ## store/github
 
@@ -404,56 +421,56 @@ Get, create and delete data at a specified path at configured GitHub repo.
 
 ### getContents
 
--   **See: [GitHub REST API v3: Get Contents][100]**
+-   **See: [GitHub REST API v3: Get Contents][102]**
 
 Reads content of a file or directory in a repository
 
 #### Parameters
 
--   `path` **[String][92]** Path to file
+-   `path` **[String][94]** Path to file
 
-Returns **[Promise][93]** GitHub HTTP response
+Returns **[Promise][95]** GitHub HTTP response
 
 ### createFile
 
--   **See: [GitHub REST API v3: Create a file][101]**
+-   **See: [GitHub REST API v3: Create a file][103]**
 
 Creates a new file in a GitHub repository
 
 #### Parameters
 
--   `path` **[String][92]** Path to file
--   `content` **[String][92]** File content
--   `options` **[String][92]** Options
+-   `path` **[String][94]** Path to file
+-   `content` **[String][94]** File content
+-   `options` **[String][94]** Options
 
-Returns **[Promise][93]** GitHub HTTP response
+Returns **[Promise][95]** GitHub HTTP response
 
 ### updateFile
 
--   **See: [GitHub REST API v3: Update a file][102]**
+-   **See: [GitHub REST API v3: Update a file][104]**
 
 Updates a file in a GitHub repository
 
 #### Parameters
 
--   `path` **[String][92]** Path to file
--   `content` **[String][92]** File content
--   `options` **[String][92]** Options
+-   `path` **[String][94]** Path to file
+-   `content` **[String][94]** File content
+-   `options` **[String][94]** Options
 
-Returns **[Promise][93]** GitHub HTTP response
+Returns **[Promise][95]** GitHub HTTP response
 
 ### deleteFile
 
--   **See: [GitHub REST API v3: Delete a file][103]**
+-   **See: [GitHub REST API v3: Delete a file][105]**
 
 Deletes a file in a GitHub repository
 
 #### Parameters
 
--   `path` **[String][92]** Path to file
--   `options` **[String][92]** Options
+-   `path` **[String][94]** Path to file
+-   `options` **[String][94]** Options
 
-Returns **[Promise][93]** GitHub HTTP response
+Returns **[Promise][95]** GitHub HTTP response
 
 ## store
 
@@ -473,7 +490,7 @@ Generates random alpha-numeric string, 5 characters long
 createRandomString() => 'b3dog'
 ```
 
-Returns **[Object][91]** Alpha-numeric string
+Returns **[Object][93]** Alpha-numeric string
 
 ### deriveFileProperties
 
@@ -481,7 +498,7 @@ Derives additional file name properties
 
 #### Parameters
 
--   `file` **[Object][91]** Original file object
+-   `file` **[Object][93]** Original file object
 
 #### Examples
 
@@ -494,7 +511,7 @@ deriveFileProperties('brighton-pier.jpg') => {
 }
 ```
 
-Returns **[Object][91]** File properties
+Returns **[Object][93]** File properties
 
 ### deriveMediaType
 
@@ -502,7 +519,7 @@ Derives media type and returns equivalent IndieWeb post type
 
 #### Parameters
 
--   `file` **[Object][91]** Original file object
+-   `file` **[Object][93]** Original file object
 
 #### Examples
 
@@ -510,7 +527,7 @@ Derives media type and returns equivalent IndieWeb post type
 deriveMediaType('brighton-pier.jpg') => 'photo'
 ```
 
-Returns **[String][92]** Returns either 'photo', 'video' or audio
+Returns **[String][94]** Returns either 'photo', 'video' or audio
 
 ### decodeFormEncodedString
 
@@ -518,7 +535,7 @@ Decodes form-encoded string
 
 #### Parameters
 
--   `str` **[String][92]** String to decode
+-   `str` **[String][94]** String to decode
 
 #### Examples
 
@@ -530,7 +547,7 @@ decodeFormEncodedString('foo+bar') => 'foo bar'
 decodeFormEncodedString('http%3A%2F%2Ffoo.bar') => 'http://foo.bar'
 ```
 
-Returns **[String][92]** Decoded string
+Returns **[String][94]** Decoded string
 
 ### error
 
@@ -538,10 +555,10 @@ Returns error information
 
 #### Parameters
 
--   `id` **[String][92]** Identifier
--   `desc` **[String][92]** Description
+-   `id` **[String][94]** Identifier
+-   `desc` **[String][94]** Description
 
-Returns **[Object][91]** Error object
+Returns **[Object][93]** Error object
 
 ### excerptString
 
@@ -549,8 +566,8 @@ Gets first n words from a string
 
 #### Parameters
 
--   `str` **[String][92]** String to excerpt
--   `n` **[Number][104]** Max number of words
+-   `str` **[String][94]** String to excerpt
+-   `n` **[Number][106]** Max number of words
 
 #### Examples
 
@@ -558,7 +575,7 @@ Gets first n words from a string
 excerptString('Foo bar baz', 2) => 'Foo bar'
 ```
 
-Returns **[String][92]** Excerpt
+Returns **[String][94]** Excerpt
 
 ### normalizePath
 
@@ -566,7 +583,7 @@ Removes ‘/’ from beginning and end of string. Useful for constructing paths
 
 #### Parameters
 
--   `str` **[Object][91]** String
+-   `str` **[Object][93]** String
 
 #### Examples
 
@@ -574,7 +591,7 @@ Removes ‘/’ from beginning and end of string. Useful for constructing paths
 normalizePath('/foo/bar/') => 'foo/bar'
 ```
 
-Returns **[Object][91]** Normalized object
+Returns **[Object][93]** Normalized object
 
 ## routes
 
@@ -584,11 +601,11 @@ Responds to POST requests
 
 #### Parameters
 
--   `request` **[Object][91]** Request
--   `response` **[Object][91]** Response
--   `next` **[Object][91]** Callback
+-   `request` **[Object][93]** Request
+-   `response` **[Object][93]** Response
+-   `next` **[Object][93]** Callback
 
-Returns **[Object][91]** HTTP response
+Returns **[Object][93]** HTTP response
 
 ### micropub.post
 
@@ -596,11 +613,11 @@ Responds to Micropub POST requests
 
 #### Parameters
 
--   `request` **[Object][91]** Request
--   `response` **[Object][91]** Response
--   `next` **[Object][91]** Callback
+-   `request` **[Object][93]** Request
+-   `response` **[Object][93]** Response
+-   `next` **[Object][93]** Callback
 
-Returns **[Object][91]** HTTP response
+Returns **[Object][93]** HTTP response
 
 [1]: #cache
 
@@ -684,128 +701,132 @@ Returns **[Object][91]** HTTP response
 
 [41]: #parameters-18
 
-[42]: #getposttypes
+[42]: #updatepost-1
 
 [43]: #parameters-19
 
-[44]: #response
+[44]: #getposttypes
 
 [45]: #parameters-20
 
-[46]: #publication
+[46]: #response
 
-[47]: #publication-1
+[47]: #parameters-21
 
-[48]: #parameters-21
+[48]: #publication
 
-[49]: #record
+[49]: #publication-1
 
-[50]: #create
+[50]: #parameters-22
 
-[51]: #parameters-22
+[51]: #record
 
-[52]: #read-1
+[52]: #create
 
 [53]: #parameters-23
 
-[54]: #render
+[54]: #read-1
 
 [55]: #parameters-24
 
-[56]: #storegithub
+[56]: #render
 
-[57]: #getcontents
+[57]: #parameters-25
 
-[58]: #parameters-25
+[58]: #storegithub
 
-[59]: #createfile
+[59]: #getcontents
 
 [60]: #parameters-26
 
-[61]: #updatefile
+[61]: #createfile
 
 [62]: #parameters-27
 
-[63]: #deletefile
+[63]: #updatefile
 
 [64]: #parameters-28
 
-[65]: #store
+[65]: #deletefile
 
-[66]: #utils
+[66]: #parameters-29
 
-[67]: #createrandomstring
+[67]: #store
 
-[68]: #examples
+[68]: #utils
 
-[69]: #derivefileproperties
+[69]: #createrandomstring
 
-[70]: #parameters-29
+[70]: #examples
 
-[71]: #examples-1
+[71]: #derivefileproperties
 
-[72]: #derivemediatype
+[72]: #parameters-30
 
-[73]: #parameters-30
+[73]: #examples-1
 
-[74]: #examples-2
+[74]: #derivemediatype
 
-[75]: #decodeformencodedstring
+[75]: #parameters-31
 
-[76]: #parameters-31
+[76]: #examples-2
 
-[77]: #examples-3
+[77]: #decodeformencodedstring
 
-[78]: #error
+[78]: #parameters-32
 
-[79]: #parameters-32
+[79]: #examples-3
 
-[80]: #excerptstring
+[80]: #error
 
 [81]: #parameters-33
 
-[82]: #examples-4
+[82]: #excerptstring
 
-[83]: #normalizepath
+[83]: #parameters-34
 
-[84]: #parameters-34
+[84]: #examples-4
 
-[85]: #examples-5
+[85]: #normalizepath
 
-[86]: #routes
+[86]: #parameters-35
 
-[87]: #adminpost
+[87]: #examples-5
 
-[88]: #parameters-35
+[88]: #routes
 
-[89]: #micropubpost
+[89]: #adminpost
 
 [90]: #parameters-36
 
-[91]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[91]: #micropubpost
 
-[92]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[92]: #parameters-37
 
-[93]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[93]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[94]: https://www.w3.org/TR/indieauth/
+[94]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[95]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[95]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[96]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[96]: https://www.w3.org/TR/indieauth/
 
-[97]: https://github.com/voxpelli/node-micropub-express
+[97]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[98]: https://kodfabrik.se
+[98]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[99]: https://mozilla.github.io/nunjucks/api.html#renderstring
+[99]: https://github.com/voxpelli/node-micropub-express
 
-[100]: https://developer.github.com/v3/repos/contents/#get-contents
+[100]: https://kodfabrik.se
 
-[101]: https://developer.github.com/v3/repos/contents/#create-a-file
+[101]: https://mozilla.github.io/nunjucks/api.html#renderstring
 
-[102]: https://developer.github.com/v3/repos/contents/#update-a-file
+[102]: https://developer.github.com/v3/repos/contents/#get-contents
 
-[103]: https://developer.github.com/v3/repos/contents/#delete-a-file
+[103]: https://developer.github.com/v3/repos/contents/#create-a-file
 
-[104]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[104]: https://developer.github.com/v3/repos/contents/#update-a-file
+
+[105]: https://developer.github.com/v3/repos/contents/#delete-a-file
+
+[106]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
