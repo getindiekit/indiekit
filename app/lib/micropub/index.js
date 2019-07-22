@@ -8,6 +8,7 @@ module.exports = {
   createMedia: require(process.env.PWD + '/app/lib/micropub/create-media'),
   createPost: require(process.env.PWD + '/app/lib/micropub/create-post'),
   deletePost: require(process.env.PWD + '/app/lib/micropub/delete-post'),
-  query: require(process.env.PWD + '/app/lib/micropub/query'),
-  updatePost: require(process.env.PWD + '/app/lib/micropub/update-post')
+  undeletePost: require(process.env.PWD + '/app/lib/micropub/undelete-post'),
+  updatePost: require(process.env.PWD + '/app/lib/micropub/update-post'),
+  query: require(process.env.PWD + '/app/lib/micropub/query')
 };

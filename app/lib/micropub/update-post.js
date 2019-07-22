@@ -1,26 +1,28 @@
-const config = require(process.env.PWD + '/app/config');
-const store = require(process.env.PWD + '/app/lib/store');
-const utils = require(process.env.PWD + '/app/lib/utils');
+const hasScope = require('./has-scope');
 
 /**
  * Updates a post
  *
  * @memberof micropub
  * @module updatePost
- * @param {String} url URL path to post
- * @param {String} content Content to update
- * @returns {Object} Response
+ * @param {Object} request Express request object
+ * @param {Object} response Express response object
+ * @param {Function} next Express next function
+ * @returns {Object} Express response object
  */
-module.exports = async (url, content) => {
-  const storePath = utils.filePathFromUrl(url);
-  const type = null; // @todo Determine post type
-  const response = store.github.updateFile(storePath, content, {
-    message: `:robot: ${type} updated\nwith ${config.name}`
-  });
-  if (response) {
-    /* TODO: If path has changed, return 'update_created' */
-    return utils.success('update', url);
-  }
+module.exports = [
+  (request, response, next) => {
+    const {action} = request.query || request.body;
+    if (action === 'update') {
+      return hasScope('update')(request, response, next);
+    }
 
-  return utils.error('not_found');
-};
+    return next();
+  },
+  async (request, response) => {
+    return response.status(400).json({
+      error: 'invalid_request',
+      error_description: 'Update action not supported'
+    });
+  }
+];

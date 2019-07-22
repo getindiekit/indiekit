@@ -15,6 +15,7 @@ module.exports = [
   hasScope('create'),
   async (request, response) => {
     const {file} = request;
+    logger.info('Request file', {file});
 
     if (!file || file.truncated || !file.buffer) {
       return response.status(400).json({
@@ -37,8 +38,8 @@ module.exports = [
     } catch (error) {
       logger.error(error);
       return response.status(500).json({
-        success: 'server_error',
-        success_description: `Unable to create file. ${error.message}`
+        error: 'server_error',
+        error_description: `Unable to create file. ${error.message}`
       });
     }
   }
