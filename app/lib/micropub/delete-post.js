@@ -15,12 +15,15 @@ const store = require(process.env.PWD + '/app/lib/store');
  * @returns {Promise} Express response object
  */
 module.exports = [
-  auth.scope('delete'),
+  (request, response, next) => {
+    const {action} = request.query || request.body;
+    return (action === 'delete') ? auth.scope('delete') : next();
+  },
   async (request, response, next) => {
     const {action} = request.query || request.body;
+    const url = request.query || request.body;
 
-    if (action === 'delete') {
-      const url = request.query || request.body;
+    if (action && url) {
       const recordData = record.read(url);
 
       if (recordData) {

@@ -12,10 +12,15 @@ const auth = require(process.env.PWD + '/app/lib/auth');
  */
 module.exports = [
   auth.scope('update'),
+  (request, response, next) => {
+    const {action} = request.query || request.body;
+    return (action === 'update') ? auth.scope('update') : next();
+  },
   async (request, response, next) => {
     const {action} = request.query || request.body;
+    const url = request.query || request.body;
 
-    if (action === 'update') {
+    if (action && url) {
       return response.status(400).json({
         error: 'invalid_request',
         error_description: 'Update action not supported'
