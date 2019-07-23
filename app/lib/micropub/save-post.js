@@ -75,7 +75,7 @@ module.exports = async (mf2, files) => {
   // Upload post to GitHub
   try {
     const response = await store.github.createFile(postPath, content, {
-      message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post\nwith ${config.name}`
+      message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
     });
 
     if (response) {

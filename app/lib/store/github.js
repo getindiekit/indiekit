@@ -60,7 +60,7 @@ const createFile = async (path, content, options) => {
       branch: config.github.branch,
       path,
       content: Buffer.from(content).toString('base64'),
-      message: options.message
+      message: `${options.message}\nwith ${config.name}`
     });
 
     logger.info('store.github.createFile', {response});
@@ -93,7 +93,7 @@ const updateFile = async (path, content, options) => {
         repo: config.github.repo,
         branch: config.github.branch,
         path,
-        message: options.message,
+        message: `${options.message}\nwith ${config.name}`,
         content: Buffer.from(content).toString('base64'),
         sha: response.data.sha
       });
@@ -122,7 +122,7 @@ const deleteFile = async (path, options) => {
         repo: config.github.repo,
         branch: config.github.branch,
         path,
-        message: options.message,
+        message: `${options.message}\nwith ${config.name}`,
         sha: response.data.sha
       });
     }
