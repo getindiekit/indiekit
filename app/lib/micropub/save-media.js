@@ -44,7 +44,7 @@ module.exports = async file => {
   // Upload file to GitHub
   try {
     const response = await store.github.createFile(mediaPath, file.buffer, {
-      message: `:framed_picture: Uploaded ${mediaName}\nwith ${config.name}`
+      message: `:framed_picture: Uploaded ${mediaName}`
     });
 
     if (response) {

@@ -1,5 +1,4 @@
 const auth = require(process.env.PWD + '/app/lib/auth');
-const config = require(process.env.PWD + '/app/config');
 const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
 const store = require(process.env.PWD + '/app/lib/store');
@@ -30,7 +29,7 @@ module.exports = [
         try {
           const storePath = recordData.post.path;
           const response = await store.github.deleteFile(storePath, {
-            message: `:x: Deleted post\nwith ${config.name}`
+            message: ':x: Deleted post'
           });
           if (response) {
             return response.status(200).json({
