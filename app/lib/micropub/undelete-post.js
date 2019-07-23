@@ -14,11 +14,15 @@ const savePost = require('./save-post');
  * @returns {Object} Express response object
  */
 module.exports = [
-  auth.scope('create'),
+  (request, response, next) => {
+    const {action} = request.query || request.body;
+    return (action === 'undelete') ? auth.scope('create') : next();
+  },
   async (request, response, next) => {
     const {action} = request.query || request.body;
-    if (action === 'undelete') {
-      const url = request.query || request.body;
+    const url = request.query || request.body;
+
+    if (action && url) {
       const recordData = record.read(url);
       const {mf2} = recordData;
       const {files} = request;
