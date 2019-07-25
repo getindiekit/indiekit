@@ -15,8 +15,7 @@ const savePost = require('./save-post');
 module.exports = [
   auth.scope('create'),
   async (request, response) => {
-    const {body} = request;
-    const {files} = request;
+    const {body, files} = request;
 
     // Normalise form-encoded requests as mf2 JSON
     let mf2 = body;
@@ -26,7 +25,8 @@ module.exports = [
     }
 
     try {
-      const location = await savePost(mf2, files);
+      const {pub} = request.app.locals;
+      const location = await savePost(pub, mf2, files);
 
       if (location) {
         logger.info('micropub.createPost: %s', location);

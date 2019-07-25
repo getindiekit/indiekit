@@ -1,4 +1,3 @@
-const config = require(process.env.PWD + '/app/config');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const publication = require(process.env.PWD + '/app/lib/publication');
 
@@ -12,7 +11,7 @@ const publication = require(process.env.PWD + '/app/lib/publication');
  * @returns {Promise} Express response object
  */
 module.exports = async (request, response) => {
-  const pub = await publication.resolveConfig(config['pub-config']);
+  const {pub} = await request.app.locals;
   const endpointBaseUrl = `${request.protocol}://${request.headers.host}`;
   const endpointConfig = {
     categories: [

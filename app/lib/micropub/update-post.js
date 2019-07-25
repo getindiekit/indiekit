@@ -17,8 +17,7 @@ module.exports = [
     return (action === 'update') ? auth.scope('update') : next();
   },
   async (request, response, next) => {
-    const {action} = request.query || request.body;
-    const url = request.query || request.body;
+    const {action, url} = request.query || request.body;
 
     if (action && url) {
       return response.status(400).json({
