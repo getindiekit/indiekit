@@ -8,7 +8,6 @@ const microformats = require(process.env.PWD + '/app/lib/microformats');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
-const publication = require(process.env.PWD + '/app/lib/publication');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -16,13 +15,12 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  *
  * @memberof micropub
  * @module savePost
- * @param {String} mf2 Microformats2 object
+ * @param {Object} pub Publication configuration
+ * @param {Object} mf2 Microformats2 object
  * @param {String} files File attachments
  * @returns {String} Location of created file
  */
-module.exports = async (mf2, files) => {
-  const pub = await publication.resolveConfig(config['pub-config']);
-
+module.exports = async (pub, mf2, files) => {
   // Determine post type
   let type;
   if (files && files.length > 0) {

@@ -5,7 +5,6 @@ const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
 const store = require(process.env.PWD + '/app/lib/store');
-const publication = require(process.env.PWD + '/app/lib/publication');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -13,12 +12,11 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  *
  * @memberof micropub
  * @module saveMedia
+ * @param {Object} pub Publication configuration
  * @param {Object} file File object
  * @returns {String} Location of created file
  */
-module.exports = async file => {
-  const pub = await publication.resolveConfig(config['pub-config']);
-
+module.exports = async (pub, file) => {
   // Determine post type from media type
   const type = utils.deriveMediaType(file);
   const typeConfig = pub['post-types'][type];

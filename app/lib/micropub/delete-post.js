@@ -19,8 +19,7 @@ module.exports = [
     return (action === 'delete') ? auth.scope('delete') : next();
   },
   async (request, response, next) => {
-    const {action} = request.query || request.body;
-    const url = request.query || request.body;
+    const {action, url} = request.query || request.body;
 
     if (action && url) {
       const recordData = record.read(url);

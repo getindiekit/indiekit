@@ -19,8 +19,7 @@ module.exports = [
     return (action === 'undelete') ? auth.scope('create') : next();
   },
   async (request, response, next) => {
-    const {action} = request.query || request.body;
-    const url = request.query || request.body;
+    const {action, url} = request.query || request.body;
 
     if (action && url) {
       const recordData = record.read(url);
@@ -28,7 +27,8 @@ module.exports = [
       const {files} = request;
 
       try {
-        const location = await savePost(mf2, files);
+        const {pub} = request.app.locals;
+        const location = await savePost(pub, mf2, files);
 
         if (location) {
           logger.info('micropub.undeletePost: %s', location);
