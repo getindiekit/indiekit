@@ -1,7 +1,7 @@
 /**
  * Returns an array of supported post types
  *
- * @memberof micropub
+ * @memberof publication
  * @module getPostTypes
  * @param {String} pub Publication configuration
  * @returns {Array} Array of post types

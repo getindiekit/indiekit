@@ -50,11 +50,11 @@
         -   [Parameters][46]
     -   [updatePost][47]
         -   [Parameters][48]
-    -   [getPostTypes][49]
-        -   [Parameters][50]
--   [publication][51]
--   [publication][52]
-    -   [Parameters][53]
+-   [publication][49]
+    -   [getPostTypes][50]
+        -   [Parameters][51]
+    -   [resolveConfig][52]
+        -   [Parameters][53]
 -   [record][54]
     -   [create][55]
         -   [Parameters][56]
@@ -119,6 +119,7 @@ authenticated users can use endpoint for posting to configured destination.
 
 #### Parameters
 
+-   `options` **[Object][93]** Middleware optionn
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
 -   `next` **[Function][94]** Express next function
@@ -329,6 +330,7 @@ Saves a media file
 
 #### Parameters
 
+-   `pub` **[Object][93]** Publication configuration
 -   `file` **[Object][93]** File object
 
 Returns **[String][96]** Location of created file
@@ -339,7 +341,8 @@ Saves a post file
 
 #### Parameters
 
--   `mf2` **[String][96]** Microformats2 object
+-   `pub` **[Object][93]** Publication configuration
+-   `mf2` **[Object][93]** Microformats2 object
 -   `files` **[String][96]** File attachments
 
 Returns **[String][96]** Location of created file
@@ -368,6 +371,10 @@ Updates a post
 
 Returns **[Object][93]** Express response object
 
+## publication
+
+Get publication configuration
+
 ### getPostTypes
 
 Returns an array of supported post types
@@ -378,16 +385,12 @@ Returns an array of supported post types
 
 Returns **[Array][98]** Array of post types
 
-## publication
-
-Get publication configuration
-
-## publication
+### resolveConfig
 
 Gets a publication’s configuration and combines it with default values set by
 application.
 
-### Parameters
+#### Parameters
 
 -   `configPath` **[Object][93]** Path to publication config
 
@@ -711,13 +714,13 @@ Returns **[Object][93]** Normalized object
 
 [48]: #parameters-21
 
-[49]: #getposttypes
+[49]: #publication
 
-[50]: #parameters-22
+[50]: #getposttypes
 
-[51]: #publication
+[51]: #parameters-22
 
-[52]: #publication-1
+[52]: #resolveconfig
 
 [53]: #parameters-23
 

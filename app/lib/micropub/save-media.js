@@ -49,9 +49,10 @@ module.exports = async file => {
 
     if (response) {
       record.create(location, recordData);
+      logger.info('micropub.saveMedia', recordData);
       return location;
     }
   } catch (error) {
-    logger.error('micropub.saveMedia %s', error);
+    logger.error('micropub.saveMedia', {error});
   }
 };

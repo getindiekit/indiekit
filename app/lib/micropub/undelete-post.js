@@ -31,7 +31,7 @@ module.exports = [
         const location = await savePost(mf2, files);
 
         if (location) {
-          logger.info('micropub.undeletePost %s', location);
+          logger.info('micropub.undeletePost: %s', location);
           response.header('Location', location);
           return response.status(201).json({
             success: 'delete_undelete',
@@ -39,7 +39,7 @@ module.exports = [
           });
         }
       } catch (error) {
-        logger.error(error);
+        logger.error('micropub.undeletePost', {error});
         return response.status(500).json({
           error: 'server_error',
           error_description: `Unable to undelete post. ${error.message}`

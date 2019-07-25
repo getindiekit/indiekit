@@ -60,7 +60,7 @@ module.exports = async (storePath, cachePath) => {
 
       throw new Error(`Unable to load ${storePath} from store`);
     } catch (error) {
-      logger.error(error);
+      logger.error('cache.read', {error});
       return false;
     }
   }

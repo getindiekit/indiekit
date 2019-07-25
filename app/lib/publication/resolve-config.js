@@ -11,14 +11,15 @@ const appConfig = require('./defaults');
  * Gets a publication’s configuration and combines it with default values set by
  * application.
  *
- * @module publication
+ * @memberof publication
+ * @module resolveConfig
  * @param {Object} configPath Path to publication config
  * @returns {Promise} Configuration object
  */
 module.exports = async configPath => {
   // If no configuration provided, use application defaults
   if (!configPath) {
-    logger.info('No configuration provided. Using app defaults.');
+    logger.info('store.publication.resolveConfig: No configuration provided. Using app defaults.');
     return appConfig;
   }
 
@@ -63,6 +64,7 @@ module.exports = async configPath => {
 
     return newConfig;
   } catch (error) {
-    logger.error(error);
+    logger.error('store.publication.resolveConfig', {error});
+    throw new Error(error);
   }
 };
