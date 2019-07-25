@@ -40,7 +40,7 @@ module.exports = async (mf2, files) => {
   properties.content = microformats.deriveContent(mf2);
   properties.slug = microformats.deriveSlug(mf2, slugSeparator);
   properties.photo = await microformats.derivePhoto(mf2, files, typeConfig);
-  logger.info('Derived mf2 properties', {properties});
+  logger.debug('micropub.savePost: Derived mf2 properties', {properties});
 
   // Render template
   const templatePath = typeConfig.template;
@@ -80,9 +80,10 @@ module.exports = async (mf2, files) => {
 
     if (response) {
       record.create(location, recordData);
+      logger.info('micropub.savePost', {recordData});
       return location;
     }
   } catch (error) {
-    logger.error('micropub.savePost %s', error);
+    logger.error('micropub.savePost', {error});
   }
 };

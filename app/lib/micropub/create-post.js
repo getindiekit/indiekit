@@ -17,21 +17,19 @@ module.exports = [
   async (request, response) => {
     const {body} = request;
     const {files} = request;
-    logger.info('Request body', {body});
-    logger.info('Request file(s)', {files});
 
     // Normalise form-encoded requests as mf2 JSON
     let mf2 = body;
     if (!request.is('json')) {
       mf2 = microformats.formEncodedToMf2(body);
-      logger.info('Normalised form-encoded mf2', {mf2});
+      logger.debug('micropub.createPost: Normalised form-encoded mf2', {mf2});
     }
 
     try {
       const location = await savePost(mf2, files);
 
       if (location) {
-        logger.info('micropub.createPost %s', location);
+        logger.info('micropub.createPost: %s', location);
         response.header('Location', location);
         return response.status(202).json({
           success: 'create_pending',
@@ -39,7 +37,7 @@ module.exports = [
         });
       }
     } catch (error) {
-      logger.error(error);
+      logger.error('micropub.createPost', {error});
       return response.status(500).json({
         error: 'server_error',
         error_description: `Unable to create post. ${error.message}`

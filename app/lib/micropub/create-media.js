@@ -15,7 +15,6 @@ module.exports = [
   auth.scope('create'),
   async (request, response) => {
     const {file} = request;
-    logger.info('Request file', {file});
 
     if (!file || file.truncated || !file.buffer) {
       return response.status(400).json({
@@ -28,7 +27,7 @@ module.exports = [
       const location = await saveMedia(file);
 
       if (location) {
-        logger.info('micropub.createMedia %s', location);
+        logger.info('micropub.createMedia: %s', location);
         response.header('Location', location);
         return response.status(201).json({
           success: 'create',
@@ -36,7 +35,7 @@ module.exports = [
         });
       }
     } catch (error) {
-      logger.error(error);
+      logger.error('micropub.createMedia', {error});
       return response.status(500).json({
         error: 'server_error',
         error_description: `Unable to create file. ${error.message}`

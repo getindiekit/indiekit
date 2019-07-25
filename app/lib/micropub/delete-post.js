@@ -38,7 +38,7 @@ module.exports = [
             });
           }
         } catch (error) {
-          logger.error(error);
+          logger.error('micropub.deletePost', {error});
           return response.status(500).json({
             error: 'server_error',
             error_description: `Unable to create delete ${url}. ${error.message}`

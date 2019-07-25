@@ -40,6 +40,17 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 
+// Log requests
+app.use((request, response, done) => {
+  logger.info(`${request.method} ${request.originalUrl}`, {
+    headers: request.headers,
+    body: request.body,
+    params: request.params,
+    query: request.query
+  });
+  done();
+});
+
 // Routes
 app.use('/', routes);
 

@@ -6,23 +6,27 @@ const config = require(process.env.PWD + '/app/config');
 
 let level;
 let silent;
+let colorize;
 switch (process.env.NODE_ENV) {
   case 'production':
-    level = 'warning';
+    level = 'info';
     silent = false;
+    colorize = false;
     break;
   case 'test':
     level = 'error';
     silent = true;
+    colorize = false;
     break;
   default:
     level = 'debug';
     silent = false;
+    colorize = true;
     break;
 }
 
 const logger = new createLogger({ // eslint-disable-line new-cap
-  level: 'info',
+  level,
   format: format.combine(
     format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'
@@ -30,8 +34,7 @@ const logger = new createLogger({ // eslint-disable-line new-cap
     format.errors({
       stack: true
     }),
-    format.splat(),
-    format.json()
+    format.splat()
   ),
   defaultMeta: {
     service: config.name
@@ -41,12 +44,9 @@ const logger = new createLogger({ // eslint-disable-line new-cap
       level,
       silent,
       handleExceptions: true,
-      format: format.combine(
-        format.colorize(),
-        format.printf(
-          info => `${info.level}: ${info.message}`,
-        ),
-      )
+      format: format.prettyPrint({
+        colorize
+      })
     })
   ]
 });

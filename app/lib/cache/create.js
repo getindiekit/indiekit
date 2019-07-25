@@ -20,7 +20,7 @@ module.exports = (filePath, fileData) => {
       recursive: true
     });
 
-    logger.info(`Created ${pathToFile}`);
+    logger.info(`Cached.create: ${pathToFile}`);
   }
 
   // Write data to disk
@@ -29,6 +29,6 @@ module.exports = (filePath, fileData) => {
       throw error;
     }
 
-    logger.info(`Cached ${filePath}`);
+    logger.info(`Cached.create: ${filePath}`);
   });
 };

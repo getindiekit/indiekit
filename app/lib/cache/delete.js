@@ -12,6 +12,6 @@ const logger = require(process.env.PWD + '/app/logger');
 module.exports = dir => {
   if (fs.existsSync(dir)) {
     fs.removeSync(dir);
-    logger.info(`Deleted ${dir}`);
+    logger.info(`cache.delete: Deleted ${dir}`);
   }
 };

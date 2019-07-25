@@ -35,7 +35,8 @@ const getContents = async path => {
     response.data.content = Buffer.from(response.data.content, 'base64').toString('utf8');
     return response;
   } catch (error) {
-    logger.error(error);
+    logger.error('store.github.getContents', {error});
+    throw new Error(error);
   }
 };
 
@@ -99,7 +100,8 @@ const updateFile = async (path, content, options) => {
       });
     }
   } catch (error) {
-    logger.error(error);
+    logger.error('store.github.updateFile', {error});
+    throw new Error(error);
   }
 };
 
@@ -127,7 +129,8 @@ const deleteFile = async (path, options) => {
       });
     }
   } catch (error) {
-    logger.error(error);
+    logger.error('store.github.deleteFile', {error});
+    throw new Error(error);
   }
 };
 
