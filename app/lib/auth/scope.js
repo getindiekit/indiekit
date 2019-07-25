@@ -1,5 +1,3 @@
-const config = require(process.env.PWD + '/app/config');
-
 /**
  * Checks if scope in authenticated token contains specified scope.
  * Automatically handles `post` and `create` as the same thing
@@ -14,7 +12,8 @@ const config = require(process.env.PWD + '/app/config');
  * @return {Object} Error response
  */
 module.exports = requiredScope => (request, response, next) => {
-  const {scope} = config.indieauth.token;
+  // Get indieauth token scope from locals
+  const {scope} = response.locals.indieauthToken;
   if (scope) {
     const scopes = scope.split(' ');
     let hasScope = scopes.includes(requiredScope);
