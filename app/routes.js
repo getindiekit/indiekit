@@ -10,7 +10,7 @@ const router = new express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 const indieauth = auth.indieauth({
-  url: config.url
+  me: config.url
 });
 
 const file = upload.single('file');
