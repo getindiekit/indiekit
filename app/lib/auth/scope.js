@@ -37,6 +37,7 @@ module.exports = requiredScope => (req, res, next) => {
   }
 
   // No scope, send error response
+  logger.error('auth.scope: insufficient_scope');
   return res.status(401).json({
     error: 'insufficient_scope',
     error_description: `Scope of access token does not meet requirements for requested scope (${requiredScope})`,
