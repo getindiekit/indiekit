@@ -7,12 +7,13 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 
 // Function
 const savePost = require(process.env.PWD + '/app/lib/micropub/save-post');
+const pub = require('./fixtures/create-config');
 
 // Tests
 test('Creates a note', async t => {
   const body = require('./fixtures/type-note');
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
-  const response = await savePost(body);
+  const response = await savePost(pub, body);
   t.truthy(utils.isValidUrl(response));
 });
 
@@ -25,6 +26,6 @@ test('Creates a photo', async t => {
     originalname: 'image.gif'
   }];
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
-  const response = await savePost(body, files);
+  const response = await savePost(pub, body, files);
   t.truthy(utils.isValidUrl(response));
 });

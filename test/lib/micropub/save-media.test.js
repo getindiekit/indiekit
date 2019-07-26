@@ -7,6 +7,7 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 
 // Function
 const saveMedia = require(process.env.PWD + '/app/lib/micropub/save-media');
+const pub = require('./fixtures/create-config');
 
 // Tests
 test('Saves a file to GitHub', async t => {
@@ -17,6 +18,6 @@ test('Saves a file to GitHub', async t => {
     originalname: 'image.gif'
   };
   nock('https://api.github.com').persist().put(/\b[\d\w]{5}\b/g).reply(200);
-  const response = await saveMedia(file);
+  const response = await saveMedia(pub, file);
   t.truthy(utils.isValidUrl(response));
 });
