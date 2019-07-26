@@ -21,7 +21,7 @@ module.exports = [
     let mf2 = body;
     if (!request.is('json')) {
       mf2 = microformats.formEncodedToMf2(body);
-      logger.debug('micropub.createPost: Normalised form-encoded mf2', {mf2});
+      logger.info('micropub.createPost: Normalised form-encoded mf2', {mf2});
     }
 
     try {

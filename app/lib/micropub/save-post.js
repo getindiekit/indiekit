@@ -38,7 +38,7 @@ module.exports = async (pub, mf2, files) => {
   properties.content = microformats.deriveContent(mf2);
   properties.slug = microformats.deriveSlug(mf2, slugSeparator);
   properties.photo = await microformats.derivePhoto(mf2, files, typeConfig);
-  logger.debug('micropub.savePost: Derived mf2 properties', {properties});
+  logger.info('micropub.savePost: Derived mf2 properties', {properties});
 
   // Render template
   const templatePath = typeConfig.template;

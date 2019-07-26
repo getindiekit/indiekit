@@ -1,4 +1,5 @@
 const auth = require(process.env.PWD + '/app/lib/auth');
+const logger = require(process.env.PWD + '/app/logger');
 
 /**
  * Updates a post
@@ -20,6 +21,7 @@ module.exports = [
     const {action, url} = request.query || request.body;
 
     if (action && url) {
+      logger.info('micropub.updatePost: %s', url);
       return response.status(400).json({
         error: 'invalid_request',
         error_description: 'Update action not supported'
