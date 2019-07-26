@@ -7,16 +7,16 @@ const logger = require(process.env.PWD + '/app/logger');
  * @memberof auth
  * @module scope
  * @param {String} requiredScope Scope to check
- * @param {Object} request Express request object
- * @param {Object} response Express response object
+ * @param {Object} req Express request object
+ * @param {Object} res Express response object
  * @param {Function} next Express callback function
  * @return {Object} Error response
  */
-module.exports = requiredScope => (request, response, next) => {
+module.exports = requiredScope => (req, res, next) => {
   logger.info('auth.scope: %s', requiredScope);
 
   // Get indieauth token scope from locals
-  const {scope} = response.locals.indieauthToken;
+  const {scope} = res.locals.indieauthToken;
   if (scope) {
     const scopes = scope.split(' ');
     let hasScope = scopes.includes(requiredScope);
@@ -37,7 +37,7 @@ module.exports = requiredScope => (request, response, next) => {
   }
 
   // No scope, send error response
-  return response.status(401).json({
+  return res.status(401).json({
     error: 'insufficient_scope',
     error_description: `Scope of access token does not meet requirements for requested scope (${requiredScope})`,
     scope: requiredScope

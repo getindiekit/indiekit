@@ -122,7 +122,7 @@ authenticated users can use endpoint for posting to configured destination.
 -   `options` **[Object][93]** Middleware optionn
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express next function
+-   `next` **[Function][94]** Express callback function
 
 Returns **[Function][94]** Call next middleware function
 
@@ -138,9 +138,7 @@ Automatically handles `post` and `create` as the same thing
 -   `requiredScope` **[String][96]** Scope to check
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express next function
-
-Returns **[Function][94]** Call next middleware function
+-   `next` **[Function][94]** Express callback function
 
 Returns **[Object][93]** Error response
 
@@ -298,6 +296,7 @@ Creates a post
 
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
+-   `next` **[Function][94]** Express callback function
 
 Returns **[Promise][97]** Express response object
 
@@ -309,7 +308,7 @@ Deletes a post
 
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express next function
+-   `next` **[Function][94]** Express callback function
 
 Returns **[Promise][97]** Express response object
 
@@ -355,7 +354,7 @@ Updates a post
 
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express next function
+-   `next` **[Function][94]** Express callback function
 
 Returns **[Object][93]** Express response object
 
@@ -367,7 +366,7 @@ Updates a post
 
 -   `request` **[Object][93]** Express request object
 -   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express next function
+-   `next` **[Function][94]** Express callback function
 
 Returns **[Object][93]** Express response object
 

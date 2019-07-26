@@ -6,23 +6,23 @@ const logger = require(process.env.PWD + '/app/logger');
  *
  * @memberof micropub
  * @module updatePost
- * @param {Object} request Express request object
- * @param {Object} response Express response object
+ * @param {Object} req Express request object
+ * @param {Object} res Express response object
  * @param {Function} next Express callback function
  * @returns {Object} Express response object
  */
 module.exports = [
   auth.scope('update'),
-  (request, response, next) => {
-    const {action} = request.query || request.body;
+  (req, res, next) => {
+    const {action} = req.query || req.body;
     return (action === 'update') ? auth.scope('update') : next();
   },
-  async (request, response, next) => {
-    const {action, url} = request.query || request.body;
+  async (req, res, next) => {
+    const {action, url} = req.query || req.body;
 
     if (action && url) {
       logger.info('micropub.updatePost: %s', url);
-      return response.status(400).json({
+      return res.status(400).json({
         error: 'invalid_request',
         error_description: 'Update action not supported'
       });

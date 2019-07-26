@@ -9,23 +9,23 @@ const normalizeUrl = require('normalize-url');
  * @memberof auth
  * @module indieauth
  * @param {Object} options Middleware optionn
- * @param {Object} request Express request object
- * @param {Object} response Express response object
+ * @param {Object} req Express request object
+ * @param {Object} res Express response object
  * @param {Function} next Express callback function
  * @return {Function} Call next middleware function
  * @return {Object} Error response
  */
-module.exports = options => async (request, response, next) => {
+module.exports = options => async (req, res, next) => {
   let accessToken;
-  if (request.headers.authorization) {
-    accessToken = request.headers.authorization.trim().split(/\s+/)[1];
-  } else if (!accessToken && request.body && request.body.access_token) {
-    accessToken = request.body.access_token;
-    delete request.body.access_token; // Delete token from body if exists
+  if (req.headers.authorization) {
+    accessToken = req.headers.authorization.trim().split(/\s+/)[1];
+  } else if (!accessToken && req.body && req.body.access_token) {
+    accessToken = req.body.access_token;
+    delete req.body.access_token; // Delete token from body if exists
   }
 
   if (!accessToken) {
-    return response.status(401).json({
+    return res.status(401).json({
       error: 'unauthorized',
       error_description: 'No access token provided in request'
     });
@@ -33,7 +33,7 @@ module.exports = options => async (request, response, next) => {
 
   const {me} = options;
   if (!me) {
-    return response.status(400).json({
+    return res.status(400).json({
       error: 'invalid_request',
       error_description: 'Publication URL not configured'
     });
@@ -53,7 +53,7 @@ module.exports = options => async (request, response, next) => {
 
     verifiedToken = await verifiedToken.json();
     if (verifiedToken.error) {
-      return response.status(401).json({
+      return res.status(401).json({
         error: 'unauthorized',
         error_description: verifiedToken.error_description
       });
@@ -61,18 +61,18 @@ module.exports = options => async (request, response, next) => {
 
     const isAuthenticated = normalizeUrl(verifiedToken.me) === normalizeUrl(me);
     if (!isAuthenticated) {
-      return response.status(403).json({
+      return res.status(403).json({
         error: 'forbidden',
         error_description: 'User does not have permission to perform request'
       });
     }
 
     // Save verified indieauth token to locals
-    response.locals.indieauthToken = verifiedToken;
+    res.locals.indieauthToken = verifiedToken;
 
     next();
   } catch (error) {
-    return response.status(401).json({
+    return res.status(401).json({
       error: 'invalid_request',
       error_description: error.description || 'Error validating token'
     });

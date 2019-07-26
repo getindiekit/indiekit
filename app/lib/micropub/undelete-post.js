@@ -8,39 +8,39 @@ const savePost = require('./save-post');
  *
  * @memberof micropub
  * @module undeletePost
- * @param {Object} request Express request object
- * @param {Object} response Express response object
+ * @param {Object} req Express request object
+ * @param {Object} res Express response object
  * @param {Function} next Express callback function
  * @returns {Object} Express response object
  */
 module.exports = [
-  (request, response, next) => {
-    const {action} = request.query || request.body;
+  (req, res, next) => {
+    const {action} = req.query || req.body;
     return (action === 'undelete') ? auth.scope('create') : next();
   },
-  async (request, response, next) => {
-    const {action, url} = request.query || request.body;
+  async (req, res, next) => {
+    const {action, url} = req.query || req.body;
 
     if (action && url) {
       const recordData = record.read(url);
       const {mf2} = recordData;
-      const {files} = request;
+      const {files} = req;
 
       try {
-        const {pub} = request.app.locals;
+        const {pub} = req.app.locals;
         const location = await savePost(pub, mf2, files);
 
         if (location) {
           logger.info('micropub.undeletePost: %s', location);
-          response.header('Location', location);
-          return response.status(201).json({
+          res.header('Location', location);
+          return res.status(201).json({
             success: 'delete_undelete',
             success_description: `Post undeleted from ${location}`
           });
         }
       } catch (error) {
         logger.error('micropub.undeletePost', {error});
-        return response.status(500).json({
+        return res.status(500).json({
           error: 'server_error',
           error_description: `Unable to undelete post. ${error.message}`
         });
