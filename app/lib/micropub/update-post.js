@@ -8,7 +8,7 @@ const logger = require(process.env.PWD + '/app/logger');
  * @module updatePost
  * @param {Object} request Express request object
  * @param {Object} response Express response object
- * @param {Function} next Express next function
+ * @param {Function} next Express callback function
  * @returns {Object} Express response object
  */
 module.exports = [

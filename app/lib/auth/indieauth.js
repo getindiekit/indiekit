@@ -11,7 +11,7 @@ const normalizeUrl = require('normalize-url');
  * @param {Object} options Middleware optionn
  * @param {Object} request Express request object
  * @param {Object} response Express response object
- * @param {Function} next Express next function
+ * @param {Function} next Express callback function
  * @return {Function} Call next middleware function
  * @return {Object} Error response
  */

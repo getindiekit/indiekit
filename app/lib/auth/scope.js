@@ -9,8 +9,7 @@ const logger = require(process.env.PWD + '/app/logger');
  * @param {String} requiredScope Scope to check
  * @param {Object} request Express request object
  * @param {Object} response Express response object
- * @param {Function} next Express next function
- * @return {Function} Call next middleware function
+ * @param {Function} next Express callback function
  * @return {Object} Error response
  */
 module.exports = requiredScope => (request, response, next) => {

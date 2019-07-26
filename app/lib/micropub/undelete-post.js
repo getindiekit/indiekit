@@ -10,7 +10,7 @@ const savePost = require('./save-post');
  * @module undeletePost
  * @param {Object} request Express request object
  * @param {Object} response Express response object
- * @param {Function} next Express next function
+ * @param {Function} next Express callback function
  * @returns {Object} Express response object
  */
 module.exports = [

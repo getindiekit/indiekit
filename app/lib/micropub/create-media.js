@@ -13,7 +13,7 @@ const saveMedia = require('./save-media');
  */
 module.exports = [
   auth.scope('create'),
-  async (request, response) => {
+  async (request, response, next) => {
     const {file} = request;
 
     if (!file || file.truncated || !file.buffer) {
@@ -42,5 +42,7 @@ module.exports = [
         error_description: `Unable to create file. ${error.message}`
       });
     }
+
+    return next();
   }
 ];
