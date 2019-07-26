@@ -21,8 +21,8 @@ const files = upload.any();
  */
 
 // Index
-router.get('/', (request, response) => {
-  response.render('index');
+router.get('/', (req, res) => {
+  res.render('index');
 });
 
 // Admin

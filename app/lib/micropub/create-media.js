@@ -7,37 +7,38 @@ const saveMedia = require('./save-media');
  *
  * @memberof micropub
  * @module createMedia
- * @param {Object} request Express request object
- * @param {Object} response Express response object
+ * @param {Object} req Express request object
+ * @param {Object} res Express response object
+ * @param {Function} next Express callback function
  * @returns {Promise} Express response object
  */
 module.exports = [
   auth.scope('create'),
-  async (request, response, next) => {
-    const {file} = request;
+  async (req, res, next) => {
+    const {file} = req;
 
     if (!file || file.truncated || !file.buffer) {
-      return response.status(400).json({
+      return res.status(400).json({
         error: 'invalid_request',
         error_description: 'No files included in request'
       });
     }
 
     try {
-      const {pub} = request.app.locals;
+      const {pub} = req.app.locals;
       const location = await saveMedia(pub, file);
 
       if (location) {
         logger.info('micropub.createMedia: %s', location);
-        response.header('Location', location);
-        return response.status(201).json({
+        res.header('Location', location);
+        return res.status(201).json({
           success: 'create',
           success_description: `File created at ${location}`
         });
       }
     } catch (error) {
       logger.error('micropub.createMedia', {error});
-      return response.status(500).json({
+      return res.status(500).json({
         error: 'server_error',
         error_description: `Unable to create file. ${error.message}`
       });

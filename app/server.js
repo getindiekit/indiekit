@@ -41,12 +41,12 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')));
 
 // Log requests
-app.use((request, response, done) => {
-  logger.info(`${request.method} ${request.originalUrl}`, {
-    headers: request.headers,
-    body: request.body,
-    params: request.params,
-    query: request.query
+app.use((req, res, done) => {
+  logger.info(`${req.method} ${req.originalUrl}`, {
+    headers: req.headers,
+    body: req.body,
+    params: req.params,
+    query: req.query
   });
   done();
 });
@@ -55,11 +55,11 @@ app.use((request, response, done) => {
 app.use('/', routes);
 
 // 404
-app.use((request, response) => {
-  response.status(404);
+app.use((req, res) => {
+  res.status(404);
 
-  if (request.accepts('html')) {
-    response.render('error', {
+  if (req.accepts('html')) {
+    res.render('error', {
       status: 404,
       message: 'Not Found',
       error: 'The requested resource could not be found.'
@@ -68,23 +68,23 @@ app.use((request, response) => {
 });
 
 // Errors
-app.use((error, request, response, next) => {
+app.use((error, req, res, next) => {
   const status = error.status || 500;
   const {message} = error;
 
-  logger.error(`${status}: ${message}. ${request.method} ${request.originalUrl}`);
+  logger.error(`${status}: ${message}. ${req.method} ${req.originalUrl}`);
 
   // Set locals, only providing error in development
-  if (request.accepts('html')) {
-    response.render('error', {
+  if (req.accepts('html')) {
+    res.render('error', {
       status,
       message,
       error
     });
   }
 
-  response.status(status);
-  response.send(`${status}: ${message}. ${error}`);
+  res.status(status);
+  res.send(`${status}: ${message}. ${error}`);
 
   next();
 });

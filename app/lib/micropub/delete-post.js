@@ -8,18 +8,18 @@ const store = require(process.env.PWD + '/app/lib/store');
  *
  * @memberof micropub
  * @module deletePost
- * @param {Object} request Express request object
- * @param {Object} response Express response object
+ * @param {Object} req Express request object
+ * @param {Object} res Express response object
  * @param {Function} next Express callback function
  * @returns {Promise} Express response object
  */
 module.exports = [
-  (request, response, next) => {
-    const {action} = request.query || request.body;
+  (req, res, next) => {
+    const {action} = req.query || req.body;
     return (action === 'delete') ? auth.scope('delete') : next();
   },
-  async (request, response, next) => {
-    const {action, url} = request.query || request.body;
+  async (req, res, next) => {
+    const {action, url} = req.query || req.body;
 
     if (action && url) {
       const recordData = record.read(url);
@@ -38,14 +38,14 @@ module.exports = [
           }
         } catch (error) {
           logger.error('micropub.deletePost', {error});
-          return response.status(500).json({
+          return res.status(500).json({
             error: 'server_error',
             error_description: `Unable to create delete ${url}. ${error.message}`
           });
         }
       }
 
-      return response.status(404).json({
+      return res.status(404).json({
         error: 'not_found',
         error_description: `No record found for ${url}`
       });
