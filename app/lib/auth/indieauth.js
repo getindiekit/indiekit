@@ -18,7 +18,7 @@ const normalizeUrl = require('normalize-url');
 module.exports = options => async (request, response, next) => {
   const accessToken = request.headers.authorization || request.body.access_token;
   const endpoint = options['token-endpoint'] || 'https://tokens.indieauth.com/token';
-  const {url} = options;
+  const {me} = options;
 
   if (!accessToken) {
     return response.status(401).json({
@@ -27,7 +27,7 @@ module.exports = options => async (request, response, next) => {
     });
   }
 
-  if (!url) {
+  if (!me) {
     return response.status(400).json({
       error: 'invalid_request',
       error_description: 'Publication URL not configured'
@@ -52,7 +52,7 @@ module.exports = options => async (request, response, next) => {
       });
     }
 
-    const isAuthenticated = normalizeUrl(verifiedToken.me) === normalizeUrl(url);
+    const isAuthenticated = normalizeUrl(verifiedToken.me) === normalizeUrl(me);
     if (!isAuthenticated) {
       return response.status(403).json({
         error: 'forbidden',
