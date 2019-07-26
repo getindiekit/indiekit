@@ -10,7 +10,6 @@ const router = new express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 const indieauth = auth.indieauth({
-  'token-endpoint': config.indieauth['token-endpoint'],
   url: config.url
 });
 
