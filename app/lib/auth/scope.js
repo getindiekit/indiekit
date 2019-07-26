@@ -1,3 +1,5 @@
+const logger = require(process.env.PWD + '/app/logger');
+
 /**
  * Checks if scope in authenticated token contains specified scope.
  * Automatically handles `post` and `create` as the same thing
@@ -12,6 +14,8 @@
  * @return {Object} Error response
  */
 module.exports = requiredScope => (request, response, next) => {
+  logger.info('auth.scope: %s', requiredScope);
+
   // Get indieauth token scope from locals
   const {scope} = response.locals.indieauthToken;
   if (scope) {
