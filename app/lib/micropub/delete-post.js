@@ -10,7 +10,7 @@ const store = require(process.env.PWD + '/app/lib/store');
  * @module deletePost
  * @param {Object} request Express request object
  * @param {Object} response Express response object
- * @param {Function} next Express next function
+ * @param {Function} next Express callback function
  * @returns {Promise} Express response object
  */
 module.exports = [

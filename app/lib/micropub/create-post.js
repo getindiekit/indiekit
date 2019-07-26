@@ -10,11 +10,12 @@ const savePost = require('./save-post');
  * @module createPost
  * @param {Object} request Express request object
  * @param {Object} response Express response object
+ * @param {Function} next Express callback function
  * @returns {Promise} Express response object
  */
 module.exports = [
   auth.scope('create'),
-  async (request, response) => {
+  async (request, response, next) => {
     const {body, files} = request;
 
     // Normalise form-encoded requests as mf2 JSON
@@ -43,5 +44,7 @@ module.exports = [
         error_description: `Unable to create post. ${error.message}`
       });
     }
+
+    return next();
   }
 ];
