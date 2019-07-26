@@ -16,9 +16,13 @@ const normalizeUrl = require('normalize-url');
  * @return {Object} Error response
  */
 module.exports = options => async (request, response, next) => {
-  const accessToken = request.headers.authorization || request.body.access_token;
-  const endpoint = options['token-endpoint'] || 'https://tokens.indieauth.com/token';
-  const {me} = options;
+  let accessToken;
+  if (request.headers.authorization) {
+    accessToken = request.headers.authorization.trim().split(/\s+/)[1];
+  } else if (!accessToken && request.body && request.body.access_token) {
+    accessToken = request.body.access_token;
+    delete request.body.access_token; // Delete token from body if exists
+  }
 
   if (!accessToken) {
     return response.status(401).json({
@@ -27,6 +31,7 @@ module.exports = options => async (request, response, next) => {
     });
   }
 
+  const {me} = options;
   if (!me) {
     return response.status(400).json({
       error: 'invalid_request',
@@ -36,15 +41,17 @@ module.exports = options => async (request, response, next) => {
 
   let verifiedToken;
   try {
+    const endpoint = options['token-endpoint'] || 'https://tokens.indieauth.com/token';
     verifiedToken = await fetch(endpoint, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
-        Authorization: `Bearer ${accessToken.replace(/^Bearer\s*/, '')}`
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    verifiedToken = await verifiedToken.json();
 
+    verifiedToken = await verifiedToken.json();
     if (verifiedToken.error) {
       return response.status(401).json({
         error: 'unauthorized',
