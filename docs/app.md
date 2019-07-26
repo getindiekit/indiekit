@@ -101,9 +101,8 @@ Responds to POST requests
 
 ### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express next function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
 
 Returns **[Object][93]** Express response object
 
@@ -114,17 +113,17 @@ Verify access tokens and determine scope.
 ### indieauth
 
 Verifies that a token provides permissions to post to configured publication,
-using [IndieAuth][95] to ensure only
+using [IndieAuth][94] to ensure only
 authenticated users can use endpoint for posting to configured destination.
 
 #### Parameters
 
 -   `options` **[Object][93]** Middleware optionn
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express callback function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
-Returns **[Function][94]** Call next middleware function
+Returns **[Function][95]** Call next middleware function
 
 Returns **[Object][93]** Error response
 
@@ -136,9 +135,9 @@ Automatically handles `post` and `create` as the same thing
 #### Parameters
 
 -   `requiredScope` **[String][96]** Scope to check
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express callback function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
 Returns **[Object][93]** Error response
 
@@ -283,8 +282,9 @@ Creates a new media file
 
 #### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
 Returns **[Promise][97]** Express response object
 
@@ -294,9 +294,9 @@ Creates a post
 
 #### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express callback function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
 Returns **[Promise][97]** Express response object
 
@@ -306,9 +306,9 @@ Deletes a post
 
 #### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express callback function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
 Returns **[Promise][97]** Express response object
 
@@ -318,8 +318,8 @@ Returns an object containing information about this application
 
 #### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
 
 Returns **[Promise][97]** Express response object
 
@@ -352,9 +352,9 @@ Updates a post
 
 #### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express callback function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
 Returns **[Object][93]** Express response object
 
@@ -364,9 +364,9 @@ Updates a post
 
 #### Parameters
 
--   `request` **[Object][93]** Express request object
--   `response` **[Object][93]** Express response object
--   `next` **[Function][94]** Express callback function
+-   `req` **[Object][93]** Express request object
+-   `res` **[Object][93]** Express response object
+-   `next` **[Function][95]** Express callback function
 
 Returns **[Object][93]** Express response object
 
@@ -803,9 +803,9 @@ Returns **[Object][93]** Normalized object
 
 [93]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[94]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[94]: https://www.w3.org/TR/indieauth/
 
-[95]: https://www.w3.org/TR/indieauth/
+[95]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
 [96]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
