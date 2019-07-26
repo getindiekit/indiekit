@@ -12,7 +12,6 @@ const logger = require(process.env.PWD + '/app/logger');
  * @returns {Object} Express response object
  */
 module.exports = [
-  auth.scope('update'),
   (req, res, next) => {
     const {action} = req.query || req.body;
     return (action === 'update') ? auth.scope('update') : next();
