@@ -17,7 +17,7 @@ const normalizeUrl = require('normalize-url');
  */
 module.exports = options => async (request, response, next) => {
   const accessToken = request.headers.authorization || request.body.access_token;
-  const endpoint = options['token-endpoint'];
+  const endpoint = options['token-endpoint'] || 'https://tokens.indieauth.com/token';
   const {url} = options;
 
   if (!accessToken) {

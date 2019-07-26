@@ -28,7 +28,7 @@ config.data = {
 
 // IndieAuth
 config.indieauth = {
-  'token-endpoint': process.env.INDIEAUTH_TOKEN_ENDPOINT || 'https://tokens.indieauth.com/token'
+  'token-endpoint': process.env.INDIEAUTH_TOKEN_ENDPOINT
 };
 
 // Publication
