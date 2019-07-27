@@ -20,10 +20,11 @@ module.exports = [
     const {action, url} = req.query || req.body;
 
     if (action && url) {
-      logger.info('micropub.updatePost: %s', url);
+      const error_description = 'Update action not supported';
+      logger.error('micropub.updatePost: %s', error_description);
       return res.status(400).json({
         error: 'invalid_request',
-        error_description: 'Update action not supported'
+        error_description
       });
     }
 

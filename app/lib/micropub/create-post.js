@@ -56,18 +56,20 @@ module.exports = [
       const location = await savePost(pub, mf2, files);
 
       if (location) {
-        logger.info('micropub.createPost: %s', location);
+        const success_description = `Post will be created at ${location}`;
+        logger.info('micropub.createPost: %s', success_description);
         res.header('Location', location);
         return res.status(202).json({
           success: 'create_pending',
-          success_description: `Post will be created at ${location}`
+          success_description
         });
       }
     } catch (error) {
-      logger.error('micropub.createPost', {error});
+      const error_description = `Unable to create post. ${error.message}`;
+      logger.error('micropub.createPost: %s', error_description);
       return res.status(500).json({
         error: 'server_error',
-        error_description: `Unable to create post. ${error.message}`
+        error_description
       });
     }
 

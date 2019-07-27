@@ -1,3 +1,4 @@
+const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const publication = require(process.env.PWD + '/app/lib/publication');
 
@@ -39,9 +40,11 @@ module.exports = async (req, res) => {
           await microformats.urlToMf2(query.url, query.properties)
         );
       } catch (error) {
+        const error_description = `Unable to answer query. ${error.message}`;
+        logger.error('micropub.query: %s', error_description);
         return res.status(400).json({
           error: 'invalid_request',
-          error_description: error.message
+          error_description
         });
       }
     }
@@ -54,9 +57,11 @@ module.exports = async (req, res) => {
         });
       }
 
+      const error_description = 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
+      logger.error('micropub.query: %s', error_description);
       return res.status(400).json({
         error: 'invalid_request',
-        error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
+        error_description
       });
     }
   }
