@@ -17,6 +17,8 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @returns {String} Location of created file
  */
 module.exports = async (pub, file) => {
+  logger.info('micropub.saveMedia', {file});
+
   // Determine post type from media type
   const type = utils.deriveMediaType(file);
   const typeConfig = pub['post-types'][type];

@@ -13,7 +13,6 @@ const publication = require(process.env.PWD + '/app/lib/publication');
 module.exports = async (req, res) => {
   const {pub} = await req.app.locals;
   const endpointBaseUrl = `${req.protocol}://${req.headers.host}`;
-  console.log('categories', publication.getCategories(pub));
 
   const endpointConfig = {
     categories: await publication.getCategories(pub),
