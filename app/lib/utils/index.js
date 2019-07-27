@@ -55,7 +55,6 @@ const deriveFileProperties = file => {
  */
 const deriveMediaType = file => {
   const {mime} = fileType(file.buffer);
-  console.log('mime', mime);
 
   if (mime.includes('audio/')) {
     return 'audio';
