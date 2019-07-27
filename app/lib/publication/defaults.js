@@ -1,6 +1,16 @@
 const templateDir = process.env.PWD + '/app/templates';
 
+/**
+ * Default publication configuration
+ *
+ * @memberof publication
+ * @module default
+ *
+ * Note: Values for all configuration properties – empty or not – are
+ * required to ensure user configured values overwrite these defaults.
+ */
 module.exports = {
+  categories: [],
   'post-types': {
     article: {
       name: 'Article',
