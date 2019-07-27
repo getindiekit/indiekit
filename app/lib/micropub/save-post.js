@@ -34,11 +34,10 @@ module.exports = async (pub, mf2, files) => {
 
   // Update properties
   const {properties} = mf2;
-  properties.published = microformats.derivePuplished(mf2);
   properties.content = microformats.deriveContent(mf2);
+  properties.photo = await microformats.derivePhoto(mf2);
+  properties.published = microformats.derivePuplished(mf2);
   properties.slug = microformats.deriveSlug(mf2, slugSeparator);
-  properties.photo = await microformats.derivePhoto(mf2, files, typeConfig);
-  logger.info('micropub.savePost: Derived mf2 properties', {properties});
 
   // Render template
   const templatePath = typeConfig.template;
@@ -66,10 +65,6 @@ module.exports = async (pub, mf2, files) => {
     }
   };
 
-  // TODO: Upload media?
-  // If files in Micropub request, and they’ve not been added via the
-  // media endpoint (how to know?), should they be uploaded here?
-
   // Upload post to GitHub
   try {
     const response = await store.github.createFile(postPath, content, {
@@ -83,5 +78,6 @@ module.exports = async (pub, mf2, files) => {
     }
   } catch (error) {
     logger.error('micropub.savePost', {error});
+    throw new Error(error);
   }
 };

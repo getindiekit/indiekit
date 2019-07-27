@@ -44,7 +44,7 @@ module.exports = async configPath => {
 
     if (pubPostTypes) {
       for (const key in pubPostTypes) {
-        if (Object.prototype.hasOwnProperty.call(pubPostTypes, key)) {
+        if ({}.hasOwnProperty.call(pubPostTypes, key)) {
           const postType = pubPostTypes[key];
           const cacheTemplate = path.join('templates', `${key}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);

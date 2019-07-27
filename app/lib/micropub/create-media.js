@@ -16,6 +16,7 @@ module.exports = [
   auth.scope('create'),
   async (req, res, next) => {
     const {file} = req;
+    const {pub} = req.app.locals;
 
     if (!file || file.truncated || !file.buffer) {
       return res.status(400).json({
@@ -25,7 +26,6 @@ module.exports = [
     }
 
     try {
-      const {pub} = req.app.locals;
       const location = await saveMedia(pub, file);
 
       if (location) {

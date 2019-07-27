@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     categories: [
       'indiekit',
       'indieweb'
-    ], // @todo Allow configuration of this list (from remote JSON?)
+    ], // TODO: Allow configuration of this list (from remote JSON?)
     'media-endpoint': pub['media-endpoint'] || `${endpointBaseUrl}/media`,
     'post-types': publication.getPostTypes(pub),
     'syndicate-to': pub['syndicate-to']

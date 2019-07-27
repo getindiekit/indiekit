@@ -9,16 +9,12 @@ const micropub = require(process.env.PWD + '/app/lib/micropub');
 const router = new express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({storage});
-const indieauth = auth.indieauth({
-  me: config.url
-});
-
 const file = upload.single('file');
 const files = upload.any();
 
-/**
- * @module routes
- */
+const indieauth = auth.indieauth({
+  me: config.url
+});
 
 // Index
 router.get('/', (req, res) => {
