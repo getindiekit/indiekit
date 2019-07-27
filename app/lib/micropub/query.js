@@ -13,11 +13,10 @@ const publication = require(process.env.PWD + '/app/lib/publication');
 module.exports = async (req, res) => {
   const {pub} = await req.app.locals;
   const endpointBaseUrl = `${req.protocol}://${req.headers.host}`;
+  console.log('categories', publication.getCategories(pub));
+
   const endpointConfig = {
-    categories: [
-      'indiekit',
-      'indieweb'
-    ], // TODO: Allow configuration of this list (from remote JSON?)
+    categories: await publication.getCategories(pub),
     'media-endpoint': pub['media-endpoint'] || `${endpointBaseUrl}/media`,
     'post-types': publication.getPostTypes(pub),
     'syndicate-to': pub['syndicate-to']
