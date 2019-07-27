@@ -34,22 +34,32 @@ test('Derives file type and returns equivalent IndieWeb post type', async t => {
   const audio = {
     buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/audio.mp3'))
   };
-  const video = {
-    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/video.mp4'))
-  };
   const photo = {
     buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/photo.jpg'))
   };
+  const video = {
+    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/video.mp4'))
+  };
+  const font = {
+    buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/font.ttf'))
+  };
 
   t.is(utils.deriveMediaType(audio), 'audio');
-  t.is(utils.deriveMediaType(video), 'video');
   t.is(utils.deriveMediaType(photo), 'photo');
+  t.is(utils.deriveMediaType(video), 'video');
+  t.is(utils.deriveMediaType(font), null);
 });
 
 test('Excerpts string', t => {
   const string = 'Foo bar baz qux quux.';
   t.is(utils.excerptString(string, 2), 'Foo bar');
   t.is(utils.excerptString(string, 10), 'Foo bar baz qux quux.');
+  t.is(utils.excerptString({string}, 2), null);
+});
+
+test('Validates URL', t => {
+  t.true(utils.isValidUrl('https://example.com'));
+  t.false(utils.isValidUrl('example@example.com'));
 });
 
 test('Removes `/` from beginning and end of string', t => {
