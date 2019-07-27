@@ -1,5 +1,4 @@
 const path = require('path');
-const bodyParser = require('body-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
 const nunjucks = require('nunjucks');
@@ -26,12 +25,12 @@ app.locals.app = config;
 })();
 
 // Parse application/json
-app.use(bodyParser.json({
+app.use(express.json({
   limit: '10mb'
 }));
 
 // Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
+app.use(express.urlencoded({
   extended: true,
   limit: '10mb'
 }));

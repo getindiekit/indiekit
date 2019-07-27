@@ -26,7 +26,6 @@
     "@octokit/rest": "^16.28.6",
     "@timberio/node": "^0.34.1",
     "@timberio/winston": "^0.34.1",
-    "body-parser": "^1.19.0",
     "camelcase-keys": "^6.0.0",
     "data-store": "^3.1.0",
     "dotenv": "^8.0.0",

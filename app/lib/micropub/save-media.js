@@ -52,5 +52,6 @@ module.exports = async (pub, file) => {
     }
   } catch (error) {
     logger.error('micropub.saveMedia', {error});
+    throw new Error(error);
   }
 };
