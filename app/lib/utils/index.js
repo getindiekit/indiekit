@@ -130,11 +130,26 @@ const isValidUrl = str => {
  * @memberof utils
  * @exports normalizePath
  * @example normalizePath('/foo/bar/') => 'foo/bar'
- * @param {Object} str String
- * @return {Object} Normalized object
+ * @param {String} str Path to normalize
+ * @return {String} Normalized path
  */
 const normalizePath = str => {
   return str.replace(/^\/|\/$/g, '');
+};
+
+/**
+ * Removes protocol from beginning of URL
+ *
+ * @memberof utils
+ * @exports normalizeUrl
+ * @example normalizeUrl('http://foo.bar/baz') => 'foo.bar/baz'
+ * @example normalizeUrl('https://foo.bar/baz') => 'foo.bar/baz'
+ * @param {String} str URL to normalize
+ * @return {String} Normalized URL
+ */
+const normalizeUrl = str => {
+  const url = new URL(str).href;
+  return url.replace(/(^\w+:|^)\/\//, '');
 };
 
 module.exports = {
@@ -144,5 +159,6 @@ module.exports = {
   deriveMediaType,
   excerptString,
   isValidUrl,
-  normalizePath
+  normalizePath,
+  normalizeUrl
 };

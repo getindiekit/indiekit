@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
-const normalizeUrl = require('normalize-url');
+
+const logger = require(process.env.PWD + '/app/logger');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Verifies that a token provides permissions to post to configured publication,
@@ -25,17 +27,21 @@ module.exports = options => async (req, res, next) => {
   }
 
   if (!accessToken) {
+    const error_description = 'No access token provided in request';
+    logger.error('auth.indieauth: %s', error_description);
     return res.status(401).json({
       error: 'unauthorized',
-      error_description: 'No access token provided in request'
+      error_description
     });
   }
 
   const {me} = options;
   if (!me) {
+    const error_description = 'Publication URL not configured';
+    logger.error('auth.indieauth: %s', error_description);
     return res.status(400).json({
       error: 'invalid_request',
-      error_description: 'Publication URL not configured'
+      error_description
     });
   }
 
@@ -53,17 +59,21 @@ module.exports = options => async (req, res, next) => {
 
     verifiedToken = await verifiedToken.json();
     if (verifiedToken.error) {
+      const {error_description} = verifiedToken;
+      logger.error('auth.indieauth: %', error_description);
       return res.status(401).json({
         error: 'unauthorized',
-        error_description: verifiedToken.error_description
+        error_description
       });
     }
 
-    const isAuthenticated = normalizeUrl(verifiedToken.me) === normalizeUrl(me);
+    const isAuthenticated = utils.normalizeUrl(verifiedToken.me) === utils.normalizeUrl(me);
     if (!isAuthenticated) {
+      const error_description = 'User does not have permission to perform request';
+      logger.error('auth.indieauth: %s', error_description);
       return res.status(403).json({
         error: 'forbidden',
-        error_description: 'User does not have permission to perform request'
+        error_description
       });
     }
 
@@ -72,9 +82,11 @@ module.exports = options => async (req, res, next) => {
 
     next();
   } catch (error) {
+    const error_description = error.description || 'Error validating token';
+    logger.error('auth.indieauth: %s', error_description);
     return res.status(401).json({
       error: 'invalid_request',
-      error_description: error.description || 'Error validating token'
+      error_description
     });
   }
 };

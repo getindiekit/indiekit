@@ -19,6 +19,7 @@ module.exports = [
     const {pub} = req.app.locals;
 
     if (!file || file.truncated || !file.buffer) {
+      logger.error('micropub.createMedia: No files included in request');
       return res.status(400).json({
         error: 'invalid_request',
         error_description: 'No files included in request'
