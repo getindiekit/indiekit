@@ -19,10 +19,11 @@ module.exports = [
     const {pub} = req.app.locals;
 
     if (!file || file.truncated || !file.buffer) {
-      logger.error('micropub.createMedia: No files included in request');
+      const error_description = 'No files included in request';
+      logger.error('micropub.createMedia: %s', error_description);
       return res.status(400).json({
         error: 'invalid_request',
-        error_description: 'No files included in request'
+        error_description
       });
     }
 
@@ -38,10 +39,11 @@ module.exports = [
         });
       }
     } catch (error) {
-      logger.error('micropub.createMedia', {error});
+      const error_description = `Unable to create file. ${error.message}`;
+      logger.error('micropub.createMedia: %s', error_description);
       return res.status(500).json({
         error: 'server_error',
-        error_description: `Unable to create file. ${error.message}`
+        error_description
       });
     }
 

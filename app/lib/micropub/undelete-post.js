@@ -31,18 +31,20 @@ module.exports = [
         const location = await savePost(pub, mf2, files);
 
         if (location) {
-          logger.info('micropub.undeletePost: %s', location);
           res.header('Location', location);
+          const success_description = `Post undeleted from ${location}`;
+          logger.error('micropub.undeletePost: %s', success_description);
           return res.status(201).json({
             success: 'delete_undelete',
-            success_description: `Post undeleted from ${location}`
+            success_description
           });
         }
       } catch (error) {
-        logger.error('micropub.undeletePost', {error});
+        const error_description = `Unable to undelete ${url}. ${error.message}`;
+        logger.error('micropub.undeletePost: %s', error_description);
         return res.status(500).json({
           error: 'server_error',
-          error_description: `Unable to undelete post. ${error.message}`
+          error_description
         });
       }
     }

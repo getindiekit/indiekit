@@ -31,23 +31,28 @@ module.exports = [
             message: ':x: Deleted post'
           });
           if (response) {
+            const success_description = `Post deleted from ${url}`;
+            logger.info('micropub.deletePost: %s', success_description);
             return response.status(200).json({
               success: 'delete',
-              success_description: `Post deleted from ${url}`
+              success_description
             });
           }
         } catch (error) {
-          logger.error('micropub.deletePost', {error});
+          const error_description = `Unable to delete ${url}. ${error.message}`;
+          logger.error('micropub.deletePost: %s', error_description);
           return res.status(500).json({
             error: 'server_error',
-            error_description: `Unable to create delete ${url}. ${error.message}`
+            error_description
           });
         }
       }
 
+      const error_description = `No record found for ${url}`;
+      logger.error('micropub.deletePost: %s', error_description);
       return res.status(404).json({
         error: 'not_found',
-        error_description: `No record found for ${url}`
+        error_description
       });
     }
 
