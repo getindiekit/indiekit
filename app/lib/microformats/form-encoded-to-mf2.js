@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -21,7 +19,7 @@ module.exports = body => {
     'url'
   ]);
 
-  const mf2 = {
+  let mf2 = {
     type: body.h ? ['h-' + body.h] : ['h-entry'],
     properties: {}
   };
@@ -86,7 +84,7 @@ module.exports = body => {
   }
 
   // Remove empty and null keys
-  _.pickBy(mf2, _.identity);
+  mf2 = utils.cleanObject(mf2);
 
   return mf2;
 };

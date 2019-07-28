@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const {DateTime} = require('luxon');
 const fileType = require('file-type');
 
@@ -6,6 +7,35 @@ const fileType = require('file-type');
  *
  * @module utils
  */
+
+/**
+ * Remove falsey values if provided object is an array
+ *
+ * @memberof utils
+ * @exports cleanArray
+ * @param {Object} obj Object containing array to be cleaned
+ * @return {Array|Object} Cleaned array, else original object
+ */
+const cleanArray = obj => _.isArray(obj) ? _.compact(obj) : obj;
+
+/**
+ * Recursively remove empty, null and falsy values from an object
+ * Adapted from {@link https://stackoverflow.com/a/54186837 Ori Drori’s answer on Stack Overflow}
+ *
+ * @memberof utils
+ * @exports cleanObject
+ * @param {Object} obj Object to clean
+ * @return {Object} Cleaned object
+ */
+const cleanObject = obj => _.transform(obj, (prop, value, key) => {
+  const isObject = _.isObject(value);
+  const val = isObject ? cleanArray(cleanObject(value)) : value;
+  const keep = isObject ? !_.isEmpty(val) : Boolean(val);
+
+  if (keep) {
+    prop[key] = val;
+  }
+});
 
 /**
  * Generates random alpha-numeric string, 5 characters long
@@ -157,6 +187,8 @@ const normalizeUrl = str => {
 };
 
 module.exports = {
+  cleanArray,
+  cleanObject,
   createRandomString,
   decodeFormEncodedString,
   deriveFileProperties,
