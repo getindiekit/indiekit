@@ -84,7 +84,7 @@ module.exports = options => async (req, res, next) => {
   } catch (error) {
     const error_description = error.description || 'Error validating token';
     logger.error('auth.indieauth: %s', error_description);
-    return res.status(401).json({
+    return res.status(400).json({
       error: 'invalid_request',
       error_description
     });

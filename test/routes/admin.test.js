@@ -19,7 +19,7 @@ test('Returns 401 if access token malformed', async t => {
   const {app} = t.context;
   const response = await app.post('/admin')
     .query('purge=cache')
-    .set('Authorization', 'Bearer Invalid');
+    .set('Authorization', 'Bearer invalid');
   t.is(response.status, 401);
   t.is(response.body.error, 'unauthorized');
 });
