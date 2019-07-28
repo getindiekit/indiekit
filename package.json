@@ -41,6 +41,7 @@
     "nunjucks": "^3.2.0",
     "post-type-discovery": "github:paulrobertlloyd/post-type-discovery",
     "serve-favicon": "^2.5.0",
+    "sinon": "^7.3.2",
     "slug": "^1.1.0",
     "winston": "^3.2.1"
   },
@@ -72,6 +73,7 @@
         {
           "allow": [
             "access_token",
+            "client_id",
             "error_description",
             "success_description"
           ]

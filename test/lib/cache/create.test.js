@@ -7,7 +7,7 @@ const outputDir = process.env.PWD + '/.ava_output';
 const createCache = require(process.env.PWD + '/app/lib/cache/create.js');
 
 // Tests
-test('Creates cache', t => {
+test.skip('Creates cache', t => {
   const cachePath = outputDir + '/create-1/cache.json';
   createCache(cachePath, '{}');
   const created = fs.existsSync(cachePath);
