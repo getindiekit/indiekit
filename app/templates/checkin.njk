@@ -12,7 +12,7 @@ checkin:
   postal-code: {{ checkin.properties.postalCode }}
   tel: {{ checkin.properties.tel }}
 {%- if category %}
-categories:
+category:
 {%- for item in category %}
 - {{ item }}
 {%- endfor %}
