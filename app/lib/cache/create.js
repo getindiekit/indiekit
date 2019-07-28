@@ -29,6 +29,6 @@ module.exports = (filePath, fileData) => {
       throw error;
     }
 
-    logger.info(`Cached.create: ${filePath}`);
+    logger.info(`Cached.create: ${filePath}`, {fileData});
   });
 };

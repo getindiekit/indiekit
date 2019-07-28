@@ -30,7 +30,9 @@ module.exports = async configPath => {
     // If no configuration found in store, use application defaults
     if (pubConfig) {
       pubConfig = JSON.parse(pubConfig);
+      logger.info('publication.resolveConfig, using cached', {pubConfig});
     } else {
+      logger.info('publication.resolveConfig, using defaults', {appConfig});
       return appConfig;
     }
 
@@ -62,9 +64,10 @@ module.exports = async configPath => {
       newConfig['post-types'] = newPostTypes;
     }
 
+    logger.info('publication.resolveConfig, resolved', {newConfig});
     return newConfig;
   } catch (error) {
-    logger.error('store.publication.resolveConfig', {error});
+    logger.error('publication.resolveConfig', {error});
     throw new Error(error);
   }
 };

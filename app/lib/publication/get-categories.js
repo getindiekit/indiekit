@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
 
+const logger = require(process.env.PWD + '/app/logger');
+
 /**
  * Returns an array of available categories
  *
@@ -13,8 +15,13 @@ module.exports = async pub => {
   let categories = [];
 
   if (pubCategories && pubCategories.url) {
-    const response = await fetch(pubCategories.url);
-    categories = await response.json();
+    try {
+      const response = await fetch(pubCategories.url);
+      categories = await response.json();
+    } catch (error) {
+      logger.error('publication.getCategories', {error});
+      throw new Error(error);
+    }
   } else if (pubCategories && pubCategories.constructor === Array) {
     categories = pubCategories;
   }
