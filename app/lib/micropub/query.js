@@ -12,7 +12,7 @@ const publication = require(process.env.PWD + '/app/lib/publication');
  * @returns {Promise} Express response object
  */
 module.exports = async (req, res) => {
-  const {pub} = await req.app.locals;
+  const {pub} = req.app.locals;
   const endpointBaseUrl = `${req.protocol}://${req.headers.host}`;
 
   const endpointConfig = {
