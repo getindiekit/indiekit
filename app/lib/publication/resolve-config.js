@@ -19,7 +19,7 @@ const appConfig = require('./defaults');
 module.exports = async configPath => {
   // If no configuration provided, use application defaults
   if (!configPath) {
-    logger.info('store.publication.resolveConfig: No configuration provided. Using app defaults.');
+    logger.info('publication.resolveConfig: No configuration provided. Using app defaults.');
     return appConfig;
   }
 
@@ -45,17 +45,22 @@ module.exports = async configPath => {
     const pubPostTypes = pubConfig['post-types'];
 
     if (pubPostTypes) {
+      const cacheTemplates = [];
       for (const key in pubPostTypes) {
         if ({}.hasOwnProperty.call(pubPostTypes, key)) {
           const postType = pubPostTypes[key];
           const cacheTemplate = path.join('templates', `${key}.njk`);
           const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
-          await cache.read(postType.template, cacheTemplate);
+          cacheTemplates.push(
+            cache.read(postType.template, cacheTemplate)
+          );
 
           // Update `template` value with location of cached template
           postType.template = cacheTemplatePath;
         }
       }
+
+      await Promise.all(cacheTemplates);
 
       // Merge default and publication post types (with cached template paths)
       newPostTypes = _.merge(appPostTypes, pubPostTypes);
