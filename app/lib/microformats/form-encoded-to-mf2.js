@@ -29,7 +29,7 @@ module.exports = body => {
   }
 
   for (const key in body) {
-    if ({}.hasOwnProperty.call(body, key)) {
+    if (Object.hasOwnProperty.call(body, key)) {
       // Decode string values
       let value;
       if (typeof body[key] === 'string') {
