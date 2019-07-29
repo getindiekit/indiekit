@@ -16,7 +16,12 @@ module.exports = async pub => {
 
   if (pubCategories && pubCategories.url) {
     try {
-      const response = await fetch(pubCategories.url);
+      const response = await fetch(pubCategories.url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      });
       categories = await response.json();
     } catch (error) {
       logger.error('publication.getCategories', {error});

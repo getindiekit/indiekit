@@ -48,7 +48,7 @@ module.exports = options => async (req, res, next) => {
   let verifiedToken;
   try {
     const endpoint = options['token-endpoint'] || 'https://tokens.indieauth.com/token';
-    verifiedToken = await fetch(endpoint, {
+    const response = await fetch(endpoint, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -57,7 +57,7 @@ module.exports = options => async (req, res, next) => {
       }
     });
 
-    verifiedToken = await verifiedToken.json();
+    verifiedToken = await response.json();
     if (verifiedToken.error) {
       const {error_description} = verifiedToken;
       logger.error('auth.indieauth: %', error_description);
