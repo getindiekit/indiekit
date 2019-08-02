@@ -6,7 +6,7 @@ const config = require(process.env.PWD + '/app/config');
  * Derives published date (based on microformats2 data, else the current date)
  *
  * @memberof microformats
- * @module dervivePublishedProperty
+ * @module dervivePublished
  * @param {Object} mf2 microformats2 object
  * @returns {Array} Array containing ISO formatted date
  */

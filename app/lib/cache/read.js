@@ -9,7 +9,7 @@ const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Gets a files modified date ()
+ * Gets a file‘s modified date
  *
  * @private
  * @param {String} path Path to file in local cache

@@ -23,7 +23,7 @@
         -   [Parameters][19]
     -   [derivePostType][20]
         -   [Parameters][21]
-    -   [dervivePublishedProperty][22]
+    -   [dervivePublished][22]
         -   [Parameters][23]
     -   [derviveSlug][24]
         -   [Parameters][25]
@@ -65,16 +65,16 @@
         -   [Parameters][61]
 -   [render][62]
     -   [Parameters][63]
--   [store/github][64]
-    -   [getContents][65]
-        -   [Parameters][66]
-    -   [createFile][67]
-        -   [Parameters][68]
-    -   [updateFile][69]
-        -   [Parameters][70]
-    -   [deleteFile][71]
-        -   [Parameters][72]
--   [store][73]
+-   [store][64]
+    -   [github][65]
+-   [getContents][66]
+    -   [Parameters][67]
+-   [createFile][68]
+    -   [Parameters][69]
+-   [updateFile][70]
+    -   [Parameters][71]
+-   [deleteFile][72]
+    -   [Parameters][73]
 -   [utils][74]
     -   [cleanArray][75]
         -   [Parameters][76]
@@ -117,7 +117,7 @@ Returns **[Object][102]** Express response object
 
 ## auth
 
-Verify access tokens and determine scope.
+Verify access IndieAuth tokens and determine scope.
 
 ### indieauth
 
@@ -204,7 +204,6 @@ a microformats2 object. Attached photos are uploaded to GitHub.
 #### Parameters
 
 -   `mf2` **[Object][102]** microformats2 object
--   `typeConfig` **[Object][102]** Post type configuration
 
 Returns **[Promise][106]** Array of photo obejcts
 
@@ -219,7 +218,7 @@ a microformats2 object. Attached photos are uploaded to GitHub.
 
 Returns **[String][105]** Post type
 
-### dervivePublishedProperty
+### dervivePublished
 
 Derives published date (based on microformats2 data, else the current date)
 
@@ -454,29 +453,33 @@ Render a Nunjucks template string using context data
 
 Returns **[String][105]** Rendered string
 
-## store/github
+## store
+
+Interfaces to remote locations where files and configuration are stored.
+
+### github
 
 Get, create and delete data at a specified path at configured GitHub repo.
 
-### getContents
+## getContents
 
 -   **See: [GitHub REST API v3: Get Contents][111]**
 
 Reads content of a file or directory in a repository
 
-#### Parameters
+### Parameters
 
 -   `path` **[String][105]** Path to file
 
 Returns **[Promise][106]** GitHub HTTP response
 
-### createFile
+## createFile
 
 -   **See: [GitHub REST API v3: Create a file][112]**
 
 Creates a new file in a GitHub repository
 
-#### Parameters
+### Parameters
 
 -   `path` **[String][105]** Path to file
 -   `content` **[String][105]** File content
@@ -484,13 +487,13 @@ Creates a new file in a GitHub repository
 
 Returns **[Promise][106]** GitHub HTTP response
 
-### updateFile
+## updateFile
 
 -   **See: [GitHub REST API v3: Update a file][113]**
 
 Updates a file in a GitHub repository
 
-#### Parameters
+### Parameters
 
 -   `path` **[String][105]** Path to file
 -   `content` **[String][105]** File content
@@ -498,22 +501,18 @@ Updates a file in a GitHub repository
 
 Returns **[Promise][106]** GitHub HTTP response
 
-### deleteFile
+## deleteFile
 
 -   **See: [GitHub REST API v3: Delete a file][114]**
 
 Deletes a file in a GitHub repository
 
-#### Parameters
+### Parameters
 
 -   `path` **[String][105]** Path to file
 -   `options` **[String][105]** Options
 
 Returns **[Promise][106]** GitHub HTTP response
-
-## store
-
-Interfaces to remote locations where files and configuration are stored.
 
 ## utils
 
@@ -720,7 +719,7 @@ Returns **[String][105]** Normalized URL
 
 [21]: #parameters-8
 
-[22]: #dervivepublishedproperty
+[22]: #dervivepublished
 
 [23]: #parameters-9
 
@@ -804,25 +803,25 @@ Returns **[String][105]** Normalized URL
 
 [63]: #parameters-27
 
-[64]: #storegithub
+[64]: #store
 
-[65]: #getcontents
+[65]: #github
 
-[66]: #parameters-28
+[66]: #getcontents
 
-[67]: #createfile
+[67]: #parameters-28
 
-[68]: #parameters-29
+[68]: #createfile
 
-[69]: #updatefile
+[69]: #parameters-29
 
-[70]: #parameters-30
+[70]: #updatefile
 
-[71]: #deletefile
+[71]: #parameters-30
 
-[72]: #parameters-31
+[72]: #deletefile
 
-[73]: #store
+[73]: #parameters-31
 
 [74]: #utils
 

@@ -1,5 +1,5 @@
 /**
- * Verify access tokens and determine scope.
+ * Verify access IndieAuth tokens and determine scope.
  *
  * @module auth
  */

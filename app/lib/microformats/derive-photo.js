@@ -5,7 +5,6 @@
  * @memberof microformats
  * @module derivePhoto
  * @param {Object} mf2 microformats2 object
- * @param {Object} typeConfig Post type configuration
  * @returns {Promise} Array of photo obejcts
  */
 module.exports = async mf2 => {
