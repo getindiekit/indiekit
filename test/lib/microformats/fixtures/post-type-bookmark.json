@@ -1,0 +1,18 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "name": ["Your airplane seatbelt may also be an airbag - Stuck at the Airport"],
+    "category": ["travel", "airplane"],
+    "url": ["https://aaronparecki.com/2019/08/08/13/"],
+    "author": ["https://aaronparecki.com/"],
+    "published": ["2019-08-08T06:02:07-07:00"],
+    "bookmark-of": [{
+      "type": ["h-cite"],
+      "properties": {
+        "name": ["Your airplane seatbelt may also be an airbag - Stuck at the Airport"],
+        "url": ["https://stuckattheairport.com/2011/09/15/your-airplane-seatbelt-may-also-be-an-airbag/"]
+      },
+      "value": "https://stuckattheairport.com/2011/09/15/your-airplane-seatbelt-may-also-be-an-airbag/"
+    }]
+  }
+}

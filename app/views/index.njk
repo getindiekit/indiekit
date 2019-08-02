@@ -1,7 +1,7 @@
 {% extends "default.njk" %}
 
 {% block content %}
-<p>This is the <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint for <a href="{{ app.url }}">{{ app.url | replace('https://', '')}}</a>.</p>
+<p>This is the <a href="https://www.w3.org/TR/micropub/">Micropub</a> endpoint for <a href="{{ app.url }}">{{ pub.url | replace('https://', '')}}</a>.</p>
 <dl>
 {% if pub["media-endpoint"] %}
   <dt>Media endpoint</dt>

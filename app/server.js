@@ -1,12 +1,12 @@
 const path = require('path');
+const _ = require('lodash');
 const express = require('express');
 const favicon = require('serve-favicon');
 const nunjucks = require('nunjucks');
 
-const logger = require(process.env.PWD + '/app/logger');
+const logger = require(process.env.PWD + '/lib/logger');
 const config = require(process.env.PWD + '/app/config');
 const routes = require(process.env.PWD + '/app/routes');
-const publication = require(process.env.PWD + '/app/lib/publication');
 
 const app = express();
 const {port} = config;
@@ -18,11 +18,10 @@ nunjucks.configure(['./app/views', './app/static'], {
   watch: true
 });
 
+// Correct reporting of secure connections
+app.enable('trust proxy');
+
 app.set('view engine', 'njk');
-app.locals.app = config;
-(async () => {
-  app.locals.pub = await publication.resolveConfig(config['pub-config']);
-})();
 
 // Parse application/json
 app.use(express.json({
@@ -57,39 +56,28 @@ app.use('/', routes);
 app.use((req, res) => {
   res.status(404);
 
-  if (req.accepts('html')) {
+  if (req.accepts('text/html')) {
     res.render('error', {
       status: 404,
-      message: 'Not Found',
-      error: 'The requested resource could not be found.'
+      error: 'Not found',
+      error_description: 'The requested resource could not be found.'
     });
   }
 });
 
 // Errors
-app.use((error, req, res, next) => {
-  const status = error.status || 500;
+app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
+  const status = error.message.status || 500;
   const {message} = error;
 
-  logger.error(`${status}: ${message}. ${req.method} ${req.originalUrl}`);
-
-  // Set locals, only providing error in development
-  if (req.accepts('html')) {
-    res.render('error', {
-      status,
-      message,
-      error
-    });
-  }
-
   res.status(status);
-  res.send(`${status}: ${message}. ${error}`);
 
-  next();
+  return res.json({
+    error: _.snakeCase(message.error),
+    error_description: _.lowerFirst(message.error_description),
+    error_uri: message.error_uri
+  });
 });
-
-// Correct reporting of secure connections
-app.enable('trust proxy');
 
 app.listen(port, function () {
   logger.info(`Starting ${config.name} on port ${this.address().port}`);

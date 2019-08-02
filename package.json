@@ -15,7 +15,6 @@
     "prestart": "npm install",
     "start": "node app/server.js",
     "dev": "nodemon app/server.js",
-    "docs": "documentation build app/** -f md -o docs/app.md",
     "test": "NODE_ENV=test ava --verbose",
     "coverage": "NODE_ENV=test nyc ava"
   },
@@ -26,7 +25,7 @@
     "@octokit/rest": "^16.28.7",
     "@timberio/node": "^0.34.1",
     "@timberio/winston": "^0.34.1",
-    "camelcase-keys": "^6.0.0",
+    "camelcase-keys": "^6.0.1",
     "data-store": "^3.1.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
@@ -35,35 +34,48 @@
     "lodash": "^4.17.15",
     "luxon": "^1.17.2",
     "microformat-node": "^2.0.1",
-    "morgan": "^1.9.1",
     "multer": "^1.4.2",
+    "node-cache": "^4.2.1",
     "node-fetch": "^2.6.0",
+    "normalize-url": "^4.3.0",
     "nunjucks": "^3.2.0",
     "post-type-discovery": "^1.0.2",
     "serve-favicon": "^2.5.0",
-    "sinon": "^7.3.2",
     "slug": "^1.1.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
     "ava": "^2.2.0",
-    "documentation": "^12.0.3",
-    "husky": "^3.0.2",
-    "nock": "^10.0.6",
+    "documentation": "^12.1.1",
+    "husky": "^3.0.3",
+    "nock": "^11.0.0-beta.31",
     "nodemon": "^1.19.1",
     "nyc": "^14.0.0",
+    "sinon": "^7.4.1",
     "supertest": "^4.0.0",
+    "valid-url": "^1.0.9",
     "xo": "^0.24.0"
   },
   "ava": {
     "files": [
-      "**/*.test.js"
+      "test/**/*.test.js"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run docs"
+      "pre-commit": "npm run test"
     }
+  },
+  "nyc": {
+    "exclude": [
+      "app/config.js",
+      "app/logger.js",
+      "test/**"
+    ],
+    "reporter": [
+      "text",
+      "lcovonly"
+    ]
   },
   "xo": {
     "space": true,
@@ -75,6 +87,7 @@
             "access_token",
             "client_id",
             "error_description",
+            "error_uri",
             "success_description"
           ]
         }

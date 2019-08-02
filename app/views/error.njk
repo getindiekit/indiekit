@@ -3,6 +3,9 @@
 {% set title = status %}
 
 {% block content %}
-<h2>{{ status }} - {{ message }}</h2>
-<p>{{ error }}</p>
+<h2>{{ status }} - {{ error }}</h2>
+<p>{{ error_description }}</p>
+{% if error_uri %}
+<p><small><a href="{{ error_uri }}">{{ error_uri }}</a></small></p>
+{% endif %}
 {% endblock %}
