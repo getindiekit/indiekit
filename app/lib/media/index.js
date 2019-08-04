@@ -8,16 +8,16 @@ const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Saves a media file
+ * Creates a media file
  *
- * @memberof micropub
- * @module saveMedia
+ * @memberof media
+ * @module create
  * @param {Object} pub Publication configuration
  * @param {Object} file File object
  * @returns {String} Location of created file
  */
-module.exports = async (pub, file) => {
-  logger.info('micropub.saveMedia', {file});
+const create = async (pub, file) => {
+  logger.info('media.create', {file});
 
   // Determine post type from media type
   const type = utils.deriveMediaType(file);
@@ -48,12 +48,16 @@ module.exports = async (pub, file) => {
     });
 
     if (response) {
-      record.create(location, recordData);
-      logger.info('micropub.saveMedia', {recordData});
+      record.set(location, recordData);
+      logger.info('media.create', {recordData});
       return location;
     }
   } catch (error) {
-    logger.error('micropub.saveMedia', {error});
+    logger.error('media.create', {error});
     throw new Error(error);
   }
+};
+
+module.exports = {
+  create
 };

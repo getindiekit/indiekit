@@ -1,8 +1,8 @@
 const auth = require(process.env.PWD + '/app/lib/auth');
 const logger = require(process.env.PWD + '/app/logger');
+const media = require(process.env.PWD + '/app/lib/media');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
-const saveMedia = require('./save-media');
-const savePost = require('./save-post');
+const post = require(process.env.PWD + '/app/lib/post');
 
 /**
  * Creates a post
@@ -15,7 +15,9 @@ const savePost = require('./save-post');
  * @returns {Promise} Express response object
  */
 module.exports = [
-  auth.scope('create'),
+  (req, res, next) => {
+    return auth.scope('create')(req, res, next);
+  },
   async (req, res, next) => {
     const {body, files} = req;
     const {pub} = req.app.locals;
@@ -34,7 +36,7 @@ module.exports = [
         }
 
         try {
-          const value = await saveMedia(pub, file);
+          const value = await media.create(pub, file);
           if (value) {
             body[property].push(value);
           }
@@ -53,7 +55,7 @@ module.exports = [
     }
 
     try {
-      const location = await savePost(pub, mf2, files);
+      const location = await post.create(pub, mf2, files);
 
       if (location) {
         const success_description = `Post will be created at ${location}`;

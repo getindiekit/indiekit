@@ -1,6 +1,6 @@
 const auth = require(process.env.PWD + '/app/lib/auth');
 const logger = require(process.env.PWD + '/app/logger');
-const saveMedia = require('./save-media');
+const media = require(process.env.PWD + '/app/lib/media');
 
 /**
  * Creates a new media file
@@ -13,7 +13,9 @@ const saveMedia = require('./save-media');
  * @returns {Promise} Express response object
  */
 module.exports = [
-  auth.scope('create'),
+  (req, res, next) => {
+    return auth.scope('create')(req, res, next);
+  },
   async (req, res, next) => {
     const {file} = req;
     const {pub} = req.app.locals;
@@ -28,7 +30,7 @@ module.exports = [
     }
 
     try {
-      const location = await saveMedia(pub, file);
+      const location = await media.create(pub, file);
 
       if (location) {
         logger.info('micropub.createMedia: %s', location);

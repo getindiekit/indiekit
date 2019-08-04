@@ -1,4 +1,4 @@
-const templateDir = process.env.PWD + '/test/lib/micropub/fixtures';
+const templateDir = process.env.PWD + '/test/lib/media/fixtures';
 
 module.exports = {
   'post-types': {

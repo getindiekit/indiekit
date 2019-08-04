@@ -13,10 +13,11 @@ const logger = require(process.env.PWD + '/app/logger');
  * @return {Object} Error response
  */
 module.exports = requiredScope => (req, res, next) => {
-  logger.info('auth.scope: %s', requiredScope);
+  logger.info('auth.scope, required scope: %s', requiredScope);
 
   // Get indieauth token scope from locals
   const {scope} = res.locals.indieauthToken;
+  logger.info('auth.scope, token scope: %s', scope);
   if (scope) {
     const scopes = scope.split(' ');
     let hasScope = scopes.includes(requiredScope);

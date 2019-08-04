@@ -11,10 +11,10 @@ const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Saves a post file
+ * Creates a post file
  *
- * @memberof micropub
- * @module savePost
+ * @memberof post
+ * @module create
  * @param {Object} pub Publication configuration
  * @param {Object} mf2 Microformats2 object
  * @param {String} files File attachments
@@ -54,6 +54,7 @@ module.exports = async (pub, mf2, files) => {
   const url = new URL(postUrl, config.url);
   const location = url.href;
   const recordData = {
+    location,
     post: {
       path: postPath,
       url: postUrl
@@ -72,12 +73,12 @@ module.exports = async (pub, mf2, files) => {
     });
 
     if (response) {
-      record.create(location, recordData);
-      logger.info('micropub.savePost', {recordData});
+      record.set(location, recordData);
+      logger.info('post.create', {recordData});
       return location;
     }
   } catch (error) {
-    logger.error('micropub.savePost', {error});
+    logger.error('post.create', {error});
     throw new Error(error);
   }
 };

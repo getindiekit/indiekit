@@ -31,9 +31,7 @@ router.post('/admin',
 router.post('/micropub',
   indieauth,
   files,
-  micropub.updatePost,
-  micropub.deletePost,
-  micropub.undeletePost,
+  micropub.action,
   micropub.createPost
 );
 
