@@ -1,10 +1,10 @@
 const path = require('path');
 
 const config = require(process.env.PWD + '/app/config');
+const github = require(process.env.PWD + '/app/lib/github');
 const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
-const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -43,7 +43,7 @@ const create = async (pub, file) => {
 
   // Upload file to GitHub
   try {
-    const response = await store.github.createFile(mediaPath, file.buffer, {
+    const response = await github.createFile(mediaPath, file.buffer, {
       message: `:framed_picture: Uploaded ${mediaName}`
     });
 

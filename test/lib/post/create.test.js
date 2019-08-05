@@ -2,19 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const nock = require('nock');
 const test = require('ava');
+const validUrl = require('valid-url');
 
-const utils = require(process.env.PWD + '/app/lib/utils');
-
-// Function
 const post = require(process.env.PWD + '/app/lib/post');
 const pub = require('./fixtures/create-config');
 
-// Tests
 test('Creates a note', async t => {
   const body = require('./fixtures/type-note');
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
   const response = await post.create(pub, body);
-  t.truthy(utils.isValidUrl(response));
+  t.truthy(validUrl.isUri(response));
 });
 
 test('Creates a photo', async t => {
@@ -27,5 +24,5 @@ test('Creates a photo', async t => {
   }];
   nock('https://api.github.com').persist().put(/\bwatched-isle-of-dogs\b/g).reply(200);
   const response = await post.create(pub, body, files);
-  t.truthy(utils.isValidUrl(response));
+  t.truthy(validUrl.isUri(response));
 });

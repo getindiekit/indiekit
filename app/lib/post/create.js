@@ -3,11 +3,11 @@ const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
 
 const config = require(process.env.PWD + '/app/config');
+const github = require(process.env.PWD + '/app/lib/github');
 const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
-const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
@@ -68,7 +68,7 @@ module.exports = async (pub, mf2, files) => {
 
   // Upload post to GitHub
   try {
-    const response = await store.github.createFile(postPath, content, {
+    const response = await github.createFile(postPath, content, {
       message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
     });
 

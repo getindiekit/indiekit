@@ -4,12 +4,12 @@ const fs = require('fs-extra');
 
 const config = require(process.env.PWD + '/app/config');
 const createCache = require(process.env.PWD + '/app/lib/cache/create');
+const github = require(process.env.PWD + '/app/lib/github');
 const logger = require(process.env.PWD + '/app/logger');
-const store = require(process.env.PWD + '/app/lib/store');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Gets a file‘s modified date
+ * Gets a file’s modified date
  *
  * @private
  * @param {String} path Path to file in local cache
@@ -21,15 +21,15 @@ const getFileUpdatedDate = path => {
 };
 
 /**
- * Reads a file in the cache, fetching from store if not found
+ * Reads a file in the cache, fetching from GitHub if not found
  *
  * @memberof cache
  * @module read
- * @param {String} storePath Path to file in store
+ * @param {String} repoPath Path to file in GitHub repo
  * @param {String} cachePath Path to file in cache
  * @returns {Promise|Object} Fetched file object
  */
-module.exports = async (storePath, cachePath) => {
+module.exports = async (repoPath, cachePath) => {
   cachePath = path.join(config.cache.dir, cachePath);
   let cacheFile;
   let hasExpired;
@@ -48,17 +48,17 @@ module.exports = async (storePath, cachePath) => {
   }
 
   if (!isCached || hasExpired) {
-    storePath = utils.normalizePath(storePath);
+    repoPath = utils.normalizePath(repoPath);
 
     try {
-      const storeData = await store.github.getContents(storePath);
-      if (storeData) {
-        const freshData = storeData.data.content;
+      const repoData = await github.getContents(repoPath);
+      if (repoData) {
+        const freshData = repoData.data.content;
         createCache(cachePath, freshData);
         return freshData;
       }
 
-      throw new Error(`Unable to load ${storePath} from store`);
+      throw new Error(`Unable to load ${repoPath} from repo`);
     } catch (error) {
       logger.error('cache.read', {error});
       return false;

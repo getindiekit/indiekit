@@ -1,5 +1,5 @@
+const github = require(process.env.PWD + '/app/lib/github');
 const logger = require(process.env.PWD + '/app/logger');
-const store = require(process.env.PWD + '/app/lib/store');
 
 /**
  * Deletes a post
@@ -11,7 +11,7 @@ const store = require(process.env.PWD + '/app/lib/store');
  */
 module.exports = async recordData => {
   try {
-    const response = await store.github.deleteFile(recordData.post.path, {
+    const response = await github.deleteFile(recordData.post.path, {
       message: ':x: Deleted post'
     });
 
