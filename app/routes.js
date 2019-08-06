@@ -12,7 +12,7 @@ const upload = multer({storage});
 const file = upload.single('file');
 const files = upload.any();
 
-const indieauth = auth.indieauth({
+const indieauth = auth.indieauth.middleware({
   me: config.url
 });
 

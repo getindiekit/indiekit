@@ -19,21 +19,21 @@ test('Returns true if required scope is `post` but token provides `create`', t =
   t.true(hasScope);
 });
 
-test('Throws an error if no scope provided in access token', t => {
+test('Throws error if no scope provided in access token', t => {
   const error = t.throws(() => {
-    auth.scope.checkScope('delete', undefined);
+    auth.scope.checkScope('delete', null);
   });
   t.is(error.message.error_description, 'Access token does not provide any scope(s)');
 });
 
-test('Throws an error if required scope not provided', t => {
+test('Throws error if required scope not provided', t => {
   const error = t.throws(() => {
-    auth.scope.checkScope(undefined, 'create update');
+    auth.scope.checkScope(null, 'create update');
   });
   t.is(error.message.error_description, 'No scope was provided in request');
 });
 
-test('Throws an error if required scope not provided by access token', t => {
+test('Throws error if required scope not provided by access token', t => {
   const error = t.throws(() => {
     auth.scope.checkScope('delete', 'create update');
   });
@@ -54,7 +54,7 @@ const mockResponse = providedScope => {
 };
 
 test('Calls next middleware if required scope in access token', t => {
-  // Mock express
+  // Mock Express
   const req = null;
   const res = mockResponse('create update');
   const next = sinon.mock().once().withExactArgs().returns('Go to next');
@@ -65,7 +65,7 @@ test('Calls next middleware if required scope in access token', t => {
 });
 
 test('Calls next middleware if required scope is `create` and access token provides `post`', t => {
-  // Mock express
+  // Mock Express
   const req = null;
   const res = mockResponse('post');
   const next = sinon.mock().once().withExactArgs().returns('Go to next');
@@ -76,7 +76,7 @@ test('Calls next middleware if required scope is `create` and access token provi
 });
 
 test('Calls next middleware if required scope is `post` and access token provides `create`', t => {
-  // Mock express
+  // Mock Express
   const req = null;
   const res = mockResponse('create');
   const next = sinon.mock().once().withExactArgs().returns('Go to next');
@@ -87,7 +87,7 @@ test('Calls next middleware if required scope is `post` and access token provide
 });
 
 test('Returns 401 if required scope not in access token', async t => {
-  // Mock express
+  // Mock Express
   const req = null;
   const res = mockResponse('create');
   const next = sinon.mock().once().withExactArgs().returns('Go to next');
@@ -98,7 +98,7 @@ test('Returns 401 if required scope not in access token', async t => {
 });
 
 test('Returns 401 if required scope not provided', async t => {
-  // Mock express
+  // Mock Express
   const req = null;
   const res = mockResponse('create');
   const next = sinon.mock().once().withExactArgs().returns('Go to next');

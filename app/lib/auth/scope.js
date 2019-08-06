@@ -2,8 +2,7 @@ const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const logger = require(process.env.PWD + '/app/logger');
 
 /**
- * Checks if scope in authenticated token contains specified scope.
- * Automatically handles `post` and `create` as the same thing
+ * Middleware function for checkScope
  *
  * @memberof auth
  * @module scope.middleware
@@ -30,12 +29,12 @@ const middleware = requiredScope => (req, res, next) => {
 };
 
 /**
- * Checks if scope in authenticated token contains specified scope.
+ * Checks if scope(s) in authenticated token contains required scope.
  * Automatically handles `post` and `create` as the same thing
  *
  * @memberof auth
  * @module scope.checkScope
- * @param {String} requiredScope Requested scope
+ * @param {String} requiredScope Required scope
  * @param {Object} tokenScope Scope(s) provided by access token
  * @return {Boolean} True if tokenScope includes requiredScope
  */
