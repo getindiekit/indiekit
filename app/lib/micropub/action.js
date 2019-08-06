@@ -1,4 +1,4 @@
-const auth = require(process.env.PWD + '/app/lib/auth');
+const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const logger = require(process.env.PWD + '/app/logger');
 const post = require(process.env.PWD + '/app/lib/post');
 const record = require(process.env.PWD + '/app/lib/record');
@@ -19,11 +19,11 @@ module.exports = [
     const {action} = req.query || req.body;
     switch (action) {
       case 'delete':
-        return auth.scope.middleware('delete')(req, res, next);
+        return indieauth.checkScope('delete')(req, res, next);
       case 'undelete':
-        return auth.scope.middleware('create')(req, res, next);
+        return indieauth.checkScope('create')(req, res, next);
       case 'update':
-        return auth.scope.middleware('update')(req, res, next);
+        return indieauth.checkScope('update')(req, res, next);
       default:
         return next();
     }

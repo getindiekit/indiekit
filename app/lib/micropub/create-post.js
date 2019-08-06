@@ -1,4 +1,4 @@
-const auth = require(process.env.PWD + '/app/lib/auth');
+const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const logger = require(process.env.PWD + '/app/logger');
 const media = require(process.env.PWD + '/app/lib/media');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
@@ -16,7 +16,7 @@ const post = require(process.env.PWD + '/app/lib/post');
  */
 module.exports = [
   (req, res, next) => {
-    return auth.scope.middleware('create')(req, res, next);
+    return indieauth.checkScope('create')(req, res, next);
   },
   async (req, res, next) => {
     const {body, files} = req;

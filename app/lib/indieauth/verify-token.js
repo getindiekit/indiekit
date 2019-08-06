@@ -5,51 +5,16 @@ const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
- * Middleware function for verifyToken
- *
- * @memberof auth
- * @module indieauth.middleware
- * @param {Object} options Middleware option
- * @param {Object} req Express request
- * @param {Object} res Express response
- * @param {Function} next Express callback
- * @return {Function} next Express callback
- * @return {Object} Error
- */
-const middleware = options => async (req, res, next) => {
-  try {
-    let accessToken;
-    if (req.headers.authorization) {
-      accessToken = req.headers.authorization.trim().split(/\s+/)[1];
-    } else if (!accessToken && req.body && req.body.access_token) {
-      accessToken = req.body.access_token;
-      delete req.body.access_token; // Delete token from body if exists
-    }
-
-    // Save verified indieauth token to locals
-    const verifiedToken = module.exports.verifyToken(accessToken, options);
-    res.locals.indieauthToken = verifiedToken;
-    next();
-  } catch (error) {
-    const {message} = error;
-    return res.status(message.status).json({
-      error: message.error,
-      error_description: message.error_description
-    });
-  }
-};
-
-/**
  * Verifies that a token provides permissions to post to a publication,
  * using {@link https://www.w3.org/TR/indieauth/ IndieAuth}.
  *
- * @memberof auth
- * @module indieauth.verifyToken
+ * @memberof indieauth
+ * @module verifyToken
  * @param {Object} accessToken IndieAuth access token
  * @param {Object} options Options
  * @return {Boolean} True if verifyToken autheticates publisher
  */
-const verifyToken = async (accessToken, options) => {
+module.exports = async (accessToken, options) => {
   logger.debug('auth.indieauth.verifyToken, access token: %s', accessToken);
   logger.debug('auth.indieauth.verifyToken, options: %s', options);
 
@@ -60,8 +25,6 @@ const verifyToken = async (accessToken, options) => {
       error_description: 'No access token provided in request'
     });
   }
-
-  console.log('options.me', options.me);
 
   const {me} = options;
   if (!me) {
@@ -114,8 +77,6 @@ const verifyToken = async (accessToken, options) => {
     });
   }
 
-  console.log('verifiedToken', verifiedToken);
-
   // Normalize publication and token URLs before comparing
   const verifiedTokenMe = utils.normalizeUrl(verifiedToken.me);
   const publicationMe = utils.normalizeUrl(me);
@@ -123,7 +84,6 @@ const verifyToken = async (accessToken, options) => {
 
   // Publication URL does not match that provided by access token
   if (!isAuthenticated) {
-    console.log('IS NOT Authenticated');
     throw new IndieKitError({
       status: 403,
       error: 'forbidden',
@@ -132,9 +92,4 @@ const verifyToken = async (accessToken, options) => {
   }
 
   return verifiedToken;
-};
-
-module.exports = {
-  middleware,
-  verifyToken
 };

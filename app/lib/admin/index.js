@@ -1,4 +1,4 @@
-const auth = require(process.env.PWD + '/app/lib/auth');
+const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const cache = require(process.env.PWD + '/app/lib/cache');
 const logger = require(process.env.PWD + '/app/logger');
 
@@ -13,7 +13,7 @@ const logger = require(process.env.PWD + '/app/logger');
  */
 
 module.exports = [
-  auth.scope.middleware('delete'),
+  indieauth.checkScope('delete'),
   async (req, res) => {
     const {query} = req;
 

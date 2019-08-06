@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 
 const admin = require(process.env.PWD + '/app/lib/admin');
-const auth = require(process.env.PWD + '/app/lib/auth');
+const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const config = require(process.env.PWD + '/app/config');
 const micropub = require(process.env.PWD + '/app/lib/micropub');
 
@@ -12,7 +12,7 @@ const upload = multer({storage});
 const file = upload.single('file');
 const files = upload.any();
 
-const indieauth = auth.indieauth.middleware({
+const auth = indieauth.verifyToken({
   me: config.url
 });
 
@@ -23,13 +23,13 @@ router.get('/', (req, res) => {
 
 // Admin
 router.post('/admin',
-  indieauth,
+  auth,
   admin
 );
 
 // Micropub
 router.post('/micropub',
-  indieauth,
+  auth,
   files,
   micropub.action,
   micropub.createPost
@@ -43,7 +43,7 @@ router.get('/micropub',
 // Support Sunlit media endpoint, which has a hardcoded URL
 // https://github.com/microdotblog/issues/issues/147
 router.post('/media(/micropub/media)?',
-  indieauth,
+  auth,
   file,
   micropub.createMedia
 );
