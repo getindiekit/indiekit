@@ -14,7 +14,7 @@ const media = require(process.env.PWD + '/app/lib/media');
  */
 module.exports = [
   (req, res, next) => {
-    return auth.scope('create')(req, res, next);
+    return auth.scope.middleware('create')(req, res, next);
   },
   async (req, res, next) => {
     const {file} = req;

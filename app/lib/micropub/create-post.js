@@ -16,7 +16,7 @@ const post = require(process.env.PWD + '/app/lib/post');
  */
 module.exports = [
   (req, res, next) => {
-    return auth.scope('create')(req, res, next);
+    return auth.scope.middleware('create')(req, res, next);
   },
   async (req, res, next) => {
     const {body, files} = req;

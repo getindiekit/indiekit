@@ -13,7 +13,7 @@ const logger = require(process.env.PWD + '/app/logger');
  */
 
 module.exports = [
-  auth.scope('delete'),
+  auth.scope.middleware('delete'),
   async (req, res) => {
     const {query} = req;
 

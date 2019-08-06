@@ -19,11 +19,11 @@ module.exports = [
     const {action} = req.query || req.body;
     switch (action) {
       case 'delete':
-        return auth.scope('delete')(req, res, next);
+        return auth.scope.middleware('delete')(req, res, next);
       case 'undelete':
-        return auth.scope('create')(req, res, next);
+        return auth.scope.middleware('create')(req, res, next);
       case 'update':
-        return auth.scope('update')(req, res, next);
+        return auth.scope.middleware('update')(req, res, next);
       default:
         return next();
     }
