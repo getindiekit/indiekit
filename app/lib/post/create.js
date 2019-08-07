@@ -67,18 +67,16 @@ module.exports = async (pub, mf2, files) => {
   };
 
   // Upload post to GitHub
-  try {
-    const response = await github.createFile(postPath, content, {
-      message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
-    });
-
-    if (response) {
-      record.set(location, recordData);
-      logger.info('post.create', {recordData});
-      return location;
-    }
-  } catch (error) {
+  const response = await github.createFile(postPath, content, {
+    message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
+  }).catch(error => {
     logger.error('post.create', {error});
     throw new Error(error);
+  });
+
+  if (response) {
+    record.set(location, recordData);
+    logger.info('post.create', {recordData});
+    return location;
   }
 };

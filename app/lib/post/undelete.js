@@ -11,14 +11,12 @@ const post = require(process.env.PWD + '/app/lib/post');
  * @returns {String} Location of undeleted post
  */
 module.exports = async (pub, mf2) => {
-  try {
-    const location = await post.create(pub, mf2);
-
-    if (location) {
-      return location;
-    }
-  } catch (error) {
+  const location = await post.create(pub, mf2).catch(error => {
     logger.error('post.undelete', {error});
     throw new Error(error);
+  });
+
+  if (location) {
+    return location;
   }
 };

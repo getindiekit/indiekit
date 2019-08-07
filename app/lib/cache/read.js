@@ -50,15 +50,14 @@ module.exports = async (repoPath, cachePath) => {
   if (!isCached || hasExpired) {
     repoPath = utils.normalizePath(repoPath);
 
-    try {
-      const repoData = await github.getContents(repoPath);
-      const freshData = repoData.data.content;
-      createCache(cachePath, freshData);
-      return freshData;
-    } catch (error) {
+    const repoData = await github.getContents(repoPath).catch(error => {
       logger.error('cache.read', {error});
       throw new Error(error.message);
-    }
+    });
+
+    const freshData = repoData.data.content;
+    createCache(cachePath, freshData);
+    return freshData;
   }
 
   // Cache exists, still fresh

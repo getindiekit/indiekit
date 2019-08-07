@@ -108,14 +108,14 @@
 
 ## admin
 
-Responds to POST requests
+Middleware function for admin operations
 
 ### Parameters
 
--   `req` **[Object][104]** Express request object
--   `res` **[Object][104]** Express response object
+-   `req` **[Object][104]** Express request
+-   `res` **[Object][104]** Express response
 
-Returns **[Object][104]** Express response object
+Returns **[Object][104]** Express response
 
 ## cache
 
@@ -501,7 +501,8 @@ application.
 
 #### Parameters
 
--   `configPath` **[Object][104]** Path to publication config
+-   `configPath` **[String][105]** Path to publication configuration
+-   `defaultConfig` **[Object][104]** Default configuration
 
 Returns **[Promise][106]** Configuration object
 

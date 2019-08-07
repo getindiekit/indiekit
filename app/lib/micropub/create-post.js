@@ -35,14 +35,13 @@ module.exports = [
           body[property] = [];
         }
 
-        try {
-          const value = await media.create(pub, file);
-          if (value) {
-            body[property].push(value);
-          }
-        } catch (error) {
+        const value = await media.create(pub, file).catch(error => {
           logger.error('micropub.createPost', {error});
           throw new Error(error);
+        });
+
+        if (value) {
+          body[property].push(value);
         }
       }
     }
@@ -54,24 +53,22 @@ module.exports = [
       logger.info('micropub.createPost: Normalised form-encoded mf2', {mf2});
     }
 
-    try {
-      const location = await post.create(pub, mf2, files);
-
-      if (location) {
-        const success_description = `Post will be created at ${location}`;
-        logger.info('micropub.createPost: %s', success_description);
-        res.header('Location', location);
-        return res.status(202).json({
-          success: 'create_pending',
-          success_description
-        });
-      }
-    } catch (error) {
+    const location = await post.create(pub, mf2, files).catch(error => {
       const error_description = `Unable to create post. ${error.message}`;
       logger.error('micropub.createPost: %s', error_description);
       return res.status(500).json({
         error: 'server_error',
         error_description
+      });
+    });
+
+    if (location) {
+      const success_description = `Post will be created at ${location}`;
+      logger.info('micropub.createPost: %s', success_description);
+      res.header('Location', location);
+      return res.status(202).json({
+        success: 'create_pending',
+        success_description
       });
     }
 

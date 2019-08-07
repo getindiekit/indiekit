@@ -29,23 +29,21 @@ module.exports = [
       });
     }
 
-    try {
-      const location = await media.create(pub, file);
-
-      if (location) {
-        logger.info('micropub.createMedia: %s', location);
-        res.header('Location', location);
-        return res.status(201).json({
-          success: 'create',
-          success_description: `File created at ${location}`
-        });
-      }
-    } catch (error) {
+    const location = await media.create(pub, file).catch(error => {
       const error_description = `Unable to create file. ${error.message}`;
       logger.error('micropub.createMedia: %s', error_description);
       return res.status(500).json({
         error: 'server_error',
         error_description
+      });
+    });
+
+    if (location) {
+      logger.info('micropub.createMedia: %s', location);
+      res.header('Location', location);
+      return res.status(201).json({
+        success: 'create',
+        success_description: `File created at ${location}`
       });
     }
 

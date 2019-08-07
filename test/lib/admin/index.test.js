@@ -14,6 +14,7 @@ test('Returns a 201 if `purge` value in query deletes cache', async t => {
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({purge: 'cache'});
   t.is(response.status, 201);
+  t.is(response.body.success_description, 'Cache deleted');
 });
 
 test('Returns a 400 if no query provided', async t => {

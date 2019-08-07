@@ -17,24 +17,22 @@ module.exports = async pub => {
   let status;
 
   if (pubCategories && pubCategories.url) {
-    try {
-      const response = await fetch(pubCategories.url, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
-      });
-
-      status = response.status;
-      categories = await response.json();
-    } catch (error) {
+    const response = await fetch(pubCategories.url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    }).catch(error => {
       logger.error('publication.getCategories', {error});
       throw new IndieKitError({
         status,
         error: error.name,
         error_description: error.message
       });
-    }
+    });
+
+    status = response.status;
+    categories = await response.json();
   } else if (pubCategories && pubCategories.constructor === Array) {
     categories = pubCategories;
   }

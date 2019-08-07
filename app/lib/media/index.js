@@ -42,19 +42,17 @@ const create = async (pub, file) => {
   };
 
   // Upload file to GitHub
-  try {
-    const response = await github.createFile(mediaPath, file.buffer, {
-      message: `:framed_picture: Uploaded ${mediaName}`
-    });
-
-    if (response) {
-      record.set(location, recordData);
-      logger.info('media.create', {recordData});
-      return location;
-    }
-  } catch (error) {
+  const response = await github.createFile(mediaPath, file.buffer, {
+    message: `:framed_picture: Uploaded ${mediaName}`
+  }).catch(error => {
     logger.error('media.create', {error});
     throw new Error(error);
+  });
+
+  if (response) {
+    record.set(location, recordData);
+    logger.info('media.create', {recordData});
+    return location;
   }
 };
 

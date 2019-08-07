@@ -10,17 +10,15 @@ const logger = require(process.env.PWD + '/app/logger');
  * @returns {Boolean} True if post is deleted
  */
 module.exports = async recordData => {
-  try {
-    const response = await github.deleteFile(recordData.post.path, {
-      message: ':x: Deleted post'
-    });
-
-    if (response) {
-      logger.info('post.delete', {recordData});
-      return true;
-    }
-  } catch (error) {
+  const response = await github.deleteFile(recordData.post.path, {
+    message: ':x: Deleted post'
+  }).catch(error => {
     logger.error('post.delete', {error});
     throw new Error(error);
+  });
+
+  if (response) {
+    logger.info('post.delete', {recordData});
+    return true;
   }
 };
