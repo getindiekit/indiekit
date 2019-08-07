@@ -16,16 +16,31 @@ test('Returns empty array if categories not an array', async t => {
 });
 
 test('Returns array if url to JSON file provided', async t => {
-  const json = ['foo', 'bar'];
-  nock('https://foo.bar').get('/categories.json').reply(200, json);
+  // Mock request
+  const scope = nock('https://foo.bar')
+    .get('/categories.json')
+    .reply(200, ['foo', 'bar']);
+
+  // Setup
   const pub = {categories: {url: 'https://foo.bar/categories.json'}};
+
+  // Test assertions
   const categories = await getCategories(pub);
   t.deepEqual(categories, ['foo', 'bar']);
+  scope.done();
 });
 
 test('Throws error if JSON file provided not found', async t => {
-  nock('https://foo.bar').get('/categories.json').reply(404);
+  // Mock request
+  const scope = nock('https://foo.bar')
+    .get('/categories.json')
+    .replyWithError('Not found');
+
+  // Setup
   const pub = {categories: {url: 'https://foo.bar/categories.json'}};
+
+  // Test assertions
   const error = await t.throwsAsync(getCategories(pub));
-  t.is(error.message.error, 'FetchError');
+  t.regex(error.message.error_description, /\bNot found\b/);
+  scope.done();
 });

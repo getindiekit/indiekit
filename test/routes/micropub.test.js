@@ -402,6 +402,6 @@ test('8xx: Rejects invalid access tokens', async t => {
     .set('Authorization', 'Bearer invalid')
     .set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
     .send('h=entry&content=Testing+a+request+with+invalid+access+token.+This+should+not+create+a+post.');
-  t.is(response.status, 401);
+  t.is(response.status, 400);
   t.is(response.body.error, 'unauthorized');
 });

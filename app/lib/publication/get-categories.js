@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 
 const {IndieKitError} = require(process.env.PWD + '/app/errors');
-const logger = require(process.env.PWD + '/app/logger');
 
 /**
  * Returns an array of available categories
@@ -23,7 +22,6 @@ module.exports = async pub => {
         Accept: 'application/json'
       }
     }).catch(error => {
-      logger.error('publication.getCategories', {error});
       throw new IndieKitError({
         status,
         error: error.name,
