@@ -65,14 +65,16 @@ test('Throws an error when GitHub returns a 404', async t => {
   scope.done();
 });
 
-test('Throws an error if no SHA found for file', async t => {
+test('Throws an error if GitHub can’t update file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
     .reply(200, {
       content: 'Zm9vYmFy',
       type: 'file'
-    });
+    })
+    .put(uri => uri.includes('foo.txt'))
+    .replyWithError('Can’t update file');
 
   // Setup
   const path = 'bar/foo.txt';
@@ -83,7 +85,7 @@ test('Throws an error if no SHA found for file', async t => {
 
   // Test assertions
   const error = await t.throwsAsync(github.updateFile(path, content, options));
-  t.is(error.message, `No SHA found for ${path}`);
+  t.regex(error.message, /\bCan’t update file\b/);
 
   scope.done();
 });

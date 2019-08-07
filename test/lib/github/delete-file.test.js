@@ -74,7 +74,7 @@ test('Throws an error if no SHA found for file', async t => {
 
   // Test assertions
   const error = await t.throwsAsync(github.deleteFile(path, options));
-  t.is(error.message, `No SHA found for ${path}`);
+  t.is(error.message, 'Empty value for parameter \'sha\': undefined');
 
   scope.done();
 });

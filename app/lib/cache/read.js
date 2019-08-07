@@ -52,16 +52,12 @@ module.exports = async (repoPath, cachePath) => {
 
     try {
       const repoData = await github.getContents(repoPath);
-      if (repoData) {
-        const freshData = repoData.data.content;
-        createCache(cachePath, freshData);
-        return freshData;
-      }
-
-      throw new Error(`Unable to load ${repoPath} from repo`);
+      const freshData = repoData.data.content;
+      createCache(cachePath, freshData);
+      return freshData;
     } catch (error) {
       logger.error('cache.read', {error});
-      return false;
+      throw new Error(error.message);
     }
   }
 

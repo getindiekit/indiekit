@@ -41,7 +41,7 @@ const checkScope = requiredScope => (req, res, next) => {
  */
 const verifyToken = options => async (req, res, next) => {
   let accessToken;
-  if (req.headers.authorization) {
+  if (req.headers && req.headers.authorization) {
     accessToken = req.headers.authorization.trim().split(/\s+/)[1];
   } else if (!accessToken && req.body && req.body.access_token) {
     accessToken = req.body.access_token;
@@ -54,7 +54,7 @@ const verifyToken = options => async (req, res, next) => {
 
     // Save verified indieauth token to locals
     res.locals.indieauthToken = verifiedToken;
-    next();
+    return next();
   } catch (error) {
     const {message} = error;
     return res.status(message.status).json({

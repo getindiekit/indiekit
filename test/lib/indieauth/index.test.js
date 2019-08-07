@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const test = require('ava');
 const sinon = require('sinon');
 
@@ -73,7 +75,6 @@ test('Returns 401 if required scope not provided', async t => {
 
 // Test middleware that verifies tokens
 const client_id = 'https://gimme-a-token.5eb.nl/';
-const token = process.env.TEST_INDIEAUTH_TOKEN;
 const mockTokenResponse = () => {
   const res = {};
   res.locals = {indieauthToken: {client_id}};
@@ -82,39 +83,51 @@ const mockTokenResponse = () => {
   return res;
 };
 
-test('Authenticates using token in `access_token` body', async t => {
-  // Mock Express
-  const req = {
-    body: {
-      access_token: token
-    }
-  };
-  const res = mockTokenResponse();
-
-  // Test assertions
-  await indieauth.verifyToken(req, res, () => {});
-  t.deepEqual(res.locals.indieauthToken, {client_id});
+test.beforeEach(t => {
+  t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
 test('Authenticates using token in `authorization` header', async t => {
   // Mock Express
   const req = {
     headers: {
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${t.context.token}`
     }
   };
   const res = mockTokenResponse();
+  const next = sinon.mock().once().withExactArgs().returns('Go to next');
 
   // Test assertions
-  await indieauth.verifyToken(req, res, () => {});
-  t.deepEqual(res.locals.indieauthToken, {client_id});
+  const result = await indieauth.verifyToken({
+    me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
+  })(req, res, next);
+  t.is(result, 'Go to next');
+  t.is(res.locals.indieauthToken.client_id, client_id);
+});
+
+test('Authenticates using token in `access_token` body', async t => {
+  // Mock Express
+  const req = {
+    body: {
+      access_token: t.context.token
+    }
+  };
+  const res = mockTokenResponse();
+  const next = sinon.mock().once().withExactArgs().returns('Go to next');
+
+  // Test assertions
+  const result = await indieauth.verifyToken({
+    me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
+  })(req, res, next);
+  t.is(result, 'Go to next');
+  t.is(res.locals.indieauthToken.client_id, client_id);
 });
 
 test('Returns 400 if publication URL not configured', async t => {
   // Mock Express
   const req = {
     headers: {
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${t.context.token}`
     }
   };
   const res = mockTokenResponse();
@@ -124,11 +137,11 @@ test('Returns 400 if publication URL not configured', async t => {
   t.true(res.status.calledWith(400));
 });
 
-test.skip('Returns 403 if publication URL doesn’t match that in token', async t => {
+test('Returns 403 if publication URL doesn’t match that in token', async t => {
   // Mock Express
   const req = {
     headers: {
-      authorization: `Bearer ${token}`
+      authorization: `Bearer ${t.context.token}`
     }
   };
   const res = mockTokenResponse();

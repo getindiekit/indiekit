@@ -2,10 +2,10 @@
 const path = require('path');
 const _ = require('lodash');
 
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const cache = require(process.env.PWD + '/app/lib/cache');
 const config = require(process.env.PWD + '/app/config');
 const logger = require(process.env.PWD + '/app/logger');
-const appConfig = require('./defaults');
 
 /**
  * Gets a publication’s configuration and combines it with default values set by
@@ -13,40 +13,38 @@ const appConfig = require('./defaults');
  *
  * @memberof publication
  * @module resolveConfig
- * @param {Object} configPath Path to publication config
+ * @param {String} configPath Path to publication configuration
+ * @param {Object} defaultConfig Default configuration
  * @returns {Promise} Configuration object
  */
-module.exports = async configPath => {
+module.exports = async (configPath, defaultConfig = require('./defaults')) => {
   // If no configuration provided, use application defaults
   if (!configPath) {
-    logger.info('publication.resolveConfig: No configuration provided. Using app defaults', {appConfig});
-    return appConfig;
+    logger.info('publication.resolveConfig: No configuration provided. Using defaults', {defaultConfig});
+    return defaultConfig;
   }
 
-  let pubConfig;
-  try {
-    // Fetch publisher configuration from store and cache
-    pubConfig = await cache.read(configPath, 'config.json');
-  } catch (error) {
-    logger.error('publication.resolveConfig', {error});
-    throw new Error(error);
-  }
+  // Fetch publisher configuration from store and cache
+  let pubConfig = await cache.read(configPath, 'config.json').catch(error => {
+    throw new IndieKitError({
+      error: error.name,
+      error_description: error.message
+    });
+  });
+  pubConfig = JSON.parse(pubConfig);
 
   // If no configuration found in store, use application defaults
-  if (pubConfig) {
-    pubConfig = JSON.parse(pubConfig);
-    logger.info('publication.resolveConfig, using cached', {pubConfig});
-  } else {
-    logger.info('publication.resolveConfig: Configuration not found. Using app defaults', {appConfig});
-    return appConfig;
+  if (!pubConfig) {
+    logger.info('publication.resolveConfig: Configuration not found. Using defaults', {defaultConfig});
+    return defaultConfig;
   }
 
   // Merge publisher configuration with application defaults
-  const newConfig = _.merge(appConfig, pubConfig);
+  const newConfig = _.merge(defaultConfig, pubConfig);
 
   // Fetch publisher post type templates from store and cache
   let newPostTypes;
-  const appPostTypes = appConfig['post-types'];
+  const appPostTypes = defaultConfig['post-types'];
   const pubPostTypes = pubConfig['post-types'];
 
   if (pubPostTypes) {

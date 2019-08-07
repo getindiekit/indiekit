@@ -20,23 +20,22 @@ const getContents = require('./get-contents');
  * @return {Promise} GitHub HTTP response
  */
 module.exports = async (path, options) => {
-  try {
-    const getResponse = await getContents(path);
-    if (getResponse.data.sha !== undefined) {
-      const deleteResponse = await octokit.repos.deleteFile({
-        owner: config.github.user,
-        repo: config.github.repo,
-        branch: config.github.branch,
-        path,
-        message: `${options.message}\nwith ${config.name}`,
-        sha: getResponse.data.sha
-      });
-      return deleteResponse;
-    }
-
-    throw new Error(`No SHA found for ${path}`);
-  } catch (error) {
-    logger.error('github.deleteFile', {error});
+  const contents = await getContents(path).catch(error => {
+    logger.error('github.deleteFile, getContents', {error});
     throw new Error(error.message);
-  }
+  });
+
+  const deletedFile = await octokit.repos.deleteFile({
+    owner: config.github.user,
+    repo: config.github.repo,
+    branch: config.github.branch,
+    path,
+    message: `${options.message}\nwith ${config.name}`,
+    sha: contents.data.sha
+  }).catch(error => {
+    logger.error('github.deleteFile, deleteFile', {error});
+    throw new Error(error.message);
+  });
+
+  return deletedFile;
 };

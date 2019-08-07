@@ -22,18 +22,17 @@ const octokit = new Octokit({
 module.exports = async (path, content, options) => {
   path = utils.normalizePath(path);
 
-  try {
-    const putResponse = await octokit.repos.createOrUpdateFile({
-      owner: config.github.user,
-      repo: config.github.repo,
-      branch: config.github.branch,
-      path,
-      content: Buffer.from(content).toString('base64'),
-      message: `${options.message}\nwith ${config.name}`
-    });
-    return putResponse;
-  } catch (error) {
+  const createdFile = await octokit.repos.createOrUpdateFile({
+    owner: config.github.user,
+    repo: config.github.repo,
+    branch: config.github.branch,
+    path,
+    content: Buffer.from(content).toString('base64'),
+    message: `${options.message}\nwith ${config.name}`
+  }).catch(error => {
     logger.error('github.createFile', {error});
     throw new Error(error.message);
-  }
+  });
+
+  return createdFile;
 };

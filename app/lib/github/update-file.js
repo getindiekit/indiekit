@@ -24,24 +24,23 @@ const getContents = require('./get-contents');
 module.exports = async (path, content, options) => {
   path = utils.normalizePath(path);
 
-  try {
-    const getResponse = await getContents(path);
-    if (getResponse.data.sha !== undefined) {
-      const putResponse = await octokit.repos.createOrUpdateFile({
-        owner: config.github.user,
-        repo: config.github.repo,
-        branch: config.github.branch,
-        path,
-        message: `${options.message}\nwith ${config.name}`,
-        content: Buffer.from(content).toString('base64'),
-        sha: getResponse.data.sha
-      });
-      return putResponse;
-    }
-
-    throw new Error(`No SHA found for ${path}`);
-  } catch (error) {
-    logger.error('github.updateFile', {error});
+  const contents = await getContents(path).catch(error => {
+    logger.error('github.updateFile, getContents', {error});
     throw new Error(error.message);
-  }
+  });
+
+  const updatedFile = await octokit.repos.createOrUpdateFile({
+    owner: config.github.user,
+    repo: config.github.repo,
+    branch: config.github.branch,
+    path,
+    message: `${options.message}\nwith ${config.name}`,
+    content: Buffer.from(content).toString('base64'),
+    sha: contents.data.sha
+  }).catch(error => {
+    logger.error('github.updateFile, createOrUpdateFile', {error});
+    throw new Error(error.message);
+  });
+
+  return updatedFile;
 };

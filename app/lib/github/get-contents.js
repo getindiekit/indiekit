@@ -20,17 +20,16 @@ const octokit = new Octokit({
 module.exports = async path => {
   path = utils.normalizePath(path);
 
-  try {
-    const getResponse = await octokit.repos.getContents({
-      owner: config.github.user,
-      repo: config.github.repo,
-      ref: config.github.branch,
-      path
-    });
-    getResponse.data.content = Buffer.from(getResponse.data.content, 'base64').toString('utf8');
-    return getResponse;
-  } catch (error) {
+  const contents = await octokit.repos.getContents({
+    owner: config.github.user,
+    repo: config.github.repo,
+    ref: config.github.branch,
+    path
+  }).catch(error => {
     logger.error('github.getContents', {error});
     throw new Error(error.message);
-  }
+  });
+
+  contents.data.content = Buffer.from(contents.data.content, 'base64').toString('utf8');
+  return contents;
 };

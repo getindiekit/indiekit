@@ -35,8 +35,8 @@ module.exports = async (accessToken, options) => {
     });
   }
 
-  let verifiedToken;
   let status;
+  let verifiedToken;
   try {
     const endpoint = options['token-endpoint'] || 'https://tokens.indieauth.com/token';
     const response = await fetch(endpoint, {
@@ -48,8 +48,8 @@ module.exports = async (accessToken, options) => {
       }
     });
 
-    verifiedToken = await response.json();
     status = response.status;
+    verifiedToken = await response.json();
   } catch (error) {
     // Unknown error, but most likely unable to reach token endpoint
     throw new IndieKitError({
