@@ -2,9 +2,9 @@ const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
 
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');
-const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
@@ -17,27 +17,19 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @module create
  * @param {Object} pub Publication configuration
  * @param {Object} mf2 Microformats2 object
- * @param {String} files File attachments
  * @returns {String} Location of created file
  */
-module.exports = async (pub, mf2, files) => {
+module.exports = async (pub, mf2) => {
   // Determine post type
-  let type;
-  if (files && files.length > 0) {
-    type = utils.deriveMediaType(files[0]);
-  } else {
-    type = microformats.derivePostType(mf2);
-  }
-
+  const type = microformats.derivePostType(mf2);
   const typeConfig = pub['post-types'][type];
-  const slugSeparator = pub['slug-separator'];
 
   // Update properties
   const {properties} = mf2;
   properties.content = microformats.deriveContent(mf2);
   properties.photo = await microformats.derivePhoto(mf2);
   properties.published = microformats.derivePuplished(mf2);
-  properties.slug = microformats.deriveSlug(mf2, slugSeparator);
+  properties.slug = microformats.deriveSlug(mf2, pub['slug-separator']);
 
   // Render template
   const templatePath = typeConfig.template;
@@ -67,16 +59,15 @@ module.exports = async (pub, mf2, files) => {
   };
 
   // Upload post to GitHub
-  const response = await github.createFile(postPath, content, {
+  await github.createFile(postPath, content, {
     message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
   }).catch(error => {
-    logger.error('post.create', {error});
-    throw new Error(error);
+    throw new IndieKitError({
+      error: error.name,
+      error_description: error.message
+    });
   });
 
-  if (response) {
-    record.set(location, recordData);
-    logger.info('post.create', {recordData});
-    return location;
-  }
+  record.set(location, recordData);
+  return location;
 };

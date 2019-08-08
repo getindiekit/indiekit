@@ -1,4 +1,4 @@
-const logger = require(process.env.PWD + '/app/logger');
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 
 /**
  * Updates a post
@@ -6,13 +6,10 @@ const logger = require(process.env.PWD + '/app/logger');
  * @memberof post
  * @module update
  * @param {Object} recordData Post to delete
- * @returns {Boolean} True if post is deleted
  */
 module.exports = recordData => {
-  const error_description = 'Update action not supported';
-  logger.error('micropub.updatePost: %s', error_description);
-  return res.status(400).json({
-    error: 'invalid_request',
-    error_description
+  throw new IndieKitError({
+    error: 'action_not_supported',
+    error_description: `Cannot update ${recordData.post.path}`
   });
 };

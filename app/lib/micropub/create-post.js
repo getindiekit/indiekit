@@ -18,7 +18,7 @@ module.exports = [
   (req, res, next) => {
     return indieauth.checkScope('create')(req, res, next);
   },
-  async (req, res, next) => {
+  async (req, res) => {
     const {body, files} = req;
     const {pub} = req.app.locals;
 
@@ -36,7 +36,6 @@ module.exports = [
         }
 
         const value = await media.create(pub, file).catch(error => {
-          logger.error('micropub.createPost', {error});
           throw new Error(error);
         });
 
@@ -47,31 +46,19 @@ module.exports = [
     }
 
     // Normalise form-encoded requests as mf2 JSON
-    let mf2 = body;
-    if (!req.is('json')) {
-      mf2 = microformats.formEncodedToMf2(body);
-      logger.info('micropub.createPost: Normalised form-encoded mf2', {mf2});
-    }
+    const mf2 = req.is('json') ? body : microformats.formEncodedToMf2(body);
 
-    const location = await post.create(pub, mf2, files).catch(error => {
-      const error_description = `Unable to create post. ${error.message}`;
-      logger.error('micropub.createPost: %s', error_description);
+    const location = await post.create(pub, mf2).catch(error => {
       return res.status(500).json({
         error: 'server_error',
-        error_description
+        error_description: `Unable to create post. ${error.message}`
       });
     });
 
-    if (location) {
-      const success_description = `Post will be created at ${location}`;
-      logger.info('micropub.createPost: %s', success_description);
-      res.header('Location', location);
-      return res.status(202).json({
-        success: 'create_pending',
-        success_description
-      });
-    }
-
-    return next();
+    res.header('Location', location);
+    return res.status(202).json({
+      success: 'create_pending',
+      success_description: `Post will be created at ${location}`
+    });
   }
 ];

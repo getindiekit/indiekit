@@ -29,7 +29,7 @@ test('Deletes a file in a GitHub repository', async t => {
     message: 'Delete message'
   };
 
-  // Execute function
+  // Test assertions
   const response = await github.deleteFile(path, options);
   t.truthy(response);
   t.is(response.data.commit.message, `Delete message\nwith ${config.name}`);

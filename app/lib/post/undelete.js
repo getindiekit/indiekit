@@ -1,4 +1,4 @@
-const logger = require(process.env.PWD + '/app/logger');
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const post = require(process.env.PWD + '/app/lib/post');
 
 /**
@@ -12,11 +12,11 @@ const post = require(process.env.PWD + '/app/lib/post');
  */
 module.exports = async (pub, mf2) => {
   const location = await post.create(pub, mf2).catch(error => {
-    logger.error('post.undelete', {error});
-    throw new Error(error);
+    throw new IndieKitError({
+      error: error.name,
+      error_description: error.message
+    });
   });
 
-  if (location) {
-    return location;
-  }
+  return location;
 };

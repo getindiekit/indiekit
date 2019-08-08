@@ -464,8 +464,6 @@ Updates a post
 
 -   `recordData` **[Object][104]** Post to delete
 
-Returns **[Boolean][111]** True if post is deleted
-
 ## publication
 
 Get publication configuration
@@ -496,15 +494,14 @@ Returns **[Array][114]** Array of post types
 
 ### resolveConfig
 
-Gets a publication’s configuration and combines it with default values set by
-application.
+Gets a publication’s configuration and combines it with default values.
 
 #### Parameters
 
--   `configPath` **[String][105]** Path to publication configuration
+-   `pubConfig` **[String][105]** Publication configuration
 -   `defaultConfig` **[Object][104]** Default configuration
 
-Returns **[Promise][106]** Configuration object
+Returns **[Promise][106]** Resolved configuration object
 
 ## record
 

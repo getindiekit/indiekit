@@ -1,9 +1,7 @@
 const test = require('ava');
 
-// Functions
 const render = require(process.env.PWD + '/app/lib/render');
 
-// Tests
 test('Renders a template string using context data', t => {
   const template = '{{ name }} walks into {{ location }}';
   const context = {

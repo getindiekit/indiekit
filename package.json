@@ -71,6 +71,13 @@
       "pre-commit": "npm run docs"
     }
   },
+  "nyc": {
+    "exclude": [
+      "app/config.js",
+      "app/logger.js",
+      "test/**"
+    ]
+  },
   "xo": {
     "space": true,
     "rules": {

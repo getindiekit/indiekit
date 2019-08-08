@@ -1,4 +1,3 @@
-const logger = require(process.env.PWD + '/app/logger');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const publication = require(process.env.PWD + '/app/lib/publication');
 
@@ -25,43 +24,41 @@ module.exports = async (req, res) => {
   const {query} = req;
   switch (query.q) {
     case 'config': {
+      // Return endpoint configuration
       return res.json(endpointConfig);
     }
 
     case 'category': {
+      // Return configured categories
       return res.json({
         categories: endpointConfig.categories
       });
     }
 
     case 'source': {
-      try {
-        return res.json(
-          await microformats.urlToMf2(query.url, query.properties)
-        );
-      } catch (error) {
-        const error_description = `Unable to answer query. ${error.message}`;
-        logger.error('micropub.query: %s', error_description);
-        return res.status(400).json({
-          error: 'invalid_request',
-          error_description
-        });
-      }
+      // Return source (as mf2 object) for given URL
+      return res.json(
+        await microformats.urlToMf2(query.url, query.properties).catch(error => {
+          res.status(400).json({
+            error: 'invalid_request',
+            error_description: error.message
+          });
+        })
+      );
     }
 
     default: {
-      // Check if the query is a property in the config object
+      // Return configured property if matches provided query
       if (typeof query.q === 'string' && endpointConfig[query.q]) {
         return res.json({
           [query.q]: endpointConfig[query.q]
         });
       }
 
-      const error_description = 'Request is missing required parameter, or there was a problem with value of one of the parameters provided';
-      logger.error('micropub.query: %s', error_description);
+      // Rejects unknown endpoint query
       return res.status(400).json({
         error: 'invalid_request',
-        error_description
+        error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
       });
     }
   }

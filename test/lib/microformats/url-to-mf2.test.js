@@ -1,9 +1,7 @@
 const test = require('ava');
 
-// Function
 const urlToMf2 = require(process.env.PWD + '/app/lib/microformats/url-to-mf2.js');
 
-// Tests
 test('Throws error if URL has no items', async t => {
   const url = 'https://paulrobertlloyd.com';
   const error = await t.throwsAsync(urlToMf2(url));

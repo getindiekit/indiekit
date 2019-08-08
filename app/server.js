@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const nunjucks = require('nunjucks');
 
 const logger = require(process.env.PWD + '/app/logger');
+const cache = require(process.env.PWD + '/app/lib/cache');
 const config = require(process.env.PWD + '/app/config');
 const routes = require(process.env.PWD + '/app/routes');
 const publication = require(process.env.PWD + '/app/lib/publication');
@@ -19,9 +20,19 @@ nunjucks.configure(['./app/views', './app/static'], {
 });
 
 app.set('view engine', 'njk');
+
+// Save application configuration to locals
 app.locals.app = config;
+
+// Save publication configuration to locals
 (async () => {
-  app.locals.pub = await publication.resolveConfig(config['pub-config']);
+  let pubConfig = null;
+  if (config['pub-config']) {
+    pubConfig = await cache.read(config['pub-config'], 'config.json');
+    pubConfig = JSON.parse(pubConfig);
+  }
+
+  app.locals.pub = await publication.resolveConfig(pubConfig);
 })();
 
 // Parse application/json

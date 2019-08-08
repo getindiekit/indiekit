@@ -2,17 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const test = require('ava');
 
-// Function
 const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2.js');
 
-// Fixtures
 const itemsMissing = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-items-none.html'));
 const itemsProvided = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-items-many.html'));
 const itemMissing = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-item-missing-properties.html'));
 const itemContentPlain = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-item-content-plain.html'));
 const itemContentEmbedded = fs.readFileSync(path.resolve(__dirname, 'fixtures/html-item-content-embedded.html'));
 
-// Tests
 test('Throws error if HTML has no items', async t => {
   const html = Buffer.from(itemsMissing).toString('utf-8');
   const error = await t.throwsAsync(htmlToMf2(html));

@@ -1,5 +1,4 @@
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
-const logger = require(process.env.PWD + '/app/logger');
 const post = require(process.env.PWD + '/app/lib/post');
 const record = require(process.env.PWD + '/app/lib/record');
 
@@ -39,22 +38,18 @@ module.exports = [
 
     // Check if url parameter has been provided
     if (url === undefined) {
-      const error_description = 'Request is missing required url parameter';
-      logger.error('micropub.action: %s', error_description);
       return res.status(400).json({
         error: 'invalid_request',
-        error_description
+        error_description: 'Request is missing required url parameter'
       });
     }
 
     // Check if url has record data assigned to it
     const recordData = record.get(url);
     if (recordData === undefined) {
-      const error_description = `No record found for ${url}`;
-      logger.error('micropub.action: %s', error_description);
       return res.status(404).json({
         error: 'not_found',
-        error_description
+        error_description: `No record found for ${url}`
       });
     }
 
