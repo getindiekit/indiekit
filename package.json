@@ -76,6 +76,10 @@
       "app/config.js",
       "app/logger.js",
       "test/**"
+    ],
+    "reporter": [
+      "text",
+      "lcovonly"
     ]
   },
   "xo": {

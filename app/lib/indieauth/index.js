@@ -2,7 +2,7 @@
  * Middleware function for checkScope
  *
  * @memberof indieauth
- * @module scope
+ * @module checkScope
  * @param {String} requiredScope Scope to check
  * @param {Object} req Express request
  * @param {Object} res Express response
@@ -31,7 +31,7 @@ const checkScope = requiredScope => (req, res, next) => {
  * Middleware function for verifyToken
  *
  * @memberof indieauth
- * @module token
+ * @module verifyToken
  * @param {Object} options Middleware option
  * @param {Object} req Express request
  * @param {Object} res Express response

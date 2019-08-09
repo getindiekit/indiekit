@@ -431,7 +431,6 @@ Creates a post file
 
 -   `pub` **[Object][104]** Publication configuration
 -   `mf2` **[Object][104]** Microformats2 object
--   `files` **[String][105]** File attachments
 
 Returns **[String][105]** Location of created file
 
