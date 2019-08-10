@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="{{ app.url }}/app.css">
     <title>{{ title + " - " if title }}{{ app.name }}</title>
   </head>
   <body>
     <header>
       <h1>
-        <a href="/" rel="home">{% include 'logo.svg' %}{{ app.name }}</a>
+        <a href="{{ app.url }}" rel="home">{% include 'logo.svg' %}{{ app.name }}</a>
       </h1>
       <p>{{ app.description }}</p>
     </header>

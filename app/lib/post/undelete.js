@@ -1,4 +1,3 @@
-const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const post = require(process.env.PWD + '/app/lib/post');
 
 /**
@@ -11,12 +10,7 @@ const post = require(process.env.PWD + '/app/lib/post');
  * @returns {String} Location of undeleted post
  */
 module.exports = async (pub, mf2) => {
-  const location = await post.create(pub, mf2).catch(error => {
-    throw new IndieKitError({
-      error: error.name,
-      error_description: error.message
-    });
-  });
+  const location = await post.create(pub, mf2);
 
   return location;
 };

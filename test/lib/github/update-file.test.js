@@ -60,7 +60,8 @@ test('Throws an error when GitHub returns a 404', async t => {
 
   // Test assertions
   const error = await t.throwsAsync(github.updateFile(path, content, options));
-  t.is(error.message, 'Not found');
+  t.is(error.message.status, 404);
+  t.is(error.message.error_description, 'Not found');
 
   scope.done();
 });
@@ -85,7 +86,7 @@ test('Throws an error if GitHub can’t update file', async t => {
 
   // Test assertions
   const error = await t.throwsAsync(github.updateFile(path, content, options));
-  t.regex(error.message, /\bCan’t update file\b/);
+  t.regex(error.message.error_description, /\bCan’t update file\b/);
 
   scope.done();
 });

@@ -120,7 +120,3 @@ test('Excerpts string', t => {
 test('Removes `/` from beginning and end of string', t => {
   t.is(utils.normalizePath('/foo/bar/'), 'foo/bar');
 });
-
-test('Removes `https://`` from beginning of URL', t => {
-  t.is(utils.normalizeUrl('https://foo/bar/'), 'foo/bar/');
-});

@@ -1,3 +1,4 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const publication = require(process.env.PWD + '/app/lib/publication');
 
@@ -8,15 +9,16 @@ const publication = require(process.env.PWD + '/app/lib/publication');
  * @module query
  * @param {Object} req Express request object
  * @param {Object} res Express response object
+ * @param {Function} next Express callback function
  * @returns {Promise} Express response object
  */
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
   const {pub} = req.app.locals;
-  const endpointBaseUrl = `${req.protocol}://${req.headers.host}`;
+  const {app} = req.app.locals;
 
   const endpointConfig = {
     categories: await publication.getCategories(pub),
-    'media-endpoint': pub['media-endpoint'] || `${endpointBaseUrl}/media`,
+    'media-endpoint': pub['media-endpoint'] || `${app.url}/media`,
     'post-types': publication.getPostTypes(pub),
     'syndicate-to': pub['syndicate-to']
   };
@@ -37,14 +39,13 @@ module.exports = async (req, res) => {
 
     case 'source': {
       // Return source (as mf2 object) for given URL
-      return res.json(
-        await microformats.urlToMf2(query.url, query.properties).catch(error => {
-          res.status(400).json({
-            error: 'invalid_request',
-            error_description: error.message
-          });
-        })
-      );
+      try {
+        return res.json(
+          await microformats.urlToMf2(query.url, query.properties)
+        );
+      } catch (error) {
+        return next(error);
+      }
     }
 
     default: {
@@ -54,12 +55,12 @@ module.exports = async (req, res) => {
           [query.q]: endpointConfig[query.q]
         });
       }
-
-      // Rejects unknown endpoint query
-      return res.status(400).json({
-        error: 'invalid_request',
-        error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
-      });
     }
   }
+
+  return next(new IndieKitError({
+    status: 400,
+    error: 'invalid_request',
+    error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
+  }));
 };

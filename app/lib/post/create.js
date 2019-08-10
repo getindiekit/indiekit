@@ -2,13 +2,11 @@ const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
 
-const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
-const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Creates a post file
@@ -43,7 +41,7 @@ module.exports = async (pub, mf2) => {
   const postUrl = render(typeConfig.post.url, properties);
 
   // Prepare location and activity record
-  const url = new URL(postUrl, config.url);
+  const url = new URL(postUrl, config.pub.url);
   const location = url.href;
   const recordData = {
     location,
@@ -61,11 +59,6 @@ module.exports = async (pub, mf2) => {
   // Upload post to GitHub
   await github.createFile(postPath, content, {
     message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
-  }).catch(error => {
-    throw new IndieKitError({
-      error: error.name,
-      error_description: error.message
-    });
   });
 
   record.set(location, recordData);

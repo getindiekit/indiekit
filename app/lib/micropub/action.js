@@ -1,3 +1,4 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const post = require(process.env.PWD + '/app/lib/post');
 const record = require(process.env.PWD + '/app/lib/record');
@@ -28,20 +29,16 @@ module.exports = [
     }
   },
   // Determine action, and execute requested operation
-  (req, res, next) => {
+  async (req, res, next) => {
     const {action, url} = req.query || req.body;
 
-    // If no action provided, continue to next middleware
-    if (!action) {
-      return next();
-    }
-
-    // Check if url parameter has been provided
-    if (url === undefined) {
-      return res.status(400).json({
+    // If no action or url provided, throw to next error handler
+    if (!action || url === undefined) {
+      return next(new IndieKitError({
+        status: 400,
         error: 'invalid_request',
         error_description: 'Request is missing required url parameter'
-      });
+      }));
     }
 
     // Check if url has record data assigned to it
@@ -55,38 +52,32 @@ module.exports = [
 
     switch (action) {
       case 'delete': {
-        if (post.delete(recordData)) {
-          return res.status(200).json({
-            success: 'delete',
-            success_description: `Post deleted from ${url}`
-          });
-        }
-
-        break;
+        await post.delete(recordData);
+        return res.status(200).json({
+          success: 'delete',
+          success_description: `Post deleted from ${url}`
+        });
       }
 
       case 'undelete': {
         const {pub} = req.app.locals;
         const {mf2} = recordData;
         const location = post.undelete(pub, mf2);
-        if (location) {
-          res.header('Location', location);
-          return res.status(200).json({
-            success: 'delete_undelete',
-            success_description: `Post undeleted from ${url}`
-          });
-        }
-
-        break;
+        res.header('Location', location);
+        return res.status(200).json({
+          success: 'delete_undelete',
+          success_description: `Post undeleted from ${url}`
+        });
       }
 
       case 'update': {
-        return post.undelete(url)(req, res, next);
+        return res.status(501).json({
+          error: 'not_implemented',
+          error_description: `Cannot update ${url}`
+        });
       }
 
-      default: {
-        return next();
-      }
+      default:
     }
   }
 ];

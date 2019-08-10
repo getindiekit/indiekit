@@ -13,7 +13,7 @@ const file = upload.single('file');
 const files = upload.any();
 
 const auth = indieauth.verifyToken({
-  me: config.url
+  me: config.pub.url
 });
 
 // Index

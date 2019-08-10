@@ -1,4 +1,5 @@
 const path = require('path');
+const _ = require('lodash');
 const express = require('express');
 const favicon = require('serve-favicon');
 const nunjucks = require('nunjucks');
@@ -19,21 +20,29 @@ nunjucks.configure(['./app/views', './app/static'], {
   watch: true
 });
 
-app.set('view engine', 'njk');
+// Correct reporting of secure connections
+app.enable('trust proxy');
 
-// Save application configuration to locals
-app.locals.app = config;
+app.set('view engine', 'njk');
 
 // Save publication configuration to locals
 (async () => {
   let pubConfig = null;
-  if (config['pub-config']) {
-    pubConfig = await cache.read(config['pub-config'], 'config.json');
+  if (config.pub.config) {
+    pubConfig = await cache.read(config.pub.config, 'config.json');
     pubConfig = JSON.parse(pubConfig);
   }
 
   app.locals.pub = await publication.resolveConfig(pubConfig);
+  app.locals.pub.url = config.pub.url;
 })();
+
+// Save application configuration to locals
+app.use((req, res, next) => {
+  app.locals.app = config;
+  app.locals.app.url = `${req.protocol}://${req.headers.host}`;
+  next();
+});
 
 // Parse application/json
 app.use(express.json({
@@ -71,36 +80,40 @@ app.use((req, res) => {
   if (req.accepts('html')) {
     res.render('error', {
       status: 404,
-      message: 'Not Found',
-      error: 'The requested resource could not be found.'
+      message: {
+        error: 'Not Found',
+        error_description: 'The requested resource could not be found.'
+      }
     });
   }
 });
 
 // Errors
 app.use((error, req, res, next) => {
-  const status = error.status || 500;
+  const status = error.message.status || 500;
   const {message} = error;
 
-  logger.error(`${status}: ${message}. ${req.method} ${req.originalUrl}`);
+  res.status(status);
 
-  // Set locals, only providing error in development
-  if (req.accepts('html')) {
-    res.render('error', {
+  if (req.accepts('text/html')) {
+    return res.render('error', {
       status,
-      message,
-      error
+      error: _.startCase(message.error),
+      description: _.upperFirst(message.error_description)
     });
   }
 
-  res.status(status);
-  res.send(`${status}: ${message}. ${error}`);
+  if (req.accepts('application/json')) {
+    return res.json({
+      error: _.snakeCase(message.error),
+      error_description: _.lowerFirst(message.error_description)
+    });
+  }
 
-  next();
+  res.send(`${status}: ${message.error}. ${message.error_description}`);
+
+  return next();
 });
-
-// Correct reporting of secure connections
-app.enable('trust proxy');
 
 app.listen(port, function () {
   logger.info(`Starting ${config.name} on port ${this.address().port}`);

@@ -8,22 +8,16 @@
  * @param {Object} res Express response
  * @param {Function} next Express callback
  * @return {Function} next Express callback
- * @return {Object} Error
  */
 const checkScope = requiredScope => (req, res, next) => {
   const tokenScope = res.locals.indieauthToken.scope;
 
+  const checkScope = require('./check-scope');
   try {
-    const checkScope = require('./check-scope');
     checkScope(requiredScope, tokenScope);
     return next();
   } catch (error) {
-    const {message} = error;
-    return res.status(message.status).json({
-      error: message.error,
-      error_description: message.error_description,
-      scope: requiredScope
-    });
+    return next(error);
   }
 };
 
@@ -37,7 +31,6 @@ const checkScope = requiredScope => (req, res, next) => {
  * @param {Object} res Express response
  * @param {Function} next Express callback
  * @return {Function} next Express callback
- * @return {Object} Error
  */
 const verifyToken = options => async (req, res, next) => {
   let accessToken;
@@ -48,20 +41,14 @@ const verifyToken = options => async (req, res, next) => {
     delete req.body.access_token; // Delete token from body if exists
   }
 
-  try {
-    const verifyToken = require('./verify-token');
-    const verifiedToken = await verifyToken(accessToken, options);
+  const verifyToken = require('./verify-token');
+  const verifiedToken = await verifyToken(accessToken, options).catch(error => {
+    return next(error);
+  });
 
-    // Save verified indieauth token to locals
-    res.locals.indieauthToken = verifiedToken;
-    return next();
-  } catch (error) {
-    const {message} = error;
-    return res.status(message.status).json({
-      error: message.error,
-      error_description: message.error_description
-    });
-  }
+  // Save verified indieauth token to locals
+  res.locals.indieauthToken = verifiedToken;
+  return next();
 };
 
 module.exports = {

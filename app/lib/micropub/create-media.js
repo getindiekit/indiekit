@@ -15,22 +15,12 @@ module.exports = [
   (req, res, next) => {
     return indieauth.checkScope('create')(req, res, next);
   },
-  async (req, res) => {
+  async (req, res, next) => {
     const {file} = req;
     const {pub} = req.app.locals;
 
-    if (!file || file.truncated || !file.buffer) {
-      return res.status(400).json({
-        error: 'invalid_request',
-        error_description: 'No files included in request'
-      });
-    }
-
     const location = await media.create(pub, file).catch(error => {
-      return res.status(500).json({
-        error: 'server_error',
-        error_description: `Unable to create file. ${error.message}`
-      });
+      next(error);
     });
 
     res.header('Location', location);

@@ -1,5 +1,5 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
-const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 const Octokit = require('@octokit/rest');
@@ -26,8 +26,11 @@ module.exports = async path => {
     ref: config.github.branch,
     path
   }).catch(error => {
-    logger.error('github.getContents', {error});
-    throw new Error(error.message);
+    throw new IndieKitError({
+      status: error.status,
+      error: error.name,
+      error_description: error.message
+    });
   });
 
   contents.data.content = Buffer.from(contents.data.content, 'base64').toString('utf8');

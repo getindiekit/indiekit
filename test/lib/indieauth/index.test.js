@@ -55,22 +55,24 @@ test('Returns 401 if required scope not in access token', async t => {
   // Mock Express
   const req = null;
   const res = mockScopeResponse('create');
-  const next = sinon.mock().once().withExactArgs().returns('Go to next');
+  const next = sinon.spy();
 
   // Test assertions
   await indieauth.checkScope('update')(req, res, next);
-  t.true(res.status.calledWith(401));
+  t.is(next.args[0][0].message.status, 401);
+  t.is(next.args[0][0].message.error, 'Insufficient scope');
 });
 
 test('Returns 401 if required scope not provided', async t => {
   // Mock Express
   const req = null;
   const res = mockScopeResponse('create');
-  const next = sinon.mock().once().withExactArgs().returns('Go to next');
+  const next = sinon.spy();
 
   // Test assertions
   await indieauth.checkScope(null)(req, res, next);
-  t.true(res.status.calledWith(401));
+  t.is(next.args[0][0].message.status, 400);
+  t.is(next.args[0][0].message.error, 'invalid_request');
 });
 
 // Test middleware that verifies tokens
@@ -131,10 +133,12 @@ test('Returns 400 if publication URL not configured', async t => {
     }
   };
   const res = mockTokenResponse();
+  const next = sinon.spy();
 
   // Test assertions
-  await indieauth.verifyToken({me: null})(req, res, () => {});
-  t.true(res.status.calledWith(400));
+  await indieauth.verifyToken({me: null})(req, res, next);
+  t.is(next.args[0][0].message.status, 400);
+  t.is(next.args[0][0].message.error, 'invalid_request');
 });
 
 test('Returns 403 if publication URL doesn’t match that in token', async t => {
@@ -145,8 +149,10 @@ test('Returns 403 if publication URL doesn’t match that in token', async t => 
     }
   };
   const res = mockTokenResponse();
+  const next = sinon.spy();
 
   // Test assertions
-  await indieauth.verifyToken({me: 'https://foo.bar'})(req, res, () => {});
-  t.true(res.status.calledWith(403));
+  await indieauth.verifyToken({me: 'https://foo.bar'})(req, res, next);
+  t.is(next.args[0][0].message.status, 403);
+  t.is(next.args[0][0].message.error, 'Access denied');
 });

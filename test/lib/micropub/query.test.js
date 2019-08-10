@@ -36,7 +36,7 @@ test('Returns source (as mf2 object) for given URL', async t => {
   t.is(response.body.name[0], 'Warp and Weft');
 });
 
-test('Returns invalid request if source URL returns error', async t => {
+test('Returns invalid request if source URL not found', async t => {
   const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
@@ -45,8 +45,8 @@ test('Returns invalid request if source URL returns error', async t => {
       properties: 'name',
       url: 'https://example.example'
     });
-  t.is(response.status, 400);
-  t.is(response.body.error, 'invalid_request');
+  t.is(response.status, 404);
+  t.is(response.body.error, 'not_found');
 });
 
 test('Returns configured property if matches provided query', async t => {

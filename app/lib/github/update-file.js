@@ -1,5 +1,5 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
-const logger = require(process.env.PWD + '/app/logger');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
 const Octokit = require('@octokit/rest');
@@ -23,23 +23,24 @@ const getContents = require('./get-contents');
  */
 module.exports = async (path, content, options) => {
   path = utils.normalizePath(path);
+  content = Buffer.from(content).toString('base64');
 
-  const contents = await getContents(path).catch(error => {
-    logger.error('github.updateFile, getContents', {error});
-    throw new Error(error.message);
-  });
+  const contents = await getContents(path);
 
   const updatedFile = await octokit.repos.createOrUpdateFile({
     owner: config.github.user,
     repo: config.github.repo,
     branch: config.github.branch,
-    path,
     message: `${options.message}\nwith ${config.name}`,
-    content: Buffer.from(content).toString('base64'),
-    sha: contents.data.sha
+    sha: contents.data.sha,
+    path,
+    content
   }).catch(error => {
-    logger.error('github.updateFile, createOrUpdateFile', {error});
-    throw new Error(error.message);
+    throw new IndieKitError({
+      status: error.status,
+      error: error.name,
+      error_description: error.message
+    });
   });
 
   return updatedFile;

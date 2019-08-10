@@ -20,6 +20,14 @@ const utils = require(process.env.PWD + '/app/lib/utils');
 const create = async (pub, file) => {
   logger.info('media.create', {file});
 
+  if (!file || file.truncated || !file.buffer) {
+    throw new IndieKitError({
+      status: 400,
+      error: 'invalid_request',
+      error_description: 'No file included in request'
+    });
+  }
+
   // Determine post type from media type
   const type = utils.deriveMediaType(file);
   const typeConfig = pub['post-types'][type];
@@ -33,7 +41,7 @@ const create = async (pub, file) => {
   const mediaName = path.basename(mediaPath);
 
   // Prepare location and activity record
-  const url = new URL(mediaUrl, config.url);
+  const url = new URL(mediaUrl, config.pub.url);
   const location = url.href;
   const recordData = {
     media: {
@@ -45,11 +53,6 @@ const create = async (pub, file) => {
   // Upload file to GitHub
   await github.createFile(mediaPath, file.buffer, {
     message: `:framed_picture: Uploaded ${mediaName}`
-  }).catch(error => {
-    throw new IndieKitError({
-      error: error.name,
-      error_description: error.message
-    });
   });
 
   record.set(location, recordData);

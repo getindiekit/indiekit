@@ -10,15 +10,17 @@ const logger = require(process.env.PWD + '/app/logger');
  * @param {String} requiredScope Required scope
  * @param {Object} tokenScope Scope(s) provided by access token
  * @return {Boolean} True if tokenScope includes requiredScope
+ *
+ * {@link https://w3.org/TR/micropub/#error-response Error responses}
  */
 module.exports = (requiredScope, tokenScope) => {
-  logger.debug('auth.checkScope, required scope: %s', requiredScope);
-  logger.debug('auth.checkScope, token scope: %s', tokenScope);
+  logger.debug('indieauth.checkScope, required scope: %s', requiredScope);
+  logger.debug('indieauth.checkScope, token scope: %s', tokenScope);
 
   if (!requiredScope) {
     throw new IndieKitError({
-      status: 401,
-      error: 'unauthorized',
+      status: 400,
+      error: 'invalid_request',
       error_description: 'No scope was provided in request'
     });
   }
@@ -49,7 +51,7 @@ module.exports = (requiredScope, tokenScope) => {
 
   throw new IndieKitError({
     status: 401,
-    error: 'insufficient_scope',
+    error: 'Insufficient scope',
     error_description: `Access token does not meet requirements for requested scope (${requiredScope})`
   });
 };

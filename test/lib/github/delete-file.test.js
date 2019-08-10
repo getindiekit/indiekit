@@ -10,10 +10,7 @@ test('Deletes a file in a GitHub repository', async t => {
     .get(uri => uri.includes('foo.txt'))
     .reply(200, {
       content: 'Zm9vYmFy',
-      sha: '\b[0-9a-f]{5,40}\b',
-      type: 'file',
-      name: 'foo.txt',
-      path: 'bar/foo.txt'
+      sha: '\b[0-9a-f]{5,40}\b'
     })
     .delete(uri => uri.includes('foo.txt'))
     .reply(200, {
@@ -52,7 +49,8 @@ test('Throws an error when GitHub returns a 404', async t => {
 
   // Test assertions
   const error = await t.throwsAsync(github.deleteFile(path, options));
-  t.is(error.message, 'Not found');
+  t.is(error.message.status, 404);
+  t.is(error.message.error_description, 'Not found');
 
   scope.done();
 });
@@ -74,7 +72,7 @@ test('Throws an error if no SHA found for file', async t => {
 
   // Test assertions
   const error = await t.throwsAsync(github.deleteFile(path, options));
-  t.is(error.message, 'Empty value for parameter \'sha\': undefined');
+  t.is(error.message.error_description, 'Empty value for parameter \'sha\': undefined');
 
   scope.done();
 });

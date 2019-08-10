@@ -15,18 +15,32 @@ module.exports = [
   indieauth.checkScope('delete'),
   async (req, res) => {
     const {query} = req;
+    switch (query.cache) {
+      // Flush cache
+      case 'flush': {
+        cache.cache.flushAll();
+        return res.json({
+          success: 'delete',
+          success_description: 'Cache flushed'
+        });
+      }
 
-    if (query.purge === 'cache') {
-      cache.delete();
-      return res.status(201).json({
-        success: 'delete',
-        success_description: 'Cache deleted'
-      });
+      // Return list of cache keys
+      case 'keys': {
+        return res.json(cache.cache.keys());
+      }
+
+      // Return cache statistics
+      case 'stats': {
+        return res.json(cache.cache.getStats());
+      }
+
+      default: {
+        return res.status(400).json({
+          error: 'invalid_request',
+          error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
+        });
+      }
     }
-
-    return res.status(400).json({
-      error: 'invalid_request',
-      error_description: 'Request is missing required parameter, or there was a problem with value of one of the parameters provided'
-    });
   }
 ];

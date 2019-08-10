@@ -1,5 +1,6 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
-const logger = require(process.env.PWD + '/app/logger');
+const utils = require(process.env.PWD + '/app/lib/utils');
 
 const Octokit = require('@octokit/rest');
 
@@ -20,21 +21,23 @@ const getContents = require('./get-contents');
  * @return {Promise} GitHub HTTP response
  */
 module.exports = async (path, options) => {
-  const contents = await getContents(path).catch(error => {
-    logger.error('github.deleteFile, getContents', {error});
-    throw new Error(error.message);
-  });
+  path = utils.normalizePath(path);
+
+  const contents = await getContents(path);
 
   const deletedFile = await octokit.repos.deleteFile({
     owner: config.github.user,
     repo: config.github.repo,
     branch: config.github.branch,
-    path,
     message: `${options.message}\nwith ${config.name}`,
-    sha: contents.data.sha
+    sha: contents.data.sha,
+    path
   }).catch(error => {
-    logger.error('github.deleteFile, deleteFile', {error});
-    throw new Error(error.message);
+    throw new IndieKitError({
+      status: error.status,
+      error: error.name,
+      error_description: error.message
+    });
   });
 
   return deletedFile;

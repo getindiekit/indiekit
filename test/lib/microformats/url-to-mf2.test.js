@@ -5,13 +5,13 @@ const urlToMf2 = require(process.env.PWD + '/app/lib/microformats/url-to-mf2.js'
 test('Throws error if URL has no items', async t => {
   const url = 'https://paulrobertlloyd.com';
   const error = await t.throwsAsync(urlToMf2(url));
-  t.is(error.message, 'Page has no items');
+  t.is(error.message.error_description, 'Page has no items');
 });
 
 test('Throws error if no response from URL', async t => {
-  const url = 'https://paulrobertlloyd.example';
+  const url = 'https://example.example';
   const error = await t.throwsAsync(urlToMf2(url));
-  t.is(error.code, 'ENOTFOUND');
+  t.is(error.message.error, 'Not found');
 });
 
 test('Returns empty object if requested property not found', async t => {

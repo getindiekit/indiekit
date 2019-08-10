@@ -36,9 +36,11 @@ test('Throws an error when GitHub returns a 404', async t => {
   const path = 'bar/foo.txt';
 
   // Test assertions
-  await t.throwsAsync(async () => {
+  const error = await t.throwsAsync(async () => {
     await github.getContents(path);
-  }, {message: 'Not found'});
+  });
+  t.is(error.message.status, 404);
+  t.is(error.message.error_description, 'Not found');
 
   scope.done();
 });

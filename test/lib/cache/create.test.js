@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const test = require('ava');
 
-const outputDir = process.env.PWD + '/.ava_output';
+const outputDir = process.env.PWD + '/.ava_output/cache-create';
 
 const createCache = require(process.env.PWD + '/app/lib/cache/create.js');
 

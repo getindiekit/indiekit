@@ -1,4 +1,3 @@
-const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const github = require(process.env.PWD + '/app/lib/github');
 
 /**
@@ -12,11 +11,6 @@ const github = require(process.env.PWD + '/app/lib/github');
 module.exports = async recordData => {
   await github.deleteFile(recordData.post.path, {
     message: ':x: Deleted post'
-  }).catch(error => {
-    throw new IndieKitError({
-      error: error.name,
-      error_description: error.message
-    });
   });
 
   return true;

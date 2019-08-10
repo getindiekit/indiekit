@@ -1,3 +1,4 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const microformats = require('microformat-node');
 
 /**
@@ -16,15 +17,27 @@ module.exports = async (html, properties) => {
     html: await html,
     textFormat: 'normalised'
   }).catch(error => {
-    throw new Error(error.message);
+    throw new IndieKitError({
+      status: 400,
+      error: 'invalid_request',
+      error_description: error[0]
+    });
   });
 
   if (items && items.length === 0) {
-    throw new Error('Page has no items');
+    throw new IndieKitError({
+      status: 400,
+      error: 'invalid_request',
+      error_description: 'Page has no items'
+    });
   }
 
   if (items && items.length > 1) {
-    throw new Error('Page has more than one item');
+    throw new IndieKitError({
+      status: 400,
+      error: 'invalid_request',
+      error_description: 'Page has more than one item'
+    });
   }
 
   if (items && items.length === 1) {
@@ -40,7 +53,11 @@ module.exports = async (html, properties) => {
 
       mf2 = item;
     } else {
-      throw new Error('Item has no properties');
+      throw new IndieKitError({
+        status: 400,
+        error: 'invalid_request',
+        error_description: 'Item has no properties'
+      });
     }
 
     // Only return requested properties

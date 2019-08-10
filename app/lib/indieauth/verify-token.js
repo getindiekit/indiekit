@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
+const normalizeUrl = require('normalize-url');
 
 const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const logger = require(process.env.PWD + '/app/logger');
-const utils = require(process.env.PWD + '/app/lib/utils');
 
 /**
  * Verifies that a token provides permissions to post to a publication,
@@ -15,8 +15,8 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @return {Boolean} True if verifyToken autheticates publisher
  */
 module.exports = async (accessToken, options) => {
-  logger.debug('auth.indieauth.verifyToken, access token: %s', accessToken);
-  logger.debug('auth.indieauth.verifyToken, options: %s', options);
+  logger.debug('indieauth.verifyToken, access token: %s', accessToken);
+  logger.debug('indieauth.verifyToken, options: %s', options);
 
   if (!accessToken) {
     throw new IndieKitError({
@@ -51,11 +51,9 @@ module.exports = async (accessToken, options) => {
     status = response.status;
     verifiedToken = await response.json();
   } catch (error) {
-    // Unknown error, but most likely unable to reach token endpoint
     throw new IndieKitError({
-      status: 400,
-      error: 'invalid_request',
-      error_description: 'Error validating token'
+      error: error.name,
+      error_description: error.message
     });
   }
 
@@ -72,21 +70,21 @@ module.exports = async (accessToken, options) => {
   if (!verifiedToken.me) {
     throw new IndieKitError({
       status: 404,
-      error: 'not_found',
+      error: 'Not found',
       error_description: 'There was a problem with this access token'
     });
   }
 
   // Normalize publication and token URLs before comparing
-  const verifiedTokenMe = utils.normalizeUrl(verifiedToken.me);
-  const publicationMe = utils.normalizeUrl(me);
+  const verifiedTokenMe = normalizeUrl(verifiedToken.me);
+  const publicationMe = normalizeUrl(me);
   const isAuthenticated = verifiedTokenMe === publicationMe;
 
   // Publication URL does not match that provided by access token
   if (!isAuthenticated) {
     throw new IndieKitError({
       status: 403,
-      error: 'forbidden',
+      error: 'Access denied',
       error_description: 'User does not have permission to perform request'
     });
   }

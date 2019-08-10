@@ -152,21 +152,6 @@ const normalizePath = str => {
   return str.replace(/^\/|\/$/g, '');
 };
 
-/**
- * Removes protocol from beginning of URL
- *
- * @memberof utils
- * @exports normalizeUrl
- * @example normalizeUrl('http://foo.bar/baz') => 'foo.bar/baz'
- * @example normalizeUrl('https://foo.bar/baz') => 'foo.bar/baz'
- * @param {String} str URL to normalize
- * @return {String} Normalized URL
- */
-const normalizeUrl = str => {
-  const url = new URL(str).href;
-  return url.replace(/(^\w+:|^)\/\//, '');
-};
-
 module.exports = {
   cleanArray,
   cleanObject,
@@ -175,6 +160,5 @@ module.exports = {
   deriveFileProperties,
   deriveMediaType,
   excerptString,
-  normalizePath,
-  normalizeUrl
+  normalizePath
 };

@@ -1,3 +1,4 @@
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const fetch = require('node-fetch');
 
 const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2');
@@ -12,7 +13,13 @@ const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2')
  * @returns {Promise} mf2 object
  */
 module.exports = async (url, properties) => {
-  const response = await fetch(url);
+  const response = await fetch(url).catch(error => {
+    throw new IndieKitError({
+      status: 404,
+      error: 'Not found',
+      error_description: error.message
+    });
+  });
   const html = await response.text();
   return htmlToMf2(html, properties);
 };

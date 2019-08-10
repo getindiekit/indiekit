@@ -49,21 +49,21 @@ module.exports = body => {
         delete mf2[key];
       } else if (isPhotoProperty) {
         // Convert `photo` values into mf2 objects
-        // 'foo.gif' => [{value: 'foo.gif'}]
-        // ['foo.gif', 'bar.jpg'] => [{value: 'foo.gif'}, {value: 'bar.jpg'}]
+        // 'a' => [{value: 'a'}]
+        // ['a', 'b'] => [{value: 'a'}, {value: 'b'}]
         mf2.properties[key] = [].concat(value).map(value => ({value}));
       } else if (isPhotoAltProperty) {
         // Convert `mp-photo-alt` values into mf2 objects
-        // 'foo' => [{alt: 'foo'}]
-        // ['foo', 'bar'] => [{alt: 'foo'}, {alt: 'bar'}]
+        // 'a' => [{alt: 'a'}]
+        // ['a', 'b'] => [{alt: 'a'}, {alt: 'b'}]
         mf2[key] = [].concat(value).map(alt => ({alt}));
       } else if (isExtendedProperty) {
-        // Convert extended properties into arrays
-        // 'foo' => ['foo']
+        // Convert `mp-*` extended values into arrays
+        // 'a' => ['a']
         mf2[key] = [].concat(value);
       } else {
-        // Convert post properties into arrays
-        // 'foo' => ['foo']
+        // Convert property values into arrays
+        // 'a' => ['a']
         mf2.properties[key] = [].concat(value);
       }
     }

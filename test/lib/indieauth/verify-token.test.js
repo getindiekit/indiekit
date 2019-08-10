@@ -88,7 +88,7 @@ test('Throws error if can’t connect to token endpoint', async t => {
   const error = await t.throwsAsync(verifyToken(token, {
     me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
   }));
-  t.is(error.message.error_description, 'Error validating token');
+  t.is(error.message.error, 'FetchError');
 
   scope.done();
 });
