@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
 
+const cache = require(process.env.PWD + '/app/cache');
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');
 const microformats = require(process.env.PWD + '/app/lib/microformats');
@@ -29,10 +30,19 @@ module.exports = async (pub, mf2) => {
   properties.published = microformats.derivePuplished(mf2);
   properties.slug = microformats.deriveSlug(mf2, pub['slug-separator']);
 
-  // Render template
-  const templatePath = typeConfig.template;
-  const templateData = fs.readFileSync(templatePath);
-  const template = Buffer.from(templateData).toString('utf-8');
+  // Get template
+  let template;
+  if (typeConfig.template.cacheKey) {
+    // Get publisher configured template from cache
+    template = await cache.get(typeConfig.template.cacheKey);
+    template = template.data.toString('utf-8');
+  } else {
+    // Read default template from file system
+    template = fs.readFileSync(typeConfig.template);
+    template = Buffer.from(template).toString('utf-8');
+  }
+
+  // Render template with context
   const context = camelcaseKeys(properties);
   const content = render(template, context);
 

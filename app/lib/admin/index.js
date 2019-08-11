@@ -1,5 +1,5 @@
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
-const cache = require(process.env.PWD + '/app/lib/cache');
+const cache = require(process.env.PWD + '/app/cache');
 
 /**
  *  Middleware function for admin operations
@@ -18,7 +18,7 @@ module.exports = [
     switch (query.cache) {
       // Flush cache
       case 'flush': {
-        cache.cache.flushAll();
+        cache.flushAll();
         return res.json({
           success: 'delete',
           success_description: 'Cache flushed'
@@ -27,12 +27,12 @@ module.exports = [
 
       // Return list of cache keys
       case 'keys': {
-        return res.json(cache.cache.keys());
+        return res.json(cache.keys());
       }
 
       // Return cache statistics
       case 'stats': {
-        return res.json(cache.cache.getStats());
+        return res.json(cache.getStats());
       }
 
       default: {

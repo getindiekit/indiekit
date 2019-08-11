@@ -16,14 +16,13 @@ config.locale = process.env.INDIEKIT_LOCALE || 'en-GB';
 
 // Cache
 config.cache = {
-  dir: process.env.PWD + '/.cache',
-  'max-age': process.env.INDIEKIT_CACHE_EXPIRES || 86400
+  ttl: process.env.INDIEKIT_CACHE_EXPIRES || 86400
 };
 
 // Data store
 config.data = {
   dir: process.env.PWD + '/.data',
-  'max-age': process.env.INDIEKIT_DATA_EXPIRES || 86400
+  ttl: process.env.INDIEKIT_DATA_EXPIRES || 86400
 };
 
 // IndieAuth
@@ -52,11 +51,12 @@ config.timber = {
 };
 
 if (process.env.NODE_ENV === 'test') {
-  config.port = null;
   config.github = {
     token: 'abc123',
     user: 'username',
     repo: 'repo',
     branch: 'master'
   };
+  config.port = null;
+  config.pub.config = null;
 }

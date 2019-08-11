@@ -1,9 +1,7 @@
-const path = require('path');
 const _ = require('lodash');
 
-const cache = require(process.env.PWD + '/app/lib/cache');
-const config = require(process.env.PWD + '/app/config');
 const logger = require(process.env.PWD + '/app/logger');
+const getFiles = require('./get-files');
 
 /**
  * Gets a publication’s configured post types, caches any referenced templates,
@@ -15,20 +13,20 @@ const logger = require(process.env.PWD + '/app/logger');
  * @returns {Promise} Post types object
  */
 const resolvePostTypes = async (pubPostTypes, defaultPostTypes) => {
+  // Cache configured templates
   const cachedTemplates = [];
   for (const key in pubPostTypes) {
     if (Object.prototype.hasOwnProperty.call(pubPostTypes, key)) {
       const pubPostType = pubPostTypes[key];
-      // Only cache templates publisher has configured
       if (pubPostType.template) {
-        const cacheTemplate = path.join('templates', `${key}.njk`);
-        const cacheTemplatePath = path.join(config.cache.dir, cacheTemplate);
         cachedTemplates.push(
-          cache.read(pubPostType.template, cacheTemplate)
+          getFiles(pubPostType.template)
         );
 
-        // Update `template` value with location of cached template
-        pubPostType.template = cacheTemplatePath;
+        // Update `template` with `cacheKey` value
+        pubPostType.template = {
+          cacheKey: pubPostType.template
+        };
       }
     }
   }
@@ -36,7 +34,7 @@ const resolvePostTypes = async (pubPostTypes, defaultPostTypes) => {
   // Wait for all templates to be cached
   await Promise.all(cachedTemplates);
 
-  // Merge default and publication post types (with cached template paths)
+  // Merge default and publication post types
   const resolvedPostTypes = _.merge(defaultPostTypes, pubPostTypes);
 
   return resolvedPostTypes;

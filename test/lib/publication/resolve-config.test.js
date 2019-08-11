@@ -1,14 +1,9 @@
-const fs = require('fs-extra');
 const nock = require('nock');
 const test = require('ava');
 
-const config = require(process.env.PWD + '/app/config');
 const resolveConfig = require(process.env.PWD + '/app/lib/publication/resolve-config.js');
 
-const outputDir = process.env.PWD + '/.ava_output/publication';
-
 test.before(t => {
-  config.cache.dir = outputDir;
   t.context.defaults = {
     categories: [],
     'post-types': {
@@ -67,7 +62,7 @@ test('Merge publisher post types with defaults', async t => {
   t.is(result['post-types'].note.name, 'Foobar');
 });
 
-test('Updates `template` value with location of cached template', async t => {
+test('Updates `template` value with cache key', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foobar.njk'))
@@ -87,10 +82,6 @@ test('Updates `template` value with location of cached template', async t => {
 
   // Test assertions
   const result = await resolveConfig(pubConfig, t.context.defaults);
-  t.is(result['post-types'].note.template, `${outputDir}/templates/note.njk`);
+  t.is(result['post-types'].note.template.cacheKey, 'foobar.njk');
   scope.done();
-});
-
-test.afterEach(async () => {
-  await fs.remove(outputDir);
 });
