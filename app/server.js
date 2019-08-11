@@ -7,7 +7,7 @@ const nunjucks = require('nunjucks');
 const logger = require(process.env.PWD + '/app/logger');
 const config = require(process.env.PWD + '/app/config');
 const routes = require(process.env.PWD + '/app/routes');
-const publication = require(process.env.PWD + '/app/lib/publication');
+const publication = require(process.env.PWD + '/lib/publication');
 
 const app = express();
 const {port} = config;

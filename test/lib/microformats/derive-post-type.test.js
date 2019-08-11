@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const devivePostType = require(process.env.PWD + '/app/lib/microformats/derive-post-type.js');
+const devivePostType = require(process.env.PWD + '/lib/microformats/derive-post-type.js');
 
 test('Derives note', t => {
   const note = require('./fixtures/post-type-note');

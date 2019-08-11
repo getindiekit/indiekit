@@ -1,7 +1,7 @@
 const nock = require('nock');
 const test = require('ava');
 
-const resolveConfig = require(process.env.PWD + '/app/lib/publication/resolve-config.js');
+const resolveConfig = require(process.env.PWD + '/lib/publication/resolve-config.js');
 
 test.before(t => {
   t.context.defaults = {

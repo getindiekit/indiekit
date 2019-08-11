@@ -3,7 +3,7 @@ const nock = require('nock');
 const test = require('ava');
 
 const config = require(process.env.PWD + '/app/config');
-const post = require(process.env.PWD + '/app/lib/post');
+const post = require(process.env.PWD + '/lib/post');
 
 const outputDir = process.env.PWD + '/.ava_output/post-delete';
 

@@ -1,7 +1,7 @@
 const test = require('ava');
 const nock = require('nock');
 
-const getFiles = require(process.env.PWD + '/app/lib/publication/get-files.js');
+const getFiles = require(process.env.PWD + '/lib/publication/get-files.js');
 
 test('Throws error if file can’t be fetched from GitHub', async t => {
   // Mock request

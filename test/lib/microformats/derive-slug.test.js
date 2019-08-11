@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const derviveSlug = require(process.env.PWD + '/app/lib/microformats/derive-slug.js');
+const derviveSlug = require(process.env.PWD + '/lib/microformats/derive-slug.js');
 
 test('Derives slug from `mp-slug` property', t => {
   const provided = require('./fixtures/slug-provided');

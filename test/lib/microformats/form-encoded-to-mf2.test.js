@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const formEncodedToMf2 = require(process.env.PWD + '/app/lib/microformats/form-encoded-to-mf2.js');
+const formEncodedToMf2 = require(process.env.PWD + '/lib/microformats/form-encoded-to-mf2.js');
 
 test('Converts form-encoded request into microformats2 object.', t => {
   const body = {

@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const devivePhoto = require(process.env.PWD + '/app/lib/microformats/derive-photo.js');
+const devivePhoto = require(process.env.PWD + '/lib/microformats/derive-photo.js');
 
 test('Derives photo from `photo` property', async t => {
   const provided = require('./fixtures/photo-provided');

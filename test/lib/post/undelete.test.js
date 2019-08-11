@@ -4,7 +4,7 @@ const test = require('ava');
 const validUrl = require('valid-url');
 
 const config = require(process.env.PWD + '/app/config');
-const post = require(process.env.PWD + '/app/lib/post');
+const post = require(process.env.PWD + '/lib/post');
 const pub = require('./fixtures/create-config');
 
 const outputDir = process.env.PWD + '/.ava_output/post-undelete';

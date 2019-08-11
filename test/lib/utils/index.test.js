@@ -4,7 +4,7 @@ const path = require('path');
 const {DateTime} = require('luxon');
 const test = require('ava');
 
-const utils = require(process.env.PWD + '/app/lib/utils');
+const utils = require(process.env.PWD + '/lib/utils');
 
 test('Removes falsey values if provided object is an array', t => {
   // Setup

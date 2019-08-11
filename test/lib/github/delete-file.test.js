@@ -2,7 +2,7 @@ const nock = require('nock');
 const test = require('ava');
 
 const config = require(process.env.PWD + '/app/config');
-const github = require(process.env.PWD + '/app/lib/github');
+const github = require(process.env.PWD + '/lib/github');
 
 test('Deletes a file in a GitHub repository', async t => {
   // Mock request

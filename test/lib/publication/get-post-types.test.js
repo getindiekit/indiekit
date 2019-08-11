@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const getPostTypes = require(process.env.PWD + '/app/lib/publication/get-post-types.js');
+const getPostTypes = require(process.env.PWD + '/lib/publication/get-post-types.js');
 
 test('Returns array of post types if provided in object', async t => {
   const pub = {'post-types': {

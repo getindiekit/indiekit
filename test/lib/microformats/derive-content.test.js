@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const derviveContent = require(process.env.PWD + '/app/lib/microformats/derive-content.js');
+const derviveContent = require(process.env.PWD + '/lib/microformats/derive-content.js');
 
 test('Derives content from `content[0].html` property', t => {
   const providedHtmlValue = require('./fixtures/content-provided-html-value');

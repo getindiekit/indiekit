@@ -1,7 +1,7 @@
 const nock = require('nock');
 const test = require('ava');
 
-const getCategories = require(process.env.PWD + '/app/lib/publication/get-categories.js');
+const getCategories = require(process.env.PWD + '/lib/publication/get-categories.js');
 
 test('Returns array if categories provided', async t => {
   const pub = {categories: ['foo', 'bar']};

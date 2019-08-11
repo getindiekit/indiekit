@@ -1,7 +1,7 @@
 const test = require('ava');
 const {DateTime} = require('luxon');
 
-const dervivePublished = require(process.env.PWD + '/app/lib/microformats/derive-published.js');
+const dervivePublished = require(process.env.PWD + '/lib/microformats/derive-published.js');
 
 test('Derives date from `published` property', t => {
   const provided = require('./fixtures/published-provided');

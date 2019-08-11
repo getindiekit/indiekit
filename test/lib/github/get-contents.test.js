@@ -1,7 +1,7 @@
 const nock = require('nock');
 const test = require('ava');
 
-const github = require(process.env.PWD + '/app/lib/github');
+const github = require(process.env.PWD + '/lib/github');
 
 test('Reads content of a file in a repository', async t => {
   // Mock request

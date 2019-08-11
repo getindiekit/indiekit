@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const test = require('ava');
 
-const htmlToMf2 = require(process.env.PWD + '/app/lib/microformats/html-to-mf2.js');
+const htmlToMf2 = require(process.env.PWD + '/lib/microformats/html-to-mf2.js');
 
 test('Throws error if no HTML provided', async t => {
   const error = await t.throwsAsync(htmlToMf2(null));

@@ -1,11 +1,11 @@
 const express = require('express');
 const multer = require('multer');
 
-const {IndieKitError} = require(process.env.PWD + '/app/errors');
-const admin = require(process.env.PWD + '/app/lib/admin');
-const indieauth = require(process.env.PWD + '/app/lib/indieauth');
+const {IndieKitError} = require(process.env.PWD + '/lib/errors');
 const config = require(process.env.PWD + '/app/config');
-const micropub = require(process.env.PWD + '/app/lib/micropub');
+const admin = require(process.env.PWD + '/app/middleware/admin');
+const indieauth = require(process.env.PWD + '/app/middleware/auth');
+const micropub = require(process.env.PWD + '/app/middleware/micropub');
 
 const router = new express.Router();
 const storage = multer.memoryStorage();
