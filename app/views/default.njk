@@ -15,7 +15,7 @@
       {% block content %}{% endblock %}
     </main>
     <footer>
-      <a href="https://github.com/{{ app.repository | replace('github:', '.') }}/releases/tag/v{{ app.version }}">v{{ app.version }}</a>
+      <a href="https://github.com/{{ app.repository | replace('github:', '') }}/releases/tag/v{{ app.version }}">v{{ app.version }}</a>
     </footer>
   </body>
 </html>
