@@ -16,7 +16,7 @@
     "start": "node app/server.js",
     "dev": "nodemon app/server.js",
     "docs": "documentation build app/** -f md -o docs/app.md",
-    "test": "NODE_ENV=test ava --verbose",
+    "test": "NODE_ENV=test ava",
     "coverage": "NODE_ENV=test nyc ava"
   },
   "engines": {
@@ -46,7 +46,7 @@
     "nunjucks": "^3.2.0",
     "post-type-discovery": "^1.0.2",
     "serve-favicon": "^2.5.0",
-    "sinon": "^7.3.2",
+    "sinon": "^7.4.1",
     "slug": "^1.1.0",
     "uuid": "^3.3.2",
     "winston": "^3.2.1"
@@ -54,8 +54,8 @@
   "devDependencies": {
     "ava": "^2.2.0",
     "documentation": "^12.1.1",
-    "husky": "^3.0.2",
-    "nock": "^10.0.6",
+    "husky": "^3.0.3",
+    "nock": "^11.0.0-beta.31",
     "nodemon": "^1.19.1",
     "nyc": "^14.0.0",
     "supertest": "^4.0.0",
@@ -93,6 +93,7 @@
             "access_token",
             "client_id",
             "error_description",
+            "error_uri",
             "success_description"
           ]
         }

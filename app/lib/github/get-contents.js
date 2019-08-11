@@ -1,4 +1,3 @@
-const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
 const utils = require(process.env.PWD + '/app/lib/utils');
 
@@ -26,11 +25,7 @@ module.exports = async path => {
     ref: config.github.branch,
     path
   }).catch(error => {
-    throw new IndieKitError({
-      status: error.status,
-      error: error.name,
-      error_description: error.message
-    });
+    throw new Error(error.message);
   });
 
   contents.data.content = Buffer.from(contents.data.content, 'base64').toString('utf8');

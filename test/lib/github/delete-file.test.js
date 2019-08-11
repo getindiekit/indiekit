@@ -33,29 +33,25 @@ test('Deletes a file in a GitHub repository', async t => {
   scope.done();
 });
 
-test('Throws an error when GitHub returns a 404', async t => {
+test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
-    .reply(404, {
-      message: 'Not found'
-    });
+    .replyWithError('Not found');
 
   // Setup
   const path = 'bar/foo.txt';
   const options = {
     message: 'Delete message'
   };
+  const error = await t.throwsAsync(github.deleteFile(path, options));
 
   // Test assertions
-  const error = await t.throwsAsync(github.deleteFile(path, options));
-  t.is(error.message.status, 404);
-  t.is(error.message.error_description, 'Not found');
-
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
-test('Throws an error if no SHA found for file', async t => {
+test('Throws error if no SHA found for file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
@@ -69,10 +65,9 @@ test('Throws an error if no SHA found for file', async t => {
   const options = {
     message: 'Delete message'
   };
+  const error = await t.throwsAsync(github.deleteFile(path, options));
 
   // Test assertions
-  const error = await t.throwsAsync(github.deleteFile(path, options));
-  t.is(error.message.error_description, 'Empty value for parameter \'sha\': undefined');
-
+  t.is(error.message, 'Empty value for parameter \'sha\': undefined');
   scope.done();
 });

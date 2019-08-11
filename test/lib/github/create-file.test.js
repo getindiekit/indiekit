@@ -26,22 +26,19 @@ test('Creates a new file in a repository', async t => {
   const options = {
     message: 'Create message'
   };
+  const response = await github.createFile(path, content, options);
 
   // Test assertions
-  const response = await github.createFile(path, content, options);
   t.truthy(response);
   t.is(response.data.commit.message, `Create message\nwith ${config.name}`);
-
   scope.done();
 });
 
-test('Throws an error when GitHub returns a 404', async t => {
+test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(uri => uri.includes('foo.txt'))
-    .reply(404, {
-      message: 'Not found'
-    });
+    .replyWithError('Not found');
 
   // Setup
   const path = 'bar/foo.txt';
@@ -49,11 +46,9 @@ test('Throws an error when GitHub returns a 404', async t => {
   const options = {
     message: 'Create message'
   };
+  const error = await t.throwsAsync(github.createFile(path, content, options));
 
   // Test assertions
-  const error = await t.throwsAsync(github.createFile(path, content, options));
-  t.is(error.message.status, 404);
-  t.is(error.message.error_description, 'Not found');
-
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });

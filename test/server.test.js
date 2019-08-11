@@ -28,3 +28,20 @@ test('Application responds to 404 errors', async t => {
   t.is(response.status, 404);
   t.regex(response.header['content-type'], /^text\/html/);
 });
+
+test('Application responds to errors', async t => {
+  const {app} = t.context;
+  const response = await app.get('/teapot');
+
+  t.is(response.status, 418);
+  t.regex(response.header['content-type'], /^text\/html/);
+});
+
+test('Application responds to errors (using JSON if accepted)', async t => {
+  const {app} = t.context;
+  const response = await app.get('/teapot')
+    .set('Accept', 'application/json');
+
+  t.is(response.status, 418);
+  t.regex(response.header['content-type'], /^application\/json/);
+});

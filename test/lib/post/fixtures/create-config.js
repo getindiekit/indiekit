@@ -2,14 +2,6 @@ const templateDir = process.env.PWD + '/test/lib/post/fixtures';
 
 module.exports = {
   'post-types': {
-    article: {
-      name: 'Article',
-      template: `${templateDir}/template-article.njk`,
-      post: {
-        path: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-        url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
-      }
-    },
     note: {
       name: 'Note',
       template: `${templateDir}/template-note.njk`,

@@ -27,21 +27,18 @@ test('Saves a file to GitHub', async t => {
     mimetype: 'image/gif',
     originalname: 'image.gif'
   };
+  const response = await media.create(pub, file);
 
   // Test assertions
-  const response = await media.create(pub, file);
   t.truthy(validUrl.isUri(response));
-
   scope.done();
 });
 
-test('Throws error if no response from GitHub', async t => {
+test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
-    .reply(404, {
-      message: 'Not found'
-    });
+    .replyWithError('Not found');
 
   // Setup
   const image = fs.readFileSync(path.resolve(__dirname, 'fixtures/image.gif'));
@@ -50,22 +47,18 @@ test('Throws error if no response from GitHub', async t => {
     mimetype: 'image/gif',
     originalname: 'image.gif'
   };
+  const error = await t.throwsAsync(media.create(pub, file));
 
   // Test assertions
-  const error = await t.throwsAsync(media.create(pub, file));
-  t.is(error.message.status, 404);
-  t.is(error.message.error_description, 'Not found');
-
+  t.regex(error.message.error_description, /\bNot found\b/);
   scope.done();
 });
 
 test('Throws error if no file specified', async t => {
-  // Test assertions
   const error = await t.throwsAsync(media.create(pub, null));
-  t.is(error.message.status, 400);
   t.is(error.message.error_description, 'No file included in request');
 });
 
 test.after(async () => {
-  await fs.remove(outputDir);
+  await fs.emptyDir(outputDir);
 });

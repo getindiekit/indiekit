@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const admin = require(process.env.PWD + '/app/lib/admin');
 const indieauth = require(process.env.PWD + '/app/lib/indieauth');
 const config = require(process.env.PWD + '/app/config');
@@ -47,5 +48,15 @@ router.post('/media(/micropub/media)?',
   file,
   micropub.createMedia
 );
+
+// Error (for testing)
+router.get('/teapot', (req, res, next) => {
+  return next(new IndieKitError({
+    status: 418,
+    error: 'teapot',
+    error_description: 'I’m a teapot',
+    error_uri: 'https://tools.ietf.org/html/rfc2324'
+  }));
+});
 
 module.exports = router;

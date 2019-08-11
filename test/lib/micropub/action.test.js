@@ -38,7 +38,6 @@ test('Returns 404 if specified URL not found in records', async t => {
 
 test('Returns 501 if update action requested', async t => {
   record.set('https://foo.bar', {post: {path: 'foo'}});
-
   const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
@@ -51,10 +50,9 @@ test('Returns 501 if update action requested', async t => {
   t.is(response.body.error, 'not_implemented');
 });
 
-test.skip('Deletes post specified URL', async t => {
+test.skip('Creates, deletes and undeletesa a post', async t => {
   // Mock GitHub delete file request
   const scope = nock('https://api.github.com')
-    .log(console.log)
     .get(/\bbaz.txt\b/g)
     .reply(200, {
       content: 'Zm9vYmFy',
@@ -68,8 +66,8 @@ test.skip('Deletes post specified URL', async t => {
       }
     });
 
+  // Setup
   record.set('https://foo.bar', {post: {path: 'foo'}});
-
   const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
@@ -78,11 +76,13 @@ test.skip('Deletes post specified URL', async t => {
       action: 'delete',
       url: 'https://foo.bar/baz.txt'
     });
+
+  // Test assertions
   t.is(response.status, 200);
   t.is(response.body.success, 'delete');
   scope.done();
 });
 
 test.after(async () => {
-  await fs.remove(outputDir);
+  await fs.emptyDir(outputDir);
 });

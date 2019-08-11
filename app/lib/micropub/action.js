@@ -52,7 +52,8 @@ module.exports = [
 
     switch (action) {
       case 'delete': {
-        await post.delete(recordData);
+        const {path} = recordData.post;
+        await post.delete(path);
         return res.status(200).json({
           success: 'delete',
           success_description: `Post deleted from ${url}`

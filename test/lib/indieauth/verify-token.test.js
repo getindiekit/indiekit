@@ -34,12 +34,13 @@ test('Throws error if publication URL not authenticated by token', async t => {
       me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
     });
 
-  // Test assertions
+  // Setup
   const error = await t.throwsAsync(verifyToken(token, {
     me: 'https://foo.bar'
   }));
-  t.is(error.message.error_description, 'User does not have permission to perform request');
 
+  // Test assertions
+  t.is(error.message.error_description, 'User does not have permission to perform request');
   scope.done();
 });
 
@@ -51,12 +52,13 @@ test('Throws error if token endpoint does not return a me value', async t => {
       me: null
     });
 
-  // Test assertions
+  // Setup
   const error = await t.throwsAsync(verifyToken(token, {
     me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
   }));
-  t.is(error.message.error_description, 'There was a problem with this access token');
 
+  // Test assertions
+  t.is(error.message.error_description, 'There was a problem with this access token');
   scope.done();
 });
 
@@ -69,12 +71,13 @@ test('Throws error if token endpoint returns an error', async t => {
       error_description: 'The code provided was not valid'
     });
 
-  // Test assertions
+  // Setup
   const error = await t.throwsAsync(verifyToken(token, {
     me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
   }));
-  t.is(error.message.error_description, 'The code provided was not valid');
 
+  // Test assertions
+  t.is(error.message.error_description, 'The code provided was not valid');
   scope.done();
 });
 
@@ -84,11 +87,12 @@ test('Throws error if can’t connect to token endpoint', async t => {
     .get('')
     .replyWithError('The code provided was not valid');
 
-  // Test assertions
+  // Setup
   const error = await t.throwsAsync(verifyToken(token, {
     me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
   }));
-  t.is(error.message.error, 'FetchError');
 
+  // Test assertions
+  t.is(error.message.error, 'FetchError');
   scope.done();
 });

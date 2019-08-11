@@ -24,23 +24,19 @@ test('Reads content of a file in a repository', async t => {
   scope.done();
 });
 
-test('Throws an error when GitHub returns a 404', async t => {
+test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
-    .reply(404, {
-      message: 'Not found'
-    });
+    .replyWithError('Not found');
 
   // Setup
   const path = 'bar/foo.txt';
-
-  // Test assertions
   const error = await t.throwsAsync(async () => {
     await github.getContents(path);
   });
-  t.is(error.message.status, 404);
-  t.is(error.message.error_description, 'Not found');
 
+  // Test assertions
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });

@@ -3,7 +3,6 @@ const path = require('path');
 const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');
-const logger = require(process.env.PWD + '/app/logger');
 const record = require(process.env.PWD + '/app/lib/record');
 const render = require(process.env.PWD + '/app/lib/render');
 const utils = require(process.env.PWD + '/app/lib/utils');
@@ -18,8 +17,6 @@ const utils = require(process.env.PWD + '/app/lib/utils');
  * @returns {String} Location of created file
  */
 const create = async (pub, file) => {
-  logger.info('media.create', {file});
-
   if (!file || file.truncated || !file.buffer) {
     throw new IndieKitError({
       status: 400,
@@ -51,12 +48,19 @@ const create = async (pub, file) => {
   };
 
   // Upload file to GitHub
-  await github.createFile(mediaPath, file.buffer, {
+  const response = await github.createFile(mediaPath, file.buffer, {
     message: `:framed_picture: Uploaded ${mediaName}`
+  }).catch(error => {
+    throw new IndieKitError({
+      error: error.name,
+      error_description: error.message
+    });
   });
 
-  record.set(location, recordData);
-  return location;
+  if (response) {
+    record.set(location, recordData);
+    return location;
+  }
 };
 
 module.exports = {

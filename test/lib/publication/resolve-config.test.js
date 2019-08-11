@@ -44,7 +44,6 @@ test('Merges publisher configuration with defaults', async t => {
   const pubConfig = {
     'slug-separator': 'foo'
   };
-
   const result = await resolveConfig(pubConfig, t.context.defaults);
   t.is(result['slug-separator'], 'foo');
 });
@@ -57,9 +56,32 @@ test('Merge publisher post types with defaults', async t => {
       }
     }
   };
-
   const result = await resolveConfig(pubConfig, t.context.defaults);
   t.is(result['post-types'].note.name, 'Foobar');
+});
+
+test('Throws error if `post-types` is not an object', async t => {
+  const pubConfig = {
+    'post-types': [{
+      type: 'note',
+      name: 'foo'
+    }, {
+      type: 'article',
+      name: 'bar'
+    }]
+  };
+  const error = await t.throwsAsync(resolveConfig(pubConfig, t.context.defaults));
+  t.is(error.message.error_description, '`post-types` should be an object');
+});
+
+test('Throws error if post type value is not an object', async t => {
+  const pubConfig = {
+    'post-types': {
+      note: true
+    }
+  };
+  const error = await t.throwsAsync(resolveConfig(pubConfig, t.context.defaults));
+  t.is(error.message.error_description, 'Post type should be an object');
 });
 
 test('Updates `template` value with cache key', async t => {
@@ -79,9 +101,9 @@ test('Updates `template` value with cache key', async t => {
       }
     }
   };
+  const result = await resolveConfig(pubConfig, t.context.defaults);
 
   // Test assertions
-  const result = await resolveConfig(pubConfig, t.context.defaults);
   t.is(result['post-types'].note.template.cacheKey, 'foobar.njk');
   scope.done();
 });

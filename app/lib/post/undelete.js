@@ -1,4 +1,4 @@
-const post = require(process.env.PWD + '/app/lib/post');
+const createPost = require('./create');
 
 /**
  * Undeletes a post
@@ -10,7 +10,7 @@ const post = require(process.env.PWD + '/app/lib/post');
  * @returns {String} Location of undeleted post
  */
 module.exports = async (pub, mf2) => {
-  const location = await post.create(pub, mf2);
+  const location = await createPost(pub, mf2);
 
   return location;
 };

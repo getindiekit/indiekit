@@ -4,5 +4,8 @@
 
 {% block content %}
 <h2>{{ status }} - {{ error }}</h2>
-<p>{{ description }}</p>
+<p>{{ error_description }}</p>
+{% if error_uri %}
+<p><small><a href="{{ error_uri }}">{{ error_uri }}</a></small></p>
+{% endif %}
 {% endblock %}

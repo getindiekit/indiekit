@@ -73,19 +73,17 @@ app.use('/', routes);
 app.use((req, res) => {
   res.status(404);
 
-  if (req.accepts('html')) {
+  if (req.accepts('text/html')) {
     res.render('error', {
       status: 404,
-      message: {
-        error: 'Not Found',
-        error_description: 'The requested resource could not be found.'
-      }
+      error: 'Not Found',
+      error_description: 'The requested resource could not be found.'
     });
   }
 });
 
 // Errors
-app.use((error, req, res, next) => {
+app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = error.message.status || 500;
   const {message} = error;
 
@@ -95,20 +93,18 @@ app.use((error, req, res, next) => {
     return res.render('error', {
       status,
       error: _.startCase(message.error),
-      description: _.upperFirst(message.error_description)
+      error_description: _.upperFirst(message.error_description),
+      error_uri: message.error_uri
     });
   }
 
   if (req.accepts('application/json')) {
     return res.json({
       error: _.snakeCase(message.error),
-      error_description: _.lowerFirst(message.error_description)
+      error_description: _.lowerFirst(message.error_description),
+      error_uri: message.error_uri
     });
   }
-
-  res.send(`${status}: ${message.error}. ${message.error_description}`);
-
-  return next();
 });
 
 app.listen(port, function () {

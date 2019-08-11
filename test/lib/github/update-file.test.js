@@ -43,13 +43,11 @@ test('Updates a file in a repository', async t => {
   scope.done();
 });
 
-test('Throws an error when GitHub returns a 404', async t => {
+test('Throws error when GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
-    .reply(404, {
-      message: 'Not found'
-    });
+    .replyWithError('Not found');
 
   // Setup
   const path = 'bar/foo.txt';
@@ -57,16 +55,14 @@ test('Throws an error when GitHub returns a 404', async t => {
   const options = {
     message: 'Update message'
   };
+  const error = await t.throwsAsync(github.updateFile(path, content, options));
 
   // Test assertions
-  const error = await t.throwsAsync(github.updateFile(path, content, options));
-  t.is(error.message.status, 404);
-  t.is(error.message.error_description, 'Not found');
-
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
-test('Throws an error if GitHub can’t update file', async t => {
+test('Throws error if GitHub can’t update file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
@@ -83,10 +79,9 @@ test('Throws an error if GitHub can’t update file', async t => {
   const options = {
     message: 'Update message'
   };
+  const error = await t.throwsAsync(github.updateFile(path, content, options));
 
   // Test assertions
-  const error = await t.throwsAsync(github.updateFile(path, content, options));
-  t.regex(error.message.error_description, /\bCan’t update file\b/);
-
+  t.regex(error.message, /\bCan’t update file\b/);
   scope.done();
 });

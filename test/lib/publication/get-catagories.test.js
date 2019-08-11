@@ -23,9 +23,9 @@ test('Returns array if url to JSON file provided', async t => {
 
   // Setup
   const pub = {categories: {url: 'https://foo.bar/categories.json'}};
+  const categories = await getCategories(pub);
 
   // Test assertions
-  const categories = await getCategories(pub);
   t.deepEqual(categories, ['foo', 'bar']);
   scope.done();
 });
@@ -38,9 +38,9 @@ test('Throws error if JSON file provided not found', async t => {
 
   // Setup
   const pub = {categories: {url: 'https://foo.bar/categories.json'}};
+  const error = await t.throwsAsync(getCategories(pub));
 
   // Test assertions
-  const error = await t.throwsAsync(getCategories(pub));
   t.regex(error.message.error_description, /\bNot found\b/);
   scope.done();
 });

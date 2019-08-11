@@ -2,6 +2,11 @@ const test = require('ava');
 
 const devivePostType = require(process.env.PWD + '/app/lib/microformats/derive-post-type.js');
 
+test('Derives note', t => {
+  const note = require('./fixtures/post-type-note');
+  t.is(devivePostType(note), 'note');
+});
+
 test('Derives bookmark from `bookmark-of` property', t => {
   const bookmark = require('./fixtures/post-type-bookmark');
   t.is(devivePostType(bookmark), 'bookmark');

@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const _ = require('lodash');
 const camelcaseKeys = require('camelcase-keys');
 
+const {IndieKitError} = require(process.env.PWD + '/app/errors');
 const cache = require(process.env.PWD + '/app/cache');
 const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/app/lib/github');
@@ -35,7 +36,6 @@ module.exports = async (pub, mf2) => {
   if (typeConfig.template.cacheKey) {
     // Get publisher configured template from cache
     template = await cache.get(typeConfig.template.cacheKey);
-    template = template.data.toString('utf-8');
   } else {
     // Read default template from file system
     template = fs.readFileSync(typeConfig.template);
@@ -67,10 +67,17 @@ module.exports = async (pub, mf2) => {
   };
 
   // Upload post to GitHub
-  await github.createFile(postPath, content, {
+  const response = await github.createFile(postPath, content, {
     message: `${typeConfig.icon} Created ${_.toLower(typeConfig.name)} post`
+  }).catch(error => {
+    throw new IndieKitError({
+      error: error.name,
+      error_description: error.message
+    });
   });
 
-  record.set(location, recordData);
-  return location;
+  if (response) {
+    record.set(location, recordData);
+    return location;
+  }
 };

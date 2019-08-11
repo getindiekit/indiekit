@@ -1,14 +1,9 @@
 {
   "type": ["h-entry"],
   "properties": {
-    "url": ["https://paulrobertlloyd.com/photos/1542802384"],
-    "published": ["2018-11-21T12:13:04.000+0000"],
     "content": [{
-      "value": "A few photos from my jaunt around Reykjavik Old Harbour, yesterday.",
-      "html": "<p>A few photos from my jaunt around Reykjavik Old Harbour, yesterday.</p><figure class=\"align-none\"><div class=\"photos\" style=\"--columns: 1\"><img class=\"u-photo\" src=\"https://paulrobertlloyd.com/images/photos/1542802384.jpg\" width=\"720\" alt=\"‘Endurfæðing’, a sculpture hung from a green wall and made of fish nets\"/> <img class=\"u-photo\" src=\"https://paulrobertlloyd.com/images/photos/1542802385.jpg\" width=\"720\" alt=\"Yellow hull of a fishing boat with identification number ÍS-508\"/> <img class=\"u-photo\" src=\"https://paulrobertlloyd.com/images/photos/1542802386.jpg\" width=\"720\" alt=\"Closeup detail of stacked grey fish nets\"/> <img class=\"u-photo\" src=\"https://paulrobertlloyd.com/images/photos/1542802387.jpg\" width=\"720\" alt=\"A boat in dry dock being repaired\"/></div></figure>"
-      }
-    ],
-    "name": ["A few photos from my jaunt around Reykjavik Old Harbour, yesterday."],
+      "value": "A few photos from my jaunt around Reykjavik Old Harbour, yesterday."
+    }],
     "photo": [
       "https://paulrobertlloyd.com/images/photos/1542802384.jpg",
       "https://paulrobertlloyd.com/images/photos/1542802385.jpg",

@@ -89,7 +89,7 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Authenticates using token in `authorization` header', async t => {
+test('Authenticates using access token in `authorization` header', async t => {
   // Mock Express
   const req = {
     headers: {
@@ -107,7 +107,7 @@ test('Authenticates using token in `authorization` header', async t => {
   t.is(res.locals.indieauthToken.client_id, client_id);
 });
 
-test('Authenticates using token in `access_token` body', async t => {
+test('Authenticates using access token in `access_token` body', async t => {
   // Mock Express
   const req = {
     body: {
