@@ -14,7 +14,6 @@ test('Throws errror', t => {
     fn();
   }, IndieKitError);
 
-  t.log(error);
   t.is(error.message.error, 'teapot');
   t.is(error.message.error_description, 'I’m a teapot');
 });

@@ -13,7 +13,7 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test.skip('Creates a media file', async t => {
+test.serial('Creates a media file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
@@ -40,7 +40,7 @@ test.skip('Creates a media file', async t => {
   scope.done();
 });
 
-test.skip('Throws error if GitHub responds with an error', async t => {
+test.serial('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
