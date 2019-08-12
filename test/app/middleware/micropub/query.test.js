@@ -1,7 +1,7 @@
 const test = require('ava');
 const request = require('supertest');
 
-test.before(t => {
+test.beforeEach(t => {
   t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 

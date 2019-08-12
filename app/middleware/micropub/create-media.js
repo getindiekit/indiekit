@@ -20,7 +20,7 @@ module.exports = [
     const {pub} = req.app.locals;
 
     const location = await media.create(pub, file).catch(error => {
-      next(error);
+      return next(error);
     });
 
     if (location) {

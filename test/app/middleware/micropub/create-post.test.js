@@ -6,13 +6,13 @@ const request = require('supertest');
 const config = require(process.env.PWD + '/app/config');
 const outputDir = process.env.PWD + '/.ava_output/micropub-post';
 
-test.before(t => {
+test.beforeEach(t => {
   config.data.dir = outputDir;
   t.context.app = request(require(process.env.PWD + '/app/server'));
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Creates a post file', async t => {
+test.skip('Creates a post file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
@@ -33,7 +33,7 @@ test('Creates a post file', async t => {
   scope.done();
 });
 
-test('Throws error if GitHub responds with an error', async t => {
+test.skip('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
