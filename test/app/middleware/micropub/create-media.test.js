@@ -52,7 +52,7 @@ test.serial('Throws error if GitHub responds with an error', async t => {
   const response = await app.post('/media')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .attach('file', image);
+    .attach('photo', image);
 
   // Test assertions
   t.is(response.status, 500);

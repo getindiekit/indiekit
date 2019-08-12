@@ -27,7 +27,7 @@ module.exports = [
       res.header('Location', location);
       return res.status(201).json({
         success: 'create',
-        success_description: `File created at ${location}`
+        success_description: `Media saved to ${location}`
       });
     }
   }

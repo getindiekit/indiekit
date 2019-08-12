@@ -1,3 +1,4 @@
+const path = require('path');
 const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
@@ -24,7 +25,38 @@ test.serial('Creates a post file', async t => {
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
     .set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
+    .send('h=entry&content=Creates+a+post+file');
+
+  // Test assertions
+  t.is(response.status, 202);
+  t.is(response.body.success, 'create_pending');
+  t.regex(response.header.location, /\b[\d\w]{5}\b/g);
+  scope.done();
+});
+
+test.serial('Creates a post file with attachment', async t => {
+  // Mock request
+  const scope = nock('https://api.github.com')
+    .put(/\b[\d\w]{5}\b/g)
+    .reply(201)
+    .put(/\b[\d\w]{5}\b.gif/g)
+    .reply(200, {
+      type: 'file',
+      encoding: 'base64',
+      name: /\b[\d\w]{5}\b.gif/g,
+      path: /\b[\d\w]{5}\b.gif/g,
+      content: 'R0lGODlhAQABAIABAP8AAAAAACwAAAAAAQABAAACAkQBADs='
+    });
+
+  // Setup
+  const {app} = t.context;
+  const image = path.resolve(__dirname, 'fixtures/image.gif');
+  const response = await app.post('/micropub')
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .field('h', 'entry')
+    .field('content', 'Creates a post file with attachment')
+    .attach('photo', image);
 
   // Test assertions
   t.is(response.status, 202);
@@ -45,7 +77,7 @@ test.serial('Throws error if GitHub responds with an error', async t => {
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
     .set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
-    .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
+    .send('h=entry&content=Throws+error+if+GitHub+responds+with+an+error');
 
   // Test assertions
   t.is(response.status, 500);
