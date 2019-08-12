@@ -23,7 +23,6 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@keyv/sqlite": "^2.0.1",
     "@octokit/rest": "^16.28.7",
     "@timberio/node": "^0.34.1",
     "@timberio/winston": "^0.34.1",
@@ -33,12 +32,9 @@
     "express": "^4.17.1",
     "file-type": "^12.1.0",
     "fs-extra": "^8.1.0",
-    "keyv": "^3.1.0",
-    "keyv-file": "^0.1.13",
     "lodash": "^4.17.15",
     "luxon": "^1.17.2",
     "microformat-node": "^2.0.1",
-    "morgan": "^1.9.1",
     "multer": "^1.4.2",
     "node-cache": "^4.2.1",
     "node-fetch": "^2.6.0",
@@ -46,9 +42,7 @@
     "nunjucks": "^3.2.0",
     "post-type-discovery": "^1.0.2",
     "serve-favicon": "^2.5.0",
-    "sinon": "^7.4.1",
     "slug": "^1.1.0",
-    "uuid": "^3.3.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -58,6 +52,7 @@
     "nock": "^11.0.0-beta.31",
     "nodemon": "^1.19.1",
     "nyc": "^14.0.0",
+    "sinon": "^7.4.1",
     "supertest": "^4.0.0",
     "valid-url": "^1.0.9",
     "xo": "^0.24.0"
