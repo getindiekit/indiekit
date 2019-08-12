@@ -32,53 +32,49 @@ module.exports = [
   async (req, res, next) => {
     const {action, url} = req.query || req.body;
 
-    // If no action or url provided, throw to next error handler
-    if (!action || url === undefined) {
-      return next(new IndieKitError({
-        status: 400,
-        error: 'invalid_request',
-        error_description: 'Request is missing required url parameter'
-      }));
-    }
-
-    // Check if url has store record assigned to it
-    const storeData = store.get(url);
-    if (storeData === undefined) {
-      return res.status(404).json({
-        error: 'not_found',
-        error_description: `No record found for ${url}`
-      });
-    }
-
-    switch (action) {
-      case 'delete': {
-        const {path} = storeData.post;
-        await post.delete(path);
-        return res.status(200).json({
-          success: 'delete',
-          success_description: `Post deleted from ${url}`
+    // If no action or url provided, throw to next middleware (create-post)
+    if (action && url) {
+      // Check if url has store record assigned to it
+      const storeData = store.get(url);
+      if (storeData === undefined) {
+        return res.status(404).json({
+          error: 'not_found',
+          error_description: `No record found for ${url}`
         });
       }
 
-      case 'undelete': {
-        const {pub} = req.app.locals;
-        const {mf2} = storeData;
-        const location = post.undelete(pub, mf2);
-        res.header('Location', location);
-        return res.status(200).json({
-          success: 'delete_undelete',
-          success_description: `Post undeleted from ${url}`
-        });
-      }
+      switch (action) {
+        case 'delete': {
+          const {path} = storeData.post;
+          await post.delete(path);
+          return res.status(200).json({
+            success: 'delete',
+            success_description: `Post deleted from ${url}`
+          });
+        }
 
-      case 'update': {
-        return res.status(501).json({
-          error: 'not_implemented',
-          error_description: `Cannot update ${url}`
-        });
-      }
+        case 'undelete': {
+          const {pub} = req.app.locals;
+          const {mf2} = storeData;
+          const location = post.undelete(pub, mf2);
+          res.header('Location', location);
+          return res.status(200).json({
+            success: 'delete_undelete',
+            success_description: `Post undeleted from ${url}`
+          });
+        }
 
-      default:
+        case 'update': {
+          return res.status(501).json({
+            error: 'not_implemented',
+            error_description: `Cannot update ${url}`
+          });
+        }
+
+        default:
+      }
     }
+
+    return next();
   }
 ];

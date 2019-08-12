@@ -44,10 +44,12 @@ module.exports = [
       return next(error);
     });
 
-    res.header('Location', location);
-    return res.status(202).json({
-      success: 'create_pending',
-      success_description: `Post will be created at ${location}`
-    });
+    if (location) {
+      res.header('Location', location);
+      return res.status(202).json({
+        success: 'create_pending',
+        success_description: `Post will be created at ${location}`
+      });
+    }
   }
 ];

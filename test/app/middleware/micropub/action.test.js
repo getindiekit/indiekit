@@ -13,16 +13,6 @@ test.before(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Rejects action with no specified URL', async t => {
-  const {app} = t.context;
-  const response = await app.post('/micropub')
-    .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${t.context.token}`)
-    .query({action: 'delete'});
-  t.is(response.status, 400);
-  t.is(response.body.error, 'invalid_request');
-});
-
 test('Returns 404 if specified URL not found in store', async t => {
   const {app} = t.context;
   const response = await app.post('/micropub')

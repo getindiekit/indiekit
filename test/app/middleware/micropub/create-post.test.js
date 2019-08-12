@@ -1,11 +1,10 @@
-const path = require('path');
 const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/micropub-media';
+const outputDir = process.env.PWD + '/.ava_output/micropub-post';
 
 test.before(t => {
   config.data.dir = outputDir;
@@ -13,30 +12,24 @@ test.before(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Creates a media file', async t => {
+test('Creates a post file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
-    .reply(200, {
-      type: 'file',
-      encoding: 'base64',
-      name: /\b[\d\w]{5}\b.gif/g,
-      path: /\b[\d\w]{5}\b.gif/g,
-      content: 'R0lGODlhAQABAIABAP8AAAAAACwAAAAAAQABAAACAkQBADs='
-    });
+    .reply(201);
 
   // Setup
   const {app} = t.context;
-  const image = path.resolve(__dirname, 'fixtures/image.gif');
-  const response = await app.post('/media')
+  const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .attach('file', image);
+    .set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
 
   // Test assertions
-  t.is(response.status, 201);
-  t.is(response.body.success, 'create');
-  t.regex(response.header.location, /\b[\d\w]{5}\b.gif/g);
+  t.is(response.status, 202);
+  t.is(response.body.success, 'create_pending');
+  t.regex(response.header.location, /\b[\d\w]{5}\b/g);
   scope.done();
 });
 
@@ -48,14 +41,13 @@ test('Throws error if GitHub responds with an error', async t => {
 
   // Setup
   const {app} = t.context;
-  const image = path.resolve(__dirname, 'fixtures/image.gif');
-  const response = await app.post('/media')
+  const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .attach('file', image);
+    .set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send('h=entry&content=Micropub+test+of+creating+a+basic+h-entry');
 
   // Test assertions
-  t.log(response);
   t.is(response.status, 500);
   t.is(response.body.error, 'error');
   t.regex(response.body.error_description, /\bNot found\b/);
