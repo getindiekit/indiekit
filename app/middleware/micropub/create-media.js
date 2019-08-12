@@ -23,10 +23,12 @@ module.exports = [
       next(error);
     });
 
-    res.header('Location', location);
-    return res.status(201).json({
-      success: 'create',
-      success_description: `File created at ${location}`
-    });
+    if (location) {
+      res.header('Location', location);
+      return res.status(201).json({
+        success: 'create',
+        success_description: `File created at ${location}`
+      });
+    }
   }
 ];
