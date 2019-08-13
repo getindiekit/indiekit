@@ -47,6 +47,7 @@ module.exports = [
           const deletedPost = await post.delete(postData).catch(error => {
             return next(error);
           });
+
           if (deletedPost) {
             return res.status(200).json({
               success: 'delete',
@@ -59,7 +60,10 @@ module.exports = [
 
         case 'undelete': {
           const {pub} = req.app.locals;
-          const location = post.undelete(pub, postData);
+          const location = post.undelete(pub, postData).catch(error => {
+            return next(error);
+          });
+
           if (location) {
             res.header('Location', location);
             return res.status(200).json({
