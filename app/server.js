@@ -28,7 +28,9 @@ app.set('view engine', 'njk');
 app.use(async (req, res, next) => {
   let pubConfig;
   if (config.pub.config) {
-    pubConfig = await publication.getFiles(config.pub.config);
+    pubConfig = await publication.getFiles(config.pub.config).catch(error => {
+      next(error);
+    });
     pubConfig = JSON.parse(pubConfig);
   }
 
