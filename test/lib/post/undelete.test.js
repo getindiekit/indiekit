@@ -16,12 +16,25 @@ test.before(() => {
 test('Undeletes a post', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
-    .put(/[\d\w]{5}/g)
+    .put(uri => uri.includes('baz.md'))
     .reply(200);
 
   // Setup
-  const body = require('./fixtures/type-note');
-  const response = await post.undelete(pub, body);
+  const postData = {
+    location: 'https://foo.bar/baz',
+    post: {
+      type: 'note',
+      path: 'baz.md'
+    },
+    mf2: {
+      type: ['h-entry'],
+      properties: {
+        content: ['Baz']
+      },
+      slug: ['baz']
+    }
+  };
+  const response = await post.undelete(pub, postData);
 
   // Test assertions
   t.truthy(validUrl.isUri(response));

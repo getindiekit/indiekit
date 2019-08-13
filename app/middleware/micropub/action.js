@@ -1,4 +1,3 @@
-const {IndieKitError} = require(process.env.PWD + '/lib/errors');
 const auth = require(process.env.PWD + '/app/middleware/auth');
 const post = require(process.env.PWD + '/lib/post');
 const store = require(process.env.PWD + '/lib/store');
@@ -35,8 +34,8 @@ module.exports = [
     // If no action or url provided, throw to next middleware (create-post)
     if (action && url) {
       // Check if url has store record assigned to it
-      const storeData = store.get(url);
-      if (storeData === undefined) {
+      const postData = store.get(url);
+      if (postData === undefined) {
         return res.status(404).json({
           error: 'not_found',
           error_description: `No record found for ${url}`
@@ -45,23 +44,31 @@ module.exports = [
 
       switch (action) {
         case 'delete': {
-          const {path} = storeData.post;
-          await post.delete(path);
-          return res.status(200).json({
-            success: 'delete',
-            success_description: `Post deleted from ${url}`
+          const deletedPost = await post.delete(postData).catch(error => {
+            return next(error);
           });
+          if (deletedPost) {
+            return res.status(200).json({
+              success: 'delete',
+              success_description: `Post deleted from ${url}`
+            });
+          }
+
+          break;
         }
 
         case 'undelete': {
           const {pub} = req.app.locals;
-          const {mf2} = storeData;
-          const location = post.undelete(pub, mf2);
-          res.header('Location', location);
-          return res.status(200).json({
-            success: 'delete_undelete',
-            success_description: `Post undeleted from ${url}`
-          });
+          const location = post.undelete(pub, postData);
+          if (location) {
+            res.header('Location', location);
+            return res.status(200).json({
+              success: 'delete_undelete',
+              success_description: `Post undeleted from ${url}`
+            });
+          }
+
+          break;
         }
 
         case 'update': {

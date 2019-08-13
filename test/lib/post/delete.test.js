@@ -27,8 +27,12 @@ test('Deletes a post', async t => {
       }
     });
 
-  const path = '_notes/2019/08/11/gvsxa';
-  const response = await post.delete(path);
+  const postData = {
+    post: {
+      path: '_notes/2019/08/11/gvsxa'
+    }
+  };
+  const response = await post.delete(postData);
 
   // Test assertions
   t.true(response);
