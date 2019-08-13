@@ -59,7 +59,7 @@ test('Creates a post file with attachment', async t => {
   scope.done();
 });
 
-test.skip('Throws error if GitHub responds with an error', async t => {
+test.skip('Throws error creating post if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)

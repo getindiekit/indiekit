@@ -40,7 +40,7 @@ test('Creates a media file', async t => {
   scope.done();
 });
 
-test.skip('Throws error if GitHub responds with an error', async t => {
+test.skip('Throws error creating media if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)

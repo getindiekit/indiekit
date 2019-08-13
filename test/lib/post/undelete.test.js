@@ -41,6 +41,34 @@ test('Undeletes a post', async t => {
   scope.done();
 });
 
+test('Throws error if GitHub responds with an error', async t => {
+  // Mock request
+  const scope = nock('https://api.github.com')
+    .put(uri => uri.includes('baz.md'))
+    .replyWithError('Not found');
+
+  // Setup
+  const postData = {
+    location: 'https://foo.bar/baz',
+    post: {
+      type: 'note',
+      path: 'baz.md'
+    },
+    mf2: {
+      type: ['h-entry'],
+      properties: {
+        content: ['Baz']
+      },
+      slug: ['baz']
+    }
+  };
+  const error = await t.throwsAsync(post.undelete(pub, postData));
+
+  // Test assertions
+  t.regex(error.message.error_description, /\bNot found\b/);
+  scope.done();
+});
+
 test.after(async () => {
   await fs.emptyDir(outputDir);
 });
