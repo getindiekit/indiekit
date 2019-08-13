@@ -8,15 +8,17 @@
     -   [Parameters][4]
 -   [verifyToken][5]
     -   [Parameters][6]
--   [micropub][7]
-    -   [action][8]
-        -   [Parameters][9]
-    -   [createMedia][10]
+-   [exports][7]
+    -   [Parameters][8]
+-   [micropub][9]
+    -   [action][10]
         -   [Parameters][11]
-    -   [createPost][12]
+    -   [createMedia][12]
         -   [Parameters][13]
-    -   [query][14]
+    -   [createPost][14]
         -   [Parameters][15]
+    -   [query][16]
+        -   [Parameters][17]
 
 ## admin
 
@@ -24,10 +26,10 @@ Middleware function for admin operations
 
 ### Parameters
 
--   `req` **[Object][16]** Express request
--   `res` **[Object][16]** Express response
+-   `req` **[Object][18]** Express request
+-   `res` **[Object][18]** Express response
 
-Returns **[Object][16]** Express response
+Returns **[Object][18]** Express response
 
 ## checkScope
 
@@ -35,12 +37,12 @@ Middleware function for checkScope
 
 ### Parameters
 
--   `requiredScope` **[String][17]** Scope to check
--   `req` **[Object][16]** Express request
--   `res` **[Object][16]** Express response
--   `next` **[Function][18]** Express callback
+-   `requiredScope` **[String][19]** Scope to check
+-   `req` **[Object][18]** Express request
+-   `res` **[Object][18]** Express response
+-   `next` **[Function][20]** Express callback
 
-Returns **[Function][18]** next Express callback
+Returns **[Function][20]** next Express callback
 
 ## verifyToken
 
@@ -48,12 +50,25 @@ Middleware function for verifyToken
 
 ### Parameters
 
--   `options` **[Object][16]** Middleware option
--   `req` **[Object][16]** Express request
--   `res` **[Object][16]** Express response
--   `next` **[Function][18]** Express callback
+-   `options` **[Object][18]** Middleware option
+-   `req` **[Object][18]** Express request
+-   `res` **[Object][18]** Express response
+-   `next` **[Function][20]** Express callback
 
-Returns **[Function][18]** next Express callback
+Returns **[Function][20]** next Express callback
+
+## exports
+
+Save application and publication configuration to app.locals
+
+### Parameters
+
+-   `config` **[String][19]** Application configuration
+-   `req` **[Object][18]** Express request
+-   `res` **[Object][18]** Express response
+-   `next` **[Function][20]** Express callback
+
+Returns **[Function][20]** next Express callback
 
 ## micropub
 
@@ -66,11 +81,11 @@ Performs action on an existing post
 
 #### Parameters
 
--   `req` **[Object][16]** Express request object
--   `res` **[Object][16]** Express response object
--   `next` **[Function][18]** Express callback function
+-   `req` **[Object][18]** Express request object
+-   `res` **[Object][18]** Express response object
+-   `next` **[Function][20]** Express callback function
 
-Returns **[Function][18]** Express response object
+Returns **[Function][20]** Express response object
 
 ### createMedia
 
@@ -78,11 +93,11 @@ Creates a new media file
 
 #### Parameters
 
--   `req` **[Object][16]** Express request object
--   `res` **[Object][16]** Express response object
--   `next` **[Function][18]** Express callback function
+-   `req` **[Object][18]** Express request object
+-   `res` **[Object][18]** Express response object
+-   `next` **[Function][20]** Express callback function
 
-Returns **[Promise][19]** Express response object
+Returns **[Promise][21]** Express response object
 
 ### createPost
 
@@ -90,11 +105,11 @@ Creates a post
 
 #### Parameters
 
--   `req` **[Object][16]** Express request object
--   `res` **[Object][16]** Express response object
--   `next` **[Function][18]** Express callback function
+-   `req` **[Object][18]** Express request object
+-   `res` **[Object][18]** Express response object
+-   `next` **[Function][20]** Express callback function
 
-Returns **[Promise][19]** Express response object
+Returns **[Promise][21]** Express response object
 
 ### query
 
@@ -102,11 +117,11 @@ Returns an object containing information about this application
 
 #### Parameters
 
--   `req` **[Object][16]** Express request object
--   `res` **[Object][16]** Express response object
--   `next` **[Function][18]** Express callback function
+-   `req` **[Object][18]** Express request object
+-   `res` **[Object][18]** Express response object
+-   `next` **[Function][20]** Express callback function
 
-Returns **[Promise][19]** Express response object
+Returns **[Promise][21]** Express response object
 
 [1]: #admin
 
@@ -120,28 +135,32 @@ Returns **[Promise][19]** Express response object
 
 [6]: #parameters-2
 
-[7]: #micropub
+[7]: #exports
 
-[8]: #action
+[8]: #parameters-3
 
-[9]: #parameters-3
+[9]: #micropub
 
-[10]: #createmedia
+[10]: #action
 
 [11]: #parameters-4
 
-[12]: #createpost
+[12]: #createmedia
 
 [13]: #parameters-5
 
-[14]: #query
+[14]: #createpost
 
 [15]: #parameters-6
 
-[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[16]: #query
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[17]: #parameters-7
 
-[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+
+[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise

@@ -7,7 +7,6 @@ const nunjucks = require('nunjucks');
 const logger = require(process.env.PWD + '/app/logger');
 const config = require(process.env.PWD + '/app/config');
 const routes = require(process.env.PWD + '/app/routes');
-const publication = require(process.env.PWD + '/lib/publication');
 
 const app = express();
 const {port} = config;
@@ -23,24 +22,6 @@ nunjucks.configure(['./app/views', './app/static'], {
 app.enable('trust proxy');
 
 app.set('view engine', 'njk');
-
-// Save application and publication configuration to locals
-app.use(async (req, res, next) => {
-  let pubConfig;
-  if (config.pub.config) {
-    pubConfig = await publication.getFiles(config.pub.config).catch(error => {
-      next(error);
-    });
-    pubConfig = JSON.parse(pubConfig);
-  }
-
-  app.locals.pub = await publication.resolveConfig(pubConfig);
-  app.locals.pub.url = config.pub.url;
-
-  app.locals.app = config;
-  app.locals.app.url = `${req.protocol}://${req.headers.host}`;
-  next();
-});
 
 // Parse application/json
 app.use(express.json({

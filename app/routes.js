@@ -5,6 +5,7 @@ const {IndieKitError} = require(process.env.PWD + '/lib/errors');
 const config = require(process.env.PWD + '/app/config');
 const admin = require(process.env.PWD + '/app/middleware/admin');
 const indieauth = require(process.env.PWD + '/app/middleware/auth');
+const locals = require(process.env.PWD + '/app/middleware/locals');
 const micropub = require(process.env.PWD + '/app/middleware/micropub');
 
 const router = new express.Router();
@@ -16,6 +17,9 @@ const files = upload.any();
 const auth = indieauth.verifyToken({
   me: config.pub.url
 });
+
+// Save application and publication configuration to locals
+router.use('/', locals(config));
 
 // Index
 router.get('/', (req, res) => {
