@@ -38,6 +38,7 @@ module.exports = async (pub, mf2, files) => {
   properties.photo = await microformats.derivePhoto(mf2);
   properties.published = microformats.derivePuplished(mf2);
   properties.slug = microformats.deriveSlug(mf2, slugSeparator);
+  properties.syndicateTo = mf2['mp-syndicate-to'];
 
   // Render template
   const templatePath = typeConfig.template;
