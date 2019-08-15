@@ -1,28 +1,82 @@
 require('dotenv').config();
 
 const nock = require('nock');
+const sinon = require('sinon');
 const test = require('ava');
 
-test.skip('Application saves publication config to locals', async t => {
-  // Mock request
-  const pubConfig = JSON.stringify({
+const locals = require(process.env.PWD + '/app/middleware/locals');
+
+const mockScopeRequest = () => {
+  const req = {};
+  req.headers = {
+    host: 'localhost'
+  };
+  req.protocol = 'http';
+  req.app = {
+    locals: {
+      app: null,
+      pub: null
+    }
+  };
+  return req;
+};
+
+const mockScopeResponse = () => {
+  const res = {};
+  res.status = sinon.stub().returns(res);
+  res.json = sinon.stub().returns(res);
+  res.locals = sinon.stub().returns(res);
+  return res;
+};
+
+test('Application saves publication config to locals', async t => {
+  // Mock GitHub request
+  let content = {
     categories: ['foo', 'bar']
-  });
-  const content = Buffer.from(pubConfig).toString('base64');
+  };
+  content = JSON.stringify(content);
+  content = Buffer.from(content).toString('base64');
+
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.json'))
     .reply(200, {
       content
     });
 
-  // Setup
-  const {app} = t.context;
-  const response = await app.get('/micropub')
-    .set('Accept', 'application/json')
-    .query({q: 'config'});
+  // Mock Express
+  const req = mockScopeRequest();
+  const res = mockScopeResponse();
+  const next = sinon.spy();
 
   // Test assertions
-  t.is(response.status, 200);
-  t.deepEqual(response.body.categories, ['foo', 'bar']);
+  const config = {
+    pub: {
+      config: 'foo.json'
+    }
+  };
+  await locals(config)(req, res, next);
+  t.deepEqual(req.app.locals.pub.categories, ['foo', 'bar']);
+  scope.done();
+});
+
+test('Application throws error if remote publication config can’t be fetched', async t => {
+  // Mock GitHub request
+  const scope = nock('https://api.github.com')
+    .get(uri => uri.includes('foo.json'))
+    .replyWithError('Not found');
+
+  // Mock Express
+  const req = mockScopeRequest();
+  const res = mockScopeResponse();
+  const next = sinon.spy();
+
+  // Test assertions
+  const config = {
+    pub: {
+      config: 'foo.json'
+    }
+  };
+  await locals(config)(req, res, next);
+  t.is(next.args[0][0].message.error, 'Error');
   scope.done();
 });

@@ -13,10 +13,12 @@ const publication = require(process.env.PWD + '/lib/publication');
 module.exports = config => async (req, res, next) => {
   let pubConfig;
   if (config.pub.config) {
-    pubConfig = await publication.getFiles(config.pub.config).catch(error => {
-      next(error);
-    });
-    pubConfig = JSON.parse(pubConfig);
+    try {
+      const pubConfigFile = await publication.getFiles(config.pub.config);
+      pubConfig = JSON.parse(pubConfigFile);
+    } catch (error) {
+      return next(error);
+    }
   }
 
   const {locals} = req.app;
@@ -25,5 +27,5 @@ module.exports = config => async (req, res, next) => {
 
   locals.app = config;
   locals.app.url = `${req.protocol}://${req.headers.host}`;
-  next();
+  return next();
 };
