@@ -5,7 +5,7 @@ const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
 const store = require(process.env.PWD + '/lib/store');
-const outputDir = process.env.PWD + '/.ava_output/micropub-action-error';
+const outputDir = process.env.PWD + '/.ava_output/micropub-action-undelete-error';
 
 test.beforeEach(t => {
   config.data.dir = outputDir;
@@ -13,11 +13,11 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test.skip('Throws error undeleting if GitHub responds with an error', async t => {
+test('Throws error undeleting if GitHub responds with an error', async t => {
   // Mock GitHub create file request
   const scope = nock('https://api.github.com')
     .put(uri => uri.includes('baz.md'))
-    .replyWithError('Not found');
+    .replyWithError('not found');
 
   // Setup
   store.set('https://foo.bar/baz.md', {
@@ -45,7 +45,7 @@ test.skip('Throws error undeleting if GitHub responds with an error', async t =>
   // Test assertions
   t.is(response.status, 500);
   t.is(response.body.error, 'error');
-  t.regex(response.body.error_description, /\bNot found\b/);
+  t.regex(response.body.error_description, /\bnot found\b/);
   scope.done();
 });
 

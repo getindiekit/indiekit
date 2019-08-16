@@ -45,7 +45,7 @@ test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(uri => uri.includes('baz.md'))
-    .replyWithError('Not found');
+    .replyWithError('not found');
 
   // Setup
   const postData = {
@@ -65,7 +65,7 @@ test('Throws error if GitHub responds with an error', async t => {
   const error = await t.throwsAsync(post.undelete(pub, postData));
 
   // Test assertions
-  t.regex(error.message.error_description, /\bNot found\b/);
+  t.regex(error.message.error_description, /\bnot found\b/);
   scope.done();
 });
 

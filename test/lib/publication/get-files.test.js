@@ -8,7 +8,7 @@ test('Throws error if file can’t be fetched from GitHub', async t => {
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
     .reply(404, {
-      message: 'Not found'
+      message: 'not found'
     });
 
   // Setup
@@ -17,6 +17,6 @@ test('Throws error if file can’t be fetched from GitHub', async t => {
   });
 
   // Test assertions
-  t.is(error.message.error_description, 'Not found');
+  t.is(error.message.error_description, 'not found');
   scope.done();
 });

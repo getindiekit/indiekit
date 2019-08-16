@@ -63,7 +63,7 @@ test('Application throws error if remote publication config can’t be fetched',
   // Mock GitHub request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.json'))
-    .replyWithError('Not found');
+    .replyWithError('not found');
 
   // Mock Express
   const req = mockScopeRequest();

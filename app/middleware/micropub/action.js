@@ -58,7 +58,7 @@ module.exports = [
 
         case 'undelete': {
           const {pub} = req.app.locals;
-          const undeleted = post.undelete(pub, postData).catch(error => {
+          const undeleted = await post.undelete(pub, postData).catch(error => {
             return next(error);
           });
 

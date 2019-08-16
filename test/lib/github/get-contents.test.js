@@ -28,7 +28,7 @@ test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
-    .replyWithError('Not found');
+    .replyWithError('not found');
 
   // Setup
   const path = 'bar/foo.txt';
@@ -37,6 +37,6 @@ test('Throws error if GitHub responds with an error', async t => {
   });
 
   // Test assertions
-  t.regex(error.message, /\bNot found\b/);
+  t.regex(error.message, /\bnot found\b/);
   scope.done();
 });

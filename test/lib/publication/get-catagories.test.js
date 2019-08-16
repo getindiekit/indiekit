@@ -34,13 +34,13 @@ test('Throws error if JSON file provided not found', async t => {
   // Mock request
   const scope = nock('https://foo.bar')
     .get('/categories.json')
-    .replyWithError('Not found');
+    .replyWithError('not found');
 
   // Setup
   const pub = {categories: {url: 'https://foo.bar/categories.json'}};
   const error = await t.throwsAsync(getCategories(pub));
 
   // Test assertions
-  t.regex(error.message.error_description, /\bNot found\b/);
+  t.regex(error.message.error_description, /\bnot found\b/);
   scope.done();
 });

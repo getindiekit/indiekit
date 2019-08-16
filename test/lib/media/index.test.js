@@ -38,7 +38,7 @@ test('Throws error if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
-    .replyWithError('Not found');
+    .replyWithError('not found');
 
   // Setup
   const image = fs.readFileSync(path.resolve(__dirname, 'fixtures/image.gif'));
@@ -50,7 +50,7 @@ test('Throws error if GitHub responds with an error', async t => {
   const error = await t.throwsAsync(media.create(pub, file));
 
   // Test assertions
-  t.regex(error.message.error_description, /\bNot found\b/);
+  t.regex(error.message.error_description, /\bnot found\b/);
   scope.done();
 });
 
