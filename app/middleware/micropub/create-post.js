@@ -40,15 +40,15 @@ module.exports = [
     // Normalise form-encoded requests as mf2 JSON
     const mf2 = req.is('json') ? body : microformats.formEncodedToMf2(body);
 
-    const location = await post.create(pub, mf2).catch(error => {
+    const created = await post.create(pub, mf2).catch(error => {
       return next(error);
     });
 
-    if (location) {
-      res.header('Location', location);
+    if (created) {
+      res.header('Location', created.post.url);
       return res.status(202).json({
         success: 'create_pending',
-        success_description: `Post will be created at ${location}`
+        success_description: `Post will be created at ${created.post.url}`
       });
     }
   }

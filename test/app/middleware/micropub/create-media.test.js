@@ -16,12 +16,13 @@ test.beforeEach(t => {
 test('Creates a media file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
+    .log(console.log)
     .put(/\b[\d\w]{5}\b/g)
     .reply(200, {
       type: 'file',
       encoding: 'base64',
-      name: /\b[\d\w]{5}\b.gif/g,
-      path: /\b[\d\w]{5}\b.gif/g,
+      name: /\bsuccess\b.gif/g,
+      path: /\bsuccess\b.gif/g,
       content: 'R0lGODlhAQABAIABAP8AAAAAACwAAAAAAQABAAACAkQBADs='
     });
 
@@ -40,9 +41,10 @@ test('Creates a media file', async t => {
   scope.done();
 });
 
-test.skip('Throws error creating media if GitHub responds with an error', async t => {
+test('Throws error creating media if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
+    .log(console.log)
     .put(/\b[\d\w]{5}\b/g)
     .replyWithError('Not found');
 

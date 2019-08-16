@@ -58,12 +58,12 @@ module.exports = [
 
         case 'undelete': {
           const {pub} = req.app.locals;
-          const location = post.undelete(pub, postData).catch(error => {
+          const undeleted = post.undelete(pub, postData).catch(error => {
             return next(error);
           });
 
-          if (location) {
-            res.header('Location', location);
+          if (undeleted) {
+            res.header('Location', url);
             return res.status(200).json({
               success: 'delete_undelete',
               success_description: `Post undeleted from ${url}`

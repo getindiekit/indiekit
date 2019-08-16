@@ -17,15 +17,15 @@ module.exports = [
     const {file} = req;
     const {pub} = req.app.locals;
 
-    const location = await media.create(pub, file).catch(error => {
+    const created = await media.create(pub, file).catch(error => {
       return next(error);
     });
 
-    if (location) {
-      res.header('Location', location);
+    if (created) {
+      res.header('Location', created.media.url);
       return res.status(201).json({
         success: 'create',
-        success_description: `Media saved to ${location}`
+        success_description: `Media saved to ${created.media.url}`
       });
     }
   }

@@ -23,10 +23,10 @@ test('Creates a note post', async t => {
 
   // Setup
   const body = require('./fixtures/type-note');
-  const response = await post.create(pub, body);
+  const created = await post.create(pub, body);
 
   // Test assertions
-  t.truthy(validUrl.isUri(response));
+  t.truthy(validUrl.isUri(created.post.url));
   scope.done();
 });
 
@@ -44,10 +44,10 @@ test('Creates a photo post', async t => {
     mimetype: 'image/gif',
     originalname: 'image.gif'
   }];
-  const response = await post.create(pub, body, files);
+  const created = await post.create(pub, body, files);
 
   // Test assertions
-  t.truthy(validUrl.isUri(response));
+  t.truthy(validUrl.isUri(created.post.url));
   scope.done();
 });
 
@@ -74,10 +74,10 @@ test.skip('Gets publisher configured template from cache', async t => {
     }
   };
   const body = require('./fixtures/type-note');
-  const response = await post.create(pub, body);
+  const created = await post.create(pub, body);
 
   // Test assertions
-  t.truthy(validUrl.isUri(response));
+  t.truthy(validUrl.isUri(created.post.url));
   scope.done();
 });
 

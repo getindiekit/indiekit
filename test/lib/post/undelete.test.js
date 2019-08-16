@@ -21,10 +21,10 @@ test('Undeletes a post', async t => {
 
   // Setup
   const postData = {
-    location: 'https://foo.bar/baz',
     post: {
       type: 'note',
-      path: 'baz.md'
+      path: 'baz.md',
+      url: 'https://foo.bar/baz'
     },
     mf2: {
       type: ['h-entry'],
@@ -34,10 +34,10 @@ test('Undeletes a post', async t => {
       slug: ['baz']
     }
   };
-  const response = await post.undelete(pub, postData);
+  const undeleted = await post.undelete(pub, postData);
 
   // Test assertions
-  t.truthy(validUrl.isUri(response));
+  t.truthy(validUrl.isUri(undeleted.post.url));
   scope.done();
 });
 
@@ -49,10 +49,10 @@ test('Throws error if GitHub responds with an error', async t => {
 
   // Setup
   const postData = {
-    location: 'https://foo.bar/baz',
     post: {
       type: 'note',
-      path: 'baz.md'
+      path: 'baz.md',
+      url: 'https://foo.bar/baz'
     },
     mf2: {
       type: ['h-entry'],
