@@ -3,8 +3,6 @@ const indieauth = require(process.env.PWD + '/lib/indieauth');
 /**
  * Middleware function for checkScope
  *
- * @memberof auth
- * @module checkScope
  * @param {String} requiredScope Scope to check
  * @param {Object} req Express request
  * @param {Object} res Express response
@@ -25,8 +23,6 @@ const checkScope = requiredScope => (req, res, next) => {
 /**
  * Middleware function for verifyToken
  *
- * @memberof auth
- * @module verifyToken
  * @param {Object} options Middleware option
  * @param {Object} req Express request
  * @param {Object} res Express response

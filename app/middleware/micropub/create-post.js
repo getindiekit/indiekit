@@ -6,8 +6,6 @@ const post = require(process.env.PWD + '/lib/post');
 /**
  * Creates a post
  *
- * @memberof micropub
- * @module createPost
  * @param {Object} req Express request object
  * @param {Object} res Express response object
  * @param {Function} next Express callback function
@@ -30,7 +28,9 @@ module.exports = [
           body[property] = [];
         }
 
-        const value = await media.create(pub, file);
+        const value = await media.create(pub, file).catch(error => {
+          return next(error);
+        });
         if (value) {
           body[property].push(value);
         }

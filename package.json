@@ -59,7 +59,7 @@
   },
   "ava": {
     "files": [
-      "**/*.test.js"
+      "test/**/*.test.js"
     ]
   },
   "husky": {

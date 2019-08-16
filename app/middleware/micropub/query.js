@@ -5,8 +5,6 @@ const publication = require(process.env.PWD + '/lib/publication');
 /**
  * Returns an object containing information about this application
  *
- * @memberof micropub
- * @module query
  * @param {Object} req Express request object
  * @param {Object} res Express response object
  * @param {Function} next Express callback function

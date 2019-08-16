@@ -52,7 +52,7 @@ test.skip('Throws error creating media if GitHub responds with an error', async 
   const response = await app.post('/media')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .attach('photo', image);
+    .attach('file', image);
 
   // Test assertions
   t.is(response.status, 500);

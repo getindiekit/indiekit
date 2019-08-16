@@ -4,8 +4,6 @@ const media = require(process.env.PWD + '/lib/media');
 /**
  * Creates a new media file
  *
- * @memberof micropub
- * @module createMedia
  * @param {Object} req Express request object
  * @param {Object} res Express response object
  * @param {Function} next Express callback function

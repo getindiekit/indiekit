@@ -8,17 +8,17 @@
     -   [Parameters][4]
 -   [verifyToken][5]
     -   [Parameters][6]
--   [exports][7]
+-   [locals][7]
     -   [Parameters][8]
--   [micropub][9]
-    -   [action][10]
-        -   [Parameters][11]
-    -   [createMedia][12]
-        -   [Parameters][13]
-    -   [createPost][14]
-        -   [Parameters][15]
-    -   [query][16]
-        -   [Parameters][17]
+-   [action][9]
+    -   [Parameters][10]
+-   [create-media][11]
+    -   [Parameters][12]
+-   [create-post][13]
+    -   [Parameters][14]
+-   [index][15]
+-   [query][16]
+    -   [Parameters][17]
 
 ## admin
 
@@ -57,7 +57,7 @@ Middleware function for verifyToken
 
 Returns **[Function][20]** next Express callback
 
-## exports
+## locals
 
 Save application and publication configuration to app.locals
 
@@ -70,16 +70,11 @@ Save application and publication configuration to app.locals
 
 Returns **[Function][20]** next Express callback
 
-## micropub
-
-Process and transform microformats in request so that it can be published to
-a destination.
-
-### action
+## action
 
 Performs action on an existing post
 
-#### Parameters
+### Parameters
 
 -   `req` **[Object][18]** Express request object
 -   `res` **[Object][18]** Express response object
@@ -87,11 +82,11 @@ Performs action on an existing post
 
 Returns **[Function][20]** Express response object
 
-### createMedia
+## create-media
 
 Creates a new media file
 
-#### Parameters
+### Parameters
 
 -   `req` **[Object][18]** Express request object
 -   `res` **[Object][18]** Express response object
@@ -99,11 +94,11 @@ Creates a new media file
 
 Returns **[Promise][21]** Express response object
 
-### createPost
+## create-post
 
 Creates a post
 
-#### Parameters
+### Parameters
 
 -   `req` **[Object][18]** Express request object
 -   `res` **[Object][18]** Express response object
@@ -111,11 +106,16 @@ Creates a post
 
 Returns **[Promise][21]** Express response object
 
-### query
+## index
+
+Process and transform microformats in request so that it can be published to
+a destination.
+
+## query
 
 Returns an object containing information about this application
 
-#### Parameters
+### Parameters
 
 -   `req` **[Object][18]** Express request object
 -   `res` **[Object][18]** Express response object
@@ -135,23 +135,23 @@ Returns **[Promise][21]** Express response object
 
 [6]: #parameters-2
 
-[7]: #exports
+[7]: #locals
 
 [8]: #parameters-3
 
-[9]: #micropub
+[9]: #action
 
-[10]: #action
+[10]: #parameters-4
 
-[11]: #parameters-4
+[11]: #create-media
 
-[12]: #createmedia
+[12]: #parameters-5
 
-[13]: #parameters-5
+[13]: #create-post
 
-[14]: #createpost
+[14]: #parameters-6
 
-[15]: #parameters-6
+[15]: #index
 
 [16]: #query
 

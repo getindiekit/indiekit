@@ -1,8 +1,6 @@
 /**
  * Process and transform microformats in request so that it can be published to
  * a destination.
- *
- * @module micropub
  */
 module.exports = {
   action: require(process.env.PWD + '/app/middleware/micropub/action'),

@@ -5,8 +5,6 @@ const store = require(process.env.PWD + '/lib/store');
 /**
  * Performs action on an existing post
  *
- * @memberof micropub
- * @module action
  * @param {Object} req Express request object
  * @param {Object} res Express response object
  * @param {Function} next Express callback function

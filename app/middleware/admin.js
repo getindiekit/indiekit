@@ -4,13 +4,10 @@ const cache = require(process.env.PWD + '/lib/cache');
 /**
  *  Middleware function for admin operations
  *
- * @memberof admin
- * @module admin
  * @param {Object} req Express request
  * @param {Object} res Express response
  * @returns {Object} Express response
  */
-
 module.exports = [
   auth.checkScope('delete'),
   async (req, res) => {
