@@ -16,15 +16,8 @@ test.beforeEach(t => {
 test('Creates a media file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
-    .log(console.log)
     .put(/\b[\d\w]{5}\b/g)
-    .reply(200, {
-      type: 'file',
-      encoding: 'base64',
-      name: /\bsuccess\b.gif/g,
-      path: /\bsuccess\b.gif/g,
-      content: 'R0lGODlhAQABAIABAP8AAAAAACwAAAAAAQABAAACAkQBADs='
-    });
+    .reply(200);
 
   // Setup
   const {app} = t.context;
@@ -38,28 +31,6 @@ test('Creates a media file', async t => {
   t.is(response.status, 201);
   t.is(response.body.success, 'create');
   t.regex(response.header.location, /\b[\d\w]{5}\b.gif/g);
-  scope.done();
-});
-
-test('Throws error creating media if GitHub responds with an error', async t => {
-  // Mock request
-  const scope = nock('https://api.github.com')
-    .log(console.log)
-    .put(/\b[\d\w]{5}\b/g)
-    .replyWithError('Not found');
-
-  // Setup
-  const {app} = t.context;
-  const image = path.resolve(__dirname, 'fixtures/image.gif');
-  const response = await app.post('/media')
-    .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${t.context.token}`)
-    .attach('file', image);
-
-  // Test assertions
-  t.is(response.status, 500);
-  t.is(response.body.error, 'error');
-  t.regex(response.body.error_description, /\bNot found\b/);
   scope.done();
 });
 

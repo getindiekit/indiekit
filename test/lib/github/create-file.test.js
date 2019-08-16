@@ -9,12 +9,6 @@ test('Creates a new file in a repository', async t => {
   const scope = nock('https://api.github.com')
     .put(uri => uri.includes('foo.txt'))
     .reply(200, {
-      content: {
-        type: 'file',
-        name: 'foo.txt',
-        path: 'bar/foo.txt',
-        url: 'https://api.github.com/repos/username/repo/contents/bar/foo.txt'
-      },
       commit: {
         message: `Create message\nwith ${config.name}`
       }
