@@ -31,7 +31,6 @@ test('Throws error creating post if GitHub responds with an error', async t => {
   t.is(response.body.error, 'error');
   t.regex(response.body.error_description, /\bnot found\b/);
   scope.done();
-  nock.cleanAll();
 });
 
 test.after(async () => {

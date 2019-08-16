@@ -16,10 +16,8 @@ test.beforeEach(t => {
 test('Creates a post file with attachment', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
-    .persist()
     .put(/\b[\d\w]{5}\b/g)
     .reply(201)
-    .persist()
     .put(/\b[\d\w]{5}\b/g)
     .reply(200);
 
@@ -38,7 +36,6 @@ test('Creates a post file with attachment', async t => {
   t.is(response.body.success, 'create_pending');
   t.regex(response.header.location, /\b[\d\w]{5}\b/g);
   scope.done();
-  nock.cleanAll();
 });
 
 test.after(async () => {
