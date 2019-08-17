@@ -42,10 +42,10 @@ test('Excludes reserved properties, retains extended properties', t => {
   const mf2 = {
     type: ['h-entry'],
     properties: {
-      content: ['Foo bar baz']
-    },
-    'mp-slug': ['foo-bar'],
-    'mp-syndicate-to': ['https://socialnetwork.example/user']
+      content: ['Foo bar baz'],
+      slug: ['foo-bar'],
+      'syndicate-to': ['https://socialnetwork.example/user']
+    }
   };
   t.deepEqual(formEncodedToMf2(body), mf2);
 });

@@ -11,5 +11,11 @@ photo:
 - url: {{ item.value }}
   alt: {{ item.alt }}
 {%- endfor %}
+{%- if syndicateTo %}
+syndicate-to:
+{%- for item in syndicateTo %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
 ---
 {{ content | safe }}
