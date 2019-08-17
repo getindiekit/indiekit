@@ -3,7 +3,7 @@ const post = require(process.env.PWD + '/lib/post');
 const store = require(process.env.PWD + '/lib/store');
 
 /**
- * Performs action on an existing post
+ * Performs action on an existing post.
  *
  * @param {Object} req Express request object
  * @param {Object} res Express response object

@@ -2,7 +2,7 @@ const auth = require(process.env.PWD + '/app/middleware/auth');
 const media = require(process.env.PWD + '/lib/media');
 
 /**
- * Creates a new media file
+ * Creates a new media file.
  *
  * @param {Object} req Express request object
  * @param {Object} res Express response object

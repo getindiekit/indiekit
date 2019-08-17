@@ -4,7 +4,7 @@ const microformats = require(process.env.PWD + '/lib/microformats');
 const post = require(process.env.PWD + '/lib/post');
 
 /**
- * Creates a post
+ * Creates a post.
  *
  * @param {Object} req Express request object
  * @param {Object} res Express response object

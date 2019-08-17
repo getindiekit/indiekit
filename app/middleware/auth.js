@@ -1,7 +1,7 @@
 const indieauth = require(process.env.PWD + '/lib/indieauth');
 
 /**
- * Middleware function for checkScope
+ * Middleware function for checkScope.
  *
  * @param {String} requiredScope Scope to check
  * @param {Object} req Express request

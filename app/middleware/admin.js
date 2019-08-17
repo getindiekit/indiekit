@@ -3,7 +3,7 @@ const auth = require(process.env.PWD + '/app/middleware/auth');
 const cache = require(process.env.PWD + '/lib/cache');
 
 /**
- *  Middleware function for admin operations
+ *  Middleware function for admin operations.
  *
  * @param {Object} req Express request
  * @param {Object} res Express response

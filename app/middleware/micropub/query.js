@@ -3,7 +3,7 @@ const microformats = require(process.env.PWD + '/lib/microformats');
 const publication = require(process.env.PWD + '/lib/publication');
 
 /**
- * Returns an object containing information about this application
+ * Returns an object containing information about this application.
  *
  * @param {Object} req Express request object
  * @param {Object} res Express response object

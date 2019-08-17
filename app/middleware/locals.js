@@ -1,7 +1,7 @@
 const publication = require(process.env.PWD + '/lib/publication');
 
 /**
- * Save application and publication configuration to app.locals
+ * Save application and publication configuration to app.locals.
  *
  * @param {String} config Application configuration
  * @param {Object} req Express request
