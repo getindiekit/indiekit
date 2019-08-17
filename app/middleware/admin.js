@@ -33,8 +33,7 @@ module.exports = [
       case 'key': {
         const {key} = query;
         try {
-          const value = cache.get(key, true);
-          return res.json(value);
+          return res.json(cache.get(key));
         } catch (error) {
           return next(new IndieKitError({
             status: 404,

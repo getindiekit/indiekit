@@ -3,6 +3,8 @@ require('dotenv').config();
 const test = require('ava');
 const request = require('supertest');
 
+const cache = require(process.env.PWD + '/lib/cache');
+
 test.beforeEach(t => {
   t.context.app = request(require(process.env.PWD + '/app/server'));
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
@@ -24,6 +26,28 @@ test('Returns list of cache keys', async t => {
     .query({cache: 'keys'});
   t.is(response.status, 200);
   t.truthy(response.body);
+});
+
+test('Returns value of cache key', async t => {
+  cache.set('foo', 'bar');
+
+  const {app} = t.context;
+  const response = await app.post('/admin')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .query({cache: 'key'})
+    .query({key: 'foo'});
+  t.is(response.status, 200);
+  t.is(response.body, 'bar');
+});
+
+test('Returns a 404 if cache key cannot be found', async t => {
+  const {app} = t.context;
+  const response = await app.post('/admin')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .query({cache: 'key'})
+    .query({key: 'bar'});
+  t.is(response.status, 404);
+  t.is(response.body.error, 'not_found');
 });
 
 test('Returns cache statistics', async t => {

@@ -62,13 +62,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test"
+      "pre-commit": "npm test"
     }
   },
   "nyc": {
     "exclude": [
       "app/config.js",
-      "app/logger.js",
+      "lib/logger.js",
       "test/**/*.test.js"
     ],
     "reporter": [
