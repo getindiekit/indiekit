@@ -23,6 +23,17 @@ test('Returns configured categories', async t => {
   t.truthy(response.body.categories);
 });
 
+test('Returns list of previously published posts', async t => {
+  const {app} = t.context;
+  const response = await app.get('/micropub')
+    .set('Accept', 'application/json')
+    .query({
+      q: 'source'
+    });
+  t.is(response.status, 200);
+  t.truthy(response.body.items);
+});
+
 test('Returns source (as mf2 object) for given URL', async t => {
   const {app} = t.context;
   const response = await app.get('/micropub')

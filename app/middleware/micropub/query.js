@@ -36,13 +36,18 @@ module.exports = async (req, res, next) => {
     }
 
     case 'source': {
-      // Return source (as mf2 object) for given URL
-      try {
-        return res.json(
-          await microformats.urlToMf2(query.url, query.properties)
-        );
-      } catch (error) {
-        return next(error);
+      if (query.url) {
+        // Return source (as mf2 object) for given URL
+        try {
+          return res.json(
+            await microformats.urlToMf2(query.url, query.properties)
+          );
+        } catch (error) {
+          return next(error);
+        }
+      } else {
+        // Return list of previously published posts
+        return res.json(publication.getPosts());
       }
     }
 
