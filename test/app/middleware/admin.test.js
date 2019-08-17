@@ -10,7 +10,7 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Flushes cache', async t => {
+test.serial('Flushes cache', async t => {
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({cache: 'flush'});
@@ -26,7 +26,7 @@ test('Returns list of cache keys', async t => {
   t.truthy(response.body);
 });
 
-test.skip('Returns value of cache key', async t => {
+test('Returns value of cache key', async t => {
   cache.set('foo', 'bar');
 
   const response = await app.post('/admin')

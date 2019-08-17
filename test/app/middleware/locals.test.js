@@ -29,7 +29,7 @@ const mockScopeResponse = () => {
   return res;
 };
 
-test('Application saves publication config to locals', async t => {
+test.serial('Application saves publication config to locals', async t => {
   // Mock GitHub request
   let content = {
     categories: ['foo', 'bar']
@@ -59,10 +59,10 @@ test('Application saves publication config to locals', async t => {
   scope.done();
 });
 
-test('Application throws error if remote publication config can’t be fetched', async t => {
+test.serial('Application throws error if remote publication config can’t be fetched', async t => {
   // Mock GitHub request
   const scope = nock('https://api.github.com')
-    .get(uri => uri.includes('foo.json'))
+    .get(uri => uri.includes('bar.json'))
     .replyWithError('not found');
 
   // Mock Express
@@ -73,10 +73,10 @@ test('Application throws error if remote publication config can’t be fetched',
   // Test assertions
   const config = {
     pub: {
-      config: 'foo.json'
+      config: 'bar.json'
     }
   };
   await locals(config)(req, res, next);
-  t.is(next.args[0][0].message.error, 'Error');
+  t.is(next.args[0][0].message.error_description, 'bar.json could not be found in the cache or at the specified remote location');
   scope.done();
 });

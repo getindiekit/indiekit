@@ -7,9 +7,7 @@ test('Throws error if file can’t be fetched from GitHub', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
-    .reply(404, {
-      message: 'not found'
-    });
+    .replyWithError('not found');
 
   // Setup
   const error = await t.throwsAsync(async () => {
@@ -17,6 +15,6 @@ test('Throws error if file can’t be fetched from GitHub', async t => {
   });
 
   // Test assertions
-  t.is(error.message.error_description, 'not found');
+  t.is(error.message.error_description, 'foo.txt could not be found in the cache or at the specified remote location');
   scope.done();
 });
