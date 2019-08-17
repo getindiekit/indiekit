@@ -43,6 +43,6 @@ test('Throws error if GitHub responds with an error', async t => {
   const error = await t.throwsAsync(github.createFile(path, content, options));
 
   // Test assertions
-  t.regex(error.message, /\bnot found\b/);
+  t.regex(error.message.error_description, /\bnot found\b/);
   scope.done();
 });

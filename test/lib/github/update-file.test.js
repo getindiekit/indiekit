@@ -11,54 +11,47 @@ test('Updates a file in a repository', async t => {
     .reply(200, {
       content: 'Zm9vYmFy',
       sha: '\b[0-9a-f]{5,40}\b',
-      type: 'file',
       name: 'foo.txt',
       path: 'bar/foo.txt'
     })
     .put(uri => uri.includes('foo.txt'))
     .reply(200, {
-      content: {
-        type: 'file',
-        name: 'foo.txt',
-        path: 'bar/foo.txt',
-        url: 'https://api.github.com/repos/username/repo/contents/bar/foo.txt'
-      },
       commit: {
         message: `Update message\nwith ${config.name}`
       }
     });
 
   // Setup
-  const path = 'bar/foo.txt';
-  const content = 'foo';
-  const options = {
+  const response = await github.updateFile('foo.txt', 'foo', {
     message: 'Update message'
-  };
+  });
 
   // Test assertions
-  const response = await github.updateFile(path, content, options);
-  t.truthy(response);
+  t.is(response.status, 200);
   t.is(response.data.commit.message, `Update message\nwith ${config.name}`);
-
   scope.done();
 });
 
-test('Throws error when GitHub responds with an error', async t => {
+test('Creates a file if original file not found', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
-    .replyWithError('not found');
+    .replyWithError('not found')
+    .put(uri => uri.includes('foo.txt'))
+    .reply(200, {
+      commit: {
+        message: `Update message\nwith ${config.name}`
+      }
+    });
 
   // Setup
-  const path = 'bar/foo.txt';
-  const content = 'foo';
-  const options = {
+  const response = await github.updateFile('foo.txt', 'foo', {
     message: 'Update message'
-  };
-  const error = await t.throwsAsync(github.updateFile(path, content, options));
+  });
 
   // Test assertions
-  t.regex(error.message, /\bnot found\b/);
+  t.is(response.status, 200);
+  t.is(response.data.commit.message, `Update message\nwith ${config.name}`);
   scope.done();
 });
 
@@ -67,21 +60,17 @@ test('Throws error if GitHub can’t update file', async t => {
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('foo.txt'))
     .reply(200, {
-      content: 'Zm9vYmFy',
-      type: 'file'
+      content: 'Zm9vYmFy'
     })
     .put(uri => uri.includes('foo.txt'))
-    .replyWithError('Can’t update file');
+    .replyWithError('unknown error');
 
   // Setup
-  const path = 'bar/foo.txt';
-  const content = 'foo';
-  const options = {
+  const error = await t.throwsAsync(github.updateFile('foo.txt', 'foo', {
     message: 'Update message'
-  };
-  const error = await t.throwsAsync(github.updateFile(path, content, options));
+  }));
 
   // Test assertions
-  t.regex(error.message, /\bCan’t update file\b/);
+  t.regex(error.message.error_description, /\bunknown error\b/);
   scope.done();
 });
