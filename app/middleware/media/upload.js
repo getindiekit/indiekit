@@ -2,7 +2,7 @@ const auth = require(process.env.PWD + '/app/middleware/auth');
 const media = require(process.env.PWD + '/lib/media');
 
 /**
- * Creates a new media file.
+ * Uploads a media file.
  *
  * @param {Object} req Express request object
  * @param {Object} res Express response object
@@ -22,10 +22,10 @@ module.exports = [
     });
 
     if (created) {
-      res.header('Location', created.media.url);
+      res.header('Location', created.upload.url);
       return res.status(201).json({
         success: 'create',
-        success_description: `Media saved to ${created.media.url}`
+        success_description: `Media saved to ${created.upload.url}`
       });
     }
   }

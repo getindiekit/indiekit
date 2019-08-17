@@ -5,7 +5,7 @@ const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/micropub-media';
+const outputDir = process.env.PWD + '/.ava_output/media-upload';
 
 test.beforeEach(t => {
   config.data.dir = outputDir;

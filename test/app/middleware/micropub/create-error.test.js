@@ -4,7 +4,7 @@ const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/micropub-post-error';
+const outputDir = process.env.PWD + '/.ava_output/micropub-create-error';
 
 test.beforeEach(t => {
   config.data.dir = outputDir;

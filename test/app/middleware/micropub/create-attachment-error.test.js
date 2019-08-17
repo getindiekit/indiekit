@@ -5,7 +5,7 @@ const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/micropub-post-attachment';
+const outputDir = process.env.PWD + '/.ava_output/micropub-create-attachment-error';
 
 test.beforeEach(t => {
   config.data.dir = outputDir;
@@ -13,13 +13,11 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Creates a post file with attachment', async t => {
+test('Throws error creating post attachment if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
-    .reply(201)
-    .put(/\b[\d\w]{5}\b/g)
-    .reply(200);
+    .replyWithError('not found');
 
   // Setup
   const {app} = t.context;
@@ -32,9 +30,9 @@ test('Creates a post file with attachment', async t => {
     .attach('photo', image);
 
   // Test assertions
-  t.is(response.status, 202);
-  t.is(response.body.success, 'create_pending');
-  t.regex(response.header.location, /\b[\d\w]{5}\b/g);
+  t.is(response.status, 500);
+  t.is(response.body.error, 'error');
+  t.regex(response.body.error_description, /\bnot found\b/);
   scope.done();
 });
 
