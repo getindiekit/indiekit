@@ -28,7 +28,7 @@ test('Returns list of cache keys', async t => {
   t.truthy(response.body);
 });
 
-test('Returns value of cache key', async t => {
+test.skip('Returns value of cache key', async t => {
   cache.set('foo', 'bar');
 
   const {app} = t.context;

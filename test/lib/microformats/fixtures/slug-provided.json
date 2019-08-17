@@ -1,7 +1,7 @@
 {
   "type": ["h-entry"],
   "properties": {
-    "name": ["Made a thing? With ‘JavaScript’. That works. 🤯"]
-  },
-  "mp-slug": ["made-a-thing"]
+    "name": ["Made a thing? With ‘JavaScript’. That works. 🤯"],
+    "slug": ["made-a-thing"]
+  }
 }
