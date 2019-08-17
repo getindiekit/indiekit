@@ -1,11 +1,10 @@
-const path = require('path');
 const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/micropub-media-error';
+const outputDir = process.env.PWD + '/.ava_output/micropub-create';
 
 test.beforeEach(t => {
   config.data.dir = outputDir;
@@ -13,24 +12,24 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Throws error creating media if GitHub responds with an error', async t => {
+test('Creates a post file', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
-    .replyWithError('not found');
+    .reply(201);
 
   // Setup
   const {app} = t.context;
-  const image = path.resolve(__dirname, 'fixtures/image.gif');
-  const response = await app.post('/media')
+  const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .attach('file', image);
+    .set('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .send('h=entry&content=Creates+a+post+file');
 
   // Test assertions
-  t.is(response.status, 500);
-  t.is(response.body.error, 'error');
-  t.regex(response.body.error_description, /\bnot found\b/);
+  t.is(response.status, 202);
+  t.is(response.body.success, 'create_pending');
+  t.regex(response.header.location, /\b[\d\w]{5}\b/g);
   scope.done();
 });
 
