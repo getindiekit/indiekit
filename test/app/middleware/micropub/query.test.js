@@ -1,7 +1,12 @@
 const test = require('ava');
 const request = require('supertest');
 
+const config = require(process.env.PWD + '/app/config');
+const store = require(process.env.PWD + '/lib/store');
+const outputDir = process.env.PWD + '/.ava_output/micropub-query';
+
 test.beforeEach(t => {
+  config.data.dir = outputDir;
   t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 
@@ -24,6 +29,16 @@ test('Returns configured categories', async t => {
 });
 
 test('Returns list of previously published posts', async t => {
+  // Populate store with dummy data
+  store.set('https://foo.bar/baz', {
+    mf2: {
+      type: ['h-entry'],
+      properties: {
+        name: ['foobar']
+      }
+    }
+  }, 'posts');
+
   const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')

@@ -5,7 +5,7 @@ const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/micropub-post-attachment-error';
+const outputDir = process.env.PWD + '/.ava_output/media-upload-error';
 
 test.beforeEach(t => {
   config.data.dir = outputDir;
@@ -13,7 +13,7 @@ test.beforeEach(t => {
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
-test('Throws error creating post attachment if GitHub responds with an error', async t => {
+test('Throws error creating media if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
     .put(/\b[\d\w]{5}\b/g)
@@ -22,12 +22,10 @@ test('Throws error creating post attachment if GitHub responds with an error', a
   // Setup
   const {app} = t.context;
   const image = path.resolve(__dirname, 'fixtures/image.gif');
-  const response = await app.post('/micropub')
+  const response = await app.post('/media')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .field('h', 'entry')
-    .field('content', 'Creates a post file with attachment')
-    .attach('photo', image);
+    .attach('file', image);
 
   // Test assertions
   t.is(response.status, 500);

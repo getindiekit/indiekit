@@ -30,7 +30,7 @@ test('Saves a file to GitHub', async t => {
   const response = await media.create(pub, file);
 
   // Test assertions
-  t.truthy(validUrl.isUri(response.media.url));
+  t.truthy(validUrl.isUri(response.upload.url));
   scope.done();
 });
 

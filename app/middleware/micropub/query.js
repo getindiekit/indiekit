@@ -1,6 +1,7 @@
 const {IndieKitError} = require(process.env.PWD + '/lib/errors');
 const microformats = require(process.env.PWD + '/lib/microformats');
 const publication = require(process.env.PWD + '/lib/publication');
+const store = require(process.env.PWD + '/lib/store');
 
 /**
  * Returns an object containing information about this application.
@@ -47,7 +48,8 @@ module.exports = async (req, res, next) => {
         }
       } else {
         // Return list of previously published posts
-        return res.json(publication.getPosts());
+        const items = store.getRecords('posts', 'mf2');
+        return res.json({items});
       }
     }
 
