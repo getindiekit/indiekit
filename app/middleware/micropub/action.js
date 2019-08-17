@@ -75,10 +75,25 @@ module.exports = [
         }
 
         case 'update': {
-          return res.status(501).json({
-            error: 'Not implemented',
-            error_description: `Cannot update ${url}`
+          const updated = await post.update(pub, data, req.body).catch(error => {
+            return next(error);
           });
+
+          if (updated) {
+            const hasUpdatedUrl = (url !== updated.post.url);
+            const status = hasUpdatedUrl ? 201 : 200;
+            const success_description = hasUpdatedUrl ?
+              `Post updated and moved to ${updated.post.url}` :
+              `Post updated at ${url}`;
+
+            res.header('Location', updated.post.url);
+            return res.status(status).json({
+              success: 'update',
+              success_description
+            });
+          }
+
+          break;
         }
 
         default:

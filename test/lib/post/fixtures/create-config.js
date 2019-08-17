@@ -4,6 +4,7 @@ module.exports = {
   'post-types': {
     note: {
       name: 'Note',
+      icon: ':notebook_with_decorative_cover:',
       template: `${templateDir}/template-note.njk`,
       post: {
         path: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
@@ -12,6 +13,7 @@ module.exports = {
     },
     photo: {
       name: 'Photo',
+      icon: ':camera:',
       template: `${templateDir}/template-photo.njk`,
       post: {
         path: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',

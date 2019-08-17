@@ -9,7 +9,7 @@ test.beforeEach(() => {
   config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
 });
 
-test('Returns URL of last uploaded file', async t => {
+test.serial('Returns URL of last uploaded file', async t => {
   // Populate store with dummy data
   store.set('https://foo.bar/baz.gif', {
     upload: {
@@ -30,9 +30,24 @@ test('Returns URL of last uploaded file', async t => {
 });
 
 test('Rejects unknown endpoint query', async t => {
+  // Setup
   const response = await app.get('/media')
     .set('Accept', 'application/json')
     .query({q: 'unknown'});
+
+  // Test assertions
   t.is(response.status, 400);
   t.is(response.body.error, 'invalid_request');
+});
+
+test('Returns 404 if no uploaded file records found', async t => {
+  // Setup
+  config.data.dir = null;
+  const response = await app.get('/media')
+    .set('Accept', 'application/json')
+    .query({q: 'last'});
+
+  // Test assertions
+  t.is(response.status, 404);
+  t.is(response.body.error_description, 'no uploaded file records found');
 });
