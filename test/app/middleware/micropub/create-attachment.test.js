@@ -16,6 +16,7 @@ test.beforeEach(t => {
 test('Creates a post file with attachment', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
+    .persist()
     .put(/\b[\d\w]{5}\b/g)
     .reply(201)
     .put(/\b[\d\w]{5}\b/g)
