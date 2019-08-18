@@ -12,7 +12,7 @@ test('Renders a template string using context data', t => {
 });
 
 test('Renders a template string with a date using context data', t => {
-  const template = 'Published {{ published | date(\'DDD\') }}';
+  const template = 'Published {{ published | date(\'dd LLLL yyyy\') }}';
   const context = {
     name: 'Foo',
     published: '2019-02-27'

@@ -63,7 +63,7 @@ test('Throws error if `template.cacheKey` value is invalid', async t => {
   const error = await t.throwsAsync(post.create(pub, body));
 
   // Test assertions
-  t.is(error.message.error, 'TypeError');
+  t.regex(error.message.error, /^TypeError/);
 });
 
 test.after(async () => {
