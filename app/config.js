@@ -9,7 +9,9 @@ config.name = 'IndieKit';
 config.version = pkg.version;
 config.description = pkg.description;
 config.repository = pkg.repository;
-config.port = process.env.PORT || 3000;
+config.port = (process.env.NODE_ENV === 'test') ?
+  null : // Don’t assign a port when running concurrent tests
+  process.env.PORT || 3000;
 
 // Locale
 config.locale = process.env.INDIEKIT_LOCALE || 'en-GB';
@@ -49,14 +51,3 @@ config.timber = {
   token: process.env.TIMBER_TOKEN,
   source: process.env.TIMBER_SOURCE
 };
-
-if (process.env.NODE_ENV === 'test') {
-  config.github = {
-    token: 'abc123',
-    user: 'username',
-    repo: 'repo',
-    branch: 'master'
-  };
-  config.port = null;
-  config.pub.config = null;
-}

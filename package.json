@@ -15,8 +15,8 @@
     "prestart": "npm install",
     "start": "node app/server.js",
     "dev": "nodemon app/server.js",
-    "test": "NODE_ENV=test ava --verbose",
-    "coverage": "NODE_ENV=test nyc ava"
+    "test": "nyc ava --verbose",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
     "node": "11.x"
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "ava": "^2.2.0",
+    "coveralls": "^3.0.6",
     "husky": "^3.0.4",
     "nock": "^11.0.0",
     "nodemon": "^1.19.1",
@@ -56,6 +57,12 @@
     "xo": "^0.24.0"
   },
   "ava": {
+    "environmentVariables": {
+      "GITHUB_TOKEN": "abc123",
+      "GITHUB_USER": "user",
+      "GITHUB_REPO": "repo",
+      "NODE_ENV": "test"
+    },
     "files": [
       "test/**/*.test.js"
     ]
@@ -72,8 +79,7 @@
       "test/**/*.test.js"
     ],
     "reporter": [
-      "text",
-      "lcovonly"
+      "none"
     ]
   },
   "xo": {
