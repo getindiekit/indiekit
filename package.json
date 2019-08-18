@@ -39,7 +39,7 @@
     "node-fetch": "^2.6.0",
     "normalize-url": "^4.3.0",
     "nunjucks": "^3.2.0",
-    "post-type-discovery": "^1.0.2",
+    "post-type-discovery": "github:paulrobertlloyd/post-type-discovery",
     "serve-favicon": "^2.5.0",
     "slug": "^1.1.0",
     "winston": "^3.2.1"
