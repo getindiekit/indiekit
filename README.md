@@ -2,6 +2,8 @@
 
 *An IndieWeb publishing toolkit*
 
+[![Build status](https://travis-ci.com/paulrobertlloyd/indiekit.svg?branch=master)](https://travis-ci.com/paulrobertlloyd/indiekit) [![Coverage status](https://coveralls.io/repos/github/paulrobertlloyd/indiekit/badge.svg?branch=master)](https://coveralls.io/github/paulrobertlloyd/indiekit?branch=master)
+
 Learn more about this project on the [documentation site](https://paulrobertlloyd.github.io/indiekit/).
 
 ## Local development
@@ -20,10 +22,4 @@ If you’re developing a new feature and want the application to automatically r
 npm test
 ```
 
-Before running any automated tests, different IndieAuth tokens need to be provided via the following environment variables:
-
-* `TEST_INDIEAUTH_TOKEN`: An IndieAuth token with `create`, `update` and `delete` scopes, whose URL *should* match that used for `INDIEKIT_URL`.
-* `TEST_INDIEAUTH_TOKEN_NOT_SCOPED`: An IndieAuth token without a scope, whose URL *should* match that used for `INDIEKIT_URL`.
-* `TEST_INDIEAUTH_TOKEN_NOT_ME`: An IndieAuth token with `create` and `update` scopes, and whose URL *should not* match that used for `INDIEKIT_URL`.
-
-[Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating tokens for this purpose.
+Before running any automated tests, an IndieAuth token needs to be assigned to the `TEST_INDIEAUTH_TOKEN` environment variable. This token, whose URL *should* match that used for `INDIEKIT_URL`, should also include `create`, `update` and `delete` scopes. [Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating tokens for this purpose.
