@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@octokit/rest": "^16.28.7",
-    "@timberio/node": "^0.34.1",
-    "@timberio/winston": "^0.34.1",
+    "@timberio/node": "^0.35.0",
+    "@timberio/winston": "^0.35.0",
     "camelcase-keys": "^6.0.1",
     "data-store": "^3.1.0",
     "dotenv": "^8.1.0",
@@ -39,7 +39,7 @@
     "node-fetch": "^2.6.0",
     "normalize-url": "^4.3.0",
     "nunjucks": "^3.2.0",
-    "post-type-discovery": "github:paulrobertlloyd/post-type-discovery",
+    "post-type-discovery": "github:grantcodes/post-type-discovery",
     "serve-favicon": "^2.5.0",
     "slug": "^1.1.0",
     "winston": "^3.2.1"
