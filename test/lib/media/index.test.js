@@ -8,10 +8,8 @@ const config = require(process.env.PWD + '/app/config');
 const media = require(process.env.PWD + '/lib/media');
 const pub = require('./fixtures/create-config');
 
-const outputDir = process.env.PWD + '/.ava_output/media';
-
 test.before(() => {
-  config.data.dir = outputDir;
+  config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
 });
 
 test('Saves a file to GitHub', async t => {

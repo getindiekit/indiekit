@@ -4,10 +4,9 @@ const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
 const store = require(process.env.PWD + '/lib/store');
-const outputDir = process.env.PWD + '/.ava_output/micropub-action-undelete-error';
 
 test.beforeEach(t => {
-  config.data.dir = outputDir;
+  config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
   t.context.app = request(require(process.env.PWD + '/app/server'));
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });

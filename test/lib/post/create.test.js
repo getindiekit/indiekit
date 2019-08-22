@@ -8,10 +8,8 @@ const config = require(process.env.PWD + '/app/config');
 const post = require(process.env.PWD + '/lib/post');
 const pub = require('./fixtures/create-config');
 
-const outputDir = process.env.PWD + '/.ava_output/post-create';
-
 test.before(() => {
-  config.data.dir = outputDir;
+  config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
 });
 
 test('Creates a note post', async t => {

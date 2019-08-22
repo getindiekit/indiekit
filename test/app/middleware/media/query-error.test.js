@@ -2,10 +2,9 @@ const test = require('ava');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
-const outputDir = process.env.PWD + '/.ava_output/media-query-error';
 
 test.beforeEach(t => {
-  config.data.dir = outputDir;
+  config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
   t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 

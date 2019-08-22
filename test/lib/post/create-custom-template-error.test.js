@@ -5,10 +5,8 @@ const cache = require(process.env.PWD + '/lib/cache');
 const config = require(process.env.PWD + '/app/config');
 const post = require(process.env.PWD + '/lib/post');
 
-const outputDir = process.env.PWD + '/.ava_output/post-create-custom-template-error';
-
 test.before(() => {
-  config.data.dir = outputDir;
+  config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
 });
 
 test('Throws error getting publisher configured template', async t => {
