@@ -3,11 +3,11 @@ const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
 
+const app = request(require(process.env.PWD + '/app/server'));
 const config = require(process.env.PWD + '/app/config');
 
 test.beforeEach(t => {
   config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
-  t.context.app = request(require(process.env.PWD + '/app/server'));
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
@@ -21,7 +21,6 @@ test('Creates a post file with attachment', async t => {
     .reply(200);
 
   // Setup
-  const {app} = t.context;
   const image = path.resolve(__dirname, 'fixtures/image.gif');
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')

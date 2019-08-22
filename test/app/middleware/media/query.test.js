@@ -1,12 +1,12 @@
 const test = require('ava');
 const request = require('supertest');
 
+const app = request(require(process.env.PWD + '/app/server'));
 const config = require(process.env.PWD + '/app/config');
 const store = require(process.env.PWD + '/lib/store');
 
-test.beforeEach(t => {
+test.beforeEach(() => {
   config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
-  t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 
 test('Returns URL of last uploaded file', async t => {
@@ -20,7 +20,6 @@ test('Returns URL of last uploaded file', async t => {
   }, 'media');
 
   // Setup
-  const {app} = t.context;
   const response = await app.get('/media')
     .set('Accept', 'application/json')
     .query({q: 'last'});
@@ -31,7 +30,6 @@ test('Returns URL of last uploaded file', async t => {
 });
 
 test('Rejects unknown endpoint query', async t => {
-  const {app} = t.context;
   const response = await app.get('/media')
     .set('Accept', 'application/json')
     .query({q: 'unknown'});
