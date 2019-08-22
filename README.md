@@ -2,7 +2,7 @@
 
 *An IndieWeb publishing toolkit*
 
-[![CI status](https://github.com/paulrobertlloyd/indiekit/workflows/Node%20CI/badge.svg)](https://github.com/paulrobertlloyd/indiekit/actions)
+[![Build status](https://github.com/paulrobertlloyd/indiekit/workflows/build/badge.svg)](https://github.com/paulrobertlloyd/indiekit/actions)
 [![Coverage status](https://coveralls.io/repos/github/paulrobertlloyd/indiekit/badge.svg?branch=master)](https://coveralls.io/github/paulrobertlloyd/indiekit?branch=master)
 
 Learn more about this project on the [documentation site](https://paulrobertlloyd.github.io/indiekit/).

@@ -15,8 +15,8 @@
     "prestart": "npm install",
     "start": "node app/server.js",
     "dev": "nodemon app/server.js",
-    "test": "nyc ava --verbose",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "ava --verbose",
+    "coverage": "nyc ava"
   },
   "engines": {
     "node": "11.x"
@@ -79,7 +79,8 @@
       "test/**/*.test.js"
     ],
     "reporter": [
-      "none"
+      "text",
+      "lcovonly"
     ]
   },
   "xo": {
