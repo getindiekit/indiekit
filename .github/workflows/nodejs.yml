@@ -1,4 +1,4 @@
-name: Node CI
+name: Build
 
 on: [push, pull_request]
 
@@ -14,16 +14,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: install and test
+    - name: Install, test and run coverage checks
       env:
         INDIEKIT_URL: ${{ secrets.INDIEKIT_URL }}
         TEST_INDIEAUTH_TOKEN: ${{ secrets.TEST_INDIEAUTH_TOKEN }}
       run: |
         npm install
-        npm test
-    - name: coverage
+        npm run coverage
+    - name: Send coverage report to Coveralls
       env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }} 
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       if: success()
       run: |
-        npm run coverage
+        cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
