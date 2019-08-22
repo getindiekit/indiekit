@@ -64,6 +64,12 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
   t.regex(utils.createRandomString(), /[\d\w]{5}/g);
 });
 
+test('Decodes form-encoded string', t => {
+  t.false(utils.decodeFormEncodedString({foo: 'bar'}));
+  t.is(utils.decodeFormEncodedString('foo+bar'), 'foo bar');
+  t.is(utils.decodeFormEncodedString('http%3A%2F%2Ffoo.bar'), 'http://foo.bar');
+});
+
 test('Derives file properties', async t => {
   // Setup
   let file = {
@@ -77,12 +83,6 @@ test('Derives file properties', async t => {
   t.truthy(DateTime.fromISO(file.filedate.isValid));
   t.regex(file.filename, /[\d\w]{5}.jpg/g);
   t.is(file.fileext, 'jpg');
-});
-
-test('Decodes form-encoded string', t => {
-  t.false(utils.decodeFormEncodedString({foo: 'bar'}));
-  t.is(utils.decodeFormEncodedString('foo+bar'), 'foo bar');
-  t.is(utils.decodeFormEncodedString('http%3A%2F%2Ffoo.bar'), 'http://foo.bar');
 });
 
 test('Derives file type and returns equivalent IndieWeb post type', async t => {
@@ -105,6 +105,13 @@ test('Derives file type and returns equivalent IndieWeb post type', async t => {
   t.is(utils.deriveMediaType(photo), 'photo');
   t.is(utils.deriveMediaType(video), 'video');
   t.is(utils.deriveMediaType(font), null);
+});
+
+test('Derives a permalink', t => {
+  t.is(utils.derivePermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
+  t.is(utils.derivePermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
+  t.is(utils.derivePermalink('http://foo.bar/baz', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
+  t.is(utils.derivePermalink('http://foo.bar/baz/', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
 });
 
 test('Excerpts string', t => {
