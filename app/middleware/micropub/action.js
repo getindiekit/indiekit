@@ -34,8 +34,8 @@ module.exports = [
     // If no action or url provided, throw to next middleware (create-post)
     if (action && url) {
       // Check if url has store record assigned to it
-      const postData = store.get(url);
-      if (postData === undefined) {
+      const data = store.get(url);
+      if (data === undefined) {
         return res.status(404).json({
           error: 'Not found',
           error_description: `No record found for ${url}`
@@ -44,11 +44,11 @@ module.exports = [
 
       switch (action) {
         case 'delete': {
-          const deletedPost = await post.delete(postData).catch(error => {
+          const deleted = await post.delete(data).catch(error => {
             return next(error);
           });
 
-          if (deletedPost) {
+          if (deleted) {
             return res.status(200).json({
               success: 'delete',
               success_description: `Post deleted from ${url}`
@@ -59,12 +59,12 @@ module.exports = [
         }
 
         case 'undelete': {
-          const undeleted = await post.undelete(pub, postData).catch(error => {
+          const undeleted = await post.undelete(pub, data).catch(error => {
             return next(error);
           });
 
           if (undeleted) {
-            res.header('Location', url);
+            res.header('Location', undeleted.post.url);
             return res.status(200).json({
               success: 'delete_undelete',
               success_description: `Post undeleted from ${url}`
