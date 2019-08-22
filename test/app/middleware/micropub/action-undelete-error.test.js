@@ -9,6 +9,21 @@ const store = require(process.env.PWD + '/lib/store');
 test.beforeEach(t => {
   config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
+  t.context.postUrl = `${process.env.INDIEKIT_URL}/notes/2019/08/17/baz`;
+  t.context.postData = {
+    post: {
+      type: 'note',
+      path: '_notes/2019-08-17-baz.md',
+      url: t.context.postUrl
+    },
+    mf2: {
+      type: ['h-entry'],
+      properties: {
+        content: ['Baz']
+      },
+      slug: ['baz']
+    }
+  };
 });
 
 test('Throws error undeleting if GitHub responds with an error', async t => {
@@ -18,25 +33,13 @@ test('Throws error undeleting if GitHub responds with an error', async t => {
     .replyWithError('not found');
 
   // Setup
-  store.set('https://foo.bar/baz.md', {
-    post: {
-      type: 'note',
-      path: 'baz.md'
-    },
-    mf2: {
-      type: ['h-entry'],
-      properties: {
-        content: ['Baz']
-      },
-      slug: ['baz']
-    }
-  });
+  store.set(t.context.postUrl, t.context.postData);
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
     .send({
       action: 'undelete',
-      url: 'https://foo.bar/baz.md'
+      url: t.context.postUrl
     });
 
   // Test assertions
