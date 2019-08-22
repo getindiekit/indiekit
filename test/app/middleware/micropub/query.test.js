@@ -3,14 +3,13 @@ const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
 const store = require(process.env.PWD + '/lib/store');
+const app = request(require(process.env.PWD + '/app/server'));
 
-test.beforeEach(t => {
+test.beforeEach(() => {
   config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
-  t.context.app = request(require(process.env.PWD + '/app/server'));
 });
 
 test('Returns endpoint configuration', async t => {
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({q: 'config'});
@@ -19,7 +18,6 @@ test('Returns endpoint configuration', async t => {
 });
 
 test('Returns configured categories', async t => {
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({q: 'category'});
@@ -38,7 +36,6 @@ test('Returns list of previously published posts', async t => {
     }
   }, 'posts');
 
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({
@@ -49,7 +46,6 @@ test('Returns list of previously published posts', async t => {
 });
 
 test('Returns source (as mf2 object) for given URL', async t => {
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({
@@ -62,7 +58,6 @@ test('Returns source (as mf2 object) for given URL', async t => {
 });
 
 test('Returns invalid request if source URL not found', async t => {
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({
@@ -75,7 +70,6 @@ test('Returns invalid request if source URL not found', async t => {
 });
 
 test('Returns configured property if matches provided query', async t => {
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({q: 'syndicate-to'});
@@ -84,7 +78,6 @@ test('Returns configured property if matches provided query', async t => {
 });
 
 test('Rejects unknown endpoint query', async t => {
-  const {app} = t.context;
   const response = await app.get('/micropub')
     .set('Accept', 'application/json')
     .query({q: 'unknown'});

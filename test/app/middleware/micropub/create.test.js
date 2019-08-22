@@ -3,10 +3,10 @@ const nock = require('nock');
 const request = require('supertest');
 
 const config = require(process.env.PWD + '/app/config');
+const app = request(require(process.env.PWD + '/app/server'));
 
 test.beforeEach(t => {
   config.data.dir = process.env.PWD + `/.ava_output/${test.meta.file}`;
-  t.context.app = request(require(process.env.PWD + '/app/server'));
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
@@ -17,7 +17,6 @@ test('Creates a post file', async t => {
     .reply(201);
 
   // Setup
-  const {app} = t.context;
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)

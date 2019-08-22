@@ -3,15 +3,14 @@ require('dotenv').config();
 const test = require('ava');
 const request = require('supertest');
 
+const app = request(require(process.env.PWD + '/app/server'));
 const cache = require(process.env.PWD + '/lib/cache');
 
 test.beforeEach(t => {
-  t.context.app = request(require(process.env.PWD + '/app/server'));
   t.context.token = process.env.TEST_INDIEAUTH_TOKEN;
 });
 
 test('Flushes cache', async t => {
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({cache: 'flush'});
@@ -20,7 +19,6 @@ test('Flushes cache', async t => {
 });
 
 test('Returns list of cache keys', async t => {
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({cache: 'keys'});
@@ -31,7 +29,6 @@ test('Returns list of cache keys', async t => {
 test.skip('Returns value of cache key', async t => {
   cache.set('foo', 'bar');
 
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({cache: 'key'})
@@ -41,7 +38,6 @@ test.skip('Returns value of cache key', async t => {
 });
 
 test('Returns a 404 if cache key cannot be found', async t => {
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({cache: 'key'})
@@ -51,7 +47,6 @@ test('Returns a 404 if cache key cannot be found', async t => {
 });
 
 test('Returns cache statistics', async t => {
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({cache: 'stats'});
@@ -60,14 +55,12 @@ test('Returns cache statistics', async t => {
 });
 
 test('Returns a 400 if no query provided', async t => {
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`);
   t.is(response.status, 400);
 });
 
 test('Returns a 400 if unrecognised query provided', async t => {
-  const {app} = t.context;
   const response = await app.post('/admin')
     .set('Authorization', `Bearer ${t.context.token}`)
     .query({purge: 'unknown'});
