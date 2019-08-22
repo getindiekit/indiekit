@@ -29,6 +29,7 @@ module.exports = [
   async (req, res, next) => {
     const action = req.query.action || req.body.action;
     const url = req.query.url || req.body.url;
+    const {pub} = req.app.locals;
 
     // If no action or url provided, throw to next middleware (create-post)
     if (action && url) {
@@ -58,7 +59,6 @@ module.exports = [
         }
 
         case 'undelete': {
-          const {pub} = req.app.locals;
           const undeleted = await post.undelete(pub, postData).catch(error => {
             return next(error);
           });
