@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const nock = require('nock');
 const test = require('ava');
 
@@ -37,8 +36,4 @@ test('Deletes a post', async t => {
   // Test assertions
   t.true(response);
   scope.done();
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });

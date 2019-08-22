@@ -1,5 +1,5 @@
+const fs = require('fs');
 const path = require('path');
-const fs = require('fs-extra');
 const nock = require('nock');
 const test = require('ava');
 const validUrl = require('valid-url');
@@ -57,8 +57,4 @@ test('Throws error if GitHub responds with an error', async t => {
 test('Throws error if no file specified', async t => {
   const error = await t.throwsAsync(media.create(pub, null));
   t.is(error.message.error_description, 'No file included in request');
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });

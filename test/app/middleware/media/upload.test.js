@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
@@ -32,8 +31,4 @@ test('Creates a media file', async t => {
   t.is(response.body.success, 'create');
   t.regex(response.header.location, /\b[\d\w]{5}\b.gif/g);
   scope.done();
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });

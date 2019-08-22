@@ -16,6 +16,7 @@
     "start": "node app/server.js",
     "dev": "nodemon app/server.js",
     "test": "ava --verbose",
+    "posttest": "rm -r ./.ava_output",
     "coverage": "nyc ava"
   },
   "engines": {
@@ -30,7 +31,6 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "file-type": "^12.2.0",
-    "fs-extra": "^8.1.0",
     "lodash": "^4.17.15",
     "luxon": "^1.17.2",
     "microformat-node": "^2.0.1",
@@ -48,7 +48,7 @@
     "ava": "^2.3.0",
     "coveralls": "^3.0.6",
     "husky": "^3.0.4",
-    "nock": "^11.3.0",
+    "nock": "^11.3.1",
     "nodemon": "^1.19.1",
     "nyc": "^14.0.0",
     "sinon": "^7.4.1",
