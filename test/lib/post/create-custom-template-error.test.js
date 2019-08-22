@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const nock = require('nock');
 const test = require('ava');
 
@@ -40,8 +39,4 @@ test('Throws error getting publisher configured template', async t => {
   // Test assertions
   t.regex(error.message.error_description, /\bnot found\b/);
   scope.done();
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });

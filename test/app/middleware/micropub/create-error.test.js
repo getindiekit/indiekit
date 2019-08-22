@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
@@ -31,8 +30,4 @@ test('Throws error creating post if GitHub responds with an error', async t => {
   t.is(response.body.error, 'error');
   t.regex(response.body.error_description, /\bnot found\b/);
   scope.done();
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });

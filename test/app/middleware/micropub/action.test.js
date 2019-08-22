@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
@@ -109,8 +108,4 @@ test('Undeletes a post', async t => {
   t.is(response.status, 200);
   t.is(response.body.success, 'delete_undelete');
   scope.done();
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });

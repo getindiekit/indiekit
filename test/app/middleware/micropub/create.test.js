@@ -1,4 +1,3 @@
-const fs = require('fs-extra');
 const test = require('ava');
 const nock = require('nock');
 const request = require('supertest');
@@ -31,8 +30,4 @@ test('Creates a post file', async t => {
   t.is(response.body.success, 'create_pending');
   t.regex(response.header.location, /\b[\d\w]{5}\b/g);
   scope.done();
-});
-
-test.after(async () => {
-  await fs.emptyDir(outputDir);
 });
