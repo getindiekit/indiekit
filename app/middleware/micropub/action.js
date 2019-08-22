@@ -13,7 +13,7 @@ const store = require(process.env.PWD + '/lib/store');
 module.exports = [
   // Determine action, and continue if token has required scope
   (req, res, next) => {
-    const {action} = req.query || req.body;
+    const action = req.query.action || req.body.action;
     switch (action) {
       case 'delete':
         return auth.checkScope('delete')(req, res, next);
@@ -27,7 +27,8 @@ module.exports = [
   },
   // Determine action, and execute requested operation
   async (req, res, next) => {
-    const {action, url} = req.query || req.body;
+    const action = req.query.action || req.body.action;
+    const url = req.query.url || req.body.url;
 
     // If no action or url provided, throw to next middleware (create-post)
     if (action && url) {

@@ -16,7 +16,7 @@ test('Returns 404 if specified URL not found in store', async t => {
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .query({
+    .send({
       action: 'update',
       url: 'http://example.example'
     });
@@ -30,7 +30,7 @@ test('Returns 501 if update action requested', async t => {
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .query({
+    .send({
       action: 'update',
       url: 'https://foo.bar/baz.md'
     });
@@ -63,7 +63,7 @@ test('Deletes a post', async t => {
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .query({
+    .send({
       action: 'delete',
       url: 'https://foo.bar/baz.md'
     });
@@ -98,7 +98,7 @@ test('Undeletes a post', async t => {
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .query({
+    .send({
       action: 'undelete',
       url: 'https://foo.bar/baz.md'
     });
