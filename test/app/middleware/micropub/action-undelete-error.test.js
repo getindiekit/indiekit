@@ -35,7 +35,7 @@ test('Throws error undeleting if GitHub responds with an error', async t => {
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .query({
+    .send({
       action: 'undelete',
       url: 'https://foo.bar/baz.md'
     });

@@ -23,7 +23,7 @@ test('Throws error deleting if GitHub responds with an error', async t => {
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
-    .query({
+    .send({
       action: 'delete',
       url: 'https://foo.bar/baz.md'
     });
