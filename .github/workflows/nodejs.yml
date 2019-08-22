@@ -1,0 +1,29 @@
+name: Node CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install and test
+      env:
+        INDIEKIT_URL: ${{ secrets.INDIEKIT_URL }}
+        TEST_INDIEAUTH_TOKEN: ${{ secrets.TEST_INDIEAUTH_TOKEN }}
+      run: |
+        npm install
+        npm test
+    - name: coverage
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }} 
+      if: success()
+      run: |
+        npm run coverage
