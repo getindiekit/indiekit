@@ -1,0 +1,29 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install, test and run coverage checks
+      env:
+        INDIEKIT_URL: ${{ secrets.INDIEKIT_URL }}
+        TEST_INDIEAUTH_TOKEN: ${{ secrets.TEST_INDIEAUTH_TOKEN }}
+      run: |
+        npm install
+        npm run coverage
+    - name: Send coverage report to Coveralls
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      if: success()
+      run: |
+        cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
