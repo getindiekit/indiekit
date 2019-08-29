@@ -13,8 +13,9 @@ config.port = (process.env.NODE_ENV === 'test') ?
   null : // Don’t assign a port when running concurrent tests
   process.env.PORT || 3000;
 
-// Locale
+// Customisation
 config.locale = process.env.INDIEKIT_LOCALE || 'en-GB';
+config.themeColor = '#f60';
 
 // Cache
 config.cache = {
