@@ -1,0 +1,27 @@
+{
+  "This is the %s endpoint for": "This is the %s endpoint for",
+  "Media endpoint": "Media endpoint",
+  "Supported post types": "Supported post types",
+  "Syndication targets": "Syndication targets",
+  "Not found": "Not found",
+  "The requested resource was not found": "The requested resource was not found",
+  "{icon} %s created\nwith {app}": "{icon} %s created\nwith {app}",
+  "{icon} %s deleted\nwith {app}": "{icon} %s deleted\nwith {app}",
+  "{icon} %s undeleted\nwith {app}": "{icon} %s undeleted\nwith {app}",
+  "{icon} %s updated\nwith {app}": "{icon} %s updated\nwith {app}",
+  "{icon} %s uploaded\nwith {app}": "{icon} %s uploaded\nwith {app}",
+  "post": {
+    "article": "Article post",
+    "note": "Note post",
+    "photo": "Photo post",
+    "video": "Video post",
+    "audio": "Audio post",
+    "bookmark": "Bookmark post",
+    "checkin": "Checkin post",
+    "event": "Event post",
+    "rsvp": "RSVP post",
+    "reply": "Reply post",
+    "repost": "Repost",
+    "like": "Like post"
+  }
+}

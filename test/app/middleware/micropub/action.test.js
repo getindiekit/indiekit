@@ -42,7 +42,7 @@ test('Returns 404 if specified URL not found in store', async t => {
   t.is(response.body.error, 'Not found');
 });
 
-test.serial('Deletes a post', async t => {
+test('Deletes a post', async t => {
   // Mock GitHub delete file request
   const scope = nock('https://api.github.com')
     .get(uri => uri.includes('baz.md'))
@@ -177,13 +177,13 @@ test.serial('Throws error updating if GitHub responds with an error', async t =>
     .replyWithError('not found');
 
   // Setup
-  store.set('https://foo.bar/baz', t.context.postData);
+  store.set(t.context.postUrl, t.context.postData);
   const response = await app.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${t.context.token}`)
     .send({
       action: 'update',
-      url: 'https://foo.bar/baz',
+      url: t.context.postUrl,
       replace: {
         content: ['hello moon']
       }
@@ -192,6 +192,88 @@ test.serial('Throws error updating if GitHub responds with an error', async t =>
   // Test assertions
   t.is(response.status, 500);
   t.regex(response.body.error_description, /\bnot found\b/);
+  scope.done();
+});
+
+test.serial('Updates a post by adding a syndication value', async t => {
+  // Mock GitHub create file request
+  const scope = nock('https://api.github.com')
+    .get(uri => uri.includes('baz.md'))
+    .reply(200, {
+      content: 'Zm9vYmFy'
+    })
+    .put(uri => uri.includes('baz.md'))
+    .reply(200);
+
+  // Setup
+  const response = await app.post('/micropub')
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .send({
+      action: 'update',
+      url: t.context.postUrl,
+      add: {
+        syndication: ['http://web.archive.org/web/20190818120000/https://foo.bar/baz']
+      }
+    });
+
+  // Test assertions
+  t.is(response.status, 200);
+  t.is(response.body.success, 'update');
+  scope.done();
+});
+
+test.serial('Updates a post by deleting a property', async t => {
+  // Mock GitHub create file request
+  const scope = nock('https://api.github.com')
+    .get(uri => uri.includes('baz.md'))
+    .reply(200, {
+      content: 'Zm9vYmFy'
+    })
+    .put(uri => uri.includes('baz.md'))
+    .reply(200);
+
+  // Setup
+  const response = await app.post('/micropub')
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .send({
+      action: 'update',
+      url: t.context.postUrl,
+      delete: ['category']
+    });
+
+  // Test assertions
+  t.is(response.status, 200);
+  t.is(response.body.success, 'update');
+  scope.done();
+});
+
+test.serial('Updates a post by deleting an entry in a property', async t => {
+  // Mock GitHub create file request
+  const scope = nock('https://api.github.com')
+    .get(uri => uri.includes('baz.md'))
+    .reply(200, {
+      content: 'Zm9vYmFy'
+    })
+    .put(uri => uri.includes('baz.md'))
+    .reply(200);
+
+  // Setup
+  const response = await app.post('/micropub')
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .send({
+      action: 'update',
+      url: t.context.postUrl,
+      delete: {
+        category: ['foo']
+      }
+    });
+
+  // Test assertions
+  t.is(response.status, 200);
+  t.is(response.body.success, 'update');
   scope.done();
 });
 

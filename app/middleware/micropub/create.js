@@ -1,6 +1,5 @@
 const auth = require(process.env.PWD + '/app/middleware/auth');
 const media = require(process.env.PWD + '/lib/media');
-const microformats = require(process.env.PWD + '/lib/microformats');
 const post = require(process.env.PWD + '/lib/post');
 
 /**
@@ -17,7 +16,6 @@ module.exports = [
   },
   async (req, res, next) => {
     const {body, files} = req;
-    const {pub} = req.app.locals;
 
     // Upload attached files and add push value to body
     if (files && files.length > 0) {
@@ -28,7 +26,7 @@ module.exports = [
           body[property] = [];
         }
 
-        const value = await media.create(pub, file).catch(error => {
+        const value = await media.create(req, {file}).catch(error => {
           return next(error);
         });
         if (value) {
@@ -37,10 +35,7 @@ module.exports = [
       }
     }
 
-    // Normalise form-encoded requests as mf2 JSON
-    const mf2 = req.is('json') ? body : microformats.formEncodedToMf2(body);
-
-    const created = await post.create(pub, mf2).catch(error => {
+    const created = await post.create(req).catch(error => {
       return next(error);
     });
 

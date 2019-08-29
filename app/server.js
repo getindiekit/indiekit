@@ -2,6 +2,7 @@ const path = require('path');
 const _ = require('lodash');
 const express = require('express');
 const favicon = require('serve-favicon');
+const i18n = require('i18n');
 const nunjucks = require('nunjucks');
 
 const logger = require(process.env.PWD + '/lib/logger');
@@ -22,6 +23,14 @@ nunjucks.configure(['./app/views', './app/static'], {
 app.enable('trust proxy');
 
 app.set('view engine', 'njk');
+
+// Internationalisation
+i18n.configure({
+  defaultLocale: 'en',
+  directory: process.env.PWD + '/locales',
+  objectNotation: true
+});
+app.use(i18n.init);
 
 // Parse application/json
 app.use(express.json({
@@ -59,8 +68,8 @@ app.use((req, res) => {
   if (req.accepts('text/html')) {
     res.render('error', {
       status: 404,
-      error: 'Not found',
-      error_description: 'The requested resource could not be found.'
+      error: req.__('Not found'),
+      error_description: req.__('The requested resource was not found')
     });
   }
 });

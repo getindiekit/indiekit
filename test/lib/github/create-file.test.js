@@ -1,7 +1,6 @@
 const nock = require('nock');
 const test = require('ava');
 
-const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/lib/github');
 
 test('Creates a new file in a repository', async t => {
@@ -10,7 +9,7 @@ test('Creates a new file in a repository', async t => {
     .put(uri => uri.includes('foo.txt'))
     .reply(200, {
       commit: {
-        message: `Create message\nwith ${config.name}`
+        message: 'Create message'
       }
     });
 
@@ -24,7 +23,7 @@ test('Creates a new file in a repository', async t => {
 
   // Test assertions
   t.truthy(response);
-  t.is(response.data.commit.message, `Create message\nwith ${config.name}`);
+  t.is(response.data.commit.message, 'Create message');
   scope.done();
 });
 
