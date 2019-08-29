@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="h-x-app">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta name="theme-color" content="{{ app.themeColor }}"/>
+    <link rel="mask-icon" href="{{ app.url }}/logo.svg" color="{{ app.themeColor }}" class="u-logo"/>
+    <link rel="stylesheet" href="{{ app.url }}/app.css"/>
+    <link rel="stylesheet" href="{{ app.url }}/app.css"/>
+    <title>{{ title + " - " if title }}{{ app.name }}</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a class="u-url" href="{{ app.url }}" rel="home">
+          {% include 'logo.svg' %}
+          <span class="p-name">{{ app.name }}</span>
+        </a>
+      </h1>
+      <p>{{ app.description }}</p>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <a href="https://github.com/{{ app.repository | replace('github:', '') }}/releases/tag/v{{ app.version }}">v{{ app.version }}</a>
+    </footer>
+  </body>
+</html>
