@@ -14,10 +14,7 @@ module.exports = [
     return auth.checkScope('create')(req, res, next);
   },
   async (req, res, next) => {
-    const {file} = req;
-    const {pub} = req.app.locals;
-
-    const created = await media.create(pub, file).catch(error => {
+    const created = await media.create(req).catch(error => {
       return next(error);
     });
 

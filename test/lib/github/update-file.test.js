@@ -1,7 +1,6 @@
 const nock = require('nock');
 const test = require('ava');
 
-const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/lib/github');
 
 test('Updates a file in a repository', async t => {
@@ -17,7 +16,7 @@ test('Updates a file in a repository', async t => {
     .put(uri => uri.includes('foo.txt'))
     .reply(200, {
       commit: {
-        message: `Update message\nwith ${config.name}`
+        message: 'Update message'
       }
     });
 
@@ -28,7 +27,7 @@ test('Updates a file in a repository', async t => {
 
   // Test assertions
   t.is(response.status, 200);
-  t.is(response.data.commit.message, `Update message\nwith ${config.name}`);
+  t.is(response.data.commit.message, 'Update message');
   scope.done();
 });
 
@@ -40,7 +39,7 @@ test('Creates a file if original file not found', async t => {
     .put(uri => uri.includes('foo.txt'))
     .reply(200, {
       commit: {
-        message: `Update message\nwith ${config.name}`
+        message: 'Update message'
       }
     });
 
@@ -51,7 +50,7 @@ test('Creates a file if original file not found', async t => {
 
   // Test assertions
   t.is(response.status, 200);
-  t.is(response.data.commit.message, `Update message\nwith ${config.name}`);
+  t.is(response.data.commit.message, 'Update message');
   scope.done();
 });
 

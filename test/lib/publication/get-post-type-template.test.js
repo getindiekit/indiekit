@@ -15,5 +15,5 @@ test('Throws error if cached template not found', async t => {
   const error = await t.throwsAsync(getPostTypeTemplate(postTypeConfig));
 
   // Test assertions
-  t.is(error.message, 'Key `foo.njk` not found');
+  t.is(error.message.error_description, 'Key `foo.njk` not found');
 });

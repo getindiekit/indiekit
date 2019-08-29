@@ -1,7 +1,6 @@
 const nock = require('nock');
 const test = require('ava');
 
-const config = require(process.env.PWD + '/app/config');
 const github = require(process.env.PWD + '/lib/github');
 
 test('Deletes a file in a GitHub repository', async t => {
@@ -16,7 +15,7 @@ test('Deletes a file in a GitHub repository', async t => {
     .reply(200, {
       content: null,
       commit: {
-        message: `Delete message\nwith ${config.name}`
+        message: 'Delete message'
       }
     });
 
@@ -27,7 +26,7 @@ test('Deletes a file in a GitHub repository', async t => {
 
   // Test assertions
   t.is(response.status, 200);
-  t.is(response.data.commit.message, `Delete message\nwith ${config.name}`);
+  t.is(response.data.commit.message, 'Delete message');
   scope.done();
 });
 
@@ -59,7 +58,7 @@ test('Throws error if GitHub can’t delete file', async t => {
     .replyWithError('unknown error');
 
   // Setup
-  const error = await t.throwsAsync(github.deleteFile('foo.txt', 'foo', {
+  const error = await t.throwsAsync(github.deleteFile('foo.txt', {
     message: 'Delete message'
   }));
 
