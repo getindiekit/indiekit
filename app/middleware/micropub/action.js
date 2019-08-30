@@ -29,7 +29,6 @@ module.exports = [
   async (req, res, next) => {
     const action = req.query.action || req.body.action;
     const url = req.query.url || req.body.url;
-    const {pub} = req.app.locals;
 
     // If no action or url provided, throw to next middleware (create-post)
     if (action && url) {
@@ -44,7 +43,7 @@ module.exports = [
 
       switch (action) {
         case 'delete': {
-          const deleted = await post.delete(data).catch(error => {
+          const deleted = await post.delete(req, data).catch(error => {
             return next(error);
           });
 
@@ -59,7 +58,7 @@ module.exports = [
         }
 
         case 'undelete': {
-          const undeleted = await post.undelete(pub, data).catch(error => {
+          const undeleted = await post.undelete(req, data).catch(error => {
             return next(error);
           });
 
@@ -75,7 +74,7 @@ module.exports = [
         }
 
         case 'update': {
-          const updated = await post.update(pub, data, req.body).catch(error => {
+          const updated = await post.update(req, data).catch(error => {
             return next(error);
           });
 

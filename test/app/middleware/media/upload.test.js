@@ -31,6 +31,18 @@ test.serial('Creates a media file', async t => {
   scope.done();
 });
 
+test.serial('Throws error creating media if file missing', async t => {
+  // Setup
+  const response = await app.post('/media')
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${t.context.token}`)
+    .attach('file', null);
+
+  // Test assertions
+  t.is(response.status, 400);
+  t.is(response.body.error_description, 'no file included in request');
+});
+
 test.serial('Throws error creating media if GitHub responds with an error', async t => {
   // Mock request
   const scope = nock('https://api.github.com')
