@@ -12,16 +12,37 @@ This tool is inspired by [similar projects](https://paulrobertlloyd.github.io/in
 
 ## Features
 
-* **Creating posts** using JSON or `x-www-form-urlencoded` syntax
-* **Deleting posts** with support for `delete` and `undelete` actions
-* **Uploading media** via media endpoint or including `multipart/form-data` in a request
-* **Querying** for configuration, source content and syndication targets. Additonal support for [querying supported vocabularies](https://indieweb.org/Micropub-extensions#Query_for_Supported_Properties).
+### Micropub
+:pencil2: **[Creating posts](https://www.w3.org/TR/micropub/#create)** using JSON or `x-www-form-urlencoded` syntax
+
+:arrows_counterclockwise: **[Updating posts](https://www.w3.org/TR/micropub/#update)** with support for *replace*, *add* and *remove* operations
+
+:x: **[Deleting posts](https://www.w3.org/TR/micropub/#delete)** with support for `delete` and `undelete` actions
+
+:framed_picture: **[Uploading media](https://www.w3.org/TR/micropub/#media-endpoint)** via media endpoint (or by including `multipart/form-data` in a request)
+
+:mag: **[Querying endpoints](https://www.w3.org/TR/micropub/#querying)** with support for:
+  * configuration (`/micropub?q=config`)
+  * media endpoint (`/micropub?q=media-endpoint`)
+  * syndication targets (`/micropub?q=syndicate-to`)
+  * categories (`/micropub?q=category`)
+  * previous posts (`/micropub?q=source`)
+  * source content (`/micropub?q=source&url=[url]`)
+  * supported vocabularies (`/micropub?q=post-types`)
+  * last uploaded file (`/media?q=last`)
+
+### Customisation
+:rainbow: **Configurable post templates** and destination file paths, enabling support for a wide variety of static site generators and setups. A set of [default templates](https://paulrobertlloyd.github.io/indiekit/config#post-types) are provided which are designed to work with a standard [Jekyll](https://jekyllrb.com) install.
+
+:globe_with_meridians: **Internationalisation** of commit messages, date formats and public pages. Current languages provided:
+  * :gb: English
+  * :de: Deutsch
 
 ## Documentation
 
-* [Getting started](https://paulrobertlloyd.github.io/indiekit/deploy): Deploying the application.
-* [Usage](https://paulrobertlloyd.github.io/indiekit/config): Configuring your website to work with IndieKit.
-* [Glossary](https://paulrobertlloyd.github.io/indiekit/glossary): Terms used throughout the application and documentation.
+* **[Getting started](https://paulrobertlloyd.github.io/indiekit/deploy)**: Deploying the application.
+* **[Usage](https://paulrobertlloyd.github.io/indiekit/config)**: Configuring your website to work with IndieKit.
+* **[Glossary](https://paulrobertlloyd.github.io/indiekit/glossary)**: Terms used throughout the application and documentation.
 
 ## Credits
 
