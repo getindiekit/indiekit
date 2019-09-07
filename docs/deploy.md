@@ -26,10 +26,10 @@ If you’d like to deploy this application somewhere else, make sure the followi
 * `INDIEAUTH_TOKEN_ENDPOINT`: IndieAuth token endpoint. *Optional*, defaults [`https://tokens.indieauth.com/token`](https://tokens.indieauth.com/token)
 
 ### GitHub
-* `GITHUB_TOKEN`: GitHub access token. **Required**.
-* `GITHUB_USER`: GitHub username. **Required**.
-* `GITHUB_REPO`: GitHub repository. **Required**.
-* `GITHUB_BRANCH`: GitHub branch files are to. *Optional*, defaults to `master`.
+* `GITHUB_TOKEN`: A GitHub [personal access token](https://github.com/settings/tokens). **Required**.
+* `GITHUB_USER`: Username on GitHub. **Required**.
+* `GITHUB_REPO`: Name of the repository files will be saved to. **Required**.
+* `GITHUB_BRANCH`: Name of the branch files will be saved to. *Optional*, defaults to `master`.
 
 ### Timber
 If you want to send logs to [Timber](https://timber.io), set the following variables:

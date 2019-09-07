@@ -11,27 +11,23 @@
   "success_url": "https://paulrobertlloyd.github.io/indiekit/config",
   "env": {
     "GITHUB_TOKEN": {
-      "description": "GitHub access token",
+      "description": "A GitHub personal access token",
       "required": true
     },
     "GITHUB_USER": {
-      "description": "GitHub username",
+      "description": "Username on GitHub",
       "required": true
     },
     "GITHUB_REPO": {
-      "description": "GitHub repository in which to save files",
+      "description": "Name of the repository files will be saved to",
       "required": true
-    },
-    "GITHUB_BRANCH": {
-      "description": "GitHub branch in which to save files",
-      "value": "master"
     },
     "INDIEKIT_URL": {
       "description": "URL of the website you want to publish to",
       "required": true
     },
     "INDIEKIT_CONFIG_PATH": {
-      "description": "Location of configuration file, relative to repository root",
+      "description": "Location of configuration file, relative to repository’s root",
       "required": false
     }
   },
