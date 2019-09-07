@@ -32,7 +32,7 @@
     },
     "INDIEKIT_CONFIG_PATH": {
       "description": "Location of configuration file, relative to repository root",
-      "value": "indiekit.json"
+      "required": false
     }
   },
   "image": "heroku/nodejs"
