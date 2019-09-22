@@ -23,17 +23,17 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@octokit/rest": "^16.28.9",
+    "@octokit/rest": "^16.29.0",
     "@timberio/node": "^0.35.0",
     "@timberio/winston": "^0.35.0",
     "camelcase-keys": "^6.0.1",
-    "data-store": "^3.1.0",
+    "data-store": "^4.0.3",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "file-type": "^12.3.0",
     "i18n": "^0.8.3",
     "lodash": "^4.17.15",
-    "luxon": "^1.17.2",
+    "luxon": "^1.18.0",
     "microformat-node": "^2.0.1",
     "multer": "^1.4.2",
     "node-cache": "^4.2.1",
@@ -46,9 +46,9 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "ava": "^2.3.0",
+    "ava": "^2.4.0",
     "coveralls": "^3.0.6",
-    "nock": "^11.3.3",
+    "nock": "^11.3.5",
     "nodemon": "^1.19.2",
     "nyc": "^14.0.0",
     "sinon": "^7.4.2",
