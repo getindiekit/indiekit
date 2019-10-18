@@ -23,12 +23,12 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@octokit/rest": "^16.30.1",
+    "@octokit/rest": "^16.33.1",
     "@timberio/node": "^0.35.0",
     "@timberio/winston": "^0.35.0",
     "camelcase-keys": "^6.0.1",
     "data-store": "^4.0.3",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "file-type": "^12.3.0",
     "i18n": "^0.8.3",
@@ -47,9 +47,9 @@
   },
   "devDependencies": {
     "ava": "^2.4.0",
-    "coveralls": "^3.0.6",
-    "nock": "^11.3.5",
-    "nodemon": "^1.19.2",
+    "coveralls": "^3.0.7",
+    "nock": "^11.4.0",
+    "nodemon": "^1.19.4",
     "nyc": "^14.0.0",
     "sinon": "^7.5.0",
     "supertest": "^4.0.0",
