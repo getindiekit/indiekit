@@ -9,11 +9,14 @@ npm-debug.log*
 
 # Testing and coverage
 coverage
-.ava_output
 .nyc_output
 
 # Dependencies
 node_modules/
+package-lock.json
+
+# SSL
+ssl
 
 # Environment variables
 .env
