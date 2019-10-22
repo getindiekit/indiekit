@@ -38,9 +38,7 @@ router.get('/media',
   media.query
 );
 
-// Support Sunlit media endpoint, which has a hardcoded URL
-// https://github.com/microdotblog/issues/issues/147
-router.post('/media(/micropub/media)?',
+router.post('/media',
   auth,
   file,
   media.upload
