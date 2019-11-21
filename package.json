@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "ava": "^2.4.0",
-    "coveralls": "^3.0.7",
+    "coveralls": "^3.0.8",
     "nock": "^11.4.0",
     "nodemon": "^1.19.4",
     "nyc": "^14.0.0",
