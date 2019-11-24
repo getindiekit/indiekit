@@ -31,8 +31,8 @@ test('Throws error if no publication URL provided', async t => {
 
 test('Throws error if publication URL not authenticated by token', async t => {
   // Mock request
-  const scope = nock('https://tokens.indieauth.com/token')
-    .get('')
+  const scope = nock('https://tokens.indieauth.com/')
+    .get('/token')
     .reply(200, {
       me: 'https://paulrobertlloyd.github.io/indiekit-sandbox/'
     });
@@ -49,8 +49,8 @@ test('Throws error if publication URL not authenticated by token', async t => {
 
 test('Throws error if token endpoint does not return a me value', async t => {
   // Mock request
-  const scope = nock('https://tokens.indieauth.com/token')
-    .get('')
+  const scope = nock('https://tokens.indieauth.com/')
+    .get('/token')
     .reply(200, {
       me: null
     });
@@ -67,8 +67,8 @@ test('Throws error if token endpoint does not return a me value', async t => {
 
 test('Throws error if token endpoint returns an error', async t => {
   // Mock request
-  const scope = nock('https://tokens.indieauth.com/token')
-    .get('')
+  const scope = nock('https://tokens.indieauth.com/')
+    .get('/token')
     .reply(404, {
       error: 'Invalid request',
       error_description: 'The code provided was not valid'
@@ -86,8 +86,8 @@ test('Throws error if token endpoint returns an error', async t => {
 
 test('Throws error if can’t connect to token endpoint', async t => {
   // Mock request
-  const scope = nock('https://tokens.indieauth.com/token')
-    .get('')
+  const scope = nock('https://tokens.indieauth.com/')
+    .get('/token')
     .replyWithError('The code provided was not valid');
 
   // Setup

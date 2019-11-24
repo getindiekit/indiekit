@@ -32,15 +32,16 @@ module.exports = [
       // Return value of cache key
       case 'key': {
         const {key} = query;
-        try {
-          return res.json(cache.get(key, true));
-        } catch (error) {
+        const result = cache.get(key);
+        if (result === undefined) {
           return next(new IndieKitError({
             status: 404,
             error: 'Not found',
-            error_description: error.message
+            error_description: `Key \`${key}\` not found`
           }));
         }
+
+        return res.json(result);
       }
 
       // Return cache statistics
