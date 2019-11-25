@@ -36,3 +36,8 @@ If you want to send logs to [Timber](https://timber.io), set the following varia
 
 * `TIMBER_TOKEN`: Timber API key. *Optional*
 * `TIMBER_SOURCE`: Timber source ID. *Optional*
+
+### Timezone
+If you want to set the timezone for your content:
+
+* `TZ`: Timezone, in [tz database format](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). *Optional*, defaults to `Europe/London`.
