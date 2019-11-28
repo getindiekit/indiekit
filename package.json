@@ -33,7 +33,7 @@
     "file-type": "^12.4.0",
     "i18n": "^0.8.4",
     "lodash": "^4.17.15",
-    "luxon": "^1.21.2",
+    "luxon": "^1.21.3",
     "microformat-node": "^2.0.1",
     "multer": "^1.4.2",
     "node-cache": "^5.0.2",
