@@ -12,7 +12,7 @@ test('Throws errror', t => {
 
   const error = t.throws(() => {
     fn();
-  }, IndieKitError);
+  }, {instanceOf: IndieKitError});
 
   t.is(error.message.error, 'Teapot');
   t.is(error.message.error_description, 'I’m a teapot');
