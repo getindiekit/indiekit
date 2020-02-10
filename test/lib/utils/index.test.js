@@ -76,7 +76,7 @@ test('Derives file properties', async t => {
     buffer: await fs.readFileSync(path.resolve(__dirname, 'fixtures/photo.jpg')),
     originalname: 'photo.jpg'
   };
-  file = utils.deriveFileProperties(file);
+  file = await utils.deriveFileProperties(file);
 
   // Test assertions
   t.is(file.originalname, 'photo.jpg');
@@ -101,10 +101,10 @@ test('Derives file type and returns equivalent IndieWeb post type', async t => {
   };
 
   // Test assertions
-  t.is(utils.deriveMediaType(audio), 'audio');
-  t.is(utils.deriveMediaType(photo), 'photo');
-  t.is(utils.deriveMediaType(video), 'video');
-  t.is(utils.deriveMediaType(font), null);
+  t.is(await utils.deriveMediaType(audio), 'audio');
+  t.is(await utils.deriveMediaType(photo), 'photo');
+  t.is(await utils.deriveMediaType(video), 'video');
+  t.is(await utils.deriveMediaType(font), null);
 });
 
 test('Derives a permalink', t => {
