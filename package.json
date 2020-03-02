@@ -46,7 +46,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "ava": "^3.3.0",
+    "ava": "^3.5.0",
     "coveralls": "^3.0.9",
     "nock": "^11.8.2",
     "nodemon": "^2.0.2",
