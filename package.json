@@ -26,7 +26,7 @@
     "@octokit/rest": "^16.43.1",
     "@timberio/node": "^0.35.0",
     "@timberio/winston": "^0.35.0",
-    "camelcase-keys": "^6.1.2",
+    "camelcase-keys": "^6.2.2",
     "data-store": "^4.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
