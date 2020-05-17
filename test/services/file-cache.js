@@ -1,7 +1,6 @@
-const test = require('ava');
-const {client} = require('../../config/server');
-
-const fileCacheService = require('../../services/file-cache');
+import test from 'ava';
+import {client} from '../../config/server.js';
+import fileCacheService from '../../services/file-cache.js';
 
 test.afterEach(() => {
   client.flushall();

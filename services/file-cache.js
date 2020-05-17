@@ -1,7 +1,7 @@
-const axios = require('axios');
-const {client} = require('../config/server');
+import axios from 'axios';
+import {client} from '../config/server.js';
 
-module.exports = async (key, url, expires = 3600) => {
+export default async (key, url, expires = 3600) => {
   const cachedData = await client.get(key);
 
   if (cachedData) {

@@ -1,6 +1,6 @@
-const express = require('express');
-const {expires, port} = require('./config/server');
-const fileCacheService = require('./services/file-cache');
+import express from 'express';
+import {expires, port} from './config/server.js';
+import fileCacheService from './services/file-cache.js';
 
 const app = express();
 
