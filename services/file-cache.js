@@ -1,4 +1,4 @@
-import axios from 'axios';
+import got from 'got';
 import {client} from '../config/server.js';
 
 export default async (key, url, expires = 3600) => {
@@ -12,8 +12,7 @@ export default async (key, url, expires = 3600) => {
   }
 
   // Fetch data from remote URL
-  const response = await axios.get(url);
-  const fetchedData = response.data;
+  const fetchedData = await got(url).json();
 
   // Save response to Redis store
   client.setex(key, expires, JSON.stringify(fetchedData));
