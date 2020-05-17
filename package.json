@@ -22,9 +22,9 @@
     "watch": "nodemon app",
     "start": "node app",
     "pretest": "redis-server --port 6380 --daemonize yes",
-    "test": "ava --verbose",
+    "test": "ava",
     "posttest": "redis-cli -p 6380 shutdown",
-    "coverage": "nyc npm run test"
+    "coverage": "c8 npm run test"
   },
   "engines": {
     "node": "14.x"
@@ -37,19 +37,20 @@
   },
   "devDependencies": {
     "ava": "^3.8.2",
+    "c8": "^7.1.2",
     "dotenv": "^8.1.0",
     "nock": "^12.0.3",
     "nodemon": "^2.0.4",
-    "nyc": "^15.0.1",
     "xo": "^0.30.0"
   },
   "ava": {
     "environmentVariables": {
       "NODE_ENV": "test",
       "REDIS_URL": "6380"
-    }
+    },
+    "verbose": true
   },
-  "nyc": {
+  "c8": {
     "reporter": [
       "text",
       "lcovonly"
