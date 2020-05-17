@@ -19,8 +19,8 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git"
   },
   "scripts": {
-    "watch": "nodemon app",
-    "start": "node app",
+    "dev": "nodemon packages/server",
+    "start": "node packages/server",
     "pretest": "redis-server --port 6380 --daemonize yes",
     "test": "ava",
     "posttest": "redis-cli -p 6380 shutdown",
