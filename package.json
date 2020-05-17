@@ -19,8 +19,8 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git"
   },
   "scripts": {
-    "dev": "nodemon packages/server",
-    "start": "node packages/server",
+    "dev": "nodemon server",
+    "start": "node server",
     "pretest": "redis-server --port 6380 --daemonize yes",
     "test": "ava",
     "posttest": "redis-cli -p 6380 shutdown",
@@ -31,8 +31,10 @@
   },
   "type": "module",
   "dependencies": {
+    "deepmerge": "^4.2.2",
     "express": "^4.17.1",
     "got": "^11.1.4",
+    "http-errors": "^1.7.3",
     "ioredis": "^4.17.0"
   },
   "devDependencies": {
@@ -41,6 +43,7 @@
     "dotenv": "^8.1.0",
     "nock": "^12.0.3",
     "nodemon": "^2.0.4",
+    "supertest": "^4.0.2",
     "xo": "^0.30.0"
   },
   "ava": {
@@ -51,6 +54,10 @@
     "verbose": true
   },
   "c8": {
+    "all": true,
+    "include": [
+      "packages"
+    ],
     "reporter": [
       "text",
       "lcovonly"

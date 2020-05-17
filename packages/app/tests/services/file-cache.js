@@ -1,7 +1,7 @@
 import test from 'ava';
 import nock from 'nock';
 
-import {client} from '../../config/server.js';
+import {client} from '../../config/app.js';
 import fileCacheService from '../../services/file-cache.js';
 
 test.beforeEach(t => {
@@ -15,7 +15,7 @@ test.afterEach(() => {
   client.flushall();
 });
 
-test('Gets data from remote and saves to Redis cache', async t => {
+test('Returns data from remote file and saves to Redis cache', async t => {
   const scope = t.context.nock.reply(200, ['Foo', 'Bar']);
   const result = await fileCacheService('category', t.context.url);
 
@@ -23,7 +23,7 @@ test('Gets data from remote and saves to Redis cache', async t => {
   scope.done();
 });
 
-test('Throws error if remote not found', async t => {
+test('Throws error if remote file not found', async t => {
   const scope = t.context.nock.replyWithError('not found');
   const error = await t.throwsAsync(fileCacheService('file', t.context.url));
 
