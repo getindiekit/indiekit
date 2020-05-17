@@ -1,0 +1,59 @@
+{
+  "private": true,
+  "name": "@paulrobertlloyd/indiekit",
+  "version": "0.1.0",
+  "description": "An IndieWeb publishing toolkit",
+  "keywords": [
+    "indieweb",
+    "micropub"
+  ],
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "homepage": "https://paulrobertlloyd.github.io/indiekit/",
+  "bugs": "https://github.com/paulrobertlloyd/indiekit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulrobertlloyd/indiekit.git"
+  },
+  "scripts": {
+    "watch": "nodemon app",
+    "start": "node app",
+    "pretest": "redis-server --port 6380 --daemonize yes",
+    "test": "ava --verbose",
+    "posttest": "redis-cli -p 6380 shutdown",
+    "coverage": "nyc npm run test"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "ioredis": "^4.17.0"
+  },
+  "devDependencies": {
+    "ava": "^3.8.2",
+    "dotenv": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.0.1",
+    "xo": "^0.30.0"
+  },
+  "ava": {
+    "environmentVariables": {
+      "NODE_ENV": "test",
+      "REDIS_URL": "6380"
+    }
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "lcovonly"
+    ]
+  },
+  "xo": {
+    "space": true
+  }
+}
