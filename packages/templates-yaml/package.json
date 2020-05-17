@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "@indiekit/templates-yaml",
+  "version": "0.1.0",
+  "description": "IndieWeb templates with YAML frontmatter",
+  "keywords": [
+    "indiekit",
+    "indieweb",
+    "micropub",
+    "yaml"
+  ],
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "templates"
+  ],
+  "bugs": {
+    "url": "https://github.com/paulrobertlloyd/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulrobertlloyd/indiekit.git",
+    "directory": "packages/templates-yaml"
+  },
+  "scripts": {
+    "test": "echo \"Run tests from root\" && exit 1"
+  },
+  "xo": false
+}

@@ -1,0 +1,23 @@
+---
+title: '{{ name }}'
+date: {{ published }}
+{%- if summary %}
+excerpt: {{ summary }}
+{%- endif %}
+start: {{ start }}
+end: {{ end }}
+location: {{ location }}
+{%- if category %}
+category:
+{%- for item in category %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+{%- if syndicateTo %}
+syndicate-to:
+{%- for item in syndicateTo %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+---
+{{ content | safe }}

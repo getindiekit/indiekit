@@ -1,0 +1,20 @@
+---
+date: {{ published }}
+{%- if category %}
+category:
+{%- for item in category %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+video:
+{%- for item in video %}
+- url: {{ item.value }}
+{%- endfor %}
+{%- if syndicateTo %}
+syndicate-to:
+{%- for item in syndicateTo %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+---
+{{ content | safe }}

@@ -1,0 +1,27 @@
+---
+date: {{ published }}
+checkin:
+  name: {{ checkin.properties.name }}
+  url: {{ checkin.properties.url }}
+  latitude: {{ checkin.properties.url }}
+  longitude: {{ checkin.properties.url }}
+  street-address: {{ checkin.properties.streetAddress }}
+  locality: {{ checkin.properties.locality }}
+  region: {{ checkin.properties.region }}
+  country-name: {{ checkin.properties.countryName }}
+  postal-code: {{ checkin.properties.postalCode }}
+  tel: {{ checkin.properties.tel }}
+{%- if category %}
+category:
+{%- for item in category %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+{%- if syndicateTo %}
+syndicate-to:
+{%- for item in syndicateTo %}
+- {{ item }}
+{%- endfor %}
+{%- endif %}
+---
+{{ content | safe }}
