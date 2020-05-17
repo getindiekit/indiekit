@@ -38,6 +38,7 @@
   "devDependencies": {
     "ava": "^3.8.2",
     "dotenv": "^8.1.0",
+    "nock": "^12.0.3",
     "nodemon": "^2.0.4",
     "nyc": "^15.0.1",
     "xo": "^0.30.0"
@@ -57,9 +58,13 @@
   "xo": {
     "space": true,
     "rules": {
-      "import/extensions": ["error", "always", {
-        "js": "always"
-      }]
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "js": "always"
+        }
+      ]
     }
   }
 }
