@@ -1,5 +1,5 @@
 import got from 'got';
-import {client} from '../config/app.js';
+import {client} from '../config/db.js';
 
 export default async (key, url, expires = 3600) => {
   const cachedData = await client.get(key);

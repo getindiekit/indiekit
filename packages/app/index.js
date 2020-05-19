@@ -2,10 +2,12 @@ import express from 'express';
 import httpError from 'http-errors';
 
 import {router as micropubRoute} from './routes/micropub.js';
+import {router as settingsRoute} from './routes/settings.js';
 
 const app = express();
 
 app.use('/micropub', micropubRoute);
+app.use('/settings', settingsRoute);
 
 // 404
 app.use((request, response, next) => {

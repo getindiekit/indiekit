@@ -1,28 +1,44 @@
 import deepmerge from 'deepmerge';
 
-import * as appModel from '../models/app.js';
+import * as settingsController from '../controllers/settings.js';
 import categoriesService from '../services/categories.js';
 import customConfigService from '../services/custom-config.js';
 import defaultConfigService from '../services/default-config.js';
 
 /**
- * @exports publicationController
- * @param {String} customConfig Custom configuration
-  * @param {String} defaultConfig Default configuration
+ * @exports read
  * @returns {Promise|Object} Configuration object
  */
-export default async () => {
-  // Custom config
-  const customConfigUrl = await appModel.get('customConfigUrl');
+export const read = async () => {
+  // Get settings
+  const settings = await settingsController.read();
+  const {customConfigUrl, defaultConfigType} = settings;
+
+  // Combine custom and default configs
   const customConfig = await customConfigService(customConfigUrl);
-
-  // Default config
-  const defaultConfigType = await appModel.get('defaultConfigType');
   const defaultConfig = await defaultConfigService(defaultConfigType);
-
-  // Return merged config for publication
   const publication = deepmerge(customConfig, defaultConfig);
   publication.categories = await categoriesService(customConfig.categories);
 
+  // Return publication config
   return publication;
+};
+
+/**
+ * @exports public
+ * @returns {Promise|Object} Public configuration object
+ */
+export const config = async () => {
+  const config = await read();
+
+  // Query supported vocabulary
+  // https://indieweb.org/Micropub-extensions#Query_for_Supported_Vocabulary
+  const postTypes = config['post-types'];
+  config['post-types'] = Object.keys(postTypes).map(key => ({
+    type: key,
+    name: postTypes[key].name
+  }));
+
+  // Return public publication config
+  return config;
 };

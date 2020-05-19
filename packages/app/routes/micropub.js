@@ -1,23 +1,16 @@
 import express from 'express';
 import httpError from 'http-errors';
+import * as publicationController from '../controllers/publication.js';
 
 export const router = express.Router(); // eslint-disable-line new-cap
 
-import publicationController from '../controllers/publication.js';
-
 router.get('/', async (request, response, next) => {
-  const config = await publicationController();
+  const config = await publicationController.config();
 
-  // Media endpoint
-  const defaultMediaEndpoint = `${request.protocol}://${request.headers.host}/media`;
-  config['media-endpoint'] = config['media-endpoint'] || defaultMediaEndpoint;
-
-  // Post types
-  const postTypes = config['post-types'];
-  config['post-types'] = Object.keys(postTypes).map(key => ({
-    type: key,
-    name: postTypes[key].name
-  }));
+  // Use default media endpoint if not configured
+  config['media-endpoint'] =
+  config['media-endpoint'] ||
+    `${request.protocol}://${request.headers.host}/media`;
 
   try {
     const {query} = request;

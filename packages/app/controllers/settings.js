@@ -1,16 +1,19 @@
 import fs from 'fs';
-import {client} from '../config/app.js';
+import * as settingsModel from '../models/settings.js';
 
-export const get = async key => {
-  const app = await getAll();
-  return app[key];
-};
+/**
+ * @exports settingsController
+ * @returns {Promise|Object} Configuration object
+ */
+export const read = async () => {
+  // Get app settings
+  const app = await settingsModel.getAll();
 
-export const getAll = async () => {
-  const app = await client.hgetall('app');
+  // Get package metadata
   const pkg = JSON.parse(fs.readFileSync('package.json'));
 
-  return {
+  // Combine app settings, package metadata and defaults
+  const settings = {
     name: app.name || 'IndieKit',
     version: pkg.version,
     description: pkg.description,
@@ -20,12 +23,7 @@ export const getAll = async () => {
     defaultConfigType: app.defaultConfigType || 'jekyll',
     customConfigUrl: app.customConfigUrl || false
   };
-};
 
-export const set = async (key, value) => {
-  client.hset('app', key, value);
-};
-
-export const setAll = async values => {
-  client.hmset('app', values);
+  // Return app config
+  return settings;
 };
