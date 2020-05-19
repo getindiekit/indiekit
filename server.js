@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({
+  path: `${process.env.ENVIRONMENT}.env`
+});
 
 import app from './packages/app/index.js';
 
