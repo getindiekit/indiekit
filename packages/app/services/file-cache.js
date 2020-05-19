@@ -1,6 +1,13 @@
 import got from 'got';
 import {client} from '../config/db.js';
 
+/**
+ * @exports fileCacheService
+ * @param {string} key Record key
+ * @param {string} url URL of remote file
+ * @param {string} expires Timeout on key
+ * @returns {Promise|Array} Array of categories
+ */
 export default async (key, url, expires = 3600) => {
   const cachedData = await client.get(key);
 

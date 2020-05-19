@@ -2,8 +2,8 @@ import fileCacheService from './file-cache.js';
 
 /**
  * @exports customConfigService
- * @param {String} url URL of custom configuration
- * @returns {Promise|Object} Custom configuration object
+ * @param {string} url URL of custom configuration
+ * @returns {Promise|object} Custom configuration object
  */
 export default async url => {
   let config = {};

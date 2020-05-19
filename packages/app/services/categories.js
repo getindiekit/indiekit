@@ -2,7 +2,7 @@ import fileCacheService from './file-cache.js';
 
 /**
  * @exports categoriesService
- * @param {Object} pubCategories Publication category configuration
+ * @param {object} pubCategories Publication category configuration
  * @returns {Promise|Array} Array of categories
  */
 export default async pubCategories => {

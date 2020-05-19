@@ -44,6 +44,7 @@
     "ava": "^3.8.2",
     "c8": "^7.1.2",
     "dotenv": "^8.1.0",
+    "eslint-plugin-jsdoc": "^25.4.2",
     "husky": "^4.2.5",
     "nock": "^12.0.3",
     "nodemon": "^2.0.4",
@@ -78,6 +79,12 @@
   },
   "xo": {
     "space": true,
+    "extends": [
+      "plugin:jsdoc/recommended"
+    ],
+    "plugins": [
+      "jsdoc"
+    ],
     "rules": {
       "import/extensions": [
         "error",

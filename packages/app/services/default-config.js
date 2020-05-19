@@ -1,7 +1,7 @@
 /**
- * @exports getDefaultConfig
- * @param {String} type Type of configuration
- * @returns {Promise|Object} Default configuration object
+ * @exports defaultConfigService
+ * @param {string} type Type of configuration
+ * @returns {Promise|object} Default configuration object
  */
 export default async type => {
   const module = await (

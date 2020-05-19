@@ -7,7 +7,7 @@ import defaultConfigService from '../services/default-config.js';
 
 /**
  * @exports read
- * @returns {Promise|Object} Configuration object
+ * @returns {Promise|object} Configuration object
  */
 export const read = async () => {
   // Get settings
@@ -25,8 +25,8 @@ export const read = async () => {
 };
 
 /**
- * @exports public
- * @returns {Promise|Object} Public configuration object
+ * @exports config
+ * @returns {Promise|object} Public configuration object
  */
 export const config = async () => {
   const config = await read();

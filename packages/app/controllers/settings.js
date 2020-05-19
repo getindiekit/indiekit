@@ -2,8 +2,8 @@ import fs from 'fs';
 import * as settingsModel from '../models/settings.js';
 
 /**
- * @exports settingsController
- * @returns {Promise|Object} Configuration object
+ * @exports read
+ * @returns {Promise|object} Configuration object
  */
 export const read = async () => {
   // Get app settings
