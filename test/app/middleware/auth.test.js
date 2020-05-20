@@ -63,16 +63,15 @@ test('Returns 401 if required scope not in access token', async t => {
   t.is(next.args[0][0].message.error, 'Insufficient scope');
 });
 
-test('Returns 401 if required scope not provided', async t => {
+test ('Calls next middleware if required scope not provided and access token provides `create`', t => {
   // Mock Express
   const req = null;
   const res = mockScopeResponse('create');
-  const next = sinon.spy();
+  const next = sinon.mock().once().withExactArgs().returns('Go to next');
 
   // Test assertions
-  await auth.checkScope(null)(req, res, next);
-  t.is(next.args[0][0].message.status, 400);
-  t.is(next.args[0][0].message.error, 'Invalid request');
+  const result = auth.checkScope()(req, res, next);
+  t.is(result, 'Go to next');
 });
 
 // Test middleware that verifies tokens
