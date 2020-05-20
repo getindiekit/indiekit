@@ -1,6 +1,7 @@
 import express from 'express';
 import httpError from 'http-errors';
 import * as publicationController from '../controllers/publication.js';
+import {url2Mf2, mf2Properties} from '../services/microformats.js';
 
 export const router = express.Router(); // eslint-disable-line new-cap
 
@@ -28,6 +29,22 @@ router.get('/', async (request, response, next) => {
         return response.json({
           categories: config.categories
         });
+      }
+
+      case 'source': {
+        // Return microformats for a given source URL
+        if (query.url) {
+          try {
+            const mf2 = await url2Mf2(query.url);
+            const properties = mf2Properties(mf2, query.properties);
+            return response.json(properties);
+          } catch (error) {
+            throw new Error(error.message);
+          }
+        }
+
+        // Return microformats for previously published posts
+        return response.json({});
       }
 
       default: {

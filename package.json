@@ -23,6 +23,7 @@
     "start": "node server",
     "pretest": "redis-server --port 6380 --daemonize yes",
     "test": "ava",
+    "test:watch": "ava --watch",
     "posttest": "redis-cli -p 6380 shutdown",
     "coverage": "c8 npm run test",
     "ci": "c8 ava"
@@ -36,7 +37,8 @@
     "express": "^4.17.1",
     "got": "^11.1.4",
     "http-errors": "^1.7.3",
-    "ioredis": "^4.17.0"
+    "ioredis": "^4.17.0",
+    "microformats-parser": "^1.3.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

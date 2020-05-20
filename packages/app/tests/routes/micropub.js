@@ -1,7 +1,10 @@
 import test from 'ava';
+import nock from 'nock';
 import supertest from 'supertest';
 
 import app from '../../index.js';
+import fixture from '../helpers/fixture.js';
+
 const request = supertest(app);
 
 const mockResponse = async query => {
@@ -39,6 +42,47 @@ test('Returns 400 if unsupported parameter provided', async t => {
   const response = await mockResponse('q=foobar');
   t.is(response.status, 400);
   t.regex(response.error.text, /\bInvalid parameter: foobar\b/);
+});
+
+test('Returns list of previously published posts', async t => {
+  const response = await mockResponse('q=source');
+  t.deepEqual(response.body, {});
+});
+
+test('Returns mf2 for given source URL', async t => {
+  const scope = nock('https://website.example')
+    .get('/post.html')
+    .reply(200, fixture('post.html'));
+  const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
+  t.deepEqual(response.body, {
+    type: ['h-entry'],
+    properties: {
+      name: ['I ate a cheese sandwich.']
+    }
+  });
+  scope.done();
+});
+
+test('Returns 400 if source URL doesn’t contain microformats', async t => {
+  const scope = nock('https://website.example')
+    .get('/page.html')
+    .reply(200, fixture('page.html'));
+  const response = await mockResponse('q=source&properties[]=name&url=https://website.example/page.html');
+
+  t.is(response.status, 400);
+  t.regex(response.error.text, /\bSource has no items\b/);
+  scope.done();
+});
+
+test('Returns 400 if source URL can’t be found', async t => {
+  const scope = nock('https://website.example')
+    .get('/post.html')
+    .replyWithError('not found');
+  const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
+
+  t.is(response.status, 400);
+  t.regex(response.error.text, /\bnot found\b/);
+  scope.done();
 });
 
 test('Returns 400 if unsupported query provided', async t => {
