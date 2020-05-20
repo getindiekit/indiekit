@@ -23,7 +23,7 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@octokit/rest": "^17.9.0",
+    "@octokit/rest": "^17.9.2",
     "@timberio/node": "^0.35.0",
     "@timberio/winston": "^0.35.0",
     "camelcase-keys": "^6.2.2",
@@ -42,7 +42,7 @@
     "nunjucks": "^3.2.1",
     "post-type-discovery": "github:grantcodes/post-type-discovery",
     "serve-favicon": "^2.5.0",
-    "slug": "^2.1.1",
+    "slug": "^3.0.1",
     "winston": "^3.2.1"
   },
   "devDependencies": {
