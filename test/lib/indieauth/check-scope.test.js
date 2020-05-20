@@ -17,18 +17,23 @@ test('Returns true if required scope is `post` but token provides `create`', t =
   t.true(hasScope);
 });
 
-test('Throws error if no scope provided in access token', t => {
+test('Returns true if required scope not provided', t => {
+  // Default required scope is `create`
+  const hasScope = indieauth.checkScope(null, 'create');
+  t.true(hasScope);
+});
+
+test('Returns true if create scope not provided in access token', t => {
+  // Default token scope is `create`
+  const hasScope = indieauth.checkScope('create', null);
+  t.true(hasScope);
+});
+
+test('Throws error if required scope not provided in access token', t => {
   const error = t.throws(() => {
     indieauth.checkScope('delete', null);
   });
-  t.is(error.message.error_description, 'Access token does not provide any scope(s)');
-});
-
-test('Throws error if required scope not provided', t => {
-  const error = t.throws(() => {
-    indieauth.checkScope(null, 'create update');
-  });
-  t.is(error.message.error_description, 'No scope was provided in request');
+  t.is(error.message.error_description, 'Access token does not meet requirements for requested scope (delete)');
 });
 
 test('Throws error if required scope not provided by access token', t => {
