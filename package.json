@@ -46,6 +46,7 @@
     "ava": "^3.8.2",
     "c8": "^7.1.2",
     "dotenv": "^8.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsdoc": "^25.4.2",
     "husky": "^4.2.5",
     "nock": "^12.0.3",
@@ -82,19 +83,28 @@
   "xo": {
     "space": true,
     "extends": [
+      "plugin:import/errors",
       "plugin:jsdoc/recommended"
     ],
     "plugins": [
+      "import",
       "jsdoc"
     ],
     "rules": {
-      "import/extensions": [
-        "error",
-        "always",
-        {
-          "js": "always"
+      "import/extensions": ["error", "always"],
+      "import/no-useless-path-segments": ["error", {
+        "noUselessIndex": false
+      }],
+      "unicorn/import-index": ["error", {
+        "ignoreImports": true
+      }]
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [".js"]
         }
-      ]
+      }
     }
   }
 }
