@@ -1,7 +1,6 @@
 import fileCacheService from './file-cache.js';
 
 /**
- * @exports categoriesService
  * @param {object} pubCategories Publication category configuration
  * @returns {Promise|Array} Array of categories
  */

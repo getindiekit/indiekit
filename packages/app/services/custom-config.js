@@ -1,7 +1,6 @@
 import fileCacheService from './file-cache.js';
 
 /**
- * @exports customConfigService
  * @param {string} url URL of custom configuration
  * @returns {Promise|object} Custom configuration object
  */

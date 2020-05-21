@@ -3,8 +3,7 @@ import templates from '../templates-yaml/index.js';
 /**
  * Default publication configuration.
  *
- * @exports default
- * @note Values required for all properties (empty or not) to ensure user
+ * Provides values for all properties (empty or not) to ensure user
  * configured values overwrite defaults.
  */
 export default {

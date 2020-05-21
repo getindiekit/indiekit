@@ -6,7 +6,6 @@ import customConfigService from '../services/custom-config.js';
 import defaultConfigService from '../services/default-config.js';
 
 /**
- * @exports read
  * @returns {Promise|object} Configuration object
  */
 export const read = async () => {
@@ -20,12 +19,10 @@ export const read = async () => {
   const publication = deepmerge(customConfig, defaultConfig);
   publication.categories = await categoriesService(customConfig.categories);
 
-  // Return publication config
   return publication;
 };
 
 /**
- * @exports config
  * @returns {Promise|object} Public configuration object
  */
 export const config = async () => {
@@ -39,6 +36,5 @@ export const config = async () => {
     name: postTypes[key].name
   }));
 
-  // Return public publication config
   return config;
 };

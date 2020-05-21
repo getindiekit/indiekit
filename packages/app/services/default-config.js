@@ -1,5 +1,4 @@
 /**
- * @exports defaultConfigService
  * @param {string} type Type of configuration
  * @returns {Promise|object} Default configuration object
  */

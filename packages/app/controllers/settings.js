@@ -2,7 +2,6 @@ import fs from 'fs';
 import * as settingsModel from '../models/settings.js';
 
 /**
- * @exports read
  * @returns {Promise|object} Configuration object
  */
 export const read = async () => {
@@ -24,6 +23,5 @@ export const read = async () => {
     customConfigUrl: app.customConfigUrl || false
   };
 
-  // Return app config
   return settings;
 };

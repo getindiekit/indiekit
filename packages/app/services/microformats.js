@@ -4,7 +4,6 @@ import parser from 'microformats-parser';
 /**
  * Returns microformats of a given URL.
  *
- * @exports url2Mf2
  * @param {string} url URL path to post
  * @returns {Promise|object} mf2
  */
@@ -22,11 +21,10 @@ export const url2Mf2 = async url => {
 };
 
 /**
- * Returns microformats of a given URL.
+ * Returns/selects microformat properties of a post.
  *
- * @exports mf2Properties
  * @param {object} mf2 mf2
- * @param {Array|string} requestedProperties mf2 properties to return
+ * @param {Array|string} requestedProperties mf2 properties to select
  * @returns {Promise|object} mf2 with requested properties
  */
 export const mf2Properties = (mf2, requestedProperties) => {
