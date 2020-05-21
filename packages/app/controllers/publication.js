@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge';
 
-import * as settingsController from '../controllers/settings.js';
+import * as settingsController from './settings.js';
 import categoriesService from '../services/categories.js';
 import customConfigService from '../services/custom-config.js';
 import defaultConfigService from '../services/default-config.js';
