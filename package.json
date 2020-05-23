@@ -81,11 +81,6 @@
       "lcovonly"
     ]
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS"
