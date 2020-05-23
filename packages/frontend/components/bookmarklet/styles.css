@@ -1,0 +1,7 @@
+.bookmarklet {
+  background-color: var(--color-neutral-lightest);
+  border-radius: var(--border-radius-small);
+  display: inline-block;
+  padding: var(--inset-small-squished);
+  white-space: nowrap;
+}

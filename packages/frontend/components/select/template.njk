@@ -1,0 +1,52 @@
+{%- from "../error-message/macro.njk" import errorMessage -%}
+{%- from "../hint/macro.njk" import hint -%}
+{%- from "../label/macro.njk" import label -%}
+{%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
+{%- set fieldClasses = "form__field" + (" " + opts.field.classes if opts.field.classes) -%}
+<div class="{{ fieldClasses + (" " + "form__field--error" if opts.errorMessage) }}">
+{%- if opts.label %}
+  {{ label({
+    text: opts.label.text,
+    classes: opts.label.classes,
+    attributes: opts.label.attributes,
+    for: opts.id
+  }) | indent(2) | trim }}
+{%- endif %}
+{%- if opts.hint %}
+  {%- set hintId = opts.id + "-hint" %}
+  {%- set describedBy = describedBy + " " + hintId if describedBy else hintId %}
+  {{ hint({
+    id: hintId,
+    classes: opts.hint.classes,
+    attributes: opts.hint.attributes,
+    text: opts.hint.text
+  }) | indent(2) | trim }}
+{%- endif %}
+{%- if opts.errorMessage %}
+  {%- set errorId = opts.id + '-error' %}
+  {%- set describedBy = describedBy + ' ' + errorId if describedBy else errorId %}
+  {{ errorMessage({
+    id: errorId,
+    classes: opts.errorMessage.classes,
+    attributes: opts.errorMessage.attributes,
+    text: opts.errorMessage.text,
+    visuallyHiddenText: opts.errorMessage.visuallyHiddenText
+  }) | indent(2) | trim }}
+{%- endif %}
+{%- set classes = "select" + (" " + opts.classes if opts.classes) -%}
+  <select class="{{ classes + (" " + "select--error" if opts.errorMessage) }}" name="{{ opts.name }}"
+  {%- if opts.id %} id="{{ opts.id}}"{% endif %}
+  {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
+  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+  {%- for item in opts.items %}
+    {%- if item %}
+      <option value="{{ item.value }}"
+        {{-" selected" if item.selected }}
+        {{-" disabled" if item.disabled }}
+        {%- for attr, value in item.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+        {{- item.text -}}
+      </option>
+    {%- endif %}
+  {%- endfor %}
+  </select>
+</div>

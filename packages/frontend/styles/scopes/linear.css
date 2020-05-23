@@ -1,0 +1,71 @@
+.s-linear {
+  --anchor-decoration: underline;
+  --color-anchor: var(--color-accent);
+  --color-anchor-decoration: hsl(var(--h) var(--s) 0% / 25%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .s-linear a {
+    filter: invert(1);
+  }
+}
+
+.s-linear > * {
+  max-inline-size: var(--linear-measure);
+  word-break: break-word;
+}
+
+.s-linear * + * {
+  margin-block-start: var(--flow-space);
+}
+
+.s-linear h2 {
+  @extend %heading;
+}
+
+.s-linear h3 {
+  @extend %subhead;
+}
+
+.s-linear pre {
+  background-color: var(--color-neutral-lightest);
+  border-radius: var(--border-radius-small);
+  padding: var(--inset-large-squished);
+  overflow: scroll;
+  word-break: normal;
+}
+
+.s-linear pre code {
+  background-color: none;
+  padding: 0;
+}
+
+.s-linear ol,
+.s-linear ul {
+  padding-inline-start: var(--flow-inset);
+}
+
+.s-linear li {
+  margin-block-start: calc(var(--flow-space) / 2);
+}
+
+.s-linear dt {
+  font-weight: 500;
+}
+
+.s-linear code,
+.s-linear samp {
+  border-radius: var(--border-radius-small);
+}
+
+.s-linear code {
+  background-color: var(--color-neutral-lightest);
+  padding: var(--inset-small-squished);
+}
+
+.s-linear .language-bash {
+  background-color: var(--color-neutral-darkest);
+  color: var(--color-neutral-lightest);
+  font-size: 85%;
+  line-height: var(--line-height-tight);
+}

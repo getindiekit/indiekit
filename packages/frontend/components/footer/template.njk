@@ -1,0 +1,13 @@
+<footer class="footer">
+  <div class="footer__container">
+{%- if opts.navigation %}
+    <nav class="footer__navigation" aria-label="secondary">
+    {%- for item in opts.navigation %}
+      {%- if item.href and item.text %}
+      <a href="{{ item.href }}">{{ item.text | safe }}</a>
+      {%- endif %}
+    {%- endfor %}
+    </nav>
+{%- endif %}
+  </div>
+</footer>

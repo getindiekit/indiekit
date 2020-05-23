@@ -4,7 +4,7 @@ import * as settingsModel from '../models/settings.js';
 /**
  * @returns {Promise|object} Configuration object
  */
-export const read = async () => {
+export const read = (async () => {
   // Get app settings
   const app = await settingsModel.getAll();
 
@@ -24,4 +24,4 @@ export const read = async () => {
   };
 
   return settings;
-};
+})();

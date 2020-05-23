@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge';
 
-import * as settingsController from './settings.js';
+import {read as settings} from './settings.js';
 import categoriesService from '../services/categories.js';
 import customConfigService from '../services/custom-config.js';
 import defaultConfigService from '../services/default-config.js';
@@ -10,8 +10,7 @@ import defaultConfigService from '../services/default-config.js';
  */
 export const read = async () => {
   // Get settings
-  const settings = await settingsController.read();
-  const {customConfigUrl, defaultConfigType} = settings;
+  const {customConfigUrl, defaultConfigType} = await settings;
 
   // Combine custom and default configs
   const customConfig = await customConfigService(customConfigUrl);

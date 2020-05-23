@@ -1,14 +1,12 @@
----
-title: Website configuration
----
-{{ settings.name }} lets you customise where posts are saved, how they are formatted and what permalinks you will give them.
+# Website configuration
 
-Configuration is provided via a JSON file. You can let {{ settings.name }} know where to find this file by prviding a value for ‘Configuration file path’ in [publication settings](/settings/publication).
+{{ app.name }} lets you customise where posts are saved, how they are formatted and what permalinks you will give them.
 
-### Configuration options
+Configuration is provided via a JSON file. You can let {{ app.name }} know where to find this file by prviding a value for ‘Configuration file path’ in [publication settings](/settings/publication).
 
-`categories`
-: A [list of categories clients can expose in their publishing interface](https://github.com/indieweb/micropub-extensions/issues/5). Defaults to `[]`. There are two ways of providing these values:
+## Configuration options
+
+`categories`: A [list of categories clients can expose in their publishing interface](https://github.com/indieweb/micropub-extensions/issues/5). Defaults to `[]`. There are two ways of providing these values:
 
   * a pre-detirminded array of values:
 
@@ -27,11 +25,9 @@ Configuration is provided via a JSON file. You can let {{ settings.name }} know 
     }
     ```
 
-`media-endpoint`
-: The URL for your preferred [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media upload requests. Defaults to `{{ settings.url }}/media`.
+`media-endpoint`: The URL for your preferred [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media upload requests. Defaults to `{{ app.url }}/media`.
 
-`syndicate-to`
-: Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndication-targets). Defaults to `[]`. Example:
+`syndicate-to`: Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndication-targets). Defaults to `[]`. Example:
 
   ```json
   {
@@ -48,8 +44,7 @@ Configuration is provided via a JSON file. You can let {{ settings.name }} know 
   }
   ```
 
-`post-types`
-: {{ settings.name }} provides a set of default paths and templates for the following post types:
+`post-types`: {{ app.name }} provides a set of default paths and templates for the following post types:
 
   * 📄 [`article`](https://indieweb.org/article)
   * 📔 [`note`](https://indieweb.org/note)
@@ -97,7 +92,7 @@ Configuration is provided via a JSON file. You can let {{ settings.name }} know 
 
   * **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
-  * **`template`**: Where {{ settings.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ settings.name }} to render content (typically as a Markdown file with YAML frontmatter).
+  * **`template`**: Where {{ app.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ app.name }} to render content (typically as a Markdown file with YAML frontmatter).
 
   * **`post.path`**: Where posts should be saved to in your repository.
 
@@ -112,14 +107,13 @@ Configuration is provided via a JSON file. You can let {{ settings.name }} know 
 
   * **`media.url`**: Public accessible URL for media files. Has access to the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 
-`slug-separator`
-: The character(s) to use when generating post slugs. Defaults to `-` (dash).
+`slug-separator`: The character(s) to use when generating post slugs. Defaults to `-` (dash).
 
-### Creating custom paths and URLs
+## Creating custom paths and URLs
 
 Both `path` and `url` values use [Nunjucks](https://mozilla.github.io/nunjucks/) templating to enable customisation, for which all properties provided in a Micropub request are available. To customise date values, the `date()` filter can be used. This accepts the [formatting tokens offered by Luxon](https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens).
 
-### Creating templates
+## Creating templates
 
 Like paths, templates use [Nunjucks](https://mozilla.github.io/nunjucks/), and also accept any values provided in a Micropub request. Additional variables may be made available at a later date.
 

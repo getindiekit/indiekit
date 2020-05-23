@@ -1,0 +1,22 @@
+.preview {
+  background-color: var(--color-neutral-lightest);
+  border-radius: var(--border-radius-small);
+  padding: var(--inset);
+}
+
+.preview output.empty {
+  color: var(--color-neutral-light);
+}
+
+.preview__title {
+  @extend %subhead;
+}
+
+.preview__body,
+.preview__href {
+  @extend %body;
+}
+
+.preview__date {
+  @extend %caption;
+}

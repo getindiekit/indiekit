@@ -1,0 +1,11 @@
+.select {
+  border: var(--border-width-thick) solid var(--color-neutral);
+  border-radius: var(--border-radius-small);
+  block-size: 3rem;
+  padding: var(--inset-small-squished);
+  width: 100%;
+}
+
+.select--error {
+  border-color: var(--color-error);
+}

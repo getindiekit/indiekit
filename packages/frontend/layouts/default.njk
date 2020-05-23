@@ -1,0 +1,61 @@
+{%- from "article/macro.njk" import article -%}
+{%- from "banner/macro.njk" import banner -%}
+{%- from "bookmarklet/macro.njk" import bookmarklet -%}
+{%- from "button/macro.njk" import button -%}
+{%- from "error-summary/macro.njk" import errorSummary -%}
+{%- from "fieldset/macro.njk" import fieldset -%}
+{%- from "footer/macro.njk" import footer -%}
+{%- from "header/macro.njk" import header -%}
+{%- from "input/macro.njk" import input -%}
+{%- from "select/macro.njk" import select -%}
+{%- from "summary/macro.njk" import summary -%}
+{%- from "textarea/macro.njk" import textarea -%}
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="ltr" class="h-x-app">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta name="theme-color" content="{{ app.themeColor }}"/>
+    <link rel="stylesheet" href="{{ app.cssPath }}"/>
+    <style>
+      :root {
+        --color-accent: {{ app.themeColor }}
+      }
+    </style>
+    <title>{{ title + " - " if title }}{{ app.name }}</title>
+  </head>
+  <body>
+    {{ header({
+      url: app.url,
+      name: app.name,
+      description: app.description,
+      navigation: [{
+        href: "/settings",
+        text: "Settings"
+      }, {
+        href: "/docs/" + app.locale,
+        text: "Help"
+      }, {
+        href: "/sign-in",
+        text: "Sign in"
+      } if not session.me, {
+        href: "/sign-out",
+        text: "Sign out"
+      } if session.me]
+    }) | indent(4) if not minimalui }}
+
+    {{ banner({
+      text: success,
+      type: "success"
+    }) | indent(2) if success }}
+
+    {%- block main %}{% endblock %}
+
+    {{ footer({
+      navigation: [{
+        href: app.repository.url | replace('.git', '') + "/releases/tag/v" + app.version,
+        text: "v" + app.version
+      }]
+    }) | indent(4) if not minimalui }}
+  </body>
+</html>

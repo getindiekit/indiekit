@@ -1,0 +1,30 @@
+/*
+ * Tablular data
+ * =============
+ * https://w3c.github.io/html/tabular-data
+ */
+
+table {
+  border-spacing: 0;
+  break-inside: avoid;
+  font-size: inherit;
+  font-variant-numeric: tabular-nums diagonal-fractions;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+td,
+th {
+  text-align: start;
+  vertical-align: top;
+}
+
+thead th {
+  font-weight: bold;
+}
+
+tbody th {
+  font-weight: normal;
+}

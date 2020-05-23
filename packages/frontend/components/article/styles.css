@@ -1,0 +1,21 @@
+.article {
+  @extend %container;
+  flex: 1;
+  padding: var(--inset-large);
+}
+
+.article__title {
+  @extend %title;
+}
+
+.article__parent {
+  @extend %lede;
+}
+
+.article__body {
+  @extend %body;
+  --flow-inset: 1.25em;
+  --list-display: list-item;
+  --linear-measure: var(--line-measure);
+  margin-block-start: var(--step-3);
+}

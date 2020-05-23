@@ -1,0 +1,28 @@
+{%- set classes = "error-summary" + (" " + opts.classes if opts.classes) -%}
+<div class="{{ classes }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+  <h2 class="error-summary__title" id="error-summary-title">
+    {{ opts.title.text | safe }}
+  </h2>
+  <div class="error-summary__body s-linear">
+  {% if opts.description.text %}
+    <p>{{ opts.description.text | markdown | safe }}</p>
+  {% endif %}
+  {% if opts.errorList %}
+    <ul class="error-summary__list">
+    {% for item in opts.errorList %}
+      <li>
+      {% if item.href %}
+        <a href="{{ item.href }}"
+          {%- for attr, value in item.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+          {{- item.text | safe -}}
+        </a>
+      {% else %}
+        {{- item.text | safe -}}
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </div>
+</div>

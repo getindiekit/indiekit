@@ -1,0 +1,12 @@
+.button {
+  color: var(--color-background);
+  background-color: var(--color-neutral-dark);
+  border-radius: var(--border-radius-small);
+  display: inline-block;
+  padding: var(--inset-small-squished);
+}
+
+.button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+}

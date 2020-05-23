@@ -1,0 +1,87 @@
+/*
+ * Forms
+ * =====
+ * https://w3c.github.io/html/sec-forms
+ */
+
+/*
+ * 1. Reset rounded corners on Safari iOS
+ * 2. Reset font properties to `inherit`
+ * 3. Reset the margin in Firefox and Safari
+ * 4. Consistent outline offset in Safari
+ * 5. Show overflow in IE and Edge
+ */
+button,
+input,
+select,
+textarea {
+  border-radius: 0; /* 1 */
+  color: inherit;
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+  outline-offset: 0; /* 4 */
+  overflow: visible; /* 5 */
+}
+
+/*
+ * 1. Correct inability to style clickable types in Safari
+ * 2. Reset appearance
+ */
+button,
+[type=button],
+[type=submit] {
+  -webkit-appearance: button; /* 1 */
+  background: none;
+  border: 0; /* 2 */
+  padding: 0; /* 2 */
+}
+
+/*
+ * Correct odd appearance in Chrome and Safari
+ */
+[type="search"] {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/*
+ * Remove inner padding in Chrome and Safari on macOS
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+ * http://thatemil.com/blog/2015/01/03/reset-your-fieldset/
+ * 1. Reset minimum width based on content inside fieldset
+ *    in WebKit, Blink and Firefox
+ * 2. Adjust display mode to ensure [1] works in Firefox
+ * 3. Remove default margin and border
+ * 4. Fix margin-collapsing behavior coupled with rendering
+ *    of legend element
+ */
+fieldset {
+  border: 0; /* 3 */
+  margin: 0; /* 3 */
+  min-inline-size: 0; /* 1 */
+  padding: 0.01em 0 0; /* 4 */
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+  display: table-cell; /* 2 */
+}
+
+/*
+ * 1. Correct text wrapping in Edge and IE
+ * 2. Correct `fieldset` color inheritance in IE
+ * 3. Remove padding so developers are not caught out when
+ *    they zero out `fieldset` elements
+ */
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-inline-size: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}

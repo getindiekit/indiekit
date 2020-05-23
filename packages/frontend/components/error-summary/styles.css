@@ -1,0 +1,14 @@
+.error-summary {
+  border-inline-start-color: var(--color-error);
+  border-inline-start-width: var(--border-width-thick);
+  border-inline-start-style: solid;
+  padding-inline-start: var(--space-inline);
+}
+
+.error-summary__title {
+  @extend %subhead;
+}
+
+.error-summary__body {
+  @extend %body;
+}

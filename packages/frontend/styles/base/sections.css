@@ -1,0 +1,59 @@
+/*
+ * Sections
+ * ========
+ * https://w3c.github.io/html/sections
+ */
+
+/* 1. Prevent font size adjustment on orientation change in iOS. */
+:root {
+  block-size: -webkit-fill-available;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%; /* 1 */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--color-highlight);
+}
+
+:focus {
+  outline: var(--border-width-thicker) solid var(--color-focus);
+}
+
+:-moz-focusring {
+  outline: var(--border-width-thicker) solid var(--color-focus);
+}
+
+:focus:not(:-moz-focusring) {
+  outline: 0;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-system);
+  margin: 0;
+  min-block-size: 100vh;
+  min-block-size: -webkit-fill-available;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+legend {
+  break-after: avoid;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}

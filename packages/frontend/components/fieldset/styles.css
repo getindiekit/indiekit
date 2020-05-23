@@ -1,0 +1,15 @@
+.fieldset {
+  @extend %body;
+}
+
+.fieldset > * + * {
+  margin-block-start: var(--space-block);
+}
+
+.fieldset__title {
+  @extend %title;
+}
+
+.fieldset__parent {
+  @extend %lede;
+}

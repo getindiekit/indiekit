@@ -38,7 +38,13 @@
     "got": "^11.1.4",
     "http-errors": "^1.7.3",
     "ioredis": "^4.17.0",
-    "microformats-parser": "^1.3.1"
+    "markdown-it": "^11.0.0",
+    "markdown-it-prism": "^2.0.3",
+    "microformats-parser": "^1.3.1",
+    "nunjucks": "^3.2.1",
+    "postcss": "^7.0.30",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-extend-rule": "^3.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -80,6 +86,9 @@
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS"
     }
   },
+  "nodemonConfig": {
+    "ext": "css,js,json,njk,md"
+  },
   "xo": {
     "space": true,
     "extends": [
@@ -91,18 +100,29 @@
       "jsdoc"
     ],
     "rules": {
-      "import/extensions": ["error", "always"],
-      "import/no-useless-path-segments": ["error", {
-        "noUselessIndex": false
-      }],
-      "unicorn/import-index": ["error", {
-        "ignoreImports": true
-      }]
+      "import/extensions": [
+        "error",
+        "always"
+      ],
+      "import/no-useless-path-segments": [
+        "error",
+        {
+          "noUselessIndex": false
+        }
+      ],
+      "unicorn/import-index": [
+        "error",
+        {
+          "ignoreImports": true
+        }
+      ]
     },
     "settings": {
       "import/resolver": {
         "node": {
-          "extensions": [".js"]
+          "extensions": [
+            ".js"
+          ]
         }
       }
     }

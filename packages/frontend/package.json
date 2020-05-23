@@ -1,0 +1,46 @@
+{
+  "private": true,
+  "name": "@indiekit/frontend",
+  "version": "0.1.0",
+  "description": "An IndieWeb publishing toolkit",
+  "keywords": [
+    "express",
+    "indieweb",
+    "micropub"
+  ],
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "components",
+    "styles"
+  ],
+  "bugs": {
+    "url": "https://github.com/paulrobertlloyd/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulrobertlloyd/indiekit.git",
+    "directory": "packages/frontend"
+  },
+  "scripts": {
+    "test": "echo \"Run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "markdown-it": "^11.0.0",
+    "markdown-it-deflist": "^2.0.3",
+    "markdown-it-prism": "^2.0.3",
+    "nunjucks": "^3.2.1",
+    "postcss-cli": "^7.1.1",
+    "postcss-custom-media": "^7.0.8",
+    "postcss-custom-selectors": "^5.1.2",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-extend-rule": "^3.0.0",
+    "postcss-media-minmax": "^4.0.0"
+  },
+  "xo": false
+}

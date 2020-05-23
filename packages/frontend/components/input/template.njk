@@ -1,0 +1,46 @@
+{%- from "../error-message/macro.njk" import errorMessage -%}
+{%- from "../hint/macro.njk" import hint -%}
+{%- from "../label/macro.njk" import label -%}
+{%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
+{%- set fieldClasses = "form__field" + (" " + opts.field.classes if opts.field.classes) -%}
+<div class="{{ fieldClasses + (" " + "form__field--error" if opts.errorMessage) }}">
+{%- if opts.label %}
+  {{ label({
+    text: opts.label.text,
+    classes: opts.label.classes,
+    attributes: opts.label.attributes,
+    for: opts.id
+  }) | indent(2) | trim }}
+{%- endif %}
+{%- if opts.hint %}
+  {%- set hintId = opts.id + "-hint" %}
+  {%- set describedBy = describedBy + " " + hintId if describedBy else hintId %}
+  {{ hint({
+    id: hintId,
+    classes: opts.hint.classes,
+    attributes: opts.hint.attributes,
+    text: opts.hint.text
+  }) | indent(2) | trim }}
+{%- endif %}
+{%- if opts.errorMessage %}
+  {%- set errorId = opts.id + "-error" %}
+  {%- set describedBy = describedBy + " " + errorId if describedBy else errorId %}
+  {{ errorMessage({
+    id: errorId,
+    classes: opts.errorMessage.classes,
+    attributes: opts.errorMessage.attributes,
+    text: opts.errorMessage.text,
+    label: opts.errorMessage.label
+  }) | indent(2) | trim }}
+{%- endif %}
+{%- set classes = "input" + (" " + opts.classes if opts.classes) -%}
+  <input class="{{ classes + (" " + "input--error" if opts.errorMessage) }}" name="{{ opts.name }}" type="{{ opts.type | default("text") }}"
+  {%- if opts.id %} id="{{ opts.id}}"{% endif %}
+  {%- if opts.value %} value="{{ opts.value}}"{% endif %}
+  {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
+  {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}
+  {%- if opts.pattern %} pattern="{{ opts.pattern }}"{% endif %}
+  {%- if opts.inputmode %} inputmode="{{ opts.inputmode }}"{% endif %}
+  {%- if opts.required %} required{% endif %}
+  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+</div>

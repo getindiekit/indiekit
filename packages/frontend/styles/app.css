@@ -1,0 +1,19 @@
+@import './config/*.css';
+@import './base/*.css';
+@import '../components/**/*.css';
+@import './scopes/*.css';
+@import './helpers/*.css';
+@import './vendor/*.css';
+
+.form {
+  flex: 1;
+  margin: 0 var(--space-block);
+  padding: var(--space-block) 0;
+}
+
+.form__field--error {
+  border-inline-start-color: var(--color-error);
+  border-inline-start-width: var(--border-width-thick);
+  border-inline-start-style: solid;
+  padding-inline-start: var(--space-inline);
+}

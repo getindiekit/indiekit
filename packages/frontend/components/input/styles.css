@@ -1,0 +1,44 @@
+.input {
+  border: var(--border-width-thick) solid var(--color-neutral);
+  border-radius: var(--border-radius-small);
+  padding: var(--inset-small-squished);
+  width: 100%;
+}
+
+.input[readonly] {
+  border-color: var(--color-neutral-light);
+  color: var(--color-neutral-dark);
+}
+
+.input[type="color"] {
+  padding: var(--inset-small);
+  min-block-size: 3rem;
+}
+
+.input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.input--error {
+  border-color: var(--color-error);
+}
+
+.input--width-30 {
+  max-width: 45ch;
+}
+
+.input--width-20 {
+  max-width: 30ch;
+}
+
+.input--width-10 {
+  max-width: 15ch;
+}
+
+.input--width-5 {
+  max-width: 7.5ch;
+}
+
+.input--width-2 {
+  max-width: 3ch;
+}

@@ -8,30 +8,30 @@ test.afterEach(() => {
 });
 
 test('Gets a value', async t => {
-  await settingsModel.set('name', 'Foobar');
-  const result = await settingsModel.get('name');
-  t.is(result, 'Foobar');
+  await settingsModel.set('foo', 'bar');
+  const result = await settingsModel.get('foo');
+  t.is(result, 'bar');
 });
 
 test('Gets all values', async t => {
-  await settingsModel.set('name', 'Foobar');
+  await settingsModel.set('foo', 'bar');
   const result = await settingsModel.getAll();
-  t.is(result.name, 'Foobar');
+  t.is(result.foo, 'bar');
 });
 
 test('Sets a value', async t => {
-  await settingsModel.set('name', 'Foobar');
-  const result = await settingsModel.get('name');
+  await settingsModel.set('foo', 'bar');
+  const result = await settingsModel.get('foo');
 
-  t.is(result, 'Foobar');
+  t.is(result, 'bar');
 });
 
 test('Sets all values', async t => {
   await settingsModel.setAll({
-    name: 'Foobar',
-    color: '#f00'
+    foo: 'bar',
+    baz: 'qux'
   });
   const result = await settingsModel.getAll();
-  t.is(result.name, 'Foobar');
-  t.is(result.color, '#f00');
+  t.is(result.foo, 'bar');
+  t.is(result.baz, 'qux');
 });

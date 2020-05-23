@@ -1,0 +1,10 @@
+{% extends "default.njk" %}
+
+{% block main %}
+    {% call article({
+      title: title,
+      parent: parent or page.parent,
+      content: content
+    }) %}{% block content %}
+    {% endblock %}{% endcall %}
+{% endblock %}

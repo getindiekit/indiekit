@@ -1,0 +1,19 @@
+.footer {
+  background-color: var(--color-neutral-lightest);
+  color: var(--color-neutral-dark);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer__container {
+  @extend %container;
+  padding: var(--inset-large);
+}
+
+.footer__navigation {
+  margin-inline-start: calc(var(--space-inline) * -1);
+}
+
+.footer a {
+  padding: var(--inset-small-squished);
+}

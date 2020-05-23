@@ -1,0 +1,24 @@
+.banner {
+  background-color: var(--color-neutral-lightest);
+  margin-block-start: calc(var(--border-width-thin) * -1);
+  padding: var(--inset-large);
+}
+
+.banner--success {
+  background-color: var(--color-success);
+}
+
+.banner__body {
+  @extend %body;
+  align-items: baseline;
+  display: flex;
+}
+
+.banner__icon {
+  flex: 0 0 auto;
+  margin-inline-end: var(--space-inline);
+}
+
+.banner__text {
+  flex: 1 1 auto;
+}

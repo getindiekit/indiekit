@@ -1,0 +1,22 @@
+/*
+ * Embedded content
+ * ================
+ * https://w3c.github.io/html/semantics-embedded-content
+ */
+
+svg {
+  fill: currentColor;
+}
+
+img,
+embed,
+object {
+  display: block;
+  page-break-inside: avoid;
+}
+
+img,
+object {
+  block-size: auto;
+  max-inline-size: 100%;
+}

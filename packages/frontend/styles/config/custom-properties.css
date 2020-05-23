@@ -1,0 +1,70 @@
+:root {
+  --h: 216;
+  --s: 12%;
+
+  /* Colour palette */
+  --color-neutral-darkest: hsl(var(--h) var(--s) 16%);
+  --color-neutral-dark: hsl(var(--h) var(--s) 40%);
+  --color-neutral: hsl(var(--h) var(--s) 64%);
+  --color-neutral-light: hsl(var(--h) var(--s) 84%);
+  --color-neutral-lightest: hsl(var(--h) var(--s) 96%);
+
+  /* Colour assignments */
+  --color-background: white;
+  --color-text: var(--color-neutral-darkest);
+  --color-delete: hsl(0 100% 80% / 75%);
+  --color-highlight: hsl(60 100% 80% / 75%);
+  --color-insert: hsl(120 100% 80% / 75%);
+  --color-focus: hsl(60 100% 80%);
+  --color-error: hsl(0 100% 40%);
+  --color-success: hsl(150 100% 80%);
+
+  /* Typography */
+  --font-family-system: system-ui, -apple-system, sans-serif;
+  --font-family-monospace: 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+  --font-size-title: calc(1.75rem + 1vw);
+  --font-size-heading: calc(1.125rem + 0.5vw);
+  --font-size-subhead: calc(1rem + 0.25vw);
+  --font-size-body: calc(0.875rem + 0.5vw);
+  --font-size-reference: calc(0.75rem + 0.25vw);
+  --line-height-solid: 1;
+  --line-height-tight: 1.25;
+  --line-height-loose: 1.5;
+  --line-height-prose: 1.75;
+  --line-measure: 45rem;
+  --word-spacing: 0;
+
+  /* Borders */
+  --border-radius-xsmall: 0.125rem;
+  --border-radius-small: 0.25rem;
+  --border-width-thin: 1px;
+  --border-width-thick: 0.125rem;
+  --border-width-thickest: 0.5rem;
+
+  /* Spacing */
+  --space-block: 0.5rem;
+  --space-inline: 0.5rem;
+
+  /* Inset spacing */
+  --inset-small: var(--space-inline);
+  --inset-small-squished: calc(var(--inset-small) / 2) var(--inset-small);
+  --inset-large: calc(var(--inset-small) * 2);
+  --inset-large-squished: calc(var(--inset-large) / 2) var(--inset-large);
+
+  /* Layout */
+  --container-inline-size: 100vw;
+  --container-max-inline-size: 60rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: black;
+    --color-neutral-lightest: hsl(var(--h) var(--s) 16%);
+    --color-neutral-light: hsl(var(--h) var(--s) 40%);
+    --color-neutral-dark: hsl(var(--h) var(--s) 84%);
+    --color-neutral-darkest: hsl(var(--h) var(--s) 96%);
+
+    /* Typography */
+    --word-spacing: 0.05em;
+  }
+}
