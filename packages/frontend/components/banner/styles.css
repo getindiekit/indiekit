@@ -10,6 +10,7 @@
 
 .banner__body {
   @extend %body;
+
   align-items: baseline;
   display: flex;
 }

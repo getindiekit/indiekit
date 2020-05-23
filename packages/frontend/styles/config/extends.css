@@ -9,6 +9,7 @@
 
 %heading {
   --flow-space: 1em;
+
   font-size: var(--step-2);
   font-weight: 500;
   hanging-punctuation: first;
@@ -18,6 +19,7 @@
 
 %lede {
   --flow-space: 1em;
+
   font-size: var(--step-1);
   hanging-punctuation: first;
   line-height: var(--line-height-loose);
@@ -25,15 +27,16 @@
 
 %subhead {
   --flow-space: 1em;
+
   font-size: var(--step-1);
   hanging-punctuation: first;
   letter-spacing: 0;
   line-height: var(--line-height-tight);
-  background-color: red;
 }
 
 %body {
   --flow-space: 1em;
+
   font-size: var(--step-0);
   font-variant: oldstyle-nums;
   hanging-punctuation: first;
@@ -44,6 +47,7 @@
 
 %caption {
   --flow-space: 1em;
+
   font-size: var(--step--1);
   font-variant: tabular-nums;
   line-height: var(--line-height-loose);
@@ -52,7 +56,7 @@
 /* Layout */
 %container {
   inline-size: var(--container-inline-size);
-  margin-inline-start: auto;
   margin-inline-end: auto;
+  margin-inline-start: auto;
   max-inline-size: var(--container-max-inline-size);
 }

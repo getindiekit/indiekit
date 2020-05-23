@@ -1,7 +1,7 @@
 .button {
-  color: var(--color-background);
   background-color: var(--color-neutral-dark);
   border-radius: var(--border-radius-small);
+  color: var(--color-background);
   display: inline-block;
   padding: var(--inset-small-squished);
 }

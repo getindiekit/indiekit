@@ -19,6 +19,16 @@
   margin-block-start: var(--flow-space);
 }
 
+.s-linear code,
+.s-linear samp {
+  border-radius: var(--border-radius-small);
+}
+
+.s-linear code {
+  background-color: var(--color-neutral-lightest);
+  padding: var(--inset-small-squished);
+}
+
 .s-linear h2 {
   @extend %heading;
 }
@@ -30,8 +40,8 @@
 .s-linear pre {
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
-  padding: var(--inset-large-squished);
   overflow: scroll;
+  padding: var(--inset-large-squished);
   word-break: normal;
 }
 
@@ -51,16 +61,6 @@
 
 .s-linear dt {
   font-weight: 500;
-}
-
-.s-linear code,
-.s-linear samp {
-  border-radius: var(--border-radius-small);
-}
-
-.s-linear code {
-  background-color: var(--color-neutral-lightest);
-  padding: var(--inset-small-squished);
 }
 
 .s-linear .language-bash {

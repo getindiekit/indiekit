@@ -1,5 +1,6 @@
 .summary {
   --flow-inset: 0;
+
   margin-block-end: var(--space-block-large);
 }
 
@@ -18,9 +19,9 @@
 }
 
 .summary__row {
-  border-block-start-width: var(--border-width-thin);
-  border-block-start-style: solid;
   border-block-start-color: var(--color-neutral-light);
+  border-block-start-style: solid;
+  border-block-start-width: var(--border-width-thin);
   line-height: var(--line-height-tight);
   padding-block-end: var(--space-block);
   padding-block-start: var(--space-block);
@@ -28,8 +29,8 @@
 
 .summary__key {
   flex: 1;
-  padding-inline-end: var(--space-inline);
   max-inline-size: 15rem;
+  padding-inline-end: var(--space-inline);
 }
 
 .summary__value {

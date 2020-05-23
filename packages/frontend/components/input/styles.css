@@ -11,8 +11,8 @@
 }
 
 .input[type="color"] {
-  padding: var(--inset-small);
   min-block-size: 3rem;
+  padding: var(--inset-small);
 }
 
 .input[type="color"]::-webkit-color-swatch-wrapper {

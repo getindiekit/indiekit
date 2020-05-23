@@ -5,9 +5,9 @@
 .header a {
   align-items: center;
   display: inline-flex;
-  padding: var(--inset-small-squished);
-  margin-inline-start: calc(var(--space-inline) * -1);
   margin-inline-end: calc(var(--space-inline) * -1);
+  margin-inline-start: calc(var(--space-inline) * -1);
+  padding: var(--inset-small-squished);
 }
 
 .header a + a {
@@ -16,6 +16,7 @@
 
 .header__container {
   @extend %container;
+
   align-items: center;
   display: flex;
   flex-wrap: wrap;

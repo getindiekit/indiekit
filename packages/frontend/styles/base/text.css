@@ -46,8 +46,8 @@ code,
 samp,
 var {
   font-family: var(--font-family-monospace);
-  font-variant-numeric: tabular-nums;
   font-size: 85%;
+  font-variant-numeric: tabular-nums;
   hanging-punctuation: none;
 }
 
