@@ -7,5 +7,5 @@ const request = supertest(app);
 test('Returns application settings', async t => {
   const response = await request.get('/settings');
   t.is(response.status, 200);
-  t.is(response.body.name, 'IndieKit');
+  t.is(response.type, 'text/html');
 });

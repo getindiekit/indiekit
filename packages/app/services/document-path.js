@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import {fileURLToPath} from 'url';
 
 /**
  * @param {string} urlpath URL path
@@ -7,7 +8,7 @@ import path from 'path';
  * @returns {string} Path to file on disk
  */
 export default (urlpath, ext = 'md') => {
-  const __dirname = path.dirname(new URL(import.meta.url).pathname);
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
   ext = ext.replace('.', '');
 
   // Get equivalent file path

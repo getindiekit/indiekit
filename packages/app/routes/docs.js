@@ -1,5 +1,6 @@
 import fs from 'fs';
 import express from 'express';
+import httpError from 'http-errors';
 import {templates} from '@indiekit/frontend';
 import documentPath from '../services/document-path.js';
 
@@ -21,7 +22,7 @@ router.get('/*', (request, response, next) => {
 
     // Return document
     response.render('document', {title, content});
-  } catch {
-    next();
+  } catch (error) {
+    next(httpError.NotFound(error)); // eslint-disable-line new-cap
   }
 });

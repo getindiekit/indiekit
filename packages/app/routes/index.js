@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import {fileURLToPath} from 'url';
 import {styles, templates} from '@indiekit/frontend';
 import httpError from 'http-errors';
 
@@ -9,8 +11,10 @@ import {router as micropubRoute} from './micropub.js';
 import {router as settingsRoute} from './settings.js';
 
 export const app = express();
+export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Views
+app.set('views', path.join(`${__dirname}`, '..', 'views'));
 app.engine('njk', templates(app).render);
 app.set('view engine', 'njk');
 app.use(async (request, response, next) => {

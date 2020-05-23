@@ -1,9 +1,9 @@
 @import './config/*.css';
 @import './base/*.css';
-@import '../components/**/*.css';
 @import './scopes/*.css';
 @import './helpers/*.css';
 @import './vendor/*.css';
+@import '../components/**/*.css';
 
 .form {
   flex: 1;

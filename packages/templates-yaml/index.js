@@ -1,4 +1,5 @@
 import path from 'path';
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import {fileURLToPath} from 'url';
 
+export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default `${__dirname}/templates`;

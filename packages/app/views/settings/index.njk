@@ -1,0 +1,47 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {{ summary({
+    title: "Application",
+    actions: [{
+      text: "Edit",
+      href: "/settings/application?referrer=/settings"
+    }],
+    rows: [{
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: app.name
+      }
+    }, {
+      key: {
+        text: "Language"
+      },
+      value: {
+        text: app.locale | language
+      }
+    }, {
+      key: {
+        text: "Theme colour"
+      },
+      value: {
+        text: "<span style=\"color:" + app.themeColor + "\" aria-hidden\"true\">●</span> " + app.themeColor
+      }
+    }, {
+      key: {
+        text: "Default publication config"
+      },
+      value: {
+        text: app.defaultConfigType | capitalize
+      }
+    }, {
+      key: {
+        text: "Custom config path"
+      },
+      value: {
+        text: app.customConfigUrl or "Not set"
+      }
+    }]
+  }) }}
+{% endblock %}
