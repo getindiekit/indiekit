@@ -1,6 +1,6 @@
 # @indiekit/config-jekyll
 
-*IndieKit config for Jekyll-based websites*
+IndieKit config for Jekyll-based websites.
 
 ## Installation
 

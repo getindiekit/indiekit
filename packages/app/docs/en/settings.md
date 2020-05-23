@@ -3,6 +3,7 @@
 Before you can use {{ app.name }} to post to your website, there are a few things you’ll need to set up.
 
 ## Enable automatic discovery
+
 To ensure {{ app.name }}’s endpoint can be discovered by Micropub clients (and have permission to publish to your website), you should add the follow values to your website’s `<head>`:
 
 ```html
@@ -12,6 +13,7 @@ To ensure {{ app.name }}’s endpoint can be discovered by Micropub clients (and
 ```
 
 ## Configure {{ app.name }}
+
 With these values in place, you can configure {{ app.name }} by using the configuration wizard:
 
 [Set up {{ app.name }} →](/settings)

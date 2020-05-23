@@ -8,104 +8,104 @@ Configuration is provided via a JSON file. You can let {{ app.name }} know where
 
 `categories`: A [list of categories clients can expose in their publishing interface](https://github.com/indieweb/micropub-extensions/issues/5). Defaults to `[]`. There are two ways of providing these values:
 
-  * a pre-detirminded array of values:
+* a pre-detirminded array of values:
 
-    ```json
-    categories: [
-      "indieweb",
-      "indiewebcamp"
-    ]
-    ```
+  ```json
+  categories: [
+    "indieweb",
+    "indiewebcamp"
+  ]
+  ```
 
-  * giving the `url` property the address of a JSON file that provides an array of values:
+* giving the `url` property the address of a JSON file that provides an array of values:
 
-    ```json
-    categories: {
-      "url": "{{ pub.me }}/categories.json"
-    }
-    ```
+  ```json
+  categories: {
+    "url": "{{ pub.me }}/categories.json"
+  }
+  ```
 
 `media-endpoint`: The URL for your preferred [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media upload requests. Defaults to `{{ app.url }}/media`.
 
 `syndicate-to`: Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndication-targets). Defaults to `[]`. Example:
 
-  ```json
-  {
-    "syndicate-to": [{
-      "uid": "https://twitter.com/paulrobertlloyd/",
-      "name": "Paul Robert Lloyd on Twitter"
-    }, {
-      "uid": "https://mastodon.social/@paulrobertlloyd",
-      "name": "Paul Robert Lloyd on Mastodon"
-    }, {
-      "uid": "https://micro.blog/paulrobertlloyd",
-      "name": "Paul Robert Lloyd on Micro.blog"
-    }]
-  }
+```json
+{
+  "syndicate-to": [{
+    "uid": "https://twitter.com/paulrobertlloyd/",
+    "name": "Paul Robert Lloyd on Twitter"
+  }, {
+    "uid": "https://mastodon.social/@paulrobertlloyd",
+    "name": "Paul Robert Lloyd on Mastodon"
+  }, {
+    "uid": "https://micro.blog/paulrobertlloyd",
+    "name": "Paul Robert Lloyd on Micro.blog"
+  }]
+}
   ```
 
 `post-types`: {{ app.name }} provides a set of default paths and templates for the following post types:
 
-  * 📄 [`article`](https://indieweb.org/article)
-  * 📔 [`note`](https://indieweb.org/note)
-  * 📷 [`photo`](https://indieweb.org/photo)
-  * 📹 [`video`](https://indieweb.org/video)
-  * 🎤 [`audio`](https://indieweb.org/audio)
-  * 💬 [`reply`](https://indieweb.org/reply) (with optional [`rsvp`](https://indieweb.org/rsvp))
-  * 👍 [`like`](https://indieweb.org/like)
-  * ♻️ [`repost`](https://indieweb.org/repost)
-  * 🔖 [`bookmark`](https://indieweb.org/bookmark)
-  * 🚩 [`checkin`](https://indieweb.org/checkin)
-  * 📅 [`event`](https://indieweb.org/event)
+* 📄 [`article`](https://indieweb.org/article)
+* 📔 [`note`](https://indieweb.org/note)
+* 📷 [`photo`](https://indieweb.org/photo)
+* 📹 [`video`](https://indieweb.org/video)
+* 🎤 [`audio`](https://indieweb.org/audio)
+* 💬 [`reply`](https://indieweb.org/reply) (with optional [`rsvp`](https://indieweb.org/rsvp))
+* 👍 [`like`](https://indieweb.org/like)
+* ♻️ [`repost`](https://indieweb.org/repost)
+* 🔖 [`bookmark`](https://indieweb.org/bookmark)
+* 🚩 [`checkin`](https://indieweb.org/checkin)
+* 📅 [`event`](https://indieweb.org/event)
 
-  These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
+These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
 
-  ```json
-  {
-    "post-types": [{
-      "type": "note",
-      "name": "Micro note",
-      "icon": ":memo:",
-      "template": "_micropub/templates/note.njk",
-      "post": {
-        "path": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-        "url": "notes/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
-      },
-    }, {
-      "type": "photo",
-      "name": "Photograph",
-      "template": "_micropub/templates/photo.njk",
-      "post": {
-        "path": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-        "url": "photos/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
-      },
-      "media": {
-        "path": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
-      }
-    }]
-  }
-  ```
+```json
+{
+  "post-types": [{
+    "type": "note",
+    "name": "Micro note",
+    "icon": ":memo:",
+    "template": "_micropub/templates/note.njk",
+    "post": {
+      "path": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+      "url": "notes/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+    },
+  }, {
+    "type": "photo",
+    "name": "Photograph",
+    "template": "_micropub/templates/photo.njk",
+    "post": {
+      "path": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
+      "url": "photos/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+    },
+    "media": {
+      "path": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
+    }
+  }]
+}
+```
 
-  * **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
+* **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
 
-  * **`name`**: The name you give to this post type on your own site. You needn’t specify this value, but if you do, certain Micropub clients will expose it in their publishing UI.
+* **`name`**: The name you give to this post type on your own site. You needn’t specify this value, but if you do, certain Micropub clients will expose it in their publishing UI.
 
-  * **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
+* **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
-  * **`template`**: Where {{ app.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ app.name }} to render content (typically as a Markdown file with YAML frontmatter).
+* **`template`**: Where {{ app.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ app.name }} to render content (typically as a Markdown file with YAML frontmatter).
 
-  * **`post.path`**: Where posts should be saved to in your repository.
+* **`post.path`**: Where posts should be saved to in your repository.
 
-  * **`post.url`**: Permalink of post as it appears on your website.
+* **`post.url`**: Permalink of post as it appears on your website.
 
-  * **`media.path`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). The following template variables are available for media files:
+* **`media.path`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). The following template variables are available for media files:
 
-    * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
-    * `filename` is a five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
-    * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>jpg</samp>.
-    * `filedate` is the ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
+  * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
+  * `filename` is a five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
+  * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>jpg</samp>.
+  * `filedate` is the ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
 
-  * **`media.url`**: Public accessible URL for media files. Has access to the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
+* **`media.url`**: Public accessible URL for media files. Has access to the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 
 `slug-separator`: The character(s) to use when generating post slugs. Defaults to `-` (dash).
 

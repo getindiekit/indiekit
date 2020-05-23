@@ -1,6 +1,6 @@
 # @indiekit/templates-yaml
 
-*IndieWeb templates with YAML frontmatter*
+IndieWeb templates with YAML frontmatter.
 
 ## Installation
 
