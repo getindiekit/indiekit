@@ -31,6 +31,5 @@
   },
   "dependencies": {
     "@indiekit/templates-yaml": "0.1.0"
-  },
-  "xo": false
+  }
 }

@@ -30,6 +30,5 @@
   },
   "scripts": {
     "test": "echo \"Run tests from root\" && exit 1"
-  },
-  "xo": false
+  }
 }

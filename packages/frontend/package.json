@@ -41,6 +41,5 @@
     "postcss-easy-import": "^3.0.0",
     "postcss-extend-rule": "^3.0.0",
     "postcss-media-minmax": "^4.0.0"
-  },
-  "xo": false
+  }
 }
