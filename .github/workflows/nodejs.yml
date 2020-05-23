@@ -25,7 +25,10 @@ jobs:
       uses: supercharge/redis-github-action@1.1.0
       with:
         redis-version: ${{ matrix.redis-version }}
-    - name: Install, test and run coverage checks
+    - name: Install packages and symlink local dependencies
       run: |
         npm install
-        npm run ci
+        npm run bootstrap
+    - name: Run tests and report coverage
+      run: |
+        npm run coverage:ci

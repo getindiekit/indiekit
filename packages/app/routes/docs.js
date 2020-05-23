@@ -1,6 +1,6 @@
 import fs from 'fs';
 import express from 'express';
-import {templates} from '../../frontend/index.js';
+import {templates} from '@indiekit/frontend';
 import documentPath from '../services/document-path.js';
 
 export const router = express.Router(); // eslint-disable-line new-cap

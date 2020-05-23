@@ -4,7 +4,7 @@
  */
 export default async type => {
   const module = await (
-    await import(`../../config-${type}/index.js`)
+    await import(`@indiekit/config-${type}`)
   ).default;
   return module;
 };

@@ -1,5 +1,5 @@
 import express from 'express';
-import {styles, templates} from '../../frontend/index.js';
+import {styles, templates} from '@indiekit/frontend';
 import httpError from 'http-errors';
 
 import {read as settings} from '../controllers/settings.js';
@@ -22,7 +22,7 @@ app.use(async (request, response, next) => {
 });
 
 // Styles
-app.use('/app.css', async (request, response, next) => {
+app.use('/app.css', async (request, response) => {
   const css = await styles;
   return response.type('text/css').send(css).end();
 });

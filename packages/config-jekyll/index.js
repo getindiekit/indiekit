@@ -1,4 +1,4 @@
-import templates from '../templates-yaml/index.js';
+import templates from '@indiekit/templates-yaml';
 
 /**
  * Default publication configuration.
