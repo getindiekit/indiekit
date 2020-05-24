@@ -36,12 +36,12 @@ test('Gets publication settings', async t => {
 
 test('Validates publication settings', async t => {
   const response = await request.post('/settings/publication')
-    .send('custom=bar');
+    .send('customConfigUrl=foobar');
   t.is(response.status, 422);
 });
 
 test('Posts publication settings', async t => {
   const response = await request.post('/settings/publication')
-    .send('customConfigUrl=https://example.website');
+    .send('defaultConfigType=jekyll');
   t.is(response.status, 302);
 });

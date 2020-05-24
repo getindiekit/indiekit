@@ -1,5 +1,6 @@
 import express from 'express';
 import validator from 'express-validator';
+import customConfigService from '../services/custom-config.js';
 import errorList from '../services/error-list.js';
 import * as applicationController from '../controllers/application.js';
 import * as publicationController from '../controllers/publication.js';
@@ -40,7 +41,7 @@ router.get('/publication', (request, response) => {
 router.post('/publication', [
   validator
     .check('customConfigUrl')
-    .isURL().withMessage('Custom configuration must be a URL')
+    .custom(async url => customConfigService(url))
 ], async (request, response) => {
   const errors = validator.validationResult(request);
   if (!errors.isEmpty()) {

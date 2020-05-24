@@ -33,7 +33,7 @@ test.serial('Throws error if can’t get custom config ', async t => {
   const scope = t.context.nock.replyWithError('not found');
   await t.context.publicationModel.set('customConfigUrl', t.context.url);
   const error = await t.throwsAsync(publicationController.read());
-  t.regex(error.message, /\bnot found\b/);
+  t.is(error.message, 'Custom configuration URL should be publicly accessible');
   scope.done();
 });
 
