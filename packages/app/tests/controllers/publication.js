@@ -4,7 +4,7 @@ import * as publicationController from '../../controllers/publication.js';
 
 test('Reads a publication setting', async t => {
   const result = await publicationController.read();
-  t.is(result.defaultConfigType, 'Jekyll');
+  t.is(result.defaultConfigType, 'jekyll');
 });
 
 test('Writes an application setting', async t => {

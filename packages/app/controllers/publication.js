@@ -17,7 +17,7 @@ export const read = async () => {
   const customConfig = await customConfigService(customConfigUrl);
 
   // Get default config
-  const defaultConfigType = data.defaultConfigType || 'Jekyll';
+  const defaultConfigType = data.defaultConfigType || 'jekyll';
   const defaultConfig = await defaultConfigService(defaultConfigType);
 
   // Combine config from custom and default values
