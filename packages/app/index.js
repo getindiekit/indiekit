@@ -3,6 +3,7 @@ import {fileURLToPath} from 'url';
 import path from 'path';
 import httpError from 'http-errors';
 import {styles, templates} from '@indiekit/frontend';
+import * as publication from './controllers/publication.js';
 import * as settings from './controllers/settings.js';
 import * as routes from './routes/index.js';
 
@@ -29,6 +30,7 @@ app.use(async (request, response, next) => {
   response.locals.url = url;
   response.locals.cssPath = `${url}/app.css`;
   response.locals.app = await settings.read();
+  response.locals.publication = await publication.read();
   next();
 });
 

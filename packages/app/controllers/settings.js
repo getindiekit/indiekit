@@ -5,22 +5,20 @@ import * as settingsModel from '../models/settings.js';
  * @returns {Promise|object} Configuration object
  */
 export async function read() {
-  // Get app settings
-  const app = await settingsModel.getAll();
+  // Get saved settings values
+  const data = await settingsModel.getAll();
 
   // Get package metadata
   const pkg = JSON.parse(fs.readFileSync('package.json'));
 
-  // Combine app settings, package metadata and defaults
+  // Application settings
   const settings = {
-    name: app.name || 'IndieKit',
+    name: data.name || 'IndieKit',
     version: pkg.version,
     description: pkg.description,
     repository: pkg.repository,
-    locale: app.locale || 'en',
-    themeColor: app.themeColor || '#0000ee',
-    defaultConfigType: app.defaultConfigType || 'jekyll',
-    customConfigUrl: app.customConfigUrl || false
+    locale: data.locale || 'en',
+    themeColor: data.themeColor || '#0000ee'
   };
 
   return settings;

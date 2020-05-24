@@ -25,3 +25,16 @@ router.post('/application', async (request, response) => {
   });
   response.redirect(request.query.referrer || '/settings/');
 });
+
+router.get('/publication', (request, response) => {
+  response.render('settings/publication', {
+    parent: 'Settings',
+    title: 'Publication',
+    referrer: request.query.referrer
+  });
+});
+
+router.post('/publication', async (request, response) => {
+  await settings.write(request.body);
+  response.redirect(request.query.referrer || '/settings/');
+});

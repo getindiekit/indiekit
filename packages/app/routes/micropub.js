@@ -6,7 +6,7 @@ import {url2Mf2, mf2Properties} from '../services/microformats.js';
 export const router = express.Router(); // eslint-disable-line new-cap
 
 router.get('/', async (request, response, next) => {
-  const config = await publicationController.config();
+  const config = await publicationController.queryConfig();
 
   // Use default media endpoint if not configured
   config['media-endpoint'] =

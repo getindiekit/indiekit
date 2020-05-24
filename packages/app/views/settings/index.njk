@@ -28,19 +28,28 @@
       value: {
         text: "<span style=\"color:" + app.themeColor + "\" aria-hidden\"true\">●</span> " + app.themeColor
       }
-    }, {
+    }]
+  }) }}
+
+  {{ summary({
+    title: "Publication",
+    actions: [{
+      text: "Edit",
+      href: "/settings/publication?referrer=/settings"
+    }],
+    rows: [{
       key: {
-        text: "Default publication config"
+        text: "Default configuration"
       },
       value: {
-        text: app.defaultConfigType | capitalize
+        text: publication.defaultConfigType | capitalize
       }
     }, {
       key: {
-        text: "Custom config file URL"
+        text: "Custom configuration URL"
       },
       value: {
-        text: app.customConfigUrl or "Not set"
+        text: publication.customConfigUrl or "Not set"
       }
     }]
   }) }}
