@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {client} from '../../config/db.js';
+import {client} from '../../config/database.js';
 import * as applicationController from '../../controllers/application.js';
 
 test.afterEach(() => {

@@ -41,7 +41,7 @@ app.use('/app.css', async (request, response) => {
 });
 
 // Routes
-app.use('/docs', routes.docsRoute);
+app.use('/docs', routes.documentationRoute);
 app.use('/micropub', routes.micropubRoute);
 app.use('/settings', routes.settingsRoute);
 

@@ -18,6 +18,10 @@
     "type": "git",
     "url": "https://github.com/paulrobertlloyd/indiekit.git"
   },
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
     "dev": "nodemon server",
@@ -32,10 +36,6 @@
     "coverage": "c8 npm run test",
     "coverage:ci": "c8 ava"
   },
-  "engines": {
-    "node": "14.x"
-  },
-  "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",

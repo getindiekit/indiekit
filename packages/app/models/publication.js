@@ -1,4 +1,4 @@
-import {client} from '../config/db.js';
+import {client} from '../config/database.js';
 
 /**
  * @param {string} key Database key

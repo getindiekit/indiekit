@@ -13,6 +13,9 @@
     "url": "https://paulrobertlloyd.com"
   },
   "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
   "type": "module",
   "main": "index.js",
   "files": [

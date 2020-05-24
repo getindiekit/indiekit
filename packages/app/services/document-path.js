@@ -4,12 +4,12 @@ import {fileURLToPath} from 'url';
 
 /**
  * @param {string} urlpath URL path
- * @param {string} ext File extension
+ * @param {string} extension File extension
  * @returns {string} Path to file on disk
  */
-export default (urlpath, ext = 'md') => {
+export default (urlpath, extension = 'md') => {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  ext = ext.replace('.', '');
+  extension = extension.replace('.', '');
 
   // Get equivalent file path
   const filepath = path.join(__dirname, '..', urlpath);
@@ -18,8 +18,8 @@ export default (urlpath, ext = 'md') => {
   // path/to/file/index.md
   // path/to/file.md
   const document = fs.existsSync(filepath) ?
-    path.join(filepath, `index.${ext}`) :
-    `${filepath}.${ext}`;
+    path.join(filepath, `index.${extension}`) :
+    `${filepath}.${extension}`;
 
   return document;
 };

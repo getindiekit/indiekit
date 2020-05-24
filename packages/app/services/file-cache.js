@@ -1,5 +1,5 @@
 import got from 'got';
-import {client} from '../config/db.js';
+import {client} from '../config/database.js';
 
 /**
  * @param {string} key Record key

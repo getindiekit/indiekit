@@ -1,7 +1,7 @@
 import test from 'ava';
 import nock from 'nock';
 
-import {client} from '../../config/db.js';
+import {client} from '../../config/database.js';
 import fileCacheService from '../../services/file-cache.js';
 
 test.beforeEach(t => {
