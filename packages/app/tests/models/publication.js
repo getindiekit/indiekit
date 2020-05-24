@@ -1,37 +1,41 @@
 import test from 'ava';
-
+import {rewiremock} from '../helpers/rewiremock.js';
 import {client} from '../../config/database.js';
-import * as publicationModel from '../../models/publication.js';
 
-test.afterEach(() => {
+test.beforeEach(async t => {
+  t.context.publicationModel = await rewiremock.proxy(() => {
+    return import('../../models/publication.js');
+  });
+});
+
+test.afterEach.always(() => {
   client.flushall();
 });
 
 test('Gets a value', async t => {
-  await publicationModel.set('foo', 'pub-bar');
-  const result = await publicationModel.get('foo');
-  t.is(result, 'pub-bar');
+  await t.context.publicationModel.set('key1', 'foobar');
+  const result = await t.context.publicationModel.get('key1');
+  t.is(result, 'foobar');
 });
 
 test('Gets all values', async t => {
-  await publicationModel.set('foo', 'pub-bar');
-  const result = await publicationModel.getAll();
-  t.is(result.foo, 'pub-bar');
+  await t.context.publicationModel.set('key2', 'foobar');
+  const result = await t.context.publicationModel.getAll();
+  t.is(result.key2, 'foobar');
 });
 
 test('Sets a value', async t => {
-  await publicationModel.set('foo', 'pub-bar');
-  const result = await publicationModel.get('foo');
-
-  t.is(result, 'pub-bar');
+  await t.context.publicationModel.set('key3', 'foobar');
+  const result = await t.context.publicationModel.get('key3');
+  t.is(result, 'foobar');
 });
 
 test('Sets all values', async t => {
-  await publicationModel.setAll({
-    foo: 'pub-bar',
-    baz: 'pub-qux'
+  await t.context.publicationModel.setAll({
+    key4: 'foobar',
+    key5: 'bazqux'
   });
-  const result = await publicationModel.getAll();
-  t.is(result.foo, 'pub-bar');
-  t.is(result.baz, 'pub-qux');
+  const result = await t.context.publicationModel.getAll();
+  t.is(result.key4, 'foobar');
+  t.is(result.key5, 'bazqux');
 });

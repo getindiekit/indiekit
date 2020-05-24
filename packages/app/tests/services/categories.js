@@ -1,6 +1,5 @@
 import test from 'ava';
 import nock from 'nock';
-
 import categoriesService from '../../services/categories.js';
 
 test.beforeEach(t => {
@@ -21,7 +20,6 @@ test('Returns an array of available categories', async t => {
 test('Returns array of categories from remote JSON file', async t => {
   const scope = t.context.nock.reply(200, ['foo', 'bar']);
   const result = await categoriesService(t.context.categoriesWithUrl);
-
   t.deepEqual(result, ['foo', 'bar']);
   scope.done();
 });
@@ -29,7 +27,6 @@ test('Returns array of categories from remote JSON file', async t => {
 test('Returns empty array if remote file not found', async t => {
   const scope = t.context.nock.replyWithError('not found');
   const error = await t.throwsAsync(categoriesService(t.context.categoriesWithUrl));
-
   t.is(error.message, 'not found');
   scope.done();
 });

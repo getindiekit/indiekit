@@ -1,9 +1,8 @@
 import test from 'ava';
-
 import {client} from '../../config/database.js';
 import * as applicationController from '../../controllers/application.js';
 
-test.afterEach(() => {
+test.afterEach.always(() => {
   client.flushall();
 });
 
@@ -12,10 +11,8 @@ test('Reads an application setting', async t => {
   t.is(result.name, 'IndieKit');
 });
 
-test('Writes an application setting', async t => {
-  const result = await applicationController.write({
-    locale: 'de'
-  });
+test.serial('Writes an application setting', async t => {
+  const result = await applicationController.write({key6: 'foobar'});
   t.is(result, true);
 });
 

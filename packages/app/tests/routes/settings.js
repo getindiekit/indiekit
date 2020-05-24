@@ -34,8 +34,14 @@ test('Gets publication settings', async t => {
   t.is(response.type, 'text/html');
 });
 
+test('Validates publication settings', async t => {
+  const response = await request.post('/settings/publication')
+    .send('custom=bar');
+  t.is(response.status, 422);
+});
+
 test('Posts publication settings', async t => {
   const response = await request.post('/settings/publication')
-    .send('foo=bar');
+    .send('customConfigUrl=https://example.website');
   t.is(response.status, 302);
 });

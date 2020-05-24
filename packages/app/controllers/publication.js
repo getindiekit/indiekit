@@ -9,39 +9,33 @@ import defaultConfigService from '../services/default-config.js';
  * @returns {Promise|object} Configuration object
  */
 export const read = async () => {
-  // Get saved publication values
-  const data = await publicationModel.getAll();
-
-  // Get custom config
-  const customConfigUrl = data.customConfigUrl || false;
-  let customConfig = {};
   try {
-    customConfig = await customConfigService(customConfigUrl);
+    // Get saved publication values
+    const data = await publicationModel.getAll();
+
+    // Get custom config
+    const customConfigUrl = data.customConfigUrl || false;
+    const customConfig = await customConfigService(customConfigUrl);
+
+    // Get default config
+    const defaultConfigType = data.defaultConfigType || 'jekyll';
+    const defaultConfig = await defaultConfigService(defaultConfigType);
+
+    // Combine config from custom and default values
+    const config = deepmerge(customConfig, defaultConfig);
+    config.categories = await categoriesService(customConfig.categories);
+
+    // Publication settings
+    const publication = {
+      customConfigUrl,
+      defaultConfigType,
+      config
+    };
+
+    return publication;
   } catch (error) {
-    console.warn(`Error getting custom config: ${error.message}`);
+    throw new Error(error.message);
   }
-
-  // Get default config
-  const defaultConfigType = data.defaultConfigType || 'jekyll';
-  let defaultConfig = {};
-  try {
-    defaultConfig = await defaultConfigService(defaultConfigType);
-  } catch (error) {
-    console.warn(`Error getting default config: ${error.message}`);
-  }
-
-  // Combine config from custom and default values
-  const config = deepmerge(customConfig, defaultConfig);
-  config.categories = await categoriesService(customConfig.categories);
-
-  // Publication settings
-  const publication = {
-    customConfigUrl,
-    defaultConfigType,
-    config
-  };
-
-  return publication;
 };
 
 /**

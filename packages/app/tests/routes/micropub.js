@@ -68,7 +68,6 @@ test('Returns 400 if source URL doesn’t contain microformats', async t => {
     .get('/page.html')
     .reply(200, fixture('page.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/page.html');
-
   t.is(response.status, 400);
   t.regex(response.error.text, /\bSource has no items\b/);
   scope.done();
@@ -79,7 +78,6 @@ test('Returns 400 if source URL can’t be found', async t => {
     .get('/post.html')
     .replyWithError('not found');
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
-
   t.is(response.status, 400);
   t.regex(response.error.text, /\bnot found\b/);
   scope.done();

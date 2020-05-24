@@ -29,12 +29,9 @@
     "lint:markdown": "markdownlint '**/*.md'",
     "lint:scripts": "xo '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",
-    "pretest": "redis-server --port 6380 --daemonize yes",
     "test": "ava",
     "test:watch": "ava --watch",
-    "posttest": "redis-cli -p 6380 shutdown",
-    "coverage": "c8 npm run test",
-    "coverage:ci": "c8 ava"
+    "coverage": "c8 ava"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -45,10 +42,13 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsdoc": "^25.4.2",
     "husky": "^4.2.5",
+    "ioredis": "^4.17.1",
+    "ioredis-mock": "^4.21.0",
     "lerna": "^3.21.0",
     "markdownlint-cli": "^0.23.1",
     "nock": "^12.0.3",
     "nodemon": "^2.0.4",
+    "rewiremock": "^3.14.2",
     "stylelint": "^13.5.0",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
@@ -137,6 +137,5 @@
         }
       }
     }
-  },
-  "dependencies": {}
+  }
 }
