@@ -17,20 +17,12 @@
   box-sizing: border-box;
 }
 
-::selection {
-  background-color: var(--color-highlight);
-}
-
 :focus {
-  outline: var(--border-width-thicker) solid var(--color-focus);
+  @extend %focus;
 }
 
-:-moz-focusring {
-  outline: var(--border-width-thicker) solid var(--color-focus);
-}
-
-:focus:not(:-moz-focusring) {
-  outline: 0;
+*::-moz-focus-inner {
+  border: 0;
 }
 
 body {

@@ -1,0 +1,107 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ input({
+    id: "name",
+    name: "name",
+    value: errors.name.value or app.name,
+    classes: "input--width-20",
+    label: {
+      text: "Name"
+    },
+    errorMessage: {
+      text: errors.name.msg,
+      label: "Error"
+    } if errors.name
+  }) | indent(2) }}
+
+  {{ select({
+    id: "locale",
+    name: "locale",
+    classes: "input--width-20",
+    label: {
+      text: "Language"
+    },
+    items: [{
+      value: "de",
+      text: "de" | language,
+      selected: app.locale == "de",
+      disabled: true
+    }, {
+      value: "en",
+      text: "en" | language,
+      selected: app.locale == "en"
+    }],
+    errorMessage: {
+      text: errors.locale.msg,
+      label: "Error"
+    } if errors.locale
+  }) | indent(2) }}
+
+  {{ input({
+    id: "theme-color",
+    name: "themeColor",
+    value: errors.themeColor.value or app.themeColor,
+    classes: "input--width-5",
+    label: {
+      text: "Theme colour"
+    },
+    type: "color",
+    errorMessage: {
+      text: errors.themeColor.msg,
+      label: "Error"
+    } if errors.themeColor
+  }) | indent(2) }}
+
+  {{ select({
+    id: "default-config-type",
+    name: "defaultConfigType",
+    classes: "input--width-20",
+    label: {
+      text: "Default publication config"
+    },
+    hint: {
+      text: "Default file paths and template format. These values can be overiden with a custom config."
+    },
+    items: [{
+      value: "hugo",
+      text: "Hugo",
+      selected: app.defaultConfigType == "hugo",
+      disabled: true
+    }, {
+      value: "jekyll",
+      text: "Jekyll",
+      selected: app.defaultConfigType == "jekyll"
+    }, {
+      value: "kirby",
+      text: "Kirby",
+      selected: app.defaultConfigType == "kirby",
+      disabled: true
+    }],
+    errorMessage: {
+      text: errors.defaultConfigType.msg,
+      label: "Error"
+    } if errors.defaultConfigType
+  }) | indent(2) }}
+
+  {{ input({
+    id: "custom-config-url",
+    name: "customConfigUrl",
+    value: errors.customConfigUrl.value or app.customConfigUrl,
+    classes: "input--width-20",
+    label: {
+      text: "Custom config file URL"
+    },
+    hint: {
+      text: "<a href=\"%s\">Learn more about configuring your website</a>."
+    },
+    errorMessage: {
+      text: errors.customConfigUrl.msg,
+      label: "Error"
+    } if errors.customConfigUrl
+  }) | indent(2) }}
+
+  {{ button({
+    text: "Save changes" if referrer else "Save and continue"
+  }) | indent(2) }}
+{% endblock %}

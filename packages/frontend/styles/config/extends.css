@@ -53,6 +53,14 @@
   line-height: var(--line-height-loose);
 }
 
+/* Focus */
+%focus {
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 0 0 var(--border-width-thickest) var(--color-focus);
+  outline: 0;
+  text-decoration: none;
+}
+
 /* Layout */
 %container {
   inline-size: var(--container-inline-size);

@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+.textarea:focus {
+  @extend %focus;
+
+  border-color: var(--color-neutral-dark);
+}
+
 .textarea[readonly] {
   border-color: var(--color-neutral-light);
   color: var(--color-neutral-dark);

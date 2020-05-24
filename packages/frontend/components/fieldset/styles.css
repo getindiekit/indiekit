@@ -3,7 +3,7 @@
 }
 
 .fieldset > * + * {
-  margin-block-start: var(--space-block);
+  margin-block-start: var(--step-1);
 }
 
 .fieldset__title {
@@ -11,5 +11,9 @@
 }
 
 .fieldset__parent {
-  @extend %lede;
+  @extend %body;
+
+  color: var(--color-neutral-dark);
+  display: block;
+  font-weight: normal;
 }

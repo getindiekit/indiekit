@@ -13,11 +13,10 @@
   --color-background: white;
   --color-text: var(--color-neutral-darkest);
   --color-delete: hsl(0 100% 80% / 75%);
-  --color-highlight: hsl(60 100% 80% / 75%);
   --color-insert: hsl(120 100% 80% / 75%);
-  --color-focus: hsl(60 100% 80%);
-  --color-error: hsl(0 100% 40%);
-  --color-success: hsl(150 100% 80%);
+  --color-focus: hsl(40 100% 50%);
+  --color-error: hsl(0 100% 50%);
+  --color-success: hsl(120 100% 80%);
 
   /* Typography */
   --font-family-system: system-ui, -apple-system, sans-serif;
@@ -39,7 +38,7 @@
   --border-radius-small: 0.25rem;
   --border-width-thin: 1px;
   --border-width-thick: 0.125rem;
-  --border-width-thickest: 0.5rem;
+  --border-width-thickest: 0.25rem;
 
   /* Spacing */
   --space-block: 0.5rem;

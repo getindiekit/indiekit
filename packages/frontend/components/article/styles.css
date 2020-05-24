@@ -3,6 +3,7 @@
 
   flex: 1;
   padding: var(--inset-large);
+  padding-block-end: var(--step-3);
 }
 
 .article__title {
@@ -10,7 +11,11 @@
 }
 
 .article__parent {
-  @extend %lede;
+  @extend %body;
+
+  color: var(--color-neutral-dark);
+  display: block;
+  font-weight: normal;
 }
 
 .article__body {

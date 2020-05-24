@@ -29,5 +29,5 @@ export const set = async (key, value) => {
  * @param {string} values Values to insert
  */
 export const setAll = async values => {
-  client.hmset('settings', values);
+  return client.hmset('settings', values);
 };

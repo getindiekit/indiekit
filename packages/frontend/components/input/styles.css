@@ -1,8 +1,15 @@
 .input {
+  background-color: transparent;
   border: var(--border-width-thick) solid var(--color-neutral);
   border-radius: var(--border-radius-small);
   padding: var(--inset-small-squished);
   width: 100%;
+}
+
+.input:focus {
+  @extend %focus;
+
+  border-color: var(--color-neutral-dark);
 }
 
 .input[readonly] {

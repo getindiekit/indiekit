@@ -1,0 +1,14 @@
+.form {
+  @extend %container;
+
+  flex: 1;
+  padding: var(--inset-large);
+  padding-block-end: var(--step-3);
+}
+
+.form__field--error {
+  border-inline-start-color: var(--color-error);
+  border-inline-start-style: solid;
+  border-inline-start-width: var(--border-width-thick);
+  padding-inline-start: var(--space-inline);
+}

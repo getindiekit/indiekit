@@ -1,3 +1,4 @@
 .label {
   display: block;
+  padding-block-end: var(--space-block);
 }

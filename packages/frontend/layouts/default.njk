@@ -16,7 +16,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta name="theme-color" content="{{ app.themeColor }}"/>
-    <link rel="stylesheet" href="{{ app.cssPath }}"/>
+    <link rel="stylesheet" href="{{ cssPath }}"/>
     <style>
       :root {
         --color-accent: {{ app.themeColor }}
@@ -26,7 +26,7 @@
   </head>
   <body>
     {{ header({
-      url: app.url,
+      url: url,
       name: app.name,
       description: app.description,
       navigation: [{

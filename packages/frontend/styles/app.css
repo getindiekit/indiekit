@@ -4,16 +4,3 @@
 @import './helpers/*.css';
 @import './vendor/*.css';
 @import '../components/**/*.css';
-
-.form {
-  flex: 1;
-  margin: 0 var(--space-block);
-  padding: var(--space-block) 0;
-}
-
-.form__field--error {
-  border-inline-start-color: var(--color-error);
-  border-inline-start-style: solid;
-  border-inline-start-width: var(--border-width-thick);
-  padding-inline-start: var(--space-inline);
-}

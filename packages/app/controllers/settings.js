@@ -4,7 +4,7 @@ import * as settingsModel from '../models/settings.js';
 /**
  * @returns {Promise|object} Configuration object
  */
-export const read = (async () => {
+export async function read() {
   // Get app settings
   const app = await settingsModel.getAll();
 
@@ -24,4 +24,17 @@ export const read = (async () => {
   };
 
   return settings;
-})();
+}
+
+/**
+ * @param {object} values Values to save
+ * @returns {boolean} True if operation successful
+ */
+export async function write(values) {
+  try {
+    await settingsModel.setAll(values);
+    return true;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
