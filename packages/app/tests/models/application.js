@@ -8,30 +8,30 @@ test.afterEach(() => {
 });
 
 test('Gets a value', async t => {
-  await applicationModel.set('foo', 'bar');
+  await applicationModel.set('foo', 'app-bar');
   const result = await applicationModel.get('foo');
-  t.is(result, 'bar');
+  t.is(result, 'app-bar');
 });
 
 test('Gets all values', async t => {
-  await applicationModel.set('foo', 'bar');
+  await applicationModel.set('foo', 'app-bar');
   const result = await applicationModel.getAll();
-  t.is(result.foo, 'bar');
+  t.is(result.foo, 'app-bar');
 });
 
 test('Sets a value', async t => {
-  await applicationModel.set('foo', 'bar');
+  await applicationModel.set('foo', 'app-bar');
   const result = await applicationModel.get('foo');
 
-  t.is(result, 'bar');
+  t.is(result, 'app-bar');
 });
 
 test('Sets all values', async t => {
   await applicationModel.setAll({
-    foo: 'bar',
+    foo: 'app-bar',
     baz: 'qux'
   });
   const result = await applicationModel.getAll();
-  t.is(result.foo, 'bar');
+  t.is(result.foo, 'app-bar');
   t.is(result.baz, 'qux');
 });

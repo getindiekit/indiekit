@@ -27,3 +27,15 @@ test('Posts application settings', async t => {
     .send('foo=bar');
   t.is(response.status, 302);
 });
+
+test('Gets publication settings', async t => {
+  const response = await request.get('/settings/publication');
+  t.is(response.status, 200);
+  t.is(response.type, 'text/html');
+});
+
+test('Posts publication settings', async t => {
+  const response = await request.post('/settings/publication')
+    .send('foo=bar');
+  t.is(response.status, 302);
+});
