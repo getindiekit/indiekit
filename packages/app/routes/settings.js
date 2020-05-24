@@ -1,12 +1,12 @@
 import express from 'express';
-import * as settings from '../controllers/settings.js';
+import * as applicationController from '../controllers/application.js';
 
 export const router = express.Router(); // eslint-disable-line new-cap
 
 router.get('/', async (request, response) => {
   response.render('settings/index', {
     title: 'Settings',
-    app: await settings.read()
+    app: await applicationController.read()
   });
 });
 
@@ -19,7 +19,7 @@ router.get('/application', (request, response) => {
 });
 
 router.post('/application', async (request, response) => {
-  await settings.write(request.body);
+  await applicationController.write(request.body);
   response.cookie('locale', request.body.locale, {
     maxAge: 900000
   });
@@ -35,6 +35,6 @@ router.get('/publication', (request, response) => {
 });
 
 router.post('/publication', async (request, response) => {
-  await settings.write(request.body);
+  await applicationController.write(request.body);
   response.redirect(request.query.referrer || '/settings/');
 });

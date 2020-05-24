@@ -1,6 +1,6 @@
 # Endpoint queries
 
-{{ app.name }} supports a number of endpoint queries, both [those in the Micropub standard](https://www.w3.org/TR/micropub/#querying) and others [proposed by the IndieWeb community](https://indieweb.org/Micropub-extensions).
+{{ application.name }} supports a number of endpoint queries, both [those in the Micropub standard](https://www.w3.org/TR/micropub/#querying) and others [proposed by the IndieWeb community](https://indieweb.org/Micropub-extensions).
 
 ## Micropub endpoint
 
@@ -16,11 +16,11 @@
 
 * Last uploaded file: [`/media?q=last`][last]
 
-[config]: {{ app.url }}/micropub?q=config
-[media-endpoint]: {{ app.url }}/micropub?q=media-endpoint
-[syndicate-to]: {{ app.url }}/micropub?q=syndicate-to
-[post-types]: {{ app.url }}/micropub?q=post-types
-[category]: {{ app.url }}/micropub?q=category
-[source]: {{ app.url }}/micropub?q=source
-[source-url]: {{ app.url }}/micropub?q=source&url=WEBSITE_URL
-[last]: {{ app.url }}/media?q=last
+[config]: {{ application.url }}/micropub?q=config
+[media-endpoint]: {{ application.url }}/micropub?q=media-endpoint
+[syndicate-to]: {{ application.url }}/micropub?q=syndicate-to
+[post-types]: {{ application.url }}/micropub?q=post-types
+[category]: {{ application.url }}/micropub?q=category
+[source]: {{ application.url }}/micropub?q=source
+[source-url]: {{ application.url }}/micropub?q=source&url=WEBSITE_URL
+[last]: {{ application.url }}/media?q=last

@@ -118,6 +118,14 @@
         {
           "ignoreImports": true
         }
+      ],
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          "replacements": {
+            "application": false
+          }
+        }
       ]
     },
     "settings": {

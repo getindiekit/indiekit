@@ -15,25 +15,25 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-    <meta name="theme-color" content="{{ app.themeColor }}"/>
+    <meta name="theme-color" content="{{ application.themeColor }}"/>
     <link rel="stylesheet" href="{{ cssPath }}"/>
     <style>
       :root {
-        --color-accent: {{ app.themeColor }}
+        --color-accent: {{ application.themeColor }}
       }
     </style>
-    <title>{{ title + " - " if title }}{{ app.name }}</title>
+    <title>{{ title + " - " if title }}{{ application.name }}</title>
   </head>
   <body>
     {{ header({
       url: url,
-      name: app.name,
-      description: app.description,
+      name: application.name,
+      description: application.description,
       navigation: [{
         href: "/settings",
         text: "Settings"
       }, {
-        href: "/docs/" + app.locale,
+        href: "/docs/" + application.locale,
         text: "Docs"
       }, {
         href: "/sign-in",
@@ -53,8 +53,8 @@
 
     {{ footer({
       navigation: [{
-        href: app.repository.url | replace('.git', '') + "/releases/tag/v" + app.version,
-        text: "v" + app.version
+        href: application.repository.url | replace('.git', '') + "/releases/tag/v" + application.version,
+        text: "v" + application.version
       }]
     }) | indent(4) if not minimalui }}
   </body>

@@ -5,16 +5,16 @@ import {client} from '../config/db.js';
  * @returns {Promise|object} Configuration object
  */
 export const get = async key => {
-  const settings = await getAll();
-  return settings[key];
+  const publication = await getAll();
+  return publication[key];
 };
 
 /**
  * @returns {Promise|object} Configuration object
  */
 export const getAll = async () => {
-  const settings = await client.hgetall('publication');
-  return settings;
+  const publication = await client.hgetall('publication');
+  return publication;
 };
 
 /**
@@ -22,7 +22,7 @@ export const getAll = async () => {
  * @param {string} value Value to insert
  */
 export const set = async (key, value) => {
-  client.hset('publication', key, value);
+  return client.hset('publication', key, value);
 };
 
 /**

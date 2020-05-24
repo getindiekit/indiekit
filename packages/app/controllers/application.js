@@ -1,27 +1,27 @@
 import fs from 'fs';
-import * as settingsModel from '../models/settings.js';
+import * as applicationModel from '../models/application.js';
 
 /**
  * @returns {Promise|object} Configuration object
  */
 export async function read() {
   // Get saved settings values
-  const data = await settingsModel.getAll();
+  const data = await applicationModel.getAll();
 
   // Get package metadata
-  const pkg = JSON.parse(fs.readFileSync('package.json'));
+  const package_ = JSON.parse(fs.readFileSync('package.json'));
 
   // Application settings
-  const settings = {
+  const application = {
     name: data.name || 'IndieKit',
-    version: pkg.version,
-    description: pkg.description,
-    repository: pkg.repository,
+    version: package_.version,
+    description: package_.description,
+    repository: package_.repository,
     locale: data.locale || 'en',
     themeColor: data.themeColor || '#0000ee'
   };
 
-  return settings;
+  return application;
 }
 
 /**
@@ -30,7 +30,7 @@ export async function read() {
  */
 export async function write(values) {
   try {
-    await settingsModel.setAll(values);
+    await applicationModel.setAll(values);
     return true;
   } catch (error) {
     throw new Error(error);

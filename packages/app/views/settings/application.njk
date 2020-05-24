@@ -4,7 +4,7 @@
   {{ input({
     id: "name",
     name: "name",
-    value: errors.name.value or app.name,
+    value: errors.name.value or application.name,
     classes: "input--width-20",
     label: {
       text: "Name"
@@ -25,12 +25,12 @@
     items: [{
       value: "de",
       text: "de" | language,
-      selected: app.locale == "de",
+      selected: application.locale == "de",
       disabled: true
     }, {
       value: "en",
       text: "en" | language,
-      selected: app.locale == "en"
+      selected: application.locale == "en"
     }],
     errorMessage: {
       text: errors.locale.msg,
@@ -41,7 +41,7 @@
   {{ input({
     id: "theme-color",
     name: "themeColor",
-    value: errors.themeColor.value or app.themeColor,
+    value: errors.themeColor.value or application.themeColor,
     classes: "input--width-5",
     label: {
       text: "Theme colour"

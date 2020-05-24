@@ -1,8 +1,8 @@
 # Website configuration
 
-{{ app.name }} lets you customise where posts are saved, how they are formatted and what permalinks you will give them.
+{{ application.name }} lets you customise where posts are saved, how they are formatted and what permalinks you will give them.
 
-Configuration is provided via a JSON file. You can let {{ app.name }} know where to find this file by prviding a value for ‘Configuration file path’ in [publication settings](/settings/publication).
+Configuration is provided via a JSON file. You can let {{ application.name }} know where to find this file by prviding a value for ‘Configuration file path’ in [publication settings](/settings/publication).
 
 ## Configuration options
 
@@ -25,7 +25,7 @@ Configuration is provided via a JSON file. You can let {{ app.name }} know where
   }
   ```
 
-`media-endpoint`: The URL for your preferred [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media upload requests. Defaults to `{{ app.url }}/media`.
+`media-endpoint`: The URL for your preferred [media endpoint](https://www.w3.org/TR/micropub/#media-endpoint). Use this if you want another endpoint to respond to media upload requests. Defaults to `{{ application.url }}/media`.
 
 `syndicate-to`: Information about [syndication targets](https://www.w3.org/TR/micropub/#h-syndication-targets). Defaults to `[]`. Example:
 
@@ -44,7 +44,7 @@ Configuration is provided via a JSON file. You can let {{ app.name }} know where
 }
   ```
 
-`post-types`: {{ app.name }} provides a set of default paths and templates for the following post types:
+`post-types`: {{ application.name }} provides a set of default paths and templates for the following post types:
 
 * 📄 [`article`](https://indieweb.org/article)
 * 📔 [`note`](https://indieweb.org/note)
@@ -92,7 +92,7 @@ These defaults can be ammended, and new types can be added. For example, to over
 
 * **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
-* **`template`**: Where {{ app.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ app.name }} to render content (typically as a Markdown file with YAML frontmatter).
+* **`template`**: Where {{ application.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ application.name }} to render content (typically as a Markdown file with YAML frontmatter).
 
 * **`post.path`**: Where posts should be saved to in your repository.
 

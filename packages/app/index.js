@@ -3,8 +3,8 @@ import {fileURLToPath} from 'url';
 import path from 'path';
 import httpError from 'http-errors';
 import {styles, templates} from '@indiekit/frontend';
-import * as publication from './controllers/publication.js';
-import * as settings from './controllers/settings.js';
+import * as applicationController from './controllers/application.js';
+import * as publicationController from './controllers/publication.js';
 import * as routes from './routes/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,8 +29,8 @@ app.use(async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
   response.locals.url = url;
   response.locals.cssPath = `${url}/app.css`;
-  response.locals.app = await settings.read();
-  response.locals.publication = await publication.read();
+  response.locals.application = await applicationController.read();
+  response.locals.publication = await publicationController.read();
   next();
 });
 
