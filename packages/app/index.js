@@ -29,8 +29,14 @@ app.use(async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
   response.locals.url = url;
   response.locals.cssPath = `${url}/app.css`;
-  response.locals.application = await applicationController.read();
-  response.locals.publication = await publicationController.read();
+
+  try {
+    response.locals.application = await applicationController.read();
+    response.locals.publication = await publicationController.read();
+  } catch (error) {
+    return next(httpError(error.message));
+  }
+
   next();
 });
 
