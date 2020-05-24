@@ -4,7 +4,7 @@
  */
 export default async type => {
   const module = await (
-    await import(`@indiekit/config-${type}`)
+    await import(`@indiekit/config-${type}`) // eslint-disable-line node/no-unsupported-features/es-syntax
   ).default;
   return module;
 };
