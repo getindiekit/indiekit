@@ -2,7 +2,7 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
 import httpError from 'http-errors';
-import {styles, templates} from '@indiekit/frontend';
+import {templates} from '@indiekit/frontend';
 import * as applicationController from './controllers/application.js';
 import * as publicationController from './controllers/publication.js';
 import * as routes from './routes/index.js';
@@ -28,7 +28,7 @@ app.set('view engine', 'njk');
 app.use(async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
   response.locals.url = url;
-  response.locals.cssPath = `${url}/app.css`;
+  response.locals.cssPath = `${url}/assets/app.css`;
 
   try {
     response.locals.application = await applicationController.read();
@@ -40,13 +40,8 @@ app.use(async (request, response, next) => {
   next();
 });
 
-// Styles
-app.use('/app.css', async (request, response) => {
-  const css = await styles;
-  return response.type('text/css').send(css).end();
-});
-
 // Routes
+app.use('/assets', routes.assetsRoute);
 app.use('/docs', routes.documentationRoute);
 app.use('/micropub', routes.micropubRoute);
 app.use('/settings', routes.settingsRoute);
