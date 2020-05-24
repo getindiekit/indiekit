@@ -45,6 +45,18 @@
   word-spacing: var(--word-spacing);
 }
 
+%label {
+  --flow-space: 1em;
+
+  font-size: var(--step-0);
+  font-variant: oldstyle-nums;
+  font-weight: 600;
+  hanging-punctuation: first;
+  hyphens: auto;
+  line-height: var(--line-height-tight);
+  word-spacing: var(--word-spacing);
+}
+
 %caption {
   --flow-space: 1em;
 
@@ -67,4 +79,7 @@
   margin-inline-end: auto;
   margin-inline-start: auto;
   max-inline-size: var(--container-max-inline-size);
+  padding:
+    var(--container-padding-block, var(--space-block))
+    var(--container-padding-inline, var(--step-0));
 }

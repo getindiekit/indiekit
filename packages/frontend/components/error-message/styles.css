@@ -1,3 +1,7 @@
 .error-message {
+  @extend %caption;
+
   color: var(--color-error);
+  font-weight: 600;
+  padding-block-end: var(--space-block);
 }

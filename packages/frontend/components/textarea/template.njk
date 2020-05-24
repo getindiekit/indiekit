@@ -33,7 +33,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-{%- set classes = "textarea" + (" " + opts.classes if opts.classes) -%}
+{%- set classes = "textarea" + (" " + opts.classes if opts.classes) %}
   <textarea class="{{ classes + (" " + "textarea--error" if opts.errorMessage) }}"id="{{ opts.id }}" name="{{ opts.name }}"
   rows="{{ opts.rows or 5 }}"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}

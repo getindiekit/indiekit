@@ -8,7 +8,7 @@
 .footer__container {
   @extend %container;
 
-  padding: var(--inset-large);
+  --container-padding-block: var(--step-0);
 }
 
 .footer__navigation {

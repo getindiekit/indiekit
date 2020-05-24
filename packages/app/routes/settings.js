@@ -1,5 +1,9 @@
 import express from 'express';
+import httpError from 'http-errors';
+import validator from 'express-validator';
+import errorList from '../services/error-list.js';
 import * as applicationController from '../controllers/application.js';
+import * as publicationController from '../controllers/publication.js';
 
 export const router = express.Router(); // eslint-disable-line new-cap
 
@@ -34,7 +38,26 @@ router.get('/publication', (request, response) => {
   });
 });
 
-router.post('/publication', async (request, response) => {
-  await applicationController.write(request.body);
-  response.redirect(request.query.referrer || '/settings/');
+router.post('/publication', [
+  validator
+    .check('customConfigUrl')
+    .isURL().withMessage('Custom configuration must be a URL')
+], async (request, response, next) => {
+  const errors = validator.validationResult(request);
+  if (!errors.isEmpty()) {
+    return response.status(422).render('settings/publication', {
+      parent: 'Settings',
+      title: 'Publication',
+      errors: errors.mapped(),
+      errorList: errorList(errors)
+    });
+  }
+
+  try {
+    await publicationController.write(request.body);
+    response.redirect(request.query.referrer || '/settings/');
+  } catch (error) {
+    console.error('settingsRoute', error);
+    return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+  }
 });

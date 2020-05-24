@@ -34,6 +34,7 @@
     "@indiekit/frontend": "0.1.0",
     "deepmerge": "^4.2.2",
     "express": "^4.17.1",
+    "express-validator": "^6.5.0",
     "got": "^11.1.4",
     "http-errors": "^1.7.3",
     "ioredis": "^4.17.0",

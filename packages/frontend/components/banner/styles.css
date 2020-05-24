@@ -1,15 +1,18 @@
 .banner {
   background-color: var(--color-neutral-lightest);
   margin-block-start: calc(var(--border-width-thin) * -1);
-  padding: var(--inset-large);
 }
 
 .banner--success {
   background-color: var(--color-success);
 }
 
+.banner__container {
+  @extend %container;
+}
+
 .banner__body {
-  @extend %body;
+  @extend %caption;
 
   align-items: baseline;
   display: flex;

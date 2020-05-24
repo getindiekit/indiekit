@@ -33,7 +33,7 @@
     label: opts.errorMessage.label
   }) | indent(2) | trim }}
 {%- endif %}
-{%- set classes = "input" + (" " + opts.classes if opts.classes) -%}
+{%- set classes = "input" + (" " + opts.classes if opts.classes) %}
   <input class="{{ classes + (" " + "input--error" if opts.errorMessage) }}" name="{{ opts.name }}" type="{{ opts.type | default("text") }}"
   {%- if opts.id %} id="{{ opts.id}}"{% endif %}
   {%- if opts.value %} value="{{ opts.value}}"{% endif %}

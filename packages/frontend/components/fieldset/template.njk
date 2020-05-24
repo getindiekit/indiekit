@@ -1,7 +1,7 @@
 {%- set classes = "fieldset" + (" " + opts.classes if opts.classes) -%}
-{%- set legend -%}
+{%- set legend %}
   {%- if opts.legend.text %}
-  {%- set legendClasses = "fieldset__legend" + (" " + opts.legend.classes if opts.legend.classes) -%}
+  {%- set legendClasses = "fieldset__legend" + (" " + opts.legend.classes if opts.legend.classes) %}
   <legend class="{{ legendClasses }}">
   {%- if opts.legend.isPageHeading %}
     <h1 class="fieldset__title">
@@ -12,12 +12,12 @@
   {%- endif %}
   </legend>
   {%- endif %}
-{%- endset -%}
+{%- endset %}
 {%- set indent = opts.indent or 2 -%}
 <fieldset class="{{ classes }}"
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
-  {{- legend | indent(indent) | safe -}}
-  {{- caller() | indent(indent) if caller -}}
+  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+  {{- legend | indent(indent) | safe }}
+  {{- caller() | indent(indent) if caller }}
 </fieldset>

@@ -42,10 +42,10 @@
 
   /* Spacing */
   --space-block: 0.5rem;
-  --space-inline: 0.5rem;
+  --space-inline: 0.75rem;
 
   /* Inset spacing */
-  --inset-small: var(--space-inline);
+  --inset-small: 0.5rem;
   --inset-small-squished: calc(var(--inset-small) / 2) var(--inset-small);
   --inset-large: calc(var(--inset-small) * 2);
   --inset-large-squished: calc(var(--inset-large) / 2) var(--inset-large);

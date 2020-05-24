@@ -33,7 +33,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-{%- set classes = "select" + (" " + opts.classes if opts.classes) -%}
+{%- set classes = "select" + (" " + opts.classes if opts.classes) %}
   <select class="{{ classes + (" " + "select--error" if opts.errorMessage) }}" name="{{ opts.name }}"
   {%- if opts.id %} id="{{ opts.id}}"{% endif %}
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}

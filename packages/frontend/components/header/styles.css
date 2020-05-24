@@ -17,10 +17,11 @@
 .header__container {
   @extend %container;
 
+  --container-padding-block: var(--step-0);
+
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  padding: var(--inset-large);
 }
 
 .header__title {

@@ -4,25 +4,25 @@
   <h2 class="error-summary__title" id="error-summary-title">
     {{ opts.title.text | safe }}
   </h2>
-  <div class="error-summary__body s-linear">
-  {% if opts.description.text %}
+  <div class="error-summary__body">
+  {%- if opts.description.text %}
     <p>{{ opts.description.text | markdown | safe }}</p>
-  {% endif %}
-  {% if opts.errorList %}
+  {%- endif %}
+  {%- if opts.errorList %}
     <ul class="error-summary__list">
-    {% for item in opts.errorList %}
+    {%- for item in opts.errorList %}
       <li>
-      {% if item.href %}
+      {%- if item.href %}
         <a href="{{ item.href }}"
           {%- for attr, value in item.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
           {{- item.text | safe -}}
         </a>
-      {% else %}
+      {%- else %}
         {{- item.text | safe -}}
-      {% endif %}
+      {%- endif %}
       </li>
-    {% endfor %}
+    {%- endfor %}
     </ul>
-  {% endif %}
+  {%- endif %}
   </div>
 </div>

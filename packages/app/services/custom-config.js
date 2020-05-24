@@ -8,8 +8,12 @@ export default async url => {
   let config = {};
 
   if (url) {
-    const cachedConfig = await fileCacheService('customConfig', url);
-    config = cachedConfig.data;
+    try {
+      const cachedConfig = await fileCacheService('customConfig', url);
+      config = cachedConfig.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 
   return config;

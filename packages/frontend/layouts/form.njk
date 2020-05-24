@@ -1,20 +1,26 @@
 {% extends "default.njk" %}
 
-{%- set legendText -%}
-  {% if parent %}<span class="fieldset__parent">{{ parent }}</span> {% endif %}
-  {{ title | safe }}
+{%- set legendText %}
+  {%- if parent %}<span class="fieldset__parent">{{ parent }}</span> {% endif %}
+  {{- title | safe }}
 {%- endset -%}
 
 {% block main %}
-    <form class="form" method="post">
-      {% call fieldset({
-        legend: {
-          classes: "visually-hidden" if minimalui,
-          text: legendText,
-          isPageHeading: true
-        },
-        indent: 6
-      }) %}{% block fieldset %}
-      {% endblock %}{% endcall %}
-    </form>
+      <form class="form" method="post">
+        {{ errorSummary({
+          title: {
+            text: "There is a problem"
+          },
+          errorList: errorList
+        }) | indent(8) if errorList }}
+        {% call fieldset({
+          legend: {
+            classes: "visually-hidden" if minimalui,
+            text: legendText,
+            isPageHeading: true
+          },
+          indent: 8
+        }) %}{% block fieldset %}
+        {% endblock %}{% endcall %}
+      </form>
 {% endblock %}

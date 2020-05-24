@@ -14,11 +14,21 @@ export const read = async () => {
 
   // Get custom config
   const customConfigUrl = data.customConfigUrl || false;
-  const customConfig = await customConfigService(customConfigUrl);
+  let customConfig = {};
+  try {
+    customConfig = await customConfigService(customConfigUrl);
+  } catch (error) {
+    console.warn(`Error getting custom config: ${error.message}`);
+  }
 
   // Get default config
   const defaultConfigType = data.defaultConfigType || 'jekyll';
-  const defaultConfig = await defaultConfigService(defaultConfigType);
+  let defaultConfig = {};
+  try {
+    defaultConfig = await defaultConfigService(defaultConfigType);
+  } catch (error) {
+    console.warn(`Error getting default config: ${error.message}`);
+  }
 
   // Combine config from custom and default values
   const config = deepmerge(customConfig, defaultConfig);

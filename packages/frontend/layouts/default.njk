@@ -44,18 +44,19 @@
       } if session.me]
     }) | indent(4) if not minimalui }}
 
-    {{ banner({
-      text: success,
-      type: "success"
-    }) | indent(2) if success }}
-
-    {%- block main %}{% endblock %}
+    <main class="main" id="main">
+      {{ banner({
+        text: success,
+        type: "success"
+      }) | indent(6) if success }}
+      {%- block main %}{% endblock %}
+    </main>
 
     {{ footer({
       navigation: [{
         href: application.repository.url | replace('.git', '') + "/releases/tag/v" + application.version,
         text: "v" + application.version
       }]
-    }) | indent(4) if not minimalui }}
+    }) | indent() if not minimalui }}
   </body>
 </html>
