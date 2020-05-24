@@ -6,10 +6,13 @@ import {client} from '../../config/db.js';
 
 const request = supertest(app);
 
+<<<<<<< HEAD
 test.afterEach(() => {
   client.flushall();
 });
 
+=======
+>>>>>>> 678c0db... feat: save application settings
 test('Gets all settings', async t => {
   const response = await request.get('/settings');
   t.is(response.status, 200);
