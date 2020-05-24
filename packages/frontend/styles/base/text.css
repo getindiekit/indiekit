@@ -11,8 +11,8 @@ a {
 }
 
 a:hover {
-  color: var(--color-accent);
-  text-decoration-color: var(--color-accent);
+  color: var(--color-anchor-hover, var(--color-accent));
+  text-decoration-color: currentColor;
 }
 
 /* Reset font size for smallprint/legal text */
