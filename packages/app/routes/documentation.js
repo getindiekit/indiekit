@@ -1,14 +1,14 @@
 import fs from 'fs';
-import httpError from 'http-errors';
 import {templates} from '@indiekit/frontend';
 import documentPath from '../services/document-path.js';
 
 export default router => {
   router.get('/docs/*', (request, response, next) => {
-    try {
+    const filePath = documentPath(request.originalUrl, 'md');
+
+    if (fs.existsSync(filePath)) {
       // Read file
-      const file = documentPath(request.originalUrl, 'md');
-      const string = fs.readFileSync(file, 'utf8');
+      const string = fs.readFileSync(filePath, 'utf8');
 
       // Render document variables
       const renderedString = templates().renderString(string, response.locals);
@@ -20,8 +20,8 @@ export default router => {
 
       // Return document
       response.render('document', {title, content});
-    } catch (error) {
-      next(httpError.NotFound(error)); // eslint-disable-line new-cap
+    } else {
+      next();
     }
   });
 };
