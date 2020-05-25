@@ -1,10 +1,9 @@
 import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
-import httpError from 'http-errors';
 import {templates} from '@indiekit/frontend';
 import localDataMiddleware from './middleware/local-data.js';
-import * as routes from './routes/index.js';
+import routes from './routes/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -27,26 +26,7 @@ app.set('view engine', 'njk');
 app.use(localDataMiddleware);
 
 // Routes
-app.use('/assets', routes.assetsRoute);
-app.use('/docs', routes.documentationRoute);
-app.use('/micropub', routes.micropubRoute);
-app.use('/settings', routes.settingsRoute);
-app.use('/sign-in', routes.signInRoute);
-
-// 404
-app.use((request, response, next) => {
-  const error = httpError.NotFound('Resource not found'); // eslint-disable-line new-cap
-  response.status(error.status);
-
-  if (request.accepts('html')) {
-    response.render('document', {
-      title: 'Page not found',
-      content: 'If you entered a web address please check it was correct.'
-    });
-  } else {
-    return next(error);
-  }
-});
+app.use(routes);
 
 // Handle errors
 app.use((error, request, response, next) => { // eslint-disable-line no-unused-vars
