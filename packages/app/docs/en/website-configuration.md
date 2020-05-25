@@ -2,7 +2,7 @@
 
 {{ application.name }} lets you customise where posts are saved, how they are formatted and what permalinks you will give them.
 
-Configuration is provided via a JSON file. You can let {{ application.name }} know where to find this file by prviding a value for ‘Configuration file path’ in [publication settings](/settings/publication).
+Configuration is provided via a JSON file. You can let {{ application.name }} know where to find this file by providing a value for custom configuration URL in [publication settings](/settings/publication).
 
 ## Configuration options
 
@@ -21,7 +21,7 @@ Configuration is provided via a JSON file. You can let {{ application.name }} kn
 
   ```json
   categories: {
-    "url": "{{ pub.me }}/categories.json"
+    "url": "{{ publication.me }}/categories.json"
   }
   ```
 
