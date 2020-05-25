@@ -27,9 +27,10 @@ export const read = async () => {
 
     // Publication settings
     const publication = {
+      config,
       customConfigUrl,
       defaultConfigType,
-      config
+      hostId: data.hostId || 'github'
     };
 
     return publication;

@@ -18,18 +18,18 @@ test.afterEach.always(() => {
   client.flushall();
 });
 
-test('Reads a publication setting', async t => {
+test('Reads publication setting', async t => {
   const result = await publicationController.read();
   t.is(result.defaultConfigType, 'jekyll');
 });
 
-test.serial('Throws error if can’t get default config ', async t => {
+test.serial('Throws error if can’t get default config', async t => {
   await t.context.publicationModel.set('defaultConfigType', 'foobar');
   const error = await t.throwsAsync(publicationController.read());
   t.regex(error.message, /\bCannot find package\b/);
 });
 
-test.serial('Throws error if can’t get custom config ', async t => {
+test.serial('Throws error if can’t get custom config', async t => {
   const scope = t.context.nock.replyWithError('not found');
   await t.context.publicationModel.set('customConfigUrl', t.context.url);
   const error = await t.throwsAsync(publicationController.read());
@@ -37,12 +37,12 @@ test.serial('Throws error if can’t get custom config ', async t => {
   scope.done();
 });
 
-test('Writes an application setting', async t => {
+test('Writes publication setting', async t => {
   const result = await publicationController.write({key6: 'foobar'});
   t.is(result, true);
 });
 
-test('Throws error writing setting with no values', async t => {
+test('Throws error writing publication setting with no values', async t => {
   const error = await t.throwsAsync(publicationController.write());
   t.regex(error.message, /\bwrong number of arguments\b/);
 });

@@ -1,0 +1,95 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ input({
+    id: "instance",
+    name: "instance",
+    value: errors.instance.value or gitlab.instance,
+    label: {
+      text: "Instance"
+    },
+    type: "url",
+    errorMessage: {
+      text: errors.instance.msg,
+      label: "Error"
+    } if errors.instance
+  }) | indent(2) }}
+
+  {{ input({
+    id: "user",
+    name: "user",
+    value: errors.user.value or gitlab.user,
+    label: {
+      text: "Username"
+    },
+    attributes: {
+      spellcheck: "false"
+    },
+    errorMessage: {
+      text: errors.user.msg,
+      label: "Error"
+    } if errors.user
+  }) | indent(2) }}
+
+  {{ input({
+    id: "repo",
+    name: "repo",
+    value: errors.repo.value or gitlab.repo,
+    label: {
+      text: "Project name"
+    },
+    hint: {
+      text: "Name of the project repository that files will be saved to."
+    },
+    attributes: {
+      spellcheck: "false"
+    },
+    errorMessage: {
+      text: errors.repo.msg,
+      label: "Error"
+    } if errors.repo
+  }) | indent(2) }}
+
+  {{ input({
+    id: "branch",
+    name: "branch",
+    value: errors.branch.value or gitlab.branch,
+    label: {
+      text: "Branch name"
+    },
+    hint: {
+      text: "Name of the branch that files will be saved to."
+    },
+    attributes: {
+      spellcheck: "false"
+    },
+    errorMessage: {
+      text: errors.branch.msg,
+      label: "Error"
+    } if errors.branch
+  }) | indent(2) }}
+
+  {{ input({
+    id: "token",
+    name: "token",
+    value: errors.token.value or gitlab.token,
+    label: {
+      text: "Personal access token"
+    },
+    hint: {
+      text: "To create a new token, <a href=\"" + gitlab.instance + "/profile/personal_access_tokens\">visit your account settings</a>."
+    },
+    attributes: {
+      maxlength: 40,
+      spellcheck: "false"
+    },
+    errorMessage: {
+      text: errors.token.msg,
+      label: "Error"
+    } if errors.token
+  }) | indent(2) }}
+
+  {{ button({
+    text: "Save changes" if referrer else "Save and continue"
+  }) | indent(2) }}
+{% endblock %}

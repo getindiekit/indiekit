@@ -2,6 +2,31 @@
 
 {% block fieldset %}
   {{ select({
+    id: "host-id",
+    name: "hostId",
+    classes: "input--width-20",
+    label: {
+      text: "Content host"
+    },
+    hint: {
+      text: "The place where your content is hosted"
+    },
+    items: [{
+      value: "github",
+      text: "GitHub",
+      selected: publication.hostId == "github"
+    }, {
+      value: "gitlab",
+      text: "GitLab",
+      selected: publication.hostId == "gitlab"
+    }],
+    errorMessage: {
+      text: errors.hostId.msg,
+      label: "Error"
+    } if errors.hostId
+  }) | indent(2) }}
+
+  {{ select({
     id: "default-config-type",
     name: "defaultConfigType",
     classes: "input--width-20",
@@ -9,7 +34,7 @@
       text: "Default configuration"
     },
     hint: {
-      text: "Default file paths and template format. These values can be overiden with a custom config."
+      text: "Default for file paths and template format. These values can be overiden with a custom config."
     },
     items: [{
       value: "hugo",
@@ -40,7 +65,7 @@
       text: "Custom configuration URL"
     },
     hint: {
-      text: "<a href=\"%s\">Learn more about configuring your website</a>."
+      text: "<a href=\"%s\">Learn more about configuring your website</a>"
     },
     errorMessage: {
       text: errors.customConfigUrl.msg,

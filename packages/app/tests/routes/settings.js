@@ -51,3 +51,44 @@ test('Posts publication settings and redirects to overview', async t => {
   t.is(response.status, 302);
   scope.done();
 });
+
+test('Gets GitHub settings', async t => {
+  const response = await request.get('/settings/github');
+  t.is(response.status, 200);
+  t.is(response.type, 'text/html');
+});
+
+test('Posts GitHub settings and validates values', async t => {
+  const response = await request.post('/settings/github')
+    .send('token=foobar');
+  t.is(response.status, 422);
+});
+
+test('Posts GitHub settings and redirects to overview', async t => {
+  const response = await request.post('/settings/github')
+    .send('user=user')
+    .send('repo=repo')
+    .send('token=abcdef0123456789abcdef0123456789abcdef01');
+  t.is(response.status, 302);
+});
+
+test('Gets GitLab settings', async t => {
+  const response = await request.get('/settings/gitlab');
+  t.is(response.status, 200);
+  t.is(response.type, 'text/html');
+});
+
+test('Posts GitLab settings and validates values', async t => {
+  const response = await request.post('/settings/gitlab')
+    .send('token=foobar');
+  t.is(response.status, 422);
+});
+
+test('Posts GitLab settings and redirects to overview', async t => {
+  const response = await request.post('/settings/gitlab')
+    .send('instance=http://gitlab.com')
+    .send('user=user')
+    .send('repo=repo')
+    .send('token=abcdefghijklmnopqrst');
+  t.is(response.status, 302);
+});

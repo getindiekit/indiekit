@@ -12,14 +12,14 @@
         text: "Name"
       },
       value: {
-        text: application.name
+        text: application.name or "Not set"
       }
     }, {
       key: {
         text: "Language"
       },
       value: {
-        text: application.locale | language
+        text: application.locale | language or "Not set"
       }
     }, {
       key: {
@@ -39,10 +39,17 @@
     }],
     rows: [{
       key: {
+        text: "Content host"
+      },
+      value: {
+        text: publication.hostId or "Not set"
+      }
+    }, {
+      key: {
         text: "Default configuration"
       },
       value: {
-        text: publication.defaultConfigType | capitalize
+        text: publication.defaultConfigType | capitalize or "Not set"
       }
     }, {
       key: {
@@ -53,4 +60,85 @@
       }
     }]
   }) }}
+
+  {{ summary({
+    title: "GitHub",
+    actions: [{
+      href: "/settings/github?referrer=/settings",
+      text: "Edit"
+    }],
+    rows: [{
+      key: {
+        text: "Username"
+      },
+      value: {
+        text: github.user or "Not set"
+      }
+    }, {
+      key: {
+        text: "Repository name"
+      },
+      value: {
+        text: github.repo or "Not set"
+      }
+    }, {
+      key: {
+        text: "Branch name"
+      },
+      value: {
+        text: github.branch or "Not set"
+      }
+    }, {
+      key: {
+        text: "Personal access token"
+      },
+      value: {
+        text: "<code>" + github.token + "</code>" or "Not set"
+      }
+    }]
+  }) if publication.hostId == "github" }}
+
+  {{ summary({
+    title: "GitLab",
+    actions: [{
+      href: "/settings/gitlab?referrer=/settings",
+      text: "Edit"
+    }],
+    rows: [{
+      key: {
+        text: "Instance"
+      },
+      value: {
+        text: gitlab.instance or "Not set"
+      }
+    }, {
+      key: {
+        text: "Username"
+      },
+      value: {
+        text: gitlab.user or "Not set"
+      }
+    }, {
+      key: {
+        text: "Project name"
+      },
+      value: {
+        text: gitlab.repo or "Not set"
+      }
+    }, {
+      key: {
+        text: "Branch name"
+      },
+      value: {
+        text: gitlab.branch or "Not set"
+      }
+    }, {
+      key: {
+        text: "Personal access token"
+      },
+      value: {
+        text: "<code>" + gitlab.token + "</code>" or "Not set"
+      }
+    }]
+  }) if publication.hostId == "gitlab" }}
 {% endblock %}
