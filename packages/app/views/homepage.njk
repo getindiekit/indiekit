@@ -1,11 +1,11 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- set postTypesHtml %}{% for config in config["post-types"] %}
+  {%- set postTypesHtml %}{% for config in publication.config["post-types"] %}
     <a href="https://indieweb.org/{{ config.type }}">{{ config.name }}</a>{{ '' if loop.last else ', ' }}
   {%- endfor %}{% endset %}
 
-  {%- set syndicateToHtml %}{% for target in config["syndicate-to"] %}
+  {%- set syndicateToHtml %}{% for target in publication.config["syndicate-to"] %}
     <a href="{{ target.uid }}">{{ target.name }}</a>{{ '' if loop.last else ', ' }}
   {%- endfor %}{% endset %}
 
@@ -18,20 +18,20 @@
       value: {
         text: postTypesHtml | indent(2)
       }
-    } if config["post-types"].length > 0, {
+    } if publication.config["post-types"].length > 0, {
       key: {
         text: "Syndication targets"
       },
       value: {
         text: syndicateToHtml | indent(2)
       }
-    } if config["syndicate-to"].length > 0, {
+    } if publication.config["syndicate-to"].length > 0, {
       key: {
         text: "Media endpoint"
       },
       value: {
-        text: config["media-endpoint"]
+        text: publication.config["media-endpoint"]
       }
-    } if config["media-endpoint"]]
+    } if publication.config["media-endpoint"]]
   }) }}
 {% endblock %}

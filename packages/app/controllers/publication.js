@@ -50,20 +50,3 @@ export async function write(values) {
     throw new Error(error);
   }
 }
-
-/**
- * @returns {Promise|object} Public configuration object
- */
-export const queryConfig = async () => {
-  const {config} = await read();
-
-  // Query supported vocabulary
-  // https://indieweb.org/Micropub-extensions#Query_for_Supported_Vocabulary
-  const postTypes = config['post-types'];
-  config['post-types'] = Object.keys(postTypes).map(key => ({
-    type: key,
-    name: postTypes[key].name
-  }));
-
-  return config;
-};

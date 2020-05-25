@@ -1,15 +1,9 @@
 import httpError from 'http-errors';
-import * as publicationController from '../controllers/publication.js';
 import {url2Mf2, mf2Properties} from '../services/microformats.js';
 
 export default router => {
   router.get('/micropub', async (request, response, next) => {
-    const config = await publicationController.queryConfig();
-
-    // Use default media endpoint if not configured
-    config['media-endpoint'] =
-    config['media-endpoint'] ||
-      `${request.protocol}://${request.headers.host}/media`;
+    const {config} = response.locals.publication;
 
     try {
       const {query} = request;

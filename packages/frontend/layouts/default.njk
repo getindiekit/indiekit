@@ -11,12 +11,12 @@
 {%- from "summary/macro.njk" import summary -%}
 {%- from "textarea/macro.njk" import textarea -%}
 <!DOCTYPE html>
-<html lang="{{ locale }}" dir="ltr" class="h-x-app">
+<html lang="{{ application.locale }}" dir="ltr" class="h-x-app">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta name="theme-color" content="{{ application.themeColor }}"/>
-    <link rel="stylesheet" href="{{ cssPath }}"/>
+    <link rel="stylesheet" href="{{ application.cssPath }}"/>
     <style>
       :root {
         --color-accent: {{ application.themeColor }}
@@ -26,7 +26,7 @@
   </head>
   <body>
     {{ header({
-      url: url,
+      url: application.url,
       name: application.name,
       description: application.description,
       navigation: [{
