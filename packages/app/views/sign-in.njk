@@ -1,0 +1,31 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {% if not session.me %}
+    {{ input({
+      id: "me",
+      name: "me",
+      value: errors.me.value or publication.me,
+      label: {
+        text: "Web address"
+      },
+      type: "url",
+      errorMessage: {
+        text: errors.me.msg,
+        label: "Error"
+      } if errors.me
+    }) | indent(2) }}
+
+    {{ input({
+      name: "redirect_uri",
+      value: redirect_uri,
+      type: "hidden"
+    }) | indent(2) }}
+
+    {{ button({
+      text: "Sign in"
+    }) | indent(2) }}
+  {% else %}
+    <a href="/sign-out">Sign out</a>
+  {% endif %}
+{% endblock %}

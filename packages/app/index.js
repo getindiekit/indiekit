@@ -31,6 +31,7 @@ app.use('/assets', routes.assetsRoute);
 app.use('/docs', routes.documentationRoute);
 app.use('/micropub', routes.micropubRoute);
 app.use('/settings', routes.settingsRoute);
+app.use('/sign-in', routes.signInRoute);
 
 // 404
 app.use((request, response, next) => {
