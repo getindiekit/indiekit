@@ -91,6 +91,12 @@
       "jsdoc"
     ],
     "rules": {
+      "capitalized-comments": [
+        "error",
+        "always", {
+          "ignorePattern": "c8"
+        }
+      ],
       "import/extensions": [
         "error",
         "always"

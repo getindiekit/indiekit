@@ -10,6 +10,7 @@ export default async (request, response, next) => {
     response.locals.application = await applicationController.read();
     response.locals.publication = await publicationController.read();
   } catch (error) {
+    /* c8 ignore next 2 */
     return next(error);
   }
 
