@@ -44,6 +44,7 @@ router.post('/publication', [
     .custom(async url => customConfigService(url))
 ], async (request, response) => {
   const errors = validator.validationResult(request);
+
   if (!errors.isEmpty()) {
     return response.status(422).render('settings/publication', {
       parent: 'Settings',

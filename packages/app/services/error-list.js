@@ -6,16 +6,14 @@
  * @returns {Array} List of errors
  */
 export default function (errors) {
-  const camelToSnakeCase = string => {
-    string.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`);
-  };
+  const camelToSnakeCase = string =>
+    string.replace(/[A-Z]/g, letter =>
+      `-${letter.toLowerCase()}`);
 
-  const errorList = errors.errors.map(error => {
-    return {
-      text: error.msg,
-      href: `#${camelToSnakeCase(error.param)}`
-    };
-  });
+  const errorList = errors.errors.map(error => ({
+    text: error.msg,
+    href: `#${camelToSnakeCase(error.param)}`
+  }));
 
   return errorList;
 }
