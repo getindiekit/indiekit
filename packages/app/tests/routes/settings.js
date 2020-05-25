@@ -1,4 +1,5 @@
 import test from 'ava';
+import nock from 'nock';
 import supertest from 'supertest';
 
 import app from '../../index.js';
@@ -34,14 +35,19 @@ test('Gets publication settings', async t => {
   t.is(response.type, 'text/html');
 });
 
-test('Validates publication settings', async t => {
+test('Posts publication settings and validates values', async t => {
   const response = await request.post('/settings/publication')
     .send('customConfigUrl=foobar');
   t.is(response.status, 422);
 });
 
-test('Posts publication settings', async t => {
+test('Posts publication settings and redirects to overview', async t => {
+  const scope = nock('https://website.example')
+    .get('/config.json')
+    .reply(200);
   const response = await request.post('/settings/publication')
-    .send('defaultConfigType=jekyll');
+    .send('defaultConfigType=jekyll')
+    .send('customConfigUrl=https://website.example/config.json');
   t.is(response.status, 302);
+  scope.done();
 });

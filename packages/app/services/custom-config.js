@@ -12,16 +12,7 @@ export default async url => {
       const cachedConfig = await fileCacheService('customConfig', url);
       config = cachedConfig.data;
     } catch (error) {
-      let {message} = error;
-      if (error.name === 'TypeError') {
-        message = 'Enter a valid URL';
-      } else if (error.name === 'RequestError') {
-        message = 'Custom configuration URL should be publicly accessible';
-      } else if (error.name === 'ParseError') {
-        message = 'Custom configuration file should use the JSON format';
-      }
-
-      throw new Error(message);
+      throw new Error(error);
     }
   }
 

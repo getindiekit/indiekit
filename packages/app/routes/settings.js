@@ -1,6 +1,6 @@
 import express from 'express';
 import validator from 'express-validator';
-import customConfigService from '../services/custom-config.js';
+import validateUrlService from '../services/validate-url.js';
 import errorList from '../services/error-list.js';
 import * as applicationController from '../controllers/application.js';
 import * as publicationController from '../controllers/publication.js';
@@ -41,7 +41,7 @@ router.get('/publication', (request, response) => {
 router.post('/publication', [
   validator
     .check('customConfigUrl')
-    .custom(async url => customConfigService(url))
+    .custom(async url => validateUrlService(url, 'json'))
 ], async (request, response) => {
   const errors = validator.validationResult(request);
 

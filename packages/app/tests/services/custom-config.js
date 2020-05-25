@@ -30,13 +30,6 @@ test('Returns empty object if no URL provided', async t => {
 test('Throws error if URL not accessible', async t => {
   const scope = t.context.nock.replyWithError('not found');
   const error = await t.throwsAsync(customConfigService(t.context.url));
-  t.is(error.message, 'Custom configuration URL should be publicly accessible');
-  scope.done();
-});
-
-test('Throws error if file at URL is not JSON', async t => {
-  const scope = t.context.nock.reply(200, '<html></html>');
-  const error = await t.throwsAsync(customConfigService(t.context.url));
-  t.is(error.message, 'Custom configuration file should use the JSON format');
+  t.regex(error.message, /\bnot found\b/);
   scope.done();
 });
