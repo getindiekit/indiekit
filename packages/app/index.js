@@ -3,7 +3,7 @@ import {fileURLToPath} from 'url';
 import path from 'path';
 import {templates} from '@indiekit/frontend';
 import localDataMiddleware from './middleware/local-data.js';
-import routes from './routes/index.js';
+import controllers from './controllers/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -25,8 +25,8 @@ app.engine('njk', templates(app).render);
 app.set('view engine', 'njk');
 app.use(localDataMiddleware);
 
-// Routes
-app.use(routes);
+// Controllers
+app.use(controllers);
 
 // Handle errors
 app.use((error, request, response, next) => { // eslint-disable-line no-unused-vars

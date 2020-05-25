@@ -1,7 +1,7 @@
-import * as applicationController from '../controllers/application.js';
-import * as publicationController from '../controllers/publication.js';
-import * as githubController from '../controllers/github.js';
-import * as gitlabController from '../controllers/gitlab.js';
+import * as applicationModel from '../models/application.js';
+import * as publicationModel from '../models/publication.js';
+import * as githubModel from '../models/github.js';
+import * as gitlabModel from '../models/gitlab.js';
 import publicationConfigService from '../services/publication-config.js';
 
 export default async (request, response, next) => {
@@ -9,19 +9,19 @@ export default async (request, response, next) => {
 
   try {
     // Application
-    const application = await applicationController.read();
+    const application = await applicationModel.getAll();
     application.url = url;
     application.cssPath = `${url}/assets/app.css`;
     response.locals.application = application;
 
     // Publication
-    const publication = await publicationController.read();
+    const publication = await publicationModel.getAll();
     publication.config = publicationConfigService(publication, request);
     response.locals.publication = publication;
 
     // Content hosts
-    response.locals.github = await githubController.read();
-    response.locals.gitlab = await gitlabController.read();
+    response.locals.github = await githubModel.getAll();
+    response.locals.gitlab = await gitlabModel.getAll();
   } catch (error) {
     /* c8 ignore next 2 */
     return next(error);

@@ -1,10 +1,10 @@
 import validator from 'express-validator';
 import validateUrlService from '../services/validate-url.js';
 import errorList from '../services/error-list.js';
-import * as applicationController from '../controllers/application.js';
-import * as publicationController from '../controllers/publication.js';
-import * as githubController from '../controllers/github.js';
-import * as gitlabController from '../controllers/gitlab.js';
+import * as applicationModel from '../models/application.js';
+import * as publicationModel from '../models/publication.js';
+import * as githubModel from '../models/github.js';
+import * as gitlabModel from '../models/gitlab.js';
 
 const {check, validationResult} = validator;
 
@@ -12,8 +12,7 @@ export default router => {
   // Settings overview
   router.get('/settings', async (request, response) => {
     response.render('settings/index', {
-      title: 'Settings',
-      app: await applicationController.read()
+      title: 'Settings'
     });
   });
 
@@ -27,7 +26,7 @@ export default router => {
   });
 
   router.post('/settings/application', async (request, response) => {
-    await applicationController.write(request.body);
+    await applicationModel.setAll(request.body);
     response.cookie('locale', request.body.locale, {
       maxAge: 900000
     });
@@ -59,7 +58,7 @@ export default router => {
       });
     }
 
-    await publicationController.write(request.body);
+    await publicationModel.setAll(request.body);
     response.redirect(request.query.referrer || '/settings');
   });
 
@@ -96,7 +95,7 @@ export default router => {
       });
     }
 
-    await githubController.write(request.body);
+    await githubModel.setAll(request.body);
     response.redirect(request.query.referrer || '/settings');
   });
 
@@ -125,7 +124,7 @@ export default router => {
       });
     }
 
-    await gitlabController.write(request.body);
+    await gitlabModel.setAll(request.body);
     response.redirect(request.query.referrer || '/settings');
   });
 };

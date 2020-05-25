@@ -1,41 +1,48 @@
 import test from 'ava';
+import nock from 'nock';
 import {rewiremock} from '../helpers/rewiremock.js';
 import {client} from '../../config/database.js';
 
 test.beforeEach(async t => {
-  t.context.publicationModel = await rewiremock.proxy(() => {
-    return import('../../models/publication.js');
-  });
+  t.context = {
+    publicationModel: await rewiremock.proxy(() => {
+      return import('../../models/publication.js');
+    }),
+    nock: nock('https://website.example').get('/config.json'),
+    url: 'https://website.example/config.json'
+  };
 });
 
 test.afterEach.always(() => {
   client.flushall();
 });
 
-test('Gets a value', async t => {
-  await t.context.publicationModel.set('key1', 'foobar');
-  const result = await t.context.publicationModel.get('key1');
-  t.is(result, 'foobar');
+test.serial('Gets a value', async t => {
+  await t.context.publicationModel.set('defaultConfigType', 'jekyll');
+  const result = await t.context.publicationModel.get('defaultConfigType');
+  t.is(result, 'jekyll');
 });
 
-test('Gets all values', async t => {
-  await t.context.publicationModel.set('key2', 'foobar');
+test.serial('Gets all values', async t => {
+  await t.context.publicationModel.set('defaultConfigType', 'jekyll');
   const result = await t.context.publicationModel.getAll();
-  t.is(result.key2, 'foobar');
+  t.is(result.defaultConfigType, 'jekyll');
 });
 
-test('Sets a value', async t => {
-  await t.context.publicationModel.set('key3', 'foobar');
-  const result = await t.context.publicationModel.get('key3');
-  t.is(result, 'foobar');
+test.serial('Sets a value', async t => {
+  await t.context.publicationModel.set('defaultConfigType', 'jekyll');
+  const result = await t.context.publicationModel.get('defaultConfigType');
+  t.is(result, 'jekyll');
 });
 
-test('Sets all values', async t => {
+test.serial('Sets all values', async t => {
+  const scope = t.context.nock.reply(200, {});
   await t.context.publicationModel.setAll({
-    key4: 'foobar',
-    key5: 'bazqux'
+    customConfigUrl: t.context.url,
+    defaultConfigType: 'jekyll'
   });
   const result = await t.context.publicationModel.getAll();
-  t.is(result.key4, 'foobar');
-  t.is(result.key5, 'bazqux');
+  t.is(result.customConfigUrl, t.context.url);
+  t.is(result.defaultConfigType, 'jekyll');
+  scope.done();
 });

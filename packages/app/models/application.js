@@ -1,4 +1,24 @@
+import fs from 'fs';
 import {client} from '../config/database.js';
+
+/**
+ * @returns {Promise|object} Configuration object
+ */
+export const getAll = async () => {
+  const data = await client.hgetall('application');
+  const package_ = JSON.parse(fs.readFileSync('package.json'));
+
+  const application = {
+    name: data.name || 'IndieKit',
+    version: package_.version,
+    description: package_.description,
+    repository: package_.repository,
+    locale: data.locale || 'en',
+    themeColor: data.themeColor || '#0000ee'
+  };
+
+  return application;
+};
 
 /**
  * @param {string} key Database key
@@ -10,11 +30,11 @@ export const get = async key => {
 };
 
 /**
- * @returns {Promise|object} Configuration object
+ * @param {string} values Values to insert
+ * @returns {Promise|boolean} 0|1
  */
-export const getAll = async () => {
-  const application = await client.hgetall('application');
-  return application;
+export const setAll = async values => {
+  return client.hmset('application', values);
 };
 
 /**
@@ -24,12 +44,4 @@ export const getAll = async () => {
  */
 export const set = async (key, value) => {
   return client.hset('application', key, value);
-};
-
-/**
- * @param {string} values Values to insert
- * @returns {Promise|boolean} 0|1
- */
-export const setAll = async values => {
-  return client.hmset('application', values);
 };

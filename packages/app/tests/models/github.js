@@ -12,30 +12,30 @@ test.afterEach.always(() => {
   client.flushall();
 });
 
-test('Gets a value', async t => {
-  await t.context.githubModel.set('key1', 'foobar');
-  const result = await t.context.githubModel.get('key1');
-  t.is(result, 'foobar');
+test.serial('Gets a value', async t => {
+  await t.context.githubModel.set('user', 'foobar1');
+  const result = await t.context.githubModel.get('user');
+  t.is(result, 'foobar1');
 });
 
-test('Gets all values', async t => {
-  await t.context.githubModel.set('key2', 'foobar');
+test.serial('Gets all values', async t => {
+  await t.context.githubModel.set('user', 'foobar2');
   const result = await t.context.githubModel.getAll();
-  t.is(result.key2, 'foobar');
+  t.is(result.user, 'foobar2');
 });
 
-test('Sets a value', async t => {
-  await t.context.githubModel.set('key3', 'foobar');
-  const result = await t.context.githubModel.get('key3');
-  t.is(result, 'foobar');
+test.serial('Sets a value', async t => {
+  await t.context.githubModel.set('user', 'foobar3');
+  const result = await t.context.githubModel.get('user');
+  t.is(result, 'foobar3');
 });
 
-test('Sets all values', async t => {
+test.serial('Sets all values', async t => {
   await t.context.githubModel.setAll({
-    key4: 'foobar',
-    key5: 'bazqux'
+    user: 'foobar4',
+    repo: 'bazqux1'
   });
   const result = await t.context.githubModel.getAll();
-  t.is(result.key4, 'foobar');
-  t.is(result.key5, 'bazqux');
+  t.is(result.user, 'foobar4');
+  t.is(result.repo, 'bazqux1');
 });

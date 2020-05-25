@@ -1,6 +1,23 @@
 import {client} from '../config/database.js';
 
 /**
+ * @returns {Promise|object} Configuration object
+ */
+export const getAll = async () => {
+  const data = await client.hgetall('gitlab');
+
+  const gitlab = {
+    instance: data.instance || 'https://gitlab.com',
+    user: data.user,
+    repo: data.repo,
+    branch: data.branch || 'master',
+    token: data.token
+  };
+
+  return gitlab;
+};
+
+/**
  * @param {string} key Database key
  * @returns {Promise|object} Configuration object
  */
@@ -10,11 +27,11 @@ export const get = async key => {
 };
 
 /**
- * @returns {Promise|object} Configuration object
+ * @param {string} values Values to insert
+ * @returns {Promise|boolean} 0|1
  */
-export const getAll = async () => {
-  const gitlab = await client.hgetall('gitlab');
-  return gitlab;
+export const setAll = async values => {
+  return client.hmset('gitlab', values);
 };
 
 /**
@@ -24,12 +41,4 @@ export const getAll = async () => {
  */
 export const set = async (key, value) => {
   return client.hset('gitlab', key, value);
-};
-
-/**
- * @param {string} values Values to insert
- * @returns {Promise|boolean} 0|1
- */
-export const setAll = async values => {
-  return client.hmset('gitlab', values);
 };

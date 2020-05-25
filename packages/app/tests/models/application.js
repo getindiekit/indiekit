@@ -12,30 +12,30 @@ test.afterEach.always(() => {
   client.flushall();
 });
 
-test('Gets a value', async t => {
-  await t.context.applicationModel.set('key1', 'foobar');
-  const result = await t.context.applicationModel.get('key1');
-  t.is(result, 'foobar');
+test.serial('Gets a value', async t => {
+  await t.context.applicationModel.set('name', 'foobar1');
+  const result = await t.context.applicationModel.get('name');
+  t.is(result, 'foobar1');
 });
 
-test('Gets all values', async t => {
-  await t.context.applicationModel.set('key2', 'foobar');
+test.serial('Gets all values', async t => {
+  await t.context.applicationModel.set('name', 'foobar2');
   const result = await t.context.applicationModel.getAll();
-  t.is(result.key2, 'foobar');
+  t.is(result.name, 'foobar2');
 });
 
-test('Sets a value', async t => {
-  await t.context.applicationModel.set('key3', 'foobar');
-  const result = await t.context.applicationModel.get('key3');
-  t.is(result, 'foobar');
+test.serial('Sets a value', async t => {
+  await t.context.applicationModel.set('name', 'foobar3');
+  const result = await t.context.applicationModel.get('name');
+  t.is(result, 'foobar3');
 });
 
-test('Sets all values', async t => {
+test.serial('Sets all values', async t => {
   await t.context.applicationModel.setAll({
-    key4: 'foobar',
-    key5: 'bazqux'
+    name: 'foobar4',
+    locale: 'bazqux1'
   });
   const result = await t.context.applicationModel.getAll();
-  t.is(result.key4, 'foobar');
-  t.is(result.key5, 'bazqux');
+  t.is(result.name, 'foobar4');
+  t.is(result.locale, 'bazqux1');
 });

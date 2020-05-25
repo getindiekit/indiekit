@@ -5,9 +5,8 @@ import supertest from 'supertest';
 import app from '../../index.js';
 import fixture from '../helpers/fixture.js';
 
-const request = supertest(app);
-
 const mockResponse = async query => {
+  const request = supertest(app);
   return request.get('/micropub')
     .set('Accept', 'application/json')
     .query(query);
