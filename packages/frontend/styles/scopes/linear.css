@@ -11,7 +11,7 @@
 }
 
 .s-linear > * {
-  max-inline-size: var(--linear-measure);
+  max-inline-size: var(--line-measure);
   word-break: break-word;
 }
 

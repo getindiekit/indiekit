@@ -21,7 +21,6 @@
 
   --flow-inset: 1.25em;
   --list-display: list-item;
-  --linear-measure: var(--line-measure);
 
   margin-block-start: var(--step-3);
 }
