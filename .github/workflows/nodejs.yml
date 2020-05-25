@@ -31,4 +31,4 @@ jobs:
         npm run bootstrap
     - name: Run tests and report coverage
       run: |
-        npm run coverage:ci
+        npm run coverage
