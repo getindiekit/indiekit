@@ -1,12 +1,12 @@
 # Website configuration
 
-{{ application.name }} lets you customise where posts are saved, how they are formatted and what permalinks you will give them.
+{{ application.name }} lets you customise where posts are saved, how they are formatted and what permalinks they will have.
 
-Configuration is provided via a JSON file. You can let {{ application.name }} know where to find this file by providing a value for custom configuration URL in [publication settings](/settings/publication).
+Configuration is provided via a JSON file. You can let {{ application.name }} know where to find this file by adding a custom configuration URL in [publication settings](/settings/publication).
 
 ## Configuration options
 
-`categories`: A [list of categories clients can expose in their publishing interface](https://github.com/indieweb/micropub-extensions/issues/5). Defaults to `[]`. There are two ways of providing these values:
+`categories`: A [list of categories clients can expose in their publishing interface](https://github.com/indieweb/micropub-extensions/issues/5). Defaults to `[]`. There are two ways of giving this information:
 
 * a pre-detirminded array of values:
 
@@ -17,7 +17,7 @@ Configuration is provided via a JSON file. You can let {{ application.name }} kn
   ]
   ```
 
-* giving the `url` property the address of a JSON file that provides an array of values:
+* adding the `url` of a JSON file that has an array of values:
 
   ```json
   categories: {
@@ -88,45 +88,48 @@ These defaults can be ammended, and new types can be added. For example, to over
 
 * **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
 
-* **`name`**: The name you give to this post type on your own site. You needn’t specify this value, but if you do, certain Micropub clients will expose it in their publishing UI.
+* **`name`**: The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients will use it in their publishing interfaces.
 
 * **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
-* **`template`**: Where {{ application.name }} can find the post type template within your repository. Note, this is not the template used to render your site, but a template specifically for the use of {{ application.name }} to render content (typically as a Markdown file with YAML frontmatter).
+* **`template`**: Where {{ application.name }} can find the post type template within your repository. Note, this is not a template that will be used to render your site, but one that tells {{ application.name }} how to save content. Typically this will be as a Markdown file with YAML frontmatter.
 
-* **`post.path`**: Where posts should be saved to in your repository.
+* **`post.path`**: Where posts should be saved in your repository.
 
-* **`post.url`**: Permalink of post as it appears on your website.
+* **`post.url`**: Permalink (the URL path) for posts on your website.
 
-* **`media.path`**: Where media files should be saved to in your repository (for `photo`, `video` and `audio` types only). The following template variables are available for media files:
+* **`media.path`**: Where media files should be saved in your repository. This applies only to `photo`, `video` and `audio` post types.
 
-  * `originalname` is the original name of the attached file, e.g. <samp>brighton-pier.jpg</samp>.
-  * `filename` is a five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
-  * `fileext` is the file extension, which is taken from the attached file, e.g. <samp>jpg</samp>.
-  * `filedate` is the ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
+  The following template variables are available for media files:
 
-* **`media.url`**: Public accessible URL for media files. Has access to the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
+  * `originalname`: Original name of the posted file, e.g. <samp>brighton-pier.jpg</samp>.
+  * `filename`: Five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
+  * `fileext`: File extension taken from the posted file, e.g. <samp>jpg</samp>.
+  * `filedate`: The ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
+
+* **`media.url`**: Public accessible URL for media files. This can use the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 
 `slug-separator`: The character(s) to use when generating post slugs. Defaults to `-` (dash).
 
 ## Creating custom paths and URLs
 
-Both `path` and `url` values use [Nunjucks](https://mozilla.github.io/nunjucks/) templating to enable customisation, for which all properties provided in a Micropub request are available. To customise date values, the `date()` filter can be used. This accepts the [formatting tokens offered by Luxon](https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens).
+Both `path` and `url` values use [Nunjucks](https://mozilla.github.io/nunjucks/) templating to allow customisation. All properties provided in a Micropub request are available. To customise date values, use the `date()` filter with [Luxon formatting tokens](https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens).
 
-## Creating templates
+## Creating post templates
 
-Like paths, templates use [Nunjucks](https://mozilla.github.io/nunjucks/), and also accept any values provided in a Micropub request. Additional variables may be made available at a later date.
+Post templates also use [Nunjucks](https://mozilla.github.io/nunjucks/). All properties provided in a Micropub request are available.
 
-A few points to consider when creating templates:
+A few points to consider when creating post templates:
 
 * Microformat properties containing hyphens (i.e. `bookmark-of`, `in-reply-to`), are made available to templates with camelCased variable names (i.e. `bookmarkOf`, `inReplyTo`).
 
-* Use [the `safe` filter](https://mozilla.github.io/nunjucks/templating.html#safe) where you wish to output HTML content. Here’s an example:
+* Use [the `safe` filter](https://mozilla.github.io/nunjucks/templating.html#safe) where you want to output HTML content. Here’s an example:
 
   ```yaml
   ---
   title: '{​{ title }}'
   date: {​{ published }}
+  bookmark-of: {​{ bookmarkOf }}
   {%- if category %}
   categories:
   {%- for item in category %}

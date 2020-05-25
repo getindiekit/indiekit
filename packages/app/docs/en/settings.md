@@ -1,6 +1,6 @@
 # Getting started with {{ application.name }}
 
-Before you can use {{ application.name }} to post to your website, there are a few things you’ll need to set up.
+There are a few things you’ll need to set up before you can use {{ application.name }} with your website.
 
 ## Enable automatic discovery
 

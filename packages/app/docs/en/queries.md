@@ -1,6 +1,6 @@
 # Endpoint queries
 
-{{ application.name }} supports a number of endpoint queries, both [those in the Micropub standard](https://www.w3.org/TR/micropub/#querying) and others [proposed by the IndieWeb community](https://indieweb.org/Micropub-extensions).
+{{ application.name }} supports the endpoint queries [described in the Micropub standard](https://www.w3.org/TR/micropub/#querying) as well as others [proposed by the IndieWeb community](https://indieweb.org/Micropub-extensions).
 
 ## Micropub endpoint
 
