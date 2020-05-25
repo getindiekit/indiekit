@@ -1,3 +1,5 @@
 .main {
+  background-color: var(--color-background);
   flex: 1;
+  padding-block-end: var(--step-3);
 }

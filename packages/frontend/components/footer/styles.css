@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-offset);
   color: var(--color-neutral-dark);
   display: flex;
   justify-content: flex-end;

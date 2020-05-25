@@ -11,6 +11,7 @@
 
   /* Colour assignments */
   --color-background: white;
+  --color-offset: var(--color-neutral-lightest);
   --color-shadow: hsl(var(--h) var(--s) 0% / 24%);
   --color-text: var(--color-neutral-darkest);
   --color-delete: hsl(0 100% 80% / 75%);

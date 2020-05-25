@@ -6,6 +6,7 @@
 
 /* 1. Prevent font size adjustment on orientation change in iOS. */
 :root {
+  background-color: var(--color-offset);
   block-size: -webkit-fill-available;
   scroll-behavior: smooth;
   text-size-adjust: 100%; /* 1 */
@@ -26,7 +27,6 @@
 }
 
 body {
-  background-color: var(--color-background);
   color: var(--color-text);
   display: flex;
   flex-direction: column;
