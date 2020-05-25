@@ -3,8 +3,7 @@ import {fileURLToPath} from 'url';
 import path from 'path';
 import httpError from 'http-errors';
 import {templates} from '@indiekit/frontend';
-import * as applicationController from './controllers/application.js';
-import * as publicationController from './controllers/publication.js';
+import localDataMiddleware from './middleware/local-data.js';
 import * as routes from './routes/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,20 +24,7 @@ app.use(express.urlencoded({
 app.set('views', path.join(`${__dirname}`, 'views'));
 app.engine('njk', templates(app).render);
 app.set('view engine', 'njk');
-app.use(async (request, response, next) => {
-  const url = `${request.protocol}://${request.headers.host}`;
-  response.locals.url = url;
-  response.locals.cssPath = `${url}/assets/app.css`;
-
-  try {
-    response.locals.application = await applicationController.read();
-    response.locals.publication = await publicationController.read();
-  } catch (error) {
-    return next(httpError(error.message));
-  }
-
-  next();
-});
+app.use(localDataMiddleware);
 
 // Routes
 app.use('/assets', routes.assetsRoute);
