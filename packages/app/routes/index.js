@@ -1,6 +1,7 @@
 import express from 'express';
 import assetsRoute from './assets.js';
 import documentationRoute from './documentation.js';
+import homepageRoute from './homepage.js';
 import micropubRoute from './micropub.js';
 import settingsRoute from './settings.js';
 import signInRoute from './sign-in.js';
@@ -11,6 +12,7 @@ const router = express.Router(); // eslint-disable-line new-cap
 // Attach routes to router
 assetsRoute(router);
 documentationRoute(router);
+homepageRoute(router);
 micropubRoute(router);
 settingsRoute(router);
 signInRoute(router);
