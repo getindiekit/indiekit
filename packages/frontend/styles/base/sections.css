@@ -26,6 +26,10 @@
   border: 0;
 }
 
+::selection {
+  background-color: var(--color-highlight);
+}
+
 body {
   color: var(--color-text);
   display: flex;

@@ -16,6 +16,7 @@
   --color-text: var(--color-neutral-darkest);
   --color-delete: hsl(0 100% 80% / 75%);
   --color-insert: hsl(120 100% 80% / 75%);
+  --color-highlight: hsl(48 100% 50% / 33%);
   --color-focus: hsl(40 100% 50%);
   --color-error: hsl(0 100% 50%);
   --color-success: hsl(120 100% 80%);
