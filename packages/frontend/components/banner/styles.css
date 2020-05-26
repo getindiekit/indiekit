@@ -3,6 +3,10 @@
   margin-block-start: calc(var(--border-width-thin) * -1);
 }
 
+.banner--error {
+  background-color: var(--color-error);
+}
+
 .banner--success {
   background-color: var(--color-success);
 }
