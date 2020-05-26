@@ -17,6 +17,10 @@
   color: var(--color-neutral-dark);
 }
 
+.textarea[readonly]:focus {
+  --color-focus: var(--color-neutral-lightest);
+}
+
 .textarea--error {
   border-color: var(--color-error);
 }

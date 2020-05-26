@@ -1,6 +1,21 @@
 {% extends "form.njk" %}
 
 {% block fieldset %}
+  {{ input({
+    id: "me",
+    name: "me",
+    value: errors.me.value or publication.me,
+    label: {
+      text: "Web address"
+    },
+    hint: {
+      text: "For example, https://example.org. To change this value, sign out and sign back in with the address you want to use."
+    },
+    attributes: {
+      readonly: true
+    }
+  }) | indent(2) }}
+
   {{ select({
     id: "host-id",
     name: "hostId",

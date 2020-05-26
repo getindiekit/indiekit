@@ -17,6 +17,10 @@
   color: var(--color-neutral-dark);
 }
 
+.input[readonly]:focus {
+  --color-focus: var(--color-neutral-lightest);
+}
+
 .input[type="color"] {
   min-block-size: 3rem;
   padding: var(--border-width-thickest);

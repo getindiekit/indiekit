@@ -27,6 +27,7 @@ export const getAll = async () => {
     config,
     customConfigUrl,
     defaultConfigType,
+    me: data.me || false,
     hostId: data.hostId
   };
 
