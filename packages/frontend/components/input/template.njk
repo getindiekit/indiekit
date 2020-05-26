@@ -3,7 +3,7 @@
 {%- from "../label/macro.njk" import label -%}
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
 {%- set fieldClasses = "form__field" + (" " + opts.field.classes if opts.field.classes) -%}
-<div class="{{ fieldClasses + (" " + "form__field--error" if opts.errorMessage) }}">
+<div class="{{ fieldClasses + (" " + "form__field--error" if opts.errorMessage) }}{{ " visually-hidden" if opts.type == "hidden" }}">
 {%- if opts.label %}
   {{ label({
     text: opts.label.text,
