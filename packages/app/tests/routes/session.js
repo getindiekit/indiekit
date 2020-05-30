@@ -10,14 +10,22 @@ test('Returns homepage', async t => {
   t.is(response.type, 'text/html');
 });
 
-test('Submits login and validates URL', async t => {
+test('Login validates URL', async t => {
   const response = await request.post('/session/login')
     .send('me=foobar');
   t.is(response.status, 422);
 });
 
-test('Submits login and redirects to settings page', async t => {
+test('Login URL is unauthorized', async t => {
   const response = await request.post('/session/login')
-    .send('me=https://example.org');
+    .send('me=example.website');
+  t.is(response.status, 401);
+});
+
+test('Login redirects to authentication service', async t => {
+  // TODO: Mock request to, and response from, fake endpoint
+  const response = await request.post('/session/login')
+    .send('me=paulrobertlloyd.github.io/indiekit-sandbox');
+  t.regex(response.headers.location, /\bhttps:\/\/indieauth.com\/auth\b/);
   t.is(response.status, 302);
 });

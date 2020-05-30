@@ -46,9 +46,9 @@
 
     <main class="main" id="main">
       {{ banner({
-        text: success,
-        type: "success"
-      }) | indent(6) if success }}
+        text: success if success else error,
+        type: "success" if success else "error"
+      }) | indent(6) if success or error }}
       {%- block main %}{% endblock %}
     </main>
 
