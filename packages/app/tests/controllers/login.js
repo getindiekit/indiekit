@@ -5,7 +5,7 @@ import app from '../../index.js';
 const request = supertest(app);
 
 test('Returns homepage', async t => {
-  const response = await request.get('/sign-in');
+  const response = await request.get('/login');
   t.is(response.status, 200);
   t.is(response.type, 'text/html');
 });
