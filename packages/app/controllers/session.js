@@ -1,6 +1,6 @@
 export default router => {
-  router.get('/login', (request, response) => {
-    response.render('login', {
+  router.get('/session/login', (request, response) => {
+    response.render('session/login', {
       title: 'Sign in',
       referrer: request.query.referrer
     });

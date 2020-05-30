@@ -4,7 +4,7 @@ import documentationController from './documentation.js';
 import homepageController from './homepage.js';
 import micropubController from './micropub.js';
 import settingsController from './settings.js';
-import loginController from './login.js';
+import sessionController from './session.js';
 import errorController from './error.js';
 
 const router = express.Router(); // eslint-disable-line new-cap
@@ -15,7 +15,7 @@ documentationController(router);
 homepageController(router);
 micropubController(router);
 settingsController(router);
-loginController(router);
+sessionController(router);
 errorController(router);
 
 export default router;

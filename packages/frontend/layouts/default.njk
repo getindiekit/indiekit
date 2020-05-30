@@ -36,10 +36,10 @@
         href: "/docs/" + application.locale,
         text: "Docs"
       }, {
-        href: "/login",
+        href: "/session/login",
         text: "Sign in"
       } if not session.me, {
-        href: "/logout",
+        href: "/session/logout",
         text: "Sign out"
       } if session.me]
     }) | indent(4) if not minimalui }}
