@@ -15,8 +15,8 @@ export default (urlpath, extension = 'md') => {
   const filepath = path.join(__dirname, '..', urlpath);
 
   // File with extension if exists, else folder index
-  // path/to/file/index.md
-  // path/to/file.md
+  // - path/to/file/index.md
+  // - path/to/file.md
   const document = fs.existsSync(filepath) ?
     path.join(filepath, `index.${extension}`) :
     `${filepath}.${extension}`;
