@@ -4,7 +4,7 @@ import * as githubModel from '../models/github.js';
 import * as gitlabModel from '../models/gitlab.js';
 import publicationConfigService from '../services/publication-config.js';
 
-export default async (request, response, next) => {
+export const locals = async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
 
   try {

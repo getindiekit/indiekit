@@ -1,6 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
-import localDataMiddleware from '../../middleware/local-data.js';
+import {locals} from '../../middleware/locals.js';
 
 test('Throws error', async t => {
   const request = {
@@ -13,6 +13,6 @@ test('Throws error', async t => {
     locals: sinon.stub()
   };
   const next = sinon.spy();
-  await localDataMiddleware(request, response, next);
+  await locals(request, response, next);
   t.true(next.calledOnce);
 });

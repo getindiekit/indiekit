@@ -1,7 +1,5 @@
-export default router => {
-  router.get('/', async (request, response) => {
-    response.render('homepage', {
-      title: 'Status'
-    });
+export const viewHomepage = (request, response) => {
+  return response.render('homepage', {
+    title: 'Status'
   });
 };

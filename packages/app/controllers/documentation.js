@@ -2,26 +2,24 @@ import fs from 'fs';
 import {templates} from '@indiekit/frontend';
 import documentPath from '../services/document-path.js';
 
-export default router => {
-  router.get('/docs/*', (request, response, next) => {
-    const filePath = documentPath(request.originalUrl, 'md');
+export const viewDocument = (request, response, next) => {
+  const filePath = documentPath(request.originalUrl, 'md');
 
-    if (fs.existsSync(filePath)) {
-      // Read file
-      const string = fs.readFileSync(filePath, 'utf8');
+  if (fs.existsSync(filePath)) {
+    // Read file
+    const string = fs.readFileSync(filePath, 'utf8');
 
-      // Render document variables
-      const renderedString = templates().renderString(string, response.locals);
+    // Render document variables
+    const renderedString = templates().renderString(string, response.locals);
 
-      // Detirmine document title and content
-      const firstHeading = renderedString.match(/^(#\s*[\w\s{}.]+\n)/);
-      const title = firstHeading[0].replace('# ', '');
-      const content = renderedString.replace(firstHeading[0], '');
+    // Detirmine document title and content
+    const firstHeading = renderedString.match(/^(#\s*[\w\s{}.]+\n)/);
+    const title = firstHeading[0].replace('# ', '');
+    const content = renderedString.replace(firstHeading[0], '');
 
-      // Return document
-      response.render('document', {title, content});
-    } else {
-      next();
-    }
-  });
+    // Return document
+    response.render('document', {title, content});
+  } else {
+    next();
+  }
 };

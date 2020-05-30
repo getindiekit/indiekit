@@ -2,8 +2,9 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
 import {templates} from '@indiekit/frontend';
-import localDataMiddleware from './middleware/local-data.js';
-import controllers from './controllers/index.js';
+import * as error from './middleware/error.js';
+import {locals} from './middleware/locals.js';
+import {routes} from './routes/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -23,16 +24,12 @@ app.use(express.urlencoded({
 app.set('views', path.join(`${__dirname}`, 'views'));
 app.engine('njk', templates(app).render);
 app.set('view engine', 'njk');
-app.use(localDataMiddleware);
+app.use(locals);
 
-// Controllers
-app.use(controllers);
+// Routes
+app.use(routes);
 
 // Handle errors
-app.use((error, request, response, next) => { // eslint-disable-line no-unused-vars
-  const status = error.status || 500;
-
-  return response.status(status).type('txt').send(error);
-});
+app.use(error.notFound, error.internalServer);
 
 export default app;
