@@ -16,7 +16,7 @@ export const authenticate = (request, response) => {
     return response.status(422).render('session/login', {
       title: 'Sign in',
       errors: errors.mapped(),
-      errorList: errorList(errors)
+      errorList: errorList(errors.mapped())
     });
   }
 

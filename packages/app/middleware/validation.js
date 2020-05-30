@@ -5,8 +5,13 @@ const {check} = validator;
 
 export const me = [
   check('me')
-    .isURL({force_protocol: true}) // eslint-disable-line camelcase
-    .withMessage('Enter a web address with a complete URL, like https://example.org')
+    .not()
+    .isEmpty()
+    .withMessage('Enter your web address'),
+  check('me')
+    .exists()
+    .isURL({force_protocol: false}) // eslint-disable-line camelcase
+    .withMessage('Enter a web address like https://example.org')
 ];
 
 export const publicationSettings = [

@@ -52,7 +52,7 @@ export const savePublication = async (request, response) => {
       parent: 'Settings',
       title: 'Publication',
       errors: errors.mapped(),
-      errorList: errorList(errors)
+      errorList: errorList(errors.mapped())
     });
   }
 
@@ -78,7 +78,7 @@ export const saveGithub = async (request, response) => {
       parent: 'Settings',
       title: 'github',
       errors: errors.mapped(),
-      errorList: errorList(errors)
+      errorList: errorList(errors.mapped())
     });
   }
 
@@ -93,7 +93,7 @@ export const saveGitlab = async (request, response) => {
       parent: 'Settings',
       title: 'gitlab',
       errors: errors.mapped(),
-      errorList: errorList(errors)
+      errorList: errorList(errors.mapped())
     });
   }
 
