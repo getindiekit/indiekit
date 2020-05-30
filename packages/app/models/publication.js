@@ -2,60 +2,38 @@ import deepmerge from 'deepmerge';
 import categoriesService from '../services/categories.js';
 import customConfigService from '../services/custom-config.js';
 import defaultConfigService from '../services/default-config.js';
-import {client} from '../config/database.js';
+import Model from './model.js';
 
-/**
- * @returns {Promise|object} Configuration object
- */
-export const getAll = async () => {
-  const data = await client.hgetall('publication');
+export class PublicationModel extends Model {
+  constructor(keyId) {
+    super(keyId);
+    this.keyId = 'publication';
+  }
 
-  // Get custom config
-  const customConfigUrl = data.customConfigUrl || false;
-  const customConfig = await customConfigService(customConfigUrl);
+  async getAll() {
+    const data = await super.getAll();
 
-  // Get default config
-  const defaultConfigType = data.defaultConfigType || 'jekyll';
-  const defaultConfig = await defaultConfigService(defaultConfigType);
+    // Get custom config
+    const customConfigUrl = data.customConfigUrl || false;
+    const customConfig = await customConfigService(customConfigUrl);
 
-  // Combine config from custom and default values
-  const config = deepmerge(customConfig, defaultConfig);
-  config.categories = await categoriesService(customConfig.categories);
+    // Get default config
+    const defaultConfigType = data.defaultConfigType || 'jekyll';
+    const defaultConfig = await defaultConfigService(defaultConfigType);
 
-  // Publication settings
-  const publication = {
-    config,
-    customConfigUrl,
-    defaultConfigType,
-    me: data.me || false,
-    hostId: data.hostId
-  };
+    // Combine config from custom and default values
+    const config = deepmerge(customConfig, defaultConfig);
+    config.categories = await categoriesService(customConfig.categories);
 
-  return publication;
-};
+    // Publication settings
+    const publication = {
+      config,
+      customConfigUrl,
+      defaultConfigType,
+      me: data.me || null,
+      hostId: data.hostId || null
+    };
 
-/**
- * @param {string} key Database key
- * @returns {Promise|object} Configuration object
- */
-export const get = async key => {
-  const publication = await getAll();
-  return publication[key];
-};
-
-/**
- * @param {string} values Values to insert
- * @returns {Promise|boolean} 0|1
- */
-export const setAll = async values => {
-  return client.hmset('publication', values);
-};
-
-/**
- * @param {string} key Key to lookup
- * @param {string} value Value to insert
- * @returns {Promise|boolean} 0|1
- */
-export const set = async (key, value) => {
-  return client.hset('publication', key, value);
-};
+    return publication;
+  }
+}

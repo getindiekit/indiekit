@@ -1,11 +1,16 @@
 import validator from 'express-validator';
 import errorList from '../services/error-list.js';
-import * as applicationModel from '../models/application.js';
-import * as publicationModel from '../models/publication.js';
-import * as githubModel from '../models/github.js';
-import * as gitlabModel from '../models/gitlab.js';
+import {client} from '../config/database.js';
+import {ApplicationModel} from '../models/application.js';
+import {PublicationModel} from '../models/publication.js';
+import {GithubModel} from '../models/github.js';
+import {GitlabModel} from '../models/gitlab.js';
 
 const {validationResult} = validator;
+const applicationModel = new ApplicationModel(client);
+const publicationModel = new PublicationModel(client);
+const githubModel = new GithubModel(client);
+const gitlabModel = new GitlabModel(client);
 
 // Settings overview
 export const viewAll = async (request, response) => {

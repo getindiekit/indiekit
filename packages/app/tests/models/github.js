@@ -1,41 +1,37 @@
 import test from 'ava';
-import {rewiremock} from '../helpers/rewiremock.js';
-import {client} from '../../config/database.js';
+import {mockClient} from '../helpers/database.js';
+import {GithubModel} from '../../models/github.js';
 
-test.beforeEach(async t => {
-  t.context.githubModel = await rewiremock.proxy(() => {
-    return import('../../models/github.js');
-  });
-});
+const githubModel = new GithubModel(mockClient);
 
 test.afterEach.always(() => {
-  client.flushall();
+  mockClient.flushall();
 });
 
 test.serial('Gets a value', async t => {
-  await t.context.githubModel.set('user', 'foobar1');
-  const result = await t.context.githubModel.get('user');
-  t.is(result, 'foobar1');
+  await githubModel.set('user', 'foobar');
+  const result = await githubModel.get('user');
+  t.is(result, 'foobar');
 });
 
 test.serial('Gets all values', async t => {
-  await t.context.githubModel.set('user', 'foobar2');
-  const result = await t.context.githubModel.getAll();
-  t.is(result.user, 'foobar2');
+  await githubModel.set('user', 'foobar');
+  const result = await githubModel.getAll();
+  t.is(result.user, 'foobar');
 });
 
 test.serial('Sets a value', async t => {
-  await t.context.githubModel.set('user', 'foobar3');
-  const result = await t.context.githubModel.get('user');
-  t.is(result, 'foobar3');
+  await githubModel.set('user', 'foobar');
+  const result = await githubModel.get('user');
+  t.is(result, 'foobar');
 });
 
 test.serial('Sets all values', async t => {
-  await t.context.githubModel.setAll({
-    user: 'foobar4',
-    repo: 'bazqux1'
+  await githubModel.setAll({
+    user: 'foobar',
+    repo: 'bazqux'
   });
-  const result = await t.context.githubModel.getAll();
-  t.is(result.user, 'foobar4');
-  t.is(result.repo, 'bazqux1');
+  const result = await githubModel.getAll();
+  t.is(result.user, 'foobar');
+  t.is(result.repo, 'bazqux');
 });

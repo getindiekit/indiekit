@@ -1,41 +1,37 @@
 import test from 'ava';
-import {rewiremock} from '../helpers/rewiremock.js';
-import {client} from '../../config/database.js';
+import {mockClient} from '../helpers/database.js';
+import {ApplicationModel} from '../../models/application.js';
 
-test.beforeEach(async t => {
-  t.context.applicationModel = await rewiremock.proxy(() => {
-    return import('../../models/application.js');
-  });
-});
+const applicationModel = new ApplicationModel(mockClient);
 
 test.afterEach.always(() => {
-  client.flushall();
+  mockClient.flushall();
 });
 
 test.serial('Gets a value', async t => {
-  await t.context.applicationModel.set('name', 'foobar1');
-  const result = await t.context.applicationModel.get('name');
-  t.is(result, 'foobar1');
+  await applicationModel.set('name', 'foobar');
+  const result = await applicationModel.get('name');
+  t.is(result, 'foobar');
 });
 
 test.serial('Gets all values', async t => {
-  await t.context.applicationModel.set('name', 'foobar2');
-  const result = await t.context.applicationModel.getAll();
-  t.is(result.name, 'foobar2');
+  await applicationModel.set('name', 'foobar');
+  const result = await applicationModel.getAll();
+  t.is(result.name, 'foobar');
 });
 
 test.serial('Sets a value', async t => {
-  await t.context.applicationModel.set('name', 'foobar3');
-  const result = await t.context.applicationModel.get('name');
-  t.is(result, 'foobar3');
+  await applicationModel.set('name', 'foobar');
+  const result = await applicationModel.get('name');
+  t.is(result, 'foobar');
 });
 
 test.serial('Sets all values', async t => {
-  await t.context.applicationModel.setAll({
-    name: 'foobar4',
-    locale: 'bazqux1'
+  await applicationModel.setAll({
+    name: 'foobar',
+    locale: 'bazqux'
   });
-  const result = await t.context.applicationModel.getAll();
-  t.is(result.name, 'foobar4');
-  t.is(result.locale, 'bazqux1');
+  const result = await applicationModel.getAll();
+  t.is(result.name, 'foobar');
+  t.is(result.locale, 'bazqux');
 });

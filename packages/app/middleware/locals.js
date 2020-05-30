@@ -1,8 +1,14 @@
-import * as applicationModel from '../models/application.js';
-import * as publicationModel from '../models/publication.js';
-import * as githubModel from '../models/github.js';
-import * as gitlabModel from '../models/gitlab.js';
+import {client} from '../config/database.js';
+import {ApplicationModel} from '../models/application.js';
+import {PublicationModel} from '../models/publication.js';
+import {GithubModel} from '../models/github.js';
+import {GitlabModel} from '../models/gitlab.js';
 import publicationConfigService from '../services/publication-config.js';
+
+const applicationModel = new ApplicationModel(client);
+const publicationModel = new PublicationModel(client);
+const githubModel = new GithubModel(client);
+const gitlabModel = new GitlabModel(client);
 
 export const locals = async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
