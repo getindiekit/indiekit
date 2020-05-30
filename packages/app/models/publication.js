@@ -15,7 +15,7 @@ export class PublicationModel extends Model {
 
     // Get custom config
     const customConfigUrl = data.customConfigUrl || false;
-    const customConfig = await customConfigService(customConfigUrl);
+    const customConfig = await customConfigService(this.client, customConfigUrl);
 
     // Get default config
     const defaultConfigType = data.defaultConfigType || 'jekyll';
@@ -23,7 +23,7 @@ export class PublicationModel extends Model {
 
     // Combine config from custom and default values
     const config = deepmerge(customConfig, defaultConfig);
-    config.categories = await categoriesService(customConfig.categories);
+    config.categories = await categoriesService(this.client, customConfig.categories);
 
     // Publication settings
     const publication = {

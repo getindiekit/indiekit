@@ -22,11 +22,11 @@ test.serial('Gets a value', async t => {
   t.is(result, 'jekyll');
 });
 
-test.serial.failing('Gets merged config', async t => {
+test.serial('Gets merged config', async t => {
   const scope = t.context.nock.reply(200, {foo: 'bar'});
   await publicationModel.set('customConfigUrl', t.context.url);
-  const result = await publicationModel.get('customConfig');
-  t.log(result);
+  const result = await publicationModel.get('config');
+  t.is(result.foo, 'bar');
   scope.done();
 });
 
@@ -43,6 +43,7 @@ test.serial('Sets a value', async t => {
 });
 
 test.serial('Sets all values', async t => {
+  const scope = t.context.nock.reply(200, {foo: 'bar'});
   await publicationModel.setAll({
     customConfigUrl: t.context.url,
     defaultConfigType: 'jekyll'
@@ -50,4 +51,5 @@ test.serial('Sets all values', async t => {
   const result = await publicationModel.getAll();
   t.is(result.customConfigUrl, t.context.url);
   t.is(result.defaultConfigType, 'jekyll');
+  scope.done();
 });
