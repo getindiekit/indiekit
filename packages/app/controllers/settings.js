@@ -47,7 +47,6 @@ export const editPublication = (request, response) => {
 
 export const savePublication = async (request, response) => {
   const errors = validationResult(request);
-
   if (!errors.isEmpty()) {
     return response.status(422).render('settings/publication', {
       parent: 'Settings',
@@ -74,7 +73,6 @@ export const editHost = (request, response) => {
 
 export const saveGithub = async (request, response) => {
   const errors = validationResult(request);
-
   if (!errors.isEmpty()) {
     return response.status(422).render('settings/github', {
       parent: 'Settings',
@@ -90,7 +88,6 @@ export const saveGithub = async (request, response) => {
 
 export const saveGitlab = async (request, response) => {
   const errors = validationResult(request);
-
   if (!errors.isEmpty()) {
     return response.status(422).render('settings/gitlab', {
       parent: 'Settings',

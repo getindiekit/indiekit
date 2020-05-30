@@ -10,3 +10,14 @@ test('Returns homepage', async t => {
   t.is(response.type, 'text/html');
 });
 
+test('Submits login and validates URL', async t => {
+  const response = await request.post('/session/login')
+    .send('me=foobar');
+  t.is(response.status, 422);
+});
+
+test('Submits login and redirects to settings page', async t => {
+  const response = await request.post('/session/login')
+    .send('me=https://example.org');
+  t.is(response.status, 302);
+});

@@ -3,6 +3,12 @@ import validateUrlService from '../services/validate-url.js';
 
 const {check} = validator;
 
+export const me = [
+  check('me')
+    .isURL({force_protocol: true}) // eslint-disable-line camelcase
+    .withMessage('Enter a web address with a complete URL, like https://example.org')
+];
+
 export const publicationSettings = [
   check('customConfigUrl')
     .optional({checkFalsy: true})
