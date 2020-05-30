@@ -1,12 +1,11 @@
 import validator from 'express-validator';
-import validateUrlService from '../services/validate-url.js';
 import errorList from '../services/error-list.js';
 import * as applicationModel from '../models/application.js';
 import * as publicationModel from '../models/publication.js';
 import * as githubModel from '../models/github.js';
 import * as gitlabModel from '../models/gitlab.js';
 
-const {check, validationResult} = validator;
+const {validationResult} = validator;
 
 // Settings overview
 export const viewAll = async (request, response) => {
