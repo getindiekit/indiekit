@@ -1,32 +1,28 @@
 {% extends "form.njk" %}
 
 {% block fieldset %}
-  {% if not session.me %}
-    {{ input({
-      id: "me",
-      name: "me",
-      value: errors.me.value or publication.me,
-      label: {
-        text: "Web address"
-      },
-      inputmode: "url",
-      autocomplete: "url",
-      errorMessage: {
-        text: errors.me.msg,
-        label: "Error"
-      } if errors.me
-    }) | indent(2) }}
+  {{ input({
+    id: "me",
+    name: "me",
+    value: errors.me.value or publication.me,
+    label: {
+      text: "Web address"
+    },
+    inputmode: "url",
+    autocomplete: "url",
+    errorMessage: {
+      text: errors.me.msg,
+      label: "Error"
+    } if errors.me
+  }) | indent(2) }}
 
-    {{ input({
-      name: "redirect_uri",
-      value: redirect_uri,
-      type: "hidden"
-    }) | indent(2) }}
+  {{ input({
+    name: "redirect_uri",
+    value: redirect_uri,
+    type: "hidden"
+  }) | indent(2) }}
 
-    {{ button({
-      text: "Sign in"
-    }) | indent(2) }}
-  {% else %}
-    <a href="/logout">Sign out</a>
-  {% endif %}
+  {{ button({
+    text: "Sign in"
+  }) | indent(2) }}
 {% endblock %}

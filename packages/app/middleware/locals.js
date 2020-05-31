@@ -14,6 +14,9 @@ export const locals = async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
 
   try {
+    // Session
+    response.locals.session = request.session;
+
     // Application
     const application = await applicationModel.getAll();
     application.url = url;

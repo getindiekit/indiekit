@@ -2,12 +2,19 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
 import {templates} from '@indiekit/frontend';
+import {session} from './config/session.js';
 import * as error from './middleware/error.js';
 import {locals} from './middleware/locals.js';
 import {routes} from './routes/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+// Correctly report secure connections
+app.enable('trust proxy');
+
+// Session
+app.use(session);
 
 // Parse application/json
 app.use(express.json({

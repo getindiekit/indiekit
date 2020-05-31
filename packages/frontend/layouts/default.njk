@@ -38,10 +38,10 @@
       }, {
         href: "/session/login",
         text: "Sign in"
-      } if not session.me, {
+      } if not session.token, {
         href: "/session/logout",
         text: "Sign out"
-      } if session.me]
+      } if session.token]
     }) | indent(4) if not minimalui }}
 
     <main class="main" id="main">
