@@ -7,16 +7,20 @@ export class GitlabModel extends Model {
   }
 
   async getAll() {
-    const data = await super.getAll();
+    try {
+      const data = await super.getAll();
 
-    const gitlab = {
-      instance: data.instance || 'https://gitlab.com',
-      user: data.user || null,
-      repo: data.repo || null,
-      branch: data.branch || 'master',
-      token: data.token || null
-    };
+      const gitlab = {
+        instance: data.instance || 'https://gitlab.com',
+        user: data.user || null,
+        repo: data.repo || null,
+        branch: data.branch || 'master',
+        token: data.token || null
+      };
 
-    return gitlab;
+      return gitlab;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

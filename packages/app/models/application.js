@@ -8,18 +8,22 @@ export class ApplicationModel extends Model {
   }
 
   async getAll() {
-    const data = await super.getAll();
-    const package_ = JSON.parse(fs.readFileSync('package.json'));
+    try {
+      const data = await super.getAll();
+      const package_ = JSON.parse(fs.readFileSync('package.json'));
 
-    const application = {
-      name: data.name || 'IndieKit',
-      version: package_.version || null,
-      description: package_.description || null,
-      repository: package_.repository || null,
-      locale: data.locale || 'en',
-      themeColor: data.themeColor || '#0000ee'
-    };
+      const application = {
+        name: data.name || 'IndieKit',
+        version: package_.version || null,
+        description: package_.description || null,
+        repository: package_.repository || null,
+        locale: data.locale || 'en',
+        themeColor: data.themeColor || '#0000ee'
+      };
 
-    return application;
+      return application;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

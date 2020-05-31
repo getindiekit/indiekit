@@ -11,29 +11,33 @@ export class PublicationModel extends Model {
   }
 
   async getAll() {
-    const data = await super.getAll();
+    try {
+      const data = await super.getAll();
 
-    // Get custom config
-    const customConfigUrl = data.customConfigUrl || false;
-    const customConfig = await customConfigService(this.client, customConfigUrl);
+      // Get custom config
+      const customConfigUrl = data.customConfigUrl || false;
+      const customConfig = await customConfigService(this.client, customConfigUrl);
 
-    // Get default config
-    const defaultConfigType = data.defaultConfigType || 'jekyll';
-    const defaultConfig = await defaultConfigService(defaultConfigType);
+      // Get default config
+      const defaultConfigType = data.defaultConfigType || 'jekyll';
+      const defaultConfig = await defaultConfigService(defaultConfigType);
 
-    // Combine config from custom and default values
-    const config = deepmerge(customConfig, defaultConfig);
-    config.categories = await categoriesService(this.client, customConfig.categories);
+      // Combine config from custom and default values
+      const config = deepmerge(customConfig, defaultConfig);
+      config.categories = await categoriesService(this.client, customConfig.categories);
 
-    // Publication settings
-    const publication = {
-      config,
-      customConfigUrl,
-      defaultConfigType,
-      me: data.me || null,
-      hostId: data.hostId || null
-    };
+      // Publication settings
+      const publication = {
+        config,
+        customConfigUrl,
+        defaultConfigType,
+        me: data.me || null,
+        hostId: data.hostId || null
+      };
 
-    return publication;
+      return publication;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

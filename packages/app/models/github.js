@@ -7,15 +7,19 @@ export class GithubModel extends Model {
   }
 
   async getAll() {
-    const data = await super.getAll();
+    try {
+      const data = await super.getAll();
 
-    const github = {
-      user: data.user || null,
-      repo: data.repo || null,
-      branch: data.branch || 'master',
-      token: data.token || null
-    };
+      const github = {
+        user: data.user || null,
+        repo: data.repo || null,
+        branch: data.branch || 'master',
+        token: data.token || null
+      };
 
-    return github;
+      return github;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

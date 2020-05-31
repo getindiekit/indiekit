@@ -32,7 +32,6 @@ export const locals = async (request, response, next) => {
     response.locals.github = await githubModel.getAll();
     response.locals.gitlab = await gitlabModel.getAll();
   } catch (error) {
-    /* c8 ignore next 2 */
     return next(error);
   }
 
