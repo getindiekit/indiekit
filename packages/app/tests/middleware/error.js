@@ -1,18 +1,23 @@
 import test from 'ava';
-import supertest from 'supertest';
+import sinon from 'sinon';
+import mockReqRes from 'mock-req-res';
+import * as error from '../../middleware/error.js';
 
-import {app} from '../../index.js';
-const request = supertest(app);
+const {mockRequest, mockResponse} = mockReqRes;
 
 test('Returns 404 as HTML', async t => {
-  const response = await request.get('/foobar');
-  t.is(response.status, 404);
-  t.is(response.type, 'text/html');
+  const request = mockRequest({accepts: () => true});
+  const response = mockResponse();
+  const next = sinon.spy();
+  await error.notFound(request, response, next);
+  t.true(response.status.calledWith(404));
+  t.true(response.render.calledWith('document'));
 });
 
-test('Returns 404 as text', async t => {
-  const response = await request.get('/foobar')
-    .set('Accept', 'application/json');
-  t.is(response.status, 404);
-  t.is(response.type, 'text/plain');
+test('Passes error onto next middleware', async t => {
+  const request = mockRequest({accepts: () => false});
+  const response = mockResponse();
+  const next = sinon.spy();
+  await error.notFound(request, response, next);
+  t.true(next.calledOnce);
 });
