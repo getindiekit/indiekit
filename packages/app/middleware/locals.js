@@ -12,15 +12,26 @@ const gitlabModel = new GitlabModel(client);
 
 export const locals = async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
+  const {session} = request;
 
   try {
-    // Session
-    response.locals.session = request.session;
-
     // Application
     const application = await applicationModel.getAll();
     application.url = url;
     application.cssPath = `${url}/assets/app.css`;
+    application.navigation = [(session.token ? {
+      href: '/settings',
+      text: 'Settings'
+    } : {}), {
+      href: `/docs/${application.locale}`,
+      text: 'Docs'
+    }, (session.token ? {} : {
+      href: '/session/login',
+      text: 'Sign in'
+    }), (session.token ? {
+      href: '/session/logout',
+      text: 'Sign out'
+    } : {})];
     response.locals.application = application;
 
     // Publication

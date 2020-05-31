@@ -29,19 +29,7 @@
       url: application.url,
       name: application.name,
       description: application.description,
-      navigation: [{
-        href: "/settings",
-        text: "Settings"
-      }, {
-        href: "/docs/" + application.locale,
-        text: "Docs"
-      }, {
-        href: "/session/login",
-        text: "Sign in"
-      } if not session.token, {
-        href: "/session/logout",
-        text: "Sign out"
-      } if session.token]
+      navigation: application.navigation
     }) | indent(4) if not minimalui }}
 
     <main class="main" id="main">
