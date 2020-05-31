@@ -8,7 +8,10 @@ const router = express.Router(); // eslint-disable-line new-cap
 router.get('/login', session.login);
 router.post('/login', validate.me, session.authenticate);
 
-// Authentication
+// Authentication callback
 router.get('/auth', session.authenticationCallback);
+
+// Log out
+router.get('/logout', session.logout);
 
 export const sessionRoutes = router;

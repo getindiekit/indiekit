@@ -4,7 +4,7 @@ import supertest from 'supertest';
 import app from '../../index.js';
 const request = supertest(app);
 
-test('Returns homepage', async t => {
+test('Returns login page', async t => {
   const response = await request.get('/session/login');
   t.is(response.status, 200);
   t.is(response.type, 'text/html');
@@ -34,4 +34,9 @@ test('Auth callback returns 403 if user is forbidden access', async t => {
   const response = await request.get('/session/auth')
     .send('code=foobar');
   t.is(response.status, 403);
+});
+
+test('Logout redirects to homepage', async t => {
+  const response = await request.get('/session/logout');
+  t.is(response.status, 302);
 });

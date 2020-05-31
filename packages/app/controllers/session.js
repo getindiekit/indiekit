@@ -51,7 +51,6 @@ export const authenticate = async (request, response) => {
   }
 };
 
-// Authentication callback
 export const authenticationCallback = async (request, response, next) => {
   const {code, me, redirect, state} = request.query;
 
@@ -68,4 +67,8 @@ export const authenticationCallback = async (request, response, next) => {
   } catch (error) {
     return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
   }
+};
+
+export const logout = (request, response) => {
+  response.redirect('/');
 };
