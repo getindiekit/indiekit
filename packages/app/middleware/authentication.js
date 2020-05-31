@@ -1,5 +1,5 @@
 export const authenticate = (request, response, next) => {
-  if (request.session.token) {
+  if (request.session && request.session.token) {
     return next();
   }
 
