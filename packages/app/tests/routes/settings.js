@@ -2,7 +2,7 @@ import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
 
-import app from '../../index.js';
+import {app} from '../../index.js';
 import {client} from '../../config/database.js';
 
 const request = supertest(app);

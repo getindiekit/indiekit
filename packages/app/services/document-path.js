@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import {fileURLToPath} from 'url';
+import {__dirname} from '../index.js';
 
 /**
  * @param {string} urlpath URL path
@@ -8,11 +8,10 @@ import {fileURLToPath} from 'url';
  * @returns {string} Path to file on disk
  */
 export default (urlpath, extension = 'md') => {
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
   extension = extension.replace('.', '');
 
   // Get equivalent file path
-  const filepath = path.join(__dirname, '..', urlpath);
+  const filepath = path.join(__dirname, urlpath);
 
   // File with extension if exists, else folder index
   // - path/to/file/index.md

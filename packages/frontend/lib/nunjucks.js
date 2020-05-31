@@ -1,7 +1,7 @@
 import nunjucks from 'nunjucks';
 import path from 'path';
-import {fileURLToPath} from 'url';
 import languages from 'iso-639-1';
+import {__dirname} from '../index.js';
 import * as filters from '../filters/index.js';
 
 /**
@@ -9,11 +9,9 @@ import * as filters from '../filters/index.js';
  * @returns {object} Nunjucks environment
  */
 export default function (app) {
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
   const views = [
-    path.join(__dirname, '..', 'components'),
-    path.join(__dirname, '..', 'layouts'),
+    path.join(__dirname, 'components'),
+    path.join(__dirname, 'layouts'),
     app ? app.settings.views : ''
   ];
 

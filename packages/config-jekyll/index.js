@@ -1,4 +1,4 @@
-import templates from '@indiekit/templates-yaml';
+import {templatesPath} from '@indiekit/templates-yaml';
 
 /**
  * Default publication configuration.
@@ -12,7 +12,7 @@ export default {
     article: {
       name: 'Article',
       icon: ':page_facing_up:',
-      template: `${templates}/article.njk`,
+      template: `${templatesPath}/article.njk`,
       post: {
         path: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -24,7 +24,7 @@ export default {
     note: {
       name: 'Note',
       icon: ':notebook_with_decorative_cover:',
-      template: `${templates}/note.njk`,
+      template: `${templatesPath}/note.njk`,
       post: {
         path: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -33,7 +33,7 @@ export default {
     photo: {
       name: 'Photo',
       icon: ':camera:',
-      template: `${templates}/photo.njk`,
+      template: `${templatesPath}/photo.njk`,
       post: {
         path: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -45,7 +45,7 @@ export default {
     video: {
       name: 'Video',
       icon: ':video_camera:',
-      template: `${templates}/video.njk`,
+      template: `${templatesPath}/video.njk`,
       post: {
         path: '_videos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'videos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -57,7 +57,7 @@ export default {
     audio: {
       name: 'Audio',
       icon: ':microphone:',
-      template: `${templates}/audio.njk`,
+      template: `${templatesPath}/audio.njk`,
       post: {
         path: '_audio/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'audio/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -69,7 +69,7 @@ export default {
     bookmark: {
       name: 'Bookmark',
       icon: ':bookmark:',
-      template: `${templates}/bookmark.njk`,
+      template: `${templatesPath}/bookmark.njk`,
       post: {
         path: '_bookmarks/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'bookmarks/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -78,7 +78,7 @@ export default {
     checkin: {
       name: 'Checkin',
       icon: ':triangular_flag_on_post:',
-      template: `${templates}/checkin.njk`,
+      template: `${templatesPath}/checkin.njk`,
       post: {
         path: '_checkins/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'checkins/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -87,7 +87,7 @@ export default {
     event: {
       name: 'Event',
       icon: ':calendar:',
-      template: `${templates}/event.njk`,
+      template: `${templatesPath}/event.njk`,
       post: {
         path: '_events/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'events/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -96,7 +96,7 @@ export default {
     rsvp: {
       name: 'Reply with RSVP',
       icon: ':speech_balloon:',
-      template: `${templates}/reply.njk`,
+      template: `${templatesPath}/reply.njk`,
       post: {
         path: '_replies/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'replies/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -105,7 +105,7 @@ export default {
     reply: {
       name: 'Reply',
       icon: ':speech_balloon:',
-      template: `${templates}/reply.njk`,
+      template: `${templatesPath}/reply.njk`,
       post: {
         path: '_replies/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'replies/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -114,7 +114,7 @@ export default {
     repost: {
       name: 'Repost',
       icon: ':recycle:',
-      template: `${templates}/repost.njk`,
+      template: `${templatesPath}/repost.njk`,
       post: {
         path: '_reposts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'reposts/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
@@ -123,7 +123,7 @@ export default {
     like: {
       name: 'Like',
       icon: ':thumbsup:',
-      template: `${templates}/like.njk`,
+      template: `${templatesPath}/like.njk`,
       post: {
         path: '_likes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
         url: 'likes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'

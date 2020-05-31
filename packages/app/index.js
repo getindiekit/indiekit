@@ -7,8 +7,8 @@ import * as error from './middleware/error.js';
 import {locals} from './middleware/locals.js';
 import {routes} from './routes/index.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const app = express();
+export const __dirname = path.dirname(fileURLToPath(import.meta.url));
+export const app = express();
 
 // Correctly report secure connections
 app.enable('trust proxy');
@@ -38,5 +38,3 @@ app.use(routes);
 
 // Handle errors
 app.use(error.notFound, error.internalServer);
-
-export default app;
