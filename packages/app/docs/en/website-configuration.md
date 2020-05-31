@@ -46,17 +46,17 @@ Configuration is provided via a JSON file. You can let {{ application.name }} kn
 
 `post-types`: {{ application.name }} provides a set of default paths and templates for the following post types:
 
-* 📄 [`article`](https://indieweb.org/article)
-* 📔 [`note`](https://indieweb.org/note)
-* 📷 [`photo`](https://indieweb.org/photo)
-* 📹 [`video`](https://indieweb.org/video)
-* 🎤 [`audio`](https://indieweb.org/audio)
-* 💬 [`reply`](https://indieweb.org/reply) (with optional [`rsvp`](https://indieweb.org/rsvp))
-* 👍 [`like`](https://indieweb.org/like)
-* ♻️ [`repost`](https://indieweb.org/repost)
-* 🔖 [`bookmark`](https://indieweb.org/bookmark)
-* 🚩 [`checkin`](https://indieweb.org/checkin)
-* 📅 [`event`](https://indieweb.org/event)
+* {{ icon('article') }} [Article](https://indieweb.org/article)
+* {{ icon('note') }} [Note](https://indieweb.org/note)
+* {{ icon('bookmark') }} [Bookmark](https://indieweb.org/bookmark)
+* {{ icon('photo') }} [Photo](https://indieweb.org/photo)
+* {{ icon('audio') }} [Audio](https://indieweb.org/audio)
+* {{ icon('video') }} [Video](https://indieweb.org/video)
+* {{ icon('reply') }} [Reply](https://indieweb.org/reply) (with optional [RSVP](https://indieweb.org/rsvp))
+* {{ icon('like') }} [Like](https://indieweb.org/like)
+* {{ icon('repost') }} [Repost](https://indieweb.org/repost)
+* {{ icon('checkin') }} [Checkin](https://indieweb.org/checkin)
+* {{ icon('event') }} [Event](https://indieweb.org/event)
 
 These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
 

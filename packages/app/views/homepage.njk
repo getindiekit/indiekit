@@ -2,7 +2,7 @@
 
 {% block content %}
   {%- set postTypesHtml %}{% for config in publication.config["post-types"] %}
-    <a href="https://indieweb.org/{{ config.type }}">{{ config.name }}</a>{{ '' if loop.last else ', ' }}
+    <a href="https://indieweb.org/{{ config.type }}">{{ icon(config.type) }} {{ config.name }}</a>{{ '' if loop.last else ', ' }}
   {%- endfor %}{% endset %}
 
   {%- set syndicateToHtml %}{% for target in publication.config["syndicate-to"] %}

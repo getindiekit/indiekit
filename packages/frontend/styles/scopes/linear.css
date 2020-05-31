@@ -19,6 +19,10 @@
   margin-block-start: var(--flow-space);
 }
 
+.s-linear svg {
+  vertical-align: text-bottom;
+}
+
 .s-linear code,
 .s-linear samp {
   border-radius: var(--border-radius-small);
