@@ -44,7 +44,9 @@ export const authenticate = async (request, response) => {
   }
 
   try {
-    const me = normalizeUrl(request.body.me);
+    const me = normalizeUrl(request.body.me, {
+      removeTrailingSlash: false
+    });
     auth.options.me = new URL(me).href;
     const authUrl = await auth.getAuthUrl('code', ['create']);
 
