@@ -11,8 +11,11 @@ const auth = new IndieAuth({secret});
 const publicationModel = new PublicationModel(client);
 const {validationResult} = validator;
 
-// TODO: Redirect to homepage or given redirect value if logged in
 export const login = (request, response) => {
+  if (request.session.token) {
+    return response.redirect('/');
+  }
+
   const {url} = response.locals.application;
   const callbackUrl = `${url}/session/auth`;
   const {redirect} = request.query;
