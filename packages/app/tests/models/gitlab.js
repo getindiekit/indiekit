@@ -8,6 +8,12 @@ test.afterEach.always(() => {
   mockClient.flushall();
 });
 
+test('Throws an error', async t => {
+  const clientlessModel = new GitlabModel({});
+  const error = await t.throwsAsync(clientlessModel.getAll());
+  t.true(error instanceof Error);
+});
+
 test.serial('Gets a value', async t => {
   await gitlabModel.set('user', 'foobar');
   const result = await gitlabModel.get('user');

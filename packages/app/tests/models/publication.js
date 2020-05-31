@@ -16,6 +16,12 @@ test.afterEach.always(() => {
   mockClient.flushall();
 });
 
+test('Throws an error', async t => {
+  const clientlessModel = new PublicationModel({});
+  const error = await t.throwsAsync(clientlessModel.getAll());
+  t.true(error instanceof Error);
+});
+
 test.serial('Gets a value', async t => {
   await publicationModel.set('defaultConfigType', 'jekyll');
   const result = await publicationModel.get('defaultConfigType');

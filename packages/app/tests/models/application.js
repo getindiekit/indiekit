@@ -8,6 +8,12 @@ test.afterEach.always(() => {
   mockClient.flushall();
 });
 
+test('Throws an error', async t => {
+  const clientlessModel = new ApplicationModel({});
+  const error = await t.throwsAsync(clientlessModel.getAll());
+  t.true(error instanceof Error);
+});
+
 test.serial('Gets a value', async t => {
   await applicationModel.set('name', 'foobar');
   const result = await applicationModel.get('name');

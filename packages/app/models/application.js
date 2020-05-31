@@ -14,9 +14,9 @@ export class ApplicationModel extends Model {
 
       const application = {
         name: data.name || 'IndieKit',
-        version: package_.version || null,
-        description: package_.description || null,
-        repository: package_.repository || null,
+        version: package_.version,
+        description: package_.description,
+        repository: package_.repository,
         locale: data.locale || 'en',
         themeColor: data.themeColor || '#0000ee'
       };
