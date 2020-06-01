@@ -47,6 +47,10 @@
   word-break: break-word;
 }
 
+.summary__value a {
+  white-space: nowrap;
+}
+
 .summary__actions {
   margin-inline-start: auto;
 }
