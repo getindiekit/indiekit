@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-anchor-hover, var(--color-accent));
+  color: var(--color-anchor-hover, inherit);
   text-decoration-color: currentColor;
 }
 

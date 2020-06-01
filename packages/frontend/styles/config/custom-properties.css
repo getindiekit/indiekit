@@ -41,6 +41,7 @@
   --color-offset: var(--color-neutral-lightest);
   --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
   --color-text: var(--color-neutral-darkest);
+  --color-anchor-hover: var(--color-accent-dark);
   --color-delete: hsl(0 100% 80% / 75%);
   --color-insert: hsl(120 100% 80% / 75%);
   --color-highlight: hsl(48 100% 50% / 33%);
@@ -116,10 +117,8 @@
 
     /* Colour assignments */
     --color-background: black;
-    --color-neutral-lightest: hsl(var(--h) var(--s) 16%);
-    --color-neutral-light: hsl(var(--h) var(--s) 40%);
-    --color-neutral-dark: hsl(var(--h) var(--s) 84%);
-    --color-neutral-darkest: hsl(var(--h) var(--s) 96%);
+    --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 100% / 24%);
+    --color-anchor-hover: var(--color-accent-lightest);
 
     /* Typography */
     --word-spacing: 0.05em;

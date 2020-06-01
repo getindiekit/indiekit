@@ -19,7 +19,11 @@
     <link rel="stylesheet" href="{{ application.cssPath }}"/>
     <style>
       :root {
-        --color-accent: {{ application.themeColor }}
+        --color-accent: {{ application.themeColor }};
+        --color-accent-dark: {{ application.themeColor | darken(0.4) }};
+        --color-accent-darkest: {{ application.themeColor | darken(0.6) }};
+        --color-accent-light: {{ application.themeColor | lighten(0.6) }};
+        --color-accent-lightest: {{ application.themeColor | lighten(0.8) }};
       }
     </style>
     <title>{{ title + " - " if title }}{{ application.name }}</title>

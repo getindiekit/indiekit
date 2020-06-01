@@ -6,7 +6,7 @@
 
 @media (prefers-color-scheme: dark) {
   .s-linear a {
-    filter: invert(1);
+    --color-anchor: var(--color-accent-light);
   }
 }
 
