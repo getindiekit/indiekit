@@ -117,6 +117,7 @@
             "./",
             "./packages/app",
             "./packages/config-jekyll",
+            "./packages/endpoint-micropub",
             "./packages/frontend",
             "./packages/templates-yaml"
           ]

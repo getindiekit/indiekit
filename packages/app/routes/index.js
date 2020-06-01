@@ -2,7 +2,7 @@ import express from 'express';
 import {assetsRoutes} from './assets.js';
 import {documentationRoutes} from './documentation.js';
 import {homepageRoutes} from './homepage.js';
-import {micropubRoutes} from './micropub.js';
+import {micropubRoutes} from '@indiekit/endpoint-micropub/routes/index.js';
 import {sessionRoutes} from './session.js';
 import {settingsRoutes} from './settings.js';
 import {authenticate} from '../middleware/authentication.js';

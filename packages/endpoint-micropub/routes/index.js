@@ -1,5 +1,5 @@
 import express from 'express';
-import * as micropub from '../controllers/micropub.js';
+import * as micropub from '../controllers/index.js';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
