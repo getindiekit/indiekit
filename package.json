@@ -60,8 +60,7 @@
     "environmentVariables": {
       "NODE_ENV": "test",
       "SECRET": "test"
-    },
-    "verbose": true
+    }
   },
   "c8": {
     "all": true,
