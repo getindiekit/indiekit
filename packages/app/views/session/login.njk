@@ -1,5 +1,12 @@
 {% extends "form.njk" %}
 
+{% set appClasses = "app--login" %}
+{% block header %}
+  {{ header({
+    url: application.url,
+    name: application.name
+  }) }}
+{% endblock %}
 {% block fieldset %}
   {{ input({
     id: "me",
@@ -23,6 +30,7 @@
   }) | indent(2) }}
 
   {{ button({
-    text: "Sign in"
+    text: "Sign in",
+    classes: "button--block"
   }) | indent(2) }}
 {% endblock %}

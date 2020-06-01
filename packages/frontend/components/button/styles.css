@@ -15,3 +15,7 @@
   background-color: var(--color-neutral-darkest);
   color: var(--color-background);
 }
+
+.button--block {
+  inline-size: 100%;
+}

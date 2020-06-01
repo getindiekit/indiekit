@@ -1,0 +1,34 @@
+.app {
+  background-color: var(--color-offset);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-system);
+  justify-content: space-between;
+}
+
+.app--login .header,
+.app--login .main,
+.app--login .footer {
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex: 0;
+  justify-items: center;
+}
+
+.app--login .header__container,
+.app--login .footer__container {
+  inline-size: auto;
+}
+
+.app--login .main {
+  margin-block-end: 12vh;
+  padding-block-end: 0;
+}
+
+.app--login .main > * {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-large);
+  max-inline-size: 24rem;
+}

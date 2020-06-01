@@ -28,15 +28,20 @@
     </style>
     <title>{{ title + " - " if title }}{{ application.name }}</title>
   </head>
-  <body>
+
+  {%- set appClasses = "app" + (" " + appClasses if appClasses) -%}
+  <body class="{{ appClasses }}">
+  {%- block header %}
     {{ header({
       url: application.url,
       name: application.name,
       description: application.description,
       navigation: application.navigation
     }) | indent(4) if not minimalui }}
+  {%- endblock %}
 
-    <main class="main" id="main">
+    {%- set mainClasses = "main" + (" " + mainClasses if mainClasses) -%}
+    <main class="{{ mainClasses }}" id="main">
       {{ banner({
         text: success if success else error,
         type: "success" if success else "error"
@@ -44,11 +49,13 @@
       {%- block main %}{% endblock %}
     </main>
 
+  {%- block footer %}
     {{ footer({
       navigation: [{
         href: application.repository.url | replace('.git', '') + "/releases/tag/v" + application.version,
         text: "v" + application.version
       }]
     }) | indent() if not minimalui }}
+  {%- endblock %}
   </body>
 </html>

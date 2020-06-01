@@ -1,5 +1,5 @@
 .textarea {
-  background-color: transparent;
+  background-color: var(--color-background);
   border: var(--border-width-thick) solid var(--color-neutral);
   border-radius: var(--border-radius-small);
   padding: var(--inset-small-squished);
