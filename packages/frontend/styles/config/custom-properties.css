@@ -1,18 +1,45 @@
 :root {
-  --h: 216;
-  --s: 12%;
-
   /* Colour palette */
-  --color-neutral-darkest: hsl(var(--h) var(--s) 16%);
-  --color-neutral-dark: hsl(var(--h) var(--s) 40%);
-  --color-neutral: hsl(var(--h) var(--s) 64%);
-  --color-neutral-light: hsl(var(--h) var(--s) 80%);
-  --color-neutral-lightest: hsl(var(--h) var(--s) 96%);
+  --color-neutral-h: 216;
+  --color-neutral-s: 12%;
+  --color-neutral-l: 64%;
+  --color-neutral-hsl:
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    var(--color-neutral-l);
+  --color-neutral:
+    hsl(
+      var(--color-neutral-hsl)
+    );
+  --color-neutral-dark:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) - 24%)
+    );
+  --color-neutral-darkest:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) - 48%)
+    );
+  --color-neutral-light:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) + 16%)
+    );
+  --color-neutral-lightest:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) + 32%)
+    );
 
   /* Colour assignments */
   --color-background: white;
   --color-offset: var(--color-neutral-lightest);
-  --color-shadow: hsl(var(--h) var(--s) 0% / 24%);
+  --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
   --color-text: var(--color-neutral-darkest);
   --color-delete: hsl(0 100% 80% / 75%);
   --color-insert: hsl(120 100% 80% / 75%);
@@ -61,6 +88,33 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    /* Colour palette */
+    --color-neutral-light:
+      hsl(
+        var(--color-neutral-h),
+        var(--color-neutral-s),
+        calc(var(--color-neutral-l) - 24%)
+      );
+    --color-neutral-lightest:
+      hsl(
+        var(--color-neutral-h),
+        var(--color-neutral-s),
+        calc(var(--color-neutral-l) - 48%)
+      );
+    --color-neutral-dark:
+      hsl(
+        var(--color-neutral-h),
+        var(--color-neutral-s),
+        calc(var(--color-neutral-l) + 16%)
+      );
+    --color-neutral-darkest:
+      hsl(
+        var(--color-neutral-h),
+        var(--color-neutral-s),
+        calc(var(--color-neutral-l) + 32%)
+      );
+
+    /* Colour assignments */
     --color-background: black;
     --color-neutral-lightest: hsl(var(--h) var(--s) 16%);
     --color-neutral-light: hsl(var(--h) var(--s) 40%);
