@@ -42,7 +42,7 @@
     "nunjucks": "^3.2.1",
     "post-type-discovery": "github:grantcodes/post-type-discovery",
     "serve-favicon": "^2.5.0",
-    "slug": "^3.0.1",
+    "slug": "^3.3.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
