@@ -1,5 +1,5 @@
 .button {
-  background-color: var(--color-neutral-dark);
+  background-color: var(--color-neutral-darkest);
   border-radius: var(--border-radius-small);
   box-shadow: inset 0 calc(var(--border-width-thick) * -1) 0 0 var(--color-shadow);
   color: var(--color-background);
@@ -12,7 +12,7 @@
 }
 
 .button:hover {
-  background-color: var(--color-neutral-darkest);
+  background-color: var(--color-neutral-dark);
   color: var(--color-background);
 }
 
