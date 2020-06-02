@@ -15,8 +15,8 @@ router.use('/', homepageRoutes);
 router.use('/assets', assetsRoutes);
 router.use('/docs', documentationRoutes);
 router.use('/micropub', micropubRoutes);
-router.use('/settings', authenticate, settingsRoutes);
 router.use('/session', sessionRoutes);
-router.use('/share', shareRoutes);
+router.use('/settings', authenticate, settingsRoutes);
+router.use('/share', authenticate, shareRoutes);
 
 export const routes = router;
