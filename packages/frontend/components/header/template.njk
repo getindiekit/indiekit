@@ -5,7 +5,9 @@
         <span class="p-name">{{ opts.name }}</span>
       </a>
     </div>
+{%- if opts.description %}
     <p class="header__description p-summary">{{ opts.description }}</p>
+{%- endif %}
 {%- if opts.navigation %}
     <nav class="header__navigation" aria-label="site">
     {%- for item in opts.navigation %}
