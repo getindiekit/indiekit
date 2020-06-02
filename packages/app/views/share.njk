@@ -1,0 +1,71 @@
+{#-
+  Share interface inspired and developed from an idea described by Max Böck.
+  See: https://mxb.dev/blog/indieweb-link-sharing/
+-#}
+{% extends "form.njk" %}
+
+{% from "preview/macro.njk" import preview %}
+
+{% block fieldset %}
+  {{ preview({
+    title: {
+      text: "Title",
+      for: "name",
+      value: name
+    },
+    text: {
+      text: "Content",
+      for: "content",
+      value: content
+    },
+    url: {
+      text: "URL",
+      for: "url",
+      value: url
+    },
+    date: "now"
+  }) }}
+
+  {{ input({
+    id: "name",
+    name: "name",
+    value: name,
+    label: {
+      text: "Title"
+    }
+  }) }}
+
+  {{ textarea({
+    id: "content",
+    name: "content",
+    value: content,
+    label: {
+      text: "Content"
+    }
+  }) | indent(8) }}
+
+  {{ input({
+    id: "url",
+    name: "bookmark-of",
+    value: url,
+    label: {
+      text: "URL"
+    }
+  }) }}
+
+  {{ input({
+    name: "access_token",
+    value: session.token,
+    type: "hidden"
+  }) }}
+
+  {{ input({
+    name: "h",
+    value: "entry",
+    type: "hidden"
+  }) }}
+
+  {{ button({
+    text: "Publish"
+  }) }}
+{% endblock %}

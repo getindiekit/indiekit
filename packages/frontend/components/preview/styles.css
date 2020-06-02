@@ -1,7 +1,13 @@
 .preview {
+  --flow-space: 0.5rem;
+
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
-  padding: var(--inset);
+  padding: var(--inset-small-squished);
+}
+
+.preview * + * {
+  margin-block-start: var(--space-block);
 }
 
 .preview output.empty {

@@ -25,6 +25,7 @@ export default function (app) {
   const parser = nunjucks.configure(views, options);
   parser.addFilter('darken', filters.darken);
   parser.addFilter('lighten', filters.lighten);
+  parser.addFilter('date', filters.date);
   parser.addFilter('language', string => languages.getNativeName(string));
   parser.addFilter('markdown', filters.markdown);
   parser.addGlobal('icon', nunjucks.runtime.markSafe(globals.icon));
