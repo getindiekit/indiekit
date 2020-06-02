@@ -13,7 +13,6 @@
 
 .button:hover {
   background-color: var(--color-neutral-dark);
-  color: var(--color-background);
 }
 
 .button--block {

@@ -32,7 +32,7 @@
     <title>{{ title + " - " if title }}{{ application.name }}</title>
   </head>
 
-  {%- set appClasses = "app" + (" " + appClasses if appClasses) -%}
+  {%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
   <body class="{{ appClasses }}">
   {%- block header %}
     {{ header({
