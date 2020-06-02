@@ -18,7 +18,6 @@ export const locals = async (request, response, next) => {
     // Application
     const application = await applicationModel.getAll();
     application.url = url;
-    application.cssPath = `${url}/assets/app.css`;
     application.navigation = [(session.token ? {
       href: '/settings',
       text: 'Settings'

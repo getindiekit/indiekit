@@ -27,6 +27,9 @@ app.use(express.urlencoded({
   limit: '10mb'
 }));
 
+// Static assets
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/@indiekit/frontend/assets')));
+
 // Views
 app.set('views', path.join(`${__dirname}`, 'views'));
 app.engine('njk', templates(app).render);
