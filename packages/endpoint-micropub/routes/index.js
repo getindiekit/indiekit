@@ -1,8 +1,8 @@
 import express from 'express';
-import * as micropub from '../controllers/index.js';
+import query from '../controllers/query.js';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.get('/', micropub.queryEndpoint);
+router.get('/', query);
 
 export const micropubRoutes = router;

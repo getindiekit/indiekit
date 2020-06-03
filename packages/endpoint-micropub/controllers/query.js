@@ -1,7 +1,7 @@
 import httpError from 'http-errors';
 import {url2Mf2, mf2Properties} from '../services/microformats.js';
 
-export const queryEndpoint = async (request, response, next) => {
+export default async function (request, response, next) {
   const {config} = response.locals.publication;
 
   try {
@@ -51,4 +51,4 @@ export const queryEndpoint = async (request, response, next) => {
   } catch (error) {
     return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
   }
-};
+}
