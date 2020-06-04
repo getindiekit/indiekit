@@ -23,7 +23,7 @@
     "node": "11.x"
   },
   "dependencies": {
-    "@octokit/rest": "^17.9.2",
+    "@octokit/rest": "^17.9.3",
     "@timberio/node": "^0.35.0",
     "@timberio/winston": "^0.35.0",
     "camelcase-keys": "^6.2.2",
