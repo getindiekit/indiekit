@@ -3,7 +3,7 @@
  *
  * @param {string} scope Token scope
  * @param {string} action Requested Micropub action
- * @param {string} url URL to perform action on
+ * @param {string} url URL of the object being acted on
  * @returns {string} Micropub action
  */
 export default (scope, action, url) => {
