@@ -17,14 +17,11 @@ app.enable('trust proxy');
 app.use(session);
 
 // Parse application/json
-app.use(express.json({
-  limit: '10mb'
-}));
+app.use(express.json());
 
 // Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({
-  extended: true,
-  limit: '10mb'
+  extended: true
 }));
 
 // Static assets

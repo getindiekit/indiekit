@@ -1,8 +1,9 @@
 import httpError from 'http-errors';
 import {url2Mf2, mf2Properties} from '../services/microformats.js';
+import {publicConfig} from '../services/public-config.js';
 
 export default async function (request, response, next) {
-  const {config} = response.locals.publication;
+  const config = publicConfig(response.locals.publication.config);
 
   try {
     const {query} = request;
