@@ -9,7 +9,7 @@ import * as globals from './nunjucks/globals.js';
  * @param {Function} app Express
  * @returns {object} Nunjucks environment
  */
-export default function (app) {
+export const templates = app => {
   const views = [
     path.join(__dirname, 'components'),
     path.join(__dirname, 'layouts'),
@@ -31,4 +31,4 @@ export default function (app) {
   parser.addGlobal('icon', nunjucks.runtime.markSafe(globals.icon));
 
   return parser;
-}
+};

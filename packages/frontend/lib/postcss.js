@@ -5,7 +5,7 @@ import postcss from 'postcss';
 import postcssEasyImport from 'postcss-easy-import';
 import postcssExtendRule from 'postcss-extend-rule';
 
-export default (async () => {
+export const styles = (async () => {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const options = {
     from: path.join(__dirname, '..', 'styles/app.css'),
