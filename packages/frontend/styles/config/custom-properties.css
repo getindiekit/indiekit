@@ -47,7 +47,7 @@
   --color-highlight: hsl(48 100% 50% / 33%);
   --color-focus: hsl(48 100% 50%);
   --color-error: hsl(0 100% 60%);
-  --color-success: hsl(120 100% 70%);
+  --color-success: hsl(144 100% 50%);
 
   /* Typography */
   --font-family-system: system-ui, -apple-system, sans-serif;
@@ -74,7 +74,7 @@
   --border-width-thickest: 0.25rem;
 
   /* Spacing */
-  --space-block: 0.5rem;
+  --space-block: 0.75rem;
   --space-inline: 0.75rem;
 
   /* Inset spacing */

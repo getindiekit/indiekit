@@ -28,7 +28,7 @@
   flex-wrap: wrap;
   line-height: var(--line-height-tight);
   padding-block-end: calc(var(--space-block) * 2);
-  padding-block-start: var(--space-block);
+  padding-block-start: calc(var(--space-block) / 2);
 }
 
 .summary__key {

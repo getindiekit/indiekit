@@ -12,6 +12,7 @@
 }
 
 .footer__navigation {
+  margin-inline-end: calc(var(--space-inline) * -1);
   margin-inline-start: calc(var(--space-inline) * -1);
 }
 

@@ -1,5 +1,7 @@
 .fieldset {
   @extend %body;
+
+  max-inline-size: var(--line-measure);
 }
 
 .fieldset > * + * {

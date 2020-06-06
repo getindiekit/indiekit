@@ -10,11 +10,6 @@
   }
 }
 
-.s-linear > * {
-  max-inline-size: var(--line-measure);
-  word-break: break-word;
-}
-
 .s-linear * + * {
   margin-block-start: var(--flow-space);
 }
@@ -78,4 +73,9 @@
   color: var(--color-neutral-lightest);
   font-size: 85%;
   line-height: var(--line-height-tight);
+}
+
+.s-linear > *:not([class]) {
+  max-inline-size: var(--line-measure);
+  word-break: break-word;
 }
