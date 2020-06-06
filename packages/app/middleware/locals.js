@@ -4,18 +4,15 @@ import {PublicationModel} from '../models/publication.js';
 import {GithubModel} from '../models/github.js';
 import {GitlabModel} from '../models/gitlab.js';
 import {addMediaEndpoint} from '../services/publication.js';
-
-const applicationModel = new ApplicationModel(client);
-const publicationModel = new PublicationModel(client);
-const githubModel = new GithubModel(client);
-const gitlabModel = new GitlabModel(client);
+import {getHost} from '../services/host.js';
 
 export const locals = async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
   const {session} = request;
 
   try {
-    // Application
+    // Application settings
+    const applicationModel = new ApplicationModel(client);
     const application = await applicationModel.getAll();
     application.url = url;
     application.navigation = [(session.token ? {
@@ -33,14 +30,24 @@ export const locals = async (request, response, next) => {
     } : {})];
     response.locals.application = application;
 
-    // Publication
+    // Publication settings
+    const publicationModel = new PublicationModel(client);
     const publication = await publicationModel.getAll();
     publication.config = addMediaEndpoint(publication, request);
     response.locals.publication = publication;
 
-    // Content hosts
+    // GitHub content host options
+    const githubModel = new GithubModel(client);
     response.locals.github = await githubModel.getAll();
+
+    // GitLab content host options
+    const gitlabModel = new GitlabModel(client);
     response.locals.gitlab = await gitlabModel.getAll();
+
+    // Content host
+    const {hostId} = publication;
+    const hostOptions = response.locals[hostId];
+    response.locals.host = await getHost(hostId, hostOptions);
   } catch (error) {
     return next(error);
   }

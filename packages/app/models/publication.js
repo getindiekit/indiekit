@@ -31,8 +31,8 @@ export class PublicationModel extends Model {
         config,
         customConfigUrl,
         defaultConfigType,
-        me: data.me || null,
-        hostId: data.hostId || null
+        hostId: data.hostId || 'github',
+        me: data.me || null
       };
 
       return publication;
