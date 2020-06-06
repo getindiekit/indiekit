@@ -1,10 +1,5 @@
 import test from 'ava';
-import {decodeQueryParameter, formEncodedToMf2} from '../../services/transform-request.js';
-
-test('Decodes form-encoded query parameter', t => {
-  const result = decodeQueryParameter('https%3A%2F%2Ffoo.bar');
-  t.is(result, 'https://foo.bar');
-});
+import {formEncodedToMf2} from '../../services/transform-request.js';
 
 test('Parses Microformats in form-encoded request', t => {
   const result = formEncodedToMf2({

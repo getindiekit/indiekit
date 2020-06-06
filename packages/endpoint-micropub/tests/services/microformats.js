@@ -20,9 +20,9 @@ test('Returns mf2 from URL', async t => {
     items: [{
       type: ['h-entry'],
       properties: {
-        name: ['I ate a cheese sandwich.'],
+        name: ['I ate a cheese sandwich, which was nice.'],
         published: ['2013-03-07'],
-        content: ['I ate a cheese sandwich.']
+        content: ['I ate a cheese sandwich, which was nice.']
       }
     }]
   });
@@ -53,9 +53,9 @@ test('Returns mf2 item with all properties', t => {
   t.deepEqual(result, {
     type: ['h-entry'],
     properties: {
-      name: ['I ate a cheese sandwich.'],
+      name: ['I ate a cheese sandwich, which was nice.'],
       published: ['2013-03-07'],
-      content: ['I ate a cheese sandwich.']
+      content: ['I ate a cheese sandwich, which was nice.']
     }
   });
 });
@@ -66,7 +66,7 @@ test('Returns mf2 item with multiple properties', t => {
   t.deepEqual(result, {
     type: ['h-entry'],
     properties: {
-      name: ['I ate a cheese sandwich.'],
+      name: ['I ate a cheese sandwich, which was nice.'],
       published: ['2013-03-07']
     }
   });
@@ -78,7 +78,7 @@ test('Returns mf2 item with single property', t => {
   t.deepEqual(result, {
     type: ['h-entry'],
     properties: {
-      name: ['I ate a cheese sandwich.']
+      name: ['I ate a cheese sandwich, which was nice.']
     }
   });
 });

@@ -1,0 +1,36 @@
+/**
+ * Decode form-encoded query parameter
+ *
+ * @param {string} string String to decode
+ * @returns {string} Decoded string
+ * @example decodeQueryParameter('foo+bar') => 'foo bar'
+ * @example decodeQueryParameter('https%3A%2F%2Ffoo.bar') => 'https://foo.bar'
+ */
+export const decodeQueryParameter = string => {
+  return decodeURIComponent(string.replace(/\+/g, ' '));
+};
+
+/**
+ * Excerpt first n words from a string
+ *
+ * @param {string} string String to excerpt
+ * @param {number} n Max number of words
+ * @returns {string} Excerpt
+ * @example excerpt('Foo bar baz', 2) => 'Foo bar'
+ */
+export const excerpt = (string, n) => {
+  if (typeof string === 'string') {
+    string = string.split(/\s+/).slice(0, n).join(' ');
+    return string;
+  }
+};
+
+/**
+ * Generate random alpha-numeric string, 5 characters long
+ *
+ * @returns {string} Alpha-numeric string
+ * @example random() => 'b3dog'
+ */
+export const random = () => {
+  return (Number(new Date())).toString(36).slice(-5);
+};

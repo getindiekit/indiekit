@@ -56,7 +56,7 @@ test('Returns mf2 for given source URL', async t => {
   t.deepEqual(response.body, {
     type: ['h-entry'],
     properties: {
-      name: ['I ate a cheese sandwich.']
+      name: ['I ate a cheese sandwich, which was nice.']
     }
   });
   scope.done();

@@ -1,3 +1,5 @@
+import {decodeQueryParameter} from './string.js';
+
 /**
  * Parse Microformats in form-encoded request.
  *
@@ -41,15 +43,3 @@ export const reservedProperties = Object.freeze([
   'action',
   'url'
 ]);
-
-/**
- * Decode form-encoded query parameter.
- *
- * @example decodeQueryParameter('foo+bar') => 'foo bar'
- * @example decodeQueryParameter('https%3A%2F%2Ffoo.bar') => 'https://foo.bar'
- * @param {string} string String to decode
- * @returns {string} Decoded string
- */
-export const decodeQueryParameter = string => {
-  return decodeURIComponent(string.replace(/\+/g, ' '));
-};
