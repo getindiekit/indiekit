@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {date} from '../../filters/date.js';
+import {date, markdown} from '../../../lib/nunjucks/filters.js';
 
 test('Formats a date', t => {
   t.is(date('2019-11-30', 'DDD'), '30 November 2019');
@@ -12,3 +12,9 @@ test('Formats the date right now', t => {
   t.is(result, now);
 });
 
+test('Renders Markdown string as HTML', t => {
+  const block = markdown('**bold**');
+  const inline = markdown('**bold**', 'inline');
+  t.is(block, '<p><strong>bold</strong></p>\n');
+  t.is(inline, '<strong>bold</strong>');
+});

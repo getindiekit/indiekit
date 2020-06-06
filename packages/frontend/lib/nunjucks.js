@@ -2,8 +2,8 @@ import nunjucks from 'nunjucks';
 import path from 'path';
 import languages from 'iso-639-1';
 import {__dirname} from '../index.js';
-import * as filters from '../filters/index.js';
-import * as globals from '../globals/index.js';
+import * as filters from './nunjucks/filters.js';
+import * as globals from './nunjucks/globals.js';
 
 /**
  * @param {Function} app Express

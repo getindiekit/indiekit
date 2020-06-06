@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {icon} from '../../globals/icon.js';
+import {icon} from '../../../lib/nunjucks/globals.js';
 
 test('Renders SVG icon', t => {
   const result = icon('note');

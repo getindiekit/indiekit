@@ -1,5 +1,5 @@
 /**
- * Render Markdown string as HTML
+ * Render SVG icon
  *
  * @param {string} name Icon name
  * @returns {string} HTML
