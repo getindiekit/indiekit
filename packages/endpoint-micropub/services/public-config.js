@@ -9,9 +9,9 @@ export const publicConfig = config => {
   const postTypes = config['post-types'];
 
   // Return only `type` and `key` for each configured post type
-  config['post-types'] = Object.keys(postTypes).map(key => ({
-    type: key,
-    name: postTypes[key].name
+  config['post-types'] = postTypes.map(postType => ({
+    type: postType.type,
+    name: postType.name
   }));
 
   return config;

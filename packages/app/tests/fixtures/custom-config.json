@@ -1,0 +1,46 @@
+{
+  "categories": {
+    "url": "https://website.example/categories.json"
+  },
+  "syndicate-to": [{
+    "uid": "https://twitter.com/username/",
+    "name": "@username on Twitter"
+  }, {
+    "uid": "https://mastodon.social/@username",
+    "name": "@username on Mastodon"
+  }, {
+    "uid": "https://micro.blog/username",
+    "name": "@username on Micro.blog"
+  }],
+  "post-types": [{
+    "type": "note",
+    "name": "Journal entry",
+    "template": "etc/templates/entry.njk",
+    "post": {
+      "path": "_entries/{{ published | date('X') }}.md",
+      "url": "entries/{{ published | date('X') }}"
+    }
+  }, {
+    "type": "photo",
+    "name": "Picture",
+    "icon": ":framed_picture:",
+    "template": "etc/templates/picture.njk",
+    "post": {
+      "path": "_pictures/{{ published | date('X') }}.md",
+      "url": "_pictures/{{ published | date('X') }}"
+    },
+    "media": {
+      "path": "src/media/pictures/{{ filedate | date('X') }}.{{ fileext }}",
+      "url": "media/pictures/{{ filedate | date('X') }}.{{ fileext }}"
+    }
+  }, {
+    "type": "reply",
+    "name": "Response",
+    "template": "etc/templates/response.njk",
+    "post": {
+      "path": "_responses/{{ published | date('X') }}.md",
+      "url": "responses/{{ published | date('X') }}"
+    }
+  }],
+  "slug-separator": "_"
+}
