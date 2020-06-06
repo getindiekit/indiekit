@@ -1,8 +1,8 @@
 import express from 'express';
-import * as documentation from '../controllers/documentation.js';
+import * as documentationController from '../controllers/documentation.js';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.get('/*', documentation.viewDocument);
+router.get('/*', documentationController.viewDocument);
 
 export const documentationRoutes = router;
