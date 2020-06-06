@@ -4,51 +4,89 @@ import {templates} from '../lib/nunjucks.js';
 import {deriveContent, derivePermalink, derivePublishedDate, deriveSlug} from '../services/properties.js';
 import {formEncodedToMf2} from '../services/transform-request.js';
 
-export const createPost = async (request, response, next) => {
-  const {config, me} = response.locals.publication;
-
+export const derivePostProperties = async (mf2, config) => {
   try {
-    const {body} = request;
-
-    // Get Microformats
-    const mf2 = request.is('json') ? body : formEncodedToMf2(body);
-
-    // Derive post type and post type config
-    const postType = derivePostType(mf2);
-    const postTypeConfig = config['post-types'].find(
-      type => type.type === postType
-    );
-
-    // Derive properties
     const {properties} = mf2;
     properties.content = deriveContent(mf2);
     // TODO: Use publication locale and timezone
     properties.published = derivePublishedDate(mf2);
     properties.slug = deriveSlug(mf2, config['slug-separator']);
 
-    // Detirmine host file path and permalink
-    const postPath = templates.renderString(postTypeConfig.post.path, properties);
-    let postUrl = templates.renderString(postTypeConfig.post.url, properties);
-    postUrl = derivePermalink(me, postUrl);
+    return properties;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
-    // Prepare content
-    // const templatePath = postTypeConfig.template;
-    // const content = await templates.render(templatePath, properties);
+export const createPostData = async (mf2, config, me) => {
+  try {
+    const type = derivePostType(mf2);
+    const typeConfig = config['post-types'].find(item => item.type === type);
+    const properties = derivePostProperties(mf2, config);
+    const path = templates.renderString(typeConfig.post.path, properties);
+    let url = templates.renderString(typeConfig.post.url, properties);
+    url = derivePermalink(me, postUrl);
 
-    // TODO: Record action in post store
     const postData = {
-      type: postType,
-      path: postPath,
-      url: postUrl,
+      type,
+      path,
+      url,
       mf2: {
         type: (postType === 'event') ? ['h-event'] : ['h-entry'],
         properties
       }
     };
 
-    // TODO: Post content to content host
-    return response.send(postData);
+    return postData;
   } catch (error) {
-    return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+    throw new Error(error.message);
+  }
+};
+
+export const createPostContent = (postData, postTypeConfig) => {
+  try {
+    // Derive properties
+    const {properties} = postData.mf2;
+
+    // Prepare content
+    const templatePath = postTypeConfig.template;
+    const postContent = templates.render(templatePath, properties);
+
+    return postContent;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const Post = class {
+  constructor(publisher) {
+    this.client = publisher;
+  }
+
+  async create(request, response) {
+    const {config, me} = response.locals.publication;
+
+    try {
+      const {body} = request;
+      const mf2 = request.is('json') ? body : formEncodedToMf2(body);
+      const postData = createPostData(mf2, config, me);
+      const typeConfig = config['post-types'].find(
+        item => item.type === postData.type
+      );
+      const content = createPostContent(postData, typeConfig);
+      const message = 'message';
+      const published = await publisher.createFile(postData.path, content, message);
+
+      if (published) {
+        return {
+          location: postData.url,
+          status: 202,
+          success: 'create_pending',
+          success_description: `Post will be created at ${postData.url}`
+        };
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 };

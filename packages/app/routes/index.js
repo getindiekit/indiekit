@@ -2,7 +2,7 @@ import express from 'express';
 import {assetsRoutes} from './assets.js';
 import {documentationRoutes} from './documentation.js';
 import {homepageRoutes} from './homepage.js';
-import {micropubRoutes} from '@indiekit/endpoint-micropub/routes/index.js';
+import {endpointRoutes} from './endpoints.js';
 import {sessionRoutes} from './session.js';
 import {settingsRoutes} from './settings.js';
 import {shareRoutes} from './share.js';
@@ -14,7 +14,7 @@ const router = express.Router(); // eslint-disable-line new-cap
 router.use('/', homepageRoutes);
 router.use('/assets', assetsRoutes);
 router.use('/docs', documentationRoutes);
-router.use('/micropub', micropubRoutes);
+router.use('/', endpointRoutes);
 router.use('/session', sessionRoutes);
 router.use('/settings', authenticate, settingsRoutes);
 router.use('/share', authenticate, shareRoutes);

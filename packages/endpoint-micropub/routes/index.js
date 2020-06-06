@@ -1,10 +1,9 @@
-import express from 'express';
 import query from '../controllers/query.js';
-import {createPost} from '../controllers/post.js';
+import {Post} from '../controllers/post.js';
 
-const router = express.Router(); // eslint-disable-line new-cap
+export const micropubRoutes = (router, publisher) => {
+  const post = new Post(publisher);
 
-router.get('/', query);
-router.post('/', createPost);
-
-export const micropubRoutes = router;
+  router.get('/', query);
+  router.post('/', post.create);
+};
