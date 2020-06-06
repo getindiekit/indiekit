@@ -1,5 +1,5 @@
 import validator from 'express-validator';
-import validateUrlService from '../services/validate-url.js';
+import {isValidUrl} from '../services/validation.js';
 
 const {check} = validator;
 
@@ -17,7 +17,7 @@ export const me = [
 export const publicationSettings = [
   check('customConfigUrl')
     .optional({checkFalsy: true})
-    .custom(async url => validateUrlService(url, 'json'))
+    .custom(async url => isValidUrl(url, 'json'))
 ];
 
 export const githubSettings = [

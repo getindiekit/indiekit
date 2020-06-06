@@ -1,7 +1,7 @@
 import test from 'ava';
-import errorListService from '../../services/error-list.js';
+import {errorList} from '../../services/error-list.js';
 
-test('Returns errors in a list can use in templates', t => {
+test('Transforms errors into format that can be used in templates', t => {
   const errors = {
     me: {
       value: 'foo',
@@ -10,7 +10,7 @@ test('Returns errors in a list can use in templates', t => {
       location: 'body'
     }
   };
-  const result = errorListService(errors);
+  const result = errorList(errors);
   t.is(result[0].href, '#custom-config-url');
   t.is(result[0].text, 'Enter a valid URL');
 });

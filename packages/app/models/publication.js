@@ -1,7 +1,5 @@
-import categoriesService from '../services/categories.js';
-import customConfigService from '../services/custom-config.js';
-import defaultConfigService from '../services/default-config.js';
-import mergeConfigsService from '../services/merge-configs.js';
+import {getCategories} from '../services/categories.js';
+import {getCustomConfig, getDefaultConfig, getConfig} from '../services/configuration.js';
 import Model from './model.js';
 
 export class PublicationModel extends Model {
@@ -16,17 +14,17 @@ export class PublicationModel extends Model {
 
       // Get custom config
       const customConfigUrl = data.customConfigUrl || false;
-      const customConfig = await customConfigService(this.client, customConfigUrl);
+      const customConfig = await getCustomConfig(this.client, customConfigUrl);
 
       // Get default config
       const defaultConfigType = data.defaultConfigType || 'jekyll';
-      const defaultConfig = await defaultConfigService(defaultConfigType);
+      const defaultConfig = await getDefaultConfig(defaultConfigType);
 
       // Combine config from custom and default values
-      const config = mergeConfigsService(customConfig, defaultConfig);
+      const config = getConfig(customConfig, defaultConfig);
 
       // Publication categories
-      config.categories = await categoriesService(this.client, customConfig.categories);
+      config.categories = await getCategories(this.client, customConfig.categories);
 
       // Publication settings
       const publication = {

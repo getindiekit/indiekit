@@ -1,18 +1,18 @@
-import CacheService from './cache.js';
+import {Cache} from './cache.js';
 
 /**
- * Fetch publication categories. If not a simple array, fetch remotely
- * hosted JSON file and cache for reuse
+ * Return array of available categories. If not a simple array,
+ * fetch array from remote JSON file specified in `url` value.
  *
  * @param {object} client Redis client
  * @param {object} pubCategories Publication category configuration
  * @returns {Promise|Array} Array of categories
  */
-export default async (client, pubCategories) => {
+export const getCategories = async (client, pubCategories) => {
   let categories = [];
 
   if (pubCategories && pubCategories.url) {
-    const cache = new CacheService(client);
+    const cache = new Cache(client);
     const cachedCategories = await cache.json('categories', pubCategories.url);
     categories = cachedCategories.data;
   } else if (pubCategories && pubCategories.constructor === Array) {

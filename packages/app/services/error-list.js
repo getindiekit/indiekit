@@ -1,11 +1,11 @@
 /**
- * Return errors from express-validator into format that can be used
- * in frontend templates.
+ * Transform errors provided by express-validator into format that can be
+ * used in templates.
  *
  * @param {object} errorMap Mapped error response from express-validator
  * @returns {Array} List of errors
  */
-export default function (errorMap) {
+export const errorList = function (errorMap) {
   const camelToSnakeCase = string =>
     string.replace(/[A-Z]/g, letter =>
       `-${letter.toLowerCase()}`);
@@ -21,4 +21,4 @@ export default function (errorMap) {
   });
 
   return errorList;
-}
+};

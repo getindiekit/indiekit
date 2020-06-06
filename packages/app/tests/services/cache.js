@@ -1,9 +1,9 @@
 import test from 'ava';
 import nock from 'nock';
 import {mockClient} from '../helpers/database.js';
-import CacheService from '../../services/cache.js';
+import {Cache} from '../../services/cache.js';
 
-const cache = new CacheService(mockClient);
+const cache = new Cache(mockClient);
 
 test.beforeEach(t => {
   t.context = {

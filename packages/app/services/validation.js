@@ -5,7 +5,7 @@ import got from 'got';
  * @param {string} responseType Type of file expected
  * @returns {Promise} Resolves if URL validates
  */
-export default async (url, responseType = 'text') => {
+export const isValidUrl = async (url, responseType = 'text') => {
   try {
     await got(url, {responseType});
   } catch (error) {

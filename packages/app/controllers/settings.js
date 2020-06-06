@@ -1,5 +1,5 @@
 import validator from 'express-validator';
-import errorList from '../services/error-list.js';
+import {errorList} from '../services/error-list.js';
 import {client} from '../config/database.js';
 import {ApplicationModel} from '../models/application.js';
 import {PublicationModel} from '../models/publication.js';

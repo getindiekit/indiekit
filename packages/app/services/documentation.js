@@ -7,7 +7,7 @@ import {__dirname} from '../index.js';
  * @param {string} extension File extension
  * @returns {string} Path to file on disk
  */
-export default (urlpath, extension = 'md') => {
+export const documentPath = (urlpath, extension = 'md') => {
   extension = extension.replace('.', '');
 
   // Get equivalent file path
@@ -16,9 +16,9 @@ export default (urlpath, extension = 'md') => {
   // File with extension if exists, else folder index
   // - path/to/file/index.md
   // - path/to/file.md
-  const document = fs.existsSync(filepath) ?
+  const documentPath = fs.existsSync(filepath) ?
     path.join(filepath, `index.${extension}`) :
     `${filepath}.${extension}`;
 
-  return document;
+  return documentPath;
 };

@@ -1,6 +1,6 @@
 import got from 'got';
 
-export default class {
+export const Cache = class {
   /** Fetch data from Redis store
    *
    * @param {object} client Redis client
@@ -34,4 +34,4 @@ export default class {
       data: fetchedData
     };
   }
-}
+};

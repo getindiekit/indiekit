@@ -5,7 +5,7 @@
  * @param {object} request HTTP request
  * @returns {object} Configuration object
  */
-export default (publication, request) => {
+export const addMediaEndpoint = (publication, request) => {
   const {config} = publication;
 
   // Query media endpoint
