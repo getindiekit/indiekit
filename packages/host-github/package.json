@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "@indiekit/host-github",
+  "version": "0.1.0",
+  "description": "Publish to the IndieWeb via GitHub",
+  "keywords": [
+    "indiekit",
+    "indieweb",
+    "micropub",
+    "github"
+  ],
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/paulrobertlloyd/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulrobertlloyd/indiekit.git",
+    "directory": "packages/host-github"
+  },
+  "scripts": {
+    "test": "echo \"Run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@octokit/rest": "^17.10.0"
+  }
+}

@@ -118,6 +118,7 @@
             "./packages/config-jekyll",
             "./packages/endpoint-micropub",
             "./packages/frontend",
+            "./packages/host-github",
             "./packages/templates-yaml"
           ]
         }
