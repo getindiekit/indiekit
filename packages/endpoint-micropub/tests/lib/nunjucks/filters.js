@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {date} from '../../lib/filters.js';
+import {date} from '../../../lib/nunjucks/filters.js';
 
 test('Formats a date', t => {
   t.is(date('2019-11-30', 'DDD'), '30 November 2019');

@@ -1,5 +1,5 @@
 import nunjucks from 'nunjucks';
-import * as filters from './filters.js';
+import * as filters from './nunjucks/filters.js';
 
 /**
  * @returns {object} Nunjucks environment
