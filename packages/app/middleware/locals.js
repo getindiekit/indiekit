@@ -5,6 +5,7 @@ import {GithubModel} from '../models/github.js';
 import {GitlabModel} from '../models/gitlab.js';
 import {addMediaEndpoint} from '../services/publication.js';
 import {getHost} from '../services/host.js';
+import {getNavigation} from '../services/navigation.js';
 
 export const locals = async (request, response, next) => {
   const url = `${request.protocol}://${request.headers.host}`;
@@ -15,19 +16,7 @@ export const locals = async (request, response, next) => {
     const applicationModel = new ApplicationModel(client);
     const application = await applicationModel.getAll();
     application.url = url;
-    application.navigation = [(session.token ? {
-      href: '/settings',
-      text: 'Settings'
-    } : {}), {
-      href: `/docs/${application.locale}`,
-      text: 'Docs'
-    }, (session.token ? {} : {
-      href: '/session/login',
-      text: 'Sign in'
-    }), (session.token ? {
-      href: '/session/logout',
-      text: 'Sign out'
-    } : {})];
+    application.navigation = getNavigation(application.locale, session.token);
     response.locals.application = application;
 
     // Publication settings
