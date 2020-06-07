@@ -3,8 +3,8 @@ import {ApplicationModel} from '../models/application.js';
 import {PublicationModel} from '../models/publication.js';
 import {GithubModel} from '../models/github.js';
 import {GitlabModel} from '../models/gitlab.js';
-import {addMediaEndpoint} from '../services/publication.js';
 import {getHost} from '../services/host.js';
+import {getMediaEndpoint} from '../services/publication.js';
 import {getNavigation} from '../services/navigation.js';
 
 export const locals = async (request, response, next) => {
@@ -22,7 +22,7 @@ export const locals = async (request, response, next) => {
     // Publication settings
     const publicationModel = new PublicationModel(client);
     const publication = await publicationModel.getAll();
-    publication.config = addMediaEndpoint(publication, request);
+    publication.config = getMediaEndpoint(publication, request);
     response.locals.publication = publication;
 
     // GitHub content host options
