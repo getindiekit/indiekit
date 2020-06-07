@@ -52,11 +52,11 @@ Configuration is provided via a JSON file. You can let {{ application.name }} kn
 * {{ icon('photo') }} [Photo](https://indieweb.org/photo)
 * {{ icon('audio') }} [Audio](https://indieweb.org/audio)
 * {{ icon('video') }} [Video](https://indieweb.org/video)
-* {{ icon('reply') }} [Reply](https://indieweb.org/reply) (with optional [RSVP](https://indieweb.org/rsvp))
-* {{ icon('like') }} [Like](https://indieweb.org/like)
-* {{ icon('repost') }} [Repost](https://indieweb.org/repost)
 * {{ icon('checkin') }} [Checkin](https://indieweb.org/checkin)
 * {{ icon('event') }} [Event](https://indieweb.org/event)
+* {{ icon('like') }} [Like](https://indieweb.org/like)
+* {{ icon('repost') }} [Repost](https://indieweb.org/repost)
+* {{ icon('reply') }} [Reply](https://indieweb.org/reply) (with optional [RSVP](https://indieweb.org/rsvp))
 
 These defaults can be ammended, and new types can be added. For example, to override the `note` and `photo` post types, you would provide the following:
 
