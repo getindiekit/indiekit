@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {date, markdown} from '../../../lib/nunjucks/filters.js';
+import {date, errorList, markdown} from '../../../lib/nunjucks/filters.js';
 
 test('Formats a date', t => {
   t.is(date('2019-11-30', 'DDD'), '30 November 2019');
@@ -10,6 +10,20 @@ test('Formats the date right now', t => {
   const now = Math.round(new Date().getTime() / 1000000);
   const result = Math.round(date('now', 'X') / 1000);
   t.is(result, now);
+});
+
+test('Transforms errors provided by express-validator', t => {
+  const errors = {
+    me: {
+      value: 'foo',
+      msg: 'Enter a valid URL',
+      param: 'customConfigUrl',
+      location: 'body'
+    }
+  };
+  const result = errorList(errors);
+  t.is(result[0].href, '#custom-config-url');
+  t.is(result[0].text, 'Enter a valid URL');
 });
 
 test('Renders Markdown string as HTML', t => {

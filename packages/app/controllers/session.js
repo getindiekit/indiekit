@@ -4,7 +4,6 @@ import normalizeUrl from 'normalize-url';
 import validator from 'express-validator';
 import {client} from '../config/database.js';
 import {secret} from '../config/session.js';
-import {errorList} from '../services/error-list.js';
 import {PublicationModel} from '../models/publication.js';
 
 const auth = new IndieAuth({secret});
@@ -38,8 +37,7 @@ export const authenticate = async (request, response) => {
   if (!errors.isEmpty()) {
     return response.status(422).render('session/login', {
       title: 'Sign in',
-      errors: errors.mapped(),
-      errorList: errorList(errors.mapped())
+      errors: errors.mapped()
     });
   }
 

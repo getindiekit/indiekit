@@ -26,6 +26,7 @@ export const templates = app => {
   parser.addFilter('darken', filters.darken);
   parser.addFilter('lighten', filters.lighten);
   parser.addFilter('date', filters.date);
+  parser.addFilter('errorList', filters.errorList);
   parser.addFilter('language', string => languages.getNativeName(string));
   parser.addFilter('markdown', filters.markdown);
   parser.addGlobal('icon', nunjucks.runtime.markSafe(globals.icon));

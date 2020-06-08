@@ -1,5 +1,4 @@
 import validator from 'express-validator';
-import {errorList} from '../services/error-list.js';
 import {client} from '../config/database.js';
 import {ApplicationModel} from '../models/application.js';
 import {PublicationModel} from '../models/publication.js';
@@ -51,8 +50,7 @@ export const savePublication = async (request, response) => {
     return response.status(422).render('settings/publication', {
       parent: 'Settings',
       title: 'Publication',
-      errors: errors.mapped(),
-      errorList: errorList(errors.mapped())
+      errors: errors.mapped()
     });
   }
 
@@ -77,8 +75,7 @@ export const saveGithub = async (request, response) => {
     return response.status(422).render('settings/github', {
       parent: 'Settings',
       title: 'github',
-      errors: errors.mapped(),
-      errorList: errorList(errors.mapped())
+      errors: errors.mapped()
     });
   }
 
@@ -92,8 +89,7 @@ export const saveGitlab = async (request, response) => {
     return response.status(422).render('settings/gitlab', {
       parent: 'Settings',
       title: 'gitlab',
-      errors: errors.mapped(),
-      errorList: errorList(errors.mapped())
+      errors: errors.mapped()
     });
   }
 

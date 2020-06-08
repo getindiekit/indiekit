@@ -11,8 +11,8 @@
           title: {
             text: "There is a problem"
           },
-          errorList: errorList
-        }) | indent(8) if errorList }}
+          errorList: errors | errorList
+        }) | indent(8) if errors }}
         {% call fieldset({
           legend: {
             classes: "visually-hidden" if minimalui,
