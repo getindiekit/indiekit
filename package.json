@@ -34,13 +34,13 @@
     "coverage": "c8 ava"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1 ",
     "ava": "^3.8.2",
     "c8": "^7.1.2",
     "dotenv": "^8.1.0",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsdoc": "^26.0.0",
+    "eslint-plugin-jsdoc": "^28.0.0",
     "husky": "^4.2.5",
     "ioredis": "^4.17.3",
     "ioredis-mock": "^4.21.0",
@@ -54,7 +54,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
     "supertest": "^4.0.2",
-    "xo": "^0.30.0"
+    "xo": "^0.32.0"
   },
   "ava": {
     "environmentVariables": {

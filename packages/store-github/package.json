@@ -31,6 +31,6 @@
     "test": "echo \"Run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@octokit/rest": "^17.10.0"
+    "@octokit/rest": "^18.0.0"
   }
 }

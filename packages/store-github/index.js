@@ -25,7 +25,7 @@ export const Store = class {
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
-    const response = await this.github.repos.createOrUpdateFile({
+    const response = await this.github.repos.createOrUpdateFileContents({
       owner: this.options.user,
       repo: this.options.repo,
       branch: this.options.branch,
@@ -48,7 +48,7 @@ export const Store = class {
    * @see https://developer.github.com/v3/repos/contents/#delete-a-file
    */
   async deleteFile(path, message) {
-    const contents = await this.github.repos.getContents({
+    const contents = await this.github.repos.getContent({
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
@@ -79,7 +79,7 @@ export const Store = class {
    * @see https://developer.github.com/v3/repos/contents/#get-contents
    */
   async readFile(path) {
-    const response = await this.github.repos.getContents({
+    const response = await this.github.repos.getContent({
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
@@ -101,7 +101,7 @@ export const Store = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async updateFile(path, content, message) {
-    const contents = await this.github.repos.getContents({
+    const contents = await this.github.repos.getContent({
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
@@ -111,7 +111,7 @@ export const Store = class {
     });
 
     content = Buffer.from(content).toString('base64');
-    const response = await this.github.repos.createOrUpdateFile({
+    const response = await this.github.repos.createOrUpdateFileContents({
       owner: this.options.user,
       repo: this.options.repo,
       branch: this.options.branch,
