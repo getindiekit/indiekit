@@ -114,11 +114,11 @@
           "devDependencies": true,
           "packageDir": [
             "./",
-            "./packages/app",
             "./packages/config-jekyll",
             "./packages/endpoint-micropub",
             "./packages/frontend",
             "./packages/host-github",
+            "./packages/indiekit",
             "./packages/templates-yaml"
           ]
         }

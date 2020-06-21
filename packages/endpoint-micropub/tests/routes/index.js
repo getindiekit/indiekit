@@ -2,7 +2,7 @@ import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
 
-import {app} from '../../../app/index.js';
+import {app} from '../../../indiekit/index.js';
 import fixture from '../helpers/fixture.js';
 
 const mockResponse = async query => {
