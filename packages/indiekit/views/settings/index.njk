@@ -74,10 +74,10 @@
       }
     }, {
       key: {
-        text: "Content host"
+        text: "Content store"
       },
       value: {
-        text: publication.hostId or "Not set"
+        text: publication.storeId or "Not set"
       }
     }, {
       key: {
@@ -138,7 +138,7 @@
         text: "<code>" + github.token + "</code>" or "Not set"
       }
     }]
-  }) if publication.hostId == "github" }}
+  }) if publication.storeId == "github" }}
 
   {{ summary({
     title: "GitLab",
@@ -182,5 +182,5 @@
         text: "<code>" + gitlab.token + "</code>" or "Not set"
       }
     }]
-  }) if publication.hostId == "gitlab" }}
+  }) if publication.storeId == "gitlab" }}
 {% endblock %}

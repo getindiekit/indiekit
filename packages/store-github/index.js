@@ -6,7 +6,7 @@ const {Octokit} = octokit;
  * @property {object} response HTTP response
  */
 
-export const Host = class {
+export const Store = class {
   constructor(options) {
     this.options = options;
     this.github = new Octokit({

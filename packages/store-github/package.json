@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@indiekit/host-github",
+  "name": "@indiekit/store-github",
   "version": "0.1.0",
-  "description": "Publish to the IndieWeb via GitHub",
+  "description": "Store IndieWeb content on GitHub",
   "keywords": [
     "indiekit",
     "indieweb",
@@ -25,7 +25,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
-    "directory": "packages/host-github"
+    "directory": "packages/store-github"
   },
   "scripts": {
     "test": "echo \"Run tests from root\" && exit 1"

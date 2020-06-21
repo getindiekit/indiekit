@@ -33,7 +33,7 @@
     "@indiekit/config-jekyll": "0.1.0",
     "@indiekit/endpoint-micropub": "0.1.0",
     "@indiekit/frontend": "0.1.0",
-    "@indiekit/host-github": "0.1.0",
+    "@indiekit/store-github": "0.1.0",
     "connect-redis": "^4.0.4",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

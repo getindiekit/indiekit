@@ -23,7 +23,7 @@ export const locals = async (request, response, next) => {
     publication.config = getMediaEndpoint(publication, request);
     response.locals.publication = publication;
 
-    // Content host settings
+    // Content store settings
     response.locals.github = github;
     response.locals.gitlab = gitlab;
   } catch (error) {

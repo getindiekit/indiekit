@@ -1,17 +1,17 @@
-# @indiekit/host-github
+# @indiekit/store-github
 
-*Publish to the IndieWeb via GitHub*
+Store IndieWeb content on GitHub.
 
 ## Installation
 
-`npm i @indiekit/host-github`
+`npm i @indiekit/store-github`
 
 ## Configuration
 
 ```js
-const Host = require('@indiekit/host-github');
+const Store = require('@indiekit/store-github');
 
-const github = new Host({
+const github = new Store({
   // config options here
 });
 ```

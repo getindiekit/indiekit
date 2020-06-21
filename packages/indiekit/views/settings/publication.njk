@@ -18,28 +18,28 @@
   }) | indent(2) }}
 
   {{ select({
-    id: "host-id",
-    name: "hostId",
+    id: "store-id",
+    name: "storeId",
     classes: "input--width-20",
     label: {
-      text: "Content host"
+      text: "Content store"
     },
     hint: {
-      text: "The place where your content is hosted"
+      text: "The place where your content is stored"
     },
     items: [{
       value: "github",
       text: "GitHub",
-      selected: publication.hostId == "github"
+      selected: publication.storeId == "github"
     }, {
       value: "gitlab",
       text: "GitLab",
-      selected: publication.hostId == "gitlab"
+      selected: publication.storeId == "gitlab"
     }],
     errorMessage: {
-      text: errors.hostId.msg,
+      text: errors.storeId.msg,
       label: "Error"
-    } if errors.hostId
+    } if errors.storeId
   }) | indent(2) }}
 
   {{ select({

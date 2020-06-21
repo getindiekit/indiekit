@@ -58,13 +58,13 @@ export const savePublication = async (request, response) => {
   response.redirect(request.query.referrer || '/settings');
 };
 
-// Content host settings (GitHub/GitLab)
-export const editHost = (request, response) => {
-  const {hostId} = request.params;
+// Content store settings (GitHub/GitLab)
+export const editStore = (request, response) => {
+  const {storeId} = request.params;
 
-  response.render(`settings/${hostId}`, {
+  response.render(`settings/${storeId}`, {
     parent: 'Settings',
-    title: hostId,
+    title: storeId,
     referrer: request.query.referrer
   });
 };

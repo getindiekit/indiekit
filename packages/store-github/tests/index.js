@@ -1,8 +1,8 @@
 import test from 'ava';
 import nock from 'nock';
 
-import {Host} from '../index.js';
-const github = new Host({
+import {Store} from '../index.js';
+const github = new Store({
   token: 'abc123',
   user: 'user',
   repo: 'repo'

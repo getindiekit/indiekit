@@ -117,8 +117,8 @@
             "./packages/config-jekyll",
             "./packages/endpoint-micropub",
             "./packages/frontend",
-            "./packages/host-github",
             "./packages/indiekit",
+            "./packages/store-github",
             "./packages/templates-yaml"
           ]
         }

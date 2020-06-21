@@ -15,13 +15,13 @@ router.post('/application', settingsController.saveApplication);
 router.get('/publication', settingsController.editPublication);
 router.post('/publication', validate.publicationSettings, settingsController.savePublication);
 
-// Content host settings
-router.get('/:hostId(github|gitlab)', settingsController.editHost);
+// Content store settings
+router.get('/:storeId(github|gitlab)', settingsController.editStore);
 
-// Content host settings: GitHub
+// Content store settings: GitHub
 router.post('/github', validate.githubSettings, settingsController.saveGithub);
 
-// Content host settings: GitLab
+// Content store settings: GitLab
 router.post('/gitlab', validate.gitlabSettings, settingsController.saveGitlab);
 
 export const settingsRoutes = router;
