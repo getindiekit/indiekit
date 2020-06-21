@@ -1,7 +1,6 @@
 import test from 'ava';
-import * as sessionController from '../../controllers/session.js';
-
 import mockReqRes from 'mock-req-res';
+import * as sessionController from '../../controllers/session.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

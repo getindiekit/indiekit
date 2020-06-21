@@ -30,10 +30,5 @@
   align-items: center;
   display: inline-flex;
   font-weight: 800;
-}
-
-.header__description {
-  color: var(--color-neutral-dark);
   margin-inline-end: auto;
-  margin-inline-start: var(--space-inline);
 }

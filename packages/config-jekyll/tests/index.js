@@ -1,9 +1,10 @@
 import test from 'ava';
 
-import config from '../index.js';
+import {JekyllConfig} from '../index.js';
 
-test('Returns post type template path', t => {
-  const result = config['post-types'][0].template;
+test('Returns YAML post type template path', t => {
+  const jekyllConfig = new JekyllConfig();
+  const result = jekyllConfig.config['post-types'][0].template;
 
   t.regex(result, /\btemplates-yaml\/templates\/article.njk\b/);
 });

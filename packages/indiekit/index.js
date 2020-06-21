@@ -1,40 +1,62 @@
-import express from 'express';
-import {fileURLToPath} from 'url';
+import _ from 'lodash';
 import path from 'path';
-import {templates} from '@indiekit/frontend';
-import {session} from './config/session.js';
-import * as error from './middleware/error.js';
-import {locals} from './middleware/locals.js';
-import {routes} from './routes/index.js';
+import {fileURLToPath} from 'url';
+import {databaseConfig} from './config/database.js';
+import {defaultConfig} from './config/defaults.js';
+import {serverConfig} from './config/server.js';
+import {getConfig, getConfigPreset, getStore, getCategories} from './services/publication.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const app = express();
 
-// Correctly report secure connections
-app.enable('trust proxy');
+export const Indiekit = class {
+  constructor(config) {
+    this._config = config || defaultConfig;
+  }
 
-// Session
-app.use(session);
+  get application() {
+    return this._config.application;
+  }
 
-// Parse application/json
-app.use(express.json());
+  get publication() {
+    return this._config.publication;
+  }
 
-// Parse application/x-www-form-urlencoded
-app.use(express.urlencoded({
-  extended: true
-}));
+  set(key, value) {
+    _.set(this._config, key, value);
+  }
 
-// Static assets
-app.use('/assets', express.static(path.join(__dirname, '/node_modules/@indiekit/frontend/assets')));
+  addConfig(host) {
+    this.application.configs.push(host);
+  }
 
-// Views
-app.set('views', path.join(`${__dirname}`, 'views'));
-app.engine('njk', templates(app).render);
-app.set('view engine', 'njk');
-app.use(locals);
+  addEndpoint(host) {
+    this.application.endpoints.push(host);
+  }
 
-// Routes
-app.use(routes);
+  addStore(store) {
+    this.application.stores.push(store);
+  }
 
-// Handle errors
-app.use(error.notFound, error.internalServer);
+  async init() {
+    const {configs, stores} = this.application;
+    const {config, configPresetId, storeId} = this.publication;
+    const categories = await getCategories(databaseConfig.client, config.categories);
+    const preset = getConfigPreset(configs, configPresetId);
+
+    this.publication.preset = preset;
+    this.publication.config = getConfig(config, preset.config);
+    this.publication.config.categories = categories;
+    this.publication.store = getStore(stores, storeId);
+    return this;
+  }
+
+  server(options = {}) {
+    this.init();
+    const server = serverConfig(this._config);
+    const port = options.port || this._config.server.port;
+
+    return server.listen(port, () => {
+      console.log(`Starting ${this.application.name} (v${this.application.version}) on port ${port}`);
+    });
+  }
+};

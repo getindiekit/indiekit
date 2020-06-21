@@ -1,34 +1,29 @@
-import {settings} from '../config/settings.js';
-import {getMediaEndpoint} from '../services/publication.js';
 import {getNavigation} from '../services/navigation.js';
+import {getMediaEndpoint} from '../services/publication.js';
 
 /**
- * Expose settings to frontend templates
+ * Expose Indiekit config to frontend templates
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP request
- * @param {Function} next Next middleware
+ * @param {object} indiekitConfig IndieKit config
  * @returns {Function} Next middleware
  */
-export const locals = async (request, response, next) => {
-  try {
-    const {application, publication, github, gitlab} = await settings();
+export const locals = indiekitConfig => {
+  return async function (request, response, next) {
+    try {
+      const {application, publication} = indiekitConfig;
 
-    // Application settings
-    application.url = `${request.protocol}://${request.headers.host}`;
-    application.navigation = getNavigation(application.locale, request.session.token);
-    response.locals.application = application;
+      // Application
+      application.url = `${request.protocol}://${request.headers.host}`;
+      application.navigation = getNavigation(application.locale, request.session.token);
+      response.locals.application = application;
 
-    // Publication settings
-    publication.config = getMediaEndpoint(publication, request);
-    response.locals.publication = publication;
+      // Publication
+      publication.config = getMediaEndpoint(publication, request);
+      response.locals.publication = publication;
+    } catch (error) {
+      return next(error);
+    }
 
-    // Content store settings
-    response.locals.github = github;
-    response.locals.gitlab = gitlab;
-  } catch (error) {
-    return next(error);
-  }
-
-  next();
+    next();
+  };
 };

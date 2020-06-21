@@ -49,18 +49,14 @@ export const derivePermalink = (url, pathname) => {
  * @returns {Array} Array containing ISO formatted date
  */
 export const derivePublishedDate = (mf2, locale = 'en-GB', zone = 'utc') => {
-  let {published} = mf2.properties;
-  const now = DateTime.local().toISO();
+  const now = new Array(DateTime.local().toISO());
+  const published = mf2.properties.published || now;
+  const date = DateTime.fromISO(published[0], {
+    locale,
+    zone
+  }).toISO();
 
-  if (published) {
-    published = DateTime.fromISO(published[0], {
-      locale,
-      zone
-    }).toISO();
-    return new Array(published);
-  }
-
-  return new Array(now);
+  return new Array(date);
 };
 
 /**

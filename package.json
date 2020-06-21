@@ -24,8 +24,8 @@
   "type": "module",
   "scripts": {
     "bootstrap": "lerna bootstrap --no-ci",
-    "dev": "nodemon server",
-    "start": "node server",
+    "dev": "nodemon indiekit.config.js",
+    "start": "node indiekit.config.js",
     "lint:markdown": "markdownlint '**/*.md'",
     "lint:scripts": "xo '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",

@@ -2,7 +2,7 @@ import got from 'got';
 import parser from 'microformats-parser';
 
 /**
- * Returns microformats of a given URL.
+ * Return microformats of a given URL
  *
  * @param {string} url URL path to post
  * @returns {Promise|object} Microformats2 object

@@ -38,7 +38,6 @@
     {{ header({
       url: application.url,
       name: application.name,
-      description: application.description,
       navigation: application.navigation
     }) | indent(4) if not minimalui }}
   {%- endblock %}

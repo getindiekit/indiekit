@@ -1,10 +1,9 @@
+import fs from 'fs';
 import derivePostType from 'post-type-discovery';
-import httpError from 'http-errors';
-import {templates} from '../lib/nunjucks.js';
+import {templates} from './nunjucks.js';
 import {deriveContent, derivePermalink, derivePublishedDate, deriveSlug} from '../services/properties.js';
-import {formEncodedToMf2} from '../services/transform-request.js';
 
-export const derivePostProperties = async (mf2, config) => {
+export const derivePostProperties = (mf2, config) => {
   try {
     const {properties} = mf2;
     properties.content = deriveContent(mf2);
@@ -18,21 +17,21 @@ export const derivePostProperties = async (mf2, config) => {
   }
 };
 
-export const createPostData = async (mf2, config, me) => {
+export const createPostData = (mf2, config, me) => {
   try {
     const type = derivePostType(mf2);
     const typeConfig = config['post-types'].find(item => item.type === type);
     const properties = derivePostProperties(mf2, config);
     const path = templates.renderString(typeConfig.post.path, properties);
     let url = templates.renderString(typeConfig.post.url, properties);
-    url = derivePermalink(me, postUrl);
+    url = derivePermalink(me, url);
 
     const postData = {
       type,
       path,
       url,
       mf2: {
-        type: (postType === 'event') ? ['h-event'] : ['h-entry'],
+        type: (type === 'event') ? ['h-event'] : ['h-entry'],
         properties
       }
     };
@@ -50,7 +49,8 @@ export const createPostContent = (postData, postTypeConfig) => {
 
     // Prepare content
     const templatePath = postTypeConfig.template;
-    const postContent = templates.render(templatePath, properties);
+    const template = fs.readFileSync(templatePath, 'utf-8');
+    const postContent = templates.renderString(template, properties);
 
     return postContent;
   } catch (error) {
@@ -59,23 +59,24 @@ export const createPostContent = (postData, postTypeConfig) => {
 };
 
 export const Post = class {
-  constructor(publisher) {
-    this.client = publisher;
+  constructor(publication) {
+    this.config = publication.config;
+    this.me = publication.me;
+    this.store = publication.store;
   }
 
-  async create(request, response) {
-    const {config, me} = response.locals.publication;
+  async create(mf2) {
+    const {config, me} = this;
 
     try {
-      const {body} = request;
-      const mf2 = request.is('json') ? body : formEncodedToMf2(body);
-      const postData = createPostData(mf2, config, me);
+      const postData = await createPostData(mf2, config, me);
+
       const typeConfig = config['post-types'].find(
         item => item.type === postData.type
       );
       const content = createPostContent(postData, typeConfig);
       const message = 'message';
-      const published = await publisher.createFile(postData.path, content, message);
+      const published = await this.store.createFile(postData.path, content, message);
 
       if (published) {
         return {

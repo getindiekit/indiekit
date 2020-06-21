@@ -1,17 +1,14 @@
 export const getNavigation = (locale, token) => {
-  const navigation = [(token ? {
-    href: '/settings',
-    text: 'Settings'
-  } : {}), {
+  const navigation = [{
     href: `/docs/${locale}`,
     text: 'Docs'
-  }, (token ? {} : {
-    href: '/session/login',
-    text: 'Sign in'
-  }), (token ? {
+  }, (token ? {
     href: '/session/logout',
     text: 'Sign out'
-  } : {})];
+  } : {
+    href: '/session/login',
+    text: 'Sign in'
+  })];
 
   return navigation;
 };

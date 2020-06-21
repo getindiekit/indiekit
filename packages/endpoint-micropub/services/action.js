@@ -6,7 +6,7 @@
  * @param {string} url URL of the object being acted on
  * @returns {string} Micropub action
  */
-export default (scope, action, url) => {
+export const deriveAction = (scope, action, url) => {
   if (url) {
     if (!action) {
       throw new Error(`Need an action to perform on ${url}`);

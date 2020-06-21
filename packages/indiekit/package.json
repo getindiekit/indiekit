@@ -2,7 +2,6 @@
   "private": true,
   "name": "@indiekit/indiekit",
   "version": "0.1.0",
-  "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
     "indieweb",
@@ -33,7 +32,6 @@
     "@indiekit/config-jekyll": "0.1.0",
     "@indiekit/endpoint-micropub": "0.1.0",
     "@indiekit/frontend": "0.1.0",
-    "@indiekit/store-github": "0.1.0",
     "connect-redis": "^4.0.4",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
@@ -42,6 +40,7 @@
     "http-errors": "^1.7.3",
     "indieauth-helper": "^1.0.2",
     "ioredis": "^4.17.0",
+    "lodash": "^4.17.15",
     "normalize-url": "^5.0.0"
   }
 }

@@ -1,8 +1,9 @@
 import test from 'ava';
 import supertest from 'supertest';
+import {defaultConfig} from '../../config/defaults.js';
+import {serverConfig} from '../../config/server.js';
 
-import {app} from '../../index.js';
-const request = supertest(app);
+const request = supertest(serverConfig(defaultConfig));
 
 test('Returns login page', async t => {
   const response = await request.get('/session/login');

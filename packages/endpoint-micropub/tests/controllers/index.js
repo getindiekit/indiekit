@@ -1,12 +1,12 @@
 import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
-
-import {app} from '../../../indiekit/index.js';
-import fixture from '../helpers/fixture.js';
+import {defaultConfig} from '../../../indiekit/config/defaults.js';
+import {serverConfig} from '../../../indiekit/config/server.js';
+import {getFixture} from '../helpers/fixture.js';
 
 const mockResponse = async query => {
-  const request = supertest(app);
+  const request = supertest(serverConfig(defaultConfig));
   return request.get('/micropub')
     .set('Accept', 'application/json')
     .query(query);
@@ -51,7 +51,7 @@ test('Returns list of previously published posts', async t => {
 test('Returns mf2 for given source URL', async t => {
   const scope = nock('https://website.example')
     .get('/post.html')
-    .reply(200, fixture('post.html'));
+    .reply(200, getFixture('post.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
   t.deepEqual(response.body, {
     type: ['h-entry'],
@@ -65,7 +65,7 @@ test('Returns mf2 for given source URL', async t => {
 test('Returns 400 if source URL doesn’t contain microformats', async t => {
   const scope = nock('https://website.example')
     .get('/page.html')
-    .reply(200, fixture('page.html'));
+    .reply(200, getFixture('page.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/page.html');
   t.is(response.status, 400);
   t.regex(response.error.text, /\bSource has no items\b/);

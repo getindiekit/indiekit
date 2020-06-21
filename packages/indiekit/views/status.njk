@@ -1,0 +1,156 @@
+{% extends "document.njk" %}
+
+{%- set storesHtml %}{% for store in application.stores -%}
+  {{ store.name }}
+{%- endfor %}{% endset -%}
+
+{%- set configsHtml %}{% for config in application.configs -%}
+  {{ config.name }}
+{%- endfor %}{% endset -%}
+
+{%- set postTypesHtml %}{% for config in publication.config["post-types"] -%}
+  <a href="https://indieweb.org/{{ config.type }}">{{ icon(config.type) }} {{ config.name }}</a>{{ '' if loop.last else ', ' }}
+{%- endfor %}{% endset -%}
+
+{%- set syndicateToHtml %}{% for target in publication.config["syndicate-to"] -%}
+  <a href="{{ target.uid }}">{{ target.name }}</a>{{ '' if loop.last else ', ' }}
+{%- endfor %}{% endset -%}
+
+{% block content %}
+  {{ summary({
+    title: "Application",
+    rows: [{
+      key: {
+        text: "Name"
+      },
+      value: {
+        text: application.name or "Not set"
+      }
+    }, {
+      key: {
+        text: "Language"
+      },
+      value: {
+        text: application.locale | language or "Not set"
+      }
+    }, {
+      key: {
+        text: "Theme colour"
+      },
+      value: {
+        text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
+      }
+    }, {
+      key: {
+        text: "Content stores"
+      },
+      value: {
+        text: storesHtml | indent(2)
+      }
+    } if application.stores.length > 0, {
+      key: {
+        text: "Config presets"
+      },
+      value: {
+        text: configsHtml | indent(2)
+      }
+    } if application.configs.length > 0]
+  }) }}
+
+{%- set bookmarklet -%}
+  {%- set bookmarkletFunction -%}
+    (function() {
+      var title = document.getElementsByTagName('title')[0].innerHTML;
+      name = encodeURIComponent(title);
+
+      var selection = '';
+      if (window.getSelection) {
+        selection = window.getSelection().toString();
+      } else if (document.selection && document.selection.type != 'Control') {
+        selection = document.selection.createRange().text;
+      }
+      content = encodeURIComponent(selection);
+
+      new_window=window.open(
+        '{{ application.url }}/share/bookmarklet?name='+name+'&content='+content+'&url='+encodeURIComponent(document.location.href),
+        'Sharer',
+        'resizable,scrollbars,status=0,toolbar=0,menubar=0,titlebar=0,width=560,height=720,location=0'
+      );
+    })();
+  {%- endset -%}
+  {%- set bookmarkletHref = "javascript:" + bookmarkletFunction | replace("  ", "") | replace("\n", "") | replace("&", "&amp;") | trim -%}
+  {{ bookmarklet({
+    href: bookmarkletHref,
+    text: "Share page"
+  }) }}
+{%- endset -%}
+
+  {{ summary({
+    title: "Publication",
+    rows: [{
+      key: {
+        text: "Web address"
+      },
+      value: {
+        text: publication.me or "Not set"
+      }
+    }, {
+      key: {
+        text: "Content store"
+      },
+      value: {
+        text: publication.store.name or "Not set"
+      }
+    }, {
+      key: {
+        text: "Config preset"
+      },
+      value: {
+        text: publication.preset.name or "Not set"
+      }
+    }, {
+      key: {
+        text: "Supported post types"
+      },
+      value: {
+        text: postTypesHtml | indent(2)
+      }
+    } if publication.config["post-types"].length > 0, {
+      key: {
+        text: "Syndication targets"
+      },
+      value: {
+        text: syndicateToHtml | indent(2)
+      }
+    } if publication.config["syndicate-to"].length > 0, {
+      key: {
+        text: "Media endpoint"
+      },
+      value: {
+        text: publication.config["media-endpoint"]
+      }
+    } if publication.config["media-endpoint"], {
+      key: {
+        text: "Bookmarklet"
+      },
+      value: {
+        text: "Drag this link to your bookmarks bar: " + bookmarklet
+      }
+    }]
+  }) }}
+
+{% for endpoint in application.endpoints -%}
+  {{ summary({
+    title: endpoint.name,
+    rows: [{
+      key: {
+        text: "Mount path"
+      },
+      value: {
+        text: endpoint.options.mountpath
+      }
+    }]
+  }) }}
+{%- endfor %}
+
+{% endblock %}

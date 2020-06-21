@@ -6,11 +6,13 @@ const {Octokit} = octokit;
  * @property {object} response HTTP response
  */
 
-export const Store = class {
+export const GithubStore = class {
   constructor(options) {
-    this.options = options;
-    this.github = new Octokit({
-      auth: `token ${this.options.token}`
+    this.id = 'github';
+    this.name = 'GitHub';
+    this._options = options;
+    this._github = new Octokit({
+      auth: `token ${options.token}`
     });
   }
 
@@ -25,10 +27,10 @@ export const Store = class {
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
-    const response = await this.github.repos.createOrUpdateFileContents({
-      owner: this.options.user,
-      repo: this.options.repo,
-      branch: this.options.branch,
+    const response = await this._github.repos.createOrUpdateFileContents({
+      owner: this._options.user,
+      repo: this._options.repo,
+      branch: this._options.branch || 'master',
       message,
       path,
       content
@@ -48,19 +50,19 @@ export const Store = class {
    * @see https://developer.github.com/v3/repos/contents/#delete-a-file
    */
   async deleteFile(path, message) {
-    const contents = await this.github.repos.getContent({
-      owner: this.options.user,
-      repo: this.options.repo,
-      ref: this.options.branch,
+    const contents = await this._github.repos.getContent({
+      owner: this._options.user,
+      repo: this._options.repo,
+      ref: this._options.branch || 'master',
       path
     }).catch(error => {
       throw new Error(error);
     });
 
-    const response = await this.github.repos.deleteFile({
-      owner: this.options.user,
-      repo: this.options.repo,
-      branch: this.options.branch,
+    const response = await this._github.repos.deleteFile({
+      owner: this._options.user,
+      repo: this._options.repo,
+      branch: this._options.branch || 'master',
       sha: contents.data.sha,
       message,
       path
@@ -79,10 +81,10 @@ export const Store = class {
    * @see https://developer.github.com/v3/repos/contents/#get-contents
    */
   async readFile(path) {
-    const response = await this.github.repos.getContent({
-      owner: this.options.user,
-      repo: this.options.repo,
-      ref: this.options.branch,
+    const response = await this._github.repos.getContent({
+      owner: this._options.user,
+      repo: this._options.repo,
+      ref: this._options.branch || 'master',
       path
     }).catch(error => {
       throw new Error(error);
@@ -101,20 +103,20 @@ export const Store = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async updateFile(path, content, message) {
-    const contents = await this.github.repos.getContent({
-      owner: this.options.user,
-      repo: this.options.repo,
-      ref: this.options.branch,
+    const contents = await this._github.repos.getContent({
+      owner: this._options.user,
+      repo: this._options.repo,
+      ref: this._options.branch || 'master',
       path
     }).catch(() => {
       return false;
     });
 
     content = Buffer.from(content).toString('base64');
-    const response = await this.github.repos.createOrUpdateFileContents({
-      owner: this.options.user,
-      repo: this.options.repo,
-      branch: this.options.branch,
+    const response = await this._github.repos.createOrUpdateFileContents({
+      owner: this._options.user,
+      repo: this._options.repo,
+      branch: this._options.branch || 'master',
       sha: (contents) ? contents.data.sha : false,
       message,
       path,
