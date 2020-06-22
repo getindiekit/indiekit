@@ -11,7 +11,7 @@ test('Returns a delete action', t => {
 });
 
 test('Returns a undelete action', t => {
-  const result = deriveAction('create', 'undelete', t.context.url);
+  const result = deriveAction('undelete', 'undelete', t.context.url);
   t.is(result, 'undelete');
 });
 

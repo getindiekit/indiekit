@@ -13,11 +13,7 @@ export const deriveAction = (scope, action, url) => {
     }
 
     if (scope === action) {
-      return action; // Delete or update
-    }
-
-    if (scope === 'create') {
-      return 'undelete';
+      return action;
     }
   } else if (scope === 'create') {
     return 'create';

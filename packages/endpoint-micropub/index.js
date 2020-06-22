@@ -1,6 +1,7 @@
 import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
+import {actionController} from './controllers/action.js';
 import {queryController} from './controllers/query.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -25,6 +26,7 @@ export const MicropubEndpoint = class {
     const router = this._router;
 
     this._router.get('/', queryController(publication));
+    this._router.post('/', actionController(publication));
 
     return router;
   }
