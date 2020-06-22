@@ -43,7 +43,7 @@
     "post-type-discovery": "github:grantcodes/post-type-discovery",
     "serve-favicon": "^2.5.0",
     "slug": "^3.0.1",
-    "winston": "^3.2.1"
+    "winston": "^3.3.1"
   },
   "devDependencies": {
     "ava": "^3.8.2",
