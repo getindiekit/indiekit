@@ -18,7 +18,7 @@ export const decodeQueryParameter = string => {
  * @returns {string} Excerpt
  * @example excerpt('Foo bar baz', 2) => 'Foo bar'
  */
-export const excerpt = (string, n) => {
+export const excerptString = (string, n) => {
   if (typeof string === 'string') {
     string = string.split(/\s+/).slice(0, n).join(' ');
     return string;
@@ -31,6 +31,6 @@ export const excerpt = (string, n) => {
  * @returns {string} Alpha-numeric string
  * @example random() => 'b3dog'
  */
-export const random = () => {
+export const randomString = () => {
   return (Number(new Date())).toString(36).slice(-5);
 };

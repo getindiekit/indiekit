@@ -2,13 +2,26 @@ import test from 'ava';
 import nock from 'nock';
 import parser from 'microformats-parser';
 import {getFixture} from '../helpers/fixture.js';
-import {url2Mf2, mf2Properties} from '../../services/microformats.js';
+import {formEncodedToMf2, url2Mf2, mf2Properties} from '../../lib/microformats.js';
 
 test.beforeEach(t => {
   t.context = {
     nock: nock('https://website.example').get('/post.html'),
     url: 'https://website.example/post.html'
   };
+});
+
+test('Parses Microformats in form-encoded request', t => {
+  const result = formEncodedToMf2({
+    h: 'entry',
+    content: 'I+ate+a+cheese+sandwich.'
+  });
+  t.deepEqual(result, {
+    type: ['h-entry'],
+    properties: {
+      content: ['I ate a cheese sandwich.']
+    }
+  });
 });
 
 test('Returns mf2 from URL', async t => {

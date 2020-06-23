@@ -1,30 +1,25 @@
 import fs from 'fs';
-import derivePostType from 'post-type-discovery';
+import getPostType from 'post-type-discovery';
 import {templates} from './nunjucks.js';
-import {deriveContent, derivePermalink, derivePublishedDate, deriveSlug} from '../services/properties.js';
-
-export const derivePostProperties = (mf2, config) => {
-  try {
-    const {properties} = mf2;
-    properties.content = deriveContent(mf2);
-    // TODO: Use publication locale and timezone
-    properties.published = derivePublishedDate(mf2);
-    properties.slug = deriveSlug(mf2, config['slug-separator']);
-
-    return properties;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
+import {
+  getContent,
+  getPermalink,
+  getPublishedDate,
+  getSlug
+} from './microformats/properties.js';
 
 export const createPostData = (mf2, config, me) => {
   try {
-    const type = derivePostType(mf2);
+    const type = getPostType(mf2);
     const typeConfig = config['post-types'].find(item => item.type === type);
-    const properties = derivePostProperties(mf2, config);
+    const {properties} = mf2;
+    properties.content = getContent(mf2);
+    // TODO: Use publication locale and timezone
+    properties.published = getPublishedDate(mf2);
+    properties.slug = getSlug(mf2, config['slug-separator']);
     const path = templates.renderString(typeConfig.post.path, properties);
     let url = templates.renderString(typeConfig.post.url, properties);
-    url = derivePermalink(me, url);
+    url = getPermalink(me, url);
 
     const postData = {
       type,

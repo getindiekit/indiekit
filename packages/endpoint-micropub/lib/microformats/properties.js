@@ -1,7 +1,10 @@
 import path from 'path';
 import luxon from 'luxon';
 import slugify from '@sindresorhus/slugify';
-import {excerpt, random} from './string.js';
+import {
+  excerptString,
+  randomString
+} from '../utils.js';
 
 const {DateTime} = luxon;
 
@@ -11,7 +14,7 @@ const {DateTime} = luxon;
  * @param {object} mf2 Microformats2 object
  * @returns {Array} Content
  */
-export const deriveContent = mf2 => {
+export const getContent = mf2 => {
   let {content} = mf2.properties;
 
   if (content) {
@@ -32,7 +35,7 @@ export const deriveContent = mf2 => {
  * @example permalink('http://foo.bar/baz', '/qux/quux') =>
  *   'http://foo.bar/baz/qux/quux'
  */
-export const derivePermalink = (url, pathname) => {
+export const getPermalink = (url, pathname) => {
   url = new URL(url);
   let permalink = path.join(url.pathname, pathname);
   permalink = new URL(permalink, url).href;
@@ -48,7 +51,7 @@ export const derivePermalink = (url, pathname) => {
  * @param {object} zone Timezone offset
  * @returns {Array} Array containing ISO formatted date
  */
-export const derivePublishedDate = (mf2, locale = 'en-GB', zone = 'utc') => {
+export const getPublishedDate = (mf2, locale = 'en-GB', zone = 'utc') => {
   const now = new Array(DateTime.local().toISO());
   const published = mf2.properties.published || now;
   const date = DateTime.fromISO(published[0], {
@@ -66,7 +69,7 @@ export const derivePublishedDate = (mf2, locale = 'en-GB', zone = 'utc') => {
  * @param {string} separator Slug separator
  * @returns {Array} Array containing slug value
  */
-export const deriveSlug = (mf2, separator) => {
+export const getSlug = (mf2, separator) => {
   // Use provided slug…
   const {slug} = mf2.properties;
   if (slug && slug[0] !== '') {
@@ -76,7 +79,7 @@ export const deriveSlug = (mf2, separator) => {
   // …else, slugify name…
   const {name} = mf2.properties;
   if (name && name[0] !== '') {
-    const excerptName = excerpt(name[0], 5);
+    const excerptName = excerptString(name[0], 5);
     const nameSlug = slugify(excerptName, {
       replacement: separator,
       lower: true
@@ -87,6 +90,6 @@ export const deriveSlug = (mf2, separator) => {
 
   // …else, failing that, create a random string
   // TODO: Explore using NewBase60 instead (requires post counter)
-  const randomSlug = random();
+  const randomSlug = randomString();
   return new Array(randomSlug);
 };

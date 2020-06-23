@@ -1,6 +1,6 @@
 import httpError from 'http-errors';
-import {url2Mf2, mf2Properties} from '../services/microformats.js';
-import {getConfig} from '../services/publication.js';
+import {url2Mf2, mf2Properties} from '../lib/microformats.js';
+import {getConfig} from '../lib/micropub.js';
 
 export const queryController = publication => {
   return async (request, response, next) => {

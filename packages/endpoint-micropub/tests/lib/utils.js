@@ -1,5 +1,9 @@
 import test from 'ava';
-import {decodeQueryParameter, excerpt, random} from '../../services/string.js';
+import {
+  decodeQueryParameter,
+  excerptString,
+  randomString
+} from '../../lib/utils.js';
 
 test('Decodes form-encoded query parameter', t => {
   const result = decodeQueryParameter('https%3A%2F%2Ffoo.bar');
@@ -8,11 +12,11 @@ test('Decodes form-encoded query parameter', t => {
 
 test('Excerpts first n words from a string', t => {
   const string = 'The quick fox jumped over the lazy fox';
-  const result = excerpt(string, 5);
+  const result = excerptString(string, 5);
   t.is(result, 'The quick fox jumped over');
 });
 
 test('Generates random alpha-numeric string, 5 characters long', t => {
-  const result = random();
+  const result = randomString();
   t.regex(result, /[\d\w]{5}/g);
 });
