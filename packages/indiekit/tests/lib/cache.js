@@ -1,7 +1,7 @@
 import test from 'ava';
 import nock from 'nock';
 import {mockClient} from '../helpers/database.js';
-import {Cache} from '../../services/cache.js';
+import {Cache} from '../../lib/cache.js';
 
 const cache = new Cache(mockClient);
 

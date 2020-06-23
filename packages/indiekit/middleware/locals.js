@@ -1,5 +1,5 @@
-import {getNavigation} from '../services/navigation.js';
-import {getMediaEndpoint} from '../services/publication.js';
+import {getNavigation} from '../lib/navigation.js';
+import {getMediaEndpoint} from '../lib/publication.js';
 
 /**
  * Expose Indiekit config to frontend templates

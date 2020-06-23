@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {getNavigation} from '../../services/navigation.js';
+import {getNavigation} from '../../lib/navigation.js';
 
 test('Returns logged out navigation', t => {
   const result = getNavigation('en', false);

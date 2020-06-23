@@ -9,7 +9,7 @@ import {
   getConfigPreset,
   getMediaEndpoint,
   getStore
-} from '../../services/publication.js';
+} from '../../lib/publication.js';
 
 test.beforeEach(t => {
   t.context = {

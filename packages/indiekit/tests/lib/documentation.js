@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {documentPath} from '../../services/documentation.js';
+import {documentPath} from '../../lib/documentation.js';
 
 test('Returns file with extension', async t => {
   const result = await documentPath('docs/en/settings', 'md');

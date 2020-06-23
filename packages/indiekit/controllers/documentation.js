@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {templates} from '@indiekit/frontend';
-import {documentPath} from '../services/documentation.js';
+import {documentPath} from '../lib/documentation.js';
 
 export const viewDocument = (request, response, next) => {
   const filePath = documentPath(request.originalUrl, 'md');

@@ -4,7 +4,12 @@ import {fileURLToPath} from 'url';
 import {databaseConfig} from './config/database.js';
 import {defaultConfig} from './config/defaults.js';
 import {serverConfig} from './config/server.js';
-import {getConfig, getConfigPreset, getStore, getCategories} from './services/publication.js';
+import {
+  getConfig,
+  getConfigPreset,
+  getStore,
+  getCategories
+} from './lib/publication.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
