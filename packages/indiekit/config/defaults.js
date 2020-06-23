@@ -20,8 +20,10 @@ export const defaultConfig = {
   publication: {
     config: {},
     configPresetId: 'jekyll',
+    locale: 'en-GB',
     me: null,
-    storeId: null
+    storeId: null,
+    timezone: 'UTC'
   },
   server: {
     port: process.env.PORT || '3000'

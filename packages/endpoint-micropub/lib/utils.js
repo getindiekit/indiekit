@@ -26,6 +26,19 @@ export const excerptString = (string, n) => {
 };
 
 /**
+ * Get post type configuration for a given type
+ *
+ * @param {object} config Publication configuration
+ * @param {string} type Post type
+ * @returns {object} Post type configuration
+ */
+export const getPostTypeConfig = (config, type) => {
+  return config['post-types'].find(
+    item => item.type === type
+  );
+};
+
+/**
  * Generate random alpha-numeric string, 5 characters long
  *
  * @returns {string} Alpha-numeric string

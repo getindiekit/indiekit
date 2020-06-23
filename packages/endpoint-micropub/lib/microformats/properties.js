@@ -51,7 +51,7 @@ export const getPermalink = (url, pathname) => {
  * @param {object} zone Timezone offset
  * @returns {Array} Array containing ISO formatted date
  */
-export const getPublishedDate = (mf2, locale = 'en-GB', zone = 'utc') => {
+export const getPublishedDate = (mf2, locale = 'en-GB', zone = 'UTC') => {
   const now = new Array(DateTime.local().toISO());
   const published = mf2.properties.published || now;
   const date = DateTime.fromISO(published[0], {
