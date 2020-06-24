@@ -14,12 +14,12 @@ export const Cache = class {
   /**
    * Cache JSON data
    *
-   * @param {string} keyId Record key
+   * @param {string} hashId Record key
    * @param {string} url URL of remote file
    * @returns {Promise|object} File data
    */
-  async json(keyId, url) {
-    const cachedData = await this.client.get(keyId);
+  async json(hashId, url) {
+    const cachedData = await this.client.get(hashId);
     if (cachedData) {
       return {
         source: 'cache',
@@ -28,7 +28,7 @@ export const Cache = class {
     }
 
     const fetchedData = await got(url).json();
-    this.client.setex(keyId, this.expires, JSON.stringify(fetchedData));
+    this.client.setex(hashId, this.expires, JSON.stringify(fetchedData));
     return {
       source: 'fetch',
       data: fetchedData
