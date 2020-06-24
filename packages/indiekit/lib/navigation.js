@@ -1,6 +1,6 @@
-export const getNavigation = (locale, token) => {
-  const navigation = [{
-    href: `/docs/${locale}`,
+export const getNavigation = (application, token) => {
+  let navigation = [{
+    href: `/docs/${application.locale}`,
     text: 'Docs'
   }, (token ? {
     href: '/session/logout',
@@ -9,6 +9,14 @@ export const getNavigation = (locale, token) => {
     href: '/session/login',
     text: 'Sign in'
   })];
+
+  if (application.endpoints) {
+    for (const endpoint of application.endpoints) {
+      if (endpoint.navigationItems) {
+        navigation = endpoint.navigationItems.concat(navigation);
+      }
+    }
+  }
 
   return navigation;
 };

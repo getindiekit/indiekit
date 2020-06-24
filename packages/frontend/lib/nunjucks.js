@@ -10,11 +10,12 @@ import * as globals from './nunjucks/globals.js';
  * @returns {object} Nunjucks environment
  */
 export const templates = app => {
-  const views = [
+  const appViews = app ? app.settings.views : '';
+  const frontendViews = [
     path.join(__dirname, 'components'),
-    path.join(__dirname, 'layouts'),
-    app ? app.settings.views : ''
+    path.join(__dirname, 'layouts')
   ];
+  const views = frontendViews.concat(appViews);
 
   const options = {
     autoescape: true,

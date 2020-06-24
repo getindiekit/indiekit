@@ -116,6 +116,7 @@
             "./",
             "./packages/config-jekyll",
             "./packages/endpoint-micropub",
+            "./packages/endpoint-share",
             "./packages/frontend",
             "./packages/indiekit",
             "./packages/store-github",

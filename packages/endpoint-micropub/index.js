@@ -22,7 +22,7 @@ export const MicropubEndpoint = class {
     return this.options.mountpath;
   }
 
-  routes(publication) {
+  routes(application, publication) {
     const router = this._router;
 
     this._router.get('/', queryController(publication));

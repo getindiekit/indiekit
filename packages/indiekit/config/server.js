@@ -11,6 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const serverConfig = indiekitConfig => {
   const config = express();
+  let views = [];
 
   // Correctly report secure connections
   config.enable('trust proxy');
@@ -25,16 +26,21 @@ export const serverConfig = indiekitConfig => {
   // Locals
   config.use(locals(indiekitConfig));
 
+  // Register endpoints
+  for (const endpoint of indiekitConfig.application.endpoints) {
+    const {application, publication} = indiekitConfig;
+    config.use(endpoint.mountpath, endpoint.routes(application, publication));
+
+    if (endpoint.views) {
+      views = views.concat(endpoint.views);
+    }
+  }
+
   // Views
-  config.set('views', path.join(`${__dirname}`, '..', 'views'));
+  views.push(path.join(__dirname, '..', 'views'));
+  config.set('views', views);
   config.engine('njk', templates(config).render);
   config.set('view engine', 'njk');
-
-  // Endpoints
-  for (const endpoint of indiekitConfig.application.endpoints) {
-    const {publication} = indiekitConfig;
-    config.use(endpoint.mountpath, endpoint.routes(publication));
-  }
 
   // Routes
   config.use(routes());
