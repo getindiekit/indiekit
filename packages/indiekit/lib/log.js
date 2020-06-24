@@ -1,45 +1,67 @@
 export const Log = class {
-  constructor(client, keyId) {
+  constructor(client, hashId) {
     this.client = client;
-    this.keyId = keyId;
+    this.hashId = hashId;
   }
 
   /**
-   * @param {string} field Field to lookup
-   * @returns {Promise|object} Configuration object
+   * Get an object by field name
+   *
+   * @param {string} key Field to lookup
+   * @returns {Promise|object} Field value
    */
-  async get(field) {
-    const fieldValues = await this.getAll();
-    const value = fieldValues[field];
+  async get(key) {
+    const hashes = await this.getAll();
+    const value = hashes[key];
     if (value) {
-      return JSON.parse(value);
+      return value;
     }
 
-    throw new Error(`No log found for ${field}`);
+    throw new Error(`No value found for ${key}`);
   }
 
   /**
-   * @returns {Promise|object} Configuration object
+   * Get an array of all objects, keyed by field name
+   *
+   * @returns {Promise|Array} Configuration object
    */
   async getAll() {
-    return this.client.hgetall(this.keyId);
+    const hash = await this.client.hgetall(this.hashId);
+    const keys = Object.keys(hash);
+
+    if (keys.length > 0) {
+      return keys.map(key => ({
+        [key]: JSON.parse(keys[key])
+      }));
+    }
   }
 
   /**
-   * @param {string} field Field to lookup
+   * Get an array of all objects, returning only those with specified
+   * object key
+   *
+   * @param {string} objectKey Object key to return from each object
+   * @returns {Promise|Array} Configuration object
+   */
+  async selectFromAll(objectKey) {
+    const hash = await this.client.hgetall(this.hashId);
+    const keys = Object.keys(hash);
+
+    if (keys.length > 0) {
+      const values = keys.map(key => JSON.parse(hash[key]));
+      return values.map(value => {
+        return value[objectKey];
+      });
+    }
+  }
+
+  /**
+   * @param {string} key Key to lookup
    * @param {string} value Value to insert
    * @returns {Promise|boolean} 0|1
    */
-  async set(field, value) {
+  async set(key, value) {
     value = JSON.stringify(value);
-    return this.client.hset(this.keyId, field, value);
-  }
-
-  /**
-   * @param {object} fieldValues Fields and values to insert
-   * @returns {Promise|boolean} 0|1
-   */
-  async setAll(fieldValues) {
-    return this.client.hmset(this.keyId, fieldValues);
+    return this.client.hset(this.hashId, key, value);
   }
 };

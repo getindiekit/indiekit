@@ -37,7 +37,8 @@ export const queryController = publication => {
           }
 
           // Return microformats for previously published posts
-          return response.json({});
+          const items = await publication.posts.selectFromAll('mf2');
+          return response.json(items ? {items} : {});
         }
 
         default: {
