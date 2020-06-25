@@ -14,7 +14,7 @@ export const createPostData = (mf2, publication) => {
   try {
     // Post type
     const type = getPostType(mf2);
-    const typeConfig = getPostTypeConfig(config, type);
+    const typeConfig = getPostTypeConfig(type, config);
 
     // Post properties
     const {properties} = mf2;

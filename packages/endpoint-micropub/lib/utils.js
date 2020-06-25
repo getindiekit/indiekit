@@ -28,11 +28,11 @@ export const excerptString = (string, n) => {
 /**
  * Get post type configuration for a given type
  *
- * @param {object} config Publication configuration
  * @param {string} type Post type
+ * @param {object} config Publication configuration
  * @returns {object} Post type configuration
  */
-export const getPostTypeConfig = (config, type) => {
+export const getPostTypeConfig = (type, config) => {
   return config['post-types'].find(
     item => item.type === type
   );

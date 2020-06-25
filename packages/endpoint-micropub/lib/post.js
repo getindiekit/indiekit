@@ -10,7 +10,7 @@ export const Post = class {
     const {config, posts, store} = this.publication;
 
     try {
-      const postTypeConfig = getPostTypeConfig(config, postData.type);
+      const postTypeConfig = getPostTypeConfig(postData.type, config);
       const postContent = createPostContent(postData, postTypeConfig.template);
       const message = `${postData.type}: create post`;
       const published = await store.createFile(postData.path, postContent, message);
