@@ -24,13 +24,17 @@ export const createPostData = (mf2, publication) => {
 
     // Post paths
     const path = templates.renderString(typeConfig.post.path, properties);
-    const url = templates.renderString(typeConfig.post.url, properties);
+    let url = templates.renderString(typeConfig.post.url, properties);
+    url = getPermalink(me, url);
+
+    // Add computed URL to post properties
+    properties.url = [url];
 
     // Post data
     const postData = {
       type,
       path,
-      url: getPermalink(me, url),
+      url,
       mf2: {
         type: (type === 'event') ? ['h-event'] : ['h-entry'],
         properties

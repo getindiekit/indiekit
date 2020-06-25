@@ -9,7 +9,7 @@
   align-items: baseline;
   display: flex;
   justify-content: space-between;
-  padding-block-end: calc(var(--space-block) * 2);
+  padding-block-end: var(--space-block);
 }
 
 .summary__title {

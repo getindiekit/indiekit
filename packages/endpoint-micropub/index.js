@@ -2,6 +2,7 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import path from 'path';
 import {actionController} from './controllers/action.js';
+import {postsController} from './controllers/posts.js';
 import {queryController} from './controllers/query.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -22,11 +23,25 @@ export const MicropubEndpoint = class {
     return this.options.mountpath;
   }
 
+  get navigationItems() {
+    return [{
+      href: `${this.mountpath}/posts`,
+      text: 'Posts'
+    }];
+  }
+
+  get views() {
+    return [
+      path.join(__dirname, 'views')
+    ];
+  }
+
   routes(application, publication) {
     const router = this._router;
 
     this._router.get('/', queryController(publication));
     this._router.post('/', actionController(publication));
+    this._router.get('/posts', postsController(this.mountpath).view);
 
     return router;
   }

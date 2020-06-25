@@ -14,7 +14,7 @@
   {%- endif %}
 {%- endset %}
 {%- set indent = opts.indent or 2 -%}
-<fieldset class="{{ classes }}"
+<fieldset class="{{ classes }} s-linear"
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
   {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor %}>

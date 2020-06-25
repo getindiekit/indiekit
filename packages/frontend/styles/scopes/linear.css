@@ -28,6 +28,12 @@
   padding: var(--text-spacing);
 }
 
+.s-linear code.property {
+  background: none;
+  font-size: 67%;
+  padding: 0;
+}
+
 .s-linear h2 {
   @extend %heading;
 
@@ -60,7 +66,8 @@
   padding-inline-start: var(--flow-inset);
 }
 
-.s-linear li {
+.s-linear li,
+.s-linear * + dt {
   margin-block-start: calc(var(--flow-space) / 2);
 }
 
