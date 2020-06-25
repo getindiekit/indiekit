@@ -9,6 +9,7 @@ const indiekit = new Indiekit();
 const githubStore = new GithubStore({
   user: process.env.GITHUB_USER,
   repo: process.env.GITHUB_REPO,
+  branch: process.env.GITHUB_BRANCH,
   token: process.env.GITHUB_TOKEN
 });
 

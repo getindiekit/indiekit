@@ -34,6 +34,7 @@ export const shareController = application => ({
         response.redirect(`?success=${message}`);
       }
     } catch (error) {
+      // TODO: Fix race condition. Reponse throws an error to next but so does internal endpoint
       next(error);
     }
   }
