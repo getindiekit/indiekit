@@ -23,7 +23,7 @@ test('Login returns 401 if URL is unauthorized', async t => {
   t.is(response.status, 401);
 });
 
-test('Login redirects to authentication service', async t => {
+test.skip('Login redirects to authentication service', async t => {
   // TODO: Make request and response to mocked endpoint
   const response = await request.post('/session/login')
     .send('me=paulrobertlloyd.github.io/indiekit-sandbox');
