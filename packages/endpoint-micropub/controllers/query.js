@@ -9,7 +9,7 @@ export const queryController = publication => {
    * @param {object} request HTTP request
    * @param {object} response HTTP response
    * @param {Function} next Next middleware callback
-   * @returns {object} Queryable config
+   * @returns {object} Query result
    */
   return async (request, response, next) => {
     const config = getConfig(publication.config);

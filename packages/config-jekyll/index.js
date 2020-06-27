@@ -20,7 +20,7 @@ export const JekyllConfig = class {
           url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
         },
         media: {
-          path: 'media/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
         }
       }, {
         type: 'note',
@@ -41,7 +41,7 @@ export const JekyllConfig = class {
           url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
         },
         media: {
-          path: 'media/photos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/photos/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
         }
       }, {
         type: 'video',
@@ -53,7 +53,7 @@ export const JekyllConfig = class {
           url: 'videos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
         },
         media: {
-          path: 'media/videos/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/videos/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
         }
       }, {
         type: 'audio',
@@ -65,7 +65,7 @@ export const JekyllConfig = class {
           url: 'audio/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
         },
         media: {
-          path: 'media/audio/{{ filedate | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/audio/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
         }
       }, {
         type: 'bookmark',

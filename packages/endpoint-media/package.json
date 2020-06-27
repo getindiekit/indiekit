@@ -1,9 +1,10 @@
 {
   "private": true,
-  "name": "@indiekit/indiekit",
+  "name": "@indiekit/endpoint-media",
   "version": "0.1.0",
+  "description": "Micropub media endpoint for IndieKit",
   "keywords": [
-    "express",
+    "indiekit",
     "indieweb",
     "micropub"
   ],
@@ -17,32 +18,29 @@
   },
   "type": "module",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "bugs": {
     "url": "https://github.com/paulrobertlloyd/indiekit/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
-    "directory": "packages/indiekit"
+    "directory": "packages/endpoint-media"
   },
   "scripts": {
     "test": "echo \"Run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@indiekit/config-jekyll": "0.1.0",
-    "@indiekit/endpoint-media": "0.1.0",
-    "@indiekit/endpoint-micropub": "0.1.0",
-    "@indiekit/endpoint-share": "0.1.0",
-    "@indiekit/frontend": "0.1.0",
-    "connect-redis": "^4.0.4",
+    "@sindresorhus/slugify": "^1.0.0",
+    "camelcase-keys": "^6.2.2",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "express-validator": "^6.5.0",
-    "got": "^11.1.4",
+    "file-type": "^14.6.2",
+    "got": "^11.3.0",
     "http-errors": "^1.7.3",
-    "indieauth-helper": "^1.0.2",
-    "ioredis": "^4.17.0",
-    "lodash": "^4.17.15",
-    "normalize-url": "^5.0.0"
+    "luxon": "^1.24.1",
+    "multer": "^1.4.2",
+    "nunjucks": "^3.2.1"
   }
 }

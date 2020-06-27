@@ -115,6 +115,7 @@
           "packageDir": [
             "./",
             "./packages/config-jekyll",
+            "./packages/endpoint-media",
             "./packages/endpoint-micropub",
             "./packages/endpoint-share",
             "./packages/frontend",

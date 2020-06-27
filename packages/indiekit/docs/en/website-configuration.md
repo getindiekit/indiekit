@@ -102,10 +102,10 @@ These defaults can be ammended, and new types can be added. For example, to over
 
   The following template variables are available for media files:
 
-  * `originalname`: Original name of the posted file, e.g. <samp>brighton-pier.jpg</samp>.
   * `filename`: Five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
   * `fileext`: File extension taken from the posted file, e.g. <samp>jpg</samp>.
-  * `filedate`: The ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
+  * `originalname`: Original name of the posted file, e.g. <samp>brighton-pier.jpg</samp>.
+  * `uploaded`: The ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
 
 * **`media.url`**: Public accessible URL for media files. This can use the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 

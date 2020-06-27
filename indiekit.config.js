@@ -37,8 +37,8 @@ indiekit.set('publication.config.post-types', [{
     url: '_photos/{{ published | date(\'X\') }}'
   },
   media: {
-    path: 'src/media/photos/{{ filedate | date(\'X\') }}.{{ fileext }}',
-    url: 'media/photos/{{ filedate | date(\'X\') }}.{{ fileext }}'
+    path: 'src/media/photos/{{ uploaded | date(\'X\') }}.{{ fileext }}',
+    url: 'media/photos/{{ uploaded | date(\'X\') }}.{{ fileext }}'
   }
 }, {
   type: 'reply',

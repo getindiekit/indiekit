@@ -1,10 +1,12 @@
 import fs from 'fs';
 import {JekyllConfig} from '@indiekit/config-jekyll';
+import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {authenticate} from '../middleware/authentication.js';
 
 const jekyllConfig = new JekyllConfig();
+const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
 const package_ = JSON.parse(fs.readFileSync('package.json', 'utf8'));
@@ -18,6 +20,7 @@ export const defaultConfig = {
     version: package_.version,
     configs: [jekyllConfig],
     endpoints: [
+      mediaEndpoint,
       micropubEndpoint,
       shareEndpoint
     ],

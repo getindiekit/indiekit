@@ -30,8 +30,8 @@
       "url": "_pictures/{{ published | date('X') }}"
     },
     "media": {
-      "path": "src/media/pictures/{{ filedate | date('X') }}.{{ fileext }}",
-      "url": "media/pictures/{{ filedate | date('X') }}.{{ fileext }}"
+      "path": "src/media/pictures/{{ uploaded | date('X') }}.{{ fileext }}",
+      "url": "media/pictures/{{ uploaded | date('X') }}.{{ fileext }}"
     }
   }, {
     "type": "reply",
