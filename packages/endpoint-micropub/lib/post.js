@@ -30,6 +30,33 @@ export const Post = class {
     }
   }
 
+  async update(postData, url) {
+    const {config, posts, store} = this.publication;
+
+    try {
+      const postTypeConfig = getPostTypeConfig(postData.type, config);
+      const postContent = await createPostContent(postData, postTypeConfig.template);
+      const message = `${postData.type}: update post`;
+      const published = await store.updateFile(postData.path, postContent, message);
+
+      if (published) {
+        postData.lastAction = 'update';
+        await posts.set(postData.url, postData);
+        const hasUpdatedUrl = (url !== postData.url);
+        return {
+          location: postData.url,
+          status: hasUpdatedUrl ? 201 : 200,
+          success: 'update',
+          description: hasUpdatedUrl ?
+            `Post updated and moved to ${postData.url}` :
+            `Post updated at ${url}`
+        };
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
   async delete(postData) {
     const {posts, store} = this.publication;
 
