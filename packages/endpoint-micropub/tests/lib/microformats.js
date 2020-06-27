@@ -107,8 +107,6 @@ test('Returns mf2 item with empty object if property not found', t => {
 
 test('Throws error if mf2 has no items', t => {
   const mf2 = parser.mf2(getFixture('page.html'), {baseUrl: t.context.url});
-  const error = t.throws(() => {
-    mf2Properties(mf2, 'name');
-  });
+  const error = t.throws(() => mf2Properties(mf2, 'name'));
   t.is(error.message, 'Source has no items');
 });
