@@ -3,6 +3,14 @@ import {url2Mf2, mf2Properties} from '../lib/microformats.js';
 import {getConfig} from '../lib/micropub.js';
 
 export const queryController = publication => {
+  /**
+   * Query endpoint
+   *
+   * @param {object} request HTTP request
+   * @param {object} response HTTP response
+   * @param {Function} next Next middleware callback
+   * @returns {object} Queryable config
+   */
   return async (request, response, next) => {
     const config = getConfig(publication.config);
 

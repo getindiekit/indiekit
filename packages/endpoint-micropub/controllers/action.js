@@ -9,6 +9,14 @@ import {
 } from '../lib/post/data.js';
 
 export const actionController = publication => {
+  /**
+   * Perform requested post action
+   *
+   * @param {object} request HTTP request
+   * @param {object} response HTTP response
+   * @param {Function} next Next middleware callback
+   * @returns {object} Request post action
+   */
   return async (request, response, next) => {
     const action = request.query.action || request.body.action;
     const {body} = request;
