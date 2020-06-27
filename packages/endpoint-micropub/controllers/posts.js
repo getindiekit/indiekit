@@ -1,22 +1,12 @@
-import got from 'got';
-
-export const postsController = mountpath => ({
+export const postsController = publication => ({
   view: async (request, response, next) => {
-    const host = `${request.protocol}://${request.headers.host}`;
-    const path = `${mountpath}?q=source`;
-
     try {
-      const micropubQuery = await got(`${host}${path}`, {
-        responseType: 'json'
-      });
+      const posts = await publication.posts.selectFromAll('mf2');
 
-      const success = micropubQuery.body;
-      if (success) {
-        response.render('posts', {
-          title: 'Posts',
-          posts: success.items
-        });
-      }
+      response.render('posts', {
+        title: 'Posts',
+        posts
+      });
     } catch (error) {
       next(error);
     }

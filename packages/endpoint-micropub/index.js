@@ -41,7 +41,7 @@ export const MicropubEndpoint = class {
 
     this._router.get('/', queryController(publication));
     this._router.post('/', actionController(publication));
-    this._router.get('/posts', postsController(this.mountpath).view);
+    this._router.get('/posts', postsController(publication).view);
 
     return router;
   }
