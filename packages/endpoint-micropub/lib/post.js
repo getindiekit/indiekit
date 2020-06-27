@@ -16,6 +16,7 @@ export const Post = class {
       const published = await store.createFile(postData.path, postContent, message);
 
       if (published) {
+        postData.lastAction = 'create';
         await posts.set(postData.url, postData);
         return {
           location: postData.url,
@@ -29,18 +30,50 @@ export const Post = class {
     }
   }
 
-  async delete({postData}) {
-    const {store} = this.publication;
+  async delete(postData) {
+    const {posts, store} = this.publication;
 
     try {
       const message = `${postData.type}: delete post`;
       const published = await store.deleteFile(postData.path, message);
 
       if (published) {
+        postData.lastAction = 'delete';
+        await posts.set(postData.url, postData);
+
         return {
           status: 200,
           success: 'delete',
           description: `Post deleted from ${postData.url}`
+        };
+      }
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async undelete(postData) {
+    const {config, posts, store} = this.publication;
+
+    if (postData.lastAction !== 'delete') {
+      throw new Error('Post was not previously deleted');
+    }
+
+    try {
+      const postTypeConfig = getPostTypeConfig(postData.type, config);
+      const postContent = createPostContent(postData, postTypeConfig.template);
+      const message = `${postData.type}: undelete post`;
+      const published = await store.createFile(postData.path, postContent, message);
+
+      if (published) {
+        postData.lastAction = 'undelete';
+        await posts.set(postData.url, postData);
+
+        return {
+          location: postData.url,
+          status: 200,
+          success: 'delete_undelete',
+          description: `Post undeleted from ${postData.url}`
         };
       }
     } catch (error) {

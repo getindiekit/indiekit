@@ -27,13 +27,13 @@ export const Log = class {
    */
   async getAll() {
     const hash = await this.client.hgetall(this.hashId);
-    const keys = Object.keys(hash);
 
-    if (keys.length > 0) {
-      return keys.map(key => ({
-        [key]: JSON.parse(keys[key])
-      }));
-    }
+    // Convert hash values to JSON
+    const hashJSON = Object.fromEntries(
+      Object.entries(hash).map(([key, value]) => [key, JSON.parse(value)])
+    );
+
+    return hashJSON;
   }
 
   /**

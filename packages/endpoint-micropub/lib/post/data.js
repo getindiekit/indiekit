@@ -48,5 +48,9 @@ export const createPostData = (mf2, publication) => {
 };
 
 export const readPostData = async (url, publication) => {
-  return publication.posts.get(url);
+  try {
+    return publication.posts.get(url);
+  } catch (error) {
+    console.warn(error);
+  }
 };
