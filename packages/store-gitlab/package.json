@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "@indiekit/store-gitlab",
+  "version": "0.1.0",
+  "description": "Store IndieWeb content on GitLab",
+  "keywords": [
+    "indiekit",
+    "indieweb",
+    "micropub",
+    "gitlab"
+  ],
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/paulrobertlloyd/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulrobertlloyd/indiekit.git",
+    "directory": "packages/store-gitlab"
+  },
+  "scripts": {
+    "test": "echo \"Run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@gitbeaker/node": "^22.0.1"
+  },
+  "xo": false
+}
