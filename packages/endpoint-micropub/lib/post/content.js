@@ -2,6 +2,13 @@ import fs from 'fs';
 import camelcaseKeys from 'camelcase-keys';
 import {templates} from '../nunjucks.js';
 
+/**
+ * Create post content
+ *
+ * @param {object} postData URL of existing post
+ * @param {string} postTemplatePath Path to post template
+ * @returns {object} Post data
+ */
 export const createPostContent = (postData, postTemplatePath) => {
   try {
     // Derive properties
