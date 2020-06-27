@@ -15,11 +15,11 @@ test.beforeEach(t => {
       content: 'Zm9vYmFy',
       sha: '\b[0-9a-f]{5,40}\b',
       name: 'foo.txt',
-      path: 'bar/foo.txt'
+      path: 'foo.txt'
     },
     putResponse: {
       commit: {
-        message: 'Commit message'
+        message: 'Message'
       }
     }
   };
@@ -29,9 +29,9 @@ test('Creates file in a repository', async t => {
   const scope = t.context.nock
     .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
-  const response = await github.createFile('bar/foo.txt', 'foo', 'Create message');
+  const response = await github.createFile('foo.txt', 'foo', 'Message');
   t.truthy(response);
-  t.is(response.data.commit.message, 'Commit message');
+  t.is(response.data.commit.message, 'Message');
   scope.done();
 });
 
@@ -39,40 +39,10 @@ test('Throws error creating file in a repository', async t => {
   const scope = t.context.nock
     .put(uri => uri.includes('foo.txt'))
     .replyWithError('not found');
-  const error = await t.throwsAsync(github.createFile('bar/foo.txt', 'foo', 'Create message'));
+  const error = await t.throwsAsync(
+    github.createFile('foo.txt', 'foo', 'Message')
+  );
   t.regex(error.message, /\bnot found\b/);
-  scope.done();
-});
-
-test('Deletes a file in a repository', async t => {
-  const scope = t.context.nock
-    .get(uri => uri.includes('foo.txt'))
-    .reply(200, t.context.getResponse)
-    .delete(uri => uri.includes('foo.txt'))
-    .reply(200, t.context.putResponse);
-  const response = await github.deleteFile('foo.txt', 'Delete message');
-  t.is(response.status, 200);
-  t.is(response.data.commit.message, 'Commit message');
-  scope.done();
-});
-
-test('Throws error if file not found in repository', async t => {
-  const scope = t.context.nock
-    .get(uri => uri.includes('foo.txt'))
-    .replyWithError('not found');
-  const error = await t.throwsAsync(github.deleteFile('foo.txt', 'Delete message'));
-  t.regex(error.message, /\bnot found\b/);
-  scope.done();
-});
-
-test('Throws error deleting a file in a repository', async t => {
-  const scope = t.context.nock
-    .get(uri => uri.includes('foo.txt'))
-    .reply(200, t.context.getResponse)
-    .delete(uri => uri.includes('foo.txt'))
-    .replyWithError('unknown error');
-  const error = await t.throwsAsync(github.deleteFile('foo.txt', 'Delete message'));
-  t.regex(error.message, /\bunknown error\b/);
   scope.done();
 });
 
@@ -89,7 +59,9 @@ test('Throws error reading file in a repository', async t => {
   const scope = t.context.nock
     .get(uri => uri.includes('foo.txt'))
     .replyWithError('not found');
-  const error = await t.throwsAsync(github.readFile('bar/foo.txt'));
+  const error = await t.throwsAsync(
+    github.readFile('foo.txt')
+  );
   t.regex(error.message, /\bnot found\b/);
   scope.done();
 });
@@ -100,11 +72,9 @@ test('Updates file in a repository', async t => {
     .reply(200, t.context.getResponse)
     .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
-
-  const response = await github.updateFile('foo.txt', 'foo', 'Commit message');
-
+  const response = await github.updateFile('foo.txt', 'foo', 'Message');
   t.is(response.status, 200);
-  t.is(response.data.commit.message, 'Commit message');
+  t.is(response.data.commit.message, 'Message');
   scope.done();
 });
 
@@ -114,11 +84,9 @@ test('Creates file if original not found in repository', async t => {
     .replyWithError('not found')
     .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
-
-  const response = await github.updateFile('foo.txt', 'foo', 'Commit message');
-
+  const response = await github.updateFile('foo.txt', 'foo', 'Message');
   t.is(response.status, 200);
-  t.is(response.data.commit.message, 'Commit message');
+  t.is(response.data.commit.message, 'Message');
   scope.done();
 });
 
@@ -128,11 +96,45 @@ test('Throws error updating file in a repository', async t => {
     .reply(200, t.context.getResponse)
     .put(uri => uri.includes('foo.txt'))
     .replyWithError('unknown error');
+  const error = await t.throwsAsync(
+    github.updateFile('foo.txt', 'foo', {message: 'Message'})
+  );
+  t.regex(error.message, /\bunknown error\b/);
+  scope.done();
+});
 
-  const error = await t.throwsAsync(github.updateFile('foo.txt', 'foo', {
-    message: 'Update message'
-  }));
+test('Deletes a file in a repository', async t => {
+  const scope = t.context.nock
+    .get(uri => uri.includes('foo.txt'))
+    .reply(200, t.context.getResponse)
+    .delete(uri => uri.includes('foo.txt'))
+    .reply(200, t.context.putResponse);
+  const response = await github.deleteFile('foo.txt', 'Message');
+  t.is(response.status, 200);
+  t.is(response.data.commit.message, 'Message');
+  scope.done();
+});
 
+test('Throws error if file not found in repository', async t => {
+  const scope = t.context.nock
+    .get(uri => uri.includes('foo.txt'))
+    .replyWithError('not found');
+  const error = await t.throwsAsync(
+    github.deleteFile('foo.txt', 'Message')
+  );
+  t.regex(error.message, /\bnot found\b/);
+  scope.done();
+});
+
+test('Throws error deleting a file in a repository', async t => {
+  const scope = t.context.nock
+    .get(uri => uri.includes('foo.txt'))
+    .reply(200, t.context.getResponse)
+    .delete(uri => uri.includes('foo.txt'))
+    .replyWithError('unknown error');
+  const error = await t.throwsAsync(
+    github.deleteFile('foo.txt', 'Message')
+  );
   t.regex(error.message, /\bunknown error\b/);
   scope.done();
 });
