@@ -1,15 +1,19 @@
 import fs from 'fs';
+import path from 'path';
+import {fileURLToPath} from 'url';
 import {JekyllConfig} from '@indiekit/config-jekyll';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {authenticate} from '../middleware/authentication.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const jekyllConfig = new JekyllConfig();
+const package_ = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+
 const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
-const package_ = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
 export const defaultConfig = {
   application: {
@@ -24,10 +28,15 @@ export const defaultConfig = {
       micropubEndpoint,
       shareEndpoint
     ],
+    routes: [],
     middleware: {
       authenticate
     },
-    stores: []
+    navigationItems: [],
+    stores: [],
+    views: [
+      path.join(__dirname, '..', 'views')
+    ]
   },
   publication: {
     config: {},

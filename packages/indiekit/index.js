@@ -56,16 +56,21 @@ export const Indiekit = class {
     this.publication.posts = new Log(databaseConfig.client, 'posts');
     this.publication.media = new Log(databaseConfig.client, 'media');
 
-    return this;
+    this.application.endpoints.forEach(
+      endpoint => endpoint.init(this._config)
+    );
+
+    return this._config;
   }
 
-  server(options = {}) {
-    this.init();
-    const server = serverConfig(this._config);
-    const port = options.port || this._config.server.port;
+  async server(options = {}) {
+    const config = await this.init();
+    const server = serverConfig(config);
+    const {name, version} = config.application;
+    const port = options.port || config.server.port;
 
     return server.listen(port, () => {
-      console.log(`Starting ${this.application.name} (v${this.application.version}) on port ${port}`);
+      console.log(`Starting ${name} (v${version}) on port ${port}`);
     });
   }
 };

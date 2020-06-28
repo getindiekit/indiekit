@@ -1,6 +1,6 @@
 import got from 'got';
 
-export const shareController = application => ({
+export const shareController = publication => ({
   edit: (request, response) => {
     const {content, name, url, success} = request.query;
 
@@ -15,12 +15,8 @@ export const shareController = application => ({
   },
 
   save: async (request, response, next) => {
-    const {endpoints} = application;
-    const micropubEndpoint = endpoints.find(
-      endpoint => endpoint.id === 'micropub'
-    );
     const host = `${request.protocol}://${request.headers.host}`;
-    const path = micropubEndpoint.mountpath;
+    const path = publication['micropub-endpoint'];
 
     try {
       const micropubPost = await got.post(`${host}${path}`, {

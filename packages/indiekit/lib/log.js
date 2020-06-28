@@ -53,6 +53,8 @@ export const Log = class {
         return value[objectKey];
       });
     }
+
+    return [];
   }
 
   /**

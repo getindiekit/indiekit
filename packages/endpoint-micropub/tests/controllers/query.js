@@ -1,12 +1,14 @@
 import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
-import {defaultConfig} from '../../../indiekit/config/defaults.js';
 import {serverConfig} from '../../../indiekit/config/server.js';
+import {Indiekit} from '../../../indiekit/index.js';
 import {getFixture} from '../helpers/fixture.js';
 
 const mockResponse = async query => {
-  const request = supertest(serverConfig(defaultConfig));
+  const indiekit = new Indiekit();
+  const config = await indiekit.init();
+  const request = supertest(serverConfig(config));
   return request.get('/micropub')
     .set('Accept', 'application/json')
     .query(query);
@@ -45,7 +47,7 @@ test('Returns 400 if unsupported parameter provided', async t => {
 
 test('Returns list of previously published posts', async t => {
   const response = await mockResponse('q=source');
-  t.deepEqual(response.body, {});
+  t.truthy(response.body.items);
 });
 
 test('Returns mf2 for given source URL', async t => {

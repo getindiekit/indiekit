@@ -23,20 +23,25 @@ export const MicropubEndpoint = class {
     return this.options.mountpath;
   }
 
-  get navigationItems() {
-    return [{
+  init(indiekitConfig) {
+    const {application, publication} = indiekitConfig;
+
+    application.navigationItems.push({
       href: `${this.mountpath}/posts`,
       text: 'Posts'
-    }];
+    });
+
+    application.routes.push({
+      mountpath: this.mountpath,
+      routes: () => this.routes(publication)
+    });
+
+    application.views.push(path.join(__dirname, 'views'));
+
+    publication['micropub-endpoint'] = this.mountpath;
   }
 
-  get views() {
-    return [
-      path.join(__dirname, 'views')
-    ];
-  }
-
-  routes(application, publication) {
+  routes(publication) {
     const router = this._router;
 
     this._router.get('/', queryController(publication));

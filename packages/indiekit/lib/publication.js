@@ -79,11 +79,12 @@ export const getConfigPreset = (configs, configPresetId) => {
  */
 export const getMediaEndpoint = (publication, request) => {
   const {config} = publication;
+  const configEndpoint = config['media-endpoint'];
+  const host = `${request.protocol}://${request.headers.host}`;
+  const serverEndpoint = `${host}${publication['media-endpoint']}`;
 
   // Use configured value, or default to server based value
-  config['media-endpoint'] =
-    publication['media-endpoint'] ||
-    `${request.protocol}://${request.headers.host}/media`;
+  config['media-endpoint'] = configEndpoint || serverEndpoint;
 
   return config;
 };

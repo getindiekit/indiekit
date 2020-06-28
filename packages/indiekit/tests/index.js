@@ -33,7 +33,8 @@ test('Adds configuration preset', t => {
 test('Adds endpoint', t => {
   const endpoint = {
     id: 'foo',
-    name: 'Foo'
+    name: 'Foo',
+    init: () => {}
   };
   const indiekit = new Indiekit();
   indiekit.addEndpoint(endpoint);

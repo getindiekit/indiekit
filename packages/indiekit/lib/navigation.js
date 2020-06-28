@@ -10,13 +10,7 @@ export const getNavigation = (application, token) => {
     text: 'Sign in'
   })];
 
-  if (application.endpoints) {
-    for (const endpoint of application.endpoints) {
-      if (endpoint.navigationItems) {
-        navigation = endpoint.navigationItems.concat(navigation);
-      }
-    }
-  }
+  navigation = application.navigationItems.concat(navigation);
 
   return navigation;
 };

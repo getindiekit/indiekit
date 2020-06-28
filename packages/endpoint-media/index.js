@@ -23,7 +23,18 @@ export const MediaEndpoint = class {
     return this.options.mountpath;
   }
 
-  routes(application, publication) {
+  init(indiekitConfig) {
+    const {application, publication} = indiekitConfig;
+
+    application.routes.push({
+      mountpath: this.mountpath,
+      routes: () => this.routes(publication)
+    });
+
+    publication['media-endpoint'] = this.mountpath;
+  }
+
+  routes(publication) {
     const router = this._router;
     const multipartParser = multer({
       storage: multer.memoryStorage()

@@ -69,7 +69,8 @@ test('Gets configuration preset for a publication', t => {
 
 test('Gets media endpoint from server derived values', t => {
   const publication = {
-    config: {}
+    config: {},
+    'media-endpoint': '/media'
   };
   const request = {
     protocol: 'https',

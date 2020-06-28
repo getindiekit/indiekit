@@ -21,26 +21,29 @@ export const ShareEndpoint = class {
     return this.options.mountpath;
   }
 
-  get navigationItems() {
-    return [{
+  init(indiekitConfig) {
+    const {application, publication} = indiekitConfig;
+
+    application.navigationItems.push({
       href: this.options.mountpath,
       text: 'Share'
-    }];
+    });
+
+    application.routes.push({
+      mountpath: this.mountpath,
+      routes: () => this.routes(application, publication)
+    });
+
+    application.views.push(path.join(__dirname, 'views'));
+    application.views.push(path.join(__dirname, 'components'));
   }
 
-  get views() {
-    return [
-      path.join(__dirname, 'views'),
-      path.join(__dirname, 'components')
-    ];
-  }
-
-  routes(application) {
+  routes(application, publication) {
     const router = this._router;
     const {authenticate} = application.middleware;
 
-    this._router.get('/:path?', authenticate, shareController(application).edit);
-    this._router.post('/:path?', authenticate, shareController(application).save);
+    this._router.get('/:path?', authenticate, shareController(publication).edit);
+    this._router.post('/:path?', authenticate, shareController(publication).save);
 
     return router;
   }
