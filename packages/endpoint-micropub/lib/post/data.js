@@ -12,7 +12,7 @@ import {
   getPermalink,
   getPublishedDate,
   getSlug
-} from '../microformats/properties.js';
+} from './properties.js';
 
 /**
  * Create post data

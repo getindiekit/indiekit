@@ -6,7 +6,7 @@ import {
   getPermalink,
   getPublishedDate,
   getSlug
-} from '../../../lib/microformats/properties.js';
+} from '../../../lib/post/properties.js';
 
 const {DateTime} = luxon;
 

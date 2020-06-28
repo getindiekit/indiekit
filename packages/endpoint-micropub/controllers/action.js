@@ -44,8 +44,8 @@ export const actionController = publication => {
         default:
       }
 
-      const post = new Post(publication);
-      const result = await post[requestedAction](postData);
+      const post = new Post(publication, postData);
+      const result = await post[requestedAction](url);
       return response.status(result.status).location(result.location).json(result);
     } catch (error) {
       return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap

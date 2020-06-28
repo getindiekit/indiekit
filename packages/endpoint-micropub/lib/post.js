@@ -2,12 +2,14 @@ import {getPostTypeConfig} from './utils.js';
 import {createPostContent} from './post/content.js';
 
 export const Post = class {
-  constructor(publication) {
+  constructor(publication, postData) {
     this.publication = publication;
+    this.postData = postData;
   }
 
-  async create(postData) {
+  async create() {
     const {config, posts, store} = this.publication;
+    const {postData} = this;
 
     try {
       const postTypeConfig = getPostTypeConfig(postData.type, config);
@@ -30,8 +32,9 @@ export const Post = class {
     }
   }
 
-  async update(postData, url) {
+  async update(url) {
     const {config, posts, store} = this.publication;
+    const {postData} = this;
 
     try {
       const postTypeConfig = getPostTypeConfig(postData.type, config);
@@ -57,8 +60,9 @@ export const Post = class {
     }
   }
 
-  async delete(postData) {
+  async delete() {
     const {posts, store} = this.publication;
+    const {postData} = this;
 
     try {
       const message = `${postData.type}: delete post`;
@@ -79,8 +83,9 @@ export const Post = class {
     }
   }
 
-  async undelete(postData) {
+  async undelete() {
     const {config, posts, store} = this.publication;
+    const {postData} = this;
 
     if (postData.lastAction !== 'delete') {
       throw new Error('Post was not previously deleted');
