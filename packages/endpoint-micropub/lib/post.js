@@ -1,3 +1,4 @@
+import got from 'got';
 import {getPostTypeConfig} from './utils.js';
 import {createPostContent} from './post/content.js';
 
@@ -7,11 +8,33 @@ export const Post = class {
     this.postData = postData;
   }
 
-  async create() {
+  async create({files}) {
     const {config, posts, store} = this.publication;
     const {postData} = this;
 
     try {
+      // Upload attached media and add its URL to respective body property
+      // BUG: Promise doesn’t resolve due to upstream issue with media endpoint
+      if (files && files.length > 0) {
+        const mediaEndpoint = config['media-endpoint'];
+        const uploads = [];
+
+        for (const file of files) {
+          const mediaPost = got.post(mediaEndpoint, {
+            form: {file}
+          }).json();
+
+          uploads.push(mediaPost);
+        }
+
+        const uploaded = Promise.all(uploads);
+        for (const upload of uploaded) {
+          console.log('upload', upload.type, upload.url);
+          const property = upload.type;
+          postData.mf2.properties[property].push(upload.url);
+        }
+      }
+
       const postTypeConfig = getPostTypeConfig(postData.type, config);
       const postContent = createPostContent(postData, postTypeConfig.template);
       const message = `${postData.type}: create post`;
@@ -32,7 +55,7 @@ export const Post = class {
     }
   }
 
-  async update(url) {
+  async update({url}) {
     const {config, posts, store} = this.publication;
     const {postData} = this;
 

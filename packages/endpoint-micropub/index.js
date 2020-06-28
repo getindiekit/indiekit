@@ -1,6 +1,7 @@
 import express from 'express';
-import {fileURLToPath} from 'url';
+import multer from 'multer';
 import path from 'path';
+import {fileURLToPath} from 'url';
 import {actionController} from './controllers/action.js';
 import {postsController} from './controllers/posts.js';
 import {queryController} from './controllers/query.js';
@@ -43,9 +44,12 @@ export const MicropubEndpoint = class {
 
   routes(publication) {
     const router = this._router;
+    const multipartParser = multer({
+      storage: multer.memoryStorage()
+    });
 
     this._router.get('/', queryController(publication));
-    this._router.post('/', actionController(publication));
+    this._router.post('/', multipartParser.any(), actionController(publication));
     this._router.get('/posts', postsController(publication).view);
 
     return router;

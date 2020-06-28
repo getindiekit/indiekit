@@ -19,7 +19,7 @@ export const actionController = publication => {
    */
   return async (request, response, next) => {
     const action = request.query.action || request.body.action;
-    const {body} = request;
+    const {body, files} = request;
     const mf2 = request.is('json') ? body : formEncodedToMf2(body);
     const operation = request.body;
     const scope = action || 'create'; // TODO: Get from IndieAuth token
@@ -32,7 +32,7 @@ export const actionController = publication => {
       const requestedAction = getAction(scope, action, url);
       switch (requestedAction) {
         case 'create':
-          postData = createPostData(mf2, publication);
+          postData = await createPostData(mf2, publication);
           break;
         case 'update':
           postData = await updatePostData(url, publication, operation);
@@ -45,7 +45,7 @@ export const actionController = publication => {
       }
 
       const post = new Post(publication, postData);
-      const result = await post[requestedAction](url);
+      const result = await post[requestedAction]({files, url});
       return response.status(result.status).location(result.location).json(result);
     } catch (error) {
       return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
