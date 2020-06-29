@@ -1,20 +1,27 @@
 import gitbeaker from '@gitbeaker/node';
-const {Gitlab} = gitbeaker;
+
+const defaults = {
+  instance: 'https://gitlab.com',
+  branch: 'master'
+};
 
 /**
  * @typedef Response
  * @property {object} response HTTP response
  */
-
 export const GitlabStore = class {
-  constructor(options) {
+  constructor(options = {}) {
     this.id = 'gitlab';
     this.name = 'GitLab';
-    this._options = options;
+    this.options = {...defaults, ...options};
     this._projectId = options.projectId || `${options.user}/${options.repo}`;
-    this._gitlab = new Gitlab({
-      host: options.instance || 'https://gitlab.com',
-      token: options.token
+  }
+
+  gitlab() {
+    const {Gitlab} = gitbeaker;
+    return new Gitlab({
+      host: this.options.instance,
+      token: this.options.token
     });
   }
 
@@ -28,13 +35,12 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository
    */
   async createFile(path, content, message) {
-    content = Buffer.from(content).toString('base64');
-
     try {
-      const response = await this._gitlab.RepositoryFiles.create(
+      content = Buffer.from(content).toString('base64');
+      const response = await this.gitlab().RepositoryFiles.create(
         this._projectId,
         path,
-        this._options.branch,
+        this.options.branch,
         content,
         message, {
           encoding: 'base64'
@@ -55,10 +61,10 @@ export const GitlabStore = class {
    */
   async readFile(path) {
     try {
-      const response = await this._gitlab.RepositoryFiles.show(
+      const response = await this.gitlab().RepositoryFiles.show(
         this._projectId,
         path,
-        this._options.branch
+        this.options.branch
       );
       const content = Buffer.from(response.content, 'base64').toString('utf8');
       return content;
@@ -77,12 +83,12 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository
    */
   async updateFile(path, content, message) {
-    content = Buffer.from(content).toString('base64');
     try {
-      const response = await this._gitlab.RepositoryFiles.edit(
+      content = Buffer.from(content).toString('base64');
+      const response = await this.gitlab().RepositoryFiles.edit(
         this._projectId,
         path,
-        this._options.branch,
+        this.options.branch,
         content,
         message, {
           encoding: 'base64'
@@ -104,10 +110,10 @@ export const GitlabStore = class {
    */
   async deleteFile(path, message) {
     try {
-      await this._gitlab.RepositoryFiles.remove(
+      await this.gitlab().RepositoryFiles.remove(
         this._projectId,
         path,
-        this._options.branch,
+        this.options.branch,
         message
       );
       return true;
