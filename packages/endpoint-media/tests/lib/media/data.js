@@ -21,7 +21,7 @@ test('Creates media data', async t => {
   t.truthy(result.file.properties);
 });
 
-test('Throws error creates media data without a file', async t => {
+test('Throws error creating media data without a known post type', async t => {
   const file = {
     buffer: getFixture('font.ttf', false),
     originalname: 'font.ttf'
@@ -36,7 +36,7 @@ test('Throws error creates media data without a file', async t => {
   t.is(error.message, 'Cannot read property \'media\' of undefined');
 });
 
-test('Throws error creates media data without a known post type', async t => {
+test('Throws error creating media data without a file', async t => {
   const publication = {
     config: new JekyllConfig().config,
     me: 'https://website.example'

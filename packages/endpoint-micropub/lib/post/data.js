@@ -68,10 +68,12 @@ export const createPostData = (mf2, publication) => {
  * @returns {object} Post data
  */
 export const readPostData = async (url, publication) => {
+  const {posts} = publication;
+
   try {
-    return publication.posts.get(url);
+    return posts.get(url);
   } catch (error) {
-    console.warn(error);
+    throw new Error(error.message);
   }
 };
 
@@ -80,14 +82,14 @@ export const readPostData = async (url, publication) => {
  *
  * @param {string} url URL of existing post
  * @param {object} publication Publication configuration
- * @param {object} operation Request
+ * @param {object} update Requested updates
  * @returns {object} Post data
  */
-export const updatePostData = async (url, publication, operation) => {
-  const {config, me} = publication;
+export const updatePostData = async (url, publication, update) => {
+  const {config, me, posts} = publication;
 
   try {
-    const postData = await this.readPostData(url);
+    const postData = await posts.get(url);
 
     // Post type
     const {type} = postData;
@@ -97,31 +99,31 @@ export const updatePostData = async (url, publication, operation) => {
     let {properties} = postData.mf2;
 
     // Replace property entries
-    if (operation.replace) {
-      properties = replaceEntries(properties, operation.replace);
+    if (update.replace) {
+      properties = replaceEntries(properties, update.replace);
     }
 
     // Add properties
-    if (operation.add) {
-      properties = addProperties(properties, operation.add);
+    if (update.add) {
+      properties = addProperties(properties, update.add);
     }
 
     // Remove properties and/or property entries
-    if (operation.delete) {
-      if (Array.isArray(operation.delete)) {
-        properties = deleteProperties(properties, operation.delete);
+    if (update.delete) {
+      if (Array.isArray(update.delete)) {
+        properties = deleteProperties(properties, update.delete);
       } else {
-        properties = deleteEntries(properties, operation.delete);
+        properties = deleteEntries(properties, update.delete);
       }
     }
 
     // Post paths
     const path = templates.renderString(typeConfig.post.path, properties);
-    let url = templates.renderString(typeConfig.post.url, properties);
-    url = getPermalink(me, url);
+    let updatedUrl = templates.renderString(typeConfig.post.url, properties);
+    updatedUrl = getPermalink(me, updatedUrl);
 
     // Add computed URL to post properties
-    properties.url = [url];
+    properties.url = [updatedUrl];
 
     // Return post data
     const updatedPostData = {

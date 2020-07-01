@@ -30,3 +30,8 @@ test('Creates post content', t => {
   const result = createPostContent(t.context.postData, t.context.postTemplatePath);
   t.is(result, '---\ndate: 2020-06-27T17:27:51.170Z\n---\nI ate a cheese sandwich, which was nice.\n');
 });
+
+test('Throws error creating post content', t => {
+  const error = t.throws(() => createPostContent(t.context.postData, 'foo/bar'));
+  t.regex(error.message, /\bno such file or directory\b/);
+});

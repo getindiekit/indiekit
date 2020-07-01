@@ -59,8 +59,10 @@ export const createMediaData = async (file, publication) => {
  * @returns {object} Media data
  */
 export const readMediaData = async (url, publication) => {
+  const {media} = publication;
+
   try {
-    return publication.media.get(url);
+    return media.get(url);
   } catch (error) {
     throw new Error(error.message);
   }
