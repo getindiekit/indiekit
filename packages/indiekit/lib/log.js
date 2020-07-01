@@ -49,15 +49,15 @@ export const Log = class {
 
     if (keys.length > 0) {
       const values = keys.map(key => JSON.parse(hash[key]));
-      return values.map(value => {
-        return value[objectKey];
-      });
+      return values.map(value => value[objectKey]);
     }
 
     return [];
   }
 
   /**
+   * Set a value in log with a given key
+   *
    * @param {string} key Key to lookup
    * @param {string} value Value to insert
    * @returns {Promise|boolean} 0|1
