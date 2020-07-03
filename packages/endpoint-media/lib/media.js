@@ -4,6 +4,12 @@ export const Media = class {
     this.mediaData = mediaData;
   }
 
+  /**
+   * Upload a file
+   *
+   * @param {object} file File to upload
+   * @returns {object} Data to use in response
+   */
   async upload(file) {
     const {media, store} = this.publication;
     const {mediaData} = this;
