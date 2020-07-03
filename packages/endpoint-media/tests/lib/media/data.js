@@ -1,10 +1,7 @@
 import test from 'ava';
 import {getFixture} from '../../helpers/fixture.js';
 import {JekyllConfig} from '../../../../config-jekyll/index.js';
-import {
-  createMediaData,
-  readMediaData
-} from '../../../lib/media/data.js';
+import {mediaData} from '../../../lib/media/data.js';
 
 test('Creates media data', async t => {
   const file = {
@@ -15,7 +12,7 @@ test('Creates media data', async t => {
     config: new JekyllConfig().config,
     me: 'https://website.example'
   };
-  const result = await createMediaData(file, publication);
+  const result = await mediaData.create(publication, file);
   t.is(result.type, 'photo');
   t.regex(result.path, /\b[\d\w]{5}\b/g);
   t.truthy(result.file.properties);
@@ -31,7 +28,7 @@ test('Throws error creating media data without a known post type', async t => {
     me: 'https://website.example'
   };
   const error = await t.throwsAsync(
-    createMediaData(file, publication)
+    mediaData.create(publication, file)
   );
   t.is(error.message, 'Cannot read property \'media\' of undefined');
 });
@@ -42,7 +39,7 @@ test('Throws error creating media data without a file', async t => {
     me: 'https://website.example'
   };
   const error = await t.throwsAsync(
-    createMediaData(false, publication)
+    mediaData.create(publication, false)
   );
   t.is(error.message, 'No file included in request');
 });
@@ -61,7 +58,7 @@ test('Reads media data', async t => {
       })
     }
   };
-  const result = await readMediaData(url, publication);
+  const result = await mediaData.read(publication, url);
   t.is(result.type, 'photo');
 });
 
@@ -75,7 +72,7 @@ test('Throws error reading media without logged URL', async t => {
     }
   };
   const error = await t.throwsAsync(
-    readMediaData(url, publication)
+    mediaData.read(publication, url)
   );
   t.is(error.message, `No value found for ${url}`);
 });

@@ -1,18 +1,14 @@
-export const Media = class {
-  constructor(publication, mediaData) {
-    this.publication = publication;
-    this.mediaData = mediaData;
-  }
-
+export const media = {
   /**
-   * Upload a file
+   * Upload file
    *
+   * @param {object} publication Publication configuration
+   * @param {object} mediaData Media data
    * @param {object} file File to upload
    * @returns {object} Data to use in response
    */
-  async upload(file) {
-    const {media, store} = this.publication;
-    const {mediaData} = this;
+  upload: async (publication, mediaData, file) => {
+    const {media, store} = publication;
 
     try {
       const message = `${mediaData.type}: upload media`;
