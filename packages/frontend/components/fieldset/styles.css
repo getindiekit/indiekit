@@ -1,6 +1,7 @@
 .fieldset {
   @extend %body;
 
+  --flow-space: 0.5rem;
   max-inline-size: var(--line-measure);
 }
 
