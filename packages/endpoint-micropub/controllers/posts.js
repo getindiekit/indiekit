@@ -5,7 +5,7 @@ export const postsController = publication => ({
    * @param {object} request HTTP request
    * @param {object} response HTTP response
    * @param {Function} next Next middleware callback
-   * @returns {object} Previously published posts
+   * @returns {object} HTTP response
    */
   view: async (request, response, next) => {
     try {

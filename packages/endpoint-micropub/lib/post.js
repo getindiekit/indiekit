@@ -2,15 +2,17 @@ import got from 'got';
 import {getPostTypeConfig} from './utils.js';
 import {createPostContent} from './post/content.js';
 
-export const Post = class {
-  constructor(publication, postData) {
-    this.publication = publication;
-    this.postData = postData;
-  }
-
-  async create({files}) {
-    const {config, posts, store} = this.publication;
-    const {postData} = this;
+export const post = {
+  /**
+   * Create post
+   *
+   * @param {object} publication Publication configuration
+   * @param {object} postData Post data
+   * @param {object} files Files attached to request
+   * @returns {object} Response data
+   */
+  create: async (publication, postData, files) => {
+    const {config, posts, store} = publication;
 
     try {
       // Upload attached media and add its URL to respective body property
@@ -53,11 +55,18 @@ export const Post = class {
     } catch (error) {
       throw new Error(error.message);
     }
-  }
+  },
 
-  async update({url}) {
-    const {config, posts, store} = this.publication;
-    const {postData} = this;
+  /**
+   * Update post
+   *
+   * @param {object} publication Publication configuration
+   * @param {object} postData Post data
+   * @param {string} url Files attached to request
+   * @returns {object} Response data
+   */
+  update: async (publication, postData, url) => {
+    const {config, posts, store} = publication;
 
     try {
       const postTypeConfig = getPostTypeConfig(postData.type, config);
@@ -81,11 +90,17 @@ export const Post = class {
     } catch (error) {
       throw new Error(error.message);
     }
-  }
+  },
 
-  async delete() {
-    const {posts, store} = this.publication;
-    const {postData} = this;
+  /**
+   * Delete post
+   *
+   * @param {object} publication Publication configuration
+   * @param {object} postData Post data
+   * @returns {object} Response data
+   */
+  delete: async (publication, postData) => {
+    const {posts, store} = publication;
 
     try {
       const message = `${postData.type}: delete post`;
@@ -104,11 +119,17 @@ export const Post = class {
     } catch (error) {
       throw new Error(error.message);
     }
-  }
+  },
 
-  async undelete() {
-    const {config, posts, store} = this.publication;
-    const {postData} = this;
+  /**
+   * Undelete post
+   *
+   * @param {object} publication Publication configuration
+   * @param {object} postData Post data
+   * @returns {object} Response data
+   */
+  undelete: async (publication, postData) => {
+    const {config, posts, store} = publication;
 
     if (postData.lastAction !== 'delete') {
       throw new Error('Post was not previously deleted');
