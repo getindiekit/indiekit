@@ -10,7 +10,7 @@ export const getNavigation = (application, token) => {
     text: 'Sign in'
   })];
 
-  navigation = application.navigationItems.concat(navigation);
+  navigation = [...application.navigationItems, ...navigation];
 
   return navigation;
 };
