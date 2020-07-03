@@ -15,23 +15,34 @@ export const shareController = publication => ({
   },
 
   save: async (request, response, next) => {
+    const {content, name, url} = request.body;
     const host = `${request.protocol}://${request.headers.host}`;
     const path = publication['micropub-endpoint'];
 
     try {
-      const micropubPost = await got.post(`${host}${path}`, {
+      const micropubResponse = await got.post(`${host}${path}`, {
         form: request.body,
         responseType: 'json'
       });
 
-      const success = micropubPost.body;
+      const success = micropubResponse.body;
       if (success) {
         const message = encodeURIComponent(success.description);
         response.redirect(`?success=${message}`);
       }
     } catch (error) {
-      // TODO: Fix race condition. Reponse throws an error to next but so does internal endpoint
-      next(error);
+      if (error.response) {
+        response.render('share', {
+          title: 'Share',
+          content,
+          name,
+          url,
+          error: error.response.body,
+          minimalui: (request.params.path === 'bookmarklet')
+        });
+      } else {
+        return next(error);
+      }
     }
   }
 });

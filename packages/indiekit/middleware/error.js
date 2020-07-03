@@ -17,5 +17,5 @@ export const notFound = (request, response, next) => {
 export const internalServer = (error, request, response, next) => { // eslint-disable-line no-unused-vars
   const status = error.status || 500;
 
-  return response.status(status).type('txt').send(`${error.name}: ${error.message}`);
+  return response.status(status).type('txt').send(`${error.message}`);
 };
