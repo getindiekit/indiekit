@@ -99,14 +99,14 @@ export const postData = {
       // Post properties
       let {properties} = postData.mf2;
 
-      // Replace property entries
-      if (operation.replace) {
-        properties = replaceEntries(properties, operation.replace);
-      }
-
       // Add properties
       if (operation.add) {
         properties = addProperties(properties, operation.add);
+      }
+
+      // Replace property entries
+      if (operation.replace) {
+        properties = replaceEntries(properties, operation.replace);
       }
 
       // Remove properties and/or property entries
