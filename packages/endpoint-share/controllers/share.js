@@ -20,12 +20,12 @@ export const shareController = publication => ({
     const path = publication['micropub-endpoint'];
 
     try {
-      const micropubResponse = await got.post(`${host}${path}`, {
+      const endpointResponse = await got.post(`${host}${path}`, {
         form: request.body,
         responseType: 'json'
       });
 
-      const success = micropubResponse.body;
+      const success = endpointResponse.body;
       if (success) {
         const message = encodeURIComponent(success.description);
         response.redirect(`?success=${message}`);
