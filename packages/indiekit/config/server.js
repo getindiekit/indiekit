@@ -1,6 +1,6 @@
 import express from 'express';
+import cookieSession from 'cookie-session';
 import {templates} from '@indiekit/frontend';
-import {session} from './session.js';
 import * as error from '../middleware/error.js';
 import {locals} from '../middleware/locals.js';
 import {routes} from '../routes/index.js';
@@ -16,7 +16,10 @@ export const serverConfig = indiekitConfig => {
   config.use(express.urlencoded({extended: true}));
 
   // Session
-  config.use(session(indiekitConfig));
+  config.use(cookieSession({
+    name: indiekitConfig.application.name,
+    secret: indiekitConfig.server.secret
+  }));
 
   // Locals
   config.use(locals(indiekitConfig));

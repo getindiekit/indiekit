@@ -2,9 +2,12 @@ import httpError from 'http-errors';
 import IndieAuth from 'indieauth-helper';
 import normalizeUrl from 'normalize-url';
 import validator from 'express-validator';
-import {secret} from '../config/session.js';
+import {defaultConfig} from '../config/defaults.js';
 
-const auth = new IndieAuth({secret});
+const auth = new IndieAuth({
+  // TODO: Use resolved server config
+  secret: defaultConfig.server.secret
+});
 const {validationResult} = validator;
 
 export const login = (request, response) => {
@@ -75,6 +78,6 @@ export const authenticationCallback = async (request, response, next) => {
 };
 
 export const logout = (request, response) => {
-  request.session.destroy();
+  request.session = null;
   response.redirect('/');
 };

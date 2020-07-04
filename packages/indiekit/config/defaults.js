@@ -47,6 +47,7 @@ export const defaultConfig = {
     timezone: 'UTC'
   },
   server: {
-    port: process.env.PORT || '3000'
+    port: process.env.PORT || '3000',
+    secret: process.env.SECRET
   }
 };
