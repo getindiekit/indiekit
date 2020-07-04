@@ -27,23 +27,28 @@ test.beforeEach(t => {
   };
 });
 
-test('Creates post data', t => {
+test('Creates post data', async t => {
   const mf2 = {
     type: 'h-entry',
     properties: {
-      name: ['foo']
+      name: ['foo'],
+      audio: [],
+      photo: [],
+      video: []
     }
   };
-  const result = postData.create(t.context.publication, mf2);
+  const result = await postData.create(t.context.publication, mf2);
   t.is(result.type, 'note');
   t.truthy(result.mf2.properties.published[0]);
   t.is(result.mf2.properties.slug[0], 'foo');
   t.truthy(result.mf2.properties);
 });
 
-test('Throws error creating post data without source microformats', t => {
-  const error = t.throws(() => postData.create(t.context.publication, false));
-  t.regex(error.message, /\bCannot destructure property\b/);
+test('Throws error creating post data without source microformats', async t => {
+  const error = await t.throwsAsync(
+    postData.create(t.context.publication, false)
+  );
+  t.is(error.message, 'Cannot read property \'audio\' of undefined');
 });
 
 test('Reads post data', async t => {

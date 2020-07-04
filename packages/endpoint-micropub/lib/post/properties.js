@@ -9,6 +9,16 @@ import {
 const {DateTime} = luxon;
 
 /**
+ * Derive audio values
+ *
+ * @param {object} mf2 Microformats2 object
+ * @returns {Array} Audio
+ */
+export const getAudio = mf2 => {
+  return mf2.properties.audio.map(value => ({value}));
+};
+
+/**
  * Derive content (HTML, else object value, else property value)
  *
  * @param {object} mf2 Microformats2 object
@@ -23,6 +33,28 @@ export const getContent = mf2 => {
   }
 
   return null;
+};
+
+/**
+ * Derive photo values and any associated text alternatives
+ *
+ * @param {object} mf2 Microformats2 object
+ * @returns {Array} Photos
+ */
+export const getPhotos = mf2 => {
+  let {photo} = mf2.properties;
+  const alt = mf2['mp-photo-alt'];
+
+  if (photo) {
+    photo = photo.map((photo, i) => ({
+      value: photo,
+      alt: alt ? alt[i].alt : ''
+    }));
+
+    delete mf2['mp-photo-alt'];
+
+    return photo;
+  }
 };
 
 /**
@@ -92,4 +124,14 @@ export const getSlug = (mf2, separator) => {
   // TODO: Explore using NewBase60 instead (requires post counter)
   const randomSlug = randomString();
   return new Array(randomSlug);
+};
+
+/**
+ * Derive video values
+ *
+ * @param {object} mf2 Microformats2 object
+ * @returns {Array} Video
+ */
+export const getVideo = mf2 => {
+  return mf2.properties.video.map(value => ({value}));
 };
