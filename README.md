@@ -30,10 +30,12 @@ npm test
 
 ### Previous features that need reimplementing
 
-* [ ] Attach media to Micropub endpoint requests
+* [x] Attach media to Micropub endpoint requests
+* [x] Update media properties (`audio`, `photo`, `video`)
 * [ ] Authenticate Micropub endpoint actions using IndieAuth
 * [ ] Authenticate media endpoint actions using IndieAuth
 * [ ] Internationalisation
+* [ ] Use user configured post types
 * [ ] Load user configured post type templates
 * [ ] Add missing tests
 
