@@ -21,10 +21,11 @@ export const queryController = publication => {
         case 'last': {
           // Return last uploaded media file
           const items = await publication.media.selectFromAll('url');
-          return response.json(items ? {items} : {});
+          return response.json(items ? {url: items[0]} : {});
         }
 
         default:
+          throw new Error(`Invalid parameter: ${query.q}`);
       }
     } catch (error) {
       return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap

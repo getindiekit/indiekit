@@ -62,17 +62,10 @@ test('Reads media data', async t => {
   t.is(result.type, 'photo');
 });
 
-test('Throws error reading media without logged URL', async t => {
+test('Throws error reading media', async t => {
   const url = 'https://website.example/photo.jpg';
-  const publication = {
-    media: {
-      get: async key => {
-        throw new Error(`No value found for ${key}`);
-      }
-    }
-  };
   const error = await t.throwsAsync(
-    mediaData.read(publication, url)
+    mediaData.read(false, url)
   );
-  t.is(error.message, `No value found for ${url}`);
+  t.is(error.message, 'Cannot read property \'get\' of undefined');
 });
