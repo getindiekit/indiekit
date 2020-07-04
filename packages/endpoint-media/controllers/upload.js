@@ -15,8 +15,9 @@ export const uploadController = publication => {
     const {file} = request;
 
     try {
-      const data = await mediaData.create(file, publication);
-      const uploaded = media.upload(publication, data, file);
+      const data = await mediaData.create(publication, file);
+      const uploaded = await media.upload(publication, data, file);
+
       return response.status(uploaded.status).location(uploaded.location).json(uploaded);
     } catch (error) {
       return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap

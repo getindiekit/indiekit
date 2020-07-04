@@ -12,16 +12,17 @@ export const media = {
 
     try {
       const message = `${mediaData.type}: upload media`;
-      const published = await store.createFile(mediaData.path, file.buffer, message);
+      const uploaded = await store.createFile(mediaData.path, file.buffer, message);
 
-      if (published) {
+      if (uploaded) {
         mediaData.lastAction = 'upload';
         await media.set(mediaData.url, mediaData);
         return {
           location: mediaData.url,
           status: 201,
           success: 'create',
-          description: `Media uploaded to ${mediaData.url}`
+          description: `Media uploaded to ${mediaData.url}`,
+          type: mediaData.type
         };
       }
     } catch (error) {

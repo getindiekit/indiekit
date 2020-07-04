@@ -32,7 +32,8 @@ test('Uploads a file', async t => {
     location: 'https://website.example/photo.jpg',
     status: 201,
     success: 'create',
-    description: 'Media uploaded to https://website.example/photo.jpg'
+    description: 'Media uploaded to https://website.example/photo.jpg',
+    type: 'photo'
   });
   scope.done();
 });
