@@ -33,7 +33,8 @@ npm test
 * [x] Attach media to Micropub endpoint requests
 * [x] Update media properties (`audio`, `photo`, `video`)
 * [x] Authenticate Micropub endpoint actions using IndieAuth
-* [ ] Check scopes for Micropub endpoint actions
+* [x] Check scopes for Micropub endpoint actions
+* [ ] Make application provide template renderer
 * [ ] Internationalisation
 * [ ] Use user configured post types
 * [ ] Load user configured post type templates

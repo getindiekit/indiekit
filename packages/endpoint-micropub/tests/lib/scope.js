@@ -11,11 +11,6 @@ test('Returns true if required scope is `create` but token provides `post`', t =
   t.true(result);
 });
 
-test('Returns true if required scope is `post` but token provides `create`', t => {
-  const result = checkScope('create', 'post');
-  t.true(result);
-});
-
 test('Required scope defaults to `create`', t => {
   const result = checkScope('create update', null);
   t.true(result);

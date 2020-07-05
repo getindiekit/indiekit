@@ -1,6 +1,7 @@
 import httpError from 'http-errors';
 import {media} from '../lib/media.js';
 import {mediaData} from '../lib/media/data.js';
+import {checkScope} from '../lib/scope.js';
 
 export const uploadController = publication => {
   /**
@@ -13,8 +14,11 @@ export const uploadController = publication => {
    */
   return async (request, response, next) => {
     const {file} = request;
+    const {scope} = response.locals.publication.token;
 
     try {
+      checkScope(scope);
+
       const data = await mediaData.create(publication, file);
       const uploaded = await media.upload(publication, data, file);
 

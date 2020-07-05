@@ -5,7 +5,7 @@ import HttpError from 'http-errors';
  *
  * @param {object} providedScope Provided scope
  * @param {string} requiredScope Required scope
- * @returns {boolean} True if providedScope includes requiredScope
+ * @returns {boolean} True if provided scope includes requiredScope
  */
 export const checkScope = (providedScope, requiredScope) => {
   if (!providedScope) {
@@ -16,16 +16,11 @@ export const checkScope = (providedScope, requiredScope) => {
     requiredScope = 'create';
   }
 
-  const scopes = providedScope.split(' ');
-  let hasScope = scopes.includes(requiredScope);
+  let hasScope = providedScope.includes(requiredScope);
 
   // Handle deprecated `post` scope
-  if (requiredScope === 'post' && !hasScope) {
-    hasScope = scopes.includes('create');
-  }
-
-  if (requiredScope === 'create' && !hasScope) {
-    hasScope = scopes.includes('post');
+  if (!hasScope && requiredScope === 'create') {
+    hasScope = providedScope.includes('post');
   }
 
   if (hasScope) {
