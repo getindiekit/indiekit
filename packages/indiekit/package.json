@@ -37,7 +37,7 @@
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
-    "got": "^11.1.4",
+    "got": "^11.4.0",
     "http-errors": "^1.8.0",
     "indieauth-helper": "^1.0.2",
     "ioredis": "^4.17.0",
