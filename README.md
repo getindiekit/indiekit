@@ -12,6 +12,8 @@ Indiekit is a small but powerful server that acts as your go between your websit
 
 Indiekit is easy to set up, and can be configured to work with different static site generators (Jekyll, Hugo, 11ty) and hosting software (GitHub and GitLab). Indiekit can be installed on any server that supports Node.js and extended using third-party plugins.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/paulrobertlloyd/indiekit-redux/tree/main)
+
 ## Local development
 
 ```sh

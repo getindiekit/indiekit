@@ -1,0 +1,40 @@
+{
+  "name": "Indiekit",
+  "description": "An IndieWeb publishing toolkit.",
+  "keywords": [
+    "indieweb",
+    "micropub"
+  ],
+  "website": "https://paulrobertlloyd.github.io/indiekit/",
+  "repository": "https://github.com/paulrobertlloyd/indiekit-redux",
+  "success_url": "/",
+  "env": {
+    "GITHUB_TOKEN": {
+      "description": "A GitHub personal access token",
+      "required": true
+    },
+    "GITHUB_USER": {
+      "description": "Username on GitHub",
+      "required": true
+    },
+    "GITHUB_REPO": {
+      "description": "Name of the repository files will be saved to",
+      "required": true
+    },
+    "PUBLICATION_URL": {
+      "description": "URL of the website you want to publish to",
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "descrition": "Skip pruning devDependencies while packages are not public",
+      "value": "false"
+    },
+    "SECRET": {
+      "description": "A secret key for verifying the integrity of signed cookies",
+      "generator": "secret"
+    }
+  },
+  "addons": [
+    "heroku-redis"
+  ]
+}
