@@ -28,20 +28,21 @@ export const MediaEndpoint = class {
 
     application.routes.push({
       mountpath: this.mountpath,
-      routes: () => this.routes(publication)
+      routes: () => this.routes(application, publication)
     });
 
     publication['media-endpoint'] = this.mountpath;
   }
 
-  routes(publication) {
+  routes(application, publication) {
     const router = this._router;
+    const {indieauth} = application.middleware;
     const multipartParser = multer({
       storage: multer.memoryStorage()
     });
 
     this._router.get('/', queryController(publication));
-    this._router.post('/', multipartParser.single('file'), uploadController(publication));
+    this._router.post('/', indieauth(publication), multipartParser.single('file'), uploadController(publication));
 
     return router;
   }

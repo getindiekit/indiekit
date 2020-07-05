@@ -6,6 +6,7 @@ import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {authenticate} from '../middleware/authentication.js';
+import {indieauth} from '../middleware/indieauth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const jekyllConfig = new JekyllConfig();
@@ -30,7 +31,8 @@ export const defaultConfig = {
     ],
     routes: [],
     middleware: {
-      authenticate
+      authenticate,
+      indieauth
     },
     navigationItems: [],
     stores: [],
@@ -44,7 +46,8 @@ export const defaultConfig = {
     locale: 'en-GB',
     me: null,
     storeId: null,
-    timezone: 'UTC'
+    timezone: 'UTC',
+    tokenEndpoint: 'https://tokens.indieauth.com/token'
   },
   server: {
     port: process.env.PORT || '3000',

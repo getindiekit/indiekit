@@ -34,7 +34,7 @@ export const MicropubEndpoint = class {
 
     application.routes.push({
       mountpath: this.mountpath,
-      routes: () => this.routes(publication)
+      routes: () => this.routes(application, publication)
     });
 
     application.views.push(path.join(__dirname, 'views'));
@@ -42,15 +42,16 @@ export const MicropubEndpoint = class {
     publication['micropub-endpoint'] = this.mountpath;
   }
 
-  routes(publication) {
+  routes(application, publication) {
     const router = this._router;
+    const {authenticate, indieauth} = application.middleware;
     const multipartParser = multer({
       storage: multer.memoryStorage()
     });
 
     this._router.get('/', queryController(publication));
-    this._router.post('/', multipartParser.any(), actionController(publication));
-    this._router.get('/posts', postsController(publication).view);
+    this._router.post('/', indieauth(publication), multipartParser.any(), actionController(publication));
+    this._router.get('/posts', authenticate, postsController(publication).view);
 
     return router;
   }
