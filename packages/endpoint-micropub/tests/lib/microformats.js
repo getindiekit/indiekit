@@ -14,12 +14,14 @@ test.beforeEach(t => {
 test('Parses Microformats in form-encoded request', t => {
   const result = formEncodedToMf2({
     h: 'entry',
-    content: 'I+ate+a+cheese+sandwich.'
+    content: 'I+ate+a+cheese+sandwich.',
+    category: ['foo', 'bar']
   });
   t.deepEqual(result, {
     type: ['h-entry'],
     properties: {
-      content: ['I ate a cheese sandwich.']
+      content: ['I ate a cheese sandwich.'],
+      category: ['foo', 'bar']
     }
   });
 });

@@ -19,16 +19,19 @@ export const formEncodedToMf2 = body => {
 
   for (const key in body) {
     if (Object.prototype.hasOwnProperty.call(body, key)) {
-      const value = decodeQueryParameter(body[key]);
+      // Delete reserved properties
       const isReservedProperty = reservedProperties.includes(key);
-
       if (isReservedProperty) {
         delete body[key];
-      } else {
-        // Convert value to arrays
-        // 'a' => ['a']
-        mf2.properties[key] = [].concat(value);
+        continue;
       }
+
+      // Decode string values
+      const isStringValue = typeof body[key] === 'string';
+      const value = isStringValue ? decodeQueryParameter(body[key]) : body[key];
+
+      // Convert values to arrays, ie 'a' => ['a']
+      mf2.properties[key] = [].concat(value);
     }
   }
 
