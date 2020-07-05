@@ -28,7 +28,6 @@ jobs:
     - name: Install packages and symlink local dependencies
       run: |
         npm install
-        npm run bootstrap
     - name: Run tests and report coverage
       run: |
         npm run coverage

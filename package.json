@@ -23,7 +23,7 @@
   },
   "type": "module",
   "scripts": {
-    "bootstrap": "lerna bootstrap --no-ci",
+    "postinstall": "lerna bootstrap --no-ci",
     "dev": "nodemon indiekit.config.js",
     "start": "node indiekit.config.js",
     "lint:markdown": "markdownlint '**/*.md'",
