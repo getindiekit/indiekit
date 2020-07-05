@@ -24,14 +24,14 @@
         value: {
           text: (post.properties.published | date('DDDD')) + " at " + (post.properties.published | date('t'))
         }
-      }, {
+      } if post.properties.published, {
         key: {
           text: "Content"
         },
         value: {
           text: post.properties.content | string | markdown
         }
-      }, {
+      } if post.properties.content, {
         key: {
           text: "Properties"
         },
@@ -45,7 +45,7 @@
         value: {
           text: "<code>" + post.type + "</code>"
         }
-      }]
+      } if post.type]
     }) }}
   {% endfor %}
 {% endblock %}
