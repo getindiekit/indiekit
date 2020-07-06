@@ -1,9 +1,9 @@
 import httpError from 'http-errors';
 import {formEncodedToMf2} from '../lib/microformats.js';
-import {processAttachments} from '../lib/post/attachments.js';
 import {post} from '../lib/post.js';
 import {postData} from '../lib/post/data.js';
 import {checkScope} from '../lib/scope.js';
+import {uploadMedia, addMediaLocations} from '../lib/media.js';
 
 export const actionController = publication => {
   /**
@@ -15,21 +15,27 @@ export const actionController = publication => {
    * @returns {object} HTTP response
    */
   return async (request, response, next) => {
-    const {body, files, query} = request;
-    const action = query.action || body.action || 'create';
-    const {scope} = response.locals.publication.token;
-    const url = query.url || body.url;
-
     try {
+      const {body, files, query} = request;
+      const action = query.action || body.action || 'create';
+      const url = query.url || body.url;
+
+      // Check scope
+      const {scope} = response.locals.publication.token;
       checkScope(scope, action);
 
-      let mf2 = request.is('json') ? body : formEncodedToMf2(body);
+      // Upload attached files
+      const mediaEndpoint = publication.config['media-endpoint'];
+      const uploads = await uploadMedia(mediaEndpoint, files);
+
+      // Perform requested action
+      let mf2;
       let data;
       let published;
-
       switch (action) {
         case 'create':
-          mf2 = await processAttachments(publication, mf2, files);
+          mf2 = request.is('json') ? body : formEncodedToMf2(body);
+          mf2 = addMediaLocations(mf2, uploads);
           data = await postData.create(publication, mf2);
           published = await post.create(publication, data);
           break;
