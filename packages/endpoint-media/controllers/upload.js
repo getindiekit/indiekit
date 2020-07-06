@@ -24,7 +24,7 @@ export const uploadController = publication => {
 
       return response.status(uploaded.status).location(uploaded.location).json(uploaded);
     } catch (error) {
-      return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+      next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
     }
   };
 };

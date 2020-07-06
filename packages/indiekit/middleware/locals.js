@@ -20,10 +20,10 @@ export const locals = indiekitConfig => {
       // Publication
       publication.config = getMediaEndpoint(publication, request);
       response.locals.publication = publication;
-    } catch (error) {
-      return next(error);
-    }
 
-    next();
+      next();
+    } catch (error) {
+      next(error);
+    }
   };
 };

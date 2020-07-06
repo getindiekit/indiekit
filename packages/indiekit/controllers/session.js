@@ -73,7 +73,7 @@ export const authenticationCallback = async (request, response, next) => {
 
     response.redirect(redirect || '/');
   } catch (error) {
-    return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+    next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
   }
 };
 

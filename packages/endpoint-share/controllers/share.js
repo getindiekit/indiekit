@@ -41,7 +41,7 @@ export const shareController = publication => ({
           minimalui: (request.params.path === 'bookmarklet')
         });
       } else {
-        return next(error);
+        next(error);
       }
     }
   }

@@ -10,7 +10,7 @@ export const notFound = (request, response, next) => {
       content: 'If you entered a web address please check it was correct.'
     });
   } else {
-    return next(error);
+    next(error);
   }
 };
 

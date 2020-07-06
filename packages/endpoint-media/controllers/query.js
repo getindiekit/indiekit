@@ -28,7 +28,7 @@ export const queryController = publication => {
           throw new Error(`Invalid parameter: ${query.q}`);
       }
     } catch (error) {
-      return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+      next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
     }
   };
 };

@@ -60,7 +60,7 @@ export const queryController = publication => {
         }
       }
     } catch (error) {
-      return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+      next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
     }
   };
 };

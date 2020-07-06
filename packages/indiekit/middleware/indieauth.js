@@ -17,6 +17,7 @@ export const indieauth = publication => {
       const accessToken = await requestAccessToken(publication.tokenEndpoint, bearerToken);
       const verifiedToken = await verifyAccessToken(publication.me, accessToken);
       response.locals.publication.token = verifiedToken;
+
       next();
     } catch (error) {
       next(error);

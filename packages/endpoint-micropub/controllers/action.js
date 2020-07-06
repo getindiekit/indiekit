@@ -50,7 +50,7 @@ export const actionController = publication => {
 
       return response.status(published.status).location(published.location).json(published);
     } catch (error) {
-      return next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+      next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
     }
   };
 };
