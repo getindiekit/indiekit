@@ -56,6 +56,11 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
  */
 export const verifyAccessToken = async (me, accessToken) => {
   try {
+    // Throw error if no publication URL provided
+    if (!me) {
+      throw new HttpError.BadRequest('No publication URL to verify');
+    }
+
     // Throw error if access token does not contain a `me` value
     if (!accessToken.me) {
       throw new HttpError.Unauthorized('There was a problem with this access token');

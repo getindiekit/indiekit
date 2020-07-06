@@ -6,11 +6,7 @@ import HttpError from 'http-errors';
  * @param {object} providedScope Provided scope
  * @returns {boolean} True if provided scope includes `create` or `media`
  */
-export const checkScope = providedScope => {
-  if (!providedScope) {
-    providedScope = 'media';
-  }
-
+export const checkScope = (providedScope = 'media') => {
   const hasScope =
     providedScope.includes('create') ||
     providedScope.includes('media');

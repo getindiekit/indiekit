@@ -81,11 +81,11 @@ test('Verifies an access token', async t => {
   t.is(result.me, 'https://website.example');
 });
 
-test('Throws error verifying access token', async t => {
+test('Throws error verifying access token without a publication URL', async t => {
   const error = await t.throwsAsync(
     verifyAccessToken(null, t.context.accessToken)
   );
-  t.is(error.message, 'Cannot read property \'trim\' of null');
+  t.is(error.message, 'No publication URL to verify');
 });
 
 test('Throws error verifying access token without permissions', async t => {
