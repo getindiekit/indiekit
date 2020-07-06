@@ -54,7 +54,7 @@
     "sinon": "^9.0.2",
     "supertest": "^4.0.0",
     "valid-url": "^1.0.9",
-    "xo": "^0.32.0"
+    "xo": "^0.32.1"
   },
   "ava": {
     "environmentVariables": {
