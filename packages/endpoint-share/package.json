@@ -29,9 +29,6 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
     "directory": "packages/endpoint-share"
   },
-  "scripts": {
-    "test": "echo \"Run tests from root\" && exit 1"
-  },
   "dependencies": {
     "express": "^4.17.1",
     "got": "^11.4.0"

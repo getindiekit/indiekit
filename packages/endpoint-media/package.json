@@ -29,9 +29,6 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
     "directory": "packages/endpoint-media"
   },
-  "scripts": {
-    "test": "echo \"Run tests from root\" && exit 1"
-  },
   "dependencies": {
     "@sindresorhus/slugify": "^1.0.0",
     "camelcase-keys": "^6.2.2",

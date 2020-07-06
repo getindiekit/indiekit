@@ -4,7 +4,7 @@ import {Log} from '../../lib/log.js';
 
 const log = new Log(mockClient, 'test');
 
-test.beforeEach(t => {
+test.beforeEach(() => {
   log.set('https://website.example/foo', {
     type: 'note',
     path: 'foo',

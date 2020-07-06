@@ -30,9 +30,6 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
     "directory": "packages/frontend"
   },
-  "scripts": {
-    "test": "echo \"Run tests from root\" && exit 1"
-  },
   "dependencies": {
     "color": "^3.1.2",
     "iso-639-1": "^2.1.3",

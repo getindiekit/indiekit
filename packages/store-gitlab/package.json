@@ -27,11 +27,7 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
     "directory": "packages/store-gitlab"
   },
-  "scripts": {
-    "test": "echo \"Run tests from root\" && exit 1"
-  },
   "dependencies": {
     "@gitbeaker/node": "^22.0.1"
-  },
-  "xo": false
+  }
 }

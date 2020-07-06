@@ -27,9 +27,6 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
     "directory": "packages/store-github"
   },
-  "scripts": {
-    "test": "echo \"Run tests from root\" && exit 1"
-  },
   "dependencies": {
     "@octokit/rest": "^18.0.0"
   }

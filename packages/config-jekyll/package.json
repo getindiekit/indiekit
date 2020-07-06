@@ -29,9 +29,6 @@
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
     "directory": "packages/config-jekyll"
   },
-  "scripts": {
-    "test": "echo \"Run tests from root\" && exit 1"
-  },
   "dependencies": {
     "@indiekit/templates-yaml": "0.1.0"
   }
