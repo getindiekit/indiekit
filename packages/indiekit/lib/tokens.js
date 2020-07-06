@@ -14,7 +14,7 @@ export const getBearerToken = request => {
     return bearerToken;
   }
 
-  throw new Error('No bearer token provided by request');
+  throw new HttpError.BadRequest('No bearer token provided by request');
 };
 
 /**
@@ -44,7 +44,7 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
       const message = error.response.body.error_description;
       throw new HttpError(error.response.statusCode, message);
     } else {
-      throw new HttpError(500, error.message);
+      throw new Error(error.message);
     }
   }
 };

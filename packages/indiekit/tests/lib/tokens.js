@@ -45,7 +45,20 @@ test('Requests an access token', async t => {
   scope.done();
 });
 
-test('Throws error requesting an access token', async t => {
+test('Token endpoint refuses to grant an access token', async t => {
+  const scope = nock('https://tokens.indieauth.com')
+    .get('/token')
+    .reply(400, {
+      error_description: 'The token provided was malformed' // eslint-disable-line camelcase
+    });
+  const error = await t.throwsAsync(
+    requestAccessToken(t.context.tokenEndpoint, 'malformed_token')
+  );
+  t.is(error.message, 'The token provided was malformed');
+  scope.done();
+});
+
+test('Throws error contacting token endpoint', async t => {
   const scope = nock('https://tokens.indieauth.com')
     .get('/token')
     .replyWithError('not found');
