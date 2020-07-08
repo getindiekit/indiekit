@@ -28,17 +28,18 @@ export const actionController = publication => {
       let mf2;
       let data;
       let published;
+      let uploads;
 
       // Upload attached files
       if (files) {
         const mediaEndpoint = publication.config['media-endpoint'];
-        const uploads = await uploadMedia(mediaEndpoint, files);
-        mf2 = addMediaLocations(mf2, uploads);
+        uploads = await uploadMedia(mediaEndpoint, files);
       }
 
       switch (action) {
         case 'create':
           mf2 = request.is('json') ? body : formEncodedToMf2(body);
+          mf2 = addMediaLocations(mf2, uploads);
           mf2 = normaliseMf2(mf2);
           data = await postData.create(publication, mf2);
           published = await post.create(publication, data);

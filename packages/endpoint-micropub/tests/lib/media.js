@@ -101,7 +101,9 @@ test('Uploads attached files via media endpoint', async t => {
 test('Throws error uploading attached file', async t => {
   const scope = nock('https://media-endpoint.example')
     .post('/')
-    .replyWithError('not found');
+    .reply(400, {
+      error_description: 'The token provided was malformed' // eslint-disable-line camelcase
+    });
   const files = [{
     buffer: getFixture('photo.jpg', false),
     originalname: 'photo.jpg'
@@ -109,6 +111,6 @@ test('Throws error uploading attached file', async t => {
   const error = await t.throwsAsync(
     uploadMedia(t.context.mediaEndpoint, files)
   );
-  t.is(error.message, 'not found');
+  t.is(error.message, 'The token provided was malformed');
   scope.done();
 });

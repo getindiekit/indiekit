@@ -12,6 +12,13 @@ import {
  */
 export const indieauth = publication => {
   return async function (request, response, next) {
+    // If already have a token, skip verification process
+    // (multipart/form-data may not have `Authorisation` header)
+    // TODO: Check token expiry and refresh token if needed
+    if (response.locals.publication && response.locals.publication.token) {
+      return next();
+    }
+
     try {
       const bearerToken = getBearerToken(request);
       const accessToken = await requestAccessToken(publication.tokenEndpoint, bearerToken);

@@ -30,7 +30,7 @@ export const addMediaLocations = (mf2, uploads) => {
  */
 export const uploadMedia = async (mediaEndpoint, files) => {
   try {
-    const endpointResponses = [];
+    const promises = [];
     for (const file of files) {
       // Create multipart/form-data
       const form = new FormData();
@@ -42,16 +42,27 @@ export const uploadMedia = async (mediaEndpoint, files) => {
       // Upload file via media endpoint
       const endpointResponse = got.post(mediaEndpoint, {
         headers: form.getHeaders(),
-        body: form
+        body: form,
+        responseType: 'json'
       });
 
       // Add to Micropub responses
-      endpointResponses.push(endpointResponse);
+      // TODO: Make this an object that passes `file` data with it
+      promises.push(endpointResponse);
     }
 
     // Return upload locations
+    let responses = await Promise.all(
+      promises.map(promise => promise.catch(
+        error => {
+          throw new Error(error.response.body.error_description);
+        }
+      ))
+    );
+    responses = responses.filter(result => !(result instanceof Error));
+
     const locations = [];
-    for (const response of await Promise.all(endpointResponses)) {
+    for (const response of responses) {
       const {location} = response.headers;
       locations.push(location);
     }
