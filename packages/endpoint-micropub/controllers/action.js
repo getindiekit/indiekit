@@ -24,18 +24,21 @@ export const actionController = publication => {
       const {scope} = response.locals.publication.token;
       checkScope(scope, action);
 
-      // Upload attached files
-      const mediaEndpoint = publication.config['media-endpoint'];
-      const uploads = await uploadMedia(mediaEndpoint, files);
-
       // Perform requested action
       let mf2;
       let data;
       let published;
+
+      // Upload attached files
+      if (files) {
+        const mediaEndpoint = publication.config['media-endpoint'];
+        const uploads = await uploadMedia(mediaEndpoint, files);
+        mf2 = addMediaLocations(mf2, uploads);
+      }
+
       switch (action) {
         case 'create':
           mf2 = request.is('json') ? body : formEncodedToMf2(body);
-          mf2 = addMediaLocations(mf2, uploads);
           data = await postData.create(publication, mf2);
           published = await post.create(publication, data);
           break;
