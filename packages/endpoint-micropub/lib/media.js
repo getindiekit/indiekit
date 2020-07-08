@@ -14,7 +14,7 @@ export const addMediaLocations = (mf2, uploads) => {
   for (const upload of uploads) {
     const mediaType = getMediaType(upload);
     const typeProperty = mf2.properties[mediaType] || [];
-    typeProperty.push({value: upload});
+    typeProperty.push(upload);
     mf2.properties[mediaType] = typeProperty;
   }
 

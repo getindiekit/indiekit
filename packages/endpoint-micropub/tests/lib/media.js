@@ -15,9 +15,7 @@ test.beforeEach(t => {
       properties: {
         content: ['I ate a cheese sandwich.'],
         category: ['foo', 'bar'],
-        audio: [{
-          value: 'https://website.example/media/sound.mp3'
-        }]
+        audio: ['https://website.example/media/sound.mp3']
       }
     },
     responseBody: filename => ({
@@ -37,9 +35,9 @@ test('Updates Microformats2 with location of uploaded media', t => {
   const result = addMediaLocations(t.context.mf2, [
     'https://website.example/media/photo.jpg'
   ]);
-  t.deepEqual(result.properties.photo, [{
-    value: 'https://website.example/media/photo.jpg'
-  }]);
+  t.deepEqual(result.properties.photo, [
+    'https://website.example/media/photo.jpg'
+  ]);
 });
 
 test('Updates Microformats2 with locations of uploaded media', t => {
@@ -47,14 +45,13 @@ test('Updates Microformats2 with locations of uploaded media', t => {
     'https://website.example/media/audio.mp3',
     'https://website.example/media/photo.jpg'
   ]);
-  t.deepEqual(result.properties.audio, [{
-    value: 'https://website.example/media/sound.mp3'
-  }, {
-    value: 'https://website.example/media/audio.mp3'
-  }]);
-  t.deepEqual(result.properties.photo, [{
-    value: 'https://website.example/media/photo.jpg'
-  }]);
+  t.deepEqual(result.properties.audio, [
+    'https://website.example/media/sound.mp3',
+    'https://website.example/media/audio.mp3'
+  ]);
+  t.deepEqual(result.properties.photo, [
+    'https://website.example/media/photo.jpg'
+  ]);
   t.falsy(result.properties.video);
 });
 

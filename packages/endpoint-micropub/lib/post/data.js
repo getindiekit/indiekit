@@ -8,13 +8,10 @@ import {
   getPostTypeConfig
 } from '../utils.js';
 import {
-  getAudio,
   getContent,
-  getPhotos,
   getPermalink,
   getPublishedDate,
-  getSlug,
-  getVideo
+  getSlug
 } from './properties.js';
 
 export const postData = {
@@ -28,6 +25,10 @@ export const postData = {
   create: async (publication, mf2) => {
     const {config, locale, me, timezone} = publication;
 
+    if (!mf2) {
+      throw new Error('Unable to create post without microformats data')
+    }
+
     try {
       // Post type
       const type = getPostType(mf2);
@@ -35,12 +36,9 @@ export const postData = {
 
       // Post properties
       const {properties} = mf2;
-      properties.audio = getAudio(mf2);
       properties.content = getContent(mf2);
-      properties.photo = getPhotos(mf2);
       properties.published = getPublishedDate(mf2, locale, timezone);
       properties.slug = getSlug(mf2, config['slug-separator']);
-      properties.video = getVideo(mf2);
 
       // Post paths
       const path = templates.renderString(typeConfig.post.path, properties);

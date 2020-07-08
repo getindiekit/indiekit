@@ -44,11 +44,11 @@ test('Creates post data', async t => {
   t.truthy(result.mf2.properties);
 });
 
-test('Throws error creating post data without source microformats', async t => {
+test('Throws error creating post data without microformats data', async t => {
   const error = await t.throwsAsync(
     postData.create(t.context.publication, false)
   );
-  t.is(error.message, 'Cannot read property \'audio\' of undefined');
+  t.is(error.message, 'Unable to create post without microformats data');
 });
 
 test('Reads post data', async t => {

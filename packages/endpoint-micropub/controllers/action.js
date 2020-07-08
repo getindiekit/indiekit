@@ -1,5 +1,5 @@
 import httpError from 'http-errors';
-import {formEncodedToMf2} from '../lib/microformats.js';
+import {formEncodedToMf2, normaliseMf2} from '../lib/microformats.js';
 import {post} from '../lib/post.js';
 import {postData} from '../lib/post/data.js';
 import {checkScope} from '../lib/scope.js';
@@ -39,6 +39,7 @@ export const actionController = publication => {
       switch (action) {
         case 'create':
           mf2 = request.is('json') ? body : formEncodedToMf2(body);
+          mf2 = normaliseMf2(mf2);
           data = await postData.create(publication, mf2);
           published = await post.create(publication, data);
           break;

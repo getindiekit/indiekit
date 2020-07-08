@@ -34,12 +34,6 @@ test('Derives content from `content[0]` property', t => {
   t.is(content[0], 'Visit this example website.');
 });
 
-test('Returns null if no `content[0]` property found', t => {
-  const mf2 = JSON.parse(getFixture('content-missing.json'));
-  const content = getContent(mf2);
-  t.is(content, null);
-});
-
 test('Derives a permalink', t => {
   t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
   t.is(getPermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
@@ -65,14 +59,26 @@ test('Derives date by using current date', t => {
   t.true(DateTime.fromISO(published[0]).isValid);
 });
 
-test('Derives slug from `mp-slug` property', t => {
+test('Derives slug from `slug` property', t => {
   const mf2 = JSON.parse(getFixture('slug-provided.json'));
   const slug = getSlug(mf2, '-');
   t.is(slug[0], 'cheese-sandwich');
 });
 
-test('Derives slug, ignoring empty `mp-slug` property', t => {
+test('Derives slug from `mp-slug` property', t => {
+  const mf2 = JSON.parse(getFixture('mp-slug-provided.json'));
+  const slug = getSlug(mf2, '-');
+  t.is(slug[0], 'cheese-sandwich');
+});
+
+test('Derives slug, ignoring empty `slug` property', t => {
   const mf2 = JSON.parse(getFixture('slug-provided-empty.json'));
+  const slug = getSlug(mf2, '-');
+  t.is(slug[0], 'i-ate-a-cheese-sandwich');
+});
+
+test('Derives slug, ignoring empty `mp-slug` property', t => {
+  const mf2 = JSON.parse(getFixture('mp-slug-provided-empty.json'));
   const slug = getSlug(mf2, '-');
   t.is(slug[0], 'i-ate-a-cheese-sandwich');
 });
