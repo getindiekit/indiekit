@@ -32,12 +32,13 @@ export const shareController = publication => ({
       }
     } catch (error) {
       if (error.response) {
+        const {response} = error;
         response.render('share', {
           title: 'Share',
           content,
           name,
           url,
-          error: error.response.body,
+          error: response.body,
           minimalui: (request.params.path === 'bookmarklet')
         });
       } else {

@@ -35,14 +35,15 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
         Authorization: `Bearer ${bearerToken}`
       },
       responseType: 'json'
-    }).json();
+    });
 
-    const accessToken = endpointResponse;
+    const accessToken = endpointResponse.body;
     return accessToken;
   } catch (error) {
     if (error.response) {
-      const message = error.response.body.error_description;
-      throw new HttpError(error.response.statusCode, message);
+      const {response} = error;
+      const message = response.body.error_description;
+      throw new HttpError(response.statusCode, message);
     } else {
       throw new Error(error.message);
     }

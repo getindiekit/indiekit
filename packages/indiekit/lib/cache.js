@@ -27,11 +27,12 @@ export const Cache = class {
       };
     }
 
-    const fetchedData = await got(url).json();
-    this.client.setex(hashId, this.expires, JSON.stringify(fetchedData));
+    const fetchedData = await got(url, {responseType: 'json'});
+    const data = fetchedData.body;
+    this.client.setex(hashId, this.expires, JSON.stringify(data));
     return {
       source: 'fetch',
-      data: fetchedData
+      data
     };
   }
 };
