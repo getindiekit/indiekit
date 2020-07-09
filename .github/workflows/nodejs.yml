@@ -29,5 +29,9 @@ jobs:
       run: |
         npm install
     - name: Run tests and report coverage
+      env:
+        TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
+        TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}
+        TEST_BEARER_TOKEN_NOSCOPE: ${{ secrets.TEST_BEARER_TOKEN_NOSCOPE }}
       run: |
         npm run coverage
