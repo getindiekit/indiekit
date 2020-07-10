@@ -12,12 +12,13 @@ import {
  * @returns {Function} Next middleware
  */
 export const indieauth = publication => {
+  const {me, tokenEndpoint} = publication;
+
   return async function (request, response, next) {
     try {
-      const bearerToken = getBearerToken(publication, request);
-      const accessToken = await requestAccessToken(publication.tokenEndpoint, bearerToken);
-      const verifiedToken = verifyAccessToken(publication.me, accessToken);
-      response.locals.publication.token = verifiedToken;
+      publication.bearerToken = getBearerToken(request);
+      const accessToken = await requestAccessToken(tokenEndpoint, publication.bearerToken);
+      publication.accessToken = verifyAccessToken(me, accessToken);
 
       next();
     } catch (error) {

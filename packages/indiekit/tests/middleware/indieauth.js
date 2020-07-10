@@ -37,7 +37,7 @@ test('Saves token to locals', async t => {
   const next = sinon.spy();
   defaultConfig.publication.me = process.env.TEST_PUBLICATION_URL;
   await indieauth(defaultConfig.publication)(request, response, next);
-  t.is(response.locals.publication.token.me, t.context.me);
+  t.is(defaultConfig.publication.accessToken.me, t.context.me);
   t.true(next.calledOnce);
   scope.done();
 });

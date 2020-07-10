@@ -21,7 +21,7 @@ export const actionController = publication => {
       const url = query.url || body.url;
 
       // Check scope
-      const {scope} = response.locals.publication.token;
+      const {scope} = publication.accessToken;
       checkScope(scope, action);
 
       // Perform requested action

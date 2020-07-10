@@ -2,17 +2,15 @@ import got from 'got';
 import HttpError from 'http-errors';
 import normalizeUrl from 'normalize-url';
 
-export const getBearerToken = (publication, request) => {
+export const getBearerToken = request => {
   if (request.headers && request.headers.authorization) {
     const bearerToken = request.headers.authorization.trim().split(/\s+/)[1];
-    publication.bearerToken = bearerToken;
     return bearerToken;
   }
 
   if (request.body && request.body.access_token) {
     const bearerToken = request.body.access_token;
-    delete request.body.access_token; // Delete token from body if exists
-    publication.bearerToken = bearerToken;
+    delete request.body.access_token;
     return bearerToken;
   }
 
@@ -27,10 +25,6 @@ export const getBearerToken = (publication, request) => {
  * @returns {object} Access token
  */
 export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
-  if (!bearerToken) {
-    throw new HttpError.Unauthorized('No bearer token provided in request');
-  }
-
   try {
     const endpointResponse = await got(tokenEndpoint, {
       headers: {
@@ -44,7 +38,7 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
   } catch (error) {
     if (error.response) {
       const {response} = error;
-      throw new HttpError(response.statusCode, response.body.error_description, {
+      throw new HttpError(response.status, response.body.error_description, {
         value: response.body.error
       });
     } else {

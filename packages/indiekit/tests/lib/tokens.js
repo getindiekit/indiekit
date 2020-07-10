@@ -14,25 +14,24 @@ test.beforeEach(t => {
     },
     bearerToken: 'JWT',
     me: 'https://website.example',
-    publication: {},
     tokenEndpoint: 'https://tokens.indieauth.com/token'
   };
 });
 
 test('Returns bearer token from `headers.authorization`', t => {
   const request = {headers: {authorization: `Bearer ${t.context.bearerToken}`}};
-  const result = getBearerToken(t.context.publication, request);
+  const result = getBearerToken(request);
   t.is(result, 'JWT');
 });
 
 test('Returns bearer token from `body.access_token`', t => {
   const request = {body: {access_token: t.context.bearerToken}};
-  const result = getBearerToken(t.context.publication, request);
+  const result = getBearerToken(request);
   t.is(result, 'JWT');
 });
 
 test('Throws error if no bearer token provided by request', t => {
-  const error = t.throws(() => getBearerToken(t.context.publication, {}));
+  const error = t.throws(() => getBearerToken({}));
   t.is(error.message, 'No bearer token provided by request');
 });
 
@@ -68,13 +67,6 @@ test('Throws error contacting token endpoint', async t => {
   );
   t.is(error.message, 'Not found');
   scope.done();
-});
-
-test('Throws error requesting an access token without bearer', async t => {
-  const error = await t.throwsAsync(
-    requestAccessToken(t.context.tokenEndpoint, null)
-  );
-  t.is(error.message, 'No bearer token provided in request');
 });
 
 test('Verifies an access token', t => {
