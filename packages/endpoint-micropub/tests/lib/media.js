@@ -9,7 +9,11 @@ import {
 
 test.beforeEach(t => {
   t.context = {
-    mediaEndpoint: 'https://media-endpoint.example',
+    publication: {
+      config: {
+        'media-endpoint': 'https://media-endpoint.example'
+      }
+    },
     mf2: {
       type: ['h-entry'],
       properties: {
@@ -72,7 +76,7 @@ test('Uploads attached file via media endpoint', async t => {
     buffer: getFixture('photo.jpg', false),
     originalname: 'photo.jpg'
   }];
-  const result = await uploadMedia(t.context.mediaEndpoint, files);
+  const result = await uploadMedia(t.context.publication, files);
   t.deepEqual(result, ['https://website.example/media/photo.jpg']);
   scope.done();
 });
@@ -90,7 +94,7 @@ test('Uploads attached files via media endpoint', async t => {
     buffer: getFixture('photo.jpg', false),
     originalname: 'photo2.jpg'
   }];
-  const result = await uploadMedia(t.context.mediaEndpoint, files);
+  const result = await uploadMedia(t.context.publication, files);
   t.deepEqual(result, [
     'https://website.example/media/photo1.jpg',
     'https://website.example/media/photo2.jpg'
@@ -109,7 +113,7 @@ test('Throws error uploading attached file', async t => {
     originalname: 'photo.jpg'
   }];
   const error = await t.throwsAsync(
-    uploadMedia(t.context.mediaEndpoint, files)
+    uploadMedia(t.context.publication, files)
   );
   t.is(error.message, 'The token provided was malformed');
   scope.done();

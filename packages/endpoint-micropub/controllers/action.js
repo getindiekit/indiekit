@@ -32,8 +32,7 @@ export const actionController = publication => {
 
       // Upload attached files
       if (files) {
-        const mediaEndpoint = publication.config['media-endpoint'];
-        uploads = await uploadMedia(mediaEndpoint, files);
+        uploads = await uploadMedia(publication, files);
       }
 
       switch (action) {

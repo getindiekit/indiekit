@@ -24,11 +24,14 @@ export const addMediaLocations = (mf2, uploads) => {
 /**
  * Upload attached file(s) via media endpoint
  *
- * @param {object} mediaEndpoint Media endpoint
+ * @param {object} publication Publication configuration
  * @param {object} files Files to upload
  * @returns {Array} Uploaded file locations
  */
-export const uploadMedia = async (mediaEndpoint, files) => {
+export const uploadMedia = async (publication, files) => {
+  const mediaEndpoint = publication.config['media-endpoint'];
+  const {bearerToken} = publication;
+
   try {
     const promises = [];
     for (const file of files) {
@@ -41,7 +44,9 @@ export const uploadMedia = async (mediaEndpoint, files) => {
 
       // Upload file via media endpoint
       const endpointResponse = got.post(mediaEndpoint, {
-        headers: form.getHeaders(),
+        headers: form.getHeaders({
+          authorization: `Bearer ${bearerToken}`
+        }),
         body: form,
         responseType: 'json'
       });

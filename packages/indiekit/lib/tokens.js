@@ -2,15 +2,17 @@ import got from 'got';
 import HttpError from 'http-errors';
 import normalizeUrl from 'normalize-url';
 
-export const getBearerToken = request => {
+export const getBearerToken = (publication, request) => {
   if (request.headers && request.headers.authorization) {
     const bearerToken = request.headers.authorization.trim().split(/\s+/)[1];
+    publication.bearerToken = bearerToken;
     return bearerToken;
   }
 
   if (request.body && request.body.access_token) {
     const bearerToken = request.body.access_token;
     delete request.body.access_token; // Delete token from body if exists
+    publication.bearerToken = bearerToken;
     return bearerToken;
   }
 

@@ -13,10 +13,8 @@ import {
  */
 export const indieauth = publication => {
   return async function (request, response, next) {
-    // TODO: multipart/form-data does not have `Authorisation` header
-
     try {
-      const bearerToken = getBearerToken(request);
+      const bearerToken = getBearerToken(publication, request);
       const accessToken = await requestAccessToken(publication.tokenEndpoint, bearerToken);
       const verifiedToken = await verifyAccessToken(publication.me, accessToken);
       response.locals.publication.token = verifiedToken;

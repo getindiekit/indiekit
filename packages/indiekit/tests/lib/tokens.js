@@ -14,24 +14,25 @@ test.beforeEach(t => {
     },
     bearerToken: 'JWT',
     me: 'https://website.example',
+    publication: {},
     tokenEndpoint: 'https://tokens.indieauth.com/token'
   };
 });
 
 test('Returns bearer token from `headers.authorization`', t => {
   const request = {headers: {authorization: `Bearer ${t.context.bearerToken}`}};
-  const result = getBearerToken(request);
+  const result = getBearerToken(t.context.publication, request);
   t.is(result, 'JWT');
 });
 
 test('Returns bearer token from `body.access_token`', t => {
   const request = {body: {access_token: t.context.bearerToken}};
-  const result = getBearerToken(request);
+  const result = getBearerToken(t.context.publication, request);
   t.is(result, 'JWT');
 });
 
 test('Throws error if no bearer token provided by request', t => {
-  const error = t.throws(() => getBearerToken({}));
+  const error = t.throws(() => getBearerToken(t.context.publication, {}));
   t.is(error.message, 'No bearer token provided by request');
 });
 
