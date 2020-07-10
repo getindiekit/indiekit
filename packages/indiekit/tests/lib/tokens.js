@@ -77,28 +77,22 @@ test('Throws error requesting an access token without bearer', async t => {
   t.is(error.message, 'No bearer token provided in request');
 });
 
-test('Verifies an access token', async t => {
-  const result = await verifyAccessToken(t.context.me, t.context.accessToken);
+test('Verifies an access token', t => {
+  const result = verifyAccessToken(t.context.me, t.context.accessToken);
   t.is(result.me, 'https://website.example');
 });
 
-test('Throws error verifying access token without a publication URL', async t => {
-  const error = await t.throwsAsync(
-    verifyAccessToken(null, t.context.accessToken)
-  );
+test('Throws error verifying access token without a publication URL', t => {
+  const error = t.throws(() => verifyAccessToken(null, t.context.accessToken));
   t.is(error.message, 'No publication URL to verify');
 });
 
-test('Throws error verifying access token without permissions', async t => {
-  const error = await t.throwsAsync(
-    verifyAccessToken('https://another.example', t.context.accessToken)
-  );
+test('Throws error verifying access token without permissions', t => {
+  const error = t.throws(() => verifyAccessToken('https://another.example', t.context.accessToken));
   t.is(error.message, 'User does not have permission to perform request');
 });
 
-test('Throws error verifying incomplete access token', async t => {
-  const error = await t.throwsAsync(
-    verifyAccessToken(t.context.me, {})
-  );
+test('Throws error verifying incomplete access token', t => {
+  const error = t.throws(() => verifyAccessToken(t.context.me, {}));
   t.is(error.message, 'There was a problem with this access token');
 });

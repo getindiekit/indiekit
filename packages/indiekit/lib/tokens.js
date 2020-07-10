@@ -58,7 +58,7 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
  * @param {object} accessToken Access token
  * @returns {object} Verified token
  */
-export const verifyAccessToken = async (me, accessToken) => {
+export const verifyAccessToken = (me, accessToken) => {
   try {
     // Throw error if no publication URL provided
     if (!me) {
