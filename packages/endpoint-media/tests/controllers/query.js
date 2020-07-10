@@ -20,17 +20,17 @@ test('Returns last file uploaded', async t => {
 test('Returns 400 if unsupported parameter provided', async t => {
   const response = await mockResponse('q=foobar');
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bInvalid parameter: foobar\b/);
+  t.is(response.body.error_description, 'Invalid parameter: foobar');
 });
 
 test('Returns 400 if unsupported query provided', async t => {
   const response = await mockResponse('foo=bar');
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bInvalid query\b/);
+  t.is(response.body.error_description, 'Invalid query');
 });
 
 test('Returns 400 if request is missing query string', async t => {
   const response = await mockResponse(false);
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bInvalid query\b/);
+  t.is(response.body.error_description, 'Invalid query');
 });

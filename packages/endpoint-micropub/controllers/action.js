@@ -59,9 +59,14 @@ export const actionController = publication => {
         default:
       }
 
-      return response.status(published.status).location(published.location).json(published);
+      return response.status(published.status).location(published.location).json(published.json);
     } catch (error) {
-      next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+      next(httpError(400, error.message, {
+        json: {
+          error: 'invalid_request',
+          error_description: error.message
+        }
+      }));
     }
   };
 };

@@ -42,7 +42,7 @@ test('Returns available configuration value', async t => {
 test('Returns 400 if unsupported parameter provided', async t => {
   const response = await mockResponse('q=foobar');
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bInvalid parameter: foobar\b/);
+  t.is(response.body.error_description, 'Invalid parameter: foobar');
 });
 
 test('Returns list of previously published posts', async t => {
@@ -70,28 +70,28 @@ test('Returns 400 if source URL doesn’t contain microformats', async t => {
     .reply(200, getFixture('page.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/page.html');
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bSource has no items\b/);
+  t.is(response.body.error_description, 'Source has no items');
   scope.done();
 });
 
 test('Returns 400 if source URL can’t be found', async t => {
   const scope = nock('https://website.example')
     .get('/post.html')
-    .replyWithError('not found');
+    .replyWithError('Not found');
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bnot found\b/);
+  t.is(response.body.error_description, 'Not found');
   scope.done();
 });
 
 test('Returns 400 if unsupported query provided', async t => {
   const response = await mockResponse('foo=bar');
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bInvalid query\b/);
+  t.is(response.body.error_description, 'Invalid query');
 });
 
 test('Returns 400 if request is missing query string', async t => {
   const response = await mockResponse(false);
   t.is(response.status, 400);
-  t.regex(response.error.text, /\bInvalid query\b/);
+  t.is(response.body.error_description, 'Invalid query');
 });

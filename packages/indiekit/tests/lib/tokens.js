@@ -25,7 +25,7 @@ test('Returns bearer token from `headers.authorization`', t => {
 });
 
 test('Returns bearer token from `body.access_token`', t => {
-  const request = {body: {access_token: t.context.bearerToken}}; // eslint-disable-line camelcase
+  const request = {body: {access_token: t.context.bearerToken}};
   const result = getBearerToken(request);
   t.is(result, 'JWT');
 });
@@ -61,11 +61,11 @@ test('Token endpoint refuses to grant an access token', async t => {
 test('Throws error contacting token endpoint', async t => {
   const scope = nock('https://tokens.indieauth.com')
     .get('/token')
-    .replyWithError('not found');
+    .replyWithError('Not found');
   const error = await t.throwsAsync(
     requestAccessToken(t.context.tokenEndpoint, t.context.bearerToken)
   );
-  t.is(error.message, 'not found');
+  t.is(error.message, 'Not found');
   scope.done();
 });
 

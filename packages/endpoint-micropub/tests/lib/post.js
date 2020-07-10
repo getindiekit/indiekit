@@ -31,8 +31,10 @@ test.serial('Creates a post', async t => {
   t.deepEqual(result, {
     location: 'https://website.example/foo',
     status: 202,
-    success: 'create_pending',
-    description: 'Post will be created at https://website.example/foo'
+    json: {
+      success: 'create_pending',
+      success_description: 'Post will be created at https://website.example/foo'
+    }
   });
   scope.done();
 });
@@ -52,8 +54,10 @@ test.serial('Updates a post', async t => {
   t.deepEqual(result, {
     location: 'https://website.example/foo',
     status: 200,
-    success: 'update',
-    description: 'Post updated at https://website.example/foo'
+    json: {
+      success: 'update',
+      success_description: 'Post updated at https://website.example/foo'
+    }
   });
   scope.done();
 });
@@ -74,8 +78,10 @@ test.serial('Deletes a post', async t => {
   const result = await post.delete(t.context.publication, postData);
   t.deepEqual(result, {
     status: 200,
-    success: 'delete',
-    description: 'Post deleted from https://website.example/foo'
+    json: {
+      success: 'delete',
+      success_description: 'Post deleted from https://website.example/foo'
+    }
   });
   scope.done();
 });
@@ -103,8 +109,10 @@ test.serial('Undeletes a post', async t => {
   t.deepEqual(result, {
     location: 'https://website.example/foo',
     status: 200,
-    success: 'delete_undelete',
-    description: 'Post undeleted from https://website.example/foo'
+    json: {
+      success: 'delete_undelete',
+      success_description: 'Post undeleted from https://website.example/foo'
+    }
   });
   scope.done();
 });
@@ -118,13 +126,13 @@ test('Throws error undeleting a post', async t => {
     .delete(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Delete post'}})
     .put(uri => uri.includes('foo.md'))
-    .replyWithError('not found');
+    .replyWithError('Not found');
   await post.create(t.context.publication, postData);
   await post.delete(t.context.publication, postData);
   const error = await t.throwsAsync(
     post.undelete(t.context.publication, postData)
   );
-  t.regex(error.message, /\bnot found\b/);
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 

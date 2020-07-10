@@ -41,9 +41,9 @@ test('Fetches array from remote JSON file specified in `url` value', async t => 
 });
 
 test('Returns empty array if remote JSON file not found', async t => {
-  const scope = t.context.categories.nock.replyWithError('not found');
+  const scope = t.context.categories.nock.replyWithError('Not found');
   const error = await t.throwsAsync(getCategories(mockClient, t.context.categories));
-  t.is(error.message, 'not found');
+  t.is(error.message, 'Not found');
   scope.done();
 });
 

@@ -32,21 +32,21 @@ test('Uploads file', async t => {
     .attach('file', getFixture('photo.jpg', false), 'photo.jpg');
   t.is(response.status, 201);
   t.regex(response.headers.location, /\b.jpg\b/);
-  t.regex(response.body.description, /\bMedia uploaded\b/);
-  t.is(response.body.type, 'photo');
+  t.regex(response.body.success_description, /\bMedia uploaded\b/);
   scope.done();
 });
 
 test('Returns 400 if no file included in request', async t => {
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`);
-  t.is(response.error.status, 400);
-  t.is(response.error.text, 'No file included in request');
+  t.is(response.status, 400);
+  t.is(response.body.error_description, 'No file included in request');
 });
 
 test('Returns 400 if access token does not provide adequate scope', async t => {
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN_NOSCOPE}`);
-  t.is(response.error.status, 400);
-  t.is(response.error.text, 'Access token does not meet requirements for requested scope (create or media)');
+  t.is(response.status, 401);
+  t.is(response.body.error_description, 'The scope of this token does not meet the requirements for this request');
+  t.is(response.body.scope, 'create media');
 });

@@ -38,11 +38,11 @@ test('Creates file in a repository', async t => {
 test('Throws error creating file in a repository', async t => {
   const scope = t.context.nock
     .put(uri => uri.includes('foo.txt'))
-    .replyWithError('not found');
+    .replyWithError('Not found');
   const error = await t.throwsAsync(
     github.createFile('foo.txt', 'foo', 'Message')
   );
-  t.regex(error.message, /\bnot found\b/);
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
@@ -58,11 +58,11 @@ test('Reads file in a repository', async t => {
 test('Throws error reading file in a repository', async t => {
   const scope = t.context.nock
     .get(uri => uri.includes('foo.txt'))
-    .replyWithError('not found');
+    .replyWithError('Not found');
   const error = await t.throwsAsync(
     github.readFile('foo.txt')
   );
-  t.regex(error.message, /\bnot found\b/);
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
@@ -81,7 +81,7 @@ test('Updates file in a repository', async t => {
 test('Creates file if original not found in repository', async t => {
   const scope = t.context.nock
     .get(uri => uri.includes('foo.txt'))
-    .replyWithError('not found')
+    .replyWithError('Not found')
     .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
   const response = await github.updateFile('foo.txt', 'foo', 'Message');
@@ -95,11 +95,11 @@ test('Throws error updating file in a repository', async t => {
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse)
     .put(uri => uri.includes('foo.txt'))
-    .replyWithError('unknown error');
+    .replyWithError('Unknown error');
   const error = await t.throwsAsync(
     github.updateFile('foo.txt', 'foo', {message: 'Message'})
   );
-  t.regex(error.message, /\bunknown error\b/);
+  t.regex(error.message, /\bUnknown error\b/);
   scope.done();
 });
 
@@ -118,11 +118,11 @@ test('Deletes a file in a repository', async t => {
 test('Throws error if file not found in repository', async t => {
   const scope = t.context.nock
     .get(uri => uri.includes('foo.txt'))
-    .replyWithError('not found');
+    .replyWithError('Not found');
   const error = await t.throwsAsync(
     github.deleteFile('foo.txt', 'Message')
   );
-  t.regex(error.message, /\bnot found\b/);
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
@@ -131,10 +131,10 @@ test('Throws error deleting a file in a repository', async t => {
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse)
     .delete(uri => uri.includes('foo.txt'))
-    .replyWithError('unknown error');
+    .replyWithError('Unknown error');
   const error = await t.throwsAsync(
     github.deleteFile('foo.txt', 'Message')
   );
-  t.regex(error.message, /\bunknown error\b/);
+  t.regex(error.message, /\bUnknown error\b/);
   scope.done();
 });

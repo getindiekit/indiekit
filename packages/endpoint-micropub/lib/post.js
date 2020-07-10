@@ -24,8 +24,10 @@ export const post = {
         return {
           location: postData.url,
           status: 202,
-          success: 'create_pending',
-          description: `Post will be created at ${postData.url}`
+          json: {
+            success: 'create_pending',
+            success_description: `Post will be created at ${postData.url}`
+          }
         };
       }
     } catch (error) {
@@ -57,10 +59,12 @@ export const post = {
         return {
           location: postData.url,
           status: hasUpdatedUrl ? 201 : 200,
-          success: 'update',
-          description: hasUpdatedUrl ?
-            `Post updated and moved to ${postData.url}` :
-            `Post updated at ${url}`
+          json: {
+            success: 'update',
+            success_description: hasUpdatedUrl ?
+              `Post updated and moved to ${postData.url}` :
+              `Post updated at ${url}`
+          }
         };
       }
     } catch (error) {
@@ -88,8 +92,10 @@ export const post = {
 
         return {
           status: 200,
-          success: 'delete',
-          description: `Post deleted from ${postData.url}`
+          json: {
+            success: 'delete',
+            success_description: `Post deleted from ${postData.url}`
+          }
         };
       }
     } catch (error) {
@@ -124,8 +130,10 @@ export const post = {
         return {
           location: postData.url,
           status: 200,
-          success: 'delete_undelete',
-          description: `Post undeleted from ${postData.url}`
+          json: {
+            success: 'delete_undelete',
+            success_description: `Post undeleted from ${postData.url}`
+          }
         };
       }
     } catch (error) {

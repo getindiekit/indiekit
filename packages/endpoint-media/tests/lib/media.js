@@ -31,8 +31,10 @@ test('Uploads a file', async t => {
   t.deepEqual(result, {
     location: 'https://website.example/photo.jpg',
     status: 201,
-    success: 'create',
-    description: 'Media uploaded to https://website.example/photo.jpg',
+    json: {
+      success: 'create',
+      success_description: 'Media uploaded to https://website.example/photo.jpg'
+    },
     type: 'photo'
   });
   scope.done();
@@ -41,7 +43,7 @@ test('Uploads a file', async t => {
 test('Throws error uploading a file', async t => {
   const scope = nock('https://api.github.com')
     .put(uri => uri.includes('photo.jpg'))
-    .replyWithError('not found');
+    .replyWithError('Not found');
   const file = {
     buffer: getFixture('photo.jpg', false),
     originalname: 'photo.jpg'
@@ -49,6 +51,6 @@ test('Throws error uploading a file', async t => {
   const error = await t.throwsAsync(
     media.upload(publication, mediaData, file)
   );
-  t.regex(error.message, /\bnot found\b/);
+  t.regex(error.message, /\bNot found\b/);
   scope.done();
 });

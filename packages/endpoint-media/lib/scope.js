@@ -15,5 +15,8 @@ export const checkScope = (providedScope = 'media') => {
     return true;
   }
 
-  throw new HttpError.Unauthorized('Access token does not meet requirements for requested scope (create or media)');
+  throw new HttpError(401, 'The scope of this token does not meet the requirements for this request', {
+    scope: 'create media',
+    value: 'insufficient_scope'
+  });
 };

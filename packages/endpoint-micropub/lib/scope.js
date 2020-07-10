@@ -27,5 +27,8 @@ export const checkScope = (providedScope, requiredScope) => {
     return true;
   }
 
-  throw new HttpError.Unauthorized(`Access token does not meet requirements for requested scope (${requiredScope})`);
+  throw new HttpError(401, 'The scope of this token does not meet the requirements for this request', {
+    scope: requiredScope,
+    value: 'insufficient_scope'
+  });
 };

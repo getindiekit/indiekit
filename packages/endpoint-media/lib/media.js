@@ -20,9 +20,11 @@ export const media = {
         return {
           location: mediaData.url,
           status: 201,
-          success: 'create',
-          description: `Media uploaded to ${mediaData.url}`,
-          type: mediaData.type
+          json: {
+            success: 'create',
+            success_description: `Media uploaded to ${mediaData.url}`
+          },
+          type: mediaData.type // TODO: Shouldn’t need to send this
         };
       }
     } catch (error) {

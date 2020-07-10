@@ -1,3 +1,4 @@
+import httpError from 'http-errors';
 import {
   getBearerToken,
   requestAccessToken,
@@ -12,12 +13,7 @@ import {
  */
 export const indieauth = publication => {
   return async function (request, response, next) {
-    // If already have a token, skip verification process
-    // (multipart/form-data may not have `Authorisation` header)
-    // TODO: Check token expiry and refresh token if needed
-    if (response.locals.publication && response.locals.publication.token) {
-      return next();
-    }
+    // TODO: multipart/form-data does not have `Authorisation` header
 
     try {
       const bearerToken = getBearerToken(request);
@@ -27,7 +23,12 @@ export const indieauth = publication => {
 
       next();
     } catch (error) {
-      next(error);
+      next(httpError(400, error.message, {
+        json: {
+          error: 'invalid_request',
+          error_description: error.message
+        }
+      }));
     }
   };
 };

@@ -26,5 +26,6 @@ test('Throws error if required scope not provided by access token', t => {
     checkScope('create update', 'delete');
   });
   t.is(error.status, 401);
-  t.is(error.message, 'Access token does not meet requirements for requested scope (delete)');
+  t.is(error.message, 'The scope of this token does not meet the requirements for this request');
+  t.is(error.scope, 'delete');
 });

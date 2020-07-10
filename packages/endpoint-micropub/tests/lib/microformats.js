@@ -227,8 +227,8 @@ test('Returns mf2 empty objects if no microformats found', async t => {
 });
 
 test('Throws error if URL not found', async t => {
-  const scope = t.context.nock.replyWithError('not found');
+  const scope = t.context.nock.replyWithError('Not found');
   const error = await t.throwsAsync(url2Mf2(t.context.url));
-  t.is(error.message, 'not found');
+  t.is(error.message, 'Not found');
   scope.done();
 });

@@ -22,9 +22,17 @@ export const uploadController = publication => {
       const data = await mediaData.create(publication, file);
       const uploaded = await media.upload(publication, data, file);
 
-      return response.status(uploaded.status).location(uploaded.location).json(uploaded);
+      return response.status(uploaded.status).location(uploaded.location).json(uploaded.json);
     } catch (error) {
-      next(httpError.BadRequest(error.message)); // eslint-disable-line new-cap
+      // TODO: Remove this temporary fix
+      const status = error.status || 400;
+      next(httpError(status, error.message, {
+        json: {
+          error: error.value,
+          error_description: error.message,
+          scope: error.scope
+        }
+      }));
     }
   };
 };

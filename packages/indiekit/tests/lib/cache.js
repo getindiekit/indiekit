@@ -24,9 +24,9 @@ test('Returns data from remote file and saves to Redis cache', async t => {
 });
 
 test('Throws error if remote file not found', async t => {
-  const scope = t.context.nock.replyWithError('not found');
+  const scope = t.context.nock.replyWithError('Not found');
   const error = await t.throwsAsync(cache.json('file', t.context.url));
-  t.is(error.message, 'not found');
+  t.is(error.message, 'Not found');
   scope.done();
 });
 

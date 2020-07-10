@@ -91,6 +91,17 @@
       "jsdoc"
     ],
     "rules": {
+      "camelcase": [
+        "warn",
+        {
+          "allow": [
+            "access_token",
+            "client_id",
+            "error_description",
+            "success_description"
+          ]
+        }
+      ],
       "capitalized-comments": [
         "error",
         "always",

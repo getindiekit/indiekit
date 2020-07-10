@@ -26,5 +26,5 @@ test('Throws error if required scope not provided by access token', t => {
     checkScope('post');
   });
   t.is(error.status, 401);
-  t.is(error.message, 'Access token does not meet requirements for requested scope (create or media)');
+  t.is(error.message, 'The scope of this token does not meet the requirements for this request');
 });
