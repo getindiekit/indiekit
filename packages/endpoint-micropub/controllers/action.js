@@ -3,7 +3,7 @@ import {formEncodedToMf2, normaliseMf2} from '../lib/microformats.js';
 import {post} from '../lib/post.js';
 import {postData} from '../lib/post/data.js';
 import {checkScope} from '../lib/scope.js';
-import {uploadMedia, addMediaLocations} from '../lib/media.js';
+import {uploadMedia} from '../lib/media.js';
 
 export const actionController = publication => {
   /**
@@ -24,22 +24,16 @@ export const actionController = publication => {
       const {scope} = publication.accessToken;
       checkScope(scope, action);
 
-      // Perform requested action
-      let mf2;
+      // Create and normalise Microformats2 data
+      // TODO: Attached photos don’t appear with correct alt text
+      let mf2 = request.is('json') ? body : formEncodedToMf2(body);
+      mf2 = files ? await uploadMedia(publication, mf2, files) : mf2;
+      mf2 = normaliseMf2(mf2);
+
       let data;
       let published;
-      let uploads;
-
-      // Upload attached files
-      if (files) {
-        uploads = await uploadMedia(publication, files);
-      }
-
       switch (action) {
         case 'create':
-          mf2 = request.is('json') ? body : formEncodedToMf2(body);
-          mf2 = addMediaLocations(mf2, uploads);
-          mf2 = normaliseMf2(mf2);
           data = await postData.create(publication, mf2);
           published = await post.create(publication, data);
           break;

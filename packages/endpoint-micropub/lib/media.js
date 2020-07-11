@@ -1,34 +1,15 @@
 import FormData from 'form-data';
 import got from 'got';
-import mime from 'mime-types';
-import path from 'path';
-
-/**
- * Add location(s) of uploaded media to Microformats2
- *
- * @param {object} mf2 Microformats 2
- * @param {Array} uploads Uploaded file locations
- * @returns {object} Updated Microformats2
- */
-export const addMediaLocations = (mf2, uploads) => {
-  for (const upload of uploads) {
-    const mediaType = getMediaType(upload);
-    const typeProperty = mf2.properties[mediaType] || [];
-    typeProperty.push(upload);
-    mf2.properties[mediaType] = typeProperty;
-  }
-
-  return mf2;
-};
 
 /**
  * Upload attached file(s) via media endpoint
  *
  * @param {object} publication Publication configuration
+ * @param {object} mf2 Microformats 2
  * @param {object} files Files to upload
  * @returns {Array} Uploaded file locations
  */
-export const uploadMedia = async (publication, files) => {
+export const uploadMedia = async (publication, mf2, files) => {
   const mediaEndpoint = publication.config['media-endpoint'];
   const {bearerToken} = publication;
 
@@ -52,54 +33,27 @@ export const uploadMedia = async (publication, files) => {
       });
 
       // Add to Micropub responses
-      // TODO: Make this an object that passes `file` data with it
       promises.push(endpointResponse);
     }
 
     // Return upload locations
-    let responses = await Promise.all(
-      promises.map(promise => promise.catch(
-        error => {
-          throw new Error(error.response.body.error_description);
-        }
-      ))
+    // TODO: Review and refine this implementation
+    let uploads = await Promise.all(
+      promises.map(promise => promise.catch(error => {
+        throw new Error(error.response.body.error_description);
+      }))
     );
-    responses = responses.filter(result => !(result instanceof Error));
+    uploads = uploads.filter(result => !(result instanceof Error));
 
-    const locations = [];
-    for (const response of responses) {
-      const {location} = response.headers;
-      locations.push(location);
-    }
+    uploads.forEach((upload, i) => {
+      const {fieldname} = files[i];
+      const filetype = fieldname.replace('[]', '');
+      mf2.properties[filetype] = mf2.properties[filetype] || [];
+      mf2.properties[filetype].push(upload.headers.location);
+    });
 
-    return locations;
+    return mf2;
   } catch (error) {
     throw new Error(error.message);
   }
-};
-
-/**
- * Get media type (and return equivalent IndieWeb post type)
- *
- * @param {object} filename File name
- * @returns {string} Post type ('photo', 'video' or 'audio')
- * @example getMediaType('brighton-pier.jpg') => 'photo'
- */
-export const getMediaType = filename => {
-  const extension = path.extname(filename);
-  const mimetype = mime.lookup(extension);
-
-  if (mimetype.includes('audio/')) {
-    return 'audio';
-  }
-
-  if (mimetype.includes('image/')) {
-    return 'photo';
-  }
-
-  if (mimetype.includes('video/')) {
-    return 'video';
-  }
-
-  return null;
 };
