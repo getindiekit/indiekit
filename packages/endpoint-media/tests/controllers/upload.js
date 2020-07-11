@@ -18,12 +18,17 @@ test.beforeEach(async t => {
   });
   const request = supertest(serverConfig(config));
 
-  t.context.token = process.env.TEST_BEARER_TOKEN;
   t.context.request = request.post('/media');
 });
 
-test('Uploads file', async t => {
-  const scope = nock('https://api.github.com')
+test.serial('Uploads file', async t => {
+  const authScope = nock('https://tokens.indieauth.com')
+    .get('/token')
+    .reply(200, {
+      me: process.env.TEST_PUBLICATION_URL,
+      scope: 'media'
+    });
+  const hostScope = nock('https://api.github.com')
     .put(uri => uri.includes('.jpg'))
     .reply(200, {commit: {message: 'Message'}});
   const response = await t.context.request
@@ -33,20 +38,35 @@ test('Uploads file', async t => {
   t.is(response.status, 201);
   t.regex(response.headers.location, /\b.jpg\b/);
   t.regex(response.body.success_description, /\bMedia uploaded\b/);
-  scope.done();
+  authScope.done();
+  hostScope.done();
 });
 
-test('Returns 400 if no file included in request', async t => {
+test.serial('Returns 400 if no file included in request', async t => {
+  const scope = nock('https://tokens.indieauth.com')
+    .get('/token')
+    .reply(200, {
+      me: process.env.TEST_PUBLICATION_URL,
+      scope: 'media'
+    });
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`);
   t.is(response.status, 400);
   t.is(response.body.error_description, 'No file included in request');
+  scope.done();
 });
 
-test('Returns 400 if access token does not provide adequate scope', async t => {
+test.serial('Returns 400 if access token does not provide adequate scope', async t => {
+  const scope = nock('https://tokens.indieauth.com')
+    .get('/token')
+    .reply(200, {
+      me: process.env.TEST_PUBLICATION_URL,
+      scope: 'update'
+    });
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN_NOSCOPE}`);
   t.is(response.status, 401);
   t.is(response.body.error_description, 'The scope of this token does not meet the requirements for this request');
   t.is(response.body.scope, 'create media');
+  scope.done();
 });
