@@ -34,8 +34,7 @@ test('Uploads a file', async t => {
     json: {
       success: 'create',
       success_description: 'Media uploaded to https://website.example/photo.jpg'
-    },
-    type: 'photo'
+    }
   });
   scope.done();
 });

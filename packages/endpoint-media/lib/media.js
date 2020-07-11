@@ -21,8 +21,7 @@ export const media = {
         json: {
           success: 'create',
           success_description: `Media uploaded to ${mediaData.url}`
-        },
-        type: mediaData.type // TODO: Shouldn’t need to send this
+        }
       };
     }
   }
