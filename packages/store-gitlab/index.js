@@ -35,21 +35,17 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository
    */
   async createFile(path, content, message) {
-    try {
-      content = Buffer.from(content).toString('base64');
-      const response = await this.gitlab().RepositoryFiles.create(
-        this._projectId,
-        path,
-        this.options.branch,
-        content,
-        message, {
-          encoding: 'base64'
-        }
-      );
-      return response;
-    } catch (error) {
-      throw new Error(error);
-    }
+    content = Buffer.from(content).toString('base64');
+    const response = await this.gitlab().RepositoryFiles.create(
+      this._projectId,
+      path,
+      this.options.branch,
+      content,
+      message, {
+        encoding: 'base64'
+      }
+    );
+    return response;
   }
 
   /**
@@ -60,17 +56,13 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository
    */
   async readFile(path) {
-    try {
-      const response = await this.gitlab().RepositoryFiles.show(
-        this._projectId,
-        path,
-        this.options.branch
-      );
-      const content = Buffer.from(response.content, 'base64').toString('utf8');
-      return content;
-    } catch (error) {
-      throw new Error(error);
-    }
+    const response = await this.gitlab().RepositoryFiles.show(
+      this._projectId,
+      path,
+      this.options.branch
+    );
+    const content = Buffer.from(response.content, 'base64').toString('utf8');
+    return content;
   }
 
   /**
@@ -83,21 +75,17 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository
    */
   async updateFile(path, content, message) {
-    try {
-      content = Buffer.from(content).toString('base64');
-      const response = await this.gitlab().RepositoryFiles.edit(
-        this._projectId,
-        path,
-        this.options.branch,
-        content,
-        message, {
-          encoding: 'base64'
-        }
-      );
-      return response;
-    } catch (error) {
-      throw new Error(error);
-    }
+    content = Buffer.from(content).toString('base64');
+    const response = await this.gitlab().RepositoryFiles.edit(
+      this._projectId,
+      path,
+      this.options.branch,
+      content,
+      message, {
+        encoding: 'base64'
+      }
+    );
+    return response;
   }
 
   /**
@@ -109,16 +97,12 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository
    */
   async deleteFile(path, message) {
-    try {
-      await this.gitlab().RepositoryFiles.remove(
-        this._projectId,
-        path,
-        this.options.branch,
-        message
-      );
-      return true;
-    } catch (error) {
-      throw new Error(error);
-    }
+    await this.gitlab().RepositoryFiles.remove(
+      this._projectId,
+      path,
+      this.options.branch,
+      message
+    );
+    return true;
   }
 };

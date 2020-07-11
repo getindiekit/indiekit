@@ -10,9 +10,9 @@ export const queryController = publication => {
    * @returns {object} HTTP response
    */
   return async (request, response, next) => {
-    try {
-      const {query} = request;
+    const {query} = request;
 
+    try {
       if (!query.q) {
         throw new Error('Invalid query');
       }

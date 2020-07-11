@@ -23,33 +23,29 @@ export const mediaData = {
       throw new Error('No file included in request');
     }
 
-    try {
-      // Media type
-      const type = await getMediaType(file);
-      const typeConfig = getPostTypeConfig(type, config);
+    // Media type
+    const type = await getMediaType(file);
+    const typeConfig = getPostTypeConfig(type, config);
 
-      // Media properties
-      const properties = await getFileProperties(file, locale, timezone);
+    // Media properties
+    const properties = await getFileProperties(file, locale, timezone);
 
-      // Media paths
-      const path = templates.renderString(typeConfig.media.path, properties);
-      let url = templates.renderString(typeConfig.media.url || typeConfig.media.path, properties);
-      url = getPermalink(me, url);
+    // Media paths
+    const path = templates.renderString(typeConfig.media.path, properties);
+    let url = templates.renderString(typeConfig.media.url || typeConfig.media.path, properties);
+    url = getPermalink(me, url);
 
-      // Media data
-      const mediaData = {
-        type,
-        path,
-        url,
-        file: {
-          properties
-        }
-      };
+    // Media data
+    const mediaData = {
+      type,
+      path,
+      url,
+      file: {
+        properties
+      }
+    };
 
-      return mediaData;
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    return mediaData;
   },
 
   /**
@@ -61,11 +57,6 @@ export const mediaData = {
    */
   read: async (publication, url) => {
     const {media} = publication;
-
-    try {
-      return media.get(url);
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    return media.get(url);
   }
 };

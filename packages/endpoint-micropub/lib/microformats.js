@@ -158,14 +158,10 @@ export const normaliseVideo = video => {
  * @returns {Promise|object} Microformats2 object
  */
 export const url2Mf2 = async url => {
-  try {
-    const response = await got(url);
-    const mf2 = parser.mf2(response.body, {
-      baseUrl: url
-    });
+  const response = await got(url);
+  const mf2 = parser.mf2(response.body, {
+    baseUrl: url
+  });
 
-    return mf2;
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  return mf2;
 };

@@ -32,20 +32,16 @@ export const GithubStore = class {
    * @see https://developer.github.com/v3/repos/contents/#create-or-update-a-file
    */
   async createFile(path, content, message) {
-    try {
-      content = Buffer.from(content).toString('base64');
-      const response = await this.github().repos.createOrUpdateFileContents({
-        owner: this.options.user,
-        repo: this.options.repo,
-        branch: this.options.branch,
-        message,
-        path,
-        content
-      });
-      return response;
-    } catch (error) {
-      throw new Error(error);
-    }
+    content = Buffer.from(content).toString('base64');
+    const response = await this.github().repos.createOrUpdateFileContents({
+      owner: this.options.user,
+      repo: this.options.repo,
+      branch: this.options.branch,
+      message,
+      path,
+      content
+    });
+    return response;
   }
 
   /**
@@ -56,18 +52,14 @@ export const GithubStore = class {
    * @see https://developer.github.com/v3/repos/contents/#get-contents
    */
   async readFile(path) {
-    try {
-      const response = await this.github().repos.getContent({
-        owner: this.options.user,
-        repo: this.options.repo,
-        ref: this.options.branch,
-        path
-      });
-      const content = Buffer.from(response.data.content, 'base64').toString('utf8');
-      return content;
-    } catch (error) {
-      throw new Error(error);
-    }
+    const response = await this.github().repos.getContent({
+      owner: this.options.user,
+      repo: this.options.repo,
+      ref: this.options.branch,
+      path
+    });
+    const content = Buffer.from(response.data.content, 'base64').toString('utf8');
+    return content;
   }
 
   /**
@@ -88,21 +80,17 @@ export const GithubStore = class {
       return false;
     });
 
-    try {
-      content = Buffer.from(content).toString('base64');
-      const response = await this.github().repos.createOrUpdateFileContents({
-        owner: this.options.user,
-        repo: this.options.repo,
-        branch: this.options.branch,
-        sha: (contents) ? contents.data.sha : false,
-        message,
-        path,
-        content
-      });
-      return response;
-    } catch (error) {
-      throw new Error(error);
-    }
+    content = Buffer.from(content).toString('base64');
+    const response = await this.github().repos.createOrUpdateFileContents({
+      owner: this.options.user,
+      repo: this.options.repo,
+      branch: this.options.branch,
+      sha: (contents) ? contents.data.sha : false,
+      message,
+      path,
+      content
+    });
+    return response;
   }
 
   /**
@@ -114,24 +102,20 @@ export const GithubStore = class {
    * @see https://developer.github.com/v3/repos/contents/#delete-a-file
    */
   async deleteFile(path, message) {
-    try {
-      const contents = await this.github().repos.getContent({
-        owner: this.options.user,
-        repo: this.options.repo,
-        ref: this.options.branch,
-        path
-      });
-      const response = await this.github().repos.deleteFile({
-        owner: this.options.user,
-        repo: this.options.repo,
-        branch: this.options.branch,
-        sha: contents.data.sha,
-        message,
-        path
-      });
-      return response;
-    } catch (error) {
-      throw new Error(error);
-    }
+    const contents = await this.github().repos.getContent({
+      owner: this.options.user,
+      repo: this.options.repo,
+      ref: this.options.branch,
+      path
+    });
+    const response = await this.github().repos.deleteFile({
+      owner: this.options.user,
+      repo: this.options.repo,
+      branch: this.options.branch,
+      sha: contents.data.sha,
+      message,
+      path
+    });
+    return response;
   }
 };

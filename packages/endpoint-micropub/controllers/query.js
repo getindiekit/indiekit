@@ -13,10 +13,9 @@ export const queryController = publication => {
    */
   return async (request, response, next) => {
     const config = getConfig(publication.config);
+    const {query} = request;
 
     try {
-      const {query} = request;
-
       if (!query.q) {
         throw new Error('Invalid query');
       }
@@ -35,13 +34,9 @@ export const queryController = publication => {
         case 'source': {
           // Return microformats for a given source URL
           if (query.url) {
-            try {
-              const mf2 = await url2Mf2(query.url);
-              const properties = mf2Properties(mf2, query.properties);
-              return response.json(properties);
-            } catch (error) {
-              throw new Error(error.message);
-            }
+            const mf2 = await url2Mf2(query.url);
+            const properties = mf2Properties(mf2, query.properties);
+            return response.json(properties);
           }
 
           // Return microformats for previously published posts

@@ -15,13 +15,12 @@ export const actionController = publication => {
    * @returns {object} HTTP response
    */
   return async (request, response, next) => {
-    try {
-      const {body, files, query} = request;
-      const action = query.action || body.action || 'create';
-      const url = query.url || body.url;
+    const {body, files, query} = request;
+    const action = query.action || body.action || 'create';
+    const url = query.url || body.url;
+    const {scope} = publication.accessToken;
 
-      // Check scope
-      const {scope} = publication.accessToken;
+    try {
       checkScope(scope, action);
 
       // Create and normalise Microformats2 data
