@@ -9,7 +9,9 @@ category:
 photo:
 {%- for item in photo %}
 - url: {{ item.value }}
+{%- if item.alt %}
   alt: {{ item.alt }}
+{%- endif %}
 {%- endfor %}
 {%- if syndicateTo %}
 syndicate-to:
