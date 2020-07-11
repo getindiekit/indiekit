@@ -26,7 +26,7 @@ export const postData = {
     const {config, locale, me, timezone} = publication;
 
     if (!mf2) {
-      throw new Error('Unable to create post without microformats data')
+      throw new Error('Unable to create post without microformats data');
     }
 
     // Post type

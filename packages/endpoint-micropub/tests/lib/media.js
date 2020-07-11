@@ -72,7 +72,7 @@ test('Throws error uploading attached file', async t => {
   const scope = nock('https://media-endpoint.example')
     .post('/')
     .reply(400, {
-      error_description: 'The token provided was malformed' // eslint-disable-line camelcase
+      error_description: 'The token provided was malformed'
     });
   const files = [{
     buffer: getFixture('photo.jpg', false),
