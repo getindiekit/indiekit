@@ -38,7 +38,6 @@ test('Returns mf2 item with all properties', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = mf2Properties(mf2);
   t.deepEqual(result, {
-    type: ['h-entry'],
     properties: {
       name: ['I ate a cheese sandwich, which was nice.'],
       published: ['2013-03-07'],
@@ -51,7 +50,6 @@ test('Returns mf2 item with multiple properties', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = mf2Properties(mf2, ['name', 'published']);
   t.deepEqual(result, {
-    type: ['h-entry'],
     properties: {
       name: ['I ate a cheese sandwich, which was nice.'],
       published: ['2013-03-07']
@@ -63,7 +61,6 @@ test('Returns mf2 item with single property', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = mf2Properties(mf2, 'name');
   t.deepEqual(result, {
-    type: ['h-entry'],
     properties: {
       name: ['I ate a cheese sandwich, which was nice.']
     }
@@ -74,7 +71,6 @@ test('Returns mf2 item with empty object if property not found', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = mf2Properties(mf2, 'location');
   t.deepEqual(result, {
-    type: ['h-entry'],
     properties: {}
   });
 });

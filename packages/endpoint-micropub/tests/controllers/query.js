@@ -56,7 +56,6 @@ test('Returns mf2 for given source URL', async t => {
     .reply(200, getFixture('post.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
   t.deepEqual(response.body, {
-    type: ['h-entry'],
     properties: {
       name: ['I ate a cheese sandwich, which was nice.']
     }

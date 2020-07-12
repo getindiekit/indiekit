@@ -69,10 +69,10 @@ export const mf2Properties = (mf2, requestedProperties) => {
     });
 
     item.properties = selectedProperties;
-    return item;
   }
 
-  // Return all properties
+  // Return properties
+  delete item.type;
   return item;
 };
 
