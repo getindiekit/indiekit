@@ -12,10 +12,10 @@ const defaults = {
 };
 
 export const MediaEndpoint = class {
-  constructor(options) {
+  constructor(options = {}) {
     this.id = 'media';
     this.name = 'Micropub media endpoint';
-    this.options = options || defaults;
+    this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 

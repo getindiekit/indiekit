@@ -10,10 +10,10 @@ const defaults = {
 };
 
 export const ShareEndpoint = class {
-  constructor(options) {
+  constructor(options = {}) {
     this.id = 'share';
     this.name = 'Share endpoint';
-    this.options = options || defaults;
+    this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 

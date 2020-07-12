@@ -13,10 +13,10 @@ const defaults = {
 };
 
 export const MicropubEndpoint = class {
-  constructor(options) {
+  constructor(options = {}) {
     this.id = 'micropub';
     this.name = 'Micropub endpoint';
-    this.options = options || defaults;
+    this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
