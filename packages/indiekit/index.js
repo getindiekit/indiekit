@@ -31,16 +31,28 @@ export const Indiekit = class {
     _.set(this._config, key, value);
   }
 
-  addConfig(host) {
-    this.application.configs.push(host);
+  addConfig(config) {
+    this.application.configs = this.application.configs.concat(config);
   }
 
-  addEndpoint(host) {
-    this.application.endpoints.push(host);
+  addEndpoint(endpoint) {
+    this.application.endpoints = this.application.endpoints.concat(endpoint);
+  }
+
+  addNavigation(item) {
+    this.application.navigationItems = this.application.navigationItems.concat(item);
+  }
+
+  addRoute(route) {
+    this.application.routes = this.application.routes.concat(route);
   }
 
   addStore(store) {
-    this.application.stores.push(store);
+    this.application.stores = this.application.stores.concat(store);
+  }
+
+  addView(view) {
+    this.application.views = this.application.views.concat(view);
   }
 
   async init() {
@@ -57,7 +69,7 @@ export const Indiekit = class {
     this.publication.media = new Log(databaseConfig.client, 'media');
 
     this.application.endpoints.forEach(
-      endpoint => endpoint.init(this._config)
+      endpoint => endpoint.init(this)
     );
 
     return this._config;

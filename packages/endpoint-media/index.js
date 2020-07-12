@@ -26,12 +26,12 @@ export const MediaEndpoint = class {
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
-    application.routes.push({
+    indiekitConfig.addRoute({
       mountpath: this.mountpath,
       routes: () => this.routes(application, publication)
     });
 
-    publication['media-endpoint'] = this.mountpath;
+    indiekitConfig.set(publication['media-endpoint'], this.mountpath);
   }
 
   routes(application, publication) {

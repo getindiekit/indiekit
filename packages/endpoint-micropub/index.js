@@ -27,19 +27,19 @@ export const MicropubEndpoint = class {
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
-    application.navigationItems.push({
+    indiekitConfig.addNavigation({
       href: `${this.mountpath}/posts`,
       text: 'Posts'
     });
 
-    application.routes.push({
+    indiekitConfig.addRoute({
       mountpath: this.mountpath,
       routes: () => this.routes(application, publication)
     });
 
-    application.views.push(path.join(__dirname, 'views'));
+    indiekitConfig.addView(path.join(__dirname, 'views'));
 
-    publication['micropub-endpoint'] = this.mountpath;
+    indiekitConfig.set(publication['micropub-endpoint'], this.mountpath);
   }
 
   routes(application, publication) {
