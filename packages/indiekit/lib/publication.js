@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {Cache} from './cache.js';
 
 /**
@@ -33,24 +34,13 @@ export const getConfig = (customConfig, presetConfig) => {
   // Merge configuration objects
   const config = {...presetConfig, ...customConfig};
 
-  // Combine post type arrays (leaving duplicate post types)
+  // Combine post type arrays
   const customPostTypes = customConfig['post-types'] || [];
   const presetPostTypes = presetConfig['post-types'] || [];
-  const combinedPostTypes = [
-    ...customPostTypes,
-    ...presetPostTypes
-  ];
-
-  // Merge duplicate post types
-  const set = new Set();
-  const mergedPostTypes = combinedPostTypes.filter(postType => {
-    if (!set.has(postType.type)) {
-      set.add(postType.type);
-      return true;
-    }
-
-    return false;
-  }, set);
+  const mergedPostTypes = _.values(_.merge(
+    _.keyBy(presetPostTypes, 'type'),
+    _.keyBy(customPostTypes, 'type')
+  ));
 
   config['post-types'] = mergedPostTypes;
 

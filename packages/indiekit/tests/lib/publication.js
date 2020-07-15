@@ -50,9 +50,31 @@ test('Returns empty array if remote JSON file not found', async t => {
 test('Merges values from custom and default configurations', t => {
   const customConfig = JSON.parse(getFixture('custom-config.json'));
   const result = getConfig(customConfig, t.context.config.preset);
-  t.is(result['syndicate-to'][0].name, '@username on Twitter');
-  t.is(result['slug-separator'], '_');
-  t.is(result['post-types'][0].name, 'Journal entry');
+  t.is(result['post-types'][0].template, 'etc/templates/article.njk');
+  t.deepEqual(result['post-types'][1], {
+    type: 'note',
+    name: 'Journal entry',
+    icon: ':notebook_with_decorative_cover:',
+    template: 'etc/templates/entry.njk',
+    post: {
+      path: '_entries/{{ published | date(\'X\') }}.md',
+      url: 'entries/{{ published | date(\'X\') }}'
+    }
+  });
+  t.deepEqual(result['post-types'][2], {
+    type: 'photo',
+    name: 'Picture',
+    icon: ':framed_picture:',
+    template: 'etc/templates/picture.njk',
+    post: {
+      path: '_pictures/{{ published | date(\'X\') }}.md',
+      url: '_pictures/{{ published | date(\'X\') }}'
+    },
+    media: {
+      path: 'src/media/pictures/{{ uploaded | date(\'X\') }}.{{ fileext }}',
+      url: 'media/pictures/{{ uploaded | date(\'X\') }}.{{ fileext }}'
+    }
+  });
 });
 
 test('Gets configuration preset for a publication', t => {

@@ -60,7 +60,8 @@
     "environmentVariables": {
       "NODE_ENV": "test",
       "SECRET": "test"
-    }
+    },
+    "snapshotDir": "snapshots"
   },
   "c8": {
     "all": true,

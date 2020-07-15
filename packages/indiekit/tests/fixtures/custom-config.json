@@ -13,6 +13,9 @@
     "name": "@username on Micro.blog"
   }],
   "post-types": [{
+    "type": "article",
+    "template": "etc/templates/article.njk"
+  }, {
     "type": "note",
     "name": "Journal entry",
     "template": "etc/templates/entry.njk",
@@ -32,14 +35,6 @@
     "media": {
       "path": "src/media/pictures/{{ uploaded | date('X') }}.{{ fileext }}",
       "url": "media/pictures/{{ uploaded | date('X') }}.{{ fileext }}"
-    }
-  }, {
-    "type": "reply",
-    "name": "Response",
-    "template": "etc/templates/response.njk",
-    "post": {
-      "path": "_responses/{{ published | date('X') }}.md",
-      "url": "responses/{{ published | date('X') }}"
     }
   }],
   "slug-separator": "_"

@@ -21,8 +21,34 @@ indiekit.set('publication.config.categories', {
   url: 'https://paulrobertlloyd.com/categories/index.json'
 });
 
-// TODO: User configured post types (with correct deep merge)
-// TODO: User configured post type template locations
+indiekit.set('publication.config.post-types', [{
+  type: 'note',
+  name: 'Note (Config)',
+  // TODO: User configured template locations
+  // template: 'etc/templates/note.njk',
+  post: {
+    path: '_notes/{{ published | date(\'X\') }}.md',
+    url: 'notes/{{ published | date(\'X\') }}'
+  }
+}, {
+  type: 'photo',
+  name: 'Photo (Config)',
+  post: {
+    path: '_photos/{{ published | date(\'X\') }}.md',
+    url: '_photos/{{ published | date(\'X\') }}'
+  },
+  media: {
+    path: 'src/media/photos/{{ filedate | date(\'X\') }}.{{ fileext }}',
+    url: 'media/photos/{{ filedate | date(\'X\') }}.{{ fileext }}'
+  }
+}, {
+  type: 'reply',
+  name: 'Reply (Config)',
+  post: {
+    path: '_replies/{{ published | date(\'X\') }}.md',
+    url: 'replies/{{ published | date(\'X\') }}'
+  }
+}]);
 
 // Register extensions
 indiekit.addStore(githubStore);

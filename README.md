@@ -38,7 +38,7 @@ npm test
 * [x] Check scopes for Micropub endpoint actions
 * [ ] Make application provide template renderer
 * [ ] Internationalisation
-* [ ] Use user configured post types
+* [x] Use user configured post types
 * [ ] Load user configured post type templates
 * [ ] Add missing tests
 
