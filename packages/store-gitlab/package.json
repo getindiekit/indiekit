@@ -28,6 +28,6 @@
     "directory": "packages/store-gitlab"
   },
   "dependencies": {
-    "@gitbeaker/node": "^22.0.1"
+    "@gitbeaker/node": "^23.4.0"
   }
 }
