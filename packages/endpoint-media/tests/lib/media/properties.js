@@ -1,5 +1,5 @@
 import test from 'ava';
-import luxon from 'luxon';
+import dateFns from 'date-fns';
 import {getFixture} from '../../helpers/fixture.js';
 import {
   getFileProperties,
@@ -7,7 +7,7 @@ import {
   getPermalink
 } from '../../../lib/media/properties.js';
 
-const {DateTime} = luxon;
+const {isValid, parseISO} = dateFns;
 
 test('Derives a permalink', t => {
   t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
@@ -34,7 +34,7 @@ test('Derives properties from file data', async t => {
   };
   const result = await getFileProperties(file);
   t.is(result.originalname, 'photo.jpg');
-  t.truthy(DateTime.fromISO(result.uploaded.isValid));
+  t.true(isValid(parseISO(result.uploaded)));
   t.regex(result.filename, /[\d\w]{5}.jpg/g);
   t.is(result.fileext, 'jpg');
 });

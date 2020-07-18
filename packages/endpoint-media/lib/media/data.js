@@ -1,6 +1,6 @@
-import {templates} from '../nunjucks.js';
 import {
-  getPostTypeConfig
+  getPostTypeConfig,
+  renderPath
 } from '../utils.js';
 import {
   getFileProperties,
@@ -17,7 +17,7 @@ export const mediaData = {
    * @returns {object} Media data
    */
   create: async (publication, file) => {
-    const {config, locale, me, timezone} = publication;
+    const {config, me} = publication;
 
     if (!file || file.truncated || !file.buffer) {
       throw new Error('No file included in request');
@@ -28,11 +28,11 @@ export const mediaData = {
     const typeConfig = getPostTypeConfig(type, config);
 
     // Media properties
-    const properties = await getFileProperties(file, locale, timezone);
+    const properties = await getFileProperties(file);
 
     // Media paths
-    const path = templates.renderString(typeConfig.media.path, properties);
-    let url = templates.renderString(typeConfig.media.url || typeConfig.media.path, properties);
+    const path = renderPath(typeConfig.media.path, properties);
+    let url = renderPath(typeConfig.media.url || typeConfig.media.path, properties);
     url = getPermalink(me, url);
 
     // Media data

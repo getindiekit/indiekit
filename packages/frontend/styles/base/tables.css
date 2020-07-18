@@ -8,7 +8,7 @@ table {
   border-spacing: 0;
   break-inside: avoid;
   font-size: inherit;
-  font-variant-numeric: tabular-nums diagonal-fractions;
+  font-variant-numeric: tabular-nums;
 }
 
 tr {

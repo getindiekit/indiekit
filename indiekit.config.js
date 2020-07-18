@@ -27,26 +27,26 @@ indiekit.set('publication.config.post-types', [{
   // TODO: User configured template locations
   // template: 'etc/templates/note.njk',
   post: {
-    path: '_notes/{{ published | date(\'X\') }}.md',
-    url: 'notes/{{ published | date(\'X\') }}'
+    path: '_notes/{t}.md',
+    url: 'notes/{t}'
   }
 }, {
   type: 'photo',
   name: 'Photo (Config)',
   post: {
-    path: '_photos/{{ published | date(\'X\') }}.md',
-    url: '_photos/{{ published | date(\'X\') }}'
+    path: '_photos/{t}.md',
+    url: '_photos/{t}'
   },
   media: {
-    path: 'src/media/photos/{{ filedate | date(\'X\') }}.{{ fileext }}',
-    url: 'media/photos/{{ filedate | date(\'X\') }}.{{ fileext }}'
+    path: 'src/media/photos/{t}.{fileext}',
+    url: 'media/photos/{t}.{fileext}'
   }
 }, {
   type: 'reply',
   name: 'Reply (Config)',
   post: {
-    path: '_replies/{{ published | date(\'X\') }}.md',
-    url: 'replies/{{ published | date(\'X\') }}'
+    path: '_replies/{t}.md',
+    url: 'replies/{t}'
   }
 }]);
 

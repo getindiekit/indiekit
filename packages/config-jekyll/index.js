@@ -16,11 +16,11 @@ export const JekyllConfig = class {
         icon: ':page_facing_up:',
         template: `${templatesPath}/article.njk`,
         post: {
-          path: '_posts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: '{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_posts/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: '{yyyy}/{MM}/{dd}/{slug}'
         },
         media: {
-          path: 'media/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/{yyyy}/{MM}/{dd}/{filename}'
         }
       }, {
         type: 'note',
@@ -28,8 +28,8 @@ export const JekyllConfig = class {
         icon: ':notebook_with_decorative_cover:',
         template: `${templatesPath}/note.njk`,
         post: {
-          path: '_notes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_notes/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'notes/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'photo',
@@ -37,11 +37,11 @@ export const JekyllConfig = class {
         icon: ':camera:',
         template: `${templatesPath}/photo.njk`,
         post: {
-          path: '_photos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'photos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_photos/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'photos/{yyyy}/{MM}/{dd}/{slug}'
         },
         media: {
-          path: 'media/photos/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/photos/{yyyy}/{MM}/{dd}/{filename}'
         }
       }, {
         type: 'video',
@@ -49,11 +49,11 @@ export const JekyllConfig = class {
         icon: ':video_camera:',
         template: `${templatesPath}/video.njk`,
         post: {
-          path: '_videos/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'videos/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_videos/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'videos/{yyyy}/{MM}/{dd}/{slug}'
         },
         media: {
-          path: 'media/videos/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/videos/{yyyy}/{MM}/{dd}/{filename}'
         }
       }, {
         type: 'audio',
@@ -61,11 +61,11 @@ export const JekyllConfig = class {
         icon: ':microphone:',
         template: `${templatesPath}/audio.njk`,
         post: {
-          path: '_audio/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'audio/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_audio/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'audio/{yyyy}/{MM}/{dd}/{slug}'
         },
         media: {
-          path: 'media/audio/{{ uploaded | date(\'yyyy/MM/dd\') }}/{{ filename }}'
+          path: 'media/audio/{yyyy}/{MM}/{dd}/{filename}'
         }
       }, {
         type: 'bookmark',
@@ -73,8 +73,8 @@ export const JekyllConfig = class {
         icon: ':bookmark:',
         template: `${templatesPath}/bookmark.njk`,
         post: {
-          path: '_bookmarks/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'bookmarks/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_bookmarks/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'bookmarks/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'checkin',
@@ -82,8 +82,8 @@ export const JekyllConfig = class {
         icon: ':triangular_flag_on_post:',
         template: `${templatesPath}/checkin.njk`,
         post: {
-          path: '_checkins/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'checkins/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_checkins/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'checkins/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'event',
@@ -91,8 +91,8 @@ export const JekyllConfig = class {
         icon: ':calendar:',
         template: `${templatesPath}/event.njk`,
         post: {
-          path: '_events/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'events/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_events/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'events/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'rsvp',
@@ -100,8 +100,8 @@ export const JekyllConfig = class {
         icon: ':speech_balloon:',
         template: `${templatesPath}/reply.njk`,
         post: {
-          path: '_replies/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'replies/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_replies/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'replies/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'reply',
@@ -109,8 +109,8 @@ export const JekyllConfig = class {
         icon: ':speech_balloon:',
         template: `${templatesPath}/reply.njk`,
         post: {
-          path: '_replies/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'replies/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_replies/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'replies/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'repost',
@@ -118,8 +118,8 @@ export const JekyllConfig = class {
         icon: ':recycle:',
         template: `${templatesPath}/repost.njk`,
         post: {
-          path: '_reposts/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'reposts/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_reposts/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'reposts/{yyyy}/{MM}/{dd}/{slug}'
         }
       }, {
         type: 'like',
@@ -127,8 +127,8 @@ export const JekyllConfig = class {
         icon: ':thumbsup:',
         template: `${templatesPath}/like.njk`,
         post: {
-          path: '_likes/{{ published | date(\'yyyy-MM-dd\') }}-{{ slug }}.md',
-          url: 'likes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
+          path: '_likes/{yyyy}-{MM}-{dd}-{slug}.md',
+          url: 'likes/{yyyy}/{MM}/{dd}/{slug}'
         }
       }],
       'slug-separator': '-',

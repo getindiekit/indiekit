@@ -1,5 +1,5 @@
 import test from 'ava';
-import luxon from 'luxon';
+import dateFns from 'date-fns';
 import {getFixture} from '../../helpers/fixture.js';
 import {
   getContent,
@@ -8,7 +8,7 @@ import {
   getSlug
 } from '../../../lib/post/properties.js';
 
-const {DateTime} = luxon;
+const {isValid, parseISO} = dateFns;
 
 test('Derives content from `content[0].html` property', t => {
   const mf2 = JSON.parse(getFixture('content-provided-html-value.json'));
@@ -44,19 +44,19 @@ test('Derives a permalink', t => {
 test('Derives date from `published` property', t => {
   const mf2 = JSON.parse(getFixture('published-provided.json'));
   const published = getPublishedDate(mf2);
-  t.is(published[0], '2019-01-02T03:04:05.678Z');
+  t.is(published[0], '2019-01-02T03:04:05Z');
 });
 
 test('Derives date from `published` property with short date', t => {
   const mf2 = JSON.parse(getFixture('published-provided-short-date.json'));
   const published = getPublishedDate(mf2);
-  t.is(published[0], '2019-01-02T00:00:00.000Z');
+  t.is(published[0], '2019-01-02T00:00:00Z');
 });
 
 test('Derives date by using current date', t => {
   const mf2 = JSON.parse(getFixture('published-missing.json'));
   const published = getPublishedDate(mf2);
-  t.true(DateTime.fromISO(published[0]).isValid);
+  t.true(isValid(parseISO(published[0])));
 });
 
 test('Derives slug from `slug` property', t => {

@@ -61,6 +61,21 @@
   padding: 0;
 }
 
+.s-linear table {
+  font-size: var(--step-0);
+  inline-size: 100%;
+  max-inline-size: 100%;
+}
+
+.s-linear td {
+  border-block-start-color: var(--color-offset);
+  border-block-start-style: solid;
+  border-block-start-width: var(--border-width-thin);
+  padding: var(--inset-small-squished);
+  padding-inline-start: 0;
+  white-space: nowrap;
+}
+
 .s-linear ol,
 .s-linear ul {
   padding-inline-start: var(--flow-inset);

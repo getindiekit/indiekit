@@ -1,10 +1,10 @@
-import {templates} from '../nunjucks.js';
 import getPostType from 'post-type-discovery';
 import {
   addProperties,
   deleteEntries,
   deleteProperties,
   replaceEntries,
+  renderPath,
   getPostTypeConfig
 } from '../utils.js';
 import {
@@ -23,7 +23,7 @@ export const postData = {
    * @returns {object} Post data
    */
   create: async (publication, mf2) => {
-    const {config, locale, me, timezone} = publication;
+    const {config, me} = publication;
 
     if (!mf2) {
       throw new Error('Unable to create post without microformats data');
@@ -36,12 +36,12 @@ export const postData = {
     // Post properties
     const {properties} = mf2;
     properties.content = getContent(mf2);
-    properties.published = getPublishedDate(mf2, locale, timezone);
+    properties.published = getPublishedDate(mf2);
     properties.slug = getSlug(mf2, config['slug-separator']);
 
     // Post paths
-    const path = templates.renderString(typeConfig.post.path, properties);
-    let url = templates.renderString(typeConfig.post.url, properties);
+    const path = renderPath(typeConfig.post.path, properties);
+    let url = renderPath(typeConfig.post.url, properties);
     url = getPermalink(me, url);
 
     // Add computed URL to post properties
@@ -112,8 +112,8 @@ export const postData = {
     }
 
     // Post paths
-    const path = templates.renderString(typeConfig.post.path, properties);
-    let updatedUrl = templates.renderString(typeConfig.post.url, properties);
+    const path = renderPath(typeConfig.post.path, properties);
+    let updatedUrl = renderPath(typeConfig.post.url, properties);
     updatedUrl = getPermalink(me, updatedUrl);
 
     // Add computed URL to post properties

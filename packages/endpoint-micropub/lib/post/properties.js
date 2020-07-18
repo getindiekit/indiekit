@@ -1,12 +1,12 @@
+import dateFns from 'date-fns';
 import path from 'path';
-import luxon from 'luxon';
 import slugify from '@sindresorhus/slugify';
 import {
   excerptString,
   randomString
 } from '../utils.js';
 
-const {DateTime} = luxon;
+const {formatISO, parseISO} = dateFns;
 
 /**
  * Derive content (HTML, else object value, else property value)
@@ -16,7 +16,6 @@ const {DateTime} = luxon;
  */
 export const getContent = mf2 => {
   let {content} = mf2.properties;
-
   if (content) {
     content = content[0].html || content[0].value || content[0];
     return new Array(content);
@@ -45,19 +44,20 @@ export const getPermalink = (url, pathname) => {
  * Derive published date (based on microformats2 data, else current date)
  *
  * @param {object} mf2 Microformats2 object
- * @param {object} locale Locale to use for formatting datetime
- * @param {object} zone Timezone offset
  * @returns {Array} Array containing ISO formatted date
  */
-export const getPublishedDate = (mf2, locale = 'en-GB', zone = 'UTC') => {
-  const now = new Array(DateTime.local().toISO());
-  const published = mf2.properties.published || now;
-  const date = DateTime.fromISO(published[0], {
-    locale,
-    zone
-  }).toISO();
+export const getPublishedDate = mf2 => {
+  // Use provided `published` datetime…
+  const {published} = mf2.properties;
+  if (published) {
+    let publishedDate = parseISO(published[0]);
+    publishedDate = formatISO(publishedDate);
+    return new Array(publishedDate);
+  }
 
-  return new Array(date);
+  // …else, use current datetime
+  const currentDate = formatISO(new Date());
+  return new Array(currentDate);
 };
 
 /**

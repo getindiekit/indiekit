@@ -2,7 +2,8 @@ import test from 'ava';
 import {JekyllConfig} from '../../../config-jekyll/index.js';
 import {
   getPostTypeConfig,
-  randomString
+  randomString,
+  renderPath
 } from '../../lib/utils.js';
 
 test.beforeEach(t => {
@@ -17,4 +18,14 @@ test('Get post type configuration for a given type', t => {
 test('Generates random alpha-numeric string, 5 characters long', t => {
   const result = randomString();
   t.regex(result, /[\d\w]{5}/g);
+});
+
+test('Renders path from URI template and properties', t => {
+  const properties = {
+    slug: 'foo',
+    uploaded: '2020-01-01'
+  };
+  const template = '{yyyy}/{MM}/{slug}';
+  const result = renderPath(template, properties);
+  t.is(result, '2020/01/foo');
 });

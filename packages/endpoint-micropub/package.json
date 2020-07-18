@@ -30,16 +30,17 @@
     "directory": "packages/endpoint-micropub"
   },
   "dependencies": {
-    "@sindresorhus/slugify": "^1.0.0",
+    "@sindresorhus/slugify": "^1.1.0",
     "camelcase-keys": "^6.2.2",
+    "date-fns": "^2.15.0",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
     "got": "^11.5.1",
     "http-errors": "^1.8.0",
-    "luxon": "^1.24.1",
     "microformats-parser": "^1.4.0",
     "multer": "^1.4.2",
     "nunjucks": "^3.2.1",
-    "post-type-discovery": "github:grantcodes/post-type-discovery"
+    "post-type-discovery": "github:grantcodes/post-type-discovery",
+    "uri-template-lite": "^20.5.0"
   }
 }

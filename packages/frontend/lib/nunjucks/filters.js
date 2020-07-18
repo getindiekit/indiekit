@@ -1,6 +1,8 @@
 import Color from 'color';
-import luxon from 'luxon';
+import dateFns from 'date-fns';
 import markdownIt from '../markdown-it.js';
+
+const {format, formatISO, parseISO} = dateFns;
 
 /**
  * Darken a color
@@ -30,18 +32,12 @@ export const lighten = (string, value) => {
  * Format a date
  *
  * @param {string} string ISO 8601 date
- * @param {string} format Tokenised date format
- * @param {object} locale Locale to use for formatting datetime
- * @param {object} zone Timezone offset
+ * @param {string} tokens Tokenised date format
  * @returns {string} Formatted date
  */
-export const date = (string, format, locale = 'en-GB', zone = 'utc') => {
-  const {DateTime} = luxon;
-  const date = (string === 'now') ? DateTime.local() : string;
-  const datetime = DateTime.fromISO(date, {
-    locale,
-    zone
-  }).toFormat(format);
+export const date = (string, tokens) => {
+  const date = (string === 'now') ? new Date() : parseISO(string);
+  const datetime = format(date, tokens);
   return datetime;
 };
 

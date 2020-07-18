@@ -1,16 +1,14 @@
+import dateFns from 'date-fns';
 import FileType from 'file-type';
-import luxon from 'luxon';
 import path from 'path';
 import {randomString} from '../utils.js';
 
-const {DateTime} = luxon;
+const {formatISO} = dateFns;
 
 /**
  * Derive properties from file data
  *
  * @param {object} file Original file object
- * @param {object} locale Locale to use for formatting datetime
- * @param {object} zone Timezone offset
  * @returns {object} File properties
  * @example fileData('brighton-pier.jpg') => {
  *   filename: 'ds48s',
@@ -19,12 +17,8 @@ const {DateTime} = luxon;
  *   uploaded: '2019-03-03T05:07:09+00:00',
  * }
  */
-export const getFileProperties = async (file, locale = 'en-GB', zone = 'UTC') => {
-  const now = DateTime.local().toISO();
-  const uploaded = DateTime.fromISO(now, {
-    locale,
-    zone
-  }).toISO();
+export const getFileProperties = async file => {
+  const currentDate = formatISO(new Date());
   const randomBasename = randomString();
   const {ext} = await FileType.fromBuffer(file.buffer);
 
@@ -32,7 +26,7 @@ export const getFileProperties = async (file, locale = 'en-GB', zone = 'UTC') =>
     filename: `${randomBasename}.${ext}`,
     fileext: ext,
     originalname: file.originalname,
-    uploaded
+    uploaded: currentDate
   };
 };
 

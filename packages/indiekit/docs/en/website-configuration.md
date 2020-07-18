@@ -68,19 +68,19 @@ These defaults can be ammended, and new types can be added. For example, to over
     "icon": ":memo:",
     "template": "_micropub/templates/note.njk",
     "post": {
-      "path": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-      "url": "notes/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+      "path": "_notes/{​yyyy}-{MM}-{dd}-{​slug}.md",
+      "url": "notes/{yyyy}/{MM}/{​slug}"
     },
   }, {
     "type": "photo",
     "name": "Photograph",
     "template": "_micropub/templates/photo.njk",
     "post": {
-      "path": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-      "url": "photos/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+      "path": "_photos/{​yyyy}-{MM}-{dd}-{​slug}.md",
+      "url": "photos/{yyyy}/{MM}/{​slug}"
     },
     "media": {
-      "path": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
+      "path": "media/photos/{​yyyy}/{​filename}",
     }
   }]
 }
@@ -100,24 +100,63 @@ These defaults can be ammended, and new types can be added. For example, to over
 
 * **`media.path`**: Where media files should be saved in your repository. This applies only to `photo`, `video` and `audio` post types.
 
-  The following template variables are available for media files:
-
-  * `filename`: Five character long alpha-numeric string with file extension, e.g. <samp>b3dog.jpg</samp>.
-  * `fileext`: File extension taken from the posted file, e.g. <samp>jpg</samp>.
-  * `originalname`: Original name of the posted file, e.g. <samp>brighton-pier.jpg</samp>.
-  * `uploaded`: The ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)) date the image was uploaded, e.g. <samp>2019-03-02T22:28:56+00:00</samp>. Best used with the `date()` filter, as described below.
-
 * **`media.url`**: Public accessible URL for media files. This can use the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 
 `slug-separator`: The character(s) to use when generating post slugs. Defaults to `-` (dash).
 
 ## Creating custom paths and URLs
 
-Both `path` and `url` values use [Nunjucks](https://mozilla.github.io/nunjucks/) templating to allow customisation. All properties provided in a Micropub request are available. To customise date values, use the `date()` filter with [Luxon formatting tokens](https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens).
+Both `path` and `url` values can accept a number of tokens to allow their customisation.
+
+### Posts
+
+The following template tokens are available for post paths and URLs:
+
+| Token  | Description                                                         |
+| ------ | ------------------------------------------------------------------- |
+| `slug` | Provided value, derived from `name` or a 5 character string, eg <samp>ycf9o</samp>         |
+
+### Media files
+
+The following template tokens are available for media file paths and URLs:
+
+| Token          | Description                                                 |
+| -------------- | ----------------------------------------------------------- |
+| `filename`     | 5 character string with file extension, eg <samp>w9gwi.jpg</samp> |
+| `fileext`      | File extension of uploaded file, eg <samp>jpg</samp>        |
+| `originalname` | Original name of uploaded file, eg <samp>flower.jpg</samp>  |
+
+### Dates
+
+The following date tokens are available for both post and media paths and URLs:
+
+| Token  | Description                                                         |
+| ------ | ------------------------------------------------------------------- |
+| `y`    | Calendar year, eg <samp>2020</samp>                                 |
+| `yyyy` | Calendar year (zero padded), eg <samp>2020</samp>                   |
+| `M`    | Month number, eg <samp>9</samp>                                     |
+| `MM`   | Month number (zero padded), eg <samp>09</samp>                      |
+| `MMM`  | Month name (abbreviated), eg <samp>Sep</samp>                       |
+| `MMMM` | Month name (wide), eg <samp>September</samp>                        |
+| `w`    | Week number, eg <samp>1</samp>                                      |
+| `ww`   | Week number (zero padded), eg <samp>01</samp>                       |
+| `D`    | Day of the year, eg <samp>1</samp>                                  |
+| `DDD`  | Day of the year (zero padded), eg <samp>001</samp>                  |
+| `d`    | Day of the month, eg <samp>1</samp>                                 |
+| `dd`   | Day of the month (zero padded), eg <samp>01</samp>                  |
+| `h`    | Hour (12-hour-cycle), eg <samp>1</samp>                             |
+| `hh`   | Hour (12-hour-cycle, zero padded), eg <samp>01</samp>               |
+| `H`    | Hour (24-hour-cycle), eg <samp>1</samp>                             |
+| `HH`   | Hour (24-hour-cycle, zero padded), eg <samp>01</samp>               |
+| `m`    | Minute, eg <samp>1</samp>                                           |
+| `mm`   | Minute (zero padded), eg <samp>01</samp>                            |
+| `s`    | Second, eg <samp>1</samp>                                           |
+| `t`    | UNIX epoch seconds, eg <samp>512969520</samp>                       |
+| `T`    | UNIX epoch milliseconds, eg <samp>51296952000</samp>                |
 
 ## Creating post templates
 
-Post templates also use [Nunjucks](https://mozilla.github.io/nunjucks/). All properties provided in a Micropub request are available.
+Post templates use [Nunjucks](https://mozilla.github.io/nunjucks/). All properties provided in a Micropub request are available.
 
 A few points to consider when creating post templates:
 
