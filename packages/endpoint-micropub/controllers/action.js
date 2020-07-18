@@ -53,10 +53,13 @@ export const actionController = publication => {
 
       return response.status(published.status).location(published.location).json(published.json);
     } catch (error) {
-      next(httpError(400, error.message, {
+      // TODO: Remove this temporary fix
+      const status = error.status || 400;
+      next(httpError(status, error.message, {
         json: {
           error: 'invalid_request',
-          error_description: error.message
+          error_description: error.message,
+          scope: error.scope
         }
       }));
     }
