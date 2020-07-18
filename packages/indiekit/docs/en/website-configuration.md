@@ -65,7 +65,6 @@ These defaults can be ammended, and new types can be added. For example, to over
   "post-types": [{
     "type": "note",
     "name": "Micro note",
-    "icon": ":memo:",
     "template": "_micropub/templates/note.njk",
     "post": {
       "path": "_notes/{​yyyy}-{MM}-{dd}-{​slug}.md",
@@ -89,8 +88,6 @@ These defaults can be ammended, and new types can be added. For example, to over
 * **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
 
 * **`name`**: The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients will use it in their publishing interfaces.
-
-* **`icon`**: Shortcode for the emoji icon to use in commit messages. A [full list of emoji codes can be found here](https://www.webfx.com/tools/emoji-cheat-sheet/).
 
 * **`template`**: Where {{ application.name }} can find the post type template within your repository. Note, this is not a template that will be used to render your site, but one that tells {{ application.name }} how to save content. Typically this will be as a Markdown file with YAML frontmatter.
 

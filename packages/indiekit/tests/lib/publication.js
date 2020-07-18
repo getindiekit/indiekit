@@ -54,7 +54,6 @@ test('Merges values from custom and default configurations', t => {
   t.deepEqual(result['post-types'][1], {
     type: 'note',
     name: 'Journal entry',
-    icon: ':notebook_with_decorative_cover:',
     template: 'etc/templates/entry.njk',
     post: {
       path: '_entries/{{ published | date(\'X\') }}.md',
@@ -64,7 +63,6 @@ test('Merges values from custom and default configurations', t => {
   t.deepEqual(result['post-types'][2], {
     type: 'photo',
     name: 'Picture',
-    icon: ':framed_picture:',
     template: 'etc/templates/picture.njk',
     post: {
       path: '_pictures/{{ published | date(\'X\') }}.md',

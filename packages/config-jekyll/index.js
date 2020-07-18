@@ -13,7 +13,6 @@ export const JekyllConfig = class {
       'post-types': [{
         type: 'article',
         name: 'Article',
-        icon: ':page_facing_up:',
         template: `${templatesPath}/article.njk`,
         post: {
           path: '_posts/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -25,7 +24,6 @@ export const JekyllConfig = class {
       }, {
         type: 'note',
         name: 'Note',
-        icon: ':notebook_with_decorative_cover:',
         template: `${templatesPath}/note.njk`,
         post: {
           path: '_notes/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -34,7 +32,6 @@ export const JekyllConfig = class {
       }, {
         type: 'photo',
         name: 'Photo',
-        icon: ':camera:',
         template: `${templatesPath}/photo.njk`,
         post: {
           path: '_photos/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -46,7 +43,6 @@ export const JekyllConfig = class {
       }, {
         type: 'video',
         name: 'Video',
-        icon: ':video_camera:',
         template: `${templatesPath}/video.njk`,
         post: {
           path: '_videos/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -58,7 +54,6 @@ export const JekyllConfig = class {
       }, {
         type: 'audio',
         name: 'Audio',
-        icon: ':microphone:',
         template: `${templatesPath}/audio.njk`,
         post: {
           path: '_audio/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -70,7 +65,6 @@ export const JekyllConfig = class {
       }, {
         type: 'bookmark',
         name: 'Bookmark',
-        icon: ':bookmark:',
         template: `${templatesPath}/bookmark.njk`,
         post: {
           path: '_bookmarks/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -79,7 +73,6 @@ export const JekyllConfig = class {
       }, {
         type: 'checkin',
         name: 'Checkin',
-        icon: ':triangular_flag_on_post:',
         template: `${templatesPath}/checkin.njk`,
         post: {
           path: '_checkins/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -88,7 +81,6 @@ export const JekyllConfig = class {
       }, {
         type: 'event',
         name: 'Event',
-        icon: ':calendar:',
         template: `${templatesPath}/event.njk`,
         post: {
           path: '_events/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -97,7 +89,6 @@ export const JekyllConfig = class {
       }, {
         type: 'rsvp',
         name: 'Reply with RSVP',
-        icon: ':speech_balloon:',
         template: `${templatesPath}/reply.njk`,
         post: {
           path: '_replies/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -106,7 +97,6 @@ export const JekyllConfig = class {
       }, {
         type: 'reply',
         name: 'Reply',
-        icon: ':speech_balloon:',
         template: `${templatesPath}/reply.njk`,
         post: {
           path: '_replies/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -115,7 +105,6 @@ export const JekyllConfig = class {
       }, {
         type: 'repost',
         name: 'Repost',
-        icon: ':recycle:',
         template: `${templatesPath}/repost.njk`,
         post: {
           path: '_reposts/{yyyy}-{MM}-{dd}-{slug}.md',
@@ -124,7 +113,6 @@ export const JekyllConfig = class {
       }, {
         type: 'like',
         name: 'Like',
-        icon: ':thumbsup:',
         template: `${templatesPath}/like.njk`,
         post: {
           path: '_likes/{yyyy}-{MM}-{dd}-{slug}.md',

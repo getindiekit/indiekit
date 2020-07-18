@@ -26,7 +26,6 @@
   }, {
     "type": "photo",
     "name": "Picture",
-    "icon": ":framed_picture:",
     "template": "etc/templates/picture.njk",
     "post": {
       "path": "_pictures/{{ published | date('X') }}.md",
