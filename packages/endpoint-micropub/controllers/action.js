@@ -53,11 +53,9 @@ export const actionController = publication => {
 
       return response.status(published.status).location(published.location).json(published.json);
     } catch (error) {
-      // TODO: Remove this temporary fix
-      const status = error.status || 400;
-      next(httpError(status, error.message, {
+      next(httpError(error.status, error.message, {
         json: {
-          error: 'invalid_request',
+          error: error.value,
           error_description: error.message,
           scope: error.scope
         }

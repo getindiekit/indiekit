@@ -1,3 +1,4 @@
+import HttpError from 'http-errors';
 import {
   getPostTypeConfig,
   renderPath
@@ -20,7 +21,9 @@ export const mediaData = {
     const {config, me} = publication;
 
     if (!file || file.truncated || !file.buffer) {
-      throw new Error('No file included in request');
+      throw new HttpError(400, 'No file included in request', {
+        value: 'invalid_request'
+      });
     }
 
     // Media type
