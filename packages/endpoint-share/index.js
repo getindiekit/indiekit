@@ -35,8 +35,7 @@ export const ShareEndpoint = class {
     });
 
     indiekitConfig.addView([
-      path.join(__dirname, 'views'),
-      path.join(__dirname, 'components')
+      path.join(__dirname, 'views')
     ]);
   }
 

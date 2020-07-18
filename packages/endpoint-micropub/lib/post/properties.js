@@ -87,7 +87,6 @@ export const getSlug = (mf2, separator) => {
   }
 
   // …else, failing that, create a random string
-  // TODO: Explore using NewBase60 instead (requires post counter)
   const randomSlug = randomString();
   return new Array(randomSlug);
 };

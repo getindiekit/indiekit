@@ -4,6 +4,3 @@
 @import './helpers/*.css';
 @import './vendor/*.css';
 @import '../components/**/*.css';
-
-/* TODO: Declaratively register endpoint component styles */
-@import '../../endpoint-share/components/**/*.css';
