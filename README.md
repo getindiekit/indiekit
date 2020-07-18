@@ -30,22 +30,16 @@ npm test
 
 ## Outstanding development
 
-### Previous features that need reimplementing
-
 * [x] Attach media to Micropub endpoint requests
 * [x] Update media properties (`audio`, `photo`, `video`)
 * [x] Authenticate Micropub endpoint actions using IndieAuth
 * [x] Check scopes for Micropub endpoint actions
-* [ ] Make application provide template renderer
-* [ ] Internationalisation
+* [x] Creating/reading/updating post data
 * [x] Use user configured post types
 * [ ] Load user configured post type templates
-* [ ] Add missing tests
-
-### New features that need finessing
-
-* [ ] Creating/reading/updating post data
+* [ ] Internationalisation
 * [ ] Architecture for registering and initiating plugins
+* [ ] Add missing tests
 
 ## Similar projects
 
