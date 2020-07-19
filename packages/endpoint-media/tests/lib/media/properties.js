@@ -34,7 +34,7 @@ test('Derives properties from file data', async t => {
   };
   const result = await getFileProperties(file);
   t.is(result.originalname, 'photo.jpg');
-  t.true(isValid(parseISO(result.uploaded)));
+  t.is(result.ext, 'jpg');
   t.regex(result.filename, /[\d\w]{5}.jpg/g);
-  t.is(result.fileext, 'jpg');
+  t.true(isValid(parseISO(result.uploaded)));
 });
