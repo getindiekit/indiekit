@@ -8,22 +8,24 @@ import {randomString} from '../utils.js';
  * @param {object} file Original file object
  * @returns {object} File properties
  * @example fileData('brighton-pier.jpg') => {
- *   filename: 'ds48s',
- *   fileext: '.jpg'
- *   originalname: 'brighton-pier.jpg',
- *   uploaded: '2019-03-03T05:07:09+00:00',
+ *   basename: 'ds48s',
+ *   ext: '.jpg'
+ *   filename: 'ds48s.jpg'
+ *   originalname: 'flower.jpg',
+ *   uploaded: '2020-07-19T22:59:23.497Z',
  * }
  */
 export const getFileProperties = async file => {
-  const currentDate = new Date().toISOString();
-  const randomBasename = randomString();
+  const basename = randomString();
   const {ext} = await FileType.fromBuffer(file.buffer);
+  const uploaded = new Date().toISOString();
 
   return {
-    filename: `${randomBasename}.${ext}`,
-    fileext: ext,
+    basename,
+    ext,
+    filename: `${basename}.${ext}`,
     originalname: file.originalname,
-    uploaded: currentDate
+    uploaded
   };
 };
 

@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import dateFns from 'date-fns';
+import newbase60 from 'newbase60';
 import uriTemplate from 'uri-template-lite';
 
-const {format, parseISO} = dateFns;
+const {format} = dateFns;
 const {URI} = uriTemplate;
 
 /**
@@ -49,10 +50,10 @@ export const getPostTypeConfig = (type, config) => {
  * Generate random alpha-numeric string, 5 characters long
  *
  * @returns {string} Alpha-numeric string
- * @example random() => 'b3dog'
+ * @example random() => 'jb6zm'
  */
 export const randomString = () => {
-  return (Number(new Date())).toString(36).slice(-5);
+  return Math.random().toString(36).slice(-5);
 };
 
 /**
@@ -63,7 +64,7 @@ export const randomString = () => {
  * @returns {string} Path
  */
 export const renderPath = (path, properties) => {
-  const date = parseISO(properties.published[0]);
+  const dateObject = new Date(properties.published[0]);
   const dateTokens = [
     'y', // Calendar year, eg 2020
     'yyyy', // Calendar year (zero padded), eg 2020
@@ -90,10 +91,13 @@ export const renderPath = (path, properties) => {
 
   // Add date tokens to properties object
   dateTokens.forEach(token => {
-    properties[token] = format(date, token, {
+    properties[token] = format(dateObject, token, {
       useAdditionalDayOfYearTokens: true
     });
   });
+
+  // Add day of the year (NewBase60) to properties object
+  properties.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
   // Populate URI template path with properties
   path = URI.expand(path, properties);

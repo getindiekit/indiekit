@@ -38,8 +38,8 @@ indiekit.set('publication.config.post-types', [{
     url: '_photos/{t}'
   },
   media: {
-    path: 'src/media/photos/{t}.{fileext}',
-    url: 'media/photos/{t}.{fileext}'
+    path: 'src/media/photos/{t}-{filename}',
+    url: 'media/photos/{t}-{filename}'
   }
 }, {
   type: 'reply',

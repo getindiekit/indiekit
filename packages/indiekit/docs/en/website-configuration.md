@@ -111,7 +111,7 @@ The following template tokens are available for post paths and URLs:
 
 | Token  | Description                                                         |
 | ------ | ------------------------------------------------------------------- |
-| `slug` | Provided value, derived from `name` or a 5 character string, eg <samp>ycf9o</samp>         |
+| `slug` | Provided value, derived from `name` or a 5 character string, eg <samp>ycf9o</samp> |
 
 ### Media files
 
@@ -119,8 +119,9 @@ The following template tokens are available for media file paths and URLs:
 
 | Token          | Description                                                 |
 | -------------- | ----------------------------------------------------------- |
-| `filename`     | 5 character string with file extension, eg <samp>w9gwi.jpg</samp> |
-| `fileext`      | File extension of uploaded file, eg <samp>jpg</samp>        |
+| `basename`     | 5 character alpha-numeric string, eg <samp>w9gwi</samp>     |
+| `ext`          | File extension of uploaded file, eg <samp>jpg</samp>        |
+| `filename`     | `basename` plus `ext`, eg <samp>w9gwi.jpg</samp>            |
 | `originalname` | Original name of uploaded file, eg <samp>flower.jpg</samp>  |
 
 ### Dates
@@ -139,6 +140,7 @@ The following date tokens are available for both post and media paths and URLs:
 | `ww`   | Week number (zero padded), eg <samp>01</samp>                       |
 | `D`    | Day of the year, eg <samp>1</samp>                                  |
 | `DDD`  | Day of the year (zero padded), eg <samp>001</samp>                  |
+| `D60`  | Day of the year (sexageismal), eg <samp>57h</samp>                  |
 | `d`    | Day of the month, eg <samp>1</samp>                                 |
 | `dd`   | Day of the month (zero padded), eg <samp>01</samp>                  |
 | `h`    | Hour (12-hour-cycle), eg <samp>1</samp>                             |
