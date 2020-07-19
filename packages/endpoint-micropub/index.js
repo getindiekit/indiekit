@@ -39,7 +39,7 @@ export const MicropubEndpoint = class {
 
     indiekitConfig.addView(path.join(__dirname, 'views'));
 
-    indiekitConfig.set(publication['micropub-endpoint'], this.mountpath);
+    indiekitConfig.set('publication.micropubEndpoint', this.mountpath);
   }
 
   routes(application, publication) {

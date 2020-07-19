@@ -71,7 +71,7 @@ export const getMediaEndpoint = (publication, request) => {
   const {config} = publication;
   const configEndpoint = config['media-endpoint'];
   const host = `${request.protocol}://${request.headers.host}`;
-  const serverEndpoint = `${host}${publication['media-endpoint']}`;
+  const serverEndpoint = `${host}${publication.mediaEndpoint}`;
 
   // Use configured value, or default to server based value
   config['media-endpoint'] = configEndpoint || serverEndpoint;

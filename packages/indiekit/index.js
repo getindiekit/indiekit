@@ -28,6 +28,10 @@ export const Indiekit = class {
   }
 
   set(key, value) {
+    if (typeof key !== 'string') {
+      throw new TypeError('Configuration key must be a string');
+    }
+
     _.set(this._config, key, value);
   }
 

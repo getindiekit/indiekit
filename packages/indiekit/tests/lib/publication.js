@@ -90,7 +90,7 @@ test('Gets configuration preset for a publication', t => {
 test('Gets media endpoint from server derived values', t => {
   const publication = {
     config: {},
-    'media-endpoint': '/media'
+    mediaEndpoint: '/media'
   };
   const request = {
     protocol: 'https',
