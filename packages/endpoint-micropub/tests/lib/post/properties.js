@@ -44,13 +44,13 @@ test('Derives a permalink', t => {
 test('Derives date from `published` property', t => {
   const mf2 = JSON.parse(getFixture('published-provided.json'));
   const published = getPublishedDate(mf2);
-  t.is(published[0], '2019-01-02T03:04:05Z');
+  t.is(published[0], '2019-01-02T03:04:05.678Z');
 });
 
 test('Derives date from `published` property with short date', t => {
   const mf2 = JSON.parse(getFixture('published-provided-short-date.json'));
   const published = getPublishedDate(mf2);
-  t.is(published[0], '2019-01-02T00:00:00Z');
+  t.is(published[0], '2019-01-02T00:00:00.000Z');
 });
 
 test('Derives date by using current date', t => {

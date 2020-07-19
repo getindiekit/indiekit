@@ -1,12 +1,9 @@
-import dateFns from 'date-fns';
 import path from 'path';
 import slugify from '@sindresorhus/slugify';
 import {
   excerptString,
   randomString
 } from '../utils.js';
-
-const {formatISO, parseISO} = dateFns;
 
 /**
  * Derive content (HTML, else object value, else property value)
@@ -50,13 +47,12 @@ export const getPublishedDate = mf2 => {
   // Use provided `published` datetime…
   const {published} = mf2.properties;
   if (published) {
-    let publishedDate = parseISO(published[0]);
-    publishedDate = formatISO(publishedDate);
+    const publishedDate = new Date(published[0]).toISOString();
     return new Array(publishedDate);
   }
 
   // …else, use current datetime
-  const currentDate = formatISO(new Date());
+  const currentDate = new Date().toISOString();
   return new Array(currentDate);
 };
 

@@ -1,9 +1,6 @@
-import dateFns from 'date-fns';
 import FileType from 'file-type';
 import path from 'path';
 import {randomString} from '../utils.js';
-
-const {formatISO} = dateFns;
 
 /**
  * Derive properties from file data
@@ -18,7 +15,7 @@ const {formatISO} = dateFns;
  * }
  */
 export const getFileProperties = async file => {
-  const currentDate = formatISO(new Date());
+  const currentDate = new Date().toISOString();
   const randomBasename = randomString();
   const {ext} = await FileType.fromBuffer(file.buffer);
 
