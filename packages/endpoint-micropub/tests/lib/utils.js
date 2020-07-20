@@ -6,6 +6,7 @@ import {
   getPostTypeConfig,
   randomString,
   renderPath,
+  supplant,
   addProperties,
   deleteEntries,
   deleteProperties,
@@ -53,6 +54,17 @@ test('Renders path from URI template and properties', t => {
   const template = '{yyyy}/{MM}/{slug}';
   const result = renderPath(template, properties);
   t.is(result, '2020/01/foo');
+});
+
+test('Substitutes variables enclosed in { } braces with data from object', t => {
+  const string = '{array} {string} {number}';
+  const object = {
+    array: ['Array'],
+    string: 'string',
+    number: 1
+  };
+  const result = supplant(string, object);
+  t.is(result, 'Array string 1');
 });
 
 test('Add properties to object', t => {

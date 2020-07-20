@@ -1,10 +1,8 @@
 import _ from 'lodash';
 import dateFns from 'date-fns';
 import newbase60 from 'newbase60';
-import uriTemplate from 'uri-template-lite';
 
 const {format} = dateFns;
-const {URI} = uriTemplate;
 
 /**
  * Decode form-encoded query parameter
@@ -100,9 +98,32 @@ export const renderPath = (path, properties) => {
   properties.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
   // Populate URI template path with properties
-  path = URI.expand(path, properties);
+  path = supplant(path, properties);
 
   return path;
+};
+
+/**
+ * Substitute variables enclosed in { } braces with data from object
+ *
+ * @param {string} string String to parse
+ * @param {object} object Properties to use
+ * @returns {string} String with substituted
+ */
+export const supplant = (string, object) => {
+  return string.replace(/{([^{}]*)}/g, (a, b) => {
+    let r = object[b];
+
+    if (Array.isArray(r)) {
+      r = r[0];
+    }
+
+    if (typeof r === 'string' || typeof r === 'number') {
+      return r;
+    }
+
+    return a;
+  });
 };
 
 /**
