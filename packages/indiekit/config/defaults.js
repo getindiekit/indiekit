@@ -29,12 +29,12 @@ export const defaultConfig = {
       micropubEndpoint,
       shareEndpoint
     ],
-    routes: [],
     middleware: {
       authenticate,
       indieauth
     },
     navigationItems: [],
+    routes: [],
     stores: [],
     views: [
       path.join(__dirname, '..', 'views')

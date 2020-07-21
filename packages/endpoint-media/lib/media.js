@@ -1,3 +1,5 @@
+import {supplant} from './utils.js';
+
 export const media = {
   /**
    * Upload file
@@ -9,7 +11,11 @@ export const media = {
    */
   upload: async (publication, mediaData, file) => {
     const {media, store} = publication;
-    const message = `${mediaData.type}: upload media`;
+    const message = supplant(store.messageFormat, {
+      action: 'upload',
+      fileType: 'media',
+      postType: mediaData.type
+    });
     const uploaded = await store.createFile(mediaData.path, file.buffer, message);
 
     if (uploaded) {

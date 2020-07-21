@@ -1,7 +1,8 @@
 import octokit from '@octokit/rest';
 
 const defaults = {
-  branch: 'master'
+  branch: 'master',
+  messageFormat: '{action} {postType} {fileType}'
 };
 
 /**
@@ -13,6 +14,10 @@ export const GithubStore = class {
     this.id = 'github';
     this.name = 'GitHub';
     this.options = {...defaults, ...options};
+  }
+
+  get messageFormat() {
+    return this.options.messageFormat;
   }
 
   github() {

@@ -90,7 +90,7 @@ test('Throws error deleting a post', async t => {
   const error = await t.throwsAsync(
     post.delete(false, postData)
   );
-  t.is(error.message, 'Cannot read property \'deleteFile\' of undefined');
+  t.is(error.message, 'Cannot read property \'messageFormat\' of undefined');
 });
 
 test.serial('Undeletes a post', async t => {

@@ -1,4 +1,4 @@
-import {getPostTypeConfig} from './utils.js';
+import {getPostTypeConfig, supplant} from './utils.js';
 import {createPostContent} from './post/content.js';
 
 export const post = {
@@ -13,7 +13,11 @@ export const post = {
     const {config, posts, store} = publication;
     const postTypeConfig = getPostTypeConfig(postData.type, config);
     const postContent = createPostContent(postData, postTypeConfig.template);
-    const message = `${postData.type}: create post`;
+    const message = supplant(store.messageFormat, {
+      action: 'create',
+      fileType: 'post',
+      postType: postData.type
+    });
     const published = await store.createFile(postData.path, postContent, message);
 
     if (published) {
@@ -42,7 +46,11 @@ export const post = {
     const {config, posts, store} = publication;
     const postTypeConfig = getPostTypeConfig(postData.type, config);
     const postContent = await createPostContent(postData, postTypeConfig.template);
-    const message = `${postData.type}: update post`;
+    const message = supplant(store.messageFormat, {
+      action: 'update',
+      fileType: 'post',
+      postType: postData.type
+    });
     const published = await store.updateFile(postData.path, postContent, message);
 
     if (published) {
@@ -71,7 +79,11 @@ export const post = {
    */
   delete: async (publication, postData) => {
     const {posts, store} = publication;
-    const message = `${postData.type}: delete post`;
+    const message = supplant(store.messageFormat, {
+      action: 'delete',
+      fileType: 'post',
+      postType: postData.type
+    });
     const published = await store.deleteFile(postData.path, message);
 
     if (published) {
@@ -104,7 +116,11 @@ export const post = {
 
     const postTypeConfig = getPostTypeConfig(postData.type, config);
     const postContent = createPostContent(postData, postTypeConfig.template);
-    const message = `${postData.type}: undelete post`;
+    const message = supplant(store.messageFormat, {
+      action: 'undelete',
+      fileType: 'post',
+      postType: postData.type
+    });
     const published = await store.createFile(postData.path, postContent, message);
 
     if (published) {
