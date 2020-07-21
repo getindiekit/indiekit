@@ -16,6 +16,11 @@ const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
 
+// Default post template returns JSON
+const postTemplate = properties => {
+  return JSON.stringify(properties);
+};
+
 export const defaultConfig = {
   application: {
     name: 'Indiekit',
@@ -45,6 +50,7 @@ export const defaultConfig = {
     configPresetId: 'jekyll',
     locale: 'en-GB',
     me: null,
+    postTemplate,
     storeId: null,
     timezone: 'UTC',
     tokenEndpoint: 'https://tokens.indieauth.com/token'

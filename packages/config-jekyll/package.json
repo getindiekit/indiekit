@@ -30,6 +30,6 @@
     "directory": "packages/config-jekyll"
   },
   "dependencies": {
-    "@indiekit/templates-yaml": "0.1.0"
+    "yaml": "^1.10.0"
   }
 }

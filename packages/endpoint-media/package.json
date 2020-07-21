@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^1.1.0",
-    "camelcase-keys": "^6.2.2",
     "date-fns": "^2.15.0",
     "express": "^4.17.1",
     "file-type": "^14.6.2",

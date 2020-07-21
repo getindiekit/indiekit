@@ -1,5 +1,4 @@
-import {getPostTypeConfig, supplant} from './utils.js';
-import {createPostContent} from './post/content.js';
+import {supplant} from './utils.js';
 
 export const post = {
   /**
@@ -10,15 +9,14 @@ export const post = {
    * @returns {object} Response data
    */
   create: async (publication, postData) => {
-    const {config, posts, store} = publication;
-    const postTypeConfig = getPostTypeConfig(postData.type, config);
-    const postContent = createPostContent(postData, postTypeConfig.template);
+    const {posts, store} = publication;
+    const content = publication.postTemplate(postData.mf2.properties);
     const message = supplant(store.messageFormat, {
       action: 'create',
       fileType: 'post',
       postType: postData.type
     });
-    const published = await store.createFile(postData.path, postContent, message);
+    const published = await store.createFile(postData.path, content, message);
 
     if (published) {
       postData.lastAction = 'create';
@@ -43,15 +41,14 @@ export const post = {
    * @returns {object} Response data
    */
   update: async (publication, postData, url) => {
-    const {config, posts, store} = publication;
-    const postTypeConfig = getPostTypeConfig(postData.type, config);
-    const postContent = await createPostContent(postData, postTypeConfig.template);
+    const {posts, store} = publication;
+    const content = publication.postTemplate(postData.mf2.properties);
     const message = supplant(store.messageFormat, {
       action: 'update',
       fileType: 'post',
       postType: postData.type
     });
-    const published = await store.updateFile(postData.path, postContent, message);
+    const published = await store.updateFile(postData.path, content, message);
 
     if (published) {
       postData.lastAction = 'update';
@@ -108,20 +105,19 @@ export const post = {
    * @returns {object} Response data
    */
   undelete: async (publication, postData) => {
-    const {config, posts, store} = publication;
+    const {posts, store} = publication;
 
     if (postData.lastAction !== 'delete') {
       throw new Error('Post was not previously deleted');
     }
 
-    const postTypeConfig = getPostTypeConfig(postData.type, config);
-    const postContent = createPostContent(postData, postTypeConfig.template);
+    const content = publication.postTemplate(postData.mf2.properties);
     const message = supplant(store.messageFormat, {
       action: 'undelete',
       fileType: 'post',
       postType: postData.type
     });
-    const published = await store.createFile(postData.path, postContent, message);
+    const published = await store.createFile(postData.path, content, message);
 
     if (published) {
       postData.lastAction = 'undelete';

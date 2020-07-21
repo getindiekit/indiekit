@@ -15,6 +15,9 @@ test.beforeEach(t => {
         user: 'user',
         repo: 'repo'
       }),
+      postTemplate(properties) {
+        return JSON.stringify(properties);
+      },
       posts: {
         set: () => {}
       }
@@ -43,7 +46,7 @@ test('Throws error creating a post', async t => {
   const error = await t.throwsAsync(
     post.create(false, postData)
   );
-  t.is(error.message, 'Cannot read property \'post-types\' of undefined');
+  t.is(error.message, 'publication.postTemplate is not a function');
 });
 
 test.serial('Updates a post', async t => {
@@ -66,7 +69,7 @@ test('Throws error updating a post', async t => {
   const error = await t.throwsAsync(
     post.update(false, postData, t.context.url)
   );
-  t.is(error.message, 'Cannot read property \'post-types\' of undefined');
+  t.is(error.message, 'publication.postTemplate is not a function');
 });
 
 test.serial('Deletes a post', async t => {

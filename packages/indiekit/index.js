@@ -68,6 +68,7 @@ export const Indiekit = class {
     this.publication.preset = preset;
     this.publication.config = getConfig(config, preset.config);
     this.publication.config.categories = categories;
+    this.publication.postTemplate = preset.postTemplate;
     this.publication.store = getStore(stores, storeId);
     this.publication.posts = new Log(databaseConfig.client, 'posts');
     this.publication.media = new Log(databaseConfig.client, 'media');

@@ -1,10 +1,9 @@
-import {templatesPath} from '@indiekit/templates-yaml';
+import YAML from 'yaml';
 
 export const JekyllConfig = class {
-  constructor(options = {}) {
+  constructor() {
     this.id = 'jekyll';
     this.name = 'Jekyll';
-    this.templatesPath = options.templatesPath || templatesPath;
   }
 
   get config() {
@@ -13,7 +12,6 @@ export const JekyllConfig = class {
       'post-types': [{
         type: 'article',
         name: 'Article',
-        template: `${templatesPath}/article.njk`,
         post: {
           path: '_posts/{yyyy}-{MM}-{dd}-{slug}.md',
           url: '{yyyy}/{MM}/{dd}/{slug}'
@@ -24,7 +22,6 @@ export const JekyllConfig = class {
       }, {
         type: 'note',
         name: 'Note',
-        template: `${templatesPath}/note.njk`,
         post: {
           path: '_notes/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'notes/{yyyy}/{MM}/{dd}/{slug}'
@@ -32,7 +29,6 @@ export const JekyllConfig = class {
       }, {
         type: 'photo',
         name: 'Photo',
-        template: `${templatesPath}/photo.njk`,
         post: {
           path: '_photos/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'photos/{yyyy}/{MM}/{dd}/{slug}'
@@ -43,7 +39,6 @@ export const JekyllConfig = class {
       }, {
         type: 'video',
         name: 'Video',
-        template: `${templatesPath}/video.njk`,
         post: {
           path: '_videos/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'videos/{yyyy}/{MM}/{dd}/{slug}'
@@ -54,7 +49,6 @@ export const JekyllConfig = class {
       }, {
         type: 'audio',
         name: 'Audio',
-        template: `${templatesPath}/audio.njk`,
         post: {
           path: '_audio/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'audio/{yyyy}/{MM}/{dd}/{slug}'
@@ -65,7 +59,6 @@ export const JekyllConfig = class {
       }, {
         type: 'bookmark',
         name: 'Bookmark',
-        template: `${templatesPath}/bookmark.njk`,
         post: {
           path: '_bookmarks/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'bookmarks/{yyyy}/{MM}/{dd}/{slug}'
@@ -73,7 +66,6 @@ export const JekyllConfig = class {
       }, {
         type: 'checkin',
         name: 'Checkin',
-        template: `${templatesPath}/checkin.njk`,
         post: {
           path: '_checkins/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'checkins/{yyyy}/{MM}/{dd}/{slug}'
@@ -81,7 +73,6 @@ export const JekyllConfig = class {
       }, {
         type: 'event',
         name: 'Event',
-        template: `${templatesPath}/event.njk`,
         post: {
           path: '_events/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'events/{yyyy}/{MM}/{dd}/{slug}'
@@ -89,7 +80,6 @@ export const JekyllConfig = class {
       }, {
         type: 'rsvp',
         name: 'Reply with RSVP',
-        template: `${templatesPath}/reply.njk`,
         post: {
           path: '_replies/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'replies/{yyyy}/{MM}/{dd}/{slug}'
@@ -97,7 +87,6 @@ export const JekyllConfig = class {
       }, {
         type: 'reply',
         name: 'Reply',
-        template: `${templatesPath}/reply.njk`,
         post: {
           path: '_replies/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'replies/{yyyy}/{MM}/{dd}/{slug}'
@@ -105,7 +94,6 @@ export const JekyllConfig = class {
       }, {
         type: 'repost',
         name: 'Repost',
-        template: `${templatesPath}/repost.njk`,
         post: {
           path: '_reposts/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'reposts/{yyyy}/{MM}/{dd}/{slug}'
@@ -113,7 +101,6 @@ export const JekyllConfig = class {
       }, {
         type: 'like',
         name: 'Like',
-        template: `${templatesPath}/like.njk`,
         post: {
           path: '_likes/{yyyy}-{MM}-{dd}-{slug}.md',
           url: 'likes/{yyyy}/{MM}/{dd}/{slug}'
@@ -122,5 +109,31 @@ export const JekyllConfig = class {
       'slug-separator': '-',
       'syndicate-to': []
     };
+  }
+
+  postTemplate(properties) {
+    const {content} = properties;
+    properties = {
+      date: properties.published[0],
+      ...(properties.name && {title: properties.name[0]}),
+      ...(properties.summary && {excerpt: properties.summary[0]}),
+      ...(properties.category && {category: properties.category}),
+      ...(properties.start && {start: properties.start[0]}),
+      ...(properties.end && {end: properties.end[0]}),
+      ...(properties.rsvp && {rsvp: properties.rsvp[0]}),
+      ...(properties.location && {location: properties.location[0]}),
+      ...(properties.checkin && {checkin: properties.checkin}),
+      ...(properties.audio && {audio: properties.audio}),
+      ...(properties.photo && {photo: properties.photo}),
+      ...(properties.video && {video: properties.video}),
+      ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of'][0]}),
+      ...(properties['like-of'] && {'bookmark-of': properties['like-of'][0]}),
+      ...(properties['repost-of'] && {'repost-of': properties['repost-of'][0]}),
+      ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to'][0]}),
+      ...(properties['syndicate-to'] && {'syndicate-to': properties['syndicate-to']})
+    };
+    const frontmatter = YAML.stringify(properties);
+
+    return `${frontmatter}---\n${content}`;
   }
 };
