@@ -8,9 +8,13 @@ Indiekit is a small but powerful server that acts as your go between your websit
 
 * publish content to your website using applications like iAWriter, Micro.blog, Icro and Indigenous (and any other tools that supports Micropub)
 * ~~accept likes, comments and other feedback on your content (using Webmention)~~
-* ~~syndicate your content to social networks like Twitter, Mastodon and LinkedIn~~
+* ~~syndicate content to social networks like Twitter, Mastodon and LinkedIn~~
 
-Indiekit is easy to set up, and can be configured to work with different static site generators (Jekyll, Hugo, 11ty) and hosting software (GitHub and GitLab). Indiekit can be installed on any server that supports Node.js and extended using third-party plugins.
+Indiekit is easy to set up, and can be configured to work with different static site generators (Jekyll, Hugo, 11ty) and hosting software (GitHub and GitLab). Indiekit can be installed on any server that supports Node.js ~~and extended using third-party plugins~~.
+
+## Deploy to Heroku
+
+The easiest way to get started is to deploy this application to Heroku. Clicking the button below will guide you through the process.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/paulrobertlloyd/indiekit-redux/tree/main)
 
@@ -28,18 +32,15 @@ If you’re developing a new feature and want the application to automatically r
 npm test
 ```
 
-## Outstanding development
+The following environment variables need to be set before running tests:
 
-* [x] Attach media to Micropub endpoint requests
-* [x] Update media properties (`audio`, `photo`, `video`)
-* [x] Authenticate Micropub endpoint actions using IndieAuth
-* [x] Check scopes for Micropub endpoint actions
-* [x] Creating/reading/updating post data
-* [x] Use user configured post types
-* [ ] Load user configured post type templates
-* [ ] Internationalisation
-* [ ] Architecture for registering and initiating plugins
-* [ ] Add missing tests
+* `TEST_PUBLICATION_URL`
+* `TEST_BEARER_TOKEN`
+* `TEST_BEARER_TOKEN_NOSCOPE`
+
+`TEST_BEARER_TOKEN` and `TEST_BEARER_TOKEN_NOSCOPE` provide IndieAuth access tokens whose `me` value matches that set it `TEST_PUBLICATION_URL`.`TEST_BEARER_TOKEN` should provide `create update delete` scope permissions, whereas `TEST_BEARER_TOKEN_NOSCOPE` should provide no scope permissions at all.
+
+[Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating access tokens for this purpose.
 
 ## Similar projects
 
