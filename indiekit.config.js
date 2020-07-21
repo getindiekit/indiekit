@@ -35,7 +35,7 @@ indiekit.set('publication.config.post-types', [{
   name: 'Photo (Config)',
   post: {
     path: '_photos/{t}.md',
-    url: '_photos/{t}'
+    url: 'photos/{t}'
   },
   media: {
     path: 'src/media/photos/{t}-{filename}',

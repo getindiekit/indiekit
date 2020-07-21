@@ -12,9 +12,8 @@ import got from 'got';
 export const uploadMedia = async (publication, mf2, files) => {
   const mediaEndpoint = publication.config['media-endpoint'];
   const {bearerToken} = publication;
-  const promises = [];
 
-  for (const file of files) {
+  for await (const file of files) {
     // Create multipart/form-data
     const form = new FormData();
     form.append('file', file.buffer, {
@@ -23,33 +22,25 @@ export const uploadMedia = async (publication, mf2, files) => {
     });
 
     // Upload file via media endpoint
-    const endpointResponse = got.post(mediaEndpoint, {
-      headers: form.getHeaders({
-        authorization: `Bearer ${bearerToken}`
-      }),
-      body: form,
-      responseType: 'json'
-    });
+    let upload;
+    try {
+      upload = await got.post(mediaEndpoint, {
+        headers: form.getHeaders({
+          authorization: `Bearer ${bearerToken}`
+        }),
+        body: form,
+        responseType: 'json'
+      });
+    } catch (error) {
+      const message = error.response.body.error_description || error.message;
+      throw new Error(message);
+    }
 
-    // Add to Micropub responses
-    promises.push(endpointResponse);
-  }
-
-  // Return upload locations
-  // TODO: Review and refine this implementation
-  let uploads = await Promise.all(
-    promises.map(promise => promise.catch(error => {
-      throw new Error(error.response.body.error_description);
-    }))
-  );
-  uploads = uploads.filter(result => !(result instanceof Error));
-
-  uploads.forEach((upload, i) => {
-    const {fieldname} = files[i];
-    const filetype = fieldname.replace('[]', '');
+    // Update respective media property with location of upload
+    const filetype = file.fieldname.replace('[]', '');
     mf2.properties[filetype] = mf2.properties[filetype] || [];
     mf2.properties[filetype].push(upload.headers.location);
-  });
+  }
 
   return mf2;
 };

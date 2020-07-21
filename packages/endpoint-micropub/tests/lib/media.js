@@ -45,7 +45,7 @@ test('Uploads attached file via media endpoint', async t => {
   scope.done();
 });
 
-test('Uploads attached files via media endpoint', async t => {
+test.serial('Uploads attached files via media endpoint', async t => {
   const scope = nock('https://media-endpoint.example')
     .post('/')
     .reply(201, t.context.responseBody('photo1.jpg'), t.context.responseHeader('photo1.jpg'))
@@ -68,7 +68,7 @@ test('Uploads attached files via media endpoint', async t => {
   scope.done();
 });
 
-test('Throws error uploading attached file', async t => {
+test.serial('Throws error uploading attached file', async t => {
   const scope = nock('https://media-endpoint.example')
     .post('/')
     .reply(400, {
