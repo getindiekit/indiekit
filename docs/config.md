@@ -77,19 +77,19 @@ These defaults can be ammended, and new types can be added. For example, to over
       "icon": ":memo:",
       "template": "_micropub/templates/note.njk",
       "post": {
-        "path": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-        "url": "notes/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+        "path": "_notes/{{ published | date('yyyy-MM-dd') }}-{{ slug }}.md",
+        "url": "notes/{{ published | date('yyyy/MM') }}/{{ slug }}"
       },
     },
     "photo": {
       "name": "Photograph",
       "template": "_micropub/templates/photo.njk",
       "post": {
-        "path": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-        "url": "photos/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+        "path": "_photos/{{ published | date('yyyy-MM-dd') }}-{{ slug }}.md",
+        "url": "photos/{{ published | date('yyyy/MM') }}/{{ slug }}"
       },
       "media": {
-        "path": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
+        "path": "media/photos/{{ published | date('yyyy/MM') }}/{{ filename }}",
       }
     }
   }
