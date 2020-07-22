@@ -77,19 +77,19 @@ These defaults can be ammended, and new types can be added. For example, to over
       "icon": ":memo:",
       "template": "_micropub/templates/note.njk",
       "post": {
-        "path": "_notes/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-        "url": "notes/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+        "path": "_notes/{% raw %}{{ published | date('yyyy-MM-dd') }}-{{ slug }}{% endraw %}.md",
+        "url": "notes/{% raw %}{{ published | date('yyyy/MM') }}/{{ slug }}{% endraw %}"
       },
     },
     "photo": {
       "name": "Photograph",
       "template": "_micropub/templates/photo.njk",
       "post": {
-        "path": "_photos/{​{ published | date('yyyy-MM-dd') }}-{​{ slug }}.md",
-        "url": "photos/{​{ published | date('yyyy/MM') }}/{​{ slug }}"
+        "path": "_photos/{% raw %}{{ published | date('yyyy-MM-dd') }}-{{ slug }}{% endraw %}.md",
+        "url": "photos/{% raw %}{{ published | date('yyyy/MM') }}/{{ slug }}{% endraw %}"
       },
       "media": {
-        "path": "media/photos/{​{ published | date('yyyy/MM') }}/{​{ filename }}",
+        "path": "media/photos/{% raw %}{{ published | date('yyyy/MM') }}/{{ filename }}{% endraw %}",
       }
     }
   }
@@ -134,16 +134,18 @@ A few points to consider when creating templates:
 
 * Use [the `safe` filter](https://mozilla.github.io/nunjucks/templating.html#safe) where you wish to output HTML content. Here’s an example:
 
+{% raw %}
   ```yaml
   ---
-  title: '{​{ title }}'
-  date: {​{ published }}
+  title: '{{ title }}'
+  date: {{ published }}
   {%- if category %}
   categories:
   {%- for item in category %}
-  - {​{ item }}
+  - {{ item }}
   {%- endfor %}
   {%- endif %}
   ---
-  {​{ content | safe }}
+  {{ content | safe }}
   ```
+{% endraw %}
