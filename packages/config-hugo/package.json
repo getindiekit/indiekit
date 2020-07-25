@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "@indiekit/config-hugo",
+  "version": "0.1.0",
+  "description": "IndieKit config for Hugo-based websites",
+  "keywords": [
+    "indieweb",
+    "micropub",
+    "jekyll"
+  ],
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/paulrobertlloyd/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulrobertlloyd/indiekit.git",
+    "directory": "packages/config-hugo"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "yaml": "^1.10.0"
+  }
+}

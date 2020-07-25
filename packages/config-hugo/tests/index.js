@@ -1,0 +1,155 @@
+import test from 'ava';
+import {getFixture} from './helpers/fixture.js';
+import {HugoConfig} from '../index.js';
+
+test.beforeEach(t => {
+  t.context.properties = JSON.parse(getFixture('properties.json'));
+});
+
+test('Gets publication config', async t => {
+  const hugoConfig = new HugoConfig();
+  const result = hugoConfig.config;
+  t.is(result['post-types'][0].type, 'article');
+});
+
+test('Render post template (defaults to YAML frontmatter)', t => {
+  const hugoConfig = new HugoConfig();
+  const result = hugoConfig.postTemplate({
+    published: ['2020-02-02'],
+    name: ['I ate a cheese sandwich']
+  });
+  t.is(result, `---
+date: 2020-02-02
+title: I ate a cheese sandwich
+---
+`);
+});
+
+test('Render post template with JSON frontmatter', t => {
+  const hugoConfig = new HugoConfig({frontmatterFormat: 'json'});
+  const result = hugoConfig.postTemplate(t.context.properties);
+  t.is(result, `{
+  "date": "2020-02-02",
+  "title": "I ate a cheese sandwich",
+  "summary": "What I ate.",
+  "category": [
+    "foo",
+    "bar"
+  ],
+  "start": "2020-02-02",
+  "end": "2020-02-20",
+  "rsvp": "Yes",
+  "location": {
+    "country-name": [
+      "United Kingdom"
+    ]
+  },
+  "checkin": {
+    "latitude": [
+      50
+    ],
+    "longitude": [
+      0
+    ]
+  },
+  "audio": [
+    {
+      "url": "http://website.example/audio.mp3"
+    }
+  ],
+  "images": [
+    {
+      "alt": "Alternative text",
+      "url": "http://website.example/photo.jpg"
+    }
+  ],
+  "videos": [
+    {
+      "url": "http://website.example/video.mp4"
+    }
+  ],
+  "bookmark-of": "http://website.example",
+  "repost-of": "http://website.example",
+  "in-reply-to": "http://website.example",
+  "syndicate-to": [
+    "http://website.example"
+  ]
+}
+I ate a cheese sandwich, which was nice.
+`);
+});
+
+test('Render post template with TOML frontmatter', t => {
+  const hugoConfig = new HugoConfig({frontmatterFormat: 'toml'});
+  const result = hugoConfig.postTemplate(t.context.properties);
+  t.is(result, `+++
+date = "2020-02-02"
+title = "I ate a cheese sandwich"
+summary = "What I ate."
+category = [ "foo", "bar" ]
+start = "2020-02-02"
+end = "2020-02-20"
+rsvp = "Yes"
+bookmark-of = "http://website.example"
+repost-of = "http://website.example"
+in-reply-to = "http://website.example"
+syndicate-to = [ "http://website.example" ]
+
+[location]
+country-name = [ "United Kingdom" ]
+
+[checkin]
+latitude = [ 50 ]
+longitude = [ 0 ]
+
+[[audio]]
+url = "http://website.example/audio.mp3"
+
+[[images]]
+alt = "Alternative text"
+url = "http://website.example/photo.jpg"
+
+[[videos]]
+url = "http://website.example/video.mp4"
++++
+I ate a cheese sandwich, which was nice.
+`);
+});
+
+test('Render post template with YAML frontmatter', t => {
+  const hugoConfig = new HugoConfig({frontmatterFormat: 'yaml'});
+  const result = hugoConfig.postTemplate(t.context.properties);
+  t.is(result, `---
+date: 2020-02-02
+title: I ate a cheese sandwich
+summary: What I ate.
+category:
+  - foo
+  - bar
+start: 2020-02-02
+end: 2020-02-20
+rsvp: Yes
+location:
+  country-name:
+    - United Kingdom
+checkin:
+  latitude:
+    - 50
+  longitude:
+    - 0
+audio:
+  - url: http://website.example/audio.mp3
+images:
+  - alt: Alternative text
+    url: http://website.example/photo.jpg
+videos:
+  - url: http://website.example/video.mp4
+bookmark-of: http://website.example
+repost-of: http://website.example
+in-reply-to: http://website.example
+syndicate-to:
+  - http://website.example
+---
+I ate a cheese sandwich, which was nice.
+`);
+});
