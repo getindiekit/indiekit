@@ -1,13 +1,13 @@
 import HttpError from 'http-errors';
 import {
+  getPermalink,
   getPostTypeConfig,
   renderPath
-} from '../utils.js';
+} from './utils.js';
 import {
   getFileProperties,
-  getMediaType,
-  getPermalink
-} from './properties.js';
+  getMediaType
+} from './file.js';
 
 export const mediaData = {
   /**

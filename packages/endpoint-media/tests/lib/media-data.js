@@ -1,7 +1,7 @@
 import test from 'ava';
-import {getFixture} from '../../helpers/fixture.js';
-import {JekyllConfig} from '../../../../config-jekyll/index.js';
-import {mediaData} from '../../../lib/media/data.js';
+import {getFixture} from '../helpers/fixture.js';
+import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {mediaData} from '../../lib/media-data.js';
 
 test('Creates media data', async t => {
   const file = {

@@ -1,5 +1,6 @@
 import dateFns from 'date-fns';
 import newbase60 from 'newbase60';
+import path from 'path';
 
 const {format} = dateFns;
 
@@ -79,6 +80,24 @@ export const supplant = (string, object) => {
 
     return a;
   });
+};
+
+/**
+ * Derive a permalink (by combining publication URL, that may
+ * include a path, with the path to a post or file
+ *
+ * @param {object} url URL
+ * @param {object} pathname Permalink path
+ * @returns {string} Returns either 'photo', 'video' or audio
+ * @example permalink('http://foo.bar/baz', '/qux/quux') =>
+ *   'http://foo.bar/baz/qux/quux'
+ */
+export const getPermalink = (url, pathname) => {
+  url = new URL(url);
+  let permalink = path.join(url.pathname, pathname);
+  permalink = new URL(permalink, url).href;
+
+  return permalink;
 };
 
 /**

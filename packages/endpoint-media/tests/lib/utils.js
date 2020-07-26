@@ -1,6 +1,7 @@
 import test from 'ava';
 import {JekyllConfig} from '../../../config-jekyll/index.js';
 import {
+  getPermalink,
   getPostTypeConfig,
   randomString,
   renderPath,
@@ -9,6 +10,13 @@ import {
 
 test.beforeEach(t => {
   t.context.config = new JekyllConfig().config;
+});
+
+test('Derives a permalink', t => {
+  t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
+  t.is(getPermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
+  t.is(getPermalink('http://foo.bar/baz', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
+  t.is(getPermalink('http://foo.bar/baz/', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
 });
 
 test('Get post type configuration for a given type', t => {

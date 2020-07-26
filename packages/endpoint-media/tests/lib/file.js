@@ -1,20 +1,12 @@
 import test from 'ava';
 import dateFns from 'date-fns';
-import {getFixture} from '../../helpers/fixture.js';
+import {getFixture} from '../helpers/fixture.js';
 import {
   getFileProperties,
-  getMediaType,
-  getPermalink
-} from '../../../lib/media/properties.js';
+  getMediaType
+} from '../../lib/file.js';
 
 const {isValid, parseISO} = dateFns;
-
-test('Derives a permalink', t => {
-  t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
-  t.is(getPermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
-  t.is(getPermalink('http://foo.bar/baz', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
-  t.is(getPermalink('http://foo.bar/baz/', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
-});
 
 test('Derives media type and returns equivalent post type)', async t => {
   const audio = {buffer: getFixture('audio.mp3', false)};

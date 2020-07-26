@@ -1,6 +1,6 @@
 import FileType from 'file-type';
 import path from 'path';
-import {randomString} from '../utils.js';
+import {randomString} from './utils.js';
 
 /**
  * Derive properties from file data
@@ -52,22 +52,4 @@ export const getMediaType = async file => {
   }
 
   return null;
-};
-
-/**
- * Derive a permalink (by combining publication URL, that may
- * include a path, with the path to a post or file
- *
- * @param {object} url URL
- * @param {object} pathname Permalink path
- * @returns {string} Returns either 'photo', 'video' or audio
- * @example permalink('http://foo.bar/baz', '/qux/quux') =>
- *   'http://foo.bar/baz/qux/quux'
- */
-export const getPermalink = (url, pathname) => {
-  url = new URL(url);
-  let permalink = path.join(url.pathname, pathname);
-  permalink = new URL(permalink, url).href;
-
-  return permalink;
 };
