@@ -1,7 +1,7 @@
 import httpError from 'http-errors';
-import {formEncodedToMf2, normaliseMf2} from '../lib/microformats.js';
+import {formEncodedToMf2, getMf2} from '../lib/microformats.js';
 import {post} from '../lib/post.js';
-import {postData} from '../lib/post/data.js';
+import {postData} from '../lib/post-data.js';
 import {checkScope} from '../lib/scope.js';
 import {uploadMedia} from '../lib/media.js';
 
@@ -27,7 +27,7 @@ export const actionController = publication => {
       // TODO: Attached photos don’t appear with correct alt text
       let mf2 = request.is('json') ? body : formEncodedToMf2(body);
       mf2 = files ? await uploadMedia(publication, mf2, files) : mf2;
-      mf2 = normaliseMf2(mf2);
+      mf2 = getMf2(publication, mf2);
 
       let data;
       let published;

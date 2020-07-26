@@ -1,0 +1,10 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "name": ["Photo"],
+    "photo": [
+      "https://foo.bar/baz.jpg",
+      "https://foo.bar/qux.jpg"
+    ]
+  }
+}

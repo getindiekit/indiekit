@@ -5,14 +5,9 @@ import {
   deleteProperties,
   replaceEntries,
   renderPath,
-  getPostTypeConfig
-} from '../utils.js';
-import {
-  getContent,
   getPermalink,
-  getPublishedDate,
-  getSlug
-} from './properties.js';
+  getPostTypeConfig
+} from './utils.js';
 
 export const postData = {
   /**
@@ -35,9 +30,6 @@ export const postData = {
 
     // Post properties
     const {properties} = mf2;
-    properties.content = getContent(mf2);
-    properties.published = getPublishedDate(mf2);
-    properties.slug = getSlug(mf2, config['slug-separator']);
 
     // Post paths
     const path = renderPath(typeConfig.post.path, properties);
@@ -45,19 +37,10 @@ export const postData = {
     url = getPermalink(me, url);
 
     // Add computed URL to post properties
-    properties.url = [url];
+    mf2.properties.url = [url];
 
     // Post data
-    const postData = {
-      type,
-      path,
-      url,
-      mf2: {
-        type: (type === 'event') ? ['h-event'] : ['h-entry'],
-        properties
-      }
-    };
-
+    const postData = {type, path, url, mf2};
     return postData;
   },
 

@@ -1,0 +1,11 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "name": ["Audio"],
+    "audio": [{
+      "value": "https://foo.bar/baz.mp3"
+    }, {
+      "value": "https://foo.bar/qux.mp3"
+    }]
+  }
+}

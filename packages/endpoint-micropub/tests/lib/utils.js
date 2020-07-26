@@ -3,6 +3,7 @@ import {JekyllConfig} from '../../../config-jekyll/index.js';
 import {
   decodeQueryParameter,
   excerptString,
+  getPermalink,
   getPostTypeConfig,
   randomString,
   renderPath,
@@ -34,6 +35,13 @@ test('Excerpts first n words from a string', t => {
   const string = 'The quick fox jumped over the lazy fox';
   const result = excerptString(string, 5);
   t.is(result, 'The quick fox jumped over');
+});
+
+test('Derives a permalink', t => {
+  t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
+  t.is(getPermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
+  t.is(getPermalink('http://foo.bar/baz', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
+  t.is(getPermalink('http://foo.bar/baz/', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
 });
 
 test('Get post type configuration for a given type', t => {

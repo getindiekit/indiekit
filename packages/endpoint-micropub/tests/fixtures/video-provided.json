@@ -1,0 +1,10 @@
+{
+  "type": ["h-entry"],
+  "properties": {
+    "name": ["Video"],
+    "video": [
+      "https://foo.bar/baz.mp4",
+      "https://foo.bar/qux.mp4"
+    ]
+  }
+}

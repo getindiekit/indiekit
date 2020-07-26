@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import dateFns from 'date-fns';
+import path from 'path';
 import newbase60 from 'newbase60';
 
 const {format} = dateFns;
@@ -29,6 +30,24 @@ export const excerptString = (string, n) => {
     string = string.split(/\s+/).slice(0, n).join(' ');
     return string;
   }
+};
+
+/**
+ * Derive a permalink (by combining publication URL, that may include a
+ * path, with the path to a post or file
+ *
+ * @param {object} url URL
+ * @param {object} pathname Permalink path
+ * @returns {string} Returns either 'photo', 'video' or audio
+ * @example permalink('http://foo.bar/baz', '/qux/quux') =>
+ *   'http://foo.bar/baz/qux/quux'
+ */
+export const getPermalink = (url, pathname) => {
+  url = new URL(url);
+  let permalink = path.join(url.pathname, pathname);
+  permalink = new URL(permalink, url).href;
+
+  return permalink;
 };
 
 /**

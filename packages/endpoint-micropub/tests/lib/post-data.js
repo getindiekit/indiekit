@@ -1,6 +1,6 @@
 import test from 'ava';
-import {JekyllConfig} from '../../../../config-jekyll/index.js';
-import {postData} from '../../../lib/post/data.js';
+import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {postData} from '../../lib/post-data.js';
 
 test.beforeEach(t => {
   t.context = {
@@ -31,13 +31,13 @@ test('Creates post data', async t => {
   const mf2 = {
     type: 'h-entry',
     properties: {
+      published: ['2020-07-26T20:10:57.062Z'],
       name: ['foo'],
-      audio: [],
-      photo: [],
-      video: []
+      slug: ['foo']
     }
   };
   const result = await postData.create(t.context.publication, mf2);
+  t.log(result);
   t.is(result.type, 'note');
   t.truthy(result.mf2.properties.published[0]);
   t.is(result.mf2.properties.slug[0], 'foo');

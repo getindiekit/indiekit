@@ -13,7 +13,7 @@ test.beforeEach(t => {
     mf2: {
       type: ['h-entry'],
       properties: {
-        content: ['I ate a cheese sandwich.'],
+        content: ['I ate a cheese sandwich, which was nice.'],
         category: ['foo', 'bar'],
         audio: ['https://website.example/media/sound.mp3']
       }

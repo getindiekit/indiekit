@@ -1,6 +1,11 @@
 import got from 'got';
 import parser from 'microformats-parser';
-import {decodeQueryParameter} from './utils.js';
+import slugify from '@sindresorhus/slugify';
+import {
+  decodeQueryParameter,
+  excerptString,
+  randomString
+} from './utils.js';
 import {reservedProperties} from './micropub.js';
 
 /**
@@ -77,78 +82,142 @@ export const mf2Properties = (mf2, requestedProperties) => {
 };
 
 /**
- * Normalise Microformats2 object
+ * Get Microformats2 object
  *
+ * @param {object} publication Publication configuration
  * @param {object} mf2 Microformats2 object
  * @returns {object} Normalised Microformats2 object
  */
-export const normaliseMf2 = mf2 => {
-  const {audio, photo, video} = mf2.properties;
-  const photoAlt = mf2.properties['mp-photo-alt'];
+export const getMf2 = (publication, mf2) => {
+  const {config} = publication;
 
-  if (audio) {
-    mf2.properties.audio = normaliseAudio(audio);
+  mf2.properties.published = getPublishedProperty(mf2);
+  mf2.properties.slug = getSlugProperty(mf2, config['slug-separator']);
+
+  if (mf2.properties.content) {
+    mf2.properties.content = getContentProperty(mf2);
   }
 
-  if (photo) {
-    mf2.properties.photo = normalisePhoto(photo, photoAlt);
-    delete mf2.properties['mp-photo-alt'];
+  if (mf2.properties.audio) {
+    mf2.properties.audio = getAudioProperty(mf2);
   }
 
-  if (video) {
-    mf2.properties.video = normaliseVideo(video);
+  if (mf2.properties.photo) {
+    mf2.properties.photo = getPhotoProperty(mf2);
+  }
+
+  if (mf2.properties.video) {
+    mf2.properties.video = getVideoProperty(mf2);
   }
 
   return mf2;
 };
 
 /**
- * Normalise audio property
+ * Get audio property
  *
- * @param {Array} audio Microformats2 `audio` property
+ * @param {object} mf2 Microformats2 object
  * @returns {Array} Microformats2 `audio` property
  */
-export const normaliseAudio = audio => {
-  if (audio) {
-    const isNormalisedProperty = typeof audio[0] !== 'string';
-    return isNormalisedProperty ?
-      audio :
-      audio.map(value => ({value}));
-  }
+export const getAudioProperty = mf2 => {
+  const {audio} = mf2.properties;
+  const isNormalisedProperty = typeof audio[0] !== 'string';
+  return isNormalisedProperty ? audio : audio.map(value => ({value}));
 };
 
 /**
- * Normalise photo property (adding text alternatives where provided)
+ * Get content property (HTML, else object value, else property value)
  *
- * @param {Array} photo Microformats2 `photo` property
- * @param {Array} photoAlt Microformats2 `mp-photo-alt` property
+ * @param {object} mf2 Microformats2 object
+ * @returns {Array} Microformats2 `content` property
+ */
+export const getContentProperty = mf2 => {
+  let {content} = mf2.properties;
+  content = content[0].html || content[0].value || content[0];
+  return new Array(content);
+};
+
+/**
+ * Get photo property (adding text alternatives where provided)
+ *
+ * @param {object} mf2 Microformats2 object
  * @returns {Array} Microformats2 `photo` property
  */
-export const normalisePhoto = (photo, photoAlt) => {
-  if (photo) {
-    const isNormalisedProperty = typeof photo[0] !== 'string';
-    return isNormalisedProperty ?
-      photo :
-      photo.map((value, i) => ({
-        ...value && {value},
-        ...photoAlt && {alt: photoAlt[i]}
-      }));
-  }
+export const getPhotoProperty = mf2 => {
+  const {photo} = mf2.properties;
+  const photoAlt = mf2.properties['mp-photo-alt'];
+  const isNormalisedProperty = typeof photo[0] !== 'string';
+  const property = isNormalisedProperty ?
+    photo :
+    photo.map((value, i) => ({
+      ...value && {value},
+      ...photoAlt && {alt: photoAlt[i]}
+    }));
+  delete mf2.properties['mp-photo-alt'];
+  return property;
 };
 
 /**
- * Normalise video property
+ * Get video property
  *
- * @param {Array} video Microformats2 `video` property
+ * @param {object} mf2 Microformats2 object
  * @returns {Array} Microformats2 `video` property
  */
-export const normaliseVideo = video => {
-  if (video) {
-    const isNormalisedProperty = typeof video[0] !== 'string';
-    return isNormalisedProperty ?
-      video :
-      video.map(value => ({value}));
+export const getVideoProperty = mf2 => {
+  const {video} = mf2.properties;
+  const isNormalisedProperty = typeof video[0] !== 'string';
+  return isNormalisedProperty ? video : video.map(value => ({value}));
+};
+
+/**
+ * Get published date (based on microformats2 data, else current date)
+ *
+ * @param {object} mf2 Microformats2 object
+ * @returns {Array} Microformats2 `published` property
+ */
+export const getPublishedProperty = mf2 => {
+  const {published} = mf2.properties;
+
+  // Use provided `published` datetime…
+  if (published) {
+    const publishedDate = new Date(published[0]).toISOString();
+    return new Array(publishedDate);
   }
+
+  // …else, use current datetime
+  const currentDate = new Date().toISOString();
+  return new Array(currentDate);
+};
+
+/**
+ * Get slug
+ *
+ * @param {object} mf2 Microformats2 object
+ * @param {string} separator Slug separator
+ * @returns {Array} Array containing slug value
+ */
+export const getSlugProperty = (mf2, separator) => {
+  // Use provided `mp-slug` or `slug`…
+  const slug = mf2.properties['mp-slug'] || mf2.properties.slug;
+  if (slug && slug[0] !== '') {
+    return slug;
+  }
+
+  // …else, slugify `name`…
+  const {name} = mf2.properties;
+  if (name && name[0] !== '') {
+    const excerptName = excerptString(name[0], 5);
+    const nameSlug = slugify(excerptName, {
+      replacement: separator,
+      lower: true
+    });
+
+    return new Array(nameSlug);
+  }
+
+  // …else, failing that, create a random string
+  const randomSlug = randomString();
+  return new Array(randomSlug);
 };
 
 /**

@@ -1,6 +1,7 @@
 {
   "type": ["h-entry"],
   "properties": {
-    "content": ["Visit this example website."]
+    "name": ["Lunchtime"],
+    "content": ["I ate a cheese sandwich, which was nice."]
   }
 }

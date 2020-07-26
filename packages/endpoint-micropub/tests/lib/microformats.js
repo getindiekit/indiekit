@@ -1,19 +1,30 @@
 import test from 'ava';
 import nock from 'nock';
+import dateFns from 'date-fns';
 import parser from 'microformats-parser';
 import {getFixture} from '../helpers/fixture.js';
 import {
   formEncodedToMf2,
+  getMf2,
+  getAudioProperty,
+  getContentProperty,
+  getPhotoProperty,
+  getVideoProperty,
+  getPublishedProperty,
+  getSlugProperty,
   mf2Properties,
-  normaliseMf2,
-  normaliseAudio,
-  normalisePhoto,
-  normaliseVideo,
   url2Mf2
 } from '../../lib/microformats.js';
 
+const {isValid, parseISO} = dateFns;
+
 test.beforeEach(t => {
   t.context = {
+    publication: {
+      config: {
+        'slug-separator': '-'
+      }
+    },
     nock: nock('https://website.example').get('/post.html'),
     url: 'https://website.example/post.html'
   };
@@ -22,16 +33,192 @@ test.beforeEach(t => {
 test('Creates Microformats2 object from form-encoded request', t => {
   const result = formEncodedToMf2({
     h: 'entry',
-    content: 'I+ate+a+cheese+sandwich.',
+    content: 'I+ate+a+cheese+sandwich,+which+was+nice.',
     category: ['foo', 'bar']
   });
   t.deepEqual(result, {
     type: ['h-entry'],
     properties: {
-      content: ['I ate a cheese sandwich.'],
+      content: ['I ate a cheese sandwich, which was nice.'],
       category: ['foo', 'bar']
     }
   });
+});
+
+test('Gets Microformats2 object (few properties)', t => {
+  const mf2 = JSON.parse(getFixture('content-provided.json'));
+  const result = getMf2(t.context.publication, mf2);
+  t.is(result.type[0], 'h-entry');
+  t.is(result.properties.name[0], 'Lunchtime');
+  t.is(result.properties.slug[0], 'lunchtime');
+  t.is(result.properties.content[0], 'I ate a cheese sandwich, which was nice.');
+  t.falsy(result.properties.audio);
+  t.falsy(result.properties.photo);
+  t.falsy(result.properties.video);
+  t.true(isValid(parseISO(result.properties.published[0])));
+});
+
+test('Gets Microformats2 object (all properties)', t => {
+  const mf2 = JSON.parse(getFixture('mf2.json'));
+  const result = getMf2(t.context.publication, mf2);
+  t.is(result.type[0], 'h-entry');
+  t.is(result.properties.name[0], 'Lunchtime');
+  t.is(result.properties.content[0], 'I ate a cheese sandwich, which was nice.');
+  t.deepEqual(result.properties.audio, [
+    {value: 'http://foo.bar/baz.mp3'},
+    {value: 'http://foo.bar/qux.mp3'}
+  ]);
+  t.deepEqual(result.properties.photo, [
+    {value: 'http://foo.bar/baz.jpg', alt: 'Baz'},
+    {value: 'http://foo.bar/qux.jpg', alt: 'Qux'}
+  ]);
+  t.deepEqual(result.properties.video, [
+    {value: 'http://foo.bar/baz.mp4'},
+    {value: 'http://foo.bar/qux.mp4'}
+  ]);
+  t.deepEqual(result.properties.category, ['lunch', 'food']);
+  t.true(isValid(parseISO(result.properties.published[0])));
+});
+
+test('Gets audio property', t => {
+  const mf2 = JSON.parse(getFixture('audio-provided-value.json'));
+  const result = getAudioProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.mp3'},
+    {value: 'https://foo.bar/qux.mp3'}
+  ]);
+});
+
+test('Gets normalised audio property', t => {
+  const mf2 = JSON.parse(getFixture('audio-provided.json'));
+  const result = getAudioProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.mp3'},
+    {value: 'https://foo.bar/qux.mp3'}
+  ]);
+});
+
+test('Gets content from `content[0].html` property', t => {
+  const mf2 = JSON.parse(getFixture('content-provided-html-value.json'));
+  const result = getContentProperty(mf2);
+  t.is(result[0], '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>');
+});
+
+test('Gets content from `content[0].html` property (ignores `content.value`)', t => {
+  const mf2 = JSON.parse(getFixture('content-provided-html.json'));
+  const result = getContentProperty(mf2);
+  t.is(result[0], '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>');
+});
+
+test('Gets content from `content[0].value` property', t => {
+  const mf2 = JSON.parse(getFixture('content-provided-value.json'));
+  const result = getContentProperty(mf2);
+  t.is(result[0], 'I ate a cheese sandwich, which was nice.');
+});
+
+test('Gets content from `content[0]` property', t => {
+  const mf2 = JSON.parse(getFixture('content-provided.json'));
+  const result = getContentProperty(mf2);
+  t.is(result[0], 'I ate a cheese sandwich, which was nice.');
+});
+
+test('Gets photo property', t => {
+  const mf2 = JSON.parse(getFixture('photo-provided.json'));
+  const result = getPhotoProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.jpg'},
+    {value: 'https://foo.bar/qux.jpg'}
+  ]);
+});
+
+test('Gets normalised photo property', t => {
+  const mf2 = JSON.parse(getFixture('photo-provided-value-alt.json'));
+  const result = getPhotoProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.jpg', alt: 'Baz'},
+    {value: 'https://foo.bar/qux.jpg', alt: 'Qux'}
+  ]);
+});
+
+test('Gets normalised photo property, adding provided text alternatives', t => {
+  const mf2 = JSON.parse(getFixture('photo-provided-mp-photo-alt.json'));
+  const result = getPhotoProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.jpg', alt: 'Baz'},
+    {value: 'https://foo.bar/qux.jpg', alt: 'Qux'}
+  ]);
+});
+
+test('Gets video property', t => {
+  const mf2 = JSON.parse(getFixture('video-provided-value.json'));
+  const result = getVideoProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.mp4'},
+    {value: 'https://foo.bar/qux.mp4'}
+  ]);
+});
+
+test('Gets normalised video property', t => {
+  const mf2 = JSON.parse(getFixture('video-provided.json'));
+  const result = getVideoProperty(mf2);
+  t.deepEqual(result, [
+    {value: 'https://foo.bar/baz.mp4'},
+    {value: 'https://foo.bar/qux.mp4'}
+  ]);
+});
+
+test('Gets date from `published` property', t => {
+  const mf2 = JSON.parse(getFixture('published-provided.json'));
+  const result = getPublishedProperty(mf2);
+  t.is(result[0], '2019-01-02T03:04:05.678Z');
+});
+
+test('Gets date from `published` property (short date)', t => {
+  const mf2 = JSON.parse(getFixture('published-provided-short.json'));
+  const result = getPublishedProperty(mf2);
+  t.is(result[0], '2019-01-02T00:00:00.000Z');
+});
+
+test('Gets date by using current date', t => {
+  const mf2 = JSON.parse(getFixture('published-missing.json'));
+  const result = getPublishedProperty(mf2);
+  t.true(isValid(parseISO(result[0])));
+});
+
+test('Derives slug from `slug` property', t => {
+  const mf2 = JSON.parse(getFixture('slug-provided.json'));
+  const slug = getSlugProperty(mf2, '-');
+  t.is(slug[0], 'cheese-sandwich');
+});
+
+test('Derives slug from `mp-slug` property', t => {
+  const mf2 = JSON.parse(getFixture('mp-slug-provided.json'));
+  const slug = getSlugProperty(mf2, '-');
+  t.is(slug[0], 'cheese-sandwich');
+});
+
+test('Derives slug, ignoring empty `slug` property', t => {
+  const mf2 = JSON.parse(getFixture('slug-provided-empty.json'));
+  const slug = getSlugProperty(mf2, '-');
+  t.is(slug[0], 'i-ate-a-cheese-sandwich');
+});
+
+test('Derives slug, ignoring empty `mp-slug` property', t => {
+  const mf2 = JSON.parse(getFixture('mp-slug-provided-empty.json'));
+  const slug = getSlugProperty(mf2, '-');
+  t.is(slug[0], 'i-ate-a-cheese-sandwich');
+});
+
+test('Derives slug from `name` property', t => {
+  const mf2 = JSON.parse(getFixture('slug-missing.json'));
+  const slug = getSlugProperty(mf2, '-');
+  t.is(slug[0], 'i-ate-a-cheese-sandwich');
+});
+
+test('Derives slug by generating random number', t => {
+  const mf2 = JSON.parse(getFixture('slug-missing-no-name.json'));
+  const slug = getSlugProperty(mf2, '-');
+  t.regex(slug[0], /[\d\w]{5}/g);
 });
 
 test('Returns mf2 item with all properties', t => {
@@ -79,118 +266,6 @@ test('Throws error if mf2 has no items', t => {
   const mf2 = parser.mf2(getFixture('page.html'), {baseUrl: t.context.url});
   const error = t.throws(() => mf2Properties(mf2, 'name'));
   t.is(error.message, 'Source has no items');
-});
-
-test('Normalises mf2 object (few properties)', t => {
-  const mf2 = {
-    type: 'h-entry',
-    properties: {
-      name: ['foo']
-    }
-  };
-  t.deepEqual(normaliseMf2(mf2), {
-    type: 'h-entry',
-    properties: {
-      name: ['foo']
-    }
-  });
-});
-
-test('Normalises mf2 object (all properties)', t => {
-  const mf2 = {
-    type: 'h-entry',
-    properties: {
-      name: ['foo'],
-      audio: ['http://foo.bar/baz.mp3', 'http://foo.bar/qux.mp3'],
-      'mp-photo-alt': ['Baz', 'Qux'],
-      photo: ['http://foo.bar/baz.jpg', 'http://foo.bar/qux.jpg'],
-      video: ['http://foo.bar/baz.mp4', 'http://foo.bar/qux.mp4']
-    }
-  };
-  t.deepEqual(normaliseMf2(mf2), {
-    type: 'h-entry',
-    properties: {
-      name: ['foo'],
-      audio: [
-        {value: 'http://foo.bar/baz.mp3'},
-        {value: 'http://foo.bar/qux.mp3'}
-      ],
-      photo: [
-        {value: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-        {value: 'http://foo.bar/qux.jpg', alt: 'Qux'}
-      ],
-      video: [
-        {value: 'http://foo.bar/baz.mp4'},
-        {value: 'http://foo.bar/qux.mp4'}
-      ]
-    }
-  });
-});
-
-test('Normalises audio property', t => {
-  const audio = ['http://foo.bar/baz.mp3', 'http://foo.bar/qux.mp3'];
-  t.deepEqual(normaliseAudio(audio), [
-    {value: 'http://foo.bar/baz.mp3'},
-    {value: 'http://foo.bar/qux.mp3'}
-  ]);
-});
-
-test('Returns normalised audio property', t => {
-  const audio = [
-    {value: 'http://foo.bar/baz.mp3'},
-    {value: 'http://foo.bar/qux.mp3'}
-  ];
-  t.deepEqual(normaliseAudio(audio), [
-    {value: 'http://foo.bar/baz.mp3'},
-    {value: 'http://foo.bar/qux.mp3'}
-  ]);
-});
-
-test('Normalises photo property', t => {
-  const photo = ['http://foo.bar/baz.jpg', 'http://foo.bar/qux.jpg'];
-  t.deepEqual(normalisePhoto(photo), [
-    {value: 'http://foo.bar/baz.jpg'},
-    {value: 'http://foo.bar/qux.jpg'}
-  ]);
-});
-
-test('Normalises photo property, adding provided text alternatives', t => {
-  const photo = ['http://foo.bar/baz.jpg', 'http://foo.bar/qux.jpg'];
-  const photoAlt = ['Baz', 'Qux'];
-  t.deepEqual(normalisePhoto(photo, photoAlt), [
-    {value: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-    {value: 'http://foo.bar/qux.jpg', alt: 'Qux'}
-  ]);
-});
-
-test('Returns normalised photo property', t => {
-  const photo = [
-    {value: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-    {value: 'http://foo.bar/qux.jpg', alt: 'Qux'}
-  ];
-  t.deepEqual(normalisePhoto(photo), [
-    {value: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-    {value: 'http://foo.bar/qux.jpg', alt: 'Qux'}
-  ]);
-});
-
-test('Normalises video property', t => {
-  const video = ['http://foo.bar/baz.mp4', 'http://foo.bar/qux.mp4'];
-  t.deepEqual(normaliseVideo(video), [
-    {value: 'http://foo.bar/baz.mp4'},
-    {value: 'http://foo.bar/qux.mp4'}
-  ]);
-});
-
-test('Returns normalised video property', t => {
-  const video = [
-    {value: 'http://foo.bar/baz.mp4'},
-    {value: 'http://foo.bar/qux.mp4'}
-  ];
-  t.deepEqual(normaliseVideo(video), [
-    {value: 'http://foo.bar/baz.mp4'},
-    {value: 'http://foo.bar/qux.mp4'}
-  ]);
 });
 
 test('Returns mf2 from URL', async t => {
