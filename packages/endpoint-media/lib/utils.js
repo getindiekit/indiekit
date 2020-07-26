@@ -73,10 +73,6 @@ export const supplant = (string, object) => {
   return string.replace(/{([^{}]*)}/g, (a, b) => {
     let r = object[b];
 
-    if (Array.isArray(r)) {
-      r = r[0];
-    }
-
     if (typeof r === 'string' || typeof r === 'number') {
       return r;
     }

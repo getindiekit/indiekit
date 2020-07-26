@@ -39,5 +39,5 @@ test('Substitutes variables enclosed in { } braces with data from object', t => 
     number: 1
   };
   const result = supplant(string, object);
-  t.is(result, 'Array string 1');
+  t.is(result, '{array} string 1');
 });
