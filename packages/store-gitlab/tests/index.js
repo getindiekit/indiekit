@@ -35,6 +35,11 @@ test.beforeEach(t => {
   t.context.gitlabInstance.options.instance = 'https://gitlab.instance';
 });
 
+test('Gets message format', async t => {
+  const result = await t.context.gitlab.messageFormat;
+  t.is(result, '{action} {postType} {fileType}');
+});
+
 test('Creates file in a repository', async t => {
   const scope = t.context.nock.post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
