@@ -4,7 +4,7 @@ import {getMediaEndpoint} from '../lib/publication.js';
 /**
  * Expose Indiekit config to frontend templates
  *
- * @param {object} indiekitConfig IndieKit config
+ * @param {object} indiekitConfig Indiekit config
  * @returns {Function} Next middleware
  */
 export const locals = indiekitConfig => {

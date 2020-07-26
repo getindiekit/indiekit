@@ -2,7 +2,7 @@
   "private": true,
   "name": "@indiekit/config-jekyll",
   "version": "0.1.0",
-  "description": "IndieKit config for Jekyll-based websites",
+  "description": "Indiekit config for Jekyll-based websites",
   "keywords": [
     "indieweb",
     "micropub",

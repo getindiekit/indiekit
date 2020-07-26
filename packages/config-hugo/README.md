@@ -1,6 +1,6 @@
 # @indiekit/config-hugo
 
-IndieKit config for Hugo-based websites.
+Indiekit config for Hugo-based websites.
 
 ## Installation
 

@@ -2,7 +2,7 @@
   "private": true,
   "name": "@indiekit/config-hugo",
   "version": "0.1.0",
-  "description": "IndieKit config for Hugo-based websites",
+  "description": "Indiekit config for Hugo-based websites",
   "keywords": [
     "indieweb",
     "micropub",

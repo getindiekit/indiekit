@@ -1,6 +1,6 @@
 # @indiekit/endpoint-media
 
-Micropub media endpoint for IndieKit.
+Micropub media endpoint for Indiekit.
 
 ## Installation
 
