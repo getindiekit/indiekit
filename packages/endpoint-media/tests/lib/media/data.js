@@ -15,7 +15,7 @@ test('Creates media data', async t => {
   const result = await mediaData.create(publication, file);
   t.is(result.type, 'photo');
   t.regex(result.path, /\b[\d\w]{5}\b/g);
-  t.truthy(result.file.properties);
+  t.truthy(result.properties);
 });
 
 test('Throws error creating media data without a known post type', async t => {
@@ -52,9 +52,7 @@ test('Reads media data', async t => {
         type: 'photo',
         path: 'photo.jpg',
         url: key,
-        file: {
-          properties: {}
-        }
+        properties: {}
       })
     }
   };

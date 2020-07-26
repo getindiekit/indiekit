@@ -39,15 +39,7 @@ export const mediaData = {
     url = getPermalink(me, url);
 
     // Media data
-    const mediaData = {
-      type,
-      path,
-      url,
-      file: {
-        properties
-      }
-    };
-
+    const mediaData = {type, path, url, properties};
     return mediaData;
   },
 
