@@ -112,7 +112,7 @@ export const JekyllConfig = class {
   }
 
   postTemplate(properties) {
-    const {content} = properties;
+    const content = properties.content ? `${properties.content}\n` : '';
     properties = {
       date: properties.published[0],
       ...(properties.name && {title: properties.name[0]}),
@@ -121,8 +121,8 @@ export const JekyllConfig = class {
       ...(properties.start && {start: properties.start[0]}),
       ...(properties.end && {end: properties.end[0]}),
       ...(properties.rsvp && {rsvp: properties.rsvp[0]}),
-      ...(properties.location && {location: properties.location[0]}),
-      ...(properties.checkin && {checkin: properties.checkin}),
+      ...(properties.location && {location: properties.location.properties}),
+      ...(properties.checkin && {checkin: properties.checkin.properties}),
       ...(properties.audio && {audio: properties.audio}),
       ...(properties.photo && {photo: properties.photo}),
       ...(properties.video && {video: properties.video}),
@@ -134,6 +134,6 @@ export const JekyllConfig = class {
     };
     const frontmatter = YAML.stringify(properties);
 
-    return `${frontmatter}---\n${content}`;
+    return `---\n${frontmatter}---\n${content}`;
   }
 };

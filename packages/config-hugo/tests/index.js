@@ -12,7 +12,7 @@ test('Gets publication config', async t => {
   t.is(result['post-types'][0].type, 'article');
 });
 
-test('Render post template (defaults to YAML frontmatter)', t => {
+test('Renders post template (defaults to YAML frontmatter)', t => {
   const hugoConfig = new HugoConfig();
   const result = hugoConfig.postTemplate({
     published: ['2020-02-02'],
@@ -25,7 +25,7 @@ title: I ate a cheese sandwich
 `);
 });
 
-test('Render post template with JSON frontmatter', t => {
+test('Renders post template with JSON frontmatter', t => {
   const hugoConfig = new HugoConfig({frontmatterFormat: 'json'});
   const result = hugoConfig.postTemplate(t.context.properties);
   t.is(result, `{
@@ -79,7 +79,7 @@ I ate a cheese sandwich, which was nice.
 `);
 });
 
-test('Render post template with TOML frontmatter', t => {
+test('Renders post template with TOML frontmatter', t => {
   const hugoConfig = new HugoConfig({frontmatterFormat: 'toml'});
   const result = hugoConfig.postTemplate(t.context.properties);
   t.is(result, `+++
@@ -116,7 +116,7 @@ I ate a cheese sandwich, which was nice.
 `);
 });
 
-test('Render post template with YAML frontmatter', t => {
+test('Renders post template with YAML frontmatter', t => {
   const hugoConfig = new HugoConfig({frontmatterFormat: 'yaml'});
   const result = hugoConfig.postTemplate(t.context.properties);
   t.is(result, `---
