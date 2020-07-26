@@ -3,10 +3,10 @@ import {getFixture} from './helpers/fixture.js';
 import {JekyllConfig} from '../index.js';
 
 test.beforeEach(t => {
-  t.context.properties = JSON.parse(getFixture('properties.json'));
+  t.context.properties = JSON.parse(getFixture('properties.jf2.json'));
 });
 
-test('Gets publication config', async t => {
+test('Gets publication config', t => {
   const jekyllConfig = new JekyllConfig();
   const result = jekyllConfig.config;
   t.is(result['post-types'][0].type, 'article');
@@ -15,8 +15,8 @@ test('Gets publication config', async t => {
 test('Render post template without content', t => {
   const jekyllConfig = new JekyllConfig();
   const result = jekyllConfig.postTemplate({
-    published: ['2020-02-02'],
-    name: ['I ate a cheese sandwich']
+    published: '2020-02-02',
+    name: 'I ate a cheese sandwich'
   });
   t.is(result, `---
 date: 2020-02-02
@@ -39,9 +39,10 @@ start: 2020-02-02
 end: 2020-02-20
 rsvp: Yes
 location:
-  country-name:
-    - United Kingdom
+  type: adr
+  country-name: United Kingdom
 checkin:
+  type: card
   latitude:
     - 50
   longitude:
@@ -56,9 +57,8 @@ video:
 bookmark-of: http://website.example
 repost-of: http://website.example
 in-reply-to: http://website.example
-syndicate-to:
-  - http://website.example
+syndicate-to: http://website.example
 ---
-I ate a cheese sandwich, which was nice.
+<p>I ate a <i>cheese</i> sandwich, which was nice.</p>
 `);
 });

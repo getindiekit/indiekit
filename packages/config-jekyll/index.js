@@ -6,6 +6,11 @@ export const JekyllConfig = class {
     this.name = 'Jekyll';
   }
 
+  /**
+   * Publication config
+   *
+   * @returns {object} Publication config
+   */
   get config() {
     return {
       categories: [],
@@ -111,29 +116,41 @@ export const JekyllConfig = class {
     };
   }
 
+  /**
+   * Render post template
+   *
+   * @param {object} properties Post data variables
+   * @returns {string} Rendered template
+   */
   postTemplate(properties) {
-    const content = properties.content ? `${properties.content}\n` : '';
+    const content = properties.content ?
+      `${properties.content.html}\n` ||
+      `${properties.content.text}\n` |
+      `${properties.content}\n` :
+      '';
+
     properties = {
-      date: properties.published[0],
-      ...(properties.name && {title: properties.name[0]}),
-      ...(properties.summary && {excerpt: properties.summary[0]}),
+      date: properties.published,
+      ...(properties.name && {title: properties.name}),
+      ...(properties.summary && {excerpt: properties.summary}),
       ...(properties.category && {category: properties.category}),
-      ...(properties.start && {start: properties.start[0]}),
-      ...(properties.end && {end: properties.end[0]}),
-      ...(properties.rsvp && {rsvp: properties.rsvp[0]}),
-      ...(properties.location && {location: properties.location.properties}),
-      ...(properties.checkin && {checkin: properties.checkin.properties}),
+      ...(properties.start && {start: properties.start}),
+      ...(properties.end && {end: properties.end}),
+      ...(properties.rsvp && {rsvp: properties.rsvp}),
+      ...(properties.location && {location: properties.location}),
+      ...(properties.checkin && {checkin: properties.checkin}),
       ...(properties.audio && {audio: properties.audio}),
       ...(properties.photo && {photo: properties.photo}),
       ...(properties.video && {video: properties.video}),
-      ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of'][0]}),
-      ...(properties['like-of'] && {'bookmark-of': properties['like-of'][0]}),
-      ...(properties['repost-of'] && {'repost-of': properties['repost-of'][0]}),
-      ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to'][0]}),
+      ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of']}),
+      ...(properties['like-of'] && {'bookmark-of': properties['like-of']}),
+      ...(properties['repost-of'] && {'repost-of': properties['repost-of']}),
+      ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
       ...(properties['syndicate-to'] && {'syndicate-to': properties['syndicate-to']})
     };
-    const frontmatter = YAML.stringify(properties);
+    let frontmatter = YAML.stringify(properties);
+    frontmatter = `---\n${frontmatter}---\n`;
 
-    return `---\n${frontmatter}---\n${content}`;
+    return frontmatter + content;
   }
 };

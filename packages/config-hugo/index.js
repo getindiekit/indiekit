@@ -2,14 +2,36 @@ import TOML from '@iarna/toml';
 import YAML from 'yaml';
 
 const defaults = {
-  frontmatterFormat: 'json'
+  frontmatterFormat: 'yaml'
+};
+
+const getFrontmatter = (properties, frontmatterFormat) => {
+  let delimiters;
+  let frontmatter;
+  switch (frontmatterFormat) {
+    case 'json':
+      delimiters = ['', '\n'];
+      frontmatter = JSON.stringify(properties, null, 2);
+      break;
+    case 'toml':
+      delimiters = ['+++\n', '+++\n'];
+      frontmatter = TOML.stringify(properties);
+      break;
+    case 'yaml':
+    default:
+      delimiters = ['---\n', '---\n'];
+      frontmatter = YAML.stringify(properties);
+      break;
+  }
+
+  return `${delimiters[0]}${frontmatter}${delimiters[1]}`;
 };
 
 export const HugoConfig = class {
   constructor(options = {}) {
     this.id = 'hugo';
     this.name = 'Hugo';
-    this.frontmatterFormat = options.frontmatterFormat
+    this.options = {...defaults, ...options};
   }
 
   /**
@@ -47,7 +69,7 @@ export const HugoConfig = class {
         },
         media: {
           path: 'static/photos/{filename}',
-          url: 'photos/{filename}',
+          url: 'photos/{filename}'
         }
       }, {
         type: 'video',
@@ -129,49 +151,38 @@ export const HugoConfig = class {
   /**
    * Render post template
    *
-   * @param {object} properties Post properties
+   * @param {object} properties Post data variables
    * @returns {string} Rendered template
    */
   postTemplate(properties) {
-    const content = properties.content ? `${properties.content}\n` : '';
+    const content = properties.content ?
+      `${properties.content.html}\n` ||
+      `${properties.content.text}\n` |
+      `${properties.content}\n` :
+      '';
+
     properties = {
-      date: properties.published[0],
-      ...(properties.name && {title: properties.name[0]}),
-      ...(properties.summary && {summary: properties.summary[0]}),
+      date: properties.published,
+      ...(properties.name && {title: properties.name}),
+      ...(properties.summary && {summary: properties.summary}),
       ...(properties.category && {category: properties.category}),
-      ...(properties.start && {start: properties.start[0]}),
-      ...(properties.end && {end: properties.end[0]}),
-      ...(properties.rsvp && {rsvp: properties.rsvp[0]}),
-      ...(properties.location && {location: properties.location.properties}),
-      ...(properties.checkin && {checkin: properties.checkin.properties}),
+      ...(properties.start && {start: properties.start}),
+      ...(properties.end && {end: properties.end}),
+      ...(properties.rsvp && {rsvp: properties.rsvp}),
+      ...(properties.location && {location: properties.location}),
+      ...(properties.checkin && {checkin: properties.checkin}),
       ...(properties.audio && {audio: properties.audio}),
       ...(properties.photo && {images: properties.photo}),
       ...(properties.video && {videos: properties.video}),
-      ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of'][0]}),
-      ...(properties['like-of'] && {'bookmark-of': properties['like-of'][0]}),
-      ...(properties['repost-of'] && {'repost-of': properties['repost-of'][0]}),
-      ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to'][0]}),
+      ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of']}),
+      ...(properties['like-of'] && {'bookmark-of': properties['like-of']}),
+      ...(properties['repost-of'] && {'repost-of': properties['repost-of']}),
+      ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
       ...(properties['syndicate-to'] && {'syndicate-to': properties['syndicate-to']})
     };
 
-    let delimiters;
-    let frontmatter;
-    switch (this.frontmatterFormat) {
-      case 'json':
-        delimiters = ['', '\n'];
-        frontmatter = JSON.stringify(properties, null, 2);
-        break;
-      case 'toml':
-        delimiters = ['+++\n', '+++\n'];
-        frontmatter = TOML.stringify(properties);
-        break;
-      case 'yaml':
-      default:
-        delimiters = ['---\n', '---\n'];
-        frontmatter = YAML.stringify(properties);
-        break;
-    };
+    const frontmatter = getFrontmatter(properties, this.options.frontmatterFormat);
 
-    return `${delimiters[0]}${frontmatter}${delimiters[1]}${content}`;
+    return frontmatter + content;
   }
 };

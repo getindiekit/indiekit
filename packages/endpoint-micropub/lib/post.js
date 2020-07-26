@@ -1,3 +1,4 @@
+import {mf2tojf2} from '@paulrobertlloyd/mf2tojf2';
 import {supplant} from './utils.js';
 
 export const post = {
@@ -10,7 +11,8 @@ export const post = {
    */
   create: async (publication, postData) => {
     const {posts, store} = publication;
-    const content = publication.postTemplate(postData.mf2.properties);
+    const jf2 = mf2tojf2({items: [postData.mf2]});
+    const content = publication.postTemplate(jf2);
     const message = supplant(store.messageFormat, {
       action: 'create',
       fileType: 'post',

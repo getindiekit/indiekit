@@ -126,6 +126,7 @@
           "devDependencies": true,
           "packageDir": [
             "./",
+            "./packages/config-hugo",
             "./packages/config-jekyll",
             "./packages/endpoint-media",
             "./packages/endpoint-micropub",
@@ -133,8 +134,7 @@
             "./packages/frontend",
             "./packages/indiekit",
             "./packages/store-github",
-            "./packages/store-gitlab",
-            "./packages/templates-yaml"
+            "./packages/store-gitlab"
           ]
         }
       ],
