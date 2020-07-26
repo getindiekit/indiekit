@@ -3,7 +3,6 @@ import nock from 'nock';
 
 import {GithubStore} from '../index.js';
 
-
 test.beforeEach(t => {
   t.context = {
     nock: nock('https://api.github.com'),

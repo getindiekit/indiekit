@@ -2,7 +2,7 @@ import Color from 'color';
 import dateFns from 'date-fns';
 import markdownIt from '../markdown-it.js';
 
-const {format, formatISO, parseISO} = dateFns;
+const {format, parseISO} = dateFns;
 
 /**
  * Darken a color

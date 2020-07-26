@@ -72,7 +72,7 @@ export const renderPath = (path, properties) => {
  */
 export const supplant = (string, object) => {
   return string.replace(/{([^{}]*)}/g, (a, b) => {
-    let r = object[b];
+    const r = object[b];
 
     if (typeof r === 'string' || typeof r === 'number') {
       return r;

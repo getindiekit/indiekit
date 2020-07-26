@@ -1,5 +1,4 @@
 import FileType from 'file-type';
-import path from 'path';
 import {randomString} from './utils.js';
 
 /**
