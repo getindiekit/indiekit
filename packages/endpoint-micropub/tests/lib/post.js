@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {GithubStore} from '../../../store-github/index.js';
 import {post} from '../../lib/post.js';
 import {postData} from '../fixtures/data.js';
@@ -8,7 +8,7 @@ import {postData} from '../fixtures/data.js';
 test.beforeEach(t => {
   t.context = {
     publication: {
-      config: new JekyllConfig().config,
+      config: new JekyllPreset().config,
       me: 'https://website.example',
       store: new GithubStore({
         token: 'abc123',

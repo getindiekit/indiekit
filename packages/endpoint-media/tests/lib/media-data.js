@@ -1,6 +1,6 @@
 import test from 'ava';
 import {getFixture} from '../helpers/fixture.js';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {mediaData} from '../../lib/media-data.js';
 
 test('Creates media data', async t => {
@@ -9,7 +9,7 @@ test('Creates media data', async t => {
     originalname: 'photo.jpg'
   };
   const publication = {
-    config: new JekyllConfig().config,
+    config: new JekyllPreset().config,
     me: 'https://website.example'
   };
   const result = await mediaData.create(publication, file);
@@ -24,7 +24,7 @@ test('Throws error creating media data without a known post type', async t => {
     originalname: 'font.ttf'
   };
   const publication = {
-    config: new JekyllConfig().config,
+    config: new JekyllPreset().config,
     me: 'https://website.example'
   };
   const error = await t.throwsAsync(
@@ -35,7 +35,7 @@ test('Throws error creating media data without a known post type', async t => {
 
 test('Throws error creating media data without a file', async t => {
   const publication = {
-    config: new JekyllConfig().config,
+    config: new JekyllPreset().config,
     me: 'https://website.example'
   };
   const error = await t.throwsAsync(

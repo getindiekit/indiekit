@@ -1,5 +1,5 @@
 import test from 'ava';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {
   decodeQueryParameter,
   excerptString,
@@ -16,7 +16,7 @@ import {
 
 test.beforeEach(t => {
   t.context = {
-    config: new JekyllConfig().config,
+    config: new JekyllPreset().config,
     properties: {
       content: ['hello world'],
       published: ['2019-08-17T23:56:38.977+01:00'],

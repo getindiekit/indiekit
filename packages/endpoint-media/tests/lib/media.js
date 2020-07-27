@@ -1,13 +1,13 @@
 import test from 'ava';
 import nock from 'nock';
 import {getFixture} from '../helpers/fixture.js';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {GithubStore} from '../../../store-github/index.js';
 import {media} from '../../lib/media.js';
 import {mediaData} from '../fixtures/data.js';
 
 const publication = {
-  config: new JekyllConfig().config,
+  config: new JekyllPreset().config,
   me: 'https://website.example',
   store: new GithubStore({
     token: 'abc123',

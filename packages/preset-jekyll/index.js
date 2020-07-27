@@ -1,6 +1,6 @@
 import YAML from 'yaml';
 
-export const JekyllConfig = class {
+export const JekyllPreset = class {
   constructor() {
     this.id = 'jekyll';
     this.name = 'Jekyll';

@@ -1,11 +1,11 @@
 import test from 'ava';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {postData} from '../../lib/post-data.js';
 
 test.beforeEach(t => {
   t.context = {
     publication: {
-      config: new JekyllConfig().config,
+      config: new JekyllPreset().config,
       me: 'https://website.example',
       posts: {
         get: async key => ({

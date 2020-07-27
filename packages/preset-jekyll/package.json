@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@indiekit/config-jekyll",
+  "name": "@indiekit/preset-jekyll",
   "version": "0.1.0",
-  "description": "Indiekit config for Jekyll-based websites",
+  "description": "Indiekit preset for Jekyll-based websites",
   "keywords": [
     "indieweb",
     "micropub",
@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
-    "directory": "packages/config-jekyll"
+    "directory": "packages/preset-jekyll"
   },
   "dependencies": {
     "yaml": "^1.10.0"

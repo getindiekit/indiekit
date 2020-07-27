@@ -1,20 +1,20 @@
 import test from 'ava';
 import {getFixture} from './helpers/fixture.js';
-import {JekyllConfig} from '../index.js';
+import {JekyllPreset} from '../index.js';
 
 test.beforeEach(t => {
   t.context.properties = JSON.parse(getFixture('properties.jf2.json'));
 });
 
 test('Gets publication config', t => {
-  const jekyllConfig = new JekyllConfig();
-  const result = jekyllConfig.config;
+  const jekyll = new JekyllPreset();
+  const result = jekyll.config;
   t.is(result['post-types'][0].type, 'article');
 });
 
 test('Render post template without content', t => {
-  const jekyllConfig = new JekyllConfig();
-  const result = jekyllConfig.postTemplate({
+  const jekyll = new JekyllPreset();
+  const result = jekyll.postTemplate({
     published: '2020-02-02',
     name: 'I ate a cheese sandwich'
   });
@@ -26,8 +26,8 @@ title: I ate a cheese sandwich
 });
 
 test('Renders post template', t => {
-  const jekyllConfig = new JekyllConfig({frontmatterFormat: 'yaml'});
-  const result = jekyllConfig.postTemplate(t.context.properties);
+  const jekyll = new JekyllPreset({frontmatterFormat: 'yaml'});
+  const result = jekyll.postTemplate(t.context.properties);
   t.is(result, `---
 date: 2020-02-02
 title: I ate a cheese sandwich

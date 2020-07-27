@@ -126,13 +126,13 @@
           "devDependencies": true,
           "packageDir": [
             "./",
-            "./packages/config-jekyll",
             "./packages/endpoint-media",
             "./packages/endpoint-micropub",
             "./packages/endpoint-share",
             "./packages/frontend",
             "./packages/indiekit",
             "./packages/preset-hugo",
+            "./packages/preset-jekyll",
             "./packages/store-github",
             "./packages/store-gitlab"
           ]

@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {JekyllConfig} from '@indiekit/config-jekyll';
+import {JekyllPreset} from '@indiekit/preset-jekyll';
 import {getFixture} from '../helpers/fixture.js';
 import {mockClient} from '../helpers/database.js';
 import {
@@ -18,7 +18,7 @@ test.beforeEach(t => {
       url: 'https://website.example/categories.json'
     },
     config: {
-      preset: new JekyllConfig().config,
+      preset: new JekyllPreset().config,
       'slug-separator': '$'
     }
   };

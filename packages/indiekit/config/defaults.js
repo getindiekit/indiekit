@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {JekyllConfig} from '@indiekit/config-jekyll';
+import {JekyllPreset} from '@indiekit/preset-jekyll';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
@@ -9,7 +9,7 @@ import {authenticate} from '../middleware/authentication.js';
 import {indieauth} from '../middleware/indieauth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const jekyllConfig = new JekyllConfig();
+const jekyll = new JekyllPreset();
 const package_ = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
 const mediaEndpoint = new MediaEndpoint();
@@ -28,7 +28,7 @@ export const defaultConfig = {
     themeColor: '#0000ee',
     repository: package_.repository,
     version: package_.version,
-    configs: [jekyllConfig],
+    configs: [jekyll],
     endpoints: [
       mediaEndpoint,
       micropubEndpoint,

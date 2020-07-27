@@ -1,5 +1,5 @@
 import test from 'ava';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {getConfig} from '../../lib/micropub.js';
 
 test.beforeEach(t => {
@@ -7,7 +7,7 @@ test.beforeEach(t => {
 });
 
 test('Returns queryable publication config', async t => {
-  const {config} = new JekyllConfig();
+  const {config} = new JekyllPreset();
   const result = await getConfig(config);
   t.truthy(result.categories);
   t.falsy(result['slug-separator']);

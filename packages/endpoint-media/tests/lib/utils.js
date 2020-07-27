@@ -1,5 +1,5 @@
 import test from 'ava';
-import {JekyllConfig} from '../../../config-jekyll/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {
   getPermalink,
   getPostTypeConfig,
@@ -9,7 +9,7 @@ import {
 } from '../../lib/utils.js';
 
 test.beforeEach(t => {
-  t.context.config = new JekyllConfig().config;
+  t.context.config = new JekyllPreset().config;
 });
 
 test('Derives a permalink', t => {
