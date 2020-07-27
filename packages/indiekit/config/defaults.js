@@ -28,7 +28,6 @@ export const defaultConfig = {
     themeColor: '#0000ee',
     repository: package_.repository,
     version: package_.version,
-    configs: [jekyll],
     endpoints: [
       mediaEndpoint,
       micropubEndpoint,
@@ -39,6 +38,9 @@ export const defaultConfig = {
       indieauth
     },
     navigationItems: [],
+    presets: [
+      jekyll
+    ],
     routes: [],
     stores: [],
     views: [
@@ -47,10 +49,10 @@ export const defaultConfig = {
   },
   publication: {
     config: {},
-    configPresetId: 'jekyll',
     locale: 'en-GB',
     me: null,
     postTemplate,
+    presetId: 'jekyll',
     storeId: null,
     timezone: 'UTC',
     tokenEndpoint: 'https://tokens.indieauth.com/token'

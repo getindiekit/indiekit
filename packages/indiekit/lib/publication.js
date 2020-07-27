@@ -48,19 +48,6 @@ export const getConfig = (customConfig, presetConfig) => {
 };
 
 /**
- * Get configuration preset for a publication
- *
- * @param {Array} configs All available presets
- * @param {string} configPresetId ID of publication’s chosen preset
- * @returns {object} Configuration preset
- */
-export const getConfigPreset = (configs, configPresetId) => {
-  return configs.find(
-    config => config.id === configPresetId
-  );
-};
-
-/**
  * Get media endpoint from server derived values
  *
  * @param {object} publication Publication settings
@@ -77,6 +64,19 @@ export const getMediaEndpoint = (publication, request) => {
   config['media-endpoint'] = configEndpoint || serverEndpoint;
 
   return config;
+};
+
+/**
+ * Get preset for a publication
+ *
+ * @param {Array} presets All available presets
+ * @param {string} presetId ID of publication’s chosen preset
+ * @returns {object} Configuration preset
+ */
+export const getPreset = (presets, presetId) => {
+  return presets.find(
+    preset => preset.id === presetId
+  );
 };
 
 /**

@@ -6,8 +6,8 @@ import {mockClient} from '../helpers/database.js';
 import {
   getCategories,
   getConfig,
-  getConfigPreset,
   getMediaEndpoint,
+  getPreset,
   getStore
 } from '../../lib/publication.js';
 
@@ -75,15 +75,15 @@ test('Merges values from custom and default configurations', t => {
   });
 });
 
-test('Gets configuration preset for a publication', t => {
-  const configs = [{
+test('Gets preset for a publication', t => {
+  const presets = [{
     id: 'foo',
     name: 'Foo'
   }, {
     id: 'bar',
     name: 'Bar'
   }];
-  const result = getConfigPreset(configs, 'foo');
+  const result = getPreset(presets, 'foo');
   t.is(result.name, 'Foo');
 });
 

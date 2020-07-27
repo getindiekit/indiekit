@@ -6,10 +6,10 @@ import {defaultConfig} from './config/defaults.js';
 import {serverConfig} from './config/server.js';
 import {Log} from './lib/log.js';
 import {
+  getCategories,
   getConfig,
-  getConfigPreset,
-  getStore,
-  getCategories
+  getPreset,
+  getStore
 } from './lib/publication.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -35,16 +35,16 @@ export const Indiekit = class {
     _.set(this._config, key, value);
   }
 
-  addConfig(config) {
-    this.application.configs = this.application.configs.concat(config);
-  }
-
   addEndpoint(endpoint) {
     this.application.endpoints = this.application.endpoints.concat(endpoint);
   }
 
   addNavigation(item) {
     this.application.navigationItems = this.application.navigationItems.concat(item);
+  }
+
+  addPreset(preset) {
+    this.application.presets = this.application.presets.concat(preset);
   }
 
   addRoute(route) {
@@ -60,10 +60,10 @@ export const Indiekit = class {
   }
 
   async init() {
-    const {configs, stores} = this.application;
-    const {config, configPresetId, storeId} = this.publication;
+    const {presets, stores} = this.application;
+    const {config, presetId, storeId} = this.publication;
     const categories = await getCategories(databaseConfig.client, config.categories);
-    const preset = getConfigPreset(configs, configPresetId);
+    const preset = getPreset(presets, presetId);
 
     this.publication.preset = preset;
     this.publication.config = getConfig(config, preset.config);

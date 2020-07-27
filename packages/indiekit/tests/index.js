@@ -1,6 +1,6 @@
 import test from 'ava';
 import {Indiekit} from '../index.js';
-import {FooConfig} from './fixtures/config-preset.js';
+import {Preset} from './fixtures/preset.js';
 
 test('Gets application configuration value', t => {
   const result = new Indiekit();
@@ -9,7 +9,7 @@ test('Gets application configuration value', t => {
 
 test('Gets publication configuration value', t => {
   const result = new Indiekit();
-  t.is(result.publication.configPresetId, 'jekyll');
+  t.is(result.publication.presetId, 'jekyll');
 });
 
 test('Sets configuration value', t => {
@@ -18,16 +18,16 @@ test('Sets configuration value', t => {
   t.is(indiekit.publication.me, 'https://website.example');
 });
 
-test('Adds configuration preset', t => {
+test('Adds preset', t => {
   const preset = {
     id: 'bar',
     name: 'Bar',
     templatesPath: null
   };
   const indiekit = new Indiekit();
-  indiekit.addConfig(preset);
-  const {configs} = indiekit.application;
-  t.true(configs.some(config => config.id === 'bar'));
+  indiekit.addPreset(preset);
+  const {presets} = indiekit.application;
+  t.true(presets.some(preset => preset.id === 'bar'));
 });
 
 test('Adds endpoint', t => {
@@ -54,10 +54,10 @@ test('Adds store', t => {
 });
 
 test('Initiates application', async t => {
-  const fooConfig = new FooConfig();
+  const preset = new Preset();
   const indiekit = new Indiekit();
-  indiekit.addConfig(fooConfig);
-  indiekit.set('publication.configPresetId', 'foo');
+  indiekit.addPreset(preset);
+  indiekit.set('publication.presetId', 'foo');
   indiekit.set('publication.config.categories', ['foo', 'bar']);
   await indiekit.init();
   t.is(indiekit.publication.config['post-types'][0].name, 'Foo note');

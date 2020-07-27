@@ -1,4 +1,4 @@
-export const FooConfig = class {
+export const Preset = class {
   constructor(options = {}) {
     this.id = 'foo';
     this.name = 'Foo';
