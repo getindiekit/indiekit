@@ -27,7 +27,7 @@ const getFrontmatter = (properties, frontmatterFormat) => {
   return `${delimiters[0]}${frontmatter}${delimiters[1]}`;
 };
 
-export const HugoConfig = class {
+export const HugoPreset = class {
   constructor(options = {}) {
     this.id = 'hugo';
     this.name = 'Hugo';

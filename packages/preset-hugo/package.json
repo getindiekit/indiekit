@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@indiekit/config-hugo",
+  "name": "@indiekit/preset-hugo",
   "version": "0.1.0",
   "description": "Indiekit config for Hugo-based websites",
   "keywords": [
@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/paulrobertlloyd/indiekit.git",
-    "directory": "packages/config-hugo"
+    "directory": "packages/preset-hugo"
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",

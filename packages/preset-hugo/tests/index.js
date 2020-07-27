@@ -1,20 +1,20 @@
 import test from 'ava';
 import {getFixture} from './helpers/fixture.js';
-import {HugoConfig} from '../index.js';
+import {HugoPreset} from '../index.js';
 
 test.beforeEach(t => {
   t.context.properties = JSON.parse(getFixture('properties.jf2.json'));
 });
 
 test('Gets publication config', t => {
-  const hugoConfig = new HugoConfig();
-  const result = hugoConfig.config;
+  const hugo = new HugoPreset();
+  const result = hugo.config;
   t.is(result['post-types'][0].type, 'article');
 });
 
 test('Renders post template (defaults to YAML frontmatter)', t => {
-  const hugoConfig = new HugoConfig();
-  const result = hugoConfig.postTemplate({
+  const hugo = new HugoPreset();
+  const result = hugo.postTemplate({
     published: '2020-02-02',
     name: 'I ate a cheese sandwich'
   });
@@ -26,8 +26,8 @@ title: I ate a cheese sandwich
 });
 
 test('Renders post template with JSON frontmatter', t => {
-  const hugoConfig = new HugoConfig({frontmatterFormat: 'json'});
-  const result = hugoConfig.postTemplate(t.context.properties);
+  const hugo = new HugoPreset({frontmatterFormat: 'json'});
+  const result = hugo.postTemplate(t.context.properties);
   t.is(result, `{
   "date": "2020-02-02",
   "title": "I ate a cheese sandwich",
@@ -78,8 +78,8 @@ test('Renders post template with JSON frontmatter', t => {
 });
 
 test('Renders post template with TOML frontmatter', t => {
-  const hugoConfig = new HugoConfig({frontmatterFormat: 'toml'});
-  const result = hugoConfig.postTemplate(t.context.properties);
+  const hugo = new HugoPreset({frontmatterFormat: 'toml'});
+  const result = hugo.postTemplate(t.context.properties);
   t.is(result, `+++
 date = "2020-02-02"
 title = "I ate a cheese sandwich"
@@ -117,8 +117,8 @@ url = "http://website.example/video.mp4"
 });
 
 test('Renders post template with YAML frontmatter', t => {
-  const hugoConfig = new HugoConfig({frontmatterFormat: 'yaml'});
-  const result = hugoConfig.postTemplate(t.context.properties);
+  const hugo = new HugoPreset({frontmatterFormat: 'yaml'});
+  const result = hugo.postTemplate(t.context.properties);
   t.is(result, `---
 date: 2020-02-02
 title: I ate a cheese sandwich

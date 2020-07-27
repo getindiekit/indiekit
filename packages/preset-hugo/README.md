@@ -1,17 +1,17 @@
-# @indiekit/config-hugo
+# @indiekit/preset-hugo
 
-Indiekit config for Hugo-based websites.
+Indiekit preset for Hugo-based websites.
 
 ## Installation
 
-`npm i @indiekit/config-hugo`
+`npm i @indiekit/preset-hugo`
 
 ## Configuration
 
 ```js
-const HugoConfig = require('@indiekit/config-hugo');
+const HugoPreset = require('@indiekit/preset-hugo');
 
-const hugo = new HugoConfig({
+const hugo = new HugoPreset({
   // config options here
 });
 ```
