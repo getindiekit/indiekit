@@ -123,11 +123,13 @@ export const JekyllPreset = class {
    * @returns {string} Rendered template
    */
   postTemplate(properties) {
-    const content = properties.content ?
-      `${properties.content.html}\n` ||
-      `${properties.content.text}\n` |
-      `${properties.content}\n` :
-      '';
+    let content;
+    if (properties.content) {
+      content = properties.content.html || properties.content;
+      content = `${content}\n`;
+    } else {
+      content = '';
+    }
 
     properties = {
       date: properties.published,

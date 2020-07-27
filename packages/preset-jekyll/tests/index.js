@@ -12,16 +12,31 @@ test('Gets publication config', t => {
   t.is(result['post-types'][0].type, 'article');
 });
 
-test('Render post template without content', t => {
+test('Renders post template without content', t => {
   const jekyll = new JekyllPreset();
   const result = jekyll.postTemplate({
     published: '2020-02-02',
-    name: 'I ate a cheese sandwich'
+    name: 'Lunchtime'
   });
   t.is(result, `---
 date: 2020-02-02
-title: I ate a cheese sandwich
+title: Lunchtime
 ---
+`);
+});
+
+test('Renders post template with plaintext content', t => {
+  const jekyll = new JekyllPreset();
+  const result = jekyll.postTemplate({
+    published: '2020-02-02',
+    name: 'Lunchtime',
+    content: 'I ate a cheese sandwich, which was nice.'
+  });
+  t.is(result, `---
+date: 2020-02-02
+title: Lunchtime
+---
+I ate a cheese sandwich, which was nice.
 `);
 });
 
@@ -30,7 +45,7 @@ test('Renders post template', t => {
   const result = jekyll.postTemplate(t.context.properties);
   t.is(result, `---
 date: 2020-02-02
-title: I ate a cheese sandwich
+title: Lunchtime
 excerpt: What I ate.
 category:
   - foo

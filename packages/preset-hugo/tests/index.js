@@ -12,16 +12,31 @@ test('Gets publication config', t => {
   t.is(result['post-types'][0].type, 'article');
 });
 
-test('Renders post template (defaults to YAML frontmatter)', t => {
+test('Renders post template without content', t => {
   const hugo = new HugoPreset();
   const result = hugo.postTemplate({
     published: '2020-02-02',
-    name: 'I ate a cheese sandwich'
+    name: 'Lunchtime'
   });
   t.is(result, `---
 date: 2020-02-02
-title: I ate a cheese sandwich
+title: Lunchtime
 ---
+`);
+});
+
+test('Renders post template with plaintext content', t => {
+  const hugo = new HugoPreset();
+  const result = hugo.postTemplate({
+    published: '2020-02-02',
+    name: 'Lunchtime',
+    content: 'I ate a cheese sandwich, which was nice.'
+  });
+  t.is(result, `---
+date: 2020-02-02
+title: Lunchtime
+---
+I ate a cheese sandwich, which was nice.
 `);
 });
 
@@ -30,7 +45,7 @@ test('Renders post template with JSON frontmatter', t => {
   const result = hugo.postTemplate(t.context.properties);
   t.is(result, `{
   "date": "2020-02-02",
-  "title": "I ate a cheese sandwich",
+  "title": "Lunchtime",
   "summary": "What I ate.",
   "category": [
     "foo",
@@ -82,7 +97,7 @@ test('Renders post template with TOML frontmatter', t => {
   const result = hugo.postTemplate(t.context.properties);
   t.is(result, `+++
 date = "2020-02-02"
-title = "I ate a cheese sandwich"
+title = "Lunchtime"
 summary = "What I ate."
 category = [ "foo", "bar" ]
 start = "2020-02-02"
@@ -121,7 +136,7 @@ test('Renders post template with YAML frontmatter', t => {
   const result = hugo.postTemplate(t.context.properties);
   t.is(result, `---
 date: 2020-02-02
-title: I ate a cheese sandwich
+title: Lunchtime
 summary: What I ate.
 category:
   - foo
