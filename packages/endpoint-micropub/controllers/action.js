@@ -23,16 +23,17 @@ export const actionController = publication => {
     try {
       checkScope(scope, action);
 
-      // Create and normalise Microformats2 data
-      // TODO: Attached photos don’t appear with correct alt text
-      let mf2 = request.is('json') ? body : formEncodedToMf2(body);
-      mf2 = files ? await uploadMedia(publication, mf2, files) : mf2;
-      mf2 = getMf2(publication, mf2);
-
+      let mf2;
       let data;
       let published;
       switch (action) {
         case 'create':
+          // Create and normalise Microformats2 data
+          // TODO: Attached photos don’t appear with correct alt text
+          mf2 = request.is('json') ? body : formEncodedToMf2(body);
+          mf2 = files ? await uploadMedia(publication, mf2, files) : mf2;
+          mf2 = getMf2(publication, mf2);
+
           data = await postData.create(publication, mf2);
           published = await post.create(publication, data);
           break;

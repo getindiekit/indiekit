@@ -1,12 +1,12 @@
 import got from 'got';
 import parser from 'microformats-parser';
 import slugify from '@sindresorhus/slugify';
+import {reservedProperties} from './reserved-properties.js';
 import {
   decodeQueryParameter,
   excerptString,
   randomString
 } from './utils.js';
-import {reservedProperties} from './micropub.js';
 
 /**
  * Create Microformats2 object from form-encoded request

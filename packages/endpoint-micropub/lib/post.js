@@ -1,4 +1,3 @@
-import {mf2tojf2} from '@paulrobertlloyd/mf2tojf2';
 import {supplant} from './utils.js';
 
 export const post = {
@@ -11,12 +10,11 @@ export const post = {
    */
   create: async (publication, postData) => {
     const {posts, store} = publication;
-    const jf2 = mf2tojf2({items: [postData.mf2]});
-    const content = publication.postTemplate(jf2);
+    const content = publication.postTemplate(postData.jf2);
     const message = supplant(store.messageFormat, {
       action: 'create',
       fileType: 'post',
-      postType: postData.type
+      postType: postData.jf2['post-type']
     });
     const published = await store.createFile(postData.path, content, message);
 
@@ -44,11 +42,11 @@ export const post = {
    */
   update: async (publication, postData, url) => {
     const {posts, store} = publication;
-    const content = publication.postTemplate(postData.mf2.properties);
+    const content = publication.postTemplate(postData.jf2);
     const message = supplant(store.messageFormat, {
       action: 'update',
       fileType: 'post',
-      postType: postData.type
+      postType: postData.jf2['post-type']
     });
     const published = await store.updateFile(postData.path, content, message);
 
@@ -81,7 +79,7 @@ export const post = {
     const message = supplant(store.messageFormat, {
       action: 'delete',
       fileType: 'post',
-      postType: postData.type
+      postType: postData.jf2['post-type']
     });
     const published = await store.deleteFile(postData.path, message);
 
@@ -113,11 +111,11 @@ export const post = {
       throw new Error('Post was not previously deleted');
     }
 
-    const content = publication.postTemplate(postData.mf2.properties);
+    const content = publication.postTemplate(postData.jf2);
     const message = supplant(store.messageFormat, {
       action: 'undelete',
       fileType: 'post',
-      postType: postData.type
+      postType: postData.jf2['post-type']
     });
     const published = await store.createFile(postData.path, content, message);
 

@@ -1,6 +1,6 @@
 import test from 'ava';
 import {JekyllPreset} from '../../../preset-jekyll/index.js';
-import {getConfig} from '../../lib/micropub.js';
+import {getConfig} from '../../lib/config.js';
 
 test.beforeEach(t => {
   t.context.url = 'https://website.example';

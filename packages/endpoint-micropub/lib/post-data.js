@@ -1,9 +1,7 @@
 import getPostType from 'post-type-discovery';
+import {mf2tojf2} from '@paulrobertlloyd/mf2tojf2';
+import * as update from './update.js';
 import {
-  addProperties,
-  deleteEntries,
-  deleteProperties,
-  replaceEntries,
   renderPath,
   getPermalink,
   getPostTypeConfig
@@ -14,7 +12,7 @@ export const postData = {
    * Create post data
    *
    * @param {object} publication Publication configuration
-   * @param {object} mf2 Microformats 2
+   * @param {object} mf2 microformats2
    * @returns {object} Post data
    */
   create: async (publication, mf2) => {
@@ -24,23 +22,18 @@ export const postData = {
       throw new Error('Unable to create post without microformats data');
     }
 
-    // Post type
-    const type = getPostType(mf2);
-    const typeConfig = getPostTypeConfig(type, config);
-
-    // Post properties
-    const {properties} = mf2;
+    // Serialize post as JF2
+    const jf2 = mf2tojf2({items: [mf2]});
+    jf2['post-type'] = getPostType(mf2);
 
     // Post paths
-    const path = renderPath(typeConfig.post.path, properties);
-    let url = renderPath(typeConfig.post.url, properties);
-    url = getPermalink(me, url);
-
-    // Add computed URL to post properties
-    mf2.properties.url = [url];
+    const typeConfig = getPostTypeConfig(jf2['post-type'], config);
+    const path = renderPath(typeConfig.post.path, jf2);
+    const url = renderPath(typeConfig.post.url, jf2);
+    jf2.url = getPermalink(me, url);
 
     // Post data
-    const postData = {type, path, url, mf2};
+    const postData = {path, url: jf2.url, jf2};
     return postData;
   },
 
@@ -66,53 +59,35 @@ export const postData = {
    */
   update: async (publication, url, operation) => {
     const {config, me, posts} = publication;
-    const postData = await posts.get(url);
-
-    // Post type
-    const {type} = postData;
-    const typeConfig = getPostTypeConfig(type, config);
-
-    // Post properties
-    let {properties} = postData.mf2;
+    let {jf2} = await posts.get(url);
 
     // Add properties
     if (operation.add) {
-      properties = addProperties(properties, operation.add);
+      jf2 = update.addProperties(jf2, operation.add);
     }
 
     // Replace property entries
     if (operation.replace) {
-      properties = replaceEntries(properties, operation.replace);
+      jf2 = update.replaceEntries(jf2, operation.replace);
     }
 
     // Remove properties and/or property entries
     if (operation.delete) {
       if (Array.isArray(operation.delete)) {
-        properties = deleteProperties(properties, operation.delete);
+        jf2 = update.deleteProperties(jf2, operation.delete);
       } else {
-        properties = deleteEntries(properties, operation.delete);
+        jf2 = update.deleteEntries(jf2, operation.delete);
       }
     }
 
     // Post paths
-    const path = renderPath(typeConfig.post.path, properties);
-    let updatedUrl = renderPath(typeConfig.post.url, properties);
-    updatedUrl = getPermalink(me, updatedUrl);
-
-    // Add computed URL to post properties
-    properties.url = [updatedUrl];
+    const typeConfig = getPostTypeConfig(jf2['post-type'], config);
+    const path = renderPath(typeConfig.post.path, jf2);
+    const updatedUrl = renderPath(typeConfig.post.url, jf2);
+    jf2.url = getPermalink(me, updatedUrl);
 
     // Return post data
-    const updatedPostData = {
-      type,
-      path,
-      url,
-      mf2: {
-        type: (type === 'event') ? ['h-event'] : ['h-entry'],
-        properties
-      }
-    };
-
+    const updatedPostData = {path, url: jf2.url, jf2};
     return updatedPostData;
   }
 };

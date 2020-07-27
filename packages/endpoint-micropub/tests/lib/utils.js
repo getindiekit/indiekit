@@ -7,24 +7,8 @@ import {
   getPostTypeConfig,
   randomString,
   renderPath,
-  supplant,
-  addProperties,
-  deleteEntries,
-  deleteProperties,
-  replaceEntries
+  supplant
 } from '../../lib/utils.js';
-
-test.beforeEach(t => {
-  t.context = {
-    config: new JekyllPreset().config,
-    properties: {
-      content: ['hello world'],
-      published: ['2019-08-17T23:56:38.977+01:00'],
-      category: ['foo', 'bar'],
-      slug: ['baz']
-    }
-  };
-});
 
 test('Decodes form-encoded query parameter', t => {
   const result = decodeQueryParameter('https%3A%2F%2Ffoo.bar');
@@ -45,7 +29,8 @@ test('Derives a permalink', t => {
 });
 
 test('Get post type configuration for a given type', t => {
-  const result = getPostTypeConfig('note', t.context.config);
+  const {config} = new JekyllPreset();
+  const result = getPostTypeConfig('note', config);
   t.is(result.name, 'Note');
 });
 
@@ -72,67 +57,5 @@ test('Substitutes variables enclosed in { } braces with data from object', t => 
     number: 1
   };
   const result = supplant(string, object);
-  t.is(result, 'Array string 1');
-});
-
-test('Add properties to object', t => {
-  const additions = {
-    syndication: ['http://website.example']
-  };
-  const result = addProperties(t.context.properties, additions);
-  t.deepEqual(result.syndication, ['http://website.example']);
-});
-
-test('Add properties to existing object', t => {
-  const additions = {
-    category: ['baz']
-  };
-  const result = addProperties(t.context.properties, additions);
-  t.deepEqual(result.category, ['foo', 'bar', 'baz']);
-});
-
-test('Delete individual entries for properties of an object', t => {
-  const deletions = {
-    category: ['foo']
-  };
-  const result = deleteEntries(t.context.properties, deletions);
-  t.deepEqual(result.category, ['bar']);
-});
-
-test('Delete individual entries for properties of an object (removing property if last entry removed)', t => {
-  const deletions = {
-    category: ['foo', 'bar']
-  };
-  const result = deleteEntries(t.context.properties, deletions);
-  t.falsy(result.category);
-});
-
-test('Delete individual entries for properties of an object (ignores properties that don’t exist)', t => {
-  const deletions = {
-    tags: ['foo', 'bar']
-  };
-  const result = deleteEntries(t.context.properties, deletions);
-  t.falsy(result.tags);
-});
-
-test('Throws error if requested deletion is not an array', t => {
-  const deletions = {
-    category: 'foo'
-  };
-  const error = t.throws(() => deleteEntries(t.context.properties, deletions));
-  t.is(error.message, 'category should be an array');
-});
-
-test('Delete properties of an object', t => {
-  const deletions = ['category'];
-  const result = deleteProperties(t.context.properties, deletions);
-  t.falsy(result.category);
-});
-
-test('Replace entries of a property', t => {
-  const replacements = {
-    content: ['hello moon']
-  };
-  const result = replaceEntries(t.context.properties, replacements);
-  t.deepEqual(result.content, ['hello moon']);
+  t.is(result, '{array} string 1');
 });

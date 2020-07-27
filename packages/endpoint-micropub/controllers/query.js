@@ -1,6 +1,6 @@
 import httpError from 'http-errors';
 import {url2Mf2, mf2Properties} from '../lib/microformats.js';
-import {getConfig} from '../lib/micropub.js';
+import {getConfig} from '../lib/config.js';
 
 export const queryController = publication => {
   /**
@@ -40,7 +40,7 @@ export const queryController = publication => {
           }
 
           // Return microformats for previously published posts
-          const items = await publication.posts.selectFromAll('mf2');
+          const items = await publication.posts.selectFromAll('jf2');
           return response.json({items});
         }
 

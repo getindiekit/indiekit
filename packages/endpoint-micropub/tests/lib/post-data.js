@@ -9,16 +9,14 @@ test.beforeEach(t => {
       me: 'https://website.example',
       posts: {
         get: async key => ({
-          type: 'note',
           path: 'foo',
           url: key,
-          mf2: {
-            properties: {
-              content: ['hello world'],
-              published: ['2019-08-17T23:56:38.977+01:00'],
-              category: ['foo', 'bar'],
-              slug: ['baz']
-            }
+          jf2: {
+            content: 'hello world',
+            published: '2019-08-17T23:56:38.977+01:00',
+            category: ['foo', 'bar'],
+            slug: 'baz',
+            'post-type': 'note'
           }
         })
       }
@@ -29,19 +27,19 @@ test.beforeEach(t => {
 
 test('Creates post data', async t => {
   const mf2 = {
-    type: 'h-entry',
+    type: ['h-entry'],
     properties: {
       published: ['2020-07-26T20:10:57.062Z'],
-      name: ['foo'],
+      name: ['Foo'],
       slug: ['foo']
     }
   };
   const result = await postData.create(t.context.publication, mf2);
-  t.log(result);
-  t.is(result.type, 'note');
-  t.truthy(result.mf2.properties.published[0]);
-  t.is(result.mf2.properties.slug[0], 'foo');
-  t.truthy(result.mf2.properties);
+  t.truthy(result.jf2.published);
+  t.is(result.jf2.type, 'entry');
+  t.is(result.jf2.slug, 'foo');
+  t.is(result.jf2.url, 'https://website.example/notes/2020/07/26/foo');
+  t.is(result.jf2['post-type'], 'note');
 });
 
 test('Throws error creating post data without microformats data', async t => {
@@ -53,7 +51,7 @@ test('Throws error creating post data without microformats data', async t => {
 
 test('Reads post data', async t => {
   const result = await postData.read(t.context.publication, t.context.url);
-  t.is(result.type, 'note');
+  t.is(result.jf2['post-type'], 'note');
 });
 
 test('Throws error reading post data', async t => {
@@ -66,25 +64,25 @@ test('Throws error reading post data', async t => {
 test('Updates post by adding properties', async t => {
   const operation = {add: {syndication: ['http://website.example']}};
   const result = await postData.update(t.context.publication, t.context.url, operation);
-  t.truthy(result.mf2.properties.syndication);
+  t.truthy(result.jf2.syndication);
 });
 
 test('Updates post by replacing properties', async t => {
   const operation = {replace: {content: ['hello moon']}};
   const result = await postData.update(t.context.publication, t.context.url, operation);
-  t.is(result.mf2.properties.content[0], 'hello moon');
+  t.is(result.jf2.content, 'hello moon');
 });
 
 test('Updates post by deleting entries', async t => {
   const operation = {delete: {category: ['foo']}};
   const result = await postData.update(t.context.publication, t.context.url, operation);
-  t.is(result.mf2.properties.category[0], 'bar');
+  t.deepEqual(result.jf2.category, ['bar']);
 });
 
 test('Updates post by deleting properties', async t => {
   const operation = {delete: ['category']};
   const result = await postData.update(t.context.publication, t.context.url, operation);
-  t.falsy(result.mf2.properties.category);
+  t.falsy(result.jf2.category);
 });
 
 test('Throws error updating post data', async t => {
