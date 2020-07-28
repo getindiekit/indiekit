@@ -21,6 +21,9 @@ export const locals = indiekitConfig => {
       publication.config = getMediaEndpoint(publication, request);
       response.locals.publication = publication;
 
+      // Session
+      response.locals.session = request.session;
+
       next();
     } catch (error) {
       next(error);

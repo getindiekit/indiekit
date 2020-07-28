@@ -27,7 +27,7 @@ export const shareController = publication => ({
 
       const success = endpointResponse.body;
       if (success) {
-        const message = encodeURIComponent(success.description);
+        const message = encodeURIComponent(success.success_description);
         response.redirect(`?success=${message}`);
       }
     } catch (error) {
