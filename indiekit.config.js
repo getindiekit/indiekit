@@ -16,6 +16,9 @@ const githubStore = new GithubStore({
 // Register extensions
 indiekit.addStore(githubStore);
 
+// Application settings
+indiekit.set('application.locale', 'en-GB');
+
 // Publication settings
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
 indiekit.set('publication.storeId', 'github');

@@ -1,5 +1,6 @@
 import Color from 'color';
 import dateFns from 'date-fns';
+import locales from 'date-fns/locale/index.js';
 import markdownIt from '../markdown-it.js';
 
 const {format, parseISO} = dateFns;
@@ -33,11 +34,13 @@ export const lighten = (string, value) => {
  *
  * @param {string} string ISO 8601 date
  * @param {string} tokens Tokenised date format
+ * @param {string} locale ISO 639-1 (plus optional country code)
  * @returns {string} Formatted date
  */
-export const date = (string, tokens) => {
+export const date = (string, tokens, locale = 'en') => {
+  locale = locales[locale.replace('-', '')];
   const date = (string === 'now') ? new Date() : parseISO(string);
-  const datetime = format(date, tokens);
+  const datetime = format(date, tokens, {locale});
   return datetime;
 };
 

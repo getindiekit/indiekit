@@ -22,7 +22,7 @@
           text: "Published"
         },
         value: {
-          text: (post.properties.published | date('DDDD')) + " at " + (post.properties.published | date('t'))
+          text: (post.properties.published | date("PPPppp", application.locale))
         }
       } if post.properties.published, {
         key: {

@@ -17,7 +17,7 @@ export const notFound = (request, response, next) => {
 export const internalServer = (error, request, response, next) => { // eslint-disable-line no-unused-vars
   response.status(error.status || 500);
 
-  if (request.accepts('json')) {
+  if (request.accepts('json') && error.json) {
     response.json(error.json);
   } else {
     response.send(error.message);

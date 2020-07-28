@@ -9,7 +9,7 @@
     <output for="{{ opts.url.for }}">{{ opts.url.value }}</output>
   </p>
   <p class="preview__date">
-    <date>{{ opts.date | date("fff") }}</date>
+    <date>{{ opts.date | date("PPPppp", opts.locale) }}</date>
   </p>
 </div>
 <script>
