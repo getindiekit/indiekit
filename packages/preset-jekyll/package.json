@@ -22,11 +22,11 @@
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/paulrobertlloyd/indiekit/issues"
+    "url": "https://github.com/getindiekit/indiekit/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/paulrobertlloyd/indiekit.git",
+    "url": "https://github.com/getindiekit/indiekit.git",
     "directory": "packages/preset-jekyll"
   },
   "dependencies": {
