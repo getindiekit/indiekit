@@ -2,19 +2,20 @@
 
 {% block fieldset %}
   {% for post in posts %}
-    {%- set propertiesHtml %}<dl>{% for name, value in post.properties -%}
+    {%- set propertiesHtml %}<dl>{% for name, value in post -%}
     {% if (name != "name") and (name != "url") and (name != "content") and (name != "published") %}
       <dt><code class="property">{{ name }}</code></dt>
       <dd>{{ value }}</dd>
     {% endif %}
     {%- endfor %}</dl>{% endset -%}
+    {%- set name %}{{ icon(post["post-type"]) }} {{ post.name }}{% endset -%}
     {{ summary({
-      title: post.properties.name,
+      title: name,
       actions: [
         {
-          href: post.properties.url,
+          href: post.url,
           text: "View",
-          visuallyHiddenText: post.properties.name
+          visuallyHiddenText: post.name
         }
       ],
       rows: [{
@@ -22,30 +23,23 @@
           text: "Published"
         },
         value: {
-          text: (post.properties.published | date("PPPppp", application.locale))
+          text: (post.published | date("PPPp", application.locale))
         }
-      } if post.properties.published, {
+      } if post.published, {
         key: {
           text: "Content"
         },
         value: {
-          text: post.properties.content | string | markdown
+          text: post.content | string | markdown
         }
-      } if post.properties.content, {
+      } if post.content, {
         key: {
           text: "Properties"
         },
         value: {
           text: propertiesHtml
         }
-      }, {
-        key: {
-          text: "Type"
-        },
-        value: {
-          text: "<code>" + post.type + "</code>"
-        }
-      } if post.type]
+      }]
     }) }}
   {% endfor %}
 {% endblock %}
