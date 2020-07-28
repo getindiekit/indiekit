@@ -5,8 +5,7 @@
     "indieweb",
     "micropub"
   ],
-  "website": "https://paulrobertlloyd.github.io/indiekit/",
-  "repository": "https://github.com/paulrobertlloyd/indiekit-redux",
+  "repository": "https://github.com/getindiekit/indiekit",
   "success_url": "/",
   "env": {
     "GITHUB_TOKEN": {
