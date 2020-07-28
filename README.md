@@ -1,6 +1,6 @@
-# Indiekit (reimagined)
+# Indiekit
 
-[![Build status](https://github.com/paulrobertlloyd/indiekit-redux/workflows/build/badge.svg)](https://github.com/paulrobertlloyd/indiekit-redux/actions)
+[![Build status](https://github.com/getindiekit/indiekit/workflows/build/badge.svg)](https://github.com/getindiekit/indiekit/actions)
 
 :warning: **In development, not ready for use**
 
@@ -16,7 +16,7 @@ Indiekit is easy to set up, and can be configured to work with different static 
 
 The easiest way to get started is to deploy this application to Heroku. Clicking the button below will guide you through the process.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/paulrobertlloyd/indiekit-redux/tree/main)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/getindiekit/indiekit/tree/main)
 
 ## Local development
 
