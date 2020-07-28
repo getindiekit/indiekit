@@ -17,7 +17,7 @@ export const shareController = publication => ({
   save: async (request, response, next) => {
     const {content, name, url} = request.body;
     const host = `${request.protocol}://${request.headers.host}`;
-    const path = publication['micropub-endpoint'];
+    const path = publication.micropubEndpoint;
 
     try {
       const endpointResponse = await got.post(`${host}${path}`, {
@@ -32,13 +32,12 @@ export const shareController = publication => ({
       }
     } catch (error) {
       if (error.response) {
-        const {response} = error;
         response.render('share', {
           title: 'Share',
           content,
           name,
           url,
-          error: response.body,
+          error: error.response.body.error_description,
           minimalui: (request.params.path === 'bookmarklet')
         });
       } else {
