@@ -8,16 +8,9 @@
       <dd>{{ value }}</dd>
     {% endif %}
     {%- endfor %}</dl>{% endset -%}
-    {%- set name %}{{ icon(post["post-type"]) }} {{ post.name }}{% endset -%}
+    {%- set name %}<a href="{{ post.url }}">{{ icon(post["post-type"]) }} {{ post.name }}</a>{% endset -%}
     {{ summary({
       title: name,
-      actions: [
-        {
-          href: post.url,
-          text: "View",
-          visuallyHiddenText: post.name
-        }
-      ],
       rows: [{
         key: {
           text: "Published"
