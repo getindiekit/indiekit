@@ -4,7 +4,9 @@
 
 :warning: **In development, not ready for use**
 
-Indiekit is a small but powerful server that acts as your go between your website and the wider independent web. Using IndieWeb protocols and standards, Indiekit lets you:
+<img src="https://avatars.githubusercontent.com/u/68553280?s=200" width="100" height="100" align="right" alt="">
+
+Indiekit is a small but powerful server that acts as a go-between your website and the wider independent web. Using IndieWeb protocols and standards, Indiekit lets you:
 
 * publish content to your website using applications like iAWriter, Micro.blog, Icro and Indigenous (and any other tools that supports Micropub)
 * ~~accept likes, comments and other feedback on your content (using Webmention)~~
@@ -38,7 +40,7 @@ The following environment variables need to be set before running tests:
 * `TEST_BEARER_TOKEN`
 * `TEST_BEARER_TOKEN_NOSCOPE`
 
-`TEST_BEARER_TOKEN` and `TEST_BEARER_TOKEN_NOSCOPE` provide IndieAuth access tokens whose `me` value matches that set it `TEST_PUBLICATION_URL`.`TEST_BEARER_TOKEN` should provide `create update delete` scope permissions, whereas `TEST_BEARER_TOKEN_NOSCOPE` should provide no scope permissions at all.
+`TEST_BEARER_TOKEN` and `TEST_BEARER_TOKEN_NOSCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.`TEST_BEARER_TOKEN` should provide permissions scoped to `create update delete`, whereas `TEST_BEARER_TOKEN_NOSCOPE` should provide no permissions at all.
 
 [Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating access tokens for this purpose.
 
