@@ -22,6 +22,7 @@ export const randomString = () => {
  * @returns {string} Path
  */
 export const renderPath = (path, properties) => {
+  let tokens = {};
   const dateObject = new Date(properties.uploaded);
   const dateTokens = [
     'y', // Calendar year, eg 2020
@@ -48,17 +49,18 @@ export const renderPath = (path, properties) => {
   ];
 
   // Add date tokens to properties object
-  dateTokens.forEach(token => {
-    properties[token] = format(dateObject, token, {
+  dateTokens.forEach(dateToken => {
+    tokens[dateToken] = format(dateObject, dateToken, {
       useAdditionalDayOfYearTokens: true
     });
   });
 
   // Add day of the year (NewBase60) to properties object
-  properties.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
+  tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
   // Populate URI template path with properties
-  path = supplant(path, properties);
+  tokens = {...tokens, ...properties};
+  path = supplant(path, tokens);
 
   return path;
 };
