@@ -1,6 +1,8 @@
 export const getNavigation = (application, token) => {
+  const language = application.locale.split('-')[0];
+
   let navigation = [{
-    href: `/docs/${application.locale}`,
+    href: `/docs/${language}`,
     text: 'Docs'
   }, (token ? {
     href: '/session/logout',
