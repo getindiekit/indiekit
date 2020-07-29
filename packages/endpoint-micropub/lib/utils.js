@@ -1,6 +1,7 @@
 import dateFns from 'date-fns';
 import path from 'path';
 import newbase60 from 'newbase60';
+import slugify from '@sindresorhus/slugify';
 
 const {format} = dateFns;
 
@@ -17,17 +18,39 @@ export const decodeQueryParameter = string => {
 };
 
 /**
- * Excerpt first n words from a string
+ * Excerpt the first n words from a string
  *
  * @param {string} string String to excerpt
  * @param {number} n Max number of words
  * @returns {string} Excerpt
- * @example excerpt('Foo bar baz', 2) => 'Foo bar'
+ * @example excerptString('Foo bar baz', 2) => 'Foo bar'
  */
 export const excerptString = (string, n) => {
   if (typeof string === 'string') {
-    string = string.split(/\s+/).slice(0, n).join(' ');
-    return string;
+    const excerpt = string.split(/\s+/).slice(0, n).join(' ');
+    return excerpt;
+  }
+};
+
+/**
+ * Slugify a string
+ *
+ * @param {string} string String to excerpt
+ * @param {number} separator Character used to separate words
+ * @returns {string} Slugified string
+ * @example slugifyString('Foo bar baz', '_') => 'foo_bar_baz'
+ */
+export const slugifyString = (string, separator = '-') => {
+  if (typeof string === 'string') {
+    const slug = slugify(string, {
+      customReplacements: [
+        ['\'', ''],
+        ['’', '']
+      ],
+      decamelize: false,
+      separator
+    });
+    return slug;
   }
 };
 

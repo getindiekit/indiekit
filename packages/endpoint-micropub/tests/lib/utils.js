@@ -3,6 +3,7 @@ import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {
   decodeQueryParameter,
   excerptString,
+  slugifyString,
   getPermalink,
   getPostTypeConfig,
   randomString,
@@ -15,10 +16,16 @@ test('Decodes form-encoded query parameter', t => {
   t.is(result, 'https://foo.bar');
 });
 
-test('Excerpts first n words from a string', t => {
+test('Excerpts the first n words from a string', t => {
   const string = 'The quick fox jumped over the lazy fox';
   const result = excerptString(string, 5);
   t.is(result, 'The quick fox jumped over');
+});
+
+test('Slugifies a string', t => {
+  t.is(slugifyString('Foo bar baz', '_'), 'foo_bar_baz');
+  t.is(slugifyString('McLaren\'s Lando Norris'), 'mclarens-lando-norris');
+  t.is(slugifyString('McLaren’s Lando Norris'), 'mclarens-lando-norris');
 });
 
 test('Derives a permalink', t => {

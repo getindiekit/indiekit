@@ -1,10 +1,10 @@
 import got from 'got';
 import parser from 'microformats-parser';
-import slugify from '@sindresorhus/slugify';
 import {reservedProperties} from './reserved-properties.js';
 import {
   decodeQueryParameter,
   excerptString,
+  slugifyString,
   randomString
 } from './utils.js';
 
@@ -207,10 +207,7 @@ export const getSlugProperty = (mf2, separator) => {
   const {name} = mf2.properties;
   if (name && name[0] !== '') {
     const excerptName = excerptString(name[0], 5);
-    const nameSlug = slugify(excerptName, {
-      replacement: separator,
-      lower: true
-    });
+    const nameSlug = slugifyString(excerptName, separator);
 
     return new Array(nameSlug);
   }
