@@ -6,6 +6,7 @@
     "micropub"
   ],
   "repository": "https://github.com/getindiekit/indiekit",
+  "logo": "https://avatars.githubusercontent.com/u/68553280?s=120",
   "success_url": "/",
   "env": {
     "GITHUB_TOKEN": {
