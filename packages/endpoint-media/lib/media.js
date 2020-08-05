@@ -14,7 +14,7 @@ export const media = {
     const message = supplant(store.messageFormat, {
       action: 'upload',
       fileType: 'media',
-      postType: mediaData.type
+      postType: mediaData.properties['post-type']
     });
     const uploaded = await store.createFile(mediaData.path, file.buffer, message);
 

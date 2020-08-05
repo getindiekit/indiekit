@@ -35,6 +35,7 @@ export const mediaData = {
 
       // Media properties
       const properties = await getFileProperties(file);
+      properties['post-type'] = type;
 
       // Media paths
       const path = renderPath(typeConfig.media.path, properties);
@@ -42,7 +43,7 @@ export const mediaData = {
       url = getPermalink(me, url);
 
       // Media data
-      const mediaData = {type, path, url, properties};
+      const mediaData = {path, url, properties};
       return mediaData;
     } catch (error) {
       throw new HttpError(400, error.message, {
