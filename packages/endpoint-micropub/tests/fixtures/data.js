@@ -1,8 +1,10 @@
 export const postData = {
+  date: new Date(),
+  lastAction: 'create',
   path: 'foo.md',
-  url: 'https://website.example/foo',
   properties: {
     name: 'note',
     'post-type': 'note'
-  }
+  },
+  url: 'https://website.example/foo'
 };

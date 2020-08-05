@@ -19,6 +19,7 @@ export const post = {
     const published = await store.createFile(postData.path, content, message);
 
     if (published) {
+      postData.date = new Date();
       postData.lastAction = 'create';
       await posts.set(postData.url, postData);
       return {
@@ -51,6 +52,7 @@ export const post = {
     const published = await store.updateFile(postData.path, content, message);
 
     if (published) {
+      postData.date = new Date();
       postData.lastAction = 'update';
       await posts.set(postData.url, postData);
       const hasUpdatedUrl = (url !== postData.url);
@@ -84,6 +86,7 @@ export const post = {
     const published = await store.deleteFile(postData.path, message);
 
     if (published) {
+      postData.date = new Date();
       postData.lastAction = 'delete';
       await posts.set(postData.url, postData);
 
@@ -120,6 +123,7 @@ export const post = {
     const published = await store.createFile(postData.path, content, message);
 
     if (published) {
+      postData.date = new Date();
       postData.lastAction = 'undelete';
       await posts.set(postData.url, postData);
 
