@@ -7,141 +7,98 @@ import {
 } from '../../lib/update.js';
 
 test.beforeEach(t => {
-  t.context.jf2 = {
-    content: 'hello world',
-    published: '2019-08-17T23:56:38.977+01:00',
+  t.context.properties = {
+    content: ['hello world'],
+    published: ['2019-08-17T23:56:38.977+01:00'],
     category: ['foo', 'bar'],
-    slug: 'baz'
+    slug: ['baz']
   };
 });
 
-test('Adds property', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime'
-  };
-  const result = addProperties(jf2, {
+test('Add properties to object', t => {
+  const additions = {
     syndication: ['http://website.example']
-  });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime',
-    syndication: 'http://website.example'
-  });
+  };
+  const result = addProperties(t.context.properties, additions);
+  t.deepEqual(result.syndication, ['http://website.example']);
 });
 
-test('Adds value to existing property', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime',
-    category: 'foo'
+test('Add properties to existing object', t => {
+  const additions = {
+    category: ['baz']
   };
-  const result = addProperties(jf2, {
-    category: ['bar']
-  });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime',
-    category: ['foo', 'bar']
-  });
+  const result = addProperties(t.context.properties, additions);
+  t.deepEqual(result.category, ['foo', 'bar', 'baz']);
 });
 
 test('Deletes individual entries for properties of an object', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime',
+  const properties = {
+    name: ['Lunchtime'],
     category: ['foo', 'bar']
   };
-  const result = deleteEntries(jf2, {
+  const result = deleteEntries(properties, {
     category: ['foo']
   });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime',
-    category: ['bar']
-  });
+  t.deepEqual(result.category, ['bar']);
 });
 
 test('Deletes individual entries for properties of an object (removing property if last entry removed)', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime',
+  const properties = {
+    name: ['Lunchtime'],
     category: ['foo', 'bar']
   };
-  const result = deleteEntries(jf2, {
+  const result = deleteEntries(properties, {
     category: ['foo', 'bar']
   });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime'
-  });
+  t.falsy(result.category);
 });
 
 test('Deletes individual entries for properties of an object (ignores properties that don’t exist)', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime',
+  const properties = {
+    name: ['Lunchtime'],
     category: ['foo', 'bar']
   };
-  const result = deleteEntries(jf2, {
+  const result = deleteEntries(properties, {
     tags: ['foo', 'bar']
   });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime',
-    category: ['foo', 'bar']
-  });
+  t.falsy(result.tags);
 });
 
 test('Throws error if requested deletion is not an array', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime'
+  const properties = {
+    name: ['Lunchtime']
   };
-  const error = t.throws(() => deleteEntries(jf2, {
+  const error = t.throws(() => deleteEntries(properties, {
     category: 'foo'
   }));
   t.is(error.message, 'category should be an array');
 });
 
 test('Deletes property', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime',
+  const properties = {
+    name: ['Lunchtime'],
     category: ['foo', 'bar']
   };
-  const result = deleteProperties(jf2, ['category']);
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime'
-  });
+  const result = deleteProperties(properties, ['category']);
+  t.falsy(result.category);
 });
 
 test('Replaces property value', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime'
+  const properties = {
+    name: ['Lunchtime']
   };
-  const result = replaceEntries(jf2, {
+  const result = replaceEntries(properties, {
     name: ['Dinnertime']
   });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Dinnertime'
-  });
+  t.deepEqual(result.name, ['Dinnertime']);
 });
 
 test('Replaces property value (adding property if doesn’t exist)', t => {
-  const jf2 = {
-    type: 'entry',
-    name: 'Lunchtime'
+  const properties = {
+    name: ['Lunchtime']
   };
-  const result = replaceEntries(jf2, {
+  const result = replaceEntries(properties, {
     content: ['I ate a cheese sandwich']
   });
-  t.deepEqual(result, {
-    type: 'entry',
-    name: 'Lunchtime',
-    content: 'I ate a cheese sandwich'
-  });
+  t.deepEqual(result.content, ['I ate a cheese sandwich']);
 });

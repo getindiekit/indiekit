@@ -11,21 +11,16 @@ export const addProperties = (object, additions) => {
   for (const key in additions) {
     if (Object.prototype.hasOwnProperty.call(additions, key)) {
       const newValue = additions[key];
-      let existingValue = object[key];
+      const existingValue = object[key];
 
       // If no existing value, add it
       if (!existingValue) {
-        object[key] = newValue[0];
+        object[key] = newValue;
         return object;
       }
 
       // If existing value, add to it
       if (existingValue) {
-        // If existing value is string, convert to array
-        if (!Array.isArray(existingValue)) {
-          existingValue = [existingValue];
-        }
-
         const updatedValue = [...existingValue];
 
         for (const value of newValue) {
@@ -49,7 +44,7 @@ export const addProperties = (object, additions) => {
 export const replaceEntries = (object, replacements) => {
   for (const key in replacements) {
     if (Object.prototype.hasOwnProperty.call(replacements, key)) {
-      const value = replacements[key][0];
+      const value = replacements[key];
       object = _.set(object, key, value);
     }
   }

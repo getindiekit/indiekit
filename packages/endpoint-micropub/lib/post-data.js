@@ -28,18 +28,21 @@ export const postData = {
 
       const {config, me} = publication;
 
-      // Serialize post as JF2
-      const jf2 = mf2tojf2({items: [mf2]});
-      jf2['post-type'] = getPostType(mf2);
+      // Post type
+      const type = getPostType(mf2);
+      const typeConfig = getPostTypeConfig(type, config);
+
+      // Post properties
+      const properties = mf2tojf2({items: [mf2]});
+      properties['post-type'] = type;
 
       // Post paths
-      const typeConfig = getPostTypeConfig(jf2['post-type'], config);
-      const path = renderPath(typeConfig.post.path, jf2);
-      const url = renderPath(typeConfig.post.url, jf2);
-      jf2.url = getPermalink(me, url);
+      const path = renderPath(typeConfig.post.path, properties);
+      let url = renderPath(typeConfig.post.url, properties);
+      url = getPermalink(me, url);
 
       // Post data
-      const postData = {path, url: jf2.url, jf2};
+      const postData = {path, url, properties, mf2};
       return postData;
     } catch (error) {
       throw new HttpError(400, error.message, {
@@ -97,35 +100,42 @@ export const postData = {
       }
 
       const {config, me, posts} = publication;
-      let {jf2} = await posts.get(url);
+      const {mf2} = await posts.get(url);
 
       // Add properties
       if (operation.add) {
-        jf2 = update.addProperties(jf2, operation.add);
+        mf2.properties = update.addProperties(mf2.properties, operation.add);
       }
 
       // Replace property entries
       if (operation.replace) {
-        jf2 = update.replaceEntries(jf2, operation.replace);
+        mf2.properties = update.replaceEntries(mf2.properties, operation.replace);
       }
 
       // Remove properties and/or property entries
       if (operation.delete) {
         if (Array.isArray(operation.delete)) {
-          jf2 = update.deleteProperties(jf2, operation.delete);
+          mf2.properties = update.deleteProperties(mf2.properties, operation.delete);
         } else {
-          jf2 = update.deleteEntries(jf2, operation.delete);
+          mf2.properties = update.deleteEntries(mf2.properties, operation.delete);
         }
       }
 
+      // Post type
+      const type = getPostType(mf2);
+      const typeConfig = getPostTypeConfig(type, config);
+
+      // Post properties
+      const properties = mf2tojf2({items: [mf2]});
+      properties['post-type'] = type;
+
       // Post paths
-      const typeConfig = getPostTypeConfig(jf2['post-type'], config);
-      const path = renderPath(typeConfig.post.path, jf2);
-      const updatedUrl = renderPath(typeConfig.post.url, jf2);
-      jf2.url = getPermalink(me, updatedUrl);
+      const path = renderPath(typeConfig.post.path, properties);
+      let updatedUrl = renderPath(typeConfig.post.url, properties);
+      updatedUrl = getPermalink(me, updatedUrl);
 
       // Return post data
-      const updatedPostData = {path, url: jf2.url, jf2};
+      const updatedPostData = {path, url: updatedUrl, properties, mf2};
       return updatedPostData;
     } catch (error) {
       throw new HttpError(400, error.message, {
