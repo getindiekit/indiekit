@@ -46,7 +46,7 @@ test('Throws error creating post data without microformats data', async t => {
   const error = await t.throwsAsync(
     postData.create(t.context.publication, false)
   );
-  t.is(error.message, 'Unable to create post without microformats data');
+  t.is(error.message, 'No microformats included in request');
 });
 
 test('Reads post data', async t => {
@@ -58,7 +58,7 @@ test('Throws error reading post data', async t => {
   const error = await t.throwsAsync(
     postData.read(false, t.context.url)
   );
-  t.is(error.message, 'Cannot read property \'get\' of undefined');
+  t.is(error.message, 'No publication configuration provided');
 });
 
 test('Updates post by adding properties', async t => {
@@ -90,5 +90,5 @@ test('Throws error updating post data', async t => {
   const error = await t.throwsAsync(
     postData.update(false, t.context.url, operation)
   );
-  t.is(error.message, 'Cannot read property \'get\' of undefined');
+  t.is(error.message, 'No publication configuration provided');
 });
