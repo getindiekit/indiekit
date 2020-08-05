@@ -197,24 +197,20 @@ export const getPublishedProperty = mf2 => {
  * @returns {Array} Array containing slug value
  */
 export const getSlugProperty = (mf2, separator) => {
-  // Use provided `mp-slug` or `slug`…
-  const slug = mf2.properties['mp-slug'] || mf2.properties.slug;
-  if (slug && slug[0] !== '') {
-    return slug;
-  }
-
-  // …else, slugify `name`…
+  const suggested = mf2.properties['mp-slug'] || mf2.properties.slug;
   const {name} = mf2.properties;
-  if (name && name[0] !== '') {
-    const excerptName = excerptString(name[0], 5);
-    const nameSlug = slugifyString(excerptName, separator);
 
-    return new Array(nameSlug);
+  let string;
+  if (suggested && suggested[0]) {
+    string = suggested[0];
+  } else if (name && name[0]) {
+    string = excerptString(name[0], 5);
+  } else {
+    string = randomString();
   }
 
-  // …else, failing that, create a random string
-  const randomSlug = randomString();
-  return new Array(randomSlug);
+  const slug = slugifyString(string, separator);
+  return new Array(slug);
 };
 
 /**
