@@ -33,7 +33,7 @@
     "@sindresorhus/slugify": "^1.1.0",
     "date-fns": "^2.15.0",
     "express": "^4.17.1",
-    "file-type": "^14.6.2",
+    "file-type": "^14.7.0",
     "got": "^11.5.1",
     "http-errors": "^1.8.0",
     "multer": "^1.4.2",
