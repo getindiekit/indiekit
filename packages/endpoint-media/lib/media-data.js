@@ -18,29 +18,37 @@ export const mediaData = {
    * @returns {object} Media data
    */
   create: async (publication, file) => {
-    const {config, me} = publication;
+    try {
+      if (!publication) {
+        throw new Error('No publication configuration provided');
+      }
 
-    if (!file || file.truncated || !file.buffer) {
-      throw new HttpError(400, 'No file included in request', {
+      if (!file || file.truncated || !file.buffer) {
+        throw new Error('No file included in request');
+      }
+
+      const {config, me} = publication;
+
+      // Media type
+      const type = await getMediaType(file);
+      const typeConfig = getPostTypeConfig(type, config);
+
+      // Media properties
+      const properties = await getFileProperties(file);
+
+      // Media paths
+      const path = renderPath(typeConfig.media.path, properties);
+      let url = renderPath(typeConfig.media.url || typeConfig.media.path, properties);
+      url = getPermalink(me, url);
+
+      // Media data
+      const mediaData = {type, path, url, properties};
+      return mediaData;
+    } catch (error) {
+      throw new HttpError(400, error.message, {
         value: 'invalid_request'
       });
     }
-
-    // Media type
-    const type = await getMediaType(file);
-    const typeConfig = getPostTypeConfig(type, config);
-
-    // Media properties
-    const properties = await getFileProperties(file);
-
-    // Media paths
-    const path = renderPath(typeConfig.media.path, properties);
-    let url = renderPath(typeConfig.media.url || typeConfig.media.path, properties);
-    url = getPermalink(me, url);
-
-    // Media data
-    const mediaData = {type, path, url, properties};
-    return mediaData;
   },
 
   /**
@@ -51,7 +59,21 @@ export const mediaData = {
    * @returns {object} Media data
    */
   read: async (publication, url) => {
-    const {media} = publication;
-    return media.get(url);
+    try {
+      if (!publication) {
+        throw new Error('No publication configuration provided');
+      }
+
+      if (!url) {
+        throw new Error('No URL provided');
+      }
+
+      const {media} = publication;
+      return media.get(url);
+    } catch (error) {
+      throw new HttpError(400, error.message, {
+        value: 'invalid_request'
+      });
+    }
   }
 };

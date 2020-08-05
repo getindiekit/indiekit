@@ -65,5 +65,5 @@ test('Throws error reading media', async t => {
   const error = await t.throwsAsync(
     mediaData.read(false, url)
   );
-  t.is(error.message, 'Cannot read property \'get\' of undefined');
+  t.is(error.message, 'No publication configuration provided');
 });
