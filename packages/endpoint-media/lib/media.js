@@ -19,6 +19,7 @@ export const media = {
     const uploaded = await store.createFile(mediaData.path, file.buffer, message);
 
     if (uploaded) {
+      mediaData.date = new Date();
       mediaData.lastAction = 'upload';
       await media.set(mediaData.url, mediaData);
       return {
