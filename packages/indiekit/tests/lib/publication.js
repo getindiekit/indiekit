@@ -3,6 +3,7 @@ import nock from 'nock';
 import {JekyllPreset} from '@indiekit/preset-jekyll';
 import {getFixture} from '../helpers/fixture.js';
 import {mockClient} from '../helpers/database.js';
+import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
   getConfig,
@@ -13,6 +14,7 @@ import {
 
 test.beforeEach(t => {
   t.context = {
+    cache: new Cache(mockClient),
     categories: {
       nock: nock('https://website.example').get('/categories.json'),
       url: 'https://website.example/categories.json'
@@ -29,20 +31,20 @@ test.afterEach.always(() => {
 });
 
 test('Returns array of available categories', async t => {
-  const result = await getCategories(mockClient, ['foo', 'bar']);
+  const result = await getCategories(t.context.cache, ['foo', 'bar']);
   t.deepEqual(result, ['foo', 'bar']);
 });
 
 test('Fetches array from remote JSON file specified in `url` value', async t => {
   const scope = t.context.categories.nock.reply(200, ['foo', 'bar']);
-  const result = await getCategories(mockClient, t.context.categories);
+  const result = await getCategories(t.context.cache, t.context.categories);
   t.deepEqual(result, ['foo', 'bar']);
   scope.done();
 });
 
 test('Returns empty array if remote JSON file not found', async t => {
   const scope = t.context.categories.nock.replyWithError('Not found');
-  const error = await t.throwsAsync(getCategories(mockClient, t.context.categories));
+  const error = await t.throwsAsync(getCategories(t.context.cache, t.context.categories));
   t.is(error.message, 'Not found');
   scope.done();
 });

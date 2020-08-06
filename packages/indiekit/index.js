@@ -60,9 +60,9 @@ export const Indiekit = class {
   }
 
   async init() {
-    const {presets, stores} = this.application;
+    const {cache, presets, stores} = this.application;
     const {config, presetId, storeId} = this.publication;
-    const categories = await getCategories(databaseConfig.client, config.categories);
+    const categories = await getCategories(cache, config.categories);
     const preset = getPreset(presets, presetId);
 
     this.publication.preset = preset;
