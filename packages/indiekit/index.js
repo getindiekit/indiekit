@@ -1,10 +1,8 @@
 import _ from 'lodash';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {databaseConfig} from './config/database.js';
 import {defaultConfig} from './config/defaults.js';
 import {serverConfig} from './config/server.js';
-import {Log} from './lib/log.js';
 import {
   getCategories,
   getConfig,
@@ -70,8 +68,6 @@ export const Indiekit = class {
     this.publication.config.categories = categories;
     this.publication.postTemplate = preset.postTemplate;
     this.publication.store = getStore(stores, storeId);
-    this.publication.posts = new Log(databaseConfig.client, 'posts');
-    this.publication.media = new Log(databaseConfig.client, 'media');
 
     this.application.endpoints.forEach(
       endpoint => endpoint.init(this)
