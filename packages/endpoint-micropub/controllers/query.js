@@ -40,7 +40,10 @@ export const queryController = publication => {
           }
 
           // Return microformats for previously published posts
-          const items = await publication.posts.selectFromAll('mf2');
+          const items = await publication.posts
+            .find()
+            .map(post => post.mf2)
+            .toArray();
           return response.json({items});
         }
 

@@ -25,6 +25,10 @@
       "description": "URL of the website you want to publish to",
       "required": true
     },
+    "MONGODB_URL": {
+      "description": "URL of a MongoDB host",
+      "required": true
+    },
     "NPM_CONFIG_PRODUCTION": {
       "descrition": "Skip pruning devDependencies while packages are not public",
       "value": "false"
@@ -33,8 +37,5 @@
       "description": "A secret key for verifying the integrity of signed cookies",
       "generator": "secret"
     }
-  },
-  "addons": [
-    "heroku-redis"
-  ]
+  }
 }

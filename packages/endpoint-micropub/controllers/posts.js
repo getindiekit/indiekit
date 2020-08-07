@@ -9,7 +9,9 @@ export const postsController = publication => ({
    */
   view: async (request, response, next) => {
     try {
-      const posts = await publication.posts.selectFromAll('properties');
+      const posts = await publication.posts
+        .find()
+        .toArray();
 
       response.render('posts', {
         title: 'Posts',

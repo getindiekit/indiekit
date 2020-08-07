@@ -7,9 +7,6 @@ import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {authenticate} from '../middleware/authentication.js';
 import {indieauth} from '../middleware/indieauth.js';
-import {databaseConfig} from './database.js';
-import {Cache} from '../lib/cache.js';
-import {Log} from '../lib/log.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const jekyll = new JekyllPreset();
@@ -31,7 +28,6 @@ export const defaultConfig = {
     themeColor: '#0000ee',
     repository: package_.repository,
     version: package_.version,
-    cache: new Cache(databaseConfig.client),
     endpoints: [
       mediaEndpoint,
       micropubEndpoint,
@@ -55,8 +51,6 @@ export const defaultConfig = {
     config: {},
     locale: 'en-GB',
     me: null,
-    media: new Log(databaseConfig.client, 'media'),
-    posts: new Log(databaseConfig.client, 'posts'),
     postTemplate,
     presetId: 'jekyll',
     storeId: null,

@@ -37,8 +37,8 @@
     "got": "^11.5.1",
     "http-errors": "^1.8.0",
     "indieauth-helper": "^1.0.2",
-    "ioredis": "^4.17.0",
     "lodash": "^4.17.19",
+    "mongodb": "^3.6.0",
     "normalize-url": "^5.1.0"
   }
 }

@@ -1,9 +1,9 @@
 import test from 'ava';
 import nock from 'nock';
-import {mockClient} from '../helpers/database.js';
+import {mongodbConfig} from '../../config/mongodb.js';
 import {Cache} from '../../lib/cache.js';
 
-const cache = new Cache(mockClient);
+const cache = new Cache(mongodbConfig);
 
 test.beforeEach(t => {
   t.context = {
@@ -12,28 +12,36 @@ test.beforeEach(t => {
   };
 });
 
-test.afterEach.always(() => {
-  mockClient.flushall();
+test.afterEach.always(async () => {
+  const database = await mongodbConfig;
+  await database.dropDatabase();
 });
 
-test('Returns data from remote file and saves to Redis cache', async t => {
+test.serial('Returns data from remote file and saves to cache', async t => {
   const scope = t.context.nock.reply(200, ['Foo', 'Bar']);
   const result = await cache.json('category', t.context.url);
-  t.is(result.source, 'fetch');
+  t.is(result.source, t.context.url);
   scope.done();
 });
 
-test('Throws error if remote file not found', async t => {
+test.serial('Throws error if remote file not found', async t => {
   const scope = t.context.nock.replyWithError('Not found');
   const error = await t.throwsAsync(cache.json('file', t.context.url));
-  t.is(error.message, 'Not found');
+  t.is(error.message, `Unable to fetch ${t.context.url}: Not found`);
   scope.done();
 });
 
-test('Gets data from Redis cache', async t => {
-  const scope = t.context.nock.reply(200, ['Foo', 'Bar']);
+test.serial('Gets data from cache', async t => {
+  const cache = new Cache({
+    collection: () => ({
+      findOne: async () => ({
+        souce: 'cache',
+        date: {}
+      })
+    })
+  });
+
   await cache.json('file', t.context.url);
   const result = await cache.json('file', t.context.url);
   t.is(result.source, 'cache');
-  scope.done();
 });

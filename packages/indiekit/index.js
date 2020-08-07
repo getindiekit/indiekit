@@ -2,7 +2,9 @@ import _ from 'lodash';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import {defaultConfig} from './config/defaults.js';
+import {mongodbConfig} from './config/mongodb.js';
 import {serverConfig} from './config/server.js';
+import {Cache} from './lib/cache.js';
 import {
   getCategories,
   getConfig,
@@ -58,17 +60,21 @@ export const Indiekit = class {
   }
 
   async init() {
+    const database = await mongodbConfig;
     const {cache, presets, stores} = this.application;
     const {config, presetId, storeId} = this.publication;
     const categories = await getCategories(cache, config.categories);
     const preset = getPreset(presets, presetId);
 
+    this.publication.posts = await database.collection('posts');
+    this.publication.media = await database.collection('media');
     this.publication.preset = preset;
     this.publication.config = getConfig(config, preset.config);
     this.publication.config.categories = categories;
     this.publication.postTemplate = preset.postTemplate;
     this.publication.store = getStore(stores, storeId);
 
+    this.application.cache = new Cache(mongodbConfig);
     this.application.endpoints.forEach(
       endpoint => endpoint.init(this)
     );
@@ -77,13 +83,17 @@ export const Indiekit = class {
   }
 
   async server(options = {}) {
-    const config = await this.init();
-    const server = serverConfig(config);
-    const {name, version} = config.application;
-    const port = options.port || config.server.port;
+    try {
+      const config = await this.init();
+      const server = serverConfig(config);
+      const {name, version} = config.application;
+      const port = options.port || config.server.port;
 
-    return server.listen(port, () => {
-      console.log(`Starting ${name} (v${version}) on port ${port}`);
-    });
+      return server.listen(port, () => {
+        console.log(`Starting ${name} (v${version}) on port ${port}`);
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 };

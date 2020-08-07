@@ -6,9 +6,6 @@ npm-debug.log*
 # Testing and coverage
 coverage
 
-# Redis dump
-dump.rdb
-
 # Dependencies
 node_modules/
 package-lock.json

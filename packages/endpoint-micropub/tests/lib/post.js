@@ -19,7 +19,8 @@ test.beforeEach(t => {
         return JSON.stringify(properties);
       },
       posts: {
-        set: () => {}
+        insertOne: () => {},
+        replaceOne: () => {}
       }
     },
     url: 'https://website.example/foo'

@@ -15,7 +15,7 @@ const publication = {
     repo: 'repo'
   }),
   media: {
-    set: () => {}
+    insertOne: () => {}
   }
 };
 

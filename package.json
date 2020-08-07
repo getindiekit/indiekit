@@ -41,8 +41,6 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsdoc": "^28.0.0",
     "husky": "^4.2.5",
-    "ioredis": "^4.17.3",
-    "ioredis-mock": "^4.21.0",
     "lerna": "^3.22.0",
     "markdownlint-cli": "^0.23.1",
     "mock-req-res": "^1.1.4",
@@ -57,10 +55,10 @@
   },
   "ava": {
     "environmentVariables": {
+      "MONGODB_URL": "mongodb://localhost:27017/test",
       "NODE_ENV": "test",
       "SECRET": "test"
-    },
-    "snapshotDir": "snapshots"
+    }
   },
   "c8": {
     "all": true,

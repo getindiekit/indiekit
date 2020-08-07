@@ -21,7 +21,7 @@ export const media = {
     if (uploaded) {
       mediaData.date = new Date();
       mediaData.lastAction = 'upload';
-      await media.set(mediaData.url, mediaData);
+      await media.insertOne(mediaData);
       return {
         location: mediaData.url,
         status: 201,

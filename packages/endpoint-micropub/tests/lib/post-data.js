@@ -8,7 +8,7 @@ test.beforeEach(t => {
       config: new JekyllPreset().config,
       me: 'https://website.example',
       posts: {
-        get: async key => ({
+        findOne: async key => ({
           path: 'foo',
           url: key,
           properties: {

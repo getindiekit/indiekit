@@ -5,15 +5,10 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      redis:
-        image: redis
-        ports:
-        - 6379/tcp
     strategy:
       matrix:
         node-version: [14.x]
-        redis-version: [5]
+        mongodb-version: [4]
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
@@ -21,10 +16,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Start Redis
-      uses: supercharge/redis-github-action@1.1.0
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.3.0
       with:
-        redis-version: ${{ matrix.redis-version }}
+        mongodb-version: ${{ matrix.mongodb-version }}
     - name: Install packages and symlink local dependencies
       run: |
         npm install

@@ -2,13 +2,13 @@
 
 {% block fieldset %}
   {% for post in posts %}
-    {%- set propertiesHtml %}<dl>{% for name, value in post -%}
+    {%- set propertiesHtml %}<dl>{% for name, value in post.properties -%}
     {% if (name != "name") and (name != "url") and (name != "content") and (name != "published") %}
       <dt><code class="property">{{ name }}</code></dt>
       <dd>{{ value }}</dd>
     {% endif %}
     {%- endfor %}</dl>{% endset -%}
-    {%- set name %}<a href="{{ post.url }}">{{ icon(post["post-type"]) }} {{ post.name }}</a>{% endset -%}
+    {%- set name %}<a href="{{ post.url }}">{{ icon(post.properties["post-type"]) }} {{ post.properties.name }}</a>{% endset -%}
     {{ summary({
       title: name,
       rows: [{
@@ -16,16 +16,16 @@
           text: "Published"
         },
         value: {
-          text: (post.published | date("PPPp", application.locale))
+          text: (post.properties.published | date("PPPp", application.locale))
         }
-      } if post.published, {
+      } if post.properties.published, {
         key: {
           text: "Content"
         },
         value: {
-          text: post.content | string | markdown
+          text: post.properties.content | string | markdown
         }
-      } if post.content, {
+      } if post.properties.content, {
         key: {
           text: "Properties"
         },

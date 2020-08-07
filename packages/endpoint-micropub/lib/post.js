@@ -21,7 +21,8 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'create';
-      await posts.set(postData.url, postData);
+      await posts.insertOne(postData);
+
       return {
         location: postData.url,
         status: 202,
@@ -54,7 +55,10 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'update';
-      await posts.set(postData.url, postData);
+      await posts.replaceOne({
+        url: postData.url
+      }, postData);
+
       const hasUpdatedUrl = (url !== postData.url);
       return {
         location: postData.url,
@@ -88,7 +92,9 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'delete';
-      await posts.set(postData.url, postData);
+      await posts.replaceOne({
+        url: postData.url
+      }, postData);
 
       return {
         status: 200,
@@ -125,7 +131,9 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'undelete';
-      await posts.set(postData.url, postData);
+      await posts.replaceOne({
+        url: postData.url
+      }, postData);
 
       return {
         location: postData.url,

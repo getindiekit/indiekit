@@ -20,8 +20,11 @@ export const queryController = publication => {
       switch (query.q) {
         case 'last': {
           // Return last uploaded media file
-          const items = await publication.media.selectFromAll('url');
-          return response.json(items ? {url: items[0]} : {});
+          const items = await publication.media
+            .find()
+            .sort({'properties.uploaded': -1})
+            .toArray();
+          return response.json(items ? {url: items[0].url} : {});
         }
 
         default:
