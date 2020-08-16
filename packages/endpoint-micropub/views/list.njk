@@ -1,0 +1,11 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {%- if posts %}
+  <ul>
+  {%- for post in posts %}
+    <li><a href="{{ parentUrl }}{{ post._id }}">{{ icon(post.properties["post-type"]) }} {{ post.properties.name }}</a></li>
+  {%- endfor %}
+  </ul>
+  {%- endif %}
+{% endblock %}

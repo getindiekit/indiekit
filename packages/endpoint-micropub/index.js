@@ -51,7 +51,8 @@ export const MicropubEndpoint = class {
 
     this._router.get('/', queryController(publication));
     this._router.post('/', indieauth(publication), multipartParser.any(), actionController(publication));
-    this._router.get('/posts', authenticate, postsController(publication).view);
+    this._router.get('/posts', authenticate, postsController(publication).list);
+    this._router.get('/posts/:id', authenticate, postsController(publication).view);
 
     return router;
   }

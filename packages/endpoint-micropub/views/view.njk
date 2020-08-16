@@ -1,0 +1,11 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  <p><time datetime="{{ published }}">
+    <a href="{{ url }}">{{ published | date("PPPp", application.locale) }}</a>
+  </time></p>
+  {{ summary({
+    title: "Properties",
+    rows: properties
+  }) }}
+{% endblock %}

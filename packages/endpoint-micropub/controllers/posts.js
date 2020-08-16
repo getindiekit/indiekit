@@ -1,4 +1,28 @@
+import mongodb from 'mongodb';
+
+const {ObjectId} = mongodb;
+
 export const postsController = publication => ({
+  /**
+   * Return previously published posts
+   *
+   * @param {object} request HTTP request
+   * @param {object} response HTTP response
+   * @param {Function} next Next middleware callback
+   * @returns {object} HTTP response
+   */
+  list: async (request, response, next) => {
+    try {
+      response.render('list', {
+        title: 'Published posts',
+        posts: await publication.posts.find().toArray(),
+        parentUrl: `${publication.micropubEndpoint}/posts/`
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
+
   /**
    * Return previously published posts
    *
@@ -9,13 +33,28 @@ export const postsController = publication => ({
    */
   view: async (request, response, next) => {
     try {
-      const posts = await publication.posts
-        .find()
-        .toArray();
+      const {id} = request.params;
+      const post = await publication.posts.findOne({_id: new ObjectId(id)});
 
-      response.render('posts', {
-        title: 'Posts',
-        posts
+      const properties = [];
+      Object.entries(post.properties).forEach(
+        ([key, value]) => properties.push({
+          key: {
+            text: key
+          },
+          value: {
+            text: value
+          }
+        })
+      );
+
+      response.render('view', {
+        parent: 'Published posts',
+        title: post.properties.name,
+        content: post.properties.content,
+        published: post.properties.published,
+        url: post.url,
+        properties
       });
     } catch (error) {
       next(error);

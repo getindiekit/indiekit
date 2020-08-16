@@ -4,7 +4,8 @@
       {% call article({
         title: title,
         parent: parent or page.parent,
-        content: content
+        content: content,
+        indent: 8
       }) %}{% block content %}
       {% endblock %}{% endcall %}
 {% endblock %}
