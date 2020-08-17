@@ -1,0 +1,11 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {%- if files %}
+  <ul>
+  {%- for file in files %}
+    <li><a href="{{ parentUrl }}{{ file._id }}">{{ icon(file.properties["post-type"]) }} {{ file.properties.filename }}</a></li>
+  {%- endfor %}
+  </ul>
+  {%- endif %}
+{% endblock %}
