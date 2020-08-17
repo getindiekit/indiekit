@@ -61,7 +61,8 @@ export const Indiekit = class {
 
   async init() {
     const database = await mongodbConfig;
-    const {cache, presets, stores} = this.application;
+    const cache = new Cache(mongodbConfig);
+    const {presets, stores} = this.application;
     const {config, presetId, storeId} = this.publication;
     const categories = await getCategories(cache, config.categories);
     const preset = getPreset(presets, presetId);
@@ -74,7 +75,6 @@ export const Indiekit = class {
     this.publication.postTemplate = preset.postTemplate;
     this.publication.store = getStore(stores, storeId);
 
-    this.application.cache = new Cache(mongodbConfig);
     this.application.endpoints.forEach(
       endpoint => endpoint.init(this)
     );
