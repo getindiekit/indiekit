@@ -23,7 +23,7 @@ export const randomString = () => {
  */
 export const renderPath = (path, properties) => {
   let tokens = {};
-  const dateObject = new Date(properties.uploaded);
+  const dateObject = new Date(properties.published);
   const dateTokens = [
     'y', // Calendar year, eg 2020
     'yyyy', // Calendar year (zero padded), eg 2020

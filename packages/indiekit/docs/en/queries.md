@@ -12,11 +12,9 @@
 * Previously published posts (list): [`/micropub?q=source`][source]
 * Source content: [`/micropub?q=source&url=WEBSITE_URL`][source-url]
 
-For list queries, the `filter`, `limit` and `offset` parameters can be used, for example, `/micropub?q=category&filter=web&limit=10&offset=10`.
-
 ## Media endpoint
 
-* Last uploaded file: [`/media?q=last`][last]
+* Previously published media (list): [`/media?q=source`][media-source]
 
 [config]: {{ application.url }}/micropub?q=config
 [media-endpoint]: {{ application.url }}/micropub?q=media-endpoint
@@ -25,4 +23,8 @@ For list queries, the `filter`, `limit` and `offset` parameters can be used, for
 [category]: {{ application.url }}/micropub?q=category
 [source]: {{ application.url }}/micropub?q=source
 [source-url]: {{ application.url }}/micropub?q=source&url=WEBSITE_URL
-[last]: {{ application.url }}/media?q=last
+[media-source]: {{ application.url }}/media?q=source
+
+## List query parameters
+
+For list queries `filter`, `limit` and `offset` parameters can be used. For example, `/micropub?q=category&filter=web&limit=10&offset=10`.

@@ -23,11 +23,11 @@ export const media = {
       mediaData.lastAction = 'upload';
       await media.insertOne(mediaData);
       return {
-        location: mediaData.url,
+        location: mediaData.properties.url,
         status: 201,
         json: {
           success: 'create',
-          success_description: `Media uploaded to ${mediaData.url}`
+          success_description: `Media uploaded to ${mediaData.properties.url}`
         }
       };
     }

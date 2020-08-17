@@ -1,4 +1,5 @@
 import httpError from 'http-errors';
+import {queryList} from '../lib/query.js';
 
 export const queryController = publication => {
   /**
@@ -11,6 +12,7 @@ export const queryController = publication => {
    */
   return async (request, response, next) => {
     const {query} = request;
+    const {filter, limit, offset} = query;
 
     try {
       if (!query.q) {
@@ -18,13 +20,15 @@ export const queryController = publication => {
       }
 
       switch (query.q) {
-        case 'last': {
-          // Return last uploaded media file
+        case 'source': {
+          // Return previously uploaded media
           const items = await publication.media
             .find()
-            .sort({'properties.uploaded': -1})
+            .map(media => media.properties)
             .toArray();
-          return response.json(items ? {url: items[0].url} : {});
+          return response.json({
+            items: queryList(items, {filter, limit, offset})
+          });
         }
 
         default:

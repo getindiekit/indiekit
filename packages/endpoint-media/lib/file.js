@@ -11,20 +11,22 @@ import {randomString} from './utils.js';
  *   ext: '.jpg'
  *   filename: 'ds48s.jpg'
  *   originalname: 'flower.jpg',
- *   uploaded: '2020-07-19T22:59:23.497Z',
+ *   'mime-type': image/jpeg,
+ *   published: '2020-07-19T22:59:23.497Z',
  * }
  */
 export const getFileProperties = async file => {
   const basename = randomString();
-  const {ext} = await FileType.fromBuffer(file.buffer);
-  const uploaded = new Date().toISOString();
+  const {ext, mime} = await FileType.fromBuffer(file.buffer);
+  const published = new Date().toISOString();
 
   return {
     basename,
     ext,
     filename: `${basename}.${ext}`,
     originalname: file.originalname,
-    uploaded
+    'mime-type': mime,
+    published
   };
 };
 

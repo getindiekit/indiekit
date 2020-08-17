@@ -39,11 +39,11 @@ export const mediaData = {
 
       // Media paths
       const path = renderPath(typeConfig.media.path, properties);
-      let url = renderPath(typeConfig.media.url || typeConfig.media.path, properties);
-      url = getPermalink(me, url);
+      const url = renderPath(typeConfig.media.url || typeConfig.media.path, properties);
+      properties.url = getPermalink(me, url);
 
       // Media data
-      const mediaData = {path, url, properties};
+      const mediaData = {path, properties};
       return mediaData;
     } catch (error) {
       throw new HttpError(400, error.message, {
