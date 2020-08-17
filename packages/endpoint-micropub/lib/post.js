@@ -24,11 +24,11 @@ export const post = {
       await posts.insertOne(postData);
 
       return {
-        location: postData.url,
+        location: postData.properties.url,
         status: 202,
         json: {
           success: 'create_pending',
-          success_description: `Post will be created at ${postData.url}`
+          success_description: `Post will be created at ${postData.properties.url}`
         }
       };
     }
@@ -56,17 +56,17 @@ export const post = {
       postData.date = new Date();
       postData.lastAction = 'update';
       await posts.replaceOne({
-        url: postData.url
+        url: postData.properties.url
       }, postData);
 
-      const hasUpdatedUrl = (url !== postData.url);
+      const hasUpdatedUrl = (url !== postData.properties.url);
       return {
-        location: postData.url,
+        location: postData.properties.url,
         status: hasUpdatedUrl ? 201 : 200,
         json: {
           success: 'update',
           success_description: hasUpdatedUrl ?
-            `Post updated and moved to ${postData.url}` :
+            `Post updated and moved to ${postData.properties.url}` :
             `Post updated at ${url}`
         }
       };
@@ -93,14 +93,14 @@ export const post = {
       postData.date = new Date();
       postData.lastAction = 'delete';
       await posts.replaceOne({
-        url: postData.url
+        url: postData.properties.url
       }, postData);
 
       return {
         status: 200,
         json: {
           success: 'delete',
-          success_description: `Post deleted from ${postData.url}`
+          success_description: `Post deleted from ${postData.properties.url}`
         }
       };
     }
@@ -132,15 +132,15 @@ export const post = {
       postData.date = new Date();
       postData.lastAction = 'undelete';
       await posts.replaceOne({
-        url: postData.url
+        url: postData.properties.url
       }, postData);
 
       return {
-        location: postData.url,
+        location: postData.properties.url,
         status: 200,
         json: {
           success: 'delete_undelete',
-          success_description: `Post undeleted from ${postData.url}`
+          success_description: `Post undeleted from ${postData.properties.url}`
         }
       };
     }

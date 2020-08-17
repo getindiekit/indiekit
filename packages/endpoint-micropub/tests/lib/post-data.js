@@ -8,15 +8,15 @@ test.beforeEach(t => {
       config: new JekyllPreset().config,
       me: 'https://website.example',
       posts: {
-        findOne: async key => ({
+        findOne: async url => ({
           path: 'foo',
-          url: key,
           properties: {
             content: 'hello world',
             published: '2019-08-17T23:56:38.977+01:00',
             category: ['foo', 'bar'],
             slug: 'baz',
-            'post-type': 'note'
+            'post-type': 'note',
+            url
           },
           mf2: {
             type: ['h-entry'],
@@ -44,10 +44,10 @@ test('Creates post data', async t => {
     }
   };
   const result = await postData.create(t.context.publication, mf2);
-  t.is(result.url, 'https://website.example/notes/2020/07/26/foo');
-  t.is(result.properties.type, 'entry');
-  t.is(result.properties.slug, 'foo');
   t.is(result.properties['post-type'], 'note');
+  t.is(result.properties.slug, 'foo');
+  t.is(result.properties.type, 'entry');
+  t.is(result.properties.url, 'https://website.example/notes/2020/07/26/foo');
 });
 
 test('Throws error creating post data without microformats data', async t => {

@@ -6,11 +6,13 @@
 
 * Configuration: [`/micropub?q=config`][config]
 * Media endpoint location: [`/micropub?q=media-endpoint`][media-endpoint]
-* Available syndication targets: [`/micropub?q=syndicate-to`][syndicate-to]
-* Supported vocabularies: [`/micropub?q=post-types`][post-types]
-* Publication categories: [`/micropub?q=category`][category]
-* Previously published posts: [`/micropub?q=source`][source]
+* Available syndication targets (list): [`/micropub?q=syndicate-to`][syndicate-to]
+* Supported vocabularies (list): [`/micropub?q=post-types`][post-types]
+* Publication categories (list): [`/micropub?q=category`][category]
+* Previously published posts (list): [`/micropub?q=source`][source]
 * Source content: [`/micropub?q=source&url=WEBSITE_URL`][source-url]
+
+For list queries, the `filter`, `limit` and `offset` parameters can be used, for example, `/micropub?q=category&filter=web&limit=10&offset=10`.
 
 ## Media endpoint
 

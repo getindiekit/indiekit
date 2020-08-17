@@ -4,7 +4,7 @@ export const postData = {
   path: 'foo.md',
   properties: {
     name: 'note',
-    'post-type': 'note'
-  },
-  url: 'https://website.example/foo'
+    'post-type': 'note',
+    url: 'https://website.example/foo'
+  }
 };

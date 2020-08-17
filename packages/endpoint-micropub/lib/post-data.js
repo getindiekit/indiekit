@@ -38,11 +38,11 @@ export const postData = {
 
       // Post paths
       const path = renderPath(typeConfig.post.path, properties);
-      let url = renderPath(typeConfig.post.url, properties);
-      url = getPermalink(me, url);
+      const url = renderPath(typeConfig.post.url, properties);
+      properties.url = getPermalink(me, url);
 
       // Post data
-      const postData = {path, url, properties, mf2};
+      const postData = {path, properties, mf2};
       return postData;
     } catch (error) {
       throw new HttpError(400, error.message, {
@@ -131,11 +131,11 @@ export const postData = {
 
       // Post paths
       const path = renderPath(typeConfig.post.path, properties);
-      let updatedUrl = renderPath(typeConfig.post.url, properties);
-      updatedUrl = getPermalink(me, updatedUrl);
+      const updatedUrl = renderPath(typeConfig.post.url, properties);
+      properties.url = getPermalink(me, updatedUrl);
 
       // Return post data
-      const updatedPostData = {path, url: updatedUrl, properties, mf2};
+      const updatedPostData = {path, properties, mf2};
       return updatedPostData;
     } catch (error) {
       throw new HttpError(400, error.message, {

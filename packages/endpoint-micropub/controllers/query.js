@@ -1,6 +1,6 @@
 import httpError from 'http-errors';
 import {url2Mf2, mf2Properties} from '../lib/microformats.js';
-import {getConfig} from '../lib/config.js';
+import {queryConfig, queryList} from '../lib/query.js';
 
 export const queryController = publication => {
   /**
@@ -12,8 +12,9 @@ export const queryController = publication => {
    * @returns {object} HTTP response
    */
   return async (request, response, next) => {
-    const config = getConfig(publication.config);
+    const config = queryConfig(publication.config);
     const {query} = request;
+    const {filter, limit, offset} = query;
 
     try {
       if (!query.q) {
@@ -27,7 +28,7 @@ export const queryController = publication => {
 
         case 'category': {
           return response.json({
-            categories: config.categories
+            categories: queryList(config.categories, {filter, limit, offset})
           });
         }
 
@@ -44,13 +45,15 @@ export const queryController = publication => {
             .find()
             .map(post => post.mf2)
             .toArray();
-          return response.json({items});
+          return response.json({
+            items: queryList(items, {filter, limit, offset})
+          });
         }
 
         default: {
           if (config[query.q]) {
             return response.json({
-              [query.q]: config[query.q]
+              [query.q]: queryList(config[query.q], {filter, limit, offset})
             });
           }
 
