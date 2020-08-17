@@ -13,7 +13,7 @@ export const postsController = publication => ({
    */
   list: async (request, response, next) => {
     try {
-      response.render('list', {
+      response.render('posts', {
         title: 'Published posts',
         posts: await publication.posts.find().toArray(),
         parentUrl: `${publication.micropubEndpoint}/posts/`
@@ -48,7 +48,7 @@ export const postsController = publication => ({
         })
       );
 
-      response.render('view', {
+      response.render('post', {
         parent: 'Published posts',
         title: post.properties.name,
         content: post.properties.content,
