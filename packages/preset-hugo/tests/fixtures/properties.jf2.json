@@ -35,5 +35,7 @@
   "like-of": "http://website.example",
   "repost-of": "http://website.example",
   "in-reply-to": "http://website.example",
-  "syndicate-to": "http://website.example"
+  "syndicate-to": "http://website.example",
+  "post-status": "draft",
+  "visibility": "private"
 }

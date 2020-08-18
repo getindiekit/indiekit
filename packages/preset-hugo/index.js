@@ -180,7 +180,9 @@ export const HugoPreset = class {
       ...(properties['like-of'] && {'bookmark-of': properties['like-of']}),
       ...(properties['repost-of'] && {'repost-of': properties['repost-of']}),
       ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
-      ...(properties['syndicate-to'] && {'syndicate-to': properties['syndicate-to']})
+      ...(properties['syndicate-to'] && {'syndicate-to': properties['syndicate-to']}),
+      ...(properties['post-status'] === 'draft' && {draft: true}),
+      ...(properties.visibility && {visibility: properties.visibility})
     };
 
     const frontmatter = getFrontmatter(properties, this.options.frontmatterFormat);
