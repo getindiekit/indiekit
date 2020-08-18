@@ -32,6 +32,10 @@ export const Indiekit = class {
       throw new TypeError('Configuration key must be a string');
     }
 
+    if (!value) {
+      throw new Error(`No value given for ${key}`);
+    }
+
     _.set(this._config, key, value);
   }
 
@@ -60,21 +64,30 @@ export const Indiekit = class {
   }
 
   async init() {
-    const database = await mongodbConfig;
-    const cache = new Cache(mongodbConfig);
-    const {presets, stores} = this.application;
+    const {locale, presets, stores} = this.application;
     const {config, presetId, storeId} = this.publication;
-    const categories = await getCategories(cache, config.categories);
-    const preset = getPreset(presets, presetId);
 
+    // Publication data collections
+    const database = await mongodbConfig;
     this.publication.posts = await database.collection('posts');
     this.publication.media = await database.collection('media');
+
+    // Publication configuration
+    const cache = new Cache(mongodbConfig);
+    const preset = getPreset(presets, presetId);
+    const categories = await getCategories(cache, config.categories);
     this.publication.preset = preset;
     this.publication.config = getConfig(config, preset.config);
     this.publication.config.categories = categories;
     this.publication.postTemplate = preset.postTemplate;
+
+    // Publication locale (defaults to application locale)
+    this.publication.locale = this.publication.locale || locale;
+
+    // Publication store
     this.publication.store = getStore(stores, storeId);
 
+    // Application endpoints
     this.application.endpoints.forEach(
       endpoint => endpoint.init(this)
     );

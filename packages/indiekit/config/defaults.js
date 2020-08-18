@@ -49,7 +49,6 @@ export const defaultConfig = {
   },
   publication: {
     config: {},
-    locale: 'en-GB',
     me: null,
     postTemplate,
     presetId: 'jekyll',

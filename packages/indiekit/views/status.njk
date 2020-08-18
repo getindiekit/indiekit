@@ -31,7 +31,7 @@
         text: "Language"
       },
       value: {
-        text: application.locale | language or "Not set"
+        text: application.locale.split("-") | first | language
       }
     }, {
       key: {
@@ -93,6 +93,13 @@
       },
       value: {
         text: publication.me or "Not set"
+      }
+    }, {
+      key: {
+        text: "Language"
+      },
+      value: {
+        text: publication.locale.split("-") | first | language
       }
     }, {
       key: {
