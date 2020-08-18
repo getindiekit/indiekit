@@ -1,11 +1,10 @@
 {% extends "default.njk" %}
 
 {% block main %}
-      {% call article({
-        title: title,
-        parent: parent or page.parent,
-        content: content,
-        indent: 8
-      }) %}{% block content %}
-      {% endblock %}{% endcall %}
+{% call article({
+  title: title,
+  parent: parent or page.parent,
+  content: content
+}) %}{% block content %}
+{% endblock %}{% endcall %}
 {% endblock %}

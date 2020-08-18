@@ -54,7 +54,8 @@ export const postsController = publication => ({
         content: post.properties.content,
         published: post.properties.published,
         url: post.url,
-        properties
+        properties,
+        mf2: post.mf2
       });
     } catch (error) {
       next(error);
