@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@indiekit/store-gitlab",
   "version": "0.1.0",
   "description": "Store IndieWeb content on GitLab",

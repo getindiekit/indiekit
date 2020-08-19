@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@indiekit/frontend",
   "version": "0.1.0",
   "description": "An IndieWeb publishing toolkit",

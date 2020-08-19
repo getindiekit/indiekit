@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@indiekit/preset-jekyll",
   "version": "0.1.0",
   "description": "Indiekit preset for Jekyll-based websites",

@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@indiekit/endpoint-micropub",
   "version": "0.1.0",
   "description": "Micropub endpoint for Indiekit",

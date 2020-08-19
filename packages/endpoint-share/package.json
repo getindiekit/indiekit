@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@indiekit/endpoint-share",
   "version": "0.1.0",
   "description": "Share endpoint for Indiekit",
