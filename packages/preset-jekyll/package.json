@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/preset-jekyll",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
   "description": "Indiekit preset for Jekyll-based websites",
   "keywords": [
     "indieweb",
