@@ -39,5 +39,8 @@
     "postcss": "^7.0.30",
     "postcss-easy-import": "^3.0.0",
     "postcss-extend-rule": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

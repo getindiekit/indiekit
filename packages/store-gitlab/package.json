@@ -28,5 +28,8 @@
   },
   "dependencies": {
     "@gitbeaker/node": "^23.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

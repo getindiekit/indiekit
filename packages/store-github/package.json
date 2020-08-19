@@ -28,5 +28,8 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
