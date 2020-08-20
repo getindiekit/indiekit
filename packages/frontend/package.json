@@ -18,8 +18,12 @@
   "type": "module",
   "main": "index.js",
   "files": [
+    "assets",
     "components",
-    "styles"
+    "layouts",
+    "lib",
+    "styles",
+    "index.js"
   ],
   "bugs": {
     "url": "https://github.com/getindiekit/indiekit/issues"

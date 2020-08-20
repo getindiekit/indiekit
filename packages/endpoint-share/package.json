@@ -18,6 +18,8 @@
   "type": "module",
   "main": "index.js",
   "files": [
+    "controllers",
+    "views",
     "index.js"
   ],
   "bugs": {
