@@ -18,6 +18,9 @@
   },
   "type": "module",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "bugs": {
     "url": "https://github.com/getindiekit/indiekit/issues"
   },
