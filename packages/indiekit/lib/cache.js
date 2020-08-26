@@ -3,12 +3,10 @@ import got from 'got';
 export const Cache = class {
   /** Fetch data from cache or remote file
    *
-   * @param {object} database Database
-   * @param {string} expires Timeout on key
+   * @param {object} collection Collection
    */
-  constructor(database, expires) {
-    this.database = database;
-    this.expires = expires || 3600;
+  constructor(collection) {
+    this.collection = collection;
   }
 
   /**
@@ -20,9 +18,7 @@ export const Cache = class {
    */
   async json(key, url) {
     try {
-      const database = await this.database;
-      const collection = await database.collection('cache');
-      const cachedData = await collection.findOne({key, url});
+      const cachedData = this.collection ? await this.collection.findOne({key, url}) : false;
       if (cachedData) {
         const {data} = cachedData;
         return {
@@ -34,9 +30,13 @@ export const Cache = class {
       const fetchedData = await got(url, {responseType: 'json'});
       if (fetchedData) {
         const data = fetchedData.body;
-        await collection.replaceOne({}, {key, url, data}, {
-          upsert: true
-        });
+
+        if (this.collection) {
+          await this.collection.replaceOne({}, {key, url, data}, {
+            upsert: true
+          });
+        }
+
         return {
           source: url,
           data

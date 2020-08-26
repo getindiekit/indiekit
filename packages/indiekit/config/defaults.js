@@ -29,6 +29,7 @@ export const defaultConfig = {
     themeColor: '#0000ee',
     repository: package_.repository,
     version: package_.version,
+    hasDatabase: typeof process.env.MONGODB_URL !== 'undefined',
     endpoints: [
       mediaEndpoint,
       micropubEndpoint,

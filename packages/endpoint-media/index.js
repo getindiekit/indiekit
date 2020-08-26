@@ -27,10 +27,12 @@ export const MediaEndpoint = class {
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
-    indiekitConfig.addNavigation({
-      href: `${this.mountpath}/files`,
-      text: 'Files'
-    });
+    if (application.hasDatabase) {
+      indiekitConfig.addNavigation({
+        href: `${this.mountpath}/files`,
+        text: 'Files'
+      });
+    }
 
     indiekitConfig.addRoute({
       mountpath: this.mountpath,
@@ -51,8 +53,11 @@ export const MediaEndpoint = class {
 
     this._router.get('/', queryController(publication));
     this._router.post('/', indieauth(publication), multipartParser.single('file'), uploadController(publication));
-    this._router.get('/files', authenticate, filesController(publication).list);
-    this._router.get('/files/:id', authenticate, filesController(publication).view);
+
+    if (application.hasDatabase) {
+      this._router.get('/files', authenticate, filesController(publication).list);
+      this._router.get('/files/:id', authenticate, filesController(publication).view);
+    }
 
     return router;
   }

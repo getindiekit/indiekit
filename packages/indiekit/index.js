@@ -64,16 +64,19 @@ export const Indiekit = class {
   }
 
   async init() {
-    const {locale, presets, stores} = this.application;
+    const {hasDatabase, locale, presets, stores} = this.application;
     const {config, presetId, storeId} = this.publication;
+    const database = await mongodbConfig;
+
+    // Application cache collection
+    this.application.cache = hasDatabase ? await database.collection('cache') : false;
 
     // Publication data collections
-    const database = await mongodbConfig;
-    this.publication.posts = await database.collection('posts');
-    this.publication.media = await database.collection('media');
+    this.publication.posts = hasDatabase ? await database.collection('posts') : false;
+    this.publication.media = hasDatabase ? await database.collection('media') : false;
 
     // Publication configuration
-    const cache = new Cache(mongodbConfig);
+    const cache = new Cache(this.application.cache);
     const preset = getPreset(presets, presetId);
     const categories = await getCategories(cache, config.categories);
     this.publication.preset = preset;
