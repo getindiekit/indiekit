@@ -65,16 +65,16 @@ test('Gets Microformats2 object (all properties)', t => {
   t.is(result.properties.name[0], 'Lunchtime');
   t.is(result.properties.content[0], 'I ate a cheese sandwich, which was nice.');
   t.deepEqual(result.properties.audio, [
-    {value: 'http://foo.bar/baz.mp3'},
-    {value: 'http://foo.bar/qux.mp3'}
+    {url: 'http://foo.bar/baz.mp3'},
+    {url: 'http://foo.bar/qux.mp3'}
   ]);
   t.deepEqual(result.properties.photo, [
-    {value: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-    {value: 'http://foo.bar/qux.jpg', alt: 'Qux'}
+    {url: 'http://foo.bar/baz.jpg', alt: 'Baz'},
+    {url: 'http://foo.bar/qux.jpg', alt: 'Qux'}
   ]);
   t.deepEqual(result.properties.video, [
-    {value: 'http://foo.bar/baz.mp4'},
-    {value: 'http://foo.bar/qux.mp4'}
+    {url: 'http://foo.bar/baz.mp4'},
+    {url: 'http://foo.bar/qux.mp4'}
   ]);
   t.deepEqual(result.properties.category, ['lunch', 'food']);
   t.true(isValid(parseISO(result.properties.published[0])));
@@ -84,8 +84,8 @@ test('Gets audio property', t => {
   const mf2 = JSON.parse(getFixture('audio-provided-value.json'));
   const result = getAudioProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.mp3'},
-    {value: 'https://foo.bar/qux.mp3'}
+    {url: 'https://foo.bar/baz.mp3'},
+    {url: 'https://foo.bar/qux.mp3'}
   ]);
 });
 
@@ -93,8 +93,8 @@ test('Gets normalised audio property', t => {
   const mf2 = JSON.parse(getFixture('audio-provided.json'));
   const result = getAudioProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.mp3'},
-    {value: 'https://foo.bar/qux.mp3'}
+    {url: 'https://foo.bar/baz.mp3'},
+    {url: 'https://foo.bar/qux.mp3'}
   ]);
 });
 
@@ -126,8 +126,8 @@ test('Gets photo property', t => {
   const mf2 = JSON.parse(getFixture('photo-provided.json'));
   const result = getPhotoProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.jpg'},
-    {value: 'https://foo.bar/qux.jpg'}
+    {url: 'https://foo.bar/baz.jpg'},
+    {url: 'https://foo.bar/qux.jpg'}
   ]);
 });
 
@@ -135,8 +135,8 @@ test('Gets normalised photo property', t => {
   const mf2 = JSON.parse(getFixture('photo-provided-value-alt.json'));
   const result = getPhotoProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.jpg', alt: 'Baz'},
-    {value: 'https://foo.bar/qux.jpg', alt: 'Qux'}
+    {url: 'https://foo.bar/baz.jpg', alt: 'Baz'},
+    {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
   ]);
 });
 
@@ -144,8 +144,8 @@ test('Gets normalised photo property, adding provided text alternatives', t => {
   const mf2 = JSON.parse(getFixture('photo-provided-mp-photo-alt.json'));
   const result = getPhotoProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.jpg', alt: 'Baz'},
-    {value: 'https://foo.bar/qux.jpg', alt: 'Qux'}
+    {url: 'https://foo.bar/baz.jpg', alt: 'Baz'},
+    {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
   ]);
 });
 
@@ -153,8 +153,8 @@ test('Gets video property', t => {
   const mf2 = JSON.parse(getFixture('video-provided-value.json'));
   const result = getVideoProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.mp4'},
-    {value: 'https://foo.bar/qux.mp4'}
+    {url: 'https://foo.bar/baz.mp4'},
+    {url: 'https://foo.bar/qux.mp4'}
   ]);
 });
 
@@ -162,8 +162,8 @@ test('Gets normalised video property', t => {
   const mf2 = JSON.parse(getFixture('video-provided.json'));
   const result = getVideoProperty(mf2);
   t.deepEqual(result, [
-    {value: 'https://foo.bar/baz.mp4'},
-    {value: 'https://foo.bar/qux.mp4'}
+    {url: 'https://foo.bar/baz.mp4'},
+    {url: 'https://foo.bar/qux.mp4'}
   ]);
 });
 

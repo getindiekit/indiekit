@@ -121,8 +121,9 @@ export const getMf2 = (publication, mf2) => {
  */
 export const getAudioProperty = mf2 => {
   const {audio} = mf2.properties;
-  const isNormalisedProperty = typeof audio[0] !== 'string';
-  return isNormalisedProperty ? audio : audio.map(value => ({value}));
+  return audio.map(item => ({
+    url: item.value || item
+  }));
 };
 
 /**
@@ -146,13 +147,11 @@ export const getContentProperty = mf2 => {
 export const getPhotoProperty = mf2 => {
   const {photo} = mf2.properties;
   const photoAlt = mf2.properties['mp-photo-alt'];
-  const isNormalisedProperty = typeof photo[0] !== 'string';
-  const property = isNormalisedProperty ?
-    photo :
-    photo.map((value, i) => ({
-      ...value && {value},
-      ...photoAlt && {alt: photoAlt[i]}
-    }));
+  const property = photo.map((item, i) => ({
+    url: item.value || item,
+    ...item.alt && {alt: item.alt},
+    ...photoAlt && {alt: photoAlt[i]}
+  }));
   delete mf2.properties['mp-photo-alt'];
   return property;
 };
@@ -165,8 +164,9 @@ export const getPhotoProperty = mf2 => {
  */
 export const getVideoProperty = mf2 => {
   const {video} = mf2.properties;
-  const isNormalisedProperty = typeof video[0] !== 'string';
-  return isNormalisedProperty ? video : video.map(value => ({value}));
+  return video.map(item => ({
+    url: item.value || item
+  }));
 };
 
 /**
