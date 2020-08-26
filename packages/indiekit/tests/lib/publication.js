@@ -13,8 +13,11 @@ import {
 } from '../../lib/publication.js';
 
 test.beforeEach(async t => {
+  const database = await mongodbConfig;
+  const collection = await database.collection('cache');
+
   t.context = await {
-    cache: new Cache(mongodbConfig),
+    cache: new Cache(collection),
     categories: {
       nock: nock('https://website.example').get('/categories.json'),
       url: 'https://website.example/categories.json'

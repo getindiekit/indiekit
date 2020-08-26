@@ -22,6 +22,7 @@ indiekit.set('application.locale', process.env.LOCALE);
 // Publication settings
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
 indiekit.set('publication.storeId', 'github');
+indiekit.set('publication.config.categories.url', 'http://paulrobertlloyd.com/categories/index.json');
 
 // Server
 const server = indiekit.server();

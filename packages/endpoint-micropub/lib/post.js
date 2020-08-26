@@ -21,7 +21,10 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'create';
-      await posts.insertOne(postData);
+
+      if (posts) {
+        await posts.insertOne(postData);
+      }
 
       return {
         location: postData.properties.url,
@@ -55,9 +58,12 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'update';
-      await posts.replaceOne({
-        url: postData.properties.url
-      }, postData);
+
+      if (posts) {
+        await posts.replaceOne({
+          url: postData.properties.url
+        }, postData);
+      }
 
       const hasUpdatedUrl = (url !== postData.properties.url);
       return {
@@ -92,9 +98,12 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'delete';
-      await posts.replaceOne({
-        url: postData.properties.url
-      }, postData);
+
+      if (posts) {
+        await posts.replaceOne({
+          url: postData.properties.url
+        }, postData);
+      }
 
       return {
         status: 200,
@@ -131,9 +140,12 @@ export const post = {
     if (published) {
       postData.date = new Date();
       postData.lastAction = 'undelete';
-      await posts.replaceOne({
-        url: postData.properties.url
-      }, postData);
+
+      if (posts) {
+        await posts.replaceOne({
+          url: postData.properties.url
+        }, postData);
+      }
 
       return {
         location: postData.properties.url,

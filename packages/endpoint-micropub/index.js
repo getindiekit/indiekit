@@ -27,10 +27,12 @@ export const MicropubEndpoint = class {
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
-    indiekitConfig.addNavigation({
-      href: `${this.mountpath}/posts`,
-      text: 'Posts'
-    });
+    if (application.hasDatabase) {
+      indiekitConfig.addNavigation({
+        href: `${this.mountpath}/posts`,
+        text: 'Posts'
+      });
+    }
 
     indiekitConfig.addRoute({
       mountpath: this.mountpath,
@@ -51,8 +53,11 @@ export const MicropubEndpoint = class {
 
     this._router.get('/', queryController(publication));
     this._router.post('/', indieauth(publication), multipartParser.any(), actionController(publication));
-    this._router.get('/posts', authenticate, postsController(publication).list);
-    this._router.get('/posts/:id', authenticate, postsController(publication).view);
+
+    if (application.hasDatabase) {
+      this._router.get('/posts', authenticate, postsController(publication).list);
+      this._router.get('/posts/:id', authenticate, postsController(publication).view);
+    }
 
     return router;
   }

@@ -26,8 +26,7 @@
       "required": true
     },
     "MONGODB_URL": {
-      "description": "URL of a MongoDB host",
-      "required": true
+      "description": "URL of a MongoDB host (optional)"
     },
     "NPM_CONFIG_PRODUCTION": {
       "descrition": "Skip pruning devDependencies while packages are not public",
