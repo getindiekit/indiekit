@@ -1,0 +1,7 @@
+{%- set classes = "file" + (" " + opts.classes if opts.classes) -%}
+<article class="{{ classes }}">
+  <h2 class="file__title">
+    {{ icon(opts.icon) }}<a href="{{ opts.href }}">{{ opts.title }}</a>
+  </h2>
+  <p class="file__meta">{{ opts.meta }}</p>
+</article>

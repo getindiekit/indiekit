@@ -1,0 +1,17 @@
+.file__title {
+  --flow-space: 0;
+  @extend %label;
+}
+
+.file__title svg {
+  inline-size: var(--step-0);
+  margin-inline-end: var(--space-inline);
+}
+
+.file__meta {
+  @extend %caption;
+
+  color: var(--color-neutral-dark);
+  margin-block-start: 0;
+  margin-inline-start: calc(var(--step-0) + var(--space-inline));
+}

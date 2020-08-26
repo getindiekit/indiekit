@@ -34,17 +34,17 @@
   padding: 0;
 }
 
-.s-linear h2 {
+.s-linear h2:not([class]) {
   @extend %heading;
 
   margin-block-start: calc(var(--flow-space) * 1.5);
 }
 
-.s-linear h2 + * {
+.s-linear h2:not([class]) + * {
   margin-block-start: calc(var(--flow-space) / 1.5);
 }
 
-.s-linear h3 {
+.s-linear h3:not([class]) {
   @extend %subhead;
 }
 
@@ -95,6 +95,11 @@
   color: var(--color-neutral-lightest);
   font-size: 85%;
   line-height: var(--line-height-tight);
+}
+
+.s-linear .no-bullets {
+  list-style: none;
+  padding-inline-start: 0;
 }
 
 .s-linear > *:not([class]) {

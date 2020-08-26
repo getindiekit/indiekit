@@ -1,11 +1,19 @@
+{%- from "file/macro.njk" import file -%}
 {% extends "document.njk" %}
 
 {% block content %}
   {%- if files %}
-  <ul>
-  {%- for file in files %}
-    <li><a href="{{ parentUrl }}{{ file._id }}">{{ icon(file.properties["post-type"]) }} {{ file.properties.filename }}</a></li>
+  <ol class="no-bullets">
+  {%- for item in files %}
+    <li>
+      {{ file({
+        title: item.properties.filename,
+        href: parentUrl + item._id,
+        icon: item.properties["post-type"],
+        meta: item.properties.url
+      }) }}
+    </li>
   {%- endfor %}
-  </ul>
+  </ol>
   {%- endif %}
 {% endblock %}
