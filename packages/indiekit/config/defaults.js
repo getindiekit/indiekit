@@ -9,9 +9,10 @@ import {authenticate} from '../middleware/authentication.js';
 import {indieauth} from '../middleware/indieauth.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const jekyll = new JekyllPreset();
-const package_ = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const packagePath = path.join(__dirname, '..', 'package.json');
+const package_ = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 
+const jekyll = new JekyllPreset();
 const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
