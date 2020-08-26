@@ -197,7 +197,7 @@ export const getPublishedProperty = mf2 => {
  * @returns {Array} Array containing slug value
  */
 export const getSlugProperty = (mf2, separator) => {
-  const suggested = mf2.properties['mp-slug'] || mf2.properties.slug;
+  const suggested = mf2.properties['mp-slug'];
   const {name} = mf2.properties;
 
   let string;

@@ -2,6 +2,6 @@
   "type": ["h-entry"],
   "properties": {
     "name": ["I ate a cheese sandwich, which was nice."],
-    "slug": [""]
+    "mp-slug": [""]
   }
 }

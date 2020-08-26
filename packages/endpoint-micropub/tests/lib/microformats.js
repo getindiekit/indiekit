@@ -185,32 +185,20 @@ test('Gets date by using current date', t => {
   t.true(isValid(parseISO(result[0])));
 });
 
-test('Derives slug from `slug` property', t => {
+test('Derives slug from `mp-slug` property', t => {
   const mf2 = JSON.parse(getFixture('slug-provided.json'));
   const slug = getSlugProperty(mf2, '-');
   t.is(slug[0], 'cheese-sandwich');
 });
 
-test('Derives slug from `mp-slug` property', t => {
-  const mf2 = JSON.parse(getFixture('mp-slug-provided.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.is(slug[0], 'cheese-sandwich');
-});
-
 test('Derives slug from unslugified `mp-slug` property', t => {
-  const mf2 = JSON.parse(getFixture('mp-slug-provided-unslugified.json'));
+  const mf2 = JSON.parse(getFixture('slug-provided-unslugified.json'));
   const slug = getSlugProperty(mf2, '-');
   t.is(slug[0], 'cheese-sandwich');
-});
-
-test('Derives slug, ignoring empty `slug` property', t => {
-  const mf2 = JSON.parse(getFixture('slug-provided-empty.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.is(slug[0], 'i-ate-a-cheese-sandwich');
 });
 
 test('Derives slug, ignoring empty `mp-slug` property', t => {
-  const mf2 = JSON.parse(getFixture('mp-slug-provided-empty.json'));
+  const mf2 = JSON.parse(getFixture('slug-provided-empty.json'));
   const slug = getSlugProperty(mf2, '-');
   t.is(slug[0], 'i-ate-a-cheese-sandwich');
 });
