@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-gitlab",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.3",
   "description": "Store IndieWeb content on GitLab",
   "keywords": [
     "indiekit",
