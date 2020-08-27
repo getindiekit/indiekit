@@ -53,7 +53,7 @@ export const postsController = publication => ({
         title: post.properties.name,
         content: post.properties.content,
         published: post.properties.published,
-        url: post.url,
+        url: post.properties.url,
         properties,
         mf2: post.mf2
       });
