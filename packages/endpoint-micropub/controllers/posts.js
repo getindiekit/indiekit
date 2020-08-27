@@ -1,4 +1,5 @@
 import mongodb from 'mongodb';
+import {capitalize} from '../lib/utils.js';
 
 const {ObjectId} = mongodb;
 
@@ -43,19 +44,19 @@ export const postsController = publication => ({
             text: key
           },
           value: {
-            text: value
+            text: typeof value === 'string' ? value : JSON.stringify(value)
           }
         })
       );
 
+
+
       response.render('post', {
         parent: 'Published posts',
-        title: post.properties.name,
+        title: post.properties.name || capitalize(post.properties['post-type']),
         content: post.properties.content,
-        published: post.properties.published,
-        url: post.properties.url,
         properties,
-        mf2: post.mf2
+        post
       });
     } catch (error) {
       next(error);

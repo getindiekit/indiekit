@@ -1,15 +1,25 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  <p><time datetime="{{ published }}">
-    <a href="{{ url }}">{{ published | date("PPPp", application.locale) }}</a>
-  </time></p>
+  {% if post.properties.audio %}
+    {% for item in post.properties.audio %}
+      <audio src="{{ item.url }}" controls>
+    {% endfor %}
+  {% elif post.properties.photo %}
+    {% for item in post.properties.photo %}
+      <img src="{{ item.url }}" alt="{{ item.alt }}">
+    {% endfor %}
+  {% elif post.properties.video %}
+    {% for item in post.properties.video %}
+      <video src="{{ item.url }}" controls>
+    {% endfor %}
+  {% endif %}
   {{ summary({
-    title: "Properties",
+    title: "Post properties",
     rows: properties
   }) }}
   <details>
     <summary>Microformats for this post</summary>
-<pre>{{ mf2 | dump(2) }}</pre>
+<pre>{{ post.properties.mf2 | dump(2) }}</pre>
   </details>
 {% endblock %}

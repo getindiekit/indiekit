@@ -10,11 +10,8 @@
   {% else %}
     <a href="{{ url }}" download>Download file</a>
   {% endif %}
-  <p><time datetime="{{ published }}">
-    <a href="{{ url }}">{{ published | date("PPPp", application.locale) }}</a>
-  </time></p>
   {{ summary({
-    title: "Properties",
+    title: "File properties",
     rows: properties
   }) }}
 {% endblock %}

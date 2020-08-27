@@ -5,6 +5,14 @@ import slugify from '@sindresorhus/slugify';
 
 const {format} = dateFns;
 
+export const capitalize = string => {
+  if (typeof string !== 'string') {
+    return string;
+  }
+
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 /**
  * Decode form-encoded query parameter
  *
