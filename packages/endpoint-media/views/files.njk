@@ -4,7 +4,7 @@
 {% block content %}
   {%- if files %}
   <ol class="no-bullets">
-  {%- for item in files %}
+  {%- for item in files | reverse %}
     <li>
       {{ file({
         title: item.properties.filename,

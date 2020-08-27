@@ -4,7 +4,7 @@
 {% block content %}
   {%- if posts %}
   <ol class="no-bullets">
-  {%- for item in posts %}
+  {%- for item in posts | reverse %}
     <li>
       {{ file({
         title: item.properties.name or item.properties['post-type'] | capitalize,
