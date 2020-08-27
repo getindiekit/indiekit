@@ -42,6 +42,11 @@ export const mediaData = {
       const url = renderPath(typeConfig.media.url || typeConfig.media.path, properties);
       properties.url = getPermalink(me, url);
 
+      // Update media properties based on type config
+      const urlPathSegment = properties.url.split('/');
+      properties.filename = urlPathSegment[urlPathSegment.length - 1];
+      properties.basename = properties.filename.split('.')[0];
+
       // Media data
       const mediaData = {path, properties};
       return mediaData;
