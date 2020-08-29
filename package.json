@@ -23,8 +23,8 @@
   "type": "module",
   "scripts": {
     "postinstall": "lerna bootstrap --no-ci",
-    "dev": "nodemon indiekit.config.js",
-    "start": "node indiekit.config.js",
+    "dev": "DEBUG=indiekit:* nodemon indiekit.config.js",
+    "start": "DEBUG=indiekit:* node indiekit.config.js",
     "lint:markdown": "markdownlint '**/*.md'",
     "lint:scripts": "xo '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",

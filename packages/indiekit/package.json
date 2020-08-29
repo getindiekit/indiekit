@@ -31,6 +31,7 @@
     "@indiekit/frontend": "^0.1.0-alpha.3",
     "@indiekit/preset-jekyll": "^0.1.0-alpha.3",
     "cookie-session": "^1.4.0",
+    "debug": "^4.1.1",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
     "got": "^11.5.1",

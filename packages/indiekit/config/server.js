@@ -3,6 +3,7 @@ import cookieSession from 'cookie-session';
 import {templates} from '@indiekit/frontend';
 import * as error from '../middleware/error.js';
 import {locals} from '../middleware/locals.js';
+import {logging} from '../middleware/logging.js';
 import {routes} from '../routes/index.js';
 
 export const serverConfig = indiekitConfig => {
@@ -23,6 +24,9 @@ export const serverConfig = indiekitConfig => {
 
   // Locals
   config.use(locals(indiekitConfig));
+
+  // Log requests
+  config.use(logging);
 
   // Views
   config.set('views', indiekitConfig.application.views);
