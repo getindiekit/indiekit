@@ -32,12 +32,14 @@
     "test:watch": "ava --watch",
     "coverage": "c8 ava"
   },
+  "dependencies": {
+    "dotenv": "^8.1.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1 ",
     "ava": "^3.8.2",
     "c8": "^7.1.2",
-    "dotenv": "^8.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsdoc": "^28.0.0",
     "husky": "^4.2.5",
