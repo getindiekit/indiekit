@@ -28,10 +28,6 @@
     "MONGODB_URL": {
       "description": "URL of a MongoDB host (optional)"
     },
-    "NPM_CONFIG_PRODUCTION": {
-      "descrition": "Skip pruning devDependencies while packages are not public",
-      "value": "false"
-    },
     "SECRET": {
       "description": "A secret key for verifying the integrity of signed cookies",
       "generator": "secret"
