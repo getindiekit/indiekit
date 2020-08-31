@@ -1,4 +1,4 @@
-import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
 import { striptags } from "striptags";
 import { getDate } from "./date.js";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
@@ -47,12 +47,17 @@ export const formEncodedToJf2 = (body) => {
  * Convert mf2 to JF2
  *
  * @param {string} body - Form-encoded request body
+ * @param {boolean} requestReferences - Request data for any referenced URLs
  * @returns {string} Micropub action
  */
-export const mf2ToJf2 = (body) => {
+export const mf2ToJf2 = async (body, requestReferences) => {
   const mf2 = {
     items: [body],
   };
+
+  if (requestReferences) {
+    return mf2tojf2referenced(mf2);
+  }
 
   return mf2tojf2(mf2);
 };
