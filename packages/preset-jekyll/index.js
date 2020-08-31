@@ -176,6 +176,7 @@ export default class JekyllPreset {
       ...(properties["mp-syndicate-to"] && {
         "mp-syndicate-to": properties["mp-syndicate-to"],
       }),
+      ...(properties.references && { references: properties.references }),
     };
     let frontMatter = YAML.stringify(properties, { lineWidth: 0 });
     frontMatter = `---\n${frontMatter}---\n`;

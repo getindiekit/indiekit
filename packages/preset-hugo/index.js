@@ -244,6 +244,7 @@ export default class HugoPreset {
       ...(properties.mpSyndicateTo && {
         mpSyndicateTo: properties.mpSyndicateTo,
       }),
+      ...(properties.references && { references: properties.references }),
     };
 
     const frontMatter = this.#frontMatter(properties);

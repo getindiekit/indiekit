@@ -23,7 +23,9 @@ export const post = {
       postData.lastAction = metaData.action;
 
       if (posts) {
-        await posts.insertOne(postData);
+        await posts.insertOne(postData, {
+          checkKeys: false,
+        });
       }
 
       return {
@@ -66,7 +68,10 @@ export const post = {
           {
             "properties.url": postData.properties.url,
           },
-          postData
+          postData,
+          {
+            checkKeys: false,
+          }
         );
       }
 
@@ -111,7 +116,10 @@ export const post = {
           {
             "properties.url": postData.properties.url,
           },
-          postData
+          postData,
+          {
+            checkKeys: false,
+          }
         );
       }
 
@@ -158,7 +166,10 @@ export const post = {
           {
             "properties.url": postData.properties.url,
           },
-          postData
+          postData,
+          {
+            checkKeys: false,
+          }
         );
       }
 
