@@ -39,7 +39,8 @@
     "indieauth-helper": "^1.0.2",
     "lodash": "^4.17.19",
     "mongodb": "^3.6.0",
-    "normalize-url": "^5.1.0"
+    "normalize-url": "^5.1.0",
+    "uuid": "^8.3.0"
   },
   "publishConfig": {
     "access": "public"

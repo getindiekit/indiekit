@@ -1,12 +1,11 @@
 import httpError from 'http-errors';
 import IndieAuth from 'indieauth-helper';
 import normalizeUrl from 'normalize-url';
+import {v4 as uuidv4} from 'uuid';
 import validator from 'express-validator';
-import {defaultConfig} from '../config/defaults.js';
 
 const auth = new IndieAuth({
-  // TODO: Use resolved server config
-  secret: defaultConfig.server.secret
+  secret: uuidv4()
 });
 const {validationResult} = validator;
 

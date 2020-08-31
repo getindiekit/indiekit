@@ -1,5 +1,6 @@
 import express from 'express';
 import cookieSession from 'cookie-session';
+import {v4 as uuidv4} from 'uuid';
 import {templates} from '@indiekit/frontend';
 import * as error from '../middleware/error.js';
 import {locals} from '../middleware/locals.js';
@@ -19,7 +20,7 @@ export const serverConfig = indiekitConfig => {
   // Session
   config.use(cookieSession({
     name: indiekitConfig.application.name,
-    secret: indiekitConfig.server.secret
+    secret: uuidv4()
   }));
 
   // Locals
