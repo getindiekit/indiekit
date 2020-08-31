@@ -58,8 +58,7 @@
   "ava": {
     "environmentVariables": {
       "MONGODB_URL": "mongodb://localhost:27017/test",
-      "NODE_ENV": "test",
-      "SECRET": "test"
+      "NODE_ENV": "test"
     }
   },
   "c8": {

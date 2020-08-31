@@ -59,7 +59,6 @@ export const defaultConfig = {
     tokenEndpoint: 'https://tokens.indieauth.com/token'
   },
   server: {
-    port: process.env.PORT || '3000',
-    secret: process.env.SECRET
+    port: process.env.PORT || '3000'
   }
 };

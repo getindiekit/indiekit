@@ -27,10 +27,6 @@
     },
     "MONGODB_URL": {
       "description": "URL of a MongoDB host (optional)"
-    },
-    "SECRET": {
-      "description": "A secret key for verifying the integrity of signed cookies",
-      "generator": "secret"
     }
   }
 }
