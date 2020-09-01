@@ -111,7 +111,6 @@ export const JekyllPreset = class {
           url: 'likes/{yyyy}/{MM}/{dd}/{slug}'
         }
       }],
-      'slug-separator': '-',
       'syndicate-to': []
     };
   }

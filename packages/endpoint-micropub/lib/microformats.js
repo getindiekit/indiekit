@@ -89,10 +89,10 @@ export const mf2Properties = (mf2, requestedProperties) => {
  * @returns {object} Normalised Microformats2 object
  */
 export const getMf2 = (publication, mf2) => {
-  const {config} = publication;
+  const {slugSeparator} = publication;
 
   mf2.properties.published = getPublishedProperty(mf2);
-  mf2.properties.slug = getSlugProperty(mf2, config['slug-separator']);
+  mf2.properties.slug = getSlugProperty(mf2, slugSeparator);
 
   if (mf2.properties.content) {
     mf2.properties.content = getContentProperty(mf2);

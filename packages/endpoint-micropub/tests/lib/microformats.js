@@ -21,9 +21,7 @@ const {isValid, parseISO} = dateFns;
 test.beforeEach(t => {
   t.context = {
     publication: {
-      config: {
-        'slug-separator': '-'
-      }
+      slugSeparator: '-'
     },
     nock: nock('https://website.example').get('/post.html'),
     url: 'https://website.example/post.html'

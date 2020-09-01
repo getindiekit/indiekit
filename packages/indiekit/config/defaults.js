@@ -54,6 +54,7 @@ export const defaultConfig = {
     me: null,
     postTemplate,
     presetId: 'jekyll',
+    slugSeparator: '-',
     storeId: null,
     timezone: 'UTC',
     tokenEndpoint: 'https://tokens.indieauth.com/token'

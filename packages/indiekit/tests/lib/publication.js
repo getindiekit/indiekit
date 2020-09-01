@@ -23,8 +23,7 @@ test.beforeEach(async t => {
       url: 'https://website.example/categories.json'
     },
     config: {
-      preset: new JekyllPreset().config,
-      'slug-separator': '$'
+      preset: new JekyllPreset().config
     }
   };
 });

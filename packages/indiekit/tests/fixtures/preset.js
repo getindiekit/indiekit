@@ -16,7 +16,6 @@ export const Preset = class {
           url: 'notes/{{ published | date(\'yyyy/MM/dd\') }}/{{ slug }}'
         }
       }],
-      'slug-separator': '*',
       'syndicate-to': []
     };
   }
