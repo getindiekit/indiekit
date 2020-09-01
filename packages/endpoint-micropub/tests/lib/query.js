@@ -10,7 +10,6 @@ test('Returns queryable publication config', async t => {
   const {config} = new JekyllPreset();
   const result = await queryConfig(config);
   t.truthy(result.categories);
-  t.falsy(result['slug-separator']);
   t.falsy(result['post-types'][0].path);
 });
 

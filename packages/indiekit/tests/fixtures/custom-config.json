@@ -35,6 +35,5 @@
       "path": "src/media/pictures/{{ uploaded | date('X') }}.{{ fileext }}",
       "url": "media/pictures/{{ uploaded | date('X') }}.{{ fileext }}"
     }
-  }],
-  "slug-separator": "_"
+  }]
 }

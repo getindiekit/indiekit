@@ -143,7 +143,6 @@ export const HugoPreset = class {
           url: 'likes/{slug}'
         }
       }],
-      'slug-separator': '-',
       'syndicate-to': []
     };
   }
