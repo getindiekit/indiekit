@@ -34,7 +34,7 @@
   "dependencies": {
     "@paulrobertlloyd/mf2tojf2": "^0.3.0",
     "@sindresorhus/slugify": "^1.1.0",
-    "date-fns": "^2.15.0",
+    "date-fns": "^2.16.1",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
     "got": "^11.5.1",
