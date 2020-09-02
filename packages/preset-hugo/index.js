@@ -35,120 +35,116 @@ export const HugoPreset = class {
   }
 
   /**
-   * Publication config
+   * Post types
    *
-   * @returns {object} Publication config
+   * @returns {object} Post types config
    */
-  get config() {
-    return {
-      categories: [],
-      'post-types': [{
-        type: 'article',
-        name: 'Article',
-        post: {
-          path: 'content/articles/{slug}.md',
-          url: 'articles/{slug}'
-        },
-        media: {
-          path: 'static/articles/{filename}',
-          url: 'articles/{filename}'
-        }
-      }, {
-        type: 'note',
-        name: 'Note',
-        post: {
-          path: 'content/notes/{slug}.md',
-          url: 'notes/{slug}'
-        }
-      }, {
-        type: 'photo',
-        name: 'Photo',
-        post: {
-          path: 'content/photos/{slug}.md',
-          url: 'photos/{slug}'
-        },
-        media: {
-          path: 'static/photos/{filename}',
-          url: 'photos/{filename}'
-        }
-      }, {
-        type: 'video',
-        name: 'Video',
-        post: {
-          path: 'content/videos/{slug}.md',
-          url: 'videos/{slug}'
-        },
-        media: {
-          path: 'static/videos/{filename}',
-          url: 'videos/{filename}'
-        }
-      }, {
-        type: 'audio',
-        name: 'Audio',
-        post: {
-          path: 'content/audio/{slug}.md',
-          url: 'audio/{slug}'
-        },
-        media: {
-          path: 'static/audio/{filename}',
-          url: 'audio/{filename}'
-        }
-      }, {
-        type: 'bookmark',
-        name: 'Bookmark',
-        post: {
-          path: 'content/bookmarks/{slug}.md',
-          url: 'bookmarks/{slug}'
-        }
-      }, {
-        type: 'checkin',
-        name: 'Checkin',
-        post: {
-          path: 'content/checkins/{slug}.md',
-          url: 'checkins/{slug}'
-        }
-      }, {
-        type: 'event',
-        name: 'Event',
-        post: {
-          path: 'content/events/{slug}.md',
-          url: 'events/{slug}'
-        }
-      }, {
-        type: 'rsvp',
-        name: 'Reply with RSVP',
-        post: {
-          path: 'content/replies/{slug}.md',
-          url: 'replies/{slug}'
-        }
-      }, {
-        type: 'reply',
-        name: 'Reply',
-        post: {
-          path: 'content/replies/{slug}.md',
-          url: 'replies/{slug}'
-        }
-      }, {
-        type: 'repost',
-        name: 'Repost',
-        post: {
-          path: 'content/reposts/{slug}.md',
-          url: 'reposts/{slug}'
-        }
-      }, {
-        type: 'like',
-        name: 'Like',
-        post: {
-          path: 'content/likes/{slug}.md',
-          url: 'likes/{slug}'
-        }
-      }],
-      'syndicate-to': []
-    };
+  get postTypes() {
+    return [{
+      type: 'article',
+      name: 'Article',
+      post: {
+        path: 'content/articles/{slug}.md',
+        url: 'articles/{slug}'
+      },
+      media: {
+        path: 'static/articles/{filename}',
+        url: 'articles/{filename}'
+      }
+    }, {
+      type: 'note',
+      name: 'Note',
+      post: {
+        path: 'content/notes/{slug}.md',
+        url: 'notes/{slug}'
+      }
+    }, {
+      type: 'photo',
+      name: 'Photo',
+      post: {
+        path: 'content/photos/{slug}.md',
+        url: 'photos/{slug}'
+      },
+      media: {
+        path: 'static/photos/{filename}',
+        url: 'photos/{filename}'
+      }
+    }, {
+      type: 'video',
+      name: 'Video',
+      post: {
+        path: 'content/videos/{slug}.md',
+        url: 'videos/{slug}'
+      },
+      media: {
+        path: 'static/videos/{filename}',
+        url: 'videos/{filename}'
+      }
+    }, {
+      type: 'audio',
+      name: 'Audio',
+      post: {
+        path: 'content/audio/{slug}.md',
+        url: 'audio/{slug}'
+      },
+      media: {
+        path: 'static/audio/{filename}',
+        url: 'audio/{filename}'
+      }
+    }, {
+      type: 'bookmark',
+      name: 'Bookmark',
+      post: {
+        path: 'content/bookmarks/{slug}.md',
+        url: 'bookmarks/{slug}'
+      }
+    }, {
+      type: 'checkin',
+      name: 'Checkin',
+      post: {
+        path: 'content/checkins/{slug}.md',
+        url: 'checkins/{slug}'
+      }
+    }, {
+      type: 'event',
+      name: 'Event',
+      post: {
+        path: 'content/events/{slug}.md',
+        url: 'events/{slug}'
+      }
+    }, {
+      type: 'rsvp',
+      name: 'Reply with RSVP',
+      post: {
+        path: 'content/replies/{slug}.md',
+        url: 'replies/{slug}'
+      }
+    }, {
+      type: 'reply',
+      name: 'Reply',
+      post: {
+        path: 'content/replies/{slug}.md',
+        url: 'replies/{slug}'
+      }
+    }, {
+      type: 'repost',
+      name: 'Repost',
+      post: {
+        path: 'content/reposts/{slug}.md',
+        url: 'reposts/{slug}'
+      }
+    }, {
+      type: 'like',
+      name: 'Like',
+      post: {
+        path: 'content/likes/{slug}.md',
+        url: 'likes/{slug}'
+      }
+    }];
   }
 
   /**
-   * Render post template
+   * Post template
    *
    * @param {object} properties Post data variables
    * @returns {string} Rendered template

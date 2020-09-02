@@ -6,9 +6,7 @@ import {uploadMedia} from '../../lib/media.js';
 test.beforeEach(t => {
   t.context = {
     publication: {
-      config: {
-        'media-endpoint': 'https://media-endpoint.example'
-      }
+      mediaEndpoint: 'https://media-endpoint.example'
     },
     mf2: {
       type: ['h-entry'],

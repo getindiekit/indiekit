@@ -1,0 +1,24 @@
+[{
+  "type": "article",
+  "template": "etc/templates/article.njk"
+}, {
+  "type": "note",
+  "name": "Journal entry",
+  "template": "etc/templates/entry.njk",
+  "post": {
+    "path": "_entries/{{ published | date('X') }}.md",
+    "url": "entries/{{ published | date('X') }}"
+  }
+}, {
+  "type": "photo",
+  "name": "Picture",
+  "template": "etc/templates/picture.njk",
+  "post": {
+    "path": "_pictures/{{ published | date('X') }}.md",
+    "url": "_pictures/{{ published | date('X') }}"
+  },
+  "media": {
+    "path": "src/media/pictures/{{ uploaded | date('X') }}.{{ fileext }}",
+    "url": "media/pictures/{{ uploaded | date('X') }}.{{ fileext }}"
+  }
+}]

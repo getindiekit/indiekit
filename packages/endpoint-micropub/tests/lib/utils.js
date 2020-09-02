@@ -36,8 +36,8 @@ test('Derives a permalink', t => {
 });
 
 test('Get post type configuration for a given type', t => {
-  const {config} = new JekyllPreset();
-  const result = getPostTypeConfig('note', config);
+  const {postTypes} = new JekyllPreset();
+  const result = getPostTypeConfig('note', postTypes);
   t.is(result.name, 'Note');
 });
 

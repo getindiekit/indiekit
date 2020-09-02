@@ -5,8 +5,8 @@ import {postData} from '../../lib/post-data.js';
 test.beforeEach(t => {
   t.context = {
     publication: {
-      config: new JekyllPreset().config,
       me: 'https://website.example',
+      postTypes: new JekyllPreset().postTypes,
       posts: {
         findOne: async url => ({
           path: 'foo',

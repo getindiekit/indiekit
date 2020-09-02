@@ -1,14 +1,17 @@
 import test from 'ava';
 import {JekyllPreset} from '../../../preset-jekyll/index.js';
-import {queryConfig, queryList} from '../../lib/query.js';
+import {getConfig, queryList} from '../../lib/query.js';
 
 test.beforeEach(t => {
   t.context.url = 'https://website.example';
 });
 
-test('Returns queryable publication config', async t => {
-  const {config} = new JekyllPreset();
-  const result = await queryConfig(config);
+test('Returns queryable publication config', t => {
+  const config = {
+    categories: ['foo', 'bar'],
+    postTypes: new JekyllPreset().postTypes
+  };
+  const result = getConfig(config);
   t.truthy(result.categories);
   t.falsy(result['post-types'][0].path);
 });

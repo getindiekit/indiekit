@@ -7,7 +7,8 @@ import {serverConfig} from './config/server.js';
 import {Cache} from './lib/cache.js';
 import {
   getCategories,
-  getConfig,
+  getPostTemplate,
+  getPostTypes,
   getPreset,
   getStore
 } from './lib/publication.js';
@@ -65,32 +66,25 @@ export const Indiekit = class {
 
   async init() {
     const {hasDatabase, locale, presets, stores} = this.application;
-    const {config, presetId} = this.publication;
-    const database = await mongodbConfig;
 
-    // Application cache collection
-    this.application.cache = hasDatabase ? await database.collection('cache') : false;
+    // Setup databases
+    if (hasDatabase) {
+      const database = await mongodbConfig;
+      this.application.cache = await database.collection('cache');
+      this.publication.posts = await database.collection('posts');
+      this.publication.media = await database.collection('media');
+    }
 
-    // Publication data collections
-    this.publication.posts = hasDatabase ? await database.collection('posts') : false;
-    this.publication.media = hasDatabase ? await database.collection('media') : false;
-
-    // Publication configuration
+    // Setup cache
     const cache = new Cache(this.application.cache);
-    const preset = getPreset(presets, presetId);
-    const categories = await getCategories(cache, config.categories);
-    this.publication.preset = preset;
-    this.publication.config = getConfig(config, preset.config);
-    this.publication.config.categories = categories;
-    this.publication.postTemplate = preset.postTemplate;
 
-    // Publication locale (defaults to application locale)
+    // Update publication configuration
+    this.publication.categories = await getCategories(cache, this.publication);
     this.publication.locale = this.publication.locale || locale;
-
-    // Publication store
-    this.publication.store = this.publication.store ?
-      getStore(stores, this.publication.store.id) :
-      false;
+    this.publication.preset = getPreset(presets, this.publication);
+    this.publication.postTemplate = getPostTemplate(this.publication);
+    this.publication.postTypes = getPostTypes(this.publication);
+    this.publication.store = getStore(stores, this.publication);
 
     // Application endpoints
     this.application.endpoints.forEach(

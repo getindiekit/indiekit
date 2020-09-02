@@ -9,8 +9,8 @@ test('Creates media data', async t => {
     originalname: 'photo.jpg'
   };
   const publication = {
-    config: new JekyllPreset().config,
-    me: 'https://website.example'
+    me: 'https://website.example',
+    postTypes: new JekyllPreset().postTypes
   };
   const result = await mediaData.create(publication, file);
   t.regex(result.path, /\b[\d\w]{5}\b/g);
@@ -23,7 +23,7 @@ test('Throws error creating media data without a known post type', async t => {
     originalname: 'font.ttf'
   };
   const publication = {
-    config: new JekyllPreset().config,
+    postTypes: new JekyllPreset().postTypes,
     me: 'https://website.example'
   };
   const error = await t.throwsAsync(
@@ -34,7 +34,7 @@ test('Throws error creating media data without a known post type', async t => {
 
 test('Throws error creating media data without a file', async t => {
   const publication = {
-    config: new JekyllPreset().config,
+    postTypes: new JekyllPreset().postTypes,
     me: 'https://website.example'
   };
   const error = await t.throwsAsync(

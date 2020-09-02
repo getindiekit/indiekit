@@ -1,9 +1,13 @@
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import {Indiekit} from './packages/indiekit/index.js';
+import {JekyllPreset} from './packages/preset-jekyll/index.js';
 import {GithubStore} from './packages/store-github/index.js';
 
 // New indiekit instance
 const indiekit = new Indiekit();
+
+// Configure publication preset
+const jekyll = new JekyllPreset();
 
 // Configure content store
 const github = new GithubStore({
@@ -14,6 +18,7 @@ const github = new GithubStore({
 });
 
 // Register extensions
+indiekit.addPreset(jekyll);
 indiekit.addStore(github);
 
 // Application settings
@@ -21,6 +26,7 @@ indiekit.set('application.locale', process.env.LOCALE);
 
 // Publication settings
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
+indiekit.set('publication.preset', jekyll);
 indiekit.set('publication.store', github);
 
 // Server

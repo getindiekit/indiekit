@@ -6,10 +6,10 @@ test.beforeEach(t => {
   t.context.properties = JSON.parse(getFixture('properties.jf2.json'));
 });
 
-test('Gets publication config', t => {
+test('Gets publication post types', t => {
   const hugo = new HugoPreset();
-  const result = hugo.config;
-  t.is(result['post-types'][0].type, 'article');
+  const result = hugo.postTypes;
+  t.is(result[0].type, 'article');
 });
 
 test('Renders post template without content', t => {
