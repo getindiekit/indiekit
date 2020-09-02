@@ -65,7 +65,7 @@ export const Indiekit = class {
 
   async init() {
     const {hasDatabase, locale, presets, stores} = this.application;
-    const {config, presetId, storeId} = this.publication;
+    const {config, presetId} = this.publication;
     const database = await mongodbConfig;
 
     // Application cache collection
@@ -88,7 +88,9 @@ export const Indiekit = class {
     this.publication.locale = this.publication.locale || locale;
 
     // Publication store
-    this.publication.store = getStore(stores, storeId);
+    this.publication.store = this.publication.store ?
+      getStore(stores, this.publication.store.id) :
+      false;
 
     // Application endpoints
     this.application.endpoints.forEach(
