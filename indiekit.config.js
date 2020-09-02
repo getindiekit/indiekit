@@ -6,7 +6,7 @@ import {GithubStore} from './packages/store-github/index.js';
 const indiekit = new Indiekit();
 
 // Configure content store
-const githubStore = new GithubStore({
+const github = new GithubStore({
   user: process.env.GITHUB_USER,
   repo: process.env.GITHUB_REPO,
   branch: process.env.GITHUB_BRANCH,
@@ -14,14 +14,14 @@ const githubStore = new GithubStore({
 });
 
 // Register extensions
-indiekit.addStore(githubStore);
+indiekit.addStore(github);
 
 // Application settings
 indiekit.set('application.locale', process.env.LOCALE);
 
 // Publication settings
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
-indiekit.set('publication.storeId', 'github');
+indiekit.set('publication.store', github);
 
 // Server
 const server = indiekit.server();
