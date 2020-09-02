@@ -106,11 +106,11 @@ export const getPermalink = (url, pathname) => {
  * Get post type configuration for a given type
  *
  * @param {string} type Post type
- * @param {object} config Publication configuration
+ * @param {object} postTypes Publication post types
  * @returns {object} Post type configuration
  */
-export const getPostTypeConfig = (type, config) => {
-  return config['post-types'].find(
+export const getPostTypeConfig = (type, postTypes) => {
+  return postTypes.find(
     item => item.type === type
   );
 };

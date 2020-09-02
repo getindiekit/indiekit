@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {JekyllPreset} from '@indiekit/preset-jekyll';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
@@ -12,15 +11,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packagePath = path.join(__dirname, '..', 'package.json');
 const package_ = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 
-const jekyll = new JekyllPreset();
 const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
-
-// Default post template returns JSON
-const postTemplate = properties => {
-  return JSON.stringify(properties);
-};
 
 export const defaultConfig = {
   application: {
@@ -40,9 +33,7 @@ export const defaultConfig = {
       indieauth
     },
     navigationItems: [],
-    presets: [
-      jekyll
-    ],
+    presets: [],
     routes: [],
     stores: [],
     views: [
@@ -50,12 +41,14 @@ export const defaultConfig = {
     ]
   },
   publication: {
-    config: {},
+    categories: [],
     me: null,
-    postTemplate,
-    presetId: 'jekyll',
+    postTemplate: null,
+    postTypes: [],
+    preset: null,
     slugSeparator: '-',
     store: null,
+    syndicationTargets: [],
     timezone: 'UTC',
     tokenEndpoint: 'https://tokens.indieauth.com/token'
   },

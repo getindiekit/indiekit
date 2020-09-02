@@ -27,11 +27,11 @@ export const mediaData = {
         throw new Error('No file included in request');
       }
 
-      const {config, me} = publication;
+      const {me, postTypes} = publication;
 
       // Media type
       const type = await getMediaType(file);
-      const typeConfig = getPostTypeConfig(type, config);
+      const typeConfig = getPostTypeConfig(type, postTypes);
 
       // Media properties
       const properties = await getFileProperties(file);

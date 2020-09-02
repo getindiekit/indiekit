@@ -8,10 +8,6 @@ import {
   supplant
 } from '../../lib/utils.js';
 
-test.beforeEach(t => {
-  t.context.config = new JekyllPreset().config;
-});
-
 test('Derives a permalink', t => {
   t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
   t.is(getPermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
@@ -20,7 +16,8 @@ test('Derives a permalink', t => {
 });
 
 test('Get post type configuration for a given type', t => {
-  const result = getPostTypeConfig('note', t.context.config);
+  const {postTypes} = new JekyllPreset();
+  const result = getPostTypeConfig('note', postTypes);
   t.is(result.name, 'Note');
 });
 

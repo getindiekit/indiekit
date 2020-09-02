@@ -10,8 +10,7 @@ import got from 'got';
  * @returns {Array} Uploaded file locations
  */
 export const uploadMedia = async (publication, mf2, files) => {
-  const mediaEndpoint = publication.config['media-endpoint'];
-  const {bearerToken} = publication;
+  const {bearerToken, mediaEndpoint} = publication;
 
   for await (const file of files) {
     // Create multipart/form-data

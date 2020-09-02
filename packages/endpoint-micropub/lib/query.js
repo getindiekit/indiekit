@@ -1,20 +1,25 @@
 /**
  * Return queryable publication config
  *
- * @param {object} config Publication config
+ * @param {object} publication Publication config
  * @returns {object} Queryable config
  */
-export const queryConfig = config => {
-  const postTypes = config['post-types'] || [];
+export const getConfig = publication => {
+  const {
+    categories,
+    mediaEndpoint,
+    postTypes,
+    syndicationTargets
+  } = publication;
 
   return {
-    categories: config.categories || [],
-    'syndicate-to': config['syndicate-to'] || [],
-    'media-endpoint': config['media-endpoint'],
+    categories,
+    'media-endpoint': mediaEndpoint,
     'post-types': postTypes.map(postType => ({
       type: postType.type,
       name: postType.name
-    }))
+    })),
+    'syndicate-to': syndicationTargets
   };
 };
 

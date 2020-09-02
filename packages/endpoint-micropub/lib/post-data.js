@@ -26,11 +26,11 @@ export const postData = {
         throw new Error('No microformats included in request');
       }
 
-      const {config, me} = publication;
+      const {me, postTypes} = publication;
 
       // Post type
       const type = getPostType(mf2);
-      const typeConfig = getPostTypeConfig(type, config);
+      const typeConfig = getPostTypeConfig(type, postTypes);
 
       // Post properties
       const properties = mf2tojf2({items: [mf2]});
@@ -99,7 +99,7 @@ export const postData = {
         throw new Error('No update operation provided');
       }
 
-      const {config, me, posts} = publication;
+      const {me, posts, postTypes} = publication;
       const {mf2} = await posts.findOne({url});
 
       // Add properties
@@ -123,7 +123,7 @@ export const postData = {
 
       // Post type
       const type = getPostType(mf2);
-      const typeConfig = getPostTypeConfig(type, config);
+      const typeConfig = getPostTypeConfig(type, postTypes);
 
       // Post properties
       const properties = mf2tojf2({items: [mf2]});

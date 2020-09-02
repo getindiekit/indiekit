@@ -9,7 +9,7 @@ test('Gets application configuration value', t => {
 });
 
 test('Gets publication configuration value', t => {
-  t.is(indiekit.publication.presetId, 'jekyll');
+  t.is(indiekit.publication.slugSeparator, '-');
 });
 
 test('Sets configuration value', t => {
@@ -52,9 +52,9 @@ test('Adds store', t => {
 test('Initiates application', async t => {
   const preset = new Preset();
   indiekit.addPreset(preset);
-  indiekit.set('publication.presetId', 'foo');
-  indiekit.set('publication.config.categories', ['foo', 'bar']);
+  indiekit.set('publication.preset', preset);
+  indiekit.set('publication.categories', ['foo', 'bar']);
   await indiekit.init();
-  t.is(indiekit.publication.config['post-types'][0].name, 'Foo note');
-  t.is(indiekit.publication.config.categories[0], 'foo');
+  t.is(indiekit.publication.postTypes[0].name, 'Foo note');
+  t.is(indiekit.publication.categories[0], 'foo');
 });

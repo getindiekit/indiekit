@@ -1,6 +1,6 @@
 import httpError from 'http-errors';
 import {url2Mf2, mf2Properties} from '../lib/microformats.js';
-import {queryConfig, queryList} from '../lib/query.js';
+import {getConfig, queryList} from '../lib/query.js';
 
 export const queryController = publication => {
   /**
@@ -12,7 +12,7 @@ export const queryController = publication => {
    * @returns {object} HTTP response
    */
   return async (request, response, next) => {
-    const config = queryConfig(publication.config);
+    const config = getConfig(publication);
     const {query} = request;
     const {filter, limit, offset} = query;
 

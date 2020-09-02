@@ -1,91 +1,116 @@
 import _ from 'lodash';
+import {isUrl} from './utils.js';
 
 /**
  * Return array of available categories. If not a simple array,
  * fetch array from remote JSON file specified in `url` value.
  *
  * @param {object} cache Application cache
- * @param {object} pubCategories Publication category configuration
+ * @param {object} publication Publication configuration
  * @returns {Promise|Array} Array of categories
  */
-export const getCategories = async (cache, pubCategories) => {
-  let categories = [];
+export const getCategories = async (cache, publication) => {
+  const {categories} = publication;
 
-  if (pubCategories && pubCategories.url) {
-    const cachedCategories = await cache.json('categories', pubCategories.url);
-    categories = cachedCategories.data;
-  } else if (pubCategories && pubCategories.constructor === Array) {
-    categories = pubCategories;
+  if (categories && categories.constructor === Array) {
+    return categories;
   }
 
-  return categories;
+  if (categories && isUrl(categories)) {
+    const cachedCategories = await cache.json('categories', categories);
+    return cachedCategories.data;
+  }
+
+  return [];
 };
 
 /**
- * Get merged custom and default configurations
+ * Get post template
  *
- * @param {object} customConfig Custom configuration
- * @param {object} presetConfig Preset configuration
+ * @param {object} publication Publication configuration
+ * @returns {Function} Post template rendering function
+ */
+export const getPostTemplate = publication => {
+  if (publication.postTemplate) {
+    return publication.postTemplate;
+  }
+
+  if (publication.preset && publication.preset.postTemplate) {
+    return publication.preset.postTemplate;
+  }
+
+  return properties => JSON.stringify(properties);
+};
+
+/**
+ * Get merged preset and custom post types
+ *
+ * @param {object} publication Publication configuration
  * @returns {object} Merged configuration
  */
-export const getConfig = (customConfig, presetConfig) => {
-  // Merge configuration objects
-  const config = {...presetConfig, ...customConfig};
+export const getPostTypes = publication => {
+  const hasPresetPostTypes = publication.preset && publication.preset.postTypes;
+  const hasCustomPostTypes = publication.postTypes;
 
-  // Combine post type arrays
-  const customPostTypes = customConfig['post-types'] || [];
-  const presetPostTypes = presetConfig['post-types'] || [];
-  const mergedPostTypes = _.values(_.merge(
-    _.keyBy(presetPostTypes, 'type'),
-    _.keyBy(customPostTypes, 'type')
-  ));
+  if (hasPresetPostTypes && hasCustomPostTypes) {
+    const mergedPostTypes = _.values(_.merge(
+      _.keyBy(publication.preset.postTypes, 'type'),
+      _.keyBy(publication.postTypes, 'type')
+    ));
 
-  config['post-types'] = mergedPostTypes;
+    return mergedPostTypes;
+  }
 
-  return config;
+  return [];
 };
 
 /**
  * Get media endpoint from server derived values
  *
- * @param {object} publication Publication settings
+ * @param {object} publication Publication configuration
  * @param {object} request HTTP request
- * @returns {object} Configuration object
+ * @returns {string} Media endpoint URL
  */
 export const getMediaEndpoint = (publication, request) => {
-  const {config} = publication;
-  const configEndpoint = config['media-endpoint'];
-  const host = `${request.protocol}://${request.headers.host}`;
-  const serverEndpoint = `${host}${publication.mediaEndpoint}`;
+  const {mediaEndpoint} = publication;
 
-  // Use configured value, or default to server based value
-  config['media-endpoint'] = configEndpoint || serverEndpoint;
+  if (mediaEndpoint && isUrl(mediaEndpoint)) {
+    return mediaEndpoint;
+  }
 
-  return config;
+  return `${request.protocol}://${request.headers.host}${mediaEndpoint}`;
 };
 
 /**
  * Get preset for a publication
  *
- * @param {Array} presets All available presets
- * @param {string} presetId ID of publication’s chosen preset
- * @returns {object} Configuration preset
+ * @param {Array} presets Available presets
+ * @param {string} publication Publication configuration
+ * @returns {object} Publishing preset
  */
-export const getPreset = (presets, presetId) => {
-  return presets.find(
-    preset => preset.id === presetId
-  );
+export const getPreset = (presets, publication) => {
+  if (publication.preset) {
+    return presets.find(
+      preset => preset.id === publication.preset.id
+    );
+  }
+
+  return false;
 };
 
 /**
  * Get store function for a publication
  *
- * @param {Array} stores All available content stores
- * @param {string} storeId ID of publication’s chosen content store
+ * @param {Array} stores Available content stores
+ * @param {string} publication Publication configuration
  * @returns {Function} Content store function
  */
-export const getStore = (stores, storeId) => {
-  return stores.find(
-    store => store.id === storeId
-  );
+export const getStore = (stores, publication) => {
+  if (publication.store) {
+    return stores.find(
+      store => store.id === publication.store.id
+    );
+  }
+
+  return false;
 };

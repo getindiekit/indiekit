@@ -6,16 +6,22 @@ import {getFixture} from '../helpers/fixture.js';
 import {serverConfig} from '../../../indiekit/config/server.js';
 import {Indiekit} from '../../../indiekit/index.js';
 import {GithubStore} from '../../../store-github/index.js';
+import {JekyllPreset} from '../../../preset-jekyll/index.js';
 
 test.beforeEach(async t => {
-  const indiekit = new Indiekit();
-  const config = await indiekit.init();
-  config.publication.me = process.env.TEST_PUBLICATION_URL;
-  config.publication.store = new GithubStore({
+  const github = new GithubStore({
     token: 'abc123',
     user: 'user',
     repo: 'repo'
   });
+  const jekyll = new JekyllPreset();
+  const indiekit = new Indiekit();
+  indiekit.addPreset(jekyll);
+  indiekit.addStore(github);
+  indiekit.set('publication.me', process.env.TEST_PUBLICATION_URL);
+  indiekit.set('publication.preset', jekyll);
+  indiekit.set('publication.store', github);
+  const config = await indiekit.init();
   const request = supertest(serverConfig(config));
 
   t.context.request = request.post('/media');

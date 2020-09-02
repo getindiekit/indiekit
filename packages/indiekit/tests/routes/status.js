@@ -9,7 +9,6 @@ const request = supertest(serverConfig(defaultConfig));
 
 test('Returns status page', async t => {
   const response = await request.get('/');
-  t.log(response);
   t.is(response.status, 200);
   t.is(response.type, 'text/html');
 });
