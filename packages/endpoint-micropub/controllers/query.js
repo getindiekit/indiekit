@@ -41,10 +41,9 @@ export const queryController = publication => {
           }
 
           // Return microformats for previously published posts
-          const items = await publication.posts
-            .find()
-            .map(post => post.mf2)
-            .toArray();
+          const items = publication.posts ?
+            await publication.posts.find().map(post => post.mf2).toArray() :
+            [];
           return response.json({
             items: queryList(items, {filter, limit, offset})
           });
