@@ -11,12 +11,10 @@ test.beforeEach(t => {
 
 test('Returns logged out navigation', t => {
   const result = getNavigation(t.context.application, false);
-  t.is(result[0].href, '/docs/en');
-  t.is(result[1].href, '/session/login');
+  t.is(result[0].href, '/session/login');
 });
 
 test('Returns logged in navigation', t => {
   const result = getNavigation(t.context.application, true);
-  t.is(result[0].href, '/docs/en');
-  t.is(result[1].href, '/session/logout');
+  t.is(result[0].href, '/session/logout');
 });
