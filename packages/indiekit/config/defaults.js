@@ -17,24 +17,24 @@ const shareEndpoint = new ShareEndpoint();
 
 export const defaultConfig = {
   application: {
-    name: 'Indiekit',
-    locale: 'en',
-    themeColor: '#0000ee',
-    repository: package_.repository,
-    version: package_.version,
     endpoints: [
       mediaEndpoint,
       micropubEndpoint,
       shareEndpoint
     ],
     hasDatabase: false,
+    locale: 'en',
     mongodbUrl: false,
     middleware: {
       authenticate,
       indieauth
     },
+    name: 'Indiekit',
     navigationItems: [],
+    repository: package_.repository,
     routes: [],
+    themeColor: '#0000ee',
+    version: package_.version,
     views: [
       path.join(__dirname, '..', 'views')
     ]
