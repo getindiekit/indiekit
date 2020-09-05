@@ -49,11 +49,11 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
 test('Renders path from URI template and properties', t => {
   const properties = {
     slug: 'foo',
-    published: ['2020-01-01']
+    published: '2020-01-01'
   };
-  const template = '{yyyy}/{MM}/{slug}';
+  const template = '{yyyy}/{MM}/{uuid}/{slug}';
   const result = renderPath(template, properties);
-  t.is(result, '2020/01/foo');
+  t.regex(result, /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/);
 });
 
 test('Substitutes variables enclosed in { } braces with data from object', t => {

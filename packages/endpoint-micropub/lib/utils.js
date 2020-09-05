@@ -2,6 +2,7 @@ import dateFns from 'date-fns';
 import path from 'path';
 import newbase60 from 'newbase60';
 import slugify from '@sindresorhus/slugify';
+import {v4 as uuidv4} from 'uuid';
 
 const {format} = dateFns;
 
@@ -137,15 +138,18 @@ export const renderPath = (path, properties) => {
     'T' // UNIX epoch milliseconds, eg 51296952000
   ];
 
-  // Add date tokens to properties object
+  // Add date tokens
   dateTokens.forEach(dateToken => {
     tokens[dateToken] = format(dateObject, dateToken, {
       useAdditionalDayOfYearTokens: true
     });
   });
 
-  // Add day of the year (NewBase60) to properties object
+  // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
+
+  // Add UUID token
+  tokens.uuid = uuidv4();
 
   // Populate URI template path with properties
   tokens = {...tokens, ...properties};
