@@ -45,6 +45,7 @@ export const renderPath = (path, properties) => {
     'm', // Minute, eg 1
     'mm', // Minute (zero padded), eg 01
     's', // Second, eg 1
+    'ss', // Second (zero padded), eg 01
     't', // UNIX epoch seconds, eg 512969520
     'T' // UNIX epoch milliseconds, eg 51296952000
   ];
