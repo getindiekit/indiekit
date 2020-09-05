@@ -55,11 +55,12 @@ export const Indiekit = class {
   }
 
   async init() {
-    const {hasDatabase, locale} = this.application;
+    const {locale, mongodbUrl} = this.application;
+    const database = await mongodbConfig(mongodbUrl);
 
     // Setup databases
-    if (hasDatabase) {
-      const database = await mongodbConfig;
+    if (database) {
+      this.application.hasDatabase = true;
       this.application.cache = await database.collection('cache');
       this.publication.posts = await database.collection('posts');
       this.publication.media = await database.collection('media');

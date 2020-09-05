@@ -1,7 +1,6 @@
 import mongodb from 'mongodb';
 
-export const mongodbConfig = (async () => {
-  const mongodbUrl = process.env.MONGODB_URL;
+export const mongodbConfig = async mongodbUrl => {
   if (mongodbUrl) {
     const {MongoClient} = mongodb;
     const client = new MongoClient(mongodbUrl, {
@@ -11,4 +10,4 @@ export const mongodbConfig = (async () => {
     const database = client.db('indiekit');
     return database;
   }
-})();
+};
