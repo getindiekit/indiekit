@@ -8,9 +8,7 @@ import {Cache} from './lib/cache.js';
 import {
   getCategories,
   getPostTemplate,
-  getPostTypes,
-  getPreset,
-  getStore
+  getPostTypes
 } from './lib/publication.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -48,16 +46,8 @@ export const Indiekit = class {
     this.application.navigationItems = this.application.navigationItems.concat(item);
   }
 
-  addPreset(preset) {
-    this.application.presets = this.application.presets.concat(preset);
-  }
-
   addRoute(route) {
     this.application.routes = this.application.routes.concat(route);
-  }
-
-  addStore(store) {
-    this.application.stores = this.application.stores.concat(store);
   }
 
   addView(view) {
@@ -65,7 +55,7 @@ export const Indiekit = class {
   }
 
   async init() {
-    const {hasDatabase, locale, presets, stores} = this.application;
+    const {hasDatabase, locale} = this.application;
 
     // Setup databases
     if (hasDatabase) {
@@ -81,10 +71,8 @@ export const Indiekit = class {
     // Update publication configuration
     this.publication.categories = await getCategories(cache, this.publication);
     this.publication.locale = this.publication.locale || locale;
-    this.publication.preset = getPreset(presets, this.publication);
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
-    this.publication.store = getStore(stores, this.publication);
 
     // Application endpoints
     this.application.endpoints.forEach(

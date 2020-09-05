@@ -49,8 +49,6 @@ export const postsController = publication => ({
         })
       );
 
-
-
       response.render('post', {
         parent: 'Published posts',
         title: post.properties.name || capitalize(post.properties['post-type']),

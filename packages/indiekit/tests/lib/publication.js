@@ -7,9 +7,7 @@ import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
   getMediaEndpoint,
-  getPostTypes,
-  getPreset,
-  getStore
+  getPostTypes
 } from '../../lib/publication.js';
 
 test.beforeEach(async t => {
@@ -82,18 +80,6 @@ test('Merges values from custom and preset post types', t => {
   });
 });
 
-test('Gets preset for a publication', t => {
-  const presets = [{
-    id: 'jekyll',
-    name: 'Jekyll'
-  }, {
-    id: 'hyde',
-    name: 'Hyde'
-  }];
-  const result = getPreset(presets, t.context.publication);
-  t.truthy(result.name, 'Jekyll');
-});
-
 test('Gets media endpoint from server derived values', t => {
   const request = {
     protocol: 'https',
@@ -117,16 +103,4 @@ test('Gets media endpoint from publication configuration', t => {
   };
   const result = getMediaEndpoint(publication, request);
   t.is(result, 'https://website.example/media');
-});
-
-test('Gets store function for a publication', t => {
-  const stores = [{
-    id: 'foo',
-    name: 'Foo'
-  }, {
-    id: 'bar',
-    name: 'Bar'
-  }];
-  const result = getStore(stores, t.context.publication);
-  t.is(result.name, 'Foo');
 });
