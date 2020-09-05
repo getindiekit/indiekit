@@ -15,8 +15,6 @@ test.beforeEach(async t => {
   });
   const jekyll = new JekyllPreset();
   const indiekit = new Indiekit();
-  indiekit.addPreset(jekyll);
-  indiekit.addStore(github);
   indiekit.set('publication.me', process.env.TEST_PUBLICATION_URL);
   indiekit.set('publication.preset', jekyll);
   indiekit.set('publication.store', github);

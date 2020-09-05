@@ -80,37 +80,3 @@ export const getMediaEndpoint = (publication, request) => {
 
   return `${request.protocol}://${request.headers.host}${mediaEndpoint}`;
 };
-
-/**
- * Get preset for a publication
- *
- * @param {Array} presets Available presets
- * @param {string} publication Publication configuration
- * @returns {object} Publishing preset
- */
-export const getPreset = (presets, publication) => {
-  if (publication.preset) {
-    return presets.find(
-      preset => preset.id === publication.preset.id
-    );
-  }
-
-  return false;
-};
-
-/**
- * Get store function for a publication
- *
- * @param {Array} stores Available content stores
- * @param {string} publication Publication configuration
- * @returns {Function} Content store function
- */
-export const getStore = (stores, publication) => {
-  if (publication.store) {
-    return stores.find(
-      store => store.id === publication.store.id
-    );
-  }
-
-  return false;
-};

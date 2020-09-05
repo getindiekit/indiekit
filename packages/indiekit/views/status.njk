@@ -1,13 +1,5 @@
 {% extends "document.njk" %}
 
-{%- set storesHtml %}{% for store in application.stores -%}
-  {{ store.name }}
-{%- endfor %}{% endset -%}
-
-{%- set presetsHtml %}{% for config in application.presets -%}
-  {{ config.name }}
-{%- endfor %}{% endset -%}
-
 {%- set postTypesHtml %}{% for config in publication.postTypes -%}
   <a href="https://indieweb.org/{{ config.type }}">{{ icon(config.type) }} {{ config.name }}</a>{{ '' if loop.last else ', ' }}
 {%- endfor %}{% endset -%}
@@ -40,21 +32,7 @@
       value: {
         text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
       }
-    }, {
-      key: {
-        text: "Available content stores"
-      },
-      value: {
-        text: storesHtml | indent(2)
-      }
-    } if application.stores.length > 0, {
-      key: {
-        text: "Available presets"
-      },
-      value: {
-        text: presetsHtml | indent(2)
-      }
-    } if application.presets.length > 0]
+    }]
   }) }}
 
 {%- set bookmarklet -%}

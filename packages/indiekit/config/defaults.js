@@ -33,9 +33,7 @@ export const defaultConfig = {
       indieauth
     },
     navigationItems: [],
-    presets: [],
     routes: [],
-    stores: [],
     views: [
       path.join(__dirname, '..', 'views')
     ]

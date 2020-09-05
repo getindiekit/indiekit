@@ -17,10 +17,6 @@ const github = new GithubStore({
   token: process.env.GITHUB_TOKEN
 });
 
-// Register extensions
-indiekit.addPreset(jekyll);
-indiekit.addStore(github);
-
 // Application settings
 indiekit.set('application.locale', process.env.LOCALE);
 

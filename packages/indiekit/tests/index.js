@@ -17,17 +17,6 @@ test('Sets configuration value', t => {
   t.is(indiekit.publication.me, 'https://website.example');
 });
 
-test('Adds preset', t => {
-  const preset = {
-    id: 'bar',
-    name: 'Bar',
-    templatesPath: null
-  };
-  indiekit.addPreset(preset);
-  const {presets} = indiekit.application;
-  t.true(presets.some(preset => preset.id === 'bar'));
-});
-
 test('Adds endpoint', t => {
   const endpoint = {
     id: 'foo',
@@ -39,19 +28,8 @@ test('Adds endpoint', t => {
   t.true(endpoints.some(endpoint => endpoint.id === 'foo'));
 });
 
-test('Adds store', t => {
-  const store = {
-    id: 'foo',
-    name: 'Foo'
-  };
-  indiekit.addStore(store);
-  const {stores} = indiekit.application;
-  t.true(stores.some(store => store.id === 'foo'));
-});
-
 test('Initiates application', async t => {
   const preset = new Preset();
-  indiekit.addPreset(preset);
   indiekit.set('publication.preset', preset);
   indiekit.set('publication.categories', ['foo', 'bar']);
   await indiekit.init();
