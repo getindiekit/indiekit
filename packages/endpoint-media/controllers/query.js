@@ -22,10 +22,9 @@ export const queryController = publication => {
       switch (query.q) {
         case 'source': {
           // Return previously uploaded media
-          const items = await publication.media
-            .find()
-            .map(media => media.properties)
-            .toArray();
+          const items = publication.media ?
+            await publication.media.find().map(media => media.properties).toArray() :
+            [];
           return response.json({
             items: queryList(items, {filter, limit, offset})
           });

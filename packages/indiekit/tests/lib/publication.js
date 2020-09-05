@@ -11,7 +11,7 @@ import {
 } from '../../lib/publication.js';
 
 test.beforeEach(async t => {
-  const database = await mongodbConfig;
+  const database = await mongodbConfig(process.env.TEST_MONGODB_URL);
   const collection = await database.collection('cache');
 
   t.context = await {
@@ -28,7 +28,7 @@ test.beforeEach(async t => {
 });
 
 test.afterEach.always(async () => {
-  const database = await mongodbConfig;
+  const database = await mongodbConfig(process.env.TEST_MONGODB_URL);
   await database.dropDatabase();
 });
 
