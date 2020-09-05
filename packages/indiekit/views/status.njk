@@ -1,39 +1,29 @@
 {% extends "document.njk" %}
 
-{%- set postTypesHtml %}{% for config in publication.postTypes -%}
-  <a href="https://indieweb.org/{{ config.type }}">{{ icon(config.type) }} {{ config.name }}</a>{{ '' if loop.last else ', ' }}
-{%- endfor %}{% endset -%}
+{% set discovery %}
+To ensure {{ application.name }} can be discovered by Micropub clients and have permission to post to your website, add the following values to your website’s `<head>`:
 
-{%- set syndicateToHtml %}{% for target in publication.syndicationTargets -%}
-  <a href="{{ target.uid }}">{{ target.name }}</a>{{ '' if loop.last else ', ' }}
-{%- endfor %}{% endset -%}
+```html
+<link rel="micropub" href="{{ application.url }}/micropub">
+<link rel="authorization_endpoint" href="https://indieauth.com/auth">
+<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+```
+{% endset %}
+
+{%- set postTypesHtml %}<ul class="no-bullets">{% for config in publication.postTypes -%}
+  <li>{{ icon(config.type) }} {{ config.name }}</li>
+{%- endfor %}</ul>{% endset -%}
+
+{%- set syndicationTargetsHtml %}<ul class="no-bullets">{% for target in publication.syndicationTargets -%}
+  <li><a href="{{ target.uid }}">{{ target.name }}</a></li>
+{%- endfor %}<ul>{% endset -%}
+
+{%- set endpointsHtml %}<ul class="no-bullets">{% for endpoint in application.endpoints -%}
+  <li>{{ endpoint.name }} (<code>{{ endpoint.options.mountpath }}</code>)</li>
+{%- endfor %}</ul>{% endset -%}
 
 {% block content %}
-  {{ summary({
-    title: "Application",
-    rows: [{
-      key: {
-        text: "Name"
-      },
-      value: {
-        text: application.name or "Not set"
-      }
-    }, {
-      key: {
-        text: "Language"
-      },
-      value: {
-        text: application.locale.split("-") | first | language
-      }
-    }, {
-      key: {
-        text: "Theme colour"
-      },
-      value: {
-        text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
-      }
-    }]
-  }) }}
+  {{ discovery | markdown | safe }}
 
 {%- set bookmarklet -%}
   {%- set bookmarkletFunction -%}
@@ -64,13 +54,13 @@
 {%- endset -%}
 
   {{ summary({
-    title: "Publication",
+    title: "Publication settings",
     rows: [{
       key: {
         text: "Web address"
       },
       value: {
-        text: publication.me or "Not set"
+        text: publication.me | markdown or "Not set"
       }
     }, {
       key: {
@@ -88,14 +78,14 @@
       }
     }, {
       key: {
-        text: "Config preset"
+        text: "Preset"
       },
       value: {
         text: publication.preset.name or "Not set"
       }
     }, {
       key: {
-        text: "Supported post types"
+        text: "Post types"
       },
       value: {
         text: postTypesHtml | indent(2)
@@ -105,18 +95,18 @@
         text: "Syndication targets"
       },
       value: {
-        text: syndicateToHtml | indent(2)
+        text: syndicationTargetsHtml | indent(2)
       }
     } if publication.syndicationTargets.length > 0, {
       key: {
         text: "Media endpoint"
       },
       value: {
-        text: publication.mediaEndpoint
+        text: publication.mediaEndpoint or "Not set"
       }
     } if publication.mediaEndpoint, {
       key: {
-        text: "Bookmarklet"
+        text: "Share bookmarklet"
       },
       value: {
         text: "Drag this link to your bookmarks bar: " + bookmarklet
@@ -124,18 +114,36 @@
     }]
   }) }}
 
-{% for endpoint in application.endpoints -%}
   {{ summary({
-    title: endpoint.name,
+    title: "Application settings",
     rows: [{
       key: {
-        text: "Mount path"
+        text: "Name"
       },
       value: {
-        text: endpoint.options.mountpath
+        text: application.name or "Not set"
+      }
+    }, {
+      key: {
+        text: "Language"
+      },
+      value: {
+        text: application.locale.split("-") | first | language
+      }
+    }, {
+      key: {
+        text: "Theme colour"
+      },
+      value: {
+        text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
+      }
+    }, {
+      key: {
+        text: "Endpoints"
+      },
+      value: {
+        text: endpointsHtml
       }
     }]
   }) }}
-{%- endfor %}
-
 {% endblock %}

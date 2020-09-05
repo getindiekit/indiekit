@@ -1,7 +1,7 @@
 .summary {
   --flow-inset: 0;
 
-  margin-block-end: var(--space-block-large);
+  margin-block-start: calc(var(--flow-space) * 1.5);
   max-inline-size: unset;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .summary__title {
-  @extend %subhead;
+  @extend %heading;
 }
 
 .summary__title svg {

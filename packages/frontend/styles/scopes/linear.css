@@ -52,7 +52,7 @@
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
   overflow: scroll;
-  padding: var(--inset-large-squished);
+  padding: var(--inset-small-squished);
   word-break: normal;
 }
 
@@ -81,7 +81,7 @@
   padding-inline-start: var(--flow-inset);
 }
 
-.s-linear li,
+.s-linear li:not(:first-of-type),
 .s-linear * + dt {
   margin-block-start: calc(var(--flow-space) / 2);
 }
