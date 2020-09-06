@@ -9,6 +9,9 @@
   @extend %container;
 
   --container-padding-block: var(--step-0);
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer__navigation {
@@ -16,6 +19,21 @@
   margin-inline-start: calc(var(--space-inline) * -1);
 }
 
-.footer a {
+.footer__navigation a {
+  display: inline-block;
   padding: var(--inset-small-squished);
+}
+
+.footer__logo {
+  display: block;
+  padding: var(--inset-small-squished);
+}
+
+.footer__logo img {
+  block-size: var(--size-root);
+  opacity: 0.5;
+}
+
+.footer__logo:hover img {
+  opacity: 0.75;
 }

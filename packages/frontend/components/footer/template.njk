@@ -9,5 +9,10 @@
     {%- endfor %}
     </nav>
 {%- endif %}
+{%- if opts.logo %}
+    <a class="footer__logo" href="{{ opts.logo.href }}">
+      <img class="u-logo" src="{{ opts.logo.src }}" alt="{{ opts.logo.alt }}"/>
+    </a>
+{%- endif %}
   </div>
 </footer>

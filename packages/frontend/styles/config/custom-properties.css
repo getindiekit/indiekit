@@ -77,6 +77,9 @@
   --space-block: 0.75rem;
   --space-inline: 0.75rem;
 
+  /* Sizing */
+  --size-root: 1rem;
+
   /* Inset spacing */
   --inset-small: var(--space-inline);
   --inset-small-squished: calc(var(--inset-small) / 2) var(--inset-small);
