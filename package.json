@@ -143,6 +143,7 @@
             "./packages/indiekit",
             "./packages/preset-hugo",
             "./packages/preset-jekyll",
+            "./packages/store-bitbucket",
             "./packages/store-github",
             "./packages/store-gitlab"
           ]
