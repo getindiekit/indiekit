@@ -288,9 +288,19 @@ An array of [syndication targets](https://micropub.spec.indieweb.org/#syndicatio
 Type: `Array`\
 *Optional*
 
-### `publication.timezone`
+### `publication.timeZone`
 
-The timezone for your publication.
+The time zone for your publication. By default this is set to `UTC`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), for example, `Europe/London`:
+
+```js
+indiekit.set('publication.timeZone', 'Europe/London');
+```
+
+Some servers will have a time zone saved in the `TZ` environment variable. In which case, you could supply that value instead:
+
+```js
+indiekit.set('publication.timeZone', process.env.TZ);
+```
 
 Type: `string`\
 *Optional*, defaults to `UTC`
