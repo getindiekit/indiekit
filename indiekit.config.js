@@ -25,6 +25,7 @@ indiekit.set('application.locale', process.env.LOCALE);
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
 indiekit.set('publication.preset', jekyll);
 indiekit.set('publication.store', github);
+indiekit.set('publication.timeZone', process.env.TZ ? process.env.TZ : 'UTC');
 
 // Server
 const server = indiekit.server();

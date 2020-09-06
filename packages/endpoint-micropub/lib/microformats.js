@@ -1,3 +1,5 @@
+import dateFns from 'date-fns';
+import dateFnsTz from 'date-fns-tz';
 import got from 'got';
 import parser from 'microformats-parser';
 import {reservedProperties} from './reserved-properties.js';
@@ -7,6 +9,9 @@ import {
   slugifyString,
   randomString
 } from './utils.js';
+
+const {formatISO} = dateFns;
+const {utcToZonedTime} = dateFnsTz;
 
 /**
  * Create Microformats2 object from form-encoded request
@@ -89,9 +94,9 @@ export const mf2Properties = (mf2, requestedProperties) => {
  * @returns {object} Normalised Microformats2 object
  */
 export const getMf2 = (publication, mf2) => {
-  const {slugSeparator} = publication;
+  const {slugSeparator, timeZone} = publication;
 
-  mf2.properties.published = getPublishedProperty(mf2);
+  mf2.properties.published = getPublishedProperty(mf2, timeZone);
   mf2.properties.slug = getSlugProperty(mf2, slugSeparator);
 
   if (mf2.properties.content) {
@@ -133,9 +138,9 @@ export const getAudioProperty = mf2 => {
  * @returns {Array} Microformats2 `content` property
  */
 export const getContentProperty = mf2 => {
-  let {content} = mf2.properties;
-  content = content[0].html || content[0].value || content[0];
-  return new Array(content);
+  const {content} = mf2.properties;
+  const property = content[0].html || content[0].value || content[0];
+  return new Array(property);
 };
 
 /**
@@ -173,20 +178,25 @@ export const getVideoProperty = mf2 => {
  * Get published date (based on microformats2 data, else current date)
  *
  * @param {object} mf2 Microformats2 object
+ * @param {object} timeZone Publication time zone
  * @returns {Array} Microformats2 `published` property
  */
-export const getPublishedProperty = mf2 => {
+export const getPublishedProperty = (mf2, timeZone) => {
+  let date;
   const {published} = mf2.properties;
 
-  // Use provided `published` datetime…
   if (published) {
-    const publishedDate = new Date(published[0]).toISOString();
-    return new Array(publishedDate);
+    date = new Date(published[0]);
+  } else {
+    date = new Date();
   }
 
-  // …else, use current datetime
-  const currentDate = new Date().toISOString();
-  return new Array(currentDate);
+  // Convert UTC to date with time zone offset
+  let property = utcToZonedTime(date, timeZone);
+
+  // Convert date to ISO 8601 formatted date string
+  property = formatISO(property);
+  return new Array(property);
 };
 
 /**

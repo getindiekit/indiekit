@@ -29,12 +29,12 @@ export const mediaData = {
 
       const {me, postTypes} = publication;
 
+      // Media properties
+      const properties = await getFileProperties(publication, file);
+
       // Media type
       const type = await getMediaType(file);
       const typeConfig = getPostTypeConfig(type, postTypes);
-
-      // Media properties
-      const properties = await getFileProperties(file);
       properties['post-type'] = type;
 
       // Media paths

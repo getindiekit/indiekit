@@ -48,7 +48,7 @@ export const defaultConfig = {
     slugSeparator: '-',
     store: null,
     syndicationTargets: [],
-    timezone: 'UTC',
+    timeZone: 'UTC',
     tokenEndpoint: 'https://tokens.indieauth.com/token'
   },
   server: {

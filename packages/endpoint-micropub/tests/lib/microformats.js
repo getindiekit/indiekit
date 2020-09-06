@@ -21,7 +21,8 @@ const {isValid, parseISO} = dateFns;
 test.beforeEach(t => {
   t.context = {
     publication: {
-      slugSeparator: '-'
+      slugSeparator: '-',
+      timeZone: 'UTC'
     },
     nock: nock('https://website.example').get('/post.html'),
     url: 'https://website.example/post.html'
@@ -168,13 +169,13 @@ test('Gets normalised video property', t => {
 test('Gets date from `published` property', t => {
   const mf2 = JSON.parse(getFixture('published-provided.json'));
   const result = getPublishedProperty(mf2);
-  t.is(result[0], '2019-01-02T03:04:05.678Z');
+  t.is(result[0], '2019-01-02T03:04:05Z');
 });
 
 test('Gets date from `published` property (short date)', t => {
   const mf2 = JSON.parse(getFixture('published-provided-short.json'));
   const result = getPublishedProperty(mf2);
-  t.is(result[0], '2019-01-02T00:00:00.000Z');
+  t.is(result[0], '2019-01-02T00:00:00Z');
 });
 
 test('Gets date by using current date', t => {

@@ -28,12 +28,12 @@ export const postData = {
 
       const {me, postTypes} = publication;
 
+      // Post properties
+      const properties = mf2tojf2({items: [mf2]});
+
       // Post type
       const type = getPostType(mf2);
       const typeConfig = getPostTypeConfig(type, postTypes);
-
-      // Post properties
-      const properties = mf2tojf2({items: [mf2]});
       properties['post-type'] = type;
 
       // Post paths
