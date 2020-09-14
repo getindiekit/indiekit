@@ -23,8 +23,6 @@ test('Login returns 401 if URL is unauthorized', async t => {
   t.is(response.status, 401);
 });
 
-test.todo('Login redirects to authentication service');
-
 test('Auth callback returns 403 if user is forbidden access', async t => {
   const response = await request.get('/session/auth')
     .send('code=foobar');
