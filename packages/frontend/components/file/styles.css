@@ -1,5 +1,6 @@
 .file__title {
   --flow-space: 0;
+
   @extend %label;
 }
 

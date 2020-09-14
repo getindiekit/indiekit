@@ -17,8 +17,8 @@
 }
 
 .summary__title svg {
-  top: -2px;
   position: relative;
+  top: -2px;
 }
 
 .summary * + * {

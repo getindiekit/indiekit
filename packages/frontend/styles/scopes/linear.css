@@ -34,6 +34,11 @@
   padding: 0;
 }
 
+.s-linear > *:not([class]) {
+  max-inline-size: var(--line-measure);
+  word-break: break-word;
+}
+
 .s-linear h2:not([class]) {
   @extend %heading;
 
@@ -100,9 +105,4 @@
 .s-linear .no-bullets {
   list-style: none;
   padding-inline-start: 0;
-}
-
-.s-linear > *:not([class]) {
-  max-inline-size: var(--line-measure);
-  word-break: break-word;
 }
