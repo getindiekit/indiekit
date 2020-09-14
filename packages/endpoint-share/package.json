@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "got": "^11.6.0"
+    "got": "^11.6.2"
   },
   "publishConfig": {
     "access": "public"
