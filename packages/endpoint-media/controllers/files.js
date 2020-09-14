@@ -14,7 +14,7 @@ export const filesController = publication => ({
   list: async (request, response, next) => {
     try {
       response.render('files', {
-        title: 'Uploaded files',
+        title: response.__('media.files.title'),
         files: await publication.media.find().toArray(),
         parentUrl: `${publication.mediaEndpoint}/files/`
       });
@@ -49,7 +49,7 @@ export const filesController = publication => ({
       );
 
       response.render('file', {
-        parent: 'Uploaded files',
+        parent: response.__('media.files.title'),
         title: file.properties.filename,
         published: file.properties.published,
         type: file.properties['post-type'],

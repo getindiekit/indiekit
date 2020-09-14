@@ -6,6 +6,7 @@ import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {authenticate} from '../middleware/authentication.js';
 import {indieauth} from '../middleware/indieauth.js';
+import {locales} from '../locales/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const packagePath = path.join(__dirname, '..', 'package.json');
@@ -22,7 +23,7 @@ const application = {
     shareEndpoint
   ],
   hasDatabase: false,
-  locale: 'en',
+  locales,
   mongodbUrl: false,
   middleware: {
     authenticate,
@@ -41,7 +42,7 @@ const application = {
 
 const publication = {
   categories: [],
-  locale: application.locale,
+  locale: 'en',
   me: null,
   postTemplate: null,
   postTypes: [],

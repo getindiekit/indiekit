@@ -36,6 +36,7 @@ You’ll be asked to provide the following values:
 * [Usage](#usage)
 * [Options](#options)
 * [Plugins](#plugins)
+* [Localisations](#localisations)
 * [Local development](#local-development)
 * [Credits](#credits)
 * [Similar projects](#similar-projects)
@@ -54,6 +55,7 @@ You’ll be asked to provide the following values:
 * Bookmarklet to save and share bookmarks
 * Publish to different content stores (GitHub and GitLab)
 * Support for popular static site generators (Jekyll, Hugo, 11ty)
+* Localised to [different languages](#localisations)
 * ~~Plugin API~~
 
 ## Install
@@ -179,10 +181,10 @@ To ensure Indiekit’s endpoint can be discovered by Micropub clients (and have 
 
 ### `application.locale`
 
-The language used in the application interface. Available languages: `en`
+The language used in the application interface. See the list of [supported languages](#localisations).
 
 Type: `string`\
-*Optional*, defaults to `en`
+*Optional*, defaults to system language if supported, else `en` (English)
 
 ### `application.mongodbUrl`
 
@@ -214,10 +216,10 @@ Type: `Array | URL`\
 
 ### `publication.locale`
 
-Your publication’s locale, this value is currently used to format dates.
+Your publication’s locale. Currently used to format dates.
 
 Type: `string`\
-*Optional*, defaults to value in `application.locale`
+*Optional*, defaults to `en` (English)
 
 ### `publication.me`
 
@@ -462,6 +464,15 @@ The following endpoints are included by default:
 
 * [Jekyll](https://www.npmjs.com/package/@indiekit/preset-jekyll)
 * [Hugo](https://www.npmjs.com/package/@indiekit/preset-hugo)
+
+## Localisations
+
+Indiekit has been localised into the following languages:
+
+* `en-US`: English (US)
+* `de-DE`: Deutsch
+
+Contributions for other languages are encouraged.
 
 ## Local development
 

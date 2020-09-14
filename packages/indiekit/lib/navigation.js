@@ -1,13 +1,19 @@
-export const getNavigation = (application, token) => {
-  let navigation = [(token ? {
+export const getNavigation = (application, request, response) => {
+  const defaultNavigation = [(request.session.token ? {
     href: '/session/logout',
-    text: 'Sign out'
+    text: 'session.logout.title'
   } : {
     href: '/session/login',
-    text: 'Sign in'
+    text: 'session.login.title'
   })];
 
-  navigation = [...application.navigationItems, ...navigation];
+  // Merge default navigation items with those added by plugins
+  const navigation = [...application.navigationItems, ...defaultNavigation];
+
+  // Translate text strings
+  navigation.forEach(item => {
+    item.text = response.__(item.text);
+  });
 
   return navigation;
 };

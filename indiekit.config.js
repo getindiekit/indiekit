@@ -19,7 +19,6 @@ const github = new GithubStore({
 
 // Application settings
 indiekit.set('application.mongodbUrl', process.env.MONGODB_URL);
-indiekit.set('application.locale', process.env.LOCALE);
 
 // Publication settings
 indiekit.set('publication.me', process.env.PUBLICATION_URL);

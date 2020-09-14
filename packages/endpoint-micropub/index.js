@@ -5,6 +5,7 @@ import {fileURLToPath} from 'url';
 import {actionController} from './controllers/action.js';
 import {postsController} from './controllers/posts.js';
 import {queryController} from './controllers/query.js';
+import {locales} from './locales/index.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,10 +32,13 @@ export const MicropubEndpoint = class {
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
+    indiekitConfig.addLocale('de', locales.de);
+    indiekitConfig.addLocale('en', locales.en);
+
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
         href: `${this.mountpath}/posts`,
-        text: 'Posts'
+        text: 'micropub.title'
       });
     }
 

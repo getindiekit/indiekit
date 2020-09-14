@@ -10,11 +10,23 @@ test.beforeEach(t => {
 });
 
 test('Returns logged out navigation', t => {
-  const result = getNavigation(t.context.application, false);
+  const result = getNavigation(t.context.application, {
+    session: {
+      token: false
+    }
+  }, {
+    __: string => string
+  });
   t.is(result[0].href, '/session/login');
 });
 
 test('Returns logged in navigation', t => {
-  const result = getNavigation(t.context.application, true);
+  const result = getNavigation(t.context.application, {
+    session: {
+      token: true
+    }
+  }, {
+    __: string => string
+  });
   t.is(result[0].href, '/session/logout');
 });

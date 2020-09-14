@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% set discovery %}
-To ensure {{ application.name }} can be discovered by Micropub clients and have permission to post to your website, add the following values to your website’s `<head>`:
+{{ __("guidance.discovery", application.name) | safe }}
 
 ```html
 <link rel="micropub" href="{{ application.url }}/micropub">
@@ -30,92 +30,92 @@ To ensure {{ application.name }} can be discovered by Micropub clients and have 
 {%- endfor %}
 
   {{ summary({
-    title: "Publication settings",
+    title: __("status.publication.summaryTitle"),
     rows: [{
       key: {
-        text: "Web address"
+        text: __("status.publication.me")
       },
       value: {
-        text: publication.me | markdown or "Not set"
+        text: publication.me | markdown or __("novalue")
       }
     }, {
       key: {
-        text: "Language"
+        text: __("status.publication.locale")
       },
       value: {
         text: publication.locale.split("-") | first | language
       }
     }, {
       key: {
-        text: "Time zone"
+        text: __("status.publication.timeZone")
       },
       value: {
         text: publication.timeZone
       }
     }, {
       key: {
-        text: "Content store"
+        text: __("status.publication.store")
       },
       value: {
-        text: publication.store.name or "Not set"
+        text: publication.store.name or __("novalue")
       }
     }, {
       key: {
-        text: "Preset"
+        text: __("status.publication.preset")
       },
       value: {
-        text: publication.preset.name or "Not set"
+        text: publication.preset.name or __("novalue")
       }
     }, {
       key: {
-        text: "Post types"
+        text: __("status.publication.postTypes")
       },
       value: {
         text: postTypesHtml | indent(2)
       }
     } if publication.postTypes.length > 0, {
       key: {
-        text: "Syndication targets"
+        text: __("status.publication.syndicationTargets")
       },
       value: {
         text: syndicationTargetsHtml | indent(2)
       }
     } if publication.syndicationTargets.length > 0, {
       key: {
-        text: "Media endpoint"
+        text: __("status.publication.mediaEndpoint")
       },
       value: {
-        text: publication.mediaEndpoint or "Not set"
+        text: publication.mediaEndpoint or __("novalue")
       }
     } if publication.mediaEndpoint]
   }) }}
 
   {{ summary({
-    title: "Application settings",
+    title: __("status.application.summaryTitle"),
     rows: [{
       key: {
-        text: "Name"
+        text: __("status.application.name")
       },
       value: {
-        text: application.name or "Not set"
+        text: application.name2 or __("novalue")
       }
     }, {
       key: {
-        text: "Language"
+        text: __("status.application.locale")
       },
       value: {
         text: application.locale.split("-") | first | language
       }
     }, {
       key: {
-        text: "Theme colour"
+        text: __("status.application.themeColor")
       },
       value: {
         text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
       }
     }, {
       key: {
-        text: "Endpoints"
+        text: __("status.application.endpoints")
       },
       value: {
         text: endpointsHtml

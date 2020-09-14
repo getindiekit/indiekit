@@ -13,13 +13,13 @@
     name: "me",
     value: errors.me.value or publication.me,
     label: {
-      text: "Web address"
+      text: __("session.login.me")
     },
     inputmode: "url",
     autocomplete: "url",
     errorMessage: {
       text: errors.me.msg,
-      label: "Error"
+      label: __("error")
     } if errors.me
   }) | indent(2) }}
 
@@ -30,7 +30,7 @@
   }) | indent(2) }}
 
   {{ button({
-    text: "Sign in",
+    text: __("session.login.submit"),
     classes: "button--block"
   }) | indent(2) }}
 {% endblock %}

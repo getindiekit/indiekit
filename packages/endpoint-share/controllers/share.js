@@ -5,7 +5,7 @@ export const shareController = publication => ({
     const {content, name, url, success} = request.query;
 
     response.render('share', {
-      title: 'Share',
+      title: response.__('share.title'),
       content,
       name,
       url,
@@ -33,7 +33,7 @@ export const shareController = publication => ({
     } catch (error) {
       if (error.response) {
         response.render('share', {
-          title: 'Share',
+          title: response.__('share.title'),
           content,
           name,
           url,

@@ -5,6 +5,7 @@ import path from 'path';
 import {uploadController} from './controllers/upload.js';
 import {filesController} from './controllers/files.js';
 import {queryController} from './controllers/query.js';
+import {locales} from './locales/index.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,10 +32,13 @@ export const MediaEndpoint = class {
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
+    indiekitConfig.addLocale('de', locales.de);
+    indiekitConfig.addLocale('en', locales.en);
+
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
         href: `${this.mountpath}/files`,
-        text: 'Files'
+        text: 'media.title'
       });
     }
 

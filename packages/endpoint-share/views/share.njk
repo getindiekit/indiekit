@@ -5,17 +5,17 @@
 {% block fieldset %}
   {{ preview({
     title: {
-      text: "Title",
+      text: __("share.name"),
       for: "name",
       value: name
     },
     text: {
-      text: "Content",
+      text: __("share.content"),
       for: "content",
       value: content
     },
     url: {
-      text: "URL",
+      text: __("share.url"),
       for: "url",
       value: url
     },
@@ -28,7 +28,7 @@
     name: "name",
     value: name,
     label: {
-      text: "Title"
+      text: __("share.name")
     }
   }) }}
 
@@ -37,7 +37,7 @@
     name: "content",
     value: content,
     label: {
-      text: "Content"
+      text: __("share.content")
     }
   }) | indent(8) }}
 
@@ -46,7 +46,7 @@
     name: "bookmark-of",
     value: url,
     label: {
-      text: "URL"
+      text: __("share.url")
     }
   }) }}
 
@@ -63,6 +63,6 @@
   }) }}
 
   {{ button({
-    text: "Publish"
+    text: __("share.submit")
   }) }}
 {% endblock %}

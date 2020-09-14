@@ -26,7 +26,7 @@ export const login = (request, response) => {
   auth.options.redirectUri = redirectUri;
 
   response.render('session/login', {
-    title: 'Sign in',
+    title: response.__('session.login.title'),
     referrer: request.query.referrer
   });
 };
@@ -35,7 +35,7 @@ export const authenticate = async (request, response) => {
   const errors = validationResult(request);
   if (!errors.isEmpty()) {
     return response.status(422).render('session/login', {
-      title: 'Sign in',
+      title: response.__('session.login.title'),
       errors: errors.mapped()
     });
   }
@@ -50,7 +50,7 @@ export const authenticate = async (request, response) => {
     response.redirect(authUrl);
   } catch (error) {
     response.status(401).render('session/login', {
-      title: 'Sign in',
+      title: response.__('session.login.title'),
       error: error.message
     });
   }
@@ -61,8 +61,8 @@ export const authenticationCallback = async (request, response, next) => {
 
   if (!code || !state || !auth.validateState(state)) {
     return response.status(403).render('session/login', {
-      title: 'Sign in',
-      error: 'Missing code or state mismatch'
+      title: response.__('session.login.title'),
+      error: response.__('session.login.error.validateState')
     });
   }
 

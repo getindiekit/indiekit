@@ -8,10 +8,10 @@
   {% elif type == "video" %}
     <video src="{{ url }}" controls>
   {% else %}
-    <a href="{{ url }}" download>Download file</a>
+    <a href="{{ url }}" download>{{ __("media.download") }}</a>
   {% endif %}
   {{ summary({
-    title: "File properties",
+    title: __("media.properties"),
     rows: properties
   }) }}
 {% endblock %}

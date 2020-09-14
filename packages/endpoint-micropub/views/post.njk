@@ -15,11 +15,11 @@
     {% endfor %}
   {% endif %}
   {{ summary({
-    title: "Post properties",
+    title: __("micropub.properties"),
     rows: properties
   }) }}
   <details>
-    <summary>Microformats for this post</summary>
+    <summary>{{ __("micropub.microformats") }}</summary>
 <pre>{{ post.properties.mf2 | dump(2) }}</pre>
   </details>
 {% endblock %}

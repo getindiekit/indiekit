@@ -42,6 +42,10 @@ export const Indiekit = class {
     this.application.endpoints = this.application.endpoints.concat(endpoint);
   }
 
+  addLocale(language, translations) {
+    Object.assign(this.application.locales[language], translations);
+  }
+
   addNavigation(item) {
     this.application.navigationItems = this.application.navigationItems.concat(item);
   }
