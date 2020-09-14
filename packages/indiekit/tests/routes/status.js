@@ -3,8 +3,6 @@ import supertest from 'supertest';
 import {defaultConfig} from '../../config/defaults.js';
 import {serverConfig} from '../../config/server.js';
 
-// TODO: Shouldn’t need to set additional settings here
-defaultConfig.publication.locale = 'en';
 const request = supertest(serverConfig(defaultConfig));
 
 test('Returns status page', async t => {

@@ -15,43 +15,46 @@ const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
 
-export const defaultConfig = {
-  application: {
-    endpoints: [
-      mediaEndpoint,
-      micropubEndpoint,
-      shareEndpoint
-    ],
-    hasDatabase: false,
-    locale: 'en',
-    mongodbUrl: false,
-    middleware: {
-      authenticate,
-      indieauth
-    },
-    name: 'Indiekit',
-    navigationItems: [],
-    repository: package_.repository,
-    routes: [],
-    themeColor: '#0000ee',
-    version: package_.version,
-    views: [
-      path.join(__dirname, '..', 'views')
-    ]
+const application = {
+  endpoints: [
+    mediaEndpoint,
+    micropubEndpoint,
+    shareEndpoint
+  ],
+  hasDatabase: false,
+  locale: 'en',
+  mongodbUrl: false,
+  middleware: {
+    authenticate,
+    indieauth
   },
-  publication: {
-    categories: [],
-    me: null,
-    postTemplate: null,
-    postTypes: [],
-    preset: null,
-    slugSeparator: '-',
-    store: null,
-    syndicationTargets: [],
-    timeZone: 'UTC',
-    tokenEndpoint: 'https://tokens.indieauth.com/token'
-  },
-  server: {
-    port: process.env.PORT || '3000'
-  }
+  name: 'Indiekit',
+  navigationItems: [],
+  repository: package_.repository,
+  routes: [],
+  themeColor: '#0000ee',
+  version: package_.version,
+  views: [
+    path.join(__dirname, '..', 'views')
+  ]
 };
+
+const publication = {
+  categories: [],
+  locale: application.locale,
+  me: null,
+  postTemplate: null,
+  postTypes: [],
+  preset: null,
+  slugSeparator: '-',
+  store: null,
+  syndicationTargets: [],
+  timeZone: 'UTC',
+  tokenEndpoint: 'https://tokens.indieauth.com/token'
+};
+
+const server = {
+  port: process.env.PORT || '3000'
+};
+
+export const defaultConfig = {application, publication, server};

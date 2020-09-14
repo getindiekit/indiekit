@@ -55,8 +55,7 @@ export const Indiekit = class {
   }
 
   async init() {
-    const {locale, mongodbUrl} = this.application;
-    const database = await mongodbConfig(mongodbUrl);
+    const database = await mongodbConfig(this.application.mongodbUrl);
 
     // Setup databases
     if (database) {
@@ -71,7 +70,6 @@ export const Indiekit = class {
 
     // Update publication configuration
     this.publication.categories = await getCategories(cache, this.publication);
-    this.publication.locale = this.publication.locale || locale;
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
 
