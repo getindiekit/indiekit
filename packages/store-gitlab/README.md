@@ -16,11 +16,46 @@ const gitlab = new GitlabStore({
 });
 ```
 
-### Options
+## Options
 
-* `host`: GitLab Instance Host URL. *Optional*, defaults to `https://gitlab.com`.
-* `token`: GitLab access token. **Required**.
-* `user`: GitLab username. **Required (if `projectId` not provided)**.
-* `repo`: GitLab repository. **Required (if `projectId` not provided)**.
-* `projectId`: GitLab project ID. **Required (if `user` and `repo` not provided)**.
-* `branch`: GitLab branch files are saved to. *Optional*, defaults to `master`.
+### `branch`
+
+The branch files will be saved to.
+
+Type: `string`\
+*Optional*, defaults to `master`
+
+### `host`
+
+GitLab instance URL.
+
+Type: `string`\
+*Optional*, defaults to `https://gitlab.com`
+
+### `projectId`
+
+GitLab project ID.
+
+Type: `string`\
+*Required (if `user` and `repo` not provided)*
+
+### `repo`
+
+The name of your GitLab repository.
+
+Type: `string`\
+*Required (if `projectId` not provided)*
+
+### `token`
+
+A GitLab access token.
+
+Type: `string`\
+*Required*
+
+### `user`
+
+Your GitLab username.
+
+Type: `string`\
+*Required (if `projectId` not provided)*

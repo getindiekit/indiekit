@@ -268,6 +268,13 @@ A [content store](#content-stores) plugin.
 Type: `Function`\
 *Required*
 
+### `publication.storeMessageTemplate`
+
+Function used to customise message format. See [Customising commit messages](#customising-commit-messages).
+
+Type: `Function`\
+*Optional*, defaults to `[action] [postType] [fileType]`
+
 ### `publication.sydnicationTargets`
 
 An array of [syndication targets](https://micropub.spec.indieweb.org/#syndication-targets). Example:
@@ -296,7 +303,7 @@ The time zone for your publication. By default this is set to `UTC`, however if 
 indiekit.set('publication.timeZone', 'Europe/London');
 ```
 
-Some servers will have a time zone saved in the `TZ` environment variable. In which case, you could supply that value instead:
+Some servers will have a time zone saved in the `TZ` environment variable. In which case, you can supply that value instead:
 
 ```js
 indiekit.set('publication.timeZone', process.env.TZ);
@@ -415,6 +422,26 @@ A post template is a function that takes post properties received and parsed by 
 
 * [`postTemplate()` function in Jekyll preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-jekyll/index.js#L120)
 * [`postTemplate()` function in Hugo preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-hugo/index.js#L152)
+
+## Customising commit messages
+
+Indiekit provides content store plugins with a `metaData` object that contains meta data that can be used in commit messages:
+
+* `action`: Action to take i.e. ‘create’, ‘upload’.
+* `result`: Result of action, i.e. ‘created’, ’uploaded'.
+* `fileType`: File type, i.e. ’post’ or ‘file‘.
+* `postType`: IndieWeb post type, i.e. ‘note’, ‘photo’, ‘reply’.
+
+By default, Indiekit outputs the `action`, `postType` and `fileType`, for example `create photo post`. If you wanted to change the format to output `Created a photo post`, you can do the following:
+
+```js
+const _ = require('lodash');
+
+indiekit.set('publication.storeMessageTemplate', metaData => {
+  const {result, postType, fileType} = metaData;
+  return `${_.upperFirst(result)} a ${postType} ${fileType}`;
+});
+```
 
 ## Plugins
 

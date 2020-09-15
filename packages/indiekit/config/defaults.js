@@ -47,7 +47,9 @@ const publication = {
   postTypes: [],
   preset: null,
   slugSeparator: '-',
-  store: null,
+  storeMessageTemplate: metaData => {
+    return `${metaData.action} ${metaData.postType} ${metaData.fileType}`;
+  },
   syndicationTargets: [],
   timeZone: 'UTC',
   tokenEndpoint: 'https://tokens.indieauth.com/token'

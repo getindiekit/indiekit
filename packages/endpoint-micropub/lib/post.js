@@ -1,5 +1,3 @@
-import {supplant} from './utils.js';
-
 export const post = {
   /**
    * Create post
@@ -9,18 +7,20 @@ export const post = {
    * @returns {object} Response data
    */
   create: async (publication, postData) => {
-    const {posts, store} = publication;
-    const content = publication.postTemplate(postData.properties);
-    const message = supplant(store.messageFormat, {
+    const {posts, postTemplate, store, storeMessageTemplate} = publication;
+    const metaData = {
       action: 'create',
+      result: 'created',
       fileType: 'post',
       postType: postData.properties['post-type']
-    });
+    };
+    const content = postTemplate(postData.properties);
+    const message = storeMessageTemplate(metaData);
     const published = await store.createFile(postData.path, content, message);
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = 'create';
+      postData.lastAction = metaData.action;
 
       if (posts) {
         await posts.insertOne(postData);
@@ -46,18 +46,20 @@ export const post = {
    * @returns {object} Response data
    */
   update: async (publication, postData, url) => {
-    const {posts, store} = publication;
-    const content = publication.postTemplate(postData.properties);
-    const message = supplant(store.messageFormat, {
+    const {posts, postTemplate, store, storeMessageTemplate} = publication;
+    const metaData = {
       action: 'update',
+      result: 'updated',
       fileType: 'post',
       postType: postData.properties['post-type']
-    });
+    };
+    const content = postTemplate(postData.properties);
+    const message = storeMessageTemplate(metaData);
     const published = await store.updateFile(postData.path, content, message);
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = 'update';
+      postData.lastAction = metaData.action;
 
       if (posts) {
         await posts.replaceOne({
@@ -87,17 +89,19 @@ export const post = {
    * @returns {object} Response data
    */
   delete: async (publication, postData) => {
-    const {posts, store} = publication;
-    const message = supplant(store.messageFormat, {
+    const {posts, store, storeMessageTemplate} = publication;
+    const metaData = {
       action: 'delete',
+      result: 'deleted',
       fileType: 'post',
       postType: postData.properties['post-type']
-    });
+    };
+    const message = storeMessageTemplate(metaData);
     const published = await store.deleteFile(postData.path, message);
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = 'delete';
+      postData.lastAction = metaData.action;
 
       if (posts) {
         await posts.replaceOne({
@@ -123,23 +127,25 @@ export const post = {
    * @returns {object} Response data
    */
   undelete: async (publication, postData) => {
-    const {posts, store} = publication;
+    const {posts, postTemplate, store, storeMessageTemplate} = publication;
 
     if (postData.lastAction !== 'delete') {
       throw new Error('Post was not previously deleted');
     }
 
-    const content = publication.postTemplate(postData.properties);
-    const message = supplant(store.messageFormat, {
+    const metaData = {
       action: 'undelete',
+      result: 'undeleted',
       fileType: 'post',
       postType: postData.properties['post-type']
-    });
+    };
+    const content = postTemplate(postData.properties);
+    const message = storeMessageTemplate(metaData);
     const published = await store.createFile(postData.path, content, message);
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = 'undelete';
+      postData.lastAction = metaData.action;
 
       if (posts) {
         await posts.replaceOne({

@@ -2,8 +2,7 @@ import gitbeaker from '@gitbeaker/node';
 
 const defaults = {
   branch: 'master',
-  instance: 'https://gitlab.com',
-  messageFormat: '{action} {postType} {fileType}'
+  instance: 'https://gitlab.com'
 };
 
 /**
@@ -16,10 +15,6 @@ export const GitlabStore = class {
     this.name = 'GitLab';
     this.options = {...defaults, ...options};
     this._projectId = options.projectId || `${options.user}/${options.repo}`;
-  }
-
-  get messageFormat() {
-    return this.options.messageFormat;
   }
 
   gitlab() {

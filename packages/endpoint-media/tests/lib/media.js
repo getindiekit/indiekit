@@ -1,23 +1,9 @@
 import test from 'ava';
 import nock from 'nock';
 import {getFixture} from '../helpers/fixture.js';
-import {JekyllPreset} from '../../../preset-jekyll/index.js';
-import {GithubStore} from '../../../store-github/index.js';
+import {publication} from '../helpers/publication.js';
 import {media} from '../../lib/media.js';
 import {mediaData} from '../fixtures/data.js';
-
-const publication = {
-  config: new JekyllPreset().config,
-  me: 'https://website.example',
-  store: new GithubStore({
-    token: 'abc123',
-    user: 'user',
-    repo: 'repo'
-  }),
-  media: {
-    insertOne: () => {}
-  }
-};
 
 test('Uploads a file', async t => {
   const scope = nock('https://api.github.com')
