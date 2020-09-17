@@ -21,6 +21,10 @@ export const ShareEndpoint = class {
     return this.options.mountpath;
   }
 
+  get namespace() {
+    return 'endpoint-share';
+  }
+
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
@@ -35,6 +39,7 @@ export const ShareEndpoint = class {
     });
 
     indiekitConfig.addView([
+      path.join(__dirname, 'includes'),
       path.join(__dirname, 'views')
     ]);
   }

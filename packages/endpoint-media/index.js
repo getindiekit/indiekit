@@ -24,6 +24,10 @@ export const MediaEndpoint = class {
     return this.options.mountpath;
   }
 
+  get namespace() {
+    return 'endpoint-media';
+  }
+
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 

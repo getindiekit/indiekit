@@ -24,6 +24,10 @@ export const MicropubEndpoint = class {
     return this.options.mountpath;
   }
 
+  get namespace() {
+    return 'endpoint-micropub';
+  }
+
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 

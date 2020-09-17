@@ -25,33 +25,9 @@ To ensure {{ application.name }} can be discovered by Micropub clients and have 
 {% block content %}
   {{ discovery | markdown | safe }}
 
-{%- set bookmarklet -%}
-  {%- set bookmarkletFunction -%}
-    (function() {
-      var title = document.getElementsByTagName('title')[0].innerHTML;
-      name = encodeURIComponent(title);
-
-      var selection = '';
-      if (window.getSelection) {
-        selection = window.getSelection().toString();
-      } else if (document.selection && document.selection.type != 'Control') {
-        selection = document.selection.createRange().text;
-      }
-      content = encodeURIComponent(selection);
-
-      new_window=window.open(
-        '{{ application.url }}/share/bookmarklet?name='+name+'&content='+content+'&url='+encodeURIComponent(document.location.href),
-        'Sharer',
-        'resizable,scrollbars,status=0,toolbar=0,menubar=0,titlebar=0,width=560,height=720,location=0'
-      );
-    })();
-  {%- endset -%}
-  {%- set bookmarkletHref = "javascript:" + bookmarkletFunction | replace("  ", "") | replace("\n", "") | replace("&", "&amp;") | trim -%}
-  {{ bookmarklet({
-    href: bookmarkletHref,
-    text: "Share page"
-  }) }}
-{%- endset -%}
+{% for endpoint in application.endpoints -%}
+  {% include endpoint.namespace + "-status.njk" ignore missing %}
+{%- endfor %}
 
   {{ summary({
     title: "Publication settings",
@@ -111,14 +87,7 @@ To ensure {{ application.name }} can be discovered by Micropub clients and have 
       value: {
         text: publication.mediaEndpoint or "Not set"
       }
-    } if publication.mediaEndpoint, {
-      key: {
-        text: "Share bookmarklet"
-      },
-      value: {
-        text: "Drag this link to your bookmarks bar: " + bookmarklet
-      }
-    }]
+    } if publication.mediaEndpoint]
   }) }}
 
   {{ summary({
