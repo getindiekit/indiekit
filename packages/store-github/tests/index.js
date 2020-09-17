@@ -25,11 +25,6 @@ test.beforeEach(t => {
   };
 });
 
-test('Gets message format', async t => {
-  const result = await t.context.github.messageFormat;
-  t.is(result, '{action} {postType} {fileType}');
-});
-
 test('Creates file in a repository', async t => {
   const scope = t.context.nock
     .put(uri => uri.includes('foo.txt'))

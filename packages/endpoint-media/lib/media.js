@@ -1,5 +1,3 @@
-import {supplant} from './utils.js';
-
 export const media = {
   /**
    * Upload file
@@ -10,17 +8,19 @@ export const media = {
    * @returns {object} Data to use in response
    */
   upload: async (publication, mediaData, file) => {
-    const {media, store} = publication;
-    const message = supplant(store.messageFormat, {
+    const {media, store, storeMessageTemplate} = publication;
+    const metaData = {
       action: 'upload',
-      fileType: 'media',
+      result: 'uploaded',
+      fileType: 'file',
       postType: mediaData.properties['post-type']
-    });
+    };
+    const message = storeMessageTemplate(metaData);
     const uploaded = await store.createFile(mediaData.path, file.buffer, message);
 
     if (uploaded) {
       mediaData.date = new Date();
-      mediaData.lastAction = 'upload';
+      mediaData.lastAction = metaData.action;
 
       if (media) {
         await media.insertOne(mediaData);
