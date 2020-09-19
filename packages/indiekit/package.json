@@ -16,6 +16,16 @@
   },
   "type": "module",
   "main": "index.js",
+  "files": [
+    "config",
+    "controllers",
+    "lib",
+    "locales",
+    "middleware",
+    "routes",
+    "views",
+    "index.js"
+  ],
   "bugs": {
     "url": "https://github.com/getindiekit/indiekit/issues"
   },

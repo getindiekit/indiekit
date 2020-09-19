@@ -19,6 +19,8 @@
   "main": "index.js",
   "files": [
     "controllers",
+    "includes",
+    "locales",
     "views",
     "index.js"
   ],

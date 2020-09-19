@@ -20,6 +20,7 @@
   "files": [
     "controllers",
     "lib",
+    "locales",
     "views",
     "index.js"
   ],
