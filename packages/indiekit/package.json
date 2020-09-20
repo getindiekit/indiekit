@@ -1,6 +1,7 @@
 {
   "name": "@indiekit/indiekit",
   "version": "0.1.0-alpha.7",
+  "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
     "indieweb",
