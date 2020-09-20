@@ -39,7 +39,7 @@
     "date-fns-tz": "^1.0.10",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
-    "got": "^11.6.2",
+    "got": "^11.7.0",
     "http-errors": "^1.8.0",
     "lodash": "^4.17.20",
     "microformats-parser": "^1.4.0",

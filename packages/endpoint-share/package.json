@@ -36,7 +36,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
-    "got": "^11.6.2"
+    "got": "^11.7.0"
   },
   "publishConfig": {
     "access": "public"
