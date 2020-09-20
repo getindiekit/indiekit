@@ -1,6 +1,7 @@
 export const de = {
   error: 'Error',
   novalue: 'Nicht vorgesehen',
+  optionalValue: '(Optional)',
   guidance: {
     discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website zu posten'
   },
