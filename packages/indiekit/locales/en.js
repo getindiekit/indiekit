@@ -1,6 +1,6 @@
 export const en = {
   error: 'Error',
-  novalue: 'Not set',
+  noValue: 'Not set',
   optionalValue: '(optional)',
   guidance: {
     discovery: 'So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:'
