@@ -6,9 +6,13 @@ export const validate = [
   check('name')
     .not()
     .isEmpty()
-    .withMessage('Enter a title'),
+    .withMessage((value, {req, path}) => {
+      return req.__(`share.error.${path}`);
+    }),
   check('bookmark-of')
     .exists()
     .isURL()
-    .withMessage('Enter a web address like https://example.org')
+    .withMessage((value, {req, path}) => {
+      return req.__(`share.error.${path}`);
+    })
 ];
