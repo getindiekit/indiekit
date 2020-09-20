@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2020-09-20)
+
+
+### Bug Fixes
+
+* make error summary title localisable ([aea81a4](https://github.com/getindiekit/indiekit/commit/aea81a47b658cdf42a3ad409ca2e2548925e2ee5))
+
+
+### Features
+
+* **endpoint-share:** add validation to share page. fixes [#284](https://github.com/getindiekit/indiekit/issues/284) ([31a875d](https://github.com/getindiekit/indiekit/commit/31a875de5b6bfe8366fab8c455fdf6804d15288c))
+* **endpoint-share:** move url field above others ([88f6d32](https://github.com/getindiekit/indiekit/commit/88f6d32931fcd887867ed200dd49662e93717761))
+* **endpoint-share:** translate validation errors. fixes [#285](https://github.com/getindiekit/indiekit/issues/285) ([df5067d](https://github.com/getindiekit/indiekit/commit/df5067d4612ad526381d555da3f06eb2196f96cb))
+
+
+
+
+
 # [0.1.0-alpha.7](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2020-09-19)
 
 
