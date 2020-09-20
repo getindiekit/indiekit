@@ -11,12 +11,6 @@ test('Returns login page', async t => {
   t.is(response.type, 'text/html');
 });
 
-test('Login validates URL', async t => {
-  const response = await request.post('/session/login')
-    .send('me=foobar');
-  t.is(response.status, 422);
-});
-
 test('Login returns 401 if URL is unauthorized', async t => {
   const response = await request.post('/session/login')
     .send('me=example.website');

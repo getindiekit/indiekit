@@ -2,12 +2,10 @@ import httpError from 'http-errors';
 import IndieAuth from 'indieauth-helper';
 import normalizeUrl from 'normalize-url';
 import {v4 as uuidv4} from 'uuid';
-import validator from 'express-validator';
 
 const auth = new IndieAuth({
   secret: uuidv4()
 });
-const {validationResult} = validator;
 
 export const login = (request, response) => {
   if (request.session.token) {
@@ -32,16 +30,8 @@ export const login = (request, response) => {
 };
 
 export const authenticate = async (request, response) => {
-  const errors = validationResult(request);
-  if (!errors.isEmpty()) {
-    return response.status(422).render('session/login', {
-      title: response.__('session.login.title'),
-      errors: errors.mapped()
-    });
-  }
-
   try {
-    const me = normalizeUrl(request.body.me, {
+    const me = normalizeUrl(response.locals.publication.me, {
       removeTrailingSlash: false
     });
     auth.options.me = new URL(me).href;

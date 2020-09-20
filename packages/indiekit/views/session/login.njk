@@ -8,20 +8,8 @@
   }) }}
 {% endblock %}
 {% block fieldset %}
-  {{ input({
-    id: "me",
-    name: "me",
-    value: errors.me.value or publication.me,
-    label: {
-      text: __("session.login.me")
-    },
-    inputmode: "url",
-    autocomplete: "url",
-    errorMessage: {
-      text: errors.me.msg,
-      label: __("error")
-    } if errors.me
-  }) | indent(2) }}
+  {% set me = publication.me | replace("http://", "") | replace("https://", "") %}
+  <p>{{ __("session.login.description", "<b>" + me + "</b>") | safe }}</p>
 
   {{ input({
     name: "redirect_uri",

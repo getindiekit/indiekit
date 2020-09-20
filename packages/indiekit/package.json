@@ -43,7 +43,6 @@
     "cookie-session": "^1.4.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "express-validator": "^6.6.1",
     "got": "^11.6.2",
     "http-errors": "^1.8.0",
     "i18n": "^0.13.2",

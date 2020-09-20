@@ -8,8 +8,9 @@ export const en = {
   session: {
     login: {
       title: 'Sign in',
+      description: 'Sign in with IndieAuth to verify that you own %s',
       me: 'Web address',
-      submit: 'Sign in',
+      submit: 'Sign in with IndieAuth',
       error: {
         validateState: 'Missing code or state mismatch'
       }

@@ -8,8 +8,9 @@ export const de = {
   session: {
     login: {
       title: 'Einloggen',
+      description: 'Melden Sie sich mit IndieAuth zu überprüfen, ob Sie %s besitzen',
       me: 'Webadresse',
-      submit: 'Einloggen',
+      submit: 'Einloggen mit IndieAuth',
       error: {
         validateState: 'Fehlender Code oder State inkongruenz'
       }
