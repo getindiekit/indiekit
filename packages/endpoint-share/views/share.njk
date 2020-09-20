@@ -24,6 +24,19 @@
   }) }}
 
   {{ input({
+    id: "bookmark-of",
+    name: "bookmark-of",
+    value: errors["bookmark-of"].value or bookmarkOf or url,
+    label: {
+      text: __("share.bookmarkOf")
+    },
+    errorMessage: {
+      text: errors["bookmark-of"].msg,
+      label: __("error")
+    } if errors["bookmark-of"]
+  }) }}
+
+  {{ input({
     id: "name",
     name: "name",
     value: errors.name.value or name,
@@ -44,19 +57,6 @@
       text: __("share.content") + " " + __("optionalValue")
     }
   }) | indent(8) }}
-
-  {{ input({
-    id: "bookmark-of",
-    name: "bookmark-of",
-    value: errors["bookmark-of"].value or bookmarkOf or url,
-    label: {
-      text: __("share.bookmarkOf")
-    },
-    errorMessage: {
-      text: errors["bookmark-of"].msg,
-      label: __("error")
-    } if errors["bookmark-of"]
-  }) }}
 
   {{ input({
     name: "access_token",
