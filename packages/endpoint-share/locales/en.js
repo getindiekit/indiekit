@@ -3,7 +3,7 @@ export const en = {
     title: 'Share',
     name: 'Title',
     content: 'Content',
-    url: 'URL',
+    bookmarkOf: 'URL',
     submit: 'Publish'
   }
 };

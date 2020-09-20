@@ -26,10 +26,14 @@
   {{ input({
     id: "name",
     name: "name",
-    value: name,
+    value: errors.name.value or name,
     label: {
       text: __("share.name")
-    }
+    },
+    errorMessage: {
+      text: errors.name.msg,
+      label: __("error")
+    } if errors.name
   }) }}
 
   {{ textarea({
@@ -37,17 +41,21 @@
     name: "content",
     value: content,
     label: {
-      text: __("share.content")
+      text: __("share.content") + " " + __("optionalValue")
     }
   }) | indent(8) }}
 
   {{ input({
-    id: "url",
+    id: "bookmark-of",
     name: "bookmark-of",
-    value: url,
+    value: errors["bookmark-of"].value or bookmarkOf or url,
     label: {
-      text: __("share.url")
-    }
+      text: __("share.bookmarkOf")
+    },
+    errorMessage: {
+      text: errors["bookmark-of"].msg,
+      label: __("error")
+    } if errors["bookmark-of"]
   }) }}
 
   {{ input({

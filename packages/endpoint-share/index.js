@@ -3,6 +3,7 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 import {shareController} from './controllers/share.js';
 import {locales} from './locales/index.js';
+import {validate} from './middleware/validation.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -52,8 +53,8 @@ export const ShareEndpoint = class {
     const router = this._router;
     const {authenticate} = application.middleware;
 
-    this._router.get('/:path?', authenticate, shareController(publication).edit);
-    this._router.post('/:path?', authenticate, shareController(publication).save);
+    this._router.get('/:path?', authenticate, shareController(publication).get);
+    this._router.post('/:path?', validate, authenticate, shareController(publication).post);
 
     return router;
   }

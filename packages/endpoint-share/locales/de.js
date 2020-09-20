@@ -3,7 +3,7 @@ export const de = {
     title: 'Teilen',
     name: 'Titel',
     content: 'Inhalt',
-    url: 'URL',
+    bookmarkOf: 'URL',
     submit: 'Veröffentlichen'
   }
 };
