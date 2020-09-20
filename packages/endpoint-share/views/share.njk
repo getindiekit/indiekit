@@ -1,6 +1,7 @@
 {% extends "form.njk" %}
 
 {% from "preview/macro.njk" import preview %}
+{% set errorSummaryTitle = __("errorSummaryTitle") %}
 
 {% block fieldset %}
   {{ preview({

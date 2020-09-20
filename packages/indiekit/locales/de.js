@@ -1,5 +1,6 @@
 export const de = {
   error: 'Error',
+  errorSummaryTitle: 'Es gibt ein Problem',
   noValue: 'Nicht vorgesehen',
   optionalValue: '(Optional)',
   guidance: {

@@ -9,7 +9,7 @@
 <form class="form" method="post">
   {{ errorSummary({
     title: {
-      text: "There is a problem"
+      text: errorSummaryTitle or "There is a problem"
     },
     errorList: errors | errorList
   }) | indent(8) if errors }}
