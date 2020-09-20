@@ -8,7 +8,7 @@
 }
 
 .app--login {
-  --container-max-inline-size: 24rem;
+  --container-max-inline-size: 28rem;
 }
 
 .app--login .header,
