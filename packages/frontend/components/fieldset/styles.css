@@ -3,6 +3,7 @@
 
   --flow-space: 0.5rem;
 
+  hanging-punctuation: none;
   max-inline-size: var(--line-measure);
 }
 
