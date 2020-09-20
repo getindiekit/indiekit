@@ -12,6 +12,9 @@ export const en = {
       error: {
         validateState: 'Missing code or state mismatch'
       }
+    },
+    logout: {
+      title: 'Sign out'
     }
   },
   status: {

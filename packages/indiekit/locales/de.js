@@ -6,12 +6,15 @@ export const de = {
   },
   session: {
     login: {
-      error: {
-        validateState: 'Fehlender Code oder State inkongruenz'
-      },
+      title: 'Einloggen',
       me: 'Webadresse',
       submit: 'Einloggen',
-      title: 'Einloggen'
+      error: {
+        validateState: 'Fehlender Code oder State inkongruenz'
+      }
+    },
+    logout: {
+      title: 'Ausloggen'
     }
   },
   status: {
