@@ -53,6 +53,11 @@ test.serial('Returns empty array if remote JSON file not found', async t => {
   scope.done();
 });
 
+test.serial('Returns empty array if no publication config provided', async t => {
+  const result = await getCategories(t.context.cache, {});
+  t.deepEqual(result, []);
+});
+
 test('Merges values from custom and preset post types', t => {
   const result = getPostTypes(t.context.publication);
   t.is(result[0].template, 'etc/templates/article.njk');
