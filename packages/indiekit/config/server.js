@@ -1,13 +1,12 @@
 import express from 'express';
 import cookieSession from 'cookie-session';
-import i18n from 'i18n';
 import {v4 as uuidv4} from 'uuid';
 import {templates} from '@indiekit/frontend';
 import * as error from '../middleware/error.js';
+import {internationalisation} from '../middleware/i18n.js';
 import {locals} from '../middleware/locals.js';
 import {logging} from '../middleware/logging.js';
 import {routes} from '../routes/index.js';
-import {defaultConfig} from './defaults.js';
 
 export const serverConfig = indiekitConfig => {
   const config = express();
@@ -26,16 +25,7 @@ export const serverConfig = indiekitConfig => {
   }));
 
   // Internationalisation
-  i18n.configure({
-    cookie: 'locale',
-    defaultLocale: 'en',
-    indent: '  ',
-    objectNotation: true,
-    header: defaultConfig.application.locale ? '' : 'accept-language',
-    queryParameter: 'lang',
-    staticCatalog: defaultConfig.application.locales
-  });
-  config.use(i18n.init);
+  config.use(internationalisation(indiekitConfig));
 
   // Locals
   config.use(locals(indiekitConfig));

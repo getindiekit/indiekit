@@ -20,6 +20,7 @@ export const en = {
       summaryTitle: 'Application settings',
       name: 'Name',
       locale: 'Language',
+      localeNotAvailable: '{{ app }} has not been translated into {{ locale }} yet',
       themeColor: 'Theme color',
       endpoints: 'Endpoints'
     },

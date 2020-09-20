@@ -59,3 +59,9 @@
 .summary__actions {
   margin-inline-start: auto;
 }
+
+.summary__note {
+  @extend %caption;
+
+  color: var(--color-neutral-dark);
+}
