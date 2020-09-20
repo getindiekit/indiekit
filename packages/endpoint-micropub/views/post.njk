@@ -1,5 +1,11 @@
 {% extends "document.njk" %}
 
+{% set microformats %}
+```json
+{{ post.mf2 | dump(2) | safe }}
+```
+{% endset %}
+
 {% block content %}
   {% if post.properties.audio %}
     {% for item in post.properties.audio %}
@@ -20,6 +26,6 @@
   }) }}
   <details>
     <summary>{{ __("micropub.microformats") }}</summary>
-<pre>{{ post.properties.mf2 | dump(2) }}</pre>
+    {{ microformats | markdown | safe }}
   </details>
 {% endblock %}
