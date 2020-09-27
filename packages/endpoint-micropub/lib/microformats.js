@@ -1,17 +1,13 @@
-import dateFns from 'date-fns';
-import dateFnsTz from 'date-fns-tz';
 import got from 'got';
 import parser from 'microformats-parser';
 import {reservedProperties} from './reserved-properties.js';
+import {getDate} from './date.js';
 import {
   decodeQueryParameter,
   excerptString,
   slugifyString,
   randomString
 } from './utils.js';
-
-const {formatISO} = dateFns;
-const {utcToZonedTime} = dateFnsTz;
 
 /**
  * Create Microformats2 object from form-encoded request
@@ -182,20 +178,9 @@ export const getVideoProperty = mf2 => {
  * @returns {Array} Microformats2 `published` property
  */
 export const getPublishedProperty = (mf2, timeZone) => {
-  let date;
   const {published} = mf2.properties;
-
-  if (published) {
-    date = new Date(published[0]);
-  } else {
-    date = new Date();
-  }
-
-  // Convert UTC to date with time zone offset
-  let property = utcToZonedTime(date, timeZone);
-
-  // Convert date to ISO 8601 formatted date string
-  property = formatISO(property);
+  const dateString = published ? published[0] : false;
+  const property = getDate(timeZone, dateString);
   return new Array(property);
 };
 
