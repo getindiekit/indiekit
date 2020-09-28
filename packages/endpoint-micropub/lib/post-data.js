@@ -26,7 +26,7 @@ export const postData = {
         throw new Error('No microformats included in request');
       }
 
-      const {me, postTypes} = publication;
+      const {me, postTypes, timeZone} = publication;
 
       // Post properties
       const properties = mf2tojf2({items: [mf2]});
@@ -37,8 +37,8 @@ export const postData = {
       properties['post-type'] = type;
 
       // Post paths
-      const path = renderPath(typeConfig.post.path, properties);
-      const url = renderPath(typeConfig.post.url, properties);
+      const path = renderPath(typeConfig.post.path, properties, timeZone);
+      const url = renderPath(typeConfig.post.url, properties, timeZone);
       properties.url = getPermalink(me, url);
 
       // Post data

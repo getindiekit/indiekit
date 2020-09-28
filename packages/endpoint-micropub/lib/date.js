@@ -7,7 +7,7 @@ const {format, utcToZonedTime} = dateFnsTz;
  *
  * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
  */
-const getTimeZoneOffset = () => {
+export const getTimeZoneOffset = () => {
   let timeZoneOffset;
   const timeZoneOffsetMinutes = new Date().getTimezoneOffset();
   let offsetHours = Number.parseInt(Math.abs(timeZoneOffsetMinutes / 60), 10);

@@ -1,9 +1,10 @@
-import dateFns from 'date-fns';
+import dateFnsTz from 'date-fns-tz';
 import newbase60 from 'newbase60';
 import path from 'path';
 import {v4 as uuidv4} from 'uuid';
+import {getTimeZoneOffset} from './date.js';
 
-const {format} = dateFns;
+const {format} = dateFnsTz;
 
 /**
  * Generate random alpha-numeric string, 5 characters long
@@ -20,11 +21,13 @@ export const randomString = () => {
  *
  * @param {string} path URI template path
  * @param {object} properties Properties to use
+ * @param {string} timeZoneSetting Time zone setting
  * @returns {string} Path
  */
-export const renderPath = (path, properties) => {
+export const renderPath = (path, properties, timeZoneSetting) => {
   let tokens = {};
   const dateObject = new Date(properties.published);
+  const serverTimeZone = getTimeZoneOffset();
   const dateTokens = [
     'y', // Calendar year, eg 2020
     'yyyy', // Calendar year (zero-padded), eg 2020
@@ -53,6 +56,7 @@ export const renderPath = (path, properties) => {
   // Add date tokens
   dateTokens.forEach(dateToken => {
     tokens[dateToken] = format(dateObject, dateToken, {
+      timeZone: timeZoneSetting === 'server' ? serverTimeZone : timeZoneSetting,
       useAdditionalDayOfYearTokens: true
     });
   });
