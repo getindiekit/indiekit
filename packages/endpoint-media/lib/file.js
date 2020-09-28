@@ -1,10 +1,6 @@
-import dateFns from 'date-fns';
-import dateFnsTz from 'date-fns-tz';
 import FileType from 'file-type';
+import {getDate} from './date.js';
 import {randomString} from './utils.js';
-
-const {formatISO} = dateFns;
-const {utcToZonedTime} = dateFnsTz;
 
 /**
  * Derive properties from file data
@@ -70,12 +66,7 @@ export const getMediaType = async file => {
  * @returns {string} ISO 8601 date
  */
 export const getPublishedProperty = timeZone => {
-  const date = new Date().toISOString();
-
-  // Convert UTC to date with time zone offset
-  let property = utcToZonedTime(date, timeZone);
-
-  // Convert date to ISO 8601 formatted date string
-  property = formatISO(property);
+  const dateString = new Date().toISOString();
+  const property = getDate(timeZone, dateString);
   return property;
 };
