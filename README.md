@@ -35,8 +35,6 @@ You’ll be asked to provide the following values:
 * [Features](#features)
 * [Usage](#usage)
 * [Options](#options)
-* [Plugins](#plugins)
-* [Localisations](#localisations)
 * [Local development](#local-development)
 * [Credits](#credits)
 * [Similar projects](#similar-projects)
@@ -55,8 +53,8 @@ You’ll be asked to provide the following values:
 * Bookmarklet to save and share bookmarks
 * Publish to different content stores (GitHub and GitLab)
 * Support for popular static site generators (Jekyll, Hugo, 11ty)
-* Localised to [different languages](#localisations)
-* ~~Plugin API~~
+* Localised to [different languages](/docs/localisation.md)
+* ~~Plug-in API~~
 
 ## Install
 
@@ -95,11 +93,11 @@ indiekit.set('publication.me', 'https://paulrobertlloyd.com');
 
 ### Add a publication preset
 
-Indiekit needs to know what post types you want to publish (for example notes and photos) and in which format. This information can be provided by setting `publication.postTypes` and `publication.postTemplate`. See [Configuring post types](#configuring-post-types) and [Creating a post template](#creating-a-post-template).
+Indiekit needs to know what post types you want to publish (for example notes and photos) and in which format. This information can be provided by setting `publication.postTypes` and `publication.postTemplate`. See [Configuring post types](/docs/post-types.md) and [Creating a post template](/docs/post-template.md).
 
-A publication preset plugin can provide default values for these options (which you can override in your configuration file).
+A publication preset plug-in can provide default values for these options (which you can override in your configuration file).
 
-If you use the Jekyll static site generator, you can install the [Jekyll plugin](https://www.npmjs.com/package/@indiekit/preset-jekyll):
+If you use the Jekyll static site generator, you can install the [Jekyll plug-in](https://www.npmjs.com/package/@indiekit/preset-jekyll):
 
 `npm install @indiekit/preset-jekyll`
 
@@ -113,9 +111,9 @@ indiekit.set('publication.preset', jekyll);
 
 ### Add a content store
 
-Indiekit needs to know where to store your posts and media files. A content store plugin provides this functionality.
+Indiekit needs to know where to store your posts and media files. A content store plug-in provides this functionality.
 
-If you are saving your files to GitHub, install the GitHub plugin:
+If you are saving your files to GitHub, install the GitHub plug-in:
 
 `npm install @indiekit/store-github`
 
@@ -181,7 +179,7 @@ To ensure Indiekit’s endpoint can be discovered by Micropub clients (and have 
 
 ### `application.locale`
 
-The language used in the application interface. See the list of [supported languages](#localisations).
+The language used in the application interface. See the list of [supported languages](/docs/localisation.md).
 
 Type: `string`\
 *Optional*, defaults to system language if supported, else `en` (English)
@@ -244,14 +242,14 @@ Type: `Function`\
 
 ### `publication.postTypes`
 
-A set of default paths and templates for different post types. See [Configuring post types](#configuring-post-types).
+A set of default paths and templates for different post types. See [Configuring post types](/docs/post-types.md).
 
 Type: `Array`\
 *Optional if using a preset*
 
 ### `publication.preset`
 
-A [publication preset](#publication-presets) plugin.
+A [publication preset](/docs/plug-ins.md#publication-presets) plug-in.
 
 Type: `Function`\
 *Optional*
@@ -265,14 +263,14 @@ Type: `string`\
 
 ### `publication.store`
 
-A [content store](#content-stores) plugin.
+A [content store](/docs/plug-ins.md#content-stores) plug-in.
 
 Type: `Function`\
 *Required*
 
 ### `publication.storeMessageTemplate`
 
-Function used to customise message format. See [Customising commit messages](#customising-commit-messages).
+Function used to customise message format. See [Customising commit messages](/docs/commit-messages.md).
 
 Type: `Function`\
 *Optional*, defaults to `[action] [postType] [fileType]`
@@ -305,11 +303,7 @@ The time zone for your publication. By default this is set to `UTC`, however if 
 indiekit.set('publication.timeZone', 'Europe/London');
 ```
 
-Some servers will have a time zone saved in the `TZ` environment variable. In which case, you can supply that value instead:
-
-```js
-indiekit.set('publication.timeZone', process.env.TZ);
-```
+This option also accepts a number of other values. See [Setting a time zone](/docs/time-zone.md).
 
 Type: `string`\
 *Optional*, defaults to `UTC`
@@ -320,159 +314,6 @@ An IndieAuth token endpoint.
 
 Type: `URL`\
 *Optional*, defaults to `https://tokens.indieauth.com/token`
-
-## Configuring post types
-
-Micropub clients let you publish a variety of [post types](https://indieweb.org/Category:PostType), and Indiekit lets you decide how these different types are handled. You can do this by using a publication preset, configuring values manually, or a combination of both.
-
-For example, to use the Jekyll preset but override the `note` and `photo` post types, you would use the following configuration:
-
-```js
-import {JekyllPreset} from '@indiekit/preset-jekyll';
-
-// Use a preset
-const jekyll = new JekyllPreset();
-indiekit.set('publication.preset', jekyll);
-
-// Override preset post type
-indiekit.set('publication.postTypes', [{
-  type: 'note',
-  name: 'Journal entry',
-  post: {
-    path: '_journal/{​yyyy}-{MM}-{dd}-{​slug}.md',
-    url: 'journal/{yyyy}/{MM}/{​slug}'
-  },
-}, {
-  type: 'photo',
-  name: 'Photograph',
-  post: {
-    path: '_photos/{​yyyy}-{MM}-{dd}-{​slug}.md',
-    url: 'photos/{yyyy}/{MM}/{​slug}'
-  },
-  media: {
-    path: 'media/photos/{​yyyy}/{​filename}',
-  }
-}]);
-```
-
-Each post type can take the following values:
-
-* **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
-
-* **`name`**: The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use it in their publishing interfaces.
-
-* **`post.path`**: Where posts should be saved in your repository.
-
-* **`post.url`**: Permalink (the URL path) for posts on your website.
-
-* **`media.path`**: Where media files should be saved in your repository. This applies only to `photo`, `video` and `audio` post types.
-
-* **`media.url`**: Public accessible URL for media files. This can use the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
-
-### Creating custom paths and URLs
-
-Both `path` and `url` values can be customised using the following date tokens:
-
-| Token  | Description                                           |
-| :----- | :---------------------------------------------------- |
-| `y`    | Calendar year, eg <samp>2020</samp>                   |
-| `yyyy` | Calendar year (zero-padded), eg <samp>2020</samp>     |
-| `M`    | Month number, eg <samp>9</samp>                       |
-| `MM`   | Month number (zero-padded), eg <samp>09</samp>        |
-| `MMM`  | Month name (abbreviated), eg <samp>Sep</samp>         |
-| `MMMM` | Month name (wide), eg <samp>September</samp>          |
-| `w`    | Week number, eg <samp>1</samp>                        |
-| `ww`   | Week number (zero-padded), eg <samp>01</samp>         |
-| `D`    | Day of the year, eg <samp>1</samp>                    |
-| `DDD`  | Day of the year (zero-padded), eg <samp>001</samp>    |
-| `D60`  | Day of the year (sexageismal), eg <samp>57h</samp>    |
-| `d`    | Day of the month, eg <samp>1</samp>                   |
-| `dd`   | Day of the month (zero-padded), eg <samp>01</samp>    |
-| `h`    | Hour (12-hour-cycle), eg <samp>1</samp>               |
-| `hh`   | Hour (12-hour-cycle, zero-padded), eg <samp>01</samp> |
-| `H`    | Hour (24-hour-cycle), eg <samp>1</samp>               |
-| `HH`   | Hour (24-hour-cycle, zero-padded), eg <samp>01</samp> |
-| `m`    | Minute, eg <samp>1</samp>                             |
-| `mm`   | Minute (zero-padded), eg <samp>01</samp>              |
-| `s`    | Second, eg <samp>1</samp>                             |
-| `ss`   | Second (zero-padded), eg <samp>01</samp>              |
-| `t`    | UNIX epoch seconds, eg <samp>512969520</samp>         |
-| `T`    | UNIX epoch milliseconds, eg <samp>51296952000</samp>  |
-
-The following template tokens are available for post paths and URLs:
-
-| Token  | Description                                                        |
-| :----- | :----------------------------------------------------------------- |
-| `slug` | Provided slug, slugified `name` or a 5 character string, eg <samp>ycf9o</samp> |
-| `uuid` | A [random UUID][uuid]                                              |
-
-The following template tokens are available for media file paths and URLs:
-
-| Token          | Description                                                |
-| :------------- | :--------------------------------------------------------- |
-| `basename`     | 5 character alpha-numeric string, eg <samp>w9gwi</samp>    |
-| `ext`          | File extension of uploaded file, eg <samp>jpg</samp>       |
-| `filename`     | `basename` plus `ext`, eg <samp>w9gwi.jpg</samp>           |
-| `originalname` | Original name of uploaded file, eg <samp>flower.jpg</samp> |
-| `uuid`         | A [random UUID][uuid]                                      |
-
-[uuid]: https://www.rfc-editor.org/rfc/rfc4122.html#section-4.4
-
-## Creating a post template
-
-A post template is a function that takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML frontmatter. You can see examples of this function in the Jekyll and Hugo presets:
-
-* [`postTemplate()` function in Jekyll preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-jekyll/index.js#L120)
-* [`postTemplate()` function in Hugo preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-hugo/index.js#L152)
-
-## Customising commit messages
-
-Indiekit provides content store plugins with a `metaData` object that contains meta data that can be used in commit messages:
-
-* `action`: Action to take i.e. ‘create’, ‘upload’.
-* `result`: Result of action, i.e. ‘created’, ’uploaded'.
-* `fileType`: File type, i.e. ’post’ or ‘file‘.
-* `postType`: IndieWeb post type, i.e. ‘note’, ‘photo’, ‘reply’.
-
-By default, Indiekit outputs the `action`, `postType` and `fileType`, for example `create photo post`. If you wanted to change the format to output `Created a photo post`, you can do the following:
-
-```js
-const _ = require('lodash');
-
-indiekit.set('publication.storeMessageTemplate', metaData => {
-  const {result, postType, fileType} = metaData;
-  return `${_.upperFirst(result)} a ${postType} ${fileType}`;
-});
-```
-
-## Plugins
-
-### Endpoints
-
-The following endpoints are included by default:
-
-* [Micropub](https://www.npmjs.com/package/@indiekit/endpoint-micropub)
-* [Micropub media](https://www.npmjs.com/package/@indiekit/endpoint-media)
-* [Share](https://www.npmjs.com/package/@indiekit/endpoint-share)
-
-### Content stores
-
-* [GitHub](https://www.npmjs.com/package/@indiekit/store-github)
-* [GitLab](https://www.npmjs.com/package/@indiekit/store-gitlab)
-
-### Publication presets
-
-* [Jekyll](https://www.npmjs.com/package/@indiekit/preset-jekyll)
-* [Hugo](https://www.npmjs.com/package/@indiekit/preset-hugo)
-
-## Localisations
-
-Indiekit has been localised into the following languages:
-
-* `en-US`: English (US)
-* `de-DE`: Deutsch
-
-Contributions for other languages are encouraged.
 
 ## Local development
 
