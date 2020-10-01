@@ -36,7 +36,7 @@
     "dotenv": "^8.1.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
+    "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^9.0.1 ",
     "ava": "^3.8.2",
     "c8": "^7.1.2",
