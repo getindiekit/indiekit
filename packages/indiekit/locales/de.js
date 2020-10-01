@@ -1,19 +1,19 @@
 export const de = {
   error: 'Error',
-  errorSummaryTitle: 'Es gibt ein Problem',
+  errorSummaryTitle: 'Es ist ein Fehler aufgetreten',
   noValue: 'Nicht vorgesehen',
-  optionalValue: '(Optional)',
+  optionalValue: '(optional)',
   guidance: {
-    discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website zu posten'
+    discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen'
   },
   session: {
     login: {
       title: 'Einloggen',
-      description: 'Melden Sie sich mit IndieAuth zu überprüfen, ob Sie %s besitzen',
+      description: 'Melden Sie sich mit IndieAuth an, um zu überprüfen, ob Sie %s besitzen',
       me: 'Webadresse',
       submit: 'Einloggen mit IndieAuth',
       error: {
-        validateState: 'Fehlender Code oder State inkongruenz'
+        validateState: 'Fehlender Code oder Zustandsinkongruenz'
       }
     },
     logout: {
@@ -21,7 +21,7 @@ export const de = {
     }
   },
   status: {
-    title: 'Server Status',
+    title: 'Serverstatus',
     application: {
       summaryTitle: 'Anwendungseinstellungen',
       name: 'Name',
@@ -30,7 +30,7 @@ export const de = {
       endpoints: 'Endpunkte'
     },
     publication: {
-      summaryTitle: 'Veröffentlichung Einstellungen',
+      summaryTitle: 'Veröffentlichungseinstellungen',
       me: 'Webadresse',
       locale: 'Sprache',
       timeZone: 'Zeitzone',

@@ -7,7 +7,7 @@ export const de = {
     submit: 'Veröffentlichen',
     error: {
       'bookmark-of': 'Geben Sie eine Webadresse wie https://example.org ein',
-      name: 'Geben Sie einen Titel'
+      name: 'Geben Sie einen Titel ein'
     }
   }
 };
