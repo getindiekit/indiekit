@@ -1,7 +1,7 @@
 export const de = {
   micropub: {
     title: 'Beiträge',
-    microformats: 'Microformats für diesen Beitrag',
+    microformats: 'Microformate für diesen Beitrag',
     properties: 'Eigenschaften',
     posts: {
       title: 'Hochgeladene Dateien'
