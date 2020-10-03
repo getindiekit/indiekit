@@ -59,7 +59,7 @@
     "environmentVariables": {
       "NODE_ENV": "test",
       "TEST_MONGODB_URL": "mongodb://localhost:27017/test",
-      "TZ": "Asia/Seoul"
+      "TZ": "Europe/London"
     },
     "verbose": true
   },

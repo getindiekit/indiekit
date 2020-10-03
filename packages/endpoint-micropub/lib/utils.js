@@ -3,7 +3,7 @@ import path from 'path';
 import newbase60 from 'newbase60';
 import slugify from '@sindresorhus/slugify';
 import {v4 as uuidv4} from 'uuid';
-import {getTimeZoneOffset} from './date.js';
+import {getServerTimeZone} from './date.js';
 
 const {format} = dateFnsTz;
 
@@ -116,7 +116,7 @@ export const randomString = () => {
 export const renderPath = (path, properties, timeZoneSetting) => {
   let tokens = {};
   const dateObject = new Date(properties.published);
-  const serverTimeZone = getTimeZoneOffset();
+  const serverTimeZone = getServerTimeZone();
   const dateTokens = [
     'y', // Calendar year, eg 2020
     'yyyy', // Calendar year (zero-padded), eg 2020

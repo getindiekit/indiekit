@@ -1,13 +1,14 @@
 import dateFnsTz from 'date-fns-tz';
 
 const {format, utcToZonedTime} = dateFnsTz;
+const DATETIME_REGEXP = /(?<date>\d{4}-[01]\d-[0-3]\d)(T(?<time>[0-2](?:\d:[0-5]){2}\d\.\d+))?(?<timeZone>[+-][0-2]\d:[0-5]\d|Z)?/;
 
 /**
  * Get local time zone offset in hours and minutes
  *
  * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
  */
-export const getTimeZoneOffset = () => {
+export const getServerTimeZone = () => {
   let timeZoneOffset;
   const timeZoneOffsetMinutes = new Date().getTimezoneOffset();
   let offsetHours = Number.parseInt(Math.abs(timeZoneOffsetMinutes / 60), 10);
@@ -37,44 +38,46 @@ export const getTimeZoneOffset = () => {
 /**
  * Converts date to use configured time zone
  *
- * @param {string} timeZoneSetting Time zone setting
+ * @param {string} setting Time zone setting
  * @param {string} dateString Date string
  * @returns {string} Converted date
+ *
+ * setting options:
+ *   `client`: don’t transform incoming date
+ *   `server`: use server’s time zone
+ *   [IANA tz timezone]: use specified time zone
  */
-export const getDate = (timeZoneSetting, dateString) => {
-  const dateRegexp = /(?<date>\d{4}-[01]\d-[0-3]\d)(T(?<time>[0-2](?:\d:[0-5]){2}\d\.\d+))?(?<timeZone>[+-][0-2]\d:[0-5]\d|Z)?/;
-  const clientTimeZone = dateString ? dateString.match(dateRegexp).groups.timeZone : undefined;
-  const serverTimeZone = getTimeZoneOffset();
-
-  let datetime;
-
-  switch (timeZoneSetting) {
-    case 'client':
-      // Return given date string or create ISO string using current date
-      return dateString ? dateString : new Date().toISOString();
-
-    case 'local':
-      // Create Date object using given or current date
-      datetime = dateString ? new Date(dateString) : new Date();
-
-      // If date string includes an offset, convert it to a local datetime
-      if (clientTimeZone) {
-        datetime = utcToZonedTime(datetime, clientTimeZone);
-      }
-
-      // Return date and time with no offset
-      return datetime.toISOString().slice(0, 23);
-
-    default:
-      // Create Date object using given or current date
-      datetime = dateString ? new Date(dateString) : new Date();
-
-      // Fix date to use correct UTC datetime given original offset
-      datetime = utcToZonedTime(datetime, clientTimeZone || 'UTC');
-
-      // Return UTC datetime with timezone offset
-      return format(datetime, 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX', {
-        timeZone: timeZoneSetting === 'server' ? serverTimeZone : timeZoneSetting
-      });
+export const getDate = (setting, dateString) => {
+  if (setting === 'client') {
+    // Return given date string or create ISO string using current date
+    return dateString ? dateString : new Date().toISOString();
   }
+
+  // Datetime is given date or new date, set us UTC
+  let datetime = dateString ? new Date(dateString) : new Date();
+
+  // Desired time zone
+  const serverTimeZone = getServerTimeZone();
+  const outputTimeZone = (setting === 'server') ? serverTimeZone : setting;
+
+  // Short dates, i.e. 2019-02-01
+  // Don’t covert dates without a given time
+  const dateHasTime = dateString ? dateString.match(DATETIME_REGEXP).groups.time : false;
+  const dateIsShort = dateString && !dateHasTime;
+  if (dateIsShort) {
+    const offset = format(datetime, 'XXX', {
+      timeZone: outputTimeZone
+    });
+    return `${dateString}T00:00:00.000${offset}`;
+  }
+
+  // JS converts dateString to UTC, so need to convert it to output zoned time
+  datetime = utcToZonedTime(datetime, outputTimeZone);
+
+  // Return datetime with desired timezone offset
+  datetime = format(datetime, 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX', {
+    timeZone: outputTimeZone
+  });
+
+  return datetime;
 };

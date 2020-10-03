@@ -47,7 +47,7 @@ test('Creates post data', async t => {
   t.is(result.properties['post-type'], 'note');
   t.is(result.properties.slug, 'foo');
   t.is(result.properties.type, 'entry');
-  t.is(result.properties.url, 'https://website.example/notes/2020/07/27/foo');
+  t.is(result.properties.url, 'https://website.example/notes/2020/07/26/foo');
 });
 
 test('Throws error creating post data without microformats data', async t => {
