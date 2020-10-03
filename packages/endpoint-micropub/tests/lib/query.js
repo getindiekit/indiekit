@@ -12,7 +12,8 @@ test.beforeEach(t => {
 test('Returns queryable publication config', t => {
   const config = {
     categories: ['foo', 'bar'],
-    postTypes: new JekyllPreset().postTypes
+    postTypes: new JekyllPreset().postTypes,
+    syndicationTargets: []
   };
   const result = getConfig(config);
   t.truthy(result.categories);

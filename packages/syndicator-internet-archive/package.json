@@ -1,0 +1,43 @@
+{
+  "name": "@indiekit/syndicator-internet-archive",
+  "version": "0.1.0-alpha.11",
+  "description": "Syndicate IndieWeb content to the Internet Archive",
+  "keywords": [
+    "indiekit",
+    "indieweb",
+    "syndication",
+    "internet-archive"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/syndicator-internet-archive"
+  },
+  "dependencies": {
+    "debug": "^4.2.0",
+    "form-data": "^3.0.0",
+    "got": "^11.6.2",
+    "http-errors": "^1.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

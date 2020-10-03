@@ -19,7 +19,7 @@ export const getConfig = publication => {
       type: postType.type,
       name: postType.name
     })),
-    'syndicate-to': syndicationTargets
+    'syndicate-to': syndicationTargets.map(target => target.info)
   };
 };
 

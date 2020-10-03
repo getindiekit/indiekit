@@ -15,7 +15,7 @@
 {%- endfor %}</ul>{% endset -%}
 
 {%- set syndicationTargetsHtml %}<ul class="no-bullets">{% for target in publication.syndicationTargets -%}
-  <li><a href="{{ target.uid }}">{{ target.name }}</a></li>
+  <li><a href="{{ target.info.uid }}">{{ target.info.name }}</a></li>
 {%- endfor %}<ul>{% endset -%}
 
 {%- set endpointsHtml %}<ul class="no-bullets">{% for endpoint in application.endpoints -%}
