@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.9...v0.1.0-alpha.10) (2020-10-03)
+
+
+### Features
+
+* configurable colour scheme ([7be2ba8](https://github.com/getindiekit/indiekit/commit/7be2ba8d103cc63469c98b242ebda029f78b723a))
+
+
+
+
+
 # [0.1.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.8...v0.1.0-alpha.9) (2020-09-28)
 
 
