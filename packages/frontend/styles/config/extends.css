@@ -83,3 +83,40 @@
     var(--container-padding-block, var(--space-block))
     var(--container-padding-inline, var(--step-0));
 }
+
+/* Color scheme */
+%color-scheme-dark {
+  /* Colour palette */
+  --color-neutral-light:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) - 24%)
+    );
+  --color-neutral-lightest:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) - 48%)
+    );
+  --color-neutral-dark:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) + 16%)
+    );
+  --color-neutral-darkest:
+    hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) + 32%)
+    );
+
+  /* Colour assignments */
+  --color-background: black;
+  --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 100% / 24%);
+  --color-anchor-hover: var(--color-accent-lightest);
+
+  /* Typography */
+  --word-spacing: 0.05em;
+}

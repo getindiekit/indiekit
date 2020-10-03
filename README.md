@@ -205,6 +205,13 @@ Accent colour used in the application interface.
 Type: `string`\
 *Optional*, defaults to `#0000ee`
 
+### `application.themeColorScheme`
+
+Color scheme used in the application interface, `automatic`, `light` or `dark`.
+
+Type: `string`\
+*Optional*, defaults to `automatic`
+
 ### `publication.categories`
 
 A list of categories or tags used on your website. Can be an array of values, or the location of a JSON file providing an array of values.

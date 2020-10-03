@@ -34,6 +34,7 @@ const application = {
   repository: package_.repository,
   routes: [],
   themeColor: '#0000ee',
+  themeColorScheme: 'automatic',
   version: package_.version,
   views: [
     path.join(__dirname, '..', 'views')
