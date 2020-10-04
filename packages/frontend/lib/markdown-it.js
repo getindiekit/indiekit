@@ -1,7 +1,7 @@
-import markdownIt from 'markdown-it';
-import markdownItPrism from 'markdown-it-prism';
+const markdownIt = require('markdown-it');
+const markdownItPrism = require('markdown-it-prism');
 
-export default (() => {
+module.exports = (() => {
   const options = {
     html: true,
     breaks: true,

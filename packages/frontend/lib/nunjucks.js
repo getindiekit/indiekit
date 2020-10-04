@@ -1,19 +1,18 @@
-import nunjucks from 'nunjucks';
-import path from 'path';
-import languages from 'iso-639-1';
-import {__dirname} from '../index.js';
-import * as filters from './nunjucks/filters.js';
-import * as globals from './nunjucks/globals.js';
+const nunjucks = require('nunjucks');
+const path = require('path');
+const languages = require('iso-639-1');
+const filters = require('./nunjucks/filters.js');
+const globals = require('./nunjucks/globals.js');
 
 /**
  * @param {Function} app Express
  * @returns {object} Nunjucks environment
  */
-export const templates = app => {
+module.exports = app => {
   const appViews = app ? app.settings.views : '';
   const frontendViews = [
-    path.join(__dirname, 'components'),
-    path.join(__dirname, 'layouts')
+    path.join(__dirname, '..', 'components'),
+    path.join(__dirname, '..', 'layouts')
   ];
   const views = frontendViews.concat(appViews);
 

@@ -1,7 +1,7 @@
-import Color from 'color';
-import dateFns from 'date-fns';
-import locales from 'date-fns/locale/index.js';
-import markdownIt from '../markdown-it.js';
+const Color = require('color');
+const dateFns = require('date-fns');
+const locales = require('date-fns/locale/index.js');
+const markdownIt = require('../markdown-it.js');
 
 const {format, parseISO} = dateFns;
 
@@ -12,7 +12,7 @@ const {format, parseISO} = dateFns;
  * @param {string} value Darken amount
  * @returns {string} Hex color
  */
-export const darken = (string, value) => {
+const darken = (string, value) => {
   const color = new Color(string);
   return color.darken(value).hex();
 };
@@ -24,7 +24,7 @@ export const darken = (string, value) => {
  * @param {string} value Lighten amount
  * @returns {string} Hex color
  */
-export const lighten = (string, value) => {
+const lighten = (string, value) => {
   const color = new Color(string);
   return color.lighten(value).hex();
 };
@@ -37,7 +37,7 @@ export const lighten = (string, value) => {
  * @param {string} locale ISO 639-1 (plus optional country code)
  * @returns {string} Formatted date
  */
-export const date = (string, tokens, locale = 'en') => {
+const date = (string, tokens, locale = 'en') => {
   locale = locales[locale.replace('-', '')];
   const date = (string === 'now') ? new Date() : parseISO(string);
   const datetime = format(date, tokens, {locale});
@@ -51,7 +51,7 @@ export const date = (string, tokens, locale = 'en') => {
  * @param {object} errorMap Mapped error response from express-validator
  * @returns {Array} List of errors
  */
-export const errorList = errorMap => {
+const errorList = errorMap => {
   const camelToSnakeCase = string =>
     string.replace(/[A-Z]/g, letter =>
       `-${letter.toLowerCase()}`);
@@ -76,7 +76,7 @@ export const errorList = errorMap => {
  * @param {string} value If 'inline', HTML rendered without paragraph tags
  * @returns {string} HTML
  */
-export const markdown = (string, value) => {
+const markdown = (string, value) => {
   if (string) {
     if (value === 'inline') {
       return markdownIt.renderInline(string);
@@ -84,4 +84,12 @@ export const markdown = (string, value) => {
 
     return markdownIt.render(string);
   }
+};
+
+module.exports = {
+  darken,
+  lighten,
+  date,
+  errorList,
+  markdown
 };

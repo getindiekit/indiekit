@@ -1,12 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import {fileURLToPath} from 'url';
-import postcss from 'postcss';
-import postcssEasyImport from 'postcss-easy-import';
-import postcssExtendRule from 'postcss-extend-rule';
+const fs = require('fs');
+const path = require('path');
+const postcss = require('postcss');
+const postcssEasyImport = require('postcss-easy-import');
+const postcssExtendRule = require('postcss-extend-rule');
 
-export const styles = (async () => {
-  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+module.exports = (async () => {
   const options = {
     from: path.join(__dirname, '..', 'styles/app.css'),
     plugins: [

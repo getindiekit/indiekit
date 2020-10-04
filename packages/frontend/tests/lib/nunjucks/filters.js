@@ -1,6 +1,6 @@
-import test from 'ava';
+const test = require('ava');
 
-import {date, errorList, markdown} from '../../../lib/nunjucks/filters.js';
+const {date, errorList, markdown} = require('../../../lib/nunjucks/filters.js');
 
 test('Formats a date', t => {
   t.is(date('2019-11-30', 'dd MMMM yyyy'), '30 November 2019');

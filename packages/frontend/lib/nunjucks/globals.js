@@ -4,7 +4,7 @@
  * @param {string} name Icon name
  * @returns {string} HTML
  */
-export const icon = name => {
+const icon = name => {
   const paths = {
     article: 'M36 4H12c-4 0-8 4-8 8v24c0 5 4 8 8 8h24c5 0 8-3 8-8V12c0-4-3-8-8-8zM12 8h24c2 0 4 2 4 4v24c0 2-2 4-4 4H12c-2 0-4-2-4-4V12c0-2 2-4 4-4zm0 6h12v4H12v-4zm0 8h12v4H12v-4zm0 8h24v4H12v-4zm16-16h8v12h-8V14z',
     audio: 'M36 4H12c-4 0-8 4-8 8v24c0 5 4 8 8 8h24c5 0 8-3 8-8V12c0-4-3-8-8-8zM12 8h24c2 0 4 2 4 4v24c0 2-2 4-4 4H12c-2 0-4-2-4-4V12c0-2 2-4 4-4zm10 17h-1c-3 0-5 2-5 5s2 5 5 5 5-2 5-5V20l6 1 1-3-11-4v11z',
@@ -27,4 +27,8 @@ export const icon = name => {
   const icon = svg.replace(/(\s{2,}|\r\n\t|\n|\r\t)/gm, '');
 
   return icon;
+};
+
+module.exports = {
+  icon
 };
