@@ -28,6 +28,12 @@ export const en = {
       locale: 'Language',
       localeNotAvailable: '{{ app }} has not been translated into {{ locale }} yet',
       themeColor: 'Theme color',
+      themeColorScheme: 'Theme',
+      themeColorSchemeValue: {
+        automatic: 'Automatic',
+        light: 'Light',
+        dark: 'Dark'
+      },
       endpoints: 'Endpoints'
     },
     publication: {

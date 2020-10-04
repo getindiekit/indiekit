@@ -27,6 +27,12 @@ export const de = {
       name: 'Name',
       locale: 'Sprache',
       themeColor: 'Themenfarbe',
+      themeColorScheme: 'Thema',
+      themeColorSchemeValue: {
+        automatic: 'Automatisch',
+        light: 'Licht',
+        dark: 'Dunkel'
+      },
       endpoints: 'Endpunkte'
     },
     publication: {
