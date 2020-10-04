@@ -1,12 +1,14 @@
 import express from 'express';
 import cookieSession from 'cookie-session';
 import {v4 as uuidv4} from 'uuid';
-import {templates} from '@indiekit/frontend';
+import frontend from '@indiekit/frontend';
 import * as error from '../middleware/error.js';
 import {internationalisation} from '../middleware/i18n.js';
 import {locals} from '../middleware/locals.js';
 import {logging} from '../middleware/logging.js';
 import {routes} from '../routes/index.js';
+
+const {templates} = frontend;
 
 export const serverConfig = indiekitConfig => {
   const config = express();
