@@ -24,7 +24,7 @@
 }
 
 .s-linear code {
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-shadow-offset);
   padding: var(--text-spacing);
 }
 
@@ -42,15 +42,24 @@
 .s-linear h2:not([class]) {
   @extend %heading;
 
-  margin-block-start: calc(var(--flow-space) * 1.5);
+  margin-block-start: calc(var(--flow-space) * 2);
 }
 
 .s-linear h2:not([class]) + * {
-  margin-block-start: calc(var(--flow-space) / 1.5);
+  margin-block-start: calc(var(--flow-space) / 2);
 }
 
 .s-linear h3:not([class]) {
   @extend %subhead;
+
+  color: var(--color-neutral-dark);
+  margin-block-start: calc(var(--flow-space) * 1.5);
+}
+
+.s-linear blockquote {
+  border-inline-start: var(--border-width-thickest) solid var(--color-shadow);
+  color: var(--color-neutral-dark);
+  padding-inline-start: var(--space-inline);
 }
 
 .s-linear pre {
@@ -62,22 +71,23 @@
 }
 
 .s-linear pre code {
-  background-color: none;
+  background-color: transparent;
   padding: 0;
 }
 
 .s-linear table {
-  font-size: var(--step-0);
+  font-size: var(--step--1);
   inline-size: 100%;
   max-inline-size: 100%;
 }
 
-.s-linear td {
-  border-block-start-color: var(--color-offset);
-  border-block-start-style: solid;
-  border-block-start-width: var(--border-width-thin);
+.s-linear tbody tr:nth-child(odd) {
+  background-color: var(--color-offset);
+}
+
+.s-linear td,
+.s-linear th {
   padding: var(--inset-small-squished);
-  padding-inline-start: 0;
   white-space: nowrap;
 }
 
@@ -86,13 +96,18 @@
   padding-inline-start: var(--flow-inset);
 }
 
-.s-linear li:not(:first-of-type),
-.s-linear * + dt {
+.s-linear ul * + *,
+.s-linear ol * + *,
+.s-linear dl:not([class]) * + * {
   margin-block-start: calc(var(--flow-space) / 2);
 }
 
 .s-linear dt {
   font-weight: 500;
+}
+
+.s-linear dd:not([class]) + dt {
+  margin-block-start: var(--flow-space);
 }
 
 .s-linear .language-bash {
@@ -105,4 +120,9 @@
 .s-linear .no-bullets {
   list-style: none;
   padding-inline-start: 0;
+}
+
+.s-linear .overflow {
+  overflow: auto;
+  border: var(--border-width-thin) solid var(--color-offset);
 }

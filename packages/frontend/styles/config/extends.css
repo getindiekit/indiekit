@@ -11,7 +11,7 @@
   --flow-space: 1em;
 
   font-size: var(--step-1);
-  font-weight: 500;
+  font-weight: 600;
   hanging-punctuation: first;
   letter-spacing: 0;
   line-height: var(--line-height-tight);
@@ -28,7 +28,8 @@
 %subhead {
   --flow-space: 1em;
 
-  font-size: var(--step-1);
+  font-size: var(--step-0);
+  font-weight: 500;
   hanging-punctuation: first;
   letter-spacing: 0;
   line-height: var(--line-height-tight);

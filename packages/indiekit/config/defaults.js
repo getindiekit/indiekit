@@ -33,7 +33,7 @@ const application = {
   navigationItems: [],
   repository: package_.repository,
   routes: [],
-  themeColor: '#0000ee',
+  themeColor: '#0055ee',
   themeColorScheme: 'automatic',
   version: package_.version,
   views: [

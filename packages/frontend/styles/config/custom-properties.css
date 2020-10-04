@@ -40,6 +40,7 @@
   --color-background: white;
   --color-offset: var(--color-neutral-lightest);
   --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
+  --color-shadow-offset: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 6%);
   --color-text: var(--color-neutral-darkest);
   --color-anchor-hover: var(--color-accent-dark);
   --color-delete: hsl(0 100% 80% / 75%);
