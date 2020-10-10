@@ -86,9 +86,9 @@ test('Renders post template with JSON frontmatter', t => {
   "bookmark-of": "http://website.example",
   "repost-of": "http://website.example",
   "in-reply-to": "http://website.example",
-  "syndicate-to": "http://website.example",
   "draft": true,
-  "visibility": "private"
+  "visibility": "private",
+  "mp-syndicate-to": "http://website.example"
 }
 <p>I ate a <i>cheese</i> sandwich, which was nice.</p>
 `);
@@ -108,9 +108,9 @@ rsvp = "Yes"
 bookmark-of = "http://website.example"
 repost-of = "http://website.example"
 in-reply-to = "http://website.example"
-syndicate-to = "http://website.example"
 draft = true
 visibility = "private"
+mp-syndicate-to = "http://website.example"
 
 [location]
 type = "adr"
@@ -167,9 +167,9 @@ videos:
 bookmark-of: http://website.example
 repost-of: http://website.example
 in-reply-to: http://website.example
-syndicate-to: http://website.example
 draft: true
 visibility: private
+mp-syndicate-to: http://website.example
 ---
 <p>I ate a <i>cheese</i> sandwich, which was nice.</p>
 `);
