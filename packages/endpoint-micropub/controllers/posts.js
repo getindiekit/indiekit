@@ -1,6 +1,8 @@
+import Debug from 'debug';
 import mongodb from 'mongodb';
 import {capitalize} from '../lib/utils.js';
 
+const debug = new Debug('indiekit:error');
 const {ObjectId} = mongodb;
 
 export const postsController = publication => ({
@@ -20,6 +22,7 @@ export const postsController = publication => ({
         parentUrl: `${publication.micropubEndpoint}/posts/`
       });
     } catch (error) {
+      debug(error);
       next(error);
     }
   },
@@ -57,6 +60,7 @@ export const postsController = publication => ({
         post
       });
     } catch (error) {
+      debug(error.stack);
       next(error);
     }
   }

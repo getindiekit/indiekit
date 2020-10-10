@@ -1,6 +1,9 @@
+import Debug from 'debug';
 import httpError from 'http-errors';
 import {url2Mf2, mf2Properties} from '../lib/microformats.js';
 import {getConfig, queryList} from '../lib/query.js';
+
+const debug = new Debug('indiekit:error');
 
 export const queryController = publication => {
   /**
@@ -60,6 +63,7 @@ export const queryController = publication => {
         }
       }
     } catch (error) {
+      debug(error);
       next(httpError(400, error.message, {
         json: {
           error: 'invalid_request',

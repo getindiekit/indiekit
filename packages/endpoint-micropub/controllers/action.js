@@ -1,9 +1,12 @@
+import Debug from 'debug';
 import httpError from 'http-errors';
 import {formEncodedToMf2, getMf2} from '../lib/microformats.js';
 import {post} from '../lib/post.js';
 import {postData} from '../lib/post-data.js';
 import {checkScope} from '../lib/scope.js';
 import {uploadMedia} from '../lib/media.js';
+
+const debug = new Debug('indiekit:error');
 
 export const actionController = publication => {
   /**
@@ -54,6 +57,7 @@ export const actionController = publication => {
 
       return response.status(published.status).location(published.location).json(published.json);
     } catch (error) {
+      debug(error);
       next(httpError(error.status, error.message, {
         json: {
           error: error.value,
