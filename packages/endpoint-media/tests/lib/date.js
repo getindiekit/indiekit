@@ -103,6 +103,11 @@ test('`UTC` option retains Z offset datetime', t => {
   t.is(result, '2020-01-02T12:00:00.000Z');
 });
 
+test('`UTC` option converts offset date to Z offset datetime', t => {
+  const result = getDate('UTC', '2020-01-02T12:00:00-04:00');
+  t.is(result, '2020-01-02T16:00:00.000Z');
+});
+
 test('`UTC` option converts offset to Z offset datetime', t => {
   const result = getDate('UTC', '2020-01-02T12:00:00.000-04:00');
   t.is(result, '2020-01-02T16:00:00.000Z');

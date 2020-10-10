@@ -1,7 +1,6 @@
 import dateFnsTz from 'date-fns-tz';
 
 const {format, utcToZonedTime} = dateFnsTz;
-const DATETIME_REGEXP = /(?<date>\d{4}-[01]\d-[0-3]\d)(T(?<time>[0-2](?:\d:[0-5]){2}\d\.\d+))?(?<timeZone>[+-][0-2]\d:[0-5]\d|Z)?/;
 
 /**
  * Get local time zone offset in hours and minutes
@@ -62,7 +61,7 @@ export const getDate = (setting, dateString) => {
 
   // Short dates, i.e. 2019-02-01
   // Don’t covert dates without a given time
-  const dateHasTime = dateString ? dateString.match(DATETIME_REGEXP).groups.time : false;
+  const dateHasTime = dateString ? dateString.includes('T') : false;
   const dateIsShort = dateString && !dateHasTime;
   if (dateIsShort) {
     const offset = format(datetime, 'XXX', {
