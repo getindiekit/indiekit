@@ -11,6 +11,11 @@ test('Returns true if required scope is `create` but token provides `post`', t =
   t.true(result);
 });
 
+test('Returns true if required scope is `undelete` but token provides `create`', t => {
+  const result = checkScope('create', 'undelete');
+  t.true(result);
+});
+
 test('Required scope defaults to `create`', t => {
   const result = checkScope('create update', null);
   t.true(result);

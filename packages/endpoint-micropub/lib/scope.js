@@ -23,6 +23,11 @@ export const checkScope = (providedScope, requiredScope) => {
     hasScope = providedScope.includes('post');
   }
 
+  // Handle `undelete` scope
+  if (!hasScope && requiredScope === 'undelete') {
+    hasScope = providedScope.includes('create');
+  }
+
   if (hasScope) {
     return true;
   }
