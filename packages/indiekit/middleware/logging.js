@@ -1,7 +1,8 @@
 import Debug from 'debug';
 
+const debug = new Debug('indiekit:request');
+
 export const logging = (request, response, next) => {
-  const debug = new Debug('indiekit:request');
   debug('url', request.originalUrl);
   debug('headers', request.headers);
   if (request.is('json')) {
