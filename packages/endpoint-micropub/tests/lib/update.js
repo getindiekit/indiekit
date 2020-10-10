@@ -102,3 +102,13 @@ test('Replaces property value (adding property if doesn’t exist)', t => {
   });
   t.deepEqual(result.content, ['I ate a cheese sandwich']);
 });
+
+test('Throws error if requested replacement is not an array', t => {
+  const properties = {
+    name: ['Lunchtime']
+  };
+  const error = t.throws(() => replaceEntries(properties, {
+    name: 'Dinnertime'
+  }));
+  t.is(error.message, 'Replacement value should be an array');
+});
