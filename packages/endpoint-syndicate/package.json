@@ -1,0 +1,42 @@
+{
+  "name": "@indiekit/endpoint-syndicate",
+  "version": "0.1.0-alpha.11",
+  "description": "Syndication endpoint for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indieweb",
+    "syndication"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/endpoint-syndicate"
+  },
+  "dependencies": {
+    "debug": "^4.2.0",
+    "express": "^4.17.1",
+    "got": "^11.6.2",
+    "http-errors": "^1.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

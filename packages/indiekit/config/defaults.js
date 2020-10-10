@@ -4,6 +4,7 @@ import {fileURLToPath} from 'url';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
+import {SyndicateEndpoint} from '@indiekit/endpoint-syndicate';
 import {authenticate} from '../lib/middleware/authentication.js';
 import {indieauth} from '../lib/middleware/indieauth.js';
 import {locales} from '../locales/index.js';
@@ -15,12 +16,14 @@ const package_ = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
+const syndicateEndpoint = new SyndicateEndpoint();
 
 const application = {
   endpoints: [
     mediaEndpoint,
     micropubEndpoint,
-    shareEndpoint
+    shareEndpoint,
+    syndicateEndpoint
   ],
   hasDatabase: false,
   locales,
