@@ -69,9 +69,10 @@ export const postData = {
       }
 
       const {posts} = publication;
-      return posts.findOne({
+      const post = await posts.findOne({
         'properties.url': url
       });
+      return post;
     } catch (error) {
       throw new HttpError(400, error.message, {
         value: 'invalid_request'

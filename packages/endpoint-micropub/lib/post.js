@@ -63,7 +63,7 @@ export const post = {
 
       if (posts) {
         await posts.replaceOne({
-          url: postData.properties.url
+          'properties.url': postData.properties.url
         }, postData);
       }
 
@@ -105,7 +105,7 @@ export const post = {
 
       if (posts) {
         await posts.replaceOne({
-          url: postData.properties.url
+          'properties.url': postData.properties.url
         }, postData);
       }
 
@@ -149,7 +149,7 @@ export const post = {
 
       if (posts) {
         await posts.replaceOne({
-          url: postData.properties.url
+          'properties.url': postData.properties.url
         }, postData);
       }
 
