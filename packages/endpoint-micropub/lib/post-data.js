@@ -69,7 +69,9 @@ export const postData = {
       }
 
       const {posts} = publication;
-      return posts.findOne({url});
+      return posts.findOne({
+        'properties.url': url
+      });
     } catch (error) {
       throw new HttpError(400, error.message, {
         value: 'invalid_request'
@@ -100,7 +102,9 @@ export const postData = {
       }
 
       const {me, posts, postTypes} = publication;
-      const {mf2} = await posts.findOne({url});
+      const {mf2} = await posts.findOne({
+        'properties.url': url
+      });
 
       // Add properties
       if (operation.add) {
