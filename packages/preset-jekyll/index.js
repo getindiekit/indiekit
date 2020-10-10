@@ -143,9 +143,9 @@ export const JekyllPreset = class {
       ...(properties['like-of'] && {'bookmark-of': properties['like-of']}),
       ...(properties['repost-of'] && {'repost-of': properties['repost-of']}),
       ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
-      ...(properties['syndicate-to'] && {'syndicate-to': properties['syndicate-to']}),
       ...(properties['post-status'] === 'draft' && {draft: true}),
-      ...(properties.visibility && {visibility: properties.visibility})
+      ...(properties.visibility && {visibility: properties.visibility}),
+      ...(properties['mp-syndicate-to'] && {'mp-syndicate-to': properties['mp-syndicate-to']})
     };
     let frontmatter = YAML.stringify(properties);
     frontmatter = `---\n${frontmatter}---\n`;
