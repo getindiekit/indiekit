@@ -97,7 +97,7 @@ export const postData = {
         throw new Error('No URL provided');
       }
 
-      if (!url) {
+      if (!operation) {
         throw new Error('No update operation provided');
       }
 
