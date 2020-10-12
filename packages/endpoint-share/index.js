@@ -32,6 +32,7 @@ export const ShareEndpoint = class {
 
     indiekitConfig.addLocale('de', locales.de);
     indiekitConfig.addLocale('en', locales.en);
+    indiekitConfig.addLocale('fr', locales.fr);
 
     indiekitConfig.addNavigation({
       href: this.options.mountpath,

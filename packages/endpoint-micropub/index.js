@@ -34,6 +34,7 @@ export const MicropubEndpoint = class {
 
     indiekitConfig.addLocale('de', locales.de);
     indiekitConfig.addLocale('en', locales.en);
+    indiekitConfig.addLocale('fr', locales.fr);
 
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
