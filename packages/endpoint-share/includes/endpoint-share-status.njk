@@ -22,9 +22,9 @@
   {%- set bookmarkletHref = "javascript:" + bookmarkletFunction | replace("  ", "") | replace("\n", "") | replace("&", "&amp;") | trim -%}
   {{ bookmarklet({
     href: bookmarkletHref,
-    text: "Share page"
+    text: __("status.bookmarklet.label")
   }) }}
 {%- endset -%}
 
-<h2>Share bookmarklet</h2>
-<p>Drag this link to your bookmarks bar: {{ bookmarklet | safe }}</p>
+<h2>{{ __("status.bookmarklet.title") }}</h2>
+<p>{{ __("status.bookmarklet.guidance", bookmarklet) | safe }}</p>
