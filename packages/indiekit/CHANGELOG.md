@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.11) (2020-10-12)
+
+
+### Bug Fixes
+
+* **indiekit:** merge values when adding a locale ([767c6dd](https://github.com/getindiekit/indiekit/commit/767c6dda4f253e474832d8147d04dbd486fe90c8))
+
+
+### Features
+
+* french translation ([ccb0eea](https://github.com/getindiekit/indiekit/commit/ccb0eea1a19c9051d3d400be107920838ef5d8fc))
+* **indiekit:** add theme to status page with german localisation ([becfe34](https://github.com/getindiekit/indiekit/commit/becfe344cc8e1b6410b9cd95822520f70ec3ec23))
+
+
+
+
+
 # [0.1.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.9...v0.1.0-alpha.10) (2020-10-03)
 
 
