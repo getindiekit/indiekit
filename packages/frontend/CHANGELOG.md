@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.11) (2020-10-12)
+
+
+### Features
+
+* **frontend:** use commonjs modules for compatibility ([cec14bb](https://github.com/getindiekit/indiekit/commit/cec14bb31850814073faf9b99e08354527f6ac50))
+
+
+
+
+
 # [0.1.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.9...v0.1.0-alpha.10) (2020-10-03)
 
 
