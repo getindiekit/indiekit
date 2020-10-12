@@ -43,7 +43,7 @@ export const Indiekit = class {
   }
 
   addLocale(language, translations) {
-    Object.assign(this.application.locales[language], translations);
+    this.application.locales[language] = _.merge(this.application.locales[language], translations);
   }
 
   addNavigation(item) {
