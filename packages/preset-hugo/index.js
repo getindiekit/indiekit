@@ -177,6 +177,7 @@ export const HugoPreset = class {
       ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
       ...(properties['post-status'] === 'draft' && {draft: true}),
       ...(properties.visibility && {visibility: properties.visibility}),
+      ...(properties.syndication && {syndication: properties.syndication}),
       ...(properties['mp-syndicate-to'] && {'mp-syndicate-to': properties['mp-syndicate-to']})
     };
 

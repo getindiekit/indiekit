@@ -37,5 +37,6 @@
   "in-reply-to": "http://website.example",
   "post-status": "draft",
   "visibility": "private",
+  "syndication": "http://website.example/post/12345",
   "mp-syndicate-to": "http://website.example"
 }
