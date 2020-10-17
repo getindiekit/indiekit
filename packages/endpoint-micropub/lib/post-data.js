@@ -85,7 +85,7 @@ export const postData = {
    *
    * @param {object} publication Publication configuration
    * @param {string} url URL of existing post
-   * @param {object} operation Requested operation
+   * @param {object} operation Requested operation(s)
    * @returns {object} Post data
    */
   update: async (publication, url, operation) => {

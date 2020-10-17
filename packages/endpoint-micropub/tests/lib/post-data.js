@@ -15,6 +15,7 @@ test.beforeEach(t => {
             published: '2019-08-17T23:56:38.977+01:00',
             category: ['foo', 'bar'],
             slug: 'baz',
+            'mp-syndicate-to': 'https://archive.org/',
             'post-type': 'note',
             url
           },
@@ -24,7 +25,8 @@ test.beforeEach(t => {
               content: ['hello world'],
               published: ['2019-08-17T23:56:38.977+01:00'],
               category: ['foo', 'bar'],
-              slug: ['baz']
+              slug: ['baz'],
+              'mp-syndicate-to': ['https://archive.org/']
             }
           }
         })
@@ -95,6 +97,25 @@ test('Updates post by deleting properties', async t => {
   const result = await postData.update(t.context.publication, t.context.url, operation);
   t.falsy(result.properties.category);
   t.falsy(result.mf2.properties.category);
+});
+
+test('Updates post by adding, deleting and updating properties', async t => {
+  const operation = {
+    replace: {
+      content: ['updated content']
+    },
+    add: {
+      syndication: ['http://website.example']
+    },
+    delete: ['mp-syndicate-to']
+  };
+  const result = await postData.update(t.context.publication, t.context.url, operation);
+  t.is(result.properties.content, 'updated content');
+  t.is(result.mf2.properties.content[0], 'updated content');
+  t.truthy(result.properties.syndication);
+  t.truthy(result.mf2.properties.syndication);
+  t.falsy(result.properties['mp-syndicate-to']);
+  t.falsy(result.mf2.properties['mp-syndicate-to']);
 });
 
 test('Throws error updating post data', async t => {
