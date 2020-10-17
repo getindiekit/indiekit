@@ -74,6 +74,7 @@ repost-of: http://website.example
 in-reply-to: http://website.example
 draft: true
 visibility: private
+syndication: http://website.example/post/12345
 mp-syndicate-to: http://website.example
 ---
 <p>I ate a <i>cheese</i> sandwich, which was nice.</p>
