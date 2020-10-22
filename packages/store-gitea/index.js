@@ -18,11 +18,11 @@ export const GiteaStore = class {
 
   gitea() {
     return got.extend({
-      prefixUrl: `${this.options.instance}/api/v1/repos/${this.options.user}/${this.options.repo}/contents`,
-      responseType: 'json',
       headers: {
         authorization: `token ${this.options.token}`
-      }
+      },
+      prefixUrl: `${this.options.instance}/api/v1/repos/${this.options.user}/${this.options.repo}/contents`,
+      responseType: 'json'
     });
   }
 
@@ -55,10 +55,8 @@ export const GiteaStore = class {
    * @see https://gitea.com/api/swagger#/repository/repoGetContents
    */
   async readFile(path) {
-    const request = await this.gitea().get(`${path}?ref=${this.options.branch}`, {
-      resolveBodyOnly: true
-    });
-    const content = Buffer.from(request.content, 'base64').toString('utf8');
+    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`);
+    const content = Buffer.from(body.content, 'base64').toString('utf8');
     return content;
   }
 
@@ -72,9 +70,7 @@ export const GiteaStore = class {
    * @see https://gitea.com/api/swagger#/repository/repoUpdateFile
    */
   async updateFile(path, content, message) {
-    const request = await this.gitea().get(`${path}?ref=${this.options.branch}`, {
-      resolveBodyOnly: true
-    }).catch(() => {
+    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`).catch(() => {
       return false;
     });
 
@@ -84,7 +80,7 @@ export const GiteaStore = class {
         branch: this.options.branch,
         content,
         message,
-        sha: (request) ? request.sha : false
+        sha: (body) ? body.sha : false
       }
     });
     return response;
@@ -99,9 +95,7 @@ export const GiteaStore = class {
    * @see https://gitea.com/api/swagger#/repository/repoDeleteFile
    */
   async deleteFile(path, message) {
-    const contents = await this.gitea().get(`${path}?ref=${this.options.branch}`, {
-      resolveBodyOnly: true
-    }).catch(() => {
+    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`).catch(() => {
       return false;
     });
 
@@ -109,7 +103,7 @@ export const GiteaStore = class {
       json: {
         branch: this.options.branch,
         message,
-        sha: (contents) ? contents.sha : false
+        sha: (body) ? body.sha : false
       }
     });
     return true;

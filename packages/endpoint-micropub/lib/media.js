@@ -24,15 +24,18 @@ export const uploadMedia = async (publication, mf2, files) => {
     let upload;
     try {
       upload = await got.post(mediaEndpoint, {
+        body: form,
         headers: form.getHeaders({
           authorization: `Bearer ${bearerToken}`
         }),
-        body: form,
         responseType: 'json'
       });
     } catch (error) {
-      const message = error.response.body.error_description || error.message;
-      throw new Error(message);
+      if (error.response) {
+        throw new Error(error.response.body.error_description);
+      } else {
+        throw new Error(error.message);
+      }
     }
 
     // Update respective media property with location of upload

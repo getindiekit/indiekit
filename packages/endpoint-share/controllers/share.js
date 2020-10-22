@@ -36,14 +36,13 @@ export const shareController = publication => ({
     }
 
     try {
-      const endpointResponse = await got.post(`${host}${path}`, {
+      const {body} = await got.post(`${host}${path}`, {
         form: request.body,
         responseType: 'json'
       });
 
-      const success = endpointResponse.body;
-      if (success) {
-        const message = encodeURIComponent(success.success_description);
+      if (body) {
+        const message = encodeURIComponent(body.success_description);
         response.redirect(`?success=${message}`);
       }
     } catch (error) {

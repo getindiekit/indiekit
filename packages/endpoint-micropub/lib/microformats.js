@@ -215,8 +215,8 @@ export const getSlugProperty = (mf2, separator) => {
  * @returns {Promise|object} Microformats2 object
  */
 export const url2Mf2 = async url => {
-  const response = await got(url);
-  const mf2 = parser.mf2(response.body, {
+  const {body} = await got(url);
+  const mf2 = parser.mf2(body, {
     baseUrl: url
   });
 

@@ -26,23 +26,20 @@ export const getBearerToken = request => {
  */
 export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
   try {
-    const endpointResponse = await got(tokenEndpoint, {
+    const {body} = await got(tokenEndpoint, {
       headers: {
         Authorization: `Bearer ${bearerToken}`
       },
       responseType: 'json'
     });
 
-    const accessToken = endpointResponse.body;
+    const accessToken = body;
     return accessToken;
   } catch (error) {
     if (error.response) {
-      const {response} = error;
-      throw new HttpError(response.status, response.body.error_description, {
-        value: response.body.error
-      });
+      throw new HttpError(error.response.statusCode, error.response.body.error_description);
     } else {
-      throw new Error(error.message);
+      throw new HttpError(500, error);
     }
   }
 };
