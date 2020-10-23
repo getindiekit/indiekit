@@ -37,7 +37,7 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
     return accessToken;
   } catch (error) {
     if (error.response) {
-      throw new HttpError(error.response.statusCode, error.response.body.error_description);
+      throw new HttpError(error.response.status, error.response.body.error_description);
     } else {
       throw new HttpError(500, error);
     }
@@ -52,16 +52,12 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
 export const verifyAccessToken = (me, accessToken) => {
   // Throw error if no publication URL provided
   if (!me) {
-    throw new HttpError(400, 'No publication URL to verify', {
-      value: 'invalid_request'
-    });
+    throw new HttpError(400, 'No publication URL to verify');
   }
 
   // Throw error if access token does not contain a `me` value
   if (!accessToken.me) {
-    throw new HttpError(401, 'There was a problem with this access token', {
-      value: 'unauthorized'
-    });
+    throw new HttpError(401, 'There was a problem with this access token');
   }
 
   // Normalize publication and token URLs before comparing
@@ -71,9 +67,7 @@ export const verifyAccessToken = (me, accessToken) => {
 
   // Publication URL does not match that provided by access token
   if (!isAuthenticated) {
-    throw new HttpError(403, 'User does not have permission to perform request', {
-      value: 'forbidden'
-    });
+    throw new HttpError(403, 'User does not have permission to perform request');
   }
 
   return accessToken;

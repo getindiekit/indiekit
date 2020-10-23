@@ -24,12 +24,7 @@ test('Passes error onto next middleware', async t => {
 });
 
 test('Renders error as plain text', async t => {
-  const httpError = new HttpError(400, 'Error messaage', {
-    json: {
-      error: 'bad_request',
-      error_description: 'Error message'
-    }
-  });
+  const httpError = new HttpError(400, 'Error messaage');
   const request = mockRequest({accepts: () => false});
   const response = mockResponse();
   const next = sinon.spy();
@@ -39,17 +34,11 @@ test('Renders error as plain text', async t => {
 
 test('Renders error as JSON', async t => {
   const httpError = new HttpError(400, 'Error messaage', {
-    json: {
-      error: 'bad_request',
-      error_description: 'Error message'
-    }
+    scope: 'test'
   });
   const request = mockRequest({accepts: () => true});
   const response = mockResponse();
   const next = sinon.spy();
   await error.internalServer(httpError, request, response, next);
-  t.true(response.json.calledWith({
-    error: 'bad_request',
-    error_description: 'Error message'
-  }));
+  t.true(response.json.calledWith());
 });

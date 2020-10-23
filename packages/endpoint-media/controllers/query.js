@@ -34,12 +34,7 @@ export const queryController = publication => {
           throw new Error(`Invalid parameter: ${query.q}`);
       }
     } catch (error) {
-      next(httpError(400, error.message, {
-        json: {
-          error: 'invalid_request',
-          error_description: error.message
-        }
-      }));
+      next(httpError(400, error));
     }
   };
 };

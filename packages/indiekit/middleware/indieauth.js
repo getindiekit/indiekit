@@ -22,12 +22,7 @@ export const indieauth = publication => {
 
       next();
     } catch (error) {
-      next(httpError(400, error.message, {
-        json: {
-          error: 'invalid_request',
-          error_description: error.message
-        }
-      }));
+      next(httpError(400, error));
     }
   };
 };

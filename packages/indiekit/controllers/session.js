@@ -61,12 +61,7 @@ export const authenticationCallback = async (request, response, next) => {
     request.session.token = token;
     response.redirect(redirect || '/');
   } catch (error) {
-    next(httpError(400, error.message, {
-      json: {
-        error: 'invalid_request',
-        error_description: error.message
-      }
-    }));
+    next(httpError(400, error));
   }
 };
 

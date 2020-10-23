@@ -1,8 +1,8 @@
-import httpError from 'http-errors';
+import createError from 'http-errors';
 
 export const notFound = (request, response, next) => {
-  const error = httpError.NotFound('Resource not found'); // eslint-disable-line new-cap
-  response.status(error.status);
+  const httpError = createError.NotFound('Resource not found'); // eslint-disable-line new-cap
+  response.status(httpError.status);
 
   if (request.accepts('html')) {
     response.render('document', {
@@ -10,15 +10,20 @@ export const notFound = (request, response, next) => {
       content: 'If you entered a web address please check it was correct.'
     });
   } else {
-    next(error);
+    next(httpError);
   }
 };
 
 export const internalServer = (error, request, response, next) => { // eslint-disable-line no-unused-vars
-  response.status(error.status || 500);
+  const httpError = createError(error.status || 500);
+  response.status(httpError.status);
 
-  if (request.accepts('json') && error.json) {
-    response.json(error.json);
+  if (request.accepts('json')) {
+    response.json({
+      error: error.error || httpError.message,
+      error_description: error.message,
+      scope: error.scope
+    });
   } else {
     response.send(error.message);
   }

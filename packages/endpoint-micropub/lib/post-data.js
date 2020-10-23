@@ -45,9 +45,7 @@ export const postData = {
       const postData = {path, properties, mf2};
       return postData;
     } catch (error) {
-      throw new HttpError(400, error.message, {
-        value: 'invalid_request'
-      });
+      throw new HttpError(400, error);
     }
   },
 
@@ -74,9 +72,7 @@ export const postData = {
       });
       return post;
     } catch (error) {
-      throw new HttpError(400, error.message, {
-        value: 'invalid_request'
-      });
+      throw new HttpError(400, error);
     }
   },
 
@@ -149,9 +145,7 @@ export const postData = {
       const updatedPostData = {path, properties, mf2};
       return updatedPostData;
     } catch (error) {
-      throw new HttpError(400, error.message, {
-        value: 'invalid_request'
-      });
+      throw new HttpError(400, error);
     }
   }
 };

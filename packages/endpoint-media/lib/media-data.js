@@ -51,9 +51,7 @@ export const mediaData = {
       const mediaData = {path, properties};
       return mediaData;
     } catch (error) {
-      throw new HttpError(400, error.message, {
-        value: 'invalid_request'
-      });
+      throw new HttpError(400, error);
     }
   },
 
@@ -77,9 +75,7 @@ export const mediaData = {
       const {media} = publication;
       return media.get(url);
     } catch (error) {
-      throw new HttpError(400, error.message, {
-        value: 'invalid_request'
-      });
+      throw new HttpError(400, error);
     }
   }
 };
