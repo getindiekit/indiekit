@@ -6,7 +6,7 @@ import * as error from '../middleware/error.js';
 import {internationalisation} from '../middleware/i18n.js';
 import {locals} from '../middleware/locals.js';
 import {logging} from '../middleware/logging.js';
-import {routes} from '../routes/index.js';
+import {routes} from '../lib/routes.js';
 
 const {templates} = frontend;
 

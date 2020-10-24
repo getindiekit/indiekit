@@ -5,6 +5,17 @@ import {serverConfig} from '../../config/server.js';
 
 const request = supertest(serverConfig(defaultConfig));
 
+test('Logged out users redirected to login page', async t => {
+  const response = await request.get('/');
+  t.is(response.status, 302);
+});
+
+test('Returns CSS', async t => {
+  const response = await request.get('/assets/app.css');
+  t.is(response.status, 200);
+  t.is(response.type, 'text/css');
+});
+
 test('Returns login page', async t => {
   const response = await request.get('/session/login');
   t.is(response.status, 200);

@@ -24,7 +24,6 @@
     "lib",
     "locales",
     "middleware",
-    "routes",
     "views",
     "index.js"
   ],
