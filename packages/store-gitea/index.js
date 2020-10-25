@@ -70,9 +70,7 @@ export const GiteaStore = class {
    * @see https://gitea.com/api/swagger#/repository/repoUpdateFile
    */
   async updateFile(path, content, message) {
-    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`).catch(() => {
-      return false;
-    });
+    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`);
 
     content = Buffer.from(content).toString('base64');
     const response = await this.gitea().put(path, {
@@ -80,7 +78,7 @@ export const GiteaStore = class {
         branch: this.options.branch,
         content,
         message,
-        sha: (body) ? body.sha : false
+        sha: body.sha
       }
     });
     return response;
@@ -95,17 +93,15 @@ export const GiteaStore = class {
    * @see https://gitea.com/api/swagger#/repository/repoDeleteFile
    */
   async deleteFile(path, message) {
-    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`).catch(() => {
-      return false;
-    });
+    const {body} = await this.gitea().get(`${path}?ref=${this.options.branch}`);
 
-    await this.gitea().delete(path, {
+    const response = await this.gitea().delete(path, {
       json: {
         branch: this.options.branch,
         message,
-        sha: (body) ? body.sha : false
+        sha: body.sha
       }
     });
-    return true;
+    return response;
   }
 };
