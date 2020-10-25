@@ -3,18 +3,46 @@ import {getFixture} from '../helpers/fixture.js';
 import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {mediaData} from '../../lib/media-data.js';
 
+test.beforeEach(t => {
+  t.context = {
+    publication: {
+      me: 'https://website.example',
+      postTypes: new JekyllPreset().postTypes,
+      media: {
+        findOne: async url => {
+          if (url['properties.url'] === 'https://website.example/photo.jpg') {
+            return {
+              path: 'photo.jpg',
+              properties: {
+                'post-type': 'photo',
+                url
+              }
+            };
+          }
+        }
+      }
+    },
+    url: 'https://website.example/photo.jpg'
+  };
+});
+
 test('Creates media data', async t => {
   const file = {
     buffer: getFixture('photo.jpg', false),
     originalname: 'photo.jpg'
   };
-  const publication = {
-    me: 'https://website.example',
-    postTypes: new JekyllPreset().postTypes
-  };
-  const result = await mediaData.create(publication, file);
+  const result = await mediaData.create(t.context.publication, file);
   t.regex(result.path, /\b[\d\w]{5}\b/g);
   t.is(result.properties['post-type'], 'photo');
+});
+
+test('Throws error creating media data without publication configuration', async t => {
+  const file = {
+    buffer: getFixture('photo.jpg', false),
+    originalname: 'photo.jpg'
+  };
+  const error = await t.throwsAsync(mediaData.create(false, file));
+  t.is(error.message, 'No publication configuration provided');
 });
 
 test('Throws error creating media data without a known post type', async t => {
@@ -22,48 +50,26 @@ test('Throws error creating media data without a known post type', async t => {
     buffer: getFixture('font.ttf', false),
     originalname: 'font.ttf'
   };
-  const publication = {
-    postTypes: new JekyllPreset().postTypes,
-    me: 'https://website.example'
-  };
-  const error = await t.throwsAsync(
-    mediaData.create(publication, file)
-  );
+  const error = await t.throwsAsync(mediaData.create(t.context.publication, file));
   t.is(error.message, 'Cannot read property \'media\' of undefined');
 });
 
 test('Throws error creating media data without a file', async t => {
-  const publication = {
-    postTypes: new JekyllPreset().postTypes,
-    me: 'https://website.example'
-  };
-  const error = await t.throwsAsync(
-    mediaData.create(publication, false)
-  );
+  const error = await t.throwsAsync(mediaData.create(t.context.publication, false));
   t.is(error.message, 'No file included in request');
 });
 
 test('Reads media data', async t => {
-  const url = 'https://website.example/photo.jpg';
-  const publication = {
-    media: {
-      get: async key => ({
-        path: 'photo.jpg',
-        url: key,
-        properties: {
-          'post-type': 'photo'
-        }
-      })
-    }
-  };
-  const result = await mediaData.read(publication, url);
+  const result = await mediaData.read(t.context.publication, t.context.url);
   t.is(result.properties['post-type'], 'photo');
 });
 
-test('Throws error reading media', async t => {
-  const url = 'https://website.example/photo.jpg';
-  const error = await t.throwsAsync(
-    mediaData.read(false, url)
-  );
+test('Throws error reading media data without publication configuration', async t => {
+  const error = await t.throwsAsync(mediaData.read(false, t.context.url));
   t.is(error.message, 'No publication configuration provided');
+});
+
+test('Throws error reading media data without URL', async t => {
+  const error = await t.throwsAsync(mediaData.read(t.context.publication, false));
+  t.is(error.message, 'No URL provided');
 });

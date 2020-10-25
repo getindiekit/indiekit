@@ -12,9 +12,9 @@ const mockResponse = async query => {
     .query(query);
 };
 
-test('Returns last file uploaded', async t => {
-  const response = await mockResponse('q=last');
-  t.truthy(response.body);
+test('Returns list of previously uploaded files', async t => {
+  const response = await mockResponse('q=source');
+  t.truthy(response.body.items);
 });
 
 test('Returns 400 if unsupported parameter provided', async t => {

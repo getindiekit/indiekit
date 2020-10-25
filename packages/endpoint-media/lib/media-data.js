@@ -73,7 +73,10 @@ export const mediaData = {
       }
 
       const {media} = publication;
-      return media.get(url);
+      const file = await media.findOne({
+        'properties.url': url
+      });
+      return file;
     } catch (error) {
       throw new HttpError(400, error);
     }

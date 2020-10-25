@@ -4,7 +4,7 @@ const {ObjectId} = mongodb;
 
 export const filesController = publication => ({
   /**
-   * Return previously published posts
+   * List previously uploaded files
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
@@ -24,7 +24,7 @@ export const filesController = publication => ({
   },
 
   /**
-   * Return previously published posts
+   * View previously uploaded files
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
