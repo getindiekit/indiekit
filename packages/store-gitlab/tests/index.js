@@ -36,7 +36,8 @@ test.beforeEach(t => {
 });
 
 test('Creates file in a repository', async t => {
-  const scope = t.context.nock.post(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
   const response = await t.context.gitlab.createFile('foo.txt', 'foo', 'Message');
   t.is(response.file_path, 'foo.txt');
@@ -45,7 +46,8 @@ test('Creates file in a repository', async t => {
 });
 
 test('Creates file in a repository at custom instance', async t => {
-  const scope = t.context.nockInstance.post(uri => uri.includes('foo.txt'))
+  const scope = t.context.nockInstance
+    .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
   const response = await t.context.gitlabInstance.createFile('foo.txt', 'foo', 'Message');
   t.is(response.file_path, 'foo.txt');
@@ -54,7 +56,8 @@ test('Creates file in a repository at custom instance', async t => {
 });
 
 test('Creates file in a repository with projectId', async t => {
-  const scope = t.context.nockInstance.post(uri => uri.includes('foo.txt'))
+  const scope = t.context.nockInstance
+    .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
   t.context.gitlabInstance.options.projectId = 'user/repo';
   const response = await t.context.gitlabInstance.createFile('foo.txt', 'foo', 'Message');
@@ -64,17 +67,17 @@ test('Creates file in a repository with projectId', async t => {
 });
 
 test('Throws error creating file in a repository', async t => {
-  const scope = t.context.nock.post(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .post(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
-  const error = await t.throwsAsync(
-    t.context.gitlab.createFile('foo.txt', 'foo', 'Message')
-  );
+  const error = await t.throwsAsync(t.context.gitlab.createFile('foo.txt', 'foo', 'Message'));
   t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
 test('Reads file in a repository', async t => {
-  const scope = t.context.nock.get(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse);
   const response = await t.context.gitlab.readFile('foo.txt');
   t.is(response, 'foobar');
@@ -82,17 +85,17 @@ test('Reads file in a repository', async t => {
 });
 
 test('Throws error reading file in a repository', async t => {
-  const scope = t.context.nock.get(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .get(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
-  const error = await t.throwsAsync(
-    t.context.gitlab.readFile('foo.txt')
-  );
+  const error = await t.throwsAsync(t.context.gitlab.readFile('foo.txt'));
   t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
 test('Updates file in a repository', async t => {
-  const scope = t.context.nock.put(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
   const response = await t.context.gitlab.updateFile('foo.txt', 'foo', 'Message');
   t.is(response.file_path, 'foo.txt');
@@ -101,17 +104,17 @@ test('Updates file in a repository', async t => {
 });
 
 test('Throws error updating file in a repository', async t => {
-  const scope = t.context.nock.put(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .put(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
-  const error = await t.throwsAsync(
-    t.context.gitlab.updateFile('foo.txt', 'foo', 'Message')
-  );
+  const error = await t.throwsAsync(t.context.gitlab.updateFile('foo.txt', 'foo', 'Message'));
   t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
 
 test('Deletes a file in a repository', async t => {
-  const scope = t.context.nock.delete(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .delete(uri => uri.includes('foo.txt'))
     .reply(200);
   const response = await t.context.gitlab.deleteFile('foo.txt', 'Message');
   t.truthy(response);
@@ -119,11 +122,10 @@ test('Deletes a file in a repository', async t => {
 });
 
 test('Throws error deleting a file in a repository', async t => {
-  const scope = t.context.nock.delete(uri => uri.includes('foo.txt'))
+  const scope = t.context.nock
+    .delete(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
-  const error = await t.throwsAsync(
-    t.context.gitlab.deleteFile('foo.txt', 'Message')
-  );
+  const error = await t.throwsAsync(t.context.gitlab.deleteFile('foo.txt', 'Message'));
   t.regex(error.message, /\bNot found\b/);
   scope.done();
 });
