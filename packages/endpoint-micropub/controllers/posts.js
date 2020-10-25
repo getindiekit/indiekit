@@ -1,6 +1,5 @@
 import Debug from 'debug';
 import mongodb from 'mongodb';
-import {capitalize} from '../lib/utils.js';
 
 const debug = new Debug('indiekit:error');
 const {ObjectId} = mongodb;
@@ -40,9 +39,9 @@ export const postsController = publication => ({
       const {id} = request.params;
       const post = await publication.posts.findOne({_id: new ObjectId(id)});
 
-      const properties = [];
+      const summaryRows = [];
       Object.entries(post.properties).forEach(
-        ([key, value]) => properties.push({
+        ([key, value]) => summaryRows.push({
           key: {
             text: key
           },
@@ -54,9 +53,7 @@ export const postsController = publication => ({
 
       response.render('post', {
         parent: response.__('micropub.posts.title'),
-        title: post.properties.name || capitalize(post.properties['post-type']),
-        content: post.properties.content,
-        properties,
+        summaryRows,
         post
       });
     } catch (error) {

@@ -1,5 +1,8 @@
 {% extends "document.njk" %}
 
+{% set title = post.properties.name or post.properties['post-type'] | capitalize %}
+{% set content = post.properties.content %}
+
 {% set microformats %}
 ```json
 {{ post.mf2 | dump(2) | safe }}
@@ -22,7 +25,7 @@
   {% endif %}
   {{ summary({
     title: __("micropub.properties"),
-    rows: properties
+    rows: summaryRows
   }) }}
   <details>
     <summary>{{ __("micropub.microformats") }}</summary>
