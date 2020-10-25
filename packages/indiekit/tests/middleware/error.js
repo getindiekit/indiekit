@@ -23,6 +23,15 @@ test('Passes error onto next middleware', async t => {
   t.true(next.calledOnce);
 });
 
+test('Returns 500 for unknown error', async t => {
+  const unknownError = new Error('Unknown');
+  const request = mockRequest({accepts: () => false});
+  const response = mockResponse();
+  const next = sinon.spy();
+  await error.internalServer(unknownError, request, response, next);
+  t.true(response.status.calledWith(500));
+});
+
 test('Renders error as plain text', async t => {
   const httpError = new HttpError(400, 'Error messaage');
   const request = mockRequest({accepts: () => false});
