@@ -66,6 +66,18 @@ test.serial('Uploads attached files via media endpoint', async t => {
   scope.done();
 });
 
+test.serial('Throws error if no media endpoint URL', async t => {
+  const files = [{
+    buffer: getFixture('photo.jpg', false),
+    fieldname: 'photo',
+    originalname: 'photo.jpg'
+  }];
+  const error = await t.throwsAsync(
+    uploadMedia({}, t.context.mf2, files)
+  );
+  t.is(error.message, 'Missing `url` property');
+});
+
 test.serial('Throws error uploading attached file', async t => {
   const scope = nock('https://media-endpoint.example')
     .post('/')

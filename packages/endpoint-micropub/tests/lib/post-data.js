@@ -8,28 +8,32 @@ test.beforeEach(t => {
       me: 'https://website.example',
       postTypes: new JekyllPreset().postTypes,
       posts: {
-        findOne: async url => ({
-          path: 'foo',
-          properties: {
-            content: 'hello world',
-            published: '2019-08-17T23:56:38.977+01:00',
-            category: ['foo', 'bar'],
-            slug: 'baz',
-            'mp-syndicate-to': 'https://archive.org/',
-            'post-type': 'note',
-            url
-          },
-          mf2: {
-            type: ['h-entry'],
-            properties: {
-              content: ['hello world'],
-              published: ['2019-08-17T23:56:38.977+01:00'],
-              category: ['foo', 'bar'],
-              slug: ['baz'],
-              'mp-syndicate-to': ['https://archive.org/']
-            }
+        findOne: async url => {
+          if (url['properties.url'] === 'https://website.example/foo') {
+            return {
+              path: 'foo',
+              properties: {
+                content: 'hello world',
+                published: '2019-08-17T23:56:38.977+01:00',
+                category: ['foo', 'bar'],
+                slug: 'baz',
+                'mp-syndicate-to': 'https://archive.org/',
+                'post-type': 'note',
+                url
+              },
+              mf2: {
+                type: ['h-entry'],
+                properties: {
+                  content: ['hello world'],
+                  published: ['2019-08-17T23:56:38.977+01:00'],
+                  category: ['foo', 'bar'],
+                  slug: ['baz'],
+                  'mp-syndicate-to': ['https://archive.org/']
+                }
+              }
+            };
           }
-        })
+        }
       }
     },
     url: 'https://website.example/foo'
@@ -52,10 +56,21 @@ test('Creates post data', async t => {
   t.is(result.properties.url, 'https://website.example/notes/2020/07/26/foo');
 });
 
+test('Throws error creating post data without publication configuration', async t => {
+  const mf2 = {
+    type: ['h-entry'],
+    properties: {
+      published: ['2020-07-26T20:10:57.062Z'],
+      name: ['Foo'],
+      slug: ['foo']
+    }
+  };
+  const error = await t.throwsAsync(postData.create(false, mf2));
+  t.is(error.message, 'No publication configuration provided');
+});
+
 test('Throws error creating post data without microformats data', async t => {
-  const error = await t.throwsAsync(
-    postData.create(t.context.publication, false)
-  );
+  const error = await t.throwsAsync(postData.create(t.context.publication, false));
   t.is(error.message, 'No microformats included in request');
 });
 
@@ -64,11 +79,14 @@ test('Reads post data', async t => {
   t.is(result.properties['post-type'], 'note');
 });
 
-test('Throws error reading post data', async t => {
-  const error = await t.throwsAsync(
-    postData.read(false, t.context.url)
-  );
+test('Throws error reading post data without publication configuration', async t => {
+  const error = await t.throwsAsync(postData.read(false, t.context.url));
   t.is(error.message, 'No publication configuration provided');
+});
+
+test('Throws error reading post data without URL', async t => {
+  const error = await t.throwsAsync(postData.read(t.context.publication, false));
+  t.is(error.message, 'No URL provided');
 });
 
 test('Updates post by adding properties', async t => {
@@ -118,10 +136,25 @@ test('Updates post by adding, deleting and updating properties', async t => {
   t.falsy(result.mf2.properties['mp-syndicate-to']);
 });
 
-test('Throws error updating post data', async t => {
+test('Throws error updating post data without publication configuration', async t => {
   const operation = {delete: ['category']};
-  const error = await t.throwsAsync(
-    postData.update(false, t.context.url, operation)
-  );
+  const error = await t.throwsAsync(postData.update(false, t.context.url, operation));
   t.is(error.message, 'No publication configuration provided');
+});
+
+test('Throws error updating post data without URL', async t => {
+  const operation = {delete: ['category']};
+  const error = await t.throwsAsync(postData.update(t.context.publication, false, operation));
+  t.is(error.message, 'No URL provided');
+});
+
+test('Throws error updating post data without operation', async t => {
+  const error = await t.throwsAsync(postData.update(t.context.publication, t.context.url, false));
+  t.is(error.message, 'No update operation provided');
+});
+
+test('Throws error updating post data if no record available', async t => {
+  const operation = {delete: ['category']};
+  const error = await t.throwsAsync(postData.update(t.context.publication, 'https://website.example/bar', operation));
+  t.is(error.message, 'No post record available for https://website.example/bar');
 });

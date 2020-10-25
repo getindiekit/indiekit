@@ -6,7 +6,7 @@ const {ObjectId} = mongodb;
 
 export const postsController = publication => ({
   /**
-   * Return previously published posts
+   * List previously published posts
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
@@ -27,7 +27,7 @@ export const postsController = publication => ({
   },
 
   /**
-   * Return previously published posts
+   * View previously published post
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response

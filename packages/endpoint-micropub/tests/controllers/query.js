@@ -39,12 +39,6 @@ test('Returns available configuration value', async t => {
   t.truthy(response.body['post-types']);
 });
 
-test('Returns 400 if unsupported parameter provided', async t => {
-  const response = await mockResponse('q=foobar');
-  t.is(response.status, 400);
-  t.is(response.body.error_description, 'Invalid parameter: foobar');
-});
-
 test('Returns list of previously published posts', async t => {
   const response = await mockResponse('q=source');
   t.truthy(response.body.items);
@@ -81,6 +75,12 @@ test('Returns 400 if source URL can’t be found', async t => {
   t.is(response.status, 400);
   t.is(response.body.error_description, 'Not found');
   scope.done();
+});
+
+test('Returns 400 if unsupported parameter provided', async t => {
+  const response = await mockResponse('q=foobar');
+  t.is(response.status, 400);
+  t.is(response.body.error_description, 'Invalid parameter: foobar');
 });
 
 test('Returns 400 if unsupported query provided', async t => {
