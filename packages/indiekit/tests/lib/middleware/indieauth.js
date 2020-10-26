@@ -3,8 +3,8 @@ import test from 'ava';
 import nock from 'nock';
 import sinon from 'sinon';
 import mockReqRes from 'mock-req-res';
-import {defaultConfig} from '../../config/defaults.js';
-import {indieauth} from '../../middleware/indieauth.js';
+import {defaultConfig} from '../../../config/defaults.js';
+import {indieauth} from '../../../lib/middleware/indieauth.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

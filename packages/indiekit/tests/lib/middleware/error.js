@@ -2,7 +2,7 @@ import HttpError from 'http-errors';
 import test from 'ava';
 import sinon from 'sinon';
 import mockReqRes from 'mock-req-res';
-import * as error from '../../middleware/error.js';
+import * as error from '../../../lib/middleware/error.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

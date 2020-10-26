@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
-import {defaultConfig} from '../../config/defaults.js';
-import {locals} from '../../middleware/locals.js';
+import {defaultConfig} from '../../../config/defaults.js';
+import {locals} from '../../../lib/middleware/locals.js';
 
 import mockReqRes from 'mock-req-res';
 

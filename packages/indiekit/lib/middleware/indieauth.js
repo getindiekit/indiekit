@@ -3,7 +3,7 @@ import {
   getBearerToken,
   requestAccessToken,
   verifyAccessToken
-} from '../lib/tokens.js';
+} from '../tokens.js';
 
 /**
  * Authenticate request using IndieAuth

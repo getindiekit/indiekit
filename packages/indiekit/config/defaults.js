@@ -4,8 +4,8 @@ import {fileURLToPath} from 'url';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
-import {authenticate} from '../middleware/authentication.js';
-import {indieauth} from '../middleware/indieauth.js';
+import {authenticate} from '../lib/middleware/authentication.js';
+import {indieauth} from '../lib/middleware/indieauth.js';
 import {locales} from '../locales/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 import mockReqRes from 'mock-req-res';
-import {authenticate} from '../../middleware/authentication.js';
+import {authenticate} from '../../../lib/middleware/authentication.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

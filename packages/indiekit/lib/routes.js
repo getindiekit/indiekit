@@ -1,10 +1,10 @@
 import express from 'express';
 import frontend from '@indiekit/frontend';
-import * as assetsController from '../controllers/assets.js';
-import * as homepageController from '../controllers/homepage.js';
-import * as sessionController from '../controllers/session.js';
-import * as statusController from '../controllers/status.js';
-import {authenticate} from '../middleware/authentication.js';
+import * as assetsController from './controllers/assets.js';
+import * as homepageController from './controllers/homepage.js';
+import * as sessionController from './controllers/session.js';
+import * as statusController from './controllers/status.js';
+import {authenticate} from './middleware/authentication.js';
 
 const {assetsPath} = frontend;
 const router = express.Router(); // eslint-disable-line new-cap

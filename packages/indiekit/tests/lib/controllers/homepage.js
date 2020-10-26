@@ -1,6 +1,6 @@
 import test from 'ava';
 import mockReqRes from 'mock-req-res';
-import * as homepageController from '../../controllers/homepage.js';
+import * as homepageController from '../../../lib/controllers/homepage.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

@@ -2,10 +2,10 @@ import express from 'express';
 import cookieSession from 'cookie-session';
 import {v4 as uuidv4} from 'uuid';
 import frontend from '@indiekit/frontend';
-import * as error from '../middleware/error.js';
-import {internationalisation} from '../middleware/i18n.js';
-import {locals} from '../middleware/locals.js';
-import {logging} from '../middleware/logging.js';
+import * as error from '../lib/middleware/error.js';
+import {internationalisation} from '../lib/middleware/i18n.js';
+import {locals} from '../lib/middleware/locals.js';
+import {logging} from '../lib/middleware/logging.js';
 import {routes} from '../lib/routes.js';
 
 const {templates} = frontend;

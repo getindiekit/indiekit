@@ -1,6 +1,6 @@
 import test from 'ava';
 import mockReqRes from 'mock-req-res';
-import * as statusController from '../../controllers/status.js';
+import * as statusController from '../../../lib/controllers/status.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

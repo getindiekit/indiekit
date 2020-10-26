@@ -20,10 +20,8 @@
   "main": "index.js",
   "files": [
     "config",
-    "controllers",
     "lib",
     "locales",
-    "middleware",
     "views",
     "index.js"
   ],
