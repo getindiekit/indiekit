@@ -1,9 +1,9 @@
 import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
-import {serverConfig} from '../../../indiekit/config/server.js';
-import {Indiekit} from '../../../indiekit/index.js';
-import {getFixture} from '../helpers/fixture.js';
+import {serverConfig} from '../../../../indiekit/config/server.js';
+import {Indiekit} from '../../../../indiekit/index.js';
+import {getFixture} from '../../helpers/fixture.js';
 
 const mockResponse = async query => {
   const indiekit = new Indiekit();

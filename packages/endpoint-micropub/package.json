@@ -19,7 +19,6 @@
   "type": "module",
   "main": "index.js",
   "files": [
-    "controllers",
     "lib",
     "locales",
     "views",

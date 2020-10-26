@@ -1,7 +1,7 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import {url2Mf2, mf2Properties} from '../lib/microformats.js';
-import {getConfig, queryList} from '../lib/query.js';
+import {url2Mf2, mf2Properties} from '../microformats.js';
+import {getConfig, queryList} from '../query.js';
 
 const debug = new Debug('indiekit:error');
 

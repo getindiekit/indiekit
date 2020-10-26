@@ -1,10 +1,10 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import {formEncodedToMf2, getMf2} from '../lib/microformats.js';
-import {post} from '../lib/post.js';
-import {postData} from '../lib/post-data.js';
-import {checkScope} from '../lib/scope.js';
-import {uploadMedia} from '../lib/media.js';
+import {formEncodedToMf2, getMf2} from '../microformats.js';
+import {post} from '../post.js';
+import {postData} from '../post-data.js';
+import {checkScope} from '../scope.js';
+import {uploadMedia} from '../media.js';
 
 const debug = new Debug('indiekit:error');
 
