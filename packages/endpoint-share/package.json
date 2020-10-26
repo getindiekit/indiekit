@@ -19,10 +19,9 @@
   "type": "module",
   "main": "index.js",
   "files": [
-    "controllers",
     "includes",
+    "lib",
     "locales",
-    "middleware",
     "views",
     "index.js"
   ],

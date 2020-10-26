@@ -1,9 +1,9 @@
 import express from 'express';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {shareController} from './controllers/share.js';
 import {locales} from './locales/index.js';
-import {validate} from './middleware/validation.js';
+import {shareController} from './lib/controllers/share.js';
+import {validate} from './lib/middleware/validation.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

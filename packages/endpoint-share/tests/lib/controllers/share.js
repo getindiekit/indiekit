@@ -1,6 +1,6 @@
 import test from 'ava';
 import mockReqRes from 'mock-req-res';
-import {shareController} from '../../controllers/share.js';
+import {shareController} from '../../../lib/controllers/share.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 
