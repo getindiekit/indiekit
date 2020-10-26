@@ -1,7 +1,7 @@
 import httpError from 'http-errors';
-import {media} from '../lib/media.js';
-import {mediaData} from '../lib/media-data.js';
-import {checkScope} from '../lib/scope.js';
+import {media} from '../media.js';
+import {mediaData} from '../media-data.js';
+import {checkScope} from '../scope.js';
 
 export const uploadController = publication => {
   /**

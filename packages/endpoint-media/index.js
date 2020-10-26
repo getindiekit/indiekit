@@ -2,9 +2,9 @@ import express from 'express';
 import multer from 'multer';
 import {fileURLToPath} from 'url';
 import path from 'path';
-import {uploadController} from './controllers/upload.js';
-import {filesController} from './controllers/files.js';
-import {queryController} from './controllers/query.js';
+import {uploadController} from './lib/controllers/upload.js';
+import {filesController} from './lib/controllers/files.js';
+import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));

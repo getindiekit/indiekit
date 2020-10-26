@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 import mockReqRes from 'mock-req-res';
-import {filesController} from '../../controllers/files.js';
+import {filesController} from '../../../lib/controllers/files.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 

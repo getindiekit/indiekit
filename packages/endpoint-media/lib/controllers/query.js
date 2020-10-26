@@ -1,5 +1,5 @@
 import httpError from 'http-errors';
-import {queryList} from '../lib/query.js';
+import {queryList} from '../query.js';
 
 export const queryController = publication => {
   /**

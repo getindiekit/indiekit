@@ -1,7 +1,7 @@
 import test from 'ava';
 import supertest from 'supertest';
-import {serverConfig} from '../../../indiekit/config/server.js';
-import {Indiekit} from '../../../indiekit/index.js';
+import {serverConfig} from '../../../../indiekit/config/server.js';
+import {Indiekit} from '../../../../indiekit/index.js';
 
 const mockResponse = async query => {
   const indiekit = new Indiekit();

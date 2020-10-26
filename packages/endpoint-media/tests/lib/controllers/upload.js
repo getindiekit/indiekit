@@ -2,11 +2,11 @@ import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
-import {getFixture} from '../helpers/fixture.js';
-import {serverConfig} from '../../../indiekit/config/server.js';
-import {Indiekit} from '../../../indiekit/index.js';
-import {GithubStore} from '../../../store-github/index.js';
-import {JekyllPreset} from '../../../preset-jekyll/index.js';
+import {getFixture} from '../../helpers/fixture.js';
+import {serverConfig} from '../../../../indiekit/config/server.js';
+import {Indiekit} from '../../../../indiekit/index.js';
+import {GithubStore} from '../../../../store-github/index.js';
+import {JekyllPreset} from '../../../../preset-jekyll/index.js';
 
 test.beforeEach(async t => {
   const github = new GithubStore({
