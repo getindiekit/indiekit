@@ -4,6 +4,12 @@ import validator from 'express-validator';
 const {validationResult} = validator;
 
 export const shareController = publication => ({
+  /**
+   * View share page
+   *
+   * @param {object} request HTTP request
+   * @param {object} response HTTP response
+   */
   get: (request, response) => {
     const {content, name, url, success} = request.query;
 
@@ -17,6 +23,14 @@ export const shareController = publication => ({
     });
   },
 
+  /**
+   * Post share content
+   *
+   * @param {object} request HTTP request
+   * @param {object} response HTTP response
+   * @param {Function} next Next middleware callback
+   * @returns {object} HTTP response
+   */
   post: async (request, response, next) => {
     const {content, name} = request.body;
     const bookmarkOf = request.body.url || request.body['bookmark-of'];
