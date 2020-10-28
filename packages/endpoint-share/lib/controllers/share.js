@@ -10,7 +10,7 @@ export const shareController = publication => ({
    * @param {object} request HTTP request
    * @param {object} response HTTP response
    */
-  get: (request, response) => {
+  get(request, response) {
     const {content, name, url, success} = request.query;
 
     response.render('share', {
@@ -31,7 +31,7 @@ export const shareController = publication => ({
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  post: async (request, response, next) => {
+  async post(request, response, next) {
     const {content, name} = request.body;
     const bookmarkOf = request.body.url || request.body['bookmark-of'];
     const host = `${request.protocol}://${request.headers.host}`;

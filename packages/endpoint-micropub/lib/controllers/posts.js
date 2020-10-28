@@ -13,7 +13,7 @@ export const postsController = publication => ({
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  list: async (request, response, next) => {
+  async list(request, response, next) {
     try {
       response.render('posts', {
         title: response.__('micropub.posts.title'),
@@ -34,7 +34,7 @@ export const postsController = publication => ({
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  view: async (request, response, next) => {
+  async view(request, response, next) {
     try {
       const {id} = request.params;
       const post = await publication.posts.findOne({_id: new ObjectId(id)});

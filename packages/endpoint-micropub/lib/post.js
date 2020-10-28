@@ -6,7 +6,7 @@ export const post = {
    * @param {object} postData Post data
    * @returns {object} Response data
    */
-  create: async (publication, postData) => {
+  async create(publication, postData) {
     const {posts, postTemplate, store, storeMessageTemplate} = publication;
     const metaData = {
       action: 'create',
@@ -45,7 +45,7 @@ export const post = {
    * @param {string} url Files attached to request
    * @returns {object} Response data
    */
-  update: async (publication, postData, url) => {
+  async update(publication, postData, url) {
     const {posts, postTemplate, store, storeMessageTemplate} = publication;
     const metaData = {
       action: 'update',
@@ -88,7 +88,7 @@ export const post = {
    * @param {object} postData Post data
    * @returns {object} Response data
    */
-  delete: async (publication, postData) => {
+  async delete(publication, postData) {
     const {posts, store, storeMessageTemplate} = publication;
     const metaData = {
       action: 'delete',
@@ -126,7 +126,7 @@ export const post = {
    * @param {object} postData Post data
    * @returns {object} Response data
    */
-  undelete: async (publication, postData) => {
+  async undelete(publication, postData) {
     const {posts, postTemplate, store, storeMessageTemplate} = publication;
 
     if (postData.lastAction !== 'delete') {

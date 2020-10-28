@@ -6,7 +6,7 @@ import {getMicropubEndpoint, getPostData} from '../utils.js';
 const debug = new Debug('indiekit:endpoint-syndicate');
 
 export const syndicateController = publication => ({
-  get: async (request, response, next) => {
+  async get(request, response, next) {
     try {
       const syndication = [];
 

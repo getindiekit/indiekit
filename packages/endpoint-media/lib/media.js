@@ -7,7 +7,7 @@ export const media = {
    * @param {object} file File to upload
    * @returns {object} Data to use in response
    */
-  upload: async (publication, mediaData, file) => {
+  async upload(publication, mediaData, file) {
     const {media, store, storeMessageTemplate} = publication;
     const metaData = {
       action: 'upload',

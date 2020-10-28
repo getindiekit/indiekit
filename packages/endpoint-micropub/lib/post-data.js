@@ -16,7 +16,7 @@ export const postData = {
    * @param {object} mf2 microformats2
    * @returns {object} Post data
    */
-  create: async (publication, mf2) => {
+  async create(publication, mf2) {
     try {
       if (!publication) {
         throw new Error('No publication configuration provided');
@@ -56,7 +56,7 @@ export const postData = {
    * @param {string} url URL of existing post
    * @returns {object} Post data
    */
-  read: async (publication, url) => {
+  async read(publication, url) {
     try {
       if (!publication) {
         throw new Error('No publication configuration provided');
@@ -84,7 +84,7 @@ export const postData = {
    * @param {object} operation Requested operation(s)
    * @returns {object} Post data
    */
-  update: async (publication, url, operation) => {
+  async update(publication, url, operation) {
     try {
       if (!publication) {
         throw new Error('No publication configuration provided');

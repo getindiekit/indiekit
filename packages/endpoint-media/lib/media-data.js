@@ -17,7 +17,7 @@ export const mediaData = {
    * @param {object} file File
    * @returns {object} Media data
    */
-  create: async (publication, file) => {
+  async create(publication, file) {
     try {
       if (!publication) {
         throw new Error('No publication configuration provided');
@@ -62,7 +62,7 @@ export const mediaData = {
    * @param {string} url URL of uploaded media
    * @returns {object} Media data
    */
-  read: async (publication, url) => {
+  async read(publication, url) {
     try {
       if (!publication) {
         throw new Error('No publication configuration provided');
