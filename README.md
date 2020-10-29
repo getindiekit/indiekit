@@ -4,11 +4,19 @@
 
 <img src="https://avatars.githubusercontent.com/u/68553280?s=200" width="100" height="100" align="right" alt="">
 
-[Indiekit](https://getindiekit.com) is a small but powerful server that acts as the go-between your website and the wider independent web. Using IndieWeb protocols and standards, Indiekit lets you:
+[Indiekit](https://getindiekit.com) is a small but powerful server that acts as the go-between your website and the wider independent web.
 
-* publish content to your website using applications like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) and other tools that support the [Micropub API](https://micropub.spec.indieweb.org)
-* ~~accept likes, comments and other feedback on your content using Webmentions~~
-* ~~syndicate content to social networks like Twitter, Mastodon and LinkedIn~~
+* Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
+
+* Syndicate your content to social networks like Twitter, Mastodon and LinkedIn (coming soon) and save posts to the Internet Archive
+
+* Accept likes, comments and other types of feedback on your content with Webmention (coming soon)
+
+* Save files to different content stores such as GitHub, GitLab and Gitea
+
+* Highly configurable, with presets available for common static site generators such as Jekyll and Hugo.
+
+* Localisable, with initial support for English, French and German.
 
 ## Features
 
