@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.12) (2020-10-29)
+
+
+### Bug Fixes
+
+* **endpoint-media:** correctly identify dates without a time ([52066f3](https://github.com/getindiekit/indiekit/commit/52066f303599b9865bddc8c9b38fc787568c52d6))
+* **endpoint-micropub:** capture missing operation when updating post data ([96bfeb8](https://github.com/getindiekit/indiekit/commit/96bfeb843ea6b83e85f628e33ee5884073aa3cad))
+* **endpoint-micropub:** correct query to find published post ([cac37c5](https://github.com/getindiekit/indiekit/commit/cac37c57304f89d6bdd033da11af00111d73e500))
+* **endpoint-micropub:** correctly identify dates without a time ([10af2a7](https://github.com/getindiekit/indiekit/commit/10af2a7eee1670d83a000453a0db926f3170867b))
+* **endpoint-micropub:** fix undelete action ([502d465](https://github.com/getindiekit/indiekit/commit/502d4659a7f1ba25bbd48ce22673585e81f3a79b))
+* **endpoint-micropub:** throw error with an invalid replacement value ([bdea302](https://github.com/getindiekit/indiekit/commit/bdea302fb46dd727e2847d9271bc921077359af5))
+* **endpoint-micropub:** undelete action uses create scope ([a308618](https://github.com/getindiekit/indiekit/commit/a308618b8ccff5f27a3bb2dddc8e9cbc6301b80a))
+* **indiekit:** merge values when adding a locale ([767c6dd](https://github.com/getindiekit/indiekit/commit/767c6dda4f253e474832d8147d04dbd486fe90c8))
+* **preset-hugo:** correct property key for mp-syndicate-to ([656efa4](https://github.com/getindiekit/indiekit/commit/656efa44116e4a4b8c4f5c39d7f3f92ea43d6d80))
+* **preset-jekyll:** correct property key for mp-syndicate-to ([73475d5](https://github.com/getindiekit/indiekit/commit/73475d554b197670fbdbc962f74cc18f2372ec28))
+
+
+### Features
+
+* authenticate syndication requests via token query ([b3d4f0c](https://github.com/getindiekit/indiekit/commit/b3d4f0cd0496e5edff9958a3e0166d840830d547))
+* **endpoint-share:** translate status include ([02b9dc2](https://github.com/getindiekit/indiekit/commit/02b9dc230210f59af1cbeae3e3631b0a6aa2a6a6))
+* **endpoint-syndicate:** endpoint for triggering syndication ([4cf89fa](https://github.com/getindiekit/indiekit/commit/4cf89faaac402390b234d16778f429b2ef36ed5f))
+* **frontend:** use commonjs modules for compatibility ([cec14bb](https://github.com/getindiekit/indiekit/commit/cec14bb31850814073faf9b99e08354527f6ac50))
+* **indiekit:** add theme to status page with german localisation ([becfe34](https://github.com/getindiekit/indiekit/commit/becfe344cc8e1b6410b9cd95822520f70ec3ec23))
+* **preset-hugo:** add syndication property ([5826963](https://github.com/getindiekit/indiekit/commit/58269632a9e984cba014b23458a00c1d556c187c))
+* **preset-jekyll:** add syndication property ([540bb51](https://github.com/getindiekit/indiekit/commit/540bb51f7ffd2bedc6d4e73b4181d80135c545d5))
+* **store-gitea:** add store support for gitea. fixes [#100](https://github.com/getindiekit/indiekit/issues/100) ([255be67](https://github.com/getindiekit/indiekit/commit/255be670585f1fe8cf45e243580334736afd03cb))
+* **syndicator-internet-archive:** syndicate to internet archive. fixes [#35](https://github.com/getindiekit/indiekit/issues/35) ([818eabd](https://github.com/getindiekit/indiekit/commit/818eabd24353dfc301b6a227d0f330c5d22c0c01))
+* french translation ([ccb0eea](https://github.com/getindiekit/indiekit/commit/ccb0eea1a19c9051d3d400be107920838ef5d8fc))
+* move documentation to new website ([6e9d62f](https://github.com/getindiekit/indiekit/commit/6e9d62f8994be2d1ab8db3e1b1f829700ee3007d))
+
+
+
+
+
 # [0.1.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.11) (2020-10-12)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.12) (2020-10-29)
+
+
+### Bug Fixes
+
+* **preset-hugo:** correct property key for mp-syndicate-to ([656efa4](https://github.com/getindiekit/indiekit/commit/656efa44116e4a4b8c4f5c39d7f3f92ea43d6d80))
+
+
+### Features
+
+* **preset-hugo:** add syndication property ([5826963](https://github.com/getindiekit/indiekit/commit/58269632a9e984cba014b23458a00c1d556c187c))
+
+
+
+
+
 # [0.1.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.11) (2020-10-12)
 
 

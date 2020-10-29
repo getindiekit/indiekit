@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.12) (2020-10-29)
+
+
+### Bug Fixes
+
+* **preset-jekyll:** correct property key for mp-syndicate-to ([73475d5](https://github.com/getindiekit/indiekit/commit/73475d554b197670fbdbc962f74cc18f2372ec28))
+
+
+### Features
+
+* **preset-jekyll:** add syndication property ([540bb51](https://github.com/getindiekit/indiekit/commit/540bb51f7ffd2bedc6d4e73b4181d80135c545d5))
+
+
+
+
+
 # [0.1.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.11) (2020-10-12)
 
 
