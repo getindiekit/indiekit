@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.12...v0.1.0-alpha.13) (2020-10-29)
+
+
+### Bug Fixes
+
+* **endpoint-syndicate:** return 200 status code when responding ([882c2f9](https://github.com/getindiekit/indiekit/commit/882c2f967cdaf019cfd438c65d927f4820903fce))
+
+
+
+
+
 # [0.1.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.12) (2020-10-29)
 
 
