@@ -60,7 +60,7 @@ export const syndicateController = publication => ({
       if (error.response) {
         next(httpError(error.response.status, error.response.body.error_description));
       } else {
-        next(httpError(500, error));
+        next(httpError(200, error));
       }
     }
   }
