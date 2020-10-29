@@ -31,7 +31,7 @@ test.beforeEach(async t => {
   const config = await indiekit.init();
   const request = supertest(serverConfig(config));
 
-  t.context.request = request.get('/syndicate')
+  t.context.request = request.post('/syndicate')
     .set('Accept', 'application/json');
 });
 

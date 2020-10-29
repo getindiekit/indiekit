@@ -97,7 +97,14 @@
       value: {
         text: publication.mediaEndpoint or __("noValue")
       }
-    } if publication.mediaEndpoint]
+    } if publication.mediaEndpoint, {
+      key: {
+        text: __("status.publication.accessToken")
+      },
+      value: {
+        text: "<pre><code>" + session.token + "</code></pre>" or __("noValue")
+      }
+    }]
   }) }}
 
   {{ summary({

@@ -6,7 +6,7 @@ import {getMicropubEndpoint, getPostData} from '../utils.js';
 const debug = new Debug('indiekit:endpoint-syndicate');
 
 export const syndicateController = publication => ({
-  async get(request, response, next) {
+  async post(request, response, next) {
     try {
       const syndication = [];
 
@@ -40,7 +40,7 @@ export const syndicateController = publication => ({
       const {body} = await got.post(micropubEndpoint, {
         responseType: 'json',
         headers: {
-          authorization: `Bearer ${publication.bearerToken}`
+          authorization: `Bearer ${request.query.token}`
         },
         json: {
           action: 'update',

@@ -45,7 +45,8 @@ export const fr = {
       preset: 'Préréglage',
       postTypes: 'Types de article',
       syndicationTargets: 'Cibles de syndication',
-      mediaEndpoint: 'Media endpoint'
+      mediaEndpoint: 'Media endpoint',
+      accessToken: 'Jeton d’accès'
     }
   }
 };

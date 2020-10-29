@@ -45,7 +45,8 @@ export const en = {
       preset: 'Preset',
       postTypes: 'Post types',
       syndicationTargets: 'Syndication targets',
-      mediaEndpoint: 'Media endpoint'
+      mediaEndpoint: 'Media endpoint',
+      accessToken: 'Access token'
     }
   }
 };

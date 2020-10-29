@@ -38,7 +38,7 @@ export const SyndicateEndpoint = class {
     const router = this._router;
 
     if (application.hasDatabase) {
-      this._router.get('/', syndicateController(publication).get);
+      this._router.post('/', syndicateController(publication).post);
     }
 
     return router;

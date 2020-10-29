@@ -52,6 +52,10 @@
   word-break: break-word;
 }
 
+.summary__value > * {
+  margin-block-start: 0;
+}
+
 .summary__value a {
   white-space: nowrap;
 }

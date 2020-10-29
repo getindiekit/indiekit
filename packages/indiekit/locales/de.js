@@ -44,7 +44,8 @@ export const de = {
       preset: 'Voreinstellung',
       postTypes: 'Beitragstypen',
       syndicationTargets: 'Syndikationsziele',
-      mediaEndpoint: 'Medienendpunkt'
+      mediaEndpoint: 'Medienendpunkt',
+      accessToken: 'Zugangstoken'
     }
   }
 };

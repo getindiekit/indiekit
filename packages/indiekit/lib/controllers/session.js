@@ -35,7 +35,7 @@ export const authenticate = async (request, response) => {
       removeTrailingSlash: false
     });
     auth.options.me = new URL(me).href;
-    const authUrl = await auth.getAuthUrl('code', ['create']);
+    const authUrl = await auth.getAuthUrl('code', ['create', 'update', 'delete']);
 
     response.redirect(authUrl);
   } catch (error) {
