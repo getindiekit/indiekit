@@ -14,15 +14,26 @@ export const syndicateController = publication => ({
       const {url} = request.query;
       const postData = await getPostData(publication, url);
       if (!postData && url) {
-        throw new Error(`No post record available for ${url}`);
-      } else if (!postData) {
-        throw new Error('No post records available');
+        return response.json({
+          success: 'OK',
+          success_description: `No post record available for ${url}`
+        });
+      }
+
+      if (!postData) {
+        return response.json({
+          success: 'OK',
+          success_description: 'No post records available'
+        });
       }
 
       // Get syndication target(s)
       const syndicateTo = postData.properties['mp-syndicate-to'];
       if (!syndicateTo) {
-        throw new Error('No posts awaiting syndication');
+        return response.json({
+          success: 'OK',
+          success_description: 'No posts awaiting syndication'
+        });
       }
 
       // Syndicate to target(s)
@@ -37,7 +48,7 @@ export const syndicateController = publication => ({
 
       // Update post with syndicated URL(s) and removal of syndication target(s)
       const micropubEndpoint = getMicropubEndpoint(publication, request);
-      const {body} = await got.post(micropubEndpoint, {
+      const updated = await got.post(micropubEndpoint, {
         responseType: 'json',
         headers: {
           authorization: `Bearer ${request.query.token}`
@@ -52,15 +63,15 @@ export const syndicateController = publication => ({
         }
       });
 
-      if (body) {
-        return response.json(body);
+      if (updated) {
+        return response.status(updated.statusCode).json(updated.body);
       }
     } catch (error) {
       debug(error);
       if (error.response) {
         next(httpError(error.response.status, error.response.body.error_description));
       } else {
-        next(httpError(200, error));
+        next(httpError(error));
       }
     }
   }

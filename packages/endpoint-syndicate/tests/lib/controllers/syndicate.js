@@ -9,29 +9,23 @@ import {publication as postsSyndicated} from '../../fixtures/posts-syndicated.js
 
 const {mockRequest, mockResponse} = mockReqRes;
 
-test('Returns 200 if post not awaiting syndication', async t => {
+test('Returns message if post not awaiting syndication', async t => {
   const request = mockRequest({query: {url: 'https://example.website/syndicated-post'}});
   const response = mockResponse();
-  const next = sinon.spy();
-  await syndicateController(postsSyndicated).post(request, response, next);
-  t.is(next.firstCall.args[0].statusCode, 200);
-  t.is(next.firstCall.args[0].message, 'No posts awaiting syndication');
+  await syndicateController(postsSyndicated).post(request, response);
+  t.true(response.json.calledWithMatch({success_description: 'No posts awaiting syndication'}));
 });
 
-test('Returns 200 if no post record available for URL', async t => {
+test('Returns message if no post record available for URL', async t => {
   const request = mockRequest({query: {url: 'https://example.website/no-post'}});
   const response = mockResponse();
-  const next = sinon.spy();
-  await syndicateController(postsNotSyndicated).post(request, response, next);
-  t.is(next.firstCall.args[0].statusCode, 200);
-  t.is(next.firstCall.args[0].message, 'No post record available for https://example.website/no-post');
+  await syndicateController(postsNotSyndicated).post(request, response);
+  t.true(response.json.calledWithMatch({success_description: 'No post record available for https://example.website/no-post'}));
 });
 
 test('Returns 200 if no post records available', async t => {
   const request = mockRequest();
   const response = mockResponse();
-  const next = sinon.spy();
-  await syndicateController(postsEmpty).post(request, response, next);
-  t.is(next.firstCall.args[0].statusCode, 200);
-  t.is(next.firstCall.args[0].message, 'No post records available');
+  await syndicateController(postsEmpty).post(request, response);
+  t.true(response.json.calledWithMatch({success_description: 'No post records available'}));
 });

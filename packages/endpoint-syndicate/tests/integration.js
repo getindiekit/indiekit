@@ -48,7 +48,7 @@ test('Syndicates a URL', async t => {
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/2020/10/17/12345`);
-  t.is(response.status, 200);
+  t.is(response.statusCode, 200);
   t.is(response.body.success_description, `Post updated at ${process.env.TEST_PUBLICATION_URL}notes/2020/10/17/12345`);
   authScope.done();
   storeScope.done();
