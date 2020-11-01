@@ -45,7 +45,7 @@
     "eslint-plugin-jsdoc": "^30.3.0",
     "husky": "^4.2.5",
     "lerna": "^3.22.0",
-    "markdownlint-cli": "^0.23.1",
+    "markdownlint-cli": "^0.24.0",
     "mock-req-res": "^1.1.4",
     "nock": "^13.0.4",
     "nodemon": "^2.0.4",
