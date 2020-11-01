@@ -29,7 +29,7 @@ export const GithubStore = class {
    * @param {string} content File content
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
-   * @see https://developer.github.com/v3/repos/contents/#create-or-update-a-file
+   * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
@@ -49,7 +49,7 @@ export const GithubStore = class {
    *
    * @param {string} path Path to file
    * @returns {Promise<Response>} A promise to the response
-   * @see https://developer.github.com/v3/repos/contents/#get-contents
+   * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-repository-content
    */
   async readFile(path) {
     const response = await this.github().repos.getContent({
@@ -69,6 +69,7 @@ export const GithubStore = class {
    * @param {string} content File content
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
+   * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents
    */
   async updateFile(path, content, message) {
     const contents = await this.github().repos.getContent({
@@ -99,7 +100,7 @@ export const GithubStore = class {
    * @param {string} path Path to file
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
-   * @see https://developer.github.com/v3/repos/contents/#delete-a-file
+   * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#delete-a-file
    */
   async deleteFile(path, message) {
     const contents = await this.github().repos.getContent({
