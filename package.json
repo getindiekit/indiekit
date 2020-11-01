@@ -53,7 +53,7 @@
     "stylelint": "^13.7.0",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
-    "supertest": "^5.0.0",
+    "supertest": "^6.0.0",
     "xo": "^0.33.1"
   },
   "ava": {
