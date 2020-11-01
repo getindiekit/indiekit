@@ -5,6 +5,7 @@ import {internetArchive} from './lib/internet-archive.js';
 export const debug = new Debug('indiekit:syndicator-internet-archive');
 
 const defaults = {
+  checked: false,
   name: 'Internet Archive',
   uid: 'https://web.archive.org/'
 };
@@ -18,6 +19,7 @@ export const InternetArchiveSyndicator = class {
 
   get info() {
     return {
+      checked: this.options.checked,
       name: this.options.name,
       uid: this.options.uid,
       service: {

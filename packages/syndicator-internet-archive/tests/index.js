@@ -16,6 +16,7 @@ test.beforeEach(t => {
 
 test('Gets info', t => {
   const result = new InternetArchiveSyndicator();
+  t.false(result.info.checked);
   t.is(result.info.name, 'Internet Archive');
   t.is(result.info.uid, 'https://web.archive.org/');
   t.truthy(result.info.service);

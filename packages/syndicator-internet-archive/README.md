@@ -41,6 +41,13 @@ Name for this syndicator that may appear in a Micropub client’s publishing int
 Type: `string`\
 *Optional*, defaults to `Internet Archive`
 
+### `checked`
+
+Tell a Micropub client whether this syndicator should be enabled by default.
+
+Type: `boolean`\
+*Optional*, defaults to `false`
+
 ### `uid`
 
 Value Micropub client will include when publishing a post to indicate that it should be sent to this syndicator.
