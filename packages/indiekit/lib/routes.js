@@ -10,7 +10,7 @@ const {assetsPath} = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
 
 export const routes = indiekitConfig => {
-  const {application} = indiekitConfig;
+  const {application, publication} = indiekitConfig;
 
   // Homepage
   router.get('/', homepageController.viewHomepage);
@@ -21,6 +21,13 @@ export const routes = indiekitConfig => {
   // Assets
   router.use('/assets', express.static(assetsPath));
   router.get('/assets/app.css', assetsController.getStyles);
+
+  // Syndicator assets
+  for (const target of publication.syndicationTargets) {
+    if (target.assetsPath) {
+      router.use(`/assets/${target.id}`, express.static(target.assetsPath));
+    }
+  }
 
   // Session
   router.get('/session/login', sessionController.login);

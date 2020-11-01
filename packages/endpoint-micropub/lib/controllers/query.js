@@ -15,7 +15,8 @@ export const queryController = publication => {
    * @returns {object} HTTP response
    */
   return async (request, response, next) => {
-    const config = getConfig(publication);
+    const {application} = response.locals;
+    const config = getConfig(application, publication);
     const {query} = request;
     const {filter, limit, offset} = query;
 

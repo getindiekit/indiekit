@@ -15,8 +15,11 @@
 {%- endfor %}</ul>{% endset -%}
 
 {%- set syndicationTargetsHtml %}<ul class="no-bullets">{% for target in publication.syndicationTargets -%}
-  <li><a href="{{ target.info.uid }}">{{ target.info.name }}</a></li>
-{%- endfor %}<ul>{% endset -%}
+  <li>
+    {%- if target.info.service.photo %}<img src="{{ target.info.service.photo }}" width="20" height="20" alt="">{% endif -%}
+    <a href="{{ target.info.uid }}">{{ target.info.name }}</a>
+  </li>
+{%- endfor %}</ul>{% endset -%}
 
 {%- set endpointsHtml %}<ul class="no-bullets">{% for endpoint in application.endpoints -%}
   <li>{{ endpoint.name }} (<code>{{ endpoint.options.mountpath }}</code>)</li>

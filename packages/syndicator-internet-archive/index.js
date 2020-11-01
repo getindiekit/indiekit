@@ -1,8 +1,11 @@
 import Debug from 'debug';
 import HttpError from 'http-errors';
+import {fileURLToPath} from 'url';
+import path from 'path';
 import {internetArchive} from './lib/internet-archive.js';
 
 export const debug = new Debug('indiekit:syndicator-internet-archive');
+export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   checked: false,
@@ -17,6 +20,10 @@ export const InternetArchiveSyndicator = class {
     this.options = {...defaults, ...options};
   }
 
+  get assetsPath() {
+    return path.join(__dirname, 'assets');
+  }
+
   get info() {
     return {
       checked: this.options.checked,
@@ -24,7 +31,8 @@ export const InternetArchiveSyndicator = class {
       uid: this.options.uid,
       service: {
         name: 'Internet Archive',
-        url: 'https://web.archive.org/'
+        url: 'https://web.archive.org/',
+        photo: '/assets/internet-archive/icon.svg'
       }
     };
   }

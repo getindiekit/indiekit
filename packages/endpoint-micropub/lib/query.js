@@ -1,16 +1,27 @@
 /**
  * Return queryable publication config
  *
+ * @param {object} application Application config
  * @param {object} publication Publication config
  * @returns {object} Queryable config
  */
-export const getConfig = publication => {
+export const getConfig = (application, publication) => {
+  const {url} = application;
+
   const {
     categories,
     mediaEndpoint,
     postTypes,
     syndicationTargets
   } = publication;
+
+  // Ensure syndication targets use absolute URLs
+  const syndicateTo = syndicationTargets.map(target => target.info);
+  syndicateTo.forEach(info => {
+    if (info.service && info.service.photo) {
+      info.service.photo = new URL(info.service.photo, url).href;
+    }
+  });
 
   return {
     categories,
@@ -19,7 +30,7 @@ export const getConfig = publication => {
       type: postType.type,
       name: postType.name
     })),
-    'syndicate-to': syndicationTargets.map(target => target.info)
+    'syndicate-to': syndicateTo
   };
 };
 

@@ -9,13 +9,16 @@ test.beforeEach(t => {
   };
 });
 
-test('Returns queryable publication config', t => {
-  const config = {
+test('Returns queryable config', t => {
+  const application = {
+    url: 'https://endpoint.example'
+  };
+  const publication = {
     categories: ['foo', 'bar'],
     postTypes: new JekyllPreset().postTypes,
     syndicationTargets: []
   };
-  const result = getConfig(config);
+  const result = getConfig(application, publication);
   t.truthy(result.categories);
   t.falsy(result['post-types'][0].path);
 });
