@@ -40,13 +40,8 @@ export const serverConfig = indiekitConfig => {
   config.engine('njk', templates(config).render);
   config.set('view engine', 'njk');
 
-  // Endpoint routes
-  for (const route of indiekitConfig.application.routes) {
-    config.use(route.mountpath, route.routes());
-  }
-
   // Routes
-  config.use(routes());
+  config.use(routes(indiekitConfig));
 
   // Handle errors
   config.use(error.notFound, error.internalServer);

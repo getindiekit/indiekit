@@ -9,7 +9,9 @@ import {authenticate} from './middleware/authentication.js';
 const {assetsPath} = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
 
-export const routes = () => {
+export const routes = indiekitConfig => {
+  const {application} = indiekitConfig;
+
   // Homepage
   router.get('/', homepageController.viewHomepage);
 
@@ -25,6 +27,11 @@ export const routes = () => {
   router.post('/session/login', sessionController.authenticate);
   router.get('/session/auth', sessionController.authenticationCallback);
   router.get('/session/logout', sessionController.logout);
+
+  // Endpoints
+  for (const route of application.routes) {
+    router.use(route.mountpath, route.routes());
+  }
 
   return router;
 };
