@@ -5,8 +5,8 @@ import {internetArchive} from './lib/internet-archive.js';
 export const debug = new Debug('indiekit:syndicator-internet-archive');
 
 const defaults = {
-  uid: 'https://web.archive.org/',
-  name: 'archive.org'
+  name: 'Internet Archive',
+  uid: 'https://web.archive.org/'
 };
 
 export const InternetArchiveSyndicator = class {
@@ -21,14 +21,14 @@ export const InternetArchiveSyndicator = class {
       name: this.options.name,
       uid: this.options.uid,
       service: {
-        name: this.name,
-        url: this.options.uid
+        name: 'Internet Archive',
+        url: 'https://web.archive.org/'
       }
     };
   }
 
   get uid() {
-    return this.options.uid;
+    return this.info.uid;
   }
 
   async syndicate(postData) {

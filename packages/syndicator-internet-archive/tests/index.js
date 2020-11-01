@@ -16,14 +16,9 @@ test.beforeEach(t => {
 
 test('Gets info', t => {
   const result = new InternetArchiveSyndicator();
-  t.deepEqual(result.info, {
-    name: 'archive.org',
-    uid: 'https://web.archive.org/',
-    service: {
-      name: 'Internet Archive',
-      url: 'https://web.archive.org/'
-    }
-  });
+  t.is(result.info.name, 'Internet Archive');
+  t.is(result.info.uid, 'https://web.archive.org/');
+  t.truthy(result.info.service);
 });
 
 test('Gets UID', t => {

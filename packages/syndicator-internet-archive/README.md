@@ -36,10 +36,14 @@ Type: `string`\
 
 ### `name`
 
+Name for this syndicator that may appear in a Micropub client’s publishing interface.
+
 Type: `string`\
-*Optional*, defaults to `archive.org`
+*Optional*, defaults to `Internet Archive`
 
 ### `uid`
 
+Value Micropub client will include when publishing a post to indicate that it should be sent to this syndicator.
+
 Type: `string`\
-*Optional*, defaults to `https://archive.org/`
+*Optional*, defaults to `https://web.archive.org/`
