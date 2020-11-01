@@ -60,6 +60,12 @@
   white-space: nowrap;
 }
 
+.summary__value img {
+  display: inline;
+  vertical-align: text-bottom;
+  margin-inline-end: 5px;
+}
+
 .summary__actions {
   margin-inline-start: auto;
 }
