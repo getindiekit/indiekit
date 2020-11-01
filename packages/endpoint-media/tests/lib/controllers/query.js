@@ -19,18 +19,18 @@ test('Returns list of previously uploaded files', async t => {
 
 test('Returns 400 if unsupported parameter provided', async t => {
   const response = await mockResponse('q=foobar');
-  t.is(response.status, 400);
+  t.is(response.statusCode, 400);
   t.is(response.body.error_description, 'Invalid parameter: foobar');
 });
 
 test('Returns 400 if unsupported query provided', async t => {
   const response = await mockResponse('foo=bar');
-  t.is(response.status, 400);
+  t.is(response.statusCode, 400);
   t.is(response.body.error_description, 'Invalid query');
 });
 
 test('Returns 400 if request is missing query string', async t => {
   const response = await mockResponse(false);
-  t.is(response.status, 400);
+  t.is(response.statusCode, 400);
   t.is(response.body.error_description, 'Invalid query');
 });

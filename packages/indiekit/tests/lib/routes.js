@@ -7,34 +7,34 @@ const request = supertest(serverConfig(defaultConfig));
 
 test('Logged out users redirected to login page', async t => {
   const response = await request.get('/');
-  t.is(response.status, 302);
+  t.is(response.statusCode, 302);
 });
 
 test('Returns CSS', async t => {
   const response = await request.get('/assets/app.css');
-  t.is(response.status, 200);
+  t.is(response.statusCode, 200);
   t.is(response.type, 'text/css');
 });
 
 test('Returns login page', async t => {
   const response = await request.get('/session/login');
-  t.is(response.status, 200);
+  t.is(response.statusCode, 200);
   t.is(response.type, 'text/html');
 });
 
 test('Login returns 401 if URL is unauthorized', async t => {
   const response = await request.post('/session/login')
     .send('me=example.website');
-  t.is(response.status, 401);
+  t.is(response.statusCode, 401);
 });
 
 test('Auth callback returns 403 if user is forbidden access', async t => {
   const response = await request.get('/session/auth')
     .send('code=foobar');
-  t.is(response.status, 403);
+  t.is(response.statusCode, 403);
 });
 
 test('Logout redirects to homepage', async t => {
   const response = await request.get('/session/logout');
-  t.is(response.status, 302);
+  t.is(response.statusCode, 302);
 });

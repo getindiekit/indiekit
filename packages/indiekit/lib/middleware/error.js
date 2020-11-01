@@ -2,7 +2,7 @@ import createError from 'http-errors';
 
 export const notFound = (request, response, next) => {
   const httpError = createError.NotFound('Resource not found'); // eslint-disable-line new-cap
-  response.status(httpError.status);
+  response.status(httpError.statusCode);
 
   if (request.accepts('html')) {
     response.render('document', {
@@ -15,8 +15,8 @@ export const notFound = (request, response, next) => {
 };
 
 export const internalServer = (error, request, response, next) => { // eslint-disable-line no-unused-vars
-  const httpError = createError(error.status || 500);
-  response.status(httpError.status);
+  const httpError = createError(error.statusCode || 500);
+  response.status(httpError.statusCode);
 
   if (request.accepts('json')) {
     response.json({

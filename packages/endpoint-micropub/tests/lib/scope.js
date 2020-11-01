@@ -30,7 +30,7 @@ test('Throws error if required scope not provided by access token', t => {
   const error = t.throws(() => {
     checkScope('create update', 'delete');
   });
-  t.is(error.status, 401);
+  t.is(error.statusCode, 401);
   t.is(error.message, 'The scope of this token does not meet the requirements for this request');
   t.is(error.scope, 'delete');
 });

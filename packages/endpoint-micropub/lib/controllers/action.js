@@ -58,7 +58,7 @@ export const actionController = publication => {
       return response.status(published.status).location(published.location).json(published.json);
     } catch (error) {
       debug(error);
-      next(httpError(error.status, error, {
+      next(httpError(error.statusCode, error, {
         scope: error.scope
       }));
     }

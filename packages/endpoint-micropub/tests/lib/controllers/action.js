@@ -39,7 +39,7 @@ test.serial('Creates post', async t => {
     .send('h=entry')
     .send('name=foobar')
     .send('content=Micropub+test+of+creating+a+basic+h-entry');
-  t.is(response.status, 202);
+  t.is(response.statusCode, 202);
   t.regex(response.headers.location, /\bfoobar\b/);
   t.regex(response.body.success_description, /\bPost will be created\b/);
   authScope.done();
@@ -55,7 +55,7 @@ test.serial('Returns 400 if access token does not provide adequate scope', async
     });
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN_NOSCOPE}`);
-  t.is(response.status, 401);
+  t.is(response.statusCode, 401);
   t.is(response.body.error_description, 'The scope of this token does not meet the requirements for this request');
   t.is(response.body.scope, 'create');
   scope.done();

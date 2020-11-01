@@ -39,7 +39,7 @@ test.serial('Uploads file', async t => {
     .accept('application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .attach('file', getFixture('photo.jpg', false), 'photo.jpg');
-  t.is(response.status, 201);
+  t.is(response.statusCode, 201);
   t.regex(response.headers.location, /\b.jpg\b/);
   t.regex(response.body.success_description, /\bMedia uploaded\b/);
   authScope.done();
@@ -55,7 +55,7 @@ test.serial('Returns 400 if no file included in request', async t => {
     });
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`);
-  t.is(response.status, 400);
+  t.is(response.statusCode, 400);
   t.is(response.body.error_description, 'No file included in request');
   scope.done();
 });
@@ -69,7 +69,7 @@ test.serial('Returns 400 if access token does not provide adequate scope', async
     });
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN_NOSCOPE}`);
-  t.is(response.status, 401);
+  t.is(response.statusCode, 401);
   t.is(response.body.error_description, 'The scope of this token does not meet the requirements for this request');
   t.is(response.body.scope, 'create media');
   scope.done();

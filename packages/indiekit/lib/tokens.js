@@ -37,7 +37,7 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
     return accessToken;
   } catch (error) {
     if (error.response) {
-      throw new HttpError(error.response.status, error.response.body.error_description);
+      throw new HttpError(error.response.statusCode, error.response.body.error_description);
     } else {
       throw new HttpError(500, error);
     }

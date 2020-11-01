@@ -67,7 +67,7 @@ test('Throws error syndicating a URL', async t => {
   const response = await t.context.request
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/2020/10/17/12345`);
-  t.is(response.status, 500);
+  t.is(response.statusCode, 500);
   t.regex(response.body.error_description, /User does not have permission to perform request/);
   authScope.done();
   storeScope.done();

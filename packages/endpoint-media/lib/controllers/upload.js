@@ -24,7 +24,7 @@ export const uploadController = publication => {
 
       return response.status(uploaded.status).location(uploaded.location).json(uploaded.json);
     } catch (error) {
-      next(httpError(error.status, error, {
+      next(httpError(error.statusCode, error, {
         scope: error.scope
       }));
     }
