@@ -13,6 +13,7 @@ export const en = {
       me: 'Web address',
       submit: 'Sign in with IndieAuth',
       error: {
+        validateRedirect: 'Invalid redirect attempted',
         validateState: 'Missing code or state mismatch'
       }
     },

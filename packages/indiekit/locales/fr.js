@@ -13,7 +13,8 @@ export const fr = {
       me: 'Adresse web',
       submit: 'Connectez-vous avec IndieAuth',
       error: {
-        validateState: 'code manquant ou décalage état'
+        validateRedirect: 'Tentative de redirection non valide',
+        validateState: 'Code manquant ou décalage état'
       }
     },
     logout: {

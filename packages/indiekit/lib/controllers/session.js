@@ -49,6 +49,17 @@ export const authenticate = async (request, response) => {
 export const authenticationCallback = async (request, response, next) => {
   const {code, redirect, state} = request.query;
 
+  if (redirect) {
+    const validRedirect = redirect.match(/^\/[\w/]+$/);
+
+    if (!validRedirect) {
+      return response.status(403).render('session/login', {
+        title: response.__('session.login.title'),
+        error: response.__('session.login.error.validateRedirect')
+      });
+    }
+  }
+
   if (!code || !state || !auth.validateState(state)) {
     return response.status(403).render('session/login', {
       title: response.__('session.login.title'),

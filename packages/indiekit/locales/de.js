@@ -13,6 +13,7 @@ export const de = {
       me: 'Webadresse',
       submit: 'Einloggen mit IndieAuth',
       error: {
+        validateRedirect: 'Ungültige Weiterleitung versucht',
         validateState: 'Fehlender Code oder Zustandsinkongruenz'
       }
     },

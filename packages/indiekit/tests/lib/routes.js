@@ -28,9 +28,9 @@ test('Login returns 401 if URL is unauthorized', async t => {
   t.is(response.statusCode, 401);
 });
 
-test('Auth callback returns 403 if user is forbidden access', async t => {
+test('Auth callback returns 403 if redirect is invalid', async t => {
   const response = await request.get('/session/auth')
-    .send('code=foobar');
+    .query('redirect=https://external.example');
   t.is(response.statusCode, 403);
 });
 
