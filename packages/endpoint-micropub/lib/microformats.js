@@ -148,10 +148,10 @@ export const getContentProperty = mf2 => {
 export const getPhotoProperty = mf2 => {
   const {photo} = mf2.properties;
   const photoAlt = mf2.properties['mp-photo-alt'];
-  const property = photo.map((item, i) => ({
+  const property = photo.map((item, index) => ({
     url: item.value || item,
     ...item.alt && {alt: item.alt},
-    ...photoAlt && {alt: photoAlt[i]}
+    ...photoAlt && {alt: photoAlt[index]}
   }));
   delete mf2.properties['mp-photo-alt'];
   return property;
