@@ -3,7 +3,7 @@ import cookieSession from 'cookie-session';
 import {v4 as uuidv4} from 'uuid';
 import frontend from '@indiekit/frontend';
 import * as error from '../lib/middleware/error.js';
-import {internationalisation} from '../lib/middleware/i18n.js';
+import {internationalisation} from '../lib/middleware/internationalisation.js';
 import {locals} from '../lib/middleware/locals.js';
 import {logging} from '../lib/middleware/logging.js';
 import {routes} from '../lib/routes.js';

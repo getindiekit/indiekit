@@ -113,6 +113,12 @@
           "ignorePattern": "c8"
         }
       ],
+      "complexity": [
+        "warn",
+        {
+          "max": 25
+        }
+      ],
       "import/extensions": [
         "error",
         "always"

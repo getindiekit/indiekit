@@ -36,11 +36,9 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
     const accessToken = body;
     return accessToken;
   } catch (error) {
-    if (error.response) {
-      throw new HttpError(error.response.statusCode, error.response.body.error_description);
-    } else {
-      throw new HttpError(500, error);
-    }
+    const statusCode = error.response ? error.response.statusCode : 500;
+    const message = error.response ? error.response.body.error_description : error;
+    throw new HttpError(statusCode, message);
   }
 };
 

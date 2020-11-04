@@ -31,11 +31,7 @@ export const uploadMedia = async (publication, mf2, files) => {
         responseType: 'json'
       });
     } catch (error) {
-      if (error.response) {
-        throw new Error(error.response.body.error_description);
-      } else {
-        throw new Error(error.message);
-      }
+      throw new Error(error.response ? error.response.body.error_description : error.message);
     }
 
     // Update respective media property with location of upload

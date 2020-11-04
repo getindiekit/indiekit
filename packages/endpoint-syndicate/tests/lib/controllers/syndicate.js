@@ -1,5 +1,4 @@
 import test from 'ava';
-import sinon from 'sinon';
 import mockReqRes from 'mock-req-res';
 import {syndicateController} from '../../../lib/controllers/syndicate.js';
 

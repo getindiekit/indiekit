@@ -69,11 +69,7 @@ export const internetArchive = options => ({
           return this.status(jobId);
       }
     } catch (error) {
-      if (error.response) {
-        throw new Error(error.response.body);
-      } else {
-        throw new Error(error.message);
-      }
+      throw new Error(error.response ? error.response.body : error.message);
     }
   }
 });
