@@ -31,7 +31,7 @@
     "directory": "packages/store-github"
   },
   "dependencies": {
-    "@octokit/rest": "^18.0.7"
+    "@octokit/rest": "^18.0.9"
   },
   "publishConfig": {
     "access": "public"
