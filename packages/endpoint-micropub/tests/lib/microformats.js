@@ -12,6 +12,7 @@ import {
   getVideoProperty,
   getPublishedProperty,
   getSlugProperty,
+  getSyndicateToProperty,
   mf2Properties,
   url2Mf2
 } from '../../lib/microformats.js';
@@ -212,6 +213,54 @@ test('Derives slug by generating random number', t => {
   const mf2 = JSON.parse(getFixture('slug-missing-no-name.json'));
   const slug = getSlugProperty(mf2, '-');
   t.regex(slug[0], /[\d\w]{5}/g);
+});
+
+test('Does not add syndication target if no syndicators', t => {
+  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const syndicationTargets = [];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.falsy(result);
+});
+
+test('Adds syndication target checked by client', t => {
+  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const syndicationTargets = [{
+    uid: 'https://example.website/'
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.is(result[0], 'https://example.website/');
+});
+
+test('Adds syndication target not checked by client but forced by server', t => {
+  const mf2 = false;
+  const syndicationTargets = [{
+    uid: 'https://example.website/',
+    force: true
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.is(result[0], 'https://example.website/');
+});
+
+test('Adds syndication target checked by client and forced by server', t => {
+  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const syndicationTargets = [{
+    uid: 'https://example.website/',
+    force: true
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.is(result[0], 'https://example.website/');
+});
+
+test('Adds syndication targets, one checked by client, one forced by server', t => {
+  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const syndicationTargets = [{
+    uid: 'https://example.website/'
+  }, {
+    uid: 'https://another-example.website/',
+    force: true
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.deepEqual(result, ['https://example.website/', 'https://another-example.website/']);
 });
 
 test('Returns mf2 item with all properties', t => {

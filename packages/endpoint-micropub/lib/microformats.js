@@ -90,7 +90,12 @@ export const mf2Properties = (mf2, requestedProperties) => {
  * @returns {object} Normalised Microformats2 object
  */
 export const getMf2 = (publication, mf2) => {
-  const {slugSeparator, timeZone} = publication;
+  const {slugSeparator, syndicationTargets, timeZone} = publication;
+
+  const syndidateTo = getSyndicateToProperty(mf2, syndicationTargets);
+  if (syndidateTo) {
+    mf2.properties['mp-syndicate-to'] = syndidateTo;
+  }
 
   mf2.properties.published = getPublishedProperty(mf2, timeZone);
   mf2.properties.slug = getSlugProperty(mf2, slugSeparator);
@@ -206,6 +211,28 @@ export const getSlugProperty = (mf2, separator) => {
 
   const slug = slugifyString(string, separator);
   return new Array(slug);
+};
+
+export const getSyndicateToProperty = (mf2, syndicationTargets) => {
+  const syndication = [];
+
+  if (!syndicationTargets) {
+    return;
+  }
+
+  for (const target of syndicationTargets) {
+    const syndicateTo = mf2.properties && mf2.properties['mp-syndicate-to'];
+    const clientChecked = syndicateTo && syndicateTo.includes(target.uid);
+    const serverForced = target.force;
+
+    if (clientChecked || serverForced) {
+      syndication.push(target.uid);
+    }
+  }
+
+  if (syndication.length > 0) {
+    return syndication;
+  }
 };
 
 /**
