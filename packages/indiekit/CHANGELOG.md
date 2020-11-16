@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.14](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.13...v0.1.0-alpha.14) (2020-11-16)
+
+
+### Bug Fixes
+
+* **indiekit:** only show access token in status if session token present ([f97fa0b](https://github.com/getindiekit/indiekit/commit/f97fa0b56a3ed3376c981228898a045c798d567d))
+* **indiekit:** validate redirect given to auth callback ([32af0c0](https://github.com/getindiekit/indiekit/commit/32af0c0d462596ef50f817d9b5a60421f50e2597))
+
+
+### Features
+
+* allow syndicators to supply assets ([fdf8b87](https://github.com/getindiekit/indiekit/commit/fdf8b87bb0b5a4331ced265d3258d53401791c98))
+
+
+
+
+
 # [0.1.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.12...v0.1.0-alpha.13) (2020-10-29)
 
 **Note:** Version bump only for package @indiekit/indiekit

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.14](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.13...v0.1.0-alpha.14) (2020-11-16)
+
+
+### Bug Fixes
+
+* **syndicator-internet-archive:** add assets folder to module package ([2f1839a](https://github.com/getindiekit/indiekit/commit/2f1839a4eb870ae95ddadf39024c2f9b3ba3fea4))
+
+
+### Features
+
+* allow syndicators to supply assets ([fdf8b87](https://github.com/getindiekit/indiekit/commit/fdf8b87bb0b5a4331ced265d3258d53401791c98))
+* **syndicator-internet-archive:** add support for ‘checked’ property ([c5666b8](https://github.com/getindiekit/indiekit/commit/c5666b8a6b96dc22edb062860217bab96ac43174))
+
+
+
+
+
 # [0.1.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.10...v0.1.0-alpha.12) (2020-10-29)
 
 

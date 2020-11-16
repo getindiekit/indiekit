@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.14](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.13...v0.1.0-alpha.14) (2020-11-16)
+
+
+### Bug Fixes
+
+* **endpoint-syndicate:** correct success message. fixes [#295](https://github.com/getindiekit/indiekit/issues/295) ([210ee79](https://github.com/getindiekit/indiekit/commit/210ee7965342f6f35b924768ec8dbb3c97cc842a))
+* **indiekit:** only show access token in status if session token present ([f97fa0b](https://github.com/getindiekit/indiekit/commit/f97fa0b56a3ed3376c981228898a045c798d567d))
+* **indiekit:** validate redirect given to auth callback ([32af0c0](https://github.com/getindiekit/indiekit/commit/32af0c0d462596ef50f817d9b5a60421f50e2597))
+* **syndicator-internet-archive:** add assets folder to module package ([2f1839a](https://github.com/getindiekit/indiekit/commit/2f1839a4eb870ae95ddadf39024c2f9b3ba3fea4))
+
+
+### Features
+
+* **endpoint-micropub:** allow server to override client checked syndication targets. fixes [#296](https://github.com/getindiekit/indiekit/issues/296) ([af57800](https://github.com/getindiekit/indiekit/commit/af5780099764fecf7a973585dba35a20cbac8b75))
+* allow syndicators to supply assets ([fdf8b87](https://github.com/getindiekit/indiekit/commit/fdf8b87bb0b5a4331ced265d3258d53401791c98))
+* **syndicator-internet-archive:** add support for ‘checked’ property ([c5666b8](https://github.com/getindiekit/indiekit/commit/c5666b8a6b96dc22edb062860217bab96ac43174))
+
+
+
+
+
 # [0.1.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.12...v0.1.0-alpha.13) (2020-10-29)
 
 
