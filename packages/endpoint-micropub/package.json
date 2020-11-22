@@ -37,7 +37,7 @@
     "@sindresorhus/slugify": "^1.1.0",
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
-    "debug": "^4.2.0",
+    "debug": "^4.3.1",
     "express": "^4.17.1",
     "form-data": "^3.0.0",
     "got": "^11.8.0",
