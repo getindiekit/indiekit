@@ -14,6 +14,11 @@
   margin-block-start: var(--flow-space);
 }
 
+.s-linear > *:not([class]) {
+  max-inline-size: var(--line-measure);
+  word-break: break-word;
+}
+
 .s-linear svg {
   vertical-align: text-bottom;
 }
@@ -32,11 +37,6 @@
   background: none;
   font-size: 67%;
   padding: 0;
-}
-
-.s-linear > *:not([class]) {
-  max-inline-size: var(--line-measure);
-  word-break: break-word;
 }
 
 .s-linear h2:not([class]) {
@@ -123,6 +123,6 @@
 }
 
 .s-linear .overflow {
-  overflow: auto;
   border: var(--border-width-thin) solid var(--color-offset);
+  overflow: auto;
 }

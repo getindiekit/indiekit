@@ -62,8 +62,8 @@
 
 .summary__value img {
   display: inline;
-  vertical-align: text-bottom;
   margin-inline-end: 5px;
+  vertical-align: text-bottom;
 }
 
 .summary__actions {
