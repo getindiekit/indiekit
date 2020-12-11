@@ -43,14 +43,14 @@
     "cookie-session": "^1.4.0",
     "debug": "^4.3.1",
     "express": "^4.17.1",
-    "got": "^11.8.0",
+    "got": "^11.8.1",
     "http-errors": "^1.8.0",
     "i18n": "^0.13.2",
     "indieauth-helper": "^1.0.2",
     "lodash": "^4.17.19",
     "mongodb": "^3.6.3",
     "normalize-url": "^5.3.0",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.2"
   },
   "publishConfig": {
     "access": "public"
