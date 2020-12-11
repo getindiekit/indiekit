@@ -31,7 +31,7 @@
     "directory": "packages/store-gitea"
   },
   "dependencies": {
-    "got": "^11.8.0"
+    "got": "^11.8.1"
   },
   "publishConfig": {
     "access": "public"
