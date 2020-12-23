@@ -26,7 +26,8 @@
       "required": true
     },
     "MONGODB_URL": {
-      "description": "URL of a MongoDB host (optional)"
+      "description": "URL of a MongoDB host (optional)",
+      "required": false
     }
   }
 }
