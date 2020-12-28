@@ -146,6 +146,7 @@
             "./packages/store-bitbucket",
             "./packages/store-github",
             "./packages/store-gitlab",
+            "./packages/syndicator-internet-archive",
             "./packages/syndicator-twitter"
           ]
         }
