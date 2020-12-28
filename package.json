@@ -145,7 +145,8 @@
             "./packages/preset-jekyll",
             "./packages/store-bitbucket",
             "./packages/store-github",
-            "./packages/store-gitlab"
+            "./packages/store-gitlab",
+            "./packages/syndicator-twitter"
           ]
         }
       ],
