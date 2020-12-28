@@ -14,6 +14,11 @@ test.beforeEach(t => {
   };
 });
 
+test('Gets assets path', t => {
+  const result = new InternetArchiveSyndicator();
+  t.regex(result.assetsPath, /syndicator-internet-archive\/assets/);
+});
+
 test('Gets info', t => {
   const result = new InternetArchiveSyndicator();
   t.false(result.info.checked);
