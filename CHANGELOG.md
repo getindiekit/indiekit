@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.14...v0.1.0-alpha.15) (2020-12-28)
+
+
+### Bug Fixes
+
+* respect force syndication option ([14824b5](https://github.com/getindiekit/indiekit/commit/14824b5fa9a520fd1be640b4b9d8835e59399547))
+* update demo config to not require a MongoDB URL ([933fdcd](https://github.com/getindiekit/indiekit/commit/933fdcd0f29198a20577deff1b636d5118842c62))
+
+
+### Features
+
+* **store-bitbucket:** add bitbucket store. fixes [#277](https://github.com/getindiekit/indiekit/issues/277) ([a0cb424](https://github.com/getindiekit/indiekit/commit/a0cb4249ef26c3846078844fc5eba65dc40b6bb7))
+* **syndicator-twitter:** add twitter syndicator. fixes [#307](https://github.com/getindiekit/indiekit/issues/307) ([b8122a3](https://github.com/getindiekit/indiekit/commit/b8122a389e5509eac7f6347cf0653492202f7cea))
+
+
+
+
+
 # [0.1.0-alpha.14](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.13...v0.1.0-alpha.14) (2020-11-16)
 
 
