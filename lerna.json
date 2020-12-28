@@ -7,10 +7,15 @@
     "**/tests/**",
     "**/*.md"
   ],
-  "bootstrap": {
-    "npmClientArgs": [
-      "--no-package-lock"
-    ]
+  "command": {
+    "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    },
+    "publish": {
+      "conventionalCommits": true
+    }
   },
   "version": "0.1.0-alpha.14"
 }
