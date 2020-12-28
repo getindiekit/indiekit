@@ -1,4 +1,5 @@
-import process from "node:process";
+import fs from "node:fs";
+import path from "node:path";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
 
@@ -6,8 +7,24 @@ const defaults = {
   baseUrl: "https://api.github.com",
   branch: "main",
   token: process.env.GITHUB_TOKEN,
+  lfs: [],
 };
 
+/**
+ * Get file size in bytes
+ * @param {string} filename - Filename
+ * @returns {number} Bytes
+ */
+function getFilesizeInBytes(filename) {
+  var stats = fs.statSync(filename);
+  var fileSizeInBytes = stats.size;
+  return fileSizeInBytes;
+}
+
+/**
+ * @typedef Response
+ * @property {object} response - HTTP response
+ */
 export default class GithubStore {
   /**
    * @param {object} [options] - Plug-in options
@@ -15,6 +32,7 @@ export default class GithubStore {
    * @param {string} [options.repo] - Repository
    * @param {string} [options.branch] - Branch
    * @param {string} [options.token] - Personal access token
+   * @param {string} [options.lfsServer] - LFS server
    */
   constructor(options = {}) {
     this.name = "GitHub store";
@@ -90,6 +108,13 @@ export default class GithubStore {
     }
   }
 
+  get lfsServer() {
+    return (
+      this.options?.lfsServer ||
+      `https://github.com/${this.options.user}/${this.options.repo}.git/info/lfs/`
+    );
+  }
+
   /**
    * Create file
    * @param {string} filePath - Path to file
@@ -100,9 +125,43 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(filePath, content, { message }) {
+    const extension = path.extname(filePath);
+
+    if (this.options.lfs.includes(extension)) {
+      // Upload file to LFS server
+      const version = "https://git-lfs.github.com/spec/v1";
+      const oid = "12345678";
+      const size = getFilesizeInBytes(content);
+      const data = {
+        operation: "upload",
+        transfers: ["basic"],
+        ref: {
+          name: `refs/heads/${this.options.branch}`,
+        },
+        objects: [{ oid, size }],
+      };
+
+      const lfsResponse = await fetch(this.lfsServer, {
+        method: "post",
+        headers: {
+          Accept: "application/vnd.git-lfs+json",
+          "Content-Type": "application/vnd.git-lfs+json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log(lfsResponse);
+
+      content = `version ${version}\noid sha256:${oid}\nsize ${size}`;
+    } else {
+      content = Buffer.from(content).toString("base64");
+    }
+
     const createResponse = await this.#client(filePath, "PUT", {
+      owner: this.options.user,
+      repo: this.options.repo,
       branch: this.options.branch,
-      content: Buffer.from(content).toString("base64"),
+      content,
       message,
     });
 

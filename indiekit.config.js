@@ -53,6 +53,7 @@ const config = {
     user: process.env.GITHUB_USER,
     repo: process.env.GITHUB_REPO,
     branch: process.env.GITHUB_BRANCH,
+    lfs: ["jpg"],
   },
   "@indiekit/syndicator-internet-archive": {
     checked: false,
