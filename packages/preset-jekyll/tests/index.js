@@ -25,21 +25,6 @@ title: Lunchtime
 `);
 });
 
-test('Renders post template with plaintext content', t => {
-  const jekyll = new JekyllPreset();
-  const result = jekyll.postTemplate({
-    published: '2020-02-02',
-    name: 'Lunchtime',
-    content: 'I ate a cheese sandwich, which was nice.'
-  });
-  t.is(result, `---
-date: 2020-02-02
-title: Lunchtime
----
-I ate a cheese sandwich, which was nice.
-`);
-});
-
 test('Renders post template', t => {
   const jekyll = new JekyllPreset({frontmatterFormat: 'yaml'});
   const result = jekyll.postTemplate(t.context.properties);
@@ -77,6 +62,6 @@ visibility: private
 syndication: http://website.example/post/12345
 mp-syndicate-to: http://website.example
 ---
-<p>I ate a <i>cheese</i> sandwich, which was nice.</p>
+I ate a *cheese* sandwich, which was nice.
 `);
 });
