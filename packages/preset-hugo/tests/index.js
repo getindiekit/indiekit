@@ -25,21 +25,6 @@ title: Lunchtime
 `);
 });
 
-test('Renders post template with plaintext content', t => {
-  const hugo = new HugoPreset();
-  const result = hugo.postTemplate({
-    published: '2020-02-02',
-    name: 'Lunchtime',
-    content: 'I ate a cheese sandwich, which was nice.'
-  });
-  t.is(result, `---
-date: 2020-02-02
-title: Lunchtime
----
-I ate a cheese sandwich, which was nice.
-`);
-});
-
 test('Renders post template with JSON frontmatter', t => {
   const hugo = new HugoPreset({frontmatterFormat: 'json'});
   const result = hugo.postTemplate(t.context.properties);
@@ -91,7 +76,7 @@ test('Renders post template with JSON frontmatter', t => {
   "syndication": "http://website.example/post/12345",
   "mp-syndicate-to": "http://website.example"
 }
-<p>I ate a <i>cheese</i> sandwich, which was nice.</p>
+I ate a *cheese* sandwich, which was nice.
 `);
 });
 
@@ -133,7 +118,7 @@ url = "http://website.example/photo.jpg"
 [[videos]]
 url = "http://website.example/video.mp4"
 +++
-<p>I ate a <i>cheese</i> sandwich, which was nice.</p>
+I ate a *cheese* sandwich, which was nice.
 `);
 });
 
@@ -174,6 +159,6 @@ visibility: private
 syndication: http://website.example/post/12345
 mp-syndicate-to: http://website.example
 ---
-<p>I ate a <i>cheese</i> sandwich, which was nice.</p>
+I ate a *cheese* sandwich, which was nice.
 `);
 });
