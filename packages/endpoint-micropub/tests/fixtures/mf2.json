@@ -2,7 +2,7 @@
   "type": ["h-entry"],
   "properties": {
     "name": ["Lunchtime"],
-    "content": ["I ate a cheese sandwich, which was nice."],
+    "content": ["I ate a *cheese* sandwich, which was nice."],
     "category": ["lunch", "food"],
     "audio": ["http://foo.bar/baz.mp3", "http://foo.bar/qux.mp3"],
     "photo": ["http://foo.bar/baz.jpg", "http://foo.bar/qux.jpg"],

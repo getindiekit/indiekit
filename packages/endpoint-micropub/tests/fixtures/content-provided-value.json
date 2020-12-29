@@ -3,7 +3,7 @@
   "properties": {
     "name": ["Lunchtime"],
     "content": [{
-      "value": "I ate a cheese sandwich, which was nice."
+      "value": "I ate a *cheese* sandwich, which was nice."
     }]
   }
 }

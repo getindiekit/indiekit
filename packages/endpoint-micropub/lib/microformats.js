@@ -1,5 +1,6 @@
 import got from 'got';
 import parser from 'microformats-parser';
+import {markdownToHtml, htmlToMarkdown} from './markdown.js';
 import {reservedProperties} from './reserved-properties.js';
 import {getDate} from './date.js';
 import {
@@ -140,8 +141,23 @@ export const getAudioProperty = mf2 => {
  */
 export const getContentProperty = mf2 => {
   const {content} = mf2.properties;
-  const property = content[0].html || content[0].value || content[0];
-  return new Array(property);
+  let {value, html} = content[0];
+
+  // Return existing text and HTML representations
+  if (value && html) {
+    return content;
+  }
+
+  // If HTML representation only, add text representation
+  if (!value && html) {
+    value = htmlToMarkdown(html);
+    return new Array({html, value});
+  }
+
+  // Return property with text and HTML representations
+  value = value || content[0];
+  html = markdownToHtml(value);
+  return new Array({html, value});
 };
 
 /**

@@ -2,6 +2,6 @@
   "type": ["h-entry"],
   "properties": {
     "name": ["Lunchtime"],
-    "content": ["I ate a cheese sandwich, which was nice."]
+    "content": ["I ate a *cheese* sandwich, which was nice."]
   }
 }

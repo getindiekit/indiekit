@@ -51,7 +51,10 @@ test('Gets Microformats2 object (few properties)', t => {
   t.is(result.type[0], 'h-entry');
   t.is(result.properties.name[0], 'Lunchtime');
   t.is(result.properties.slug[0], 'lunchtime');
-  t.is(result.properties.content[0], 'I ate a cheese sandwich, which was nice.');
+  t.deepEqual(result.properties.content, [{
+    value: 'I ate a *cheese* sandwich, which was nice.',
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+  }]);
   t.falsy(result.properties.audio);
   t.falsy(result.properties.photo);
   t.falsy(result.properties.video);
@@ -63,7 +66,10 @@ test('Gets Microformats2 object (all properties)', t => {
   const result = getMf2(t.context.publication, mf2);
   t.is(result.type[0], 'h-entry');
   t.is(result.properties.name[0], 'Lunchtime');
-  t.is(result.properties.content[0], 'I ate a cheese sandwich, which was nice.');
+  t.deepEqual(result.properties.content, [{
+    value: 'I ate a *cheese* sandwich, which was nice.',
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+  }]);
   t.deepEqual(result.properties.audio, [
     {url: 'http://foo.bar/baz.mp3'},
     {url: 'http://foo.bar/qux.mp3'}
@@ -98,28 +104,40 @@ test('Gets normalised audio property', t => {
   ]);
 });
 
-test('Gets content from `content[0].html` property', t => {
+test('Gets existing text and HTML values from `content` property', t => {
   const mf2 = JSON.parse(getFixture('content-provided-html-value.json'));
   const result = getContentProperty(mf2);
-  t.is(result[0], '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>');
+  t.deepEqual(result, [{
+    value: 'I ate a *cheese* sandwich, which was nice.',
+    html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>'
+  }]);
 });
 
-test('Gets content from `content[0].html` property (ignores `content.value`)', t => {
+test('Gets existing HTML from `content` property and adds text value', t => {
   const mf2 = JSON.parse(getFixture('content-provided-html.json'));
   const result = getContentProperty(mf2);
-  t.is(result[0], '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>');
+  t.deepEqual(result, [{
+    value: 'I ate a *cheese* sandwich, which was nice.',
+    html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>'
+  }]);
 });
 
 test('Gets content from `content[0].value` property', t => {
   const mf2 = JSON.parse(getFixture('content-provided-value.json'));
   const result = getContentProperty(mf2);
-  t.is(result[0], 'I ate a cheese sandwich, which was nice.');
+  t.deepEqual(result, [{
+    value: 'I ate a *cheese* sandwich, which was nice.',
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+  }]);
 });
 
 test('Gets content from `content[0]` property', t => {
   const mf2 = JSON.parse(getFixture('content-provided.json'));
   const result = getContentProperty(mf2);
-  t.is(result[0], 'I ate a cheese sandwich, which was nice.');
+  t.deepEqual(result, [{
+    value: 'I ate a *cheese* sandwich, which was nice.',
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+  }]);
 });
 
 test('Gets photo property', t => {
