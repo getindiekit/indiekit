@@ -10,7 +10,10 @@ test.beforeEach(t => {
       id_str: '1234567890987654321',
       user: {screen_name: 'username'}
     },
-    mediaUrl: 'https://website.example/image.jpg',
+    media: {
+      url: 'https://website.example/image.jpg',
+      alt: 'Example image'
+    },
     tweetUrl: 'https://twitter.com/username/status/1234567890987654321',
     statusId: '1234567890987654321',
     options: {
@@ -120,7 +123,7 @@ test('Throws error fetching media to upload', async t => {
   const scope = nock('https://website.example')
     .get('/image.jpg')
     .replyWithError('Not found');
-  const error = await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.mediaUrl));
+  const error = await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media));
   t.regex(error.message, /Not found/);
   scope.done();
 });
@@ -134,10 +137,14 @@ test('Uploads media and returns a media id', async t => {
     .reply(200, {
       media_id_string: '1234567890987654321'
     });
-  const result = await twitter(t.context.options).uploadMedia(t.context.mediaUrl);
+  const mediaMetadataScope = nock('https://upload.twitter.com')
+    .post('/1.1/media/metadata/create.json')
+    .reply(200, {});
+  const result = await twitter(t.context.options).uploadMedia(t.context.media);
   t.is(result, '1234567890987654321');
   sourceScope.done();
   uploadScope.done();
+  mediaMetadataScope.done();
 });
 
 test('Throws error uploading media', async t => {
@@ -151,7 +158,7 @@ test('Throws error uploading media', async t => {
         message: 'Not found'
       }]
     });
-  const error = await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.mediaUrl));
+  const error = await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media));
   t.regex(error.message, /Not found/);
   sourceScope.done();
   uploadScope.done();

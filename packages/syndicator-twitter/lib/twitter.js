@@ -72,10 +72,12 @@ export const twitter = options => ({
   /**
    * Upload media and return Twitter media id
    *
-   * @param {string} url Media URL
+   * @param {string} media JF2 media object
    * @returns {string} Twitter media id
    */
-  async uploadMedia(url) {
+  async uploadMedia(media) {
+    const {alt, url} = media;
+
     if (typeof url !== 'string') {
       return;
     }
@@ -84,6 +86,14 @@ export const twitter = options => ({
       const response = await got(url, {responseType: 'buffer'});
       const buffer = Buffer.from(response.body).toString('base64');
       const {media_id_string} = await this.client('upload').post('media/upload', {media_data: buffer});
+
+      if (alt) {
+        await this.client('upload').post('media/metadata/create', {
+          media_id: media_id_string,
+          alt_text: {text: alt}
+        });
+      }
+
       return media_id_string;
     } catch (error) {
       const errorObject = error.errors ? error.errors[0] : error;
@@ -107,7 +117,7 @@ export const twitter = options => ({
       // Trim to 4 photos as Twitter doesn’t support more
       const photos = properties.photo.slice(0, 4);
       for await (const photo of photos) {
-        uploads.push(this.uploadMedia(photo.url));
+        uploads.push(this.uploadMedia(photo));
       }
 
       mediaIds = await Promise.all(uploads);
@@ -116,8 +126,8 @@ export const twitter = options => ({
     if (properties['repost-of']) {
       // Syndicate repost of Twitter URL with content as a quote tweet
       if (isTweetUrl(properties['repost-of']) && properties.content) {
-        const status = createStatus(properties);
-        return this.postStatus(status, mediaIds);
+        const status = createStatus(properties, mediaIds);
+        return this.postStatus(status);
       }
 
       // Syndicate repost of Twitter URL as a retweet
@@ -139,9 +149,9 @@ export const twitter = options => ({
       return false;
     }
 
-    const status = createStatus(properties);
+    const status = createStatus(properties, mediaIds);
     if (status) {
-      return this.postStatus(status, mediaIds);
+      return this.postStatus(status);
     }
   }
 });
