@@ -15,29 +15,33 @@ export const createStatus = (properties, mediaIds = false) => {
 
   let status;
 
-  if (properties['post-type'] === 'article') {
-    status = `${properties.name}\n\n${properties.url}`;
-  } else if (properties.name) {
-    status = properties.name;
+  // If repost of Twitter URL with content, create a quote tweet
+  // Else, if post has a non-empty title, show title with a link to post
+  // Else, if post has plaintext content, use that
+  // Else, if post has HTML content, convert to plain text and use that
+  // Else, if post has content, use that
+  if (properties['repost-of']) {
+    status = `${properties.content} ${properties['repost-of']}`;
+  } else if (properties.name && properties.name !== '') {
+    status = `${properties.name} ${properties.url}`;
+  } else if (properties.content && properties.content.text) {
+    status = properties.content.text;
   } else if (properties.content && properties.content.html) {
-    status = htmlToStatus(properties.content.html);
+    status = htmlToStatusText(properties.content.html);
   } else if (properties.content) {
     status = properties.content;
   }
 
-  // If repost of Twitter URL with content, create a quote tweet
-  if (properties['post-type'] === 'repost') {
-    status = `${properties.content}\n\n${properties['repost-of']}`;
-  }
-
   // Truncate status if longer than 280 characters
-  parameters.status = brevity.shorten(
-    status,
-    properties.url,
-    false, // https://indieweb.org/permashortlink
-    false, // https://indieweb.org/permashortcitation
-    280
-  );
+  if (status) {
+    parameters.status = brevity.shorten(
+      status,
+      properties.url,
+      false, // https://indieweb.org/permashortlink
+      false, // https://indieweb.org/permashortcitation
+      280
+    );
+  }
 
   // If post is in reply to a tweet, add respective parameter
   if (properties['in-reply-to']) {
@@ -81,19 +85,36 @@ export const getStatusIdFromUrl = url => {
  * @param {string} html HTML
  * @returns {string} Text
  */
-export const htmlToStatus = html => {
-  // Convert HTML to text
-  const text = htmlToText(html, {
-    tags: {
-      a: {options: {ignoreHref: true}}
-    }
-  });
+export const htmlToStatusText = html => {
+  // Get all the link references
+  let hrefs = [...html.matchAll(/href="(https?:\/\/.+?)"/g)];
 
-  // If HTML contains links, get the last one
-  const hrefs = [...html.matchAll(/href="(https?:\/\/.+?)"/g)];
+  // Remove any links to Twitter
+  // HTML may contain Twitter usernames or hashtag links
+  hrefs = hrefs.filter(href => !href[1].includes('twitter.com'));
+
+  // Get the last link mentioned, or return false
   const lastHref = hrefs.length > 0 ? hrefs[(hrefs.length - 1)][1] : false;
 
-  return lastHref ? `${text}\n\n${lastHref}` : text;
+  // Convert HTML to plain text, removing any links
+  const text = htmlToText(html, {
+    tags: {
+      a: {
+        options: {
+          ignoreHref: true
+        }
+      },
+      img: {
+        format: 'skip'
+      }
+    },
+    wordwrap: false
+  });
+
+  // Append the last link if present
+  const statusText = lastHref ? `${text} ${lastHref}` : text;
+
+  return statusText;
 };
 
 /**

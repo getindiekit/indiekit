@@ -2,16 +2,14 @@ import test from 'ava';
 import {
   createStatus,
   getStatusIdFromUrl,
-  htmlToStatus,
+  htmlToStatusText,
   isTweetUrl
 } from '../../lib/utils.js';
 
-test('Creates a status with post name', t => {
-  const result = createStatus({
-    name: 'I ate a cheese sandwich, which was nice.',
-    url: 'https://foo.bar/lunchtime'
-  });
-  t.is(result.status, 'I ate a cheese sandwich, which was nice.');
+test.beforeEach(t => {
+  t.context = {
+    tweetUrl: 'https://twitter.com/username/status/1234567890987654321',
+  };
 });
 
 test('Creates a status with article post name and URL', t => {
@@ -21,23 +19,25 @@ test('Creates a status with article post name and URL', t => {
     url: 'https://foo.bar/lunchtime',
     'post-type': 'article'
   });
-  t.is(result.status, 'Lunchtime\n\nhttps://foo.bar/lunchtime');
+  t.is(result.status, 'Lunchtime https://foo.bar/lunchtime');
 });
 
-test('Creates a status with post text content', t => {
+test('Creates a status with plaintext content', t => {
   const result = createStatus({
     content: {
       html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-      text: 'I ate a *cheese* sandwich, which was nice.'
+      text: 'I ate a cheese sandwich, which was nice.'
     },
     url: 'https://foo.bar/lunchtime'
   });
   t.is(result.status, 'I ate a cheese sandwich, which was nice.');
 });
 
-test('Creates a status with post content', t => {
+test('Creates a status with HTML content', t => {
   const result = createStatus({
-    content: 'I ate a cheese sandwich, which was nice.',
+    content: {
+      html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+    },
     url: 'https://foo.bar/lunchtime'
   });
   t.is(result.status, 'I ate a cheese sandwich, which was nice.');
@@ -49,7 +49,7 @@ test('Creates a quote tweet with status URL and post content', t => {
     'repost-of': t.context.tweetUrl,
     'post-type': 'repost'
   });
-  t.is(result.status, `Someone else who likes cheese sandwiches.\n\n${t.context.tweetUrl}`);
+  t.is(result.status, `Someone else who likes cheese sandwiches. ${t.context.tweetUrl}`);
 });
 
 test('Adds link to status post is in reply to', t => {
@@ -97,11 +97,11 @@ test('Gets status ID from Twitter permalink', t => {
 });
 
 test('Convert HTML to status text', t => {
-  const result = htmlToStatus('<p>I ate a <em>cheese</em> sandwich, which was nice.</p>');
+  const result = htmlToStatusText('<p>I ate a <em>cheese</em> sandwich, which was nice.</p>');
   t.is(result, 'I ate a cheese sandwich, which was nice.');
 });
 
 test('Convert HTML to status text, appending last link href if present', t => {
-  const result = htmlToStatus('<p>Hello <a href="/hello">world</a>, hello <a href="https://moon.example">moon</a>.</p>');
-  t.is(result, 'Hello world, hello moon.\n\nhttps://moon.example');
+  const result = htmlToStatusText('<p>Hello <a href="/hello">world</a>, hello <a href="https://moon.example">moon</a>.</p>');
+  t.is(result, 'Hello world, hello moon. https://moon.example');
 });
