@@ -249,36 +249,24 @@ test('Adds syndication target checked by client', t => {
   t.is(result[0], 'https://example.website/');
 });
 
-test('Adds syndication target not checked by client but forced by server', t => {
+test('Doesn’t add unavilable syndication target', t => {
   const mf2 = false;
   const syndicationTargets = [{
-    uid: 'https://example.website/',
-    options: {force: true}
+    uid: 'https://example.website/'
   }];
   const result = getSyndicateToProperty(mf2, syndicationTargets);
-  t.is(result[0], 'https://example.website/');
+  t.falsy(result);
 });
 
-test('Adds syndication target checked by client and forced by server', t => {
-  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
-  const syndicationTargets = [{
-    uid: 'https://example.website/',
-    options: {force: true}
-  }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
-  t.is(result[0], 'https://example.website/');
-});
-
-test('Adds syndication targets, one checked by client, one forced by server', t => {
-  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+test('Doesn’t add unchecked syndication target', t => {
+  const mf2 = {properties: {
+    'syndicate-to': 'https://another.example'}
+  };
   const syndicationTargets = [{
     uid: 'https://example.website/'
-  }, {
-    uid: 'https://another-example.website/',
-    options: {force: true}
   }];
   const result = getSyndicateToProperty(mf2, syndicationTargets);
-  t.deepEqual(result, ['https://example.website/', 'https://another-example.website/']);
+  t.falsy(result);
 });
 
 test('Returns mf2 item with all properties', t => {

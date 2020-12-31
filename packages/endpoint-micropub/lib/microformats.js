@@ -238,10 +238,9 @@ export const getSyndicateToProperty = (mf2, syndicationTargets) => {
 
   for (const target of syndicationTargets) {
     const syndicateTo = mf2.properties && mf2.properties['mp-syndicate-to'];
-    const clientChecked = syndicateTo && syndicateTo.includes(target.uid);
-    const serverForced = target.options && target.options.force;
+    const checked = syndicateTo && syndicateTo.includes(target.uid);
 
-    if (clientChecked || serverForced) {
+    if (checked) {
       syndication.push(target.uid);
     }
   }
