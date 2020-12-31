@@ -1,4 +1,5 @@
 import test from 'ava';
+import nock from 'nock';
 import {getFixture} from '../helpers/fixture.js';
 import {posts} from '../fixtures/posts.js';
 import {
@@ -25,14 +26,23 @@ test('Gets Micropub endpoint from server derived values', t => {
   t.is(result, 'https://server.example/micropub');
 });
 
-test('Gets post data', async t => {
-  const result = await getPostData(t.context.publication);
+test('Gets post for given URL from database', async t => {
+  const url = 'https://website.example/post/12345';
+  const result = await getPostData(t.context.publication, url);
   t.is(result.properties['mp-syndicate-to'], 'https://social.example/');
 });
 
-test('Gets post for given URL', async t => {
-  const url = 'https://website.example/post/12345';
-  const result = await getPostData(t.context.publication, url);
+test('Gets post data from JSON Feed', async t => {
+  const scope = nock('https://website.example')
+    .get('/feed.json')
+    .reply(200, getFixture('feed.json'));
+  const result = await getPostData({jsonFeed: 'https://website.example/feed.json'});
+  t.is(result.properties.name, 'Second item');
+  scope.done();
+});
+
+test('Gets post data from database', async t => {
+  const result = await getPostData(t.context.publication);
   t.is(result.properties['mp-syndicate-to'], 'https://social.example/');
 });
 
