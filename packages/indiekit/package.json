@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "0.1.0-alpha.15",
+  "version": "0.1.0-alpha.16",
   "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
@@ -35,11 +35,11 @@
   },
   "dependencies": {
     "@indiekit/endpoint-media": "^0.1.0-alpha.15",
-    "@indiekit/endpoint-micropub": "^0.1.0-alpha.15",
+    "@indiekit/endpoint-micropub": "^0.1.0-alpha.16",
     "@indiekit/endpoint-share": "^0.1.0-alpha.15",
-    "@indiekit/endpoint-syndicate": "^0.1.0-alpha.15",
+    "@indiekit/endpoint-syndicate": "^0.1.0-alpha.16",
     "@indiekit/frontend": "^0.1.0-alpha.15",
-    "@indiekit/preset-jekyll": "^0.1.0-alpha.15",
+    "@indiekit/preset-jekyll": "^0.1.0-alpha.16",
     "cookie-session": "^1.4.0",
     "debug": "^4.3.1",
     "express": "^4.17.1",

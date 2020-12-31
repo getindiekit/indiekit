@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2020-12-31)
+
+
+### Features
+
+* **endpoint-syndicate:** add syndication from a json feed ([9f545f0](https://github.com/getindiekit/indiekit/commit/9f545f0786292f428282fa288907f1b689d59d17))
+
+
+
+
+
 # [0.1.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.14...v0.1.0-alpha.15) (2020-12-28)
 
 **Note:** Version bump only for package @indiekit/endpoint-syndicate

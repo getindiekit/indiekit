@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2020-12-31)
+
+
+### Bug Fixes
+
+* **syndicator-twitter:** improve status text creation ([e59f166](https://github.com/getindiekit/indiekit/commit/e59f16660237b3fb8ae68e64efba82d7e3e470fd))
+
+
+### Features
+
+* **endpoint-micropub:** add text and html values to content property ([95d4724](https://github.com/getindiekit/indiekit/commit/95d47240f7a49e32a32da01fee3ae811b0383c07))
+* **endpoint-syndicate:** add syndication from a json feed ([9f545f0](https://github.com/getindiekit/indiekit/commit/9f545f0786292f428282fa288907f1b689d59d17))
+* **preset-hugo:** always use content.text value ([3243e8a](https://github.com/getindiekit/indiekit/commit/3243e8a332b1f8659d75b3f67596d6dc939c46cf))
+* **preset-jekyll:** always use content.text value ([6659a45](https://github.com/getindiekit/indiekit/commit/6659a45033ecb68d63445b9664ef5a98ca5e0a22))
+* **syndicator-twitter:** add alt text to photo uploads ([7a2eac2](https://github.com/getindiekit/indiekit/commit/7a2eac22970cce40a9fa22b7bb22dd9b7997cad9))
+* **syndicator-twitter:** more robust in-reply-to check ([3e7d012](https://github.com/getindiekit/indiekit/commit/3e7d0127e6ffc772edf55ed37a62cc51619484d1))
+* **syndicator-twitter:** more robust status text creation ([7159d81](https://github.com/getindiekit/indiekit/commit/7159d8193238777e933b3dc579e6514411873d1f))
+
+
+
+
+
 # [0.1.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.14...v0.1.0-alpha.15) (2020-12-28)
 
 
