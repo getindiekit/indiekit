@@ -45,9 +45,10 @@ export const createStatus = (properties, mediaIds = false) => {
 
   // If post is in reply to a tweet, add respective parameter
   if (properties['in-reply-to']) {
-    const replyTo = properties['in-reply-to'];
-    if (replyTo.includes('twitter.com')) {
-      const statusId = getStatusIdFromUrl(replyTo);
+    const inReplyTo = properties['in-reply-to'];
+    const inReplyToHostname = new URL(inReplyTo).hostname;
+    if (inReplyToHostname === 'twitter.com') {
+      const statusId = getStatusIdFromUrl(inReplyTo);
       parameters.in_reply_to_status_id = statusId;
     }
   }
