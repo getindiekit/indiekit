@@ -91,7 +91,10 @@ export const htmlToStatusText = html => {
 
   // Remove any links to Twitter
   // HTML may contain Twitter usernames or hashtag links
-  hrefs = hrefs.filter(href => !href[1].includes('twitter.com'));
+  hrefs = hrefs.filter(href => {
+    const hrefHost = new URL(href[1]).hostname;
+    return hrefHost !== 'twitter.com';
+  });
 
   // Get the last link mentioned, or return false
   const lastHref = hrefs.length > 0 ? hrefs[(hrefs.length - 1)][1] : false;

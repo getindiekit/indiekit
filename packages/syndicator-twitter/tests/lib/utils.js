@@ -43,6 +43,26 @@ test('Creates a status with HTML content', t => {
   t.is(result.status, 'I ate a cheese sandwich, which was nice.');
 });
 
+test('Creates a status with HTML content and appends last link', t => {
+  const result = createStatus({
+    content: {
+      html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>'
+    },
+    url: 'https://foo.bar/lunchtime'
+  });
+  t.is(result.status, 'I ate a cheese sandwich, which was nice. https://en.wikipedia.org/wiki/Cheese');
+});
+
+test('Creates a status with HTML content and doesn’t append Twitter link', t => {
+  const result = createStatus({
+    content: {
+      html: '<p>I ate a <a href="https://twitter.com/cheese">@cheese</a>’s sandwich, which was nice.</p>'
+    },
+    url: 'https://foo.bar/lunchtime'
+  });
+  t.is(result.status, 'I ate a @cheese’s sandwich, which was nice.');
+});
+
 test('Creates a quote tweet with status URL and post content', t => {
   const result = createStatus({
     content: 'Someone else who likes cheese sandwiches.',
