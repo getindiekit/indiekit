@@ -23,6 +23,10 @@ test.beforeEach(t => {
   t.context = {
     publication: {
       slugSeparator: '-',
+      syndicationTargets: [{
+        name: 'Example social network',
+        uid: 'https://social.example/'
+      }],
       timeZone: 'UTC'
     },
     nock: nock('https://website.example').get('/post.html'),
@@ -84,6 +88,7 @@ test('Gets Microformats2 object (all properties)', t => {
   ]);
   t.deepEqual(result.properties.category, ['lunch', 'food']);
   t.true(isValid(parseISO(result.properties.published[0])));
+  t.is(result.properties['mp-syndicate-to'][0], 'https://social.example/');
 });
 
 test('Gets audio property', t => {
@@ -265,6 +270,15 @@ test('Doesn’t add unchecked syndication target', t => {
   const syndicationTargets = [{
     uid: 'https://example.website/'
   }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.falsy(result);
+});
+
+test('Doesn’t add unavailable syndication target', t => {
+  const mf2 = {properties: {
+    'syndicate-to': 'https://another.example'}
+  };
+  const syndicationTargets = [];
   const result = getSyndicateToProperty(mf2, syndicationTargets);
   t.falsy(result);
 });

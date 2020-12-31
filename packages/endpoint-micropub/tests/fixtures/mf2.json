@@ -7,6 +7,7 @@
     "audio": ["http://foo.bar/baz.mp3", "http://foo.bar/qux.mp3"],
     "photo": ["http://foo.bar/baz.jpg", "http://foo.bar/qux.jpg"],
     "mp-photo-alt": ["Baz", "Qux"],
-    "video": ["http://foo.bar/baz.mp4", "http://foo.bar/qux.mp4"]
+    "video": ["http://foo.bar/baz.mp4", "http://foo.bar/qux.mp4"],
+    "mp-syndicate-to": ["https://social.example/"]
   }
 }
