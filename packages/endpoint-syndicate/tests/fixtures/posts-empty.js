@@ -4,5 +4,9 @@ export const publication = {
     find: () => ({
       toArray: async () => ([])
     })
-  }
+  },
+  syndicationTargets: [{
+    name: 'Example social network',
+    uid: 'https://social.example/'
+  }]
 };

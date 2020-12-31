@@ -25,5 +25,9 @@ export const publication = {
 
       return false;
     }
-  }
+  },
+  syndicationTargets: [{
+    name: 'Example social network',
+    uid: 'https://social.example/'
+  }]
 };

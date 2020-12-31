@@ -6,6 +6,7 @@ import {syndicateController} from './lib/controllers/syndicate.js';
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
+  jsonFeed: false,
   mountpath: '/syndicate'
 };
 

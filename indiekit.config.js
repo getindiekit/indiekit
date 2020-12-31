@@ -31,6 +31,7 @@ const twitter = new TwitterSyndicator({
 indiekit.set('application.mongodbUrl', process.env.MONGODB_URL);
 
 // Publication settings
+indiekit.set('publication.jsonFeed', `${process.env.PUBLICATION_URL}feed.json`);
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
 indiekit.set('publication.preset', jekyll);
 indiekit.set('publication.store', github);

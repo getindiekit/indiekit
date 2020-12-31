@@ -10,9 +10,19 @@ export const syndicateController = publication => ({
     try {
       const syndication = [];
 
+      // Get syndication targets
+      const {syndicationTargets} = publication;
+      if (!syndicationTargets.length > 0) {
+        return response.json({
+          success: 'OK',
+          success_description: 'No syndication targets have been configured'
+        });
+      }
+
       // Get post data
       const {url} = request.query;
       const postData = await getPostData(publication, url);
+
       if (!postData && url) {
         return response.json({
           success: 'OK',
@@ -27,8 +37,9 @@ export const syndicateController = publication => ({
         });
       }
 
-      // Get syndication target(s)
-      const syndicateTo = postData.properties['mp-syndicate-to'];
+      // Enable all targets if syndicating JSON Feed, else only use selected
+      const {jsonFeed} = publication;
+      const syndicateTo = jsonFeed ? 'all' : postData.properties['mp-syndicate-to'];
       if (!syndicateTo) {
         return response.json({
           success: 'OK',
@@ -37,9 +48,8 @@ export const syndicateController = publication => ({
       }
 
       // Syndicate to target(s)
-      const {syndicationTargets} = publication;
       for await (const target of syndicationTargets) {
-        const canSyndicate = syndicateTo.includes(target.uid);
+        const canSyndicate = syndicateTo.includes(target.uid) || jsonFeed;
         if (canSyndicate) {
           const syndicated = await target.syndicate(postData);
           syndication.push(syndicated.location);
