@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.17...v0.1.0-alpha.18) (2021-01-01)
+
+
+### Features
+
+* **endpoint-syndicate:** use JF2 Feed, not JSON Feed ([78d515a](https://github.com/getindiekit/indiekit/commit/78d515a342a96db04b062009b1c00a62e2e378a6))
+
+
+
+
+
 # [0.1.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.16...v0.1.0-alpha.17) (2021-01-01)
 
 
