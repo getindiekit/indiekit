@@ -41,6 +41,15 @@ test('Gets post data from JSON Feed', async t => {
   scope.done();
 });
 
+test('Throws error if no posts in JSON Feed', async t => {
+  const scope = nock('https://website.example')
+    .get('/feed.json')
+    .reply(200, getFixture('feed-empty.json'));
+  const error = await t.throwsAsync(getPostData({jsonFeed: 'https://website.example/feed.json'}));
+  t.is(error.message, 'JSON feed does not contain any posts');
+  scope.done();
+});
+
 test('Gets post data from database', async t => {
   const result = await getPostData(t.context.publication);
   t.is(result.properties['mp-syndicate-to'], 'https://social.example/');

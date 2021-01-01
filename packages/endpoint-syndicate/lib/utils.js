@@ -31,13 +31,24 @@ export const getPostData = async (publication, url) => {
     });
   } else if (jsonFeed) {
     // Fetch JSON Feed and return first child
-    const {body} = await got(jsonFeed, {
-      responseType: 'json'
-    });
-    const {children} = jsonFeedtoJf2(body);
-    postData = {
-      properties: children[0]
-    };
+    try {
+      const {body} = await got(jsonFeed, {
+        responseType: 'json'
+      });
+      const {children} = jsonFeedtoJf2(body);
+      if (children.length > 0) {
+        postData = {
+          properties: children[0]
+        };
+      } else {
+        throw new Error('JSON feed does not contain any posts');
+      }
+    } catch (error) {
+      const errorMessage = error.response ?
+        error.response.body.message :
+        error.message;
+      throw new Error(errorMessage);
+    }
   } else {
     // Get items in database and return first item
     const items = await posts.find().toArray();

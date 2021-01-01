@@ -37,9 +37,12 @@ export const syndicateController = publication => ({
         });
       }
 
-      // Enable all targets if syndicating JSON Feed, else only use selected
+      // Only syndicate to selected targets
+      // JF2 has 'mp-syndicate-to' property under properties
+      // JSON feed (as JF2) has 'syndicate_to' property in 'x-mp' object
+      // TODO: Normalise differences and remove this code
       const {jsonFeed} = publication;
-      const syndicateTo = jsonFeed ? 'all' : postData.properties['mp-syndicate-to'];
+      const syndicateTo = jsonFeed && postData.properties['x-mp'] ? postData.properties['x-mp'].syndicate_to : postData.properties['mp-syndicate-to'];
       if (!syndicateTo) {
         return response.json({
           success: 'OK',
@@ -49,7 +52,7 @@ export const syndicateController = publication => ({
 
       // Syndicate to target(s)
       for await (const target of syndicationTargets) {
-        const canSyndicate = syndicateTo.includes(target.uid) || jsonFeed;
+        const canSyndicate = syndicateTo.includes(target.uid);
         if (canSyndicate) {
           const syndicated = await target.syndicate(postData);
           syndication.push(syndicated.location);
