@@ -20,6 +20,7 @@ const github = new GithubStore({
 
 const twitter = new TwitterSyndicator({
   checked: true,
+  forced: true,
   user: process.env.TWITTER_USER,
   apiKey: process.env.TWITTER_API_KEY,
   apiKeySecret: process.env.TWITTER_API_KEY_SECRET,

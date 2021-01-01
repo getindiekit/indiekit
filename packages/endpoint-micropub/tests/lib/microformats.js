@@ -254,6 +254,38 @@ test('Adds syndication target checked by client', t => {
   t.is(result[0], 'https://example.website/');
 });
 
+test('Adds syndication target not checked by client but forced by server', t => {
+  const mf2 = false;
+  const syndicationTargets = [{
+    uid: 'https://example.website/',
+    options: {forced: true}
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.is(result[0], 'https://example.website/');
+});
+
+test('Adds syndication target checked by client and forced by server', t => {
+  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const syndicationTargets = [{
+    uid: 'https://example.website/',
+    options: {forced: true}
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.is(result[0], 'https://example.website/');
+});
+
+test('Adds syndication targets, one checked by client, one forced by server', t => {
+  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const syndicationTargets = [{
+    uid: 'https://example.website/'
+  }, {
+    uid: 'https://another-example.website/',
+    options: {forced: true}
+  }];
+  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  t.deepEqual(result, ['https://example.website/', 'https://another-example.website/']);
+});
+
 test('Doesn’t add unavilable syndication target', t => {
   const mf2 = false;
   const syndicationTargets = [{
