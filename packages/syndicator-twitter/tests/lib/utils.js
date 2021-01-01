@@ -8,7 +8,7 @@ import {
 
 test.beforeEach(t => {
   t.context = {
-    tweetUrl: 'https://twitter.com/username/status/1234567890987654321',
+    tweetUrl: 'https://twitter.com/username/status/1234567890987654321'
   };
 });
 
