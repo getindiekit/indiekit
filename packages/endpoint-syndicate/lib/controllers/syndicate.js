@@ -38,11 +38,7 @@ export const syndicateController = publication => ({
       }
 
       // Only syndicate to selected targets
-      // JF2 has 'mp-syndicate-to' property under properties
-      // JSON feed (as JF2) has 'syndicate_to' property in 'x-mp' object
-      // TODO: Normalise differences and remove this code
-      const {jsonFeed} = publication;
-      const syndicateTo = jsonFeed && postData.properties['x-mp'] ? postData.properties['x-mp'].syndicate_to : postData.properties['mp-syndicate-to'];
+      const syndicateTo = postData.properties['mp-syndicate-to'];
       if (!syndicateTo) {
         return response.json({
           success: 'OK',

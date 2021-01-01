@@ -1,0 +1,13 @@
+{
+  "type": "feed",
+  "name": "My Example Feed",
+  "summary": "A description of my example feed",
+  "url": "https://website.example/",
+  "photo": "https://website.example/icon.png",
+  "author": {
+    "name": "Jane Doe",
+    "url": "https://website.example/~janedoe",
+    "avatar": "https://website.example/~janedoe/photo.jpg"
+  },
+  "children": []
+}
