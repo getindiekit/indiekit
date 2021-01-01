@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.16...v0.1.0-alpha.17) (2021-01-01)
+
+
+### Features
+
+* **endpoint-syndicate:** check if post in json feed has already been syndicated ([abb1898](https://github.com/getindiekit/indiekit/commit/abb189826d7c42f2ccb7d1eb51f9ec8c7fa47112))
+
+
+
+
+
 # [0.1.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2020-12-31)
 
 
