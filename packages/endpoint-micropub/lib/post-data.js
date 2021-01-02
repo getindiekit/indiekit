@@ -98,7 +98,8 @@ export const postData = {
         throw new Error('No update operation provided');
       }
 
-      const {me, posts, postTypes} = publication;
+      const {me, posts, postTypes, timeZone} = publication;
+
       const post = await posts.findOne({
         'properties.url': url
       });
@@ -137,8 +138,8 @@ export const postData = {
       properties['post-type'] = type;
 
       // Post paths
-      const path = renderPath(typeConfig.post.path, properties);
-      const updatedUrl = renderPath(typeConfig.post.url, properties);
+      const path = renderPath(typeConfig.post.path, properties, timeZone);
+      const updatedUrl = renderPath(typeConfig.post.url, properties, timeZone);
       properties.url = getPermalink(me, updatedUrl);
 
       // Return post data
