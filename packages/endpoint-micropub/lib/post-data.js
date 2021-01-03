@@ -100,15 +100,15 @@ export const postData = {
 
       const {me, posts, postTypes, timeZone} = publication;
 
-      const post = await posts.findOne({
+      const postData = await posts.findOne({
         'properties.url': url
       });
 
-      if (!post) {
+      if (!postData) {
         throw new Error(`No post record available for ${url}`);
       }
 
-      const {mf2} = post;
+      const {mf2} = postData;
 
       // Add properties
       if (operation.add) {
