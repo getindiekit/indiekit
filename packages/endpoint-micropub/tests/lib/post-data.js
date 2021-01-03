@@ -16,7 +16,7 @@ test.beforeEach(t => {
                 content: 'hello world',
                 published: '2019-08-17T23:56:38.977+01:00',
                 category: ['foo', 'bar'],
-                slug: 'baz',
+                'mp-slug': 'baz',
                 'mp-syndicate-to': 'https://archive.org/',
                 'post-type': 'note',
                 url
@@ -27,7 +27,7 @@ test.beforeEach(t => {
                   content: ['hello world'],
                   published: ['2019-08-17T23:56:38.977+01:00'],
                   category: ['foo', 'bar'],
-                  slug: ['baz'],
+                  'mp-slug': ['baz'],
                   'mp-syndicate-to': ['https://archive.org/']
                 }
               }
@@ -46,12 +46,12 @@ test('Creates post data', async t => {
     properties: {
       published: ['2020-07-26T20:10:57.062Z'],
       name: ['Foo'],
-      slug: ['foo']
+      'mp-slug': ['foo']
     }
   };
   const result = await postData.create(t.context.publication, mf2);
   t.is(result.properties['post-type'], 'note');
-  t.is(result.properties.slug, 'foo');
+  t.is(result.properties['mp-slug'], 'foo');
   t.is(result.properties.type, 'entry');
   t.is(result.properties.url, 'https://website.example/notes/2020/07/26/foo');
 });
@@ -62,7 +62,7 @@ test('Throws error creating post data without publication configuration', async 
     properties: {
       published: ['2020-07-26T20:10:57.062Z'],
       name: ['Foo'],
-      slug: ['foo']
+      'mp-slug': ['foo']
     }
   };
   const error = await t.throwsAsync(postData.create(false, mf2));

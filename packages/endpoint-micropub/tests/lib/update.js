@@ -11,7 +11,7 @@ test.beforeEach(t => {
     content: ['hello world'],
     published: ['2019-08-17T23:56:38.977+01:00'],
     category: ['foo', 'bar'],
-    slug: ['baz']
+    'mp-slug': ['baz']
   };
 });
 

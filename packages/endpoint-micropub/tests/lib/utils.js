@@ -48,8 +48,8 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
 
 test('Renders path from URI template and properties', t => {
   const properties = {
-    slug: 'foo',
-    published: '2020-01-01'
+    published: '2020-01-01',
+    'mp-slug': 'foo'
   };
   const template = '{yyyy}/{MM}/{uuid}/{slug}';
   const result = renderPath(template, properties);

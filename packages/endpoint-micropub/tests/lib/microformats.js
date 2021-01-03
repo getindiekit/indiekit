@@ -54,7 +54,7 @@ test('Gets Microformats2 object (few properties)', t => {
   const result = getMf2(t.context.publication, mf2);
   t.is(result.type[0], 'h-entry');
   t.is(result.properties.name[0], 'Lunchtime');
-  t.is(result.properties.slug[0], 'lunchtime');
+  t.is(result.properties['mp-slug'][0], 'lunchtime');
   t.deepEqual(result.properties.content, [{
     value: 'I ate a *cheese* sandwich, which was nice.',
     html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'

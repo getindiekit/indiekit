@@ -99,7 +99,7 @@ export const getMf2 = (publication, mf2) => {
   }
 
   mf2.properties.published = getPublishedProperty(mf2, timeZone);
-  mf2.properties.slug = getSlugProperty(mf2, slugSeparator);
+  mf2.properties['mp-slug'] = getSlugProperty(mf2, slugSeparator);
 
   if (mf2.properties.content) {
     mf2.properties.content = getContentProperty(mf2);

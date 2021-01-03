@@ -64,6 +64,11 @@ export const renderPath = (path, properties, timeZoneSetting) => {
   // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
+  // Add slug token if 'mp-slug' property
+  if (properties['mp-slug']) {
+    tokens.slug = properties['mp-slug'];
+  }
+
   // Add UUID token
   tokens.uuid = uuidv4();
 
