@@ -3,38 +3,6 @@ import dateFnsTz from 'date-fns-tz';
 const {format, utcToZonedTime} = dateFnsTz;
 
 /**
- * Get local time zone offset in hours and minutes
- *
- * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
- */
-export const getServerTimeZone = () => {
-  let timeZoneOffset;
-  const timeZoneOffsetMinutes = new Date().getTimezoneOffset();
-  let offsetHours = Number.parseInt(Math.abs(timeZoneOffsetMinutes / 60), 10);
-  let offsetMinutes = Math.abs(timeZoneOffsetMinutes % 60);
-
-  if (offsetHours < 10) {
-    offsetHours = '0' + offsetHours;
-  }
-
-  if (offsetMinutes < 10) {
-    offsetMinutes = '0' + offsetMinutes;
-  }
-
-  // Add an opposite sign to the offset
-  // If offset is 0, timezone is UTC
-  if (timeZoneOffsetMinutes < 0) {
-    timeZoneOffset = '+' + offsetHours + ':' + offsetMinutes;
-  } else if (timeZoneOffsetMinutes > 0) {
-    timeZoneOffset = '-' + offsetHours + ':' + offsetMinutes;
-  } else if (timeZoneOffsetMinutes === 0) {
-    timeZoneOffset = 'Z';
-  }
-
-  return timeZoneOffset;
-};
-
-/**
  * Converts date to use configured time zone
  *
  * @param {string} setting Time zone setting
@@ -79,4 +47,36 @@ export const getDate = (setting, dateString) => {
   });
 
   return datetime;
+};
+
+/**
+ * Get local time zone offset in hours and minutes
+ *
+ * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
+ */
+export const getServerTimeZone = () => {
+  let timeZoneOffset;
+  const timeZoneOffsetMinutes = new Date().getTimezoneOffset();
+  let offsetHours = Number.parseInt(Math.abs(timeZoneOffsetMinutes / 60), 10);
+  let offsetMinutes = Math.abs(timeZoneOffsetMinutes % 60);
+
+  if (offsetHours < 10) {
+    offsetHours = '0' + offsetHours;
+  }
+
+  if (offsetMinutes < 10) {
+    offsetMinutes = '0' + offsetMinutes;
+  }
+
+  // Add an opposite sign to the offset
+  // If offset is 0, timezone is UTC
+  if (timeZoneOffsetMinutes < 0) {
+    timeZoneOffset = '+' + offsetHours + ':' + offsetMinutes;
+  } else if (timeZoneOffsetMinutes > 0) {
+    timeZoneOffset = '-' + offsetHours + ':' + offsetMinutes;
+  } else if (timeZoneOffsetMinutes === 0) {
+    timeZoneOffset = 'Z';
+  }
+
+  return timeZoneOffset;
 };
