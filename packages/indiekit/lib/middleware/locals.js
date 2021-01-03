@@ -2,7 +2,7 @@ import {getNavigation} from '../navigation.js';
 import {getMediaEndpoint} from '../publication.js';
 
 /**
- * Expose Indiekit config to frontend templates
+ * Expose config to frontend templates
  *
  * @param {object} indiekitConfig Indiekit config
  * @returns {Function} Next middleware

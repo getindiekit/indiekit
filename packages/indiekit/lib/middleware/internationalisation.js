@@ -1,7 +1,7 @@
 import i18n from 'i18n';
 
 /**
- * Set server locale
+ * Set locale
  *
  * @param {object} indiekitConfig Indiekit config
  * @returns {Function} Next middleware
