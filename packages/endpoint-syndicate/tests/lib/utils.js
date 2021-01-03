@@ -35,7 +35,14 @@ test('Gets post data from JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
     .reply(200, getFixture('feed.jf2'));
-  const result = await getPostData({jf2Feed: 'https://website.example/feed.jf2'});
+  const publication = {
+    jf2Feed: 'https://website.example/feed.jf2',
+    posts: {
+      findOne: async () => false,
+      insertOne: async () => {}
+    }
+  };
+  const result = await getPostData(publication);
   t.is(result.properties.name, 'Second item');
   scope.done();
 });
