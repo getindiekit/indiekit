@@ -31,7 +31,7 @@ test('Gets post for given URL from database', async t => {
   t.is(result.properties['mp-syndicate-to'], 'https://social.example/');
 });
 
-test('Gets post data from JSON Feed', async t => {
+test('Gets post data from JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
     .reply(200, getFixture('feed.jf2'));
@@ -40,12 +40,12 @@ test('Gets post data from JSON Feed', async t => {
   scope.done();
 });
 
-test('Throws error if no posts in JSON Feed', async t => {
+test('Throws error if no posts in JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
     .reply(200, getFixture('feed-empty.jf2'));
   const error = await t.throwsAsync(getPostData({jf2Feed: 'https://website.example/feed.jf2'}));
-  t.is(error.message, 'JSON feed does not contain any posts');
+  t.is(error.message, 'JF2 Feed does not contain any posts');
   scope.done();
 });
 

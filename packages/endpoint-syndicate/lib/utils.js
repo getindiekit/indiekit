@@ -1,4 +1,35 @@
+import path from 'path';
 import got from 'got';
+
+/**
+ * Create Microformats2 object from JF2
+ *
+ * @param {string} jf2 JF2
+ * @returns {string} Micropub action
+ */
+export const jf2ToMf2 = jf2 => {
+  const mf2 = {
+    type: [`h-${jf2.type}`],
+    properties: {}
+  };
+
+  delete jf2.type;
+
+  // Convert values to arrays, ie 'a' => ['a'] and move to properties object
+  for (const key in jf2) {
+    if (Object.prototype.hasOwnProperty.call(jf2, key)) {
+      mf2.properties[key] = [].concat(jf2[key]);
+    }
+  }
+
+  // Update key for plaintext content
+  if (mf2.properties.content[0] && mf2.properties.content[0].text) {
+    mf2.properties.content[0].value = jf2.content.text;
+    delete mf2.properties.content[0].text;
+  }
+
+  return mf2;
+};
 
 /**
  * Get Micropub endpoint from server derived values
@@ -30,18 +61,42 @@ export const getPostData = async (publication, url) => {
       'properties.url': url
     });
   } else if (jf2Feed) {
-    // Fetch JSON Feed and return first child
+    // Fetch JF2 Feed and return first child
     try {
       const {body} = await got(jf2Feed, {
         responseType: 'json'
       });
       const {children} = body;
-      if (body.children.length > 0) {
-        postData = {
-          properties: children[0]
-        };
+      if (children.length > 0) {
+        const properties = children[0];
+        properties['mp-slug'] = path.basename(properties.url);
+
+        // Check if feed item already exists in database
+        const storedPostData = await posts.findOne({
+          'properties.url': properties.url
+        });
+
+        if (storedPostData) {
+          // Use stored post data
+          postData = storedPostData;
+        } else {
+          // Import post data to database
+          const mf2 = jf2ToMf2(properties);
+          const importedPostData = {
+            date: new Date(),
+            mf2,
+            properties,
+            lastAction: 'import'
+          };
+          await posts.insertOne(importedPostData, {
+            checkKeys: false
+          });
+
+          // Use imported post data
+          postData = importedPostData;
+        }
       } else {
-        throw new Error('JSON feed does not contain any posts');
+        throw new Error('JF2 Feed does not contain any posts');
       }
     } catch (error) {
       const errorMessage = error.response ?
