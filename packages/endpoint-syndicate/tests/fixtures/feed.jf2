@@ -12,7 +12,7 @@
   "children": [{
     "uid": "https://website.example/second-item",
     "url": "https://website.example/second-item",
-    "name": "Second item",
+    "name": "Second item in feed",
     "content": {
       "text": "This second item has all fields.",
       "html": "<p>This second item has <strong>all</strong> fields.</p>"

@@ -43,7 +43,19 @@ test('Gets post data from JF2 Feed', async t => {
     }
   };
   const result = await getPostData(publication);
-  t.is(result.properties.name, 'Second item');
+  t.is(result.properties.name, 'Second item in feed');
+  scope.done();
+});
+
+test('Gets post data stored in database, not JF2 Feed', async t => {
+  const scope = nock('https://website.example')
+    .get('/feed.jf2')
+    .reply(200, getFixture('feed.jf2'));
+  const {publication} = t.context;
+  publication.jf2Feed = 'https://website.example/feed.jf2';
+  const result = await getPostData(publication);
+  t.is(result.properties.name, 'Item in database');
+  t.not(result.properties.name, 'Second item in feed');
   scope.done();
 });
 
@@ -51,7 +63,14 @@ test('Throws error if no posts in JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
     .reply(200, getFixture('feed-empty.jf2'));
-  const error = await t.throwsAsync(getPostData({jf2Feed: 'https://website.example/feed.jf2'}));
+  const publication = {
+    jf2Feed: 'https://website.example/feed.jf2',
+    posts: {
+      findOne: async () => false,
+      insertOne: async () => {}
+    }
+  };
+  const error = await t.throwsAsync(getPostData(publication));
   t.is(error.message, 'JF2 Feed does not contain any posts');
   scope.done();
 });
