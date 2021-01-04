@@ -1,4 +1,5 @@
 import Debug from 'debug';
+import HttpError from 'http-errors';
 import mongodb from 'mongodb';
 
 const debug = new Debug('indiekit:error');
@@ -38,6 +39,10 @@ export const postsController = publication => ({
     try {
       const {id} = request.params;
       const post = await publication.posts.findOne({_id: new ObjectId(id)});
+
+      if (!post) {
+        throw new HttpError(404, 'No post was found with this UUID');
+      }
 
       const summaryRows = [];
       Object.entries(post.properties).forEach(

@@ -18,9 +18,14 @@ export const internalServer = (error, request, response, next) => { // eslint-di
   const httpError = createError(error.statusCode || 500);
   response.status(httpError.statusCode);
 
-  if (request.accepts('json')) {
+  if (request.accepts('html')) {
+    response.render('document', {
+      title: httpError.message || error.name,
+      content: error.message
+    });
+  } else if (request.accepts('json')) {
     response.json({
-      error: error.error || httpError.message,
+      error: httpError.message || error.name,
       error_description: error.message,
       scope: error.scope
     });

@@ -1,3 +1,4 @@
+import HttpError from 'http-errors';
 import mongodb from 'mongodb';
 
 const {ObjectId} = mongodb;
@@ -35,6 +36,10 @@ export const filesController = publication => ({
     try {
       const {id} = request.params;
       const file = await publication.media.findOne({_id: new ObjectId(id)});
+
+      if (!file) {
+        throw new HttpError(404, 'No file was found with this UUID');
+      }
 
       const properties = [];
       Object.entries(file.properties).forEach(
