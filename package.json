@@ -54,7 +54,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.0.0",
     "supertest": "^6.0.1",
-    "xo": "^0.36.1"
+    "xo": "^0.37.1"
   },
   "ava": {
     "environmentVariables": {
