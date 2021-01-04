@@ -54,6 +54,7 @@ test.serial('Returns 400 if access token does not provide adequate scope', async
       scope: 'media'
     });
   const response = await t.context.request
+    .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN_NOSCOPE}`);
   t.is(response.statusCode, 401);
   t.is(response.body.error_description, 'The scope of this token does not meet the requirements for this request');

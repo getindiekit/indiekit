@@ -45,7 +45,7 @@ test('Renders error as JSON', async t => {
   const httpError = new HttpError(400, 'Error messaage', {
     scope: 'test'
   });
-  const request = mockRequest({accepts: () => true});
+  const request = mockRequest({accepts: mimeType => mimeType.includes('json')});
   const response = mockResponse();
   const next = sinon.spy();
   await error.internalServer(httpError, request, response, next);

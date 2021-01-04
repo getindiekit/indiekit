@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% set title = post.properties.name or post.properties['post-type'] | capitalize %}
-{% set content = post.properties.content %}
+{% set content = post.properties.content.html %}
 
 {% set microformats %}
 ```json
