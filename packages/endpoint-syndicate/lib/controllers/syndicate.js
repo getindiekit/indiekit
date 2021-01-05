@@ -12,7 +12,7 @@ export const syndicateController = publication => ({
 
       // Get syndication targets
       const {syndicationTargets} = publication;
-      if (!syndicationTargets.length > 0) {
+      if (syndicationTargets.length === 0) {
         return response.json({
           success: 'OK',
           success_description: 'No syndication targets have been configured'

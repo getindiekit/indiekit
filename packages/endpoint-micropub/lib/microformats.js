@@ -232,7 +232,7 @@ export const getSlugProperty = (mf2, separator) => {
 export const getSyndicateToProperty = (mf2, syndicationTargets) => {
   const syndication = [];
 
-  if (!syndicationTargets.length > 0) {
+  if (syndicationTargets.length === 0) {
     return;
   }
 
