@@ -4,7 +4,8 @@ import {getFixture} from '../helpers/fixture.js';
 import {posts} from '../fixtures/posts.js';
 import {
   getMicropubEndpoint,
-  getPostData
+  getPostData,
+  jf2ToMf2
 } from '../../lib/utils.js';
 
 test.beforeEach(t => {
@@ -78,4 +79,46 @@ test('Throws error if no posts in JF2 Feed', async t => {
 test('Gets post data from database', async t => {
   const result = await getPostData(t.context.publication);
   t.is(result.properties['mp-syndicate-to'], 'https://social.example/');
+});
+
+test('Converts JF2 to Microformats2 object', async t => {
+  const feed = JSON.parse(getFixture('feed.jf2'));
+  const result = await jf2ToMf2(feed.children[0]);
+  t.deepEqual(result, {
+    type: ['h-entry'],
+    properties: {
+      uid: ['https://website.example/second-item'],
+      url: ['https://website.example/second-item'],
+      name: ['Second item in feed'],
+      content: [{
+        value: 'This second item has all fields.',
+        html: '<p>This second item has <strong>all</strong> fields.</p>'
+      }],
+      summary: ['This is the second item'],
+      featured: ['https://another.example/banner_image.jpg'],
+      published: ['2020-12-31T17:05:55+00:00'],
+      updated: ['2021-01-01T12:05:55+00:00'],
+      author: [{
+        name: 'Joe Bloggs',
+        url: 'https://website.example/~joebloggs',
+        photo: 'https://website.example/~joebloggs/photo.jpg'
+      }],
+      category: ['second', 'example'],
+      audio: [{
+        url: 'https://website.example/second-item/audio.weba',
+        alt: 'Audio',
+        'content-type': 'audio/webm'
+      }],
+      photo: [{
+        url: 'https://website.example/second-item/photo.webp',
+        alt: 'Photo',
+        'content-type': 'image/webp'
+      }],
+      video: [{
+        url: 'https://website.example/second-item/audio.webm',
+        alt: 'Video',
+        'content-type': 'video/webm'
+      }]
+    }
+  });
 });

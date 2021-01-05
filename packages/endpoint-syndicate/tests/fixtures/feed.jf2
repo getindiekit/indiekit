@@ -10,6 +10,7 @@
     "avatar": "https://website.example/~janedoe/photo.jpg"
   },
   "children": [{
+    "type": "entry",
     "uid": "https://website.example/second-item",
     "url": "https://website.example/second-item",
     "name": "Second item in feed",
@@ -43,6 +44,7 @@
       "content-type": "video/webm"
     }]
   }, {
+    "type": "entry",
     "uid": "https://website.example/first-item/",
     "url": "https://website.example/first-item/",
     "content": {

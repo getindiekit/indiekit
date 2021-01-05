@@ -2,7 +2,7 @@ import path from 'path';
 import got from 'got';
 
 /**
- * Create Microformats2 object from JF2
+ * Convert JF2 to Microformats2 object
  *
  * @param {string} jf2 JF2
  * @returns {string} Micropub action
