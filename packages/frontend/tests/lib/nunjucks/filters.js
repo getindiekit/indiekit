@@ -7,7 +7,7 @@ test('Formats a date', t => {
 });
 
 test('Formats the date right now', t => {
-  const now = Math.round(new Date().getTime() / 1000000);
+  const now = Math.round(Date.now() / 1000000);
   const result = Math.round(date('now', 't') / 1000);
   t.is(result, now);
 });
