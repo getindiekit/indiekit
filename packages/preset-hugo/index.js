@@ -152,7 +152,7 @@ export const HugoPreset = class {
   postTemplate(properties) {
     let content;
     if (properties.content) {
-      content = properties.content.text;
+      content = properties.content.text || properties.content.html;
       content = `${content}\n`;
     } else {
       content = '';

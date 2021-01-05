@@ -25,6 +25,23 @@ title: Lunchtime
 `);
 });
 
+test('Renders post template with HTML content', t => {
+  const hugo = new HugoPreset();
+  const result = hugo.postTemplate({
+    published: '2020-02-02',
+    name: 'Lunchtime',
+    content: {
+      html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+    }
+  });
+  t.is(result, `---
+date: 2020-02-02
+title: Lunchtime
+---
+<p>I ate a <em>cheese</em> sandwich, which was nice.</p>
+`);
+});
+
 test('Renders post template with JSON frontmatter', t => {
   const hugo = new HugoPreset({frontmatterFormat: 'json'});
   const result = hugo.postTemplate(t.context.properties);
