@@ -56,6 +56,17 @@ test('Views previously uploaded file', async t => {
   t.true(response.render.calledWith('file'));
 });
 
+test('Returns 404 if can’t find previously uploaded file', async t => {
+  const request = mockRequest();
+  const response = mockResponse();
+  const next = sinon.spy();
+  await filesController({
+    media: {findOne: () => false}
+  }).view(request, response, next);
+  t.true(next.calledOnce);
+  t.is(next.firstCall.args[0].message, 'No file was found with this UUID');
+});
+
 test('Throws error to next middleware if can’t view previously uploaded file', async t => {
   const request = mockRequest();
   const response = mockResponse();
