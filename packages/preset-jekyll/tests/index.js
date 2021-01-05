@@ -25,6 +25,23 @@ title: Lunchtime
 `);
 });
 
+test('Renders post template with HTML content', t => {
+  const jekyll = new JekyllPreset();
+  const result = jekyll.postTemplate({
+    published: '2020-02-02',
+    name: 'Lunchtime',
+    content: {
+      html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+    }
+  });
+  t.is(result, `---
+date: 2020-02-02
+title: Lunchtime
+---
+<p>I ate a <em>cheese</em> sandwich, which was nice.</p>
+`);
+});
+
 test('Renders post template', t => {
   const jekyll = new JekyllPreset({frontmatterFormat: 'yaml'});
   const result = jekyll.postTemplate(t.context.properties);
