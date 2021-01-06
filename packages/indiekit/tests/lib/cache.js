@@ -37,7 +37,7 @@ test.serial('Gets data from cache', async t => {
   const cache = new Cache({
     findOne: async () => ({
       souce: 'cache',
-      date: {}
+      data: {}
     })
   });
 
