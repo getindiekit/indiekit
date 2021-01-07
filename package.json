@@ -43,7 +43,7 @@
     "c8": "^7.4.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsdoc": "^30.7.13",
-    "husky": "^4.3.6",
+    "husky": "^4.3.7",
     "lerna": "^3.22.0",
     "markdownlint-cli": "^0.26.0",
     "mock-req-res": "^1.1.4",
