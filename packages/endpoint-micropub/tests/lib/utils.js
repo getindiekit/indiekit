@@ -7,6 +7,7 @@ import {
   getPermalink,
   getPostTypeConfig,
   randomString,
+  relativeMediaPath,
   renderPath,
   supplant
 } from '../../lib/utils.js';
@@ -44,6 +45,11 @@ test('Get post type configuration for a given type', t => {
 test('Generates random alpha-numeric string, 5 characters long', t => {
   const result = randomString();
   t.regex(result, /[\d\w]{5}/g);
+});
+
+test('Renders relative path if URL is on publication', t => {
+  const result = relativeMediaPath('http://foo.bar/baz/', 'http://foo.bar/');
+  t.is(result, '/baz/');
 });
 
 test('Renders path from URI template and properties', t => {

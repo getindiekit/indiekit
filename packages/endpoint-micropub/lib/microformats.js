@@ -7,6 +7,7 @@ import {
   decodeQueryParameter,
   excerptString,
   slugifyString,
+  relativeMediaPath,
   randomString
 } from './utils.js';
 
@@ -91,7 +92,7 @@ export const mf2Properties = (mf2, requestedProperties) => {
  * @returns {object} Normalised Microformats2 object
  */
 export const getMf2 = (publication, mf2) => {
-  const {slugSeparator, syndicationTargets, timeZone} = publication;
+  const {me, slugSeparator, syndicationTargets, timeZone} = publication;
 
   const syndidateTo = getSyndicateToProperty(mf2, syndicationTargets);
   if (syndidateTo) {
@@ -106,15 +107,15 @@ export const getMf2 = (publication, mf2) => {
   }
 
   if (mf2.properties.audio) {
-    mf2.properties.audio = getAudioProperty(mf2);
+    mf2.properties.audio = getAudioProperty(mf2, me);
   }
 
   if (mf2.properties.photo) {
-    mf2.properties.photo = getPhotoProperty(mf2);
+    mf2.properties.photo = getPhotoProperty(mf2, me);
   }
 
   if (mf2.properties.video) {
-    mf2.properties.video = getVideoProperty(mf2);
+    mf2.properties.video = getVideoProperty(mf2, me);
   }
 
   return mf2;
@@ -124,12 +125,13 @@ export const getMf2 = (publication, mf2) => {
  * Get audio property
  *
  * @param {object} mf2 Microformats2 object
+ * @param {object} me Publication URL
  * @returns {Array} Microformats2 `audio` property
  */
-export const getAudioProperty = mf2 => {
+export const getAudioProperty = (mf2, me) => {
   const {audio} = mf2.properties;
   return audio.map(item => ({
-    url: item.value || item
+    url: relativeMediaPath(item.value || item, me)
   }));
 };
 
@@ -164,13 +166,14 @@ export const getContentProperty = mf2 => {
  * Get photo property (adding text alternatives where provided)
  *
  * @param {object} mf2 Microformats2 object
+ * @param {object} me Publication URL
  * @returns {Array} Microformats2 `photo` property
  */
-export const getPhotoProperty = mf2 => {
+export const getPhotoProperty = (mf2, me) => {
   const {photo} = mf2.properties;
   const photoAlt = mf2.properties['mp-photo-alt'];
   const property = photo.map((item, index) => ({
-    url: item.value || item,
+    url: relativeMediaPath(item.value || item, me),
     ...item.alt && {alt: item.alt},
     ...photoAlt && {alt: photoAlt[index]}
   }));
@@ -182,12 +185,13 @@ export const getPhotoProperty = mf2 => {
  * Get video property
  *
  * @param {object} mf2 Microformats2 object
+ * @param {object} me Publication URL
  * @returns {Array} Microformats2 `video` property
  */
-export const getVideoProperty = mf2 => {
+export const getVideoProperty = (mf2, me) => {
   const {video} = mf2.properties;
   return video.map(item => ({
-    url: item.value || item
+    url: relativeMediaPath(item.value || item, me)
   }));
 };
 

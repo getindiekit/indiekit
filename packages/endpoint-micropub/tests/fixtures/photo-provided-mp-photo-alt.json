@@ -3,7 +3,7 @@
   "properties": {
     "name": ["Photo"],
     "photo": [
-      "https://foo.bar/baz.jpg",
+      "https://website.example/baz.jpg",
       "https://foo.bar/qux.jpg"
     ],
     "mp-photo-alt": ["Baz", "Qux"]

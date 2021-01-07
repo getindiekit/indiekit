@@ -98,6 +98,17 @@ export const randomString = () => {
 };
 
 /**
+ * Render relative path if URL is on publication
+ *
+ * @param {URL} url External URL
+ * @param {URL} me Publication URL
+ * @returns {string} Path
+ */
+export const relativeMediaPath = (url, me) => {
+  return url.includes(me) ? new URL(url).pathname : url;
+};
+
+/**
  * Render path from URI template and properties
  *
  * @param {string} path URI template path

@@ -3,7 +3,7 @@
   "properties": {
     "name": ["Audio"],
     "audio": [
-      "https://foo.bar/baz.mp3",
+      "https://website.example/baz.mp3",
       "https://foo.bar/qux.mp3"
     ]
   }
