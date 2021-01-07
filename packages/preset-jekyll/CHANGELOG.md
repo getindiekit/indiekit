@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.20](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.19...v0.1.0-alpha.20) (2021-01-07)
+
+
+### Features
+
+* **preset-jekyll:** fallback to html content ([5d96402](https://github.com/getindiekit/indiekit/commit/5d96402f4bd911faf9205eafa9636ad57def9bba))
+
+
+
+
+
 # [0.1.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2020-12-31)
 
 

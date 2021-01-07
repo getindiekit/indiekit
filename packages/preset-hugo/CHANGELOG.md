@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.20](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.19...v0.1.0-alpha.20) (2021-01-07)
+
+
+### Features
+
+* **preset-hugo:** fallback to html content ([0022b71](https://github.com/getindiekit/indiekit/commit/0022b71e176012e991eba7565424a3ce48c03b0d))
+
+
+
+
+
 # [0.1.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2020-12-31)
 
 
