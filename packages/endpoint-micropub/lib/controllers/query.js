@@ -1,6 +1,6 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import {url2Mf2, mf2Properties} from '../microformats.js';
+import {jf2ToMf2, url2Mf2, mf2Properties} from '../microformats.js';
 import {getConfig, queryList} from '../query.js';
 
 const debug = new Debug('indiekit:error');
@@ -46,7 +46,7 @@ export const queryController = publication => {
 
           // Return microformats for previously published posts
           const items = publication.posts ?
-            await publication.posts.find().map(post => post.mf2).toArray() :
+            await publication.posts.find().map(post => jf2ToMf2(post.properties)).toArray() :
             [];
           return response.json({
             items: queryList(items, {filter, limit, offset})
