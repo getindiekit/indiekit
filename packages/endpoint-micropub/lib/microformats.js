@@ -47,44 +47,6 @@ export const formEncodedToMf2 = body => {
 };
 
 /**
- * Returns/selects microformat properties of a post.
- *
- * @param {object} mf2 Microformats2 object
- * @param {Array|string} requestedProperties mf2 properties to select
- * @returns {Promise|object} mf2 with requested properties
- */
-export const mf2Properties = (mf2, requestedProperties) => {
-  const mf2HasItems = mf2.items && mf2.items.length > 0;
-  if (!mf2HasItems) {
-    throw new Error('Source has no items');
-  }
-
-  const item = mf2.items[0];
-  const {properties} = item;
-
-  // Return requested properties
-  if (requestedProperties) {
-    const selectedProperties = {};
-
-    if (!Array.isArray(requestedProperties)) {
-      requestedProperties = new Array(requestedProperties);
-    }
-
-    requestedProperties.forEach(key => {
-      if (properties[key]) {
-        selectedProperties[key] = properties[key];
-      }
-    });
-
-    item.properties = selectedProperties;
-  }
-
-  // Return properties
-  delete item.type;
-  return item;
-};
-
-/**
  * Get Microformats2 object
  *
  * @param {object} publication Publication configuration
@@ -119,6 +81,44 @@ export const getMf2 = (publication, mf2) => {
   }
 
   return mf2;
+};
+
+/**
+ * Returns/selects microformat properties of a post.
+ *
+ * @param {object} mf2 Microformats2 object
+ * @param {Array|string} requestedProperties mf2 properties to select
+ * @returns {Promise|object} mf2 with requested properties
+ */
+export const getMf2Properties = (mf2, requestedProperties) => {
+  const mf2HasItems = mf2.items && mf2.items.length > 0;
+  if (!mf2HasItems) {
+    throw new Error('Source has no items');
+  }
+
+  const item = mf2.items[0];
+  const {properties} = item;
+
+  // Return requested properties
+  if (requestedProperties) {
+    const selectedProperties = {};
+
+    if (!Array.isArray(requestedProperties)) {
+      requestedProperties = new Array(requestedProperties);
+    }
+
+    requestedProperties.forEach(key => {
+      if (properties[key]) {
+        selectedProperties[key] = properties[key];
+      }
+    });
+
+    item.properties = selectedProperties;
+  }
+
+  // Return properties
+  delete item.type;
+  return item;
 };
 
 /**
