@@ -3,12 +3,6 @@
 {% set title = post.properties.name or post.properties['post-type'] | capitalize %}
 {% set content = post.properties.content.html %}
 
-{% set microformats %}
-```json
-{{ post.mf2 | dump(2) | safe }}
-```
-{% endset %}
-
 {% block content %}
   {% if post.properties.audio %}
     {% for item in post.properties.audio %}
@@ -27,8 +21,4 @@
     title: __("micropub.properties"),
     rows: summaryRows
   }) }}
-  <details>
-    <summary>{{ __("micropub.microformats") }}</summary>
-    {{ microformats | markdown | safe }}
-  </details>
 {% endblock %}
