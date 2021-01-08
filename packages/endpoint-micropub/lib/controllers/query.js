@@ -1,6 +1,6 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import {jf2ToMf2, url2Mf2, mf2Properties} from '../microformats.js';
+import {getMf2Properties, jf2ToMf2, url2Mf2} from '../microformats.js';
 import {getConfig, queryList} from '../query.js';
 
 const debug = new Debug('indiekit:error');
@@ -40,7 +40,7 @@ export const queryController = publication => {
           // Return microformats for a given source URL
           if (query.url) {
             const mf2 = await url2Mf2(query.url);
-            const properties = mf2Properties(mf2, query.properties);
+            const properties = getMf2Properties(mf2, query.properties);
             return response.json(properties);
           }
 

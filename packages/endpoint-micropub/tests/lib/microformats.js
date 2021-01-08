@@ -6,6 +6,7 @@ import {getFixture} from '../helpers/fixture.js';
 import {
   formEncodedToMf2,
   getMf2,
+  getMf2Properties,
   getAudioProperty,
   getContentProperty,
   getPhotoProperty,
@@ -14,7 +15,6 @@ import {
   getSlugProperty,
   getSyndicateToProperty,
   jf2ToMf2,
-  mf2Properties,
   url2Mf2
 } from '../../lib/microformats.js';
 
@@ -90,6 +90,53 @@ test('Gets Microformats2 object (all properties)', t => {
   t.deepEqual(result.properties.category, ['lunch', 'food']);
   t.true(isValid(parseISO(result.properties.published[0])));
   t.is(result.properties['mp-syndicate-to'][0], 'https://social.example/');
+});
+
+test('Returns mf2 item with all properties', t => {
+  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
+  const result = getMf2Properties(mf2);
+  t.deepEqual(result, {
+    properties: {
+      name: ['I ate a cheese sandwich, which was nice.'],
+      published: ['2013-03-07'],
+      content: ['I ate a cheese sandwich, which was nice.']
+    }
+  });
+});
+
+test('Returns mf2 item with multiple properties', t => {
+  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
+  const result = getMf2Properties(mf2, ['name', 'published']);
+  t.deepEqual(result, {
+    properties: {
+      name: ['I ate a cheese sandwich, which was nice.'],
+      published: ['2013-03-07']
+    }
+  });
+});
+
+test('Returns mf2 item with single property', t => {
+  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
+  const result = getMf2Properties(mf2, 'name');
+  t.deepEqual(result, {
+    properties: {
+      name: ['I ate a cheese sandwich, which was nice.']
+    }
+  });
+});
+
+test('Returns mf2 item with empty object if property not found', t => {
+  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
+  const result = getMf2Properties(mf2, 'location');
+  t.deepEqual(result, {
+    properties: {}
+  });
+});
+
+test('Throws error if mf2 has no items', t => {
+  const mf2 = parser.mf2(getFixture('page.html'), {baseUrl: t.context.url});
+  const error = t.throws(() => getMf2Properties(mf2, 'name'));
+  t.is(error.message, 'Source has no items');
 });
 
 test('Gets audio property', t => {
@@ -356,53 +403,6 @@ test('Converts JF2 to Microformats2 object', async t => {
       }]
     }
   });
-});
-
-test('Returns mf2 item with all properties', t => {
-  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
-  const result = mf2Properties(mf2);
-  t.deepEqual(result, {
-    properties: {
-      name: ['I ate a cheese sandwich, which was nice.'],
-      published: ['2013-03-07'],
-      content: ['I ate a cheese sandwich, which was nice.']
-    }
-  });
-});
-
-test('Returns mf2 item with multiple properties', t => {
-  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
-  const result = mf2Properties(mf2, ['name', 'published']);
-  t.deepEqual(result, {
-    properties: {
-      name: ['I ate a cheese sandwich, which was nice.'],
-      published: ['2013-03-07']
-    }
-  });
-});
-
-test('Returns mf2 item with single property', t => {
-  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
-  const result = mf2Properties(mf2, 'name');
-  t.deepEqual(result, {
-    properties: {
-      name: ['I ate a cheese sandwich, which was nice.']
-    }
-  });
-});
-
-test('Returns mf2 item with empty object if property not found', t => {
-  const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
-  const result = mf2Properties(mf2, 'location');
-  t.deepEqual(result, {
-    properties: {}
-  });
-});
-
-test('Throws error if mf2 has no items', t => {
-  const mf2 = parser.mf2(getFixture('page.html'), {baseUrl: t.context.url});
-  const error = t.throws(() => mf2Properties(mf2, 'name'));
-  t.is(error.message, 'Source has no items');
 });
 
 test('Returns mf2 from URL', async t => {
