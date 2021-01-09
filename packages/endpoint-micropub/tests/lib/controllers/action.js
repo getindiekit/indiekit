@@ -24,7 +24,7 @@ test.beforeEach(async t => {
   t.context.request = request.post('/micropub');
 });
 
-test.serial.only('Creates post (form-encoded)', async t => {
+test.serial('Creates post (form-encoded)', async t => {
   const authScope = nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, {
@@ -67,7 +67,10 @@ test.serial('Creates post (JSON)', async t => {
       properties: {
         name: ['Foobar'],
         content: ['Micropub test of creating an h-entry with a JSON request containing multiple categories.'],
-        photo: ['https://website.example/photo.jpg'],
+        photo: [{
+          value: 'https://website.example/photo.jpg',
+          alt: 'Example photo'
+        }],
         category: ['test1', 'test2']
       }
     });
