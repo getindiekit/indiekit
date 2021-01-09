@@ -6,6 +6,7 @@ export const publication = {
         return {
           'properties.url': 'https://website.example/post',
           properties: {
+            type: 'entry',
             content: 'hello world',
             published: '2019-08-17T23:56:38.977+01:00',
             'mp-syndicate-to': 'https://social.example/',
