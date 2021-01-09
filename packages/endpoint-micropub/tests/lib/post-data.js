@@ -13,6 +13,7 @@ test.beforeEach(t => {
             return {
               path: 'foo',
               properties: {
+                type: 'entry',
                 content: 'hello world',
                 published: '2019-08-17T23:56:38.977+01:00',
                 category: ['foo', 'bar'],
