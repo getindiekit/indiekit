@@ -2,36 +2,6 @@ import path from 'path';
 import got from 'got';
 
 /**
- * Convert JF2 to Microformats2 object
- *
- * @param {string} jf2 JF2
- * @returns {string} Micropub action
- */
-export const jf2ToMf2 = jf2 => {
-  const mf2 = {
-    type: [`h-${jf2.type}`],
-    properties: {}
-  };
-
-  delete jf2.type;
-
-  // Convert values to arrays, ie 'a' => ['a'] and move to properties object
-  for (const key in jf2) {
-    if (Object.prototype.hasOwnProperty.call(jf2, key)) {
-      mf2.properties[key] = [].concat(jf2[key]);
-    }
-  }
-
-  // Update key for plaintext content
-  if (mf2.properties.content[0] && mf2.properties.content[0].text) {
-    mf2.properties.content[0].value = jf2.content.text;
-    delete mf2.properties.content[0].text;
-  }
-
-  return mf2;
-};
-
-/**
  * Get Micropub endpoint from server derived values
  *
  * @param {object} publication Publication configuration
@@ -81,10 +51,8 @@ export const getPostData = async (publication, url) => {
           postData = storedPostData;
         } else {
           // Import post data to database
-          const mf2 = jf2ToMf2(properties);
           const importedPostData = {
             date: new Date(),
-            mf2,
             properties,
             lastAction: 'import'
           };
