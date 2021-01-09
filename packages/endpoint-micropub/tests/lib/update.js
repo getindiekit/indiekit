@@ -33,7 +33,7 @@ test('Add properties to existing object', t => {
 
 test('Deletes individual entries for properties of an object', t => {
   const properties = {
-    name: ['Lunchtime'],
+    name: 'Lunchtime',
     category: ['foo', 'bar']
   };
   const result = deleteEntries(properties, {
@@ -44,7 +44,7 @@ test('Deletes individual entries for properties of an object', t => {
 
 test('Deletes individual entries for properties of an object (removing property if last entry removed)', t => {
   const properties = {
-    name: ['Lunchtime'],
+    name: 'Lunchtime',
     category: ['foo', 'bar']
   };
   const result = deleteEntries(properties, {
@@ -55,7 +55,7 @@ test('Deletes individual entries for properties of an object (removing property 
 
 test('Deletes individual entries for properties of an object (ignores properties that don’t exist)', t => {
   const properties = {
-    name: ['Lunchtime'],
+    name: 'Lunchtime',
     category: ['foo', 'bar']
   };
   const result = deleteEntries(properties, {
@@ -66,7 +66,7 @@ test('Deletes individual entries for properties of an object (ignores properties
 
 test('Throws error if requested deletion is not an array', t => {
   const properties = {
-    name: ['Lunchtime']
+    name: 'Lunchtime'
   };
   const error = t.throws(() => deleteEntries(properties, {
     category: 'foo'
@@ -76,7 +76,7 @@ test('Throws error if requested deletion is not an array', t => {
 
 test('Deletes property', t => {
   const properties = {
-    name: ['Lunchtime'],
+    name: 'Lunchtime',
     category: ['foo', 'bar']
   };
   const result = deleteProperties(properties, ['category']);
@@ -85,27 +85,27 @@ test('Deletes property', t => {
 
 test('Replaces property value', t => {
   const properties = {
-    name: ['Lunchtime']
+    name: 'Lunchtime'
   };
   const result = replaceEntries(properties, {
     name: ['Dinnertime']
   });
-  t.deepEqual(result.name, ['Dinnertime']);
+  t.is(result.name, 'Dinnertime');
 });
 
 test('Replaces property value (adding property if doesn’t exist)', t => {
   const properties = {
-    name: ['Lunchtime']
+    name: 'Lunchtime'
   };
   const result = replaceEntries(properties, {
     content: ['I ate a cheese sandwich']
   });
-  t.deepEqual(result.content, ['I ate a cheese sandwich']);
+  t.is(result.content, 'I ate a cheese sandwich');
 });
 
 test('Throws error if requested replacement is not an array', t => {
   const properties = {
-    name: ['Lunchtime']
+    name: 'Lunchtime'
   };
   const error = t.throws(() => replaceEntries(properties, {
     name: 'Dinnertime'

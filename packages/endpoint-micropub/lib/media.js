@@ -5,11 +5,11 @@ import got from 'got';
  * Upload attached file(s) via media endpoint
  *
  * @param {object} publication Publication configuration
- * @param {object} mf2 Microformats 2
+ * @param {object} properties JF2 properties
  * @param {object} files Files to upload
  * @returns {Array} Uploaded file locations
  */
-export const uploadMedia = async (publication, mf2, files) => {
+export const uploadMedia = async (publication, properties, files) => {
   const {bearerToken, mediaEndpoint} = publication;
 
   for await (const file of files) {
@@ -36,9 +36,9 @@ export const uploadMedia = async (publication, mf2, files) => {
 
     // Update respective media property with location of upload
     const filetype = file.fieldname.replace('[]', '');
-    mf2.properties[filetype] = mf2.properties[filetype] || [];
-    mf2.properties[filetype].push(upload.headers.location);
+    properties[filetype] = properties[filetype] || [];
+    properties[filetype].push(upload.headers.location);
   }
 
-  return mf2;
+  return properties;
 };

@@ -8,13 +8,11 @@ test.beforeEach(t => {
     publication: {
       mediaEndpoint: 'https://media-endpoint.example'
     },
-    mf2: {
-      type: ['h-entry'],
-      properties: {
-        content: ['I ate a cheese sandwich, which was nice.'],
-        category: ['foo', 'bar'],
-        audio: ['https://website.example/media/sound.mp3']
-      }
+    properties: {
+      type: 'entry',
+      content: ['I ate a cheese sandwich, which was nice.'],
+      category: ['foo', 'bar'],
+      audio: ['https://website.example/media/sound.mp3']
     },
     responseBody: filename => ({
       location: `https://website.example/media/${filename}`,
@@ -38,8 +36,8 @@ test('Uploads attached file via media endpoint', async t => {
     fieldname: 'photo',
     originalname: 'photo.jpg'
   }];
-  const result = await uploadMedia(t.context.publication, t.context.mf2, files);
-  t.deepEqual(result.properties.photo, ['https://website.example/media/photo.jpg']);
+  const result = await uploadMedia(t.context.publication, t.context.properties, files);
+  t.deepEqual(result.photo, ['https://website.example/media/photo.jpg']);
   scope.done();
 });
 
@@ -58,8 +56,8 @@ test.serial('Uploads attached files via media endpoint', async t => {
     fieldname: 'photo[]',
     originalname: 'photo2.jpg'
   }];
-  const result = await uploadMedia(t.context.publication, t.context.mf2, files);
-  t.deepEqual(result.properties.photo, [
+  const result = await uploadMedia(t.context.publication, t.context.properties, files);
+  t.deepEqual(result.photo, [
     'https://website.example/media/photo1.jpg',
     'https://website.example/media/photo2.jpg'
   ]);
@@ -73,7 +71,7 @@ test.serial('Throws error if no media endpoint URL', async t => {
     originalname: 'photo.jpg'
   }];
   const error = await t.throwsAsync(
-    uploadMedia({}, t.context.mf2, files)
+    uploadMedia({}, t.context.properties, files)
   );
   t.is(error.message, 'Missing `url` property');
 });
@@ -90,7 +88,7 @@ test.serial('Throws error uploading attached file', async t => {
     originalname: 'photo.jpg'
   }];
   const error = await t.throwsAsync(
-    uploadMedia(t.context.publication, t.context.mf2, files)
+    uploadMedia(t.context.publication, t.context.properties, files)
   );
   t.is(error.message, 'The token provided was malformed');
   scope.done();

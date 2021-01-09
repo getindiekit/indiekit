@@ -35,6 +35,7 @@ test.serial('Creates post', async t => {
     .put(uri => uri.includes('foobar'))
     .reply(200, {commit: {message: 'Message'}});
   const response = await t.context.request
+    .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .send('h=entry')
     .send('name=foobar')

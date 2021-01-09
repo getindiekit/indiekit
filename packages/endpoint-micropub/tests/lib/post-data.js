@@ -20,16 +20,6 @@ test.beforeEach(t => {
                 'mp-syndicate-to': 'https://archive.org/',
                 'post-type': 'note',
                 url
-              },
-              mf2: {
-                type: ['h-entry'],
-                properties: {
-                  content: ['hello world'],
-                  published: ['2019-08-17T23:56:38.977+01:00'],
-                  category: ['foo', 'bar'],
-                  'mp-slug': ['baz'],
-                  'mp-syndicate-to': ['https://archive.org/']
-                }
               }
             };
           }
@@ -41,15 +31,13 @@ test.beforeEach(t => {
 });
 
 test('Creates post data', async t => {
-  const mf2 = {
-    type: ['h-entry'],
-    properties: {
-      published: ['2020-07-26T20:10:57.062Z'],
-      name: ['Foo'],
-      'mp-slug': ['foo']
-    }
+  const properties = {
+    type: 'entry',
+    published: '2020-07-26T20:10:57.062Z',
+    name: 'Foo',
+    'mp-slug': 'foo'
   };
-  const result = await postData.create(t.context.publication, mf2);
+  const result = await postData.create(t.context.publication, properties);
   t.is(result.properties['post-type'], 'note');
   t.is(result.properties['mp-slug'], 'foo');
   t.is(result.properties.type, 'entry');
@@ -57,21 +45,19 @@ test('Creates post data', async t => {
 });
 
 test('Throws error creating post data without publication configuration', async t => {
-  const mf2 = {
-    type: ['h-entry'],
-    properties: {
-      published: ['2020-07-26T20:10:57.062Z'],
-      name: ['Foo'],
-      'mp-slug': ['foo']
-    }
+  const properties = {
+    type: 'entry',
+    published: '2020-07-26T20:10:57.062Z',
+    name: 'Foo',
+    'mp-slug': 'foo'
   };
-  const error = await t.throwsAsync(postData.create(false, mf2));
+  const error = await t.throwsAsync(postData.create(false, properties));
   t.is(error.message, 'No publication configuration provided');
 });
 
-test('Throws error creating post data without microformats data', async t => {
+test('Throws error creating post data without properties', async t => {
   const error = await t.throwsAsync(postData.create(t.context.publication, false));
-  t.is(error.message, 'No microformats included in request');
+  t.is(error.message, 'No properties included in request');
 });
 
 test('Reads post data', async t => {
@@ -93,28 +79,24 @@ test('Updates post by adding properties', async t => {
   const operation = {add: {syndication: ['http://website.example']}};
   const result = await postData.update(t.context.publication, t.context.url, operation);
   t.truthy(result.properties.syndication);
-  t.truthy(result.mf2.properties.syndication);
 });
 
 test('Updates post by replacing properties', async t => {
   const operation = {replace: {content: ['hello moon']}};
   const result = await postData.update(t.context.publication, t.context.url, operation);
   t.is(result.properties.content, 'hello moon');
-  t.deepEqual(result.mf2.properties.content, ['hello moon']);
 });
 
 test('Updates post by deleting entries', async t => {
   const operation = {delete: {category: ['foo']}};
   const result = await postData.update(t.context.publication, t.context.url, operation);
-  t.is(result.properties.category, 'bar');
-  t.deepEqual(result.mf2.properties.category, ['bar']);
+  t.deepEqual(result.properties.category, ['bar']);
 });
 
 test('Updates post by deleting properties', async t => {
   const operation = {delete: ['category']};
   const result = await postData.update(t.context.publication, t.context.url, operation);
   t.falsy(result.properties.category);
-  t.falsy(result.mf2.properties.category);
 });
 
 test('Updates post by adding, deleting and updating properties', async t => {
@@ -129,11 +111,8 @@ test('Updates post by adding, deleting and updating properties', async t => {
   };
   const result = await postData.update(t.context.publication, t.context.url, operation);
   t.is(result.properties.content, 'updated content');
-  t.is(result.mf2.properties.content[0], 'updated content');
   t.truthy(result.properties.syndication);
-  t.truthy(result.mf2.properties.syndication);
   t.falsy(result.properties['mp-syndicate-to']);
-  t.falsy(result.mf2.properties['mp-syndicate-to']);
 });
 
 test('Throws error updating post data without publication configuration', async t => {
