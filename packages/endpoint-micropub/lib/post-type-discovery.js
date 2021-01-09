@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 /**
  * Accepts a JF2 object and attempts to determine the post type
  *
@@ -9,97 +11,72 @@ export const getPostType = properties => {
     return properties.type;
   }
 
-  /**
-   * Checks that the microformats object contains the givin property and it is not empty
-   *
-   * @param {string} property Property name to check for
-   * @returns {boolean} True if exists and not empty
-   */
-  const propertyExists = property =>
-    properties &&
-    properties[property] &&
-    typeof properties[property] !== 'undefined' &&
-    properties[property] !== null &&
-    properties[property] !== '';
-
   // Then continue to base post type discovery
-  if (propertyExists('rsvp')) {
+  if (_.has(properties, 'rsvp')) {
     return 'rsvp';
   }
 
-  if (propertyExists('in-reply-to')) {
+  if (_.has(properties, 'in-reply-to')) {
     return 'reply';
   }
 
-  if (propertyExists('repost-of')) {
+  if (_.has(properties, 'repost-of')) {
     return 'repost';
   }
 
-  if (propertyExists('bookmark-of')) {
+  if (_.has(properties, 'bookmark-of')) {
     return 'bookmark';
   }
 
-  if (propertyExists('quotation-of')) {
+  if (_.has(properties, 'quotation-of')) {
     return 'quotation';
   }
 
-  if (propertyExists('like-of')) {
+  if (_.has(properties, 'like-of')) {
     return 'like';
   }
 
-  if (propertyExists('checkin')) {
+  if (_.has(properties, 'checkin')) {
     return 'checkin';
   }
 
-  if (propertyExists('listen-of')) {
+  if (_.has(properties, 'listen-of')) {
     return 'listen';
   }
 
-  if (propertyExists('read-of')) {
+  if (_.has(properties, 'read-of')) {
     return 'read';
   }
 
-  if (propertyExists('watch-of')) {
+  if (_.has(properties, 'watch-of')) {
     return 'watch';
   }
 
-  if (propertyExists('isbn')) {
-    return 'book';
-  }
-
-  if (propertyExists('video')) {
+  if (_.has(properties, 'video')) {
     return 'video';
   }
 
-  if (propertyExists('audio')) {
+  if (_.has(properties, 'audio')) {
     return 'audio';
   }
 
-  if (propertyExists('ate')) {
-    return 'ate';
-  }
-
-  if (propertyExists('drank')) {
-    return 'drank';
+  if (_.has(properties, 'photo')) {
+    return 'photo';
   }
 
   if (properties.children && Array.isArray(properties.children) && properties.children.length > 0) {
     return 'collection';
   }
 
-  if (propertyExists('photo')) {
-    return 'photo';
-  }
-
-  // Get the main content of the post
+  // Check that `name` value is not a prefix of processed `content` value
   let content = null;
-  if (propertyExists('content')) {
+  if (_.has(properties, 'content')) {
     content = properties.content.text || properties.content.html || properties.content;
-  } else if (propertyExists('summary')) {
+  } else if (_.has(properties, 'summary')) {
     content = properties.summary;
   }
 
-  if (propertyExists('name') && propertyExists('content')) {
+  if (_.has(properties, 'name') && _.has(properties, 'content')) {
     const name = properties.name.trim();
     if (!content.startsWith(name)) {
       return 'article';
