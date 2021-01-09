@@ -42,22 +42,16 @@ export const formEncodedToJf2 = body => {
 };
 
 /**
- * Get JF2 object
+ * Normalise JF2
  *
  * @param {object} publication Publication configuration
- * @param {object} properties JF2 properties
- * @returns {object} Normalised Microformats2 object
+ * @param {object} properties Source JF2 properties
+ * @returns {object} Normalised JF2 properties
  */
-export const getJf2 = (publication, properties) => {
+export const normaliseJf2 = (publication, properties) => {
   const {me, slugSeparator, syndicationTargets, timeZone} = publication;
 
-  const syndidateTo = getSyndicateToProperty(properties, syndicationTargets);
-  if (syndidateTo) {
-    properties['mp-syndicate-to'] = syndidateTo;
-  }
-
   properties.published = getPublishedProperty(properties, timeZone);
-  properties['mp-slug'] = getSlugProperty(properties, slugSeparator);
 
   if (properties.content) {
     properties.content = getContentProperty(properties);
@@ -73,6 +67,12 @@ export const getJf2 = (publication, properties) => {
 
   if (properties.video) {
     properties.video = getVideoProperty(properties, me);
+  }
+
+  properties['mp-slug'] = getSlugProperty(properties, slugSeparator);
+
+  if (properties['mp-syndicate-to'] && syndicationTargets) {
+    properties['mp-syndicate-to'] = getSyndicateToProperty(properties, syndicationTargets);
   }
 
   return properties;
@@ -185,7 +185,7 @@ export const getSlugProperty = (properties, separator) => {
 };
 
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
-  const syndication = [];
+  const proprerty = [];
 
   if (syndicationTargets.length === 0) {
     return;
@@ -197,11 +197,11 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
     const serverForced = target.options && target.options.forced;
 
     if (clientChecked || serverForced) {
-      syndication.push(target.uid);
+      proprerty.push(target.uid);
     }
   }
 
-  if (syndication.length > 0) {
-    return syndication;
+  if (proprerty.length > 0) {
+    return proprerty;
   }
 };
