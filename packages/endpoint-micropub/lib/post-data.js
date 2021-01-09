@@ -1,9 +1,9 @@
 import HttpError from 'http-errors';
+import {getPostType} from './post-type-discovery.js';
 import * as update from './update.js';
 import {
   renderPath,
   getPermalink,
-  getPostType,
   getPostTypeConfig
 } from './utils.js';
 
