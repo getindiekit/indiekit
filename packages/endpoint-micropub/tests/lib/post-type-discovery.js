@@ -219,30 +219,3 @@ test('Discovers event post type', t => {
   });
   t.is(result, 'event');
 });
-
-test('Discovers book post type', t => {
-  const result = getPostType({
-    type: 'entry',
-    name: 'Book title',
-    isbn: 'isbnnumber'
-  });
-  t.is(result, 'book');
-});
-
-test('Discovers ate post type', t => {
-  const result = getPostType({
-    type: 'entry',
-    name: 'Ate title',
-    ate: 'Cheese sandwich'
-  });
-  t.is(result, 'ate');
-});
-
-test('Discovers drank post type', t => {
-  const result = getPostType({
-    type: 'entry',
-    name: 'Drank title',
-    drank: 'Water'
-  });
-  t.is(result, 'drank');
-});
