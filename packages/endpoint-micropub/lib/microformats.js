@@ -12,17 +12,14 @@ import {
 } from './utils.js';
 
 /**
- * Create Microformats2 object from form-encoded request
+ * Create JF2 object from form-encoded request
  *
  * @param {string} body Form-encoded request body
  * @returns {string} Micropub action
  */
-export const formEncodedToMf2 = body => {
-  const type = body.h ? ['h-' + body.h] : ['h-entry'];
-
-  const mf2 = {
-    type,
-    properties: {}
+export const formEncodedToJf2 = body => {
+  const jf2 = {
+    type: body.h ? body.h : 'entry'
   };
 
   for (const key in body) {
@@ -38,49 +35,49 @@ export const formEncodedToMf2 = body => {
       const isStringValue = typeof body[key] === 'string';
       const value = isStringValue ? decodeQueryParameter(body[key]) : body[key];
 
-      // Convert values to arrays, ie 'a' => ['a']
-      mf2.properties[key] = [].concat(value);
+      // Adds values to JF2 object
+      jf2[key] = value;
     }
   }
 
-  return mf2;
+  return jf2;
 };
 
 /**
- * Get Microformats2 object
+ * Get JF2 object
  *
  * @param {object} publication Publication configuration
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @returns {object} Normalised Microformats2 object
  */
-export const getMf2 = (publication, mf2) => {
+export const getJf2 = (publication, properties) => {
   const {me, slugSeparator, syndicationTargets, timeZone} = publication;
 
-  const syndidateTo = getSyndicateToProperty(mf2, syndicationTargets);
+  const syndidateTo = getSyndicateToProperty(properties, syndicationTargets);
   if (syndidateTo) {
-    mf2.properties['mp-syndicate-to'] = syndidateTo;
+    properties['mp-syndicate-to'] = syndidateTo;
   }
 
-  mf2.properties.published = getPublishedProperty(mf2, timeZone);
-  mf2.properties['mp-slug'] = getSlugProperty(mf2, slugSeparator);
+  properties.published = getPublishedProperty(properties, timeZone);
+  properties['mp-slug'] = getSlugProperty(properties, slugSeparator);
 
-  if (mf2.properties.content) {
-    mf2.properties.content = getContentProperty(mf2);
+  if (properties.content) {
+    properties.content = getContentProperty(properties);
   }
 
-  if (mf2.properties.audio) {
-    mf2.properties.audio = getAudioProperty(mf2, me);
+  if (properties.audio) {
+    properties.audio = getAudioProperty(properties, me);
   }
 
-  if (mf2.properties.photo) {
-    mf2.properties.photo = getPhotoProperty(mf2, me);
+  if (properties.photo) {
+    properties.photo = getPhotoProperty(properties, me);
   }
 
-  if (mf2.properties.video) {
-    mf2.properties.video = getVideoProperty(mf2, me);
+  if (properties.video) {
+    properties.video = getVideoProperty(properties, me);
   }
 
-  return mf2;
+  return properties;
 };
 
 /**
@@ -124,13 +121,12 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 /**
  * Get audio property
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @param {object} me Publication URL
  * @returns {Array} Microformats2 `audio` property
  */
-export const getAudioProperty = (mf2, me) => {
-  const {audio} = mf2.properties;
-  return audio.map(item => ({
+export const getAudioProperty = (properties, me) => {
+  return properties.audio.map(item => ({
     url: relativeMediaPath(item.value || item, me)
   }));
 };
@@ -138,59 +134,58 @@ export const getAudioProperty = (mf2, me) => {
 /**
  * Get content property (HTML, else object value, else property value)
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @returns {Array} Microformats2 `content` property
  */
-export const getContentProperty = mf2 => {
-  const {content} = mf2.properties;
-  let {value, html} = content[0];
+export const getContentProperty = properties => {
+  const {content} = properties;
+  let {html, text} = content;
 
   // Return existing text and HTML representations
-  if (value && html) {
+  if (html && text) {
     return content;
   }
 
   // If HTML representation only, add text representation
-  if (!value && html) {
-    value = htmlToMarkdown(html);
-    return new Array({html, value});
+  if (html && !text) {
+    text = htmlToMarkdown(html);
+    return {html, text};
   }
 
   // Return property with text and HTML representations
-  value = value || content[0];
-  html = markdownToHtml(value);
-  return new Array({html, value});
+  text = text || content;
+  html = markdownToHtml(text);
+  return {html, text};
 };
 
 /**
  * Get photo property (adding text alternatives where provided)
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @param {object} me Publication URL
  * @returns {Array} Microformats2 `photo` property
  */
-export const getPhotoProperty = (mf2, me) => {
-  const {photo} = mf2.properties;
-  const photoAlt = mf2.properties['mp-photo-alt'];
+export const getPhotoProperty = (properties, me) => {
+  const {photo} = properties;
+  const photoAlt = properties['mp-photo-alt'];
   const property = photo.map((item, index) => ({
     url: relativeMediaPath(item.value || item, me),
     ...item.alt && {alt: item.alt},
     ...photoAlt && {alt: photoAlt[index]}
   }));
-  delete mf2.properties['mp-photo-alt'];
+  delete properties['mp-photo-alt'];
   return property;
 };
 
 /**
  * Get video property
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @param {object} me Publication URL
  * @returns {Array} Microformats2 `video` property
  */
-export const getVideoProperty = (mf2, me) => {
-  const {video} = mf2.properties;
-  return video.map(item => ({
+export const getVideoProperty = (properties, me) => {
+  return properties.video.map(item => ({
     url: relativeMediaPath(item.value || item, me)
   }));
 };
@@ -198,42 +193,38 @@ export const getVideoProperty = (mf2, me) => {
 /**
  * Get published date (based on microformats2 data, else current date)
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @param {object} timeZone Publication time zone
  * @returns {Array} Microformats2 `published` property
  */
-export const getPublishedProperty = (mf2, timeZone) => {
-  const {published} = mf2.properties;
-  const dateString = published ? published[0] : false;
-  const property = getDate(timeZone, dateString);
-  return new Array(property);
+export const getPublishedProperty = (properties, timeZone) => {
+  return getDate(timeZone, properties.published);
 };
 
 /**
  * Get slug
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} properties JF2 properties
  * @param {string} separator Slug separator
  * @returns {Array} Array containing slug value
  */
-export const getSlugProperty = (mf2, separator) => {
-  const suggested = mf2.properties['mp-slug'];
-  const {name} = mf2.properties;
+export const getSlugProperty = (properties, separator) => {
+  const suggested = properties['mp-slug'];
+  const {name} = properties;
 
   let string;
-  if (suggested && suggested[0]) {
-    string = suggested[0];
-  } else if (name && name[0]) {
-    string = excerptString(name[0], 5);
+  if (suggested) {
+    string = suggested;
+  } else if (name) {
+    string = excerptString(name, 5);
   } else {
     string = randomString();
   }
 
-  const slug = slugifyString(string, separator);
-  return new Array(slug);
+  return slugifyString(string, separator);
 };
 
-export const getSyndicateToProperty = (mf2, syndicationTargets) => {
+export const getSyndicateToProperty = (properties, syndicationTargets) => {
   const syndication = [];
 
   if (syndicationTargets.length === 0) {
@@ -241,7 +232,7 @@ export const getSyndicateToProperty = (mf2, syndicationTargets) => {
   }
 
   for (const target of syndicationTargets) {
-    const syndicateTo = mf2.properties && mf2.properties['mp-syndicate-to'];
+    const syndicateTo = properties && properties['mp-syndicate-to'];
     const clientChecked = syndicateTo && syndicateTo.includes(target.uid);
     const serverForced = target.options && target.options.forced;
 

@@ -4,8 +4,8 @@ import dateFns from 'date-fns';
 import parser from 'microformats-parser';
 import {getFixture} from '../helpers/fixture.js';
 import {
-  formEncodedToMf2,
-  getMf2,
+  formEncodedToJf2,
+  getJf2,
   getMf2Properties,
   getAudioProperty,
   getContentProperty,
@@ -35,61 +35,59 @@ test.beforeEach(t => {
   };
 });
 
-test('Creates Microformats2 object from form-encoded request', t => {
-  const result = formEncodedToMf2({
+test('Creates JF2 object from form-encoded request', t => {
+  const result = formEncodedToJf2({
     h: 'entry',
     content: 'I+ate+a+cheese+sandwich,+which+was+nice.',
     category: ['foo', 'bar']
   });
   t.deepEqual(result, {
-    type: ['h-entry'],
-    properties: {
-      content: ['I ate a cheese sandwich, which was nice.'],
-      category: ['foo', 'bar']
-    }
+    type: 'entry',
+    content: 'I ate a cheese sandwich, which was nice.',
+    category: ['foo', 'bar']
   });
 });
 
-test('Gets Microformats2 object (few properties)', t => {
-  const mf2 = JSON.parse(getFixture('content-provided.json'));
-  const result = getMf2(t.context.publication, mf2);
-  t.is(result.type[0], 'h-entry');
-  t.is(result.properties.name[0], 'Lunchtime');
-  t.is(result.properties['mp-slug'][0], 'lunchtime');
-  t.deepEqual(result.properties.content, [{
-    value: 'I ate a *cheese* sandwich, which was nice.',
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
-  }]);
-  t.falsy(result.properties.audio);
-  t.falsy(result.properties.photo);
-  t.falsy(result.properties.video);
-  t.true(isValid(parseISO(result.properties.published[0])));
+test('Gets JF2 object (few properties)', t => {
+  const properties = JSON.parse(getFixture('content-provided.jf2'));
+  const result = getJf2(t.context.publication, properties);
+  t.is(result.type, 'entry');
+  t.is(result.name, 'Lunchtime');
+  t.is(result['mp-slug'], 'lunchtime');
+  t.deepEqual(result.content, {
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
+  t.falsy(result.audio);
+  t.falsy(result.photo);
+  t.falsy(result.video);
+  t.true(isValid(parseISO(result.published)));
 });
 
-test('Gets Microformats2 object (all properties)', t => {
-  const mf2 = JSON.parse(getFixture('mf2.json'));
-  const result = getMf2(t.context.publication, mf2);
-  t.is(result.type[0], 'h-entry');
-  t.is(result.properties.name[0], 'Lunchtime');
-  t.deepEqual(result.properties.content, [{
-    value: 'I ate a *cheese* sandwich, which was nice.',
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
-  }]);
-  t.deepEqual(result.properties.audio, [
+test('Gets JF2 object (all properties)', t => {
+  const properties = JSON.parse(getFixture('entry.jf2'));
+  const result = getJf2(t.context.publication, properties);
+  t.is(result.type, 'entry');
+  t.is(result.name, 'Lunchtime');
+  t.deepEqual(result.content, {
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
+  t.deepEqual(result.audio, [
     {url: 'http://foo.bar/baz.mp3'},
     {url: 'http://foo.bar/qux.mp3'}
   ]);
-  t.deepEqual(result.properties.photo, [
+  t.deepEqual(result.photo, [
     {url: 'http://foo.bar/baz.jpg', alt: 'Baz'},
     {url: 'http://foo.bar/qux.jpg', alt: 'Qux'}
   ]);
-  t.deepEqual(result.properties.video, [
+  t.deepEqual(result.video, [
     {url: 'http://foo.bar/baz.mp4'},
     {url: 'http://foo.bar/qux.mp4'}
   ]);
-  t.deepEqual(result.properties.category, ['lunch', 'food']);
-  t.true(isValid(parseISO(result.properties.published[0])));
-  t.is(result.properties['mp-syndicate-to'][0], 'https://social.example/');
+  t.deepEqual(result.category, ['lunch', 'food']);
+  t.true(isValid(parseISO(result.published)));
+  t.deepEqual(result['mp-syndicate-to'], ['https://social.example/']);
 });
 
 test('Returns mf2 item with all properties', t => {
@@ -140,8 +138,8 @@ test('Throws error if mf2 has no items', t => {
 });
 
 test('Gets audio property', t => {
-  const mf2 = JSON.parse(getFixture('audio-provided-value.json'));
-  const result = getAudioProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('audio-provided-value.jf2'));
+  const result = getAudioProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.mp3'},
     {url: 'https://foo.bar/qux.mp3'}
@@ -149,8 +147,8 @@ test('Gets audio property', t => {
 });
 
 test('Gets normalised audio property', t => {
-  const mf2 = JSON.parse(getFixture('audio-provided.json'));
-  const result = getAudioProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('audio-provided.jf2'));
+  const result = getAudioProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.mp3'},
     {url: 'https://foo.bar/qux.mp3'}
@@ -158,44 +156,44 @@ test('Gets normalised audio property', t => {
 });
 
 test('Gets existing text and HTML values from `content` property', t => {
-  const mf2 = JSON.parse(getFixture('content-provided-html-value.json'));
-  const result = getContentProperty(mf2);
-  t.deepEqual(result, [{
-    value: 'I ate a *cheese* sandwich, which was nice.',
-    html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>'
-  }]);
+  const properties = JSON.parse(getFixture('content-provided-html-value.jf2'));
+  const result = getContentProperty(properties);
+  t.deepEqual(result, {
+    html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
 });
 
 test('Gets existing HTML from `content` property and adds text value', t => {
-  const mf2 = JSON.parse(getFixture('content-provided-html.json'));
-  const result = getContentProperty(mf2);
-  t.deepEqual(result, [{
-    value: 'I ate a *cheese* sandwich, which was nice.',
-    html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>'
-  }]);
+  const properties = JSON.parse(getFixture('content-provided-html.jf2'));
+  const result = getContentProperty(properties);
+  t.deepEqual(result, {
+    html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
 });
 
-test('Gets content from `content[0].value` property', t => {
-  const mf2 = JSON.parse(getFixture('content-provided-value.json'));
-  const result = getContentProperty(mf2);
-  t.deepEqual(result, [{
-    value: 'I ate a *cheese* sandwich, which was nice.',
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
-  }]);
+test('Gets content from `content.text` property', t => {
+  const properties = JSON.parse(getFixture('content-provided-value.jf2'));
+  const result = getContentProperty(properties);
+  t.deepEqual(result, {
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
 });
 
-test('Gets content from `content[0]` property', t => {
-  const mf2 = JSON.parse(getFixture('content-provided.json'));
-  const result = getContentProperty(mf2);
-  t.deepEqual(result, [{
-    value: 'I ate a *cheese* sandwich, which was nice.',
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
-  }]);
+test('Gets content from `content` property', t => {
+  const properties = JSON.parse(getFixture('content-provided.jf2'));
+  const result = getContentProperty(properties);
+  t.deepEqual(result, {
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
 });
 
 test('Gets photo property', t => {
-  const mf2 = JSON.parse(getFixture('photo-provided.json'));
-  const result = getPhotoProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('photo-provided.jf2'));
+  const result = getPhotoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.jpg'},
     {url: 'https://foo.bar/qux.jpg'}
@@ -203,8 +201,8 @@ test('Gets photo property', t => {
 });
 
 test('Gets normalised photo property', t => {
-  const mf2 = JSON.parse(getFixture('photo-provided-value-alt.json'));
-  const result = getPhotoProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('photo-provided-value-alt.jf2'));
+  const result = getPhotoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.jpg', alt: 'Baz'},
     {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
@@ -212,8 +210,8 @@ test('Gets normalised photo property', t => {
 });
 
 test('Gets normalised photo property, adding provided text alternatives', t => {
-  const mf2 = JSON.parse(getFixture('photo-provided-mp-photo-alt.json'));
-  const result = getPhotoProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('photo-provided-mp-photo-alt.jf2'));
+  const result = getPhotoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.jpg', alt: 'Baz'},
     {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
@@ -221,8 +219,8 @@ test('Gets normalised photo property, adding provided text alternatives', t => {
 });
 
 test('Gets video property', t => {
-  const mf2 = JSON.parse(getFixture('video-provided-value.json'));
-  const result = getVideoProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('video-provided-value.jf2'));
+  const result = getVideoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.mp4'},
     {url: 'https://foo.bar/qux.mp4'}
@@ -230,8 +228,8 @@ test('Gets video property', t => {
 });
 
 test('Gets normalised video property', t => {
-  const mf2 = JSON.parse(getFixture('video-provided.json'));
-  const result = getVideoProperty(mf2, 'https://website.example/');
+  const properties = JSON.parse(getFixture('video-provided.jf2'));
+  const result = getVideoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
     {url: '/baz.mp4'},
     {url: 'https://foo.bar/qux.mp4'}
@@ -239,127 +237,127 @@ test('Gets normalised video property', t => {
 });
 
 test('Gets date from `published` property', t => {
-  const mf2 = JSON.parse(getFixture('published-provided.json'));
-  const result = getPublishedProperty(mf2);
-  t.is(result[0], '2019-01-02T03:04:05.678Z');
+  const properties = JSON.parse(getFixture('published-provided.jf2'));
+  const result = getPublishedProperty(properties);
+  t.is(result, '2019-01-02T03:04:05.678Z');
 });
 
 test('Gets date from `published` property (short date)', t => {
-  const mf2 = JSON.parse(getFixture('published-provided-short.json'));
-  const result = getPublishedProperty(mf2);
-  t.is(result[0], '2019-01-02T00:00:00.000Z');
+  const properties = JSON.parse(getFixture('published-provided-short.jf2'));
+  const result = getPublishedProperty(properties);
+  t.is(result, '2019-01-02T00:00:00.000Z');
 });
 
 test('Gets date by using current date', t => {
-  const mf2 = JSON.parse(getFixture('published-missing.json'));
-  const result = getPublishedProperty(mf2);
-  t.true(isValid(parseISO(result[0])));
+  const properties = JSON.parse(getFixture('published-missing.jf2'));
+  const result = getPublishedProperty(properties);
+  t.true(isValid(parseISO(result)));
 });
 
 test('Derives slug from `mp-slug` property', t => {
-  const mf2 = JSON.parse(getFixture('slug-provided.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.is(slug[0], 'cheese-sandwich');
+  const properties = JSON.parse(getFixture('slug-provided.jf2'));
+  const slug = getSlugProperty(properties, '-');
+  t.is(slug, 'cheese-sandwich');
 });
 
 test('Derives slug from unslugified `mp-slug` property', t => {
-  const mf2 = JSON.parse(getFixture('slug-provided-unslugified.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.is(slug[0], 'cheese-sandwich');
+  const properties = JSON.parse(getFixture('slug-provided-unslugified.jf2'));
+  const slug = getSlugProperty(properties, '-');
+  t.is(slug, 'cheese-sandwich');
 });
 
 test('Derives slug, ignoring empty `mp-slug` property', t => {
-  const mf2 = JSON.parse(getFixture('slug-provided-empty.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.is(slug[0], 'i-ate-a-cheese-sandwich');
+  const properties = JSON.parse(getFixture('slug-provided-empty.jf2'));
+  const slug = getSlugProperty(properties, '-');
+  t.is(slug, 'i-ate-a-cheese-sandwich');
 });
 
 test('Derives slug from `name` property', t => {
-  const mf2 = JSON.parse(getFixture('slug-missing.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.is(slug[0], 'i-ate-a-cheese-sandwich');
+  const properties = JSON.parse(getFixture('slug-missing.jf2'));
+  const slug = getSlugProperty(properties, '-');
+  t.is(slug, 'i-ate-a-cheese-sandwich');
 });
 
 test('Derives slug by generating random number', t => {
-  const mf2 = JSON.parse(getFixture('slug-missing-no-name.json'));
-  const slug = getSlugProperty(mf2, '-');
-  t.regex(slug[0], /[\d\w]{5}/g);
+  const properties = JSON.parse(getFixture('slug-missing-no-name.jf2'));
+  const slug = getSlugProperty(properties, '-');
+  t.regex(slug, /[\d\w]{5}/g);
 });
 
 test('Does not add syndication target if no syndicators', t => {
-  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const properties = JSON.parse(getFixture('syndicate-to-provided.jf2'));
   const syndicationTargets = [];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  const result = getSyndicateToProperty(properties, syndicationTargets);
   t.falsy(result);
 });
 
 test('Adds syndication target checked by client', t => {
-  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const properties = JSON.parse(getFixture('syndicate-to-provided.jf2'));
   const syndicationTargets = [{
     uid: 'https://example.website/'
   }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
-  t.is(result[0], 'https://example.website/');
+  const result = getSyndicateToProperty(properties, syndicationTargets);
+  t.deepEqual(result, ['https://example.website/']);
 });
 
 test('Adds syndication target not checked by client but forced by server', t => {
-  const mf2 = false;
+  const properties = false;
   const syndicationTargets = [{
     uid: 'https://example.website/',
     options: {forced: true}
   }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
-  t.is(result[0], 'https://example.website/');
+  const result = getSyndicateToProperty(properties, syndicationTargets);
+  t.deepEqual(result, ['https://example.website/']);
 });
 
 test('Adds syndication target checked by client and forced by server', t => {
-  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const properties = JSON.parse(getFixture('syndicate-to-provided.jf2'));
   const syndicationTargets = [{
     uid: 'https://example.website/',
     options: {forced: true}
   }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
-  t.is(result[0], 'https://example.website/');
+  const result = getSyndicateToProperty(properties, syndicationTargets);
+  t.deepEqual(result, ['https://example.website/']);
 });
 
 test('Adds syndication targets, one checked by client, one forced by server', t => {
-  const mf2 = JSON.parse(getFixture('syndicate-to-provided.json'));
+  const properties = JSON.parse(getFixture('syndicate-to-provided.jf2'));
   const syndicationTargets = [{
     uid: 'https://example.website/'
   }, {
     uid: 'https://another-example.website/',
     options: {forced: true}
   }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  const result = getSyndicateToProperty(properties, syndicationTargets);
   t.deepEqual(result, ['https://example.website/', 'https://another-example.website/']);
 });
 
 test('Doesn’t add unavilable syndication target', t => {
-  const mf2 = false;
+  const properties = false;
   const syndicationTargets = [{
     uid: 'https://example.website/'
   }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  const result = getSyndicateToProperty(properties, syndicationTargets);
   t.falsy(result);
 });
 
 test('Doesn’t add unchecked syndication target', t => {
-  const mf2 = {properties: {
+  const properties = {properties: {
     'syndicate-to': 'https://another.example'}
   };
   const syndicationTargets = [{
     uid: 'https://example.website/'
   }];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  const result = getSyndicateToProperty(properties, syndicationTargets);
   t.falsy(result);
 });
 
 test('Doesn’t add unavailable syndication target', t => {
-  const mf2 = {properties: {
+  const properties = {properties: {
     'syndicate-to': 'https://another.example'}
   };
   const syndicationTargets = [];
-  const result = getSyndicateToProperty(mf2, syndicationTargets);
+  const result = getSyndicateToProperty(properties, syndicationTargets);
   t.falsy(result);
 });
 

@@ -3,20 +3,20 @@ import _ from 'lodash';
 /**
  * Add properties to object
  *
- * @param {object} object Object to update
- * @param {object} additions Properties to add
+ * @param {object} properties JF2 properties
+ * @param {object} additions Properties to add (mf2)
  * @returns {object} Updated object
  */
-export const addProperties = (object, additions) => {
+export const addProperties = (properties, additions) => {
   for (const key in additions) {
     if (Object.prototype.hasOwnProperty.call(additions, key)) {
       const newValue = additions[key];
-      const existingValue = object[key];
+      const existingValue = properties[key];
 
       // If no existing value, add it
       if (!existingValue) {
-        object[key] = newValue;
-        return object;
+        properties[key] = newValue;
+        return properties;
       }
 
       // If existing value, add to it
@@ -27,8 +27,8 @@ export const addProperties = (object, additions) => {
           updatedValue.push(value);
         }
 
-        object = _.set(object, key, updatedValue);
-        return object;
+        properties = _.set(properties, key, updatedValue);
+        return properties;
       }
     }
   }
@@ -37,11 +37,11 @@ export const addProperties = (object, additions) => {
 /**
  * Replace entries of a property. If property doesn’t exist, create it.
  *
- * @param {object} object Object to update
- * @param {object} replacements Properties to replace
+ * @param {object} properties JF2 properties
+ * @param {object} replacements Properties to replace (mf2)
  * @returns {object} Updated object
  */
-export const replaceEntries = (object, replacements) => {
+export const replaceEntries = (properties, replacements) => {
   for (const key in replacements) {
     if (Object.prototype.hasOwnProperty.call(replacements, key)) {
       const value = replacements[key];
@@ -50,21 +50,21 @@ export const replaceEntries = (object, replacements) => {
         throw new TypeError('Replacement value should be an array');
       }
 
-      object = _.set(object, key, value);
+      properties = _.set(properties, key, value[0]);
     }
   }
 
-  return object;
+  return properties;
 };
 
 /**
  * Delete individual entries for properties of an object
  *
- * @param {object} object Object to update
- * @param {object} deletions Property entries to delete
+ * @param {object} properties JF2 properties
+ * @param {object} deletions Property entries to delete (mf2)
  * @returns {object} Updated object
  */
-export const deleteEntries = (object, deletions) => {
+export const deleteEntries = (properties, deletions) => {
   for (const key in deletions) {
     if (Object.prototype.hasOwnProperty.call(deletions, key)) {
       const valuesToDelete = deletions[key];
@@ -73,9 +73,9 @@ export const deleteEntries = (object, deletions) => {
         throw new TypeError(`${key} should be an array`);
       }
 
-      const values = object[key];
+      const values = properties[key];
       if (!valuesToDelete || !values) {
-        return object;
+        return properties;
       }
 
       for (const value of valuesToDelete) {
@@ -85,28 +85,28 @@ export const deleteEntries = (object, deletions) => {
         }
 
         if (values.length === 0) {
-          delete object[key]; // Delete property if no values remain
+          delete properties[key]; // Delete property if no values remain
         } else {
-          object[key] = values;
+          properties[key] = values;
         }
       }
     }
   }
 
-  return object;
+  return properties;
 };
 
 /**
  * Delete properties of an object
  *
- * @param {object} object Object to update
- * @param {Array} deletions Properties to delete
+ * @param {object} properties JF2 properties
+ * @param {Array} deletions Properties to delete (mf2)
  * @returns {object} Updated object
  */
-export const deleteProperties = (object, deletions) => {
+export const deleteProperties = (properties, deletions) => {
   for (const key of deletions) {
-    delete object[key];
+    delete properties[key];
   }
 
-  return object;
+  return properties;
 };

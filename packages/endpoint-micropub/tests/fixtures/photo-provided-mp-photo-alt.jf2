@@ -1,0 +1,9 @@
+{
+  "type": "entry",
+  "name": "Photo",
+  "photo": [
+    "https://website.example/baz.jpg",
+    "https://foo.bar/qux.jpg"
+  ],
+  "mp-photo-alt": ["Baz", "Qux"]
+}
