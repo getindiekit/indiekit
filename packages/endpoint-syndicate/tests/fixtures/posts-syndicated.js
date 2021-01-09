@@ -4,6 +4,7 @@ export const publication = {
     findOne: async () => ({
       'properties.url': 'https://website.example/syndicated-post',
       properties: {
+        type: 'entry',
         content: 'hello world',
         published: '2019-08-17T23:56:38.977+01:00',
         syndication: 'https://social.example/status/1',
