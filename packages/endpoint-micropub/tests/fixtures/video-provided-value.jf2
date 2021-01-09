@@ -2,8 +2,8 @@
   "type": "entry",
   "name": "Video",
   "video": [{
-    "value": "https://website.example/baz.mp4"
+    "url": "https://website.example/baz.mp4"
   }, {
-    "value": "https://foo.bar/qux.mp4"
+    "url": "https://foo.bar/qux.mp4"
   }]
 }

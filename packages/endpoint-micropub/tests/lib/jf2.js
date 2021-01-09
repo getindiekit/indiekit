@@ -10,7 +10,7 @@ import {
   getPublishedProperty,
   getSlugProperty,
   getSyndicateToProperty,
-  normaliseJf2,
+  normaliseJf2
 } from '../../lib/jf2.js';
 
 const {isValid, parseISO} = dateFns;
@@ -41,7 +41,15 @@ test('Creates JF2 object from form-encoded request', t => {
   });
 });
 
-test('Gets audio property', t => {
+test('Gets audio property (from string)', t => {
+  const properties = JSON.parse(getFixture('audio-provided-string-value.jf2'));
+  const result = getAudioProperty(properties, 'https://website.example/');
+  t.deepEqual(result, [
+    {url: '/baz.mp3'}
+  ]);
+});
+
+test('Gets audio property (from array)', t => {
   const properties = JSON.parse(getFixture('audio-provided-value.jf2'));
   const result = getAudioProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
@@ -95,7 +103,15 @@ test('Gets content from `content` property', t => {
   });
 });
 
-test('Gets photo property', t => {
+test('Gets photo property (from string)', t => {
+  const properties = JSON.parse(getFixture('photo-provided-string-value.jf2'));
+  const result = getPhotoProperty(properties, 'https://website.example/');
+  t.deepEqual(result, [
+    {url: '/baz.jpg'}
+  ]);
+});
+
+test('Gets photo property (from array)', t => {
   const properties = JSON.parse(getFixture('photo-provided.jf2'));
   const result = getPhotoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [
@@ -122,7 +138,15 @@ test('Gets normalised photo property, adding provided text alternatives', t => {
   ]);
 });
 
-test('Gets video property', t => {
+test('Gets video property (from string)', t => {
+  const properties = JSON.parse(getFixture('video-provided-string-value.jf2'));
+  const result = getVideoProperty(properties, 'https://website.example/');
+  t.deepEqual(result, [
+    {url: '/baz.mp4'}
+  ]);
+});
+
+test('Gets video property (from array)', t => {
   const properties = JSON.parse(getFixture('video-provided-value.jf2'));
   const result = getVideoProperty(properties, 'https://website.example/');
   t.deepEqual(result, [

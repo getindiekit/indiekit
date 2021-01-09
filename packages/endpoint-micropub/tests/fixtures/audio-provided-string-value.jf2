@@ -1,0 +1,5 @@
+{
+  "type": "entry",
+  "name": "Audio",
+  "audio": "https://website.example/baz.mp3"
+}

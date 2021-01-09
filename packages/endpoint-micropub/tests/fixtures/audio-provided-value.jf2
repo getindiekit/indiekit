@@ -2,8 +2,8 @@
   "type": "entry",
   "name": "Audio",
   "audio": [{
-    "value": "https://website.example/baz.mp3"
+    "url": "https://website.example/baz.mp3"
   }, {
-    "value": "https://foo.bar/qux.mp3"
+    "url": "https://foo.bar/qux.mp3"
   }]
 }
