@@ -1,6 +1,6 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import {formEncodedToJf2, getJf2} from '../microformats.js';
+import {formEncodedToJf2, getJf2} from '../jf2.js';
 import {post} from '../post.js';
 import {postData} from '../post-data.js';
 import {checkScope} from '../scope.js';
