@@ -101,8 +101,11 @@ export const normaliseJf2 = (publication, properties) => {
  * @returns {Array} Microformats2 `audio` property
  */
 export const getAudioProperty = (properties, me) => {
-  return properties.audio.map(item => ({
-    url: relativeMediaPath(item.value || item, me)
+  let {audio} = properties;
+  audio = Array.isArray(audio) ? audio : new Array(audio);
+
+  return audio.map(item => ({
+    url: relativeMediaPath(item.url || item, me)
   }));
 };
 
@@ -141,10 +144,12 @@ export const getContentProperty = properties => {
  * @returns {Array} Microformats2 `photo` property
  */
 export const getPhotoProperty = (properties, me) => {
-  const {photo} = properties;
+  let {photo} = properties;
+  photo = Array.isArray(photo) ? photo : new Array(photo);
   const photoAlt = properties['mp-photo-alt'];
+
   const property = photo.map((item, index) => ({
-    url: relativeMediaPath(item.value || item, me),
+    url: relativeMediaPath(item.url || item, me),
     ...item.alt && {alt: item.alt},
     ...photoAlt && {alt: photoAlt[index]}
   }));
@@ -160,8 +165,11 @@ export const getPhotoProperty = (properties, me) => {
  * @returns {Array} Microformats2 `video` property
  */
 export const getVideoProperty = (properties, me) => {
-  return properties.video.map(item => ({
-    url: relativeMediaPath(item.value || item, me)
+  let {video} = properties;
+  video = Array.isArray(video) ? video : new Array(video);
+
+  return video.map(item => ({
+    url: relativeMediaPath(item.url || item, me)
   }));
 };
 

@@ -3,9 +3,9 @@
   "name": "Photo",
   "photo": [{
     "alt": "Baz",
-    "value": "https://website.example/baz.jpg"
+    "url": "https://website.example/baz.jpg"
   }, {
     "alt": "Qux",
-    "value": "https://foo.bar/qux.jpg"
+    "url": "https://foo.bar/qux.jpg"
   }]
 }
