@@ -33,7 +33,7 @@
     "directory": "packages/endpoint-micropub"
   },
   "dependencies": {
-    "@paulrobertlloyd/mf2tojf2": "^0.3.0",
+    "@paulrobertlloyd/mf2tojf2": "^0.4.0",
     "@sindresorhus/slugify": "^1.1.0",
     "date-fns": "^2.16.1",
     "date-fns-tz": "^1.0.12",
