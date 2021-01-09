@@ -1,3 +1,4 @@
+import {mf2tojf2} from '@paulrobertlloyd/mf2tojf2';
 import {getDate} from './date.js';
 import {markdownToHtml, htmlToMarkdown} from './markdown.js';
 import {reservedProperties} from './reserved-properties.js';
@@ -39,6 +40,20 @@ export const formEncodedToJf2 = body => {
   }
 
   return jf2;
+};
+
+/**
+ * Create JF2 object from microformats2 object
+ *
+ * @param {string} body Form-encoded request body
+ * @returns {string} Micropub action
+ */
+export const mf2ToJf2 = body => {
+  const mf2 = {
+    items: [body]
+  };
+
+  return mf2tojf2(mf2);
 };
 
 /**
