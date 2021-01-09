@@ -47,6 +47,7 @@ const application = {
 const publication = {
   categories: [],
   locale: 'en',
+  jf2Feed: false,
   me: null,
   postTemplate: null,
   postTypes: [],
