@@ -24,7 +24,7 @@ test.beforeEach(async t => {
   t.context.request = request.post('/micropub');
 });
 
-test.serial('Creates post', async t => {
+test.serial('Creates post (form-encoded)', async t => {
   const authScope = nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, {
@@ -38,8 +38,37 @@ test.serial('Creates post', async t => {
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .send('h=entry')
-    .send('name=foobar')
-    .send('content=Micropub+test+of+creating+a+basic+h-entry');
+    .send('name=Foobar')
+    .send('content=Micropub+test+of+creating+an+h-entry+with+categories')
+    .send('category[]=test1&category[]=test2');
+  t.is(response.statusCode, 202);
+  t.regex(response.headers.location, /\bfoobar\b/);
+  t.regex(response.body.success_description, /\bPost will be created\b/);
+  authScope.done();
+  hostScope.done();
+});
+
+test.serial('Creates post (JSON)', async t => {
+  const authScope = nock('https://tokens.indieauth.com')
+    .get('/token')
+    .reply(200, {
+      me: process.env.TEST_PUBLICATION_URL,
+      scope: 'create'
+    });
+  const hostScope = nock('https://api.github.com')
+    .put(uri => uri.includes('foobar'))
+    .reply(200, {commit: {message: 'Message'}});
+  const response = await t.context.request
+    .set('Accept', 'application/json')
+    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .send({
+      type: ['h-entry'],
+      properties: {
+        name: ['Foobar'],
+        content: ['Micropub test of creating an h-entry with a JSON request containing multiple categories.'],
+        category: ['test1', 'test2']
+      }
+    });
   t.is(response.statusCode, 202);
   t.regex(response.headers.location, /\bfoobar\b/);
   t.regex(response.body.success_description, /\bPost will be created\b/);

@@ -1,6 +1,6 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import {formEncodedToJf2, normaliseJf2} from '../jf2.js';
+import {formEncodedToJf2, mf2ToJf2, normaliseJf2} from '../jf2.js';
 import {post} from '../post.js';
 import {postData} from '../post-data.js';
 import {checkScope} from '../scope.js';
@@ -34,7 +34,7 @@ export const actionController = publication => {
         case 'create':
           // Create and normalise JF2 data
           // TODO: Attached photos don’t appear with correct alt text
-          jf2 = request.is('json') ? formEncodedToJf2(body) : formEncodedToJf2(body);
+          jf2 = request.is('json') ? mf2ToJf2(body) : formEncodedToJf2(body);
           jf2 = files ? await uploadMedia(publication, jf2, files) : jf2;
           properties = normaliseJf2(publication, jf2);
 

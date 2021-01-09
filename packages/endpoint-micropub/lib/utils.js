@@ -191,9 +191,7 @@ export const getPostType = properties => {
  * @returns {object} Post type configuration
  */
 export const getPostTypeConfig = (type, postTypes) => {
-  return postTypes.find(
-    item => item.type === type
-  );
+  return postTypes.find(item => item.type === type);
 };
 
 /**
