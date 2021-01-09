@@ -3,14 +3,14 @@ import dateFns from 'date-fns';
 import {getFixture} from '../helpers/fixture.js';
 import {
   formEncodedToJf2,
-  getJf2,
   getAudioProperty,
   getContentProperty,
   getPhotoProperty,
   getVideoProperty,
   getPublishedProperty,
   getSlugProperty,
-  getSyndicateToProperty
+  getSyndicateToProperty,
+  normaliseJf2,
 } from '../../lib/jf2.js';
 
 const {isValid, parseISO} = dateFns;
@@ -39,48 +39,6 @@ test('Creates JF2 object from form-encoded request', t => {
     content: 'I ate a cheese sandwich, which was nice.',
     category: ['foo', 'bar']
   });
-});
-
-test('Gets JF2 object (few properties)', t => {
-  const properties = JSON.parse(getFixture('content-provided.jf2'));
-  const result = getJf2(t.context.publication, properties);
-  t.is(result.type, 'entry');
-  t.is(result.name, 'Lunchtime');
-  t.is(result['mp-slug'], 'lunchtime');
-  t.deepEqual(result.content, {
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
-  });
-  t.falsy(result.audio);
-  t.falsy(result.photo);
-  t.falsy(result.video);
-  t.true(isValid(parseISO(result.published)));
-});
-
-test('Gets JF2 object (all properties)', t => {
-  const properties = JSON.parse(getFixture('entry.jf2'));
-  const result = getJf2(t.context.publication, properties);
-  t.is(result.type, 'entry');
-  t.is(result.name, 'Lunchtime');
-  t.deepEqual(result.content, {
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
-  });
-  t.deepEqual(result.audio, [
-    {url: 'http://foo.bar/baz.mp3'},
-    {url: 'http://foo.bar/qux.mp3'}
-  ]);
-  t.deepEqual(result.photo, [
-    {url: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-    {url: 'http://foo.bar/qux.jpg', alt: 'Qux'}
-  ]);
-  t.deepEqual(result.video, [
-    {url: 'http://foo.bar/baz.mp4'},
-    {url: 'http://foo.bar/qux.mp4'}
-  ]);
-  t.deepEqual(result.category, ['lunch', 'food']);
-  t.true(isValid(parseISO(result.published)));
-  t.deepEqual(result['mp-syndicate-to'], ['https://social.example/']);
 });
 
 test('Gets audio property', t => {
@@ -305,4 +263,46 @@ test('Doesn’t add unavailable syndication target', t => {
   const syndicationTargets = [];
   const result = getSyndicateToProperty(properties, syndicationTargets);
   t.falsy(result);
+});
+
+test('Normalises JF2 (few properties)', t => {
+  const properties = JSON.parse(getFixture('content-provided.jf2'));
+  const result = normaliseJf2(t.context.publication, properties);
+  t.is(result.type, 'entry');
+  t.is(result.name, 'Lunchtime');
+  t.is(result['mp-slug'], 'lunchtime');
+  t.deepEqual(result.content, {
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
+  t.falsy(result.audio);
+  t.falsy(result.photo);
+  t.falsy(result.video);
+  t.true(isValid(parseISO(result.published)));
+});
+
+test('Normalises JF2 (all properties)', t => {
+  const properties = JSON.parse(getFixture('entry.jf2'));
+  const result = normaliseJf2(t.context.publication, properties);
+  t.is(result.type, 'entry');
+  t.is(result.name, 'Lunchtime');
+  t.deepEqual(result.content, {
+    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
+    text: 'I ate a *cheese* sandwich, which was nice.'
+  });
+  t.deepEqual(result.audio, [
+    {url: 'http://foo.bar/baz.mp3'},
+    {url: 'http://foo.bar/qux.mp3'}
+  ]);
+  t.deepEqual(result.photo, [
+    {url: 'http://foo.bar/baz.jpg', alt: 'Baz'},
+    {url: 'http://foo.bar/qux.jpg', alt: 'Qux'}
+  ]);
+  t.deepEqual(result.video, [
+    {url: 'http://foo.bar/baz.mp4'},
+    {url: 'http://foo.bar/qux.mp4'}
+  ]);
+  t.deepEqual(result.category, ['lunch', 'food']);
+  t.true(isValid(parseISO(result.published)));
+  t.deepEqual(result['mp-syndicate-to'], ['https://social.example/']);
 });
