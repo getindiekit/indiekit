@@ -120,7 +120,7 @@ export const JekyllPreset = class {
   postTemplate(properties) {
     let content;
     if (properties.content) {
-      content = properties.content.text || properties.content.html;
+      content = properties.content.text || properties.content.html || properties.content;
       content = `${content}\n`;
     } else {
       content = '';
