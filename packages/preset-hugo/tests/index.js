@@ -25,6 +25,21 @@ title: Lunchtime
 `);
 });
 
+test('Renders post template with basic content', t => {
+  const hugo = new HugoPreset();
+  const result = hugo.postTemplate({
+    published: '2020-02-02',
+    name: 'Lunchtime',
+    content: 'I ate a *cheese* sandwich, which was nice.'
+  });
+  t.is(result, `---
+date: 2020-02-02
+title: Lunchtime
+---
+I ate a *cheese* sandwich, which was nice.
+`);
+});
+
 test('Renders post template with HTML content', t => {
   const hugo = new HugoPreset();
   const result = hugo.postTemplate({
