@@ -8,10 +8,10 @@ import {
 
 test.beforeEach(t => {
   t.context.properties = {
-    content: ['hello world'],
-    published: ['2019-08-17T23:56:38.977+01:00'],
-    category: ['foo', 'bar'],
-    'mp-slug': ['baz']
+    content: 'hello world',
+    published: '2019-08-17T23:56:38.977+01:00',
+    category: 'foo',
+    'mp-slug': 'baz'
   };
 });
 
@@ -23,11 +23,21 @@ test('Add properties to object', t => {
   t.deepEqual(result.syndication, ['http://website.example']);
 });
 
-test('Add properties to existing object', t => {
+test('Add properties to existing value', t => {
+  const additions = {
+    category: ['bar']
+  };
+  const result = addProperties(t.context.properties, additions);
+  t.deepEqual(result.category, ['foo', 'bar']);
+});
+
+test('Add properties to existing array', t => {
   const additions = {
     category: ['baz']
   };
-  const result = addProperties(t.context.properties, additions);
+  const result = addProperties({
+    category: ['foo', 'bar']
+  }, additions);
   t.deepEqual(result.category, ['foo', 'bar', 'baz']);
 });
 
