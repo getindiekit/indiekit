@@ -82,6 +82,24 @@ The following environment variables need to be set before running tests:
 
 [Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating access tokens for this purpose.
 
+## Decisions
+
+Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in `/docs/decisions`.
+
+Nat Pryce's [adr-tools](https://github.com/npryce/adr-tools) is a lightweight command line tools for managing documents.
+
+To generate a new decision document:
+
+```sh
+adr new [Title of decision]
+```
+
+To update the table of contents:
+
+```sh
+adr generate toc > docs/decisions/index.md
+```
+
 ## Credits
 
 Developed by [Paul Robert Lloyd](https://paulrobertlloyd.com).
