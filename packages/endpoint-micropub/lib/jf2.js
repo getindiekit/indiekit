@@ -43,7 +43,7 @@ export const formEncodedToJf2 = body => {
 };
 
 /**
- * Create JF2 object from microformats2 object
+ * Create JF2 object from mf2 object
  *
  * @param {string} body Form-encoded request body
  * @returns {string} Micropub action
@@ -98,7 +98,7 @@ export const normaliseJf2 = (publication, properties) => {
  *
  * @param {object} properties JF2 properties
  * @param {object} me Publication URL
- * @returns {Array} Microformats2 `audio` property
+ * @returns {Array} `audio` property
  */
 export const getAudioProperty = (properties, me) => {
   let {audio} = properties;
@@ -113,7 +113,7 @@ export const getAudioProperty = (properties, me) => {
  * Get content property (HTML, else object value, else property value)
  *
  * @param {object} properties JF2 properties
- * @returns {Array} Microformats2 `content` property
+ * @returns {Array} `content` property
  */
 export const getContentProperty = properties => {
   const {content} = properties;
@@ -141,7 +141,7 @@ export const getContentProperty = properties => {
  *
  * @param {object} properties JF2 properties
  * @param {object} me Publication URL
- * @returns {Array} Microformats2 `photo` property
+ * @returns {Array} `photo` property
  */
 export const getPhotoProperty = (properties, me) => {
   let {photo} = properties;
@@ -162,7 +162,7 @@ export const getPhotoProperty = (properties, me) => {
  *
  * @param {object} properties JF2 properties
  * @param {object} me Publication URL
- * @returns {Array} Microformats2 `video` property
+ * @returns {Array} `video` property
  */
 export const getVideoProperty = (properties, me) => {
   let {video} = properties;
@@ -174,11 +174,11 @@ export const getVideoProperty = (properties, me) => {
 };
 
 /**
- * Get published date (based on microformats2 data, else current date)
+ * Get published date (using current date if none given)
  *
  * @param {object} properties JF2 properties
  * @param {object} timeZone Publication time zone
- * @returns {Array} Microformats2 `published` property
+ * @returns {Array} `published` property
  */
 export const getPublishedProperty = (properties, timeZone) => {
   return getDate(timeZone, properties.published);

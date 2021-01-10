@@ -57,7 +57,7 @@ test('Returns mf2 for given source URL', async t => {
   scope.done();
 });
 
-test('Returns 400 if source URL doesn’t contain microformats', async t => {
+test('Returns 400 if source URL has no items', async t => {
   const scope = nock('https://website.example')
     .get('/page.html')
     .reply(200, getFixture('page.html'));

@@ -2,9 +2,9 @@ import got from 'got';
 import parser from 'microformats-parser';
 
 /**
- * Returns/selects microformat properties of a post.
+ * Return mf2 properties of a post
  *
- * @param {object} mf2 Microformats2 object
+ * @param {object} mf2 mf2 object
  * @param {Array|string} requestedProperties mf2 properties to select
  * @returns {Promise|object} mf2 with requested properties
  */
@@ -40,7 +40,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 };
 
 /**
- * Convert JF2 to Microformats2 object
+ * Convert JF2 to mf2
  *
  * @param {string} jf2 JF2
  * @returns {string} Micropub action
@@ -70,10 +70,10 @@ export const jf2ToMf2 = jf2 => {
 };
 
 /**
- * Return microformats of a given URL
+ * Return mf2 of a given URL
  *
  * @param {string} url URL path to post
- * @returns {Promise|object} Microformats2 object
+ * @returns {Promise|object} mf2 object
  */
 export const url2Mf2 = async url => {
   const {body} = await got(url);
