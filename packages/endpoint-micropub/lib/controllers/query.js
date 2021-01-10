@@ -37,14 +37,14 @@ export const queryController = publication => {
         }
 
         case 'source': {
-          // Return microformats for a given source URL
+          // Return mf2 for a given source URL
           if (query.url) {
             const mf2 = await url2Mf2(query.url);
             const properties = getMf2Properties(mf2, query.properties);
             return response.json(properties);
           }
 
-          // Return microformats for previously published posts
+          // Return mf2 for previously published posts
           const items = publication.posts ?
             await publication.posts.find().map(post => jf2ToMf2(post.properties)).toArray() :
             [];

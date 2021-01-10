@@ -15,7 +15,7 @@ test.beforeEach(t => {
   };
 });
 
-test('Returns mf2 item with all properties', t => {
+test('Returns all mf2 properties of a post', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = getMf2Properties(mf2);
   t.deepEqual(result, {
@@ -27,7 +27,7 @@ test('Returns mf2 item with all properties', t => {
   });
 });
 
-test('Returns mf2 item with multiple properties', t => {
+test('Returns requested mf2 properties of a post', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = getMf2Properties(mf2, ['name', 'published']);
   t.deepEqual(result, {
@@ -38,7 +38,7 @@ test('Returns mf2 item with multiple properties', t => {
   });
 });
 
-test('Returns mf2 item with single property', t => {
+test('Returns requested mf2 property of a post', t => {
   const mf2 = parser.mf2(getFixture('post.html'), {baseUrl: t.context.url});
   const result = getMf2Properties(mf2, 'name');
   t.deepEqual(result, {
@@ -62,7 +62,7 @@ test('Throws error if mf2 has no items', t => {
   t.is(error.message, 'Source has no items');
 });
 
-test('Converts JF2 to Microformats2 object', async t => {
+test('Converts JF2 to mf2 object', async t => {
   const feed = JSON.parse(getFixture('feed.jf2'));
   const result = await jf2ToMf2(feed.children[0]);
   t.deepEqual(result, {
@@ -122,7 +122,7 @@ test('Returns mf2 from URL', async t => {
   scope.done();
 });
 
-test('Returns mf2 empty objects if no microformats found', async t => {
+test('Returns mf2 empty objects if no properties found', async t => {
   const scope = t.context.nock.reply(200, getFixture('page.html'));
   const result = await url2Mf2(t.context.url);
   t.deepEqual(result, {
