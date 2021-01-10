@@ -13,7 +13,7 @@ import {randomString} from './utils.js';
  *   ext: '.jpg'
  *   filename: 'ds48s.jpg'
  *   originalname: 'flower.jpg',
- *   'mime-type': image/jpeg,
+ *   'content-type': image/jpeg,
  *   published: '2020-07-19T22:59:23.497Z',
  * }
  */
@@ -29,7 +29,7 @@ export const getFileProperties = async (publication, file) => {
     ext,
     filename: `${basename}.${ext}`,
     originalname: file.originalname,
-    'mime-type': mime,
+    'content-type': mime,
     published
   };
 };
