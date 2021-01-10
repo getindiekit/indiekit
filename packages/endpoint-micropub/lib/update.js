@@ -11,7 +11,7 @@ export const addProperties = (properties, additions) => {
   for (const key in additions) {
     if (Object.prototype.hasOwnProperty.call(additions, key)) {
       const newValue = additions[key];
-      const existingValue = properties[key];
+      let existingValue = properties[key];
 
       // If no existing value, add it
       if (!existingValue) {
@@ -21,6 +21,7 @@ export const addProperties = (properties, additions) => {
 
       // If existing value, add to it
       if (existingValue) {
+        existingValue = Array.isArray(existingValue) ? existingValue : new Array(existingValue);
         const updatedValue = [...existingValue];
 
         for (const value of newValue) {
