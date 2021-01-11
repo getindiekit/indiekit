@@ -9,7 +9,6 @@ export const getConfig = (application, publication) => {
   const {url} = application;
 
   const {
-    categories,
     mediaEndpoint,
     postTypes,
     syndicationTargets
@@ -34,7 +33,6 @@ export const getConfig = (application, publication) => {
   });
 
   return {
-    categories,
     'media-endpoint': mediaEndpoint,
     'post-types': postTypes.map(postType => ({
       type: postType.type,
@@ -54,21 +52,20 @@ export const getConfig = (application, publication) => {
  */
 export const queryList = (list, options) => {
   const {filter, limit} = options;
+  list = list || [];
 
-  if (Array.isArray(list)) {
-    if (filter) {
-      list = list.filter(item => {
-        item = JSON.stringify(item);
-        item = item.toLowerCase();
-        return item.includes(filter);
-      });
-    }
+  if (filter) {
+    list = list.filter(item => {
+      item = JSON.stringify(item);
+      item = item.toLowerCase();
+      return item.includes(filter);
+    });
+  }
 
-    if (limit) {
-      const offset = options.offset || 0;
-      list = list.slice(offset, offset + limit);
-      list.length = Math.min(list.length, limit);
-    }
+  if (limit) {
+    const offset = options.offset || 0;
+    list = list.slice(offset, offset + limit);
+    list.length = Math.min(list.length, limit);
   }
 
   return list;
