@@ -5,6 +5,13 @@ import {serverConfig} from '../../config/server.js';
 
 const request = supertest(serverConfig(defaultConfig));
 
+test('Returns robot.txt', async t => {
+  const response = await request.get('/robots.txt');
+  t.is(response.statusCode, 200);
+  t.is(response.text, 'User-agent: *\nDisallow: /');
+  t.is(response.type, 'text/plain');
+});
+
 test('Logged out users redirected to login page', async t => {
   const response = await request.get('/');
   t.is(response.statusCode, 302);
@@ -18,6 +25,7 @@ test('Returns CSS', async t => {
 
 test('Returns login page', async t => {
   const response = await request.get('/session/login');
+  t.is(response.headers['x-robots-tag'], 'noindex');
   t.is(response.statusCode, 200);
   t.is(response.type, 'text/html');
 });

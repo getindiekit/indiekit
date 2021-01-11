@@ -12,8 +12,20 @@ const router = express.Router(); // eslint-disable-line new-cap
 export const routes = indiekitConfig => {
   const {application, publication} = indiekitConfig;
 
+  // Prevent pages from being indexed
+  router.use((request, response, next) => {
+    response.setHeader('X-Robots-Tag', 'noindex');
+    next();
+  });
+
   // Homepage
   router.get('/', homepageController.viewHomepage);
+
+  // Prevent pages from being crawled
+  router.get('/robots.txt', (request, response) => {
+    response.type('text/plain');
+    response.send('User-agent: *\nDisallow: /');
+  });
 
   // Status
   router.get('/status', authenticate, statusController.viewStatus);
