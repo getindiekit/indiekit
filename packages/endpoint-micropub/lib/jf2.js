@@ -43,7 +43,7 @@ export const formEncodedToJf2 = body => {
 };
 
 /**
- * Create JF2 object from mf2 object
+ * Convert mf2 to JF2
  *
  * @param {string} body Form-encoded request body
  * @returns {string} Micropub action
@@ -86,8 +86,9 @@ export const normaliseProperties = (publication, properties) => {
 
   properties['mp-slug'] = getSlugProperty(properties, slugSeparator);
 
-  if (properties['mp-syndicate-to'] && syndicationTargets) {
-    properties['mp-syndicate-to'] = getSyndicateToProperty(properties, syndicationTargets);
+  const syndidateTo = getSyndicateToProperty(properties, syndicationTargets);
+  if (syndidateTo) {
+    properties['mp-syndicate-to'] = syndidateTo;
   }
 
   return properties;
@@ -146,7 +147,11 @@ export const getContentProperty = properties => {
 export const getPhotoProperty = (properties, me) => {
   let {photo} = properties;
   photo = Array.isArray(photo) ? photo : new Array(photo);
-  const photoAlt = properties['mp-photo-alt'];
+
+  let photoAlt = properties['mp-photo-alt'];
+  if (photoAlt) {
+    photoAlt = Array.isArray(photoAlt) ? photoAlt : new Array(photoAlt);
+  }
 
   const property = photo.map((item, index) => ({
     url: relativeMediaPath(item.url || item, me),

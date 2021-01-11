@@ -3,6 +3,7 @@ import dateFns from 'date-fns';
 import {getFixture} from '../helpers/fixture.js';
 import {
   formEncodedToJf2,
+  mf2ToJf2,
   getAudioProperty,
   getContentProperty,
   getPhotoProperty,
@@ -32,12 +33,39 @@ test('Creates JF2 object from form-encoded request', t => {
   const result = formEncodedToJf2({
     h: 'entry',
     content: 'I+ate+a+cheese+sandwich,+which+was+nice.',
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
+    photo: ['https://website.example'],
+    'mp-photo-alt': ['Example photo']
   });
   t.deepEqual(result, {
     type: 'entry',
     content: 'I ate a cheese sandwich, which was nice.',
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
+    photo: ['https://website.example'],
+    'mp-photo-alt': ['Example photo']
+  });
+});
+
+test('Converts mf2 to JF2', t => {
+  const result = mf2ToJf2({
+    type: ['h-entry'],
+    properties: {
+      content: ['I ate a cheese sandwich, which was nice.'],
+      category: ['foo', 'bar'],
+      photo: [{
+        url: 'https://website.example',
+        alt: 'Example photo'
+      }]
+    }
+  });
+  t.deepEqual(result, {
+    type: 'entry',
+    content: 'I ate a cheese sandwich, which was nice.',
+    category: ['foo', 'bar'],
+    photo: [{
+      url: 'https://website.example',
+      alt: 'Example photo'
+    }]
   });
 });
 
