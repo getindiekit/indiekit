@@ -215,7 +215,7 @@ export const getSlugProperty = (properties, separator) => {
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
   const proprerty = [];
 
-  if (syndicationTargets.length === 0) {
+  if (!syndicationTargets || syndicationTargets.length === 0) {
     return;
   }
 
