@@ -15,6 +15,16 @@ export const getConfig = (application, publication) => {
     syndicationTargets
   } = publication;
 
+  // Supported queries
+  const q = [
+    'category',
+    'config',
+    'media-endpoint',
+    'post-types',
+    'source',
+    'syndicate-to'
+  ];
+
   // Ensure syndication targets use absolute URLs
   const syndicateTo = syndicationTargets.map(target => target.info);
   syndicateTo.forEach(info => {
@@ -30,7 +40,8 @@ export const getConfig = (application, publication) => {
       type: postType.type,
       name: postType.name
     })),
-    'syndicate-to': syndicateTo
+    'syndicate-to': syndicateTo,
+    q
   };
 };
 

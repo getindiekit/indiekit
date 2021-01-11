@@ -25,6 +25,7 @@ const micropubEndpoint = new MicropubEndpoint({
 * Configuration: `/micropub?q=config`
 * Media endpoint location: `/micropub?q=media-endpoint`
 * Available syndication targets (list): `/micropub?q=syndicate-to`
+* Supported queries: `/micropub?q=config`
 * Supported vocabularies (list): `/micropub?q=post-types`
 * Publication categories (list): `/micropub?q=category`
 * Previously published posts (list): `/micropub?q=source`
