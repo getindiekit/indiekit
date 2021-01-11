@@ -57,13 +57,13 @@ export const mf2ToJf2 = body => {
 };
 
 /**
- * Normalise JF2
+ * Normalise JF2 properties
  *
  * @param {object} publication Publication configuration
  * @param {object} properties Source JF2 properties
  * @returns {object} Normalised JF2 properties
  */
-export const normaliseJf2 = (publication, properties) => {
+export const normaliseProperties = (publication, properties) => {
   const {me, slugSeparator, syndicationTargets, timeZone} = publication;
 
   properties.published = getPublishedProperty(properties, timeZone);

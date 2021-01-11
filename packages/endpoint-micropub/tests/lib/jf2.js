@@ -10,7 +10,7 @@ import {
   getPublishedProperty,
   getSlugProperty,
   getSyndicateToProperty,
-  normaliseJf2
+  normaliseProperties
 } from '../../lib/jf2.js';
 
 const {isValid, parseISO} = dateFns;
@@ -291,7 +291,7 @@ test('Doesn’t add unavailable syndication target', t => {
 
 test('Normalises JF2 (few properties)', t => {
   const properties = JSON.parse(getFixture('content-provided.jf2'));
-  const result = normaliseJf2(t.context.publication, properties);
+  const result = normaliseProperties(t.context.publication, properties);
   t.is(result.type, 'entry');
   t.is(result.name, 'Lunchtime');
   t.is(result['mp-slug'], 'lunchtime');
@@ -307,7 +307,7 @@ test('Normalises JF2 (few properties)', t => {
 
 test('Normalises JF2 (all properties)', t => {
   const properties = JSON.parse(getFixture('entry.jf2'));
-  const result = normaliseJf2(t.context.publication, properties);
+  const result = normaliseProperties(t.context.publication, properties);
   t.is(result.type, 'entry');
   t.is(result.name, 'Lunchtime');
   t.deepEqual(result.content, {

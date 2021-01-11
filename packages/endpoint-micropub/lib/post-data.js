@@ -1,5 +1,6 @@
 import HttpError from 'http-errors';
 import {getPostType} from './post-type-discovery.js';
+import {normaliseProperties} from './jf2.js';
 import * as update from './update.js';
 import {
   renderPath,
@@ -26,6 +27,9 @@ export const postData = {
       }
 
       const {me, postTypes, timeZone} = publication;
+
+      // Normalise properties
+      properties = normaliseProperties(publication, properties);
 
       // Post type
       const type = getPostType(properties);
@@ -106,6 +110,9 @@ export const postData = {
 
       let {properties} = postData;
 
+      // Normalise properties
+      properties = normaliseProperties(publication, properties);
+
       // Add properties
       if (operation.add) {
         properties = update.addProperties(properties, operation.add);
@@ -126,8 +133,6 @@ export const postData = {
       // Post type
       const type = getPostType(properties);
       const typeConfig = getPostTypeConfig(type, postTypes);
-
-      // Post properties
       properties['post-type'] = type;
 
       // Post paths

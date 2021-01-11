@@ -39,7 +39,6 @@ export const getPostData = async (publication, url) => {
       const {children} = body;
       if (children.length > 0) {
         const properties = children[0];
-        properties['mp-slug'] = path.basename(properties.url);
 
         // Check if feed item already exists in database
         const storedPostData = await posts.findOne({
@@ -50,6 +49,8 @@ export const getPostData = async (publication, url) => {
           // Use stored post data
           postData = storedPostData;
         } else {
+          properties['mp-slug'] = path.basename(properties.url);
+
           // Import post data to database
           const importedPostData = {
             date: new Date(),
