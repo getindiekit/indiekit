@@ -1,5 +1,5 @@
-import {JekyllPreset} from '../../../preset-jekyll/index.js';
-import {GithubStore} from '../../../store-github/index.js';
+import {JekyllPreset} from '../../packages/preset-jekyll/index.js';
+import {GithubStore} from '../../packages/store-github/index.js';
 
 export const publication = {
   config: new JekyllPreset().config,

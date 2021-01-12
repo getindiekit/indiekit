@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import {__dirname} from '../../index.js';
+import {fileURLToPath} from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * @param {string} filename Fixture’s file name
@@ -8,6 +10,6 @@ import {__dirname} from '../../index.js';
  * @returns {Promise|object} File contents
  */
 export const getFixture = (filename, encoding = 'utf-8') => {
-  const file = path.resolve(__dirname, `tests/fixtures/${filename}`);
+  const file = path.resolve(__dirname, `../../fixtures/${filename}`);
   return fs.readFileSync(file, {encoding});
 };
