@@ -50,11 +50,5 @@
     "content": {
       "text": "This first item has only the required fields."
     }
-  }],
-  "_blue_shed": {
-    "about": "https://blueshed-podcasts.com/json-feed-extension-docs",
-    "copyright": "1948 by George Orwell",
-    "owner": "Big Brother and the Holding Company",
-    "subtitle": "All shouting, all the time. Double. Plus. Good."
-  }
+  }]
 }

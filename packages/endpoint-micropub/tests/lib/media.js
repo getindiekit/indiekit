@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {getFixture} from '../helpers/fixture.js';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {uploadMedia} from '../../lib/media.js';
 
 test.beforeEach(t => {
@@ -32,7 +32,7 @@ test('Uploads attached file via media endpoint', async t => {
     .post('/')
     .reply(201, t.context.responseBody('photo.jpg'), t.context.responseHeader('photo.jpg'));
   const files = [{
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     fieldname: 'photo',
     originalname: 'photo.jpg'
   }];
@@ -48,11 +48,11 @@ test.serial('Uploads attached files via media endpoint', async t => {
     .post('/')
     .reply(201, t.context.responseBody('photo2.jpg'), t.context.responseHeader('photo2.jpg'));
   const files = [{
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     fieldname: 'photo[]',
     originalname: 'photo1.jpg'
   }, {
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     fieldname: 'photo[]',
     originalname: 'photo2.jpg'
   }];
@@ -66,7 +66,7 @@ test.serial('Uploads attached files via media endpoint', async t => {
 
 test.serial('Throws error if no media endpoint URL', async t => {
   const files = [{
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     fieldname: 'photo',
     originalname: 'photo.jpg'
   }];
@@ -83,7 +83,7 @@ test.serial('Throws error uploading attached file', async t => {
       error_description: 'The token provided was malformed'
     });
   const files = [{
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     fieldname: 'photo',
     originalname: 'photo.jpg'
   }];

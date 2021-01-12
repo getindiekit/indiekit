@@ -7,6 +7,9 @@ export const publication = {
   media: {
     insertOne: () => {}
   },
+  postTemplate(properties) {
+    return JSON.stringify(properties);
+  },
   store: new GithubStore({
     token: 'abc123',
     user: 'user',

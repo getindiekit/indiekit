@@ -1,8 +1,8 @@
 import test from 'ava';
 import nock from 'nock';
-import {publication} from '../helpers/publication.js';
+import {publication} from '@indiekit-test/publication';
+import {postData} from '@indiekit-test/post-data';
 import {post} from '../../lib/post.js';
-import {postData} from '../fixtures/data.js';
 
 test.beforeEach(t => {
   t.context.url = 'https://website.example/foo';
