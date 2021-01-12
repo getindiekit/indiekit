@@ -1,6 +1,6 @@
 import test from 'ava';
 import {Indiekit} from '../index.js';
-import {Preset} from './fixtures/preset.js';
+import {Preset} from '@indiekit-test/preset';
 
 const indiekit = new Indiekit();
 
@@ -33,6 +33,6 @@ test('Initiates application', async t => {
   indiekit.set('publication.preset', preset);
   indiekit.set('publication.categories', ['foo', 'bar']);
   await indiekit.init();
-  t.is(indiekit.publication.postTypes[0].name, 'Foo note');
+  t.is(indiekit.publication.postTypes[0].name, 'Test note');
   t.is(indiekit.publication.categories[0], 'foo');
 });

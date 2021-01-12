@@ -42,6 +42,7 @@
     "@indiekit-test/get-fixture": "file:helpers/get-fixture",
     "@indiekit-test/media-data": "file:helpers/media-data",
     "@indiekit-test/post-data": "file:helpers/post-data",
+    "@indiekit-test/preset": "file:helpers/preset",
     "@indiekit-test/publication": "file:helpers/publication",
     "ava": "^3.15.0",
     "c8": "^7.4.0",
