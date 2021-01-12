@@ -1,0 +1,42 @@
+{
+  "type": "entry",
+  "name": "What I had for lunch",
+  "content": {
+    "html": "<p>I ate a <em>cheese</em> sandwich, which was nice.</p>",
+    "text": "I ate a *cheese* sandwich, which was nice."
+  },
+  "summary": "A very satisfactory meal.",
+  "published": "2020-02-02",
+  "category": ["lunch", "food"],
+  "audio": [{
+    "url": "https://website.example/audio.mp3"
+  }],
+  "photo": [{
+    "alt": "Alternative text",
+    "url": "https://website.example/photo.jpg"
+  }],
+  "video": [{
+    "url": "https://website.example/video.mp4"
+  }],
+  "start": "2020-02-02",
+  "end": "2020-02-20",
+  "rsvp": "Yes",
+  "location": {
+    "type": "adr",
+    "country-name": "United Kingdom"
+  },
+  "checkin": {
+    "type": "card",
+    "latitude": [50],
+    "longitude": [0]
+  },
+  "bookmark-of": "https://website.example",
+  "like-of": "https://website.example",
+  "repost-of": "https://website.example",
+  "in-reply-to": "https://website.example",
+  "post-status": "draft",
+  "visibility": "private",
+  "syndication": "https://website.example/post/12345",
+  "mp-slug": "cheese-sandwich",
+  "mp-syndicate-to": "https://social.example"
+}

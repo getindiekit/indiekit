@@ -1,5 +1,5 @@
 import test from 'ava';
-import {getFixture} from '../helpers/fixture.js';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {JekyllPreset} from '../../../preset-jekyll/index.js';
 import {mediaData} from '../../lib/media-data.js';
 
@@ -28,7 +28,7 @@ test.beforeEach(t => {
 
 test('Creates media data', async t => {
   const file = {
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     originalname: 'photo.jpg'
   };
   const result = await mediaData.create(t.context.publication, file);
@@ -38,7 +38,7 @@ test('Creates media data', async t => {
 
 test('Throws error creating media data without publication configuration', async t => {
   const file = {
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     originalname: 'photo.jpg'
   };
   const error = await t.throwsAsync(mediaData.create(false, file));
@@ -47,7 +47,7 @@ test('Throws error creating media data without publication configuration', async
 
 test('Throws error creating media data without a known post type', async t => {
   const file = {
-    buffer: getFixture('font.ttf', false),
+    buffer: getFixture('file-types/font.ttf', false),
     originalname: 'font.ttf'
   };
   const error = await t.throwsAsync(mediaData.create(t.context.publication, file));

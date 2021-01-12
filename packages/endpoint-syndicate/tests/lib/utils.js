@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {getFixture} from '../helpers/fixture.js';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {posts} from '../fixtures/posts.js';
 import {
   getMicropubEndpoint,
@@ -34,7 +34,7 @@ test('Gets post for given URL from database', async t => {
 test('Adds post data from JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
-    .reply(200, getFixture('feed.jf2'));
+    .reply(200, getFixture('jf2/feed.jf2'));
   const publication = {
     jf2Feed: 'https://website.example/feed.jf2',
     posts: {
@@ -50,7 +50,7 @@ test('Adds post data from JF2 Feed', async t => {
 test('Updates post data from JF2 Feed to database', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
-    .reply(200, getFixture('feed.jf2'));
+    .reply(200, getFixture('jf2/feed.jf2'));
   const {publication} = t.context;
   publication.jf2Feed = 'https://website.example/feed.jf2';
   const result = await getPostData(publication);
@@ -61,7 +61,7 @@ test('Updates post data from JF2 Feed to database', async t => {
 test('Throws error if no posts in JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
-    .reply(200, getFixture('feed-empty.jf2'));
+    .reply(200, getFixture('jf2/feed-empty.jf2'));
   const publication = {
     jf2Feed: 'https://website.example/feed.jf2',
     posts: {

@@ -1,9 +1,9 @@
 import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {serverConfig} from '../../../../indiekit/config/server.js';
 import {Indiekit} from '../../../../indiekit/index.js';
-import {getFixture} from '../../helpers/fixture.js';
 
 const mockResponse = async query => {
   const indiekit = new Indiekit();
@@ -47,7 +47,7 @@ test('Returns list of previously published posts', async t => {
 test('Returns mf2 for given source URL', async t => {
   const scope = nock('https://website.example')
     .get('/post.html')
-    .reply(200, getFixture('post.html'));
+    .reply(200, getFixture('html/post.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/post.html');
   t.deepEqual(response.body, {
     properties: {
@@ -60,7 +60,7 @@ test('Returns mf2 for given source URL', async t => {
 test('Returns 400 if source URL has no items', async t => {
   const scope = nock('https://website.example')
     .get('/page.html')
-    .reply(200, getFixture('page.html'));
+    .reply(200, getFixture('html/page.html'));
   const response = await mockResponse('q=source&properties[]=name&url=https://website.example/page.html');
   t.is(response.statusCode, 400);
   t.is(response.body.error_description, 'Source has no items');

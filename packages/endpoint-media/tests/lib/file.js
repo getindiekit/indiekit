@@ -1,6 +1,6 @@
 import test from 'ava';
 import dateFns from 'date-fns';
-import {getFixture} from '../helpers/fixture.js';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {
   getFileProperties,
   getMediaType
@@ -9,10 +9,10 @@ import {
 const {isValid, parseISO} = dateFns;
 
 test('Derives media type and returns equivalent post type)', async t => {
-  const audio = {buffer: getFixture('audio.mp3', false)};
-  const photo = {buffer: getFixture('photo.jpg', false)};
-  const video = {buffer: getFixture('video.mp4', false)};
-  const other = {buffer: getFixture('font.ttf', false)};
+  const audio = {buffer: getFixture('file-types/audio.mp3', false)};
+  const photo = {buffer: getFixture('file-types/photo.jpg', false)};
+  const video = {buffer: getFixture('file-types/video.mp4', false)};
+  const other = {buffer: getFixture('file-types/font.ttf', false)};
   t.is(await getMediaType(audio), 'audio');
   t.is(await getMediaType(photo), 'photo');
   t.is(await getMediaType(video), 'video');
@@ -24,7 +24,7 @@ test('Derives properties from file data', async t => {
     timeZone: 'UTC'
   };
   const file = {
-    buffer: getFixture('photo.jpg', false),
+    buffer: getFixture('file-types/photo.jpg', false),
     originalname: 'photo.jpg'
   };
   const result = await getFileProperties(publication, file);

@@ -2,7 +2,7 @@ import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
 import supertest from 'supertest';
-import {getFixture} from '../../helpers/fixture.js';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {serverConfig} from '../../../../indiekit/config/server.js';
 import {Indiekit} from '../../../../indiekit/index.js';
 import {GithubStore} from '../../../../store-github/index.js';
@@ -38,7 +38,7 @@ test.serial('Uploads file', async t => {
   const response = await t.context.request
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
-    .attach('file', getFixture('photo.jpg', false), 'photo.jpg');
+    .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
   t.is(response.statusCode, 201);
   t.regex(response.headers.location, /\b.jpg\b/);
   t.regex(response.body.success_description, /\bMedia uploaded\b/);

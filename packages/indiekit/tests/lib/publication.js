@@ -1,7 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
 import {JekyllPreset} from '@indiekit/preset-jekyll';
-import {getFixture} from '../helpers/fixture.js';
 import {mongodbConfig} from '../../config/mongodb.js';
 import {Cache} from '../../lib/cache.js';
 import {
@@ -20,7 +19,25 @@ test.beforeEach(async t => {
     publication: {
       categories: 'https://website.example/categories.json',
       mediaEndpoint: '/media',
-      postTypes: JSON.parse(getFixture('post-types.json')),
+      postTypes: [{
+        type: 'note',
+        name: 'Journal entry',
+        post: {
+          path: '_entries/{T}.md',
+          url: 'entries/{T}'
+        }
+      }, {
+        type: 'photo',
+        name: 'Picture',
+        post: {
+          path: '_pictures/{T}.md',
+          url: '_pictures/{T}'
+        },
+        media: {
+          path: 'src/media/pictures/{T}.{ext}',
+          url: 'media/pictures/{T}.{ext}'
+        }
+      }],
       preset: new JekyllPreset(),
       store: {id: 'foo'}
     }
@@ -60,27 +77,24 @@ test.serial('Returns empty array if no publication config provided', async t => 
 
 test('Merges values from custom and preset post types', t => {
   const result = getPostTypes(t.context.publication);
-  t.is(result[0].template, 'etc/templates/article.njk');
   t.deepEqual(result[1], {
     type: 'note',
     name: 'Journal entry',
-    template: 'etc/templates/entry.njk',
     post: {
-      path: '_entries/{{ published | date(\'X\') }}.md',
-      url: 'entries/{{ published | date(\'X\') }}'
+      path: '_entries/{T}.md',
+      url: 'entries/{T}'
     }
   });
   t.deepEqual(result[2], {
     type: 'photo',
     name: 'Picture',
-    template: 'etc/templates/picture.njk',
     post: {
-      path: '_pictures/{{ published | date(\'X\') }}.md',
-      url: '_pictures/{{ published | date(\'X\') }}'
+      path: '_pictures/{T}.md',
+      url: '_pictures/{T}'
     },
     media: {
-      path: 'src/media/pictures/{{ uploaded | date(\'X\') }}.{{ fileext }}',
-      url: 'media/pictures/{{ uploaded | date(\'X\') }}.{{ fileext }}'
+      path: 'src/media/pictures/{T}.{ext}',
+      url: 'media/pictures/{T}.{ext}'
     }
   });
 });
