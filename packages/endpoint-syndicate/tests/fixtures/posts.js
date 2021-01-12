@@ -4,7 +4,7 @@ export const posts = {
       properties: {
         type: 'entry',
         'mp-syndicate-to': 'https://social.example/',
-        url: 'https://paulrobertlloyd.github.io/indiekit-sandbox/notes/2020/10/17/12345'
+        url: `${process.env.TEST_PUBLICATION_URL}notes/2020/10/17/12345`
       }
     }])
   }),
@@ -13,7 +13,7 @@ export const posts = {
       type: 'entry',
       name: 'Item in database',
       published: '2020-10-17T19:41:39Z',
-      url: 'https://paulrobertlloyd.github.io/indiekit-sandbox/notes/2020/10/17/12345',
+      url: `${process.env.TEST_PUBLICATION_URL}notes/2020/10/17/12345`,
       'mp-slug': '12345',
       'mp-syndicate-to': 'https://social.example/'
     }
