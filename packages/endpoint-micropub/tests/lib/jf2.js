@@ -334,7 +334,7 @@ test('Normalises JF2 (few properties)', t => {
 });
 
 test('Normalises JF2 (all properties)', t => {
-  const properties = JSON.parse(getFixture('jf2/entry.jf2'));
+  const properties = JSON.parse(getFixture('jf2/all-properties.jf2'));
   const result = normaliseProperties(t.context.publication, properties);
   t.is(result.type, 'entry');
   t.is(result.name, 'What I had for lunch');
@@ -343,18 +343,15 @@ test('Normalises JF2 (all properties)', t => {
     text: 'I ate a *cheese* sandwich, which was nice.'
   });
   t.deepEqual(result.audio, [
-    {url: 'http://foo.bar/baz.mp3'},
-    {url: 'http://foo.bar/qux.mp3'}
+    {url: 'https://website.example/audio.mp3'}
   ]);
   t.deepEqual(result.photo, [
-    {url: 'http://foo.bar/baz.jpg', alt: 'Baz'},
-    {url: 'http://foo.bar/qux.jpg', alt: 'Qux'}
+    {url: 'https://website.example/photo.jpg', alt: 'Alternative text'}
   ]);
   t.deepEqual(result.video, [
-    {url: 'http://foo.bar/baz.mp4'},
-    {url: 'http://foo.bar/qux.mp4'}
+    {url: 'https://website.example/video.mp4'}
   ]);
   t.deepEqual(result.category, ['lunch', 'food']);
   t.true(isValid(parseISO(result.published)));
-  t.deepEqual(result['mp-syndicate-to'], ['https://social.example/']);
+  t.is(result['mp-syndicate-to'], 'https://social.example');
 });
