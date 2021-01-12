@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import test from 'ava';
 import nock from 'nock';
-import {getFixture} from '../helpers/fixture.js';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {twitter} from '../../lib/twitter.js';
 
 test.beforeEach(t => {
@@ -131,7 +131,7 @@ test('Throws error fetching media to upload', async t => {
 test('Uploads media and returns a media id', async t => {
   const sourceScope = nock('https://website.example')
     .get('/image.jpg')
-    .reply(200, {body: getFixture('photo.jpg', false)});
+    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
   const uploadScope = nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json')
     .reply(200, {
@@ -150,7 +150,7 @@ test('Uploads media and returns a media id', async t => {
 test('Throws error uploading media', async t => {
   const sourceScope = nock('https://website.example')
     .get('/image.jpg')
-    .reply(200, {body: getFixture('photo.jpg', false)});
+    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
   const uploadScope = nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json')
     .reply(404, {
@@ -235,13 +235,13 @@ test('Posts a status to Twitter', async t => {
 
 test('Posts a status to Twitter with 4 out of 5 photos', async t => {
   const sourceScope1 = nock('https://website.example')
-    .get('/image1.jpg').reply(200, {body: getFixture('photo.jpg', false)});
+    .get('/image1.jpg').reply(200, {body: getFixture('file-types/photo.jpg', false)});
   const sourceScope2 = nock('https://website.example')
-    .get('/image2.jpg').reply(200, {body: getFixture('photo.jpg', false)});
+    .get('/image2.jpg').reply(200, {body: getFixture('file-types/photo.jpg', false)});
   const sourceScope3 = nock('https://website.example')
-    .get('/image3.jpg').reply(200, {body: getFixture('photo.jpg', false)});
+    .get('/image3.jpg').reply(200, {body: getFixture('file-types/photo.jpg', false)});
   const sourceScope4 = nock('https://website.example')
-    .get('/image4.jpg').reply(200, {body: getFixture('photo.jpg', false)});
+    .get('/image4.jpg').reply(200, {body: getFixture('file-types/photo.jpg', false)});
   const uploadScope1 = nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json').reply(200, {media_id_string: '1'});
   const uploadScope2 = nock('https://upload.twitter.com')
