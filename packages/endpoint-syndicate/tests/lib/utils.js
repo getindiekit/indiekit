@@ -31,7 +31,7 @@ test('Gets post for given URL from database', async t => {
   t.is(result.properties['mp-syndicate-to'], 'https://social.example/');
 });
 
-test('Gets post data from JF2 Feed', async t => {
+test('Adds post data from JF2 Feed', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
     .reply(200, getFixture('feed.jf2'));
@@ -47,15 +47,14 @@ test('Gets post data from JF2 Feed', async t => {
   scope.done();
 });
 
-test('Gets post data stored in database, not JF2 Feed', async t => {
+test('Updates post data from JF2 Feed to database', async t => {
   const scope = nock('https://website.example')
     .get('/feed.jf2')
     .reply(200, getFixture('feed.jf2'));
   const {publication} = t.context;
   publication.jf2Feed = 'https://website.example/feed.jf2';
   const result = await getPostData(publication);
-  t.is(result.properties.name, 'Item in database');
-  t.not(result.properties.name, 'Second item in feed');
+  t.is(result.properties.name, 'Second item in feed');
   scope.done();
 });
 

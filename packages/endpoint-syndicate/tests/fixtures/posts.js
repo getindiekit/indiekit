@@ -18,5 +18,7 @@ export const posts = {
       'mp-syndicate-to': 'https://social.example/'
     }
   }),
-  replaceOne: async () => {}
+  insertOne: async () => {},
+  replaceOne: async () => {},
+  updateOne: async () => {}
 };

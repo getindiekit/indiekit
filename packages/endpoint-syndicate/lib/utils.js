@@ -23,7 +23,7 @@ export const getMicropubEndpoint = (publication, request) => {
  */
 export const getPostData = async (publication, url) => {
   const {posts, jf2Feed} = publication;
-  let postData;
+  let postData = {};
 
   if (url) {
     // Get item in database which matching URL
@@ -33,37 +33,28 @@ export const getPostData = async (publication, url) => {
   } else if (jf2Feed) {
     // Fetch JF2 Feed and return first child
     try {
-      const {body} = await got(jf2Feed, {
-        responseType: 'json'
-      });
+      const {body} = await got(jf2Feed, {responseType: 'json'});
       const {children} = body;
+
       if (children.length > 0) {
         const properties = children[0];
+        properties['mp-slug'] = path.basename(properties.url);
 
         // Check if feed item already exists in database
         const storedPostData = await posts.findOne({
           'properties.url': properties.url
         });
 
-        if (storedPostData) {
-          // Use stored post data
-          postData = storedPostData;
-        } else {
-          properties['mp-slug'] = path.basename(properties.url);
+        // Create new post data object
+        postData.date = new Date();
+        postData.lastAction = 'import';
+        postData.properties = properties;
 
-          // Import post data to database
-          const importedPostData = {
-            date: new Date(),
-            properties,
-            lastAction: 'import'
-          };
-          await posts.insertOne(importedPostData, {
-            checkKeys: false
-          });
-
-          // Use imported post data
-          postData = importedPostData;
-        }
+        // Update existing or insert new post data
+        await (storedPostData ?
+          posts.updateOne(postData, {checkKeys: false}) :
+          posts.insertOne(postData, {checkKeys: false})
+        );
       } else {
         throw new Error('JF2 Feed does not contain any posts');
       }
