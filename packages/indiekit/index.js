@@ -58,15 +58,15 @@ export const Indiekit = class {
     this.application.views = this.application.views.concat(view);
   }
 
-  async init() {
+  async getConfig() {
     const database = await mongodbConfig(this.application.mongodbUrl);
 
     // Setup databases
     if (database) {
       this.application.hasDatabase = true;
-      this.application.cache = await database.collection('cache');
-      this.publication.posts = await database.collection('posts');
-      this.publication.media = await database.collection('media');
+      this.application.cache = database.collection('cache');
+      this.publication.posts = database.collection('posts');
+      this.publication.media = database.collection('media');
     }
 
     // Setup cache
@@ -87,10 +87,10 @@ export const Indiekit = class {
 
   async server(options = {}) {
     try {
-      const config = await this.init();
-      const server = serverConfig(config);
-      const {name, version} = config.application;
-      const port = options.port || config.server.port;
+      const indiekitConfig = await this.getConfig();
+      const server = serverConfig(indiekitConfig);
+      const {name, version} = indiekitConfig.application;
+      const port = options.port || indiekitConfig.server.port;
 
       return server.listen(port, () => {
         console.log(`Starting ${name} (v${version}) on port ${port}`);

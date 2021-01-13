@@ -32,7 +32,7 @@ test('Initiates application', async t => {
   const preset = new Preset();
   indiekit.set('publication.preset', preset);
   indiekit.set('publication.categories', ['foo', 'bar']);
-  await indiekit.init();
+  await indiekit.getConfig();
   t.is(indiekit.publication.postTypes[0].name, 'Test note');
   t.is(indiekit.publication.categories[0], 'foo');
 });

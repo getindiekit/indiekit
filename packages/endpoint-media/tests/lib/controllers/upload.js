@@ -19,7 +19,7 @@ test.beforeEach(async t => {
   indiekit.set('publication.me', process.env.TEST_PUBLICATION_URL);
   indiekit.set('publication.preset', jekyll);
   indiekit.set('publication.store', github);
-  const config = await indiekit.init();
+  const config = await indiekit.getConfig();
   const request = supertest(serverConfig(config));
 
   t.context.request = request.post('/media');

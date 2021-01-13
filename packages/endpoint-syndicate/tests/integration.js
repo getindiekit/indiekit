@@ -28,7 +28,7 @@ test.beforeEach(async t => {
       location: 'https://social.example/status/12345'
     })
   }]);
-  const config = await indiekit.init();
+  const config = await indiekit.getConfig();
   const request = supertest(serverConfig(config));
 
   t.context.request = request.post('/syndicate')

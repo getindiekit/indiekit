@@ -7,7 +7,7 @@ import {Indiekit} from '../../../../indiekit/index.js';
 
 const mockResponse = async query => {
   const indiekit = new Indiekit();
-  const config = await indiekit.init();
+  const config = await indiekit.getConfig();
   const request = supertest(serverConfig(config));
   return request.get('/micropub')
     .set('Accept', 'application/json')
