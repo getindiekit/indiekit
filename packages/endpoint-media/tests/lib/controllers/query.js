@@ -1,12 +1,8 @@
 import test from 'ava';
-import supertest from 'supertest';
-import {serverConfig} from '../../../../indiekit/config/server.js';
-import {Indiekit} from '../../../../indiekit/index.js';
+import {server} from '@indiekit-test/server';
 
 const mockResponse = async query => {
-  const indiekit = new Indiekit();
-  const config = await indiekit.getConfig();
-  const request = supertest(serverConfig(config));
+  const request = await server;
   return request.get('/media')
     .set('Accept', 'application/json')
     .query(query);

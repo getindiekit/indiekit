@@ -1,27 +1,11 @@
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
-import supertest from 'supertest';
+import {server} from '@indiekit-test/server';
 import {getFixture} from '@indiekit-test/get-fixture';
-import {serverConfig} from '../../../../indiekit/config/server.js';
-import {Indiekit} from '../../../../indiekit/index.js';
-import {GithubStore} from '../../../../store-github/index.js';
-import {JekyllPreset} from '../../../../preset-jekyll/index.js';
 
 test.beforeEach(async t => {
-  const github = new GithubStore({
-    token: 'abc123',
-    user: 'user',
-    repo: 'repo'
-  });
-  const jekyll = new JekyllPreset();
-  const indiekit = new Indiekit();
-  indiekit.set('publication.me', process.env.TEST_PUBLICATION_URL);
-  indiekit.set('publication.preset', jekyll);
-  indiekit.set('publication.store', github);
-  const config = await indiekit.getConfig();
-  const request = supertest(serverConfig(config));
-
+  const request = await server;
   t.context.request = request.post('/media');
 });
 

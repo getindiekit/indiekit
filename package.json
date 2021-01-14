@@ -39,6 +39,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@indiekit-test/server": "file:helpers/server",
     "@indiekit-test/get-fixture": "file:helpers/get-fixture",
     "@indiekit-test/media-data": "file:helpers/media-data",
     "@indiekit-test/post-data": "file:helpers/post-data",
