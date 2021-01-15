@@ -1,6 +1,4 @@
 import test from 'ava';
-import nock from 'nock';
-import {getFixture} from '@indiekit-test/get-fixture';
 import {posts} from '../fixtures/posts.js';
 import {
   getMicropubEndpoint,

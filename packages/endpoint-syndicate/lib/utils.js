@@ -1,6 +1,3 @@
-import path from 'path';
-import got from 'got';
-
 /**
  * Get Micropub endpoint from server derived values
  *

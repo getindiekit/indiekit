@@ -53,6 +53,7 @@
     "lerna": "^3.22.0",
     "markdownlint-cli": "^0.26.0",
     "mock-req-res": "^1.1.4",
+    "mongodb-memory-server": "^6.9.3",
     "nock": "^13.0.6",
     "nodemon": "^2.0.7",
     "sinon": "^9.2.4",
