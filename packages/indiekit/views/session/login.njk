@@ -11,12 +11,6 @@
   {% set me = publication.me | replace("http://", "") | replace("https://", "") %}
   <p>{{ __("session.login.description", "<b>" + me + "</b>") | safe }}</p>
 
-  {{ input({
-    name: "redirect_uri",
-    value: redirect_uri,
-    type: "hidden"
-  }) | indent(2) }}
-
   {{ button({
     text: __("session.login.submit"),
     classes: "button--block"
