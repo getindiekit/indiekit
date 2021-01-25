@@ -1,7 +1,10 @@
+import Debug from 'debug';
 import httpError from 'http-errors';
 import IndieAuth from 'indieauth-helper';
 import normalizeUrl from 'normalize-url';
 import {v4 as uuidv4} from 'uuid';
+
+const debug = new Debug('indiekit:session');
 
 const auth = new IndieAuth({
   secret: uuidv4()
@@ -23,7 +26,7 @@ export const login = (request, response) => {
   auth.options.clientId = url;
   auth.options.redirectUri = redirectUri;
 
-  response.render('session/login', {
+  return response.render('session/login', {
     title: response.__('session.login.title'),
     referrer: request.query.referrer
   });
@@ -37,9 +40,10 @@ export const authenticate = async (request, response) => {
     auth.options.me = new URL(me).href;
     const authUrl = await auth.getAuthUrl('code', ['create', 'update', 'delete']);
 
-    response.redirect(authUrl);
+    return response.redirect(authUrl);
   } catch (error) {
-    response.status(401).render('session/login', {
+    debug(error);
+    return response.status(401).render('session/login', {
       title: response.__('session.login.title'),
       error: error.message
     });
@@ -70,13 +74,14 @@ export const authenticationCallback = async (request, response, next) => {
   try {
     const token = await auth.getToken(code);
     request.session.token = token;
-    response.redirect(redirect || '/');
+    return response.redirect(redirect || '/');
   } catch (error) {
-    next(httpError(400, error));
+    debug(error);
+    return next(httpError(400, error));
   }
 };
 
 export const logout = (request, response) => {
   request.session = null;
-  response.redirect('/');
+  return response.redirect('/');
 };

@@ -1,7 +1,7 @@
 export const viewHomepage = (request, response) => {
-  if (request.session.token) {
-    response.redirect('/status');
+  if (request.session && request.session.token) {
+    return response.redirect('/status');
   }
 
-  response.redirect('/session/login');
+  return response.redirect('/session/login');
 };

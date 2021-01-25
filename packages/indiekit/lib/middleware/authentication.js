@@ -3,5 +3,5 @@ export const authenticate = (request, response, next) => {
     return next();
   }
 
-  response.redirect(`/session/login?redirect=${request.originalUrl}`);
+  return response.redirect(`/session/login?redirect=${request.originalUrl}`);
 };
