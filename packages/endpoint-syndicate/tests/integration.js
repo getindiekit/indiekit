@@ -35,7 +35,7 @@ test.beforeEach(async t => {
     .set('Accept', 'application/json');
 });
 
-test.skip('Syndicates a URL', async t => {
+test('Syndicates a URL', async t => {
   const authScope = nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, {
@@ -54,7 +54,7 @@ test.skip('Syndicates a URL', async t => {
   storeScope.done();
 });
 
-test.skip('Throws error syndicating a URL', async t => {
+test('Throws error syndicating a URL', async t => {
   const authScope = nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, {

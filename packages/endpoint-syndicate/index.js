@@ -6,7 +6,6 @@ import {syndicateController} from './lib/controllers/syndicate.js';
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
-  jf2Feed: false,
   mountpath: '/syndicate'
 };
 
