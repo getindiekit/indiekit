@@ -47,7 +47,6 @@
     "@indiekit-test/server": "file:helpers/server",
     "ava": "^3.15.0",
     "c8": "^7.4.0",
-    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsdoc": "^31.3.3",
     "husky": "^4.3.8",
     "lerna": "^3.22.0",
@@ -92,11 +91,9 @@
   "xo": {
     "space": true,
     "extends": [
-      "plugin:import/errors",
       "plugin:jsdoc/recommended"
     ],
     "plugins": [
-      "import",
       "jsdoc"
     ],
     "rules": {
@@ -120,44 +117,6 @@
           "ignorePattern": "c8"
         }
       ],
-      "complexity": [
-        "warn",
-        {
-          "max": 25
-        }
-      ],
-      "import/extensions": [
-        "error",
-        "always"
-      ],
-      "import/no-useless-path-segments": [
-        "error",
-        {
-          "noUselessIndex": false
-        }
-      ],
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          "devDependencies": true,
-          "packageDir": [
-            "./",
-            "./packages/endpoint-media",
-            "./packages/endpoint-micropub",
-            "./packages/endpoint-share",
-            "./packages/endpoint-syndicate",
-            "./packages/frontend",
-            "./packages/indiekit",
-            "./packages/preset-hugo",
-            "./packages/preset-jekyll",
-            "./packages/store-bitbucket",
-            "./packages/store-github",
-            "./packages/store-gitlab",
-            "./packages/syndicator-internet-archive",
-            "./packages/syndicator-twitter"
-          ]
-        }
-      ],
       "unicorn/import-index": [
         "error",
         {
@@ -172,15 +131,6 @@
           }
         }
       ]
-    },
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "extensions": [
-            ".js"
-          ]
-        }
-      }
     }
   }
 }
