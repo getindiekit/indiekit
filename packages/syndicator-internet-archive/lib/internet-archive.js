@@ -71,5 +71,29 @@ export const internetArchive = options => ({
     } catch (error) {
       throw new Error(error.response ? error.response.body : error.message);
     }
+  },
+
+  /**
+   * Save to Internet Archive
+   *
+   * @param {object} properties JF2 properties object
+   * @returns {string} URL of archived web page
+   */
+  async save(properties) {
+    try {
+      const {url} = properties;
+
+      // Get a job ID from capture request
+      const {job_id} = await this.capture(url);
+
+      // Get original URL and timestamp of archived web page
+      debug(`Capture of ${url} assigned to job ${job_id}`);
+      const {original_url, timestamp} = await this.status(job_id);
+
+      // Return syndidated URL
+      return `https://web.archive.org/web/${timestamp}/${original_url}`;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 });

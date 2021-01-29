@@ -36,7 +36,6 @@
     "brevity": "^0.2.9",
     "got": "^11.8.1",
     "html-to-text": "^6.0.0",
-    "http-errors": "^1.8.0",
     "twitter-lite": "^0.14.0"
   },
   "publishConfig": {

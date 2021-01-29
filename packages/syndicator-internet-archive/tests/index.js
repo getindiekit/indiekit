@@ -10,7 +10,9 @@ test.beforeEach(t => {
       secret: 'abcdef0123456789'
     },
     timestamp: '20180326070330',
-    url: 'http://website.example/post/1'
+    properties: {
+      url: 'http://website.example/post/1'
+    }
   };
 });
 
@@ -33,16 +35,16 @@ test('Gets UID', t => {
 });
 
 test('Returns syndicated URL', async t => {
-  const {job_id, options, timestamp, url} = t.context;
+  const {job_id, options, timestamp, properties} = t.context;
   const captureScope = nock('https://web.archive.org')
     .post('/save/')
-    .reply(200, {url, job_id});
+    .reply(200, {url: properties.url, job_id});
   const statusScope = nock('https://web.archive.org')
     .get(`/save/status/${job_id}`)
-    .reply(200, {status: 'success', original_url: url, timestamp});
+    .reply(200, {status: 'success', original_url: properties.url, timestamp});
   const syndicator = new InternetArchiveSyndicator(options);
-  const result = await syndicator.syndicate({properties: {url}});
-  t.is(result.location, `https://web.archive.org/web/20180326070330/${url}`);
+  const result = await syndicator.syndicate(properties);
+  t.is(result, `https://web.archive.org/web/20180326070330/${properties.url}`);
   captureScope.done();
   statusScope.done();
 });
@@ -50,13 +52,6 @@ test('Returns syndicated URL', async t => {
 test('Throws error getting syndicated URL if no API keys provided', async t => {
   const {url} = t.context;
   const syndicator = new InternetArchiveSyndicator({});
-  const error = await t.throwsAsync(syndicator.syndicate({properties: {url}}));
-  t.is(error.statusCode, 500);
+  const error = await t.throwsAsync(syndicator.syndicate({properties: url}));
   t.is(error.message, 'Cannot read property \'body\' of undefined');
-});
-
-test('Throws error getting syndicated URL if post data not provided', async t => {
-  const syndicator = new InternetArchiveSyndicator();
-  const error = await t.throwsAsync(syndicator.syndicate());
-  t.is(error.message, 'No post data given to syndicate');
 });

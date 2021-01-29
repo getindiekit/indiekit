@@ -1,4 +1,3 @@
-import HttpError from 'http-errors';
 import {fileURLToPath} from 'url';
 import path from 'path';
 import {twitter} from './lib/twitter.js';
@@ -43,26 +42,7 @@ export const TwitterSyndicator = class {
     return this.info.uid;
   }
 
-  async syndicate(postData) {
-    if (!postData) {
-      throw new Error('No post data given to syndicate');
-    }
-
-    try {
-      // Construct syndicated URL
-      const syndicatedUrl = await twitter(this.options).post(postData.properties);
-
-      // Ruturn successful syndication message
-      return {
-        location: syndicatedUrl,
-        status: 200,
-        json: {
-          success: 'syndicate',
-          success_description: `Post syndicated to ${syndicatedUrl}`
-        }
-      };
-    } catch (error) {
-      throw new HttpError(error);
-    }
+  async syndicate(properties) {
+    return twitter(this.options).post(properties);
   }
 };

@@ -16,16 +16,14 @@ test.beforeEach(t => {
       accessTokenSecret: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN',
       user: 'username'
     },
-    postData: {
-      properties: {
-        name: 'Lunchtime',
-        content: {
-          html: '<p>I ate a cheese sandwich, which was <em>nice</em>.</p>',
-          text: 'I ate a cheese sandwich, which was nice.'
-        },
-        url: 'https://foo.bar/lunchtime',
-        'post-type': 'article'
-      }
+    properties: {
+      name: 'Lunchtime',
+      content: {
+        html: '<p>I ate a cheese sandwich, which was <em>nice</em>.</p>',
+        text: 'I ate a cheese sandwich, which was nice.'
+      },
+      url: 'https://foo.bar/lunchtime',
+      'post-type': 'article'
     }
   };
 });
@@ -53,8 +51,8 @@ test('Returns syndicated URL', async t => {
     .post('/1.1/statuses/update.json')
     .reply(200, t.context.apiResponse);
   const syndicator = new TwitterSyndicator(t.context.options);
-  const result = await syndicator.syndicate(t.context.postData);
-  t.is(result.location, 'https://twitter.com/username/status/1234567890987654321');
+  const result = await syndicator.syndicate(t.context.properties);
+  t.is(result, 'https://twitter.com/username/status/1234567890987654321');
   scope.done();
 });
 
@@ -67,14 +65,7 @@ test('Throws error getting syndicated URL if no API keys provided', async t => {
       }]
     });
   const syndicator = new TwitterSyndicator({});
-  const error = await t.throwsAsync(syndicator.syndicate(t.context.postData));
-  t.is(error.statusCode, 500);
+  const error = await t.throwsAsync(syndicator.syndicate(t.context.properties));
   t.is(error.message, 'Could not authenticate you.');
   scope.done();
-});
-
-test('Throws error getting syndicated URL if post data not provided', async t => {
-  const syndicator = new TwitterSyndicator();
-  const error = await t.throwsAsync(syndicator.syndicate());
-  t.is(error.message, 'No post data given to syndicate');
 });
