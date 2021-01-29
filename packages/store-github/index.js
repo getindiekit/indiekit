@@ -15,7 +15,7 @@ export const GithubStore = class {
     this.options = {...defaults, ...options};
   }
 
-  github() {
+  get client() {
     const {Octokit} = octokit;
     return new Octokit({
       auth: `token ${this.options.token}`
@@ -33,7 +33,7 @@ export const GithubStore = class {
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
-    const response = await this.github().repos.createOrUpdateFileContents({
+    const response = await this.client.repos.createOrUpdateFileContents({
       owner: this.options.user,
       repo: this.options.repo,
       branch: this.options.branch,
@@ -52,7 +52,7 @@ export const GithubStore = class {
    * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-repository-content
    */
   async readFile(path) {
-    const response = await this.github().repos.getContent({
+    const response = await this.client.repos.getContent({
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
@@ -72,7 +72,7 @@ export const GithubStore = class {
    * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents
    */
   async updateFile(path, content, message) {
-    const contents = await this.github().repos.getContent({
+    const contents = await this.client.repos.getContent({
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
@@ -82,7 +82,7 @@ export const GithubStore = class {
     });
 
     content = Buffer.from(content).toString('base64');
-    const response = await this.github().repos.createOrUpdateFileContents({
+    const response = await this.client.repos.createOrUpdateFileContents({
       owner: this.options.user,
       repo: this.options.repo,
       branch: this.options.branch,
@@ -103,13 +103,13 @@ export const GithubStore = class {
    * @see https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#delete-a-file
    */
   async deleteFile(path, message) {
-    const contents = await this.github().repos.getContent({
+    const contents = await this.client.repos.getContent({
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
       path
     });
-    const response = await this.github().repos.deleteFile({
+    const response = await this.client.repos.deleteFile({
       owner: this.options.user,
       repo: this.options.repo,
       branch: this.options.branch,

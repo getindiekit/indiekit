@@ -15,7 +15,7 @@ export const BitbucketStore = class {
     this.options = {...defaults, ...options};
   }
 
-  bitbucket() {
+  get client() {
     const {Bitbucket} = bitbucket;
     return new Bitbucket({
       auth: {
@@ -36,7 +36,7 @@ export const BitbucketStore = class {
    * @see https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit
    */
   async createFile(path, content, message) {
-    const response = await this.bitbucket().repositories.createSrcFileCommit({
+    const response = await this.client.repositories.createSrcFileCommit({
       [path]: content,
       branch: this.options.branch,
       message,
@@ -54,7 +54,7 @@ export const BitbucketStore = class {
    * @see https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc
    */
   async readFile(path) {
-    const response = await this.bitbucket().repositories.readSrc({
+    const response = await this.client.repositories.readSrc({
       format: 'rendered',
       node: this.options.branch,
       path,
@@ -75,7 +75,7 @@ export const BitbucketStore = class {
    * @see https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit
    */
   async updateFile(path, content, message) {
-    const response = await this.bitbucket().repositories.createSrcFileCommit({
+    const response = await this.client.repositories.createSrcFileCommit({
       [path]: content,
       branch: this.options.branch,
       message,
@@ -94,7 +94,7 @@ export const BitbucketStore = class {
    * @see https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit
    */
   async deleteFile(path, message) {
-    const response = await this.bitbucket().repositories.createSrcFileCommit({
+    const response = await this.client.repositories.createSrcFileCommit({
       branch: this.options.branch,
       files: path,
       message,

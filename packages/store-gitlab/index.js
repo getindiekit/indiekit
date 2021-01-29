@@ -17,7 +17,7 @@ export const GitlabStore = class {
     this._projectId = options.projectId || `${options.user}/${options.repo}`;
   }
 
-  gitlab() {
+  get client() {
     const {Gitlab} = gitbeaker;
     return new Gitlab({
       host: this.options.instance,
@@ -36,7 +36,7 @@ export const GitlabStore = class {
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
-    const response = await this.gitlab().RepositoryFiles.create(
+    const response = await this.client.RepositoryFiles.create(
       this._projectId,
       path,
       this.options.branch,
@@ -56,7 +56,7 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository
    */
   async readFile(path) {
-    const response = await this.gitlab().RepositoryFiles.show(
+    const response = await this.client.RepositoryFiles.show(
       this._projectId,
       path,
       this.options.branch
@@ -76,7 +76,7 @@ export const GitlabStore = class {
    */
   async updateFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
-    const response = await this.gitlab().RepositoryFiles.edit(
+    const response = await this.client.RepositoryFiles.edit(
       this._projectId,
       path,
       this.options.branch,
@@ -97,7 +97,7 @@ export const GitlabStore = class {
    * @see https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository
    */
   async deleteFile(path, message) {
-    await this.gitlab().RepositoryFiles.remove(
+    await this.client.RepositoryFiles.remove(
       this._projectId,
       path,
       this.options.branch,
