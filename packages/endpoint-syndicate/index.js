@@ -11,7 +11,7 @@ const defaults = {
 
 export const SyndicateEndpoint = class {
   constructor(options = {}) {
-    this.id = 'syndicate';
+    this.id = 'endpoint-syndicate';
     this.name = 'Syndication endpoint';
     this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
@@ -19,10 +19,6 @@ export const SyndicateEndpoint = class {
 
   get mountpath() {
     return this.options.mountpath;
-  }
-
-  get namespace() {
-    return 'endpoint-syndicate';
   }
 
   init(indiekitConfig) {

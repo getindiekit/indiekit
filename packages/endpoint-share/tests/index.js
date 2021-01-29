@@ -1,7 +1,7 @@
 import test from 'ava';
 import {ShareEndpoint} from '../index.js';
 
-test('Gets namespace', t => {
+test('Gets mountpath', t => {
   const result = new ShareEndpoint();
-  t.is(result.namespace, 'endpoint-share');
+  t.is(result.mountpath, '/share');
 });

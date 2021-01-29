@@ -39,7 +39,7 @@
   {{ discovery | markdown | safe }}
 
 {% for endpoint in application.endpoints -%}
-  {% include endpoint.namespace + "-status.njk" ignore missing %}
+  {% include endpoint.id + "-status.njk" ignore missing %}
 {%- endfor %}
 
   {{ summary({

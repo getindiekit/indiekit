@@ -1,7 +1,7 @@
 import test from 'ava';
 import {MediaEndpoint} from '../index.js';
 
-test('Gets namespace', t => {
+test('Gets mountpath', t => {
   const result = new MediaEndpoint();
-  t.is(result.namespace, 'endpoint-media');
+  t.is(result.mountpath, '/media');
 });

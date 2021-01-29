@@ -13,7 +13,7 @@ const defaults = {
 
 export const ShareEndpoint = class {
   constructor(options = {}) {
-    this.id = 'share';
+    this.id = 'endpoint-share';
     this.name = 'Share endpoint';
     this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
@@ -21,10 +21,6 @@ export const ShareEndpoint = class {
 
   get mountpath() {
     return this.options.mountpath;
-  }
-
-  get namespace() {
-    return 'endpoint-share';
   }
 
   init(indiekitConfig) {
@@ -35,7 +31,7 @@ export const ShareEndpoint = class {
     indiekitConfig.addLocale('fr', locales.fr);
 
     indiekitConfig.addNavigation({
-      href: this.options.mountpath,
+      href: this.mountpath,
       text: 'share.title'
     });
 
@@ -48,6 +44,8 @@ export const ShareEndpoint = class {
       path.join(__dirname, 'includes'),
       path.join(__dirname, 'views')
     ]);
+
+    indiekitConfig.set('application.shareEndpoint', this.mountpath);
   }
 
   routes(application, publication) {

@@ -15,7 +15,7 @@ const defaults = {
 
 export const MediaEndpoint = class {
   constructor(options = {}) {
-    this.id = 'media';
+    this.id = 'endpoint-media';
     this.name = 'Micropub media endpoint';
     this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
@@ -23,10 +23,6 @@ export const MediaEndpoint = class {
 
   get mountpath() {
     return this.options.mountpath;
-  }
-
-  get namespace() {
-    return 'endpoint-media';
   }
 
   init(indiekitConfig) {

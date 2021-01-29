@@ -15,7 +15,7 @@ const defaults = {
 
 export const MicropubEndpoint = class {
   constructor(options = {}) {
-    this.id = 'micropub';
+    this.id = 'endpoint-micropub';
     this.name = 'Micropub endpoint';
     this.options = {...defaults, ...options};
     this._router = express.Router(); // eslint-disable-line new-cap
@@ -23,10 +23,6 @@ export const MicropubEndpoint = class {
 
   get mountpath() {
     return this.options.mountpath;
-  }
-
-  get namespace() {
-    return 'endpoint-micropub';
   }
 
   init(indiekitConfig) {

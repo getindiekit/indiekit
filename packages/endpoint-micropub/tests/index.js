@@ -1,7 +1,7 @@
 import test from 'ava';
 import {MicropubEndpoint} from '../index.js';
 
-test('Gets namespace', t => {
+test('Gets mountpath', t => {
   const result = new MicropubEndpoint();
-  t.is(result.namespace, 'endpoint-micropub');
+  t.is(result.mountpath, '/micropub');
 });
