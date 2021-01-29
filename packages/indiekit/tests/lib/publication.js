@@ -1,11 +1,13 @@
 import test from 'ava';
 import nock from 'nock';
+import {publication} from '@indiekit-test/publication';
 import {JekyllPreset} from '@indiekit/preset-jekyll';
 import {mongodbConfig} from '../../config/mongodb.js';
 import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
   getMediaEndpoint,
+  getPostTemplate,
   getPostTypes
 } from '../../lib/publication.js';
 
@@ -15,9 +17,7 @@ test.beforeEach(async t => {
 
   t.context = await {
     cache: new Cache(collection),
-    nock: nock('https://website.example').get('/categories.json'),
     publication: {
-      categories: 'https://website.example/categories.json',
       mediaEndpoint: '/media',
       postTypes: [{
         type: 'note',
@@ -38,8 +38,7 @@ test.beforeEach(async t => {
           url: 'media/pictures/{T}.{ext}'
         }
       }],
-      preset: new JekyllPreset(),
-      store: {id: 'foo'}
+      preset: new JekyllPreset()
     }
   };
 });
@@ -56,23 +55,45 @@ test('Returns array of available categories', async t => {
   t.deepEqual(result, ['foo', 'bar']);
 });
 
-test.serial('Fetches array from remote JSON file specified in `url` value', async t => {
-  const scope = t.context.nock.reply(200, ['foo', 'bar']);
-  const result = await getCategories(t.context.cache, t.context.publication);
+test.serial('Fetches array from remote JSON file', async t => {
+  const scope = nock(process.env.TEST_PUBLICATION_URL)
+    .get('/categories.json')
+    .reply(200, ['foo', 'bar']);
+  const result = await getCategories(t.context.cache, publication);
   t.deepEqual(result, ['foo', 'bar']);
   scope.done();
 });
 
 test.serial('Returns empty array if remote JSON file not found', async t => {
-  const scope = t.context.nock.replyWithError('Not found');
-  const error = await t.throwsAsync(getCategories(t.context.cache, t.context.publication));
-  t.is(error.message, `Unable to fetch ${t.context.publication.categories}: Not found`);
+  const scope = nock(process.env.TEST_PUBLICATION_URL)
+    .get('/categories.json')
+    .replyWithError('Not found');
+  const error = await t.throwsAsync(getCategories(t.context.cache, publication));
+  t.is(error.message, `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`);
   scope.done();
 });
 
 test.serial('Returns empty array if no publication config provided', async t => {
   const result = await getCategories(t.context.cache, {});
   t.deepEqual(result, []);
+});
+
+test('Gets custom post template', async t => {
+  const postTemplate = await getPostTemplate(publication);
+  const result = postTemplate({published: '2021-01-21'});
+  t.is(result, '{"published":"2021-01-21"}');
+});
+
+test('Gets preset post template', async t => {
+  const postTemplate = await getPostTemplate(t.context.publication);
+  const result = postTemplate({published: '2021-01-21'});
+  t.is(result, '---\ndate: 2021-01-21\n---\n');
+});
+
+test('Gets default post template', async t => {
+  const postTemplate = await getPostTemplate({});
+  const result = postTemplate({published: '2021-01-21'});
+  t.is(result, '{"published":"2021-01-21"}');
 });
 
 test('Merges values from custom and preset post types', t => {
@@ -97,6 +118,11 @@ test('Merges values from custom and preset post types', t => {
       url: 'media/pictures/{T}.{ext}'
     }
   });
+});
+
+test('Returns array if no preset or custom post types', t => {
+  const result = getPostTypes({});
+  t.deepEqual(result, []);
 });
 
 test('Gets media endpoint from server derived values', t => {
