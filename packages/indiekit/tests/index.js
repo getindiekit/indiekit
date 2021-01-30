@@ -17,6 +17,23 @@ test('Sets configuration value', t => {
   t.is(indiekit.publication.me, 'https://website.example');
 });
 
+test('Throws error setting configuration if key is not a string', t => {
+  t.throws(() => {
+    indiekit.set([], 'https://website.example');
+  }, {
+    instanceOf: TypeError,
+    message: 'Configuration key must be a string'
+  });
+});
+
+test('Throws error setting configuration if no value given', t => {
+  t.throws(() => {
+    indiekit.set('publication.me');
+  }, {
+    message: 'No value given for publication.me'
+  });
+});
+
 test('Adds endpoint', t => {
   const endpoint = {
     id: 'foo',
