@@ -70,10 +70,10 @@ test.serial('Throws error if no media endpoint URL', async t => {
     fieldname: 'photo',
     originalname: 'photo.jpg'
   }];
-  const error = await t.throwsAsync(
-    uploadMedia({}, t.context.properties, files)
-  );
-  t.is(error.message, 'Missing `url` property');
+
+  await t.throwsAsync(uploadMedia({}, t.context.properties, files), {
+    message: 'Missing `url` property'
+  });
 });
 
 test.serial('Throws error uploading attached file', async t => {
@@ -87,9 +87,10 @@ test.serial('Throws error uploading attached file', async t => {
     fieldname: 'photo',
     originalname: 'photo.jpg'
   }];
-  const error = await t.throwsAsync(
-    uploadMedia(t.context.publication, t.context.properties, files)
-  );
-  t.is(error.message, 'The token provided was malformed');
+
+  await t.throwsAsync(uploadMedia(t.context.publication, t.context.properties, files), {
+    message: 'The token provided was malformed'
+  });
+
   scope.done();
 });

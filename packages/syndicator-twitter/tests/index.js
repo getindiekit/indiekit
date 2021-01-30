@@ -65,7 +65,10 @@ test('Throws error getting syndicated URL if no API keys provided', async t => {
       }]
     });
   const syndicator = new TwitterSyndicator({});
-  const error = await t.throwsAsync(syndicator.syndicate(t.context.properties));
-  t.is(error.message, 'Could not authenticate you.');
+
+  await t.throwsAsync(syndicator.syndicate(t.context.properties), {
+    message: 'Could not authenticate you.'
+  });
+
   scope.done();
 });

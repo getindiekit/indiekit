@@ -18,11 +18,13 @@ test.beforeEach(t => {
 
 test('Gets assets path', t => {
   const result = new InternetArchiveSyndicator();
+
   t.regex(result.assetsPath, /syndicator-internet-archive\/assets/);
 });
 
 test('Gets info', t => {
   const result = new InternetArchiveSyndicator();
+
   t.false(result.info.checked);
   t.is(result.info.name, 'Internet Archive');
   t.is(result.info.uid, 'https://web.archive.org/');
@@ -31,6 +33,7 @@ test('Gets info', t => {
 
 test('Gets UID', t => {
   const result = new InternetArchiveSyndicator();
+
   t.is(result.uid, 'https://web.archive.org/');
 });
 
@@ -44,7 +47,9 @@ test('Returns syndicated URL', async t => {
     .reply(200, {status: 'success', original_url: properties.url, timestamp});
   const syndicator = new InternetArchiveSyndicator(options);
   const result = await syndicator.syndicate(properties);
+
   t.is(result, `https://web.archive.org/web/20180326070330/${properties.url}`);
+
   captureScope.done();
   statusScope.done();
 });
@@ -52,6 +57,8 @@ test('Returns syndicated URL', async t => {
 test('Throws error getting syndicated URL if no API keys provided', async t => {
   const {url} = t.context;
   const syndicator = new InternetArchiveSyndicator({});
-  const error = await t.throwsAsync(syndicator.syndicate({properties: url}));
-  t.is(error.message, 'Cannot read property \'body\' of undefined');
+
+  await t.throwsAsync(syndicator.syndicate({properties: url}), {
+    message: 'Cannot read property \'body\' of undefined'
+  });
 });

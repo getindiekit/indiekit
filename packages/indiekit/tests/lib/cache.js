@@ -22,14 +22,19 @@ test.afterEach.always(async () => {
 test.serial('Returns data from remote file and saves to cache', async t => {
   const scope = t.context.nock.reply(200, ['Foo', 'Bar']);
   const result = await t.context.cache.json('category', t.context.url);
+
   t.is(result.source, t.context.url);
+
   scope.done();
 });
 
 test.serial('Throws error if remote file not found', async t => {
   const scope = t.context.nock.replyWithError('Not found');
-  const error = await t.throwsAsync(t.context.cache.json('file', t.context.url));
-  t.is(error.message, `Unable to fetch ${t.context.url}: Not found`);
+
+  await t.throwsAsync(t.context.cache.json('file', t.context.url), {
+    message: `Unable to fetch ${t.context.url}: Not found`
+  });
+
   scope.done();
 });
 
@@ -40,8 +45,8 @@ test.serial('Gets data from cache', async t => {
       data: {}
     })
   });
-
   await cache.json('file', t.context.url);
   const result = await cache.json('file', t.context.url);
+
   t.is(result.source, 'cache');
 });

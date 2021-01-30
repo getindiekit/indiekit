@@ -32,6 +32,7 @@ test('Creates media data', async t => {
     originalname: 'photo.jpg'
   };
   const result = await mediaData.create(t.context.publication, file);
+
   t.regex(result.path, /\b[\d\w]{5}\b/g);
   t.is(result.properties['post-type'], 'photo');
 });
@@ -41,8 +42,10 @@ test('Throws error creating media data without publication configuration', async
     buffer: getFixture('file-types/photo.jpg', false),
     originalname: 'photo.jpg'
   };
-  const error = await t.throwsAsync(mediaData.create(false, file));
-  t.is(error.message, 'No publication configuration provided');
+
+  await t.throwsAsync(mediaData.create(false, file), {
+    message: 'No publication configuration provided'
+  });
 });
 
 test('Throws error creating media data without a known post type', async t => {
@@ -50,26 +53,32 @@ test('Throws error creating media data without a known post type', async t => {
     buffer: getFixture('file-types/font.ttf', false),
     originalname: 'font.ttf'
   };
-  const error = await t.throwsAsync(mediaData.create(t.context.publication, file));
-  t.is(error.message, 'Cannot read property \'media\' of undefined');
+
+  await t.throwsAsync(mediaData.create(t.context.publication, file), {
+    message: 'Cannot read property \'media\' of undefined'
+  });
 });
 
 test('Throws error creating media data without a file', async t => {
-  const error = await t.throwsAsync(mediaData.create(t.context.publication, false));
-  t.is(error.message, 'No file included in request');
+  await t.throwsAsync(mediaData.create(t.context.publication, false), {
+    message: 'No file included in request'
+  });
 });
 
 test('Reads media data', async t => {
   const result = await mediaData.read(t.context.publication, t.context.url);
+
   t.is(result.properties['post-type'], 'photo');
 });
 
 test('Throws error reading media data without publication configuration', async t => {
-  const error = await t.throwsAsync(mediaData.read(false, t.context.url));
-  t.is(error.message, 'No publication configuration provided');
+  await t.throwsAsync(mediaData.read(false, t.context.url), {
+    message: 'No publication configuration provided'
+  });
 });
 
 test('Throws error reading media data without URL', async t => {
-  const error = await t.throwsAsync(mediaData.read(t.context.publication, false));
-  t.is(error.message, 'No URL provided');
+  await t.throwsAsync(mediaData.read(t.context.publication, false), {
+    message: 'No URL provided'
+  });
 });

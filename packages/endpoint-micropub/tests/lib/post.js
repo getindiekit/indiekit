@@ -13,6 +13,7 @@ test.serial('Creates a post', async t => {
     .put(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Create post'}});
   const result = await post.create(publication, postData);
+
   t.deepEqual(result, {
     location: 'https://website.example/foo',
     status: 202,
@@ -21,14 +22,14 @@ test.serial('Creates a post', async t => {
       success_description: 'Post will be created at https://website.example/foo'
     }
   });
+
   scope.done();
 });
 
 test('Throws error creating a post', async t => {
-  const error = await t.throwsAsync(
-    post.create(false, postData)
-  );
-  t.is(error.message, 'postTemplate is not a function');
+  await t.throwsAsync(post.create(false, postData), {
+    message: 'postTemplate is not a function'
+  });
 });
 
 test.serial('Updates a post', async t => {
@@ -36,6 +37,7 @@ test.serial('Updates a post', async t => {
     .put(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Update post'}});
   const result = await post.update(publication, postData, t.context.url);
+
   t.deepEqual(result, {
     location: 'https://website.example/foo',
     status: 200,
@@ -44,14 +46,14 @@ test.serial('Updates a post', async t => {
       success_description: 'Post updated at https://website.example/foo'
     }
   });
+
   scope.done();
 });
 
 test('Throws error updating a post', async t => {
-  const error = await t.throwsAsync(
-    post.update(false, postData, t.context.url)
-  );
-  t.is(error.message, 'postTemplate is not a function');
+  await t.throwsAsync(post.update(false, postData, t.context.url), {
+    message: 'postTemplate is not a function'
+  });
 });
 
 test.serial('Deletes a post', async t => {
@@ -61,6 +63,7 @@ test.serial('Deletes a post', async t => {
     .delete(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Delete post'}});
   const result = await post.delete(publication, postData);
+
   t.deepEqual(result, {
     status: 200,
     json: {
@@ -68,14 +71,14 @@ test.serial('Deletes a post', async t => {
       success_description: 'Post deleted from https://website.example/foo'
     }
   });
+
   scope.done();
 });
 
 test('Throws error deleting a post', async t => {
-  const error = await t.throwsAsync(
-    post.delete(false, postData)
-  );
-  t.is(error.message, 'storeMessageTemplate is not a function');
+  await t.throwsAsync(post.delete(false, postData), {
+    message: 'storeMessageTemplate is not a function'
+  });
 });
 
 test.serial('Undeletes a post', async t => {
@@ -91,6 +94,7 @@ test.serial('Undeletes a post', async t => {
   await post.create(publication, postData);
   await post.delete(publication, postData);
   const result = await post.undelete(publication, postData);
+
   t.deepEqual(result, {
     location: 'https://website.example/foo',
     status: 200,
@@ -99,6 +103,7 @@ test.serial('Undeletes a post', async t => {
       success_description: 'Post undeleted from https://website.example/foo'
     }
   });
+
   scope.done();
 });
 
@@ -114,16 +119,16 @@ test('Throws error undeleting a post', async t => {
     .replyWithError('Not found');
   await post.create(publication, postData);
   await post.delete(publication, postData);
-  const error = await t.throwsAsync(
-    post.undelete(publication, postData)
-  );
-  t.regex(error.message, /\bNot found\b/);
+
+  await t.throwsAsync(post.undelete(publication, postData), {
+    message: /\bNot found\b/
+  });
+
   scope.done();
 });
 
 test('Throws error undeleting a post (no post previously deleted)', async t => {
-  const error = await t.throwsAsync(
-    post.undelete(publication, false)
-  );
-  t.is(error.message, 'Post was not previously deleted');
+  await t.throwsAsync(post.undelete(publication, false), {
+    message: 'Post was not previously deleted'
+  });
 });

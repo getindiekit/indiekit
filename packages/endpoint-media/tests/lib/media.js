@@ -14,6 +14,7 @@ test('Uploads a file', async t => {
     originalname: 'photo.jpg'
   };
   const result = await media.upload(publication, mediaData, file);
+
   t.deepEqual(result, {
     location: 'https://website.example/photo.jpg',
     status: 201,
@@ -22,6 +23,7 @@ test('Uploads a file', async t => {
       success_description: 'Media uploaded to https://website.example/photo.jpg'
     }
   });
+
   scope.done();
 });
 
@@ -33,9 +35,10 @@ test('Throws error uploading a file', async t => {
     buffer: getFixture('file-types/photo.jpg', false),
     originalname: 'photo.jpg'
   };
-  const error = await t.throwsAsync(
-    media.upload(publication, mediaData, file)
-  );
-  t.regex(error.message, /\bNot found\b/);
+
+  await t.throwsAsync(media.upload(publication, mediaData, file), {
+    message: /\bNot found\b/
+  });
+
   scope.done();
 });

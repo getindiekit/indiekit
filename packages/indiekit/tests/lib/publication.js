@@ -52,6 +52,7 @@ test('Returns array of available categories', async t => {
   const result = await getCategories(t.context.cache, {
     categories: ['foo', 'bar']
   });
+
   t.deepEqual(result, ['foo', 'bar']);
 });
 
@@ -59,8 +60,9 @@ test.serial('Fetches array from remote JSON file', async t => {
   const scope = nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .reply(200, ['foo', 'bar']);
-  const result = await getCategories(t.context.cache, publication);
-  t.deepEqual(result, ['foo', 'bar']);
+
+  t.deepEqual(await getCategories(t.context.cache, publication), ['foo', 'bar']);
+
   scope.done();
 });
 
@@ -68,36 +70,42 @@ test.serial('Returns empty array if remote JSON file not found', async t => {
   const scope = nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .replyWithError('Not found');
-  const error = await t.throwsAsync(getCategories(t.context.cache, publication));
-  t.is(error.message, `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`);
+
+  await t.throwsAsync(getCategories(t.context.cache, publication), {
+    message: `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`
+  });
+
   scope.done();
 });
 
 test.serial('Returns empty array if no publication config provided', async t => {
-  const result = await getCategories(t.context.cache, {});
-  t.deepEqual(result, []);
+  t.deepEqual(await getCategories(t.context.cache, {}), []);
 });
 
 test('Gets custom post template', async t => {
   const postTemplate = await getPostTemplate(publication);
   const result = postTemplate({published: '2021-01-21'});
+
   t.is(result, '{"published":"2021-01-21"}');
 });
 
 test('Gets preset post template', async t => {
   const postTemplate = await getPostTemplate(t.context.publication);
   const result = postTemplate({published: '2021-01-21'});
+
   t.is(result, '---\ndate: 2021-01-21\n---\n');
 });
 
 test('Gets default post template', async t => {
   const postTemplate = await getPostTemplate({});
   const result = postTemplate({published: '2021-01-21'});
+
   t.is(result, '{"published":"2021-01-21"}');
 });
 
 test('Merges values from custom and preset post types', t => {
   const result = getPostTypes(t.context.publication);
+
   t.deepEqual(result[1], {
     type: 'note',
     name: 'Journal entry',
@@ -121,8 +129,7 @@ test('Merges values from custom and preset post types', t => {
 });
 
 test('Returns array if no preset or custom post types', t => {
-  const result = getPostTypes({});
-  t.deepEqual(result, []);
+  t.deepEqual(getPostTypes({}), []);
 });
 
 test('Gets media endpoint from server derived values', t => {
@@ -132,8 +139,8 @@ test('Gets media endpoint from server derived values', t => {
       host: 'server.example'
     }
   };
-  const result = getMediaEndpoint(t.context.publication, request);
-  t.is(result, 'https://server.example/media');
+
+  t.is(getMediaEndpoint(t.context.publication, request), 'https://server.example/media');
 });
 
 test('Gets media endpoint from publication configuration', t => {
@@ -146,6 +153,6 @@ test('Gets media endpoint from publication configuration', t => {
       host: 'website.example'
     }
   };
-  const result = getMediaEndpoint(publication, request);
-  t.is(result, 'https://website.example/media');
+
+  t.is(getMediaEndpoint(publication, request), 'https://website.example/media');
 });
