@@ -57,47 +57,50 @@ test('Returns array of available categories', async t => {
 });
 
 test.serial('Fetches array from remote JSON file', async t => {
-  const scope = nock(process.env.TEST_PUBLICATION_URL)
+  nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .reply(200, ['foo', 'bar']);
 
-  t.deepEqual(await getCategories(t.context.cache, publication), ['foo', 'bar']);
+  const result = await getCategories(t.context.cache, publication);
 
-  scope.done();
+  t.deepEqual(result, ['foo', 'bar']);
 });
 
 test.serial('Returns empty array if remote JSON file not found', async t => {
-  const scope = nock(process.env.TEST_PUBLICATION_URL)
+  nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .replyWithError('Not found');
 
   await t.throwsAsync(getCategories(t.context.cache, publication), {
     message: `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`
   });
-
-  scope.done();
 });
 
 test.serial('Returns empty array if no publication config provided', async t => {
-  t.deepEqual(await getCategories(t.context.cache, {}), []);
+  const result = await getCategories(t.context.cache, {});
+
+  t.deepEqual(result, []);
 });
 
-test('Gets custom post template', async t => {
-  const postTemplate = await getPostTemplate(publication);
+test('Gets custom post template', t => {
+  const postTemplate = getPostTemplate(publication);
+
   const result = postTemplate({published: '2021-01-21'});
 
   t.is(result, '{"published":"2021-01-21"}');
 });
 
-test('Gets preset post template', async t => {
-  const postTemplate = await getPostTemplate(t.context.publication);
+test('Gets preset post template', t => {
+  const postTemplate = getPostTemplate(t.context.publication);
+
   const result = postTemplate({published: '2021-01-21'});
 
   t.is(result, '---\ndate: 2021-01-21\n---\n');
 });
 
-test('Gets default post template', async t => {
-  const postTemplate = await getPostTemplate({});
+test('Gets default post template', t => {
+  const postTemplate = getPostTemplate({});
+
   const result = postTemplate({published: '2021-01-21'});
 
   t.is(result, '{"published":"2021-01-21"}');
@@ -140,13 +143,13 @@ test('Gets media endpoint from server derived values', t => {
     }
   };
 
-  t.is(getMediaEndpoint(t.context.publication, request), 'https://server.example/media');
+  const result = getMediaEndpoint(t.context.publication, request);
+
+  t.is(result, 'https://server.example/media');
 });
 
 test('Gets media endpoint from publication configuration', t => {
-  const publication = {
-    mediaEndpoint: 'https://website.example/media'
-  };
+  const publication = {mediaEndpoint: 'https://website.example/media'};
   const request = {
     protocol: 'https',
     headers: {
@@ -154,5 +157,7 @@ test('Gets media endpoint from publication configuration', t => {
     }
   };
 
-  t.is(getMediaEndpoint(publication, request), 'https://website.example/media');
+  const result = getMediaEndpoint(publication, request);
+
+  t.is(result, 'https://website.example/media');
 });

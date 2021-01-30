@@ -5,15 +5,19 @@ import {mediaData} from '@indiekit-test/media-data';
 import {publication} from '@indiekit-test/publication';
 import {media} from '../../lib/media.js';
 
-test('Uploads a file', async t => {
-  const scope = nock('https://api.github.com')
-    .put(uri => uri.includes('photo.jpg'))
-    .reply(200, {commit: {message: 'Message'}});
-  const file = {
+test.beforeEach(t => {
+  t.context.file = {
     buffer: getFixture('file-types/photo.jpg', false),
     originalname: 'photo.jpg'
   };
-  const result = await media.upload(publication, mediaData, file);
+});
+
+test('Uploads a file', async t => {
+  nock('https://api.github.com')
+    .put(uri => uri.includes('photo.jpg'))
+    .reply(200, {commit: {message: 'Message'}});
+
+  const result = await media.upload(publication, mediaData, t.context.file);
 
   t.deepEqual(result, {
     location: 'https://website.example/photo.jpg',
@@ -23,22 +27,14 @@ test('Uploads a file', async t => {
       success_description: 'Media uploaded to https://website.example/photo.jpg'
     }
   });
-
-  scope.done();
 });
 
 test('Throws error uploading a file', async t => {
-  const scope = nock('https://api.github.com')
+  nock('https://api.github.com')
     .put(uri => uri.includes('photo.jpg'))
     .replyWithError('Not found');
-  const file = {
-    buffer: getFixture('file-types/photo.jpg', false),
-    originalname: 'photo.jpg'
-  };
 
-  await t.throwsAsync(media.upload(publication, mediaData, file), {
+  await t.throwsAsync(media.upload(publication, mediaData, t.context.file), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });

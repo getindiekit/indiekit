@@ -17,6 +17,7 @@ test('Derives a permalink', t => {
 
 test('Get post type configuration for a given type', t => {
   const {postTypes} = new JekyllPreset();
+
   const result = getPostTypeConfig('note', postTypes);
 
   t.is(result.name, 'Note');
@@ -32,6 +33,7 @@ test('Renders path from URI template and properties', t => {
     'mp-slug': 'foo'
   };
   const template = '{yyyy}/{MM}/{uuid}/{slug}';
+
   const result = renderPath(template, properties);
 
   t.regex(result, /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/);
@@ -45,5 +47,7 @@ test('Substitutes variables enclosed in { } braces with data from object', t => 
     number: 1
   };
 
-  t.is(supplant(string, object), '{array} string 1');
+  const result = supplant(string, object);
+
+  t.is(result, '{array} string 1');
 });

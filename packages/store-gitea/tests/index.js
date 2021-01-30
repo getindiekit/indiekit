@@ -5,18 +5,18 @@ import {GiteaStore} from '../index.js';
 
 test.beforeEach(t => {
   t.context = {
-    nock: nock('https://gitea.com'),
     gitea: new GiteaStore({
       token: 'abc123',
       user: 'user',
       repo: 'repo'
     }),
-    nockInstance: nock('https://gitea.instance'),
+    giteaUrl: 'https://gitea.com',
     giteaInstance: new GiteaStore({
       token: 'abc123',
       user: 'user',
       repo: 'repo'
     }),
+    giteaInstanceUrl: 'https://gitea.instance',
     getResponse: {
       content: 'Zm9vYmFy',
       sha: '\b[0-9a-f]{5,40}\b',
@@ -38,106 +38,98 @@ test.beforeEach(t => {
       content: {}
     }
   };
-
-  t.context.giteaInstance.options.instance = 'https://gitea.instance';
 });
 
 test('Creates file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  const response = await t.context.gitea.createFile('foo.txt', 'foo', 'Message');
-  t.is(response.body.path, 'foo.txt');
-  t.is(response.body.branch, 'master');
-  scope.done();
+
+  const result = await t.context.gitea.createFile('foo.txt', 'foo', 'Message');
+
+  t.is(result.body.path, 'foo.txt');
+  t.is(result.body.branch, 'master');
 });
 
 test('Creates file in a repository at custom instance', async t => {
-  const scope = t.context.nockInstance
+  nock(t.context.giteaInstanceUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  const response = await t.context.giteaInstance.createFile('foo.txt', 'foo', 'Message');
-  t.is(response.body.path, 'foo.txt');
-  t.is(response.body.branch, 'master');
-  scope.done();
+  t.context.giteaInstance.options.instance = t.context.giteaInstanceUrl;
+
+  const result = await t.context.giteaInstance.createFile('foo.txt', 'foo', 'Message');
+
+  t.is(result.body.path, 'foo.txt');
+  t.is(result.body.branch, 'master');
 });
 
 test('Throws error creating file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .post(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.createFile('foo.txt', 'foo', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Reads file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse);
-  const response = await t.context.gitea.readFile('foo.txt');
 
-  t.is(response, 'foobar');
+  const result = await t.context.gitea.readFile('foo.txt');
 
-  scope.done();
+  t.is(result, 'foobar');
 });
 
 test('Throws error reading file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .get(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.readFile('foo.txt'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Updates file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse)
     .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
-  const response = await t.context.gitea.updateFile('foo.txt', 'foo', 'Message');
 
-  t.is(response.body.path, 'foo.txt');
-  t.is(response.body.branch, 'master');
+  const result = await t.context.gitea.updateFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.body.path, 'foo.txt');
+  t.is(result.body.branch, 'master');
 });
 
 test('Throws error updating file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .get(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.updateFile('foo.txt', 'foo', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Deletes a file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse)
     .delete(uri => uri.includes('foo.txt'))
     .reply(200, t.context.deleteResponse);
-  const response = await t.context.gitea.deleteFile('foo.txt', 'Message');
 
-  t.truthy(response);
+  const result = await t.context.gitea.deleteFile('foo.txt', 'Message');
 
-  scope.done();
+  t.truthy(result);
 });
 
 test('Throws error deleting a file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.giteaUrl)
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse)
     .delete(uri => uri.includes('foo.txt'))
@@ -146,6 +138,4 @@ test('Throws error deleting a file in a repository', async t => {
   await t.throwsAsync(t.context.gitea.deleteFile('foo.txt', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });

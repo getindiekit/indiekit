@@ -9,7 +9,6 @@ test.beforeEach(async t => {
 
   t.context = {
     cache: new Cache(collection),
-    nock: nock('https://website.example').get('/categories.json'),
     url: 'https://website.example/categories.json'
   };
 });
@@ -20,22 +19,23 @@ test.afterEach.always(async () => {
 });
 
 test.serial('Returns data from remote file and saves to cache', async t => {
-  const scope = t.context.nock.reply(200, ['Foo', 'Bar']);
+  nock('https://website.example')
+    .get('/categories.json')
+    .reply(200, ['Foo', 'Bar']);
+
   const result = await t.context.cache.json('category', t.context.url);
 
   t.is(result.source, t.context.url);
-
-  scope.done();
 });
 
 test.serial('Throws error if remote file not found', async t => {
-  const scope = t.context.nock.replyWithError('Not found');
+  nock('https://website.example')
+    .get('/categories.json')
+    .replyWithError('Not found');
 
   await t.throwsAsync(t.context.cache.json('file', t.context.url), {
     message: `Unable to fetch ${t.context.url}: Not found`
   });
-
-  scope.done();
 });
 
 test.serial('Gets data from cache', async t => {
@@ -46,6 +46,7 @@ test.serial('Gets data from cache', async t => {
     })
   });
   await cache.json('file', t.context.url);
+
   const result = await cache.json('file', t.context.url);
 
   t.is(result.source, 'cache');

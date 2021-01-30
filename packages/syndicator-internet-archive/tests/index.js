@@ -39,26 +39,23 @@ test('Gets UID', t => {
 
 test('Returns syndicated URL', async t => {
   const {job_id, options, timestamp, properties} = t.context;
-  const captureScope = nock('https://web.archive.org')
+  nock('https://web.archive.org')
     .post('/save/')
     .reply(200, {url: properties.url, job_id});
-  const statusScope = nock('https://web.archive.org')
+  nock('https://web.archive.org')
     .get(`/save/status/${job_id}`)
     .reply(200, {status: 'success', original_url: properties.url, timestamp});
   const syndicator = new InternetArchiveSyndicator(options);
+
   const result = await syndicator.syndicate(properties);
 
   t.is(result, `https://web.archive.org/web/20180326070330/${properties.url}`);
-
-  captureScope.done();
-  statusScope.done();
 });
 
 test('Throws error getting syndicated URL if no API keys provided', async t => {
-  const {url} = t.context;
   const syndicator = new InternetArchiveSyndicator({});
 
-  await t.throwsAsync(syndicator.syndicate({properties: url}), {
+  await t.throwsAsync(syndicator.syndicate({properties: t.context.url}), {
     message: 'Cannot read property \'body\' of undefined'
   });
 });

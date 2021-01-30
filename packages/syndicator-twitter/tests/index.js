@@ -30,11 +30,13 @@ test.beforeEach(t => {
 
 test('Gets assets path', t => {
   const result = new TwitterSyndicator(t.context.options);
+
   t.regex(result.assetsPath, /syndicator-twitter\/assets/);
 });
 
 test('Gets info', t => {
   const result = new TwitterSyndicator(t.context.options);
+
   t.false(result.info.checked);
   t.is(result.info.name, 'username on Twitter');
   t.is(result.info.uid, 'https://twitter.com/username');
@@ -43,21 +45,23 @@ test('Gets info', t => {
 
 test('Gets UID', t => {
   const result = new TwitterSyndicator(t.context.options);
+
   t.is(result.uid, 'https://twitter.com/username');
 });
 
 test('Returns syndicated URL', async t => {
-  const scope = nock('https://api.twitter.com')
+  nock('https://api.twitter.com')
     .post('/1.1/statuses/update.json')
     .reply(200, t.context.apiResponse);
   const syndicator = new TwitterSyndicator(t.context.options);
+
   const result = await syndicator.syndicate(t.context.properties);
+
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
-  scope.done();
 });
 
 test('Throws error getting syndicated URL if no API keys provided', async t => {
-  const scope = nock('https://api.twitter.com')
+  nock('https://api.twitter.com')
     .post('/1.1/statuses/update.json')
     .reply(401, {
       errors: [{
@@ -69,6 +73,4 @@ test('Throws error getting syndicated URL if no API keys provided', async t => {
   await t.throwsAsync(syndicator.syndicate(t.context.properties), {
     message: 'Could not authenticate you.'
   });
-
-  scope.done();
 });

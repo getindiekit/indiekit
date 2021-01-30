@@ -1,118 +1,104 @@
 import test from 'ava';
 import nock from 'nock';
-
 import {BitbucketStore} from '../index.js';
 
+const bitbucket = new BitbucketStore({
+  user: 'username',
+  password: 'password',
+  repo: 'repo'
+});
+
 test.beforeEach(t => {
-  t.context = {
-    nock: nock('https://api.bitbucket.org'),
-    bitbucket: new BitbucketStore({
-      user: 'username',
-      password: 'password',
-      repo: 'repo'
-    })
-  };
+  t.context.bitbucketUrl = 'https://api.bitbucket.org';
 });
 
 test('Creates file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .reply(201, {
       'Content-Type': 'application/json'
     });
-  const response = await t.context.bitbucket.createFile('foo.txt', 'foo', 'Message');
 
-  t.is(response.status, 201);
-  t.true(response.url.includes('repositories/username/repo/src'));
+  const result = await bitbucket.createFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.status, 201);
+  t.true(result.url.includes('repositories/username/repo/src'));
 });
 
 test('Throws error creating file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.bitbucket.createFile('foo.txt', 'foo', 'Message'), {
+  await t.throwsAsync(bitbucket.createFile('foo.txt', 'foo', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Reads file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .get('/2.0/repositories/username/repo/src/master/foo.txt')
     .query({format: 'rendered'})
     .reply(201, {raw: 'foo', type: 'rendered'});
-  const response = await t.context.bitbucket.readFile('foo.txt');
 
-  t.is(response, 'foo');
+  const result = await bitbucket.readFile('foo.txt');
 
-  scope.done();
+  t.is(result, 'foo');
 });
 
 test('Throws error reading file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .get('/2.0/repositories/username/repo/src/master/foo.txt')
     .query({format: 'rendered'})
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.bitbucket.readFile('foo.txt'), {
+  await t.throwsAsync(bitbucket.readFile('foo.txt'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Updates file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .reply(201, {
       'Content-Type': 'application/json'
     });
-  const response = await t.context.bitbucket.updateFile('foo.txt', 'foo', 'Message');
 
-  t.is(response.status, 201);
-  t.true(response.url.includes('repositories/username/repo/src'));
+  const result = await bitbucket.updateFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.status, 201);
+  t.true(result.url.includes('repositories/username/repo/src'));
 });
 
 test('Throws error updating file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.bitbucket.updateFile('foo.txt', 'foo', 'Message'), {
+  await t.throwsAsync(bitbucket.updateFile('foo.txt', 'foo', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Deletes a file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .reply(201, {
       'Content-Type': 'application/json'
     });
-  const response = await t.context.bitbucket.deleteFile('foo.txt', 'Message');
 
-  t.is(response.status, 201);
-  t.true(response.url.includes('repositories/username/repo/src'));
+  const result = await bitbucket.deleteFile('foo.txt', 'Message');
 
-  scope.done();
+  t.is(result.status, 201);
+  t.true(result.url.includes('repositories/username/repo/src'));
 });
 
 test('Throws error deleting a file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.bitbucket.deleteFile('foo.txt', 'Message'), {
+  await t.throwsAsync(bitbucket.deleteFile('foo.txt', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });

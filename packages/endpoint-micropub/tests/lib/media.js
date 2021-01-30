@@ -5,6 +5,11 @@ import {uploadMedia} from '../../lib/media.js';
 
 test.beforeEach(t => {
   t.context = {
+    files: [{
+      buffer: getFixture('file-types/photo.jpg', false),
+      fieldname: 'photo',
+      originalname: 'photo.jpg'
+    }],
     publication: {
       mediaEndpoint: 'https://media-endpoint.example'
     },
@@ -28,21 +33,17 @@ test.beforeEach(t => {
 });
 
 test('Uploads attached file via media endpoint', async t => {
-  const scope = nock('https://media-endpoint.example')
+  nock('https://media-endpoint.example')
     .post('/')
     .reply(201, t.context.responseBody('photo.jpg'), t.context.responseHeader('photo.jpg'));
-  const files = [{
-    buffer: getFixture('file-types/photo.jpg', false),
-    fieldname: 'photo',
-    originalname: 'photo.jpg'
-  }];
-  const result = await uploadMedia(t.context.publication, t.context.properties, files);
+
+  const result = await uploadMedia(t.context.publication, t.context.properties, t.context.files);
+
   t.deepEqual(result.photo, ['https://website.example/media/photo.jpg']);
-  scope.done();
 });
 
 test.serial('Uploads attached files via media endpoint', async t => {
-  const scope = nock('https://media-endpoint.example')
+  nock('https://media-endpoint.example')
     .post('/')
     .reply(201, t.context.responseBody('photo1.jpg'), t.context.responseHeader('photo1.jpg'))
     .post('/')
@@ -56,41 +57,29 @@ test.serial('Uploads attached files via media endpoint', async t => {
     fieldname: 'photo[]',
     originalname: 'photo2.jpg'
   }];
+
   const result = await uploadMedia(t.context.publication, t.context.properties, files);
+
   t.deepEqual(result.photo, [
     'https://website.example/media/photo1.jpg',
     'https://website.example/media/photo2.jpg'
   ]);
-  scope.done();
 });
 
 test.serial('Throws error if no media endpoint URL', async t => {
-  const files = [{
-    buffer: getFixture('file-types/photo.jpg', false),
-    fieldname: 'photo',
-    originalname: 'photo.jpg'
-  }];
-
-  await t.throwsAsync(uploadMedia({}, t.context.properties, files), {
+  await t.throwsAsync(uploadMedia({}, t.context.properties, t.context.files), {
     message: 'Missing `url` property'
   });
 });
 
 test.serial('Throws error uploading attached file', async t => {
-  const scope = nock('https://media-endpoint.example')
+  nock('https://media-endpoint.example')
     .post('/')
     .reply(400, {
       error_description: 'The token provided was malformed'
     });
-  const files = [{
-    buffer: getFixture('file-types/photo.jpg', false),
-    fieldname: 'photo',
-    originalname: 'photo.jpg'
-  }];
 
-  await t.throwsAsync(uploadMedia(t.context.publication, t.context.properties, files), {
+  await t.throwsAsync(uploadMedia(t.context.publication, t.context.properties, t.context.files), {
     message: 'The token provided was malformed'
   });
-
-  scope.done();
 });

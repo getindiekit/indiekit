@@ -5,6 +5,10 @@ import {mediaData} from '../../lib/media-data.js';
 
 test.beforeEach(t => {
   t.context = {
+    file: {
+      buffer: getFixture('file-types/photo.jpg', false),
+      originalname: 'photo.jpg'
+    },
     publication: {
       me: 'https://website.example',
       postTypes: new JekyllPreset().postTypes,
@@ -27,23 +31,14 @@ test.beforeEach(t => {
 });
 
 test('Creates media data', async t => {
-  const file = {
-    buffer: getFixture('file-types/photo.jpg', false),
-    originalname: 'photo.jpg'
-  };
-  const result = await mediaData.create(t.context.publication, file);
+  const result = await mediaData.create(t.context.publication, t.context.file);
 
   t.regex(result.path, /\b[\d\w]{5}\b/g);
   t.is(result.properties['post-type'], 'photo');
 });
 
 test('Throws error creating media data without publication configuration', async t => {
-  const file = {
-    buffer: getFixture('file-types/photo.jpg', false),
-    originalname: 'photo.jpg'
-  };
-
-  await t.throwsAsync(mediaData.create(false, file), {
+  await t.throwsAsync(mediaData.create(false, t.context.file), {
     message: 'No publication configuration provided'
   });
 });

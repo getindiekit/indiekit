@@ -1,5 +1,4 @@
 import test from 'ava';
-
 import {getNavigation} from '../../lib/navigation.js';
 
 test.beforeEach(t => {
@@ -17,6 +16,7 @@ test('Returns logged out navigation', t => {
   }, {
     __: string => string
   });
+
   t.is(result[0].href, '/session/login');
 });
 
@@ -28,5 +28,6 @@ test('Returns logged in navigation', t => {
   }, {
     __: string => string
   });
+
   t.is(result[0].href, '/session/logout');
 });

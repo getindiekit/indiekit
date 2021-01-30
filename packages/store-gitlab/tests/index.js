@@ -1,22 +1,23 @@
 import test from 'ava';
 import nock from 'nock';
-
 import {GitlabStore} from '../index.js';
+
+const gitlab = new GitlabStore({
+  token: 'abc123',
+  user: 'user',
+  repo: 'repo'
+});
+
+const gitlabInstance = new GitlabStore({
+  token: 'abc123',
+  user: 'user',
+  repo: 'repo'
+});
 
 test.beforeEach(t => {
   t.context = {
-    nock: nock('https://gitlab.com'),
-    gitlab: new GitlabStore({
-      token: 'abc123',
-      user: 'user',
-      repo: 'repo'
-    }),
-    nockInstance: nock('https://gitlab.instance'),
-    gitlabInstance: new GitlabStore({
-      token: 'abc123',
-      user: 'user',
-      repo: 'repo'
-    }),
+    gitlabUrl: 'https://gitlab.com',
+    gitlabInstanceUrl: 'https://gitlab.instance',
     getResponse: {
       content: 'Zm9vYmFy',
       commit_id: '\b[0-9a-f]{5,40}\b', // eslint-disable-line camelcase
@@ -31,125 +32,113 @@ test.beforeEach(t => {
       branch: 'master'
     }
   };
-
-  t.context.gitlabInstance.options.instance = 'https://gitlab.instance';
 });
 
 test('Creates file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  const response = await t.context.gitlab.createFile('foo.txt', 'foo', 'Message');
 
-  t.is(response.file_path, 'foo.txt');
-  t.is(response.branch, 'master');
+  const result = await gitlab.createFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.file_path, 'foo.txt');
+  t.is(result.branch, 'master');
 });
 
 test('Creates file in a repository at custom instance', async t => {
-  const scope = t.context.nockInstance
+  nock(t.context.gitlabInstanceUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  const response = await t.context.gitlabInstance.createFile('foo.txt', 'foo', 'Message');
+  gitlabInstance.options.instance = 'https://gitlab.instance';
 
-  t.is(response.file_path, 'foo.txt');
-  t.is(response.branch, 'master');
+  const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.file_path, 'foo.txt');
+  t.is(result.branch, 'master');
 });
 
 test('Creates file in a repository with projectId', async t => {
-  const scope = t.context.nockInstance
+  nock(t.context.gitlabInstanceUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  t.context.gitlabInstance.options.projectId = 'user/repo';
-  const response = await t.context.gitlabInstance.createFile('foo.txt', 'foo', 'Message');
+  gitlabInstance.options = {
+    instance: t.context.gitlabInstanceUrl,
+    projectId: 'user/repo'
+  };
 
-  t.is(response.file_path, 'foo.txt');
-  t.is(response.branch, 'master');
+  const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.file_path, 'foo.txt');
+  t.is(result.branch, 'master');
 });
 
 test('Throws error creating file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .post(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.gitlab.createFile('foo.txt', 'foo', 'Message'), {
+  await t.throwsAsync(gitlab.createFile('foo.txt', 'foo', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Reads file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .get(uri => uri.includes('foo.txt'))
     .reply(200, t.context.getResponse);
-  const response = await t.context.gitlab.readFile('foo.txt');
 
-  t.is(response, 'foobar');
+  const result = await gitlab.readFile('foo.txt');
 
-  scope.done();
+  t.is(result, 'foobar');
 });
 
 test('Throws error reading file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .get(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.gitlab.readFile('foo.txt'), {
+  await t.throwsAsync(gitlab.readFile('foo.txt'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Updates file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .put(uri => uri.includes('foo.txt'))
     .reply(200, t.context.putResponse);
-  const response = await t.context.gitlab.updateFile('foo.txt', 'foo', 'Message');
 
-  t.is(response.file_path, 'foo.txt');
-  t.is(response.branch, 'master');
+  const result = await gitlab.updateFile('foo.txt', 'foo', 'Message');
 
-  scope.done();
+  t.is(result.file_path, 'foo.txt');
+  t.is(result.branch, 'master');
 });
 
 test('Throws error updating file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .put(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.gitlab.updateFile('foo.txt', 'foo', 'Message'), {
+  await t.throwsAsync(gitlab.updateFile('foo.txt', 'foo', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Deletes a file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .delete(uri => uri.includes('foo.txt'))
     .reply(200);
-  const response = await t.context.gitlab.deleteFile('foo.txt', 'Message');
 
-  t.truthy(response);
+  const result = await gitlab.deleteFile('foo.txt', 'Message');
 
-  scope.done();
+  t.truthy(result);
 });
 
 test('Throws error deleting a file in a repository', async t => {
-  const scope = t.context.nock
+  nock(t.context.gitlabUrl)
     .delete(uri => uri.includes('foo.txt'))
     .replyWithError('Not found');
 
-  await t.throwsAsync(t.context.gitlab.deleteFile('foo.txt', 'Message'), {
+  await t.throwsAsync(gitlab.deleteFile('foo.txt', 'Message'), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });

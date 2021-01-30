@@ -2,22 +2,24 @@ import test from 'ava';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {JekyllPreset} from '../index.js';
 
+const jekyll = new JekyllPreset();
+
 test.beforeEach(t => {
   t.context.properties = JSON.parse(getFixture('jf2/all-properties.jf2'));
 });
 
 test('Gets publication post types', t => {
-  const jekyll = new JekyllPreset();
   const result = jekyll.postTypes;
+
   t.is(result[0].type, 'article');
 });
 
 test('Renders post template without content', t => {
-  const jekyll = new JekyllPreset();
   const result = jekyll.postTemplate({
     published: '2020-02-02',
     name: 'Lunchtime'
   });
+
   t.is(result, `---
 date: 2020-02-02
 title: Lunchtime
@@ -26,12 +28,12 @@ title: Lunchtime
 });
 
 test('Renders post template with basic content', t => {
-  const jekyll = new JekyllPreset();
   const result = jekyll.postTemplate({
     published: '2020-02-02',
     name: 'Lunchtime',
     content: 'I ate a *cheese* sandwich, which was nice.'
   });
+
   t.is(result, `---
 date: 2020-02-02
 title: Lunchtime
@@ -41,7 +43,6 @@ I ate a *cheese* sandwich, which was nice.
 });
 
 test('Renders post template with HTML content', t => {
-  const jekyll = new JekyllPreset();
   const result = jekyll.postTemplate({
     published: '2020-02-02',
     name: 'Lunchtime',
@@ -49,6 +50,7 @@ test('Renders post template with HTML content', t => {
       html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
     }
   });
+
   t.is(result, `---
 date: 2020-02-02
 title: Lunchtime
@@ -59,7 +61,9 @@ title: Lunchtime
 
 test('Renders post template', t => {
   const jekyll = new JekyllPreset({frontmatterFormat: 'yaml'});
+
   const result = jekyll.postTemplate(t.context.properties);
+
   t.is(result, `---
 date: 2020-02-02
 title: What I had for lunch

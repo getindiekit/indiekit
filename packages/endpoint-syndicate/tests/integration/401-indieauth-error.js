@@ -21,6 +21,7 @@ test('Returns 401 error from Micropub endpoint', async t => {
       user: {screen_name: 'username'} // eslint-disable-line camelcase
     });
 
+  // Create post to syndicate
   const request = await server;
   await request.post('/micropub')
     .set('Accept', 'application/json')
@@ -28,9 +29,12 @@ test('Returns 401 error from Micropub endpoint', async t => {
     .send('h=entry')
     .send('name=foobar');
 
+  // Syndicate post
   const result = await request.post('/syndicate')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`);
+
+  // Assertions
   t.is(result.statusCode, 401);
   t.is(result.body.error_description, 'The scope of this token does not meet the requirements for this request');
 });

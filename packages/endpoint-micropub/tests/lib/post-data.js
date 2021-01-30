@@ -38,6 +38,7 @@ test('Creates post data', async t => {
     name: 'Foo',
     'mp-slug': 'foo'
   };
+
   const result = await postData.create(t.context.publication, properties);
 
   t.is(result.properties['post-type'], 'note');
@@ -85,6 +86,7 @@ test('Throws error reading post data without URL', async t => {
 
 test('Updates post by adding properties', async t => {
   const operation = {add: {syndication: ['http://website.example']}};
+
   const result = await postData.update(t.context.publication, t.context.url, operation);
 
   t.truthy(result.properties.syndication);
@@ -92,6 +94,7 @@ test('Updates post by adding properties', async t => {
 
 test('Updates post by replacing properties', async t => {
   const operation = {replace: {content: ['hello moon']}};
+
   const result = await postData.update(t.context.publication, t.context.url, operation);
 
   t.is(result.properties.content, 'hello moon');
@@ -99,6 +102,7 @@ test('Updates post by replacing properties', async t => {
 
 test('Updates post by deleting entries', async t => {
   const operation = {delete: {category: ['foo']}};
+
   const result = await postData.update(t.context.publication, t.context.url, operation);
 
   t.deepEqual(result.properties.category, ['bar']);
@@ -106,6 +110,7 @@ test('Updates post by deleting entries', async t => {
 
 test('Updates post by deleting properties', async t => {
   const operation = {delete: ['category']};
+
   const result = await postData.update(t.context.publication, t.context.url, operation);
 
   t.falsy(result.properties.category);
@@ -121,6 +126,7 @@ test('Updates post by adding, deleting and updating properties', async t => {
     },
     delete: ['mp-syndicate-to']
   };
+
   const result = await postData.update(t.context.publication, t.context.url, operation);
 
   t.is(result.properties.content, 'updated content');

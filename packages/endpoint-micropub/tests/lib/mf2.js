@@ -10,15 +10,15 @@ import {
 
 test.beforeEach(t => {
   t.context = {
-    nock: nock('https://website.example').get('/post.html'),
+    mf2: parser.mf2(getFixture('html/post.html'), {
+      baseUrl: 'https://website.example/post.html'
+    }),
     url: 'https://website.example/post.html'
   };
 });
 
 test('Returns all mf2 properties of a post', t => {
-  const mf2 = parser.mf2(getFixture('html/post.html'), {baseUrl: t.context.url});
-
-  t.deepEqual(getMf2Properties(mf2), {
+  t.deepEqual(getMf2Properties(t.context.mf2), {
     properties: {
       name: ['I ate a cheese sandwich, which was nice.'],
       published: ['2013-03-07'],
@@ -28,9 +28,7 @@ test('Returns all mf2 properties of a post', t => {
 });
 
 test('Returns requested mf2 properties of a post', t => {
-  const mf2 = parser.mf2(getFixture('html/post.html'), {baseUrl: t.context.url});
-
-  t.deepEqual(getMf2Properties(mf2, ['name', 'published']), {
+  t.deepEqual(getMf2Properties(t.context.mf2, ['name', 'published']), {
     properties: {
       name: ['I ate a cheese sandwich, which was nice.'],
       published: ['2013-03-07']
@@ -39,9 +37,7 @@ test('Returns requested mf2 properties of a post', t => {
 });
 
 test('Returns requested mf2 property of a post', t => {
-  const mf2 = parser.mf2(getFixture('html/post.html'), {baseUrl: t.context.url});
-
-  t.deepEqual(getMf2Properties(mf2, 'name'), {
+  t.deepEqual(getMf2Properties(t.context.mf2, 'name'), {
     properties: {
       name: ['I ate a cheese sandwich, which was nice.']
     }
@@ -49,9 +45,7 @@ test('Returns requested mf2 property of a post', t => {
 });
 
 test('Returns mf2 item with empty object if property not found', t => {
-  const mf2 = parser.mf2(getFixture('html/post.html'), {baseUrl: t.context.url});
-
-  t.deepEqual(getMf2Properties(mf2, 'location'), {
+  t.deepEqual(getMf2Properties(t.context.mf2, 'location'), {
     properties: {}
   });
 });
@@ -109,7 +103,9 @@ test('Converts JF2 to mf2 object', async t => {
 });
 
 test('Returns mf2 from URL', async t => {
-  const scope = t.context.nock.reply(200, getFixture('html/post.html'));
+  nock('https://website.example')
+    .get('/post.html')
+    .reply(200, getFixture('html/post.html'));
 
   t.deepEqual(await url2Mf2(t.context.url), {
     rels: {},
@@ -123,28 +119,26 @@ test('Returns mf2 from URL', async t => {
       }
     }]
   });
-
-  scope.done();
 });
 
 test('Returns mf2 empty objects if no properties found', async t => {
-  const scope = t.context.nock.reply(200, getFixture('html/page.html'));
+  nock('https://website.example')
+    .get('/post.html')
+    .reply(200, getFixture('html/page.html'));
 
   t.deepEqual(await url2Mf2(t.context.url), {
     rels: {},
     'rel-urls': {},
     items: []
   });
-
-  scope.done();
 });
 
 test('Throws error if URL not found', async t => {
-  const scope = t.context.nock.replyWithError('Not found');
+  nock('https://website.example')
+    .get('/post.html')
+    .replyWithError('Not found');
 
   await t.throwsAsync(url2Mf2(t.context.url), {
     message: 'Not found'
   });
-
-  scope.done();
 });

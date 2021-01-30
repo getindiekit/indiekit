@@ -8,7 +8,9 @@ test('Formats a date', t => {
 
 test('Formats the date right now', t => {
   const now = Math.round(Date.now() / 1000000);
+
   const result = Math.round(date('now', 't') / 1000);
+
   t.is(result, now);
 });
 
@@ -21,14 +23,14 @@ test('Transforms errors provided by express-validator', t => {
       location: 'body'
     }
   };
+
   const result = errorList(errors);
+
   t.is(result[0].href, '#custom-config-url');
   t.is(result[0].text, 'Enter a valid URL');
 });
 
 test('Renders Markdown string as HTML', t => {
-  const block = markdown('**bold**');
-  const inline = markdown('**bold**', 'inline');
-  t.is(block, '<p><strong>bold</strong></p>\n');
-  t.is(inline, '<strong>bold</strong>');
+  t.is(markdown('**bold**'), '<p><strong>bold</strong></p>\n');
+  t.is(markdown('**bold**', 'inline'), '<strong>bold</strong>');
 });

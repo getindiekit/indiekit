@@ -2,22 +2,24 @@ import test from 'ava';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {HugoPreset} from '../index.js';
 
+const hugo = new HugoPreset();
+
 test.beforeEach(t => {
   t.context.properties = JSON.parse(getFixture('jf2/all-properties.jf2'));
 });
 
 test('Gets publication post types', t => {
-  const hugo = new HugoPreset();
   const result = hugo.postTypes;
+
   t.is(result[0].type, 'article');
 });
 
 test('Renders post template without content', t => {
-  const hugo = new HugoPreset();
   const result = hugo.postTemplate({
     published: '2020-02-02',
     name: 'What I had for lunch'
   });
+
   t.is(result, `---
 date: 2020-02-02
 title: What I had for lunch
@@ -26,12 +28,12 @@ title: What I had for lunch
 });
 
 test('Renders post template with basic content', t => {
-  const hugo = new HugoPreset();
   const result = hugo.postTemplate({
     published: '2020-02-02',
     name: 'What I had for lunch',
     content: 'I ate a *cheese* sandwich, which was nice.'
   });
+
   t.is(result, `---
 date: 2020-02-02
 title: What I had for lunch
@@ -41,7 +43,6 @@ I ate a *cheese* sandwich, which was nice.
 });
 
 test('Renders post template with HTML content', t => {
-  const hugo = new HugoPreset();
   const result = hugo.postTemplate({
     published: '2020-02-02',
     name: 'What I had for lunch',
@@ -49,6 +50,7 @@ test('Renders post template with HTML content', t => {
       html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
     }
   });
+
   t.is(result, `---
 date: 2020-02-02
 title: What I had for lunch
@@ -59,7 +61,9 @@ title: What I had for lunch
 
 test('Renders post template with JSON frontmatter', t => {
   const hugo = new HugoPreset({frontmatterFormat: 'json'});
+
   const result = hugo.postTemplate(t.context.properties);
+
   t.is(result, `{
   "date": "2020-02-02",
   "title": "What I had for lunch",
@@ -114,7 +118,9 @@ I ate a *cheese* sandwich, which was nice.
 
 test('Renders post template with TOML frontmatter', t => {
   const hugo = new HugoPreset({frontmatterFormat: 'toml'});
+
   const result = hugo.postTemplate(t.context.properties);
+
   t.is(result, `+++
 date = "2020-02-02"
 title = "What I had for lunch"
@@ -156,7 +162,9 @@ I ate a *cheese* sandwich, which was nice.
 
 test('Renders post template with YAML frontmatter', t => {
   const hugo = new HugoPreset({frontmatterFormat: 'yaml'});
+
   const result = hugo.postTemplate(t.context.properties);
+
   t.is(result, `---
 date: 2020-02-02
 title: What I had for lunch

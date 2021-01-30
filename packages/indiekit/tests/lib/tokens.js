@@ -21,13 +21,17 @@ test.beforeEach(t => {
 test('Returns bearer token from `headers.authorization`', t => {
   const request = {headers: {authorization: `Bearer ${t.context.bearerToken}`}};
 
-  t.is(getBearerToken(request), 'JWT');
+  const result = getBearerToken(request);
+
+  t.is(result, 'JWT');
 });
 
 test('Returns bearer token from `body.access_token`', t => {
   const request = {body: {access_token: t.context.bearerToken}};
 
-  t.is(getBearerToken(request), 'JWT');
+  const result = getBearerToken(request);
+
+  t.is(result, 'JWT');
 });
 
 test('Throws error if no bearer token provided by request', t => {
@@ -40,19 +44,18 @@ test('Throws error if no bearer token provided by request', t => {
 });
 
 test('Requests an access token', async t => {
-  const scope = nock('https://tokens.indieauth.com')
+  nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, t.context.accessToken);
+
   const result = await requestAccessToken(t.context.tokenEndpoint, t.context.bearerToken);
 
   t.is(result.me, 'https://website.example');
   t.is(result.scope, 'create update delete media');
-
-  scope.done();
 });
 
 test('Token endpoint refuses to grant an access token', async t => {
-  const scope = nock('https://tokens.indieauth.com')
+  nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(400, {
       error_description: 'The token provided was malformed'
@@ -62,12 +65,10 @@ test('Token endpoint refuses to grant an access token', async t => {
     name: 'BadRequestError',
     message: 'The token provided was malformed'
   });
-
-  scope.done();
 });
 
 test('Throws error contacting token endpoint', async t => {
-  const scope = nock('https://tokens.indieauth.com')
+  nock('https://tokens.indieauth.com')
     .get('/token')
     .replyWithError('Not found');
 
@@ -75,8 +76,6 @@ test('Throws error contacting token endpoint', async t => {
     name: 'RequestError',
     message: 'Not found'
   });
-
-  scope.done();
 });
 
 test('Verifies an access token', t => {

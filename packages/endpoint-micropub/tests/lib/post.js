@@ -9,9 +9,10 @@ test.beforeEach(t => {
 });
 
 test.serial('Creates a post', async t => {
-  const scope = nock('https://api.github.com')
+  nock('https://api.github.com')
     .put(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Create post'}});
+
   const result = await post.create(publication, postData);
 
   t.deepEqual(result, {
@@ -22,8 +23,6 @@ test.serial('Creates a post', async t => {
       success_description: 'Post will be created at https://website.example/foo'
     }
   });
-
-  scope.done();
 });
 
 test('Throws error creating a post', async t => {
@@ -33,9 +32,10 @@ test('Throws error creating a post', async t => {
 });
 
 test.serial('Updates a post', async t => {
-  const scope = nock('https://api.github.com')
+  nock('https://api.github.com')
     .put(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Update post'}});
+
   const result = await post.update(publication, postData, t.context.url);
 
   t.deepEqual(result, {
@@ -46,8 +46,6 @@ test.serial('Updates a post', async t => {
       success_description: 'Post updated at https://website.example/foo'
     }
   });
-
-  scope.done();
 });
 
 test('Throws error updating a post', async t => {
@@ -57,11 +55,12 @@ test('Throws error updating a post', async t => {
 });
 
 test.serial('Deletes a post', async t => {
-  const scope = nock('https://api.github.com')
+  nock('https://api.github.com')
     .get(uri => uri.includes('foo.md'))
     .reply(200, {})
     .delete(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Delete post'}});
+
   const result = await post.delete(publication, postData);
 
   t.deepEqual(result, {
@@ -71,8 +70,6 @@ test.serial('Deletes a post', async t => {
       success_description: 'Post deleted from https://website.example/foo'
     }
   });
-
-  scope.done();
 });
 
 test('Throws error deleting a post', async t => {
@@ -82,7 +79,7 @@ test('Throws error deleting a post', async t => {
 });
 
 test.serial('Undeletes a post', async t => {
-  const scope = nock('https://api.github.com')
+  nock('https://api.github.com')
     .put(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Create post'}})
     .get(uri => uri.includes('foo.md'))
@@ -93,6 +90,7 @@ test.serial('Undeletes a post', async t => {
     .reply(200, {commit: {message: 'Undelete post'}});
   await post.create(publication, postData);
   await post.delete(publication, postData);
+
   const result = await post.undelete(publication, postData);
 
   t.deepEqual(result, {
@@ -103,12 +101,10 @@ test.serial('Undeletes a post', async t => {
       success_description: 'Post undeleted from https://website.example/foo'
     }
   });
-
-  scope.done();
 });
 
 test('Throws error undeleting a post', async t => {
-  const scope = nock('https://api.github.com')
+  nock('https://api.github.com')
     .put(uri => uri.includes('foo.md'))
     .reply(200, {commit: {message: 'Create post'}})
     .get(uri => uri.includes('foo.md'))
@@ -123,8 +119,6 @@ test('Throws error undeleting a post', async t => {
   await t.throwsAsync(post.undelete(publication, postData), {
     message: /\bNot found\b/
   });
-
-  scope.done();
 });
 
 test('Throws error undeleting a post (no post previously deleted)', async t => {
