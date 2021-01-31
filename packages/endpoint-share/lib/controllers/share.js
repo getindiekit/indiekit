@@ -28,10 +28,9 @@ export const shareController = publication => ({
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
-   * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  async post(request, response, next) {
+  async post(request, response) {
     const {content, name} = request.body;
     const bookmarkOf = request.body.url || request.body['bookmark-of'];
     const host = `${request.protocol}://${request.headers.host}`;
@@ -60,18 +59,14 @@ export const shareController = publication => ({
         response.redirect(`?success=${message}`);
       }
     } catch (error) {
-      if (error.response) {
-        response.status(422).render('share', {
-          title: response.__('share.title'),
-          content,
-          name,
-          bookmarkOf,
-          error: error.response.body.error_description,
-          minimalui: (request.params.path === 'bookmarklet')
-        });
-      } else {
-        next(error);
-      }
+      response.status(422).render('share', {
+        title: response.__('share.title'),
+        content,
+        name,
+        bookmarkOf,
+        error: error.response.body.error_description,
+        minimalui: (request.params.path === 'bookmarklet')
+      });
     }
   }
 });
