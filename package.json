@@ -49,6 +49,7 @@
     "c8": "^7.4.0",
     "eslint-plugin-jsdoc": "^31.3.3",
     "husky": "^4.3.8",
+    "jsdom": "^16.4.0",
     "lerna": "^3.22.0",
     "markdownlint-cli": "^0.26.0",
     "mock-req-res": "^1.1.4",

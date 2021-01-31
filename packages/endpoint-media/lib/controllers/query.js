@@ -31,7 +31,7 @@ export const queryController = publication => {
         }
 
         default:
-          throw new Error(`Invalid parameter: ${query.q}`);
+          throw new Error(`Unsupported parameter: ${query.q}`);
       }
     } catch (error) {
       next(httpError(400, error));
