@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import test from 'ava';
 import nock from 'nock';
-import {TwitterSyndicator} from '../index.js';
+import {TwitterSyndicator} from '../../index.js';
 
 test.beforeEach(t => {
   t.context = {

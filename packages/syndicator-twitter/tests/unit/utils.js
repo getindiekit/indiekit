@@ -7,9 +7,7 @@ import {
 } from '../../lib/utils.js';
 
 test.beforeEach(t => {
-  t.context = {
-    tweetUrl: 'https://twitter.com/username/status/1234567890987654321'
-  };
+  t.context.tweetUrl = 'https://twitter.com/username/status/1234567890987654321';
 });
 
 test('Creates a status with article post name and URL', t => {
