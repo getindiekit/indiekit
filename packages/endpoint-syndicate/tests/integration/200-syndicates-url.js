@@ -3,7 +3,6 @@ import nock from 'nock';
 import {server} from '@indiekit-test/server';
 
 test('Syndicates a URL', async t => {
-  // Setup mocked HTTP requests
   nock('https://tokens.indieauth.com')
     .get('/token')
     .twice()
@@ -22,13 +21,14 @@ test('Syndicates a URL', async t => {
       user: {screen_name: 'username'} // eslint-disable-line camelcase
     });
 
-  // Create post to syndicate
+  // Create post
   const request = await server;
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
     .send('h=entry')
-    .send('name=foobar');
+    .send('name=foobar')
+    .send('mp-syndicate-to=https://twitter.com/user');
 
   // Syndicate post
   const result = await request.post('/syndicate')

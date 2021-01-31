@@ -1,7 +1,7 @@
 import test from 'ava';
 import {server} from '@indiekit-test/server';
 
-test('Returns 200 if URL not awaiting', async t => {
+test('Returns 200 if no post record for URL', async t => {
   const request = await server;
 
   const result = await request.post('/syndicate')

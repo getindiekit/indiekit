@@ -17,13 +17,14 @@ test('Returns 500 error syndicating a URL', async t => {
     .put(uri => uri.includes('foobar'))
     .reply(200);
 
-  // Create post to syndicate
+  // Create post
   const request = await server;
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
     .send('h=entry')
-    .send('name=foobar');
+    .send('name=foobar')
+    .send('mp-syndicate-to=https://twitter.com/user');
 
   // Syndicate post
   const result = await request.post('/syndicate')
