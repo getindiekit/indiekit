@@ -29,7 +29,7 @@
         --color-accent-lightest: {{ application.themeColor | lighten(0.8) }};
       }
     </style>
-    <title>{{ title + " - " if title }}{{ application.name }}</title>
+    <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
   </head>
 
   {%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
