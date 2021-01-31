@@ -1,6 +1,6 @@
 import test from 'ava';
 import {getFixture} from '@indiekit-test/get-fixture';
-import {JekyllPreset} from '../index.js';
+import {JekyllPreset} from '../../index.js';
 
 const jekyll = new JekyllPreset();
 

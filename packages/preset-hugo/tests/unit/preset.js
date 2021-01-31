@@ -1,6 +1,6 @@
 import test from 'ava';
 import {getFixture} from '@indiekit-test/get-fixture';
-import {HugoPreset} from '../index.js';
+import {HugoPreset} from '../../index.js';
 
 const hugo = new HugoPreset();
 
