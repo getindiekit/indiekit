@@ -6,7 +6,6 @@ import {mongodbConfig} from '../../config/mongodb.js';
 import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
-  getMediaEndpoint,
   getPostTemplate,
   getPostTypes
 } from '../../lib/publication.js';
@@ -133,31 +132,4 @@ test('Merges values from custom and preset post types', t => {
 
 test('Returns array if no preset or custom post types', t => {
   t.deepEqual(getPostTypes({}), []);
-});
-
-test('Gets media endpoint from server derived values', t => {
-  const request = {
-    protocol: 'https',
-    headers: {
-      host: 'server.example'
-    }
-  };
-
-  const result = getMediaEndpoint(t.context.publication, request);
-
-  t.is(result, 'https://server.example/media');
-});
-
-test('Gets media endpoint from publication configuration', t => {
-  const publication = {mediaEndpoint: 'https://website.example/media'};
-  const request = {
-    protocol: 'https',
-    headers: {
-      host: 'website.example'
-    }
-  };
-
-  const result = getMediaEndpoint(publication, request);
-
-  t.is(result, 'https://website.example/media');
 });

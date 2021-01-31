@@ -63,20 +63,3 @@ export const getPostTypes = publication => {
 
   return [];
 };
-
-/**
- * Get media endpoint from server derived values
- *
- * @param {object} publication Publication configuration
- * @param {object} request HTTP request
- * @returns {string} Media endpoint URL
- */
-export const getMediaEndpoint = (publication, request) => {
-  const {mediaEndpoint} = publication;
-
-  if (mediaEndpoint && isUrl(mediaEndpoint)) {
-    return mediaEndpoint;
-  }
-
-  return `${request.protocol}://${request.headers.host}${mediaEndpoint}`;
-};
