@@ -18,12 +18,13 @@ test.before(async t => {
   // Upload file
   const request = await server;
   await request.post('/media')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
 
   // Get file data by parsing list of files and getting values from link
-  const response = await request.get('/media/files');
+  const response = await request.get('/media/files')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
   const dom = new JSDOM(response.text);
   const link = dom.window.document.querySelector('.file a');
 
@@ -34,7 +35,8 @@ test.before(async t => {
 
 test('Views previously uploaded file', async t => {
   const request = await server;
-  const response = await request.get(`/media/files/${t.context.fileId}`);
+  const response = await request.get(`/media/files/${t.context.fileId}`)
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;

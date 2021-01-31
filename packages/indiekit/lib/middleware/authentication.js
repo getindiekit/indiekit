@@ -1,10 +1,10 @@
+import {getBearerToken} from '../tokens.js';
+
 export const authenticate = (request, response, next) => {
-  const hasToken = request.session && request.session.token;
-  const disabled = process.env.DISABLE_AUTH;
-
-  if (hasToken || disabled) {
+  try {
+    getBearerToken(request);
     return next();
+  } catch {
+    return response.redirect(`/session/login?redirect=${request.originalUrl}`);
   }
-
-  return response.redirect(`/session/login?redirect=${request.originalUrl}`);
 };

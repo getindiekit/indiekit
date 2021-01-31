@@ -26,7 +26,7 @@ test('Deletes post', async t => {
 
   // Create post
   const response = await request.post('/micropub')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send({
       type: ['h-entry'],
       properties: {
@@ -36,7 +36,7 @@ test('Deletes post', async t => {
 
   // Delete post
   await request.post('/micropub')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send({
       action: 'delete',
       url: response.header.location
@@ -44,7 +44,7 @@ test('Deletes post', async t => {
 
   // Undelete post
   const result = await request.post('/micropub')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send({
       action: 'undelete',
       url: response.header.location

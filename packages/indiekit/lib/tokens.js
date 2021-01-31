@@ -3,6 +3,11 @@ import HttpError from 'http-errors';
 import normalizeUrl from 'normalize-url';
 
 export const getBearerToken = request => {
+  if (request.session && request.session.token) {
+    const bearerToken = request.session.token;
+    return bearerToken;
+  }
+
   if (request.headers && request.headers.authorization) {
     const bearerToken = request.headers.authorization.trim().split(/\s+/)[1];
     return bearerToken;

@@ -24,15 +24,15 @@ test('Returns 401 error from Micropub endpoint', async t => {
   // Create post to syndicate
   const request = await server;
   await request.post('/micropub')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .send('h=entry')
     .send('name=foobar');
 
   // Syndicate post
   const result = await request.post('/syndicate')
-    .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`);
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
+    .set('Accept', 'application/json');
 
   // Assertions
   t.is(result.statusCode, 401);

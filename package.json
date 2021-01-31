@@ -68,8 +68,7 @@
       "NODE_ENV": "test",
       "TEST_MONGODB_URL": "mongodb://localhost:27017/test",
       "TZ": "Europe/London"
-    },
-    "verbose": true
+    }
   },
   "c8": {
     "all": true,

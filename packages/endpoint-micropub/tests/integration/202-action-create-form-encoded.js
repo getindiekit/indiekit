@@ -15,8 +15,8 @@ test('Creates post (form-encoded)', async t => {
   const request = await server;
 
   const result = await request.post('/micropub')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .send('h=entry')
     .send('name=Foobar')
     .send('content=Micropub+test+of+creating+an+h-entry+with+categories')

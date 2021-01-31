@@ -19,7 +19,7 @@ test('Updates post', async t => {
 
   // Create post
   const response = await request.post('/micropub')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send({
       type: ['h-entry'],
       properties: {
@@ -29,7 +29,7 @@ test('Updates post', async t => {
 
   // Update post
   const result = await request.post('/micropub')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send({
       action: 'update',
       url: response.header.location,

@@ -16,8 +16,8 @@ test('Uploads file', async t => {
   const request = await server;
 
   const result = await request.post('/media')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
 
   t.is(result.statusCode, 201);

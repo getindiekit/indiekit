@@ -20,15 +20,15 @@ test('Returns 500 error syndicating a URL', async t => {
   // Create post to syndicate
   const request = await server;
   await request.post('/micropub')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .send('h=entry')
     .send('name=foobar');
 
   // Syndicate post
   const result = await request.post('/syndicate')
+    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`);
 
   // Assertions

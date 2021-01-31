@@ -18,6 +18,14 @@ test.beforeEach(t => {
   };
 });
 
+test('Returns bearer token from session', t => {
+  const request = {session: {token: t.context.bearerToken}};
+
+  const result = getBearerToken(request);
+
+  t.is(result, 'JWT');
+});
+
 test('Returns bearer token from `headers.authorization`', t => {
   const request = {headers: {authorization: `Bearer ${t.context.bearerToken}`}};
 

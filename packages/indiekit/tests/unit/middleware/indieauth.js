@@ -23,21 +23,24 @@ test('Throws error', async t => {
   const request = mockRequest();
   const response = mockResponse();
   const next = sinon.spy();
+
   await indieauth(defaultConfig.publication)(request, response, next);
+
   t.true(next.calledOnce);
   t.true(next.firstCall.args[0] instanceof Error);
 });
 
 test('Saves token to locals', async t => {
-  const scope = nock('https://tokens.indieauth.com')
+  nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, t.context.accessToken);
   const request = mockRequest({headers: {authorization: `Bearer ${t.context.bearerToken}`}});
   const response = mockResponse({locals: {publication: {}}});
   const next = sinon.spy();
   defaultConfig.publication.me = process.env.TEST_PUBLICATION_URL;
+
   await indieauth(defaultConfig.publication)(request, response, next);
+
   t.is(defaultConfig.publication.accessToken.me, t.context.me);
   t.true(next.calledOnce);
-  scope.done();
 });

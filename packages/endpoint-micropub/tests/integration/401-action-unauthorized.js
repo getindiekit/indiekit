@@ -12,8 +12,8 @@ test('Returns 400 if access token does not provide adequate scope', async t => {
   const request = await server;
 
   const result = await request.post('/micropub')
-    .set('Accept', 'application/json')
-    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN_NOSCOPE}`);
+    .auth(process.env.TEST_BEARER_TOKEN_NOSCOPE, {type: 'bearer'})
+    .set('Accept', 'application/json');
 
   t.is(result.statusCode, 401);
   t.is(result.body.error_description, 'The scope of this token does not meet the requirements for this request');
