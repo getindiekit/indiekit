@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {InternetArchiveSyndicator} from '../index.js';
+import {InternetArchiveSyndicator} from '../../index.js';
 
 test.beforeEach(t => {
   t.context = {
