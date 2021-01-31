@@ -19,6 +19,6 @@
   {% endif %}
   {{ summary({
     title: __("micropub.properties"),
-    rows: summaryRows
+    rows: post.properties | summaryRows
   }) }}
 {% endblock %}

@@ -9,19 +9,14 @@ export const filesController = publication => ({
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
-   * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  async list(request, response, next) {
-    try {
-      response.render('files', {
-        title: response.__('media.files.title'),
-        files: await publication.media.find().toArray(),
-        parentUrl: `${publication.mediaEndpoint}/files/`
-      });
-    } catch (error) {
-      next(error);
-    }
+  async list(request, response) {
+    response.render('files', {
+      title: response.__('media.files.title'),
+      files: await publication.media.find().toArray(),
+      parentUrl: `${publication.mediaEndpoint}/files/`
+    });
   },
 
   /**
@@ -41,25 +36,9 @@ export const filesController = publication => ({
         throw new HttpError(404, 'No file was found with this UUID');
       }
 
-      const properties = [];
-      Object.entries(file.properties).forEach(
-        ([key, value]) => properties.push({
-          key: {
-            text: key
-          },
-          value: {
-            text: value
-          }
-        })
-      );
-
       response.render('file', {
         parent: response.__('media.files.title'),
-        title: file.properties.filename,
-        published: file.properties.published,
-        type: file.properties['post-type'],
-        url: file.properties.url,
-        properties
+        file
       });
     } catch (error) {
       next(error);

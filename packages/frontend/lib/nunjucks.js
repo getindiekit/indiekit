@@ -29,6 +29,7 @@ module.exports = app => {
   parser.addFilter('errorList', filters.errorList);
   parser.addFilter('language', string => languages.getNativeName(string));
   parser.addFilter('markdown', filters.markdown);
+  parser.addFilter('summaryRows', filters.summaryRows);
   parser.addGlobal('icon', nunjucks.runtime.markSafe(globals.icon));
 
   return parser;

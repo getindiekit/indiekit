@@ -86,10 +86,35 @@ const markdown = (string, value) => {
   }
 };
 
+/**
+ * Transform object into an array that can be consumed by
+ * the summary component.
+ *
+ * @param {object} object Object
+ * @returns {Array} Rows
+ */
+const summaryRows = object => {
+  const rows = [];
+
+  Object.entries(object).forEach(
+    ([key, value]) => rows.push({
+      key: {
+        text: key
+      },
+      value: {
+        text: typeof value === 'string' ? value : JSON.stringify(value)
+      }
+    })
+  );
+
+  return rows;
+};
+
 module.exports = {
   darken,
   lighten,
   date,
   errorList,
-  markdown
+  markdown,
+  summaryRows
 };

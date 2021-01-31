@@ -1,8 +1,6 @@
-import Debug from 'debug';
 import HttpError from 'http-errors';
 import mongodb from 'mongodb';
 
-const debug = new Debug('indiekit:error');
 const {ObjectId} = mongodb;
 
 export const postsController = publication => ({
@@ -11,20 +9,14 @@ export const postsController = publication => ({
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
-   * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  async list(request, response, next) {
-    try {
-      response.render('posts', {
-        title: response.__('micropub.posts.title'),
-        posts: await publication.posts.find().toArray(),
-        parentUrl: `${publication.micropubEndpoint}/posts/`
-      });
-    } catch (error) {
-      debug(error);
-      next(error);
-    }
+  async list(request, response) {
+    response.render('posts', {
+      title: response.__('micropub.posts.title'),
+      posts: await publication.posts.find().toArray(),
+      parentUrl: `${publication.micropubEndpoint}/posts/`
+    });
   },
 
   /**
@@ -44,25 +36,11 @@ export const postsController = publication => ({
         throw new HttpError(404, 'No post was found with this UUID');
       }
 
-      const summaryRows = [];
-      Object.entries(post.properties).forEach(
-        ([key, value]) => summaryRows.push({
-          key: {
-            text: key
-          },
-          value: {
-            text: typeof value === 'string' ? value : JSON.stringify(value)
-          }
-        })
-      );
-
       response.render('post', {
         parent: response.__('micropub.posts.title'),
-        summaryRows,
         post
       });
     } catch (error) {
-      debug(error.stack);
       next(error);
     }
   }
