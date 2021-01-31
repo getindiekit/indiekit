@@ -1,6 +1,5 @@
 import test from 'ava';
 import nock from 'nock';
-import {getFixture} from '@indiekit-test/get-fixture';
 import {JSDOM} from 'jsdom';
 import {server} from '@indiekit-test/server';
 
@@ -9,35 +8,36 @@ test.before(async t => {
     .get('/token')
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'media'
+      scope: 'create'
     });
   nock('https://api.github.com')
-    .put(uri => uri.includes('.jpg'))
+    .put(uri => uri.includes('foobar.md'))
     .reply(200, {commit: {message: 'Message'}});
 
-  // Upload file
+  // Publish post
   const request = await server;
-  await request.post('/media')
+  await request.post('/micropub')
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
-    .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
+    .send('h=entry')
+    .send('name=Foobar');
 
-  // Get file data by parsing list of files and getting values from link
-  const response = await request.get('/media/files');
+  // Get post data by parsing list of posts and getting values from link
+  const response = await request.get('/micropub/posts');
   const dom = new JSDOM(response.text);
   const link = dom.window.document.querySelector('.file a');
 
   // Return test data
-  t.context.filename = link.textContent;
-  t.context.fileId = link.href.split('/')[3];
+  t.context.postName = link.textContent;
+  t.context.postId = link.href.split('/')[3];
 });
 
 test('Views previously uploaded file', async t => {
   const request = await server;
-  const response = await request.get(`/media/files/${t.context.fileId}`);
+  const response = await request.get(`/micropub/posts/${t.context.postId}`);
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, `${t.context.filename} - Indiekit`);
+  t.is(result.querySelector('title').textContent, `${t.context.postName} - Indiekit`);
 });

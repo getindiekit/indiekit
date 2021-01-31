@@ -60,7 +60,7 @@ export const queryController = publication => {
             });
           }
 
-          throw new Error(`Invalid parameter: ${query.q}`);
+          throw new Error(`Unsupported parameter: ${query.q}`);
         }
       }
     } catch (error) {
