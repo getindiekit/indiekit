@@ -3,9 +3,10 @@ import test from 'ava';
 import nock from 'nock';
 import {server} from '@indiekit-test/server';
 
-test('Creates post (JSON)', async t => {
+test('Deletes post', async t => {
   nock('https://tokens.indieauth.com')
     .get('/token')
+    .twice()
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
       scope: 'create delete'
@@ -13,10 +14,16 @@ test('Creates post (JSON)', async t => {
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))
     .reply(200);
+  nock('https://api.github.com')
+    .get(uri => uri.includes('foobar.md'))
+    .reply(200);
+  nock('https://api.github.com')
+    .delete(uri => uri.includes('foobar.md'))
+    .reply(200);
   const request = await server;
 
   // Create post
-  const result = await request.post('/micropub')
+  const response = await request.post('/micropub')
     .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
     .send({
       type: ['h-entry'],
@@ -27,7 +34,14 @@ test('Creates post (JSON)', async t => {
       }
     });
 
-  t.is(result.statusCode, 202);
-  t.regex(result.headers.location, /\bfoobar\b/);
-  t.regex(result.body.success_description, /\bPost will be created\b/);
+  // Delete post
+  const result = await request.post('/micropub')
+    .set('Authorization', `Bearer ${process.env.TEST_BEARER_TOKEN}`)
+    .send({
+      action: 'delete',
+      url: response.header.location
+    });
+
+  t.is(result.statusCode, 200);
+  t.regex(result.body.success_description, /\bPost deleted\b/);
 });

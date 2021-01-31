@@ -11,7 +11,7 @@ test('Creates post (form-encoded)', async t => {
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar'))
-    .reply(200, {commit: {message: 'Message'}});
+    .reply(200);
   const request = await server;
 
   const result = await request.post('/micropub')

@@ -12,9 +12,9 @@ test.before(async t => {
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))
-    .reply(200, {commit: {message: 'Message'}});
+    .reply(200);
 
-  // Publish post
+  // Create post
   const request = await server;
   await request.post('/micropub')
     .set('Accept', 'application/json')
