@@ -1,7 +1,7 @@
 import test from 'ava';
 import nock from 'nock';
 
-import {GiteaStore} from '../index.js';
+import {GiteaStore} from '../../index.js';
 
 test.beforeEach(t => {
   t.context = {

@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {GitlabStore} from '../index.js';
+import {GitlabStore} from '../../index.js';
 
 const gitlab = new GitlabStore({
   token: 'abc123',

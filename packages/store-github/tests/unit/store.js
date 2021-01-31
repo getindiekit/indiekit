@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-import {GithubStore} from '../index.js';
+import {GithubStore} from '../../index.js';
 
 const github = new GithubStore({
   token: 'abc123',
