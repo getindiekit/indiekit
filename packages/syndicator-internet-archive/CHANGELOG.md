@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
+
+
+### Features
+
+* make syndicator plug-ins dryer ([bc68462](https://github.com/getindiekit/indiekit/commit/bc684620597f78fe5b0fbe0b0d9e6ee73e7041f2))
+
+
+
+
+
 # [0.1.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.14...v0.1.0-alpha.15) (2020-12-28)
 
 **Note:** Version bump only for package @indiekit/syndicator-internet-archive

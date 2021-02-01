@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
+
+
+### Features
+
+* **frontend:** show ’Error:’ prefix for validated page title ([f9622b6](https://github.com/getindiekit/indiekit/commit/f9622b69ad5f57bef2742d0c51d5b23667b3b815))
+* **frontend:** updated markup for error message ([22a7f5d](https://github.com/getindiekit/indiekit/commit/22a7f5d76d26ac3cdc2f97b82bd824d575011625))
+* abstract `summaryRow` filter for post and file views ([f32e28c](https://github.com/getindiekit/indiekit/commit/f32e28ce2640c6c3319276bbfbb077220a0e4b9e))
+
+
+
+
+
 # [0.1.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.17...v0.1.0-alpha.18) (2021-01-01)
 
 **Note:** Version bump only for package @indiekit/frontend

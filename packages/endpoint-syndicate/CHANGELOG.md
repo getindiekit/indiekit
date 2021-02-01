@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
+
+
+### Features
+
+* make syndicator plug-ins dryer ([bc68462](https://github.com/getindiekit/indiekit/commit/bc684620597f78fe5b0fbe0b0d9e6ee73e7041f2))
+* remove syncing website post data using a JF2 Feed ([6f39349](https://github.com/getindiekit/indiekit/commit/6f39349a98aaf4cc664f66f9b3bdec0c928dcfc1))
+* **endpoint-micropub:** normalise properties when updating post data ([b498868](https://github.com/getindiekit/indiekit/commit/b498868d8471e502b418e492a8bc09bc60fca4c8))
+
+
+
+
+
 # [0.1.0-alpha.20](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.19...v0.1.0-alpha.20) (2021-01-07)
 
 **Note:** Version bump only for package @indiekit/endpoint-syndicate

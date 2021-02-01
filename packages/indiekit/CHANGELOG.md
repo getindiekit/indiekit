@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
+
+
+### Bug Fixes
+
+* **indiekit:** add default for publication.jf2Feed ([2d667a1](https://github.com/getindiekit/indiekit/commit/2d667a15e07402edb2d8eb4adefca95245044f44))
+* **indiekit:** always return responses in auth flow ([069eac4](https://github.com/getindiekit/indiekit/commit/069eac4e6daa229dd4de2baf9b3227d68401e741))
+* **indiekit:** remove extraenous form input ([4620f5d](https://github.com/getindiekit/indiekit/commit/4620f5db7f9520d615165412b93a0fece22238b7))
+
+
+### Features
+
+* **indiekit:** remove media endpoint resolution ([3025aa7](https://github.com/getindiekit/indiekit/commit/3025aa747f04837a9ecff1326230b3e044f12242))
+* remove syncing website post data using a JF2 Feed ([6f39349](https://github.com/getindiekit/indiekit/commit/6f39349a98aaf4cc664f66f9b3bdec0c928dcfc1))
+* **indiekit:** prevent pages from being crawled or indexed ([53bc449](https://github.com/getindiekit/indiekit/commit/53bc449ecb49e383262ba1d16c3b484b1e0e69d1))
+
+
+
+
+
 # [0.1.0-alpha.20](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.19...v0.1.0-alpha.20) (2021-01-07)
 
 

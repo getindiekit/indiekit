@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** adding item to value which is not yet an array ([1067e8d](https://github.com/getindiekit/indiekit/commit/1067e8dfa6d8b9e64c3aa1bd77099e8dafbb3242))
+* **endpoint-micropub:** creating posts with single media property ([901ad93](https://github.com/getindiekit/indiekit/commit/901ad93fcfc9615c76c014005f2094c108251268))
+* **indiekit:** add default for publication.jf2Feed ([2d667a1](https://github.com/getindiekit/indiekit/commit/2d667a15e07402edb2d8eb4adefca95245044f44))
+* **indiekit:** always return responses in auth flow ([069eac4](https://github.com/getindiekit/indiekit/commit/069eac4e6daa229dd4de2baf9b3227d68401e741))
+* **indiekit:** remove extraenous form input ([4620f5d](https://github.com/getindiekit/indiekit/commit/4620f5db7f9520d615165412b93a0fece22238b7))
+* **preset-hugo:** update content fallback values ([1794e34](https://github.com/getindiekit/indiekit/commit/1794e34a9d70cc9cb7377281a136419cbe7d2cc8))
+* **preset-jekyll:** update content fallback values ([29111ae](https://github.com/getindiekit/indiekit/commit/29111ae9c9340df5840189ef45611e8c80c059c2))
+
+
+### Features
+
+* **frontend:** show ’Error:’ prefix for validated page title ([f9622b6](https://github.com/getindiekit/indiekit/commit/f9622b69ad5f57bef2742d0c51d5b23667b3b815))
+* **frontend:** updated markup for error message ([22a7f5d](https://github.com/getindiekit/indiekit/commit/22a7f5d76d26ac3cdc2f97b82bd824d575011625))
+* **indiekit:** remove media endpoint resolution ([3025aa7](https://github.com/getindiekit/indiekit/commit/3025aa747f04837a9ecff1326230b3e044f12242))
+* abstract `summaryRow` filter for post and file views ([f32e28c](https://github.com/getindiekit/indiekit/commit/f32e28ce2640c6c3319276bbfbb077220a0e4b9e))
+* make syndicator plug-ins dryer ([bc68462](https://github.com/getindiekit/indiekit/commit/bc684620597f78fe5b0fbe0b0d9e6ee73e7041f2))
+* remove syncing website post data using a JF2 Feed ([6f39349](https://github.com/getindiekit/indiekit/commit/6f39349a98aaf4cc664f66f9b3bdec0c928dcfc1))
+* **endpoint-micropub:** add available queries to config query ([5545c59](https://github.com/getindiekit/indiekit/commit/5545c59d0e6eb3ebddb3fbd34df785f4da0950a7))
+* **endpoint-micropub:** convert stored jf2 to mf2 on source query ([33e248c](https://github.com/getindiekit/indiekit/commit/33e248c87fd0fb290eb35d83b80400ab7dc0ab2d))
+* **endpoint-micropub:** normalise properties when updating post data ([b498868](https://github.com/getindiekit/indiekit/commit/b498868d8471e502b418e492a8bc09bc60fca4c8))
+* **endpoint-micropub:** only return categories for category query ([3d63ea0](https://github.com/getindiekit/indiekit/commit/3d63ea0767c7b5c4cd1cc62e06227b5f7545922d))
+* **endpoint-micropub:** remove mf2 from post view ([4f85678](https://github.com/getindiekit/indiekit/commit/4f85678f419edbc948c6d9a3a99edce81c991101))
+* **indiekit:** prevent pages from being crawled or indexed ([53bc449](https://github.com/getindiekit/indiekit/commit/53bc449ecb49e383262ba1d16c3b484b1e0e69d1))
+
+
+
+
+
 # [0.1.0-alpha.20](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.19...v0.1.0-alpha.20) (2021-01-07)
 
 

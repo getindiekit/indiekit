@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/frontend",
-  "version": "0.1.0-alpha.18",
+  "version": "0.1.0-alpha.21",
   "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
