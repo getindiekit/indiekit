@@ -6,8 +6,8 @@ export const notFound = (request, response, next) => {
 
   if (request.accepts('html')) {
     response.render('document', {
-      title: 'Page not found',
-      content: 'If you entered a web address please check it was correct.'
+      title: response.__('errors.notFound.title'),
+      content: response.__('errors.notFound.content')
     });
   } else {
     next(httpError);

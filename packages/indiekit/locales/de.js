@@ -6,6 +6,12 @@ export const de = {
   guidance: {
     discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen'
   },
+  errors: {
+    notFound: {
+      title: 'Seite nicht gefunden',
+      content: 'Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie, ob diese korrekt ist.'
+    }
+  },
   session: {
     login: {
       title: 'Einloggen',

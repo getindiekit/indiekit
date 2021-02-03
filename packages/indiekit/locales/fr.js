@@ -6,6 +6,12 @@ export const fr = {
   guidance: {
     discovery: 'Alors que {{app}} peut être repéré par les clients Micropub et demander l’autorisation de publier sur votre site, ajoutez les valeurs suivantes à la partie `<head>` de votre site web:'
   },
+  errors: {
+    notFound: {
+      title: 'Page non trouvée',
+      content: 'Si vous avez entré une adresse Web, vérifiez qu’elle est correcte.'
+    }
+  },
   session: {
     login: {
       title: 'Se connecter',
