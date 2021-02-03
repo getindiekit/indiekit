@@ -34,12 +34,12 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
-    "@indiekit/endpoint-media": "^0.1.0-alpha.21",
-    "@indiekit/endpoint-micropub": "^0.1.0-alpha.21",
-    "@indiekit/endpoint-share": "^0.1.0-alpha.21",
-    "@indiekit/endpoint-syndicate": "^0.1.0-alpha.21",
-    "@indiekit/frontend": "^0.1.0-alpha.21",
-    "@indiekit/preset-jekyll": "^0.1.0-alpha.21",
+    "@indiekit/endpoint-media": "0.1.0-alpha.21",
+    "@indiekit/endpoint-micropub": "0.1.0-alpha.21",
+    "@indiekit/endpoint-share": "0.1.0-alpha.21",
+    "@indiekit/endpoint-syndicate": "0.1.0-alpha.21",
+    "@indiekit/frontend": "0.1.0-alpha.21",
+    "@indiekit/preset-jekyll": "0.1.0-alpha.21",
     "cookie-session": "^1.4.0",
     "debug": "^4.3.1",
     "express": "^4.17.1",
@@ -48,7 +48,7 @@
     "i18n": "^0.13.2",
     "indieauth-helper": "^1.0.2",
     "lodash": "^4.17.19",
-    "mongodb": "^3.6.3",
+    "mongodb": "^3.6.4",
     "normalize-url": "^5.3.0",
     "uuid": "^8.3.2"
   },
