@@ -1,5 +1,6 @@
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import {GithubStore} from '../../packages/store-github/index.js';
+import {JekyllPreset} from '../../packages/preset-jekyll/index.js';
 
 export const publication = {
   categories: `${process.env.TEST_PUBLICATION_URL}categories.json`,
@@ -14,5 +15,6 @@ export const publication = {
   }),
   storeMessageTemplate: metaData => {
     return `${metaData.action} ${metaData.postType} ${metaData.fileType}`;
-  }
+  },
+  preset: new JekyllPreset()
 };
