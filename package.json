@@ -67,7 +67,6 @@
   "ava": {
     "environmentVariables": {
       "NODE_ENV": "test",
-      "TEST_MONGODB_URL": "mongodb://localhost:27017/test",
       "TZ": "Europe/London"
     }
   },
