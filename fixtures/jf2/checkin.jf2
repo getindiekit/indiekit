@@ -1,0 +1,11 @@
+{
+  "type": "entry",
+  "content": "I ate a cheese sandwich right here!",
+  "location": {
+    "properties": {
+      "latitude": "37.780080",
+      "longitude": "-122.420160"
+    }
+  },
+  "post-type": "checkin"
+}

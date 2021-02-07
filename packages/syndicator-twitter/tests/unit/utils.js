@@ -1,4 +1,5 @@
 import test from 'ava';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {
   createStatus,
   getStatusIdFromUrl,
@@ -11,91 +12,50 @@ test.beforeEach(t => {
 });
 
 test('Creates a status with article post name and URL', t => {
-  const result = createStatus({
-    name: 'Lunchtime',
-    content: 'I ate a cheese sandwich, which was nice.',
-    url: 'https://foo.bar/lunchtime',
-    'post-type': 'article'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/article-content-provided-html-text.jf2')));
 
-  t.is(result.status, 'Lunchtime https://foo.bar/lunchtime');
+  t.is(result.status, 'What I had for lunch https://foo.bar/lunchtime');
 });
 
 test('Creates a status with plaintext content', t => {
-  const result = createStatus({
-    content: {
-      html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-      text: 'I ate a cheese sandwich, which was nice.'
-    },
-    url: 'https://foo.bar/lunchtime'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/note-content-provided-html-text.jf2')));
 
   t.is(result.status, 'I ate a cheese sandwich, which was nice.');
 });
 
 test('Creates a status with HTML content', t => {
-  const result = createStatus({
-    content: {
-      html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
-    },
-    url: 'https://foo.bar/lunchtime'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/note-content-provided-html.jf2')));
 
   t.is(result.status, 'I ate a cheese sandwich, which was nice.');
 });
 
 test('Creates a status with HTML content and appends last link', t => {
-  const result = createStatus({
-    content: {
-      html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>'
-    },
-    url: 'https://foo.bar/lunchtime'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/note-content-provided-html-with-link.jf2')));
 
   t.is(result.status, 'I ate a cheese sandwich, which was nice. https://en.wikipedia.org/wiki/Cheese');
 });
 
 test('Creates a status with HTML content and doesn’t append Twitter link', t => {
-  const result = createStatus({
-    content: {
-      html: '<p>I ate a <a href="https://twitter.com/cheese">@cheese</a>’s sandwich, which was nice.</p>'
-    },
-    url: 'https://foo.bar/lunchtime'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/note-content-provided-html-with-twitter-link.jf2')));
 
   t.is(result.status, 'I ate a @cheese’s sandwich, which was nice.');
 });
 
 test('Creates a quote tweet with status URL and post content', t => {
-  const result = createStatus({
-    content: 'Someone else who likes cheese sandwiches.',
-    'repost-of': t.context.tweetUrl,
-    'post-type': 'repost'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/repost.jf2')));
 
   t.is(result.status, `Someone else who likes cheese sandwiches. ${t.context.tweetUrl}`);
 });
 
 test('Adds link to status post is in reply to', t => {
-  const result = createStatus({
-    content: 'I ate a cheese sandwich too!',
-    'in-reply-to': 'https://twitter.com/username/status/1234567890987654321'
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/reply.jf2')));
 
   t.is(result.status, 'I ate a cheese sandwich too!');
   t.is(result.in_reply_to_status_id, '1234567890987654321');
 });
 
 test('Creates a status with a location', t => {
-  const result = createStatus({
-    content: 'I ate a cheese sandwich right here!',
-    location: {
-      properties: {
-        latitude: '37.780080',
-        longitude: '-122.420160'
-      }
-    }
-  });
+  const result = createStatus(JSON.parse(getFixture('jf2/checkin.jf2')));
 
   t.is(result.status, 'I ate a cheese sandwich right here!');
   t.is(result.lat, '37.780080');

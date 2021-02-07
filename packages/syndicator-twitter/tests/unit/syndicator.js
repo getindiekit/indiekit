@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import test from 'ava';
 import nock from 'nock';
+import {getFixture} from '@indiekit-test/get-fixture';
 import {TwitterSyndicator} from '../../index.js';
 
 test.beforeEach(t => {
@@ -16,15 +17,7 @@ test.beforeEach(t => {
       accessTokenSecret: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN',
       user: 'username'
     },
-    properties: {
-      name: 'Lunchtime',
-      content: {
-        html: '<p>I ate a cheese sandwich, which was <em>nice</em>.</p>',
-        text: 'I ate a cheese sandwich, which was nice.'
-      },
-      url: 'https://foo.bar/lunchtime',
-      'post-type': 'article'
-    }
+    properties: JSON.parse(getFixture('jf2/article-content-provided-html-text.jf2'))
   };
 });
 

@@ -104,18 +104,18 @@ test('Gets normalised audio property', t => {
 });
 
 test('Gets existing text and HTML values from `content` property', t => {
-  const properties = JSON.parse(getFixture('jf2/article-content-provided-html-value.jf2'));
+  const properties = JSON.parse(getFixture('jf2/note-content-provided-html-text.jf2'));
 
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
     html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
+    text: 'I ate a cheese sandwich, which was nice.'
   });
 });
 
 test('Gets existing HTML from `content` property and adds text value', t => {
-  const properties = JSON.parse(getFixture('jf2/article-content-provided-html.jf2'));
+  const properties = JSON.parse(getFixture('jf2/note-content-provided-html.jf2'));
 
   const result = getContentProperty(properties);
 
@@ -126,7 +126,7 @@ test('Gets existing HTML from `content` property and adds text value', t => {
 });
 
 test('Gets content from `content.text` property', t => {
-  const properties = JSON.parse(getFixture('jf2/article-content-provided-value.jf2'));
+  const properties = JSON.parse(getFixture('jf2/article-content-provided-text.jf2'));
 
   const result = getContentProperty(properties);
 
