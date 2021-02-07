@@ -33,7 +33,6 @@ test('Returns 200 if no post records', async t => {
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json');
 
-  t.log(result.text);
   t.is(result.statusCode, 200);
   t.is(result.body.success_description, 'No syndication targets have been configured');
 });
