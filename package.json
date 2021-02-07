@@ -64,12 +64,6 @@
     "supertest": "^6.1.3",
     "xo": "^0.37.1"
   },
-  "ava": {
-    "environmentVariables": {
-      "NODE_ENV": "test",
-      "TZ": "Europe/London"
-    }
-  },
   "c8": {
     "all": true,
     "include": [
