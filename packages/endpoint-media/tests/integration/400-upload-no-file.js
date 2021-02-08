@@ -1,6 +1,5 @@
 import test from 'ava';
 import nock from 'nock';
-import {getFixture} from '@indiekit-test/get-fixture';
 import {server} from '@indiekit-test/server';
 
 test.serial('Returns 400 if no file included in request', async t => {
