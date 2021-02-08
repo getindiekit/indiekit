@@ -1,7 +1,7 @@
 import test from 'ava';
 import {server} from '@indiekit-test/server';
 
-test('Redirects status page', async t => {
+test('Redirects to status page', async t => {
   const request = await server;
 
   const result = await request.get('/');

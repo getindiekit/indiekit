@@ -12,7 +12,7 @@ test.beforeEach(async t => {
   const {application, publication} = await indiekitConfig;
 
   t.context = await {
-    cache: new Cache(application.cache),
+    cacheCollection: application.cache,
     publication
   };
 });
@@ -26,33 +26,33 @@ test('Returns array of available categories', async t => {
 });
 
 test('Fetches array from remote JSON file', async t => {
-  const scope = nock(process.env.TEST_PUBLICATION_URL)
+  nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .reply(200, ['foo', 'bar']);
   t.context.publication.categories = `${process.env.TEST_PUBLICATION_URL}categories.json`;
+  const cache = new Cache(t.context.cacheCollection);
 
-  const result = await getCategories(t.context.cache, t.context.publication);
+  const result = await getCategories(cache, t.context.publication);
 
   t.deepEqual(result, ['foo', 'bar']);
-
-  scope.done();
 });
 
-test('Returns empty array if remote JSON file not found', async t => {
-  const scope = nock(process.env.TEST_PUBLICATION_URL)
+test.serial('Returns empty array if remote JSON file not found', async t => {
+  nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .replyWithError('Not found');
   t.context.publication.categories = `${process.env.TEST_PUBLICATION_URL}categories.json`;
+  const cache = new Cache(t.context.cacheCollection);
 
-  await t.throwsAsync(getCategories(t.context.cache, t.context.publication), {
+  await t.throwsAsync(getCategories(cache, t.context.publication), {
     message: `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`
   });
-
-  scope.done();
 });
 
 test('Returns empty array if no publication config provided', async t => {
-  const result = await getCategories(t.context.cache, {});
+  const cache = new Cache(t.context.cacheCollection);
+
+  const result = await getCategories(cache, {});
 
   t.deepEqual(result, []);
 });
