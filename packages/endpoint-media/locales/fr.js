@@ -4,7 +4,8 @@ export const fr = {
     download: 'Télécharger un fichier',
     properties: 'Propriétés',
     files: {
-      title: 'Les fichiers chargés'
+      title: 'Les fichiers chargés',
+      none: 'Aucun fichier'
     }
   }
 };

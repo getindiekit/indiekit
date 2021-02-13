@@ -2,7 +2,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- if files %}
+{%- if files %}
   <ol class="no-bullets">
   {%- for item in files | reverse %}
     <li>
@@ -15,5 +15,7 @@
     </li>
   {%- endfor %}
   </ol>
-  {%- endif %}
+{%- else -%}
+  <p>{{ __("media.files.none") }}<p>
+{%- endif %}
 {% endblock %}

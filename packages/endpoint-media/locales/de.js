@@ -4,7 +4,8 @@ export const de = {
     download: 'Datei-Download',
     properties: 'Eigenschaften',
     files: {
-      title: 'Hochgeladene Dateien'
+      title: 'Hochgeladene Dateien',
+      none: 'Keine Dateien'
     }
   }
 };
