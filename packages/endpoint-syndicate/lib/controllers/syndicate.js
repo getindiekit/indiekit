@@ -50,7 +50,7 @@ export const syndicateController = publication => ({
       for await (const target of syndicationTargets) {
         const canSyndicate = syndicateTo.includes(target.uid);
         if (canSyndicate) {
-          const syndicatedUrl = await target.syndicate(postData.properties);
+          const syndicatedUrl = await target.syndicate(postData.properties, publication);
           syndication.push(syndicatedUrl);
         }
       }
