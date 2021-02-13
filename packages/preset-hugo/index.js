@@ -1,6 +1,9 @@
 import TOML from '@iarna/toml';
 import YAML from 'yaml';
 
+// YAML options
+YAML.scalarOptions.str.fold.lineWidth = 0;
+
 const defaults = {
   frontmatterFormat: 'yaml'
 };
