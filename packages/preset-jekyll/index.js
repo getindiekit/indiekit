@@ -1,5 +1,8 @@
 import YAML from 'yaml';
 
+// YAML options
+YAML.scalarOptions.str.fold.lineWidth = 0;
+
 export const JekyllPreset = class {
   constructor() {
     this.id = 'jekyll';
