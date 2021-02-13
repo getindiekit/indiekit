@@ -77,7 +77,7 @@ test('Gets audio property (from string)', t => {
   const result = getAudioProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.mp3'}
+    {url: 'baz.mp3'}
   ]);
 });
 
@@ -87,7 +87,7 @@ test('Gets audio property (from array)', t => {
   const result = getAudioProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.mp3'},
+    {url: 'baz.mp3'},
     {url: 'https://foo.bar/qux.mp3'}
   ]);
 });
@@ -98,7 +98,7 @@ test('Gets normalised audio property', t => {
   const result = getAudioProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.mp3'},
+    {url: 'baz.mp3'},
     {url: 'https://foo.bar/qux.mp3'}
   ]);
 });
@@ -153,7 +153,7 @@ test('Gets photo property (from string)', t => {
   const result = getPhotoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.jpg'}
+    {url: 'baz.jpg'}
   ]);
 });
 
@@ -163,7 +163,7 @@ test('Gets photo property (from array)', t => {
   const result = getPhotoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.jpg'},
+    {url: 'baz.jpg'},
     {url: 'https://foo.bar/qux.jpg'}
   ]);
 });
@@ -174,7 +174,7 @@ test('Gets normalised photo property', t => {
   const result = getPhotoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.jpg', alt: 'Baz'},
+    {url: 'baz.jpg', alt: 'Baz'},
     {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
   ]);
 });
@@ -185,7 +185,7 @@ test('Gets normalised photo property, adding provided text alternatives', t => {
   const result = getPhotoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.jpg', alt: 'Baz'},
+    {url: 'baz.jpg', alt: 'Baz'},
     {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
   ]);
 });
@@ -196,7 +196,7 @@ test('Gets video property (from string)', t => {
   const result = getVideoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.mp4'}
+    {url: 'baz.mp4'}
   ]);
 });
 
@@ -206,7 +206,7 @@ test('Gets video property (from array)', t => {
   const result = getVideoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.mp4'},
+    {url: 'baz.mp4'},
     {url: 'https://foo.bar/qux.mp4'}
   ]);
 });
@@ -217,7 +217,7 @@ test('Gets normalised video property', t => {
   const result = getVideoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: '/baz.mp4'},
+    {url: 'baz.mp4'},
     {url: 'https://foo.bar/qux.mp4'}
   ]);
 });

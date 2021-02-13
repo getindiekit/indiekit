@@ -103,7 +103,7 @@ export const randomString = () => {
  * @returns {string} Path
  */
 export const relativeMediaPath = (url, me) => {
-  return url.includes(me) ? new URL(url).pathname : url;
+  return url.includes(me) ? url.replace(me, '') : url;
 };
 
 /**

@@ -52,9 +52,15 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
 });
 
 test('Renders relative path if URL is on publication', t => {
-  const result = relativeMediaPath('http://foo.bar/baz/', 'http://foo.bar/');
+  const result = relativeMediaPath('http://foo.bar/media/', 'http://foo.bar');
 
-  t.is(result, '/baz/');
+  t.is(result, '/media/');
+});
+
+test('Renders relative path if URL is on publication and publication URL has a path', t => {
+  const result = relativeMediaPath('http://foo.bar/baz/media/', 'http://foo.bar/baz/');
+
+  t.is(result, 'media/');
 });
 
 test('Renders path from URI template and properties', t => {
