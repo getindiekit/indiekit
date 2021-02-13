@@ -6,6 +6,7 @@ import {
   mf2ToJf2,
   getAudioProperty,
   getContentProperty,
+  getLocationProperty,
   getPhotoProperty,
   getVideoProperty,
   getPublishedProperty,
@@ -144,6 +145,46 @@ test('Gets content from `content` property', t => {
   t.deepEqual(result, {
     html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
     text: 'I ate a *cheese* sandwich, which was nice.'
+  });
+});
+
+test('Gets location property', t => {
+  const properties = JSON.parse(getFixture('jf2/checkin.jf2'));
+
+  const result = getLocationProperty(properties);
+
+  t.deepEqual(result, {
+    properties: {
+      latitude: '37.780080',
+      longitude: '-122.420160'
+    }
+  });
+});
+
+test('Gets location property by parsing provided Geo URI', t => {
+  const properties = {location: 'geo:37.780080,-122.420160'};
+
+  const result = getLocationProperty(properties);
+
+  t.deepEqual(result, {
+    properties: {
+      latitude: '37.780080',
+      longitude: '-122.420160'
+    }
+  });
+});
+
+test('Gets location property, parsing Geo URI with altitude and uncertainty values', t => {
+  const properties = {location: 'geo:37.780080,-122.420160,1.0;u=65'};
+
+  const result = getLocationProperty(properties);
+
+  t.deepEqual(result, {
+    properties: {
+      latitude: '37.780080',
+      longitude: '-122.420160',
+      altitude: '1.0'
+    }
   });
 });
 

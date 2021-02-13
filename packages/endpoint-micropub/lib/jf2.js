@@ -72,6 +72,10 @@ export const normaliseProperties = (publication, properties) => {
     properties.content = getContentProperty(properties);
   }
 
+  if (properties.location) {
+    properties.location = getLocationProperty(properties);
+  }
+
   if (properties.audio) {
     properties.audio = getAudioProperty(properties, me);
   }
@@ -135,6 +139,31 @@ export const getContentProperty = properties => {
   text = text || content;
   html = markdownToHtml(text);
   return {html, text};
+};
+
+/**
+ * Get location property, parsing a Geo URI if provided
+ *
+ * @param {object|string} properties JF2 properties
+ * @returns {object} `location` property
+ */
+export const getLocationProperty = properties => {
+  let {location} = properties;
+
+  if (typeof location === 'string' && location.startsWith('geo:')) {
+    const geoUriRegexp = /geo:(?<latitude>[-?\d+.]*),(?<longitude>[-?\d+.]*)(?:,(?<altitude>[-?\d+.]*))?/;
+    const {latitude, longitude, altitude} = location.match(geoUriRegexp).groups;
+
+    location = {
+      properties: {
+        latitude,
+        longitude,
+        ...(altitude ? {altitude} : {})
+      }
+    };
+  }
+
+  return location;
 };
 
 /**
