@@ -35,8 +35,8 @@
   "dependencies": {
     "brevity": "^0.2.9",
     "got": "^11.8.1",
-    "html-to-text": "^6.0.0",
-    "twitter-lite": "^0.14.0"
+    "html-to-text": "^7.0.0",
+    "twitter-lite": "^1.1.0"
   },
   "publishConfig": {
     "access": "public"
