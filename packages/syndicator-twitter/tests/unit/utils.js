@@ -1,7 +1,9 @@
+import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {
   createStatus,
+  getAbsoluteUrl,
   getStatusIdFromUrl,
   htmlToStatusText,
   isTweetUrl
@@ -74,6 +76,18 @@ test('Creates a status with a photo', t => {
 test('Tests if string is a tweet permalink', t => {
   t.true(isTweetUrl('https://twitter.com/paulrobertlloyd/status/1341502435760680961'));
   t.false(isTweetUrl('https://getindiekit.com'));
+});
+
+test('Gets absolute URL', t => {
+  const result = getAbsoluteUrl(`${process.env.TEST_PUBLICATION_URL}media/photo.jpg`, process.env.TEST_PUBLICATION_URL);
+
+  t.is(result, `${process.env.TEST_PUBLICATION_URL}media/photo.jpg`);
+});
+
+test('Gets absolute URL by prepending publication URL', t => {
+  const result = getAbsoluteUrl('/media/photo.jpg', process.env.TEST_PUBLICATION_URL);
+
+  t.is(result, `${process.env.TEST_PUBLICATION_URL}media/photo.jpg`);
 });
 
 test('Gets status ID from Twitter permalink', t => {

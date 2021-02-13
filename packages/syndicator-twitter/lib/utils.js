@@ -68,6 +68,22 @@ export const createStatus = (properties, mediaIds = false) => {
 };
 
 /**
+ * Get absolute URL
+ *
+ * @param {string} string URL or path
+ * @param {string} me Publication URL
+ * @returns {URL} Absolute URL
+ */
+export const getAbsoluteUrl = (string, me) => {
+  try {
+    return new URL(string).toString();
+  } catch {
+    const absoluteUrl = path.posix.join(me, string);
+    return new URL(absoluteUrl).toString();
+  }
+};
+
+/**
  * Get status ID from Twitter status URL
  *
  * @param {string} url Twitter status URL

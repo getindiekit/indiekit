@@ -3,6 +3,7 @@ import got from 'got';
 import Twitter from 'twitter-lite';
 import {
   createStatus,
+  getAbsoluteUrl,
   getStatusIdFromUrl,
   isTweetUrl
 } from './utils.js';
@@ -73,9 +74,10 @@ export const twitter = options => ({
    * Upload media and return Twitter media id
    *
    * @param {string} media JF2 media object
+   * @param {string} me Publication URL
    * @returns {string} Twitter media id
    */
-  async uploadMedia(media) {
+  async uploadMedia(media, me) {
     const {alt, url} = media;
 
     if (typeof url !== 'string') {
@@ -83,7 +85,8 @@ export const twitter = options => ({
     }
 
     try {
-      const response = await got(url, {responseType: 'buffer'});
+      const mediaUrl = getAbsoluteUrl(url, me);
+      const response = await got(mediaUrl, {responseType: 'buffer'});
       const buffer = Buffer.from(response.body).toString('base64');
       const {media_id_string} = await this.client('upload').post('media/upload', {media_data: buffer});
 
@@ -105,9 +108,10 @@ export const twitter = options => ({
    * Post to Twitter
    *
    * @param {object} properties JF2 properties object
+   * @param {object} publication Publication configuration
    * @returns {string} URL of syndicated tweet
    */
-  async post(properties) {
+  async post(properties, publication) {
     let mediaIds = [];
 
     // Upload photos
@@ -117,7 +121,7 @@ export const twitter = options => ({
       // Trim to 4 photos as Twitter doesn’t support more
       const photos = properties.photo.slice(0, 4);
       for await (const photo of photos) {
-        uploads.push(this.uploadMedia(photo));
+        uploads.push(this.uploadMedia(photo, publication.me));
       }
 
       mediaIds = await Promise.all(uploads);

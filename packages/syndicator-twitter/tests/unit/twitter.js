@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
 import {getFixture} from '@indiekit-test/get-fixture';
@@ -22,6 +23,9 @@ test.beforeEach(t => {
       accessTokenKey: 'ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789',
       accessTokenSecret: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN',
       user: 'username'
+    },
+    publication: {
+      me: process.env.TEST_PUBLICATION_URL
     }
   };
 });
@@ -133,7 +137,7 @@ test('Throws error fetching media to upload', async t => {
     .get('/image.jpg')
     .replyWithError('Not found');
 
-  await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media), {
+  await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media, t.context.publication), {
     message: /Not found/
   });
 });
@@ -151,7 +155,7 @@ test('Uploads media and returns a media id', async t => {
     .post('/1.1/media/metadata/create.json')
     .reply(200, {});
 
-  const result = await twitter(t.context.options).uploadMedia(t.context.media);
+  const result = await twitter(t.context.options).uploadMedia(t.context.media, t.context.publication);
 
   t.is(result, '1234567890987654321');
 });
@@ -168,13 +172,13 @@ test('Throws error uploading media', async t => {
       }]
     });
 
-  await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media), {
+  await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media, t.context.publication), {
     message: /Not found/
   });
 });
 
 test('Returns false passing an object to media upload function', async t => {
-  const result = await twitter(t.context.options).uploadMedia({foo: 'bar'});
+  const result = await twitter(t.context.options).uploadMedia({foo: 'bar'}, t.context.publication);
 
   t.falsy(result);
 });
@@ -186,7 +190,7 @@ test('Posts a like of a tweet to Twitter', async t => {
 
   const result = await twitter(t.context.options).post({
     'like-of': t.context.tweetUrl
-  });
+  }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
 });
@@ -194,7 +198,7 @@ test('Posts a like of a tweet to Twitter', async t => {
 test('Doesn’t post a like of a URL to Twitter', async t => {
   const result = await twitter(t.context.options).post({
     'like-of': 'https://foo.bar/lunchtime'
-  });
+  }, t.context.publication);
 
   t.falsy(result);
 });
@@ -206,7 +210,7 @@ test('Posts a repost of a tweet to Twitter', async t => {
 
   const result = await twitter(t.context.options).post({
     'repost-of': t.context.tweetUrl
-  });
+  }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
 });
@@ -214,7 +218,7 @@ test('Posts a repost of a tweet to Twitter', async t => {
 test('Doesn’t post a repost of a URL to Twitter', async t => {
   const result = await twitter(t.context.options).post({
     'repost-of': 'https://foo.bar/lunchtime'
-  });
+  }, t.context.publication);
 
   t.falsy(result);
 });
@@ -228,7 +232,7 @@ test('Posts a quote status to Twitter', async t => {
     content: 'Someone else who likes cheese sandwiches.',
     'repost-of': t.context.tweetUrl,
     'post-type': 'repost'
-  });
+  }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
 });
@@ -244,19 +248,19 @@ test('Posts a status to Twitter', async t => {
       text: 'I ate a cheese sandwich, which was nice.'
     },
     url: 'https://foo.bar/lunchtime'
-  });
+  }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
 });
 
 test('Posts a status to Twitter with 4 out of 5 photos', async t => {
-  nock('https://website.example')
+  nock(t.context.publication.me)
     .get('/image1.jpg')
     .reply(200, {body: getFixture('file-types/photo.jpg', false)});
-  nock('https://website.example')
+  nock(t.context.publication.me)
     .get('/image2.jpg')
     .reply(200, {body: getFixture('file-types/photo.jpg', false)});
-  nock('https://website.example')
+  nock(t.context.publication.me)
     .get('/image3.jpg')
     .reply(200, {body: getFixture('file-types/photo.jpg', false)});
   nock('https://website.example')
@@ -281,13 +285,15 @@ test('Posts a status to Twitter with 4 out of 5 photos', async t => {
   const result = await twitter(t.context.options).post({
     content: 'Here’s the cheese sandwiches I ate.',
     photo: [
-      {url: 'https://website.example/image1.jpg'},
-      {url: 'https://website.example/image2.jpg'},
-      {url: 'https://website.example/image3.jpg'},
+      {url: `${t.context.publication.me}image1.jpg`},
+      {url: `${t.context.publication.me}image2.jpg`},
+      {url: 'image3.jpg'},
       {url: 'https://website.example/image4.jpg'},
       {url: 'https://website.example/image5.jpg'}
     ]
-  });
+  }, t.context.publication);
+
+  t.log(t.context.publication.me);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
 });

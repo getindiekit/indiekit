@@ -42,7 +42,7 @@ export const TwitterSyndicator = class {
     return this.info.uid;
   }
 
-  async syndicate(properties) {
-    return twitter(this.options).post(properties);
+  async syndicate(properties, publication) {
+    return twitter(this.options).post(properties, publication);
   }
 };
