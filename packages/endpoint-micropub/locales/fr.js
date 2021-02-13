@@ -3,7 +3,8 @@ export const fr = {
     title: 'Articles',
     properties: 'Propriétés',
     posts: {
-      title: 'Article publié'
+      title: 'Article publié',
+      none: 'Aucun article'
     }
   }
 };

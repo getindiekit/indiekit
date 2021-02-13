@@ -2,7 +2,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- if posts %}
+{%- if posts %}
   <ol class="no-bullets">
   {%- for item in posts | reverse %}
     <li>
@@ -15,5 +15,7 @@
     </li>
   {%- endfor %}
   </ol>
-  {%- endif %}
+{%- else -%}
+  <p>{{ __("micropub.posts.none") }}<p>
+{%- endif %}
 {% endblock %}

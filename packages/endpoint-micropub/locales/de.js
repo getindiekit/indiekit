@@ -3,7 +3,8 @@ export const de = {
     title: 'Beiträge',
     properties: 'Eigenschaften',
     posts: {
-      title: 'Hochgeladene Dateien'
+      title: 'Hochgeladene Dateien',
+      none: 'Keine Beiträge'
     }
   }
 };
