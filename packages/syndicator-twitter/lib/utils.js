@@ -14,22 +14,21 @@ export const createStatus = (properties, mediaIds = false) => {
   const parameters = {};
 
   let status;
+  let statusText;
 
-  // If repost of Twitter URL with content, create a quote tweet
-  // Else, if post has a non-empty title, show title with a link to post
-  // Else, if post has plaintext content, use that
-  // Else, if post has HTML content, convert to plain text and use that
-  // Else, if post has content, use that
-  if (properties['repost-of']) {
-    status = `${properties.content} ${properties['repost-of']}`;
+  if (properties.content && properties.content.html) {
+    statusText = htmlToStatusText(properties.content.html);
+  }
+
+  if (statusText && properties['repost-of']) {
+    // If repost of Twitter URL with content, create a quote tweet
+    status = `${statusText} ${properties['repost-of']}`;
   } else if (properties.name && properties.name !== '') {
+    // Else, if post has a non-empty title, show title with a link to post
     status = `${properties.name} ${properties.url}`;
-  } else if (properties.content && properties.content.text) {
-    status = properties.content.text;
-  } else if (properties.content && properties.content.html) {
-    status = htmlToStatusText(properties.content.html);
-  } else if (properties.content) {
-    status = properties.content;
+  } else if (statusText) {
+    // Else, post content (converted to plain text)
+    status = statusText;
   }
 
   // Truncate status if longer than 280 characters

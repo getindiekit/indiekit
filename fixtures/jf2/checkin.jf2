@@ -1,6 +1,9 @@
 {
   "type": "entry",
-  "content": "I ate a cheese sandwich right here!",
+  "content": {
+    "html": "<p>I ate a cheese sandwich right here!</p>",
+    "text": "I ate a cheese sandwich right here!"
+  },
   "location": {
     "properties": {
       "latitude": "37.780080",

@@ -143,8 +143,8 @@ test('Gets content from `content` property', t => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
+    html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
+    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
   });
 });
 
@@ -429,8 +429,8 @@ test('Normalises JF2 (few properties)', t => {
   t.is(result.name, 'What I had for lunch');
   t.is(result['mp-slug'], 'what-i-had-for-lunch');
   t.deepEqual(result.content, {
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
+    html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
+    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
   });
   t.falsy(result.audio);
   t.falsy(result.photo);
@@ -446,8 +446,8 @@ test('Normalises JF2 (all properties)', t => {
   t.is(result.type, 'entry');
   t.is(result.name, 'What I had for lunch');
   t.deepEqual(result.content, {
-    html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
+    html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
+    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
   });
   t.deepEqual(result.audio, [
     {url: 'https://website.example/audio.mp3'}

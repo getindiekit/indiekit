@@ -31,14 +31,14 @@ test('Renders post template with basic content', t => {
   const result = jekyll.postTemplate({
     published: '2020-02-02',
     name: 'Lunchtime',
-    content: 'I ate a *cheese* sandwich, which was nice.'
+    content: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
   });
 
   t.is(result, `---
 date: 2020-02-02
 title: Lunchtime
 ---
-I ate a *cheese* sandwich, which was nice.
+I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `);
 });
 
@@ -47,7 +47,7 @@ test('Renders post template with HTML content', t => {
     published: '2020-02-02',
     name: 'Lunchtime',
     content: {
-      html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>'
+      html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>'
     }
   });
 
@@ -55,7 +55,7 @@ test('Renders post template with HTML content', t => {
 date: 2020-02-02
 title: Lunchtime
 ---
-<p>I ate a <em>cheese</em> sandwich, which was nice.</p>
+<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
 `);
 });
 
@@ -98,6 +98,6 @@ visibility: private
 syndication: https://website.example/post/12345
 mp-syndicate-to: https://social.example
 ---
-I ate a *cheese* sandwich, which was nice.
+I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `);
 });

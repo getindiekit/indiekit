@@ -229,7 +229,9 @@ test('Posts a quote status to Twitter', async t => {
     .reply(200, t.context.apiResponse);
 
   const result = await twitter(t.context.options).post({
-    content: 'Someone else who likes cheese sandwiches.',
+    content: {
+      html: '<p>Someone else who likes cheese sandwiches.</p>'
+    },
     'repost-of': t.context.tweetUrl,
     'post-type': 'repost'
   }, t.context.publication);
@@ -283,7 +285,9 @@ test('Posts a status to Twitter with 4 out of 5 photos', async t => {
     .reply(200, t.context.apiResponse);
 
   const result = await twitter(t.context.options).post({
-    content: 'Here’s the cheese sandwiches I ate.',
+    content: {
+      html: '<p>Here’s the cheese sandwiches I ate.</p>'
+    },
     photo: [
       {url: `${t.context.publication.me}image1.jpg`},
       {url: `${t.context.publication.me}image2.jpg`},
