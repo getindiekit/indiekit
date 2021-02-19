@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.22](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.21...v0.1.0-alpha.22) (2021-02-19)
+
+
+### Features
+
+* pass publication config to syndicator ([32e1f35](https://github.com/getindiekit/indiekit/commit/32e1f356c7374c880c576f327a2d2754c2141b9f))
+
+
+
+
+
 # [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
 
 

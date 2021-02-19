@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.22](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.21...v0.1.0-alpha.22) (2021-02-19)
+
+
+### Bug Fixes
+
+* always syndicate to Twitter using HTML content property ([dea22bb](https://github.com/getindiekit/indiekit/commit/dea22bbb73393084bf39d7ffd04d3e61f851f4f5))
+
+
+### Features
+
+* **syndicator-twitter:** always use absolute urls for uploading media ([5190195](https://github.com/getindiekit/indiekit/commit/51901959a36d37a91b362c818b63b6854e905b7d))
+
+
+
+
+
 # [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
 
 

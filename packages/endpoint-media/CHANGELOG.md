@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.22](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.21...v0.1.0-alpha.22) (2021-02-19)
+
+
+### Features
+
+* **endpoint-media:** show message when no files to show ([6110ff1](https://github.com/getindiekit/indiekit/commit/6110ff1fe93bd9f7274764bac88fcc36cee58ce0))
+
+
+
+
+
 # [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
 
 

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.22](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.21...v0.1.0-alpha.22) (2021-02-19)
+
+
+### Bug Fixes
+
+* always syndicate to Twitter using HTML content property ([dea22bb](https://github.com/getindiekit/indiekit/commit/dea22bbb73393084bf39d7ffd04d3e61f851f4f5))
+* **endpoint-micropub:** relative media path for publication url with path component ([9dd58ef](https://github.com/getindiekit/indiekit/commit/9dd58ef524635a90d714f86eb2e5c3fc94192f8a))
+
+
+### Features
+
+* **endpoint-media:** show message when no files to show ([6110ff1](https://github.com/getindiekit/indiekit/commit/6110ff1fe93bd9f7274764bac88fcc36cee58ce0))
+* **endpoint-micropub:** parse geo uri for location property ([b28d789](https://github.com/getindiekit/indiekit/commit/b28d789d14f9d298a2fba6d736572f54577f8df0))
+* **endpoint-micropub:** show message when no posts to show ([a3d9bce](https://github.com/getindiekit/indiekit/commit/a3d9bcec2e8f3dbf23c7b9b588166027cd45859c))
+* **indiekit:** localise 404 page ([09ac3ac](https://github.com/getindiekit/indiekit/commit/09ac3ac03a2364c13bf26405a8926e2e5dafd68e))
+* **preset-jekyll:** disable line folding on yaml strings ([ba3b21b](https://github.com/getindiekit/indiekit/commit/ba3b21b7824017c19e49e546173e6d3bd7793e3b))
+* **syndicator-twitter:** always use absolute urls for uploading media ([5190195](https://github.com/getindiekit/indiekit/commit/51901959a36d37a91b362c818b63b6854e905b7d))
+* pass publication config to syndicator ([32e1f35](https://github.com/getindiekit/indiekit/commit/32e1f356c7374c880c576f327a2d2754c2141b9f))
+* **preset-hugo:** disable line folding on yaml strings ([c72a598](https://github.com/getindiekit/indiekit/commit/c72a5985db668fca7b47fe9f7b40b69a8f5ad7f0))
+
+
+
+
+
 # [0.1.0-alpha.21](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2021-02-01)
 
 
