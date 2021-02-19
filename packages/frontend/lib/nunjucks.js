@@ -18,8 +18,7 @@ module.exports = app => {
 
   const options = {
     autoescape: true,
-    express: app,
-    watch: true
+    express: app
   };
 
   const parser = nunjucks.configure(views, options);
