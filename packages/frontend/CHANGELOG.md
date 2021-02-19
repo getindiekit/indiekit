@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.23](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.22...v0.1.0-alpha.23) (2021-02-19)
+
+
+### Bug Fixes
+
+* disable watch for nunjucks templates to stop chokidar dependency errors ([b29e9e2](https://github.com/getindiekit/indiekit/commit/b29e9e2e6ed949ab4659bf631ff6b5577232504a))
+
+
+
+
+
 # [0.1.0-alpha.22](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.21...v0.1.0-alpha.22) (2021-02-19)
 
 **Note:** Version bump only for package @indiekit/frontend
