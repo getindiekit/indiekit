@@ -31,7 +31,7 @@
     "directory": "packages/store-gitlab"
   },
   "dependencies": {
-    "@gitbeaker/node": "^28.0.4"
+    "@gitbeaker/node": "^28.1.1"
   },
   "publishConfig": {
     "access": "public"

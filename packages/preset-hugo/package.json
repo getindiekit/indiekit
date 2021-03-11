@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
-    "yaml": "^1.10.0"
+    "yaml": "^1.10.2"
   },
   "publishConfig": {
     "access": "public"

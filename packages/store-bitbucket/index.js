@@ -56,7 +56,7 @@ export const BitbucketStore = class {
   async readFile(path) {
     const response = await this.client.repositories.readSrc({
       format: 'rendered',
-      node: this.options.branch,
+      commit: this.options.branch,
       path,
       repo_slug: this.options.repo, /* eslint-disable-line camelcase */
       workspace: this.options.user

@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "brevity": "^0.2.9",
-    "got": "^11.8.1",
+    "got": "^11.8.2",
     "html-to-text": "^7.0.0",
     "twitter-lite": "^1.1.0"
   },

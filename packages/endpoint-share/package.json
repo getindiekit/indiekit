@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-validator": "^6.9.2",
-    "got": "^11.8.1"
+    "express-validator": "^6.10.0",
+    "got": "^11.8.2"
   },
   "publishConfig": {
     "access": "public"
