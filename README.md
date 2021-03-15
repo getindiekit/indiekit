@@ -26,7 +26,7 @@
 * Accept post status and visibility
 * Review previously published posts and files
 * Bookmarklet to save and share bookmarks
-* Publish to different [content stores](https://getindiekit.com/plug-ins/#content-stores)
+* Publish to different [content stores](https://getindiekit.com/plugins/#content-stores)
 * Support for popular static site generators (Jekyll, Hugo, 11ty)
 * Localised to [different languages](https://getindiekit.com/docs/localisation/)
 * ~~Plug-in API~~
