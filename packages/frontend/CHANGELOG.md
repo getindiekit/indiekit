@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.23...v0.1.0) (2021-03-15)
+
+
+### Features
+
+* **frontend:** support heading anchors and definition lists in Markdown ([dab1a2e](https://github.com/getindiekit/indiekit/commit/dab1a2edee4fbf7e9dc6b8c7543965a9a63a43d2))
+
+
+
+
+
 # [0.1.0-alpha.23](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.22...v0.1.0-alpha.23) (2021-02-19)
 
 

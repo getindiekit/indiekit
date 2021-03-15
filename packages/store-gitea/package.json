@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-gitea",
-  "version": "0.1.0-alpha.21",
+  "version": "0.1.0",
   "description": "Store IndieWeb content on Gitea",
   "keywords": [
     "indiekit",
