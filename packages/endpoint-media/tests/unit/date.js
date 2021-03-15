@@ -135,13 +135,13 @@ test('`UTC` option converts offset to Z offset datetime', t => {
 });
 
 test('Gets server timezone offset', t => {
-  process.env.TZ = 'Asia/Taipei';
+  process.env.TZ = 'Asia/Taipei'; // Does not observe DST
   const ahead = getServerTimeZone();
   t.is(ahead, '+08:00');
 
-  process.env.TZ = 'America/Los_Angeles';
+  process.env.TZ = 'America/Panama';// Does not observe DS
   const behind = getServerTimeZone();
-  t.is(behind, '-08:00');
+  t.is(behind, '-05:00');
 
   process.env.TZ = 'UTC';
   const utc = getServerTimeZone();
