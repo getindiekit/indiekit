@@ -52,7 +52,7 @@
     "husky": "^5.0.9",
     "jsdom": "^16.5.1",
     "lerna": "^4.0.0",
-    "markdownlint-cli2": "0.0.14",
+    "markdownlint-cli2": "0.1.0",
     "mock-req-res": "^1.1.4",
     "mongodb-memory-server": "^6.9.3",
     "nock": "^13.0.6",
