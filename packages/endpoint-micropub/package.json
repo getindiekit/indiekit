@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@paulrobertlloyd/mf2tojf2": "^0.4.1",
-    "@sindresorhus/slugify": "^1.1.0",
+    "@sindresorhus/slugify": "^2.0.0",
     "date-fns": "^2.19.0",
     "date-fns-tz": "^1.1.3",
     "debug": "^4.3.1",
