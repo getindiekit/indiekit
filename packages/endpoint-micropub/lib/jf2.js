@@ -107,7 +107,7 @@ export const normaliseProperties = (publication, properties) => {
  */
 export const getAudioProperty = (properties, me) => {
   let {audio} = properties;
-  audio = Array.isArray(audio) ? audio : new Array(audio);
+  audio = Array.isArray(audio) ? audio : [audio];
 
   return audio.map(item => ({
     url: relativeMediaPath(item.url || item, me)
@@ -175,11 +175,11 @@ export const getLocationProperty = properties => {
  */
 export const getPhotoProperty = (properties, me) => {
   let {photo} = properties;
-  photo = Array.isArray(photo) ? photo : new Array(photo);
+  photo = Array.isArray(photo) ? photo : [photo];
 
   let photoAlt = properties['mp-photo-alt'];
   if (photoAlt) {
-    photoAlt = Array.isArray(photoAlt) ? photoAlt : new Array(photoAlt);
+    photoAlt = Array.isArray(photoAlt) ? photoAlt : [photoAlt];
   }
 
   const property = photo.map((item, index) => ({
@@ -200,7 +200,7 @@ export const getPhotoProperty = (properties, me) => {
  */
 export const getVideoProperty = (properties, me) => {
   let {video} = properties;
-  video = Array.isArray(video) ? video : new Array(video);
+  video = Array.isArray(video) ? video : [video];
 
   return video.map(item => ({
     url: relativeMediaPath(item.url || item, me)

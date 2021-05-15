@@ -21,7 +21,8 @@ export const addProperties = (object, additions) => {
 
       // If existing value, add to it
       if (existingValue) {
-        existingValue = Array.isArray(existingValue) ? existingValue : new Array(existingValue);
+        existingValue = Array.isArray(existingValue) ? existingValue : [existingValue];
+
         const updatedValue = [...existingValue];
 
         for (const value of newValue) {

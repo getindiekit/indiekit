@@ -19,11 +19,9 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 
   // Return requested properties
   if (requestedProperties) {
-    const selectedProperties = {};
+    requestedProperties = Array.isArray(requestedProperties) ? requestedProperties : [requestedProperties];
 
-    if (!Array.isArray(requestedProperties)) {
-      requestedProperties = new Array(requestedProperties);
-    }
+    const selectedProperties = {};
 
     for (const key of requestedProperties) {
       if (properties[key]) {
