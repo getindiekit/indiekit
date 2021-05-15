@@ -39,7 +39,8 @@ export const Indiekit = class {
   }
 
   addEndpoint(endpoint) {
-    this.application.endpoints = this.application.endpoints.concat(endpoint);
+    endpoint = Array.isArray(endpoint) ? endpoint : [endpoint];
+    this.application.endpoints = [...this.application.endpoints, ...endpoint];
   }
 
   addLocale(language, translations) {
@@ -47,15 +48,18 @@ export const Indiekit = class {
   }
 
   addNavigation(item) {
-    this.application.navigationItems = this.application.navigationItems.concat(item);
+    item = Array.isArray(item) ? item : [item];
+    this.application.navigationItems = [...this.application.navigationItems, ...item];
   }
 
   addRoute(route) {
-    this.application.routes = this.application.routes.concat(route);
+    route = Array.isArray(route) ? route : [route];
+    this.application.routes = [...this.application.routes, ...route];
   }
 
   addView(view) {
-    this.application.views = this.application.views.concat(view);
+    view = Array.isArray(view) ? view : [view];
+    this.application.views = [...this.application.views, ...view];
   }
 
   async getConfig() {
