@@ -1,9 +1,5 @@
 import express from 'express';
-import path from 'node:path';
-import {fileURLToPath} from 'node:url';
 import {syndicateController} from './lib/controllers/syndicate.js';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   mountpath: '/syndicate'

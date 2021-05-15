@@ -4,7 +4,6 @@ import path from 'node:path';
 import {internetArchive} from './lib/internet-archive.js';
 
 export const debug = new Debug('indiekit:syndicator-internet-archive');
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   checked: false,
@@ -20,7 +19,7 @@ export const InternetArchiveSyndicator = class {
   }
 
   get assetsPath() {
-    return path.join(__dirname, 'assets');
+    return fileURLToPath(new URL('assets', import.meta.url));
   }
 
   get info() {

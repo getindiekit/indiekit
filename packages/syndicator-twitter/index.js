@@ -1,8 +1,5 @@
 import {fileURLToPath} from 'node:url';
-import path from 'node:path';
 import {twitter} from './lib/twitter.js';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   checked: false
@@ -16,7 +13,7 @@ export const TwitterSyndicator = class {
   }
 
   get assetsPath() {
-    return path.join(__dirname, 'assets');
+    return fileURLToPath(new URL('assets', import.meta.url));
   }
 
   get info() {
