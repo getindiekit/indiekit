@@ -144,12 +144,12 @@ export const renderPath = (path, properties, timeZoneSetting) => {
   ];
 
   // Add date tokens
-  dateTokens.forEach(dateToken => {
+  for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
       timeZone: timeZoneSetting === 'server' ? serverTimeZone : timeZoneSetting,
       useAdditionalDayOfYearTokens: true
     });
-  });
+  }
 
   // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap

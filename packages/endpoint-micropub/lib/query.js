@@ -26,11 +26,11 @@ export const getConfig = (application, publication) => {
 
   // Ensure syndication targets use absolute URLs
   const syndicateTo = syndicationTargets.map(target => target.info);
-  syndicateTo.forEach(info => {
+  for (const info of syndicateTo) {
     if (info.service && info.service.photo) {
       info.service.photo = new URL(info.service.photo, url).href;
     }
-  });
+  }
 
   return {
     'media-endpoint': mediaEndpoint,

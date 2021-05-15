@@ -25,11 +25,11 @@ export const getMf2Properties = (mf2, requestedProperties) => {
       requestedProperties = new Array(requestedProperties);
     }
 
-    requestedProperties.forEach(key => {
+    for (const key of requestedProperties) {
       if (properties[key]) {
         selectedProperties[key] = properties[key];
       }
-    });
+    }
 
     item.properties = selectedProperties;
   }

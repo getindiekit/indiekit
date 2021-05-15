@@ -11,9 +11,9 @@ export const getNavigation = (application, request, response) => {
   const navigation = [...application.navigationItems, ...defaultNavigation];
 
   // Translate text strings
-  navigation.forEach(item => {
+  for (const item of navigation) {
     item.text = response.__(item.text);
-  });
+  }
 
   return navigation;
 };

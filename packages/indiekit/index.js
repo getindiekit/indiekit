@@ -78,9 +78,9 @@ export const Indiekit = class {
     this.publication.postTypes = getPostTypes(this.publication);
 
     // Application endpoints
-    this.application.endpoints.forEach(
-      endpoint => endpoint.init(this)
-    );
+    for (const endpoint of this.application.endpoints) {
+      endpoint.init(this);
+    }
 
     return this._config;
   }

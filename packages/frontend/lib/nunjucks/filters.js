@@ -59,12 +59,12 @@ const errorList = errorMap => {
   // For each field that has errors, return only the first error
   const errorList = [];
   const fieldsWithErrors = Object.entries(errorMap);
-  fieldsWithErrors.forEach(fieldError => {
+  for (const fieldError of fieldsWithErrors) {
     errorList.push({
       text: fieldError[1].msg,
       href: `#${camelToSnakeCase(fieldError[1].param)}`
     });
-  });
+  }
 
   return errorList;
 };
@@ -96,16 +96,16 @@ const markdown = (string, value) => {
 const summaryRows = object => {
   const rows = [];
 
-  Object.entries(object).forEach(
-    ([key, value]) => rows.push({
+  for (const [key, value] of Object.entries(object)) {
+    rows.push({
       key: {
         text: key
       },
       value: {
         text: typeof value === 'string' ? value : JSON.stringify(value)
       }
-    })
-  );
+    });
+  }
 
   return rows;
 };
