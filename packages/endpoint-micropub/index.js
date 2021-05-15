@@ -1,13 +1,10 @@
 import express from 'express';
 import multer from 'multer';
-import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {actionController} from './lib/controllers/action.js';
 import {postsController} from './lib/controllers/posts.js';
 import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   mountpath: '/micropub'
@@ -44,7 +41,7 @@ export const MicropubEndpoint = class {
       routes: () => this.routes(application, publication)
     });
 
-    indiekitConfig.addView(path.join(__dirname, 'views'));
+    indiekitConfig.addView(fileURLToPath(new URL('views', import.meta.url)));
 
     indiekitConfig.set('publication.micropubEndpoint', this.mountpath);
   }

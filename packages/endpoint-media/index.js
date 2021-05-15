@@ -1,13 +1,10 @@
 import express from 'express';
 import multer from 'multer';
 import {fileURLToPath} from 'node:url';
-import path from 'node:path';
 import {uploadController} from './lib/controllers/upload.js';
 import {filesController} from './lib/controllers/files.js';
 import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   mountpath: '/media'
@@ -44,7 +41,7 @@ export const MediaEndpoint = class {
       routes: () => this.routes(application, publication)
     });
 
-    indiekitConfig.addView(path.join(__dirname, 'views'));
+    indiekitConfig.addView(fileURLToPath(new URL('views', import.meta.url)));
 
     indiekitConfig.set('publication.mediaEndpoint', this.mountpath);
   }

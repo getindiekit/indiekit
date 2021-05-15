@@ -1,11 +1,8 @@
 import express from 'express';
-import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {locales} from './locales/index.js';
 import {shareController} from './lib/controllers/share.js';
 import {validate} from './lib/middleware/validation.js';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const defaults = {
   mountpath: '/share'
@@ -41,8 +38,8 @@ export const ShareEndpoint = class {
     });
 
     indiekitConfig.addView([
-      path.join(__dirname, 'includes'),
-      path.join(__dirname, 'views')
+      fileURLToPath(new URL('includes', import.meta.url)),
+      fileURLToPath(new URL('views', import.meta.url))
     ]);
 
     indiekitConfig.set('application.shareEndpoint', this.mountpath);

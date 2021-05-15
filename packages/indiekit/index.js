@@ -1,6 +1,4 @@
 import _ from 'lodash';
-import path from 'node:path';
-import {fileURLToPath} from 'node:url';
 import {defaultConfig} from './config/defaults.js';
 import {mongodbConfig} from './config/mongodb.js';
 import {serverConfig} from './config/server.js';
@@ -10,8 +8,6 @@ import {
   getPostTemplate,
   getPostTypes
 } from './lib/publication.js';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const Indiekit = class {
   constructor(config) {

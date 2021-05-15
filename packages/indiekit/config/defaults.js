@@ -9,8 +9,7 @@ import {authenticate} from '../lib/middleware/authentication.js';
 import {indieauth} from '../lib/middleware/indieauth.js';
 import {locales} from '../locales/index.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const packagePath = path.join(__dirname, '..', 'package.json');
+const packagePath = fileURLToPath(new URL('../package.json', import.meta.url));
 const package_ = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 
 const mediaEndpoint = new MediaEndpoint();
@@ -40,7 +39,7 @@ const application = {
   themeColorScheme: 'automatic',
   version: package_.version,
   views: [
-    path.join(__dirname, '..', 'views')
+    fileURLToPath(new URL('../views', import.meta.url))
   ]
 };
 
