@@ -1,5 +1,5 @@
 import dateFnsTz from 'date-fns-tz';
-import path from 'path';
+import path from 'node:path';
 import newbase60 from 'newbase60';
 import slugify from '@sindresorhus/slugify';
 import {v4 as uuidv4} from 'uuid';

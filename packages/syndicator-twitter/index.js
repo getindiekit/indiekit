@@ -1,5 +1,5 @@
-import {fileURLToPath} from 'url';
-import path from 'path';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
 import {twitter} from './lib/twitter.js';
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));

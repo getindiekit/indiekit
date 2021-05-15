@@ -1,6 +1,6 @@
 import dateFnsTz from 'date-fns-tz';
 import newbase60 from 'newbase60';
-import path from 'path';
+import path from 'node:path';
 import {v4 as uuidv4} from 'uuid';
 import {getServerTimeZone} from './date.js';
 

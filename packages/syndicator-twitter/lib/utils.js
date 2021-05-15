@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import brevity from 'brevity';
 import {htmlToText} from 'html-to-text';
-import path from 'path';
+import path from 'node:path';
 
 /**
  * Get status parameters from given JF2 properties
