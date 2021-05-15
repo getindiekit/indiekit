@@ -1,6 +1,6 @@
 import test from 'ava';
-import {Indiekit} from '../index.js';
 import {Preset} from '@indiekit-test/preset';
+import {Indiekit} from '../index.js';
 
 const indiekit = new Indiekit();
 

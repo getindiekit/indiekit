@@ -1,6 +1,6 @@
-const nunjucks = require('nunjucks');
 const path = require('path');
 const languages = require('iso-639-1');
+const nunjucks = require('nunjucks');
 const filters = require('./nunjucks/filters.js');
 const globals = require('./nunjucks/globals.js');
 

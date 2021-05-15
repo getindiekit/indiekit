@@ -1,6 +1,6 @@
-import {debug} from '../index.js';
 import FormData from 'form-data';
 import got from 'got';
+import {debug} from '../index.js';
 
 const request = options => {
   return got.extend({

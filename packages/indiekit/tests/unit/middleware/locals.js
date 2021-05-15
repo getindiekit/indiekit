@@ -1,9 +1,8 @@
 import test from 'ava';
 import sinon from 'sinon';
+import mockReqRes from 'mock-req-res';
 import {defaultConfig} from '../../../config/defaults.js';
 import {locals} from '../../../lib/middleware/locals.js';
-
-import mockReqRes from 'mock-req-res';
 
 const {mockRequest, mockResponse} = mockReqRes;
 
