@@ -120,6 +120,16 @@
           }
         }
       ]
-    }
+    },
+    "overrides": [
+      {
+        "files": [
+          "packages/frontend/**/*.js"
+        ],
+        "rules": {
+          "unicorn/prefer-module": "off"
+        }
+      }
+    ]
   }
 }
