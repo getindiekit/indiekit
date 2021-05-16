@@ -4,6 +4,7 @@ import {indiekitConfig} from '@indiekit-test/config';
 import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
+  getMediaEndpoint,
   getPostTemplate,
   getPostTypes
 } from '../../lib/publication.js';
@@ -55,6 +56,33 @@ test('Returns empty array if no publication config provided', async t => {
   const result = await getCategories(cache, {});
 
   t.deepEqual(result, []);
+});
+
+test('Gets media endpoint from server derived values', t => {
+  const request = {
+    protocol: 'https',
+    headers: {
+      host: 'server.example'
+    }
+  };
+
+  const result = getMediaEndpoint(t.context.publication, request);
+
+  t.is(result, 'https://server.example/media');
+});
+
+test('Gets media endpoint from publication configuration', t => {
+  const publication = {mediaEndpoint: 'https://website.example/media'};
+  const request = {
+    protocol: 'https',
+    headers: {
+      host: 'website.example'
+    }
+  };
+
+  const result = getMediaEndpoint(publication, request);
+
+  t.is(result, 'https://website.example/media');
 });
 
 test('Gets custom post template', t => {

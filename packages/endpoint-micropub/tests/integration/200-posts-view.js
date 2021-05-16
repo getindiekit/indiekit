@@ -30,7 +30,7 @@ test.before(async t => {
 
   // Return test data
   t.context.postName = link.textContent;
-  t.context.postId = link.href.split('/')[3];
+  t.context.postId = link.href.split('/').pop();
 });
 
 test('Views previously uploaded file', async t => {

@@ -25,6 +25,24 @@ export const getCategories = async (cache, publication) => {
 };
 
 /**
+  * Get media endpoint from server derived values
+  * (Media endpoint needs to be a fully resolved URL)
+  *
+  * @param {object} publication Publication configuration
+  * @param {object} request HTTP request
+  * @returns {string} Media endpoint URL
+  */
+ export const getMediaEndpoint = (publication, request) => {
+  const {mediaEndpoint} = publication;
+
+  if (mediaEndpoint && isUrl(mediaEndpoint)) {
+    return mediaEndpoint;
+  }
+
+  return `${request.protocol}://${request.headers.host}${mediaEndpoint}`;
+};
+
+/**
  * Get post template
  *
  * @param {object} publication Publication configuration
