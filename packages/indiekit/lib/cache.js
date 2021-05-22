@@ -1,7 +1,8 @@
 import got from 'got';
 
 export const Cache = class {
-  /** Fetch data from cache or remote file
+  /**
+   * Fetch data from cache or remote file
    *
    * @param {object} collection Collection
    */
