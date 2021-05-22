@@ -34,7 +34,7 @@
     "coverage": "c8 ava"
   },
   "dependencies": {
-    "dotenv": "8.4.0"
+    "dotenv": "10.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
@@ -48,7 +48,7 @@
     "@indiekit-test/server": "file:helpers/server",
     "ava": "^3.15.0",
     "c8": "^7.7.2",
-    "eslint-plugin-jsdoc": "^34.2.2",
+    "eslint-plugin-jsdoc": "^34.8.2",
     "husky": "^6.0.0",
     "jsdom": "^16.5.3",
     "lerna": "^4.0.0",
