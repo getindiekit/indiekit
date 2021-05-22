@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';

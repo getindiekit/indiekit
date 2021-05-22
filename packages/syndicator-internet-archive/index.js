@@ -1,6 +1,5 @@
 import Debug from 'debug';
 import {fileURLToPath} from 'node:url';
-import path from 'node:path';
 import {internetArchive} from './lib/internet-archive.js';
 
 export const debug = new Debug('indiekit:syndicator-internet-archive');
