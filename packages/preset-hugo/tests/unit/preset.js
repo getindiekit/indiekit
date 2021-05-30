@@ -105,6 +105,7 @@ test('Renders post template with JSON frontmatter', t => {
     }
   ],
   "bookmark-of": "https://website.example",
+  "like-of": "https://website.example",
   "repost-of": "https://website.example",
   "in-reply-to": "https://website.example",
   "draft": true,
@@ -130,6 +131,7 @@ start = "2020-02-02"
 end = "2020-02-20"
 rsvp = "Yes"
 bookmark-of = "https://website.example"
+like-of = "https://website.example"
 repost-of = "https://website.example"
 in-reply-to = "https://website.example"
 draft = true
@@ -192,6 +194,7 @@ images:
 videos:
   - url: https://website.example/video.mp4
 bookmark-of: https://website.example
+like-of: https://website.example
 repost-of: https://website.example
 in-reply-to: https://website.example
 draft: true
