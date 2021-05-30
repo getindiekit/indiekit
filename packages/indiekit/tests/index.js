@@ -1,5 +1,5 @@
 import test from 'ava';
-import {Preset} from '@indiekit-test/preset';
+import {HugoPreset} from '../../preset-hugo/index.js';
 import {Indiekit} from '../index.js';
 
 const indiekit = new Indiekit();
@@ -45,11 +45,17 @@ test('Adds endpoint', t => {
   t.true(endpoints.some(endpoint => endpoint.id === 'foo'));
 });
 
-test('Initiates application', async t => {
-  const preset = new Preset();
-  indiekit.set('publication.preset', preset);
+test('Initiates application with config', async t => {
   indiekit.set('publication.categories', ['foo', 'bar']);
+  indiekit.set('publication.preset', new HugoPreset({
+    frontMatterFormat: 'json'
+  }));
   await indiekit.getConfig();
-  t.is(indiekit.publication.postTypes[0].name, 'Test note');
+
   t.is(indiekit.publication.categories[0], 'foo');
+  t.is(indiekit.publication.postTypes[0].name, 'Article');
+  t.is(indiekit.publication.postTemplate({
+    name: 'Foo',
+    content: 'Bar'
+  }), '{\n  "title": "Foo"\n}\nBar\n');
 });
