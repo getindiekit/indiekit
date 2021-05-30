@@ -54,7 +54,11 @@ export const getPostTemplate = publication => {
   }
 
   if (publication.preset && publication.preset.postTemplate) {
-    return publication.preset.postTemplate;
+    /*
+     * Bind to publication.preset so that `this` in `postTemplate`
+     * function can keep the context of its parent class
+     */
+    return publication.preset.postTemplate.bind(publication.preset);
   }
 
   return properties => JSON.stringify(properties);
