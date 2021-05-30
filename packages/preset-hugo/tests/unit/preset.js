@@ -77,7 +77,7 @@ test('Renders post template with JSON frontmatter', t => {
   "rsvp": "Yes",
   "location": {
     "type": "adr",
-    "country-name": "United Kingdom"
+    "countryName": "United Kingdom"
   },
   "checkin": {
     "type": "card",
@@ -104,14 +104,14 @@ test('Renders post template with JSON frontmatter', t => {
       "url": "https://website.example/video.mp4"
     }
   ],
-  "bookmark-of": "https://website.example",
-  "like-of": "https://website.example",
-  "repost-of": "https://website.example",
-  "in-reply-to": "https://website.example",
+  "bookmarkOf": "https://website.example",
+  "likeOf": "https://website.example",
+  "repostOf": "https://website.example",
+  "inReplyTo": "https://website.example",
   "draft": true,
   "visibility": "private",
   "syndication": "https://website.example/post/12345",
-  "mp-syndicate-to": "https://social.example"
+  "mpSyndicateTo": "https://social.example"
 }
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `);
@@ -130,18 +130,18 @@ category = [ "lunch", "food" ]
 start = "2020-02-02"
 end = "2020-02-20"
 rsvp = "Yes"
-bookmark-of = "https://website.example"
-like-of = "https://website.example"
-repost-of = "https://website.example"
-in-reply-to = "https://website.example"
+bookmarkOf = "https://website.example"
+likeOf = "https://website.example"
+repostOf = "https://website.example"
+inReplyTo = "https://website.example"
 draft = true
 visibility = "private"
 syndication = "https://website.example/post/12345"
-mp-syndicate-to = "https://social.example"
+mpSyndicateTo = "https://social.example"
 
 [location]
 type = "adr"
-country-name = "United Kingdom"
+countryName = "United Kingdom"
 
 [checkin]
 type = "card"
@@ -179,7 +179,7 @@ end: 2020-02-20
 rsvp: Yes
 location:
   type: adr
-  country-name: United Kingdom
+  countryName: United Kingdom
 checkin:
   type: card
   latitude:
@@ -193,14 +193,14 @@ images:
     url: https://website.example/photo.jpg
 videos:
   - url: https://website.example/video.mp4
-bookmark-of: https://website.example
-like-of: https://website.example
-repost-of: https://website.example
-in-reply-to: https://website.example
+bookmarkOf: https://website.example
+likeOf: https://website.example
+repostOf: https://website.example
+inReplyTo: https://website.example
 draft: true
 visibility: private
 syndication: https://website.example/post/12345
-mp-syndicate-to: https://social.example
+mpSyndicateTo: https://social.example
 ---
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `);
