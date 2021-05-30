@@ -18,4 +18,4 @@ const hugo = new HugoPreset({
 
 ### Options
 
-* `frontmatterFormat`: Frontmatter format to use (`json`, `toml` or `yaml`). *Optional*, defaults to `yaml`.
+* `frontMatterFormat`: Front matter format to use (`json`, `toml` or `yaml`). *Optional*, defaults to `yaml`.
