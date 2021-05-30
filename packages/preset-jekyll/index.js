@@ -143,7 +143,7 @@ export const JekyllPreset = class {
       ...(properties.photo && {photo: properties.photo}),
       ...(properties.video && {video: properties.video}),
       ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of']}),
-      ...(properties['like-of'] && {'bookmark-of': properties['like-of']}),
+      ...(properties['like-of'] && {'like-of': properties['like-of']}),
       ...(properties['repost-of'] && {'repost-of': properties['repost-of']}),
       ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
       ...(properties['post-status'] === 'draft' && {draft: true}),
