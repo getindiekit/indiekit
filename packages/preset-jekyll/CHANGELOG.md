@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/getindiekit/indiekit/compare/v0.1.1...v0.1.2) (2021-05-30)
+
+
+### Bug Fixes
+
+* **preset-jekyll:** add missing like-of property ([6b0f60a](https://github.com/getindiekit/indiekit/commit/6b0f60ada43db4fa6b8b55e98605174d535f915e))
+
+
+
+
+
 # [0.1.0](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.23...v0.1.0) (2021-03-15)
 
 **Note:** Version bump only for package @indiekit/preset-jekyll

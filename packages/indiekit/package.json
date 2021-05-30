@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
@@ -39,7 +39,7 @@
     "@indiekit/endpoint-share": "^0.1.1",
     "@indiekit/endpoint-syndicate": "^0.1.1",
     "@indiekit/frontend": "^0.1.1",
-    "@indiekit/preset-jekyll": "^0.1.0",
+    "@indiekit/preset-jekyll": "^0.1.2",
     "cookie-session": "^1.4.0",
     "debug": "^4.3.1",
     "express": "^4.17.1",

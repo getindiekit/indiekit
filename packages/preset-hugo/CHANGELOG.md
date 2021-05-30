@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/getindiekit/indiekit/compare/v0.1.1...v0.1.2) (2021-05-30)
+
+
+### Bug Fixes
+
+* **preset-hugo:** add missing like-of property ([75da03d](https://github.com/getindiekit/indiekit/commit/75da03d5047802af21394425da6387dd1fa3611b))
+* **preset-hugo:** use camelcased frontmatter keys. fixes [#345](https://github.com/getindiekit/indiekit/issues/345) ([a4a6e93](https://github.com/getindiekit/indiekit/commit/a4a6e93a62420aefeea0c19a521dbe4ead297453))
+
+
+
+
+
 # [0.1.0](https://github.com/getindiekit/indiekit/compare/v0.1.0-alpha.23...v0.1.0) (2021-03-15)
 
 **Note:** Version bump only for package @indiekit/preset-hugo
