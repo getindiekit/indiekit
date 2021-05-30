@@ -1,9 +1,0 @@
-{
-  "name": "@indiekit-test/preset",
-  "version": "0.0.0-test-only",
-  "description": "A local test helper",
-  "main": "index.js",
-  "type": "module",
-  "private": true,
-  "license": "MIT"
-}
