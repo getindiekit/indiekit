@@ -91,6 +91,7 @@ photo:
 video:
   - url: https://website.example/video.mp4
 bookmark-of: https://website.example
+like-of: https://website.example
 repost-of: https://website.example
 in-reply-to: https://website.example
 draft: true
