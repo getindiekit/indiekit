@@ -5,29 +5,7 @@ import YAML from 'yaml';
 YAML.scalarOptions.str.fold.lineWidth = 0;
 
 const defaults = {
-  frontmatterFormat: 'yaml'
-};
-
-const getFrontmatter = (properties, frontmatterFormat) => {
-  let delimiters;
-  let frontmatter;
-  switch (frontmatterFormat) {
-    case 'json':
-      delimiters = ['', '\n'];
-      frontmatter = JSON.stringify(properties, null, 2);
-      break;
-    case 'toml':
-      delimiters = ['+++\n', '+++\n'];
-      frontmatter = TOML.stringify(properties);
-      break;
-    case 'yaml':
-    default:
-      delimiters = ['---\n', '---\n'];
-      frontmatter = YAML.stringify(properties);
-      break;
-  }
-
-  return `${delimiters[0]}${frontmatter}${delimiters[1]}`;
+  frontMatterFormat: 'yaml'
 };
 
 export const HugoPreset = class {
@@ -35,6 +13,36 @@ export const HugoPreset = class {
     this.id = 'hugo';
     this.name = 'Hugo';
     this.options = {...defaults, ...options};
+  }
+
+  /**
+   * Get front matter
+   *
+   * @private
+   * @param {object} properties Post data variables
+   * @returns {string} Front matter in chosen format
+   */
+  _getFrontMatter(properties) {
+    let delimiters;
+    let frontmatter;
+
+    switch (this.options.frontMatterFormat) {
+      case 'json':
+        delimiters = ['', '\n'];
+        frontmatter = JSON.stringify(properties, null, 2);
+        break;
+      case 'toml':
+        delimiters = ['+++\n', '+++\n'];
+        frontmatter = TOML.stringify(properties);
+        break;
+      case 'yaml':
+      default:
+        delimiters = ['---\n', '---\n'];
+        frontmatter = YAML.stringify(properties);
+        break;
+    }
+
+    return `${delimiters[0]}${frontmatter}${delimiters[1]}`;
   }
 
   /**
@@ -184,8 +192,8 @@ export const HugoPreset = class {
       ...(properties['mp-syndicate-to'] && {'mp-syndicate-to': properties['mp-syndicate-to']})
     };
 
-    const frontmatter = getFrontmatter(properties, this.options.frontmatterFormat);
+    const frontMatter = this._getFrontMatter(properties);
 
-    return frontmatter + content;
+    return frontMatter + content;
   }
 };
