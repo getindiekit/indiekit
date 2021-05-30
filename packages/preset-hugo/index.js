@@ -1,3 +1,4 @@
+import camelcaseKeys from 'camelcase-keys';
 import TOML from '@iarna/toml';
 import YAML from 'yaml';
 
@@ -161,6 +162,13 @@ export const HugoPreset = class {
    * @returns {string} Rendered template
    */
   postTemplate(properties) {
+    /*
+     * Go templates don’t accept hyphens in property names
+     * and Hugo camelCases its predefined front matter keys
+     * https://gohugo.io/content-management/front-matter/
+     */
+    properties = camelcaseKeys(properties, {deep: true});
+
     let content;
     if (properties.content) {
       content = properties.content.text || properties.content.html || properties.content;
@@ -182,14 +190,14 @@ export const HugoPreset = class {
       ...(properties.audio && {audio: properties.audio}),
       ...(properties.photo && {images: properties.photo}),
       ...(properties.video && {videos: properties.video}),
-      ...(properties['bookmark-of'] && {'bookmark-of': properties['bookmark-of']}),
-      ...(properties['like-of'] && {'like-of': properties['like-of']}),
-      ...(properties['repost-of'] && {'repost-of': properties['repost-of']}),
-      ...(properties['in-reply-to'] && {'in-reply-to': properties['in-reply-to']}),
-      ...(properties['post-status'] === 'draft' && {draft: true}),
+      ...(properties.bookmarkOf && {bookmarkOf: properties.bookmarkOf}),
+      ...(properties.likeOf && {likeOf: properties.likeOf}),
+      ...(properties.repostOf && {repostOf: properties.repostOf}),
+      ...(properties.inReplyTo && {inReplyTo: properties.inReplyTo}),
+      ...(properties.postStatus === 'draft' && {draft: true}),
       ...(properties.visibility && {visibility: properties.visibility}),
       ...(properties.syndication && {syndication: properties.syndication}),
-      ...(properties['mp-syndicate-to'] && {'mp-syndicate-to': properties['mp-syndicate-to']})
+      ...(properties.mpSyndicateTo && {mpSyndicateTo: properties.mpSyndicateTo})
     };
 
     const frontMatter = this._getFrontMatter(properties);
