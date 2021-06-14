@@ -15,7 +15,7 @@ export const locals = indiekitConfig => {
       // Application
       application.localeUsed = request.getLocale();
       application.navigation = getNavigation(application, request, response);
-      application.url = `${request.protocol}://${request.headers.host}`;
+      application.url = application.url || `${request.protocol}://${request.headers.host}`;
       response.locals.application = application;
 
       // Publication
