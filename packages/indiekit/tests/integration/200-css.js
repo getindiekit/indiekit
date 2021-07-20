@@ -2,7 +2,7 @@ import test from 'ava';
 import {server} from '@indiekit-test/server';
 
 test('Returns CSS', async t => {
-  const request = await server;
+  const request = await server();
 
   const result = await request.get('/assets/app.css');
 

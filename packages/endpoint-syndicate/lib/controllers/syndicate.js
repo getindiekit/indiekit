@@ -5,9 +5,13 @@ import {getMicropubEndpoint, getPostData} from '../utils.js';
 
 const debug = new Debug('indiekit:endpoint-syndicate');
 
-export const syndicateController = publication => ({
+export const syndicateController = (application, publication) => ({
   async post(request, response, next) {
     try {
+      if (!application.hasDatabase) {
+        throw new Error(response.__('errors.noDatabase.content'));
+      }
+
       const syndication = [];
 
       // Get syndication targets

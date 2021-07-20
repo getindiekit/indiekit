@@ -2,7 +2,7 @@ import test from 'ava';
 import {server} from '@indiekit-test/server';
 
 test('Returns 422 if error publishing post', async t => {
-  const request = await server;
+  const request = await server();
 
   const result = await request.post('/share')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})

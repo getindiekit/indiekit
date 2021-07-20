@@ -5,7 +5,13 @@ import {JekyllPreset} from '../../packages/preset-jekyll/index.js';
 import {GithubStore} from '../../packages/store-github/index.js';
 import {TwitterSyndicator} from '../../packages/syndicator-twitter/index.js';
 
-export const indiekitConfig = (async () => {
+const defaultOptions = {
+  hasDatabase: true
+}
+
+export const indiekitConfig = async options => {
+  options = {...defaultOptions, ...options};
+
   // Configure MongoDb
   const mongod = await MongoMemoryServer.create();
   const mongodbUrl = mongod.getUri();
@@ -44,7 +50,9 @@ export const indiekitConfig = (async () => {
   });
 
   // Application settings
-  indiekit.set('application.mongodbUrl', mongodbUrl);
+  if (options && options.hasDatabase !== false) {
+    indiekit.set('application.mongodbUrl', mongodbUrl);
+  }
 
   // Publication settings
   indiekit.set('publication.me', process.env.TEST_PUBLICATION_URL);
@@ -57,4 +65,4 @@ export const indiekitConfig = (async () => {
   const indiekitConfig = await indiekit.getConfig();
 
   return indiekitConfig;
-})();
+};

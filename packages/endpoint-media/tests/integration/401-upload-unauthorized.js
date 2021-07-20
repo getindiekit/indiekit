@@ -9,7 +9,7 @@ test('Returns 401 if access token does not provide adequate scope', async t => {
       me: process.env.TEST_PUBLICATION_URL,
       scope: 'update'
     });
-  const request = await server;
+  const request = await server();
 
   const result = await request.post('/media')
     .auth(process.env.TEST_BEARER_TOKEN_NOSCOPE, {type: 'bearer'})

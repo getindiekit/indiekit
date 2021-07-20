@@ -7,7 +7,7 @@ test('Returns list of previously published posts', async t => {
   nock('https://website.example')
     .get('/page.html')
     .reply(200, getFixture('html/page.html'));
-  const request = await server;
+  const request = await server();
 
   const result = await request.get('/micropub')
     .set('Accept', 'application/json')

@@ -3,7 +3,7 @@ import {JSDOM} from 'jsdom';
 import {server} from '@indiekit-test/server';
 
 test('Returns 422 with invalid form submission', async t => {
-  const request = await server;
+  const request = await server();
   const response = await request.post('/share')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
   const dom = new JSDOM(response.text);

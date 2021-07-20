@@ -3,8 +3,12 @@ import nock from 'nock';
 import {indiekitConfig} from '@indiekit-test/config';
 import {Cache} from '../../lib/cache.js';
 
+const config = (async () => {
+  return indiekitConfig()
+})();
+
 test.beforeEach(async t => {
-  const {application} = await indiekitConfig;
+  const {application} = await config;
 
   t.context = {
     cacheCollection: application.cache,

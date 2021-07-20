@@ -10,6 +10,9 @@ export const de = {
     notFound: {
       title: 'Seite nicht gefunden',
       content: 'Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie, ob diese korrekt ist.'
+    },
+    noDatabase: {
+      content: 'Diese Funktion erfordert eine Datenbank.'
     }
   },
   session: {

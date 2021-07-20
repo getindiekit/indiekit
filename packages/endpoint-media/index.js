@@ -53,13 +53,10 @@ export const MediaEndpoint = class {
       storage: multer.memoryStorage()
     });
 
-    this._router.get('/', queryController(publication));
-    this._router.post('/', indieauth(publication), multipartParser.single('file'), uploadController(publication));
-
-    if (application.hasDatabase) {
-      this._router.get('/files', authenticate, filesController(publication).list);
-      this._router.get('/files/:id', authenticate, filesController(publication).view);
-    }
+    router.get('/', queryController(publication));
+    router.post('/', indieauth(publication), multipartParser.single('file'), uploadController(publication));
+    router.get('/files', authenticate, filesController(application, publication).list);
+    router.get('/files/:id', authenticate, filesController(application, publication).view);
 
     return router;
   }

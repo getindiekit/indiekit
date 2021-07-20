@@ -3,7 +3,7 @@ import mongodb from 'mongodb';
 
 const {ObjectId} = mongodb;
 
-export const filesController = publication => ({
+export const filesController = (application, publication) => ({
   /**
    * List previously uploaded files
    *
@@ -11,12 +11,20 @@ export const filesController = publication => ({
    * @param {object} response HTTP response
    * @returns {object} HTTP response
    */
-  async list(request, response) {
-    response.render('files', {
-      title: response.__('media.files.title'),
-      files: await publication.media.find().toArray(),
-      parentUrl: `${publication.mediaEndpoint}/files/`
-    });
+  async list(request, response, next) {
+    try {
+      if (!application.hasDatabase) {
+        throw new Error(response.__('errors.noDatabase.content'));
+      }
+
+      response.render('files', {
+        title: response.__('media.files.title'),
+        files: await publication.media.find().toArray(),
+        parentUrl: `${publication.mediaEndpoint}/files/`
+      });
+    } catch (error) {
+      next(error);
+    }
   },
 
   /**

@@ -4,7 +4,7 @@ import {getFixture} from '@indiekit-test/get-fixture';
 import {JSDOM} from 'jsdom';
 import {server} from '@indiekit-test/server';
 
-test.before(async t => {
+test('Views previously uploaded file', async t => {
   nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, {
@@ -16,30 +16,26 @@ test.before(async t => {
     .reply(200, {commit: {message: 'Message'}});
 
   // Upload file
-  const request = await server;
+  const request = await server();
   await request.post('/media')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
     .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
 
   // Get file data by parsing list of files and getting values from link
-  const response = await request.get('/media/files')
+  const filesResponse = await request.get('/media/files')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
-  const dom = new JSDOM(response.text);
-  const link = dom.window.document.querySelector('.file a');
+  const filesDom = new JSDOM(filesResponse.text);
+  const fileLink = filesDom.window.document.querySelector('.file a');
+  const fileName = fileLink.textContent;
+  const fileId = fileLink.href.split('/').pop();
 
-  // Return test data
-  t.context.filename = link.textContent;
-  t.context.fileId = link.href.split('/').pop();
-});
-
-test('Views previously uploaded file', async t => {
-  const request = await server;
-  const response = await request.get(`/media/files/${t.context.fileId}`)
+  // Visit file page
+  const fileResponse = await request.get(`/media/files/${fileId}`)
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
-  const dom = new JSDOM(response.text);
+  const fileDom = new JSDOM(fileResponse.text);
 
-  const result = dom.window.document;
+  const result = fileDom.window.document;
 
-  t.is(result.querySelector('title').textContent, `${t.context.filename} - Indiekit`);
+  t.is(result.querySelector('title').textContent, `${fileName} - Indiekit`);
 });

@@ -3,7 +3,7 @@ import mongodb from 'mongodb';
 
 const {ObjectId} = mongodb;
 
-export const postsController = publication => ({
+export const postsController = (application, publication) => ({
   /**
    * List previously published posts
    *
@@ -11,12 +11,20 @@ export const postsController = publication => ({
    * @param {object} response HTTP response
    * @returns {object} HTTP response
    */
-  async list(request, response) {
-    response.render('posts', {
-      title: response.__('micropub.posts.title'),
-      posts: await publication.posts.find().toArray(),
-      parentUrl: `${publication.micropubEndpoint}/posts/`
-    });
+  async list(request, response, next) {
+    try {
+      if (!application.hasDatabase) {
+        throw new Error(response.__('errors.noDatabase.content'));
+      }
+
+      response.render('posts', {
+        title: response.__('micropub.posts.title'),
+        posts: await publication.posts.find().toArray(),
+        parentUrl: `${publication.micropubEndpoint}/posts/`
+      });
+    } catch (error) {
+      next(error);
+    }
   },
 
   /**

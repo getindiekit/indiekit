@@ -10,6 +10,9 @@ export const en = {
     notFound: {
       title: 'Page not found',
       content: 'If you entered a web address please check it was correct.'
+    },
+    noDatabase: {
+      content: 'This feature requires a database.'
     }
   },
   session: {

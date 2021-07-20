@@ -15,7 +15,7 @@ test('Updates post', async t => {
     .put(uri => uri.includes('foobar'))
     .twice()
     .reply(200);
-  const request = await server;
+  const request = await server();
 
   // Create post
   const response = await request.post('/micropub')

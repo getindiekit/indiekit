@@ -12,7 +12,7 @@ test('Creates post (form-encoded)', async t => {
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar'))
     .reply(200);
-  const request = await server;
+  const request = await server();
 
   const result = await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})

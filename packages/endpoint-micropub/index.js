@@ -53,13 +53,10 @@ export const MicropubEndpoint = class {
       storage: multer.memoryStorage()
     });
 
-    this._router.get('/', queryController(publication));
-    this._router.post('/', indieauth(publication), multipartParser.any(), actionController(publication));
-
-    if (application.hasDatabase) {
-      this._router.get('/posts', authenticate, postsController(publication).list);
-      this._router.get('/posts/:id', authenticate, postsController(publication).view);
-    }
+    router.get('/', queryController(publication));
+    router.post('/', indieauth(publication), multipartParser.any(), actionController(publication));
+    router.get('/posts', authenticate, postsController(application, publication).list);
+    router.get('/posts/:id', authenticate, postsController(application, publication).view);
 
     return router;
   }

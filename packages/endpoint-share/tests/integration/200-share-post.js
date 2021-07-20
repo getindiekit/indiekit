@@ -14,7 +14,7 @@ test('Posts content and redirects back to share page', async t => {
     .reply(200, {commit: {message: 'Message'}});
 
   // Publish post
-  const request = await server;
+  const request = await server();
   const result = await request.post('/share')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send(`access_token=${process.env.TEST_PUBLICATION_URL}`)

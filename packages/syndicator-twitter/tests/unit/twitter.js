@@ -297,7 +297,5 @@ test('Posts a status to Twitter with 4 out of 5 photos', async t => {
     ]
   }, t.context.publication);
 
-  t.log(t.context.publication.me);
-
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
 });

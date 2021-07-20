@@ -15,10 +15,10 @@ test('Returns 200 if no post records', async t => {
     .put(uri => uri.includes('foobar'))
     .twice()
     .reply(200);
-  const request = await server;
+  const request = await server();
 
   // Update configuration
-  const config = await indiekitConfig;
+  const config = await indiekitConfig();
   config.publication.syndicationTargets = [];
 
   // Create post

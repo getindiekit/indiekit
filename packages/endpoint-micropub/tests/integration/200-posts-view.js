@@ -3,7 +3,7 @@ import nock from 'nock';
 import {JSDOM} from 'jsdom';
 import {server} from '@indiekit-test/server';
 
-test.before(async t => {
+test('Views previously uploaded file', async t => {
   nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(200, {
@@ -15,7 +15,7 @@ test.before(async t => {
     .reply(200);
 
   // Create post
-  const request = await server;
+  const request = await server();
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
@@ -23,23 +23,19 @@ test.before(async t => {
     .send('name=Foobar');
 
   // Get post data by parsing list of posts and getting values from link
-  const response = await request.get('/micropub/posts')
+  const postsResponse = await request.get('/micropub/posts')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
-  const dom = new JSDOM(response.text);
-  const link = dom.window.document.querySelector('.file a');
+  const postsDom = new JSDOM(postsResponse.text);
+  const postLink = postsDom.window.document.querySelector('.file a');
+  const postName = postLink.textContent;
+  const postId = postLink.href.split('/').pop();
 
-  // Return test data
-  t.context.postName = link.textContent;
-  t.context.postId = link.href.split('/').pop();
-});
-
-test('Views previously uploaded file', async t => {
-  const request = await server;
-  const response = await request.get(`/micropub/posts/${t.context.postId}`)
+  // Visit post page
+  const postResponse = await request.get(`/micropub/posts/${postId}`)
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
-  const dom = new JSDOM(response.text);
+  const postDom = new JSDOM(postResponse.text);
 
-  const result = dom.window.document;
+  const result = postDom.window.document;
 
-  t.is(result.querySelector('title').textContent, `${t.context.postName} - Indiekit`);
+  t.is(result.querySelector('title').textContent, `${postName} - Indiekit`);
 });

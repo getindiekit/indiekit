@@ -9,7 +9,7 @@ test('Returns 400 if access token does not provide adequate scope', async t => {
       me: process.env.TEST_PUBLICATION_URL,
       scope: 'media'
     });
-  const request = await server;
+  const request = await server();
 
   const result = await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN_NOSCOPE, {type: 'bearer'})

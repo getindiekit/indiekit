@@ -22,7 +22,7 @@ test('Syndicates a URL', async t => {
     });
 
   // Create post
-  const request = await server;
+  const request = await server();
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')

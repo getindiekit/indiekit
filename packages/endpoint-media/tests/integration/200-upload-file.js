@@ -13,7 +13,7 @@ test('Uploads file', async t => {
   nock('https://api.github.com')
     .put(uri => uri.includes('.jpg'))
     .reply(200, {commit: {message: 'Message'}});
-  const request = await server;
+  const request = await server();
 
   const result = await request.post('/media')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})

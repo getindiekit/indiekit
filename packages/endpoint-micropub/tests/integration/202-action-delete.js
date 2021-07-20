@@ -20,7 +20,7 @@ test('Deletes post', async t => {
   nock('https://api.github.com')
     .delete(uri => uri.includes('foobar.md'))
     .reply(200);
-  const request = await server;
+  const request = await server();
 
   // Create post
   const response = await request.post('/micropub')

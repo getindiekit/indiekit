@@ -9,10 +9,14 @@ import {
   getPostTypes
 } from '../../lib/publication.js';
 
-test.beforeEach(async t => {
-  const {application, publication} = await indiekitConfig;
+const config = (async () => {
+  return indiekitConfig()
+})();
 
-  t.context = await {
+test.beforeEach(async t => {
+  const {application, publication} = await config;
+
+  t.context = {
     cacheCollection: application.cache,
     publication
   };

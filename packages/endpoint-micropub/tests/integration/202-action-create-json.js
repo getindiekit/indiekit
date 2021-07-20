@@ -13,7 +13,7 @@ test('Creates post (JSON)', async t => {
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))
     .reply(200);
-  const request = await server;
+  const request = await server();
 
   // Create post
   const result = await request.post('/micropub')

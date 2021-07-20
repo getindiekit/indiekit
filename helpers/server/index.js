@@ -3,7 +3,7 @@ import supertest from 'supertest';
 import {indiekitConfig} from '@indiekit-test/config';
 import {serverConfig} from '../../packages/indiekit/config/server.js';
 
-export const server = (async () => {
-  const server = supertest(serverConfig(await indiekitConfig));
+export const server = async options => {
+  const server = supertest(serverConfig(await indiekitConfig(options)));
   return server;
-})();
+};
