@@ -30,7 +30,7 @@
     "directory": "packages/store-bitbucket"
   },
   "dependencies": {
-    "bitbucket": "^2.6.1"
+    "bitbucket": "^2.6.2"
   },
   "publishConfig": {
     "access": "public"
