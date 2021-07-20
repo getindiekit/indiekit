@@ -34,15 +34,15 @@
     "directory": "packages/frontend"
   },
   "dependencies": {
-    "color": "^3.1.3",
+    "color": "^4.0.0",
     "date-fns": "^2.21.3",
     "iso-639-1": "^2.1.9",
-    "markdown-it": "^12.0.6",
-    "markdown-it-anchor": "^8.0.0",
+    "markdown-it": "^12.1.0",
+    "markdown-it-anchor": "^8.1.0",
     "markdown-it-deflist": "^2.1.0",
-    "markdown-it-prism": "^2.1.6",
+    "markdown-it-prism": "^2.1.8",
     "nunjucks": "^3.2.3",
-    "postcss": "^8.2.15",
+    "postcss": "^8.3.5",
     "postcss-easy-import": "^3.0.0",
     "postcss-extend-rule": "^3.0.0"
   },

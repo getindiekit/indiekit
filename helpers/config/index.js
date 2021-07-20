@@ -7,8 +7,8 @@ import {TwitterSyndicator} from '../../packages/syndicator-twitter/index.js';
 
 export const indiekitConfig = (async () => {
   // Configure MongoDb
-  const mongod = new MongoMemoryServer();
-  const mongodbUrl = await mongod.getUri();
+  const mongod = await MongoMemoryServer.create();
+  const mongodbUrl = mongod.getUri();
 
   // New indiekit instance
   const indiekit = new Indiekit();
