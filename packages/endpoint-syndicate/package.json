@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-syndicate",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "Syndication endpoint for Indiekit",
   "keywords": [
     "indiekit",
