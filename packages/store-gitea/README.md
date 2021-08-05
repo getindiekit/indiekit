@@ -25,7 +25,7 @@ The branch files will be saved to.
 Type: `string`\
 *Optional*, defaults to `master`
 
-### `host`
+### `instance`
 
 Gitea instance URL.
 
