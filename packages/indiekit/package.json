@@ -48,8 +48,8 @@
     "i18n": "^0.13.3",
     "indieauth-helper": "^1.0.2",
     "lodash": "^4.17.21",
-    "mongodb": "^4.0.1",
-    "normalize-url": "^7.0.0",
+    "mongodb": "^4.1.1",
+    "normalize-url": "^7.0.1",
     "uuid": "^8.3.2"
   },
   "publishConfig": {
