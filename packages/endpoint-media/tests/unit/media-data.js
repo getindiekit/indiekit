@@ -50,7 +50,7 @@ test('Throws error creating media data without a known post type', async t => {
   };
 
   await t.throwsAsync(mediaData.create(t.context.publication, file), {
-    message: 'Cannot read property \'media\' of undefined'
+    message: 'Cannot read properties of undefined (reading \'media\')'
   });
 });
 

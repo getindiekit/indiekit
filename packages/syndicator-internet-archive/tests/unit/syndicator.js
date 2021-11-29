@@ -56,6 +56,6 @@ test('Throws error getting syndicated URL if no API keys provided', async t => {
   const syndicator = new InternetArchiveSyndicator({});
 
   await t.throwsAsync(syndicator.syndicate({properties: t.context.url}), {
-    message: 'Cannot read property \'body\' of undefined'
+    message: 'Cannot read properties of undefined (reading \'body\')'
   });
 });
