@@ -62,7 +62,7 @@ const errorList = errorMap => {
   for (const fieldError of fieldsWithErrors) {
     errorList.push({
       text: fieldError[1].msg,
-      href: `#${camelToSnakeCase(fieldError[1].param)}`
+      href: `#${camelToSnakeCase(fieldError[1].param)}`,
     });
   }
 
@@ -99,11 +99,11 @@ const summaryRows = object => {
   for (const [key, value] of Object.entries(object)) {
     rows.push({
       key: {
-        text: key
+        text: key,
       },
       value: {
-        text: typeof value === 'string' ? value : JSON.stringify(value)
-      }
+        text: typeof value === 'string' ? value : JSON.stringify(value),
+      },
     });
   }
 
@@ -116,5 +116,5 @@ module.exports = {
   date,
   errorList,
   markdown,
-  summaryRows
+  summaryRows,
 };

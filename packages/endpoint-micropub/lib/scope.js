@@ -34,6 +34,6 @@ export const checkScope = (providedScope, requiredScope) => {
 
   throw new HttpError(401, 'The scope of this token does not meet the requirements for this request', {
     error: 'Insufficient scope',
-    scope: requiredScope
+    scope: requiredScope,
   });
 };

@@ -20,8 +20,8 @@ test('Transforms errors provided by express-validator', t => {
       value: 'foo',
       msg: 'Enter a valid URL',
       param: 'customConfigUrl',
-      location: 'body'
-    }
+      location: 'body',
+    },
   };
 
   const result = errorList(errors);

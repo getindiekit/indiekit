@@ -17,7 +17,7 @@ export const uploadMedia = async (publication, properties, files) => {
     const form = new FormData();
     form.append('file', file.buffer, {
       filename: file.originalname,
-      contentType: file.mimetype
+      contentType: file.mimetype,
     });
 
     // Upload file via media endpoint
@@ -26,9 +26,9 @@ export const uploadMedia = async (publication, properties, files) => {
       upload = await got.post(mediaEndpoint, {
         body: form,
         headers: form.getHeaders({
-          authorization: `Bearer ${bearerToken}`
+          authorization: `Bearer ${bearerToken}`,
         }),
-        responseType: 'json'
+        responseType: 'json',
       });
     } catch (error) {
       throw new Error(error.response ? error.response.body.error_description : error.message);

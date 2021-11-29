@@ -77,7 +77,7 @@ export const getPostTypes = publication => {
   if (hasPresetPostTypes && hasCustomPostTypes) {
     const mergedPostTypes = _.values(_.merge(
       _.keyBy(publication.preset.postTypes, 'type'),
-      _.keyBy(publication.postTypes, 'type')
+      _.keyBy(publication.postTypes, 'type'),
     ));
 
     return mergedPostTypes;

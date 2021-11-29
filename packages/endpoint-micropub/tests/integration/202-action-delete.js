@@ -1,3 +1,4 @@
+import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
@@ -9,7 +10,7 @@ test('Deletes post', async t => {
     .twice()
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create delete'
+      scope: 'create delete',
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))
@@ -30,8 +31,8 @@ test('Deletes post', async t => {
       properties: {
         name: ['Foobar'],
         content: ['Micropub test of creating an h-entry with a JSON request containing multiple categories.'],
-        category: ['test1', 'test2']
-      }
+        category: ['test1', 'test2'],
+      },
     });
 
   // Delete post
@@ -39,7 +40,7 @@ test('Deletes post', async t => {
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send({
       action: 'delete',
-      url: response.header.location
+      url: response.header.location,
     });
 
   t.is(result.statusCode, 200);

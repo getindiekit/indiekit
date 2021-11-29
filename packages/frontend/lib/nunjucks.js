@@ -12,13 +12,13 @@ module.exports = app => {
   const appViews = app ? app.settings.views : [];
   const frontendViews = [
     path.join(__dirname, '..', 'components'),
-    path.join(__dirname, '..', 'layouts')
+    path.join(__dirname, '..', 'layouts'),
   ];
   const views = [...frontendViews, ...appViews];
 
   const options = {
     autoescape: true,
-    express: app
+    express: app,
   };
 
   const parser = nunjucks.configure(views, options);

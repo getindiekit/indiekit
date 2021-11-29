@@ -1,13 +1,13 @@
+import {fileURLToPath} from 'node:url';
 import express from 'express';
 import multer from 'multer';
-import {fileURLToPath} from 'node:url';
 import {actionController} from './lib/controllers/action.js';
 import {postsController} from './lib/controllers/posts.js';
 import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
 
 const defaults = {
-  mountpath: '/micropub'
+  mountpath: '/micropub',
 };
 
 export const MicropubEndpoint = class {
@@ -32,13 +32,13 @@ export const MicropubEndpoint = class {
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
         href: `${this.mountpath}/posts`,
-        text: 'micropub.title'
+        text: 'micropub.title',
       });
     }
 
     indiekitConfig.addRoute({
       mountpath: this.mountpath,
-      routes: () => this.routes(application, publication)
+      routes: () => this.routes(application, publication),
     });
 
     indiekitConfig.addView(fileURLToPath(new URL('views', import.meta.url)));
@@ -50,7 +50,7 @@ export const MicropubEndpoint = class {
     const router = this._router;
     const {authenticate, indieauth} = application.middleware;
     const multipartParser = multer({
-      storage: multer.memoryStorage()
+      storage: multer.memoryStorage(),
     });
 
     router.get('/', queryController(publication));

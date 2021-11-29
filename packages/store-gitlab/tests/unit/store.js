@@ -5,13 +5,13 @@ import {GitlabStore} from '../../index.js';
 const gitlab = new GitlabStore({
   token: 'abc123',
   user: 'user',
-  repo: 'repo'
+  repo: 'repo',
 });
 
 const gitlabInstance = new GitlabStore({
   token: 'abc123',
   user: 'user',
-  repo: 'repo'
+  repo: 'repo',
 });
 
 test.beforeEach(t => {
@@ -21,16 +21,16 @@ test.beforeEach(t => {
     getResponse: {
       content: 'Zm9vYmFy',
       commit_id: '\b[0-9a-f]{5,40}\b', // eslint-disable-line camelcase
-      file_path: 'foo.txt' // eslint-disable-line camelcase
+      file_path: 'foo.txt', // eslint-disable-line camelcase
     },
     postResponse: {
       file_path: 'foo.txt', // eslint-disable-line camelcase
-      branch: 'master'
+      branch: 'master',
     },
     putResponse: {
       file_path: 'foo.txt', // eslint-disable-line camelcase
-      branch: 'master'
-    }
+      branch: 'master',
+    },
   };
 });
 
@@ -63,7 +63,7 @@ test('Creates file in a repository with projectId', async t => {
     .reply(200, t.context.postResponse);
   gitlabInstance.options = {
     instance: t.context.gitlabInstanceUrl,
-    projectId: 'user/repo'
+    projectId: 'user/repo',
   };
 
   const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
@@ -78,7 +78,7 @@ test('Throws error creating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(gitlab.createFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -98,7 +98,7 @@ test('Throws error reading file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(gitlab.readFile('foo.txt'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -119,7 +119,7 @@ test('Throws error updating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(gitlab.updateFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -139,6 +139,6 @@ test('Throws error deleting a file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(gitlab.deleteFile('foo.txt', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });

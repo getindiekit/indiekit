@@ -2,16 +2,14 @@ import FormData from 'form-data';
 import got from 'got';
 import {debug} from '../index.js';
 
-const request = options => {
-  return got.extend({
-    prefixUrl: 'https://web.archive.org/save',
-    responseType: 'json',
-    resolveBodyOnly: true,
-    headers: {
-      authorization: `LOW ${options.accessKey}:${options.secret}`
-    }
-  });
-};
+const request = options => got.extend({
+  prefixUrl: 'https://web.archive.org/save',
+  responseType: 'json',
+  resolveBodyOnly: true,
+  headers: {
+    authorization: `LOW ${options.accessKey}:${options.secret}`,
+  },
+});
 
 /**
  * Save Page Now 2 (SPN2) API
@@ -95,5 +93,5 @@ export const internetArchive = options => ({
     } catch (error) {
       throw new Error(error.message);
     }
-  }
+  },
 });

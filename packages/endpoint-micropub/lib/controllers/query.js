@@ -5,7 +5,7 @@ import {getConfig, queryList} from '../query.js';
 
 const debug = new Debug('indiekit:error');
 
-export const queryController = publication => {
+export const queryController = publication =>
   /**
    * Query endpoint
    *
@@ -14,7 +14,7 @@ export const queryController = publication => {
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  return async (request, response, next) => {
+  async (request, response, next) => {
     const {application} = response.locals;
     const config = getConfig(application, publication);
     const {query} = request;
@@ -32,7 +32,7 @@ export const queryController = publication => {
 
         case 'category': {
           return response.json({
-            categories: queryList(config.categories, {filter, limit, offset})
+            categories: queryList(config.categories, {filter, limit, offset}),
           });
         }
 
@@ -45,18 +45,18 @@ export const queryController = publication => {
           }
 
           // Return mf2 for previously published posts
-          const items = publication.posts ?
-            await publication.posts.find().map(post => jf2ToMf2(post.properties)).toArray() :
-            [];
+          const items = publication.posts
+            ? await publication.posts.find().map(post => jf2ToMf2(post.properties)).toArray()
+            : [];
           return response.json({
-            items: queryList(items, {filter, limit, offset})
+            items: queryList(items, {filter, limit, offset}),
           });
         }
 
         default: {
           if (config[query.q]) {
             return response.json({
-              [query.q]: queryList(config[query.q], {filter, limit, offset})
+              [query.q]: queryList(config[query.q], {filter, limit, offset}),
             });
           }
 
@@ -68,4 +68,4 @@ export const queryController = publication => {
       next(httpError(400, error));
     }
   };
-};
+

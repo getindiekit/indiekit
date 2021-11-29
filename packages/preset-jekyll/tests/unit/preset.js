@@ -17,7 +17,7 @@ test('Gets publication post types', t => {
 test('Renders post template without content', t => {
   const result = jekyll.postTemplate({
     published: '2020-02-02',
-    name: 'Lunchtime'
+    name: 'Lunchtime',
   });
 
   t.is(result, `---
@@ -31,7 +31,7 @@ test('Renders post template with basic content', t => {
   const result = jekyll.postTemplate({
     published: '2020-02-02',
     name: 'Lunchtime',
-    content: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
+    content: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.',
   });
 
   t.is(result, `---
@@ -47,8 +47,8 @@ test('Renders post template with HTML content', t => {
     published: '2020-02-02',
     name: 'Lunchtime',
     content: {
-      html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>'
-    }
+      html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
+    },
   });
 
   t.is(result, `---

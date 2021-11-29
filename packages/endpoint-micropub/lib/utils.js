@@ -1,5 +1,5 @@
-import dateFnsTz from 'date-fns-tz';
 import path from 'node:path';
+import dateFnsTz from 'date-fns-tz';
 import newbase60 from 'newbase60';
 import slugify from '@sindresorhus/slugify';
 import {v4 as uuidv4} from 'uuid';
@@ -15,9 +15,7 @@ const {format} = dateFnsTz;
  * @example decodeQueryParameter('foo+bar') => 'foo bar'
  * @example decodeQueryParameter('https%3A%2F%2Ffoo.bar') => 'https://foo.bar'
  */
-export const decodeQueryParameter = string => {
-  return decodeURIComponent(string.replace(/\+/g, ' '));
-};
+export const decodeQueryParameter = string => decodeURIComponent(string.replace(/\+/g, ' '));
 
 /**
  * Excerpt the first n words from a string
@@ -47,10 +45,10 @@ export const slugifyString = (string, separator = '-') => {
     const slug = slugify(string, {
       customReplacements: [
         ['\'', ''],
-        ['’', '']
+        ['’', ''],
       ],
       decamelize: false,
-      separator
+      separator,
     });
     return slug;
   }
@@ -81,9 +79,7 @@ export const getPermalink = (url, pathname) => {
  * @param {object} postTypes Publication post types
  * @returns {object} Post type configuration
  */
-export const getPostTypeConfig = (type, postTypes) => {
-  return postTypes.find(item => item.type === type);
-};
+export const getPostTypeConfig = (type, postTypes) => postTypes.find(item => item.type === type);
 
 /**
  * Generate random alpha-numeric string, 5 characters long
@@ -91,9 +87,7 @@ export const getPostTypeConfig = (type, postTypes) => {
  * @returns {string} Alpha-numeric string
  * @example random() => 'jb6zm'
  */
-export const randomString = () => {
-  return Math.random().toString(36).slice(-5);
-};
+export const randomString = () => Math.random().toString(36).slice(-5);
 
 /**
  * Render relative path if URL is on publication
@@ -102,9 +96,7 @@ export const randomString = () => {
  * @param {URL} me Publication URL
  * @returns {string} Path
  */
-export const relativeMediaPath = (url, me) => {
-  return url.includes(me) ? url.replace(me, '') : url;
-};
+export const relativeMediaPath = (url, me) => url.includes(me) ? url.replace(me, '') : url;
 
 /**
  * Render path from URI template and properties
@@ -140,14 +132,14 @@ export const renderPath = (path, properties, timeZoneSetting) => {
     's', // Second, eg 1
     'ss', // Second (zero-padded), eg 01
     't', // UNIX epoch seconds, eg 512969520
-    'T' // UNIX epoch milliseconds, eg 51296952000
+    'T', // UNIX epoch milliseconds, eg 51296952000
   ];
 
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
       timeZone: timeZoneSetting === 'server' ? serverTimeZone : timeZoneSetting,
-      useAdditionalDayOfYearTokens: true
+      useAdditionalDayOfYearTokens: true,
     });
   }
 
@@ -176,14 +168,12 @@ export const renderPath = (path, properties, timeZoneSetting) => {
  * @param {object} object Properties to use
  * @returns {string} String with substituted
  */
-export const supplant = (string, object) => {
-  return string.replace(/{([^{}]*)}/g, (a, b) => {
-    const r = object[b];
+export const supplant = (string, object) => string.replace(/{([^{}]*)}/g, (a, b) => {
+  const r = object[b];
 
-    if (typeof r === 'string' || typeof r === 'number') {
-      return r;
-    }
+  if (typeof r === 'string' || typeof r === 'number') {
+    return r;
+  }
 
-    return a;
-  });
-};
+  return a;
+});

@@ -33,7 +33,7 @@ export const getDate = (setting, dateString) => {
   const dateIsShort = dateString && !dateHasTime;
   if (dateIsShort) {
     const offset = format(datetime, 'XXX', {
-      timeZone: outputTimeZone
+      timeZone: outputTimeZone,
     });
     return `${dateString}T00:00:00.000${offset}`;
   }
@@ -43,7 +43,7 @@ export const getDate = (setting, dateString) => {
 
   // Return datetime with desired timezone offset
   datetime = format(datetime, 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX', {
-    timeZone: outputTimeZone
+    timeZone: outputTimeZone,
   });
 
   return datetime;

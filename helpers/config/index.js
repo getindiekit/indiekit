@@ -1,3 +1,4 @@
+import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import {MongoMemoryServer} from 'mongodb-memory-server';
 import {Indiekit} from '../../packages/indiekit/index.js';
@@ -6,8 +7,8 @@ import {GithubStore} from '../../packages/store-github/index.js';
 import {TwitterSyndicator} from '../../packages/syndicator-twitter/index.js';
 
 const defaultOptions = {
-  hasDatabase: true
-}
+  hasDatabase: true,
+};
 
 export const indiekitConfig = async options => {
   options = {...defaultOptions, ...options};
@@ -26,7 +27,7 @@ export const indiekitConfig = async options => {
   const github = new GithubStore({
     token: 'abc123',
     user: 'user',
-    repo: 'repo'
+    repo: 'repo',
   });
 
   // Configure note post type with date-less URL for easier testing
@@ -35,8 +36,8 @@ export const indiekitConfig = async options => {
     name: 'Note',
     post: {
       path: 'src/content/notes/{slug}.md',
-      url: 'notes/{slug}/'
-    }
+      url: 'notes/{slug}/',
+    },
   }];
 
   // Configure syndication targets
@@ -46,7 +47,7 @@ export const indiekitConfig = async options => {
     apiKey: 'abc123',
     apiKeySecret: 'abc123',
     accessToken: 'abc123',
-    accessTokenSecret: 'abc123'
+    accessTokenSecret: 'abc123',
   });
 
   // Application settings

@@ -46,7 +46,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 export const jf2ToMf2 = jf2 => {
   const mf2 = {
     type: [`h-${jf2.type}`],
-    properties: {}
+    properties: {},
   };
 
   delete jf2.type;
@@ -77,7 +77,7 @@ export const jf2ToMf2 = jf2 => {
 export const url2Mf2 = async url => {
   const {body} = await got(url);
   const mf2 = parser.mf2(body, {
-    baseUrl: url
+    baseUrl: url,
   });
 
   return mf2;

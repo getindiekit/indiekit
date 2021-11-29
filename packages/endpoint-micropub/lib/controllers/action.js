@@ -8,7 +8,7 @@ import {uploadMedia} from '../media.js';
 
 const debug = new Debug('indiekit:error');
 
-export const actionController = publication => {
+export const actionController = publication =>
   /**
    * Perform requested post action
    *
@@ -17,7 +17,7 @@ export const actionController = publication => {
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  return async (request, response, next) => {
+  async (request, response, next) => {
     const {body, files, query} = request;
     const action = query.action || body.action || 'create';
     const url = query.url || body.url;
@@ -58,8 +58,8 @@ export const actionController = publication => {
     } catch (error) {
       debug(error);
       next(httpError(error.statusCode, error, {
-        scope: error.scope
+        scope: error.scope,
       }));
     }
   };
-};
+

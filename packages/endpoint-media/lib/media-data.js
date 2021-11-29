@@ -2,11 +2,11 @@ import HttpError from 'http-errors';
 import {
   getPermalink,
   getPostTypeConfig,
-  renderPath
+  renderPath,
 } from './utils.js';
 import {
   getFileProperties,
-  getMediaType
+  getMediaType,
 } from './file.js';
 
 export const mediaData = {
@@ -74,11 +74,11 @@ export const mediaData = {
 
       const {media} = publication;
       const file = await media.findOne({
-        'properties.url': url
+        'properties.url': url,
       });
       return file;
     } catch (error) {
       throw new HttpError(400, error);
     }
-  }
+  },
 };

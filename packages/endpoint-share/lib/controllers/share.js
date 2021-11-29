@@ -19,7 +19,7 @@ export const shareController = publication => ({
       name,
       url,
       success,
-      minimalui: (request.params.path === 'bookmarklet')
+      minimalui: (request.params.path === 'bookmarklet'),
     });
   },
 
@@ -44,14 +44,14 @@ export const shareController = publication => ({
         content,
         'bookmark-of': bookmarkOf,
         errors: errors.mapped(),
-        minimalui: (request.params.path === 'bookmarklet')
+        minimalui: (request.params.path === 'bookmarklet'),
       });
     }
 
     try {
       const {body} = await got.post(`${host}${path}`, {
         form: request.body,
-        responseType: 'json'
+        responseType: 'json',
       });
 
       if (body) {
@@ -65,8 +65,8 @@ export const shareController = publication => ({
         name,
         bookmarkOf,
         error: error.response.body.error_description,
-        minimalui: (request.params.path === 'bookmarklet')
+        minimalui: (request.params.path === 'bookmarklet'),
       });
     }
-  }
+  },
 });

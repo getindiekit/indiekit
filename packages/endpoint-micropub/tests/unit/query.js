@@ -6,21 +6,21 @@ import {getConfig, queryList} from '../../lib/query.js';
 test.beforeEach(t => {
   t.context = {
     list: ['blog', 'indieweb', 'microblog', 'web', 'website'],
-    url: 'https://website.example'
+    url: 'https://website.example',
   };
 });
 
 test('Returns queryable config', t => {
   const application = {
-    url: 'https://endpoint.example'
+    url: 'https://endpoint.example',
   };
   const twitter = new TwitterSyndicator({
     checked: true,
-    user: 'username'
+    user: 'username',
   });
   const publication = {
     postTypes: new JekyllPreset().postTypes,
-    syndicationTargets: [twitter]
+    syndicationTargets: [twitter],
   };
 
   const result = getConfig(application, publication);

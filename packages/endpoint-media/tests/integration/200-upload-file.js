@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {getFixture} from '@indiekit-test/get-fixture';
@@ -8,7 +9,7 @@ test('Uploads file', async t => {
     .get('/token')
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'media'
+      scope: 'media',
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('.jpg'))

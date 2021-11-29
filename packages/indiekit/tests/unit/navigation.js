@@ -4,17 +4,17 @@ import {getNavigation} from '../../lib/navigation.js';
 test.beforeEach(t => {
   t.context.application = {
     locale: 'en',
-    navigationItems: []
+    navigationItems: [],
   };
 });
 
 test('Returns logged out navigation', t => {
   const result = getNavigation(t.context.application, {
     session: {
-      token: false
-    }
+      token: false,
+    },
   }, {
-    __: string => string
+    __: string => string,
   });
 
   t.is(result[0].href, '/session/login');
@@ -23,10 +23,10 @@ test('Returns logged out navigation', t => {
 test('Returns logged in navigation', t => {
   const result = getNavigation(t.context.application, {
     session: {
-      token: true
-    }
+      token: true,
+    },
   }, {
-    __: string => string
+    __: string => string,
   });
 
   t.is(result[0].href, '/session/logout');

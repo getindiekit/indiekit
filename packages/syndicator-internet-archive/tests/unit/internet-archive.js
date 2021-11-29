@@ -7,10 +7,10 @@ test.beforeEach(t => {
     job_id: 'ac58789b-f3ca-48d0-9ea6-1d1225e98695',
     options: {
       accessKey: '0123456789abcdef',
-      secret: 'abcdef0123456789'
+      secret: 'abcdef0123456789',
     },
     timestamp: '20180326070330',
-    url: 'http://website.example/post/1'
+    url: 'http://website.example/post/1',
   };
 });
 
@@ -31,7 +31,7 @@ test('Throws error making capture request', async t => {
     .reply(401, {message: 'You need to be logged in to use Save Page Now.'});
 
   await t.throwsAsync(internetArchive({}).capture(t.context.url), {
-    message: 'You need to be logged in to use Save Page Now.'
+    message: 'You need to be logged in to use Save Page Now.',
   });
 });
 
@@ -56,7 +56,7 @@ test('Throws error message from status request', async t => {
     .reply(200, {status: 'error', message: `Couldn't resolve host for ${url}`});
 
   await t.throwsAsync(internetArchive(options).status(`${job_id}-1`), {
-    message: `Couldn't resolve host for ${url}`
+    message: `Couldn't resolve host for ${url}`,
   });
 });
 
@@ -67,6 +67,6 @@ test('Throws error making status request', async t => {
     .reply(401, 'You need to be logged in to use Save Page Now.');
 
   await t.throwsAsync(internetArchive({}).status(`${job_id}-2`), {
-    message: 'You need to be logged in to use Save Page Now.'
+    message: 'You need to be logged in to use Save Page Now.',
   });
 });

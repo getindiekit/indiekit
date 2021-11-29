@@ -8,7 +8,7 @@ module.exports = (() => {
     html: true,
     breaks: true,
     linkify: true,
-    typographer: true
+    typographer: true,
   };
 
   const parser = markdownIt(options);
@@ -16,7 +16,7 @@ module.exports = (() => {
     .use(markdownItAnchor, {
       permalink: true,
       permalinkSpace: false,
-      permalinkSymbol: '#'
+      permalinkSymbol: '#',
     })
     .use(markdownItDeflist)
     .use(markdownItPrism);

@@ -6,7 +6,7 @@ import {Cache} from './lib/cache.js';
 import {
   getCategories,
   getPostTemplate,
-  getPostTypes
+  getPostTypes,
 } from './lib/publication.js';
 
 export const Indiekit = class {

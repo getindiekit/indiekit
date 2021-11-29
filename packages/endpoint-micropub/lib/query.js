@@ -11,7 +11,7 @@ export const getConfig = (application, publication) => {
   const {
     mediaEndpoint,
     postTypes,
-    syndicationTargets
+    syndicationTargets,
   } = publication;
 
   // Supported queries
@@ -21,7 +21,7 @@ export const getConfig = (application, publication) => {
     'media-endpoint',
     'post-types',
     'source',
-    'syndicate-to'
+    'syndicate-to',
   ];
 
   // Ensure syndication targets use absolute URLs
@@ -36,10 +36,10 @@ export const getConfig = (application, publication) => {
     'media-endpoint': mediaEndpoint,
     'post-types': postTypes.map(postType => ({
       type: postType.type,
-      name: postType.name
+      name: postType.name,
     })),
     'syndicate-to': syndicateTo,
-    q
+    q,
   };
 };
 

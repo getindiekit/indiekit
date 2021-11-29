@@ -6,7 +6,7 @@ import YAML from 'yaml';
 YAML.scalarOptions.str.fold.lineWidth = 0;
 
 const defaults = {
-  frontMatterFormat: 'yaml'
+  frontMatterFormat: 'yaml',
 };
 
 export const HugoPreset = class {
@@ -57,101 +57,101 @@ export const HugoPreset = class {
       name: 'Article',
       post: {
         path: 'content/articles/{slug}.md',
-        url: 'articles/{slug}'
+        url: 'articles/{slug}',
       },
       media: {
         path: 'static/articles/{filename}',
-        url: 'articles/{filename}'
-      }
+        url: 'articles/{filename}',
+      },
     }, {
       type: 'note',
       name: 'Note',
       post: {
         path: 'content/notes/{slug}.md',
-        url: 'notes/{slug}'
-      }
+        url: 'notes/{slug}',
+      },
     }, {
       type: 'photo',
       name: 'Photo',
       post: {
         path: 'content/photos/{slug}.md',
-        url: 'photos/{slug}'
+        url: 'photos/{slug}',
       },
       media: {
         path: 'static/photos/{filename}',
-        url: 'photos/{filename}'
-      }
+        url: 'photos/{filename}',
+      },
     }, {
       type: 'video',
       name: 'Video',
       post: {
         path: 'content/videos/{slug}.md',
-        url: 'videos/{slug}'
+        url: 'videos/{slug}',
       },
       media: {
         path: 'static/videos/{filename}',
-        url: 'videos/{filename}'
-      }
+        url: 'videos/{filename}',
+      },
     }, {
       type: 'audio',
       name: 'Audio',
       post: {
         path: 'content/audio/{slug}.md',
-        url: 'audio/{slug}'
+        url: 'audio/{slug}',
       },
       media: {
         path: 'static/audio/{filename}',
-        url: 'audio/{filename}'
-      }
+        url: 'audio/{filename}',
+      },
     }, {
       type: 'bookmark',
       name: 'Bookmark',
       post: {
         path: 'content/bookmarks/{slug}.md',
-        url: 'bookmarks/{slug}'
-      }
+        url: 'bookmarks/{slug}',
+      },
     }, {
       type: 'checkin',
       name: 'Checkin',
       post: {
         path: 'content/checkins/{slug}.md',
-        url: 'checkins/{slug}'
-      }
+        url: 'checkins/{slug}',
+      },
     }, {
       type: 'event',
       name: 'Event',
       post: {
         path: 'content/events/{slug}.md',
-        url: 'events/{slug}'
-      }
+        url: 'events/{slug}',
+      },
     }, {
       type: 'rsvp',
       name: 'Reply with RSVP',
       post: {
         path: 'content/replies/{slug}.md',
-        url: 'replies/{slug}'
-      }
+        url: 'replies/{slug}',
+      },
     }, {
       type: 'reply',
       name: 'Reply',
       post: {
         path: 'content/replies/{slug}.md',
-        url: 'replies/{slug}'
-      }
+        url: 'replies/{slug}',
+      },
     }, {
       type: 'repost',
       name: 'Repost',
       post: {
         path: 'content/reposts/{slug}.md',
-        url: 'reposts/{slug}'
-      }
+        url: 'reposts/{slug}',
+      },
     }, {
       type: 'like',
       name: 'Like',
       post: {
         path: 'content/likes/{slug}.md',
-        url: 'likes/{slug}'
-      }
+        url: 'likes/{slug}',
+      },
     }];
   }
 
@@ -197,7 +197,7 @@ export const HugoPreset = class {
       ...(properties.postStatus === 'draft' && {draft: true}),
       ...(properties.visibility && {visibility: properties.visibility}),
       ...(properties.syndication && {syndication: properties.syndication}),
-      ...(properties.mpSyndicateTo && {mpSyndicateTo: properties.mpSyndicateTo})
+      ...(properties.mpSyndicateTo && {mpSyndicateTo: properties.mpSyndicateTo}),
     };
 
     const frontMatter = this._getFrontMatter(properties);

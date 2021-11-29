@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {server} from '@indiekit-test/server';
@@ -7,7 +8,7 @@ test('Returns 400 if access token does not provide adequate scope', async t => {
     .get('/token')
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'media'
+      scope: 'media',
     });
   const request = await server();
 

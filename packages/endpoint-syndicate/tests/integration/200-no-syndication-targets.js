@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {indiekitConfig} from '@indiekit-test/config';
@@ -9,7 +10,7 @@ test('Returns 200 if no post records', async t => {
     .twice()
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create update'
+      scope: 'create update',
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar'))

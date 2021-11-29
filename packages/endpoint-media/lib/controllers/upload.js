@@ -3,7 +3,7 @@ import {media} from '../media.js';
 import {mediaData} from '../media-data.js';
 import {checkScope} from '../scope.js';
 
-export const uploadController = publication => {
+export const uploadController = publication =>
   /**
    * Upload file
    *
@@ -12,7 +12,7 @@ export const uploadController = publication => {
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  return async (request, response, next) => {
+  async (request, response, next) => {
     const {file} = request;
     const {scope} = publication.accessToken;
 
@@ -25,8 +25,8 @@ export const uploadController = publication => {
       return response.status(uploaded.status).location(uploaded.location).json(uploaded.json);
     } catch (error) {
       next(httpError(error.statusCode, error, {
-        scope: error.scope
+        scope: error.scope,
       }));
     }
   };
-};
+

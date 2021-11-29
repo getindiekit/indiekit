@@ -5,7 +5,7 @@ import {GithubStore} from '../../index.js';
 const github = new GithubStore({
   token: 'abc123',
   user: 'user',
-  repo: 'repo'
+  repo: 'repo',
 });
 
 test.beforeEach(t => {
@@ -15,13 +15,13 @@ test.beforeEach(t => {
       content: 'Zm9vYmFy',
       sha: '\b[0-9a-f]{5,40}\b',
       name: 'foo.txt',
-      path: 'foo.txt'
+      path: 'foo.txt',
     },
     putResponse: {
       commit: {
-        message: 'Message'
-      }
-    }
+        message: 'Message',
+      },
+    },
   };
 });
 
@@ -41,7 +41,7 @@ test('Throws error creating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(github.createFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -61,7 +61,7 @@ test('Throws error reading file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(github.readFile('foo.txt'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -99,7 +99,7 @@ test('Throws error updating file in a repository', async t => {
     .replyWithError('Unknown error');
 
   await t.throwsAsync(github.updateFile('foo.txt', 'foo', {message: 'Message'}), {
-    message: /\bUnknown error\b/
+    message: /\bUnknown error\b/,
   });
 });
 
@@ -122,7 +122,7 @@ test('Throws error if file not found in repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(github.deleteFile('foo.txt', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -134,6 +134,6 @@ test('Throws error deleting a file in a repository', async t => {
     .replyWithError('Unknown error');
 
   await t.throwsAsync(github.deleteFile('foo.txt', 'Message'), {
-    message: /\bUnknown error\b/
+    message: /\bUnknown error\b/,
   });
 });

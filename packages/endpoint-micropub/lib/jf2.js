@@ -7,7 +7,7 @@ import {
   excerptString,
   slugifyString,
   relativeMediaPath,
-  randomString
+  randomString,
 } from './utils.js';
 
 /**
@@ -18,7 +18,7 @@ import {
  */
 export const formEncodedToJf2 = body => {
   const jf2 = {
-    type: body.h ? body.h : 'entry'
+    type: body.h ? body.h : 'entry',
   };
 
   for (const key in body) {
@@ -50,7 +50,7 @@ export const formEncodedToJf2 = body => {
  */
 export const mf2ToJf2 = body => {
   const mf2 = {
-    items: [body]
+    items: [body],
   };
 
   return mf2tojf2(mf2);
@@ -110,7 +110,7 @@ export const getAudioProperty = (properties, me) => {
   audio = Array.isArray(audio) ? audio : [audio];
 
   return audio.map(item => ({
-    url: relativeMediaPath(item.url || item, me)
+    url: relativeMediaPath(item.url || item, me),
   }));
 };
 
@@ -158,8 +158,8 @@ export const getLocationProperty = properties => {
       properties: {
         latitude,
         longitude,
-        ...(altitude ? {altitude} : {})
-      }
+        ...(altitude ? {altitude} : {}),
+      },
     };
   }
 
@@ -185,7 +185,7 @@ export const getPhotoProperty = (properties, me) => {
   const property = photo.map((item, index) => ({
     url: relativeMediaPath(item.url || item, me),
     ...item.alt && {alt: item.alt},
-    ...photoAlt && {alt: photoAlt[index]}
+    ...photoAlt && {alt: photoAlt[index]},
   }));
   delete properties['mp-photo-alt'];
   return property;
@@ -203,7 +203,7 @@ export const getVideoProperty = (properties, me) => {
   video = Array.isArray(video) ? video : [video];
 
   return video.map(item => ({
-    url: relativeMediaPath(item.url || item, me)
+    url: relativeMediaPath(item.url || item, me),
   }));
 };
 
@@ -214,9 +214,7 @@ export const getVideoProperty = (properties, me) => {
  * @param {object} timeZone Publication time zone
  * @returns {Array} `published` property
  */
-export const getPublishedProperty = (properties, timeZone) => {
-  return getDate(timeZone, properties.published);
-};
+export const getPublishedProperty = (properties, timeZone) => getDate(timeZone, properties.published);
 
 /**
  * Get slug

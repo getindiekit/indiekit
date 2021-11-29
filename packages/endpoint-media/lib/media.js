@@ -13,7 +13,7 @@ export const media = {
       action: 'upload',
       result: 'uploaded',
       fileType: 'file',
-      postType: mediaData.properties['post-type']
+      postType: mediaData.properties['post-type'],
     };
     const message = storeMessageTemplate(metaData);
     const uploaded = await store.createFile(mediaData.path, file.buffer, message);
@@ -31,9 +31,9 @@ export const media = {
         status: 201,
         json: {
           success: 'create',
-          success_description: `Media uploaded to ${mediaData.properties.url}`
-        }
+          success_description: `Media uploaded to ${mediaData.properties.url}`,
+        },
       };
     }
-  }
+  },
 };

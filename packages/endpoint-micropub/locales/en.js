@@ -4,7 +4,7 @@ export const en = {
     properties: 'Properties',
     posts: {
       title: 'Published posts',
-      none: 'No posts'
-    }
-  }
+      none: 'No posts',
+    },
+  },
 };

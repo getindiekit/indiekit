@@ -7,7 +7,7 @@ import {v4 as uuidv4} from 'uuid';
 const debug = new Debug('indiekit:session');
 
 const auth = new IndieAuth({
-  secret: uuidv4()
+  secret: uuidv4(),
 });
 
 export const login = (request, response) => {
@@ -19,23 +19,23 @@ export const login = (request, response) => {
   const callbackUrl = `${url}/session/auth`;
   const {redirect} = request.query;
 
-  const redirectUri = redirect ?
-    `${callbackUrl}?redirect=${redirect}` :
-    `${callbackUrl}`;
+  const redirectUri = redirect
+    ? `${callbackUrl}?redirect=${redirect}`
+    : `${callbackUrl}`;
 
   auth.options.clientId = url;
   auth.options.redirectUri = redirectUri;
 
   return response.render('session/login', {
     title: response.__('session.login.title'),
-    referrer: request.query.referrer
+    referrer: request.query.referrer,
   });
 };
 
 export const authenticate = async (request, response) => {
   try {
     const me = normalizeUrl(response.locals.publication.me, {
-      removeTrailingSlash: false
+      removeTrailingSlash: false,
     });
     auth.options.me = new URL(me).href;
     const authUrl = await auth.getAuthUrl('code', ['create', 'update', 'delete']);
@@ -45,7 +45,7 @@ export const authenticate = async (request, response) => {
     debug(error);
     return response.status(401).render('session/login', {
       title: response.__('session.login.title'),
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -59,7 +59,7 @@ export const authenticationCallback = async (request, response, next) => {
     if (!validRedirect) {
       return response.status(403).render('session/login', {
         title: response.__('session.login.title'),
-        error: response.__('session.login.error.validateRedirect')
+        error: response.__('session.login.error.validateRedirect'),
       });
     }
   }
@@ -67,7 +67,7 @@ export const authenticationCallback = async (request, response, next) => {
   if (!code || !state || !auth.validateState(state)) {
     return response.status(403).render('session/login', {
       title: response.__('session.login.title'),
-      error: response.__('session.login.error.validateState')
+      error: response.__('session.login.error.validateState'),
     });
   }
 

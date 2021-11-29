@@ -4,7 +4,7 @@ export const fr = {
     properties: 'Propriétés',
     posts: {
       title: 'Article publié',
-      none: 'Aucun article'
-    }
-  }
+      none: 'Aucun article',
+    },
+  },
 };

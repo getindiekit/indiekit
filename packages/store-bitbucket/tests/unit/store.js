@@ -5,7 +5,7 @@ import {BitbucketStore} from '../../index.js';
 const bitbucket = new BitbucketStore({
   user: 'username',
   password: 'password',
-  repo: 'repo'
+  repo: 'repo',
 });
 
 test.beforeEach(t => {
@@ -16,7 +16,7 @@ test('Creates file in a repository', async t => {
   nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .reply(201, {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
 
   const result = await bitbucket.createFile('foo.txt', 'foo', 'Message');
@@ -31,7 +31,7 @@ test('Throws error creating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(bitbucket.createFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -53,7 +53,7 @@ test('Throws error reading file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(bitbucket.readFile('foo.txt'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -61,7 +61,7 @@ test('Updates file in a repository', async t => {
   nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .reply(201, {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
 
   const result = await bitbucket.updateFile('foo.txt', 'foo', 'Message');
@@ -76,7 +76,7 @@ test('Throws error updating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(bitbucket.updateFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -84,7 +84,7 @@ test('Deletes a file in a repository', async t => {
   nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')
     .reply(201, {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
 
   const result = await bitbucket.deleteFile('foo.txt', 'Message');
@@ -99,6 +99,6 @@ test('Throws error deleting a file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(bitbucket.deleteFile('foo.txt', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });

@@ -30,7 +30,7 @@ export const getFileProperties = async (publication, file) => {
     filename: `${basename}.${ext}`,
     originalname: file.originalname,
     'content-type': mime,
-    published
+    published,
   };
 };
 

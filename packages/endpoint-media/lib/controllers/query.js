@@ -1,7 +1,7 @@
 import httpError from 'http-errors';
 import {queryList} from '../query.js';
 
-export const queryController = publication => {
+export const queryController = publication =>
   /**
    * Query endpoint
    *
@@ -10,7 +10,7 @@ export const queryController = publication => {
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  return async (request, response, next) => {
+  async (request, response, next) => {
     const {query} = request;
     const {filter, limit, offset} = query;
 
@@ -22,11 +22,11 @@ export const queryController = publication => {
       switch (query.q) {
         case 'source': {
           // Return previously uploaded media
-          const items = publication.media ?
-            await publication.media.find().map(media => media.properties).toArray() :
-            [];
+          const items = publication.media
+            ? await publication.media.find().map(media => media.properties).toArray()
+            : [];
           return response.json({
-            items: queryList(items, {filter, limit, offset})
+            items: queryList(items, {filter, limit, offset}),
           });
         }
 
@@ -37,4 +37,4 @@ export const queryController = publication => {
       next(httpError(400, error));
     }
   };
-};
+

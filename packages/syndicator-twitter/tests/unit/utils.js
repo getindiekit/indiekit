@@ -1,3 +1,4 @@
+import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import {getFixture} from '@indiekit-test/get-fixture';
@@ -6,7 +7,7 @@ import {
   getAbsoluteUrl,
   getStatusIdFromUrl,
   htmlToStatusText,
-  isTweetUrl
+  isTweetUrl,
 } from '../../lib/utils.js';
 
 test.beforeEach(t => {
@@ -61,8 +62,8 @@ test('Creates a status with a location', t => {
 test('Creates a status with a photo', t => {
   const result = createStatus({
     content: {
-      html: '<p>Here’s the cheese sandwich I ate.</p>'
-    }
+      html: '<p>Here’s the cheese sandwich I ate.</p>',
+    },
   }, ['1', '2', '3', '4']);
 
   t.is(result.status, 'Here’s the cheese sandwich I ate.');

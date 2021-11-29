@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {indiekitConfig} from '@indiekit-test/config';
@@ -6,25 +7,23 @@ import {
   getCategories,
   getMediaEndpoint,
   getPostTemplate,
-  getPostTypes
+  getPostTypes,
 } from '../../lib/publication.js';
 
-const config = (async () => {
-  return indiekitConfig()
-})();
+const config = (async () => indiekitConfig())();
 
 test.beforeEach(async t => {
   const {application, publication} = await config;
 
   t.context = {
     cacheCollection: application.cache,
-    publication
+    publication,
   };
 });
 
 test('Returns array of available categories', async t => {
   const result = await getCategories(t.context.cache, {
-    categories: ['foo', 'bar']
+    categories: ['foo', 'bar'],
   });
 
   t.deepEqual(result, ['foo', 'bar']);
@@ -50,7 +49,7 @@ test.serial('Returns empty array if remote JSON file not found', async t => {
   const cache = new Cache(t.context.cacheCollection);
 
   await t.throwsAsync(getCategories(cache, t.context.publication), {
-    message: `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`
+    message: `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`,
   });
 });
 
@@ -66,8 +65,8 @@ test('Gets media endpoint from server derived values', t => {
   const request = {
     protocol: 'https',
     headers: {
-      host: 'server.example'
-    }
+      host: 'server.example',
+    },
   };
 
   const result = getMediaEndpoint(t.context.publication, request);
@@ -80,8 +79,8 @@ test('Gets media endpoint from publication configuration', t => {
   const request = {
     protocol: 'https',
     headers: {
-      host: 'website.example'
-    }
+      host: 'website.example',
+    },
   };
 
   const result = getMediaEndpoint(publication, request);
@@ -91,9 +90,7 @@ test('Gets media endpoint from publication configuration', t => {
 
 test('Gets custom post template', t => {
   const publication = {
-    postTemplate: properties => {
-      return JSON.stringify(properties);
-    }
+    postTemplate: properties => JSON.stringify(properties),
   };
   const postTemplate = getPostTemplate(publication);
 
@@ -124,19 +121,19 @@ test('Merges values from custom and preset post types', t => {
     name: 'Journal entry',
     post: {
       path: '_entries/{T}.md',
-      url: 'entries/{T}'
-    }
+      url: 'entries/{T}',
+    },
   }, {
     type: 'photo',
     name: 'Picture',
     post: {
       path: '_pictures/{T}.md',
-      url: '_pictures/{T}'
+      url: '_pictures/{T}',
     },
     media: {
       path: 'src/media/pictures/{T}.{ext}',
-      url: 'media/pictures/{T}.{ext}'
-    }
+      url: 'media/pictures/{T}.{ext}',
+    },
   }];
   const result = getPostTypes(t.context.publication);
 
@@ -145,20 +142,20 @@ test('Merges values from custom and preset post types', t => {
     name: 'Journal entry',
     post: {
       path: '_entries/{T}.md',
-      url: 'entries/{T}'
-    }
+      url: 'entries/{T}',
+    },
   });
   t.deepEqual(result[2], {
     type: 'photo',
     name: 'Picture',
     post: {
       path: '_pictures/{T}.md',
-      url: '_pictures/{T}'
+      url: '_pictures/{T}',
     },
     media: {
       path: 'src/media/pictures/{T}.{ext}',
-      url: 'media/pictures/{T}.{ext}'
-    }
+      url: 'media/pictures/{T}.{ext}',
+    },
   });
 });
 

@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import dateFns from 'date-fns';
 import {getDate, getServerTimeZone} from '../../lib/date.js';

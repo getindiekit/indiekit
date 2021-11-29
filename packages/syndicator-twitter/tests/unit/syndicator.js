@@ -8,16 +8,16 @@ test.beforeEach(t => {
   t.context = {
     apiResponse: {
       id_str: '1234567890987654321',
-      user: {screen_name: 'username'}
+      user: {screen_name: 'username'},
     },
     options: {
       apiKey: '0123456789abcdefghijklmno',
       apiKeySecret: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789',
       accessTokenKey: 'ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789',
       accessTokenSecret: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN',
-      user: 'username'
+      user: 'username',
     },
-    properties: JSON.parse(getFixture('jf2/article-content-provided-html-text.jf2'))
+    properties: JSON.parse(getFixture('jf2/article-content-provided-html-text.jf2')),
   };
 });
 
@@ -58,12 +58,12 @@ test('Throws error getting syndicated URL if no API keys provided', async t => {
     .post('/1.1/statuses/update.json')
     .reply(401, {
       errors: [{
-        message: 'Could not authenticate you.'
-      }]
+        message: 'Could not authenticate you.',
+      }],
     });
   const syndicator = new TwitterSyndicator({});
 
   await t.throwsAsync(syndicator.syndicate(t.context.properties), {
-    message: 'Could not authenticate you.'
+    message: 'Could not authenticate you.',
   });
 });

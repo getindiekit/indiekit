@@ -3,7 +3,7 @@ import dateFns from 'date-fns';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {
   getFileProperties,
-  getMediaType
+  getMediaType,
 } from '../../lib/file.js';
 
 const {isValid, parseISO} = dateFns;
@@ -24,7 +24,7 @@ test('Derives properties from file data', async t => {
   const publication = {timeZone: 'UTC'};
   const file = {
     buffer: getFixture('file-types/photo.jpg', false),
-    originalname: 'photo.jpg'
+    originalname: 'photo.jpg',
   };
 
   const result = await getFileProperties(publication, file);

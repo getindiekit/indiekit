@@ -12,7 +12,7 @@ export const post = {
       action: 'create',
       result: 'created',
       fileType: 'post',
-      postType: postData.properties['post-type']
+      postType: postData.properties['post-type'],
     };
     const content = postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
@@ -31,8 +31,8 @@ export const post = {
         status: 202,
         json: {
           success: 'create_pending',
-          success_description: `Post will be created at ${postData.properties.url}`
-        }
+          success_description: `Post will be created at ${postData.properties.url}`,
+        },
       };
     }
   },
@@ -51,7 +51,7 @@ export const post = {
       action: 'update',
       result: 'updated',
       fileType: 'post',
-      postType: postData.properties['post-type']
+      postType: postData.properties['post-type'],
     };
     const content = postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
@@ -63,7 +63,7 @@ export const post = {
 
       if (posts) {
         await posts.replaceOne({
-          'properties.url': postData.properties.url
+          'properties.url': postData.properties.url,
         }, postData);
       }
 
@@ -73,10 +73,10 @@ export const post = {
         status: hasUpdatedUrl ? 201 : 200,
         json: {
           success: 'update',
-          success_description: hasUpdatedUrl ?
-            `Post updated and moved to ${postData.properties.url}` :
-            `Post updated at ${url}`
-        }
+          success_description: hasUpdatedUrl
+            ? `Post updated and moved to ${postData.properties.url}`
+            : `Post updated at ${url}`,
+        },
       };
     }
   },
@@ -94,7 +94,7 @@ export const post = {
       action: 'delete',
       result: 'deleted',
       fileType: 'post',
-      postType: postData.properties['post-type']
+      postType: postData.properties['post-type'],
     };
     const message = storeMessageTemplate(metaData);
     const published = await store.deleteFile(postData.path, message);
@@ -105,7 +105,7 @@ export const post = {
 
       if (posts) {
         await posts.replaceOne({
-          'properties.url': postData.properties.url
+          'properties.url': postData.properties.url,
         }, postData);
       }
 
@@ -113,8 +113,8 @@ export const post = {
         status: 200,
         json: {
           success: 'delete',
-          success_description: `Post deleted from ${postData.properties.url}`
-        }
+          success_description: `Post deleted from ${postData.properties.url}`,
+        },
       };
     }
   },
@@ -137,7 +137,7 @@ export const post = {
       action: 'undelete',
       result: 'undeleted',
       fileType: 'post',
-      postType: postData.properties['post-type']
+      postType: postData.properties['post-type'],
     };
     const content = postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
@@ -149,7 +149,7 @@ export const post = {
 
       if (posts) {
         await posts.replaceOne({
-          'properties.url': postData.properties.url
+          'properties.url': postData.properties.url,
         }, postData);
       }
 
@@ -158,9 +158,9 @@ export const post = {
         status: 200,
         json: {
           success: 'delete_undelete',
-          success_description: `Post undeleted from ${postData.properties.url}`
-        }
+          success_description: `Post undeleted from ${postData.properties.url}`,
+        },
       };
     }
-  }
+  },
 };

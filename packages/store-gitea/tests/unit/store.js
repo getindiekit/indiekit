@@ -8,35 +8,35 @@ test.beforeEach(t => {
     gitea: new GiteaStore({
       token: 'abc123',
       user: 'user',
-      repo: 'repo'
+      repo: 'repo',
     }),
     giteaUrl: 'https://gitea.com',
     giteaInstance: new GiteaStore({
       token: 'abc123',
       user: 'user',
-      repo: 'repo'
+      repo: 'repo',
     }),
     giteaInstanceUrl: 'https://gitea.instance',
     getResponse: {
       content: 'Zm9vYmFy',
       sha: '\b[0-9a-f]{5,40}\b',
-      path: 'foo.txt'
+      path: 'foo.txt',
     },
     postResponse: {
       path: 'foo.txt',
-      branch: 'master'
+      branch: 'master',
     },
     putResponse: {
       path: 'foo.txt',
-      branch: 'master'
+      branch: 'master',
     },
     deleteResponse: {
       commit: {
         message: 'Message',
-        sha: '\b[0-9a-f]{5,40}\b'
+        sha: '\b[0-9a-f]{5,40}\b',
       },
-      content: {}
-    }
+      content: {},
+    },
   };
 });
 
@@ -69,7 +69,7 @@ test('Throws error creating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.createFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -89,7 +89,7 @@ test('Throws error reading file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.readFile('foo.txt'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -112,7 +112,7 @@ test('Throws error updating file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.updateFile('foo.txt', 'foo', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
@@ -136,6 +136,6 @@ test('Throws error deleting a file in a repository', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(t.context.gitea.deleteFile('foo.txt', 'Message'), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });

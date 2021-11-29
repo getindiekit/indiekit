@@ -33,9 +33,9 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
   try {
     const {body} = await got(tokenEndpoint, {
       headers: {
-        Authorization: `Bearer ${bearerToken}`
+        Authorization: `Bearer ${bearerToken}`,
       },
-      responseType: 'json'
+      responseType: 'json',
     });
 
     const accessToken = body;

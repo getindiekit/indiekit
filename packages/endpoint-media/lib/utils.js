@@ -1,6 +1,6 @@
+import path from 'node:path';
 import dateFnsTz from 'date-fns-tz';
 import newbase60 from 'newbase60';
-import path from 'node:path';
 import {v4 as uuidv4} from 'uuid';
 import {getServerTimeZone} from './date.js';
 
@@ -12,9 +12,7 @@ const {format} = dateFnsTz;
  * @returns {string} Alpha-numeric string
  * @example random() => 'f0pjf'
  */
-export const randomString = () => {
-  return Math.random().toString(36).slice(-5);
-};
+export const randomString = () => Math.random().toString(36).slice(-5);
 
 /**
  * Render path from URI template and properties
@@ -50,14 +48,14 @@ export const renderPath = (path, properties, timeZoneSetting) => {
     's', // Second, eg 1
     'ss', // Second (zero-padded), eg 01
     't', // UNIX epoch seconds, eg 512969520
-    'T' // UNIX epoch milliseconds, eg 51296952000
+    'T', // UNIX epoch milliseconds, eg 51296952000
   ];
 
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
       timeZone: timeZoneSetting === 'server' ? serverTimeZone : timeZoneSetting,
-      useAdditionalDayOfYearTokens: true
+      useAdditionalDayOfYearTokens: true,
     });
   }
 
@@ -86,17 +84,15 @@ export const renderPath = (path, properties, timeZoneSetting) => {
  * @param {object} object Properties to use
  * @returns {string} String with substituted
  */
-export const supplant = (string, object) => {
-  return string.replace(/{([^{}]*)}/g, (a, b) => {
-    const r = object[b];
+export const supplant = (string, object) => string.replace(/{([^{}]*)}/g, (a, b) => {
+  const r = object[b];
 
-    if (typeof r === 'string' || typeof r === 'number') {
-      return r;
-    }
+  if (typeof r === 'string' || typeof r === 'number') {
+    return r;
+  }
 
-    return a;
-  });
-};
+  return a;
+});
 
 /**
  * Derive a permalink (by combining publication URL, that may
@@ -123,8 +119,6 @@ export const getPermalink = (url, pathname) => {
  * @param {object} postTypes Publication post types
  * @returns {object} Post type configuration
  */
-export const getPostTypeConfig = (type, postTypes) => {
-  return postTypes.find(
-    item => item.type === type
-  );
-};
+export const getPostTypeConfig = (type, postTypes) => postTypes.find(
+  item => item.type === type,
+);

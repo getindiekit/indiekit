@@ -4,16 +4,16 @@ export const fr = {
   noValue: 'Pas encore défini',
   optionalValue: '(facultatif)',
   guidance: {
-    discovery: 'Alors que {{app}} peut être repéré par les clients Micropub et demander l’autorisation de publier sur votre site, ajoutez les valeurs suivantes à la partie `<head>` de votre site web:'
+    discovery: 'Alors que {{app}} peut être repéré par les clients Micropub et demander l’autorisation de publier sur votre site, ajoutez les valeurs suivantes à la partie `<head>` de votre site web:',
   },
   errors: {
     notFound: {
       title: 'Page non trouvée',
-      content: 'Si vous avez entré une adresse Web, vérifiez qu’elle est correcte.'
+      content: 'Si vous avez entré une adresse Web, vérifiez qu’elle est correcte.',
     },
     noDatabase: {
-      content: 'Cette fonctionnalité nécessite une base de données.'
-    }
+      content: 'Cette fonctionnalité nécessite une base de données.',
+    },
   },
   session: {
     login: {
@@ -23,12 +23,12 @@ export const fr = {
       submit: 'Connectez-vous avec IndieAuth',
       error: {
         validateRedirect: 'Tentative de redirection non valide',
-        validateState: 'Code manquant ou décalage état'
-      }
+        validateState: 'Code manquant ou décalage état',
+      },
     },
     logout: {
-      title: 'Déconnexion'
-    }
+      title: 'Déconnexion',
+    },
   },
   status: {
     title: 'Statut du serveur',
@@ -42,9 +42,9 @@ export const fr = {
       themeColorSchemeValue: {
         automatic: 'Automatique',
         light: 'Lumière',
-        dark: 'Sombre'
+        dark: 'Sombre',
       },
-      endpoints: 'Endpoints'
+      endpoints: 'Endpoints',
     },
     publication: {
       summaryTitle: 'Paramètres de Puplication',
@@ -56,7 +56,7 @@ export const fr = {
       postTypes: 'Types de article',
       syndicationTargets: 'Cibles de syndication',
       mediaEndpoint: 'Media endpoint',
-      accessToken: 'Jeton d’accès'
-    }
-  }
+      accessToken: 'Jeton d’accès',
+    },
+  },
 };

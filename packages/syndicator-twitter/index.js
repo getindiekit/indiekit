@@ -2,7 +2,7 @@ import {fileURLToPath} from 'node:url';
 import {twitter} from './lib/twitter.js';
 
 const defaults = {
-  checked: false
+  checked: false,
 };
 
 export const TwitterSyndicator = class {
@@ -26,12 +26,12 @@ export const TwitterSyndicator = class {
       service: {
         name: 'Twitter',
         url: 'https://twitter.com/',
-        photo: '/assets/twitter/icon.svg'
+        photo: '/assets/twitter/icon.svg',
       },
       user: {
         name: user,
-        url: `https://twitter.com/${user}`
-      }
+        url: `https://twitter.com/${user}`,
+      },
     };
   }
 

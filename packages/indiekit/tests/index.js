@@ -22,7 +22,7 @@ test('Throws error setting configuration if key is not a string', t => {
     indiekit.set([], 'https://website.example');
   }, {
     instanceOf: TypeError,
-    message: 'Configuration key must be a string'
+    message: 'Configuration key must be a string',
   });
 });
 
@@ -30,7 +30,7 @@ test('Throws error setting configuration if no value given', t => {
   t.throws(() => {
     indiekit.set('publication.me');
   }, {
-    message: 'No value given for publication.me'
+    message: 'No value given for publication.me',
   });
 });
 
@@ -38,7 +38,7 @@ test('Adds endpoint', t => {
   const endpoint = {
     id: 'foo',
     name: 'Foo',
-    init: () => {}
+    init: () => {},
   };
   indiekit.addEndpoint(endpoint);
   const {endpoints} = indiekit.application;
@@ -48,7 +48,7 @@ test('Adds endpoint', t => {
 test('Initiates application with config', async t => {
   indiekit.set('publication.categories', ['foo', 'bar']);
   indiekit.set('publication.preset', new HugoPreset({
-    frontMatterFormat: 'json'
+    frontMatterFormat: 'json',
   }));
   await indiekit.getConfig();
 
@@ -56,6 +56,6 @@ test('Initiates application with config', async t => {
   t.is(indiekit.publication.postTypes[0].name, 'Article');
   t.is(indiekit.publication.postTemplate({
     name: 'Foo',
-    content: 'Bar'
+    content: 'Bar',
   }), '{\n  "title": "Foo"\n}\nBar\n');
 });

@@ -5,7 +5,7 @@ export const de = {
     properties: 'Eigenschaften',
     files: {
       title: 'Hochgeladene Dateien',
-      none: 'Keine Dateien'
-    }
-  }
+      none: 'Keine Dateien',
+    },
+  },
 };

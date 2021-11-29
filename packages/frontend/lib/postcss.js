@@ -9,8 +9,8 @@ module.exports = (async () => {
     from: path.join(__dirname, '..', 'styles/app.css'),
     plugins: [
       postcssEasyImport,
-      postcssExtendRule
-    ]
+      postcssExtendRule,
+    ],
   };
 
   const css = fs.readFileSync(options.from, 'utf8');

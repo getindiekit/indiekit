@@ -9,6 +9,7 @@ export const postsController = (application, publication) => ({
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
+   * @param {Function} next Callback
    * @returns {object} HTTP response
    */
   async list(request, response, next) {
@@ -20,7 +21,7 @@ export const postsController = (application, publication) => ({
       response.render('posts', {
         title: response.__('micropub.posts.title'),
         posts: await publication.posts.find().toArray(),
-        parentUrl: `${publication.micropubEndpoint}/posts/`
+        parentUrl: `${publication.micropubEndpoint}/posts/`,
       });
     } catch (error) {
       next(error);
@@ -46,10 +47,10 @@ export const postsController = (application, publication) => ({
 
       response.render('post', {
         parent: response.__('micropub.posts.title'),
-        post
+        post,
       });
     } catch (error) {
       next(error);
     }
-  }
+  },
 });

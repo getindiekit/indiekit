@@ -5,7 +5,7 @@ export const fr = {
     properties: 'Propriétés',
     files: {
       title: 'Les fichiers chargés',
-      none: 'Aucun fichier'
-    }
-  }
+      none: 'Aucun fichier',
+    },
+  },
 };

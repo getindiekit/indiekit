@@ -1,3 +1,4 @@
+import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
@@ -8,7 +9,7 @@ test('Creates post (JSON)', async t => {
     .get('/token')
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create delete'
+      scope: 'create delete',
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))
@@ -23,8 +24,8 @@ test('Creates post (JSON)', async t => {
       properties: {
         name: ['Foobar'],
         content: ['Micropub test of creating an h-entry with a JSON request containing multiple categories.'],
-        category: ['test1', 'test2']
-      }
+        category: ['test1', 'test2'],
+      },
     });
 
   t.is(result.statusCode, 202);

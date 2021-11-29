@@ -15,7 +15,7 @@ test('Returns list of previously published posts', async t => {
 
   t.deepEqual(result.body, {
     properties: {
-      name: ['I ate a cheese sandwich, which was nice.']
-    }
+      name: ['I ate a cheese sandwich, which was nice.'],
+    },
   });
 });

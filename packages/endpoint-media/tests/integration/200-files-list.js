@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import {JSDOM} from 'jsdom';
 import {server} from '@indiekit-test/server';

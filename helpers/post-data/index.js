@@ -5,6 +5,6 @@ export const postData = {
   properties: {
     name: 'note',
     'post-type': 'note',
-    url: 'https://website.example/foo'
-  }
+    url: 'https://website.example/foo',
+  },
 };

@@ -29,7 +29,7 @@ test('Returns 500 for unknown error', t => {
 
 test('Renders error as HTML', t => {
   const httpError = new HttpError(400, 'Error messaage', {
-    scope: 'test'
+    scope: 'test',
   });
   const request = mockRequest({accepts: mimeType => mimeType.includes('html')});
   const response = mockResponse();
@@ -42,7 +42,7 @@ test('Renders error as HTML', t => {
 
 test('Renders error as JSON', t => {
   const httpError = new HttpError(400, 'Error messaage', {
-    scope: 'test'
+    scope: 'test',
   });
   const request = mockRequest({accepts: mimeType => mimeType.includes('json')});
   const response = mockResponse();

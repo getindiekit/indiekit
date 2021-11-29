@@ -5,7 +5,7 @@ import * as update from './update.js';
 import {
   renderPath,
   getPermalink,
-  getPostTypeConfig
+  getPostTypeConfig,
 } from './utils.js';
 
 export const postData = {
@@ -68,7 +68,7 @@ export const postData = {
 
       const {posts} = publication;
       const post = await posts.findOne({
-        'properties.url': url
+        'properties.url': url,
       });
       return post;
     } catch (error) {
@@ -101,7 +101,7 @@ export const postData = {
       const {me, posts, postTypes, timeZone} = publication;
 
       const postData = await posts.findOne({
-        'properties.url': url
+        'properties.url': url,
       });
 
       if (!postData) {
@@ -125,9 +125,9 @@ export const postData = {
 
       // Remove properties and/or property entries
       if (operation.delete) {
-        properties = Array.isArray(operation.delete) ?
-          update.deleteProperties(properties, operation.delete) :
-          update.deleteEntries(properties, operation.delete);
+        properties = Array.isArray(operation.delete)
+          ? update.deleteProperties(properties, operation.delete)
+          : update.deleteEntries(properties, operation.delete);
       }
 
       // Post type
@@ -146,5 +146,5 @@ export const postData = {
     } catch (error) {
       throw new HttpError(400, error);
     }
-  }
+  },
 };

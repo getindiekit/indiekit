@@ -1,18 +1,17 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {indiekitConfig} from '@indiekit-test/config';
 import {Cache} from '../../lib/cache.js';
 
-const config = (async () => {
-  return indiekitConfig()
-})();
+const config = (async () => indiekitConfig())();
 
 test.beforeEach(async t => {
   const {application} = await config;
 
   t.context = {
     cacheCollection: application.cache,
-    url: `${process.env.TEST_PUBLICATION_URL}categories.json`
+    url: `${process.env.TEST_PUBLICATION_URL}categories.json`,
   };
 });
 
@@ -34,7 +33,7 @@ test.serial('Throws error if remote file not found', async t => {
   const cache = new Cache(t.context.cacheCollection);
 
   await t.throwsAsync(cache.json('test2', t.context.url), {
-    message: `Unable to fetch ${t.context.url}: Not found`
+    message: `Unable to fetch ${t.context.url}: Not found`,
   });
 });
 
@@ -42,7 +41,7 @@ test.serial('Gets data from cache', async t => {
   t.context.cacheCollection.insertOne({
     key: 'test3',
     url: t.context.url,
-    data: ['Foo', 'Bar']
+    data: ['Foo', 'Bar'],
   });
   const cache = new Cache(t.context.cacheCollection);
 

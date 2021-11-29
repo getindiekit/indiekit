@@ -4,7 +4,7 @@ export const de = {
     properties: 'Eigenschaften',
     posts: {
       title: 'Hochgeladene Dateien',
-      none: 'Keine Beiträge'
-    }
-  }
+      none: 'Keine Beiträge',
+    },
+  },
 };

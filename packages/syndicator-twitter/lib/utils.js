@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
+import path from 'node:path';
 import brevity from 'brevity';
 import {htmlToText} from 'html-to-text';
-import path from 'node:path';
 
 /**
  * Get status parameters from given JF2 properties
@@ -38,7 +38,7 @@ export const createStatus = (properties, mediaIds = false) => {
       properties.url,
       false, // https://indieweb.org/permashortlink
       false, // https://indieweb.org/permashortcitation
-      280
+      280,
     );
   }
 
@@ -120,14 +120,14 @@ export const htmlToStatusText = html => {
     tags: {
       a: {
         options: {
-          ignoreHref: true
-        }
+          ignoreHref: true,
+        },
       },
       img: {
-        format: 'skip'
-      }
+        format: 'skip',
+      },
     },
-    wordwrap: false
+    wordwrap: false,
   });
 
   // Append the last link if present

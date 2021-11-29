@@ -1,11 +1,12 @@
 /* eslint-disable camelcase */
+import {Buffer} from 'node:buffer';
 import got from 'got';
 import Twitter from 'twitter-lite';
 import {
   createStatus,
   getAbsoluteUrl,
   getStatusIdFromUrl,
-  isTweetUrl
+  isTweetUrl,
 } from './utils.js';
 
 export const twitter = options => ({
@@ -14,7 +15,7 @@ export const twitter = options => ({
     consumer_key: options.apiKey,
     consumer_secret: options.apiKeySecret,
     access_token_key: options.accessToken,
-    access_token_secret: options.accessTokenSecret
+    access_token_secret: options.accessTokenSecret,
   }),
 
   /**
@@ -93,7 +94,7 @@ export const twitter = options => ({
       if (alt) {
         await this.client('upload').post('media/metadata/create', {
           media_id: media_id_string,
-          alt_text: {text: alt}
+          alt_text: {text: alt},
         });
       }
 
@@ -157,5 +158,5 @@ export const twitter = options => ({
     if (status) {
       return this.postStatus(status);
     }
-  }
+  },
 });

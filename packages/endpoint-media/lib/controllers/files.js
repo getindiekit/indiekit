@@ -9,6 +9,7 @@ export const filesController = (application, publication) => ({
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
+   * @param {Function} next Callback
    * @returns {object} HTTP response
    */
   async list(request, response, next) {
@@ -20,7 +21,7 @@ export const filesController = (application, publication) => ({
       response.render('files', {
         title: response.__('media.files.title'),
         files: await publication.media.find().toArray(),
-        parentUrl: `${publication.mediaEndpoint}/files/`
+        parentUrl: `${publication.mediaEndpoint}/files/`,
       });
     } catch (error) {
       next(error);
@@ -46,10 +47,10 @@ export const filesController = (application, publication) => ({
 
       response.render('file', {
         parent: response.__('media.files.title'),
-        file
+        file,
       });
     } catch (error) {
       next(error);
     }
-  }
+  },
 });

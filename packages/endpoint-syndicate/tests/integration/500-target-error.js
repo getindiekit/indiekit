@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {server} from '@indiekit-test/server';
@@ -8,7 +9,7 @@ test('Returns 500 error syndicating a URL', async t => {
     .get('/token')
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create update'
+      scope: 'create update',
     });
   nock('https://api.twitter.com')
     .post('/1.1/statuses/update.json')

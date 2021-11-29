@@ -7,12 +7,12 @@ test.beforeEach(t => {
     job_id: 'ac58789b-f3ca-48d0-9ea6-1d1225e98695',
     options: {
       accessKey: '0123456789abcdef',
-      secret: 'abcdef0123456789'
+      secret: 'abcdef0123456789',
     },
     timestamp: '20180326070330',
     properties: {
-      url: 'http://website.example/post/1'
-    }
+      url: 'http://website.example/post/1',
+    },
   };
 });
 
@@ -56,6 +56,6 @@ test('Throws error getting syndicated URL if no API keys provided', async t => {
   const syndicator = new InternetArchiveSyndicator({});
 
   await t.throwsAsync(syndicator.syndicate({properties: t.context.url}), {
-    message: 'Cannot read properties of undefined (reading \'body\')'
+    message: 'Cannot read properties of undefined (reading \'body\')',
   });
 });

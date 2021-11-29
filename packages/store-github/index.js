@@ -1,7 +1,8 @@
+import {Buffer} from 'node:buffer';
 import octokit from '@octokit/rest';
 
 const defaults = {
-  branch: 'master'
+  branch: 'master',
 };
 
 /**
@@ -18,7 +19,7 @@ export const GithubStore = class {
   get client() {
     const {Octokit} = octokit;
     return new Octokit({
-      auth: `token ${this.options.token}`
+      auth: `token ${this.options.token}`,
     });
   }
 
@@ -39,7 +40,7 @@ export const GithubStore = class {
       branch: this.options.branch,
       message,
       path,
-      content
+      content,
     });
     return response;
   }
@@ -56,7 +57,7 @@ export const GithubStore = class {
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
-      path
+      path,
     });
     const content = Buffer.from(response.data.content, 'base64').toString('utf8');
     return content;
@@ -76,10 +77,8 @@ export const GithubStore = class {
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
-      path
-    }).catch(() => {
-      return false;
-    });
+      path,
+    }).catch(() => false);
 
     content = Buffer.from(content).toString('base64');
     const response = await this.client.repos.createOrUpdateFileContents({
@@ -89,7 +88,7 @@ export const GithubStore = class {
       sha: (contents) ? contents.data.sha : false,
       message,
       path,
-      content
+      content,
     });
     return response;
   }
@@ -107,7 +106,7 @@ export const GithubStore = class {
       owner: this.options.user,
       repo: this.options.repo,
       ref: this.options.branch,
-      path
+      path,
     });
     const response = await this.client.repos.deleteFile({
       owner: this.options.user,
@@ -115,7 +114,7 @@ export const GithubStore = class {
       branch: this.options.branch,
       sha: contents.data.sha,
       message,
-      path
+      path,
     });
     return response;
   }

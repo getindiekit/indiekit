@@ -1,5 +1,5 @@
-import Debug from 'debug';
 import {fileURLToPath} from 'node:url';
+import Debug from 'debug';
 import {internetArchive} from './lib/internet-archive.js';
 
 export const debug = new Debug('indiekit:syndicator-internet-archive');
@@ -7,7 +7,7 @@ export const debug = new Debug('indiekit:syndicator-internet-archive');
 const defaults = {
   checked: false,
   name: 'Internet Archive',
-  uid: 'https://web.archive.org/'
+  uid: 'https://web.archive.org/',
 };
 
 export const InternetArchiveSyndicator = class {
@@ -29,8 +29,8 @@ export const InternetArchiveSyndicator = class {
       service: {
         name: 'Internet Archive',
         url: 'https://web.archive.org/',
-        photo: '/assets/internet-archive/icon.svg'
-      }
+        photo: '/assets/internet-archive/icon.svg',
+      },
     };
   }
 

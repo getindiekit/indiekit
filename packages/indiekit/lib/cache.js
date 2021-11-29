@@ -24,7 +24,7 @@ export const Cache = class {
         const {data} = cachedData;
         return {
           source: 'cache',
-          data
+          data,
         };
       }
 
@@ -34,13 +34,13 @@ export const Cache = class {
 
         if (this.collection) {
           await this.collection.replaceOne({}, {key, url, data}, {
-            upsert: true
+            upsert: true,
           });
         }
 
         return {
           source: url,
-          data
+          data,
         };
       }
     } catch (error) {

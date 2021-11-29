@@ -3,18 +3,18 @@ import nock from 'nock';
 import {
   getBearerToken,
   requestAccessToken,
-  verifyAccessToken
+  verifyAccessToken,
 } from '../../lib/tokens.js';
 
 test.beforeEach(t => {
   t.context = {
     accessToken: {
       me: 'https://website.example',
-      scope: 'create update delete media'
+      scope: 'create update delete media',
     },
     bearerToken: 'JWT',
     me: 'https://website.example',
-    tokenEndpoint: 'https://tokens.indieauth.com/token'
+    tokenEndpoint: 'https://tokens.indieauth.com/token',
   };
 });
 
@@ -47,7 +47,7 @@ test('Throws error if no bearer token provided by request', t => {
     getBearerToken({});
   }, {
     name: 'BadRequestError',
-    message: 'No bearer token provided by request'
+    message: 'No bearer token provided by request',
   });
 });
 
@@ -66,12 +66,12 @@ test('Token endpoint refuses to grant an access token', async t => {
   nock('https://tokens.indieauth.com')
     .get('/token')
     .reply(400, {
-      error_description: 'The token provided was malformed'
+      error_description: 'The token provided was malformed',
     });
 
   await t.throwsAsync(requestAccessToken(t.context.tokenEndpoint, 'malformed_token'), {
     name: 'BadRequestError',
-    message: 'The token provided was malformed'
+    message: 'The token provided was malformed',
   });
 });
 
@@ -82,7 +82,7 @@ test('Throws error contacting token endpoint', async t => {
 
   await t.throwsAsync(requestAccessToken(t.context.tokenEndpoint, t.context.bearerToken), {
     name: 'RequestError',
-    message: 'Not found'
+    message: 'Not found',
   });
 });
 
@@ -97,7 +97,7 @@ test('Throws error verifying access token without a publication URL', t => {
     verifyAccessToken(null, t.context.accessToken);
   }, {
     name: 'BadRequestError',
-    message: 'No publication URL to verify'
+    message: 'No publication URL to verify',
   });
 });
 
@@ -106,7 +106,7 @@ test('Throws error verifying access token without permissions', t => {
     verifyAccessToken('https://another.example', t.context.accessToken);
   }, {
     name: 'ForbiddenError',
-    message: 'User does not have permission to perform request'
+    message: 'User does not have permission to perform request',
   });
 });
 
@@ -115,6 +115,6 @@ test('Throws error verifying incomplete access token', t => {
     verifyAccessToken(t.context.me, {});
   }, {
     name: 'UnauthorizedError',
-    message: 'There was a problem with this access token'
+    message: 'There was a problem with this access token',
   });
 });

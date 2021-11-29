@@ -1,3 +1,4 @@
+import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
@@ -12,10 +13,10 @@ test.beforeEach(t => {
   t.context = {
     accessToken: {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create update delete media'
+      scope: 'create update delete media',
     },
     bearerToken: process.env.TEST_BEARER_TOKEN,
-    me: process.env.TEST_PUBLICATION_URL
+    me: process.env.TEST_PUBLICATION_URL,
   };
 });
 

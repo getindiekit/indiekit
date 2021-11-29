@@ -4,16 +4,16 @@ export const en = {
   noValue: 'Not set',
   optionalValue: '(optional)',
   guidance: {
-    discovery: 'So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:'
+    discovery: 'So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:',
   },
   errors: {
     notFound: {
       title: 'Page not found',
-      content: 'If you entered a web address please check it was correct.'
+      content: 'If you entered a web address please check it was correct.',
     },
     noDatabase: {
-      content: 'This feature requires a database.'
-    }
+      content: 'This feature requires a database.',
+    },
   },
   session: {
     login: {
@@ -23,12 +23,12 @@ export const en = {
       submit: 'Sign in with IndieAuth',
       error: {
         validateRedirect: 'Invalid redirect attempted',
-        validateState: 'Missing code or state mismatch'
-      }
+        validateState: 'Missing code or state mismatch',
+      },
     },
     logout: {
-      title: 'Sign out'
-    }
+      title: 'Sign out',
+    },
   },
   status: {
     title: 'Server status',
@@ -42,9 +42,9 @@ export const en = {
       themeColorSchemeValue: {
         automatic: 'Automatic',
         light: 'Light',
-        dark: 'Dark'
+        dark: 'Dark',
       },
-      endpoints: 'Endpoints'
+      endpoints: 'Endpoints',
     },
     publication: {
       summaryTitle: 'Puplication settings',
@@ -56,7 +56,7 @@ export const en = {
       postTypes: 'Post types',
       syndicationTargets: 'Syndication targets',
       mediaEndpoint: 'Media endpoint',
-      accessToken: 'Access token'
-    }
-  }
+      accessToken: 'Access token',
+    },
+  },
 };

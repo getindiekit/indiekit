@@ -1,11 +1,11 @@
-import express from 'express';
 import {fileURLToPath} from 'node:url';
+import express from 'express';
 import {locales} from './locales/index.js';
 import {shareController} from './lib/controllers/share.js';
 import {validate} from './lib/middleware/validation.js';
 
 const defaults = {
-  mountpath: '/share'
+  mountpath: '/share',
 };
 
 export const ShareEndpoint = class {
@@ -29,17 +29,17 @@ export const ShareEndpoint = class {
 
     indiekitConfig.addNavigation({
       href: this.mountpath,
-      text: 'share.title'
+      text: 'share.title',
     });
 
     indiekitConfig.addRoute({
       mountpath: this.mountpath,
-      routes: () => this.routes(application, publication)
+      routes: () => this.routes(application, publication),
     });
 
     indiekitConfig.addView([
       fileURLToPath(new URL('includes', import.meta.url)),
-      fileURLToPath(new URL('views', import.meta.url))
+      fileURLToPath(new URL('views', import.meta.url)),
     ]);
 
     indiekitConfig.set('application.shareEndpoint', this.mountpath);

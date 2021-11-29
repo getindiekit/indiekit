@@ -3,7 +3,7 @@ import {
   addProperties,
   deleteEntries,
   deleteProperties,
-  replaceEntries
+  replaceEntries,
 } from '../../lib/update.js';
 
 test.beforeEach(t => {
@@ -11,7 +11,7 @@ test.beforeEach(t => {
     content: 'hello world',
     published: '2019-08-17T23:56:38.977+01:00',
     category: 'foo',
-    'mp-slug': 'baz'
+    'mp-slug': 'baz',
   };
 });
 
@@ -35,7 +35,7 @@ test('Add properties to existing array', t => {
   const additions = {category: ['baz']};
 
   const result = addProperties({
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
   }, additions);
 
   t.deepEqual(result.category, ['foo', 'bar', 'baz']);
@@ -44,7 +44,7 @@ test('Add properties to existing array', t => {
 test('Deletes individual entries for properties of an object', t => {
   const properties = {
     name: 'Lunchtime',
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
   };
 
   const result = deleteEntries(properties, {category: ['foo']});
@@ -55,7 +55,7 @@ test('Deletes individual entries for properties of an object', t => {
 test('Deletes individual entries for properties of an object (removing property if last entry removed)', t => {
   const properties = {
     name: 'Lunchtime',
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
   };
 
   const result = deleteEntries(properties, {category: ['foo', 'bar']});
@@ -66,7 +66,7 @@ test('Deletes individual entries for properties of an object (removing property 
 test('Deletes individual entries for properties of an object (ignores properties that don’t exist)', t => {
   const properties = {
     name: 'Lunchtime',
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
   };
 
   const result = deleteEntries(properties, {tags: ['foo', 'bar']});
@@ -80,14 +80,14 @@ test('Throws error if requested deletion is not an array', t => {
   t.throws(() => {
     deleteEntries(properties, {category: 'foo'});
   }, {
-    message: 'category should be an array'
+    message: 'category should be an array',
   });
 });
 
 test('Deletes property', t => {
   const properties = {
     name: 'Lunchtime',
-    category: ['foo', 'bar']
+    category: ['foo', 'bar'],
   };
 
   const result = deleteProperties(properties, ['category']);
@@ -117,6 +117,6 @@ test('Throws error if requested replacement is not an array', t => {
   t.throws(() => {
     replaceEntries(properties, {name: 'Dinnertime'});
   }, {
-    message: 'Replacement value should be an array'
+    message: 'Replacement value should be an array',
   });
 });

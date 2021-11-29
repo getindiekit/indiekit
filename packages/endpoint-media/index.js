@@ -1,13 +1,13 @@
+import {fileURLToPath} from 'node:url';
 import express from 'express';
 import multer from 'multer';
-import {fileURLToPath} from 'node:url';
 import {uploadController} from './lib/controllers/upload.js';
 import {filesController} from './lib/controllers/files.js';
 import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
 
 const defaults = {
-  mountpath: '/media'
+  mountpath: '/media',
 };
 
 export const MediaEndpoint = class {
@@ -32,13 +32,13 @@ export const MediaEndpoint = class {
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
         href: `${this.mountpath}/files`,
-        text: 'media.title'
+        text: 'media.title',
       });
     }
 
     indiekitConfig.addRoute({
       mountpath: this.mountpath,
-      routes: () => this.routes(application, publication)
+      routes: () => this.routes(application, publication),
     });
 
     indiekitConfig.addView(fileURLToPath(new URL('views', import.meta.url)));
@@ -50,7 +50,7 @@ export const MediaEndpoint = class {
     const router = this._router;
     const {authenticate, indieauth} = application.middleware;
     const multipartParser = multer({
-      storage: multer.memoryStorage()
+      storage: multer.memoryStorage(),
     });
 
     router.get('/', queryController(publication));

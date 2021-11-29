@@ -23,7 +23,7 @@ export const serverConfig = indiekitConfig => {
   // Session
   config.use(cookieSession({
     name: indiekitConfig.application.name,
-    secret: uuidv4()
+    secret: uuidv4(),
   }));
 
   // Internationalisation

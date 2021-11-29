@@ -12,7 +12,7 @@ import {
   getPublishedProperty,
   getSlugProperty,
   getSyndicateToProperty,
-  normaliseProperties
+  normaliseProperties,
 } from '../../lib/jf2.js';
 
 const {isValid, parseISO} = dateFns;
@@ -23,10 +23,10 @@ test.beforeEach(t => {
       slugSeparator: '-',
       syndicationTargets: [{
         name: 'Example social network',
-        uid: 'https://social.example/'
+        uid: 'https://social.example/',
       }],
-      timeZone: 'UTC'
-    }
+      timeZone: 'UTC',
+    },
   };
 });
 
@@ -36,7 +36,7 @@ test('Creates JF2 object from form-encoded request', t => {
     content: 'I+ate+a+cheese+sandwich,+which+was+nice.',
     category: ['foo', 'bar'],
     photo: ['https://website.example'],
-    'mp-photo-alt': ['Example photo']
+    'mp-photo-alt': ['Example photo'],
   });
 
   t.deepEqual(result, {
@@ -44,7 +44,7 @@ test('Creates JF2 object from form-encoded request', t => {
     content: 'I ate a cheese sandwich, which was nice.',
     category: ['foo', 'bar'],
     photo: ['https://website.example'],
-    'mp-photo-alt': ['Example photo']
+    'mp-photo-alt': ['Example photo'],
   });
 });
 
@@ -56,9 +56,9 @@ test('Converts mf2 to JF2', t => {
       category: ['foo', 'bar'],
       photo: [{
         url: 'https://website.example',
-        alt: 'Example photo'
-      }]
-    }
+        alt: 'Example photo',
+      }],
+    },
   });
 
   t.deepEqual(result, {
@@ -67,8 +67,8 @@ test('Converts mf2 to JF2', t => {
     category: ['foo', 'bar'],
     photo: [{
       url: 'https://website.example',
-      alt: 'Example photo'
-    }]
+      alt: 'Example photo',
+    }],
   });
 });
 
@@ -78,7 +78,7 @@ test('Gets audio property (from string)', t => {
   const result = getAudioProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: 'baz.mp3'}
+    {url: 'baz.mp3'},
   ]);
 });
 
@@ -89,7 +89,7 @@ test('Gets audio property (from array)', t => {
 
   t.deepEqual(result, [
     {url: 'baz.mp3'},
-    {url: 'https://foo.bar/qux.mp3'}
+    {url: 'https://foo.bar/qux.mp3'},
   ]);
 });
 
@@ -100,7 +100,7 @@ test('Gets normalised audio property', t => {
 
   t.deepEqual(result, [
     {url: 'baz.mp3'},
-    {url: 'https://foo.bar/qux.mp3'}
+    {url: 'https://foo.bar/qux.mp3'},
   ]);
 });
 
@@ -111,7 +111,7 @@ test('Gets existing text and HTML values from `content` property', t => {
 
   t.deepEqual(result, {
     html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>',
-    text: 'I ate a cheese sandwich, which was nice.'
+    text: 'I ate a cheese sandwich, which was nice.',
   });
 });
 
@@ -122,7 +122,7 @@ test('Gets existing HTML from `content` property and adds text value', t => {
 
   t.deepEqual(result, {
     html: '<p>I ate a <i>cheese</i> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
+    text: 'I ate a *cheese* sandwich, which was nice.',
   });
 });
 
@@ -133,7 +133,7 @@ test('Gets content from `content.text` property', t => {
 
   t.deepEqual(result, {
     html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-    text: 'I ate a *cheese* sandwich, which was nice.'
+    text: 'I ate a *cheese* sandwich, which was nice.',
   });
 });
 
@@ -144,7 +144,7 @@ test('Gets content from `content` property', t => {
 
   t.deepEqual(result, {
     html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
-    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
+    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.',
   });
 });
 
@@ -156,8 +156,8 @@ test('Gets location property', t => {
   t.deepEqual(result, {
     properties: {
       latitude: '37.780080',
-      longitude: '-122.420160'
-    }
+      longitude: '-122.420160',
+    },
   });
 });
 
@@ -169,8 +169,8 @@ test('Gets location property by parsing provided Geo URI', t => {
   t.deepEqual(result, {
     properties: {
       latitude: '37.780080',
-      longitude: '-122.420160'
-    }
+      longitude: '-122.420160',
+    },
   });
 });
 
@@ -183,8 +183,8 @@ test('Gets location property, parsing Geo URI with altitude and uncertainty valu
     properties: {
       latitude: '37.780080',
       longitude: '-122.420160',
-      altitude: '1.0'
-    }
+      altitude: '1.0',
+    },
   });
 });
 
@@ -194,7 +194,7 @@ test('Gets photo property (from string)', t => {
   const result = getPhotoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: 'baz.jpg'}
+    {url: 'baz.jpg'},
   ]);
 });
 
@@ -205,7 +205,7 @@ test('Gets photo property (from array)', t => {
 
   t.deepEqual(result, [
     {url: 'baz.jpg'},
-    {url: 'https://foo.bar/qux.jpg'}
+    {url: 'https://foo.bar/qux.jpg'},
   ]);
 });
 
@@ -216,7 +216,7 @@ test('Gets normalised photo property', t => {
 
   t.deepEqual(result, [
     {url: 'baz.jpg', alt: 'Baz'},
-    {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
+    {url: 'https://foo.bar/qux.jpg', alt: 'Qux'},
   ]);
 });
 
@@ -227,7 +227,7 @@ test('Gets normalised photo property, adding provided text alternatives', t => {
 
   t.deepEqual(result, [
     {url: 'baz.jpg', alt: 'Baz'},
-    {url: 'https://foo.bar/qux.jpg', alt: 'Qux'}
+    {url: 'https://foo.bar/qux.jpg', alt: 'Qux'},
   ]);
 });
 
@@ -237,7 +237,7 @@ test('Gets video property (from string)', t => {
   const result = getVideoProperty(properties, 'https://website.example/');
 
   t.deepEqual(result, [
-    {url: 'baz.mp4'}
+    {url: 'baz.mp4'},
   ]);
 });
 
@@ -248,7 +248,7 @@ test('Gets video property (from array)', t => {
 
   t.deepEqual(result, [
     {url: 'baz.mp4'},
-    {url: 'https://foo.bar/qux.mp4'}
+    {url: 'https://foo.bar/qux.mp4'},
   ]);
 });
 
@@ -259,7 +259,7 @@ test('Gets normalised video property', t => {
 
   t.deepEqual(result, [
     {url: 'baz.mp4'},
-    {url: 'https://foo.bar/qux.mp4'}
+    {url: 'https://foo.bar/qux.mp4'},
   ]);
 });
 
@@ -339,7 +339,7 @@ test('Does not add syndication target if no syndicators', t => {
 test('Adds syndication target checked by client', t => {
   const properties = JSON.parse(getFixture('jf2/article-syndicate-to-provided.jf2'));
   const syndicationTargets = [{
-    uid: 'https://example.website/'
+    uid: 'https://example.website/',
   }];
 
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -351,7 +351,7 @@ test('Adds syndication target not checked by client but forced by server', t => 
   const properties = false;
   const syndicationTargets = [{
     uid: 'https://example.website/',
-    options: {forced: true}
+    options: {forced: true},
   }];
 
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -363,7 +363,7 @@ test('Adds syndication target checked by client and forced by server', t => {
   const properties = JSON.parse(getFixture('jf2/article-syndicate-to-provided.jf2'));
   const syndicationTargets = [{
     uid: 'https://example.website/',
-    options: {forced: true}
+    options: {forced: true},
   }];
 
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -374,10 +374,10 @@ test('Adds syndication target checked by client and forced by server', t => {
 test('Adds syndication targets, one checked by client, one forced by server', t => {
   const properties = JSON.parse(getFixture('jf2/article-syndicate-to-provided.jf2'));
   const syndicationTargets = [{
-    uid: 'https://example.website/'
+    uid: 'https://example.website/',
   }, {
     uid: 'https://another-example.website/',
-    options: {forced: true}
+    options: {forced: true},
   }];
 
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -388,7 +388,7 @@ test('Adds syndication targets, one checked by client, one forced by server', t 
 test('Doesn’t add unavilable syndication target', t => {
   const properties = false;
   const syndicationTargets = [{
-    uid: 'https://example.website/'
+    uid: 'https://example.website/',
   }];
 
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -398,10 +398,10 @@ test('Doesn’t add unavilable syndication target', t => {
 
 test('Doesn’t add unchecked syndication target', t => {
   const properties = {properties: {
-    'syndicate-to': 'https://another.example'}
+    'syndicate-to': 'https://another.example'},
   };
   const syndicationTargets = [{
-    uid: 'https://example.website/'
+    uid: 'https://example.website/',
   }];
 
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -411,7 +411,7 @@ test('Doesn’t add unchecked syndication target', t => {
 
 test('Doesn’t add unavailable syndication target', t => {
   const properties = {properties: {
-    'syndicate-to': 'https://another.example'}
+    'syndicate-to': 'https://another.example'},
   };
   const syndicationTargets = [];
 
@@ -430,7 +430,7 @@ test('Normalises JF2 (few properties)', t => {
   t.is(result['mp-slug'], 'what-i-had-for-lunch');
   t.deepEqual(result.content, {
     html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
-    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
+    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.',
   });
   t.falsy(result.audio);
   t.falsy(result.photo);
@@ -447,16 +447,16 @@ test('Normalises JF2 (all properties)', t => {
   t.is(result.name, 'What I had for lunch');
   t.deepEqual(result.content, {
     html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
-    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.'
+    text: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.',
   });
   t.deepEqual(result.audio, [
-    {url: 'https://website.example/audio.mp3'}
+    {url: 'https://website.example/audio.mp3'},
   ]);
   t.deepEqual(result.photo, [
-    {url: 'https://website.example/photo.jpg', alt: 'Alternative text'}
+    {url: 'https://website.example/photo.jpg', alt: 'Alternative text'},
   ]);
   t.deepEqual(result.video, [
-    {url: 'https://website.example/video.mp4'}
+    {url: 'https://website.example/video.mp4'},
   ]);
   t.deepEqual(result.category, ['lunch', 'food']);
   t.true(isValid(parseISO(result.published)));

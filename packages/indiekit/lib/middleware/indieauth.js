@@ -2,7 +2,7 @@ import httpError from 'http-errors';
 import {
   getBearerToken,
   requestAccessToken,
-  verifyAccessToken
+  verifyAccessToken,
 } from '../tokens.js';
 
 /**

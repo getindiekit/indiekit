@@ -8,7 +8,7 @@ import {media} from '../../lib/media.js';
 test.beforeEach(t => {
   t.context.file = {
     buffer: getFixture('file-types/photo.jpg', false),
-    originalname: 'photo.jpg'
+    originalname: 'photo.jpg',
   };
 });
 
@@ -24,8 +24,8 @@ test('Uploads a file', async t => {
     status: 201,
     json: {
       success: 'create',
-      success_description: 'Media uploaded to https://website.example/photo.jpg'
-    }
+      success_description: 'Media uploaded to https://website.example/photo.jpg',
+    },
   });
 });
 
@@ -35,6 +35,6 @@ test('Throws error uploading a file', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(media.upload(publication, mediaData, t.context.file), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });

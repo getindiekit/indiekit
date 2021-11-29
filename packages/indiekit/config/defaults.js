@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import process from 'node:process';
 import {fileURLToPath} from 'node:url';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
@@ -21,14 +22,14 @@ const application = {
     mediaEndpoint,
     micropubEndpoint,
     shareEndpoint,
-    syndicateEndpoint
+    syndicateEndpoint,
   ],
   hasDatabase: false,
   locales,
   mongodbUrl: false,
   middleware: {
     authenticate,
-    indieauth
+    indieauth,
   },
   name: 'Indiekit',
   navigationItems: [],
@@ -38,8 +39,8 @@ const application = {
   themeColorScheme: 'automatic',
   version: package_.version,
   views: [
-    fileURLToPath(new URL('../views', import.meta.url))
-  ]
+    fileURLToPath(new URL('../views', import.meta.url)),
+  ],
 };
 
 const publication = {
@@ -50,16 +51,14 @@ const publication = {
   postTypes: [],
   preset: null,
   slugSeparator: '-',
-  storeMessageTemplate: metaData => {
-    return `${metaData.action} ${metaData.postType} ${metaData.fileType}`;
-  },
+  storeMessageTemplate: metaData => `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
   syndicationTargets: [],
   timeZone: 'UTC',
-  tokenEndpoint: 'https://tokens.indieauth.com/token'
+  tokenEndpoint: 'https://tokens.indieauth.com/token',
 };
 
 const server = {
-  port: process.env.PORT || '3000'
+  port: process.env.PORT || '3000',
 };
 
 export const defaultConfig = {application, publication, server};

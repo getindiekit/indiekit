@@ -1,3 +1,4 @@
+import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {JSDOM} from 'jsdom';
@@ -8,7 +9,7 @@ test('Views previously uploaded file', async t => {
     .get('/token')
     .reply(200, {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create'
+      scope: 'create',
     });
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))

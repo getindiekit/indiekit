@@ -5,7 +5,7 @@ export const en = {
     properties: 'Properties',
     files: {
       title: 'Uploaded files',
-      none: 'No files'
-    }
-  }
+      none: 'No files',
+    },
+  },
 };

@@ -5,7 +5,7 @@ import {
   getPostTypeConfig,
   randomString,
   renderPath,
-  supplant
+  supplant,
 } from '../../lib/utils.js';
 
 test('Derives a permalink', t => {
@@ -30,7 +30,7 @@ test('Generates random alpha-numeric string, 5 characters long', t => {
 test('Renders path from URI template and properties', t => {
   const properties = {
     published: '2020-01-01',
-    'mp-slug': 'foo'
+    'mp-slug': 'foo',
   };
   const template = '{yyyy}/{MM}/{uuid}/{slug}';
 
@@ -44,7 +44,7 @@ test('Substitutes variables enclosed in { } braces with data from object', t => 
   const object = {
     array: ['Array'],
     string: 'string',
-    number: 1
+    number: 1,
   };
 
   const result = supplant(string, object);

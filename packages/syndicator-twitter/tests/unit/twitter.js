@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
@@ -9,11 +10,11 @@ test.beforeEach(t => {
   t.context = {
     apiResponse: {
       id_str: '1234567890987654321',
-      user: {screen_name: 'username'}
+      user: {screen_name: 'username'},
     },
     media: {
       url: 'https://website.example/image.jpg',
-      alt: 'Example image'
+      alt: 'Example image',
     },
     tweetUrl: 'https://twitter.com/username/status/1234567890987654321',
     statusId: '1234567890987654321',
@@ -22,11 +23,11 @@ test.beforeEach(t => {
       apiKeySecret: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789',
       accessTokenKey: 'ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789',
       accessTokenSecret: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN',
-      user: 'username'
+      user: 'username',
     },
     publication: {
-      me: process.env.TEST_PUBLICATION_URL
-    }
+      me: process.env.TEST_PUBLICATION_URL,
+    },
   };
 });
 
@@ -46,7 +47,7 @@ test('Throws error posting a like', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(twitter(t.context.options).postLike(t.context.tweetUrl), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -55,12 +56,12 @@ test('Throws API error posting a like', async t => {
     .post('/1.1/favorites/create.json')
     .reply(404, {
       errors: [{
-        message: 'Not found'
-      }]
+        message: 'Not found',
+      }],
     });
 
   await t.throwsAsync(twitter(t.context.options).postLike(t.context.tweetUrl), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -80,7 +81,7 @@ test('Throws error posting a retweet', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(twitter(t.context.options).postRetweet(t.context.tweetUrl), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -89,12 +90,12 @@ test('Throws API error posting a retweet', async t => {
     .post(`/1.1/statuses/retweet/${t.context.statusId}.json`)
     .reply(404, {
       errors: [{
-        message: 'Not found'
-      }]
+        message: 'Not found',
+      }],
     });
 
   await t.throwsAsync(twitter(t.context.options).postRetweet(t.context.tweetUrl), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -114,7 +115,7 @@ test('Throws error posting a status', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(twitter(t.context.options).postStatus(t.context.status), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -123,12 +124,12 @@ test('Throws API error posting a status', async t => {
     .post('/1.1/statuses/update.json')
     .reply(404, {
       errors: [{
-        message: 'Not found'
-      }]
+        message: 'Not found',
+      }],
     });
 
   await t.throwsAsync(twitter(t.context.options).postStatus(t.context.status), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -138,7 +139,7 @@ test('Throws error fetching media to upload', async t => {
     .replyWithError('Not found');
 
   await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media, t.context.publication), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -149,7 +150,7 @@ test('Uploads media and returns a media id', async t => {
   nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json')
     .reply(200, {
-      media_id_string: '1234567890987654321'
+      media_id_string: '1234567890987654321',
     });
   nock('https://upload.twitter.com')
     .post('/1.1/media/metadata/create.json')
@@ -168,12 +169,12 @@ test('Throws error uploading media', async t => {
     .post('/1.1/media/upload.json')
     .reply(404, {
       errors: [{
-        message: 'Not found'
-      }]
+        message: 'Not found',
+      }],
     });
 
   await t.throwsAsync(twitter(t.context.options).uploadMedia(t.context.media, t.context.publication), {
-    message: /Not found/
+    message: /Not found/,
   });
 });
 
@@ -189,7 +190,7 @@ test('Posts a like of a tweet to Twitter', async t => {
     .reply(200, t.context.apiResponse);
 
   const result = await twitter(t.context.options).post({
-    'like-of': t.context.tweetUrl
+    'like-of': t.context.tweetUrl,
   }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
@@ -197,7 +198,7 @@ test('Posts a like of a tweet to Twitter', async t => {
 
 test('Doesn’t post a like of a URL to Twitter', async t => {
   const result = await twitter(t.context.options).post({
-    'like-of': 'https://foo.bar/lunchtime'
+    'like-of': 'https://foo.bar/lunchtime',
   }, t.context.publication);
 
   t.falsy(result);
@@ -209,7 +210,7 @@ test('Posts a repost of a tweet to Twitter', async t => {
     .reply(200, t.context.apiResponse);
 
   const result = await twitter(t.context.options).post({
-    'repost-of': t.context.tweetUrl
+    'repost-of': t.context.tweetUrl,
   }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
@@ -217,7 +218,7 @@ test('Posts a repost of a tweet to Twitter', async t => {
 
 test('Doesn’t post a repost of a URL to Twitter', async t => {
   const result = await twitter(t.context.options).post({
-    'repost-of': 'https://foo.bar/lunchtime'
+    'repost-of': 'https://foo.bar/lunchtime',
   }, t.context.publication);
 
   t.falsy(result);
@@ -230,10 +231,10 @@ test('Posts a quote status to Twitter', async t => {
 
   const result = await twitter(t.context.options).post({
     content: {
-      html: '<p>Someone else who likes cheese sandwiches.</p>'
+      html: '<p>Someone else who likes cheese sandwiches.</p>',
     },
     'repost-of': t.context.tweetUrl,
-    'post-type': 'repost'
+    'post-type': 'repost',
   }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
@@ -247,9 +248,9 @@ test('Posts a status to Twitter', async t => {
   const result = await twitter(t.context.options).post({
     content: {
       html: '<p>I ate a <em>cheese</em> sandwich, which was nice.</p>',
-      text: 'I ate a cheese sandwich, which was nice.'
+      text: 'I ate a cheese sandwich, which was nice.',
     },
-    url: 'https://foo.bar/lunchtime'
+    url: 'https://foo.bar/lunchtime',
   }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');
@@ -286,15 +287,15 @@ test('Posts a status to Twitter with 4 out of 5 photos', async t => {
 
   const result = await twitter(t.context.options).post({
     content: {
-      html: '<p>Here’s the cheese sandwiches I ate.</p>'
+      html: '<p>Here’s the cheese sandwiches I ate.</p>',
     },
     photo: [
       {url: `${t.context.publication.me}image1.jpg`},
       {url: `${t.context.publication.me}image2.jpg`},
       {url: 'image3.jpg'},
       {url: 'https://website.example/image4.jpg'},
-      {url: 'https://website.example/image5.jpg'}
-    ]
+      {url: 'https://website.example/image5.jpg'},
+    ],
   }, t.context.publication);
 
   t.is(result, 'https://twitter.com/username/status/1234567890987654321');

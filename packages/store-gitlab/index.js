@@ -1,8 +1,9 @@
+import {Buffer} from 'node:buffer';
 import gitbeaker from '@gitbeaker/node';
 
 const defaults = {
   branch: 'master',
-  instance: 'https://gitlab.com'
+  instance: 'https://gitlab.com',
 };
 
 /**
@@ -21,7 +22,7 @@ export const GitlabStore = class {
     const {Gitlab} = gitbeaker;
     return new Gitlab({
       host: this.options.instance,
-      token: this.options.token
+      token: this.options.token,
     });
   }
 
@@ -42,8 +43,8 @@ export const GitlabStore = class {
       this.options.branch,
       content,
       message, {
-        encoding: 'base64'
-      }
+        encoding: 'base64',
+      },
     );
     return response;
   }
@@ -59,7 +60,7 @@ export const GitlabStore = class {
     const response = await this.client.RepositoryFiles.show(
       this._projectId,
       path,
-      this.options.branch
+      this.options.branch,
     );
     const content = Buffer.from(response.content, 'base64').toString('utf8');
     return content;
@@ -82,8 +83,8 @@ export const GitlabStore = class {
       this.options.branch,
       content,
       message, {
-        encoding: 'base64'
-      }
+        encoding: 'base64',
+      },
     );
     return response;
   }
@@ -101,7 +102,7 @@ export const GitlabStore = class {
       this._projectId,
       path,
       this.options.branch,
-      message
+      message,
     );
     return true;
   }

@@ -6,7 +6,7 @@ export const markdownToHtml = string => {
     html: true,
     breaks: true,
     linkify: true,
-    typographer: true
+    typographer: true,
   };
 
   const parser = markdownIt(options);
@@ -19,7 +19,7 @@ export const markdownToHtml = string => {
 export const htmlToMarkdown = string => {
   const options = {
     codeBlockStyle: 'fenced',
-    emDelimiter: '*'
+    emDelimiter: '*',
   };
 
   const turndownService = new TurndownService(options);

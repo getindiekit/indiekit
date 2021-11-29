@@ -20,14 +20,14 @@ test.beforeEach(t => {
                 'mp-slug': 'baz',
                 'mp-syndicate-to': 'https://archive.org/',
                 'post-type': 'note',
-                url
-              }
+                url,
+              },
             };
           }
-        }
-      }
+        },
+      },
     },
-    url: 'https://website.example/foo'
+    url: 'https://website.example/foo',
   };
 });
 
@@ -36,7 +36,7 @@ test('Creates post data', async t => {
     type: 'entry',
     published: '2020-07-26T20:10:57.062Z',
     name: 'Foo',
-    'mp-slug': 'foo'
+    'mp-slug': 'foo',
   };
 
   const result = await postData.create(t.context.publication, properties);
@@ -52,17 +52,17 @@ test('Throws error creating post data without publication configuration', async 
     type: 'entry',
     published: '2020-07-26T20:10:57.062Z',
     name: 'Foo',
-    'mp-slug': 'foo'
+    'mp-slug': 'foo',
   };
 
   await t.throwsAsync(postData.create(false, properties), {
-    message: 'No publication configuration provided'
+    message: 'No publication configuration provided',
   });
 });
 
 test('Throws error creating post data without properties', async t => {
   await t.throwsAsync(postData.create(t.context.publication, false), {
-    message: 'No properties included in request'
+    message: 'No properties included in request',
   });
 });
 
@@ -74,13 +74,13 @@ test('Reads post data', async t => {
 
 test('Throws error reading post data without publication configuration', async t => {
   await t.throwsAsync(postData.read(false, t.context.url), {
-    message: 'No publication configuration provided'
+    message: 'No publication configuration provided',
   });
 });
 
 test('Throws error reading post data without URL', async t => {
   await t.throwsAsync(postData.read(t.context.publication, false), {
-    message: 'No URL provided'
+    message: 'No URL provided',
   });
 });
 
@@ -119,12 +119,12 @@ test('Updates post by deleting properties', async t => {
 test('Updates post by adding, deleting and updating properties', async t => {
   const operation = {
     replace: {
-      content: ['updated content']
+      content: ['updated content'],
     },
     add: {
-      syndication: ['http://website.example']
+      syndication: ['http://website.example'],
     },
-    delete: ['mp-syndicate-to']
+    delete: ['mp-syndicate-to'],
   };
 
   const result = await postData.update(t.context.publication, t.context.url, operation);
@@ -138,7 +138,7 @@ test('Throws error updating post data without publication configuration', async 
   const operation = {delete: ['category']};
 
   await t.throwsAsync(postData.update(false, t.context.url, operation), {
-    message: 'No publication configuration provided'
+    message: 'No publication configuration provided',
   });
 });
 
@@ -146,13 +146,13 @@ test('Throws error updating post data without URL', async t => {
   const operation = {delete: ['category']};
 
   await t.throwsAsync(postData.update(t.context.publication, false, operation), {
-    message: 'No URL provided'
+    message: 'No URL provided',
   });
 });
 
 test('Throws error updating post data without operation', async t => {
   await t.throwsAsync(postData.update(t.context.publication, t.context.url, false), {
-    message: 'No update operation provided'
+    message: 'No update operation provided',
   });
 });
 
@@ -160,6 +160,6 @@ test('Throws error updating post data if no record available', async t => {
   const operation = {delete: ['category']};
 
   await t.throwsAsync(postData.update(t.context.publication, 'https://website.example/bar', operation), {
-    message: 'No post record available for https://website.example/bar'
+    message: 'No post record available for https://website.example/bar',
   });
 });

@@ -11,6 +11,6 @@ test('Throws error if given URL is not a string', t => {
     isUrl({url: 'https://foo.bar'});
   }, {
     instanceOf: TypeError,
-    message: 'Expected a string'
+    message: 'Expected a string',
   });
 });

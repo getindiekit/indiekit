@@ -19,7 +19,7 @@ export const syndicateController = (application, publication) => ({
       if (syndicationTargets.length === 0) {
         return response.json({
           success: 'OK',
-          success_description: 'No syndication targets have been configured'
+          success_description: 'No syndication targets have been configured',
         });
       }
 
@@ -30,14 +30,14 @@ export const syndicateController = (application, publication) => ({
       if (!postData && url) {
         return response.json({
           success: 'OK',
-          success_description: `No post record available for ${url}`
+          success_description: `No post record available for ${url}`,
         });
       }
 
       if (!postData) {
         return response.json({
           success: 'OK',
-          success_description: 'No post records available'
+          success_description: 'No post records available',
         });
       }
 
@@ -46,7 +46,7 @@ export const syndicateController = (application, publication) => ({
       if (!syndicateTo) {
         return response.json({
           success: 'OK',
-          success_description: 'No posts awaiting syndication'
+          success_description: 'No posts awaiting syndication',
         });
       }
 
@@ -64,16 +64,16 @@ export const syndicateController = (application, publication) => ({
       const updated = await got.post(micropubEndpoint, {
         responseType: 'json',
         headers: {
-          authorization: `Bearer ${request.query.token}`
+          authorization: `Bearer ${request.query.token}`,
         },
         json: {
           action: 'update',
           url: postData.properties.url,
           delete: ['mp-syndicate-to'],
           add: {
-            syndication
-          }
-        }
+            syndication,
+          },
+        },
       });
 
       if (updated) {
@@ -87,5 +87,5 @@ export const syndicateController = (application, publication) => ({
         next(httpError(error));
       }
     }
-  }
+  },
 });

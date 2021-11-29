@@ -1,8 +1,9 @@
+import {Buffer} from 'node:buffer';
 import got from 'got';
 
 const defaults = {
   branch: 'master',
-  instance: 'https://gitea.com'
+  instance: 'https://gitea.com',
 };
 
 /**
@@ -19,10 +20,10 @@ export const GiteaStore = class {
   get client() {
     return got.extend({
       headers: {
-        authorization: `token ${this.options.token}`
+        authorization: `token ${this.options.token}`,
       },
       prefixUrl: `${this.options.instance}/api/v1/repos/${this.options.user}/${this.options.repo}/contents`,
-      responseType: 'json'
+      responseType: 'json',
     });
   }
 
@@ -41,8 +42,8 @@ export const GiteaStore = class {
       json: {
         branch: this.options.branch,
         content,
-        message
-      }
+        message,
+      },
     });
     return response;
   }
@@ -78,8 +79,8 @@ export const GiteaStore = class {
         branch: this.options.branch,
         content,
         message,
-        sha: body.sha
-      }
+        sha: body.sha,
+      },
     });
     return response;
   }
@@ -99,8 +100,8 @@ export const GiteaStore = class {
       json: {
         branch: this.options.branch,
         message,
-        sha: body.sha
-      }
+        sha: body.sha,
+      },
     });
     return response;
   }

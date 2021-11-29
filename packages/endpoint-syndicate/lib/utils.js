@@ -25,7 +25,7 @@ export const getPostData = async (publication, url) => {
   if (url) {
     // Get item in database which matching URL
     postData = await posts.findOne({
-      'properties.url': url
+      'properties.url': url,
     });
   } else {
     // Get items in database and return first item

@@ -20,14 +20,14 @@ test.serial('Creates a post', async t => {
     status: 202,
     json: {
       success: 'create_pending',
-      success_description: 'Post will be created at https://website.example/foo'
-    }
+      success_description: 'Post will be created at https://website.example/foo',
+    },
   });
 });
 
 test('Throws error creating a post', async t => {
   await t.throwsAsync(post.create(false, postData), {
-    message: 'postTemplate is not a function'
+    message: 'postTemplate is not a function',
   });
 });
 
@@ -43,14 +43,14 @@ test.serial('Updates a post', async t => {
     status: 200,
     json: {
       success: 'update',
-      success_description: 'Post updated at https://website.example/foo'
-    }
+      success_description: 'Post updated at https://website.example/foo',
+    },
   });
 });
 
 test('Throws error updating a post', async t => {
   await t.throwsAsync(post.update(false, postData, t.context.url), {
-    message: 'postTemplate is not a function'
+    message: 'postTemplate is not a function',
   });
 });
 
@@ -67,14 +67,14 @@ test.serial('Deletes a post', async t => {
     status: 200,
     json: {
       success: 'delete',
-      success_description: 'Post deleted from https://website.example/foo'
-    }
+      success_description: 'Post deleted from https://website.example/foo',
+    },
   });
 });
 
 test('Throws error deleting a post', async t => {
   await t.throwsAsync(post.delete(false, postData), {
-    message: 'storeMessageTemplate is not a function'
+    message: 'storeMessageTemplate is not a function',
   });
 });
 
@@ -98,8 +98,8 @@ test.serial('Undeletes a post', async t => {
     status: 200,
     json: {
       success: 'delete_undelete',
-      success_description: 'Post undeleted from https://website.example/foo'
-    }
+      success_description: 'Post undeleted from https://website.example/foo',
+    },
   });
 });
 
@@ -117,12 +117,12 @@ test('Throws error undeleting a post', async t => {
   await post.delete(publication, postData);
 
   await t.throwsAsync(post.undelete(publication, postData), {
-    message: /\bNot found\b/
+    message: /\bNot found\b/,
   });
 });
 
 test('Throws error undeleting a post (no post previously deleted)', async t => {
   await t.throwsAsync(post.undelete(publication, false), {
-    message: 'Post was not previously deleted'
+    message: 'Post was not previously deleted',
   });
 });

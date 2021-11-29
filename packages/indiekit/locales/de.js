@@ -4,16 +4,16 @@ export const de = {
   noValue: 'Nicht vorgesehen',
   optionalValue: '(optional)',
   guidance: {
-    discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen'
+    discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen',
   },
   errors: {
     notFound: {
       title: 'Seite nicht gefunden',
-      content: 'Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie, ob diese korrekt ist.'
+      content: 'Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie, ob diese korrekt ist.',
     },
     noDatabase: {
-      content: 'Diese Funktion erfordert eine Datenbank.'
-    }
+      content: 'Diese Funktion erfordert eine Datenbank.',
+    },
   },
   session: {
     login: {
@@ -23,12 +23,12 @@ export const de = {
       submit: 'Einloggen mit IndieAuth',
       error: {
         validateRedirect: 'Ungültige Weiterleitung versucht',
-        validateState: 'Fehlender Code oder Zustandsinkongruenz'
-      }
+        validateState: 'Fehlender Code oder Zustandsinkongruenz',
+      },
     },
     logout: {
-      title: 'Ausloggen'
-    }
+      title: 'Ausloggen',
+    },
   },
   status: {
     title: 'Serverstatus',
@@ -41,9 +41,9 @@ export const de = {
       themeColorSchemeValue: {
         automatic: 'Automatisch',
         light: 'Licht',
-        dark: 'Dunkel'
+        dark: 'Dunkel',
       },
-      endpoints: 'Endpunkte'
+      endpoints: 'Endpunkte',
     },
     publication: {
       summaryTitle: 'Veröffentlichungseinstellungen',
@@ -55,7 +55,7 @@ export const de = {
       postTypes: 'Beitragstypen',
       syndicationTargets: 'Syndikationsziele',
       mediaEndpoint: 'Medienendpunkt',
-      accessToken: 'Zugangstoken'
-    }
-  }
+      accessToken: 'Zugangstoken',
+    },
+  },
 };

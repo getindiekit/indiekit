@@ -7,5 +7,5 @@ export const reservedProperties = Object.freeze([
   'access_token',
   'h',
   'action',
-  'url'
+  'url',
 ]);
