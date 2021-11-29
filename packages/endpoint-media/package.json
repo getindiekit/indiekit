@@ -37,7 +37,7 @@
     "date-fns": "^2.23.0",
     "date-fns-tz": "^1.1.6",
     "express": "^4.17.1",
-    "file-type": "^16.5.3",
+    "file-type": "^17.0.0",
     "got": "^11.8.2",
     "http-errors": "^1.8.0",
     "mongodb": "^4.1.1",

@@ -1,4 +1,4 @@
-import FileType from 'file-type';
+import {fileTypeFromBuffer} from 'file-type';
 import {getDate} from './date.js';
 import {randomString} from './utils.js';
 
@@ -21,7 +21,7 @@ export const getFileProperties = async (publication, file) => {
   const {timeZone} = publication;
 
   const basename = randomString();
-  const {ext, mime} = await FileType.fromBuffer(file.buffer);
+  const {ext, mime} = await fileTypeFromBuffer(file.buffer);
   const published = getPublishedProperty(timeZone);
 
   return {
@@ -42,7 +42,7 @@ export const getFileProperties = async (publication, file) => {
  * @example getMediaType('brighton-pier.jpg') => 'photo'
  */
 export const getMediaType = async file => {
-  const {mime} = await FileType.fromBuffer(file.buffer);
+  const {mime} = await fileTypeFromBuffer(file.buffer);
 
   if (mime.includes('audio/')) {
     return 'audio';
