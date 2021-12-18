@@ -44,7 +44,7 @@
     "debug": "^4.3.2",
     "express": "^4.17.1",
     "got": "^11.8.2",
-    "http-errors": "^1.8.0",
+    "http-errors": "^2.0.0",
     "i18n": "^0.13.3",
     "indieauth-helper": "^1.0.2",
     "lodash": "^4.17.21",
