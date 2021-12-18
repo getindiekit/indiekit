@@ -12,15 +12,17 @@ Micropub endpoint for Indiekit.
 const MicropubEndpoint = require('@indiekit/endpoint-micropub');
 
 const micropubEndpoint = new MicropubEndpoint({
-  // config options here
+  // Options
 });
 ```
 
-### Options
+## Options
 
-* `mountpath`: Path to listen to Micropub requests. *Optional*, defaults to `/micropub`.
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `mountpath` | `string` | Path to listen to Micropub requests. *Optional*, defaults to `/micropub` |
 
-### Supported endpoint queries
+## Supported endpoint queries
 
 * Configuration: `/micropub?q=config`
 * Media endpoint location: `/micropub?q=media-endpoint`
