@@ -14,9 +14,7 @@ module.exports = (() => {
   const parser = markdownIt(options);
   parser
     .use(markdownItAnchor, {
-      permalink: true,
-      permalinkSpace: false,
-      permalinkSymbol: '#',
+      permalink: markdownItAnchor.permalink.headerLink(),
     })
     .use(markdownItDeflist)
     .use(markdownItPrism);

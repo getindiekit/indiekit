@@ -23,26 +23,12 @@
   vertical-align: text-bottom;
 }
 
-.s-linear code,
-.s-linear samp {
-  border-radius: var(--border-radius-small);
-}
-
-.s-linear code {
-  background-color: var(--color-shadow-offset);
-  padding: var(--text-spacing);
-}
-
-.s-linear code.property {
-  background: none;
-  font-size: 67%;
-  padding: 0;
-}
-
 .s-linear h2:not([class]) {
   @extend %heading;
 
-  margin-block-start: calc(var(--flow-space) * 2);
+  box-shadow: none;
+  margin-block-start: calc(var(--flow-space) * 1.5);
+  outline: 0;
 }
 
 .s-linear h2:not([class]) + * {
@@ -52,8 +38,17 @@
 .s-linear h3:not([class]) {
   @extend %subhead;
 
+  box-shadow: none;
   color: var(--color-neutral-dark);
   margin-block-start: calc(var(--flow-space) * 1.5);
+  outline: 0;
+}
+
+.s-linear hr:not([class]) {
+  margin: calc(var(--flow-space) * 1.5) 0;
+  border-block-start: 1px solid var(--color-neutral-light);
+  inline-size: 100%;
+  max-inline-size: 100%;
 }
 
 .s-linear blockquote {
@@ -75,7 +70,23 @@
   padding: 0;
 }
 
-.s-linear table {
+.s-linear code,
+.s-linear samp {
+  border-radius: var(--border-radius-small);
+}
+
+.s-linear code {
+  background-color: var(--color-shadow-offset);
+  padding: var(--text-spacing);
+}
+
+.s-linear code.property {
+  background: none;
+  font-size: 67%;
+  padding: 0;
+}
+
+.s-linear table:not([class]) {
   font-size: var(--step--1);
   inline-size: 100%;
   max-inline-size: 100%;
@@ -88,7 +99,6 @@
 .s-linear td,
 .s-linear th {
   padding: var(--inset-small-squished);
-  white-space: nowrap;
 }
 
 .s-linear ol,
@@ -111,30 +121,40 @@
 }
 
 .s-linear .header-anchor {
-  color: var(--color-neutral);
-  font-style: italic;
-  font-weight: normal;
-  margin-inline-start: 0.25em;
+  color: var(--color-text);
   text-decoration: none;
-  visibility: hidden;
 }
 
-.s-linear .header-anchor:hover {
-  color: var(--color-anchor-hover, inherit);
-  text-decoration-color: currentColor;
+.s-linear .header-anchor:visited {
+  color: var(--color-text);
 }
 
-.s-linear h2:hover .header-anchor,
-.s-linear h3:hover .header-anchor,
-.s-linear h4:hover .header-anchor {
-  visibility: visible;
+.s-linear .header-anchor:hover::after,
+.s-linear .header-anchor:focus::after {
+  color: var(--color-accent);
+  content: "#";
+  font-weight: 500;
+  margin-left: 0.5ch;
+}
+
+.s-linear .header-anchor:focus::before {
+  color: var(--color-text);
 }
 
 .s-linear .language-bash {
   background-color: var(--color-neutral-darkest);
   color: var(--color-neutral-lightest);
-  font-size: 85%;
-  line-height: var(--line-height-tight);
+}
+
+.s-linear .language-bash:last-of-type:before,
+.s-linear .language-bash br + .token::before {
+  color: #c9f;
+  content: '$ ';
+}
+
+.s-linear .language-bash .token {
+  color: var(--color-neutral-lightest);
+  font-weight: normal;
 }
 
 .s-linear .no-bullets {

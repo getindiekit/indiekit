@@ -43,12 +43,14 @@
   --color-shadow-offset: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 6%);
   --color-text: var(--color-neutral-darkest);
   --color-anchor-hover: var(--color-accent-dark);
-  --color-delete: hsl(0 100% 80% / 75%);
-  --color-insert: hsl(120 100% 80% / 75%);
   --color-highlight: hsl(48 100% 50% / 33%);
   --color-focus: hsl(48 100% 50%);
   --color-error: hsl(0 100% 60%);
   --color-success: hsl(144 100% 50%);
+  --color-background-delete: hsl(0 100% 80% / 40%);
+  --color-delete: hsl(0 100% 20%);
+  --color-background-insert: hsl(120 100% 80% / 50%);
+  --color-insert: hsl(120 100% 15%);
 
   /* Typography */
   --font-family-system: system-ui, -apple-system, sans-serif;
