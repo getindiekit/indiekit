@@ -40,7 +40,7 @@
     "@indiekit/endpoint-syndicate": "^0.1.4",
     "@indiekit/frontend": "^0.1.4",
     "@indiekit/preset-jekyll": "^0.1.2",
-    "cookie-session": "^1.4.0",
+    "cookie-session": "^2.0.0",
     "debug": "^4.3.2",
     "express": "^4.17.1",
     "got": "^11.8.2",
