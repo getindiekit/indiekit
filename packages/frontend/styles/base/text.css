@@ -13,6 +13,7 @@ a {
 a:hover {
   color: var(--color-anchor-hover, inherit);
   text-decoration-color: currentColor;
+  text-decoration-thickness: 0.1em;
 }
 
 /* Reset font size for smallprint/legal text */
@@ -52,11 +53,13 @@ var {
 }
 
 del {
-  background-color: var(--color-delete);
+  color: var(--color-delete);
+  background-color: var(--color-background-delete);
 }
 
 ins {
-  background-color: var(--color-insert);
+  color: var(--color-insert);
+  background-color: var(--color-background-insert);
   text-decoration: none;
 }
 
