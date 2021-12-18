@@ -12,43 +12,16 @@ Store IndieWeb content on Gitea.
 const GiteaStore = require('@indiekit/store-gitea');
 
 const gitea = new GiteaStore({
-  // config options here
+  // Options
 });
 ```
 
 ## Options
 
-### `branch`
-
-The branch files will be saved to.
-
-Type: `string`\
-*Optional*, defaults to `master`
-
-### `instance`
-
-Gitea instance URL.
-
-Type: `string`\
-*Optional*, defaults to `https://gitea.com`
-
-### `repo`
-
-The name of your Gitea repository.
-
-Type: `string`\
-*Required*
-
-### `token`
-
-A Gitea access token.
-
-Type: `string`\
-*Required*
-
-### `user`
-
-Your Gitea username.
-
-Type: `string`\
-*Required*
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `instance` | `string` | Gitea instance URL. *Optional*, defaults to `https://gitea.com` |
+| `user` | `string` | Your Gitea username. *Required* |
+| `repo` | `string` | The name of your Gitea repository. *Required* |
+| `token` | `string` | A Gitea access token. *Required* |

@@ -12,10 +12,12 @@ Syndication endpoint for Indiekit.
 const SyndicateEndpoint = require('@indiekit/endpoint-syndicate');
 
 const syndicateEndpoint = new SyndicateEndpoint({
-  // config options here
+  // Options
 });
 ```
 
-### Options
+## Options
 
-* `mountpath`: Path to share screen. *Optional*, defaults to `/syndicate`.
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `mountpath` | `string` | Path to syndication endpoint. *Optional*, defaults to `/syndicate` |

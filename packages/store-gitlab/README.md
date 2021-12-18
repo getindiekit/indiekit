@@ -12,50 +12,17 @@ Store IndieWeb content on GitLab.
 const GitlabStore = require('@indiekit/store-gitlab');
 
 const gitlab = new GitlabStore({
-  // config options here
+  // Options
 });
 ```
 
 ## Options
 
-### `branch`
-
-The branch files will be saved to.
-
-Type: `string`\
-*Optional*, defaults to `master`
-
-### `host`
-
-GitLab instance URL.
-
-Type: `string`\
-*Optional*, defaults to `https://gitlab.com`
-
-### `projectId`
-
-GitLab project ID.
-
-Type: `string`\
-*Required (if `user` and `repo` not provided)*
-
-### `repo`
-
-The name of your GitLab repository.
-
-Type: `string`\
-*Required (if `projectId` not provided)*
-
-### `token`
-
-A GitLab access token.
-
-Type: `string`\
-*Required*
-
-### `user`
-
-Your GitLab username.
-
-Type: `string`\
-*Required (if `projectId` not provided)*
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `host` | `string` | GitLab instance URL. *Optional*, defaults to `https://gitlab.com` |
+| `projectId` | `string` | GitLab project ID. *Required (if `user` and `repo` not provided)* |
+| `user` | `string` | Your GitLab username. *Required (if `projectId` not provided)* |
+| `repo` | `string` | The name of your GitLab repository. *Required (if `projectId` not provided)* |
+| `token` | `string` | A GitLab access token. *Required* |

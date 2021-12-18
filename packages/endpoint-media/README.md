@@ -12,15 +12,17 @@ Micropub media endpoint for Indiekit.
 const MediaEndpoint = require('@indiekit/endpoint-media');
 
 const mediaEndpoint = new MediaEndpoint({
-  // config options here
+  // Options
 });
 ```
 
-### Options
+## Options
 
-* `mountpath`: Path to listen to media upload requests. *Optional*, defaults to `/media`.
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `mountpath` | `string` | Path to listen to media upload requests. *Optional*, defaults to `/media` |
 
-### Supported endpoint queries
+## Supported endpoint queries
 
 * Previously published media: `/media?q=source`
 

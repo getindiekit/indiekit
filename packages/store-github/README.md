@@ -12,36 +12,17 @@ Store IndieWeb content on GitHub.
 const GithubStore = require('@indiekit/store-github');
 
 const github = new GithubStore({
-  // config options here
+  // Options
 });
 ```
 
 ## Options
 
-### `branch`
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `user` | `string` | Your GitHub username. *Required* |
+| `repo` | `string` | The name of your GitHub repository. *Required* |
+| `token` | `string` | [A GitHub personal access token][pat]. *Required* |
 
-The branch files will be saved to.
-
-Type: `string`\
-*Optional*, defaults to `master`
-
-### `repo`
-
-The name of your GitHub repository.
-
-Type: `string`\
-*Required*
-
-### `token`
-
-A GitHub access token.
-
-Type: `string`\
-*Required*
-
-### `user`
-
-Your GitHub username.
-
-Type: `string`\
-*Required*
+[pat]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token

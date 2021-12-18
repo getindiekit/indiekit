@@ -12,36 +12,15 @@ Store IndieWeb content on Bitbucket.
 const BitbucketStore = require('@indiekit/store-bitbucket');
 
 const bitbucket = new BitbucketStore({
-  // config options here
+  // Options
 });
 ```
 
 ## Options
 
-### `branch`
-
-The branch files will be saved to.
-
-Type: `string`\
-*Optional*, defaults to `master`
-
-### `password`
-
-A Bitbucket [app password](https://bitbucket.org/account/settings/app-passwords/).
-
-Type: `string`\
-*Required*
-
-### `repo`
-
-The name of your Bitbucket repository.
-
-Type: `string`\
-*Required*
-
-### `user`
-
-Your Bitbucket username.
-
-Type: `string`\
-*Required*
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `user` | `string` | Your Bitbucket username. *Required* |
+| `repo` | `string` | The name of your Bitbucket repository. *Required* |
+| `password` | `string` | A Bitbucket [app password](https://bitbucket.org/account/settings/app-passwords/). |
