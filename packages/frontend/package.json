@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "16.x"
+    "node": ">=16.0.0"
   },
   "type": "commonjs",
   "main": "index.js",
