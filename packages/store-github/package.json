@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-github",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Store IndieWeb content on GitHub",
   "keywords": [
     "indiekit",

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/getindiekit/indiekit/compare/v0.1.4...v0.2.0) (2021-12-19)
+
+
+### Bug Fixes
+
+* **frontend:** tweak styles for documentation site ([59f65bc](https://github.com/getindiekit/indiekit/commit/59f65bc499fd48a8d23add34c32cd7880d36cd9b))
+* **micropub:** return list of categories ([305588d](https://github.com/getindiekit/indiekit/commit/305588d47e46a54714832d002502d7fa501271a5))
+
+
+### Features
+
+* default to ‘main’ for git store branch name ([9d6d8ef](https://github.com/getindiekit/indiekit/commit/9d6d8efd9366e19685da6e8526e36f6af3fe6678))
+* **store-ftp:** add ftp content store. fixes [#278](https://github.com/getindiekit/indiekit/issues/278) ([fa7267f](https://github.com/getindiekit/indiekit/commit/fa7267f5a988581b373d8ecf2ca2551f7f4187cd))
+
+
+
+
+
 ## [0.1.4](https://github.com/getindiekit/indiekit/compare/v0.1.3...v0.1.4) (2021-08-01)
 
 
