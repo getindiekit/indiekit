@@ -19,12 +19,14 @@ test('Returns queryable config', t => {
     user: 'username',
   });
   const publication = {
+    categories: ['foo', 'bar'],
     postTypes: new JekyllPreset().postTypes,
     syndicationTargets: [twitter],
   };
 
   const result = getConfig(application, publication);
 
+  t.deepEqual(result.categories, ['foo', 'bar']);
   t.falsy(result['post-types'][0].path);
   t.true(result['syndicate-to'][0].checked);
   t.is(result['syndicate-to'][0].service.name, 'Twitter');
