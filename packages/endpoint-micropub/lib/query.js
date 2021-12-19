@@ -9,6 +9,7 @@ export const getConfig = (application, publication) => {
   const {url} = application;
 
   const {
+    categories,
     mediaEndpoint,
     postTypes,
     syndicationTargets,
@@ -33,6 +34,7 @@ export const getConfig = (application, publication) => {
   }
 
   return {
+    categories,
     'media-endpoint': mediaEndpoint,
     'post-types': postTypes.map(postType => ({
       type: postType.type,
