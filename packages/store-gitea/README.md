@@ -20,7 +20,7 @@ const gitea = new GiteaStore({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main` |
 | `instance` | `string` | Gitea instance URL. *Optional*, defaults to `https://gitea.com` |
 | `user` | `string` | Your Gitea username. *Required* |
 | `repo` | `string` | The name of your Gitea repository. *Required* |

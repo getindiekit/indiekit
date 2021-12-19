@@ -24,11 +24,11 @@ test.beforeEach(t => {
     },
     postResponse: {
       path: 'foo.txt',
-      branch: 'master',
+      branch: 'main',
     },
     putResponse: {
       path: 'foo.txt',
-      branch: 'master',
+      branch: 'main',
     },
     deleteResponse: {
       commit: {
@@ -48,7 +48,7 @@ test('Creates file in a repository', async t => {
   const result = await t.context.gitea.createFile('foo.txt', 'foo', 'Message');
 
   t.is(result.body.path, 'foo.txt');
-  t.is(result.body.branch, 'master');
+  t.is(result.body.branch, 'main');
 });
 
 test('Creates file in a repository at custom instance', async t => {
@@ -60,7 +60,7 @@ test('Creates file in a repository at custom instance', async t => {
   const result = await t.context.giteaInstance.createFile('foo.txt', 'foo', 'Message');
 
   t.is(result.body.path, 'foo.txt');
-  t.is(result.body.branch, 'master');
+  t.is(result.body.branch, 'main');
 });
 
 test('Throws error creating file in a repository', async t => {
@@ -103,7 +103,7 @@ test('Updates file in a repository', async t => {
   const result = await t.context.gitea.updateFile('foo.txt', 'foo', 'Message');
 
   t.is(result.body.path, 'foo.txt');
-  t.is(result.body.branch, 'master');
+  t.is(result.body.branch, 'main');
 });
 
 test('Throws error updating file in a repository', async t => {

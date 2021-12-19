@@ -2,7 +2,7 @@ import {Buffer} from 'node:buffer';
 import gitbeaker from '@gitbeaker/node';
 
 const defaults = {
-  branch: 'master',
+  branch: 'main',
   instance: 'https://gitlab.com',
 };
 

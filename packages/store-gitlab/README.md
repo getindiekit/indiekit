@@ -20,7 +20,7 @@ const gitlab = new GitlabStore({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main` |
 | `host` | `string` | GitLab instance URL. *Optional*, defaults to `https://gitlab.com` |
 | `projectId` | `string` | GitLab project ID. *Required (if `user` and `repo` not provided)* |
 | `user` | `string` | Your GitLab username. *Required (if `projectId` not provided)* |

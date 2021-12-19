@@ -37,7 +37,7 @@ test('Throws error creating file in a repository', async t => {
 
 test('Reads file in a repository', async t => {
   nock(t.context.bitbucketUrl)
-    .get('/2.0/repositories/username/repo/src/master/foo.txt')
+    .get('/2.0/repositories/username/repo/src/main/foo.txt')
     .query({format: 'rendered'})
     .reply(201, {raw: 'foo', type: 'rendered'});
 
@@ -48,7 +48,7 @@ test('Reads file in a repository', async t => {
 
 test('Throws error reading file in a repository', async t => {
   nock(t.context.bitbucketUrl)
-    .get('/2.0/repositories/username/repo/src/master/foo.txt')
+    .get('/2.0/repositories/username/repo/src/main/foo.txt')
     .query({format: 'rendered'})
     .replyWithError('Not found');
 

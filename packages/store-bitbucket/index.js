@@ -1,7 +1,7 @@
 import bitbucket from 'bitbucket';
 
 const defaults = {
-  branch: 'master',
+  branch: 'main',
 };
 
 /**

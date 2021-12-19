@@ -20,7 +20,7 @@ const github = new GithubStore({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `master` |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main` |
 | `user` | `string` | Your GitHub username. *Required* |
 | `repo` | `string` | The name of your GitHub repository. *Required* |
 | `token` | `string` | [A GitHub personal access token][pat]. *Required* |

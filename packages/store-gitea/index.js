@@ -2,7 +2,7 @@ import {Buffer} from 'node:buffer';
 import got from 'got';
 
 const defaults = {
-  branch: 'master',
+  branch: 'main',
   instance: 'https://gitea.com',
 };
 

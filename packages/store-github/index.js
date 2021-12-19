@@ -2,7 +2,7 @@ import {Buffer} from 'node:buffer';
 import octokit from '@octokit/rest';
 
 const defaults = {
-  branch: 'master',
+  branch: 'main',
 };
 
 /**

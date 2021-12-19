@@ -25,11 +25,11 @@ test.beforeEach(t => {
     },
     postResponse: {
       file_path: 'foo.txt', // eslint-disable-line camelcase
-      branch: 'master',
+      branch: 'main',
     },
     putResponse: {
       file_path: 'foo.txt', // eslint-disable-line camelcase
-      branch: 'master',
+      branch: 'main',
     },
   };
 });
@@ -42,7 +42,7 @@ test('Creates file in a repository', async t => {
   const result = await gitlab.createFile('foo.txt', 'foo', 'Message');
 
   t.is(result.file_path, 'foo.txt');
-  t.is(result.branch, 'master');
+  t.is(result.branch, 'main');
 });
 
 test('Creates file in a repository at custom instance', async t => {
@@ -54,7 +54,7 @@ test('Creates file in a repository at custom instance', async t => {
   const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
 
   t.is(result.file_path, 'foo.txt');
-  t.is(result.branch, 'master');
+  t.is(result.branch, 'main');
 });
 
 test('Creates file in a repository with projectId', async t => {
@@ -69,7 +69,7 @@ test('Creates file in a repository with projectId', async t => {
   const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
 
   t.is(result.file_path, 'foo.txt');
-  t.is(result.branch, 'master');
+  t.is(result.branch, 'main');
 });
 
 test('Throws error creating file in a repository', async t => {
@@ -110,7 +110,7 @@ test('Updates file in a repository', async t => {
   const result = await gitlab.updateFile('foo.txt', 'foo', 'Message');
 
   t.is(result.file_path, 'foo.txt');
-  t.is(result.branch, 'master');
+  t.is(result.branch, 'main');
 });
 
 test('Throws error updating file in a repository', async t => {
