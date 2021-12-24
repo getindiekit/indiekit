@@ -1,4 +1,3 @@
-import fs from 'node:fs';
 import process from 'node:process';
 import {fileURLToPath} from 'node:url';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
@@ -8,9 +7,6 @@ import {SyndicateEndpoint} from '@indiekit/endpoint-syndicate';
 import {authenticate} from '../lib/middleware/authentication.js';
 import {indieauth} from '../lib/middleware/indieauth.js';
 import {locales} from '../locales/index.js';
-
-const packagePath = fileURLToPath(new URL('../package.json', import.meta.url));
-const package_ = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 
 const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
@@ -33,11 +29,11 @@ const application = {
   },
   name: 'Indiekit',
   navigationItems: [],
-  repository: package_.repository,
+  repository: process.env.npm_package_repository,
   routes: [],
   themeColor: '#0055ee',
   themeColorScheme: 'automatic',
-  version: package_.version,
+  version: process.env.npm_package_version,
   views: [
     fileURLToPath(new URL('../views', import.meta.url)),
   ],
