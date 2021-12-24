@@ -1,0 +1,53 @@
+{
+  "name": "create-indiekit",
+  "version": "0.3.0",
+  "description": "Get started with Indiekit",
+  "keywords": [
+    "express",
+    "indieweb",
+    "micropub"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 16"
+  },
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "create-indiekit": "bin/create.js"
+  },
+  "files": [
+    "bin",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/create-indiekit"
+  },
+  "dependencies": {
+    "@indiekit/preset-hugo": "*",
+    "@indiekit/preset-jekyll": "*",
+    "@indiekit/store-bitbucket": "*",
+    "@indiekit/store-ftp": "*",
+    "@indiekit/store-gitea": "*",
+    "@indiekit/store-github": "*",
+    "@indiekit/store-gitlab": "*",
+    "@indiekit/syndicator-internet-archive": "*",
+    "@indiekit/syndicator-twitter": "*",
+    "base-create": "^3.0.7",
+    "chalk": "^5.0.0",
+    "prompts": "^2.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

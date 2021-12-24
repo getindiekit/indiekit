@@ -40,6 +40,16 @@ export const TwitterSyndicator = class {
     };
   }
 
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "user",
+        message: "What is your Twitter username?",
+      },
+    ];
+  }
+
   get uid() {
     return this.info.uid;
   }

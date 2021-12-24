@@ -12,7 +12,6 @@ export const MastodonSyndicator = class {
   constructor(options = {}) {
     this.id = "mastodon";
     this.name = "Mastodon syndicator";
-    this.user = `@${options.user.replace("@", "")}`;
     this.options = { ...defaults, ...options };
   }
 
@@ -29,8 +28,9 @@ export const MastodonSyndicator = class {
   }
 
   get info() {
-    const { checked } = this.options;
-    const { url, user } = this;
+    let { checked, user } = this.options;
+    user = `@${user.replace("@", "")}`;
+    const { url } = this;
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
 
     return {
@@ -47,6 +47,22 @@ export const MastodonSyndicator = class {
         url: uid,
       },
     };
+  }
+
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "url",
+        message: "What is the URL of your Mastodon server?",
+        description: "i.e. https://mastodon.social",
+      },
+      {
+        type: "text",
+        name: "user",
+        message: "What is your Mastodon username (without the @)?",
+      },
+    ];
   }
 
   get uid() {

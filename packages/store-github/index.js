@@ -27,6 +27,27 @@ export const GithubStore = class {
     };
   }
 
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "user",
+        message: "What is your GitHub username?",
+      },
+      {
+        type: "text",
+        name: "repo",
+        message: "Which repository is your publication stored on?",
+      },
+      {
+        type: "text",
+        name: "branch",
+        message: "Which branch are you publishing from?",
+        initial: defaults.branch,
+      },
+    ];
+  }
+
   get client() {
     const { Octokit } = octokit;
     return new Octokit({

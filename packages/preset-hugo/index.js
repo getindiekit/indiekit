@@ -19,6 +19,31 @@ export const HugoPreset = class {
     };
   }
 
+  get prompts() {
+    return [
+      {
+        type: "select",
+        name: "frontMatterFormat",
+        message: "Which front matter format are you using?",
+        choices: [
+          {
+            title: "JSON",
+            value: "json",
+          },
+          {
+            title: "TOML",
+            value: "toml",
+          },
+          {
+            title: "YAML",
+            value: "yaml",
+          },
+        ],
+        initial: 2,
+      },
+    ];
+  }
+
   /**
    * Get front matter
    *
