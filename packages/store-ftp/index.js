@@ -31,6 +31,27 @@ export const FtpStore = class {
     };
   }
 
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "host",
+        message: "Where is your FTP server hosted?",
+        description: "i.e. ftp.server.example",
+      },
+      {
+        type: "text",
+        name: "user",
+        message: "What is your FTP username?",
+      },
+      {
+        type: "text",
+        name: "directory",
+        message: "Which directory do you want to save files in?",
+      },
+    ];
+  }
+
   async client() {
     const { host, user, password, port, verbose } = this.options;
     const client = new ftp.Client();

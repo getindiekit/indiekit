@@ -29,6 +29,34 @@ export const GitlabStore = class {
     };
   }
 
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "instance",
+        message: "Where is GitLab hosted?",
+        description: "i.e. https://gitlab.com",
+        initial: defaults.instance,
+      },
+      {
+        type: "text",
+        name: "user",
+        message: "What is your GitLab username?",
+      },
+      {
+        type: "text",
+        name: "repo",
+        message: "Which repository is your publication stored on?",
+      },
+      {
+        type: "text",
+        name: "branch",
+        message: "Which branch are you publishing from?",
+        initial: defaults.branch,
+      },
+    ];
+  }
+
   get client() {
     const { Gitlab } = gitbeaker;
     return new Gitlab({

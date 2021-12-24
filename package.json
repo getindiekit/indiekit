@@ -13,7 +13,9 @@
     "url": "https://paulrobertlloyd.com"
   },
   "license": "MIT",
-  "bugs": "https://github.com/getindiekit/indiekit/issues",
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/getindiekit/indiekit.git"
@@ -55,6 +57,7 @@
     "ava": "^4.0.0",
     "c8": "^7.8.0",
     "cookie-session": "^2.0.0",
+    "create-indiekit": "*",
     "eslint-plugin-jsdoc": "^39.0.0",
     "jsdom": "^19.0.0",
     "mock-req-res": "^1.2.0",
