@@ -18,9 +18,9 @@ export const SyndicateEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit;
+    const {application, publication} = Indiekit.config;
 
-    Indiekit.addRoute({
+    Indiekit.extend('routes', {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });

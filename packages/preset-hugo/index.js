@@ -210,6 +210,10 @@ export const HugoPreset = class {
 
     return frontMatter + content;
   }
+
+  init(Indiekit) {
+    Indiekit.addPreset(this);
+  }
 };
 
 export default HugoPreset;

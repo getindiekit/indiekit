@@ -22,23 +22,25 @@ export const MediaEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit;
+    const {application, publication} = Indiekit.config;
 
     if (application.hasDatabase) {
-      Indiekit.addNavigation({
+      Indiekit.extend('navigationItems', {
         href: `${this.mountPath}/files`,
         text: 'media.title',
       });
     }
 
-    Indiekit.addRoute({
+    Indiekit.extend('routes', {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.addView(fileURLToPath(new URL('views', import.meta.url)));
+    Indiekit.extend('views', [
+      fileURLToPath(new URL('views', import.meta.url)),
+    ]);
 
-    Indiekit.set('publication.mediaEndpoint', this.mountPath);
+    publication.mediaEndpoint = this.mountPath;
   }
 
   routes(application, publication) {

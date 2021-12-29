@@ -25,8 +25,8 @@
   "scripts": {
     "prepublishOnly": "localazy download && xo --fix **/locales/*.js",
     "postinstall": "lerna bootstrap --no-ci && husky install",
-    "dev": "nodemon indiekit.config.js",
-    "start": "DEBUG=indiekit:* node indiekit.config.js",
+    "dev": "nodemon indiekit serve",
+    "start": "DEBUG=indiekit:* indiekit serve",
     "lint:markdown": "markdownlint-cli2 '**/*.md' '!**/node_modules' '!**/CHANGELOG.md'",
     "lint:scripts": "xo '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",
@@ -65,7 +65,7 @@
     "nodemon": "^2.0.12",
     "sinon": "^13.0.0",
     "stylelint": "^14.0.0",
-    "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard": "^25.0.0",
     "stylelint-order": "^5.0.0",
     "supertest": "^6.1.6",
     "xo": "^0.47.0"

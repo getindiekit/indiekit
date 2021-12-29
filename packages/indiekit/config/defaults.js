@@ -3,15 +3,9 @@ import {createRequire} from 'node:module';
 import process from 'node:process';
 import {fileURLToPath} from 'node:url';
 import cookieSession from 'cookie-session';
-import {MediaEndpoint} from '@indiekit/endpoint-media';
-import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
-import {ShareEndpoint} from '@indiekit/endpoint-share';
-import {SyndicateEndpoint} from '@indiekit/endpoint-syndicate';
+import dotenv from 'dotenv';
 
-const mediaEndpoint = new MediaEndpoint();
-const micropubEndpoint = new MicropubEndpoint();
-const shareEndpoint = new ShareEndpoint();
-const syndicateEndpoint = new SyndicateEndpoint();
+dotenv.config();
 
 const require = createRequire(import.meta.url);
 const package_ = require('../package.json');
@@ -22,14 +16,8 @@ const mongodbUrl = (process.env.NODE_ENV === 'production')
 
 export const defaultConfig = {
   application: {
-    endpoints: [
-      mediaEndpoint,
-      micropubEndpoint,
-      shareEndpoint,
-      syndicateEndpoint,
-    ],
     hasDatabase: false,
-    locales: new Map(),
+    installedPlugins: [],
     localesAvailable: ['de', 'en', 'fr', 'nl', 'pt'],
     mongodbUrl,
     name: 'Indiekit',
@@ -43,6 +31,12 @@ export const defaultConfig = {
       fileURLToPath(new URL('../views', import.meta.url)),
     ],
   },
+  plugins: [
+    '@indiekit/endpoint-media',
+    '@indiekit/endpoint-micropub',
+    '@indiekit/endpoint-share',
+    '@indiekit/endpoint-syndicate',
+  ],
   publication: {
     categories: [],
     locale: 'en',

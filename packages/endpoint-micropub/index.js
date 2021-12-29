@@ -22,23 +22,25 @@ export const MicropubEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit;
+    const {application, publication} = Indiekit.config;
 
     if (application.hasDatabase) {
-      Indiekit.addNavigation({
+      Indiekit.extend('navigationItems', {
         href: `${this.mountPath}/posts`,
         text: 'micropub.title',
       });
     }
 
-    Indiekit.addRoute({
+    Indiekit.extend('routes', {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.addView(fileURLToPath(new URL('views', import.meta.url)));
+    Indiekit.extend('views', [
+      fileURLToPath(new URL('views', import.meta.url)),
+    ]);
 
-    Indiekit.set('publication.micropubEndpoint', this.mountPath);
+    publication.micropubEndpoint = this.mountPath;
   }
 
   routes(application, publication) {

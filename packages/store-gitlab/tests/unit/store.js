@@ -1,5 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
+import {Indiekit} from '@indiekit/indiekit';
 import {GitlabStore} from '../../index.js';
 
 const gitlab = new GitlabStore({
@@ -39,6 +40,13 @@ test('Gets plug-in info', t => {
   t.is(gitlab.name, 'GitLab store');
   t.is(gitlab.info.name, 'username/repo on GitLab');
   t.is(gitlab.info.uid, 'https://gitlab.com/username/repo');
+});
+
+test('Initiates plug-in', t => {
+  const indiekit = new Indiekit();
+  gitlab.init(indiekit);
+
+  t.is(indiekit.publication.store.info.name, 'username/repo on GitLab');
 });
 
 test('Creates file in a repository', async t => {

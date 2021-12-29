@@ -29,8 +29,14 @@
   </li>
 {%- endfor %}</ul>{% endset -%}
 
-{%- set endpointsHtml %}<ul class="no-bullets">{% for endpoint in application.endpoints -%}
-  <li>{{ endpoint.name }} (<code>{{ endpoint.options.mountPath }}</code>)</li>
+{%- set installedPluginsHtml %}<ul class="no-bullets">{% for plugin in application.installedPlugins -%}
+  <li>
+    {%- if plugin.options.mountPath %}
+      <a href="{{ plugin.options.mountPath }}">{{- plugin.name -}}</a>
+    {% else %}
+      {{- plugin.name -}}
+    {% endif -%}
+  </li>
 {%- endfor %}</ul>{% endset -%}
 
 {%- set localeHtml %}
@@ -46,8 +52,8 @@
 {% block content %}
   {{ discovery | markdown | safe }}
 
-{% for endpoint in application.endpoints -%}
-  {% include endpoint.id + "-status.njk" ignore missing %}
+{% for plugin in application.installedPlugins -%}
+  {% include plugin.id + "-status.njk" ignore missing %}
 {%- endfor %}
 
   {{ summary({
@@ -162,10 +168,10 @@
       }
     }, {
       key: {
-        text: __("status.application.endpoints")
+        text: __("status.application.installedPlugins")
       },
       value: {
-        text: endpointsHtml
+        text: installedPluginsHtml
       }
     }]
   }) }}

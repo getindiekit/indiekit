@@ -117,6 +117,10 @@ export const GitlabStore = class {
     );
     return true;
   }
+
+  init(Indiekit) {
+    Indiekit.addStore(this);
+  }
 };
 
 export default GitlabStore;

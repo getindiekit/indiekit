@@ -1,73 +1,86 @@
 import test from 'ava';
-import {HugoPreset} from '@indiekit/preset-hugo';
+import {testConfig} from '@indiekit-test/config';
 import {Indiekit} from '../index.js';
 
-const indiekit = new Indiekit();
+test.beforeEach(async t => {
+  const config = await testConfig();
+  const indiekit = new Indiekit({config});
+  const {application, publication} = await indiekit.bootstrap();
+
+  t.context = {
+    indiekit,
+    application,
+    publication,
+  };
+});
 
 test('Gets application configuration value', t => {
-  t.is(indiekit.application.name, 'Indiekit');
+  t.is(t.context.application.name, 'Test config');
 });
 
-test('Gets publication configuration value', t => {
-  t.is(indiekit.publication.slugSeparator, '-');
+test('Gets publication configuration values', t => {
+  t.is(t.context.publication.slugSeparator, '-');
+  t.is(t.context.publication.postTypes[0].name, 'Article');
+  t.is(t.context.publication.preset.name, 'Jekyll preset');
 });
 
-test('Sets configuration value', t => {
-  indiekit.set('publication.me', 'https://website.example');
-  t.is(indiekit.publication.me, 'https://website.example');
-});
-
-test('Throws error setting configuration if key is not a string', t => {
+test('Throws error adding an extension with an unknown type', t => {
   t.throws(() => {
-    indiekit.set([], 'https://website.example');
+    t.context.indiekit.extend('foo', []);
   }, {
-    instanceOf: TypeError,
-    message: 'Configuration key must be a string',
+    name: 'TypeError',
+    message: 'foo is not a valid extension type',
   });
 });
 
-test('Throws error setting configuration if no value given', t => {
-  t.throws(() => {
-    indiekit.set('publication.me');
-  }, {
-    message: 'No value given for publication.me',
-  });
-});
+test('Adds publication preset', t => {
+  const TestPreset = class {
+    constructor() {
+      this.id = 'test';
+      this.name = 'Test preset';
+    }
 
-test('Adds endpoint', t => {
-  const endpoint = {
-    id: 'foo',
-    name: 'Foo',
-    init: () => {},
+    get info() {
+      return {
+        name: 'Test',
+      };
+    }
   };
-  indiekit.addEndpoint(endpoint);
-  const {endpoints} = indiekit.application;
-  t.true(endpoints.some(endpoint => endpoint.id === 'foo'));
+
+  const testPreset = new TestPreset();
+
+  t.context.indiekit.addPreset(testPreset);
+  t.is(t.context.indiekit.publication.preset.info.name, 'Test');
 });
 
-test('Initiates application with config', async t => {
-  indiekit.set('publication.categories', ['foo', 'bar']);
-  indiekit.set('publication.preset', new HugoPreset({
-    frontMatterFormat: 'json',
-  }));
-  await indiekit.bootstrap();
+test('Adds content store', t => {
+  const TestStore = class {
+    constructor() {
+      this.id = 'test';
+      this.name = 'Test store';
+    }
 
-  t.is(indiekit.publication.categories[0], 'foo');
-  t.is(indiekit.publication.postTypes[0].name, 'Article');
-  t.is(indiekit.publication.postTemplate({
-    name: 'Foo',
-    content: 'Bar',
-  }), '{\n  "title": "Foo"\n}\nBar\n');
+    get info() {
+      return {
+        name: 'Test',
+      };
+    }
+  };
+
+  const testStore = new TestStore();
+
+  t.context.indiekit.addStore(testStore);
+  t.is(t.context.indiekit.publication.store.info.name, 'Test');
 });
 
 test('Creates an express application', async t => {
-  const result = await indiekit.createApp();
+  const result = await t.context.indiekit.createApp();
 
   t.truthy(result.locals);
 });
 
 test('Returns a server bound to given port', async t => {
-  const result = await indiekit.server({port: 1234});
+  const result = await t.context.indiekit.server({port: 1234});
 
   t.regex(result._connectionKey, /::::1234/);
 });

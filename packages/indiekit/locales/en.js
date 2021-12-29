@@ -45,7 +45,7 @@ export default {
         light: 'Light',
         dark: 'Dark',
       },
-      endpoints: 'Endpoints',
+      installedPlugins: 'Installed plug-ins',
     },
     publication: {
       summaryTitle: 'Publication settings',

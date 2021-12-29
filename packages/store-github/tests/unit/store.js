@@ -1,5 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
+import {Indiekit} from '@indiekit/indiekit';
 import {GithubStore} from '../../index.js';
 
 const github = new GithubStore({
@@ -29,6 +30,13 @@ test('Gets plug-in info', t => {
   t.is(github.name, 'GitHub store');
   t.is(github.info.name, 'username/repo on GitHub');
   t.is(github.info.uid, 'https://github.com/username/repo');
+});
+
+test('Initiates plug-in', t => {
+  const indiekit = new Indiekit();
+  github.init(indiekit);
+
+  t.is(indiekit.publication.store.info.name, 'username/repo on GitHub');
 });
 
 test('Creates file in a repository', async t => {

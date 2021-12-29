@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import deepmerge from 'deepmerge';
-import {defaultConfig} from './config/defaults.js';
 import {expressConfig} from './config/express.js';
+import {getIndiekitConfig} from './lib/config.js';
 import {getMongodbConfig} from './lib/mongodb.js';
 import {Cache} from './lib/cache.js';
 import {
@@ -12,47 +11,41 @@ import {
 
 export const Indiekit = class {
   constructor(options = {}) {
-    this._config = options.config || defaultConfig;
+    this.config = getIndiekitConfig({
+      config: options.config,
+      configFilePath: options.configFilePath,
+    });
+    this.application = this.config.application;
+    this.plugins = this.config.plugins;
+    this.publication = this.config.publication;
   }
 
-  get application() {
-    return this._config.application;
+  addPreset(preset) {
+    this.publication.preset = preset;
   }
 
-  get publication() {
-    return this._config.publication;
+  addStore(store) {
+    this.publication.store = store;
   }
 
-  set(key, value) {
-    if (typeof key !== 'string') {
-      throw new TypeError('Configuration key must be a string');
+  addSyndicator(syndicator) {
+    syndicator = Array.isArray(syndicator) ? syndicator : [syndicator];
+    this.publication.syndicationTargets = [...this.publication.syndicationTargets, ...syndicator];
+  }
+
+  extend(type, extension) {
+    const extensionTypes = [
+      'navigationItems',
+      'routes',
+      'views',
+    ];
+
+    if (!extensionTypes.includes(type)) {
+      throw new TypeError(`${type} is not a valid extension type`);
     }
 
-    if (!value) {
-      throw new Error(`No value given for ${key}`);
-    }
-
-    _.set(this._config, key, value);
-  }
-
-  addEndpoint(endpoint) {
-    endpoint = Array.isArray(endpoint) ? endpoint : [endpoint];
-    this.application.endpoints = [...this.application.endpoints, ...endpoint];
-  }
-
-  addNavigation(item) {
-    item = Array.isArray(item) ? item : [item];
-    this.application.navigationItems = [...this.application.navigationItems, ...item];
-  }
-
-  addRoute(route) {
-    route = Array.isArray(route) ? route : [route];
-    this.application.routes = [...this.application.routes, ...route];
-  }
-
-  addView(view) {
-    view = Array.isArray(view) ? view : [view];
-    this.application.views = [...this.application.views, ...view];
+    extension = Array.isArray(extension) ? extension : [extension];
+    this.application[type] = [...this.application[type], ...extension];
   }
 
   async bootstrap() {
@@ -70,27 +63,32 @@ export const Indiekit = class {
     const cache = new Cache(this.application.cache);
 
     // Register application localisations
+    this.application.locales = new Map();
     for await (const locale of this.application.localesAvailable) {
-      if (locale) {
-        const translation = await import(`./locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
-        this.application.locales.set(locale, translation.default);
-      }
+      const translation = await import(`./locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
+      this.application.locales.set(locale, translation.default);
     }
 
-    // Application endpoints
-    for await (const endpoint of this.application.endpoints) {
-      // Register endpoint localisations
+    // Init plug-ins
+    for await (const pluginName of this.plugins) {
+      const pluginModule = await import(pluginName); // eslint-disable-line node/no-unsupported-features/es-syntax
+      const IndiekitPlugin = pluginModule.default;
+      const plugin = new IndiekitPlugin(this.config[pluginName]);
+
+      // Register plug-in localisations
       for await (const locale of this.application.localesAvailable) {
-        if (locale) {
-          try {
-            const appLocale = this.application.locales.get(locale);
-            const translation = await import(`../${endpoint.id}/locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
-            this.application.locales.set(locale, deepmerge(appLocale, translation.default));
-          } catch {}
-        }
+        try {
+          const appLocale = this.application.locales.get(locale);
+          const translation = await import(`../${plugin.id}/locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
+          this.application.locales.set(locale, deepmerge(appLocale, translation.default));
+        } catch {}
       }
 
-      endpoint.init(this);
+      // Register plug-in functions
+      if (plugin.init) {
+        await plugin.init(this);
+        this.application.installedPlugins.push(plugin);
+      }
     }
 
     // Update publication configuration
@@ -98,7 +96,10 @@ export const Indiekit = class {
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
 
-    return this._config;
+    return {
+      application: this.application,
+      publication: this.publication,
+    };
   }
 
   async createApp() {
@@ -109,7 +110,7 @@ export const Indiekit = class {
   }
 
   async server(options = {}) {
-    const {application, server} = this._config;
+    const {application, server} = this.config;
 
     // Merge options with default server config
     options = {...server, ...options};

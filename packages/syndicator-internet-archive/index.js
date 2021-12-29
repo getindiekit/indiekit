@@ -44,6 +44,10 @@ export const InternetArchiveSyndicator = class {
   async syndicate(properties) {
     return internetArchive(this.options).save(properties);
   }
+
+  init(Indiekit) {
+    Indiekit.addSyndicator(this);
+  }
 };
 
 export default InternetArchiveSyndicator;

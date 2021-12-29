@@ -20,24 +20,24 @@ export const ShareEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit;
+    const {application, publication} = Indiekit.config;
 
-    Indiekit.addNavigation({
+    Indiekit.extend('navigationItems', {
       href: this.mountPath,
       text: 'share.title',
     });
 
-    Indiekit.addRoute({
+    Indiekit.extend('routes', {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.addView([
+    Indiekit.extend('views', [
       fileURLToPath(new URL('includes', import.meta.url)),
       fileURLToPath(new URL('views', import.meta.url)),
     ]);
 
-    Indiekit.set('application.shareEndpoint', this.mountPath);
+    application.shareEndpoint = this.mountPath;
   }
 
   routes(application, publication) {

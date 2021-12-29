@@ -4,6 +4,7 @@ import {Readable} from 'node:stream';
 import ftp from 'basic-ftp';
 
 const defaults = {
+  directory: '',
   password: process.env.FTP_PASSWORD,
   port: 21,
   user: process.env.FTP_USER,
@@ -131,6 +132,10 @@ export const FtpStore = class {
 
     client.close();
     return true;
+  }
+
+  init(Indiekit) {
+    Indiekit.addStore(this);
   }
 };
 

@@ -1,5 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
+import {Indiekit} from '@indiekit/indiekit';
 import {BitbucketStore} from '../../index.js';
 
 const bitbucket = new BitbucketStore({
@@ -16,6 +17,13 @@ test('Gets plug-in info', t => {
   t.is(bitbucket.name, 'Bitbucket store');
   t.is(bitbucket.info.name, 'username/repo on Bitbucket');
   t.is(bitbucket.info.uid, 'https://bitbucket.org/username/repo');
+});
+
+test('Initiates plug-in', t => {
+  const indiekit = new Indiekit();
+  bitbucket.init(indiekit);
+
+  t.is(indiekit.publication.store.info.name, 'username/repo on Bitbucket');
 });
 
 test('Creates file in a repository', async t => {

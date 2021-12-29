@@ -1,4 +1,5 @@
 import test from 'ava';
+import {Indiekit} from '@indiekit/indiekit';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {JekyllPreset} from '../../index.js';
 
@@ -11,6 +12,13 @@ test.beforeEach(t => {
 test('Gets plug-in info', t => {
   t.is(jekyll.name, 'Jekyll preset');
   t.is(jekyll.info.name, 'Jekyll');
+});
+
+test('Initiates plug-in', t => {
+  const indiekit = new Indiekit();
+  jekyll.init(indiekit);
+
+  t.is(indiekit.publication.preset.info.name, 'Jekyll');
 });
 
 test('Gets publication post types', t => {

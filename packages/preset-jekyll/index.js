@@ -162,6 +162,10 @@ export const JekyllPreset = class {
 
     return frontmatter + content;
   }
+
+  init(Indiekit) {
+    Indiekit.addPreset(this);
+  }
 };
 
 export default JekyllPreset;

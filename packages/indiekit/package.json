@@ -17,8 +17,12 @@
     "node": ">= 16"
   },
   "type": "module",
+  "bin": {
+    "indiekit": "./bin/cli.js"
+  },
   "main": "index.js",
   "files": [
+    "bin",
     "config",
     "lib",
     "locales",
@@ -40,7 +44,9 @@
     "@indiekit/endpoint-syndicate": "^0.3.0",
     "@indiekit/frontend": "^0.3.0",
     "@indiekit/preset-jekyll": "^0.3.0",
+    "commander": "^9.0.0",
     "cookie-session": "^2.0.0",
+    "cosmiconfig": "^7.0.1",
     "debug": "^4.3.2",
     "deepmerge": "^4.2.2",
     "express": "^4.17.1",

@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import test from 'ava';
 import nock from 'nock';
+import {Indiekit} from '@indiekit/indiekit';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {TwitterSyndicator} from '../../index.js';
 
@@ -35,6 +36,14 @@ test('Gets plug-in info', t => {
   t.is(result.info.name, 'username on Twitter');
   t.is(result.info.uid, 'https://twitter.com/username');
   t.truthy(result.info.service);
+});
+
+test('Initiates plug-in', t => {
+  const twitter = new TwitterSyndicator(t.context.options);
+  const indiekit = new Indiekit();
+  twitter.init(indiekit);
+
+  t.is(indiekit.publication.syndicationTargets[0].info.name, 'username on Twitter');
 });
 
 test('Gets UID', t => {

@@ -116,6 +116,10 @@ export const GiteaStore = class {
     });
     return response;
   }
+
+  init(Indiekit) {
+    Indiekit.addStore(this);
+  }
 };
 
 export default GiteaStore;

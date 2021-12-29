@@ -1,6 +1,6 @@
 import test from 'ava';
 import nock from 'nock';
-
+import {Indiekit} from '@indiekit/indiekit';
 import {GiteaStore} from '../../index.js';
 
 const gitea = new GiteaStore({
@@ -46,6 +46,13 @@ test('Gets plug-in info', t => {
   t.is(gitea.name, 'Gitea store');
   t.is(gitea.info.name, 'username/repo on Gitea');
   t.is(gitea.info.uid, 'https://gitea.com/username/repo');
+});
+
+test('Initiates plug-in', t => {
+  const indiekit = new Indiekit();
+  gitea.init(indiekit);
+
+  t.is(indiekit.publication.store.info.name, 'username/repo on Gitea');
 });
 
 test('Creates file in a repository', async t => {

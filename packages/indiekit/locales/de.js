@@ -45,6 +45,7 @@ export default {
         dark: 'Dunkel',
         light: 'Licht',
       },
+      installedPlugins: 'Plugins installiert',
     },
     publication: {
       accessToken: 'Zugangstoken',

@@ -129,6 +129,10 @@ export const GithubStore = class {
     });
     return response;
   }
+
+  init(Indiekit) {
+    Indiekit.addStore(this);
+  }
 };
 
 export default GithubStore;

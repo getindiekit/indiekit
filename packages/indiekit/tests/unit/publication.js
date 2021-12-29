@@ -2,6 +2,7 @@ import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {testConfig} from '@indiekit-test/config';
+import {Indiekit} from '../../index.js';
 import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
@@ -10,10 +11,10 @@ import {
   getPostTypes,
 } from '../../lib/publication.js';
 
-const config = await testConfig();
-
 test.beforeEach(async t => {
-  const {application, publication} = await config;
+  const config = await testConfig();
+  const indiekit = new Indiekit({config});
+  const {application, publication} = await indiekit.bootstrap();
 
   t.context = {
     cacheCollection: application.cache,

@@ -45,6 +45,7 @@ export default {
         dark: 'Sombre',
         light: 'Lumière',
       },
+      installedPlugins: 'Plugins installés',
     },
     publication: {
       accessToken: 'Jeton d\'accès',

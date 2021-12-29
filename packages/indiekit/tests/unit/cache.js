@@ -2,12 +2,13 @@ import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {testConfig} from '@indiekit-test/config';
+import {Indiekit} from '../../index.js';
 import {Cache} from '../../lib/cache.js';
 
-const config = await testConfig();
-
 test.beforeEach(async t => {
-  const {application} = await config;
+  const config = await testConfig();
+  const indiekit = new Indiekit({config});
+  const {application} = await indiekit.bootstrap();
 
   t.context = {
     cacheCollection: application.cache,
@@ -15,7 +16,7 @@ test.beforeEach(async t => {
   };
 });
 
-test.serial('Returns data from remote file and saves to cache', async t => {
+test('Returns data from remote file and saves to cache', async t => {
   nock(process.env.TEST_PUBLICATION_URL)
     .get('/categories.json')
     .reply(200, ['Foo', 'Bar']);
@@ -37,7 +38,7 @@ test.serial('Throws error if remote file not found', async t => {
   });
 });
 
-test.serial('Gets data from cache', async t => {
+test('Gets data from cache', async t => {
   t.context.cacheCollection.insertOne({
     key: 'test3',
     url: t.context.url,

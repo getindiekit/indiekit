@@ -47,6 +47,10 @@ export const TwitterSyndicator = class {
   async syndicate(properties, publication) {
     return twitter(this.options).post(properties, publication);
   }
+
+  init(Indiekit) {
+    Indiekit.addSyndicator(this);
+  }
 };
 
 export default TwitterSyndicator;

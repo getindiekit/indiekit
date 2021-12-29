@@ -1,6 +1,9 @@
 import test from 'ava';
 import nock from 'nock';
+import {Indiekit} from '@indiekit/indiekit';
 import {InternetArchiveSyndicator} from '../../index.js';
+
+const internetArchive = new InternetArchiveSyndicator();
 
 test.beforeEach(t => {
   t.context = {
@@ -17,25 +20,26 @@ test.beforeEach(t => {
 });
 
 test('Gets assets path', t => {
-  const result = new InternetArchiveSyndicator();
-
-  t.regex(result.assetsPath, /syndicator-internet-archive\/assets/);
+  t.regex(internetArchive.assetsPath, /syndicator-internet-archive\/assets/);
 });
 
 test('Gets plug-in info', t => {
-  const result = new InternetArchiveSyndicator();
+  t.is(internetArchive.name, 'Internet Archive syndicator');
+  t.false(internetArchive.info.checked);
+  t.is(internetArchive.info.name, 'Internet Archive');
+  t.is(internetArchive.info.uid, 'https://web.archive.org/');
+  t.truthy(internetArchive.info.service);
+});
 
-  t.is(result.name, 'Internet Archive syndicator');
-  t.false(result.info.checked);
-  t.is(result.info.name, 'Internet Archive');
-  t.is(result.info.uid, 'https://web.archive.org/');
-  t.truthy(result.info.service);
+test('Initiates plug-in', t => {
+  const indiekit = new Indiekit();
+  internetArchive.init(indiekit);
+
+  t.is(indiekit.publication.syndicationTargets[0].info.name, 'Internet Archive');
 });
 
 test('Gets UID', t => {
-  const result = new InternetArchiveSyndicator();
-
-  t.is(result.uid, 'https://web.archive.org/');
+  t.is(internetArchive.uid, 'https://web.archive.org/');
 });
 
 test('Returns syndicated URL', async t => {
@@ -54,9 +58,7 @@ test('Returns syndicated URL', async t => {
 });
 
 test('Throws error getting syndicated URL if no API keys provided', async t => {
-  const syndicator = new InternetArchiveSyndicator({});
-
-  await t.throwsAsync(syndicator.syndicate({properties: t.context.url}), {
+  await t.throwsAsync(internetArchive.syndicate({properties: t.context.url}), {
     message: 'Cannot read properties of undefined (reading \'body\')',
   });
 });
