@@ -1,10 +1,10 @@
 import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import {MongoMemoryServer} from 'mongodb-memory-server';
-import {Indiekit} from '../../packages/indiekit/index.js';
-import {JekyllPreset} from '../../packages/preset-jekyll/index.js';
-import {GithubStore} from '../../packages/store-github/index.js';
-import {TwitterSyndicator} from '../../packages/syndicator-twitter/index.js';
+import {Indiekit} from '@indiekit/indiekit';
+import {JekyllPreset} from '@indiekit/preset-jekyll';
+import {GithubStore} from '@indiekit/store-github';
+import {TwitterSyndicator} from '@indiekit/syndicator-twitter';
 
 const defaultOptions = {
   hasDatabase: true,

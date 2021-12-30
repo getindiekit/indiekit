@@ -33,18 +33,22 @@
     "test:watch": "ava --watch",
     "coverage": "c8 ava"
   },
+  "workspaces": [
+    "helpers/*",
+    "packages/*"
+  ],
   "dependencies": {
     "dotenv": "10.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
-    "@indiekit-test/config": "file:helpers/config",
-    "@indiekit-test/get-fixture": "file:helpers/get-fixture",
-    "@indiekit-test/media-data": "file:helpers/media-data",
-    "@indiekit-test/post-data": "file:helpers/post-data",
-    "@indiekit-test/publication": "file:helpers/publication",
-    "@indiekit-test/server": "file:helpers/server",
+    "@indiekit-test/config": "*",
+    "@indiekit-test/get-fixture": "*",
+    "@indiekit-test/media-data": "*",
+    "@indiekit-test/post-data": "*",
+    "@indiekit-test/publication": "*",
+    "@indiekit-test/server": "*",
     "ava": "^3.15.0",
     "c8": "^7.8.0",
     "eslint-plugin-jsdoc": "^37.0.0",

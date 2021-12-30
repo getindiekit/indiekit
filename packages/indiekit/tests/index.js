@@ -1,5 +1,5 @@
 import test from 'ava';
-import {HugoPreset} from '../../preset-hugo/index.js';
+import {HugoPreset} from '@indiekit/preset-hugo';
 import {Indiekit} from '../index.js';
 
 const indiekit = new Indiekit();

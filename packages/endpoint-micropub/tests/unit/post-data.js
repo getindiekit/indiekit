@@ -1,5 +1,5 @@
 import test from 'ava';
-import {JekyllPreset} from '../../../preset-jekyll/index.js';
+import {JekyllPreset} from '@indiekit/preset-jekyll';
 import {postData} from '../../lib/post-data.js';
 
 test.beforeEach(t => {
