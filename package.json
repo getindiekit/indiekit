@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^15.0.0",
+    "@commitlint/config-conventional": "^16.0.0",
     "@indiekit-test/config": "*",
     "@indiekit-test/get-fixture": "*",
     "@indiekit-test/media-data": "*",
