@@ -1,3 +1,8 @@
+---
+parent: Architecture decisions
+title: Share publication state using JF2
+---
+
 # 2. Share publication state using JF2
 
 Date: 2021-01-10
