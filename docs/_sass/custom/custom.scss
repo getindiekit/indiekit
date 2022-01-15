@@ -1,0 +1,24 @@
+.main-content h1:first-child {
+  font-weight: 800;
+}
+
+div.language-bash,
+div.language-bash code {
+  background-color: $grey-dk-300;
+  color: $grey-lt-300;
+}
+
+div.language-bash .nb {
+  color: $grey-lt-000;
+}
+
+
+div.language-bash code:last-of-type:before {
+  color: lighten($purple-000, 20%);
+  content: '$ ';
+}
+
+div.language-bash .token {
+  color: var(--color-neutral-lightest);
+  font-weight: normal;
+}

@@ -1,3 +1,8 @@
+---
+parent: Architecture decisions
+title: Store post data as JF2
+---
+
 # 3. Store post data as JF2
 
 Date: 2021-01-10

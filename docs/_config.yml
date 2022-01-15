@@ -1,0 +1,32 @@
+title: Indiekit
+description: The little server that connects your website to the independent web.
+url: https://getindiekit.com
+theme_color: "#5522aa"
+github_username: getindiekit
+# twitter_username: getindiekit
+
+# Publishing
+permalink: pretty
+exclude:
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+
+# Theme
+remote_theme: pmarsceill/just-the-docs
+aux_links:
+  "Indiekit on GitHub":
+    - https://github.com/getindiekit/indiekit
+logo: /assets/images/logo.svg
+
+# GitHub edit link
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_branch: main
+gh_edit_repository: https://github.com/getindiekit/indiekit
+gh_edit_source: docs
+gh_edit_view_mode: tree
+
+# Plug-ins
+optional_front_matter:
+  remove_originals: true
