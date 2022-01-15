@@ -1,10 +1,10 @@
-import path from 'path';
+import path from 'node:path';
+import {Readable} from 'node:stream';
 import ftp from 'basic-ftp';
-import {Readable} from 'stream';
 
 const defaults = {
   port: 21,
-  verbose: true
+  verbose: true,
 };
 
 /**
@@ -37,9 +37,9 @@ export const FtpStore = class {
     const readableStream = new Readable();
     readableStream._read = () => {};
     readableStream.push(content, 'utf-8');
-    readableStream.push(null);
+    readableStream.push(null); // eslint-disable-line unicorn/no-array-push-push
     return readableStream;
-  };
+  }
 
   /**
    * Get absolute file path
@@ -50,7 +50,7 @@ export const FtpStore = class {
    */
   #getAbsolutePath(filePath) {
     return path.join(this.options.directory, filePath);
-  };
+  }
 
   /**
    * Create file
