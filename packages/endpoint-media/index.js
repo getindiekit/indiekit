@@ -7,7 +7,7 @@ import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
 
 const defaults = {
-  mountpath: '/media',
+  mountPath: '/media',
 };
 
 export const MediaEndpoint = class {
@@ -18,8 +18,8 @@ export const MediaEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountpath() {
-    return this.options.mountpath;
+  get mountPath() {
+    return this.options.mountPath;
   }
 
   init(indiekitConfig) {
@@ -31,19 +31,19 @@ export const MediaEndpoint = class {
 
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
-        href: `${this.mountpath}/files`,
+        href: `${this.mountPath}/files`,
         text: 'media.title',
       });
     }
 
     indiekitConfig.addRoute({
-      mountpath: this.mountpath,
+      mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
     indiekitConfig.addView(fileURLToPath(new URL('views', import.meta.url)));
 
-    indiekitConfig.set('publication.mediaEndpoint', this.mountpath);
+    indiekitConfig.set('publication.mediaEndpoint', this.mountPath);
   }
 
   routes(application, publication) {

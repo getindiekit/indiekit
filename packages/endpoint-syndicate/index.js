@@ -2,7 +2,7 @@ import express from 'express';
 import {syndicateController} from './lib/controllers/syndicate.js';
 
 const defaults = {
-  mountpath: '/syndicate',
+  mountPath: '/syndicate',
 };
 
 export const SyndicateEndpoint = class {
@@ -13,15 +13,15 @@ export const SyndicateEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountpath() {
-    return this.options.mountpath;
+  get mountPath() {
+    return this.options.mountPath;
   }
 
   init(indiekitConfig) {
     const {application, publication} = indiekitConfig;
 
     indiekitConfig.addRoute({
-      mountpath: this.mountpath,
+      mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
   }

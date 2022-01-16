@@ -20,7 +20,7 @@ const micropubEndpoint = new MicropubEndpoint({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `mountpath` | `string` | Path to listen to Micropub requests. *Optional*, defaults to `/micropub` |
+| `mountPath` | `string` | Path to listen to Micropub requests. *Optional*, defaults to `/micropub` |
 
 ## Supported endpoint queries
 

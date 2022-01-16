@@ -20,7 +20,7 @@ const mediaEndpoint = new MediaEndpoint({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `mountpath` | `string` | Path to listen to media upload requests. *Optional*, defaults to `/media` |
+| `mountPath` | `string` | Path to listen to media upload requests. *Optional*, defaults to `/media` |
 
 ## Supported endpoint queries
 

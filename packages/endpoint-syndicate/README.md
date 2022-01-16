@@ -20,4 +20,4 @@ const syndicateEndpoint = new SyndicateEndpoint({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `mountpath` | `string` | Path to syndication endpoint. *Optional*, defaults to `/syndicate` |
+| `mountPath` | `string` | Path to syndication endpoint. *Optional*, defaults to `/syndicate` |

@@ -1,8 +1,8 @@
 import test from 'ava';
 import {MicropubEndpoint} from '../../index.js';
 
-test('Gets mountpath', t => {
+test('Gets mount path', t => {
   const result = new MicropubEndpoint();
 
-  t.is(result.mountpath, '/micropub');
+  t.is(result.mountPath, '/micropub');
 });

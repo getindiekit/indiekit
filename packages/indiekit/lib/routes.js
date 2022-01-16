@@ -49,7 +49,7 @@ export const routes = indiekitConfig => {
 
   // Endpoints
   for (const route of application.routes) {
-    router.use(route.mountpath, route.routes());
+    router.use(route.mountPath, route.routes());
   }
 
   return router;

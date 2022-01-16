@@ -7,7 +7,7 @@ import {queryController} from './lib/controllers/query.js';
 import {locales} from './locales/index.js';
 
 const defaults = {
-  mountpath: '/micropub',
+  mountPath: '/micropub',
 };
 
 export const MicropubEndpoint = class {
@@ -18,8 +18,8 @@ export const MicropubEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountpath() {
-    return this.options.mountpath;
+  get mountPath() {
+    return this.options.mountPath;
   }
 
   init(indiekitConfig) {
@@ -31,19 +31,19 @@ export const MicropubEndpoint = class {
 
     if (application.hasDatabase) {
       indiekitConfig.addNavigation({
-        href: `${this.mountpath}/posts`,
+        href: `${this.mountPath}/posts`,
         text: 'micropub.title',
       });
     }
 
     indiekitConfig.addRoute({
-      mountpath: this.mountpath,
+      mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
     indiekitConfig.addView(fileURLToPath(new URL('views', import.meta.url)));
 
-    indiekitConfig.set('publication.micropubEndpoint', this.mountpath);
+    indiekitConfig.set('publication.micropubEndpoint', this.mountPath);
   }
 
   routes(application, publication) {

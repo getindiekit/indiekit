@@ -5,7 +5,7 @@ import {shareController} from './lib/controllers/share.js';
 import {validate} from './lib/middleware/validation.js';
 
 const defaults = {
-  mountpath: '/share',
+  mountPath: '/share',
 };
 
 export const ShareEndpoint = class {
@@ -16,8 +16,8 @@ export const ShareEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountpath() {
-    return this.options.mountpath;
+  get mountPath() {
+    return this.options.mountPath;
   }
 
   init(indiekitConfig) {
@@ -28,12 +28,12 @@ export const ShareEndpoint = class {
     indiekitConfig.addLocale('fr', locales.fr);
 
     indiekitConfig.addNavigation({
-      href: this.mountpath,
+      href: this.mountPath,
       text: 'share.title',
     });
 
     indiekitConfig.addRoute({
-      mountpath: this.mountpath,
+      mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
@@ -42,7 +42,7 @@ export const ShareEndpoint = class {
       fileURLToPath(new URL('views', import.meta.url)),
     ]);
 
-    indiekitConfig.set('application.shareEndpoint', this.mountpath);
+    indiekitConfig.set('application.shareEndpoint', this.mountPath);
   }
 
   routes(application, publication) {

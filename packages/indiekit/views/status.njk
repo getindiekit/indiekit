@@ -22,7 +22,7 @@
 {%- endfor %}</ul>{% endset -%}
 
 {%- set endpointsHtml %}<ul class="no-bullets">{% for endpoint in application.endpoints -%}
-  <li>{{ endpoint.name }} (<code>{{ endpoint.options.mountpath }}</code>)</li>
+  <li>{{ endpoint.name }} (<code>{{ endpoint.options.mountPath }}</code>)</li>
 {%- endfor %}</ul>{% endset -%}
 
 {%- set localeHtml %}
