@@ -1,12 +1,11 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {indiekitConfig} from '@indiekit-test/config';
+import {testConfig} from '@indiekit-test/config';
 import {Cache} from '../../lib/cache.js';
 
-const config = (async () => indiekitConfig())();
-
 test.beforeEach(async t => {
+  const config = await testConfig();
   const {application} = await config;
 
   t.context = {

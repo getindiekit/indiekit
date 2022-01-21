@@ -11,5 +11,5 @@ test('Returns status page', async t => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, 'Server status - Indiekit');
+  t.is(result.querySelector('title').textContent, 'Server status - Test config');
 });

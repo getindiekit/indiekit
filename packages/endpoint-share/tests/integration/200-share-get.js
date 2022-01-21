@@ -11,5 +11,5 @@ test('Returns share page', async t => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, 'Share - Indiekit');
+  t.is(result.querySelector('title').textContent, 'Share - Test config');
 });

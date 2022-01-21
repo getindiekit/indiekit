@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {indiekitConfig} from '@indiekit-test/config';
+import {testConfig} from '@indiekit-test/config';
 import {Cache} from '../../lib/cache.js';
 import {
   getCategories,
@@ -10,7 +10,7 @@ import {
   getPostTypes,
 } from '../../lib/publication.js';
 
-const config = (async () => indiekitConfig())();
+const config = await testConfig();
 
 test.beforeEach(async t => {
   const {application, publication} = await config;

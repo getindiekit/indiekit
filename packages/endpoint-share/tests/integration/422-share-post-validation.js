@@ -11,7 +11,7 @@ test('Returns 422 with invalid form submission', async t => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, 'Error: Share - Indiekit');
+  t.is(result.querySelector('title').textContent, 'Error: Share - Test config');
   t.is(result.querySelector('#name-error .error-message__text').textContent, 'Enter a title');
   t.is(result.querySelector('#bookmark-of-error .error-message__text').textContent, 'Invalid value');
 });

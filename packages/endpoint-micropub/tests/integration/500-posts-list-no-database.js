@@ -11,6 +11,6 @@ test('Returns list of previously uploaded files', async t => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, 'Internal Server Error - Indiekit');
+  t.is(result.querySelector('title').textContent, 'Internal Server Error - Test config');
   t.is(result.querySelector('.article__body p').textContent, 'This feature requires a database.');
 });

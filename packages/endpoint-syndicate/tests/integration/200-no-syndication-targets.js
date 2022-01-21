@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {indiekitConfig} from '@indiekit-test/config';
+import {testConfig} from '@indiekit-test/config';
 import {server} from '@indiekit-test/server';
 
 test('Returns 200 if no post records', async t => {
@@ -19,7 +19,7 @@ test('Returns 200 if no post records', async t => {
   const request = await server();
 
   // Update configuration
-  const config = await indiekitConfig();
+  const config = await testConfig();
   config.publication.syndicationTargets = [];
 
   // Create post

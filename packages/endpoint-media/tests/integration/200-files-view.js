@@ -38,5 +38,5 @@ test('Views previously uploaded file', async t => {
 
   const result = fileDom.window.document;
 
-  t.is(result.querySelector('title').textContent, `${fileName} - Indiekit`);
+  t.is(result.querySelector('title').textContent, `${fileName} - Test config`);
 });

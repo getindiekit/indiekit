@@ -11,5 +11,5 @@ test('Returns list of previously uploaded files', async t => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, 'Published posts - Indiekit');
+  t.is(result.querySelector('title').textContent, 'Published posts - Test config');
 });

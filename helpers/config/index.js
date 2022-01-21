@@ -10,7 +10,7 @@ const defaultOptions = {
   hasDatabase: true,
 };
 
-export const indiekitConfig = async options => {
+export const testConfig = async options => {
   options = {...defaultOptions, ...options};
 
   // Configure MongoDb
@@ -51,6 +51,8 @@ export const indiekitConfig = async options => {
   });
 
   // Application settings
+  indiekit.set('application.name', 'Test config');
+
   if (options && options.hasDatabase !== false) {
     indiekit.set('application.mongodbUrl', mongodbUrl);
   }
