@@ -87,8 +87,8 @@ export const Indiekit = class {
 
   async createApp() {
     try {
-      const indiekitConfig = await this.bootstrap();
-      const app = expressConfig(indiekitConfig);
+      const config = await this.bootstrap();
+      const app = expressConfig(config);
 
       return app;
     } catch (error) {
