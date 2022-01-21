@@ -55,3 +55,5 @@ export const ShareEndpoint = class {
     return router;
   }
 };
+
+export default ShareEndpoint;

@@ -116,3 +116,5 @@ export const GitlabStore = class {
     return true;
   }
 };
+
+export default GitlabStore;

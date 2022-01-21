@@ -113,3 +113,5 @@ export const BitbucketStore = class {
     return response;
   }
 };
+
+export default BitbucketStore;

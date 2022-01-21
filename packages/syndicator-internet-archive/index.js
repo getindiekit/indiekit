@@ -42,3 +42,5 @@ export const InternetArchiveSyndicator = class {
     return internetArchive(this.options).save(properties);
   }
 };
+
+export default InternetArchiveSyndicator;

@@ -115,3 +115,5 @@ export const GiteaStore = class {
     return response;
   }
 };
+
+export default GiteaStore;

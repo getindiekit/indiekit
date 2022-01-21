@@ -130,3 +130,5 @@ export const FtpStore = class {
     return true;
   }
 };
+
+export default FtpStore;

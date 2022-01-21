@@ -61,3 +61,5 @@ export const MediaEndpoint = class {
     return router;
   }
 };
+
+export default MediaEndpoint;

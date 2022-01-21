@@ -61,3 +61,5 @@ export const MicropubEndpoint = class {
     return router;
   }
 };
+
+export default MicropubEndpoint;

@@ -211,3 +211,5 @@ export const HugoPreset = class {
     return frontMatter + content;
   }
 };
+
+export default HugoPreset;

@@ -34,3 +34,5 @@ export const SyndicateEndpoint = class {
     return router;
   }
 };
+
+export default SyndicateEndpoint;

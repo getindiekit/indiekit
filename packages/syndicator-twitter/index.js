@@ -43,3 +43,5 @@ export const TwitterSyndicator = class {
     return twitter(this.options).post(properties, publication);
   }
 };
+
+export default TwitterSyndicator;

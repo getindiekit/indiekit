@@ -163,3 +163,5 @@ export const JekyllPreset = class {
     return frontmatter + content;
   }
 };
+
+export default JekyllPreset;

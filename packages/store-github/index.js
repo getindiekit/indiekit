@@ -128,3 +128,5 @@ export const GithubStore = class {
     return response;
   }
 };
+
+export default GithubStore;
