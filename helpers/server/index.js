@@ -5,7 +5,7 @@ import {Indiekit} from '@indiekit/indiekit';
 
 export const testServer = async options => {
   const config = await testConfig(options);
-  const indiekit = new Indiekit(config);
+  const indiekit = new Indiekit({config});
   const app = await indiekit.createApp();
   const server = supertest.agent(app);
 

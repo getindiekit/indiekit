@@ -4,8 +4,9 @@ import nock from 'nock';
 import {testConfig} from '@indiekit-test/config';
 import {Cache} from '../../lib/cache.js';
 
+const config = await testConfig();
+
 test.beforeEach(async t => {
-  const config = await testConfig();
   const {application} = await config;
 
   t.context = {

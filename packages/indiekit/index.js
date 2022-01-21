@@ -10,8 +10,8 @@ import {
 } from './lib/publication.js';
 
 export const Indiekit = class {
-  constructor(config) {
-    this._config = config || defaultConfig;
+  constructor(options = {}) {
+    this._config = options.config || defaultConfig;
   }
 
   get application() {
