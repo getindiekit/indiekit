@@ -4,13 +4,13 @@ import {GitlabStore} from '../../index.js';
 
 const gitlab = new GitlabStore({
   token: 'abc123',
-  user: 'user',
+  user: 'username',
   repo: 'repo',
 });
 
 const gitlabInstance = new GitlabStore({
   token: 'abc123',
-  user: 'user',
+  user: 'username',
   repo: 'repo',
 });
 

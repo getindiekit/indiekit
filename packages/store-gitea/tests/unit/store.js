@@ -7,13 +7,13 @@ test.beforeEach(t => {
   t.context = {
     gitea: new GiteaStore({
       token: 'abc123',
-      user: 'user',
+      user: 'username',
       repo: 'repo',
     }),
     giteaUrl: 'https://gitea.com',
     giteaInstance: new GiteaStore({
       token: 'abc123',
-      user: 'user',
+      user: 'username',
       repo: 'repo',
     }),
     giteaInstanceUrl: 'https://gitea.instance',

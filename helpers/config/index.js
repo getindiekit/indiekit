@@ -26,7 +26,7 @@ export const testConfig = async options => {
   // Configure content store
   const github = new GithubStore({
     token: 'abc123',
-    user: 'user',
+    user: 'username',
     repo: 'repo',
   });
 
@@ -43,7 +43,7 @@ export const testConfig = async options => {
   // Configure syndication targets
   const twitter = new TwitterSyndicator({
     checked: true,
-    user: 'user',
+    user: 'username',
     apiKey: 'abc123',
     apiKeySecret: 'abc123',
     accessToken: 'abc123',

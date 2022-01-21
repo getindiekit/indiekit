@@ -11,7 +11,7 @@ export const publication = {
   },
   store: new GithubStore({
     token: 'abc123',
-    user: 'user',
+    user: 'username',
     repo: 'repo',
   }),
   storeMessageTemplate: metaData => `${metaData.action} ${metaData.postType} ${metaData.fileType}`,

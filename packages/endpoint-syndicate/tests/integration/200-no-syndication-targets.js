@@ -28,7 +28,7 @@ test('Returns 200 if no post records', async t => {
     .set('Accept', 'application/json')
     .send('h=entry')
     .send('name=foobar')
-    .send('mp-syndicate-to=https://twitter.com/user');
+    .send('mp-syndicate-to=https://twitter.com/username');
 
   const result = await request.post('/syndicate')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})

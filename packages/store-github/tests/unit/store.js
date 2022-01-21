@@ -4,7 +4,7 @@ import {GithubStore} from '../../index.js';
 
 const github = new GithubStore({
   token: 'abc123',
-  user: 'user',
+  user: 'username',
   repo: 'repo',
 });
 

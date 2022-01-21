@@ -28,7 +28,7 @@ test('Returns 401 error from Micropub endpoint', async t => {
     .set('Accept', 'application/json')
     .send('h=entry')
     .send('name=foobar')
-    .send('mp-syndicate-to=https://twitter.com/user');
+    .send('mp-syndicate-to=https://twitter.com/username');
 
   // Syndicate post
   const result = await request.post('/syndicate')
