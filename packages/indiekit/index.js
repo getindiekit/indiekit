@@ -85,18 +85,29 @@ export const Indiekit = class {
     return this._config;
   }
 
-  async server(options = {}) {
+  async createApp() {
     try {
       const indiekitConfig = await this.getConfig();
-      const server = expressConfig(indiekitConfig);
-      const {name, version} = indiekitConfig.application;
-      const port = options.port || indiekitConfig.server.port;
+      const app = expressConfig(indiekitConfig);
 
-      return server.listen(port, () => {
-        console.log(`Starting ${name} (v${version}) on port ${port}`);
-      });
+      return app;
     } catch (error) {
       console.error(error.message);
     }
+  }
+
+  async server(options = {}) {
+    const {application, server} = this._config;
+
+    // Merge options with default server config
+    options = {...server, ...options};
+
+    const {name, version} = application;
+    const {port} = options;
+    const app = await this.createApp();
+
+    return app.listen(port, () => {
+      console.info(`Starting ${name} (v${version}) on port ${port}`);
+    });
   }
 };
