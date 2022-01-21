@@ -3,7 +3,7 @@ import test from 'ava';
 import nock from 'nock';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {JSDOM} from 'jsdom';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Views previously uploaded file', async t => {
   nock('https://tokens.indieauth.com')
@@ -17,7 +17,7 @@ test('Views previously uploaded file', async t => {
     .reply(200, {commit: {message: 'Message'}});
 
   // Upload file
-  const request = await server();
+  const request = await testServer();
   await request.post('/media')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')

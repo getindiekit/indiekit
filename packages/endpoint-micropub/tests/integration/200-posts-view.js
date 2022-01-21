@@ -2,7 +2,7 @@ import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
 import {JSDOM} from 'jsdom';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Views previously uploaded file', async t => {
   nock('https://tokens.indieauth.com')
@@ -16,7 +16,7 @@ test('Views previously uploaded file', async t => {
     .reply(200);
 
   // Create post
-  const request = await server();
+  const request = await testServer();
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')

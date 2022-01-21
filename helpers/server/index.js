@@ -3,7 +3,7 @@ import supertest from 'supertest';
 import {testConfig} from '@indiekit-test/config';
 import {Indiekit} from '@indiekit/indiekit';
 
-export const server = async options => {
+export const testServer = async options => {
   const config = await testConfig(options);
   const indiekit = new Indiekit(config);
   const app = await indiekit.createApp();

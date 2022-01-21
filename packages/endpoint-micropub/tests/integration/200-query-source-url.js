@@ -1,13 +1,13 @@
 import test from 'ava';
 import nock from 'nock';
 import {getFixture} from '@indiekit-test/get-fixture';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Returns list of previously published posts', async t => {
   nock('https://website.example')
     .get('/post.html')
     .reply(200, getFixture('html/post.html'));
-  const request = await server();
+  const request = await testServer();
 
   const result = await request.get('/micropub')
     .set('Accept', 'application/json')

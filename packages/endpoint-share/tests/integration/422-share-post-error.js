@@ -1,9 +1,9 @@
 import process from 'node:process';
 import test from 'ava';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Returns 422 if error publishing post', async t => {
-  const request = await server();
+  const request = await testServer();
 
   const result = await request.post('/share')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})

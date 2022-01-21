@@ -1,8 +1,8 @@
 import test from 'ava';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Returns CSS', async t => {
-  const request = await server();
+  const request = await testServer();
 
   const result = await request.get('/assets/app.css');
 

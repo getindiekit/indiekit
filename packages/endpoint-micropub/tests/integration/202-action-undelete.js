@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Deletes post', async t => {
   nock('https://tokens.indieauth.com')
@@ -23,7 +23,7 @@ test('Deletes post', async t => {
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar.md'))
     .reply(200);
-  const request = await server();
+  const request = await testServer();
 
   // Create post
   const response = await request.post('/micropub')

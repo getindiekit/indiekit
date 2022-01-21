@@ -1,10 +1,10 @@
 import process from 'node:process';
 import test from 'ava';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Returns 500 if no database configured', async t => {
   // Create post
-  const request = await server({hasDatabase: false});
+  const request = await testServer({hasDatabase: false});
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')

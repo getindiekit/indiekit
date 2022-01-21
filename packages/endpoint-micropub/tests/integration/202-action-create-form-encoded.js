@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Creates post (form-encoded)', async t => {
   nock('https://tokens.indieauth.com')
@@ -13,7 +13,7 @@ test('Creates post (form-encoded)', async t => {
   nock('https://api.github.com')
     .put(uri => uri.includes('foobar'))
     .reply(200);
-  const request = await server();
+  const request = await testServer();
 
   const result = await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})

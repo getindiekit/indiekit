@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Posts content and redirects back to share page', async t => {
   nock('https://tokens.indieauth.com')
@@ -15,7 +15,7 @@ test('Posts content and redirects back to share page', async t => {
     .reply(200, {commit: {message: 'Message'}});
 
   // Publish post
-  const request = await server();
+  const request = await testServer();
   const result = await request.post('/share')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .send(`access_token=${process.env.TEST_PUBLICATION_URL}`)

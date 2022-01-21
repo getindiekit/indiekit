@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Returns 200 if no post records', async t => {
   nock('https://tokens.indieauth.com')
@@ -15,7 +15,7 @@ test('Returns 200 if no post records', async t => {
     .put(uri => uri.includes('foobar'))
     .twice()
     .reply(200);
-  const request = await server();
+  const request = await testServer();
 
   // Create post
   await request.post('/micropub')

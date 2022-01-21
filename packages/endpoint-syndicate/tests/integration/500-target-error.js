@@ -1,7 +1,7 @@
 import process from 'node:process';
 import test from 'ava';
 import nock from 'nock';
-import {server} from '@indiekit-test/server';
+import {testServer} from '@indiekit-test/server';
 
 test('Returns 500 error syndicating a URL', async t => {
   // Setup mocked failed HTTP request to syndication target
@@ -19,7 +19,7 @@ test('Returns 500 error syndicating a URL', async t => {
     .reply(200);
 
   // Create post
-  const request = await server();
+  const request = await testServer();
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
