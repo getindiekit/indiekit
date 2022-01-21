@@ -65,7 +65,7 @@ export const testConfig = async options => {
   indiekit.set('publication.syndicationTargets', [twitter]);
   indiekit.set('publication.timeZone', 'UTC');
 
-  const indiekitConfig = await indiekit.getConfig();
+  const indiekitConfig = await indiekit.bootstrap();
 
   return indiekitConfig;
 };

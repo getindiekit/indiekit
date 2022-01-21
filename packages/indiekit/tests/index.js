@@ -50,7 +50,7 @@ test('Initiates application with config', async t => {
   indiekit.set('publication.preset', new HugoPreset({
     frontMatterFormat: 'json',
   }));
-  await indiekit.getConfig();
+  await indiekit.bootstrap();
 
   t.is(indiekit.publication.categories[0], 'foo');
   t.is(indiekit.publication.postTypes[0].name, 'Article');

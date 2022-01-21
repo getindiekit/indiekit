@@ -58,7 +58,7 @@ export const Indiekit = class {
     this.application.views = [...this.application.views, ...view];
   }
 
-  async getConfig() {
+  async bootstrap() {
     const database = await mongodbConfig(this.application.mongodbUrl);
 
     // Setup databases
@@ -72,22 +72,22 @@ export const Indiekit = class {
     // Setup cache
     const cache = new Cache(this.application.cache);
 
-    // Update publication configuration
-    this.publication.categories = await getCategories(cache, this.publication);
-    this.publication.postTemplate = getPostTemplate(this.publication);
-    this.publication.postTypes = getPostTypes(this.publication);
-
     // Application endpoints
     for (const endpoint of this.application.endpoints) {
       endpoint.init(this);
     }
+
+    // Update publication configuration
+    this.publication.categories = await getCategories(cache, this.publication);
+    this.publication.postTemplate = getPostTemplate(this.publication);
+    this.publication.postTypes = getPostTypes(this.publication);
 
     return this._config;
   }
 
   async createApp() {
     try {
-      const indiekitConfig = await this.getConfig();
+      const indiekitConfig = await this.bootstrap();
       const app = expressConfig(indiekitConfig);
 
       return app;
