@@ -8,6 +8,7 @@ import {TwitterSyndicator} from '@indiekit/syndicator-twitter';
 
 const defaultOptions = {
   hasDatabase: true,
+  hasSyndicator: true,
 };
 
 export const testConfig = async options => {
@@ -62,7 +63,10 @@ export const testConfig = async options => {
   indiekit.set('publication.preset', jekyll);
   indiekit.set('publication.postTypes', postTypes);
   indiekit.set('publication.store', github);
-  indiekit.set('publication.syndicationTargets', [twitter]);
+  indiekit.set('publication.syndicationTargets', options.hasSyndicator
+    ? [twitter]
+    : [],
+  );
   indiekit.set('publication.timeZone', 'UTC');
 
   const indiekitConfig = await indiekit.bootstrap();
