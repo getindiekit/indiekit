@@ -1,3 +1,4 @@
+import {createRequire} from 'node:module';
 import process from 'node:process';
 import {fileURLToPath} from 'node:url';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
@@ -12,6 +13,9 @@ const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
 const syndicateEndpoint = new SyndicateEndpoint();
+
+const require = createRequire(import.meta.url);
+const package_ = require('../package.json');
 
 export const defaultConfig = {
   application: {
@@ -30,11 +34,11 @@ export const defaultConfig = {
     },
     name: 'Indiekit',
     navigationItems: [],
-    repository: process.env.npm_package_repository,
+    repository: package_.repository,
     routes: [],
     themeColor: '#0055ee',
     themeColorScheme: 'automatic',
-    version: process.env.npm_package_version,
+    version: package_.version,
     views: [
       fileURLToPath(new URL('../views', import.meta.url)),
     ],
