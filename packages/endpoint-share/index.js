@@ -20,29 +20,29 @@ export const ShareEndpoint = class {
     return this.options.mountPath;
   }
 
-  init(indiekitConfig) {
-    const {application, publication} = indiekitConfig;
+  init(Indiekit) {
+    const {application, publication} = Indiekit;
 
-    indiekitConfig.addLocale('de', locales.de);
-    indiekitConfig.addLocale('en', locales.en);
-    indiekitConfig.addLocale('fr', locales.fr);
+    Indiekit.addLocale('de', locales.de);
+    Indiekit.addLocale('en', locales.en);
+    Indiekit.addLocale('fr', locales.fr);
 
-    indiekitConfig.addNavigation({
+    Indiekit.addNavigation({
       href: this.mountPath,
       text: 'share.title',
     });
 
-    indiekitConfig.addRoute({
+    Indiekit.addRoute({
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    indiekitConfig.addView([
+    Indiekit.addView([
       fileURLToPath(new URL('includes', import.meta.url)),
       fileURLToPath(new URL('views', import.meta.url)),
     ]);
 
-    indiekitConfig.set('application.shareEndpoint', this.mountPath);
+    Indiekit.set('application.shareEndpoint', this.mountPath);
   }
 
   routes(application, publication) {
