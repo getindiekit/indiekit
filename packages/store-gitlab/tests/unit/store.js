@@ -12,6 +12,7 @@ const gitlabInstance = new GitlabStore({
   token: 'abc123',
   user: 'username',
   repo: 'repo',
+  instance: 'https://gitlab.instance',
 });
 
 test.beforeEach(t => {
@@ -34,6 +35,12 @@ test.beforeEach(t => {
   };
 });
 
+test('Gets plug-in info', t => {
+  t.is(gitlab.name, 'GitLab store');
+  t.is(gitlab.info.name, 'username/repo on GitLab');
+  t.is(gitlab.info.uid, 'https://gitlab.com/username/repo');
+});
+
 test('Creates file in a repository', async t => {
   nock(t.context.gitlabUrl)
     .post(uri => uri.includes('foo.txt'))
@@ -49,7 +56,6 @@ test('Creates file in a repository at custom instance', async t => {
   nock(t.context.gitlabInstanceUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  gitlabInstance.options.instance = 'https://gitlab.instance';
 
   const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
 
@@ -61,10 +67,7 @@ test('Creates file in a repository with projectId', async t => {
   nock(t.context.gitlabInstanceUrl)
     .post(uri => uri.includes('foo.txt'))
     .reply(200, t.context.postResponse);
-  gitlabInstance.options = {
-    instance: t.context.gitlabInstanceUrl,
-    projectId: 'user/repo',
-  };
+  gitlabInstance.options.projectId = 'username/repo';
 
   const result = await gitlabInstance.createFile('foo.txt', 'foo', 'Message');
 

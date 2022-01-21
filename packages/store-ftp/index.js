@@ -14,8 +14,17 @@ const defaults = {
 export const FtpStore = class {
   constructor(options = {}) {
     this.id = 'ftp';
-    this.name = 'FTP';
+    this.name = 'FTP store';
     this.options = {...defaults, ...options};
+  }
+
+  get info() {
+    const {directory, host, user} = this.options;
+
+    return {
+      name: `${user} on ${host}`,
+      uid: `sftp://${host}/${directory}`,
+    };
   }
 
   async client() {

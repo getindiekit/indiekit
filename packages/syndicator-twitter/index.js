@@ -8,7 +8,7 @@ const defaults = {
 export const TwitterSyndicator = class {
   constructor(options = {}) {
     this.id = 'twitter';
-    this.name = 'Twitter';
+    this.name = 'Twitter syndicator';
     this.options = {...defaults, ...options};
   }
 

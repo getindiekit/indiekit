@@ -27,9 +27,10 @@ test('Gets assets path', t => {
   t.regex(result.assetsPath, /syndicator-twitter\/assets/);
 });
 
-test('Gets info', t => {
+test('Gets plug-in info', t => {
   const result = new TwitterSyndicator(t.context.options);
 
+  t.is(result.name, 'Twitter syndicator');
   t.false(result.info.checked);
   t.is(result.info.name, 'username on Twitter');
   t.is(result.info.uid, 'https://twitter.com/username');

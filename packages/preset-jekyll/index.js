@@ -6,7 +6,13 @@ YAML.scalarOptions.str.fold.lineWidth = 0;
 export const JekyllPreset = class {
   constructor() {
     this.id = 'jekyll';
-    this.name = 'Jekyll';
+    this.name = 'Jekyll preset';
+  }
+
+  get info() {
+    return {
+      name: 'Jekyll',
+    };
   }
 
   /**

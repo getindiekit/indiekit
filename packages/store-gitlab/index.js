@@ -13,9 +13,18 @@ const defaults = {
 export const GitlabStore = class {
   constructor(options = {}) {
     this.id = 'gitlab';
-    this.name = 'GitLab';
+    this.name = 'GitLab store';
     this.options = {...defaults, ...options};
-    this._projectId = options.projectId || `${options.user}/${options.repo}`;
+    this.projectId = options.projectId || `${options.user}/${options.repo}`;
+  }
+
+  get info() {
+    const {instance, repo, user} = this.options;
+
+    return {
+      name: `${this.projectId} on GitLab`,
+      uid: `${instance}/${user}/${repo}`,
+    };
   }
 
   get client() {
@@ -38,7 +47,7 @@ export const GitlabStore = class {
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
     const response = await this.client.RepositoryFiles.create(
-      this._projectId,
+      this.projectId,
       path,
       this.options.branch,
       content,
@@ -58,7 +67,7 @@ export const GitlabStore = class {
    */
   async readFile(path) {
     const response = await this.client.RepositoryFiles.show(
-      this._projectId,
+      this.projectId,
       path,
       this.options.branch,
     );
@@ -78,7 +87,7 @@ export const GitlabStore = class {
   async updateFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
     const response = await this.client.RepositoryFiles.edit(
-      this._projectId,
+      this.projectId,
       path,
       this.options.branch,
       content,
@@ -99,7 +108,7 @@ export const GitlabStore = class {
    */
   async deleteFile(path, message) {
     await this.client.RepositoryFiles.remove(
-      this._projectId,
+      this.projectId,
       path,
       this.options.branch,
       message,

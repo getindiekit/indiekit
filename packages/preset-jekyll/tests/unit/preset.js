@@ -8,6 +8,11 @@ test.beforeEach(t => {
   t.context.properties = JSON.parse(getFixture('jf2/all-properties.jf2'));
 });
 
+test('Gets plug-in info', t => {
+  t.is(jekyll.name, 'Jekyll preset');
+  t.is(jekyll.info.name, 'Jekyll');
+});
+
 test('Gets publication post types', t => {
   const result = jekyll.postTypes;
 

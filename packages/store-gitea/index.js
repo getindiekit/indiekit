@@ -13,8 +13,17 @@ const defaults = {
 export const GiteaStore = class {
   constructor(options = {}) {
     this.id = 'gitea';
-    this.name = 'Gitea';
+    this.name = 'Gitea store';
     this.options = {...defaults, ...options};
+  }
+
+  get info() {
+    const {instance, repo, user} = this.options;
+
+    return {
+      name: `${user}/${repo} on Gitea`,
+      uid: `${instance}/${user}/${repo}`,
+    };
   }
 
   get client() {

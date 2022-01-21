@@ -12,6 +12,12 @@ test.beforeEach(t => {
   t.context.bitbucketUrl = 'https://api.bitbucket.org';
 });
 
+test('Gets plug-in info', t => {
+  t.is(bitbucket.name, 'Bitbucket store');
+  t.is(bitbucket.info.name, 'username/repo on Bitbucket');
+  t.is(bitbucket.info.uid, 'https://bitbucket.org/username/repo');
+});
+
 test('Creates file in a repository', async t => {
   nock(t.context.bitbucketUrl)
     .post('/2.0/repositories/username/repo/src')

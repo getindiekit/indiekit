@@ -22,9 +22,10 @@ test('Gets assets path', t => {
   t.regex(result.assetsPath, /syndicator-internet-archive\/assets/);
 });
 
-test('Gets info', t => {
+test('Gets plug-in info', t => {
   const result = new InternetArchiveSyndicator();
 
+  t.is(result.name, 'Internet Archive syndicator');
   t.false(result.info.checked);
   t.is(result.info.name, 'Internet Archive');
   t.is(result.info.uid, 'https://web.archive.org/');

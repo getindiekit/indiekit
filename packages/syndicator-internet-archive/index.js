@@ -13,7 +13,7 @@ const defaults = {
 export const InternetArchiveSyndicator = class {
   constructor(options = {}) {
     this.id = 'internet-archive';
-    this.name = 'Internet Archive';
+    this.name = 'Internet Archive syndicator';
     this.options = {...defaults, ...options};
   }
 

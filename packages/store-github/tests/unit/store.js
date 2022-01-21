@@ -25,6 +25,12 @@ test.beforeEach(t => {
   };
 });
 
+test('Gets plug-in info', t => {
+  t.is(github.name, 'GitHub store');
+  t.is(github.info.name, 'username/repo on GitHub');
+  t.is(github.info.uid, 'https://github.com/username/repo');
+});
+
 test('Creates file in a repository', async t => {
   nock(t.context.githubUrl)
     .put(uri => uri.includes('foo.txt'))

@@ -14,6 +14,14 @@
   <li>{{ icon(config.type) }} {{ config.name }}</li>
 {%- endfor %}</ul>{% endset -%}
 
+{%- set storeHtml %}
+  {%- if publication.store -%}
+    <a href="{{ publication.store.info.uid }}">{{ publication.store.info.name }}</a>
+  {%- else -%}
+    {{ __("noValue") }}
+  {%- endif -%}
+{% endset -%}
+
 {%- set syndicationTargetsHtml %}<ul class="no-bullets">{% for target in publication.syndicationTargets -%}
   <li>
     {%- if target.info.service.photo %}<img src="{{ target.info.service.photo }}" width="20" height="20" alt="">{% endif -%}
@@ -67,17 +75,10 @@
       }
     }, {
       key: {
-        text: __("status.publication.store")
-      },
-      value: {
-        text: publication.store.name or __("noValue")
-      }
-    }, {
-      key: {
         text: __("status.publication.preset")
       },
       value: {
-        text: publication.preset.name or __("noValue")
+        text: publication.preset.info.name or __("noValue")
       }
     }, {
       key: {
@@ -87,6 +88,13 @@
         text: postTypesHtml | indent(2)
       }
     } if publication.postTypes.length > 0, {
+      key: {
+        text: __("status.publication.store")
+      },
+      value: {
+        text: storeHtml | indent(2)
+      }
+    }, {
       key: {
         text: __("status.publication.syndicationTargets")
       },

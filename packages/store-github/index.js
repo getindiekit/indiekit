@@ -12,8 +12,17 @@ const defaults = {
 export const GithubStore = class {
   constructor(options = {}) {
     this.id = 'github';
-    this.name = 'GitHub';
+    this.name = 'GitHub store';
     this.options = {...defaults, ...options};
+  }
+
+  get info() {
+    const {repo, user} = this.options;
+
+    return {
+      name: `${user}/${repo} on GitHub`,
+      uid: `https://github.com/${user}/${repo}`,
+    };
   }
 
   get client() {

@@ -12,8 +12,14 @@ const defaults = {
 export const HugoPreset = class {
   constructor(options = {}) {
     this.id = 'hugo';
-    this.name = 'Hugo';
+    this.name = 'Hugo preset';
     this.options = {...defaults, ...options};
+  }
+
+  get info() {
+    return {
+      name: 'Hugo',
+    };
   }
 
   /**

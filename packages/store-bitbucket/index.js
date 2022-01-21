@@ -11,8 +11,17 @@ const defaults = {
 export const BitbucketStore = class {
   constructor(options = {}) {
     this.id = 'bitbucket';
-    this.name = 'Bitbucket';
+    this.name = 'Bitbucket store';
     this.options = {...defaults, ...options};
+  }
+
+  get info() {
+    const {repo, user} = this.options;
+
+    return {
+      name: `${user}/${repo} on Bitbucket`,
+      uid: `https://bitbucket.org/${user}/${repo}`,
+    };
   }
 
   get client() {
