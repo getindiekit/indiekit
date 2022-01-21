@@ -1,6 +1,6 @@
 import mongodb from 'mongodb';
 
-export const mongodbConfig = async mongodbUrl => {
+export const getMongodbConfig = async mongodbUrl => {
   if (mongodbUrl) {
     const {MongoClient} = mongodb;
     const client = new MongoClient(mongodbUrl, {

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {defaultConfig} from './config/defaults.js';
-import {mongodbConfig} from './config/mongodb.js';
 import {expressConfig} from './config/express.js';
+import {getMongodbConfig} from './lib/mongodb.js';
 import {Cache} from './lib/cache.js';
 import {
   getCategories,
@@ -59,7 +59,7 @@ export const Indiekit = class {
   }
 
   async bootstrap() {
-    const database = await mongodbConfig(this.application.mongodbUrl);
+    const database = await getMongodbConfig(this.application.mongodbUrl);
 
     // Setup databases
     if (database) {
