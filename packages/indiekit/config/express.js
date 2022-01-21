@@ -10,41 +10,41 @@ import {routes} from '../lib/routes.js';
 
 const {templates} = frontend;
 
-export const serverConfig = indiekitConfig => {
-  const config = express();
+export const expressConfig = indiekitConfig => {
+  const app = express();
 
   // Correctly report secure connections
-  config.enable('trust proxy');
+  app.enable('trust proxy');
 
   // Body parsers
-  config.use(express.json());
-  config.use(express.urlencoded({extended: true}));
+  app.use(express.json());
+  app.use(express.urlencoded({extended: true}));
 
   // Session
-  config.use(cookieSession({
+  app.use(cookieSession({
     name: indiekitConfig.application.name,
     secret: uuidv4(),
   }));
 
   // Internationalisation
-  config.use(internationalisation(indiekitConfig));
+  app.use(internationalisation(indiekitConfig));
 
   // Locals
-  config.use(locals(indiekitConfig));
+  app.use(locals(indiekitConfig));
 
   // Log requests
-  config.use(logging);
+  app.use(logging);
 
   // Views
-  config.set('views', indiekitConfig.application.views);
-  config.engine('njk', templates(config).render);
-  config.set('view engine', 'njk');
+  app.set('views', indiekitConfig.application.views);
+  app.engine('njk', templates(app).render);
+  app.set('view engine', 'njk');
 
   // Routes
-  config.use(routes(indiekitConfig));
+  app.use(routes(indiekitConfig));
 
   // Handle errors
-  config.use(error.notFound, error.internalServer);
+  app.use(error.notFound, error.internalServer);
 
-  return config;
+  return app;
 };

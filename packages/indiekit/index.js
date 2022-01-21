@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {defaultConfig} from './config/defaults.js';
 import {mongodbConfig} from './config/mongodb.js';
-import {serverConfig} from './config/server.js';
+import {expressConfig} from './config/express.js';
 import {Cache} from './lib/cache.js';
 import {
   getCategories,
@@ -88,7 +88,7 @@ export const Indiekit = class {
   async server(options = {}) {
     try {
       const indiekitConfig = await this.getConfig();
-      const server = serverConfig(indiekitConfig);
+      const server = expressConfig(indiekitConfig);
       const {name, version} = indiekitConfig.application;
       const port = options.port || indiekitConfig.server.port;
 
