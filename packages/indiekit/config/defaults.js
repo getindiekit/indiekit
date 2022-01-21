@@ -13,48 +13,46 @@ const micropubEndpoint = new MicropubEndpoint();
 const shareEndpoint = new ShareEndpoint();
 const syndicateEndpoint = new SyndicateEndpoint();
 
-const application = {
-  endpoints: [
-    mediaEndpoint,
-    micropubEndpoint,
-    shareEndpoint,
-    syndicateEndpoint,
-  ],
-  hasDatabase: false,
-  locales,
-  mongodbUrl: false,
-  middleware: {
-    authenticate,
-    indieauth,
+export const defaultConfig = {
+  application: {
+    endpoints: [
+      mediaEndpoint,
+      micropubEndpoint,
+      shareEndpoint,
+      syndicateEndpoint,
+    ],
+    hasDatabase: false,
+    locales,
+    mongodbUrl: false,
+    middleware: {
+      authenticate,
+      indieauth,
+    },
+    name: 'Indiekit',
+    navigationItems: [],
+    repository: process.env.npm_package_repository,
+    routes: [],
+    themeColor: '#0055ee',
+    themeColorScheme: 'automatic',
+    version: process.env.npm_package_version,
+    views: [
+      fileURLToPath(new URL('../views', import.meta.url)),
+    ],
   },
-  name: 'Indiekit',
-  navigationItems: [],
-  repository: process.env.npm_package_repository,
-  routes: [],
-  themeColor: '#0055ee',
-  themeColorScheme: 'automatic',
-  version: process.env.npm_package_version,
-  views: [
-    fileURLToPath(new URL('../views', import.meta.url)),
-  ],
+  publication: {
+    categories: [],
+    locale: 'en',
+    me: null,
+    postTemplate: null,
+    postTypes: [],
+    preset: null,
+    slugSeparator: '-',
+    storeMessageTemplate: metaData => `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
+    syndicationTargets: [],
+    timeZone: 'UTC',
+    tokenEndpoint: 'https://tokens.indieauth.com/token',
+  },
+  server: {
+    port: process.env.PORT || '3000',
+  },
 };
-
-const publication = {
-  categories: [],
-  locale: 'en',
-  me: null,
-  postTemplate: null,
-  postTypes: [],
-  preset: null,
-  slugSeparator: '-',
-  storeMessageTemplate: metaData => `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
-  syndicationTargets: [],
-  timeZone: 'UTC',
-  tokenEndpoint: 'https://tokens.indieauth.com/token',
-};
-
-const server = {
-  port: process.env.PORT || '3000',
-};
-
-export const defaultConfig = {application, publication, server};
