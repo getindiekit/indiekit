@@ -1,3 +1,7 @@
+---
+nav_order: 7
+---
+
 # Releases
 
 {% for release in site.github.releases %}

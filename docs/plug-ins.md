@@ -1,3 +1,7 @@
+---
+nav_order: 6
+---
+
 # Plug-ins
 
 ## Content stores
