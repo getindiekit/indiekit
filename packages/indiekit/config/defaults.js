@@ -17,6 +17,10 @@ const syndicateEndpoint = new SyndicateEndpoint();
 const require = createRequire(import.meta.url);
 const package_ = require('../package.json');
 
+const mongodbUrl = (process.env.NODE_ENV === 'production')
+  ? process.env.MONGODB_URL
+  : false;
+
 export const defaultConfig = {
   application: {
     endpoints: [
@@ -27,7 +31,7 @@ export const defaultConfig = {
     ],
     hasDatabase: false,
     locales,
-    mongodbUrl: false,
+    mongodbUrl,
     middleware: {
       authenticate,
       indieauth,
