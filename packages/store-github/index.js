@@ -1,8 +1,10 @@
+import process from 'node:process';
 import {Buffer} from 'node:buffer';
 import octokit from '@octokit/rest';
 
 const defaults = {
   branch: 'main',
+  token: process.env.GITHUB_TOKEN,
 };
 
 /**
