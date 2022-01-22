@@ -15,13 +15,13 @@ nav_order: 3
 
 The language used in the application interface.
 
-*Optional*, defaults to system language if supported, else `en` (English).
-
-See [Localisation →](customisation/localisation.md)
+*Optional*, defaults to system language if supported, else `en` (English). For example:
 
 ```js
-indiekit.set('application.locale', 'en');
+indiekit.set('application.locale', 'de');
 ```
+
+See [Localisation →](customisation/localisation.md)
 
 ***
 
@@ -29,7 +29,7 @@ indiekit.set('application.locale', 'en');
 
 To cache files and save information about previously posts and files, you will need to connect Indiekit to a MongoDB database. You can [host one on MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
-*Optional*.
+*Optional*. For example:
 
 ```js
 indiekit.set('application.mongodbUrl', 'mongodb+srv://<USER>:<PASS>@<HOST>/<DATABASE>');
@@ -41,10 +41,10 @@ indiekit.set('application.mongodbUrl', 'mongodb+srv://<USER>:<PASS>@<HOST>/<DATA
 
 The name of your server.
 
-*Optional*, defaults to `Indiekit`
+*Optional*, defaults to `Indiekit`. For example:
 
 ```js
-indiekit.set('application.name', 'Indiekit');
+indiekit.set('application.name', 'My IndieWeb Server');
 ```
 
 ***
@@ -53,10 +53,10 @@ indiekit.set('application.name', 'Indiekit');
 
 Accent colour used in the application interface.
 
-*Optional*, defaults to `#0055ee`.
+*Optional*, defaults to `#0055ee`. For example:
 
 ```js
-indiekit.set('application.themeColor', '#0055ee');
+indiekit.set('application.themeColor', '#663399');
 ```
 
 ***
@@ -65,10 +65,10 @@ indiekit.set('application.themeColor', '#0055ee');
 
 Color scheme used in the application interface, `automatic`, `light` or `dark`.
 
-*Optional*, defaults to `automatic`.
+*Optional*, defaults to `automatic`. For example:
 
 ```js
-indiekit.set('application.themeColorScheme', 'automatic');
+indiekit.set('application.themeColorScheme', 'dark');
 ```
 
 ***
@@ -77,7 +77,7 @@ indiekit.set('application.themeColorScheme', 'automatic');
 
 The URL of your server. Useful if Indiekit is running behind a reverse proxy.
 
-*Optional*, defaults to the URL of your server (as provided by request headers).
+*Optional*, defaults to the URL of your server (as provided by request headers). For example:
 
 ```js
 indiekit.set('application.url', 'https://server.website.example');
@@ -113,10 +113,10 @@ indiekit.set('publication.categories', 'https://website.example/categories.json'
 
 Your publication’s locale. Currently used to format dates.
 
-*Optional*, defaults to `en` (English).
+*Optional*, defaults to `en` (English). For example:
 
 ```js
-indiekit.set('publication.locale', 'en');
+indiekit.set('publication.locale', 'de');
 ```
 
 ***
@@ -125,7 +125,7 @@ indiekit.set('publication.locale', 'en');
 
 Your website’s URL.
 
-*Required*.
+*Required*. For example:
 
 ```js
 indiekit.set('publication.me', 'https://website.example');
@@ -137,7 +137,7 @@ indiekit.set('publication.me', 'https://website.example');
 
 Indiekit provides a [media endpoint](https://micropub.spec.indieweb.org/#media-endpoint), but you can use a third-party endpoint by setting a value for this option.
 
-*Optional*.
+*Optional*. For example:
 
 ```js
 indiekit.set('publication.mediaEndpoint', 'https://media.website.example');
@@ -177,7 +177,7 @@ A [publication preset](plug-ins.md#publication-presets) plug-in.
 
 The character used to replace spaces when creating a slug.
 
-*Optional*, defaults to `-`.
+*Optional*, defaults to `-`. For example:
 
 ```js
 indiekit.set('publication.slugSeparator', '_');
@@ -207,7 +207,7 @@ See [customising commit messages →](customisation/commit-messages.md)
 
 An array of [syndication targets](https://micropub.spec.indieweb.org/#syndication-targets).
 
-*Optional*.
+*Optional*. For example:
 
 ```js
 indiekit.set('publication.syndicationTargets', [{
@@ -225,10 +225,10 @@ indiekit.set('publication.syndicationTargets', [{
 
 The time zone for your publication. By default this is set to `UTC`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This option also accepts a number of other values.
 
-*Optional*, defaults to `UTC`.
+*Optional*, defaults to `UTC`. For example:
 
 ```js
-indiekit.set('publication.timeZone', 'Europe/London');
+indiekit.set('publication.timeZone', 'Europe/Berlin');
 ```
 
 See [customising the time zone →](customisation/time-zone.md)
@@ -239,7 +239,7 @@ See [customising the time zone →](customisation/time-zone.md)
 
 An IndieAuth token endpoint.
 
-*Optional*, defaults to `https://tokens.indieauth.com/token`.
+*Optional*, defaults to `https://tokens.indieauth.com/token`. For example:
 
 ```js
 indiekit.set('publication.tokenEndpoint', 'https://tokens.example.org/token');
