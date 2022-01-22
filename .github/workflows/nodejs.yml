@@ -23,10 +23,10 @@ jobs:
     - name: Install packages and symlink local dependencies
       run: |
         npm install
-    - name: Run tests and report coverage
+    - name: Run tests
       env:
         TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
         TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}
         TEST_BEARER_TOKEN_NOSCOPE: ${{ secrets.TEST_BEARER_TOKEN_NOSCOPE }}
       run: |
-        npm run coverage
+        npm test
