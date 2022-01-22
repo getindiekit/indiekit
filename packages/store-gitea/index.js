@@ -1,9 +1,11 @@
+import process from 'node:process';
 import {Buffer} from 'node:buffer';
 import got from 'got';
 
 const defaults = {
   branch: 'main',
   instance: 'https://gitea.com',
+  token: process.env.GITEA_TOKEN,
 };
 
 /**
