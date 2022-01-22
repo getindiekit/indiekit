@@ -90,9 +90,9 @@ export const normaliseProperties = (publication, properties) => {
 
   properties['mp-slug'] = getSlugProperty(properties, slugSeparator);
 
-  const syndidateTo = getSyndicateToProperty(properties, syndicationTargets);
-  if (syndidateTo) {
-    properties['mp-syndicate-to'] = syndidateTo;
+  const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
+  if (syndicateTo) {
+    properties['mp-syndicate-to'] = syndicateTo;
   }
 
   return properties;
@@ -240,7 +240,7 @@ export const getSlugProperty = (properties, separator) => {
 };
 
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
-  const proprerty = [];
+  const property = [];
 
   if (!syndicationTargets || syndicationTargets.length === 0) {
     return;
@@ -252,11 +252,11 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
     const serverForced = target.options && target.options.forced;
 
     if (clientChecked || serverForced) {
-      proprerty.push(target.uid);
+      property.push(target.uid);
     }
   }
 
-  if (proprerty.length > 0) {
-    return proprerty;
+  if (property.length > 0) {
+    return property;
   }
 };
