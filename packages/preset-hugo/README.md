@@ -6,7 +6,7 @@ Indiekit preset for Hugo-based websites.
 
 `npm i @indiekit/preset-hugo`
 
-## Configuration
+## Usage
 
 ```js
 const HugoPreset = require('@indiekit/preset-hugo');
@@ -16,6 +16,8 @@ const hugo = new HugoPreset({
 });
 ```
 
-### Options
+## Options
 
-* `frontMatterFormat`: Front matter format to use (`json`, `toml` or `yaml`). *Optional*, defaults to `yaml`.
+| Option | Type | Description |
+| :----- | :--- | :---------- |
+| `frontMatterFormat` | `string` | Front matter format to use (`json`, `toml` or `yaml`). *Optional*, defaults to `yaml`. |
