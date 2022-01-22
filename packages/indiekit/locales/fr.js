@@ -47,7 +47,7 @@ export const fr = {
       endpoints: 'Endpoints',
     },
     publication: {
-      summaryTitle: 'Paramètres de Puplication',
+      summaryTitle: 'Paramètres de publication',
       me: 'Adresse web',
       locale: 'Langue',
       timeZone: 'Fuseau horaire',

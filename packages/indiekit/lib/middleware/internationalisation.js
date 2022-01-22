@@ -16,7 +16,7 @@ export const internationalisation = indiekitConfig => async function (request, r
       indent: '  ',
       objectNotation: true,
       queryParameter: 'lang',
-      staticCatalog: application.locales,
+      staticCatalog: Object.fromEntries(application.locales),
     });
 
     i18n.init(request, response);

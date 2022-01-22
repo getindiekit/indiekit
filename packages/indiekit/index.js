@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import deepmerge from 'deepmerge';
 import {defaultConfig} from './config/defaults.js';
 import {expressConfig} from './config/express.js';
 import {getMongodbConfig} from './lib/mongodb.js';
@@ -39,8 +40,10 @@ export const Indiekit = class {
     this.application.endpoints = [...this.application.endpoints, ...endpoint];
   }
 
-  addLocale(language, translations) {
-    this.application.locales[language] = _.merge(this.application.locales[language], translations);
+  addLocale(languageCode, translations) {
+    const locale = this.application.locales.get(languageCode);
+
+    this.application.locales.set(languageCode, deepmerge(locale, translations));
   }
 
   addNavigation(item) {
