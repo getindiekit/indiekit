@@ -20,9 +20,9 @@ const github = new GithubStore({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main` |
-| `user` | `string` | Your GitHub username. *Required* |
-| `repo` | `string` | The name of your GitHub repository. *Required* |
-| `token` | `string` | [A GitHub personal access token][pat]. *Required* |
+| `user` | `string` | Your GitHub username. *Required*. |
+| `repo` | `string` | The name of your GitHub repository. *Required*. |
+| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main`. |
+| `token` | `string` | [A GitHub personal access token][pat]. *Required*, defaults to `process.env.GITHUB_TOKEN`. |
 
 [pat]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
