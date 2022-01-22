@@ -94,7 +94,7 @@ A list of categories or tags used on your website. Can be an array of values, or
 Example, using an array:
 
 ```js
-indiekit.set('application.categories', [
+indiekit.set('publication.categories', [
   'sport',
   'technology',
   'travel',
@@ -104,7 +104,7 @@ indiekit.set('application.categories', [
 Example, using a URL:
 
 ```js
-indiekit.set('application.categories', 'https://website.example/categories.json');
+indiekit.set('publication.categories', 'https://website.example/categories.json');
 ```
 
 ***
