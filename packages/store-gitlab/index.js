@@ -1,9 +1,11 @@
+import process from 'node:process';
 import {Buffer} from 'node:buffer';
 import gitbeaker from '@gitbeaker/node';
 
 const defaults = {
   branch: 'main',
   instance: 'https://gitlab.com',
+  token: process.env.GITLAB_TOKEN,
 };
 
 /**
