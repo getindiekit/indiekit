@@ -6,6 +6,10 @@ Syndicate IndieWeb content to Twitter.
 
 `npm i @indiekit/syndicator-twitter`
 
+## Requirements
+
+A set of Twitter API keys. You can get these from <https://developer.twitter.com>.
+
 ## Usage
 
 ```js
@@ -18,13 +22,12 @@ const twitter = new TwitterSyndicator({
 
 ## Options
 
-You can get your Twitter API keys from <https://developer.twitter.com>.
-
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `apiKey` | `string` | Your Twitter API key. *Required* |
-| `apiKeySecret` | `string` | Your Twitter API secret key. *Required* |
-| `accessToken` | `string` | Your Twitter access token. *Required* |
-| `accessTokenSecret` | `string` | Your Twitter access token secret. *Required* |
-| `user` | `string` | Your Twitter username (without the `@`). *Required* |
-| `checked` | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. *Optional*, defaults to `false` |
+| `accessToken` | `string` | Your Twitter access token. *Required*, defaults to `process.env.TWITTER_ACCESS_TOKEN`. |
+| `accessTokenSecret` | `string` | Your Twitter access token secret. *Required*, defaults to `process.env.TWITTER_ACCESS_TOKEN_SECRET`. |
+| `apiKey` | `string` | Your Twitter API key. *Required*, defaults to `process.env.TWITTER_API_KEY`. |
+| `apiKeySecret` | `string` | Your Twitter API secret key. *Required*, defaults to `process.env.TWITTER_API_KEY_SECRET`. |
+| `user` | `string` | Your Twitter username (without the `@`). *Required*. |
+| `checked` | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. *Optional*, defaults to `false`. |
+| `forced` | `boolean` | Ignore the presence or value of `checked` and always syndicate. *Optional*. |
