@@ -1,9 +1,12 @@
 import path from 'node:path';
+import process from 'node:process';
 import {Readable} from 'node:stream';
 import ftp from 'basic-ftp';
 
 const defaults = {
+  password: process.env.FTP_PASSWORD,
   port: 21,
+  user: process.env.FTP_USER,
   verbose: true,
 };
 
