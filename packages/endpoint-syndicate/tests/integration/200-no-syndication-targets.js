@@ -15,9 +15,7 @@ test('Returns 200 if no post records', async t => {
     .put(uri => uri.includes('foobar'))
     .twice()
     .reply(200);
-  const request = await testServer({
-    hasSyndicator: false,
-  });
+  const request = await testServer({useSyndicator: false});
 
   // Create post
   await request.post('/micropub')

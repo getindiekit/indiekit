@@ -7,8 +7,8 @@ import {GithubStore} from '@indiekit/store-github';
 import {TwitterSyndicator} from '@indiekit/syndicator-twitter';
 
 const defaultOptions = {
-  hasDatabase: true,
-  hasSyndicator: true,
+  useDatabase: true,
+  useSyndicator: true,
 };
 
 export const testConfig = async options => {
@@ -54,7 +54,7 @@ export const testConfig = async options => {
   // Application settings
   indiekit.set('application.name', 'Test config');
 
-  if (options && options.hasDatabase !== false) {
+  if (options.useDatabase) {
     indiekit.set('application.mongodbUrl', mongodbUrl);
   }
 
@@ -63,7 +63,7 @@ export const testConfig = async options => {
   indiekit.set('publication.preset', jekyll);
   indiekit.set('publication.postTypes', postTypes);
   indiekit.set('publication.store', github);
-  indiekit.set('publication.syndicationTargets', options.hasSyndicator
+  indiekit.set('publication.syndicationTargets', options.useSyndicator
     ? [twitter]
     : [],
   );

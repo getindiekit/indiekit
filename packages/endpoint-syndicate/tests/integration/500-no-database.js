@@ -4,7 +4,7 @@ import {testServer} from '@indiekit-test/server';
 
 test('Returns 500 if no database configured', async t => {
   // Create post
-  const request = await testServer({hasDatabase: false});
+  const request = await testServer({useDatabase: false});
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
