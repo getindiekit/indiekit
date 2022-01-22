@@ -29,11 +29,17 @@ See [Localisation →](customisation/localisation.md)
 
 To cache files and save information about previously posts and files, you will need to connect Indiekit to a MongoDB database. You can [host one on MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
-*Optional*. For example:
+*Optional*, defaults to `process.env.MONGODB_URL`. For example:
 
 ```js
 indiekit.set('application.mongodbUrl', 'mongodb+srv://<USER>:<PASS>@<HOST>/<DATABASE>');
 ```
+
+> ### Important
+> {: .no_toc }
+>
+> This value may contain private information such as a username and password. It’s recommended that you store this value in an [environment (or configuration) variable](https://devcenter.heroku.com/articles/config-vars) which can only be seen by you and the application.
+{: .important }
 
 ***
 
