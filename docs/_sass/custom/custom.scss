@@ -1,5 +1,21 @@
-.main-content h1:first-child {
-  font-weight: 800;
+.main-content {
+  h1:first-child {
+    font-weight: 800;
+  }
+
+  blockquote {
+    border-left: 2px solid $grey-lt-300;
+    margin: $sp-6 0;
+    padding-left: $sp-3;
+
+    .anchor-heading {
+      display: none;
+    }
+  }
+
+  blockquote.important {
+    border-left-color: $red-200;
+  }
 }
 
 div.language-bash,
