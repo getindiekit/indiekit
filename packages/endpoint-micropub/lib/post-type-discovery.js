@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 /**
  * Accepts a JF2 object and attempts to determine the post type
  *
@@ -7,76 +5,50 @@ import _ from 'lodash';
  * @returns {string|null} The post type or null if unknown
  */
 export const getPostType = properties => {
-  if (properties.type !== 'entry') {
+  const propertiesMap = new Map(Object.entries(properties));
+
+  // If already has a type that’s not entry, return that value
+  if (properties.type && properties.type !== 'entry') {
     return properties.type;
   }
 
   // Then continue to base post type discovery
-  if (_.has(properties, 'rsvp')) {
-    return 'rsvp';
+  const basePostTypes = new Map();
+  basePostTypes.set('rsvp', 'rsvp');
+  basePostTypes.set('in-reply-to', 'reply');
+  basePostTypes.set('repost-of', 'repost');
+  basePostTypes.set('bookmark-of', 'bookmark');
+  basePostTypes.set('quotation-of', 'quotation');
+  basePostTypes.set('like-of', 'like');
+  basePostTypes.set('checkin', 'checkin');
+  basePostTypes.set('listen-of', 'listen');
+  basePostTypes.set('read-of', 'read');
+  basePostTypes.set('watch-of', 'watch');
+  basePostTypes.set('video', 'video');
+  basePostTypes.set('audio', 'audio');
+  basePostTypes.set('photo', 'photo');
+
+  for (const basePostType of basePostTypes) {
+    if (propertiesMap.has(basePostType[0])) {
+      return basePostType[1];
+    }
   }
 
-  if (_.has(properties, 'in-reply-to')) {
-    return 'reply';
-  }
-
-  if (_.has(properties, 'repost-of')) {
-    return 'repost';
-  }
-
-  if (_.has(properties, 'bookmark-of')) {
-    return 'bookmark';
-  }
-
-  if (_.has(properties, 'quotation-of')) {
-    return 'quotation';
-  }
-
-  if (_.has(properties, 'like-of')) {
-    return 'like';
-  }
-
-  if (_.has(properties, 'checkin')) {
-    return 'checkin';
-  }
-
-  if (_.has(properties, 'listen-of')) {
-    return 'listen';
-  }
-
-  if (_.has(properties, 'read-of')) {
-    return 'read';
-  }
-
-  if (_.has(properties, 'watch-of')) {
-    return 'watch';
-  }
-
-  if (_.has(properties, 'video')) {
-    return 'video';
-  }
-
-  if (_.has(properties, 'audio')) {
-    return 'audio';
-  }
-
-  if (_.has(properties, 'photo')) {
-    return 'photo';
-  }
-
+  // If has `children` property that is populated, is collection type
   if (properties.children && Array.isArray(properties.children) && properties.children.length > 0) {
     return 'collection';
   }
 
   // Check that `name` value is not a prefix of processed `content` value
   let content = null;
-  if (_.has(properties, 'content')) {
+  if (propertiesMap.has('content')) {
     content = properties.content.text || properties.content.html || properties.content;
-  } else if (_.has(properties, 'summary')) {
+  } else if (propertiesMap.has('summary')) {
     content = properties.summary;
   }
 
-  if (_.has(properties, 'name') && _.has(properties, 'content')) {
+  // Check if post could be an article
+  if (propertiesMap.has('name') && propertiesMap.has('content')) {
     const name = properties.name.trim();
     if (!content.startsWith(name)) {
       return 'article';
