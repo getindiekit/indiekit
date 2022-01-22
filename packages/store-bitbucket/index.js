@@ -1,7 +1,9 @@
+import process from 'node:process';
 import bitbucket from 'bitbucket';
 
 const defaults = {
   branch: 'main',
+  password: process.env.BITBUCKET_PASSWORD,
 };
 
 /**
