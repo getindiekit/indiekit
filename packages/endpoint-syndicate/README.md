@@ -6,7 +6,7 @@ Syndication endpoint for Indiekit.
 
 `npm i @indiekit/endpoint-syndicate`
 
-## Configuration
+## Usage
 
 ```js
 const SyndicateEndpoint = require('@indiekit/endpoint-syndicate');
@@ -20,4 +20,4 @@ const syndicateEndpoint = new SyndicateEndpoint({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `mountPath` | `string` | Path to syndication endpoint. *Optional*, defaults to `/syndicate` |
+| `mountPath` | `string` | Path to syndication endpoint. *Optional*, defaults to `/syndicate`. |

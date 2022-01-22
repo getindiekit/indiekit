@@ -6,7 +6,7 @@ Share endpoint for Indiekit. Inspired and developed from [an idea described by M
 
 `npm i @indiekit/endpoint-share`
 
-## Configuration
+## Usage
 
 ```js
 const ShareEndpoint = require('@indiekit/endpoint-share');
@@ -20,4 +20,4 @@ const shareEndpoint = new ShareEndpoint({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `mountPath` | `string` | Path to share screen. *Optional*, defaults to `/share` |
+| `mountPath` | `string` | Path to share screen. *Optional*, defaults to `/share`. |

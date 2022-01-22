@@ -6,7 +6,7 @@ Micropub endpoint for Indiekit.
 
 `npm i @indiekit/endpoint-micropub`
 
-## Configuration
+## Usage
 
 ```js
 const MicropubEndpoint = require('@indiekit/endpoint-micropub');
@@ -20,7 +20,7 @@ const micropubEndpoint = new MicropubEndpoint({
 
 | Option | Type | Description |
 | :----- | :--- | :---------- |
-| `mountPath` | `string` | Path to listen to Micropub requests. *Optional*, defaults to `/micropub` |
+| `mountPath` | `string` | Path to listen to Micropub requests. *Optional*, defaults to `/micropub`. |
 
 ## Supported endpoint queries
 
