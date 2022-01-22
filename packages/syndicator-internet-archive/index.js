@@ -1,3 +1,4 @@
+import process from 'node:process';
 import {fileURLToPath} from 'node:url';
 import Debug from 'debug';
 import {internetArchive} from './lib/internet-archive.js';
@@ -5,6 +6,8 @@ import {internetArchive} from './lib/internet-archive.js';
 export const debug = new Debug('indiekit:syndicator-internet-archive');
 
 const defaults = {
+  accessKey: process.env.INTERNET_ARCHIVE_ACCESS_KEY,
+  secretKey: process.env.INTERNET_ARCHIVE_SECRET_KEY,
   checked: false,
   name: 'Internet Archive',
   uid: 'https://web.archive.org/',
