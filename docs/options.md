@@ -2,96 +2,140 @@
 nav_order: 3
 ---
 
-# Configuration options
+# Configuration
 {: .no_toc }
 
-## Table of contents
-{: .no_toc .text-delta }
+Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
+
+* a `indiekit` property in package.json
+* a `.indiekitrc` file
+* a `indiekit.config.js` file exporting a JS object
+* a `indiekit.config.cjs` file exporting a JS object. When running indiekit in JavaScript packages that specify `"type":"module"` in their `package.json`
+
+The search stops when one of these is found, and Indiekit uses that object. You can use the `--config` CLI option to short-circuit the search.
+
+The `.indiekitrc` file (without extension) can be in JSON or YAML format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
+
+* `.indiekitrc.json`
+* `.indiekitrc.yaml` / `.indiekitrc.yml`
+* `.indiekitrc.js`
+
+The configuration object has the following properties:
 
 * TOC
 {:toc}
 
-## application.locale `string`
+## application
+
+### application.locale `string`
 
 The language used in the application interface.
 
-*Optional*, defaults to system language if supported, else `en` (English). For example:
+*Optional*, defaults to system language if supported, else `"en"` (English). For example:
 
-```js
-indiekit.set('application.locale', 'de');
+```json
+{
+  "application": {
+    "locale": "de"
+  }
+}
 ```
 
 See [Localisation →](customisation/localisation.md)
 
 ***
 
-## application.mongodbUrl `URL`
+### application.mongodbUrl `URL`
 
 To cache files and save information about previously posts and files, you will need to connect Indiekit to a MongoDB database. You can [host one on MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
 *Optional*, defaults to `process.env.MONGODB_URL`. For example:
 
-```js
-indiekit.set('application.mongodbUrl', 'mongodb+srv://<USER>:<PASS>@<HOST>/<DATABASE>');
+```json
+{
+  "application": {
+    "mongodbUrl": "mongodb+srv://<USER>:<PASS>@<HOST>/<DATABASE>"
+  }
+}
 ```
 
-> ### Important
-> {: .no_toc }
->
-> This value may contain private information such as a username and password. It’s recommended that you store this value in an [environment (or configuration) variable](https://devcenter.heroku.com/articles/config-vars) which can only be seen by you and the application.
-{: .important }
+{% include_relative _includes/option-contains-secrets.md %}
 
 ***
 
-## application.name `string`
+### application.name `string`
 
 The name of your server.
 
-*Optional*, defaults to `Indiekit`. For example:
+*Optional*, defaults to `"Indiekit"`. For example:
 
-```js
-indiekit.set('application.name', 'My IndieWeb Server');
+```json
+{
+  "application": {
+    "name": "My IndieWeb Server"
+  }
+}
 ```
 
 ***
 
-## application.themeColor `string`
+### application.themeColor `string`
 
 Accent colour used in the application interface.
 
-*Optional*, defaults to `#0055ee`. For example:
+*Optional*, defaults to `"#0055ee"`. For example:
 
-```js
-indiekit.set('application.themeColor', '#663399');
+```json
+{
+  "application": {
+    "themeColor": "#663399"
+  }
+}
 ```
 
 ***
 
-## application.themeColorScheme `string`
+### application.themeColorScheme `string`
 
-Color scheme used in the application interface, `automatic`, `light` or `dark`.
+Color scheme used in the application interface, `"automatic"`, `"light"` or `"dark"`.
 
-*Optional*, defaults to `automatic`. For example:
+*Optional*, defaults to `"automatic"`. For example:
 
-```js
-indiekit.set('application.themeColorScheme', 'dark');
+```json
+{
+  "application": {
+    "themeColorScheme": "dark"
+  }
+}
 ```
 
 ***
 
-## application.url `string`
+### application.url `string`
 
 The URL of your server. Useful if Indiekit is running behind a reverse proxy.
 
 *Optional*, defaults to the URL of your server (as provided by request headers). For example:
 
-```js
-indiekit.set('application.url', 'https://server.website.example');
+```json
+{
+  "application": {
+    "url": "https://server.website.example"
+  }
+}
 ```
 
 ***
 
-## publication.categories `Array | URL`
+## plugins
+
+TBD
+
+***
+
+## publication
+
+### publication.categories `Array | URL`
 
 A list of categories or tags used on your website. Can be an array of values, or the location of a JSON file providing an array of values.
 
@@ -99,154 +143,189 @@ A list of categories or tags used on your website. Can be an array of values, or
 
 Example, using an array:
 
-```js
-indiekit.set('publication.categories', [
-  'sport',
-  'technology',
-  'travel',
-]);
+```json
+{
+  "publication": {
+    "categories": [
+      "sport",
+      "technology",
+      "travel",
+    ]
+  }
+}
 ```
 
 Example, using a URL:
 
-```js
-indiekit.set('publication.categories', 'https://website.example/categories.json');
+```json
+{
+  "publication": {
+    "categories": "https://website.example/categories.json"
+  }
+}
 ```
 
 ***
 
-## publication.locale `string`
+### publication.locale `string`
 
 Your publication’s locale. Currently used to format dates.
 
-*Optional*, defaults to `en` (English). For example:
+*Optional*, defaults to `"en"` (English). For example:
 
-```js
-indiekit.set('publication.locale', 'de');
+```json
+{
+  "publication": {
+    "locale": "de"
+  }
+}
 ```
 
 ***
 
-## publication.me `URL`
+### publication.me `URL`
 
 Your website’s URL.
 
 *Required*. For example:
 
-```js
-indiekit.set('publication.me', 'https://website.example');
+```json
+{
+  "publication": {
+    "me": "https://website.example"
+  }
+}
 ```
 
 ***
 
-## publication.mediaEndpoint `URL`
+### publication.mediaEndpoint `URL`
 
 Indiekit provides a [media endpoint](https://micropub.spec.indieweb.org/#media-endpoint), but you can use a third-party endpoint by setting a value for this option.
 
 *Optional*. For example:
 
-```js
-indiekit.set('publication.mediaEndpoint', 'https://media.website.example');
+```json
+{
+  "publication": {
+    "mediaEndpoint": "https://media.website.example"
+  }
+}
 ```
 
 ***
 
-## publication.postTemplate `Function`
+### publication.postTemplate `Function`
 
 A post template is a function that takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
 
-*Optional*, defaults to MF2 JSON.
+*Optional*, defaults to MF2 JSON. For example:
+
+```js
+// indiekit.config.cjs
+import {myPostTemplate} from './my-post-template.js';
+
+export default {
+  publication: {
+    postTemplate: myPostTemplate,
+  },
+}
+```
+
+{% include_relative _includes/option-js-only.md %}
 
 See [customising a post template →](customisation/post-template.md)
 
 ***
 
-## publication.postTypes `Array`
+### publication.postTypes `Array`
 
 A set of default paths and templates for different post types.
 
-*Optional if using a preset*.
+*Optional if using a preset*. For example:
+
+```json
+"publication": {
+  "postTypes": [{
+    "type": "note",
+    "name": "Journal entry",
+    "post": {
+      "path": "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
+      "url": "journal/{yyyy}/{MM}/{slug}"
+    }
+  }]
+}
+```
 
 See [customising post types →](customisation/post-types.md)
 
 ***
 
-## publication.preset `Function`
-
-A [publication preset](plug-ins.md#publication-presets) plug-in.
-
-*Optional*.
-
-***
-
-## publication.slugSeparator `string`
+### publication.slugSeparator `string`
 
 The character used to replace spaces when creating a slug.
 
-*Optional*, defaults to `-`. For example:
+*Optional*, defaults to `"-"` (hyphen). For example:
 
-```js
-indiekit.set('publication.slugSeparator', '_');
+```json
+{
+  "publication": {
+    "slugSeparator": "_"
+  }
+}
 ```
 
 ***
 
-## publication.store `Function`
-
-A [content store](plug-ins.md#content-stores) plug-in.
-
-*Required*.
-
-***
-
-## publication.storeMessageTemplate `Function`
+### publication.storeMessageTemplate `Function`
 
 Function used to customise message format.
 
-*Optional*, defaults to `[action] [postType] [fileType]`.
+*Optional*, defaults to `[action] [postType] [fileType]`. For example:
+
+```js
+export default {
+  publication: {
+    storeMessageTemplate: metaData =>
+      `🤖 ${metaData.result} a ${metaData.postType} ${metaData.fileType}`,
+  },
+};
+```
+
+{% include_relative _includes/option-js-only.md %}
 
 See [customising commit messages →](customisation/commit-messages.md)
 
 ***
 
-## publication.syndicationTargets `Array`
+### publication.timeZone `string`
 
-An array of [syndication targets](https://micropub.spec.indieweb.org/#syndication-targets).
+The time zone for your publication. By default this is set to `"UTC"`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This option also accepts a number of other values.
 
-*Optional*. For example:
+*Optional*, defaults to `"UTC"`. For example:
 
-```js
-indiekit.set('publication.syndicationTargets', [{
-  uid: 'https://twitter.com/username/',
-  name: 'Username on Twitter'
-}, {
-  uid: 'https://mastodon.social/@username',
-  name: 'Username on Mastodon'
-}]);
-```
-
-***
-
-## publication.timeZone `string`
-
-The time zone for your publication. By default this is set to `UTC`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This option also accepts a number of other values.
-
-*Optional*, defaults to `UTC`. For example:
-
-```js
-indiekit.set('publication.timeZone', 'Europe/Berlin');
+```json
+{
+  "publication": {
+    "timeZone": "Europe/Berlin"
+  }
+}
 ```
 
 See [customising the time zone →](customisation/time-zone.md)
 
 ***
 
-## publication.tokenEndpoint `URL`
+### publication.tokenEndpoint `URL`
 
 An IndieAuth token endpoint.
 
-*Optional*, defaults to `https://tokens.indieauth.com/token`. For example:
+*Optional*, defaults to `"https://tokens.indieauth.com/token"`. For example:
 
-```js
-indiekit.set('publication.tokenEndpoint', 'https://tokens.example.org/token');
+```json
+{
+  "publication": {
+    "tokenEndpoint": "https://tokens.example.org/token"
+  }
+}
 ```

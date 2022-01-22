@@ -13,6 +13,10 @@
     }
   }
 
+  blockquote.information {
+    border-left-color: $purple-000;
+  }
+
   blockquote.important {
     border-left-color: $red-200;
   }

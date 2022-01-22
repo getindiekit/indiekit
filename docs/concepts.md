@@ -18,20 +18,20 @@ npm install @indiekit/store-github
 
 Then add it to your configuration file:
 
-```js
-import {GithubStore} from '@indiekit/store-github';
-
-const github = new GithubStore({
-  user: 'YOUR_GITHUB_USERNAME',
-  repo: 'YOUR_GITHUB_REPOSITORY',
-  branch: 'YOUR_GITHUB_BRANCH',
-  token: process.env.GITHUB_TOKEN // Use a private environment variable
-});
-
-indiekit.set('publication.store', github);
+```json
+{
+  "plugins": [
+    "@indiekit/store-github"
+  ],
+  "@indiekit/store-github": {
+    "user": "YOUR_GITHUB_USERNAME",
+    "repo": "YOUR_GITHUB_REPOSITORY",
+    "branch": "YOUR_GITHUB_BRANCH",
+  }
+}
 ```
 
-If you are saving your configuration file in a public location, you should keep your GitHub personal access token private. You can do this by setting the value for `token` to `process.env.GITHUB_TOKEN`, and creating a `GITHUB_TOKEN` environment variable with your token as its value.
+If you are saving your configuration file in a public location, you should keep any passwords or API tokens private. For this plugin, you can do this by creating a `GITHUB_TOKEN` [environment variable][env] with your GitHub personal access token as its value.
 
 ## Endpoint
 
@@ -59,17 +59,20 @@ A publication preset plug-in provides default values for these 2 options (which 
 For example, if you use the Jekyll static site generator, you can install the [Jekyll plug-in](plug-ins.md#jekyll):
 
 ```bash
-npm install @indiekit/preset-jekyll
+npm install @indiekit/preset-hugo
 ```
 
 Then add it to your configuration file:
 
-```js
-import {JekyllPreset} from '@indiekit/preset-jekyll';
-
-const jekyll = new JekyllPreset();
-
-indiekit.set('publication.preset', jekyll);
+```json
+{
+  "plugins": [
+    "@indiekit/preset-hugo"
+  ],
+  "@indiekit/preset-hugo": {
+    "frontMatterFormat": "json"
+  }
+}
 ```
 
 ## Syndicators
@@ -84,20 +87,19 @@ npm install @indiekit/syndicator-twitter
 
 Then add it to your configuration file:
 
-```js
-import {TwitterSyndicator} from '@indiekit/syndicator-twitter';
-
-const twitter = new TwitterSyndicator({
-  checked: true,
-  forced: true,
-  user: 'YOUR_TWITTER_USERNAME',
-  apiKey: process.env.TWITTER_API_KEY,
-  apiKeySecret: process.env.TWITTER_API_KEY_SECRET,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN,
-  accessTokenSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-});
-
-indiekit.set('publication.syndicationTargets', [
-  twitter
-]);
+```json
+{
+  "plugins": [
+    "@indiekit/syndicator-twitter"
+  ],
+  "@indiekit/syndicator-twitter": {
+    "checked": true,
+    "forced": true,
+    "user": "YOUR_TWITTER_USERNAME"
+  }
+}
 ```
+
+If you are saving your configuration file in a public location, you should keep any API keys, secrets and tokens private, using [environment variables][env] where possible.
+
+[env]: https://devcenter.heroku.com/articles/config-vars

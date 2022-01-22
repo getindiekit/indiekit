@@ -4,37 +4,40 @@ nav_order: 2
 
 # Get started
 
-## Create a configuration file
+## Install Indiekit
 
-Create a configuration file, (for example `indiekit.config.js`, but you can call this file whatever you like), and then setup Indiekit and export its server:
-
-```js
-import {Indiekit} from '@indiekit/indiekit';
-
-// Create a new indiekit instance
-const indiekit = new Indiekit();
-
-// Create a server
-const server = indiekit.server();
-
-// Export server
-export default server;
-```
-
-Start the server with:
+You can install indiekit using:
 
 ```bash
-node indiekit.config.js
+npm init && npm install @indiekit/indiekit
+```
+
+You can then start your server using:
+
+```bash
+npx indiekit serve
 ```
 
 Indiekit can now listen for Micropub requests, but a few bits of information are needed before it can publish content to your website.
 
 ## Configure your publication
 
-Indiekit needs to know your website’s URL. You can provide this information using Indiekit’s configuration API, like so:
+Indiekit needs to know your website’s URL. You can provide this information using Indiekit’s [configuration API](options.md). You can add options to a `indiekit` key in `package.json`:
 
-```js
-indiekit.set('publication.me', 'https://paulrobertlloyd.com');
+```jsonc
+// package.json
+{
+  "name": "my-indiekit-server",
+  "version": "1.0.0",
+  "dependencies": {
+    "@indiekit/indiekit": "{{ site.github.latest_release.tag_name | replace: "v","^" }}"
+  },
+  "indiekit": {
+    "publication": {
+      "me": "https://paulrobertlloyd.com"
+    }
+  }
+}
 ```
 
 ## Add a publication preset
@@ -49,12 +52,26 @@ If you use the Jekyll static site generator, you can install the [Jekyll plug-in
 npm install @indiekit/preset-jekyll
 ```
 
-Then add it to your configuration file:
+Then add it to the `plugins` array in your `indiekit` configuration object:
 
-```js
-import {JekyllPreset} from '@indiekit/preset-jekyll';
-const jekyll = new JekyllPreset();
-indiekit.set('publication.preset', jekyll);
+```jsonc
+// package.json
+{
+  "name": "my-indiekit-server",
+  "version": "1.0.0",
+  "dependencies": {
+    "@indiekit/indiekit": "{{ site.github.latest_release.tag_name | replace: "v","^" }}",
+    "@indiekit/preset-jekyll": "{{ site.github.latest_release.tag_name | replace: "v","^" }}"
+  },
+  "indiekit": {
+    "plugins": [
+      "@indiekit/preset-jekyll"
+    ],
+    "publication": {
+      "me": "https://paulrobertlloyd.com"
+    }
+  }
+}
 ```
 
 ## Add a content store
@@ -67,55 +84,36 @@ If you are saving your files to GitHub, install the GitHub plug-in:
 npm install @indiekit/store-github
 ```
 
-Then add it to your configuration file:
+Then add it to the `plugins` array in your `indiekit` configuration object. If it has options, these are added under the name of the plugin package:
 
-```js
-import {GithubStore} from '@indiekit/store-github';
-const github = new GithubStore({
-  user: 'username', // Your username on GitHub
-  repo: 'reponame', // Repository files will be saved to
-  branch: 'main', // Branch to publish to
-  token: 'token' // GitHub personal access token
-});
-indiekit.set('publication.store', github);
+```jsonc
+// package.json
+{
+  "name": "my-indiekit-server",
+  "version": "1.0.0",
+  "dependencies": {
+    "@indiekit/indiekit": "{{ site.github.latest_release.tag_name | replace: "v","^" }}",
+    "@indiekit/preset-jekyll": "{{ site.github.latest_release.tag_name | replace: "v","^" }}",
+    "@indiekit/store-github": "{{ site.github.latest_release.tag_name | replace: "v","^" }}"
+  },
+  "indiekit": {
+    "plugins": [
+      "@indiekit/preset-jekyll",
+      "@indiekit/store-github"
+    ],
+    "publication": {
+      "me": "https://paulrobertlloyd.com"
+    },
+    "@indiekit/store-github": {
+      "user": "username",
+      "repo": "reponame",
+      "branch": "main"
+    }
+  }
+}
 ```
 
-## Example configuration
-
-With all these settings in place, your configuration file will look something like this:
-
-```js
-import {Indiekit} from '@indiekit/indiekit';
-import {JekyllPreset} from '@indiekit/preset-jekyll';
-import {GithubStore} from '@indiekit/store-github';
-
-// Create a new indiekit instance
-const indiekit = new Indiekit();
-
-// Configure GitHub content store
-const github = new GithubStore({
-  user: 'YOUR_GITHUB_USERNAME',
-  repo: 'YOUR_GITHUB_REPOSITORY',
-  branch: 'YOUR_GITHUB_BRANCH',
-  token: process.env.GITHUB_TOKEN // Use a private environment variable
-});
-
-// Configure Jekyll publication preset
-const jekyll = new JekyllPreset();
-
-// Configure publication
-indiekit.set('publication.me', 'YOUR_WEBSITE_URL');
-indiekit.set('publication.preset', jekyll);
-indiekit.set('publication.store', github);
-
-// Create a server
-const server = indiekit.server();
-
-// Export server
-export default server;
-```
-
-You can also use this [example configuration](https://github.com/getindiekit/example-config) as a basis for your own.
+If you are saving your configuration file in a public location, you should keep any passwords or API tokens private. For this plugin, you can do this by creating a `GITHUB_TOKEN` [environment variable][env] with your GitHub personal access token as its value.
 
 ## Enable automatic discovery
 

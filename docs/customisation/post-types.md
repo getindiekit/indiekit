@@ -9,32 +9,32 @@ Micropub clients let you publish a variety of [post types](https://indieweb.org/
 
 For example, to use the Jekyll preset but override the `note` and `photo` post types, you would add the following to your configuration:
 
-```js
-import {JekyllPreset} from '@indiekit/preset-jekyll';
-
-// Use a preset
-const jekyll = new JekyllPreset();
-indiekit.set('publication.preset', jekyll);
-
-// Override preset post type
-indiekit.set('publication.postTypes', [{
-  type: 'note',
-  name: 'Journal entry',
-  post: {
-    path: '_journal/{yyyy}-{MM}-{dd}-{slug}.md',
-    url: 'journal/{yyyy}/{MM}/{slug}'
-  },
-}, {
-  type: 'photo',
-  name: 'Photograph',
-  post: {
-    path: '_photos/{yyyy}-{MM}-{dd}-{slug}.md',
-    url: 'photos/{yyyy}/{MM}/{slug}'
-  },
-  media: {
-    path: 'media/photos/{yyyy}/{filename}',
+```json
+{
+  "plugins": [
+    "@indiekit/preset-jekyll"
+  ],
+  "publication": {
+    "postTypes": [{
+      "type": "note",
+      "name": "Journal entry",
+      "post": {
+        "path": "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
+        "url": "journal/{yyyy}/{MM}/{slug}"
+      },
+    }, {
+      "type": "photo",
+      "name": "Photograph",
+      "post": {
+        "path": "_photos/{yyyy}-{MM}-{dd}-{slug}.md",
+        "url": "photos/{yyyy}/{MM}/{slug}"
+      },
+      "media": {
+        "path": "media/photos/{yyyy}/{filename}",
+      }
+    }]
   }
-}]);
+}
 ```
 
 Each post type can take the following values:

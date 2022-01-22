@@ -20,10 +20,13 @@ By default, Indiekit outputs the `action`, `postType` and `fileType`, for exampl
 If you want to change the commit message format, you can do the following:
 
 ```js
-indiekit.set('publication.storeMessageTemplate', metaData => {
-  const {result, postType, fileType} = metaData;
-  return `🤖 ${result} a ${postType} ${fileType}`;
-});
+// indiekit.config.cjs
+export default {
+  publication: {
+    storeMessageTemplate: metaData =>
+      `🤖 ${metaData.result} a ${metaData.postType} ${metaData.fileType}`,
+  },
+};
 ```
 
 For a photo post, this would create the following commit messages:
