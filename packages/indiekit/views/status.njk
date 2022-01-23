@@ -113,9 +113,21 @@
         text: __("status.publication.accessToken")
       },
       value: {
-        text: "<pre><code>" + session.token + "</code></pre>" or __("noValue")
+        text: textarea({
+          classes: "textarea--monospace",
+          label: {
+            classes: "visually-hidden",
+            text: __("status.publication.accessToken")
+          },
+          rows: 10,
+          value: session.token,
+          attributes: {
+            readonly: "true",
+            onclick: "this.select();"
+          }
+        }) if session.token else __("noValue")
       }
-    } if session.token]
+    }]
   }) }}
 
   {{ summary({

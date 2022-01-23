@@ -47,9 +47,10 @@ code,
 samp,
 var {
   font-family: var(--font-family-monospace);
-  font-size: 80%;
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
   hanging-punctuation: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 del {
