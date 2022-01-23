@@ -1,0 +1,6 @@
+{
+  "type": "entry",
+  "content": {
+    "html": "<p>I ate <a href=\"https://mastodon.example/@cheese\">@cheese</a>’s sandwich, which was nice.</p>"
+  }
+}
