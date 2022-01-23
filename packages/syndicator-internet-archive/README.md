@@ -12,12 +12,18 @@ A set of Internet Archive API keys. You can get these from <https://archive.org/
 
 ## Usage
 
-```js
-const InternetArchiveSyndicator = require('@indiekit/syndicator-internet-archive');
+Add `@indiekit/syndicator-internet-archive` to your list of plugins, specifying options as required:
 
-const internetArchive = new InternetArchiveSyndicator({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/syndicator-internet-archive"
+  ],
+  "@indiekit/syndicator-internet-archive": {
+    "checked": true,
+    "forced": true
+  }
+}
 ```
 
 ## Options

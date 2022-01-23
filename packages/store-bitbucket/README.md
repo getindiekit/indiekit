@@ -8,12 +8,18 @@ Store IndieWeb content on Bitbucket.
 
 ## Usage
 
-```js
-const BitbucketStore = require('@indiekit/store-bitbucket');
+Add `@indiekit/store-bitbucket` to your list of plugins, specifying options as required:
 
-const bitbucket = new BitbucketStore({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/store-bitbucket"
+  ],
+  "@indiekit/store-bitbucket": {
+    "user": "username",
+    "repo": "reponame"
+  }
+}
 ```
 
 ## Options

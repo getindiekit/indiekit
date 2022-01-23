@@ -12,12 +12,20 @@ A set of Mastodon API keys. You can get these from `/settings/applications` on y
 
 ## Usage
 
-```js
-const MastodonSyndicator = require('@indiekit/syndicator-mastodon');
+Add `@indiekit/syndicator-mastodon` to your list of plugins, specifying options as required:
 
-const mastodon = new MastodonSyndicator({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/syndicator-mastodon"
+  ],
+  "@indiekit/syndicator-mastodon": {
+    "url": "https://mastodon.server",
+    "user": "username",
+    "checked": true,
+    "forced": true
+  }
+}
 ```
 
 ## Options

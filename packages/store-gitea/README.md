@@ -8,12 +8,18 @@ Store IndieWeb content on Gitea.
 
 ## Usage
 
-```js
-const GiteaStore = require('@indiekit/store-gitea');
+Add `@indiekit/store-gitea` to your list of plugins, specifying options as required:
 
-const gitea = new GiteaStore({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/store-gitea"
+  ],
+  "@indiekit/store-gitea": {
+    "user": "username",
+    "repo": "reponame"
+  }
+}
 ```
 
 ## Options

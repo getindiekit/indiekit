@@ -8,12 +8,17 @@ Indiekit preset for Hugo-based websites.
 
 ## Usage
 
-```js
-const HugoPreset = require('@indiekit/preset-hugo');
+Add `@indiekit/preset-hugo` to your list of plugins, specifying options as required:
 
-const hugo = new HugoPreset({
-  // config options here
-});
+```json
+{
+  "plugins": [
+    "@indiekit/preset-hugo"
+  ],
+  "@indiekit/preset-hugo": {
+    "frontMatterFormat": "json"
+  }
+}
 ```
 
 ## Options

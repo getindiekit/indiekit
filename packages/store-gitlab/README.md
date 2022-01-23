@@ -8,12 +8,18 @@ Store IndieWeb content on GitLab.
 
 ## Usage
 
-```js
-const GitlabStore = require('@indiekit/store-gitlab');
+Add `@indiekit/store-gitlab` to your list of plugins, specifying options as required:
 
-const gitlab = new GitlabStore({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/store-gitlab"
+  ],
+  "@indiekit/store-gitlab": {
+    "user": "username",
+    "repo": "reponame"
+  }
+}
 ```
 
 ## Options

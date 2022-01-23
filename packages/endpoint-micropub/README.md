@@ -8,12 +8,17 @@ Micropub endpoint for Indiekit.
 
 ## Usage
 
-```js
-const MicropubEndpoint = require('@indiekit/endpoint-micropub');
+Add `@indiekit/endpoint-micropub` to your list of plugins, specifying options as required:
 
-const micropubEndpoint = new MicropubEndpoint({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/endpoint-micropub"
+  ],
+  "@indiekit/endpoint-micropub": {
+    "mountPath": "/publisher"
+  }
+}
 ```
 
 ## Options

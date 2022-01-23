@@ -8,12 +8,17 @@ Share endpoint for Indiekit. Inspired and developed from [an idea described by M
 
 ## Usage
 
-```js
-const ShareEndpoint = require('@indiekit/endpoint-share');
+Add `@indiekit/endpoint-share` to your list of plugins, specifying options as required:
 
-const shareEndpoint = new ShareEndpoint({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/endpoint-share"
+  ],
+  "@indiekit/endpoint-share": {
+    "mountPath": "/bookmark"
+  }
+}
 ```
 
 ## Options

@@ -12,12 +12,19 @@ A set of Twitter API keys. You can get these from <https://developer.twitter.com
 
 ## Usage
 
-```js
-const TwitterSyndicator = require('@indiekit/syndicator-twitter');
+Add `@indiekit/syndicator-twitter` to your list of plugins, specifying options as required:
 
-const twitter = new TwitterSyndicator({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/syndicator-twitter"
+  ],
+  "@indiekit/syndicator-twitter": {
+    "user": "username",
+    "checked": true,
+    "forced": true
+  }
+}
 ```
 
 ## Options

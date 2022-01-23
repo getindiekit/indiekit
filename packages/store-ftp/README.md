@@ -8,12 +8,19 @@ Store IndieWeb content via FTP.
 
 ## Usage
 
-```js
-const FtpStore = require('@indiekit/store-ftp');
+Add `@indiekit/store-ftp` to your list of plugins, specifying options as required:
 
-const ftp = new FtpStore({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/store-ftp"
+  ],
+  "@indiekit/store-ftp": {
+    "host": "ftp.server.example",
+    "user": "username",
+    "directory": "project/www"
+  }
+}
 ```
 
 ## Options

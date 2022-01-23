@@ -8,12 +8,17 @@ Syndication endpoint for Indiekit.
 
 ## Usage
 
-```js
-const SyndicateEndpoint = require('@indiekit/endpoint-syndicate');
+Add `@indiekit/endpoint-syndicate` to your list of plugins, specifying options as required:
 
-const syndicateEndpoint = new SyndicateEndpoint({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/endpoint-syndicate"
+  ],
+  "@indiekit/endpoint-syndicate": {
+    "mountPath": "/syndicator"
+  }
+}
 ```
 
 ## Options

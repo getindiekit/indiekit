@@ -8,12 +8,18 @@ Store IndieWeb content on GitHub.
 
 ## Usage
 
-```js
-const GithubStore = require('@indiekit/store-github');
+Add `@indiekit/store-github` to your list of plugins, specifying options as required:
 
-const github = new GithubStore({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/store-github"
+  ],
+  "@indiekit/store-github": {
+    "user": "username",
+    "repo": "reponame"
+  }
+}
 ```
 
 ## Options

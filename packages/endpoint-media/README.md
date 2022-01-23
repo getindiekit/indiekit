@@ -8,12 +8,17 @@ Micropub media endpoint for Indiekit.
 
 ## Usage
 
-```js
-const MediaEndpoint = require('@indiekit/endpoint-media');
+Add `@indiekit/endpoint-media` to your list of plugins, specifying options as required:
 
-const mediaEndpoint = new MediaEndpoint({
-  // Options
-});
+```json
+{
+  "plugins": [
+    "@indiekit/endpoint-media"
+  ],
+  "@indiekit/endpoint-media": {
+    "mountPath": "/uploader"
+  }
+}
 ```
 
 ## Options
