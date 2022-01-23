@@ -5,7 +5,6 @@
 }
 
 .file__title svg {
-  inline-size: var(--step-0);
   margin-inline-end: var(--space-inline);
 }
 
@@ -14,5 +13,5 @@
 
   color: var(--color-neutral-dark);
   margin-block-start: 0;
-  margin-inline-start: calc(var(--step-0) + var(--space-inline));
+  margin-inline-start: calc(24px + var(--space-inline));
 }
