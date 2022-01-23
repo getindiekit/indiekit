@@ -1,9 +1,10 @@
 import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
-import {Indiekit} from './packages/indiekit/index.js';
-import {JekyllPreset} from './packages/preset-jekyll/index.js';
-import {GithubStore} from './packages/store-github/index.js';
-import {TwitterSyndicator} from './packages/syndicator-twitter/index.js';
+import {Indiekit} from '@indiekit/indiekit';
+import {JekyllPreset} from '@indiekit/preset-jekyll';
+import {GithubStore} from '@indiekit/store-github';
+import {MastodonSyndicator} from '@indiekit/syndicator-mastodon';
+import {TwitterSyndicator} from '@indiekit/syndicator-twitter';
 
 // New indiekit instance
 const indiekit = new Indiekit();
@@ -17,6 +18,14 @@ const github = new GithubStore({
   repo: process.env.GITHUB_REPO,
   branch: process.env.GITHUB_BRANCH,
   token: process.env.GITHUB_TOKEN,
+});
+
+const mastodon = new MastodonSyndicator({
+  checked: true,
+  forced: true,
+  url: process.env.MASTODON_URL,
+  user: process.env.MASTODON_USER,
+  accessToken: process.env.MASTODON_ACCESS_TOKEN,
 });
 
 const twitter = new TwitterSyndicator({
@@ -36,7 +45,7 @@ indiekit.set('application.mongodbUrl', process.env.MONGODB_URL);
 indiekit.set('publication.me', process.env.PUBLICATION_URL);
 indiekit.set('publication.preset', jekyll);
 indiekit.set('publication.store', github);
-indiekit.set('publication.syndicationTargets', [twitter]);
+indiekit.set('publication.syndicationTargets', [twitter, mastodon]);
 indiekit.set('publication.timeZone', process.env.TZ ? process.env.TZ : 'UTC');
 
 // Server

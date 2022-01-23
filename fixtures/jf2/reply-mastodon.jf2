@@ -1,0 +1,9 @@
+{
+  "type": "entry",
+  "content": {
+    "html": "<p>I ate a cheese sandwich too!</p>",
+    "text": "I ate a cheese sandwich too!"
+  },
+  "in-reply-to": "https://mastodon.example/@username/1234567890987654321",
+  "post-type": "reply"
+}

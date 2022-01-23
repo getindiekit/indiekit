@@ -1,0 +1,45 @@
+{
+  "name": "@indiekit/syndicator-mastodon",
+  "version": "0.2.0",
+  "description": "Syndicate IndieWeb content to a Mastodon server",
+  "keywords": [
+    "indiekit",
+    "indieweb",
+    "syndication",
+    "mastodon"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/syndicator-mastodon"
+  },
+  "dependencies": {
+    "axios": "^0.25.0",
+    "brevity": "^0.2.9",
+    "html-to-text": "^8.0.0",
+    "http-errors": "^2.0.0",
+    "megalodon": "^4.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
