@@ -98,9 +98,12 @@
           "allow": [
             "access_token",
             "client_id",
+            "code_verifier",
             "error_description",
+            "grant_type",
             "job_id",
             "original_url",
+            "redirect_uri",
             "success_description"
           ]
         }

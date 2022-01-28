@@ -1,6 +1,6 @@
 import got from 'got';
 import HttpError from 'http-errors';
-import normalizeUrl from 'normalize-url';
+import {getCanonicalUrl} from './utils.js';
 
 export const getBearerToken = request => {
   if (request.session && request.session.token) {
@@ -26,8 +26,8 @@ export const getBearerToken = request => {
  * Request an access token
  *
  * @param {string} tokenEndpoint Token endpoint
- * @param {object} bearerToken oAuth bearer token
- * @returns {object} Access token
+ * @param {object} bearerToken OAuth bearer token
+ * @returns {Promise|object} Access token
  */
 export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
   try {
@@ -64,8 +64,8 @@ export const verifyAccessToken = (me, accessToken) => {
   }
 
   // Normalize publication and token URLs before comparing
-  const accessTokenMe = normalizeUrl(accessToken.me);
-  const publicationMe = normalizeUrl(me);
+  const accessTokenMe = getCanonicalUrl(accessToken.me);
+  const publicationMe = getCanonicalUrl(me);
   const isAuthenticated = accessTokenMe === publicationMe;
 
   // Publication URL does not match that provided by access token

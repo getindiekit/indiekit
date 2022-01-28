@@ -1,6 +1,6 @@
+import crypto from 'node:crypto';
 import express from 'express';
 import cookieSession from 'cookie-session';
-import {v4 as uuidv4} from 'uuid';
 import frontend from '@indiekit/frontend';
 import * as error from '../lib/middleware/error.js';
 import {internationalisation} from '../lib/middleware/internationalisation.js';
@@ -23,7 +23,7 @@ export const expressConfig = indiekitConfig => {
   // Session
   app.use(cookieSession({
     name: indiekitConfig.application.name,
-    secret: uuidv4(),
+    secret: crypto.randomBytes(16),
   }));
 
   // Internationalisation

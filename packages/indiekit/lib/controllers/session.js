@@ -1,14 +1,11 @@
 import Debug from 'debug';
 import httpError from 'http-errors';
-import IndieAuth from 'indieauth-helper';
-import normalizeUrl from 'normalize-url';
-import {v4 as uuidv4} from 'uuid';
+import {IndieAuth} from '../indieauth.js';
+import {getCanonicalUrl} from '../utils.js';
 
 const debug = new Debug('indiekit:session');
 
-const auth = new IndieAuth({
-  secret: uuidv4(),
-});
+const auth = new IndieAuth();
 
 export const login = (request, response) => {
   if (request.session.token) {
@@ -16,15 +13,13 @@ export const login = (request, response) => {
   }
 
   const {url} = response.locals.application;
+  auth.options.clientId = url;
+
   const callbackUrl = `${url}/session/auth`;
   const {redirect} = request.query;
-
-  const redirectUri = redirect
+  auth.options.redirectUri = redirect
     ? `${callbackUrl}?redirect=${redirect}`
     : `${callbackUrl}`;
-
-  auth.options.clientId = url;
-  auth.options.redirectUri = redirectUri;
 
   return response.render('session/login', {
     title: response.__('session.login.title'),
@@ -33,12 +28,12 @@ export const login = (request, response) => {
 };
 
 export const authenticate = async (request, response) => {
+  // TODO: Remove need for auth.options to be set in controller
+  auth.options.clientId = response.locals.application.url;
+  auth.options.me = getCanonicalUrl(response.locals.publication.me);
+
   try {
-    const me = normalizeUrl(response.locals.publication.me, {
-      removeTrailingSlash: false,
-    });
-    auth.options.me = new URL(me).href;
-    const authUrl = await auth.getAuthUrl('code', ['create', 'update', 'delete']);
+    const authUrl = await auth.getAuthUrl('create update delete');
 
     return response.redirect(authUrl);
   } catch (error) {
@@ -72,7 +67,7 @@ export const authenticationCallback = async (request, response, next) => {
   }
 
   try {
-    const token = await auth.getToken(code);
+    const token = await auth.authorizationCodeGrant(code);
     request.session.token = token;
     return response.redirect(redirect || '/');
   } catch (error) {
