@@ -1,5 +1,4 @@
 const path = require('path');
-const languages = require('iso-639-1');
 const nunjucks = require('nunjucks');
 const filters = require('./nunjucks/filters.js');
 const globals = require('./nunjucks/globals.js');
@@ -22,14 +21,13 @@ module.exports = app => {
   };
 
   const parser = nunjucks.configure(views, options);
-  parser.addFilter('absoluteUrl', filters.absoluteUrl);
-  parser.addFilter('darken', filters.darken);
-  parser.addFilter('lighten', filters.lighten);
-  parser.addFilter('date', filters.date);
-  parser.addFilter('errorList', filters.errorList);
-  parser.addFilter('language', string => languages.getNativeName(string));
-  parser.addFilter('markdown', filters.markdown);
-  parser.addFilter('summaryRows', filters.summaryRows);
+
+  // Add filters
+  for (const filter of Object.keys(filters)) {
+    parser.addFilter(filter, filters[filter]);
+  }
+
+  // Add globals
   parser.addGlobal('icon', nunjucks.runtime.markSafe(globals.icon));
 
   return parser;

@@ -1,6 +1,7 @@
 const path = require('node:path');
 const Color = require('color');
 const dateFns = require('date-fns');
+const languages = require('iso-639-1');
 const locales = require('date-fns/locale/index.js');
 const markdownIt = require('../markdown-it.js');
 
@@ -57,8 +58,8 @@ const lighten = (string, value) => {
 const date = (string, tokens, locale = 'en') => {
   locale = locales[locale.replace('-', '')];
   const date = (string === 'now') ? new Date() : parseISO(string);
-  const datetime = format(date, tokens, {locale});
-  return datetime;
+  const dateTime = format(date, tokens, {locale});
+  return dateTime;
 };
 
 /**
@@ -85,6 +86,15 @@ const errorList = errorMap => {
 
   return errorList;
 };
+
+/**
+ * Get native language name
+ *
+ * @param {string} string ISO 639-1 language code
+ * @returns {string} Native language name
+ * @example language('de') => Deutsch
+ */
+const language = string => languages.getNativeName(string);
 
 /**
  * Render Markdown string as HTML
@@ -133,6 +143,7 @@ module.exports = {
   lighten,
   date,
   errorList,
+  language,
   markdown,
   summaryRows,
 };
