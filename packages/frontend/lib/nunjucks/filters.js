@@ -1,9 +1,26 @@
+const path = require('node:path');
 const Color = require('color');
 const dateFns = require('date-fns');
 const locales = require('date-fns/locale/index.js');
 const markdownIt = require('../markdown-it.js');
 
 const {format, parseISO} = dateFns;
+
+/**
+ * Get absolute URL
+ *
+ * @param {string} string URL or path
+ * @param {string} baseUrl Base URL
+ * @returns {URL} Absolute URL
+ */
+const absoluteUrl = (string, baseUrl) => {
+  try {
+    return new URL(string).toString();
+  } catch {
+    const absoluteUrl = path.posix.join(baseUrl, string);
+    return new URL(absoluteUrl).toString();
+  }
+};
 
 /**
  * Darken a color
@@ -111,6 +128,7 @@ const summaryRows = object => {
 };
 
 module.exports = {
+  absoluteUrl,
   darken,
   lighten,
   date,

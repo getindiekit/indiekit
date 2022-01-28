@@ -1,6 +1,16 @@
 const test = require('ava');
 
-const {date, errorList, markdown} = require('../../../lib/nunjucks/filters.js');
+const {absoluteUrl, date, errorList, markdown} = require('../../../lib/nunjucks/filters.js');
+
+test('Gets absolute URL from path', t => {
+  const result1 = absoluteUrl('path1', 'https://website.example');
+  const result2 = absoluteUrl('/path2', 'https://website.example');
+  const result3 = absoluteUrl('https://website.example/path3', 'https://website.example');
+
+  t.is(result1, 'https://website.example/path1');
+  t.is(result2, 'https://website.example/path2');
+  t.is(result3, 'https://website.example/path3');
+});
 
 test('Formats a date', t => {
   t.is(date('2019-11-30', 'dd MMMM yyyy'), '30 November 2019');

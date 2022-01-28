@@ -22,6 +22,7 @@ module.exports = app => {
   };
 
   const parser = nunjucks.configure(views, options);
+  parser.addFilter('absoluteUrl', filters.absoluteUrl);
   parser.addFilter('darken', filters.darken);
   parser.addFilter('lighten', filters.lighten);
   parser.addFilter('date', filters.date);
