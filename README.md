@@ -26,9 +26,9 @@
 * Accept post status and visibility
 * Review previously published posts and files
 * Bookmarklet to save and share bookmarks
-* Publish to different [content stores](https://getindiekit.com/plugins/#content-stores)
+* Publish to different [content stores](https://getindiekit.com/plug-ins/#content-stores)
 * Support for popular static site generators (Jekyll, Hugo, 11ty)
-* Localised to [different languages](https://getindiekit.com/docs/localisation/)
+* Localised to [different languages](https://getindiekit.com/customisation/localisation/)
 * ~~Plug-in API~~
 
 ## Requirements
@@ -39,7 +39,7 @@
 
 `npm install @indiekit/indiekit`
 
-Learn how to [set up an Indiekit server](https://getindiekit.com/docs/getting-started/) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
+Learn how to [set up an Indiekit server](https://getindiekit.com/get-started/) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
 
 ## Local development
 
