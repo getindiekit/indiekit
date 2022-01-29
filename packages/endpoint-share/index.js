@@ -47,10 +47,9 @@ export const ShareEndpoint = class {
 
   routes(application, publication) {
     const router = this._router;
-    const {authenticate} = application.middleware;
 
-    router.get('/:path?', authenticate, shareController(publication).get);
-    router.post('/:path?', validate, authenticate, shareController(publication).post);
+    router.get('/:path?', shareController(publication).get);
+    router.post('/:path?', validate, shareController(publication).post);
 
     return router;
   }

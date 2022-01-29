@@ -5,8 +5,6 @@ import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {SyndicateEndpoint} from '@indiekit/endpoint-syndicate';
-import {authenticate} from '../lib/middleware/authentication.js';
-import {indieauth} from '../lib/middleware/indieauth.js';
 import {locales} from '../locales/index.js';
 
 const mediaEndpoint = new MediaEndpoint();
@@ -32,10 +30,6 @@ export const defaultConfig = {
     hasDatabase: false,
     locales,
     mongodbUrl,
-    middleware: {
-      authenticate,
-      indieauth,
-    },
     name: 'Indiekit',
     navigationItems: [],
     repository: package_.repository,

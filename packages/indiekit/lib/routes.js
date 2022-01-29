@@ -5,7 +5,7 @@ import * as assetsController from './controllers/assets.js';
 import * as homepageController from './controllers/homepage.js';
 import * as sessionController from './controllers/session.js';
 import * as statusController from './controllers/status.js';
-import {authenticate} from './middleware/authentication.js';
+import {authorise} from './middleware/authorisation.js';
 
 const {assetsPath} = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
@@ -52,11 +52,11 @@ export const routes = indiekitConfig => {
   router.get('/session/logout', sessionController.logout);
 
   // Status
-  router.get('/status', authenticate, statusController.viewStatus);
+  router.get('/status', authorise(publication), statusController.viewStatus);
 
   // Plug-in Endpoints
   for (const route of application.routes) {
-    router.use(route.mountPath, route.routes());
+    router.use(route.mountPath, authorise(publication), route.routes());
   }
 
   return router;
