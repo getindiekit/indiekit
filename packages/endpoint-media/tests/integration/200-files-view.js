@@ -24,8 +24,7 @@ test('Views previously uploaded file', async t => {
     .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
 
   // Get file data by parsing list of files and getting values from link
-  const filesResponse = await request.get('/media/files')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
+  const filesResponse = await request.get('/media/files');
   const filesDom = new JSDOM(filesResponse.text);
   const fileLink = filesDom.window.document.querySelector('.file a');
   const fileName = fileLink.textContent;
