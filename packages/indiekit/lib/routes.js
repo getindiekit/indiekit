@@ -34,9 +34,6 @@ export const routes = indiekitConfig => {
     response.send('User-agent: *\nDisallow: /');
   });
 
-  // Status
-  router.get('/status', authenticate, statusController.viewStatus);
-
   // Assets
   router.use('/assets', express.static(assetsPath));
   router.get('/assets/app.css', assetsController.getStyles);
@@ -54,7 +51,10 @@ export const routes = indiekitConfig => {
   router.get('/session/auth', limit, sessionController.authenticationCallback);
   router.get('/session/logout', sessionController.logout);
 
-  // Endpoints
+  // Status
+  router.get('/status', authenticate, statusController.viewStatus);
+
+  // Plug-in Endpoints
   for (const route of application.routes) {
     router.use(route.mountPath, route.routes());
   }
