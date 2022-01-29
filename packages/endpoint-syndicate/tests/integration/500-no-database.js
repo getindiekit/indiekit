@@ -1,9 +1,20 @@
 import process from 'node:process';
 import test from 'ava';
+import nock from 'nock';
 import {testServer} from '@indiekit-test/server';
 
 test('Returns 500 if no database configured', async t => {
   // Create post
+  nock('https://tokens.indieauth.com')
+    .get('/token')
+    .reply(200, {
+      me: process.env.TEST_PUBLICATION_URL,
+      scope: 'create update',
+    });
+  nock('https://api.github.com')
+    .put(uri => uri.includes('foobar'))
+    .twice()
+    .reply(200);
   const request = await testServer({useDatabase: false});
   await request.post('/micropub')
     .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
@@ -14,7 +25,6 @@ test('Returns 500 if no database configured', async t => {
 
   // Syndicate post
   const result = await request.post('/syndicate')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
     .set('Accept', 'application/json')
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`);
 

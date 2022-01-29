@@ -28,7 +28,6 @@ export const SyndicateEndpoint = class {
 
   routes(application, publication) {
     const router = this._router;
-
     router.post('/', syndicateController(application, publication).post);
 
     return router;
