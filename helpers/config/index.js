@@ -1,5 +1,6 @@
 import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
+import cookieSession from 'cookie-session';
 import {MongoMemoryServer} from 'mongodb-memory-server';
 import {Indiekit} from '@indiekit/indiekit';
 import {JekyllPreset} from '@indiekit/preset-jekyll';
@@ -53,6 +54,10 @@ export const testConfig = async options => {
 
   // Application settings
   indiekit.set('application.name', 'Test config');
+  indiekit.set('application.sessionMiddleware', cookieSession({
+    name: 'test',
+    secret: 'secret',
+  }));
 
   if (options.useDatabase) {
     indiekit.set('application.mongodbUrl', mongodbUrl);

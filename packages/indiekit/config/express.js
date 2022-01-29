@@ -1,6 +1,4 @@
-import crypto from 'node:crypto';
 import express from 'express';
-import cookieSession from 'cookie-session';
 import frontend from '@indiekit/frontend';
 import * as error from '../lib/middleware/error.js';
 import {internationalisation} from '../lib/middleware/internationalisation.js';
@@ -12,6 +10,7 @@ const {templates} = frontend;
 
 export const expressConfig = indiekitConfig => {
   const app = express();
+  const {application} = indiekitConfig;
 
   // Correctly report secure connections
   app.enable('trust proxy');
@@ -21,10 +20,7 @@ export const expressConfig = indiekitConfig => {
   app.use(express.urlencoded({extended: true}));
 
   // Session
-  app.use(cookieSession({
-    name: indiekitConfig.application.name,
-    secret: crypto.randomBytes(16),
-  }));
+  app.use(application.sessionMiddleware);
 
   // Internationalisation
   app.use(internationalisation(indiekitConfig));
@@ -36,7 +32,7 @@ export const expressConfig = indiekitConfig => {
   app.use(logging);
 
   // Views
-  app.set('views', indiekitConfig.application.views);
+  app.set('views', application.views);
   app.engine('njk', templates(app).render);
   app.set('view engine', 'njk');
 

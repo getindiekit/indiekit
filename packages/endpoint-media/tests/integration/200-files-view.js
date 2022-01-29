@@ -1,5 +1,6 @@
 import process from 'node:process';
 import test from 'ava';
+import mockSession from 'mock-session';
 import nock from 'nock';
 import {getFixture} from '@indiekit-test/get-fixture';
 import {JSDOM} from 'jsdom';
@@ -16,6 +17,10 @@ test('Views previously uploaded file', async t => {
     .put(uri => uri.includes('.jpg'))
     .reply(200, {commit: {message: 'Message'}});
 
+  const cookie = mockSession('test', 'secret', {
+    token: process.env.TEST_BEARER_TOKEN,
+  });
+
   // Upload file
   const request = await testServer();
   await request.post('/media')
@@ -24,7 +29,8 @@ test('Views previously uploaded file', async t => {
     .attach('file', getFixture('file-types/photo.jpg', false), 'photo.jpg');
 
   // Get file data by parsing list of files and getting values from link
-  const filesResponse = await request.get('/media/files');
+  const filesResponse = await request.get('/media/files')
+    .set('Cookie', [cookie]);
   const filesDom = new JSDOM(filesResponse.text);
   const fileLink = filesDom.window.document.querySelector('.file a');
   const fileName = fileLink.textContent;
@@ -32,7 +38,7 @@ test('Views previously uploaded file', async t => {
 
   // Visit file page
   const fileResponse = await request.get(`/media/files/${fileId}`)
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
+    .set('Cookie', [cookie]);
   const fileDom = new JSDOM(fileResponse.text);
 
   const result = fileDom.window.document;

@@ -5,7 +5,7 @@ import * as assetsController from './controllers/assets.js';
 import * as homepageController from './controllers/homepage.js';
 import * as sessionController from './controllers/session.js';
 import * as statusController from './controllers/status.js';
-import {authorise} from './middleware/authorisation.js';
+import {IndieAuth} from './indieauth.js';
 
 const {assetsPath} = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
@@ -18,6 +18,11 @@ const limit = rateLimit({
 
 export const routes = indiekitConfig => {
   const {application, publication} = indiekitConfig;
+
+  const indieauth = new IndieAuth({
+    me: publication.me,
+    tokenEndpoint: publication.tokenEndpoint,
+  });
 
   // Prevent pages from being indexed
   router.use((request, response, next) => {
@@ -47,16 +52,16 @@ export const routes = indiekitConfig => {
 
   // Session
   router.get('/session/login', limit, sessionController.login);
-  router.post('/session/login', limit, sessionController.authenticate);
-  router.get('/session/auth', limit, sessionController.authenticationCallback);
+  router.post('/session/login', limit, indieauth.login());
+  router.get('/session/auth', limit, indieauth.authenticate());
   router.get('/session/logout', sessionController.logout);
 
   // Status
-  router.get('/status', limit, authorise(publication), statusController.viewStatus);
+  router.get('/status', limit, indieauth.authorise(), statusController.viewStatus);
 
   // Plug-in Endpoints
   for (const route of application.routes) {
-    router.use(route.mountPath, limit, authorise(publication), route.routes());
+    router.use(route.mountPath, limit, indieauth.authorise(), route.routes());
   }
 
   return router;

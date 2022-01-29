@@ -14,7 +14,7 @@ export const uploadController = publication =>
    */
   async (request, response, next) => {
     const {file} = request;
-    const {scope} = publication.accessToken;
+    const {scope} = response.locals.publication.accessToken;
 
     try {
       checkScope(scope);

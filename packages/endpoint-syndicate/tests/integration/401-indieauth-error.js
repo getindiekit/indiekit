@@ -1,5 +1,6 @@
 import process from 'node:process';
 import test from 'ava';
+import mockSession from 'mock-session';
 import nock from 'nock';
 import {testServer} from '@indiekit-test/server';
 
@@ -31,9 +32,14 @@ test('Returns 401 error from Micropub endpoint', async t => {
     .send('mp-syndicate-to=https://twitter.com/username');
 
   // Syndicate post
+  const cookie = mockSession('test', 'secret', {
+    token: process.env.TEST_BEARER_TOKEN,
+  });
   const result = await request.post('/syndicate')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
-    .set('Accept', 'application/json');
+    .set('Accept', 'application/json')
+    .set('Cookie', [cookie])
+    .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
+    .query(`token=${process.env.TEST_BEARER_TOKEN}`);
 
   // Assertions
   t.is(result.statusCode, 401);

@@ -21,7 +21,7 @@ export const actionController = publication =>
     const {body, files, query} = request;
     const action = query.action || body.action || 'create';
     const url = query.url || body.url;
-    const {scope} = publication.accessToken;
+    const {scope} = response.locals.publication.accessToken;
 
     try {
       checkScope(scope, action);

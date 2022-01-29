@@ -1,5 +1,6 @@
 import process from 'node:process';
 import test from 'ava';
+import mockSession from 'mock-session';
 import nock from 'nock';
 import {JSDOM} from 'jsdom';
 import {testServer} from '@indiekit-test/server';
@@ -12,8 +13,11 @@ test('Returns list of previously uploaded files', async t => {
       scope: 'media',
     });
   const request = await testServer();
+  const cookie = mockSession('test', 'secret', {
+    token: process.env.TEST_BEARER_TOKEN,
+  });
   const response = await request.get('/media/files')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
+    .set('Cookie', [cookie]);
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;

@@ -1,6 +1,8 @@
+import crypto from 'node:crypto';
 import {createRequire} from 'node:module';
 import process from 'node:process';
 import {fileURLToPath} from 'node:url';
+import cookieSession from 'cookie-session';
 import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
@@ -58,3 +60,8 @@ export const defaultConfig = {
     port: process.env.PORT || '3000',
   },
 };
+
+defaultConfig.application.sessionMiddleware = cookieSession({
+  name: defaultConfig.application.name,
+  secret: crypto.randomBytes(16),
+});

@@ -1,5 +1,6 @@
 import process from 'node:process';
 import test from 'ava';
+import mockSession from 'mock-session';
 import nock from 'nock';
 import {JSDOM} from 'jsdom';
 import {testServer} from '@indiekit-test/server';
@@ -15,6 +16,10 @@ test('Views previously uploaded file', async t => {
     .put(uri => uri.includes('foobar.md'))
     .reply(200);
 
+  const cookie = mockSession('test', 'secret', {
+    token: process.env.TEST_BEARER_TOKEN,
+  });
+
   // Create post
   const request = await testServer();
   await request.post('/micropub')
@@ -25,7 +30,7 @@ test('Views previously uploaded file', async t => {
 
   // Get post data by parsing list of posts and getting values from link
   const postsResponse = await request.get('/micropub/posts')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
+    .set('Cookie', [cookie]);
   const postsDom = new JSDOM(postsResponse.text);
   const postLink = postsDom.window.document.querySelector('.file a');
   const postName = postLink.textContent;
@@ -33,7 +38,7 @@ test('Views previously uploaded file', async t => {
 
   // Visit post page
   const postResponse = await request.get(`/micropub/posts/${postId}`)
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'});
+    .set('Cookie', [cookie]);
   const postDom = new JSDOM(postResponse.text);
 
   const result = postDom.window.document;

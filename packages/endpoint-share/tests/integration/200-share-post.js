@@ -1,5 +1,6 @@
 import process from 'node:process';
 import test from 'ava';
+import mockSession from 'mock-session';
 import nock from 'nock';
 import {testServer} from '@indiekit-test/server';
 
@@ -16,9 +17,12 @@ test('Posts content and redirects back to share page', async t => {
 
   // Publish post
   const request = await testServer();
+  const cookie = mockSession('test', 'secret', {
+    token: process.env.TEST_BEARER_TOKEN,
+  });
   const result = await request.post('/share')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
-    .send(`access_token=${process.env.TEST_PUBLICATION_URL}`)
+    .set('Cookie', [cookie])
+    .send(`access_token=${process.env.TEST_BEARER_TOKEN}`)
     .send('name=Foobar')
     .send('content=Test+of+sharing+a+bookmark')
     .send('bookmark-of=https://example.website');
