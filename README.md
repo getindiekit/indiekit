@@ -41,23 +41,6 @@
 
 Learn how to [set up an Indiekit server](https://getindiekit.com/docs/getting-started/) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
 
-## Demo
-
-If you want to see how Indiekit works, deploy this application to Heroku.
-
-> This assumes you’ll be saving files to GitHub and publishing to a Jekyll (or similar) static site generator.
-
-Clicking the button below will guide you through the process.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/getindiekit/indiekit/tree/main)
-
-You’ll be asked to provide the following values:
-
-* `GITHUB_TOKEN` - A GitHub [personal access token](https://github.com/settings/tokens)
-* `GITHUB_USER` - Your username on GitHub
-* `GITHUB_REPO` - Name of the repository where you want to save files
-* `PUBLICATION_URL` - URL of the website you want to publish to
-
 ## Local development
 
 ```sh
