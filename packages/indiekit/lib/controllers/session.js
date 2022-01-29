@@ -49,7 +49,7 @@ export const authenticationCallback = async (request, response, next) => {
   const {code, redirect, state} = request.query;
 
   if (redirect) {
-    const validRedirect = redirect.match(/^\/[\w/]+$/);
+    const validRedirect = redirect.match(/^\/[\w\d/?=&]*$/);
 
     if (!validRedirect) {
       return response.status(403).render('session/login', {

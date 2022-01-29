@@ -5,7 +5,7 @@ import nock from 'nock';
 import sinon from 'sinon';
 import mockReqRes from 'mock-req-res';
 import {defaultConfig} from '../../../config/defaults.js';
-import {indieauth} from '../../../lib/middleware/indieauth.js';
+import {authorise} from '../../../lib/middleware/authorisation.js';
 
 const {mockRequest, mockResponse} = mockReqRes;
 
@@ -21,11 +21,13 @@ test.beforeEach(t => {
 });
 
 test('Throws error', async t => {
-  const request = mockRequest();
+  const request = mockRequest({
+    method: 'post',
+  });
   const response = mockResponse();
   const next = sinon.spy();
 
-  await indieauth(defaultConfig.publication)(request, response, next);
+  await authorise(defaultConfig.publication)(request, response, next);
 
   t.true(next.calledOnce);
   t.true(next.firstCall.args[0] instanceof Error);
@@ -40,7 +42,7 @@ test('Saves token to locals', async t => {
   const next = sinon.spy();
   defaultConfig.publication.me = process.env.TEST_PUBLICATION_URL;
 
-  await indieauth(defaultConfig.publication)(request, response, next);
+  await authorise(defaultConfig.publication)(request, response, next);
 
   t.is(defaultConfig.publication.accessToken.me, t.context.me);
   t.true(next.calledOnce);

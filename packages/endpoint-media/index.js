@@ -48,15 +48,14 @@ export const MediaEndpoint = class {
 
   routes(application, publication) {
     const router = this._router;
-    const {authenticate, indieauth} = application.middleware;
     const multipartParser = multer({
       storage: multer.memoryStorage(),
     });
 
     router.get('/', queryController(publication));
-    router.post('/', indieauth(publication), multipartParser.single('file'), uploadController(publication));
-    router.get('/files', authenticate, filesController(application, publication).list);
-    router.get('/files/:id', authenticate, filesController(application, publication).view);
+    router.post('/', multipartParser.single('file'), uploadController(publication));
+    router.get('/files', filesController(application, publication).list);
+    router.get('/files/:id', filesController(application, publication).view);
 
     return router;
   }

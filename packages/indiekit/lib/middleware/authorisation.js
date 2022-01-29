@@ -6,22 +6,30 @@ import {
 } from '../tokens.js';
 
 /**
- * Authenticate request using IndieAuth
+ * Check if a user is authorized
  *
  * @param {object} publication Publication configuration
  * @returns {Function} Next middleware
  */
-export const indieauth = publication => {
+export const authorise = publication => {
   const {me, tokenEndpoint} = publication;
 
   return async function (request, response, next) {
+    if (publication.accessToken) {
+      return next();
+    }
+
     try {
-      publication.bearerToken = getBearerToken(request);
-      const accessToken = await requestAccessToken(tokenEndpoint, publication.bearerToken);
+      const bearerToken = getBearerToken(request);
+      const accessToken = await requestAccessToken(tokenEndpoint, bearerToken);
       publication.accessToken = verifyAccessToken(me, accessToken);
 
       next();
     } catch (error) {
+      if (request.method === 'GET') {
+        return response.redirect(`/session/login?redirect=${request.originalUrl}`);
+      }
+
       next(httpError(400, error));
     }
   };
