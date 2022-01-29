@@ -1,5 +1,6 @@
 import express from 'express';
 import frontend from '@indiekit/frontend';
+import rateLimit from 'express-rate-limit';
 import * as assetsController from './controllers/assets.js';
 import * as homepageController from './controllers/homepage.js';
 import * as sessionController from './controllers/session.js';
@@ -8,6 +9,12 @@ import {authenticate} from './middleware/authentication.js';
 
 const {assetsPath} = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
+const limit = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 export const routes = indiekitConfig => {
   const {application, publication} = indiekitConfig;
@@ -42,9 +49,9 @@ export const routes = indiekitConfig => {
   }
 
   // Session
-  router.get('/session/login', sessionController.login);
-  router.post('/session/login', sessionController.authenticate);
-  router.get('/session/auth', sessionController.authenticationCallback);
+  router.get('/session/login', limit, sessionController.login);
+  router.post('/session/login', limit, sessionController.authenticate);
+  router.get('/session/auth', limit, sessionController.authenticationCallback);
   router.get('/session/logout', sessionController.logout);
 
   // Endpoints
