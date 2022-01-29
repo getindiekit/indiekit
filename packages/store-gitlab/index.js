@@ -44,7 +44,7 @@ export const GitlabStore = class {
    * @param {string} content File content
    * @param {string} message Commit message
    * @returns {Promise<Response>} HTTP response
-   * @see https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository
+   * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
@@ -65,7 +65,7 @@ export const GitlabStore = class {
    *
    * @param {string} path Path to file
    * @returns {Promise<Response>} A promise to the response
-   * @see https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository
+   * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
    */
   async readFile(path) {
     const response = await this.client.RepositoryFiles.show(
@@ -84,7 +84,7 @@ export const GitlabStore = class {
    * @param {string} content File content
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
-   * @see https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository
+   * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
   async updateFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
@@ -106,7 +106,7 @@ export const GitlabStore = class {
    * @param {string} path Path to file
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
-   * @see https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository
+   * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository}
    */
   async deleteFile(path, message) {
     await this.client.RepositoryFiles.remove(

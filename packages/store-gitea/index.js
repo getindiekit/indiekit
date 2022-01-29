@@ -45,7 +45,7 @@ export const GiteaStore = class {
    * @param {string} content File content
    * @param {string} message Commit message
    * @returns {Promise<Response>} HTTP response
-   * @see https://gitea.com/api/swagger#/repository/repoCreateFile
+   * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString('base64');
@@ -64,7 +64,7 @@ export const GiteaStore = class {
    *
    * @param {string} path Path to file
    * @returns {Promise<Response>} A promise to the response
-   * @see https://gitea.com/api/swagger#/repository/repoGetContents
+   * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
   async readFile(path) {
     const {body} = await this.client.get(`${path}?ref=${this.options.branch}`);
@@ -79,7 +79,7 @@ export const GiteaStore = class {
    * @param {string} content File content
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
-   * @see https://gitea.com/api/swagger#/repository/repoUpdateFile
+   * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(path, content, message) {
     const {body} = await this.client.get(`${path}?ref=${this.options.branch}`);
@@ -102,7 +102,7 @@ export const GiteaStore = class {
    * @param {string} path Path to file
    * @param {string} message Commit message
    * @returns {Promise<Response>} A promise to the response
-   * @see https://gitea.com/api/swagger#/repository/repoDeleteFile
+   * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
   async deleteFile(path, message) {
     const {body} = await this.client.get(`${path}?ref=${this.options.branch}`);

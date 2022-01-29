@@ -44,7 +44,7 @@ export const decrypt = (hash, iv) => {
  *
  * @param {string} url The URL to canonicalise
  * @returns {string} The canonicalised URL
- * @see https://indieauth.spec.indieweb.org/#url-canonicalization}
+ * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
  */
 export const getCanonicalUrl = url => new URL(url).href;
 
