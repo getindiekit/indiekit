@@ -1,12 +1,19 @@
-import crypto from 'node:crypto';
+import {createCipheriv, createDecipheriv, randomBytes} from 'node:crypto';
 import {Buffer} from 'node:buffer';
 import {url2Mf2} from './mf2.js';
 
 const algorithm = 'aes-256-ctr';
-const secretKey = crypto.randomBytes(32);
+const secretKey = randomBytes(32);
 
+/**
+ * Encrypt a string
+ *
+ * @param {string} string String to encrypt
+ * @param {string} iv Initialization vector
+ * @returns {string} Encrypted hash
+ */
 export const encrypt = (string, iv) => {
-  const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
+  const cipher = createCipheriv(algorithm, secretKey, iv);
   const encrypted = Buffer.concat([
     cipher.update(string),
     cipher.final(),
@@ -15,8 +22,15 @@ export const encrypt = (string, iv) => {
   return encrypted.toString('hex');
 };
 
+/**
+ * Decrypt a string
+ *
+ * @param {string} hash Hash to decrypt
+ * @param {string} iv Initialization vector
+ * @returns {string} Decrypted string
+ */
 export const decrypt = (hash, iv) => {
-  const decipher = crypto.createDecipheriv(algorithm, secretKey, Buffer.from(iv, 'hex'));
+  const decipher = createDecipheriv(algorithm, secretKey, Buffer.from(iv, 'hex'));
   const decrypted = Buffer.concat([
     decipher.update(Buffer.from(hash, 'hex')),
     decipher.final(),
@@ -86,4 +100,4 @@ export const isUrl = string => {
 };
 
 export const randomString = (length = 21) =>
-  crypto.randomBytes(length).toString('hex').slice(0, length);
+  randomBytes(length).toString('hex').slice(0, length);
