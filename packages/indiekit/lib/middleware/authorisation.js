@@ -1,6 +1,6 @@
 import httpError from 'http-errors';
 import {
-  getBearerToken,
+  findBearerToken,
   requestAccessToken,
   verifyAccessToken,
 } from '../tokens.js';
@@ -20,7 +20,7 @@ export const authorise = publication => {
     }
 
     try {
-      const bearerToken = getBearerToken(request);
+      const bearerToken = findBearerToken(request);
       const accessToken = await requestAccessToken(tokenEndpoint, bearerToken);
       publication.accessToken = verifyAccessToken(me, accessToken);
 

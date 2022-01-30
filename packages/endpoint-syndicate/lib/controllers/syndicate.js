@@ -7,6 +7,8 @@ const debug = new Debug('indiekit:endpoint-syndicate');
 
 export const syndicateController = (application, publication) => ({
   async post(request, response, next) {
+    const {token} = request.query;
+
     try {
       if (!application.hasDatabase) {
         throw new Error(response.__('errors.noDatabase.content'));
@@ -64,7 +66,7 @@ export const syndicateController = (application, publication) => ({
       const updated = await got.post(micropubEndpoint, {
         responseType: 'json',
         headers: {
-          authorization: `Bearer ${request.query.token}`,
+          authorization: `Bearer ${token}`,
         },
         json: {
           action: 'update',

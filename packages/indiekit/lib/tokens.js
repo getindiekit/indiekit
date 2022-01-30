@@ -2,20 +2,25 @@ import got from 'got';
 import HttpError from 'http-errors';
 import {getCanonicalUrl} from './utils.js';
 
-export const getBearerToken = request => {
-  if (request.session && request.session.token) {
+export const findBearerToken = request => {
+  if (request.session?.token) {
     const bearerToken = request.session.token;
     return bearerToken;
   }
 
-  if (request.headers && request.headers.authorization) {
+  if (request.headers?.authorization) {
     const bearerToken = request.headers.authorization.trim().split(/\s+/)[1];
     return bearerToken;
   }
 
-  if (request.body && request.body.access_token) {
+  if (request.body?.access_token) {
     const bearerToken = request.body.access_token;
     delete request.body.access_token;
+    return bearerToken;
+  }
+
+  if (request.query?.token) {
+    const bearerToken = request.query.token;
     return bearerToken;
   }
 

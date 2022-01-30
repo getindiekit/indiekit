@@ -1,7 +1,7 @@
 import test from 'ava';
 import nock from 'nock';
 import {
-  getBearerToken,
+  findBearerToken,
   requestAccessToken,
   verifyAccessToken,
 } from '../../lib/tokens.js';
@@ -21,7 +21,7 @@ test.beforeEach(t => {
 test('Returns bearer token from session', t => {
   const request = {session: {token: t.context.bearerToken}};
 
-  const result = getBearerToken(request);
+  const result = findBearerToken(request);
 
   t.is(result, 'JWT');
 });
@@ -29,7 +29,7 @@ test('Returns bearer token from session', t => {
 test('Returns bearer token from `headers.authorization`', t => {
   const request = {headers: {authorization: `Bearer ${t.context.bearerToken}`}};
 
-  const result = getBearerToken(request);
+  const result = findBearerToken(request);
 
   t.is(result, 'JWT');
 });
@@ -37,14 +37,22 @@ test('Returns bearer token from `headers.authorization`', t => {
 test('Returns bearer token from `body.access_token`', t => {
   const request = {body: {access_token: t.context.bearerToken}};
 
-  const result = getBearerToken(request);
+  const result = findBearerToken(request);
+
+  t.is(result, 'JWT');
+});
+
+test('Returns bearer token from query', t => {
+  const request = {query: {token: t.context.bearerToken}};
+
+  const result = findBearerToken(request);
 
   t.is(result, 'JWT');
 });
 
 test('Throws error if no bearer token provided by request', t => {
   t.throws(() => {
-    getBearerToken({});
+    findBearerToken({});
   }, {
     name: 'BadRequestError',
     message: 'No bearer token provided by request',
