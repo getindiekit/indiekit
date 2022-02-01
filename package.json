@@ -38,7 +38,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "dotenv": "^14.0.0"
+    "dotenv": "^15.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
