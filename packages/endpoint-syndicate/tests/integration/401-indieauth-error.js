@@ -32,7 +32,7 @@ test('Returns 401 error from Micropub endpoint', async t => {
     .send('mp-syndicate-to=https://twitter.com/username');
 
   // Syndicate post
-  const cookie = mockSession('test', 'secret', {
+  const cookie = mockSession('test', process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
   const result = await request.post('/syndicate')

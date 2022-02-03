@@ -13,7 +13,7 @@ test('Returns list of previously uploaded files', async t => {
       scope: 'create',
     });
   const request = await testServer();
-  const cookie = mockSession('test', 'secret', {
+  const cookie = mockSession('test', process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
   const response = await request.get('/micropub/posts')

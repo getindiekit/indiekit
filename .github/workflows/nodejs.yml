@@ -25,8 +25,9 @@ jobs:
         npm install
     - name: Run tests
       env:
-        TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
         TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}
         TEST_BEARER_TOKEN_NOSCOPE: ${{ secrets.TEST_BEARER_TOKEN_NOSCOPE }}
+        TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
+        TEST_SESSION_SECRET: ${{ secrets.TEST_SESSION_SECRET }}
       run: |
         npm test

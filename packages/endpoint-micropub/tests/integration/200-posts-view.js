@@ -16,7 +16,7 @@ test('Views previously uploaded file', async t => {
     .put(uri => uri.includes('foobar.md'))
     .reply(200);
 
-  const cookie = mockSession('test', 'secret', {
+  const cookie = mockSession('test', process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
 

@@ -56,7 +56,7 @@ export const testConfig = async options => {
   indiekit.set('application.name', 'Test config');
   indiekit.set('application.sessionMiddleware', cookieSession({
     name: 'test',
-    secret: 'secret',
+    secret: process.env.TEST_SESSION_SECRET,
   }));
 
   if (options.useDatabase) {

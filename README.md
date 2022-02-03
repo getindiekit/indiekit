@@ -57,9 +57,10 @@ npm test
 
 The following environment variables need to be set before running tests:
 
-* `TEST_PUBLICATION_URL`
 * `TEST_BEARER_TOKEN`
 * `TEST_BEARER_TOKEN_NOSCOPE`
+* `TEST_PUBLICATION_URL`
+* `TEST_SESSION_SECRET`
 
 `TEST_BEARER_TOKEN` and `TEST_BEARER_TOKEN_NOSCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.`TEST_BEARER_TOKEN` should provide scoped permissions `create update delete`, whereas `TEST_BEARER_TOKEN_NOSCOPE` should provide no permissions at all.
 

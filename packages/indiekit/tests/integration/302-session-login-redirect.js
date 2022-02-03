@@ -6,7 +6,7 @@ import {testServer} from '@indiekit-test/server';
 test('Login redirects authenticated user to homepage', async t => {
   const request = await testServer();
 
-  const cookie = mockSession('test', 'secret', {
+  const cookie = mockSession('test', process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
   const result = await request.get('/session/login')
