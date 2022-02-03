@@ -59,3 +59,15 @@ test('Initiates application with config', async t => {
     content: 'Bar',
   }), '{\n  "title": "Foo"\n}\nBar\n');
 });
+
+test('Creates an express application', async t => {
+  const result = await indiekit.createApp();
+
+  t.truthy(result.locals);
+});
+
+test('Returns a server bound to given port', async t => {
+  const result = await indiekit.server({port: 1234});
+
+  t.regex(result._connectionKey, /::::1234/);
+});

@@ -89,14 +89,10 @@ export const Indiekit = class {
   }
 
   async createApp() {
-    try {
-      const config = await this.bootstrap();
-      const app = expressConfig(config);
+    const config = await this.bootstrap();
+    const app = expressConfig(config);
 
-      return app;
-    } catch (error) {
-      console.error(error.message);
-    }
+    return app;
   }
 
   async server(options = {}) {
