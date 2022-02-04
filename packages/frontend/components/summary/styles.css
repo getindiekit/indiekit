@@ -46,7 +46,6 @@
 }
 
 .summary__value {
-  color: var(--color-neutral-dark);
   flex: 2;
   min-inline-size: 30rem;
   word-break: break-word;
