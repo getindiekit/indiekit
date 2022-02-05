@@ -1,4 +1,5 @@
-export const en = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   media: {
     title: 'Files',
     download: 'Download file',

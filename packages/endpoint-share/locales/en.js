@@ -1,4 +1,5 @@
-export const en = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   share: {
     title: 'Share',
     'bookmark-of': 'URL',

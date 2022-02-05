@@ -1,20 +1,21 @@
-export const fr = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   share: {
-    title: 'Transmettre',
     'bookmark-of': 'URL',
-    name: 'Titre',
     content: 'Contenu',
-    submit: 'Publier',
     error: {
-      'bookmark-of': 'Tapez une addresse Web comme https://example.org',
-      name: 'Tapez un titre',
+      'bookmark-of': 'Entrez une adresse Web telle que https://example.org',
+      name: 'Saisir un titre',
     },
+    name: 'Titre',
+    submit: 'Publier',
+    title: 'Partager',
   },
   status: {
     bookmarklet: {
-      title: 'Partager bookmarklet',
-      label: 'Partager la page',
       guidance: 'Faites glisser ce lien vers votre barre de favoris: %s',
+      label: 'Partager la page',
+      title: 'Partager bookmarklet',
     },
   },
 };

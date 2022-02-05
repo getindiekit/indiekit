@@ -1,20 +1,21 @@
-export const de = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   share: {
-    title: 'Teilen',
     'bookmark-of': 'URL',
-    name: 'Titel',
     content: 'Inhalt',
-    submit: 'Veröffentlichen',
     error: {
-      'bookmark-of': 'Geben Sie eine Webadresse wie https://example.org ein',
-      name: 'Geben Sie einen Titel ein',
+      'bookmark-of': 'Geben Sie eine Webadresse wie https://example.org',
+      name: 'Titel eingeben',
     },
+    name: 'Titel',
+    submit: 'Veröffentlichen',
+    title: 'Teilen',
   },
   status: {
     bookmarklet: {
-      title: 'Teilen bookmarklet',
-      label: 'Seite teilen',
       guidance: 'Ziehen Sie diesen Link in Ihre Lesezeichenleiste: %s',
+      label: 'Seite teilen',
+      title: 'Teilen bookmarklet',
     },
   },
 };

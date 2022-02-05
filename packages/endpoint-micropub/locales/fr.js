@@ -1,10 +1,11 @@
-export const fr = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   micropub: {
-    title: 'Articles',
-    properties: 'Propriétés',
     posts: {
-      title: 'Article publié',
-      none: 'Aucun article',
+      none: 'Pas d\'articles',
+      title: 'Articles publiés',
     },
+    properties: 'Propriétés',
+    title: 'Articles',
   },
 };
