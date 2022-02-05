@@ -20,9 +20,14 @@ jobs:
       uses: supercharge/mongodb-github-action@1.3.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
+    - name: Download localisations
+      uses: localazy/download@v1
+      with:
+        read_key: ${{ secrets.LOCALAZY_READ_KEY }}
+        write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
     - name: Install packages and symlink local dependencies
       run: |
-        npm install
+        npm ci
     - name: Run tests
       env:
         TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}

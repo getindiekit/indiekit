@@ -1,62 +1,63 @@
-export const fr = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   error: 'Erreur',
   errorSummaryTitle: 'Il y a un problème',
-  noValue: 'Pas encore défini',
-  optionalValue: '(facultatif)',
-  guidance: {
-    discovery: 'Alors que {{app}} peut être repéré par les clients Micropub et demander l’autorisation de publier sur votre site, ajoutez les valeurs suivantes à la partie `<head>` de votre site web:',
-  },
   errors: {
-    notFound: {
-      title: 'Page non trouvée',
-      content: 'Si vous avez entré une adresse Web, vérifiez qu’elle est correcte.',
-    },
     noDatabase: {
       content: 'Cette fonctionnalité nécessite une base de données.',
     },
+    notFound: {
+      content: 'Si vous avez saisi une adresse Web, veuillez vérifier qu\'elle est correcte.',
+      title: 'Page introuvable',
+    },
   },
+  guidance: {
+    discovery: 'Pour que %s puisse être découvert par les clients Micropub et demander l\'autorisation de publier sur votre site Web, ajoutez les valeurs suivantes à la valeur `<head>` de votre site Web:',
+  },
+  noValue: 'Non définie',
+  optionalValue: '(facultatif)',
   session: {
     login: {
-      title: 'Se connecter',
-      description: 'Connectez-vous avec IndieAuth pour vérifier que %s vous appartient',
-      me: 'Adresse web',
-      submit: 'Connectez-vous avec IndieAuth',
+      description: 'Connectez-vous avec IndieAuth pour vérifier que vous possédez %s',
       error: {
         validateRedirect: 'Tentative de redirection non valide',
-        validateState: 'Code manquant ou décalage état',
+        validateState: '`code` ou `state` incorrect',
       },
+      me: 'Adresse Web',
+      submit: 'Connectez-vous avec IndieAuth',
+      title: 'Se connecter',
     },
     logout: {
       title: 'Déconnexion',
     },
   },
   status: {
-    title: 'Statut du serveur',
     application: {
-      summaryTitle: 'Paramètres de l’application',
-      name: 'Nom de l’application',
+      endpoints: 'Points finaux',
       locale: 'Langue',
       localeNotAvailable: '{{ app }} n’a pas encore été traduit en {{ locale }}',
-      themeColor: 'Couleur de thème',
-      themeColorScheme: 'Schéma de couleurs du thème',
+      name: 'Nom',
+      summaryTitle: 'Paramètres d\'application',
+      themeColor: 'Couleur du Thème',
+      themeColorScheme: 'Schéma de couleurs du Thème',
       themeColorSchemeValue: {
         automatic: 'Automatique',
-        light: 'Lumière',
         dark: 'Sombre',
+        light: 'Lumière',
       },
-      endpoints: 'Endpoints',
     },
     publication: {
-      summaryTitle: 'Paramètres de publication',
-      me: 'Adresse web',
+      accessToken: 'Jeton d\'accès',
       locale: 'Langue',
-      timeZone: 'Fuseau horaire',
-      store: 'Magasin de contenu',
-      preset: 'Préréglage',
-      postTypes: 'Types de article',
-      syndicationTargets: 'Cibles de syndication',
+      me: 'Adresse Web',
       mediaEndpoint: 'Media endpoint',
-      accessToken: 'Jeton d’accès',
+      postTypes: 'Types de poste',
+      preset: 'Préréglage',
+      store: 'Magasin de contenu',
+      summaryTitle: 'Paramètres de publication',
+      syndicationTargets: 'Cibles de syndication',
+      timeZone: 'Fuseau horaire',
     },
+    title: 'Statut du serveur',
   },
 };

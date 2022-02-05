@@ -1,4 +1,5 @@
-export const en = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   error: 'Error',
   errorSummaryTitle: 'There is a problem',
   noValue: 'Not set',

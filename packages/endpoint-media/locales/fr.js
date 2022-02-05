@@ -1,11 +1,12 @@
-export const fr = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   media: {
-    title: 'Dossiers',
-    download: 'Télécharger un fichier',
-    properties: 'Propriétés',
+    download: 'Télécharger le fichier',
     files: {
-      title: 'Les fichiers chargés',
       none: 'Aucun fichier',
+      title: 'Fichiers téléchargés',
     },
+    properties: 'Propriétés',
+    title: 'Fichiers',
   },
 };

@@ -1,61 +1,63 @@
-export const de = {
-  error: 'Error',
-  errorSummaryTitle: 'Es ist ein Fehler aufgetreten',
-  noValue: 'Nicht vorgesehen',
-  optionalValue: '(optional)',
-  guidance: {
-    discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Kunden %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen',
-  },
+/* eslint-disable import/no-anonymous-default-export */
+export default {
+  error: 'Fehler',
+  errorSummaryTitle: 'Es gibt ein Problem',
   errors: {
-    notFound: {
-      title: 'Seite nicht gefunden',
-      content: 'Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie, ob diese korrekt ist.',
-    },
     noDatabase: {
-      content: 'Diese Funktion erfordert eine Datenbank.',
+      content: 'Für diese Funktion ist eine Datenbank erforderlich.',
+    },
+    notFound: {
+      content: 'Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie bitte, ob sie korrekt war.',
+      title: 'Seite nicht gefunden',
     },
   },
+  guidance: {
+    discovery: 'Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Clients %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen:',
+  },
+  noValue: 'Nicht festgelegt',
+  optionalValue: '(fakultativ)',
   session: {
     login: {
-      title: 'Einloggen',
-      description: 'Melden Sie sich mit IndieAuth an, um zu überprüfen, ob Sie %s besitzen',
-      me: 'Webadresse',
-      submit: 'Einloggen mit IndieAuth',
+      description: 'Melde dich mit IndieAuth an, um zu verifizieren, dass du %s besitzt',
       error: {
         validateRedirect: 'Ungültige Weiterleitung versucht',
-        validateState: 'Fehlender Code oder Zustandsinkongruenz',
+        validateState: 'Falscher `code` oder `state`',
       },
+      me: 'Webadresse',
+      submit: 'Mit IndieAuth anmelden',
+      title: 'Anmelden',
     },
     logout: {
-      title: 'Ausloggen',
+      title: 'Abmelden',
     },
   },
   status: {
-    title: 'Serverstatus',
     application: {
-      summaryTitle: 'Anwendungseinstellungen',
-      name: 'Name',
+      endpoints: 'Endpunkte',
       locale: 'Sprache',
+      localeNotAvailable: '{{ app }} wurde noch nicht in {{ locale }} übersetzt',
+      name: 'Name',
+      summaryTitle: 'Anwendungseinstellungen',
       themeColor: 'Themenfarbe',
       themeColorScheme: 'Thema',
       themeColorSchemeValue: {
         automatic: 'Automatisch',
-        light: 'Licht',
         dark: 'Dunkel',
+        light: 'Licht',
       },
-      endpoints: 'Endpunkte',
     },
     publication: {
-      summaryTitle: 'Veröffentlichungseinstellungen',
-      me: 'Webadresse',
-      locale: 'Sprache',
-      timeZone: 'Zeitzone',
-      store: 'Geschäft',
-      preset: 'Voreinstellung',
-      postTypes: 'Beitragstypen',
-      syndicationTargets: 'Syndikationsziele',
-      mediaEndpoint: 'Medienendpunkt',
       accessToken: 'Zugangstoken',
+      locale: 'Sprache',
+      me: 'Webadresse',
+      mediaEndpoint: 'Media Endpunkte',
+      postTypes: 'Beitragsarten',
+      preset: 'Voreinstellung',
+      store: 'Inhaltsspeicher',
+      summaryTitle: 'Veröffentlichungseinstellungen',
+      syndicationTargets: 'Syndikationsziele',
+      timeZone: 'Zeitzone',
     },
+    title: 'Server Status',
   },
 };

@@ -1,10 +1,11 @@
-export const de = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   micropub: {
-    title: 'Beiträge',
-    properties: 'Eigenschaften',
     posts: {
-      title: 'Hochgeladene Dateien',
       none: 'Keine Beiträge',
+      title: 'Veröffentlichte Beiträge',
     },
+    properties: 'Eigenschaften',
+    title: 'Beiträge',
   },
 };
