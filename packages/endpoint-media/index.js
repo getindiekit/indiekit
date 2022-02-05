@@ -4,7 +4,6 @@ import multer from 'multer';
 import {uploadController} from './lib/controllers/upload.js';
 import {filesController} from './lib/controllers/files.js';
 import {queryController} from './lib/controllers/query.js';
-import {locales} from './locales/index.js';
 
 const defaults = {
   mountPath: '/media',
@@ -24,10 +23,6 @@ export const MediaEndpoint = class {
 
   init(Indiekit) {
     const {application, publication} = Indiekit;
-
-    Indiekit.addLocale('de', locales.de);
-    Indiekit.addLocale('en', locales.en);
-    Indiekit.addLocale('fr', locales.fr);
 
     if (application.hasDatabase) {
       Indiekit.addNavigation({

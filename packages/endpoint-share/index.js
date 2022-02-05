@@ -1,6 +1,5 @@
 import {fileURLToPath} from 'node:url';
 import express from 'express';
-import {locales} from './locales/index.js';
 import {shareController} from './lib/controllers/share.js';
 import {validate} from './lib/middleware/validation.js';
 
@@ -22,10 +21,6 @@ export const ShareEndpoint = class {
 
   init(Indiekit) {
     const {application, publication} = Indiekit;
-
-    Indiekit.addLocale('de', locales.de);
-    Indiekit.addLocale('en', locales.en);
-    Indiekit.addLocale('fr', locales.fr);
 
     Indiekit.addNavigation({
       href: this.mountPath,
