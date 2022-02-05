@@ -40,12 +40,6 @@ export const Indiekit = class {
     this.application.endpoints = [...this.application.endpoints, ...endpoint];
   }
 
-  addLocale(languageCode, translations) {
-    const locale = this.application.locales.get(languageCode);
-
-    this.application.locales.set(languageCode, deepmerge(locale, translations));
-  }
-
   addNavigation(item) {
     item = Array.isArray(item) ? item : [item];
     this.application.navigationItems = [...this.application.navigationItems, ...item];
@@ -75,8 +69,27 @@ export const Indiekit = class {
     // Setup cache
     const cache = new Cache(this.application.cache);
 
+    // Register application localisations
+    for await (const locale of this.application.localesAvailable) {
+      if (locale) {
+        const translation = await import(`./locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
+        this.application.locales.set(locale, translation.default);
+      }
+    }
+
     // Application endpoints
-    for (const endpoint of this.application.endpoints) {
+    for await (const endpoint of this.application.endpoints) {
+      // Register endpoint localisations
+      for await (const locale of this.application.localesAvailable) {
+        if (locale) {
+          try {
+            const appLocale = this.application.locales.get(locale);
+            const translation = await import(`../${endpoint.id}/locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
+            this.application.locales.set(locale, deepmerge(appLocale, translation.default));
+          } catch {}
+        }
+      }
+
       endpoint.init(this);
     }
 

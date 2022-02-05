@@ -7,7 +7,6 @@ import {MediaEndpoint} from '@indiekit/endpoint-media';
 import {MicropubEndpoint} from '@indiekit/endpoint-micropub';
 import {ShareEndpoint} from '@indiekit/endpoint-share';
 import {SyndicateEndpoint} from '@indiekit/endpoint-syndicate';
-import {locales} from '../locales/index.js';
 
 const mediaEndpoint = new MediaEndpoint();
 const micropubEndpoint = new MicropubEndpoint();
@@ -30,7 +29,8 @@ export const defaultConfig = {
       syndicateEndpoint,
     ],
     hasDatabase: false,
-    locales,
+    locales: new Map(),
+    localesAvailable: ['de', 'en', 'fr', 'nl', 'pt'],
     mongodbUrl,
     name: 'Indiekit',
     navigationItems: [],
