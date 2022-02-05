@@ -8,6 +8,7 @@ import {GithubStore} from '@indiekit/store-github';
 import {TwitterSyndicator} from '@indiekit/syndicator-twitter';
 
 const defaultOptions = {
+  locale: 'en',
   useDatabase: true,
   useSyndicator: true,
 };
@@ -53,6 +54,7 @@ export const testConfig = async options => {
   });
 
   // Application settings
+  indiekit.set('application.locale', options.locale);
   indiekit.set('application.name', 'Test config');
   indiekit.set('application.sessionMiddleware', cookieSession({
     name: 'test',
