@@ -23,8 +23,7 @@
   },
   "type": "module",
   "scripts": {
-    "prepublishOnly": "localazy download",
-    "prepare": "xo --fix **/locales/*.js",
+    "prepublishOnly": "localazy download && xo --fix **/locales/*.js",
     "postinstall": "lerna bootstrap --no-ci && husky install",
     "dev": "nodemon indiekit.config.js",
     "start": "DEBUG=indiekit:* node indiekit.config.js",
