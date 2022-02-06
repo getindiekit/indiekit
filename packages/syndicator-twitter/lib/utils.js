@@ -11,7 +11,7 @@ import {htmlToText} from 'html-to-text';
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, mediaIds = false) => {
-  const parameters = {};
+  let parameters = {};
 
   let status;
   let statusText;
@@ -46,9 +46,14 @@ export const createStatus = (properties, mediaIds = false) => {
   if (properties['in-reply-to']) {
     const inReplyTo = properties['in-reply-to'];
     const inReplyToHostname = new URL(inReplyTo).hostname;
+
     if (inReplyToHostname === 'twitter.com') {
+      // Reply to tweet
       const statusId = getStatusIdFromUrl(inReplyTo);
       parameters.in_reply_to_status_id = statusId;
+    } else {
+      // Reply isn’t relevant at this target
+      parameters = null;
     }
   }
 
