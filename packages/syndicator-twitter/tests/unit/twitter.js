@@ -3,7 +3,7 @@ import process from 'node:process';
 import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
 import test from 'ava';
 import nock from 'nock';
-import {getFixture} from '@indiekit-test/get-fixture';
+import {getFixturePath} from '@indiekit-test/get-fixture';
 import {twitter} from '../../lib/twitter.js';
 
 test.beforeEach(t => {
@@ -146,7 +146,7 @@ test('Throws error fetching media to upload', async t => {
 test('Uploads media and returns a media id', async t => {
   nock('https://website.example')
     .get('/image.jpg')
-    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
+    .replyWithFile(200, getFixturePath('file-types/photo.jpg'));
   nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json')
     .reply(200, {
@@ -164,7 +164,7 @@ test('Uploads media and returns a media id', async t => {
 test('Throws error uploading media', async t => {
   nock('https://website.example')
     .get('/image.jpg')
-    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
+    .replyWithFile(200, getFixturePath('file-types/photo.jpg'));
   nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json')
     .reply(404, {
@@ -259,16 +259,16 @@ test('Posts a status to Twitter', async t => {
 test('Posts a status to Twitter with 4 out of 5 photos', async t => {
   nock(t.context.publication.me)
     .get('/image1.jpg')
-    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
+    .replyWithFile(200, getFixturePath('file-types/photo.jpg'));
   nock(t.context.publication.me)
     .get('/image2.jpg')
-    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
+    .replyWithFile(200, getFixturePath('file-types/photo.jpg'));
   nock(t.context.publication.me)
     .get('/image3.jpg')
-    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
+    .replyWithFile(200, getFixturePath('file-types/photo.jpg', false));
   nock('https://website.example')
     .get('/image4.jpg')
-    .reply(200, {body: getFixture('file-types/photo.jpg', false)});
+    .replyWithFile(200, getFixturePath('file-types/photo.jpg', false));
   nock('https://upload.twitter.com')
     .post('/1.1/media/upload.json')
     .reply(200, {media_id_string: '1'});
