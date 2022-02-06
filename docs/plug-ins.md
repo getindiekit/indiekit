@@ -60,6 +60,10 @@ nav_order: 6
 
   Syndicate IndieWeb content to the Internet Archive
 
+* ### [Mastodon](https://npmjs.org/package/@indiekit/syndicator-mastodon)
+
+  Syndicate IndieWeb content to a Mastodon server
+
 * ### [Twitter](https://npmjs.org/package/@indiekit/syndicator-twitter)
 
   Syndicate IndieWeb content to Twitter
