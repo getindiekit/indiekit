@@ -39,13 +39,13 @@ test('Creates a status with HTML content and doesn’t append Twitter link', t =
 });
 
 test('Creates a quote tweet with status URL and post content', t => {
-  const result = createStatus(JSON.parse(getFixture('jf2/repost.jf2')));
+  const result = createStatus(JSON.parse(getFixture('jf2/repost-twitter.jf2')));
 
   t.is(result.status, `Someone else who likes cheese sandwiches. ${t.context.tweetUrl}`);
 });
 
 test('Adds link to status post is in reply to', t => {
-  const result = createStatus(JSON.parse(getFixture('jf2/reply.jf2')));
+  const result = createStatus(JSON.parse(getFixture('jf2/reply-twitter.jf2')));
 
   t.is(result.status, 'I ate a cheese sandwich too!');
   t.is(result.in_reply_to_status_id, '1234567890987654321');
