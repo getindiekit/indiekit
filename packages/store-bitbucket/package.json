@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-bitbucket",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Store IndieWeb content on Bitbucket",
   "keywords": [
     "indiekit",

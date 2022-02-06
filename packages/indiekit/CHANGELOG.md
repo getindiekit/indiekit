@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* improve appearance of post and syndication target icons ([0fe768e](https://github.com/getindiekit/indiekit/commit/0fe768ee0fd79421bb05ad3edae0c1931061abb0))
+* **indiekit:** env vars as default values for options that accept secrets ([1af9707](https://github.com/getindiekit/indiekit/commit/1af97073109da9f07fe107125ca4af8686647422))
+* **indiekit:** get application info from indiekit package.json ([439d845](https://github.com/getindiekit/indiekit/commit/439d845b466d4b6daff1aa9b38b03adcdb63525c))
+* **indiekit:** handle timeout connecting to mongodb ([79e6206](https://github.com/getindiekit/indiekit/commit/79e6206b2574062ab249e004b066c2031f05f5b8))
+* **indiekit:** remove prototype-polluting assignment ([45042f4](https://github.com/getindiekit/indiekit/commit/45042f4a94f7a77598a031690a00a138fb684570))
+* make it easier to see and copy access token ([7f381b5](https://github.com/getindiekit/indiekit/commit/7f381b571e774b14f6a95a4b7fe8c27feab57a81))
+* use package.json vars ([4005873](https://github.com/getindiekit/indiekit/commit/40058738a9b6a1a05b0354fe78f63e5184c362ba))
+
+
+### Features
+
+* add plug-in info ([f289df4](https://github.com/getindiekit/indiekit/commit/f289df4dec1851b1ea45233b9f24c9a0c58091ee))
+* **indiekit:** rate limit some requests ([6a7d520](https://github.com/getindiekit/indiekit/commit/6a7d5203b22095855723f464dad8444be3bbc530))
+* **indiekit:** split express app config from server ([b1f7364](https://github.com/getindiekit/indiekit/commit/b1f7364dd3a70d4906bc137ca5f41ecfa67a6128))
+* **indiekit:** split express app config from server ([f388d6d](https://github.com/getindiekit/indiekit/commit/f388d6d23768e0ab065ec5633f86ee7272e25362))
+* **indiekit:** use localazy localisation service ([004caa0](https://github.com/getindiekit/indiekit/commit/004caa044ea9c71835108c4347ec918ceefbb399))
+* plug-ins no longer need to add locales ([e489594](https://github.com/getindiekit/indiekit/commit/e489594dd377ce793cbeac34fa12d20fd8f6301a))
+
+
+
+
+
 # [0.2.0](https://github.com/getindiekit/indiekit/compare/v0.1.4...v0.2.0) (2021-12-19)
 
 **Note:** Version bump only for package @indiekit/indiekit

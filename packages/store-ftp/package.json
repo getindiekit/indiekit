@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-ftp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Store IndieWeb content via FTP",
   "keywords": [
     "indiekit",

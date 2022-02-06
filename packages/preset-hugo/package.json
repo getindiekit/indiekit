@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/preset-hugo",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Indiekit config for Hugo-based websites",
   "keywords": [
     "indieweb",

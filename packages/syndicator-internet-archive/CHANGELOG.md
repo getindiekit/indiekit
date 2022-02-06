@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* improve appearance of post and syndication target icons ([0fe768e](https://github.com/getindiekit/indiekit/commit/0fe768ee0fd79421bb05ad3edae0c1931061abb0))
+* **syndicator-internet-archive:** env vars as default values for options that accept secrets ([894a886](https://github.com/getindiekit/indiekit/commit/894a8865860c563e15be149298c867c6c70e7574))
+
+
+### Features
+
+* add default exports for plug-ins ([8518285](https://github.com/getindiekit/indiekit/commit/85182856c93bb733bd98f2f221c529ca299869b8))
+* add plug-in info ([f289df4](https://github.com/getindiekit/indiekit/commit/f289df4dec1851b1ea45233b9f24c9a0c58091ee))
+
+
+
+
+
 # [0.2.0](https://github.com/getindiekit/indiekit/compare/v0.1.4...v0.2.0) (2021-12-19)
 
 **Note:** Version bump only for package @indiekit/syndicator-internet-archive

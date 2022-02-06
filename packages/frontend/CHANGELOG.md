@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* **frontend:** fix size of footer logo ([6b9b9ec](https://github.com/getindiekit/indiekit/commit/6b9b9ec4487e02b5539910b074febc018555d857))
+* **frontend:** use text colour for summary values ([42b7caf](https://github.com/getindiekit/indiekit/commit/42b7cafe701274123cce7a8066433e92394614d2))
+* improve appearance of post and syndication target icons ([0fe768e](https://github.com/getindiekit/indiekit/commit/0fe768ee0fd79421bb05ad3edae0c1931061abb0))
+* make it easier to see and copy access token ([7f381b5](https://github.com/getindiekit/indiekit/commit/7f381b571e774b14f6a95a4b7fe8c27feab57a81))
+
+
+### Features
+
+* **frontend:** add absoluteUrl filter ([dcc0616](https://github.com/getindiekit/indiekit/commit/dcc061631953d96f689a9f3a283e09c5885694f7))
+
+
+
+
+
 # [0.2.0](https://github.com/getindiekit/indiekit/compare/v0.1.4...v0.2.0) (2021-12-19)
 
 

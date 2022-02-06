@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** typos ([bf71b09](https://github.com/getindiekit/indiekit/commit/bf71b0904b80c4a84e84af39d4c5c96e764800fe))
+* **endpoint-micropub:** use absolute url for media items ([3903845](https://github.com/getindiekit/indiekit/commit/39038453e1d91db81e0f96cb0334d28b4cbc05ef))
+* **frontend:** fix size of footer logo ([6b9b9ec](https://github.com/getindiekit/indiekit/commit/6b9b9ec4487e02b5539910b074febc018555d857))
+* **frontend:** use text colour for summary values ([42b7caf](https://github.com/getindiekit/indiekit/commit/42b7cafe701274123cce7a8066433e92394614d2))
+* improve appearance of post and syndication target icons ([0fe768e](https://github.com/getindiekit/indiekit/commit/0fe768ee0fd79421bb05ad3edae0c1931061abb0))
+* **indiekit:** env vars as default values for options that accept secrets ([1af9707](https://github.com/getindiekit/indiekit/commit/1af97073109da9f07fe107125ca4af8686647422))
+* **indiekit:** get application info from indiekit package.json ([439d845](https://github.com/getindiekit/indiekit/commit/439d845b466d4b6daff1aa9b38b03adcdb63525c))
+* **indiekit:** handle timeout connecting to mongodb ([79e6206](https://github.com/getindiekit/indiekit/commit/79e6206b2574062ab249e004b066c2031f05f5b8))
+* **indiekit:** remove prototype-polluting assignment ([45042f4](https://github.com/getindiekit/indiekit/commit/45042f4a94f7a77598a031690a00a138fb684570))
+* make it easier to see and copy access token ([7f381b5](https://github.com/getindiekit/indiekit/commit/7f381b571e774b14f6a95a4b7fe8c27feab57a81))
+* **store-bitbucket:** env vars as default values for options that accept secrets ([78e4bbb](https://github.com/getindiekit/indiekit/commit/78e4bbbb3a3812aa9196b6d4c1bcd4bc011807b0))
+* **store-ftp:** env vars as default values for options that accept secrets ([06fd746](https://github.com/getindiekit/indiekit/commit/06fd746dab0ac72859b12d3b6c46a42e51418238))
+* **store-gitea:** env vars as default values for options that accept secrets ([32124bd](https://github.com/getindiekit/indiekit/commit/32124bd68b4a5402f8e66d5a464074d906c8b723))
+* **store-github:** env vars as default values for options that accept secrets ([da9d998](https://github.com/getindiekit/indiekit/commit/da9d99817dcc480992d804a803a66dfe579d629e))
+* **store-gitlab:** env vars as default values for options that accept secrets ([fe3512d](https://github.com/getindiekit/indiekit/commit/fe3512d0b2e530a5db96fbd40c13ff1795451d4a))
+* **syndicator-internet-archive:** env vars as default values for options that accept secrets ([894a886](https://github.com/getindiekit/indiekit/commit/894a8865860c563e15be149298c867c6c70e7574))
+* **syndicator-twitter:** env vars as default values for options that accept secrets ([ce436e7](https://github.com/getindiekit/indiekit/commit/ce436e77bcf4185ea528c97e9e41b0a788d8709f))
+* **syndicator-twitter:** only post replies to tweets ([a40e58d](https://github.com/getindiekit/indiekit/commit/a40e58dff4c9c8d39dbe4f23ee031b517744a8f5))
+* use package.json vars ([4005873](https://github.com/getindiekit/indiekit/commit/40058738a9b6a1a05b0354fe78f63e5184c362ba))
+
+
+### Features
+
+* add default exports for plug-ins ([8518285](https://github.com/getindiekit/indiekit/commit/85182856c93bb733bd98f2f221c529ca299869b8))
+* add plug-in info ([f289df4](https://github.com/getindiekit/indiekit/commit/f289df4dec1851b1ea45233b9f24c9a0c58091ee))
+* **frontend:** add absoluteUrl filter ([dcc0616](https://github.com/getindiekit/indiekit/commit/dcc061631953d96f689a9f3a283e09c5885694f7))
+* **indiekit:** rate limit some requests ([6a7d520](https://github.com/getindiekit/indiekit/commit/6a7d5203b22095855723f464dad8444be3bbc530))
+* **indiekit:** split express app config from server ([b1f7364](https://github.com/getindiekit/indiekit/commit/b1f7364dd3a70d4906bc137ca5f41ecfa67a6128))
+* **indiekit:** split express app config from server ([f388d6d](https://github.com/getindiekit/indiekit/commit/f388d6d23768e0ab065ec5633f86ee7272e25362))
+* **indiekit:** use localazy localisation service ([004caa0](https://github.com/getindiekit/indiekit/commit/004caa044ea9c71835108c4347ec918ceefbb399))
+* plug-ins no longer need to add locales ([e489594](https://github.com/getindiekit/indiekit/commit/e489594dd377ce793cbeac34fa12d20fd8f6301a))
+* **syndicator-mastodon:** add mastodon syndicator ([b8148ca](https://github.com/getindiekit/indiekit/commit/b8148cabde3fb6a3e5720f3de04b538bd5e2f996))
+
+
+
+
+
 # [0.2.0](https://github.com/getindiekit/indiekit/compare/v0.1.4...v0.2.0) (2021-12-19)
 
 
