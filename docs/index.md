@@ -14,7 +14,7 @@ Indiekit is the little server that connects your personal website to the indepen
 
 ***
 
-The [IndieWeb](https://indieweb.org) is a community of individual personal websites, connected by simple standards. It is based on the principles of owning your domain, publishing on your own site and owning your data. Indiekit lets your website to use these standards to connect with this community and syndicate your content to social networks.
+The [IndieWeb](https://indieweb.org) is a community of individual personal websites, connected by simple standards. It is based on the principles of owning your domain, publishing on your own site and owning your data. Indiekit lets your website use these standards to connect with a wider community and syndicate your content to social networks.
 
 ## The web is for everyone, and so is Indiekit
 
