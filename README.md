@@ -8,7 +8,7 @@
 
 * Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
 
-* Syndicate your content to social networks like Twitter, ~~Mastodon and LinkedIn~~, and save posts to the Internet Archive
+* Syndicate your content to social networks like Twitter and Mastodon, and save posts to the Internet Archive
 
 * ~~Accept likes, comments and other types of feedback on your content with Webmention~~
 
@@ -16,7 +16,7 @@
 
 * Highly configurable, with presets available for common static site generators such as Jekyll and Hugo.
 
-* Localisable, with initial support for English, French and German.
+* Localisable, with initial support for English, Dutch, French, German and Portuguese.
 
 ## Features
 
