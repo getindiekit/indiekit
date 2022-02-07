@@ -16,6 +16,11 @@
   blockquote.important {
     border-left-color: $red-200;
   }
+
+  // https://github.com/pmarsceill/just-the-docs/issues/734
+  a {
+    white-space: normal;
+  }
 }
 
 div.language-bash,
