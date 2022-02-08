@@ -14,6 +14,7 @@ const mongodbUrl = process.env.MONGODB_URL ? process.env.MONGODB_URL : false;
 
 export const defaultConfig = {
   application: {
+    endpoints: [],
     hasDatabase: false,
     installedPlugins: [],
     localesAvailable: ["de", "en", "fr", "nl", "pt"],
@@ -22,6 +23,7 @@ export const defaultConfig = {
     navigationItems: [],
     repository: package_.repository,
     routes: [],
+    routesNoAuth: [],
     themeColor: "#0055ee",
     themeColorScheme: "automatic",
     version: package_.version,
@@ -33,8 +35,10 @@ export const defaultConfig = {
     "@indiekit/endpoint-micropub",
     "@indiekit/endpoint-share",
     "@indiekit/endpoint-syndicate",
+    "@indiekit/endpoint-token",
   ],
   publication: {
+    authorizationEndpoint: "https://indieauth.com/auth",
     categories: [],
     locale: "en",
     me: null,
@@ -46,7 +50,6 @@ export const defaultConfig = {
       `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
     syndicationTargets: [],
     timeZone: "UTC",
-    tokenEndpoint: "https://tokens.indieauth.com/token",
   },
   server: {
     port: process.env.PORT || "3000",

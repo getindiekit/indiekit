@@ -28,18 +28,32 @@ export const getCategories = async (cache, publication) => {
  * Get media endpoint from server derived values
  * (Media endpoint needs to be a fully resolved URL)
  *
- * @param {object} publication Publication configuration
+ * @param {string} mediaEndpoint Media endpoint value
  * @param {object} request HTTP request
  * @returns {string} Media endpoint URL
  */
-export const getMediaEndpoint = (publication, request) => {
-  const { mediaEndpoint } = publication;
-
+export const getMediaEndpoint = (mediaEndpoint, request) => {
   if (mediaEndpoint && isUrl(mediaEndpoint)) {
     return mediaEndpoint;
   }
 
   return `${request.protocol}://${request.headers.host}${mediaEndpoint}`;
+};
+
+/**
+ * Get token endpoint from server derived values
+ * (Token endpoint needs to be a fully resolved URL)
+ *
+ * @param {string} tokenEndpoint Token endpoint value
+ * @param {object} request HTTP request
+ * @returns {string} Token endpoint URL
+ */
+export const getTokenEndpoint = (tokenEndpoint, request) => {
+  if (tokenEndpoint && isUrl(tokenEndpoint)) {
+    return tokenEndpoint;
+  }
+
+  return `${request.protocol}://${request.headers.host}${tokenEndpoint}`;
 };
 
 /**

@@ -13,6 +13,7 @@ import {
   getRelationshipsFromUrl,
   randomString,
 } from "./utils.js";
+import { getTokenEndpoint } from "./publication.js";
 
 export const IndieAuth = class {
   constructor(options = {}) {
@@ -152,7 +153,7 @@ export const IndieAuth = class {
    * @returns {Function} Next middleware
    */
   authorise() {
-    const { me, tokenEndpoint } = this.options;
+    let { me, tokenEndpoint } = this.options;
 
     return async function (request, response, next) {
       // If already have a session token, go to next middleware
@@ -166,6 +167,7 @@ export const IndieAuth = class {
         const bearerToken = findBearerToken(request);
         response.locals.publication.bearerToken = bearerToken;
 
+        tokenEndpoint = getTokenEndpoint(tokenEndpoint, request);
         const token = await requestAccessToken(tokenEndpoint, bearerToken);
         const accessToken = verifyAccessToken(me, token);
         request.session.token = accessToken;

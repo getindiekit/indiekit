@@ -91,3 +91,8 @@
 .token.italic {
   font-style: italic;
 }
+
+.token.header {
+  background: none;
+  display: inline;
+}

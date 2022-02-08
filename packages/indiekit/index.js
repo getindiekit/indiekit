@@ -37,7 +37,12 @@ export const Indiekit = class {
   }
 
   extend(type, extension) {
-    const extensionTypes = ["navigationItems", "routes", "views"];
+    const extensionTypes = [
+      "navigationItems",
+      "routes",
+      "routesNoAuth",
+      "views",
+    ];
 
     if (!extensionTypes.includes(type)) {
       throw new TypeError(`${type} is not a valid extension type`);

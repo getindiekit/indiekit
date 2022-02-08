@@ -1,5 +1,5 @@
 import { getNavigation } from "../navigation.js";
-import { getMediaEndpoint } from "../publication.js";
+import { getMediaEndpoint, getTokenEndpoint } from "../publication.js";
 
 /**
  * Expose config to frontend templates
@@ -20,7 +20,14 @@ export const locals = (indiekitConfig) =>
       response.locals.application = application;
 
       // Publication
-      publication.mediaEndpoint = getMediaEndpoint(publication, request);
+      publication.mediaEndpoint = getMediaEndpoint(
+        publication.mediaEndpoint,
+        request
+      );
+      publication.tokenEndpoint = getTokenEndpoint(
+        publication.tokenEndpoint,
+        request
+      );
       response.locals.publication = publication;
 
       // Session
