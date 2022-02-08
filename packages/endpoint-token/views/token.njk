@@ -1,0 +1,38 @@
+{% extends "document.njk" %}
+
+{% set discovery %}
+{{ __("token.guidance.discovery") | safe }}
+
+```html
+<link rel="token_endpoint" href="{{ publication.tokenEndpoint }}">
+```
+
+## {{ __("token.guidance.verifyTitle") }}
+
+{{ __("token.guidance.verifyRequest") }}
+
+```http
+GET {{ publication.tokenEndpoint }}
+Accept: application/json
+Authorization: Bearer xxxxxxxx
+```
+
+{{ __("token.guidance.verifyResponse") }}
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "me": "{{ publication.me }}",
+  "client_id": "{{ application.url }}",
+  "scope": "create",
+  "issued_at": 1399155608,
+  "nonce": 501884823
+}
+```
+{% endset %}
+
+{% block content %}
+  {{ discovery | markdown | safe }}
+{% endblock %}

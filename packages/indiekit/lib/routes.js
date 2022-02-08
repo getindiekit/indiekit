@@ -64,7 +64,12 @@ export const routes = (indiekitConfig) => {
     statusController.viewStatus
   );
 
-  // Plug-in Endpoints
+  // Unauthenticated plug-in routes
+  for (const route of application.routesNoAuth) {
+    router.use(route.mountPath, limit, route.routes());
+  }
+
+  // Authenticated plug-in routes
   for (const route of application.routes) {
     router.use(route.mountPath, limit, indieauth.authorise(), route.routes());
   }
