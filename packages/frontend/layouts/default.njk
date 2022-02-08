@@ -11,7 +11,7 @@
 {%- from "summary/macro.njk" import summary -%}
 {%- from "textarea/macro.njk" import textarea -%}
 <!DOCTYPE html>
-<html lang="{{ application.locale }}" dir="ltr" class="h-x-app color-scheme--{{ application.themeColorScheme }}">
+<html lang="{{ application.locale }}" dir="ltr" class="color-scheme--{{ application.themeColorScheme }}">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
@@ -34,6 +34,7 @@
 
   {%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
   <body class="{{ appClasses }}">
+
   {%- block header %}
     {{ header({
       url: application.url,
@@ -56,7 +57,7 @@
       logo: {
         href: 'https://getindiekit.com',
         src: application.url + assetPath | default("/assets") + "/icon.svg",
-        alt: "Powered by Indiekit"
+        alt: application.name
       },
       navigation: [{
         href: application.repository.url | replace('.git', '') + "/releases/tag/v" + application.version,
