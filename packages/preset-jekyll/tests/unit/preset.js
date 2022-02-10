@@ -1,83 +1,95 @@
-import test from 'ava';
-import {Indiekit} from '@indiekit/indiekit';
-import {getFixture} from '@indiekit-test/get-fixture';
-import {JekyllPreset} from '../../index.js';
+import test from "ava";
+import { Indiekit } from "@indiekit/indiekit";
+import { getFixture } from "@indiekit-test/get-fixture";
+import { JekyllPreset } from "../../index.js";
 
 const jekyll = new JekyllPreset();
 
-test.beforeEach(t => {
-  t.context.properties = JSON.parse(getFixture('jf2/all-properties.jf2'));
+test.beforeEach((t) => {
+  t.context.properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
 });
 
-test('Gets plug-in info', t => {
-  t.is(jekyll.name, 'Jekyll preset');
-  t.is(jekyll.info.name, 'Jekyll');
+test("Gets plug-in info", (t) => {
+  t.is(jekyll.name, "Jekyll preset");
+  t.is(jekyll.info.name, "Jekyll");
 });
 
-test('Initiates plug-in', t => {
+test("Initiates plug-in", (t) => {
   const indiekit = new Indiekit();
   jekyll.init(indiekit);
 
-  t.is(indiekit.publication.preset.info.name, 'Jekyll');
+  t.is(indiekit.publication.preset.info.name, "Jekyll");
 });
 
-test('Gets publication post types', t => {
+test("Gets publication post types", (t) => {
   const result = jekyll.postTypes;
 
-  t.is(result[0].type, 'article');
+  t.is(result[0].type, "article");
 });
 
-test('Renders post template without content', t => {
+test("Renders post template without content", (t) => {
   const result = jekyll.postTemplate({
-    published: '2020-02-02',
-    name: 'Lunchtime',
+    published: "2020-02-02",
+    name: "Lunchtime",
   });
 
-  t.is(result, `---
+  t.is(
+    result,
+    `---
 date: 2020-02-02
 title: Lunchtime
 ---
-`);
+`
+  );
 });
 
-test('Renders post template with basic content', t => {
+test("Renders post template with basic content", (t) => {
   const result = jekyll.postTemplate({
-    published: '2020-02-02',
-    name: 'Lunchtime',
-    content: 'I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.',
+    published: "2020-02-02",
+    name: "Lunchtime",
+    content:
+      "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
   });
 
-  t.is(result, `---
+  t.is(
+    result,
+    `---
 date: 2020-02-02
 title: Lunchtime
 ---
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`);
+`
+  );
 });
 
-test('Renders post template with HTML content', t => {
+test("Renders post template with HTML content", (t) => {
   const result = jekyll.postTemplate({
-    published: '2020-02-02',
-    name: 'Lunchtime',
+    published: "2020-02-02",
+    name: "Lunchtime",
     content: {
       html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
     },
   });
 
-  t.is(result, `---
+  t.is(
+    result,
+    `---
 date: 2020-02-02
 title: Lunchtime
 ---
 <p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
-`);
+`
+  );
 });
 
-test('Renders post template', t => {
-  const jekyll = new JekyllPreset({frontmatterFormat: 'yaml'});
+test("Renders post template", (t) => {
+  const jekyll = new JekyllPreset({ frontmatterFormat: "yaml" });
 
   const result = jekyll.postTemplate(t.context.properties);
 
-  t.is(result, `---
+  t.is(
+    result,
+    `---
 date: 2020-02-02
 title: What I had for lunch
 excerpt: A very satisfactory meal.
@@ -113,5 +125,6 @@ syndication: https://website.example/post/12345
 mp-syndicate-to: https://social.example
 ---
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`);
+`
+  );
 });

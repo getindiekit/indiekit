@@ -12,8 +12,6 @@ Add `@indiekit/preset-jekyll` to your list of plugins:
 
 ```json
 {
-  "plugins": [
-    "@indiekit/preset-jekyll"
-  ]
+  "plugins": ["@indiekit/preset-jekyll"]
 }
 ```
