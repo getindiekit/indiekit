@@ -1,17 +1,9 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "ignoreChanges": [
-    "**/fixtures/**",
-    "**/tests/**",
-    "**/*.md"
-  ],
+  "packages": ["packages/*"],
+  "ignoreChanges": ["**/fixtures/**", "**/tests/**", "**/*.md"],
   "command": {
     "bootstrap": {
-      "npmClientArgs": [
-        "--no-package-lock"
-      ]
+      "npmClientArgs": ["--no-package-lock"]
     },
     "publish": {
       "conventionalCommits": true

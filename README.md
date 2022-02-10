@@ -6,34 +6,34 @@
 
 [Indiekit](https://getindiekit.com) is a small but powerful server that acts as the go-between your website and the wider independent web.
 
-* Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
+- Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
 
-* Syndicate your content to social networks like Twitter and Mastodon, and save posts to the Internet Archive
+- Syndicate your content to social networks like Twitter and Mastodon, and save posts to the Internet Archive
 
-* ~~Accept likes, comments and other types of feedback on your content with Webmention~~
+- ~~Accept likes, comments and other types of feedback on your content with Webmention~~
 
-* Save files to different content stores such as Bitbucket, GitHub, GitLab and Gitea
+- Save files to different content stores such as Bitbucket, GitHub, GitLab and Gitea
 
-* Highly configurable, with presets available for common static site generators such as Jekyll and Hugo.
+- Highly configurable, with presets available for common static site generators such as Jekyll and Hugo.
 
-* Localisable, with initial support for English, Dutch, French, German and Portuguese.
+- Localisable, with initial support for English, Dutch, French, German and Portuguese.
 
 ## Features
 
-* Create, update and delete posts
-* Upload files
-* Configure different post types
-* Accept post status and visibility
-* Review previously published posts and files
-* Bookmarklet to save and share bookmarks
-* Publish to different [content stores](https://getindiekit.com/plug-ins/#content-stores)
-* Support for popular static site generators (Jekyll, Hugo, 11ty)
-* Localised to [different languages](https://getindiekit.com/customisation/localisation/)
-* ~~Plug-in API~~
+- Create, update and delete posts
+- Upload files
+- Configure different post types
+- Accept post status and visibility
+- Review previously published posts and files
+- Bookmarklet to save and share bookmarks
+- Publish to different [content stores](https://getindiekit.com/plug-ins/#content-stores)
+- Support for popular static site generators (Jekyll, Hugo, 11ty)
+- Localised to [different languages](https://getindiekit.com/customisation/localisation/)
+- ~~Plug-in API~~
 
 ## Requirements
 
-* Node.js v16+
+- Node.js v16+
 
 ## Install
 
@@ -57,10 +57,10 @@ npm test
 
 The following environment variables need to be set before running tests:
 
-* `TEST_BEARER_TOKEN`
-* `TEST_BEARER_TOKEN_NOSCOPE`
-* `TEST_PUBLICATION_URL`
-* `TEST_SESSION_SECRET`
+- `TEST_BEARER_TOKEN`
+- `TEST_BEARER_TOKEN_NOSCOPE`
+- `TEST_PUBLICATION_URL`
+- `TEST_SESSION_SECRET`
 
 `TEST_BEARER_TOKEN` and `TEST_BEARER_TOKEN_NOSCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.`TEST_BEARER_TOKEN` should provide scoped permissions `create update delete`, whereas `TEST_BEARER_TOKEN_NOSCOPE` should provide no permissions at all.
 
@@ -80,8 +80,8 @@ Thank-you to [Aron Carroll](https://aroncarroll.com) for mentoring me during the
 
 Indiekit is inspired by similar projects made by members of the [IndieWeb community](https://indieweb.org), all of which you are encouraged to try:
 
-* [Mastr Cntrl](https://github.com/vipickering/mastr-cntrl) by [Vincent Pickering](https://vincentp.me)
-* [Micropub endpoint](https://github.com/muan/micropub-endpoint) by [Mu-An Chiou](https://muan.co)
-* [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
-* [Postr](https://github.com/grantcodes/postr) by [Grant Richmond](https://grant.codes)
-* [SiteWriter](https://github.com/gerwitz/sitewriter) by [Hans Gerwitz](https://hans.gerwitz.com)
+- [Mastr Cntrl](https://github.com/vipickering/mastr-cntrl) by [Vincent Pickering](https://vincentp.me)
+- [Micropub endpoint](https://github.com/muan/micropub-endpoint) by [Mu-An Chiou](https://muan.co)
+- [Micropub to GitHub](https://github.com/voxpelli/webpage-micropub-to-github) by [Pelle Wessman](https://kodfabrik.se)
+- [Postr](https://github.com/grantcodes/postr) by [Grant Richmond](https://grant.codes)
+- [SiteWriter](https://github.com/gerwitz/sitewriter) by [Hans Gerwitz](https://hans.gerwitz.com)

@@ -1,27 +1,32 @@
 {
   "upload": {
     "type": "js",
-    "files": [{
-      "file": "en.js",
-      "path": "packages/indiekit/locales",
-      "pattern": "packages/indiekit/locales/en.js",
-      "module": "indiekit"
-    }, {
-      "file": "en.js",
-      "path": "packages/endpoint-share/locales",
-      "pattern": "packages/endpoint-share/locales/en.js",
-      "module": "endpoint-share"
-    }, {
-      "file": "en.js",
-      "path": "packages/endpoint-media/locales",
-      "pattern": "packages/endpoint-media/locales/en.js",
-      "module": "endpoint-media"
-    }, {
-      "file": "en.js",
-      "path": "packages/endpoint-micropub/locales",
-      "pattern": "packages/endpoint-micropub/locales/en.js",
-      "module": "endpoint-micropub"
-    }]
+    "files": [
+      {
+        "file": "en.js",
+        "path": "packages/indiekit/locales",
+        "pattern": "packages/indiekit/locales/en.js",
+        "module": "indiekit"
+      },
+      {
+        "file": "en.js",
+        "path": "packages/endpoint-share/locales",
+        "pattern": "packages/endpoint-share/locales/en.js",
+        "module": "endpoint-share"
+      },
+      {
+        "file": "en.js",
+        "path": "packages/endpoint-media/locales",
+        "pattern": "packages/endpoint-media/locales/en.js",
+        "module": "endpoint-media"
+      },
+      {
+        "file": "en.js",
+        "path": "packages/endpoint-micropub/locales",
+        "pattern": "packages/endpoint-micropub/locales/en.js",
+        "module": "endpoint-micropub"
+      }
+    ]
   },
   "download": {
     "files": "packages/${module}/locales/${lang}.js"

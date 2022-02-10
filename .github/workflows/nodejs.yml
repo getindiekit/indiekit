@@ -10,29 +10,29 @@ jobs:
         node-version: [16.x]
         mongodb-version: [4]
     steps:
-    - name: Git checkout
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.3.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-    - name: Download localisations
-      uses: localazy/download@v1
-      with:
-        read_key: ${{ secrets.LOCALAZY_READ_KEY }}
-        write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
-    - name: Install packages and symlink local dependencies
-      run: |
-        npm ci
-    - name: Run tests
-      env:
-        TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}
-        TEST_BEARER_TOKEN_NOSCOPE: ${{ secrets.TEST_BEARER_TOKEN_NOSCOPE }}
-        TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
-        TEST_SESSION_SECRET: ${{ secrets.TEST_SESSION_SECRET }}
-      run: |
-        npm test
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.3.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+      - name: Download localisations
+        uses: localazy/download@v1
+        with:
+          read_key: ${{ secrets.LOCALAZY_READ_KEY }}
+          write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
+      - name: Install packages and symlink local dependencies
+        run: |
+          npm ci
+      - name: Run tests
+        env:
+          TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}
+          TEST_BEARER_TOKEN_NOSCOPE: ${{ secrets.TEST_BEARER_TOKEN_NOSCOPE }}
+          TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
+          TEST_SESSION_SECRET: ${{ secrets.TEST_SESSION_SECRET }}
+        run: |
+          npm test
