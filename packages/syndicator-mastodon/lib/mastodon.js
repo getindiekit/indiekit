@@ -10,7 +10,7 @@ import {
 } from './utils.js';
 
 export const mastodon = options => ({
-  client: () => {
+  client() {
     const generator = megalodon.default;
     return generator('mastodon', options.url, options.accessToken);
   },

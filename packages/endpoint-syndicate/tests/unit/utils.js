@@ -28,9 +28,9 @@ test.beforeEach(t => {
           'mp-syndicate-to': 'https://social.example/',
         },
       }),
-      insertOne: async () => {},
-      replaceOne: async () => {},
-      updateOne: async () => {},
+      async insertOne() {},
+      async replaceOne() {},
+      async updateOne() {},
     },
     url: 'https://website.example/post/12345',
   };

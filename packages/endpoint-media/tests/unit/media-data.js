@@ -13,7 +13,7 @@ test.beforeEach(t => {
       me: 'https://website.example',
       postTypes: new JekyllPreset().postTypes,
       media: {
-        findOne: async url => {
+        async findOne(url) {
           if (url['properties.url'] === 'https://website.example/photo.jpg') {
             return {
               path: 'photo.jpg',

@@ -8,7 +8,7 @@ test.beforeEach(t => {
       me: 'https://website.example',
       postTypes: new JekyllPreset().postTypes,
       posts: {
-        findOne: async url => {
+        async findOne(url) {
           if (url['properties.url'] === 'https://website.example/foo') {
             return {
               path: 'foo',
