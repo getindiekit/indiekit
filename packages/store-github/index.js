@@ -1,9 +1,9 @@
-import process from 'node:process';
-import {Buffer} from 'node:buffer';
-import octokit from '@octokit/rest';
+import process from "node:process";
+import { Buffer } from "node:buffer";
+import octokit from "@octokit/rest";
 
 const defaults = {
-  branch: 'main',
+  branch: "main",
   token: process.env.GITHUB_TOKEN,
 };
 
@@ -13,13 +13,13 @@ const defaults = {
  */
 export const GithubStore = class {
   constructor(options = {}) {
-    this.id = 'github';
-    this.name = 'GitHub store';
-    this.options = {...defaults, ...options};
+    this.id = "github";
+    this.name = "GitHub store";
+    this.options = { ...defaults, ...options };
   }
 
   get info() {
-    const {repo, user} = this.options;
+    const { repo, user } = this.options;
 
     return {
       name: `${user}/${repo} on GitHub`,
@@ -28,7 +28,7 @@ export const GithubStore = class {
   }
 
   get client() {
-    const {Octokit} = octokit;
+    const { Octokit } = octokit;
     return new Octokit({
       auth: `token ${this.options.token}`,
     });
@@ -44,7 +44,7 @@ export const GithubStore = class {
    * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents}
    */
   async createFile(path, content, message) {
-    content = Buffer.from(content).toString('base64');
+    content = Buffer.from(content).toString("base64");
     const response = await this.client.repos.createOrUpdateFileContents({
       owner: this.options.user,
       repo: this.options.repo,
@@ -70,7 +70,9 @@ export const GithubStore = class {
       ref: this.options.branch,
       path,
     });
-    const content = Buffer.from(response.data.content, 'base64').toString('utf8');
+    const content = Buffer.from(response.data.content, "base64").toString(
+      "utf8"
+    );
     return content;
   }
 
@@ -84,19 +86,21 @@ export const GithubStore = class {
    * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents}
    */
   async updateFile(path, content, message) {
-    const contents = await this.client.repos.getContent({
-      owner: this.options.user,
-      repo: this.options.repo,
-      ref: this.options.branch,
-      path,
-    }).catch(() => false);
+    const contents = await this.client.repos
+      .getContent({
+        owner: this.options.user,
+        repo: this.options.repo,
+        ref: this.options.branch,
+        path,
+      })
+      .catch(() => false);
 
-    content = Buffer.from(content).toString('base64');
+    content = Buffer.from(content).toString("base64");
     const response = await this.client.repos.createOrUpdateFileContents({
       owner: this.options.user,
       repo: this.options.repo,
       branch: this.options.branch,
-      sha: (contents) ? contents.data.sha : false,
+      sha: contents ? contents.data.sha : false,
       message,
       path,
       content,
