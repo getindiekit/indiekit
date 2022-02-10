@@ -12,9 +12,7 @@ Add `@indiekit/endpoint-syndicate` to your list of plugins, specifying options a
 
 ```json
 {
-  "plugins": [
-    "@indiekit/endpoint-syndicate"
-  ],
+  "plugins": ["@indiekit/endpoint-syndicate"],
   "@indiekit/endpoint-syndicate": {
     "mountPath": "/syndicator"
   }
@@ -23,6 +21,6 @@ Add `@indiekit/endpoint-syndicate` to your list of plugins, specifying options a
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `mountPath` | `string` | Path to syndication endpoint. *Optional*, defaults to `/syndicate`. |
+| Option      | Type     | Description                                                         |
+| :---------- | :------- | :------------------------------------------------------------------ |
+| `mountPath` | `string` | Path to syndication endpoint. _Optional_, defaults to `/syndicate`. |

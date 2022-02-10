@@ -6,7 +6,7 @@
  * @returns {string} Media endpoint URL
  */
 export const getMicropubEndpoint = (publication, request) => {
-  const {micropubEndpoint} = publication;
+  const { micropubEndpoint } = publication;
 
   return `${request.protocol}://${request.headers.host}${micropubEndpoint}`;
 };
@@ -19,13 +19,13 @@ export const getMicropubEndpoint = (publication, request) => {
  * @returns {object} Post data for given url else recently published post
  */
 export const getPostData = async (publication, url) => {
-  const {posts} = publication;
+  const { posts } = publication;
   let postData = {};
 
   if (url) {
     // Get item in database which matching URL
     postData = await posts.findOne({
-      'properties.url': url,
+      "properties.url": url,
     });
   } else {
     // Get items in database and return first item

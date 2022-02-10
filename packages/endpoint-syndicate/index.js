@@ -1,15 +1,15 @@
-import express from 'express';
-import {syndicateController} from './lib/controllers/syndicate.js';
+import express from "express";
+import { syndicateController } from "./lib/controllers/syndicate.js";
 
 const defaults = {
-  mountPath: '/syndicate',
+  mountPath: "/syndicate",
 };
 
 export const SyndicateEndpoint = class {
   constructor(options = {}) {
-    this.id = 'endpoint-syndicate';
-    this.name = 'Syndication endpoint';
-    this.options = {...defaults, ...options};
+    this.id = "endpoint-syndicate";
+    this.name = "Syndication endpoint";
+    this.options = { ...defaults, ...options };
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
@@ -18,9 +18,9 @@ export const SyndicateEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit.config;
+    const { application, publication } = Indiekit.config;
 
-    Indiekit.extend('routes', {
+    Indiekit.extend("routes", {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
@@ -28,7 +28,7 @@ export const SyndicateEndpoint = class {
 
   routes(application, publication) {
     const router = this._router;
-    router.post('/', syndicateController(application, publication).post);
+    router.post("/", syndicateController(application, publication).post);
 
     return router;
   }
