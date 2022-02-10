@@ -12,9 +12,7 @@ Add `@indiekit/preset-hugo` to your list of plugins, specifying options as requi
 
 ```json
 {
-  "plugins": [
-    "@indiekit/preset-hugo"
-  ],
+  "plugins": ["@indiekit/preset-hugo"],
   "@indiekit/preset-hugo": {
     "frontMatterFormat": "json"
   }
@@ -23,6 +21,6 @@ Add `@indiekit/preset-hugo` to your list of plugins, specifying options as requi
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `frontMatterFormat` | `string` | Front matter format to use (`json`, `toml` or `yaml`). *Optional*, defaults to `yaml`. |
+| Option              | Type     | Description                                                                            |
+| :------------------ | :------- | :------------------------------------------------------------------------------------- |
+| `frontMatterFormat` | `string` | Front matter format to use (`json`, `toml` or `yaml`). _Optional_, defaults to `yaml`. |
