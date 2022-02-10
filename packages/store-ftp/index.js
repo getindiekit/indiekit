@@ -1,10 +1,10 @@
-import path from 'node:path';
-import process from 'node:process';
-import {Readable} from 'node:stream';
-import ftp from 'basic-ftp';
+import path from "node:path";
+import process from "node:process";
+import { Readable } from "node:stream";
+import ftp from "basic-ftp";
 
 const defaults = {
-  directory: '',
+  directory: "",
   password: process.env.FTP_PASSWORD,
   port: 21,
   user: process.env.FTP_USER,
@@ -17,13 +17,13 @@ const defaults = {
  */
 export const FtpStore = class {
   constructor(options = {}) {
-    this.id = 'ftp';
-    this.name = 'FTP store';
-    this.options = {...defaults, ...options};
+    this.id = "ftp";
+    this.name = "FTP store";
+    this.options = { ...defaults, ...options };
   }
 
   get info() {
-    const {directory, host, user} = this.options;
+    const { directory, host, user } = this.options;
 
     return {
       name: `${user} on ${host}`,
@@ -32,10 +32,10 @@ export const FtpStore = class {
   }
 
   async client() {
-    const {host, user, password, port, verbose} = this.options;
+    const { host, user, password, port, verbose } = this.options;
     const client = new ftp.Client();
     client.ftp.verbose = verbose;
-    await client.access({host, user, password, port, secure: true});
+    await client.access({ host, user, password, port, secure: true });
     return client;
   }
 
@@ -49,7 +49,7 @@ export const FtpStore = class {
   #createReadableStream(content) {
     const readableStream = new Readable();
     readableStream._read = () => {};
-    readableStream.push(content, 'utf-8');
+    readableStream.push(content, "utf-8");
     readableStream.push(null); // eslint-disable-line unicorn/no-array-push-push
     return readableStream;
   }

@@ -12,9 +12,7 @@ Add `@indiekit/store-ftp` to your list of plugins, specifying options as require
 
 ```json
 {
-  "plugins": [
-    "@indiekit/store-ftp"
-  ],
+  "plugins": ["@indiekit/store-ftp"],
   "@indiekit/store-ftp": {
     "host": "ftp.server.example",
     "user": "username",
@@ -25,9 +23,9 @@ Add `@indiekit/store-ftp` to your list of plugins, specifying options as require
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `host` | `string` | Your FTP hostname, for example ftp.server.example. *Required*. |
-| `user` | `string` | Your FTP username. *Required*, defaults to `process.env.FTP_USER`. |
-| `password` | `string` | Your FTP password. *Required*, defaults to `process.env.FTP_PASSWORD`. |
-| `directory` | `string` | Directory to save files to. *Optional*. |
+| Option      | Type     | Description                                                            |
+| :---------- | :------- | :--------------------------------------------------------------------- |
+| `host`      | `string` | Your FTP hostname, for example ftp.server.example. _Required_.         |
+| `user`      | `string` | Your FTP username. _Required_, defaults to `process.env.FTP_USER`.     |
+| `password`  | `string` | Your FTP password. _Required_, defaults to `process.env.FTP_PASSWORD`. |
+| `directory` | `string` | Directory to save files to. _Optional_.                                |
