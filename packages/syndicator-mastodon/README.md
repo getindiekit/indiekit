@@ -16,9 +16,7 @@ Add `@indiekit/syndicator-mastodon` to your list of plugins, specifying options 
 
 ```json
 {
-  "plugins": [
-    "@indiekit/syndicator-mastodon"
-  ],
+  "plugins": ["@indiekit/syndicator-mastodon"],
   "@indiekit/syndicator-mastodon": {
     "url": "https://mastodon.server",
     "user": "username",
@@ -30,10 +28,10 @@ Add `@indiekit/syndicator-mastodon` to your list of plugins, specifying options 
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `accessToken` | `string` | Your Mastodon access token. *Required*, defaults to `process.env.MASTODON_ACCESS_TOKEN`. |
-| `url` | `string` | Your Mastodon server, i.e. `https://mastodon.social`. *Required*. |
-| `user` | `string` | Your Mastodon username (without the `@`). *Required*. |
-| `checked` | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. *Optional*, defaults to `false`. |
-| `forced` | `boolean` | Ignore the presence or value of `checked` and always syndicate. *Optional*. |
+| Option        | Type      | Description                                                                                                   |
+| :------------ | :-------- | :------------------------------------------------------------------------------------------------------------ |
+| `accessToken` | `string`  | Your Mastodon access token. _Required_, defaults to `process.env.MASTODON_ACCESS_TOKEN`.                      |
+| `url`         | `string`  | Your Mastodon server, i.e. `https://mastodon.social`. _Required_.                                             |
+| `user`        | `string`  | Your Mastodon username (without the `@`). _Required_.                                                         |
+| `checked`     | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. _Optional_, defaults to `false`. |
+| `forced`      | `boolean` | Ignore the presence or value of `checked` and always syndicate. _Optional_.                                   |

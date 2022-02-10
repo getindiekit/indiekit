@@ -1,7 +1,7 @@
-import path from 'node:path';
-import process from 'node:process';
-import {fileURLToPath} from 'node:url';
-import {mastodon} from './lib/mastodon.js';
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+import { mastodon } from "./lib/mastodon.js";
 
 const defaults = {
   accessToken: process.env.MASTODON_ACCESS_TOKEN,
@@ -10,10 +10,10 @@ const defaults = {
 
 export const MastodonSyndicator = class {
   constructor(options = {}) {
-    this.id = 'mastodon';
-    this.name = 'Mastodon syndicator';
-    this.user = `@${options.user.replace('@', '')}`;
-    this.options = {...defaults, ...options};
+    this.id = "mastodon";
+    this.name = "Mastodon syndicator";
+    this.user = `@${options.user.replace("@", "")}`;
+    this.options = { ...defaults, ...options };
   }
 
   get url() {
@@ -21,16 +21,16 @@ export const MastodonSyndicator = class {
       return new URL(this.options.url);
     }
 
-    throw new Error('Mastodon server URL required');
+    throw new Error("Mastodon server URL required");
   }
 
   get assetsPath() {
-    return fileURLToPath(new URL('assets', import.meta.url));
+    return fileURLToPath(new URL("assets", import.meta.url));
   }
 
   get info() {
-    const {checked} = this.options;
-    const {url, user} = this;
+    const { checked } = this.options;
+    const { url, user } = this;
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
 
     return {
@@ -38,9 +38,9 @@ export const MastodonSyndicator = class {
       name: `${user}@${url.hostname}`,
       uid,
       service: {
-        name: 'Mastodon',
+        name: "Mastodon",
         url: url.href,
-        photo: '/assets/mastodon/icon.svg',
+        photo: "/assets/mastodon/icon.svg",
       },
       user: {
         name: user,

@@ -1,18 +1,18 @@
 /* eslint-disable camelcase */
-import axios from 'axios';
-import HttpError from 'http-errors';
-import megalodon from 'megalodon';
+import axios from "axios";
+import HttpError from "http-errors";
+import megalodon from "megalodon";
 import {
   createStatus,
   getAbsoluteUrl,
   getStatusIdFromUrl,
   isTootUrl,
-} from './utils.js';
+} from "./utils.js";
 
-export const mastodon = options => ({
+export const mastodon = (options) => ({
   client() {
     const generator = megalodon.default;
-    return generator('mastodon', options.url, options.accessToken);
+    return generator("mastodon", options.url, options.accessToken);
   },
 
   /**
@@ -24,7 +24,7 @@ export const mastodon = options => ({
   async postFavourite(tootUrl) {
     try {
       const statusId = getStatusIdFromUrl(tootUrl);
-      const {data} = await this.client().favouriteStatus(statusId);
+      const { data } = await this.client().favouriteStatus(statusId);
       return data.url;
     } catch (error) {
       throw new Error(error.message);
@@ -40,7 +40,7 @@ export const mastodon = options => ({
   async postReblog(tootUrl) {
     try {
       const statusId = getStatusIdFromUrl(tootUrl);
-      const {data} = await this.client().reblogStatus(statusId);
+      const { data } = await this.client().reblogStatus(statusId);
       return data.url;
     } catch (error) {
       throw new Error(error.message);
@@ -55,7 +55,7 @@ export const mastodon = options => ({
    */
   async postStatus(parameters) {
     try {
-      const {data} = await this.client().postStatus(parameters.status, {
+      const { data } = await this.client().postStatus(parameters.status, {
         in_reply_to_id: parameters.in_reply_to_status_id,
         media_ids: parameters.media_ids,
       });
@@ -73,18 +73,18 @@ export const mastodon = options => ({
    * @returns {string} Mastodon media id
    */
   async uploadMedia(media, me) {
-    const {alt, url} = media;
+    const { alt, url } = media;
 
-    if (typeof url !== 'string') {
+    if (typeof url !== "string") {
       return;
     }
 
     try {
       const mediaUrl = getAbsoluteUrl(url, me);
       const response = await axios(mediaUrl, {
-        responseType: 'stream',
+        responseType: "stream",
       });
-      const {data} = await this.client().uploadMedia(response.data, {
+      const { data } = await this.client().uploadMedia(response.data, {
         description: alt,
       });
       return data.id;
@@ -118,26 +118,29 @@ export const mastodon = options => ({
       mediaIds = await Promise.all(uploads);
     }
 
-    if (properties['repost-of']) {
+    if (properties["repost-of"]) {
       // Syndicate repost of Mastodon URL with content as a reblog
-      if (isTootUrl(properties['repost-of'], options.url) && properties.content) {
+      if (
+        isTootUrl(properties["repost-of"], options.url) &&
+        properties.content
+      ) {
         const status = createStatus(properties, mediaIds);
         return this.postStatus(status);
       }
 
       // Syndicate repost of Mastodon URL as a reblog
-      if (isTootUrl(properties['repost-of'], options.url)) {
-        return this.postReblog(properties['repost-of']);
+      if (isTootUrl(properties["repost-of"], options.url)) {
+        return this.postReblog(properties["repost-of"]);
       }
 
       // Do not syndicate reposts of other URLs
       return false;
     }
 
-    if (properties['like-of']) {
+    if (properties["like-of"]) {
       // Syndicate like of Mastodon URL as a like
-      if (isTootUrl(properties['like-of'], options.url)) {
-        return this.postFavourite(properties['like-of']);
+      if (isTootUrl(properties["like-of"], options.url)) {
+        return this.postFavourite(properties["like-of"]);
       }
 
       // Do not syndicate likes of other URLs
