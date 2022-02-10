@@ -1,9 +1,9 @@
-import got from 'got';
-import validator from 'express-validator';
+import got from "got";
+import validator from "express-validator";
 
-const {validationResult} = validator;
+const { validationResult } = validator;
 
-export const shareController = publication => ({
+export const shareController = (publication) => ({
   /**
    * View share page
    *
@@ -11,15 +11,15 @@ export const shareController = publication => ({
    * @param {object} response HTTP response
    */
   get(request, response) {
-    const {content, name, url, success} = request.query;
+    const { content, name, url, success } = request.query;
 
-    response.render('share', {
-      title: response.__('share.title'),
+    response.render("share", {
+      title: response.__("share.title"),
       content,
       name,
       url,
       success,
-      minimalui: (request.params.path === 'bookmarklet'),
+      minimalui: request.params.path === "bookmarklet",
     });
   },
 
@@ -31,27 +31,27 @@ export const shareController = publication => ({
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const {content, name} = request.body;
-    const bookmarkOf = request.body.url || request.body['bookmark-of'];
+    const { content, name } = request.body;
+    const bookmarkOf = request.body.url || request.body["bookmark-of"];
     const host = `${request.protocol}://${request.headers.host}`;
     const path = publication.micropubEndpoint;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
-      return response.status(422).render('share', {
-        title: response.__('share.title'),
+      return response.status(422).render("share", {
+        title: response.__("share.title"),
         name,
         content,
-        'bookmark-of': bookmarkOf,
+        "bookmark-of": bookmarkOf,
         errors: errors.mapped(),
-        minimalui: (request.params.path === 'bookmarklet'),
+        minimalui: request.params.path === "bookmarklet",
       });
     }
 
     try {
-      const {body} = await got.post(`${host}${path}`, {
+      const { body } = await got.post(`${host}${path}`, {
         form: request.body,
-        responseType: 'json',
+        responseType: "json",
       });
 
       if (body) {
@@ -59,13 +59,13 @@ export const shareController = publication => ({
         response.redirect(`?success=${message}`);
       }
     } catch (error) {
-      response.status(422).render('share', {
-        title: response.__('share.title'),
+      response.status(422).render("share", {
+        title: response.__("share.title"),
         content,
         name,
         bookmarkOf,
         error: error.response.body.error_description,
-        minimalui: (request.params.path === 'bookmarklet'),
+        minimalui: request.params.path === "bookmarklet",
       });
     }
   },

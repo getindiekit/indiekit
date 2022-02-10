@@ -1,17 +1,17 @@
-import {fileURLToPath} from 'node:url';
-import express from 'express';
-import {shareController} from './lib/controllers/share.js';
-import {validate} from './lib/middleware/validation.js';
+import { fileURLToPath } from "node:url";
+import express from "express";
+import { shareController } from "./lib/controllers/share.js";
+import { validate } from "./lib/middleware/validation.js";
 
 const defaults = {
-  mountPath: '/share',
+  mountPath: "/share",
 };
 
 export const ShareEndpoint = class {
   constructor(options = {}) {
-    this.id = 'endpoint-share';
-    this.name = 'Share endpoint';
-    this.options = {...defaults, ...options};
+    this.id = "endpoint-share";
+    this.name = "Share endpoint";
+    this.options = { ...defaults, ...options };
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
@@ -20,21 +20,21 @@ export const ShareEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit.config;
+    const { application, publication } = Indiekit.config;
 
-    Indiekit.extend('navigationItems', {
+    Indiekit.extend("navigationItems", {
       href: this.mountPath,
-      text: 'share.title',
+      text: "share.title",
     });
 
-    Indiekit.extend('routes', {
+    Indiekit.extend("routes", {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.extend('views', [
-      fileURLToPath(new URL('includes', import.meta.url)),
-      fileURLToPath(new URL('views', import.meta.url)),
+    Indiekit.extend("views", [
+      fileURLToPath(new URL("includes", import.meta.url)),
+      fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
     application.shareEndpoint = this.mountPath;
@@ -43,8 +43,8 @@ export const ShareEndpoint = class {
   routes(application, publication) {
     const router = this._router;
 
-    router.get('/:path?', shareController(publication).get);
-    router.post('/:path?', validate, shareController(publication).post);
+    router.get("/:path?", shareController(publication).get);
+    router.post("/:path?", validate, shareController(publication).post);
 
     return router;
   }

@@ -12,9 +12,7 @@ Add `@indiekit/endpoint-share` to your list of plugins, specifying options as re
 
 ```json
 {
-  "plugins": [
-    "@indiekit/endpoint-share"
-  ],
+  "plugins": ["@indiekit/endpoint-share"],
   "@indiekit/endpoint-share": {
     "mountPath": "/bookmark"
   }
@@ -23,6 +21,6 @@ Add `@indiekit/endpoint-share` to your list of plugins, specifying options as re
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `mountPath` | `string` | Path to share screen. *Optional*, defaults to `/share`. |
+| Option      | Type     | Description                                             |
+| :---------- | :------- | :------------------------------------------------------ |
+| `mountPath` | `string` | Path to share screen. _Optional_, defaults to `/share`. |

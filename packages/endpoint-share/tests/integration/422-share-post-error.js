@@ -1,22 +1,21 @@
-import process from 'node:process';
-import test from 'ava';
-import nock from 'nock';
-import {testServer} from '@indiekit-test/server';
+import process from "node:process";
+import test from "ava";
+import nock from "nock";
+import { testServer } from "@indiekit-test/server";
 
-test('Returns 422 if error publishing post', async t => {
-  nock('https://tokens.indieauth.com')
-    .get('/token')
-    .reply(200, {
-      me: process.env.TEST_PUBLICATION_URL,
-      scope: 'foo',
-    });
+test("Returns 422 if error publishing post", async (t) => {
+  nock("https://tokens.indieauth.com").get("/token").reply(200, {
+    me: process.env.TEST_PUBLICATION_URL,
+    scope: "foo",
+  });
   const request = await testServer();
 
-  const result = await request.post('/share')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
-    .send('name=Foobar')
-    .send('content=Test+of+sharing+a+bookmark')
-    .send('bookmark-of=https://example.website');
+  const result = await request
+    .post("/share")
+    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .send("name=Foobar")
+    .send("content=Test+of+sharing+a+bookmark")
+    .send("bookmark-of=https://example.website");
 
   t.is(result.statusCode, 422);
 });

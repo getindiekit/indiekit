@@ -1,14 +1,14 @@
-import validator from 'express-validator';
+import validator from "express-validator";
 
-const {check} = validator;
+const { check } = validator;
 
 export const validate = [
-  check('name')
+  check("name")
     .not()
     .isEmpty()
-    .withMessage((value, {req, path}) => req.__(`share.error.${path}`)),
-  check('bookmark-of')
+    .withMessage((value, { req, path }) => req.__(`share.error.${path}`)),
+  check("bookmark-of")
     .exists()
     .isURL()
-    .withMessage((value, {req, path}) => req.__(`share.error.${path}`)),
+    .withMessage((value, { req, path }) => req.__(`share.error.${path}`)),
 ];
