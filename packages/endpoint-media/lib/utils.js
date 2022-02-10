@@ -1,10 +1,10 @@
-import path from 'node:path';
-import dateFnsTz from 'date-fns-tz';
-import newbase60 from 'newbase60';
-import {v4 as uuidv4} from 'uuid';
-import {getServerTimeZone} from './date.js';
+import path from "node:path";
+import dateFnsTz from "date-fns-tz";
+import newbase60 from "newbase60";
+import { v4 as uuidv4 } from "uuid";
+import { getServerTimeZone } from "./date.js";
 
-const {format} = dateFnsTz;
+const { format } = dateFnsTz;
 
 /**
  * Generate random alpha-numeric string, 5 characters long
@@ -27,34 +27,34 @@ export const renderPath = (path, properties, timeZoneSetting) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getServerTimeZone();
   const dateTokens = [
-    'y', // Calendar year, eg 2020
-    'yyyy', // Calendar year (zero-padded), eg 2020
-    'M', // Month number, eg 9
-    'MM', // Month number (zero-padded), eg 09
-    'MMM', // Month name (abbreviated), eg Sep
-    'MMMM', // Month name (wide), eg September
-    'w', // Week number, eg 1
-    'ww', // Week number (zero-padded), eg 01
-    'D', // Day of the year, eg 1
-    'DDD', // Day of the year (zero-padded), eg 001
-    'd', // Day of the month, eg 1
-    'dd', // Day of the month (zero-padded), eg 01
-    'h', // Hour (12-hour-cycle), eg 1
-    'hh', // Hour (12-hour-cycle, zero-padded), eg 01
-    'H', // Hour (24-hour-cycle), eg 1
-    'HH', // Hour (24-hour-cycle, zero-padded), eg 01
-    'm', // Minute, eg 1
-    'mm', // Minute (zero-padded), eg 01
-    's', // Second, eg 1
-    'ss', // Second (zero-padded), eg 01
-    't', // UNIX epoch seconds, eg 512969520
-    'T', // UNIX epoch milliseconds, eg 51296952000
+    "y", // Calendar year, eg 2020
+    "yyyy", // Calendar year (zero-padded), eg 2020
+    "M", // Month number, eg 9
+    "MM", // Month number (zero-padded), eg 09
+    "MMM", // Month name (abbreviated), eg Sep
+    "MMMM", // Month name (wide), eg September
+    "w", // Week number, eg 1
+    "ww", // Week number (zero-padded), eg 01
+    "D", // Day of the year, eg 1
+    "DDD", // Day of the year (zero-padded), eg 001
+    "d", // Day of the month, eg 1
+    "dd", // Day of the month (zero-padded), eg 01
+    "h", // Hour (12-hour-cycle), eg 1
+    "hh", // Hour (12-hour-cycle, zero-padded), eg 01
+    "H", // Hour (24-hour-cycle), eg 1
+    "HH", // Hour (24-hour-cycle, zero-padded), eg 01
+    "m", // Minute, eg 1
+    "mm", // Minute (zero-padded), eg 01
+    "s", // Second, eg 1
+    "ss", // Second (zero-padded), eg 01
+    "t", // UNIX epoch seconds, eg 512969520
+    "T", // UNIX epoch milliseconds, eg 51296952000
   ];
 
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
-      timeZone: timeZoneSetting === 'server' ? serverTimeZone : timeZoneSetting,
+      timeZone: timeZoneSetting === "server" ? serverTimeZone : timeZoneSetting,
       useAdditionalDayOfYearTokens: true,
     });
   }
@@ -63,15 +63,15 @@ export const renderPath = (path, properties, timeZoneSetting) => {
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
   // Add slug token if 'mp-slug' property
-  if (properties['mp-slug']) {
-    tokens.slug = properties['mp-slug'];
+  if (properties["mp-slug"]) {
+    tokens.slug = properties["mp-slug"];
   }
 
   // Add UUID token
   tokens.uuid = uuidv4();
 
   // Populate URI template path with properties
-  tokens = {...tokens, ...properties};
+  tokens = { ...tokens, ...properties };
   path = supplant(path, tokens);
 
   return path;
@@ -84,15 +84,16 @@ export const renderPath = (path, properties, timeZoneSetting) => {
  * @param {object} object Properties to use
  * @returns {string} String with substituted
  */
-export const supplant = (string, object) => string.replace(/{([^{}]*)}/g, (a, b) => {
-  const r = object[b];
+export const supplant = (string, object) =>
+  string.replace(/{([^{}]*)}/g, (a, b) => {
+    const r = object[b];
 
-  if (typeof r === 'string' || typeof r === 'number') {
-    return r;
-  }
+    if (typeof r === "string" || typeof r === "number") {
+      return r;
+    }
 
-  return a;
-});
+    return a;
+  });
 
 /**
  * Derive a permalink (by combining publication URL, that may
@@ -119,6 +120,5 @@ export const getPermalink = (url, pathname) => {
  * @param {object} postTypes Publication post types
  * @returns {object} Post type configuration
  */
-export const getPostTypeConfig = (type, postTypes) => postTypes.find(
-  item => item.type === type,
-);
+export const getPostTypeConfig = (type, postTypes) =>
+  postTypes.find((item) => item.type === type);

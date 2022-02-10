@@ -1,9 +1,10 @@
-import httpError from 'http-errors';
-import {media} from '../media.js';
-import {mediaData} from '../media-data.js';
-import {checkScope} from '../scope.js';
+import httpError from "http-errors";
+import { media } from "../media.js";
+import { mediaData } from "../media-data.js";
+import { checkScope } from "../scope.js";
 
-export const uploadController = publication =>
+export const uploadController =
+  (publication) =>
   /**
    * Upload file
    *
@@ -13,8 +14,8 @@ export const uploadController = publication =>
    * @returns {object} HTTP response
    */
   async (request, response, next) => {
-    const {file} = request;
-    const {scope} = response.locals.publication.accessToken;
+    const { file } = request;
+    const { scope } = response.locals.publication.accessToken;
 
     try {
       checkScope(scope);
@@ -22,11 +23,15 @@ export const uploadController = publication =>
       const data = await mediaData.create(publication, file);
       const uploaded = await media.upload(publication, data, file);
 
-      return response.status(uploaded.status).location(uploaded.location).json(uploaded.json);
+      return response
+        .status(uploaded.status)
+        .location(uploaded.location)
+        .json(uploaded.json);
     } catch (error) {
-      next(httpError(error.statusCode, error, {
-        scope: error.scope,
-      }));
+      next(
+        httpError(error.statusCode, error, {
+          scope: error.scope,
+        })
+      );
     }
   };
-

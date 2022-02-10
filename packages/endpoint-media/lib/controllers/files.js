@@ -1,7 +1,7 @@
-import HttpError from 'http-errors';
-import mongodb from 'mongodb';
+import HttpError from "http-errors";
+import mongodb from "mongodb";
 
-const {ObjectId} = mongodb;
+const { ObjectId } = mongodb;
 
 export const filesController = (application, publication) => ({
   /**
@@ -15,11 +15,11 @@ export const filesController = (application, publication) => ({
   async list(request, response, next) {
     try {
       if (!application.hasDatabase) {
-        throw new Error(response.__('errors.noDatabase.content'));
+        throw new Error(response.__("errors.noDatabase.content"));
       }
 
-      response.render('files', {
-        title: response.__('media.files.title'),
+      response.render("files", {
+        title: response.__("media.files.title"),
         files: await publication.media.find().toArray(),
         parentUrl: `${publication.mediaEndpoint}/files/`,
       });
@@ -38,15 +38,15 @@ export const filesController = (application, publication) => ({
    */
   async view(request, response, next) {
     try {
-      const {id} = request.params;
-      const file = await publication.media.findOne({_id: new ObjectId(id)});
+      const { id } = request.params;
+      const file = await publication.media.findOne({ _id: new ObjectId(id) });
 
       if (!file) {
-        throw new HttpError(404, 'No file was found with this UUID');
+        throw new HttpError(404, "No file was found with this UUID");
       }
 
-      response.render('file', {
-        parent: response.__('media.files.title'),
+      response.render("file", {
+        parent: response.__("media.files.title"),
         file,
       });
     } catch (error) {

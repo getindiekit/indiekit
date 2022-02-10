@@ -12,9 +12,7 @@ Add `@indiekit/endpoint-media` to your list of plugins, specifying options as re
 
 ```json
 {
-  "plugins": [
-    "@indiekit/endpoint-media"
-  ],
+  "plugins": ["@indiekit/endpoint-media"],
   "@indiekit/endpoint-media": {
     "mountPath": "/uploader"
   }
@@ -23,12 +21,12 @@ Add `@indiekit/endpoint-media` to your list of plugins, specifying options as re
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `mountPath` | `string` | Path to listen to media upload requests. *Optional*, defaults to `/media`. |
+| Option      | Type     | Description                                                                |
+| :---------- | :------- | :------------------------------------------------------------------------- |
+| `mountPath` | `string` | Path to listen to media upload requests. _Optional_, defaults to `/media`. |
 
 ## Supported endpoint queries
 
-* Previously published media: `/media?q=source`
+- Previously published media: `/media?q=source`
 
   Supports `filter`, `limit` and `offset` and parameters. For example, `/media?q=source&filter=web&limit=10&offset=10`.

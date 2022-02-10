@@ -1,12 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
   media: {
-    download: 'Transferir ficheiro',
+    download: "Transferir ficheiro",
     files: {
-      none: 'Sem ficheiros',
-      title: 'Ficheiros carregados',
+      none: "Sem ficheiros",
+      title: "Ficheiros carregados",
     },
-    properties: 'Propriedades',
-    title: 'Ficheiros',
+    properties: "Propriedades",
+    title: "Ficheiros",
   },
 };

@@ -1,13 +1,6 @@
-import HttpError from 'http-errors';
-import {
-  getPermalink,
-  getPostTypeConfig,
-  renderPath,
-} from './utils.js';
-import {
-  getFileProperties,
-  getMediaType,
-} from './file.js';
+import HttpError from "http-errors";
+import { getPermalink, getPostTypeConfig, renderPath } from "./utils.js";
+import { getFileProperties, getMediaType } from "./file.js";
 
 export const mediaData = {
   /**
@@ -20,14 +13,14 @@ export const mediaData = {
   async create(publication, file) {
     try {
       if (!publication) {
-        throw new Error('No publication configuration provided');
+        throw new Error("No publication configuration provided");
       }
 
       if (!file || file.truncated || !file.buffer) {
-        throw new Error('No file included in request');
+        throw new Error("No file included in request");
       }
 
-      const {me, postTypes, timeZone} = publication;
+      const { me, postTypes, timeZone } = publication;
 
       // Media properties
       const properties = await getFileProperties(publication, file);
@@ -35,20 +28,24 @@ export const mediaData = {
       // Media type
       const type = await getMediaType(file);
       const typeConfig = getPostTypeConfig(type, postTypes);
-      properties['post-type'] = type;
+      properties["post-type"] = type;
 
       // Media paths
       const path = renderPath(typeConfig.media.path, properties, timeZone);
-      const url = renderPath(typeConfig.media.url || typeConfig.media.path, properties, timeZone);
+      const url = renderPath(
+        typeConfig.media.url || typeConfig.media.path,
+        properties,
+        timeZone
+      );
       properties.url = getPermalink(me, url);
 
       // Update media properties based on type config
-      const urlPathSegment = properties.url.split('/');
+      const urlPathSegment = properties.url.split("/");
       properties.filename = urlPathSegment[urlPathSegment.length - 1];
-      properties.basename = properties.filename.split('.')[0];
+      properties.basename = properties.filename.split(".")[0];
 
       // Media data
-      const mediaData = {path, properties};
+      const mediaData = { path, properties };
       return mediaData;
     } catch (error) {
       throw new HttpError(400, error);
@@ -65,16 +62,16 @@ export const mediaData = {
   async read(publication, url) {
     try {
       if (!publication) {
-        throw new Error('No publication configuration provided');
+        throw new Error("No publication configuration provided");
       }
 
       if (!url) {
-        throw new Error('No URL provided');
+        throw new Error("No URL provided");
       }
 
-      const {media} = publication;
+      const { media } = publication;
       const file = await media.findOne({
-        'properties.url': url,
+        "properties.url": url,
       });
       return file;
     } catch (error) {

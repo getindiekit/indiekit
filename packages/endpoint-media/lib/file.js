@@ -1,6 +1,6 @@
-import {fileTypeFromBuffer} from 'file-type';
-import {getDate} from './date.js';
-import {randomString} from './utils.js';
+import { fileTypeFromBuffer } from "file-type";
+import { getDate } from "./date.js";
+import { randomString } from "./utils.js";
 
 /**
  * Derive properties from file data
@@ -18,10 +18,10 @@ import {randomString} from './utils.js';
  * }
  */
 export const getFileProperties = async (publication, file) => {
-  const {timeZone} = publication;
+  const { timeZone } = publication;
 
   const basename = randomString();
-  const {ext, mime} = await fileTypeFromBuffer(file.buffer);
+  const { ext, mime } = await fileTypeFromBuffer(file.buffer);
   const published = getPublishedProperty(timeZone);
 
   return {
@@ -29,7 +29,7 @@ export const getFileProperties = async (publication, file) => {
     ext,
     filename: `${basename}.${ext}`,
     originalname: file.originalname,
-    'content-type': mime,
+    "content-type": mime,
     published,
   };
 };
@@ -41,19 +41,19 @@ export const getFileProperties = async (publication, file) => {
  * @returns {string} Post type ('photo', 'video' or 'audio')
  * @example getMediaType('brighton-pier.jpg') => 'photo'
  */
-export const getMediaType = async file => {
-  const {mime} = await fileTypeFromBuffer(file.buffer);
+export const getMediaType = async (file) => {
+  const { mime } = await fileTypeFromBuffer(file.buffer);
 
-  if (mime.includes('audio/')) {
-    return 'audio';
+  if (mime.includes("audio/")) {
+    return "audio";
   }
 
-  if (mime.includes('image/')) {
-    return 'photo';
+  if (mime.includes("image/")) {
+    return "photo";
   }
 
-  if (mime.includes('video/')) {
-    return 'video';
+  if (mime.includes("video/")) {
+    return "video";
   }
 
   return null;
@@ -65,7 +65,7 @@ export const getMediaType = async file => {
  * @param {object} timeZone Publication time zone
  * @returns {string} ISO 8601 date
  */
-export const getPublishedProperty = timeZone => {
+export const getPublishedProperty = (timeZone) => {
   const dateString = new Date().toISOString();
   const property = getDate(timeZone, dateString);
   return property;

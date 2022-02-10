@@ -8,15 +8,19 @@ export const media = {
    * @returns {object} Data to use in response
    */
   async upload(publication, mediaData, file) {
-    const {media, store, storeMessageTemplate} = publication;
+    const { media, store, storeMessageTemplate } = publication;
     const metaData = {
-      action: 'upload',
-      result: 'uploaded',
-      fileType: 'file',
-      postType: mediaData.properties['post-type'],
+      action: "upload",
+      result: "uploaded",
+      fileType: "file",
+      postType: mediaData.properties["post-type"],
     };
     const message = storeMessageTemplate(metaData);
-    const uploaded = await store.createFile(mediaData.path, file.buffer, message);
+    const uploaded = await store.createFile(
+      mediaData.path,
+      file.buffer,
+      message
+    );
 
     if (uploaded) {
       mediaData.date = new Date();
@@ -30,7 +34,7 @@ export const media = {
         location: mediaData.properties.url,
         status: 201,
         json: {
-          success: 'create',
+          success: "create",
           success_description: `Media uploaded to ${mediaData.properties.url}`,
         },
       };

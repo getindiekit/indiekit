@@ -1,6 +1,6 @@
-import dateFnsTz from 'date-fns-tz';
+import dateFnsTz from "date-fns-tz";
 
-const {format, utcToZonedTime} = dateFnsTz;
+const { format, utcToZonedTime } = dateFnsTz;
 
 /**
  * Converts date to use configured time zone
@@ -15,7 +15,7 @@ const {format, utcToZonedTime} = dateFnsTz;
  *   [IANA tz timezone]: use specified time zone
  */
 export const getDate = (setting, dateString) => {
-  if (setting === 'client') {
+  if (setting === "client") {
     // Return given date string or create ISO string using current date
     return dateString ? dateString : new Date().toISOString();
   }
@@ -25,14 +25,14 @@ export const getDate = (setting, dateString) => {
 
   // Desired time zone
   const serverTimeZone = getServerTimeZone();
-  const outputTimeZone = (setting === 'server') ? serverTimeZone : setting;
+  const outputTimeZone = setting === "server" ? serverTimeZone : setting;
 
   // Short dates, i.e. 2019-02-01
   // Don’t covert dates without a given time
-  const dateHasTime = dateString ? dateString.includes('T') : false;
+  const dateHasTime = dateString ? dateString.includes("T") : false;
   const dateIsShort = dateString && !dateHasTime;
   if (dateIsShort) {
-    const offset = format(datetime, 'XXX', {
+    const offset = format(datetime, "XXX", {
       timeZone: outputTimeZone,
     });
     return `${dateString}T00:00:00.000${offset}`;
@@ -42,7 +42,7 @@ export const getDate = (setting, dateString) => {
   datetime = utcToZonedTime(datetime, outputTimeZone);
 
   // Return datetime with desired timezone offset
-  datetime = format(datetime, 'yyyy-MM-dd\'T\'HH:mm:ss.SSSXXX', {
+  datetime = format(datetime, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", {
     timeZone: outputTimeZone,
   });
 
@@ -61,21 +61,21 @@ export const getServerTimeZone = () => {
   let offsetMinutes = Math.abs(timeZoneOffsetMinutes % 60);
 
   if (offsetHours < 10) {
-    offsetHours = '0' + offsetHours;
+    offsetHours = "0" + offsetHours;
   }
 
   if (offsetMinutes < 10) {
-    offsetMinutes = '0' + offsetMinutes;
+    offsetMinutes = "0" + offsetMinutes;
   }
 
   // Add an opposite sign to the offset
   // If offset is 0, timezone is UTC
   if (timeZoneOffsetMinutes < 0) {
-    timeZoneOffset = '+' + offsetHours + ':' + offsetMinutes;
+    timeZoneOffset = "+" + offsetHours + ":" + offsetMinutes;
   } else if (timeZoneOffsetMinutes > 0) {
-    timeZoneOffset = '-' + offsetHours + ':' + offsetMinutes;
+    timeZoneOffset = "-" + offsetHours + ":" + offsetMinutes;
   } else if (timeZoneOffsetMinutes === 0) {
-    timeZoneOffset = 'Z';
+    timeZoneOffset = "Z";
   }
 
   return timeZoneOffset;

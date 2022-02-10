@@ -6,11 +6,11 @@
  * @returns {Array} Updated list
  */
 export const queryList = (list, options) => {
-  const {filter, limit} = options;
+  const { filter, limit } = options;
 
   if (Array.isArray(list)) {
     if (filter) {
-      list = list.filter(item => {
+      list = list.filter((item) => {
         item = JSON.stringify(item);
         item = item.toLowerCase();
         return item.includes(filter);
