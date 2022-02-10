@@ -3,44 +3,37 @@
   --color-neutral-h: 216;
   --color-neutral-s: 12%;
   --color-neutral-l: 64%;
-  --color-neutral-hsl:
+  --color-neutral-hsl: var(--color-neutral-h), var(--color-neutral-s),
+    var(--color-neutral-l);
+  --color-neutral: hsl(var(--color-neutral-hsl));
+  --color-neutral-dark: hsl(
     var(--color-neutral-h),
     var(--color-neutral-s),
-    var(--color-neutral-l);
-  --color-neutral:
-    hsl(
-      var(--color-neutral-hsl)
-    );
-  --color-neutral-dark:
-    hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) - 24%)
-    );
-  --color-neutral-darkest:
-    hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) - 48%)
-    );
-  --color-neutral-light:
-    hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) + 16%)
-    );
-  --color-neutral-lightest:
-    hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) + 32%)
-    );
+    calc(var(--color-neutral-l) - 24%)
+  );
+  --color-neutral-darkest: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) - 48%)
+  );
+  --color-neutral-light: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) + 16%)
+  );
+  --color-neutral-lightest: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) + 32%)
+  );
 
   /* Colour assignments */
   --color-background: white;
   --color-offset: var(--color-neutral-lightest);
   --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
-  --color-shadow-offset: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 6%);
+  --color-shadow-offset: hsl(
+    var(--color-neutral-h) var(--color-neutral-s) 0% / 6%
+  );
   --color-text: var(--color-neutral-darkest);
   --color-anchor-hover: var(--color-accent-dark);
   --color-highlight: hsl(48 100% 50% / 33%);
@@ -54,7 +47,7 @@
 
   /* Typography */
   --font-family-system: system-ui, -apple-system, sans-serif;
-  --font-family-monospace: 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+  --font-family-monospace: "Menlo", "Consolas", "Liberation Mono", monospace;
   --font-size-title: calc(1.75rem + 1vw);
   --font-size-heading: calc(1.125rem + 0.5vw);
   --font-size-subhead: calc(1rem + 0.25vw);

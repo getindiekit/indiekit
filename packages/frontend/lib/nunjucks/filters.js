@@ -1,11 +1,11 @@
-const path = require('node:path');
-const Color = require('color');
-const dateFns = require('date-fns');
-const languages = require('iso-639-1');
-const locales = require('date-fns/locale/index.js');
-const markdownIt = require('../markdown-it.js');
+const path = require("node:path");
+const Color = require("color");
+const dateFns = require("date-fns");
+const languages = require("iso-639-1");
+const locales = require("date-fns/locale/index.js");
+const markdownIt = require("../markdown-it.js");
 
-const {format, parseISO} = dateFns;
+const { format, parseISO } = dateFns;
 
 /**
  * Get absolute URL
@@ -55,10 +55,10 @@ const lighten = (string, value) => {
  * @param {string} locale ISO 639-1 (plus optional country code)
  * @returns {string} Formatted date
  */
-const date = (string, tokens, locale = 'en') => {
-  locale = locales[locale.replace('-', '')];
-  const date = (string === 'now') ? new Date() : parseISO(string);
-  const dateTime = format(date, tokens, {locale});
+const date = (string, tokens, locale = "en") => {
+  locale = locales[locale.replace("-", "")];
+  const date = string === "now" ? new Date() : parseISO(string);
+  const dateTime = format(date, tokens, { locale });
   return dateTime;
 };
 
@@ -69,10 +69,9 @@ const date = (string, tokens, locale = 'en') => {
  * @param {object} errorMap Mapped error response from express-validator
  * @returns {Array} List of errors
  */
-const errorList = errorMap => {
-  const camelToSnakeCase = string =>
-    string.replace(/[A-Z]/g, letter =>
-      `-${letter.toLowerCase()}`);
+const errorList = (errorMap) => {
+  const camelToSnakeCase = (string) =>
+    string.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
 
   // For each field that has errors, return only the first error
   const errorList = [];
@@ -94,7 +93,7 @@ const errorList = errorMap => {
  * @returns {string} Native language name
  * @example language('de') => Deutsch
  */
-const language = string => languages.getNativeName(string);
+const language = (string) => languages.getNativeName(string);
 
 /**
  * Render Markdown string as HTML
@@ -105,7 +104,7 @@ const language = string => languages.getNativeName(string);
  */
 const markdown = (string, value) => {
   if (string) {
-    if (value === 'inline') {
+    if (value === "inline") {
       return markdownIt.renderInline(string);
     }
 
@@ -120,7 +119,7 @@ const markdown = (string, value) => {
  * @param {object} object Object
  * @returns {Array} Rows
  */
-const summaryRows = object => {
+const summaryRows = (object) => {
   const rows = [];
 
   for (const [key, value] of Object.entries(object)) {
@@ -129,7 +128,7 @@ const summaryRows = object => {
         text: key,
       },
       value: {
-        text: typeof value === 'string' ? value : JSON.stringify(value),
+        text: typeof value === "string" ? value : JSON.stringify(value),
       },
     });
   }

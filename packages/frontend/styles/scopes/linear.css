@@ -149,7 +149,7 @@
 .s-linear .language-bash:last-of-type:before,
 .s-linear .language-bash br + .token::before {
   color: #c9f;
-  content: '$ ';
+  content: "$ ";
 }
 
 .s-linear .language-bash .token {

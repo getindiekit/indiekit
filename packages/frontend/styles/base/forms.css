@@ -28,8 +28,8 @@ textarea {
  * 2. Reset appearance
  */
 button,
-[type=button],
-[type=submit] {
+[type="button"],
+[type="submit"] {
   -webkit-appearance: button; /* 1 */
   background: none;
   border: 0; /* 2 */

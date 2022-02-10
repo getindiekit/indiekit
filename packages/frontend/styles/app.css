@@ -1,6 +1,6 @@
-@import './config/*.css';
-@import './base/*.css';
-@import './scopes/*.css';
-@import './helpers/*.css';
-@import './vendor/*.css';
-@import '../components/**/*.css';
+@import "./config/*.css";
+@import "./base/*.css";
+@import "./scopes/*.css";
+@import "./helpers/*.css";
+@import "./vendor/*.css";
+@import "../components/**/*.css";

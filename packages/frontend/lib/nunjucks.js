@@ -1,17 +1,17 @@
-const path = require('path');
-const nunjucks = require('nunjucks');
-const filters = require('./nunjucks/filters.js');
-const globals = require('./nunjucks/globals.js');
+const path = require("path");
+const nunjucks = require("nunjucks");
+const filters = require("./nunjucks/filters.js");
+const globals = require("./nunjucks/globals.js");
 
 /**
  * @param {Function} app Express
  * @returns {object} Nunjucks environment
  */
-module.exports = app => {
+module.exports = (app) => {
   const appViews = app ? app.settings.views : [];
   const frontendViews = [
-    path.join(__dirname, '..', 'components'),
-    path.join(__dirname, '..', 'layouts'),
+    path.join(__dirname, "..", "components"),
+    path.join(__dirname, "..", "layouts"),
   ];
   const views = [...frontendViews, ...appViews];
 
@@ -28,7 +28,7 @@ module.exports = app => {
   }
 
   // Add globals
-  parser.addGlobal('icon', nunjucks.runtime.markSafe(globals.icon));
+  parser.addGlobal("icon", nunjucks.runtime.markSafe(globals.icon));
 
   return parser;
 };
