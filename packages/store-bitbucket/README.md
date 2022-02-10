@@ -12,9 +12,7 @@ Add `@indiekit/store-bitbucket` to your list of plugins, specifying options as r
 
 ```json
 {
-  "plugins": [
-    "@indiekit/store-bitbucket"
-  ],
+  "plugins": ["@indiekit/store-bitbucket"],
   "@indiekit/store-bitbucket": {
     "user": "username",
     "repo": "reponame"
@@ -24,9 +22,9 @@ Add `@indiekit/store-bitbucket` to your list of plugins, specifying options as r
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `user` | `string` | Your Bitbucket username. *Required*. |
-| `repo` | `string` | The name of your Bitbucket repository. *Required*. |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main`. |
-| `password` | `string` | A Bitbucket [app password](https://bitbucket.org/account/settings/app-passwords/). *Required*, defaults to `process.env.BITBUCKET_PASSWORD`. |
+| Option     | Type     | Description                                                                                                                                  |
+| :--------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| `user`     | `string` | Your Bitbucket username. _Required_.                                                                                                         |
+| `repo`     | `string` | The name of your Bitbucket repository. _Required_.                                                                                           |
+| `branch`   | `string` | The branch files will be saved to. _Optional_, defaults to `main`.                                                                           |
+| `password` | `string` | A Bitbucket [app password](https://bitbucket.org/account/settings/app-passwords/). _Required_, defaults to `process.env.BITBUCKET_PASSWORD`. |
