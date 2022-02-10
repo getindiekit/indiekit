@@ -1,0 +1,4 @@
+coverage
+docs/_site
+*.html
+CHANGELOG.md
