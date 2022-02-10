@@ -12,9 +12,7 @@ Add `@indiekit/store-gitea` to your list of plugins, specifying options as requi
 
 ```json
 {
-  "plugins": [
-    "@indiekit/store-gitea"
-  ],
+  "plugins": ["@indiekit/store-gitea"],
   "@indiekit/store-gitea": {
     "user": "username",
     "repo": "reponame"
@@ -24,10 +22,10 @@ Add `@indiekit/store-gitea` to your list of plugins, specifying options as requi
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `instance` | `string` | Gitea instance URL. *Optional*, defaults to `https://gitea.com`. |
-| `user` | `string` | Your Gitea username. *Required*. |
-| `repo` | `string` | The name of your Gitea repository. *Required*. |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main`. |
-| `token` | `string` | A Gitea access token. *Required*, defaults to `process.env.GITEA_TOKEN`. |
+| Option     | Type     | Description                                                              |
+| :--------- | :------- | :----------------------------------------------------------------------- |
+| `instance` | `string` | Gitea instance URL. _Optional_, defaults to `https://gitea.com`.         |
+| `user`     | `string` | Your Gitea username. _Required_.                                         |
+| `repo`     | `string` | The name of your Gitea repository. _Required_.                           |
+| `branch`   | `string` | The branch files will be saved to. _Optional_, defaults to `main`.       |
+| `token`    | `string` | A Gitea access token. _Required_, defaults to `process.env.GITEA_TOKEN`. |
