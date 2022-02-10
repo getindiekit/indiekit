@@ -37,10 +37,9 @@ div.language-bash .nb {
   color: $grey-lt-000;
 }
 
-
 div.language-bash code:last-of-type:before {
   color: lighten($purple-000, 20%);
-  content: '$ ';
+  content: "$ ";
 }
 
 div.language-bash .token {

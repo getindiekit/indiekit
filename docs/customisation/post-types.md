@@ -11,45 +11,46 @@ For example, to use the Jekyll preset but override the `note` and `photo` post t
 
 ```json
 {
-  "plugins": [
-    "@indiekit/preset-jekyll"
-  ],
+  "plugins": ["@indiekit/preset-jekyll"],
   "publication": {
-    "postTypes": [{
-      "type": "note",
-      "name": "Journal entry",
-      "post": {
-        "path": "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
-        "url": "journal/{yyyy}/{MM}/{slug}"
+    "postTypes": [
+      {
+        "type": "note",
+        "name": "Journal entry",
+        "post": {
+          "path": "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
+          "url": "journal/{yyyy}/{MM}/{slug}"
+        }
       },
-    }, {
-      "type": "photo",
-      "name": "Photograph",
-      "post": {
-        "path": "_photos/{yyyy}-{MM}-{dd}-{slug}.md",
-        "url": "photos/{yyyy}/{MM}/{slug}"
-      },
-      "media": {
-        "path": "media/photos/{yyyy}/{filename}",
+      {
+        "type": "photo",
+        "name": "Photograph",
+        "post": {
+          "path": "_photos/{yyyy}-{MM}-{dd}-{slug}.md",
+          "url": "photos/{yyyy}/{MM}/{slug}"
+        },
+        "media": {
+          "path": "media/photos/{yyyy}/{filename}"
+        }
       }
-    }]
+    ]
   }
 }
 ```
 
 Each post type can take the following values:
 
-* **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
+- **`type`**: The IndieWeb [post type](https://indieweb.org/Category:PostType).
 
-* **`name`**: The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use it in their publishing interfaces.
+- **`name`**: The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use it in their publishing interfaces.
 
-* **`post.path`**: Where posts should be saved in your repository.
+- **`post.path`**: Where posts should be saved in your repository.
 
-* **`post.url`**: Permalink (the URL path) for posts on your website.
+- **`post.url`**: Permalink (the URL path) for posts on your website.
 
-* **`media.path`**: Where media files should be saved in your repository. This applies only to `photo`, `video` and `audio` post types.
+- **`media.path`**: Where media files should be saved in your repository. This applies only to `photo`, `video` and `audio` post types.
 
-* **`media.url`**: Public accessible URL for media files. This can use the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
+- **`media.url`**: Public accessible URL for media files. This can use the same template variables as `media.path`. If no value is provided, defaults to `media.path`.
 
 ## Path and URL tokens
 

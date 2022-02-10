@@ -9,11 +9,11 @@ nav_order: 6
 
 Indiekit has been localised into the following languages:
 
-* `en`: US English
-* `de`: Deutsch (with contributions from [Andreas Fink](https://github.com/AFink))
-* `fr`: Français (with contributions from David Legrand)
-* `nl`: Nederlands
-* `pt`: Português
+- `en`: US English
+- `de`: Deutsch (with contributions from [Andreas Fink](https://github.com/AFink))
+- `fr`: Français (with contributions from David Legrand)
+- `nl`: Nederlands
+- `pt`: Português
 
 You can change the application’s locale by changing the `application.locale` option, for example:
 

@@ -20,13 +20,11 @@ Then add it to your configuration file:
 
 ```json
 {
-  "plugins": [
-    "@indiekit/store-github"
-  ],
+  "plugins": ["@indiekit/store-github"],
   "@indiekit/store-github": {
     "user": "YOUR_GITHUB_USERNAME",
     "repo": "YOUR_GITHUB_REPOSITORY",
-    "branch": "YOUR_GITHUB_BRANCH",
+    "branch": "YOUR_GITHUB_BRANCH"
   }
 }
 ```
@@ -37,11 +35,11 @@ If you are saving your configuration file in a public location, you should keep 
 
 An endpoint is a path on your Indiekit server that applications can send requests to or users can access certain features at. By default Indiekit provides the following endpoints:
 
-| Endpoint | Functionality |
-| - | - |
-| `/media` | Micropub media endpoint for uploading media files. |
-| `/micropub` | Micropub endpoint for creating post files. |
-| `/share` | Interface to create bookmark posts. |
+| Endpoint     | Functionality                                             |
+| ------------ | --------------------------------------------------------- |
+| `/media`     | Micropub media endpoint for uploading media files.        |
+| `/micropub`  | Micropub endpoint for creating post files.                |
+| `/share`     | Interface to create bookmark posts.                       |
 | `/syndicate` | Endpoint that can be pinged to initiate post syndication. |
 
 ## Publication
@@ -66,9 +64,7 @@ Then add it to your configuration file:
 
 ```json
 {
-  "plugins": [
-    "@indiekit/preset-hugo"
-  ],
+  "plugins": ["@indiekit/preset-hugo"],
   "@indiekit/preset-hugo": {
     "frontMatterFormat": "json"
   }
@@ -77,7 +73,7 @@ Then add it to your configuration file:
 
 ## Syndicators
 
-A key idea of the IndieWeb movement is POSSE (*Publish on your Own Site, Syndicate Elsewhere*). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
+A key idea of the IndieWeb movement is POSSE (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
 
 For example, if you want to syndicate your content to Twitter, you can install the [Twitter plug-in](plug-ins.md#twitter):
 
@@ -89,9 +85,7 @@ Then add it to your configuration file:
 
 ```json
 {
-  "plugins": [
-    "@indiekit/syndicator-twitter"
-  ],
+  "plugins": ["@indiekit/syndicator-twitter"],
   "@indiekit/syndicator-twitter": {
     "checked": true,
     "forced": true,

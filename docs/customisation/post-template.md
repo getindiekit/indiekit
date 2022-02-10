@@ -21,7 +21,7 @@ Your post template function determines how this data will get transformed. For e
 
 ```js
 // my-post-template.js
-export const myPostTemplate = properties => {
+export const myPostTemplate = (properties) => {
   let text;
 
   if (properties.published) {
@@ -37,20 +37,20 @@ export const myPostTemplate = properties => {
   }
 
   return text;
-}
+};
 ```
 
 You can then reference this function in your config file:
 
 ```js
 // indiekit.config.cjs
-import {myPostTemplate} from './my-post-template.js';
+import { myPostTemplate } from "./my-post-template.js";
 
 export default {
   publication: {
     postTemplate: myPostTemplate,
   },
-}
+};
 ```
 
 This would then generate the following file:
@@ -66,5 +66,5 @@ Text: I ate a cheese sandwich, which was nice.
 
 You can see examples of this function being used in the Jekyll and Hugo publication presets:
 
-* [`postTemplate()` function in Jekyll preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-jekyll/index.js)
-* [`postTemplate()` function in Hugo preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-hugo/index.js)
+- [`postTemplate()` function in Jekyll preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-jekyll/index.js)
+- [`postTemplate()` function in Hugo preset](https://github.com/getindiekit/indiekit/blob/main/packages/preset-hugo/index.js)

@@ -3,8 +3,6 @@ parent: Architecture decisions
 title: Record architecture decisions
 ---
 
-# 1. Record architecture decisions
-
 Date: 2021-01-10
 
 ## Status

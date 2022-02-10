@@ -7,20 +7,20 @@ nav_order: 7
 
 You can provide one of the following values for `publication.timeZone`:
 
-* `client`:
+- `client`:
 
-  * If the client sends a date, Indiekit will leave the date untouched
-  * If the client does not send a date, Indiekit will use the current date as UTC
+  - If the client sends a date, Indiekit will leave the date untouched
+  - If the client does not send a date, Indiekit will use the current date as UTC
 
-* `server` (detects the server’s time zone, possibly set via `TZ` environment variable or other means):
+- `server` (detects the server’s time zone, possibly set via `TZ` environment variable or other means):
 
-  * If the client sends a date, Indiekit will update the date to use the server’s time zone
-  * If the client does not send a date, Indiekit will use the current date with server’s time zone
+  - If the client sends a date, Indiekit will update the date to use the server’s time zone
+  - If the client does not send a date, Indiekit will use the current date with server’s time zone
 
-* Any value from the [IANA tz database][tz]:
+- Any value from the [IANA tz database][tz]:
 
-  * If the client sends a date, Indiekit will update the date to use the given time zone
-  * If the client does not send a date, Indiekit will use the current date with given time zone
+  - If the client sends a date, Indiekit will update the date to use the given time zone
+  - If the client does not send a date, Indiekit will use the current date with given time zone
 
 > The default value for `publication.timeZone` is `UTC`.
 

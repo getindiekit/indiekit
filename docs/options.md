@@ -3,27 +3,28 @@ nav_order: 3
 ---
 
 # Configuration
+
 {: .no_toc }
 
 Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
 
-* a `indiekit` property in package.json
-* a `.indiekitrc` file
-* a `indiekit.config.js` file exporting a JS object
-* a `indiekit.config.cjs` file exporting a JS object. When running indiekit in JavaScript packages that specify `"type":"module"` in their `package.json`
+- a `indiekit` property in package.json
+- a `.indiekitrc` file
+- a `indiekit.config.js` file exporting a JS object
+- a `indiekit.config.cjs` file exporting a JS object. When running indiekit in JavaScript packages that specify `"type":"module"` in their `package.json`
 
 The search stops when one of these is found, and Indiekit uses that object. You can use the `--config` CLI option to short-circuit the search.
 
 The `.indiekitrc` file (without extension) can be in JSON or YAML format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
 
-* `.indiekitrc.json`
-* `.indiekitrc.yaml` / `.indiekitrc.yml`
-* `.indiekitrc.js`
+- `.indiekitrc.json`
+- `.indiekitrc.yaml` / `.indiekitrc.yml`
+- `.indiekitrc.js`
 
 The configuration object has the following properties:
 
-* TOC
-{:toc}
+- TOC
+  {:toc}
 
 ## application
 
@@ -31,7 +32,7 @@ The configuration object has the following properties:
 
 The language used in the application interface.
 
-*Optional*, defaults to system language if supported, else `"en"` (English). For example:
+_Optional_, defaults to system language if supported, else `"en"` (English). For example:
 
 ```json
 {
@@ -43,13 +44,13 @@ The language used in the application interface.
 
 See [Localisation →](customisation/localisation.md)
 
-***
+---
 
 ### application.mongodbUrl `URL`
 
 To cache files and save information about previously posts and files, you will need to connect Indiekit to a MongoDB database. You can [host one on MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
-*Optional*, defaults to `process.env.MONGODB_URL`. For example:
+_Optional_, defaults to `process.env.MONGODB_URL`. For example:
 
 ```json
 {
@@ -61,13 +62,13 @@ To cache files and save information about previously posts and files, you will n
 
 {% include_relative _includes/option-contains-secrets.md %}
 
-***
+---
 
 ### application.name `string`
 
 The name of your server.
 
-*Optional*, defaults to `"Indiekit"`. For example:
+_Optional_, defaults to `"Indiekit"`. For example:
 
 ```json
 {
@@ -77,13 +78,13 @@ The name of your server.
 }
 ```
 
-***
+---
 
 ### application.themeColor `string`
 
 Accent colour used in the application interface.
 
-*Optional*, defaults to `"#0055ee"`. For example:
+_Optional_, defaults to `"#0055ee"`. For example:
 
 ```json
 {
@@ -93,13 +94,13 @@ Accent colour used in the application interface.
 }
 ```
 
-***
+---
 
 ### application.themeColorScheme `string`
 
 Color scheme used in the application interface, `"automatic"`, `"light"` or `"dark"`.
 
-*Optional*, defaults to `"automatic"`. For example:
+_Optional_, defaults to `"automatic"`. For example:
 
 ```json
 {
@@ -109,13 +110,13 @@ Color scheme used in the application interface, `"automatic"`, `"light"` or `"da
 }
 ```
 
-***
+---
 
 ### application.url `string`
 
 The URL of your server. Useful if Indiekit is running behind a reverse proxy.
 
-*Optional*, defaults to the URL of your server (as provided by request headers). For example:
+_Optional_, defaults to the URL of your server (as provided by request headers). For example:
 
 ```json
 {
@@ -125,13 +126,13 @@ The URL of your server. Useful if Indiekit is running behind a reverse proxy.
 }
 ```
 
-***
+---
 
 ## plugins
 
 TBD
 
-***
+---
 
 ## publication
 
@@ -139,18 +140,14 @@ TBD
 
 A list of categories or tags used on your website. Can be an array of values, or the location of a JSON file providing an array of values.
 
-*Optional*.
+_Optional_.
 
 Example, using an array:
 
 ```json
 {
   "publication": {
-    "categories": [
-      "sport",
-      "technology",
-      "travel",
-    ]
+    "categories": ["sport", "technology", "travel"]
   }
 }
 ```
@@ -165,13 +162,13 @@ Example, using a URL:
 }
 ```
 
-***
+---
 
 ### publication.locale `string`
 
 Your publication’s locale. Currently used to format dates.
 
-*Optional*, defaults to `"en"` (English). For example:
+_Optional_, defaults to `"en"` (English). For example:
 
 ```json
 {
@@ -181,13 +178,13 @@ Your publication’s locale. Currently used to format dates.
 }
 ```
 
-***
+---
 
 ### publication.me `URL`
 
 Your website’s URL.
 
-*Required*. For example:
+_Required_. For example:
 
 ```json
 {
@@ -197,13 +194,13 @@ Your website’s URL.
 }
 ```
 
-***
+---
 
 ### publication.mediaEndpoint `URL`
 
 Indiekit provides a [media endpoint](https://micropub.spec.indieweb.org/#media-endpoint), but you can use a third-party endpoint by setting a value for this option.
 
-*Optional*. For example:
+_Optional_. For example:
 
 ```json
 {
@@ -213,36 +210,36 @@ Indiekit provides a [media endpoint](https://micropub.spec.indieweb.org/#media-e
 }
 ```
 
-***
+---
 
 ### publication.postTemplate `Function`
 
 A post template is a function that takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
 
-*Optional*, defaults to MF2 JSON. For example:
+_Optional_, defaults to MF2 JSON. For example:
 
 ```js
 // indiekit.config.cjs
-import {myPostTemplate} from './my-post-template.js';
+import { myPostTemplate } from "./my-post-template.js";
 
 export default {
   publication: {
     postTemplate: myPostTemplate,
   },
-}
+};
 ```
 
 {% include_relative _includes/option-js-only.md %}
 
 See [customising a post template →](customisation/post-template.md)
 
-***
+---
 
 ### publication.postTypes `Array`
 
 A set of default paths and templates for different post types.
 
-*Optional if using a preset*. For example:
+_Optional if using a preset_. For example:
 
 ```json
 "publication": {
@@ -259,13 +256,13 @@ A set of default paths and templates for different post types.
 
 See [customising post types →](customisation/post-types.md)
 
-***
+---
 
 ### publication.slugSeparator `string`
 
 The character used to replace spaces when creating a slug.
 
-*Optional*, defaults to `"-"` (hyphen). For example:
+_Optional_, defaults to `"-"` (hyphen). For example:
 
 ```json
 {
@@ -275,18 +272,18 @@ The character used to replace spaces when creating a slug.
 }
 ```
 
-***
+---
 
 ### publication.storeMessageTemplate `Function`
 
 Function used to customise message format.
 
-*Optional*, defaults to `[action] [postType] [fileType]`. For example:
+_Optional_, defaults to `[action] [postType] [fileType]`. For example:
 
 ```js
 export default {
   publication: {
-    storeMessageTemplate: metaData =>
+    storeMessageTemplate: (metaData) =>
       `🤖 ${metaData.result} a ${metaData.postType} ${metaData.fileType}`,
   },
 };
@@ -296,13 +293,13 @@ export default {
 
 See [customising commit messages →](customisation/commit-messages.md)
 
-***
+---
 
 ### publication.timeZone `string`
 
 The time zone for your publication. By default this is set to `"UTC"`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This option also accepts a number of other values.
 
-*Optional*, defaults to `"UTC"`. For example:
+_Optional_, defaults to `"UTC"`. For example:
 
 ```json
 {
@@ -314,13 +311,13 @@ The time zone for your publication. By default this is set to `"UTC"`, however i
 
 See [customising the time zone →](customisation/time-zone.md)
 
-***
+---
 
 ### publication.tokenEndpoint `URL`
 
 An IndieAuth token endpoint.
 
-*Optional*, defaults to `"https://tokens.indieauth.com/token"`. For example:
+_Optional_, defaults to `"https://tokens.indieauth.com/token"`. For example:
 
 ```json
 {

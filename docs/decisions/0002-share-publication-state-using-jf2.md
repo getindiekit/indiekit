@@ -1,9 +1,8 @@
 ---
 parent: Architecture decisions
-title: Share publication state using JF2
 ---
 
-# 2. Share publication state using JF2
+# Share publication state using JF2
 
 Date: 2021-01-10
 
@@ -23,11 +22,11 @@ Publications typically publish several feeds already. Could Indiekit consume one
 
 The following options were considered:
 
-* [Atom](https://tools.ietf.org/html/rfc5023)/[RSS 2.0](https://www.rssboard.org/rss-specification): While widespread, these XML serializations would require additional dependencies in order to parse them. They also don’t share a vocabulary with microformats2.
+- [Atom](https://tools.ietf.org/html/rfc5023)/[RSS 2.0](https://www.rssboard.org/rss-specification): While widespread, these XML serializations would require additional dependencies in order to parse them. They also don’t share a vocabulary with microformats2.
 
-* [JSON Feed](https://jsonfeed.org): While similar, this serialization doesn’t use the microformats2 vocabulary either. Furthermore, including properties outside of the JSON Feed vocabulary requires using its extension mechanism, which would complicate later serialization into either mf2 or JF2.
+- [JSON Feed](https://jsonfeed.org): While similar, this serialization doesn’t use the microformats2 vocabulary either. Furthermore, including properties outside of the JSON Feed vocabulary requires using its extension mechanism, which would complicate later serialization into either mf2 or JF2.
 
-* [JF2 Feed](https://jf2.spec.indieweb.org/#jf2feed): A simpler JSON serialization of microformats2 intended to be easier to consume than the standard JSON representation ([mf2](https://microformats.org/wiki/microformats2-parsing)). This seems well suited to the job.
+- [JF2 Feed](https://jf2.spec.indieweb.org/#jf2feed): A simpler JSON serialization of microformats2 intended to be easier to consume than the standard JSON representation ([mf2](https://microformats.org/wiki/microformats2-parsing)). This seems well suited to the job.
 
 ### A note about using mf2
 
