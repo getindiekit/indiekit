@@ -1,11 +1,11 @@
-import test from 'ava';
-import {testServer} from '@indiekit-test/server';
+import test from "ava";
+import { testServer } from "@indiekit-test/server";
 
-test('Returns CSS', async t => {
+test("Returns CSS", async (t) => {
   const request = await testServer();
 
-  const result = await request.get('/assets/app.css');
+  const result = await request.get("/assets/app.css");
 
   t.is(result.statusCode, 200);
-  t.is(result.type, 'text/css');
+  t.is(result.type, "text/css");
 });

@@ -1,9 +1,9 @@
-import test from 'ava';
-import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
-import {MongoMemoryServer} from 'mongodb-memory-server';
-import {getMongodbConfig} from '../../lib/mongodb.js';
+import test from "ava";
+import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
+import { MongoMemoryServer } from "mongodb-memory-server";
+import { getMongodbConfig } from "../../lib/mongodb.js";
 
-test.beforeEach(async t => {
+test.beforeEach(async (t) => {
   const mongod = await MongoMemoryServer.create();
   const mongodbUrl = mongod.getUri();
 
@@ -12,14 +12,14 @@ test.beforeEach(async t => {
   };
 });
 
-test('Connects to MongoDB database', async t => {
+test("Connects to MongoDB database", async (t) => {
   const result = await getMongodbConfig(t.context.url);
 
-  t.is(result.s.namespace.db, 'indiekit');
+  t.is(result.s.namespace.db, "indiekit");
 });
 
-test('Returns false if can’t connect to a MongoDB database', async t => {
-  const result = await getMongodbConfig('https://foo.bar');
+test("Returns false if can’t connect to a MongoDB database", async (t) => {
+  const result = await getMongodbConfig("https://foo.bar");
 
   t.false(result);
 });

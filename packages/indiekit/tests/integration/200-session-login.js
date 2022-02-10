@@ -1,12 +1,12 @@
-import test from 'ava';
-import {testServer} from '@indiekit-test/server';
+import test from "ava";
+import { testServer } from "@indiekit-test/server";
 
-test('Returns login page', async t => {
+test("Returns login page", async (t) => {
   const request = await testServer();
 
-  const result = await request.get('/session/login');
+  const result = await request.get("/session/login");
 
-  t.is(result.headers['x-robots-tag'], 'noindex');
+  t.is(result.headers["x-robots-tag"], "noindex");
   t.is(result.statusCode, 200);
-  t.is(result.type, 'text/html');
+  t.is(result.type, "text/html");
 });

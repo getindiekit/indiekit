@@ -1,8 +1,8 @@
-import {createCipheriv, createDecipheriv, randomBytes} from 'node:crypto';
-import {Buffer} from 'node:buffer';
-import {url2Mf2} from './mf2.js';
+import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
+import { Buffer } from "node:buffer";
+import { url2Mf2 } from "./mf2.js";
 
-const algorithm = 'aes-256-ctr';
+const algorithm = "aes-256-ctr";
 const secretKey = randomBytes(32);
 
 /**
@@ -14,12 +14,9 @@ const secretKey = randomBytes(32);
  */
 export const encrypt = (string, iv) => {
   const cipher = createCipheriv(algorithm, secretKey, iv);
-  const encrypted = Buffer.concat([
-    cipher.update(string),
-    cipher.final(),
-  ]);
+  const encrypted = Buffer.concat([cipher.update(string), cipher.final()]);
 
-  return encrypted.toString('hex');
+  return encrypted.toString("hex");
 };
 
 /**
@@ -30,9 +27,13 @@ export const encrypt = (string, iv) => {
  * @returns {string} Decrypted string
  */
 export const decrypt = (hash, iv) => {
-  const decipher = createDecipheriv(algorithm, secretKey, Buffer.from(iv, 'hex'));
+  const decipher = createDecipheriv(
+    algorithm,
+    secretKey,
+    Buffer.from(iv, "hex")
+  );
   const decrypted = Buffer.concat([
-    decipher.update(Buffer.from(hash, 'hex')),
+    decipher.update(Buffer.from(hash, "hex")),
     decipher.final(),
   ]);
 
@@ -46,7 +47,7 @@ export const decrypt = (hash, iv) => {
  * @returns {string} The canonicalised URL
  * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
  */
-export const getCanonicalUrl = url => new URL(url).href;
+export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
  * Generate cryptographically random string
@@ -63,14 +64,17 @@ export const getCanonicalUrl = url => new URL(url).href;
  * If a requested `rel` was not found it will have a null value.
  * Note: Will only pass the first value of any rel if there are multiple results.
  */
-export const getRelationshipsFromUrl = async url => {
+export const getRelationshipsFromUrl = async (url) => {
   try {
-    const {rels} = await url2Mf2(url);
+    const { rels } = await url2Mf2(url);
     const discoveredRelationships = {};
 
     if (rels) {
       for (const relationship of Object.keys(rels)) {
-        discoveredRelationships[relationship] = rels[relationship] && rels[relationship][0] ? rels[relationship][0] : null;
+        discoveredRelationships[relationship] =
+          rels[relationship] && rels[relationship][0]
+            ? rels[relationship][0]
+            : null;
       }
     }
 
@@ -86,9 +90,9 @@ export const getRelationshipsFromUrl = async url => {
  * @param {object} string URL
  * @returns {boolean} String is a URL
  */
-export const isUrl = string => {
-  if (typeof string !== 'string') {
-    throw new TypeError('Expected a string');
+export const isUrl = (string) => {
+  if (typeof string !== "string") {
+    throw new TypeError("Expected a string");
   }
 
   try {
@@ -100,4 +104,4 @@ export const isUrl = string => {
 };
 
 export const randomString = (length = 21) =>
-  randomBytes(length).toString('hex').slice(0, length);
+  randomBytes(length).toString("hex").slice(0, length);

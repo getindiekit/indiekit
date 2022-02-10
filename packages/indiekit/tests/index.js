@@ -1,11 +1,11 @@
-import test from 'ava';
-import {testConfig} from '@indiekit-test/config';
-import {Indiekit} from '../index.js';
+import test from "ava";
+import { testConfig } from "@indiekit-test/config";
+import { Indiekit } from "../index.js";
 
-test.beforeEach(async t => {
+test.beforeEach(async (t) => {
   const config = await testConfig();
-  const indiekit = new Indiekit({config});
-  const {application, publication} = await indiekit.bootstrap();
+  const indiekit = new Indiekit({ config });
+  const { application, publication } = await indiekit.bootstrap();
 
   t.context = {
     indiekit,
@@ -14,35 +14,38 @@ test.beforeEach(async t => {
   };
 });
 
-test('Gets application configuration value', t => {
-  t.is(t.context.application.name, 'Test config');
+test("Gets application configuration value", (t) => {
+  t.is(t.context.application.name, "Test config");
 });
 
-test('Gets publication configuration values', t => {
-  t.is(t.context.publication.slugSeparator, '-');
-  t.is(t.context.publication.postTypes[0].name, 'Article');
-  t.is(t.context.publication.preset.name, 'Jekyll preset');
+test("Gets publication configuration values", (t) => {
+  t.is(t.context.publication.slugSeparator, "-");
+  t.is(t.context.publication.postTypes[0].name, "Article");
+  t.is(t.context.publication.preset.name, "Jekyll preset");
 });
 
-test('Throws error adding an extension with an unknown type', t => {
-  t.throws(() => {
-    t.context.indiekit.extend('foo', []);
-  }, {
-    name: 'TypeError',
-    message: 'foo is not a valid extension type',
-  });
+test("Throws error adding an extension with an unknown type", (t) => {
+  t.throws(
+    () => {
+      t.context.indiekit.extend("foo", []);
+    },
+    {
+      name: "TypeError",
+      message: "foo is not a valid extension type",
+    }
+  );
 });
 
-test('Adds publication preset', t => {
+test("Adds publication preset", (t) => {
   const TestPreset = class {
     constructor() {
-      this.id = 'test';
-      this.name = 'Test preset';
+      this.id = "test";
+      this.name = "Test preset";
     }
 
     get info() {
       return {
-        name: 'Test',
+        name: "Test",
       };
     }
   };
@@ -50,19 +53,19 @@ test('Adds publication preset', t => {
   const testPreset = new TestPreset();
 
   t.context.indiekit.addPreset(testPreset);
-  t.is(t.context.indiekit.publication.preset.info.name, 'Test');
+  t.is(t.context.indiekit.publication.preset.info.name, "Test");
 });
 
-test('Adds content store', t => {
+test("Adds content store", (t) => {
   const TestStore = class {
     constructor() {
-      this.id = 'test';
-      this.name = 'Test store';
+      this.id = "test";
+      this.name = "Test store";
     }
 
     get info() {
       return {
-        name: 'Test',
+        name: "Test",
       };
     }
   };
@@ -70,17 +73,17 @@ test('Adds content store', t => {
   const testStore = new TestStore();
 
   t.context.indiekit.addStore(testStore);
-  t.is(t.context.indiekit.publication.store.info.name, 'Test');
+  t.is(t.context.indiekit.publication.store.info.name, "Test");
 });
 
-test('Creates an express application', async t => {
+test("Creates an express application", async (t) => {
   const result = await t.context.indiekit.createApp();
 
   t.truthy(result.locals);
 });
 
-test('Returns a server bound to given port', async t => {
-  const result = await t.context.indiekit.server({port: 1234});
+test("Returns a server bound to given port", async (t) => {
+  const result = await t.context.indiekit.server({ port: 1234 });
 
   t.regex(result._connectionKey, /::::1234/);
 });

@@ -1,1 +1,1 @@
-export const viewHomepage = (request, response) => response.redirect('/status');
+export const viewHomepage = (request, response) => response.redirect("/status");

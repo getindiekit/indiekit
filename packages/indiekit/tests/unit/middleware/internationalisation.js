@@ -1,11 +1,11 @@
-import test from 'ava';
-import sinon from 'sinon';
-import mockReqRes from 'mock-req-res';
-import {internationalisation} from '../../../lib/middleware/internationalisation.js';
+import test from "ava";
+import sinon from "sinon";
+import mockReqRes from "mock-req-res";
+import { internationalisation } from "../../../lib/middleware/internationalisation.js";
 
-const {mockRequest, mockResponse} = mockReqRes;
+const { mockRequest, mockResponse } = mockReqRes;
 
-test('Throws error setting locale', async t => {
+test("Throws error setting locale", async (t) => {
   const request = mockRequest();
   const response = mockResponse();
   const next = sinon.spy();

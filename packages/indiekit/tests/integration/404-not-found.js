@@ -1,10 +1,10 @@
-import test from 'ava';
-import {testServer} from '@indiekit-test/server';
+import test from "ava";
+import { testServer } from "@indiekit-test/server";
 
-test('Returns 404', async t => {
+test("Returns 404", async (t) => {
   const request = await testServer();
 
-  const result = await request.get('/not-found');
+  const result = await request.get("/not-found");
 
   t.is(result.statusCode, 404);
 });

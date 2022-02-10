@@ -1,4 +1,4 @@
-import got from 'got';
+import got from "got";
 
 export const Cache = class {
   /**
@@ -19,23 +19,29 @@ export const Cache = class {
    */
   async json(key, url) {
     try {
-      const cachedData = this.collection ? await this.collection.findOne({key, url}) : false;
+      const cachedData = this.collection
+        ? await this.collection.findOne({ key, url })
+        : false;
       if (cachedData) {
-        const {data} = cachedData;
+        const { data } = cachedData;
         return {
-          source: 'cache',
+          source: "cache",
           data,
         };
       }
 
-      const fetchedData = await got(url, {responseType: 'json'});
+      const fetchedData = await got(url, { responseType: "json" });
       if (fetchedData) {
         const data = fetchedData.body;
 
         if (this.collection) {
-          await this.collection.replaceOne({}, {key, url, data}, {
-            upsert: true,
-          });
+          await this.collection.replaceOne(
+            {},
+            { key, url, data },
+            {
+              upsert: true,
+            }
+          );
         }
 
         return {

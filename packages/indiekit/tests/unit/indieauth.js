@@ -1,105 +1,101 @@
-import process from 'node:process';
-import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
-import test from 'ava';
-import nock from 'nock';
-import sinon from 'sinon';
-import mockReqRes from 'mock-req-res';
-import {getFixture} from '@indiekit-test/get-fixture';
-import {defaultConfig} from '../../config/defaults.js';
-import {IndieAuth} from '../../lib/indieauth.js';
+import process from "node:process";
+import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
+import test from "ava";
+import nock from "nock";
+import sinon from "sinon";
+import mockReqRes from "mock-req-res";
+import { getFixture } from "@indiekit-test/get-fixture";
+import { defaultConfig } from "../../config/defaults.js";
+import { IndieAuth } from "../../lib/indieauth.js";
 
-const {mockRequest, mockResponse} = mockReqRes;
+const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({
   me: process.env.TEST_PUBLICATION_URL,
   tokenEndpoint: defaultConfig.publication.tokenEndpoint,
 });
 
-test.beforeEach(t => {
+test.beforeEach((t) => {
   t.context = {
     accessToken: {
       me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create update delete media',
+      scope: "create update delete media",
     },
     bearerToken: process.env.TEST_BEARER_TOKEN,
     me: process.env.TEST_PUBLICATION_URL,
   };
 });
 
-test('Validates state', t => {
+test("Validates state", (t) => {
   const state = indieauth.generateState();
   const result = indieauth.validateState(state);
 
   t.is(String(result.date).slice(0, 10), String(Date.now()).slice(0, 10));
 });
 
-test('Invalidates state', t => {
-  const result = indieauth.validateState('state');
+test("Invalidates state", (t) => {
+  const result = indieauth.validateState("state");
 
   t.false(result);
 });
 
-test('Throws error getting authentication URL', async t => {
-  await t.throwsAsync(indieauth.getAuthUrl(null, 'state'), {
-    message: 'You need to provide some scopes',
+test("Throws error getting authentication URL", async (t) => {
+  await t.throwsAsync(indieauth.getAuthUrl(null, "state"), {
+    message: "You need to provide some scopes",
   });
 });
 
-test('Exchanges authorization code for access token', async t => {
-  nock('https://tokens.indieauth.com')
-    .post('/token')
-    .query(true)
-    .reply(200, {
-      access_token: process.env.TEST_BEARER_TOKEN,
-      scope: 'create',
-    });
+test("Exchanges authorization code for access token", async (t) => {
+  nock("https://tokens.indieauth.com").post("/token").query(true).reply(200, {
+    access_token: process.env.TEST_BEARER_TOKEN,
+    scope: "create",
+  });
 
-  const result = await indieauth.authorizationCodeGrant('code');
+  const result = await indieauth.authorizationCodeGrant("code");
 
   t.is(result, process.env.TEST_BEARER_TOKEN);
 });
 
-test.serial('Throws error exchanging authorization code for invalid access token', async t => {
-  nock('https://tokens.indieauth.com')
-    .post('/token')
-    .query(true)
-    .reply(200);
+test.serial(
+  "Throws error exchanging authorization code for invalid access token",
+  async (t) => {
+    nock("https://tokens.indieauth.com").post("/token").query(true).reply(200);
 
-  await t.throwsAsync(indieauth.authorizationCodeGrant('code'), {
-    message: 'The token endpoint did not return the expected parameters',
-  });
-});
-
-test('Throws error exchanging invalid code for access token', async t => {
-  nock('https://tokens.indieauth.com')
-    .post('/token')
-    .query(true)
-    .reply(404, {
-      error: 'invalid_request',
-      error_description: 'The code provided was not valid',
+    await t.throwsAsync(indieauth.authorizationCodeGrant("code"), {
+      message: "The token endpoint did not return the expected parameters",
     });
+  }
+);
 
-  await t.throwsAsync(indieauth.authorizationCodeGrant('code'), {
-    message: 'The code provided was not valid',
+test("Throws error exchanging invalid code for access token", async (t) => {
+  nock("https://tokens.indieauth.com").post("/token").query(true).reply(404, {
+    error: "invalid_request",
+    error_description: "The code provided was not valid",
+  });
+
+  await t.throwsAsync(indieauth.authorizationCodeGrant("code"), {
+    message: "The code provided was not valid",
   });
 });
 
-test('Throws error exchanging authorization code during request', async t => {
-  nock('https://tokens.indieauth.com')
-    .post('/token')
+test("Throws error exchanging authorization code during request", async (t) => {
+  nock("https://tokens.indieauth.com")
+    .post("/token")
     .query(true)
-    .replyWithError('Not found');
+    .replyWithError("Not found");
 
-  await t.throwsAsync(indieauth.authorizationCodeGrant('code'), {
-    message: 'Not found',
+  await t.throwsAsync(indieauth.authorizationCodeGrant("code"), {
+    message: "Not found",
   });
 });
 
-test('Checks if user is authorized', async t => {
-  nock('https://tokens.indieauth.com')
-    .get('/token')
+test("Checks if user is authorized", async (t) => {
+  nock("https://tokens.indieauth.com")
+    .get("/token")
     .reply(200, t.context.accessToken);
-  const request = mockRequest({headers: {authorization: `Bearer ${t.context.bearerToken}`}});
-  const response = mockResponse({locals: {publication: {}}});
+  const request = mockRequest({
+    headers: { authorization: `Bearer ${t.context.bearerToken}` },
+  });
+  const response = mockResponse({ locals: { publication: {} } });
   const next = sinon.spy();
 
   await indieauth.authorise()(request, response, next);
@@ -108,9 +104,9 @@ test('Checks if user is authorized', async t => {
   t.true(next.calledOnce);
 });
 
-test('Throws error checking if user is authorized', async t => {
+test("Throws error checking if user is authorized", async (t) => {
   const request = mockRequest({
-    method: 'post',
+    method: "post",
   });
   const response = mockResponse();
   const next = sinon.spy();
@@ -121,27 +117,27 @@ test('Throws error checking if user is authorized', async t => {
   t.true(next.firstCall.args[0] instanceof Error);
 });
 
-test('Throws error redirecting user to IndieAuth login', async t => {
+test("Throws error redirecting user to IndieAuth login", async (t) => {
   nock(process.env.TEST_PUBLICATION_URL)
-    .get('/token')
-    .reply(200, getFixture('html/home.html'));
+    .get("/token")
+    .reply(200, getFixture("html/home.html"));
   const request = mockRequest({
-    query: {redirect: '/status'},
+    query: { redirect: "/status" },
   });
   const response = mockResponse({
-    __: () => ({session: {}}),
-    locals: {application: {url: 'http://localhost'}},
+    __: () => ({ session: {} }),
+    locals: { application: { url: "http://localhost" } },
   });
 
   await indieauth.login()(request, response);
 
   t.true(response.status.calledWith(401));
-  t.true(response.render.calledWith('session/login'));
+  t.true(response.render.calledWith("session/login"));
 });
 
-test('Throws error checking credentials returned by IndieAuth', async t => {
+test("Throws error checking credentials returned by IndieAuth", async (t) => {
   const request = mockRequest({
-    query: {code: '', state: ''},
+    query: { code: "", state: "" },
   });
   const response = mockResponse();
   const next = sinon.spy();

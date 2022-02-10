@@ -1,13 +1,13 @@
-import deepmerge from 'deepmerge';
-import {expressConfig} from './config/express.js';
-import {getIndiekitConfig} from './lib/config.js';
-import {getMongodbConfig} from './lib/mongodb.js';
-import {Cache} from './lib/cache.js';
+import deepmerge from "deepmerge";
+import { expressConfig } from "./config/express.js";
+import { getIndiekitConfig } from "./lib/config.js";
+import { getMongodbConfig } from "./lib/mongodb.js";
+import { Cache } from "./lib/cache.js";
 import {
   getCategories,
   getPostTemplate,
   getPostTypes,
-} from './lib/publication.js';
+} from "./lib/publication.js";
 
 export const Indiekit = class {
   constructor(options = {}) {
@@ -30,15 +30,14 @@ export const Indiekit = class {
 
   addSyndicator(syndicator) {
     syndicator = Array.isArray(syndicator) ? syndicator : [syndicator];
-    this.publication.syndicationTargets = [...this.publication.syndicationTargets, ...syndicator];
+    this.publication.syndicationTargets = [
+      ...this.publication.syndicationTargets,
+      ...syndicator,
+    ];
   }
 
   extend(type, extension) {
-    const extensionTypes = [
-      'navigationItems',
-      'routes',
-      'views',
-    ];
+    const extensionTypes = ["navigationItems", "routes", "views"];
 
     if (!extensionTypes.includes(type)) {
       throw new TypeError(`${type} is not a valid extension type`);
@@ -54,9 +53,9 @@ export const Indiekit = class {
     // Setup databases
     if (database) {
       this.application.hasDatabase = true;
-      this.application.cache = database.collection('cache');
-      this.publication.posts = database.collection('posts');
-      this.publication.media = database.collection('media');
+      this.application.cache = database.collection("cache");
+      this.publication.posts = database.collection("posts");
+      this.publication.media = database.collection("media");
     }
 
     // Setup cache
@@ -65,13 +64,15 @@ export const Indiekit = class {
     // Register application localisations
     this.application.locales = new Map();
     for await (const locale of this.application.localesAvailable) {
-      const translation = await import(`./locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
+      // eslint-disable-next-line node/no-unsupported-features/es-syntax
+      const translation = await import(`./locales/${locale}.js`);
       this.application.locales.set(locale, translation.default);
     }
 
     // Init plug-ins
     for await (const pluginName of this.plugins) {
-      const pluginModule = await import(pluginName); // eslint-disable-line node/no-unsupported-features/es-syntax
+      // eslint-disable-next-line node/no-unsupported-features/es-syntax
+      const pluginModule = await import(pluginName);
       const IndiekitPlugin = pluginModule.default;
       const plugin = new IndiekitPlugin(this.config[pluginName]);
 
@@ -79,8 +80,14 @@ export const Indiekit = class {
       for await (const locale of this.application.localesAvailable) {
         try {
           const appLocale = this.application.locales.get(locale);
-          const translation = await import(`../${plugin.id}/locales/${locale}.js`); // eslint-disable-line node/no-unsupported-features/es-syntax
-          this.application.locales.set(locale, deepmerge(appLocale, translation.default));
+          // eslint-disable-next-line node/no-unsupported-features/es-syntax
+          const translation = await import(
+            `../${plugin.id}/locales/${locale}.js`
+          );
+          this.application.locales.set(
+            locale,
+            deepmerge(appLocale, translation.default)
+          );
         } catch {}
       }
 
@@ -110,13 +117,13 @@ export const Indiekit = class {
   }
 
   async server(options = {}) {
-    const {application, server} = this.config;
+    const { application, server } = this.config;
 
     // Merge options with default server config
-    options = {...server, ...options};
+    options = { ...server, ...options };
 
-    const {name, version} = application;
-    const {port} = options;
+    const { name, version } = application;
+    const { port } = options;
     const app = await this.createApp();
 
     return app.listen(port, () => {

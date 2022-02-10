@@ -1,13 +1,13 @@
-import express from 'express';
-import frontend from '@indiekit/frontend';
-import rateLimit from 'express-rate-limit';
-import * as assetsController from './controllers/assets.js';
-import * as homepageController from './controllers/homepage.js';
-import * as sessionController from './controllers/session.js';
-import * as statusController from './controllers/status.js';
-import {IndieAuth} from './indieauth.js';
+import express from "express";
+import frontend from "@indiekit/frontend";
+import rateLimit from "express-rate-limit";
+import * as assetsController from "./controllers/assets.js";
+import * as homepageController from "./controllers/homepage.js";
+import * as sessionController from "./controllers/session.js";
+import * as statusController from "./controllers/status.js";
+import { IndieAuth } from "./indieauth.js";
 
-const {assetsPath} = frontend;
+const { assetsPath } = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -16,8 +16,8 @@ const limit = rateLimit({
   legacyHeaders: false,
 });
 
-export const routes = indiekitConfig => {
-  const {application, publication} = indiekitConfig;
+export const routes = (indiekitConfig) => {
+  const { application, publication } = indiekitConfig;
 
   const indieauth = new IndieAuth({
     me: publication.me,
@@ -26,22 +26,22 @@ export const routes = indiekitConfig => {
 
   // Prevent pages from being indexed
   router.use((request, response, next) => {
-    response.setHeader('X-Robots-Tag', 'noindex');
+    response.setHeader("X-Robots-Tag", "noindex");
     next();
   });
 
   // Homepage
-  router.get('/', homepageController.viewHomepage);
+  router.get("/", homepageController.viewHomepage);
 
   // Prevent pages from being crawled
-  router.get('/robots.txt', (request, response) => {
-    response.type('text/plain');
-    response.send('User-agent: *\nDisallow: /');
+  router.get("/robots.txt", (request, response) => {
+    response.type("text/plain");
+    response.send("User-agent: *\nDisallow: /");
   });
 
   // Assets
-  router.use('/assets', express.static(assetsPath));
-  router.get('/assets/app.css', assetsController.getStyles);
+  router.use("/assets", express.static(assetsPath));
+  router.get("/assets/app.css", assetsController.getStyles);
 
   // Syndicator assets
   for (const target of publication.syndicationTargets) {
@@ -51,13 +51,18 @@ export const routes = indiekitConfig => {
   }
 
   // Session
-  router.get('/session/login', limit, sessionController.login);
-  router.post('/session/login', limit, indieauth.login());
-  router.get('/session/auth', limit, indieauth.authenticate());
-  router.get('/session/logout', sessionController.logout);
+  router.get("/session/login", limit, sessionController.login);
+  router.post("/session/login", limit, indieauth.login());
+  router.get("/session/auth", limit, indieauth.authenticate());
+  router.get("/session/logout", sessionController.logout);
 
   // Status
-  router.get('/status', limit, indieauth.authorise(), statusController.viewStatus);
+  router.get(
+    "/status",
+    limit,
+    indieauth.authorise(),
+    statusController.viewStatus
+  );
 
   // Plug-in Endpoints
   for (const route of application.routes) {

@@ -1,20 +1,20 @@
-import process from 'node:process';
-import test from 'ava';
-import nock from 'nock';
-import {testConfig} from '@indiekit-test/config';
-import {Indiekit} from '../../index.js';
-import {Cache} from '../../lib/cache.js';
+import process from "node:process";
+import test from "ava";
+import nock from "nock";
+import { testConfig } from "@indiekit-test/config";
+import { Indiekit } from "../../index.js";
+import { Cache } from "../../lib/cache.js";
 import {
   getCategories,
   getMediaEndpoint,
   getPostTemplate,
   getPostTypes,
-} from '../../lib/publication.js';
+} from "../../lib/publication.js";
 
-test.beforeEach(async t => {
+test.beforeEach(async (t) => {
   const config = await testConfig();
-  const indiekit = new Indiekit({config});
-  const {application, publication} = await indiekit.bootstrap();
+  const indiekit = new Indiekit({ config });
+  const { application, publication } = await indiekit.bootstrap();
 
   t.context = {
     cacheCollection: application.cache,
@@ -22,30 +22,30 @@ test.beforeEach(async t => {
   };
 });
 
-test('Returns array of available categories', async t => {
+test("Returns array of available categories", async (t) => {
   const result = await getCategories(t.context.cache, {
-    categories: ['foo', 'bar'],
+    categories: ["foo", "bar"],
   });
 
-  t.deepEqual(result, ['foo', 'bar']);
+  t.deepEqual(result, ["foo", "bar"]);
 });
 
-test('Fetches array from remote JSON file', async t => {
+test("Fetches array from remote JSON file", async (t) => {
   nock(process.env.TEST_PUBLICATION_URL)
-    .get('/categories.json')
-    .reply(200, ['foo', 'bar']);
+    .get("/categories.json")
+    .reply(200, ["foo", "bar"]);
   t.context.publication.categories = `${process.env.TEST_PUBLICATION_URL}categories.json`;
   const cache = new Cache(t.context.cacheCollection);
 
   const result = await getCategories(cache, t.context.publication);
 
-  t.deepEqual(result, ['foo', 'bar']);
+  t.deepEqual(result, ["foo", "bar"]);
 });
 
-test.serial('Returns empty array if remote JSON file not found', async t => {
+test.serial("Returns empty array if remote JSON file not found", async (t) => {
   nock(process.env.TEST_PUBLICATION_URL)
-    .get('/categories.json')
-    .replyWithError('Not found');
+    .get("/categories.json")
+    .replyWithError("Not found");
   t.context.publication.categories = `${process.env.TEST_PUBLICATION_URL}categories.json`;
   const cache = new Cache(t.context.cacheCollection);
 
@@ -54,7 +54,7 @@ test.serial('Returns empty array if remote JSON file not found', async t => {
   });
 });
 
-test('Returns empty array if no publication config provided', async t => {
+test("Returns empty array if no publication config provided", async (t) => {
   const cache = new Cache(t.context.cacheCollection);
 
   const result = await getCategories(cache, {});
@@ -62,104 +62,107 @@ test('Returns empty array if no publication config provided', async t => {
   t.deepEqual(result, []);
 });
 
-test('Gets media endpoint from server derived values', t => {
+test("Gets media endpoint from server derived values", (t) => {
   const request = {
-    protocol: 'https',
+    protocol: "https",
     headers: {
-      host: 'server.example',
+      host: "server.example",
     },
   };
 
   const result = getMediaEndpoint(t.context.publication, request);
 
-  t.is(result, 'https://server.example/media');
+  t.is(result, "https://server.example/media");
 });
 
-test('Gets media endpoint from publication configuration', t => {
-  const publication = {mediaEndpoint: 'https://website.example/media'};
+test("Gets media endpoint from publication configuration", (t) => {
+  const publication = { mediaEndpoint: "https://website.example/media" };
   const request = {
-    protocol: 'https',
+    protocol: "https",
     headers: {
-      host: 'website.example',
+      host: "website.example",
     },
   };
 
   const result = getMediaEndpoint(publication, request);
 
-  t.is(result, 'https://website.example/media');
+  t.is(result, "https://website.example/media");
 });
 
-test('Gets custom post template', t => {
+test("Gets custom post template", (t) => {
   const publication = {
-    postTemplate: properties => JSON.stringify(properties),
+    postTemplate: (properties) => JSON.stringify(properties),
   };
   const postTemplate = getPostTemplate(publication);
 
-  const result = postTemplate({published: '2021-01-21'});
+  const result = postTemplate({ published: "2021-01-21" });
 
   t.is(result, '{"published":"2021-01-21"}');
 });
 
-test('Gets preset post template', t => {
+test("Gets preset post template", (t) => {
   const postTemplate = getPostTemplate(t.context.publication);
 
-  const result = postTemplate({published: '2021-01-21'});
+  const result = postTemplate({ published: "2021-01-21" });
 
-  t.is(result, '---\ndate: 2021-01-21\n---\n');
+  t.is(result, "---\ndate: 2021-01-21\n---\n");
 });
 
-test('Gets default post template', t => {
+test("Gets default post template", (t) => {
   const postTemplate = getPostTemplate({});
 
-  const result = postTemplate({published: '2021-01-21'});
+  const result = postTemplate({ published: "2021-01-21" });
 
   t.is(result, '{"published":"2021-01-21"}');
 });
 
-test('Merges values from custom and preset post types', t => {
-  t.context.publication.postTypes = [{
-    type: 'note',
-    name: 'Journal entry',
-    post: {
-      path: '_entries/{T}.md',
-      url: 'entries/{T}',
+test("Merges values from custom and preset post types", (t) => {
+  t.context.publication.postTypes = [
+    {
+      type: "note",
+      name: "Journal entry",
+      post: {
+        path: "_entries/{T}.md",
+        url: "entries/{T}",
+      },
     },
-  }, {
-    type: 'photo',
-    name: 'Picture',
-    post: {
-      path: '_pictures/{T}.md',
-      url: '_pictures/{T}',
+    {
+      type: "photo",
+      name: "Picture",
+      post: {
+        path: "_pictures/{T}.md",
+        url: "_pictures/{T}",
+      },
+      media: {
+        path: "src/media/pictures/{T}.{ext}",
+        url: "media/pictures/{T}.{ext}",
+      },
     },
-    media: {
-      path: 'src/media/pictures/{T}.{ext}',
-      url: 'media/pictures/{T}.{ext}',
-    },
-  }];
+  ];
   const result = getPostTypes(t.context.publication);
 
   t.deepEqual(result[1], {
-    type: 'note',
-    name: 'Journal entry',
+    type: "note",
+    name: "Journal entry",
     post: {
-      path: '_entries/{T}.md',
-      url: 'entries/{T}',
+      path: "_entries/{T}.md",
+      url: "entries/{T}",
     },
   });
   t.deepEqual(result[2], {
-    type: 'photo',
-    name: 'Picture',
+    type: "photo",
+    name: "Picture",
     post: {
-      path: '_pictures/{T}.md',
-      url: '_pictures/{T}',
+      path: "_pictures/{T}.md",
+      url: "_pictures/{T}",
     },
     media: {
-      path: 'src/media/pictures/{T}.{ext}',
-      url: 'media/pictures/{T}.{ext}',
+      path: "src/media/pictures/{T}.{ext}",
+      url: "media/pictures/{T}.{ext}",
     },
   });
 });
 
-test('Returns array if no preset or custom post types', t => {
+test("Returns array if no preset or custom post types", (t) => {
   t.deepEqual(getPostTypes({}), []);
 });
