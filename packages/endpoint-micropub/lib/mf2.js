@@ -1,5 +1,5 @@
-import got from 'got';
-import parser from 'microformats-parser';
+import got from "got";
+import parser from "microformats-parser";
 
 /**
  * Return mf2 properties of a post
@@ -11,15 +11,17 @@ import parser from 'microformats-parser';
 export const getMf2Properties = (mf2, requestedProperties) => {
   const mf2HasItems = mf2.items && mf2.items.length > 0;
   if (!mf2HasItems) {
-    throw new Error('Source has no items');
+    throw new Error("Source has no items");
   }
 
   const item = mf2.items[0];
-  const {properties} = item;
+  const { properties } = item;
 
   // Return requested properties
   if (requestedProperties) {
-    requestedProperties = Array.isArray(requestedProperties) ? requestedProperties : [requestedProperties];
+    requestedProperties = Array.isArray(requestedProperties)
+      ? requestedProperties
+      : [requestedProperties];
 
     const selectedProperties = {};
 
@@ -43,7 +45,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
  * @param {string} jf2 JF2
  * @returns {string} Micropub action
  */
-export const jf2ToMf2 = jf2 => {
+export const jf2ToMf2 = (jf2) => {
   const mf2 = {
     type: [`h-${jf2.type}`],
     properties: {},
@@ -74,8 +76,8 @@ export const jf2ToMf2 = jf2 => {
  * @param {string} url URL path to post
  * @returns {Promise|object} mf2 object
  */
-export const url2Mf2 = async url => {
-  const {body} = await got(url);
+export const url2Mf2 = async (url) => {
+  const { body } = await got(url);
   const mf2 = parser.mf2(body, {
     baseUrl: url,
   });

@@ -1,26 +1,26 @@
-import process from 'node:process';
-import test from 'ava';
-import mockSession from 'mock-session';
-import nock from 'nock';
-import {JSDOM} from 'jsdom';
-import {testServer} from '@indiekit-test/server';
+import process from "node:process";
+import test from "ava";
+import mockSession from "mock-session";
+import nock from "nock";
+import { JSDOM } from "jsdom";
+import { testServer } from "@indiekit-test/server";
 
-test('Returns list of previously uploaded files', async t => {
-  nock('https://tokens.indieauth.com')
-    .get('/token')
-    .reply(200, {
-      me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create',
-    });
+test("Returns list of previously uploaded files", async (t) => {
+  nock("https://tokens.indieauth.com").get("/token").reply(200, {
+    me: process.env.TEST_PUBLICATION_URL,
+    scope: "create",
+  });
   const request = await testServer();
-  const cookie = mockSession('test', process.env.TEST_SESSION_SECRET, {
+  const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
-  const response = await request.get('/micropub/posts')
-    .set('Cookie', [cookie]);
+  const response = await request.get("/micropub/posts").set("Cookie", [cookie]);
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;
 
-  t.is(result.querySelector('title').textContent, 'Published posts - Test config');
+  t.is(
+    result.querySelector("title").textContent,
+    "Published posts - Test config"
+  );
 });

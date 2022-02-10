@@ -1,45 +1,46 @@
-import process from 'node:process';
-import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
-import test from 'ava';
-import nock from 'nock';
-import {testServer} from '@indiekit-test/server';
+import process from "node:process";
+import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
+import test from "ava";
+import nock from "nock";
+import { testServer } from "@indiekit-test/server";
 
-test('Deletes post', async t => {
-  nock('https://tokens.indieauth.com')
-    .get('/token')
-    .twice()
-    .reply(200, {
-      me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create delete',
-    });
-  nock('https://api.github.com')
-    .put(uri => uri.includes('foobar.md'))
+test("Deletes post", async (t) => {
+  nock("https://tokens.indieauth.com").get("/token").twice().reply(200, {
+    me: process.env.TEST_PUBLICATION_URL,
+    scope: "create delete",
+  });
+  nock("https://api.github.com")
+    .put((uri) => uri.includes("foobar.md"))
     .reply(200);
-  nock('https://api.github.com')
-    .get(uri => uri.includes('foobar.md'))
+  nock("https://api.github.com")
+    .get((uri) => uri.includes("foobar.md"))
     .reply(200);
-  nock('https://api.github.com')
-    .delete(uri => uri.includes('foobar.md'))
+  nock("https://api.github.com")
+    .delete((uri) => uri.includes("foobar.md"))
     .reply(200);
   const request = await testServer();
 
   // Create post
-  const response = await request.post('/micropub')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
+  const response = await request
+    .post("/micropub")
+    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .send({
-      type: ['h-entry'],
+      type: ["h-entry"],
       properties: {
-        name: ['Foobar'],
-        content: ['Micropub test of creating an h-entry with a JSON request containing multiple categories.'],
-        category: ['test1', 'test2'],
+        name: ["Foobar"],
+        content: [
+          "Micropub test of creating an h-entry with a JSON request containing multiple categories.",
+        ],
+        category: ["test1", "test2"],
       },
     });
 
   // Delete post
-  const result = await request.post('/micropub')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
+  const result = await request
+    .post("/micropub")
+    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .send({
-      action: 'delete',
+      action: "delete",
       url: response.header.location,
     });
 

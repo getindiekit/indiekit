@@ -1,41 +1,40 @@
-import process from 'node:process';
-import 'dotenv/config.js'; // eslint-disable-line import/no-unassigned-import
-import test from 'ava';
-import nock from 'nock';
-import {testServer} from '@indiekit-test/server';
+import process from "node:process";
+import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
+import test from "ava";
+import nock from "nock";
+import { testServer } from "@indiekit-test/server";
 
-test('Updates post', async t => {
-  nock('https://tokens.indieauth.com')
-    .get('/token')
-    .twice()
-    .reply(200, {
-      me: process.env.TEST_PUBLICATION_URL,
-      scope: 'create update',
-    });
-  nock('https://api.github.com')
-    .put(uri => uri.includes('foobar'))
+test("Updates post", async (t) => {
+  nock("https://tokens.indieauth.com").get("/token").twice().reply(200, {
+    me: process.env.TEST_PUBLICATION_URL,
+    scope: "create update",
+  });
+  nock("https://api.github.com")
+    .put((uri) => uri.includes("foobar"))
     .twice()
     .reply(200);
   const request = await testServer();
 
   // Create post
-  const response = await request.post('/micropub')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
+  const response = await request
+    .post("/micropub")
+    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .send({
-      type: ['h-entry'],
+      type: ["h-entry"],
       properties: {
-        name: ['Foobar'],
+        name: ["Foobar"],
       },
     });
 
   // Update post
-  const result = await request.post('/micropub')
-    .auth(process.env.TEST_BEARER_TOKEN, {type: 'bearer'})
+  const result = await request
+    .post("/micropub")
+    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .send({
-      action: 'update',
+      action: "update",
       url: response.header.location,
       replace: {
-        name: ['Barfoo'],
+        name: ["Barfoo"],
       },
     });
 

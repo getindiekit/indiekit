@@ -1,5 +1,5 @@
-import test from 'ava';
-import {JekyllPreset} from '@indiekit/preset-jekyll';
+import test from "ava";
+import { JekyllPreset } from "@indiekit/preset-jekyll";
 import {
   decodeQueryParameter,
   excerptString,
@@ -10,80 +10,92 @@ import {
   relativeMediaPath,
   renderPath,
   supplant,
-} from '../../lib/utils.js';
+} from "../../lib/utils.js";
 
-test('Decodes form-encoded query parameter', t => {
-  const result = decodeQueryParameter('https%3A%2F%2Ffoo.bar');
+test("Decodes form-encoded query parameter", (t) => {
+  const result = decodeQueryParameter("https%3A%2F%2Ffoo.bar");
 
-  t.is(result, 'https://foo.bar');
+  t.is(result, "https://foo.bar");
 });
 
-test('Excerpts the first n words from a string', t => {
-  const result = excerptString('The quick fox jumped over the lazy fox', 5);
+test("Excerpts the first n words from a string", (t) => {
+  const result = excerptString("The quick fox jumped over the lazy fox", 5);
 
-  t.is(result, 'The quick fox jumped over');
+  t.is(result, "The quick fox jumped over");
 });
 
-test('Slugifies a string', t => {
-  t.is(slugifyString('Foo bar baz', '_'), 'foo_bar_baz');
-  t.is(slugifyString('McLaren\'s Lando Norris'), 'mclarens-lando-norris');
-  t.is(slugifyString('McLaren’s Lando Norris'), 'mclarens-lando-norris');
+test("Slugifies a string", (t) => {
+  t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
+  t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
+  t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
 });
 
-test('Derives a permalink', t => {
-  t.is(getPermalink('http://foo.bar', 'baz'), 'http://foo.bar/baz');
-  t.is(getPermalink('http://foo.bar/', '/baz'), 'http://foo.bar/baz');
-  t.is(getPermalink('http://foo.bar/baz', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
-  t.is(getPermalink('http://foo.bar/baz/', '/qux/quux'), 'http://foo.bar/baz/qux/quux');
+test("Derives a permalink", (t) => {
+  t.is(getPermalink("http://foo.bar", "baz"), "http://foo.bar/baz");
+  t.is(getPermalink("http://foo.bar/", "/baz"), "http://foo.bar/baz");
+  t.is(
+    getPermalink("http://foo.bar/baz", "/qux/quux"),
+    "http://foo.bar/baz/qux/quux"
+  );
+  t.is(
+    getPermalink("http://foo.bar/baz/", "/qux/quux"),
+    "http://foo.bar/baz/qux/quux"
+  );
 });
 
-test('Get post type configuration for a given type', t => {
-  const {postTypes} = new JekyllPreset();
+test("Get post type configuration for a given type", (t) => {
+  const { postTypes } = new JekyllPreset();
 
-  const result = getPostTypeConfig('note', postTypes);
+  const result = getPostTypeConfig("note", postTypes);
 
-  t.is(result.name, 'Note');
+  t.is(result.name, "Note");
 });
 
-test('Generates random alpha-numeric string, 5 characters long', t => {
+test("Generates random alpha-numeric string, 5 characters long", (t) => {
   const result = randomString();
 
   t.regex(result, /[\d\w]{5}/g);
 });
 
-test('Renders relative path if URL is on publication', t => {
-  const result = relativeMediaPath('http://foo.bar/media/', 'http://foo.bar');
+test("Renders relative path if URL is on publication", (t) => {
+  const result = relativeMediaPath("http://foo.bar/media/", "http://foo.bar");
 
-  t.is(result, '/media/');
+  t.is(result, "/media/");
 });
 
-test('Renders relative path if URL is on publication and publication URL has a path', t => {
-  const result = relativeMediaPath('http://foo.bar/baz/media/', 'http://foo.bar/baz/');
+test("Renders relative path if URL is on publication and publication URL has a path", (t) => {
+  const result = relativeMediaPath(
+    "http://foo.bar/baz/media/",
+    "http://foo.bar/baz/"
+  );
 
-  t.is(result, 'media/');
+  t.is(result, "media/");
 });
 
-test('Renders path from URI template and properties', t => {
+test("Renders path from URI template and properties", (t) => {
   const properties = {
-    published: '2020-01-01',
-    'mp-slug': 'foo',
+    published: "2020-01-01",
+    "mp-slug": "foo",
   };
-  const template = '{yyyy}/{MM}/{uuid}/{slug}';
+  const template = "{yyyy}/{MM}/{uuid}/{slug}";
 
   const result = renderPath(template, properties);
 
-  t.regex(result, /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/);
+  t.regex(
+    result,
+    /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/
+  );
 });
 
-test('Substitutes variables enclosed in { } braces with data from object', t => {
-  const string = '{array} {string} {number}';
+test("Substitutes variables enclosed in { } braces with data from object", (t) => {
+  const string = "{array} {string} {number}";
   const object = {
-    array: ['Array'],
-    string: 'string',
+    array: ["Array"],
+    string: "string",
     number: 1,
   };
 
   const result = supplant(string, object);
 
-  t.is(result, '{array} string 1');
+  t.is(result, "{array} string 1");
 });

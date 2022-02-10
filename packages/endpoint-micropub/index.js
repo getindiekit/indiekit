@@ -1,19 +1,19 @@
-import {fileURLToPath} from 'node:url';
-import express from 'express';
-import multer from 'multer';
-import {actionController} from './lib/controllers/action.js';
-import {postsController} from './lib/controllers/posts.js';
-import {queryController} from './lib/controllers/query.js';
+import { fileURLToPath } from "node:url";
+import express from "express";
+import multer from "multer";
+import { actionController } from "./lib/controllers/action.js";
+import { postsController } from "./lib/controllers/posts.js";
+import { queryController } from "./lib/controllers/query.js";
 
 const defaults = {
-  mountPath: '/micropub',
+  mountPath: "/micropub",
 };
 
 export const MicropubEndpoint = class {
   constructor(options = {}) {
-    this.id = 'endpoint-micropub';
-    this.name = 'Micropub endpoint';
-    this.options = {...defaults, ...options};
+    this.id = "endpoint-micropub";
+    this.name = "Micropub endpoint";
+    this.options = { ...defaults, ...options };
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
@@ -22,22 +22,22 @@ export const MicropubEndpoint = class {
   }
 
   init(Indiekit) {
-    const {application, publication} = Indiekit.config;
+    const { application, publication } = Indiekit.config;
 
     if (application.hasDatabase) {
-      Indiekit.extend('navigationItems', {
+      Indiekit.extend("navigationItems", {
         href: `${this.mountPath}/posts`,
-        text: 'micropub.title',
+        text: "micropub.title",
       });
     }
 
-    Indiekit.extend('routes', {
+    Indiekit.extend("routes", {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.extend('views', [
-      fileURLToPath(new URL('views', import.meta.url)),
+    Indiekit.extend("views", [
+      fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
     publication.micropubEndpoint = this.mountPath;
@@ -49,10 +49,10 @@ export const MicropubEndpoint = class {
       storage: multer.memoryStorage(),
     });
 
-    router.get('/', queryController(publication));
-    router.post('/', multipartParser.any(), actionController(publication));
-    router.get('/posts', postsController(application, publication).list);
-    router.get('/posts/:id', postsController(application, publication).view);
+    router.get("/", queryController(publication));
+    router.post("/", multipartParser.any(), actionController(publication));
+    router.get("/posts", postsController(application, publication).list);
+    router.get("/posts/:id", postsController(application, publication).view);
 
     return router;
   }

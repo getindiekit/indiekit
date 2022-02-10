@@ -1,12 +1,8 @@
-import HttpError from 'http-errors';
-import {getPostType} from './post-type-discovery.js';
-import {normaliseProperties} from './jf2.js';
-import * as update from './update.js';
-import {
-  renderPath,
-  getPermalink,
-  getPostTypeConfig,
-} from './utils.js';
+import HttpError from "http-errors";
+import { getPostType } from "./post-type-discovery.js";
+import { normaliseProperties } from "./jf2.js";
+import * as update from "./update.js";
+import { renderPath, getPermalink, getPostTypeConfig } from "./utils.js";
 
 export const postData = {
   /**
@@ -19,14 +15,14 @@ export const postData = {
   async create(publication, properties) {
     try {
       if (!publication) {
-        throw new Error('No publication configuration provided');
+        throw new Error("No publication configuration provided");
       }
 
       if (!properties) {
-        throw new Error('No properties included in request');
+        throw new Error("No properties included in request");
       }
 
-      const {me, postTypes, timeZone} = publication;
+      const { me, postTypes, timeZone } = publication;
 
       // Normalise properties
       properties = normaliseProperties(publication, properties);
@@ -34,7 +30,7 @@ export const postData = {
       // Post type
       const type = getPostType(properties);
       const typeConfig = getPostTypeConfig(type, postTypes);
-      properties['post-type'] = type;
+      properties["post-type"] = type;
 
       // Post paths
       const path = renderPath(typeConfig.post.path, properties, timeZone);
@@ -42,7 +38,7 @@ export const postData = {
       properties.url = getPermalink(me, url);
 
       // Post data
-      const postData = {path, properties};
+      const postData = { path, properties };
       return postData;
     } catch (error) {
       throw new HttpError(400, error);
@@ -59,16 +55,16 @@ export const postData = {
   async read(publication, url) {
     try {
       if (!publication) {
-        throw new Error('No publication configuration provided');
+        throw new Error("No publication configuration provided");
       }
 
       if (!url) {
-        throw new Error('No URL provided');
+        throw new Error("No URL provided");
       }
 
-      const {posts} = publication;
+      const { posts } = publication;
       const post = await posts.findOne({
-        'properties.url': url,
+        "properties.url": url,
       });
       return post;
     } catch (error) {
@@ -87,28 +83,28 @@ export const postData = {
   async update(publication, url, operation) {
     try {
       if (!publication) {
-        throw new Error('No publication configuration provided');
+        throw new Error("No publication configuration provided");
       }
 
       if (!url) {
-        throw new Error('No URL provided');
+        throw new Error("No URL provided");
       }
 
       if (!operation) {
-        throw new Error('No update operation provided');
+        throw new Error("No update operation provided");
       }
 
-      const {me, posts, postTypes, timeZone} = publication;
+      const { me, posts, postTypes, timeZone } = publication;
 
       const postData = await posts.findOne({
-        'properties.url': url,
+        "properties.url": url,
       });
 
       if (!postData) {
         throw new Error(`No post record available for ${url}`);
       }
 
-      let {properties} = postData;
+      let { properties } = postData;
 
       // Normalise properties
       properties = normaliseProperties(publication, properties);
@@ -133,7 +129,7 @@ export const postData = {
       // Post type
       const type = getPostType(properties);
       const typeConfig = getPostTypeConfig(type, postTypes);
-      properties['post-type'] = type;
+      properties["post-type"] = type;
 
       // Post paths
       const path = renderPath(typeConfig.post.path, properties, timeZone);
@@ -141,7 +137,7 @@ export const postData = {
       properties.url = getPermalink(me, updatedUrl);
 
       // Return post data
-      const updatedPostData = {path, properties};
+      const updatedPostData = { path, properties };
       return updatedPostData;
     } catch (error) {
       throw new HttpError(400, error);

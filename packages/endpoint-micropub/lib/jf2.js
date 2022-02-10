@@ -1,14 +1,14 @@
-import {mf2tojf2} from '@paulrobertlloyd/mf2tojf2';
-import {getDate} from './date.js';
-import {markdownToHtml, htmlToMarkdown} from './markdown.js';
-import {reservedProperties} from './reserved-properties.js';
+import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+import { getDate } from "./date.js";
+import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
+import { reservedProperties } from "./reserved-properties.js";
 import {
   decodeQueryParameter,
   excerptString,
   slugifyString,
   relativeMediaPath,
   randomString,
-} from './utils.js';
+} from "./utils.js";
 
 /**
  * Create JF2 object from form-encoded request
@@ -16,9 +16,9 @@ import {
  * @param {string} body Form-encoded request body
  * @returns {string} Micropub action
  */
-export const formEncodedToJf2 = body => {
+export const formEncodedToJf2 = (body) => {
   const jf2 = {
-    type: body.h ? body.h : 'entry',
+    type: body.h ? body.h : "entry",
   };
 
   for (const key in body) {
@@ -31,7 +31,7 @@ export const formEncodedToJf2 = body => {
       }
 
       // Decode string values
-      const isStringValue = typeof body[key] === 'string';
+      const isStringValue = typeof body[key] === "string";
       const value = isStringValue ? decodeQueryParameter(body[key]) : body[key];
 
       // Adds values to JF2 object
@@ -48,7 +48,7 @@ export const formEncodedToJf2 = body => {
  * @param {string} body Form-encoded request body
  * @returns {string} Micropub action
  */
-export const mf2ToJf2 = body => {
+export const mf2ToJf2 = (body) => {
   const mf2 = {
     items: [body],
   };
@@ -64,7 +64,7 @@ export const mf2ToJf2 = body => {
  * @returns {object} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties) => {
-  const {me, slugSeparator, syndicationTargets, timeZone} = publication;
+  const { me, slugSeparator, syndicationTargets, timeZone } = publication;
 
   properties.published = getPublishedProperty(properties, timeZone);
 
@@ -88,11 +88,11 @@ export const normaliseProperties = (publication, properties) => {
     properties.video = getVideoProperty(properties, me);
   }
 
-  properties['mp-slug'] = getSlugProperty(properties, slugSeparator);
+  properties["mp-slug"] = getSlugProperty(properties, slugSeparator);
 
   const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
   if (syndicateTo) {
-    properties['mp-syndicate-to'] = syndicateTo;
+    properties["mp-syndicate-to"] = syndicateTo;
   }
 
   return properties;
@@ -106,10 +106,10 @@ export const normaliseProperties = (publication, properties) => {
  * @returns {Array} `audio` property
  */
 export const getAudioProperty = (properties, me) => {
-  let {audio} = properties;
+  let { audio } = properties;
   audio = Array.isArray(audio) ? audio : [audio];
 
-  return audio.map(item => ({
+  return audio.map((item) => ({
     url: relativeMediaPath(item.url || item, me),
   }));
 };
@@ -120,9 +120,9 @@ export const getAudioProperty = (properties, me) => {
  * @param {object} properties JF2 properties
  * @returns {Array} `content` property
  */
-export const getContentProperty = properties => {
-  const {content} = properties;
-  let {html, text} = content;
+export const getContentProperty = (properties) => {
+  const { content } = properties;
+  let { html, text } = content;
 
   // Return existing text and HTML representations
   if (html && text) {
@@ -132,13 +132,13 @@ export const getContentProperty = properties => {
   // If HTML representation only, add text representation
   if (html && !text) {
     text = htmlToMarkdown(html);
-    return {html, text};
+    return { html, text };
   }
 
   // Return property with text and HTML representations
   text = text || content;
   html = markdownToHtml(text);
-  return {html, text};
+  return { html, text };
 };
 
 /**
@@ -147,18 +147,20 @@ export const getContentProperty = properties => {
  * @param {object|string} properties JF2 properties
  * @returns {object} `location` property
  */
-export const getLocationProperty = properties => {
-  let {location} = properties;
+export const getLocationProperty = (properties) => {
+  let { location } = properties;
 
-  if (typeof location === 'string' && location.startsWith('geo:')) {
-    const geoUriRegexp = /geo:(?<latitude>[-?\d+.]*),(?<longitude>[-?\d+.]*)(?:,(?<altitude>[-?\d+.]*))?/;
-    const {latitude, longitude, altitude} = location.match(geoUriRegexp).groups;
+  if (typeof location === "string" && location.startsWith("geo:")) {
+    const geoUriRegexp =
+      /geo:(?<latitude>[-?\d+.]*),(?<longitude>[-?\d+.]*)(?:,(?<altitude>[-?\d+.]*))?/;
+    const { latitude, longitude, altitude } =
+      location.match(geoUriRegexp).groups;
 
     location = {
       properties: {
         latitude,
         longitude,
-        ...(altitude ? {altitude} : {}),
+        ...(altitude ? { altitude } : {}),
       },
     };
   }
@@ -174,20 +176,20 @@ export const getLocationProperty = properties => {
  * @returns {Array} `photo` property
  */
 export const getPhotoProperty = (properties, me) => {
-  let {photo} = properties;
+  let { photo } = properties;
   photo = Array.isArray(photo) ? photo : [photo];
 
-  let photoAlt = properties['mp-photo-alt'];
+  let photoAlt = properties["mp-photo-alt"];
   if (photoAlt) {
     photoAlt = Array.isArray(photoAlt) ? photoAlt : [photoAlt];
   }
 
   const property = photo.map((item, index) => ({
     url: relativeMediaPath(item.url || item, me),
-    ...item.alt && {alt: item.alt},
-    ...photoAlt && {alt: photoAlt[index]},
+    ...(item.alt && { alt: item.alt }),
+    ...(photoAlt && { alt: photoAlt[index] }),
   }));
-  delete properties['mp-photo-alt'];
+  delete properties["mp-photo-alt"];
   return property;
 };
 
@@ -199,10 +201,10 @@ export const getPhotoProperty = (properties, me) => {
  * @returns {Array} `video` property
  */
 export const getVideoProperty = (properties, me) => {
-  let {video} = properties;
+  let { video } = properties;
   video = Array.isArray(video) ? video : [video];
 
-  return video.map(item => ({
+  return video.map((item) => ({
     url: relativeMediaPath(item.url || item, me),
   }));
 };
@@ -214,7 +216,8 @@ export const getVideoProperty = (properties, me) => {
  * @param {object} timeZone Publication time zone
  * @returns {Array} `published` property
  */
-export const getPublishedProperty = (properties, timeZone) => getDate(timeZone, properties.published);
+export const getPublishedProperty = (properties, timeZone) =>
+  getDate(timeZone, properties.published);
 
 /**
  * Get slug
@@ -224,8 +227,8 @@ export const getPublishedProperty = (properties, timeZone) => getDate(timeZone, 
  * @returns {Array} Array containing slug value
  */
 export const getSlugProperty = (properties, separator) => {
-  const suggested = properties['mp-slug'];
-  const {name} = properties;
+  const suggested = properties["mp-slug"];
+  const { name } = properties;
 
   let string;
   if (suggested) {
@@ -247,7 +250,7 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
   }
 
   for (const target of syndicationTargets) {
-    const syndicateTo = properties && properties['mp-syndicate-to'];
+    const syndicateTo = properties && properties["mp-syndicate-to"];
     const clientChecked = syndicateTo && syndicateTo.includes(target.uid);
     const serverForced = target.options && target.options.forced;
 

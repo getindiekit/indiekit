@@ -2,10 +2,10 @@
 export default {
   micropub: {
     posts: {
-      none: 'Nenhuma postagem',
-      title: 'Postagens publicadas',
+      none: "Nenhuma postagem",
+      title: "Postagens publicadas",
     },
-    properties: 'Propriedades',
-    title: 'Postagens',
+    properties: "Propriedades",
+    title: "Postagens",
   },
 };

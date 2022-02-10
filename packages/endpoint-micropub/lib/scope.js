@@ -1,4 +1,4 @@
-import HttpError from 'http-errors';
+import HttpError from "http-errors";
 
 /**
  * Check provided scope(s) satisfies required scope
@@ -9,31 +9,35 @@ import HttpError from 'http-errors';
  */
 export const checkScope = (providedScope, requiredScope) => {
   if (!providedScope) {
-    providedScope = 'create';
+    providedScope = "create";
   }
 
   if (!requiredScope) {
-    requiredScope = 'create';
+    requiredScope = "create";
   }
 
   let hasScope = providedScope.includes(requiredScope);
 
   // Handle deprecated `post` scope
-  if (!hasScope && requiredScope === 'create') {
-    hasScope = providedScope.includes('post');
+  if (!hasScope && requiredScope === "create") {
+    hasScope = providedScope.includes("post");
   }
 
   // Handle `undelete` scope
-  if (!hasScope && requiredScope === 'undelete') {
-    hasScope = providedScope.includes('create');
+  if (!hasScope && requiredScope === "undelete") {
+    hasScope = providedScope.includes("create");
   }
 
   if (hasScope) {
     return true;
   }
 
-  throw new HttpError(401, 'The scope of this token does not meet the requirements for this request', {
-    error: 'Insufficient scope',
-    scope: requiredScope,
-  });
+  throw new HttpError(
+    401,
+    "The scope of this token does not meet the requirements for this request",
+    {
+      error: "Insufficient scope",
+      scope: requiredScope,
+    }
+  );
 };

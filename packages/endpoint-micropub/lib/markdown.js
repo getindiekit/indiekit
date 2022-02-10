@@ -1,7 +1,7 @@
-import markdownIt from 'markdown-it';
-import TurndownService from 'turndown';
+import markdownIt from "markdown-it";
+import TurndownService from "turndown";
 
-export const markdownToHtml = string => {
+export const markdownToHtml = (string) => {
   const options = {
     html: true,
     breaks: true,
@@ -16,10 +16,10 @@ export const markdownToHtml = string => {
   return html;
 };
 
-export const htmlToMarkdown = string => {
+export const htmlToMarkdown = (string) => {
   const options = {
-    codeBlockStyle: 'fenced',
-    emDelimiter: '*',
+    codeBlockStyle: "fenced",
+    emDelimiter: "*",
   };
 
   const turndownService = new TurndownService(options);

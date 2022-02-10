@@ -1,11 +1,12 @@
-import Debug from 'debug';
-import httpError from 'http-errors';
-import {getMf2Properties, jf2ToMf2, url2Mf2} from '../mf2.js';
-import {getConfig, queryList} from '../query.js';
+import Debug from "debug";
+import httpError from "http-errors";
+import { getMf2Properties, jf2ToMf2, url2Mf2 } from "../mf2.js";
+import { getConfig, queryList } from "../query.js";
 
-const debug = new Debug('indiekit:error');
+const debug = new Debug("indiekit:error");
 
-export const queryController = publication =>
+export const queryController =
+  (publication) =>
   /**
    * Query endpoint
    *
@@ -15,28 +16,28 @@ export const queryController = publication =>
    * @returns {object} HTTP response
    */
   async (request, response, next) => {
-    const {application} = response.locals;
+    const { application } = response.locals;
     const config = getConfig(application, publication);
-    const {query} = request;
-    const {filter, limit, offset} = query;
+    const { query } = request;
+    const { filter, limit, offset } = query;
 
     try {
       if (!query.q) {
-        throw new Error('Invalid query');
+        throw new Error("Invalid query");
       }
 
       switch (query.q) {
-        case 'config': {
+        case "config": {
           return response.json(config);
         }
 
-        case 'category': {
+        case "category": {
           return response.json({
-            categories: queryList(config.categories, {filter, limit, offset}),
+            categories: queryList(config.categories, { filter, limit, offset }),
           });
         }
 
-        case 'source': {
+        case "source": {
           // Return mf2 for a given source URL
           if (query.url) {
             const mf2 = await url2Mf2(query.url);
@@ -46,17 +47,20 @@ export const queryController = publication =>
 
           // Return mf2 for previously published posts
           const items = publication.posts
-            ? await publication.posts.find().map(post => jf2ToMf2(post.properties)).toArray()
+            ? await publication.posts
+                .find()
+                .map((post) => jf2ToMf2(post.properties))
+                .toArray()
             : [];
           return response.json({
-            items: queryList(items, {filter, limit, offset}),
+            items: queryList(items, { filter, limit, offset }),
           });
         }
 
         default: {
           if (config[query.q]) {
             return response.json({
-              [query.q]: queryList(config[query.q], {filter, limit, offset}),
+              [query.q]: queryList(config[query.q], { filter, limit, offset }),
             });
           }
 
@@ -68,4 +72,3 @@ export const queryController = publication =>
       next(httpError(400, error));
     }
   };
-

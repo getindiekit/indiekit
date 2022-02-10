@@ -1,14 +1,15 @@
-import Debug from 'debug';
-import httpError from 'http-errors';
-import {formEncodedToJf2, mf2ToJf2} from '../jf2.js';
-import {post} from '../post.js';
-import {postData} from '../post-data.js';
-import {checkScope} from '../scope.js';
-import {uploadMedia} from '../media.js';
+import Debug from "debug";
+import httpError from "http-errors";
+import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
+import { post } from "../post.js";
+import { postData } from "../post-data.js";
+import { checkScope } from "../scope.js";
+import { uploadMedia } from "../media.js";
 
-const debug = new Debug('indiekit:error');
+const debug = new Debug("indiekit:error");
 
-export const actionController = publication =>
+export const actionController =
+  (publication) =>
   /**
    * Perform requested post action
    *
@@ -18,10 +19,10 @@ export const actionController = publication =>
    * @returns {object} HTTP response
    */
   async (request, response, next) => {
-    const {body, files, query} = request;
-    const action = query.action || body.action || 'create';
+    const { body, files, query } = request;
+    const action = query.action || body.action || "create";
     const url = query.url || body.url;
-    const {scope} = response.locals.publication.accessToken;
+    const { scope } = response.locals.publication.accessToken;
 
     try {
       checkScope(scope, action);
@@ -30,36 +31,40 @@ export const actionController = publication =>
       let jf2;
       let published;
       switch (action) {
-        case 'create':
+        case "create":
           // Create and normalise JF2 data
           // TODO: Attached photos don’t appear with correct alt text
-          jf2 = request.is('json') ? mf2ToJf2(body) : formEncodedToJf2(body);
+          jf2 = request.is("json") ? mf2ToJf2(body) : formEncodedToJf2(body);
           jf2 = files ? await uploadMedia(publication, jf2, files) : jf2;
 
           data = await postData.create(publication, jf2);
           published = await post.create(publication, data);
           break;
-        case 'update':
+        case "update":
           data = await postData.update(publication, url, body);
           published = await post.update(publication, data, url);
           break;
-        case 'delete':
+        case "delete":
           data = await postData.read(publication, url);
           published = await post.delete(publication, data);
           break;
-        case 'undelete':
+        case "undelete":
           data = await postData.read(publication, url);
           published = await post.undelete(publication, data);
           break;
         default:
       }
 
-      return response.status(published.status).location(published.location).json(published.json);
+      return response
+        .status(published.status)
+        .location(published.location)
+        .json(published.json);
     } catch (error) {
       debug(error);
-      next(httpError(error.statusCode, error, {
-        scope: error.scope,
-      }));
+      next(
+        httpError(error.statusCode, error, {
+          scope: error.scope,
+        })
+      );
     }
   };
-

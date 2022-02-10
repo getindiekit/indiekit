@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 /**
  * Add properties to object
@@ -21,7 +21,9 @@ export const addProperties = (object, additions) => {
 
       // If existing value, add to it
       if (existingValue) {
-        existingValue = Array.isArray(existingValue) ? existingValue : [existingValue];
+        existingValue = Array.isArray(existingValue)
+          ? existingValue
+          : [existingValue];
 
         const updatedValue = [...existingValue];
 
@@ -49,7 +51,7 @@ export const replaceEntries = (object, replacements) => {
       const value = replacements[key];
 
       if (!Array.isArray(value)) {
-        throw new TypeError('Replacement value should be an array');
+        throw new TypeError("Replacement value should be an array");
       }
 
       object = _.set(object, key, value[0]);
