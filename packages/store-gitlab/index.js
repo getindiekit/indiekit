@@ -1,10 +1,10 @@
-import process from 'node:process';
-import {Buffer} from 'node:buffer';
-import gitbeaker from '@gitbeaker/node';
+import process from "node:process";
+import { Buffer } from "node:buffer";
+import gitbeaker from "@gitbeaker/node";
 
 const defaults = {
-  branch: 'main',
-  instance: 'https://gitlab.com',
+  branch: "main",
+  instance: "https://gitlab.com",
   token: process.env.GITLAB_TOKEN,
 };
 
@@ -14,14 +14,14 @@ const defaults = {
  */
 export const GitlabStore = class {
   constructor(options = {}) {
-    this.id = 'gitlab';
-    this.name = 'GitLab store';
-    this.options = {...defaults, ...options};
+    this.id = "gitlab";
+    this.name = "GitLab store";
+    this.options = { ...defaults, ...options };
     this.projectId = options.projectId || `${options.user}/${options.repo}`;
   }
 
   get info() {
-    const {instance, repo, user} = this.options;
+    const { instance, repo, user } = this.options;
 
     return {
       name: `${this.projectId} on GitLab`,
@@ -30,7 +30,7 @@ export const GitlabStore = class {
   }
 
   get client() {
-    const {Gitlab} = gitbeaker;
+    const { Gitlab } = gitbeaker;
     return new Gitlab({
       host: this.options.instance,
       token: this.options.token,
@@ -47,15 +47,16 @@ export const GitlabStore = class {
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(path, content, message) {
-    content = Buffer.from(content).toString('base64');
+    content = Buffer.from(content).toString("base64");
     const response = await this.client.RepositoryFiles.create(
       this.projectId,
       path,
       this.options.branch,
       content,
-      message, {
-        encoding: 'base64',
-      },
+      message,
+      {
+        encoding: "base64",
+      }
     );
     return response;
   }
@@ -71,9 +72,9 @@ export const GitlabStore = class {
     const response = await this.client.RepositoryFiles.show(
       this.projectId,
       path,
-      this.options.branch,
+      this.options.branch
     );
-    const content = Buffer.from(response.content, 'base64').toString('utf8');
+    const content = Buffer.from(response.content, "base64").toString("utf8");
     return content;
   }
 
@@ -87,15 +88,16 @@ export const GitlabStore = class {
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
   async updateFile(path, content, message) {
-    content = Buffer.from(content).toString('base64');
+    content = Buffer.from(content).toString("base64");
     const response = await this.client.RepositoryFiles.edit(
       this.projectId,
       path,
       this.options.branch,
       content,
-      message, {
-        encoding: 'base64',
-      },
+      message,
+      {
+        encoding: "base64",
+      }
     );
     return response;
   }
@@ -113,7 +115,7 @@ export const GitlabStore = class {
       this.projectId,
       path,
       this.options.branch,
-      message,
+      message
     );
     return true;
   }

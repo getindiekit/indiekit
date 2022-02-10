@@ -12,9 +12,7 @@ Add `@indiekit/store-gitlab` to your list of plugins, specifying options as requ
 
 ```json
 {
-  "plugins": [
-    "@indiekit/store-gitlab"
-  ],
+  "plugins": ["@indiekit/store-gitlab"],
   "@indiekit/store-gitlab": {
     "user": "username",
     "repo": "reponame"
@@ -24,11 +22,11 @@ Add `@indiekit/store-gitlab` to your list of plugins, specifying options as requ
 
 ## Options
 
-| Option | Type | Description |
-| :----- | :--- | :---------- |
-| `instance` | `string` | GitLab instance URL. *Optional*, defaults to `https://gitlab.com`. |
-| `projectId` | `string` | GitLab project ID. *Required (if `user` and `repo` not provided)*. |
-| `user` | `string` | Your GitLab username. *Required (if `projectId` not provided)*. |
-| `repo` | `string` | The name of your GitLab repository. *Required (if `projectId` not provided)*. |
-| `branch` | `string` | The branch files will be saved to. *Optional*, defaults to `main`. |
-| `token` | `string` | A GitLab access token. *Required*, defaults to `process.env.GITLAB_TOKEN`. |
+| Option      | Type     | Description                                                                   |
+| :---------- | :------- | :---------------------------------------------------------------------------- |
+| `instance`  | `string` | GitLab instance URL. _Optional_, defaults to `https://gitlab.com`.            |
+| `projectId` | `string` | GitLab project ID. _Required (if `user` and `repo` not provided)_.            |
+| `user`      | `string` | Your GitLab username. _Required (if `projectId` not provided)_.               |
+| `repo`      | `string` | The name of your GitLab repository. _Required (if `projectId` not provided)_. |
+| `branch`    | `string` | The branch files will be saved to. _Optional_, defaults to `main`.            |
+| `token`     | `string` | A GitLab access token. _Required_, defaults to `process.env.GITLAB_TOKEN`.    |
