@@ -1,22 +1,23 @@
 /* eslint-disable camelcase */
-import {Buffer} from 'node:buffer';
-import got from 'got';
-import Twitter from 'twitter-lite';
+import { Buffer } from "node:buffer";
+import got from "got";
+import Twitter from "twitter-lite";
 import {
   createStatus,
   getAbsoluteUrl,
   getStatusIdFromUrl,
   isTweetUrl,
-} from './utils.js';
+} from "./utils.js";
 
-export const twitter = options => ({
-  client: (subdomain = 'api') => new Twitter({
-    subdomain,
-    consumer_key: options.apiKey,
-    consumer_secret: options.apiKeySecret,
-    access_token_key: options.accessToken,
-    access_token_secret: options.accessTokenSecret,
-  }),
+export const twitter = (options) => ({
+  client: (subdomain = "api") =>
+    new Twitter({
+      subdomain,
+      consumer_key: options.apiKey,
+      consumer_secret: options.apiKeySecret,
+      access_token_key: options.accessToken,
+      access_token_secret: options.accessTokenSecret,
+    }),
 
   /**
    * Post a like
@@ -27,7 +28,9 @@ export const twitter = options => ({
   async postLike(tweetUrl) {
     try {
       const statusId = getStatusIdFromUrl(tweetUrl);
-      const {user, id_str} = await this.client().post('favorites/create', {id: statusId});
+      const { user, id_str } = await this.client().post("favorites/create", {
+        id: statusId,
+      });
       const url = `https://twitter.com/${user.screen_name}/status/${id_str}`;
       return url;
     } catch (error) {
@@ -45,7 +48,9 @@ export const twitter = options => ({
   async postRetweet(tweetUrl) {
     try {
       const statusId = getStatusIdFromUrl(tweetUrl);
-      const {user, id_str} = await this.client().post(`statuses/retweet/${statusId}`);
+      const { user, id_str } = await this.client().post(
+        `statuses/retweet/${statusId}`
+      );
       const url = `https://twitter.com/${user.screen_name}/status/${id_str}`;
       return url;
     } catch (error) {
@@ -62,7 +67,10 @@ export const twitter = options => ({
    */
   async postStatus(parameters) {
     try {
-      const {user, id_str} = await this.client().post('statuses/update', parameters);
+      const { user, id_str } = await this.client().post(
+        "statuses/update",
+        parameters
+      );
       const url = `https://twitter.com/${user.screen_name}/status/${id_str}`;
       return url;
     } catch (error) {
@@ -79,22 +87,25 @@ export const twitter = options => ({
    * @returns {string} Twitter media id
    */
   async uploadMedia(media, me) {
-    const {alt, url} = media;
+    const { alt, url } = media;
 
-    if (typeof url !== 'string') {
+    if (typeof url !== "string") {
       return;
     }
 
     try {
       const mediaUrl = getAbsoluteUrl(url, me);
-      const response = await got(mediaUrl, {responseType: 'buffer'});
-      const buffer = Buffer.from(response.body).toString('base64');
-      const {media_id_string} = await this.client('upload').post('media/upload', {media_data: buffer});
+      const response = await got(mediaUrl, { responseType: "buffer" });
+      const buffer = Buffer.from(response.body).toString("base64");
+      const { media_id_string } = await this.client("upload").post(
+        "media/upload",
+        { media_data: buffer }
+      );
 
       if (alt) {
-        await this.client('upload').post('media/metadata/create', {
+        await this.client("upload").post("media/metadata/create", {
           media_id: media_id_string,
-          alt_text: {text: alt},
+          alt_text: { text: alt },
         });
       }
 
@@ -128,26 +139,26 @@ export const twitter = options => ({
       mediaIds = await Promise.all(uploads);
     }
 
-    if (properties['repost-of']) {
+    if (properties["repost-of"]) {
       // Syndicate repost of Twitter URL with content as a quote tweet
-      if (isTweetUrl(properties['repost-of']) && properties.content) {
+      if (isTweetUrl(properties["repost-of"]) && properties.content) {
         const status = createStatus(properties, mediaIds);
         return this.postStatus(status);
       }
 
       // Syndicate repost of Twitter URL as a retweet
-      if (isTweetUrl(properties['repost-of'])) {
-        return this.postRetweet(properties['repost-of']);
+      if (isTweetUrl(properties["repost-of"])) {
+        return this.postRetweet(properties["repost-of"]);
       }
 
       // Do not syndicate reposts of other URLs
       return false;
     }
 
-    if (properties['like-of']) {
+    if (properties["like-of"]) {
       // Syndicate like of Twitter URL as a like
-      if (isTweetUrl(properties['like-of'])) {
-        return this.postLike(properties['like-of']);
+      if (isTweetUrl(properties["like-of"])) {
+        return this.postLike(properties["like-of"]);
       }
 
       // Do not syndicate likes of other URLs
