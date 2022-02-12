@@ -15,16 +15,16 @@ test("Views previously uploaded file", async (t) => {
     .put((uri) => uri.includes(".jpg"))
     .reply(200, { commit: { message: "Message" } });
 
+  // Upload file
+  const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
-
-  // Upload file
-  const request = await testServer();
   await request
     .post("/media")
     .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
+    .set("Cookie", [cookie])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   // Get file data by parsing list of files and getting values from link
@@ -41,7 +41,6 @@ test("Views previously uploaded file", async (t) => {
     .get(`/media/files/${fileId}`)
     .set("Cookie", [cookie]);
   const fileDom = new JSDOM(fileResponse.text);
-
   const result = fileDom.window.document;
 
   t.is(result.querySelector("title").textContent, `${fileName} - Test config`);

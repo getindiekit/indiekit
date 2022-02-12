@@ -94,13 +94,14 @@ test("Checks if user is authorized", async (t) => {
     .reply(200, t.context.accessToken);
   const request = mockRequest({
     headers: { authorization: `Bearer ${t.context.bearerToken}` },
+    session: {},
   });
   const response = mockResponse({ locals: { publication: {} } });
   const next = sinon.spy();
 
   await indieauth.authorise()(request, response, next);
 
-  t.is(response.locals.publication.accessToken.me, t.context.me);
+  t.is(request.session.token.me, t.context.me);
   t.true(next.calledOnce);
 });
 

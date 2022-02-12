@@ -168,7 +168,7 @@ export const IndieAuth = class {
 
         const token = await requestAccessToken(tokenEndpoint, bearerToken);
         const accessToken = verifyAccessToken(me, token);
-        response.locals.publication.accessToken = accessToken;
+        request.session.token = accessToken;
 
         next();
       } catch (error) {

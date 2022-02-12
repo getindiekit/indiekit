@@ -10,13 +10,13 @@ test("Returns list of previously uploaded files", async (t) => {
     me: process.env.TEST_PUBLICATION_URL,
     scope: "media",
   });
+
   const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
   const response = await request.get("/media/files").set("Cookie", [cookie]);
   const dom = new JSDOM(response.text);
-
   const result = dom.window.document;
 
   t.is(

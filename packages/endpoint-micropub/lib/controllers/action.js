@@ -22,7 +22,7 @@ export const actionController =
     const { body, files, query } = request;
     const action = query.action || body.action || "create";
     const url = query.url || body.url;
-    const { scope } = response.locals.publication.accessToken;
+    const { scope } = request.session.token;
 
     try {
       checkScope(scope, action);

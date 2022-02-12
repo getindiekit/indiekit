@@ -14,16 +14,16 @@ test("Views previously uploaded file", async (t) => {
     .put((uri) => uri.includes("foobar.md"))
     .reply(200);
 
+  // Create post
+  const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,
   });
-
-  // Create post
-  const request = await testServer();
   await request
     .post("/micropub")
     .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
+    .set("Cookie", [cookie])
     .send("h=entry")
     .send("name=Foobar");
 
