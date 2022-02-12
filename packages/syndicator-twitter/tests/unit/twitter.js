@@ -161,7 +161,7 @@ test("Throws error fetching media to upload", async (t) => {
   );
 });
 
-test("Uploads media and returns a media id", async (t) => {
+test.serial("Uploads media and returns a media id", async (t) => {
   nock("https://website.example")
     .get("/image.jpg")
     .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
@@ -180,7 +180,7 @@ test("Uploads media and returns a media id", async (t) => {
   t.is(result, "1234567890987654321");
 });
 
-test("Throws error uploading media", async (t) => {
+test.serial("Throws error uploading media", async (t) => {
   nock("https://website.example")
     .get("/image.jpg")
     .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
@@ -304,7 +304,7 @@ test("Posts a status to Twitter", async (t) => {
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
 });
 
-test("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
+test.serial("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
   nock(t.context.publication.me)
     .get("/image1.jpg")
     .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
