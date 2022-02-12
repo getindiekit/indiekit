@@ -4,10 +4,6 @@ import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 400 if source URL can’t be found", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "create",
-  });
   nock("https://website.example").get("/post.html").replyWithError("Not found");
   const request = await testServer();
 

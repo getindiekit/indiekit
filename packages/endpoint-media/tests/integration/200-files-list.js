@@ -1,16 +1,10 @@
 import process from "node:process";
 import test from "ava";
 import mockSession from "mock-session";
-import nock from "nock";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns list of previously uploaded files", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "media",
-  });
-
   const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
     token: process.env.TEST_BEARER_TOKEN,

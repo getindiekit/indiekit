@@ -19,6 +19,7 @@ test.beforeEach(async (t) => {
   t.context = {
     cacheCollection: application.cache,
     publication,
+    mediaEndpoint: publication.mediaEndpoint,
   };
 });
 
@@ -70,13 +71,12 @@ test("Gets media endpoint from server derived values", (t) => {
     },
   };
 
-  const result = getMediaEndpoint(t.context.publication, request);
+  const result = getMediaEndpoint(t.context.mediaEndpoint, request);
 
   t.is(result, "https://server.example/media");
 });
 
 test("Gets media endpoint from publication configuration", (t) => {
-  const publication = { mediaEndpoint: "https://website.example/media" };
   const request = {
     protocol: "https",
     headers: {
@@ -84,7 +84,7 @@ test("Gets media endpoint from publication configuration", (t) => {
     },
   };
 
-  const result = getMediaEndpoint(publication, request);
+  const result = getMediaEndpoint("https://website.example/media", request);
 
   t.is(result, "https://website.example/media");
 });

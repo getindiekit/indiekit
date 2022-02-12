@@ -5,13 +5,12 @@ import nock from "nock";
 import sinon from "sinon";
 import mockReqRes from "mock-req-res";
 import { getFixture } from "@indiekit-test/get-fixture";
-import { defaultConfig } from "../../config/defaults.js";
 import { IndieAuth } from "../../lib/indieauth.js";
 
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({
   me: process.env.TEST_PUBLICATION_URL,
-  tokenEndpoint: defaultConfig.publication.tokenEndpoint,
+  tokenEndpoint: "https://tokens.indieauth.com/token",
 });
 
 test.beforeEach((t) => {

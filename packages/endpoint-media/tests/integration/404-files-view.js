@@ -4,10 +4,6 @@ import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 404 if can’t find previously uploaded file", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "media",
-  });
   const request = await testServer();
 
   const result = await request
