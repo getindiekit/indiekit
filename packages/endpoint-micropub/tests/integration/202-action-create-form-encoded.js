@@ -4,10 +4,6 @@ import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Creates post (form-encoded)", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "create",
-  });
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar"))
     .reply(200);

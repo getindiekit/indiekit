@@ -1,15 +1,10 @@
 import process from "node:process";
 import test from "ava";
-import mockSession from "mock-session";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 500 error syndicating a URL", async (t) => {
   // Setup mocked failed HTTP request to syndication target
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "create update",
-  });
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .replyWithError("Not found");
@@ -19,14 +14,10 @@ test("Returns 500 error syndicating a URL", async (t) => {
 
   // Create post
   const request = await testServer();
-  const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_BEARER_TOKEN,
-  });
   await request
     .post("/micropub")
     .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
-    .set("Cookie", [cookie])
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");

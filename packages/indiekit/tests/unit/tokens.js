@@ -83,13 +83,10 @@ test("Token endpoint refuses to grant an access token", async (t) => {
     error_description: "The token provided was malformed",
   });
 
-  await t.throwsAsync(
-    requestAccessToken(t.context.tokenEndpoint, "malformed_token"),
-    {
-      name: "BadRequestError",
-      message: "The token provided was malformed",
-    }
-  );
+  await t.throwsAsync(requestAccessToken(t.context.tokenEndpoint, "foo"), {
+    name: "BadRequestError",
+    message: "The token provided was malformed",
+  });
 });
 
 test("Throws error contacting token endpoint", async (t) => {

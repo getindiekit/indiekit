@@ -5,10 +5,6 @@ import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 401 error from Micropub endpoint", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").twice().reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "create",
-  });
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar"))
     .reply(200);
@@ -22,7 +18,7 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
   // Create post
   const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_BEARER_TOKEN,
+    token: process.env.TEST_BEARER_TOKEN_CREATE_SCOPE,
   });
   await request
     .post("/micropub")
@@ -38,12 +34,12 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
     .post("/syndicate")
     .set("Accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
-    .query(`token=${process.env.TEST_BEARER_TOKEN}`);
+    .query(`token=${process.env.TEST_BEARER_TOKEN_CREATE_SCOPE}`);
 
   // Assertions
   t.is(result.statusCode, 401);
   t.is(
     result.body.error_description,
-    "The scope of this token does not meet the requirements for this request"
+    "JSON Web Token error: invalid signature"
   );
 });

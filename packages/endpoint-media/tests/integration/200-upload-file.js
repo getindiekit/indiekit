@@ -5,10 +5,6 @@ import { getFixture } from "@indiekit-test/get-fixture";
 import { testServer } from "@indiekit-test/server";
 
 test("Uploads file", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "media",
-  });
   nock("https://api.github.com")
     .put((uri) => uri.includes(".jpg"))
     .reply(200, { commit: { message: "Message" } });

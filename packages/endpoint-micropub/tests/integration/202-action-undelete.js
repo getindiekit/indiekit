@@ -4,10 +4,7 @@ import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Deletes post", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").thrice().reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "create delete",
-  });
+  nock.enableNetConnect("127.0.0.1");
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar.md"))
     .reply(200);
