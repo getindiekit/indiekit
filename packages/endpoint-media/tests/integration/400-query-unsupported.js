@@ -12,8 +12,8 @@ test("Returns 400 if unsupported parameter provided", async (t) => {
 
   const result = await request
     .get("/media")
+    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
-    .set("Authorization", process.env.TEST_BEARER_TOKEN)
     .query("q=fooBar");
 
   t.is(result.statusCode, 400);
