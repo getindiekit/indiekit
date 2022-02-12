@@ -60,7 +60,7 @@ test("Returns syndicated URL", async (t) => {
   t.is(result, `https://web.archive.org/web/20180326070330/${properties.url}`);
 });
 
-test("Throws error getting syndicated URL if no API keys provided", async (t) => {
+test("Throws error getting syndicated URL with no API keys", async (t) => {
   await t.throwsAsync(
     internetArchive.syndicate({ properties: t.context.url }),
     {

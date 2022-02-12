@@ -68,7 +68,7 @@ test("Returns syndicated URL", async (t) => {
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
 });
 
-test("Throws error getting syndicated URL if no API keys provided", async (t) => {
+test("Throws error getting syndicated URL with no API keys", async (t) => {
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .reply(401, {
