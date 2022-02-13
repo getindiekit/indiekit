@@ -77,6 +77,16 @@ test("Adds link to status post is in reply to", (t) => {
   t.is(result.in_reply_to_status_id, "1234567890987654321");
 });
 
+test("Doesn’t create a status if post is an off-service reply", (t) => {
+  const result = createStatus(
+    JSON.parse(getFixture("jf2/reply-twitter.jf2")),
+    "https://mastodon.example"
+  );
+  t.log(result);
+
+  t.falsy(result);
+});
+
 test("Creates a status with a photo", (t) => {
   const result = createStatus(
     {
