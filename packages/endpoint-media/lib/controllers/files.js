@@ -1,7 +1,6 @@
 import HttpError from "http-errors";
 import mongodb from "mongodb";
-
-const { ObjectId } = mongodb;
+import { getPages } from "../utils.js";
 
 export const filesController = (application, publication) => ({
   /**
@@ -18,9 +17,23 @@ export const filesController = (application, publication) => ({
         throw new Error(response.__("errors.noDatabase.content"));
       }
 
+      const page = parseInt(request.query.page) || 1;
+      const limit = parseInt(request.query.limit) || 18;
+      const skip = (page - 1) * limit;
+
+      const files = await publication.media
+        .find()
+        .sort({ _id: -1 })
+        .skip(skip)
+        .limit(limit)
+        .toArray();
+
+      const count = await publication.media.countDocuments();
+
       response.render("files", {
         title: response.__("media.files.title"),
-        files: await publication.media.find().toArray(),
+        files,
+        pages: getPages(page, limit, count),
         parentUrl: `${publication.mediaEndpoint}/files/`,
       });
     } catch (error) {
@@ -39,7 +52,9 @@ export const filesController = (application, publication) => ({
   async view(request, response, next) {
     try {
       const { id } = request.params;
-      const file = await publication.media.findOne({ _id: new ObjectId(id) });
+      const file = await publication.media.findOne({
+        _id: new mongodb.ObjectId(id),
+      });
 
       if (!file) {
         throw new HttpError(404, "No file was found with this UUID");

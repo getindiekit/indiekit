@@ -1,21 +1,12 @@
-{%- from "file/macro.njk" import file -%}
 {% extends "document.njk" %}
 
 {% block content %}
-{%- if files %}
-  <ol class="no-bullets">
-  {%- for item in files | reverse %}
-    <li>
-      {{ file({
-        title: item.properties.filename,
-        href: parentUrl + item._id,
-        icon: item.properties["post-type"],
-        meta: item.properties.url
-      }) }}
-    </li>
-  {%- endfor %}
-  </ol>
-{%- else -%}
+  {%- if files %}
+  {{ fileGrid({
+    items: files
+  }) }}
+  {{ pagination(pages) }}
+  {%- else -%}
   <p>{{ __("media.files.none") }}<p>
-{%- endif %}
+  {%- endif %}
 {% endblock %}
