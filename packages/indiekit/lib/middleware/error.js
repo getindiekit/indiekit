@@ -28,7 +28,6 @@ export const internalServer = (error, request, response, next) => {
     response.json({
       error: httpError.message || error.name,
       error_description: error.message,
-      scope: error.scope,
     });
   } else {
     response.send(error.message);

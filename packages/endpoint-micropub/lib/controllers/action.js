@@ -1,12 +1,9 @@
-import Debug from "debug";
 import httpError from "http-errors";
 import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
 import { post } from "../post.js";
 import { postData } from "../post-data.js";
 import { checkScope } from "../scope.js";
 import { uploadMedia } from "../media.js";
-
-const debug = new Debug("indiekit:error");
 
 export const actionController =
   (publication) =>
@@ -60,11 +57,6 @@ export const actionController =
         .location(published.location)
         .json(published.json);
     } catch (error) {
-      debug(error);
-      next(
-        httpError(error.statusCode, error, {
-          scope: error.scope,
-        })
-      );
+      next(httpError(error.statusCode, error.message));
     }
   };

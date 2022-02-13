@@ -33,5 +33,4 @@ test("Throws error if required scope not provided by access token", (t) => {
     }
   );
   t.is(error.statusCode, 401);
-  t.is(error.scope, "delete");
 });

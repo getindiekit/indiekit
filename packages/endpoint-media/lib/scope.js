@@ -16,10 +16,6 @@ export const checkScope = (providedScope = "media") => {
 
   throw new HttpError(
     401,
-    "The scope of this token does not meet the requirements for this request",
-    {
-      error: "Insufficient scope",
-      scope: "create media",
-    }
+    "The scope of this token does not meet the requirements for this request"
   );
 };

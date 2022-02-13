@@ -28,10 +28,6 @@ export const uploadController =
         .location(uploaded.location)
         .json(uploaded.json);
     } catch (error) {
-      next(
-        httpError(error.statusCode, error, {
-          scope: error.scope,
-        })
-      );
+      next(httpError(error.statusCode, error.message));
     }
   };

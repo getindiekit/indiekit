@@ -20,5 +20,4 @@ test("Returns 401 if access token does not provide adequate scope", async (t) =>
     result.body.error_description,
     "The scope of this token does not meet the requirements for this request"
   );
-  t.is(result.body.scope, "create media");
 });
