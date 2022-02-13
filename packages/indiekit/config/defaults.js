@@ -28,6 +28,7 @@ export const defaultConfig = {
     views: [fileURLToPath(new URL("../views", import.meta.url))],
   },
   plugins: [
+    "@indiekit/endpoint-image",
     "@indiekit/endpoint-media",
     "@indiekit/endpoint-micropub",
     "@indiekit/endpoint-share",

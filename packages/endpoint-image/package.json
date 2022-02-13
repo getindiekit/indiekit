@@ -1,0 +1,43 @@
+{
+  "name": "@indiekit/endpoint-image",
+  "version": "0.3.0",
+  "description": "Image resizing endpoint for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indieweb"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "includes",
+    "lib",
+    "locales",
+    "views",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/endpoint-image"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-sharp": "^4.2.40",
+    "keyv": "^4.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
