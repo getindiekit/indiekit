@@ -1,0 +1,92 @@
+.pagination {
+  @extend %caption;
+
+  --anchor-decoration: none;
+
+  border-block-start: var(--border-width-thin) solid
+    var(--color-neutral-lightest);
+  padding-block-start: calc(var(--space-block) / 2);
+}
+
+.pagination__list {
+  --flow-space: 0;
+
+  display: flex;
+  margin-inline: calc(var(--inset-large) * -1);
+}
+
+@media (--upto-medium-viewport) {
+  .pagination__item {
+    display: none;
+  }
+}
+
+/* Only show previous, next, first, last and current items on mobile */
+@media (--upto-medium-viewport) {
+  .pagination__item--current,
+  .pagination__item--divider,
+  .pagination__item--previous,
+  .pagination__item--next,
+  .pagination__item:nth-child(2),
+  .pagination__item:nth-last-child(2) {
+    display: inline-block;
+  }
+}
+
+.pagination__item--current,
+.pagination__item--divider {
+  font-weight: 500;
+  padding: var(--inset-large-squished);
+}
+
+.pagination__item--divider {
+  padding-inline: 0;
+  pointer-events: none;
+}
+
+.pagination__link {
+  border-radius: var(--border-radius-small);
+  display: block;
+  padding: var(--inset-large-squished);
+}
+
+.pagination__link:hover {
+  background-color: var(--color-offset);
+}
+
+.pagination__link-title {
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  gap: var(--space-inline);
+}
+
+.pagination__item--next .pagination__link-title {
+  flex-direction: row-reverse;
+}
+
+.pagination__link-label {
+  display: block;
+  margin-block-start: 0;
+}
+
+/**
+ * Block variant
+ * Position previous and next links above and below numbers
+ */
+.pagination__list--block {
+  flex-direction: column;
+}
+
+.pagination__list--block .pagination__item--next {
+  border-block-start: var(--border-width-thin) solid var(--color-offset);
+}
+
+.pagination__list--block .pagination__item--next .pagination__link-title {
+  flex-direction: row;
+}
+
+.pagination__list--block .pagination__item--next .pagination__link-label,
+.pagination__list--block .pagination__item--previous .pagination__link-label {
+  padding-inline-start: calc(1.2rem + var(--space-inline));
+}

@@ -63,6 +63,7 @@
 
   font-size: var(--step--1);
   font-variant: tabular-nums;
+  font-weight: 400;
   line-height: var(--line-height-loose);
 }
 

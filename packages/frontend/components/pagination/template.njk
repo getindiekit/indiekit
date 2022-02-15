@@ -1,0 +1,62 @@
+{% set type = opts.results.type | default("results") -%}
+<nav class="pagination{{- " " + opts.classes if opts.classes }}" id="pagination-label" aria-label="{{ type }} navigation">
+  <ul class="pagination__list">
+    {%- if opts.previous %}
+    <li class="pagination__item pagination__item--previous">
+      <a class="pagination__link" href="{{ opts.previous.href }}">
+        <span class="pagination__link-title">
+          {{- icon("previous") -}}
+          {%- if opts.previous.text %}{{ opts.previous.text -}}
+          {%- else %}Previous<span class="visually-hidden"> page</span>
+          {%- endif -%}
+        </span>
+        {%- if opts.previous.label %}
+        <span class="pagination__link-divider visually-hidden">:</span>
+        <span class="pagination__link-label">{{ opts.previous.label }}</span>
+        {% endif -%}
+      </a>
+    </li>
+    {% endif -%}
+
+    {%- for item in opts.items %}
+    {%- if item.divider %}
+    <li class="pagination__item pagination__item--divider">
+      {{ item.divider or "…" }}
+    </li>
+    {% else %}
+    {%- if item.current %}
+    <li class="pagination__item pagination__item--current">
+      <span class="visually-hidden">Page </span>{{ item.text }}<span class="visually-hidden"> (current page)</span>
+    </li>
+    {%- else %}
+    <li class="pagination__item">
+      <a class="pagination__link" href="{{ item.href }}">
+        <span class="visually-hidden">Page </span>{{ item.text }}
+      </a>
+    </li>
+    {% endif -%}
+    {% endif -%}
+    {% endfor -%}
+
+    {%- if opts.next %}
+    <li class="pagination__item pagination__item--next">
+      <a class="pagination__link" href="{{ opts.next.href }}">
+        <span class="pagination__link-title">
+          {{- icon("next") -}}
+          {%- if opts.next.text %}{{ opts.next.text -}}
+          {%- else %}Next<span class="visually-hidden"> page</span>
+          {%- endif -%}
+        </span>
+        {%- if opts.next.label %}
+        <span class="pagination__link-divider visually-hidden">:</span>
+        <span class="pagination__link-label">{{ opts.next.label }}</span>
+        {% endif -%}
+      </a>
+    </li>
+    {% endif -%}
+  </ul>
+
+  {%- if opts.results %}
+  <p class="pagination__results">Showing <b>{{ opts.results.from }}</b>{% if opts.results.from != opts.results.to %} to <b>{{ opts.results.to }}</b>{%- endif %} of <b>{{ opts.results.count }}</b> {{ type }}</p>
+  {% endif -%}
+</nav>

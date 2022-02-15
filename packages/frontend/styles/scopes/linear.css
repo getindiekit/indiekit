@@ -101,13 +101,19 @@
   padding: var(--inset-small-squished);
 }
 
-.s-linear ol,
-.s-linear ul {
+.s-linear ol:not([class]),
+.s-linear ul:not([class]) {
   padding-inline-start: var(--flow-inset);
 }
 
-.s-linear ul * + *,
-.s-linear ol * + *,
+.s-linear .no-bullets,
+.s-linear ol[class],
+.s-linear ul[class] {
+  list-style: none;
+}
+
+.s-linear ul:not([class]) * + *,
+.s-linear ol:not([class]) * + *,
 .s-linear dl:not([class]) * + * {
   margin-block-start: calc(var(--flow-space) / 2);
 }
@@ -155,11 +161,6 @@
 .s-linear .language-bash .token {
   color: var(--color-neutral-lightest);
   font-weight: normal;
-}
-
-.s-linear .no-bullets {
-  list-style: none;
-  padding-inline-start: 0;
 }
 
 .s-linear .overflow {
