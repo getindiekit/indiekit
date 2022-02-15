@@ -1,0 +1,30 @@
+.file-grid {
+  --flow-space: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-gap: var(--space-gap);
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.file-grid__item {
+  aspect-ratio: 1;
+  margin: 0;
+}
+
+.file-grid__item a {
+  display: block;
+}
+
+.file-grid__item img {
+  background-color: var(--color-offset);
+  border-radius: var(--border-radius-small);
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.file-grid__item img.not-found {
+  object-fit: none;
+}

@@ -72,6 +72,7 @@
   /* Spacing */
   --space-block: 0.75rem;
   --space-inline: 0.5rem;
+  --space-gap: 1.5rem;
 
   /* Sizing */
   --size-root: 1rem;
