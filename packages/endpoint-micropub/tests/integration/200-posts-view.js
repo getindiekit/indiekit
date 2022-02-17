@@ -32,7 +32,7 @@ test("Views previously uploaded file", async (t) => {
     .get("/micropub/posts")
     .set("Cookie", [cookie]);
   const postsDom = new JSDOM(postsResponse.text);
-  const postLink = postsDom.window.document.querySelector(".file a");
+  const postLink = postsDom.window.document.querySelector(".file-list a");
   const postName = postLink.textContent;
   const postId = postLink.href.split("/").pop();
 
