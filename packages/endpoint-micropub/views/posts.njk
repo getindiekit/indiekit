@@ -5,6 +5,7 @@
   {{ fileList({
     items: posts
   }) }}
+  {{ pagination(pages(page, limit, count)) }}
   {%- else -%}
   <p>{{ __("micropub.posts.none") }}<p>
   {%- endif %}

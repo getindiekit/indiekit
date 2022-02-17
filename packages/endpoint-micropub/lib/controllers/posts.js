@@ -1,8 +1,6 @@
 import HttpError from "http-errors";
 import mongodb from "mongodb";
 
-const { ObjectId } = mongodb;
-
 export const postsController = (application, publication) => ({
   /**
    * List previously published posts
@@ -18,9 +16,25 @@ export const postsController = (application, publication) => ({
         throw new Error(response.__("errors.noDatabase.content"));
       }
 
+      const page = parseInt(request.query.page) || 1;
+      const limit = parseInt(request.query.limit) || 40;
+      const skip = (page - 1) * limit;
+
+      const posts = await publication.posts
+        .find()
+        .sort({ _id: -1 })
+        .skip(skip)
+        .limit(limit)
+        .toArray();
+
+      const count = await publication.posts.countDocuments();
+
       response.render("posts", {
         title: response.__("micropub.posts.title"),
-        posts: await publication.posts.find().toArray(),
+        posts,
+        page,
+        limit,
+        count,
         parentUrl: `${publication.micropubEndpoint}/posts/`,
       });
     } catch (error) {
@@ -39,7 +53,9 @@ export const postsController = (application, publication) => ({
   async view(request, response, next) {
     try {
       const { id } = request.params;
-      const post = await publication.posts.findOne({ _id: new ObjectId(id) });
+      const post = await publication.posts.findOne({
+        _id: new mongodb.ObjectId(id),
+      });
 
       if (!post) {
         throw new HttpError(404, "No post was found with this UUID");
