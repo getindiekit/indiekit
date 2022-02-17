@@ -10,7 +10,7 @@
 ```
 {% endset %}
 
-{%- set postTypesHtml %}<ul class="no-bullets">{% for config in publication.postTypes -%}
+{%- set postTypesHtml %}<ul>{% for config in publication.postTypes -%}
   <li>{{ icon(config.type) }}{{ config.name }}</li>
 {%- endfor %}</ul>{% endset -%}
 
@@ -22,14 +22,14 @@
   {%- endif -%}
 {% endset -%}
 
-{%- set syndicationTargetsHtml %}<ul class="no-bullets">{% for target in publication.syndicationTargets -%}
+{%- set syndicationTargetsHtml %}<ul>{% for target in publication.syndicationTargets -%}
   <li>
     {%- if target.info.service.photo %}<img class="icon" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}
     <a href="{{ target.info.uid }}">{{ target.info.name }}</a>
   </li>
 {%- endfor %}</ul>{% endset -%}
 
-{%- set installedPluginsHtml %}<ul class="no-bullets">{% for plugin in application.installedPlugins -%}
+{%- set installedPluginsHtml %}<ul>{% for plugin in application.installedPlugins -%}
   <li>
     {%- if plugin.options.mountPath %}
       <a href="{{ plugin.options.mountPath }}">{{- plugin.name -}}</a>

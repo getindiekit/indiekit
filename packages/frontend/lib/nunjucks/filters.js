@@ -113,8 +113,7 @@ const markdown = (string, value) => {
 };
 
 /**
- * Transform object into an array that can be consumed by
- * the summary component.
+ * Transform object into an array that can be consumed by the summary component.
  *
  * @param {object} object Object
  * @returns {Array} Rows
@@ -128,7 +127,10 @@ const summaryRows = (object) => {
         text: key,
       },
       value: {
-        text: typeof value === "string" ? value : JSON.stringify(value),
+        text:
+          typeof value === "string"
+            ? value
+            : markdown(`~~~json\n${JSON.stringify(value, 0, 2)}\n~~~`),
       },
     });
   }

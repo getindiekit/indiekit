@@ -3,7 +3,7 @@
 
 {% block content %}
 {%- if posts %}
-  <ol class="no-bullets">
+  <ol>
   {%- for item in posts | reverse %}
     <li>
       {{ file({
