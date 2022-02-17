@@ -3,11 +3,11 @@
 {% set title = file.properties.filename %}
 
 {% block content %}
-  {% set type = file.properties['post-type'] %}
+  {% set type = file.properties["post-type"] %}
   {% if type == "audio" %}
     <audio src="{{ file.properties.url }}" controls>
   {% elif type == "photo" %}
-    <img src="{{ file.properties.url }}">
+    <img src="{{ file.properties.url }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';">
   {% elif type == "video" %}
     <video src="{{ file.properties.url }}" controls>
   {% else %}
