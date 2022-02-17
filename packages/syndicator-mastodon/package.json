@@ -33,7 +33,7 @@
     "directory": "packages/syndicator-mastodon"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "brevity": "^0.2.9",
     "html-to-text": "^8.0.0",
     "http-errors": "^2.0.0",
