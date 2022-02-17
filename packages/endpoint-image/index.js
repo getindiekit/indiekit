@@ -1,6 +1,7 @@
 import express from "express";
 import { expressSharp, HttpAdapter } from "express-sharp";
 import Keyv from "keyv";
+import KeyvMongoDB from "keyv-mongodb";
 
 const defaults = {
   mountPath: "/image",
@@ -30,7 +31,13 @@ export const ImageEndpoint = class {
   }
 
   routes(application, publication) {
-    const cache = new Keyv();
+    const store = application.hasDatabase
+      ? new KeyvMongoDB({
+          collection: "cache",
+          url: application.mongodbUrl,
+        })
+      : false;
+    const cache = new Keyv({ store });
     const router = this._router;
 
     router.use(
