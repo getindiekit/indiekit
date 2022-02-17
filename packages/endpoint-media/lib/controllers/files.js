@@ -1,6 +1,5 @@
 import HttpError from "http-errors";
 import mongodb from "mongodb";
-import { getPages } from "../utils.js";
 
 export const filesController = (application, publication) => ({
   /**
@@ -33,7 +32,9 @@ export const filesController = (application, publication) => ({
       response.render("files", {
         title: response.__("media.files.title"),
         files,
-        pages: getPages(page, limit, count),
+        page,
+        limit,
+        count,
         parentUrl: `${publication.mediaEndpoint}/files/`,
       });
     } catch (error) {

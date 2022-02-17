@@ -41,6 +41,51 @@ const icon = (name) => {
   return icon;
 };
 
+/**
+ * Generate pagination data
+ *
+ * @param {number} currentPage Current page
+ * @param {limit} limit Limit of items per page
+ * @param {count} count Count of all items
+ * @returns {object}
+ */
+const pages = (currentPage, limit, count) => {
+  // Pagination pages
+  const totalPages = Math.ceil(count / limit);
+  const nextPage = currentPage < totalPages ? currentPage + 1 : false;
+  const previousPage = currentPage > 0 ? currentPage - 1 : false;
+  const pageItems = [...Array(totalPages).keys()].map((item) => ({
+    current: item + 1 === currentPage,
+    href: `?${new URLSearchParams({ page: item + 1, limit })}`,
+    text: item + 1,
+  }));
+
+  // Pagination results
+  const resultsFrom = (currentPage - 1) * limit + 1;
+  let resultsTo = resultsFrom - 1 + limit;
+  resultsTo = resultsTo > count ? count : resultsTo;
+
+  return {
+    items: pageItems.length > 1 ? pageItems : false,
+    next: nextPage
+      ? {
+          href: `?${new URLSearchParams({ page: nextPage, limit })}`,
+        }
+      : false,
+    previous: previousPage
+      ? {
+          href: `?${new URLSearchParams({ page: previousPage, limit })}`,
+        }
+      : false,
+    results: {
+      from: resultsFrom,
+      to: resultsTo,
+      count,
+    },
+  };
+};
+
 module.exports = {
   icon,
+  pages,
 };

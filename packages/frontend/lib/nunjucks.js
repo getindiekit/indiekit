@@ -28,6 +28,7 @@ module.exports = (app) => {
   }
 
   // Add globals
+  parser.addGlobal("pages", nunjucks.runtime.markSafe(globals.pages));
   parser.addGlobal("icon", nunjucks.runtime.markSafe(globals.icon));
 
   return parser;

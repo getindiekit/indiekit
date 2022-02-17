@@ -5,7 +5,7 @@
   {{ fileGrid({
     items: files
   }) }}
-  {{ pagination(pages) }}
+  {{ pagination(pages(page, limit, count)) }}
   {%- else -%}
   <p>{{ __("media.files.none") }}<p>
   {%- endif %}
