@@ -1,0 +1,10 @@
+<ol class="file-list{{- " " + opts.classes if opts.classes }}">
+  {%- for item in opts.items %}
+  <li class="file-list__item">
+    <h2 class="file__title">
+      {{ icon(item.properties["post-type"]) }}<a href="{{ parentUrl + item._id }}">{{ item.properties.name or item.properties["post-type"] | capitalize }}</a>
+    </h2>
+    <p class="file__meta">{{ item.properties.published | date("p • PPP") }}</p>
+  </li>
+  {%- endfor %}
+</ol>
