@@ -13,7 +13,7 @@ test("Returns 200 if no post records", async (t) => {
   // Create post
   await request
     .post("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
@@ -21,7 +21,7 @@ test("Returns 200 if no post records", async (t) => {
 
   const result = await request
     .post("/syndicate")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json");
 
   t.is(result.statusCode, 200);

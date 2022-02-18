@@ -19,7 +19,7 @@ test.beforeEach((t) => {
       me: process.env.TEST_PUBLICATION_URL,
       scope: "create update delete media",
     },
-    bearerToken: process.env.TEST_BEARER_TOKEN,
+    bearerToken: process.env.TEST_TOKEN,
     me: process.env.TEST_PUBLICATION_URL,
   };
 });
@@ -45,13 +45,13 @@ test("Throws error getting authentication URL", async (t) => {
 
 test("Exchanges authorization code for access token", async (t) => {
   nock("https://tokens.indieauth.com").post("/token").query(true).reply(200, {
-    access_token: process.env.TEST_BEARER_TOKEN,
+    access_token: process.env.TEST_TOKEN,
     scope: "create",
   });
 
   const result = await indieauth.authorizationCodeGrant("code");
 
-  t.is(result, process.env.TEST_BEARER_TOKEN);
+  t.is(result, process.env.TEST_TOKEN);
 });
 
 test.serial(

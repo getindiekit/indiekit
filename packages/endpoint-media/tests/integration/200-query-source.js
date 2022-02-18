@@ -8,7 +8,7 @@ test("Returns list of previously uploaded files", async (t) => {
 
   const result = await request
     .get("/media")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .query("q=source");
 

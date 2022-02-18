@@ -7,7 +7,7 @@ test("Returns 400 if unsupported parameter provided", async (t) => {
 
   const result = await request
     .get("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .query("q=fooBar");
 

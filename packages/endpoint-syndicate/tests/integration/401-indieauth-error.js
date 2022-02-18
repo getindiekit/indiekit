@@ -18,11 +18,11 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
   // Create post
   const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_BEARER_TOKEN_CREATE_SCOPE,
+    token: process.env.TEST_TOKEN_CREATE_SCOPE,
   });
   await request
     .post("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .set("Cookie", [cookie])
     .send("h=entry")
@@ -34,7 +34,7 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
     .post("/syndicate")
     .set("Accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
-    .query(`token=${process.env.TEST_BEARER_TOKEN_CREATE_SCOPE}`);
+    .query(`token=${process.env.TEST_TOKEN_CREATE_SCOPE}`);
 
   // Assertions
   t.is(result.statusCode, 401);

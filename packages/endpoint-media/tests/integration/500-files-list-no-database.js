@@ -7,7 +7,7 @@ test("Returns list of previously uploaded files", async (t) => {
   const request = await testServer({ useDatabase: false });
   const response = await request
     .get("/media/files")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" });
+    .auth(process.env.TEST_TOKEN, { type: "bearer" });
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;

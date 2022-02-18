@@ -13,7 +13,7 @@ test("Creates post (JSON)", async (t) => {
   // Create post
   const result = await request
     .post("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .send({
       type: ["h-entry"],
       properties: {

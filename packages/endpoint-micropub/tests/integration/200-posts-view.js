@@ -13,7 +13,7 @@ test("Views previously uploaded file", async (t) => {
   const request = await testServer();
   await request
     .post("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .send("h=entry")
     .send("name=Foobar");

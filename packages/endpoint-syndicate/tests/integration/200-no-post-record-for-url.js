@@ -7,7 +7,7 @@ test("Returns 200 if no post record for URL", async (t) => {
 
   const result = await request
     .post("/syndicate")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`);
 

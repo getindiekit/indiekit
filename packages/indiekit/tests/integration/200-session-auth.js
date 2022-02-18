@@ -9,7 +9,7 @@ test("Returns authenticated session", async (t) => {
     .get("/")
     .reply(200, getFixture("html/home.html"));
   nock("https://tokens.indieauth.com").post("/token").query(true).reply(200, {
-    access_token: process.env.TEST_BEARER_TOKEN,
+    access_token: process.env.TEST_TOKEN,
     scope: "create",
   });
   const request = await testServer();

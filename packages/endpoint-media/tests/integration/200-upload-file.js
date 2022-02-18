@@ -12,7 +12,7 @@ test("Uploads file", async (t) => {
 
   const result = await request
     .post("/media")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 

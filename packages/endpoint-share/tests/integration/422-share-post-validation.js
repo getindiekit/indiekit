@@ -12,7 +12,7 @@ test("Returns 422 with invalid form submission", async (t) => {
   const request = await testServer();
   const response = await request
     .post("/share")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" });
+    .auth(process.env.TEST_TOKEN, { type: "bearer" });
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;

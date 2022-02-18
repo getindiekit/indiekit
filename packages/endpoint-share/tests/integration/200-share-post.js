@@ -16,12 +16,12 @@ test("Posts content and redirects back to share page", async (t) => {
   // Publish post
   const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_BEARER_TOKEN,
+    token: process.env.TEST_TOKEN,
   });
   const result = await request
     .post("/share")
     .set("Cookie", [cookie])
-    .send(`access_token=${process.env.TEST_BEARER_TOKEN}`)
+    .send(`access_token=${process.env.TEST_TOKEN}`)
     .send("name=Foobar")
     .send("content=Test+of+sharing+a+bookmark")
     .send("bookmark-of=https://example.website");

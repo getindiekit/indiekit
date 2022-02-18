@@ -9,7 +9,7 @@ test("Returns 400 if source URL can’t be found", async (t) => {
 
   const result = await request
     .get("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .query("q=source&properties[]=name&url=https://website.example/post.html");
 

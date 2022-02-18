@@ -23,11 +23,11 @@ test("Syndicates a URL", async (t) => {
   // Create post
   const request = await testServer();
   const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_BEARER_TOKEN,
+    token: process.env.TEST_TOKEN,
   });
   await request
     .post("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .set("Cookie", [cookie])
     .send("h=entry")
@@ -39,7 +39,7 @@ test("Syndicates a URL", async (t) => {
     .post("/syndicate")
     .set("Accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
-    .query(`token=${process.env.TEST_BEARER_TOKEN}`);
+    .query(`token=${process.env.TEST_TOKEN}`);
 
   // Assertions
   t.is(result.statusCode, 200);
