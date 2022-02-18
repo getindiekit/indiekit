@@ -40,7 +40,7 @@
   @extend %label;
 
   flex: 1;
-  max-inline-size: 33%;
+  max-inline-size: 25%;
   min-inline-size: 15rem;
   padding-inline-end: var(--space-inline);
 }
@@ -54,6 +54,10 @@
 .summary__value > * {
   list-style: none;
   margin-block-start: 0;
+}
+
+.summary__value > *:last-child {
+  margin-block-end: 0;
 }
 
 .summary__value a {
