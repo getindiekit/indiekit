@@ -32,8 +32,8 @@ test("Views previously uploaded file", async (t) => {
     .get("/media/files")
     .set("Cookie", [cookie]);
   const filesDom = new JSDOM(filesResponse.text);
-  const fileLink = filesDom.window.document.querySelector(".file a");
-  const fileName = fileLink.textContent;
+  const fileLink = filesDom.window.document.querySelector(".file-grid a");
+  const fileName = fileLink.querySelector("img").alt;
   const fileId = fileLink.href.split("/").pop();
 
   // Visit file page
