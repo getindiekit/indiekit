@@ -57,12 +57,13 @@ npm test
 
 The following environment variables need to be set before running tests:
 
-- `TEST_BEARER_TOKEN`
-- `TEST_BEARER_TOKEN_NOSCOPE`
+- `TEST_TOKEN`
+- `TEST_TOKEN_CREATE_SCOPE`
+- `TEST_TOKEN_NO_SCOPE`
 - `TEST_PUBLICATION_URL`
 - `TEST_SESSION_SECRET`
 
-`TEST_BEARER_TOKEN` and `TEST_BEARER_TOKEN_NOSCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.`TEST_BEARER_TOKEN` should provide scoped permissions `create update delete`, whereas `TEST_BEARER_TOKEN_NOSCOPE` should provide no permissions at all.
+`TEST_TOKEN`, `TEST_TOKEN_CREATE_SCOPE` and `TEST_TOKEN_NO_SCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.`TEST_TOKEN` should provide scope for `create update delete`, `TEST_TOKEN` should provide scope for `create` and `TEST_TOKEN_NO_SCOPE` should provide no scope at all.
 
 [Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating access tokens for this purpose.
 

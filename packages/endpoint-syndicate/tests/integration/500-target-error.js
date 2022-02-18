@@ -16,7 +16,7 @@ test("Returns 500 error syndicating a URL", async (t) => {
   const request = await testServer();
   await request
     .post("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
@@ -27,7 +27,7 @@ test("Returns 500 error syndicating a URL", async (t) => {
     .post("/syndicate")
     .set("Accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
-    .query(`token=${process.env.TEST_BEARER_TOKEN}`);
+    .query(`token=${process.env.TEST_TOKEN}`);
 
   // Assertions
   t.is(result.statusCode, 500);

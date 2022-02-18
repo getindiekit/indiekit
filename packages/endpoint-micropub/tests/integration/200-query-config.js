@@ -7,7 +7,7 @@ test("Returns categories", async (t) => {
 
   const response = await request
     .get("/micropub")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json")
     .query("q=config");
 

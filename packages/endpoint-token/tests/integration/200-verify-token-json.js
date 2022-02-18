@@ -6,7 +6,7 @@ test("Verifies token and returns JSON", async (t) => {
   const request = await testServer();
   const result = await request
     .get("/token")
-    .auth(process.env.TEST_BEARER_TOKEN, { type: "bearer" })
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("Accept", "application/json");
 
   t.is(result.status, 200);
