@@ -192,7 +192,7 @@ export const IndieAuth = class {
     return async (request, response) => {
       try {
         const { url } = response.locals.application;
-        this.clientId = url;
+        this.clientId = getCanonicalUrl(url);
 
         const callbackUrl = `${url}/session/auth`;
         const { redirect } = request.query;
