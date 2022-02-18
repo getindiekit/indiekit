@@ -82,7 +82,6 @@ test("Doesn’t create a status if post is an off-service reply", (t) => {
     JSON.parse(getFixture("jf2/reply-twitter.jf2")),
     "https://mastodon.example"
   );
-  t.log(result);
 
   t.falsy(result);
 });
