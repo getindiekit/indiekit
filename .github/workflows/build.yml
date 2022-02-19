@@ -2,11 +2,8 @@ name: build
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches-ignore:
+      - dependabot/*
 
 jobs:
   test:
@@ -19,11 +16,11 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.3.0
+        uses: supercharge/mongodb-github-action@1.7.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - name: Download localisations
@@ -36,9 +33,12 @@ jobs:
           npm ci
       - name: Run tests
         env:
-          TEST_BEARER_TOKEN: ${{ secrets.TEST_BEARER_TOKEN }}
-          TEST_BEARER_TOKEN_NOSCOPE: ${{ secrets.TEST_BEARER_TOKEN_NOSCOPE }}
+          NODE_ENV: test
+          TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+          TEST_TOKEN_CREATE_SCOPE: ${{ secrets.TEST_TOKEN_CREATE_SCOPE }}
+          TEST_TOKEN_NO_SCOPE: ${{ secrets.TEST_TOKEN_NO_SCOPE }}
           TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
           TEST_SESSION_SECRET: ${{ secrets.TEST_SESSION_SECRET }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
         run: |
           npm test
