@@ -11,7 +11,7 @@ const { assetsPath } = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
+  max: 250,
   standardHeaders: true,
   legacyHeaders: false,
 });
