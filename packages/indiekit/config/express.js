@@ -1,6 +1,7 @@
 import express from "express";
 import frontend from "@indiekit/frontend";
 import * as error from "../lib/middleware/error.js";
+import { forceHttps } from "../lib/middleware/force-https.js";
 import { internationalisation } from "../lib/middleware/internationalisation.js";
 import { locals } from "../lib/middleware/locals.js";
 import { logging } from "../lib/middleware/logging.js";
@@ -21,6 +22,11 @@ export const expressConfig = (indiekitConfig) => {
 
   // Session
   app.use(application.sessionMiddleware);
+
+  // Force HTTPS
+  if (process.env.NODE_ENV === "production") {
+    app.use(forceHttps)
+  }
 
   // Internationalisation
   app.use(internationalisation(indiekitConfig));
