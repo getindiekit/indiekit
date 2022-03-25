@@ -40,6 +40,7 @@
   ],
   "dependencies": {
     "dotenv": "^16.0.0",
+    "husky": "^7.0.2",
     "lerna": "^4.0.0"
   },
   "devDependencies": {
@@ -55,7 +56,6 @@
     "c8": "^7.8.0",
     "cookie-session": "^2.0.0",
     "eslint-plugin-jsdoc": "^38.0.0",
-    "husky": "^7.0.2",
     "jsdom": "^19.0.0",
     "mock-req-res": "^1.2.0",
     "mock-session": "^0.0.5",
