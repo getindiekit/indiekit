@@ -19,7 +19,7 @@
     "url": "https://github.com/getindiekit/indiekit.git"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": "16.x"
   },
   "type": "module",
   "scripts": {
