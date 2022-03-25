@@ -24,7 +24,7 @@
   "type": "module",
   "scripts": {
     "prepublishOnly": "localazy download && xo --fix **/locales/*.js",
-    "postinstall": "lerna bootstrap --no-ci && husky install",
+    "postinstall": "lerna bootstrap && husky install",
     "dev": "nodemon indiekit serve",
     "start": "indiekit serve",
     "lint:markdown": "markdownlint-cli2 '**/*.md' '!**/node_modules' '!**/CHANGELOG.md'",

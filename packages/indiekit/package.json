@@ -38,12 +38,12 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
-    "@indiekit/endpoint-media": "^0.3.0",
-    "@indiekit/endpoint-micropub": "^0.3.0",
-    "@indiekit/endpoint-share": "^0.3.0",
-    "@indiekit/endpoint-syndicate": "^0.3.0",
-    "@indiekit/frontend": "^0.3.0",
-    "@indiekit/preset-jekyll": "^0.3.0",
+    "@indiekit/endpoint-media": "*",
+    "@indiekit/endpoint-micropub": "*",
+    "@indiekit/endpoint-share": "*",
+    "@indiekit/endpoint-syndicate": "*",
+    "@indiekit/frontend": "*",
+    "@indiekit/preset-jekyll": "*",
     "commander": "^9.0.0",
     "cookie-session": "^2.0.0",
     "cosmiconfig": "^7.0.1",
