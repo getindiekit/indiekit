@@ -37,7 +37,7 @@ jobs:
           TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
           TEST_TOKEN_CREATE_SCOPE: ${{ secrets.TEST_TOKEN_CREATE_SCOPE }}
           TEST_TOKEN_NO_SCOPE: ${{ secrets.TEST_TOKEN_NO_SCOPE }}
-          TEST_PUBLICATION_URL: ${{ secrets.TEST_PUBLICATION_URL }}
+          TEST_PUBLICATION_URL: https://getindiekit.github.io/sandbox/
           TEST_SESSION_SECRET: ${{ secrets.TEST_SESSION_SECRET }}
           TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
         run: |
