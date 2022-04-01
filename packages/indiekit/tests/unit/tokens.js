@@ -128,7 +128,7 @@ test("Throws error verifying access token without permissions", (t) => {
     },
     {
       name: "ForbiddenError",
-      message: "User does not have permission to perform request",
+      message: "Publication URL does not match that provided by access token",
     }
   );
 });

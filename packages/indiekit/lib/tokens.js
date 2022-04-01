@@ -79,7 +79,7 @@ export const verifyAccessToken = (me, accessToken) => {
   if (!isAuthenticated) {
     throw new HttpError(
       403,
-      "User does not have permission to perform request"
+      "Publication URL does not match that provided by access token"
     );
   }
 
