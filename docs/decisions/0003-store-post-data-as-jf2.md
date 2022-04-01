@@ -52,7 +52,7 @@ if (jf2.name) { … }
 
 This also means that any new value needs to be saved inside an array.
 
-- Static site generators tend to save post properties using frontmatter (typically YAML), a flatter data structure that is closer in design to that of JF2.
+- Static site generators tend to save post properties using front matter (typically YAML), a flatter data structure that is closer in design to that of JF2.
 
 ### Option 2: Store properties as mf2 and JF2
 

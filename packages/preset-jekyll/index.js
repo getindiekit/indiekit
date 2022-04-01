@@ -179,10 +179,10 @@ export const JekyllPreset = class {
         "mp-syndicate-to": properties["mp-syndicate-to"],
       }),
     };
-    let frontmatter = YAML.stringify(properties);
-    frontmatter = `---\n${frontmatter}---\n`;
+    let frontMatter = YAML.stringify(properties);
+    frontMatter = `---\n${frontMatter}---\n`;
 
-    return frontmatter + content;
+    return frontMatter + content;
   }
 
   init(Indiekit) {

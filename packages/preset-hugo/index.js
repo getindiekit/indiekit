@@ -31,25 +31,25 @@ export const HugoPreset = class {
    */
   _getFrontMatter(properties) {
     let delimiters;
-    let frontmatter;
+    let frontMatter;
 
     switch (this.options.frontMatterFormat) {
       case "json":
         delimiters = ["", "\n"];
-        frontmatter = JSON.stringify(properties, null, 2);
+        frontMatter = JSON.stringify(properties, null, 2);
         break;
       case "toml":
         delimiters = ["+++\n", "+++\n"];
-        frontmatter = TOML.stringify(properties);
+        frontMatter = TOML.stringify(properties);
         break;
       case "yaml":
       default:
         delimiters = ["---\n", "---\n"];
-        frontmatter = YAML.stringify(properties);
+        frontMatter = YAML.stringify(properties);
         break;
     }
 
-    return `${delimiters[0]}${frontmatter}${delimiters[1]}`;
+    return `${delimiters[0]}${frontMatter}${delimiters[1]}`;
   }
 
   /**

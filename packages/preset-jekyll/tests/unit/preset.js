@@ -83,7 +83,7 @@ title: Lunchtime
 });
 
 test("Renders post template", (t) => {
-  const jekyll = new JekyllPreset({ frontmatterFormat: "yaml" });
+  const jekyll = new JekyllPreset();
 
   const result = jekyll.postTemplate(t.context.properties);
 

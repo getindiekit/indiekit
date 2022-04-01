@@ -13,7 +13,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
-# Frontmatter defaults
+# Front matter defaults
 defaults:
   - scope:
       path: ""
