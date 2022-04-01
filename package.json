@@ -112,6 +112,7 @@
             "authorization_endpoint",
             "client_id",
             "code_verifier",
+            "date_issued",
             "error_description",
             "grant_type",
             "job_id",

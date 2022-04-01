@@ -1,3 +1,4 @@
+import process from "node:process";
 import express from "express";
 import frontend from "@indiekit/frontend";
 import * as error from "../lib/middleware/error.js";
@@ -25,7 +26,7 @@ export const expressConfig = (indiekitConfig) => {
 
   // Force HTTPS
   if (process.env.NODE_ENV === "production") {
-    app.use(forceHttps)
+    app.use(forceHttps);
   }
 
   // Internationalisation

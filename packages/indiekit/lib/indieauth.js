@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import process from "node:process";
 import got from "got";
 import HttpError from "http-errors";
 import {

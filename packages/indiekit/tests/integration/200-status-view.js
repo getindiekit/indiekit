@@ -1,6 +1,5 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 

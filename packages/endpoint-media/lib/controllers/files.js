@@ -16,8 +16,8 @@ export const filesController = (application, publication) => ({
         throw new Error(response.__("errors.noDatabase.content"));
       }
 
-      const page = parseInt(request.query.page) || 1;
-      const limit = parseInt(request.query.limit) || 18;
+      const page = Number.parseInt(request.query.page, 10) || 1;
+      const limit = Number.parseInt(request.query.limit, 10) || 18;
       const skip = (page - 1) * limit;
 
       const files = await publication.media

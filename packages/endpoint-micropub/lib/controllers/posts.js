@@ -16,8 +16,8 @@ export const postsController = (application, publication) => ({
         throw new Error(response.__("errors.noDatabase.content"));
       }
 
-      const page = parseInt(request.query.page) || 1;
-      const limit = parseInt(request.query.limit) || 40;
+      const page = Number.parseInt(request.query.page, 10) || 1;
+      const limit = Number.parseInt(request.query.limit, 10) || 40;
       const skip = (page - 1) * limit;
 
       const posts = await publication.posts

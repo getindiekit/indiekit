@@ -6,16 +6,19 @@
  * @param {Function} next Callback
  * @returns {object} HTTP response
  */
-export function forceHttps(req, res, next) {
-  let protocol = req.headers['x-forwarded-proto']
+export function forceHttps(request, response, next) {
+  const protocol = request.headers["x-forwarded-proto"];
 
-  if (protocol !== 'https') {
-    console.info('Redirecting request to https')
+  if (protocol !== "https") {
+    console.info("Redirecting request to https");
     // 302 temporary. This is a feature that can be disabled
-    return res.redirect(302, 'https://' + req.get("Host") + req.originalUrl)
+    return response.redirect(
+      302,
+      "https://" + request.get("Host") + request.originalUrl
+    );
   }
 
   // Mark proxy as secure (allows secure cookies)
-  req.connection.proxySecure = true
-  next()
+  request.connection.proxySecure = true;
+  next();
 }

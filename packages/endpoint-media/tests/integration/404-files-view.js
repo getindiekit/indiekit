@@ -1,6 +1,5 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 404 if can’t find previously uploaded file", async (t) => {

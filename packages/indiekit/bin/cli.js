@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import process from "node:process";
 import { Command } from "commander";
 import { Indiekit } from "@indiekit/indiekit";
 import { defaultConfig } from "../config/defaults.js";

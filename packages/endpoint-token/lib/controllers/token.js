@@ -10,6 +10,8 @@ export const tokenController = (publication) => ({
    *
    * @param {object} request HTTP request
    * @param {Promise|object} response HTTP response
+   * @param {Function} next Callback
+   * @returns {object} HTTP response
    */
   get(request, response, next) {
     if (request.headers.authorization) {
@@ -26,7 +28,12 @@ export const tokenController = (publication) => ({
 
         // Publication URL does not match that provided by access token
         if (!isAuthenticated) {
-          return next(new HttpError(403, "Publication URL does not match that provided by access token"))
+          return next(
+            new HttpError(
+              403,
+              "Publication URL does not match that provided by access token"
+            )
+          );
         }
 
         if (
@@ -35,10 +42,7 @@ export const tokenController = (publication) => ({
         ) {
           response.json(accessToken);
         } else {
-          response.header(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-          );
+          response.header("Content-Type", "application/x-www-form-urlencoded");
           response.send(new URLSearchParams(accessToken).toString());
         }
       } catch (error) {

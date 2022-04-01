@@ -54,7 +54,9 @@ const pages = (currentPage, limit, count) => {
   const totalPages = Math.ceil(count / limit);
   const nextPage = currentPage < totalPages ? currentPage + 1 : false;
   const previousPage = currentPage > 0 ? currentPage - 1 : false;
-  const pageItems = [...Array(totalPages).keys()].map((item) => ({
+  // eslint-disable-next-line unicorn/no-new-array
+  const pages = [...new Array(totalPages).keys()]; // [0, 1, 2]
+  const pageItems = pages.map((item) => ({
     current: item + 1 === currentPage,
     href: `?${new URLSearchParams({ page: item + 1, limit })}`,
     text: item + 1,

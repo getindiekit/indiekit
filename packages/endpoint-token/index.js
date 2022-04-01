@@ -12,8 +12,8 @@ export const TokenEndpoint = class {
     this.id = "endpoint-token";
     this.name = "Token endpoint";
     this.options = { ...defaults, ...options };
+    // eslint-disable-next-line new-cap
     this._router = express.Router({
-      // eslint-disable-line new-cap
       caseSensitive: true,
       mergeParams: true,
     });
