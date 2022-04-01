@@ -47,7 +47,7 @@ const icon = (name) => {
  * @param {number} currentPage Current page
  * @param {limit} limit Limit of items per page
  * @param {count} count Count of all items
- * @returns {object}
+ * @returns {object} Options for pagination component
  */
 const pages = (currentPage, limit, count) => {
   // Pagination pages
