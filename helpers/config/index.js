@@ -44,7 +44,7 @@ export const testConfig = async (options) => {
       ...(options.useSyndicator ? ["@indiekit/syndicator-twitter"] : []),
     ],
     publication: {
-      me: process.env.TEST_PUBLICATION_URL,
+      me: options?.publication?.me || process.env.TEST_PUBLICATION_URL,
       postTypes,
       timeZone: "UTC",
     },

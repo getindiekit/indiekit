@@ -19,21 +19,27 @@ export const tokenController = (publication) => ({
           .split(/\s+/)[1];
         const accessToken = jwt.verify(bearerToken, process.env.TOKEN_SECRET);
 
+        // Normalize publication and token URLs before comparing
+        const accessTokenMe = getCanonicalUrl(accessToken.me);
+        const publicationMe = getCanonicalUrl(publication.me);
+        const isAuthenticated = accessTokenMe === publicationMe;
+
+        // Publication URL does not match that provided by access token
+        if (!isAuthenticated) {
+          return next(new HttpError(403, "Publication URL does not match that provided by access token"))
+        }
+
         if (
-          getCanonicalUrl(accessToken.me) === getCanonicalUrl(publication.me)
+          request?.headers?.accept &&
+          request.headers.accept.includes("application/json")
         ) {
-          if (
-            request?.headers?.accept &&
-            request.headers.accept.includes("application/json")
-          ) {
-            response.json(accessToken);
-          } else {
-            response.header(
-              "Content-Type",
-              "application/x-www-form-urlencoded"
-            );
-            response.send(new URLSearchParams(accessToken).toString());
-          }
+          response.json(accessToken);
+        } else {
+          response.header(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+          );
+          response.send(new URLSearchParams(accessToken).toString());
         }
       } catch (error) {
         next(new HttpError(401, `JSON Web Token error: ${error.message}`));
