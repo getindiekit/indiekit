@@ -1,8 +1,5 @@
 import YAML from "yaml";
 
-// YAML options
-YAML.scalarOptions.str.fold.lineWidth = 0;
-
 export const JekyllPreset = class {
   constructor() {
     this.id = "jekyll";
@@ -179,7 +176,7 @@ export const JekyllPreset = class {
         "mp-syndicate-to": properties["mp-syndicate-to"],
       }),
     };
-    let frontMatter = YAML.stringify(properties);
+    let frontMatter = YAML.stringify(properties, { lineWidth: 0 });
     frontMatter = `---\n${frontMatter}---\n`;
 
     return frontMatter + content;

@@ -30,7 +30,7 @@
     "directory": "packages/preset-jekyll"
   },
   "dependencies": {
-    "yaml": "^1.10.2"
+    "yaml": "^2.0.0"
   },
   "publishConfig": {
     "access": "public"

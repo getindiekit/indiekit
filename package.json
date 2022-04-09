@@ -55,7 +55,7 @@
     "ava": "^4.0.0",
     "c8": "^7.8.0",
     "cookie-session": "^2.0.0",
-    "eslint-plugin-jsdoc": "^38.0.0",
+    "eslint-plugin-jsdoc": "^39.0.0",
     "jsdom": "^19.0.0",
     "mock-req-res": "^1.2.0",
     "mock-session": "^0.0.5",

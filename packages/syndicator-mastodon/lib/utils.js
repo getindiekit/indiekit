@@ -120,16 +120,18 @@ export const htmlToStatusText = (html, serverUrl) => {
 
   // Convert HTML to plain text, removing any links
   const text = htmlToText(html, {
-    tags: {
-      a: {
+    selectors: [
+      {
+        selector: "a",
         options: {
           ignoreHref: true,
         },
       },
-      img: {
+      {
+        selector: "img",
         format: "skip",
       },
-    },
+    ],
     wordwrap: false,
   });
 

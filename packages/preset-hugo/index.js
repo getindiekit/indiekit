@@ -2,9 +2,6 @@ import camelcaseKeys from "camelcase-keys";
 import TOML from "@iarna/toml";
 import YAML from "yaml";
 
-// YAML options
-YAML.scalarOptions.str.fold.lineWidth = 0;
-
 const defaults = {
   frontMatterFormat: "yaml",
 };
@@ -45,7 +42,7 @@ export const HugoPreset = class {
       case "yaml":
       default:
         delimiters = ["---\n", "---\n"];
-        frontMatter = YAML.stringify(properties);
+        frontMatter = YAML.stringify(properties, { lineWidth: 0 });
         break;
     }
 

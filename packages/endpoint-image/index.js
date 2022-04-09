@@ -31,13 +31,15 @@ export const ImageEndpoint = class {
   }
 
   routes(application, publication) {
-    const store = application.hasDatabase
-      ? new KeyvMongoDB({
-          collection: "cache",
-          url: application.mongodbUrl,
-        })
-      : false;
-    const cache = new Keyv({ store });
+    let cache;
+    if (application.hasDatabase) {
+      const store = new KeyvMongoDB({
+        collection: "cache",
+        url: application.mongodbUrl,
+      });
+      cache = new Keyv({ store });
+    }
+
     const router = this._router;
 
     router.use(

@@ -35,7 +35,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-sharp": "^4.2.40",
-    "keyv": "^4.1.1",
+    "keyv": "^4.2.0",
     "keyv-mongodb": "^2.0.0"
   },
   "publishConfig": {
