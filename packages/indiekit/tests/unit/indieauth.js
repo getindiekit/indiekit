@@ -95,7 +95,14 @@ test("Checks if user is authorized", async (t) => {
     headers: { authorization: `Bearer ${t.context.bearerToken}` },
     session: {},
   });
-  const response = mockResponse({ locals: { publication: {} } });
+  const response = mockResponse({
+    locals: {
+      application: {},
+      publication: {
+        tokenEndpoint: "https://tokens.indieauth.com/token",
+      },
+    },
+  });
   const next = sinon.spy();
 
   await indieauth.authorise()(request, response, next);

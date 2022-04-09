@@ -40,7 +40,7 @@ export const MediaEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    publication.mediaEndpoint = this.mountPath;
+    application.mediaEndpoint = this.mountPath;
   }
 
   routes(application, publication) {

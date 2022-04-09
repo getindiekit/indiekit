@@ -40,7 +40,7 @@ export const MicropubEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    publication.micropubEndpoint = this.mountPath;
+    application.micropubEndpoint = this.mountPath;
   }
 
   routes(application, publication) {

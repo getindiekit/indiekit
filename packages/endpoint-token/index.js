@@ -35,7 +35,7 @@ export const TokenEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    publication.tokenEndpoint = this.mountPath;
+    application.tokenEndpoint = this.mountPath;
   }
 
   routes(application, publication) {

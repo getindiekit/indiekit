@@ -33,8 +33,6 @@ export const shareController = (publication) => ({
   async post(request, response) {
     const { content, name } = request.body;
     const bookmarkOf = request.body.url || request.body["bookmark-of"];
-    const host = `${request.protocol}://${request.headers.host}`;
-    const path = publication.micropubEndpoint;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -49,7 +47,7 @@ export const shareController = (publication) => ({
     }
 
     try {
-      const { body } = await got.post(`${host}${path}`, {
+      const { body } = await got.post(publication.micropubEndpoint, {
         form: request.body,
         responseType: "json",
       });

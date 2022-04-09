@@ -14,7 +14,6 @@ import {
   getRelationshipsFromUrl,
   randomString,
 } from "./utils.js";
-import { getTokenEndpoint } from "./publication.js";
 
 export const IndieAuth = class {
   constructor(options = {}) {
@@ -168,7 +167,7 @@ export const IndieAuth = class {
         const bearerToken = findBearerToken(request);
         response.locals.publication.bearerToken = bearerToken;
 
-        tokenEndpoint = getTokenEndpoint(tokenEndpoint, request);
+        const { tokenEndpoint } = response.locals.publication;
         const token = await requestAccessToken(tokenEndpoint, bearerToken);
         const accessToken = verifyAccessToken(me, token);
         request.session.token = accessToken;

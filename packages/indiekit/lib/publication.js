@@ -25,35 +25,22 @@ export const getCategories = async (cache, publication) => {
 };
 
 /**
- * Get media endpoint from server derived values
- * (Media endpoint needs to be a fully resolved URL)
+ * Get named endpoint from publication config or server derived value
  *
- * @param {string} mediaEndpoint Media endpoint value
- * @param {object} request HTTP request
- * @returns {string} Media endpoint URL
+ * @param {string} endpointName Endpoint name
+ * @param {string} applicationUrl Application URL
+ * @returns {string} Endpoint URL
  */
-export const getMediaEndpoint = (mediaEndpoint, request) => {
-  if (mediaEndpoint && isUrl(mediaEndpoint)) {
-    return mediaEndpoint;
+export const getEndpoint = (endpointName, indiekitConfig) => {
+  const { application, publication } = indiekitConfig;
+
+  // Use endpoint in publication config
+  if (publication[endpointName] && isUrl(publication[endpointName])) {
+    return publication[endpointName];
   }
 
-  return `${request.protocol}://${request.headers.host}${mediaEndpoint}`;
-};
-
-/**
- * Get token endpoint from server derived values
- * (Token endpoint needs to be a fully resolved URL)
- *
- * @param {string} tokenEndpoint Token endpoint value
- * @param {object} request HTTP request
- * @returns {string} Token endpoint URL
- */
-export const getTokenEndpoint = (tokenEndpoint, request) => {
-  if (tokenEndpoint && isUrl(tokenEndpoint)) {
-    return tokenEndpoint;
-  }
-
-  return `${request.protocol}://${request.headers.host}${tokenEndpoint}`;
+  // Else, use endpoint provided by application
+  return new URL(application[endpointName], application.url).href;
 };
 
 /**
