@@ -1,7 +1,7 @@
 import Debug from "debug";
 import httpError from "http-errors";
 import got from "got";
-import { getMicropubEndpoint, getPostData } from "../utils.js";
+import { getPostData } from "../utils.js";
 
 const debug = new Debug("indiekit:endpoint-syndicate");
 
@@ -65,8 +65,7 @@ export const syndicateController = (application, publication) => ({
       }
 
       // Update post with syndicated URL(s) and removal of syndication target(s)
-      const micropubEndpoint = getMicropubEndpoint(publication, request);
-      const updated = await got.post(micropubEndpoint, {
+      const updated = await got.post(publication.micropubEndpoint, {
         responseType: "json",
         headers: {
           authorization: `Bearer ${token}`,

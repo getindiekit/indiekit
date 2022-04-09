@@ -6,7 +6,7 @@ import { Indiekit } from "../../index.js";
 import { Cache } from "../../lib/cache.js";
 import {
   getCategories,
-  getMediaEndpoint,
+  getEndpoint,
   getPostTemplate,
   getPostTypes,
 } from "../../lib/publication.js";
@@ -17,9 +17,12 @@ test.beforeEach(async (t) => {
   const { application, publication } = await indiekit.bootstrap();
 
   t.context = {
+    application: {
+      mediaEndpoint: "/media",
+      url: "https://server.example",
+    },
     cacheCollection: application.cache,
     publication,
-    mediaEndpoint: publication.mediaEndpoint,
   };
 });
 
@@ -63,28 +66,15 @@ test("Returns empty array if no publication config provided", async (t) => {
   t.deepEqual(result, []);
 });
 
-test("Gets media endpoint from server derived values", (t) => {
-  const request = {
-    protocol: "https",
-    headers: {
-      host: "server.example",
-    },
-  };
-
-  const result = getMediaEndpoint(t.context.mediaEndpoint, request);
+test("Gets endpoint from server derived values", (t) => {
+  const result = getEndpoint("mediaEndpoint", t.context);
 
   t.is(result, "https://server.example/media");
 });
 
-test("Gets media endpoint from publication configuration", (t) => {
-  const request = {
-    protocol: "https",
-    headers: {
-      host: "website.example",
-    },
-  };
-
-  const result = getMediaEndpoint("https://website.example/media", request);
+test("Gets endpoint from publication configuration", (t) => {
+  t.context.publication.mediaEndpoint = "https://website.example/media";
+  const result = getEndpoint("mediaEndpoint", t.context);
 
   t.is(result, "https://website.example/media");
 });

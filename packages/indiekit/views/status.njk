@@ -4,9 +4,9 @@
 {{ __("guidance.discovery", application.name) | safe }}
 
 ```html
-<link rel="micropub" href="{{ application.url }}/micropub">
-<link rel="authorization_endpoint" href="https://indieauth.com/auth">
-<link rel="token_endpoint" href="https://tokens.indieauth.com/token">
+<link rel="micropub" href="{{ publication.micropubEndpoint }}">
+<link rel="authorization_endpoint" href="{{ publication.authorizationEndpoint }}">
+<link rel="token_endpoint" href="{{ publication.tokenEndpoint }}">
 ```
 {% endset %}
 
@@ -109,12 +109,33 @@
       }
     } if publication.syndicationTargets.length > 0, {
       key: {
+        text: __("status.publication.micropubEndpoint")
+      },
+      value: {
+        text: publication.micropubEndpoint | urlize or __("noValue")
+      }
+    } if publication.micropubEndpoint, {
+      key: {
         text: __("status.publication.mediaEndpoint")
       },
       value: {
         text: publication.mediaEndpoint | urlize or __("noValue")
       }
     } if publication.mediaEndpoint, {
+      key: {
+        text: __("status.publication.tokenEndpoint")
+      },
+      value: {
+        text: publication.tokenEndpoint | urlize or __("noValue")
+      }
+    } if publication.tokenEndpoint, {
+      key: {
+        text: __("status.publication.authorizationEndpoint")
+      },
+      value: {
+        text: publication.authorizationEndpoint | urlize or __("noValue")
+      }
+    } if publication.authorizationEndpoint, {
       key: {
         text: __("status.publication.accessToken")
       },

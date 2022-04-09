@@ -1,17 +1,4 @@
 /**
- * Get Micropub endpoint from server derived values
- *
- * @param {object} publication Publication configuration
- * @param {object} request HTTP request
- * @returns {string} Media endpoint URL
- */
-export const getMicropubEndpoint = (publication, request) => {
-  const { micropubEndpoint } = publication;
-
-  return `${request.protocol}://${request.headers.host}${micropubEndpoint}`;
-};
-
-/**
  * Get post data
  *
  * @param {object} publication Publication configuration

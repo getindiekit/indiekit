@@ -1,6 +1,6 @@
 import process from "node:process";
 import test from "ava";
-import { getMicropubEndpoint, getPostData } from "../../lib/utils.js";
+import { getPostData } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
   t.context.publication = {
@@ -33,19 +33,6 @@ test.beforeEach((t) => {
     },
     url: "https://website.example/post/12345",
   };
-});
-
-test("Gets Micropub endpoint from server derived values", (t) => {
-  const request = {
-    protocol: "https",
-    headers: {
-      host: "server.example",
-    },
-  };
-
-  const result = getMicropubEndpoint(t.context.publication, request);
-
-  t.is(result, "https://server.example/micropub");
 });
 
 test("Gets post for given URL from database", async (t) => {
