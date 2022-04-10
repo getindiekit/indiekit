@@ -26,7 +26,7 @@ export const TokenEndpoint = class {
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
-    Indiekit.extend("routesNoAuth", {
+    Indiekit.extend("routesPublic", {
       mountPath: this.mountPath,
       routes: () => this.routes(application, publication),
     });

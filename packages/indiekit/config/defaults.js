@@ -22,7 +22,7 @@ export const defaultConfig = {
     navigationItems: [],
     repository: package_.repository,
     routes: [],
-    routesNoAuth: [],
+    routesPublic: [],
     themeColor: "#0055ee",
     themeColorScheme: "automatic",
     version: package_.version,

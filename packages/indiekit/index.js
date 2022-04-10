@@ -40,7 +40,7 @@ export const Indiekit = class {
     const extensionTypes = [
       "navigationItems",
       "routes",
-      "routesNoAuth",
+      "routesPublic",
       "views",
     ];
 

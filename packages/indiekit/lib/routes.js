@@ -65,7 +65,7 @@ export const routes = (indiekitConfig) => {
   );
 
   // Unauthenticated plug-in routes
-  for (const route of application.routesNoAuth) {
+  for (const route of application.routesPublic) {
     router.use(route.mountPath, limit, route.routes());
   }
 
