@@ -14,7 +14,6 @@ const mongodbUrl = process.env.MONGODB_URL ? process.env.MONGODB_URL : false;
 
 export const defaultConfig = {
   application: {
-    endpoints: [],
     hasDatabase: false,
     installedPlugins: [],
     localesAvailable: ["de", "en", "fr", "nl", "pt"],
