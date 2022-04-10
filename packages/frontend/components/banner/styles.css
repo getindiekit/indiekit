@@ -22,7 +22,7 @@
   display: flex;
 }
 
-/* Inverse text color with dark scheme to retain legiblility */
+/* Inverse text color with dark scheme to retain legibility */
 @media (prefers-color-scheme: dark) {
   .banner__body {
     color: var(--color-neutral-lightest);
