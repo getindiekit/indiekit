@@ -50,13 +50,6 @@ export const decrypt = (hash, iv) => {
 export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
- * Generate cryptographically random string
- *
- * @param {number} [length=21] Length of string
- * @returns {string} Random string
- */
-
-/**
  * Get relationships of given URL
  *
  * @param {string} url The URL to parse
@@ -103,5 +96,11 @@ export const isUrl = (string) => {
   }
 };
 
+/**
+ * Generate cryptographically random string
+ *
+ * @param {number} [length=21] Length of string
+ * @returns {string} Random string
+ */
 export const randomString = (length = 21) =>
   randomBytes(length).toString("hex").slice(0, length);
