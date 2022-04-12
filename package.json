@@ -25,7 +25,7 @@
   "scripts": {
     "prepublishOnly": "localazy download && xo --fix **/locales/*.js",
     "postinstall": "husky install",
-    "dev": "nodemon indiekit serve",
+    "dev": "nodemon",
     "start": "indiekit serve",
     "lint:markdown": "markdownlint-cli2 '**/*.md' '!**/node_modules' '!**/CHANGELOG.md'",
     "lint:scripts": "xo '**/*.js'",
