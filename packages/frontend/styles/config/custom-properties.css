@@ -84,7 +84,7 @@
   --inset-large-squished: calc(var(--inset-large) / 2) var(--inset-large);
 
   /* Layout */
-  --container-inline-size: 100vw;
+  --container-inline-size: 100%;
   --container-max-inline-size: 60rem;
 }
 

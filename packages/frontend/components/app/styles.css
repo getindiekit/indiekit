@@ -30,6 +30,7 @@
   margin-inline-start: auto;
   overflow: hidden;
   padding-block-end: 0;
+  padding-inline: var(--space-block);
 }
 
 .app--login .article,
