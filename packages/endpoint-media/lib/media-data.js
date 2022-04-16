@@ -25,10 +25,27 @@ export const mediaData = {
       // Media properties
       const properties = await getFileProperties(publication, file);
 
-      // Media type
+      // Get post type config
       const type = await getMediaType(file);
-      const typeConfig = getPostTypeConfig(type, postTypes);
       properties["post-type"] = type;
+
+      // Throw error if trying to post unsupported media
+      const supportedMediaTypes = ["audio", "photo", "video"];
+      if (!supportedMediaTypes.includes(type)) {
+        throw new HttpError(
+          501,
+          `Micropub does not support the ${type} media type.`
+        );
+      }
+
+      // Get post type config
+      const typeConfig = getPostTypeConfig(type, postTypes);
+      if (!typeConfig) {
+        throw new HttpError(
+          501,
+          `No configuration found for ${type} post type. See https://getindiekit.com/customisation/post-types/`
+        );
+      }
 
       // Media paths
       const path = renderPath(typeConfig.media.path, properties, timeZone);
