@@ -46,8 +46,8 @@
     "lerna": "^4.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.2.1",
-    "@commitlint/config-conventional": "16.2.1",
+    "@commitlint/cli": "^16.2.0",
+    "@commitlint/config-conventional": "^16.2.0",
     "@indiekit-test/config": "*",
     "@indiekit-test/get-fixture": "*",
     "@indiekit-test/media-data": "*",
