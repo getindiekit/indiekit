@@ -43,20 +43,13 @@ export const getFileProperties = async (publication, file) => {
  */
 export const getMediaType = async (file) => {
   const { mime } = await fileTypeFromBuffer(file.buffer);
+  const type = mime.split("/")[0];
 
-  if (mime.includes("audio/")) {
-    return "audio";
-  }
-
-  if (mime.includes("image/")) {
+  if (type === "image") {
     return "photo";
   }
 
-  if (mime.includes("video/")) {
-    return "video";
-  }
-
-  return null;
+  return type;
 };
 
 /**
