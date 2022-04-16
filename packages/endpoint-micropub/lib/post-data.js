@@ -29,8 +29,16 @@ export const postData = {
 
       // Post type
       const type = getPostType(properties);
-      const typeConfig = getPostTypeConfig(type, postTypes);
       properties["post-type"] = type;
+
+      // Get post type config
+      const typeConfig = getPostTypeConfig(type, postTypes);
+      if (!typeConfig) {
+        throw new HttpError(
+          501,
+          `No configuration found for ${type} post type. See https://getindiekit.com/customisation/post-types/`
+        );
+      }
 
       // Post paths
       const path = renderPath(typeConfig.post.path, properties, timeZone);
