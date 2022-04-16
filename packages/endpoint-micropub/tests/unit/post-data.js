@@ -4,6 +4,12 @@ import { postData } from "../../lib/post-data.js";
 
 test.beforeEach((t) => {
   t.context = {
+    properties: {
+      type: "entry",
+      published: "2020-07-26T20:10:57.062Z",
+      name: "Foo",
+      "mp-slug": "foo",
+    },
     publication: {
       me: "https://website.example",
       postTypes: new JekyllPreset().postTypes,
@@ -32,14 +38,10 @@ test.beforeEach((t) => {
 });
 
 test("Creates post data", async (t) => {
-  const properties = {
-    type: "entry",
-    published: "2020-07-26T20:10:57.062Z",
-    name: "Foo",
-    "mp-slug": "foo",
-  };
-
-  const result = await postData.create(t.context.publication, properties);
+  const result = await postData.create(
+    t.context.publication,
+    t.context.properties
+  );
 
   t.is(result.properties["post-type"], "note");
   t.is(result.properties["mp-slug"], "foo");
@@ -48,14 +50,7 @@ test("Creates post data", async (t) => {
 });
 
 test("Throws error creating post data without publication configuration", async (t) => {
-  const properties = {
-    type: "entry",
-    published: "2020-07-26T20:10:57.062Z",
-    name: "Foo",
-    "mp-slug": "foo",
-  };
-
-  await t.throwsAsync(postData.create(false, properties), {
+  await t.throwsAsync(postData.create(false, t.context.properties), {
     message: "No publication configuration provided",
   });
 });
@@ -64,6 +59,18 @@ test("Throws error creating post data without properties", async (t) => {
   await t.throwsAsync(postData.create(t.context.publication, false), {
     message: "No properties included in request",
   });
+});
+
+test("Throws error creating post data for non-configured post type", async (t) => {
+  t.context.publication.postTypes = [];
+
+  await t.throwsAsync(
+    postData.create(t.context.publication, t.context.properties),
+    {
+      message:
+        "No configuration found for note post type. See https://getindiekit.com/customisation/post-types/",
+    }
+  );
 });
 
 test("Reads post data", async (t) => {
