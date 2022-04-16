@@ -5,7 +5,7 @@ import { getFileProperties, getMediaType } from "../../lib/file.js";
 
 const { isValid, parseISO } = dateFns;
 
-test("Derives media type and returns equivalent post type)", async (t) => {
+test("Derives media type and returns equivalent post type", async (t) => {
   const audio = { buffer: getFixture("file-types/audio.mp3", false) };
   const photo = { buffer: getFixture("file-types/photo.jpg", false) };
   const video = { buffer: getFixture("file-types/video.mp4", false) };
@@ -14,7 +14,7 @@ test("Derives media type and returns equivalent post type)", async (t) => {
   t.is(await getMediaType(audio), "audio");
   t.is(await getMediaType(photo), "photo");
   t.is(await getMediaType(video), "video");
-  t.is(await getMediaType(other), null);
+  t.is(await getMediaType(other), "font");
 });
 
 test("Derives properties from file data", async (t) => {
