@@ -4,6 +4,7 @@
   "description": "Syndication endpoint for Indiekit",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "syndication"
   ],

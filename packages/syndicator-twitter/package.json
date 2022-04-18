@@ -4,6 +4,7 @@
   "description": "Syndicate IndieWeb content to Twitter",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "syndication",
     "twitter"

@@ -3,6 +3,8 @@
   "version": "0.3.0",
   "description": "Indiekit config for Hugo-based websites",
   "keywords": [
+    "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "micropub",
     "jekyll"

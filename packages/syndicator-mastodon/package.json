@@ -4,6 +4,7 @@
   "description": "Syndicate IndieWeb content to a Mastodon server",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "syndication",
     "mastodon"

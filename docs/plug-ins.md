@@ -4,6 +4,8 @@ nav_order: 6
 
 # Plug-ins
 
+You can find more plug-ins on npm under the [`indiekit-plugin`](https://www.npmjs.com/search?q=keywords%3Aindiekit-plugin) tag.
+
 ## Content stores
 
 - ### [Bitbucket](https://npmjs.org/package/@indiekit/store-bitbucket)

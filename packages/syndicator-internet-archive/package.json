@@ -4,6 +4,7 @@
   "description": "Syndicate IndieWeb content to the Internet Archive",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "syndication",
     "internet-archive"

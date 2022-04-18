@@ -4,6 +4,7 @@
   "description": "Token endpoint for Indiekit",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "indieauth"
   ],

@@ -3,6 +3,8 @@
   "version": "0.3.0",
   "description": "Indiekit preset for Jekyll-based websites",
   "keywords": [
+    "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "micropub",
     "jekyll"

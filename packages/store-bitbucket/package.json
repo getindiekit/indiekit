@@ -4,6 +4,7 @@
   "description": "Store IndieWeb content on Bitbucket",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "micropub",
     "bitbucket"

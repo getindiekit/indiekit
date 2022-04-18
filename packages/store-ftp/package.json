@@ -4,6 +4,7 @@
   "description": "Store IndieWeb content via FTP",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "micropub",
     "ftp"

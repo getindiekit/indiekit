@@ -4,6 +4,7 @@
   "description": "Share endpoint for Indiekit",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb",
     "micropub"
   ],

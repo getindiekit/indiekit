@@ -4,6 +4,7 @@
   "description": "Image resizing endpoint for Indiekit",
   "keywords": [
     "indiekit",
+    "indiekit-plugin",
     "indieweb"
   ],
   "homepage": "https://getindiekit.com",
