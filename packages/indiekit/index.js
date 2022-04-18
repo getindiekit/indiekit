@@ -70,15 +70,14 @@ export const Indiekit = class {
     this.application.locales = new Map();
     for await (const locale of this.application.localesAvailable) {
       // eslint-disable-next-line node/no-unsupported-features/es-syntax
-      const translation = await import(`./locales/${locale}.js`);
-      this.application.locales.set(locale, translation.default);
+      const { default: translation } = await import(`./locales/${locale}.js`);
+      this.application.locales.set(locale, translation);
     }
 
     // Init plug-ins
     for await (const pluginName of this.plugins) {
       // eslint-disable-next-line node/no-unsupported-features/es-syntax
-      const pluginModule = await import(pluginName);
-      const IndiekitPlugin = pluginModule.default;
+      const { default: IndiekitPlugin } = await import(pluginName);
       const plugin = new IndiekitPlugin(this.config[pluginName]);
 
       // Register plug-in localisations
@@ -86,12 +85,12 @@ export const Indiekit = class {
         try {
           const appLocale = this.application.locales.get(locale);
           // eslint-disable-next-line node/no-unsupported-features/es-syntax
-          const translation = await import(
+          const { default: translation } = await import(
             `../${plugin.id}/locales/${locale}.js`
           );
           this.application.locales.set(
             locale,
-            deepmerge(appLocale, translation.default)
+            deepmerge(appLocale, translation)
           );
         } catch {}
       }
