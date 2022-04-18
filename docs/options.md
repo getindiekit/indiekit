@@ -59,7 +59,7 @@ _Optional_, defaults to `false`. For example:
 }
 ```
 
-{% include_relative _includes/option-contains-secrets.md %}
+{% include option-contains-secrets.md %}
 
 ---
 
@@ -167,6 +167,8 @@ Each plug-in may accept its own configuration options, and these should be provi
   }
 }
 ```
+
+Learn more about Indiekit’s [plug-in API](plugin-api/index.md).
 
 ---
 
@@ -279,7 +281,7 @@ export default {
 };
 ```
 
-{% include_relative _includes/option-js-only.md %}
+{% include option-js-only.md %}
 
 See [customising a post template →](customisation/post-template.md)
 
@@ -339,7 +341,7 @@ export default {
 };
 ```
 
-{% include_relative _includes/option-js-only.md %}
+{% include option-js-only.md %}
 
 See [customising commit messages →](customisation/commit-messages.md)
 

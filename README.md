@@ -19,7 +19,7 @@ Publish content to your website using apps like [iAWriter](https://ia.net/writer
 - Syndicate content to third-party websites
 - Publication presets to support popular static site generators
 - Localised to different languages
-- Plug-in API
+- [Plug-in API](https://getindiekit.com/plugin-api/)
 
 ## Requirements
 

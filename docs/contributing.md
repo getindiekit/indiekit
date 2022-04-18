@@ -51,11 +51,9 @@ Localisations are managed using Localazy. If you see a translation that is not q
 
 ## Developing a plug-in
 
-Often the best way to add (or prototype) a new feature is to develop a plug-in.
+Often the best way to add (or prototype) a new feature is to develop a plug-in using [Indiekit’s plug-in API](plugin-api/index.md).
 
-Information about the API will be added to the project soon.
-
-When publishing a plug-in to the npm registry, add the `indiekit-plugin` tag so that other Indiekit users can find it. You can also request to have it listed alongside [other plug-ins](https://getindiekit.com/plug-ins/) on the project’s website.
+When publishing a plug-in to the npm registry, add the `indiekit-plugin` tag so that other Indiekit users can find it. You can also request to have it listed alongside [other plug-ins](https://getindiekit.com/plugins/) on the project’s website.
 
 * * *
 
@@ -66,7 +64,7 @@ When publishing a plug-in to the npm registry, add the `indiekit-plugin` tag so 
 This project uses a monorepo structure, with concerns split into separate npm modules located in the `/packages` folder:
 
 | Module | Purpose |
-| - | - |
+| :----- | :------ |
 | `packages/indiekit` | Core module. Provides coordinating functions and the Express web server. |
 | `packages/error` | Error handling for the core module and plug-ins. |
 | `packages/frontend` | Frontend component library, used for the application interface. |

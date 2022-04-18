@@ -10,7 +10,7 @@ A number of terms are used throughout Indiekit’s documentation.
 
 A content store is a location where Indiekit can save post content and media files. This could be a Git repository, an FTP server or even a database. A content store plug-in provides this functionality.
 
-For example, if you are saving your files to GitHub, install the [GitHub plug-in](plug-ins.md#github):
+For example, if you are saving your files to GitHub, install the [GitHub plug-in](plugins.md#github):
 
 ```bash
 npm install @indiekit/store-github
@@ -29,7 +29,7 @@ Then add it to your configuration file:
 }
 ```
 
-{% include_relative _includes/plugin-requires-secrets.md %}
+{% include plugin-requires-secrets.md %}
 
 ## Endpoint
 
@@ -57,7 +57,7 @@ This information can be provided by setting the `publication.postTypes` and `pub
 
 A publication preset plug-in provides default values for these 2 options (which you can then override).
 
-For example, if you use the Jekyll static site generator, you can install the [Jekyll plug-in](plug-ins.md#jekyll):
+For example, if you use the Jekyll static site generator, you can install the [Jekyll plug-in](plugins.md#jekyll):
 
 ```bash
 npm install @indiekit/preset-hugo
@@ -78,7 +78,7 @@ Then add it to your configuration file:
 
 A key idea of the IndieWeb movement is [POSSE](https://indieweb.org/POSSE) (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
 
-For example, if you want to syndicate your content to Twitter, you can install the [Twitter plug-in](plug-ins.md#twitter):
+For example, if you want to syndicate your content to Twitter, you can install the [Twitter plug-in](plugins.md#twitter):
 
 ```bash
 npm install @indiekit/syndicator-twitter
@@ -101,6 +101,6 @@ The `checked` option is used to tell Micropub clients whether a syndication targ
 
 Not all clients allow you to disable or enable syndication targets. Setting the `forced` option to `true` will ensure that a syndication target is enabled regardless.
 
-{% include_relative _includes/plugin-requires-secrets.md %}
+{% include plugin-requires-secrets.md %}
 
 [env]: https://devcenter.heroku.com/articles/config-vars

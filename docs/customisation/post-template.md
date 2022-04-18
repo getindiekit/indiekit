@@ -5,9 +5,9 @@ nav_order: 4
 
 # Post template
 
-A post template is a function that takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
+A post template takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
 
-The `postTemplate` takes one argument, `properties`. Indiekit will pass an object containing the derived data for a post:
+The `postTemplate()` method takes one argument, `properties`, which contains the derived properties for a post, for example:
 
 ```js
 {
@@ -17,7 +17,7 @@ The `postTemplate` takes one argument, `properties`. Indiekit will pass an objec
 }
 ```
 
-Your post template function determines how this data will get transformed. For example, if you wanted to output a format used by Kirby, you might write the following function:
+The `postTemplate()` method determines how this data will get transformed. For example, if you wanted to output a format used by Kirby, you might write the following function:
 
 ```js
 // my-post-template.js
