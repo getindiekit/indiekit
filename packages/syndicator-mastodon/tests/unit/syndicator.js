@@ -41,12 +41,6 @@ test("Gets plug-in info", (t) => {
   t.truthy(result.info.service);
 });
 
-test("Gets UID", (t) => {
-  const result = new MastodonSyndicator(t.context.options);
-
-  t.is(result.uid, "https://mastodon.example/@username");
-});
-
 test("Returns syndicated URL", async (t) => {
   nock(t.context.options.url)
     .post("/api/v1/statuses")

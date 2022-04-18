@@ -65,10 +65,6 @@ export const MastodonSyndicator = class {
     ];
   }
 
-  get uid() {
-    return this.info.uid;
-  }
-
   async syndicate(properties, publication) {
     return mastodon({
       url: `${this.url.protocol}//${this.url.hostname}`,

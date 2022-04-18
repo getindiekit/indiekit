@@ -250,12 +250,13 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
   }
 
   for (const target of syndicationTargets) {
+    const { uid } = target.info;
     const syndicateTo = properties && properties["mp-syndicate-to"];
-    const clientChecked = syndicateTo && syndicateTo.includes(target.uid);
+    const clientChecked = syndicateTo && syndicateTo.includes(uid);
     const serverForced = target.options && target.options.forced;
 
     if (clientChecked || serverForced) {
-      property.push(target.uid);
+      property.push(uid);
     }
   }
 

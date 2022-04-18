@@ -50,10 +50,6 @@ export const TwitterSyndicator = class {
     ];
   }
 
-  get uid() {
-    return this.info.uid;
-  }
-
   async syndicate(properties, publication) {
     return twitter(this.options).post(properties, publication);
   }

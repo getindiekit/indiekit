@@ -24,7 +24,7 @@ test.beforeEach((t) => {
       syndicationTargets: [
         {
           name: "Example social network",
-          uid: "https://social.example/",
+          info: { uid: "https://social.example/" },
         },
       ],
       timeZone: "UTC",
@@ -351,7 +351,7 @@ test("Adds syndication target checked by client", (t) => {
   );
   const syndicationTargets = [
     {
-      uid: "https://example.website/",
+      info: { uid: "https://example.website/" },
     },
   ];
 
@@ -364,7 +364,7 @@ test("Adds syndication target not checked by client but forced by server", (t) =
   const properties = false;
   const syndicationTargets = [
     {
-      uid: "https://example.website/",
+      info: { uid: "https://example.website/" },
       options: { forced: true },
     },
   ];
@@ -380,7 +380,7 @@ test("Adds syndication target checked by client and forced by server", (t) => {
   );
   const syndicationTargets = [
     {
-      uid: "https://example.website/",
+      info: { uid: "https://example.website/" },
       options: { forced: true },
     },
   ];
@@ -396,10 +396,10 @@ test("Adds syndication targets, one checked by client, one forced by server", (t
   );
   const syndicationTargets = [
     {
-      uid: "https://example.website/",
+      info: { uid: "https://example.website/" },
     },
     {
-      uid: "https://another-example.website/",
+      info: { uid: "https://another-example.website/" },
       options: { forced: true },
     },
   ];
@@ -412,11 +412,11 @@ test("Adds syndication targets, one checked by client, one forced by server", (t
   ]);
 });
 
-test("Doesn’t add unavilable syndication target", (t) => {
+test("Doesn’t add unused syndication target", (t) => {
   const properties = false;
   const syndicationTargets = [
     {
-      uid: "https://example.website/",
+      info: { uid: "https://example.website/" },
     },
   ];
 
@@ -433,7 +433,7 @@ test("Doesn’t add unchecked syndication target", (t) => {
   };
   const syndicationTargets = [
     {
-      uid: "https://example.website/",
+      info: { uid: "https://example.website/" },
     },
   ];
 
@@ -455,7 +455,7 @@ test("Doesn’t add unavailable syndication target", (t) => {
   t.falsy(result);
 });
 
-test("Normalises JF2 (few properties)", (t) => {
+test.only("Normalises JF2 (few properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
 
   const result = normaliseProperties(t.context.publication, properties);

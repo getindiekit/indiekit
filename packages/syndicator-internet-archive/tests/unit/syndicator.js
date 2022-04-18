@@ -41,10 +41,6 @@ test("Initiates plug-in", (t) => {
   );
 });
 
-test("Gets UID", (t) => {
-  t.is(internetArchive.uid, "https://web.archive.org/");
-});
-
 test("Returns syndicated URL", async (t) => {
   const { job_id, options, timestamp, properties } = t.context;
   nock("https://web.archive.org")

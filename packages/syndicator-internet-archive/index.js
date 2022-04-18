@@ -37,10 +37,6 @@ export const InternetArchiveSyndicator = class {
     };
   }
 
-  get uid() {
-    return this.info.uid;
-  }
-
   async syndicate(properties) {
     return internetArchive(this.options).save(properties);
   }

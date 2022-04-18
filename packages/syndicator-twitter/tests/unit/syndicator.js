@@ -51,12 +51,6 @@ test("Initiates plug-in", (t) => {
   );
 });
 
-test("Gets UID", (t) => {
-  const result = new TwitterSyndicator(t.context.options);
-
-  t.is(result.uid, "https://twitter.com/username");
-});
-
 test("Returns syndicated URL", async (t) => {
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
