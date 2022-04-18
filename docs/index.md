@@ -5,7 +5,6 @@ nav_exclude: true
 ---
 
 # We are better, connected
-
 {: .fs-9 }
 
 Indiekit is the little server that connects your personal website to the independent web.

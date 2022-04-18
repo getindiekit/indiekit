@@ -3,7 +3,6 @@ nav_order: 3
 ---
 
 # Configuration
-
 {: .no_toc }
 
 Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
@@ -24,7 +23,7 @@ The `.indiekitrc` file (without extension) can be in JSON or YAML format. You ca
 The configuration object has the following properties:
 
 - TOC
-  {:toc}
+{:toc}
 
 ## application
 

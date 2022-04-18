@@ -119,10 +119,8 @@ If you are saving your configuration file in a public location, you should keep 
 
 To ensure Indiekit’s endpoint can be discovered by Micropub clients (and have permission to post to your website), you need to add the follow values to your website’s `<head>`:
 
-<!-- prettier-ignore-start -->
 ```html
 <link rel="micropub" href="[INDIEKIT_URL]/micropub">
 <link rel="authorization_endpoint" href="https://indieauth.com/auth">
 <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
 ```
-<!-- prettier-ignore-end -->
