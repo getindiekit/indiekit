@@ -19,15 +19,11 @@ export const TokenEndpoint = class {
     });
   }
 
-  get mountPath() {
-    return this.options.mountPath;
-  }
-
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
     Indiekit.extend("routesPublic", {
-      mountPath: this.mountPath,
+      mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
 
@@ -35,7 +31,7 @@ export const TokenEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    application.tokenEndpoint = this.mountPath;
+    application.tokenEndpoint = this.options.mountPath;
   }
 
   routes(application, publication) {

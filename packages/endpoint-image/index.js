@@ -15,19 +15,15 @@ export const ImageEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountPath() {
-    return this.options.mountPath;
-  }
-
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
     Indiekit.extend("routes", {
-      mountPath: this.mountPath,
+      mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
 
-    application.imageEndpoint = this.mountPath;
+    application.imageEndpoint = this.options.mountPath;
   }
 
   routes(application, publication) {

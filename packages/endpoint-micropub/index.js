@@ -17,22 +17,18 @@ export const MicropubEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountPath() {
-    return this.options.mountPath;
-  }
-
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
     if (application.hasDatabase) {
       Indiekit.extend("navigationItems", {
-        href: `${this.mountPath}/posts`,
+        href: `${this.options.mountPath}/posts`,
         text: "micropub.title",
       });
     }
 
     Indiekit.extend("routes", {
-      mountPath: this.mountPath,
+      mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
 
@@ -40,7 +36,7 @@ export const MicropubEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    application.micropubEndpoint = this.mountPath;
+    application.micropubEndpoint = this.options.mountPath;
   }
 
   routes(application, publication) {

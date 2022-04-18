@@ -17,22 +17,18 @@ export const MediaEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountPath() {
-    return this.options.mountPath;
-  }
-
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
     if (application.hasDatabase) {
       Indiekit.extend("navigationItems", {
-        href: `${this.mountPath}/files`,
+        href: `${this.options.mountPath}/files`,
         text: "media.title",
       });
     }
 
     Indiekit.extend("routes", {
-      mountPath: this.mountPath,
+      mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
 
@@ -40,7 +36,7 @@ export const MediaEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    application.mediaEndpoint = this.mountPath;
+    application.mediaEndpoint = this.options.mountPath;
   }
 
   routes(application, publication) {

@@ -13,15 +13,11 @@ export const SyndicateEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountPath() {
-    return this.options.mountPath;
-  }
-
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
     Indiekit.extend("routes", {
-      mountPath: this.mountPath,
+      mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
   }

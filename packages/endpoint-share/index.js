@@ -15,20 +15,16 @@ export const ShareEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get mountPath() {
-    return this.options.mountPath;
-  }
-
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
     Indiekit.extend("navigationItems", {
-      href: this.mountPath,
+      href: this.options.mountPath,
       text: "share.title",
     });
 
     Indiekit.extend("routes", {
-      mountPath: this.mountPath,
+      mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
 
@@ -37,7 +33,7 @@ export const ShareEndpoint = class {
       fileURLToPath(new URL("views", import.meta.url)),
     ]);
 
-    application.shareEndpoint = this.mountPath;
+    application.shareEndpoint = this.options.mountPath;
   }
 
   routes(application, publication) {
