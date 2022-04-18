@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/syndicator-internet-archive",
   "version": "0.3.0",
-  "description": "Syndicate IndieWeb content to the Internet Archive",
+  "description": "Internet Archive syndicator for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

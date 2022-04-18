@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/store-ftp",
   "version": "0.3.0",
-  "description": "Store IndieWeb content via FTP",
+  "description": "FTP content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

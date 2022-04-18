@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/store-bitbucket",
   "version": "0.3.0",
-  "description": "Store IndieWeb content on Bitbucket",
+  "description": "Bitbucket content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

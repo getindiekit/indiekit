@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/store-gitea",
   "version": "0.3.0",
-  "description": "Store IndieWeb content on Gitea",
+  "description": "Gitea content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

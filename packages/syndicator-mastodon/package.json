@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/syndicator-mastodon",
   "version": "0.3.0",
-  "description": "Syndicate IndieWeb content to a Mastodon server",
+  "description": "Mastodon syndicator for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

@@ -8,64 +8,41 @@ You can find more plug-ins on npm under the [`indiekit-plugin`](https://www.npmj
 
 ## Content stores
 
-- ### [Bitbucket](https://npmjs.org/package/@indiekit/store-bitbucket)
+A [content store](../concepts#content-store) is a location where Indiekit can save post content and media files. Plug-ins are available for the following platforms:
 
-  Store IndieWeb content on Bitbucket
-
-- ### [FTP](https://npmjs.org/package/@indiekit/store-ftp)
-
-  Store IndieWeb content via FTP
-
-- ### [Gitea](https://npmjs.org/package/@indiekit/store-gitea)
-
-  Store IndieWeb content on Gitea
-
-- ### [GitHub](https://npmjs.org/package/@indiekit/store-github)
-
-  Store IndieWeb content on GitHub
-
-- ### [GitLab](https://npmjs.org/package/@indiekit/store-gitlab)
-
-  Store IndieWeb content on GitLab
+- [@indiekit/store-bitbucket](https://npmjs.org/package/@indiekit/store-bitbucket)
+- [@indiekit/store-ftp](https://npmjs.org/package/@indiekit/store-ftp)
+- [@indiekit/store-gitea](https://npmjs.org/package/@indiekit/store-gitea)
+- [@indiekit/store-github](https://npmjs.org/package/@indiekit/store-github)
+- [@indiekit/store-gitlab](https://npmjs.org/package/@indiekit/store-gitlab)
 
 ## Endpoints
 
-- ### [Micropub](https://npmjs.org/package/@indiekit/endpoint-micropub) (Built-in)
+An [endpoint](../concepts#endpoint) is a path on your Indiekit server that applications can send requests to or users can access certain features at.
 
-  Micropub endpoint for Indiekit
+- [@indiekit/endpoint-micropub](https://npmjs.org/package/@indiekit/endpoint-micropub) (Built-in)  
+  Micropub endpoint for Indiekit. Enables publishing content to your website using the Micropub protocol.
 
-- ### [Micropub media](https://npmjs.org/package/@indiekit/endpoint-media) (Built-in)
+- [@indiekit/endpoint-media](https://npmjs.org/package/@indiekit/endpoint-media) (Built-in)  
+  Micropub media endpoint for Indiekit. Enables publishing media files (audio, photos, videos) to your website using the Micropub protocol.
 
-  Micropub media endpoint for Indiekit
+- [@indiekit/endpoint-share](https://npmjs.org/package/@indiekit/endpoint-share) (Built-in)  
+  Share endpoint for Indiekit. Provides a simple interface for [bookmarking](https://indieweb.org/bookmark) websites and publishing them on your website.
 
-- ### [Share](https://npmjs.org/package/@indiekit/endpoint-share) (Built-in)
-
-  Share endpoint for Indiekit
-
-- ### [Syndicate](https://npmjs.org/package/@indiekit/endpoint-syndicate) (Built-in)
-
-  Syndication endpoint for Indiekit
+- [@indiekit/endpoint-syndicate](https://npmjs.org/package/@indiekit/endpoint-syndicate) (Built-in)  
+  Syndication endpoint for Indiekit. Provides an endpoint you can ping to check that recently published posts have been syndicated to any configured targets such as Twitter or Mastodon.
 
 ## Publication presets
 
-- ### [Hugo](https://npmjs.org/package/@indiekit/preset-hugo)
+A [publication preset](../concepts#publication-preset) provides default values for post types and post templates. Plug-ins are available for the following platforms:
 
-  Indiekit config for Hugo-based websites
-
-- ### [Jekyll](https://npmjs.org/package/@indiekit/preset-jekyll)
-
-  Indiekit preset for Jekyll-based websites
+- [@indiekit/preset-hugo](https://npmjs.org/package/@indiekit/preset-hugo)
+- [@indiekit/preset-jekyll](https://npmjs.org/package/@indiekit/preset-jekyll)
 
 ## Syndicators
 
-- ### [Internet Archive](https://npmjs.org/package/@indiekit/syndicator-internet-archive)
+A [syndicator](../concepts#syndicator) enables content to be posted to third-party websites, in addition to your own. Plug-ins are available for the following platforms:
 
-  Syndicate IndieWeb content to the Internet Archive
-
-- ### [Mastodon](https://npmjs.org/package/@indiekit/syndicator-mastodon)
-
-  Syndicate IndieWeb content to a Mastodon server
-
-- ### [Twitter](https://npmjs.org/package/@indiekit/syndicator-twitter)
-
-  Syndicate IndieWeb content to Twitter
+- [@indiekit/syndicator-internet-archive](https://npmjs.org/package/@indiekit/syndicator-internet-archive)
+- [@indiekit/syndicator-mastodon](https://npmjs.org/package/@indiekit/syndicator-mastodon)
+- [@indiekit/syndicator-twitter](https://npmjs.org/package/@indiekit/syndicator-twitter)

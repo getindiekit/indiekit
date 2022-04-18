@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/syndicator-twitter",
   "version": "0.3.0",
-  "description": "Syndicate IndieWeb content to Twitter",
+  "description": "Twitter syndicator for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

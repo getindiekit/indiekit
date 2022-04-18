@@ -8,7 +8,7 @@ A number of terms are used throughout Indiekit’s documentation.
 
 ## Content store
 
-A content store is where Indiekit saves posts and media files. This could be a Git repository, an FTP server or even a database. A content store plug-in provides this functionality.
+A content store is a location where Indiekit can save post content and media files. This could be a Git repository, an FTP server or even a database. A content store plug-in provides this functionality.
 
 For example, if you are saving your files to GitHub, install the [GitHub plug-in](plug-ins.md#github):
 
@@ -71,7 +71,7 @@ Then add it to your configuration file:
 }
 ```
 
-## Syndicators
+## Syndicator
 
 A key idea of the IndieWeb movement is POSSE (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
 

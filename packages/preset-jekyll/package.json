@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/preset-jekyll",
   "version": "0.3.0",
-  "description": "Indiekit preset for Jekyll-based websites",
+  "description": "Jekyll publication preset for Indiekit",
   "keywords": [
     "indiekit",
     "indiekit-plugin",
