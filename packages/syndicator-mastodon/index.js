@@ -71,6 +71,10 @@ export const MastodonSyndicator = class {
       accessToken: this.options.accessToken,
     }).post(properties, publication);
   }
+
+  init(Indiekit) {
+    Indiekit.addSyndicator(this);
+  }
 };
 
 export default MastodonSyndicator;
