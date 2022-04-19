@@ -15,6 +15,15 @@ export const ShareEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
+  routes(application, publication) {
+    const router = this._router;
+
+    router.get("/:path?", shareController(publication).get);
+    router.post("/:path?", validate, shareController(publication).post);
+
+    return router;
+  }
+
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
@@ -34,15 +43,6 @@ export const ShareEndpoint = class {
     ]);
 
     application.shareEndpoint = this.options.mountPath;
-  }
-
-  routes(application, publication) {
-    const router = this._router;
-
-    router.get("/:path?", shareController(publication).get);
-    router.post("/:path?", validate, shareController(publication).post);
-
-    return router;
   }
 };
 

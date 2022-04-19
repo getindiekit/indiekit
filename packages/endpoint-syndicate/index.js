@@ -13,6 +13,13 @@ export const SyndicateEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
+  routes(application, publication) {
+    const router = this._router;
+    router.post("/", syndicateController(application, publication).post);
+
+    return router;
+  }
+
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
@@ -20,13 +27,6 @@ export const SyndicateEndpoint = class {
       mountPath: this.options.mountPath,
       routes: () => this.routes(application, publication),
     });
-  }
-
-  routes(application, publication) {
-    const router = this._router;
-    router.post("/", syndicateController(application, publication).post);
-
-    return router;
   }
 };
 

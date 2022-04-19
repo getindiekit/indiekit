@@ -19,6 +19,18 @@ export const TokenEndpoint = class {
     });
   }
 
+  routes(application, publication) {
+    const router = this._router;
+
+    router.use(cors());
+    router.options(cors());
+
+    router.get("/", tokenController(publication).get);
+    router.post("/", tokenController(publication).post);
+
+    return router;
+  }
+
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
@@ -32,18 +44,6 @@ export const TokenEndpoint = class {
     ]);
 
     application.tokenEndpoint = this.options.mountPath;
-  }
-
-  routes(application, publication) {
-    const router = this._router;
-
-    router.use(cors());
-    router.options(cors());
-
-    router.get("/", tokenController(publication).get);
-    router.post("/", tokenController(publication).post);
-
-    return router;
   }
 };
 

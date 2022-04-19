@@ -17,6 +17,24 @@ export const MediaEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
+  routes(application, publication) {
+    const router = this._router;
+    const multipartParser = multer({
+      storage: multer.memoryStorage(),
+    });
+
+    router.get("/", queryController(publication));
+    router.post(
+      "/",
+      multipartParser.single("file"),
+      uploadController(publication)
+    );
+    router.get("/files", filesController(application, publication).list);
+    router.get("/files/:id", filesController(application, publication).view);
+
+    return router;
+  }
+
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
@@ -37,24 +55,6 @@ export const MediaEndpoint = class {
     ]);
 
     application.mediaEndpoint = this.options.mountPath;
-  }
-
-  routes(application, publication) {
-    const router = this._router;
-    const multipartParser = multer({
-      storage: multer.memoryStorage(),
-    });
-
-    router.get("/", queryController(publication));
-    router.post(
-      "/",
-      multipartParser.single("file"),
-      uploadController(publication)
-    );
-    router.get("/files", filesController(application, publication).list);
-    router.get("/files/:id", filesController(application, publication).view);
-
-    return router;
   }
 };
 

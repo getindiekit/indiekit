@@ -15,17 +15,6 @@ export const ImageEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  init(Indiekit) {
-    const { application, publication } = Indiekit.config;
-
-    Indiekit.extend("routes", {
-      mountPath: this.options.mountPath,
-      routes: () => this.routes(application, publication),
-    });
-
-    application.imageEndpoint = this.options.mountPath;
-  }
-
   routes(application, publication) {
     let cache;
     if (application.hasDatabase) {
@@ -49,6 +38,17 @@ export const ImageEndpoint = class {
     );
 
     return router;
+  }
+
+  init(Indiekit) {
+    const { application, publication } = Indiekit.config;
+
+    Indiekit.extend("routes", {
+      mountPath: this.options.mountPath,
+      routes: () => this.routes(application, publication),
+    });
+
+    application.imageEndpoint = this.options.mountPath;
   }
 };
 

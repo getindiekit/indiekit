@@ -17,6 +17,20 @@ export const MicropubEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
+  routes(application, publication) {
+    const router = this._router;
+    const multipartParser = multer({
+      storage: multer.memoryStorage(),
+    });
+
+    router.get("/", queryController(publication));
+    router.post("/", multipartParser.any(), actionController(publication));
+    router.get("/posts", postsController(application, publication).list);
+    router.get("/posts/:id", postsController(application, publication).view);
+
+    return router;
+  }
+
   init(Indiekit) {
     const { application, publication } = Indiekit.config;
 
@@ -37,20 +51,6 @@ export const MicropubEndpoint = class {
     ]);
 
     application.micropubEndpoint = this.options.mountPath;
-  }
-
-  routes(application, publication) {
-    const router = this._router;
-    const multipartParser = multer({
-      storage: multer.memoryStorage(),
-    });
-
-    router.get("/", queryController(publication));
-    router.post("/", multipartParser.any(), actionController(publication));
-    router.get("/posts", postsController(application, publication).list);
-    router.get("/posts/:id", postsController(application, publication).view);
-
-    return router;
   }
 };
 
