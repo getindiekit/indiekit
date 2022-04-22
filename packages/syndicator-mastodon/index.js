@@ -15,7 +15,7 @@ export const MastodonSyndicator = class {
     this.options = { ...defaults, ...options };
   }
 
-  get url() {
+  get #url() {
     if (this.options.url) {
       return new URL(this.options.url);
     }
@@ -30,7 +30,7 @@ export const MastodonSyndicator = class {
   get info() {
     let { checked, user } = this.options;
     user = `@${user.replace("@", "")}`;
-    const { url } = this;
+    const url = this.#url;
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
 
     return {
@@ -67,7 +67,7 @@ export const MastodonSyndicator = class {
 
   async syndicate(properties, publication) {
     return mastodon({
-      url: `${this.url.protocol}//${this.url.hostname}`,
+      url: `${this.#url.protocol}//${this.#url.hostname}`,
       accessToken: this.options.accessToken,
     }).post(properties, publication);
   }
