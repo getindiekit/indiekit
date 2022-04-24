@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { Buffer } from "node:buffer";
-import got from "got";
+import { fetch } from "undici";
 import Twitter from "twitter-lite";
 import {
   createStatus,
@@ -95,8 +95,14 @@ export const twitter = (options) => ({
 
     try {
       const mediaUrl = getAbsoluteUrl(url, me);
-      const response = await got(mediaUrl, { responseType: "buffer" });
-      const buffer = Buffer.from(response.body).toString("base64");
+      const response = await fetch(mediaUrl);
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      const body = await response.arrayBuffer();
+      const buffer = Buffer.from(body).toString("base64");
       const { media_id_string } = await this.client("upload").post(
         "media/upload",
         { media_data: buffer }
