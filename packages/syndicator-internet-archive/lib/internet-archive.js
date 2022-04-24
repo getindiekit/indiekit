@@ -89,7 +89,7 @@ export const internetArchive = (options) => ({
       debug(`Capture of ${url} assigned to job ${job_id}`);
       const { original_url, timestamp } = await this.status(job_id);
 
-      // Return syndidated URL
+      // Return syndicated URL
       return `https://web.archive.org/web/${timestamp}/${original_url}`;
     } catch (error) {
       throw new Error(error.message);
