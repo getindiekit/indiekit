@@ -1,13 +1,12 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { setGlobalDispatcher } from "undici";
+import { websiteAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
+setGlobalDispatcher(websiteAgent());
+
 test("Returns list of previously published posts", async (t) => {
-  nock("https://website.example")
-    .get("/page.html")
-    .reply(200, getFixture("html/page.html"));
   const request = await testServer();
 
   const result = await request

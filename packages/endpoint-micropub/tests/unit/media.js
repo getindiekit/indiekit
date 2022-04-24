@@ -1,8 +1,12 @@
 import process from "node:process";
+import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { mediaEndpointAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/get-fixture";
 import { uploadMedia } from "../../lib/media.js";
+
+setGlobalDispatcher(mediaEndpointAgent());
 
 test.beforeEach((t) => {
   t.context = {
@@ -11,7 +15,7 @@ test.beforeEach((t) => {
       {
         buffer: getFixture("file-types/photo.jpg", false),
         fieldname: "photo",
-        originalname: "photo.jpg",
+        originalname: "photo1.jpg",
       },
     ],
     publication: {
@@ -23,106 +27,50 @@ test.beforeEach((t) => {
       category: ["foo", "bar"],
       audio: ["https://website.example/media/sound.mp3"],
     },
-    responseBody: (filename) => ({
-      location: `https://website.example/media/${filename}`,
-      status: 201,
-      success: "create",
-      description: `https://website.example/media/${filename}`,
-      type: "photo",
-    }),
-    responseHeader: (filename) => ({
-      location: `https://website.example/media/${filename}`,
-    }),
   };
 });
 
 test("Uploads attached file via media endpoint", async (t) => {
-  nock("https://media-endpoint.example")
-    .post("/")
-    .reply(
-      201,
-      t.context.responseBody("photo.jpg"),
-      t.context.responseHeader("photo.jpg")
-    );
+  const { bearerToken, publication, properties, files } = t.context;
+  const result = await uploadMedia(bearerToken, publication, properties, files);
 
-  const result = await uploadMedia(
-    t.context.bearerToken,
-    t.context.publication,
-    t.context.properties,
-    t.context.files
-  );
-
-  t.deepEqual(result.photo, ["https://website.example/media/photo.jpg"]);
+  t.deepEqual(result.photo, ["https://website.example/media/photo1.jpg"]);
 });
 
-test.serial("Uploads attached files via media endpoint", async (t) => {
-  nock("https://media-endpoint.example")
-    .post("/")
-    .reply(
-      201,
-      t.context.responseBody("photo1.jpg"),
-      t.context.responseHeader("photo1.jpg")
-    )
-    .post("/")
-    .reply(
-      201,
-      t.context.responseBody("photo2.jpg"),
-      t.context.responseHeader("photo2.jpg")
-    );
+test("Uploads attached files via media endpoint", async (t) => {
+  const { bearerToken, publication, properties } = t.context;
   const files = [
-    {
-      buffer: getFixture("file-types/photo.jpg", false),
-      fieldname: "photo[]",
-      originalname: "photo1.jpg",
-    },
     {
       buffer: getFixture("file-types/photo.jpg", false),
       fieldname: "photo[]",
       originalname: "photo2.jpg",
     },
+    {
+      buffer: getFixture("file-types/photo.jpg", false),
+      fieldname: "photo[]",
+      originalname: "photo3.jpg",
+    },
   ];
-
-  const result = await uploadMedia(
-    t.context.bearerToken,
-    t.context.publication,
-    t.context.properties,
-    files
-  );
+  const result = await uploadMedia(bearerToken, publication, properties, files);
 
   t.deepEqual(result.photo, [
-    "https://website.example/media/photo1.jpg",
     "https://website.example/media/photo2.jpg",
+    "https://website.example/media/photo3.jpg",
   ]);
 });
 
-test.serial("Throws error if no media endpoint URL", async (t) => {
-  await t.throwsAsync(
-    uploadMedia(
-      t.context.bearerToken,
-      {},
-      t.context.properties,
-      t.context.files
-    ),
-    {
-      message: "Missing `url` property",
-    }
-  );
+test("Throws error if no media endpoint URL", async (t) => {
+  const { bearerToken, properties, files } = t.context;
+
+  await t.throwsAsync(uploadMedia(bearerToken, {}, properties, files), {
+    message: "Failed to parse URL from undefined",
+  });
 });
 
-test.serial("Throws error uploading attached file", async (t) => {
-  nock("https://media-endpoint.example").post("/").reply(400, {
-    error_description: "The token provided was malformed",
-  });
+test("Throws error uploading attached file", async (t) => {
+  const { publication, properties, files } = t.context;
 
-  await t.throwsAsync(
-    uploadMedia(
-      t.context.bearerToken,
-      t.context.publication,
-      t.context.properties,
-      t.context.files
-    ),
-    {
-      message: "The token provided was malformed",
-    }
-  );
+  await t.throwsAsync(uploadMedia("foobar", publication, properties, files), {
+    message: "The token provided was malformed",
+  });
 });
