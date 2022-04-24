@@ -1,5 +1,5 @@
-import FormData from "form-data";
-import got from "got";
+import { Blob } from "node:buffer";
+import { fetch, FormData } from "undici";
 
 /**
  * Upload attached file(s) via media endpoint
@@ -14,33 +14,31 @@ export const uploadMedia = async (token, publication, properties, files) => {
   const { mediaEndpoint } = publication;
 
   for await (const file of files) {
+    const blob = new Blob([file.buffer]);
+
     // Create multipart/form-data
-    const form = new FormData();
-    form.append("file", file.buffer, {
-      filename: file.originalname,
-      contentType: file.mimetype,
-    });
+    const formData = new FormData();
+    formData.append("file", blob, file.originalname);
 
     // Upload file via media endpoint
-    let upload;
-    try {
-      upload = await got.post(mediaEndpoint, {
-        body: form,
-        headers: form.getHeaders({
-          authorization: `Bearer ${token}`,
-        }),
-        responseType: "json",
-      });
-    } catch (error) {
-      throw new Error(
-        error.response ? error.response.body.error_description : error.message
-      );
+    const response = await fetch(mediaEndpoint, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const body = await response.json();
+      const message = body.error_description || response.statusText;
+      throw new Error(message);
     }
 
     // Update respective media property with location of upload
     const filetype = file.fieldname.replace("[]", "");
     properties[filetype] = properties[filetype] || [];
-    properties[filetype].push(upload.headers.location);
+    properties[filetype].push(response.headers.get("location"));
   }
 
   return properties;

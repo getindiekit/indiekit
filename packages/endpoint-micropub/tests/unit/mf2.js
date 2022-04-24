@@ -1,8 +1,11 @@
 import test from "ava";
-import nock from "nock";
 import parser from "microformats-parser";
+import { setGlobalDispatcher } from "undici";
+import { websiteAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/get-fixture";
 import { getMf2Properties, jf2ToMf2, url2Mf2 } from "../../lib/mf2.js";
+
+setGlobalDispatcher(websiteAgent());
 
 test.beforeEach((t) => {
   t.context = {
@@ -114,11 +117,9 @@ test("Converts JF2 to mf2 object", async (t) => {
 });
 
 test("Returns mf2 from URL", async (t) => {
-  nock("https://website.example")
-    .get("/post.html")
-    .reply(200, getFixture("html/post.html"));
+  const result = await url2Mf2("https://website.example/post.html");
 
-  t.deepEqual(await url2Mf2(t.context.url), {
+  t.deepEqual(result, {
     rels: {},
     "rel-urls": {},
     items: [
@@ -135,11 +136,9 @@ test("Returns mf2 from URL", async (t) => {
 });
 
 test("Returns mf2 empty objects if no properties found", async (t) => {
-  nock("https://website.example")
-    .get("/post.html")
-    .reply(200, getFixture("html/page.html"));
+  const result = await url2Mf2("https://website.example/page.html");
 
-  t.deepEqual(await url2Mf2(t.context.url), {
+  t.deepEqual(result, {
     rels: {},
     "rel-urls": {},
     items: [],
@@ -147,9 +146,7 @@ test("Returns mf2 empty objects if no properties found", async (t) => {
 });
 
 test("Throws error if URL not found", async (t) => {
-  nock("https://website.example").get("/post.html").replyWithError("Not found");
-
-  await t.throwsAsync(url2Mf2(t.context.url), {
-    message: "Not found",
+  await t.throwsAsync(url2Mf2("https://website.example/404.html"), {
+    message: "Not Found",
   });
 });

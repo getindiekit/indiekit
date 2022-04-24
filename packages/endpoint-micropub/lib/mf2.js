@@ -1,4 +1,4 @@
-import got from "got";
+import { fetch } from "undici";
 import parser from "microformats-parser";
 
 /**
@@ -77,7 +77,13 @@ export const jf2ToMf2 = (jf2) => {
  * @returns {Promise|object} mf2 object
  */
 export const url2Mf2 = async (url) => {
-  const { body } = await got(url);
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  const body = await response.text();
   const mf2 = parser.mf2(body, {
     baseUrl: url,
   });
