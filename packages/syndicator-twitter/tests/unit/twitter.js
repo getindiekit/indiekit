@@ -1,8 +1,11 @@
 /* eslint-disable camelcase */
 import test from "ava";
 import nock from "nock";
-import { getFixturePath } from "@indiekit-test/get-fixture";
+import { setGlobalDispatcher } from "undici";
+import { websiteAgent } from "@indiekit-test/mock-agent";
 import { twitter } from "../../lib/twitter.js";
+
+setGlobalDispatcher(websiteAgent());
 
 test.beforeEach((t) => {
   t.context = {
@@ -10,10 +13,10 @@ test.beforeEach((t) => {
       id_str: "1234567890987654321",
       user: { screen_name: "username" },
     },
-    media: {
-      url: "https://website.example/image.jpg",
+    media: (filename) => ({
+      url: `https://website.example/${filename}`,
       alt: "Example image",
-    },
+    }),
     tweetUrl: "https://twitter.com/username/status/1234567890987654321",
     statusId: "1234567890987654321",
     options: {
@@ -53,11 +56,7 @@ test("Throws API error posting a like", async (t) => {
   nock("https://api.twitter.com")
     .post("/1.1/favorites/create.json")
     .reply(404, {
-      errors: [
-        {
-          message: "Not found",
-        },
-      ],
+      errors: [{ message: "Not found" }],
     });
 
   await t.throwsAsync(twitter(t.context.options).postLike(t.context.tweetUrl), {
@@ -94,11 +93,7 @@ test("Throws API error posting a retweet", async (t) => {
   nock("https://api.twitter.com")
     .post(`/1.1/statuses/retweet/${t.context.statusId}.json`)
     .reply(404, {
-      errors: [
-        {
-          message: "Not found",
-        },
-      ],
+      errors: [{ message: "Not found" }],
     });
 
   await t.throwsAsync(
@@ -133,11 +128,7 @@ test("Throws API error posting a status", async (t) => {
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .reply(404, {
-      errors: [
-        {
-          message: "Not found",
-        },
-      ],
+      errors: [{ message: "Not found" }],
     });
 
   await t.throwsAsync(twitter(t.context.options).postStatus(t.context.status), {
@@ -146,23 +137,18 @@ test("Throws API error posting a status", async (t) => {
 });
 
 test("Throws error fetching media to upload", async (t) => {
-  nock("https://website.example").get("/image.jpg").replyWithError("Not found");
-
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
-      t.context.media,
+      t.context.media("image.jpg"),
       t.context.publication
     ),
     {
-      message: /Not found/,
+      message: "Not Found",
     }
   );
 });
 
-test.serial("Uploads media and returns a media id", async (t) => {
-  nock("https://website.example")
-    .get("/image.jpg")
-    .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
+test("Uploads media and returns a media id", async (t) => {
   nock("https://upload.twitter.com").post("/1.1/media/upload.json").reply(200, {
     media_id_string: "1234567890987654321",
   });
@@ -171,30 +157,23 @@ test.serial("Uploads media and returns a media id", async (t) => {
     .reply(200, {});
 
   const result = await twitter(t.context.options).uploadMedia(
-    t.context.media,
+    t.context.media("photo1.jpg"),
     t.context.publication
   );
 
   t.is(result, "1234567890987654321");
 });
 
-test.serial("Throws error uploading media", async (t) => {
-  nock("https://website.example")
-    .get("/image.jpg")
-    .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
+test("Throws error uploading media", async (t) => {
   nock("https://upload.twitter.com")
     .post("/1.1/media/upload.json")
     .reply(404, {
-      errors: [
-        {
-          message: "Not found",
-        },
-      ],
+      errors: [{ message: "Not found" }],
     });
 
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
-      t.context.media,
+      t.context.media("photo2.jpg"),
       t.context.publication
     ),
     {
@@ -302,19 +281,7 @@ test("Posts a status to Twitter", async (t) => {
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
 });
 
-test.serial("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
-  nock(t.context.publication.me)
-    .get("/image1.jpg")
-    .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
-  nock(t.context.publication.me)
-    .get("/image2.jpg")
-    .replyWithFile(200, getFixturePath("file-types/photo.jpg"));
-  nock(t.context.publication.me)
-    .get("/image3.jpg")
-    .replyWithFile(200, getFixturePath("file-types/photo.jpg", false));
-  nock("https://website.example")
-    .get("/image4.jpg")
-    .replyWithFile(200, getFixturePath("file-types/photo.jpg", false));
+test("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
   nock("https://upload.twitter.com")
     .post("/1.1/media/upload.json")
     .reply(200, { media_id_string: "1" });
@@ -337,11 +304,11 @@ test.serial("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
         html: "<p>Here’s the cheese sandwiches I ate.</p>",
       },
       photo: [
-        { url: `${t.context.publication.me}/image1.jpg` },
-        { url: `${t.context.publication.me}/image2.jpg` },
-        { url: "image3.jpg" },
-        { url: "https://website.example/image4.jpg" },
-        { url: "https://website.example/image5.jpg" },
+        { url: `${t.context.publication.me}/photo3.jpg` },
+        { url: `${t.context.publication.me}/photo4.jpg` },
+        { url: `${t.context.publication.me}/photo5.jpg` },
+        { url: `${t.context.publication.me}/photo6.jpg` },
+        { url: `${t.context.publication.me}/photo7.jpg` },
       ],
     },
     t.context.publication

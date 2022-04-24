@@ -1,6 +1,6 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
-import got from "got";
+import { fetch } from "undici";
 
 const defaults = {
   branch: "main",
@@ -57,14 +57,26 @@ export const GiteaStore = class {
     ];
   }
 
-  get client() {
-    return got.extend({
+  async client(path, method = "GET", body) {
+    const { instance, user, repo } = this.options;
+    const url = new URL(
+      path,
+      `${instance}/api/v1/repos/${user}/${repo}/contents/`
+    );
+
+    const response = await fetch(url.href, {
+      method,
       headers: {
-        authorization: `token ${this.options.token}`,
+        Authorization: `token ${this.options.token}`,
       },
-      prefixUrl: `${this.options.instance}/api/v1/repos/${this.options.user}/${this.options.repo}/contents`,
-      responseType: "json",
+      body: JSON.stringify(body),
     });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    return response;
   }
 
   /**
@@ -78,14 +90,13 @@ export const GiteaStore = class {
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString("base64");
-    const response = await this.client.post(path, {
-      json: {
-        branch: this.options.branch,
-        content,
-        message,
-      },
+    const response = await this.client(path, "POST", {
+      branch: this.options.branch,
+      content,
+      message,
     });
-    return response;
+
+    return response.json();
   }
 
   /**
@@ -96,10 +107,10 @@ export const GiteaStore = class {
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
   async readFile(path) {
-    const { body } = await this.client.get(
-      `${path}?ref=${this.options.branch}`
-    );
+    const response = await this.client(`${path}?ref=${this.options.branch}`);
+    const body = await response.json();
     const content = Buffer.from(body.content, "base64").toString("utf8");
+
     return content;
   }
 
@@ -113,20 +124,17 @@ export const GiteaStore = class {
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(path, content, message) {
-    const { body } = await this.client.get(
-      `${path}?ref=${this.options.branch}`
-    );
-
     content = Buffer.from(content).toString("base64");
-    const response = await this.client.put(path, {
-      json: {
-        branch: this.options.branch,
-        content,
-        message,
-        sha: body.sha,
-      },
+    const response = await this.client(`${path}?ref=${this.options.branch}`);
+    const body = await response.json();
+    const updated = await this.client(path, "PUT", {
+      branch: this.options.branch,
+      content,
+      message,
+      sha: body.sha,
     });
-    return response;
+
+    return updated.json();
   }
 
   /**
@@ -138,18 +146,15 @@ export const GiteaStore = class {
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
   async deleteFile(path, message) {
-    const { body } = await this.client.get(
-      `${path}?ref=${this.options.branch}`
-    );
-
-    const response = await this.client.delete(path, {
-      json: {
-        branch: this.options.branch,
-        message,
-        sha: body.sha,
-      },
+    const response = await this.client(`${path}?ref=${this.options.branch}`);
+    const body = await response.json();
+    const deleted = await this.client(path, "DELETE", {
+      branch: this.options.branch,
+      message,
+      sha: body.sha,
     });
-    return response;
+
+    return deleted.json();
   }
 
   init(Indiekit) {
