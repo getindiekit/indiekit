@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 16"
+    "node": ">=16"
   },
   "type": "module",
   "main": "index.js",
