@@ -19,7 +19,6 @@ export const ImageEndpoint = class {
     let cache;
     if (application.hasDatabase) {
       const store = new KeyvMongoDB({
-        collection: "cache",
         url: application.mongodbUrl,
       });
       cache = new Keyv({ store });
