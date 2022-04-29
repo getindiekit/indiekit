@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- if files %}
+  {%- if files.length > 0 %}
   {{ fileGrid({
     items: files
   }) }}
