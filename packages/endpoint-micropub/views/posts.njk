@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- if posts %}
+  {%- if posts.length > 0 %}
   {{ fileList({
     items: posts
   }) }}
