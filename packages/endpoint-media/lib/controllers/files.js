@@ -35,7 +35,7 @@ export const filesController = (application, publication) => ({
         page,
         limit,
         count,
-        parentUrl: `${publication.mediaEndpoint}/files/`,
+        parentUrl: `${request.originalUrl}/`,
       });
     } catch (error) {
       next(error);
