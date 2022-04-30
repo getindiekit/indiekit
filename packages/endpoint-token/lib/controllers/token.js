@@ -4,7 +4,7 @@ import HttpError from "http-errors";
 import jwt from "jsonwebtoken";
 import { getCanonicalUrl } from "../utils.js";
 
-export const tokenController = (publication) => ({
+export const tokenController = {
   /**
    * Verify access token
    *
@@ -16,6 +16,7 @@ export const tokenController = (publication) => ({
   get(request, response, next) {
     if (request.headers.authorization) {
       try {
+        const { publication } = request.app.locals;
         const bearerToken = request.headers.authorization
           .trim()
           .split(/\s+/)[1];
@@ -64,6 +65,7 @@ export const tokenController = (publication) => ({
    * @returns {Promise|object} HTTP response
    */
   async post(request, response, next) {
+    const { publication } = request.app.locals;
     const { code, redirect_uri, client_id } = request.query;
 
     try {
@@ -129,4 +131,4 @@ export const tokenController = (publication) => ({
       return next(new HttpError(400, error.message));
     }
   },
-});
+};

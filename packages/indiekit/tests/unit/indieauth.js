@@ -38,9 +38,12 @@ test("Invalidates state", (t) => {
 });
 
 test("Throws error getting authentication URL", async (t) => {
-  await t.throwsAsync(indieauth.getAuthUrl(null, "state"), {
-    message: "You need to provide some scopes",
-  });
+  await t.throwsAsync(
+    indieauth.getAuthUrl("https://indieauth.com/auth", null, "state"),
+    {
+      message: "You need to provide some scopes",
+    }
+  );
 });
 
 test("Exchanges authorization code for access token", async (t) => {
@@ -49,7 +52,10 @@ test("Exchanges authorization code for access token", async (t) => {
     scope: "create",
   });
 
-  const result = await indieauth.authorizationCodeGrant("code");
+  const result = await indieauth.authorizationCodeGrant(
+    "https://tokens.indieauth.com/token",
+    "code"
+  );
 
   t.is(result, process.env.TEST_TOKEN);
 });
@@ -59,9 +65,15 @@ test.serial(
   async (t) => {
     nock("https://tokens.indieauth.com").post("/token").query(true).reply(200);
 
-    await t.throwsAsync(indieauth.authorizationCodeGrant("code"), {
-      message: "The token endpoint did not return the expected parameters",
-    });
+    await t.throwsAsync(
+      indieauth.authorizationCodeGrant(
+        "https://tokens.indieauth.com/token",
+        "code"
+      ),
+      {
+        message: "The token endpoint did not return the expected parameters",
+      }
+    );
   }
 );
 
@@ -71,9 +83,15 @@ test("Throws error exchanging invalid code for access token", async (t) => {
     error_description: "The code provided was not valid",
   });
 
-  await t.throwsAsync(indieauth.authorizationCodeGrant("code"), {
-    message: "The code provided was not valid",
-  });
+  await t.throwsAsync(
+    indieauth.authorizationCodeGrant(
+      "https://tokens.indieauth.com/token",
+      "code"
+    ),
+    {
+      message: "The code provided was not valid",
+    }
+  );
 });
 
 test("Throws error exchanging authorization code during request", async (t) => {
@@ -82,9 +100,15 @@ test("Throws error exchanging authorization code during request", async (t) => {
     .query(true)
     .replyWithError("Not found");
 
-  await t.throwsAsync(indieauth.authorizationCodeGrant("code"), {
-    message: "Not found",
-  });
+  await t.throwsAsync(
+    indieauth.authorizationCodeGrant(
+      "https://tokens.indieauth.com/token",
+      "code"
+    ),
+    {
+      message: "Not found",
+    }
+  );
 });
 
 test("Checks if user is authorized", async (t) => {
@@ -92,27 +116,29 @@ test("Checks if user is authorized", async (t) => {
     .get("/token")
     .reply(200, t.context.accessToken);
   const request = mockRequest({
+    app: {
+      locals: {
+        application: {},
+        publication: {
+          tokenEndpoint: "https://tokens.indieauth.com/token",
+        },
+      },
+    },
     headers: { authorization: `Bearer ${t.context.bearerToken}` },
     session: {},
   });
-  const response = mockResponse({
-    locals: {
-      application: {},
-      publication: {
-        tokenEndpoint: "https://tokens.indieauth.com/token",
-      },
-    },
-  });
+  const response = mockResponse();
   const next = sinon.spy();
 
   await indieauth.authorise()(request, response, next);
 
-  t.is(request.session.token.me, t.context.me);
+  t.is(request.app.locals.accessToken.me, t.context.me);
   t.true(next.calledOnce);
 });
 
 test("Throws error checking if user is authorized", async (t) => {
   const request = mockRequest({
+    app: { locals: { publication: {} } },
     method: "post",
   });
   const response = mockResponse();
@@ -144,6 +170,7 @@ test("Throws error redirecting user to IndieAuth login", async (t) => {
 
 test("Throws error checking credentials returned by IndieAuth", async (t) => {
   const request = mockRequest({
+    app: { locals: { publication: {} } },
     query: { code: "", state: "" },
   });
   const response = mockResponse();

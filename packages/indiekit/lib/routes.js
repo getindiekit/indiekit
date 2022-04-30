@@ -22,7 +22,6 @@ export const routes = (indiekitConfig) => {
 
   const indieauth = new IndieAuth({
     me: publication.me,
-    tokenEndpoint: publication.tokenEndpoint,
   });
 
   // Prevent pages from being indexed

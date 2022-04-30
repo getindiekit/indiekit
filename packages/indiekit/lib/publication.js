@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { isUrl } from "./utils.js";
+import { isUrl, getUrl } from "./utils.js";
 
 /**
  * Return array of available categories. If not a simple array,
@@ -25,22 +25,35 @@ export const getCategories = async (cache, publication) => {
 };
 
 /**
- * Get named endpoint from publication configuration or server derived value
+ * Get endpoint URLs from publication configuration or server derived value
  *
- * @param {string} endpointName Endpoint name
- * @param {string} applicationUrl Application URL
- * @returns {string} Endpoint URL
+ * @param {object} indiekitConfig Indiekit configuration
+ * @param {object} request HTTP request
+ * @returns {object} Endpoint URLs
  */
-export const getEndpoint = (endpointName, indiekitConfig) => {
+export const getEndpoints = (indiekitConfig, request) => {
   const { application, publication } = indiekitConfig;
+  const endpoints = {};
 
-  // Use endpoint in publication configuration
-  if (publication[endpointName] && isUrl(publication[endpointName])) {
-    return publication[endpointName];
-  }
+  [
+    "authorizationEndpoint",
+    "mediaEndpoint",
+    "micropubEndpoint",
+    "tokenEndpoint",
+  ].forEach((endpoint) => {
+    // Use endpoint URL in publication config
+    if (publication[endpoint] && isUrl(publication[endpoint])) {
+      endpoints[endpoint] = publication[endpoint];
+    } else {
+      // Else, use endpoint path provided by application
+      endpoints[endpoint] = new URL(
+        application[endpoint],
+        getUrl(request)
+      ).href;
+    }
+  });
 
-  // Else, use endpoint provided by application
-  return new URL(application[endpointName], application.url).href;
+  return endpoints;
 };
 
 /**

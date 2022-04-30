@@ -12,7 +12,11 @@ test("Returns authenticated session", async (t) => {
     access_token: process.env.TEST_TOKEN,
     scope: "create",
   });
-  const request = await testServer();
+  const request = await testServer({
+    publication: {
+      tokenEndpoint: "https://tokens.indieauth.com/token",
+    },
+  });
 
   const response = await request.post("/session/login");
   const authUrlRegexp =

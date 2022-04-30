@@ -50,31 +50,12 @@ export const decrypt = (hash, iv) => {
 export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
- * Get relationships of given URL
  *
- * @param {string} url The URL to parse
- * @returns {Promise} Passes an object of endpoints on success: `authorization_endpoint`, `token_endpoint` and any extras.
- * If a requested `rel` was not found it will have a null value.
- * Note: Will only pass the first value of any rel if there are multiple results.
+ * @param {object} request HTTP request
+ * @returns {string} Fully resolved URL
  */
-export const getRelationshipsFromUrl = async (url) => {
-  try {
-    const { rels } = await url2Mf2(url);
-    const discoveredRelationships = {};
-
-    if (rels) {
-      for (const relationship of Object.keys(rels)) {
-        discoveredRelationships[relationship] =
-          rels[relationship] && rels[relationship][0]
-            ? rels[relationship][0]
-            : null;
-      }
-    }
-
-    return discoveredRelationships;
-  } catch (error) {
-    throw new Error(error.message);
-  }
+export const getUrl = (request) => {
+  return `${request.protocol}://${request.headers.host}`;
 };
 
 /**

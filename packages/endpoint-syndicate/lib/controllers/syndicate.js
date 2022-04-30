@@ -5,11 +5,12 @@ import { getPostData } from "../utils.js";
 
 const debug = new Debug("indiekit:endpoint-syndicate");
 
-export const syndicateController = (application, publication) => ({
+export const syndicateController = {
   async post(request, response, next) {
-    const { token } = request.query;
-
     try {
+      const { application, publication } = request.app.locals;
+      const { token } = request.query;
+
       if (!application.hasDatabase) {
         throw new Error(response.__("errors.noDatabase.content"));
       }
@@ -97,4 +98,4 @@ export const syndicateController = (application, publication) => ({
       }
     }
   },
-});
+};

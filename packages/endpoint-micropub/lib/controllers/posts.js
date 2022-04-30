@@ -1,7 +1,7 @@
 import HttpError from "http-errors";
 import mongodb from "mongodb";
 
-export const postsController = (application, publication) => ({
+export const postsController = {
   /**
    * List previously published posts
    *
@@ -12,6 +12,8 @@ export const postsController = (application, publication) => ({
    */
   async list(request, response, next) {
     try {
+      const { application, publication } = request.app.locals;
+
       if (!application.hasDatabase) {
         throw new Error(response.__("errors.noDatabase.content"));
       }
@@ -52,6 +54,7 @@ export const postsController = (application, publication) => ({
    */
   async view(request, response, next) {
     try {
+      const { publication } = request.app.locals;
       const { id } = request.params;
       const post = await publication.posts.findOne({
         _id: new mongodb.ObjectId(id),
@@ -69,4 +72,4 @@ export const postsController = (application, publication) => ({
       next(error);
     }
   },
-});
+};

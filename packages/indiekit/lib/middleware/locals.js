@@ -1,8 +1,9 @@
+import { getEndpoints } from "../publication.js";
 import { getNavigation } from "../navigation.js";
-import { getEndpoint } from "../publication.js";
+import { getUrl } from "../utils.js";
 
 /**
- * Expose configuration to frontend templates
+ * Expose configuration to frontend templates and plug-ins
  *
  * @param {object} indiekitConfig Indiekit configuration
  * @returns {Function} Next middleware
@@ -15,18 +16,14 @@ export const locals = (indiekitConfig) =>
       // Application
       application.localeUsed = request.getLocale();
       application.navigation = getNavigation(application, request, response);
-      application.url =
-        application.url || `${request.protocol}://${request.headers.host}`;
-      response.locals.application = application;
+      application.url = application.url || getUrl(request);
+      request.app.locals.application = application;
 
       // Publication
-      publication.mediaEndpoint = getEndpoint("mediaEndpoint", indiekitConfig);
-      publication.micropubEndpoint = getEndpoint(
-        "micropubEndpoint",
-        indiekitConfig
-      );
-      publication.tokenEndpoint = getEndpoint("tokenEndpoint", indiekitConfig);
-      response.locals.publication = publication;
+      request.app.locals.publication = {
+        ...publication,
+        ...getEndpoints(indiekitConfig, request),
+      };
 
       // Session
       response.locals.session = request.session;

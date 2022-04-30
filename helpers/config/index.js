@@ -47,6 +47,7 @@ export const testConfig = async (options) => {
       me: options?.publication?.me || process.env.TEST_PUBLICATION_URL,
       postTypes,
       timeZone: "UTC",
+      tokenEndpoint: options?.publication?.tokenEndpoint,
     },
     "@indiekit/store-github": {
       token: "abc123",

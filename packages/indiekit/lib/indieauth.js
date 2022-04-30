@@ -7,13 +7,7 @@ import {
   requestAccessToken,
   verifyAccessToken,
 } from "./tokens.js";
-import {
-  decrypt,
-  encrypt,
-  getCanonicalUrl,
-  getRelationshipsFromUrl,
-  randomString,
-} from "./utils.js";
+import { decrypt, encrypt, getCanonicalUrl, randomString } from "./utils.js";
 
 export const IndieAuth = class {
   constructor(options = {}) {
@@ -63,28 +57,17 @@ export const IndieAuth = class {
   /**
    * Get authentication URL
    *
+   * @param {string} authorizationEndpoint Authorization endpoint
    * @param {string} scope Authorisation scope
    * @param {string} state State
    * @returns {Promise|string} Authentication URL
    */
-  async getAuthUrl(scope, state) {
+  async getAuthUrl(authorizationEndpoint, scope, state) {
     if (!scope) {
       throw new Error("You need to provide some scopes");
     }
 
     try {
-      const relationships = await getRelationshipsFromUrl(this.me);
-
-      if (!relationships.authorization_endpoint) {
-        throw new Error("No authorization endpoint found");
-      }
-
-      this.options.authEndpoint = relationships.authorization_endpoint;
-
-      if (relationships.token_endpoint) {
-        this.options.tokenEndpoint = relationships.token_endpoint;
-      }
-
       // PKCE code challenge
       const base64Digest = crypto
         .createHash("sha256")
@@ -92,7 +75,7 @@ export const IndieAuth = class {
         .digest("base64");
       const codeChallenge = base64Digest.toString("base64url");
 
-      const authUrl = new URL(this.options.authEndpoint);
+      const authUrl = new URL(authorizationEndpoint);
       authUrl.searchParams.append("client_id", this.clientId);
       authUrl.searchParams.append("code_challenge_method", "S256");
       authUrl.searchParams.append("code_challenge", codeChallenge);
@@ -111,10 +94,11 @@ export const IndieAuth = class {
   /**
    * Exchange authorization code for access token
    *
+   * @param {string} tokenEndpoint Token endpoint
    * @param {string} code Code received from authentication endpoint
    * @returns {Promise|object} Access token
    */
-  async authorizationCodeGrant(code) {
+  async authorizationCodeGrant(tokenEndpoint, code) {
     try {
       const parameters = {
         client_id: this.clientId,
@@ -124,7 +108,7 @@ export const IndieAuth = class {
         redirect_uri: this.redirectUri,
       };
 
-      const { body } = await got.post(this.options.tokenEndpoint, {
+      const { body } = await got.post(tokenEndpoint, {
         headers: {
           "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
           accept: "application/json, application/x-www-form-urlencoded",
@@ -148,29 +132,30 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check if user is authorized
+   * Check if user is authorized (when calling API)
    *
    * @returns {Function} Next middleware
    */
   authorise() {
-    let { me, tokenEndpoint } = this.options;
+    const { me } = this;
 
     return async function (request, response, next) {
-      // If already have a session token, go to next middleware
-      const token = request.session?.token;
-      if (token || process.env.NODE_ENV === "development") {
+      const { tokenEndpoint } = request.app.locals.publication;
+
+      // If already validated and saved access token, go to next middleware
+      const { accessToken } = request.app.locals;
+      if (accessToken) {
         return next();
       }
 
       // Validate bearer token sent in request
       try {
         const bearerToken = findBearerToken(request);
-        response.locals.publication.bearerToken = bearerToken;
+        request.app.locals.bearerToken = bearerToken;
 
-        const { tokenEndpoint } = response.locals.publication;
         const token = await requestAccessToken(tokenEndpoint, bearerToken);
         const accessToken = verifyAccessToken(me, token);
-        request.session.token = accessToken;
+        request.app.locals.accessToken = accessToken;
 
         next();
       } catch (error) {
@@ -193,10 +178,10 @@ export const IndieAuth = class {
   login() {
     return async (request, response) => {
       try {
-        const { url } = response.locals.application;
-        this.clientId = getCanonicalUrl(url);
+        const { application, publication } = request.app.locals;
+        this.clientId = getCanonicalUrl(application.url);
 
-        const callbackUrl = `${url}/session/auth`;
+        const callbackUrl = `${application.url}/session/auth`;
         const { redirect } = request.query;
         this.redirectUri = redirect
           ? `${callbackUrl}?redirect=${redirect}`
@@ -204,7 +189,11 @@ export const IndieAuth = class {
 
         const scope = "create update delete media";
         const state = this.generateState();
-        const authUrl = await this.getAuthUrl(scope, state);
+        const authUrl = await this.getAuthUrl(
+          publication.authorizationEndpoint,
+          scope,
+          state
+        );
 
         return response.redirect(authUrl);
       } catch (error) {
@@ -217,12 +206,13 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check credentials match those returned by IndieAuth
+   * Check credentials match those returned by IndieAuth (when signing in)
    *
    * @returns {object} HTTP response
    */
   authenticate() {
     return async (request, response, next) => {
+      const { publication } = request.app.locals;
       const { code, redirect, state } = request.query;
 
       // Check redirect is to a local path
@@ -247,7 +237,10 @@ export const IndieAuth = class {
         }
 
         // Request access token
-        const token = await this.authorizationCodeGrant(code);
+        const token = await this.authorizationCodeGrant(
+          publication.tokenEndpoint,
+          code
+        );
 
         // Set session token and redirect to requested resource
         request.session.token = token;

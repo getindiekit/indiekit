@@ -13,7 +13,6 @@ const { templates } = frontend;
 
 export const expressConfig = (indiekitConfig) => {
   const app = express();
-  const { application } = indiekitConfig;
 
   // Correctly report secure connections
   app.enable("trust proxy");
@@ -23,7 +22,7 @@ export const expressConfig = (indiekitConfig) => {
   app.use(express.urlencoded({ extended: true }));
 
   // Session
-  app.use(application.sessionMiddleware);
+  app.use(indiekitConfig.application.sessionMiddleware);
 
   // Force HTTPS
   if (process.env.NODE_ENV === "production") {

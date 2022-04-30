@@ -6,7 +6,7 @@ import { Indiekit } from "../../index.js";
 import { Cache } from "../../lib/cache.js";
 import {
   getCategories,
-  getEndpoint,
+  getEndpoints,
   getPostTemplate,
   getPostTypes,
 } from "../../lib/publication.js";
@@ -19,6 +19,7 @@ test.beforeEach(async (t) => {
   t.context = {
     application: {
       mediaEndpoint: "/media",
+      tokenEndpoint: "/token",
       url: "https://server.example",
     },
     cacheCollection: application.cache,
@@ -66,17 +67,25 @@ test("Returns empty array if no publication configuration provided", async (t) =
   t.deepEqual(result, []);
 });
 
-test("Gets endpoint from server derived values", (t) => {
-  const result = getEndpoint("mediaEndpoint", t.context);
+test("Gets endpoints from server derived values", (t) => {
+  const result = getEndpoints(t.context, {
+    headers: { host: "server.example" },
+    protocol: "https",
+  });
 
-  t.is(result, "https://server.example/media");
+  t.is(result["mediaEndpoint"], "https://server.example/media");
+  t.is(result["tokenEndpoint"], "https://server.example/token");
 });
 
-test("Gets endpoint from publication configuration", (t) => {
+test("Gets endpoints from publication configuration", (t) => {
   t.context.publication.mediaEndpoint = "https://website.example/media";
-  const result = getEndpoint("mediaEndpoint", t.context);
+  const result = getEndpoints(t.context, {
+    headers: { host: "server.example" },
+    protocol: "https",
+  });
 
-  t.is(result, "https://website.example/media");
+  t.is(result["mediaEndpoint"], "https://website.example/media");
+  t.is(result["tokenEndpoint"], "https://server.example/token");
 });
 
 test("Gets custom post template", (t) => {

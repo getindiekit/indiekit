@@ -18,24 +18,22 @@ export const MicropubEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  routes(application, publication) {
+  get routes() {
     const router = this._router;
     const multipartParser = multer({
       storage: multer.memoryStorage(),
     });
 
-    router.get("/", queryController(publication));
-    router.post("/", multipartParser.any(), actionController(publication));
-    router.get("/posts", postsController(application, publication).list);
-    router.get("/posts/:id", postsController(application, publication).view);
+    router.get("/", queryController);
+    router.post("/", multipartParser.any(), actionController);
+    router.get("/posts", postsController.list);
+    router.get("/posts/:id", postsController.view);
 
     return router;
   }
 
   init(Indiekit) {
-    const { application, publication } = Indiekit.config;
-
-    if (application.hasDatabase) {
+    if (Indiekit.config.application.hasDatabase) {
       Indiekit.extend("navigationItems", {
         href: `${this.options.mountPath}/posts`,
         text: "micropub.title",
@@ -44,10 +42,10 @@ export const MicropubEndpoint = class {
 
     Indiekit.extend("routes", {
       mountPath: this.options.mountPath,
-      routes: () => this.routes(application, publication),
+      routes: () => this.routes,
     });
 
-    application.micropubEndpoint = this.options.mountPath;
+    Indiekit.config.application.micropubEndpoint = this.options.mountPath;
   }
 };
 

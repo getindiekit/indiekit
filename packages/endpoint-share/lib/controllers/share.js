@@ -3,7 +3,7 @@ import validator from "express-validator";
 
 const { validationResult } = validator;
 
-export const shareController = (publication) => ({
+export const shareController = {
   /**
    * View share page
    *
@@ -31,6 +31,7 @@ export const shareController = (publication) => ({
    * @returns {object} HTTP response
    */
   async post(request, response) {
+    const { publication } = request.app.locals;
     const { content, name } = request.body;
     const bookmarkOf = request.body.url || request.body["bookmark-of"];
 
@@ -67,4 +68,4 @@ export const shareController = (publication) => ({
       });
     }
   },
-});
+};
