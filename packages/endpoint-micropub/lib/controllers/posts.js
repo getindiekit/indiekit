@@ -35,7 +35,7 @@ export const postsController = (application, publication) => ({
         page,
         limit,
         count,
-        parentUrl: `${publication.micropubEndpoint}/posts/`,
+        parentUrl: `${request.originalUrl}/`,
       });
     } catch (error) {
       next(error);
