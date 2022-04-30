@@ -23,7 +23,6 @@
 }
 
 .app--login .main {
-  border-radius: var(--border-radius-large);
   flex: 0;
   margin-block-end: 20vh;
   margin-inline-end: auto;
@@ -36,4 +35,5 @@
 .app--login .article,
 .app--login .form {
   background-color: var(--color-background);
+  border-radius: var(--border-radius-large);
 }
