@@ -1,6 +1,5 @@
 import path from "node:path";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
 import { mastodon } from "./lib/mastodon.js";
 
 const defaults = {
@@ -11,6 +10,7 @@ const defaults = {
 export const MastodonSyndicator = class {
   constructor(options = {}) {
     this.id = "mastodon";
+    this.meta = import.meta;
     this.name = "Mastodon syndicator";
     this.options = { ...defaults, ...options };
   }
@@ -21,10 +21,6 @@ export const MastodonSyndicator = class {
     }
 
     throw new Error("Mastodon server URL required");
-  }
-
-  get assetsPath() {
-    return fileURLToPath(new URL("assets", import.meta.url));
   }
 
   get info() {

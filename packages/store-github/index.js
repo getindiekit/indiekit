@@ -14,6 +14,7 @@ const defaults = {
 export const GithubStore = class {
   constructor(options = {}) {
     this.id = "github";
+    this.meta = import.meta;
     this.name = "GitHub store";
     this.options = { ...defaults, ...options };
   }

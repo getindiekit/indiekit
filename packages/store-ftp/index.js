@@ -18,6 +18,7 @@ const defaults = {
 export const FtpStore = class {
   constructor(options = {}) {
     this.id = "ftp";
+    this.meta = import.meta;
     this.name = "FTP store";
     this.options = { ...defaults, ...options };
   }

@@ -24,12 +24,6 @@ test.beforeEach((t) => {
   };
 });
 
-test("Gets assets path", (t) => {
-  const result = new TwitterSyndicator(t.context.options);
-
-  t.regex(result.assetsPath, /syndicator-twitter\/assets/);
-});
-
 test("Gets plug-in info", (t) => {
   const result = new TwitterSyndicator(t.context.options);
 

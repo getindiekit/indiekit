@@ -15,6 +15,7 @@ const defaults = {
 export const GitlabStore = class {
   constructor(options = {}) {
     this.id = "gitlab";
+    this.meta = import.meta;
     this.name = "GitLab store";
     this.options = { ...defaults, ...options };
     this.projectId = options.projectId || `${options.user}/${options.repo}`;

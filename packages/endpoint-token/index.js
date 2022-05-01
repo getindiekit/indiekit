@@ -10,6 +10,7 @@ const defaults = {
 export const TokenEndpoint = class {
   constructor(options = {}) {
     this.id = "endpoint-token";
+    this.meta = import.meta;
     this.name = "Token endpoint";
     this.options = { ...defaults, ...options };
     // eslint-disable-next-line new-cap

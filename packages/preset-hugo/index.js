@@ -9,6 +9,7 @@ const defaults = {
 export const HugoPreset = class {
   constructor(options = {}) {
     this.id = "hugo";
+    this.meta = import.meta;
     this.name = "Hugo preset";
     this.options = { ...defaults, ...options };
   }

@@ -15,6 +15,7 @@ const defaults = {
 export const GiteaStore = class {
   constructor(options = {}) {
     this.id = "gitea";
+    this.meta = import.meta;
     this.name = "Gitea store";
     this.options = { ...defaults, ...options };
   }

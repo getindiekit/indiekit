@@ -8,6 +8,7 @@ const defaults = {
 export const SyndicateEndpoint = class {
   constructor(options = {}) {
     this.id = "endpoint-syndicate";
+    this.meta = import.meta;
     this.name = "Syndication endpoint";
     this.options = { ...defaults, ...options };
     this._router = express.Router(); // eslint-disable-line new-cap

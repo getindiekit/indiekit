@@ -19,10 +19,6 @@ test.beforeEach((t) => {
   };
 });
 
-test("Gets assets path", (t) => {
-  t.regex(internetArchive.assetsPath, /syndicator-internet-archive\/assets/);
-});
-
 test("Gets plug-in info", (t) => {
   t.is(internetArchive.name, "Internet Archive syndicator");
   t.false(internetArchive.info.checked);

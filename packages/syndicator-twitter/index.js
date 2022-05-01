@@ -1,5 +1,4 @@
 import process from "node:process";
-import { fileURLToPath } from "node:url";
 import { twitter } from "./lib/twitter.js";
 
 const defaults = {
@@ -13,12 +12,9 @@ const defaults = {
 export const TwitterSyndicator = class {
   constructor(options = {}) {
     this.id = "twitter";
+    this.meta = import.meta;
     this.name = "Twitter syndicator";
     this.options = { ...defaults, ...options };
-  }
-
-  get assetsPath() {
-    return fileURLToPath(new URL("assets", import.meta.url));
   }
 
   get info() {

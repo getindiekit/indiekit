@@ -1,5 +1,4 @@
 import process from "node:process";
-import { fileURLToPath } from "node:url";
 import Debug from "debug";
 import { internetArchive } from "./lib/internet-archive.js";
 
@@ -16,12 +15,9 @@ const defaults = {
 export const InternetArchiveSyndicator = class {
   constructor(options = {}) {
     this.id = "internet-archive";
+    this.meta = import.meta;
     this.name = "Internet Archive syndicator";
     this.options = { ...defaults, ...options };
-  }
-
-  get assetsPath() {
-    return fileURLToPath(new URL("assets", import.meta.url));
   }
 
   get info() {

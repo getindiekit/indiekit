@@ -3,6 +3,7 @@ import YAML from "yaml";
 export const JekyllPreset = class {
   constructor() {
     this.id = "jekyll";
+    this.meta = import.meta;
     this.name = "Jekyll preset";
   }
 
