@@ -40,10 +40,6 @@ export const TokenEndpoint = class {
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.extend("views", [
-      fileURLToPath(new URL("views", import.meta.url)),
-    ]);
-
     application.tokenEndpoint = this.options.mountPath;
   }
 };

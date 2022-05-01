@@ -38,11 +38,6 @@ export const ShareEndpoint = class {
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.extend("views", [
-      fileURLToPath(new URL("includes", import.meta.url)),
-      fileURLToPath(new URL("views", import.meta.url)),
-    ]);
-
     application.shareEndpoint = this.options.mountPath;
   }
 };

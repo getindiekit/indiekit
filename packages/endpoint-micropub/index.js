@@ -47,10 +47,6 @@ export const MicropubEndpoint = class {
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.extend("views", [
-      fileURLToPath(new URL("views", import.meta.url)),
-    ]);
-
     application.micropubEndpoint = this.options.mountPath;
   }
 };

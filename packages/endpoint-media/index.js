@@ -51,10 +51,6 @@ export const MediaEndpoint = class {
       routes: () => this.routes(application, publication),
     });
 
-    Indiekit.extend("views", [
-      fileURLToPath(new URL("views", import.meta.url)),
-    ]);
-
     application.mediaEndpoint = this.options.mountPath;
   }
 };

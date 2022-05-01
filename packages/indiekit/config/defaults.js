@@ -1,7 +1,6 @@
 import crypto from "node:crypto";
 import { createRequire } from "node:module";
 import process from "node:process";
-import { fileURLToPath } from "node:url";
 import cookieSession from "cookie-session";
 import dotenv from "dotenv";
 
@@ -26,7 +25,6 @@ export const defaultConfig = {
     themeColor: "#0055ee",
     themeColorScheme: "automatic",
     version: package_.version,
-    views: [fileURLToPath(new URL("../views", import.meta.url))],
   },
   plugins: [
     "@indiekit/endpoint-image",
