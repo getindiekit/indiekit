@@ -1,5 +1,6 @@
 export const getNavigation = (application, request, response) => {
-  const defaultNavigation = [
+  // Default navigation items
+  const navigation = [
     request.session.token
       ? {
           href: "/session/logout",
@@ -11,8 +12,12 @@ export const getNavigation = (application, request, response) => {
         },
   ];
 
-  // Merge default navigation items with those added by plugins
-  const navigation = [...application.navigationItems, ...defaultNavigation];
+  // Plug-in navigation items
+  for (const plugin of application.installedPlugins) {
+    if (plugin.navigationItems && plugin.navigationItems(application)) {
+      navigation.unshift(plugin.navigationItems(application));
+    }
+  }
 
   // Translate text strings
   for (const item of navigation) {

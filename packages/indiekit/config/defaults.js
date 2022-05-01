@@ -18,7 +18,6 @@ export const defaultConfig = {
     localesAvailable: ["de", "en", "fr", "nl", "pt"],
     mongodbUrl,
     name: "Indiekit",
-    navigationItems: [],
     repository: package_.repository,
     routes: [],
     routesPublic: [],

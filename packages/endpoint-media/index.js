@@ -18,6 +18,15 @@ export const MediaEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
+  navigationItems(application) {
+    if (application.hasDatabase) {
+      return {
+        href: `${this.options.mountPath}/files`,
+        text: "media.title",
+      };
+    }
+  }
+
   get routes() {
     const router = this._router;
     const multipartParser = multer({
@@ -33,13 +42,6 @@ export const MediaEndpoint = class {
   }
 
   init(Indiekit) {
-    if (Indiekit.config.application.hasDatabase) {
-      Indiekit.extend("navigationItems", {
-        href: `${this.options.mountPath}/files`,
-        text: "media.title",
-      });
-    }
-
     Indiekit.extend("routes", {
       mountPath: this.options.mountPath,
       routes: () => this.routes,

@@ -16,6 +16,13 @@ export const ShareEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
+  navigationItems() {
+    return {
+      href: this.options.mountPath,
+      text: "share.title",
+    };
+  }
+
   get routes() {
     const router = this._router;
 
@@ -26,11 +33,6 @@ export const ShareEndpoint = class {
   }
 
   init(Indiekit) {
-    Indiekit.extend("navigationItems", {
-      href: this.options.mountPath,
-      text: "share.title",
-    });
-
     Indiekit.extend("routes", {
       mountPath: this.options.mountPath,
       routes: () => this.routes,

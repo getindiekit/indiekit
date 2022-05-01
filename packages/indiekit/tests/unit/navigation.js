@@ -3,6 +3,7 @@ import { getNavigation } from "../../lib/navigation.js";
 
 test.beforeEach((t) => {
   t.context.application = {
+    installedPlugins: [],
     locale: "en",
     navigationItems: [],
   };
