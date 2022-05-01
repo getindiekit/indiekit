@@ -14,8 +14,6 @@ export const syndicateController = (application, publication) => ({
         throw new Error(response.__("errors.noDatabase.content"));
       }
 
-      const syndication = [];
-
       // Get syndication targets
       const { syndicationTargets } = publication;
       if (syndicationTargets.length === 0) {
@@ -53,6 +51,7 @@ export const syndicateController = (application, publication) => ({
       }
 
       // Syndicate to target(s)
+      const syndication = [];
       for await (const target of syndicationTargets) {
         const { uid } = target.info;
         const canSyndicate = syndicateTo.includes(uid);
@@ -67,7 +66,6 @@ export const syndicateController = (application, publication) => ({
 
       // Update post with syndicated URL(s) and removal of syndication target(s)
       const updated = await got.post(publication.micropubEndpoint, {
-        responseType: "json",
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -79,6 +77,7 @@ export const syndicateController = (application, publication) => ({
             syndication,
           },
         },
+        responseType: "json",
       });
 
       if (updated) {
