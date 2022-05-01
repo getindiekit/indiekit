@@ -1,0 +1,9 @@
+.icon {
+  display: inline-block;
+  margin-inline-end: 0.5ex;
+  vertical-align: text-bottom;
+  block-size: 1em;
+  inline-size: 1em;
+  position: relative;
+  inset-block-start: -1px;
+}

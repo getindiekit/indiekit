@@ -6,6 +6,8 @@
 
 .file__title svg {
   margin-inline-end: var(--space-inline);
+  block-size: 1.2em;
+  inline-size: 1.2em;
 }
 
 .file__meta {

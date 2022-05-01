@@ -64,14 +64,6 @@
   white-space: nowrap;
 }
 
-.summary__value .icon {
-  display: inline;
-  margin-inline-end: 5px;
-  vertical-align: text-bottom;
-  block-size: 1em;
-  inline-size: 1em;
-}
-
 .summary__actions {
   margin-inline-start: auto;
 }

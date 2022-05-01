@@ -32,7 +32,7 @@ const icon = (name) => {
       "M36 4H12c-4.5 0-8 3.5-8 8v24c0 4.5 3.5 8 8 8h24c4.5 0 8-3.5 8-8V12c0-4.5-3.5-8-8-8zM12 8h24a4 4 0 014 4v24a4 4 0 01-4 4H12a4 4 0 01-4-4V12a4 4 0 014-4zm8 22l12-6-12-6v12zm-8-20h2v4h-4v-2c0-1.1.9-2 2-2zm6 0h4v4h-4v-4zm8 0h4v4h-4v-4zm8 0h2a2 2 0 012 2v2h-4v-4zM10 34h4v4h-2a2 2 0 01-2-2v-2zm8 0h4v4h-4v-4zm8 0h4v4h-4v-4zm8 0h4v2a2 2 0 01-2 2h-2v-4z",
   };
 
-  const svg = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1.2em" width="1.2em" viewBox="0 0 48 48">
+  const svg = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48">
     <path d="${paths[name]}"/>
   </svg>`;
 
