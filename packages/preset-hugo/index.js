@@ -78,7 +78,7 @@ export const HugoPreset = class {
   /**
    * Post types
    *
-   * @returns {object} Post types config
+   * @returns {object} Post types configuration
    */
   get postTypes() {
     return [

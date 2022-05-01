@@ -1,9 +1,9 @@
 /**
- * Return queryable publication config
+ * Return queryable publication configuration
  *
- * @param {object} application Application config
- * @param {object} publication Publication config
- * @returns {object} Queryable config
+ * @param {object} application Application configuration
+ * @param {object} publication Publication configuration
+ * @returns {object} Queryable configuration
  */
 export const getConfig = (application, publication) => {
   const { url } = application;

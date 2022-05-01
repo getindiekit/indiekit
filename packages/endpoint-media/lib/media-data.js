@@ -25,7 +25,7 @@ export const mediaData = {
       // Media properties
       const properties = await getFileProperties(publication, file);
 
-      // Get post type config
+      // Get post type configuration
       const type = await getMediaType(file);
       properties["post-type"] = type;
 
@@ -38,7 +38,7 @@ export const mediaData = {
         );
       }
 
-      // Get post type config
+      // Get post type configuration
       const typeConfig = getPostTypeConfig(type, postTypes);
       if (!typeConfig) {
         throw new HttpError(
@@ -56,7 +56,7 @@ export const mediaData = {
       );
       properties.url = getPermalink(me, url);
 
-      // Update media properties based on type config
+      // Update media properties based on type configuration
       const urlPathSegment = properties.url.split("/");
       properties.filename = urlPathSegment[urlPathSegment.length - 1];
       properties.basename = properties.filename.split(".")[0];

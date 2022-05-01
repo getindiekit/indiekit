@@ -2,9 +2,9 @@ import { getNavigation } from "../navigation.js";
 import { getEndpoint } from "../publication.js";
 
 /**
- * Expose config to frontend templates
+ * Expose configuration to frontend templates
  *
- * @param {object} indiekitConfig Indiekit config
+ * @param {object} indiekitConfig Indiekit configuration
  * @returns {Function} Next middleware
  */
 export const locals = (indiekitConfig) =>

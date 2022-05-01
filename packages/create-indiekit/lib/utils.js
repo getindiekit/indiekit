@@ -19,7 +19,7 @@ export const addPluginConfig = async (pluginName, config) => {
   // Add plug-in to list of installed plug-ins
   config.plugins.push(pluginName);
 
-  // Add plug-in config values
+  // Add plug-in configuration values
   const pluginConfig = await prompts(plugin.prompts);
   config[pluginName] = pluginConfig;
 

@@ -58,7 +58,7 @@ test.serial("Returns empty array if remote JSON file not found", async (t) => {
   });
 });
 
-test("Returns empty array if no publication config provided", async (t) => {
+test("Returns empty array if no publication configuration provided", async (t) => {
   const cache = new Cache(t.context.cacheCollection);
 
   const result = await getCategories(cache, {});

@@ -31,7 +31,7 @@ export const postData = {
       const type = getPostType(properties);
       properties["post-type"] = type;
 
-      // Get post type config
+      // Get post type configuration
       const typeConfig = getPostTypeConfig(type, postTypes);
       if (!typeConfig) {
         throw new HttpError(

@@ -3,12 +3,12 @@ import { cosmiconfigSync } from "cosmiconfig";
 import { defaultConfig } from "../config/defaults.js";
 
 /**
- * Get user config values from package.json or config file.
+ * Get user configuration values from package.json or configuration file
  *
  * @see {@link https://github.com/davidtheclark/cosmiconfig#readme}
- * @param {string} configFilePath Explicity declared config file path
+ * @param {string} configFilePath Explicity declared configuration file path
  * @access private
- * @returns {object} User config
+ * @returns {object} User configuration
  */
 function _getUserConfig(configFilePath) {
   const explorerSync = cosmiconfigSync("indiekit");
@@ -20,12 +20,12 @@ function _getUserConfig(configFilePath) {
 }
 
 /**
- * Get config derived from user and default config values.
+ * Get configuration derived from user and default values
  *
  * @param {object} options Options
  * @param {object} options.config Configuration object
  * @param {string} options.configFilePath Configuration file path
- * @returns {object} Combined config
+ * @returns {object} Combined configuration
  */
 export function getIndiekitConfig(options) {
   const { config, configFilePath } = options;

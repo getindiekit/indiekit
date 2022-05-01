@@ -15,7 +15,7 @@ test.beforeEach(async (t) => {
 });
 
 test("Gets application configuration value", (t) => {
-  t.is(t.context.application.name, "Test config");
+  t.is(t.context.application.name, "Test configuration");
 });
 
 test("Gets publication configuration values", (t) => {

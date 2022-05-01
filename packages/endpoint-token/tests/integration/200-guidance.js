@@ -11,6 +11,6 @@ test("Returns guidance page", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Token endpoint - Test config"
+    "Token endpoint - Test configuration"
   );
 });

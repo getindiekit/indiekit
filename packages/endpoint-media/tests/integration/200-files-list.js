@@ -15,6 +15,6 @@ test("Returns list of previously uploaded files", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Uploaded files - Test config"
+    "Uploaded files - Test configuration"
   );
 });

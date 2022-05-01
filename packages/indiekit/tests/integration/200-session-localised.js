@@ -11,5 +11,8 @@ test("Returns localised page", async (t) => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector("title").textContent, "Anmelden - Test config");
+  t.is(
+    result.querySelector("title").textContent,
+    "Anmelden - Test configuration"
+  );
 });

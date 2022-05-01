@@ -118,7 +118,7 @@ export const Indiekit = class {
   async server(options = {}) {
     const { application, server } = this.config;
 
-    // Merge options with default server config
+    // Merge options with default server configuration
     options = { ...server, ...options };
 
     const { name, version } = application;

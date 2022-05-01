@@ -30,5 +30,8 @@ test("Views previously uploaded file", async (t) => {
   const fileDom = new JSDOM(fileResponse.text);
   const result = fileDom.window.document;
 
-  t.is(result.querySelector("title").textContent, `${fileName} - Test config`);
+  t.is(
+    result.querySelector("title").textContent,
+    `${fileName} - Test configuration`
+  );
 });

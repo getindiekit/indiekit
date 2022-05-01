@@ -32,7 +32,7 @@ export const testConfig = async (options) => {
     application: {
       locale: options.locale,
       mongodbUrl: options && options.useDatabase !== false ? mongodbUrl : false,
-      name: "Test config",
+      name: "Test configuration",
       sessionMiddleware: cookieSession({
         name: "test",
         secret: process.env.TEST_SESSION_SECRET,

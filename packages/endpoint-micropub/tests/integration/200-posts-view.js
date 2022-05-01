@@ -31,5 +31,8 @@ test("Views previously uploaded file", async (t) => {
 
   const result = postDom.window.document;
 
-  t.is(result.querySelector("title").textContent, `${postName} - Test config`);
+  t.is(
+    result.querySelector("title").textContent,
+    `${postName} - Test configuration`
+  );
 });

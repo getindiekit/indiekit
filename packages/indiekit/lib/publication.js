@@ -25,7 +25,7 @@ export const getCategories = async (cache, publication) => {
 };
 
 /**
- * Get named endpoint from publication config or server derived value
+ * Get named endpoint from publication configuration or server derived value
  *
  * @param {string} endpointName Endpoint name
  * @param {string} applicationUrl Application URL
@@ -34,7 +34,7 @@ export const getCategories = async (cache, publication) => {
 export const getEndpoint = (endpointName, indiekitConfig) => {
   const { application, publication } = indiekitConfig;
 
-  // Use endpoint in publication config
+  // Use endpoint in publication configuration
   if (publication[endpointName] && isUrl(publication[endpointName])) {
     return publication[endpointName];
   }
