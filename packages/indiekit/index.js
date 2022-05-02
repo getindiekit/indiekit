@@ -51,6 +51,7 @@ export const Indiekit = class {
     const cache = new Cache(this.application.cache);
 
     // Configure image endpoint
+    // Express Sharp middleware requires that can only be provided via options
     this.config["@indiekit/endpoint-image"] = {
       me: this.config.publication.me,
       mongodbUrl: this.config.application.mongodbUrl,
