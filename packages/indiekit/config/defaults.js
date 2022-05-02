@@ -14,7 +14,7 @@ const mongodbUrl = process.env.MONGODB_URL ? process.env.MONGODB_URL : false;
 export const defaultConfig = {
   application: {
     hasDatabase: false,
-    localesAvailable: ["de", "en", "fr", "nl", "pt"],
+    localesAvailable: ["de", "en", "es", "fr", "nl", "pt"],
     mongodbUrl,
     name: "Indiekit",
     repository: package_.repository,
