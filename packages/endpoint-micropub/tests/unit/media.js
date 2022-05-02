@@ -5,6 +5,7 @@ import { uploadMedia } from "../../lib/media.js";
 
 test.beforeEach((t) => {
   t.context = {
+    bearerToken: process.env.TEST_TOKEN,
     files: [
       {
         buffer: getFixture("file-types/photo.jpg", false),
@@ -44,6 +45,7 @@ test("Uploads attached file via media endpoint", async (t) => {
     );
 
   const result = await uploadMedia(
+    t.context.bearerToken,
     t.context.publication,
     t.context.properties,
     t.context.files
@@ -80,6 +82,7 @@ test.serial("Uploads attached files via media endpoint", async (t) => {
   ];
 
   const result = await uploadMedia(
+    t.context.bearerToken,
     t.context.publication,
     t.context.properties,
     files
@@ -92,9 +95,17 @@ test.serial("Uploads attached files via media endpoint", async (t) => {
 });
 
 test.serial("Throws error if no media endpoint URL", async (t) => {
-  await t.throwsAsync(uploadMedia({}, t.context.properties, t.context.files), {
-    message: "Missing `url` property",
-  });
+  await t.throwsAsync(
+    uploadMedia(
+      t.context.bearerToken,
+      {},
+      t.context.properties,
+      t.context.files
+    ),
+    {
+      message: "Missing `url` property",
+    }
+  );
 });
 
 test.serial("Throws error uploading attached file", async (t) => {
@@ -103,7 +114,12 @@ test.serial("Throws error uploading attached file", async (t) => {
   });
 
   await t.throwsAsync(
-    uploadMedia(t.context.publication, t.context.properties, t.context.files),
+    uploadMedia(
+      t.context.bearerToken,
+      t.context.publication,
+      t.context.properties,
+      t.context.files
+    ),
     {
       message: "The token provided was malformed",
     }

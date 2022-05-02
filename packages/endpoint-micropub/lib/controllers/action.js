@@ -17,10 +17,11 @@ export const actionController = async (request, response, next) => {
   const { body, files, query } = request;
   const action = query.action || body.action || "create";
   const url = query.url || body.url;
-  const { accessToken, publication } = request.app.locals;
+  const { publication } = request.app.locals;
+  const { scope, token } = request.session;
 
   try {
-    checkScope(accessToken.scope, action);
+    checkScope(scope, action);
 
     let data;
     let jf2;
@@ -30,7 +31,7 @@ export const actionController = async (request, response, next) => {
         // Create and normalise JF2 data
         // TODO: Attached photos don’t appear with correct alt text
         jf2 = request.is("json") ? mf2ToJf2(body) : formEncodedToJf2(body);
-        jf2 = files ? await uploadMedia(publication, jf2, files) : jf2;
+        jf2 = files ? await uploadMedia(token, publication, jf2, files) : jf2;
 
         data = await postData.create(publication, jf2);
         published = await post.create(publication, data);

@@ -4,13 +4,14 @@ import got from "got";
 /**
  * Upload attached file(s) via media endpoint
  *
+ * @param {string} token Bearer token
  * @param {object} publication Publication configuration
  * @param {object} properties JF2 properties
  * @param {object} files Files to upload
  * @returns {Array} Uploaded file locations
  */
-export const uploadMedia = async (publication, properties, files) => {
-  const { bearerToken, mediaEndpoint } = publication;
+export const uploadMedia = async (token, publication, properties, files) => {
+  const { mediaEndpoint } = publication;
 
   for await (const file of files) {
     // Create multipart/form-data
@@ -26,7 +27,7 @@ export const uploadMedia = async (publication, properties, files) => {
       upload = await got.post(mediaEndpoint, {
         body: form,
         headers: form.getHeaders({
-          authorization: `Bearer ${bearerToken}`,
+          authorization: `Bearer ${token}`,
         }),
         responseType: "json",
       });

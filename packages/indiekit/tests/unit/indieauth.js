@@ -132,7 +132,8 @@ test("Checks if user is authorized", async (t) => {
 
   await indieauth.authorise()(request, response, next);
 
-  t.is(request.app.locals.accessToken.me, t.context.me);
+  t.is(request.session.scope, t.context.accessToken.scope);
+  t.is(request.session.token, t.context.bearerToken);
   t.true(next.calledOnce);
 });
 
@@ -140,6 +141,7 @@ test("Throws error checking if user is authorized", async (t) => {
   const request = mockRequest({
     app: { locals: { publication: {} } },
     method: "post",
+    session: {},
   });
   const response = mockResponse();
   const next = sinon.spy();

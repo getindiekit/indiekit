@@ -135,16 +135,21 @@
       value: {
         text: publication.authorizationEndpoint | urlize or __("noValue")
       }
-    } if publication.authorizationEndpoint, {
+    } if publication.authorizationEndpoint]
+  }) }}
+
+  {{ summary({
+    title: __("status.application.summaryTitle"),
+    rows: [{
       key: {
-        text: __("status.publication.accessToken")
+        text: __("status.application.accessToken")
       },
       value: {
         text: textarea({
           classes: "textarea--monospace",
           label: {
             classes: "visually-hidden",
-            text: __("status.publication.accessToken")
+            text: __("status.application.accessToken")
           },
           rows: 10,
           value: session.token,
@@ -154,12 +159,14 @@
           }
         }) if session.token else __("noValue")
       }
-    }]
-  }) }}
-
-  {{ summary({
-    title: __("status.application.summaryTitle"),
-    rows: [{
+    }, {
+      key: {
+        text: __("status.application.scope")
+      },
+      value: {
+        text: session.scope if session.scope else __("noValue")
+      }
+    }, {
       key: {
         text: __("status.application.name")
       },

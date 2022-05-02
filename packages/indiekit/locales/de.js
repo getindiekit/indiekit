@@ -36,6 +36,7 @@ export default {
   },
   status: {
     application: {
+      accessToken: "Zugangstoken",
       endpoints: "Endpunkte",
       locale: "Sprache",
       localeNotAvailable:
@@ -52,7 +53,6 @@ export default {
       installedPlugins: "Plugins installiert",
     },
     publication: {
-      accessToken: "Zugangstoken",
       locale: "Sprache",
       me: "Webadresse",
       mediaEndpoint: "Media Endpunkte",

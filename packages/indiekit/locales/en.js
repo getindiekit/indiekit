@@ -36,6 +36,8 @@ export default {
     title: "Server status",
     application: {
       summaryTitle: "Application settings",
+      accessToken: "Access token",
+      scope: "Provided scope",
       name: "Name",
       locale: "Language",
       localeNotAvailable:
@@ -62,7 +64,6 @@ export default {
       mediaEndpoint: "Media endpoint",
       micropubEndpoint: "Micropub endpoint",
       tokenEndpoint: "Token endpoint",
-      accessToken: "Access token",
     },
   },
 };

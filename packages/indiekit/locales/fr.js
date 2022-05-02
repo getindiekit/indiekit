@@ -36,6 +36,7 @@ export default {
   },
   status: {
     application: {
+      accessToken: "Jeton d'accès",
       endpoints: "Points finaux",
       locale: "Langue",
       localeNotAvailable:
@@ -52,7 +53,6 @@ export default {
       installedPlugins: "Plugins installés",
     },
     publication: {
-      accessToken: "Jeton d'accès",
       locale: "Langue",
       me: "Adresse Web",
       mediaEndpoint: "Media endpoint",

@@ -132,7 +132,7 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check if user is authorized (when calling API)
+   * Check if user is authorized
    *
    * @returns {Function} Next middleware
    */
@@ -142,20 +142,23 @@ export const IndieAuth = class {
     return async function (request, response, next) {
       const { tokenEndpoint } = request.app.locals.publication;
 
-      // If already validated and saved access token, go to next middleware
-      const { accessToken } = request.app.locals;
-      if (accessToken) {
+      // If have session scope and token, go to next middleware
+      const { scope, token } = request.session;
+      if (scope && token) {
         return next();
       }
 
       // Validate bearer token sent in request
       try {
         const bearerToken = findBearerToken(request);
-        request.app.locals.bearerToken = bearerToken;
+        request.session.token = bearerToken;
 
-        const token = await requestAccessToken(tokenEndpoint, bearerToken);
-        const accessToken = verifyAccessToken(me, token);
-        request.app.locals.accessToken = accessToken;
+        const accessToken = await requestAccessToken(
+          tokenEndpoint,
+          bearerToken
+        );
+        const { scope } = verifyAccessToken(me, accessToken);
+        request.session.scope = scope;
 
         next();
       } catch (error) {
@@ -206,7 +209,7 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check credentials match those returned by IndieAuth (when signing in)
+   * Check credentials match those returned by IndieAuth
    *
    * @returns {object} HTTP response
    */

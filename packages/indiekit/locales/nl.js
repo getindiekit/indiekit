@@ -36,6 +36,7 @@ export default {
   },
   status: {
     application: {
+      accessToken: "Token voor toegang",
       endpoints: "Eindpunten",
       locale: "Taal",
       localeNotAvailable: "{{ app }} is nog niet vertaald in {{ locale }}",
@@ -50,7 +51,6 @@ export default {
       },
     },
     publication: {
-      accessToken: "Token voor toegang",
       locale: "Taal",
       me: "Webadres",
       mediaEndpoint: "Media-endpoint",

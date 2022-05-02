@@ -13,10 +13,11 @@ import { checkScope } from "../scope.js";
  */
 export const uploadController = async (request, response, next) => {
   const { file } = request;
-  const { accessToken, publication } = request.app.locals;
+  const { publication } = request.app.locals;
+  const { scope } = request.session;
 
   try {
-    checkScope(accessToken.scope);
+    checkScope(scope);
 
     const data = await mediaData.create(publication, file);
     const uploaded = await media.upload(publication, data, file);

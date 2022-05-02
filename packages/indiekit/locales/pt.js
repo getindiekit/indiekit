@@ -35,6 +35,7 @@ export default {
   },
   status: {
     application: {
+      accessToken: "Token de acesso",
       endpoints: "Pontos de extremidade",
       locale: "Idioma",
       localeNotAvailable: "{{ app }} ainda não foi traduzido para {{ locale }}",
@@ -49,7 +50,6 @@ export default {
       },
     },
     publication: {
-      accessToken: "Token de acesso",
       locale: "Idioma",
       me: "Endereço Web",
       mediaEndpoint: "Endpoint de mídia",
