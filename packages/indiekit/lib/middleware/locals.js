@@ -9,7 +9,7 @@ import { getUrl } from "../utils.js";
  * @returns {Function} Next middleware
  */
 export const locals = (indiekitConfig) =>
-  async function (request, response, next) {
+  function (request, response, next) {
     try {
       const { application, publication } = indiekitConfig;
 

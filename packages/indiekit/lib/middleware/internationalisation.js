@@ -7,7 +7,7 @@ import i18n from "i18n";
  * @returns {Function} Next middleware
  */
 export const internationalisation = (indiekitConfig) =>
-  async function (request, response, next) {
+  function (request, response, next) {
     try {
       const { application } = indiekitConfig;
 
