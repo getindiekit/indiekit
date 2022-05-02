@@ -2,7 +2,7 @@ import { expressConfig } from "./config/express.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
 import { Cache } from "./lib/cache.js";
-import { getLocales } from "./lib/application.js";
+import { getInstalledPlugins, getLocales } from "./lib/application.js";
 import {
   getCategories,
   getPostTemplate,
@@ -56,20 +56,8 @@ export const Indiekit = class {
       mongodbUrl: this.config.application.mongodbUrl,
     };
 
-    // Init plug-ins
-    for await (const pluginName of this.plugins) {
-      // eslint-disable-next-line node/no-unsupported-features/es-syntax
-      const { default: IndiekitPlugin } = await import(pluginName);
-      const plugin = new IndiekitPlugin(this.config[pluginName]);
-
-      // Register plug-in functions
-      if (plugin.init) {
-        await plugin.init(this);
-        this.application.installedPlugins.push(plugin);
-      }
-    }
-
     // Update application configuration
+    this.application.installedPlugins = await getInstalledPlugins(this);
     this.application.locales = await getLocales(this.application);
 
     // Update publication configuration
