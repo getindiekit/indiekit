@@ -142,6 +142,14 @@ export const IndieAuth = class {
     return async function (request, response, next) {
       const { tokenEndpoint } = request.app.locals.publication;
 
+      // Use placeholder session data if using development environment
+      if (process.env.NODE_ENV === "development") {
+        request.session = {
+          token: "development",
+          scope: "create update delete media",
+        };
+      }
+
       // If have session scope and token, go to next middleware
       const { scope, token } = request.session;
       if (scope && token) {
