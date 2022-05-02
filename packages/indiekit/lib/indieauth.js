@@ -132,56 +132,6 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check if user is authorized
-   *
-   * @returns {Function} Next middleware
-   */
-  authorise() {
-    const { me } = this;
-
-    return async function (request, response, next) {
-      const { tokenEndpoint } = request.app.locals.publication;
-
-      // Use placeholder session data if using development environment
-      if (process.env.NODE_ENV === "development") {
-        request.session = {
-          token: "development",
-          scope: "create update delete media",
-        };
-      }
-
-      // If have session scope and token, go to next middleware
-      const { scope, token } = request.session;
-      if (scope && token) {
-        return next();
-      }
-
-      // Validate bearer token sent in request
-      try {
-        const bearerToken = findBearerToken(request);
-        request.session.token = bearerToken;
-
-        const accessToken = await requestAccessToken(
-          tokenEndpoint,
-          bearerToken
-        );
-        const { scope } = verifyAccessToken(me, accessToken);
-        request.session.scope = scope;
-
-        next();
-      } catch (error) {
-        if (request.method === "GET") {
-          return response.redirect(
-            `/session/login?redirect=${request.originalUrl}`
-          );
-        }
-
-        next(new HttpError(400, error));
-      }
-    };
-  }
-
-  /**
    * Redirect user to IndieAuth login
    *
    * @returns {object} HTTP response
@@ -248,16 +198,65 @@ export const IndieAuth = class {
         }
 
         // Request access token
-        const token = await this.authorizationCodeGrant(
+        const authorizedToken = await this.authorizationCodeGrant(
           publication.tokenEndpoint,
           code
         );
 
         // Set session token and redirect to requested resource
-        request.session.token = token;
+        request.session.token = authorizedToken;
+
         return response.redirect(redirect || "/");
       } catch (error) {
         return next(new HttpError(400, error));
+      }
+    };
+  }
+
+  /**
+   * Check if user is authorized
+   *
+   * @returns {Function} Next middleware
+   */
+  authorise() {
+    const { me } = this;
+
+    return async function (request, response, next) {
+      const { tokenEndpoint } = request.app.locals.publication;
+
+      // Use placeholder session data if using development environment
+      if (process.env.NODE_ENV === "development") {
+        request.session.token = "development";
+        request.session.scope = "create update delete media";
+      }
+
+      // If have session scope and token, go to next middleware
+      const { scope, token } = request.session;
+      if (scope && token) {
+        return next();
+      }
+
+      // Validate bearer token sent in request
+      try {
+        const bearerToken = findBearerToken(request);
+        request.session.token = bearerToken;
+
+        const accessToken = await requestAccessToken(
+          tokenEndpoint,
+          bearerToken
+        );
+        const { scope } = verifyAccessToken(me, accessToken);
+        request.session.scope = scope;
+
+        next();
+      } catch (error) {
+        if (request.method === "GET") {
+          return response.redirect(
+            `/session/login?redirect=${request.originalUrl}`
+          );
+        }
+
+        next(new HttpError(400, error));
       }
     };
   }
