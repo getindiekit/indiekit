@@ -26,7 +26,7 @@ export const locals = (indiekitConfig) =>
       };
 
       // Session
-      response.locals.session = request.session;
+      request.app.locals.session = request.session;
 
       next();
     } catch (error) {
