@@ -1,8 +1,8 @@
-import deepmerge from "deepmerge";
 import { expressConfig } from "./config/express.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
 import { Cache } from "./lib/cache.js";
+import { getLocales } from "./lib/application.js";
 import {
   getCategories,
   getPostTemplate,
@@ -50,14 +50,6 @@ export const Indiekit = class {
     // Setup cache
     const cache = new Cache(this.application.cache);
 
-    // Register application localisations
-    this.application.locales = new Map();
-    for await (const locale of this.application.localesAvailable) {
-      // eslint-disable-next-line node/no-unsupported-features/es-syntax
-      const { default: translation } = await import(`./locales/${locale}.js`);
-      this.application.locales.set(locale, translation);
-    }
-
     // Configure image endpoint
     this.config["@indiekit/endpoint-image"] = {
       me: this.config.publication.me,
@@ -70,27 +62,15 @@ export const Indiekit = class {
       const { default: IndiekitPlugin } = await import(pluginName);
       const plugin = new IndiekitPlugin(this.config[pluginName]);
 
-      // Register plug-in localisations
-      for await (const locale of this.application.localesAvailable) {
-        try {
-          const appLocale = this.application.locales.get(locale);
-          // eslint-disable-next-line node/no-unsupported-features/es-syntax
-          const { default: translation } = await import(
-            `../${plugin.id}/locales/${locale}.js`
-          );
-          this.application.locales.set(
-            locale,
-            deepmerge(appLocale, translation)
-          );
-        } catch {}
-      }
-
       // Register plug-in functions
       if (plugin.init) {
         await plugin.init(this);
         this.application.installedPlugins.push(plugin);
       }
     }
+
+    // Update application configuration
+    this.application.locales = await getLocales(this.application);
 
     // Update publication configuration
     this.publication.categories = await getCategories(cache, this.publication);
