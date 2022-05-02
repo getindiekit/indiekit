@@ -4,6 +4,8 @@ import Keyv from "keyv";
 import KeyvMongoDB from "keyv-mongodb";
 
 const defaults = {
+  mongodbUrl: false,
+  me: "",
   mountPath: "/image",
 };
 
@@ -13,14 +15,15 @@ export const ImageEndpoint = class {
     this.meta = import.meta;
     this.name = "Image resizing endpoint";
     this.options = { ...defaults, ...options };
+    this.mountPath = this.options.mountPath;
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  routes(application, publication) {
+  get routes() {
     let cache;
-    if (application.hasDatabase) {
+    if (this.options.mongodbUrl) {
       const store = new KeyvMongoDB({
-        url: application.mongodbUrl,
+        url: this.options.mongodbUrl,
       });
       cache = new Keyv({ store });
     }
@@ -32,7 +35,7 @@ export const ImageEndpoint = class {
       expressSharp({
         imageAdapter: new HttpAdapter({
           cache,
-          prefixUrl: publication.me,
+          prefixUrl: this.options.me,
         }),
       })
     );
@@ -41,14 +44,7 @@ export const ImageEndpoint = class {
   }
 
   init(Indiekit) {
-    const { application, publication } = Indiekit.config;
-
-    Indiekit.extend("routes", {
-      mountPath: this.options.mountPath,
-      routes: () => this.routes(application, publication),
-    });
-
-    application.imageEndpoint = this.options.mountPath;
+    Indiekit.config.application.imageEndpoint = this.options.mountPath;
   }
 };
 

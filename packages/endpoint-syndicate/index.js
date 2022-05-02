@@ -11,21 +11,20 @@ export const SyndicateEndpoint = class {
     this.meta = import.meta;
     this.name = "Syndication endpoint";
     this.options = { ...defaults, ...options };
+    this.mountPath = this.options.mountPath;
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
   get routes() {
     const router = this._router;
+
     router.post("/", syndicateController.post);
 
     return router;
   }
 
   init(Indiekit) {
-    Indiekit.extend("routes", {
-      mountPath: this.options.mountPath,
-      routes: () => this.routes,
-    });
+    return true;
   }
 };
 

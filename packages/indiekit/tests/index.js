@@ -24,18 +24,6 @@ test("Gets publication configuration values", (t) => {
   t.is(t.context.publication.preset.name, "Jekyll preset");
 });
 
-test("Throws error adding an extension with an unknown type", (t) => {
-  t.throws(
-    () => {
-      t.context.indiekit.extend("foo", []);
-    },
-    {
-      name: "TypeError",
-      message: "foo is not a valid extension type",
-    }
-  );
-});
-
 test("Adds publication preset", (t) => {
   const TestPreset = class {
     constructor() {

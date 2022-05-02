@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import cors from "cors";
 import express from "express";
 import { tokenController } from "./lib/controllers/token.js";
@@ -13,6 +12,7 @@ export const TokenEndpoint = class {
     this.meta = import.meta;
     this.name = "Token endpoint";
     this.options = { ...defaults, ...options };
+    this.mountPath = this.options.mountPath;
     // eslint-disable-next-line new-cap
     this._router = express.Router({
       caseSensitive: true,
@@ -20,7 +20,7 @@ export const TokenEndpoint = class {
     });
   }
 
-  get routes() {
+  get routesPublic() {
     const router = this._router;
 
     router.use(cors());
@@ -33,11 +33,6 @@ export const TokenEndpoint = class {
   }
 
   init(Indiekit) {
-    Indiekit.extend("routesPublic", {
-      mountPath: this.options.mountPath,
-      routes: () => this.routes,
-    });
-
     Indiekit.config.application.tokenEndpoint = this.options.mountPath;
   }
 };

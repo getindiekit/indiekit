@@ -1,4 +1,3 @@
-import { fileURLToPath } from "node:url";
 import express from "express";
 import { shareController } from "./lib/controllers/share.js";
 import { validate } from "./lib/middleware/validation.js";
@@ -13,6 +12,7 @@ export const ShareEndpoint = class {
     this.meta = import.meta;
     this.name = "Share endpoint";
     this.options = { ...defaults, ...options };
+    this.mountPath = this.options.mountPath;
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
@@ -33,11 +33,6 @@ export const ShareEndpoint = class {
   }
 
   init(Indiekit) {
-    Indiekit.extend("routes", {
-      mountPath: this.options.mountPath,
-      routes: () => this.routes,
-    });
-
     Indiekit.config.application.shareEndpoint = this.options.mountPath;
   }
 };

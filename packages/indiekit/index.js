@@ -36,17 +36,6 @@ export const Indiekit = class {
     ];
   }
 
-  extend(type, extension) {
-    const extensionTypes = ["routes", "routesPublic"];
-
-    if (!extensionTypes.includes(type)) {
-      throw new TypeError(`${type} is not a valid extension type`);
-    }
-
-    extension = Array.isArray(extension) ? extension : [extension];
-    this.application[type] = [...this.application[type], ...extension];
-  }
-
   async bootstrap() {
     const database = await getMongodbConfig(this.application.mongodbUrl);
 
@@ -68,6 +57,12 @@ export const Indiekit = class {
       const { default: translation } = await import(`./locales/${locale}.js`);
       this.application.locales.set(locale, translation);
     }
+
+    // Configure image endpoint
+    this.config["@indiekit/endpoint-image"] = {
+      me: this.config.publication.me,
+      mongodbUrl: this.config.application.mongodbUrl,
+    };
 
     // Init plug-ins
     for await (const pluginName of this.plugins) {
@@ -102,10 +97,7 @@ export const Indiekit = class {
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
 
-    return {
-      application: this.application,
-      publication: this.publication,
-    };
+    return this;
   }
 
   async createApp() {
