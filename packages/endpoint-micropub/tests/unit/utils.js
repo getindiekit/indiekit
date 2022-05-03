@@ -70,7 +70,24 @@ test('Renders path from URI template and properties', t => {
   };
   const template = '{yyyy}/{MM}/{uuid}/{slug}';
 
-  const result = renderPath(template, properties);
+  const publication = {
+    posts: {
+      path: 'foo',
+      properties: {
+        type: 'entry',
+        published: '2019-08-17T23:56:38.977+01:00',
+        'post-type': 'note',
+      },
+      count() {
+        return 1;
+      },
+      aggregate: () => ({
+        toArray: async () => [],
+      }),
+    },
+  };
+
+  const result = renderPath(template, properties, publication);
 
   t.regex(result, /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/);
 });
