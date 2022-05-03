@@ -72,14 +72,30 @@ test("Renders relative path if URL is on publication and publication URL has a p
   t.is(result, "media/");
 });
 
-test("Renders path from URI template and properties", (t) => {
+test("Renders path from URI template and properties", async (t) => {
+  const template = "{yyyy}/{MM}/{uuid}/{slug}";
   const properties = {
     published: "2020-01-01",
     "mp-slug": "foo",
   };
-  const template = "{yyyy}/{MM}/{uuid}/{slug}";
+  const publication = {
+    posts: {
+      aggregate: () => ({
+        toArray: async () => [],
+      }),
+      count() {
+        return 1;
+      },
+      path: "foo",
+      properties: {
+        type: "entry",
+        published: "2019-08-17T23:56:38.977+01:00",
+        "post-type": "note",
+      },
+    },
+  };
 
-  const result = renderPath(template, properties);
+  const result = await renderPath(template, properties, publication);
 
   t.regex(
     result,

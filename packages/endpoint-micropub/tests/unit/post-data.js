@@ -14,6 +14,12 @@ test.beforeEach((t) => {
       me: "https://website.example",
       postTypes: new JekyllPreset().postTypes,
       posts: {
+        aggregate: () => ({
+          toArray: async () => [],
+        }),
+        count() {
+          return 1;
+        },
         async findOne(url) {
           if (url["properties.url"] === "https://website.example/foo") {
             return {

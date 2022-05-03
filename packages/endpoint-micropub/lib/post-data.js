@@ -41,8 +41,8 @@ export const postData = {
       }
 
       // Post paths
-      const path = renderPath(typeConfig.post.path, properties, timeZone);
-      const url = renderPath(typeConfig.post.url, properties, timeZone);
+      const path = await renderPath(typeConfig.post.path, properties, publication, timeZone);
+      const url = await renderPath(typeConfig.post.url, properties, publication, timeZone);
       properties.url = getPermalink(me, url);
 
       // Post data
@@ -140,8 +140,8 @@ export const postData = {
       properties["post-type"] = type;
 
       // Post paths
-      const path = renderPath(typeConfig.post.path, properties, timeZone);
-      const updatedUrl = renderPath(typeConfig.post.url, properties, timeZone);
+      const path = await renderPath(typeConfig.post.path, properties, publication, timeZone);
+      const updatedUrl = await renderPath(typeConfig.post.url, properties, publication, timeZone);
       properties.url = getPermalink(me, updatedUrl);
 
       // Return post data
