@@ -118,7 +118,10 @@ test("Updates post by replacing properties", async (t) => {
     operation
   );
 
-  t.is(result.properties.content, "hello moon");
+  t.deepEqual(result.properties.content, {
+    html: "<p>hello moon</p>",
+    text: "hello moon",
+  });
 });
 
 test("Updates post by deleting entries", async (t) => {
@@ -162,7 +165,10 @@ test("Updates post by adding, deleting and updating properties", async (t) => {
     operation
   );
 
-  t.is(result.properties.content, "updated content");
+  t.deepEqual(result.properties.content, {
+    html: "<p>updated content</p>",
+    text: "updated content",
+  });
   t.truthy(result.properties.syndication);
   t.falsy(result.properties["mp-syndicate-to"]);
 });
