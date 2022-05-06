@@ -20,7 +20,7 @@ export const mediaData = {
         throw new Error("No file included in request");
       }
 
-      const { me, postTypes, timeZone } = publication;
+      const { me, postTypes } = publication;
 
       // Media properties
       const properties = await getFileProperties(publication, file);
@@ -48,11 +48,11 @@ export const mediaData = {
       }
 
       // Media paths
-      const path = renderPath(typeConfig.media.path, properties, timeZone);
+      const path = renderPath(typeConfig.media.path, properties, publication);
       const url = renderPath(
         typeConfig.media.url || typeConfig.media.path,
         properties,
-        timeZone
+        publication
       );
       properties.url = getPermalink(me, url);
 

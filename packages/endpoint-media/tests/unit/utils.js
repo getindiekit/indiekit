@@ -34,13 +34,14 @@ test("Generates random alpha-numeric string, 5 characters long", (t) => {
 });
 
 test("Renders path from URI template and properties", (t) => {
+  const template = "{yyyy}/{MM}/{uuid}/{slug}";
   const properties = {
     published: "2020-01-01",
     "mp-slug": "foo",
   };
-  const template = "{yyyy}/{MM}/{uuid}/{slug}";
+  const publication = {};
 
-  const result = renderPath(template, properties);
+  const result = renderPath(template, properties, publication);
 
   t.regex(
     result,

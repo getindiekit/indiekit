@@ -19,10 +19,10 @@ export const randomString = () => Math.random().toString(36).slice(-5);
  *
  * @param {string} path URI template path
  * @param {object} properties Properties to use
- * @param {string} timeZoneSetting Time zone setting
+ * @param {string} publication Publication configuration
  * @returns {string} Path
  */
-export const renderPath = (path, properties, timeZoneSetting) => {
+export const renderPath = (path, properties, publication) => {
   let tokens = {};
   const dateObject = new Date(properties.published);
   const serverTimeZone = getServerTimeZone();
@@ -54,7 +54,10 @@ export const renderPath = (path, properties, timeZoneSetting) => {
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
-      timeZone: timeZoneSetting === "server" ? serverTimeZone : timeZoneSetting,
+      timeZone:
+        publication.timeZone === "server"
+          ? serverTimeZone
+          : publication.timeZone,
       useAdditionalDayOfYearTokens: true,
     });
   }
