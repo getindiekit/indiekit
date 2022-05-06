@@ -107,11 +107,10 @@ export const relativeMediaPath = (url, me) =>
  *
  * @param {string} path URI template path
  * @param {object} properties Properties to use
- * @param {string} timeZoneSetting Time zone setting
+ * @param {object} publication Publication configuration
  * @returns {string} Path
  */
-export const renderPath = async (path, properties, publication, timeZoneSetting) => {
-  let tokens = {};
+export const renderPath = async (path, properties, publication) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getServerTimeZone();
   const dateTokens = [
@@ -139,10 +138,15 @@ export const renderPath = async (path, properties, publication, timeZoneSetting)
     "T", // UNIX epoch milliseconds, eg 51296952000
   ];
 
+  let tokens = {};
+
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
-      timeZone: timeZoneSetting === "server" ? serverTimeZone : timeZoneSetting,
+      timeZone:
+        publication.timeZone === "server"
+          ? serverTimeZone
+          : publication.timeZone,
       useAdditionalDayOfYearTokens: true,
     });
   }

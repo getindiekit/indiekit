@@ -22,7 +22,7 @@ export const postData = {
         throw new Error("No properties included in request");
       }
 
-      const { me, postTypes, timeZone } = publication;
+      const { me, postTypes } = publication;
 
       // Normalise properties
       properties = normaliseProperties(publication, properties);
@@ -41,8 +41,16 @@ export const postData = {
       }
 
       // Post paths
-      const path = await renderPath(typeConfig.post.path, properties, publication, timeZone);
-      const url = await renderPath(typeConfig.post.url, properties, publication, timeZone);
+      const path = await renderPath(
+        typeConfig.post.path,
+        properties,
+        publication
+      );
+      const url = await renderPath(
+        typeConfig.post.url,
+        properties,
+        publication
+      );
       properties.url = getPermalink(me, url);
 
       // Post data
@@ -102,7 +110,7 @@ export const postData = {
         throw new Error("No update operation provided");
       }
 
-      const { me, posts, postTypes, timeZone } = publication;
+      const { me, posts, postTypes } = publication;
 
       const postData = await posts.findOne({
         "properties.url": url,
@@ -140,8 +148,16 @@ export const postData = {
       properties["post-type"] = type;
 
       // Post paths
-      const path = await renderPath(typeConfig.post.path, properties, publication, timeZone);
-      const updatedUrl = await renderPath(typeConfig.post.url, properties, publication, timeZone);
+      const path = await renderPath(
+        typeConfig.post.path,
+        properties,
+        publication
+      );
+      const updatedUrl = await renderPath(
+        typeConfig.post.url,
+        properties,
+        publication
+      );
       properties.url = getPermalink(me, updatedUrl);
 
       // Return post data
