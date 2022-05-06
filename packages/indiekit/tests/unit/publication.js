@@ -73,8 +73,8 @@ test("Gets endpoints from server derived values", (t) => {
     protocol: "https",
   });
 
-  t.is(result["mediaEndpoint"], "https://server.example/media");
-  t.is(result["tokenEndpoint"], "https://server.example/token");
+  t.is(result.mediaEndpoint, "https://server.example/media");
+  t.is(result.tokenEndpoint, "https://server.example/token");
 });
 
 test("Gets endpoints from publication configuration", (t) => {
@@ -84,8 +84,8 @@ test("Gets endpoints from publication configuration", (t) => {
     protocol: "https",
   });
 
-  t.is(result["mediaEndpoint"], "https://website.example/media");
-  t.is(result["tokenEndpoint"], "https://server.example/token");
+  t.is(result.mediaEndpoint, "https://website.example/media");
+  t.is(result.tokenEndpoint, "https://server.example/token");
 });
 
 test("Gets custom post template", (t) => {

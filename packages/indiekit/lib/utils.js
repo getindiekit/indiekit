@@ -1,6 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { Buffer } from "node:buffer";
-import { url2Mf2 } from "./mf2.js";
 
 const algorithm = "aes-256-ctr";
 const secretKey = randomBytes(32);

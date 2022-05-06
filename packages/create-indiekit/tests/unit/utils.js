@@ -1,3 +1,4 @@
+import process from "node:process";
 import test from "ava";
 import sinon from "sinon";
 import {

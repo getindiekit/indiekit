@@ -1,7 +1,5 @@
 import crypto from "node:crypto";
 import test from "ava";
-import nock from "nock";
-import { getFixture } from "@indiekit-test/get-fixture";
 import { decrypt, encrypt, isUrl } from "../../lib/utils.js";
 
 test.beforeEach((t) => {

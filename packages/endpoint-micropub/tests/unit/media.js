@@ -1,3 +1,4 @@
+import process from "node:process";
 import test from "ava";
 import nock from "nock";
 import { getFixture } from "@indiekit-test/get-fixture";

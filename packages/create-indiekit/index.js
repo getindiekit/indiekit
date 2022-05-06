@@ -8,6 +8,7 @@ import { addPluginConfig } from "./lib/utils.js";
 
 const require = createRequire(import.meta.url);
 const package_ = require("./package.json");
+
 const nodeVersion = 16;
 
 /**
