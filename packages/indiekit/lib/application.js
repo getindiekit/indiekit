@@ -17,8 +17,8 @@ export const getLocales = async (application) => {
   }
 
   // Plug-in localisations
-  for (const plugin of application.installedPlugins) {
-    for await (const locale of application.localesAvailable) {
+  for await (const plugin of application.installedPlugins) {
+    for (const locale of application.localesAvailable) {
       try {
         const appLocale = locales.get(locale);
         // eslint-disable-next-line node/no-unsupported-features/es-syntax

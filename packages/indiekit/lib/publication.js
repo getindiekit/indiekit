@@ -35,12 +35,12 @@ export const getEndpoints = (indiekitConfig, request) => {
   const { application, publication } = indiekitConfig;
   const endpoints = {};
 
-  [
+  for (const endpoint of [
     "authorizationEndpoint",
     "mediaEndpoint",
     "micropubEndpoint",
     "tokenEndpoint",
-  ].forEach((endpoint) => {
+  ]) {
     // Use endpoint URL in publication config
     if (publication[endpoint] && isUrl(publication[endpoint])) {
       endpoints[endpoint] = publication[endpoint];
@@ -51,7 +51,7 @@ export const getEndpoints = (indiekitConfig, request) => {
         getUrl(request)
       ).href;
     }
-  });
+  }
 
   return endpoints;
 };

@@ -23,7 +23,7 @@ export const SyndicateEndpoint = class {
     return router;
   }
 
-  init(Indiekit) {
+  init() {
     return true;
   }
 };

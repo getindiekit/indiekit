@@ -455,7 +455,7 @@ test("Doesn’t add unavailable syndication target", (t) => {
   t.falsy(result);
 });
 
-test.only("Normalises JF2 (few properties)", (t) => {
+test("Normalises JF2 (few properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
 
   const result = normaliseProperties(t.context.publication, properties);
