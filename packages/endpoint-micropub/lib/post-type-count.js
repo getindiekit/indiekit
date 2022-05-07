@@ -1,6 +1,4 @@
 import HttpError from "http-errors";
-import { getPostType } from "./post-type-discovery.js";
-import { normaliseProperties } from "./jf2.js";
 
 export const postTypeCount = {
   /**
@@ -24,11 +22,8 @@ export const postTypeCount = {
         throw new Error("No properties included in request");
       }
 
-      // Normalise properties
-      properties = normaliseProperties(publication, properties);
-
       // Post type
-      const type = getPostType(properties);
+      const type = properties["post-type"];
       const startDate = new Date(new Date(properties.published).toDateString());
       const endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + 1);
