@@ -7,3 +7,7 @@
   position: relative;
   inset-block-start: -1px;
 }
+
+.icon--rounded {
+  border-radius: var(--border-radius-small);
+}

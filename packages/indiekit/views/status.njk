@@ -16,7 +16,9 @@
 
 {%- set storeHtml %}
   {%- if publication.store -%}
-    <a href="{{ publication.store.info.uid }}">{{ publication.store.info.name }}</a>
+    <a href="{{ publication.store.info.uid }}">
+      <img class="icon icon--rounded" src="{{ "/assets/" + publication.store.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.store.info.name }}
+    </a>
   {%- else -%}
     {{ __("noValue") }}
   {%- endif -%}
@@ -24,8 +26,9 @@
 
 {%- set syndicationTargetsHtml %}<ul>{% for target in publication.syndicationTargets -%}
   <li>
-    {%- if target.info.service.photo %}<img class="icon" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}
-    <a href="{{ target.info.uid }}">{{ target.info.name }}</a>
+    <a href="{{ target.info.uid }}">
+      {%- if target.info.service.photo %}<img class="icon icon--rounded" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}{{ target.info.name }}
+    </a>
   </li>
 {%- endfor %}</ul>{% endset -%}
 
