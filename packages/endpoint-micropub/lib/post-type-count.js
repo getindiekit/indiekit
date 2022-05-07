@@ -2,7 +2,7 @@ import HttpError from "http-errors";
 
 export const postTypeCount = {
   /**
-   * Count number of posts in given type
+   * Count the number of posts of a given type
    *
    * @param {object} publication Publication configuration
    * @param {object} properties JF2 properties
@@ -23,7 +23,7 @@ export const postTypeCount = {
       }
 
       // Post type
-      const type = properties["post-type"];
+      const postType = properties["post-type"];
       const startDate = new Date(new Date(properties.published).toDateString());
       const endDate = new Date(startDate);
       endDate.setDate(endDate.getDate() + 1);
@@ -38,7 +38,7 @@ export const postTypeCount = {
           },
           {
             $match: {
-              "properties.post-type": type,
+              "properties.post-type": postType,
               convertedDate: {
                 $gte: startDate,
                 $lt: endDate,
