@@ -122,9 +122,6 @@ export const postData = {
 
       let { properties } = postData;
 
-      // Normalise properties
-      properties = normaliseProperties(publication, properties);
-
       // Add properties
       if (operation.add) {
         properties = update.addProperties(properties, operation.add);
@@ -141,6 +138,9 @@ export const postData = {
           ? update.deleteProperties(properties, operation.delete)
           : update.deleteEntries(properties, operation.delete);
       }
+
+      // Normalise properties
+      properties = normaliseProperties(publication, properties);
 
       // Post type
       const type = getPostType(properties);
