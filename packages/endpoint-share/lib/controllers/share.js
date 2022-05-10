@@ -1,4 +1,4 @@
-import got from "got";
+import { fetch } from "undici";
 import validator from "express-validator";
 
 const { validationResult } = validator;
@@ -48,22 +48,30 @@ export const shareController = {
     }
 
     try {
-      const { body } = await got.post(publication.micropubEndpoint, {
-        form: request.body,
-        responseType: "json",
+      const endpointResponse = await fetch(publication.micropubEndpoint, {
+        method: "POST",
+        body: new URLSearchParams(request.body).toString(),
+        headers: {
+          accept: "application/json",
+          "content-type": "application/x-www-form-urlencoded",
+        },
       });
 
-      if (body) {
-        const message = encodeURIComponent(body.success_description);
-        response.redirect(`?success=${message}`);
+      const body = await endpointResponse.json();
+
+      if (!endpointResponse.ok) {
+        throw new Error(body.error_description || endpointResponse.statusText);
       }
+
+      const message = encodeURIComponent(body.success_description);
+      response.redirect(`?success=${message}`);
     } catch (error) {
       response.status(422).render("share", {
         title: response.__("share.title"),
         content,
         name,
         bookmarkOf,
-        error: error.response.body.error_description,
+        error: error.message,
         minimalui: request.params.path === "bookmarklet",
       });
     }
