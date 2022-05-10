@@ -1,6 +1,6 @@
 import Debug from "debug";
 import httpError from "http-errors";
-import got from "got";
+import { fetch } from "undici";
 import { getPostData } from "../utils.js";
 
 const debug = new Debug("indiekit:endpoint-syndicate");
@@ -66,36 +66,36 @@ export const syndicateController = {
       }
 
       // Update post with syndicated URL(s) and removal of syndication target(s)
-      const updated = await got.post(publication.micropubEndpoint, {
+      const endpointResponse = await fetch(publication.micropubEndpoint, {
+        method: "POST",
         headers: {
+          accept: "application/json",
           authorization: `Bearer ${token}`,
+          "content-type": "application/json",
         },
-        json: {
+        body: JSON.stringify({
           action: "update",
           url: postData.properties.url,
           delete: ["mp-syndicate-to"],
           add: {
             syndication,
           },
-        },
-        responseType: "json",
+        }),
       });
 
-      if (updated) {
-        return response.status(updated.statusCode).json(updated.body);
+      const body = await endpointResponse.json();
+
+      if (!endpointResponse.ok) {
+        throw new httpError(
+          endpointResponse.status,
+          body.error_description || endpointResponse.statusText
+        );
       }
+
+      return response.status(endpointResponse.status).json(body);
     } catch (error) {
       debug(error);
-      if (error.response) {
-        next(
-          httpError(
-            error.response.statusCode,
-            error.response.body.error_description
-          )
-        );
-      } else {
-        next(httpError(error));
-      }
+      next(error);
     }
   },
 };
