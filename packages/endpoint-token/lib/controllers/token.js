@@ -1,5 +1,5 @@
 import process from "node:process";
-import got from "got";
+import { fetch } from "undici";
 import HttpError from "http-errors";
 import jwt from "jsonwebtoken";
 import { getCanonicalUrl } from "../utils.js";
@@ -81,11 +81,21 @@ export const tokenController = {
         throw new Error("Missing client ID");
       }
 
-      const body = await got
-        .post(publication.authorizationEndpoint, {
-          form: { code, redirect_uri, client_id },
-        })
-        .json();
+      const endpointResponse = await fetch(publication.authorizationEndpoint, {
+        method: "POST",
+        body: new URLSearchParams({ code, redirect_uri, client_id }).toString(),
+      });
+
+      const body = await endpointResponse.json();
+
+      if (!endpointResponse.ok) {
+        return next(
+          new HttpError(
+            endpointResponse.status,
+            body.error_description || endpointResponse.statusText
+          )
+        );
+      }
 
       // Canonicalise publication and token URLs before comparing
       const accessTokenMe = getCanonicalUrl(body.me);
@@ -93,9 +103,7 @@ export const tokenController = {
       const isAuthenticated = accessTokenMe === publicationMe;
 
       if (!isAuthenticated) {
-        return next(
-          new HttpError(400, body.error || "Publication URL does not match")
-        );
+        return next(new HttpError(400, "Publication URL does not match"));
       }
 
       const tokenData = {

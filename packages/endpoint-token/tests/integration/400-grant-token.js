@@ -1,10 +1,11 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { indieauthAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 400 if unable to grant token", async (t) => {
-  nock("https://indieauth.com").post("/auth").replyWithError("Not found");
+setGlobalDispatcher(indieauthAgent());
 
+test("Returns 400 if unable to grant token", async (t) => {
   const request = await testServer();
   const result = await request
     .post("/token")
