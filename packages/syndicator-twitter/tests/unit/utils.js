@@ -1,5 +1,3 @@
-import process from "node:process";
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import test from "ava";
 import { getFixture } from "@indiekit-test/get-fixture";
 import {
@@ -11,8 +9,10 @@ import {
 } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
-  t.context.tweetUrl =
-    "https://twitter.com/username/status/1234567890987654321";
+  t.context = {
+    me: "https://website.example",
+    tweetUrl: "https://twitter.com/username/status/1234567890987654321",
+  };
 });
 
 test("Creates a status with article post name and URL", (t) => {
@@ -105,20 +105,17 @@ test("Tests if string is a tweet permalink", (t) => {
 
 test("Gets absolute URL", (t) => {
   const result = getAbsoluteUrl(
-    `${process.env.TEST_PUBLICATION_URL}media/photo.jpg`,
-    process.env.TEST_PUBLICATION_URL
+    `${t.context.me}/media/photo.jpg`,
+    t.context.me
   );
 
-  t.is(result, `${process.env.TEST_PUBLICATION_URL}media/photo.jpg`);
+  t.is(result, `${t.context.me}/media/photo.jpg`);
 });
 
 test("Gets absolute URL by prepending publication URL", (t) => {
-  const result = getAbsoluteUrl(
-    "/media/photo.jpg",
-    process.env.TEST_PUBLICATION_URL
-  );
+  const result = getAbsoluteUrl("/media/photo.jpg", t.context.me);
 
-  t.is(result, `${process.env.TEST_PUBLICATION_URL}media/photo.jpg`);
+  t.is(result, `${t.context.me}/media/photo.jpg`);
 });
 
 test("Gets status ID from Twitter permalink", (t) => {

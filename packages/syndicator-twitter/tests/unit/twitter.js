@@ -1,6 +1,4 @@
 /* eslint-disable camelcase */
-import process from "node:process";
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import test from "ava";
 import nock from "nock";
 import { getFixturePath } from "@indiekit-test/get-fixture";
@@ -26,7 +24,7 @@ test.beforeEach((t) => {
       user: "username",
     },
     publication: {
-      me: process.env.TEST_PUBLICATION_URL,
+      me: "https://website.example",
     },
   };
 });
@@ -339,8 +337,8 @@ test.serial("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
         html: "<p>Here’s the cheese sandwiches I ate.</p>",
       },
       photo: [
-        { url: `${t.context.publication.me}image1.jpg` },
-        { url: `${t.context.publication.me}image2.jpg` },
+        { url: `${t.context.publication.me}/image1.jpg` },
+        { url: `${t.context.publication.me}/image2.jpg` },
         { url: "image3.jpg" },
         { url: "https://website.example/image4.jpg" },
         { url: "https://website.example/image5.jpg" },
