@@ -80,6 +80,9 @@
   },
   "c8": {
     "all": true,
+    "exclude": [
+      "packages/*/bin"
+    ],
     "include": [
       "packages"
     ],
