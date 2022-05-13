@@ -22,13 +22,9 @@ export const mastodon = (options) => ({
    * @returns {string} Mastodon status URL
    */
   async postFavourite(tootUrl) {
-    try {
-      const statusId = getStatusIdFromUrl(tootUrl);
-      const { data } = await this.client().favouriteStatus(statusId);
-      return data.url;
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    const statusId = getStatusIdFromUrl(tootUrl);
+    const { data } = await this.client().favouriteStatus(statusId);
+    return data.url;
   },
 
   /**
@@ -38,13 +34,9 @@ export const mastodon = (options) => ({
    * @returns {string} Mastodon status URL
    */
   async postReblog(tootUrl) {
-    try {
-      const statusId = getStatusIdFromUrl(tootUrl);
-      const { data } = await this.client().reblogStatus(statusId);
-      return data.url;
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    const statusId = getStatusIdFromUrl(tootUrl);
+    const { data } = await this.client().reblogStatus(statusId);
+    return data.url;
   },
 
   /**
@@ -54,15 +46,11 @@ export const mastodon = (options) => ({
    * @returns {string} Mastodon status URL
    */
   async postStatus(parameters) {
-    try {
-      const { data } = await this.client().postStatus(parameters.status, {
-        in_reply_to_id: parameters.in_reply_to_status_id,
-        media_ids: parameters.media_ids,
-      });
-      return data.url;
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    const { data } = await this.client().postStatus(parameters.status, {
+      in_reply_to_id: parameters.in_reply_to_status_id,
+      media_ids: parameters.media_ids,
+    });
+    return data.url;
   },
 
   /**
