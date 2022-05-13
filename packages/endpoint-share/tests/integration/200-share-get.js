@@ -5,7 +5,7 @@ import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns share page", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(200, {
+  nock("https://token-endpoint.example").get("/").reply(200, {
     me: process.env.TEST_PUBLICATION_URL,
     scope: "create",
   });

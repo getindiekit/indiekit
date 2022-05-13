@@ -10,7 +10,7 @@ import { IndieAuth } from "../../lib/indieauth.js";
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({
   me: process.env.TEST_PUBLICATION_URL,
-  tokenEndpoint: "https://tokens.indieauth.com/token",
+  tokenEndpoint: "https://token-endpoint.example",
 });
 
 test.beforeEach((t) => {
@@ -47,13 +47,13 @@ test("Throws error getting authentication URL", async (t) => {
 });
 
 test("Exchanges authorization code for access token", async (t) => {
-  nock("https://tokens.indieauth.com").post("/token").query(true).reply(200, {
+  nock("https://token-endpoint.example").post("/").query(true).reply(200, {
     access_token: process.env.TEST_TOKEN,
     scope: "create",
   });
 
   const result = await indieauth.authorizationCodeGrant(
-    "https://tokens.indieauth.com/token",
+    "https://token-endpoint.example",
     "code"
   );
 
@@ -63,11 +63,11 @@ test("Exchanges authorization code for access token", async (t) => {
 test.serial(
   "Throws error exchanging authorization code for invalid access token",
   async (t) => {
-    nock("https://tokens.indieauth.com").post("/token").query(true).reply(200);
+    nock("https://token-endpoint.example").post("/").query(true).reply(200);
 
     await t.throwsAsync(
       indieauth.authorizationCodeGrant(
-        "https://tokens.indieauth.com/token",
+        "https://token-endpoint.example",
         "code"
       ),
       {
@@ -78,16 +78,13 @@ test.serial(
 );
 
 test("Throws error exchanging invalid code for access token", async (t) => {
-  nock("https://tokens.indieauth.com").post("/token").query(true).reply(404, {
+  nock("https://token-endpoint.example").post("/").query(true).reply(404, {
     error: "invalid_request",
     error_description: "The code provided was not valid",
   });
 
   await t.throwsAsync(
-    indieauth.authorizationCodeGrant(
-      "https://tokens.indieauth.com/token",
-      "code"
-    ),
+    indieauth.authorizationCodeGrant("https://token-endpoint.example", "code"),
     {
       message: "The code provided was not valid",
     }
@@ -95,16 +92,13 @@ test("Throws error exchanging invalid code for access token", async (t) => {
 });
 
 test("Throws error exchanging authorization code during request", async (t) => {
-  nock("https://tokens.indieauth.com")
-    .post("/token")
+  nock("https://token-endpoint.example")
+    .post("/")
     .query(true)
     .replyWithError("Not found");
 
   await t.throwsAsync(
-    indieauth.authorizationCodeGrant(
-      "https://tokens.indieauth.com/token",
-      "code"
-    ),
+    indieauth.authorizationCodeGrant("https://token-endpoint.example", "code"),
     {
       message: "Not found",
     }
@@ -112,15 +106,15 @@ test("Throws error exchanging authorization code during request", async (t) => {
 });
 
 test("Checks if user is authorized", async (t) => {
-  nock("https://tokens.indieauth.com")
-    .get("/token")
+  nock("https://token-endpoint.example")
+    .get("/")
     .reply(200, t.context.accessToken);
   const request = mockRequest({
     app: {
       locals: {
         application: {},
         publication: {
-          tokenEndpoint: "https://tokens.indieauth.com/token",
+          tokenEndpoint: "https://token-endpoint.example",
         },
       },
     },

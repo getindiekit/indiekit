@@ -8,13 +8,13 @@ test("Returns authenticated session", async (t) => {
   nock(process.env.TEST_PUBLICATION_URL)
     .get("/")
     .reply(200, getFixture("html/home.html"));
-  nock("https://tokens.indieauth.com").post("/token").query(true).reply(200, {
+  nock("https://token-endpoint.example").post("/").query(true).reply(200, {
     access_token: process.env.TEST_TOKEN,
     scope: "create",
   });
   const request = await testServer({
     publication: {
-      tokenEndpoint: "https://tokens.indieauth.com/token",
+      tokenEndpoint: "https://token-endpoint.example",
     },
   });
 

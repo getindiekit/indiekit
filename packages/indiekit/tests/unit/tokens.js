@@ -14,7 +14,7 @@ test.beforeEach((t) => {
     },
     bearerToken: "JWT",
     me: "https://website.example",
-    tokenEndpoint: "https://tokens.indieauth.com/token",
+    tokenEndpoint: "https://token-endpoint.example",
   };
 });
 
@@ -65,8 +65,8 @@ test("Throws error if no bearer token provided by request", (t) => {
 });
 
 test("Requests an access token", async (t) => {
-  nock("https://tokens.indieauth.com")
-    .get("/token")
+  nock("https://token-endpoint.example")
+    .get("/")
     .reply(200, t.context.accessToken);
 
   const result = await requestAccessToken(
@@ -79,7 +79,7 @@ test("Requests an access token", async (t) => {
 });
 
 test("Token endpoint refuses to grant an access token", async (t) => {
-  nock("https://tokens.indieauth.com").get("/token").reply(400, {
+  nock("https://token-endpoint.example").get("/").reply(400, {
     error_description: "The token provided was malformed",
   });
 
@@ -90,9 +90,7 @@ test("Token endpoint refuses to grant an access token", async (t) => {
 });
 
 test("Throws error contacting token endpoint", async (t) => {
-  nock("https://tokens.indieauth.com")
-    .get("/token")
-    .replyWithError("Not found");
+  nock("https://token-endpoint.example").get("/").replyWithError("Not found");
 
   await t.throwsAsync(
     requestAccessToken(t.context.tokenEndpoint, t.context.bearerToken),
