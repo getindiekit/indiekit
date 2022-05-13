@@ -14,6 +14,10 @@ test("Gets plug-in info", (t) => {
   t.is(hugo.info.name, "Hugo");
 });
 
+test("Gets plug-in installation prompts", (t) => {
+  t.is(hugo.prompts[0].message, "Which front matter format are you using?");
+});
+
 test("Initiates plug-in", (t) => {
   const indiekit = new Indiekit();
   hugo.init(indiekit);
