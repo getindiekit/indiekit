@@ -67,28 +67,24 @@ export const IndieAuth = class {
       throw new Error("You need to provide some scopes");
     }
 
-    try {
-      // PKCE code challenge
-      const base64Digest = crypto
-        .createHash("sha256")
-        .update(this.codeVerifier)
-        .digest("base64");
-      const codeChallenge = base64Digest.toString("base64url");
+    // PKCE code challenge
+    const base64Digest = crypto
+      .createHash("sha256")
+      .update(this.codeVerifier)
+      .digest("base64");
+    const codeChallenge = base64Digest.toString("base64url");
 
-      const authUrl = new URL(authorizationEndpoint);
-      authUrl.searchParams.append("client_id", this.clientId);
-      authUrl.searchParams.append("code_challenge_method", "S256");
-      authUrl.searchParams.append("code_challenge", codeChallenge);
-      authUrl.searchParams.append("me", this.me);
-      authUrl.searchParams.append("redirect_uri", this.redirectUri);
-      authUrl.searchParams.append("response_type", "code");
-      authUrl.searchParams.append("scope", scope);
-      authUrl.searchParams.append("state", state);
+    const authUrl = new URL(authorizationEndpoint);
+    authUrl.searchParams.append("client_id", this.clientId);
+    authUrl.searchParams.append("code_challenge_method", "S256");
+    authUrl.searchParams.append("code_challenge", codeChallenge);
+    authUrl.searchParams.append("me", this.me);
+    authUrl.searchParams.append("redirect_uri", this.redirectUri);
+    authUrl.searchParams.append("response_type", "code");
+    authUrl.searchParams.append("scope", scope);
+    authUrl.searchParams.append("state", state);
 
-      return authUrl.toString();
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    return authUrl.toString();
   }
 
   /**
