@@ -1,5 +1,3 @@
-import process from "node:process";
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import test from "ava";
 import nock from "nock";
 import sinon from "sinon";
@@ -9,18 +7,18 @@ import { IndieAuth } from "../../lib/indieauth.js";
 
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({
-  me: process.env.TEST_PUBLICATION_URL,
+  me: "https://website.example",
   tokenEndpoint: "https://token-endpoint.example",
 });
 
 test.beforeEach((t) => {
   t.context = {
     accessToken: {
-      me: process.env.TEST_PUBLICATION_URL,
+      me: "https://website.example",
       scope: "create update delete media",
     },
-    bearerToken: process.env.TEST_TOKEN,
-    me: process.env.TEST_PUBLICATION_URL,
+    bearerToken: "token",
+    me: "https://website.example",
   };
 });
 
@@ -48,7 +46,7 @@ test("Throws error getting authentication URL", async (t) => {
 
 test("Exchanges authorization code for access token", async (t) => {
   nock("https://token-endpoint.example").post("/").query(true).reply(200, {
-    access_token: process.env.TEST_TOKEN,
+    access_token: "token",
     scope: "create",
   });
 
@@ -57,7 +55,7 @@ test("Exchanges authorization code for access token", async (t) => {
     "code"
   );
 
-  t.is(result, process.env.TEST_TOKEN);
+  t.is(result, "token");
 });
 
 test.serial(
@@ -147,7 +145,7 @@ test("Throws error checking if user is authorized", async (t) => {
 });
 
 test("Throws error redirecting user to IndieAuth login", async (t) => {
-  nock(process.env.TEST_PUBLICATION_URL)
+  nock("https://website.example")
     .get("/token")
     .reply(200, getFixture("html/home.html"));
   const request = mockRequest({

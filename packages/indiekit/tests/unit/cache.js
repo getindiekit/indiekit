@@ -1,4 +1,3 @@
-import process from "node:process";
 import test from "ava";
 import nock from "nock";
 import { testConfig } from "@indiekit-test/config";
@@ -12,12 +11,12 @@ test.beforeEach(async (t) => {
 
   t.context = {
     cacheCollection: application.cache,
-    url: `${process.env.TEST_PUBLICATION_URL}categories.json`,
+    url: "https://website.example/categories.json",
   };
 });
 
 test("Returns data from remote file and saves to cache", async (t) => {
-  nock(process.env.TEST_PUBLICATION_URL)
+  nock("https://website.example")
     .get("/categories.json")
     .reply(200, ["Foo", "Bar"]);
   const cache = new Cache(t.context.cacheCollection);
@@ -28,7 +27,7 @@ test("Returns data from remote file and saves to cache", async (t) => {
 });
 
 test.serial("Throws error if remote file not found", async (t) => {
-  nock(process.env.TEST_PUBLICATION_URL)
+  nock("https://website.example")
     .get("/categories.json")
     .replyWithError("Not found");
   const cache = new Cache(t.context.cacheCollection);

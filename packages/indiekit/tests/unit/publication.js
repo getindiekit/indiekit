@@ -1,4 +1,3 @@
-import process from "node:process";
 import test from "ava";
 import nock from "nock";
 import { testConfig } from "@indiekit-test/config";
@@ -36,10 +35,10 @@ test("Returns array of available categories", async (t) => {
 });
 
 test("Fetches array from remote JSON file", async (t) => {
-  nock(process.env.TEST_PUBLICATION_URL)
+  nock("https://website.example")
     .get("/categories.json")
     .reply(200, ["foo", "bar"]);
-  t.context.publication.categories = `${process.env.TEST_PUBLICATION_URL}categories.json`;
+  t.context.publication.categories = "https://website.example/categories.json";
   const cache = new Cache(t.context.cacheCollection);
 
   const result = await getCategories(cache, t.context.publication);
@@ -48,14 +47,15 @@ test("Fetches array from remote JSON file", async (t) => {
 });
 
 test.serial("Returns empty array if remote JSON file not found", async (t) => {
-  nock(process.env.TEST_PUBLICATION_URL)
+  nock("https://website.example")
     .get("/categories.json")
     .replyWithError("Not found");
-  t.context.publication.categories = `${process.env.TEST_PUBLICATION_URL}categories.json`;
+  t.context.publication.categories = "https://website.example/categories.json";
   const cache = new Cache(t.context.cacheCollection);
 
   await t.throwsAsync(getCategories(cache, t.context.publication), {
-    message: `Unable to fetch ${process.env.TEST_PUBLICATION_URL}categories.json: Not found`,
+    message:
+      "Unable to fetch https://website.example/categories.json: Not found",
   });
 });
 
