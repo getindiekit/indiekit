@@ -9,8 +9,8 @@ test.beforeEach((t) => {
   t.context = {
     job_id: "ac58789b-f3ca-48d0-9ea6-1d1225e98695",
     options: {
-      accessKey: "0123456789abcdef",
-      secret: "abcdef0123456789",
+      accessKey: "token",
+      secret: "secret",
     },
     url: "http://website.example/post/1",
   };

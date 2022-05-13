@@ -5,7 +5,7 @@ agent.disableNetConnect();
 
 export const internetArchiveAgent = () => {
   const client = agent.get("https://web.archive.org");
-  const authorization = "LOW 0123456789abcdef:abcdef0123456789";
+  const authorization = "LOW token:secret";
   const job_id = "ac58789b-f3ca-48d0-9ea6-1d1225e98695";
   const url = "http://website.example/post/1";
   const timestamp = "20180326070330";

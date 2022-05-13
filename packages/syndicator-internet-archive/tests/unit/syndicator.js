@@ -7,8 +7,8 @@ import { InternetArchiveSyndicator } from "../../index.js";
 setGlobalDispatcher(internetArchiveAgent());
 
 const internetArchive = new InternetArchiveSyndicator({
-  accessKey: "0123456789abcdef",
-  secret: "abcdef0123456789",
+  accessKey: "token",
+  secret: "secret",
 });
 
 test.beforeEach((t) => {
@@ -42,9 +42,9 @@ test("Returns syndicated URL", async (t) => {
 });
 
 test("Throws error getting syndicated URL with no API keys", async (t) => {
-  const internetArchive = new InternetArchiveSyndicator({});
+  const internetArchiveNoKeys = new InternetArchiveSyndicator({});
 
-  await t.throwsAsync(internetArchive.syndicate({ url: t.context.url }), {
+  await t.throwsAsync(internetArchiveNoKeys.syndicate({ url: t.context.url }), {
     message: "You need to be logged in to use Save Page Now.",
   });
 });
