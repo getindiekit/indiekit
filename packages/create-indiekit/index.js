@@ -7,7 +7,7 @@ import { setupPrompts } from "./lib/setup-prompts.js";
 import { addPluginConfig } from "./lib/utils.js";
 
 const require = createRequire(import.meta.url);
-const package_ = require("./package.json");
+const { name, version, bugs } = require("./package.json");
 
 const nodeVersion = 16;
 
@@ -15,18 +15,13 @@ const nodeVersion = 16;
  * @returns {Function} init
  */
 export async function init() {
-  console.log(
-    `\n${chalk.bold("Welcome to Indiekit!")} ${chalk.white(
-      `(${package_.name} v${package_.version})`
-    )}`
-  );
-  console.log(
-    `If you encounter a problem, visit ${chalk.cyan(
-      `${package_.bugs.url}`
-    )} to search or file a new issue.\n`
-  );
+  const { log } = console;
+  const bugsUrl = chalk.cyan(`${bugs.url}`);
+  const nameVersion = chalk.white(`(${name} v${version})`);
 
-  console.log(`${chalk.green(">")} ${chalk.white("Gathering details…")}`);
+  log(`\n${chalk.bold("Welcome to Indiekit!")} ${nameVersion}`);
+  log(`If you encounter a problem, visit ${bugsUrl} to file a new issue.\n`);
+  log(`${chalk.green(">")} ${chalk.white("Gathering details…")}`);
 
   // Ask setup questions
   const setup = await prompts(setupPrompts);
