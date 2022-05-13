@@ -4,6 +4,12 @@ import nock from "nock";
 import { getFixture } from "@indiekit-test/get-fixture";
 import { MastodonSyndicator } from "../../index.js";
 
+const mastodon = new MastodonSyndicator({
+  accessToken: "token",
+  url: "https://mastodon.example",
+  user: "username",
+});
+
 test.beforeEach((t) => {
   t.context = {
     apiResponse: {
@@ -14,51 +20,48 @@ test.beforeEach((t) => {
       tags: [],
       url: "https://mastodon.example/@username/1234567890987654321",
     },
-    options: {
-      accessToken: "0123456789abcdefghijklmno",
-      url: "https://mastodon.example",
-      user: "username",
-    },
     properties: JSON.parse(
       getFixture("jf2/article-content-provided-html-text.jf2")
     ),
+    instanceUrl: "https://mastodon.example",
   };
 });
 
 test("Gets plug-in info", (t) => {
-  const result = new MastodonSyndicator(t.context.options);
+  t.is(mastodon.name, "Mastodon syndicator");
+  t.false(mastodon.info.checked);
+  t.is(mastodon.info.name, "@username@mastodon.example");
+  t.is(mastodon.info.uid, "https://mastodon.example/@username");
+  t.truthy(mastodon.info.service);
+});
 
-  t.is(result.name, "Mastodon syndicator");
-  t.false(result.info.checked);
-  t.is(result.info.name, "@username@mastodon.example");
-  t.is(result.info.uid, "https://mastodon.example/@username");
-  t.truthy(result.info.service);
+test("Gets plug-in installation prompts", (t) => {
+  t.is(mastodon.prompts[0].message, "What is the URL of your Mastodon server?");
 });
 
 test("Returns syndicated URL", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.instanceUrl)
     .post("/api/v1/statuses")
     .reply(200, t.context.apiResponse);
-  const syndicator = new MastodonSyndicator(t.context.options);
 
-  const result = await syndicator.syndicate(t.context.properties);
+  const result = await mastodon.syndicate(t.context.properties);
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
 test("Throws error getting syndicated URL if no server URL provided", async (t) => {
-  const syndicator = new MastodonSyndicator({
-    accessToken: t.context.options.accessToken,
+  const mastodonNoServer = new MastodonSyndicator({
+    accessToken: "token",
     user: "username",
   });
 
-  await t.throwsAsync(syndicator.syndicate(t.context.properties), {
+  await t.throwsAsync(mastodonNoServer.syndicate(t.context.properties), {
     message: "Mastodon server URL required",
   });
 });
 
 test("Throws error getting syndicated URL if no access token provided", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.instanceUrl)
     .post("/api/v1/statuses")
     .reply(401, {
       errors: [
@@ -67,12 +70,13 @@ test("Throws error getting syndicated URL if no access token provided", async (t
         },
       ],
     });
-  const syndicator = new MastodonSyndicator({
-    url: t.context.options.url,
+
+  const mastodonNoToken = new MastodonSyndicator({
+    url: t.context.instanceUrl,
     user: "username",
   });
 
-  await t.throwsAsync(syndicator.syndicate(t.context.properties), {
+  await t.throwsAsync(mastodonNoToken.syndicate(t.context.properties), {
     message: "Request failed with status code 401",
   });
 });
