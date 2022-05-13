@@ -1,9 +1,11 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import sinon from "sinon";
 import mockReqRes from "mock-req-res";
-import { getFixture } from "@indiekit-test/get-fixture";
 import { IndieAuth } from "../../lib/indieauth.js";
+
+setGlobalDispatcher(tokenEndpointAgent());
 
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({
@@ -15,9 +17,9 @@ test.beforeEach((t) => {
   t.context = {
     accessToken: {
       me: "https://website.example",
-      scope: "create update delete media",
+      scope: "create",
     },
-    bearerToken: "token",
+    bearerToken: "JWT",
     me: "https://website.example",
   };
 });
@@ -45,11 +47,6 @@ test("Throws error getting authentication URL", async (t) => {
 });
 
 test("Exchanges authorization code for access token", async (t) => {
-  nock("https://token-endpoint.example").post("/").query(true).reply(200, {
-    access_token: "token",
-    scope: "create",
-  });
-
   const result = await indieauth.authorizationCodeGrant(
     "https://token-endpoint.example",
     "code"
@@ -58,29 +55,16 @@ test("Exchanges authorization code for access token", async (t) => {
   t.is(result, "token");
 });
 
-test.serial(
-  "Throws error exchanging authorization code for invalid access token",
-  async (t) => {
-    nock("https://token-endpoint.example").post("/").query(true).reply(200);
-
-    await t.throwsAsync(
-      indieauth.authorizationCodeGrant(
-        "https://token-endpoint.example",
-        "code"
-      ),
-      {
-        message: "The token endpoint did not return the expected parameters",
-      }
-    );
-  }
-);
+test("Throws error exchanging authorization code for invalid access token", async (t) => {
+  await t.throwsAsync(
+    indieauth.authorizationCodeGrant("https://token-endpoint.example", "code"),
+    {
+      message: "The token endpoint did not return the expected parameters",
+    }
+  );
+});
 
 test("Throws error exchanging invalid code for access token", async (t) => {
-  nock("https://token-endpoint.example").post("/").query(true).reply(404, {
-    error: "invalid_request",
-    error_description: "The code provided was not valid",
-  });
-
   await t.throwsAsync(
     indieauth.authorizationCodeGrant("https://token-endpoint.example", "code"),
     {
@@ -90,23 +74,15 @@ test("Throws error exchanging invalid code for access token", async (t) => {
 });
 
 test("Throws error exchanging authorization code during request", async (t) => {
-  nock("https://token-endpoint.example")
-    .post("/")
-    .query(true)
-    .replyWithError("Not found");
-
   await t.throwsAsync(
     indieauth.authorizationCodeGrant("https://token-endpoint.example", "code"),
     {
-      message: "Not found",
+      message: "Not Found",
     }
   );
 });
 
 test("Checks if user is authorized", async (t) => {
-  nock("https://token-endpoint.example")
-    .get("/")
-    .reply(200, t.context.accessToken);
   const request = mockRequest({
     app: {
       locals: {
@@ -145,9 +121,6 @@ test("Throws error checking if user is authorized", async (t) => {
 });
 
 test("Throws error redirecting user to IndieAuth login", async (t) => {
-  nock("https://website.example")
-    .get("/token")
-    .reply(200, getFixture("html/home.html"));
   const request = mockRequest({
     query: { redirect: "/status" },
   });

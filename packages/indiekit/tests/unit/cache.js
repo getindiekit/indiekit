@@ -1,8 +1,11 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { websiteAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
 import { Cache } from "../../lib/cache.js";
+
+setGlobalDispatcher(websiteAgent());
 
 test.beforeEach(async (t) => {
   const config = await testConfig();
@@ -12,13 +15,11 @@ test.beforeEach(async (t) => {
   t.context = {
     cacheCollection: application.cache,
     url: "https://website.example/categories.json",
+    urlNotFound: "https://website.example/404.json",
   };
 });
 
 test("Returns data from remote file and saves to cache", async (t) => {
-  nock("https://website.example")
-    .get("/categories.json")
-    .reply(200, ["Foo", "Bar"]);
   const cache = new Cache(t.context.cacheCollection);
 
   const result = await cache.json("test1", t.context.url);
@@ -26,14 +27,11 @@ test("Returns data from remote file and saves to cache", async (t) => {
   t.is(result.source, t.context.url);
 });
 
-test.serial("Throws error if remote file not found", async (t) => {
-  nock("https://website.example")
-    .get("/categories.json")
-    .replyWithError("Not found");
+test("Throws error if remote file not found", async (t) => {
   const cache = new Cache(t.context.cacheCollection);
 
-  await t.throwsAsync(cache.json("test2", t.context.url), {
-    message: `Unable to fetch ${t.context.url}: Not found`,
+  await t.throwsAsync(cache.json("test2", t.context.urlNotFound), {
+    message: `Unable to fetch ${t.context.urlNotFound}: Not Found`,
   });
 });
 

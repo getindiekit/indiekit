@@ -1,19 +1,14 @@
-import process from "node:process";
 import test from "ava";
-import nock from "nock";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { setGlobalDispatcher } from "undici";
+import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
+setGlobalDispatcher(tokenEndpointAgent());
+
 test("Returns authenticated session", async (t) => {
-  nock(process.env.TEST_PUBLICATION_URL)
-    .get("/")
-    .reply(200, getFixture("html/home.html"));
-  nock("https://token-endpoint.example").post("/").query(true).reply(200, {
-    access_token: process.env.TEST_TOKEN,
-    scope: "create",
-  });
   const request = await testServer({
     publication: {
+      me: "https://website.example",
       tokenEndpoint: "https://token-endpoint.example",
     },
   });

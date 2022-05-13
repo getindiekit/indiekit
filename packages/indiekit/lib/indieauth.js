@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import process from "node:process";
-import got from "got";
+import { fetch } from "undici";
 import HttpError from "http-errors";
 import {
   findBearerToken,
@@ -108,26 +108,34 @@ export const IndieAuth = class {
         redirect_uri: this.redirectUri,
       };
 
-      const { body } = await got.post(tokenEndpoint, {
+      const endpointResponse = await fetch(tokenEndpoint, {
+        method: "POST",
         headers: {
-          "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
           accept: "application/json, application/x-www-form-urlencoded",
+          "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
-        responseType: "json",
-        searchParams: parameters,
+        body: new URLSearchParams(parameters).toString(),
       });
 
+      const body = await endpointResponse.json();
+
+      if (!endpointResponse.ok) {
+        throw new HttpError(
+          endpointResponse.status,
+          body.error_description || endpointResponse.statusText
+        );
+      }
+
       if (!body.scope || !body.access_token) {
-        throw new Error(
+        throw new HttpError(
+          400,
           "The token endpoint did not return the expected parameters"
         );
       }
 
       return body.access_token;
     } catch (error) {
-      const statusCode = error.response?.statusCode || 500;
-      const message = error.response?.body?.error_description || error.message;
-      throw new HttpError(statusCode, message);
+      throw new HttpError(500, error.message);
     }
   }
 
@@ -256,7 +264,7 @@ export const IndieAuth = class {
           );
         }
 
-        next(new HttpError(400, error));
+        next(error);
       }
     };
   }

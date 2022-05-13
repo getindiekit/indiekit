@@ -1,4 +1,4 @@
-import got from "got";
+import { fetch } from "undici";
 
 export const Cache = class {
   /**
@@ -30,25 +30,28 @@ export const Cache = class {
         };
       }
 
-      const fetchedData = await got(url, { responseType: "json" });
-      if (fetchedData) {
-        const data = fetchedData.body;
+      const response = await fetch(url);
 
-        if (this.collection) {
-          await this.collection.replaceOne(
-            {},
-            { key, url, data },
-            {
-              upsert: true,
-            }
-          );
-        }
-
-        return {
-          source: url,
-          data,
-        };
+      if (!response.ok) {
+        throw new Error(response.statusText);
       }
+
+      const data = await response.json();
+
+      if (this.collection) {
+        await this.collection.replaceOne(
+          {},
+          { key, url, data },
+          {
+            upsert: true,
+          }
+        );
+      }
+
+      return {
+        source: url,
+        data,
+      };
     } catch (error) {
       throw new Error(`Unable to fetch ${url}: ${error.message}`);
     }

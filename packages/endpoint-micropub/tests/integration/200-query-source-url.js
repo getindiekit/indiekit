@@ -1,17 +1,21 @@
-import process from "node:process";
 import test from "ava";
 import { setGlobalDispatcher } from "undici";
-import { websiteAgent } from "@indiekit-test/mock-agent";
+import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(websiteAgent());
+setGlobalDispatcher(tokenEndpointAgent());
 
 test("Returns list of previously published posts", async (t) => {
-  const request = await testServer();
+  const request = await testServer({
+    publication: {
+      me: "https://website.example",
+      tokenEndpoint: "https://token-endpoint.example",
+    },
+  });
 
   const result = await request
     .get("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth("JWT", { type: "bearer" })
     .set("Accept", "application/json")
     .query("q=source&properties[]=name&url=https://website.example/post.html");
 

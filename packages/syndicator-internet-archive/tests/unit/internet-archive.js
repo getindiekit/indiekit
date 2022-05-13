@@ -1,6 +1,9 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { internetArchiveAgent } from "@indiekit-test/mock-agent";
 import { internetArchive } from "../../lib/internet-archive.js";
+
+setGlobalDispatcher(internetArchiveAgent());
 
 test.beforeEach((t) => {
   t.context = {
@@ -9,65 +12,47 @@ test.beforeEach((t) => {
       accessKey: "0123456789abcdef",
       secret: "abcdef0123456789",
     },
-    timestamp: "20180326070330",
     url: "http://website.example/post/1",
   };
 });
 
 test("Makes capture request", async (t) => {
-  const { job_id, options, url } = t.context;
-  nock("https://web.archive.org").post("/save/").reply(200, { url, job_id });
+  const result = await internetArchive(t.context.options).capture(
+    t.context.url
+  );
 
-  const result = await internetArchive(options).capture(url);
-
-  t.deepEqual(result, { job_id, url });
+  t.deepEqual(result, {
+    job_id: t.context.job_id,
+    url: t.context.url,
+  });
 });
 
 test("Throws error making capture request", async (t) => {
-  nock("https://web.archive.org")
-    .post("/save/")
-    .reply(401, { message: "You need to be logged in to use Save Page Now." });
-
   await t.throwsAsync(internetArchive({}).capture(t.context.url), {
     message: "You need to be logged in to use Save Page Now.",
   });
 });
 
 test("Makes status request", async (t) => {
-  const { job_id, options, timestamp, url } = t.context;
-  nock("https://web.archive.org")
-    .get(`/save/status/${job_id}`)
-    .reply(200, { status: "pending" });
-  nock("https://web.archive.org")
-    .get(`/save/status/${job_id}`)
-    .reply(200, { status: "success", original_url: url, timestamp });
+  const result = await internetArchive(t.context.options).status(
+    t.context.job_id
+  );
 
-  const result = await internetArchive(options).status(job_id);
-
-  t.deepEqual(result, { status: "success", original_url: url, timestamp });
+  t.deepEqual(result, {
+    status: "success",
+    original_url: t.context.url,
+    timestamp: "20180326070330",
+  });
 });
 
 test("Throws error message from status request", async (t) => {
-  const { job_id, options, url } = t.context;
-  nock("https://web.archive.org")
-    .get(`/save/status/${job_id}-1`)
-    .reply(200, {
-      status: "error",
-      message: `Couldn't resolve host for ${url}`,
-    });
-
-  await t.throwsAsync(internetArchive(options).status(`${job_id}-1`), {
-    message: `Couldn't resolve host for ${url}`,
+  await t.throwsAsync(internetArchive(t.context.options).status("foobar"), {
+    message: `Couldn't resolve host for ${t.context.url}`,
   });
 });
 
 test("Throws error making status request", async (t) => {
-  const { job_id } = t.context;
-  nock("https://web.archive.org")
-    .get(`/save/status/${job_id}-2`)
-    .reply(401, "You need to be logged in to use Save Page Now.");
-
-  await t.throwsAsync(internetArchive({}).status(`${job_id}-2`), {
+  await t.throwsAsync(internetArchive({}).status(t.context.job_id), {
     message: "You need to be logged in to use Save Page Now.",
   });
 });

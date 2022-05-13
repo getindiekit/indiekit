@@ -1,10 +1,13 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import {
   findBearerToken,
   requestAccessToken,
   verifyAccessToken,
 } from "../../lib/tokens.js";
+
+setGlobalDispatcher(tokenEndpointAgent());
 
 test.beforeEach((t) => {
   t.context = {
@@ -65,24 +68,16 @@ test("Throws error if no bearer token provided by request", (t) => {
 });
 
 test("Requests an access token", async (t) => {
-  nock("https://token-endpoint.example")
-    .get("/")
-    .reply(200, t.context.accessToken);
-
   const result = await requestAccessToken(
     t.context.tokenEndpoint,
     t.context.bearerToken
   );
 
   t.is(result.me, "https://website.example");
-  t.is(result.scope, "create update delete media");
+  t.is(result.scope, "create");
 });
 
 test("Token endpoint refuses to grant an access token", async (t) => {
-  nock("https://token-endpoint.example").get("/").reply(400, {
-    error_description: "The token provided was malformed",
-  });
-
   await t.throwsAsync(requestAccessToken(t.context.tokenEndpoint, "foo"), {
     name: "BadRequestError",
     message: "The token provided was malformed",
@@ -90,13 +85,13 @@ test("Token endpoint refuses to grant an access token", async (t) => {
 });
 
 test("Throws error contacting token endpoint", async (t) => {
-  nock("https://token-endpoint.example").get("/").replyWithError("Not found");
-
   await t.throwsAsync(
-    requestAccessToken(t.context.tokenEndpoint, t.context.bearerToken),
+    requestAccessToken(
+      `${t.context.tokenEndpoint}/token`,
+      t.context.bearerToken
+    ),
     {
-      name: "RequestError",
-      message: "Not found",
+      message: "Not Found",
     }
   );
 });

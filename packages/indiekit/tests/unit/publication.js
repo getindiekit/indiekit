@@ -1,5 +1,6 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { websiteAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
 import { Cache } from "../../lib/cache.js";
@@ -9,6 +10,8 @@ import {
   getPostTemplate,
   getPostTypes,
 } from "../../lib/publication.js";
+
+setGlobalDispatcher(websiteAgent());
 
 test.beforeEach(async (t) => {
   const config = await testConfig();
@@ -23,39 +26,34 @@ test.beforeEach(async (t) => {
     },
     cacheCollection: application.cache,
     publication,
+    url: "https://website.example/categories.json",
+    urlNotFound: "https://website.example/404.json",
   };
 });
 
 test("Returns array of available categories", async (t) => {
   const result = await getCategories(t.context.cache, {
-    categories: ["foo", "bar"],
+    categories: ["Foo", "Bar"],
   });
 
-  t.deepEqual(result, ["foo", "bar"]);
+  t.deepEqual(result, ["Foo", "Bar"]);
 });
 
 test("Fetches array from remote JSON file", async (t) => {
-  nock("https://website.example")
-    .get("/categories.json")
-    .reply(200, ["foo", "bar"]);
-  t.context.publication.categories = "https://website.example/categories.json";
+  t.context.publication.categories = t.context.url;
   const cache = new Cache(t.context.cacheCollection);
 
   const result = await getCategories(cache, t.context.publication);
 
-  t.deepEqual(result, ["foo", "bar"]);
+  t.deepEqual(result, ["Foo", "Bar"]);
 });
 
-test.serial("Returns empty array if remote JSON file not found", async (t) => {
-  nock("https://website.example")
-    .get("/categories.json")
-    .replyWithError("Not found");
-  t.context.publication.categories = "https://website.example/categories.json";
+test("Returns empty array if remote JSON file not found", async (t) => {
+  t.context.publication.categories = t.context.urlNotFound;
   const cache = new Cache(t.context.cacheCollection);
 
   await t.throwsAsync(getCategories(cache, t.context.publication), {
-    message:
-      "Unable to fetch https://website.example/categories.json: Not found",
+    message: `Unable to fetch ${t.context.urlNotFound}: Not Found`,
   });
 });
 
