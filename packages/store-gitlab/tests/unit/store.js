@@ -4,13 +4,13 @@ import { Indiekit } from "@indiekit/indiekit";
 import { GitlabStore } from "../../index.js";
 
 const gitlab = new GitlabStore({
-  token: "abc123",
+  token: "token",
   user: "username",
   repo: "repo",
 });
 
 const gitlabInstance = new GitlabStore({
-  token: "abc123",
+  token: "token",
   user: "username",
   repo: "repo",
   instance: "https://gitlab.instance",
@@ -40,6 +40,10 @@ test("Gets plug-in info", (t) => {
   t.is(gitlab.name, "GitLab store");
   t.is(gitlab.info.name, "username/repo on GitLab");
   t.is(gitlab.info.uid, "https://gitlab.com/username/repo");
+});
+
+test("Gets plug-in installation prompts", (t) => {
+  t.is(gitlab.prompts[0].message, "Where is GitLab hosted?");
 });
 
 test("Initiates plug-in", (t) => {
