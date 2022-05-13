@@ -19,6 +19,10 @@ test("Gets plug-in info", (t) => {
   t.is(ftp.info.uid, "sftp://ftp.server.example/");
 });
 
+test("Gets plug-in installation prompts", (t) => {
+  t.is(ftp.prompts[0].message, "Where is your FTP server hosted?");
+});
+
 test("Initiates plug-in", (t) => {
   const indiekit = new Indiekit();
   ftp.init(indiekit);
