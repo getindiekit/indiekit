@@ -1,11 +1,11 @@
 import test from "ava";
 import parser from "microformats-parser";
 import { setGlobalDispatcher } from "undici";
-import { websiteAgent } from "@indiekit-test/mock-agent";
+import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/get-fixture";
 import { getMf2Properties, jf2ToMf2, url2Mf2 } from "../../lib/mf2.js";
 
-setGlobalDispatcher(websiteAgent());
+setGlobalDispatcher(tokenEndpointAgent());
 
 test.beforeEach((t) => {
   t.context = {

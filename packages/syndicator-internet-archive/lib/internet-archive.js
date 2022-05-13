@@ -1,16 +1,5 @@
-import FormData from "form-data";
-import got from "got";
+import { fetch } from "undici";
 import { debug } from "../index.js";
-
-const request = (options) =>
-  got.extend({
-    prefixUrl: "https://web.archive.org/save",
-    responseType: "json",
-    resolveBodyOnly: true,
-    headers: {
-      authorization: `LOW ${options.accessKey}:${options.secret}`,
-    },
-  });
 
 /**
  * Save Page Now 2 (SPN2) API
@@ -22,6 +11,27 @@ const request = (options) =>
  * @see {@link https://docs.google.com/document/d/1Nsv52MvSjbLb2PCpHlat0gkzw0EvtSgpKHu4mk0MnrA/}
  */
 export const internetArchive = (options) => ({
+  async client(path, method = "GET", data) {
+    const url = new URL(path, "https://web.archive.org");
+
+    const response = await fetch(url.href, {
+      method,
+      headers: {
+        accept: "application/json",
+        authorization: `LOW ${options.accessKey}:${options.secret}`,
+      },
+      ...(data && { body: new URLSearchParams(data).toString() }),
+    });
+
+    const body = await response.json();
+
+    if (!response.ok) {
+      throw new Error(body.message);
+    }
+
+    return body;
+  },
+
   /**
    * Make capture request
    *
@@ -29,16 +39,7 @@ export const internetArchive = (options) => ({
    * @returns {Promise<Response>} Capture response
    */
   async capture(url) {
-    try {
-      const body = new FormData();
-      body.append("url", url);
-
-      const response = await request(options).post({ body });
-
-      return response;
-    } catch (error) {
-      throw new Error(error.response.body.message);
-    }
+    return this.client("/save", "POST", { url });
   },
 
   /**
@@ -48,27 +49,23 @@ export const internetArchive = (options) => ({
    * @returns {Promise<Response>} Status response
    */
   async status(jobId) {
-    try {
-      const response = await request(options).get(`status/${jobId}`);
+    const response = await this.client(`/save/status/${jobId}`);
 
-      switch (response.status) {
-        case "success":
-          debug("success", response);
-          return response;
+    switch (response.status) {
+      case "success":
+        debug("success", response);
+        return response;
 
-        case "error":
-          debug("error", response);
-          throw new Error(response.message);
+      case "error":
+        debug("error", response);
+        throw new Error(response.message);
 
-        default:
-          debug(`Capture for job ${jobId} is pending`);
-          await new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-          });
-          return this.status(jobId);
-      }
-    } catch (error) {
-      throw new Error(error.response ? error.response.body : error.message);
+      default:
+        debug(`Capture for job ${jobId} is pending`);
+        await new Promise((resolve) => {
+          setTimeout(resolve, 1000);
+        });
+        return this.status(jobId);
     }
   },
 
@@ -79,20 +76,14 @@ export const internetArchive = (options) => ({
    * @returns {string} URL of archived web page
    */
   async save(properties) {
-    try {
-      const { url } = properties;
+    // Get a job ID from capture request
+    const { job_id } = await this.capture(properties.url);
 
-      // Get a job ID from capture request
-      const { job_id } = await this.capture(url);
+    // Get original URL and timestamp of archived web page
+    debug(`Capture of ${properties.url} assigned to job ${job_id}`);
+    const { original_url, timestamp } = await this.status(job_id);
 
-      // Get original URL and timestamp of archived web page
-      debug(`Capture of ${url} assigned to job ${job_id}`);
-      const { original_url, timestamp } = await this.status(job_id);
-
-      // Return syndicated URL
-      return `https://web.archive.org/web/${timestamp}/${original_url}`;
-    } catch (error) {
-      throw new Error(error.message);
-    }
+    // Return syndicated URL
+    return `https://web.archive.org/web/${timestamp}/${original_url}`;
   },
 });

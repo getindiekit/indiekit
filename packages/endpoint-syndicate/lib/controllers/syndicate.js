@@ -1,5 +1,5 @@
 import Debug from "debug";
-import httpError from "http-errors";
+import HttpError from "http-errors";
 import { fetch } from "undici";
 import { getPostData } from "../utils.js";
 
@@ -86,7 +86,7 @@ export const syndicateController = {
       const body = await endpointResponse.json();
 
       if (!endpointResponse.ok) {
-        throw new httpError(
+        throw new HttpError(
           endpointResponse.status,
           body.error_description || endpointResponse.statusText
         );

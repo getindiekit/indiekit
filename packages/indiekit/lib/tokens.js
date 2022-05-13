@@ -1,5 +1,5 @@
-import got from "got";
 import HttpError from "http-errors";
+import { fetch } from "undici";
 import { getCanonicalUrl } from "./utils.js";
 
 export const findBearerToken = (request) => {
@@ -35,23 +35,23 @@ export const findBearerToken = (request) => {
  * @returns {Promise|object} Access token
  */
 export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
-  try {
-    const { body } = await got(tokenEndpoint, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-      },
-      responseType: "json",
-    });
+  const endpointResponse = await fetch(tokenEndpoint, {
+    headers: {
+      accept: "application/json",
+      authorization: `Bearer ${bearerToken}`,
+    },
+  });
 
-    const accessToken = body;
-    return accessToken;
-  } catch (error) {
-    const statusCode = error.response ? error.response.statusCode : 500;
-    const message = error.response
-      ? error.response.body.error_description
-      : error;
-    throw new HttpError(statusCode, message);
+  const body = await endpointResponse.json();
+
+  if (!endpointResponse.ok) {
+    throw new HttpError(
+      endpointResponse.status,
+      body.error_description || endpointResponse.statusText
+    );
   }
+
+  return body;
 };
 
 /**
