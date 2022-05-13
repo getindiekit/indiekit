@@ -4,7 +4,7 @@ import { Indiekit } from "@indiekit/indiekit";
 import { GithubStore } from "../../index.js";
 
 const github = new GithubStore({
-  token: "abc123",
+  token: "token",
   user: "username",
   repo: "repo",
 });
@@ -30,6 +30,10 @@ test("Gets plug-in info", (t) => {
   t.is(github.name, "GitHub store");
   t.is(github.info.name, "username/repo on GitHub");
   t.is(github.info.uid, "https://github.com/username/repo");
+});
+
+test("Gets plug-in installation prompts", (t) => {
+  t.is(github.prompts[0].message, "What is your GitHub username?");
 });
 
 test("Initiates plug-in", (t) => {
