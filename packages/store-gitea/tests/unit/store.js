@@ -7,14 +7,14 @@ import { GiteaStore } from "../../index.js";
 setGlobalDispatcher(giteaAgent());
 
 const gitea = new GiteaStore({
-  token: "abc123",
+  token: "token",
   user: "username",
   repo: "repo",
 });
 
 const giteaInstance = new GiteaStore({
   instance: "https://gitea.instance",
-  token: "abc123",
+  token: "token",
   user: "username",
   repo: "repo",
 });
@@ -23,6 +23,10 @@ test("Gets plug-in info", (t) => {
   t.is(gitea.name, "Gitea store");
   t.is(gitea.info.name, "username/repo on Gitea");
   t.is(gitea.info.uid, "https://gitea.com/username/repo");
+});
+
+test("Gets plug-in installation prompts", (t) => {
+  t.is(gitea.prompts[0].message, "Where is Gitea hosted?");
 });
 
 test("Initiates plug-in", (t) => {
