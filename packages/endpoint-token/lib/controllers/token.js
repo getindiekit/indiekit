@@ -92,9 +92,6 @@ export const tokenController = {
       const publicationMe = getCanonicalUrl(publication.me);
       const isAuthenticated = accessTokenMe === publicationMe;
 
-      // Canonicalise client ID
-      const clientId = getCanonicalUrl(client_id);
-
       if (!isAuthenticated) {
         return next(
           new HttpError(400, body.error || "Publication URL does not match")
@@ -102,20 +99,18 @@ export const tokenController = {
       }
 
       const tokenData = {
-        me: accessTokenMe,
-        client_id: clientId,
-        scope: body.scope,
+        client_id: getCanonicalUrl(client_id),
         date_issued: new Date(),
+        me: accessTokenMe,
+        scope: body.scope,
       };
 
-      const access_token = jwt.sign(tokenData, process.env.TOKEN_SECRET, {
-        expiresIn: 60 * 60 * 24 * 365,
-      });
-
       const authResponse = {
+        access_token: jwt.sign(tokenData, process.env.TOKEN_SECRET, {
+          expiresIn: 60 * 60 * 24 * 365,
+        }),
         me: accessTokenMe,
         scope: body.scope,
-        access_token,
       };
 
       if (
