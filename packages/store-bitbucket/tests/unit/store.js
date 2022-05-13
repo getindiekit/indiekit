@@ -19,6 +19,10 @@ test("Gets plug-in info", (t) => {
   t.is(bitbucket.info.uid, "https://bitbucket.org/username/repo");
 });
 
+test("Gets plug-in installation prompts", (t) => {
+  t.is(bitbucket.prompts[0].message, "What is your Bitbucket username?");
+});
+
 test("Initiates plug-in", (t) => {
   const indiekit = new Indiekit();
   bitbucket.init(indiekit);
