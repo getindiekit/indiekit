@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import test from "ava";
 import nock from "nock";
+import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/get-fixture";
 import { MastodonSyndicator } from "../../index.js";
 
@@ -37,6 +38,16 @@ test("Gets plug-in info", (t) => {
 
 test("Gets plug-in installation prompts", (t) => {
   t.is(mastodon.prompts[0].message, "What is the URL of your Mastodon server?");
+});
+
+test("Initiates plug-in", (t) => {
+  const indiekit = new Indiekit();
+  mastodon.init(indiekit);
+
+  t.is(
+    indiekit.publication.syndicationTargets[0].info.name,
+    "@username@mastodon.example"
+  );
 });
 
 test("Returns syndicated URL", async (t) => {
