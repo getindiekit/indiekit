@@ -230,7 +230,7 @@ export const IndieAuth = class {
 
       // Use placeholder session data if using development environment
       if (process.env.NODE_ENV === "development") {
-        request.session.token = "development";
+        request.session.token = process.env.NODE_ENV;
         request.session.scope = "create update delete media";
       }
 
