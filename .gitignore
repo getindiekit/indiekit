@@ -19,5 +19,8 @@ _site
 # Environment variables
 *.env
 
+# Environment certificates
+*.pem
+
 # Localisation keys
 localazy.keys.json

@@ -5,8 +5,5 @@
   "main": "index.js",
   "type": "module",
   "private": true,
-  "license": "MIT",
-  "dependencies": {
-    "get-port": "^6.1.2"
-  }
+  "license": "MIT"
 }

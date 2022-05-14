@@ -1,3 +1,4 @@
+import https from "node:https";
 import { expressConfig } from "./config/express.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
@@ -86,7 +87,7 @@ export const Indiekit = class {
     const { port } = options;
     const app = await this.createApp();
 
-    return app.listen(port, () => {
+    return https.createServer(options, app).listen(port, () => {
       console.info(`Starting ${name} (v${version}) on port ${port}`);
     });
   }
