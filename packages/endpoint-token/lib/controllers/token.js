@@ -66,9 +66,13 @@ export const tokenController = {
    */
   async post(request, response, next) {
     const { publication } = request.app.locals;
-    const { code, redirect_uri, client_id } = request.query;
+    const { client_id, code, redirect_uri } = request.query;
 
     try {
+      if (!client_id) {
+        throw new Error("Missing client ID");
+      }
+
       if (!code) {
         throw new Error("Missing code");
       }
@@ -77,13 +81,16 @@ export const tokenController = {
         throw new Error("Missing redirect URI");
       }
 
-      if (!client_id) {
-        throw new Error("Missing client ID");
-      }
+      const authUrl = new URL(publication.authorizationEndpoint);
+      authUrl.searchParams.append("client_id", client_id);
+      authUrl.searchParams.append("code", code);
+      authUrl.searchParams.append("redirect_uri", redirect_uri);
 
-      const endpointResponse = await fetch(publication.authorizationEndpoint, {
+      const endpointResponse = await fetch(authUrl.toString(), {
         method: "POST",
-        body: new URLSearchParams({ code, redirect_uri, client_id }).toString(),
+        headers: {
+          accept: "application/json",
+        },
       });
 
       const body = await endpointResponse.json();

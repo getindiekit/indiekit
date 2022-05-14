@@ -96,21 +96,19 @@ export const IndieAuth = class {
    */
   async authorizationCodeGrant(tokenEndpoint, code) {
     try {
-      const parameters = {
-        client_id: this.clientId,
-        code,
-        code_verifier: this.codeVerifier,
-        grant_type: "authorization_code",
-        redirect_uri: this.redirectUri,
-      };
+      const tokenUrl = new URL(tokenEndpoint);
+      tokenUrl.searchParams.append("client_id", this.clientId);
+      tokenUrl.searchParams.append("code", code);
+      tokenUrl.searchParams.append("code_verifier", this.codeVerifier);
+      tokenUrl.searchParams.append("grant_type", "authorization_code");
+      tokenUrl.searchParams.append("redirect_uri", this.redirectUri);
 
-      const endpointResponse = await fetch(tokenEndpoint, {
+      const endpointResponse = await fetch(tokenUrl.toString(), {
         method: "POST",
         headers: {
           accept: "application/json, application/x-www-form-urlencoded",
           "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
-        body: new URLSearchParams(parameters).toString(),
       });
 
       const body = await endpointResponse.json();

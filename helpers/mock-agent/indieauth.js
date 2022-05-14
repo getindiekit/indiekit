@@ -8,7 +8,10 @@ export const indieauthAgent = () => {
 
   // Grant token (Bad Request)
   client
-    .intercept({ method: "POST", path: "/auth" })
+    .intercept({
+      method: "POST",
+      path: /\/auth\?client_id=(?<client_id>.*)&code=(?<code>.*)&redirect_uri=(?<redirect_uri>.*)/,
+    })
     .reply(400, { error_description: "Not found" });
 
   return client;

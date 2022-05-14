@@ -26,21 +26,39 @@ export const tokenEndpointAgent = () => {
 
   // Exchange authorization code for access token
   client
-    .intercept({ method: "POST", path: "/" })
+    .intercept({
+      method: "POST",
+      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+    })
     .reply(200, { access_token: "token", scope: "create" });
 
   // Exchange authorization code for access token (empty response)
-  client.intercept({ method: "POST", path: "/" }).reply(200, {});
+  client
+    .intercept({
+      method: "POST",
+      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+    })
+    .reply(200, {});
 
   // Exchange authorization code for access token (Bad Request)
-  client.intercept({ method: "POST", path: "/" }).reply(400, {
-    error_description: "The code provided was not valid",
-  });
+  client
+    .intercept({
+      method: "POST",
+      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+    })
+    .reply(400, {
+      error_description: "The code provided was not valid",
+    });
 
   // Exchange authorization code for access token (Not Found)
-  client.intercept({ method: "POST", path: "/" }).reply(404, {
-    message: "Not found",
-  });
+  client
+    .intercept({
+      method: "POST",
+      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+    })
+    .reply(404, {
+      message: "Not found",
+    });
 
   // Mock HTML requests (need to use same origin as token endpoint)
   // See: https://github.com/nodejs/undici/discussions/1440
