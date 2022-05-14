@@ -43,11 +43,13 @@ Learn how to [set up an Indiekit server](https://getindiekit.com/get-started/) a
 
 ## Local development
 
+If you’re developing a new feature, and want the application to automatically restart whenever a file change is detected, use the following command:
+
 ```sh
-npm start
+npm run dev
 ```
 
-If you’re developing a new feature, and want the application to automatically restart whenever a file change is detected, use `npm run dev`.
+The application will run locally using HTTPS. This requires `localhost.pem` and `localhost-key.pem` files in the root folder of the project. These can be [created using the `mkcert` utility](https://web.dev/how-to-use-local-https/).
 
 ### Testing
 
