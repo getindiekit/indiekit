@@ -110,7 +110,12 @@ export const tokenController = {
       const isAuthenticated = accessTokenMe === publicationMe;
 
       if (!isAuthenticated) {
-        return next(new HttpError(400, "Publication URL does not match"));
+        return next(
+          new HttpError(
+            403,
+            "Publication URL does not match that provided by access token"
+          )
+        );
       }
 
       const tokenData = {

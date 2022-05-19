@@ -5,15 +5,23 @@ import { testServer } from "@indiekit-test/server";
 
 setGlobalDispatcher(indieauthAgent());
 
-test("Returns 400 if unable to grant token", async (t) => {
-  const request = await testServer();
+test("Returns 403 if publication URL doesn’t match URL in token", async (t) => {
+  const request = await testServer({
+    publication: {
+      me: "https://foo.bar",
+    },
+  });
+
   const result = await request
     .post("/token")
     .set("Accept", "application/json")
     .query({ client_id: "https://client.example" })
-    .query({ code: "foobar" })
+    .query({ code: "123456" })
     .query({ redirect_uri: "/" });
 
-  t.is(result.status, 400);
-  t.is(result.body.error_description, "Invalid code");
+  t.is(result.status, 403);
+  t.is(
+    result.body.error_description,
+    "Publication URL does not match that provided by access token"
+  );
 });

@@ -5,15 +5,18 @@ import { testServer } from "@indiekit-test/server";
 
 setGlobalDispatcher(indieauthAgent());
 
-test("Returns 400 if unable to grant token", async (t) => {
+test("Grants token and returns JSON", async (t) => {
   const request = await testServer();
+
   const result = await request
     .post("/token")
     .set("Accept", "application/json")
     .query({ client_id: "https://client.example" })
-    .query({ code: "foobar" })
+    .query({ code: "123456" })
     .query({ redirect_uri: "/" });
 
-  t.is(result.status, 400);
-  t.is(result.body.error_description, "Invalid code");
+  t.is(result.status, 200);
+  t.truthy(result.body.access_token);
+  t.is(result.body.me, process.env.TEST_PUBLICATION_URL);
+  t.truthy(result.body.scope);
 });
