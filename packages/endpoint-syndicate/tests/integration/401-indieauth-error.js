@@ -20,8 +20,8 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
   await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json")
-    .set("Cookie", [cookie])
+    .set("accept", "application/json")
+    .set("cookie", [cookie])
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");
@@ -29,7 +29,7 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
   // Syndicate post
   const result = await request
     .post("/syndicate")
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
     .query(`token=${process.env.TEST_TOKEN_CREATE_SCOPE}`);
 

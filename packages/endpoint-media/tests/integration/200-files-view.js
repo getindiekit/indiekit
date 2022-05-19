@@ -15,7 +15,7 @@ test("Views previously uploaded file", async (t) => {
   await request
     .post("/media")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   // Get file data by parsing list of files and getting values from link

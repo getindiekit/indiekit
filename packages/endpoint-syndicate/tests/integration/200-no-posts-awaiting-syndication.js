@@ -14,14 +14,14 @@ test("Returns 200 if no post records", async (t) => {
   await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar");
 
   const result = await request
     .post("/syndicate")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json");
+    .set("accept", "application/json");
 
   t.is(result.statusCode, 200);
   t.is(result.body.success_description, "No posts awaiting syndication");

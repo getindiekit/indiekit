@@ -16,7 +16,7 @@ test("Returns 400 if source URL can’t be found", async (t) => {
   const result = await request
     .get("/micropub")
     .auth("JWT", { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .query("q=source&properties[]=name&url=https://website.example/404.html");
 
   t.is(result.statusCode, 400);

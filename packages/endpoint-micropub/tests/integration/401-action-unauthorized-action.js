@@ -26,7 +26,7 @@ test("Returns 401 if action is not supported (by scope)", async (t) => {
   const result = await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .send({
       action: "foo",
       url: response.header.location,

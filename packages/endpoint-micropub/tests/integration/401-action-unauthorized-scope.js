@@ -8,7 +8,7 @@ test("Returns 401 if access token does not provide adequate scope", async (t) =>
   const result = await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN_NO_SCOPE, { type: "bearer" })
-    .set("Accept", "application/json");
+    .set("accept", "application/json");
 
   t.is(result.statusCode, 401);
   t.is(

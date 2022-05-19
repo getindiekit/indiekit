@@ -16,7 +16,7 @@ test("Returns list of previously published posts", async (t) => {
   const result = await request
     .get("/micropub")
     .auth("JWT", { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .query("q=source&properties[]=name&url=https://website.example/page.html");
 
   t.is(result.statusCode, 400);

@@ -17,7 +17,7 @@ test("Posts content and redirects back to share page", async (t) => {
   const request = await testServer();
   const result = await request
     .post("/share")
-    .set("Cookie", [cookie])
+    .set("cookie", [cookie])
     .send(`access_token=${process.env.TEST_TOKEN}`)
     .send("name=Foobar")
     .send("content=Test+of+sharing+a+bookmark")

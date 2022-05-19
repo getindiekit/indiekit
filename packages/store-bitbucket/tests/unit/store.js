@@ -34,7 +34,7 @@ test("Creates file in a repository", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .reply(201, {
-      "Content-Type": "application/json",
+      "content-type": "application/json",
     });
 
   const result = await bitbucket.createFile("foo.txt", "foo", "Message");
@@ -79,7 +79,7 @@ test("Updates file in a repository", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .reply(201, {
-      "Content-Type": "application/json",
+      "content-type": "application/json",
     });
 
   const result = await bitbucket.updateFile("foo.txt", "foo", "Message");
@@ -102,7 +102,7 @@ test("Deletes a file in a repository", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .reply(201, {
-      "Content-Type": "application/json",
+      "content-type": "application/json",
     });
 
   const result = await bitbucket.deleteFile("foo.txt", "Message");

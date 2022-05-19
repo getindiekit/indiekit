@@ -10,7 +10,7 @@ test("Grants token and returns JSON", async (t) => {
 
   const result = await request
     .post("/token")
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .query({ client_id: "https://client.example" })
     .query({ code: "123456" })
     .query({ redirect_uri: "/" });

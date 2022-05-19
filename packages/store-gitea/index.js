@@ -67,7 +67,7 @@ export const GiteaStore = class {
     const response = await fetch(url.href, {
       method,
       headers: {
-        Authorization: `token ${this.options.token}`,
+        authorization: `token ${this.options.token}`,
       },
       body: JSON.stringify(body),
     });

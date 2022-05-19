@@ -43,7 +43,7 @@ export const tokenController = {
         ) {
           response.json(accessToken);
         } else {
-          response.header("Content-Type", "application/x-www-form-urlencoded");
+          response.header("content-type", "application/x-www-form-urlencoded");
           response.send(new URLSearchParams(accessToken).toString());
         }
       } catch (error) {
@@ -139,7 +139,7 @@ export const tokenController = {
       ) {
         response.json(authResponse);
       } else {
-        response.header("Content-Type", "application/x-www-form-urlencoded");
+        response.header("content-type", "application/x-www-form-urlencoded");
         response.send(new URLSearchParams(authResponse).toString());
       }
     } catch (error) {

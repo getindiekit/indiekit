@@ -7,7 +7,7 @@ test("Verifies token and returns JSON", async (t) => {
   const result = await request
     .get("/token")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json");
+    .set("accept", "application/json");
 
   t.is(result.status, 200);
   t.truthy(result.body.client_id);

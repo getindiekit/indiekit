@@ -5,7 +5,7 @@ import { cookie } from "@indiekit-test/session";
 
 test("Returns list of previously uploaded files", async (t) => {
   const request = await testServer();
-  const response = await request.get("/media/files").set("Cookie", [cookie]);
+  const response = await request.get("/media/files").set("cookie", [cookie]);
   const dom = new JSDOM(response.text);
 
   const result = dom.window.document;

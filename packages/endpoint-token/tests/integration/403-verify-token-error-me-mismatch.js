@@ -11,7 +11,7 @@ test("Returns 403 if publication URL doesn’t match URL in token", async (t) =>
   const result = await request
     .get("/token")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json");
+    .set("accept", "application/json");
 
   t.is(result.status, 403);
   t.is(

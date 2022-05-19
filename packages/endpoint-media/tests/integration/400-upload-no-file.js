@@ -8,7 +8,7 @@ test("Returns 400 if no file included in request", async (t) => {
   const result = await request
     .post("/media")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json");
+    .set("accept", "application/json");
 
   t.is(result.statusCode, 400);
   t.is(result.body.error_description, "No file included in request");

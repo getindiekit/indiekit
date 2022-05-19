@@ -8,7 +8,7 @@ test("Returns 400 if unsupported parameter provided", async (t) => {
   const result = await request
     .get("/media")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .query("q=fooBar");
 
   t.is(result.statusCode, 400);

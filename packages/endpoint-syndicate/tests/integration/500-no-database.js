@@ -15,7 +15,7 @@ test("Returns 500 if no database configured", async (t) => {
   await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");
@@ -23,7 +23,7 @@ test("Returns 500 if no database configured", async (t) => {
   // Syndicate post
   const result = await request
     .post("/syndicate")
-    .set("Accept", "application/json")
+    .set("accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
     .query(`token=${process.env.TEST_TOKEN}`);
 
