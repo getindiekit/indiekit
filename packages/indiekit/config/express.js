@@ -25,9 +25,7 @@ export const expressConfig = (indiekitConfig) => {
   app.use(indiekitConfig.application.sessionMiddleware);
 
   // Force HTTPS
-  if (process.env.NODE_ENV === "production") {
-    app.use(forceHttps);
-  }
+  app.use(forceHttps);
 
   // Internationalisation
   app.use(internationalisation(indiekitConfig));
