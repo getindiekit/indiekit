@@ -52,7 +52,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^6.2.0",
     "http-errors": "^2.0.0",
-    "i18n": "^0.14.0",
+    "i18n": "^0.15.0",
     "lodash": "^4.17.21",
     "mongodb": "^4.1.1",
     "undici": "^5.2.0"

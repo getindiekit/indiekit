@@ -46,8 +46,8 @@
     "lerna": "^4.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.0",
-    "@commitlint/config-conventional": "^16.2.0",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@indiekit-test/config": "*",
     "@indiekit-test/get-fixture": "*",
     "@indiekit-test/media-data": "*",
@@ -74,7 +74,7 @@
     "stylelint-order": "^5.0.0",
     "supertest": "^6.1.6",
     "undici": "^5.2.0",
-    "xo": "^0.48.0"
+    "xo": "^0.49.0"
   },
   "ava": {
     "workerThreads": false
