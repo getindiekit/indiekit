@@ -1,8 +1,8 @@
 import process from "node:process";
 import test from "ava";
-import mockSession from "mock-session";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
+import { cookie } from "@indiekit-test/session";
 
 test("Syndicates a URL", async (t) => {
   nock("https://api.github.com")
@@ -18,9 +18,6 @@ test("Syndicates a URL", async (t) => {
 
   // Create post
   const request = await testServer();
-  const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_TOKEN,
-  });
   await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })

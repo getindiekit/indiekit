@@ -1,8 +1,8 @@
 import process from "node:process";
 import test from "ava";
-import mockSession from "mock-session";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
+import { cookie } from "@indiekit-test/session";
 
 test("Posts content and redirects back to share page", async (t) => {
   nock("https://token-endpoint.example").get("/").reply(200, {
@@ -15,9 +15,6 @@ test("Posts content and redirects back to share page", async (t) => {
 
   // Publish post
   const request = await testServer();
-  const cookie = mockSession("test", process.env.TEST_SESSION_SECRET, {
-    token: process.env.TEST_TOKEN,
-  });
   const result = await request
     .post("/share")
     .set("Cookie", [cookie])
