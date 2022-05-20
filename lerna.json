@@ -1,5 +1,7 @@
 {
-  "useWorkspaces": true,
+  "packages": [
+    "packages/*"
+  ],
   "ignoreChanges": [
     "**/fixtures/**",
     "**/tests/**",
