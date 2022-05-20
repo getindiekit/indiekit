@@ -49,7 +49,7 @@ See [Localisation →](customisation/localisation.md)
 
 To cache files and save information about previously posts and files, you will need to connect Indiekit to a MongoDB database. You can [host one on MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
-_Optional_, defaults to `process.env.MONGODB_URL`. For example:
+_Optional_, defaults to `false`. For example:
 
 ```json
 {

@@ -9,13 +9,11 @@ dotenv.config();
 const require = createRequire(import.meta.url);
 const package_ = require("../package.json");
 
-const mongodbUrl = process.env.MONGODB_URL ? process.env.MONGODB_URL : false;
-
 export const defaultConfig = {
   application: {
     hasDatabase: false,
     localesAvailable: ["de", "en", "es", "fr", "id", "nl", "pt"],
-    mongodbUrl,
+    mongodbUrl: false,
     name: "Indiekit",
     repository: package_.repository,
     themeColor: "#0055ee",
