@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
  * @param {string} encoding String encoding
  * @returns {Promise|object} File contents
  */
-export const getFixture = (filename, encoding = "utf-8") => {
+export const getFixture = (filename, encoding = "utf8") => {
   const file = fileURLToPath(
     new URL(`../../fixtures/${filename}`, import.meta.url)
   );

@@ -21,7 +21,7 @@ export const getLocales = async (application) => {
     for (const locale of application.localesAvailable) {
       try {
         const appLocale = locales.get(locale);
-        // eslint-disable-next-line node/no-unsupported-features/es-syntax
+        // eslint-disable-next-line no-await-in-loop, node/no-unsupported-features/es-syntax
         const { default: translation } = await import(
           `../../${plugin.id}/locales/${locale}.js`
         );

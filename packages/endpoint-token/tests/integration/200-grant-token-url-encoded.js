@@ -1,3 +1,4 @@
+import process from "node:process";
 import test from "ava";
 import { setGlobalDispatcher } from "undici";
 import { indieauthAgent } from "@indiekit-test/mock-agent";

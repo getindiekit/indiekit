@@ -1,3 +1,4 @@
+import process from "node:process";
 import { MockAgent } from "undici";
 
 const agent = new MockAgent();

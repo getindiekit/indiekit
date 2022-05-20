@@ -71,7 +71,7 @@ export const FtpStore = class {
   #createReadableStream(content) {
     const readableStream = new Readable();
     readableStream._read = () => {};
-    readableStream.push(content, "utf-8");
+    readableStream.push(content, "utf8");
     readableStream.push(null); // eslint-disable-line unicorn/no-array-push-push
     return readableStream;
   }

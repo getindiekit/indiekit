@@ -65,7 +65,6 @@ export const HugoPreset = class {
         delimiters = ["+++\n", "+++\n"];
         frontMatter = TOML.stringify(properties);
         break;
-      case "yaml":
       default:
         delimiters = ["---\n", "---\n"];
         frontMatter = YAML.stringify(properties, { lineWidth: 0 });
