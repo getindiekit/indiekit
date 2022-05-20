@@ -12,11 +12,11 @@ export const internetArchiveAgent = () => {
 
   // Request capture
   client
-    .intercept({ method: "POST", path: "/save", headers: { authorization } })
+    .intercept({ path: "/save", method: "POST", headers: { authorization } })
     .reply(201, { job_id, url });
 
   // Request capture (Unauthorized)
-  client.intercept({ method: "POST", path: "/save" }).reply(401, {
+  client.intercept({ path: "/save", method: "POST" }).reply(401, {
     message: "You need to be logged in to use Save Page Now.",
   });
 

@@ -18,14 +18,10 @@ export const websiteAgent = () => {
   client.intercept({ path: "/image.jpg" }).reply(404, { message: "Not found" });
 
   // Get categories
-  client
-    .intercept({ method: "GET", path: "/categories.json" })
-    .reply(200, ["Foo", "Bar"]);
+  client.intercept({ path: "/categories.json" }).reply(200, ["Foo", "Bar"]);
 
   // Get categories (Not Found)
-  client
-    .intercept({ method: "GET", path: "/404.json" })
-    .reply(404, { message: "Not found" });
+  client.intercept({ path: "/404.json" }).reply(404, { message: "Not found" });
 
   return client;
 };

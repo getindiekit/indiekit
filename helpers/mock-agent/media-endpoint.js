@@ -11,8 +11,8 @@ export const mediaEndpointAgent = () => {
   for (const path of [1, 2, 3, 4, 5, 6]) {
     client
       .intercept({
-        method: "POST",
         path: "/",
+        method: "POST",
         headers: {
           authorization: `Bearer ${process.env.TEST_TOKEN}`,
         },
@@ -35,8 +35,8 @@ export const mediaEndpointAgent = () => {
   // Upload media (Unauthorized)
   client
     .intercept({
-      method: "POST",
       path: "/",
+      method: "POST",
       headers: {
         authorization: `Bearer foobar`,
       },

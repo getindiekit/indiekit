@@ -26,45 +26,27 @@ export const tokenEndpointAgent = () => {
 
   // Exchange authorization code for access token
   client
-    .intercept({
-      method: "POST",
-      path: "/",
-    })
+    .intercept({ path: "/", method: "POST" })
     .reply(200, { access_token: "token", scope: "create" });
 
   // Exchange authorization code for access token (empty response)
-  client
-    .intercept({
-      method: "POST",
-      path: "/",
-    })
-    .reply(200, {});
+  client.intercept({ path: "/", method: "POST" }).reply(200, {});
 
   // Exchange authorization code for access token (Bad Request)
-  client
-    .intercept({
-      method: "POST",
-      path: "/",
-    })
-    .reply(400, {
-      error_description: "The code provided was not valid",
-    });
+  client.intercept({ path: "/", method: "POST" }).reply(400, {
+    error_description: "The code provided was not valid",
+  });
 
   // Exchange authorization code for access token (Not Found)
-  client
-    .intercept({
-      method: "POST",
-      path: "/",
-    })
-    .reply(404, {
-      message: "Not found",
-    });
+  client.intercept({ path: "/", method: "POST" }).reply(404, {
+    message: "Not found",
+  });
 
   // Mock HTML requests (need to use same origin as token endpoint)
   // See: https://github.com/nodejs/undici/discussions/1440
-  client.intercept({ method: "GET", path: "/post.html" }).reply(200, post);
-  client.intercept({ method: "GET", path: "/page.html" }).reply(200, page);
-  client.intercept({ method: "GET", path: "/404.html" }).reply(404, {
+  client.intercept({ path: "/post.html" }).reply(200, post);
+  client.intercept({ path: "/page.html" }).reply(200, page);
+  client.intercept({ path: "/404.html" }).reply(404, {
     message: "Not found",
   });
 

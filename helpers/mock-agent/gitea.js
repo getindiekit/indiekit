@@ -14,12 +14,12 @@ export const giteaAgent = (instance = "https://getea.com") => {
 
   // Create file
   client
-    .intercept({ method: "POST", path })
+    .intercept({ path, method: "POST" })
     .reply(201, { path: "foo.txt", branch: "main" });
 
   // Create file (Not Found)
   client
-    .intercept({ method: "POST", path })
+    .intercept({ path, method: "POST" })
     .reply(404, { message: "Not found" });
 
   // Read file
@@ -33,25 +33,25 @@ export const giteaAgent = (instance = "https://getea.com") => {
   // Update file
   client.intercept({ path: `${path}?ref=main` }).reply(200, getResponse);
   client
-    .intercept({ method: "PUT", path })
+    .intercept({ path, method: "PUT" })
     .reply(200, { path: "foo.txt", branch: "main" });
 
   // Update file (Not Found)
   client.intercept({ path: `${path}?ref=main` }).reply(200, getResponse);
   client
-    .intercept({ method: "PUT", path })
+    .intercept({ path, method: "PUT" })
     .reply(404, { message: "Not found" });
 
   // Delete file
   client.intercept({ path: `${path}?ref=main` }).reply(200, getResponse);
   client
-    .intercept({ method: "DELETE", path })
+    .intercept({ path, method: "DELETE" })
     .reply(200, { commit: { message: "Message" }, content: {} });
 
   // Delete file (Not Found)
   client.intercept({ path: `${path}?ref=main` }).reply(200, getResponse);
   client
-    .intercept({ method: "DELETE", path })
+    .intercept({ path, method: "DELETE" })
     .reply(404, { message: "Not found" });
 
   return client;

@@ -50,11 +50,11 @@ export const shareController = {
     try {
       const endpointResponse = await fetch(publication.micropubEndpoint, {
         method: "POST",
-        body: new URLSearchParams(request.body).toString(),
         headers: {
           accept: "application/json",
           "content-type": "application/x-www-form-urlencoded",
         },
+        body: new URLSearchParams(request.body).toString(),
       });
 
       const body = await endpointResponse.json();
