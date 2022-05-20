@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/getindiekit/indiekit/compare/v0.3.0...v1.0.0-alpha.0) (2022-05-20)
+
+
+### Bug Fixes
+
+* **indiekit:** correct post request to token endpoint ([5b02665](https://github.com/getindiekit/indiekit/commit/5b02665fe1ad38b1dfdc842b65fbbeddc722c354))
+* **indiekit:** save session to app locals ([6e8171f](https://github.com/getindiekit/indiekit/commit/6e8171f2506e6f556bfee2993a3b8e2132d3332c))
+* **indiekit:** simpler check for database ([3ebccac](https://github.com/getindiekit/indiekit/commit/3ebccac8a861d435c26f756471ff49b3ed95290c))
+* use correct request format for authentication requests ([46836f8](https://github.com/getindiekit/indiekit/commit/46836f85f1c6372fb4b1b4eba5a440a7f07ef920))
+
+
+### Features
+
+* add and update plug-in icons ([56f5cf4](https://github.com/getindiekit/indiekit/commit/56f5cf46d741b96a0b3a4a3a2d47af419637fead))
+* add Indonesian localisation from Zeky Chandra ([e5508f1](https://github.com/getindiekit/indiekit/commit/e5508f14bde8951b691e56490117552268c9c232))
+* add Spanish translation from [@aciccarello](https://github.com/aciccarello) ([e556ada](https://github.com/getindiekit/indiekit/commit/e556ada815873d04b2147556c42198dcc1b3ccaa))
+* don’t use default environment variable for MongoDB ([abc1e64](https://github.com/getindiekit/indiekit/commit/abc1e64d35c14db48ad520cbc7ed32bf8fc37b08))
+* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* **endpoint-image:** add image resizing endpoint ([21da1d3](https://github.com/getindiekit/indiekit/commit/21da1d3f9d99cdbd5a89a48ecde30eaae2d369d7))
+* **endpoint-token:** token endpoint ([e8fbb4c](https://github.com/getindiekit/indiekit/commit/e8fbb4cf4a25dc5c1658e28188202568e5d35e12))
+* **frontend:** revert to using es modules ([976e82c](https://github.com/getindiekit/indiekit/commit/976e82cdebf680cb994d814b951d223781e2ca40))
+* **indiekit:** add debug option to serve command ([7659970](https://github.com/getindiekit/indiekit/commit/7659970b56cdefebe8095df803490be5ed48a743))
+* **indiekit:** ensure client_id includes path component ([fcd416c](https://github.com/getindiekit/indiekit/commit/fcd416c53c82ad5f5fa0c9abb406137878553700))
+* **indiekit:** force https ([cc9ece0](https://github.com/getindiekit/indiekit/commit/cc9ece0379b3ba8680fbc7e9cd0b3be3511eb535))
+* **indiekit:** increase rate limit ([bd9b9a4](https://github.com/getindiekit/indiekit/commit/bd9b9a44e61be59fd499fc0f66983cef788f5682))
+* **indiekit:** refactor config loading and format. fixes [#402](https://github.com/getindiekit/indiekit/issues/402) ([65ff927](https://github.com/getindiekit/indiekit/commit/65ff9273062cdeccda35a20aa2b24cf812e93111))
+* register defined view directories for plug-ins ([77eeed2](https://github.com/getindiekit/indiekit/commit/77eeed2543feec92fde112f23c2f26b1b456a572))
+* update Dutch localisation ([8d20a58](https://github.com/getindiekit/indiekit/commit/8d20a586b83300a79a01b0f6e80d069992171293))
+* update French localisation ([f784e71](https://github.com/getindiekit/indiekit/commit/f784e717a525f7ef8b65ba1eca1c33488d393110))
+* update German localisation ([1e8a9e9](https://github.com/getindiekit/indiekit/commit/1e8a9e9efe0cc9348f5abeac7eaf8de39ad5a36d))
+* update Portuguese localisation ([d730157](https://github.com/getindiekit/indiekit/commit/d730157c4869130594cd38def5366d82dd6e9177))
+
+
+
+
+
 # [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-github",
-  "version": "0.3.0",
+  "version": "1.0.0-alpha.0",
   "description": "GitHub content store adaptor for Indiekit",
   "keywords": [
     "indiekit",

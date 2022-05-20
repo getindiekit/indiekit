@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/getindiekit/indiekit/compare/v0.3.0...v1.0.0-alpha.0) (2022-05-20)
+
+
+### Bug Fixes
+
+* **endpoint-media:** throw useful errors when creating data ([d2ab6f4](https://github.com/getindiekit/indiekit/commit/d2ab6f4143b1e53c727eb076e1a691ff7788b230))
+
+
+### Features
+
+* add Indonesian localisation from Zeky Chandra ([e5508f1](https://github.com/getindiekit/indiekit/commit/e5508f14bde8951b691e56490117552268c9c232))
+* add Spanish translation from [@aciccarello](https://github.com/aciccarello) ([e556ada](https://github.com/getindiekit/indiekit/commit/e556ada815873d04b2147556c42198dcc1b3ccaa))
+* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* **endpoint-media:** show icon if media not found ([744ff7d](https://github.com/getindiekit/indiekit/commit/744ff7d1ed57614e60b4627341d19320ed33702d))
+* **endpoint-media:** show media in files view ([dc40f79](https://github.com/getindiekit/indiekit/commit/dc40f79481d1990b158c9aa75bd88ba0968912e0))
+* **endpoint-media:** show media in files view ([24981cc](https://github.com/getindiekit/indiekit/commit/24981cc465b9cb088925a017bc3833ad0398aace))
+* **frontend:** global to generate pagination data ([30b6d7c](https://github.com/getindiekit/indiekit/commit/30b6d7ca7a79d8252853a1a9ed9c08ca18ddbc21))
+* **indiekit:** refactor config loading and format. fixes [#402](https://github.com/getindiekit/indiekit/issues/402) ([65ff927](https://github.com/getindiekit/indiekit/commit/65ff9273062cdeccda35a20aa2b24cf812e93111))
+* register defined view directories for plug-ins ([77eeed2](https://github.com/getindiekit/indiekit/commit/77eeed2543feec92fde112f23c2f26b1b456a572))
+
+
+
+
+
 # [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
 
 

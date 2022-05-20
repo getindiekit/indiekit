@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/getindiekit/indiekit/compare/v0.3.0...v1.0.0-alpha.0) (2022-05-20)
+
+
+### Bug Fixes
+
+* **frontend:** ensure app logo can be parsed ([fd315a5](https://github.com/getindiekit/indiekit/commit/fd315a59b65bafbc59e345acfffa6149dc337ec3))
+* **frontend:** ensure icon size scales with text ([8b7c785](https://github.com/getindiekit/indiekit/commit/8b7c7856a2aa29e27c5c531f1db4ba350b7e823e))
+* **frontend:** main padding on login layout ([0c29310](https://github.com/getindiekit/indiekit/commit/0c2931023605d50984d19153a76adea8bae7d585))
+* **frontend:** missing border-radius on login form ([61d3d8a](https://github.com/getindiekit/indiekit/commit/61d3d8a248a7a717d11bd8e5eeef49adaea9c681))
+* **frontend:** summary value content spacing ([a86ffc2](https://github.com/getindiekit/indiekit/commit/a86ffc26dd69afd349f93a2ded2ab8d738f142aa))
+
+
+### Features
+
+* add and update plug-in icons ([56f5cf4](https://github.com/getindiekit/indiekit/commit/56f5cf46d741b96a0b3a4a3a2d47af419637fead))
+* **endpoint-token:** token endpoint ([e8fbb4c](https://github.com/getindiekit/indiekit/commit/e8fbb4cf4a25dc5c1658e28188202568e5d35e12))
+* **frontend:** file grid component ([aded86b](https://github.com/getindiekit/indiekit/commit/aded86b00743a8dd742fa625cc837b73fdea8e20))
+* **frontend:** file list component ([0672ce6](https://github.com/getindiekit/indiekit/commit/0672ce62642becc5c3de8bc852322aa3675145a6))
+* **frontend:** global to generate pagination data ([30b6d7c](https://github.com/getindiekit/indiekit/commit/30b6d7ca7a79d8252853a1a9ed9c08ca18ddbc21))
+* **frontend:** pagination component ([683b559](https://github.com/getindiekit/indiekit/commit/683b55947fcdbc32b7bd9197ee4285d39e987c5d))
+* **frontend:** revert to using es modules ([976e82c](https://github.com/getindiekit/indiekit/commit/976e82cdebf680cb994d814b951d223781e2ca40))
+* **frontend:** support custom media constraints ([4dfd302](https://github.com/getindiekit/indiekit/commit/4dfd3026415ff2af9906bc9993453aa35e147409))
+
+
+
+
+
 # [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
 
 

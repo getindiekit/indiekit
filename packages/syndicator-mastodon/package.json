@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/syndicator-mastodon",
-  "version": "0.3.0",
+  "version": "1.0.0-alpha.0",
   "description": "Mastodon syndicator for Indiekit",
   "keywords": [
     "indiekit",

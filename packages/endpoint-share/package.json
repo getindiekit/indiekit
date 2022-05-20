@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-share",
-  "version": "0.3.0",
+  "version": "1.0.0-alpha.0",
   "description": "Share endpoint for Indiekit",
   "keywords": [
     "indiekit",

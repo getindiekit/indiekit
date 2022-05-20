@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.0](https://github.com/getindiekit/indiekit/compare/v0.3.0...v1.0.0-alpha.0) (2022-05-20)
+
+
+### Bug Fixes
+
+* **endpoint-media:** throw useful errors when creating data ([d2ab6f4](https://github.com/getindiekit/indiekit/commit/d2ab6f4143b1e53c727eb076e1a691ff7788b230))
+* **endpoint-micropub:** normalise properties after updating post data ([0d43082](https://github.com/getindiekit/indiekit/commit/0d430825bb6e3df9777c8feb519b2267e17ecaa8))
+* **endpoint-micropub:** throw error if post type not configured. fixes [#423](https://github.com/getindiekit/indiekit/issues/423) ([fb56937](https://github.com/getindiekit/indiekit/commit/fb5693752f943ff664224ed9d31271abbd3004f8))
+* **endpoint-micropub:** typo ([700e720](https://github.com/getindiekit/indiekit/commit/700e720de8ce359a7f74059ea6507ec5ad9650e3))
+* **endpoint-token:** return 403 if token URL doesn’t match publication URL ([807690e](https://github.com/getindiekit/indiekit/commit/807690e67e0c5347febb601c04da0a0961e22a9a))
+* **endpoint-token:** use body paramaters not query values when granting a token ([edec575](https://github.com/getindiekit/indiekit/commit/edec575d5aee241f8899c84438c72eff3a87c8dd))
+* **frontend:** ensure app logo can be parsed ([fd315a5](https://github.com/getindiekit/indiekit/commit/fd315a59b65bafbc59e345acfffa6149dc337ec3))
+* **frontend:** ensure icon size scales with text ([8b7c785](https://github.com/getindiekit/indiekit/commit/8b7c7856a2aa29e27c5c531f1db4ba350b7e823e))
+* **frontend:** main padding on login layout ([0c29310](https://github.com/getindiekit/indiekit/commit/0c2931023605d50984d19153a76adea8bae7d585))
+* **frontend:** missing border-radius on login form ([61d3d8a](https://github.com/getindiekit/indiekit/commit/61d3d8a248a7a717d11bd8e5eeef49adaea9c681))
+* **frontend:** summary value content spacing ([a86ffc2](https://github.com/getindiekit/indiekit/commit/a86ffc26dd69afd349f93a2ded2ab8d738f142aa))
+* **indiekit:** correct post request to token endpoint ([5b02665](https://github.com/getindiekit/indiekit/commit/5b02665fe1ad38b1dfdc842b65fbbeddc722c354))
+* **indiekit:** save session to app locals ([6e8171f](https://github.com/getindiekit/indiekit/commit/6e8171f2506e6f556bfee2993a3b8e2132d3332c))
+* **indiekit:** simpler check for database ([3ebccac](https://github.com/getindiekit/indiekit/commit/3ebccac8a861d435c26f756471ff49b3ed95290c))
+* **syndicator-mastodon:** missing init function ([0a436d6](https://github.com/getindiekit/indiekit/commit/0a436d625767eea12a7c9a26d9b224fa73918fd0))
+* use correct request format for authentication requests ([46836f8](https://github.com/getindiekit/indiekit/commit/46836f85f1c6372fb4b1b4eba5a440a7f07ef920))
+
+
+### Features
+
+* add and update plug-in icons ([56f5cf4](https://github.com/getindiekit/indiekit/commit/56f5cf46d741b96a0b3a4a3a2d47af419637fead))
+* add Indonesian localisation from Zeky Chandra ([e5508f1](https://github.com/getindiekit/indiekit/commit/e5508f14bde8951b691e56490117552268c9c232))
+* add Spanish translation from [@aciccarello](https://github.com/aciccarello) ([e556ada](https://github.com/getindiekit/indiekit/commit/e556ada815873d04b2147556c42198dcc1b3ccaa))
+* **create-indiekit:** project initializer ([7f224d6](https://github.com/getindiekit/indiekit/commit/7f224d6f88bca5a4bd7006e0cc97aed8cd49510b))
+* don’t use default environment variable for MongoDB ([abc1e64](https://github.com/getindiekit/indiekit/commit/abc1e64d35c14db48ad520cbc7ed32bf8fc37b08))
+* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* **endpoint-image:** add image resizing endpoint ([21da1d3](https://github.com/getindiekit/indiekit/commit/21da1d3f9d99cdbd5a89a48ecde30eaae2d369d7))
+* **endpoint-image:** use mongodb cache store ([da8de0d](https://github.com/getindiekit/indiekit/commit/da8de0ddcd7d581994cec90c0623667a9c7b9764))
+* **endpoint-media:** show icon if media not found ([744ff7d](https://github.com/getindiekit/indiekit/commit/744ff7d1ed57614e60b4627341d19320ed33702d))
+* **endpoint-media:** show media in files view ([dc40f79](https://github.com/getindiekit/indiekit/commit/dc40f79481d1990b158c9aa75bd88ba0968912e0))
+* **endpoint-media:** show media in files view ([24981cc](https://github.com/getindiekit/indiekit/commit/24981cc465b9cb088925a017bc3833ad0398aace))
+* **endpoint-micropub:** add post type count token for the day ([60f469b](https://github.com/getindiekit/indiekit/commit/60f469bc6acda4ae9bdaa55e5b97ee5e7b4124a2))
+* **endpoint-micropub:** paginate posts ([a3b388e](https://github.com/getindiekit/indiekit/commit/a3b388e16c2646cf25784bf27fd7d72a54ec55b9))
+* **endpoint-token:** token endpoint ([e8fbb4c](https://github.com/getindiekit/indiekit/commit/e8fbb4cf4a25dc5c1658e28188202568e5d35e12))
+* **frontend:** file grid component ([aded86b](https://github.com/getindiekit/indiekit/commit/aded86b00743a8dd742fa625cc837b73fdea8e20))
+* **frontend:** file list component ([0672ce6](https://github.com/getindiekit/indiekit/commit/0672ce62642becc5c3de8bc852322aa3675145a6))
+* **frontend:** global to generate pagination data ([30b6d7c](https://github.com/getindiekit/indiekit/commit/30b6d7ca7a79d8252853a1a9ed9c08ca18ddbc21))
+* **frontend:** pagination component ([683b559](https://github.com/getindiekit/indiekit/commit/683b55947fcdbc32b7bd9197ee4285d39e987c5d))
+* **frontend:** revert to using es modules ([976e82c](https://github.com/getindiekit/indiekit/commit/976e82cdebf680cb994d814b951d223781e2ca40))
+* **frontend:** support custom media constraints ([4dfd302](https://github.com/getindiekit/indiekit/commit/4dfd3026415ff2af9906bc9993453aa35e147409))
+* **indiekit:** add debug option to serve command ([7659970](https://github.com/getindiekit/indiekit/commit/7659970b56cdefebe8095df803490be5ed48a743))
+* **indiekit:** ensure client_id includes path component ([fcd416c](https://github.com/getindiekit/indiekit/commit/fcd416c53c82ad5f5fa0c9abb406137878553700))
+* **indiekit:** force https ([cc9ece0](https://github.com/getindiekit/indiekit/commit/cc9ece0379b3ba8680fbc7e9cd0b3be3511eb535))
+* **indiekit:** increase rate limit ([bd9b9a4](https://github.com/getindiekit/indiekit/commit/bd9b9a44e61be59fd499fc0f66983cef788f5682))
+* **indiekit:** refactor config loading and format. fixes [#402](https://github.com/getindiekit/indiekit/issues/402) ([65ff927](https://github.com/getindiekit/indiekit/commit/65ff9273062cdeccda35a20aa2b24cf812e93111))
+* register defined view directories for plug-ins ([77eeed2](https://github.com/getindiekit/indiekit/commit/77eeed2543feec92fde112f23c2f26b1b456a572))
+* update Dutch localisation ([8d20a58](https://github.com/getindiekit/indiekit/commit/8d20a586b83300a79a01b0f6e80d069992171293))
+* update French localisation ([f784e71](https://github.com/getindiekit/indiekit/commit/f784e717a525f7ef8b65ba1eca1c33488d393110))
+* update German localisation ([1e8a9e9](https://github.com/getindiekit/indiekit/commit/1e8a9e9efe0cc9348f5abeac7eaf8de39ad5a36d))
+* update Portuguese localisation ([d730157](https://github.com/getindiekit/indiekit/commit/d730157c4869130594cd38def5366d82dd6e9177))
+
+
+
+
+
 # [0.3.0](https://github.com/getindiekit/indiekit/compare/v0.2.0...v0.3.0) (2022-02-06)
 
 
