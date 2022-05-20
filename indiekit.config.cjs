@@ -1,4 +1,5 @@
 const process = require("node:process");
+require("dotenv").config();
 
 module.exports = {
   application: {
