@@ -83,7 +83,7 @@ export const IndieAuth = class {
     authUrl.searchParams.append("scope", scope);
     authUrl.searchParams.append("state", state);
 
-    return authUrl.toString();
+    return authUrl.href;
   }
 
   /**

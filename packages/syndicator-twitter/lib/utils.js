@@ -80,10 +80,10 @@ export const createStatus = (properties, mediaIds = false) => {
  */
 export const getAbsoluteUrl = (string, me) => {
   try {
-    return new URL(string).toString();
+    return new URL(string).href;
   } catch {
     const absoluteUrl = path.posix.join(me, string);
-    return new URL(absoluteUrl).toString();
+    return new URL(absoluteUrl).href;
   }
 };
 

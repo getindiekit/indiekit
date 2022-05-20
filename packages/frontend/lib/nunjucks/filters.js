@@ -16,10 +16,10 @@ const { format, parseISO } = dateFns;
  */
 export const absoluteUrl = (string, baseUrl) => {
   try {
-    return new URL(string).toString();
+    return new URL(string).href;
   } catch {
     const absoluteUrl = path.posix.join(baseUrl, string);
-    return new URL(absoluteUrl).toString();
+    return new URL(absoluteUrl).href;
   }
 };
 
