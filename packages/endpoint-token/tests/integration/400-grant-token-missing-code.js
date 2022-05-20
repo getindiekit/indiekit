@@ -6,8 +6,8 @@ test("Returns 400 if missing code value", async (t) => {
   const result = await request
     .post("/token")
     .set("accept", "application/json")
-    .query({ client_id: "https://server.example" })
-    .query({ redirect_uri: "/" });
+    .send({ client_id: "https://server.example" })
+    .send({ redirect_uri: "/" });
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Missing code");

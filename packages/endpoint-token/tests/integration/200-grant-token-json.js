@@ -12,9 +12,9 @@ test("Grants token and returns JSON", async (t) => {
   const result = await request
     .post("/token")
     .set("accept", "application/json")
-    .query({ client_id: "https://client.example" })
-    .query({ code: "123456" })
-    .query({ redirect_uri: "/" });
+    .send({ client_id: "https://client.example" })
+    .send({ code: "123456" })
+    .send({ redirect_uri: "/" });
 
   t.is(result.status, 200);
   t.truthy(result.body.access_token);

@@ -66,7 +66,7 @@ export const tokenController = {
    */
   async post(request, response, next) {
     const { publication } = request.app.locals;
-    const { client_id, code, redirect_uri } = request.query;
+    const { client_id, code, redirect_uri } = request.body;
 
     try {
       if (!client_id) {

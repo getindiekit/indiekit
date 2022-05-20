@@ -6,8 +6,8 @@ test("Returns 400 if missing client_id value", async (t) => {
   const result = await request
     .post("/token")
     .set("accept", "application/json")
-    .query({ client_id: "https://server.example" })
-    .query({ code: "foo" });
+    .send({ client_id: "https://server.example" })
+    .send({ code: "foo" });
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Missing redirect URI");
