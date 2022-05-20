@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2022-05-20)
+
+
+### Bug Fixes
+
+* **endpoint-image:** include got dependency ([50d706e](https://github.com/getindiekit/indiekit/commit/50d706ee6040dd7feef1e4c0c331cb82a8f313aa))
+* **indiekit:** include missing plug-in dependencies ([a905b7d](https://github.com/getindiekit/indiekit/commit/a905b7dae960bff6559475f859b8d1ee4f41cc54))
+
+
+
+
+
 # [1.0.0-alpha.0](https://github.com/getindiekit/indiekit/compare/v0.3.0...v1.0.0-alpha.0) (2022-05-20)
 
 
