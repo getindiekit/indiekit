@@ -1,6 +1,5 @@
-const test = require("ava");
-
-const { icon, pages } = require("../../../lib/nunjucks/globals.js");
+import test from "ava";
+import { icon, pages } from "../../../lib/nunjucks/globals.js";
 
 test("Renders SVG icon", (t) => {
   const result = icon("note");

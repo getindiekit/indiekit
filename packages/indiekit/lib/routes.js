@@ -1,6 +1,6 @@
 import { fileURLToPath } from "node:url";
 import express from "express";
-import frontend from "@indiekit/frontend";
+import { assetsPath } from "@indiekit/frontend";
 import rateLimit from "express-rate-limit";
 import * as assetsController from "./controllers/assets.js";
 import * as homepageController from "./controllers/homepage.js";
@@ -8,7 +8,6 @@ import * as sessionController from "./controllers/session.js";
 import * as statusController from "./controllers/status.js";
 import { IndieAuth } from "./indieauth.js";
 
-const { assetsPath } = frontend;
 const router = express.Router(); // eslint-disable-line new-cap
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

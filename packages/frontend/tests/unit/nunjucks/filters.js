@@ -1,11 +1,10 @@
-const test = require("ava");
-
-const {
+import test from "ava";
+import {
   absoluteUrl,
   date,
   errorList,
   markdown,
-} = require("../../../lib/nunjucks/filters.js");
+} from "../../../lib/nunjucks/filters.js";
 
 test("Gets absolute URL from path", (t) => {
   const result1 = absoluteUrl("path1", "https://website.example");

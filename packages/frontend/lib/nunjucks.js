@@ -1,17 +1,17 @@
-const path = require("path");
-const nunjucks = require("nunjucks");
-const filters = require("./nunjucks/filters.js");
-const globals = require("./nunjucks/globals.js");
+import { fileURLToPath } from "node:url";
+import nunjucks from "nunjucks";
+import * as filters from "./nunjucks/filters.js";
+import * as globals from "./nunjucks/globals.js";
 
 /**
  * @param {Function} app Express
  * @returns {object} Nunjucks environment
  */
-module.exports = (app) => {
+export const templates = (app) => {
   const appViews = app ? app.settings.views : [];
   const frontendViews = [
-    path.join(__dirname, "..", "components"),
-    path.join(__dirname, "..", "layouts"),
+    fileURLToPath(new URL("../components", import.meta.url)),
+    fileURLToPath(new URL("../layouts", import.meta.url)),
   ];
   const views = [...frontendViews, ...appViews];
 

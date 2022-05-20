@@ -1,6 +1,4 @@
-import frontend from "@indiekit/frontend";
-
-const { styles } = frontend;
+import { styles } from "@indiekit/frontend";
 
 export const getStyles = async (request, response) => {
   const css = await styles;

@@ -4,7 +4,7 @@
  * @param {string} name Icon name
  * @returns {string} HTML
  */
-const icon = (name) => {
+export const icon = (name) => {
   const paths = {
     article:
       "M36 4H12c-4 0-8 4-8 8v24c0 5 4 8 8 8h24c5 0 8-3 8-8V12c0-4-3-8-8-8zM12 8h24c2 0 4 2 4 4v24c0 2-2 4-4 4H12c-2 0-4-2-4-4V12c0-2 2-4 4-4zm0 6h12v4H12v-4zm0 8h12v4H12v-4zm0 8h24v4H12v-4zm16-16h8v12h-8V14z",
@@ -49,7 +49,7 @@ const icon = (name) => {
  * @param {count} count Count of all items
  * @returns {object} Options for pagination component
  */
-const pages = (currentPage, limit, count) => {
+export const pages = (currentPage, limit, count) => {
   // Pagination pages
   const totalPages = Math.ceil(count / limit);
   const nextPage = currentPage < totalPages ? currentPage + 1 : false;
@@ -85,9 +85,4 @@ const pages = (currentPage, limit, count) => {
       count,
     },
   };
-};
-
-module.exports = {
-  icon,
-  pages,
 };

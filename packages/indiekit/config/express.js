@@ -1,5 +1,5 @@
 import express from "express";
-import frontend from "@indiekit/frontend";
+import { templates } from "@indiekit/frontend";
 import * as error from "../lib/middleware/error.js";
 import { forceHttps } from "../lib/middleware/force-https.js";
 import { internationalisation } from "../lib/middleware/internationalisation.js";
@@ -7,8 +7,6 @@ import { locals } from "../lib/middleware/locals.js";
 import { logging } from "../lib/middleware/logging.js";
 import { routes } from "../lib/routes.js";
 import { views } from "../lib/views.js";
-
-const { templates } = frontend;
 
 export const expressConfig = (indiekitConfig) => {
   const app = express();

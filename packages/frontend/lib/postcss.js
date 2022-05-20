@@ -1,15 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const postcss = require("postcss");
+import fs from "node:fs";
+import { fileURLToPath } from "node:url";
+import postcss from "postcss";
+import postcssCustomMedia from "postcss-custom-media";
+import postcssEasyImport from "postcss-easy-import";
+import postcssExtendRule from "postcss-extend-rule";
 
-module.exports = (async () => {
+export const styles = (async () => {
   const options = {
-    from: path.join(__dirname, "..", "styles/app.css"),
-    plugins: [
-      require("postcss-easy-import"),
-      require("postcss-custom-media"),
-      require("postcss-extend-rule"),
-    ],
+    from: fileURLToPath(new URL("../styles/app.css", import.meta.url)),
+    plugins: [postcssEasyImport, postcssCustomMedia, postcssExtendRule],
   };
 
   const css = fs.readFileSync(options.from, "utf8");

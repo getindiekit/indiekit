@@ -1,7 +1,5 @@
-const path = require("path");
+import { fileURLToPath } from "node:url";
 
-module.exports = {
-  assetsPath: path.join(__dirname, "assets"),
-  templates: require("./lib/nunjucks.js"),
-  styles: require("./lib/postcss.js"),
-};
+export const assetsPath = fileURLToPath(new URL("assets", import.meta.url));
+export { templates } from "./lib/nunjucks.js";
+export { styles } from "./lib/postcss.js";

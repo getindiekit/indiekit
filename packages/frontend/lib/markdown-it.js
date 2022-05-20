@@ -1,9 +1,9 @@
-const markdownIt = require("markdown-it");
-const markdownItAnchor = require("markdown-it-anchor");
-const markdownItDeflist = require("markdown-it-deflist");
-const markdownItPrism = require("markdown-it-prism");
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import markdownItDeflist from "markdown-it-deflist";
+import markdownItPrism from "markdown-it-prism";
 
-module.exports = (() => {
+export default (() => {
   const options = {
     html: true,
     breaks: true,
