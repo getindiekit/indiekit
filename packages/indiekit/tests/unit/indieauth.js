@@ -66,7 +66,10 @@ test("Throws error exchanging authorization code for invalid access token", asyn
 
 test("Throws error exchanging invalid code for access token", async (t) => {
   await t.throwsAsync(
-    indieauth.authorizationCodeGrant("https://token-endpoint.example", "code"),
+    indieauth.authorizationCodeGrant(
+      "https://token-endpoint.example",
+      "foobar"
+    ),
     {
       message: "The code provided was not valid",
     }

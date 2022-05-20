@@ -28,7 +28,7 @@ export const tokenEndpointAgent = () => {
   client
     .intercept({
       method: "POST",
-      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+      path: "/",
     })
     .reply(200, { access_token: "token", scope: "create" });
 
@@ -36,7 +36,7 @@ export const tokenEndpointAgent = () => {
   client
     .intercept({
       method: "POST",
-      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+      path: "/",
     })
     .reply(200, {});
 
@@ -44,7 +44,7 @@ export const tokenEndpointAgent = () => {
   client
     .intercept({
       method: "POST",
-      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+      path: "/",
     })
     .reply(400, {
       error_description: "The code provided was not valid",
@@ -54,7 +54,7 @@ export const tokenEndpointAgent = () => {
   client
     .intercept({
       method: "POST",
-      path: /\/\?client_id=(?<client_id>.*)&code=(?<code>.*)&code_verifier=(?<code_verifier>.*)&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
+      path: "/",
     })
     .reply(404, {
       message: "Not found",
