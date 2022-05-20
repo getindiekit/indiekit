@@ -140,6 +140,7 @@
           "ignorePattern": "c8"
         }
       ],
+      "import/no-anonymous-default-export": "off",
       "unicorn/import-index": [
         "error",
         {

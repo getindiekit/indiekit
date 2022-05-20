@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 export default {
   error: "Error",
   errorSummaryTitle: "Hay un problema",

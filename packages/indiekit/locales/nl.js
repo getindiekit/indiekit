@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 export default {
   error: "Fout",
   errorSummaryTitle: "Er is een Probleem",
