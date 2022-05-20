@@ -1,4 +1,9 @@
+const process = require("node:process");
+
 module.exports = {
+  application: {
+    mongodbUrl: process.env.MONGO_URL,
+  },
   plugins: [
     "@indiekit/preset-jekyll",
     "@indiekit/store-github",
@@ -7,22 +12,22 @@ module.exports = {
   ],
   publication: {
     me: process.env.PUBLICATION_URL,
-    timeZone: "Europe/London",
+    timeZone: process.env.TZ,
   },
   "@indiekit/store-github": {
-    user: "getindiekit",
-    repo: "sandbox",
-    branch: "gh-pages",
+    user: process.env.GITHUB_USER,
+    repo: process.env.GITHUB_REPO,
+    branch: process.env.GITHUB_BRANCH,
   },
   "@indiekit/syndicator-mastodon": {
     checked: true,
     forced: true,
-    url: "https://mastodon.social",
-    user: "indiekit_sandbox",
+    url: process.env.MASTODON_URL,
+    user: process.env.MASTODON_USER,
   },
   "@indiekit/syndicator-twitter": {
     checked: true,
     forced: true,
-    user: "indiekitsandbox",
+    user: process.env.TWITTER_USER,
   },
 };
