@@ -19,7 +19,7 @@ export const ImageEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  get routes() {
+  get routesPublic() {
     let cache;
     if (this.options.mongodbUrl) {
       const store = new KeyvMongoDB({
