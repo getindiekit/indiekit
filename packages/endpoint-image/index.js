@@ -23,6 +23,7 @@ export const ImageEndpoint = class {
     let cache;
     if (this.options.mongodbUrl) {
       const store = new KeyvMongoDB({
+        db: "indiekit",
         url: this.options.mongodbUrl,
       });
       cache = new Keyv({ store });
@@ -33,8 +34,12 @@ export const ImageEndpoint = class {
     router.use(
       "/",
       expressSharp({
+        cache,
         imageAdapter: new HttpAdapter({
-          cache,
+          cacheOptions: {
+            shared: false,
+            immutableMinTimeToLive: 604800,
+          },
           prefixUrl: this.options.me,
         }),
       })
