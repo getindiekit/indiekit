@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
@@ -38,7 +38,7 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
-    "@indiekit/endpoint-image": "^1.0.0-alpha.1",
+    "@indiekit/endpoint-image": "^1.0.0-alpha.2",
     "@indiekit/endpoint-media": "^1.0.0-alpha.0",
     "@indiekit/endpoint-micropub": "^1.0.0-alpha.0",
     "@indiekit/endpoint-share": "^1.0.0-alpha.0",
