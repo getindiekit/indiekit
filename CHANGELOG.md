@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-05-26)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** normalisation of mp-syndicate-to with syndication property ([621d45e](https://github.com/getindiekit/indiekit/commit/621d45e15edfa5a0fe9fe133b20a270017318faa))
+
+
+
+
+
 # [1.0.0-alpha.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-05-22)
 
 
