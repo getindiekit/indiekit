@@ -493,3 +493,16 @@ test("Normalises JF2 (all properties)", (t) => {
   t.true(isValid(parseISO(result.published)));
   t.is(result["mp-syndicate-to"], "https://social.example");
 });
+
+test("Normalises JF2 (syndication properties)", (t) => {
+  const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
+  delete properties["mp-syndicate-to"];
+  properties.syndication = ["https://social.example/status/1"];
+
+  const result = normaliseProperties(t.context.publication, properties);
+
+  t.is(result.type, "entry");
+  t.is(result.name, "What I had for lunch");
+  t.is(result.syndication[0], "https://social.example/status/1");
+  t.falsy(result["mp-syndicate-to"]);
+});

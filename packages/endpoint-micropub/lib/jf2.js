@@ -90,8 +90,9 @@ export const normaliseProperties = (publication, properties) => {
 
   properties["mp-slug"] = getSlugProperty(properties, slugSeparator);
 
+  // TODO: Smarter normalisation of mp-syndicate-to property when updating posts
   const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
-  if (syndicateTo) {
+  if (syndicateTo && !properties.syndication) {
     properties["mp-syndicate-to"] = syndicateTo;
   }
 
@@ -242,6 +243,13 @@ export const getSlugProperty = (properties, separator) => {
   return slugifyString(string, separator);
 };
 
+/**
+ * Get mp-syndicate-to property
+ *
+ * @param {object} properties JF2 properties
+ * @param {Array} syndicationTargets Configured syndication targets
+ * @returns {Array} Resolved syndication targets
+ */
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
   const property = [];
 
