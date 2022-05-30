@@ -3,7 +3,6 @@ import { setGlobalDispatcher } from "undici";
 import { websiteAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
-import { Cache } from "../../lib/cache.js";
 import {
   getCategories,
   getEndpoints,
@@ -16,7 +15,7 @@ setGlobalDispatcher(websiteAgent());
 test.beforeEach(async (t) => {
   const config = await testConfig();
   const indiekit = new Indiekit({ config });
-  const { application, publication } = await indiekit.bootstrap();
+  const { publication } = await indiekit.bootstrap();
 
   t.context = {
     application: {
@@ -24,15 +23,12 @@ test.beforeEach(async (t) => {
       tokenEndpoint: "/token",
       url: "https://server.example",
     },
-    cacheCollection: application.cache,
     publication,
-    url: "https://website.example/categories.json",
-    urlNotFound: "https://website.example/404.json",
   };
 });
 
 test("Returns array of available categories", async (t) => {
-  const result = await getCategories(t.context.cache, {
+  const result = await getCategories(undefined, {
     categories: ["Foo", "Bar"],
   });
 
@@ -40,27 +36,26 @@ test("Returns array of available categories", async (t) => {
 });
 
 test("Fetches array from remote JSON file", async (t) => {
-  t.context.publication.categories = t.context.url;
-  const cache = new Cache(t.context.cacheCollection);
-
-  const result = await getCategories(cache, t.context.publication);
+  const result = await getCategories(undefined, {
+    categories: "https://website.example/categories.json",
+  });
 
   t.deepEqual(result, ["Foo", "Bar"]);
 });
 
 test("Returns empty array if remote JSON file not found", async (t) => {
-  t.context.publication.categories = t.context.urlNotFound;
-  const cache = new Cache(t.context.cacheCollection);
-
-  await t.throwsAsync(getCategories(cache, t.context.publication), {
-    message: `Unable to fetch ${t.context.urlNotFound}: Not Found`,
-  });
+  await t.throwsAsync(
+    getCategories(undefined, {
+      categories: "https://website.example/404.json",
+    }),
+    {
+      message: "Not Found",
+    }
+  );
 });
 
-test("Returns empty array if no publication configuration provided", async (t) => {
-  const cache = new Cache(t.context.cacheCollection);
-
-  const result = await getCategories(cache, {});
+test("Returns empty array if no publication configuration", async (t) => {
+  const result = await getCategories(undefined, {});
 
   t.deepEqual(result, []);
 });

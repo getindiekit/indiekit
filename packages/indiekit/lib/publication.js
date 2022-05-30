@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { getCachedResponse } from "./cache.js";
 import { isUrl, getUrl } from "./utils.js";
 
 /**
@@ -17,8 +18,8 @@ export const getCategories = async (cache, publication) => {
   }
 
   if (categories && isUrl(categories)) {
-    const cachedCategories = await cache.json("categories", categories);
-    return cachedCategories.data;
+    const cachedCategories = await getCachedResponse(cache, categories);
+    return cachedCategories;
   }
 
   return [];

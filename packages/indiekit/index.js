@@ -1,7 +1,8 @@
+import Keyv from "keyv";
+import KeyvMongoDB from "keyv-mongodb";
 import { expressConfig } from "./config/express.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
-import { Cache } from "./lib/cache.js";
 import { getInstalledPlugins, getLocales } from "./lib/application.js";
 import {
   getCategories,
@@ -42,13 +43,14 @@ export const Indiekit = class {
     // Setup databases
     if (database) {
       this.application.hasDatabase = true;
-      this.application.cache = database.collection("cache");
+      this.application.cache = new Keyv({
+        collectionName: "cache",
+        store: new KeyvMongoDB({ db: database }),
+        ttl: this.application.ttl,
+      });
       this.publication.posts = database.collection("posts");
       this.publication.media = database.collection("media");
     }
-
-    // Setup cache
-    const cache = new Cache(this.application.cache);
 
     // Configure image endpoint
     // Express Sharp middleware requires that can only be provided via options
@@ -62,7 +64,10 @@ export const Indiekit = class {
     this.application.locales = await getLocales(this.application);
 
     // Update publication configuration
-    this.publication.categories = await getCategories(cache, this.publication);
+    this.publication.categories = await getCategories(
+      this.application.cache,
+      this.publication
+    );
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
 

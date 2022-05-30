@@ -15,6 +15,7 @@ export const defaultConfig = {
     repository: package_.repository,
     themeColor: "#0055ee",
     themeColorScheme: "automatic",
+    ttl: 604_800, // 7 days
     version: package_.version,
   },
   plugins: [
