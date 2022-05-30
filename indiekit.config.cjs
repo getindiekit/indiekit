@@ -4,6 +4,9 @@ require("dotenv").config();
 module.exports = {
   application: {
     mongodbUrl: process.env.MONGO_URL,
+    ...(process.env.RAILWAY_ENVIRONMENT && {
+      url: `https://${process.env.RAILWAY_STATIC_URL}`,
+    }),
   },
   plugins: [
     "@indiekit/preset-jekyll",
