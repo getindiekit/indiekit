@@ -1,10 +1,8 @@
 import express from "express";
 import { expressSharp, HttpAdapter } from "express-sharp";
-import Keyv from "keyv";
-import KeyvMongoDB from "keyv-mongodb";
 
 const defaults = {
-  mongodbUrl: false,
+  cache: false,
   me: "",
   mountPath: "/image",
 };
@@ -20,25 +18,16 @@ export const ImageEndpoint = class {
   }
 
   get routesPublic() {
-    let cache;
-    if (this.options.mongodbUrl) {
-      const store = new KeyvMongoDB({
-        db: "indiekit",
-        url: this.options.mongodbUrl,
-      });
-      cache = new Keyv({ store });
-    }
-
     const router = this._router;
 
     router.use(
       "/",
       expressSharp({
-        cache,
+        cache: this.options.cache,
         imageAdapter: new HttpAdapter({
           cacheOptions: {
             shared: false,
-            immutableMinTimeToLive: 604800,
+            immutableMinTimeToLive: 2_592_000,
           },
           prefixUrl: this.options.me,
         }),

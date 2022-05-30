@@ -21,6 +21,8 @@ Add `@indiekit/endpoint-image` to your list of plugins, specifying options as re
 
 ## Options
 
-| Option      | Type     | Description                                                        |
-| :---------- | :------- | :----------------------------------------------------------------- |
-| `mountPath` | `string` | Path to image resizing endpoint. _Optional_, defaults to `/image`. |
+| Option      | Type       | Description                                                        |
+| :---------- | :--------- | :----------------------------------------------------------------- |
+| `cache`     | `Function` | [Keyv store](https://github.com/lukechilds/keyv).                  |
+| `me`        | `string`   | Publication URL. Used as prefix to image paths.                    |
+| `mountPath` | `string`   | Path to image resizing endpoint. _Optional_, defaults to `/image`. |
