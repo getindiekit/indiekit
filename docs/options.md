@@ -111,6 +111,22 @@ _Optional_, defaults to `"automatic"`. For example:
 
 ---
 
+### application.ttl `number`
+
+Length of time to cache external data requests (in seconds).
+
+_Optional_, defaults to `604800` (7 days). For example:
+
+```json
+{
+  "application": {
+    "ttl": 3600
+  }
+}
+```
+
+---
+
 ### application.url `string`
 
 The URL of your server. Useful if Indiekit is running behind a reverse proxy.

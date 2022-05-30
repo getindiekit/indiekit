@@ -1,59 +1,28 @@
 import { fetch } from "undici";
 
-export const Cache = class {
-  /**
-   * Fetch data from cache or remote file
-   *
-   * @param {object} collection Collection
-   */
-  constructor(collection) {
-    this.collection = collection;
-  }
+/**
+ * Get cached response value
+ *
+ * @param {Function} cache Application cache (returns `false` if no database)
+ * @param {string} url URL to fetch and cache (used as key)
+ * @returns {object} Cached response value
+ */
+export const getCachedResponse = async (cache, url) => {
+  let cachedResponse = cache && (await cache.get(url));
 
-  /**
-   * Cache JSON data
-   *
-   * @param {string} key Record key
-   * @param {string} url URL of remote file
-   * @returns {Promise|object} File data
-   */
-  async json(key, url) {
-    try {
-      const cachedData = this.collection
-        ? await this.collection.findOne({ key, url })
-        : false;
-      if (cachedData) {
-        const { data } = cachedData;
-        return {
-          source: "cache",
-          data,
-        };
-      }
+  if (!cachedResponse) {
+    const response = await fetch(url);
 
-      const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
 
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
+    cachedResponse = await response.json();
 
-      const data = await response.json();
-
-      if (this.collection) {
-        await this.collection.replaceOne(
-          {},
-          { key, url, data },
-          {
-            upsert: true,
-          }
-        );
-      }
-
-      return {
-        source: url,
-        data,
-      };
-    } catch (error) {
-      throw new Error(`Unable to fetch ${url}: ${error.message}`);
+    if (cache) {
+      await cache.set(url, cachedResponse);
     }
   }
+
+  return cachedResponse;
 };
