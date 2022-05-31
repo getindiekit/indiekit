@@ -1,0 +1,11 @@
+{
+  "token": {
+    "guidance": {
+      "discovery": "Untuk menggunakan endpoint token ini, tambahkan nilai berikut ke `<head>` situs web Anda:",
+      "verifyRequest": "Untuk memverifikasi token akses, buat permohonan `GET` ke titik akhir token dengan token akses di header:",
+      "verifyResponse": "Endpoint ini kemudian akan memverifikasi token dan merespons dengan informasi tentang pengguna dan ruang lingkup:",
+      "verifyTitle": "Verifikasi token akses"
+    },
+    "title": "Titik akhir Token"
+  }
+}

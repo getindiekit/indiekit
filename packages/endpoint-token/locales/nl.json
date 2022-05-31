@@ -1,0 +1,11 @@
+{
+  "token": {
+    "guidance": {
+      "discovery": "Om dit token-eindpunt te gebruiken, voegt u de volgende waarde toe aan het `<head>` van uw website:",
+      "verifyRequest": "Om het toegangstoken te verifiëren, doet u een `GET` verzoek aan bij het token-eindpunt met het toegangstoken in de koptekst:",
+      "verifyResponse": "Dit eindpunt verifieert vervolgens het token en reageert met informatie over de gebruiker en het bereik:",
+      "verifyTitle": "Verifieer een toegangstoken"
+    },
+    "title": "Token-eindpunt"
+  }
+}
