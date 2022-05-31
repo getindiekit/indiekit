@@ -12,7 +12,9 @@ export const getLocales = async (application) => {
   // Application localisations
   for await (const locale of application.localesAvailable) {
     // eslint-disable-next-line node/no-unsupported-features/es-syntax
-    const { default: translation } = await import(`../locales/${locale}.js`);
+    const { default: translation } = await import(`../locales/${locale}.json`, {
+      assert: { type: "json" },
+    });
     locales.set(locale, translation);
   }
 
@@ -23,7 +25,10 @@ export const getLocales = async (application) => {
         const appLocale = locales.get(locale);
         // eslint-disable-next-line no-await-in-loop, node/no-unsupported-features/es-syntax
         const { default: translation } = await import(
-          `../../${plugin.id}/locales/${locale}.js`
+          `../../${plugin.id}/locales/${locale}.json`,
+          {
+            assert: { type: "json" },
+          }
         );
         locales.set(locale, deepmerge(appLocale, translation));
       } catch {}

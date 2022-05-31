@@ -2,7 +2,7 @@ name: localazy-upload
 on:
   push:
     paths:
-      - packages/**/locales/en.js
+      - packages/**/locales/en.json
 
 jobs:
   localazy-upload:

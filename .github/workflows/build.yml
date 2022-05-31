@@ -33,7 +33,6 @@ jobs:
           npm ci
       - name: Lint code
         run: |
-          npx xo --fix **/locales/*.js
           npm run lint
       - name: Run tests
         env:
