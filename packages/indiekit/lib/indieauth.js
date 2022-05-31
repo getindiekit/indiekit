@@ -226,13 +226,11 @@ export const IndieAuth = class {
     return async function (request, response, next) {
       const { tokenEndpoint } = request.app.locals.publication;
 
-      /* eslint-disable capitalized-comments */
       // Placeholder session data that can be used during development
       // if (process.env.NODE_ENV === "development") {
       //   request.session.token = process.env.NODE_ENV;
       //   request.session.scope = "create update delete media";
       // }
-      /* eslint-enable capitalized-comments */
 
       // If have session scope and token, go to next middleware
       const { scope, token } = request.session;

@@ -131,7 +131,6 @@
         {
           "allow": [
             "access_token",
-            "authorization_endpoint",
             "client_id",
             "code_verifier",
             "date_issued",
@@ -140,22 +139,8 @@
             "job_id",
             "original_url",
             "redirect_uri",
-            "success_description",
-            "token_endpoint"
+            "success_description"
           ]
-        }
-      ],
-      "capitalized-comments": [
-        "error",
-        "always",
-        {
-          "ignorePattern": "c8"
-        }
-      ],
-      "unicorn/import-index": [
-        "error",
-        {
-          "ignoreImports": true
         }
       ],
       "unicorn/prevent-abbreviations": [
