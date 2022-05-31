@@ -31,6 +31,7 @@
     "start": "indiekit serve",
     "lint:scripts": "xo '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",
+    "lint": "npm run lint:scripts && npm run lint:styles",
     "test": "ava",
     "test:watch": "ava --watch",
     "coverage": "c8 ava"
