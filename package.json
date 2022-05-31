@@ -49,7 +49,7 @@
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "@indiekit-test/config": "*",
-    "@indiekit-test/get-fixture": "*",
+    "@indiekit-test/fixtures": "*",
     "@indiekit-test/media-data": "*",
     "@indiekit-test/mock-agent": "*",
     "@indiekit-test/post-data": "*",

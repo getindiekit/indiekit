@@ -1,7 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 

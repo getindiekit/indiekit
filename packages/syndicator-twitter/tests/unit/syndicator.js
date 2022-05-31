@@ -2,7 +2,7 @@
 import test from "ava";
 import nock from "nock";
 import { Indiekit } from "@indiekit/indiekit";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { TwitterSyndicator } from "../../index.js";
 
 const twitter = new TwitterSyndicator({

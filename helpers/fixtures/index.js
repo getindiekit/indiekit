@@ -7,15 +7,6 @@ import { fileURLToPath } from "node:url";
  * @returns {Promise|object} File contents
  */
 export const getFixture = (filename, encoding = "utf8") => {
-  const file = fileURLToPath(
-    new URL(`../../fixtures/${filename}`, import.meta.url)
-  );
+  const file = fileURLToPath(new URL(filename, import.meta.url));
   return fs.readFileSync(file, { encoding });
 };
-
-/**
- * @param {string} filename Fixture’s file name
- * @returns {string} Fixture’s file path
- */
-export const getFixturePath = (filename) =>
-  fileURLToPath(new URL(`../../fixtures/${filename}`, import.meta.url));

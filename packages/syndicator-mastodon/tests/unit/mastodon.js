@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import test from "ava";
 import nock from "nock";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { mastodon } from "../../lib/mastodon.js";
 
 test.beforeEach((t) => {

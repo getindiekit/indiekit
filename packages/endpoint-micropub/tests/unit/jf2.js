@@ -1,6 +1,6 @@
 import test from "ava";
 import dateFns from "date-fns";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import {
   formEncodedToJf2,
   mf2ToJf2,

@@ -1,6 +1,6 @@
 import test from "ava";
 import nock from "nock";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "@indiekit-test/media-data";
 import { publication } from "@indiekit-test/publication";
 import { media } from "../../lib/media.js";

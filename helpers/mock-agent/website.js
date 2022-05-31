@@ -1,5 +1,5 @@
 import { MockAgent } from "undici";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 
 const agent = new MockAgent();
 agent.disableNetConnect();

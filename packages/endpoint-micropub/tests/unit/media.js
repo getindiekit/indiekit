@@ -3,7 +3,7 @@ import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import test from "ava";
 import { setGlobalDispatcher } from "undici";
 import { mediaEndpointAgent } from "@indiekit-test/mock-agent";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { uploadMedia } from "../../lib/media.js";
 
 setGlobalDispatcher(mediaEndpointAgent());

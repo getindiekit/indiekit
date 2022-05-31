@@ -1,6 +1,6 @@
 import test from "ava";
 import dateFns from "date-fns";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { getFileProperties, getMediaType } from "../../lib/file.js";
 
 const { isValid, parseISO } = dateFns;

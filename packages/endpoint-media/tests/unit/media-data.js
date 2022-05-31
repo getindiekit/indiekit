@@ -1,5 +1,5 @@
 import test from "ava";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { JekyllPreset } from "@indiekit/preset-jekyll";
 import { mediaData } from "../../lib/media-data.js";
 

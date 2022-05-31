@@ -2,7 +2,7 @@ import test from "ava";
 import parser from "microformats-parser";
 import { setGlobalDispatcher } from "undici";
 import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
-import { getFixture } from "@indiekit-test/get-fixture";
+import { getFixture } from "@indiekit-test/fixtures";
 import { getMf2Properties, jf2ToMf2, url2Mf2 } from "../../lib/mf2.js";
 
 setGlobalDispatcher(tokenEndpointAgent());
