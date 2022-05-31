@@ -25,6 +25,12 @@
         "path": "packages/endpoint-micropub/locales",
         "pattern": "packages/endpoint-micropub/locales/en.json",
         "module": "endpoint-micropub"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/endpoint-token/locales",
+        "pattern": "packages/endpoint-token/locales/en.json",
+        "module": "endpoint-token"
       }
     ]
   },
