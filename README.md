@@ -37,39 +37,15 @@
 
 ## Install
 
-`npm install @indiekit/indiekit`
-
 Learn how to [set up an Indiekit server](https://getindiekit.com/get-started/) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
-
-## Local development
-
-```sh
-npm start
-```
-
-If you’re developing a new feature, and want the application to automatically restart whenever a file change is detected, use `npm run dev`.
-
-### Testing
-
-```sh
-npm test
-```
-
-The following environment variables need to be set before running tests:
-
-- `TEST_TOKEN`
-- `TEST_TOKEN_CREATE_SCOPE`
-- `TEST_TOKEN_NO_SCOPE`
-- `TEST_PUBLICATION_URL`
-- `TEST_SESSION_SECRET`
-
-`TEST_TOKEN`, `TEST_TOKEN_CREATE_SCOPE` and `TEST_TOKEN_NO_SCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.`TEST_TOKEN` should provide scope for `create update delete`, `TEST_TOKEN` should provide scope for `create` and `TEST_TOKEN_NO_SCOPE` should provide no scope at all.
-
-[Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating access tokens for this purpose.
 
 ## Decisions
 
 Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in `/docs/decisions`.
+
+## Contributing
+
+Read about the different ways [you can contribute to this project](docs/contributing.md).
 
 ## Credits
 

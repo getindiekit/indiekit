@@ -8,6 +8,8 @@ github_username: getindiekit
 
 # Publishing
 permalink: pretty
+include:
+  - contributing.md
 exclude:
   - CNAME
   - Gemfile
