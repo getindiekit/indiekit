@@ -31,6 +31,10 @@ jobs:
       - name: Install packages and symlink local dependencies
         run: |
           npm ci
+      - name: Lint code
+        run: |
+          npx xo --fix **/locales/*.js
+          npm run lint
       - name: Run tests
         env:
           NODE_ENV: test
