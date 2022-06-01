@@ -1,5 +1,5 @@
-import { Blob } from "node:buffer";
-import { fetch, FormData } from "undici";
+/* global Blob, FormData */
+import { fetch } from "undici";
 
 /**
  * Upload attached file(s) via media endpoint
