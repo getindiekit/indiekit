@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 
 export const postTypeCount = {
   /**
@@ -11,15 +11,19 @@ export const postTypeCount = {
   async get(publication, properties) {
     try {
       if (!publication) {
-        throw new Error("No publication configuration provided");
+        throw new httpError.InternalServerError(
+          "No publication configuration provided"
+        );
       }
 
       if (!publication.posts || !publication.posts.count()) {
-        throw new Error("No database configuration provided");
+        throw new httpError.InternalServerError(
+          "No database configuration provided"
+        );
       }
 
       if (!properties) {
-        throw new Error("No properties included in request");
+        throw new httpError.BadRequest("No properties included in request");
       }
 
       // Post type
@@ -49,7 +53,7 @@ export const postTypeCount = {
         .toArray();
       return response.length;
     } catch (error) {
-      throw new HttpError(400, error);
+      throw httpError(error);
     }
   },
 };

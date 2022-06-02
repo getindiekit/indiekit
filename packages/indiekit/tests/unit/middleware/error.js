@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import test from "ava";
 import sinon from "sinon";
 import mockReqRes from "mock-req-res";
@@ -28,7 +28,7 @@ test("Returns 500 for unknown error", (t) => {
 });
 
 test("Renders error as HTML", (t) => {
-  const httpError = new HttpError(400, "Error messaage", {
+  const testError = httpError(400, "Error message", {
     scope: "test",
   });
   const request = mockRequest({
@@ -37,13 +37,13 @@ test("Renders error as HTML", (t) => {
   const response = mockResponse();
   const next = sinon.spy();
 
-  error.internalServer(httpError, request, response, next);
+  error.internalServer(testError, request, response, next);
 
   t.true(response.render.calledWith());
 });
 
 test("Renders error as JSON", (t) => {
-  const httpError = new HttpError(400, "Error messaage", {
+  const testError = httpError(400, "Error message", {
     scope: "test",
   });
   const request = mockRequest({
@@ -52,18 +52,18 @@ test("Renders error as JSON", (t) => {
   const response = mockResponse();
   const next = sinon.spy();
 
-  error.internalServer(httpError, request, response, next);
+  error.internalServer(testError, request, response, next);
 
   t.true(response.json.calledWith());
 });
 
 test("Renders error as plain text", (t) => {
-  const httpError = new HttpError(400, "Error messaage");
+  const testError = httpError(400, "Error message");
   const request = mockRequest({ accepts: () => false });
   const response = mockResponse();
   const next = sinon.spy();
 
-  error.internalServer(httpError, request, response, next);
+  error.internalServer(testError, request, response, next);
 
-  t.true(response.send.calledWith("Error messaage"));
+  t.true(response.send.calledWith("Error message"));
 });

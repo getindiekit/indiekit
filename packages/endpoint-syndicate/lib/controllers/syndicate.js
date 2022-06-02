@@ -1,5 +1,5 @@
 import Debug from "debug";
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import { fetch } from "undici";
 import { getPostData } from "../utils.js";
 
@@ -12,7 +12,9 @@ export const syndicateController = {
       const { token } = request.query;
 
       if (!application.hasDatabase) {
-        throw new Error(response.__("errors.noDatabase.content"));
+        throw new httpError.NotImplemented(
+          response.__("errors.noDatabase.content")
+        );
       }
 
       // Get syndication targets
@@ -86,7 +88,7 @@ export const syndicateController = {
       const body = await endpointResponse.json();
 
       if (!endpointResponse.ok) {
-        throw new HttpError(
+        throw httpError(
           endpointResponse.status,
           body.error_description || endpointResponse.statusText
         );

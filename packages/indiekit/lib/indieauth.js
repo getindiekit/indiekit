@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
+import httpError from "http-errors";
 import { fetch } from "undici";
-import HttpError from "http-errors";
 import {
   findBearerToken,
   requestAccessToken,
@@ -63,7 +63,7 @@ export const IndieAuth = class {
    */
   async getAuthUrl(authorizationEndpoint, scope, state) {
     if (!scope) {
-      throw new Error("You need to provide some scopes");
+      throw new httpError.BadRequest("You need to provide some scopes");
     }
 
     // PKCE code challenge
@@ -114,22 +114,21 @@ export const IndieAuth = class {
       const body = await endpointResponse.json();
 
       if (!endpointResponse.ok) {
-        throw new HttpError(
+        throw httpError(
           endpointResponse.status,
           body.error_description || endpointResponse.statusText
         );
       }
 
       if (!body.scope || !body.access_token) {
-        throw new HttpError(
-          400,
+        throw new httpError.BadRequest(
           "The token endpoint did not return the expected parameters"
         );
       }
 
       return body.access_token;
     } catch (error) {
-      throw new HttpError(500, error.message);
+      throw httpError(error);
     }
   }
 
@@ -210,7 +209,7 @@ export const IndieAuth = class {
 
         return response.redirect(redirect || "/");
       } catch (error) {
-        return next(new HttpError(400, error));
+        return next(httpError(error));
       }
     };
   }

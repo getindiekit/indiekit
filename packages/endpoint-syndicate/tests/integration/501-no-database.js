@@ -28,6 +28,6 @@ test("Returns 500 if no database configured", async (t) => {
     .query(`token=${process.env.TEST_TOKEN}`);
 
   // Assertions
-  t.is(result.statusCode, 500);
+  t.is(result.statusCode, 501);
   t.regex(result.body.error_description, /This feature requires a database/);
 });

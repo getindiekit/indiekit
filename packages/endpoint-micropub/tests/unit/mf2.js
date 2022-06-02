@@ -49,19 +49,12 @@ test("Returns mf2 item with empty object if property not found", (t) => {
   });
 });
 
-test("Throws error if mf2 has no items", (t) => {
+test("Returns mf2 with empty items array if no items found", (t) => {
   const mf2 = parser.mf2(getFixture("html/page.html"), {
     baseUrl: t.context.url,
   });
 
-  t.throws(
-    () => {
-      getMf2Properties(mf2, "name");
-    },
-    {
-      message: "Source has no items",
-    }
-  );
+  t.deepEqual(mf2.items, []);
 });
 
 test("Converts JF2 to mf2 object", async (t) => {

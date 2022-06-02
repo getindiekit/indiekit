@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import axios from "axios";
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import megalodon from "megalodon";
 import {
   createStatus,
@@ -79,7 +79,7 @@ export const mastodon = (options) => ({
     } catch (error) {
       const statusCode = error.response?.status || 500;
       const message = error.response?.data?.error || error.message;
-      throw new HttpError(statusCode, message);
+      throw httpError(statusCode, message);
     }
   },
 

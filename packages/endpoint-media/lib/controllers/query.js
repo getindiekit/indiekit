@@ -16,7 +16,7 @@ export const queryController = async (request, response, next) => {
 
   try {
     if (!query.q) {
-      throw new Error("Invalid query");
+      throw new httpError.BadRequest("Invalid query");
     }
 
     switch (query.q) {
@@ -34,9 +34,9 @@ export const queryController = async (request, response, next) => {
       }
 
       default:
-        throw new Error(`Unsupported parameter: ${query.q}`);
+        throw new httpError.NotImplemented(`Unsupported parameter: ${query.q}`);
     }
   } catch (error) {
-    next(httpError(400, error));
+    next(error);
   }
 };

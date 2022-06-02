@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import { getPermalink, getPostTypeConfig, renderPath } from "./utils.js";
 import { getFileProperties, getMediaType } from "./file.js";
 
@@ -13,11 +13,13 @@ export const mediaData = {
   async create(publication, file) {
     try {
       if (!publication) {
-        throw new Error("No publication configuration provided");
+        throw new httpError.InternalServerError(
+          "No publication configuration provided"
+        );
       }
 
       if (!file || file.truncated || !file.buffer) {
-        throw new Error("No file included in request");
+        throw new httpError.BadRequest("No file included in request");
       }
 
       const { me, postTypes } = publication;
@@ -32,8 +34,7 @@ export const mediaData = {
       // Throw error if trying to post unsupported media
       const supportedMediaTypes = ["audio", "photo", "video"];
       if (!supportedMediaTypes.includes(type)) {
-        throw new HttpError(
-          501,
+        throw new httpError.UnsupportedMediaType(
           `Micropub does not support the ${type} media type.`
         );
       }
@@ -41,8 +42,7 @@ export const mediaData = {
       // Get post type configuration
       const typeConfig = getPostTypeConfig(type, postTypes);
       if (!typeConfig) {
-        throw new HttpError(
-          501,
+        throw new httpError.NotImplemented(
           `No configuration found for ${type} post type. See https://getindiekit.com/customisation/post-types/`
         );
       }
@@ -65,7 +65,7 @@ export const mediaData = {
       const mediaData = { path, properties };
       return mediaData;
     } catch (error) {
-      throw new HttpError(400, error);
+      throw httpError(error);
     }
   },
 
@@ -79,11 +79,13 @@ export const mediaData = {
   async read(publication, url) {
     try {
       if (!publication) {
-        throw new Error("No publication configuration provided");
+        throw new httpError.InternalServerError(
+          "No publication configuration provided"
+        );
       }
 
       if (!url) {
-        throw new Error("No URL provided");
+        throw new httpError.BadRequest("No URL provided");
       }
 
       const { media } = publication;
@@ -92,7 +94,7 @@ export const mediaData = {
       });
       return file;
     } catch (error) {
-      throw new HttpError(400, error);
+      throw httpError(error);
     }
   },
 };

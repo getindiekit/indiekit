@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import { getPostType } from "./post-type-discovery.js";
 import { normaliseProperties } from "./jf2.js";
 import * as update from "./update.js";
@@ -15,11 +15,13 @@ export const postData = {
   async create(publication, properties) {
     try {
       if (!publication) {
-        throw new Error("No publication configuration provided");
+        throw new httpError.InternalServerError(
+          "No publication configuration provided"
+        );
       }
 
       if (!properties) {
-        throw new Error("No properties included in request");
+        throw new httpError.BadRequest("No properties included in request");
       }
 
       const { me, postTypes } = publication;
@@ -34,8 +36,7 @@ export const postData = {
       // Get post type configuration
       const typeConfig = getPostTypeConfig(type, postTypes);
       if (!typeConfig) {
-        throw new HttpError(
-          501,
+        throw new httpError.NotImplemented(
           `No configuration found for ${type} post type. See https://getindiekit.com/customisation/post-types/`
         );
       }
@@ -57,7 +58,7 @@ export const postData = {
       const postData = { path, properties };
       return postData;
     } catch (error) {
-      throw new HttpError(400, error);
+      throw httpError(error);
     }
   },
 
@@ -71,11 +72,13 @@ export const postData = {
   async read(publication, url) {
     try {
       if (!publication) {
-        throw new Error("No publication configuration provided");
+        throw new httpError.InternalServerError(
+          "No publication configuration provided"
+        );
       }
 
       if (!url) {
-        throw new Error("No URL provided");
+        throw new httpError.BadRequest("No URL provided");
       }
 
       const { posts } = publication;
@@ -84,7 +87,7 @@ export const postData = {
       });
       return post;
     } catch (error) {
-      throw new HttpError(400, error);
+      throw httpError(error);
     }
   },
 
@@ -99,15 +102,17 @@ export const postData = {
   async update(publication, url, operation) {
     try {
       if (!publication) {
-        throw new Error("No publication configuration provided");
+        throw new httpError.InternalServerError(
+          "No publication configuration provided"
+        );
       }
 
       if (!url) {
-        throw new Error("No URL provided");
+        throw new httpError.BadRequest("No URL provided");
       }
 
       if (!operation) {
-        throw new Error("No update operation provided");
+        throw new httpError.BadRequest("No update operation provided");
       }
 
       const { me, posts, postTypes } = publication;
@@ -117,7 +122,7 @@ export const postData = {
       });
 
       if (!postData) {
-        throw new Error(`No post record available for ${url}`);
+        throw new httpError.NotFound(`No post record available for ${url}`);
       }
 
       let { properties } = postData;
@@ -164,7 +169,7 @@ export const postData = {
       const updatedPostData = { path, properties };
       return updatedPostData;
     } catch (error) {
-      throw new HttpError(400, error);
+      throw httpError(error);
     }
   },
 };

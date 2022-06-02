@@ -1,6 +1,6 @@
 import process from "node:process";
+import httpError from "http-errors";
 import { fetch } from "undici";
-import HttpError from "http-errors";
 import jwt from "jsonwebtoken";
 import { getCanonicalUrl } from "../utils.js";
 
@@ -30,8 +30,7 @@ export const tokenController = {
         // Publication URL does not match that provided by access token
         if (!isAuthenticated) {
           return next(
-            new HttpError(
-              403,
+            new httpError.Forbidden(
               "Publication URL does not match that provided by access token"
             )
           );
@@ -47,7 +46,9 @@ export const tokenController = {
           response.send(new URLSearchParams(accessToken).toString());
         }
       } catch (error) {
-        next(new HttpError(401, `JSON Web Token error: ${error.message}`));
+        next(
+          new httpError.Unauthorized(`JSON Web Token error: ${error.message}`)
+        );
       }
     } else {
       response.render("token", {
@@ -70,15 +71,15 @@ export const tokenController = {
 
     try {
       if (!client_id) {
-        throw new Error("Missing client ID");
+        throw new httpError.BadRequest("Missing client ID");
       }
 
       if (!code) {
-        throw new Error("Missing code");
+        throw new httpError.BadRequest("Missing code");
       }
 
       if (!redirect_uri) {
-        throw new Error("Missing redirect URI");
+        throw new httpError.BadRequest("Missing redirect URI");
       }
 
       const authUrl = new URL(publication.authorizationEndpoint);
@@ -97,7 +98,7 @@ export const tokenController = {
 
       if (!endpointResponse.ok) {
         return next(
-          new HttpError(
+          httpError(
             endpointResponse.status,
             body.error_description || endpointResponse.statusText
           )
@@ -111,8 +112,7 @@ export const tokenController = {
 
       if (!isAuthenticated) {
         return next(
-          new HttpError(
-            403,
+          new httpError.Forbidden(
             "Publication URL does not match that provided by access token"
           )
         );
@@ -143,7 +143,7 @@ export const tokenController = {
         response.send(new URLSearchParams(authResponse).toString());
       }
     } catch (error) {
-      return next(new HttpError(400, error.message));
+      return next(error);
     }
   },
 };

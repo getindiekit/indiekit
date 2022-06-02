@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import { fetch } from "undici";
 import { getCanonicalUrl } from "./utils.js";
 
@@ -24,7 +24,7 @@ export const findBearerToken = (request) => {
     return bearerToken;
   }
 
-  throw new HttpError.BadRequest("No bearer token provided by request");
+  throw new httpError.BadRequest("No bearer token provided by request");
 };
 
 /**
@@ -45,7 +45,7 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
   const body = await endpointResponse.json();
 
   if (!endpointResponse.ok) {
-    throw new HttpError(
+    throw httpError(
       endpointResponse.status,
       body.error_description || endpointResponse.statusText
     );
@@ -62,12 +62,14 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
 export const verifyAccessToken = (me, accessToken) => {
   // Throw error if no publication URL provided
   if (!me) {
-    throw new HttpError(400, "No publication URL to verify");
+    throw new httpError.BadRequest("No publication URL to verify");
   }
 
   // Throw error if access token does not contain a `me` value
   if (!accessToken.me) {
-    throw new HttpError(401, "There was a problem with this access token");
+    throw new httpError.Unauthorized(
+      "There was a problem with this access token"
+    );
   }
 
   // Normalize publication and token URLs before comparing
@@ -77,8 +79,7 @@ export const verifyAccessToken = (me, accessToken) => {
 
   // Publication URL does not match that provided by access token
   if (!isAuthenticated) {
-    throw new HttpError(
-      403,
+    throw new httpError.Forbidden(
       "Publication URL does not match that provided by access token"
     );
   }

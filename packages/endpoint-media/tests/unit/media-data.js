@@ -39,6 +39,7 @@ test("Creates media data", async (t) => {
 
 test("Throws error creating media data without publication configuration", async (t) => {
   await t.throwsAsync(mediaData.create(false, t.context.file), {
+    name: "InternalServerError",
     message: "No publication configuration provided",
   });
 });
@@ -77,6 +78,7 @@ test("Reads media data", async (t) => {
 
 test("Throws error reading media data without publication configuration", async (t) => {
   await t.throwsAsync(mediaData.read(false, t.context.url), {
+    name: "InternalServerError",
     message: "No publication configuration provided",
   });
 });

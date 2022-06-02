@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import mongodb from "mongodb";
 
 export const filesController = {
@@ -15,7 +15,9 @@ export const filesController = {
       const { application, publication } = request.app.locals;
 
       if (!application.hasDatabase) {
-        throw new Error(response.__("errors.noDatabase.content"));
+        throw new httpError.NotImplemented(
+          response.__("errors.noDatabase.content")
+        );
       }
 
       const page = Number.parseInt(request.query.page, 10) || 1;
@@ -61,7 +63,7 @@ export const filesController = {
       });
 
       if (!file) {
-        throw new HttpError(404, "No file was found with this UUID");
+        throw new httpError.NotFound("No file was found with this UUID");
       }
 
       response.render("file", {

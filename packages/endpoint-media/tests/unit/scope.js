@@ -18,14 +18,17 @@ test("Required scope defaults to `media`", (t) => {
 });
 
 test("Throws error if required scope not provided by access token", (t) => {
-  t.throws(
+  const error = t.throws(
     () => {
       checkScope("post");
     },
     {
-      name: "UnauthorizedError",
+      name: "ForbiddenError",
       message:
         "The scope of this token does not meet the requirements for this request",
     }
   );
+
+  t.is(error.code, "insufficient_scope");
+  t.is(error.scope, "create media");
 });

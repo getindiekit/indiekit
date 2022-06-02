@@ -6,7 +6,7 @@ import { testServer } from "@indiekit-test/server";
 test("Returns list of previously uploaded files", async (t) => {
   const request = await testServer({ useDatabase: false });
   const response = await request
-    .get("/media/files")
+    .get("/micropub/posts")
     .auth(process.env.TEST_TOKEN, { type: "bearer" });
   const dom = new JSDOM(response.text);
 
@@ -14,7 +14,7 @@ test("Returns list of previously uploaded files", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Internal Server Error - Test configuration"
+    "Not Implemented - Test configuration"
   );
   t.is(
     result.querySelector(".article__body p").textContent,

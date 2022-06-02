@@ -1,4 +1,3 @@
-import httpError from "http-errors";
 import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
 import { post } from "../post.js";
 import { postData } from "../post-data.js";
@@ -56,6 +55,6 @@ export const actionController = async (request, response, next) => {
       .location(published.location)
       .json(published.json);
   } catch (error) {
-    next(httpError(error));
+    next(error);
   }
 };

@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 
 /**
  * Check provided scope(s) satisfies required scope
@@ -32,8 +32,12 @@ export const checkScope = (providedScope, requiredScope) => {
     return true;
   }
 
-  throw new HttpError(
-    401,
-    "The scope of this token does not meet the requirements for this request"
+  throw httpError(
+    403,
+    "The scope of this token does not meet the requirements for this request",
+    {
+      code: "insufficient_scope",
+      scope: requiredScope,
+    }
   );
 };

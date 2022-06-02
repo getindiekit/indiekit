@@ -21,7 +21,7 @@ export const queryController = async (request, response, next) => {
 
   try {
     if (!query.q) {
-      throw new Error("Invalid query");
+      throw new httpError.BadRequest("Invalid query");
     }
 
     switch (query.q) {
@@ -39,6 +39,11 @@ export const queryController = async (request, response, next) => {
         // Return mf2 for a given source URL
         if (query.url) {
           const mf2 = await url2Mf2(query.url);
+
+          if (mf2.items.length === 0) {
+            return response.send("Source has no items");
+          }
+
           const properties = getMf2Properties(mf2, query.properties);
           return response.json(properties);
         }
@@ -62,11 +67,11 @@ export const queryController = async (request, response, next) => {
           });
         }
 
-        throw new Error(`Unsupported parameter: ${query.q}`);
+        throw new httpError.NotImplemented(`Unsupported parameter: ${query.q}`);
       }
     }
   } catch (error) {
     debug(error);
-    next(httpError(400, error));
+    next(httpError(error));
   }
 };

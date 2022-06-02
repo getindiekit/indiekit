@@ -1,3 +1,4 @@
+import httpError from "http-errors";
 import { fetch } from "undici";
 import parser from "microformats-parser";
 
@@ -11,7 +12,7 @@ import parser from "microformats-parser";
 export const getMf2Properties = (mf2, requestedProperties) => {
   const mf2HasItems = mf2.items && mf2.items.length > 0;
   if (!mf2HasItems) {
-    throw new Error("Source has no items");
+    return;
   }
 
   const item = mf2.items[0];
@@ -80,7 +81,7 @@ export const url2Mf2 = async (url) => {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw new Error(response.statusText);
+    throw httpError(response.status, response.statusText);
   }
 
   const body = await response.text();

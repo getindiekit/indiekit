@@ -1,4 +1,4 @@
-import HttpError from "http-errors";
+import httpError from "http-errors";
 import mongodb from "mongodb";
 
 export const postsController = {
@@ -15,7 +15,9 @@ export const postsController = {
       const { application, publication } = request.app.locals;
 
       if (!application.hasDatabase) {
-        throw new Error(response.__("errors.noDatabase.content"));
+        throw new httpError.NotImplemented(
+          response.__("errors.noDatabase.content")
+        );
       }
 
       const page = Number.parseInt(request.query.page, 10) || 1;
@@ -61,7 +63,7 @@ export const postsController = {
       });
 
       if (!post) {
-        throw new HttpError(404, "No post was found with this UUID");
+        throw new httpError.NotFound("No post was found with this UUID");
       }
 
       response.render("post", {

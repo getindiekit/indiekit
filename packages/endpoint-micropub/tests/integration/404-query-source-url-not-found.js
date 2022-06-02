@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 
 setGlobalDispatcher(tokenEndpointAgent());
 
-test("Returns list of previously published posts", async (t) => {
+test("Returns 404 if source URL can’t be found", async (t) => {
   const request = await testServer({
     publication: {
       me: "https://website.example",
@@ -17,8 +17,8 @@ test("Returns list of previously published posts", async (t) => {
     .get("/micropub")
     .auth("JWT", { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=source&properties[]=name&url=https://website.example/page.html");
+    .query("q=source&properties[]=name&url=https://website.example/404.html");
 
-  t.is(result.statusCode, 400);
-  t.is(result.body.error_description, "Source has no items");
+  t.is(result.statusCode, 404);
+  t.is(result.body.error_description, "Not Found");
 });
