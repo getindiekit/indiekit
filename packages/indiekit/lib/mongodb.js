@@ -1,7 +1,4 @@
-import Debug from "debug";
 import mongodb from "mongodb";
-
-const debug = new Debug("indiekit:mongodb");
 
 /**
  * Connect to MongoDB database
@@ -21,7 +18,7 @@ export const getMongodbConfig = async (mongodbUrl) => {
       const database = client.db("indiekit");
       return database;
     } catch (error) {
-      debug(error);
+      console.error(error);
       return false;
     }
   }

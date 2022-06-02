@@ -1,9 +1,6 @@
-import Debug from "debug";
 import httpError from "http-errors";
 import { getMf2Properties, jf2ToMf2, url2Mf2 } from "../mf2.js";
 import { getConfig, queryList } from "../query.js";
-
-const debug = new Debug("indiekit:error");
 
 /**
  * Query endpoint
@@ -71,7 +68,6 @@ export const queryController = async (request, response, next) => {
       }
     }
   } catch (error) {
-    debug(error);
     next(httpError(error));
   }
 };

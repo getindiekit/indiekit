@@ -34,7 +34,6 @@
     "directory": "packages/syndicator-internet-archive"
   },
   "dependencies": {
-    "debug": "^4.3.2",
     "undici": "^5.2.0"
   },
   "publishConfig": {

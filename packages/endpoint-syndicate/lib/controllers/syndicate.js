@@ -1,9 +1,6 @@
-import Debug from "debug";
 import httpError from "http-errors";
 import { fetch } from "undici";
 import { getPostData } from "../utils.js";
-
-const debug = new Debug("indiekit:endpoint-syndicate");
 
 export const syndicateController = {
   async post(request, response, next) {
@@ -96,7 +93,6 @@ export const syndicateController = {
 
       return response.status(endpointResponse.status).json(body);
     } catch (error) {
-      debug(error);
       next(error);
     }
   },
