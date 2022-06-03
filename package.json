@@ -32,9 +32,8 @@
     "lint:scripts": "xo '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",
     "lint": "npm run lint:scripts && npm run lint:styles",
-    "test": "ava",
-    "test:watch": "ava --watch",
-    "coverage": "c8 ava"
+    "test": "NODE_NO_WARNINGS=1 ava",
+    "coverage": "NODE_NO_WARNINGS=1 c8 ava"
   },
   "workspaces": [
     "helpers/*",
