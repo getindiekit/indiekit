@@ -33,12 +33,6 @@ export const routes = (indiekitConfig) => {
   // Homepage
   router.get("/", homepageController.viewHomepage);
 
-  // Prevent pages from being crawled
-  router.get("/robots.txt", (request, response) => {
-    response.type("text/plain");
-    response.send("User-agent: *\nDisallow: /");
-  });
-
   // Assets
   router.use("/assets", express.static(assetsPath));
   router.get("/assets/app.css", assetsController.getStyles);
