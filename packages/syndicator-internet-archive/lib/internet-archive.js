@@ -52,15 +52,12 @@ export const internetArchive = (options) => ({
 
     switch (response.status) {
       case "success":
-        console.info("success", response);
         return response;
 
       case "error":
-        console.error("error", response);
         throw new Error(response.message);
 
       default:
-        console.info(`Capture for job ${jobId} is pending`);
         await new Promise((resolve) => {
           setTimeout(resolve, 1000);
         });
@@ -79,7 +76,6 @@ export const internetArchive = (options) => ({
     const { job_id } = await this.capture(properties.url);
 
     // Get original URL and timestamp of archived web page
-    console.info(`Capture of ${properties.url} assigned to job ${job_id}`);
     const { original_url, timestamp } = await this.status(job_id);
 
     // Return syndicated URL
