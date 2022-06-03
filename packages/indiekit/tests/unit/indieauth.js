@@ -1,3 +1,4 @@
+import process from "node:process";
 import test from "ava";
 import { setGlobalDispatcher } from "undici";
 import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
@@ -10,7 +11,6 @@ setGlobalDispatcher(tokenEndpointAgent());
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({
   me: "https://website.example",
-  tokenEndpoint: "https://token-endpoint.example",
 });
 
 test.beforeEach((t) => {
@@ -105,6 +105,32 @@ test("Checks if user is authorized", async (t) => {
 
   t.is(request.session.scope, t.context.accessToken.scope);
   t.is(request.session.token, t.context.bearerToken);
+  t.true(next.calledOnce);
+});
+
+test("Development mode bypasses authentication", async (t) => {
+  const indieauth = new IndieAuth({
+    devMode: true,
+    me: "https://website.example",
+  });
+
+  const request = mockRequest({
+    app: {
+      locals: {
+        publication: {
+          tokenEndpoint: "https://token-endpoint.example",
+        },
+      },
+    },
+    session: {},
+  });
+  const response = mockResponse();
+  const next = sinon.spy();
+
+  await indieauth.authorise()(request, response, next);
+
+  t.is(request.session.scope, "create update delete media");
+  t.is(request.session.token, process.env.NODE_ENV);
   t.true(next.calledOnce);
 });
 

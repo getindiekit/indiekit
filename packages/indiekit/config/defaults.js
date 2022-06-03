@@ -5,6 +5,7 @@ import package_ from "../package.json" assert { type: "json" };
 
 export const defaultConfig = {
   application: {
+    _devMode: false,
     hasDatabase: false,
     localesAvailable: ["de", "en", "es", "fr", "id", "nl", "pt"],
     mongodbUrl: false,

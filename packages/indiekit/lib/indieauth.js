@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import process from "node:process";
 import httpError from "http-errors";
 import { fetch } from "undici";
 import {
@@ -11,9 +12,9 @@ import { decrypt, encrypt, getCanonicalUrl, randomString } from "./utils.js";
 export const IndieAuth = class {
   constructor(options = {}) {
     this.codeVerifier = randomString(100);
+    this.devMode = options.devMode;
     this.iv = crypto.randomBytes(16);
-    this.options = options;
-    this.me = getCanonicalUrl(this.options.me);
+    this.me = getCanonicalUrl(options.me);
   }
 
   /**
@@ -220,16 +221,15 @@ export const IndieAuth = class {
    * @returns {Function} Next middleware
    */
   authorise() {
-    const { me } = this;
+    const { devMode, me } = this;
 
     return async function (request, response, next) {
       const { tokenEndpoint } = request.app.locals.publication;
 
-      // Placeholder session data that can be used during development
-      // if (process.env.NODE_ENV === "development") {
-      //   request.session.token = process.env.NODE_ENV;
-      //   request.session.scope = "create update delete media";
-      // }
+      if (devMode) {
+        request.session.token = process.env.NODE_ENV;
+        request.session.scope = "create update delete media";
+      }
 
       // If have session scope and token, go to next middleware
       const { scope, token } = request.session;
