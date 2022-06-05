@@ -13,7 +13,7 @@ const defaults = {
 
 /**
  * @typedef Response
- * @property {object} response HTTP response
+ * @property {object} response FTP response
  */
 export const FtpStore = class {
   constructor(options = {}) {
@@ -92,7 +92,7 @@ export const FtpStore = class {
    *
    * @param {string} filePath Path to file
    * @param {string} content File content
-   * @returns {Promise<Response>} HTTP response
+   * @returns {Promise<Response>} A promise to the response
    */
   async createFile(filePath, content) {
     const client = await this.client();
