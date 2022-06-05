@@ -1,7 +1,7 @@
 import httpError from "http-errors";
 import mongodb from "mongodb";
 
-export const filesController = {
+export const mediaController = {
   /**
    * List previously uploaded files
    *
