@@ -1,4 +1,4 @@
-{% set type = opts.results.type | default("results") -%}
+{% set type = opts.results.type | default(__("pagination.defaultType")) -%}
 <nav class="pagination{{- " " + opts.classes if opts.classes }}" id="pagination-label" aria-label="{{ type }} navigation">
   <ul class="pagination__list">
     {%- if opts.previous %}
@@ -7,8 +7,7 @@
         <span class="pagination__link-title">
           {{- icon("previous") -}}
           {%- if opts.previous.text %}{{ opts.previous.text -}}
-          {%- else %}Previous<span class="visually-hidden"> page</span>
-          {%- endif -%}
+          {%- else %}{{ __("pagination.previous", "<span class=\"visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
         </span>
         {%- if opts.previous.label %}
         <span class="pagination__link-divider visually-hidden">:</span>
@@ -26,13 +25,11 @@
     {% else %}
     {%- if item.current %}
     <li class="pagination__item pagination__item--current">
-      <span class="visually-hidden">Page </span>{{ item.text }}<span class="visually-hidden"> (current page)</span>
+      <a class="pagination__link" href="{{ item.href }}" aria-label="{{ __("pagination.item", item.text) }}" aria-current="page">{{ item.text }}</a>
     </li>
     {%- else %}
     <li class="pagination__item">
-      <a class="pagination__link" href="{{ item.href }}">
-        <span class="visually-hidden">Page </span>{{ item.text }}
-      </a>
+      <a class="pagination__link" href="{{ item.href }}" aria-label="{{ __("pagination.item", item.text) }}">{{ item.text }}</a>
     </li>
     {% endif -%}
     {% endif -%}
@@ -44,8 +41,7 @@
         <span class="pagination__link-title">
           {{- icon("next") -}}
           {%- if opts.next.text %}{{ opts.next.text -}}
-          {%- else %}Next<span class="visually-hidden"> page</span>
-          {%- endif -%}
+          {%- else %}{{ __("pagination.next", "<span class=\"visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
         </span>
         {%- if opts.next.label %}
         <span class="pagination__link-divider visually-hidden">:</span>
@@ -57,6 +53,25 @@
   </ul>
 
   {%- if opts.results %}
-  <p class="pagination__results">Showing <b>{{ opts.results.from }}</b>{% if opts.results.from != opts.results.to %} to <b>{{ opts.results.to }}</b>{%- endif %} of <b>{{ opts.results.count }}</b> {{ type }}</p>
+  <p class="pagination__results">
+    {#-
+      Using markdown and replace filters to output <b> elements because
+      concatenated values cannot be rendered as safe strings.
+    -#}
+    {%- if opts.results.from == opts.results.to -%}
+      {{- __("pagination.result", {
+        from: "**" + opts.results.from + "**",
+        count: "**" + opts.results.count + "**",
+        type: type
+      }) | markdown("inline") | replace("strong", "b") | safe -}}
+    {%- else -%}
+      {{- __("pagination.results", {
+        from: "**" + opts.results.from + "**",
+        to: "**" + opts.results.to + "**",
+        count: "**" + opts.results.count + "**",
+        type: type
+      }) | markdown("inline") | replace("strong", "b") | safe -}}
+    {%- endif -%}
+  </p>
   {% endif -%}
 </nav>

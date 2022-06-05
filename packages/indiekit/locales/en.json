@@ -1,11 +1,6 @@
 {
   "error": "Error",
   "errorSummaryTitle": "There is a problem",
-  "noValue": "Not set",
-  "optionalValue": "(optional)",
-  "guidance": {
-    "discovery": "So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:"
-  },
   "errors": {
     "notFound": {
       "title": "Page not found",
@@ -14,6 +9,20 @@
     "noDatabase": {
       "content": "This feature requires a database."
     }
+  },
+  "noValue": "Not set",
+  "optionalValue": "(optional)",
+  "pagination": {
+    "page": "page",
+    "item": "Page %s",
+    "next": "Next %s",
+    "previous": "Previous %s",
+    "defaultType": "results",
+    "result": "Showing {{ from }} of {{ count }} {{ type }}",
+    "results": "Showing {{ from }} to {{ to }} of {{ count }} {{ type }}"
+  },
+  "guidance": {
+    "discovery": "So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:"
   },
   "session": {
     "login": {

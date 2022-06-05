@@ -33,13 +33,9 @@
   }
 }
 
-.pagination__item--current,
 .pagination__item--divider {
   font-weight: 500;
   padding: var(--inset-large-squished);
-}
-
-.pagination__item--divider {
   padding-inline: 0;
   pointer-events: none;
 }
@@ -48,6 +44,11 @@
   border-radius: var(--border-radius-small);
   display: block;
   padding: var(--inset-large-squished);
+}
+
+.pagination__item--current .pagination__link {
+  color: var(--color-text);
+  font-weight: 600;
 }
 
 .pagination__link:hover {
