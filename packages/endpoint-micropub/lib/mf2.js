@@ -12,7 +12,7 @@ import parser from "microformats-parser";
 export const getMf2Properties = (mf2, requestedProperties) => {
   const mf2HasItems = mf2.items && mf2.items.length > 0;
   if (!mf2HasItems) {
-    return;
+    return {};
   }
 
   const item = mf2.items[0];

@@ -19,14 +19,14 @@ test("Views previously uploaded file", async (t) => {
     .send("name=Foobar");
 
   // Get post data by parsing list of posts and getting values from link
-  const postsResponse = await request.get("/micropub/posts");
+  const postsResponse = await request.get("/micropub");
   const postsDom = new JSDOM(postsResponse.text);
   const postLink = postsDom.window.document.querySelector(".file-list a");
   const postName = postLink.textContent;
   const postId = postLink.href.split("/").pop();
 
   // Visit post page
-  const postResponse = await request.get(`/micropub/posts/${postId}`);
+  const postResponse = await request.get(`/micropub/${postId}`);
   const postDom = new JSDOM(postResponse.text);
 
   const result = postDom.window.document;

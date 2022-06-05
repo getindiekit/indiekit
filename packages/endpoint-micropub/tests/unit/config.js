@@ -1,7 +1,7 @@
 import test from "ava";
 import { JekyllPreset } from "@indiekit/preset-jekyll";
 import { TwitterSyndicator } from "@indiekit/syndicator-twitter";
-import { getConfig, queryList } from "../../lib/query.js";
+import { getConfig, queryConfig } from "../../lib/config.js";
 
 test.beforeEach((t) => {
   t.context = {
@@ -34,31 +34,31 @@ test("Returns queryable config", (t) => {
 });
 
 test("Filters a list", (t) => {
-  const result = queryList(t.context.list, { filter: "web" });
+  const result = queryConfig(t.context.list, { filter: "web" });
 
   t.deepEqual(result, ["indieweb", "web", "website"]);
 });
 
 test("Limits a list", (t) => {
-  const result = queryList(t.context.list, { limit: 1 });
+  const result = queryConfig(t.context.list, { limit: 1 });
 
   t.deepEqual(result, ["blog"]);
 });
 
 test("Limits a list with an offset", (t) => {
-  const result = queryList(t.context.list, { limit: 1, offset: 2 });
+  const result = queryConfig(t.context.list, { limit: 1, offset: 2 });
 
   t.deepEqual(result, ["microblog"]);
 });
 
 test("Filters and limits a list", (t) => {
-  const result = queryList(t.context.list, { filter: "web", limit: 1 });
+  const result = queryConfig(t.context.list, { filter: "web", limit: 1 });
 
   t.deepEqual(result, ["indieweb"]);
 });
 
 test("Filters and limits a list with an offset", (t) => {
-  const result = queryList(t.context.list, {
+  const result = queryConfig(t.context.list, {
     filter: "web",
     limit: 1,
     offset: 2,

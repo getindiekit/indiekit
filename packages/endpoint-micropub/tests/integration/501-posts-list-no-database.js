@@ -6,7 +6,7 @@ import { testServer } from "@indiekit-test/server";
 test("Returns list of previously uploaded files", async (t) => {
   const request = await testServer({ useDatabase: false });
   const response = await request
-    .get("/micropub/posts")
+    .get("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" });
   const dom = new JSDOM(response.text);
 
