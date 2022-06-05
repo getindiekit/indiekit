@@ -9,10 +9,6 @@ const ftp = new FtpStore({
   repo: "repo",
 });
 
-test.beforeEach((t) => {
-  t.context.bitbucketUrl = "https://api.bitbucket.org";
-});
-
 test("Gets plug-in info", (t) => {
   t.is(ftp.name, "FTP store");
   t.is(ftp.info.name, "username on ftp.server.example");
