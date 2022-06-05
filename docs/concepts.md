@@ -29,7 +29,7 @@ Then add it to your configuration file:
 }
 ```
 
-If you are saving your configuration file in a public location, you should keep any passwords or API tokens private. For this plugin, you can do this by creating a `GITHUB_TOKEN` [environment variable][env] with your GitHub personal access token as its value.
+{% include_relative _includes/plugin-requires-secrets.md %}
 
 ## Endpoint
 
@@ -73,7 +73,7 @@ Then add it to your configuration file:
 
 ## Syndicator
 
-A key idea of the IndieWeb movement is POSSE (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
+A key idea of the IndieWeb movement is [POSSE](https://indieweb.org/POSSE) (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
 
 For example, if you want to syndicate your content to Twitter, you can install the [Twitter plug-in](plug-ins.md#twitter):
 
@@ -94,6 +94,10 @@ Then add it to your configuration file:
 }
 ```
 
-If you are saving your configuration file in a public location, you should keep any API keys, secrets and tokens private, using [environment variables][env] where possible.
+The `checked` option is used to tell Micropub clients whether a syndication target should be enabled or not by default.
+
+Not all clients allow you to disable or enable syndication targets. Setting the `forced` option to `true` will ensure that a syndication target is enabled regardless.
+
+{% include_relative _includes/plugin-requires-secrets.md %}
 
 [env]: https://devcenter.heroku.com/articles/config-vars
