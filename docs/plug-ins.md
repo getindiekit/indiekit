@@ -11,6 +11,7 @@ You can find more plug-ins on npm under the [`indiekit-plugin`](https://www.npmj
 A [content store](../concepts#content-store) is a location where Indiekit can save post content and media files. Plug-ins are available for the following platforms:
 
 - [@indiekit/store-bitbucket](https://npmjs.org/package/@indiekit/store-bitbucket)
+- [@indiekit/store-file-system](https://npmjs.org/package/@indiekit/store-file-system)
 - [@indiekit/store-ftp](https://npmjs.org/package/@indiekit/store-ftp)
 - [@indiekit/store-gitea](https://npmjs.org/package/@indiekit/store-gitea)
 - [@indiekit/store-github](https://npmjs.org/package/@indiekit/store-github)
