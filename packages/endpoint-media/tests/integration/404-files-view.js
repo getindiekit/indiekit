@@ -6,7 +6,7 @@ test("Returns 404 if can’t find previously uploaded file", async (t) => {
   const request = await testServer();
 
   const result = await request
-    .get("/media/files/5ffcc8025c561a7bf53bd6e8")
+    .get("/media/5ffcc8025c561a7bf53bd6e8")
     .auth(process.env.TEST_TOKEN, { type: "bearer" });
 
   t.is(result.statusCode, 404);

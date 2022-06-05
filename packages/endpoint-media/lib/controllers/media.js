@@ -10,7 +10,7 @@ export const mediaController = {
    * @param {Function} next Callback
    * @returns {object} HTTP response
    */
-  async list(request, response, next) {
+  async files(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
 
@@ -20,41 +20,57 @@ export const mediaController = {
         );
       }
 
-      const page = Number.parseInt(request.query.page, 10) || 1;
-      const limit = Number.parseInt(request.query.limit, 10) || 18;
-      const skip = (page - 1) * limit;
+      let { page, limit, offset } = request.query;
+      page = Number.parseInt(page, 10) || 1;
+      limit = Number.parseInt(limit, 10) || 18;
+      offset = Number.parseInt(offset, 10) || (page - 1) * limit;
 
       const files = await publication.media
         .find()
         .sort({ _id: -1 })
-        .skip(skip)
+        .skip(offset)
         .limit(limit)
         .toArray();
 
-      const count = await publication.media.countDocuments();
+      if (request.accepts("html")) {
+        response.render("files", {
+          title: response.__("media.files.title"),
+          files,
+          page,
+          limit,
+          count: await publication.media.countDocuments(),
+          parentUrl: request.baseUrl + request.path,
+        });
+      } else {
+        const { q } = request.query;
+        const items = files.map((media) => media.properties);
 
-      response.render("files", {
-        title: response.__("media.files.title"),
-        files,
-        page,
-        limit,
-        count,
-        parentUrl: request.baseUrl + request.path,
-      });
+        if (!q) {
+          throw new httpError.BadRequest("Invalid query");
+        }
+
+        switch (q) {
+          case "source":
+            return response.json({ items });
+
+          default:
+            throw new httpError.NotImplemented(`Unsupported parameter: ${q}`);
+        }
+      }
     } catch (error) {
       next(error);
     }
   },
 
   /**
-   * View previously uploaded files
+   * View previously uploaded file
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  async view(request, response, next) {
+  async file(request, response, next) {
     try {
       const { publication } = request.app.locals;
       const { id } = request.params;

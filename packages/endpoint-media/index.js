@@ -2,7 +2,6 @@ import express from "express";
 import multer from "multer";
 import { mediaController } from "./lib/controllers/media.js";
 import { uploadController } from "./lib/controllers/upload.js";
-import { queryController } from "./lib/controllers/query.js";
 
 const defaults = {
   mountPath: "/media",
@@ -21,7 +20,7 @@ export const MediaEndpoint = class {
   navigationItems(application) {
     if (application.hasDatabase) {
       return {
-        href: `${this.options.mountPath}/files`,
+        href: this.options.mountPath,
         text: "media.title",
       };
     }
@@ -33,10 +32,9 @@ export const MediaEndpoint = class {
       storage: multer.memoryStorage(),
     });
 
-    router.get("/", queryController);
+    router.get("/", mediaController.files);
     router.post("/", multipartParser.single("file"), uploadController);
-    router.get("/files", mediaController.list);
-    router.get("/files/:id", mediaController.view);
+    router.get("/:id", mediaController.file);
 
     return router;
   }
