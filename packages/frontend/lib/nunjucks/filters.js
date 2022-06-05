@@ -8,18 +8,19 @@ import markdownIt from "../markdown-it.js";
 const { format, parseISO } = dateFns;
 
 /**
- * Get absolute URL
+ * Get absolute URL or path
  *
  * @param {string} string URL or path
  * @param {string} baseUrl Base URL
  * @returns {URL} Absolute URL
  */
 export const absoluteUrl = (string, baseUrl) => {
+  string = String(string);
+
   try {
-    return new URL(string).href;
+    return new URL(string, baseUrl).href;
   } catch {
-    const absoluteUrl = path.posix.join(baseUrl, string);
-    return new URL(absoluteUrl).href;
+    return path.posix.join(baseUrl, string);
   }
 };
 

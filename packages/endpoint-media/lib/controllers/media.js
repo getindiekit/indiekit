@@ -39,7 +39,7 @@ export const mediaController = {
         page,
         limit,
         count,
-        parentUrl: `${request.originalUrl}/`,
+        parentUrl: request.baseUrl + request.path,
       });
     } catch (error) {
       next(error);
