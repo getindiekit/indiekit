@@ -42,18 +42,23 @@ export const getConfig = (application, publication) => {
 };
 
 /**
- * Query a list
+ * Query config value
  *
- * @param {Array} list List of items
- * @param {object} options Options (filter, limit, offset)
- * @returns {Array} Updated list
+ * @param {Array} property Property to query
+ * @param {object} options List options (filter, limit, offset)
+ * @returns {Array} Updated config property
  */
-export const queryList = (list, options) => {
+export const queryConfig = (property, options) => {
   const { filter, limit } = options;
-  list = list || [];
+
+  if (!Array.isArray(property)) {
+    return property;
+  }
+
+  let properties = property || [];
 
   if (filter) {
-    list = list.filter((item) => {
+    properties = properties.filter((item) => {
       item = JSON.stringify(item);
       item = item.toLowerCase();
       return item.includes(filter);
@@ -62,9 +67,9 @@ export const queryList = (list, options) => {
 
   if (limit) {
     const offset = options.offset || 0;
-    list = list.slice(offset, offset + limit);
-    list.length = Math.min(list.length, limit);
+    properties = properties.slice(offset, offset + limit);
+    properties.length = Math.min(properties.length, limit);
   }
 
-  return list;
+  return properties;
 };

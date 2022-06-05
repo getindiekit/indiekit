@@ -20,6 +20,5 @@ test("Returns list of previously published posts", async (t) => {
     .query("q=source&properties[]=name&url=https://website.example/page.html");
 
   t.is(result.statusCode, 200);
-  t.is(result.text, "Source has no items");
   t.deepEqual(result.body, {});
 });
