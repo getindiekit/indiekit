@@ -40,18 +40,26 @@ Assuming your publication is deployed every time there is a new commit, this new
 
 Note the `mp-syndicate-to` property in the above example. If you’ve configured Indiekit to syndicate to third-party websites they will appear in this list.
 
-You can then send a second `POST` request, this time to `https://indiekit.website.example/syndicate` along with a secret token:
+You can then send a second `POST` request, this time to `https://indiekit.website.example/syndicate` along with your access token which you can find on your server’s status page:
 
 ```http
 POST /syndicate HTTP/1.1
 Host: indiekit.mywebsite.com
 Content-type: application/x-www-form-urlencoded
-Authorization: Bearer XXXXXXX
 
 token=XXXXXXX
 ```
 
-This will tell Indiekit to syndicate the most recent un-syndicated post to the third-party websites listed in the front matter. Once this has been completed, Indiekit will update the post, replacing `mp-syndicate-to` with a `syndication` property listing the location of each syndicated copy:
+This will tell Indiekit to syndicate the most recent un-syndicated post to the third-party websites listed in the front matter.
+
+> ### Use an outgoing webhook on Netlify
+>
+> Netlify allows [posting to an outgoing webhook](https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks) once a deploy has succeeded.
+>
+> In ‘URL to notify’, enter your server’s syndication endpoint with your access token as the `token` parameter, for example: `https://indiekit.website.example/syndicate?token=XXXXXXX`.
+{: .information }
+
+Once this has been completed, Indiekit will update the post, replacing `mp-syndicate-to` with a `syndication` property listing the location of each syndicated copy:
 
 ```yaml
 ---
