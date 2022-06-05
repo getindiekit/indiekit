@@ -20,6 +20,9 @@ A [content store](../concepts#content-store) is a location where Indiekit can sa
 
 An [endpoint](../concepts#endpoint) is a path on your Indiekit server that applications can send requests to or users can access certain features at.
 
+- [@indiekit/endpoint-image](https://npmjs.org/package/@indiekit/endpoint-image) (Built-in)  
+  Image resizing endpoint for Indiekit. Adds real-time image processing routes that can be used by your publication.
+
 - [@indiekit/endpoint-micropub](https://npmjs.org/package/@indiekit/endpoint-micropub) (Built-in)  
   Micropub endpoint for Indiekit. Enables publishing content to your website using the Micropub protocol.
 
@@ -31,6 +34,9 @@ An [endpoint](../concepts#endpoint) is a path on your Indiekit server that appli
 
 - [@indiekit/endpoint-syndicate](https://npmjs.org/package/@indiekit/endpoint-syndicate) (Built-in)  
   Syndication endpoint for Indiekit. Provides an endpoint you can ping to check that recently published posts have been syndicated to any configured targets such as Twitter or Mastodon.
+
+- [@indiekit/endpoint-token](https://npmjs.org/package/@indiekit/endpoint-token) (Built-in)  
+  Token endpoint for Indiekit. Provides an IndieAuth token endpoint to verify access tokens.
 
 ## Publication presets
 
