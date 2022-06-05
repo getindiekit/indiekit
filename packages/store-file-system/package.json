@@ -1,0 +1,37 @@
+{
+  "name": "@indiekit/store-file-system",
+  "version": "1.0.0-alpha.0",
+  "description": "File system content store adaptor for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "micropub"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/store-file-system"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

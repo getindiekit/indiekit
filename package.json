@@ -63,6 +63,7 @@
     "create-indiekit": "*",
     "eslint-plugin-jsdoc": "^39.0.0",
     "jsdom": "^19.0.0",
+    "mock-fs": "^5.1.2",
     "mock-req-res": "^1.2.0",
     "mock-session": "^0.0.5",
     "mongodb-memory-server": "^8.2.0",
