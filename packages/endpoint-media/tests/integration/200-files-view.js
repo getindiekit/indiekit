@@ -19,14 +19,14 @@ test("Views previously uploaded file", async (t) => {
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   // Get file data by parsing list of files and getting values from link
-  const filesResponse = await request.get("/media/files");
+  const filesResponse = await request.get("/media");
   const filesDom = new JSDOM(filesResponse.text);
   const fileLink = filesDom.window.document.querySelector(".file-grid a");
   const fileName = fileLink.querySelector("img").alt;
   const fileId = fileLink.href.split("/").pop();
 
   // Visit file page
-  const fileResponse = await request.get(`/media/files/${fileId}`);
+  const fileResponse = await request.get(`/media/${fileId}`);
   const fileDom = new JSDOM(fileResponse.text);
   const result = fileDom.window.document;
 
