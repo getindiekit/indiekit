@@ -31,4 +31,5 @@ export default {
 
 For a photo post, this would create the following commit messages:
 
-> `🤖 created a photo post`\\ > `🤖 uploaded a photo file`
+> `🤖 created a photo post`  
+> `🤖 uploaded a photo file`
