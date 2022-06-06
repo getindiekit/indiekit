@@ -1,17 +1,17 @@
 <ol class="file-grid{{- " " + opts.classes if opts.classes }}">
   {%- for item in opts.items %}
   <li class="file-grid__item">
-    {%- set type = item.properties["post-type"] -%}
+    {%- set type = item["post-type"] -%}
     {%- if type == "audio" %}
-    <audio src="{{ item.properties.url }}" controls>
+    <audio src="{{ item.url }}" controls>
     {%- elif type == "photo" %}
-    <a href="{{ item._id | absoluteUrl(parentUrl) }}">
-      <img src="{{ item.properties.url | replace(publication.me, "") | absoluteUrl(application.url + application.imageEndpoint) }}?w=400&#38;h=400&#38;c=true" alt="{{ item.properties.filename }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';" width="400" height="400">
+    <a href="{{ item.id | absoluteUrl(parentUrl) }}">
+      <img src="{{ item.url | replace(publication.me, "") | absoluteUrl(application.url + application.imageEndpoint) }}?w=400&#38;h=400&#38;c=true" alt="{{ item.filename }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';" width="400" height="400">
     </a>
     {%- elif type == "video" %}
-    <video src="{{ item.properties.url }}" controls>
+    <video src="{{ item.url }}" controls>
     {%- else %}
-    <a href="{{ item.properties.url }}" download>{{ __("media.download") }}</a>
+    <a href="{{ item.url }}" download>{{ __("media.download") }}</a>
     {%- endif %}
   </li>
   {%- endfor %}

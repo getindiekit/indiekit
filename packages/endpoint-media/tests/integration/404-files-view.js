@@ -10,5 +10,5 @@ test("Returns 404 if can’t find previously uploaded file", async (t) => {
     .auth(process.env.TEST_TOKEN, { type: "bearer" });
 
   t.is(result.statusCode, 404);
-  t.true(result.text.includes("No file was found with this UUID"));
+  t.true(result.text.includes("No file was found at this URL"));
 });

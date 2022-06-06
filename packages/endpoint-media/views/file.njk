@@ -1,20 +1,20 @@
 {% extends "document.njk" %}
 
-{% set title = file.properties.filename %}
+{% set title = file.filename %}
 
 {% block content %}
-  {% set type = file.properties["post-type"] %}
+  {% set type = file["post-type"] %}
   {% if type == "audio" %}
-    <audio src="{{ file.properties.url }}" controls>
+    <audio src="{{ file.url }}" controls>
   {% elif type == "photo" %}
-    <img src="{{ file.properties.url }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';">
+    <img src="{{ file.url }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';">
   {% elif type == "video" %}
-    <video src="{{ file.properties.url }}" controls>
+    <video src="{{ file.url }}" controls>
   {% else %}
-    <a href="{{ file.properties.url }}" download>{{ __("media.download") }}</a>
+    <a href="{{ file.url }}" download>{{ __("media.download") }}</a>
   {% endif %}
   {{ summary({
     title: __("media.properties"),
-    rows: file.properties | summaryRows
+    rows: file | summaryRows
   }) }}
 {% endblock %}
