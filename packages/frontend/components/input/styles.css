@@ -30,6 +30,19 @@
   padding: 0;
 }
 
+.input[type="file"] {
+  border: 0;
+  padding: 0;
+}
+
+input[type="file"]::file-selector-button {
+  margin-inline-end: var(--space-inline);
+}
+
+.input[type="file"]:focus {
+  box-shadow: none;
+}
+
 .input--error {
   border-color: var(--color-error);
 }

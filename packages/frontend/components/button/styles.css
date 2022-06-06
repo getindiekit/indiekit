@@ -1,18 +1,22 @@
-.button {
+.button,
+input[type="file"]::file-selector-button {
   background-color: var(--color-neutral-darkest);
+  border: var(--border-width-thick) solid transparent;
+  border-block-end-color: var(--color-shadow);
   border-radius: var(--border-radius-small);
-  box-shadow: inset 0 calc(var(--border-width-thick) * -1) 0 0
-    var(--color-shadow);
   color: var(--color-background);
   display: inline-block;
+  line-height: var(--line-height-loose);
   padding: var(--inset-small-squished);
 }
 
-.button:focus {
+.button:focus,
+input[type="file"]::file-selector-button:focus {
   @extend %focus;
 }
 
-.button:hover {
+.button:hover,
+input[type="file"]::file-selector-button:hover {
   background-color: var(--color-neutral-dark);
 }
 
