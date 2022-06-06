@@ -111,7 +111,6 @@
 
   /* Colour assignments */
   --color-background: black;
-  --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 100% / 24%);
   --color-anchor-hover: var(--color-accent-lightest);
 
   /* Typography */
