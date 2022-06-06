@@ -30,13 +30,14 @@
   /* Colour assignments */
   --color-background: white;
   --color-offset: var(--color-neutral-lightest);
+  --color-highlight: hsl(0 0% 100% / 24%);
   --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
   --color-shadow-offset: hsl(
     var(--color-neutral-h) var(--color-neutral-s) 0% / 6%
   );
   --color-text: var(--color-neutral-darkest);
   --color-anchor-hover: var(--color-accent-dark);
-  --color-highlight: hsl(48 100% 50% / 33%);
+  --color-selection: hsl(48 100% 50% / 33%);
   --color-focus: hsl(48 100% 50%);
   --color-error: hsl(0 100% 60%);
   --color-success: hsl(144 100% 50%);
