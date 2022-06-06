@@ -1,5 +1,5 @@
+import { Buffer } from "node:buffer";
 import httpError from "http-errors";
-import mongodb from "mongodb";
 
 export const mediaController = {
   /**
@@ -11,52 +11,57 @@ export const mediaController = {
    * @returns {object} HTTP response
    */
   async files(request, response, next) {
-    try {
-      const { application, publication } = request.app.locals;
+    if (!request.accepts("html")) {
+      return next();
+    }
 
-      if (!application.hasDatabase) {
-        throw new httpError.NotImplemented(
-          response.__("errors.noDatabase.content")
-        );
-      }
+    try {
+      const { publication } = request.app.locals;
 
       let { page, limit, offset } = request.query;
       page = Number.parseInt(page, 10) || 1;
-      limit = Number.parseInt(limit, 10) || 18;
+      limit = Number.parseInt(limit, 10) || 6;
       offset = Number.parseInt(offset, 10) || (page - 1) * limit;
 
-      const files = await publication.media
-        .find()
-        .sort({ _id: -1 })
-        .skip(offset)
-        .limit(limit)
-        .toArray();
+      const parameters = new URLSearchParams({
+        q: "source",
+        page,
+        limit,
+        offset,
+      }).toString();
 
-      if (request.accepts("html")) {
-        response.render("files", {
-          title: response.__("media.files.title"),
-          files,
-          page,
-          limit,
-          count: await publication.media.countDocuments(),
-          parentUrl: request.baseUrl + request.path,
-        });
-      } else {
-        const { q } = request.query;
-        const items = files.map((media) => media.properties);
-
-        if (!q) {
-          throw new httpError.BadRequest("Invalid query");
+      const endpointResponse = await fetch(
+        `${publication.mediaEndpoint}?${parameters}`,
+        {
+          headers: {
+            accept: "application/json",
+            authorization: `Bearer ${request.session.token}`,
+          },
         }
+      );
 
-        switch (q) {
-          case "source":
-            return response.json({ items });
+      const body = await endpointResponse.json();
 
-          default:
-            throw new httpError.NotImplemented(`Unsupported parameter: ${q}`);
-        }
+      if (!endpointResponse.ok) {
+        throw httpError(
+          endpointResponse.status,
+          body.error_description || endpointResponse.statusText
+        );
       }
+
+      const files = body.items.map((item) => {
+        item.id = Buffer.from(item.url).toString("base64");
+        return item;
+      });
+
+      response.render("files", {
+        title: response.__("media.files.title"),
+        files,
+        page,
+        limit,
+        count: await publication.media.countDocuments(),
+        parentUrl: request.baseUrl + request.path,
+      });
     } catch (error) {
       next(error);
     }
@@ -74,17 +79,35 @@ export const mediaController = {
     try {
       const { publication } = request.app.locals;
       const { id } = request.params;
-      const file = await publication.media.findOne({
-        _id: new mongodb.ObjectId(id),
-      });
+      const url = Buffer.from(id, "base64").toString("utf8");
 
-      if (!file) {
-        throw new httpError.NotFound("No file was found with this UUID");
+      const parameters = new URLSearchParams({
+        q: "source",
+        url,
+      }).toString();
+
+      const endpointResponse = await fetch(
+        `${publication.mediaEndpoint}?${parameters}`,
+        {
+          headers: {
+            accept: "application/json",
+            authorization: `Bearer ${request.session.token}`,
+          },
+        }
+      );
+
+      const body = await endpointResponse.json();
+
+      if (!endpointResponse.ok) {
+        throw httpError(
+          endpointResponse.status,
+          body.error_description || endpointResponse.statusText
+        );
       }
 
       response.render("file", {
         parent: response.__("media.files.title"),
-        file,
+        file: body,
       });
     } catch (error) {
       next(error);

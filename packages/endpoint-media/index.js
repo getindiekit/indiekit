@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import { mediaController } from "./lib/controllers/media.js";
-import { uploadController } from "./lib/controllers/upload.js";
+import { micropubController } from "./lib/controllers/micropub.js";
 
 const defaults = {
   mountPath: "/media",
@@ -32,9 +32,13 @@ export const MediaEndpoint = class {
       storage: multer.memoryStorage(),
     });
 
+    // Application
     router.get("/", mediaController.files);
-    router.post("/", multipartParser.single("file"), uploadController);
     router.get("/:id", mediaController.file);
+
+    // Micropub API
+    router.get("/", micropubController.query);
+    router.post("/", multipartParser.single("file"), micropubController.upload);
 
     return router;
   }
