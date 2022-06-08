@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
+
+
+### Bug Fixes
+
+* add assets folders to package files ([047ef5e](https://github.com/getindiekit/indiekit/commit/047ef5e8fa23f14858bd0b9ecf442d45501dfc25))
+* correct file paths when views have a query string ([1457773](https://github.com/getindiekit/indiekit/commit/14577736648d7800a0592b31f0c66034502f968a))
+* **frontend:** don’t invert shadow colour in dark mode ([9a9fd25](https://github.com/getindiekit/indiekit/commit/9a9fd25f259442687ce98395fdfb0b6ee1e4ecc5))
+
+
+### Features
+
+* dev mode ([b3c186b](https://github.com/getindiekit/indiekit/commit/b3c186b6456a581cb8187530100d730f56d7193c))
+* **endpoint-token:** add translation files ([7f02e6a](https://github.com/getindiekit/indiekit/commit/7f02e6aa703864302c3591acd68a1a1c26ada1c6))
+* **endpoint-token:** upload locales for translation ([ddd6b14](https://github.com/getindiekit/indiekit/commit/ddd6b14036fd752fa3ead4a663a60efae07e57c5))
+* **frontend:** add styles for file input ([df0fe69](https://github.com/getindiekit/indiekit/commit/df0fe697ea0a40a75fe418ae029628d9e91df020))
+* **indiekit:** remove robots.txt ([650dd05](https://github.com/getindiekit/indiekit/commit/650dd056fa4602f0c43b665a861f353232631ccf))
+* localise pagination component ([533022f](https://github.com/getindiekit/indiekit/commit/533022f8b21a8138366549faba4d8036c0f02283))
+* require node.js v18 ([a7408db](https://github.com/getindiekit/indiekit/commit/a7408db7c3430cf51b76e793c5718245a7cae03c))
+* **store-file-system:** add file system store ([9185121](https://github.com/getindiekit/indiekit/commit/9185121fd5daed5667379940cd010e563c41a479))
+
+
+
+
+
 # [1.0.0-alpha.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-05-26)
 
 

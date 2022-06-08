@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
+
+
+### Bug Fixes
+
+* correct file paths when views have a query string ([1457773](https://github.com/getindiekit/indiekit/commit/14577736648d7800a0592b31f0c66034502f968a))
+* **frontend:** don’t invert shadow colour in dark mode ([9a9fd25](https://github.com/getindiekit/indiekit/commit/9a9fd25f259442687ce98395fdfb0b6ee1e4ecc5))
+
+
+### Features
+
+* **frontend:** add styles for file input ([df0fe69](https://github.com/getindiekit/indiekit/commit/df0fe697ea0a40a75fe418ae029628d9e91df020))
+* localise pagination component ([533022f](https://github.com/getindiekit/indiekit/commit/533022f8b21a8138366549faba4d8036c0f02283))
+* require node.js v18 ([a7408db](https://github.com/getindiekit/indiekit/commit/a7408db7c3430cf51b76e793c5718245a7cae03c))
+
+
+
+
+
 # [1.0.0-alpha.0](https://github.com/getindiekit/indiekit/compare/v0.3.0...v1.0.0-alpha.0) (2022-05-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "An IndieWeb publishing toolkit",
   "keywords": [
     "express",
@@ -38,14 +38,14 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
-    "@indiekit/endpoint-image": "^1.0.0-alpha.3",
-    "@indiekit/endpoint-media": "^1.0.0-alpha.0",
-    "@indiekit/endpoint-micropub": "^1.0.0-alpha.4",
-    "@indiekit/endpoint-share": "^1.0.0-alpha.0",
-    "@indiekit/endpoint-syndicate": "^1.0.0-alpha.0",
-    "@indiekit/endpoint-token": "^1.0.0-alpha.0",
-    "@indiekit/frontend": "^1.0.0-alpha.0",
-    "@indiekit/preset-jekyll": "^1.0.0-alpha.0",
+    "@indiekit/endpoint-image": "^1.0.0-alpha.5",
+    "@indiekit/endpoint-media": "^1.0.0-alpha.5",
+    "@indiekit/endpoint-micropub": "^1.0.0-alpha.5",
+    "@indiekit/endpoint-share": "^1.0.0-alpha.5",
+    "@indiekit/endpoint-syndicate": "^1.0.0-alpha.5",
+    "@indiekit/endpoint-token": "^1.0.0-alpha.5",
+    "@indiekit/frontend": "^1.0.0-alpha.5",
+    "@indiekit/preset-jekyll": "^1.0.0-alpha.5",
     "commander": "^9.0.0",
     "cookie-session": "^2.0.0",
     "cosmiconfig": "^7.0.1",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
+
+
+### Features
+
+* require node.js v18 ([a7408db](https://github.com/getindiekit/indiekit/commit/a7408db7c3430cf51b76e793c5718245a7cae03c))
+
+
+
+
+
 # [1.0.0-alpha.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-05-22)
 
 

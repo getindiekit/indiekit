@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
+
+
+### Features
+
+* dev mode ([b3c186b](https://github.com/getindiekit/indiekit/commit/b3c186b6456a581cb8187530100d730f56d7193c))
+* **indiekit:** remove robots.txt ([650dd05](https://github.com/getindiekit/indiekit/commit/650dd056fa4602f0c43b665a861f353232631ccf))
+* localise pagination component ([533022f](https://github.com/getindiekit/indiekit/commit/533022f8b21a8138366549faba4d8036c0f02283))
+
+
+
+
+
 # [1.0.0-alpha.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2022-05-26)
 
 **Note:** Version bump only for package @indiekit/indiekit

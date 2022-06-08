@@ -1,6 +1,6 @@
 {
   "name": "create-indiekit",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.5",
   "description": "Get started with Indiekit",
   "keywords": [
     "express",
@@ -34,15 +34,15 @@
     "directory": "packages/create-indiekit"
   },
   "dependencies": {
-    "@indiekit/preset-hugo": "^1.0.0-alpha.0",
-    "@indiekit/preset-jekyll": "^1.0.0-alpha.0",
-    "@indiekit/store-bitbucket": "^1.0.0-alpha.0",
-    "@indiekit/store-ftp": "^1.0.0-alpha.0",
-    "@indiekit/store-gitea": "^1.0.0-alpha.0",
-    "@indiekit/store-github": "^1.0.0-alpha.0",
-    "@indiekit/store-gitlab": "^1.0.0-alpha.0",
-    "@indiekit/syndicator-internet-archive": "^1.0.0-alpha.0",
-    "@indiekit/syndicator-twitter": "^1.0.0-alpha.0",
+    "@indiekit/preset-hugo": "^1.0.0-alpha.5",
+    "@indiekit/preset-jekyll": "^1.0.0-alpha.5",
+    "@indiekit/store-bitbucket": "^1.0.0-alpha.5",
+    "@indiekit/store-ftp": "^1.0.0-alpha.5",
+    "@indiekit/store-gitea": "^1.0.0-alpha.5",
+    "@indiekit/store-github": "^1.0.0-alpha.5",
+    "@indiekit/store-gitlab": "^1.0.0-alpha.5",
+    "@indiekit/syndicator-internet-archive": "^1.0.0-alpha.5",
+    "@indiekit/syndicator-twitter": "^1.0.0-alpha.5",
     "base-create": "^3.0.7",
     "chalk": "^5.0.0",
     "prompts": "^2.4.2"
