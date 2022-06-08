@@ -5,12 +5,12 @@ nav_order: 3
 # Configuration
 {: .no_toc }
 
-Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
+Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load a configuration file. Starting from the current working directory, it looks for the following possible sources:
 
-- a `indiekit` property in package.json
+- a `indiekit` property in `package.json`
 - a `.indiekitrc` file
-- a `indiekit.config.js` file exporting a JS object
-- a `indiekit.config.cjs` file exporting a JS object. When running indiekit in JavaScript packages that specify `"type":"module"` in their `package.json`
+- a `indiekit.config.js` file exporting a JavaScript object
+- a `indiekit.config.cjs` file exporting a JavaScript object (in projects that specify `"type":"module"` in `package.json`)
 
 The search stops when one of these is found, and Indiekit uses that object. You can use the `--config` CLI option to short-circuit the search.
 
