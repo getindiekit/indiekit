@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
-    "camelcase-keys": "^7.0.0",
+    "camelcase-keys": "^8.0.0",
     "yaml": "^2.0.0"
   },
   "publishConfig": {
