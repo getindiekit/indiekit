@@ -1,10 +1,13 @@
 #!/usr/bin/env node
+import { createRequire } from "node:module";
 import create from "base-create";
 import chalk from "chalk";
 import prompts from "prompts";
 import { setupPrompts } from "./lib/setup-prompts.js";
 import { addPluginConfig } from "./lib/utils.js";
-import { bugs, name, version } from "./package.json" assert { type: "json" };
+
+const require = createRequire(import.meta.url);
+const { name, version, bugs } = require("./package.json");
 
 const nodeVersion = 18;
 
