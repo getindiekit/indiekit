@@ -71,7 +71,6 @@ export const isUrl = (string) => {
  * @returns {object} Plug-in
  */
 export const getPlugin = async (pluginName) => {
-  // eslint-disable-next-line node/no-unsupported-features/es-syntax
   const { default: IndiekitPlugin } = await import(pluginName);
   const plugin = new IndiekitPlugin();
 

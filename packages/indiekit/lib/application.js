@@ -11,7 +11,6 @@ export const getLocales = async (application) => {
 
   // Application localisations
   for await (const locale of application.localesAvailable) {
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
     const { default: translation } = await import(`../locales/${locale}.json`, {
       assert: { type: "json" },
     });
@@ -23,7 +22,7 @@ export const getLocales = async (application) => {
     for (const locale of application.localesAvailable) {
       try {
         const appLocale = locales.get(locale);
-        // eslint-disable-next-line no-await-in-loop, node/no-unsupported-features/es-syntax
+        // eslint-disable-next-line no-await-in-loop
         const { default: translation } = await import(
           `../../${plugin.id}/locales/${locale}.json`,
           {
@@ -48,7 +47,6 @@ export const getInstalledPlugins = async (Indiekit) => {
   const installedPlugins = [];
 
   for await (const pluginName of Indiekit.config.plugins) {
-    // eslint-disable-next-line node/no-unsupported-features/es-syntax
     const { default: IndiekitPlugin } = await import(pluginName);
     const plugin = new IndiekitPlugin(Indiekit.config[pluginName]);
 
