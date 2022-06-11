@@ -37,6 +37,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
+    "http-errors": "^2.0.0",
     "undici": "^5.2.0"
   },
   "publishConfig": {

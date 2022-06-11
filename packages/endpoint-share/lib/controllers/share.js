@@ -1,4 +1,5 @@
 import { fetch } from "undici";
+import httpError from "http-errors";
 import validator from "express-validator";
 
 const { validationResult } = validator;
@@ -60,7 +61,10 @@ export const shareController = {
       const body = await endpointResponse.json();
 
       if (!endpointResponse.ok) {
-        throw new Error(body.error_description || endpointResponse.statusText);
+        throw httpError(
+          endpointResponse.status,
+          body.error_description || endpointResponse.statusText
+        );
       }
 
       const message = encodeURIComponent(body.success_description);
