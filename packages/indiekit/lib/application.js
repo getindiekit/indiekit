@@ -1,4 +1,7 @@
+import { createRequire } from "node:module";
 import deepmerge from "deepmerge";
+
+const require = createRequire(import.meta.url);
 
 /**
  * Add localisations to application configuration
@@ -6,29 +9,21 @@ import deepmerge from "deepmerge";
  * @param {object} application Application config
  * @returns {Promise|object} Localisations
  */
-export const getLocales = async (application) => {
+export const getLocales = (application) => {
   const locales = new Map();
 
   // Application localisations
-  for await (const locale of application.localesAvailable) {
-    const { default: translation } = await import(`../locales/${locale}.json`, {
-      assert: { type: "json" },
-    });
+  for (const locale of application.localesAvailable) {
+    const translation = require(`../locales/${locale}.json`);
     locales.set(locale, translation);
   }
 
   // Plug-in localisations
-  for await (const plugin of application.installedPlugins) {
+  for (const plugin of application.installedPlugins) {
     for (const locale of application.localesAvailable) {
       try {
         const appLocale = locales.get(locale);
-        // eslint-disable-next-line no-await-in-loop
-        const { default: translation } = await import(
-          `../../${plugin.id}/locales/${locale}.json`,
-          {
-            assert: { type: "json" },
-          }
-        );
+        const translation = require(`../../${plugin.id}/locales/${locale}.json`);
         locales.set(locale, deepmerge(appLocale, translation));
       } catch {}
     }

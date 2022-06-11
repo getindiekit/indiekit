@@ -45,8 +45,6 @@
     "lerna": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.18.2",
-    "@babel/plugin-syntax-import-assertions": "^7.17.12",
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "@indiekit-test/config": "*",
@@ -111,16 +109,6 @@
     "extends": [
       "plugin:jsdoc/recommended"
     ],
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-      "babelOptions": {
-        "plugins": [
-          "@babel/plugin-syntax-import-assertions"
-        ]
-      },
-      "requireConfigFile": false,
-      "sourceType": "module"
-    },
     "plugins": [
       "jsdoc"
     ],
