@@ -7,7 +7,8 @@ import {
   requestAccessToken,
   verifyAccessToken,
 } from "./tokens.js";
-import { decrypt, encrypt, getCanonicalUrl, randomString } from "./utils.js";
+import { generateState, validateState } from "./state.js";
+import { getCanonicalUrl, randomString } from "./utils.js";
 
 export const IndieAuth = class {
   constructor(options = {}) {
@@ -15,43 +16,6 @@ export const IndieAuth = class {
     this.devMode = options.devMode;
     this.iv = crypto.randomBytes(16);
     this.me = getCanonicalUrl(options.me);
-  }
-
-  /**
-   * Generate unique encrypted state value
-   *
-   * @returns {string} State
-   */
-  generateState() {
-    const state = encrypt(
-      JSON.stringify({
-        clientId: this.clientId,
-        date: Date.now(),
-      }),
-      this.iv
-    );
-
-    return state;
-  }
-
-  /**
-   * Validate state generated using `generateState` method
-   *
-   * @param {string} state State
-   * @returns {object|boolean} Validated state object, returns false on failure
-   */
-  validateState(state) {
-    try {
-      state = JSON.parse(decrypt(state, this.iv));
-      const validClient = state.clientId === this.clientId;
-      const validDate = state.date > Date.now() - 1000 * 60 * 10;
-
-      if (validClient && validDate) {
-        return state;
-      }
-    } catch {
-      return false;
-    }
   }
 
   /**
@@ -151,7 +115,7 @@ export const IndieAuth = class {
           : `${callbackUrl}`;
 
         const scope = "create update delete media";
-        const state = this.generateState();
+        const state = generateState(this.clientId, this.iv);
         const authUrl = await this.getAuthUrl(
           publication.authorizationEndpoint,
           scope,
@@ -192,7 +156,7 @@ export const IndieAuth = class {
 
       try {
         // Check for state mismatch
-        if (!code || !state || !this.validateState(state)) {
+        if (!code || !state || !validateState(state, this.clientId, this.iv)) {
           return response.status(403).render("session/login", {
             title: response.__("session.login.title"),
             error: response.__("session.login.error.validateState"),

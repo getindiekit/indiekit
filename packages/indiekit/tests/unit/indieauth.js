@@ -24,19 +24,6 @@ test.beforeEach((t) => {
   };
 });
 
-test("Validates state", (t) => {
-  const state = indieauth.generateState();
-  const result = indieauth.validateState(state);
-
-  t.is(String(result.date).slice(0, 10), String(Date.now()).slice(0, 10));
-});
-
-test("Invalidates state", (t) => {
-  const result = indieauth.validateState("state");
-
-  t.false(result);
-});
-
 test("Throws error getting authentication URL", async (t) => {
   await t.throwsAsync(
     indieauth.getAuthUrl("https://indieauth.com/auth", null, "state"),
