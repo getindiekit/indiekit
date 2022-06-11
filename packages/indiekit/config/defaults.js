@@ -1,7 +1,10 @@
 import crypto from "node:crypto";
+import { createRequire } from "node:module";
 import process from "node:process";
 import cookieSession from "cookie-session";
-import package_ from "../package.json" assert { type: "json" };
+
+const require = createRequire(import.meta.url);
+const package_ = require("../package.json");
 
 export const defaultConfig = {
   application: {
