@@ -1,118 +1,100 @@
-import { Buffer } from "node:buffer";
 import httpError from "http-errors";
+import { media } from "../media.js";
+import { mediaData } from "../media-data.js";
+import { checkScope } from "../scope.js";
 
 export const mediaController = {
   /**
-   * List previously uploaded files
-   *
-   * @param {object} request HTTP request
-   * @param {object} response HTTP response
-   * @param {Function} next Callback
-   * @returns {object} HTTP response
-   */
-  async files(request, response, next) {
-    if (!request.accepts("html")) {
-      return next();
-    }
-
-    try {
-      const { publication } = request.app.locals;
-
-      let { page, limit, offset } = request.query;
-      page = Number.parseInt(page, 10) || 1;
-      limit = Number.parseInt(limit, 10) || 6;
-      offset = Number.parseInt(offset, 10) || (page - 1) * limit;
-
-      const parameters = new URLSearchParams({
-        q: "source",
-        page,
-        limit,
-        offset,
-      }).toString();
-
-      const endpointResponse = await fetch(
-        `${publication.mediaEndpoint}?${parameters}`,
-        {
-          headers: {
-            accept: "application/json",
-            // TODO: Third-party media endpoint may require a separate token
-            authorization: `Bearer ${request.session.token}`,
-          },
-        }
-      );
-
-      const body = await endpointResponse.json();
-
-      if (!endpointResponse.ok) {
-        throw httpError(
-          endpointResponse.status,
-          body.error_description || endpointResponse.statusText
-        );
-      }
-
-      const files = body.items.map((item) => {
-        item.id = Buffer.from(item.url).toString("base64");
-        return item;
-      });
-
-      response.render("files", {
-        title: response.__("media.files.title"),
-        files,
-        page,
-        limit,
-        count: await publication.media.countDocuments(),
-        parentUrl: request.baseUrl + request.path,
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  /**
-   * View previously uploaded file
+   * Query uploaded files
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
    * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
-  async file(request, response, next) {
+  async query(request, response, next) {
+    const { application, publication } = request.app.locals;
+
     try {
-      const { publication } = request.app.locals;
-      const { id } = request.params;
-      const url = Buffer.from(id, "base64").toString("utf8");
-
-      const parameters = new URLSearchParams({
-        q: "source",
-        url,
-      }).toString();
-
-      const endpointResponse = await fetch(
-        `${publication.mediaEndpoint}?${parameters}`,
-        {
-          headers: {
-            accept: "application/json",
-            // TODO: Third-party media endpoint may require a separate token
-            authorization: `Bearer ${request.session.token}`,
-          },
-        }
-      );
-
-      const body = await endpointResponse.json();
-
-      if (!endpointResponse.ok) {
-        throw httpError(
-          endpointResponse.status,
-          body.error_description || endpointResponse.statusText
+      if (!application.hasDatabase) {
+        throw new httpError.NotImplemented(
+          response.__("errors.noDatabase.content")
         );
       }
 
-      response.render("file", {
-        parent: response.__("media.files.title"),
-        file: body,
-      });
+      let { page, limit, offset, url } = request.query;
+      page = Number.parseInt(page, 10) || 1;
+      limit = Number.parseInt(limit, 10) || 18;
+      offset = Number.parseInt(offset, 10) || (page - 1) * limit;
+
+      const files = await publication.media
+        .find()
+        .sort({ _id: -1 })
+        .skip(offset)
+        .limit(limit)
+        .toArray();
+
+      const items = files.map((media) => media.properties);
+
+      let item;
+      if (url) {
+        item = await publication.media.findOne({
+          "properties.url": url,
+        });
+
+        if (!item) {
+          throw new httpError.NotFound("No file was found at this URL");
+        }
+      }
+
+      const { q } = request.query;
+      if (!q) {
+        throw new httpError.BadRequest("Invalid query");
+      }
+
+      switch (q) {
+        case "source":
+          // Return properties for a given source URL
+          if (url) {
+            return response.json(item.properties);
+          }
+
+          // Return properties for previously published posts
+          return response.json({ items });
+
+        default:
+          throw new httpError.NotImplemented(`Unsupported parameter: ${q}`);
+      }
     } catch (error) {
       next(error);
+    }
+  },
+
+  /**
+   * Upload file
+   *
+   * @param {object} request HTTP request
+   * @param {object} response HTTP response
+   * @param {Function} next Next middleware callback
+   * @returns {object} HTTP response
+   */
+  async upload(request, response, next) {
+    const { file } = request;
+    const { publication } = request.app.locals;
+    const { scope } = request.session;
+
+    try {
+      checkScope(scope);
+
+      const data = await mediaData.create(publication, file);
+      const uploaded = await media.upload(publication, data, file);
+
+      return response
+        .status(uploaded.status)
+        .location(uploaded.location)
+        .json(uploaded.json);
+    } catch (error) {
+      next(httpError(error.statusCode, error.message));
     }
   },
 };
