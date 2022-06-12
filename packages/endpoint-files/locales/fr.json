@@ -1,0 +1,13 @@
+{
+  "files": {
+    "file": {
+      "download": "Télécharger le fichier",
+      "properties": "Propriétés"
+    },
+    "files": {
+      "none": "Aucun fichier",
+      "title": "Fichiers téléchargés"
+    },
+    "title": "Fichiers"
+  }
+}

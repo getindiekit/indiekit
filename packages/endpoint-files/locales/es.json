@@ -1,0 +1,13 @@
+{
+  "files": {
+    "file": {
+      "download": "Descargar archivo",
+      "properties": "Propiedades"
+    },
+    "files": {
+      "none": "No hay archivos",
+      "title": "Archivos cargados"
+    },
+    "title": "Archivos"
+  }
+}

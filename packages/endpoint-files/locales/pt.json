@@ -1,0 +1,13 @@
+{
+  "files": {
+    "file": {
+      "download": "Transferir ficheiro",
+      "properties": "Propriedades"
+    },
+    "files": {
+      "none": "Sem ficheiros",
+      "title": "Ficheiros carregados"
+    },
+    "title": "Ficheiros"
+  }
+}

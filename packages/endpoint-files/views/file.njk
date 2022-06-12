@@ -1,0 +1,19 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {% set type = file["post-type"] %}
+  {% if type == "audio" %}
+    <audio src="{{ file.url }}" controls></audio>
+  {% elif type == "photo" %}
+    <img src="{{ file.url }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';">
+  {% elif type == "video" %}
+    <video src="{{ file.url }}" controls></video>
+  {% else %}
+    <a href="{{ file.url }}" download>{{ __("files.file.download") }}</a>
+  {% endif %}
+
+  {{ summary({
+    title: __("files.file.properties"),
+    rows: file | summaryRows
+  }) }}
+{% endblock %}

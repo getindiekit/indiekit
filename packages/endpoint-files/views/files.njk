@@ -1,0 +1,13 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  <p><a href="{{ parentUrl }}new">{{ __("files.upload.title") }}</a></p>
+  {%- if files.length > 0 %}
+  {{ fileGrid({
+    items: files
+  }) }}
+  {{ pagination(pages(page, limit, count)) }}
+  {%- else -%}
+  <p>{{ __("files.files.none") }}<p>
+  {%- endif %}
+{% endblock %}

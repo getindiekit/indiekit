@@ -1,0 +1,21 @@
+{
+  "files": {
+    "file": {
+      "download": "Download file",
+      "properties": "Properties"
+    },
+    "files": {
+      "none": "No files",
+      "title": "Uploaded files"
+    },
+    "error": {
+      "file": "Choose a file to upload"
+    },
+    "title": "Files",
+    "upload": {
+      "file": "File",
+      "submit": "Upload",
+      "title": "Upload a new file"
+    }
+  }
+}
