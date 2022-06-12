@@ -35,6 +35,7 @@ export const mediaController = {
         {
           headers: {
             accept: "application/json",
+            // TODO: Third-party media endpoint may require a separate token
             authorization: `Bearer ${request.session.token}`,
           },
         }
@@ -91,6 +92,7 @@ export const mediaController = {
         {
           headers: {
             accept: "application/json",
+            // TODO: Third-party media endpoint may require a separate token
             authorization: `Bearer ${request.session.token}`,
           },
         }
