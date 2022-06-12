@@ -21,6 +21,9 @@ A [content store](../concepts#content-store) is a location where Indiekit can sa
 
 An [endpoint](../concepts#endpoint) is a path on your Indiekit server that applications can send requests to or users can access certain features at.
 
+- [@indiekit/endpoint-files](https://npmjs.org/package/@indiekit/endpoint-files) (Built-in)  
+  File management endpoint for Indiekit. View files uploaded by your media endpoint and upload new files to it.
+
 - [@indiekit/endpoint-image](https://npmjs.org/package/@indiekit/endpoint-image) (Built-in)  
   Image resizing endpoint for Indiekit. Adds real-time image processing routes that can be used by your publication.
 
