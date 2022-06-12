@@ -1,0 +1,26 @@
+{% extends "form.njk" %}
+
+{% set errorSummaryTitle = __("errorSummaryTitle") %}
+
+{% block fieldset %}
+  {{ input({
+    id: "file",
+    name: "file",
+    value: errors["file"].value or file,
+    label: {
+      text: __("files.upload.file")
+    },
+    type: "file",
+    errorMessage: {
+      text: errors["file"].msg,
+      label: __("error")
+    } if errors["file"]
+  }) }}
+
+  {{ button({
+    text: __("files.upload.submit"),
+    attributes: {
+      formenctype: "multipart/form-data"
+    }
+  }) }}
+{% endblock %}

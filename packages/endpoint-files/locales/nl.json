@@ -1,0 +1,13 @@
+{
+  "files": {
+    "file": {
+      "download": "Bestand downloaden",
+      "properties": "Eigenschappen"
+    },
+    "files": {
+      "none": "Geen bestanden",
+      "title": "Geüploade bestanden"
+    },
+    "title": "Bestanden"
+  }
+}

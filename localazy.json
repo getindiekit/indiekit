@@ -16,9 +16,9 @@
       },
       {
         "file": "en.json",
-        "path": "packages/endpoint-media/locales",
-        "pattern": "packages/endpoint-media/locales/en.json",
-        "module": "endpoint-media"
+        "path": "packages/endpoint-files/locales",
+        "pattern": "packages/endpoint-files/locales/en.json",
+        "module": "endpoint-files"
       },
       {
         "file": "en.json",

@@ -1,0 +1,13 @@
+{
+  "files": {
+    "file": {
+      "download": "Unduh file",
+      "properties": "Properti"
+    },
+    "files": {
+      "none": "Tidak ada file",
+      "title": "File yang diunggah"
+    },
+    "title": "File"
+  }
+}
