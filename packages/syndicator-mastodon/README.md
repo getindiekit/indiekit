@@ -12,7 +12,7 @@ A set of Mastodon API keys. You can get these from `/settings/applications` on y
 
 ## Usage
 
-Add `@indiekit/syndicator-mastodon` to your list of plugins, specifying options as required:
+Add `@indiekit/syndicator-mastodon` to your list of plug-ins, specifying options as required:
 
 ```json
 {

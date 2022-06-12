@@ -158,7 +158,7 @@ An array of plug-ins you wish to use with Indiekit. For example:
 }
 ```
 
-Each plugin may accept its own configuration options, and these should be provided under a key with the plug-in’s name. For example:
+Each plug-in may accept its own configuration options, and these should be provided under a key with the plug-in’s name. For example:
 
 ```json
 {

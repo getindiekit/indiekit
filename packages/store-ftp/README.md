@@ -8,7 +8,7 @@ Store IndieWeb content via FTP.
 
 ## Usage
 
-Add `@indiekit/store-ftp` to your list of plugins, specifying options as required:
+Add `@indiekit/store-ftp` to your list of plug-ins, specifying options as required:
 
 ```json
 {

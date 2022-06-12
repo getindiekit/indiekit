@@ -29,7 +29,7 @@ test("Checks if Node.js version meets minimum requirement", (t) => {
   t.true(process.exit.calledWith(1));
 });
 
-test("Gets question prompts specified by plugin", async (t) => {
+test("Gets question prompts specified by plug-in", async (t) => {
   const { name, prompts } = await getPlugin("@indiekit/preset-hugo");
 
   t.is(name, "Hugo preset");

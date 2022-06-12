@@ -6,7 +6,7 @@ import prompts from "prompts";
 /**
  * Add plug-in to Indiekit configuration
  *
- * @param {string} pluginName Name of selected plugin
+ * @param {string} pluginName Name of selected plug-in
  * @param {object} config Indiekit configuration
  * @returns {object} Updated configuration
  */

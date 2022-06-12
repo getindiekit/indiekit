@@ -8,7 +8,7 @@ Store IndieWeb content on your local file system.
 
 ## Usage
 
-Add `@indiekit/store-file-system` to your list of plugins, specifying options as required:
+Add `@indiekit/store-file-system` to your list of plug-ins, specifying options as required:
 
 ```json
 {

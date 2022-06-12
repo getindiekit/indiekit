@@ -8,7 +8,7 @@ Indiekit preset for Jekyll-based websites.
 
 ## Usage
 
-Add `@indiekit/preset-jekyll` to your list of plugins:
+Add `@indiekit/preset-jekyll` to your list of plug-ins:
 
 ```json
 {

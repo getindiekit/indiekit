@@ -8,7 +8,7 @@ Store IndieWeb content on GitHub.
 
 ## Usage
 
-Add `@indiekit/store-github` to your list of plugins, specifying options as required:
+Add `@indiekit/store-github` to your list of plug-ins, specifying options as required:
 
 ```json
 {

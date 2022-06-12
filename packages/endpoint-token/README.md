@@ -8,7 +8,7 @@ Token endpoint for Indiekit.
 
 ## Usage
 
-Add `@indiekit/endpoint-token` to your list of plugins, specifying options as required:
+Add `@indiekit/endpoint-token` to your list of plug-ins, specifying options as required:
 
 ```json
 {

@@ -84,7 +84,7 @@ If you are saving your files to GitHub, install the GitHub plug-in:
 npm install @indiekit/store-github
 ```
 
-Then add it to the `plugins` array in your `indiekit` configuration object. If it has options, these are added under the name of the plugin package:
+Then add it to the `plugins` array in your `indiekit` configuration object. If it has options, these are added under the name of the plug-in’s package name:
 
 ```jsonc
 // package.json
@@ -113,7 +113,7 @@ Then add it to the `plugins` array in your `indiekit` configuration object. If i
 }
 ```
 
-If you are saving your configuration file in a public location, you should keep any passwords or API tokens private. For this plugin, you can do this by creating a `GITHUB_TOKEN` [environment variable][env] with your GitHub personal access token as its value.
+If you are saving your configuration file in a public location, you should keep any passwords or API tokens private. For this plug-in, you can do this by creating a `GITHUB_TOKEN` [environment variable][env] with your GitHub personal access token as its value.
 
 ## Enable automatic discovery
 

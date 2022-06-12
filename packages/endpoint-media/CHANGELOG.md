@@ -31,7 +31,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * add Indonesian localisation from Zeky Chandra ([e5508f1](https://github.com/getindiekit/indiekit/commit/e5508f14bde8951b691e56490117552268c9c232))
 * add Spanish translation from [@aciccarello](https://github.com/aciccarello) ([e556ada](https://github.com/getindiekit/indiekit/commit/e556ada815873d04b2147556c42198dcc1b3ccaa))
-* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* enable all plug-ins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
 * **endpoint-media:** show icon if media not found ([744ff7d](https://github.com/getindiekit/indiekit/commit/744ff7d1ed57614e60b4627341d19320ed33702d))
 * **endpoint-media:** show media in files view ([dc40f79](https://github.com/getindiekit/indiekit/commit/dc40f79481d1990b158c9aa75bd88ba0968912e0))
 * **endpoint-media:** show media in files view ([24981cc](https://github.com/getindiekit/indiekit/commit/24981cc465b9cb088925a017bc3833ad0398aace))

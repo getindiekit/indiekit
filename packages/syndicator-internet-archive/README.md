@@ -12,7 +12,7 @@ A set of Internet Archive API keys. You can get these from <https://archive.org/
 
 ## Usage
 
-Add `@indiekit/syndicator-internet-archive` to your list of plugins, specifying options as required:
+Add `@indiekit/syndicator-internet-archive` to your list of plug-ins, specifying options as required:
 
 ```json
 {

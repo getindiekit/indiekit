@@ -8,7 +8,7 @@ Share endpoint for Indiekit. Inspired and developed from [an idea described by M
 
 ## Usage
 
-Add `@indiekit/endpoint-share` to your list of plugins, specifying options as required:
+Add `@indiekit/endpoint-share` to your list of plug-ins, specifying options as required:
 
 ```json
 {

@@ -12,7 +12,7 @@ A set of Twitter API keys. You can get these from <https://developer.twitter.com
 
 ## Usage
 
-Add `@indiekit/syndicator-twitter` to your list of plugins, specifying options as required:
+Add `@indiekit/syndicator-twitter` to your list of plug-ins, specifying options as required:
 
 ```json
 {

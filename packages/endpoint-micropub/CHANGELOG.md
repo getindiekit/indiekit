@@ -44,7 +44,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * add Indonesian localisation from Zeky Chandra ([e5508f1](https://github.com/getindiekit/indiekit/commit/e5508f14bde8951b691e56490117552268c9c232))
 * add Spanish translation from [@aciccarello](https://github.com/aciccarello) ([e556ada](https://github.com/getindiekit/indiekit/commit/e556ada815873d04b2147556c42198dcc1b3ccaa))
-* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* enable all plug-ins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
 * **endpoint-micropub:** add post type count token for the day ([60f469b](https://github.com/getindiekit/indiekit/commit/60f469bc6acda4ae9bdaa55e5b97ee5e7b4124a2))
 * **endpoint-micropub:** paginate posts ([a3b388e](https://github.com/getindiekit/indiekit/commit/a3b388e16c2646cf25784bf27fd7d72a54ec55b9))
 * **indiekit:** refactor config loading and format. fixes [#402](https://github.com/getindiekit/indiekit/issues/402) ([65ff927](https://github.com/getindiekit/indiekit/commit/65ff9273062cdeccda35a20aa2b24cf812e93111))

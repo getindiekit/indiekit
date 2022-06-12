@@ -52,6 +52,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* enable all plug-ins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
 * **endpoint-image:** add image resizing endpoint ([21da1d3](https://github.com/getindiekit/indiekit/commit/21da1d3f9d99cdbd5a89a48ecde30eaae2d369d7))
 * **endpoint-image:** use mongodb cache store ([da8de0d](https://github.com/getindiekit/indiekit/commit/da8de0ddcd7d581994cec90c0623667a9c7b9764))

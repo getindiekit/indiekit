@@ -26,7 +26,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * add and update plug-in icons ([56f5cf4](https://github.com/getindiekit/indiekit/commit/56f5cf46d741b96a0b3a4a3a2d47af419637fead))
 * **create-indiekit:** project initializer ([7f224d6](https://github.com/getindiekit/indiekit/commit/7f224d6f88bca5a4bd7006e0cc97aed8cd49510b))
-* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* enable all plug-ins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
 
 
 

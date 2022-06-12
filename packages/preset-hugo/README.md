@@ -8,7 +8,7 @@ Indiekit preset for Hugo-based websites.
 
 ## Usage
 
-Add `@indiekit/preset-hugo` to your list of plugins, specifying options as required:
+Add `@indiekit/preset-hugo` to your list of plug-ins, specifying options as required:
 
 ```json
 {

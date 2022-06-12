@@ -26,7 +26,7 @@ Indiekit has been designed from the very beginning to be:
 
 - ### Adaptable
 
-  Like people, no two websites are the same. Indiekit is highly customisable and provides support for different services and situations. Thanks to its underlying plugin architecture, it’s extensible, too.
+  Like people, no two websites are the same. Indiekit is highly customisable and provides support for different services and situations. Thanks to its underlying plug-in architecture, it’s extensible, too.
 
 - ### Approachable
 

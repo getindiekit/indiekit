@@ -8,7 +8,7 @@ Image resizing endpoint for Indiekit.
 
 ## Usage
 
-Add `@indiekit/endpoint-image` to your list of plugins, specifying options as required:
+Add `@indiekit/endpoint-image` to your list of plug-ins, specifying options as required:
 
 ```json
 {

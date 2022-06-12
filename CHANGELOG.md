@@ -103,7 +103,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * add Spanish translation from [@aciccarello](https://github.com/aciccarello) ([e556ada](https://github.com/getindiekit/indiekit/commit/e556ada815873d04b2147556c42198dcc1b3ccaa))
 * **create-indiekit:** project initializer ([7f224d6](https://github.com/getindiekit/indiekit/commit/7f224d6f88bca5a4bd7006e0cc97aed8cd49510b))
 * don’t use default environment variable for MongoDB ([abc1e64](https://github.com/getindiekit/indiekit/commit/abc1e64d35c14db48ad520cbc7ed32bf8fc37b08))
-* enable all plugins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
+* enable all plug-ins to include an assets path ([d1083ab](https://github.com/getindiekit/indiekit/commit/d1083ab55e60a607377d7e3f3ca70c269637f770))
 * **endpoint-image:** add image resizing endpoint ([21da1d3](https://github.com/getindiekit/indiekit/commit/21da1d3f9d99cdbd5a89a48ecde30eaae2d369d7))
 * **endpoint-image:** use mongodb cache store ([da8de0d](https://github.com/getindiekit/indiekit/commit/da8de0ddcd7d581994cec90c0623667a9c7b9764))
 * **endpoint-media:** show icon if media not found ([744ff7d](https://github.com/getindiekit/indiekit/commit/744ff7d1ed57614e60b4627341d19320ed33702d))

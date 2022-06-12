@@ -8,7 +8,7 @@ Micropub media endpoint for Indiekit.
 
 ## Usage
 
-Add `@indiekit/endpoint-media` to your list of plugins, specifying options as required:
+Add `@indiekit/endpoint-media` to your list of plug-ins, specifying options as required:
 
 ```json
 {
