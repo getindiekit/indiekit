@@ -20,6 +20,7 @@ export const defaultConfig = {
     version: package_.version,
   },
   plugins: [
+    "@indiekit/endpoint-files",
     "@indiekit/endpoint-image",
     "@indiekit/endpoint-media",
     "@indiekit/endpoint-micropub",
