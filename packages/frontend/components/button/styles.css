@@ -10,6 +10,12 @@ input[type="file"]::file-selector-button {
   padding: var(--inset-small-squished);
 }
 
+.button--secondary,
+input[type="file"]::file-selector-button {
+  color: var(--color-foreground);
+  background-color: var(--color-neutral-light);
+}
+
 .button:focus,
 input[type="file"]::file-selector-button:focus {
   @extend %focus;
@@ -18,6 +24,11 @@ input[type="file"]::file-selector-button:focus {
 .button:hover,
 input[type="file"]::file-selector-button:hover {
   background-color: var(--color-neutral-dark);
+}
+
+.button--secondary:hover,
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--color-neutral);
 }
 
 .button--block {
