@@ -1,8 +1,7 @@
 .error-summary {
-  border-inline-start-color: var(--color-error);
-  border-inline-start-style: solid;
-  border-inline-start-width: var(--border-width-thickest);
-  padding-inline-start: var(--space-inline);
+  border: var(--color-error) solid var(--border-width-thickest);
+  border-radius: var(--border-radius-large);
+  padding: var(--inset-large);
 }
 
 .error-summary__title {
