@@ -38,6 +38,7 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
+    "@indiekit/endpoint-files": "^1.0.0-alpha.5",
     "@indiekit/endpoint-image": "^1.0.0-alpha.5",
     "@indiekit/endpoint-media": "^1.0.0-alpha.5",
     "@indiekit/endpoint-micropub": "^1.0.0-alpha.5",
