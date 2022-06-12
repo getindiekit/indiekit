@@ -10,11 +10,11 @@ Share endpoint for Indiekit. Inspired and developed from [an idea described by M
 
 Add `@indiekit/endpoint-share` to your list of plug-ins, specifying options as required:
 
-```json
+```jsonc
 {
   "plugins": ["@indiekit/endpoint-share"],
   "@indiekit/endpoint-share": {
-    "mountPath": "/bookmark"
+    "mountPath": "/teilen" // de-DE
   }
 }
 ```

@@ -10,11 +10,11 @@ Image resizing endpoint for Indiekit.
 
 Add `@indiekit/endpoint-image` to your list of plug-ins, specifying options as required:
 
-```json
+```jsonc
 {
   "plugins": ["@indiekit/endpoint-image"],
   "@indiekit/endpoint-image": {
-    "mountPath": "/resize"
+    "mountPath": "/bild" // de-DE
   }
 }
 ```

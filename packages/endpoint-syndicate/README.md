@@ -10,11 +10,11 @@ Syndication endpoint for Indiekit.
 
 Add `@indiekit/endpoint-syndicate` to your list of plug-ins, specifying options as required:
 
-```json
+```jsonc
 {
   "plugins": ["@indiekit/endpoint-syndicate"],
   "@indiekit/endpoint-syndicate": {
-    "mountPath": "/syndicator"
+    "mountPath": "/syndikat" // de-DE
   }
 }
 ```

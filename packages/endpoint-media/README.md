@@ -10,11 +10,11 @@ Micropub media endpoint for Indiekit.
 
 Add `@indiekit/endpoint-media` to your list of plug-ins, specifying options as required:
 
-```json
+```jsonc
 {
   "plugins": ["@indiekit/endpoint-media"],
   "@indiekit/endpoint-media": {
-    "mountPath": "/uploader"
+    "mountPath": "/medien" // de-DE
   }
 }
 ```

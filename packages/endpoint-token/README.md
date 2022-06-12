@@ -10,11 +10,11 @@ Token endpoint for Indiekit.
 
 Add `@indiekit/endpoint-token` to your list of plug-ins, specifying options as required:
 
-```json
+```jsonc
 {
   "plugins": ["@indiekit/endpoint-token"],
   "@indiekit/endpoint-token": {
-    "mountPath": "/tokens"
+    "mountPath": "/jeton" // fr-FR
   }
 }
 ```

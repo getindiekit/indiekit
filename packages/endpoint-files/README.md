@@ -10,11 +10,11 @@ File management endpoint for Indiekit.
 
 Add `@indiekit/endpoint-files` to your list of plug-ins, specifying options as required:
 
-```json
+```jsonc
 {
   "plugins": ["@indiekit/endpoint-files"],
   "@indiekit/endpoint-files": {
-    "mountPath": "/dossiers"
+    "mountPath": "/dossiers" // fr-FR
   }
 }
 ```
