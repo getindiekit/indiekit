@@ -32,7 +32,8 @@
 
 .input[type="file"] {
   border: 0;
-  padding: 0;
+  /* Prevent focus ring from being hidden */
+  padding: var(--border-width-thickest);
 }
 
 input[type="file"]::file-selector-button {
