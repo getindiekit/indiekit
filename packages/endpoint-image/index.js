@@ -1,5 +1,7 @@
 import express from "express";
-import { expressSharp, HttpAdapter } from "express-sharp";
+import { expressSharp } from "express-sharp";
+import { Adapter } from "./lib/adapter.js";
+import { cacheControl } from "./lib/middleware/cache.js";
 
 const defaults = {
   cache: false,
@@ -21,14 +23,10 @@ export const ImageEndpoint = class {
     const router = this._router;
 
     router.use(
-      "/",
+      cacheControl,
       expressSharp({
         cache: this.options.cache,
-        imageAdapter: new HttpAdapter({
-          cacheOptions: {
-            shared: false,
-            immutableMinTimeToLive: 2_592_000,
-          },
+        imageAdapter: new Adapter({
           prefixUrl: this.options.me,
         }),
       })
