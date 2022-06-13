@@ -1,7 +1,3 @@
-import httpError from "http-errors";
-import { fetch } from "undici";
-import parser from "microformats-parser";
-
 /**
  * Return mf2 properties of a post
  *
@@ -10,6 +6,10 @@ import parser from "microformats-parser";
  * @returns {Promise|object} mf2 with requested properties
  */
 export const getMf2Properties = (mf2, requestedProperties) => {
+  if (!requestedProperties) {
+    return mf2;
+  }
+
   const mf2HasItems = mf2.items && mf2.items.length > 0;
   if (!mf2HasItems) {
     return {};
@@ -44,7 +44,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
  * Convert JF2 to mf2
  *
  * @param {string} jf2 JF2
- * @returns {string} Micropub action
+ * @returns {object} mf2
  */
 export const jf2ToMf2 = (jf2) => {
   const mf2 = {
@@ -63,31 +63,14 @@ export const jf2ToMf2 = (jf2) => {
   }
 
   // Update key for plaintext content
-  if (mf2.properties.content[0] && mf2.properties.content[0].text) {
+  if (
+    mf2.properties.content &&
+    mf2.properties.content[0] &&
+    mf2.properties.content[0].text
+  ) {
     mf2.properties.content[0].value = jf2.content.text;
     delete mf2.properties.content[0].text;
   }
-
-  return mf2;
-};
-
-/**
- * Return mf2 of a given URL
- *
- * @param {string} url URL path to post
- * @returns {Promise|object} mf2 object
- */
-export const url2Mf2 = async (url) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw httpError(response.status, response.statusText);
-  }
-
-  const body = await response.text();
-  const mf2 = parser.mf2(body, {
-    baseUrl: url,
-  });
 
   return mf2;
 };

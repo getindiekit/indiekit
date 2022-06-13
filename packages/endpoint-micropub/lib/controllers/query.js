@@ -1,6 +1,6 @@
 import httpError from "http-errors";
 import { getConfig, queryConfig } from "../config.js";
-import { getMf2Properties, jf2ToMf2, url2Mf2 } from "../mf2.js";
+import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
 /**
  * Query previously published posts
@@ -39,6 +39,15 @@ export const queryController = async (request, response, next) => {
       throw new httpError.BadRequest("Invalid query");
     }
 
+    let item;
+    if (url) {
+      item = await publication.posts.findOne({ "properties.url": url });
+
+      if (!item) {
+        throw new httpError.NotFound("No post was found at this URL");
+      }
+    }
+
     // `category` param is used to query `categories` configuration property
     q = q === "category" ? "categories" : q;
 
@@ -47,9 +56,9 @@ export const queryController = async (request, response, next) => {
         return response.json(config);
 
       case "source":
-        // Return mf2 for a given source URL
+        // Return mf2 for a given source URL (optionally filtered by properties)
         if (url) {
-          const mf2 = await url2Mf2(url);
+          const mf2 = { items: [jf2ToMf2(item.properties)] };
           return response.json(getMf2Properties(mf2, properties));
         }
 

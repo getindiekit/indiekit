@@ -20,5 +20,5 @@ test("Returns 404 if source URL can’t be found", async (t) => {
     .query("q=source&properties[]=name&url=https://website.example/404.html");
 
   t.is(result.statusCode, 404);
-  t.is(result.body.error_description, "Not Found");
+  t.is(result.body.error_description, "No post was found at this URL");
 });
