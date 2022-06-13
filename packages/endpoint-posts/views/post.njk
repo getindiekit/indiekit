@@ -1,0 +1,24 @@
+{% extends "document.njk" %}
+
+{% set title = title or post["post-type"] | capitalize %}
+{% set content = post.content.html %}
+
+{% block content %}
+  {% if post.audio %}
+    {% for item in post.audio %}
+      <audio src="{{ item.url | absoluteUrl(publication.me) }}" controls>
+    {% endfor %}
+  {% elif post.photo %}
+    {% for item in post.photo %}
+      <img src="{{ item.url | absoluteUrl(publication.me) }}" alt="{{ item.alt }}">
+    {% endfor %}
+  {% elif post.video %}
+    {% for item in post.video %}
+      <video src="{{ item.url | absoluteUrl(publication.me) }}" controls>
+    {% endfor %}
+  {% endif %}
+  {{ summary({
+    title: __("posts.post.properties"),
+    rows: post | summaryRows
+  }) }}
+{% endblock %}

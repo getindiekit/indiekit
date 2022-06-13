@@ -1,0 +1,12 @@
+{
+  "posts": {
+    "post": {
+      "properties": "Eigenschappen"
+    },
+    "posts": {
+      "none": "Geen posts",
+      "title": "Gepubliceerde berichten"
+    },
+    "title": "Berichten"
+  }
+}

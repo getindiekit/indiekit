@@ -1,0 +1,12 @@
+{
+  "posts": {
+    "post": {
+      "properties": "Properti"
+    },
+    "posts": {
+      "none": "Tidak ada postingan",
+      "title": "Postingan yang diterbitkan"
+    },
+    "title": "Postingan"
+  }
+}
