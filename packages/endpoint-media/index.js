@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
-import { mediaController } from "./lib/controllers/media.js";
+import { uploadController } from "./lib/controllers/upload.js";
+import { queryController } from "./lib/controllers/query.js";
 
 const defaults = {
   mountPath: "/media",
@@ -22,8 +23,8 @@ export const MediaEndpoint = class {
       storage: multer.memoryStorage(),
     });
 
-    router.get("/", mediaController.query);
-    router.post("/", multipartParser.single("file"), mediaController.upload);
+    router.get("/", queryController);
+    router.post("/", multipartParser.single("file"), uploadController);
 
     return router;
   }
