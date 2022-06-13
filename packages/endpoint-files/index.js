@@ -1,6 +1,8 @@
 import express from "express";
 import multer from "multer";
+import { fileController } from "./lib/controllers/file.js";
 import { filesController } from "./lib/controllers/files.js";
+import { uploadController } from "./lib/controllers/upload.js";
 import { validate } from "./lib/middleware/validation.js";
 
 const defaults = {
@@ -32,15 +34,15 @@ export const FilesEndpoint = class {
       storage: multer.memoryStorage(),
     });
 
-    router.get("/", filesController.files);
-    router.get("/new", filesController.new);
+    router.get("/", filesController);
+    router.get("/new", uploadController.get);
     router.post(
       "/new",
       multipartParser.single("file"),
       validate,
-      filesController.upload
+      uploadController.post
     );
-    router.get("/:id", filesController.file);
+    router.get("/:id", fileController);
 
     return router;
   }

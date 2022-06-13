@@ -3,27 +3,22 @@ import httpError from "http-errors";
 import { fetch } from "undici";
 
 /**
- * List previously uploaded files
+ * View previously uploaded file
  *
  * @param {object} request HTTP request
  * @param {object} response HTTP response
- * @param {Function} next Callback
+ * @param {Function} next Next middleware callback
  * @returns {object} HTTP response
  */
-export const filesController = async (request, response, next) => {
+export const fileController = async (request, response, next) => {
   try {
     const { publication } = request.app.locals;
-
-    let { page, limit, offset, success } = request.query;
-    page = Number.parseInt(page, 10) || 1;
-    limit = Number.parseInt(limit, 10) || 12;
-    offset = Number.parseInt(offset, 10) || (page - 1) * limit;
+    const { id } = request.params;
+    const url = Buffer.from(id, "base64").toString("utf8");
 
     const parameters = new URLSearchParams({
       q: "source",
-      page,
-      limit,
-      offset,
+      url,
     }).toString();
 
     const endpointResponse = await fetch(
@@ -46,19 +41,10 @@ export const filesController = async (request, response, next) => {
       );
     }
 
-    const files = body.items.map((item) => {
-      item.id = Buffer.from(item.url).toString("base64");
-      return item;
-    });
-
-    response.render("files", {
-      title: response.__("files.files.title"),
-      files,
-      page,
-      limit,
-      count: await publication.media.countDocuments(),
-      parentUrl: request.baseUrl + request.path,
-      success,
+    response.render("file", {
+      title: body.filename,
+      file: body,
+      parent: response.__("files.files.title"),
     });
   } catch (error) {
     next(error);
