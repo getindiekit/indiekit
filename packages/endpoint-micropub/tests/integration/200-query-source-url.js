@@ -1,27 +1,30 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
+import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(tokenEndpointAgent());
-
 test("Returns list of previously published posts", async (t) => {
-  const request = await testServer({
-    publication: {
-      me: "https://website.example",
-      tokenEndpoint: "https://token-endpoint.example",
-    },
-  });
+  nock("https://api.github.com")
+    .put((uri) => uri.includes("foobar.md"))
+    .reply(200);
+  const request = await testServer();
+
+  // Create post
+  const response = await request
+    .post("/micropub")
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .set("accept", "application/json")
+    .send("h=entry")
+    .send("name=Foobar");
 
   const result = await request
     .get("/micropub")
     .auth("JWT", { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=source&properties[]=name&url=https://website.example/post.html");
+    .query(`q=source&properties[]=name&url=${response.headers.location}`);
 
   t.deepEqual(result.body, {
     properties: {
-      name: ["I ate a cheese sandwich, which was nice."],
+      name: ["Foobar"],
     },
   });
 });
