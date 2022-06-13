@@ -1,0 +1,12 @@
+{
+  "posts": {
+    "post": {
+      "properties": "Properties"
+    },
+    "posts": {
+      "title": "Published posts",
+      "none": "No posts"
+    },
+    "title": "Posts"
+  }
+}

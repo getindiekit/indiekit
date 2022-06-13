@@ -1,0 +1,12 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {%- if posts.length > 0 %}
+  {{ fileList({
+    items: posts
+  }) }}
+  {{ pagination(pages(page, limit, count)) }}
+  {%- else -%}
+  <p>{{ __("posts.posts.none") }}<p>
+  {%- endif %}
+{% endblock %}
