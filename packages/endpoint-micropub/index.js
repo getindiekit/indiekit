@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import { actionController } from "./lib/controllers/action.js";
-import { postsController } from "./lib/controllers/posts.js";
+import { queryController } from "./lib/controllers/query.js";
 
 const defaults = {
   mountPath: "/micropub",
@@ -17,24 +17,14 @@ export const MicropubEndpoint = class {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  navigationItems(application) {
-    if (application.hasDatabase) {
-      return {
-        href: this.options.mountPath,
-        text: "micropub.title",
-      };
-    }
-  }
-
   get routes() {
     const router = this._router;
     const multipartParser = multer({
       storage: multer.memoryStorage(),
     });
 
-    router.get("/", postsController.posts);
+    router.get("/", queryController);
     router.post("/", multipartParser.any(), actionController);
-    router.get("/:id", postsController.post);
 
     return router;
   }
