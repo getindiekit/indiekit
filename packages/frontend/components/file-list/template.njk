@@ -2,9 +2,9 @@
   {%- for item in opts.items %}
   <li class="file-list__item">
     <h2 class="file__title">
-      {{ icon(item.properties["post-type"]) }}<a href="{{ item._id | absoluteUrl(parentUrl) }}">{{ item.properties.name or item.properties["post-type"] | capitalize }}</a>
+      {{ icon(item["post-type"]) }}<a href="{{ item.id | absoluteUrl(parentUrl) }}">{{ item.name or item["post-type"] | capitalize }}</a>
     </h2>
-    <p class="file__meta">{{ item.properties.published | date("p • PPP") }}</p>
+    <p class="file__meta">{{ item.published | date("p • PPP") }}</p>
   </li>
   {%- endfor %}
 </ol>
