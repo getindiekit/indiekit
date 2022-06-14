@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
+
+
+### Bug Fixes
+
+* **create-indiekit:** include lib folder in published package ([620aef5](https://github.com/getindiekit/indiekit/commit/620aef5c330ed705163892e4fe6c5e1b3d6c35df))
+
+
+### Reverts
+
+* Revert "refactor(create-indiekit): use json module import" ([7f15c16](https://github.com/getindiekit/indiekit/commit/7f15c16cf98b22012ed7c97d6a1adc85c7bc5137))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
+
+
+### Features
+
+* **endpoint-media:** query configured media endpoint api ([ad8069d](https://github.com/getindiekit/indiekit/commit/ad8069d93a69a69985369ded8f4447217d438ca7))
+* **endpoint-media:** remove frontend interface ([34b1ef3](https://github.com/getindiekit/indiekit/commit/34b1ef391d9697416665f33d8549159c161ff136))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
 
 

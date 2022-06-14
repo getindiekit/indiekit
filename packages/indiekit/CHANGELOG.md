@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
+
+
+### Features
+
+* **indiekit:** bundle endpoint-files plug-in ([e256c90](https://github.com/getindiekit/indiekit/commit/e256c90db3eac34440950c62a4a101a911859feb))
+* **indiekit:** bundle endpoint-posts plug-in ([bf5a602](https://github.com/getindiekit/indiekit/commit/bf5a602eb9d7b582e14bb1c6574abf6a1d9fd854))
+
+
+### Reverts
+
+* Revert "refactor(indiekit): use json module import" ([44a27f8](https://github.com/getindiekit/indiekit/commit/44a27f8e02d301e85845fdf5c6f6416d272db045))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
 
 

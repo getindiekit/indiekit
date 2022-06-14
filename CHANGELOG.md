@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
+
+
+### Bug Fixes
+
+* **create-indiekit:** include lib folder in published package ([620aef5](https://github.com/getindiekit/indiekit/commit/620aef5c330ed705163892e4fe6c5e1b3d6c35df))
+* **frontend:** prevent focus ring from being hidden ([ba349ac](https://github.com/getindiekit/indiekit/commit/ba349ac1476caa8d58f0e52abb112c20544ba049))
+
+
+### Features
+
+* **endpoint-files:** split file management into new plug-in ([0050864](https://github.com/getindiekit/indiekit/commit/0050864cd43128dc752833c50855edb289b0aa30))
+* **endpoint-media:** query configured media endpoint api ([ad8069d](https://github.com/getindiekit/indiekit/commit/ad8069d93a69a69985369ded8f4447217d438ca7))
+* **endpoint-media:** remove frontend interface ([34b1ef3](https://github.com/getindiekit/indiekit/commit/34b1ef391d9697416665f33d8549159c161ff136))
+* **endpoint-micropub:** remove frontend interface ([36a63a7](https://github.com/getindiekit/indiekit/commit/36a63a79513eb40b3322032fc3ce227d849e48fb))
+* **endpoint-micropub:** remove remote URL source querying ([b63ef8d](https://github.com/getindiekit/indiekit/commit/b63ef8d0ffa4d51a7cf61a5434afd529d80ce0c6))
+* **endpoint-posts:** split post management into new plug-in ([cb1bf6c](https://github.com/getindiekit/indiekit/commit/cb1bf6c076371218df2fc4876bd48968df68e980))
+* **frontend:** add secondary button style ([b6ee4fd](https://github.com/getindiekit/indiekit/commit/b6ee4fd70c5b4ed0951df1da3d212f14ec7adb74))
+* **indiekit:** bundle endpoint-files plug-in ([e256c90](https://github.com/getindiekit/indiekit/commit/e256c90db3eac34440950c62a4a101a911859feb))
+* **indiekit:** bundle endpoint-posts plug-in ([bf5a602](https://github.com/getindiekit/indiekit/commit/bf5a602eb9d7b582e14bb1c6574abf6a1d9fd854))
+
+
+### Reverts
+
+* Revert "refactor(indiekit): use json module import" ([44a27f8](https://github.com/getindiekit/indiekit/commit/44a27f8e02d301e85845fdf5c6f6416d272db045))
+* Revert "refactor(create-indiekit): use json module import" ([7f15c16](https://github.com/getindiekit/indiekit/commit/7f15c16cf98b22012ed7c97d6a1adc85c7bc5137))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
 
 

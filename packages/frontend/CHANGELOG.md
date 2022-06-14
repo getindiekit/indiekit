@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
+
+
+### Bug Fixes
+
+* **frontend:** prevent focus ring from being hidden ([ba349ac](https://github.com/getindiekit/indiekit/commit/ba349ac1476caa8d58f0e52abb112c20544ba049))
+
+
+### Features
+
+* **endpoint-media:** query configured media endpoint api ([ad8069d](https://github.com/getindiekit/indiekit/commit/ad8069d93a69a69985369ded8f4447217d438ca7))
+* **frontend:** add secondary button style ([b6ee4fd](https://github.com/getindiekit/indiekit/commit/b6ee4fd70c5b4ed0951df1da3d212f14ec7adb74))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
 
 
