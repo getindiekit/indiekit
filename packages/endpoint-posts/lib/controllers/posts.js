@@ -62,7 +62,7 @@ export const postsController = async (request, response, next) => {
       posts,
       page,
       limit,
-      count: await publication.media.countDocuments(),
+      count: await publication.posts.countDocuments(),
       parentUrl: request.baseUrl + request.path,
       success,
     });
