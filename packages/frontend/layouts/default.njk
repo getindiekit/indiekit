@@ -13,6 +13,8 @@
 {%- from "select/macro.njk" import select with context -%}
 {%- from "summary/macro.njk" import summary with context -%}
 {%- from "textarea/macro.njk" import textarea with context -%}
+{%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
+{%- set mainClasses = "main" + (" " + mainClasses if mainClasses) -%}
 <!DOCTYPE html>
 <html lang="{{ application.locale }}" dir="ltr" class="color-scheme--{{ application.themeColorScheme }}">
   <head>
@@ -35,7 +37,6 @@
     <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
   </head>
 
-  {%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
   <body class="{{ appClasses }}">
 
   {%- block header %}
@@ -46,7 +47,6 @@
     }) | indent(4) if not minimalui }}
   {%- endblock %}
 
-    {%- set mainClasses = "main" + (" " + mainClasses if mainClasses) -%}
     <main class="{{ mainClasses }}" id="main">
       {{ banner({
         text: success if success else error,
@@ -60,7 +60,7 @@
       logo: {
         href: 'https://getindiekit.com',
         src: application.url + assetPath | default("/assets") + "/icon.svg",
-        alt: application.name
+        alt: 'Indiekit'
       },
       navigation: [{
         href: application.repository.url | replace('.git', '') + "/releases/tag/v" + application.version,
