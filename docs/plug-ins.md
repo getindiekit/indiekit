@@ -33,6 +33,9 @@ An [endpoint](../concepts#endpoint) is a path on your Indiekit server that appli
 - [@indiekit/endpoint-media](https://npmjs.org/package/@indiekit/endpoint-media) (Built-in)  
   Micropub media endpoint for Indiekit. Enables publishing media files (audio, photos, videos) to your website using the Micropub protocol.
 
+- [@indiekit/endpoint-posts](https://npmjs.org/package/@indiekit/endpoint-posts) (Built-in)  
+  Post management endpoint for Indiekit. View posts published by your Micropub endpoint and publish new posts to it.
+
 - [@indiekit/endpoint-share](https://npmjs.org/package/@indiekit/endpoint-share) (Built-in)  
   Share endpoint for Indiekit. Provides a simple interface for [bookmarking](https://indieweb.org/bookmark) websites and publishing them on your website.
 
