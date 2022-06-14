@@ -8,8 +8,6 @@ import { decrypt, encrypt } from "./utils.js";
  * @returns {string} State
  */
 export const generateState = (clientId, iv) => {
-  console.log(typeof iv);
-
   const state = encrypt(
     JSON.stringify({
       clientId,
