@@ -7,7 +7,7 @@ import { fetch } from "undici";
  *
  * @param {object} request HTTP request
  * @param {object} response HTTP response
- * @param {Function} next Callback
+ * @param {Function} next Next middleware callback
  * @returns {object} HTTP response
  */
 export const filesController = async (request, response, next) => {

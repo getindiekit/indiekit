@@ -9,7 +9,7 @@ export const postsController = {
    *
    * @param {object} request HTTP request
    * @param {object} response HTTP response
-   * @param {Function} next Callback
+   * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
   async posts(request, response, next) {

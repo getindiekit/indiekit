@@ -10,7 +10,7 @@ export const tokenController = {
    *
    * @param {object} request HTTP request
    * @param {Promise|object} response HTTP response
-   * @param {Function} next Callback
+   * @param {Function} next Next middleware callback
    * @returns {object} HTTP response
    */
   get(request, response, next) {
