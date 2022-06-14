@@ -24,6 +24,7 @@ export const defaultConfig = {
     "@indiekit/endpoint-image",
     "@indiekit/endpoint-media",
     "@indiekit/endpoint-micropub",
+    "@indiekit/endpoint-posts",
     "@indiekit/endpoint-share",
     "@indiekit/endpoint-syndicate",
     "@indiekit/endpoint-token",
