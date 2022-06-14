@@ -42,6 +42,7 @@
     "@indiekit/endpoint-image": "^1.0.0-alpha.5",
     "@indiekit/endpoint-media": "^1.0.0-alpha.5",
     "@indiekit/endpoint-micropub": "^1.0.0-alpha.5",
+    "@indiekit/endpoint-posts": "^1.0.0-alpha.5",
     "@indiekit/endpoint-share": "^1.0.0-alpha.5",
     "@indiekit/endpoint-syndicate": "^1.0.0-alpha.5",
     "@indiekit/endpoint-token": "^1.0.0-alpha.5",
