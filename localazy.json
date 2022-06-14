@@ -22,9 +22,9 @@
       },
       {
         "file": "en.json",
-        "path": "packages/endpoint-micropub/locales",
-        "pattern": "packages/endpoint-micropub/locales/en.json",
-        "module": "endpoint-micropub"
+        "path": "packages/endpoint-posts/locales",
+        "pattern": "packages/endpoint-posts/locales/en.json",
+        "module": "endpoint-posts"
       },
       {
         "file": "en.json",
