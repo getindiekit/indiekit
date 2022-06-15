@@ -1,6 +1,6 @@
 # @indiekit/frontend
 
-IndieWeb frontend components.
+Frontend components for Indiekit.
 
 ## Installation
 
