@@ -1,8 +1,7 @@
 {
   "private": true,
   "name": "indiekit",
-  "version": "0.3.0",
-  "description": "An IndieWeb publishing toolkit",
+  "description": "The little server that connects your website to the independent web.",
   "keywords": [
     "indieweb",
     "micropub"
