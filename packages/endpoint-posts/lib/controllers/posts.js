@@ -62,7 +62,7 @@ export const postsController = async (request, response, next) => {
       posts,
       page,
       limit,
-      count: await publication.posts.countDocuments(),
+      count: body._count, // TODO: Remove requirement for private parameter
       parentUrl: request.baseUrl + request.path,
       success,
     });

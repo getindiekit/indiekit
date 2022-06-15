@@ -56,7 +56,7 @@ export const filesController = async (request, response, next) => {
       files,
       page,
       limit,
-      count: await publication.media.countDocuments(),
+      count: body._count, // TODO: Remove requirement for private parameter
       parentUrl: request.baseUrl + request.path,
       success,
     });
