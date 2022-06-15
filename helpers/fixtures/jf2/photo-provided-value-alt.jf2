@@ -5,7 +5,7 @@
     "alt": "Baz",
     "url": "https://website.example/baz.jpg"
   }, {
-    "alt": "Qux",
+    "alt": "  Qux  ",
     "url": "https://foo.bar/qux.jpg"
   }]
 }

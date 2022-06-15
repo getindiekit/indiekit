@@ -506,3 +506,11 @@ test("Normalises JF2 (syndication properties)", (t) => {
   t.is(result.syndication[0], "https://social.example/status/1");
   t.falsy(result["mp-syndicate-to"]);
 });
+
+test("Normalises JF2 (trims name property)", (t) => {
+  const result = normaliseProperties(t.context.publication, {
+    name: "  What I had for lunch  ",
+  });
+
+  t.is(result.name, "What I had for lunch");
+});

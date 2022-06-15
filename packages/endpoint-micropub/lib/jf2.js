@@ -68,6 +68,10 @@ export const normaliseProperties = (publication, properties) => {
 
   properties.published = getPublishedProperty(properties, timeZone);
 
+  if (properties.name) {
+    properties.name = properties.name.trim();
+  }
+
   if (properties.content) {
     properties.content = getContentProperty(properties);
   }
@@ -187,8 +191,8 @@ export const getPhotoProperty = (properties, me) => {
 
   const property = photo.map((item, index) => ({
     url: relativeMediaPath(item.url || item, me),
-    ...(item.alt && { alt: item.alt }),
-    ...(photoAlt && { alt: photoAlt[index] }),
+    ...(item.alt && { alt: item.alt.trim() }),
+    ...(photoAlt && { alt: photoAlt[index].trim() }),
   }));
   delete properties["mp-photo-alt"];
   return property;
