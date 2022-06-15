@@ -104,7 +104,7 @@ test("Gets normalised audio property", (t) => {
   t.deepEqual(result, [{ url: "baz.mp3" }, { url: "https://foo.bar/qux.mp3" }]);
 });
 
-test("Gets existing text and HTML values from `content` property", (t) => {
+test("Gets text and HTML values from `content` property", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-content-provided-html-text.jf2")
   );
@@ -117,7 +117,20 @@ test("Gets existing text and HTML values from `content` property", (t) => {
   });
 });
 
-test("Gets existing HTML from `content` property and adds text value", (t) => {
+test("Gets mixed text and HTML values from `content` property", (t) => {
+  const properties = JSON.parse(
+    getFixture("jf2/note-content-provided-html-text-mixed.jf2")
+  );
+
+  const result = getContentProperty(properties);
+
+  t.deepEqual(result, {
+    html: "<p>I ate a <i>cheese</i> sandwich, which was nice.</p>",
+    text: "I ate a cheese sandwich, which was nice.",
+  });
+});
+
+test("Gets HTML from `content` property and adds text value", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-content-provided-html.jf2")
   );

@@ -3,12 +3,13 @@ import { JekyllPreset } from "@indiekit/preset-jekyll";
 import {
   decodeQueryParameter,
   excerptString,
-  slugifyString,
   getPermalink,
   getPostTypeConfig,
   randomString,
   relativeMediaPath,
   renderPath,
+  slugifyString,
+  stripHtml,
   supplant,
 } from "../../lib/utils.js";
 
@@ -22,12 +23,6 @@ test("Excerpts the first n words from a string", (t) => {
   const result = excerptString("The quick fox jumped over the lazy fox", 5);
 
   t.is(result, "The quick fox jumped over");
-});
-
-test("Slugifies a string", (t) => {
-  t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
-  t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
-  t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
 });
 
 test("Derives a permalink", (t) => {
@@ -101,6 +96,16 @@ test("Renders path from URI template and properties", async (t) => {
     result,
     /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/
   );
+});
+
+test("Slugifies a string", (t) => {
+  t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
+  t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
+  t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
+});
+
+test("Strips HTML from a string", (t) => {
+  t.is(stripHtml("<em>Emphasis</em>"), "Emphasis");
 });
 
 test("Substitutes variables enclosed in { } braces with data from object", (t) => {

@@ -5,9 +5,10 @@ import { reservedProperties } from "./reserved-properties.js";
 import {
   decodeQueryParameter,
   excerptString,
-  slugifyString,
   relativeMediaPath,
   randomString,
+  slugifyString,
+  stripHtml,
 } from "./utils.js";
 
 /**
@@ -129,9 +130,14 @@ export const getContentProperty = (properties) => {
   const { content } = properties;
   let { html, text } = content;
 
+  // Strip any HTML from text property
+  if (text) {
+    text = stripHtml(text);
+  }
+
   // Return existing text and HTML representations
   if (html && text) {
-    return content;
+    return { html, text };
   }
 
   // If HTML representation only, add text representation
@@ -141,7 +147,7 @@ export const getContentProperty = (properties) => {
   }
 
   // Return property with text and HTML representations
-  text = text || content;
+  text = text || stripHtml(content);
   html = markdownToHtml(text);
   return { html, text };
 };
