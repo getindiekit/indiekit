@@ -64,6 +64,7 @@ export const queryController = async (request, response, next) => {
 
         // Return mf2 for previously published posts
         return response.json({
+          _count: await publication.posts.countDocuments(),
           items: posts.map((post) => jf2ToMf2(post.properties)),
         });
 

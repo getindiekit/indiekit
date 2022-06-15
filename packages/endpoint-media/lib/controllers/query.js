@@ -53,6 +53,7 @@ export const queryController = async (request, response, next) => {
 
         // Return properties for previously uploaded files
         return response.json({
+          _count: await publication.media.countDocuments(),
           items: files.map((media) => media.properties),
         });
 
