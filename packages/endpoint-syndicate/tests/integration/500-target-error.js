@@ -3,7 +3,7 @@ import test from "ava";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 500 error syndicating a URL", async (t) => {
+test("Returns 500 error syndicating URL", async (t) => {
   // Setup mocked failed HTTP request to syndication target
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")

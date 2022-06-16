@@ -4,7 +4,7 @@ import nock from "nock";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
-test("Views previously published post", async (t) => {
+test("Returns previously published post", async (t) => {
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar.md"))
     .reply(200);

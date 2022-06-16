@@ -3,7 +3,7 @@ import test from "ava";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns list of previously published posts", async (t) => {
+test("Returns previously published post", async (t) => {
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar.md"))
     .reply(200);

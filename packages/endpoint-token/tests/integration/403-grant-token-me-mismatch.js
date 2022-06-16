@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 
 setGlobalDispatcher(indieauthAgent());
 
-test("Returns 403 if publication URL doesn’t match URL in token", async (t) => {
+test("Returns 403 error granting token if URLs don’t match", async (t) => {
   const request = await testServer({
     publication: {
       me: "https://foo.bar",

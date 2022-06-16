@@ -2,7 +2,7 @@ import process from "node:process";
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns categories", async (t) => {
+test("Returns syndication targets", async (t) => {
   const request = await testServer();
 
   const response = await request

@@ -1,7 +1,7 @@
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 400 if missing code value", async (t) => {
+test("Returns 400 error if missing code value", async (t) => {
   const request = await testServer();
   const result = await request
     .post("/token")

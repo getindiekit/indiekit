@@ -2,7 +2,7 @@ import process from "node:process";
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 200 if no post records", async (t) => {
+test("Returns no post records", async (t) => {
   const request = await testServer();
 
   const result = await request

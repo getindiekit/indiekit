@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 
 setGlobalDispatcher(tokenEndpointAgent());
 
-test("Returns 404 if source URL can’t be found", async (t) => {
+test("Returns 404 error if source URL can’t be found", async (t) => {
   const request = await testServer({
     publication: {
       me: "https://website.example",

@@ -2,7 +2,7 @@ import test from "ava";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-test("Returns 404 if can’t find previously uploaded file", async (t) => {
+test("Returns 404 error if can’t find previously uploaded file", async (t) => {
   const request = await testServer();
   const result = await request
     .get("/files/5ffcc8025c561a7bf53bd6e8")

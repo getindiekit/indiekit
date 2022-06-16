@@ -3,7 +3,7 @@ import test from "ava";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
-test("Deletes post", async (t) => {
+test("Un-deletes post", async (t) => {
   nock.enableNetConnect("127.0.0.1");
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar.md"))

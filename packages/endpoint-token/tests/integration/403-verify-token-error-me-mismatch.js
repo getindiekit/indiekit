@@ -2,7 +2,7 @@ import process from "node:process";
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 403 if publication URL doesn’t match URL in token", async (t) => {
+test("Returns 403 error verifying token if URLs don’t match", async (t) => {
   const request = await testServer({
     publication: {
       me: "https://server.example",
