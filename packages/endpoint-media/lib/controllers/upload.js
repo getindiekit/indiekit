@@ -27,6 +27,6 @@ export const uploadController = async (request, response, next) => {
       .location(uploaded.location)
       .json(uploaded.json);
   } catch (error) {
-    next(httpError(error.statusCode, error.message));
+    return next(httpError(error.status, error.message));
   }
 };
