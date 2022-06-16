@@ -34,7 +34,7 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
     .query(`token=${process.env.TEST_TOKEN_CREATE_SCOPE}`);
 
   // Assertions
-  t.is(result.statusCode, 401);
+  t.is(result.status, 401);
   t.is(
     result.body.error_description,
     "JSON Web Token error: invalid signature"

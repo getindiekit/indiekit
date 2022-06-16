@@ -21,5 +21,5 @@ test("Uploads file and redirects to files page", async (t) => {
     .set("cookie", [cookie])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
-  t.is(result.statusCode, 302);
+  t.is(result.status, 302);
 });

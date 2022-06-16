@@ -7,5 +7,5 @@ test("Homepage redirects to status page", async (t) => {
   const result = await request.get("/");
 
   t.is(result.header.location, "/status");
-  t.is(result.statusCode, 302);
+  t.is(result.status, 302);
 });

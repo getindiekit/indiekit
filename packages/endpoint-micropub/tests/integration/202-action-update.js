@@ -34,7 +34,7 @@ test("Updates post", async (t) => {
       },
     });
 
-  t.is(result.statusCode, 200);
+  t.is(result.status, 200);
   t.regex(result.headers.location, /\bfoobar\b/);
   t.regex(result.body.success_description, /\bPost updated\b/);
 });

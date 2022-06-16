@@ -9,7 +9,7 @@ test("Returns 422 invalid form submission", async (t) => {
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
 
-  t.is(response.statusCode, 422);
+  t.is(response.status, 422);
   t.is(
     result.querySelector("title").textContent,
     "Error: Upload a new file - Test configuration"

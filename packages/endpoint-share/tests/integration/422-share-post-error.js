@@ -17,5 +17,5 @@ test("Returns 422 if error publishing post", async (t) => {
     .send("content=Test+of+sharing+a+bookmark")
     .send("bookmark-of=https://example.website");
 
-  t.is(result.statusCode, 422);
+  t.is(result.status, 422);
 });

@@ -40,6 +40,6 @@ test("Deletes post", async (t) => {
       url: response.header.location,
     });
 
-  t.is(result.statusCode, 200);
+  t.is(result.status, 200);
   t.regex(result.body.success_description, /\bPost deleted\b/);
 });

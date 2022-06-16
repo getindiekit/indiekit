@@ -11,6 +11,6 @@ test("Returns 400 if unsupported parameter provided", async (t) => {
     .set("accept", "application/json")
     .query("q=fooBar");
 
-  t.is(result.statusCode, 501);
+  t.is(result.status, 501);
   t.is(result.body.error_description, "Unsupported parameter: fooBar");
 });

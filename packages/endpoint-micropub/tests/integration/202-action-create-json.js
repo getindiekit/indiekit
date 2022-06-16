@@ -25,7 +25,7 @@ test("Creates post (JSON)", async (t) => {
       },
     });
 
-  t.is(result.statusCode, 202);
+  t.is(result.status, 202);
   t.regex(result.headers.location, /\bfoobar\b/);
   t.regex(result.body.success_description, /\bPost will be created\b/);
 });

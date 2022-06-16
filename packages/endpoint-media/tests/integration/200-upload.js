@@ -16,7 +16,7 @@ test("Uploads file", async (t) => {
     .set("accept", "application/json")
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
-  t.is(result.statusCode, 201);
+  t.is(result.status, 201);
   t.regex(result.headers.location, /\b.jpg\b/);
   t.regex(result.body.success_description, /\bMedia uploaded\b/);
 });

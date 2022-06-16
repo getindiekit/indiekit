@@ -8,6 +8,6 @@ test("Returns 404 if can’t find previously uploaded file", async (t) => {
     .get("/files/5ffcc8025c561a7bf53bd6e8")
     .set("cookie", [cookie]);
 
-  t.is(result.statusCode, 404);
+  t.is(result.status, 404);
   t.true(result.text.includes("No file was found at this URL"));
 });

@@ -17,7 +17,7 @@ test("Login redirects to IndieAuth authentication URL", async (t) => {
   const { location } = result.headers;
   const parameters = location.match(authUrlRegexp).groups;
 
-  t.is(result.statusCode, 302);
+  t.is(result.status, 302);
   t.true(parameters.client_id.startsWith("http"));
   t.truthy(parameters.code_challenge);
   t.true(parameters.me.startsWith("http"));

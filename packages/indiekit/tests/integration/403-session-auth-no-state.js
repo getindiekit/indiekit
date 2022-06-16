@@ -6,6 +6,6 @@ test("Authentication callback returns 400 if missing code/state", async (t) => {
 
   const result = await request.get("/session/auth").query("redirect=%2Fstatus");
 
-  t.is(result.statusCode, 403);
+  t.is(result.status, 403);
   t.true(result.text.includes("Missing code or state mismatch"));
 });

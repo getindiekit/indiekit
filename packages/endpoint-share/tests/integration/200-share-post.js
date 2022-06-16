@@ -23,5 +23,5 @@ test("Posts content and redirects back to share page", async (t) => {
     .send("content=Test+of+sharing+a+bookmark")
     .send("bookmark-of=https://example.website");
 
-  t.is(result.statusCode, 302);
+  t.is(result.status, 302);
 });

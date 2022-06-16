@@ -2,7 +2,7 @@ import httpError from "http-errors";
 
 export const notFound = (request, response, next) => {
   const notFoundError = new httpError.NotFound("Resource not found");
-  response.status(notFoundError.statusCode);
+  response.status(notFoundError.status);
 
   if (request.accepts("html")) {
     response.render("document", {
@@ -16,8 +16,8 @@ export const notFound = (request, response, next) => {
 
 // eslint-disable-next-line no-unused-vars
 export const internalServer = (error, request, response, next) => {
-  const applicationError = httpError(error.statusCode || 500);
-  response.status(applicationError.statusCode);
+  const applicationError = httpError(error.status || 500);
+  response.status(applicationError.status);
 
   if (request.accepts("html")) {
     response.render("document", {

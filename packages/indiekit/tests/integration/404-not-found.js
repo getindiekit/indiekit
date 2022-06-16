@@ -6,5 +6,5 @@ test("Returns 404", async (t) => {
 
   const result = await request.get("/not-found");
 
-  t.is(result.statusCode, 404);
+  t.is(result.status, 404);
 });

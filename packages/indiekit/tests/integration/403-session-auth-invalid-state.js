@@ -10,6 +10,6 @@ test("Authentication callback returns 400 with invalid code/state", async (t) =>
     .query("code=foo")
     .query("state=bar");
 
-  t.is(result.statusCode, 403);
+  t.is(result.status, 403);
   t.true(result.text.includes("Missing code or state mismatch"));
 });

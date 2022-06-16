@@ -7,5 +7,5 @@ test("Logout redirects to homepage", async (t) => {
   const result = await request.get("/session/logout");
 
   t.is(result.header.location, "/");
-  t.is(result.statusCode, 302);
+  t.is(result.status, 302);
 });

@@ -35,7 +35,7 @@ test("Syndicates a URL", async (t) => {
     .query(`token=${process.env.TEST_TOKEN}`);
 
   // Assertions
-  t.is(result.statusCode, 200);
+  t.is(result.status, 200);
   t.is(
     result.body.success_description,
     `Post updated at ${process.env.TEST_PUBLICATION_URL}notes/foobar/`

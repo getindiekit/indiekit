@@ -10,6 +10,6 @@ test("Returns 200 if no post records", async (t) => {
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
     .set("accept", "application/json");
 
-  t.is(result.statusCode, 200);
+  t.is(result.status, 200);
   t.is(result.body.success_description, "No post records available");
 });

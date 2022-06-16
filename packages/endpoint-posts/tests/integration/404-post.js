@@ -9,6 +9,6 @@ test("Returns 404 if can’t find previously published post", async (t) => {
     .get("/posts/5ffcc8025c561a7bf53bd6e8")
     .auth(process.env.TEST_TOKEN, { type: "bearer" });
 
-  t.is(result.statusCode, 404);
+  t.is(result.status, 404);
   t.true(result.text.includes("No post was found at this URL"));
 });

@@ -11,6 +11,6 @@ test("Returns 400 if unsupported query provided", async (t) => {
     .set("accept", "application/json")
     .query("foo=bar");
 
-  t.is(result.statusCode, 400);
+  t.is(result.status, 400);
   t.is(result.body.error_description, "Invalid query");
 });

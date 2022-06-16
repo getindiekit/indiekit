@@ -8,6 +8,6 @@ test("Authentication callback returns 403 if redirect is invalid", async (t) => 
     .get("/session/auth")
     .query("redirect=https://external.example");
 
-  t.is(result.statusCode, 403);
+  t.is(result.status, 403);
   t.true(result.text.includes("Invalid redirect"));
 });

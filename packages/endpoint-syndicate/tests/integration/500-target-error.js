@@ -30,6 +30,6 @@ test("Returns 500 error syndicating a URL", async (t) => {
     .query(`token=${process.env.TEST_TOKEN}`);
 
   // Assertions
-  t.is(result.statusCode, 500);
+  t.is(result.status, 500);
   t.regex(result.body.error_description, /Not found/);
 });

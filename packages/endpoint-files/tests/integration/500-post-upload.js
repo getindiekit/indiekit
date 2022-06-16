@@ -24,7 +24,7 @@ test("Returns 500 error uploading file", async (t) => {
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
 
-  t.is(response.statusCode, 500);
+  t.is(response.status, 500);
   t.is(
     result.querySelector(".banner--error .banner__text").textContent,
     "Something went wrong"

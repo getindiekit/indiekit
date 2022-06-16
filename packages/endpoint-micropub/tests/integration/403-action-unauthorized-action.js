@@ -32,7 +32,7 @@ test("Returns 401 if action is not supported (by scope)", async (t) => {
       url: response.header.location,
     });
 
-  t.is(result.statusCode, 403);
+  t.is(result.status, 403);
   t.is(
     result.body.error_description,
     "The scope of this token does not meet the requirements for this request"

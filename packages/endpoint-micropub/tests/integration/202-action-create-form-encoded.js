@@ -19,7 +19,7 @@ test("Creates post (form-encoded)", async (t) => {
     .send("photo=https%3A%2F%2Fwebsite.example%2Fphoto.jpg")
     .send("category[]=test1&category[]=test2");
 
-  t.is(result.statusCode, 202);
+  t.is(result.status, 202);
   t.regex(result.headers.location, /\bfoobar\b/);
   t.regex(result.body.success_description, /\bPost will be created\b/);
 });

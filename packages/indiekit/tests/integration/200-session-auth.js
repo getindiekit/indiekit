@@ -24,5 +24,5 @@ test("Returns authenticated session", async (t) => {
     .query(`code=${parameters.code_challenge}`)
     .query(`state=${parameters.state}`);
 
-  t.is(result.statusCode, 302);
+  t.is(result.status, 302);
 });

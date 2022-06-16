@@ -11,7 +11,7 @@ test("Returns 200 if no post record for URL", async (t) => {
     .set("accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`);
 
-  t.is(result.statusCode, 200);
+  t.is(result.status, 200);
   t.is(
     result.body.success_description,
     `No post record available for ${process.env.TEST_PUBLICATION_URL}notes/foobar/`

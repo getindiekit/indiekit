@@ -10,7 +10,7 @@ test("Returns 401 if access token does not provide adequate scope", async (t) =>
     .auth(process.env.TEST_TOKEN_NO_SCOPE, { type: "bearer" })
     .set("accept", "application/json");
 
-  t.is(result.statusCode, 401);
+  t.is(result.status, 401);
   t.is(
     result.body.error_description,
     "JSON Web Token error: invalid signature"

@@ -6,6 +6,6 @@ test("Returns CSS", async (t) => {
 
   const result = await request.get("/assets/app.css");
 
-  t.is(result.statusCode, 200);
+  t.is(result.status, 200);
   t.is(result.type, "text/css");
 });
