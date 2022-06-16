@@ -70,7 +70,7 @@ export const shareController = {
       const message = encodeURIComponent(body.success_description);
       response.redirect(`?success=${message}`);
     } catch (error) {
-      response.status(422).render("share", {
+      response.status(error.status).render("share", {
         title: response.__("share.title"),
         content,
         name,
