@@ -15,14 +15,9 @@ export const uploadController = {
    * @returns {object} HTTP response
    */
   async get(request, response, next) {
-    try {
-      response.render("upload", {
-        title: response.__("files.upload.title"),
-        formAction: "/media/upload",
-      });
-    } catch (error) {
-      next(error);
-    }
+    response.render("upload", {
+      title: response.__("files.upload.title"),
+    });
   },
 
   /**
@@ -70,7 +65,7 @@ export const uploadController = {
       const message = encodeURIComponent(body.success_description);
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
-      response.status(422).render("upload", {
+      response.status(error.status).render("upload", {
         title: response.__("files.upload.title"),
         error: error.message,
       });

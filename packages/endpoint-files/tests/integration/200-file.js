@@ -5,7 +5,7 @@ import { getFixture } from "@indiekit-test/fixtures";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
-test("Views previously uploaded file", async (t) => {
+test("Returns previously uploaded file", async (t) => {
   nock("https://api.github.com")
     .put((uri) => uri.includes(".jpg"))
     .reply(200, { commit: { message: "Message" } });
