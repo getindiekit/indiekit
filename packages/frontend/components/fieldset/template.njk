@@ -17,6 +17,6 @@
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
   {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor %}>
-  {{- legend | indent(indent) | safe }}
+  {{- legend | safe }}
   {{- caller() if caller }}
 </fieldset>

@@ -12,14 +12,15 @@
       text: errorSummaryTitle or "There is a problem"
     },
     errorList: errors | errorList
-  }) | indent(8) if errors }}
+  }) | indent(2) if errors }}
   {% call fieldset({
     legend: {
       classes: "visually-hidden" if minimalui,
       text: legendText,
       isPageHeading: true
     }
-  }) %}{% block fieldset %}
-  {% endblock %}{% endcall %}
+  }) -%}
+    {% block fieldset %}{% endblock %}
+  {% endcall %}
 </form>
 {% endblock %}

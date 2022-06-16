@@ -10,7 +10,7 @@
     classes: opts.label.classes,
     attributes: opts.label.attributes,
     for: opts.id
-  }) | indent(2) | trim }}
+  }) | indent(2) }}
 {%- endif %}
 {%- if opts.hint %}
   {%- set hintId = opts.id + "-hint" %}
@@ -20,7 +20,7 @@
     classes: opts.hint.classes,
     attributes: opts.hint.attributes,
     text: opts.hint.text
-  }) | indent(2) | trim }}
+  }) | indent(2) }}
 {%- endif %}
 {%- if opts.errorMessage %}
   {%- set errorId = opts.id + "-error" %}
@@ -31,7 +31,7 @@
     attributes: opts.errorMessage.attributes,
     text: opts.errorMessage.text,
     label: opts.errorMessage.label
-  }) | indent(2) | trim }}
+  }) | indent(2) }}
 {%- endif %}
 {%- set classes = "input" + (" " + opts.classes if opts.classes) %}
   <input class="{{ classes + (" " + "input--error" if opts.errorMessage) }}" name="{{ opts.name }}" type="{{ opts.type | default("text") }}"
