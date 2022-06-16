@@ -1,5 +1,4 @@
 import process from "node:process";
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import test from "ava";
 import { setGlobalDispatcher } from "undici";
 import { mediaEndpointAgent } from "@indiekit-test/mock-agent";

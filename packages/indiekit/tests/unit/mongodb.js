@@ -1,6 +1,5 @@
 import test from "ava";
 import sinon from "sinon";
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { getMongodbConfig } from "../../lib/mongodb.js";
 
