@@ -12,9 +12,9 @@ import prompts from "prompts";
  */
 export const addPluginConfig = async (pluginName, config) => {
   const plugin = await getPlugin(pluginName);
-  const { log } = console;
+  const { info } = console;
 
-  log(`${chalk.green(">")} ${chalk.white(`Configuring ${plugin.name}…`)}`);
+  info(`${chalk.green(">")} ${chalk.white(`Configuring ${plugin.name}…`)}`);
 
   // Add plug-in to list of installed plug-ins
   config.plugins.push(pluginName);

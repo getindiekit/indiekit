@@ -1,4 +1,5 @@
 import test from "ava";
+import sinon from "sinon";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../index.js";
 
@@ -71,6 +72,7 @@ test("Creates an express application", async (t) => {
 });
 
 test("Returns a server bound to given port", async (t) => {
+  sinon.stub(console, "info"); // Disable console.info
   const result = await t.context.indiekit.server({ port: 1234 });
 
   t.regex(result._connectionKey, /::::1234/);

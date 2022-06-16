@@ -1,9 +1,9 @@
 import process from "node:process";
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import sinon from "sinon";
 import mockReqRes from "mock-req-res";
+import { setGlobalDispatcher } from "undici";
+import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import { IndieAuth } from "../../lib/indieauth.js";
 
 setGlobalDispatcher(tokenEndpointAgent());

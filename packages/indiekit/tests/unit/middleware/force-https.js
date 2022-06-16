@@ -15,9 +15,11 @@ test("Redirect HTTP requests to HTTPS", async (t) => {
   });
   const response = mockResponse();
   const next = sinon.spy();
+  sinon.stub(console, "info");
 
   await forceHttps(request, response, next);
 
+  t.true(console.info.calledWith("Redirecting request to https"));
   t.true(response.redirect.calledWith(302));
 });
 

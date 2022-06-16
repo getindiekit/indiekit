@@ -18,7 +18,7 @@ export const getMongodbConfig = async (mongodbUrl) => {
       const database = client.db("indiekit");
       return database;
     } catch (error) {
-      console.error(error);
+      console.warn(error.message);
       return false;
     }
   }

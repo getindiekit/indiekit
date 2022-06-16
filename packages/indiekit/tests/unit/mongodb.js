@@ -1,4 +1,5 @@
 import test from "ava";
+import sinon from "sinon";
 import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { getMongodbConfig } from "../../lib/mongodb.js";
@@ -19,7 +20,13 @@ test("Connects to MongoDB database", async (t) => {
 });
 
 test("Returns false if can’t connect to a MongoDB database", async (t) => {
+  sinon.stub(console, "warn");
   const result = await getMongodbConfig("https://foo.bar");
 
+  t.true(
+    console.warn.calledWith(
+      'Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"'
+    )
+  );
   t.false(result);
 });
