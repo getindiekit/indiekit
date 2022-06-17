@@ -66,7 +66,7 @@ export const tokenController = {
    * @returns {Promise|object} HTTP response
    */
   async post(request, response, next) {
-    const { publication } = request.app.locals;
+    const { application, publication } = request.app.locals;
     const { client_id, code, redirect_uri } = request.query;
 
     try {
@@ -128,6 +128,7 @@ export const tokenController = {
       const authResponse = {
         access_token: jwt.sign(tokenData, process.env.TOKEN_SECRET, {
           expiresIn: 60 * 60 * 24 * 365,
+          issuer: application.url + request.baseUrl,
         }),
         me: accessTokenMe,
         scope: body.scope,
