@@ -22,6 +22,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta name="theme-color" content="{{ application.themeColor }}"/>
     <meta name="supported-color-schemes" content="light dark"/>
+
+    <link rel="authorization_endpoint" href="{{ publication.authorizationEndpoint }}">
+    <link rel="token_endpoint" href="{{ publication.tokenEndpoint }}">
+    <link rel="micropub" href="{{ publication.micropubEndpoint }}">
+
     <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg"/>
     <link rel="mask-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg" color="{{ application.themeColor }}"/>
     <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css"/>
