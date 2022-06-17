@@ -120,7 +120,6 @@ export const tokenController = {
 
       const tokenData = {
         client_id: getCanonicalUrl(client_id),
-        date_issued: new Date(),
         me: accessTokenMe,
         scope: body.scope,
       };
