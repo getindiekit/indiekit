@@ -367,12 +367,12 @@ See [customising the time zone →](customisation/time-zone.md)
 
 An IndieAuth token endpoint.
 
-_Optional_, defaults to `"https://tokens.indieauth.com/token"`. For example:
+_Optional_, defaults to `"[application.url]/token"`. For example:
 
 ```json
 {
   "publication": {
-    "tokenEndpoint": "https://tokens.example.org/token"
+    "tokenEndpoint": "https://server.website.example/token"
   }
 }
 ```
