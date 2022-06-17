@@ -135,7 +135,6 @@ test("`UTC` option converts offset to Z offset datetime", (t) => {
   t.is(result, "2020-01-02T16:00:00.000Z");
 });
 
-// TODO: Requires AVAs worker threading to be disabled to pass
 test("Gets server timezone offset", (t) => {
   process.env.TZ = "Asia/Taipei"; // Does not observe DST
   const ahead = getServerTimeZone();
