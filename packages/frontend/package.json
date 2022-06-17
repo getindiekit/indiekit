@@ -34,6 +34,8 @@
     "directory": "packages/frontend"
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "color": "^4.0.1",
     "date-fns": "^2.23.0",
     "iso-639-1": "^2.1.9",
@@ -45,7 +47,8 @@
     "postcss": "^8.3.6",
     "postcss-custom-media": "^8.0.0",
     "postcss-easy-import": "^4.0.0",
-    "postcss-extend-rule": "^4.0.0"
+    "postcss-extend-rule": "^4.0.0",
+    "rollup": "^2.75.6"
   },
   "publishConfig": {
     "access": "public"

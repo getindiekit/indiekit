@@ -1,6 +1,7 @@
 {% extends "form.njk" %}
 
 {% from "preview/macro.njk" import preview %}
+{% set mainControllers = "preview" %}
 {% set errorSummaryTitle = __("errorSummaryTitle") %}
 
 {% block fieldset %}
@@ -31,6 +32,9 @@
     label: {
       text: __("share.bookmark-of")
     },
+    attributes: {
+      "data-action": "preview#url"
+    },
     errorMessage: {
       text: errors["bookmark-of"].msg,
       label: __("error")
@@ -44,6 +48,9 @@
     label: {
       text: __("share.name")
     },
+    attributes: {
+      "data-action": "preview#title"
+    },
     errorMessage: {
       text: errors.name.msg,
       label: __("error")
@@ -56,6 +63,9 @@
     value: content,
     label: {
       text: __("share.content") + " " + __("optionalValue")
+    },
+    attributes: {
+      "data-action": "preview#text"
     }
   }) | indent(8) }}
 
