@@ -14,7 +14,7 @@
 <fieldset class="{{ classes("fieldset", opts.classes) }} s-linear"
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+  {{- attributes(opts.attributes) }}>
   {{- legend | safe }}
   {{- caller() if caller }}
 </fieldset>

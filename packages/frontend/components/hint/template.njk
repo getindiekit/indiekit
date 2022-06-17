@@ -1,4 +1,4 @@
 <p class="{{ classes("hint", opts.classes) }} s-linear" id="{{ opts.id }}"
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+  {{- attributes(opts.attributes) }}>
   {{- opts.text | safe -}}
 </p>

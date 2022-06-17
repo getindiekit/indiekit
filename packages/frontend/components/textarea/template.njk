@@ -36,5 +36,5 @@
   rows="{{ opts.rows or 5 }}"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>{{ opts.value }}</textarea>
+  {{- attributes(opts.attributes) }}>{{ opts.value }}</textarea>
 </div>

@@ -1,5 +1,5 @@
 <div class="{{ classes("error-summary", opts.classes) }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+  {{- attributes(opts.attributes) }}>
   <h2 class="error-summary__title" id="error-summary-title">
     {{ opts.title.text | safe }}
   </h2>
@@ -12,8 +12,7 @@
     {%- for item in opts.errorList %}
       <li>
       {%- if item.href %}
-        <a href="{{ item.href }}"
-          {%- for attr, value in item.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+        <a href="{{ item.href }}"{{ attributes(item.attributes) }}>
           {{- item.text | safe -}}
         </a>
       {%- else %}

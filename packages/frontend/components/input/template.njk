@@ -41,5 +41,5 @@
   {%- if opts.pattern %} pattern="{{ opts.pattern }}"{% endif %}
   {%- if opts.inputmode %} inputmode="{{ opts.inputmode }}"{% endif %}
   {%- if opts.required %} required{% endif %}
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+  {{- attributes(opts.attributes) }}>
 </div>

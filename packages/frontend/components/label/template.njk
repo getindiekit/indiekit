@@ -1,8 +1,8 @@
 {%- if opts.text -%}
 {%- set label -%}
 <label class="{{ classes("label", opts.classes) }}"
-  {%- for attribute, value in opts.attributes %} {{attribute}}="{{value}}"{% endfor %}
-  {%- if opts.for %} for="{{ opts.for }}"{% endif %}>
+  {%- if opts.for %} for="{{ opts.for }}"{% endif %}
+  {{- attributes(opts.attributes) }}>
   {{- opts.text | safe -}}
 </label>
 {%- endset -%}

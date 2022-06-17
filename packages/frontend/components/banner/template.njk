@@ -1,5 +1,5 @@
 <div class="{{ classes("banner", opts.classes) }}"
-  {%- for attr, value in opts.attributes -%} {{ attr }}="{{ value }}"{% endfor %}>
+  {{- attributes(opts.attributes) }}>
   <div class="banner__container">
     <div class="banner__body s-linear">
       <p class="banner__text">{{- opts.text | markdown("inline") | safe -}}</p>

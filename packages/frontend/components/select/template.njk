@@ -35,13 +35,13 @@
   <select class="{{ classes("select", "select--error" if opts.errorMessage) }}" name="{{ opts.name }}"
   {%- if opts.id %} id="{{ opts.id}}"{% endif %}
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
-  {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+  {{- attributes(opts.attributes) }}>
   {%- for item in opts.items %}
     {%- if item %}
       <option value="{{ item.value }}"
         {{-" selected" if item.selected }}
         {{-" disabled" if item.disabled }}
-        {%- for attr, value in item.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
+        {{- attributes(opts.attributes) }}>
         {{- item.text -}}
       </option>
     {%- endif %}

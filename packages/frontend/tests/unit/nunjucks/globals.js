@@ -1,5 +1,19 @@
 import test from "ava";
-import { classes, icon, pages } from "../../../lib/nunjucks/globals.js";
+import {
+  attributes,
+  classes,
+  icon,
+  pages,
+} from "../../../lib/nunjucks/globals.js";
+
+test("Generates space-separated list of HTML attribute key values", (t) => {
+  const result = attributes({
+    id: "foo",
+    "data-value": "bar",
+  });
+
+  t.is(result, ' id="foo" data-value="bar"');
+});
 
 test("Generates space-separated list of class names", (t) => {
   const result1 = classes("foo");
