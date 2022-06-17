@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-06-17)
+
+
+### Bug Fixes
+
+* **endpoint-token:** gets params from query not body ([26a2aad](https://github.com/getindiekit/indiekit/commit/26a2aadc7580796836023bfd85a8becc73634746))
+
+
+
+
+
 # [1.0.0-alpha.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-06-17)
 
 
