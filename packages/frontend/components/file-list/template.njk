@@ -1,4 +1,4 @@
-<ol class="file-list{{- " " + opts.classes if opts.classes }}">
+<ol class="{{ classes("file-list", opts.classes) }}">
   {%- for item in opts.items %}
   <li class="file-list__item">
     <h2 class="file__title">

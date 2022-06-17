@@ -1,8 +1,7 @@
 {%- macro _actionLink(action, key) %}
   <a href="{{ action.href }}"{%- for attr, value in action.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>{{ action.text | safe }}</a>
 {% endmacro -%}
-{%- set classes = "summary" + (" " + opts.classes if opts.classes) -%}
-<section class="{{ classes }}">
+<section class="{{ classes("summary", opts.classes) }}">
   {%- if opts.title or opts.actions %}
   <header class="summary__header">
   {%- if opts.title %}
@@ -27,7 +26,7 @@
   {%- endif %}
   </header>
   {%- endif %}
-  <dl class="{{ classes }}"
+  <dl class="summary__list"
     {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
     {%- for row in opts.rows %}
     {%- if row %}

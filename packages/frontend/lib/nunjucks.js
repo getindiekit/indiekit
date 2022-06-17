@@ -28,8 +28,9 @@ export const templates = (app) => {
   }
 
   // Add globals
-  parser.addGlobal("pages", nunjucks.runtime.markSafe(globals.pages));
+  parser.addGlobal("classes", nunjucks.runtime.markSafe(globals.classes));
   parser.addGlobal("icon", nunjucks.runtime.markSafe(globals.icon));
+  parser.addGlobal("pages", nunjucks.runtime.markSafe(globals.pages));
 
   return parser;
 };

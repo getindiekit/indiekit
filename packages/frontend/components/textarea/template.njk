@@ -2,8 +2,7 @@
 {%- from "../hint/macro.njk" import hint -%}
 {%- from "../label/macro.njk" import label -%}
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
-{%- set fieldClasses = "form__field" + (" " + opts.field.classes if opts.field.classes) -%}
-<div class="{{ fieldClasses + (" " + "form__field--error" if opts.errorMessage) }}">
+<div class="{{ classes("form__field", "form__field--error" if opts.errorMessage) }}">
 {%- if opts.label %}
   {{ label({
     text: opts.label.text,
@@ -33,8 +32,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-{%- set classes = "textarea" + (" " + opts.classes if opts.classes) %}
-  <textarea class="{{ classes + (" " + "textarea--error" if opts.errorMessage) }}"id="{{ opts.id }}" name="{{ opts.name }}"
+  <textarea class="{{ classes("textarea", "textarea--error" if opts.errorMessage) }}" id="{{ opts.id }}" name="{{ opts.name }}"
   rows="{{ opts.rows or 5 }}"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}

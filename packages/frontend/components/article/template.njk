@@ -1,5 +1,4 @@
-{%- set classes = "article" + (" " + opts.classes if opts.classes) -%}
-<article class="{{ classes }}">
+<article class="{{ classes("article", opts.classes) }}">
 {%- if opts.title %}
   <h1 class="article__title">
     {%- if opts.parent -%}

@@ -1,5 +1,4 @@
-{%- set classes = "error-summary" + (" " + opts.classes if opts.classes) -%}
-<div class="{{ classes }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+<div class="{{ classes("error-summary", opts.classes) }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
   {%- for attr, value in opts.attributes %} {{ attr }}="{{ value }}"{% endfor -%}>
   <h2 class="error-summary__title" id="error-summary-title">
     {{ opts.title.text | safe }}

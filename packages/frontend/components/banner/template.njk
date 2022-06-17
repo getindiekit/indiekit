@@ -1,5 +1,4 @@
-{%- set classes = "banner" + (" banner--" + opts.type if opts.type) + (" " + opts.classes if opts.classes) -%}
-<div class="{{ classes }}"
+<div class="{{ classes("banner", opts.classes) }}"
   {%- for attr, value in opts.attributes -%} {{ attr }}="{{ value }}"{% endfor %}>
   <div class="banner__container">
     <div class="banner__body s-linear">

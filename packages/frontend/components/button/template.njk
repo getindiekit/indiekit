@@ -1,19 +1,7 @@
-{#- Set classes for this component -#}
-{%- set classes = "button" -%}
-{%- if opts.classes -%}
-  {%- set classes = classes + " " + opts.classes -%}
-{%- endif -%}
-{%- if opts.disabled -%}
-  {%- set classes = classes + " button--disabled" -%}
-{%- endif -%}
 {#- Determine type of element to use, if not explicitly set -#}
-{%- if opts.href -%}
-  {%- set element = "a" -%}
-{%- else -%}
-  {%- set element = "button" -%}
-{%- endif -%}
+{%- set element = "a" if opts.href else "button" -%}
 {#- Define common attributes that we can use across all element types #}
-{%- set commonAttributes %} class="{{ classes }}"{% for attr, value in opts.attributes %} {{attr}}="{{value}}"{% endfor %}{% endset -%}
+{%- set commonAttributes %} class="{{ classes("button", opts.classes) }}"{% for attr, value in opts.attributes %} {{attr}}="{{value}}"{% endfor %}{% endset -%}
 {#- Define button attributes -#}
 {%- set buttonAttributes %}{% if opts.name %} name="{{ opts.name }}"{% endif %}{% if opts.disabled %} disabled="disabled" aria-disabled="true"{% endif %}{% endset -%}
 {%- if element == "a" -%}

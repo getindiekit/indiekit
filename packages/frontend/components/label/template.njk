@@ -1,7 +1,6 @@
 {%- if opts.text -%}
 {%- set label -%}
-{%- set classes = "label" + (" " + opts.classes if opts.classes) -%}
-<label class="{{ classes }}"
+<label class="{{ classes("label", opts.classes) }}"
   {%- for attribute, value in opts.attributes %} {{attribute}}="{{value}}"{% endfor %}
   {%- if opts.for %} for="{{ opts.for }}"{% endif %}>
   {{- opts.text | safe -}}

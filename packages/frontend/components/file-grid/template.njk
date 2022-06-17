@@ -1,4 +1,4 @@
-<ol class="file-grid{{- " " + opts.classes if opts.classes }}">
+<ol class="{{ classes("file-grid", opts.classes) }}">
   {%- for item in opts.items %}
   <li class="file-grid__item">
     <a href="{{ item.id | absoluteUrl(parentUrl) }}">
