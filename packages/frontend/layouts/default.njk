@@ -40,6 +40,7 @@
         --color-accent-lightest: {{ application.themeColor | lighten(0.8) }};
       }
     </style>
+    <script async defer src="{{ application.url }}{{ assetPath | default("/assets") }}/app.js" type="module"></script>
     <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
   </head>
 
@@ -53,7 +54,7 @@
     }) | indent(4) if not minimalui }}
   {%- endblock %}
 
-    <main class="{{ mainClasses }}" id="main">
+    <main class="{{ mainClasses }}" id="main"{% if mainControllers %} data-controller="{{ mainControllers }}"{% endif %}>
       {{ banner({
         classes: "banner--error" if error else "banner--success",
         text: error if error else success

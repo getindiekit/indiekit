@@ -35,6 +35,7 @@ export const routes = (indiekitConfig) => {
 
   // Assets
   router.use("/assets", express.static(assetsPath));
+  router.get("/assets/app.js", assetsController.getScripts);
   router.get("/assets/app.css", assetsController.getStyles);
 
   // Plug-in assets

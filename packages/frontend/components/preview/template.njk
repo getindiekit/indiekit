@@ -1,47 +1,14 @@
 <div class="{{ classes("preview", opts.field.classes) }}">
   <h3 class="preview__title">
-    <output for="{{ opts.title.for }}">{{ opts.title.value }}</output>
+    <output for="{{ opts.title.for }}" data-preview-target="title" data-placeholder="{{ opts.title.placeholder }}">{{ opts.title.value }}</output>
   </h3>
   <p class="preview__text s-linear">
-    <output for="{{ opts.text.for }}">{{ opts.text.value }}</output>
+    <output for="{{ opts.text.for }}" data-preview-target="text" data-placeholder="{{ opts.text.placeholder }}">{{ opts.text.value }}</output>
   </p>
   <p class="preview__url">
-    <output for="{{ opts.url.for }}">{{ opts.url.value }}</output>
+    <output for="{{ opts.url.for }}" data-preview-target="url" data-placeholder="{{ opts.url.placeholder }}">{{ opts.url.value }}</output>
   </p>
   <p class="preview__date">
     <date>{{ opts.date | date("PPPppp", opts.locale) }}</date>
   </p>
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Set up
-    let share = document.querySelector('.form');
-    let title = document.getElementById('{{ opts.title.for }}');
-    let titlePreview = document.querySelector('output[for="{{ opts.title.for }}"]');
-    let text = document.getElementById('{{ opts.text.for }}');
-    let textPreview = document.querySelector('output[for="{{ opts.text.for }}"]');
-    let url = document.getElementById('{{ opts.url.for }}');
-    let urlPreview = document.querySelector('output[for="{{ opts.url.for }}"]');
-
-    const updatePreview = (element, previewElement, placeholder) => {
-      const updateAttributes = () => {
-        if (element && element.value === '') {
-          previewElement.classList.add('placeholder');
-          previewElement.value = placeholder;
-        } else {
-          previewElement.classList.remove('placeholder')
-          previewElement.value = decodeURIComponent(element.value);
-        }
-      }
-
-      updateAttributes();
-      element.addEventListener('keyup', (e) => {
-        updateAttributes();
-      })
-    };
-
-    updatePreview(title, titlePreview, '{{ opts.title.placeholder }}');
-    updatePreview(text, textPreview, '{{ opts.text.placeholder }}');
-    updatePreview(url, urlPreview, '{{ opts.url.placeholder }}');
-  }, false);
-</script>
