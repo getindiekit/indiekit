@@ -126,7 +126,7 @@ export const tokenController = {
 
       const authResponse = {
         access_token: jwt.sign(tokenData, process.env.TOKEN_SECRET, {
-          expiresIn: "365d",
+          expiresIn: "90d",
           issuer: application.url + request.baseUrl,
         }),
         me: accessTokenMe,
