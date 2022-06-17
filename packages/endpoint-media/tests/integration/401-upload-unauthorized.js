@@ -2,7 +2,7 @@ import process from "node:process";
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 401 error if token doesn’t provide adequate scope", async (t) => {
+test("Returns 401 error token doesn’t have adequate scope", async (t) => {
   const request = await testServer();
 
   const result = await request

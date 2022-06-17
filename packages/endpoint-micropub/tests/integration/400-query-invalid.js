@@ -2,7 +2,7 @@ import process from "node:process";
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 400 error if unsupported query provided", async (t) => {
+test("Returns 400 error unsupported query provided", async (t) => {
   const request = await testServer();
 
   const result = await request

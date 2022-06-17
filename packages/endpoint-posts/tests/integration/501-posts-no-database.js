@@ -3,7 +3,7 @@ import test from "ava";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 501 error as feature requires a database", async (t) => {
+test("Returns 501 error as feature requires database", async (t) => {
   const request = await testServer({ useDatabase: false });
   const response = await request
     .get("/posts")

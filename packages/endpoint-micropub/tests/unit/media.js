@@ -58,7 +58,7 @@ test("Uploads attached files via media endpoint", async (t) => {
   ]);
 });
 
-test("Throws error if no media endpoint URL", async (t) => {
+test("Throws error no media endpoint URL", async (t) => {
   const { bearerToken, properties, files } = t.context;
 
   await t.throwsAsync(uploadMedia(bearerToken, {}, properties, files), {

@@ -55,7 +55,7 @@ test("Returns bearer token from query", (t) => {
   t.is(result, "JWT");
 });
 
-test("Throws error if no bearer token provided by request", (t) => {
+test("Throws error no bearer token provided by request", (t) => {
   t.throws(
     () => {
       findBearerToken({});

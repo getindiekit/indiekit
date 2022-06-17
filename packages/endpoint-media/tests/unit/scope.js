@@ -17,7 +17,7 @@ test("Required scope defaults to `media`", (t) => {
   t.true(checkScope("media", null));
 });
 
-test("Throws error if required scope not provided by access token", (t) => {
+test("Throws error required scope not provided by access token", (t) => {
   const error = t.throws(
     () => {
       checkScope("post");

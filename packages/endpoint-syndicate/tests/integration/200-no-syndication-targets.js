@@ -3,7 +3,7 @@ import test from "ava";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns no post records (no syndication targets)", async (t) => {
+test("Returns no syndication targets configured", async (t) => {
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar"))
     .twice()

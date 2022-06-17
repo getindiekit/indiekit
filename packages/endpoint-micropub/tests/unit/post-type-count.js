@@ -44,7 +44,7 @@ test("Counts the number of posts of a given type", async (t) => {
   t.is(result, 1);
 });
 
-test("Throws error getting post count without publication configuration", async (t) => {
+test("Throws error getting post count without configuration", async (t) => {
   await t.throwsAsync(postTypeCount.get(false, t.context.properties), {
     name: "InternalServerError",
     message: "No publication configuration provided",

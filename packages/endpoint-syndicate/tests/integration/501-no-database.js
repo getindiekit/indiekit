@@ -3,7 +3,7 @@ import test from "ava";
 import nock from "nock";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 501 error as feature requires a database", async (t) => {
+test("Returns 501 error as feature requires database", async (t) => {
   // Create post
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar"))

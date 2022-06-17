@@ -1,7 +1,7 @@
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Authentication callback returns 403 if redirect is invalid", async (t) => {
+test("Returns 403 error auth with invalid redirect", async (t) => {
   const request = await testServer();
 
   const result = await request

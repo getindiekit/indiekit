@@ -137,7 +137,7 @@ test("Deletes a file in a repository", async (t) => {
   t.is(result.data.commit.message, "Message");
 });
 
-test("Throws error if file not found in repository", async (t) => {
+test("Throws error file not found in repository", async (t) => {
   nock(t.context.githubUrl)
     .get((uri) => uri.includes("foo.txt"))
     .replyWithError("Not found");

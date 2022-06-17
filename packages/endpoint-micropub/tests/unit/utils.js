@@ -52,13 +52,13 @@ test("Generates random alpha-numeric string, 5 characters long", (t) => {
   t.regex(result, /[\d\w]{5}/g);
 });
 
-test("Renders relative path if URL is on publication", (t) => {
+test("Renders relative path if at publication URL", (t) => {
   const result = relativeMediaPath("http://foo.bar/media/", "http://foo.bar");
 
   t.is(result, "/media/");
 });
 
-test("Renders relative path if URL is on publication and publication URL has a path", (t) => {
+test("Renders relative path if at publication URL which has a path", (t) => {
   const result = relativeMediaPath(
     "http://foo.bar/baz/media/",
     "http://foo.bar/baz/"

@@ -62,7 +62,7 @@ export const replaceEntries = (object, replacements) => {
 };
 
 /**
- * Delete individual entries for properties of an object
+ * Delete entries for properties of object
  *
  * @param {object} object Object to update
  * @param {object} deletions Property entries to delete (mf2)
@@ -101,7 +101,7 @@ export const deleteEntries = (object, deletions) => {
 };
 
 /**
- * Delete properties of an object
+ * Delete properties of object
  *
  * @param {object} object Object to update
  * @param {Array} deletions Properties to delete (mf2)

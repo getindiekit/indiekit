@@ -193,7 +193,7 @@ test("Gets location property by parsing provided Geo URI", (t) => {
   });
 });
 
-test("Gets location property, parsing Geo URI with altitude and uncertainty values", (t) => {
+test("Gets location property parsing Geo URI with altitude and uncertainty", (t) => {
   const properties = { location: "geo:37.780080,-122.420160,1.0;u=65" };
 
   const result = getLocationProperty(properties);

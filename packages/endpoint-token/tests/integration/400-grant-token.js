@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 
 setGlobalDispatcher(indieauthAgent());
 
-test("Returns 400 error if unable to grant token", async (t) => {
+test("Returns 400 error unable to grant token", async (t) => {
   const request = await testServer();
   const result = await request
     .post("/token")

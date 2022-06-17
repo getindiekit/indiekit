@@ -20,7 +20,7 @@ test("Checks if given string is a valid URL", (t) => {
   t.true(isUrl("https://foo.bar"));
 });
 
-test("Throws error if given URL is not a string", (t) => {
+test("Throws error given URL is not a string", (t) => {
   t.throws(
     () => {
       isUrl({ url: "https://foo.bar" });

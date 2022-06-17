@@ -172,7 +172,7 @@ test("Returns false passing an object to media upload function", async (t) => {
   t.falsy(result);
 });
 
-test("Posts a favourite of a toot to Mastodon server", async (t) => {
+test("Posts a favourite of a toot to Mastodon", async (t) => {
   nock(t.context.options.url)
     .post(`/api/v1/statuses/${t.context.statusId}/favourite`)
     .reply(200, t.context.apiResponse);
@@ -187,7 +187,7 @@ test("Posts a favourite of a toot to Mastodon server", async (t) => {
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
-test("Doesn’t post a favourite of a URL to Mastodon server", async (t) => {
+test("Doesn’t post a favourite of a URL to Mastodon", async (t) => {
   const result = await mastodon(t.context.options).post(
     {
       "like-of": "https://foo.bar/lunchtime",
@@ -198,7 +198,7 @@ test("Doesn’t post a favourite of a URL to Mastodon server", async (t) => {
   t.falsy(result);
 });
 
-test("Posts a repost of a toot to Mastodon server", async (t) => {
+test("Posts a repost of a toot to Mastodon", async (t) => {
   nock(t.context.options.url)
     .post(`/api/v1/statuses/${t.context.statusId}/reblog`)
     .reply(200, t.context.apiResponse);
@@ -213,7 +213,7 @@ test("Posts a repost of a toot to Mastodon server", async (t) => {
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
-test("Doesn’t post a repost of a URL to Mastodon server", async (t) => {
+test("Doesn’t post a repost of a URL to Mastodon", async (t) => {
   const result = await mastodon(t.context.options).post(
     {
       "repost-of": "https://foo.bar/lunchtime",
@@ -224,7 +224,7 @@ test("Doesn’t post a repost of a URL to Mastodon server", async (t) => {
   t.falsy(result);
 });
 
-test("Posts a quote status to Mastodon server", async (t) => {
+test("Posts a quote status to Mastodon", async (t) => {
   nock(t.context.options.url)
     .post("/api/v1/statuses")
     .reply(200, t.context.apiResponse);
@@ -243,7 +243,7 @@ test("Posts a quote status to Mastodon server", async (t) => {
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
-test("Posts a status to Mastodon server", async (t) => {
+test("Posts a status to Mastodon", async (t) => {
   nock(t.context.options.url)
     .post("/api/v1/statuses")
     .reply(200, t.context.apiResponse);
@@ -263,50 +263,47 @@ test("Posts a status to Mastodon server", async (t) => {
 });
 
 // Fails as Nock doesn’t send _httpMessage.path value used by form-data module
-test.failing(
-  "Posts a status to Mastodon server with 4 out of 5 photos",
-  async (t) => {
-    nock(t.context.publication.me)
-      .get("/image1.jpg")
-      .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-    nock(t.context.publication.me)
-      .get("/image2.jpg")
-      .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-    nock(t.context.publication.me)
-      .get("/image3.jpg")
-      .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-    nock("https://website.example")
-      .get("/image4.jpg")
-      .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-    nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "1" });
-    nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "2" });
-    nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "3" });
-    nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "4" });
-    nock(t.context.options.url)
-      .post("/api/v1/statuses")
-      .reply(200, t.context.apiResponse);
+test.failing("Posts a status to Mastodon with 4 out of 5 photos", async (t) => {
+  nock(t.context.publication.me)
+    .get("/image1.jpg")
+    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+  nock(t.context.publication.me)
+    .get("/image2.jpg")
+    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+  nock(t.context.publication.me)
+    .get("/image3.jpg")
+    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+  nock("https://website.example")
+    .get("/image4.jpg")
+    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+  nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "1" });
+  nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "2" });
+  nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "3" });
+  nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "4" });
+  nock(t.context.options.url)
+    .post("/api/v1/statuses")
+    .reply(200, t.context.apiResponse);
 
-    const result = await mastodon(t.context.options).post(
-      {
-        content: {
-          html: "<p>Here’s the cheese sandwiches I ate.</p>",
-        },
-        photo: [
-          { url: `${t.context.publication.me}/image1.jpg` },
-          { url: `${t.context.publication.me}/image2.jpg` },
-          { url: "image3.jpg" },
-          { url: "https://website.example/image4.jpg" },
-          { url: "https://website.example/image5.jpg" },
-        ],
+  const result = await mastodon(t.context.options).post(
+    {
+      content: {
+        html: "<p>Here’s the cheese sandwiches I ate.</p>",
       },
-      t.context.publication
-    );
+      photo: [
+        { url: `${t.context.publication.me}/image1.jpg` },
+        { url: `${t.context.publication.me}/image2.jpg` },
+        { url: "image3.jpg" },
+        { url: "https://website.example/image4.jpg" },
+        { url: "https://website.example/image5.jpg" },
+      ],
+    },
+    t.context.publication
+  );
 
-    t.is(result, "https://mastodon.example/@username/1234567890987654321");
-  }
-);
+  t.is(result, "https://mastodon.example/@username/1234567890987654321");
+});
 
-test("Throws an error posting a status to Mastodon server with 4 out of 5 photos", async (t) => {
+test("Throws an error posting a status to Mastodon with 4 out of 5 photos", async (t) => {
   nock(t.context.publication.me)
     .get("/image1.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });

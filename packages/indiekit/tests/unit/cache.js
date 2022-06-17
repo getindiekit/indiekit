@@ -35,7 +35,7 @@ test("Returns data from remote file and saves to cache", async (t) => {
   t.deepEqual(result, ["Foo", "Bar"]);
 });
 
-test("Throws error if remote file not found", async (t) => {
+test("Throws error remote file not found", async (t) => {
   await t.throwsAsync(
     getCachedResponse(t.context.cache, "https://website.example/404.json"),
     {

@@ -5,11 +5,11 @@ test("Returns true if required scope is provided by token", (t) => {
   t.true(checkScope("create update", "update"));
 });
 
-test("Returns true if required scope is `create` but token provides `post`", (t) => {
+test("Returns true if required scope is `create` but token has `post`", (t) => {
   t.true(checkScope("post", "create"));
 });
 
-test("Returns true if required scope is `undelete` but token provides `create`", (t) => {
+test("Returns true if required scope is `undelete` but token has `create`", (t) => {
   t.true(checkScope("create", "undelete"));
 });
 
@@ -17,11 +17,11 @@ test("Required scope defaults to `create`", (t) => {
   t.true(checkScope("create update", null));
 });
 
-test("Requested scope defaults to `create` if none provided by access token", (t) => {
+test("Requested scope defaults to `create` if none provided by token", (t) => {
   t.true(checkScope(null, "create"));
 });
 
-test("Throws error if required scope not provided by access token", (t) => {
+test("Throws error required scope not provided by token", (t) => {
   const error = t.throws(
     () => {
       checkScope("create update", "delete");

@@ -1,7 +1,7 @@
 import test from "ava";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 400 error if malformed token provided", async (t) => {
+test("Returns 400 error malformed token provided", async (t) => {
   const request = await testServer();
   const result = await request
     .get("/token")
