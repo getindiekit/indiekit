@@ -10,9 +10,9 @@ test("Grants token and returns JSON", async (t) => {
   const request = await testServer();
   const response = await request
     .post("/token")
-    .send({ client_id: "https://client.example" })
-    .send({ code: "123456" })
-    .send({ redirect_uri: "/" });
+    .query({ client_id: "https://client.example" })
+    .query({ code: "123456" })
+    .query({ redirect_uri: "/" });
 
   const responseTextRegexp =
     /access_token=(?<access_token>.*)&me=(?<me>.*)&scope=(?<scope>.*)/;

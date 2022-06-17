@@ -10,9 +10,9 @@ test("Returns 400 error unable to grant token", async (t) => {
   const result = await request
     .post("/token")
     .set("accept", "application/json")
-    .send({ client_id: "https://client.example" })
-    .send({ code: "foobar" })
-    .send({ redirect_uri: "/" });
+    .query({ client_id: "https://client.example" })
+    .query({ code: "foobar" })
+    .query({ redirect_uri: "/" });
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Invalid code");

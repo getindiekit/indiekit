@@ -6,8 +6,8 @@ test("Returns 400 error no `client_id`", async (t) => {
   const result = await request
     .post("/token")
     .set("accept", "application/json")
-    .send({ code: "code" })
-    .send({ redirect_uri: "/" });
+    .query({ code: "code" })
+    .query({ redirect_uri: "/" });
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Missing client ID");
