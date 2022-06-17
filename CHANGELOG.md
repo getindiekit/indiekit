@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-06-17)
+
+
+### Bug Fixes
+
+* **endpint-media:** error in error response ([08e25f0](https://github.com/getindiekit/indiekit/commit/08e25f01117c7b6c75b89aaf52fed8e959779e71))
+* **endpoint-posts:** post count in pagination ([11964db](https://github.com/getindiekit/indiekit/commit/11964db8678b9830e110e7efbd1178025e1d4938))
+* **endpoint-token:** gets params from query not body ([4f5808f](https://github.com/getindiekit/indiekit/commit/4f5808fd47ef73c7114b252e524d0eb267c3970e))
+* **indiekit:** send query not body to token endpoint ([787af79](https://github.com/getindiekit/indiekit/commit/787af7953fcb0e7243d4c3423fd1dfdf1699bdd0))
+
+
+### Features
+
+* **endpoint-micropub:** strip any html from context text property ([0a4cbf0](https://github.com/getindiekit/indiekit/commit/0a4cbf04ae50ce5389eaff891d7e14083f79d26e))
+* **endpoint-micropub:** trim whitespace from name and photo alt properties ([c878c79](https://github.com/getindiekit/indiekit/commit/c878c795f574fa40abec6fe3b44be0039c668276))
+* **endpoint-token:** change token expiry to 90 days ([0f19d42](https://github.com/getindiekit/indiekit/commit/0f19d421321892e9c57f5f38fa912e81b2383cad))
+* **endpoint-token:** correct format for token expiry ([87ae154](https://github.com/getindiekit/indiekit/commit/87ae154efbc7752d91435cd145006e3fcc8e3884))
+* **endpoint-token:** include issuer in token ([286e314](https://github.com/getindiekit/indiekit/commit/286e3147215699beb89c93f9cc47774a70447b14))
+* **endpoint-token:** remove duplicate issue date in token ([416b7c6](https://github.com/getindiekit/indiekit/commit/416b7c62462e3fd307bca7c4b7d214f1c30f9e17))
+
+
+
+
+
 # [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
 
 

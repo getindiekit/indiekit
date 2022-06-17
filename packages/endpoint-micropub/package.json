@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-micropub",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "Micropub endpoint for Indiekit",
   "keywords": [
     "indiekit",
