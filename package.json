@@ -93,7 +93,7 @@
     ]
   },
   "nodemonConfig": {
-    "ext": "css,js,json,njk,md"
+    "ext": "css,cjs,js,json,njk,md"
   },
   "stylelint": {
     "extends": [
