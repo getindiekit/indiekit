@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus";
 /**
  * Based by the error summary component provided by GOV.UK Frontend.
  *
- * @see {@link: https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/error-summary/error-summary.js}
+ * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/error-summary/error-summary.js}
  */
 export const ErrorSummaryController = class extends Controller {
   connect() {

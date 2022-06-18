@@ -5,11 +5,11 @@ import { defaultConfig } from "../config/defaults.js";
 /**
  * Get user configuration values from package.json or configuration file
  *
- * @see {@link https://github.com/davidtheclark/cosmiconfig#readme}
- *
  * @access private
  * @param {string} configFilePath - Explicity declared configuration file path
  * @returns {object} User configuration
+ *
+ * @see {@link https://github.com/davidtheclark/cosmiconfig#readme}
  */
 function _getUserConfig(configFilePath) {
   const explorerSync = cosmiconfigSync("indiekit");

@@ -64,7 +64,7 @@ export const GithubStore = class {
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
    *
-   * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents}
+   * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(path, content, message) {
     content = Buffer.from(content).toString("base64");
@@ -85,7 +85,7 @@ export const GithubStore = class {
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
    *
-   * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-repository-content}
+   * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
    */
   async readFile(path) {
     const response = await this.client.repos.getContent({
@@ -108,7 +108,7 @@ export const GithubStore = class {
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
    *
-   * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents}
+   * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async updateFile(path, content, message) {
     const contents = await this.client.repos
@@ -140,7 +140,7 @@ export const GithubStore = class {
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
    *
-   * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#delete-a-file}
+   * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
   async deleteFile(path, message) {
     const contents = await this.client.repos.getContent({
