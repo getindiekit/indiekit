@@ -1,4 +1,5 @@
-<div class="{{ classes("error-summary", opts.classes) }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+<div class="{{ classes("error-summary", opts.classes) }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-controller="error-summary"
+  {%- if opts.disableAutoFocus %} data-disable-auto-focus="true"{% endif %}
   {{- attributes(opts.attributes) }}>
   <h2 class="error-summary__title" id="error-summary-title">
     {{ opts.title.text | safe }}
