@@ -4,8 +4,8 @@
   --container-padding-block: var(--step-0);
 }
 
-.form > * + * {
-  margin-block-start: var(--step-1);
+.form__field {
+  --flow-space: 0.5rem;
 }
 
 .form__field--error {
