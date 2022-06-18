@@ -7,8 +7,8 @@ const secretKey = randomBytes(32);
 /**
  * Encrypt a string
  *
- * @param {string} string String to encrypt
- * @param {string} iv Initialization vector
+ * @param {string} string - String to encrypt
+ * @param {string} iv - Initialization vector
  * @returns {string} Encrypted hash
  */
 export const encrypt = (string, iv) => {
@@ -21,8 +21,8 @@ export const encrypt = (string, iv) => {
 /**
  * Decrypt a string
  *
- * @param {string} hash Hash to decrypt
- * @param {string} iv Initialization vector
+ * @param {string} hash - Hash to decrypt
+ * @param {string} iv - Initialization vector
  * @returns {string} Decrypted string
  */
 export const decrypt = (hash, iv) => {
@@ -42,15 +42,16 @@ export const decrypt = (hash, iv) => {
 /**
  * Canonicalise URL according to IndieAuth spec
  *
- * @param {string} url The URL to canonicalise
+ * @param {string} url - The URL to canonicalise
  * @returns {string} The canonicalised URL
+ *
  * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
  */
 export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
  *
- * @param {object} request HTTP request
+ * @param {object} request - HTTP request
  * @returns {string} Fully resolved URL
  */
 export const getUrl = (request) => {
@@ -60,7 +61,7 @@ export const getUrl = (request) => {
 /**
  * Check if given string is a valid URL
  *
- * @param {object} string URL
+ * @param {object} string - URL
  * @returns {boolean} String is a URL
  */
 export const isUrl = (string) => {
@@ -79,7 +80,7 @@ export const isUrl = (string) => {
 /**
  * Generate cryptographically random string
  *
- * @param {number} [length=21] Length of string
+ * @param {number} [length=21] - Length of string
  * @returns {string} Random string
  */
 export const randomString = (length = 21) =>

@@ -21,9 +21,9 @@ export const IndieAuth = class {
   /**
    * Get authentication URL
    *
-   * @param {string} authorizationEndpoint Authorization endpoint
-   * @param {string} scope Authorisation scope
-   * @param {string} state State
+   * @param {string} authorizationEndpoint - Authorization endpoint
+   * @param {string} scope - Authorisation scope
+   * @param {string} state - State
    * @returns {Promise|string} Authentication URL
    */
   async getAuthUrl(authorizationEndpoint, scope, state) {
@@ -56,8 +56,8 @@ export const IndieAuth = class {
   /**
    * Exchange authorization code for access token
    *
-   * @param {string} tokenEndpoint Token endpoint
-   * @param {string} code Code received from authentication endpoint
+   * @param {string} tokenEndpoint - Token endpoint
+   * @param {string} code - Code received from authentication endpoint
    * @returns {Promise|object} Access token
    */
   async authorizationCodeGrant(tokenEndpoint, code) {

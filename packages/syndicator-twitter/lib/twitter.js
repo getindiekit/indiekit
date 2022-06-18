@@ -22,7 +22,7 @@ export const twitter = (options) => ({
   /**
    * Post a like
    *
-   * @param {string} tweetUrl URL of tweet to like
+   * @param {string} tweetUrl - URL of tweet to like
    * @returns {string} Twitter status URL
    */
   async postLike(tweetUrl) {
@@ -42,7 +42,7 @@ export const twitter = (options) => ({
   /**
    * Post a retweet
    *
-   * @param {string} tweetUrl URL of tweet to retweet
+   * @param {string} tweetUrl - URL of tweet to retweet
    * @returns {string} Twitter status URL
    */
   async postRetweet(tweetUrl) {
@@ -62,7 +62,7 @@ export const twitter = (options) => ({
   /**
    * Post a status
    *
-   * @param {object} parameters Status parameters
+   * @param {object} parameters - Status parameters
    * @returns {string} Twitter status URL
    */
   async postStatus(parameters) {
@@ -82,8 +82,8 @@ export const twitter = (options) => ({
   /**
    * Upload media and return Twitter media id
    *
-   * @param {string} media JF2 media object
-   * @param {string} me Publication URL
+   * @param {string} media - JF2 media object
+   * @param {string} me - Publication URL
    * @returns {string} Twitter media id
    */
   async uploadMedia(media, me) {
@@ -125,8 +125,8 @@ export const twitter = (options) => ({
   /**
    * Post to Twitter
    *
-   * @param {object} properties JF2 properties object
-   * @param {object} publication Publication configuration
+   * @param {object} properties - JF2 properties object
+   * @param {object} publication - Publication configuration
    * @returns {string} URL of syndicated tweet
    */
   async post(properties, publication) {

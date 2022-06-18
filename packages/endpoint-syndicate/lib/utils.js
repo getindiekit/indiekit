@@ -1,8 +1,8 @@
 /**
  * Get post data
  *
- * @param {object} publication Publication configuration
- * @param {string} url URL of existing post (optional)
+ * @param {object} publication - Publication configuration
+ * @param {string} url - URL of existing post (optional)
  * @returns {object} Post data for given url else recently published post
  */
 export const getPostData = async (publication, url) => {

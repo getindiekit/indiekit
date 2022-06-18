@@ -1,9 +1,9 @@
 /**
  * Redirect HTTP requests to HTTPS (typically on Heroku)
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP response
- * @param {Function} next Next middleware callback
+ * @param {object} request - HTTP request
+ * @param {object} response - HTTP response
+ * @param {Function} next - Next middleware callback
  * @returns {object} HTTP response
  */
 export function forceHttps(request, response, next) {

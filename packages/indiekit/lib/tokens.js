@@ -30,8 +30,8 @@ export const findBearerToken = (request) => {
 /**
  * Request an access token
  *
- * @param {string} tokenEndpoint Token endpoint
- * @param {object} bearerToken OAuth bearer token
+ * @param {string} tokenEndpoint - Token endpoint
+ * @param {object} bearerToken - OAuth bearer token
  * @returns {Promise|object} Access token
  */
 export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
@@ -55,8 +55,8 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
 };
 
 /**
- * @param {object} me Publication URL
- * @param {object} accessToken Access token
+ * @param {object} me - Publication URL
+ * @param {object} accessToken - Access token
  * @returns {object} Verified token
  */
 export const verifyAccessToken = (me, accessToken) => {

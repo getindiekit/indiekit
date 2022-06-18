@@ -1,8 +1,8 @@
 /**
  * Return mf2 properties of a post
  *
- * @param {object} mf2 mf2 object
- * @param {Array|string} requestedProperties mf2 properties to select
+ * @param {object} mf2 - mf2 object
+ * @param {Array|string} requestedProperties - mf2 properties to select
  * @returns {Promise|object} mf2 with requested properties
  */
 export const getMf2Properties = (mf2, requestedProperties) => {
@@ -43,7 +43,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 /**
  * Convert JF2 to mf2
  *
- * @param {string} jf2 JF2
+ * @param {string} jf2 - JF2
  * @returns {object} mf2
  */
 export const jf2ToMf2 = (jf2) => {

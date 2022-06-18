@@ -8,9 +8,9 @@ export const tokenController = {
   /**
    * Verify access token
    *
-   * @param {object} request HTTP request
-   * @param {Promise|object} response HTTP response
-   * @param {Function} next Next middleware callback
+   * @param {object} request - HTTP request
+   * @param {Promise|object} response - HTTP response
+   * @param {Function} next - Next middleware callback
    * @returns {object} HTTP response
    */
   get(request, response, next) {
@@ -60,9 +60,9 @@ export const tokenController = {
   /**
    * Grant access token
    *
-   * @param {object} request HTTP request
-   * @param {object} response HTTP response
-   * @param {Function} next Next middleware callback
+   * @param {object} request - HTTP request
+   * @param {object} response - HTTP response
+   * @param {Function} next - Next middleware callback
    * @returns {Promise|object} HTTP response
    */
   async post(request, response, next) {

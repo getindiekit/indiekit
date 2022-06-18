@@ -5,9 +5,9 @@ import { fetch } from "undici";
 /**
  * List previously uploaded files
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP response
- * @param {Function} next Next middleware callback
+ * @param {object} request - HTTP request
+ * @param {object} response - HTTP response
+ * @param {Function} next - Next middleware callback
  * @returns {object} HTTP response
  */
 export const filesController = async (request, response, next) => {

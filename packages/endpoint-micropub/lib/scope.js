@@ -3,8 +3,8 @@ import httpError from "http-errors";
 /**
  * Check provided scope(s) satisfies required scope
  *
- * @param {object} providedScope Provided scope
- * @param {string} requiredScope Required scope
+ * @param {object} providedScope - Provided scope
+ * @param {string} requiredScope - Required scope
  * @returns {boolean} True if provided scope includes requiredScope
  */
 export const checkScope = (providedScope, requiredScope) => {

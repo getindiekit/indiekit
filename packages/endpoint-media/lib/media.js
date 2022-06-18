@@ -2,9 +2,9 @@ export const media = {
   /**
    * Upload file
    *
-   * @param {object} publication Publication configuration
-   * @param {object} mediaData Media data
-   * @param {object} file File to upload
+   * @param {object} publication - Publication configuration
+   * @param {object} mediaData - Media data
+   * @param {object} file - File to upload
    * @returns {object} Data to use in response
    */
   async upload(publication, mediaData, file) {

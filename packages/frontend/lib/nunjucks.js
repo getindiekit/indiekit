@@ -4,7 +4,7 @@ import * as filters from "./nunjucks/filters.js";
 import * as globals from "./nunjucks/globals.js";
 
 /**
- * @param {Function} app Express
+ * @param {Function} app - Express
  * @returns {object} Nunjucks environment
  */
 export const templates = (app) => {

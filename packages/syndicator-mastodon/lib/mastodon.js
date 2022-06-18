@@ -18,7 +18,7 @@ export const mastodon = (options) => ({
   /**
    * Post a favourite
    *
-   * @param {string} tootUrl URL of toot to favourite
+   * @param {string} tootUrl - URL of toot to favourite
    * @returns {string} Mastodon status URL
    */
   async postFavourite(tootUrl) {
@@ -30,7 +30,7 @@ export const mastodon = (options) => ({
   /**
    * Post a reblog
    *
-   * @param {string} tootUrl URL of toot to reblog
+   * @param {string} tootUrl - URL of toot to reblog
    * @returns {string} Mastodon status URL
    */
   async postReblog(tootUrl) {
@@ -42,7 +42,7 @@ export const mastodon = (options) => ({
   /**
    * Post a status
    *
-   * @param {object} parameters Status parameters
+   * @param {object} parameters - Status parameters
    * @returns {string} Mastodon status URL
    */
   async postStatus(parameters) {
@@ -56,8 +56,8 @@ export const mastodon = (options) => ({
   /**
    * Upload media and return Mastodon media id
    *
-   * @param {string} media JF2 media object
-   * @param {string} me Publication URL
+   * @param {string} media - JF2 media object
+   * @param {string} me - Publication URL
    * @returns {string} Mastodon media id
    */
   async uploadMedia(media, me) {
@@ -86,8 +86,8 @@ export const mastodon = (options) => ({
   /**
    * Post to Mastodon
    *
-   * @param {object} properties JF2 properties object
-   * @param {object} publication Publication configuration
+   * @param {object} properties - JF2 properties object
+   * @param {object} publication - Publication configuration
    * @returns {string} URL of syndicated toot
    */
   async post(properties, publication) {

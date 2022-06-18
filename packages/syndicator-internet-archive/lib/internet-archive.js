@@ -4,9 +4,10 @@ import { fetch } from "undici";
  * Save Page Now 2 (SPN2) API
  *
  * @typedef Response
- * @property {object} response SPN2 response
- * @param {object} options Options
+ * @property {object} response - SPN2 response
+ * @param {object} options - Options
  * @returns {object} SPN2 response
+ *
  * @see {@link https://docs.google.com/document/d/1Nsv52MvSjbLb2PCpHlat0gkzw0EvtSgpKHu4mk0MnrA/}
  */
 export const internetArchive = (options) => ({
@@ -34,7 +35,7 @@ export const internetArchive = (options) => ({
   /**
    * Make capture request
    *
-   * @param {object} url URL to archive
+   * @param {object} url - URL to archive
    * @returns {Promise<Response>} Capture response
    */
   async capture(url) {
@@ -44,7 +45,7 @@ export const internetArchive = (options) => ({
   /**
    * Make status request
    *
-   * @param {object} jobId Capture job ID
+   * @param {object} jobId - Capture job ID
    * @returns {Promise<Response>} Status response
    */
   async status(jobId) {
@@ -68,7 +69,7 @@ export const internetArchive = (options) => ({
   /**
    * Save to Internet Archive
    *
-   * @param {object} properties JF2 properties object
+   * @param {object} properties - JF2 properties object
    * @returns {string} URL of archived web page
    */
   async save(properties) {

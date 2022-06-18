@@ -10,8 +10,8 @@ const { format, parseISO } = dateFns;
 /**
  * Get absolute URL or path
  *
- * @param {string} string URL or path
- * @param {string} baseUrl Base URL
+ * @param {string} string - URL or path
+ * @param {string} baseUrl - Base URL
  * @returns {URL} Absolute URL
  */
 export const absoluteUrl = (string, baseUrl) => {
@@ -27,8 +27,8 @@ export const absoluteUrl = (string, baseUrl) => {
 /**
  * Darken a color
  *
- * @param {string} string Color string
- * @param {string} value Darken amount
+ * @param {string} string - Color string
+ * @param {string} value - Darken amount
  * @returns {string} Hex color
  */
 export const darken = (string, value) => {
@@ -39,8 +39,8 @@ export const darken = (string, value) => {
 /**
  * Lighten a color
  *
- * @param {string} string Color string
- * @param {string} value Lighten amount
+ * @param {string} string - Color string
+ * @param {string} value - Lighten amount
  * @returns {string} Hex color
  */
 export const lighten = (string, value) => {
@@ -51,9 +51,9 @@ export const lighten = (string, value) => {
 /**
  * Format a date
  *
- * @param {string} string ISO 8601 date
- * @param {string} tokens Tokenised date format
- * @param {string} locale ISO 639-1 (plus optional country code)
+ * @param {string} string - ISO 8601 date
+ * @param {string} tokens - Tokenised date format
+ * @param {string} locale - ISO 639-1 (plus optional country code)
  * @returns {string} Formatted date
  */
 export const date = (string, tokens, locale = "en") => {
@@ -67,7 +67,7 @@ export const date = (string, tokens, locale = "en") => {
  * Transform errors provided by express-validator into array that can be
  * consumed by the error summary component.
  *
- * @param {object} errorMap Mapped error response from express-validator
+ * @param {object} errorMap - Mapped error response from express-validator
  * @returns {Array} List of errors
  */
 export const errorList = (errorMap) => {
@@ -90,8 +90,9 @@ export const errorList = (errorMap) => {
 /**
  * Get native language name
  *
- * @param {string} string ISO 639-1 language code
+ * @param {string} string - ISO 639-1 language code
  * @returns {string} Native language name
+ *
  * @example language('de') => Deutsch
  */
 export const language = (string) => languages.getNativeName(string);
@@ -99,8 +100,8 @@ export const language = (string) => languages.getNativeName(string);
 /**
  * Render Markdown string as HTML
  *
- * @param {string} string Markdown
- * @param {string} value If 'inline', HTML rendered without paragraph tags
+ * @param {string} string - Markdown
+ * @param {string} value - If 'inline', HTML rendered without paragraph tags
  * @returns {string} HTML
  */
 export const markdown = (string, value) => {
@@ -116,7 +117,7 @@ export const markdown = (string, value) => {
 /**
  * Transform object into an array that can be consumed by the summary component.
  *
- * @param {object} object Object
+ * @param {object} object - Object
  * @returns {Array} Rows
  */
 export const summaryRows = (object) => {

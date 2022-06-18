@@ -6,9 +6,9 @@ import { fetch } from "undici";
 /**
  * List previously published posts
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP response
- * @param {Function} next Next middleware callback
+ * @param {object} request - HTTP request
+ * @param {object} response - HTTP response
+ * @param {Function} next - Next middleware callback
  * @returns {object} HTTP response
  */
 export const postsController = async (request, response, next) => {

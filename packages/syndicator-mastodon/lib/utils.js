@@ -6,9 +6,9 @@ import { htmlToText } from "html-to-text";
 /**
  * Get status parameters from given JF2 properties
  *
- * @param {object} properties A JF2 properties object
- * @param {string} serverUrl Server URL, i.e. https://mastodon.social
- * @param {Array} mediaIds Mastodon media IDs
+ * @param {object} properties - A JF2 properties object
+ * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
+ * @param {Array} mediaIds - Mastodon media IDs
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, serverUrl, mediaIds) => {
@@ -70,8 +70,8 @@ export const createStatus = (properties, serverUrl, mediaIds) => {
 /**
  * Get absolute URL
  *
- * @param {string} string URL or path
- * @param {string} me Publication URL
+ * @param {string} string - URL or path
+ * @param {string} me - Publication URL
  * @returns {URL} Absolute URL
  */
 export const getAbsoluteUrl = (string, me) => {
@@ -99,8 +99,8 @@ export const getStatusIdFromUrl = (url) => {
  * Convert HTML to plain text, appending last link href
  * if present
  *
- * @param {string} html HTML
- * @param {string} serverUrl Server URL, i.e. https://mastodon.social
+ * @param {string} html - HTML
+ * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
  * @returns {string} Text
  */
 export const htmlToStatusText = (html, serverUrl) => {
@@ -144,8 +144,8 @@ export const htmlToStatusText = (html, serverUrl) => {
 /**
  * Test if string is a Mastodon status URL
  *
- * @param {string} string Text that may be a URL
- * @param {string} serverUrl Server URL, i.e. https://mastodon.social
+ * @param {string} string - Text that may be a URL
+ * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
  * @returns {boolean} Mastodon status URL?
  */
 export const isTootUrl = (string, serverUrl) => {

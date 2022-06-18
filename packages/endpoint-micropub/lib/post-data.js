@@ -8,8 +8,8 @@ export const postData = {
   /**
    * Create post data
    *
-   * @param {object} publication Publication configuration
-   * @param {object} properties JF2 properties
+   * @param {object} publication - Publication configuration
+   * @param {object} properties - JF2 properties
    * @returns {object} Post data
    */
   async create(publication, properties) {
@@ -65,8 +65,8 @@ export const postData = {
   /**
    * Read post data
    *
-   * @param {object} publication Publication configuration
-   * @param {string} url URL of existing post
+   * @param {object} publication - Publication configuration
+   * @param {string} url - URL of existing post
    * @returns {object} Post data
    */
   async read(publication, url) {
@@ -94,9 +94,9 @@ export const postData = {
   /**
    * Update post data
    *
-   * @param {object} publication Publication configuration
-   * @param {string} url URL of existing post
-   * @param {object} operation Requested operation(s)
+   * @param {object} publication - Publication configuration
+   * @param {string} url - URL of existing post
+   * @param {object} operation - Requested operation(s)
    * @returns {object} Post data
    */
   async update(publication, url, operation) {

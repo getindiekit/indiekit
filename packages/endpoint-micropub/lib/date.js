@@ -5,8 +5,8 @@ const { format, utcToZonedTime } = dateFnsTz;
 /**
  * Converts date to use configured time zone
  *
- * @param {string} setting Time zone setting
- * @param {string} dateString Date string
+ * @param {string} setting - Time zone setting
+ * @param {string} dateString - Date string
  * @returns {string} Converted date
  *
  * setting options:

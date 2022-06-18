@@ -14,7 +14,7 @@ import {
 /**
  * Create JF2 object from form-encoded request
  *
- * @param {string} body Form-encoded request body
+ * @param {string} body - Form-encoded request body
  * @returns {string} Micropub action
  */
 export const formEncodedToJf2 = (body) => {
@@ -46,7 +46,7 @@ export const formEncodedToJf2 = (body) => {
 /**
  * Convert mf2 to JF2
  *
- * @param {string} body Form-encoded request body
+ * @param {string} body - Form-encoded request body
  * @returns {string} Micropub action
  */
 export const mf2ToJf2 = (body) => {
@@ -60,8 +60,8 @@ export const mf2ToJf2 = (body) => {
 /**
  * Normalise JF2 properties
  *
- * @param {object} publication Publication configuration
- * @param {object} properties Source JF2 properties
+ * @param {object} publication - Publication configuration
+ * @param {object} properties - Source JF2 properties
  * @returns {object} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties) => {
@@ -107,8 +107,8 @@ export const normaliseProperties = (publication, properties) => {
 /**
  * Get audio property
  *
- * @param {object} properties JF2 properties
- * @param {object} me Publication URL
+ * @param {object} properties - JF2 properties
+ * @param {object} me - Publication URL
  * @returns {Array} `audio` property
  */
 export const getAudioProperty = (properties, me) => {
@@ -123,7 +123,7 @@ export const getAudioProperty = (properties, me) => {
 /**
  * Get content property (HTML, else object value, else property value)
  *
- * @param {object} properties JF2 properties
+ * @param {object} properties - JF2 properties
  * @returns {Array} `content` property
  */
 export const getContentProperty = (properties) => {
@@ -155,7 +155,7 @@ export const getContentProperty = (properties) => {
 /**
  * Get location property, parsing a Geo URI if provided
  *
- * @param {object|string} properties JF2 properties
+ * @param {object|string} properties - JF2 properties
  * @returns {object} `location` property
  */
 export const getLocationProperty = (properties) => {
@@ -182,8 +182,8 @@ export const getLocationProperty = (properties) => {
 /**
  * Get photo property (adding text alternatives where provided)
  *
- * @param {object} properties JF2 properties
- * @param {object} me Publication URL
+ * @param {object} properties - JF2 properties
+ * @param {object} me - Publication URL
  * @returns {Array} `photo` property
  */
 export const getPhotoProperty = (properties, me) => {
@@ -207,8 +207,8 @@ export const getPhotoProperty = (properties, me) => {
 /**
  * Get video property
  *
- * @param {object} properties JF2 properties
- * @param {object} me Publication URL
+ * @param {object} properties - JF2 properties
+ * @param {object} me - Publication URL
  * @returns {Array} `video` property
  */
 export const getVideoProperty = (properties, me) => {
@@ -223,8 +223,8 @@ export const getVideoProperty = (properties, me) => {
 /**
  * Get published date (using current date if none given)
  *
- * @param {object} properties JF2 properties
- * @param {object} timeZone Publication time zone
+ * @param {object} properties - JF2 properties
+ * @param {object} timeZone - Publication time zone
  * @returns {Array} `published` property
  */
 export const getPublishedProperty = (properties, timeZone) =>
@@ -233,8 +233,8 @@ export const getPublishedProperty = (properties, timeZone) =>
 /**
  * Get slug
  *
- * @param {object} properties JF2 properties
- * @param {string} separator Slug separator
+ * @param {object} properties - JF2 properties
+ * @param {string} separator - Slug separator
  * @returns {Array} Array containing slug value
  */
 export const getSlugProperty = (properties, separator) => {
@@ -256,8 +256,8 @@ export const getSlugProperty = (properties, separator) => {
 /**
  * Get mp-syndicate-to property
  *
- * @param {object} properties JF2 properties
- * @param {Array} syndicationTargets Configured syndication targets
+ * @param {object} properties - JF2 properties
+ * @param {Array} syndicationTargets - Configured syndication targets
  * @returns {Array} Resolved syndication targets
  */
 export const getSyndicateToProperty = (properties, syndicationTargets) => {

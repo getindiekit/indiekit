@@ -4,7 +4,7 @@ import TurndownService from "turndown";
 /**
  * Convert Markdown to HTML
  *
- * @param {string} string Markdown
+ * @param {string} string - Markdown
  * @returns {string} HTML
  */
 export const markdownToHtml = (string) => {
@@ -25,7 +25,7 @@ export const markdownToHtml = (string) => {
 /**
  * Convert HTML to Markdown
  *
- * @param {string} string HTML
+ * @param {string} string - HTML
  * @returns {string} Markdown
  */
 export const htmlToMarkdown = (string) => {

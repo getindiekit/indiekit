@@ -7,9 +7,9 @@ import { uploadMedia } from "../media.js";
 /**
  * Perform requested post action
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP response
- * @param {Function} next Next middleware callback
+ * @param {object} request - HTTP request
+ * @param {object} response - HTTP response
+ * @param {Function} next - Next middleware callback
  * @returns {object} HTTP response
  */
 export const actionController = async (request, response, next) => {

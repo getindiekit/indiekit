@@ -9,7 +9,7 @@ const defaults = {
 
 /**
  * @typedef Response
- * @property {object} response HTTP response
+ * @property {object} response - HTTP response
  */
 export const GithubStore = class {
   constructor(options = {}) {
@@ -59,10 +59,11 @@ export const GithubStore = class {
   /**
    * Create file in a repository
    *
-   * @param {string} path Path to file
-   * @param {string} content File content
-   * @param {string} message Commit message
+   * @param {string} path - Path to file
+   * @param {string} content - File content
+   * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents}
    */
   async createFile(path, content, message) {
@@ -81,8 +82,9 @@ export const GithubStore = class {
   /**
    * Read file in a repository
    *
-   * @param {string} path Path to file
+   * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#get-repository-content}
    */
   async readFile(path) {
@@ -101,10 +103,11 @@ export const GithubStore = class {
   /**
    * Update file in a repository
    *
-   * @param {string} path Path to file
-   * @param {string} content File content
-   * @param {string} message Commit message
+   * @param {string} path - Path to file
+   * @param {string} content - File content
+   * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#create-or-update-file-contents}
    */
   async updateFile(path, content, message) {
@@ -133,9 +136,10 @@ export const GithubStore = class {
   /**
    * Delete file in a repository
    *
-   * @param {string} path Path to file
-   * @param {string} message Commit message
+   * @param {string} path - Path to file
+   * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://docs.github.com/en/free-pro-team@latest/rest/reference/repos#delete-a-file}
    */
   async deleteFile(path, message) {

@@ -6,7 +6,7 @@ const require = createRequire(import.meta.url);
 /**
  * Add localisations to application configuration
  *
- * @param {object} application Application config
+ * @param {object} application - Application config
  * @returns {Promise|object} Localisations
  */
 export const getLocales = (application) => {
@@ -35,7 +35,7 @@ export const getLocales = (application) => {
 /**
  * Add plug-ins to application configuration
  *
- * @param {object} Indiekit Indiekit instance
+ * @param {object} Indiekit - Indiekit instance
  * @returns {Promise|Array} Installed plug-ins
  */
 export const getInstalledPlugins = async (Indiekit) => {

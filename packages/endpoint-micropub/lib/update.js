@@ -3,8 +3,8 @@ import _ from "lodash";
 /**
  * Add properties to object
  *
- * @param {object} object Object to update
- * @param {object} additions Properties to add (mf2)
+ * @param {object} object - Object to update
+ * @param {object} additions - Properties to add (mf2)
  * @returns {object} Updated object
  */
 export const addProperties = (object, additions) => {
@@ -41,8 +41,8 @@ export const addProperties = (object, additions) => {
 /**
  * Replace entries of a property. If property doesn’t exist, create it.
  *
- * @param {object} object Object to update
- * @param {object} replacements Properties to replace (mf2)
+ * @param {object} object - Object to update
+ * @param {object} replacements - Properties to replace (mf2)
  * @returns {object} Updated object
  */
 export const replaceEntries = (object, replacements) => {
@@ -64,8 +64,8 @@ export const replaceEntries = (object, replacements) => {
 /**
  * Delete entries for properties of object
  *
- * @param {object} object Object to update
- * @param {object} deletions Property entries to delete (mf2)
+ * @param {object} object - Object to update
+ * @param {object} deletions - Property entries to delete (mf2)
  * @returns {object} Updated object
  */
 export const deleteEntries = (object, deletions) => {
@@ -103,8 +103,8 @@ export const deleteEntries = (object, deletions) => {
 /**
  * Delete properties of object
  *
- * @param {object} object Object to update
- * @param {Array} deletions Properties to delete (mf2)
+ * @param {object} object - Object to update
+ * @param {Array} deletions - Properties to delete (mf2)
  * @returns {object} Updated object
  */
 export const deleteProperties = (object, deletions) => {

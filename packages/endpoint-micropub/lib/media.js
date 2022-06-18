@@ -4,10 +4,10 @@ import { fetch } from "undici";
 /**
  * Upload attached file(s) via media endpoint
  *
- * @param {string} token Bearer token
- * @param {object} publication Publication configuration
- * @param {object} properties JF2 properties
- * @param {object} files Files to upload
+ * @param {string} token - Bearer token
+ * @param {object} publication - Publication configuration
+ * @param {object} properties - JF2 properties
+ * @param {object} files - Files to upload
  * @returns {Array} Uploaded file locations
  */
 export const uploadMedia = async (token, publication, properties, files) => {

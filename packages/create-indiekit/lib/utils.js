@@ -6,8 +6,8 @@ import prompts from "prompts";
 /**
  * Add plug-in to Indiekit configuration
  *
- * @param {string} pluginName Name of selected plug-in
- * @param {object} config Indiekit configuration
+ * @param {string} pluginName - Name of selected plug-in
+ * @param {object} config - Indiekit configuration
  * @returns {object} Updated configuration
  */
 export const addPluginConfig = async (pluginName, config) => {
@@ -29,8 +29,8 @@ export const addPluginConfig = async (pluginName, config) => {
 /**
  * Check if Node.js version meets minimum requirement
  *
- * @param {string} currentVersion Current Node.js version
- * @param {number} minimumMajorVersion Minimum major version required
+ * @param {string} currentVersion - Current Node.js version
+ * @param {number} minimumMajorVersion - Minimum major version required
  */
 export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
   const requiredMajorVersion = Number.parseInt(
@@ -48,7 +48,7 @@ export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
 /**
  * Check if given string is a valid URL
  *
- * @param {object} string URL
+ * @param {object} string - URL
  * @returns {boolean} String is a URL
  */
 export const isUrl = (string) => {
@@ -67,7 +67,7 @@ export const isUrl = (string) => {
 /**
  * Get question prompts specified by plugin
  *
- * @param {string} pluginName Plug-in name
+ * @param {string} pluginName - Plug-in name
  * @returns {object} Plug-in
  */
 export const getPlugin = async (pluginName) => {

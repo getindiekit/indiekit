@@ -6,8 +6,8 @@ export const mediaData = {
   /**
    * Create media data
    *
-   * @param {object} publication Publication configuration
-   * @param {object} file File
+   * @param {object} publication - Publication configuration
+   * @param {object} file - File
    * @returns {object} Media data
    */
   async create(publication, file) {
@@ -72,8 +72,8 @@ export const mediaData = {
   /**
    * Read media data
    *
-   * @param {object} publication Publication configuration
-   * @param {string} url URL of uploaded media
+   * @param {object} publication - Publication configuration
+   * @param {string} url - URL of uploaded media
    * @returns {object} Media data
    */
   async read(publication, url) {

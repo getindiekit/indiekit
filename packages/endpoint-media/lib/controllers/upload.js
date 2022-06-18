@@ -6,9 +6,9 @@ import { checkScope } from "../scope.js";
 /**
  * Upload file
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP response
- * @param {Function} next Next middleware callback
+ * @param {object} request - HTTP request
+ * @param {object} response - HTTP response
+ * @param {Function} next - Next middleware callback
  * @returns {object} HTTP response
  */
 export const uploadController = async (request, response, next) => {

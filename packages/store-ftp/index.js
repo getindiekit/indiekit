@@ -65,7 +65,7 @@ export const FtpStore = class {
    * Create readable stream
    *
    * @private
-   * @param {string} content File content
+   * @param {string} content - File content
    * @returns {string} Readable stream
    */
   #createReadableStream(content) {
@@ -80,7 +80,7 @@ export const FtpStore = class {
    * Get absolute file path
    *
    * @private
-   * @param {string} filePath Path to file
+   * @param {string} filePath - Path to file
    * @returns {string} Absolute file path
    */
   #getAbsolutePath(filePath) {
@@ -90,8 +90,8 @@ export const FtpStore = class {
   /**
    * Create file
    *
-   * @param {string} filePath Path to file
-   * @param {string} content File content
+   * @param {string} filePath - Path to file
+   * @param {string} content - File content
    * @returns {Promise<Response>} A promise to the response
    */
   async createFile(filePath, content) {
@@ -116,8 +116,8 @@ export const FtpStore = class {
   /**
    * Update file
    *
-   * @param {string} filePath Path to file
-   * @param {string} content File content
+   * @param {string} filePath - Path to file
+   * @param {string} content - File content
    * @returns {Promise<Response>} A promise to the response
    */
   async updateFile(filePath, content) {
@@ -139,7 +139,7 @@ export const FtpStore = class {
   /**
    * Delete file
    *
-   * @param {string} filePath Path to file
+   * @param {string} filePath - Path to file
    * @returns {Promise<Response>} A promise to the response
    */
   async deleteFile(filePath) {

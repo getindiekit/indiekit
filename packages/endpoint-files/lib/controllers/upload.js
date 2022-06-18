@@ -9,8 +9,8 @@ export const uploadController = {
   /**
    * Get file to upload
    *
-   * @param {object} request HTTP request
-   * @param {object} response HTTP response
+   * @param {object} request - HTTP request
+   * @param {object} response - HTTP response
    * @returns {object} HTTP response
    */
   async get(request, response) {
@@ -22,8 +22,8 @@ export const uploadController = {
   /**
    * Post file to media endpoint
    *
-   * @param {object} request HTTP request
-   * @param {object} response HTTP response
+   * @param {object} request - HTTP request
+   * @param {object} response - HTTP response
    * @returns {object} HTTP response
    */
   async post(request, response) {

@@ -49,7 +49,7 @@ export const HugoPreset = class {
    * Get front matter
    *
    * @private
-   * @param {object} properties Post data variables
+   * @param {object} properties - Post data variables
    * @returns {string} Front matter in chosen format
    */
   _getFrontMatter(properties) {
@@ -199,7 +199,7 @@ export const HugoPreset = class {
   /**
    * Post template
    *
-   * @param {object} properties Post data variables
+   * @param {object} properties - Post data variables
    * @returns {string} Rendered template
    */
   postTemplate(properties) {

@@ -6,8 +6,8 @@ import { isUrl, getUrl } from "./utils.js";
  * Return array of available categories. If not a simple array,
  * fetch array from remote JSON file specified in `url` value.
  *
- * @param {object} cache Application cache
- * @param {object} publication Publication configuration
+ * @param {object} cache - Application cache
+ * @param {object} publication - Publication configuration
  * @returns {Promise|Array} Array of categories
  */
 export const getCategories = async (cache, publication) => {
@@ -28,8 +28,8 @@ export const getCategories = async (cache, publication) => {
 /**
  * Get endpoint URLs from publication configuration or server derived value
  *
- * @param {object} indiekitConfig Indiekit configuration
- * @param {object} request HTTP request
+ * @param {object} indiekitConfig - Indiekit configuration
+ * @param {object} request - HTTP request
  * @returns {object} Endpoint URLs
  */
 export const getEndpoints = (indiekitConfig, request) => {
@@ -60,7 +60,7 @@ export const getEndpoints = (indiekitConfig, request) => {
 /**
  * Get post template
  *
- * @param {object} publication Publication configuration
+ * @param {object} publication - Publication configuration
  * @returns {Function} Post template rendering function
  */
 export const getPostTemplate = (publication) => {
@@ -82,7 +82,7 @@ export const getPostTemplate = (publication) => {
 /**
  * Get merged preset and custom post types
  *
- * @param {object} publication Publication configuration
+ * @param {object} publication - Publication configuration
  * @returns {object} Merged configuration
  */
 export const getPostTypes = (publication) => {

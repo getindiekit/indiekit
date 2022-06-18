@@ -1,7 +1,7 @@
 /**
  * Generate space-separated list of HTML attribute key values
  *
- * @param {object} attributes Attributes
+ * @param {object} attributes - Attributes
  * @returns {string} Space-separated list of HTML attribute key values
  */
 export const attributes = (attributes) => {
@@ -19,8 +19,8 @@ export const attributes = (attributes) => {
 /**
  * Generate space-separated list of class names
  *
- * @param {string} baseClass Base class name
- * @param {string} [optionalClasses] List of space-separated class names
+ * @param {string} baseClass - Base class name
+ * @param {string} [optionalClasses] - List of space-separated class names
  * @returns {string} Space-separated list of class names
  */
 export const classes = (baseClass, optionalClasses) => {
@@ -32,7 +32,7 @@ export const classes = (baseClass, optionalClasses) => {
 /**
  * Render SVG icon
  *
- * @param {string} name Icon name
+ * @param {string} name - Icon name
  * @returns {string} HTML
  */
 export const icon = (name) => {
@@ -75,9 +75,9 @@ export const icon = (name) => {
 /**
  * Generate pagination data
  *
- * @param {number} currentPage Current page
- * @param {limit} limit Limit of items per page
- * @param {count} count Count of all items
+ * @param {number} currentPage - Current page
+ * @param {limit} limit - Limit of items per page
+ * @param {count} count - Count of all items
  * @returns {object} Options for pagination component
  */
 export const pages = (currentPage, limit, count) => {

@@ -5,9 +5,9 @@ import httpError from "http-errors";
 /**
  * View previously published post
  *
- * @param {object} request HTTP request
- * @param {object} response HTTP response
- * @param {Function} next Next middleware callback
+ * @param {object} request - HTTP request
+ * @param {object} response - HTTP response
+ * @param {Function} next - Next middleware callback
  * @returns {object} HTTP response
  */
 export const postController = async (request, response, next) => {

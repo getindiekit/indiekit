@@ -10,7 +10,7 @@ const defaults = {
 
 /**
  * @typedef Response
- * @property {object} response HTTP response
+ * @property {object} response - HTTP response
  */
 export const GiteaStore = class {
   constructor(options = {}) {
@@ -82,10 +82,11 @@ export const GiteaStore = class {
   /**
    * Create file in a repository
    *
-   * @param {string} path Path to file
-   * @param {string} content File content
-   * @param {string} message Commit message
+   * @param {string} path - Path to file
+   * @param {string} content - File content
+   * @param {string} message - Commit message
    * @returns {Promise<Response>} HTTP response
+   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(path, content, message) {
@@ -102,8 +103,9 @@ export const GiteaStore = class {
   /**
    * Read file in a repository
    *
-   * @param {string} path Path to file
+   * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
   async readFile(path) {
@@ -117,10 +119,11 @@ export const GiteaStore = class {
   /**
    * Update file in a repository
    *
-   * @param {string} path Path to file
-   * @param {string} content File content
-   * @param {string} message Commit message
+   * @param {string} path - Path to file
+   * @param {string} content - File content
+   * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(path, content, message) {
@@ -140,9 +143,10 @@ export const GiteaStore = class {
   /**
    * Delete file in a repository
    *
-   * @param {string} path Path to file
-   * @param {string} message Commit message
+   * @param {string} path - Path to file
+   * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
+   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
   async deleteFile(path, message) {

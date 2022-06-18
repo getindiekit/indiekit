@@ -2,8 +2,8 @@ export const post = {
   /**
    * Create post
    *
-   * @param {object} publication Publication configuration
-   * @param {object} postData Post data
+   * @param {object} publication - Publication configuration
+   * @param {object} postData - Post data
    * @returns {object} Response data
    */
   async create(publication, postData) {
@@ -40,9 +40,9 @@ export const post = {
   /**
    * Update post
    *
-   * @param {object} publication Publication configuration
-   * @param {object} postData Post data
-   * @param {string} url Files attached to request
+   * @param {object} publication - Publication configuration
+   * @param {object} postData - Post data
+   * @param {string} url - Files attached to request
    * @returns {object} Response data
    */
   async update(publication, postData, url) {
@@ -87,8 +87,8 @@ export const post = {
   /**
    * Delete post
    *
-   * @param {object} publication Publication configuration
-   * @param {object} postData Post data
+   * @param {object} publication - Publication configuration
+   * @param {object} postData - Post data
    * @returns {object} Response data
    */
   async delete(publication, postData) {
@@ -128,8 +128,8 @@ export const post = {
   /**
    * Undelete post
    *
-   * @param {object} publication Publication configuration
-   * @param {object} postData Post data
+   * @param {object} publication - Publication configuration
+   * @param {object} postData - Post data
    * @returns {object} Response data
    */
   async undelete(publication, postData) {

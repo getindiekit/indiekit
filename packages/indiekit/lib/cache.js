@@ -3,8 +3,8 @@ import { fetch } from "undici";
 /**
  * Get cached response value
  *
- * @param {Function} cache Application cache (returns `false` if no database)
- * @param {string} url URL to fetch and cache (used as key)
+ * @param {Function} cache - Application cache (returns `false` if no database)
+ * @param {string} url - URL to fetch and cache (used as key)
  * @returns {object} Cached response value
  */
 export const getCachedResponse = async (cache, url) => {
