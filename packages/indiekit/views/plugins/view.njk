@@ -1,0 +1,34 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  <img class="icon--rounded" src="{{ "/assets/" + plugin.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'" width="80" height="80">
+
+  {% call section({ title: "About this plug-in" }) %}
+    {{ summary({
+      rows: [{
+        key: { text: "description" },
+        value: { text: plugin.package.description }
+      } if plugin.package.description, {
+        key: { text: "author" },
+        value: { text: plugin.package.author.name }
+      } if plugin.package.author.name, {
+        key: { text: "version" },
+        value: { text: plugin.package.version }
+      } if plugin.package.version, {
+        key: { text: "repository" },
+        value: { text: plugin.package.repository.url | replace(".git", "") | urlize }
+      } if plugin.package.repository.url, {
+        key: { text: "homepage" },
+        value: { text: plugin.package.homepage | urlize }
+      } if plugin.package.homepage]
+    }) }}
+  {% endcall %}
+
+  {% if plugin.options %}
+    {% call section({ title: "Options" }) %}
+      {{ summary({
+        rows: summaryRows(plugin.options)
+      }) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}

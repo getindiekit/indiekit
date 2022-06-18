@@ -4,6 +4,7 @@ import { assetsPath } from "@indiekit/frontend";
 import rateLimit from "express-rate-limit";
 import * as assetsController from "./controllers/assets.js";
 import * as homepageController from "./controllers/homepage.js";
+import * as pluginController from "./controllers/plugin.js";
 import * as sessionController from "./controllers/session.js";
 import * as statusController from "./controllers/status.js";
 import { IndieAuth } from "./indieauth.js";
@@ -51,6 +52,20 @@ export const routes = (indiekitConfig) => {
   router.post("/session/login", limit, indieauth.login());
   router.get("/session/auth", limit, indieauth.authorize());
   router.get("/session/logout", sessionController.logout);
+
+  // Plugin
+  router.get(
+    "/plugins",
+    limit,
+    indieauth.authenticate(),
+    pluginController.list
+  );
+  router.get(
+    "/plugins/:pluginId",
+    limit,
+    indieauth.authenticate(),
+    pluginController.view
+  );
 
   // Status
   router.get(

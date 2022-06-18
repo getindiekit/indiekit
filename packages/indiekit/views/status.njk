@@ -10,6 +10,10 @@
 ```
 {% endset %}
 
+{%- set presetHtml %}
+  <img class="icon icon--rounded" src="{{ "/assets/" + publication.preset.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.preset.info.name }}
+{% endset -%}
+
 {%- set postTypesHtml %}<ul role="list">{% for config in publication.postTypes -%}
   <li>
     {{ icon(config.type) }}{{ config.name }}
@@ -28,16 +32,6 @@
     <a href="{{ target.info.uid }}">
       {%- if target.info.service.photo %}<img class="icon icon--rounded" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}{{ target.info.name }}
     </a>
-  </li>
-{%- endfor %}</ul>{% endset -%}
-
-{%- set installedPluginsHtml %}<ul role="list">{% for plugin in application.installedPlugins -%}
-  <li>
-    {%- if plugin.options.mountPath %}
-      <a href="{{ plugin.options.mountPath }}">{{- plugin.name -}}</a>
-    {% else %}
-      {{- plugin.name -}}
-    {% endif -%}
   </li>
 {%- endfor %}</ul>{% endset -%}
 
@@ -100,7 +94,7 @@
           text: __("status.publication.preset")
         },
         value: {
-          text: publication.preset.info.name
+          text: presetHtml | indent(2)
         }
       } if publication.preset, {
         key: {
@@ -127,7 +121,13 @@
     }) }}
   {% endcall %}
 
-  {% call section({ title: __("status.application.summaryTitle") }) %}
+  {% call section({
+    title: __("status.application.summaryTitle"),
+    actions: [{
+      text: __("status.application.installedPlugins"),
+      href: "/plugins/"
+    }]
+  }) %}
     {{ summary({
       rows: [{
         key: {
@@ -181,13 +181,6 @@
         },
         value: {
           text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
-        }
-      }, {
-        key: {
-          text: __("status.application.installedPlugins")
-        },
-        value: {
-          text: installedPluginsHtml
         }
       }]
     }) }}
