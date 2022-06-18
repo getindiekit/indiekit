@@ -1,6 +1,4 @@
 .preview {
-  --flow-space: 0.5rem;
-
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
   padding: var(--inset-small);
@@ -14,7 +12,7 @@
   margin-block-start: 0;
 }
 
-.preview output.empty {
+.preview output.placeholder {
   color: var(--color-neutral-light);
 }
 
@@ -22,12 +20,12 @@
   @extend %heading;
 }
 
-.preview__body,
-.preview__href {
+.preview__text,
+.preview__url {
   @extend %body;
 }
 
-.preview__body {
+.preview__text {
   min-block-size: 4rem;
 }
 

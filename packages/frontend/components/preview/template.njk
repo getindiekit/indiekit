@@ -2,10 +2,10 @@
   <h3 class="preview__title">
     <output for="{{ opts.title.for }}">{{ opts.title.value }}</output>
   </h3>
-  <p class="preview__body s-linear">
+  <p class="preview__text s-linear">
     <output for="{{ opts.text.for }}">{{ opts.text.value }}</output>
   </p>
-  <p class="preview__href">
+  <p class="preview__url">
     <output for="{{ opts.url.for }}">{{ opts.url.value }}</output>
   </p>
   <p class="preview__date">
@@ -23,13 +23,13 @@
     let url = document.getElementById('{{ opts.url.for }}');
     let urlPreview = document.querySelector('output[for="{{ opts.url.for }}"]');
 
-    const updatePreview = (element, previewElement, fallbackText) => {
+    const updatePreview = (element, previewElement, placeholder) => {
       const updateAttributes = () => {
-        if (element.value === '') {
-          previewElement.className = 'empty';
-          previewElement.value = fallbackText;
+        if (element && element.value === '') {
+          previewElement.classList.add('placeholder');
+          previewElement.value = placeholder;
         } else {
-          previewElement.className = 'filled'
+          previewElement.classList.remove('placeholder')
           previewElement.value = decodeURIComponent(element.value);
         }
       }
@@ -40,8 +40,8 @@
       })
     };
 
-    updatePreview(title, titlePreview, '{{ opts.title.text }}');
-    updatePreview(text, textPreview, '{{ opts.text.text }}');
-    updatePreview(url, urlPreview, '{{ opts.url.text }}');
+    updatePreview(title, titlePreview, '{{ opts.title.placeholder }}');
+    updatePreview(text, textPreview, '{{ opts.text.placeholder }}');
+    updatePreview(url, urlPreview, '{{ opts.url.placeholder }}');
   }, false);
 </script>
