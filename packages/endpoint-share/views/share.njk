@@ -6,19 +6,19 @@
 {% block fieldset %}
   {{ preview({
     title: {
-      text: __("share.name"),
       for: "name",
-      value: name
+      value: name,
+      placeholder: __("share.name")
     },
     text: {
-      text: __("share.content"),
       for: "content",
-      value: content
+      value: content,
+      placeholder: __("share.content")
     },
     url: {
-      text: __("share.url"),
-      for: "url",
-      value: url
+      for: "bookmark-of",
+      value: bookmarkOf or url,
+      placeholder: __("share.bookmark-of")
     },
     date: "now",
     locale: application.locale
