@@ -1,5 +1,5 @@
 import test from "ava";
-import { icon } from "../../../lib/globals/icon.js";
+import { icon } from "../../../lib/globals/index.js";
 
 test("Renders SVG icon", (t) => {
   const result = icon("note");

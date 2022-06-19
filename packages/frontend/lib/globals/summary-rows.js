@@ -1,7 +1,7 @@
 import { markdown } from "../filters/markdown.js";
 
 /**
- * Transform object into an array that can be consumed by the summary component.
+ * Transform object into array for consumption by summary component
  *
  * @param {object} object - Object
  * @returns {Array} Rows

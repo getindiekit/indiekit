@@ -1,5 +1,5 @@
 import test from "ava";
-import { classes } from "../../../lib/globals/classes.js";
+import { classes } from "../../../lib/globals/index.js";
 
 test("Generates space-separated list of class names", (t) => {
   const result1 = classes("foo");

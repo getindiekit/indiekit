@@ -1,5 +1,5 @@
 import test from "ava";
-import { pages } from "../../../lib/globals/pages.js";
+import { pages } from "../../../lib/globals/index.js";
 
 test("Generates pagination data", (t) => {
   const result = pages(2, 5, 15);

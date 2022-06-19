@@ -1,6 +1,6 @@
 /**
  * Transform errors provided by express-validator into array that can be
- * consumed by the error summary component.
+ * consumed by the error summary component
  *
  * @param {object} errorMap - Mapped error response from express-validator
  * @returns {Array} List of errors

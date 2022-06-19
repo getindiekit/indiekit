@@ -1,5 +1,5 @@
 import test from "ava";
-import { attributes } from "../../../lib/globals/attributes.js";
+import { attributes } from "../../../lib/globals/index.js";
 
 test("Generates space-separated list of HTML attribute key values", (t) => {
   const result = attributes({
