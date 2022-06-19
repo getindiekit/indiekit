@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import nunjucks from "nunjucks";
-import * as filters from "./nunjucks/filters.js";
-import * as globals from "./nunjucks/globals.js";
+import * as filters from "./filters/index.js";
+import * as globals from "./globals/index.js";
 
 /**
  * @param {Function} app - Express
@@ -28,10 +28,9 @@ export const templates = (app) => {
   }
 
   // Add globals
-  parser.addGlobal("attributes", nunjucks.runtime.markSafe(globals.attributes));
-  parser.addGlobal("classes", nunjucks.runtime.markSafe(globals.classes));
-  parser.addGlobal("icon", nunjucks.runtime.markSafe(globals.icon));
-  parser.addGlobal("pages", nunjucks.runtime.markSafe(globals.pages));
+  for (const global of Object.keys(globals)) {
+    parser.addGlobal(global, nunjucks.runtime.markSafe(globals[global]));
+  }
 
   return parser;
 };

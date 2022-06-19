@@ -1,0 +1,11 @@
+import test from "ava";
+import { attributes } from "../../../lib/globals/attributes.js";
+
+test("Generates space-separated list of HTML attribute key values", (t) => {
+  const result = attributes({
+    id: "foo",
+    "data-value": "bar",
+  });
+
+  t.is(result, ' id="foo" data-value="bar"');
+});

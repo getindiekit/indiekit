@@ -11,7 +11,7 @@
     title: {
       text: errorSummaryTitle or "There is a problem"
     },
-    errorList: errors | errorList
+    errorList: errorList(errors)
   }) | indent(2) if errors }}
   {% call fieldset({
     legend: {

@@ -19,6 +19,6 @@
   {% endif %}
   {{ summary({
     title: __("posts.post.properties"),
-    rows: post | summaryRows
+    rows: summaryRows(post)
   }) }}
 {% endblock %}
