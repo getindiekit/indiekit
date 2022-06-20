@@ -1,5 +1,8 @@
 {
   "files": {
+    "error": {
+      "file": "Wählen Sie eine Datei zum Hochladen aus"
+    },
     "file": {
       "download": "Download-Datei",
       "properties": "Eigenschaften"
@@ -8,6 +11,11 @@
       "none": "Keine Dateien",
       "title": "Hochgeladene Dateien"
     },
-    "title": "Dateien"
+    "title": "Dateien",
+    "upload": {
+      "file": "Datei",
+      "submit": "Hochladen",
+      "title": "Laden Sie eine neue Datei hoch"
+    }
   }
 }

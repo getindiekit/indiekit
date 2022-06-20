@@ -1,5 +1,8 @@
 {
   "files": {
+    "error": {
+      "file": "Kies een bestand om te uploaden"
+    },
     "file": {
       "download": "Bestand downloaden",
       "properties": "Eigenschappen"
@@ -8,6 +11,11 @@
       "none": "Geen bestanden",
       "title": "Geüploade bestanden"
     },
-    "title": "Bestanden"
+    "title": "Bestanden",
+    "upload": {
+      "file": "Bestand",
+      "submit": "Uploaden",
+      "title": "Upload een nieuw bestand"
+    }
   }
 }

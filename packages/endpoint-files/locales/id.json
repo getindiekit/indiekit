@@ -1,5 +1,8 @@
 {
   "files": {
+    "error": {
+      "file": "Pilih file yang akan diunggah"
+    },
     "file": {
       "download": "Unduh file",
       "properties": "Properti"
@@ -8,6 +11,11 @@
       "none": "Tidak ada file",
       "title": "File yang diunggah"
     },
-    "title": "File"
+    "title": "File",
+    "upload": {
+      "file": "Berkas",
+      "submit": "Unggah",
+      "title": "Unggah file baru"
+    }
   }
 }

@@ -15,6 +15,15 @@
   },
   "noValue": "Niet ingesteld",
   "optionalValue": "(optioneel)",
+  "pagination": {
+    "defaultType": "resultaten",
+    "item": "Pagina %s",
+    "next": "Volgende %s",
+    "page": "pagina",
+    "previous": "Vorige %s",
+    "result": "Toont {{from}} van {{count}} {{type}}",
+    "results": "Toont {{from}} aan {{to}} van {{count}} {{type}}"
+  },
   "session": {
     "login": {
       "description": "Meld u aan met IndieAuth om te controleren of u eigenaar bent van %s",
@@ -35,7 +44,7 @@
       "accessToken": "Token voor toegang",
       "installedPlugins": "Geïnstalleerde plug-ins",
       "locale": "Taal",
-      "localeNotAvailable": "{{ app }} is nog niet vertaald in {{ locale }}",
+      "localeNotAvailable": "{{app}} is nog niet vertaald in {{locale}}",
       "name": "Naam",
       "scope": "Geleverde reikwijdte",
       "summaryTitle": "Applicatie-instellingen",

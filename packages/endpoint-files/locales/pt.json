@@ -1,13 +1,21 @@
 {
   "files": {
+    "error": {
+      "file": "Escolha um arquivo para fazer upload"
+    },
     "file": {
-      "download": "Transferir ficheiro",
+      "download": "Baixar arquivo",
       "properties": "Propriedades"
     },
     "files": {
-      "none": "Sem ficheiros",
-      "title": "Ficheiros carregados"
+      "none": "Sem arquivos",
+      "title": "Arquivos enviados"
     },
-    "title": "Ficheiros"
+    "title": "Arquivos",
+    "upload": {
+      "file": "Arquivo",
+      "submit": "Upload",
+      "title": "Fazer upload de um novo arquivo"
+    }
   }
 }

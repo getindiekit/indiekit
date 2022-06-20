@@ -18,8 +18,8 @@
     "next": "Next %s",
     "previous": "Previous %s",
     "defaultType": "results",
-    "result": "Showing {{ from }} of {{ count }} {{ type }}",
-    "results": "Showing {{ from }} to {{ to }} of {{ count }} {{ type }}"
+    "result": "Showing {{from}} of {{count}} {{type}}",
+    "results": "Showing {{from}} to {{to}} of {{count}} {{type}}"
   },
   "guidance": {
     "discovery": "So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:"
@@ -47,7 +47,7 @@
       "scope": "Provided scope",
       "name": "Name",
       "locale": "Language",
-      "localeNotAvailable": "{{ app }} has not been translated into {{ locale }} yet",
+      "localeNotAvailable": "{{app}} has not been translated into {{locale}} yet",
       "themeColor": "Theme color",
       "themeColorScheme": "Theme",
       "themeColorSchemeValue": {

@@ -1,5 +1,8 @@
 {
   "files": {
+    "error": {
+      "file": "Elige un archivo para subirlo"
+    },
     "file": {
       "download": "Descargar archivo",
       "properties": "Propiedades"
@@ -8,6 +11,11 @@
       "none": "No hay archivos",
       "title": "Archivos cargados"
     },
-    "title": "Archivos"
+    "title": "Archivos",
+    "upload": {
+      "file": "Archivo",
+      "submit": "Cargar",
+      "title": "Cargar un archivo nuevo"
+    }
   }
 }

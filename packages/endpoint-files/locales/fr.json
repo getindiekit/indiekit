@@ -1,13 +1,21 @@
 {
   "files": {
+    "error": {
+      "file": "Choisissez un fichier à téléverser"
+    },
     "file": {
       "download": "Télécharger le fichier",
       "properties": "Propriétés"
     },
     "files": {
       "none": "Aucun fichier",
-      "title": "Fichiers téléchargés"
+      "title": "Fichiers téléversés"
     },
-    "title": "Fichiers"
+    "title": "Fichiers",
+    "upload": {
+      "file": "Fichier",
+      "submit": "Téléverser",
+      "title": "Téléverser un nouveau fichier"
+    }
   }
 }

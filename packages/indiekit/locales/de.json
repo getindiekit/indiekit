@@ -15,6 +15,15 @@
   },
   "noValue": "Nicht festgelegt",
   "optionalValue": "(fakultativ)",
+  "pagination": {
+    "defaultType": "Ergebnisse",
+    "item": "Seite %s",
+    "next": "Weiter %s",
+    "page": "seite",
+    "previous": "Frühere %s",
+    "result": "{{from}} von {{count}} {{type}} werden angezeigt",
+    "results": "{{from}} bis {{to}} von {{count}} {{type}} werden angezeigt"
+  },
   "session": {
     "login": {
       "description": "Melde dich mit IndieAuth an, um zu verifizieren, dass du %s besitzt",
@@ -35,7 +44,7 @@
       "accessToken": "Zugangstoken",
       "installedPlugins": "Installierte Plug-ins",
       "locale": "Sprache",
-      "localeNotAvailable": "{{ app }} wurde noch nicht in {{ locale }} übersetzt",
+      "localeNotAvailable": "{{app}} wurde noch nicht in {{locale}} übersetzt",
       "name": "Name",
       "scope": "Bereitgestellt scope",
       "summaryTitle": "Anwendungseinstellungen",
