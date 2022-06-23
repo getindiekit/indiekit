@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
+import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import httpError from "http-errors";
 import { fetch } from "undici";
 
 /**
@@ -38,15 +38,11 @@ export const postsController = async (request, response, next) => {
       }
     );
 
-    const body = await endpointResponse.json();
-
     if (!endpointResponse.ok) {
-      throw httpError(
-        endpointResponse.status,
-        body.error_description || endpointResponse.statusText
-      );
+      throw await IndiekitError.fromFetch(endpointResponse);
     }
 
+    const body = await endpointResponse.json();
     let posts;
     if (body?.items?.length > 0) {
       const mf2 = mf2tojf2(body);
