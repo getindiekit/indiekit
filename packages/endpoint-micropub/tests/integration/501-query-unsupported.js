@@ -12,5 +12,5 @@ test("Returns 501 error unsupported parameter provided", async (t) => {
     .query("q=fooBar");
 
   t.is(result.status, 501);
-  t.is(result.body.error_description, "Unsupported parameter: fooBar");
+  t.is(result.body.error_description, "Unsupported query for `q`: `fooBar`");
 });
