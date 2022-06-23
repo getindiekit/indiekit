@@ -1,0 +1,14 @@
+{% extends "default.njk" %}
+
+{% block main %}
+{% call article({
+  title: title
+}) -%}
+  {{ content | markdown | safe if content }}
+  <details>
+    <summary>{{ name }}</summary>
+    <pre><code>{{ stack }}</code></pre>
+  </details>
+  <p><small>Status code: <code>{{ status }}</code></small></p>
+{%- endcall %}
+{% endblock %}
