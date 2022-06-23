@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-test("Returns 501 error as feature requires database", async (t) => {
+test("Returns 500 error as feature requires database", async (t) => {
   const request = await testServer({ useDatabase: false });
   const response = await request.get("/files").set("cookie", [cookie]);
   const dom = new JSDOM(response.text);
@@ -11,7 +11,7 @@ test("Returns 501 error as feature requires database", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Not Implemented - Test configuration"
+    "Application error - Test configuration"
   );
   t.is(
     result.querySelector(".article__body p").textContent,
