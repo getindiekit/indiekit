@@ -28,6 +28,6 @@ test("Returns 501 error as feature requires database", async (t) => {
     .query(`token=${process.env.TEST_TOKEN}`);
 
   // Assertions
-  t.is(result.status, 501);
-  t.regex(result.body.error_description, /This feature requires a database/);
+  t.is(result.status, 500);
+  t.is(result.body.error_description, "This feature requires a database.");
 });

@@ -1,4 +1,4 @@
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import { getPostData } from "../utils.js";
 
@@ -9,9 +9,7 @@ export const syndicateController = {
       const { token } = request.query;
 
       if (!application.hasDatabase) {
-        throw new httpError.NotImplemented(
-          response.__("errors.noDatabase.content")
-        );
+        throw new IndiekitError(response.__("IndiekitError.missingDatabase"));
       }
 
       // Get syndication targets
@@ -56,11 +54,15 @@ export const syndicateController = {
         const { uid } = target.info;
         const canSyndicate = syndicateTo.includes(uid);
         if (canSyndicate) {
-          const syndicatedUrl = await target.syndicate(
-            postData.properties,
-            publication
-          );
-          syndication.push(syndicatedUrl);
+          try {
+            const syndicatedUrl = await target.syndicate(
+              postData.properties,
+              publication
+            );
+            syndication.push(syndicatedUrl);
+          } catch (error) {
+            throw new IndiekitError(error.message);
+          }
         }
       }
 
@@ -82,14 +84,11 @@ export const syndicateController = {
         }),
       });
 
-      const body = await endpointResponse.json();
-
       if (!endpointResponse.ok) {
-        throw httpError(
-          endpointResponse.status,
-          body.error_description || endpointResponse.statusText
-        );
+        throw await IndiekitError.fromFetch(endpointResponse);
       }
+
+      const body = await endpointResponse.json();
 
       return response.status(endpointResponse.status).json(body);
     } catch (error) {
