@@ -8,7 +8,6 @@ import { randomString } from "./utils.js";
  * @param {object} publication - Publication configuration
  * @param {object} file - Original file object
  * @returns {object} File properties
- *
  * @example fileData('brighton-pier.jpg') => {
  *   basename: 'ds48s',
  *   ext: '.jpg'
@@ -40,7 +39,6 @@ export const getFileProperties = async (publication, file) => {
  *
  * @param {object} file - File object
  * @returns {string} Post type ('photo', 'video' or 'audio')
- *
  * @example getMediaType('brighton-pier.jpg') => 'photo'
  */
 export const getMediaType = async (file) => {

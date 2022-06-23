@@ -73,7 +73,6 @@ export const GitlabStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} HTTP response
-   *
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(path, content, message) {
@@ -96,7 +95,6 @@ export const GitlabStore = class {
    *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
    */
   async readFile(path) {
@@ -116,7 +114,6 @@ export const GitlabStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
   async updateFile(path, content, message) {
@@ -140,7 +137,6 @@ export const GitlabStore = class {
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository}
    */
   async deleteFile(path, message) {

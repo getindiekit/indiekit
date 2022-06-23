@@ -10,7 +10,6 @@ const { format } = dateFnsTz;
  * Generate random alpha-numeric string, 5 characters long
  *
  * @returns {string} Alpha-numeric string
- *
  * @example random() => 'f0pjf'
  */
 export const randomString = () => Math.random().toString(36).slice(-5);
@@ -106,7 +105,6 @@ export const supplant = (string, object) =>
  * @param {object} url - URL
  * @param {object} pathname - Permalink path
  * @returns {string} Returns either 'photo', 'video' or audio
- *
  * @example permalink('http://foo.bar/baz', '/qux/quux') =>
  *   'http://foo.bar/baz/qux/quux'
  */

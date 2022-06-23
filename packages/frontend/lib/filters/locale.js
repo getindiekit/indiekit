@@ -24,7 +24,6 @@ export const date = (string, tokens, locale = "en") => {
  *
  * @param {string} string - ISO 639-1 language code
  * @returns {string} Native language name
- *
  * @example language('de') => Deutsch
  */
 export const language = (string) => languages.getNativeName(string);

@@ -7,7 +7,6 @@ import { fetch } from "undici";
  * @property {object} response - SPN2 response
  * @param {object} options - Options
  * @returns {object} SPN2 response
- *
  * @see {@link https://docs.google.com/document/d/1Nsv52MvSjbLb2PCpHlat0gkzw0EvtSgpKHu4mk0MnrA/}
  */
 export const internetArchive = (options) => ({

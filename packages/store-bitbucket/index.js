@@ -66,7 +66,6 @@ export const BitbucketStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async createFile(path, content, message) {
@@ -85,7 +84,6 @@ export const BitbucketStore = class {
    *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc}
    */
   async readFile(path) {
@@ -107,7 +105,6 @@ export const BitbucketStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async updateFile(path, content, message) {
@@ -127,7 +124,6 @@ export const BitbucketStore = class {
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async deleteFile(path, message) {

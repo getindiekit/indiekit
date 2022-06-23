@@ -13,7 +13,6 @@ const { format } = dateFnsTz;
  *
  * @param {string} string - String to decode
  * @returns {string} Decoded string
- *
  * @example decodeQueryParameter('foo+bar') => 'foo bar'
  * @example decodeQueryParameter('https%3A%2F%2Ffoo.bar') => 'https://foo.bar'
  */
@@ -26,7 +25,6 @@ export const decodeQueryParameter = (string) =>
  * @param {string} string - String to excerpt
  * @param {number} n - Max number of words
  * @returns {string} Excerpt
- *
  * @example excerptString('Foo bar baz', 2) => 'Foo bar'
  */
 export const excerptString = (string, n) => {
@@ -42,7 +40,6 @@ export const excerptString = (string, n) => {
  * @param {string} string - String to excerpt
  * @param {number} separator - Character used to separate words
  * @returns {string} Slugified string
- *
  * @example slugifyString('Foo bar baz', '_') => 'foo_bar_baz'
  */
 export const slugifyString = (string, separator = "-") => {
@@ -76,7 +73,6 @@ export const stripHtml = (string) => {
  * @param {object} url - URL
  * @param {object} pathname - Permalink path
  * @returns {string} Returns either 'photo', 'video' or audio
- *
  * @example permalink('http://foo.bar/baz', '/qux/quux') =>
  *   'http://foo.bar/baz/qux/quux'
  */
@@ -102,7 +98,6 @@ export const getPostTypeConfig = (type, postTypes) =>
  * Generate random alpha-numeric string, 5 characters long
  *
  * @returns {string} Alpha-numeric string
- *
  * @example random() => 'jb6zm'
  */
 export const randomString = () => Math.random().toString(36).slice(-5);

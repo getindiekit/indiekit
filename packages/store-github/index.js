@@ -63,7 +63,6 @@ export const GithubStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(path, content, message) {
@@ -84,7 +83,6 @@ export const GithubStore = class {
    *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
    */
   async readFile(path) {
@@ -107,7 +105,6 @@ export const GithubStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async updateFile(path, content, message) {
@@ -139,7 +136,6 @@ export const GithubStore = class {
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
   async deleteFile(path, message) {

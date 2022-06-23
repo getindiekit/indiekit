@@ -86,7 +86,6 @@ export const GiteaStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} HTTP response
-   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(path, content, message) {
@@ -105,7 +104,6 @@ export const GiteaStore = class {
    *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
   async readFile(path) {
@@ -123,7 +121,6 @@ export const GiteaStore = class {
    * @param {string} content - File content
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(path, content, message) {
@@ -146,7 +143,6 @@ export const GiteaStore = class {
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response
-   *
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
   async deleteFile(path, message) {

@@ -8,7 +8,6 @@ import { defaultConfig } from "../config/defaults.js";
  * @access private
  * @param {string} configFilePath - Explicity declared configuration file path
  * @returns {object} User configuration
- *
  * @see {@link https://github.com/davidtheclark/cosmiconfig#readme}
  */
 function _getUserConfig(configFilePath) {
