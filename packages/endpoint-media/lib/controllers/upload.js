@@ -1,4 +1,3 @@
-import httpError from "http-errors";
 import { media } from "../media.js";
 import { mediaData } from "../media-data.js";
 import { checkScope } from "../scope.js";
@@ -27,6 +26,6 @@ export const uploadController = async (request, response, next) => {
       .location(uploaded.location)
       .json(uploaded.json);
   } catch (error) {
-    return next(httpError(error.status, error.message));
+    return next(error);
   }
 };

@@ -1,4 +1,4 @@
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 
 /**
  * Query uploaded files
@@ -13,9 +13,7 @@ export const queryController = async (request, response, next) => {
 
   try {
     if (!application.hasDatabase) {
-      throw new httpError.NotImplemented(
-        response.__("errors.noDatabase.content")
-      );
+      throw new IndiekitError(response.__("IndiekitError.missingDatabase"));
     }
 
     let { page, limit, offset } = request.query;
@@ -32,7 +30,9 @@ export const queryController = async (request, response, next) => {
 
     const { q, url } = request.query;
     if (!q) {
-      throw new httpError.BadRequest("Invalid query");
+      throw IndiekitError.badRequest(
+        response.__("BadRequestError.missingParameter", "q")
+      );
     }
 
     let item;
@@ -40,7 +40,9 @@ export const queryController = async (request, response, next) => {
       item = await publication.media.findOne({ "properties.url": url });
 
       if (!item) {
-        throw new httpError.NotFound("No file was found at this URL");
+        throw IndiekitError.notFound(
+          response.__("NotFoundError.resource", "file")
+        );
       }
     }
 
@@ -58,7 +60,9 @@ export const queryController = async (request, response, next) => {
         });
 
       default:
-        throw new httpError.NotImplemented(`Unsupported parameter: ${q}`);
+        throw IndiekitError.notImplemented(
+          response.__("NotImplementedError.query", { key: "q", value: q })
+        );
     }
   } catch (error) {
     next(error);

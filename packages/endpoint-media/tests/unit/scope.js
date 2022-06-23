@@ -23,12 +23,12 @@ test("Throws error required scope not provided by access token", (t) => {
       checkScope("post");
     },
     {
-      name: "ForbiddenError",
-      message:
-        "The scope of this token does not meet the requirements for this request",
+      code: "insufficient_scope",
+      message: "Insufficient scope",
+      name: "InsufficientScopeError",
     }
   );
 
-  t.is(error.code, "insufficient_scope");
+  t.is(error.status, 403);
   t.is(error.scope, "create media");
 });
