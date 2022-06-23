@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
+import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import httpError from "http-errors";
 
 /**
  * View previously published post
@@ -32,15 +32,11 @@ export const postController = async (request, response, next) => {
       }
     );
 
-    const body = await endpointResponse.json();
-
     if (!endpointResponse.ok) {
-      throw httpError(
-        endpointResponse.status,
-        body.error_description || endpointResponse.statusText
-      );
+      throw await IndiekitError.fromFetch(endpointResponse);
     }
 
+    const body = await endpointResponse.json();
     const post = mf2tojf2(body);
 
     response.render("post", {
