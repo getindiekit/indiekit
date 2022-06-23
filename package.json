@@ -130,6 +130,14 @@
           ]
         }
       ],
+      "jsdoc/no-undefined-types": [
+        "warn",
+        {
+          "definedTypes": [
+            "HTMLElement"
+          ]
+        }
+      ],
       "unicorn/prevent-abbreviations": [
         "error",
         {

@@ -24,8 +24,8 @@ export const PreviewController = class extends Controller {
   /**
    * Update preview in output based on inputted value
    *
-   * @param {HTMLElement} outputElement - Output element
-   * @param {HTMLElement} inputElement - Input element
+   * @param {Object<HTMLElement>} outputElement - Output element
+   * @param {Object<HTMLElement>} inputElement - Input element
    */
   updatePreview(outputElement, inputElement = false) {
     outputElement.classList.add("placeholder");
