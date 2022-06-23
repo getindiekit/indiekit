@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 
 /**
@@ -37,15 +37,11 @@ export const filesController = async (request, response, next) => {
       }
     );
 
-    const body = await endpointResponse.json();
-
     if (!endpointResponse.ok) {
-      throw httpError(
-        endpointResponse.status,
-        body.error_description || endpointResponse.statusText
-      );
+      throw await IndiekitError.fromFetch(endpointResponse);
     }
 
+    const body = await endpointResponse.json();
     const files = body.items.map((item) => {
       item.id = Buffer.from(item.url).toString("base64");
       return item;

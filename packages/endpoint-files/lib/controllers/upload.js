@@ -1,5 +1,5 @@
 /* global Blob, FormData */
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import validator from "express-validator";
 import { fetch } from "undici";
 
@@ -52,21 +52,18 @@ export const uploadController = {
         body: formData,
       });
 
-      const body = await endpointResponse.json();
-
       if (!endpointResponse.ok) {
-        throw httpError(
-          endpointResponse.status,
-          body.error_description || endpointResponse.statusText
-        );
+        throw await IndiekitError.fromFetch(endpointResponse);
       }
 
+      const body = await endpointResponse.json();
       const message = encodeURIComponent(body.success_description);
+
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status).render("upload", {
         title: response.__("files.upload.title"),
-        error: error.message,
+        error: error.toJSON().error_description,
       });
     }
   },
