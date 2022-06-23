@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import process from "node:process";
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import {
   findBearerToken,
@@ -28,7 +28,7 @@ export const IndieAuth = class {
    */
   async getAuthUrl(authorizationEndpoint, scope, state) {
     if (!scope) {
-      throw new httpError.BadRequest("You need to provide some scopes");
+      throw IndiekitError.badRequest("You need to provide some scopes");
     }
 
     // PKCE code challenge
@@ -59,40 +59,33 @@ export const IndieAuth = class {
    * @returns {Promise|object} Access token
    */
   async authorizationCodeGrant(tokenEndpoint, code) {
-    try {
-      const tokenUrl = new URL(tokenEndpoint);
-      tokenUrl.searchParams.append("client_id", this.clientId);
-      tokenUrl.searchParams.append("code", code);
-      tokenUrl.searchParams.append("code_verifier", this.codeVerifier);
-      tokenUrl.searchParams.append("grant_type", "authorization_code");
-      tokenUrl.searchParams.append("redirect_uri", this.redirectUri);
+    const tokenUrl = new URL(tokenEndpoint);
+    tokenUrl.searchParams.append("client_id", this.clientId);
+    tokenUrl.searchParams.append("code", code);
+    tokenUrl.searchParams.append("code_verifier", this.codeVerifier);
+    tokenUrl.searchParams.append("grant_type", "authorization_code");
+    tokenUrl.searchParams.append("redirect_uri", this.redirectUri);
 
-      const endpointResponse = await fetch(tokenUrl.href, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-        },
-      });
+    const endpointResponse = await fetch(tokenUrl.href, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+      },
+    });
 
-      const body = await endpointResponse.json();
-
-      if (!endpointResponse.ok) {
-        throw httpError(
-          endpointResponse.status,
-          body.error_description || endpointResponse.statusText
-        );
-      }
-
-      if (!body.scope || !body.access_token) {
-        throw new httpError.BadRequest(
-          "The token endpoint did not return the expected parameters"
-        );
-      }
-
-      return body.access_token;
-    } catch (error) {
-      throw httpError(error);
+    if (!endpointResponse.ok) {
+      throw await IndiekitError.fromFetch(endpointResponse);
     }
+
+    const body = await endpointResponse.json();
+
+    if (!body.scope || !body.access_token) {
+      throw IndiekitError.badRequest(
+        "The token endpoint did not return the expected parameters"
+      );
+    }
+
+    return body.access_token;
   }
 
   /**
@@ -136,29 +129,39 @@ export const IndieAuth = class {
    * @returns {object} HTTP response
    */
   authenticate() {
-    return async (request, response, next) => {
-      const { publication } = request.app.locals;
-      const { code, redirect, state } = request.query;
-
-      // Check redirect is to a local path
-      if (redirect) {
-        const validRedirect = redirect.match(/^\/[\w\d/?=&]*$/);
-
-        if (!validRedirect) {
-          return response.status(403).render("session/login", {
-            title: response.__("session.login.title"),
-            error: response.__("session.login.error.validateRedirect"),
-          });
-        }
-      }
-
+    return async (request, response) => {
       try {
+        const { publication } = request.app.locals;
+        const { code, redirect, state } = request.query;
+
+        // Check redirect is to a local path
+        if (redirect) {
+          const validRedirect = redirect.match(/^\/[\w\d/?=&]*$/);
+
+          if (!validRedirect) {
+            throw IndiekitError.forbidden(
+              response.__("ForbiddenError.invalidRedirect")
+            );
+          }
+        }
+
+        if (!code) {
+          throw IndiekitError.badRequest(
+            response.__("BadRequestError.missingParameter", "code")
+          );
+        }
+
+        if (!state) {
+          throw IndiekitError.badRequest(
+            response.__("BadRequestError.missingParameter", "state")
+          );
+        }
+
         // Check for state mismatch
-        if (!code || !state || !validateState(state, this.clientId, this.iv)) {
-          return response.status(403).render("session/login", {
-            title: response.__("session.login.title"),
-            error: response.__("session.login.error.validateState"),
-          });
+        if (!validateState(state, this.clientId, this.iv)) {
+          throw IndiekitError.forbidden(
+            response.__("ForbiddenError.invalidState")
+          );
         }
 
         // Request access token
@@ -172,7 +175,10 @@ export const IndieAuth = class {
 
         return response.redirect(redirect || "/");
       } catch (error) {
-        return next(httpError(error));
+        return response.status(error.status).render("session/login", {
+          title: response.__("session.login.title"),
+          error: error.toJSON().error_description,
+        });
       }
     };
   }

@@ -159,11 +159,12 @@ test("Throws error checking credentials returned by IndieAuth", async (t) => {
     app: { locals: { publication: {} } },
     query: { code: "", state: "" },
   });
-  const response = mockResponse();
-  const next = sinon.spy();
+  const response = mockResponse({
+    __: () => ({ session: {} }),
+  });
 
-  await indieauth.authenticate()(request, response, next);
+  await indieauth.authenticate()(request, response);
 
-  t.true(next.calledOnce);
-  t.true(next.firstCall.args[0] instanceof Error);
+  t.true(response.status.calledWith(400));
+  t.true(response.render.calledWith("session/login"));
 });

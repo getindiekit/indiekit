@@ -18,6 +18,15 @@ export const getLocales = (application) => {
     locales.set(locale, translation);
   }
 
+  // Error localisations
+  for (const locale of application.localesAvailable) {
+    try {
+      const appLocale = locales.get(locale);
+      const translation = require(`../../error/locales/${locale}.json`);
+      locales.set(locale, deepmerge(appLocale, translation));
+    } catch {}
+  }
+
   // Plug-in localisations
   for (const plugin of application.installedPlugins) {
     for (const locale of application.localesAvailable) {
