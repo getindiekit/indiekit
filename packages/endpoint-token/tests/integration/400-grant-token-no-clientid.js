@@ -10,5 +10,5 @@ test("Returns 400 error no `client_id`", async (t) => {
     .query({ redirect_uri: "/" });
 
   t.is(result.status, 400);
-  t.is(result.body.error_description, "Missing client ID");
+  t.is(result.body.error_description, "Missing parameter: `client_id`");
 });

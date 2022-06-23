@@ -34,9 +34,9 @@
     "directory": "packages/endpoint-token"
   },
   "dependencies": {
+    "@indiekit/error": "^1.0.0-alpha.8",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "undici": "^5.2.0"
   },
