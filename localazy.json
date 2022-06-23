@@ -10,6 +10,12 @@
       },
       {
         "file": "en.json",
+        "path": "packages/error/locales",
+        "pattern": "packages/error/locales/en.json",
+        "module": "error"
+      },
+      {
+        "file": "en.json",
         "path": "packages/endpoint-share/locales",
         "pattern": "packages/endpoint-share/locales/en.json",
         "module": "endpoint-share"
