@@ -22,6 +22,6 @@ test("Returns 403 error granting token if URLs don’t match", async (t) => {
   t.is(result.status, 403);
   t.is(
     result.body.error_description,
-    "Publication URL does not match that provided by access token"
+    "Publication URL does not match that provided by access token."
   );
 });

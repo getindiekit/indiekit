@@ -10,5 +10,5 @@ test("Returns 400 error no `redirect_uri`", async (t) => {
     .query({ code: "code" });
 
   t.is(result.status, 400);
-  t.is(result.body.error_description, "Missing redirect URI");
+  t.is(result.body.error_description, "Missing parameter: `redirect_uri`");
 });

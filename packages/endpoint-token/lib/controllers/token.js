@@ -1,5 +1,5 @@
 import process from "node:process";
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import jwt from "jsonwebtoken";
 import { getCanonicalUrl } from "../utils.js";
@@ -30,9 +30,7 @@ export const tokenController = {
         // Publication URL does not match that provided by access token
         if (!isAuthenticated) {
           return next(
-            new httpError.Forbidden(
-              "Publication URL does not match that provided by access token"
-            )
+            IndiekitError.forbidden(response.__("ForbiddenError.invalidMe"))
           );
         }
 
@@ -47,7 +45,9 @@ export const tokenController = {
         }
       } catch (error) {
         next(
-          new httpError.Unauthorized(`JSON Web Token error: ${error.message}`)
+          IndiekitError.unauthorized(
+            response.__("UnauthorizedError.jwt", error.message)
+          )
         );
       }
     } else {
@@ -75,15 +75,21 @@ export const tokenController = {
 
     try {
       if (!client_id) {
-        throw new httpError.BadRequest("Missing client ID");
+        throw IndiekitError.badRequest(
+          response.__("BadRequestError.missingParameter", "client_id")
+        );
       }
 
       if (!code) {
-        throw new httpError.BadRequest("Missing code");
+        throw IndiekitError.badRequest(
+          response.__("BadRequestError.missingParameter", "code")
+        );
       }
 
       if (!redirect_uri) {
-        throw new httpError.BadRequest("Missing redirect URI");
+        throw IndiekitError.badRequest(
+          response.__("BadRequestError.missingParameter", "redirect_uri")
+        );
       }
 
       const authUrl = new URL(publication.authorizationEndpoint);
@@ -98,16 +104,11 @@ export const tokenController = {
         },
       });
 
-      const body = await endpointResponse.json();
-
       if (!endpointResponse.ok) {
-        return next(
-          httpError(
-            endpointResponse.status,
-            body.error_description || endpointResponse.statusText
-          )
-        );
+        throw await IndiekitError.fromFetch(endpointResponse);
       }
+
+      const body = await endpointResponse.json();
 
       // Canonicalise publication and token URLs before comparing
       const accessTokenMe = getCanonicalUrl(body.me);
@@ -116,9 +117,7 @@ export const tokenController = {
 
       if (!isAuthenticated) {
         return next(
-          new httpError.Forbidden(
-            "Publication URL does not match that provided by access token"
-          )
+          IndiekitError.forbidden(response.__("ForbiddenError.invalidMe"))
         );
       }
 
