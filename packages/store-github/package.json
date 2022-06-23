@@ -33,6 +33,7 @@
     "directory": "packages/store-github"
   },
   "dependencies": {
+    "@indiekit/error": "^1.0.0-alpha.8",
     "@octokit/rest": "^18.10.0"
   },
   "publishConfig": {
