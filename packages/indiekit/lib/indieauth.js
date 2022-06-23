@@ -38,8 +38,6 @@ export const IndieAuth = class {
       .digest("base64");
     const codeChallenge = base64Digest.toString("base64url");
 
-    console.log("getAuthUrl this.clientId", this.clientId);
-
     const authUrl = new URL(authorizationEndpoint);
     authUrl.searchParams.append("client_id", this.clientId);
     authUrl.searchParams.append("code_challenge_method", "S256");
