@@ -1,5 +1,5 @@
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
-import httpError from "http-errors";
 import validator from "express-validator";
 
 const { validationResult } = validator;
@@ -58,16 +58,13 @@ export const shareController = {
         body: new URLSearchParams(request.body).toString(),
       });
 
-      const body = await endpointResponse.json();
-
       if (!endpointResponse.ok) {
-        throw httpError(
-          endpointResponse.status,
-          body.error_description || endpointResponse.statusText
-        );
+        throw await IndiekitError.fromFetch(endpointResponse);
       }
 
+      const body = await endpointResponse.json();
       const message = encodeURIComponent(body.success_description);
+
       response.redirect(`?success=${message}`);
     } catch (error) {
       response.status(error.status).render("share", {
@@ -75,7 +72,7 @@ export const shareController = {
         content,
         name,
         bookmarkOf,
-        error: error.message,
+        error: error.toJSON().error_description,
         minimalui: request.params.path === "bookmarklet",
       });
     }
