@@ -48,7 +48,7 @@
 
   /* Typography */
   --font-family-system: system-ui, -apple-system, sans-serif;
-  --font-family-monospace: "Menlo", "Consolas", "Liberation Mono", monospace;
+  --font-family-monospace: ui-monospace, monospace;
   --font-size-title: calc(1.75rem + 1vw);
   --font-size-heading: calc(1.125rem + 0.5vw);
   --font-size-subhead: calc(1rem + 0.25vw);
@@ -71,8 +71,8 @@
   --border-width-thickest: 0.25rem;
 
   /* Spacing */
-  --space-block: 0.75rem;
-  --space-inline: 0.5rem;
+  --space-block: 1rem;
+  --space-inline: 0.75rem;
   --space-gap: 1.5rem;
 
   /* Sizing */

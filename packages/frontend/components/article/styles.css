@@ -6,8 +6,6 @@
 
 .article__title {
   @extend %title;
-
-  max-inline-size: var(--line-measure);
 }
 
 .article__parent {

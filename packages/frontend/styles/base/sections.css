@@ -17,12 +17,8 @@
   box-sizing: border-box;
 }
 
-:focus {
+:focus-visible {
   @extend %focus;
-}
-
-*::-moz-focus-inner {
-  border: 0;
 }
 
 ::selection {

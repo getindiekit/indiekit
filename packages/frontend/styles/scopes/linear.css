@@ -15,7 +15,6 @@
 }
 
 .s-linear > *:not([class]) {
-  max-inline-size: var(--line-measure);
   word-break: break-word;
 }
 
@@ -60,15 +59,10 @@
 .s-linear pre {
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
+  font-size: smaller;
   overflow: scroll;
-  padding: var(--inset-small-squished);
-  white-space: pre-wrap;
+  padding: var(--inset-small);
   word-break: normal;
-}
-
-.s-linear pre code {
-  background-color: transparent;
-  padding: 0;
 }
 
 .s-linear code,
@@ -76,13 +70,7 @@
   border-radius: var(--border-radius-small);
 }
 
-.s-linear code {
-  background-color: var(--color-shadow-offset);
-  padding: var(--text-spacing);
-}
-
 .s-linear code.property {
-  background: none;
   font-size: 67%;
   padding: 0;
 }

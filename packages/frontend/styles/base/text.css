@@ -16,11 +16,6 @@ a:hover {
   text-decoration-thickness: 0.1em;
 }
 
-/* Reset font size for smallprint/legal text */
-small {
-  font-size: 100%;
-}
-
 /* Correct text decoration in Chrome/Edge/IE/Opera/Safari */
 abbr[title] {
   text-decoration: none;
@@ -47,10 +42,8 @@ code,
 samp,
 var {
   font-family: var(--font-family-monospace);
-  font-size: 1rem;
   font-variant-numeric: tabular-nums;
   hanging-punctuation: none;
-  -webkit-font-smoothing: antialiased;
 }
 
 del {
