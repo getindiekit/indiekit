@@ -1,4 +1,4 @@
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import { getCanonicalUrl } from "./utils.js";
 
@@ -24,7 +24,7 @@ export const findBearerToken = (request) => {
     return bearerToken;
   }
 
-  throw new httpError.BadRequest("No bearer token provided by request");
+  throw IndiekitError.invalidRequest("No bearer token provided by request");
 };
 
 /**
@@ -42,16 +42,11 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
     },
   });
 
-  const body = await endpointResponse.json();
-
   if (!endpointResponse.ok) {
-    throw httpError(
-      endpointResponse.status,
-      body.error_description || endpointResponse.statusText
-    );
+    throw await IndiekitError.fromFetch(endpointResponse);
   }
 
-  return body;
+  return endpointResponse.json();
 };
 
 /**
@@ -62,12 +57,12 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
 export const verifyAccessToken = (me, accessToken) => {
   // Throw error if no publication URL provided
   if (!me) {
-    throw new httpError.BadRequest("No publication URL to verify");
+    throw IndiekitError.invalidRequest("No publication URL to verify");
   }
 
   // Throw error if access token does not contain a `me` value
   if (!accessToken.me) {
-    throw new httpError.Unauthorized(
+    throw IndiekitError.unauthorized(
       "There was a problem with this access token"
     );
   }
@@ -79,7 +74,7 @@ export const verifyAccessToken = (me, accessToken) => {
 
   // Publication URL does not match that provided by access token
   if (!isAuthenticated) {
-    throw new httpError.Forbidden(
+    throw IndiekitError.forbidden(
       "Publication URL does not match that provided by access token"
     );
   }

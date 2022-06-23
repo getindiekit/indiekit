@@ -55,13 +55,13 @@ test("Returns bearer token from query", (t) => {
   t.is(result, "JWT");
 });
 
-test("Throws error no bearer token provided by request", (t) => {
+test("Throws error if no bearer token provided by request", (t) => {
   t.throws(
     () => {
       findBearerToken({});
     },
     {
-      name: "BadRequestError",
+      name: "InvalidRequestError",
       message: "No bearer token provided by request",
     }
   );
@@ -79,7 +79,7 @@ test("Requests an access token", async (t) => {
 
 test("Token endpoint refuses to grant an access token", async (t) => {
   await t.throwsAsync(requestAccessToken(t.context.tokenEndpoint, "foo"), {
-    name: "BadRequestError",
+    name: "InvalidRequestError",
     message: "The token provided was malformed",
   });
 });
@@ -91,6 +91,7 @@ test("Throws error contacting token endpoint", async (t) => {
       t.context.bearerToken
     ),
     {
+      name: "NotFoundError",
       message: "Not Found",
     }
   );
@@ -108,7 +109,7 @@ test("Throws error verifying access token without a publication URL", (t) => {
       verifyAccessToken(null, t.context.accessToken);
     },
     {
-      name: "BadRequestError",
+      name: "InvalidRequestError",
       message: "No publication URL to verify",
     }
   );

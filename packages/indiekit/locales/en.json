@@ -1,15 +1,6 @@
 {
   "error": "Error",
   "errorSummaryTitle": "There is a problem",
-  "errors": {
-    "notFound": {
-      "title": "Page not found",
-      "content": "If you entered a web address please check it was correct."
-    },
-    "noDatabase": {
-      "content": "This feature requires a database."
-    }
-  },
   "noValue": "Not set",
   "optionalValue": "(optional)",
   "pagination": {
@@ -29,11 +20,7 @@
       "title": "Sign in",
       "description": "Sign in with IndieAuth to verify that you own %s",
       "me": "Web address",
-      "submit": "Sign in with IndieAuth",
-      "error": {
-        "validateRedirect": "Invalid redirect attempted",
-        "validateState": "Missing code or state mismatch"
-      }
+      "submit": "Sign in with IndieAuth"
     },
     "logout": {
       "title": "Sign out"

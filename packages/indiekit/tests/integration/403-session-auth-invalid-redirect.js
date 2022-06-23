@@ -9,5 +9,5 @@ test("Returns 403 error auth with invalid redirect", async (t) => {
     .query("redirect=https://external.example");
 
   t.is(result.status, 403);
-  t.true(result.text.includes("Invalid redirect"));
+  t.true(result.text.includes("Invalid redirect attempted."));
 });
