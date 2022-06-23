@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
+import { IndiekitError } from "@indiekit/error";
 import axios from "axios";
-import httpError from "http-errors";
 import megalodon from "megalodon";
 import {
   createStatus,
@@ -77,9 +77,9 @@ export const mastodon = (options) => ({
       });
       return data.id;
     } catch (error) {
-      const statusCode = error.response?.status || 500;
       const message = error.response?.data?.error || error.message;
-      throw httpError(statusCode, message);
+      const status = error.response?.status || 500;
+      throw new IndiekitError(message, { status });
     }
   },
 
