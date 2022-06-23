@@ -1,4 +1,4 @@
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 
 export const postTypeCount = {
   /**
@@ -9,51 +9,43 @@ export const postTypeCount = {
    * @returns {object} Post count
    */
   async get(publication, properties) {
-    try {
-      if (!publication) {
-        throw new httpError.InternalServerError(
-          "No publication configuration provided"
-        );
-      }
-
-      if (!publication.posts || !publication.posts.count()) {
-        throw new httpError.InternalServerError(
-          "No database configuration provided"
-        );
-      }
-
-      if (!properties) {
-        throw new httpError.BadRequest("No properties included in request");
-      }
-
-      // Post type
-      const postType = properties["post-type"];
-      const startDate = new Date(new Date(properties.published).toDateString());
-      const endDate = new Date(startDate);
-      endDate.setDate(endDate.getDate() + 1);
-      const response = await publication.posts
-        .aggregate([
-          {
-            $addFields: {
-              convertedDate: {
-                $toDate: "$properties.published",
-              },
-            },
-          },
-          {
-            $match: {
-              "properties.post-type": postType,
-              convertedDate: {
-                $gte: startDate,
-                $lt: endDate,
-              },
-            },
-          },
-        ])
-        .toArray();
-      return response.length;
-    } catch (error) {
-      throw httpError(error);
+    if (!publication) {
+      throw new IndiekitError("No publication configuration provided");
     }
+
+    if (!publication.posts || !publication.posts.count()) {
+      throw new IndiekitError("No database configuration provided");
+    }
+
+    if (!properties) {
+      throw IndiekitError.badRequest("No properties included in request");
+    }
+
+    // Post type
+    const postType = properties["post-type"];
+    const startDate = new Date(new Date(properties.published).toDateString());
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + 1);
+    const response = await publication.posts
+      .aggregate([
+        {
+          $addFields: {
+            convertedDate: {
+              $toDate: "$properties.published",
+            },
+          },
+        },
+        {
+          $match: {
+            "properties.post-type": postType,
+            convertedDate: {
+              $gte: startDate,
+              $lt: endDate,
+            },
+          },
+        },
+      ])
+      .toArray();
+    return response.length;
   },
 };

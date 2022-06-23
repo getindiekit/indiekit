@@ -33,8 +33,5 @@ test("Returns 403 error action not supported (by scope)", async (t) => {
     });
 
   t.is(result.status, 403);
-  t.is(
-    result.body.error_description,
-    "The scope of this token does not meet the requirements for this request"
-  );
+  t.is(result.body.error_description, "Insufficient scope");
 });

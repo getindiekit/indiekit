@@ -1,4 +1,4 @@
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 
 /**
  * Check provided scope(s) satisfies required scope
@@ -32,12 +32,7 @@ export const checkScope = (providedScope, requiredScope) => {
     return true;
   }
 
-  throw httpError(
-    403,
-    "The scope of this token does not meet the requirements for this request",
-    {
-      code: "insufficient_scope",
-      scope: requiredScope,
-    }
-  );
+  throw IndiekitError.insufficientScope("Insufficient scope", {
+    scope: requiredScope,
+  });
 };

@@ -1,4 +1,4 @@
-import httpError from "http-errors";
+import { IndiekitError } from "@indiekit/error";
 import { getConfig, queryConfig } from "../config.js";
 import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
@@ -15,9 +15,7 @@ export const queryController = async (request, response, next) => {
 
   try {
     if (!application.hasDatabase) {
-      throw new httpError.NotImplemented(
-        response.__("errors.noDatabase.content")
-      );
+      throw new IndiekitError(response.__("IndiekitError.missingDatabase"));
     }
 
     const config = getConfig(application, publication);
@@ -36,7 +34,9 @@ export const queryController = async (request, response, next) => {
 
     let { filter, properties, q, url } = request.query;
     if (!q) {
-      throw new httpError.BadRequest("Invalid query");
+      throw IndiekitError.badRequest(
+        response.__("BadRequestError.missingParameter", "q")
+      );
     }
 
     let item;
@@ -44,7 +44,9 @@ export const queryController = async (request, response, next) => {
       item = await publication.posts.findOne({ "properties.url": url });
 
       if (!item) {
-        throw new httpError.NotFound("No post was found at this URL");
+        throw IndiekitError.notFound(
+          response.__("NotFoundError.resource", "post")
+        );
       }
     }
 
@@ -76,7 +78,9 @@ export const queryController = async (request, response, next) => {
           });
         }
 
-        throw new httpError.NotImplemented(`Unsupported parameter: ${q}`);
+        throw IndiekitError.notImplemented(
+          response.__("NotImplementedError.query", { key: "q", value: q })
+        );
     }
   } catch (error) {
     next(error);

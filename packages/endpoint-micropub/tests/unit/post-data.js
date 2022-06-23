@@ -57,7 +57,7 @@ test("Creates post data", async (t) => {
 
 test("Throws error creating post data without publication configuration", async (t) => {
   await t.throwsAsync(postData.create(false, t.context.properties), {
-    name: "InternalServerError",
+    name: "IndiekitError",
     message: "No publication configuration provided",
   });
 });
@@ -88,7 +88,7 @@ test("Reads post data", async (t) => {
 
 test("Throws error reading post data without publication configuration", async (t) => {
   await t.throwsAsync(postData.read(false, t.context.url), {
-    name: "InternalServerError",
+    name: "IndiekitError",
     message: "No publication configuration provided",
   });
 });
@@ -179,7 +179,7 @@ test("Throws error updating post data without publication configuration", async 
   const operation = { delete: ["category"] };
 
   await t.throwsAsync(postData.update(false, t.context.url, operation), {
-    name: "InternalServerError",
+    name: "IndiekitError",
     message: "No publication configuration provided",
   });
 });
