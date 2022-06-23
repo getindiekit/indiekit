@@ -22,7 +22,7 @@ test("Returns 400 error publishing post", async (t) => {
 
   t.is(response.status, 400);
   t.is(
-    result.querySelector(".banner--error .banner__text").textContent,
+    result.querySelector(".notification--error p").textContent,
     "No bearer token provided by request"
   );
 });

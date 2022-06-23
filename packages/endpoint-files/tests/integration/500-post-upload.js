@@ -26,7 +26,7 @@ test("Returns 500 error uploading file", async (t) => {
 
   t.is(response.status, 500);
   t.is(
-    result.querySelector(".banner--error .banner__text").textContent,
+    result.querySelector(".notification--error p").textContent,
     "Something went wrong"
   );
 });

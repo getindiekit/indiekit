@@ -1,38 +1,43 @@
-.banner {
+.notification {
   background-color: var(--color-neutral-lightest);
   margin-block-start: calc(var(--border-width-thin) * -1);
 }
 
-.banner--error {
+.notification--error {
   background-color: var(--color-error);
 }
 
-.banner--success {
+.notification--success {
   background-color: var(--color-success);
 }
 
-.banner__container {
+.notification__container {
   @extend %container;
-}
-
-.banner__body {
-  @extend %caption;
 
   align-items: baseline;
   display: flex;
+  gap: var(--space-inline);
+}
+
+.notification__title {
+  @extend %subhead;
+}
+
+.notification__text {
+  @extend %caption;
 }
 
 /* Inverse text color with dark scheme to retain legibility */
 @media (prefers-color-scheme: dark) {
-  .banner__body {
+  .notification__body {
     color: var(--color-neutral-lightest);
   }
 }
 
-.banner__text {
+.notification__text {
   flex: 1 1 auto;
 }
 
-.banner__text a {
+.notification__text a {
   color: inherit;
 }

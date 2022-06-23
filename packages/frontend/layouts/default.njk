@@ -1,5 +1,4 @@
 {%- from "article/macro.njk" import article with context -%}
-{%- from "banner/macro.njk" import banner with context -%}
 {%- from "bookmarklet/macro.njk" import bookmarklet with context -%}
 {%- from "button/macro.njk" import button with context -%}
 {%- from "error-summary/macro.njk" import errorSummary with context -%}
@@ -9,6 +8,7 @@
 {%- from "footer/macro.njk" import footer with context -%}
 {%- from "header/macro.njk" import header with context -%}
 {%- from "input/macro.njk" import input with context -%}
+{%- from "notification/macro.njk" import notification with context -%}
 {%- from "pagination/macro.njk" import pagination with context -%}
 {%- from "select/macro.njk" import select with context -%}
 {%- from "summary/macro.njk" import summary with context -%}
@@ -55,8 +55,8 @@
   {%- endblock %}
 
     <main class="{{ mainClasses }}" id="main"{% if mainControllers %} data-controller="{{ mainControllers }}"{% endif %}>
-      {{ banner({
-        classes: "banner--error" if error else "banner--success",
+      {{ notification({
+        classes: "notification--error" if error else "notification--success",
         text: error if error else success
       }) | indent(6) if error or success }}
       {%- block main %}{% endblock %}

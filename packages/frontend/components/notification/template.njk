@@ -1,0 +1,12 @@
+<div class="{{ classes("notification", opts.classes) }}"
+  role="region" aria-labelledby="notification-title"
+  {{- attributes(opts.attributes) }}>
+  <div class="notification__container">
+    <h2 class="notification__title" id="notification-title">{{- opts.title | markdown("inline") | safe -}}</h2>
+    {%- if opts.text %}
+    <div class="notification__text s-linear">
+      {{ opts.text | markdown | safe }}
+    </div>
+    {%- endif %}
+  </div>
+</div>
