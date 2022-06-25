@@ -17,7 +17,10 @@ export const tokenEndpointAgent = () => {
   // Request access token (Bad Request)
   client
     .intercept({ path: "/", headers: { authorization: "Bearer foo" } })
-    .reply(400, { error_description: "The token provided was malformed" });
+    .reply(400, {
+      error: "invalid_request",
+      error_description: "The token provided was malformed",
+    });
 
   // Request access token (Not found)
   client
@@ -47,6 +50,7 @@ export const tokenEndpointAgent = () => {
       method: "POST",
     })
     .reply(400, {
+      error: "invalid_request",
       error_description: "The code provided was not valid",
     });
 
