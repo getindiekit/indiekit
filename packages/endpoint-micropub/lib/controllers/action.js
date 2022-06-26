@@ -18,14 +18,22 @@ export const actionController = async (request, response, next) => {
   const action = query.action || body.action || "create";
   const url = query.url || body.url;
   const { publication } = request.app.locals;
-  const { scope, token } = request.session;
 
   try {
+    // Check provided scope
+    const { scope, token } = request.session;
     const hasScope = checkScope(scope, action);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(
         response.__("ForbiddenError.insufficientScope"),
         { scope: action }
+      );
+    }
+
+    // Check for URL if not creating a new post
+    if (action !== "create" && !url) {
+      throw IndiekitError.badRequest(
+        response.__("BadRequestError.missingParameter", "url")
       );
     }
 
@@ -43,6 +51,16 @@ export const actionController = async (request, response, next) => {
         published = await post.create(publication, data);
         break;
       case "update":
+        // Check for update operations
+        if (!(body.replace || body.add || body.remove)) {
+          throw IndiekitError.badRequest(
+            response.__(
+              "BadRequestError.missingProperty",
+              "replace, add or remove operations"
+            )
+          );
+        }
+
         data = await postData.update(publication, url, body);
         published = await post.update(publication, data, url);
         break;
@@ -62,6 +80,23 @@ export const actionController = async (request, response, next) => {
       .location(published.location)
       .json(published.json);
   } catch (error) {
-    next(error);
+    let nextError = error;
+
+    // Hoist not found error to controller to localise response
+    if (error.name === "NotFoundError") {
+      nextError = IndiekitError.notFound(
+        response.__("NotFoundError.record", { url: error.message })
+      );
+    }
+
+    // Hoist unsupported post type error to controller to localise response
+    if (error.name === "NotImplementedError") {
+      nextError = IndiekitError.notImplemented(
+        response.__("NotImplementedError.postType", { type: error.message }),
+        { uri: "https://getindiekit.com/customisation/post-types/" }
+      );
+    }
+
+    return next(nextError);
   }
 };

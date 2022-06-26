@@ -13,14 +13,6 @@ export const postData = {
    * @returns {object} Post data
    */
   async create(publication, properties) {
-    if (!publication) {
-      throw new IndiekitError("No publication configuration provided");
-    }
-
-    if (!properties) {
-      throw IndiekitError.badRequest("No properties included in request");
-    }
-
     const { me, postTypes } = publication;
 
     // Normalise properties
@@ -33,9 +25,7 @@ export const postData = {
     // Get post type configuration
     const typeConfig = getPostTypeConfig(type, postTypes);
     if (!typeConfig) {
-      throw new IndiekitError(
-        `No configuration found for ${type} post type. See https://getindiekit.com/customisation/post-types/`
-      );
+      throw IndiekitError.notImplemented(type);
     }
 
     // Post paths
@@ -60,14 +50,6 @@ export const postData = {
    * @returns {object} Post data
    */
   async read(publication, url) {
-    if (!publication) {
-      throw new IndiekitError("No publication configuration provided");
-    }
-
-    if (!url) {
-      throw IndiekitError.badRequest("No URL provided");
-    }
-
     const { posts } = publication;
     const post = await posts.findOne({
       "properties.url": url,
@@ -84,18 +66,6 @@ export const postData = {
    * @returns {object} Post data
    */
   async update(publication, url, operation) {
-    if (!publication) {
-      throw new IndiekitError("No publication configuration provided");
-    }
-
-    if (!url) {
-      throw IndiekitError.badRequest("No URL provided");
-    }
-
-    if (!operation) {
-      throw IndiekitError.badRequest("No update operation provided");
-    }
-
     const { me, posts, postTypes } = publication;
 
     const postData = await posts.findOne({
@@ -103,7 +73,7 @@ export const postData = {
     });
 
     if (!postData) {
-      throw IndiekitError.notFound(`No post record available for ${url}`);
+      throw IndiekitError.notFound(url);
     }
 
     let { properties } = postData;

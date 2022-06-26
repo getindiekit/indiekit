@@ -9,16 +9,8 @@ export const postTypeCount = {
    * @returns {object} Post count
    */
   async get(publication, properties) {
-    if (!publication) {
-      throw new IndiekitError("No publication configuration provided");
-    }
-
     if (!publication.posts || !publication.posts.count()) {
       throw new IndiekitError("No database configuration provided");
-    }
-
-    if (!properties) {
-      throw IndiekitError.badRequest("No properties included in request");
     }
 
     // Post type

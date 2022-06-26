@@ -43,16 +43,3 @@ test("Counts the number of posts of a given type", async (t) => {
 
   t.is(result, 1);
 });
-
-test("Throws error getting post count without configuration", async (t) => {
-  await t.throwsAsync(postTypeCount.get(false, t.context.properties), {
-    name: "IndiekitError",
-    message: "No publication configuration provided",
-  });
-});
-
-test("Throws error getting post count without properties", async (t) => {
-  await t.throwsAsync(postTypeCount.get(t.context.publication, false), {
-    message: "No properties included in request",
-  });
-});
