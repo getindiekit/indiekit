@@ -37,19 +37,6 @@ test("Creates media data", async (t) => {
   t.is(result.properties["post-type"], "photo");
 });
 
-test("Throws error creating media data without publication configuration", async (t) => {
-  await t.throwsAsync(mediaData.create(false, t.context.file), {
-    name: "IndiekitError",
-    message: "No publication configuration provided",
-  });
-});
-
-test("Throws error creating media data without a file", async (t) => {
-  await t.throwsAsync(mediaData.create(t.context.publication, false), {
-    message: "No file included in request",
-  });
-});
-
 test("Throws error creating media data for unsupported media type", async (t) => {
   const file = {
     buffer: getFixture("file-types/font.ttf", false),
@@ -57,7 +44,7 @@ test("Throws error creating media data for unsupported media type", async (t) =>
   };
 
   await t.throwsAsync(mediaData.create(t.context.publication, file), {
-    message: "Micropub does not support the font media type.",
+    message: "font",
   });
 });
 
@@ -65,7 +52,6 @@ test("Throws error creating media data for non-configured media type", async (t)
   t.context.publication.postTypes = [];
 
   await t.throwsAsync(mediaData.create(t.context.publication, t.context.file), {
-    message:
-      "No configuration found for photo post type. See https://getindiekit.com/customisation/post-types/",
+    message: "photo",
   });
 });
