@@ -62,27 +62,4 @@ export const mediaData = {
     const mediaData = { path, properties };
     return mediaData;
   },
-
-  /**
-   * Read media data
-   *
-   * @param {object} publication - Publication configuration
-   * @param {string} url - URL of uploaded media
-   * @returns {object} Media data
-   */
-  async read(publication, url) {
-    if (!publication) {
-      throw new IndiekitError("No publication configuration provided");
-    }
-
-    if (!url) {
-      throw IndiekitError.badRequest("No URL provided");
-    }
-
-    const { media } = publication;
-    const file = await media.findOne({
-      "properties.url": url,
-    });
-    return file;
-  },
 };
