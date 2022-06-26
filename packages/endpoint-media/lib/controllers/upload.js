@@ -12,11 +12,19 @@ import { checkScope } from "../scope.js";
  * @returns {object} HTTP response
  */
 export const uploadController = async (request, response, next) => {
-  const { file } = request;
   const { publication } = request.app.locals;
-  const { scope } = request.session;
 
   try {
+    // Check for file in request
+    const { file } = request;
+    if (!file || file.truncated || !file.buffer) {
+      throw IndiekitError.badRequest(
+        response.__("BadRequestError.missingProperty", "file")
+      );
+    }
+
+    // Check provided scope
+    const { scope } = request.session;
     const hasScope = checkScope(scope);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(
@@ -33,6 +41,23 @@ export const uploadController = async (request, response, next) => {
       .location(uploaded.location)
       .json(uploaded.json);
   } catch (error) {
-    return next(error);
+    let nextError = error;
+
+    // Hoist unsupported media type error to controller to localise response
+    if (error.name === "UnsupportedMediaTypeError") {
+      nextError = IndiekitError.unsupportedMediaType(
+        response.__("UnsupportedMediaTypeError.type", { type: error.message })
+      );
+    }
+
+    // Hoist unsupported post type error to controller to localise response
+    if (error.name === "NotImplementedError") {
+      nextError = IndiekitError.notImplemented(
+        response.__("NotImplementedError.postType", { type: error.message }),
+        { uri: "https://getindiekit.com/customisation/post-types/" }
+      );
+    }
+
+    return next(nextError);
   }
 };

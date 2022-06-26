@@ -11,14 +11,6 @@ export const mediaData = {
    * @returns {object} Media data
    */
   async create(publication, file) {
-    if (!publication) {
-      throw new IndiekitError("No publication configuration provided");
-    }
-
-    if (!file || file.truncated || !file.buffer) {
-      throw IndiekitError.badRequest("No file included in request");
-    }
-
     const { me, postTypes } = publication;
 
     // Media properties
@@ -31,17 +23,13 @@ export const mediaData = {
     // Throw error if trying to post unsupported media
     const supportedMediaTypes = ["audio", "photo", "video"];
     if (!supportedMediaTypes.includes(type)) {
-      throw IndiekitError.unsupportedMediaType(
-        `Micropub does not support the ${type} media type.`
-      );
+      throw IndiekitError.unsupportedMediaType(type);
     }
 
     // Get post type configuration
     const typeConfig = getPostTypeConfig(type, postTypes);
     if (!typeConfig) {
-      throw new IndiekitError(
-        `No configuration found for ${type} post type. See https://getindiekit.com/customisation/post-types/`
-      );
+      throw IndiekitError.notImplemented(type);
     }
 
     // Media paths

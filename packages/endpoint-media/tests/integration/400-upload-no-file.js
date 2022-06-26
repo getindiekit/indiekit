@@ -11,5 +11,5 @@ test("Returns 400 error no file included in request", async (t) => {
     .set("accept", "application/json");
 
   t.is(result.status, 400);
-  t.is(result.body.error_description, "No file included in request");
+  t.is(result.body.error_description, "No file included in request.");
 });
