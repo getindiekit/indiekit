@@ -22,15 +22,10 @@ export const IndieAuth = class {
    * Get authentication URL
    *
    * @param {string} authorizationEndpoint - Authorization endpoint
-   * @param {string} scope - Authorisation scope
    * @param {string} state - State
    * @returns {Promise|string} Authentication URL
    */
-  async getAuthUrl(authorizationEndpoint, scope, state) {
-    if (!scope) {
-      throw IndiekitError.badRequest("You need to provide some scopes");
-    }
-
+  async getAuthUrl(authorizationEndpoint, state) {
     // PKCE code challenge
     const base64Digest = crypto
       .createHash("sha256")
@@ -45,7 +40,7 @@ export const IndieAuth = class {
     authUrl.searchParams.append("me", this.me);
     authUrl.searchParams.append("redirect_uri", this.redirectUri);
     authUrl.searchParams.append("response_type", "code");
-    authUrl.searchParams.append("scope", scope);
+    authUrl.searchParams.append("scope", "create update delete media");
     authUrl.searchParams.append("state", state);
 
     return authUrl.href;
@@ -105,11 +100,9 @@ export const IndieAuth = class {
           ? `${callbackUrl}?redirect=${redirect}`
           : `${callbackUrl}`;
 
-        const scope = "create update delete media";
         const state = generateState(this.clientId, this.iv);
         const authUrl = await this.getAuthUrl(
           publication.authorizationEndpoint,
-          scope,
           state
         );
 

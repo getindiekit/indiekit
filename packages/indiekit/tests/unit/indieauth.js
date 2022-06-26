@@ -24,15 +24,6 @@ test.beforeEach((t) => {
   };
 });
 
-test("Throws error getting authentication URL", async (t) => {
-  await t.throwsAsync(
-    indieauth.getAuthUrl("https://indieauth.com/auth", null, "state"),
-    {
-      message: "You need to provide some scopes",
-    }
-  );
-});
-
 test("Exchanges authorization code for access token", async (t) => {
   const result = await indieauth.authorizationCodeGrant(
     "https://token-endpoint.example",
