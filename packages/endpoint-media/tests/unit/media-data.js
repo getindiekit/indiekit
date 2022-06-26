@@ -69,22 +69,3 @@ test("Throws error creating media data for non-configured media type", async (t)
       "No configuration found for photo post type. See https://getindiekit.com/customisation/post-types/",
   });
 });
-
-test("Reads media data", async (t) => {
-  const result = await mediaData.read(t.context.publication, t.context.url);
-
-  t.is(result.properties["post-type"], "photo");
-});
-
-test("Throws error reading media data without publication configuration", async (t) => {
-  await t.throwsAsync(mediaData.read(false, t.context.url), {
-    name: "IndiekitError",
-    message: "No publication configuration provided",
-  });
-});
-
-test("Throws error reading media data without URL", async (t) => {
-  await t.throwsAsync(mediaData.read(t.context.publication, false), {
-    message: "No URL provided",
-  });
-});
