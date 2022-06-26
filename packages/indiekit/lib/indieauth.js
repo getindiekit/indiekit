@@ -72,15 +72,7 @@ export const IndieAuth = class {
       throw await IndiekitError.fromFetch(endpointResponse);
     }
 
-    const body = await endpointResponse.json();
-
-    if (!body.scope || !body.access_token) {
-      throw IndiekitError.badRequest(
-        "The token endpoint did not return the expected parameters"
-      );
-    }
-
-    return body.access_token;
+    return endpointResponse.json();
   }
 
   /**
@@ -162,6 +154,13 @@ export const IndieAuth = class {
           publication.tokenEndpoint,
           code
         );
+
+        // Check that access token is valid
+        if (!authorizedToken.scope || !authorizedToken.access_token) {
+          throw IndiekitError.unauthorized(
+            response.__("UnauthorizedError.invalidToken")
+          );
+        }
 
         // Set session token and redirect to requested resource
         request.session.token = authorizedToken;

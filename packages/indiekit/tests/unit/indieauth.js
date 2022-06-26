@@ -30,19 +30,7 @@ test("Exchanges authorization code for access token", async (t) => {
     "code"
   );
 
-  t.is(result, "token");
-});
-
-test("Throws error exchanging authorization code for invalid access token", async (t) => {
-  await t.throwsAsync(
-    indieauth.authorizationCodeGrant(
-      "https://token-endpoint.example",
-      "invalid"
-    ),
-    {
-      message: "The token endpoint did not return the expected parameters",
-    }
-  );
+  t.is(result.access_token, "token");
 });
 
 test("Throws error exchanging invalid code for access token", async (t) => {
