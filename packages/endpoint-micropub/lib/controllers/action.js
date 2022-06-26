@@ -1,3 +1,4 @@
+import { IndiekitError } from "@indiekit/error";
 import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
 import { post } from "../post.js";
 import { postData } from "../post-data.js";
@@ -20,7 +21,13 @@ export const actionController = async (request, response, next) => {
   const { scope, token } = request.session;
 
   try {
-    checkScope(scope, action);
+    const hasScope = checkScope(scope, action);
+    if (!hasScope) {
+      throw IndiekitError.insufficientScope(
+        response.__("ForbiddenError.insufficientScope"),
+        { scope: action }
+      );
+    }
 
     let data;
     let jf2;
