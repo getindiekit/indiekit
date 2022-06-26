@@ -27,14 +27,6 @@ export const tokenEndpointAgent = () => {
     .intercept({ path: "/token", headers: { authorization: "Bearer JWT" } })
     .reply(404, { message: "Not found" });
 
-  // Exchange authorization code for access token
-  client
-    .intercept({
-      path: /\?client_id=(.*)&code=(.*)&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
-      method: "POST",
-    })
-    .reply(200, { access_token: "token", scope: "create" });
-
   // Exchange authorization code for access token (empty response)
   client
     .intercept({
@@ -63,6 +55,14 @@ export const tokenEndpointAgent = () => {
     .reply(404, {
       message: "Not found",
     });
+
+  // Exchange authorization code for access token
+  client
+    .intercept({
+      path: /\?client_id=(.*)&code=(.*)&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
+      method: "POST",
+    })
+    .reply(200, { access_token: "token", scope: "create" });
 
   // Mock HTML requests (need to use same origin as token endpoint)
   // See: https://github.com/nodejs/undici/discussions/1440
