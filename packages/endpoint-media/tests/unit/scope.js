@@ -17,18 +17,6 @@ test("Required scope defaults to `media`", (t) => {
   t.true(checkScope("media", null));
 });
 
-test("Throws error required scope not provided by access token", (t) => {
-  const error = t.throws(
-    () => {
-      checkScope("post");
-    },
-    {
-      code: "insufficient_scope",
-      message: "Insufficient scope",
-      name: "InsufficientScopeError",
-    }
-  );
-
-  t.is(error.status, 403);
-  t.is(error.scope, "create media");
+test("Returns false if required scope not provided by access token", (t) => {
+  t.false(checkScope("post"));
 });
