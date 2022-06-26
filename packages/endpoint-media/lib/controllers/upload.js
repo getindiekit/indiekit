@@ -1,3 +1,4 @@
+import { IndiekitError } from "@indiekit/error";
 import { media } from "../media.js";
 import { mediaData } from "../media-data.js";
 import { checkScope } from "../scope.js";
@@ -16,7 +17,13 @@ export const uploadController = async (request, response, next) => {
   const { scope } = request.session;
 
   try {
-    checkScope(scope);
+    const hasScope = checkScope(scope);
+    if (!hasScope) {
+      throw IndiekitError.insufficientScope(
+        response.__("ForbiddenError.insufficientScope"),
+        { scope: "create media" }
+      );
+    }
 
     const data = await mediaData.create(publication, file);
     const uploaded = await media.upload(publication, data, file);
