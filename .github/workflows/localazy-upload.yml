@@ -1,6 +1,8 @@
 name: localazy-upload
 on:
   push:
+    branches:
+      - main
     paths:
       - packages/**/locales/en.json
 
