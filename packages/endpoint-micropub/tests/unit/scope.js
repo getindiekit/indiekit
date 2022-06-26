@@ -21,18 +21,6 @@ test("Requested scope defaults to `create` if none provided by token", (t) => {
   t.true(checkScope(null, "create"));
 });
 
-test("Throws error required scope not provided by token", (t) => {
-  const error = t.throws(
-    () => {
-      checkScope("create update", "delete");
-    },
-    {
-      code: "insufficient_scope",
-      message: "Insufficient scope",
-      name: "InsufficientScopeError",
-    }
-  );
-
-  t.is(error.status, 403);
-  t.is(error.scope, "delete");
+test("Returns false if required scope not provided by token", (t) => {
+  t.false(checkScope("create update", "delete"));
 });

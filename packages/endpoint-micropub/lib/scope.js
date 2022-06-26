@@ -1,5 +1,3 @@
-import { IndiekitError } from "@indiekit/error";
-
 /**
  * Check provided scope(s) satisfies required scope
  *
@@ -32,7 +30,5 @@ export const checkScope = (providedScope, requiredScope) => {
     return true;
   }
 
-  throw IndiekitError.insufficientScope("Insufficient scope", {
-    scope: requiredScope,
-  });
+  return false;
 };

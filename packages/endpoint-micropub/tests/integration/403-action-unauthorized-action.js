@@ -33,5 +33,8 @@ test("Returns 403 error action not supported (by scope)", async (t) => {
     });
 
   t.is(result.status, 403);
-  t.is(result.body.error_description, "Insufficient scope");
+  t.is(
+    result.body.error_description,
+    "The request requires higher privileges than provided by the access token."
+  );
 });
