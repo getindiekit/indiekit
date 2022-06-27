@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+import process from "node:process";
 import Keyv from "keyv";
 import KeyvMongoDB from "keyv-mongodb";
 import { expressConfig } from "./config/express.js";
@@ -82,7 +84,14 @@ export const Indiekit = class {
   }
 
   async server(options = {}) {
-    const { application, server } = this.config;
+    const { application, publication, server } = this.config;
+
+    // Check for required configuration options
+    if (!publication.me) {
+      console.error("No publication URL in configuration");
+      console.info("See https://getindiekit.com/options/#publicationmeurl");
+      process.exit();
+    }
 
     // Merge options with default server configuration
     options = { ...server, ...options };
