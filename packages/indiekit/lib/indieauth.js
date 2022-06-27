@@ -184,8 +184,6 @@ export const IndieAuth = class {
     const { devMode, me } = this;
 
     return async function (request, response, next) {
-      const { tokenEndpoint } = request.app.locals.publication;
-
       if (devMode) {
         request.session.token = process.env.NODE_ENV;
         request.session.scope = "create update delete media";
@@ -199,16 +197,30 @@ export const IndieAuth = class {
 
       // Validate bearer token sent in request
       try {
+        const { tokenEndpoint } = request.app.locals.publication;
         const bearerToken = findBearerToken(request);
-        request.session.token = bearerToken;
-
         const accessToken = await requestAccessToken(
           tokenEndpoint,
           bearerToken
         );
 
-        const { scope } = verifyAccessToken(me, accessToken);
-        request.session.scope = scope;
+        // Check if access token contains a `me` value
+        if (!accessToken.me) {
+          throw IndiekitError.unauthorized(
+            response.__("UnauthorizedError.invalidToken")
+          );
+        }
+
+        // Check that `me` in access token matches publication `me`
+        const verifiedToken = verifyAccessToken(me, accessToken);
+        if (!verifiedToken) {
+          throw IndiekitError.forbidden(
+            response.__("ForbiddenError.invalidMe")
+          );
+        }
+
+        request.session.token = bearerToken;
+        request.session.scope = verifiedToken.scope;
 
         next();
       } catch (error) {
