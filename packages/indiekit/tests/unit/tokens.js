@@ -102,27 +102,3 @@ test("Verifies an access token", (t) => {
 
   t.is(result.me, "https://website.example");
 });
-
-test("Throws error verifying access token without permissions", (t) => {
-  t.throws(
-    () => {
-      verifyAccessToken("https://another.example", t.context.accessToken);
-    },
-    {
-      name: "ForbiddenError",
-      message: "Publication URL does not match that provided by access token",
-    }
-  );
-});
-
-test("Throws error verifying incomplete access token", (t) => {
-  t.throws(
-    () => {
-      verifyAccessToken(t.context.me, {});
-    },
-    {
-      name: "UnauthorizedError",
-      message: "There was a problem with this access token",
-    }
-  );
-});

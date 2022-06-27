@@ -1,4 +1,5 @@
 import process from "node:process";
+import { IndiekitError } from "@indiekit/error";
 import test from "ava";
 import sinon from "sinon";
 import mockReqRes from "mock-req-res";
@@ -101,6 +102,52 @@ test("Development mode bypasses authentication", async (t) => {
   t.is(request.session.scope, "create update delete media");
   t.is(request.session.token, process.env.NODE_ENV);
   t.true(next.calledOnce);
+});
+
+test("Throws error verifying invalid token", async (t) => {
+  const request = mockRequest({
+    app: {
+      locals: {
+        publication: {
+          tokenEndpoint: "https://token-endpoint.example",
+        },
+      },
+    },
+    headers: { authorization: "Bearer invalid" },
+    method: "POST",
+    session: {},
+  });
+  const response = mockResponse({ __() {} });
+  const next = sinon.spy();
+
+  await indieauth.authorise()(request, response, next);
+
+  t.true(next.firstCall.args[0] instanceof IndiekitError);
+  t.is(next.firstCall.args[0].code, "unauthorized");
+  t.is(next.firstCall.args[0].status, 401);
+});
+
+test("Throws error verifying token with URL mismatch", async (t) => {
+  const request = mockRequest({
+    app: {
+      locals: {
+        publication: {
+          tokenEndpoint: "https://token-endpoint.example",
+        },
+      },
+    },
+    headers: { authorization: `Bearer another` },
+    method: "POST",
+    session: {},
+  });
+  const response = mockResponse({ __() {} });
+  const next = sinon.spy();
+
+  await indieauth.authorise()(request, response, next);
+
+  t.true(next.firstCall.args[0] instanceof IndiekitError);
+  t.is(next.firstCall.args[0].code, "forbidden");
+  t.is(next.firstCall.args[0].status, 403);
 });
 
 test("Throws error checking if user is authorized", async (t) => {

@@ -55,23 +55,13 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
  * @returns {object} Verified token
  */
 export const verifyAccessToken = (me, accessToken) => {
-  // Throw error if access token does not contain a `me` value
-  if (!accessToken.me) {
-    throw IndiekitError.unauthorized(
-      "There was a problem with this access token"
-    );
-  }
-
   // Normalize publication and token URLs before comparing
   const accessTokenMe = getCanonicalUrl(accessToken.me);
   const publicationMe = getCanonicalUrl(me);
   const isAuthenticated = accessTokenMe === publicationMe;
 
-  // Publication URL does not match that provided by access token
   if (!isAuthenticated) {
-    throw IndiekitError.forbidden(
-      "Publication URL does not match that provided by access token"
-    );
+    return false;
   }
 
   return accessToken;
