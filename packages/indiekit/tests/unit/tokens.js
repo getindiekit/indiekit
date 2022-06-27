@@ -103,18 +103,6 @@ test("Verifies an access token", (t) => {
   t.is(result.me, "https://website.example");
 });
 
-test("Throws error verifying access token without a publication URL", (t) => {
-  t.throws(
-    () => {
-      verifyAccessToken(null, t.context.accessToken);
-    },
-    {
-      name: "InvalidRequestError",
-      message: "No publication URL to verify",
-    }
-  );
-});
-
 test("Throws error verifying access token without permissions", (t) => {
   t.throws(
     () => {
