@@ -14,6 +14,16 @@ export const tokenEndpointAgent = () => {
     .intercept({ path: "/", headers: { authorization: "Bearer JWT" } })
     .reply(200, { me: "https://website.example", scope: "create" });
 
+  // Request access token (wrong token)
+  client
+    .intercept({ path: "/", headers: { authorization: "Bearer another" } })
+    .reply(200, { me: "https://another.example", scope: "create" });
+
+  // Request access token (malformed token)
+  client
+    .intercept({ path: "/", headers: { authorization: "Bearer invalid" } })
+    .reply(200, { moi: "https://website.example", scope: "create" });
+
   // Request access token (Bad Request)
   client
     .intercept({ path: "/", headers: { authorization: "Bearer foo" } })
