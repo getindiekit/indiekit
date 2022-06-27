@@ -206,6 +206,7 @@ export const IndieAuth = class {
           tokenEndpoint,
           bearerToken
         );
+
         const { scope } = verifyAccessToken(me, accessToken);
         request.session.scope = scope;
 

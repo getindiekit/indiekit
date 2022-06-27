@@ -55,11 +55,6 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
  * @returns {object} Verified token
  */
 export const verifyAccessToken = (me, accessToken) => {
-  // Throw error if no publication URL provided
-  if (!me) {
-    throw IndiekitError.invalidRequest("No publication URL to verify");
-  }
-
   // Throw error if access token does not contain a `me` value
   if (!accessToken.me) {
     throw IndiekitError.unauthorized(
