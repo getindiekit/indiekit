@@ -2,40 +2,46 @@ import cleanStack from "clean-stack";
 import { errors } from "./errors.js";
 
 export class IndiekitError extends Error {
-  static badRequest(message) {
-    return new IndiekitError(message, { code: "bad_request" });
+  static badRequest(message, options) {
+    return new IndiekitError(message, { ...options, code: "bad_request" });
   }
 
-  static forbidden(message) {
-    return new IndiekitError(message, { code: "forbidden" });
+  static forbidden(message, options) {
+    return new IndiekitError(message, { ...options, code: "forbidden" });
   }
 
-  static insufficientScope(message, { scope }) {
-    return new IndiekitError(message, { code: "insufficient_scope", scope });
+  static insufficientScope(message, options) {
+    return new IndiekitError(message, {
+      ...options,
+      code: "insufficient_scope",
+    });
   }
 
-  static invalidRequest(message) {
-    return new IndiekitError(message, { code: "invalid_request" });
+  static invalidRequest(message, options) {
+    return new IndiekitError(message, { ...options, code: "invalid_request" });
   }
 
-  static invalidToken(message) {
-    return new IndiekitError(message, { code: "invalid_token" });
+  static invalidToken(message, options) {
+    return new IndiekitError(message, { ...options, code: "invalid_token" });
   }
 
-  static notFound(message) {
-    return new IndiekitError(message, { code: "not_found" });
+  static notFound(message, options) {
+    return new IndiekitError(message, { ...options, code: "not_found" });
   }
 
-  static notImplemented(message) {
-    return new IndiekitError(message, { code: "not_implemented" });
+  static notImplemented(message, options) {
+    return new IndiekitError(message, { ...options, code: "not_implemented" });
   }
 
-  static unauthorized(message) {
-    return new IndiekitError(message, { code: "unauthorized" });
+  static unauthorized(message, options) {
+    return new IndiekitError(message, { ...options, code: "unauthorized" });
   }
 
-  static unsupportedMediaType(message) {
-    return new IndiekitError(message, { code: "unsupported_media_type" });
+  static unsupportedMediaType(message, options) {
+    return new IndiekitError(message, {
+      ...options,
+      code: "unsupported_media_type",
+    });
   }
 
   static async fromFetch(response) {
@@ -58,6 +64,10 @@ export class IndiekitError extends Error {
       this.scope = options.scope;
     }
 
+    if (options.uri) {
+      this.uri = options.uri;
+    }
+
     Error.captureStackTrace(this, IndiekitError);
   }
 
@@ -73,6 +83,7 @@ export class IndiekitError extends Error {
     return {
       error: this.code,
       error_description: this.message || this.cause.message,
+      ...(this.uri && { error_uri: this.uri }),
       ...(this.scope && { scope: this.scope }),
       stack: cleanStack(this.stack),
       cause: this.cause,
