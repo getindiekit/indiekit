@@ -11,5 +11,5 @@ test("Returns 403 error auth with invalid code/state", async (t) => {
     .query("state=bar");
 
   t.is(result.status, 403);
-  t.true(result.text.includes("Invalid state value."));
+  t.true(result.text.includes("Invalid state value"));
 });

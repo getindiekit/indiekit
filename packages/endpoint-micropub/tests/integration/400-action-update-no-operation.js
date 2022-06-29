@@ -34,6 +34,6 @@ test("Returns 400 updating post without operation to perform", async (t) => {
   t.is(result.status, 400);
   t.is(
     result.body.error_description,
-    "No replace, add or remove operations included in request."
+    "No replace, add or remove operations included in request"
   );
 });

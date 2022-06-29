@@ -23,7 +23,7 @@ test("Returns 501 error unsupported post type", async (t) => {
   t.is(result.status, 501);
   t.is(
     result.body.error_description,
-    "No configuration provided for article post type."
+    "No configuration provided for article post type"
   );
   t.is(
     result.body.error_uri,

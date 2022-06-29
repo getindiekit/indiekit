@@ -29,5 +29,5 @@ test("Returns 501 error as feature requires database", async (t) => {
 
   // Assertions
   t.is(result.status, 500);
-  t.is(result.body.error_description, "This feature requires a database.");
+  t.is(result.body.error_description, "This feature requires a database");
 });

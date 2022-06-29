@@ -15,6 +15,6 @@ test("Returns 500 error as feature requires database", async (t) => {
   );
   t.is(
     result.querySelector(".article__body p").textContent,
-    "This feature requires a database."
+    "This feature requires a database"
   );
 });
