@@ -17,6 +17,7 @@ export const internalServer = (error, request, response, next) => {
       name: error.name,
       stack: error.stack,
       status: error.status,
+      uri: error.uri,
     });
   } else if (request.accepts("json") && error.toJSON()) {
     response.json(error.toJSON());
