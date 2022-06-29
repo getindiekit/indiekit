@@ -1,28 +1,6 @@
 {
-  "error": "Kesalahan",
-  "errorSummaryTitle": "Ada masalah",
-  "errors": {
-    "noDatabase": {
-      "content": "Fitur ini membutuhkan database."
-    },
-    "notFound": {
-      "content": "Jika Anda memasukkan alamat web silakan periksa apakah alamat sudah benar.",
-      "title": "Halaman tidak ditemukan"
-    }
-  },
   "guidance": {
     "discovery": "Sehingga %s dapat ditemukan oleh klien Micropub dan meminta izin untuk memposting ke situs web Anda, tambahkan nilai berikut ke situs web Anda `<head>`:"
-  },
-  "noValue": "Tidak ada",
-  "optionalValue": "(opsional)",
-  "pagination": {
-    "defaultType": "hasil",
-    "item": "Halaman %s",
-    "next": "Berikutnya %s",
-    "page": "halaman",
-    "previous": "Sebelumnya %s",
-    "result": "Menampilkan {{from}} dari {{count}} {{type}}",
-    "results": "Menampilkan {{from}} ke {{to}} dari {{count}} {{type}}"
   },
   "session": {
     "login": {

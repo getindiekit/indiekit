@@ -1,28 +1,6 @@
 {
-  "error": "Fout",
-  "errorSummaryTitle": "Er is een Probleem",
-  "errors": {
-    "noDatabase": {
-      "content": "Voor deze functie is een database vereist."
-    },
-    "notFound": {
-      "content": "Als je een webadres hebt ingevoerd, controleer dan of het correct was.",
-      "title": "Pagina niet gevonden"
-    }
-  },
   "guidance": {
     "discovery": "Om ervoor te zorgen dat %s kan worden ontdekt door Micropub-clients en toestemming kan vragen om op uw website te posten, voegt u de volgende waarden toe aan de `<head>` van uw website:"
-  },
-  "noValue": "Niet ingesteld",
-  "optionalValue": "(optioneel)",
-  "pagination": {
-    "defaultType": "resultaten",
-    "item": "Pagina %s",
-    "next": "Volgende %s",
-    "page": "pagina",
-    "previous": "Vorige %s",
-    "result": "Toont {{from}} van {{count}} {{type}}",
-    "results": "Toont {{from}} aan {{to}} van {{count}} {{type}}"
   },
   "session": {
     "login": {
