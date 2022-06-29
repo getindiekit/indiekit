@@ -1,6 +1,7 @@
 {
   "error": "Error",
   "errorSummaryTitle": "There is a problem",
+  "success": "Success",
   "noValue": "Not set",
   "optionalValue": "(optional)",
   "pagination": {
