@@ -31,11 +31,11 @@
   "IndiekitError": {
     "title": "Application error",
     "missingDatabase": "This feature requires a database.",
-    "missingPostType": "No configuration provided for {{type}} post type.",
     "missingPublication": "Publication not configured."
   },
   "NotImplementedError": {
     "title": "Not implemented",
-    "query": "Unsupported query for `{{key}}`: `{{value}}`"
+    "query": "Unsupported query for `{{key}}`: `{{value}}`",
+    "postType": "No configuration provided for {{type}} post type."
   }
 }
