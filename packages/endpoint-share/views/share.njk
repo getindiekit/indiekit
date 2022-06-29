@@ -2,7 +2,6 @@
 
 {% from "preview/macro.njk" import preview %}
 {% set mainControllers = "preview" %}
-{% set errorSummaryTitle = __("errorSummaryTitle") %}
 
 {% block fieldset %}
   {{ preview({
@@ -36,8 +35,7 @@
       "data-action": "preview#url"
     },
     errorMessage: {
-      text: errors["bookmark-of"].msg,
-      label: __("error")
+      text: errors["bookmark-of"].msg
     } if errors["bookmark-of"]
   }) }}
 
@@ -52,8 +50,7 @@
       "data-action": "preview#title"
     },
     errorMessage: {
-      text: errors.name.msg,
-      label: __("error")
+      text: errors.name.msg
     } if errors.name
   }) }}
 
@@ -61,8 +58,9 @@
     id: "content",
     name: "content",
     value: content,
+    required: "false",
     label: {
-      text: __("share.content") + " " + __("optionalValue")
+      text: __("share.content")
     },
     attributes: {
       "data-action": "preview#text"
