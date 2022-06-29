@@ -6,6 +6,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 const defaultOptions = {
   locale: "en",
   useDatabase: true,
+  usePreset: true,
   useSyndicator: true,
 };
 
@@ -39,8 +40,8 @@ export const testConfig = async (options) => {
       }),
     },
     plugins: [
-      "@indiekit/preset-jekyll",
       "@indiekit/store-github",
+      ...(options.usePreset ? ["@indiekit/preset-jekyll"] : []),
       ...(options.useSyndicator ? ["@indiekit/syndicator-twitter"] : []),
     ],
     publication: {
