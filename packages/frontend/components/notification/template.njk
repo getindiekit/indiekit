@@ -5,7 +5,9 @@
     <h2 class="notification__title" id="notification-title">{{- opts.title | markdown("inline") | safe -}}</h2>
     {%- if opts.text %}
     <div class="notification__text s-linear">
-      {{ opts.text | markdown | safe }}
+      {%- if opts.href %}<a href="{{ opts.href }}">{% endif -%}
+      {{- opts.text | markdown | safe -}}
+      {%- if opts.href %}</a>{% endif -%}
     </div>
     {%- endif %}
   </div>

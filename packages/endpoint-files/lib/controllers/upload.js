@@ -64,6 +64,7 @@ export const uploadController = {
       response.status(error.status).render("upload", {
         title: response.__("files.upload.title"),
         error: error.toJSON().error_description,
+        errorUri: error.toJSON().error_uri,
       });
     }
   },

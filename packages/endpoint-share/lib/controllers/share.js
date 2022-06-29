@@ -73,6 +73,7 @@ export const shareController = {
         name,
         bookmarkOf,
         error: error.toJSON().error_description,
+        errorUri: error.toJSON().error_uri,
         minimalui: request.params.path === "bookmarklet",
       });
     }

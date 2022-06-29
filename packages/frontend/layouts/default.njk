@@ -58,7 +58,8 @@
       {{ notification({
         classes: "notification--error" if error else "notification--success",
         title: __("error") if error else __("success"),
-        text: error if error else success
+        text: error if error else success,
+        href: errorUri
       }) | indent(6) if error or success }}
       {%- block main %}{% endblock %}
     </main>

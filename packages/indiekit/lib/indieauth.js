@@ -170,6 +170,7 @@ export const IndieAuth = class {
         return response.status(error.status).render("session/login", {
           title: response.__("session.login.title"),
           error: error.toJSON().error_description,
+          errorUri: error.toJSON().error_uri,
         });
       }
     };
