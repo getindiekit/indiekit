@@ -16,6 +16,12 @@
       },
       {
         "file": "en.json",
+        "path": "packages/frontend/locales",
+        "pattern": "packages/frontend/locales/en.json",
+        "module": "frontend"
+      },
+      {
+        "file": "en.json",
         "path": "packages/endpoint-share/locales",
         "pattern": "packages/endpoint-share/locales/en.json",
         "module": "endpoint-share"

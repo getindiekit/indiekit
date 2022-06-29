@@ -1,5 +1,5 @@
 <span class="{{ classes("error-message", opts.classes) }}" id="{{ opts.id }}"
   {{- attributes(opts.attributes) }}>
-  <span class="visually-hidden">{{ opts.label | default("Error") }}:</span>
+  <span class="visually-hidden">{{ opts.label | default(__("error")) }}:</span>
   <span class="error-message__text">{{ opts.text | safe }}</span>
 </span>
