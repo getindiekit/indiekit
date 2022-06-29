@@ -1,7 +1,5 @@
 {% extends "form.njk" %}
 
-{% set errorSummaryTitle = __("errorSummaryTitle") %}
-
 {% block fieldset %}
   {{ input({
     id: "file",
@@ -12,8 +10,7 @@
     },
     type: "file",
     errorMessage: {
-      text: errors["file"].msg,
-      label: __("error")
+      text: errors["file"].msg
     } if errors["file"]
   }) | indent(2) }}
 
