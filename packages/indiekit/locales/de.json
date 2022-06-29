@@ -1,28 +1,6 @@
 {
-  "error": "Fehler",
-  "errorSummaryTitle": "Es gibt ein Problem",
-  "errors": {
-    "noDatabase": {
-      "content": "Für diese Funktion ist eine Datenbank erforderlich."
-    },
-    "notFound": {
-      "content": "Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie bitte, ob sie korrekt war.",
-      "title": "Seite nicht gefunden"
-    }
-  },
   "guidance": {
     "discovery": "Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Clients %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen:"
-  },
-  "noValue": "Nicht festgelegt",
-  "optionalValue": "(fakultativ)",
-  "pagination": {
-    "defaultType": "Ergebnisse",
-    "item": "Seite %s",
-    "next": "Weiter %s",
-    "page": "seite",
-    "previous": "Frühere %s",
-    "result": "{{from}} von {{count}} {{type}} werden angezeigt",
-    "results": "{{from}} bis {{to}} von {{count}} {{type}} werden angezeigt"
   },
   "session": {
     "login": {

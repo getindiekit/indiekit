@@ -1,28 +1,6 @@
 {
-  "error": "Erro",
-  "errorSummaryTitle": "Há um problema",
-  "errors": {
-    "noDatabase": {
-      "content": "Esse recurso requer um banco de dados."
-    },
-    "notFound": {
-      "content": "Se você inseriu um endereço da web, verifique se ele estava correto.",
-      "title": "Página não encontrada"
-    }
-  },
   "guidance": {
     "discovery": "Para que %s possa ser descoberto pelos clientes da Micropub e solicitar permissão para postar em seu site, adicione os seguintes valores ao `<head>` do seu site:"
-  },
-  "noValue": "Não definido",
-  "optionalValue": "(opcional)",
-  "pagination": {
-    "defaultType": "resultados",
-    "item": "Página %s",
-    "next": "Próximo %s",
-    "page": "página",
-    "previous": "%s anterior",
-    "result": "Mostrando {{from}} de {{count}} {{type}}",
-    "results": "Mostrando {{from}} a {{to}} de {{count}} {{type}}"
   },
   "session": {
     "login": {
