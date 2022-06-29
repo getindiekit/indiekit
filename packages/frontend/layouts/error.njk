@@ -4,7 +4,10 @@
 {% call article({
   title: title
 }) -%}
-  {{ content | markdown | safe if content }}
+  <p>
+    {{- content | markdown("inline") | safe if content -}}
+    {%- if uri -%} <a href="{{ uri }}">Learn more</a>{%- endif -%}
+  </p>
   <details>
     <summary>{{ name }}</summary>
     <pre><code>{{ stack }}</code></pre>
