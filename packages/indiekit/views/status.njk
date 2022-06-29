@@ -15,13 +15,9 @@
 {%- endfor %}</ul>{% endset -%}
 
 {%- set storeHtml %}
-  {%- if publication.store -%}
-    <a href="{{ publication.store.info.uid }}">
-      <img class="icon icon--rounded" src="{{ "/assets/" + publication.store.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.store.info.name }}
-    </a>
-  {%- else -%}
-    {{ __("noValue") }}
-  {%- endif -%}
+  <a href="{{ publication.store.info.uid }}">
+    <img class="icon icon--rounded" src="{{ "/assets/" + publication.store.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.store.info.name }}
+  </a>
 {% endset -%}
 
 {%- set syndicationTargetsHtml %}<ul>{% for target in publication.syndicationTargets -%}
@@ -66,7 +62,7 @@
         text: __("status.publication.me")
       },
       value: {
-        text: publication.me | urlize or __("noValue")
+        text: publication.me | urlize
       }
     }, {
       key: {
@@ -87,9 +83,9 @@
         text: __("status.publication.preset")
       },
       value: {
-        text: publication.preset.info.name or __("noValue")
+        text: publication.preset.info.name
       }
-    }, {
+    } if publication.preset, {
       key: {
         text: __("status.publication.postTypes")
       },
@@ -101,9 +97,9 @@
         text: __("status.publication.store")
       },
       value: {
-        text: storeHtml | indent(2)
+        text: storeHtml
       }
-    }, {
+    } if publication.store, {
       key: {
         text: __("status.publication.syndicationTargets")
       },
@@ -115,28 +111,28 @@
         text: __("status.publication.micropubEndpoint")
       },
       value: {
-        text: publication.micropubEndpoint | urlize or __("noValue")
+        text: publication.micropubEndpoint | urlize
       }
     } if publication.micropubEndpoint, {
       key: {
         text: __("status.publication.mediaEndpoint")
       },
       value: {
-        text: publication.mediaEndpoint | urlize or __("noValue")
+        text: publication.mediaEndpoint | urlize
       }
     } if publication.mediaEndpoint, {
       key: {
         text: __("status.publication.tokenEndpoint")
       },
       value: {
-        text: publication.tokenEndpoint | urlize or __("noValue")
+        text: publication.tokenEndpoint | urlize
       }
     } if publication.tokenEndpoint, {
       key: {
         text: __("status.publication.authorizationEndpoint")
       },
       value: {
-        text: publication.authorizationEndpoint | urlize or __("noValue")
+        text: publication.authorizationEndpoint | urlize
       }
     } if publication.authorizationEndpoint]
   }) }}
@@ -160,21 +156,21 @@
             readonly: "true",
             onclick: "this.select();"
           }
-        }) if session.token else __("noValue")
+        }) if session.token
       }
     }, {
       key: {
         text: __("status.application.scope")
       },
       value: {
-        text: session.scope if session.scope else __("noValue")
+        text: session.scope if session.scope
       }
     }, {
       key: {
         text: __("status.application.name")
       },
       value: {
-        text: application.name or __("noValue")
+        text: application.name
       }
     }, {
       key: {
