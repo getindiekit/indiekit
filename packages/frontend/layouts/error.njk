@@ -10,9 +10,8 @@
     {%- if uri -%}</a>{%- endif -%}.
   </p>
   <details>
-    <summary>{{ name }}</summary>
+    <summary><small>Status code: <code>{{ status }}</code></small></summary>
     <pre><code>{{ stack }}</code></pre>
   </details>
-  <p><small>Status code: <code>{{ status }}</code></small></p>
 {%- endcall %}
 {% endblock %}
