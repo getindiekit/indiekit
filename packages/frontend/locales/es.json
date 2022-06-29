@@ -1,0 +1,15 @@
+{
+  "error": "Error",
+  "errorSummaryTitle": "Hay un problema",
+  "noValue": "No establecido",
+  "optionalValue": "(opcional)",
+  "pagination": {
+    "defaultType": "resultados",
+    "item": "Página %s",
+    "next": "Siguiente %s",
+    "page": "página",
+    "previous": "%s anteriores",
+    "result": "Mostrando {{from}} de {{count}} {{type}}",
+    "results": "Mostrando de {{from}} a {{to}} de {{count}} {{type}}"
+  }
+}

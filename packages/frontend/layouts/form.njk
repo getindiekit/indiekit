@@ -8,9 +8,6 @@
 {% block main %}
 <form class="form" method="post">
   {{ errorSummary({
-    title: {
-      text: errorSummaryTitle or "There is a problem"
-    },
     errorList: errorList(errors)
   }) | indent(2) if errors }}
   {% call fieldset({

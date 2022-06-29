@@ -1,0 +1,15 @@
+{
+  "error": "Fout",
+  "errorSummaryTitle": "Er is een Probleem",
+  "noValue": "Niet ingesteld",
+  "optionalValue": "(optioneel)",
+  "pagination": {
+    "defaultType": "resultaten",
+    "item": "Pagina %s",
+    "next": "Volgende %s",
+    "page": "pagina",
+    "previous": "Vorige %s",
+    "result": "Toont {{from}} van {{count}} {{type}}",
+    "results": "Toont {{from}} aan {{to}} van {{count}} {{type}}"
+  }
+}

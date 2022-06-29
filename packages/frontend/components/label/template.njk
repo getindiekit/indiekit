@@ -4,6 +4,7 @@
   {%- if opts.for %} for="{{ opts.for }}"{% endif %}
   {{- attributes(opts.attributes) }}>
   {{- opts.text | safe -}}
+  {{ " " + __("optionalValue") if opts.optional }}
 </label>
 {%- endset -%}
 {{ label | safe }}

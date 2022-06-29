@@ -1,15 +1,16 @@
-{%- from "../error-message/macro.njk" import errorMessage -%}
-{%- from "../hint/macro.njk" import hint -%}
-{%- from "../label/macro.njk" import label -%}
+{%- from "../error-message/macro.njk" import errorMessage with context -%}
+{%- from "../hint/macro.njk" import hint with context -%}
+{%- from "../label/macro.njk" import label with context -%}
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
 {%- set fieldClasses = classes("form__field", "form__field--error" if opts.errorMessage) -%}
 <div class="{{ "visually-hidden" if opts.type == "hidden" else fieldClasses }}">
 {%- if opts.label %}
   {{ label({
-    text: opts.label.text,
+    for: opts.id,
     classes: opts.label.classes,
     attributes: opts.label.attributes,
-    for: opts.id
+    text: opts.label.text,
+    optional: opts.required == "false"
   }) | indent(2) }}
 {%- endif %}
 {%- if opts.hint %}

@@ -2,7 +2,7 @@
   {%- if opts.disableAutoFocus %} data-disable-auto-focus="true"{% endif %}
   {{- attributes(opts.attributes) }}>
   <h2 class="error-summary__title" id="error-summary-title">
-    {{ opts.title.text | safe }}
+    {{ opts.title.text | default(__("errorSummaryTitle")) | safe }}
   </h2>
   <div class="error-summary__body">
   {%- if opts.description.text %}

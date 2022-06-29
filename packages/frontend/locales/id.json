@@ -1,0 +1,15 @@
+{
+  "error": "Kesalahan",
+  "errorSummaryTitle": "Ada masalah",
+  "noValue": "Tidak ada",
+  "optionalValue": "(opsional)",
+  "pagination": {
+    "defaultType": "hasil",
+    "item": "Halaman %s",
+    "next": "Berikutnya %s",
+    "page": "halaman",
+    "previous": "Sebelumnya %s",
+    "result": "Menampilkan {{from}} dari {{count}} {{type}}",
+    "results": "Menampilkan {{from}} ke {{to}} dari {{count}} {{type}}"
+  }
+}

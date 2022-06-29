@@ -1,6 +1,6 @@
 {%- macro _actionLink(action, key) %}
   <a href="{{ action.href }}"{{ attributes(opts.attributes) }}>
-    {{ action.text | safe }}
+    {{- action.text | safe -}}
   </a>
 {% endmacro -%}
 <section class="{{ classes("summary", opts.classes) }}">
@@ -8,7 +8,7 @@
   <header class="summary__header">
   {%- if opts.title %}
     <h2 class="summary__title">
-      {{ opts.title | safe }}
+      {{- opts.title | safe -}}
     </h2>
   {%- endif %}
   {%- if opts.actions.length %}
@@ -36,7 +36,7 @@
         {{- row.key.text | safe -}}
       </dt>
       <dd class="summary__value {%- if row.value.classes %} {{ row.value.classes }}{% endif %}">
-        {{- row.value.text | safe -}}
+        {{- row.value.text | default(__("noValue")) | safe -}}
       </dd>
     </div>
     {%- endif %}
