@@ -5,8 +5,9 @@
   title: title
 }) -%}
   <p>
+    {%- if uri %}<a href="{{ uri }}">{% endif -%}
     {{- content | markdown("inline") | safe if content -}}
-    {%- if uri -%} <a href="{{ uri }}">Learn more</a>{%- endif -%}
+    {%- if uri -%}</a>{%- endif -%}.
   </p>
   <details>
     <summary>{{ name }}</summary>
