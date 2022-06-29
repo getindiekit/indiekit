@@ -16,8 +16,8 @@ test("Returns 500 error as feature requires database", async (t) => {
     result.querySelector("title").textContent,
     "Application error - Test configuration"
   );
-  t.is(
+  t.regex(
     result.querySelector(".article__body p").textContent,
-    "This feature requires a database"
+    /This feature requires a database/
   );
 });
