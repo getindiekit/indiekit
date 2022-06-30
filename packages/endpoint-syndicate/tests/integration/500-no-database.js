@@ -25,7 +25,7 @@ test("Returns 501 error as feature requires database", async (t) => {
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
     .query(`token=${process.env.TEST_TOKEN}`);
 
-  t.is(result.status, 500);
+  t.is(result.status, 501);
   t.is(result.body.error_description, "This feature requires a database");
 
   server.close(t);

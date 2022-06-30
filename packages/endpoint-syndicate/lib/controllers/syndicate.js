@@ -9,7 +9,9 @@ export const syndicateController = {
       const { token } = request.query;
 
       if (!application.hasDatabase) {
-        throw new IndiekitError(response.__("IndiekitError.missingDatabase"));
+        throw IndiekitError.notImplemented(
+          response.__("NotImplementedError.database")
+        );
       }
 
       // Get syndication targets

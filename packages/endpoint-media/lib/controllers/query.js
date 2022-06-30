@@ -13,7 +13,9 @@ export const queryController = async (request, response, next) => {
 
   try {
     if (!application.hasDatabase) {
-      throw new IndiekitError(response.__("IndiekitError.missingDatabase"));
+      throw IndiekitError.notImplemented(
+        response.__("NotImplementedError.database")
+      );
     }
 
     let { page, limit, offset } = request.query;

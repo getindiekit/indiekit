@@ -28,14 +28,10 @@
     "title": "Unsupported media type",
     "type": "The {{type}} media type is not supported"
   },
-  "IndiekitError": {
-    "title": "Application error",
-    "missingDatabase": "This feature requires a database",
-    "missingPublication": "Publication not configured"
-  },
   "NotImplementedError": {
     "title": "Not implemented",
     "query": "Unsupported query for `{{key}}`: `{{value}}`",
+    "database": "This feature requires a database",
     "postType": "No configuration provided for {{type}} post type"
   }
 }
