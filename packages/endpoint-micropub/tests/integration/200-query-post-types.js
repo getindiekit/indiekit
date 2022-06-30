@@ -1,10 +1,11 @@
 import process from "node:process";
 import test from "ava";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns available post types", async (t) => {
-  const request = await testServer();
-
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request
     .get("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -12,4 +13,6 @@ test("Returns available post types", async (t) => {
     .query("q=post-types");
 
   t.truthy(response.body["post-types"]);
+
+  server.close(t);
 });

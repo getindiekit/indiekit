@@ -1,11 +1,11 @@
 import process from "node:process";
 import test from "ava";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 400 deleting post without a URL", async (t) => {
-  const request = await testServer();
-
-  // Delete post
+  const server = await testServer();
+  const request = supertest.agent(server);
   const result = await request
     .post("/micropub")
     .accept("application/json")
@@ -16,4 +16,6 @@ test("Returns 400 deleting post without a URL", async (t) => {
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Missing parameter: `url`");
+
+  server.close(t);
 });

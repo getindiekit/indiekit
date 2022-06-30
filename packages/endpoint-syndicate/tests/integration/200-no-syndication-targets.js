@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns no syndication targets configured", async (t) => {
@@ -8,9 +9,9 @@ test("Returns no syndication targets configured", async (t) => {
     .put((uri) => uri.includes("foobar"))
     .twice()
     .reply(200);
-  const request = await testServer({ useSyndicator: false });
 
-  // Create post
+  const server = await testServer({ useSyndicator: false });
+  const request = supertest.agent(server);
   await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -18,7 +19,6 @@ test("Returns no syndication targets configured", async (t) => {
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");
-
   const result = await request
     .post("/syndicate")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -29,4 +29,6 @@ test("Returns no syndication targets configured", async (t) => {
     result.body.success_description,
     "No syndication targets have been configured"
   );
+
+  server.close(t);
 });

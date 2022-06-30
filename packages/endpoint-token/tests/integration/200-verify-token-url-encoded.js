@@ -1,13 +1,14 @@
 import process from "node:process";
 import test from "ava";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Verifies token and returns URL encoded string", async (t) => {
-  const request = await testServer();
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request
     .get("/token")
     .auth(process.env.TEST_TOKEN, { type: "bearer" });
-
   const responseTextRegexp =
     /me=(?<me>.*)&client_id=(?<client_id>.*)&scope=(?<scope>.*)&date_issued=(?<date_issued>.*)&iat=(?<iat>.*)&exp=(?<exp>.*)/;
   const result = response.text.match(responseTextRegexp).groups;
@@ -16,4 +17,6 @@ test("Verifies token and returns URL encoded string", async (t) => {
   t.truthy(result.client_id);
   t.is(result.me, encodeURIComponent(process.env.TEST_PUBLICATION_URL));
   t.truthy(result.scope);
+
+  server.close(t);
 });

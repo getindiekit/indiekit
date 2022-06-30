@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
@@ -11,7 +12,8 @@ test("Returns previously uploaded file", async (t) => {
     .reply(200, { commit: { message: "Message" } });
 
   // Upload file
-  const request = await testServer();
+  const server = await testServer();
+  const request = supertest.agent(server);
   await request
     .post("/media")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -28,10 +30,9 @@ test("Returns previously uploaded file", async (t) => {
   // Visit file page
   const fileResponse = await request.get(`/files/${fileId}`);
   const fileDom = new JSDOM(fileResponse.text);
-  const result = fileDom.window.document;
+  const result = fileDom.window.document.querySelector("title").textContent;
 
-  t.is(
-    result.querySelector("title").textContent,
-    `${fileName} - Test configuration`
-  );
+  t.is(result, `${fileName} - Test configuration`);
+
+  server.close(t);
 });

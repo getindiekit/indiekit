@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
@@ -15,8 +16,8 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
       user: { screen_name: "username" }, // eslint-disable-line camelcase
     });
 
-  // Create post
-  const request = await testServer();
+  const server = await testServer();
+  const request = supertest.agent(server);
   await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -25,18 +26,17 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");
-
-  // Syndicate post
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
     .query(`token=${process.env.TEST_TOKEN_CREATE_SCOPE}`);
 
-  // Assertions
   t.is(result.status, 401);
   t.is(
     result.body.error_description,
     "JSON Web Token error: invalid signature"
   );
+
+  server.close(t);
 });

@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
@@ -15,11 +16,14 @@ test("Uploads file and redirects to files page", async (t) => {
     .reply(200, { commit: { message: "Message" } });
 
   // Upload file
-  const request = await testServer();
+  const server = await testServer();
+  const request = supertest.agent(server);
   const result = await request
     .post("/files/new")
     .set("cookie", [cookie])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   t.is(result.status, 302);
+
+  server.close(t);
 });

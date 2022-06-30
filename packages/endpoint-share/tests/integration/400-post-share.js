@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
@@ -9,8 +10,9 @@ test("Returns 400 error publishing post", async (t) => {
     me: process.env.TEST_PUBLICATION_URL,
     scope: "foo",
   });
-  const request = await testServer();
 
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request
     .post("/share")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -25,4 +27,6 @@ test("Returns 400 error publishing post", async (t) => {
     result.querySelector(".notification--error p").textContent,
     "No bearer token provided by request"
   );
+
+  server.close(t);
 });

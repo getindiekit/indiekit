@@ -1,10 +1,12 @@
 import test from "ava";
+import supertest from "supertest";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
 test("Returns 422 error invalid form submission", async (t) => {
-  const request = await testServer();
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request.post("/share").set("cookie", [cookie]);
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
@@ -22,4 +24,6 @@ test("Returns 422 error invalid form submission", async (t) => {
     result.querySelector("#bookmark-of-error .error-message__text").textContent,
     "Invalid value"
   );
+
+  server.close(t);
 });

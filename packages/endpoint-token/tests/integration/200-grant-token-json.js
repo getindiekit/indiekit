@@ -1,5 +1,6 @@
 import process from "node:process";
 import test from "ava";
+import supertest from "supertest";
 import { setGlobalDispatcher } from "undici";
 import { indieauthAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
@@ -7,8 +8,8 @@ import { testServer } from "@indiekit-test/server";
 setGlobalDispatcher(indieauthAgent());
 
 test("Grants token and returns JSON", async (t) => {
-  const request = await testServer();
-
+  const server = await testServer();
+  const request = supertest.agent(server);
   const result = await request
     .post("/token")
     .set("accept", "application/json")
@@ -20,4 +21,6 @@ test("Grants token and returns JSON", async (t) => {
   t.truthy(result.body.access_token);
   t.is(result.body.me, process.env.TEST_PUBLICATION_URL);
   t.truthy(result.body.scope);
+
+  server.close(t);
 });

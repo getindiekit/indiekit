@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 400 updating post without operation to perform", async (t) => {
@@ -8,9 +9,10 @@ test("Returns 400 updating post without operation to perform", async (t) => {
     .put((uri) => uri.includes("foobar"))
     .twice()
     .reply(200);
-  const request = await testServer();
 
   // Create post
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -36,4 +38,6 @@ test("Returns 400 updating post without operation to perform", async (t) => {
     result.body.error_description,
     "No replace, add or remove operations included in request"
   );
+
+  server.close(t);
 });

@@ -1,10 +1,11 @@
 import process from "node:process";
 import test from "ava";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 400 error query parameter not provided", async (t) => {
-  const request = await testServer();
-
+  const server = await testServer();
+  const request = supertest.agent(server);
   const result = await request
     .get("/media")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -13,4 +14,6 @@ test("Returns 400 error query parameter not provided", async (t) => {
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Missing parameter: `q`");
+
+  server.close(t);
 });

@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { JSDOM } from "jsdom";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
@@ -16,17 +17,19 @@ test("Returns 500 error uploading file", async (t) => {
     .reply(500, "Something went wrong");
 
   // Upload file
-  const request = await testServer();
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request
     .post("/files/new")
     .set("cookie", [cookie])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
   const dom = new JSDOM(response.text);
-  const result = dom.window.document;
+  const result = dom.window.document.querySelector(
+    ".notification--error p"
+  ).textContent;
 
   t.is(response.status, 500);
-  t.is(
-    result.querySelector(".notification--error p").textContent,
-    "Something went wrong"
-  );
+  t.is(result, "Something went wrong");
+
+  server.close(t);
 });

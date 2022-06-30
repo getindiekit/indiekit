@@ -1,6 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import nock from "nock";
+import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Un-deletes post", async (t) => {
@@ -17,9 +18,10 @@ test("Un-deletes post", async (t) => {
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar.md"))
     .reply(200);
-  const request = await testServer();
 
   // Create post
+  const server = await testServer();
+  const request = supertest.agent(server);
   const response = await request
     .post("/micropub")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })
@@ -50,4 +52,6 @@ test("Un-deletes post", async (t) => {
 
   t.is(result.status, 200);
   t.regex(result.body.success_description, /\bPost undeleted\b/);
+
+  server.close(t);
 });

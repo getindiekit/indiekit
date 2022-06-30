@@ -1,4 +1,5 @@
 import test from "ava";
+import supertest from "supertest";
 import { setGlobalDispatcher } from "undici";
 import { indieauthAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
@@ -6,12 +7,12 @@ import { testServer } from "@indiekit-test/server";
 setGlobalDispatcher(indieauthAgent());
 
 test("Returns 403 error granting token if URLs don’t match", async (t) => {
-  const request = await testServer({
+  const server = await testServer({
     publication: {
       me: "https://foo.bar",
     },
   });
-
+  const request = supertest.agent(server);
   const result = await request
     .post("/token")
     .set("accept", "application/json")
@@ -24,4 +25,6 @@ test("Returns 403 error granting token if URLs don’t match", async (t) => {
     result.body.error_description,
     "Publication URL does not match that provided by access token"
   );
+
+  server.close(t);
 });
