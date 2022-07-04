@@ -1,7 +1,7 @@
-/* global Blob, FormData */
+/* global Blob */
 import { IndiekitError } from "@indiekit/error";
 import validator from "express-validator";
-import { fetch } from "undici";
+import { fetch, FormData } from "undici";
 
 const { validationResult } = validator;
 
