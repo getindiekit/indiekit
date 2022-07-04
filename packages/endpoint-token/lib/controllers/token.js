@@ -134,6 +134,7 @@ export const tokenController = {
         }),
         me: accessTokenMe,
         scope: body.scope,
+        token_type: "Bearer",
       };
 
       if (

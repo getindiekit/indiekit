@@ -3,18 +3,14 @@ import { setGlobalDispatcher } from "undici";
 import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
 import {
   findBearerToken,
-  requestAccessToken,
-  verifyAccessToken,
+  requestTokenValues,
+  verifyTokenValues,
 } from "../../lib/tokens.js";
 
 setGlobalDispatcher(tokenEndpointAgent());
 
 test.beforeEach((t) => {
   t.context = {
-    accessToken: {
-      me: "https://website.example",
-      scope: "create update delete media",
-    },
     bearerToken: "JWT",
     me: "https://website.example",
     tokenEndpoint: "https://token-endpoint.example",
@@ -22,7 +18,7 @@ test.beforeEach((t) => {
 });
 
 test("Returns bearer token from session", (t) => {
-  const request = { session: { token: t.context.bearerToken } };
+  const request = { session: { access_token: t.context.bearerToken } };
 
   const result = findBearerToken(request);
 
@@ -68,7 +64,7 @@ test("Throws error if no bearer token provided by request", (t) => {
 });
 
 test("Requests an access token", async (t) => {
-  const result = await requestAccessToken(
+  const result = await requestTokenValues(
     t.context.tokenEndpoint,
     t.context.bearerToken
   );
@@ -78,7 +74,7 @@ test("Requests an access token", async (t) => {
 });
 
 test("Token endpoint refuses to grant an access token", async (t) => {
-  await t.throwsAsync(requestAccessToken(t.context.tokenEndpoint, "foo"), {
+  await t.throwsAsync(requestTokenValues(t.context.tokenEndpoint, "foo"), {
     name: "InvalidRequestError",
     message: "The token provided was malformed",
   });
@@ -86,7 +82,7 @@ test("Token endpoint refuses to grant an access token", async (t) => {
 
 test("Throws error contacting token endpoint", async (t) => {
   await t.throwsAsync(
-    requestAccessToken(
+    requestTokenValues(
       `${t.context.tokenEndpoint}/token`,
       t.context.bearerToken
     ),
@@ -98,7 +94,10 @@ test("Throws error contacting token endpoint", async (t) => {
 });
 
 test("Verifies an access token", (t) => {
-  const result = verifyAccessToken(t.context.me, t.context.accessToken);
+  const result = verifyTokenValues(t.context.me, {
+    me: "https://website.example",
+    scope: "create update delete media",
+  });
 
   t.is(result.me, "https://website.example");
 });

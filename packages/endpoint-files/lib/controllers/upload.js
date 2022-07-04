@@ -47,7 +47,7 @@ export const uploadController = {
         headers: {
           accept: "application/json",
           // TODO: Third-party media endpoint may require a separate token
-          authorization: `Bearer ${request.session.token}`,
+          authorization: `Bearer ${request.session.access_token}`,
         },
         body: formData,
       });

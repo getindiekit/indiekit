@@ -13,9 +13,7 @@ test("Returns logged out navigation", (t) => {
   const result = getNavigation(
     t.context.application,
     {
-      session: {
-        token: false,
-      },
+      session: {},
     },
     {
       __: (string) => string,
@@ -30,7 +28,7 @@ test("Returns logged in navigation", (t) => {
     t.context.application,
     {
       session: {
-        token: true,
+        access_token: "token",
       },
     },
     {

@@ -3,8 +3,8 @@ import { fetch } from "undici";
 import { getCanonicalUrl } from "./utils.js";
 
 export const findBearerToken = (request) => {
-  if (request.session?.token) {
-    const bearerToken = request.session.token;
+  if (request.session?.access_token) {
+    const bearerToken = request.session.access_token;
     return bearerToken;
   }
 
@@ -28,13 +28,13 @@ export const findBearerToken = (request) => {
 };
 
 /**
- * Request an access token
+ * Request token values
  *
  * @param {string} tokenEndpoint - Token endpoint
  * @param {object} bearerToken - OAuth bearer token
- * @returns {Promise|object} Access token
+ * @returns {Promise|object} Token values to verify
  */
-export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
+export const requestTokenValues = async (tokenEndpoint, bearerToken) => {
   const endpointResponse = await fetch(tokenEndpoint, {
     headers: {
       accept: "application/json",
@@ -51,18 +51,18 @@ export const requestAccessToken = async (tokenEndpoint, bearerToken) => {
 
 /**
  * @param {object} me - Publication URL
- * @param {object} accessToken - Access token
- * @returns {object} Verified token
+ * @param {object} values - Token values to verify
+ * @returns {object} Verified token values
  */
-export const verifyAccessToken = (me, accessToken) => {
+export const verifyTokenValues = (me, tokenValues) => {
   // Normalize publication and token URLs before comparing
-  const accessTokenMe = getCanonicalUrl(accessToken.me);
+  const tokenValuesMe = getCanonicalUrl(tokenValues.me);
   const publicationMe = getCanonicalUrl(me);
-  const isAuthenticated = accessTokenMe === publicationMe;
+  const isAuthenticated = tokenValuesMe === publicationMe;
 
   if (!isAuthenticated) {
     return false;
   }
 
-  return accessToken;
+  return tokenValues;
 };

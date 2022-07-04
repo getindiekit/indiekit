@@ -151,12 +151,12 @@
             text: __("status.application.accessToken")
           },
           rows: 10,
-          value: session.token,
+          value: session.access_token,
           attributes: {
             readonly: "true",
             onclick: "this.select();"
           }
-        }) if session.token
+        }) if session.access_token
       }
     }, {
       key: {

@@ -49,14 +49,14 @@ export const routes = (indiekitConfig) => {
   // Session
   router.get("/session/login", limit, sessionController.login);
   router.post("/session/login", limit, indieauth.login());
-  router.get("/session/auth", limit, indieauth.authenticate());
+  router.get("/session/auth", limit, indieauth.authorize());
   router.get("/session/logout", sessionController.logout);
 
   // Status
   router.get(
     "/status",
     limit,
-    indieauth.authorise(),
+    indieauth.authenticate(),
     statusController.viewStatus
   );
 
@@ -69,7 +69,12 @@ export const routes = (indiekitConfig) => {
 
     // Authenticated
     if (plugin.mountPath && plugin.routes) {
-      router.use(plugin.mountPath, limit, indieauth.authorise(), plugin.routes);
+      router.use(
+        plugin.mountPath,
+        limit,
+        indieauth.authenticate(),
+        plugin.routes
+      );
     }
   }
 

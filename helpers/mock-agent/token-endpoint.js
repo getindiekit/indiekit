@@ -9,22 +9,22 @@ export const tokenEndpointAgent = () => {
   const post = getFixture("html/post.html", false);
   const page = getFixture("html/page.html", false);
 
-  // Request access token
+  // Verify access token
   client
     .intercept({ path: "/", headers: { authorization: "Bearer JWT" } })
     .reply(200, { me: "https://website.example", scope: "create" });
 
-  // Request access token (wrong token)
+  // Verify access token (wrong token)
   client
     .intercept({ path: "/", headers: { authorization: "Bearer another" } })
     .reply(200, { me: "https://another.example", scope: "create" });
 
-  // Request access token (malformed token)
+  // Verify access token (malformed token)
   client
     .intercept({ path: "/", headers: { authorization: "Bearer invalid" } })
     .reply(200, { moi: "https://website.example", scope: "create" });
 
-  // Request access token (Bad Request)
+  // Verify access token (Bad Request)
   client
     .intercept({ path: "/", headers: { authorization: "Bearer foo" } })
     .reply(400, {
@@ -32,7 +32,7 @@ export const tokenEndpointAgent = () => {
       error_description: "The token provided was malformed",
     });
 
-  // Request access token (Not found)
+  // Verify access token (Not found)
   client
     .intercept({ path: "/token", headers: { authorization: "Bearer JWT" } })
     .reply(404, { message: "Not found" });
@@ -72,7 +72,11 @@ export const tokenEndpointAgent = () => {
       path: /\?client_id=(.*)&code=(.*)&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
       method: "POST",
     })
-    .reply(200, { access_token: "token", scope: "create" });
+    .reply(200, {
+      access_token: "token",
+      scope: "create",
+      token_type: "Bearer",
+    });
 
   // Mock HTML requests (need to use same origin as token endpoint)
   // See: https://github.com/nodejs/undici/discussions/1440

@@ -4,8 +4,8 @@ import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import {
   findBearerToken,
-  requestAccessToken,
-  verifyAccessToken,
+  requestTokenValues,
+  verifyTokenValues,
 } from "./tokens.js";
 import { generateState, validateState } from "./state.js";
 import { getCanonicalUrl, randomString } from "./utils.js";
@@ -109,11 +109,12 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check credentials match those returned by IndieAuth
+   * Authorize user (i.e. check they are allowed access) by verifying
+   * authorization code with token endpoint (which grants an access token).
    *
    * @returns {object} HTTP response
    */
-  authenticate() {
+  authorize() {
     return async (request, response) => {
       try {
         const { publication } = request.app.locals;
@@ -156,14 +157,15 @@ export const IndieAuth = class {
         );
 
         // Check that access token is valid
-        if (!authorizedToken.scope || !authorizedToken.access_token) {
+        if (!authorizedToken.access_token || !authorizedToken.scope) {
           throw IndiekitError.unauthorized(
             response.__("UnauthorizedError.invalidToken")
           );
         }
 
         // Set session token and redirect to requested resource
-        request.session.token = authorizedToken;
+        request.session.access_token = authorizedToken.access_token;
+        request.session.scope = authorizedToken.scope;
 
         return response.redirect(redirect || "/");
       } catch (error) {
@@ -177,22 +179,23 @@ export const IndieAuth = class {
   }
 
   /**
-   * Check if user is authorized
+   * Authenticate user (i.e. check they are who they say they are) by
+   * checking bearer token matches access token saved in current session.
    *
    * @returns {Function} Next middleware
    */
-  authorise() {
+  authenticate() {
     const { devMode, me } = this;
 
     return async function (request, response, next) {
       if (devMode) {
-        request.session.token = process.env.NODE_ENV;
+        request.session.access_token = process.env.NODE_ENV;
         request.session.scope = "create update delete media";
       }
 
-      // If have session scope and token, go to next middleware
-      const { scope, token } = request.session;
-      if (scope && token) {
+      // If have session has access token and scope, go to next middleware
+      const { access_token, scope } = request.session;
+      if (access_token && scope) {
         return next();
       }
 
@@ -200,28 +203,28 @@ export const IndieAuth = class {
       try {
         const { tokenEndpoint } = request.app.locals.publication;
         const bearerToken = findBearerToken(request);
-        const accessToken = await requestAccessToken(
+        const tokenValues = await requestTokenValues(
           tokenEndpoint,
           bearerToken
         );
 
-        // Check if access token contains a `me` value
-        if (!accessToken.me) {
+        // Check if token values contain a `me` value
+        if (!tokenValues.me) {
           throw IndiekitError.unauthorized(
             response.__("UnauthorizedError.invalidToken")
           );
         }
 
-        // Check that `me` in access token matches publication `me`
-        const verifiedToken = verifyAccessToken(me, accessToken);
-        if (!verifiedToken) {
+        // Check that `me` in token values matches publication `me`
+        const verifiedTokenValues = verifyTokenValues(me, tokenValues);
+        if (!verifiedTokenValues) {
           throw IndiekitError.forbidden(
             response.__("ForbiddenError.invalidMe")
           );
         }
 
-        request.session.token = bearerToken;
-        request.session.scope = verifiedToken.scope;
+        request.session.access_token = bearerToken;
+        request.session.scope = verifiedTokenValues.scope;
 
         next();
       } catch (error) {

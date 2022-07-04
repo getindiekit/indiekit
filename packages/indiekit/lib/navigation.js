@@ -1,7 +1,7 @@
 export const getNavigation = (application, request, response) => {
   // Default navigation items
   const navigation = [
-    request.session.token
+    request.session.access_token
       ? {
           href: "/session/logout",
           text: "session.logout.title",

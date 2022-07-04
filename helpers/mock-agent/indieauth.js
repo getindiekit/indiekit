@@ -17,6 +17,7 @@ export const indieauthAgent = () => {
       access_token: "token",
       me: process.env.TEST_PUBLICATION_URL,
       scope: "create update delete media",
+      token_type: "Bearer",
     });
 
   // Grant token (Bad Request)

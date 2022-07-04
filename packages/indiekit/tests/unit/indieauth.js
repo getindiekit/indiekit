@@ -16,12 +16,10 @@ const indieauth = new IndieAuth({
 
 test.beforeEach((t) => {
   t.context = {
-    accessToken: {
-      me: "https://website.example",
-      scope: "create",
-    },
-    bearerToken: "JWT",
+    access_token: "JWT",
     me: "https://website.example",
+    scope: "create",
+    token_type: "Bearer",
   };
 });
 
@@ -55,7 +53,7 @@ test("Throws error exchanging authorization code during request", async (t) => {
   );
 });
 
-test("Checks if user is authorized", async (t) => {
+test("Checks if user is authenticated", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
@@ -65,16 +63,16 @@ test("Checks if user is authorized", async (t) => {
         },
       },
     },
-    headers: { authorization: `Bearer ${t.context.bearerToken}` },
+    headers: { authorization: `Bearer ${t.context.access_token}` },
     session: {},
   });
   const response = mockResponse();
   const next = sinon.spy();
 
-  await indieauth.authorise()(request, response, next);
+  await indieauth.authenticate()(request, response, next);
 
-  t.is(request.session.scope, t.context.accessToken.scope);
-  t.is(request.session.token, t.context.bearerToken);
+  t.is(request.session.access_token, t.context.access_token);
+  t.is(request.session.scope, t.context.scope);
   t.true(next.calledOnce);
 });
 
@@ -97,14 +95,14 @@ test("Development mode bypasses authentication", async (t) => {
   const response = mockResponse();
   const next = sinon.spy();
 
-  await indieauth.authorise()(request, response, next);
+  await indieauth.authenticate()(request, response, next);
 
+  t.is(request.session.access_token, process.env.NODE_ENV);
   t.is(request.session.scope, "create update delete media");
-  t.is(request.session.token, process.env.NODE_ENV);
   t.true(next.calledOnce);
 });
 
-test("Throws error verifying invalid token", async (t) => {
+test("Throws error authenticating invalid token", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
@@ -120,14 +118,14 @@ test("Throws error verifying invalid token", async (t) => {
   const response = mockResponse({ __() {} });
   const next = sinon.spy();
 
-  await indieauth.authorise()(request, response, next);
+  await indieauth.authenticate()(request, response, next);
 
   t.true(next.firstCall.args[0] instanceof IndiekitError);
   t.is(next.firstCall.args[0].code, "unauthorized");
   t.is(next.firstCall.args[0].status, 401);
 });
 
-test("Throws error verifying token with URL mismatch", async (t) => {
+test("Throws error authenticating token with URL mismatch", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
@@ -136,21 +134,21 @@ test("Throws error verifying token with URL mismatch", async (t) => {
         },
       },
     },
-    headers: { authorization: `Bearer another` },
+    headers: { authorization: "Bearer another" },
     method: "POST",
     session: {},
   });
   const response = mockResponse({ __() {} });
   const next = sinon.spy();
 
-  await indieauth.authorise()(request, response, next);
+  await indieauth.authenticate()(request, response, next);
 
   t.true(next.firstCall.args[0] instanceof IndiekitError);
   t.is(next.firstCall.args[0].code, "forbidden");
   t.is(next.firstCall.args[0].status, 403);
 });
 
-test("Throws error checking if user is authorized", async (t) => {
+test("Throws error checking if user is authenticated", async (t) => {
   const request = mockRequest({
     app: { locals: { publication: {} } },
     method: "post",
@@ -159,7 +157,7 @@ test("Throws error checking if user is authorized", async (t) => {
   const response = mockResponse();
   const next = sinon.spy();
 
-  await indieauth.authorise()(request, response, next);
+  await indieauth.authenticate()(request, response, next);
 
   t.true(next.calledOnce);
   t.true(next.firstCall.args[0] instanceof Error);
@@ -180,7 +178,7 @@ test("Throws error redirecting user to IndieAuth login", async (t) => {
   t.true(response.render.calledWith("session/login"));
 });
 
-test("Throws error checking credentials returned by IndieAuth", async (t) => {
+test("Throws error authorizing returned credentials", async (t) => {
   const request = mockRequest({
     app: { locals: { publication: {} } },
     query: { code: "", state: "" },
@@ -189,7 +187,7 @@ test("Throws error checking credentials returned by IndieAuth", async (t) => {
     __: () => ({ session: {} }),
   });
 
-  await indieauth.authenticate()(request, response);
+  await indieauth.authorize()(request, response);
 
   t.true(response.status.calledWith(400));
   t.true(response.render.calledWith("session/login"));

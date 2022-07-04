@@ -33,7 +33,7 @@ export const postsController = async (request, response, next) => {
         headers: {
           accept: "application/json",
           // TODO: Third-party media endpoint may require a separate token
-          authorization: `Bearer ${request.session.token}`,
+          authorization: `Bearer ${request.session.access_token}`,
         },
       }
     );

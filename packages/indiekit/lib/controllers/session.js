@@ -1,5 +1,5 @@
 export const login = (request, response) => {
-  if (request.session.token) {
+  if (request.session.access_token) {
     return response.redirect("/");
   }
 
