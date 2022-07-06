@@ -93,7 +93,7 @@ test("Throws error creating file in a repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(gitlab.createFile("foo.txt", "foo", "Message"), {
-    message: /\bNot found\b/,
+    message: "GitLab store: Not found",
   });
 });
 
@@ -113,7 +113,7 @@ test("Throws error reading file in a repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(gitlab.readFile("foo.txt"), {
-    message: /\bNot found\b/,
+    message: "GitLab store: Not found",
   });
 });
 
@@ -134,7 +134,7 @@ test("Throws error updating file in a repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(gitlab.updateFile("foo.txt", "foo", "Message"), {
-    message: /\bNot found\b/,
+    message: "GitLab store: Not found",
   });
 });
 
@@ -154,6 +154,6 @@ test("Throws error deleting a file in a repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(gitlab.deleteFile("foo.txt", "Message"), {
-    message: /\bNot found\b/,
+    message: "GitLab store: Not found",
   });
 });

@@ -1,5 +1,6 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
+import { IndiekitError } from "@indiekit/error";
 import gitbeaker from "@gitbeaker/node";
 
 const defaults = {
@@ -76,18 +77,27 @@ export const GitlabStore = class {
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(path, content, message) {
-    content = Buffer.from(content).toString("base64");
-    const response = await this.client.RepositoryFiles.create(
-      this.projectId,
-      path,
-      this.options.branch,
-      content,
-      message,
-      {
-        encoding: "base64",
-      }
-    );
-    return response;
+    try {
+      content = Buffer.from(content).toString("base64");
+      const response = await this.client.RepositoryFiles.create(
+        this.projectId,
+        path,
+        this.options.branch,
+        content,
+        message,
+        {
+          encoding: "base64",
+        }
+      );
+
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -98,13 +108,22 @@ export const GitlabStore = class {
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
    */
   async readFile(path) {
-    const response = await this.client.RepositoryFiles.show(
-      this.projectId,
-      path,
-      this.options.branch
-    );
-    const content = Buffer.from(response.content, "base64").toString("utf8");
-    return content;
+    try {
+      const response = await this.client.RepositoryFiles.show(
+        this.projectId,
+        path,
+        this.options.branch
+      );
+      const content = Buffer.from(response.content, "base64").toString("utf8");
+
+      return content;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -117,18 +136,27 @@ export const GitlabStore = class {
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
   async updateFile(path, content, message) {
-    content = Buffer.from(content).toString("base64");
-    const response = await this.client.RepositoryFiles.edit(
-      this.projectId,
-      path,
-      this.options.branch,
-      content,
-      message,
-      {
-        encoding: "base64",
-      }
-    );
-    return response;
+    try {
+      content = Buffer.from(content).toString("base64");
+      const response = await this.client.RepositoryFiles.edit(
+        this.projectId,
+        path,
+        this.options.branch,
+        content,
+        message,
+        {
+          encoding: "base64",
+        }
+      );
+
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -140,13 +168,22 @@ export const GitlabStore = class {
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository}
    */
   async deleteFile(path, message) {
-    await this.client.RepositoryFiles.remove(
-      this.projectId,
-      path,
-      this.options.branch,
-      message
-    );
-    return true;
+    try {
+      await this.client.RepositoryFiles.remove(
+        this.projectId,
+        path,
+        this.options.branch,
+        message
+      );
+
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {
