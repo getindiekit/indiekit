@@ -1,5 +1,6 @@
 import process from "node:process";
 import bitbucket from "bitbucket";
+import { IndiekitError } from "@indiekit/error";
 
 const defaults = {
   branch: "main",
@@ -69,14 +70,22 @@ export const BitbucketStore = class {
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async createFile(path, content, message) {
-    const response = await this.client.repositories.createSrcFileCommit({
-      [path]: content,
-      branch: this.options.branch,
-      message,
-      repo_slug: this.options.repo, // eslint-disable-line camelcase
-      workspace: this.options.user,
-    });
-    return response;
+    try {
+      const response = await this.client.repositories.createSrcFileCommit({
+        [path]: content,
+        branch: this.options.branch,
+        message,
+        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        workspace: this.options.user,
+      });
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -87,15 +96,23 @@ export const BitbucketStore = class {
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc}
    */
   async readFile(path) {
-    const response = await this.client.repositories.readSrc({
-      format: "rendered",
-      commit: this.options.branch,
-      path,
-      repo_slug: this.options.repo, // eslint-disable-line camelcase
-      workspace: this.options.user,
-    });
-    const content = response.data.raw;
-    return content;
+    try {
+      const response = await this.client.repositories.readSrc({
+        format: "rendered",
+        commit: this.options.branch,
+        path,
+        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        workspace: this.options.user,
+      });
+      const content = response.data.raw;
+      return content;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -108,14 +125,22 @@ export const BitbucketStore = class {
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async updateFile(path, content, message) {
-    const response = await this.client.repositories.createSrcFileCommit({
-      [path]: content,
-      branch: this.options.branch,
-      message,
-      repo_slug: this.options.repo, // eslint-disable-line camelcase
-      workspace: this.options.user,
-    });
-    return response;
+    try {
+      const response = await this.client.repositories.createSrcFileCommit({
+        [path]: content,
+        branch: this.options.branch,
+        message,
+        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        workspace: this.options.user,
+      });
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -127,14 +152,22 @@ export const BitbucketStore = class {
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async deleteFile(path, message) {
-    const response = await this.client.repositories.createSrcFileCommit({
-      branch: this.options.branch,
-      files: path,
-      message,
-      repo_slug: this.options.repo, // eslint-disable-line camelcase
-      workspace: this.options.user,
-    });
-    return response;
+    try {
+      const response = await this.client.repositories.createSrcFileCommit({
+        branch: this.options.branch,
+        files: path,
+        message,
+        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        workspace: this.options.user,
+      });
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {
