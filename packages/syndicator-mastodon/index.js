@@ -1,5 +1,6 @@
 import path from "node:path";
 import process from "node:process";
+import { IndiekitError } from "@indiekit/error";
 import { mastodon } from "./lib/mastodon.js";
 
 const defaults = {
@@ -62,10 +63,18 @@ export const MastodonSyndicator = class {
   }
 
   async syndicate(properties, publication) {
-    return mastodon({
-      url: `${this.#url.protocol}//${this.#url.hostname}`,
-      accessToken: this.options.accessToken,
-    }).post(properties, publication);
+    try {
+      return await mastodon({
+        url: `${this.#url.protocol}//${this.#url.hostname}`,
+        accessToken: this.options.accessToken,
+      }).post(properties, publication);
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {

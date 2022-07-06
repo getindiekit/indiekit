@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-import { IndiekitError } from "@indiekit/error";
 import axios from "axios";
 import megalodon from "megalodon";
 import {
@@ -78,8 +77,7 @@ export const mastodon = (options) => ({
       return data.id;
     } catch (error) {
       const message = error.response?.data?.error || error.message;
-      const status = error.response?.status || 500;
-      throw new IndiekitError(message, { status });
+      throw new Error(message);
     }
   },
 

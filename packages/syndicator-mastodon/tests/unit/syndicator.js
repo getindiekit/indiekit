@@ -67,7 +67,7 @@ test("Throws error getting syndicated URL if no server URL provided", async (t) 
   });
 
   await t.throwsAsync(mastodonNoServer.syndicate(t.context.properties), {
-    message: "Mastodon server URL required",
+    message: "Mastodon syndicator: Mastodon server URL required",
   });
 });
 
@@ -77,7 +77,7 @@ test("Throws error getting syndicated URL if no access token provided", async (t
     .reply(401, {
       errors: [
         {
-          message: "Request failed with status code 401",
+          message: "Mastodon syndicator: Request failed with status code 401",
         },
       ],
     });
@@ -88,6 +88,6 @@ test("Throws error getting syndicated URL if no access token provided", async (t
   });
 
   await t.throwsAsync(mastodonNoToken.syndicate(t.context.properties), {
-    message: "Request failed with status code 401",
+    message: "Mastodon syndicator: Request failed with status code 401",
   });
 });
