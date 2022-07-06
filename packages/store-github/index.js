@@ -77,10 +77,12 @@ export const GithubStore = class {
         path,
         content,
       });
+
       return response;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
+        plugin: this.name,
         status: error.status,
       });
     }
@@ -104,10 +106,12 @@ export const GithubStore = class {
       const content = Buffer.from(response.data.content, "base64").toString(
         "utf8"
       );
+
       return content;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
+        plugin: this.name,
         status: error.status,
       });
     }
@@ -143,10 +147,12 @@ export const GithubStore = class {
         path,
         content,
       });
+
       return response;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
+        plugin: this.name,
         status: error.status,
       });
     }
@@ -176,10 +182,12 @@ export const GithubStore = class {
         message,
         path,
       });
+
       return response;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
+        plugin: this.name,
         status: error.status,
       });
     }

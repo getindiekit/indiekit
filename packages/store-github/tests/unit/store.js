@@ -59,7 +59,8 @@ test("Throws error creating file in a repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(github.createFile("foo.txt", "foo", "Message"), {
-    message: /\bNot found\b/,
+    message:
+      "GitHub store: request to https://api.github.com/repos/username/repo/contents/foo.txt failed, reason: Not found",
   });
 });
 
@@ -79,7 +80,8 @@ test("Throws error reading file in a repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(github.readFile("foo.txt"), {
-    message: /\bNot found\b/,
+    message:
+      "GitHub store: request to https://api.github.com/repos/username/repo/contents/foo.txt?ref=main failed, reason: Not found",
   });
 });
 
@@ -119,7 +121,8 @@ test("Throws error updating file in a repository", async (t) => {
   await t.throwsAsync(
     github.updateFile("foo.txt", "foo", { message: "Message" }),
     {
-      message: /\bUnknown error\b/,
+      message:
+        "GitHub store: request to https://api.github.com/repos/username/repo/contents/foo.txt failed, reason: Unknown error",
     }
   );
 });
@@ -143,7 +146,8 @@ test("Throws error file not found in repository", async (t) => {
     .replyWithError("Not found");
 
   await t.throwsAsync(github.deleteFile("foo.txt", "Message"), {
-    message: /\bNot found\b/,
+    message:
+      "GitHub store: request to https://api.github.com/repos/username/repo/contents/foo.txt?ref=main failed, reason: Not found",
   });
 });
 
@@ -155,6 +159,7 @@ test("Throws error deleting a file in a repository", async (t) => {
     .replyWithError("Unknown error");
 
   await t.throwsAsync(github.deleteFile("foo.txt", "Message"), {
-    message: /\bUnknown error\b/,
+    message:
+      "GitHub store: request to https://api.github.com/repos/username/repo/contents/foo.txt failed, reason: Unknown error",
   });
 });
