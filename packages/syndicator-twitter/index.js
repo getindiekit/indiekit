@@ -1,4 +1,5 @@
 import process from "node:process";
+import { IndiekitError } from "@indiekit/error";
 import { twitter } from "./lib/twitter.js";
 
 const defaults = {
@@ -47,7 +48,15 @@ export const TwitterSyndicator = class {
   }
 
   async syndicate(properties, publication) {
-    return twitter(this.options).post(properties, publication);
+    try {
+      return await twitter(this.options).post(properties, publication);
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {

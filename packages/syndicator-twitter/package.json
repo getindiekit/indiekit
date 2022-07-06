@@ -34,6 +34,7 @@
     "directory": "packages/syndicator-twitter"
   },
   "dependencies": {
+    "@indiekit/error": "^1.0.0-alpha.8",
     "brevity": "^0.2.9",
     "html-to-text": "^8.0.0",
     "twitter-lite": "^1.1.0",
