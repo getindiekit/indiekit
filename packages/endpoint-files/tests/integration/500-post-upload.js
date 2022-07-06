@@ -29,7 +29,7 @@ test("Returns 500 error uploading file", async (t) => {
   ).textContent;
 
   t.is(response.status, 500);
-  t.is(result, "Something went wrong");
+  t.is(result, "GitHub store: Something went wrong");
 
   server.close(t);
 });
