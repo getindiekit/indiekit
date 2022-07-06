@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { IndiekitError } from "@indiekit/error";
 
 const defaults = {
   directory: process.cwd(),
@@ -57,20 +58,24 @@ export const FileSystemStore = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async createFile(filePath, content) {
-    const absolutePath = this.#getAbsolutePath(filePath);
-    const dirname = path.dirname(absolutePath);
-
     try {
+      const absolutePath = this.#getAbsolutePath(filePath);
+      const dirname = path.dirname(absolutePath);
+
       if (!existsSync(dirname)) {
         await fs.mkdir(dirname, { recursive: true });
       }
 
       await fs.writeFile(absolutePath, content);
-    } catch (error) {
-      throw new Error(error.message);
-    }
 
-    return true;
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -81,15 +86,19 @@ export const FileSystemStore = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async updateFile(filePath, content) {
-    const absolutePath = this.#getAbsolutePath(filePath);
-
     try {
-      await fs.writeFile(absolutePath, content);
-    } catch (error) {
-      throw new Error(error.message);
-    }
+      const absolutePath = this.#getAbsolutePath(filePath);
 
-    return true;
+      await fs.writeFile(absolutePath, content);
+
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -99,15 +108,19 @@ export const FileSystemStore = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async deleteFile(filePath) {
-    const absolutePath = this.#getAbsolutePath(filePath);
-
     try {
-      await fs.rm(absolutePath);
-    } catch (error) {
-      throw new Error(error.message);
-    }
+      const absolutePath = this.#getAbsolutePath(filePath);
 
-    return true;
+      await fs.rm(absolutePath);
+
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {

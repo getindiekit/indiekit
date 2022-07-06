@@ -31,6 +31,9 @@
     "url": "https://github.com/getindiekit/indiekit.git",
     "directory": "packages/store-file-system"
   },
+  "dependencies": {
+    "@indiekit/error": "^1.0.0-alpha.8"
+  },
   "publishConfig": {
     "access": "public"
   }

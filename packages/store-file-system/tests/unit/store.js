@@ -43,7 +43,7 @@ test("Throws error creating file in a directory", async (t) => {
   mockFs();
 
   await t.throwsAsync(fileSystem.createFile("", "foo"), {
-    message: "EBADF, bad file descriptor",
+    message: "File system store: EBADF, bad file descriptor",
   });
 
   mockFs.restore();
@@ -65,7 +65,8 @@ test("Throws error updating file in a directory", async (t) => {
   mockFs();
 
   await t.throwsAsync(fileSystem.updateFile("foo.txt", "foo"), {
-    message: "ENOENT, no such file or directory 'directory/foo.txt'",
+    message:
+      "File system store: ENOENT, no such file or directory 'directory/foo.txt'",
   });
 
   mockFs.restore();
@@ -87,7 +88,8 @@ test("Throws error deleting file in a directory", async (t) => {
   mockFs();
 
   await t.throwsAsync(fileSystem.deleteFile("foo.txt"), {
-    message: "ENOENT, no such file or directory 'directory/foo.txt'",
+    message:
+      "File system store: ENOENT, no such file or directory 'directory/foo.txt'",
   });
 
   mockFs.restore();
