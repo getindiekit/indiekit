@@ -33,6 +33,7 @@
     "directory": "packages/store-ftp"
   },
   "dependencies": {
+    "@indiekit/error": "^1.0.0-alpha.8",
     "basic-ftp": "^4.6.6"
   },
   "publishConfig": {

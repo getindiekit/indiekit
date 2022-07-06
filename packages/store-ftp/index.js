@@ -1,6 +1,7 @@
 import path from "node:path";
 import process from "node:process";
 import { Readable } from "node:stream";
+import { IndiekitError } from "@indiekit/error";
 import ftp from "basic-ftp";
 
 const defaults = {
@@ -95,9 +96,8 @@ export const FtpStore = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async createFile(filePath, content) {
-    const client = await this.client();
-
     try {
+      const client = await this.client();
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#getAbsolutePath(filePath);
       const dirname = path.dirname(absolutePath);
@@ -105,12 +105,16 @@ export const FtpStore = class {
 
       await client.ensureDir(dirname);
       await client.uploadFrom(readableStream, basename);
-    } catch (error) {
-      throw new Error(error.message);
-    }
 
-    client.close();
-    return true;
+      client.close();
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -121,19 +125,22 @@ export const FtpStore = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async updateFile(filePath, content) {
-    const client = await this.client();
-
     try {
+      const client = await this.client();
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#getAbsolutePath(filePath);
 
       await client.uploadFrom(readableStream, absolutePath);
-    } catch (error) {
-      throw new Error(error);
-    }
 
-    client.close();
-    return true;
+      client.close();
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -143,17 +150,21 @@ export const FtpStore = class {
    * @returns {Promise<Response>} A promise to the response
    */
   async deleteFile(filePath) {
-    const absolutePath = this.#getAbsolutePath(filePath);
-    const client = await this.client();
-
     try {
-      await client.remove(absolutePath);
-    } catch (error) {
-      throw new Error(error);
-    }
+      const absolutePath = this.#getAbsolutePath(filePath);
+      const client = await this.client();
 
-    client.close();
-    return true;
+      await client.remove(absolutePath);
+
+      client.close();
+      return true;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {
