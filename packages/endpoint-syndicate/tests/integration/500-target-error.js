@@ -5,12 +5,13 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 500 error syndicating URL", async (t) => {
+  nock("https://api.github.com")
+    .put((uri) => uri.includes("foobar"))
+    .twice()
+    .reply(200);
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .replyWithError("Not found");
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foobar"))
-    .reply(200);
 
   const server = await testServer();
   const request = supertest.agent(server);
@@ -28,7 +29,10 @@ test("Returns 500 error syndicating URL", async (t) => {
     .query(`token=${process.env.TEST_TOKEN}`);
 
   t.is(result.status, 500);
-  t.regex(result.body.error_description, /Not found/);
+  t.is(
+    result.body.error_description,
+    "Twitter syndicator: request to https://api.twitter.com/1.1/statuses/update.json failed, reason: Not found"
+  );
 
   server.close(t);
 });
