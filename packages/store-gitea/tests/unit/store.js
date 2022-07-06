@@ -53,7 +53,7 @@ test("Creates file in a repository at custom instance", async (t) => {
 
 test("Throws error creating file in a repository", async (t) => {
   await t.throwsAsync(gitea.createFile("foo.txt", "foo", "Message"), {
-    message: "Not Found",
+    message: "Gitea store: Not Found",
   });
 });
 
@@ -65,7 +65,7 @@ test("Reads file in a repository", async (t) => {
 
 test("Throws error reading file in a repository", async (t) => {
   await t.throwsAsync(gitea.readFile("foo.txt"), {
-    message: "Not Found",
+    message: "Gitea store: Not Found",
   });
 });
 
@@ -78,7 +78,7 @@ test("Updates file in a repository", async (t) => {
 
 test("Throws error updating file in a repository", async (t) => {
   await t.throwsAsync(gitea.updateFile("foo.txt", "foo", "Message"), {
-    message: "Not Found",
+    message: "Gitea store: Not Found",
   });
 });
 
@@ -90,6 +90,6 @@ test("Deletes a file in a repository", async (t) => {
 
 test("Throws error deleting a file in a repository", async (t) => {
   await t.throwsAsync(gitea.deleteFile("foo.txt", "Message"), {
-    message: "Not Found",
+    message: "Gitea store: Not Found",
   });
 });
