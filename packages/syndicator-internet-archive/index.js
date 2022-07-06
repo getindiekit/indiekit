@@ -1,4 +1,5 @@
 import process from "node:process";
+import { IndiekitError } from "@indiekit/error";
 import { internetArchive } from "./lib/internet-archive.js";
 
 const defaults = {
@@ -31,7 +32,15 @@ export const InternetArchiveSyndicator = class {
   }
 
   async syndicate(properties) {
-    return internetArchive(this.options).save(properties);
+    try {
+      return internetArchive(this.options).save(properties);
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   init(Indiekit) {
