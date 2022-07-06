@@ -50,12 +50,13 @@ export class IndiekitError extends Error {
     return new IndiekitError(message, {
       status: response.status,
       code: body.error || response.statusText,
+      cause: body.cause,
     });
   }
 
   constructor(message, options = {}) {
     super(message, options);
-    this.message = message;
+    this.message = options.plugin ? `${options.plugin}: ${message}` : message;
     this.code = options.code || "indiekit";
     this.name = this.getError(this.code)?.name;
     this.status = this.getError(this.code)?.status;
