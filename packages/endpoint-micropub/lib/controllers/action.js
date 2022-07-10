@@ -85,14 +85,14 @@ export const actionController = async (request, response, next) => {
     // Hoist not found error to controller to localise response
     if (error.name === "NotFoundError") {
       nextError = IndiekitError.notFound(
-        response.__("NotFoundError.record", { url: error.message })
+        response.__("NotFoundError.record", error.message)
       );
     }
 
     // Hoist unsupported post type error to controller to localise response
     if (error.name === "NotImplementedError") {
       nextError = IndiekitError.notImplemented(
-        response.__("NotImplementedError.postType", { type: error.message }),
+        response.__("NotImplementedError.postType", error.message),
         { uri: "https://getindiekit.com/customisation/post-types/" }
       );
     }

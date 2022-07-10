@@ -46,14 +46,14 @@ export const uploadController = async (request, response, next) => {
     // Hoist unsupported media type error to controller to localise response
     if (error.name === "UnsupportedMediaTypeError") {
       nextError = IndiekitError.unsupportedMediaType(
-        response.__("UnsupportedMediaTypeError.type", { type: error.message })
+        response.__("UnsupportedMediaTypeError.type", error.message)
       );
     }
 
     // Hoist unsupported post type error to controller to localise response
     if (error.name === "NotImplementedError") {
       nextError = IndiekitError.notImplemented(
-        response.__("NotImplementedError.postType", { type: error.message }),
+        response.__("NotImplementedError.postType", error.message),
         { uri: "https://getindiekit.com/customisation/post-types/" }
       );
     }

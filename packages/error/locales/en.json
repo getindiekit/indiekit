@@ -21,17 +21,17 @@
   "NotFoundError": {
     "title": "Not found",
     "page": "If you entered a web address please check it was correct",
-    "record": "No database record found for {{url}}",
+    "record": "No database record found for %s",
     "resource": "No %s was found at this URL"
   },
   "UnsupportedMediaTypeError": {
     "title": "Unsupported media type",
-    "type": "The {{type}} media type is not supported"
+    "type": "The %s media type is not supported"
   },
   "NotImplementedError": {
     "title": "Not implemented",
     "query": "Unsupported query for `{{key}}`: `{{value}}`",
     "database": "This feature requires a database",
-    "postType": "No configuration provided for {{type}} post type"
+    "postType": "No configuration provided for %s post type"
   }
 }
