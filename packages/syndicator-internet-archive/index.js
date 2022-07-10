@@ -33,7 +33,7 @@ export const InternetArchiveSyndicator = class {
 
   async syndicate(properties) {
     try {
-      return internetArchive(this.options).save(properties);
+      return await internetArchive(this.options).save(properties);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
