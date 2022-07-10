@@ -45,6 +45,9 @@ test("Throws error getting syndicated URL with no API keys", async (t) => {
   const internetArchiveNoKeys = new InternetArchiveSyndicator({});
 
   await t.throwsAsync(internetArchiveNoKeys.syndicate({ url: t.context.url }), {
-    message: "You need to be logged in to use Save Page Now.",
+    code: "indiekit",
+    message:
+      "Internet Archive syndicator: You need to be logged in to use Save Page Now.",
+    name: "IndiekitError",
   });
 });

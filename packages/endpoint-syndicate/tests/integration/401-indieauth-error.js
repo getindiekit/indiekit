@@ -30,13 +30,10 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
     .post("/syndicate")
     .set("accept", "application/json")
     .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
-    .query(`token=${process.env.TEST_TOKEN_CREATE_SCOPE}`);
+    .query(`token=foo.bar.baz`);
 
   t.is(result.status, 401);
-  t.is(
-    result.body.error_description,
-    "JSON Web Token error: invalid signature"
-  );
+  t.is(result.body.error_description, "JSON Web Token error: invalid token");
 
   server.close(t);
 });
