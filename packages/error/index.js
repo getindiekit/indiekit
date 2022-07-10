@@ -21,10 +21,6 @@ export class IndiekitError extends Error {
     return new IndiekitError(message, { ...options, code: "invalid_request" });
   }
 
-  static invalidToken(message, options) {
-    return new IndiekitError(message, { ...options, code: "invalid_token" });
-  }
-
   static notFound(message, options) {
     return new IndiekitError(message, { ...options, code: "not_found" });
   }
