@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export const errors = {
   indiekit: {
     status: 500,

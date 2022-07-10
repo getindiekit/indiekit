@@ -122,11 +122,13 @@
             "code_verifier",
             "date_issued",
             "error_description",
+            "error_uri",
             "grant_type",
             "job_id",
             "original_url",
             "redirect_uri",
-            "success_description"
+            "success_description",
+            "token_type"
           ]
         }
       ],

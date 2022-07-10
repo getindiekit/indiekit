@@ -51,7 +51,7 @@ export const requestTokenValues = async (tokenEndpoint, bearerToken) => {
 
 /**
  * @param {object} me - Publication URL
- * @param {object} values - Token values to verify
+ * @param {object} tokenValues - Token values to verify
  * @returns {object} Verified token values
  */
 export const verifyTokenValues = (me, tokenValues) => {
