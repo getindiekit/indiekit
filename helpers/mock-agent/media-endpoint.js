@@ -38,7 +38,7 @@ export const mediaEndpointAgent = () => {
       path: "/",
       method: "POST",
       headers: {
-        authorization: `Bearer foobar`,
+        authorization: "Bearer foobar",
       },
     })
     .reply(400, {
