@@ -63,7 +63,7 @@ export const slugifyString = (string, separator = "-") => {
  * @returns {string} Plain text
  */
 export const stripHtml = (string) => {
-  return string.replace(/(<([^>]+)>)/gi, "");
+  return string.replace(/<.*?>/g, "");
 };
 
 /**
