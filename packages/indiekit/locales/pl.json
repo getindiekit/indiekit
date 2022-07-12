@@ -1,0 +1,49 @@
+{
+  "guidance": {
+    "discovery": "Aby %s mógł zostać wykryty przez klientów Micropub i poprosić o pozwolenie na publikowanie w Twojej witrynie, dodaj następujące wartości do `<head>` witryny:"
+  },
+  "session": {
+    "login": {
+      "description": "Zaloguj się za pomocą IndieAuth, aby sprawdzić, czy posiadasz %s",
+      "me": "Adres sieci Web",
+      "submit": "Zaloguj się za pomocą IndieAuth",
+      "title": "Zaloguj się"
+    },
+    "logout": {
+      "title": "Wyloguj się"
+    }
+  },
+  "status": {
+    "application": {
+      "accessToken": "Token dostępu",
+      "installedPlugins": "Zainstalowane wtyczki",
+      "locale": "Język",
+      "localeNotAvailable": "{{app}} nie został jeszcze przetłumaczony na język {{locale}}",
+      "name": "Nazwa",
+      "scope": "Dostarczony zakres",
+      "summaryTitle": "Ustawienia aplikacji",
+      "themeColor": "Kolor motywu",
+      "themeColorScheme": "Motyw",
+      "themeColorSchemeValue": {
+        "automatic": "Automatyczny",
+        "dark": "Ciemny",
+        "light": "Jasny"
+      }
+    },
+    "publication": {
+      "authorizationEndpoint": "Punkt końcowy autoryzacji",
+      "locale": "Język",
+      "me": "Adres sieci Web",
+      "mediaEndpoint": "Punkt końcowy mediów",
+      "micropubEndpoint": "Punkt końcowy Micropub",
+      "postTypes": "Typy postów",
+      "preset": "Szablon",
+      "store": "Sklep z treściami",
+      "summaryTitle": "Ustawienia publikacji",
+      "syndicationTargets": "Cele syndykacji",
+      "timeZone": "Strefa czasowa",
+      "tokenEndpoint": "Punkt końcowy tokena"
+    },
+    "title": "Status serwera"
+  }
+}

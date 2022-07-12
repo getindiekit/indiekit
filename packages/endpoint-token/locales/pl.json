@@ -1,0 +1,11 @@
+{
+  "token": {
+    "guidance": {
+      "discovery": "Aby użyć tego tokenowego punktu końcowego, dodaj następującą wartość do witryny `<head>`:",
+      "verifyRequest": "Aby zweryfikować token dostępu, wyślij żądanie `GET` do punktu końcowego tokenu z tokenem dostępu w nagłówku:",
+      "verifyResponse": "Ten punkt końcowy zweryfikuje token i odpowie informacjami o użytkowniku i zakresie:",
+      "verifyTitle": "Zweryfikuj token dostępu"
+    },
+    "title": "Punkt końcowy tokena"
+  }
+}

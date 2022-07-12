@@ -1,0 +1,21 @@
+{
+  "files": {
+    "error": {
+      "file": "Wybierz plik do przesłania"
+    },
+    "file": {
+      "download": "Pobierz plik",
+      "properties": "Właściwości"
+    },
+    "files": {
+      "none": "Brak plików",
+      "title": "Przesłane pliki"
+    },
+    "title": "Pliki",
+    "upload": {
+      "file": "Plik",
+      "submit": "Prześlij",
+      "title": "Prześlij nowy plik"
+    }
+  }
+}

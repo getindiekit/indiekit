@@ -1,0 +1,20 @@
+{
+  "share": {
+    "bookmark-of": "Adres URL",
+    "content": "Zawartość",
+    "error": {
+      "bookmark-of": "Wpisz adres internetowy, taki jak https://example.org",
+      "name": "Wprowadź tytuł"
+    },
+    "name": "Tytuł",
+    "submit": "Publikuj",
+    "title": "Udostępnij"
+  },
+  "status": {
+    "bookmarklet": {
+      "guidance": "Przeciągnij to łącze do paska zakładek: %s",
+      "label": "Udostępnij stronę",
+      "title": "Udostępnij bookmarklet"
+    }
+  }
+}

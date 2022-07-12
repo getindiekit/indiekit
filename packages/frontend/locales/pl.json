@@ -1,0 +1,16 @@
+{
+  "error": "Błąd",
+  "errorSummaryTitle": "Wystąpił problem",
+  "noValue": "Nie ustawiono",
+  "optionalValue": "(opcjonalnie)",
+  "pagination": {
+    "defaultType": "wyniki",
+    "item": "Strona %s",
+    "next": "Następne %s",
+    "page": "strona",
+    "previous": "Poprzednie %s",
+    "result": "Wyświetlanie {{from}} z {{count}} {{type}}",
+    "results": "Wyświetlanie {{from}} do {{to}} z {{count}} {{type}}"
+  },
+  "success": "Sukces"
+}

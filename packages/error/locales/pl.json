@@ -1,0 +1,37 @@
+{
+  "BadRequestError": {
+    "invalid": "W żądaniu brakuje wymaganego parametru, zawiera nieobsługiwany parametr lub wartość parametru, powtarza ten sam parametr, używa więcej niż jednej metody włączenia tokena dostępu lub jest w inny sposób zniekształcony",
+    "missingParameter": "Brakujący parametr: `%s`",
+    "missingProperty": "Żądanie nie zawiera %s",
+    "missingToken": "Brak tokena na okaziciela dostarczonego na żądanie",
+    "title": "Zła prośba"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "Żądanie wymaga wyższych uprawnień niż przewidziane przez token dostępu",
+    "invalidMe": "Adres URL publikacji nie jest zgodny z adresem podanym przez token dostępu",
+    "invalidRedirect": "Próba nieprawidłowego przekierowania",
+    "invalidState": "Nieprawidłowa wartość dla `state`",
+    "title": "Zabronione"
+  },
+  "NotFoundError": {
+    "page": "Jeśli podałeś adres internetowy, sprawdź, czy jest poprawny",
+    "record": "Nie znaleziono rekordu bazy danych dla %s",
+    "resource": "Nie znaleziono %s pod tym adresem URL",
+    "title": "Nie znaleziono"
+  },
+  "NotImplementedError": {
+    "database": "Ta funkcja wymaga bazy danych",
+    "postType": "Nie podano konfiguracji dla typu postu %s",
+    "query": "Nieobsługiwane zapytanie dla `{{key}}`: `{{value}}`",
+    "title": "Nie zaimplementowano"
+  },
+  "UnauthorizedError": {
+    "invalidToken": "Dostarczony token dostępu jest wygasły, odwołany, zniekształcony lub nieważny z innych powodów",
+    "jwt": "Błąd JSON Web Token: %s",
+    "title": "Nieautoryzowany"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Nieobsługiwany typ nośnika",
+    "type": "Typ nośnika %s nie jest obsługiwany"
+  }
+}

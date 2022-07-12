@@ -15,6 +15,7 @@ Indiekit has been localised into the following languages:
 - `fr`: Français (with contributions from David Legrand)
 - `id`: bahasa Indonesia (with contributions from Zeky Chandra)
 - `nl`: Nederlands
+- `pl`: Polski (with contributions from Arookei The Wolf)
 - `pt`: Português
 
 You can change the application’s locale by changing the `application.locale` option, for example:
