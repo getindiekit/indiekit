@@ -6,30 +6,20 @@
 
 [Indiekit](https://getindiekit.com) is a small but powerful server that acts as the go-between your website and the wider independent web.
 
-- Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
-
-- Syndicate your content to social networks like Twitter and Mastodon, and save posts to the Internet Archive
-
-- ~~Accept likes, comments and other types of feedback on your content with Webmention~~
-
-- Save files to different content stores such as Bitbucket, GitHub, GitLab and Gitea
-
-- Highly configurable, with presets available for common static site generators such as Jekyll and Hugo.
-
-- Localisable, with initial support for English, Dutch, French, German and Portuguese.
+Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
 
 ## Features
 
 - Create, update and delete posts
 - Upload files
 - Configure different post types
-- Accept post status and visibility
+- Set post status and visibility
 - Review previously published posts and files
-- Bookmarklet to save and share bookmarks
-- Publish to different [content stores](https://getindiekit.com/plug-ins/#content-stores)
-- Support for popular static site generators (Jekyll, Hugo, 11ty)
-- Localised to [different languages](https://getindiekit.com/customisation/localisation/)
-- ~~Plug-in API~~
+- Save files to different content stores
+- Syndicate content to third-party websites
+- Publication presets to support popular static site generators
+- Localised to different languages
+- Plug-in API
 
 ## Requirements
 
