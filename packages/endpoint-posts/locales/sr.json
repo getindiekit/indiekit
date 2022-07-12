@@ -1,0 +1,12 @@
+{
+  "posts": {
+    "post": {
+      "properties": "Svojstva"
+    },
+    "posts": {
+      "none": "Nema objava",
+      "title": "Objavljene objave"
+    },
+    "title": "Objave"
+  }
+}

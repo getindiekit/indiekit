@@ -1,0 +1,16 @@
+{
+  "error": "Greška",
+  "errorSummaryTitle": "Postoji problem",
+  "noValue": "Nije rešeno",
+  "optionalValue": "(opcionalno)",
+  "pagination": {
+    "defaultType": "Rezultati",
+    "item": "Stranica %s",
+    "next": "Sledeći %s",
+    "page": "stranica",
+    "previous": "Prethodni %s",
+    "result": "Prikazuje se {{from}} od {{count}} {{type}}",
+    "results": "Prikazuje se {{from}} do {{to}} od {{count}} {{type}}"
+  },
+  "success": "Uspeh"
+}

@@ -1,0 +1,20 @@
+{
+  "share": {
+    "bookmark-of": "URL",
+    "content": "Sadržaj",
+    "error": {
+      "bookmark-of": "Unesite veb adresu kao što je https://example.org",
+      "name": "Unesite naslov"
+    },
+    "name": "Naslov",
+    "submit": "Objaviti",
+    "title": "Podeli"
+  },
+  "status": {
+    "bookmarklet": {
+      "guidance": "Prevucite ovaj link do trake sa obeleživačima: %s",
+      "label": "Podelite stranicu",
+      "title": "Podelite obeleživač"
+    }
+  }
+}

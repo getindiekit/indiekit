@@ -1,0 +1,21 @@
+{
+  "files": {
+    "error": {
+      "file": "Odaberite datoteku za otpremanje"
+    },
+    "file": {
+      "download": "Preuzmite datoteku",
+      "properties": "Svojstva"
+    },
+    "files": {
+      "none": "Nema datoteka",
+      "title": "Otpremljene datoteke"
+    },
+    "title": "Datoteke",
+    "upload": {
+      "file": "Datoteka",
+      "submit": "Otpremiti",
+      "title": "Otpremite novu datoteku"
+    }
+  }
+}

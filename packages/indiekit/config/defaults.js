@@ -10,7 +10,7 @@ export const defaultConfig = {
   application: {
     _devMode: false,
     hasDatabase: false,
-    localesAvailable: ["de", "en", "es", "fr", "id", "nl", "pl", "pt"],
+    localesAvailable: ["de", "en", "es", "fr", "id", "nl", "pl", "pt", "sr"],
     mongodbUrl: false,
     name: "Indiekit",
     repository: package_.repository,

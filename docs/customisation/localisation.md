@@ -17,6 +17,7 @@ Indiekit has been localised into the following languages:
 - `nl`: Nederlands
 - `pl`: Polski (with contributions from Arookei The Wolf)
 - `pt`: Português
+- `sr`: Srpski (with contributions from Anđela Radojlović)
 
 You can change the application’s locale by changing the `application.locale` option, for example:
 
