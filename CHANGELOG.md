@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
+
+
+### Bug Fixes
+
+* **error:** correctly merge options on static methods ([d200ea5](https://github.com/getindiekit/indiekit/commit/d200ea552422e70f3bfd76b8e7eb3d06fc416bc9))
+* watch files with .cjs extension (i.e. config file) ([ba30e5b](https://github.com/getindiekit/indiekit/commit/ba30e5b914515c6de57e72d905660c886b1b7488))
+
+
+### Features
+
+* add Polish localisation from Arookei The Wolf ([5432ddd](https://github.com/getindiekit/indiekit/commit/5432ddd6a2095e7f4fc09ec8517cee8bffdf17a2))
+* add Serbian localisation from Anđela Radojlović ([ab54ef7](https://github.com/getindiekit/indiekit/commit/ab54ef74a07f3c7c35aed4959b3addb3f3330fbf))
+* **endpoint-files:** use custom error handler ([cd618f1](https://github.com/getindiekit/indiekit/commit/cd618f14b17a8e619dd1f596a5800be7299409c2))
+* **endpoint-media:** localise insufficient scope error ([a42f780](https://github.com/getindiekit/indiekit/commit/a42f7803ac4cea96589ea68ab95348b42ee9c77a))
+* **endpoint-media:** localise upload errors ([d6121ab](https://github.com/getindiekit/indiekit/commit/d6121ab04afadf6820600192494147143b48cdb9))
+* **endpoint-media:** remove unused read method on mediaData ([3c37ce3](https://github.com/getindiekit/indiekit/commit/3c37ce3212701b70998cdede4e8b90a770e46087))
+* **endpoint-media:** use custom error handler ([f4f7193](https://github.com/getindiekit/indiekit/commit/f4f7193abe87510a10d18eebc5537506dad23455))
+* **endpoint-micropub:** localise action errors ([e558baa](https://github.com/getindiekit/indiekit/commit/e558baae9bc50a952ece785492ec03a2936e50b2))
+* **endpoint-micropub:** localise insufficient scope error ([86fdf84](https://github.com/getindiekit/indiekit/commit/86fdf84f422d139f5c402434fba932ef23c88fcc))
+* **endpoint-micropub:** use custom error handler ([424d5c8](https://github.com/getindiekit/indiekit/commit/424d5c8824720cdf4285674fce862150dd80b24c))
+* **endpoint-posts:** use custom error handler ([217b0b5](https://github.com/getindiekit/indiekit/commit/217b0b55856a5ce32ad3f99e2cd463059a903030))
+* **endpoint-share:** use custom error handler ([68b1bce](https://github.com/getindiekit/indiekit/commit/68b1bceae960726864bdfec5b8d900c64674ed68))
+* **endpoint-syndicate:** use custom error handler ([013c4d4](https://github.com/getindiekit/indiekit/commit/013c4d4d80b2b36dc8019fbc5489495e1df86676))
+* **endpoint-token:** use custom error handler ([c9c7818](https://github.com/getindiekit/indiekit/commit/c9c7818d9c865d679d14f9335d55a823595c2f06))
+* **error:** add custom error handlers ([8fa8868](https://github.com/getindiekit/indiekit/commit/8fa8868b3438867bfc7492cd93f14b43a8c444c8))
+* **error:** include cause and plugin in error ([d92b608](https://github.com/getindiekit/indiekit/commit/d92b60878218c26c3d7120e141753d897bb0eaae))
+* **frontend:** add error layout ([ac60358](https://github.com/getindiekit/indiekit/commit/ac60358c958a1e99eaa247ff6177c1e3d6255145))
+* **frontend:** add error summary focus behaviours ([6b25104](https://github.com/getindiekit/indiekit/commit/6b25104d44f05329424732f4d220d3e7f439326b))
+* **frontend:** add localised title to notifications ([101a416](https://github.com/getindiekit/indiekit/commit/101a41672399056f062d7fb4ef075d505df1fb09))
+* **frontend:** component localisations ([f039b16](https://github.com/getindiekit/indiekit/commit/f039b16acde027be7542a356ada2f9ced4c66176))
+* **frontend:** include publication me value in application head ([477ca4e](https://github.com/getindiekit/indiekit/commit/477ca4e949e8ee5c2dcb045dc58551d679a9b9be))
+* **frontend:** link error message if uri given ([732156e](https://github.com/getindiekit/indiekit/commit/732156ed5b59cf3973ac2e1869908527b1731a07))
+* **frontend:** support showing error uri ([d2c6db0](https://github.com/getindiekit/indiekit/commit/d2c6db06c85cb402baa649cc10506477bc511ef5))
+* **frontend:** use stimulus to enhance components ([b9d05da](https://github.com/getindiekit/indiekit/commit/b9d05da4ef28856546e71062e85161b620958604))
+* **indiekit:** check for publication URL before starting server ([de60363](https://github.com/getindiekit/indiekit/commit/de6036316772e91fa486ad37b7ebe9d525f2c1ff))
+* **indiekit:** import frontend localisations ([c5bc3df](https://github.com/getindiekit/indiekit/commit/c5bc3dfeb1934473484ab4c8197375c15edb4215))
+* **indiekit:** localise auth token response ([1e5834a](https://github.com/getindiekit/indiekit/commit/1e5834ab783cc86eb740f65179e03bd0caf995f2))
+* **indiekit:** localise invalid token error ([d211300](https://github.com/getindiekit/indiekit/commit/d2113007196f4214e0a9cede73b9bb1017579387))
+* **indiekit:** remove check for publication URL in token verification ([98881b9](https://github.com/getindiekit/indiekit/commit/98881b92d7433855611b2ab90a74d4b14e1b87a5))
+* **indiekit:** showing error uri in HTML response ([a3a73ff](https://github.com/getindiekit/indiekit/commit/a3a73ffdccb2f3cf6c95104eea468f7e3c1a2215))
+* **indiekit:** use custom error handler ([49ab698](https://github.com/getindiekit/indiekit/commit/49ab6983d1c16c2efd1835e85f45c685fc0e8690))
+* link notification text if error_uri given ([4506821](https://github.com/getindiekit/indiekit/commit/4506821ab3174a629e4470601ef5090b583feb14))
+* **store-github:** use custom error handler ([e1c1928](https://github.com/getindiekit/indiekit/commit/e1c19280f80e30cf4706c2a4aafe43210255a001))
+* **syndicator-mastodon:** update mastodon logo ([f328151](https://github.com/getindiekit/indiekit/commit/f32815165ff76f69e42cf1af390f3e80ccdc87ab))
+* **syndicator-mastodon:** use custom error handler ([57da7b7](https://github.com/getindiekit/indiekit/commit/57da7b74dee1508485e75b24e6e5f26708549618))
+
+
+
+
+
 # [1.0.0-alpha.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-06-17)
 
 

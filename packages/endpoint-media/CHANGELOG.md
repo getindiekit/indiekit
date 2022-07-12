@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
+
+
+### Features
+
+* **endpoint-media:** localise insufficient scope error ([a42f780](https://github.com/getindiekit/indiekit/commit/a42f7803ac4cea96589ea68ab95348b42ee9c77a))
+* **endpoint-media:** localise upload errors ([d6121ab](https://github.com/getindiekit/indiekit/commit/d6121ab04afadf6820600192494147143b48cdb9))
+* **endpoint-media:** remove unused read method on mediaData ([3c37ce3](https://github.com/getindiekit/indiekit/commit/3c37ce3212701b70998cdede4e8b90a770e46087))
+* **endpoint-media:** use custom error handler ([f4f7193](https://github.com/getindiekit/indiekit/commit/f4f7193abe87510a10d18eebc5537506dad23455))
+
+
+
+
+
 # [1.0.0-alpha.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-06-17)
 
 

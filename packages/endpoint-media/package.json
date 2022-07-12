@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-media",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.9",
   "description": "Micropub media endpoint for Indiekit",
   "keywords": [
     "indiekit",
@@ -32,7 +32,7 @@
     "directory": "packages/endpoint-media"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.8",
+    "@indiekit/error": "^1.0.0-alpha.9",
     "@sindresorhus/slugify": "^2.1.0",
     "date-fns": "^2.23.0",
     "date-fns-tz": "^1.1.6",

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
+
+
+### Features
+
+* add Polish localisation from Arookei The Wolf ([5432ddd](https://github.com/getindiekit/indiekit/commit/5432ddd6a2095e7f4fc09ec8517cee8bffdf17a2))
+* add Serbian localisation from Anđela Radojlović ([ab54ef7](https://github.com/getindiekit/indiekit/commit/ab54ef74a07f3c7c35aed4959b3addb3f3330fbf))
+* **frontend:** add error layout ([ac60358](https://github.com/getindiekit/indiekit/commit/ac60358c958a1e99eaa247ff6177c1e3d6255145))
+* **frontend:** add error summary focus behaviours ([6b25104](https://github.com/getindiekit/indiekit/commit/6b25104d44f05329424732f4d220d3e7f439326b))
+* **frontend:** add localised title to notifications ([101a416](https://github.com/getindiekit/indiekit/commit/101a41672399056f062d7fb4ef075d505df1fb09))
+* **frontend:** component localisations ([f039b16](https://github.com/getindiekit/indiekit/commit/f039b16acde027be7542a356ada2f9ced4c66176))
+* **frontend:** include publication me value in application head ([477ca4e](https://github.com/getindiekit/indiekit/commit/477ca4e949e8ee5c2dcb045dc58551d679a9b9be))
+* **frontend:** link error message if uri given ([732156e](https://github.com/getindiekit/indiekit/commit/732156ed5b59cf3973ac2e1869908527b1731a07))
+* **frontend:** support showing error uri ([d2c6db0](https://github.com/getindiekit/indiekit/commit/d2c6db06c85cb402baa649cc10506477bc511ef5))
+* **frontend:** use stimulus to enhance components ([b9d05da](https://github.com/getindiekit/indiekit/commit/b9d05da4ef28856546e71062e85161b620958604))
+* link notification text if error_uri given ([4506821](https://github.com/getindiekit/indiekit/commit/4506821ab3174a629e4470601ef5090b583feb14))
+
+
+
+
+
 # [1.0.0-alpha.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-06-17)
 
 

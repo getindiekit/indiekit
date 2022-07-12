@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/preset-hugo",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.9",
   "description": "Hugo publication preset for Indiekit",
   "keywords": [
     "indiekit",

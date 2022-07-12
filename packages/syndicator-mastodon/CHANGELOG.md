@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
+
+
+### Features
+
+* **syndicator-mastodon:** update mastodon logo ([f328151](https://github.com/getindiekit/indiekit/commit/f32815165ff76f69e42cf1af390f3e80ccdc87ab))
+* **syndicator-mastodon:** use custom error handler ([57da7b7](https://github.com/getindiekit/indiekit/commit/57da7b74dee1508485e75b24e6e5f26708549618))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2022-06-08)
 
 

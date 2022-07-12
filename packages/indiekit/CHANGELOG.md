@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
+
+
+### Features
+
+* add Polish localisation from Arookei The Wolf ([5432ddd](https://github.com/getindiekit/indiekit/commit/5432ddd6a2095e7f4fc09ec8517cee8bffdf17a2))
+* add Serbian localisation from Anđela Radojlović ([ab54ef7](https://github.com/getindiekit/indiekit/commit/ab54ef74a07f3c7c35aed4959b3addb3f3330fbf))
+* **frontend:** add localised title to notifications ([101a416](https://github.com/getindiekit/indiekit/commit/101a41672399056f062d7fb4ef075d505df1fb09))
+* **frontend:** use stimulus to enhance components ([b9d05da](https://github.com/getindiekit/indiekit/commit/b9d05da4ef28856546e71062e85161b620958604))
+* **indiekit:** check for publication URL before starting server ([de60363](https://github.com/getindiekit/indiekit/commit/de6036316772e91fa486ad37b7ebe9d525f2c1ff))
+* **indiekit:** import frontend localisations ([c5bc3df](https://github.com/getindiekit/indiekit/commit/c5bc3dfeb1934473484ab4c8197375c15edb4215))
+* **indiekit:** localise auth token response ([1e5834a](https://github.com/getindiekit/indiekit/commit/1e5834ab783cc86eb740f65179e03bd0caf995f2))
+* **indiekit:** localise invalid token error ([d211300](https://github.com/getindiekit/indiekit/commit/d2113007196f4214e0a9cede73b9bb1017579387))
+* **indiekit:** remove check for publication URL in token verification ([98881b9](https://github.com/getindiekit/indiekit/commit/98881b92d7433855611b2ab90a74d4b14e1b87a5))
+* **indiekit:** showing error uri in HTML response ([a3a73ff](https://github.com/getindiekit/indiekit/commit/a3a73ffdccb2f3cf6c95104eea468f7e3c1a2215))
+* **indiekit:** use custom error handler ([49ab698](https://github.com/getindiekit/indiekit/commit/49ab6983d1c16c2efd1835e85f45c685fc0e8690))
+* link notification text if error_uri given ([4506821](https://github.com/getindiekit/indiekit/commit/4506821ab3174a629e4470601ef5090b583feb14))
+
+
+
+
+
 # [1.0.0-alpha.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.7...v1.0.0-alpha.8) (2022-06-17)
 
 
