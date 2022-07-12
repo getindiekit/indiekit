@@ -15,7 +15,7 @@
     "title": "Forbidden",
     "insufficientScope": "The request requires higher privileges than provided by the access token",
     "invalidRedirect": "Invalid redirect attempted",
-    "invalidState": "Invalid state value",
+    "invalidState": "Invalid value for `state`",
     "invalidMe": "Publication URL does not match that provided by access token"
   },
   "NotFoundError": {
