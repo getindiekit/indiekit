@@ -23,6 +23,7 @@
     "layouts",
     "lib",
     "locales",
+    "scripts",
     "styles",
     "index.js"
   ],
