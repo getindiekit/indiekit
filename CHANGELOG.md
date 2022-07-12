@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-07-12)
+
+
+### Bug Fixes
+
+* **frontend:** include scripts folder in package ([06f6d0c](https://github.com/getindiekit/indiekit/commit/06f6d0c12f822caa58022231987446c831780655))
+
+
+
+
+
 # [1.0.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-07-12)
 
 
