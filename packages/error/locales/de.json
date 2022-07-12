@@ -1,1 +1,37 @@
-{}
+{
+  "BadRequestError": {
+    "invalid": "In der Anforderung fehlt ein erforderlicher Parameter, sie enthält einen nicht unterstützten Parameter oder Parameterwert, wiederholt denselben Parameter, verwendet mehr als eine Methode zum Einbinden eines Zugriffstokens oder ist anderweitig fehlerhaft formatiert",
+    "missingParameter": "Fehlender Parameter: `%s`",
+    "missingProperty": "Kein %s in der Anfrage enthalten",
+    "missingToken": "Auf Anfrage wurde kein Inhaber-Token bereitgestellt",
+    "title": "Schlechte Anfrage"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "Die Anfrage erfordert höhere Berechtigungen als vom Zugriffstoken bereitgestellt",
+    "invalidMe": "Veröffentlichungs-URL stimmt nicht mit der vom Zugriffstoken bereitgestellten URL überein",
+    "invalidRedirect": "Ungültige Weiterleitung versucht",
+    "invalidState": "Ungültiger Wert für `state`",
+    "title": "Verboten"
+  },
+  "NotFoundError": {
+    "page": "Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie bitte, ob sie korrekt war",
+    "record": "Kein Datenbankeintrag für %s gefunden",
+    "resource": "Unter dieser URL wurde kein %s gefunden",
+    "title": "Nicht gefunden"
+  },
+  "NotImplementedError": {
+    "database": "Für diese Funktion ist eine Datenbank erforderlich",
+    "postType": "Keine Konfiguration für den Posttyp %s bereitgestellt",
+    "query": "Nicht unterstützte Abfrage für `{{key}}`: `{{value}}`",
+    "title": "Nicht implementiert"
+  },
+  "UnauthorizedError": {
+    "invalidToken": "Das bereitgestellte Zugriffstoken ist abgelaufen, gesperrt, falsch formatiert oder aus anderen Gründen ungültig",
+    "jwt": "JSON Web Token Fehler: %s",
+    "title": "Nicht autorisiert"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Dateityp nicht unterstützt",
+    "type": "Der Medientyp %s wird nicht unterstützt"
+  }
+}

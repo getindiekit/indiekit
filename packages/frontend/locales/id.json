@@ -11,5 +11,6 @@
     "previous": "Sebelumnya %s",
     "result": "Menampilkan {{from}} dari {{count}} {{type}}",
     "results": "Menampilkan {{from}} ke {{to}} dari {{count}} {{type}}"
-  }
+  },
+  "success": "Keberhasilan"
 }

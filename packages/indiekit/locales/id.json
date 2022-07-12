@@ -5,10 +5,6 @@
   "session": {
     "login": {
       "description": "Masuk dengan IndieAuth untuk memverifikasi bahwa Anda memiliki %s",
-      "error": {
-        "validateRedirect": "Percobaan pengalihan tidak valid",
-        "validateState": "Tidak ada ketidakcocokan `code` atau `state`"
-      },
       "me": "Alamat web",
       "submit": "Masuk dengan IndieAuth",
       "title": "Masuk"

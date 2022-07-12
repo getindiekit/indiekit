@@ -1,1 +1,37 @@
-{}
+{
+  "BadRequestError": {
+    "invalid": "De aanvraag mist een vereiste parameter, bevat een niet-ondersteunde parameter of parameterwaarde, herhaalt dezelfde parameter, gebruikt meer dan één methode voor het opnemen van een toegangstoken of is anderszins misvormd",
+    "missingParameter": "Ontbrekende parameter: `%s`",
+    "missingProperty": "Geen %s opgenomen in verzoek",
+    "missingToken": "Geen token aan toonder verstrekt op verzoek",
+    "title": "Slecht verzoek"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "Het verzoek vereist hogere bevoegdheden dan door het toegangstoken wordt verstrekt",
+    "invalidMe": "Publicatie-URL komt niet overeen met die van toegangstoken",
+    "invalidRedirect": "Ongeldige omleiding geprobeerd",
+    "invalidState": "Ongeldige waarde voor `state`",
+    "title": "Verboden"
+  },
+  "NotFoundError": {
+    "page": "Als je een webadres hebt ingevoerd, controleer dan of het correct was.",
+    "record": "Geen databaserecord gevonden voor %s",
+    "resource": "Er is geen %s gevonden op deze URL",
+    "title": "Niet gevonden"
+  },
+  "NotImplementedError": {
+    "database": "Voor deze functie is een database vereist.",
+    "postType": "Geen configuratie voorzien voor %s berichttype",
+    "query": "Niet-ondersteunde query voor `{{key}}`: `{{value}}`",
+    "title": "Niet geïmplementeerd"
+  },
+  "UnauthorizedError": {
+    "invalidToken": "Het verstrekte toegangstoken is verlopen, ingetrokken, misvormd of ongeldig",
+    "jwt": "Fout met JSON Web Token: %s",
+    "title": "Ongeautoriseerd"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Niet-ondersteund bestandstype",
+    "type": "Het mediatype %s wordt niet ondersteund"
+  }
+}

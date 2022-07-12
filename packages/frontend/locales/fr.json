@@ -11,5 +11,6 @@
     "previous": "%s précédent",
     "result": "Affichage de {{from}} sur {{count}} {{type}}",
     "results": "Affichage de {{from}} à {{to}} sur {{count}} {{type}}"
-  }
+  },
+  "success": "Réussite"
 }

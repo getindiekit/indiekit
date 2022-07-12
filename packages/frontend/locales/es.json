@@ -11,5 +11,6 @@
     "previous": "%s anteriores",
     "result": "Mostrando {{from}} de {{count}} {{type}}",
     "results": "Mostrando de {{from}} a {{to}} de {{count}} {{type}}"
-  }
+  },
+  "success": "Éxito"
 }

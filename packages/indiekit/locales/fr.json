@@ -5,10 +5,6 @@
   "session": {
     "login": {
       "description": "Connectez-vous avec IndieAuth pour vérifier que vous possédez %s",
-      "error": {
-        "validateRedirect": "Tentative de redirection non valide",
-        "validateState": "`code` ou `state` incorrect"
-      },
       "me": "Adresse Web",
       "submit": "Connectez-vous avec IndieAuth",
       "title": "Se connecter"

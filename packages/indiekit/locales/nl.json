@@ -5,10 +5,6 @@
   "session": {
     "login": {
       "description": "Meld u aan met IndieAuth om te controleren of u eigenaar bent van %s",
-      "error": {
-        "validateRedirect": "Ongeldige omleiding geprobeerd",
-        "validateState": "Onjuiste `code` of `state`"
-      },
       "me": "Webadres",
       "submit": "Log in met IndieAuth",
       "title": "Inloggen"

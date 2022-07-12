@@ -1,1 +1,37 @@
-{}
+{
+  "BadRequestError": {
+    "invalid": "Permintaan kehilangan parameter yang diperlukan, termasuk parameter atau nilai parameter yang tidak didukung, mengulangi parameter yang sama, menggunakan lebih dari satu metode untuk menyertakan token akses, atau salah bentuk",
+    "missingParameter": "Parameter hilang: `%s`",
+    "missingProperty": "Tidak ada %s yang disertakan dalam permintaan",
+    "missingToken": "Tidak ada token pembawa yang disediakan oleh permintaan",
+    "title": "Permintaan buruk"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "Permintaan membutuhkan hak istimewa yang lebih tinggi daripada yang disediakan oleh token akses",
+    "invalidMe": "URL publikasi tidak cocok dengan yang disediakan oleh token akses",
+    "invalidRedirect": "Pengalihan tidak valid dicoba",
+    "invalidState": "Nilai tidak valid untuk `state`",
+    "title": "Terlarang"
+  },
+  "NotFoundError": {
+    "page": "Jika Anda memasukkan alamat web silakan periksa apakah alamat sudah benar",
+    "record": "Tidak ditemukan rekaman basisdata untuk %s",
+    "resource": "Tidak ada %s ditemukan di URL ini",
+    "title": "Tidak ditemukan"
+  },
+  "NotImplementedError": {
+    "database": "Fitur ini membutuhkan database",
+    "postType": "Tidak ada konfigurasi yang disediakan untuk tipe postingan %s",
+    "query": "Kueri tidak didukung untuk `{{key}}`: `{{value}}`",
+    "title": "Tidak diimplementasikan"
+  },
+  "UnauthorizedError": {
+    "invalidToken": "Token akses yang diberikan kedaluwarsa, dicabut, cacat, atau tidak valid karena alasan lain",
+    "jwt": "Kesalahan JSON Web Token: %s",
+    "title": "Tidak diotorisasi"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Jenis media tidak didukung",
+    "type": "Jenis media %s tidak didukung"
+  }
+}

@@ -5,10 +5,6 @@
   "session": {
     "login": {
       "description": "Inicia sesión con IndieAuth para verificar que eres propietario de %s",
-      "error": {
-        "validateRedirect": "Intento de redirección inválida",
-        "validateState": "Código faltante o discrepancia de estado"
-      },
       "me": "Dirección web",
       "submit": "Iniciar sesión con IndieAuth",
       "title": "Iniciar sesión"

@@ -1,1 +1,37 @@
-{}
+{
+  "BadRequestError": {
+    "invalid": "A solicitação não tem um parâmetro obrigatório, inclui um parâmetro ou valor de parâmetro não suportado, repete o mesmo parâmetro, usa mais de um método para incluir um token de acesso ou está mal formada",
+    "missingParameter": "Parâmetro ausente: `%s`",
+    "missingProperty": "Nenhum %s incluído na solicitação",
+    "missingToken": "Nenhum token de portador fornecido na solicitação",
+    "title": "Pedido incorreto"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "A solicitação requer privilégios maiores do que os fornecidos pelo token de acesso",
+    "invalidMe": "O URL da publicação não corresponde ao fornecido pelo token de acesso",
+    "invalidRedirect": "Tentativa de redirecionamento inválido",
+    "invalidState": "Valor inválido para `state`",
+    "title": "Proibido"
+  },
+  "NotFoundError": {
+    "page": "Se você inseriu um endereço da web, verifique se ele estava correto",
+    "record": "Nenhum registro de banco de dados encontrado para %s",
+    "resource": "Nenhum %s foi encontrado neste URL",
+    "title": "Não encontrado"
+  },
+  "NotImplementedError": {
+    "database": "Esse recurso requer um banco de dados",
+    "postType": "Nenhuma configuração fornecida para o tipo de postagem %s",
+    "query": "Consulta não suportada para `{{key}}`: `{{value}}`",
+    "title": "Não implementado"
+  },
+  "UnauthorizedError": {
+    "invalidToken": "O token de acesso fornecido está expirado, revogado, mal formado ou inválido por outros motivos",
+    "jwt": "Erro de JSON Web Token: %s",
+    "title": "Não autorizado"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Tipo de multimédia não suportado",
+    "type": "O tipo de mídia %s não é suportado"
+  }
+}

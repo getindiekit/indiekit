@@ -11,5 +11,6 @@
     "previous": "Vorige %s",
     "result": "Toont {{from}} van {{count}} {{type}}",
     "results": "Toont {{from}} aan {{to}} van {{count}} {{type}}"
-  }
+  },
+  "success": "Succes"
 }
