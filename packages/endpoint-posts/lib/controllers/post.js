@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+import { fetch } from "undici";
 
 /**
  * View previously published post
