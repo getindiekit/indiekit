@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-07-12)
+
+
+### Bug Fixes
+
+* **error:** include errors.js in package ([d863aa6](https://github.com/getindiekit/indiekit/commit/d863aa65d24f80ff33e1daa5f4d9dfa2d0948245))
+
+
+
+
+
 # [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
 
 

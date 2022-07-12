@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-files",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "description": "File management endpoint for Indiekit",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/endpoint-files"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.9",
+    "@indiekit/error": "^1.0.0-alpha.10",
     "express": "^4.17.1",
     "express-validator": "^6.14.1",
     "multer": "^1.4.5-lts",

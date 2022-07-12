@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-gitlab",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "description": "GitLab content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@gitbeaker/node": "^35.1.0",
-    "@indiekit/error": "^1.0.0-alpha.9"
+    "@indiekit/error": "^1.0.0-alpha.10"
   },
   "publishConfig": {
     "access": "public"

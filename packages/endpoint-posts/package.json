@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-posts",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "description": "Post management endpoint for Indiekit",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/endpoint-posts"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.9",
+    "@indiekit/error": "^1.0.0-alpha.10",
     "@paulrobertlloyd/mf2tojf2": "^1.0.0",
     "express": "^4.17.1",
     "undici": "^5.2.0"

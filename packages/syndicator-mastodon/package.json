@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/syndicator-mastodon",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.10",
   "description": "Mastodon syndicator for Indiekit",
   "keywords": [
     "indiekit",
@@ -34,7 +34,7 @@
     "directory": "packages/syndicator-mastodon"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.9",
+    "@indiekit/error": "^1.0.0-alpha.10",
     "axios": "^0.27.2",
     "brevity": "^0.2.9",
     "html-to-text": "^8.0.0",
