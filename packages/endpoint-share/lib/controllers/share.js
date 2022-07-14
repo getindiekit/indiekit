@@ -67,13 +67,13 @@ export const shareController = {
 
       response.redirect(`?success=${message}`);
     } catch (error) {
-      response.status(error.status).render("share", {
+      response.status(error.status || 500);
+      response.render("share", {
         title: response.__("share.title"),
         content,
         name,
         bookmarkOf,
-        error: error.toJSON().error_description,
-        errorUri: error.toJSON().error_uri,
+        error: error.message,
         minimalui: request.params.path === "bookmarklet",
       });
     }

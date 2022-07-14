@@ -169,10 +169,10 @@ export const IndieAuth = class {
 
         return response.redirect(redirect || "/");
       } catch (error) {
-        return response.status(error.status).render("session/login", {
+        response.status(error.status || 500);
+        return response.render("session/login", {
           title: response.__("session.login.title"),
-          error: error.toJSON().error_description,
-          errorUri: error.toJSON().error_uri,
+          error: error.message,
         });
       }
     };
