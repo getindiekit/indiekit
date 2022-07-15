@@ -68,6 +68,7 @@ This project uses a monorepo structure, with concerns split into separate npm mo
 | Module | Purpose |
 | - | - |
 | `packages/indiekit` | Core module. Provides coordinating functions and the Express web server. |
+| `packages/error` | Error handling for the core module and plug-ins. |
 | `packages/frontend` | Frontend component library, used for the application interface. |
 | `packages/endpoint-*` | Application endpoint plug-ins. |
 | `packages/preset-*` | Publication preset plug-ins. |
