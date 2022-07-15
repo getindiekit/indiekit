@@ -9,7 +9,6 @@ import {
   relativeMediaPath,
   renderPath,
   slugifyString,
-  stripHtml,
   supplant,
 } from "../../lib/utils.js";
 
@@ -102,10 +101,6 @@ test("Slugifies a string", (t) => {
   t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
   t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
   t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
-});
-
-test("Strips HTML from a string", (t) => {
-  t.is(stripHtml("<em>Emphasis</em>"), "Emphasis");
 });
 
 test("Substitutes variables enclosed in { } braces with data from object", (t) => {

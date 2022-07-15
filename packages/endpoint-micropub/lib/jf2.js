@@ -1,4 +1,5 @@
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+import { striptags } from "striptags";
 import { getDate } from "./date.js";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
@@ -8,7 +9,6 @@ import {
   relativeMediaPath,
   randomString,
   slugifyString,
-  stripHtml,
 } from "./utils.js";
 
 /**
@@ -132,7 +132,7 @@ export const getContentProperty = (properties) => {
 
   // Strip any HTML from text property
   if (text) {
-    text = stripHtml(text);
+    text = striptags(text);
   }
 
   // Return existing text and HTML representations
@@ -147,7 +147,7 @@ export const getContentProperty = (properties) => {
   }
 
   // Return property with text and HTML representations
-  text = text || stripHtml(content);
+  text = text || striptags(content);
   html = markdownToHtml(text);
   return { html, text };
 };

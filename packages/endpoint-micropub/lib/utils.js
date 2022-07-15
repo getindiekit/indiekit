@@ -57,16 +57,6 @@ export const slugifyString = (string, separator = "-") => {
 };
 
 /**
- * Strip HTML from a string
- *
- * @param {string} string - HTML
- * @returns {string} Plain text
- */
-export const stripHtml = (string) => {
-  return string.replace(/<.*?>/g, "");
-};
-
-/**
  * Derive a permalink (by combining publication URL, that may include a
  * path, with the path to a post or file
  *
