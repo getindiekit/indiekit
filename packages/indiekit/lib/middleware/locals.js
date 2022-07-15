@@ -13,10 +13,18 @@ export const locals = (indiekitConfig) =>
     try {
       const { application, publication } = indiekitConfig;
 
-      // Application
+      // Application locale
       application.localeUsed = request.getLocale();
-      application.navigation = getNavigation(application, request, response);
+
+      // Application URL
       application.url = application.url || getUrl(request);
+
+      // Application navigation
+      // Only update if serving HTML to prevent wrong session link being shown
+      if (request.accepts("html")) {
+        application.navigation = getNavigation(application, request, response);
+      }
+
       request.app.locals.application = application;
 
       // Publication
@@ -28,8 +36,8 @@ export const locals = (indiekitConfig) =>
       // Session
       request.app.locals.session = request.session;
 
-      next();
+      return next();
     } catch (error) {
-      next(error);
+      return next(error);
     }
   };
