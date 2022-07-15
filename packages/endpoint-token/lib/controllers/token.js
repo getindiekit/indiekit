@@ -16,6 +16,14 @@ export const tokenController = {
   get(request, response, next) {
     if (request.headers.authorization) {
       try {
+        if (!process.env.TOKEN_SECRET) {
+          return next(
+            IndiekitError.notImplemented(
+              response.__("NotImplementedError.tokenSecret")
+            )
+          );
+        }
+
         const { publication } = request.app.locals;
         const bearerToken = request.headers.authorization
           .trim()
@@ -74,6 +82,14 @@ export const tokenController = {
       request.body.redirect_uri || request.query.redirect_uri;
 
     try {
+      if (!process.env.TOKEN_SECRET) {
+        return next(
+          IndiekitError.notImplemented(
+            response.__("NotImplementedError.tokenSecret")
+          )
+        );
+      }
+
       if (!client_id) {
         throw IndiekitError.badRequest(
           response.__("BadRequestError.missingParameter", "client_id")
