@@ -53,8 +53,8 @@ export class IndiekitError extends Error {
     super(message, options);
     this.message = options.plugin ? `${options.plugin}: ${message}` : message;
     this.code = options.code || "indiekit";
-    this.name = this.getError(this.code)?.name;
-    this.status = this.getError(this.code)?.status;
+    this.name = this.getError(this.code)?.name || this.name;
+    this.status = this.getError(this.code)?.status || 500;
 
     if (options.scope) {
       this.scope = options.scope;
@@ -69,10 +69,12 @@ export class IndiekitError extends Error {
 
   getError(name) {
     name = name.replace(" ", "_").toLowerCase();
-    const error = errors[name];
-    error.code = name;
 
-    return error;
+    const error = errors[name];
+    if (error) {
+      error.code = name;
+      return error;
+    }
   }
 
   trimStack() {
