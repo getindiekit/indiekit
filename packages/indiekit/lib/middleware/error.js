@@ -1,4 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
+import cleanStack from "clean-stack";
 
 export const notFound = (request, response, next) => {
   const error = IndiekitError.notFound(response.__("NotFoundError.page"));
@@ -19,8 +20,15 @@ export const internalServer = (error, request, response, next) => {
       status: error.status,
       uri: error.uri,
     });
-  } else if (request.accepts("json") && error.toJSON()) {
-    response.json(error.toJSON());
+  } else if (request.accepts("json")) {
+    response.json({
+      error: error.code || error.name,
+      error_description: error.message || error.cause.message,
+      ...(error.uri && { error_uri: error.uri }),
+      ...(error.scope && { scope: error.scope }),
+      stack: cleanStack(error.stack),
+      ...(error.cause && { cause: error.cause }),
+    });
   } else {
     response.send(error.toString());
   }

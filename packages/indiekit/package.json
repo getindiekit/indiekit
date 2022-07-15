@@ -48,6 +48,7 @@
     "@indiekit/endpoint-token": "^1.0.0-alpha.10",
     "@indiekit/frontend": "^1.0.0-alpha.11",
     "@indiekit/preset-jekyll": "^1.0.0-alpha.9",
+    "clean-stack": "^4.2.0",
     "commander": "^9.0.0",
     "cookie-session": "^2.0.0",
     "cosmiconfig": "^7.0.1",
