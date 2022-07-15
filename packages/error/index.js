@@ -1,4 +1,3 @@
-import cleanStack from "clean-stack";
 import { errors } from "./errors.js";
 
 export class IndiekitError extends Error {
@@ -74,17 +73,6 @@ export class IndiekitError extends Error {
     error.code = name;
 
     return error;
-  }
-
-  toJSON() {
-    return {
-      error: this.code,
-      error_description: this.message || this.cause.message,
-      ...(this.uri && { error_uri: this.uri }),
-      ...(this.scope && { scope: this.scope }),
-      stack: cleanStack(this.stack),
-      cause: this.cause,
-    };
   }
 
   trimStack() {

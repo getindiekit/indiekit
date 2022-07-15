@@ -52,24 +52,6 @@ test("Throws custom error as a string", (t) => {
   t.is(result, "IndiekitError: Message");
 });
 
-test("Throws custom error as JSON", (t) => {
-  const error = t.throws(
-    () => {
-      indiekitError();
-    },
-    {
-      instanceOf: IndiekitError,
-      code: "indiekit",
-      message: "Message",
-      name: "IndiekitError",
-    }
-  );
-  const result = error.toJSON();
-
-  t.is(result.error, "indiekit");
-  t.is(result.error_description, "Message");
-});
-
 test("Throws 400 bad request error", (t) => {
   const result = t.throws(
     () => {
