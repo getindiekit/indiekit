@@ -42,7 +42,7 @@
     "@indiekit/store-gitea": "^1.0.0-alpha.10",
     "@indiekit/store-github": "^1.0.0-alpha.10",
     "@indiekit/store-gitlab": "^1.0.0-alpha.10",
-    "@indiekit/syndicator-internet-archive": "^1.0.0-alpha.10",
+    "@indiekit/syndicator-mastodon": "^1.0.0-alpha.10",
     "@indiekit/syndicator-twitter": "^1.0.0-alpha.10",
     "base-create": "^3.0.7",
     "chalk": "^5.0.0",
