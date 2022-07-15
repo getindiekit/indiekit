@@ -12,39 +12,24 @@ const require = createRequire(import.meta.url);
 export const getLocaleCatalog = (application) => {
   const catalog = new Map();
 
-  // Application localisations
   for (const locale of application.localesAvailable) {
-    const translation = require(`../locales/${locale}.json`);
-    catalog.set(locale, translation);
-  }
+    const translations = [
+      // Application translations
+      require(`../locales/${locale}.json`),
+      // Error translations
+      require(`../../error/locales/${locale}.json`),
+      // Frontend translations
+      require(`../../frontend/locales/${locale}.json`),
+    ];
 
-  // Error localisations
-  for (const locale of application.localesAvailable) {
-    try {
-      const appLocale = catalog.get(locale);
-      const translation = require(`../../error/locales/${locale}.json`);
-      catalog.set(locale, deepmerge(appLocale, translation));
-    } catch {}
-  }
-
-  // Frontend localisations
-  for (const locale of application.localesAvailable) {
-    try {
-      const appLocale = catalog.get(locale);
-      const translation = require(`../../frontend/locales/${locale}.json`);
-      catalog.set(locale, deepmerge(appLocale, translation));
-    } catch {}
-  }
-
-  // Plug-in localisations
-  for (const plugin of application.installedPlugins) {
-    for (const locale of application.localesAvailable) {
+    // Plug-in translations
+    for (const plugin of application.installedPlugins) {
       try {
-        const appLocale = catalog.get(locale);
-        const translation = require(`../../${plugin.id}/locales/${locale}.json`);
-        catalog.set(locale, deepmerge(appLocale, translation));
+        translations.push(require(`../../${plugin.id}/locales/${locale}.json`));
       } catch {}
     }
+
+    catalog.set(locale, deepmerge.all(translations));
   }
 
   return catalog;
