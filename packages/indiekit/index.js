@@ -5,7 +5,7 @@ import KeyvMongoDB from "keyv-mongodb";
 import { expressConfig } from "./config/express.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
-import { getInstalledPlugins, getLocales } from "./lib/application.js";
+import { getInstalledPlugins, getLocaleCatalog } from "./lib/application.js";
 import {
   getCategories,
   getPostTemplate,
@@ -63,7 +63,7 @@ export const Indiekit = class {
 
     // Update application configuration
     this.application.installedPlugins = await getInstalledPlugins(this);
-    this.application.locales = await getLocales(this.application);
+    this.application.localeCatalog = await getLocaleCatalog(this.application);
 
     // Update publication configuration
     this.publication.categories = await getCategories(

@@ -4,35 +4,35 @@ import deepmerge from "deepmerge";
 const require = createRequire(import.meta.url);
 
 /**
- * Add localisations to application configuration
+ * Add catalog of localised strings to application configuration
  *
  * @param {object} application - Application config
- * @returns {Promise|object} Localisations
+ * @returns {object} Catalog of localised strings
  */
-export const getLocales = (application) => {
-  const locales = new Map();
+export const getLocaleCatalog = (application) => {
+  const catalog = new Map();
 
   // Application localisations
   for (const locale of application.localesAvailable) {
     const translation = require(`../locales/${locale}.json`);
-    locales.set(locale, translation);
+    catalog.set(locale, translation);
   }
 
   // Error localisations
   for (const locale of application.localesAvailable) {
     try {
-      const appLocale = locales.get(locale);
+      const appLocale = catalog.get(locale);
       const translation = require(`../../error/locales/${locale}.json`);
-      locales.set(locale, deepmerge(appLocale, translation));
+      catalog.set(locale, deepmerge(appLocale, translation));
     } catch {}
   }
 
   // Frontend localisations
   for (const locale of application.localesAvailable) {
     try {
-      const appLocale = locales.get(locale);
+      const appLocale = catalog.get(locale);
       const translation = require(`../../frontend/locales/${locale}.json`);
-      locales.set(locale, deepmerge(appLocale, translation));
+      catalog.set(locale, deepmerge(appLocale, translation));
     } catch {}
   }
 
@@ -40,14 +40,14 @@ export const getLocales = (application) => {
   for (const plugin of application.installedPlugins) {
     for (const locale of application.localesAvailable) {
       try {
-        const appLocale = locales.get(locale);
+        const appLocale = catalog.get(locale);
         const translation = require(`../../${plugin.id}/locales/${locale}.json`);
-        locales.set(locale, deepmerge(appLocale, translation));
+        catalog.set(locale, deepmerge(appLocale, translation));
       } catch {}
     }
   }
 
-  return locales;
+  return catalog;
 };
 
 /**

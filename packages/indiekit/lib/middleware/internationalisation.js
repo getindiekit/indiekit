@@ -17,7 +17,7 @@ export const internationalisation = (indiekitConfig) =>
         indent: "  ",
         objectNotation: true,
         queryParameter: "lang",
-        staticCatalog: Object.fromEntries(application.locales),
+        staticCatalog: Object.fromEntries(application.localeCatalog),
       });
 
       i18n.init(request, response);
