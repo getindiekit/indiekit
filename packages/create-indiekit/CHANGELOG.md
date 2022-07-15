@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
+
+
+### Bug Fixes
+
+* **create-indiekit:** correct syndicator dependencies ([0a2f16f](https://github.com/getindiekit/indiekit/commit/0a2f16fbe39a84c35ba863d1b979f6f7cf7601c9))
+
+
+
+
+
 # [1.0.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-07-12)
 
 **Note:** Version bump only for package create-indiekit

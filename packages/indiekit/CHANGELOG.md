@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
+
+
+### Bug Fixes
+
+* **indiekit:** fix incorrect session link being shown ([d081ed1](https://github.com/getindiekit/indiekit/commit/d081ed1b9c5726d8cf2ea008584a2966dd2505ec))
+* more robust error handling when rendering views ([7909f89](https://github.com/getindiekit/indiekit/commit/7909f891279f555152672a2a636d82b9775bd9e2))
+
+
+### Features
+
+* **indekit:** use English name for unsupported language ([7eca162](https://github.com/getindiekit/indiekit/commit/7eca16287daeff9ccb80270df97d34d4cde7f54d))
+
+
+
+
+
 # [1.0.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-07-12)
 
 **Note:** Version bump only for package @indiekit/indiekit

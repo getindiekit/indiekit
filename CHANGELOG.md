@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
+
+
+### Bug Fixes
+
+* **create-indiekit:** correct syndicator dependencies ([0a2f16f](https://github.com/getindiekit/indiekit/commit/0a2f16fbe39a84c35ba863d1b979f6f7cf7601c9))
+* **endpoint-posts:** use fetch from undici ([d9da860](https://github.com/getindiekit/indiekit/commit/d9da8600e41d7a53502a210cc40af77c8033d6c1))
+* **error:** handle unspecified errors ([3243592](https://github.com/getindiekit/indiekit/commit/3243592d7326851b6eec3aa514e315209bcfa12b))
+* **indiekit:** fix incorrect session link being shown ([d081ed1](https://github.com/getindiekit/indiekit/commit/d081ed1b9c5726d8cf2ea008584a2966dd2505ec))
+* more robust error handling when rendering views ([7909f89](https://github.com/getindiekit/indiekit/commit/7909f891279f555152672a2a636d82b9775bd9e2))
+
+
+### Features
+
+* **endpoint-token:** throw error if missing token secret ([ebf5946](https://github.com/getindiekit/indiekit/commit/ebf59462ab66c99938fb3e95de34fd3d2d1b3da2))
+* **error:** add localised string for missing token ([957adea](https://github.com/getindiekit/indiekit/commit/957adeaf1de26dd9799ed483e68c368173a69fb0))
+* **error:** remove toJSON() method ([f69a9da](https://github.com/getindiekit/indiekit/commit/f69a9da4fa5f43d4b16afc1dc760332099225edf))
+* **frontend:** refactor language filters ([0d3363c](https://github.com/getindiekit/indiekit/commit/0d3363cea018d075dd08c46a791cd182821087c6))
+* **indekit:** use English name for unsupported language ([7eca162](https://github.com/getindiekit/indiekit/commit/7eca16287daeff9ccb80270df97d34d4cde7f54d))
+
+
+
+
+
 # [1.0.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-07-12)
 
 

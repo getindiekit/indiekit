@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
+
+
+### Features
+
+* **endpoint-token:** throw error if missing token secret ([ebf5946](https://github.com/getindiekit/indiekit/commit/ebf59462ab66c99938fb3e95de34fd3d2d1b3da2))
+
+
+
+
+
 # [1.0.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-07-12)
 
 **Note:** Version bump only for package @indiekit/endpoint-token

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
+
+
+### Features
+
+* **frontend:** refactor language filters ([0d3363c](https://github.com/getindiekit/indiekit/commit/0d3363cea018d075dd08c46a791cd182821087c6))
+
+
+
+
+
 # [1.0.0-alpha.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2022-07-12)
 
 

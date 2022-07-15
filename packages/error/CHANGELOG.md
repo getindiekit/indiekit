@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
+
+
+### Bug Fixes
+
+* **error:** handle unspecified errors ([3243592](https://github.com/getindiekit/indiekit/commit/3243592d7326851b6eec3aa514e315209bcfa12b))
+
+
+### Features
+
+* **error:** add localised string for missing token ([957adea](https://github.com/getindiekit/indiekit/commit/957adeaf1de26dd9799ed483e68c368173a69fb0))
+* **error:** remove toJSON() method ([f69a9da](https://github.com/getindiekit/indiekit/commit/f69a9da4fa5f43d4b16afc1dc760332099225edf))
+
+
+
+
+
 # [1.0.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-07-12)
 
 
