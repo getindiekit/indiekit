@@ -23,7 +23,8 @@
     "database": "Voor deze functie is een database vereist.",
     "postType": "Geen configuratie voorzien voor %s berichttype",
     "query": "Niet-ondersteunde query voor `{{key}}`: `{{value}}`",
-    "title": "Niet geïmplementeerd"
+    "title": "Niet geïmplementeerd",
+    "tokenSecret": "`TOKEN_SECRET` ontbreekt"
   },
   "UnauthorizedError": {
     "invalidToken": "Het verstrekte toegangstoken is verlopen, ingetrokken, misvormd of ongeldig",

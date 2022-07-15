@@ -32,6 +32,7 @@
     "title": "Not implemented",
     "query": "Unsupported query for `{{key}}`: `{{value}}`",
     "database": "This feature requires a database",
-    "postType": "No configuration provided for %s post type"
+    "postType": "No configuration provided for %s post type",
+    "tokenSecret": "Missing `TOKEN_SECRET`"
   }
 }

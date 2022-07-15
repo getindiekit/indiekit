@@ -23,7 +23,8 @@
     "database": "Für diese Funktion ist eine Datenbank erforderlich",
     "postType": "Keine Konfiguration für den Posttyp %s bereitgestellt",
     "query": "Nicht unterstützte Abfrage für `{{key}}`: `{{value}}`",
-    "title": "Nicht implementiert"
+    "title": "Nicht implementiert",
+    "tokenSecret": "Fehlt `TOKEN_SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "Das bereitgestellte Zugriffstoken ist abgelaufen, gesperrt, falsch formatiert oder aus anderen Gründen ungültig",

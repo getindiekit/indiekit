@@ -23,7 +23,8 @@
     "database": "Esse recurso requer um banco de dados",
     "postType": "Nenhuma configuração fornecida para o tipo de postagem %s",
     "query": "Consulta não suportada para `{{key}}`: `{{value}}`",
-    "title": "Não implementado"
+    "title": "Não implementado",
+    "tokenSecret": "Faltando `TOKEN_SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "O token de acesso fornecido está expirado, revogado, mal formado ou inválido por outros motivos",

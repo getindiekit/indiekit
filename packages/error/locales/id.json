@@ -23,7 +23,8 @@
     "database": "Fitur ini membutuhkan database",
     "postType": "Tidak ada konfigurasi yang disediakan untuk tipe postingan %s",
     "query": "Kueri tidak didukung untuk `{{key}}`: `{{value}}`",
-    "title": "Tidak diimplementasikan"
+    "title": "Tidak diimplementasikan",
+    "tokenSecret": "Hilang `TOKEN_SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "Token akses yang diberikan kedaluwarsa, dicabut, cacat, atau tidak valid karena alasan lain",

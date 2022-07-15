@@ -23,7 +23,8 @@
     "database": "Ta funkcja wymaga bazy danych",
     "postType": "Nie podano konfiguracji dla typu postu %s",
     "query": "Nieobsługiwane zapytanie dla `{{key}}`: `{{value}}`",
-    "title": "Nie zaimplementowano"
+    "title": "Nie zaimplementowano",
+    "tokenSecret": "Brakujące `TOKEN_SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "Dostarczony token dostępu jest wygasły, odwołany, zniekształcony lub nieważny z innych powodów",

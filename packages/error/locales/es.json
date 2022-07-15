@@ -23,7 +23,8 @@
     "database": "Esta función requiere una base de datos",
     "postType": "No se ha proporcionado configuración para el tipo de publicación %s",
     "query": "Consulta no admitida para `{{key}}`: `{{value}}`",
-    "title": "No implementado"
+    "title": "No implementado",
+    "tokenSecret": "Falta `TOKEN_SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "El token de acceso proporcionado ha caducado, se ha revocado, está mal formado o no es válido por otros motivos",
