@@ -39,11 +39,11 @@
 {%- endfor %}</ul>{% endset -%}
 
 {%- set localeHtml %}
-  <p>{{ application.localeUsed.split("-") | first | language }}</p>
+  <p>{{ application.localeUsed.split("-") | first | languageNativeName }}</p>
   {% if application.locale and (application.locale !== application.localeUsed) %}
     <p class="summary__note">{{ __("status.application.localeNotAvailable", {
       app: application.name,
-      locale: application.locale.split("-") | first | language
+      locale: application.locale.split("-") | first | languageName
     }) }}</p>
   {% endif %}
 {% endset -%}
@@ -69,7 +69,7 @@
         text: __("status.publication.locale")
       },
       value: {
-        text: publication.locale.split("-") | first | language
+        text: publication.locale.split("-") | first | languageNativeName
       }
     }, {
       key: {
