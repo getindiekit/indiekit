@@ -1,6 +1,6 @@
 export const getNavigation = (application, request, response) => {
   // Default navigation items
-  const navigation = [
+  let navigation = [
     request.session.access_token
       ? {
           href: "/session/logout",
@@ -12,11 +12,19 @@ export const getNavigation = (application, request, response) => {
         },
   ];
 
-  // Plug-in navigation items
-  for (const plugin of application.installedPlugins) {
-    if (plugin.navigationItems && plugin.navigationItems(application)) {
-      navigation.unshift(plugin.navigationItems(application));
+  // Add navigation items from endpoint plug-ins
+  for (const endpoint of application.endpoints) {
+    if (endpoint.navigationItems) {
+      const navigationItems = Array.isArray(endpoint.navigationItems)
+        ? endpoint.navigationItems
+        : [endpoint.navigationItems];
+      navigation = [...navigationItems, ...navigation];
     }
+  }
+
+  // Remove navigation items that require a database if no database configured
+  if (!application.hasDatabase) {
+    navigation = navigation.filter((item) => !item.requiresDatabase);
   }
 
   // Translate text strings

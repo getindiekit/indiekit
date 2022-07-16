@@ -19,13 +19,12 @@ export default class FilesEndpoint {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  navigationItems(application) {
-    if (application.hasDatabase) {
-      return {
-        href: this.options.mountPath,
-        text: "files.title",
-      };
-    }
+  get navigationItems() {
+    return {
+      href: this.options.mountPath,
+      text: "files.title",
+      requiresDatabase: true,
+    };
   }
 
   get routes() {
@@ -47,7 +46,7 @@ export default class FilesEndpoint {
     return router;
   }
 
-  init() {
-    return true;
+  init(Indiekit) {
+    Indiekit.addEndpoint(this);
   }
 }

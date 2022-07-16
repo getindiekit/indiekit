@@ -30,6 +30,7 @@ export default class MediaEndpoint {
   }
 
   init(Indiekit) {
+    Indiekit.addEndpoint(this);
     Indiekit.config.application.mediaEndpoint = this.options.mountPath;
   }
 }

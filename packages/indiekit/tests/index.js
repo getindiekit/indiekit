@@ -25,6 +25,20 @@ test("Gets publication configuration values", (t) => {
   t.is(t.context.publication.preset.name, "Jekyll preset");
 });
 
+test("Adds endpoint", (t) => {
+  const TestEndpoint = class {
+    constructor() {
+      this.id = "test";
+      this.name = "Test endpoint";
+    }
+  };
+
+  const testEndpoint = new TestEndpoint();
+
+  t.context.indiekit.addEndpoint(testEndpoint);
+  t.is(t.context.indiekit.application.endpoints.at(-1).name, "Test endpoint");
+});
+
 test("Adds publication preset", (t) => {
   const TestPreset = class {
     constructor() {

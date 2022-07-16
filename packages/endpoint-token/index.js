@@ -33,6 +33,7 @@ export default class TokenEndpoint {
   }
 
   init(Indiekit) {
+    Indiekit.addEndpoint(this);
     Indiekit.config.application.tokenEndpoint = this.options.mountPath;
   }
 }

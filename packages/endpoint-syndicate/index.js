@@ -23,7 +23,7 @@ export default class SyndicateEndpoint {
     return router;
   }
 
-  init() {
-    return true;
+  init(Indiekit) {
+    Indiekit.addEndpoint(this);
   }
 }

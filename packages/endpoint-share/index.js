@@ -16,7 +16,7 @@ export default class ShareEndpoint {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  navigationItems() {
+  get navigationItems() {
     return {
       href: this.options.mountPath,
       text: "share.title",
@@ -33,6 +33,7 @@ export default class ShareEndpoint {
   }
 
   init(Indiekit) {
+    Indiekit.addEndpoint(this);
     Indiekit.config.application.shareEndpoint = this.options.mountPath;
   }
 }
