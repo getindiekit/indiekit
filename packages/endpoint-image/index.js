@@ -9,7 +9,7 @@ const defaults = {
   mountPath: "/image",
 };
 
-export const ImageEndpoint = class {
+export default class ImageEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-image";
     this.meta = import.meta;
@@ -38,6 +38,4 @@ export const ImageEndpoint = class {
   init(Indiekit) {
     Indiekit.config.application.imageEndpoint = this.options.mountPath;
   }
-};
-
-export default ImageEndpoint;
+}

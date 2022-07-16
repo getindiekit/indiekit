@@ -2,7 +2,7 @@ import test from "ava";
 import { setGlobalDispatcher } from "undici";
 import { internetArchiveAgent } from "@indiekit-test/mock-agent";
 import { Indiekit } from "@indiekit/indiekit";
-import { InternetArchiveSyndicator } from "../../index.js";
+import InternetArchiveSyndicator from "../../index.js";
 
 setGlobalDispatcher(internetArchiveAgent());
 

@@ -12,7 +12,7 @@ const defaults = {
  * @typedef Response
  * @property {object} response - HTTP response
  */
-export const GithubStore = class {
+export default class GithubStore {
   constructor(options = {}) {
     this.id = "github";
     this.meta = import.meta;
@@ -196,6 +196,4 @@ export const GithubStore = class {
   init(Indiekit) {
     Indiekit.addStore(this);
   }
-};
-
-export default GithubStore;
+}

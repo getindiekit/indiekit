@@ -1,6 +1,6 @@
 import YAML from "yaml";
 
-export const JekyllPreset = class {
+export default class JekyllPreset {
   constructor() {
     this.id = "jekyll";
     this.meta = import.meta;
@@ -186,6 +186,4 @@ export const JekyllPreset = class {
   init(Indiekit) {
     Indiekit.addPreset(this);
   }
-};
-
-export default JekyllPreset;
+}

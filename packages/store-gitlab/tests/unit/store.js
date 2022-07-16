@@ -1,7 +1,7 @@
 import test from "ava";
 import nock from "nock";
 import { Indiekit } from "@indiekit/indiekit";
-import { GitlabStore } from "../../index.js";
+import GitlabStore from "../../index.js";
 
 const gitlab = new GitlabStore({
   token: "token",

@@ -1,7 +1,7 @@
 import test from "ava";
 import nock from "nock";
 import { Indiekit } from "@indiekit/indiekit";
-import { BitbucketStore } from "../../index.js";
+import BitbucketStore from "../../index.js";
 
 const bitbucket = new BitbucketStore({
   user: "username",

@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import test from "ava";
 import mockFs from "mock-fs";
 import { Indiekit } from "@indiekit/indiekit";
-import { FileSystemStore } from "../../index.js";
+import FileSystemStore from "../../index.js";
 
 const fileSystem = new FileSystemStore({
   directory: "directory",

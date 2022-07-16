@@ -10,9 +10,9 @@ const defaults = {
 
 /**
  * @typedef Response
- * @property {boolean} response Response
+ * @property {object} response - Response
  */
-export const FileSystemStore = class {
+export default class FileSystemStore {
   constructor(options = {}) {
     this.id = "file-system";
     this.meta = import.meta;
@@ -126,6 +126,4 @@ export const FileSystemStore = class {
   init(Indiekit) {
     Indiekit.addStore(this);
   }
-};
-
-export default FileSystemStore;
+}

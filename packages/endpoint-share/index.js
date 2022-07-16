@@ -6,7 +6,7 @@ const defaults = {
   mountPath: "/share",
 };
 
-export const ShareEndpoint = class {
+export default class ShareEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-share";
     this.meta = import.meta;
@@ -35,6 +35,4 @@ export const ShareEndpoint = class {
   init(Indiekit) {
     Indiekit.config.application.shareEndpoint = this.options.mountPath;
   }
-};
-
-export default ShareEndpoint;
+}

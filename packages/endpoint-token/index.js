@@ -6,7 +6,7 @@ const defaults = {
   mountPath: "/token",
 };
 
-export const TokenEndpoint = class {
+export default class TokenEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-token";
     this.meta = import.meta;
@@ -35,6 +35,4 @@ export const TokenEndpoint = class {
   init(Indiekit) {
     Indiekit.config.application.tokenEndpoint = this.options.mountPath;
   }
-};
-
-export default TokenEndpoint;
+}

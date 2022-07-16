@@ -8,7 +8,7 @@ const defaults = {
   checked: false,
 };
 
-export const MastodonSyndicator = class {
+export default class MastodonSyndicator {
   constructor(options = {}) {
     this.id = "mastodon";
     this.meta = import.meta;
@@ -80,6 +80,4 @@ export const MastodonSyndicator = class {
   init(Indiekit) {
     Indiekit.addSyndicator(this);
   }
-};
-
-export default MastodonSyndicator;
+}

@@ -11,7 +11,7 @@ const defaults = {
  * @typedef Response
  * @property {object} response - HTTP response
  */
-export const BitbucketStore = class {
+export default class BitbucketStore {
   constructor(options = {}) {
     this.id = "bitbucket";
     this.meta = import.meta;
@@ -173,6 +173,4 @@ export const BitbucketStore = class {
   init(Indiekit) {
     Indiekit.addStore(this);
   }
-};
-
-export default BitbucketStore;
+}
