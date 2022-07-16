@@ -30,6 +30,7 @@ export default class MicropubEndpoint {
   }
 
   init(Indiekit) {
+    Indiekit.addEndpoint(this);
     Indiekit.config.application.micropubEndpoint = this.options.mountPath;
   }
 }

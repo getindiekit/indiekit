@@ -60,20 +60,20 @@ export const routes = (indiekitConfig) => {
     statusController.viewStatus
   );
 
-  // Plug-in routes
-  for (const plugin of application.installedPlugins) {
+  // Endpoint plug-in routes
+  for (const endpoint of application.endpoints) {
     // Public
-    if (plugin.mountPath && plugin.routesPublic) {
-      router.use(plugin.mountPath, limit, plugin.routesPublic);
+    if (endpoint.mountPath && endpoint.routesPublic) {
+      router.use(endpoint.mountPath, limit, endpoint.routesPublic);
     }
 
     // Authenticated
-    if (plugin.mountPath && plugin.routes) {
+    if (endpoint.mountPath && endpoint.routes) {
       router.use(
-        plugin.mountPath,
+        endpoint.mountPath,
         limit,
         indieauth.authenticate(),
-        plugin.routes
+        endpoint.routes
       );
     }
   }

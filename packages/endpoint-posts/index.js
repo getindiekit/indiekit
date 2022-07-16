@@ -16,13 +16,12 @@ export default class PostsEndpoint {
     this._router = express.Router(); // eslint-disable-line new-cap
   }
 
-  navigationItems(application) {
-    if (application.hasDatabase) {
-      return {
-        href: this.options.mountPath,
-        text: "posts.title",
-      };
-    }
+  get navigationItems() {
+    return {
+      href: this.options.mountPath,
+      text: "posts.title",
+      requiresDatabase: true,
+    };
   }
 
   get routes() {
@@ -34,7 +33,7 @@ export default class PostsEndpoint {
     return router;
   }
 
-  init() {
-    return true;
+  init(Indiekit) {
+    Indiekit.addEndpoint(this);
   }
 }

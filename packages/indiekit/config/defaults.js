@@ -9,6 +9,7 @@ const package_ = require("../package.json");
 export const defaultConfig = {
   application: {
     _devMode: false,
+    endpoints: [],
     hasDatabase: false,
     localesAvailable: ["de", "en", "es", "fr", "id", "nl", "pl", "pt", "sr"],
     mongodbUrl: false,

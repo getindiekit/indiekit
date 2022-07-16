@@ -3,9 +3,26 @@ import { getNavigation } from "../../lib/navigation.js";
 
 test.beforeEach((t) => {
   t.context.application = {
+    hasDatabase: false,
     installedPlugins: [],
     locale: "en",
-    navigationItems: [],
+    endpoints: [
+      {
+        id: "foo",
+        name: "Foo plugin",
+        navigationItems: [
+          {
+            href: "/foo",
+            text: "Foo",
+            requiresDatabase: true,
+          },
+          {
+            href: "/bar",
+            text: "Bar",
+          },
+        ],
+      },
+    ],
   };
 });
 
@@ -20,7 +37,22 @@ test("Returns logged out navigation", (t) => {
     }
   );
 
-  t.is(result[0].href, "/session/login");
+  t.is(result[1].href, "/session/login");
+});
+
+test("Removes navigation items that require a database", (t) => {
+  const result = getNavigation(
+    t.context.application,
+    {
+      session: {},
+    },
+    {
+      __: (string) => string,
+    }
+  );
+
+  t.not(result[0].href, "/foo");
+  t.is(result[0].href, "/bar");
 });
 
 test("Returns logged in navigation", (t) => {
@@ -36,5 +68,5 @@ test("Returns logged in navigation", (t) => {
     }
   );
 
-  t.is(result[0].href, "/session/logout");
+  t.is(result[1].href, "/session/logout");
 });

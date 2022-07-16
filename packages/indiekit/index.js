@@ -23,6 +23,10 @@ export const Indiekit = class {
     this.publication = this.config.publication;
   }
 
+  addEndpoint(endpoint) {
+    this.application.endpoints.push(endpoint);
+  }
+
   addPreset(preset) {
     this.publication.preset = preset;
   }
