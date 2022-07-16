@@ -13,7 +13,7 @@ const defaults = {
  * @typedef Response
  * @property {object} response - HTTP response
  */
-export const GitlabStore = class {
+export default class GitlabStore {
   constructor(options = {}) {
     this.id = "gitlab";
     this.meta = import.meta;
@@ -59,7 +59,12 @@ export const GitlabStore = class {
     ];
   }
 
-  get client() {
+  /**
+   * Get GitLab client interface
+   *
+   * @private
+   */
+  get #client() {
     const { Gitlab } = gitbeaker;
     return new Gitlab({
       host: this.options.instance,
@@ -79,7 +84,7 @@ export const GitlabStore = class {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.client.RepositoryFiles.create(
+      const response = await this.#client.RepositoryFiles.create(
         this.projectId,
         path,
         this.options.branch,
@@ -109,7 +114,7 @@ export const GitlabStore = class {
    */
   async readFile(path) {
     try {
-      const response = await this.client.RepositoryFiles.show(
+      const response = await this.#client.RepositoryFiles.show(
         this.projectId,
         path,
         this.options.branch
@@ -138,7 +143,7 @@ export const GitlabStore = class {
   async updateFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.client.RepositoryFiles.edit(
+      const response = await this.#client.RepositoryFiles.edit(
         this.projectId,
         path,
         this.options.branch,
@@ -169,7 +174,7 @@ export const GitlabStore = class {
    */
   async deleteFile(path, message) {
     try {
-      await this.client.RepositoryFiles.remove(
+      await this.#client.RepositoryFiles.remove(
         this.projectId,
         path,
         this.options.branch,
@@ -189,4 +194,4 @@ export const GitlabStore = class {
   init(Indiekit) {
     Indiekit.addStore(this);
   }
-};
+}

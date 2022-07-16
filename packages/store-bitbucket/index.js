@@ -49,7 +49,12 @@ export default class BitbucketStore {
     ];
   }
 
-  get client() {
+  /**
+   * Get Bitbucket client interface
+   *
+   * @private
+   */
+  get #client() {
     const { Bitbucket } = bitbucket;
     return new Bitbucket({
       auth: {
@@ -71,7 +76,7 @@ export default class BitbucketStore {
    */
   async createFile(path, content, message) {
     try {
-      const response = await this.client.repositories.createSrcFileCommit({
+      const response = await this.#client.repositories.createSrcFileCommit({
         [path]: content,
         branch: this.options.branch,
         message,
@@ -97,7 +102,7 @@ export default class BitbucketStore {
    */
   async readFile(path) {
     try {
-      const response = await this.client.repositories.readSrc({
+      const response = await this.#client.repositories.readSrc({
         format: "rendered",
         commit: this.options.branch,
         path,
@@ -126,7 +131,7 @@ export default class BitbucketStore {
    */
   async updateFile(path, content, message) {
     try {
-      const response = await this.client.repositories.createSrcFileCommit({
+      const response = await this.#client.repositories.createSrcFileCommit({
         [path]: content,
         branch: this.options.branch,
         message,
@@ -153,7 +158,7 @@ export default class BitbucketStore {
    */
   async deleteFile(path, message) {
     try {
-      const response = await this.client.repositories.createSrcFileCommit({
+      const response = await this.#client.repositories.createSrcFileCommit({
         branch: this.options.branch,
         files: path,
         message,

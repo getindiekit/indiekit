@@ -50,7 +50,12 @@ export default class GithubStore {
     ];
   }
 
-  get client() {
+  /**
+   * Get GitHub client interface
+   *
+   * @private
+   */
+  get #client() {
     const { Octokit } = octokit;
     return new Octokit({
       auth: `token ${this.options.token}`,
@@ -69,7 +74,7 @@ export default class GithubStore {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.client.repos.createOrUpdateFileContents({
+      const response = await this.#client.repos.createOrUpdateFileContents({
         owner: this.options.user,
         repo: this.options.repo,
         branch: this.options.branch,
@@ -97,7 +102,7 @@ export default class GithubStore {
    */
   async readFile(path) {
     try {
-      const response = await this.client.repos.getContent({
+      const response = await this.#client.repos.getContent({
         owner: this.options.user,
         repo: this.options.repo,
         ref: this.options.branch,
@@ -128,7 +133,7 @@ export default class GithubStore {
    */
   async updateFile(path, content, message) {
     try {
-      const contents = await this.client.repos
+      const contents = await this.#client.repos
         .getContent({
           owner: this.options.user,
           repo: this.options.repo,
@@ -138,7 +143,7 @@ export default class GithubStore {
         .catch(() => false);
 
       content = Buffer.from(content).toString("base64");
-      const response = await this.client.repos.createOrUpdateFileContents({
+      const response = await this.#client.repos.createOrUpdateFileContents({
         owner: this.options.user,
         repo: this.options.repo,
         branch: this.options.branch,
@@ -168,13 +173,13 @@ export default class GithubStore {
    */
   async deleteFile(path, message) {
     try {
-      const contents = await this.client.repos.getContent({
+      const contents = await this.#client.repos.getContent({
         owner: this.options.user,
         repo: this.options.repo,
         ref: this.options.branch,
         path,
       });
-      const response = await this.client.repos.deleteFile({
+      const response = await this.#client.repos.deleteFile({
         owner: this.options.user,
         repo: this.options.repo,
         branch: this.options.branch,

@@ -52,7 +52,7 @@ export default class HugoPreset {
    * @param {object} properties - Post data variables
    * @returns {string} Front matter in chosen format
    */
-  _getFrontMatter(properties) {
+  #frontMatter(properties) {
     let delimiters;
     let frontMatter;
 
@@ -246,7 +246,7 @@ export default class HugoPreset {
       }),
     };
 
-    const frontMatter = this._getFrontMatter(properties);
+    const frontMatter = this.#frontMatter(properties);
 
     return frontMatter + content;
   }

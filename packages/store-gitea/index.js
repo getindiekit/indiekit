@@ -58,7 +58,16 @@ export default class GiteaStore {
     ];
   }
 
-  async client(path, method = "GET", body) {
+  /**
+   * Get Gitea client interface
+   *
+   * @private
+   * @param {string} path - Request path
+   * @param {string} [method=GET] - Request method
+   * @param {object} [body] - Request body
+   * @returns
+   */
+  async #client(path, method = "GET", body) {
     const { instance, user, repo } = this.options;
     const url = new URL(
       path,
@@ -92,7 +101,7 @@ export default class GiteaStore {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.client(path, "POST", {
+      const response = await this.#client(path, "POST", {
         branch: this.options.branch,
         content,
         message,
@@ -117,7 +126,7 @@ export default class GiteaStore {
    */
   async readFile(path) {
     try {
-      const response = await this.client(`${path}?ref=${this.options.branch}`);
+      const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
       const content = Buffer.from(body.content, "base64").toString("utf8");
 
@@ -143,9 +152,9 @@ export default class GiteaStore {
   async updateFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.client(`${path}?ref=${this.options.branch}`);
+      const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
-      const updated = await this.client(path, "PUT", {
+      const updated = await this.#client(path, "PUT", {
         branch: this.options.branch,
         content,
         message,
@@ -172,9 +181,9 @@ export default class GiteaStore {
    */
   async deleteFile(path, message) {
     try {
-      const response = await this.client(`${path}?ref=${this.options.branch}`);
+      const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
-      const deleted = await this.client(path, "DELETE", {
+      const deleted = await this.#client(path, "DELETE", {
         branch: this.options.branch,
         message,
         sha: body.sha,
