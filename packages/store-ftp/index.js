@@ -54,7 +54,12 @@ export default class FtpStore {
     ];
   }
 
-  async client() {
+  /**
+   * Get FTP client interface
+   *
+   * @private
+   */
+  async #client() {
     const { host, user, password, port, verbose } = this.options;
     const client = new ftp.Client();
     client.ftp.verbose = verbose;
@@ -84,7 +89,7 @@ export default class FtpStore {
    * @param {string} filePath - Path to file
    * @returns {string} Absolute file path
    */
-  #getAbsolutePath(filePath) {
+  #absolutePath(filePath) {
     return path.join(this.options.directory, filePath);
   }
 
@@ -97,9 +102,9 @@ export default class FtpStore {
    */
   async createFile(filePath, content) {
     try {
-      const client = await this.client();
+      const client = await this.#client();
       const readableStream = this.#createReadableStream(content);
-      const absolutePath = this.#getAbsolutePath(filePath);
+      const absolutePath = this.#absolutePath(filePath);
       const dirname = path.dirname(absolutePath);
       const basename = path.basename(absolutePath);
 
@@ -126,9 +131,9 @@ export default class FtpStore {
    */
   async updateFile(filePath, content) {
     try {
-      const client = await this.client();
+      const client = await this.#client();
       const readableStream = this.#createReadableStream(content);
-      const absolutePath = this.#getAbsolutePath(filePath);
+      const absolutePath = this.#absolutePath(filePath);
 
       await client.uploadFrom(readableStream, absolutePath);
 
@@ -151,8 +156,8 @@ export default class FtpStore {
    */
   async deleteFile(filePath) {
     try {
-      const absolutePath = this.#getAbsolutePath(filePath);
-      const client = await this.client();
+      const absolutePath = this.#absolutePath(filePath);
+      const client = await this.#client();
 
       await client.remove(absolutePath);
 

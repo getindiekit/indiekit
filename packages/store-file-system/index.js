@@ -46,7 +46,7 @@ export default class FileSystemStore {
    * @param {string} filePath - Path to file
    * @returns {string} Absolute file path
    */
-  #getAbsolutePath(filePath) {
+  #absolutePath(filePath) {
     return path.join(this.options.directory, filePath);
   }
 
@@ -59,7 +59,7 @@ export default class FileSystemStore {
    */
   async createFile(filePath, content) {
     try {
-      const absolutePath = this.#getAbsolutePath(filePath);
+      const absolutePath = this.#absolutePath(filePath);
       const dirname = path.dirname(absolutePath);
 
       if (!existsSync(dirname)) {
@@ -87,7 +87,7 @@ export default class FileSystemStore {
    */
   async updateFile(filePath, content) {
     try {
-      const absolutePath = this.#getAbsolutePath(filePath);
+      const absolutePath = this.#absolutePath(filePath);
 
       await fs.writeFile(absolutePath, content);
 
@@ -109,7 +109,7 @@ export default class FileSystemStore {
    */
   async deleteFile(filePath) {
     try {
-      const absolutePath = this.#getAbsolutePath(filePath);
+      const absolutePath = this.#absolutePath(filePath);
 
       await fs.rm(absolutePath);
 
