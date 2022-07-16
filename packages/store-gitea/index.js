@@ -13,7 +13,7 @@ const defaults = {
  * @typedef Response
  * @property {object} response - HTTP response
  */
-export const GiteaStore = class {
+export default class GiteaStore {
   constructor(options = {}) {
     this.id = "gitea";
     this.meta = import.meta;
@@ -193,6 +193,4 @@ export const GiteaStore = class {
   init(Indiekit) {
     Indiekit.addStore(this);
   }
-};
-
-export default GiteaStore;
+}

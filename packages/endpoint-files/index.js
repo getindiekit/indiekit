@@ -9,7 +9,7 @@ const defaults = {
   mountPath: "/files",
 };
 
-export const FilesEndpoint = class {
+export default class FilesEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-files";
     this.meta = import.meta;
@@ -50,6 +50,4 @@ export const FilesEndpoint = class {
   init() {
     return true;
   }
-};
-
-export default FilesEndpoint;
+}

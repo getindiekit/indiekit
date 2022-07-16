@@ -1,5 +1,5 @@
 import test from "ava";
-import { JekyllPreset } from "@indiekit/preset-jekyll";
+import JekyllPreset from "@indiekit/preset-jekyll";
 import { postTypeCount } from "../../lib/post-type-count.js";
 
 test.beforeEach((t) => {

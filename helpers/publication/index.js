@@ -1,7 +1,7 @@
 import process from "node:process";
 import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
-import { GithubStore } from "@indiekit/store-github";
-import { JekyllPreset } from "@indiekit/preset-jekyll";
+import GithubStore from "@indiekit/store-github";
+import JekyllPreset from "@indiekit/preset-jekyll";
 
 export const publication = {
   categories: `${process.env.TEST_PUBLICATION_URL}categories.json`,

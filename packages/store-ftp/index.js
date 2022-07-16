@@ -14,9 +14,9 @@ const defaults = {
 
 /**
  * @typedef Response
- * @property {object} response FTP response
+ * @property {object} response - FTP response
  */
-export const FtpStore = class {
+export default class FtpStore {
   constructor(options = {}) {
     this.id = "ftp";
     this.meta = import.meta;
@@ -170,6 +170,4 @@ export const FtpStore = class {
   init(Indiekit) {
     Indiekit.addStore(this);
   }
-};
-
-export default FtpStore;
+}

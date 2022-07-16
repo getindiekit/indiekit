@@ -190,5 +190,3 @@ export const GitlabStore = class {
     Indiekit.addStore(this);
   }
 };
-
-export default GitlabStore;

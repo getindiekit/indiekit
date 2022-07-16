@@ -7,7 +7,7 @@ const defaults = {
   mountPath: "/micropub",
 };
 
-export const MicropubEndpoint = class {
+export default class MicropubEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-micropub";
     this.meta = import.meta;
@@ -32,6 +32,4 @@ export const MicropubEndpoint = class {
   init(Indiekit) {
     Indiekit.config.application.micropubEndpoint = this.options.mountPath;
   }
-};
-
-export default MicropubEndpoint;
+}

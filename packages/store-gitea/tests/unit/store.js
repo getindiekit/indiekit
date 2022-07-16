@@ -2,7 +2,7 @@ import test from "ava";
 import { setGlobalDispatcher } from "undici";
 import { Indiekit } from "@indiekit/indiekit";
 import { giteaAgent } from "@indiekit-test/mock-agent";
-import { GiteaStore } from "../../index.js";
+import GiteaStore from "../../index.js";
 
 setGlobalDispatcher(giteaAgent());
 

@@ -1,7 +1,7 @@
 import test from "ava";
 import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
-import { JekyllPreset } from "../../index.js";
+import JekyllPreset from "../../index.js";
 
 const jekyll = new JekyllPreset();
 

@@ -5,7 +5,7 @@ const defaults = {
   mountPath: "/syndicate",
 };
 
-export const SyndicateEndpoint = class {
+export default class SyndicateEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-syndicate";
     this.meta = import.meta;
@@ -26,6 +26,4 @@ export const SyndicateEndpoint = class {
   init() {
     return true;
   }
-};
-
-export default SyndicateEndpoint;
+}

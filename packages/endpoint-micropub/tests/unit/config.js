@@ -1,6 +1,6 @@
 import test from "ava";
-import { JekyllPreset } from "@indiekit/preset-jekyll";
-import { TwitterSyndicator } from "@indiekit/syndicator-twitter";
+import JekyllPreset from "@indiekit/preset-jekyll";
+import TwitterSyndicator from "@indiekit/syndicator-twitter";
 import { getConfig, queryConfig } from "../../lib/config.js";
 
 test.beforeEach((t) => {

@@ -10,7 +10,7 @@ const defaults = {
   uid: "https://web.archive.org/",
 };
 
-export const InternetArchiveSyndicator = class {
+export default class InternetArchiveSyndicator {
   constructor(options = {}) {
     this.id = "internet-archive";
     this.meta = import.meta;
@@ -46,6 +46,4 @@ export const InternetArchiveSyndicator = class {
   init(Indiekit) {
     Indiekit.addSyndicator(this);
   }
-};
-
-export default InternetArchiveSyndicator;
+}

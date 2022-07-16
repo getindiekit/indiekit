@@ -6,7 +6,7 @@ const defaults = {
   frontMatterFormat: "yaml",
 };
 
-export const HugoPreset = class {
+export default class HugoPreset {
   constructor(options = {}) {
     this.id = "hugo";
     this.meta = import.meta;
@@ -254,6 +254,4 @@ export const HugoPreset = class {
   init(Indiekit) {
     Indiekit.addPreset(this);
   }
-};
-
-export default HugoPreset;
+}

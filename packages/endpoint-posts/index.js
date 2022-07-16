@@ -6,7 +6,7 @@ const defaults = {
   mountPath: "/posts",
 };
 
-export const PostsEndpoint = class {
+export default class PostsEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-posts";
     this.meta = import.meta;
@@ -37,6 +37,4 @@ export const PostsEndpoint = class {
   init() {
     return true;
   }
-};
-
-export default PostsEndpoint;
+}

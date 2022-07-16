@@ -1,7 +1,7 @@
 import test from "ava";
 import nock from "nock";
 import { Indiekit } from "@indiekit/indiekit";
-import { GithubStore } from "../../index.js";
+import GithubStore from "../../index.js";
 
 const github = new GithubStore({
   token: "token",

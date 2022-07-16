@@ -10,7 +10,7 @@ const defaults = {
   checked: false,
 };
 
-export const TwitterSyndicator = class {
+export default class TwitterSyndicator {
   constructor(options = {}) {
     this.id = "twitter";
     this.meta = import.meta;
@@ -62,6 +62,4 @@ export const TwitterSyndicator = class {
   init(Indiekit) {
     Indiekit.addSyndicator(this);
   }
-};
-
-export default TwitterSyndicator;
+}

@@ -7,7 +7,7 @@ const defaults = {
   mountPath: "/media",
 };
 
-export const MediaEndpoint = class {
+export default class MediaEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-media";
     this.meta = import.meta;
@@ -32,6 +32,4 @@ export const MediaEndpoint = class {
   init(Indiekit) {
     Indiekit.config.application.mediaEndpoint = this.options.mountPath;
   }
-};
-
-export default MediaEndpoint;
+}
