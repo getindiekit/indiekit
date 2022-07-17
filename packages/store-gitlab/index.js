@@ -84,7 +84,7 @@ export default class GitlabStore {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.#client.RepositoryFiles.create(
+      await this.#client.RepositoryFiles.create(
         this.projectId,
         path,
         this.options.branch,
@@ -95,7 +95,7 @@ export default class GitlabStore {
         }
       );
 
-      return response;
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -143,7 +143,7 @@ export default class GitlabStore {
   async updateFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.#client.RepositoryFiles.edit(
+      await this.#client.RepositoryFiles.edit(
         this.projectId,
         path,
         this.options.branch,
@@ -154,7 +154,7 @@ export default class GitlabStore {
         }
       );
 
-      return response;
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
