@@ -39,16 +39,14 @@ test("Initiates plug-in", (t) => {
 test("Creates file in a repository", async (t) => {
   const result = await gitea.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Creates file in a repository at custom instance", async (t) => {
   setGlobalDispatcher(giteaAgent("https://gitea.instance"));
   const result = await giteaInstance.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
@@ -72,8 +70,7 @@ test("Throws error reading file in a repository", async (t) => {
 test("Updates file in a repository", async (t) => {
   const result = await gitea.updateFile("foo.txt", "foo", "Message");
 
-  t.is(result.path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
@@ -85,7 +82,7 @@ test("Throws error updating file in a repository", async (t) => {
 test("Deletes a file in a repository", async (t) => {
   const result = await gitea.deleteFile("foo.txt", "Message");
 
-  t.truthy(result);
+  t.true(result);
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
