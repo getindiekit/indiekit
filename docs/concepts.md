@@ -35,12 +35,15 @@ Then add it to your configuration file:
 
 An endpoint is a path on your Indiekit server that applications can send requests to or users can access certain features at. By default Indiekit provides the following endpoints:
 
-| Endpoint     | Functionality                                             |
-| ------------ | --------------------------------------------------------- |
-| `/media`     | Micropub media endpoint for uploading media files.        |
-| `/micropub`  | Micropub endpoint for creating post files.                |
-| `/share`     | Interface to create bookmark posts.                       |
-| `/syndicate` | Endpoint that can be pinged to initiate post syndication. |
+| Endpoint     | Functionality                                               |
+| ------------ | ----------------------------------------------------------- |
+| `/files`     | Interface for uploading and managing files.                 |
+| `/media`     | Micropub media endpoint for uploading media files.          |
+| `/micropub`  | Micropub endpoint for creating post files.                  |
+| `/posts`     | Interface for creating and managing posts.                  |
+| `/share`     | Interface for creating bookmark posts.                      |
+| `/syndicate` | Endpoint that can be pinged to initiate post syndication.   |
+| `/token`     | IndieAuth token endpoint for granting and verifying tokens. |
 
 ## Publication
 
