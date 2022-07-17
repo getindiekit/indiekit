@@ -60,8 +60,7 @@ test("Creates file in a repository", async (t) => {
 
   const result = await gitlab.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.file_path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Creates file in a repository at custom instance", async (t) => {
@@ -71,8 +70,7 @@ test("Creates file in a repository at custom instance", async (t) => {
 
   const result = await gitlabInstance.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.file_path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Creates file in a repository with projectId", async (t) => {
@@ -83,8 +81,7 @@ test("Creates file in a repository with projectId", async (t) => {
 
   const result = await gitlabInstance.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.file_path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
@@ -124,8 +121,7 @@ test("Updates file in a repository", async (t) => {
 
   const result = await gitlab.updateFile("foo.txt", "foo", "Message");
 
-  t.is(result.file_path, "foo.txt");
-  t.is(result.branch, "main");
+  t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
@@ -145,7 +141,7 @@ test("Deletes a file in a repository", async (t) => {
 
   const result = await gitlab.deleteFile("foo.txt", "Message");
 
-  t.truthy(result);
+  t.true(result);
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
