@@ -2,9 +2,8 @@ import express from "express";
 import { shareController } from "./lib/controllers/share.js";
 import { validate } from "./lib/middleware/validation.js";
 
-const defaults = {
-  mountPath: "/share",
-};
+const defaults = { mountPath: "/share" };
+const router = express.Router(); // eslint-disable-line new-cap
 
 export default class ShareEndpoint {
   constructor(options = {}) {
@@ -13,7 +12,6 @@ export default class ShareEndpoint {
     this.name = "Share endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
-    this._router = express.Router(); // eslint-disable-line new-cap
   }
 
   get navigationItems() {
@@ -24,8 +22,6 @@ export default class ShareEndpoint {
   }
 
   get routes() {
-    const router = this._router;
-
     router.get("/:path?", shareController.get);
     router.post("/:path?", validate, shareController.post);
 

@@ -2,9 +2,8 @@ import express from "express";
 import { postController } from "./lib/controllers/post.js";
 import { postsController } from "./lib/controllers/posts.js";
 
-const defaults = {
-  mountPath: "/posts",
-};
+const defaults = { mountPath: "/posts" };
+const router = express.Router(); // eslint-disable-line new-cap
 
 export default class PostsEndpoint {
   constructor(options = {}) {
@@ -13,7 +12,6 @@ export default class PostsEndpoint {
     this.name = "Post management endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
-    this._router = express.Router(); // eslint-disable-line new-cap
   }
 
   get navigationItems() {
@@ -25,8 +23,6 @@ export default class PostsEndpoint {
   }
 
   get routes() {
-    const router = this._router;
-
     router.get("/", postsController);
     router.get("/:id", postController);
 
