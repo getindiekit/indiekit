@@ -76,14 +76,15 @@ export default class BitbucketStore {
    */
   async createFile(path, content, message) {
     try {
-      const response = await this.#client.repositories.createSrcFileCommit({
+      await this.#client.repositories.createSrcFileCommit({
         [path]: content,
         branch: this.options.branch,
         message,
         repo_slug: this.options.repo, // eslint-disable-line camelcase
         workspace: this.options.user,
       });
-      return response;
+
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -110,6 +111,7 @@ export default class BitbucketStore {
         workspace: this.options.user,
       });
       const content = response.data.raw;
+
       return content;
     } catch (error) {
       throw new IndiekitError(error.message, {
@@ -131,14 +133,15 @@ export default class BitbucketStore {
    */
   async updateFile(path, content, message) {
     try {
-      const response = await this.#client.repositories.createSrcFileCommit({
+      await this.#client.repositories.createSrcFileCommit({
         [path]: content,
         branch: this.options.branch,
         message,
         repo_slug: this.options.repo, // eslint-disable-line camelcase
         workspace: this.options.user,
       });
-      return response;
+
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -158,14 +161,15 @@ export default class BitbucketStore {
    */
   async deleteFile(path, message) {
     try {
-      const response = await this.#client.repositories.createSrcFileCommit({
+      await this.#client.repositories.createSrcFileCommit({
         branch: this.options.branch,
         files: path,
         message,
         repo_slug: this.options.repo, // eslint-disable-line camelcase
         workspace: this.options.user,
       });
-      return response;
+
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
