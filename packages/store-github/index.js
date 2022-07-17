@@ -74,7 +74,7 @@ export default class GithubStore {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.#client.repos.createOrUpdateFileContents({
+      await this.#client.repos.createOrUpdateFileContents({
         owner: this.options.user,
         repo: this.options.repo,
         branch: this.options.branch,
@@ -83,7 +83,7 @@ export default class GithubStore {
         content,
       });
 
-      return response;
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -143,7 +143,7 @@ export default class GithubStore {
         .catch(() => false);
 
       content = Buffer.from(content).toString("base64");
-      const response = await this.#client.repos.createOrUpdateFileContents({
+      await this.#client.repos.createOrUpdateFileContents({
         owner: this.options.user,
         repo: this.options.repo,
         branch: this.options.branch,
@@ -153,7 +153,7 @@ export default class GithubStore {
         content,
       });
 
-      return response;
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -179,7 +179,7 @@ export default class GithubStore {
         ref: this.options.branch,
         path,
       });
-      const response = await this.#client.repos.deleteFile({
+      await this.#client.repos.deleteFile({
         owner: this.options.user,
         repo: this.options.repo,
         branch: this.options.branch,
@@ -188,7 +188,7 @@ export default class GithubStore {
         path,
       });
 
-      return response;
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,

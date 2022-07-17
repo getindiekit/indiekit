@@ -50,7 +50,7 @@ test("Creates file in a repository", async (t) => {
 
   const result = await github.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.data.commit.message, "Message");
+  t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
@@ -94,8 +94,7 @@ test("Updates file in a repository", async (t) => {
 
   const result = await github.updateFile("foo.txt", "foo", "Message");
 
-  t.is(result.status, 200);
-  t.is(result.data.commit.message, "Message");
+  t.true(result);
 });
 
 test("Creates file if original not found in repository", async (t) => {
@@ -107,8 +106,7 @@ test("Creates file if original not found in repository", async (t) => {
 
   const result = await github.updateFile("foo.txt", "foo", "Message");
 
-  t.is(result.status, 200);
-  t.is(result.data.commit.message, "Message");
+  t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
@@ -136,8 +134,7 @@ test("Deletes a file in a repository", async (t) => {
 
   const result = await github.deleteFile("foo.txt", "Message");
 
-  t.is(result.status, 200);
-  t.is(result.data.commit.message, "Message");
+  t.true(result);
 });
 
 test("Throws error file not found in repository", async (t) => {
