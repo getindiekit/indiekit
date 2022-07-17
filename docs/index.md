@@ -12,29 +12,31 @@ Indiekit is the little server that connects your personal website to the indepen
 
 [Get started](get-started.md){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub]({{ site.github.repository_url }}){: .btn .fs-5 .mb-4 .mb-md-0 }
 
+{{ site.github.releases[0].name }}
+
 ---
 
-The [IndieWeb](https://indieweb.org) is a community of individual personal websites, connected by simple standards. It is based on the principles of owning your domain, publishing on your own site and owning your data. Indiekit lets your website use these standards to connect with a wider community and syndicate your content to social networks.
+The [IndieWeb](https://indieweb.org) is a community of personal websites, connected by simple standards. These follow the principles of publishing content at your own domain name and owning your data.
 
-## The web is for everyone, and so is Indiekit
+Indiekit lets your website use these standards and connect with this community, while enabling you to syndicate your content to popular social networks.
 
-Indiekit has been designed from the very beginning to be:
+## Indiekit is for everyone
 
 - ### Accessible
 
-  Owning your own content and contributing to the independent web should be easy and open to all. Indiekit’s web interface is designed to be accessible to all, regardless of individual needs or technology requirements. It can also be localised to support different languages.
+  Owning your own content should be easy and open to all. Indiekit’s web interface is designed to be accessible and can be localised to support different languages.
 
 - ### Adaptable
 
-  Like people, no two websites are the same. Indiekit is highly customisable and provides support for different services and situations. Thanks to its underlying plug-in architecture, it’s extensible, too.
+  Like people, no two websites are the same. Indiekit is highly customisable to support different services and situations. Thanks to its underlying plug-in architecture, it’s extensible, too.
 
 - ### Approachable
 
-  Documentation describes how Indiekit works and how it can be customised to suit differing needs. The code is open source and extensively commented, and individual functions are documented using JSDoc.
+  Indiekit is fully documented and code is extensively commented, with individual functions described using JSDoc.
 
 ## Contributors
 
-Indiekit is maintained by [Paul Robert Lloyd](https://paulrobertlloyd.com), a designer and web developer based in Brighton, England. If you have any questions about this project, you can [contact him via his website](https://paulrobertlloyd.com/contact/).
+Indiekit is an open source project maintained by [Paul Robert Lloyd](https://paulrobertlloyd.com), a designer and web developer based in Brighton, England. If you have any questions about this project, you can [contact him via his website](https://paulrobertlloyd.com/contact/).
 
 {% for contributor in site.github.contributors -%}
 [![{{ contributor.login }}]({{ contributor.avatar_url }}){: width="48" }]({{ contributor.html_url }})
