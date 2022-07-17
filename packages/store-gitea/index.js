@@ -101,13 +101,13 @@ export default class GiteaStore {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.#client(path, "POST", {
+      await this.#client(path, "POST", {
         branch: this.options.branch,
         content,
         message,
       });
 
-      return response.json();
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -154,14 +154,14 @@ export default class GiteaStore {
       content = Buffer.from(content).toString("base64");
       const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
-      const updated = await this.#client(path, "PUT", {
+      await this.#client(path, "PUT", {
         branch: this.options.branch,
         content,
         message,
         sha: body.sha,
       });
 
-      return updated.json();
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -183,13 +183,13 @@ export default class GiteaStore {
     try {
       const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
-      const deleted = await this.#client(path, "DELETE", {
+      await this.#client(path, "DELETE", {
         branch: this.options.branch,
         message,
         sha: body.sha,
       });
 
-      return deleted.json();
+      return true;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
