@@ -39,8 +39,7 @@ test("Creates file in a repository", async (t) => {
 
   const result = await bitbucket.createFile("foo.txt", "foo", "Message");
 
-  t.is(result.status, 201);
-  t.true(result.url.includes("repositories/username/repo/src"));
+  t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
@@ -86,8 +85,7 @@ test("Updates file in a repository", async (t) => {
 
   const result = await bitbucket.updateFile("foo.txt", "foo", "Message");
 
-  t.is(result.status, 201);
-  t.true(result.url.includes("repositories/username/repo/src"));
+  t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
@@ -110,8 +108,7 @@ test("Deletes a file in a repository", async (t) => {
 
   const result = await bitbucket.deleteFile("foo.txt", "Message");
 
-  t.is(result.status, 201);
-  t.true(result.url.includes("repositories/username/repo/src"));
+  t.true(result);
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
