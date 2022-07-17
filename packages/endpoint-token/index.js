@@ -6,6 +6,9 @@ const defaults = {
   mountPath: "/token",
 };
 
+// eslint-disable-next-line new-cap
+const router = express.Router({ caseSensitive: true, mergeParams: true });
+
 export default class TokenEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-token";
@@ -13,16 +16,9 @@ export default class TokenEndpoint {
     this.name = "Token endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
-    // eslint-disable-next-line new-cap
-    this._router = express.Router({
-      caseSensitive: true,
-      mergeParams: true,
-    });
   }
 
   get routesPublic() {
-    const router = this._router;
-
     router.use(cors());
     router.options(cors());
 

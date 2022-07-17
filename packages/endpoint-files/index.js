@@ -5,9 +5,9 @@ import { filesController } from "./lib/controllers/files.js";
 import { uploadController } from "./lib/controllers/upload.js";
 import { validate } from "./lib/middleware/validation.js";
 
-const defaults = {
-  mountPath: "/files",
-};
+const defaults = { mountPath: "/files" };
+const router = express.Router(); // eslint-disable-line new-cap
+const multipartParser = multer({ storage: multer.memoryStorage() });
 
 export default class FilesEndpoint {
   constructor(options = {}) {
@@ -16,7 +16,6 @@ export default class FilesEndpoint {
     this.name = "File management endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
-    this._router = express.Router(); // eslint-disable-line new-cap
   }
 
   get navigationItems() {
@@ -28,11 +27,6 @@ export default class FilesEndpoint {
   }
 
   get routes() {
-    const router = this._router;
-    const multipartParser = multer({
-      storage: multer.memoryStorage(),
-    });
-
     router.get("/", filesController);
     router.get("/new", uploadController.get);
     router.post(

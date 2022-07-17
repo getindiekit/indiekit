@@ -3,9 +3,9 @@ import multer from "multer";
 import { actionController } from "./lib/controllers/action.js";
 import { queryController } from "./lib/controllers/query.js";
 
-const defaults = {
-  mountPath: "/micropub",
-};
+const defaults = { mountPath: "/micropub" };
+const router = express.Router(); // eslint-disable-line new-cap
+const multipartParser = multer({ storage: multer.memoryStorage() });
 
 export default class MicropubEndpoint {
   constructor(options = {}) {
@@ -14,15 +14,9 @@ export default class MicropubEndpoint {
     this.name = "Micropub endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
-    this._router = express.Router(); // eslint-disable-line new-cap
   }
 
   get routes() {
-    const router = this._router;
-    const multipartParser = multer({
-      storage: multer.memoryStorage(),
-    });
-
     router.get("/", queryController);
     router.post("/", multipartParser.any(), actionController);
 
