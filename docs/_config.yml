@@ -23,7 +23,7 @@ defaults:
       image: /assets/images/opengraph_image.png
 
 # Theme
-remote_theme: pmarsceill/just-the-docs
+remote_theme: just-the-docs/just-the-docs
 aux_links:
   "Indiekit on GitHub":
     - https://github.com/getindiekit/indiekit

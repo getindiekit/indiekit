@@ -1,5 +1,6 @@
 ---
 parent: Architecture decisions
+nav_order: 2
 ---
 
 # Share publication state using JF2

@@ -1,5 +1,6 @@
 ---
 parent: Architecture decisions
+nav_order: 3
 ---
 
 # Store post data as JF2
