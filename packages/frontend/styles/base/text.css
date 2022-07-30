@@ -46,17 +46,6 @@ var {
   hanging-punctuation: none;
 }
 
-del {
-  color: var(--color-delete);
-  background-color: var(--color-background-delete);
-}
-
-ins {
-  color: var(--color-insert);
-  background-color: var(--color-background-insert);
-  text-decoration: none;
-}
-
 mark {
   background-color: var(--color-selection);
 }
