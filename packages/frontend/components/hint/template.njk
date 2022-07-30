@@ -1,4 +1,4 @@
 <p class="{{ classes("hint", opts.classes) }} s-linear" id="{{ opts.id }}"
   {{- attributes(opts.attributes) }}>
-  {{- opts.text | safe -}}
+  {{- opts.text | replace("/", "/<wbr>") | safe -}}
 </p>
