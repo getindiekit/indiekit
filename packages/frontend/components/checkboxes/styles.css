@@ -4,7 +4,6 @@
   --touch-target-size: 44px;
   --checkbox-label-padding-block: calc(var(--space-block) / 2);
   --checkbox-label-padding-inline: var(--space-inline);
-  margin-block-start: var(--space-block);
 }
 
 .checkboxes__item {
@@ -119,6 +118,6 @@
   text-align: center;
 }
 
-.checkboxes__fieldset {
+.checkboxes__fieldset.fieldset {
   @extend %label;
 }
