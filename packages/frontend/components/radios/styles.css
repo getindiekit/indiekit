@@ -1,0 +1,125 @@
+.radios {
+  --radio-size: 2em;
+  --check-size: calc(var(--radio-size) / 4);
+  --touch-target-size: 44px;
+  --radio-label-padding-block: calc(var(--space-block) / 2);
+  --radio-label-padding-inline: var(--space-inline);
+}
+
+@media (--from-medium-viewport) {
+  .radios--inline {
+    --flow-space: 0;
+    display: flex;
+    gap: var(--space-gap);
+    margin-block-start: 0.5rem;
+  }
+}
+
+.radios__item {
+  display: block;
+  margin-block-end: var(--space-block);
+  min-block-size: var(--radio-size);
+  padding-inline-start: var(--radio-size);
+  position: relative;
+}
+
+.radios__item:last-child,
+.radios__item:last-of-type {
+  margin-block-end: 0;
+}
+
+.radios__input {
+  --input-offset: calc(calc(var(--touch-target-size) - var(--radio-size)) / 2);
+  cursor: pointer;
+  inset: calc(var(--input-offset) * -1);
+  inline-size: var(--touch-target-size);
+  block-size: var(--touch-target-size);
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.radios__label.label {
+  cursor: pointer;
+  display: inline-block;
+  font-weight: normal;
+  margin-block-start: 0;
+  padding: var(--radio-label-padding-block) var(--radio-label-padding-inline);
+  touch-action: manipulation; /* remove 300ms pause on mobile */
+}
+
+/* ( ) Ring */
+.radios__label:before {
+  background: transparent;
+  block-size: var(--radio-size);
+  border: var(--border-width-thick) solid var(--color-neutral);
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: "";
+  inline-size: var(--radio-size);
+  inset: 0;
+  position: absolute;
+}
+
+/* • Button */
+.radios__label:after {
+  content: "";
+  background: currentcolor;
+  block-size: 0;
+  border: var(--check-size) solid currentcolor;
+  border-radius: 50%;
+  box-sizing: border-box;
+  inset-block-start: var(--check-size);
+  inset-inline-start: var(--check-size);
+  inline-size: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+.radios__hint {
+  display: block;
+  padding-inline: var(--radio-label-padding-inline);
+}
+
+/* Focused state */
+.radios__input:focus + .radios__label:before {
+  @extend %focus;
+
+  border-color: var(--color-neutral-dark);
+  outline: var(--focus-width) solid transparent;
+  outline-offset: var(--border-width-thin);
+}
+
+@media screen and (forced-colors: active) {
+  .radios__input:focus + .radios__label:before {
+    outline-color: Highlight;
+  }
+}
+
+/* Selected state */
+.radios__input:checked + .radios__label:after {
+  opacity: 1;
+}
+
+/* Disabled state */
+.radios__input:disabled,
+.radios__input:disabled + .radios__label {
+  cursor: default;
+}
+
+.radios__input:disabled + .radios__label,
+.radios__input:disabled ~ .hint {
+  opacity: 0.5;
+}
+
+/* Divider (‘or’) */
+.radios__divider {
+  inline-size: var(--radio-size);
+  margin-block-end: var(--radio-size);
+  text-align: center;
+}
+
+.radios__fieldset.fieldset {
+  @extend %label;
+}
