@@ -4,11 +4,6 @@
   --flow-space: 0.5rem;
 
   hanging-punctuation: none;
-  /* max-inline-size: var(--line-measure); */
-}
-
-.fieldset > * + * {
-  margin-block-start: var(--step-1);
 }
 
 .fieldset__title {

@@ -8,6 +8,10 @@
   margin-block-start: var(--step-1);
 }
 
+.form__field {
+  margin-block-start: var(--step-1);
+}
+
 .form__field--error {
   border-inline-start-color: var(--color-error);
   border-inline-start-style: solid;
