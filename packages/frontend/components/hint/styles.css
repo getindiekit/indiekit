@@ -2,5 +2,5 @@
   @extend %caption;
 
   color: var(--color-neutral-dark);
-  padding-block-end: var(--space-block);
+  margin-block-start: 0;
 }
