@@ -35,6 +35,7 @@
 {%- endif %}
   <textarea class="{{ classes("textarea", "textarea--error" if opts.errorMessage) }}" id="{{ opts.id }}" name="{{ opts.name }}"
   rows="{{ opts.rows or 5 }}"
+  data-controller="textarea"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}
   {{- attributes(opts.attributes) }}>{{ opts.value }}</textarea>
