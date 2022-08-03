@@ -30,6 +30,10 @@
   padding: 0;
 }
 
+.input[type="datetime-local"] {
+  inline-size: min-content;
+}
+
 .input[type="file"] {
   border: 0;
   /* Prevent focus ring from being hidden */
