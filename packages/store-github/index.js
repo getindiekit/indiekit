@@ -1,9 +1,10 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
-import octokit from "@octokit/rest";
+import { fetch } from "undici";
 
 const defaults = {
+  baseUrl: "https://api.github.com",
   branch: "main",
   token: process.env.GITHUB_TOKEN,
 };
@@ -54,12 +55,37 @@ export default class GithubStore {
    * Get GitHub client interface
    *
    * @private
+   * @param {string} path - Request path
+   * @param {string} [method=GET] - Request method
+   * @param {object} [body] - Request body
+   * @returns
    */
-  get #client() {
-    const { Octokit } = octokit;
-    return new Octokit({
-      auth: `token ${this.options.token}`,
-    });
+  async #client(path, method = "GET", body) {
+    const { baseUrl, user, repo, token } = this.options;
+    const url = new URL(path, `${baseUrl}/repos/${user}/${repo}/contents/`);
+
+    try {
+      const response = await fetch(url.href, {
+        method,
+        headers: {
+          accept: "application/vnd.github+json",
+          authorization: `token ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error.cause,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -72,25 +98,15 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(path, content, message) {
-    try {
-      content = Buffer.from(content).toString("base64");
-      await this.#client.repos.createOrUpdateFileContents({
-        owner: this.options.user,
-        repo: this.options.repo,
-        branch: this.options.branch,
-        message,
-        path,
-        content,
-      });
+    content = Buffer.from(content).toString("base64");
 
-      return true;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    await this.#client(path, "PUT", {
+      branch: this.options.branch,
+      content,
+      message,
+    });
+
+    return true;
   }
 
   /**
@@ -101,25 +117,10 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
    */
   async readFile(path) {
-    try {
-      const response = await this.#client.repos.getContent({
-        owner: this.options.user,
-        repo: this.options.repo,
-        ref: this.options.branch,
-        path,
-      });
-      const content = Buffer.from(response.data.content, "base64").toString(
-        "utf8"
-      );
+    const response = await this.#client(`${path}?ref=${this.options.branch}`);
+    const { content } = await response.json();
 
-      return content;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    return Buffer.from(content, "base64").toString("utf8");
   }
 
   /**
@@ -132,35 +133,18 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async updateFile(path, content, message) {
-    try {
-      const contents = await this.#client.repos
-        .getContent({
-          owner: this.options.user,
-          repo: this.options.repo,
-          ref: this.options.branch,
-          path,
-        })
-        .catch(() => false);
+    const response = await this.#client(`${path}?ref=${this.options.branch}`);
+    const json = await response.json();
+    content = Buffer.from(content).toString("base64");
 
-      content = Buffer.from(content).toString("base64");
-      await this.#client.repos.createOrUpdateFileContents({
-        owner: this.options.user,
-        repo: this.options.repo,
-        branch: this.options.branch,
-        sha: contents ? contents.data.sha : false,
-        message,
-        path,
-        content,
-      });
+    await this.#client(path, "PUT", {
+      branch: this.options.branch,
+      content,
+      message,
+      sha: json ? json.sha : false,
+    });
 
-      return true;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    return true;
   }
 
   /**
@@ -172,30 +156,16 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
   async deleteFile(path, message) {
-    try {
-      const contents = await this.#client.repos.getContent({
-        owner: this.options.user,
-        repo: this.options.repo,
-        ref: this.options.branch,
-        path,
-      });
-      await this.#client.repos.deleteFile({
-        owner: this.options.user,
-        repo: this.options.repo,
-        branch: this.options.branch,
-        sha: contents.data.sha,
-        message,
-        path,
-      });
+    const response = await this.#client(`${path}?ref=${this.options.branch}`);
+    const json = await response.json();
 
-      return true;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    await this.#client(path, "DELETE", {
+      branch: this.options.branch,
+      sha: json.sha,
+      message,
+    });
+
+    return true;
   }
 
   init(Indiekit) {
