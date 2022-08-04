@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-alpha.12",
-    "@octokit/rest": "^19.0.3"
+    "undici": "^5.8.0"
   },
   "publishConfig": {
     "access": "public"

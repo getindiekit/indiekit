@@ -22,11 +22,12 @@ Add `@indiekit/store-github` to your list of plug-ins, specifying options as req
 
 ## Options
 
-| Option   | Type     | Description                                                                                |
-| :------- | :------- | :----------------------------------------------------------------------------------------- |
-| `user`   | `string` | Your GitHub username. _Required_.                                                          |
-| `repo`   | `string` | The name of your GitHub repository. _Required_.                                            |
-| `branch` | `string` | The branch files will be saved to. _Optional_, defaults to `main`.                         |
-| `token`  | `string` | [A GitHub personal access token][pat]. _Required_, defaults to `process.env.GITHUB_TOKEN`. |
+| Option    | Type     | Description                                                                                |
+| :-------- | :------- | :----------------------------------------------------------------------------------------- |
+| `baseUrl` | `string` | Enterprise GitHub API URL. _Optional_, defaults to `https://api.github.com`.               |
+| `user`    | `string` | Your GitHub username. _Required_.                                                          |
+| `repo`    | `string` | The name of your GitHub repository. _Required_.                                            |
+| `branch`  | `string` | The branch files will be saved to. _Optional_, defaults to `main`.                         |
+| `token`   | `string` | [A GitHub personal access token][pat]. _Required_, defaults to `process.env.GITHUB_TOKEN`. |
 
 [pat]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
