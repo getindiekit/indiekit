@@ -48,7 +48,7 @@
     "@indiekit/endpoint-token": "^1.0.0-alpha.12",
     "@indiekit/frontend": "^1.0.0-alpha.12",
     "@indiekit/preset-jekyll": "^1.0.0-alpha.9",
-    "clean-stack": "^4.2.0",
+    "clean-stack": "^5.0.0",
     "commander": "^9.4.0",
     "cookie-session": "^2.0.0",
     "cosmiconfig": "^7.0.1",
@@ -61,7 +61,7 @@
     "keyv": "^4.2.0",
     "keyv-mongodb": "^2.0.0",
     "lodash": "^4.17.21",
-    "mongodb": "^4.8.0",
+    "mongodb": "^4.11.0",
     "undici": "^5.2.0"
   },
   "publishConfig": {

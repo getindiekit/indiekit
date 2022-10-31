@@ -48,7 +48,7 @@
     "striptags": "^4.0.0-alpha.2",
     "turndown": "^7.1.1",
     "undici": "^5.2.0",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   },
   "publishConfig": {
     "access": "public"
