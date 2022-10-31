@@ -23,10 +23,19 @@ defaults:
       image: /assets/images/opengraph_image.png
 
 # Theme
-remote_theme: just-the-docs/just-the-docs
+remote_theme: just-the-docs/just-the-docs@v0.4.0.rc3
 aux_links:
   "Indiekit on GitHub":
     - https://github.com/getindiekit/indiekit
+callouts:
+  important:
+    title: Important
+    color: red
+  information:
+    title: Note
+    color: purple
+  note:
+    color: purple
 logo: /assets/images/logo.svg
 
 # GitHub edit link

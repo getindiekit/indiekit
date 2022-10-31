@@ -57,7 +57,7 @@ This will tell Indiekit to syndicate the most recent un-syndicated post to the t
 > Netlify allows [posting to an outgoing webhook](https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks) once a deploy has succeeded.
 >
 > In ‘URL to notify’, enter your server’s syndication endpoint with your access token as the `token` parameter, for example: `https://indiekit.website.example/syndicate?token=XXXXXXX`.
-{: .information }
+{: .note }
 
 Once this has been completed, Indiekit will update the post, replacing `mp-syndicate-to` with a `syndication` property listing the location of each syndicated copy:
 
