@@ -40,7 +40,7 @@ export const testConfig = async (options) => {
       }),
     },
     plugins: [
-      "@indiekit/store-github",
+      "@indiekit-test/store",
       ...(options.usePreset ? ["@indiekit/preset-jekyll"] : []),
       ...(options.useSyndicator ? ["@indiekit/syndicator-twitter"] : []),
     ],
@@ -50,18 +50,16 @@ export const testConfig = async (options) => {
       timeZone: "UTC",
       tokenEndpoint: options?.publication?.tokenEndpoint,
     },
-    "@indiekit/store-github": {
-      token: "abc123",
-      user: "username",
-      repo: "repo",
+    "@indiekit-test/store": {
+      user: "user",
     },
     "@indiekit/syndicator-twitter": {
       checked: true,
       user: "username",
-      apiKey: "abc123",
-      apiKeySecret: "abc123",
-      accessToken: "abc123",
-      accessTokenSecret: "abc123",
+      apiKey: "abcd1234",
+      apiKeySecret: "abcd1234",
+      accessToken: "abcd1234",
+      accessTokenSecret: "abcd1234",
     },
   };
 };
