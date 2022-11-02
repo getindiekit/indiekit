@@ -1,6 +1,6 @@
 import process from "node:process";
 import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
-import GithubStore from "@indiekit/store-github";
+import TestStore from "@indiekit-test/store";
 import JekyllPreset from "@indiekit/preset-jekyll";
 
 export const publication = {
@@ -9,10 +9,8 @@ export const publication = {
   postTemplate(properties) {
     return JSON.stringify(properties);
   },
-  store: new GithubStore({
-    token: "abc123",
-    user: "username",
-    repo: "repo",
+  store: new TestStore({
+    user: "user",
   }),
   storeMessageTemplate: (metaData) =>
     `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
