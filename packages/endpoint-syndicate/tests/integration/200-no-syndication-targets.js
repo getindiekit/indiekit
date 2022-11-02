@@ -1,15 +1,13 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import supertest from "supertest";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns no syndication targets configured", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foobar"))
-    .twice()
-    .reply(200);
+setGlobalDispatcher(storeAgent());
 
+test("Returns no syndication targets configured", async (t) => {
   const server = await testServer({ useSyndicator: false });
   const request = supertest.agent(server);
   await request
