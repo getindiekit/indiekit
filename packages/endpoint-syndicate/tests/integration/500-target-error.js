@@ -2,13 +2,13 @@ import process from "node:process";
 import test from "ava";
 import nock from "nock";
 import supertest from "supertest";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
+setGlobalDispatcher(storeAgent());
+
 test("Returns 500 error syndicating URL", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foobar"))
-    .twice()
-    .reply(200);
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .replyWithError("Not found");
