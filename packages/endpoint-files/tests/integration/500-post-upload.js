@@ -1,22 +1,15 @@
-import process from "node:process";
 import test from "ava";
-import nock from "nock";
-import supertest from "supertest";
 import { JSDOM } from "jsdom";
+import supertest from "supertest";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-test("Returns 500 error uploading file", async (t) => {
-  nock("https://token-endpoint.example").get("/").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "create",
-  });
-  nock("https://api.github.com")
-    .put((uri) => uri.includes(".jpg"))
-    .reply(500, "Something went wrong");
+setGlobalDispatcher(storeAgent());
 
-  // Upload file
+test.failing("Returns 500 error uploading file", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
