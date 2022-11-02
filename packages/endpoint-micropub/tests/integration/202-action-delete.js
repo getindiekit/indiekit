@@ -1,20 +1,13 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import supertest from "supertest";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-test("Deletes post", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foobar.md"))
-    .reply(200);
-  nock("https://api.github.com")
-    .get((uri) => uri.includes("foobar.md"))
-    .reply(200);
-  nock("https://api.github.com")
-    .delete((uri) => uri.includes("foobar.md"))
-    .reply(200);
+setGlobalDispatcher(storeAgent());
 
+test("Deletes post", async (t) => {
   // Create post
   const server = await testServer();
   const request = supertest.agent(server);

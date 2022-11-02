@@ -1,18 +1,17 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { publication } from "@indiekit-test/publication";
 import { postData } from "@indiekit-test/post-data";
 import { post } from "../../lib/post.js";
+
+setGlobalDispatcher(storeAgent());
 
 test.beforeEach((t) => {
   t.context.url = "https://website.example/foo";
 });
 
-test.serial("Creates a post", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Create post" } });
-
+test("Creates a post", async (t) => {
   const result = await post.create(publication, postData);
 
   t.deepEqual(result, {
@@ -32,11 +31,7 @@ test("Throws error creating a post", async (t) => {
   });
 });
 
-test.serial("Updates a post", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Update post" } });
-
+test("Updates a post", async (t) => {
   const result = await post.update(publication, postData, t.context.url);
 
   t.deepEqual(result, {
@@ -55,13 +50,7 @@ test("Throws error updating a post", async (t) => {
   });
 });
 
-test.serial("Deletes a post", async (t) => {
-  nock("https://api.github.com")
-    .get((uri) => uri.includes("foo.md"))
-    .reply(200, {})
-    .delete((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Delete post" } });
-
+test("Deletes a post", async (t) => {
   const result = await post.delete(publication, postData);
 
   t.deepEqual(result, {
@@ -79,16 +68,7 @@ test("Throws error deleting a post", async (t) => {
   });
 });
 
-test.serial("Undeletes a post", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Create post" } })
-    .get((uri) => uri.includes("foo.md"))
-    .reply(200, {})
-    .delete((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Delete post" } })
-    .put((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Undelete post" } });
+test("Undeletes a post", async (t) => {
   await post.create(publication, postData);
   await post.delete(publication, postData);
 
@@ -105,24 +85,6 @@ test.serial("Undeletes a post", async (t) => {
 });
 
 test("Throws error undeleting a post", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Create post" } })
-    .get((uri) => uri.includes("foo.md"))
-    .reply(200, {})
-    .delete((uri) => uri.includes("foo.md"))
-    .reply(200, { commit: { message: "Delete post" } })
-    .put((uri) => uri.includes("foo.md"))
-    .replyWithError("Not found");
-  await post.create(publication, postData);
-  await post.delete(publication, postData);
-
-  await t.throwsAsync(post.undelete(publication, postData), {
-    message: /\bNot found\b/,
-  });
-});
-
-test("Throws error undeleting a post (no post previously deleted)", async (t) => {
   await t.throwsAsync(post.undelete(publication, false), {
     message: "Post was not previously deleted",
   });
