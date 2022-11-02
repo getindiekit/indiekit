@@ -1,16 +1,15 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
-import supertest from "supertest";
-import { getFixture } from "@indiekit-test/fixtures";
 import { JSDOM } from "jsdom";
+import supertest from "supertest";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
+import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns previously uploaded file", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes(".jpg"))
-    .reply(200, { commit: { message: "Message" } });
+setGlobalDispatcher(storeAgent());
 
+test("Returns previously uploaded file", async (t) => {
   // Upload file
   const server = await testServer();
   const request = supertest.agent(server);
