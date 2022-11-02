@@ -2,8 +2,12 @@ import process from "node:process";
 import test from "ava";
 import nock from "nock";
 import supertest from "supertest";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
+
+setGlobalDispatcher(storeAgent());
 
 test("Uploads file", async (t) => {
   nock("https://api.github.com")

@@ -1,9 +1,12 @@
 import test from "ava";
-import nock from "nock";
+import { setGlobalDispatcher } from "undici";
+import { storeAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "@indiekit-test/media-data";
 import { publication } from "@indiekit-test/publication";
 import { media } from "../../lib/media.js";
+
+setGlobalDispatcher(storeAgent());
 
 test.beforeEach((t) => {
   t.context.file = {
@@ -13,10 +16,6 @@ test.beforeEach((t) => {
 });
 
 test("Uploads a file", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("photo.jpg"))
-    .reply(200, { commit: { message: "Message" } });
-
   const result = await media.upload(publication, mediaData, t.context.file);
 
   t.deepEqual(result, {
@@ -31,11 +30,7 @@ test("Uploads a file", async (t) => {
 });
 
 test("Throws error uploading a file", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("photo.jpg"))
-    .replyWithError("Not found");
-
-  await t.throwsAsync(media.upload(publication, mediaData, t.context.file), {
-    message: /\bNot found\b/,
+  await t.throwsAsync(media.upload(false, mediaData, t.context.file), {
+    message: "storeMessageTemplate is not a function",
   });
 });
