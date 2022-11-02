@@ -14,7 +14,7 @@ export const githubAgent = () => {
   const readResponse = {
     content: "Zm9vYmFy", // ‘foobar’ Base64 encoded
     path: "foo.txt",
-    sha: "\b[0-9a-f]{5,40}\b",
+    sha: "1234",
   };
   const deleteResponse = {
     content: null,
