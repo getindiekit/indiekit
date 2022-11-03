@@ -2,11 +2,7 @@ import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
-import {
-  getCategories,
-  getEndpoints,
-  getPostTemplate,
-} from "../../lib/publication.js";
+import { getCategories, getEndpoints } from "../../lib/publication.js";
 
 await mockAgent("website");
 
@@ -77,31 +73,4 @@ test("Gets endpoints from publication configuration", (t) => {
 
   t.is(result.mediaEndpoint, "https://website.example/media");
   t.is(result.tokenEndpoint, "https://server.example/token");
-});
-
-test("Gets custom post template", (t) => {
-  const publication = {
-    postTemplate: (properties) => JSON.stringify(properties),
-  };
-  const postTemplate = getPostTemplate(publication);
-
-  const result = postTemplate({ published: "2021-01-21" });
-
-  t.is(result, '{"published":"2021-01-21"}');
-});
-
-test("Gets preset post template", (t) => {
-  const postTemplate = getPostTemplate(t.context.publication);
-
-  const result = postTemplate({ published: "2021-01-21" });
-
-  t.is(result, "---\ndate: 2021-01-21\n---\n");
-});
-
-test("Gets default post template", (t) => {
-  const postTemplate = getPostTemplate({});
-
-  const result = postTemplate({ published: "2021-01-21" });
-
-  t.is(result, '{"published":"2021-01-21"}');
 });

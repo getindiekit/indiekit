@@ -55,25 +55,3 @@ export const getEndpoints = (indiekitConfig, request) => {
 
   return endpoints;
 };
-
-/**
- * Get post template
- *
- * @param {object} publication - Publication configuration
- * @returns {Function} Post template rendering function
- */
-export const getPostTemplate = (publication) => {
-  if (publication.postTemplate) {
-    return publication.postTemplate;
-  }
-
-  if (publication.preset && publication.preset.postTemplate) {
-    /*
-     * Bind to publication.preset so that `this` in `postTemplate`
-     * function can keep the context of its parent class
-     */
-    return publication.preset.postTemplate.bind(publication.preset);
-  }
-
-  return (properties) => JSON.stringify(properties);
-};
