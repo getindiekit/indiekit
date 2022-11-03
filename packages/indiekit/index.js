@@ -5,8 +5,9 @@ import KeyvMongoDB from "keyv-mongodb";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
+import { getInstalledPlugins } from "./lib/installed-plugins.js";
+import { getLocaleCatalog } from "./lib/locale-catalog.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
-import { getInstalledPlugins, getLocaleCatalog } from "./lib/application.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 
