@@ -10,9 +10,13 @@ export function mockClient() {
   agent.disableNetConnect();
 
   const client = agent.get("https://website.example");
-  const photo = getFixture("file-types/photo.jpg", false);
+
+  // Get post
+  const post = getFixture("html/post.html");
+  client.intercept({ path: "/post.html" }).reply(200, post);
 
   // Get media files
+  const photo = getFixture("file-types/photo.jpg", false);
   for (let path of [1, 2, 3, 4, 5, 6]) {
     path = `/photo${path}.jpg`;
     client.intercept({ path }).reply(200, photo);
