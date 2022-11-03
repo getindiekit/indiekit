@@ -1,4 +1,4 @@
-import { getEndpoints } from "../publication.js";
+import { getEndpoints } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
 import { getUrl } from "../utils.js";
 

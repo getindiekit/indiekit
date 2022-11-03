@@ -1,7 +1,7 @@
 import test from "ava";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
-import { getEndpoints } from "../../lib/publication.js";
+import { getEndpoints } from "../../lib/endpoints.js";
 
 test.beforeEach(async (t) => {
   const config = await testConfig();
@@ -12,7 +12,6 @@ test.beforeEach(async (t) => {
     application: {
       mediaEndpoint: "/media",
       tokenEndpoint: "/token",
-      url: "https://server.example",
     },
     publication,
   };
