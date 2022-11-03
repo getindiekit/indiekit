@@ -6,7 +6,6 @@ import {
   getCategories,
   getEndpoints,
   getPostTemplate,
-  getPostTypes,
 } from "../../lib/publication.js";
 
 await mockAgent("website");
@@ -105,56 +104,4 @@ test("Gets default post template", (t) => {
   const result = postTemplate({ published: "2021-01-21" });
 
   t.is(result, '{"published":"2021-01-21"}');
-});
-
-test("Merges values from custom and preset post types", async (t) => {
-  const config = await testConfig({
-    usePostTypes: true,
-    usePreset: true,
-  });
-  const indiekit = new Indiekit({ config });
-  const { publication } = await indiekit.bootstrap();
-
-  const result = getPostTypes(publication);
-
-  t.is(result[0].name, "Article");
-  t.is(result[1].name, "Custom note post type");
-});
-
-test("Returns preset post types", async (t) => {
-  const config = await testConfig({
-    usePostTypes: false,
-    usePreset: true,
-  });
-  const indiekit = new Indiekit({ config });
-  const { publication } = await indiekit.bootstrap();
-
-  const result = getPostTypes(publication);
-
-  t.is(result[0].name, "Article");
-  t.is(result[1].name, "Note");
-});
-
-test("Returns custom post types", async (t) => {
-  const config = await testConfig({
-    usePostTypes: true,
-    usePreset: false,
-  });
-  const indiekit = new Indiekit({ config });
-  const { publication } = await indiekit.bootstrap();
-
-  const result = getPostTypes(publication);
-
-  t.is(result[0].name, "Custom note post type");
-});
-
-test("Returns array if no preset or custom post types", async (t) => {
-  const config = await testConfig({
-    usePostTypes: false,
-    usePreset: false,
-  });
-  const indiekit = new Indiekit({ config });
-  const { publication } = await indiekit.bootstrap();
-
-  t.deepEqual(getPostTypes(publication), []);
 });

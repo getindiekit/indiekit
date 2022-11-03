@@ -6,11 +6,8 @@ import { expressConfig } from "./config/express.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
 import { getInstalledPlugins, getLocaleCatalog } from "./lib/application.js";
-import {
-  getCategories,
-  getPostTemplate,
-  getPostTypes,
-} from "./lib/publication.js";
+import { getPostTypes } from "./lib/post-types.js";
+import { getCategories, getPostTemplate } from "./lib/publication.js";
 
 export const Indiekit = class {
   constructor(options = {}) {
