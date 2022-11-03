@@ -52,13 +52,11 @@ export default class GithubStore {
   }
 
   /**
-   * Get GitHub client interface
-   *
    * @private
    * @param {string} path - Request path
    * @param {string} [method=GET] - Request method
    * @param {object} [body] - Request body
-   * @returns
+   * @returns {Function} GitHub client interface
    */
   async #client(path, method = "GET", body) {
     const { baseUrl, user, repo, token } = this.options;

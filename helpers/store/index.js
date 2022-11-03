@@ -26,13 +26,11 @@ export default class TestStore {
   }
 
   /**
-   * Get client interface
-   *
    * @private
    * @param {string} path - Request path
    * @param {string} [method=GET] - Request method
    * @param {object} [body] - Request body
-   * @returns
+   * @returns {Function} Store client interface
    */
   async #client(path, method = "GET", body) {
     const { baseUrl, user } = this.options;

@@ -1,10 +1,15 @@
 import { MockAgent } from "undici";
 
-export function mockClient({ instance = "https://getea.com" }) {
+/**
+ * @param {object} [options] - Options
+ * @returns {Function} Undici MockClient
+ * @see {@link: https://undici.nodejs.org/#/docs/api/MockClient}
+ */
+export function mockClient(options) {
   const agent = new MockAgent();
   agent.disableNetConnect();
 
-  const client = agent.get(instance);
+  const client = agent.get(options.instance || "https://gitea.com");
   const path = "/api/v1/repos/username/repo/contents/foo.txt";
   const getResponse = {
     content: "Zm9vYmFy", // ‘foobar’ Base64 encoded

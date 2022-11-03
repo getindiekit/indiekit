@@ -8,11 +8,9 @@ import markdownIt from "../markdown-it.js";
  * @returns {string} HTML
  */
 export const markdown = (string, value) => {
-  if (string) {
-    if (value === "inline") {
-      return markdownIt.renderInline(string);
-    }
-
-    return markdownIt.render(string);
+  if (value === "inline") {
+    return markdownIt.renderInline(string);
   }
+
+  return markdownIt.render(string);
 };

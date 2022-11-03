@@ -50,9 +50,8 @@ export default class BitbucketStore {
   }
 
   /**
-   * Get Bitbucket client interface
-   *
    * @private
+   * @returns {Function} Bitbucket client interface
    */
   get #client() {
     const { Bitbucket } = bitbucket;

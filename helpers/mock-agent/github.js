@@ -1,5 +1,9 @@
 import { MockAgent } from "undici";
 
+/**
+ * @returns {Function} Undici MockClient
+ * @see {@link: https://undici.nodejs.org/#/docs/api/MockClient}
+ */
 export function mockClient() {
   const agent = new MockAgent();
   agent.disableNetConnect();
@@ -22,7 +26,6 @@ export function mockClient() {
   };
   const errorResponse = {
     message: "Bad credentials",
-    documentation_url: "https://docs.github.com/rest",
   };
 
   // Create/update file

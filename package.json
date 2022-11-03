@@ -141,6 +141,7 @@
           ]
         }
       ],
+      "jsdoc/require-returns-check": 0,
       "unicorn/prevent-abbreviations": [
         "error",
         {

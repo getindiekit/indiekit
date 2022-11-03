@@ -60,9 +60,8 @@ export default class GitlabStore {
   }
 
   /**
-   * Get GitLab client interface
-   *
    * @private
+   * @returns {Function} GitLab client interface
    */
   get #client() {
     const { Gitlab } = gitbeaker;

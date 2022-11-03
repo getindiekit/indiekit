@@ -1,6 +1,10 @@
 import process from "node:process";
 import { MockAgent } from "undici";
 
+/**
+ * @returns {Function} Undici MockClient
+ * @see {@link: https://undici.nodejs.org/#/docs/api/MockClient}
+ */
 export function mockClient() {
   const agent = new MockAgent();
   agent.disableNetConnect();
