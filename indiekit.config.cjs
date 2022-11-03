@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: [
     "@indiekit/preset-jekyll",
-    "@indiekit/store-github",
+    "@indiekit/store-file-system",
     "@indiekit/syndicator-mastodon",
     "@indiekit/syndicator-twitter",
   ],
@@ -19,10 +19,8 @@ module.exports = {
     me: process.env.PUBLICATION_URL,
     timeZone: process.env.TZ,
   },
-  "@indiekit/store-github": {
-    user: process.env.GITHUB_USER,
-    repo: process.env.GITHUB_REPO,
-    branch: process.env.GITHUB_BRANCH,
+  "@indiekit/store-file-system": {
+    directory: "tmp",
   },
   "@indiekit/syndicator-mastodon": {
     checked: true,
