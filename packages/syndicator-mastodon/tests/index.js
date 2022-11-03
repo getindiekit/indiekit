@@ -3,7 +3,7 @@ import test from "ava";
 import nock from "nock";
 import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
-import MastodonSyndicator from "../../index.js";
+import MastodonSyndicator from "../index.js";
 
 const mastodon = new MastodonSyndicator({
   accessToken: "token",

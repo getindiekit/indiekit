@@ -1,7 +1,7 @@
 import test from "ava";
 import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
-import HugoPreset from "../../index.js";
+import HugoPreset from "../index.js";
 
 const hugo = new HugoPreset();
 

@@ -1,7 +1,7 @@
 import test from "ava";
 import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
-import GithubStore from "../../index.js";
+import GithubStore from "../index.js";
 
 await mockAgent("github");
 

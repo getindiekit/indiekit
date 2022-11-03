@@ -1,7 +1,7 @@
 import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { Indiekit } from "@indiekit/indiekit";
-import InternetArchiveSyndicator from "../../index.js";
+import InternetArchiveSyndicator from "../index.js";
 
 await mockAgent("internet-archive");
 

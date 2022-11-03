@@ -1,6 +1,6 @@
 import test from "ava";
 import { Indiekit } from "@indiekit/indiekit";
-import FtpStore from "../../index.js";
+import FtpStore from "../index.js";
 
 const ftp = new FtpStore({
   host: "ftp.server.example",
