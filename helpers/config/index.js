@@ -6,6 +6,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 const defaultOptions = {
   locale: "en",
   useDatabase: true,
+  usePostTypes: true,
   usePreset: true,
   useSyndicator: true,
 };
@@ -17,11 +18,11 @@ export const testConfig = async (options) => {
   const mongod = await MongoMemoryServer.create();
   const mongodbUrl = mongod.getUri();
 
-  // Configure note post type with date-less URL for easier testing
+  // Configure custom note post type with date-less URL for easier testing
   const postTypes = [
     {
       type: "note",
-      name: "Note",
+      name: "Custom note post type",
       post: {
         path: "src/content/notes/{slug}.md",
         url: "notes/{slug}/",
@@ -46,7 +47,7 @@ export const testConfig = async (options) => {
     ],
     publication: {
       me: options?.publication?.me || process.env.TEST_PUBLICATION_URL,
-      postTypes,
+      ...(options.usePostTypes && { postTypes }),
       timeZone: "UTC",
       tokenEndpoint: options?.publication?.tokenEndpoint,
     },
