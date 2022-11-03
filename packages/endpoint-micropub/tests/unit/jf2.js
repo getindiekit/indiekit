@@ -1,6 +1,7 @@
 import test from "ava";
 import dateFns from "date-fns";
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import {
   formEncodedToJf2,
   mf2ToJf2,
@@ -16,6 +17,8 @@ import {
 } from "../../lib/jf2.js";
 
 const { isValid, parseISO } = dateFns;
+
+await mockAgent("website");
 
 test.beforeEach((t) => {
   t.context = {
@@ -50,8 +53,8 @@ test("Creates JF2 object from form-encoded request", (t) => {
   });
 });
 
-test("Converts mf2 to JF2", (t) => {
-  const result = mf2ToJf2({
+test("Converts mf2 to JF2", async (t) => {
+  const result = await mf2ToJf2({
     type: ["h-entry"],
     properties: {
       content: ["I ate a cheese sandwich, which was nice."],
@@ -75,6 +78,36 @@ test("Converts mf2 to JF2", (t) => {
         alt: "Example photo",
       },
     ],
+  });
+});
+
+test("Converts mf2 to JF2 with referenced URL data", async (t) => {
+  const result = await mf2ToJf2(
+    {
+      type: ["h-entry"],
+      properties: {
+        content: ["I ate a cheese sandwich, which was nice."],
+        category: ["foo", "bar"],
+        "bookmark-of": ["https://website.example/post.html"],
+      },
+    },
+    true
+  );
+
+  t.deepEqual(result, {
+    type: "entry",
+    content: "I ate a cheese sandwich, which was nice.",
+    category: ["foo", "bar"],
+    "bookmark-of": "https://website.example/post.html",
+    references: {
+      "https://website.example/post.html": {
+        type: "entry",
+        name: "I ate a cheese sandwich, which was nice.",
+        published: "2013-03-07",
+        content: "I ate a cheese sandwich, which was nice.",
+        url: "https://website.example/post.html",
+      },
+    },
   });
 });
 
