@@ -1,11 +1,10 @@
 import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { indieauthAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(indieauthAgent());
+await mockAgent("indieauth");
 
 test("Grants token and returns JSON", async (t) => {
   const server = await testServer();

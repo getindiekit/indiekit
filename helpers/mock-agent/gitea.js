@@ -1,9 +1,9 @@
 import { MockAgent } from "undici";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
+export function mockClient({ instance = "https://getea.com" }) {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
 
-export const giteaAgent = (instance = "https://getea.com") => {
   const client = agent.get(instance);
   const path = "/api/v1/repos/username/repo/contents/foo.txt";
   const getResponse = {
@@ -55,4 +55,4 @@ export const giteaAgent = (instance = "https://getea.com") => {
     .reply(404, { message: "Not found" });
 
   return client;
-};
+}

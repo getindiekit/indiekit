@@ -1,12 +1,11 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { storeAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "@indiekit-test/media-data";
 import { publication } from "@indiekit-test/publication";
 import { media } from "../../lib/media.js";
 
-setGlobalDispatcher(storeAgent());
+await mockAgent("store");
 
 test.beforeEach((t) => {
   t.context.file = {

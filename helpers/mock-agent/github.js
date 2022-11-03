@@ -1,10 +1,10 @@
 import { MockAgent } from "undici";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
-agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
+export function mockClient() {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
+  agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
 
-export const githubAgent = () => {
   const client = agent.get("https://api.github.com");
   const path = /\/repos\/user\/repo\/contents\/.*\.md/;
   const createResponse = {
@@ -59,5 +59,5 @@ export const githubAgent = () => {
   // Delete file
   client.intercept({ path, method: "DELETE" }).reply(200, deleteResponse);
 
-  return agent;
-};
+  return client;
+}

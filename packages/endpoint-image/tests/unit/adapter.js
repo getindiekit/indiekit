@@ -1,10 +1,9 @@
 import { Buffer } from "node:buffer";
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { websiteAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { Adapter } from "../../lib/adapter.js";
 
-setGlobalDispatcher(websiteAgent());
+await mockAgent("website");
 
 test.beforeEach((t) => {
   t.context.adapter = new Adapter({ prefixUrl: "https://website.example" });

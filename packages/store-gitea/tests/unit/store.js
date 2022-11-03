@@ -1,10 +1,9 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
 import { Indiekit } from "@indiekit/indiekit";
-import { giteaAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import GiteaStore from "../../index.js";
 
-setGlobalDispatcher(giteaAgent());
+await mockAgent("gitea");
 
 const gitea = new GiteaStore({
   token: "token",
@@ -43,7 +42,9 @@ test("Creates file in a repository", async (t) => {
 });
 
 test("Creates file in a repository at custom instance", async (t) => {
-  setGlobalDispatcher(giteaAgent("https://gitea.instance"));
+  await mockAgent("gitea", {
+    instance: "https://gitea.instance",
+  });
   const result = await giteaInstance.createFile("foo.txt", "foo", "Message");
 
   t.true(result);

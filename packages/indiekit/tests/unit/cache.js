@@ -2,11 +2,10 @@ import test from "ava";
 import Keyv from "keyv";
 import KeyvMongoDB from "keyv-mongodb";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { setGlobalDispatcher } from "undici";
-import { websiteAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { getCachedResponse } from "../../lib/cache.js";
 
-setGlobalDispatcher(websiteAgent());
+await mockAgent("website");
 
 test.beforeEach(async (t) => {
   const mongod = await MongoMemoryServer.create();

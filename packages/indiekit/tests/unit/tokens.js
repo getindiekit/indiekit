@@ -1,13 +1,12 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import {
   findBearerToken,
   requestTokenValues,
   verifyTokenValues,
 } from "../../lib/tokens.js";
 
-setGlobalDispatcher(tokenEndpointAgent());
+await mockAgent("token-endpoint");
 
 test.beforeEach((t) => {
   t.context = {

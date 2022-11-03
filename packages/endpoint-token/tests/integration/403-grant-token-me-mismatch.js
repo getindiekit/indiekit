@@ -1,10 +1,9 @@
 import test from "ava";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { indieauthAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(indieauthAgent());
+await mockAgent("indieauth");
 
 test("Returns 403 error granting token if URLs don’t match", async (t) => {
   const server = await testServer({

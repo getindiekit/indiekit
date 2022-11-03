@@ -2,12 +2,11 @@ import process from "node:process";
 import test from "ava";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { storeAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(storeAgent());
+await mockAgent("store");
 
 test("Returns previously uploaded file", async (t) => {
   // Upload file

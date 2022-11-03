@@ -1,10 +1,10 @@
 import process from "node:process";
 import { MockAgent } from "undici";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
+export const mockClient = () => {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
 
-export const indieauthAgent = () => {
   const client = agent.get("https://indieauth.com");
 
   // Grant token

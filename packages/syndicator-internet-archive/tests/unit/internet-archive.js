@@ -1,9 +1,8 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { internetArchiveAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { internetArchive } from "../../lib/internet-archive.js";
 
-setGlobalDispatcher(internetArchiveAgent());
+await mockAgent("internet-archive");
 
 test.beforeEach((t) => {
   t.context = {

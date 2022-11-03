@@ -1,11 +1,10 @@
 /* eslint-disable camelcase */
 import test from "ava";
 import nock from "nock";
-import { setGlobalDispatcher } from "undici";
-import { websiteAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { twitter } from "../../lib/twitter.js";
 
-setGlobalDispatcher(websiteAgent());
+await mockAgent("website");
 
 test.beforeEach((t) => {
   t.context = {

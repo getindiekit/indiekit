@@ -1,11 +1,10 @@
 import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { storeAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(storeAgent());
+await mockAgent("store");
 
 test("Un-deletes post", async (t) => {
   // Create post

@@ -3,11 +3,10 @@ import { IndiekitError } from "@indiekit/error";
 import test from "ava";
 import sinon from "sinon";
 import mockReqRes from "mock-req-res";
-import { setGlobalDispatcher } from "undici";
-import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { IndieAuth } from "../../lib/indieauth.js";
 
-setGlobalDispatcher(tokenEndpointAgent());
+await mockAgent("token-endpoint");
 
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({

@@ -1,10 +1,10 @@
 import { MockAgent } from "undici";
 import { getFixture } from "@indiekit-test/fixtures";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
+export function mockClient() {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
 
-export const websiteAgent = () => {
   const client = agent.get("https://website.example");
   const photo = getFixture("file-types/photo.jpg", false);
 
@@ -24,4 +24,4 @@ export const websiteAgent = () => {
   client.intercept({ path: "/404.json" }).reply(404, { message: "Not found" });
 
   return client;
-};
+}

@@ -1,10 +1,10 @@
 import { MockAgent } from "undici";
 import { getFixture } from "@indiekit-test/fixtures";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
+export function mockClient() {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
 
-export const tokenEndpointAgent = () => {
   const client = agent.get("https://token-endpoint.example");
   const post = getFixture("html/post.html", false);
   const page = getFixture("html/page.html", false);
@@ -87,4 +87,4 @@ export const tokenEndpointAgent = () => {
   });
 
   return client;
-};
+}

@@ -1,10 +1,9 @@
 import test from "ava";
 import { Indiekit } from "@indiekit/indiekit";
-import { setGlobalDispatcher } from "undici";
-import { githubAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import GithubStore from "../../index.js";
 
-setGlobalDispatcher(githubAgent());
+await mockAgent("github");
 
 const github = new GithubStore({
   token: "abcd1234",

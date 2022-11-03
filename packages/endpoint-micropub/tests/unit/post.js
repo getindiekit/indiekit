@@ -1,11 +1,10 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { storeAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { publication } from "@indiekit-test/publication";
 import { postData } from "@indiekit-test/post-data";
 import { post } from "../../lib/post.js";
 
-setGlobalDispatcher(storeAgent());
+await mockAgent("store");
 
 test.beforeEach((t) => {
   t.context.url = "https://website.example/foo";

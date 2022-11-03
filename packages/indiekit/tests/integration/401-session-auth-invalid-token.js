@@ -1,10 +1,9 @@
 import test from "ava";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { tokenEndpointAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(tokenEndpointAgent());
+await mockAgent("token-endpoint");
 
 test("Returns authenticated session", async (t) => {
   const server = await testServer({

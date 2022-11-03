@@ -1,10 +1,10 @@
 import process from "node:process";
 import { MockAgent } from "undici";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
+export function mockClient() {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
 
-export const mediaEndpointAgent = () => {
   const client = agent.get("https://media-endpoint.example");
 
   // Upload media
@@ -46,4 +46,4 @@ export const mediaEndpointAgent = () => {
     });
 
   return client;
-};
+}

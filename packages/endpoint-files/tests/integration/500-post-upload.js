@@ -1,13 +1,12 @@
 import test from "ava";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { storeAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-setGlobalDispatcher(storeAgent());
+await mockAgent("store");
 
 test.failing("Returns 500 error uploading file", async (t) => {
   const server = await testServer();

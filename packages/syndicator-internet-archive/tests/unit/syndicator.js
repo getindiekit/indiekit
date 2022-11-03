@@ -1,10 +1,9 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { internetArchiveAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { Indiekit } from "@indiekit/indiekit";
 import InternetArchiveSyndicator from "../../index.js";
 
-setGlobalDispatcher(internetArchiveAgent());
+await mockAgent("internet-archive");
 
 const internetArchive = new InternetArchiveSyndicator({
   accessKey: "token",

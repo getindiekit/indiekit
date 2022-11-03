@@ -1,10 +1,10 @@
 import { MockAgent } from "undici";
 
-const agent = new MockAgent();
-agent.disableNetConnect();
-agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
+export function mockClient() {
+  const agent = new MockAgent();
+  agent.disableNetConnect();
+  agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
 
-export const storeAgent = () => {
   const client = agent.get("https://store.example");
   const path = /\/user\/.*\.(md|jpg)/;
   const response = {
@@ -21,4 +21,4 @@ export const storeAgent = () => {
   client.intercept({ path, method: "DELETE" }).reply(200, response).persist();
 
   return agent;
-};
+}

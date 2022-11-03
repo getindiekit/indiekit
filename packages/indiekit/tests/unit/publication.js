@@ -1,6 +1,5 @@
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { websiteAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
 import {
@@ -10,7 +9,7 @@ import {
   getPostTypes,
 } from "../../lib/publication.js";
 
-setGlobalDispatcher(websiteAgent());
+await mockAgent("website");
 
 test.beforeEach(async (t) => {
   const config = await testConfig();

@@ -1,12 +1,11 @@
 import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
-import { setGlobalDispatcher } from "undici";
-import { githubAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 
-setGlobalDispatcher(githubAgent());
+await mockAgent("store");
 
 test("Returns 403 error token has insufficient scope", async (t) => {
   const server = await testServer();

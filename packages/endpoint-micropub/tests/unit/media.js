@@ -1,11 +1,10 @@
 import process from "node:process";
 import test from "ava";
-import { setGlobalDispatcher } from "undici";
-import { mediaEndpointAgent } from "@indiekit-test/mock-agent";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { uploadMedia } from "../../lib/media.js";
 
-setGlobalDispatcher(mediaEndpointAgent());
+await mockAgent("media-endpoint");
 
 test.beforeEach((t) => {
   t.context = {
