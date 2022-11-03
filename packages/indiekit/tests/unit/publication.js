@@ -1,10 +1,7 @@
 import test from "ava";
-import { mockAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
-import { getCategories, getEndpoints } from "../../lib/publication.js";
-
-await mockAgent("website");
+import { getEndpoints } from "../../lib/publication.js";
 
 test.beforeEach(async (t) => {
   const config = await testConfig();
@@ -19,39 +16,6 @@ test.beforeEach(async (t) => {
     },
     publication,
   };
-});
-
-test("Returns array of available categories", async (t) => {
-  const result = await getCategories(undefined, {
-    categories: ["Foo", "Bar"],
-  });
-
-  t.deepEqual(result, ["Foo", "Bar"]);
-});
-
-test("Fetches array from remote JSON file", async (t) => {
-  const result = await getCategories(undefined, {
-    categories: "https://website.example/categories.json",
-  });
-
-  t.deepEqual(result, ["Foo", "Bar"]);
-});
-
-test("Returns empty array if remote JSON file not found", async (t) => {
-  await t.throwsAsync(
-    getCategories(undefined, {
-      categories: "https://website.example/404.json",
-    }),
-    {
-      message: "Not Found",
-    }
-  );
-});
-
-test("Returns empty array if no publication configuration", async (t) => {
-  const result = await getCategories(undefined, {});
-
-  t.deepEqual(result, []);
 });
 
 test("Gets endpoints from server derived values", (t) => {

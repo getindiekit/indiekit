@@ -3,12 +3,12 @@ import process from "node:process";
 import Keyv from "keyv";
 import KeyvMongoDB from "keyv-mongodb";
 import { expressConfig } from "./config/express.js";
+import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getMongodbConfig } from "./lib/mongodb.js";
 import { getInstalledPlugins, getLocaleCatalog } from "./lib/application.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
-import { getCategories } from "./lib/publication.js";
 
 export const Indiekit = class {
   constructor(options = {}) {
