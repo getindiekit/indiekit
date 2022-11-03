@@ -83,22 +83,20 @@ export const getPostTemplate = (publication) => {
  * Get merged preset and custom post types
  *
  * @param {object} publication - Publication configuration
+ * @param {Array} publication.postTypes - Publication post types
+ * @param {object} publication.preset - Publication preset
  * @returns {object} Merged configuration
  */
-export const getPostTypes = (publication) => {
-  const hasPresetPostTypes = publication.preset && publication.preset.postTypes;
-  const hasCustomPostTypes = publication.postTypes;
-
-  if (hasPresetPostTypes && hasCustomPostTypes) {
-    const mergedPostTypes = _.values(
-      _.merge(
-        _.keyBy(publication.preset.postTypes, "type"),
-        _.keyBy(publication.postTypes, "type")
-      )
+export const getPostTypes = ({ postTypes, preset }) => {
+  if (preset?.postTypes && postTypes) {
+    return _.values(
+      _.merge(_.keyBy(preset.postTypes, "type"), _.keyBy(postTypes, "type"))
     );
-
-    return mergedPostTypes;
   }
 
-  return [];
+  if (preset?.postTypes) {
+    return preset.postTypes;
+  }
+
+  return postTypes;
 };

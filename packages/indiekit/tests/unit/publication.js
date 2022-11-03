@@ -107,53 +107,54 @@ test("Gets default post template", (t) => {
   t.is(result, '{"published":"2021-01-21"}');
 });
 
-test("Merges values from custom and preset post types", (t) => {
-  t.context.publication.postTypes = [
-    {
-      type: "note",
-      name: "Journal entry",
-      post: {
-        path: "_entries/{T}.md",
-        url: "entries/{T}",
-      },
-    },
-    {
-      type: "photo",
-      name: "Picture",
-      post: {
-        path: "_pictures/{T}.md",
-        url: "_pictures/{T}",
-      },
-      media: {
-        path: "src/media/pictures/{T}.{ext}",
-        url: "media/pictures/{T}.{ext}",
-      },
-    },
-  ];
-  const result = getPostTypes(t.context.publication);
+test("Merges values from custom and preset post types", async (t) => {
+  const config = await testConfig({
+    usePostTypes: true,
+    usePreset: true,
+  });
+  const indiekit = new Indiekit({ config });
+  const { publication } = await indiekit.bootstrap();
 
-  t.deepEqual(result[1], {
-    type: "note",
-    name: "Journal entry",
-    post: {
-      path: "_entries/{T}.md",
-      url: "entries/{T}",
-    },
-  });
-  t.deepEqual(result[2], {
-    type: "photo",
-    name: "Picture",
-    post: {
-      path: "_pictures/{T}.md",
-      url: "_pictures/{T}",
-    },
-    media: {
-      path: "src/media/pictures/{T}.{ext}",
-      url: "media/pictures/{T}.{ext}",
-    },
-  });
+  const result = getPostTypes(publication);
+
+  t.is(result[0].name, "Article");
+  t.is(result[1].name, "Custom note post type");
 });
 
-test("Returns array if no preset or custom post types", (t) => {
-  t.deepEqual(getPostTypes({}), []);
+test("Returns preset post types", async (t) => {
+  const config = await testConfig({
+    usePostTypes: false,
+    usePreset: true,
+  });
+  const indiekit = new Indiekit({ config });
+  const { publication } = await indiekit.bootstrap();
+
+  const result = getPostTypes(publication);
+
+  t.is(result[0].name, "Article");
+  t.is(result[1].name, "Note");
+});
+
+test("Returns custom post types", async (t) => {
+  const config = await testConfig({
+    usePostTypes: true,
+    usePreset: false,
+  });
+  const indiekit = new Indiekit({ config });
+  const { publication } = await indiekit.bootstrap();
+
+  const result = getPostTypes(publication);
+
+  t.is(result[0].name, "Custom note post type");
+});
+
+test("Returns array if no preset or custom post types", async (t) => {
+  const config = await testConfig({
+    usePostTypes: false,
+    usePreset: false,
+  });
+  const indiekit = new Indiekit({ config });
+  const { publication } = await indiekit.bootstrap();
+
+  t.deepEqual(getPostTypes(publication), []);
 });
