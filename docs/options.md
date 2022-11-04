@@ -216,6 +216,57 @@ Example, using a URL:
 
 ---
 
+### publication.enrichPostData `boolean`
+
+Fetch and append data about URLs referenced in new posts.
+
+_Optional_, defaults to `false`. For example:
+
+```json
+{
+  "publication": {
+    "enrichPostData": true
+  }
+}
+```
+
+When enabled, Indiekit will try to fetch Microformats data for any URL in a new post (for example URLs for `bookmark-of`, `like-of`, `repost-of`, `in-reply-to`).
+
+If any data is found, a `references` property will be included in the resulting post data. For example, given the following Micropub request:
+
+```http
+POST /micropub HTTP/1.1
+Host: indiekit.mywebsite.com
+Content-type: application/x-www-form-urlencoded
+Authorization: Bearer XXXXXXX
+
+h=entry
+&content=This+made+me+very+hungry.
+&bookmark-of=https://website.example/notes/123
+```
+
+should the note post at `https://website.example/notes/123` include Microformats, the following post data would be generated:
+
+```js
+{
+  date: "2022-11-03T22:00:00",
+  "bookmark-of": "https://website.example/notes/123",
+  content: "This made me very hungry.",
+  references: {
+    "https://website.example/notes/123": {
+      type: "entry",
+      published: "2013-03-07",
+      content: "I ate a cheese sandwich, which was nice.",
+      url: "https://website.example/notes/123"
+    }
+  }
+}
+```
+
+This referenced Microformats data could then be used in the design of your website to provide extra information about the content you are linking to.
+
+---
+
 ### publication.locale `string`
 
 Your publication’s locale. Currently used to format dates.
