@@ -29,6 +29,16 @@ Publish content to your website using apps like [iAWriter](https://ia.net/writer
 
 Learn how to [set up an Indiekit server](https://getindiekit.com/get-started/) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
 
+## Documentation website
+
+The documentation website is generated using [VitePress](https://vitepress.vuejs.org). To view this site locally:
+
+1. Install this project’s dependencies: `npm install`
+2. Start Jekyll’s server: `npm run docs:dev`
+3. View the documentation: <http://127.0.0.1:5173>
+
+The browser will refresh to reflect any changes you make to the documentation.
+
 ## Decisions
 
 Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in `/docs/decisions`.

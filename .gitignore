@@ -12,10 +12,7 @@ node_modules/
 vendor
 
 # Documentation
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
+docs/.vitepress/dist
 
 # Environment variables
 *.env

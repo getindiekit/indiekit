@@ -51,7 +51,7 @@ Localisations are managed using Localazy. If you see a translation that is not q
 
 ## Developing a plug-in
 
-Often the best way to add (or prototype) a new feature is to develop a plug-in using [Indiekit’s plug-in API](plugin-api/index.md).
+Often the best way to add (or prototype) a new feature is to develop a plug-in using [Indiekit’s plug-in API](plugins/api/index.md).
 
 When publishing a plug-in to the npm registry, add the `indiekit-plugin` tag so that other Indiekit users can find it. You can also request to have it listed alongside [other plug-ins](https://getindiekit.com/plugins/) on the project’s website.
 

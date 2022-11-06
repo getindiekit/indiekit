@@ -26,6 +26,8 @@
   "scripts": {
     "prepublishOnly": "localazy download",
     "postinstall": "husky install",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
     "dev": "nodemon",
     "start": "indiekit serve",
     "lint:scripts": "xo '**/*.js'",
@@ -74,6 +76,8 @@
     "stylelint-order": "^5.0.0",
     "supertest": "^6.1.6",
     "undici": "^5.2.0",
+    "vitepress": "^1.0.0-alpha.27",
+    "vue": "^3.2.41",
     "xo": "^0.52.0"
   },
   "ava": {

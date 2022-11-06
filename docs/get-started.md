@@ -1,7 +1,3 @@
----
-nav_order: 2
----
-
 # Get started
 
 ## Install Indiekit
@@ -22,7 +18,7 @@ Indiekit can now listen for Micropub requests, but a few bits of information are
 
 ## Configure your publication
 
-Indiekit needs to know your website’s URL. You can provide this information using Indiekit’s [configuration API](options.md). You can add options to a `indiekit` key in `package.json`:
+Indiekit needs to know your website’s URL. You can provide this information using Indiekit’s [configuration API](configuration/index.md). You can add options to a `indiekit` key in `package.json`:
 
 ```jsonc
 // package.json
@@ -30,7 +26,7 @@ Indiekit needs to know your website’s URL. You can provide this information us
   "name": "my-indiekit-server",
   "version": "1.0.0",
   "dependencies": {
-    "@indiekit/indiekit": "{{ site.github.latest_release.tag_name | replace: "v","^" }}"
+    "@indiekit/indiekit": "^1.0.0"
   },
   "indiekit": {
     "publication": {
@@ -42,7 +38,7 @@ Indiekit needs to know your website’s URL. You can provide this information us
 
 ## Add a publication preset
 
-Indiekit needs to know what post types you want to publish (for example notes and photos) and in which format. This information can be provided by setting `publication.postTypes` and `publication.postTemplate`. Learn about customising [post types](customisation/post-types.md) and your [post template](customisation/post-template.md).
+Indiekit needs to know what post types you want to publish (for example notes and photos) and in which format. This information can be provided by setting `publication.postTypes` and `publication.postTemplate`. Learn about customising [post types](configuration/post-types.md) and your [post template](configuration/post-template.md).
 
 A publication preset plug-in can provide default values for these options (which you can override in your configuration file).
 
@@ -60,8 +56,8 @@ Then add it to the `plugins` array in your `indiekit` configuration object:
   "name": "my-indiekit-server",
   "version": "1.0.0",
   "dependencies": {
-    "@indiekit/indiekit": "{{ site.github.latest_release.tag_name | replace: "v","^" }}",
-    "@indiekit/preset-jekyll": "{{ site.github.latest_release.tag_name | replace: "v","^" }}"
+    "@indiekit/indiekit": "^1.0.0",
+    "@indiekit/preset-jekyll": "^1.0.0"
   },
   "indiekit": {
     "plugins": [
@@ -92,9 +88,9 @@ Then add it to the `plugins` array in your `indiekit` configuration object. If i
   "name": "my-indiekit-server",
   "version": "1.0.0",
   "dependencies": {
-    "@indiekit/indiekit": "{{ site.github.latest_release.tag_name | replace: "v","^" }}",
-    "@indiekit/preset-jekyll": "{{ site.github.latest_release.tag_name | replace: "v","^" }}",
-    "@indiekit/store-github": "{{ site.github.latest_release.tag_name | replace: "v","^" }}"
+    "@indiekit/indiekit": "^1.0.0",
+    "@indiekit/preset-jekyll": "^1.0.0",
+    "@indiekit/store-github": "^1.0.0"
   },
   "indiekit": {
     "plugins": [
