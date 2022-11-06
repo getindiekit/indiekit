@@ -13,9 +13,6 @@ vendor
 
 # Documentation
 _site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
 
 # Environment variables
 *.env

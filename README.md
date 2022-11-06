@@ -19,7 +19,7 @@ Publish content to your website using apps like [iAWriter](https://ia.net/writer
 - Syndicate content to third-party websites
 - Publication presets to support popular static site generators
 - Localised to different languages
-- [Plug-in API](https://getindiekit.com/plugin-api/)
+- [Plug-in API](https://getindiekit.com/plugins/api/)
 
 ## Requirements
 
@@ -27,7 +27,17 @@ Publish content to your website using apps like [iAWriter](https://ia.net/writer
 
 ## Install
 
-Learn how to [set up an Indiekit server](https://getindiekit.com/get-started/) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
+Learn how to [set up an Indiekit server](https://getindiekit.com/get-started) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
+
+## Documentation website
+
+The documentation website is generated using [VitePress](https://vitepress.vuejs.org). To view this site locally:
+
+1. Install this project’s dependencies: `npm install`
+2. Start Jekyll’s server: `npm run docs:dev`
+3. View the documentation: <http://127.0.0.1:5173>
+
+The browser will refresh to reflect any changes you make to the documentation.
 
 ## Decisions
 

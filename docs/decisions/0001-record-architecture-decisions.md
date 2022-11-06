@@ -1,8 +1,3 @@
----
-parent: Architecture decisions
-nav_order: 1
----
-
 # Record architecture decisions
 
 Date: 2021-01-10

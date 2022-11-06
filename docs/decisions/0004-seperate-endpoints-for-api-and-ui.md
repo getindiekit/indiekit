@@ -1,8 +1,3 @@
----
-parent: Architecture decisions
-nav_order: 4
----
-
 # Separate endpoints for Micropub API and management interfaces
 
 Date: 2022-06-12

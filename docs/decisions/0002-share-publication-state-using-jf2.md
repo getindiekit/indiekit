@@ -1,8 +1,3 @@
----
-parent: Architecture decisions
-nav_order: 2
----
-
 # Share publication state using JF2
 
 Date: 2021-01-10

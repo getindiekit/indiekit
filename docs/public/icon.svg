@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    #dark:target :last-child { fill: #b9f; }
+  </style>
+  <g id="dark">
+    <circle fill="#f20" cx="16" cy="16" r="15"/>
+    <path fill="#fa0" d="M62 2c0 15-13 28-28 28V2h28Z"/>
+    <path fill="#f70" d="M30 34v28H2V34z"/>
+    <path fill="#60c" d="M62 34v28L34 34z"/>
+  </g>
+</svg>

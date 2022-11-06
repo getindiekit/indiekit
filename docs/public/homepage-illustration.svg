@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="860">
+  <defs>
+    <linearGradient id="a" x1="100%" x2="100%" y1="20%" y2="100%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#E6CCFF"/>
+    </linearGradient>
+    <linearGradient id="b" x1="21.32%" x2="97.8%" y1="20%" y2="100%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#FFC899"/>
+    </linearGradient>
+    <linearGradient id="c" x1="2.98%" x2="67.75%" y1="30.68%" y2="100%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="100%" stop-color="#FD9"/>
+    </linearGradient>
+    <radialGradient id="d" cx="32.27%" cy="30.88%" r="54.78%" fx="32.27%" fy="30.88%">
+      <stop offset="0%" stop-color="#FFF"/>
+      <stop offset="20.65%" stop-color="#FFF"/>
+      <stop offset="57.97%" stop-color="#FDC" stop-opacity=".97"/>
+      <stop offset="100%" stop-color="#F87" stop-opacity=".97"/>
+    </radialGradient>
+    <radialGradient id="f" cx="50%" cy="74.67%" r="100%" fx="50%" fy="74.67%" gradientTransform="matrix(.5 0 0 .5 .25 .38)">
+      <stop offset="0%" stop-color="#F20"/>
+      <stop offset="100%" stop-color="#F20" stop-opacity="0"/>
+    </radialGradient>
+    <circle id="e" cx="170" cy="170" r="170"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <path fill="url(#a)" stroke="#60C" stroke-linejoin="round" stroke-width="8" d="m220 540 220-100L220 0 0 440z" transform="translate(260 26)"/>
+    <path fill="#93F" fill-opacity=".9" stroke="#60C" stroke-linejoin="round" stroke-width="8" d="M480 566V26l220 440z"/>
+    <path fill="#60C" d="m260 466 220 100 220-100-220-100z" opacity=".15"/>
+    <path fill="url(#b)" fill-opacity=".95" stroke="#F70" stroke-linejoin="round" stroke-width="8" d="M0 100v250l220 100 220-100V100L220 0z" transform="translate(4 360)"/>
+    <path fill="#FFAD66" fill-opacity=".8" stroke="#F70" stroke-linejoin="round" stroke-width="8" d="M444 460v249.91L224 810V560z"/>
+    <path fill="#F70" d="M224 610 4 710l220 100 220-100z" opacity=".15"/>
+    <path fill="#FFF" fill-opacity=".8" stroke="#F70" stroke-linejoin="round" stroke-width="8" d="M224 360 4 460l220 100 220-100z"/>
+    <path fill="#F70" fill-opacity=".05" d="M224 360v200l220-100z"/>
+    <path fill="url(#c)" fill-opacity=".98" stroke="#FA0" stroke-linejoin="round" stroke-width="8" d="M0 100v130l220 100c50-20 100-60 100-100V100c0-33.33-33.33-66.67-100-100L0 100Z" transform="translate(636 306)"/>
+    <path fill="#FFF" stroke="#FA0" stroke-linejoin="round" stroke-width="8" d="M856 306 636 406l220 100c66.67-33.33 100-66.67 100-100s-33.33-66.67-100-100Z"/>
+    <path fill="#FD9" stroke="#FA0" stroke-linejoin="round" stroke-width="8" d="M956 406v130c0 40-50 80-100 100V506c50-25 100-60 100-100Z"/>
+    <path fill="#FA0" d="M856 436 636 536l220 100c66.67-33.33 100-66.67 100-100s-33.33-66.67-100-100Z" opacity=".15"/>
+    <path fill="#FA0" fill-opacity=".05" d="M856 306v130c66.67 33.33 100 66.67 100 100V406c0-33.33-33.33-66.67-100-100Z"/>
+    <g transform="translate(490 490)">
+      <circle cx="170" cy="170" r="166" fill="url(#d)" stroke="#F20" stroke-width="8"/>
+      <g opacity=".5">
+        <mask id="g" fill="#fff">
+          <use xlink:href="#e"/>
+        </mask>
+        <ellipse cx="170" cy="283.33" fill="url(#f)" mask="url(#g)" rx="113.33" ry="56.67"/>
+      </g>
+    </g>
+  </g>
+</svg>
