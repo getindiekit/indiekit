@@ -6,8 +6,8 @@ import { mediaData } from "../../lib/media-data.js";
 test.beforeEach((t) => {
   t.context = {
     file: {
-      buffer: getFixture("file-types/photo.jpg", false),
-      originalname: "photo.jpg",
+      data: getFixture("file-types/photo.jpg", false),
+      name: "photo.jpg",
     },
     publication: {
       me: "https://website.example",
@@ -39,8 +39,8 @@ test("Creates media data", async (t) => {
 
 test("Throws error creating media data for unsupported media type", async (t) => {
   const file = {
-    buffer: getFixture("file-types/font.ttf", false),
-    originalname: "font.ttf",
+    data: getFixture("file-types/font.ttf", false),
+    name: "font.ttf",
   };
 
   await t.throwsAsync(mediaData.create(t.context.publication, file), {

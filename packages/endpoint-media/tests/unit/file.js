@@ -6,10 +6,10 @@ import { getFileProperties, getMediaType } from "../../lib/file.js";
 const { isValid, parseISO } = dateFns;
 
 test("Derives media type and returns equivalent post type", async (t) => {
-  const audio = { buffer: getFixture("file-types/audio.mp3", false) };
-  const photo = { buffer: getFixture("file-types/photo.jpg", false) };
-  const video = { buffer: getFixture("file-types/video.mp4", false) };
-  const other = { buffer: getFixture("file-types/font.ttf", false) };
+  const audio = { data: getFixture("file-types/audio.mp3", false) };
+  const photo = { data: getFixture("file-types/photo.jpg", false) };
+  const video = { data: getFixture("file-types/video.mp4", false) };
+  const other = { data: getFixture("file-types/font.ttf", false) };
 
   t.is(await getMediaType(audio), "audio");
   t.is(await getMediaType(photo), "photo");
@@ -20,8 +20,8 @@ test("Derives media type and returns equivalent post type", async (t) => {
 test("Derives properties from file data", async (t) => {
   const publication = { timeZone: "UTC" };
   const file = {
-    buffer: getFixture("file-types/photo.jpg", false),
-    originalname: "photo.jpg",
+    data: getFixture("file-types/photo.jpg", false),
+    name: "photo.jpg",
   };
 
   const result = await getFileProperties(publication, file);

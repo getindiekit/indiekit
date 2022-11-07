@@ -12,7 +12,7 @@ import { randomString } from "./utils.js";
  *   basename: 'ds48s',
  *   ext: '.jpg'
  *   filename: 'ds48s.jpg'
- *   originalname: 'flower.jpg',
+ *   originalname: 'brighton-pier.jpg',
  *   'content-type': image/jpeg,
  *   published: '2020-07-19T22:59:23.497Z',
  * }
@@ -21,15 +21,15 @@ export const getFileProperties = async (publication, file) => {
   const { timeZone } = publication;
 
   const basename = randomString();
-  const { ext, mime } = await fileTypeFromBuffer(file.buffer);
+  const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);
 
   return {
     basename,
     ext,
     filename: `${basename}.${ext}`,
-    originalname: file.originalname,
-    "content-type": mime,
+    originalname: file.name,
+    "content-type": file.mimetype,
     published,
   };
 };
@@ -42,7 +42,7 @@ export const getFileProperties = async (publication, file) => {
  * @example getMediaType('brighton-pier.jpg') => 'photo'
  */
 export const getMediaType = async (file) => {
-  const { mime } = await fileTypeFromBuffer(file.buffer);
+  const { mime } = await fileTypeFromBuffer(file.data);
   const type = mime.split("/")[0];
 
   if (type === "image") {
