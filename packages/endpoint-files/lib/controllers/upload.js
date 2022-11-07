@@ -37,9 +37,9 @@ export const uploadController = {
       });
     }
 
-    const { buffer, originalname } = request.file;
+    const { data, name } = request.files.file;
     const formData = new FormData();
-    formData.append("file", new Blob([buffer]), originalname);
+    formData.append("file", new Blob([data]), name);
 
     try {
       const endpointResponse = await fetch(publication.mediaEndpoint, {

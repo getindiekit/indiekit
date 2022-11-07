@@ -1,5 +1,4 @@
 import express from "express";
-import multer from "multer";
 import { fileController } from "./lib/controllers/file.js";
 import { filesController } from "./lib/controllers/files.js";
 import { uploadController } from "./lib/controllers/upload.js";
@@ -7,7 +6,6 @@ import { validate } from "./lib/middleware/validation.js";
 
 const defaults = { mountPath: "/files" };
 const router = express.Router(); // eslint-disable-line new-cap
-const multipartParser = multer({ storage: multer.memoryStorage() });
 
 export default class FilesEndpoint {
   constructor(options = {}) {
@@ -29,12 +27,7 @@ export default class FilesEndpoint {
   get routes() {
     router.get("/", filesController);
     router.get("/new", uploadController.get);
-    router.post(
-      "/new",
-      multipartParser.single("file"),
-      validate,
-      uploadController.post
-    );
+    router.post("/new", validate, uploadController.post);
     router.get("/:id", fileController);
 
     return router;

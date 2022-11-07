@@ -1,11 +1,9 @@
 import express from "express";
-import multer from "multer";
 import { uploadController } from "./lib/controllers/upload.js";
 import { queryController } from "./lib/controllers/query.js";
 
 const defaults = { mountPath: "/media" };
 const router = express.Router(); // eslint-disable-line new-cap
-const multipartParser = multer({ storage: multer.memoryStorage() });
 
 export default class MediaEndpoint {
   constructor(options = {}) {
@@ -18,7 +16,7 @@ export default class MediaEndpoint {
 
   get routes() {
     router.get("/", queryController);
-    router.post("/", multipartParser.single("file"), uploadController);
+    router.post("/", uploadController);
 
     return router;
   }

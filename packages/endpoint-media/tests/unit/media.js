@@ -9,8 +9,8 @@ await mockAgent("store");
 
 test.beforeEach((t) => {
   t.context.file = {
-    buffer: getFixture("file-types/photo.jpg", false),
-    originalname: "photo.jpg",
+    data: getFixture("file-types/photo.jpg", false),
+    name: "photo.jpg",
   };
 });
 

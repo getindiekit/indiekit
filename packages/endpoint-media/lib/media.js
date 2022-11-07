@@ -16,11 +16,7 @@ export const media = {
       postType: mediaData.properties["post-type"],
     };
     const message = storeMessageTemplate(metaData);
-    const uploaded = await store.createFile(
-      mediaData.path,
-      file.buffer,
-      message
-    );
+    const uploaded = await store.createFile(mediaData.path, file.data, message);
 
     if (uploaded) {
       mediaData.date = new Date();

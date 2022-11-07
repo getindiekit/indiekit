@@ -13,32 +13,36 @@ import { fetch, FormData } from "undici";
 export const uploadMedia = async (token, publication, properties, files) => {
   const { mediaEndpoint } = publication;
 
-  for await (const file of files) {
-    const blob = new Blob([file.buffer]);
+  for await (let [mediaProperty, media] of Object.entries(files)) {
+    // Media property may contain one or many media files
+    media = Array.isArray(media) ? media : [media];
 
-    // Create multipart/form-data
-    const formData = new FormData();
-    formData.append("file", blob, file.originalname);
+    for await (const file of media) {
+      const { data, name } = file;
 
-    // Upload file via media endpoint
-    const response = await fetch(mediaEndpoint, {
-      method: "POST",
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
+      // Create multipart/form-data
+      const formData = new FormData();
+      formData.append("file", new Blob([data]), name);
 
-    if (!response.ok) {
-      const body = await response.json();
-      const message = body.error_description || response.statusText;
-      throw new Error(message);
+      // Upload file via media endpoint
+      const response = await fetch(mediaEndpoint, {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const body = await response.json();
+        const message = body.error_description || response.statusText;
+        throw new Error(message);
+      }
+
+      // Update respective media property with location of upload
+      properties[mediaProperty] = properties[mediaProperty] || [];
+      properties[mediaProperty].push(response.headers.get("location"));
     }
-
-    // Update respective media property with location of upload
-    const filetype = file.fieldname.replace("[]", "");
-    properties[filetype] = properties[filetype] || [];
-    properties[filetype].push(response.headers.get("location"));
   }
 
   return properties;

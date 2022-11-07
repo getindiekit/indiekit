@@ -9,13 +9,13 @@ await mockAgent("media-endpoint");
 test.beforeEach((t) => {
   t.context = {
     bearerToken: process.env.TEST_TOKEN,
-    files: [
-      {
-        buffer: getFixture("file-types/photo.jpg", false),
-        fieldname: "photo",
+    files: {
+      photo: {
+        data: getFixture("file-types/photo.jpg", false),
+        name: "photo",
         originalname: "photo1.jpg",
       },
-    ],
+    },
     publication: {
       mediaEndpoint: "https://media-endpoint.example",
     },
@@ -37,18 +37,18 @@ test("Uploads attached file via media endpoint", async (t) => {
 
 test("Uploads attached files via media endpoint", async (t) => {
   const { bearerToken, publication, properties } = t.context;
-  const files = [
-    {
-      buffer: getFixture("file-types/photo.jpg", false),
-      fieldname: "photo[]",
-      originalname: "photo2.jpg",
-    },
-    {
-      buffer: getFixture("file-types/photo.jpg", false),
-      fieldname: "photo[]",
-      originalname: "photo3.jpg",
-    },
-  ];
+  const files = {
+    photo: [
+      {
+        data: getFixture("file-types/photo.jpg", false),
+        name: "photo2.jpg",
+      },
+      {
+        buffer: getFixture("file-types/photo.jpg", false),
+        name: "photo3.jpg",
+      },
+    ],
+  };
   const result = await uploadMedia(bearerToken, publication, properties, files);
 
   t.deepEqual(result.photo, [

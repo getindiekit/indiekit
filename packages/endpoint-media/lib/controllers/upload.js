@@ -16,8 +16,8 @@ export const uploadController = async (request, response, next) => {
 
   try {
     // Check for file in request
-    const { file } = request;
-    if (!file || file.truncated || !file.buffer) {
+    const { files } = request;
+    if (!files || !files.file || files.file.truncated) {
       throw IndiekitError.badRequest(
         response.__("BadRequestError.missingProperty", "file")
       );
@@ -33,8 +33,8 @@ export const uploadController = async (request, response, next) => {
       );
     }
 
-    const data = await mediaData.create(publication, file);
-    const uploaded = await media.upload(publication, data, file);
+    const data = await mediaData.create(publication, files.file);
+    const uploaded = await media.upload(publication, data, files.file);
 
     return response
       .status(uploaded.status)
