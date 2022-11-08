@@ -62,11 +62,6 @@ export const routes = (indiekitConfig) => {
 
   // Endpoint plug-in routes
   for (const endpoint of application.endpoints) {
-    // Public
-    if (endpoint.mountPath && endpoint.routesPublic) {
-      router.use(endpoint.mountPath, limit, endpoint.routesPublic);
-    }
-
     // Authenticated
     if (endpoint.mountPath && endpoint.routes) {
       router.use(
@@ -75,6 +70,16 @@ export const routes = (indiekitConfig) => {
         indieauth.authenticate(),
         endpoint.routes
       );
+    }
+
+    // Public
+    if (endpoint.mountPath && endpoint.routesPublic) {
+      router.use(endpoint.mountPath, limit, endpoint.routesPublic);
+    }
+
+    // Well-known
+    if (endpoint.routesWellKnown) {
+      router.use("/.well-known/", limit, endpoint.routesWellKnown);
     }
   }
 
