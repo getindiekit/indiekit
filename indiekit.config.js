@@ -16,6 +16,7 @@ const config = {
   },
   plugins: [
     "@indiekit-test/frontend",
+    "@indiekit/endpoint-activitypub",
     "@indiekit/endpoint-json-feed",
     "@indiekit/post-type-audio",
     "@indiekit/post-type-event",
@@ -47,6 +48,21 @@ const config = {
           url: "jams/{yyyy}/{MM}/{dd}/{slug}",
         },
       },
+    },
+  },
+  "@indiekit/endpoint-activitypub": {
+    ...(process.env.RAILWAY_ENVIRONMENT && {
+      domain: process.env.RAILWAY_STATIC_URL,
+    }),
+    username: "indiekit",
+    displayName: "Indiekit",
+    summary: "Testing Indiekit’s ActivityPub integration",
+    icon: {
+      type: "Image",
+      mediaType: "image/png",
+      url: "https://avatars.githubusercontent.com/u/68553280?s=180",
+      width: 180,
+      height: 180,
     },
   },
   "@indiekit/store-github": {

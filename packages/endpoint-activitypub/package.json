@@ -1,0 +1,41 @@
+{
+  "name": "@indiekit/endpoint-activitypub",
+  "version": "1.0.0-alpha.12",
+  "description": "ActivityPub endpoint for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "activitypub"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/endpoint-activitypub"
+  },
+  "dependencies": {
+    "activitypub-express": "^4.0.1",
+    "express": "^4.17.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
