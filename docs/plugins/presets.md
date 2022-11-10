@@ -13,3 +13,7 @@ Indiekit preset for [Hugo](https://gohugo.io)-based websites.
 <Badge type="tip" text="Offical" />
 
 Indiekit preset for [Jekyll](https://jekyllrb.com)-based websites. 
+
+## [indiekit-preset-fff](https://npmjs.org/package/indiekit-preset-fff)
+
+Indiekit preset for [FFF](https://fff.js.org)-based websites. 
