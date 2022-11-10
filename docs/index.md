@@ -4,7 +4,7 @@ titleTemplate: false
 hero:
   name: Indiekit
   text: is for everyone
-  tagline: Meet the little Node.js server with the all pieces needed to own your content and share it with the wider independent web.
+  tagline: Meet the little Node.js server with all the pieces needed to own your content and share it with the wider independent web.
   image:
     src: homepage-illustration.svg
     alt: ""
