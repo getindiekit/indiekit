@@ -124,6 +124,8 @@
           "allow": [
             "access_token",
             "client_id",
+            "code_challenge",
+            "code_challenge_method",
             "code_verifier",
             "date_issued",
             "error_description",
@@ -132,6 +134,8 @@
             "job_id",
             "original_url",
             "redirect_uri",
+            "request_uri",
+            "response_type",
             "success_description",
             "token_type"
           ]

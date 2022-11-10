@@ -28,7 +28,6 @@
   },
   "UnauthorizedError": {
     "invalidToken": "Das bereitgestellte Zugriffstoken ist abgelaufen, gesperrt, falsch formatiert oder aus anderen Gründen ungültig",
-    "jwt": "JSON Web Token Fehler: %s",
     "title": "Nicht autorisiert"
   },
   "UnsupportedMediaTypeError": {

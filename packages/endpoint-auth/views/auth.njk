@@ -1,0 +1,112 @@
+{% extends "document.njk" %}
+
+{% set discovery %}
+{{ __("auth.guidance.discovery") | safe }}
+
+```html
+<link rel="authorization_endpoint" href="{{ publication.authorizationEndpoint }}">
+<link rel="token_endpoint" href="{{ publication.tokenEndpoint }}">
+<link rel="indieauth-metadata" href="{{ application.url }}/.well-known/oauth-authorization-server">
+```
+
+## {{ __("auth.guidance.authorization.title") }}
+
+### {{ __("auth.guidance.authorization.requestCode") }}
+
+```http
+GET {{ publication.authorizationEndpoint }}
+Content-type: application/x-www-form-urlencoded
+
+response_type=code
+&client_id={{ application.url }}
+&redirect_uri={{ application.url }}/session/auth
+&code_challenge=xxxxxxxxxx
+&code_challenge_method=S256
+&state=1234567890
+&scope=create+delete+update
+```
+
+{{ __("auth.guidance.authorization.requestCodeResponse") }}
+
+```http
+HTTP/1.1 302 Found
+Location: {{ application.url }}/session/auth?code=xxxxxxxx
+  &state=1234567890
+  &iss={{ application.url }}
+```
+
+### {{ __("auth.guidance.authorization.redeemCode") }}
+
+```http
+POST {{ publication.authorizationEndpoint }}
+Content-type: application/x-www-form-urlencoded
+Accept: application/json
+
+grant_type=authorization_code
+&code=xxxxxxxxxx
+&client_id={{ application.url }}
+&redirect_uri={{ application.url }}/session/auth
+&code_verifier=xxxxxxxxxx
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "me": "{{ publication.me }}"
+}
+```
+
+## {{ __("auth.guidance.authentication.title") }}
+
+### {{ __("auth.guidance.authentication.redeemCode") }}
+
+```http
+POST {{ publication.tokenEndpoint }}
+Content-type: application/x-www-form-urlencoded
+Accept: application/json
+
+grant_type=authorization_code
+&code=xxxxxxxxxx
+&client_id={{ application.url }}
+&redirect_uri={{ application.url }}/session/auth
+&code_verifier=xxxxxxxxxx
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "access_token": "xxxxxxxxxx",
+  "token_type": "Bearer",
+  "me": "{{ publication.me }}",
+  "scope": "create delete update"
+}
+```
+
+### {{ __("auth.guidance.authentication.verifyToken") }}
+
+```http
+GET {{ publication.tokenEndpoint }}
+Accept: application/json
+Authorization: Bearer xxxxxxxx
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "me": "{{ publication.me }}",
+  "scope": "create delete update",
+  "iat": 1668682284,
+  "exp": 1676458284
+}
+```
+{% endset %}
+
+{% block content %}
+  {{ discovery | markdown | safe }}
+{% endblock %}

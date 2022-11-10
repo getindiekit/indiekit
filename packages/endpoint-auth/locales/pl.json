@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "guidance": {
+      "title": "Punkt końcowy tokena",
+      "discovery": "Aby użyć tego tokenowego punktu końcowego, dodaj następującą wartość do witryny `<head>`:",
+      "verifyResponse": "Ten punkt końcowy zweryfikuje token i odpowie informacjami o użytkowniku i zakresie:",
+      "verifyTitle": "Zweryfikuj token dostępu"
+    }
+  }
+}

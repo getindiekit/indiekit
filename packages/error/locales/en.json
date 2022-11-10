@@ -2,14 +2,15 @@
   "BadRequestError": {
     "title": "Bad request",
     "invalid": "The request is missing a required parameter, includes an unsupported parameter or parameter value, repeats the same parameter, uses more than one method for including an access token, or is otherwise malformed",
+    "invalidValue": "Invalid value provided for: `%s`",
     "missingParameter": "Missing parameter: `%s`",
     "missingProperty": "No %s included in request",
     "missingToken": "No bearer token provided by request"
   },
   "UnauthorizedError": {
     "title": "Unauthorized",
-    "invalidToken": "The access token provided is expired, revoked, malformed, or invalid for other reasons",
-    "jwt": "JSON Web Token error: %s"
+    "invalidCode": "The authorization code provided is expired, revoked, malformed, or invalid for other reasons",
+    "invalidToken": "The access token provided is expired, revoked, malformed, or invalid for other reasons"
   },
   "ForbiddenError": {
     "title": "Forbidden",

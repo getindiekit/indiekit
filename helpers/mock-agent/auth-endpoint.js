@@ -1,5 +1,6 @@
 import process from "node:process";
 import { MockAgent } from "undici";
+import { getFixture } from "@indiekit-test/fixtures";
 
 /**
  * @returns {Function} Undici MockClient
@@ -10,6 +11,10 @@ export const mockClient = () => {
   agent.disableNetConnect();
 
   const client = agent.get("https://auth-endpoint.example");
+
+  // Client information
+  const homeHtml = getFixture("html/home.html", false);
+  client.intercept({ path: "/" }).reply(200, homeHtml);
 
   // Profile URL response
   client

@@ -2,6 +2,12 @@
 
 An [endpoint](../concepts#endpoint) is a path on your Indiekit server that applications can send requests to or users can access certain features at.
 
+## [@indiekit/endpoint-auth](https://npmjs.org/package/@indiekit/endpoint-auth)
+
+<Badge type="info" text="Built-in" /> <Badge type="tip" text="Offical" />
+
+IndieAuth authentication and authorization endpoint for Indiekit. Grants and verifies access tokens and authenticates users.
+
 ## [@indiekit/endpoint-files](https://npmjs.org/package/@indiekit/endpoint-files)
 
 <Badge type="info" text="Built-in" /> <Badge type="tip" text="Offical" />

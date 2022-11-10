@@ -11,7 +11,10 @@ test("Returns 401 error invalid token", async (t) => {
     .set("accept", "application/json");
 
   t.is(result.status, 401);
-  t.is(result.body.error_description, "JSON Web Token error: invalid token");
+  t.is(
+    result.body.error_description,
+    "The access token provided is expired, revoked, malformed, or invalid for other reasons"
+  );
 
   server.close(t);
 });

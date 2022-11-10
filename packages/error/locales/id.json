@@ -28,7 +28,6 @@
   },
   "UnauthorizedError": {
     "invalidToken": "Token akses yang diberikan kedaluwarsa, dicabut, cacat, atau tidak valid karena alasan lain",
-    "jwt": "Kesalahan JSON Web Token: %s",
     "title": "Tidak diotorisasi"
   },
   "UnsupportedMediaTypeError": {
