@@ -1,0 +1,82 @@
+{
+  "auth": {
+    "error": {
+      "password": {
+        "missing": "Enter a password",
+        "invalid": "Enter a valid password"
+      }
+    },
+    "consent": {
+      "authenticate": {
+        "title": "Sign in",
+        "text": "Sign in to {{client}} as {{me}}",
+        "submit": "Sign in"
+      },
+      "authorize": {
+        "title": "Authorize application",
+        "text": "{{client}} is requesting permission to access {{me}}",
+        "submit": "Allow"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "pkce": {
+        "text": "{{client}} is not using Proof of Key Code Exchange (PKCE), which is more secure."
+      },
+      "redirect": "After authorizing this application you will be redirected to %s",
+      "scope": {
+        "label": "Publishing permissions",
+        "create": {
+          "label": "Create",
+          "hint": "Application can publish posts and upload media."
+        },
+        "delete": {
+          "label": "Delete",
+          "hint": "Application can delete posts."
+        },
+        "draft": {
+          "label": "Draft",
+          "hint": "Posts created by this application will be marked as draft."
+        },
+        "media": {
+          "label": "Media",
+          "hint": "Application can upload media."
+        },
+        "update": {
+          "label": "Update",
+          "hint": "Application can update posts."
+        }
+      }
+    },
+    "newPassword": {
+      "title": "New password",
+      "setup": {
+        "text": "A password secret is needed before {{app}} can authenticate IndieAuth requests."
+      },
+      "submit": "Generate password secret",
+      "password": {
+        "label": "New password",
+        "hint": "Enter a password to use for authenticating requests"
+      },
+      "secret": {
+        "label": "Password secret",
+        "hint": "Use the following value for <code>PASSWORD_SECRET</code> in your environment variables"
+      }
+    },
+    "guidance": {
+      "title": "Using this IndieAuth endpoint",
+      "discovery": "To use this authentication endpoint, add the following values to your website’s `<head>`:",
+      "authorization": {
+        "title": "Get a user’s identity",
+        "requestCode": "Request an authorization code",
+        "requestCodeResponse": "If the user approves the request, the endpoint will generate an authorization code and redirect back to the client:",
+        "redeemCode": "Redeem an authorization code for a user’s profile URL"
+      },
+      "authentication": {
+        "title": "Get a user’s access permissions",
+        "redeemCode": "Redeem an authorization code for an access token",
+        "verifyToken": "Verify an access token"
+      }
+    }
+  }
+}

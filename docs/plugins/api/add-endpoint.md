@@ -141,6 +141,8 @@ export default class ExampleEndpoint {
 
 Example endpoint plug-ins:
 
+- [`@indiekit/endpoint-auth`](https://github.com/getindiekit/indiekit/tree/main/packages/endpoint-auth) adds supports for granting and verifying IndieAuth tokens and authenticating users.
+
 - [`@indiekit/endpoint-share`](https://github.com/getindiekit/indiekit/tree/main/packages/endpoint-share) adds a share page to Indiekit’s web interface.
 
 [`Array`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array

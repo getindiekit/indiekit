@@ -28,7 +28,6 @@
   },
   "UnauthorizedError": {
     "invalidToken": "Dostarczony token dostępu jest wygasły, odwołany, zniekształcony lub nieważny z innych powodów",
-    "jwt": "Błąd JSON Web Token: %s",
     "title": "Nieautoryzowany"
   },
   "UnsupportedMediaTypeError": {

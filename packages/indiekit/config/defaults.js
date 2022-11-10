@@ -21,6 +21,7 @@ export const defaultConfig = {
     version: package_.version,
   },
   plugins: [
+    "@indiekit/endpoint-auth",
     "@indiekit/endpoint-files",
     "@indiekit/endpoint-image",
     "@indiekit/endpoint-media",
@@ -30,8 +31,6 @@ export const defaultConfig = {
     "@indiekit/endpoint-syndicate",
   ],
   publication: {
-    authorizationEndpoint: "https://indieauth.com/auth",
-    tokenEndpoint: "https://tokens.indieauth.com/token",
     categories: [],
     locale: "en",
     me: null,

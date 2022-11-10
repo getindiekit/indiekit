@@ -4,6 +4,12 @@
     "files": [
       {
         "file": "en.json",
+        "path": "packages/endpoint-auth/locales",
+        "pattern": "packages/endpoint-auth/locales/en.json",
+        "module": "endpoint-auth"
+      },
+      {
+        "file": "en.json",
         "path": "packages/endpoint-files/locales",
         "pattern": "packages/endpoint-files/locales/en.json",
         "module": "endpoint-files"

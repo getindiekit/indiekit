@@ -28,7 +28,6 @@
   },
   "UnauthorizedError": {
     "invalidToken": "El token de acceso proporcionado ha caducado, se ha revocado, está mal formado o no es válido por otros motivos",
-    "jwt": "Error de JSON Web Token: %s",
     "title": "No autorizado"
   },
   "UnsupportedMediaTypeError": {

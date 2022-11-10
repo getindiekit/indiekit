@@ -1,0 +1,65 @@
+{% from "authorize/macro.njk" import authorize with context %}
+
+{% extends "form.njk" %}
+
+{% set appClasses = "app--login" %}
+{% block header %}
+  {{ header({
+    url: application.url,
+    name: application.name
+  }) }}
+{% endblock %}
+{% block fieldset %}
+  {{ authorize({
+    client: client,
+    me: me,
+    key: "auth.consent." + authType + ".text"
+  }) }}
+
+  {{ warningText({
+    text: __("auth.consent.pkce.text", { client: client.name })
+  }) if not usePkce }}
+
+  {{ checkboxes({
+    idPrefix: "scope",
+    name: "scope",
+    fieldset: {
+      legend: {
+        text: __("auth.consent.scope.label")
+      }
+    },
+    items: scopeItems,
+    errorMessage: {
+      text: errors.scope.msg
+    } if errors.scope
+  }) if authType == "authorize" }}
+
+  {{ input({
+    id: "password",
+    name: "password",
+    type: "password",
+    value: errors.password.value,
+    autocomplete: "current-password",
+    label: {
+      text: __("auth.consent.password.label")
+    },
+    errorMessage: {
+      text: errors.password.msg
+    } if errors.password
+  }) }}
+
+  {{ input({
+    name: "_csrf",
+    value: csrfCode,
+    type: "hidden"
+  }) }}
+
+  {{ button({
+    text: __("auth.consent." + authType + ".submit"),
+    classes: "button--block"
+  }) | indent(2) }}
+
+  {{ hint({
+    text: __("auth.consent.redirect", redirect_uri)
+  }) | indent(2) }}
+{% endblock %}

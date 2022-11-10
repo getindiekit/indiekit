@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "guidance": {
+      "title": "Krajnja tačka tokena",
+      "discovery": "Da biste koristili ovu krajnu tačku tokena, dodajte prateću vrednost na svoj vebsajt `<head>`:",
+      "verifyResponse": "Ova krajnja tačka će zatim potvrditi token i odgovoriti sa informacijama o korisniku i obimu:",
+      "verifyTitle": "Potvrdite pristupni token"
+    }
+  }
+}

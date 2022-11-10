@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "guidance": {
+      "title": "Endpoint de token",
+      "discovery": "Para usar esse ponto de extremidade de token, adicione o seguinte valor ao `<head>` do seu site:",
+      "verifyResponse": "Esse endpoint verificará o token e responderá com informações sobre o usuário e o escopo:",
+      "verifyTitle": "Verificar um token de acesso"
+    }
+  }
+}

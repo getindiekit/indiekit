@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "guidance": {
+      "title": "Token-Endpunkt",
+      "discovery": "Um diesen Token-Endpunkt zu verwenden, fügen Sie den folgenden Wert zum `<head>` Ihrer Website hinzu:",
+      "verifyResponse": "Dieser Endpunkt überprüft dann das Token und antwortet mit Informationen über den Benutzer und den scope:",
+      "verifyTitle": "Ein Zugriffstoken verifizieren"
+    }
+  }
+}

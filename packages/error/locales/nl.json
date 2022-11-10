@@ -28,7 +28,6 @@
   },
   "UnauthorizedError": {
     "invalidToken": "Het verstrekte toegangstoken is verlopen, ingetrokken, misvormd of ongeldig",
-    "jwt": "Fout met JSON Web Token: %s",
     "title": "Ongeautoriseerd"
   },
   "UnsupportedMediaTypeError": {

@@ -1,0 +1,21 @@
+<p class="{{ classes("authorize", opts.classes) }}"
+  {{- attributes(opts.attributes) }}>
+  {%- if opts.client.logo -%}
+    <a class="authorize__client" href="{{ opts.client.url }}">
+      <img class="authorize__client-icon" src="{{ opts.client.logo }}" alt="" height="64" width="64">
+    </a>
+  {%- endif -%}
+
+  {%- set clientLink -%}
+  <a href="{{ opts.client.url }}">{{ opts.client.name | friendlyUrl }}</a>
+  {%- endset -%}
+
+  {%- set meLink -%}
+  <a href="{{ opts.me }}">{{ opts.me | friendlyUrl }}</a>.
+  {%- endset -%}
+
+  {{ __(opts.key, {
+    client: "__client__",
+    me: "__me__"
+  }) | replace("__client__", clientLink) | replace("__me__", meLink) | safe }}
+</p>

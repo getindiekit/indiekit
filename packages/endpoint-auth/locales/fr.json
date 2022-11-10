@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "guidance": {
+      "title": "Endpoint de jeton",
+      "discovery": "Pour utiliser ce point de terminaison de jeton, ajoutez la valeur suivante au `<head>` de votre site Web:",
+      "verifyResponse": "Ce point de terminaison vérifiera ensuite le jeton et répondra avec des informations sur l'utilisateur et la portée:",
+      "verifyTitle": "Vérifier un jeton d'accès"
+    }
+  }
+}

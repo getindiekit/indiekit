@@ -28,7 +28,6 @@
   },
   "UnauthorizedError": {
     "invalidToken": "Le jeton d'accès fourni est expiré, révoqué, mal formé ou non valide pour d'autres raisons",
-    "jwt": "Erreur JSON Web Token: %s",
     "title": "Non autorisé"
   },
   "UnsupportedMediaTypeError": {
