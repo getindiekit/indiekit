@@ -1,9 +1,7 @@
 /* global Blob */
 import { IndiekitError } from "@indiekit/error";
-import validator from "express-validator";
+import { validationResult } from "express-validator";
 import { fetch, FormData } from "undici";
-
-const { validationResult } = validator;
 
 export const uploadController = {
   /**
