@@ -1,6 +1,4 @@
-import validator from "express-validator";
-
-const { check } = validator;
+import { check } from "express-validator";
 
 export const validate = [
   check("name")
