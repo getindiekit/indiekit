@@ -8,7 +8,8 @@ test("Verifies token and returns URL encoded string", async (t) => {
   const request = supertest.agent(server);
   const response = await request
     .get("/token")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" });
+    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .set("accept", "application/x-www-form-urlencoded");
   const responseTextRegexp =
     /client_id=(?<client_id>.*)&me=(?<me>.*)&scope=(?<scope>.*)&iat=(?<iat>.*)&exp=(?<exp>.*)&iss=(?<iss>.*)/;
   const result = response.text.match(responseTextRegexp).groups;

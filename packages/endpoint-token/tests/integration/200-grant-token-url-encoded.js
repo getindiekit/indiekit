@@ -6,11 +6,12 @@ import { testServer } from "@indiekit-test/server";
 
 await mockAgent("indieauth");
 
-test("Grants token and returns JSON", async (t) => {
+test("Grants token and returns URL encoded string", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
     .post("/token")
+    .set("accept", "application/x-www-form-urlencoded")
     .query({ client_id: "https://client.example" })
     .query({ code: "123456" })
     .query({ redirect_uri: "/" });

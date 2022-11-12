@@ -42,10 +42,7 @@ export const tokenController = {
           );
         }
 
-        if (
-          request?.headers?.accept &&
-          request.headers.accept.includes("application/json")
-        ) {
+        if (request.accepts("application/json")) {
           response.json(accessToken);
         } else {
           response.header("content-type", "application/x-www-form-urlencoded");
@@ -153,10 +150,7 @@ export const tokenController = {
         token_type: "Bearer",
       };
 
-      if (
-        request?.headers?.accept &&
-        request.headers.accept.includes("application/json")
-      ) {
+      if (request.accepts("application/json")) {
         response.json(authResponse);
       } else {
         response.header("content-type", "application/x-www-form-urlencoded");
