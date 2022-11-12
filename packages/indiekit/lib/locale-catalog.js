@@ -1,4 +1,5 @@
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import deepmerge from "deepmerge";
 
 const require = createRequire(import.meta.url);
@@ -17,15 +18,17 @@ export const getLocaleCatalog = (application) => {
       // Application translations
       require(`../locales/${locale}.json`),
       // Error translations
-      require(`../../error/locales/${locale}.json`),
+      require(`@indiekit/error/locales/${locale}.json`),
       // Frontend translations
-      require(`../../frontend/locales/${locale}.json`),
+      require(`@indiekit/frontend/locales/${locale}.json`),
     ];
 
     // Plug-in translations
     for (const plugin of application.installedPlugins) {
+      const translationUrl = new URL(`locales/${locale}.json`, plugin.meta.url);
+      const translationPath = fileURLToPath(translationUrl);
       try {
-        translations.push(require(`../../${plugin.id}/locales/${locale}.json`));
+        translations.push(require(translationPath));
       } catch {}
     }
 
