@@ -13,7 +13,7 @@ Any application that supports [the Micropub protocol](https://micropub.spec.indi
 ```bash
 POST /micropub HTTP/1.1
 Host: indiekit.mywebsite.com
-Content-type: application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded
 Authorization: Bearer XXXXXXX
 
 h=entry
@@ -45,7 +45,7 @@ You can then send a second `POST` request, this time to `https://indiekit.websit
 ```bash
 POST /syndicate HTTP/1.1
 Host: indiekit.mywebsite.com
-Content-type: application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded
 
 token=XXXXXXX
 ```

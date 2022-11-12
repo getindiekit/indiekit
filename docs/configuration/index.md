@@ -211,7 +211,7 @@ If any data is found, a `references` property will be included in the resulting 
 ```bash
 POST /micropub HTTP/1.1
 Host: indiekit.mywebsite.com
-Content-type: application/x-www-form-urlencoded
+Content-Type: application/x-www-form-urlencoded
 Authorization: Bearer XXXXXXX
 
 h=entry
