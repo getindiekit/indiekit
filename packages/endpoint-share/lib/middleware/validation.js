@@ -2,8 +2,7 @@ import { check } from "express-validator";
 
 export const validate = [
   check("name")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage((value, { req, path }) => req.__(`share.error.${path}`)),
   check("bookmark-of")
     .exists()
