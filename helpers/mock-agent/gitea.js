@@ -3,7 +3,7 @@ import { MockAgent } from "undici";
 /**
  * @param {object} [options] - Options
  * @returns {Function} Undici MockClient
- * @see {@link: https://undici.nodejs.org/#/docs/api/MockClient}
+ * @see {@link https://undici.nodejs.org/#/docs/api/MockClient}
  */
 export function mockClient(options) {
   const agent = new MockAgent();
