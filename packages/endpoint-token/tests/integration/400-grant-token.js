@@ -13,6 +13,8 @@ test("Returns 400 error unable to grant token", async (t) => {
     .set("accept", "application/json")
     .query({ client_id: "https://client.example" })
     .query({ code: "foobar" })
+    .query({ code_verifier: "abcdef" })
+    .query({ grant_type: "authorization_code" })
     .query({ redirect_uri: "/" });
 
   t.is(result.status, 400);

@@ -17,6 +17,8 @@ test("Returns 403 error granting token if URLs don’t match", async (t) => {
     .set("accept", "application/json")
     .query({ client_id: "https://client.example" })
     .query({ code: "123456" })
+    .query({ code_verifier: "abcdef" })
+    .query({ grant_type: "authorization_code" })
     .query({ redirect_uri: "/" });
 
   t.is(result.status, 403);

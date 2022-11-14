@@ -14,7 +14,7 @@ export const mockClient = () => {
   // Grant token
   client
     .intercept({
-      path: /\/auth\?client_id=(?<client_id>.*)&code=123456&redirect_uri=(?<redirect_uri>.*)/,
+      path: /\/auth\?client_id=(?<client_id>.*)&code=123456&code_verifier=abcdef&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
       method: "POST",
     })
     .reply(200, {
@@ -27,7 +27,7 @@ export const mockClient = () => {
   // Grant token (Bad Request)
   client
     .intercept({
-      path: /\/auth\?client_id=(?<client_id>.*)&code=foobar&redirect_uri=(?<redirect_uri>.*)/,
+      path: /\/auth\?client_id=(?<client_id>.*)&code=foobar&code_verifier=abcdef&grant_type=authorization_code&redirect_uri=(?<redirect_uri>.*)/,
       method: "POST",
     })
     .reply(400, { error_description: "Invalid code" });

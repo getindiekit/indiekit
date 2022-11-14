@@ -14,6 +14,8 @@ test("Grants token and returns URL encoded string", async (t) => {
     .set("accept", "application/x-www-form-urlencoded")
     .query({ client_id: "https://client.example" })
     .query({ code: "123456" })
+    .query({ code_verifier: "abcdef" })
+    .query({ grant_type: "authorization_code" })
     .query({ redirect_uri: "/" });
   const responseTextRegexp =
     /access_token=(?<access_token>.*)&me=(?<me>.*)&scope=(?<scope>.*)/;

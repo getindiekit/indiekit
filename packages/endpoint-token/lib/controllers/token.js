@@ -75,6 +75,8 @@ export const tokenController = {
 
     const client_id = request.body.client_id || request.query.client_id;
     const code = request.body.code || request.query.code;
+    const code_verifier =
+      request.body.code_verifier || request.query.code_verifier;
     const redirect_uri =
       request.body.redirect_uri || request.query.redirect_uri;
 
@@ -108,6 +110,8 @@ export const tokenController = {
       const authUrl = new URL(publication.authorizationEndpoint);
       authUrl.searchParams.append("client_id", client_id);
       authUrl.searchParams.append("code", code);
+      authUrl.searchParams.append("code_verifier", code_verifier);
+      authUrl.searchParams.append("grant_type", "authorization_code");
       authUrl.searchParams.append("redirect_uri", redirect_uri);
 
       const endpointResponse = await fetch(authUrl.toString(), {

@@ -9,6 +9,8 @@ test("Returns 400 error no `client_id`", async (t) => {
     .post("/token")
     .set("accept", "application/json")
     .query({ code: "code" })
+    .query({ code_verifier: "abcdef" })
+    .query({ grant_type: "authorization_code" })
     .query({ redirect_uri: "/" });
 
   t.is(result.status, 400);
