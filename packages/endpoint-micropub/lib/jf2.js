@@ -100,7 +100,10 @@ export const normaliseProperties = (publication, properties) => {
 
   properties["mp-slug"] = getSlugProperty(properties, slugSeparator);
 
-  // TODO: Smarter normalisation of mp-syndicate-to property when updating posts
+  /**
+   * @todo Smarter normalisation of mp-syndicate-to property when updating posts
+   * @see {@link https://github.com/getindiekit/indiekit/issues/437}
+   */
   const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
   if (syndicateTo && !properties.syndication) {
     properties["mp-syndicate-to"] = syndicateTo;

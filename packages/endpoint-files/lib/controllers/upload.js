@@ -39,12 +39,14 @@ export const uploadController = {
     const formData = new FormData();
     formData.append("file", new Blob([data]), name);
 
+    /**
+     * @todo Third-party media endpoints may require a separate bearer token
+     */
     try {
       const endpointResponse = await fetch(publication.mediaEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",
-          // TODO: Third-party media endpoint may require a separate token
           authorization: `Bearer ${request.session.access_token}`,
         },
         body: formData,

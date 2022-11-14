@@ -48,7 +48,6 @@ export const actionController = async (request, response, next) => {
           : formEncodedToJf2(body);
 
         // Attach files
-        // TODO: Attached photos don’t appear with correct alt text
         jf2 = files ? await uploadMedia(token, publication, jf2, files) : jf2;
 
         data = await postData.create(publication, jf2);

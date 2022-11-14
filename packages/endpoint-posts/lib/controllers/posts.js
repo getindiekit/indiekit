@@ -27,12 +27,14 @@ export const postsController = async (request, response, next) => {
       offset,
     }).toString();
 
+    /**
+     * @todo Third-party media endpoints may require a separate bearer token
+     */
     const endpointResponse = await fetch(
       `${publication.micropubEndpoint}?${parameters}`,
       {
         headers: {
           accept: "application/json",
-          // TODO: Third-party media endpoint may require a separate token
           authorization: `Bearer ${request.session.access_token}`,
         },
       }
@@ -53,12 +55,15 @@ export const postsController = async (request, response, next) => {
       });
     }
 
+    /**
+     * @todo Remove requirement for private `_count` parameter
+     */
     response.render("posts", {
       title: response.__("posts.posts.title"),
       posts,
       page,
       limit,
-      count: body._count, // TODO: Remove requirement for private parameter
+      count: body._count,
       parentUrl: request.baseUrl + request.path,
       success,
     });

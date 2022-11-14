@@ -22,12 +22,14 @@ export const postController = async (request, response, next) => {
       url,
     }).toString();
 
+    /**
+     * @todo Third-party media endpoints may require a separate bearer token
+     */
     const endpointResponse = await fetch(
       `${publication.micropubEndpoint}?${parameters}`,
       {
         headers: {
           accept: "application/json",
-          // TODO: Third-party media endpoint may require a separate token
           authorization: `Bearer ${request.session.access_token}`,
         },
       }

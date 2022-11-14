@@ -26,12 +26,14 @@ export const filesController = async (request, response, next) => {
       offset,
     }).toString();
 
+    /**
+     * @todo Third-party media endpoints may require a separate bearer token
+     */
     const endpointResponse = await fetch(
       `${publication.mediaEndpoint}?${parameters}`,
       {
         headers: {
           accept: "application/json",
-          // TODO: Third-party media endpoint may require a separate token
           authorization: `Bearer ${request.session.access_token}`,
         },
       }
@@ -47,12 +49,15 @@ export const filesController = async (request, response, next) => {
       return item;
     });
 
+    /**
+     * @todo Remove requirement for private `_count` parameter
+     */
     response.render("files", {
       title: response.__("files.files.title"),
       files,
       page,
       limit,
-      count: body._count, // TODO: Remove requirement for private parameter
+      count: body._count,
       parentUrl: request.baseUrl + request.path,
       success,
     });
