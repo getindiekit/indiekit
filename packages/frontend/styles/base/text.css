@@ -30,6 +30,10 @@ sup {
   vertical-align: baseline;
 }
 
+strong {
+  font-weight: 600;
+}
+
 sub {
   inset-block-end: -0.25em;
 }
