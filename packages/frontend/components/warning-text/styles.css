@@ -1,0 +1,16 @@
+.warning-text {
+  @extend %label;
+
+  align-items: start;
+  display: flex;
+  flex-direction: row;
+}
+
+.warning-text .icon {
+  min-block-size: 2rem;
+  min-inline-size: 2rem;
+}
+
+.warning-text__text {
+  margin-block-start: 0;
+}

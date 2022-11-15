@@ -30,9 +30,11 @@ export const icon = (name) => {
     rsvp: "M36 4c4 0 8 4 8 8v18c0 5-3 8-8 8H25L12 48V38c-4 0-8-3-8-8V12c0-4 4-8 8-8h24zm0 4H12c-2 0-4 2-4 4v18c0 2 2 4 4 4h4v6l7-6h13c2 0 4-2 4-4V12c0-2-2-4-4-4zm-5 6l3 3-13 12-7-7 3-3 4 4 10-9z",
     video:
       "M36 4H12c-4.5 0-8 3.5-8 8v24c0 4.5 3.5 8 8 8h24c4.5 0 8-3.5 8-8V12c0-4.5-3.5-8-8-8zM12 8h24a4 4 0 014 4v24a4 4 0 01-4 4H12a4 4 0 01-4-4V12a4 4 0 014-4zm8 22l12-6-12-6v12zm-8-20h2v4h-4v-2c0-1.1.9-2 2-2zm6 0h4v4h-4v-4zm8 0h4v4h-4v-4zm8 0h2a2 2 0 012 2v2h-4v-4zM10 34h4v4h-2a2 2 0 01-2-2v-2zm8 0h4v4h-4v-4zm8 0h4v4h-4v-4zm8 0h4v2a2 2 0 01-2 2h-2v-4z",
+    warning:
+      "M24 4.2c2 0 4.3 1.3 5 2.8l15 28c2.5 5-2 9-5 9H9c-3 0-7.5-4-5-9L19 7c.8-1.5 3-2.8 5-2.8Zm0 4c-.8 0-1.5.6-2 1.6L8 36.1C6.7 38.5 8 40 9.5 40h29c1.5 0 2.8-1.5 1.5-3.8L26 9.8c-.5-1-1.2-1.4-2-1.4ZM26 32v4h-4v-4h4Zm0-16v14h-4V16h4Z",
   };
 
-  const svg = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48">
+  const svg = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" role="img">
     <path d="${paths[name]}"/>
   </svg>`;
 

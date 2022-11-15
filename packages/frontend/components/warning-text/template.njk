@@ -1,0 +1,8 @@
+<div class="{{ classes("warning-text", opts.classes) }}"
+  {{- attributes(opts.attributes) }}>
+  {{ icon("warning") }}
+  <strong class="warning-text__text">
+    <span class="visually-hidden">{{ opts.iconFallbackText }}</span>
+    {{ opts.text | safe }}
+  </strong>
+</div>
