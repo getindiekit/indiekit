@@ -30,7 +30,7 @@ export const IndieAuth = class {
     const base64Digest = crypto
       .createHash("sha256")
       .update(this.codeVerifier)
-      .digest("base64");
+      .digest("base64url");
     const codeChallenge = base64Digest.toString("base64url");
 
     const authUrl = new URL(authorizationEndpoint);
