@@ -5,7 +5,7 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 501 error verifying token if missing secret", async (t) => {
-  sinon.stub(process.env, "TOKEN_SECRET").value("");
+  sinon.stub(process.env, "SECRET").value("");
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
@@ -15,7 +15,7 @@ test("Returns 501 error verifying token if missing secret", async (t) => {
 
   t.is(result.status, 501);
   t.is(result.body.error, "not_implemented");
-  t.is(result.body.error_description, "Missing `TOKEN_SECRET`");
+  t.is(result.body.error_description, "Missing `SECRET`");
 
   server.close(t);
 });

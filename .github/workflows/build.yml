@@ -42,6 +42,6 @@ jobs:
           TEST_TOKEN_NO_SCOPE: ${{ secrets.TEST_TOKEN_NO_SCOPE }}
           TEST_PUBLICATION_URL: https://getindiekit.github.io/sandbox/
           TEST_SESSION_SECRET: ${{ secrets.TEST_SESSION_SECRET }}
-          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          SECRET: ${{ secrets.SECRET }}
         run: |
           npm test

@@ -24,7 +24,7 @@
     "postType": "Keine Konfiguration für den Posttyp %s bereitgestellt",
     "query": "Nicht unterstützte Abfrage für `{{key}}`: `{{value}}`",
     "title": "Nicht implementiert",
-    "tokenSecret": "Fehlt `TOKEN_SECRET`"
+    "tokenSecret": "Fehlt `SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "Das bereitgestellte Zugriffstoken ist abgelaufen, gesperrt, falsch formatiert oder aus anderen Gründen ungültig",

@@ -24,7 +24,7 @@
     "postType": "Nije obezbeđena konfiguracija za %s tip objave",
     "query": "Nepodržani upit za `{{key}}`: `{{value}}`",
     "title": "Nije implementirano",
-    "tokenSecret": "Nedostaje `TOKEN_SECRET`"
+    "tokenSecret": "Nedostaje `SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "Obezbeđeni pristupni token je istekao, opozvan, neispravan, ili nevažeći zbog drugih razloga",

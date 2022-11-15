@@ -16,7 +16,7 @@ export const tokenController = {
   get(request, response, next) {
     if (request.headers.authorization) {
       try {
-        if (!process.env.TOKEN_SECRET) {
+        if (!process.env.SECRET) {
           return next(
             IndiekitError.notImplemented(
               response.__("NotImplementedError.tokenSecret")
@@ -28,7 +28,7 @@ export const tokenController = {
         const bearerToken = request.headers.authorization
           .trim()
           .split(/\s+/)[1];
-        const accessToken = jwt.verify(bearerToken, process.env.TOKEN_SECRET);
+        const accessToken = jwt.verify(bearerToken, process.env.SECRET);
 
         // Normalize publication and token URLs before comparing
         const accessTokenMe = getCanonicalUrl(accessToken.me);
@@ -81,7 +81,7 @@ export const tokenController = {
       request.body.redirect_uri || request.query.redirect_uri;
 
     try {
-      if (!process.env.TOKEN_SECRET) {
+      if (!process.env.SECRET) {
         return next(
           IndiekitError.notImplemented(
             response.__("NotImplementedError.tokenSecret")
@@ -145,7 +145,7 @@ export const tokenController = {
       };
 
       const authResponse = {
-        access_token: jwt.sign(tokenData, process.env.TOKEN_SECRET, {
+        access_token: jwt.sign(tokenData, process.env.SECRET, {
           expiresIn: "90d",
           issuer: application.url + request.baseUrl,
         }),

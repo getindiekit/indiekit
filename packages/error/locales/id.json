@@ -24,7 +24,7 @@
     "postType": "Tidak ada konfigurasi yang disediakan untuk tipe postingan %s",
     "query": "Kueri tidak didukung untuk `{{key}}`: `{{value}}`",
     "title": "Tidak diimplementasikan",
-    "tokenSecret": "Hilang `TOKEN_SECRET`"
+    "tokenSecret": "Hilang `SECRET`"
   },
   "UnauthorizedError": {
     "invalidToken": "Token akses yang diberikan kedaluwarsa, dicabut, cacat, atau tidak valid karena alasan lain",

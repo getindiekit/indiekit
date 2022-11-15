@@ -19,7 +19,7 @@ Add `@indiekit/endpoint-token` to your list of plug-ins, specifying options as r
 }
 ```
 
-You will also need to set a `TOKEN_SECRET` environment variable to sign and verify tokens created by this endpoint.
+You will also need to set a `SECRET` environment variable to sign and verify tokens created by this endpoint.
 
 ## Options
 

@@ -33,6 +33,6 @@
     "query": "Unsupported query for `{{key}}`: `{{value}}`",
     "database": "This feature requires a database",
     "postType": "No configuration provided for %s post type",
-    "tokenSecret": "Missing `TOKEN_SECRET`"
+    "tokenSecret": "Missing `SECRET`"
   }
 }
