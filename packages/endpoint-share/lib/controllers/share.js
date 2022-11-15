@@ -47,7 +47,7 @@ export const shareController = {
     }
 
     try {
-      const endpointResponse = await fetch(publication.micropubEndpoint, {
+      const micropubResponse = await fetch(publication.micropubEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -56,11 +56,11 @@ export const shareController = {
         body: new URLSearchParams(request.body).toString(),
       });
 
-      if (!endpointResponse.ok) {
-        throw await IndiekitError.fromFetch(endpointResponse);
+      if (!micropubResponse.ok) {
+        throw await IndiekitError.fromFetch(micropubResponse);
       }
 
-      const body = await endpointResponse.json();
+      const body = await micropubResponse.json();
       const message = encodeURIComponent(body.success_description);
 
       response.redirect(`?success=${message}`);

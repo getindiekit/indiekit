@@ -61,18 +61,18 @@ export const IndieAuth = class {
     tokenUrl.searchParams.append("grant_type", "authorization_code");
     tokenUrl.searchParams.append("redirect_uri", this.redirectUri);
 
-    const endpointResponse = await fetch(tokenUrl.href, {
+    const tokenResponse = await fetch(tokenUrl.href, {
       method: "POST",
       headers: {
         accept: "application/json",
       },
     });
 
-    if (!endpointResponse.ok) {
-      throw await IndiekitError.fromFetch(endpointResponse);
+    if (!tokenResponse.ok) {
+      throw await IndiekitError.fromFetch(tokenResponse);
     }
 
-    return endpointResponse.json();
+    return tokenResponse.json();
   }
 
   /**

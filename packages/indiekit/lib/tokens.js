@@ -35,18 +35,18 @@ export const findBearerToken = (request) => {
  * @returns {Promise|object} Token values to verify
  */
 export const requestTokenValues = async (tokenEndpoint, bearerToken) => {
-  const endpointResponse = await fetch(tokenEndpoint, {
+  const tokenResponse = await fetch(tokenEndpoint, {
     headers: {
       accept: "application/json",
       authorization: `Bearer ${bearerToken}`,
     },
   });
 
-  if (!endpointResponse.ok) {
-    throw await IndiekitError.fromFetch(endpointResponse);
+  if (!tokenResponse.ok) {
+    throw await IndiekitError.fromFetch(tokenResponse);
   }
 
-  return endpointResponse.json();
+  return tokenResponse.json();
 };
 
 /**

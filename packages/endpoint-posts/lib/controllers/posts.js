@@ -30,7 +30,7 @@ export const postsController = async (request, response, next) => {
     /**
      * @todo Third-party media endpoints may require a separate bearer token
      */
-    const endpointResponse = await fetch(
+    const micropubResponse = await fetch(
       `${publication.micropubEndpoint}?${parameters}`,
       {
         headers: {
@@ -40,11 +40,11 @@ export const postsController = async (request, response, next) => {
       }
     );
 
-    if (!endpointResponse.ok) {
-      throw await IndiekitError.fromFetch(endpointResponse);
+    if (!micropubResponse.ok) {
+      throw await IndiekitError.fromFetch(micropubResponse);
     }
 
-    const body = await endpointResponse.json();
+    const body = await micropubResponse.json();
     let posts;
     if (body?.items?.length > 0) {
       const mf2 = mf2tojf2(body);

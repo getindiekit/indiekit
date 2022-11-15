@@ -69,7 +69,7 @@ export const syndicateController = {
       }
 
       // Update post with syndicated URL(s) and removal of syndication target(s)
-      const endpointResponse = await fetch(publication.micropubEndpoint, {
+      const micropubResponse = await fetch(publication.micropubEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -86,13 +86,13 @@ export const syndicateController = {
         }),
       });
 
-      if (!endpointResponse.ok) {
-        throw await IndiekitError.fromFetch(endpointResponse);
+      if (!micropubResponse.ok) {
+        throw await IndiekitError.fromFetch(micropubResponse);
       }
 
-      const body = await endpointResponse.json();
+      const body = await micropubResponse.json();
 
-      return response.status(endpointResponse.status).json(body);
+      return response.status(micropubResponse.status).json(body);
     } catch (error) {
       next(error);
     }

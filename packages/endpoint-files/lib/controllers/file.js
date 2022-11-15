@@ -24,7 +24,7 @@ export const fileController = async (request, response, next) => {
     /**
      * @todo Third-party media endpoints may require a separate bearer token
      */
-    const endpointResponse = await fetch(
+    const mediaResponse = await fetch(
       `${publication.mediaEndpoint}?${parameters}`,
       {
         headers: {
@@ -34,11 +34,11 @@ export const fileController = async (request, response, next) => {
       }
     );
 
-    if (!endpointResponse.ok) {
-      throw await IndiekitError.fromFetch(endpointResponse);
+    if (!mediaResponse.ok) {
+      throw await IndiekitError.fromFetch(mediaResponse);
     }
 
-    const body = await endpointResponse.json();
+    const body = await mediaResponse.json();
 
     response.render("file", {
       title: body.filename,

@@ -43,7 +43,7 @@ export const uploadController = {
      * @todo Third-party media endpoints may require a separate bearer token
      */
     try {
-      const endpointResponse = await fetch(publication.mediaEndpoint, {
+      const mediaResponse = await fetch(publication.mediaEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -52,11 +52,11 @@ export const uploadController = {
         body: formData,
       });
 
-      if (!endpointResponse.ok) {
-        throw await IndiekitError.fromFetch(endpointResponse);
+      if (!mediaResponse.ok) {
+        throw await IndiekitError.fromFetch(mediaResponse);
       }
 
-      const body = await endpointResponse.json();
+      const body = await mediaResponse.json();
       const message = encodeURIComponent(body.success_description);
 
       response.redirect(`${request.baseUrl}?success=${message}`);

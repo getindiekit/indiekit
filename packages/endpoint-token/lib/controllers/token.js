@@ -107,25 +107,25 @@ export const tokenController = {
         );
       }
 
-      const authUrl = new URL(publication.authorizationEndpoint);
-      authUrl.searchParams.append("client_id", client_id);
-      authUrl.searchParams.append("code", code);
-      authUrl.searchParams.append("code_verifier", code_verifier);
-      authUrl.searchParams.append("grant_type", "authorization_code");
-      authUrl.searchParams.append("redirect_uri", redirect_uri);
+      const authorizationUrl = new URL(publication.authorizationEndpoint);
+      authorizationUrl.searchParams.append("client_id", client_id);
+      authorizationUrl.searchParams.append("code", code);
+      authorizationUrl.searchParams.append("code_verifier", code_verifier);
+      authorizationUrl.searchParams.append("grant_type", "authorization_code");
+      authorizationUrl.searchParams.append("redirect_uri", redirect_uri);
 
-      const endpointResponse = await fetch(authUrl.href, {
+      const authorizationResponse = await fetch(authorizationUrl.href, {
         method: "POST",
         headers: {
           accept: "application/json",
         },
       });
 
-      if (!endpointResponse.ok) {
-        throw await IndiekitError.fromFetch(endpointResponse);
+      if (!authorizationResponse.ok) {
+        throw await IndiekitError.fromFetch(authorizationResponse);
       }
 
-      const accessToken = await endpointResponse.json();
+      const accessToken = await authorizationResponse.json();
 
       // Canonicalise publication and token URLs before comparing
       const accessTokenMe = getCanonicalUrl(accessToken.me);
