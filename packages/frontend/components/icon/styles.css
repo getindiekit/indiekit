@@ -1,6 +1,6 @@
 .icon {
   display: inline-block;
-  margin-inline-end: 0.5ex;
+  margin-inline-end: var(--space-inline);
   vertical-align: text-bottom;
   block-size: 1em;
   inline-size: 1em;
