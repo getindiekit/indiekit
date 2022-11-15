@@ -125,10 +125,10 @@ export const tokenController = {
         throw await IndiekitError.fromFetch(endpointResponse);
       }
 
-      const body = await endpointResponse.json();
+      const accessToken = await endpointResponse.json();
 
       // Canonicalise publication and token URLs before comparing
-      const accessTokenMe = getCanonicalUrl(body.me);
+      const accessTokenMe = getCanonicalUrl(accessToken.me);
       const publicationMe = getCanonicalUrl(publication.me);
       const isAuthenticated = accessTokenMe === publicationMe;
 
@@ -141,7 +141,7 @@ export const tokenController = {
       const tokenData = {
         client_id: getCanonicalUrl(client_id),
         me: accessTokenMe,
-        scope: body.scope,
+        scope: accessToken.scope,
       };
 
       const authResponse = {
@@ -150,7 +150,7 @@ export const tokenController = {
           issuer: application.url + request.baseUrl,
         }),
         me: accessTokenMe,
-        scope: body.scope,
+        scope: accessToken.scope,
         token_type: "Bearer",
       };
 
