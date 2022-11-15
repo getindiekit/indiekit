@@ -78,16 +78,16 @@ export default {
   ],
   lang: "en-GB",
   cleanUrls: "without-subfolders",
-  algolia: {
-    appId: "V4LLZ2HXJR",
-    apiKey: "9d1eb8e9b7846f4c6eef9fff9572fb0f",
-    indexName: "indiekit",
-  },
   markdown: {
     linkify: false,
   },
   outDir: "../_site",
   themeConfig: {
+    algolia: {
+      appId: "ASMV5WWEJ4",
+      apiKey: "a7ee0109aafc4a9f22cae2bd4538652d",
+      indexName: "getindiekit",
+    },
     editLink: {
       pattern: "https://github.com/getindiekit/indiekit/edit/main/docs/:path",
       text: "Edit this page on GitHub",
