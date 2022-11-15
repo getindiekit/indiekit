@@ -19,25 +19,21 @@ export const filesController = async (request, response, next) => {
     limit = Number.parseInt(limit, 10) || 12;
     offset = Number.parseInt(offset, 10) || (page - 1) * limit;
 
-    const parameters = new URLSearchParams({
-      q: "source",
-      page,
-      limit,
-      offset,
-    }).toString();
+    const mediaUrl = new URL(publication.mediaEndpoint);
+    mediaUrl.searchParams.append("q", "source");
+    mediaUrl.searchParams.append("page", page);
+    mediaUrl.searchParams.append("limit", limit);
+    mediaUrl.searchParams.append("offset", offset);
 
     /**
      * @todo Third-party media endpoints may require a separate bearer token
      */
-    const mediaResponse = await fetch(
-      `${publication.mediaEndpoint}?${parameters}`,
-      {
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
-        },
-      }
-    );
+    const mediaResponse = await fetch(mediaUrl.href, {
+      headers: {
+        accept: "application/json",
+        authorization: `Bearer ${request.session.access_token}`,
+      },
+    });
 
     if (!mediaResponse.ok) {
       throw await IndiekitError.fromFetch(mediaResponse);

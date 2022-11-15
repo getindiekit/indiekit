@@ -16,23 +16,19 @@ export const fileController = async (request, response, next) => {
     const { id } = request.params;
     const url = Buffer.from(id, "base64url").toString("utf8");
 
-    const parameters = new URLSearchParams({
-      q: "source",
-      url,
-    }).toString();
+    const mediaUrl = new URL(publication.mediaEndpoint);
+    mediaUrl.searchParams.append("q", "source");
+    mediaUrl.searchParams.append("url", url);
 
     /**
      * @todo Third-party media endpoints may require a separate bearer token
      */
-    const mediaResponse = await fetch(
-      `${publication.mediaEndpoint}?${parameters}`,
-      {
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
-        },
-      }
-    );
+    const mediaResponse = await fetch(mediaUrl.href, {
+      headers: {
+        accept: "application/json",
+        authorization: `Bearer ${request.session.access_token}`,
+      },
+    });
 
     if (!mediaResponse.ok) {
       throw await IndiekitError.fromFetch(mediaResponse);
