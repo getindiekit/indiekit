@@ -15,7 +15,7 @@ export const postController = async (request, response, next) => {
   try {
     const { publication } = request.app.locals;
     const { id } = request.params;
-    const url = Buffer.from(id, "base64").toString("utf8");
+    const url = Buffer.from(id, "base64url").toString("utf8");
 
     const parameters = new URLSearchParams({
       q: "source",
