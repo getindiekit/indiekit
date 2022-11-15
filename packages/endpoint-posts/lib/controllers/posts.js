@@ -20,25 +20,21 @@ export const postsController = async (request, response, next) => {
     limit = Number.parseInt(limit, 10) || 12;
     offset = Number.parseInt(offset, 10) || (page - 1) * limit;
 
-    const parameters = new URLSearchParams({
-      q: "source",
-      page,
-      limit,
-      offset,
-    }).toString();
+    const micropubUrl = new URL(publication.micropubEndpoint);
+    micropubUrl.searchParams.append("q", "source");
+    micropubUrl.searchParams.append("page", page);
+    micropubUrl.searchParams.append("limit", limit);
+    micropubUrl.searchParams.append("offset", offset);
 
     /**
      * @todo Third-party media endpoints may require a separate bearer token
      */
-    const micropubResponse = await fetch(
-      `${publication.micropubEndpoint}?${parameters}`,
-      {
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
-        },
-      }
-    );
+    const micropubResponse = await fetch(micropubUrl.href, {
+      headers: {
+        accept: "application/json",
+        authorization: `Bearer ${request.session.access_token}`,
+      },
+    });
 
     if (!micropubResponse.ok) {
       throw await IndiekitError.fromFetch(micropubResponse);
