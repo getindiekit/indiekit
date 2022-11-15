@@ -114,7 +114,7 @@ export const tokenController = {
       authUrl.searchParams.append("grant_type", "authorization_code");
       authUrl.searchParams.append("redirect_uri", redirect_uri);
 
-      const endpointResponse = await fetch(authUrl.toString(), {
+      const endpointResponse = await fetch(authUrl.href, {
         method: "POST",
         headers: {
           accept: "application/json",
