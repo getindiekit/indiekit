@@ -45,7 +45,7 @@ export const filesController = async (request, response, next) => {
 
     const body = await endpointResponse.json();
     const files = body.items.map((item) => {
-      item.id = Buffer.from(item.url).toString("base64");
+      item.id = Buffer.from(item.url).toString("base64url");
       return item;
     });
 
