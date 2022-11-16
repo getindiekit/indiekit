@@ -28,10 +28,10 @@ export const defaultConfig = {
     "@indiekit/endpoint-posts",
     "@indiekit/endpoint-share",
     "@indiekit/endpoint-syndicate",
-    "@indiekit/endpoint-token",
   ],
   publication: {
     authorizationEndpoint: "https://indieauth.com/auth",
+    tokenEndpoint: "https://tokens.indieauth.com/token",
     categories: [],
     locale: "en",
     me: null,
