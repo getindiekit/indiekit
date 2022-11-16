@@ -19,7 +19,7 @@ export const tokenController = {
         if (!process.env.SECRET) {
           return next(
             IndiekitError.notImplemented(
-              response.__("NotImplementedError.tokenSecret")
+              response.__("NotImplementedError.secret")
             )
           );
         }
@@ -84,7 +84,7 @@ export const tokenController = {
       if (!process.env.SECRET) {
         return next(
           IndiekitError.notImplemented(
-            response.__("NotImplementedError.tokenSecret")
+            response.__("NotImplementedError.secret")
           )
         );
       }

@@ -24,7 +24,7 @@
     "postType": "Aucune configuration fournie pour le type de publication %s",
     "query": "Requête non prise en charge pour `{{key}}` : `{{value}}`",
     "title": "Non implémenté",
-    "tokenSecret": "`SECRET` manquant"
+    "secret": "`SECRET` manquant"
   },
   "UnauthorizedError": {
     "invalidToken": "Le jeton d'accès fourni est expiré, révoqué, mal formé ou non valide pour d'autres raisons",

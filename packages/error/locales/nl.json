@@ -24,7 +24,7 @@
     "postType": "Geen configuratie voorzien voor %s berichttype",
     "query": "Niet-ondersteunde query voor `{{key}}`: `{{value}}`",
     "title": "Niet geïmplementeerd",
-    "tokenSecret": "`SECRET` ontbreekt"
+    "secret": "`SECRET` ontbreekt"
   },
   "UnauthorizedError": {
     "invalidToken": "Het verstrekte toegangstoken is verlopen, ingetrokken, misvormd of ongeldig",
