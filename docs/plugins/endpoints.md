@@ -43,9 +43,3 @@ Share endpoint for Indiekit. Provides a simple interface for [bookmarking](https
 <Badge type="info" text="Built-in" /> <Badge type="tip" text="Offical" />
 
 Syndication endpoint for Indiekit. Provides an endpoint you can ping to check that recently published posts have been syndicated to any configured targets such as Twitter or Mastodon.
-
-## [@indiekit/endpoint-token](https://npmjs.org/package/@indiekit/endpoint-token)
-
-<Badge type="info" text="Built-in" /> <Badge type="tip" text="Offical" />
-
-Token endpoint for Indiekit. Provides an IndieAuth token endpoint to verify access tokens.

@@ -22,12 +22,6 @@
       },
       {
         "file": "en.json",
-        "path": "packages/endpoint-token/locales",
-        "pattern": "packages/endpoint-token/locales/en.json",
-        "module": "endpoint-token"
-      },
-      {
-        "file": "en.json",
         "path": "packages/error/locales",
         "pattern": "packages/error/locales/en.json",
         "module": "error"
