@@ -15,6 +15,7 @@
     "upload": {
       "file": "File",
       "submit": "Upload",
+      "unauthorized": "You don’t have any publishing permissions.",
       "title": "Upload a new file"
     }
   }
