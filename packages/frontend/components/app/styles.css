@@ -8,7 +8,7 @@
 }
 
 .app--login {
-  --container-max-inline-size: 28rem;
+  --container-max-inline-size: 35rem;
 }
 
 .app--login .header,
@@ -24,7 +24,6 @@
 
 .app--login .main {
   flex: 0;
-  margin-block-end: 20vh;
   margin-inline-end: auto;
   margin-inline-start: auto;
   overflow: hidden;
