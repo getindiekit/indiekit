@@ -1,8 +1,8 @@
 .checkboxes {
-  --checkbox-size: 2em;
-  --check-size: 1.25em;
+  --checkbox-size: 1.5em;
+  --check-size: 1em;
   --touch-target-size: 44px;
-  --checkbox-label-padding-block: calc(var(--space-block) / 2);
+  --checkbox-label-padding-block: calc(var(--space-block) / 4);
   --checkbox-label-padding-inline: var(--space-inline);
 }
 
