@@ -2,5 +2,4 @@
   @extend %caption;
 
   color: var(--color-neutral-dark);
-  margin-block-start: 0;
 }

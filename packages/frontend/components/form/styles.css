@@ -4,12 +4,8 @@
   --container-padding-block: var(--step-0);
 }
 
-.form > * + * {
-  margin-block-start: var(--step-1);
-}
-
-.form__field {
-  margin-block-start: var(--step-1);
+.form__field * + * {
+  margin-block-start: 0.5rem;
 }
 
 .form__field--error {
