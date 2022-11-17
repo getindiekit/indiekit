@@ -156,16 +156,16 @@
             readonly: "true",
             onclick: "this.select();"
           }
-        }) if session.access_token
+        })
       }
-    }, {
+    } if session.access_token, {
       key: {
         text: __("status.application.scope")
       },
       value: {
-        text: session.scope if session.scope
+        text: session.scope
       }
-    }, {
+    } if session.scope, {
       key: {
         text: __("status.application.name")
       },

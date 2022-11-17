@@ -157,16 +157,19 @@ export const IndieAuth = class {
         );
 
         // Check that access token is valid
-        if (!authorizedToken.access_token || !authorizedToken.scope) {
+        if (!authorizedToken.access_token) {
           throw IndiekitError.unauthorized(
             response.__("UnauthorizedError.invalidToken")
           );
         }
 
-        // Set session token and redirect to requested resource
+        // Set session token values
         request.session.access_token = authorizedToken.access_token;
-        request.session.scope = authorizedToken.scope;
+        if (authorizedToken.scope) {
+          request.session.scope = authorizedToken.scope;
+        }
 
+        // Redirect to requested resource
         return response.redirect(redirect || "/");
       } catch (error) {
         response.status(error.status || 500);
@@ -223,8 +226,11 @@ export const IndieAuth = class {
           );
         }
 
+        // Set session token values
         request.session.access_token = bearerToken;
-        request.session.scope = verifiedTokenValues.scope;
+        if (verifiedTokenValues.scope) {
+          request.session.scope = verifiedTokenValues.scope;
+        }
 
         next();
       } catch (error) {
