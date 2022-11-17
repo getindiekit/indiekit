@@ -3,7 +3,7 @@
     {{- action.text | safe -}}
   </a>
 {% endmacro -%}
-<section class="{{ classes("summary", opts.classes) }}">
+<section class="{{ classes("summary", opts) }}">
   {%- if opts.title or opts.actions %}
   <header class="summary__header">
   {%- if opts.title %}

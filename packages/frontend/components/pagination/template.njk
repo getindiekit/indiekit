@@ -1,5 +1,5 @@
 {% set type = opts.results.type | default(__("pagination.defaultType")) -%}
-<nav class="{{ classes("pagination", opts.classes) }}" id="pagination-label" aria-label="{{ type }} navigation">
+<nav class="{{ classes("pagination", opts) }}" id="pagination-label" aria-label="{{ type }} navigation">
   <ul class="pagination__list">
     {%- if opts.previous %}
     <li class="pagination__item pagination__item--previous">

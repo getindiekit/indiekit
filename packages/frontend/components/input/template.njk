@@ -2,7 +2,7 @@
 {%- from "../hint/macro.njk" import hint with context -%}
 {%- from "../label/macro.njk" import label with context -%}
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
-{%- set fieldClasses = classes("form__field", "form__field--error" if opts.errorMessage) -%}
+{%- set fieldClasses = "form__field" + (" form__field--error" if opts.errorMessage) -%}
 <div class="{{ "visually-hidden" if opts.type == "hidden" else fieldClasses }}">
 {%- if opts.label %}
   {{ label({
@@ -34,7 +34,7 @@
     label: opts.errorMessage.label
   }) | indent(2) }}
 {%- endif %}
-  <input class="{{ classes("input", "input--error" if opts.errorMessage) }}" name="{{ opts.name }}" type="{{ opts.type | default("text") }}"
+  <input class="{{ classes("input", opts) }}" name="{{ opts.name }}" type="{{ opts.type | default("text") }}"
   {%- if opts.id %} id="{{ opts.id}}"{% endif %}
   {%- if opts.value %} value="{{ opts.value}}"{% endif %}
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}

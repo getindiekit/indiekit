@@ -42,7 +42,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-  <div class="{{ classes("checkboxes", opts.classes) }}"
+  <div class="{{ classes("checkboxes", opts) }}"
     {{- attributes(opts.attributes) }}>
     {% for item in opts.items %}
       {% if item %}
@@ -96,7 +96,7 @@
   </div>
 {%- endset -%}
 
-<div class="{{ classes("form__field", "form__field--error" if opts.errorMessage) }}">
+<div class="{{ "form__field" + (" form__field--error" if opts.errorMessage) }}">
 {%- if opts.fieldset %}
   {% call fieldset({
     describedBy: describedBy,
