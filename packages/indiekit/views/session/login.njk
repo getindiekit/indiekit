@@ -8,7 +8,7 @@
   }) }}
 {% endblock %}
 {% block fieldset %}
-  {% set me = publication.me | replace("http://", "") | replace("https://", "") %}
+  {% set me = publication.me | friendlyUrl %}
   <p>{{ __("session.login.description", "<b>" + me + "</b>") | safe }}</p>
   {{ button({
     text: __("session.login.submit"),
