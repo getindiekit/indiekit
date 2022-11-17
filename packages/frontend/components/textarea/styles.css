@@ -16,6 +16,7 @@
 .textarea[readonly] {
   border-color: var(--color-neutral-light);
   color: var(--color-neutral-dark);
+  resize: none;
 }
 
 .textarea[readonly]:focus {
