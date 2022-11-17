@@ -11,9 +11,16 @@ export function mockClient() {
 
   const client = agent.get("https://website.example");
 
+  // Get homepage
+  const homeHtml = getFixture("html/home.html");
+  client.intercept({ path: "/" }).reply(200, homeHtml);
+
   // Get post
-  const post = getFixture("html/post.html");
-  client.intercept({ path: "/post.html" }).reply(200, post);
+  const postHtml = getFixture("html/post.html");
+  client.intercept({ path: "/post.html" }).reply(200, postHtml);
+
+  // Get 404 page (Not Found)
+  client.intercept({ path: "/404" }).reply(404, { message: "Not found" });
 
   // Get media files
   const photo = getFixture("file-types/photo.jpg", false);

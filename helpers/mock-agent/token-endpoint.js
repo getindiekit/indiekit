@@ -10,8 +10,8 @@ export function mockClient() {
   agent.disableNetConnect();
 
   const client = agent.get("https://token-endpoint.example");
-  const post = getFixture("html/post.html", false);
-  const page = getFixture("html/page.html", false);
+  const postHtml = getFixture("html/post.html", false);
+  const pageHtml = getFixture("html/page.html", false);
 
   // Verify access token
   client
@@ -84,8 +84,8 @@ export function mockClient() {
 
   // Mock HTML requests (need to use same origin as token endpoint)
   // See: https://github.com/nodejs/undici/discussions/1440
-  client.intercept({ path: "/post.html" }).reply(200, post);
-  client.intercept({ path: "/page.html" }).reply(200, page);
+  client.intercept({ path: "/post.html" }).reply(200, postHtml);
+  client.intercept({ path: "/page.html" }).reply(200, pageHtml);
   client.intercept({ path: "/404.html" }).reply(404, {
     message: "Not found",
   });
