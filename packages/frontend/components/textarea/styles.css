@@ -29,6 +29,6 @@
 
 .textarea--monospace {
   font-family: var(--font-family-monospace);
-  font-size: 1rem;
+  font-size: var(--step--1);
   font-variant-numeric: tabular-nums;
 }

@@ -59,7 +59,7 @@
 .s-linear pre {
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
-  font-size: smaller;
+  font-size: var(--step--1);
   overflow: scroll;
   padding: var(--inset-small);
   word-break: normal;
