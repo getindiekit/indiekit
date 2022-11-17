@@ -77,8 +77,9 @@
   position: absolute;
 }
 
-.radios__hint {
+.radios .radios__hint {
   display: block;
+  margin-block-start: 0;
   padding-inline: var(--radio-label-padding-inline);
 }
 
