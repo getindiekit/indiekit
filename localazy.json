@@ -4,9 +4,27 @@
     "files": [
       {
         "file": "en.json",
-        "path": "packages/indiekit/locales",
-        "pattern": "packages/indiekit/locales/en.json",
-        "module": "indiekit"
+        "path": "packages/endpoint-files/locales",
+        "pattern": "packages/endpoint-files/locales/en.json",
+        "module": "endpoint-files"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/endpoint-posts/locales",
+        "pattern": "packages/endpoint-posts/locales/en.json",
+        "module": "endpoint-posts"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/endpoint-share/locales",
+        "pattern": "packages/endpoint-share/locales/en.json",
+        "module": "endpoint-share"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/endpoint-token/locales",
+        "pattern": "packages/endpoint-token/locales/en.json",
+        "module": "endpoint-token"
       },
       {
         "file": "en.json",
@@ -22,27 +40,9 @@
       },
       {
         "file": "en.json",
-        "path": "packages/endpoint-share/locales",
-        "pattern": "packages/endpoint-share/locales/en.json",
-        "module": "endpoint-share"
-      },
-      {
-        "file": "en.json",
-        "path": "packages/endpoint-files/locales",
-        "pattern": "packages/endpoint-files/locales/en.json",
-        "module": "endpoint-files"
-      },
-      {
-        "file": "en.json",
-        "path": "packages/endpoint-posts/locales",
-        "pattern": "packages/endpoint-posts/locales/en.json",
-        "module": "endpoint-posts"
-      },
-      {
-        "file": "en.json",
-        "path": "packages/endpoint-token/locales",
-        "pattern": "packages/endpoint-token/locales/en.json",
-        "module": "endpoint-token"
+        "path": "packages/indiekit/locales",
+        "pattern": "packages/indiekit/locales/en.json",
+        "module": "indiekit"
       }
     ]
   },
