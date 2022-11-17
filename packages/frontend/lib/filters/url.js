@@ -16,3 +16,20 @@ export const absoluteUrl = (string, baseUrl) => {
     return path.posix.join(baseUrl, string);
   }
 };
+
+/**
+ * Get friendly URL
+ *
+ * @param {string} string - URL or path
+ * @returns {URL} Friendly URL
+ */
+export const friendlyUrl = (string) => {
+  string = String(string);
+
+  try {
+    const { host, pathname } = new URL(string);
+    return host + pathname;
+  } catch {
+    return string;
+  }
+};
