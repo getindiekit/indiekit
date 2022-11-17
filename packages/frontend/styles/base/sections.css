@@ -27,8 +27,7 @@
 
 body {
   margin: 0;
-  min-block-size: 100vh;
-  min-block-size: -webkit-fill-available;
+  min-block-size: 100dvh;
 }
 
 h1,
