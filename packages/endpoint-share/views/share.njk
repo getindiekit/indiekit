@@ -81,5 +81,7 @@
 
   {{ button({
     text: __("share.submit")
+  }) if session.access_token else warningText({
+    text: __("share.unauthorized")
   }) }}
 {% endblock %}
