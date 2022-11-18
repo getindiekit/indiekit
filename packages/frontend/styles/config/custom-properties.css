@@ -30,7 +30,6 @@
   /* Colour assignments */
   --color-background: white;
   --color-offset: var(--color-neutral-lightest);
-  --color-highlight: hsl(0 0% 100% / 24%);
   --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
   --color-shadow-offset: hsl(
     var(--color-neutral-h) var(--color-neutral-s) 0% / 6%
