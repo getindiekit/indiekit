@@ -16,5 +16,5 @@
   border-inline-start-color: var(--color-error);
   border-inline-start-style: solid;
   border-inline-start-width: var(--border-width-thickest);
-  padding-inline-start: calc(var(--inset-small) * 2);
+  padding-inline-start: var(--inset-small);
 }

@@ -2,8 +2,11 @@
   @extend %label;
 
   align-items: start;
+  background-color: var(--color-offset);
+  border-radius: var(--border-radius-large);
   display: flex;
   flex-direction: row;
+  padding: var(--inset-small);
 }
 
 .warning-text .icon {
