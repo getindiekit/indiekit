@@ -120,3 +120,5 @@ To ensure Indiekit’s endpoint can be discovered by Micropub clients (and have 
 <link rel="authorization_endpoint" href="https://indieauth.com/auth">
 <link rel="token_endpoint" href="https://tokens.indieauth.com/token">
 ```
+
+[env]: https://devcenter.heroku.com/articles/config-vars
