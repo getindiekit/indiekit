@@ -41,7 +41,7 @@ The browser will refresh to reflect any changes you make to the documentation.
 
 ## Decisions
 
-Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in `/docs/decisions`.
+Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in [`/docs/decisions`](docs/decisions).
 
 ## Contributing
 
