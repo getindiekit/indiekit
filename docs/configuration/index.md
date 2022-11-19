@@ -152,7 +152,7 @@ Learn more about Indiekit’s [plug-in API](../plugins/api/index.md).
 
 ### publication.authorizationEndpoint `URL`
 
-Authorisation endpoint.
+Authorization endpoint.
 
 _Optional_, defaults to `"https://indieauth.com/auth"`. For example:
 
