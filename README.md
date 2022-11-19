@@ -25,6 +25,8 @@ Publish content to your website using apps like [iAWriter](https://ia.net/writer
 
 - Node.js v18+
 
+A [MongoDB](https://www.mongodb.com) database is optional, but required for many features to work.
+
 ## Install
 
 Learn how to [set up an Indiekit server](https://getindiekit.com/get-started) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/index.js).
