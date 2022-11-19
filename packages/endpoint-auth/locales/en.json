@@ -28,23 +28,23 @@
         "label": "Publishing permissions",
         "create": {
           "label": "Create",
-          "hint": "Application can publish posts and upload media."
+          "hint": "Application can publish posts and upload media"
         },
         "delete": {
           "label": "Delete",
-          "hint": "Application can delete posts."
+          "hint": "Application can delete posts"
         },
         "draft": {
           "label": "Draft",
-          "hint": "Posts created by this application will be marked as draft."
+          "hint": "Posts created by this application will be marked as draft"
         },
         "media": {
           "label": "Media",
-          "hint": "Application can upload media."
+          "hint": "Application can upload media"
         },
         "update": {
           "label": "Update",
-          "hint": "Application can update posts."
+          "hint": "Application can update posts"
         }
       }
     },
