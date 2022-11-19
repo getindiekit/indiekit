@@ -1,6 +1,7 @@
 {
   "BadRequestError": {
     "invalid": "W żądaniu brakuje wymaganego parametru, zawiera nieobsługiwany parametr lub wartość parametru, powtarza ten sam parametr, używa więcej niż jednej metody włączenia tokena dostępu lub jest w inny sposób zniekształcony",
+    "invalidValue": "Podano nieprawidłową wartość dla: `%s`",
     "missingParameter": "Brakujący parametr: `%s`",
     "missingProperty": "Żądanie nie zawiera %s",
     "missingToken": "Brak tokena na okaziciela dostarczonego na żądanie",
@@ -23,11 +24,14 @@
     "database": "Ta funkcja wymaga bazy danych",
     "postType": "Nie podano konfiguracji dla typu postu %s",
     "query": "Nieobsługiwane zapytanie dla `{{key}}`: `{{value}}`",
+    "secret": "Brakujące `SECRET`",
     "title": "Nie zaimplementowano",
-    "secret": "Brakujące `SECRET`"
+    "tokenSecret": "Brakujące `SECRET`"
   },
   "UnauthorizedError": {
+    "invalidCode": "Podany kod autoryzacji wygasł, cofnął, zniekształcił się lub został nieważny z innych powodów",
     "invalidToken": "Dostarczony token dostępu jest wygasły, odwołany, zniekształcony lub nieważny z innych powodów",
+    "jwt": "Błąd JSON Web Token: %s",
     "title": "Nieautoryzowany"
   },
   "UnsupportedMediaTypeError": {

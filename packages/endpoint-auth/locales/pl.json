@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Zaloguj się",
+        "text": "Zaloguj się do {{client}} jako {{me}}",
+        "title": "Zaloguj się"
+      },
+      "authorize": {
+        "submit": "Zezwól",
+        "text": "{{client}} prosi o pozwolenie na dostęp do {{me}}",
+        "title": "Autoryzuj aplikację"
+      },
+      "password": {
+        "label": "Hasło"
+      },
+      "pkce": {
+        "text": "{{client}} nie używa Proof of Key Code Exchange (PKCE), który jest bezpieczniejszy."
+      },
+      "redirect": "Po autoryzacji tej aplikacji nastąpi przekierowanie do %s",
+      "scope": {
+        "create": {
+          "hint": "Aplikacja może publikować posty i przesyłać multimedia",
+          "label": "Utwórz"
+        },
+        "delete": {
+          "hint": "Aplikacja może usuwać posty",
+          "label": "Usuń"
+        },
+        "draft": {
+          "hint": "Posty utworzone przez tę aplikację zostaną oznaczone jako wersja robocza",
+          "label": "Projekt"
+        },
+        "label": "Uprawnienia do publikowania",
+        "media": {
+          "hint": "Aplikacja może przesyłać multimedia",
+          "label": "Multimedia"
+        },
+        "update": {
+          "hint": "Aplikacja może aktualizować posty",
+          "label": "Aktualizuj"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Wprowadź prawidłowe hasło",
+        "missing": "Wprowadź hasło"
+      }
+    },
     "guidance": {
-      "title": "Punkt końcowy tokena",
-      "discovery": "Aby użyć tego tokenowego punktu końcowego, dodaj następującą wartość do witryny `<head>`:",
-      "verifyResponse": "Ten punkt końcowy zweryfikuje token i odpowie informacjami o użytkowniku i zakresie:",
-      "verifyTitle": "Zweryfikuj token dostępu"
+      "authentication": {
+        "redeemCode": "Zrealizuj kod autoryzacyjny na token dostępu",
+        "title": "Uzyskaj uprawnienia dostępu użytkownika",
+        "verifyToken": "Zweryfikuj token dostępu"
+      },
+      "authorization": {
+        "redeemCode": "Zrealizuj kod autoryzacyjny dla adresu URL profilu użytkownika",
+        "requestCode": "Poproś o kod autoryzacyjny",
+        "requestCodeResponse": "Jeśli użytkownik zaakceptuje żądanie, punkt końcowy wygeneruje kod autoryzacyjny i przekieruje z powrotem do klienta:",
+        "title": "Uzyskaj tożsamość użytkownika"
+      },
+      "discovery": "Aby użyć tego punktu końcowego uwierzytelniania, dodaj następujące wartości do `<head>` swojej witryny:",
+      "title": "Używanie tego punktu końcowego IndieAuth"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Wprowadź hasło, które będzie używane do uwierzytelniania żądań",
+        "label": "Nowe hasło"
+      },
+      "secret": {
+        "hint": "Użyj następującej wartości dla %s w swoich zmiennych środowiskowych",
+        "label": "Tajne hasło"
+      },
+      "setup": {
+        "text": "Aby {{app}} mógł uwierzytelniać żądania IndieAuth, potrzebne jest tajne hasło."
+      },
+      "submit": "Wygeneruj hasło tajne",
+      "title": "Nowe hasło"
     }
   }
 }

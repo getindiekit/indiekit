@@ -15,7 +15,8 @@
     "upload": {
       "file": "Archivo",
       "submit": "Cargar",
-      "title": "Cargar un archivo nuevo"
+      "title": "Cargar un archivo nuevo",
+      "unauthorized": "No tienes ningún permiso de publicación"
     }
   }
 }

@@ -15,7 +15,8 @@
     "upload": {
       "file": "Berkas",
       "submit": "Unggah",
-      "title": "Unggah file baru"
+      "title": "Unggah file baru",
+      "unauthorized": "Anda tidak memiliki izin penerbitan"
     }
   }
 }

@@ -15,7 +15,8 @@
     "upload": {
       "file": "Plik",
       "submit": "Prześlij",
-      "title": "Prześlij nowy plik"
+      "title": "Prześlij nowy plik",
+      "unauthorized": "Nie masz żadnych uprawnień do publikowania"
     }
   }
 }

@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Iniciar sesión",
+        "text": "Inicie sesión en {{client}} como {{me}}",
+        "title": "Iniciar sesión"
+      },
+      "authorize": {
+        "submit": "Permitir",
+        "text": "{{client}} está solicitando permiso para acceder a {{me}}",
+        "title": "Autorizar la aplicación"
+      },
+      "password": {
+        "label": "Contraseña"
+      },
+      "pkce": {
+        "text": "{{client}} no utiliza Proof of Key Code Exchange (PKCE), que es más seguro."
+      },
+      "redirect": "Tras autorizar esta aplicación, se le redirigirá a %s",
+      "scope": {
+        "create": {
+          "hint": "La aplicación puede publicar publicaciones y subir contenido multimedia",
+          "label": "Crear"
+        },
+        "delete": {
+          "hint": "La aplicación puede eliminar publicaciones",
+          "label": "Borrar"
+        },
+        "draft": {
+          "hint": "Las publicaciones creadas por esta aplicación se marcarán como borrador",
+          "label": "Borrador"
+        },
+        "label": "Permisos de publicación",
+        "media": {
+          "hint": "La aplicación puede subir archivos multimedia",
+          "label": "Multimedia"
+        },
+        "update": {
+          "hint": "La aplicación puede actualizar publicaciones",
+          "label": "Actualizar"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Introduce una contraseña válida",
+        "missing": "Introduce una contraseña"
+      }
+    },
     "guidance": {
-      "title": "Punto final de token",
-      "discovery": "Para usar este punto final de token, agrega el siguiente valor a `<head>` de tu sitio web:",
-      "verifyResponse": "A continuación, este punto final verificará el token y responderá con información sobre el usuario y el ámbito:",
-      "verifyTitle": "Verificar un token de acceso"
+      "authentication": {
+        "redeemCode": "Canjear un código de autorización por un token de acceso",
+        "title": "Obtenga los permisos de acceso de un usuario",
+        "verifyToken": "Verificar un token de acceso"
+      },
+      "authorization": {
+        "redeemCode": "Canjear un código de autorización por la URL del perfil de un usuario",
+        "requestCode": "Solicitar un código de autorización",
+        "requestCodeResponse": "Si el usuario aprueba la solicitud, el terminal generará un código de autorización y lo redirigirá al cliente:",
+        "title": "Obtener la identidad de un usuario"
+      },
+      "discovery": "Para usar este punto final de autenticación, agregue los siguientes valores al `<head>` de su sitio web:",
+      "title": "Usando este punto final de IndieAuth"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Introduzca una contraseña para utilizar para autenticar las solicitudes",
+        "label": "Nueva contraseña"
+      },
+      "secret": {
+        "hint": "Usa el siguiente valor para %s en tus variables de entorno",
+        "label": "Contraseña secreta"
+      },
+      "setup": {
+        "text": "Se necesita una contraseña secreta antes de que {{app}} pueda autenticar las solicitudes de IndieAuth."
+      },
+      "submit": "Generar contraseña secreta",
+      "title": "Nueva contraseña"
     }
   }
 }

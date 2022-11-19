@@ -8,7 +8,8 @@
     },
     "name": "Titel",
     "submit": "Publiceer",
-    "title": "Delen"
+    "title": "Delen",
+    "unauthorized": "Je hebt geen publicatierechten"
   },
   "status": {
     "bookmarklet": {

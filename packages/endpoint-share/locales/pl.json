@@ -8,7 +8,8 @@
     },
     "name": "Tytuł",
     "submit": "Publikuj",
-    "title": "Udostępnij"
+    "title": "Udostępnij",
+    "unauthorized": "Nie masz żadnych uprawnień do publikowania"
   },
   "status": {
     "bookmarklet": {

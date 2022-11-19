@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Anmelden",
+        "text": "Melden Sie sich bei {{client}} als {{me}} an",
+        "title": "Anmelden"
+      },
+      "authorize": {
+        "submit": "Zulassen",
+        "text": "{{client}} möchte Zugriff auf {{me}}",
+        "title": "Anwendung autorisieren"
+      },
+      "password": {
+        "label": "Passwort"
+      },
+      "pkce": {
+        "text": "{{client}} verwendet keinen Proof of Key Code Exchange (PKCE), der sicherer ist."
+      },
+      "redirect": "Nach der Autorisierung dieser Anwendung werden Sie zu %s weitergeleitet",
+      "scope": {
+        "create": {
+          "hint": "Die Anwendung kann Beiträge veröffentlichen und Medien hochladen",
+          "label": "Erstellen"
+        },
+        "delete": {
+          "hint": "Die Anwendung kann Beiträge löschen",
+          "label": "Löschen"
+        },
+        "draft": {
+          "hint": "Beiträge, die mit dieser Anwendung erstellt wurden, werden als Entwurf markiert",
+          "label": "Entwurf"
+        },
+        "label": "Veröffentlichungsberechtigungen",
+        "media": {
+          "hint": "Die Anwendung kann Medien hochladen",
+          "label": "Medien"
+        },
+        "update": {
+          "hint": "Die Anwendung kann Beiträge aktualisieren",
+          "label": "Aktualisierung"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Geben Sie ein gültiges passwort ein",
+        "missing": "Geben Sie ein Passwort ein"
+      }
+    },
     "guidance": {
-      "title": "Token-Endpunkt",
-      "discovery": "Um diesen Token-Endpunkt zu verwenden, fügen Sie den folgenden Wert zum `<head>` Ihrer Website hinzu:",
-      "verifyResponse": "Dieser Endpunkt überprüft dann das Token und antwortet mit Informationen über den Benutzer und den scope:",
-      "verifyTitle": "Ein Zugriffstoken verifizieren"
+      "authentication": {
+        "redeemCode": "Einen Autorisierungscode gegen ein Zugriffstoken einlösen",
+        "title": "Holen Sie sich die Zugriffsberechtigungen eines Benutzers",
+        "verifyToken": "Ein Zugriffstoken verifizieren"
+      },
+      "authorization": {
+        "redeemCode": "Einen Autorisierungscode für die Profil-URL eines Benutzers einlösen",
+        "requestCode": "Fordern Sie einen Autorisierungscode an",
+        "requestCodeResponse": "Wenn der Benutzer die Anfrage genehmigt, generiert der Endpunkt einen Autorisierungscode und leitet ihn zurück zum Client:",
+        "title": "Holen Sie sich die Identität eines Benutzers"
+      },
+      "discovery": "Um diesen Authentifizierungsendpunkt zu verwenden, fügen Sie die folgenden Werte zum `<head>` Ihrer Website hinzu:",
+      "title": "Verwenden dieses IndieAuth-Endpunkts"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Geben Sie ein Passwort ein, das für die Authentifizierung von Anfragen verwendet werden soll",
+        "label": "Neues Passwort"
+      },
+      "secret": {
+        "hint": "Verwenden Sie den folgenden Wert für %s in Ihren Umgebungsvariablen",
+        "label": "Passwort geheim"
+      },
+      "setup": {
+        "text": "Ein geheimes Passwort ist erforderlich, bevor {{app}} IndieAuth-Anfragen authentifizieren kann."
+      },
+      "submit": "Geheimes Passwort generieren",
+      "title": "Neues Passwort"
     }
   }
 }

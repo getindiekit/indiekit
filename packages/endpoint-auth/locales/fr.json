@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Se connecter",
+        "text": "Connectez-vous à {{client}} as {{me}}",
+        "title": "Se connecter"
+      },
+      "authorize": {
+        "submit": "Permettre",
+        "text": "{{client}} demander l'autorisation d'accéder {{me}}",
+        "title": "Autoriser l'application"
+      },
+      "password": {
+        "label": "Mot de passe"
+      },
+      "pkce": {
+        "text": "{{client}} n'utilise pas le Proof of Key Code Exchange (PKCE), qui est plus sécurisé."
+      },
+      "redirect": "Après avoir autorisé cette application, vous serez redirigé vers %s",
+      "scope": {
+        "create": {
+          "hint": "L'application peut publier des publications et télécharger des médias",
+          "label": "Créer"
+        },
+        "delete": {
+          "hint": "L'application peut supprimer des publications",
+          "label": "Supprimer"
+        },
+        "draft": {
+          "hint": "Les publications créées par cette application seront marquées comme brouillon",
+          "label": "Brouillon"
+        },
+        "label": "Autorisations de publication",
+        "media": {
+          "hint": "L'application peut télécharger des médias",
+          "label": "Médias"
+        },
+        "update": {
+          "hint": "L'application peut mettre à jour les publications",
+          "label": "Mettre à jour"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Entrez un mot de passe valide",
+        "missing": "Saisir le mot de passe"
+      }
+    },
     "guidance": {
-      "title": "Endpoint de jeton",
-      "discovery": "Pour utiliser ce point de terminaison de jeton, ajoutez la valeur suivante au `<head>` de votre site Web:",
-      "verifyResponse": "Ce point de terminaison vérifiera ensuite le jeton et répondra avec des informations sur l'utilisateur et la portée:",
-      "verifyTitle": "Vérifier un jeton d'accès"
+      "authentication": {
+        "redeemCode": "Échangez un code d'autorisation contre un jeton d'accès",
+        "title": "Obtenir les autorisations d'accès d'un utilisateur",
+        "verifyToken": "Vérifier un jeton d'accès"
+      },
+      "authorization": {
+        "redeemCode": "Utiliser un code d'autorisation pour l'URL du profil d'un utilisateur",
+        "requestCode": "Demandez un code d'autorisation",
+        "requestCodeResponse": "Si l'utilisateur approuve la demande, le point de terminaison générer un code d'autorisation et redirigera vers le client:",
+        "title": "Obtenir l'identité d'un utilisateur"
+      },
+      "discovery": "Pour utiliser ce point de terminaison d'authentification, ajoutez les valeurs suivantes au `<head>` de votre site Web",
+      "title": "Utilisation de ce point de terminaison IndieAuth"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Entrez un mot de passe à utiliser pour authentifier les demandes",
+        "label": "Nouveau mot de passe"
+      },
+      "secret": {
+        "hint": "Utilisez la valeur suivante pour %s dans vos variables d'environnement",
+        "label": "Mot de passe secret"
+      },
+      "setup": {
+        "text": "Un mot de passe secret est nécessaire avant que {{app}} puisse authentifier les requêtes IndieAuth."
+      },
+      "submit": "Générer un mot de passe secret",
+      "title": "Nouveau mot de passe"
     }
   }
 }

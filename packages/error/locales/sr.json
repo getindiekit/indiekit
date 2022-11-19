@@ -1,6 +1,7 @@
 {
   "BadRequestError": {
     "invalid": "Zahtevu nedostaje potreban parametar, sadrži nepodržavani parametar ili vrednost parametra, koristi više od jedne metode za uključivanje pristupnog tokena, ili je na drugi način neispravan",
+    "invalidValue": "Neispravna vrednost predviđena za: `%s`",
     "missingParameter": "Nedostajući parametar: “%s”",
     "missingProperty": "Nema %s uključene u zahtev",
     "missingToken": "Nijedan žeton nosioca nije obezbeđen zahtevom",
@@ -23,11 +24,14 @@
     "database": "Ova funkcija zahteva bazu podataka",
     "postType": "Nije obezbeđena konfiguracija za %s tip objave",
     "query": "Nepodržani upit za `{{key}}`: `{{value}}`",
+    "secret": "Nedostaje `SECRET`",
     "title": "Nije implementirano",
-    "secret": "Nedostaje `SECRET`"
+    "tokenSecret": "Nedostaje `SECRET`"
   },
   "UnauthorizedError": {
+    "invalidCode": "Dostavljeni autorizacioni kod je istekao, opozvan, neispravan ili nevažeći iz drugih razloga",
     "invalidToken": "Obezbeđeni pristupni token je istekao, opozvan, neispravan, ili nevažeći zbog drugih razloga",
+    "jwt": "JSON Web Token greška: %s",
     "title": "Neovlašćen"
   },
   "UnsupportedMediaTypeError": {

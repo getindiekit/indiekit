@@ -1,6 +1,7 @@
 {
   "BadRequestError": {
     "invalid": "In der Anforderung fehlt ein erforderlicher Parameter, sie enthält einen nicht unterstützten Parameter oder Parameterwert, wiederholt denselben Parameter, verwendet mehr als eine Methode zum Einbinden eines Zugriffstokens oder ist anderweitig fehlerhaft formatiert",
+    "invalidValue": "Ungültiger Wert angegeben für: `%s`",
     "missingParameter": "Fehlender Parameter: `%s`",
     "missingProperty": "Kein %s in der Anfrage enthalten",
     "missingToken": "Auf Anfrage wurde kein Inhaber-Token bereitgestellt",
@@ -23,11 +24,14 @@
     "database": "Für diese Funktion ist eine Datenbank erforderlich",
     "postType": "Keine Konfiguration für den Posttyp %s bereitgestellt",
     "query": "Nicht unterstützte Abfrage für `{{key}}`: `{{value}}`",
+    "secret": "Fehlt `SECRET`",
     "title": "Nicht implementiert",
-    "secret": "Fehlt `SECRET`"
+    "tokenSecret": "Fehlt `SECRET`"
   },
   "UnauthorizedError": {
+    "invalidCode": "Der angegebene Autorisierungscode ist abgelaufen, widerrufen, falsch formatiert oder aus anderen Gründen ungültig",
     "invalidToken": "Das bereitgestellte Zugriffstoken ist abgelaufen, gesperrt, falsch formatiert oder aus anderen Gründen ungültig",
+    "jwt": "JSON Web Token Fehler: %s",
     "title": "Nicht autorisiert"
   },
   "UnsupportedMediaTypeError": {

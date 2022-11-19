@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Masuk",
+        "text": "Masuk ke {{client}} sebagai {{me}}",
+        "title": "Masuk"
+      },
+      "authorize": {
+        "submit": "Izinkan",
+        "text": "{{client}} sedang meminta izin untuk mengakses {{me}}",
+        "title": "Otorisasi aplikasi"
+      },
+      "password": {
+        "label": "Sandi"
+      },
+      "pkce": {
+        "text": "{{client}} tidak menggunakan Proof of Key Code Exchange (PKCE), yang lebih aman."
+      },
+      "redirect": "Setelah mengotorisasi aplikasi ini Anda akan diarahkan ke %s",
+      "scope": {
+        "create": {
+          "hint": "Aplikasi dapat menerbitkan posting dan mengunggah media",
+          "label": "Membuat"
+        },
+        "delete": {
+          "hint": "Aplikasi dapat menghapus posting",
+          "label": "Hapus"
+        },
+        "draft": {
+          "hint": "Postingan yang dibuat oleh aplikasi ini akan ditandai sebagai draf",
+          "label": "Draf"
+        },
+        "label": "Izin publikasi",
+        "media": {
+          "hint": "Aplikasi dapat mengunggah media",
+          "label": "Média"
+        },
+        "update": {
+          "hint": "Aplikasi dapat memperbarui postingan",
+          "label": "Perbarui"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Masukkan kata sandi yang valid",
+        "missing": "Masukkan kata sandi"
+      }
+    },
     "guidance": {
-      "title": "Titik akhir Token",
-      "discovery": "Untuk menggunakan endpoint token ini, tambahkan nilai berikut ke `<head>` situs web Anda:",
-      "verifyResponse": "Endpoint ini kemudian akan memverifikasi token dan merespons dengan informasi tentang pengguna dan ruang lingkup:",
-      "verifyTitle": "Verifikasi token akses"
+      "authentication": {
+        "redeemCode": "Tukarkan kode otorisasi untuk token akses",
+        "title": "Mendapatkan izin akses pengguna",
+        "verifyToken": "Verifikasi token akses"
+      },
+      "authorization": {
+        "redeemCode": "Tukarkan kode otorisasi untuk URL profil pengguna",
+        "requestCode": "Meminta kode otorisasi",
+        "requestCodeResponse": "Jika pengguna menyetujui permintaan tersebut, titik akhir akan menghasilkan kode otorisasi dan mengalihkan kembali ke klien:",
+        "title": "Dapatkan identitas pengguna"
+      },
+      "discovery": "Untuk menggunakan titik akhir autentikasi ini, tambahkan nilai berikut ke `<head>` situs web Anda:",
+      "title": "Menggunakan titik akhir IndieAuth ini"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Masukkan kata sandi yang akan digunakan untuk mengautentikasi permintaan",
+        "label": "Kata sandi baru"
+      },
+      "secret": {
+        "hint": "Gunakan nilai berikut untuk %s dalam variabel lingkungan Anda",
+        "label": "Rahasia kata sandi"
+      },
+      "setup": {
+        "text": "Rahasia kata sandi diperlukan sebelum {{app}} dapat mengautentikasi permintaan IndieAuth."
+      },
+      "submit": "Hasilkan rahasia kata sandi",
+      "title": "Kata sandi baru"
     }
   }
 }

@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Inloggen",
+        "text": "Meld je aan bij {{client}} als {{me}}",
+        "title": "Inloggen"
+      },
+      "authorize": {
+        "submit": "Toestaan",
+        "text": "{{client}} vraagt toestemming voor toegang tot {{me}}",
+        "title": "Applicatie autoriseren"
+      },
+      "password": {
+        "label": "Wachtwoord"
+      },
+      "pkce": {
+        "text": "{{client}} gebruikt niet Proof of Key Code Exchange (PKCE), wat veiliger is."
+      },
+      "redirect": "Na het autoriseren van deze toepassing wordt u omgeleid naar %s",
+      "scope": {
+        "create": {
+          "hint": "Applicatie kan berichten publiceren en media uploaden",
+          "label": "Creëren"
+        },
+        "delete": {
+          "hint": "Applicatie kan berichten verwijderen",
+          "label": "Verwijderen"
+        },
+        "draft": {
+          "hint": "Berichten die door deze applicatie worden gemaakt, worden gemarkeerd als concept",
+          "label": "Concept"
+        },
+        "label": "Machtigingen voor publicatie",
+        "media": {
+          "hint": "Applicatie kan media uploaden",
+          "label": "Media"
+        },
+        "update": {
+          "hint": "Applicatie kan berichten bijwerken",
+          "label": "Updaten"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Voer een geldig wachtwoord in",
+        "missing": "Wachtwoord invoeren"
+      }
+    },
     "guidance": {
-      "title": "Token-eindpunt",
-      "discovery": "Om dit token-eindpunt te gebruiken, voegt u de volgende waarde toe aan het `<head>` van uw website:",
-      "verifyResponse": "Dit eindpunt verifieert vervolgens het token en reageert met informatie over de gebruiker en het bereik:",
-      "verifyTitle": "Verifieer een toegangstoken"
+      "authentication": {
+        "redeemCode": "Een autorisatiecode inwisselen voor een toegangstoken",
+        "title": "De toegangsrechten van een gebruiker verkrijgen",
+        "verifyToken": "Verifieer een toegangstoken"
+      },
+      "authorization": {
+        "redeemCode": "Een autorisatiecode inwisselen voor de profiel-URL van een gebruiker",
+        "requestCode": "Een autorisatiecode aanvragen",
+        "requestCodeResponse": "Als de gebruiker het verzoek goedkeurt, genereert het eindpunt een autorisatiecode en wordt deze teruggestuurd naar de client:",
+        "title": "De identiteit van een gebruiker opvragen"
+      },
+      "discovery": "Om dit authenticatie-eindpunt te gebruiken, voegt u de volgende waarden toe aan de `<head>` van uw website:",
+      "title": "Met behulp van dit IndieAuth-eindpunt"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Voer een wachtwoord in om te gebruiken voor authenticatieverzoeken",
+        "label": "Nieuw wachtwoord"
+      },
+      "secret": {
+        "hint": "Gebruik de volgende waarde voor %s in je omgevingsvariabelen",
+        "label": "Wachtwoord geheim"
+      },
+      "setup": {
+        "text": "Er is een wachtwoordgeheim nodig voordat {{app}} IndieAuth-aanvragen kan verifiëren."
+      },
+      "submit": "Wachtwoordgeheim genereren",
+      "title": "Nieuw wachtwoord"
     }
   }
 }

@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Prijavi se",
+        "text": "Prijavite se na {{client}} kao {{me}}",
+        "title": "Prijavi se"
+      },
+      "authorize": {
+        "submit": "Dozvoli",
+        "text": "{{client}} traži dozvolu za pristup {{me}}",
+        "title": "Ovlastite aplikaciju"
+      },
+      "password": {
+        "label": "Lozinka"
+      },
+      "pkce": {
+        "text": "{{client}} ne koristi Proof of Key Code Exchange (PKCE), što je bezbednije."
+      },
+      "redirect": "Nakon autorizacije ove aplikacije bićete preusmereni na %s",
+      "scope": {
+        "create": {
+          "hint": "Aplikacija može objavljivati poruke i otpremiti medije",
+          "label": "Kreiraj"
+        },
+        "delete": {
+          "hint": "Aplikacija može da briše postove",
+          "label": "Izbriši"
+        },
+        "draft": {
+          "hint": "Poruke kreirane ovom aplikacijom biće označene kao nacrt",
+          "label": "Nacrt"
+        },
+        "label": "Dozvole za objavljivanje",
+        "media": {
+          "hint": "Aplikacija može da otpremi medije",
+          "label": "Mediji"
+        },
+        "update": {
+          "hint": "Aplikacija može ažurirati postove",
+          "label": "Ažuriranje"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Unesite važeću lozinku",
+        "missing": "Unesite lozinku"
+      }
+    },
     "guidance": {
-      "title": "Krajnja tačka tokena",
-      "discovery": "Da biste koristili ovu krajnu tačku tokena, dodajte prateću vrednost na svoj vebsajt `<head>`:",
-      "verifyResponse": "Ova krajnja tačka će zatim potvrditi token i odgovoriti sa informacijama o korisniku i obimu:",
-      "verifyTitle": "Potvrdite pristupni token"
+      "authentication": {
+        "redeemCode": "Iskoristite autorizacioni kod za pristupni token",
+        "title": "Dobijte korisničke dozvole za pristup",
+        "verifyToken": "Potvrdite pristupni token"
+      },
+      "authorization": {
+        "redeemCode": "Iskoristite autorizacioni kod za URL korisničkog profila",
+        "requestCode": "Zatražite kod za autorizaciju",
+        "requestCodeResponse": "Ako korisnik odobri zahtev, krajnja tačka će generisati autorizacioni kod i preusmeriti nazad na klijenta:",
+        "title": "Dobijte identitet korisnika"
+      },
+      "discovery": "Da biste koristili ovu krajnju tačku za autentifikaciju, dodajte sledeće vrednosti u `<head>` svoje veb lokacije:",
+      "title": "Korišćenje ove IndieAuth krajnje tačke"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Unesite lozinku koju ćete koristiti za zahteve za potvrdu identiteta",
+        "label": "Nova lozinka"
+      },
+      "secret": {
+        "hint": "Koristite sledeću vrednost za %s u svojim promenljivim okruženja",
+        "label": "Tajna lozinka"
+      },
+      "setup": {
+        "text": "Tajna lozinke je potrebna da bi {{app}} mogla da potvrdi autentičnost IndieAuth zahteva."
+      },
+      "submit": "Generišite tajnu lozinku",
+      "title": "Nova lozinka"
     }
   }
 }

@@ -1,10 +1,82 @@
 {
   "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Fazer login",
+        "text": "Faça login em {{client}} como {{me}}",
+        "title": "Fazer login"
+      },
+      "authorize": {
+        "submit": "Permitir",
+        "text": "{{client}} está solicitando permissão para acessar {{me}}",
+        "title": "Autorizar aplicação"
+      },
+      "password": {
+        "label": "Senha"
+      },
+      "pkce": {
+        "text": "{{client}} não está usando o Proof of Key Code Exchange (PKCE), que é mais seguro."
+      },
+      "redirect": "Depois de autorizar este aplicativo, você será redirecionado para %s",
+      "scope": {
+        "create": {
+          "hint": "Aplicativo pode publicar postagens e fazer upload de mídia",
+          "label": "Criar"
+        },
+        "delete": {
+          "hint": "Aplicativo pode excluir postagens",
+          "label": "Eliminar"
+        },
+        "draft": {
+          "hint": "As postagens criadas por este aplicativo serão marcadas como rascunho",
+          "label": "Rascunho"
+        },
+        "label": "Permissões de publicação",
+        "media": {
+          "hint": "Aplicativo pode fazer upload de mídia",
+          "label": "Multimédia"
+        },
+        "update": {
+          "hint": "Aplicativo pode atualizar postagens",
+          "label": "Atualizar"
+        }
+      }
+    },
+    "error": {
+      "password": {
+        "invalid": "Digite uma senha válida",
+        "missing": "Digite a senha"
+      }
+    },
     "guidance": {
-      "title": "Endpoint de token",
-      "discovery": "Para usar esse ponto de extremidade de token, adicione o seguinte valor ao `<head>` do seu site:",
-      "verifyResponse": "Esse endpoint verificará o token e responderá com informações sobre o usuário e o escopo:",
-      "verifyTitle": "Verificar um token de acesso"
+      "authentication": {
+        "redeemCode": "Resgate um código de autorização por um token de acesso",
+        "title": "Obtenha as permissões de acesso de um usuário",
+        "verifyToken": "Verificar um token de acesso"
+      },
+      "authorization": {
+        "redeemCode": "Resgate um código de autorização para o URL do perfil de um usuário",
+        "requestCode": "Solicite um código de autorização",
+        "requestCodeResponse": "Se o usuário aprovar a solicitação, o endpoint gerar um código de autorização e redirecionará de volta para o cliente:",
+        "title": "Obtenha a identidade de um usuário"
+      },
+      "discovery": "Para usar este endpoint de autenticação, adicione os seguintes valores ao `<head>` do seu site:",
+      "title": "Usando este endpoint IndieAuth"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Digite uma senha para usar para autenticação de solicitações",
+        "label": "Nova senha"
+      },
+      "secret": {
+        "hint": "Use o seguinte valor para %s em suas variáveis de ambiente",
+        "label": "Senha secreta"
+      },
+      "setup": {
+        "text": "É necessário um segredo de senha antes que {{app}} posso autenticar as solicitações do IndieAuth."
+      },
+      "submit": "Gerar senha secreta",
+      "title": "Nova senha"
     }
   }
 }

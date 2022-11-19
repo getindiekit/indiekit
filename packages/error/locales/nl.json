@@ -1,6 +1,7 @@
 {
   "BadRequestError": {
     "invalid": "De aanvraag mist een vereiste parameter, bevat een niet-ondersteunde parameter of parameterwaarde, herhaalt dezelfde parameter, gebruikt meer dan één methode voor het opnemen van een toegangstoken of is anderszins misvormd",
+    "invalidValue": "Ongeldige waarde opgegeven voor: `%s`",
     "missingParameter": "Ontbrekende parameter: `%s`",
     "missingProperty": "Geen %s opgenomen in verzoek",
     "missingToken": "Geen token aan toonder verstrekt op verzoek",
@@ -23,11 +24,14 @@
     "database": "Voor deze functie is een database vereist.",
     "postType": "Geen configuratie voorzien voor %s berichttype",
     "query": "Niet-ondersteunde query voor `{{key}}`: `{{value}}`",
+    "secret": "`SECRET` ontbreekt",
     "title": "Niet geïmplementeerd",
-    "secret": "`SECRET` ontbreekt"
+    "tokenSecret": "`SECRET` ontbreekt"
   },
   "UnauthorizedError": {
+    "invalidCode": "De verstrekte autorisatie code is verlopen, intrekken, onjuist gevormd of om andere redenen ongeldig",
     "invalidToken": "Het verstrekte toegangstoken is verlopen, ingetrokken, misvormd of ongeldig",
+    "jwt": "Fout met JSON Web Token: %s",
     "title": "Ongeautoriseerd"
   },
   "UnsupportedMediaTypeError": {

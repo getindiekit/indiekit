@@ -1,6 +1,7 @@
 {
   "BadRequestError": {
     "invalid": "Falta un parámetro obligatorio en la solicitud, incluye un parámetro o valor de parámetro no admitido, repite el mismo parámetro, usa más de un método para incluir un token de acceso o tiene un formato incorrecto",
+    "invalidValue": "Se ha proporcionado un valor no válido para: `%s`",
     "missingParameter": "Falta el parámetro: `%s`",
     "missingProperty": "%s no incluido en la solicitud",
     "missingToken": "No se proporcionó ningún token de portador en la solicitud",
@@ -23,11 +24,14 @@
     "database": "Esta función requiere una base de datos",
     "postType": "No se ha proporcionado configuración para el tipo de publicación %s",
     "query": "Consulta no admitida para `{{key}}`: `{{value}}`",
+    "secret": "Falta `SECRET`",
     "title": "No implementado",
-    "secret": "Falta `SECRET`"
+    "tokenSecret": "Falta `SECRET`"
   },
   "UnauthorizedError": {
+    "invalidCode": "El código de autorización proporcionado está caducado, revocado, tiene un formato incorrecto o no es válido por otros motivos",
     "invalidToken": "El token de acceso proporcionado ha caducado, se ha revocado, está mal formado o no es válido por otros motivos",
+    "jwt": "Error de JSON Web Token: %s",
     "title": "No autorizado"
   },
   "UnsupportedMediaTypeError": {
