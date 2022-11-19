@@ -1,5 +1,3 @@
-import { IndiekitError } from "@indiekit/error";
-
 export const postTypeCount = {
   /**
    * Count the number of posts of a given type
@@ -10,7 +8,12 @@ export const postTypeCount = {
    */
   async get(publication, properties) {
     if (!publication.posts || !publication.posts.count()) {
-      throw new IndiekitError("No database configuration provided");
+      console.warn("No database configuration provided");
+      console.info(
+        "See https://getindiekit.com/configuration/#application-mongodburl-url"
+      );
+
+      return;
     }
 
     // Post type
