@@ -1,3 +1,4 @@
+import markdownFootnote from "markdown-it-footnote";
 import { version } from "../../packages/indiekit/package.json" assert { type: "json" };
 
 const sidebar = [
@@ -80,6 +81,9 @@ export default {
   cleanUrls: "without-subfolders",
   markdown: {
     linkify: false,
+    config: (md) => {
+      md.use(markdownFootnote);
+    },
   },
   outDir: "../_site",
   themeConfig: {

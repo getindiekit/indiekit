@@ -63,6 +63,7 @@
     "create-indiekit": "*",
     "eslint-plugin-jsdoc": "^39.0.0",
     "jsdom": "^20.0.0",
+    "markdown-it-footnote": "^3.0.3",
     "mock-fs": "^5.1.2",
     "mock-req-res": "^1.2.0",
     "mock-session": "^0.0.5",
