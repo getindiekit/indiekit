@@ -57,18 +57,23 @@ export default class HugoPreset {
     let frontMatter;
 
     switch (this.options.frontMatterFormat) {
-      case "json":
+      case "json": {
         delimiters = ["", "\n"];
         frontMatter = JSON.stringify(properties, null, 2);
         break;
-      case "toml":
+      }
+
+      case "toml": {
         delimiters = ["+++\n", "+++\n"];
         frontMatter = TOML.stringify(properties);
         break;
-      default:
+      }
+
+      default: {
         delimiters = ["---\n", "---\n"];
         frontMatter = YAML.stringify(properties, { lineWidth: 0 });
         break;
+      }
     }
 
     return `${delimiters[0]}${frontMatter}${delimiters[1]}`;

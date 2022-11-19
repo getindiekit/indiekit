@@ -19,7 +19,7 @@ import {
  */
 export const formEncodedToJf2 = (body) => {
   const jf2 = {
-    type: body.h ? body.h : "entry",
+    type: body.h || "entry",
   };
 
   for (const key in body) {

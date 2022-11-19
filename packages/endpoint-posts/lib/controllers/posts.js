@@ -44,7 +44,7 @@ export const postsController = async (request, response, next) => {
     let posts;
     if (body?.items?.length > 0) {
       const mf2 = mf2tojf2(body);
-      const items = mf2.children ? mf2.children : [mf2];
+      const items = mf2.children || [mf2];
       posts = items.map((item) => {
         item.id = Buffer.from(item.url).toString("base64url");
         return item;

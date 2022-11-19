@@ -41,7 +41,7 @@ export const actionController = async (request, response, next) => {
     let jf2;
     let published;
     switch (action) {
-      case "create":
+      case "create": {
         // Create and normalise JF2 data
         jf2 = request.is("json")
           ? await mf2ToJf2(body, publication.enrichPostData)
@@ -53,7 +53,9 @@ export const actionController = async (request, response, next) => {
         data = await postData.create(publication, jf2);
         published = await post.create(publication, data);
         break;
-      case "update":
+      }
+
+      case "update": {
         // Check for update operations
         if (!(body.replace || body.add || body.remove)) {
           throw IndiekitError.badRequest(
@@ -67,14 +69,20 @@ export const actionController = async (request, response, next) => {
         data = await postData.update(publication, url, body);
         published = await post.update(publication, data, url);
         break;
-      case "delete":
+      }
+
+      case "delete": {
         data = await postData.read(publication, url);
         published = await post.delete(publication, data);
         break;
-      case "undelete":
+      }
+
+      case "undelete": {
         data = await postData.read(publication, url);
         published = await post.undelete(publication, data);
         break;
+      }
+
       default:
     }
 

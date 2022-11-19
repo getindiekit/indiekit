@@ -29,7 +29,7 @@ function _getUserConfig(configFilePath) {
  */
 export function getIndiekitConfig(options) {
   const { config, configFilePath } = options;
-  const userConfig = config ? config : _getUserConfig(configFilePath);
+  const userConfig = config || _getUserConfig(configFilePath);
   const mergedConfig = deepmerge(defaultConfig, userConfig);
 
   return mergedConfig;

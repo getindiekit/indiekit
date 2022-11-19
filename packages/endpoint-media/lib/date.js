@@ -17,7 +17,7 @@ const { format, utcToZonedTime } = dateFnsTz;
 export const getDate = (setting, dateString) => {
   if (setting === "client") {
     // Return given date string or create ISO string using current date
-    return dateString ? dateString : new Date().toISOString();
+    return dateString || new Date().toISOString();
   }
 
   // Datetime is given date or new date, set us UTC

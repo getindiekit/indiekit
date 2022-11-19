@@ -56,10 +56,11 @@ export const queryController = async (request, response, next) => {
     q = q === "category" ? "categories" : q;
 
     switch (q) {
-      case "config":
+      case "config": {
         return response.json(config);
+      }
 
-      case "source":
+      case "source": {
         // Return mf2 for a given source URL (optionally filtered by properties)
         if (url) {
           const mf2 = { items: [jf2ToMf2(item.properties)] };
@@ -71,8 +72,9 @@ export const queryController = async (request, response, next) => {
           _count: await publication.posts.countDocuments(),
           items: posts.map((post) => jf2ToMf2(post.properties)),
         });
+      }
 
-      default:
+      default: {
         // Query configuration value (can be filtered, limited and offset)
         if (config[q]) {
           return response.json({
@@ -83,6 +85,7 @@ export const queryController = async (request, response, next) => {
         throw IndiekitError.notImplemented(
           response.__("NotImplementedError.query", { key: "q", value: q })
         );
+      }
     }
   } catch (error) {
     next(error);

@@ -51,17 +51,20 @@ export const internetArchive = (options) => ({
     const response = await this.client(`/save/status/${jobId}`);
 
     switch (response.status) {
-      case "success":
+      case "success": {
         return response;
+      }
 
-      case "error":
+      case "error": {
         throw new Error(response.message);
+      }
 
-      default:
+      default: {
         await new Promise((resolve) => {
           setTimeout(resolve, 1000);
         });
         return this.status(jobId);
+      }
     }
   },
 

@@ -49,7 +49,7 @@ export const queryController = async (request, response, next) => {
     }
 
     switch (q) {
-      case "source":
+      case "source": {
         // Return properties for a given source URL
         if (url) {
           return response.json(item.properties);
@@ -60,11 +60,13 @@ export const queryController = async (request, response, next) => {
           _count: await publication.media.countDocuments(),
           items: files.map((media) => media.properties),
         });
+      }
 
-      default:
+      default: {
         throw IndiekitError.notImplemented(
           response.__("NotImplementedError.query", { key: "q", value: q })
         );
+      }
     }
   } catch (error) {
     next(error);

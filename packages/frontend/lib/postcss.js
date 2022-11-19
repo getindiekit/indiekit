@@ -5,7 +5,7 @@ import postcssCustomMedia from "postcss-custom-media";
 import postcssEasyImport from "postcss-easy-import";
 import postcssExtendRule from "postcss-extend-rule";
 
-export const styles = (async () => {
+export const styles = async () => {
   const options = {
     from: fileURLToPath(new URL("../styles/app.css", import.meta.url)),
     plugins: [postcssEasyImport, postcssCustomMedia, postcssExtendRule],
@@ -15,4 +15,4 @@ export const styles = (async () => {
 
   const result = await postcss(options.plugins).process(css, options);
   return result.css;
-})();
+};
