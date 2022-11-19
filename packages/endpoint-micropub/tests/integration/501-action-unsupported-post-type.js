@@ -25,7 +25,7 @@ test("Returns 501 error unsupported post type", async (t) => {
   );
   t.is(
     result.body.error_uri,
-    "https://getindiekit.com/customisation/post-types/"
+    "https://getindiekit.com/configuration/post-types"
   );
 
   server.close(t);

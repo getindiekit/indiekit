@@ -54,7 +54,7 @@ export const uploadController = async (request, response, next) => {
     if (error.name === "NotImplementedError") {
       nextError = IndiekitError.notImplemented(
         response.__("NotImplementedError.postType", error.message),
-        { uri: "https://getindiekit.com/customisation/post-types/" }
+        { uri: "https://getindiekit.com/configuration/post-types" }
       );
     }
 

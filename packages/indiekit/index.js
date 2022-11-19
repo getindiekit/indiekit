@@ -92,7 +92,9 @@ export const Indiekit = class {
     // Check for required configuration options
     if (!publication.me) {
       console.error("No publication URL in configuration");
-      console.info("See https://getindiekit.com/options/#publicationmeurl");
+      console.info(
+        "See https://getindiekit.com/configuration/#publication-me-url"
+      );
       process.exit();
     }
 
