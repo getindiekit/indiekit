@@ -60,7 +60,7 @@
       },
       "secret": {
         "label": "Password secret",
-        "hint": "Use the following value for <code>PASSWORD_SECRET</code> in your environment variables"
+        "hint": "Use the following value for %s in your environment variables"
       }
     },
     "guidance": {
