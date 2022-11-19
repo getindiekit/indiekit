@@ -79,7 +79,7 @@
     "undici": "^5.2.0",
     "vitepress": "^1.0.0-alpha.27",
     "vue": "^3.2.41",
-    "xo": "^0.52.0"
+    "xo": "^0.53.0"
   },
   "ava": {
     "workerThreads": false
