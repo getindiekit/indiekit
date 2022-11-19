@@ -29,7 +29,7 @@ A [MongoDB](https://www.mongodb.com) database is optional, but required for many
 
 ## Install
 
-Learn how to [set up an Indiekit server](https://getindiekit.com/get-started) and view an [example server configuration](https://github.com/paulrobertlloyd/paulrobertlloyd-indiekit/blob/main/indiekit.config.cjs).
+Learn how to [set up an Indiekit server](https://getindiekit.com/get-started) and view an [example server configuration](https://github.com/getindiekit/example-config).
 
 ## Documentation website
 
