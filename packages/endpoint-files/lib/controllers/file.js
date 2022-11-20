@@ -12,11 +12,11 @@ import { fetch } from "undici";
  */
 export const fileController = async (request, response, next) => {
   try {
-    const { publication } = request.app.locals;
+    const { application } = request.app.locals;
     const { id } = request.params;
     const url = Buffer.from(id, "base64url").toString("utf8");
 
-    const mediaUrl = new URL(publication.mediaEndpoint);
+    const mediaUrl = new URL(application.mediaEndpoint);
     mediaUrl.searchParams.append("q", "source");
     mediaUrl.searchParams.append("url", url);
 

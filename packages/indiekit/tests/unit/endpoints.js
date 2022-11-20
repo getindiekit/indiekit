@@ -1,19 +1,10 @@
 import test from "ava";
-import { testConfig } from "@indiekit-test/config";
-import { Indiekit } from "../../index.js";
 import { getEndpoints } from "../../lib/endpoints.js";
 
-test.beforeEach(async (t) => {
-  const config = await testConfig();
-  const indiekit = new Indiekit({ config });
-  const { publication } = await indiekit.bootstrap();
-
+test.beforeEach((t) => {
   t.context = {
-    application: {
-      mediaEndpoint: "/media",
-      tokenEndpoint: "/token",
-    },
-    publication,
+    _mediaEndpointPath: "/media",
+    _tokenEndpointPath: "/token",
   };
 });
 
@@ -28,7 +19,7 @@ test("Gets endpoints from server derived values", (t) => {
 });
 
 test("Gets endpoints from publication configuration", (t) => {
-  t.context.publication.mediaEndpoint = "https://website.example/media";
+  t.context.mediaEndpoint = "https://website.example/media";
   const result = getEndpoints(t.context, {
     headers: { host: "server.example" },
     protocol: "https",

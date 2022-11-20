@@ -23,6 +23,8 @@ export default class MediaEndpoint {
 
   init(Indiekit) {
     Indiekit.addEndpoint(this);
-    Indiekit.config.application.mediaEndpoint = this.options.mountPath;
+
+    // Use private value to register Micropub media endpoint path
+    Indiekit.config.application._mediaEndpointPath = this.options.mountPath;
   }
 }

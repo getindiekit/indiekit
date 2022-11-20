@@ -60,8 +60,13 @@ export default class AuthorizationEndpoint {
 
   init(Indiekit) {
     Indiekit.addEndpoint(this);
-    Indiekit.config.application.authorizationEndpoint = this.options.mountPath;
-    Indiekit.config.application.tokenEndpoint =
+
+    // Use private value to register IndieAuth authorization endpoint path
+    Indiekit.config.application._authorizationEndpointPath =
+      this.options.mountPath;
+
+    // Use private value to register IndieAuth token endpoint path
+    Indiekit.config.application._tokenEndpointPath =
       this.options.mountPath + "/token";
   }
 }

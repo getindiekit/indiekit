@@ -12,14 +12,14 @@ import { fetch } from "undici";
  */
 export const filesController = async (request, response, next) => {
   try {
-    const { publication } = request.app.locals;
+    const { application } = request.app.locals;
 
     let { page, limit, offset, success } = request.query;
     page = Number.parseInt(page, 10) || 1;
     limit = Number.parseInt(limit, 10) || 12;
     offset = Number.parseInt(offset, 10) || (page - 1) * limit;
 
-    const mediaUrl = new URL(publication.mediaEndpoint);
+    const mediaUrl = new URL(application.mediaEndpoint);
     mediaUrl.searchParams.append("q", "source");
     mediaUrl.searchParams.append("page", page);
     mediaUrl.searchParams.append("limit", limit);

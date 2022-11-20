@@ -30,7 +30,7 @@ export const shareController = {
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { publication } = request.app.locals;
+    const { application } = request.app.locals;
     const { content, name } = request.body;
     const bookmarkOf = request.body.url || request.body["bookmark-of"];
 
@@ -47,7 +47,7 @@ export const shareController = {
     }
 
     try {
-      const micropubResponse = await fetch(publication.micropubEndpoint, {
+      const micropubResponse = await fetch(application.micropubEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",

@@ -13,6 +13,9 @@ export const locals = (indiekitConfig) =>
     try {
       const { application, publication } = indiekitConfig;
 
+      // Application
+      request.app.locals.application = application;
+
       // Application locale
       application.localeUsed = request.getLocale();
 
@@ -25,13 +28,14 @@ export const locals = (indiekitConfig) =>
         application.navigation = getNavigation(application, request, response);
       }
 
-      request.app.locals.application = application;
+      // Application endpoints
+      request.app.locals.application = {
+        ...application,
+        ...getEndpoints(application, request),
+      };
 
       // Publication
-      request.app.locals.publication = {
-        ...publication,
-        ...getEndpoints(indiekitConfig, request),
-      };
+      request.app.locals.publication = publication;
 
       // Session
       request.app.locals.session = request.session;

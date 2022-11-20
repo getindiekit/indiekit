@@ -4,8 +4,8 @@
 {{ __("auth.guidance.discovery") | safe }}
 
 ```html
-<link rel="authorization_endpoint" href="{{ publication.authorizationEndpoint }}">
-<link rel="token_endpoint" href="{{ publication.tokenEndpoint }}">
+<link rel="authorization_endpoint" href="{{ application.authorizationEndpoint }}">
+<link rel="token_endpoint" href="{{ application.tokenEndpoint }}">
 <link rel="indieauth-metadata" href="{{ application.url }}/.well-known/oauth-authorization-server">
 ```
 
@@ -14,7 +14,7 @@
 ### {{ __("auth.guidance.authorization.requestCode") }}
 
 ```http
-GET {{ publication.authorizationEndpoint }}
+GET {{ application.authorizationEndpoint }}
 Content-type: application/x-www-form-urlencoded
 
 response_type=code
@@ -38,7 +38,7 @@ Location: {{ application.url }}/session/auth?code=xxxxxxxx
 ### {{ __("auth.guidance.authorization.redeemCode") }}
 
 ```http
-POST {{ publication.authorizationEndpoint }}
+POST {{ application.authorizationEndpoint }}
 Content-type: application/x-www-form-urlencoded
 Accept: application/json
 
@@ -63,7 +63,7 @@ Content-Type: application/json
 ### {{ __("auth.guidance.authentication.redeemCode") }}
 
 ```http
-POST {{ publication.tokenEndpoint }}
+POST {{ application.tokenEndpoint }}
 Content-type: application/x-www-form-urlencoded
 Accept: application/json
 
@@ -89,7 +89,7 @@ Content-Type: application/json
 ### {{ __("auth.guidance.authentication.verifyToken") }}
 
 ```http
-GET {{ publication.tokenEndpoint }}
+GET {{ application.tokenEndpoint }}
 Accept: application/json
 Authorization: Bearer xxxxxxxx
 ```

@@ -56,8 +56,7 @@ test("Checks if user is authenticated", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
-        application: {},
-        publication: {
+        application: {
           tokenEndpoint: "https://token-endpoint.example",
         },
       },
@@ -84,7 +83,7 @@ test("Development mode bypasses authentication", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
-        publication: {
+        application: {
           tokenEndpoint: "https://token-endpoint.example",
         },
       },
@@ -105,7 +104,7 @@ test("Throws error authenticating invalid token", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
-        publication: {
+        application: {
           tokenEndpoint: "https://token-endpoint.example",
         },
       },
@@ -128,7 +127,7 @@ test("Throws error authenticating token with URL mismatch", async (t) => {
   const request = mockRequest({
     app: {
       locals: {
-        publication: {
+        application: {
           tokenEndpoint: "https://token-endpoint.example",
         },
       },

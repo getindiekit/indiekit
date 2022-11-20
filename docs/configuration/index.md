@@ -17,6 +17,20 @@ The `.indiekitrc` file (without extension) can be in JSON or YAML format. You ca
 
 ## application
 
+### application.authorizationEndpoint `URL`
+
+Indiekit uses its own authorization endpoint, but you can use a third-party service by setting a value for this option.
+
+_Optional_, defaults to `"[application.url]/auth"`. For example:
+
+```json
+{
+  "application": {
+    "authorizationEndpoint": "https://indieauth.com/auth"
+  }
+}
+```
+
 ### application.locale `string`
 
 The language used in the application interface.
@@ -32,6 +46,34 @@ _Optional_, defaults to system language if supported, else `"en"` (English). For
 ```
 
 See [Localisation →](localisation.md)
+
+### application.mediaEndpoint `URL`
+
+Indiekit uses its own [Micropub media endpoint](https://micropub.spec.indieweb.org/#media-endpoint), but you can use a third-party service by setting a value for this option.
+
+_Optional_, defaults to `"[application.url]/media"`. For example:
+
+```json
+{
+  "application": {
+    "mediaEndpoint": "https://website.example/media"
+  }
+}
+```
+
+### application.micropubEndpoint `URL`
+
+Indiekit uses its own Micropub endpoint, but you can use a third-party service by setting a value for this option.
+
+_Optional_, defaults to `"[application.url]/micropub"`. For example:
+
+```json
+{
+  "application": {
+    "micropubEndpoint ": "https://website.example/micropub"
+  }
+}
+```
 
 ### application.mongodbUrl `URL`
 
@@ -87,6 +129,20 @@ _Optional_, defaults to `"automatic"`. For example:
 {
   "application": {
     "themeColorScheme": "dark"
+  }
+}
+```
+
+### application.tokenEndpoint `URL`
+
+Indiekit uses its own token endpoint, but you can use a third-party service by setting a value for this option.
+
+_Optional_, defaults to `"[application.url]/auth/token"`. For example:
+
+```json
+{
+  "application": {
+    "tokenEndpoint": "https://tokens.indieauth.com/token"
   }
 }
 ```
@@ -149,20 +205,6 @@ Each plug-in may accept its own configuration options, and these should be provi
 Learn more about Indiekit’s [plug-in API](../plugins/api/index.md).
 
 ## publication
-
-### publication.authorizationEndpoint `URL`
-
-Authorization endpoint.
-
-_Optional_, defaults to `"https://indieauth.com/auth"`. For example:
-
-```json
-{
-  "publication": {
-    "authorizationEndpoint": "https://example.org/auth"
-  }
-}
-```
 
 ### publication.categories `Array | URL`
 
@@ -267,20 +309,6 @@ _Required_. For example:
 }
 ```
 
-### publication.mediaEndpoint `URL`
-
-Indiekit provides a [media endpoint](https://micropub.spec.indieweb.org/#media-endpoint), but you can use a third-party endpoint by setting a value for this option.
-
-_Optional_. For example:
-
-```json
-{
-  "publication": {
-    "mediaEndpoint": "https://media.website.example"
-  }
-}
-```
-
 ### publication.postTemplate `Function`
 
 A post template is a function that takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
@@ -371,17 +399,3 @@ _Optional_, defaults to `"UTC"`. For example:
 ```
 
 See [customising the time zone →](time-zone.md)
-
-### publication.tokenEndpoint `URL`
-
-An IndieAuth token endpoint.
-
-_Optional_, defaults to `"[application.url]/token"`. For example:
-
-```json
-{
-  "publication": {
-    "tokenEndpoint": "https://server.website.example/token"
-  }
-}
-```

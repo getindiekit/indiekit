@@ -39,6 +39,7 @@ export const testConfig = async (options) => {
         name: "test",
         secret: process.env.TEST_SESSION_SECRET,
       }),
+      tokenEndpoint: options?.application?.tokenEndpoint,
     },
     plugins: [
       "@indiekit-test/store",
@@ -49,7 +50,6 @@ export const testConfig = async (options) => {
       me: options?.publication?.me || process.env.TEST_PUBLICATION_URL,
       ...(options.usePostTypes && { postTypes }),
       timeZone: "UTC",
-      tokenEndpoint: options?.publication?.tokenEndpoint,
     },
     "@indiekit-test/store": {
       user: "user",
