@@ -8,10 +8,6 @@
   margin-block-start: var(--space-block);
 }
 
-.app--minimalui .preview {
-  margin-block-start: 0;
-}
-
 .preview output.placeholder {
   color: var(--color-neutral-light);
 }

@@ -1,7 +1,5 @@
 .form {
   @extend %container;
-
-  --container-padding-block: var(--step-0);
 }
 
 .form > * + * {

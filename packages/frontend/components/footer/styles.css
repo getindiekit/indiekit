@@ -8,8 +8,6 @@
 .footer__container {
   @extend %container;
 
-  --container-padding-block: var(--step-0);
-
   display: flex;
   justify-content: space-between;
 }

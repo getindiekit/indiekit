@@ -7,32 +7,29 @@
   justify-content: space-between;
 }
 
-.app--login {
-  --container-max-inline-size: 35rem;
+.app--minimalui {
+  --container-max-inline-size: 36rem;
 }
 
-.app--login .header,
-.app--login .main {
+.app--minimalui .header,
+.app--minimalui .main {
   background-color: transparent;
 }
 
-.app--login .header__container,
-.app--login .footer__container {
+.app--minimalui .header__container,
+.app--minimalui .footer__container {
   align-items: center;
   inline-size: auto;
 }
 
-.app--login .main {
+.app--minimalui .main {
   flex: 0;
-  margin-inline-end: auto;
-  margin-inline-start: auto;
+  margin: auto;
   overflow: hidden;
-  padding-block-end: 0;
-  padding-inline: var(--space-block);
 }
 
-.app--login .article,
-.app--login .form {
+.app--minimalui .article,
+.app--minimalui .form {
   background-color: var(--color-background);
   border-radius: var(--border-radius-large);
 }

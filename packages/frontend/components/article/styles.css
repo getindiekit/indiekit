@@ -1,7 +1,5 @@
 .article {
   @extend %container;
-
-  --container-padding-block: var(--step-0);
 }
 
 .article__title {

@@ -1,9 +1,4 @@
 .main {
   background-color: var(--color-background);
   flex: 1;
-  padding-block-end: var(--step-3);
-}
-
-.app--minimalui .main {
-  padding-block-end: 0;
 }

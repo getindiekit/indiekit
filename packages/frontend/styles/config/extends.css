@@ -81,8 +81,7 @@
   margin-inline-end: auto;
   margin-inline-start: auto;
   max-inline-size: var(--container-max-inline-size);
-  padding: var(--container-padding-block, var(--space-block))
-    var(--container-padding-inline, var(--step-0));
+  padding: var(--step-0);
 }
 
 /* Color scheme */
