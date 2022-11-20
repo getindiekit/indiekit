@@ -4,7 +4,7 @@ import nock from "nock";
 import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
-test("Returns 403 error action not supported (by scope)", async (t) => {
+test("Returns 404 error action not supported (by scope)", async (t) => {
   nock("https://api.github.com")
     .put((uri) => uri.includes("foobar.md"))
     .reply(200);
