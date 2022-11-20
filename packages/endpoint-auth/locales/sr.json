@@ -17,30 +17,7 @@
       "pkce": {
         "text": "{{client}} ne koristi Proof of Key Code Exchange (PKCE), što je bezbednije."
       },
-      "redirect": "Nakon autorizacije ove aplikacije bićete preusmereni na %s",
-      "scope": {
-        "create": {
-          "hint": "Aplikacija može objavljivati poruke i otpremiti medije",
-          "label": "Kreiraj"
-        },
-        "delete": {
-          "hint": "Aplikacija može da briše postove",
-          "label": "Izbriši"
-        },
-        "draft": {
-          "hint": "Poruke kreirane ovom aplikacijom biće označene kao nacrt",
-          "label": "Nacrt"
-        },
-        "label": "Dozvole za objavljivanje",
-        "media": {
-          "hint": "Aplikacija može da otpremi medije",
-          "label": "Mediji"
-        },
-        "update": {
-          "hint": "Aplikacija može ažurirati postove",
-          "label": "Ažuriranje"
-        }
-      }
+      "redirect": "Nakon autorizacije ove aplikacije bićete preusmereni na %s"
     },
     "error": {
       "password": {
