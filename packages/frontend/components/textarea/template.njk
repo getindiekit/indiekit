@@ -34,7 +34,7 @@
   }) | indent(2) | trim }}
 {%- endif %}
   <textarea class="{{ classes("textarea", opts) }}" id="{{ opts.id }}" name="{{ opts.name }}"
-  rows="{{ opts.rows or 5 }}"
+  rows="{{ opts.rows or 3 }}"
   data-controller="textarea"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}
