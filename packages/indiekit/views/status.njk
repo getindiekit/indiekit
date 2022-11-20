@@ -48,6 +48,17 @@
   {% endif %}
 {% endset -%}
 
+{%- set permissionsHtml %}
+<dl class="s-linear">{% for scope in scope -%}
+  <dt>
+    {{ __("scope." + scope + ".label") }}
+    <small><code class="token attr-name">{{ scope }}</code></small>
+  <dt>
+  <dd>{{ __("scope." + scope + ".hint") }}</dd>
+{%- endfor %}
+</dl>
+{% endset -%}
+
 {% block content %}
   {{ discovery | markdown | safe }}
 
@@ -132,12 +143,12 @@
       }
     } if session.access_token, {
       key: {
-        text: __("status.application.scope")
+        text: __("scope.label")
       },
       value: {
-        text: session.scope
+        text: permissionsHtml if scope else __("scope.none.label")
       }
-    } if session.scope, {
+    }, {
       key: {
         text: __("status.application.name")
       },

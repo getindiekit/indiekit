@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Om ervoor te zorgen dat %s kan worden ontdekt door Micropub-clients en toestemming kan vragen om op uw website te posten, voegt u de volgende waarden toe aan de `<head>` van uw website:"
   },
+  "scope": {
+    "create": {
+      "hint": "Applicatie kan berichten publiceren en media uploaden",
+      "label": "Creëren"
+    },
+    "delete": {
+      "hint": "Applicatie kan berichten verwijderen",
+      "label": "Verwijderen"
+    },
+    "draft": {
+      "hint": "Berichten die door deze applicatie worden gemaakt, worden gemarkeerd als concept",
+      "label": "Concept"
+    },
+    "label": "Machtigingen voor publicatie",
+    "media": {
+      "hint": "Applicatie kan media uploaden",
+      "label": "Media"
+    },
+    "none": {
+      "label": "Je hebt geen publicatierechten"
+    },
+    "update": {
+      "hint": "Applicatie kan berichten bijwerken",
+      "label": "Updaten"
+    }
+  },
   "session": {
     "login": {
       "description": "Meld u aan met IndieAuth om te controleren of u eigenaar bent van %s",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Media-endpoint",
       "micropubEndpoint": "Micropub-eindpunt",
       "name": "Naam",
-      "scope": "Geleverde reikwijdte",
       "summaryTitle": "Applicatie-instellingen",
       "themeColor": "Themakleur",
       "themeColorScheme": "Thema",

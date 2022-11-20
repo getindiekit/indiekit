@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Para que %s possa ser descoberto pelos clientes da Micropub e solicitar permissão para postar em seu site, adicione os seguintes valores ao `<head>` do seu site:"
   },
+  "scope": {
+    "create": {
+      "hint": "Aplicativo pode publicar postagens e fazer upload de mídia",
+      "label": "Criar"
+    },
+    "delete": {
+      "hint": "Aplicativo pode excluir postagens",
+      "label": "Eliminar"
+    },
+    "draft": {
+      "hint": "As postagens criadas por este aplicativo serão marcadas como rascunho",
+      "label": "Rascunho"
+    },
+    "label": "Permissões de publicação",
+    "media": {
+      "hint": "Aplicativo pode fazer upload de mídia",
+      "label": "Multimédia"
+    },
+    "none": {
+      "label": "Você não tem nenhuma permissão de publicação"
+    },
+    "update": {
+      "hint": "Aplicativo pode atualizar postagens",
+      "label": "Atualizar"
+    }
+  },
   "session": {
     "login": {
       "description": "Faça login com IndieAuth para verificar se você possui %s",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Endpoint de mídia",
       "micropubEndpoint": "Endpoint de Micropub",
       "name": "Nome",
-      "scope": "Scope fornecido",
       "summaryTitle": "Configurações de aplicação",
       "themeColor": "Cor do tema",
       "themeColorScheme": "Tema",
