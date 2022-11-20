@@ -16,9 +16,12 @@
   "status": {
     "application": {
       "accessToken": "Token de acesso",
+      "authorizationEndpoint": "Endpoint de autorização",
       "installedPlugins": "Plug-ins instalados",
       "locale": "Idioma",
       "localeNotAvailable": "{{app}} ainda não foi traduzido para {{locale}}",
+      "mediaEndpoint": "Endpoint de mídia",
+      "micropubEndpoint": "Endpoint de Micropub",
       "name": "Nome",
       "scope": "Scope fornecido",
       "summaryTitle": "Configurações de aplicação",
@@ -28,21 +31,18 @@
         "automatic": "Automática",
         "dark": "Escuro",
         "light": "Luz"
-      }
+      },
+      "tokenEndpoint": "Endpoint de token"
     },
     "publication": {
-      "authorizationEndpoint": "Endpoint de autorização",
       "locale": "Idioma",
       "me": "Endereço Web",
-      "mediaEndpoint": "Endpoint de mídia",
-      "micropubEndpoint": "Endpoint de Micropub",
       "postTypes": "Tipos de postagem",
       "preset": "Pré-ajuste",
       "store": "Loja de conteúdo",
       "summaryTitle": "Configurações de publicação",
       "syndicationTargets": "Locais de distribuição",
-      "timeZone": "Fuso horário",
-      "tokenEndpoint": "Endpoint de token"
+      "timeZone": "Fuso horário"
     },
     "title": "Status do servidor"
   }

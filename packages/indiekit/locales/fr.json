@@ -16,9 +16,12 @@
   "status": {
     "application": {
       "accessToken": "Jeton d'accès",
+      "authorizationEndpoint": "Endpoint d'autorisation",
       "installedPlugins": "Plug-ins installés",
       "locale": "Langue",
       "localeNotAvailable": "{{app}} n’a pas encore été traduit en {{locale}}",
+      "mediaEndpoint": "Endpoint de média",
+      "micropubEndpoint": "Endpoint de Micropub",
       "name": "Nom",
       "scope": "Portée fournie",
       "summaryTitle": "Paramètres d'application",
@@ -28,21 +31,18 @@
         "automatic": "Automatique",
         "dark": "Sombre",
         "light": "Lumière"
-      }
+      },
+      "tokenEndpoint": "Endpoint de jeton"
     },
     "publication": {
-      "authorizationEndpoint": "Endpoint d'autorisation",
       "locale": "Langue",
       "me": "Adresse Web",
-      "mediaEndpoint": "Endpoint de média",
-      "micropubEndpoint": "Endpoint de Micropub",
       "postTypes": "Types de poste",
       "preset": "Préréglage",
       "store": "Magasin de contenu",
       "summaryTitle": "Paramètres de publication",
       "syndicationTargets": "Cibles de syndication",
-      "timeZone": "Fuseau horaire",
-      "tokenEndpoint": "Endpoint de jeton"
+      "timeZone": "Fuseau horaire"
     },
     "title": "Statut du serveur"
   }

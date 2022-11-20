@@ -16,9 +16,12 @@
   "status": {
     "application": {
       "accessToken": "Akses Token",
+      "authorizationEndpoint": "Titik akhir Otorisasi",
       "installedPlugins": "Plug-in yang terpasang",
       "locale": "Bahasa",
       "localeNotAvailable": "{{app}} belum diterjemahkan ke {{locale}}",
+      "mediaEndpoint": "Titik akhir media",
+      "micropubEndpoint": "Titik akhir Micropub",
       "name": "Nama",
       "scope": "Ruang lingkup yang disediakan",
       "summaryTitle": "Pengaturan aplikasi",
@@ -28,21 +31,18 @@
         "automatic": "Otomatis",
         "dark": "Gelap",
         "light": "Terang"
-      }
+      },
+      "tokenEndpoint": "Titik akhir Token"
     },
     "publication": {
-      "authorizationEndpoint": "Titik akhir Otorisasi",
       "locale": "Bahasa",
       "me": "Alamat web",
-      "mediaEndpoint": "Titik akhir media",
-      "micropubEndpoint": "Titik akhir Mikropub",
       "postTypes": "Jenis postingan",
       "preset": "Prasetel",
       "store": "Penyimpanan Konten",
       "summaryTitle": "Pengaturan publikasi",
       "syndicationTargets": "Sasaran sindikasi",
-      "timeZone": "Zona Waktu",
-      "tokenEndpoint": "Titik akhir Token"
+      "timeZone": "Zona Waktu"
     },
     "title": "Status server"
   }

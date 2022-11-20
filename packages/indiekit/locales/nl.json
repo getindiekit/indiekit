@@ -16,9 +16,12 @@
   "status": {
     "application": {
       "accessToken": "Token voor toegang",
+      "authorizationEndpoint": "Autorisatie eindpunt",
       "installedPlugins": "Geïnstalleerde plug-ins",
       "locale": "Taal",
       "localeNotAvailable": "{{app}} is nog niet vertaald in {{locale}}",
+      "mediaEndpoint": "Media-endpoint",
+      "micropubEndpoint": "Micropub-eindpunt",
       "name": "Naam",
       "scope": "Geleverde reikwijdte",
       "summaryTitle": "Applicatie-instellingen",
@@ -28,21 +31,18 @@
         "automatic": "Automatisch",
         "dark": "Donker",
         "light": "Licht"
-      }
+      },
+      "tokenEndpoint": "Token-eindpunt"
     },
     "publication": {
-      "authorizationEndpoint": "Autorisatie eindpunt",
       "locale": "Taal",
       "me": "Webadres",
-      "mediaEndpoint": "Media-endpoint",
-      "micropubEndpoint": "Micropub-eindpunt",
       "postTypes": "Artikeltype",
       "preset": "Vooringestelde",
       "store": "Content store",
       "summaryTitle": "Publicatie-instellingen",
       "syndicationTargets": "Syndicatiedoelen",
-      "timeZone": "Tijdzone",
-      "tokenEndpoint": "Token-eindpunt"
+      "timeZone": "Tijdzone"
     },
     "title": "Status server"
   }

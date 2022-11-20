@@ -16,9 +16,12 @@
   "status": {
     "application": {
       "accessToken": "Pristupni token",
+      "authorizationEndpoint": "Autorizaciona krajnja tačka",
       "installedPlugins": "Instalirani dodaci",
       "locale": "Jezik",
       "localeNotAvailable": "{{app}} još uvek nije prevedeno u {{locale}}",
+      "mediaEndpoint": "Medijska krajnja tačka",
+      "micropubEndpoint": "Micropub krajnja tačka",
       "name": "Ime",
       "scope": "Pod uslovom opseg",
       "summaryTitle": "Podešavanja aplikacije",
@@ -28,21 +31,18 @@
         "automatic": "Automatski",
         "dark": "Mrak",
         "light": "Svetlo"
-      }
+      },
+      "tokenEndpoint": "Krajnja tačka tokena"
     },
     "publication": {
-      "authorizationEndpoint": "Autorizaciona krajnja tačka",
       "locale": "Jezik",
       "me": "Veb adresa",
-      "mediaEndpoint": "Medijska krajnja tačka",
-      "micropubEndpoint": "Micropub krajnja tačka",
       "postTypes": "Vrste postova",
       "preset": "Postavljeno unapred",
       "store": "Prodavnica sadržaja",
       "summaryTitle": "Podešavanja publikacije",
       "syndicationTargets": "Ciljevi sindikacije",
-      "timeZone": "Vremenska zona",
-      "tokenEndpoint": "Krajnja tačka tokena"
+      "timeZone": "Vremenska zona"
     },
     "title": "Status servera"
   }
