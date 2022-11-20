@@ -48,7 +48,9 @@ export const actionController = async (request, response, next) => {
           : formEncodedToJf2(body);
 
         // Attach files
-        jf2 = files ? await uploadMedia(token, application, jf2, files) : jf2;
+        jf2 = files
+          ? await uploadMedia(application.mediaEndpoint, token, jf2, files)
+          : jf2;
 
         data = await postData.create(publication, jf2);
         published = await post.create(publication, data);

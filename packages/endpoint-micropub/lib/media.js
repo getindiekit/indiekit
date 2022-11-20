@@ -4,15 +4,13 @@ import { fetch, FormData } from "undici";
 /**
  * Upload attached file(s) via media endpoint
  *
+ * @param {string} mediaEndpoint - Media endpoint URL
  * @param {string} token - Bearer token
- * @param {object} application - Application configuration
  * @param {object} properties - JF2 properties
  * @param {object} files - Files to upload
  * @returns {Array} Uploaded file locations
  */
-export const uploadMedia = async (token, application, properties, files) => {
-  const { mediaEndpoint } = application;
-
+export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
   for await (let [mediaProperty, media] of Object.entries(files)) {
     // Media property may contain one or many media files
     media = Array.isArray(media) ? media : [media];

@@ -8,9 +8,6 @@ await mockAgent("media-endpoint");
 
 test.beforeEach((t) => {
   t.context = {
-    application: {
-      mediaEndpoint: "https://media-endpoint.example",
-    },
     bearerToken: process.env.TEST_TOKEN,
     files: {
       photo: {
@@ -19,6 +16,7 @@ test.beforeEach((t) => {
         originalname: "photo1.jpg",
       },
     },
+    mediaEndpoint: "https://media-endpoint.example",
     properties: {
       type: "entry",
       content: ["I ate a cheese sandwich, which was nice."],
@@ -29,14 +27,19 @@ test.beforeEach((t) => {
 });
 
 test("Uploads attached file via media endpoint", async (t) => {
-  const { bearerToken, application, properties, files } = t.context;
-  const result = await uploadMedia(bearerToken, application, properties, files);
+  const { bearerToken, mediaEndpoint, properties, files } = t.context;
+  const result = await uploadMedia(
+    mediaEndpoint,
+    bearerToken,
+    properties,
+    files
+  );
 
   t.deepEqual(result.photo, ["https://website.example/media/photo1.jpg"]);
 });
 
 test("Uploads attached files via media endpoint", async (t) => {
-  const { bearerToken, application, properties } = t.context;
+  const { bearerToken, mediaEndpoint, properties } = t.context;
   const files = {
     photo: [
       {
@@ -49,7 +52,12 @@ test("Uploads attached files via media endpoint", async (t) => {
       },
     ],
   };
-  const result = await uploadMedia(bearerToken, application, properties, files);
+  const result = await uploadMedia(
+    mediaEndpoint,
+    bearerToken,
+    properties,
+    files
+  );
 
   t.deepEqual(result.photo, [
     "https://website.example/media/photo2.jpg",
@@ -60,15 +68,15 @@ test("Uploads attached files via media endpoint", async (t) => {
 test("Throws error no media endpoint URL", async (t) => {
   const { bearerToken, properties, files } = t.context;
 
-  await t.throwsAsync(uploadMedia(bearerToken, {}, properties, files), {
+  await t.throwsAsync(uploadMedia(undefined, bearerToken, properties, files), {
     message: "Failed to parse URL from undefined",
   });
 });
 
 test("Throws error uploading attached file", async (t) => {
-  const { application, properties, files } = t.context;
+  const { mediaEndpoint, properties, files } = t.context;
 
-  await t.throwsAsync(uploadMedia("foobar", application, properties, files), {
+  await t.throwsAsync(uploadMedia(mediaEndpoint, "foobar", properties, files), {
     message: "The token provided was malformed",
   });
 });
