@@ -8,8 +8,7 @@
     },
     "name": "Judul",
     "submit": "Terbitkan",
-    "title": "Bagikan",
-    "unauthorized": "Anda tidak memiliki izin penerbitan"
+    "title": "Bagikan"
   },
   "status": {
     "bookmarklet": {
