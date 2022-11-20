@@ -15,8 +15,7 @@
     "upload": {
       "file": "Arquivo",
       "submit": "Upload",
-      "title": "Fazer upload de um novo arquivo",
-      "unauthorized": "Você não tem nenhuma permissão de publicação"
+      "title": "Fazer upload de um novo arquivo"
     }
   }
 }

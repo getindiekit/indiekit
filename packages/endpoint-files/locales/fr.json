@@ -15,8 +15,7 @@
     "upload": {
       "file": "Fichier",
       "submit": "Téléverser",
-      "title": "Téléverser un nouveau fichier",
-      "unauthorized": "Vous n'avez aucune autorisation pour publier"
+      "title": "Téléverser un nouveau fichier"
     }
   }
 }

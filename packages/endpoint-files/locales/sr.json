@@ -15,8 +15,7 @@
     "upload": {
       "file": "Datoteka",
       "submit": "Otpremiti",
-      "title": "Otpremite novu datoteku",
-      "unauthorized": "Nemate dozvole za objavljivanje"
+      "title": "Otpremite novu datoteku"
     }
   }
 }

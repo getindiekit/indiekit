@@ -15,8 +15,7 @@
     "upload": {
       "file": "Datei",
       "submit": "Hochladen",
-      "title": "Laden Sie eine neue Datei hoch",
-      "unauthorized": "Sie haben keine Veröffentlichungsberechtigungen."
+      "title": "Laden Sie eine neue Datei hoch"
     }
   }
 }
