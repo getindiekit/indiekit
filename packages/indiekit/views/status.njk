@@ -124,6 +124,27 @@
     title: __("status.application.summaryTitle"),
     rows: [{
       key: {
+        text: __("status.application.name")
+      },
+      value: {
+        text: application.name
+      }
+    }, {
+      key: {
+        text: __("status.application.locale")
+      },
+      value: {
+        text: localeHtml
+      }
+    }, {
+      key: {
+        text: __("scope.label")
+      },
+      value: {
+        text: permissionsHtml if scope else __("scope.none.label")
+      }
+    }, {
+      key: {
         text: __("status.application.accessToken")
       },
       value: {
@@ -142,27 +163,6 @@
         })
       }
     } if session.access_token, {
-      key: {
-        text: __("scope.label")
-      },
-      value: {
-        text: permissionsHtml if scope else __("scope.none.label")
-      }
-    }, {
-      key: {
-        text: __("status.application.name")
-      },
-      value: {
-        text: application.name
-      }
-    }, {
-      key: {
-        text: __("status.application.locale")
-      },
-      value: {
-        text: localeHtml
-      }
-    }, {
       key: {
         text: __("status.application.themeColorScheme")
       },
