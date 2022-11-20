@@ -1,5 +1,12 @@
 {% extends "default.njk" %}
 
+{% set appClasses = "app--minimalui" %}
+{% block header %}
+  {{ header({
+    url: application.url,
+    name: application.name
+  }) }}
+{% endblock %}
 {% block main %}
 {% call article({
   title: title
