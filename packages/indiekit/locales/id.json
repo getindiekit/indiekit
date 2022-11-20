@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Sehingga %s dapat ditemukan oleh klien Micropub dan meminta izin untuk memposting ke situs web Anda, tambahkan nilai berikut ke situs web Anda `<head>`:"
   },
+  "scope": {
+    "create": {
+      "hint": "Aplikasi dapat menerbitkan posting dan mengunggah media",
+      "label": "Membuat"
+    },
+    "delete": {
+      "hint": "Aplikasi dapat menghapus posting",
+      "label": "Hapus"
+    },
+    "draft": {
+      "hint": "Postingan yang dibuat oleh aplikasi ini akan ditandai sebagai draf",
+      "label": "Draf"
+    },
+    "label": "Izin publikasi",
+    "media": {
+      "hint": "Aplikasi dapat mengunggah media",
+      "label": "Média"
+    },
+    "none": {
+      "label": "Anda tidak memiliki izin penerbitan"
+    },
+    "update": {
+      "hint": "Aplikasi dapat memperbarui postingan",
+      "label": "Perbarui"
+    }
+  },
   "session": {
     "login": {
       "description": "Masuk dengan IndieAuth untuk memverifikasi bahwa Anda memiliki %s",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Titik akhir media",
       "micropubEndpoint": "Titik akhir Micropub",
       "name": "Nama",
-      "scope": "Ruang lingkup yang disediakan",
       "summaryTitle": "Pengaturan aplikasi",
       "themeColor": "Warna tema",
       "themeColorScheme": "Tema",

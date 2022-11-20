@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Para que los clientes de Micropub puedan descubrir %s y solicitar permiso para publicar en su sitio web, agregue los siguientes valores a `<head>` de su sitio web:"
   },
+  "scope": {
+    "create": {
+      "hint": "La aplicación puede publicar publicaciones y subir contenido multimedia",
+      "label": "Crear"
+    },
+    "delete": {
+      "hint": "La aplicación puede eliminar publicaciones",
+      "label": "Borrar"
+    },
+    "draft": {
+      "hint": "Las publicaciones creadas por esta aplicación se marcarán como borrador",
+      "label": "Borrador"
+    },
+    "label": "Permisos de publicación",
+    "media": {
+      "hint": "La aplicación puede subir archivos multimedia",
+      "label": "Multimedia"
+    },
+    "none": {
+      "label": "No tienes ningún permiso de publicación"
+    },
+    "update": {
+      "hint": "La aplicación puede actualizar publicaciones",
+      "label": "Actualizar"
+    }
+  },
   "session": {
     "login": {
       "description": "Inicia sesión con IndieAuth para verificar que eres propietario de %s",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Punto final de medios",
       "micropubEndpoint": "Punto final de Micropub",
       "name": "Nombre",
-      "scope": "Alcance proporcionado",
       "summaryTitle": "Ajustes de la aplicación",
       "themeColor": "Color del tema",
       "themeColorScheme": "Tema",

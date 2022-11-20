@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Clients %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen:"
   },
+  "scope": {
+    "create": {
+      "hint": "Die Anwendung kann Beiträge veröffentlichen und Medien hochladen",
+      "label": "Erstellen"
+    },
+    "delete": {
+      "hint": "Die Anwendung kann Beiträge löschen",
+      "label": "Löschen"
+    },
+    "draft": {
+      "hint": "Beiträge, die mit dieser Anwendung erstellt wurden, werden als Entwurf markiert",
+      "label": "Entwurf"
+    },
+    "label": "Veröffentlichungsberechtigungen",
+    "media": {
+      "hint": "Die Anwendung kann Medien hochladen",
+      "label": "Medien"
+    },
+    "none": {
+      "label": "Sie haben keine Veröffentlichungsberechtigungen"
+    },
+    "update": {
+      "hint": "Die Anwendung kann Beiträge aktualisieren",
+      "label": "Aktualisierung"
+    }
+  },
   "session": {
     "login": {
       "description": "Melde dich mit IndieAuth an, um zu verifizieren, dass du %s besitzt",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Media-Endpunkte",
       "micropubEndpoint": "Micropub-Endpunkt",
       "name": "Name",
-      "scope": "Bereitgestellt scope",
       "summaryTitle": "Anwendungseinstellungen",
       "themeColor": "Themenfarbe",
       "themeColorScheme": "Thema",

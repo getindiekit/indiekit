@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Aby %s mógł zostać wykryty przez klientów Micropub i poprosić o pozwolenie na publikowanie w Twojej witrynie, dodaj następujące wartości do `<head>` witryny:"
   },
+  "scope": {
+    "create": {
+      "hint": "Aplikacja może publikować posty i przesyłać multimedia",
+      "label": "Utwórz"
+    },
+    "delete": {
+      "hint": "Aplikacja może usuwać posty",
+      "label": "Usuń"
+    },
+    "draft": {
+      "hint": "Posty utworzone przez tę aplikację zostaną oznaczone jako wersja robocza",
+      "label": "Projekt"
+    },
+    "label": "Uprawnienia do publikowania",
+    "media": {
+      "hint": "Aplikacja może przesyłać multimedia",
+      "label": "Multimedia"
+    },
+    "none": {
+      "label": "Nie masz żadnych uprawnień do publikowania"
+    },
+    "update": {
+      "hint": "Aplikacja może aktualizować posty",
+      "label": "Aktualizuj"
+    }
+  },
   "session": {
     "login": {
       "description": "Zaloguj się za pomocą IndieAuth, aby sprawdzić, czy posiadasz %s",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Punkt końcowy mediów",
       "micropubEndpoint": "Punkt końcowy Micropub",
       "name": "Nazwa",
-      "scope": "Dostarczony zakres",
       "summaryTitle": "Ustawienia aplikacji",
       "themeColor": "Kolor motywu",
       "themeColorScheme": "Motyw",

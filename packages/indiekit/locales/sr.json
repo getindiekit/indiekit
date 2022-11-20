@@ -2,6 +2,32 @@
   "guidance": {
     "discovery": "Tako da ti %s mogu biti otkriveni preko Micropub klijenata i potraže dozvolu da objave na vašem vebsajtu, dodajte sledeće vrednosti na vaš vebsajt `<head>`:"
   },
+  "scope": {
+    "create": {
+      "hint": "Aplikacija može objavljivati poruke i otpremiti medije",
+      "label": "Kreiraj"
+    },
+    "delete": {
+      "hint": "Aplikacija može da briše postove",
+      "label": "Izbriši"
+    },
+    "draft": {
+      "hint": "Poruke kreirane ovom aplikacijom biće označene kao nacrt",
+      "label": "Nacrt"
+    },
+    "label": "Dozvole za objavljivanje",
+    "media": {
+      "hint": "Aplikacija može da otpremi medije",
+      "label": "Mediji"
+    },
+    "none": {
+      "label": "Nemate dozvole za objavljivanje"
+    },
+    "update": {
+      "hint": "Aplikacija može ažurirati postove",
+      "label": "Ažuriranje"
+    }
+  },
   "session": {
     "login": {
       "description": "Prijavi se pomoću IndieAuth da potvrdiš da poseduješ %s",
@@ -23,7 +49,6 @@
       "mediaEndpoint": "Medijska krajnja tačka",
       "micropubEndpoint": "Micropub krajnja tačka",
       "name": "Ime",
-      "scope": "Pod uslovom opseg",
       "summaryTitle": "Podešavanja aplikacije",
       "themeColor": "Boja teme",
       "themeColorScheme": "Tema",

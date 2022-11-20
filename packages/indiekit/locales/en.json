@@ -13,12 +13,37 @@
       "title": "Sign out"
     }
   },
+  "scope": {
+    "label": "Publishing permissions",
+    "create": {
+      "hint": "Application can publish posts and upload media",
+      "label": "Create"
+    },
+    "delete": {
+      "hint": "Application can delete posts",
+      "label": "Delete"
+    },
+    "draft": {
+      "hint": "Posts created by this application will be marked as draft",
+      "label": "Draft"
+    },
+    "media": {
+      "hint": "Application can upload media",
+      "label": "Media"
+    },
+    "none": {
+      "label": "You don’t have any publishing permissions"
+    },
+    "update": {
+      "hint": "Application can update posts",
+      "label": "Update"
+    }
+  },
   "status": {
     "title": "Server status",
     "application": {
       "summaryTitle": "Application settings",
       "accessToken": "Access token",
-      "scope": "Provided scope",
       "name": "Name",
       "locale": "Language",
       "localeNotAvailable": "{{app}} has not been translated into {{locale}} yet",
