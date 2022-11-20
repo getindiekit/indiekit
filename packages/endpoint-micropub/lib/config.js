@@ -6,10 +6,8 @@
  * @returns {object} Queryable configuration
  */
 export const getConfig = (application, publication) => {
-  const { url } = application;
-
-  const { categories, mediaEndpoint, postTypes, syndicationTargets } =
-    publication;
+  const { mediaEndpoint, url } = application;
+  const { categories, postTypes, syndicationTargets } = publication;
 
   // Supported queries
   const q = [

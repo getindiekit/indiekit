@@ -83,7 +83,7 @@ export const IndieAuth = class {
   login() {
     return async (request, response) => {
       try {
-        const { application, publication } = request.app.locals;
+        const { application } = request.app.locals;
         this.clientId = getCanonicalUrl(application.url);
 
         const callbackUrl = `${application.url}/session/auth`;
@@ -94,7 +94,7 @@ export const IndieAuth = class {
 
         const state = generateState(this.clientId, this.iv);
         const authUrl = await this.getAuthUrl(
-          publication.authorizationEndpoint,
+          application.authorizationEndpoint,
           state
         );
 
@@ -117,7 +117,7 @@ export const IndieAuth = class {
   authorize() {
     return async (request, response) => {
       try {
-        const { publication } = request.app.locals;
+        const { application } = request.app.locals;
         const { code, redirect, state } = request.query;
 
         // Check redirect is to a local path
@@ -152,7 +152,7 @@ export const IndieAuth = class {
 
         // Request access token
         const authorizedToken = await this.authorizationCodeGrant(
-          publication.tokenEndpoint,
+          application.tokenEndpoint,
           code
         );
 
@@ -204,10 +204,10 @@ export const IndieAuth = class {
 
       // Validate bearer token sent in request
       try {
-        const { tokenEndpoint } = request.app.locals.publication;
+        const { application } = request.app.locals;
         const bearerToken = findBearerToken(request);
         const tokenValues = await requestTokenValues(
-          tokenEndpoint,
+          application.tokenEndpoint,
           bearerToken
         );
 

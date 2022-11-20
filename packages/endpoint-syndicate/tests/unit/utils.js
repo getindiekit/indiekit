@@ -3,7 +3,6 @@ import { getPostData } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
   t.context.publication = {
-    micropubEndpoint: "/micropub",
     posts: {
       find: () => ({
         toArray: async () => [

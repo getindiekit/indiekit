@@ -13,11 +13,11 @@ import { fetch } from "undici";
  */
 export const postController = async (request, response, next) => {
   try {
-    const { publication } = request.app.locals;
+    const { application } = request.app.locals;
     const { id } = request.params;
     const url = Buffer.from(id, "base64url").toString("utf8");
 
-    const micropubUrl = new URL(publication.micropubEndpoint);
+    const micropubUrl = new URL(application.micropubEndpoint);
     micropubUrl.searchParams.append("q", "source");
     micropubUrl.searchParams.append("url", url);
 

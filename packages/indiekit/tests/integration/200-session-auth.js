@@ -7,9 +7,11 @@ await mockAgent("token-endpoint");
 
 test("Returns authenticated session", async (t) => {
   const server = await testServer({
+    application: {
+      tokenEndpoint: "https://token-endpoint.example",
+    },
     publication: {
       me: "https://website.example",
-      tokenEndpoint: "https://token-endpoint.example",
     },
   });
   const request = supertest.agent(server);

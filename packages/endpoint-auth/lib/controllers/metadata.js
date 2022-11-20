@@ -2,16 +2,16 @@
 import { scopes } from "../scope.js";
 
 export const metadataController = (request, response) => {
-  const { application, publication } = request.app.locals;
+  const { application } = request.app.locals;
 
   const metadata = {
     issuer: application.url,
-    authorization_endpoint: publication.authorizationEndpoint,
-    token_endpoint: publication.tokenEndpoint,
+    authorization_endpoint: application.authorizationEndpoint,
+    token_endpoint: application.tokenEndpoint,
     code_challenge_methods_supported: ["S256"],
     response_types_supported: ["code"],
     scopes_supported: scopes,
-    service_documentation: publication.authorizationEndpoint,
+    service_documentation: application.authorizationEndpoint,
     ui_locales_supported: application.localeUsed,
   };
 

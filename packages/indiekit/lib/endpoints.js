@@ -1,14 +1,13 @@
 import { isUrl, getUrl } from "./utils.js";
 
 /**
- * Get endpoint URLs from publication configuration or server derived value
+ * Get endpoint URLs from application configuration or default plug-ins
  *
- * @param {object} indiekitConfig - Indiekit configuration
+ * @param {object} application - Application configuration
  * @param {object} request - HTTP request
  * @returns {object} Endpoint URLs
  */
-export const getEndpoints = (indiekitConfig, request) => {
-  const { application, publication } = indiekitConfig;
+export const getEndpoints = (application, request) => {
   const endpoints = {};
 
   for (const endpoint of [
@@ -17,13 +16,14 @@ export const getEndpoints = (indiekitConfig, request) => {
     "micropubEndpoint",
     "tokenEndpoint",
   ]) {
-    // Use endpoint URL in publication config
-    if (publication[endpoint] && isUrl(publication[endpoint])) {
-      endpoints[endpoint] = publication[endpoint];
+    // Use endpoint URL in application config
+    if (application[endpoint] && isUrl(application[endpoint])) {
+      endpoints[endpoint] = application[endpoint];
     } else {
-      // Else, use endpoint path provided by application
+      // Else, use private path value provided by default endpoint plug-in
+      // to construct a fully resolvable URL mounted on application URL
       endpoints[endpoint] = new URL(
-        application[endpoint],
+        application[`_${endpoint}Path`],
         getUrl(request)
       ).href;
     }

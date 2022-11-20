@@ -25,7 +25,7 @@ export const uploadController = {
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { publication } = request.app.locals;
+    const { application } = request.app.locals;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -43,7 +43,7 @@ export const uploadController = {
      * @todo Third-party media endpoints may require a separate bearer token
      */
     try {
-      const mediaResponse = await fetch(publication.mediaEndpoint, {
+      const mediaResponse = await fetch(application.mediaEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",

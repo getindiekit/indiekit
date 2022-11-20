@@ -8,6 +8,9 @@ await mockAgent("media-endpoint");
 
 test.beforeEach((t) => {
   t.context = {
+    application: {
+      mediaEndpoint: "https://media-endpoint.example",
+    },
     bearerToken: process.env.TEST_TOKEN,
     files: {
       photo: {
@@ -15,9 +18,6 @@ test.beforeEach((t) => {
         name: "photo",
         originalname: "photo1.jpg",
       },
-    },
-    publication: {
-      mediaEndpoint: "https://media-endpoint.example",
     },
     properties: {
       type: "entry",
@@ -29,14 +29,14 @@ test.beforeEach((t) => {
 });
 
 test("Uploads attached file via media endpoint", async (t) => {
-  const { bearerToken, publication, properties, files } = t.context;
-  const result = await uploadMedia(bearerToken, publication, properties, files);
+  const { bearerToken, application, properties, files } = t.context;
+  const result = await uploadMedia(bearerToken, application, properties, files);
 
   t.deepEqual(result.photo, ["https://website.example/media/photo1.jpg"]);
 });
 
 test("Uploads attached files via media endpoint", async (t) => {
-  const { bearerToken, publication, properties } = t.context;
+  const { bearerToken, application, properties } = t.context;
   const files = {
     photo: [
       {
@@ -49,7 +49,7 @@ test("Uploads attached files via media endpoint", async (t) => {
       },
     ],
   };
-  const result = await uploadMedia(bearerToken, publication, properties, files);
+  const result = await uploadMedia(bearerToken, application, properties, files);
 
   t.deepEqual(result.photo, [
     "https://website.example/media/photo2.jpg",
@@ -66,9 +66,9 @@ test("Throws error no media endpoint URL", async (t) => {
 });
 
 test("Throws error uploading attached file", async (t) => {
-  const { publication, properties, files } = t.context;
+  const { application, properties, files } = t.context;
 
-  await t.throwsAsync(uploadMedia("foobar", publication, properties, files), {
+  await t.throwsAsync(uploadMedia("foobar", application, properties, files), {
     message: "The token provided was malformed",
   });
 });

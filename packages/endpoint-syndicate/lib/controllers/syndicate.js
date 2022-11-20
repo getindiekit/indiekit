@@ -69,7 +69,7 @@ export const syndicateController = {
       }
 
       // Update post with syndicated URL(s) and removal of syndication target(s)
-      const micropubResponse = await fetch(publication.micropubEndpoint, {
+      const micropubResponse = await fetch(application.micropubEndpoint, {
         method: "POST",
         headers: {
           accept: "application/json",

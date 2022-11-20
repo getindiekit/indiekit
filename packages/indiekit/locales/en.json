@@ -29,7 +29,11 @@
         "light": "Light",
         "dark": "Dark"
       },
-      "installedPlugins": "Installed plug-ins"
+      "installedPlugins": "Installed plug-ins",
+      "authorizationEndpoint": "Authorization endpoint",
+      "mediaEndpoint": "Media endpoint",
+      "micropubEndpoint": "Micropub endpoint",
+      "tokenEndpoint": "Token endpoint"
     },
     "publication": {
       "summaryTitle": "Publication settings",
@@ -39,11 +43,7 @@
       "store": "Content store",
       "preset": "Preset",
       "postTypes": "Post types",
-      "syndicationTargets": "Syndication targets",
-      "authorizationEndpoint": "Authorization endpoint",
-      "mediaEndpoint": "Media endpoint",
-      "micropubEndpoint": "Micropub endpoint",
-      "tokenEndpoint": "Token endpoint"
+      "syndicationTargets": "Syndication targets"
     }
   }
 }

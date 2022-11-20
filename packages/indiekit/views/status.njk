@@ -4,9 +4,9 @@
 {{ __("guidance.discovery", application.name) | safe }}
 
 ```html
-<link rel="micropub" href="{{ publication.micropubEndpoint }}">
-<link rel="authorization_endpoint" href="{{ publication.authorizationEndpoint }}">
-<link rel="token_endpoint" href="{{ publication.tokenEndpoint }}">
+<link rel="micropub" href="{{ application.micropubEndpoint }}">
+<link rel="authorization_endpoint" href="{{ application.authorizationEndpoint }}">
+<link rel="token_endpoint" href="{{ application.tokenEndpoint }}">
 ```
 {% endset %}
 
@@ -108,33 +108,33 @@
       }
     } if publication.syndicationTargets.length > 0, {
       key: {
-        text: __("status.publication.micropubEndpoint")
+        text: __("status.application.micropubEndpoint")
       },
       value: {
-        text: publication.micropubEndpoint | urlize
+        text: application.micropubEndpoint | urlize
       }
-    } if publication.micropubEndpoint, {
+    } if application.micropubEndpoint, {
       key: {
-        text: __("status.publication.mediaEndpoint")
+        text: __("status.application.mediaEndpoint")
       },
       value: {
-        text: publication.mediaEndpoint | urlize
+        text: application.mediaEndpoint | urlize
       }
-    } if publication.mediaEndpoint, {
+    } if application.mediaEndpoint, {
       key: {
-        text: __("status.publication.tokenEndpoint")
+        text: __("status.application.tokenEndpoint")
       },
       value: {
-        text: publication.tokenEndpoint | urlize
+        text: application.tokenEndpoint | urlize
       }
-    } if publication.tokenEndpoint, {
+    } if application.tokenEndpoint, {
       key: {
-        text: __("status.publication.authorizationEndpoint")
+        text: __("status.application.authorizationEndpoint")
       },
       value: {
-        text: publication.authorizationEndpoint | urlize
+        text: application.authorizationEndpoint | urlize
       }
-    } if publication.authorizationEndpoint]
+    } if application.authorizationEndpoint]
   }) }}
 
   {{ summary({
