@@ -29,11 +29,7 @@
         "light": "Light",
         "dark": "Dark"
       },
-      "installedPlugins": "Installed plug-ins",
-      "authorizationEndpoint": "Authorization endpoint",
-      "mediaEndpoint": "Media endpoint",
-      "micropubEndpoint": "Micropub endpoint",
-      "tokenEndpoint": "Token endpoint"
+      "installedPlugins": "Installed plug-ins"
     },
     "publication": {
       "summaryTitle": "Publication settings",
