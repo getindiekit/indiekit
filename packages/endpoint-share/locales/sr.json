@@ -8,8 +8,7 @@
     },
     "name": "Naslov",
     "submit": "Objaviti",
-    "title": "Podeli",
-    "unauthorized": "Nemate dozvole za objavljivanje"
+    "title": "Podeli"
   },
   "status": {
     "bookmarklet": {

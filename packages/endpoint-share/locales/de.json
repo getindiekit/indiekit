@@ -8,8 +8,7 @@
     },
     "name": "Titel",
     "submit": "Veröffentlichen",
-    "title": "Teilen",
-    "unauthorized": "Sie haben keine Veröffentlichungsberechtigungen"
+    "title": "Teilen"
   },
   "status": {
     "bookmarklet": {

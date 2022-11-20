@@ -5,7 +5,6 @@
     "name": "Title",
     "content": "Content",
     "submit": "Publish",
-    "unauthorized": "You don’t have any publishing permissions",
     "error": {
       "bookmark-of": "Enter a web address like https://example.org",
       "name": "Enter a title"
