@@ -11,7 +11,10 @@
 {% endset %}
 
 {%- set postTypesHtml %}<ul>{% for config in publication.postTypes -%}
-  <li>{{ icon(config.type) }}{{ config.name }}</li>
+  <li>
+    {{ icon(config.type) }}{{ config.name }}
+    <small><code class="token attr-name">{{ config.type }}</code></small>
+  </li>
 {%- endfor %}</ul>{% endset -%}
 
 {%- set storeHtml %}
