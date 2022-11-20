@@ -15,8 +15,7 @@
     "upload": {
       "file": "Bestand",
       "submit": "Uploaden",
-      "title": "Upload een nieuw bestand",
-      "unauthorized": "Je hebt geen publicatierechten"
+      "title": "Upload een nieuw bestand"
     }
   }
 }

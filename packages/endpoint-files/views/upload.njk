@@ -20,6 +20,6 @@
       formenctype: "multipart/form-data"
     }
   }) if session.access_token else warningText({
-    text: __("files.upload.unauthorized")
+    text: __("scope.none.label")
   }) }}
 {% endblock %}
