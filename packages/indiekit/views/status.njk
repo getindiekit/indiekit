@@ -106,35 +106,7 @@
       value: {
         text: syndicationTargetsHtml | indent(2)
       }
-    } if publication.syndicationTargets.length > 0, {
-      key: {
-        text: __("status.application.micropubEndpoint")
-      },
-      value: {
-        text: application.micropubEndpoint | urlize
-      }
-    } if application.micropubEndpoint, {
-      key: {
-        text: __("status.application.mediaEndpoint")
-      },
-      value: {
-        text: application.mediaEndpoint | urlize
-      }
-    } if application.mediaEndpoint, {
-      key: {
-        text: __("status.application.tokenEndpoint")
-      },
-      value: {
-        text: application.tokenEndpoint | urlize
-      }
-    } if application.tokenEndpoint, {
-      key: {
-        text: __("status.application.authorizationEndpoint")
-      },
-      value: {
-        text: application.authorizationEndpoint | urlize
-      }
-    } if application.authorizationEndpoint]
+    } if publication.syndicationTargets.length > 0]
   }) }}
 
   {{ summary({
