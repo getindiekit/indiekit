@@ -17,30 +17,7 @@
       "pkce": {
         "text": "{{client}} verwendet keinen Proof of Key Code Exchange (PKCE), der sicherer ist."
       },
-      "redirect": "Nach der Autorisierung dieser Anwendung werden Sie zu %s weitergeleitet",
-      "scope": {
-        "create": {
-          "hint": "Die Anwendung kann Beiträge veröffentlichen und Medien hochladen",
-          "label": "Erstellen"
-        },
-        "delete": {
-          "hint": "Die Anwendung kann Beiträge löschen",
-          "label": "Löschen"
-        },
-        "draft": {
-          "hint": "Beiträge, die mit dieser Anwendung erstellt wurden, werden als Entwurf markiert",
-          "label": "Entwurf"
-        },
-        "label": "Veröffentlichungsberechtigungen",
-        "media": {
-          "hint": "Die Anwendung kann Medien hochladen",
-          "label": "Medien"
-        },
-        "update": {
-          "hint": "Die Anwendung kann Beiträge aktualisieren",
-          "label": "Aktualisierung"
-        }
-      }
+      "redirect": "Nach der Autorisierung dieser Anwendung werden Sie zu %s weitergeleitet"
     },
     "error": {
       "password": {

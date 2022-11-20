@@ -17,30 +17,7 @@
       "pkce": {
         "text": "{{client}} n'utilise pas le Proof of Key Code Exchange (PKCE), qui est plus sécurisé."
       },
-      "redirect": "Après avoir autorisé cette application, vous serez redirigé vers %s",
-      "scope": {
-        "create": {
-          "hint": "L'application peut publier des publications et télécharger des médias",
-          "label": "Créer"
-        },
-        "delete": {
-          "hint": "L'application peut supprimer des publications",
-          "label": "Supprimer"
-        },
-        "draft": {
-          "hint": "Les publications créées par cette application seront marquées comme brouillon",
-          "label": "Brouillon"
-        },
-        "label": "Autorisations de publication",
-        "media": {
-          "hint": "L'application peut télécharger des médias",
-          "label": "Médias"
-        },
-        "update": {
-          "hint": "L'application peut mettre à jour les publications",
-          "label": "Mettre à jour"
-        }
-      }
+      "redirect": "Après avoir autorisé cette application, vous serez redirigé vers %s"
     },
     "error": {
       "password": {

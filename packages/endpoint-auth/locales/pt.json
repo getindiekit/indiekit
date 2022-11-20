@@ -17,30 +17,7 @@
       "pkce": {
         "text": "{{client}} não está usando o Proof of Key Code Exchange (PKCE), que é mais seguro."
       },
-      "redirect": "Depois de autorizar este aplicativo, você será redirecionado para %s",
-      "scope": {
-        "create": {
-          "hint": "Aplicativo pode publicar postagens e fazer upload de mídia",
-          "label": "Criar"
-        },
-        "delete": {
-          "hint": "Aplicativo pode excluir postagens",
-          "label": "Eliminar"
-        },
-        "draft": {
-          "hint": "As postagens criadas por este aplicativo serão marcadas como rascunho",
-          "label": "Rascunho"
-        },
-        "label": "Permissões de publicação",
-        "media": {
-          "hint": "Aplicativo pode fazer upload de mídia",
-          "label": "Multimédia"
-        },
-        "update": {
-          "hint": "Aplicativo pode atualizar postagens",
-          "label": "Atualizar"
-        }
-      }
+      "redirect": "Depois de autorizar este aplicativo, você será redirecionado para %s"
     },
     "error": {
       "password": {

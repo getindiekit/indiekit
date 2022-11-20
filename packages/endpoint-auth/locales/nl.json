@@ -17,30 +17,7 @@
       "pkce": {
         "text": "{{client}} gebruikt niet Proof of Key Code Exchange (PKCE), wat veiliger is."
       },
-      "redirect": "Na het autoriseren van deze toepassing wordt u omgeleid naar %s",
-      "scope": {
-        "create": {
-          "hint": "Applicatie kan berichten publiceren en media uploaden",
-          "label": "Creëren"
-        },
-        "delete": {
-          "hint": "Applicatie kan berichten verwijderen",
-          "label": "Verwijderen"
-        },
-        "draft": {
-          "hint": "Berichten die door deze applicatie worden gemaakt, worden gemarkeerd als concept",
-          "label": "Concept"
-        },
-        "label": "Machtigingen voor publicatie",
-        "media": {
-          "hint": "Applicatie kan media uploaden",
-          "label": "Media"
-        },
-        "update": {
-          "hint": "Applicatie kan berichten bijwerken",
-          "label": "Updaten"
-        }
-      }
+      "redirect": "Na het autoriseren van deze toepassing wordt u omgeleid naar %s"
     },
     "error": {
       "password": {

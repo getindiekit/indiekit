@@ -17,30 +17,7 @@
       "pkce": {
         "text": "{{client}} tidak menggunakan Proof of Key Code Exchange (PKCE), yang lebih aman."
       },
-      "redirect": "Setelah mengotorisasi aplikasi ini Anda akan diarahkan ke %s",
-      "scope": {
-        "create": {
-          "hint": "Aplikasi dapat menerbitkan posting dan mengunggah media",
-          "label": "Membuat"
-        },
-        "delete": {
-          "hint": "Aplikasi dapat menghapus posting",
-          "label": "Hapus"
-        },
-        "draft": {
-          "hint": "Postingan yang dibuat oleh aplikasi ini akan ditandai sebagai draf",
-          "label": "Draf"
-        },
-        "label": "Izin publikasi",
-        "media": {
-          "hint": "Aplikasi dapat mengunggah media",
-          "label": "Média"
-        },
-        "update": {
-          "hint": "Aplikasi dapat memperbarui postingan",
-          "label": "Perbarui"
-        }
-      }
+      "redirect": "Setelah mengotorisasi aplikasi ini Anda akan diarahkan ke %s"
     },
     "error": {
       "password": {
