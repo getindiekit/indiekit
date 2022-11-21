@@ -30,9 +30,10 @@
   border-block-start-style: solid;
   border-block-start-width: var(--border-width-thin);
   display: flex;
+  gap: var(--space-inline);
   flex-wrap: wrap;
   line-height: var(--line-height-tight);
-  padding-block-end: calc(var(--space-block) * 2);
+  padding-block-end: var(--space-block);
   padding-block-start: calc(var(--space-block) / 2);
 }
 
@@ -42,7 +43,6 @@
   flex: 1;
   max-inline-size: 25%;
   min-inline-size: 15rem;
-  padding-inline-end: var(--space-inline);
 }
 
 .summary__value {
@@ -62,6 +62,11 @@
 
 .summary__value a {
   white-space: nowrap;
+}
+
+.summary__value pre {
+  background: none;
+  padding: 0;
 }
 
 .summary__actions {
