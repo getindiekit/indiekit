@@ -58,10 +58,6 @@ export async function init() {
         contents: `# Indiekit server for ${me}\n\nLearn more at <https://getindiekit.com>\n`,
       },
       {
-        path: ".nvmrc",
-        contents: nodeVersion,
-      },
-      {
         path: ".gitignore",
         contents: "node_modules/",
       },
