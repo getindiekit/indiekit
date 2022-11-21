@@ -99,7 +99,7 @@ export default {
     footer: {
       message:
         'Distributed under the <a href="https://github.com/getindiekit/indiekit/blob/main/LICENSE">MIT License</a>.',
-      copyright: `© ${new Date().getFullYear()} Paul Robert Lloyd`,
+      copyright: `© ${new Date().getFullYear()} <a href="https://mastodon.social/@paulrobertlloyd" rel="me">Paul Robert Lloyd</a>`,
     },
     logo: {
       dark: {
