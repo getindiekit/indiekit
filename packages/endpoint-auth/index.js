@@ -23,7 +23,7 @@ export default class AuthorizationEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-auth";
     this.meta = import.meta;
-    this.name = "Authentication and authorization endpoint";
+    this.name = "IndieAuth endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }
