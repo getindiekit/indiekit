@@ -21,6 +21,7 @@
   "type": "module",
   "main": "index.js",
   "files": [
+    "assets",
     "index.js"
   ],
   "bugs": {
