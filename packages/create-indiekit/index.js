@@ -62,6 +62,10 @@ export async function init() {
         contents: nodeVersion,
       },
       {
+        path: ".gitignore",
+        contents: "node_modules/",
+      },
+      {
         path: ".indiekitrc.json",
         contents: config,
       },
