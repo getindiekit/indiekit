@@ -66,12 +66,12 @@
   {%- block footer %}
     {{ footer({
       logo: {
-        href: 'https://getindiekit.com',
+        href: "https://getindiekit.com",
         src: application.url + assetPath | default("/assets") + "/icon.svg",
-        alt: 'Indiekit'
+        alt: "Indiekit"
       },
       navigation: [{
-        href: application.repository.url | replace('.git', '') + "/releases/tag/v" + application.version,
+        href: application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version,
         text: "v" + application.version
       }]
     }) | indent() if not minimalui }}
