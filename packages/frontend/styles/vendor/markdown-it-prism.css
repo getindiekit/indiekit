@@ -57,6 +57,7 @@
 
 .token.boolean,
 .token.constant,
+.token.class-name,
 .token.entity,
 .token.number,
 .token.property,
