@@ -59,7 +59,6 @@
 .s-linear pre {
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
-  font-size: var(--step--1);
   overflow: scroll;
   padding: var(--inset-small);
   word-break: normal;
@@ -68,13 +67,9 @@
 .s-linear code,
 .s-linear samp {
   border-radius: var(--border-radius-small);
+  font-size: var(--step--1);
   font-weight: 400;
   margin-inline: 0.2em;
-}
-
-.s-linear code.property {
-  font-size: 67%;
-  padding: 0;
 }
 
 .s-linear table:not([class]) {
