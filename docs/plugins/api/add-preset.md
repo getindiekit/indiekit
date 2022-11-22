@@ -35,7 +35,7 @@ The `info` property returns the following values:
 
 ### `postTypes`
 
-Micropub clients let you publish a variety of [post types](https://indieweb.org/posts#Types_of_Posts). A publication preset defines the default values for these post types, which users can override in their [configuration](../../configuration/post-types.md).
+The Micropub API lets you publish a variety of [post types](https://indieweb.org/posts#Types_of_Posts). A publication preset defines the default values for these post types, which users can override in their [configuration](../../configuration/post-types.md).
 
 For example, to add default values for `note` and `photo` post types:
 

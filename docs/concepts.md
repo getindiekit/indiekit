@@ -1,6 +1,6 @@
 # Core concepts
 
-A number of terms are used throughout Indiekit’s documentation.
+Several terms are used throughout Indiekit’s documentation.
 
 ## Content store
 
@@ -8,7 +8,7 @@ A content store is a location where Indiekit can save post content and media fil
 
 For example, if you are saving your posts to the file system, install the [file system store plug-in](https://npmjs.org/package/@indiekit/store-file-system):
 
-```bash
+```sh
 npm install @indiekit/store-file-system
 ```
 
@@ -39,7 +39,7 @@ An endpoint is a path on your Indiekit server that applications can send request
 
 ## Publication
 
-A publication is any website which you are publishing content to via Indiekit.
+A publication is any website to which you are publishing content via Indiekit.
 
 ## Publication preset
 
@@ -51,7 +51,7 @@ A publication preset plug-in provides default values for these 2 options (which 
 
 For example, if you use the Jekyll static site generator, you can install the [Jekyll plug-in](plugins/index.md#jekyll):
 
-```bash
+```sh
 npm install @indiekit/preset-hugo
 ```
 
@@ -68,11 +68,11 @@ Then add it to your configuration file:
 
 ## Syndicator
 
-A key idea of the IndieWeb movement is [POSSE](https://indieweb.org/POSSE) (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
+A key idea of the IndieWeb movement is [POSSE](https://indieweb.org/POSSE) (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, and then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
 
 For example, if you want to syndicate your content to Twitter, you can install the [Twitter plug-in](plugins/index.md#twitter):
 
-```bash
+```sh
 npm install @indiekit/syndicator-twitter
 ```
 
@@ -89,6 +89,6 @@ Then add it to your configuration file, for example:
 }
 ```
 
-The `checked` option is used to tell Micropub clients whether a syndication target should be enabled or not by default.
+The `checked` option is used to tell [Micropub clients](/clients) whether a syndication target should be enabled or not by default.
 
 Not all clients allow you to disable or enable syndication targets. Setting the `forced` option to `true` will ensure that a syndication target is enabled regardless.
