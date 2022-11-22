@@ -4,7 +4,7 @@ titleTemplate: false
 hero:
   name: Indiekit
   text: is for everyone
-  tagline: Meet the little Node.js server with all the pieces needed to own your content and share it with the wider independent web.
+  tagline: Meet the little Node.js server with all the pieces needed to share your content with the open, independent web.
   image:
     src: homepage-illustration.svg
     alt: ""
@@ -25,7 +25,7 @@ features:
     link: /plugins/
     linkText: Browse plug-ins
   - title: Contribute
-    details: Help improve Indiekit’s capabilities by providing feedback, developing plug-ins or adding a new localisation.
+    details: Help improve Indiekit by providing feedback, developing plug-ins or adding a new localisation.
     link: /contributing
     linkText: Get involved
 ---

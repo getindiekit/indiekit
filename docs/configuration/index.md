@@ -250,7 +250,7 @@ When enabled, Indiekit will try to fetch Microformats data for any URL in a new 
 
 If any data is found, a `references` property will be included in the resulting post data. For example, given the following Micropub request:
 
-```bash
+```sh
 POST /micropub HTTP/1.1
 Host: indiekit.mywebsite.com
 Content-Type: application/x-www-form-urlencoded

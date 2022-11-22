@@ -1,6 +1,6 @@
 # Post types
 
-Micropub clients let you publish a variety of [post types](https://indieweb.org/posts#Types_of_Posts), and Indiekit lets you decide how these different types are handled. You can do this by using a publication preset, configuring values manually, or a combination of both.
+The Micropub API lets you publish a variety of [post types](https://indieweb.org/posts#Types_of_Posts), and Indiekit lets you decide how these different types are handled. You can do this by using a publication preset, configuring values manually, or a combination of both.
 
 For example, to use the Jekyll preset but override the `note` and `photo` post types, you would add the following to your configuration:
 

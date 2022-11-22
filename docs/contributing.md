@@ -2,12 +2,12 @@
 
 Thanks for considering contributing to this project. Indiekit is still in the early stages of development, but you can help this project grow and improve by:
 
-* [proposing a new feature](#proposing-a-new-feature)
-* [reporting a bug](#reporting-a-bug)
-* [submitting a fix](#submitting-a-fix)
-* [improving the documentation](#improving-the-documentation)
-* [adding a localisation](#adding-a-localisation)
-* [developing a plug-in](#developing-a-plug-in)
+- [proposing a new feature](#proposing-a-new-feature)
+- [reporting a bug](#reporting-a-bug)
+- [submitting a fix](#submitting-a-fix)
+- [improving the documentation](#improving-the-documentation)
+- [adding a localisation](#adding-a-localisation)
+- [developing a plug-in](#developing-a-plug-in)
 
 This project is intended to be a safe, welcoming space for collaboration with contributors expected to adhere to the project’s [code of conduct](https://github.com/getindiekit/.github/blob/main/CODE_OF_CONDUCT.md).
 
@@ -25,11 +25,11 @@ We use GitHub issues to track bugs. Browse [existing reports](https://github.com
 
 ## Submitting a fix
 
-If you spot something that’s broken and are able to supply a fix, you can [fork the project](https://github.com/getindiekit/indiekit/fork) and create a pull request. See [setting up a local development environment](#setting-up-a-local-development-environment) to get started.
+If you spot something that’s broken and can supply a fix, you can [fork the project](https://github.com/getindiekit/indiekit/fork) and create a pull request. See [setting up a local development environment](#setting-up-a-local-development-environment) to get started.
 
 Commit messages for fixes should be prefixed with `fix:`, for example:
 
-`fix: don’t throw error if user signed in`
+`fix: don’t throw error if a user is signed in`
 
 If a fix affects a specific module, include the name of the module in the commit message, for example:
 
@@ -47,7 +47,7 @@ Commit messages for documentation updates should be prefixed with `docs:`, for e
 
 ## Adding a localisation
 
-Localisations are managed using Localazy. If you see a translation that is not quite right, or would like to add a new language, create an account and [contribute to the project](https://localazy.com/p/indiekit).
+Localisations are managed using Localazy. If you see a translation that is not quite right or would like to add a new language, create an account and [contribute to the project](https://localazy.com/p/indiekit).
 
 ## Developing a plug-in
 
@@ -77,7 +77,7 @@ Helper functions used in tests are also split into modules. These are located in
 
 Indiekit uses the [Express server framework](https://expressjs.com).
 
-Configuration defaults are merged with any user defined values (Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load a configuration object).
+Configuration defaults are merged with any user-defined values (Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load a configuration object).
 
 Plug-ins listed in the configuration’s `plugin` array are then loaded and interrogated for known API methods, which in turn update the server’s configuration further.
 
@@ -87,19 +87,19 @@ Once the configuration has been fully resolved, these values are passed to the E
 
 To run the server locally, first install its dependencies:
 
-```bash
+```sh
 npm install
 ```
 
 You can then start the server:
 
-```bash
+```sh
 npm start
 ```
 
 To automatically restart the server whenever a file change is detected, use:
 
-```bash
+```sh
 npm run dev
 ```
 
@@ -109,10 +109,10 @@ npm run dev
 
 The following environment variables need to be set before running tests:
 
-* `TEST_PUBLICATION_URL`
-* `TEST_SESSION_SECRET`
-* `TEST_TOKEN`
-* `TEST_TOKEN_NO_SCOPE`
+- `TEST_PUBLICATION_URL`
+- `TEST_SESSION_SECRET`
+- `TEST_TOKEN`
+- `TEST_TOKEN_NO_SCOPE`
 
 `TEST_TOKEN` and `TEST_TOKEN_NO_SCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.
 
@@ -122,13 +122,13 @@ The following environment variables need to be set before running tests:
 
 Tests can be run using the following command:
 
-```bash
+```sh
 npm test
 ```
 
 To run tests for an individual file, you can call AVA directly using the `npx` command. For example:
 
-```bash
+```sh
 npx ava packages/indiekit/tests/index.js
 ```
 
@@ -136,14 +136,14 @@ npx ava packages/indiekit/tests/index.js
 
 The project aims to achieve close to 100% test coverage. You can check code coverage by running the following command:
 
-```bash
+```sh
 npm run coverage
 ```
 
 ### Linting
 
-[Prettier](https://prettier.io) is used to maintain consistent and high quality code. You can check that any changes use the preferred code style by running the following command:
+[Prettier](https://prettier.io) is used to maintain consistent and high-quality code. You can check that any changes use the preferred code style by running the following command:
 
-```bash
+```sh
 npm run lint
 ```
