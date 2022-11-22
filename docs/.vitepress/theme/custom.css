@@ -54,3 +54,10 @@
 .custom-block h3:first-of-type {
   margin-top: 8px;
 }
+
+.client-icon {
+  float: right;
+  height: 96px;
+  margin-left: 24px;
+  width: 96px;
+}
