@@ -24,7 +24,7 @@ Indiekit is extensible via its [plugin API](/plugins/api/) and localized for use
 
 A [MongoDB](https://www.mongodb.com) database is optional but required for many features to work.
 
-You don’t need access to a [Git](https://git-scm.com) repository, but some hosting providers can deploy and update your server automatically when you commit changes.
+You don’t need access to a [Git](https://git-scm.com) repository, but some hosts can deploy and update your server automatically when you commit changes.
 
 ## Installation
 
@@ -59,19 +59,41 @@ Indiekit needs to be hosted with a publicly addressable URL. However, if you run
 
 ### 2. Set up a web server
 
-Upload the files you created in the previous step to your web server. Assign a publicly addressable port (for example `8080`), and start Indiekit using the following command:
+The steps needed to set up a web server will vary depending on your host. Some are designed such that many of the following steps are automated, whereas others will require manual intervention.
+
+#### Uploading configuration files
+
+Some hosts provide command line interfaces (CLI) that enable setting up a new project space and uploading files from your computer. Others will suggest creating a Git repository, and syncing changes between that and a project space that way.
+
+However, if you need to copy the configuration files manually, don’t copy the `node_modules` folder - this folder can be quite large, and its contents change depending on the computer Node.js is being run on.
+
+#### Installing dependencies
+
+Some hosts will install dependencies automatically, so you can skip this step.
+
+If not, type the following command:
+
+```sh
+npm ci
+```
+
+This will generate the `node_modules` folder for your particular server.
+
+#### Starting your server
+
+Some hosts may assign a port, start and restart Node.js servers automatically.
+
+If your host doesn’t provide this functionality, you should assign a publicly addressable port (for example `8080`) and start your Indiekit server using the following command:
 
 ```sh
 indiekit serve --port 8080
 ```
 
-Many hosting providers will automatically assign a port and start and restart Node.js projects. In which case you shouldn’t need to use the above command.
-
-If your host doesn’t provide this functionality, a process manager like [PM2](https://pm2.keymetrics.io) can help.
+If your host doesn’t manage starting and restarting a Node.js server, a process manager like [PM2](https://pm2.keymetrics.io) can be used instead.
 
 ### 3. Add environment variables
 
-Before you can use Indiekit, you will need to store some secret values that only your server can read. Do this by setting the following environment (or configuration) variables:
+Before you can use Indiekit, some extra configuration values that only you and your server can see need to be set. Look on your host for environment (or configuration) variables, and add the following values:
 
 - #### `MONGO_URL`
 
@@ -80,7 +102,7 @@ Before you can use Indiekit, you will need to store some secret values that only
   A MongoDB URL will have the following format: `mongodb+srv://<username>:<password>@<hostname>`
 
   ::: tip
-  Some hosting providers include support for MongoDB. If not, you can create a database for free using [MongoDB’s own Atlas service](https://www.mongodb.com/atlas).
+  Some hosts include support for MongoDB. If not, you can create a database for free using [MongoDB’s own Atlas service](https://www.mongodb.com/atlas).
   :::
 
 - #### `PASSWORD_SECRET`
