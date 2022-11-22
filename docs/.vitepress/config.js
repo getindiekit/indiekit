@@ -22,6 +22,10 @@ const sidebar = [
       { text: "Time zone", link: "/configuration/time-zone" },
     ],
   },
+  {
+    text: "Resources",
+    items: [{ text: "Micropub clients", link: "/clients" }],
+  },
 ];
 
 const sidebarPlugins = [
