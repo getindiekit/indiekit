@@ -4,22 +4,16 @@
 
 <img src="https://avatars.githubusercontent.com/u/68553280?s=200" width="100" height="100" align="right" alt="">
 
-[Indiekit](https://getindiekit.com) is a small but powerful server that acts as the go-between your website and the wider independent web.
-
-Publish content to your website using apps like [iAWriter](https://ia.net/writer), [Micro.blog](https://micro.blog), [Icro](https://hartl.co/apps/icro/), [Indigenous](https://indigenous.realize.be) or services that support the [Micropub API](https://micropub.spec.indieweb.org)
+Meet [Indiekit](https://getindiekit.com), the little Node.js server with all the pieces needed to share your content with the open, independent web
 
 ## Features
 
-- Create, update and delete posts
-- Upload files
-- Configure different post types
-- Set post status and visibility
-- Review previously published posts and files
-- Save files to different content stores
-- Syndicate content to third-party websites
-- Publication presets to support popular static site generators
-- Localised to different languages
-- [Plug-in API](https://getindiekit.com/plugins/api/)
+- **Publish content to your website** using [apps and services](https://getindiekit.com/clients) that support the [Micropub API](https://micropub.spec.indieweb.org)
+- **Save files to a content store** such as GitHub, GitLab or an FTP server
+- **Integrate with static site generators** like Jekyll or Hugo
+- **Share content** on social networks like Twitter and Mastodon
+
+Indiekit is extensible via its [plugin API](https://getindiekit.com/plugins/api/) and localized for use in [a growing number of languages](https://getindiekit.com/configuration/localisation).
 
 ## Requirements
 
@@ -27,7 +21,7 @@ Publish content to your website using apps like [iAWriter](https://ia.net/writer
 
 A [MongoDB](https://www.mongodb.com) database is optional, but required for many features to work.
 
-## Install
+## Get started
 
 Learn how to [set up an Indiekit server](https://getindiekit.com/get-started) and view an [example server configuration](https://github.com/getindiekit/example-config).
 
