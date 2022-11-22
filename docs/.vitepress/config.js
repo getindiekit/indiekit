@@ -5,9 +5,9 @@ const sidebar = [
   {
     text: "Introduction",
     items: [
+      { text: "Get started", link: "/get-started" },
       { text: "How Indiekit works", link: "/introduction" },
       { text: "Core concepts", link: "/concepts" },
-      { text: "Get started", link: "/get-started" },
       { text: "Contributing", link: "/contributing" },
     ],
   },
@@ -84,10 +84,13 @@ export default {
   lang: "en-GB",
   cleanUrls: "without-subfolders",
   markdown: {
-    linkify: false,
+    anchor: {
+      level: [1, 2, 3],
+    },
     config: (md) => {
       md.use(markdownFootnote);
     },
+    linkify: false,
   },
   outDir: "../_site",
   themeConfig: {
