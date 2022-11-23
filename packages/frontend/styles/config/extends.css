@@ -52,15 +52,6 @@
   text-decoration: none;
 }
 
-/* Layout */
-%container {
-  inline-size: var(--container-inline-size);
-  margin-inline-end: auto;
-  margin-inline-start: auto;
-  max-inline-size: var(--container-max-inline-size);
-  padding: var(--step-0);
-}
-
 /* Color scheme */
 %color-scheme-dark {
   /* Colour palette */

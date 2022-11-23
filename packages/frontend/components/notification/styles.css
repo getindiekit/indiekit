@@ -12,11 +12,13 @@
 }
 
 .notification__container {
-  @extend %container;
-
   align-items: baseline;
   display: flex;
   gap: var(--space-inline);
+  inline-size: var(--container-inline-size);
+  margin-inline: auto;
+  max-inline-size: var(--container-max-inline-size);
+  padding: var(--step-0);
 }
 
 .notification__title {
