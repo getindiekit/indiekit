@@ -98,6 +98,13 @@ export const consentController = {
     redirect.searchParams.set("iss", client_id);
     redirect.searchParams.set("state", state);
 
+    // If client sent optional `me` value  in initial authorization request,
+    // add it to response. This is for backwards compatibility with clients
+    // conforming to older versions of the IndieAuth spec.
+    if (me) {
+      redirect.searchParams.set("me", me);
+    }
+
     response.redirect(redirect.href);
   },
 };
