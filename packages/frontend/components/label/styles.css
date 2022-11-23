@@ -1,5 +1,4 @@
 .label {
-  @extend %label;
-
   display: block;
+  font: var(--font-label);
 }

@@ -1,12 +1,11 @@
 .s-linear {
-  @extend %body;
-
   --anchor-color: var(--color-anchor);
   --anchor-color-hover: var(--color-anchor-hover);
   --anchor-decoration-color: var(--color-shadow);
   --anchor-decoration-line: underline;
   --flow-inset: 1.25em;
   --flow-space: 1em;
+  font: var(--font-body);
   word-break: break-word;
 }
 
@@ -15,8 +14,7 @@
 }
 
 .s-linear h2:not([class]) {
-  @extend %heading;
-
+  font: var(--font-heading);
   margin-block-start: calc(var(--flow-space) * 1.5);
 }
 
@@ -25,9 +23,8 @@
 }
 
 .s-linear h3:not([class]) {
-  @extend %subhead;
-
   color: var(--color-neutral-dark);
+  font: var(--font-subhead);
   margin-block-start: calc(var(--flow-space) * 1.5);
 }
 

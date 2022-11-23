@@ -5,7 +5,7 @@
   border: var(--border-width-thin) solid var(--color-neutral-light);
   border-radius: var(--border-radius-small);
   display: inline-block;
-  font-size: var(--step--1);
+  font: var(--font-caption);
   padding: var(--text-spacing);
   white-space: nowrap;
 }

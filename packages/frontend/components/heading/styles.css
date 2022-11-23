@@ -1,9 +1,8 @@
 .heading {
-  @extend %title;
+  font: var(--font-title);
 }
 
 .heading__parent {
-  @extend %body;
-
   display: block;
+  font: var(--font-body);
 }

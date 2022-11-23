@@ -9,12 +9,12 @@
 }
 
 .preview__title {
-  @extend %heading;
+  font: var(--font-heading);
 }
 
 .preview__text,
 .preview__url {
-  @extend %body;
+  font: var(--font-body);
 }
 
 .preview__text {
@@ -22,7 +22,6 @@
 }
 
 .preview__date {
-  @extend %caption;
-
   color: var(--color-neutral-dark);
+  font: var(--font-caption);
 }

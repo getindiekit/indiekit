@@ -22,11 +22,11 @@
 }
 
 .notification__title {
-  @extend %subhead;
+  font: var(--font-subhead);
 }
 
 .notification__text {
-  @extend %caption;
+  font: var(--font-caption);
 }
 
 /* Inverse text color with dark scheme to retain legibility */

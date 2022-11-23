@@ -1,5 +1,4 @@
 .hint {
-  @extend %caption;
-
   color: var(--color-neutral-dark);
+  font: var(--font-caption);
 }

@@ -6,7 +6,7 @@
 }
 
 .summary__title {
-  @extend %heading;
+  font: var(--font-heading);
 }
 
 .summary__list {
@@ -25,6 +25,7 @@
 .summary__key {
   flex-basis: 25%;
   flex-grow: 1;
+  font: var(--font-label);
 }
 
 .summary__value {
@@ -48,7 +49,6 @@
 }
 
 .summary__note {
-  @extend %caption;
-
   color: var(--color-neutral-dark);
+  font: var(--font-caption);
 }

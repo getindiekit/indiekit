@@ -9,7 +9,7 @@
 }
 
 .file__title {
-  @extend %label;
+  font: var(--font-label);
 }
 
 .file__title svg {
@@ -19,8 +19,7 @@
 }
 
 .file__meta {
-  @extend %caption;
-
   color: var(--color-neutral-dark);
+  font: var(--font-caption);
   margin-inline-start: calc(24px + var(--space-inline));
 }

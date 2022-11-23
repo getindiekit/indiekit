@@ -5,15 +5,14 @@
 }
 
 .error-summary__title {
-  @extend %label;
+  font: var(--font-label);
 }
 
 .error-summary__body {
-  @extend %caption;
-
   --anchor-color: var(--color-error);
   --anchor-color-hover: var(--color-error);
   --anchor-decoration-line: underline;
+  font: var(--font-caption);
 }
 
 .error-summary__list {

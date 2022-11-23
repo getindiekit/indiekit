@@ -115,5 +115,5 @@
 }
 
 .checkboxes__fieldset.fieldset {
-  @extend %label;
+  font: var(--font-label);
 }

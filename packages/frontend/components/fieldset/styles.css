@@ -1,15 +1,13 @@
 .fieldset {
-  @extend %body;
+  font: var(--font-body);
 }
 
 .fieldset__title {
-  @extend %title;
+  font: var(--font-title);
 }
 
 .fieldset__parent {
-  @extend %body;
-
   color: var(--color-neutral-dark);
   display: block;
-  font-weight: normal;
+  font: var(--font-body);
 }

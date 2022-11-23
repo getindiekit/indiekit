@@ -58,6 +58,18 @@
   --text-spacing: 0.2em 0.4em;
 
   /* Font styles */
+  --font-title: 800 var(--font-size-title) / var(--line-height-tight)
+    var(--font-family-system);
+  --font-heading: 600 var(--step-1) / var(--line-height-tight)
+    var(--font-family-system);
+  --font-subhead: 500 var(--step-0) / var(--line-height-tight)
+    var(--font-family-system);
+  --font-body: 400 var(--step-0) / var(--line-height-loose)
+    var(--font-family-system);
+  --font-label: 600 var(--step-0) / var(--line-height-tight)
+    var(--font-family-system);
+  --font-caption: 400 var(--step--1) / var(--line-height-loose)
+    var(--font-family-system);
   --font-code: 400 var(--font-size-reference) / var(--line-height-tight)
     var(--font-family-monospace);
 

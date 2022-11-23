@@ -118,5 +118,5 @@
 }
 
 .radios__fieldset.fieldset {
-  @extend %label;
+  font: var(--font-label);
 }
