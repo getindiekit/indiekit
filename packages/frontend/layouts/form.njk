@@ -12,7 +12,7 @@
   }) | indent(2) if errors }}
   {% call fieldset({
     legend: {
-      classes: "visually-hidden" if minimalui,
+      classes: "-!-visually-hidden" if minimalui,
       text: legendText,
       isPageHeading: true
     }

@@ -7,10 +7,10 @@
         <span class="pagination__link-title">
           {{- icon("previous") -}}
           {%- if opts.previous.text %}{{ opts.previous.text -}}
-          {%- else %}{{ __("pagination.previous", "<span class=\"visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
+          {%- else %}{{ __("pagination.previous", "<span class=\"-!-visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
         </span>
         {%- if opts.previous.label %}
-        <span class="pagination__link-divider visually-hidden">:</span>
+        <span class="pagination__link-divider -!-visually-hidden">:</span>
         <span class="pagination__link-label">{{ opts.previous.label }}</span>
         {% endif -%}
       </a>
@@ -41,10 +41,10 @@
         <span class="pagination__link-title">
           {{- icon("next") -}}
           {%- if opts.next.text %}{{ opts.next.text -}}
-          {%- else %}{{ __("pagination.next", "<span class=\"visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
+          {%- else %}{{ __("pagination.next", "<span class=\"-!-visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
         </span>
         {%- if opts.next.label %}
-        <span class="pagination__link-divider visually-hidden">:</span>
+        <span class="pagination__link-divider -!-visually-hidden">:</span>
         <span class="pagination__link-label">{{ opts.next.label }}</span>
         {% endif -%}
       </a>
