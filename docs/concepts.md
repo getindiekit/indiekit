@@ -29,13 +29,13 @@ An endpoint is a path on your Indiekit server that applications can send request
 
 | Endpoint     | Functionality                                               |
 | ------------ | ----------------------------------------------------------- |
+| `/auth`      | Endpoint for authenticating users and applications.         |
 | `/files`     | Interface for uploading and managing files.                 |
 | `/media`     | Micropub media endpoint for uploading media files.          |
 | `/micropub`  | Micropub endpoint for creating post files.                  |
 | `/posts`     | Interface for creating and managing posts.                  |
 | `/share`     | Interface for creating bookmark posts.                      |
 | `/syndicate` | Endpoint that can be pinged to initiate post syndication.   |
-| `/token`     | IndieAuth token endpoint for granting and verifying tokens. |
 
 ## Publication
 
