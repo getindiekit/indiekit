@@ -3,7 +3,7 @@ require("dotenv").config();
 
 module.exports = {
   application: {
-    // _devMode: process.env.NODE_ENV === "development",
+    _devMode: process.env.NODE_ENV === "development",
     mongodbUrl: process.env.MONGO_URL,
     ...(process.env.RAILWAY_ENVIRONMENT && {
       url: `https://${process.env.RAILWAY_STATIC_URL}`,
