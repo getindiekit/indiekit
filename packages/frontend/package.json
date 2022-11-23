@@ -47,7 +47,6 @@
     "postcss": "^8.3.6",
     "postcss-custom-media": "^9.0.0",
     "postcss-easy-import": "^4.0.0",
-    "postcss-extend-rule": "^4.0.0",
     "rollup": "^3.2.0"
   },
   "publishConfig": {

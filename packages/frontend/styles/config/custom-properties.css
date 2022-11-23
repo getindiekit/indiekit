@@ -101,10 +101,56 @@
 
 @media (prefers-color-scheme: dark) {
   .color-scheme--automatic {
-    @extend %color-scheme-dark;
+    --color-neutral-light: hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) - 24%)
+    );
+    --color-neutral-lightest: hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) - 48%)
+    );
+    --color-neutral-dark: hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) + 16%)
+    );
+    --color-neutral-darkest: hsl(
+      var(--color-neutral-h),
+      var(--color-neutral-s),
+      calc(var(--color-neutral-l) + 32%)
+    );
+
+    --color-background: black;
+    --color-anchor: var(--color-accent-light);
+    --color-anchor-hover: var(--color-accent-lightest);
   }
 }
 
 .color-scheme--dark {
-  @extend %color-scheme-dark;
+  --color-neutral-light: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) - 24%)
+  );
+  --color-neutral-lightest: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) - 48%)
+  );
+  --color-neutral-dark: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) + 16%)
+  );
+  --color-neutral-darkest: hsl(
+    var(--color-neutral-h),
+    var(--color-neutral-s),
+    calc(var(--color-neutral-l) + 32%)
+  );
+
+  --color-background: black;
+  --color-anchor: var(--color-accent-light);
+  --color-anchor-hover: var(--color-accent-lightest);
 }
