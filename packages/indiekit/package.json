@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.14",
   "description": "The little server that connects your website to the independent web",
   "keywords": [
     "express",

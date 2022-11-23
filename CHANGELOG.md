@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2022-11-23)
+
+### Bug Fixes
+
+- add missing endpoint-auth dependency ([462c0c7](https://github.com/getindiekit/indiekit/commit/462c0c7c240a7009b42b313ab472972d171299e4))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Bug Fixes
