@@ -55,7 +55,6 @@
   block-size: var(--radio-size);
   border: var(--border-width-thick) solid var(--color-neutral);
   border-radius: 50%;
-  box-sizing: border-box;
   content: "";
   inline-size: var(--radio-size);
   inset: 0;
@@ -69,7 +68,6 @@
   block-size: 0;
   border: var(--check-size) solid currentcolor;
   border-radius: 50%;
-  box-sizing: border-box;
   inset-block-start: var(--check-size);
   inset-inline-start: var(--check-size);
   inline-size: 0;

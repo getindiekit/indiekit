@@ -1,22 +1,26 @@
 /*
  * Embedded content
  * ================
- * https://w3c.github.io/html/semantics-embedded-content
+ * https://html.spec.whatwg.org/#embedded-content
  */
 
 svg {
-  fill: currentColor;
+  display: block;
+  fill: currentcolor;
 }
 
+iframe,
 img,
 embed,
 object {
+  block-size: auto;
   display: block;
+  max-inline-size: 100%;
   page-break-inside: avoid;
 }
 
-img,
-object {
-  block-size: auto;
-  max-inline-size: 100%;
+@media (prefers-color-scheme: dark) {
+  img {
+    filter: brightness(0.8) contrast(1.2);
+  }
 }

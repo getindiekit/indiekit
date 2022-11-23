@@ -2,8 +2,6 @@
 %title {
   font-size: var(--step-3);
   font-weight: 800;
-  hanging-punctuation: first;
-  letter-spacing: 0;
   line-height: var(--line-height-tight);
 }
 
@@ -12,8 +10,6 @@
 
   font-size: var(--step-1);
   font-weight: 600;
-  hanging-punctuation: first;
-  letter-spacing: 0;
   line-height: var(--line-height-tight);
 }
 
@@ -21,7 +17,6 @@
   --flow-space: 1em;
 
   font-size: var(--step-1);
-  hanging-punctuation: first;
   line-height: var(--line-height-loose);
 }
 
@@ -30,8 +25,6 @@
 
   font-size: var(--step-0);
   font-weight: 500;
-  hanging-punctuation: first;
-  letter-spacing: 0;
   line-height: var(--line-height-tight);
 }
 
@@ -40,7 +33,6 @@
 
   font-size: var(--step-0);
   font-variant: oldstyle-nums;
-  hanging-punctuation: first;
   hyphens: auto;
   line-height: var(--line-height-loose);
 }
@@ -51,7 +43,6 @@
   font-size: var(--step-0);
   font-variant: oldstyle-nums;
   font-weight: 600;
-  hanging-punctuation: first;
   hyphens: auto;
   line-height: var(--line-height-tight);
 }

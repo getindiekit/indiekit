@@ -49,7 +49,6 @@
   block-size: var(--checkbox-size);
   border: var(--border-width-thick) solid var(--color-neutral);
   border-radius: var(--border-radius-small);
-  box-sizing: border-box;
   content: "";
   inline-size: var(--checkbox-size);
   inset: 0;
@@ -64,7 +63,6 @@
   border: solid;
   border-block-start-color: transparent;
   border-width: 0 0 var(--border-width-thickest) var(--border-width-thickest);
-  box-sizing: border-box;
   inset-block-start: calc(
     calc(var(--checkbox-size) - var(--check-size)) / 1.25
   );

@@ -1,7 +1,7 @@
 /*
  * Forms
  * =====
- * https://w3c.github.io/html/sec-forms
+ * https://html.spec.whatwg.org/#forms
  */
 
 /*
@@ -78,7 +78,6 @@ body:not(:-moz-handler-blocked) fieldset {
  *    they zero out `fieldset` elements
  */
 legend {
-  box-sizing: border-box; /* 1 */
   color: inherit; /* 2 */
   display: table; /* 1 */
   max-inline-size: 100%; /* 1 */

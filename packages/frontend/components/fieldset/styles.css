@@ -1,7 +1,5 @@
 .fieldset {
   @extend %body;
-
-  hanging-punctuation: none;
 }
 
 .fieldset__title {

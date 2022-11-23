@@ -1,8 +1,12 @@
 /*
  * Grouping content
  * ================
- * https://w3c.github.io/html/grouping-content
+ * https://html.spec.whatwg.org/#grouping-content
  */
+
+address {
+  font-style: normal;
+}
 
 hr {
   border: 0;
@@ -11,17 +15,19 @@ hr {
 pre {
   hanging-punctuation: none;
   hyphens: none;
+  margin: 0;
   tab-size: 2;
   white-space: pre;
 }
 
-p,
-dl,
-ol,
-ul,
 address,
 figure,
-blockquote {
+blockquote,
+dl,
+p,
+ol,
+ul {
+  hanging-punctuation: first;
   margin: 0;
   orphans: 2;
   widows: 2;
