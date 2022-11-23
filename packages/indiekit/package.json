@@ -50,7 +50,7 @@
     "clean-stack": "^5.0.0",
     "commander": "^9.4.0",
     "cookie-session": "^2.0.0",
-    "cosmiconfig": "^7.0.1",
+    "cosmiconfig": "^8.0.0",
     "debug": "^4.3.2",
     "deepmerge": "^4.2.2",
     "express": "^4.17.1",
