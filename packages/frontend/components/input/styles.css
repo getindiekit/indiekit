@@ -7,8 +7,6 @@
 }
 
 .input:focus {
-  @extend %focus;
-
   border-color: var(--color-neutral-dark);
 }
 
@@ -36,12 +34,7 @@
 
 .input[type="file"] {
   border: 0;
-  /* Prevent focus ring from being hidden */
-  padding: var(--border-width-thickest);
-}
-
-.input[type="file"]:focus {
-  box-shadow: none;
+  padding: 0;
 }
 
 .input--error {

@@ -81,9 +81,8 @@
 
 /* Focused state */
 .radios__input:focus + .radios__label:before {
-  @extend %focus;
-
   border-color: var(--color-neutral-dark);
+  box-shadow: 0 0 0 var(--border-width-thickest) var(--color-focus);
   outline: var(--focus-width) solid transparent;
   outline-offset: var(--border-width-thin);
 }

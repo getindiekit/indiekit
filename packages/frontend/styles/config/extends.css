@@ -1,11 +1,3 @@
-/* Focus */
-%focus {
-  border-radius: var(--border-radius-small);
-  box-shadow: 0 0 0 var(--border-width-thickest) var(--color-focus);
-  outline: 0;
-  text-decoration: none;
-}
-
 /* Color scheme */
 %color-scheme-dark {
   /* Colour palette */

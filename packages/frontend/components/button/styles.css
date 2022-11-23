@@ -16,11 +16,6 @@
   background-color: var(--color-neutral-light);
 }
 
-.button:focus,
-::file-selector-button:focus {
-  @extend %focus;
-}
-
 .button:hover,
 ::file-selector-button:hover {
   background-color: var(--color-neutral-dark);

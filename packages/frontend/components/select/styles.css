@@ -24,8 +24,6 @@
 }
 
 .select:focus {
-  @extend %focus;
-
   border-color: var(--color-neutral-dark);
 }
 
