@@ -30,6 +30,8 @@
     <meta name="theme-color" content="{{ application.themeColor }}"/>
     <meta name="supported-color-schemes" content="light dark"/>
 
+    <link rel="alternate" href="{{ application.url }}/feed.jf2" type="application/jf2feed+json" title="JF2 Feed">
+    <link rel="alternate" href="{{ application.url }}/feed.json" type="application/feed+json" title="JSON Feed">
     <link rel="apple-touch-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.png">
     <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg"/>
     <link rel="mask-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg" color="{{ application.themeColor }}"/>
