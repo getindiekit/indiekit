@@ -1,6 +1,6 @@
 # Micropub clients
 
-Indiekit has tested with the following Micropub clients and supporting applications. You can find a full list of [Micropub clients on the IndieWeb wiki](https://indieweb.org/Micropub/Clients).
+Indiekit has been tested with the following Micropub clients and supporting applications. You can find a full list of [Micropub clients on the IndieWeb wiki](https://indieweb.org/Micropub/Clients).
 
 ## iA Writer
 
