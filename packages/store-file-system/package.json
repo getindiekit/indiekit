@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-file-system",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "File system content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -32,7 +32,7 @@
     "directory": "packages/store-file-system"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.12"
+    "@indiekit/error": "^1.0.0-alpha.13"
   },
   "publishConfig": {
     "access": "public"

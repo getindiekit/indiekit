@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-share",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "Share endpoint for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/endpoint-share"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.12",
+    "@indiekit/error": "^1.0.0-alpha.13",
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
     "undici": "^5.2.0"

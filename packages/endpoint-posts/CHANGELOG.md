@@ -3,52 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
-
+# [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Bug Fixes
 
-* **endpoint-posts:** use fetch from undici ([d9da860](https://github.com/getindiekit/indiekit/commit/d9da8600e41d7a53502a210cc40af77c8033d6c1))
+- **endpoint-posts:** use base64url encoding for item.id ([b9f71fe](https://github.com/getindiekit/indiekit/commit/b9f71fef086ec477e4ec40e6e2c90bf66b7cc3c6))
 
+# [1.0.0-alpha.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2022-07-15)
 
+### Bug Fixes
 
-
+- **endpoint-posts:** use fetch from undici ([d9da860](https://github.com/getindiekit/indiekit/commit/d9da8600e41d7a53502a210cc40af77c8033d6c1))
 
 # [1.0.0-alpha.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2022-07-12)
 
 **Note:** Version bump only for package @indiekit/endpoint-posts
 
-
-
-
-
 # [1.0.0-alpha.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2022-07-12)
-
 
 ### Features
 
-* add Polish localisation from Arookei The Wolf ([5432ddd](https://github.com/getindiekit/indiekit/commit/5432ddd6a2095e7f4fc09ec8517cee8bffdf17a2))
-* add Serbian localisation from Anđela Radojlović ([ab54ef7](https://github.com/getindiekit/indiekit/commit/ab54ef74a07f3c7c35aed4959b3addb3f3330fbf))
-* **endpoint-posts:** use custom error handler ([217b0b5](https://github.com/getindiekit/indiekit/commit/217b0b55856a5ce32ad3f99e2cd463059a903030))
-
-
-
-
+- add Polish localisation from Arookei The Wolf ([5432ddd](https://github.com/getindiekit/indiekit/commit/5432ddd6a2095e7f4fc09ec8517cee8bffdf17a2))
+- add Serbian localisation from Anđela Radojlović ([ab54ef7](https://github.com/getindiekit/indiekit/commit/ab54ef74a07f3c7c35aed4959b3addb3f3330fbf))
+- **endpoint-posts:** use custom error handler ([217b0b5](https://github.com/getindiekit/indiekit/commit/217b0b55856a5ce32ad3f99e2cd463059a903030))
 
 # [1.0.0-alpha.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2022-06-17)
 
-
 ### Bug Fixes
 
-* **endpoint-posts:** post count in pagination ([11964db](https://github.com/getindiekit/indiekit/commit/11964db8678b9830e110e7efbd1178025e1d4938))
-
-
-
-
+- **endpoint-posts:** post count in pagination ([11964db](https://github.com/getindiekit/indiekit/commit/11964db8678b9830e110e7efbd1178025e1d4938))
 
 # [1.0.0-alpha.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2022-06-14)
 
-
 ### Features
 
-* **endpoint-posts:** split post management into new plug-in ([cb1bf6c](https://github.com/getindiekit/indiekit/commit/cb1bf6c076371218df2fc4876bd48968df68e980))
+- **endpoint-posts:** split post management into new plug-in ([cb1bf6c](https://github.com/getindiekit/indiekit/commit/cb1bf6c076371218df2fc4876bd48968df68e980))

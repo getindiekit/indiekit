@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-github",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "GitHub content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/store-github"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.12",
+    "@indiekit/error": "^1.0.0-alpha.13",
     "undici": "^5.8.0"
   },
   "publishConfig": {

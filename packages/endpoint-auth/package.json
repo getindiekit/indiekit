@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-auth",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "Authentication and authorization endpoint for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/endpoint-auth"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.12",
+    "@indiekit/error": "^1.0.0-alpha.13",
     "express": "^4.17.1",
     "express-validator": "^6.14.2",
     "jsonwebtoken": "^8.5.1",

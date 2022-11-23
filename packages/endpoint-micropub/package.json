@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-micropub",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "Micropub endpoint for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/endpoint-micropub"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.12",
+    "@indiekit/error": "^1.0.0-alpha.13",
     "@paulrobertlloyd/mf2tojf2": "^1.0.0",
     "@sindresorhus/slugify": "^2.1.0",
     "date-fns": "^2.23.0",
