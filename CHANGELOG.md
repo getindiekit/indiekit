@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2022-11-23)
+
+### Features
+
+- **endpoint-auth:** include me paramter in authorization response ([f571735](https://github.com/getindiekit/indiekit/commit/f571735eadba8c9182988cb1b0688553fb9165df))
+- **endpoint-auth:** use password input, to help with password managers ([6eacede](https://github.com/getindiekit/indiekit/commit/6eacede4f46a91f140742be7f2df2b507147c1f6))
+
 # [1.0.0-alpha.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2022-11-23)
 
 ### Bug Fixes

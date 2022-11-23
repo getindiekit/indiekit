@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.15",
   "description": "The little server that connects your website to the independent web",
   "keywords": [
     "express",
@@ -38,7 +38,7 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
-    "@indiekit/endpoint-auth": "^1.0.0-alpha.13",
+    "@indiekit/endpoint-auth": "^1.0.0-alpha.15",
     "@indiekit/endpoint-files": "^1.0.0-alpha.13",
     "@indiekit/endpoint-image": "^1.0.0-alpha.13",
     "@indiekit/endpoint-media": "^1.0.0-alpha.13",
