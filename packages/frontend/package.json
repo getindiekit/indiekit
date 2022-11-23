@@ -45,8 +45,8 @@
     "markdown-it-prism": "^2.2.0",
     "nunjucks": "^3.2.3",
     "postcss": "^8.3.6",
-    "postcss-custom-media": "^9.0.0",
     "postcss-easy-import": "^4.0.0",
+    "postcss-lightningcss": "^0.6.0",
     "rollup": "^3.2.0"
   },
   "publishConfig": {
