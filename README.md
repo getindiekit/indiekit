@@ -39,6 +39,16 @@ The browser will refresh to reflect any changes you make to the documentation.
 
 Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in [`/docs/decisions`](docs/decisions).
 
+## Releasing
+
+[Lerna](https://lerna.js.org) is used to manage and publish packages from this monorepo.
+
+To release a new version, use the following command:
+
+```sh
+npx lerna publish --conventional-commits
+```
+
 ## Contributing
 
 Read about the different ways [you can contribute to this project](docs/contributing.md).
