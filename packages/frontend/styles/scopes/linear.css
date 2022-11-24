@@ -25,9 +25,7 @@
 .s-linear h2:not([class]) {
   @extend %heading;
 
-  box-shadow: none;
   margin-block-start: calc(var(--flow-space) * 1.5);
-  outline: 0;
 }
 
 .s-linear h2:not([class]) + * {
@@ -37,10 +35,8 @@
 .s-linear h3:not([class]) {
   @extend %subhead;
 
-  box-shadow: none;
   color: var(--color-neutral-dark);
   margin-block-start: calc(var(--flow-space) * 1.5);
-  outline: 0;
 }
 
 .s-linear hr:not([class]) {
@@ -109,43 +105,6 @@
 
 .s-linear dd:not([class]) + dt {
   margin-block-start: var(--flow-space);
-}
-
-.s-linear .header-anchor {
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-.s-linear .header-anchor:visited {
-  color: var(--color-text);
-}
-
-.s-linear .header-anchor:hover::after,
-.s-linear .header-anchor:focus::after {
-  color: var(--color-accent);
-  content: "#";
-  font-weight: 500;
-  margin-left: 0.5ch;
-}
-
-.s-linear .header-anchor:focus::before {
-  color: var(--color-text);
-}
-
-.s-linear .language-bash {
-  background-color: var(--color-neutral-darkest);
-  color: var(--color-neutral-lightest);
-}
-
-.s-linear .language-bash:last-of-type:before,
-.s-linear .language-bash br + .token::before {
-  color: #c9f;
-  content: "$ ";
-}
-
-.s-linear .language-bash .token {
-  color: var(--color-neutral-lightest);
-  font-weight: normal;
 }
 
 .s-linear .overflow {
