@@ -40,10 +40,6 @@
   --color-focus: hsl(48 100% 50%);
   --color-error: hsl(0 100% 60%);
   --color-success: hsl(144 100% 50%);
-  --color-background-delete: hsl(0 100% 80% / 40%);
-  --color-delete: hsl(0 100% 20%);
-  --color-background-insert: hsl(120 100% 80% / 50%);
-  --color-insert: hsl(120 100% 15%);
 
   /* Typography */
   --font-family-system: system-ui, -apple-system, sans-serif;
@@ -62,7 +58,6 @@
   --word-spacing: 0;
 
   /* Borders */
-  --border-radius-xsmall: 0.125rem;
   --border-radius-small: 0.25rem;
   --border-radius-large: 0.5rem;
   --border-width-thin: 1px;
