@@ -42,35 +42,37 @@
   --color-error: hsl(0 100% 60%);
   --color-success: hsl(144 100% 50%);
 
+  /* Fluid type scale */
+  /* clamp(min=320, preferred, max=1280) */
+  --font-size-s: clamp(0.875rem, 0.8334rem + 0.2084vw, 1rem); /* 14 → 16 */
+  --font-size-m: clamp(1rem, 0.9167rem + 0.4167vw, 1.25rem); /* 16 → 20 */
+  --font-size-l: clamp(1.25rem, 1.1667rem + 0.4167vw, 1.5rem); /* 20 → 24 */
+  --font-size-xl: clamp(1.5rem, 1.3333rem + 0.8334vw, 2rem); /* 24 → 32 */
+  --font-size-2xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem); /* 28 → 40 */
+
   /* Typography */
-  --font-family-system: system-ui, -apple-system, sans-serif;
+  --font-family-system: system-ui;
   --font-family-monospace: ui-monospace, monospace;
-  --font-size-title: calc(1.75rem + 1vw);
-  --font-size-heading: calc(1.125rem + 0.5vw);
-  --font-size-subhead: calc(1rem + 0.25vw);
-  --font-size-body: calc(0.875rem + 0.5vw);
-  --font-size-reference: calc(0.75rem + 0.25vw);
   --line-height-solid: 1;
   --line-height-tight: 1.25;
   --line-height-loose: 1.5;
   --line-height-prose: 1.75;
   --line-measure: 45rem;
-  --text-spacing: 0.2em 0.4em;
 
   /* Font styles */
-  --font-title: 800 var(--font-size-title) / var(--line-height-tight)
+  --font-title: 800 var(--font-size-2xl) / var(--line-height-tight)
     var(--font-family-system);
-  --font-heading: 600 var(--step-1) / var(--line-height-tight)
+  --font-heading: 600 var(--font-size-xl) / var(--line-height-tight)
     var(--font-family-system);
-  --font-subhead: 500 var(--step-0) / var(--line-height-tight)
+  --font-subhead: 500 var(--font-size-l) / var(--line-height-tight)
     var(--font-family-system);
-  --font-body: 400 var(--step-0) / var(--line-height-loose)
+  --font-body: 400 var(--font-size-m) / var(--line-height-loose)
     var(--font-family-system);
-  --font-label: 600 var(--step-0) / var(--line-height-tight)
+  --font-label: 600 var(--font-size-m) / var(--line-height-tight)
     var(--font-family-system);
-  --font-caption: 400 var(--step--1) / var(--line-height-loose)
+  --font-caption: 400 var(--font-size-s) / var(--line-height-loose)
     var(--font-family-system);
-  --font-code: 400 var(--font-size-reference) / var(--line-height-tight)
+  --font-code: 400 var(--font-size-s) / var(--line-height-tight)
     var(--font-family-monospace);
 
   /* Borders */
@@ -78,21 +80,16 @@
   --border-radius-large: 0.5rem;
   --border-width-thin: 1px;
   --border-width-thick: 0.125rem;
-  --border-width-thickest: 0.25rem;
+  --border-width-thickest: 0.1875rem;
 
-  /* Spacing */
-  --space-block: 1rem;
-  --space-inline: 0.75rem;
-  --space-gap: 1.5rem;
-
-  /* Sizing */
-  --size-root: 1rem;
-
-  /* Inset spacing */
-  --inset-small: var(--space-inline);
-  --inset-small-squished: calc(var(--inset-small) / 2) var(--inset-small);
-  --inset-large: calc(var(--inset-small) * 2);
-  --inset-large-squished: calc(var(--inset-large) / 2) var(--inset-large);
+  /* Fluid space scale */
+  /* clamp(min=320, preferred, max=1280) */
+  --space-2xs: 0.25rem; /* 4 */
+  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem); /* 4 → 8 */
+  --space-s: clamp(0.5rem, 0.4167rem + 0.4167vw, 0.75rem); /* 8 → 12 */
+  --space-m: clamp(0.75rem, 0.6667rem + 0.41667vw, 1rem); /* 12 → 16 */
+  --space-l: clamp(1rem, 0.8334rem + 0.8334vw, 1.5rem); /* 16 → 24 */
+  --space-xl: clamp(1.5rem, 1.3333rem + 0.8334vw, 2rem); /* 24 → 32 */
 
   /* Layout */
   --container-inline-size: min(96vw, var(--container-max-inline-size));

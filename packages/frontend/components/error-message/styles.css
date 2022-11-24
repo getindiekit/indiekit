@@ -2,5 +2,4 @@
   color: var(--color-error);
   font: var(--font-caption);
   font-weight: 600;
-  padding-block-end: var(--space-block);
 }

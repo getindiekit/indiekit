@@ -4,7 +4,8 @@
   border-radius: var(--border-radius-small);
   inline-size: 100%;
   margin-block-end: 0;
-  padding: var(--inset-small-squished);
+  padding-block: calc(var(--space-s) / 2);
+  padding-inline: var(--space-s);
 }
 
 .textarea:focus {

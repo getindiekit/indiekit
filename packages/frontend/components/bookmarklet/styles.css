@@ -6,7 +6,8 @@
   border-radius: var(--border-radius-small);
   display: inline-block;
   font: var(--font-caption);
-  padding: var(--text-spacing);
+  padding-block: calc(var(--space-s) / 2);
+  padding-inline: var(--space-s);
   white-space: nowrap;
 }
 

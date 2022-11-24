@@ -15,11 +15,11 @@
 
 .s-linear h2:not([class]) {
   font: var(--font-heading);
-  margin-block-start: calc(var(--flow-space) * 1.5);
+  margin-block-start: calc(var(--flow-space) * 2);
 }
 
 .s-linear h2:not([class]) + *:not([class]) {
-  margin-block-start: calc(var(--flow-space) / 2);
+  margin-block-start: calc(var(--flow-space) * 0.5);
 }
 
 .s-linear h3:not([class]) {
@@ -31,21 +31,22 @@
 .s-linear hr {
   border-block-start: 1px solid var(--color-neutral-light);
   inline-size: 100%;
-  margin: calc(var(--flow-space) * 1.5) 0;
+  margin: var(--flow-space) 0;
   max-inline-size: 100%;
 }
 
 .s-linear blockquote {
   border-inline-start: var(--border-width-thickest) solid var(--color-shadow);
   color: var(--color-neutral-dark);
-  padding-inline-start: var(--space-inline);
+  padding-inline-start: var(--space-m);
 }
 
 .s-linear pre {
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
   overflow: scroll;
-  padding: var(--inset-small);
+  padding-block: calc(var(--space-s) / 2);
+  padding-inline: var(--space-s);
   word-break: normal;
 }
 
@@ -57,7 +58,7 @@
 }
 
 .s-linear table:not([class]) {
-  font-size: var(--step--1);
+  font: var(--font-caption);
   inline-size: 100%;
   max-inline-size: 100%;
 }
@@ -68,7 +69,8 @@
 
 .s-linear td,
 .s-linear th {
-  padding: var(--inset-small-squished);
+  padding-block: calc(var(--space-m) / 2);
+  padding-inline: var(--space-m);
 }
 
 .s-linear dt {

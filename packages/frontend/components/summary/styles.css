@@ -1,14 +1,14 @@
 .summary {
-  --flow-inset: 0;
-  --flow-space: calc(var(--space-block) / 2);
+  --linear-flow-inset: 0;
+  --linear-flow-space: var(--space-2xs);
 }
 
 .summary__row {
   border-block-start: var(--color-neutral-light) solid var(--border-width-thin);
   display: flex;
-  gap: calc(var(--space-block) / 2);
+  gap: var(--space-s);
   flex-wrap: wrap;
-  padding-block: calc(var(--space-block) / 2);
+  padding-block: var(--space-s);
 }
 
 .summary__key {

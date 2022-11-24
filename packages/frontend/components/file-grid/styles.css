@@ -1,7 +1,7 @@
 .file-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-  grid-gap: var(--space-gap);
+  grid-gap: var(--space-l);
 }
 
 .file-grid__item {

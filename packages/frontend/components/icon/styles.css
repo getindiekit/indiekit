@@ -3,7 +3,7 @@
   display: inline-block;
   inline-size: 1em;
   inset-block-start: -1px;
-  margin-inline-end: var(--space-inline);
+  margin-inline-end: var(--space-xs);
   position: relative;
   vertical-align: text-bottom;
 }

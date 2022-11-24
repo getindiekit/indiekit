@@ -14,11 +14,12 @@
 .notification__container {
   align-items: baseline;
   display: flex;
-  gap: var(--space-inline);
+  gap: var(--space-s);
   inline-size: var(--container-inline-size);
   margin-inline: auto;
   max-inline-size: var(--container-max-inline-size);
-  padding: var(--step-0);
+  padding-block: var(--space-m);
+  padding-inline: var(--space-l);
 }
 
 .notification__title {

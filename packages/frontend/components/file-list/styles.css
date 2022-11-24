@@ -1,6 +1,6 @@
 .file-list {
   display: flex;
-  gap: var(--flow-space);
+  gap: var(--space-l);
   flex-direction: column;
 }
 
@@ -13,7 +13,6 @@
 }
 
 .file__title svg {
-  margin-inline-end: var(--space-inline);
   block-size: 1.2em;
   inline-size: 1.2em;
 }
@@ -21,5 +20,5 @@
 .file__meta {
   color: var(--color-neutral-dark);
   font: var(--font-caption);
-  margin-inline-start: calc(24px + var(--space-inline));
+  margin-inline-start: calc(24px + var(--space-xs));
 }

@@ -1,7 +1,11 @@
 .preview {
   background-color: var(--color-neutral-lightest);
   border-radius: var(--border-radius-small);
-  padding: var(--inset-small);
+  padding: var(--space-m);
+}
+
+.preview > * + * {
+  margin-block-start: var(--space-xs);
 }
 
 .preview output.placeholder {

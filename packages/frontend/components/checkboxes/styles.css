@@ -6,9 +6,9 @@
 
 .checkboxes__item {
   display: block;
-  margin-block-end: var(--space-block);
+  margin-block-end: var(--space-m);
   min-block-size: var(--checkbox-size);
-  padding-inline-start: calc(var(--checkbox-size) + var(--space-inline));
+  padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
   position: relative;
 }
 

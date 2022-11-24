@@ -7,9 +7,9 @@
   inline-size: var(--container-inline-size);
   margin-inline: auto;
   max-inline-size: var(--container-max-inline-size);
-  padding: var(--step-0);
+  padding: var(--space-l);
 }
 
 .main__container * + * {
-  margin-block-start: var(--flow-space, 1em);
+  margin-block-start: var(--flow-space, var(--space-l));
 }

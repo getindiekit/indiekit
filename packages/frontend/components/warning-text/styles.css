@@ -5,12 +5,13 @@
   display: flex;
   flex-direction: row;
   font: var(--font-label);
-  padding: var(--inset-small);
+  padding: var(--space-m);
 }
 
 .warning-text .icon {
-  min-block-size: 2rem;
-  min-inline-size: 2rem;
+  margin-inline-end: var(--space-s);
+  min-block-size: 1.5em;
+  min-inline-size: 1.5em;
 }
 
 .warning-text__text {

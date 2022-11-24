@@ -7,7 +7,8 @@
   color: var(--color-background);
   display: inline-block;
   line-height: var(--line-height-loose);
-  padding: var(--inset-small-squished);
+  padding-block: calc(var(--space-s) / 2);
+  padding-inline: var(--space-s);
 }
 
 .button--secondary,

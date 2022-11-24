@@ -1,7 +1,7 @@
 .error-summary {
   border: var(--color-error) solid var(--border-width-thickest);
   border-radius: var(--border-radius-large);
-  padding: var(--inset-small);
+  padding: var(--space-m);
 }
 
 .error-summary__title {

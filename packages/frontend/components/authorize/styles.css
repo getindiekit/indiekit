@@ -13,6 +13,6 @@
   box-shadow: inset 0 0 0 1px var(--color-shadow);
   float: inline-start;
   inline-size: 4rem;
-  margin-inline-end: var(--space-inline);
-  padding: 0.5rem;
+  margin-inline-end: var(--space-s);
+  padding: var(--space-2xs);
 }

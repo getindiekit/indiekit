@@ -8,16 +8,16 @@
   .radios--inline {
     --flow-space: 0;
     display: flex;
-    gap: var(--space-gap);
-    margin-block-start: 0.5rem;
+    gap: var(--space-s);
+    margin-block-start: var(--space-s);
   }
 }
 
 .radios__item {
   display: block;
-  margin-block-end: var(--space-block);
+  margin-block-end: var(--space-m);
   min-block-size: var(--radio-size);
-  padding-inline-start: calc(var(--radio-size) + var(--space-inline));
+  padding-inline-start: calc(var(--radio-size) + var(--space-s));
   position: relative;
 }
 

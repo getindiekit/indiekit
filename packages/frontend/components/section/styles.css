@@ -2,7 +2,7 @@
   align-items: baseline;
   display: flex;
   justify-content: space-between;
-  padding-block-end: var(--space-xs);
+  padding-block-end: var(--space-s);
 }
 
 .section__title {

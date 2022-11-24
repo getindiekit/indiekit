@@ -3,7 +3,8 @@
   border: var(--border-width-thick) solid var(--color-neutral);
   border-radius: var(--border-radius-small);
   inline-size: 100%;
-  padding: var(--inset-small-squished);
+  padding-block: calc(var(--space-s) / 2);
+  padding-inline: var(--space-s);
 }
 
 .input:focus {
