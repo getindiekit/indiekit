@@ -1,8 +1,8 @@
 .footer {
-  --anchor-color-hover: var(--color-anchor-hover);
+  --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-line: none;
   background-color: var(--color-offset);
-  color: var(--color-neutral-dark);
+  color: var(--color-on-offset);
   display: flex;
   justify-content: flex-end;
 }

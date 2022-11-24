@@ -1,30 +1,29 @@
 .button,
 ::file-selector-button {
-  background-color: var(--color-neutral-darkest);
+  background-color: var(--button-background-color, var(--color-primary));
   border: var(--border-width-thick) solid transparent;
   border-block-end-color: var(--color-shadow);
   border-radius: var(--border-radius-small);
-  color: var(--color-background);
+  color: var(--button-color, var(--color-on-primary));
   display: inline-block;
   line-height: var(--line-height-loose);
   padding-block: calc(var(--space-s) / 2);
   padding-inline: var(--space-s);
 }
 
-.button--secondary,
-::file-selector-button {
-  color: var(--color-foreground);
-  background-color: var(--color-neutral-light);
-}
-
 .button:hover,
 ::file-selector-button:hover {
-  background-color: var(--color-neutral-dark);
+  background-color: var(
+    --button-background-hover-color,
+    var(--color-primary-variant)
+  );
 }
 
-.button--secondary:hover,
-::file-selector-button:hover {
-  background-color: var(--color-neutral);
+.button--secondary,
+::file-selector-button {
+  --button-color: var(--color-on-offset);
+  --button-background-color: var(--color-offset);
+  --button-background-hover-color: var(--color-offset-variant);
 }
 
 .button--block {

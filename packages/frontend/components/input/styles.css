@@ -1,6 +1,6 @@
 .input {
   background-color: var(--color-background);
-  border: var(--border-width-thick) solid var(--color-neutral);
+  border: var(--border-width-thick) solid var(--color-outline);
   border-radius: var(--border-radius-small);
   inline-size: 100%;
   padding-block: calc(var(--space-s) / 2);
@@ -8,16 +8,12 @@
 }
 
 .input:focus {
-  border-color: var(--color-neutral-dark);
+  border-color: var(--color-outline-variant);
 }
 
 .input[readonly] {
-  border-color: var(--color-neutral-light);
-  color: var(--color-neutral-dark);
-}
-
-.input[readonly]:focus {
-  --color-focus: var(--color-neutral-lightest);
+  background: var(--color-offset);
+  color: var(--color-on-offset);
 }
 
 .input[type="color"] {

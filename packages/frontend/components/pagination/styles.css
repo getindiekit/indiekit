@@ -1,8 +1,8 @@
 .pagination {
-  --anchor-color-hover: var(--color-anchor-hover);
+  --anchor-color: var(--color-primary-on-background);
+  --anchor-color-hover: var(--color-on-offset);
   --anchor-decoration-line: none;
-  border-block-start: var(--border-width-thin) solid
-    var(--color-neutral-lightest);
+  border-block-start: var(--border-width-thin) solid var(--color-offset);
   font: var(--font-caption);
   padding-block-start: var(--space-s);
 }
@@ -45,7 +45,7 @@
 }
 
 .pagination__item--current .pagination__link {
-  color: var(--color-text);
+  color: var(--color-on-background);
   font-weight: 600;
 }
 

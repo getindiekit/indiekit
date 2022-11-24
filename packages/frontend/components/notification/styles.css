@@ -1,13 +1,15 @@
 .notification {
-  background-color: var(--color-neutral-lightest);
-  margin-block-start: calc(var(--border-width-thin) * -1);
+  color: var(--color-on-offset);
+  background-color: var(--color-offset);
 }
 
 .notification--error {
+  color: var(--color-on-error);
   background-color: var(--color-error);
 }
 
 .notification--success {
+  color: var(--color-on-success);
   background-color: var(--color-success);
 }
 
@@ -28,13 +30,6 @@
 
 .notification__text {
   font: var(--font-caption);
-}
-
-/* Inverse text color with dark scheme to retain legibility */
-@media (prefers-color-scheme: dark) {
-  .notification__body {
-    color: var(--color-neutral-lightest);
-  }
 }
 
 .notification__text {

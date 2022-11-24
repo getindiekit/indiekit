@@ -7,7 +7,7 @@
 }
 
 .authorize__client-icon {
-  background-color: var(--color-neutral-light);
+  background-color: var(--color-offset);
   block-size: 4rem;
   border-radius: var(--border-radius-small);
   box-shadow: inset 0 0 0 1px var(--color-shadow);

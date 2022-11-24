@@ -1,8 +1,8 @@
 .header {
-  --anchor-color-hover: var(--color-anchor-hover);
+  --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-line: none;
-  background-color: var(--color-background);
-  border-block-end: var(--border-width-thin) solid var(--color-neutral-lightest);
+  background-color: var(--color-offset);
+  color: var(--color-on-offset);
   display: flex;
 }
 

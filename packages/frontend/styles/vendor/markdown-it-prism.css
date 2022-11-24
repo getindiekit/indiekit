@@ -1,6 +1,6 @@
 .token {
-  --color-token-comment: var(--color-neutral);
-  --color-token-operator: var(--color-neutral-dark);
+  --color-token-comment: var(--color-on-offset);
+  --color-token-operator: var(--color-on-background);
   --color-token-function: #900;
   --color-token-keyword: #09c;
   --color-token-selector: #009;
@@ -10,6 +10,16 @@
 
 @media (prefers-color-scheme: dark) {
   .token {
+    --color-token-function: #f99;
+    --color-token-keyword: #0cf;
+    --color-token-selector: #99f;
+    --color-token-string: #f09;
+    --color-token-variable: #9ff;
+  }
+}
+
+.color-scheme--dark {
+  & .token {
     --color-token-function: #f99;
     --color-token-keyword: #0cf;
     --color-token-selector: #99f;

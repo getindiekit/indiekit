@@ -1,46 +1,51 @@
-:root {
-  /* Colour palette */
-  --color-neutral-h: 216;
-  --color-neutral-s: 12%;
-  --color-neutral-l: 64%;
-  --color-neutral-hsl: var(--color-neutral-h), var(--color-neutral-s),
-    var(--color-neutral-l);
-  --color-neutral: hsl(var(--color-neutral-hsl));
-  --color-neutral-dark: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) - 24%)
-  );
-  --color-neutral-darkest: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) - 48%)
-  );
-  --color-neutral-light: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) + 16%)
-  );
-  --color-neutral-lightest: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) + 32%)
-  );
+html {
+  /* Neutral palette */
+  --color-neutral99: hsl(var(--tint-neutral) 99%);
+  --color-neutral90: hsl(var(--tint-neutral) 90%);
+  --color-neutral95: hsl(var(--tint-neutral) 95%);
+  --color-neutral75: hsl(var(--tint-neutral) 75%);
+  --color-neutral50: hsl(var(--tint-neutral) 50%);
+  --color-neutral30: hsl(var(--tint-neutral) 30%);
+  --color-neutral10: hsl(var(--tint-neutral) 10%);
 
-  /* Colour assignments */
-  --color-background: white;
-  --color-offset: var(--color-neutral-lightest);
-  --color-shadow: hsl(var(--color-neutral-h) var(--color-neutral-s) 0% / 24%);
-  --color-shadow-offset: hsl(
-    var(--color-neutral-h) var(--color-neutral-s) 0% / 6%
-  );
-  --color-text: var(--color-neutral-darkest);
-  --color-anchor: var(--color-accent);
-  --color-anchor-hover: var(--color-accent-dark);
-  --color-selection: hsl(48 100% 50% / 33%);
-  --color-focus: hsl(48 100% 50%);
-  --color-error: hsl(0 100% 60%);
-  --color-success: hsl(144 100% 50%);
+  /* Error palette */
+  --tint-error: 8 100%;
+  --color-error50: hsl(var(--tint-error) 50%);
+  --color-error30: hsl(var(--tint-error) 30%);
+  --color-error10: hsl(var(--tint-error) 10%);
+
+  /* Success palette */
+  --tint-success: 144 100%;
+  --color-success50: hsl(var(--tint-success) 50%);
+  --color-success30: hsl(var(--tint-success) 30%);
+  --color-success10: hsl(var(--tint-success) 10%);
+
+  /* Focus palette */
+  --tint-focus: 44 100%;
+  --color-focus50: hsl(var(--tint-focus) 50%);
+}
+
+:root {
+  color-scheme: light;
+  --color-background: var(--color-neutral99);
+  --color-on-background: var(--color-neutral10);
+  --color-offset: var(--color-neutral95);
+  --color-offset-variant: var(--color-neutral90);
+  --color-on-offset: var(--color-neutral30);
+  --color-outline: var(--color-neutral75);
+  --color-outline-variant: var(--color-neutral50);
+  --color-primary-on-background: var(--color-primary-on-background-light);
+
+  /* Common color assigments */
+  --color-error: var(--color-error50);
+  --color-error-variant: var(--color-error30);
+  --color-on-error: var(--color-error10);
+  --color-success: var(--color-success50);
+  --color-success-variant: var(--color-success30);
+  --color-on-success: var(--color-success10);
+  --color-focus: var(--color-focus50);
+  --color-selection: hsl(var(--tint-focus) 50% / 30%);
+  --color-shadow: hsl(var(--tint-neutral) 10% / 0.2);
 
   /* Fluid type scale */
   /* clamp(min=320, preferred, max=1280) */
@@ -97,57 +102,27 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .color-scheme--automatic {
-    --color-neutral-light: hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) - 24%)
-    );
-    --color-neutral-lightest: hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) - 48%)
-    );
-    --color-neutral-dark: hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) + 16%)
-    );
-    --color-neutral-darkest: hsl(
-      var(--color-neutral-h),
-      var(--color-neutral-s),
-      calc(var(--color-neutral-l) + 32%)
-    );
-
-    --color-background: black;
-    --color-anchor: var(--color-accent-light);
-    --color-anchor-hover: var(--color-accent-lightest);
+  :root {
+    color-scheme: dark;
+    --color-on-background: var(--color-neutral99);
+    --color-background: var(--color-neutral10);
+    --color-offset: var(--color-neutral30);
+    --color-offset-variant: var(--color-neutral50);
+    --color-on-offset: var(--color-neutral95);
+    --color-outline: var(--color-neutral50);
+    --color-outline-variant: var(--color-neutral75);
+    --color-primary-on-background: var(--color-primary-on-background-dark);
   }
 }
 
 .color-scheme--dark {
-  --color-neutral-light: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) - 24%)
-  );
-  --color-neutral-lightest: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) - 48%)
-  );
-  --color-neutral-dark: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) + 16%)
-  );
-  --color-neutral-darkest: hsl(
-    var(--color-neutral-h),
-    var(--color-neutral-s),
-    calc(var(--color-neutral-l) + 32%)
-  );
-
-  --color-background: black;
-  --color-anchor: var(--color-accent-light);
-  --color-anchor-hover: var(--color-accent-lightest);
+  color-scheme: dark;
+  --color-on-background: var(--color-neutral99);
+  --color-background: var(--color-neutral10);
+  --color-offset: var(--color-neutral30);
+  --color-offset-variant: var(--color-neutral50);
+  --color-on-offset: var(--color-neutral95);
+  --color-outline: var(--color-neutral50);
+  --color-outline-variant: var(--color-neutral75);
+  --color-primary-on-background: var(--color-primary-on-background-dark);
 }

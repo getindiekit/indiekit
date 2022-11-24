@@ -1,6 +1,6 @@
 .textarea {
   background-color: var(--color-background);
-  border: var(--border-width-thick) solid var(--color-neutral);
+  border: var(--border-width-thick) solid var(--color-outline);
   border-radius: var(--border-radius-small);
   inline-size: 100%;
   margin-block-end: 0;
@@ -9,17 +9,13 @@
 }
 
 .textarea:focus {
-  border-color: var(--color-neutral-dark);
+  border-color: var(--color-outline-variant);
 }
 
 .textarea[readonly] {
-  border-color: var(--color-neutral-light);
-  color: var(--color-neutral-dark);
+  background: var(--color-offset);
+  color: var(--color-on-offset);
   resize: none;
-}
-
-.textarea[readonly]:focus {
-  --color-focus: var(--color-neutral-lightest);
 }
 
 .textarea--error {

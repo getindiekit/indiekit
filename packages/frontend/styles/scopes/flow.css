@@ -1,6 +1,6 @@
 .s-flow {
-  --anchor-color: var(--color-anchor);
-  --anchor-decoration-color: var(--color-shadow);
+  --anchor-color: var(--color-primary-on-background);
+  --anchor-color-hover: var(--color-on-background);
   --anchor-decoration-line: underline;
   --flow-inset: 1.25em;
   --flow-space: 1em;
@@ -24,26 +24,26 @@
 }
 
 .s-flow h3:not([class]) {
-  color: var(--color-neutral-dark);
+  color: var(--color-on-offset);
   font: var(--font-subhead);
   margin-block-start: calc(var(--flow-space) * 1.5);
 }
 
 .s-flow hr {
-  border-block-start: 1px solid var(--color-neutral-light);
+  border-block-start: 1px solid var(--color-outline);
   inline-size: 100%;
   margin: var(--flow-space) 0;
   max-inline-size: 100%;
 }
 
 .s-flow blockquote {
-  border-inline-start: var(--border-width-thickest) solid var(--color-shadow);
-  color: var(--color-neutral-dark);
+  border-inline-start: var(--border-width-thickest) solid var(--color-primary);
+  color: var(--color-on-offset);
   padding-inline-start: var(--space-m);
 }
 
 .s-flow pre {
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   overflow: scroll;
   padding-block: calc(var(--space-s) / 2);

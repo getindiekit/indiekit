@@ -1,5 +1,5 @@
 .summary__row {
-  border-block-start: var(--color-neutral-light) solid var(--border-width-thin);
+  border-block-start: var(--color-outline) solid var(--border-width-thin);
   display: flex;
   gap: var(--space-s);
   flex-wrap: wrap;
@@ -32,6 +32,6 @@
 }
 
 .summary__note {
-  color: var(--color-neutral-dark);
+  color: var(--color-on-offset);
   font: var(--font-caption);
 }

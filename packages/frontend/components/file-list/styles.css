@@ -18,7 +18,7 @@
 }
 
 .file__meta {
-  color: var(--color-neutral-dark);
+  color: var(--color-on-offset);
   font: var(--font-caption);
   margin-inline-start: calc(24px + var(--space-xs));
 }

@@ -1,6 +1,5 @@
 .app {
   background-color: var(--color-offset);
-  color: var(--color-text);
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-system);

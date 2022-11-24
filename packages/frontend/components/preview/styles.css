@@ -1,6 +1,7 @@
 .preview {
-  background-color: var(--color-neutral-lightest);
+  background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
+  color: var(--color-on-offset);
   padding: var(--space-m);
 }
 
@@ -9,7 +10,7 @@
 }
 
 .preview output.placeholder {
-  color: var(--color-neutral-light);
+  opacity: 0.5;
 }
 
 .preview__title {
@@ -26,6 +27,6 @@
 }
 
 .preview__date {
-  color: var(--color-neutral-dark);
+  color: var(--color-on-offset);
   font: var(--font-caption);
 }

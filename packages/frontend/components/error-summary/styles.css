@@ -10,8 +10,7 @@
 
 .error-summary__body {
   --anchor-color: var(--color-error);
-  --anchor-color-hover: var(--color-error);
-  --anchor-decoration-color: var(--color-error);
+  --anchor-color-hover: var(--color-error-variant);
   --flow-inset: 0;
   --flow-space: var(--space-s);
   font: var(--font-caption);
