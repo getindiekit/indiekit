@@ -34,11 +34,7 @@
     <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css"/>
     <style>
       :root {
-        --color-accent: {{ application.themeColor }};
-        --color-accent-dark: {{ application.themeColor | darken(0.4) }};
-        --color-accent-darkest: {{ application.themeColor | darken(0.6) }};
-        --color-accent-light: {{ application.themeColor | lighten(0.6) }};
-        --color-accent-lightest: {{ application.themeColor | lighten(0.8) }};
+        {{- themeCustomProperties(application.themeColor) | indent(8) }}
       }
     </style>
     <script async defer src="{{ application.url }}{{ assetPath | default("/assets") }}/app.js" type="module"></script>
