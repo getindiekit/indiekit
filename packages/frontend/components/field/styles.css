@@ -1,0 +1,12 @@
+.field > * {
+  --flow-space: 0.5rem;
+}
+
+.field:has([type="hidden"]) {
+  display: none;
+}
+
+.field--error {
+  border-inline-start: var(--color-error) solid var(--border-width-thickest);
+  padding-inline-start: var(--inset-small);
+}

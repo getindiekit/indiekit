@@ -1,9 +1,9 @@
 {%- from "../error-message/macro.njk" import errorMessage with context -%}
+{%- from "../field/macro.njk" import field with context -%}
 {%- from "../hint/macro.njk" import hint with context -%}
 {%- from "../label/macro.njk" import label with context -%}
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
-{%- set fieldClasses = "form__field" + (" form__field--error" if opts.errorMessage) -%}
-<div class="{{ "visually-hidden" if opts.type == "hidden" else fieldClasses }}">
+{% call field({ error: opts.errorMessage }) %}
 {%- if opts.label %}
   {{ label({
     for: opts.id,
@@ -43,4 +43,4 @@
   {%- if opts.inputmode %} inputmode="{{ opts.inputmode }}"{% endif %}
   {%- if opts.required %} required{% endif %}
   {{- attributes(opts.attributes) }}>
-</div>
+{%- endcall %}

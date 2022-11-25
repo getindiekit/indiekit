@@ -1,5 +1,6 @@
 {%- from "../error-message/macro.njk" import errorMessage with context -%}
 {%- from "../fieldset/macro.njk" import fieldset with context -%}
+{%- from "../field/macro.njk" import field with context -%}
 {%- from "../hint/macro.njk" import hint with context -%}
 {%- from "../label/macro.njk" import label with context -%}
 
@@ -86,7 +87,7 @@
   </div>
 {%- endset -%}
 
-<div class="{{ "form__field" + (" form__field--error" if opts.errorMessage) }}">
+{% call field({ error: opts.errorMessage }) %}
 {%- if opts.fieldset %}
   {% call fieldset({
     describedBy: describedBy,
@@ -99,4 +100,4 @@
 {%- else %}
   {{ innerHtml | trim | safe }}
 {%- endif %}
-</div>
+{%- endcall %}
