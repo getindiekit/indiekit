@@ -1,3 +1,4 @@
+{%- from "../navigation/macro.njk" import navigation with context -%}
 <header class="{{ classes("header", opts) }}">
   <div class="header__container">
     <div class="header__title">
@@ -5,14 +6,6 @@
         <span class="p-name">{{ opts.name }}</span>
       </a>
     </div>
-{%- if opts.navigation %}
-    <nav class="header__navigation" aria-label="site">
-    {%- for item in opts.navigation %}
-      {%- if item.href and item.text %}
-      <a href="{{ item.href }}">{{ item.text | safe }}</a>
-      {%- endif %}
-    {%- endfor %}
-    </nav>
-{%- endif %}
+    {{ navigation(opts.navigation) if opts.navigation }}
   </div>
 </header>

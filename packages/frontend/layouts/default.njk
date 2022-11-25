@@ -49,7 +49,10 @@
     {{ header({
       url: application.url,
       name: application.name,
-      navigation: application.navigation
+      navigation: {
+        items: application.navigation,
+        label: "site"
+      }
     }) | indent(4) if not minimalui }}
   {%- endblock %}
 
