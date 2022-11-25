@@ -15,10 +15,10 @@
 .file-grid__item video {
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
+  block-size: 100%;
   display: block;
-  height: 100%;
+  inline-size: 100%;
   object-fit: cover;
-  width: 100%;
 }
 
 .file-grid__item video {
