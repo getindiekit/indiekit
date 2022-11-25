@@ -40,10 +40,6 @@
   padding: var(--border-width-thickest);
 }
 
-input[type="file"]::file-selector-button {
-  margin-inline-end: var(--space-inline);
-}
-
 .input[type="file"]:focus {
   box-shadow: none;
 }
