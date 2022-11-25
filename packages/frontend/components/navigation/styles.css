@@ -1,0 +1,11 @@
+.navigation a {
+  align-items: center;
+  display: inline-flex;
+  margin-inline-end: calc(var(--space-inline) * -1);
+  margin-inline-start: calc(var(--space-inline) * -1);
+  padding: var(--inset-small-squished);
+}
+
+.navigation a + a {
+  margin-inline-start: var(--space-inline);
+}

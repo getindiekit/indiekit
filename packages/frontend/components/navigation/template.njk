@@ -1,0 +1,7 @@
+<nav class="{{ classes("navigation", opts) }}" aria-label="{{ opts.label }}">
+{%- for item in opts.items %}
+  {%- if item.href and item.text %}
+  <a href="{{ item.href }}">{{ item.text | safe }}</a>
+  {%- endif %}
+{%- endfor %}
+</nav>
