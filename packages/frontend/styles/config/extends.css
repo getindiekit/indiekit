@@ -43,7 +43,6 @@
   hanging-punctuation: first;
   hyphens: auto;
   line-height: var(--line-height-loose);
-  word-spacing: var(--word-spacing);
 }
 
 %label {
@@ -55,7 +54,6 @@
   hanging-punctuation: first;
   hyphens: auto;
   line-height: var(--line-height-tight);
-  word-spacing: var(--word-spacing);
 }
 
 %caption {
@@ -111,7 +109,4 @@
   /* Colour assignments */
   --color-background: black;
   --color-anchor-hover: var(--color-accent-lightest);
-
-  /* Typography */
-  --word-spacing: 0.05em;
 }
