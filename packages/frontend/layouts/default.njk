@@ -69,14 +69,18 @@
   {%- block footer %}
     {{ footer({
       logo: {
+        classes: "h-x-app",
         href: "https://getindiekit.com",
         src: application.url + assetPath | default("/assets") + "/icon.svg",
         alt: "Indiekit"
       },
-      navigation: [{
-        href: application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version,
-        text: "v" + application.version
-      }]
+      navigation: {
+        items: [{
+          href: application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version,
+          text: "v" + application.version
+        }],
+        label: "secondary"
+      }
     }) | indent() if not minimalui }}
   {%- endblock %}
   </body>

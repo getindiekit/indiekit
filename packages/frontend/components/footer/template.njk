@@ -1,18 +1,8 @@
+{%- from "../logo/macro.njk" import logo with context -%}
+{%- from "../navigation/macro.njk" import navigation with context -%}
 <footer class="{{ classes("footer", opts) }}">
   <div class="footer__container">
-{%- if opts.navigation %}
-    <nav class="footer__navigation" aria-label="secondary">
-    {%- for item in opts.navigation %}
-      {%- if item.href and item.text %}
-      <a href="{{ item.href }}">{{ item.text | safe }}</a>
-      {%- endif %}
-    {%- endfor %}
-    </nav>
-{%- endif %}
-{%- if opts.logo %}
-    <a class="footer__logo h-x-app" href="{{ opts.logo.href }}">
-      <img class="u-logo p-name" src="{{ opts.logo.src }}" alt="{{ opts.logo.alt }}" height="16" width="16"/>
-    </a>
-{%- endif %}
+    {{ navigation(opts.navigation) if opts.navigation }}
+    {{ logo(opts.logo) if opts.logo }}
   </div>
 </footer>
