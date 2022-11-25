@@ -52,7 +52,7 @@
 {% endset -%}
 
 {%- set permissionsHtml %}
-<dl class="s-linear">{% for scope in scope -%}
+<dl>{% for scope in scope -%}
   <dt>
     {{ __("scope." + scope + ".label") }}
     <small><code class="token attr-name">{{ scope }}</code></small>

@@ -6,7 +6,7 @@
 {%- endset -%}
 
 {% block main %}
-<form class="form" method="post">
+<form class="main__container" method="post">
   {{ errorSummary({
     errorList: errorList(errors)
   }) | indent(2) if errors }}

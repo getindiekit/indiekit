@@ -1,7 +1,11 @@
 .s-linear {
+  @extend %body;
+
   --anchor-decoration: underline;
   --color-anchor: var(--color-accent);
   --color-anchor-decoration: var(--color-shadow);
+  --flow-inset: 1.25em;
+  --list-display: list-item;
 }
 
 @media (prefers-color-scheme: dark) {

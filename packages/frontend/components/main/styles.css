@@ -2,3 +2,11 @@
   background-color: var(--color-background);
   flex: 1;
 }
+
+.main__container {
+  @extend %container;
+}
+
+.main__container > * + * {
+  margin-block-start: var(--step-1);
+}

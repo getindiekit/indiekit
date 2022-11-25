@@ -1,7 +1,0 @@
-.form {
-  @extend %container;
-}
-
-.form > * + * {
-  margin-block-start: var(--step-1);
-}

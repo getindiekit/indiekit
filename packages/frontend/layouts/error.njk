@@ -1,4 +1,4 @@
-{% extends "default.njk" %}
+{% extends "document.njk" %}
 
 {% set appClasses = "app--minimalui" %}
 {% block header %}
@@ -7,10 +7,7 @@
     name: application.name
   }) }}
 {% endblock %}
-{% block main %}
-{% call article({
-  title: title
-}) -%}
+{% block content %}
   <p>
     {%- if uri %}<a href="{{ uri }}">{% endif -%}
     {{- content | markdown("inline") | safe if content -}}
@@ -20,5 +17,4 @@
     <summary><small>Status code: <code>{{ status }}</code></small></summary>
     <pre><code>{{ stack }}</code></pre>
   </details>
-{%- endcall %}
 {% endblock %}

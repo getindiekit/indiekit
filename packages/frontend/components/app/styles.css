@@ -28,8 +28,7 @@
   overflow: hidden;
 }
 
-.app--minimalui .article,
-.app--minimalui .form {
+.app--minimalui .main__container {
   background-color: var(--color-background);
   border-radius: var(--border-radius-large);
 }

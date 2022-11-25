@@ -1,11 +1,14 @@
 {% extends "default.njk" %}
 
 {% block main %}
-{% call article({
-  title: title,
-  parent: parent or page.parent,
-  content: content
-}) -%}
-  {%- block content %}{% endblock -%}
-{%- endcall %}
+<article class="main__container">
+  {{ heading({
+    parent: parent,
+    text: title
+  }) if title }}
+
+  <div class="s-linear">
+    {%- block content %}{% endblock -%}
+  </div>
+</article>
 {% endblock %}
