@@ -1,0 +1,12 @@
+.logo {
+  display: block;
+  padding: var(--inset-small-squished);
+}
+
+.logo img {
+  opacity: 0.5;
+}
+
+.logo:hover img {
+  opacity: 0.75;
+}
