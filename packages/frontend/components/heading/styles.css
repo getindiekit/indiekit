@@ -1,0 +1,9 @@
+.heading {
+  @extend %title;
+}
+
+.heading__parent {
+  @extend %body;
+
+  display: block;
+}
