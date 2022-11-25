@@ -27,14 +27,14 @@ blockquote {
   widows: 2;
 }
 
-dl,
 ol,
 ul {
-  padding: 0;
+  padding-inline-start: var(--flow-inset, 0);
 }
 
-li {
-  display: var(--list-display, block);
+[role="list"] {
+  list-style: none;
+  padding: 0;
 }
 
 dd {

@@ -9,7 +9,7 @@
     <p>{{ opts.description.text | markdown | safe }}</p>
   {%- endif %}
   {%- if opts.errorList %}
-    <ul class="error-summary__list">
+    <ul class="error-summary__list" role="list">
     {%- for item in opts.errorList %}
       <li>
       {%- if item.href %}

@@ -5,7 +5,6 @@
   --color-anchor: var(--color-accent);
   --color-anchor-decoration: var(--color-shadow);
   --flow-inset: 1.25em;
-  --list-display: list-item;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -85,16 +84,6 @@
 .s-linear td,
 .s-linear th {
   padding: var(--inset-small-squished);
-}
-
-.s-linear ol:not([class]),
-.s-linear ul:not([class]) {
-  padding-inline-start: var(--flow-inset);
-}
-
-.s-linear ol[class],
-.s-linear ul[class] {
-  list-style: none;
 }
 
 .s-linear ul:not([class]) * + *,

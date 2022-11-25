@@ -16,7 +16,7 @@
     {% if opts.actions.length == 1 %}
       {{- _actionLink(opts.actions[0], opts.key) | indent(12) | trim -}}
     {% else %}
-      <ul class="summary__actions-list">
+      <ul class="summary__actions-list" role="list">
       {% for action in opts.actions %}
         <li class="summary__actions-list-item">
           {{- _actionLink(action, row.key) | indent(18) | trim -}}

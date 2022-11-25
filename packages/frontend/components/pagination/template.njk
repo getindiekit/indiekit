@@ -1,6 +1,6 @@
 {% set type = opts.results.type | default(__("pagination.defaultType")) -%}
 <nav class="{{ classes("pagination", opts) }}" id="pagination-label" aria-label="{{ type }} navigation">
-  <ul class="pagination__list">
+  <ul class="pagination__list" role="list">
     {%- if opts.previous %}
     <li class="pagination__item pagination__item--previous">
       <a class="pagination__link" href="{{ opts.previous.href }}">
