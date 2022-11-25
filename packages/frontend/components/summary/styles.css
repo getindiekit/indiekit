@@ -16,11 +16,6 @@
   @extend %heading;
 }
 
-.summary__title svg {
-  position: relative;
-  top: -2px;
-}
-
 .summary * + * {
   margin-block-start: 0;
 }
