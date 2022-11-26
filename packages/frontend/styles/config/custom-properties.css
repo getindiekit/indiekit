@@ -57,6 +57,10 @@
   --line-measure: 45rem;
   --text-spacing: 0.2em 0.4em;
 
+  /* Font styles */
+  --font-code: 400 var(--font-size-reference) / var(--line-height-tight)
+    var(--font-family-monospace);
+
   /* Borders */
   --border-radius-small: 0.25rem;
   --border-radius-large: 0.5rem;

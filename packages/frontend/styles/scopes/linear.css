@@ -55,9 +55,8 @@
 .s-linear code,
 .s-linear samp {
   border-radius: var(--border-radius-small);
-  font-size: var(--step--1);
-  font-weight: 400;
-  margin-inline: 0.2em;
+  font: var(--font-code);
+  font-variant-numeric: tabular-nums;
 }
 
 .s-linear table:not([class]) {
