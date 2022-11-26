@@ -1,16 +1,14 @@
 .checkboxes {
   --checkbox-size: 1.5em;
-  --check-size: 1em;
+  --check-size: 0.875em;
   --touch-target-size: 44px;
-  --checkbox-label-padding-block: calc(var(--space-block) / 4);
-  --checkbox-label-padding-inline: var(--space-inline);
 }
 
 .checkboxes__item {
   display: block;
   margin-block-end: var(--space-block);
   min-block-size: var(--checkbox-size);
-  padding-inline-start: var(--checkbox-size);
+  padding-inline-start: calc(var(--checkbox-size) + var(--space-inline));
   position: relative;
 }
 
@@ -34,12 +32,12 @@
 }
 
 .checkboxes__label.label {
+  align-items: center;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   font-weight: normal;
   margin-block-start: 0;
-  padding: var(--checkbox-label-padding-block)
-    var(--checkbox-label-padding-inline);
+  min-block-size: var(--checkbox-size);
   touch-action: manipulation; /* remove 300ms pause on mobile */
 }
 
@@ -76,7 +74,6 @@
 .checkboxes .checkboxes__hint {
   display: block;
   margin-block-start: 0;
-  padding-inline: var(--checkbox-label-padding-inline);
 }
 
 /* Focused state */

@@ -1,9 +1,7 @@
 .radios {
-  --radio-size: 2em;
+  --radio-size: 1.5em;
   --check-size: calc(var(--radio-size) / 4);
   --touch-target-size: 44px;
-  --radio-label-padding-block: calc(var(--space-block) / 2);
-  --radio-label-padding-inline: var(--space-inline);
 }
 
 @media (--from-medium-viewport) {
@@ -19,7 +17,7 @@
   display: block;
   margin-block-end: var(--space-block);
   min-block-size: var(--radio-size);
-  padding-inline-start: var(--radio-size);
+  padding-inline-start: calc(var(--radio-size) + var(--space-inline));
   position: relative;
 }
 
@@ -41,11 +39,12 @@
 }
 
 .radios__label.label {
+  align-items: center;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
   font-weight: normal;
   margin-block-start: 0;
-  padding: var(--radio-label-padding-block) var(--radio-label-padding-inline);
+  min-block-size: var(--radio-size);
   touch-action: manipulation; /* remove 300ms pause on mobile */
 }
 
@@ -78,7 +77,6 @@
 .radios .radios__hint {
   display: block;
   margin-block-start: 0;
-  padding-inline: var(--radio-label-padding-inline);
 }
 
 /* Focused state */
