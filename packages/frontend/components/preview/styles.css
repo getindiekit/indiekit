@@ -4,10 +4,6 @@
   padding: var(--inset-small);
 }
 
-.preview * + * {
-  margin-block-start: var(--space-block);
-}
-
 .preview output.placeholder {
   color: var(--color-neutral-light);
 }

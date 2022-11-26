@@ -1,7 +1,15 @@
+.file-list {
+  display: flex;
+  gap: var(--flow-space);
+  flex-direction: column;
+}
+
+.file-list__item {
+  --flow-space: 0;
+}
+
 .file__title {
   @extend %label;
-
-  --flow-space: 0;
 }
 
 .file__title svg {
@@ -14,6 +22,5 @@
   @extend %caption;
 
   color: var(--color-neutral-dark);
-  margin-block-start: 0;
   margin-inline-start: calc(24px + var(--space-inline));
 }

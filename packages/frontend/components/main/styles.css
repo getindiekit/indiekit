@@ -7,6 +7,6 @@
   @extend %container;
 }
 
-.main__container > * + * {
-  margin-block-start: var(--step-1);
+.main__container * + * {
+  margin-block-start: var(--flow-space, 1em);
 }

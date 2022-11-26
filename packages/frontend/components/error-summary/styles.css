@@ -17,6 +17,6 @@
 }
 
 .error-summary__list {
+  --flow-space: 0;
   font-weight: 600;
-  margin-block-start: var(--space-block);
 }

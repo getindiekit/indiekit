@@ -11,7 +11,7 @@
 
 .summary__list {
   --flow-inset: 0;
-  --flow-space: 0;
+  --flow-space: calc(var(--space-block) / 2);
 }
 
 .summary__row {
@@ -19,8 +19,7 @@
   display: flex;
   gap: calc(var(--space-block) / 2);
   flex-wrap: wrap;
-  padding-block-end: var(--space-block);
-  padding-block-start: calc(var(--space-block) / 2);
+  padding-block: calc(var(--space-block) / 2);
 }
 
 .summary__key {

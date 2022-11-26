@@ -11,7 +11,7 @@
   </legend>
   {%- endif %}
 {%- endset %}
-<fieldset class="{{ classes("fieldset", opts) }} s-linear"
+<fieldset class="{{ classes("fieldset", opts) }}"
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
   {{- attributes(opts.attributes) }}>
