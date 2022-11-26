@@ -12,8 +12,8 @@
 .file-grid__item img,
 .file-grid__item video {
   background-color: var(--color-offset);
-  border-radius: var(--border-radius-small);
   block-size: 100%;
+  border-radius: var(--border-radius-small);
   display: block;
   inline-size: 100%;
   object-fit: cover;

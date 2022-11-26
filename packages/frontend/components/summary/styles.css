@@ -1,6 +1,5 @@
 .summary {
   --flow-inset: 0;
-
   margin-block-start: calc(var(--flow-space) * 1.5);
   max-inline-size: unset;
 }

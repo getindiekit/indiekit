@@ -1,7 +1,7 @@
 .file__title {
-  --flow-space: 0;
-
   @extend %label;
+
+  --flow-space: 0;
 }
 
 .file__title svg {

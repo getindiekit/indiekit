@@ -9,7 +9,6 @@
 
 .pagination__list {
   --flow-space: 0;
-
   display: flex;
   margin-inline: calc(var(--inset-large) * -1);
 }

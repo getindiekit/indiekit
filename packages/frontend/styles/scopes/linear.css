@@ -38,9 +38,9 @@
 }
 
 .s-linear hr:not([class]) {
-  margin: calc(var(--flow-space) * 1.5) 0;
   border-block-start: 1px solid var(--color-neutral-light);
   inline-size: 100%;
+  margin: calc(var(--flow-space) * 1.5) 0;
   max-inline-size: 100%;
 }
 

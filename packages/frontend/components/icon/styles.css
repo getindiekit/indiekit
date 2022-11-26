@@ -1,11 +1,11 @@
 .icon {
-  display: inline-block;
-  margin-inline-end: var(--space-inline);
-  vertical-align: text-bottom;
   block-size: 1em;
+  display: inline-block;
   inline-size: 1em;
-  position: relative;
   inset-block-start: -1px;
+  margin-inline-end: var(--space-inline);
+  position: relative;
+  vertical-align: text-bottom;
 }
 
 .icon--rounded {
