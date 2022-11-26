@@ -11,10 +11,9 @@
 .error-summary__body {
   @extend %caption;
 
-  --anchor-decoration: underline;
-  --color-anchor: var(--color-error);
-  --color-anchor-hover: var(--color-error);
-  --color-anchor-decoration: hsl(var(--h) var(--s) 0% / 25%);
+  --anchor-color: var(--color-error);
+  --anchor-color-hover: var(--color-error);
+  --anchor-decoration-line: underline;
 }
 
 .error-summary__list {

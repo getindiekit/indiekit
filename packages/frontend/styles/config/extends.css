@@ -108,5 +108,6 @@
 
   /* Colour assignments */
   --color-background: black;
+  --color-anchor: var(--color-accent-light);
   --color-anchor-hover: var(--color-accent-lightest);
 }

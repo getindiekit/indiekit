@@ -35,6 +35,7 @@
     var(--color-neutral-h) var(--color-neutral-s) 0% / 6%
   );
   --color-text: var(--color-neutral-darkest);
+  --color-anchor: var(--color-accent);
   --color-anchor-hover: var(--color-accent-dark);
   --color-selection: hsl(48 100% 50% / 33%);
   --color-focus: hsl(48 100% 50%);

@@ -1,4 +1,6 @@
 .header {
+  --anchor-color-hover: var(--color-anchor-hover);
+  --anchor-decoration-line: none;
   background-color: var(--color-background);
   border-block-end: var(--border-width-thin) solid var(--color-neutral-lightest);
   display: flex;

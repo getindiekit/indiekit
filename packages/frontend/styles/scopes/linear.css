@@ -1,16 +1,11 @@
 .s-linear {
   @extend %body;
 
-  --anchor-decoration: underline;
-  --color-anchor: var(--color-accent);
-  --color-anchor-decoration: var(--color-shadow);
+  --anchor-color: var(--color-anchor);
+  --anchor-color-hover: var(--color-anchor-hover);
+  --anchor-decoration-color: var(--color-shadow);
+  --anchor-decoration-line: underline;
   --flow-inset: 1.25em;
-}
-
-@media (prefers-color-scheme: dark) {
-  .s-linear a {
-    --color-anchor: var(--color-accent-light);
-  }
 }
 
 .s-linear * + * {

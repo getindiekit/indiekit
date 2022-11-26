@@ -1,4 +1,6 @@
 .footer {
+  --anchor-color-hover: var(--color-anchor-hover);
+  --anchor-decoration-line: none;
   background-color: var(--color-offset);
   color: var(--color-neutral-dark);
   display: flex;

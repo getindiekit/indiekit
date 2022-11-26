@@ -1,7 +1,6 @@
 .bookmarklet {
-  --anchor-decoration: none;
-  --color-anchor: var(--color-text);
-
+  --anchor-color: var(--color-text);
+  --anchor-decoration-line: none;
   background-color: var(--color-neutral-lightest);
   border: var(--border-width-thin) solid var(--color-neutral-light);
   border-radius: var(--border-radius-small);
