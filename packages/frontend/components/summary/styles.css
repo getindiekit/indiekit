@@ -1,15 +1,4 @@
-.summary__header {
-  align-items: baseline;
-  display: flex;
-  justify-content: space-between;
-  padding-block-end: var(--space-block);
-}
-
-.summary__title {
-  font: var(--font-heading);
-}
-
-.summary__list {
+.summary {
   --flow-inset: 0;
   --flow-space: calc(var(--space-block) / 2);
 }
@@ -42,10 +31,6 @@
 .summary__value pre {
   background: none;
   padding: 0;
-}
-
-.summary__actions {
-  margin-inline-start: auto;
 }
 
 .summary__note {
