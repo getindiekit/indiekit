@@ -63,129 +63,134 @@
 {% endset -%}
 
 {% block content %}
-  {{ discovery | markdown | safe }}
+  {{ section({
+    id: "discovery",
+    text: discovery
+  }) }}
 
 {% for plugin in application.installedPlugins -%}
   {% include plugin.id + "-status.njk" ignore missing %}
 {%- endfor %}
 
-  {{ summary({
-    title: __("status.publication.summaryTitle"),
-    rows: [{
-      key: {
-        text: __("status.publication.me")
-      },
-      value: {
-        text: publication.me | urlize
-      }
-    }, {
-      key: {
-        text: __("status.publication.locale")
-      },
-      value: {
-        text: publication.locale.split("-") | first | languageNativeName
-      }
-    }, {
-      key: {
-        text: __("status.publication.timeZone")
-      },
-      value: {
-        text: publication.timeZone
-      }
-    }, {
-      key: {
-        text: __("status.publication.preset")
-      },
-      value: {
-        text: publication.preset.info.name
-      }
-    } if publication.preset, {
-      key: {
-        text: __("status.publication.postTypes")
-      },
-      value: {
-        text: postTypesHtml | indent(2)
-      }
-    } if publication.postTypes.length > 0, {
-      key: {
-        text: __("status.publication.store")
-      },
-      value: {
-        text: storeHtml
-      }
-    } if publication.store, {
-      key: {
-        text: __("status.publication.syndicationTargets")
-      },
-      value: {
-        text: syndicationTargetsHtml | indent(2)
-      }
-    } if publication.syndicationTargets.length > 0]
-  }) }}
+  {% call section({ title: __("status.publication.summaryTitle") }) %}
+    {{ summary({
+      rows: [{
+        key: {
+          text: __("status.publication.me")
+        },
+        value: {
+          text: publication.me | urlize
+        }
+      }, {
+        key: {
+          text: __("status.publication.locale")
+        },
+        value: {
+          text: publication.locale.split("-") | first | languageNativeName
+        }
+      }, {
+        key: {
+          text: __("status.publication.timeZone")
+        },
+        value: {
+          text: publication.timeZone
+        }
+      }, {
+        key: {
+          text: __("status.publication.preset")
+        },
+        value: {
+          text: publication.preset.info.name
+        }
+      } if publication.preset, {
+        key: {
+          text: __("status.publication.postTypes")
+        },
+        value: {
+          text: postTypesHtml | indent(2)
+        }
+      } if publication.postTypes.length > 0, {
+        key: {
+          text: __("status.publication.store")
+        },
+        value: {
+          text: storeHtml
+        }
+      } if publication.store, {
+        key: {
+          text: __("status.publication.syndicationTargets")
+        },
+        value: {
+          text: syndicationTargetsHtml | indent(2)
+        }
+      } if publication.syndicationTargets.length > 0]
+    }) }}
+  {% endcall %}
 
-  {{ summary({
-    title: __("status.application.summaryTitle"),
-    rows: [{
-      key: {
-        text: __("status.application.name")
-      },
-      value: {
-        text: application.name
-      }
-    }, {
-      key: {
-        text: __("status.application.locale")
-      },
-      value: {
-        text: localeHtml
-      }
-    }, {
-      key: {
-        text: __("scope.label")
-      },
-      value: {
-        text: permissionsHtml if scope else __("scope.none.label")
-      }
-    }, {
-      key: {
-        text: __("status.application.accessToken")
-      },
-      value: {
-        text: textarea({
-          classes: "textarea--monospace",
-          label: {
-            classes: "-!-visually-hidden",
-            text: __("status.application.accessToken")
-          },
-          rows: 5,
-          value: session.access_token,
-          attributes: {
-            readonly: "true",
-            onclick: "this.select();"
-          }
-        })
-      }
-    } if session.access_token, {
-      key: {
-        text: __("status.application.themeColorScheme")
-      },
-      value: {
-        text: __("status.application.themeColorSchemeValue." + application.themeColorScheme)
-      }
-    }, {
-      key: {
-        text: __("status.application.themeColor")
-      },
-      value: {
-        text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
-      }
-    }, {
-      key: {
-        text: __("status.application.installedPlugins")
-      },
-      value: {
-        text: installedPluginsHtml
-      }
-    }]
-  }) }}
+  {% call section({ title: __("status.application.summaryTitle") }) %}
+    {{ summary({
+      rows: [{
+        key: {
+          text: __("status.application.name")
+        },
+        value: {
+          text: application.name
+        }
+      }, {
+        key: {
+          text: __("status.application.locale")
+        },
+        value: {
+          text: localeHtml
+        }
+      }, {
+        key: {
+          text: __("scope.label")
+        },
+        value: {
+          text: permissionsHtml if scope else __("scope.none.label")
+        }
+      }, {
+        key: {
+          text: __("status.application.accessToken")
+        },
+        value: {
+          text: textarea({
+            classes: "textarea--monospace",
+            label: {
+              classes: "-!-visually-hidden",
+              text: __("status.application.accessToken")
+            },
+            rows: 5,
+            value: session.access_token,
+            attributes: {
+              readonly: "true",
+              onclick: "this.select();"
+            }
+          })
+        }
+      } if session.access_token, {
+        key: {
+          text: __("status.application.themeColorScheme")
+        },
+        value: {
+          text: __("status.application.themeColorSchemeValue." + application.themeColorScheme)
+        }
+      }, {
+        key: {
+          text: __("status.application.themeColor")
+        },
+        value: {
+          text: "<span style=\"color:" + application.themeColor + "\" aria-hidden\"true\">●</span> " + application.themeColor
+        }
+      }, {
+        key: {
+          text: __("status.application.installedPlugins")
+        },
+        value: {
+          text: installedPluginsHtml
+        }
+      }]
+    }) }}
+  {% endcall %}
 {% endblock %}
