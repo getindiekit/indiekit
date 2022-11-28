@@ -12,8 +12,7 @@
     <a href="{{ file.url }}" download>{{ __("files.file.download") }}</a>
   {% endif %}
 
-  {{ summary({
-    title: __("files.file.properties"),
-    rows: summaryRows(file)
-  }) }}
+  {% call section({ title: __("files.file.properties") }) %}
+    {{ summary({ rows: summaryRows(file) }) }}
+  {% endcall %}
 {% endblock %}
