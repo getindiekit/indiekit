@@ -1,9 +1,11 @@
 {% extends "document.njk" %}
 
 {% set title = title or post["post-type"] | capitalize %}
-{% set content = post.content.html %}
 
 {% block content %}
+  <div class="s-linear">
+    {{ post.content.html | safe }}
+  </div>
   {% if post.audio %}
     {% for item in post.audio %}
       <audio src="{{ item.url | absoluteUrl(publication.me) }}" controls>
