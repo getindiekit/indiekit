@@ -26,5 +26,7 @@
   }) }}
 {%- endset -%}
 
-<h2>{{ __("status.bookmarklet.title") }}</h2>
-<p>{{ __("status.bookmarklet.guidance", bookmarklet) | safe }}</p>
+{{ section({
+  title: __("status.bookmarklet.title"),
+  text: __("status.bookmarklet.guidance", bookmarklet)
+}) }}
