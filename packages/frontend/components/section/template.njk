@@ -1,0 +1,36 @@
+{%- macro _actionLink(action, key) %}
+  <a href="{{ action.href }}"{{ attributes(opts.attributes) }}>
+    {{- action.text | safe -}}
+  </a>
+{% endmacro -%}
+{%- set id = opts.id or opts.title | slugify -%}
+<section class="{{ classes("section", opts) }}" aria-labelledby="{{ id }}">
+  {%- if opts.title or opts.actions %}
+  <header class="section__header">
+  {%- if opts.title %}
+    <h2 class="section__title" id="{{ id }}">
+      {{- opts.title | safe -}}
+    </h2>
+  {%- endif %}
+  {%- if opts.actions.length %}
+    <div class="section__actions">
+    {% if opts.actions.length == 1 %}
+      {{- _actionLink(opts.actions[0], opts.key) | indent(12) | trim -}}
+    {% else %}
+      <ul class="section__actions-list" role="list">
+      {% for action in opts.actions %}
+        <li class="section__actions-list-item">
+          {{- _actionLink(action, row.key) | indent(18) | trim -}}
+        </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    </div>
+  {%- endif %}
+  </header>
+  {%- endif %}
+  <div class="section__main s-linear">
+    {{- opts.text | markdown | safe if opts.text }}
+    {{- caller() if caller }}
+  </div>
+</section>

@@ -1,0 +1,14 @@
+.section__header {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  padding-block-end: var(--space-xs);
+}
+
+.section__title {
+  font: var(--font-heading);
+}
+
+.section__actions {
+  margin-inline-start: auto;
+}
