@@ -2,12 +2,6 @@
   font: var(--font-body);
 }
 
-.fieldset__title {
-  font: var(--font-title);
-}
-
-.fieldset__parent {
-  color: var(--color-neutral-dark);
-  display: block;
-  font: var(--font-body);
+.fieldset__legend {
+  font: var(--font-label);
 }
