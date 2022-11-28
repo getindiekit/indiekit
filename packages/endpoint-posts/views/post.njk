@@ -17,8 +17,8 @@
       <video src="{{ item.url | absoluteUrl(publication.me) }}" controls>
     {% endfor %}
   {% endif %}
-  {{ summary({
-    title: __("posts.post.properties"),
-    rows: summaryRows(post)
-  }) }}
+
+  {% call section({ title: __("posts.post.properties") }) %}
+    {{ summary({ rows: summaryRows(post) }) }}
+  {% endcall %}
 {% endblock %}
