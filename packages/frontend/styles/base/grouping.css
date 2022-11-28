@@ -33,16 +33,11 @@ ul {
   widows: 2;
 }
 
-ol,
-ul {
-  padding-inline-start: var(--flow-inset, 0);
-}
-
 [role="list"] {
   list-style: none;
   padding: 0;
 }
 
 dd {
-  margin-inline-start: var(--flow-inset, 0);
+  margin-inline-start: 0;
 }

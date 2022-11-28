@@ -5,7 +5,7 @@
 }
 
 .file-list__item {
-  --flow-space: 0;
+  --linear-flow-space: 0;
 }
 
 .file__title {

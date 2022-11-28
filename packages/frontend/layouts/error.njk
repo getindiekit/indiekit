@@ -8,13 +8,15 @@
   }) }}
 {% endblock %}
 {% block content %}
-  <p>
-    {%- if uri %}<a href="{{ uri }}">{% endif -%}
-    {{- content | markdown("inline") | safe if content -}}
-    {%- if uri -%}</a>{%- endif -%}.
-  </p>
-  <details>
-    <summary><small>Status code: <code>{{ status }}</code></small></summary>
-    <pre><code>{{ stack }}</code></pre>
-  </details>
+  <div class="s-linear">
+    <p>
+      {%- if uri %}<a href="{{ uri }}">{% endif -%}
+      {{- content | markdown("inline") | safe if content -}}
+      {%- if uri -%}</a>{%- endif -%}.
+    </p>
+    <details>
+      <summary><small>Status code: <code>{{ status }}</code></small></summary>
+      <pre><code>{{ stack }}</code></pre>
+    </details>
+  </div>
 {% endblock %}

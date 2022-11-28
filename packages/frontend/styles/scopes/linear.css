@@ -1,12 +1,15 @@
 .s-linear {
   --anchor-color: var(--color-anchor);
-  --anchor-color-hover: var(--color-anchor-hover);
   --anchor-decoration-color: var(--color-shadow);
   --anchor-decoration-line: underline;
-  --flow-inset: 1.25em;
-  --flow-space: 1em;
+  --linear-flow-inset: 1.25em;
+  --linear-flow-space: 1em;
   font: var(--font-body);
   word-break: break-word;
+}
+
+.s-linear > * + * {
+  margin-block-start: var(--linear-flow-space);
 }
 
 .s-linear svg {
@@ -15,23 +18,23 @@
 
 .s-linear h2:not([class]) {
   font: var(--font-heading);
-  margin-block-start: calc(var(--flow-space) * 2);
+  margin-block-start: calc(var(--linear-flow-space) * 2);
 }
 
 .s-linear h2:not([class]) + *:not([class]) {
-  margin-block-start: calc(var(--flow-space) * 0.5);
+  margin-block-start: calc(var(--linear-flow-space) * 0.5);
 }
 
 .s-linear h3:not([class]) {
   color: var(--color-neutral-dark);
   font: var(--font-subhead);
-  margin-block-start: calc(var(--flow-space) * 1.5);
+  margin-block-start: calc(var(--linear-flow-space) * 1.5);
 }
 
 .s-linear hr {
   border-block-start: 1px solid var(--color-neutral-light);
   inline-size: 100%;
-  margin: var(--flow-space) 0;
+  margin: var(--linear-flow-space) 0;
   max-inline-size: 100%;
 }
 
@@ -83,7 +86,15 @@
 }
 
 .s-linear dd + dt {
-  margin-block-start: var(--flow-space);
+  margin-block-start: var(--linear-flow-space);
+}
+
+.s-linear dd {
+  margin-inline-start: var(--linear-flow-inset, 0);
+}
+
+.s-linear :is(ol, ul) {
+  padding-inline-start: var(--linear-flow-inset, 0);
 }
 
 .s-linear .overflow {

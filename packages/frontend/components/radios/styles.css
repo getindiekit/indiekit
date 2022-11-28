@@ -6,7 +6,7 @@
 
 @media (--from-medium-viewport) {
   .radios--inline {
-    --flow-space: 0;
+    --fieldset-flow-space: 0;
     display: flex;
     gap: var(--space-s);
     margin-block-start: var(--space-s);

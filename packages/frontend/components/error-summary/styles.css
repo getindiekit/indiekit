@@ -13,9 +13,9 @@
   --anchor-color-hover: var(--color-error);
   --anchor-decoration-line: underline;
   font: var(--font-caption);
+  margin-block-start: var(--space-s);
 }
 
 .error-summary__list {
-  --flow-space: 0;
   font-weight: 600;
 }

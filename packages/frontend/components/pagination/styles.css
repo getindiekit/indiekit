@@ -1,4 +1,5 @@
 .pagination {
+  --anchor-color-hover: var(--color-anchor-hover);
   --anchor-decoration-line: none;
   border-block-start: var(--border-width-thin) solid
     var(--color-neutral-lightest);
@@ -7,7 +8,6 @@
 }
 
 .pagination__list {
-  --flow-space: 0;
   display: flex;
   margin-inline: calc(var(--space-s) * -1);
 }
