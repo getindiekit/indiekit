@@ -15,7 +15,7 @@ export const defaultConfig = {
     mongodbUrl: false,
     name: "Indiekit",
     repository: package_.repository,
-    themeColor: "#0055ee",
+    themeColor: "#04f",
     themeColorScheme: "automatic",
     ttl: 604_800, // 7 days
     version: package_.version,
