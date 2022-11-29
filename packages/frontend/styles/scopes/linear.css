@@ -4,8 +4,6 @@
   --anchor-decoration-line: underline;
   --linear-flow-inset: 1.25em;
   --linear-flow-space: 1em;
-  font: var(--font-body);
-  word-break: break-word;
 }
 
 .s-linear > * + * {

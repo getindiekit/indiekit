@@ -4,7 +4,7 @@
     <dt class="{{ classes("summary__key", row.key) }}">
       {{- row.key.text | safe -}}
     </dt>
-    <dd class="{{ classes("summary__value", row.value) }}">
+    <dd class="{{ classes("summary__value", row.value) }} s-linear">
       {{- row.value.text | default(__("noValue")) | safe -}}
     </dd>
   </div>

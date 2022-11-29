@@ -8,7 +8,7 @@
   }) }}
 {% endblock %}
 {% block content %}
-  <div class="s-linear">
+  <div class="prose s-linear">
     <p>
       {%- if uri %}<a href="{{ uri }}">{% endif -%}
       {{- content | markdown("inline") | safe if content -}}

@@ -1,8 +1,3 @@
-.summary {
-  --linear-flow-inset: 0;
-  --linear-flow-space: var(--space-2xs);
-}
-
 .summary__row {
   border-block-start: var(--color-neutral-light) solid var(--border-width-thin);
   display: flex;
@@ -18,8 +13,11 @@
 }
 
 .summary__value {
+  --linear-flow-inset: 0;
+  --linear-flow-space: var(--space-s);
   flex-basis: 0;
   flex-grow: 999;
+  font: var(--font-body);
   min-inline-size: 30rem;
   word-break: break-word;
 }
