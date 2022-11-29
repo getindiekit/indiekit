@@ -108,7 +108,5 @@ Content-Type: application/json
 {% endset %}
 
 {% block content %}
-  <div class="s-linear">
-    {{ discovery | markdown | safe }}
-  </div>
+  {{ prose({ text: discovery }) }}
 {% endblock %}
