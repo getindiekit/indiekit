@@ -12,8 +12,8 @@
   --anchor-color: var(--color-error);
   --anchor-color-hover: var(--color-error);
   --anchor-decoration-color: var(--color-error);
-  --linear-flow-inset: 0;
-  --linear-flow-space: var(--space-s);
+  --flow-inset: 0;
+  --flow-space: var(--space-s);
   font: var(--font-caption);
   margin-block-start: var(--space-s);
 }

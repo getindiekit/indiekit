@@ -13,8 +13,8 @@
 }
 
 .summary__value {
-  --linear-flow-inset: 0;
-  --linear-flow-space: var(--space-s);
+  --flow-inset: 0;
+  --flow-space: var(--space-s);
   flex-basis: 0;
   flex-grow: 999;
   font: var(--font-body);

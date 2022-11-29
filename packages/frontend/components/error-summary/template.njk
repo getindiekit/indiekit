@@ -4,7 +4,7 @@
   <h2 class="error-summary__title" id="error-summary-title">
     {{ opts.title.text | default(__("errorSummaryTitle")) | safe }}
   </h2>
-  <div class="error-summary__body s-linear">
+  <div class="error-summary__body s-flow">
   {%- if opts.description.text %}
     <p>{{ opts.description.text | markdown | safe }}</p>
   {%- endif %}
