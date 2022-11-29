@@ -3,9 +3,8 @@
 {% set title = title or post["post-type"] | capitalize %}
 
 {% block content %}
-  <div class="s-linear">
-    {{ post.content.html | safe }}
-  </div>
+  {{ prose({ html: post.content.html }) }}
+
   {% if post.audio %}
     {% for item in post.audio %}
       <audio src="{{ item.url | absoluteUrl(publication.me) }}" controls>
