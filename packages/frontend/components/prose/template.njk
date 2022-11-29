@@ -1,0 +1,4 @@
+<div class="{{ classes("prose", opts) }} s-linear">
+  {{ opts.text | markdown | safe if opts.text }}
+  {{ opts.html | safe if opts.html }}
+</div>
