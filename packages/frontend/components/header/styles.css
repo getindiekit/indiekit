@@ -1,4 +1,5 @@
 .header {
+  --anchor-color: var(--color-on-offset);
   --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-line: none;
   background-color: var(--color-offset);

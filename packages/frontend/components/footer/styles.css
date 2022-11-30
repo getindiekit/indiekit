@@ -1,5 +1,6 @@
 .footer {
-  --anchor-color-hover: var(--color-primary-on-background);
+  --anchor-color: var(--color-on-offset);
+  --anchor-color-hover: var(--color-on-background);
   --anchor-decoration-line: none;
   background-color: var(--color-offset);
   color: var(--color-on-offset);

@@ -1,5 +1,5 @@
 .bookmarklet {
-  --anchor-color: var(--color-on-background);
+  --anchor-color: var(--color-on-offset);
   --anchor-decoration-line: none;
   background-color: var(--color-offset);
   border: var(--border-width-thin) solid var(--color-outline-variant);

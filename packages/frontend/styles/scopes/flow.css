@@ -1,7 +1,4 @@
 .s-flow {
-  --anchor-color: var(--color-primary-on-background);
-  --anchor-color-hover: var(--color-on-background);
-  --anchor-decoration-line: underline;
   --flow-inset: 1.25em;
   --flow-space: 1em;
 }
