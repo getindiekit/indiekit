@@ -10,9 +10,10 @@ export const postData = {
    *
    * @param {object} publication - Publication configuration
    * @param {object} properties - JF2 properties
+   * @param {boolean} [draftMode=false] - Draft mode
    * @returns {object} Post data
    */
-  async create(publication, properties) {
+  async create(publication, properties, draftMode = false) {
     const { me, postTypes } = publication;
 
     // Normalise properties
@@ -37,6 +38,11 @@ export const postData = {
     const url = await renderPath(typeConfig.post.url, properties, publication);
     properties.url = getPermalink(me, url);
 
+    // Add post status if creating in draft mode
+    if (draftMode) {
+      properties["post-status"] = "draft";
+    }
+
     // Post data
     const postData = { path, properties };
     return postData;
@@ -47,9 +53,10 @@ export const postData = {
    *
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
+   * @param {boolean} [draftMode=false] - Draft mode
    * @returns {object} Post data
    */
-  async read(publication, url) {
+  async read(publication, url, draftMode = false) {
     const { posts } = publication;
     const post = await posts.findOne({
       "properties.url": url,
@@ -57,6 +64,11 @@ export const postData = {
 
     if (!post) {
       throw IndiekitError.notFound(url);
+    }
+
+    // Add post status if reading in draft mode
+    if (draftMode) {
+      post.properties["post-status"] = "draft";
     }
 
     return post;
