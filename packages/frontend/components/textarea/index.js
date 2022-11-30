@@ -25,6 +25,6 @@ export const TextareaController = class extends Controller {
 
   adjustHeight() {
     this.element.style.height = "auto";
-    this.element.style.height = `${this.element.scrollHeight}px`;
+    this.element.style.height = `${this.element.scrollHeight + 4}px`;
   }
 };
