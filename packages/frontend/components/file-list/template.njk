@@ -1,10 +1,13 @@
 <ol class="{{ classes("file-list", opts) }}" role="list">
   {%- for item in opts.items %}
-  <li class="file-list__item s-flow">
-    <h2 class="file__title">
-      {{ icon(item["post-type"]) }}<a href="{{ item.id | absoluteUrl(parentUrl) }}">{{ item.name or item["post-type"] | capitalize }}</a>
-    </h2>
-    <p class="file__meta">{{ item.published | date("p • PPP") }}</p>
+  <li class="file-list__item">
+    {{ icon(item["post-type"]) }}
+    <div class="file__body">
+      <h2 class="file__title">
+        <a href="{{ item.id | absoluteUrl(parentUrl) }}">{{ item.name or item["post-type"] | capitalize }}</a>
+      </h2>
+      <p class="file__meta">{{ item.published | date("p • PPP") }}</p>
+    </div>
   </li>
   {%- endfor %}
 </ol>
