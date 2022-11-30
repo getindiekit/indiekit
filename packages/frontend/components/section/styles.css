@@ -1,6 +1,8 @@
 .section__header {
   align-items: baseline;
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
   justify-content: space-between;
   padding-block-end: var(--space-s);
 }
@@ -10,5 +12,5 @@
 }
 
 .section__actions {
-  margin-inline-start: auto;
+  font: var(--font-caption);
 }
