@@ -60,10 +60,8 @@
   block-size: calc(var(--check-size) / 2);
   border: solid;
   border-block-start-color: transparent;
-  border-width: 0 0 var(--border-width-thickest) var(--border-width-thickest);
-  inset-block-start: calc(
-    calc(var(--checkbox-size) - var(--check-size)) / 1.25
-  );
+  border-width: 0 0 var(--border-width-thick) var(--border-width-thick);
+  inset-block-start: calc(calc(var(--checkbox-size) - var(--check-size)) / 1.5);
   inset-inline-start: calc(calc(var(--checkbox-size) - var(--check-size)) / 2);
   inline-size: var(--check-size);
   opacity: 0;
