@@ -2,12 +2,12 @@
   --anchor-color: var(--color-on-offset);
   --anchor-decoration-line: none;
   background-color: var(--color-offset);
-  border: var(--border-width-thin) solid var(--color-outline-variant);
   border-radius: var(--border-radius-small);
   display: inline-block;
   font: var(--font-caption);
-  padding-block: calc(var(--space-s) / 2);
-  padding-inline: var(--space-s);
+  margin-block: var(--space-xs);
+  padding-block: calc(var(--space-xs) / 2);
+  padding-inline: var(--space-xs);
   white-space: nowrap;
 }
 
