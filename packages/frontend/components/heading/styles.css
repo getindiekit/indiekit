@@ -3,6 +3,7 @@
 }
 
 .heading__parent {
+  color: var(--color-on-offset);
   display: block;
   font: var(--font-body);
 }
