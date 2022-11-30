@@ -4,9 +4,21 @@
 }
 
 .logo img {
-  opacity: 0.5;
+  opacity: 0.25;
 }
 
 .logo:hover img {
-  opacity: 0.75;
+  opacity: 0.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert(100%);
+  }
+}
+
+.color-scheme--dark {
+  & .token {
+    filter: invert(100%);
+  }
 }
