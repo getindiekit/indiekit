@@ -31,6 +31,10 @@
   padding: 0;
 }
 
+.summary__value small code {
+  margin-inline-start: var(--space-2xs);
+}
+
 .summary__note {
   color: var(--color-on-offset);
   font: var(--font-caption);
