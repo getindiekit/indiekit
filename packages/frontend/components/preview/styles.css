@@ -23,7 +23,10 @@
 }
 
 .preview__text {
+  --flow-space: var(--space-2xs);
+  display: flex;
   min-block-size: 4rem;
+  white-space: pre-line;
 }
 
 .preview__date {
