@@ -86,6 +86,7 @@ html {
   --border-width-thin: 1px;
   --border-width-thick: 0.125rem;
   --border-width-thickest: 0.1875rem;
+  --focus-width: 0.25rem;
 
   /* Fluid space scale */
   /* clamp(min=320, preferred, max=1280) */
