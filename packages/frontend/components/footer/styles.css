@@ -5,6 +5,7 @@
   background-color: var(--color-offset);
   color: var(--color-on-offset);
   display: flex;
+  font: var(--font-caption);
   justify-content: flex-end;
 }
 
