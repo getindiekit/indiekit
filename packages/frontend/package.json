@@ -48,7 +48,8 @@
     "postcss": "^8.3.6",
     "postcss-easy-import": "^4.0.0",
     "postcss-lightningcss": "^0.6.0",
-    "rollup": "^3.2.0"
+    "rollup": "^3.2.0",
+    "sharp": "^0.31.2"
   },
   "publishConfig": {
     "access": "public"

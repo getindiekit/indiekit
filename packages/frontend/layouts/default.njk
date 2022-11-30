@@ -30,6 +30,7 @@
     <meta name="theme-color" content="{{ application.themeColor }}"/>
     <meta name="supported-color-schemes" content="light dark"/>
 
+    <link rel="apple-touch-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.png">
     <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg"/>
     <link rel="mask-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg" color="{{ application.themeColor }}"/>
     <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css"/>
