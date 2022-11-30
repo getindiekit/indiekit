@@ -1,3 +1,7 @@
+.authorize {
+  line-height: var(--line-height-tight);
+}
+
 .authorize:has(.authorize__client-icon) {
   min-block-size: 4rem;
 }
