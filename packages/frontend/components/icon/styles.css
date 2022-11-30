@@ -1,9 +1,10 @@
 .icon {
-  block-size: 1em;
+  block-size: var(--icon-size, 1em);
   display: inline-block;
-  inline-size: 1em;
+  flex-shrink: 0;
+  inline-size: var(--icon-size, 1em);
   inset-block-start: -1px;
-  margin-inline-end: var(--space-xs);
+  margin-inline-end: var(--icon-margin, var(--space-xs));
   position: relative;
   vertical-align: text-bottom;
 }

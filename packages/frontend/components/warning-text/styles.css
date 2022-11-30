@@ -1,4 +1,6 @@
 .warning-text {
+  --icon-margin: var(--space-s);
+  --icon-size: 1.5em;
   align-items: start;
   background-color: var(--color-offset);
   border-radius: var(--border-radius-large);
@@ -6,12 +8,6 @@
   flex-direction: row;
   font: var(--font-label);
   padding: var(--space-m);
-}
-
-.warning-text .icon {
-  margin-inline-end: var(--space-s);
-  min-block-size: 1.5em;
-  min-inline-size: 1.5em;
 }
 
 .warning-text__text {

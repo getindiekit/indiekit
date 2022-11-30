@@ -38,6 +38,7 @@
 }
 
 .pagination__link {
+  --icon-margin: 0;
   border-radius: var(--border-radius-small);
   display: block;
   padding-block: calc(var(--space-m) / 2);
@@ -57,10 +58,6 @@
   align-items: center;
   display: flex;
   gap: var(--space-s);
-}
-
-.pagination__link-title .icon {
-  margin-inline: 0;
 }
 
 .pagination__item--next .pagination__link-title {
