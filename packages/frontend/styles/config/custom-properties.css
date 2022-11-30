@@ -48,12 +48,12 @@ html {
   --color-shadow: hsl(var(--tint-neutral) 10% / 0.2);
 
   /* Fluid type scale */
-  /* clamp(min=320, preferred, max=1280) */
-  --font-size-s: clamp(0.875rem, 0.8334rem + 0.2084vw, 1rem); /* 14 → 16 */
-  --font-size-m: clamp(1rem, 0.9167rem + 0.4167vw, 1.25rem); /* 16 → 20 */
-  --font-size-l: clamp(1.25rem, 1.1667rem + 0.4167vw, 1.5rem); /* 20 → 24 */
-  --font-size-xl: clamp(1.5rem, 1.3333rem + 0.8334vw, 2rem); /* 24 → 32 */
-  --font-size-2xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem); /* 28 → 40 */
+  /* clamp(min=320, preferred, max=960) */
+  --font-size-s: clamp(0.875rem, 0.8125rem + 0.3125vw, 1rem); /* 14 → 16 */
+  --font-size-m: clamp(1rem, 0.875rem + 0.625vw, 1.25rem); /* 16 → 20 */
+  --font-size-l: clamp(1.125rem, 0.9375rem + 0.9375vw, 1.5rem); /* 18 → 24 */
+  --font-size-xl: clamp(1.25rem, 1rem + 1.25vw, 1.75rem); /* 20 → 28 */
+  --font-size-2xl: clamp(1.5rem, 1rem + 2.5vw, 2.5rem); /* 24 → 40 */
 
   /* Typography */
   --font-family-system: system-ui;
@@ -89,13 +89,13 @@ html {
   --focus-width: 0.25rem;
 
   /* Fluid space scale */
-  /* clamp(min=320, preferred, max=1280) */
+  /* clamp(min=320, preferred, max=960) */
   --space-2xs: 0.25rem; /* 4 */
-  --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem); /* 4 → 8 */
-  --space-s: clamp(0.5rem, 0.4167rem + 0.4167vw, 0.75rem); /* 8 → 12 */
-  --space-m: clamp(0.75rem, 0.6667rem + 0.41667vw, 1rem); /* 12 → 16 */
-  --space-l: clamp(1rem, 0.8334rem + 0.8334vw, 1.5rem); /* 16 → 24 */
-  --space-xl: clamp(1.5rem, 1.3333rem + 0.8334vw, 2rem); /* 24 → 32 */
+  --space-xs: clamp(0.25rem, 0.125rem + 0.625vw, 0.5rem); /* 4 → 8 */
+  --space-s: clamp(0.5rem, 0.375rem + 0.625vw, 0.75rem); /* 8 → 12 */
+  --space-m: clamp(0.75rem, 0.625rem + 0.625vw, 1rem); /* 12 → 16 */
+  --space-l: clamp(1rem, 0.75rem + 1.25vw, 1.5rem); /* 16 → 24 */
+  --space-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem); /* 24 → 32 */
 
   /* Layout */
   --container-inline-size: min(96vw, var(--container-max-inline-size));
