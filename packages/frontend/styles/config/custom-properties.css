@@ -1,8 +1,8 @@
 html {
   /* Neutral palette */
   --color-neutral99: hsl(var(--tint-neutral) 99%);
-  --color-neutral90: hsl(var(--tint-neutral) 90%);
   --color-neutral95: hsl(var(--tint-neutral) 95%);
+  --color-neutral90: hsl(var(--tint-neutral) 90%);
   --color-neutral75: hsl(var(--tint-neutral) 75%);
   --color-neutral50: hsl(var(--tint-neutral) 50%);
   --color-neutral30: hsl(var(--tint-neutral) 30%);
