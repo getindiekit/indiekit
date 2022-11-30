@@ -1,7 +1,4 @@
-/**
- * @todo Add support for `draft` scope
- */
-export const scopes = ["create", "delete", "media", "update"];
+export const scopes = ["create", "update", "draft", "delete", "media"];
 
 /**
  * Get `items` object for checkboxes component
