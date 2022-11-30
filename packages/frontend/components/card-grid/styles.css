@@ -8,6 +8,7 @@
   --icon-margin: var(--space-s);
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
+  color: var(--color-on-offset);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -51,7 +52,6 @@
 }
 
 .card__meta {
-  color: var(--color-on-offset);
   font: var(--font-caption);
-  margin-block-start: var(--space-xs);
+  margin-block-start: var(--space-2xs);
 }
