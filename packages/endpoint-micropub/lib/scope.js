@@ -1,34 +1,37 @@
 /**
  * Check provided scope(s) satisfies required scope
  *
- * @param {object} providedScope - Provided scope
- * @param {string} requiredScope - Required scope
- * @returns {boolean} True if provided scope includes requiredScope
+ * @param {string} scope - Provided scope (space separated)
+ * @param {string} [action=create] - Required action
+ * @returns {boolean|string} `true` if provided scope includes action,
+ *                           `draft` if draft scope, otherwise `false`
  */
-export const checkScope = (providedScope, requiredScope) => {
-  if (!providedScope) {
-    providedScope = "create";
+export const checkScope = (scope, action = "create") => {
+  // Default scope request is `create`
+  if (!scope) {
+    scope = "create";
   }
 
-  if (!requiredScope) {
-    requiredScope = "create";
+  // Undeleting a post is equivalent to creating a post
+  if (action === "undelete") {
+    action = "create";
   }
 
-  let hasScope = providedScope.includes(requiredScope);
+  // Check for scope matching desired action
+  let hasScope = scope.includes(action);
 
   // Handle deprecated `post` scope
-  if (!hasScope && requiredScope === "create") {
-    hasScope = providedScope.includes("post");
+  if (!hasScope && action === "create") {
+    hasScope = scope.includes("post");
   }
 
-  // Handle `undelete` scope
-  if (!hasScope && requiredScope === "undelete") {
-    hasScope = providedScope.includes("create");
+  // Check for draft scope
+  const draftScope = scope.includes("draft");
+
+  // Can create/update with `draft` scope, but using draft post status
+  if (draftScope && (action === "create" || action === "update")) {
+    hasScope = "draft";
   }
 
-  if (hasScope) {
-    return true;
-  }
-
-  return false;
+  return hasScope;
 };

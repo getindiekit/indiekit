@@ -1,26 +1,38 @@
 import test from "ava";
 import { checkScope } from "../../lib/scope.js";
 
-test("Returns true if required scope is provided by token", (t) => {
-  t.true(checkScope("create update", "update"));
+test("Action defaults to `create`", (t) => {
+  t.true(checkScope("create update"));
 });
 
-test("Returns true if required scope is `create` but token has `post`", (t) => {
-  t.true(checkScope("post", "create"));
-});
-
-test("Returns true if required scope is `undelete` but token has `create`", (t) => {
-  t.true(checkScope("create", "undelete"));
-});
-
-test("Required scope defaults to `create`", (t) => {
-  t.true(checkScope("create update", null));
-});
-
-test("Requested scope defaults to `create` if none provided by token", (t) => {
+test("Scope defaults to `create`", (t) => {
   t.true(checkScope(null, "create"));
 });
 
-test("Returns false if required scope not provided by token", (t) => {
+test("Returns true if action is permitted by scope", (t) => {
+  t.true(checkScope("create update", "update"));
+});
+
+test("Returns true if `create` action but scope is `post`", (t) => {
+  t.true(checkScope("post", "create"));
+});
+
+test("Returns true if `create` action but scope includes `post`", (t) => {
+  t.true(checkScope("post delete", "create"));
+});
+
+test("Returns true if `undelete` action but scope is `create`", (t) => {
+  t.true(checkScope("create", "undelete"));
+});
+
+test("Returns `draft` if `create` action but scope includes `draft`", (t) => {
+  t.is(checkScope("create draft update", "create"), "draft");
+});
+
+test("Returns `draft` if `undelete` action but scope is `draft`", (t) => {
+  t.is(checkScope("draft", "undelete"), "draft");
+});
+
+test("Returns false if action not permitted by scope", (t) => {
   t.false(checkScope("create update", "delete"));
 });
