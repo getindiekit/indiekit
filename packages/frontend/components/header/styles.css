@@ -14,7 +14,8 @@
   inline-size: var(--container-inline-size);
   margin-inline: auto;
   max-inline-size: var(--container-max-inline-size);
-  padding: var(--space-l);
+  padding-block: var(--space-m);
+  padding-inline: var(--space-l);
 }
 
 .header__title {
@@ -22,4 +23,9 @@
   display: inline-flex;
   font-weight: 800;
   margin-inline-end: auto;
+
+  & a {
+    margin-inline-start: calc(var(--space-s) * -1);
+    padding: var(--space-s);
+  }
 }

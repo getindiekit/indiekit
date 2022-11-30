@@ -1,12 +1,9 @@
+.navigation {
+  margin-inline: calc(var(--space-s) * -1);
+}
+
 .navigation a {
   align-items: center;
   display: inline-flex;
-  margin-inline-end: calc(var(--space-s) * -1);
-  margin-inline-start: calc(var(--space-s) * -1);
-  padding-block: calc(var(--space-s) / 2);
-  padding-inline: var(--space-s);
-}
-
-.navigation a + a {
-  margin-inline-start: var(--space-s);
+  padding: var(--space-s);
 }
