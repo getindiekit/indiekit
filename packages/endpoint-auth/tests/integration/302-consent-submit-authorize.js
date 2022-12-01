@@ -8,7 +8,7 @@ import { createPasswordHash } from "../../lib/password.js";
 await mockAgent("auth-endpoint");
 
 test("Returns 302 submitting authorized user", async (t) => {
-  process.env.PASSWORD_SECRET = createPasswordHash("foo");
+  process.env.PASSWORD_SECRET = await createPasswordHash("foo");
 
   const server = await testServer();
   const request = supertest.agent(server);

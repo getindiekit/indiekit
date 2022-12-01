@@ -1,5 +1,5 @@
-import crypto from "node:crypto";
 import process from "node:process";
+import bcrypt from "bcrypt";
 
 /**
  * Create password hash
@@ -7,12 +7,8 @@ import process from "node:process";
  * @param {string} password - Password
  * @returns {boolean} Password hash
  */
-export function createPasswordHash(password) {
-  return crypto
-    .createHash("md5")
-    .update(password)
-    .update(process.env.SECRET)
-    .digest("hex");
+export async function createPasswordHash(password) {
+  return bcrypt.hash(password, 10);
 }
 
 /**
@@ -21,6 +17,6 @@ export function createPasswordHash(password) {
  * @param {string} password - Password
  * @returns {boolean} Password is valid
  */
-export function verifyPassword(password) {
-  return createPasswordHash(password) === process.env.PASSWORD_SECRET;
+export async function verifyPassword(password) {
+  return bcrypt.compare(password, process.env.PASSWORD_SECRET);
 }

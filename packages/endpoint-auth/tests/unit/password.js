@@ -6,12 +6,12 @@ test.beforeEach(() => {
   process.env.SECRET = "test";
 });
 
-test("Creates password hash", (t) => {
-  t.is(createPasswordHash("foo"), "cdeb68b68f311608163d0d2f451ac96a");
+test("Creates password hash", async (t) => {
+  t.regex(await createPasswordHash("foo"), /^\$2[ayb]\$.{56}$/);
 });
 
-test("Verifies password", (t) => {
-  process.env.PASSWORD_SECRET = "cdeb68b68f311608163d0d2f451ac96a";
-  t.true(verifyPassword("foo"));
-  t.false(verifyPassword("bar"));
+test("Verifies password", async (t) => {
+  process.env.PASSWORD_SECRET = await createPasswordHash("foo");
+  t.true(await verifyPassword("foo"));
+  t.false(await verifyPassword("bar"));
 });

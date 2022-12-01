@@ -23,7 +23,7 @@ export const passwordController = {
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
    */
-  post(request, response) {
+  async post(request, response) {
     const { password } = request.body;
     const { setup } = request.query;
 
@@ -37,7 +37,7 @@ export const passwordController = {
     }
 
     if (password) {
-      const secret = createPasswordHash(password);
+      const secret = await createPasswordHash(password);
 
       response.render("new-password", {
         title: response.__("auth.newPassword.title"),

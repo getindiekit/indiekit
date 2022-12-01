@@ -2,10 +2,8 @@ import test from "ava";
 import supertest from "supertest";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
-import { createPasswordHash } from "../../lib/password.js";
 
 test("Returns new password page with generated password secret", async (t) => {
-  const secret = createPasswordHash("foo");
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
@@ -16,7 +14,7 @@ test("Returns new password page with generated password secret", async (t) => {
 
   const result = dom.window.document;
 
-  t.is(result.querySelector("#secret").textContent, secret);
+  t.regex(result.querySelector("#secret").textContent, /^\$2[ayb]\$.{56}$/);
 
   server.close(t);
 });
