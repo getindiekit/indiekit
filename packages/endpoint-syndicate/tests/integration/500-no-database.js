@@ -1,15 +1,9 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 501 error as feature requires database", async (t) => {
-  nock("https://api.github.com")
-    .put((uri) => uri.includes("foobar"))
-    .twice()
-    .reply(200);
-
   const server = await testServer({ useDatabase: false });
   const request = supertest.agent(server);
   await request
