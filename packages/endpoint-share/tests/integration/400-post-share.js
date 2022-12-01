@@ -1,16 +1,10 @@
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import supertest from "supertest";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 400 error publishing post", async (t) => {
-  nock("https://token-endpoint.example").get("/").reply(200, {
-    me: process.env.TEST_PUBLICATION_URL,
-    scope: "foo",
-  });
-
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
