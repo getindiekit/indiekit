@@ -7,9 +7,9 @@ test("Returns 403 error auth with invalid code/state", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .get("/session/auth")
-    .query("redirect=%2Fstatus")
-    .query("code=foo")
-    .query("state=bar");
+    .query({ redirect: "/status" })
+    .query({ code: "foo" })
+    .query({ state: "bar" });
 
   t.is(result.status, 403);
   t.true(result.text.includes("Invalid value for <code>state</code>"));

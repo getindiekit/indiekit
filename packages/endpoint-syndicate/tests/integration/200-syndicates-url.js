@@ -29,8 +29,8 @@ test("Syndicates a URL", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .query("url=https://website.example/notes/foobar/")
-    .query(`token=${testToken()}`);
+    .query({ url: "https://website.example/notes/foobar/" })
+    .query({ token: testToken() });
 
   t.is(result.status, 200);
   t.is(

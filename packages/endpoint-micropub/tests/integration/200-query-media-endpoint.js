@@ -10,7 +10,7 @@ test("Returns media endpoint", async (t) => {
     .get("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=media-endpoint");
+    .query({ q: "media-endpoint" });
 
   t.truthy(response.body["media-endpoint"]);
 

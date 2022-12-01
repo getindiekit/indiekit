@@ -10,7 +10,7 @@ test("Returns no post record for URL", async (t) => {
     .post("/syndicate")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("url=https://website.example/notes/foobar/");
+    .query({ url: "https://website.example/notes/foobar/" });
 
   t.is(result.status, 200);
   t.is(

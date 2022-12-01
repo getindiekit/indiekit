@@ -10,7 +10,7 @@ test("Returns 501 error unsupported parameter provided", async (t) => {
     .get("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=fooBar");
+    .query({ q: "fooBar" });
 
   t.is(result.status, 501);
   t.is(result.body.error_description, "Unsupported query for `q`: `fooBar`");

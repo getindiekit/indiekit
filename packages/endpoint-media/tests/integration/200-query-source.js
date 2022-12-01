@@ -10,7 +10,7 @@ test("Returns list of previously uploaded files", async (t) => {
     .get("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=source");
+    .query({ q: "source" });
 
   t.truthy(result.body.items);
 

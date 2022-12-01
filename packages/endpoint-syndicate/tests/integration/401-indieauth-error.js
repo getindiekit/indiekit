@@ -18,8 +18,8 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .query("url=https://website.example/notes/foobar/")
-    .query(`token=foo.bar.baz`);
+    .query({ url: "https://website.example/notes/foobar/" })
+    .query({ token: "foo.bar.baz" });
 
   t.is(result.status, 401);
   t.is(

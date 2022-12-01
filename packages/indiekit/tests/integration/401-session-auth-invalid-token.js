@@ -23,8 +23,8 @@ test("Returns authenticated session", async (t) => {
 
   const result = await request
     .get("/session/auth")
-    .query(`code=invalid`)
-    .query(`state=${parameters.state}`);
+    .query({ code: "invalid" })
+    .query({ state: parameters.state });
 
   t.is(result.status, 401);
   t.true(

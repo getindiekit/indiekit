@@ -10,7 +10,7 @@ test("Returns config", async (t) => {
     .get("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=config");
+    .query({ q: "config" });
 
   t.truthy(response.body["media-endpoint"]);
   t.truthy(response.body["post-types"]);

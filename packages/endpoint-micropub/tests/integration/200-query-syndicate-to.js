@@ -10,7 +10,7 @@ test("Returns syndication targets", async (t) => {
     .get("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=syndicate-to");
+    .query({ q: "syndicate-to" });
 
   t.truthy(response.body["syndicate-to"]);
 

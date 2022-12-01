@@ -16,8 +16,8 @@ test("Returns 501 error as feature requires database", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .query("url=https://website.example/notes/foobar/")
-    .query(`token=${testToken()}`);
+    .query({ url: "https://website.example/notes/foobar/" })
+    .query({ token: testToken() });
 
   t.is(result.status, 501);
   t.is(result.body.error_description, "This feature requires a database");

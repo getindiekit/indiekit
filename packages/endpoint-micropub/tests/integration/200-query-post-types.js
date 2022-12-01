@@ -10,7 +10,7 @@ test("Returns available post types", async (t) => {
     .get("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=post-types");
+    .query({ q: "post-types" });
 
   t.truthy(response.body["post-types"]);
 

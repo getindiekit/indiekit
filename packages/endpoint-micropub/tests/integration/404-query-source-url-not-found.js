@@ -19,7 +19,9 @@ test("Returns 404 error source URL can’t be found", async (t) => {
     .get("/micropub")
     .auth("JWT", { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=source&properties[]=name&url=https://website.example/404.html");
+    .query({ q: "source" })
+    .query({ "properties[]": "name" })
+    .query({ url: "https://website.example/404.html" });
 
   t.is(result.status, 404);
   t.is(result.body.error_description, "No post was found at this URL");

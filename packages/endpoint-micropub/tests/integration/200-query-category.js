@@ -10,7 +10,7 @@ test("Returns categories", async (t) => {
     .get("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=category");
+    .query({ q: "category" });
 
   t.truthy(response.body.categories);
 

@@ -10,7 +10,7 @@ test("Returns 400 error query parameter not provided", async (t) => {
     .get("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("foo=bar");
+    .query({ foo: "bar" });
 
   t.is(result.status, 400);
   t.is(result.body.error_description, "Missing parameter: `q`");

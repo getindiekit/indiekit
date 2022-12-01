@@ -10,7 +10,7 @@ test("Returns list of previously published posts", async (t) => {
     .get("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .query("q=source");
+    .query({ q: "source" });
 
   t.truthy(result.body.items);
 

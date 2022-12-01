@@ -19,7 +19,9 @@ test("Returns previously published post", async (t) => {
     .get("/micropub")
     .auth("JWT", { type: "bearer" })
     .set("accept", "application/json")
-    .query(`q=source&properties[]=name&url=${response.headers.location}`);
+    .query({ q: "source" })
+    .query({ "properties[]": "name" })
+    .query({ url: response.headers.location });
 
   t.deepEqual(result.body, { properties: { name: ["Foobar"] } });
 
