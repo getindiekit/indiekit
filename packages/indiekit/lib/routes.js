@@ -59,48 +59,31 @@ export const routes = (indiekitConfig) => {
   router.get("/session/auth", limit, indieauth.authorize());
   router.get("/session/logout", sessionController.logout);
 
-  // Plugin
-  router.get(
-    "/plugins",
-    limit,
-    indieauth.authenticate(),
-    pluginController.list
-  );
-  router.get(
-    "/plugins/:pluginId",
-    limit,
-    indieauth.authenticate(),
-    pluginController.view
-  );
-
-  // Status
-  router.get(
-    "/status",
-    limit,
-    indieauth.authenticate(),
-    statusController.viewStatus
-  );
-
-  // Endpoint plug-in routes
+  // Public and .well-known endpoints
   for (const endpoint of application.endpoints) {
-    // Authenticated
-    if (endpoint.mountPath && endpoint.routes) {
-      router.use(
-        endpoint.mountPath,
-        limit,
-        indieauth.authenticate(),
-        endpoint.routes
-      );
-    }
-
-    // Public
     if (endpoint.mountPath && endpoint.routesPublic) {
       router.use(endpoint.mountPath, limit, endpoint.routesPublic);
     }
 
-    // Well-known
     if (endpoint.routesWellKnown) {
       router.use("/.well-known/", limit, endpoint.routesWellKnown);
+    }
+  }
+
+  // Authenticate subsequent requests
+  router.use(indieauth.authenticate());
+
+  // Plugin
+  router.get("/plugins", limit, pluginController.list);
+  router.get("/plugins/:pluginId", limit, pluginController.view);
+
+  // Status
+  router.get("/status", limit, statusController.viewStatus);
+
+  // Authenticated endpoints
+  for (const endpoint of application.endpoints) {
+    if (endpoint.mountPath && endpoint.routes) {
+      router.use(endpoint.mountPath, limit, endpoint.routes);
     }
   }
 
