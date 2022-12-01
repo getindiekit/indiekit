@@ -16,27 +16,22 @@
   "scope": {
     "label": "Publishing permissions",
     "create": {
-      "hint": "Application can publish posts and upload media",
-      "label": "Create"
+      "label": "Create posts"
     },
     "delete": {
-      "hint": "Application can delete posts",
-      "label": "Delete"
+      "label": "Delete posts"
     },
     "draft": {
-      "hint": "Posts created by this application will be marked as draft",
-      "label": "Draft"
+      "label": "Create and update draft posts only"
     },
     "media": {
-      "hint": "Application can upload media",
-      "label": "Media"
+      "label": "Upload media"
     },
     "none": {
       "label": "You don’t have any publishing permissions"
     },
     "update": {
-      "hint": "Application can update posts",
-      "label": "Update"
+      "label": "Update posts"
     }
   },
   "status": {
