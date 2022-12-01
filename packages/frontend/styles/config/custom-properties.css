@@ -3,9 +3,10 @@ html {
   --color-neutral99: hsl(var(--tint-neutral) 99%);
   --color-neutral95: hsl(var(--tint-neutral) 95%);
   --color-neutral90: hsl(var(--tint-neutral) 90%);
-  --color-neutral75: hsl(var(--tint-neutral) 75%);
+  --color-neutral70: hsl(var(--tint-neutral) 70%);
   --color-neutral50: hsl(var(--tint-neutral) 50%);
   --color-neutral30: hsl(var(--tint-neutral) 30%);
+  --color-neutral20: hsl(var(--tint-neutral) 20%);
   --color-neutral10: hsl(var(--tint-neutral) 10%);
 
   /* Error palette */
@@ -32,7 +33,7 @@ html {
   --color-offset: var(--color-neutral95);
   --color-offset-variant: var(--color-neutral90);
   --color-on-offset: var(--color-neutral30);
-  --color-outline: var(--color-neutral75);
+  --color-outline: var(--color-neutral70);
   --color-outline-variant: var(--color-neutral50);
   --color-primary-on-background: var(--color-primary-on-background-light);
 
@@ -107,11 +108,11 @@ html {
     color-scheme: dark;
     --color-on-background: var(--color-neutral99);
     --color-background: var(--color-neutral10);
-    --color-offset: var(--color-neutral30);
-    --color-offset-variant: var(--color-neutral50);
+    --color-offset: var(--color-neutral20);
+    --color-offset-variant: var(--color-neutral30);
     --color-on-offset: var(--color-neutral95);
     --color-outline: var(--color-neutral50);
-    --color-outline-variant: var(--color-neutral75);
+    --color-outline-variant: var(--color-neutral70);
     --color-primary-on-background: var(--color-primary-on-background-dark);
   }
 }
@@ -120,10 +121,10 @@ html {
   color-scheme: dark;
   --color-on-background: var(--color-neutral99);
   --color-background: var(--color-neutral10);
-  --color-offset: var(--color-neutral30);
-  --color-offset-variant: var(--color-neutral50);
+  --color-offset: var(--color-neutral20);
+  --color-offset-variant: var(--color-neutral30);
   --color-on-offset: var(--color-neutral95);
   --color-outline: var(--color-neutral50);
-  --color-outline-variant: var(--color-neutral75);
+  --color-outline-variant: var(--color-neutral70);
   --color-primary-on-background: var(--color-primary-on-background-dark);
 }
