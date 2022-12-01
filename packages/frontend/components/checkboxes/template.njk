@@ -97,11 +97,14 @@
   </div>
 {%- endset -%}
 
-{% call field({ error: opts.errorMessage }) %}
+{% call field({
+  classes: opts.field.classes,
+  errorMessage: opts.errorMessage
+}) %}
 {%- if opts.fieldset %}
   {% call fieldset({
     describedBy: describedBy,
-    classes: classes("checkboxes__fieldset", opts.fieldset.classes),
+    classes: classes("checkboxes__fieldset", opts.fieldset),
     attributes: opts.fieldset.attributes,
     legend: opts.fieldset.legend
   }) %}

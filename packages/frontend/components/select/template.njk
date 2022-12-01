@@ -3,7 +3,10 @@
 {%- from "../hint/macro.njk" import hint with context -%}
 {%- from "../label/macro.njk" import label with context -%}
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
-{% call field({ error: opts.errorMessage }) %}
+{% call field({
+  classes: opts.field.classes,
+  errorMessage: opts.errorMessage
+}) %}
 {%- if opts.label %}
   {{ label({
     for: opts.id,
