@@ -5,7 +5,7 @@
  */
 
 a {
-  color: var(--anchor-color, var(--color-primary-on-background));
+  color: var(--anchor-color, currentColor);
   text-decoration-color: var(--anchor-decoration-color, currentColor);
   text-decoration-line: var(--anchor-decoration-line, underline);
   text-decoration-thickness: 0.0625em;

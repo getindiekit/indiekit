@@ -1,6 +1,7 @@
 .notification {
+  --anchor-color: currentColor;
   color: var(--color-on-offset);
-  background-color: var(--color-offset);
+  background-color: var(--color-offset-variant);
 }
 
 .notification--error {
@@ -34,8 +35,4 @@
 
 .notification__text {
   flex: 1 1 auto;
-}
-
-.notification__text a {
-  color: inherit;
 }
