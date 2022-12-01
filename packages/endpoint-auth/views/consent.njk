@@ -34,6 +34,17 @@
     } if errors.scope
   }) if authType == "authorize" }}
 
+  {#- Hidden field exposing username to password managers -#}
+  {{ input({
+    type: "hidden",
+    name: "me",
+    value: me,
+    autocomplete: "username",
+    attributes: {
+      readonly: "true"
+    }
+  }) }}
+
   {{ input({
     id: "password",
     name: "password",
