@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - docs/**
 
   # Enable running this workflow manually from the Actions tab
   workflow_dispatch:
