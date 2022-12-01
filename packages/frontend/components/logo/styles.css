@@ -12,13 +12,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .logo {
+  :not([data-color-scheme]) .logo {
     filter: invert(100%);
   }
 }
 
-.color-scheme--dark {
-  & .token {
-    filter: invert(100%);
-  }
+[data-color-scheme="dark"] .logo {
+  filter: invert(100%);
 }

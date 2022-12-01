@@ -103,7 +103,7 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-color-scheme]) {
     color-scheme: dark;
     --color-on-background: var(--color-neutral99);
     --color-background: var(--color-neutral10);
@@ -116,7 +116,7 @@ html {
   }
 }
 
-.color-scheme--dark {
+[data-color-scheme="dark"] {
   color-scheme: dark;
   --color-on-background: var(--color-neutral99);
   --color-background: var(--color-neutral10);

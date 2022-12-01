@@ -23,7 +23,7 @@
 {%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
 {%- set mainClasses = "main" + (" " + mainClasses if mainClasses) -%}
 <!DOCTYPE html>
-<html lang="{{ application.locale }}" dir="ltr" class="color-scheme--{{ application.themeColorScheme }}">
+<html lang="{{ application.locale }}" dir="ltr"{% if application.themeColorScheme != "automatic" %} data-color-scheme="{{ application.themeColorScheme }}"{% endif %}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">

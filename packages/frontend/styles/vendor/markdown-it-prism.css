@@ -1,4 +1,4 @@
-.token {
+:root {
   --color-token-comment: var(--color-on-offset);
   --color-token-operator: var(--color-on-background);
   --color-token-function: #900;
@@ -9,7 +9,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .token {
+  :root:not([data-color-scheme]) {
     --color-token-function: #f99;
     --color-token-keyword: #0cf;
     --color-token-selector: #99f;
@@ -18,14 +18,12 @@
   }
 }
 
-.color-scheme--dark {
-  & .token {
-    --color-token-function: #f99;
-    --color-token-keyword: #0cf;
-    --color-token-selector: #99f;
-    --color-token-string: #f09;
-    --color-token-variable: #9ff;
-  }
+[data-color-scheme="dark"] {
+  --color-token-function: #f99;
+  --color-token-keyword: #0cf;
+  --color-token-selector: #99f;
+  --color-token-string: #f09;
+  --color-token-variable: #9ff;
 }
 
 .token.namespace {
