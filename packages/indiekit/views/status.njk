@@ -14,12 +14,14 @@
   <img class="icon icon--rounded" src="{{ "/assets/" + publication.preset.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.preset.info.name }}
 {% endset -%}
 
-{%- set postTypesHtml %}<ul role="list">{% for config in publication.postTypes -%}
-  <li>
-    {{ icon(config.type) }}{{ config.name }}
-    <small><code class="token attr-name">{{ config.type }}</code></small>
-  </li>
-{%- endfor %}</ul>{% endset -%}
+{%- set postTypesHtml %}
+  <ul role="list">{% for config in publication.postTypes %}
+    <li>
+      {{ icon(config.type) }}{{ config.name }}
+      <small><code class="token attr-name">{{ config.type }}</code></small>
+    </li>
+  {% endfor %}</ul>
+{% endset -%}
 
 {%- set storeHtml %}
   <a href="{{ publication.store.info.uid }}">
@@ -27,13 +29,15 @@
   </a>
 {% endset -%}
 
-{%- set syndicationTargetsHtml %}<ul role="list">{% for target in publication.syndicationTargets -%}
-  <li>
-    <a href="{{ target.info.uid }}">
-      {%- if target.info.service.photo %}<img class="icon icon--rounded" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}{{ target.info.name }}
-    </a>
-  </li>
-{%- endfor %}</ul>{% endset -%}
+{%- set syndicationTargetsHtml %}
+  <ul role="list">{% for target in publication.syndicationTargets %}
+    <li>
+      <a href="{{ target.info.uid }}">
+        {%- if target.info.service.photo %}<img class="icon icon--rounded" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}{{ target.info.name }}
+      </a>
+    </li>
+  {% endfor %}</ul>
+{% endset -%}
 
 {%- set localeHtml %}
   <p>{{ application.localeUsed.split("-") | first | languageNativeName }}</p>
@@ -46,14 +50,12 @@
 {% endset -%}
 
 {%- set permissionsHtml %}
-<dl>{% for scope in scope -%}
-  <dt>
-    {{ __("scope." + scope + ".label") }}
-    <small><code class="token attr-name">{{ scope }}</code></small>
-  </dt>
-  <dd>{{ __("scope." + scope + ".hint") }}</dd>
-{%- endfor %}
-</dl>
+  <ul role="list">{% for scope in scope %}
+    <li>
+      {{ __("scope." + scope + ".label") }}
+      <small><code class="token attr-name">{{ scope }}</code></small>
+    </li>
+  {% endfor %}</ul>
 {% endset -%}
 
 {% block content %}
@@ -94,14 +96,14 @@
           text: __("status.publication.preset")
         },
         value: {
-          text: presetHtml | indent(2)
+          text: presetHtml | indent(4)
         }
       } if publication.preset, {
         key: {
           text: __("status.publication.postTypes")
         },
         value: {
-          text: postTypesHtml | indent(2)
+          text: postTypesHtml | indent(4)
         }
       } if publication.postTypes.length > 0, {
         key: {
@@ -115,7 +117,7 @@
           text: __("status.publication.syndicationTargets")
         },
         value: {
-          text: syndicationTargetsHtml | indent(2)
+          text: syndicationTargetsHtml | indent(4)
         }
       } if publication.syndicationTargets.length > 0]
     }) }}
