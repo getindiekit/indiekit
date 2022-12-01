@@ -13,7 +13,6 @@ export const scopes = ["create", "delete", "media", "update"];
 export function getScopeItems(scope, response) {
   return scopes.map((value) => ({
     text: response.__(`scope.${value}.label`),
-    hint: { text: response.__(`scope.${value}.hint`) },
     value,
     checked: scope?.includes(value),
   }));
