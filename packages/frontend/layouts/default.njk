@@ -25,17 +25,17 @@
 <!DOCTYPE html>
 <html lang="{{ application.locale }}" dir="ltr" class="color-scheme--{{ application.themeColorScheme }}">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-    <meta name="theme-color" content="{{ application.themeColor }}"/>
-    <meta name="supported-color-schemes" content="light dark"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="{{ application.themeColor }}">
+    <meta name="supported-color-schemes" content="light dark">
 
     <link rel="alternate" href="{{ application.url }}/feed.jf2" type="application/jf2feed+json" title="JF2 Feed">
     <link rel="alternate" href="{{ application.url }}/feed.json" type="application/feed+json" title="JSON Feed">
     <link rel="apple-touch-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.png">
-    <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg"/>
-    <link rel="mask-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg" color="{{ application.themeColor }}"/>
-    <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css"/>
+    <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg">
+    <link rel="mask-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg" color="{{ application.themeColor }}">
+    <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css">
     <style>
       :root {
         {{- themeCustomProperties(application.themeColor) | indent(8) }}
