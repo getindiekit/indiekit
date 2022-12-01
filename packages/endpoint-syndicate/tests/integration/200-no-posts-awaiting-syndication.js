@@ -1,8 +1,8 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
@@ -11,13 +11,13 @@ test("Returns no post records awaiting syndication", async (t) => {
   const request = supertest.agent(server);
   await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar");
   const result = await request
     .post("/syndicate")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json");
 
   t.is(result.status, 200);

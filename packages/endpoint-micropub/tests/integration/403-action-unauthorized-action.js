@@ -1,7 +1,7 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
 test("Returns 403 error action not supported (by scope)", async (t) => {
   // Create post
@@ -9,7 +9,7 @@ test("Returns 403 error action not supported (by scope)", async (t) => {
   const request = supertest.agent(server);
   const response = await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .send({
       type: ["h-entry"],
       properties: {
@@ -22,7 +22,7 @@ test("Returns 403 error action not supported (by scope)", async (t) => {
   // Perform unknown action
   const result = await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .send({
       action: "foo",

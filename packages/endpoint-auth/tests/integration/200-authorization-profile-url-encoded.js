@@ -1,4 +1,3 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -18,7 +17,7 @@ test("Returns URL encoded profile", async (t) => {
     .query({ state: "12345" });
   const code = signToken({
     access_token: "token",
-    me: process.env.TEST_PUBLICATION_URL,
+    me: "https://website.example",
     scope: "create update delete media",
     token_type: "Bearer",
   });
@@ -34,7 +33,7 @@ test("Returns URL encoded profile", async (t) => {
   const result = response.text.match(responseTextRegexp).groups;
 
   t.is(response.status, 200);
-  t.is(result.me, encodeURIComponent(process.env.TEST_PUBLICATION_URL));
+  t.is(result.me, encodeURIComponent("https://website.example"));
 
   server.close(t);
 });

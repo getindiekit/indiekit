@@ -1,15 +1,15 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
 test("Returns 415 error unsupported media type", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
     .post("/media")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .attach("file", getFixture("file-types/font.ttf", false), "font.ttf");
 

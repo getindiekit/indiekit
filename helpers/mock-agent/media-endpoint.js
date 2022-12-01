@@ -1,5 +1,5 @@
-import process from "node:process";
 import { MockAgent } from "undici";
+import { testToken } from "@indiekit-test/token";
 
 /**
  * @returns {Function} Undici MockClient
@@ -18,7 +18,7 @@ export function mockClient() {
         path: "/",
         method: "POST",
         headers: {
-          authorization: `Bearer ${process.env.TEST_TOKEN}`,
+          authorization: `Bearer ${testToken()}`,
         },
       })
       .reply(

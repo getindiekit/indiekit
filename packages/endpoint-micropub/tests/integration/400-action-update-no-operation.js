@@ -1,8 +1,8 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
@@ -12,7 +12,7 @@ test("Returns 400 updating post without operation to perform", async (t) => {
   const request = supertest.agent(server);
   const response = await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .send({
       type: ["h-entry"],
       properties: {
@@ -24,7 +24,7 @@ test("Returns 400 updating post without operation to perform", async (t) => {
   const result = await request
     .post("/micropub")
     .accept("application/json")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .send({
       action: "update",
       url: response.header.location,

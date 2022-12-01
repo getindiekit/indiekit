@@ -5,9 +5,10 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 
 test("Returns 501 error verifying token missing secret", async (t) => {
-  sinon.stub(process.env, "SECRET").value("");
   const server = await testServer();
   const request = supertest.agent(server);
+
+  sinon.stub(process.env, "SECRET").value("");
   const result = await request
     .get("/auth/token")
     .auth(process.env.TEST_TOKEN, { type: "bearer" })

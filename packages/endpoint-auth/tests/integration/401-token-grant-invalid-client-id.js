@@ -1,4 +1,3 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -18,7 +17,7 @@ test("Returns 401 error invalid `client_id`", async (t) => {
     .query({ state: "12345" });
   const code = signToken({
     access_token: "token",
-    me: process.env.TEST_PUBLICATION_URL,
+    me: "https://website.example",
     scope: "create update delete media",
     token_type: "Bearer",
   });

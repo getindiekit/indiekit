@@ -1,14 +1,14 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
 test("Returns 501 error unsupported parameter provided", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
     .get("/media")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .query("q=fooBar");
 

@@ -37,7 +37,7 @@ export const testConfig = async (options) => {
       name: "Test configuration",
       sessionMiddleware: cookieSession({
         name: "test",
-        secret: process.env.TEST_SESSION_SECRET,
+        secret: process.env.SECRET,
       }),
       tokenEndpoint: options?.application?.tokenEndpoint,
     },
@@ -47,7 +47,7 @@ export const testConfig = async (options) => {
       ...(options.useSyndicator ? ["@indiekit/syndicator-twitter"] : []),
     ],
     publication: {
-      me: options?.publication?.me || process.env.TEST_PUBLICATION_URL,
+      me: options?.publication?.me || "https://website.example",
       ...(options.usePostTypes && { postTypes }),
       timeZone: "UTC",
     },

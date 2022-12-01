@@ -1,4 +1,3 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -18,7 +17,7 @@ test("Returns JSON profile", async (t) => {
     .query({ state: "12345" });
   const code = signToken({
     access_token: "token",
-    me: process.env.TEST_PUBLICATION_URL,
+    me: "https://website.example",
     scope: "create update delete media",
     token_type: "Bearer",
   });
@@ -32,7 +31,7 @@ test("Returns JSON profile", async (t) => {
     .query({ redirect_uri: "https://auth-endpoint.example/redirect" });
 
   t.is(result.status, 200);
-  t.is(result.body.me, process.env.TEST_PUBLICATION_URL);
+  t.is(result.body.me, "https://website.example");
 
   server.close(t);
 });

@@ -107,19 +107,6 @@ npm run dev
 
 [AVA](https://github.com/avajs/ava) is used to run and manage tests, of which both unit and integration types are used.
 
-The following environment variables need to be set before running tests:
-
-- `TEST_PUBLICATION_URL`
-- `TEST_SESSION_SECRET`
-- `TEST_TOKEN`
-- `TEST_TOKEN_NO_SCOPE`
-
-`TEST_TOKEN` and `TEST_TOKEN_NO_SCOPE` provide IndieAuth access tokens whose `me` value matches that set in `TEST_PUBLICATION_URL`.
-
-`TEST_TOKEN` should provide scope for `create update delete` and `TEST_TOKEN_NO_SCOPE` should provide no scope at all.
-
-[Homebrew Access Token](https://gimme-a-token.5eb.nl) is a useful tool for creating access tokens for this purpose.
-
 Tests can be run using the following command:
 
 ```sh

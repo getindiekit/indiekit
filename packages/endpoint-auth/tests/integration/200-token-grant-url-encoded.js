@@ -1,4 +1,3 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -18,7 +17,7 @@ test("Returns URL encoded access token", async (t) => {
     .query({ state: "12345" });
   const code = signToken({
     access_token: "token",
-    me: process.env.TEST_PUBLICATION_URL,
+    me: "https://website.example",
     scope: "create update delete media",
     token_type: "Bearer",
   });
@@ -36,7 +35,7 @@ test("Returns URL encoded access token", async (t) => {
 
   t.is(response.status, 200);
   t.truthy(result.access_token);
-  t.is(result.me, encodeURIComponent(process.env.TEST_PUBLICATION_URL));
+  t.is(result.me, encodeURIComponent("https://website.example"));
   t.truthy(result.scope);
   t.is(result.token_type, "Bearer");
 

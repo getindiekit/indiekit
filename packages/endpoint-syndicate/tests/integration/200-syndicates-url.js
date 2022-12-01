@@ -1,10 +1,10 @@
-import process from "node:process";
 import test from "ava";
 import nock from "nock";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
+import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
@@ -20,7 +20,7 @@ test("Syndicates a URL", async (t) => {
   const request = supertest.agent(server);
   await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .set("cookie", [cookie])
     .send("h=entry")
@@ -29,13 +29,13 @@ test("Syndicates a URL", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
-    .query(`token=${process.env.TEST_TOKEN}`);
+    .query("url=https://website.example/notes/foobar/")
+    .query(`token=${testToken()}`);
 
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    `Post updated at ${process.env.TEST_PUBLICATION_URL}notes/foobar/`
+    "Post updated at https://website.example/notes/foobar/"
   );
 
   server.close(t);

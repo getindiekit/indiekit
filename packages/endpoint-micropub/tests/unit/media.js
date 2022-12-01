@@ -1,14 +1,14 @@
-import process from "node:process";
 import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
+import { testToken } from "@indiekit-test/token";
 import { uploadMedia } from "../../lib/media.js";
 
 await mockAgent("media-endpoint");
 
 test.beforeEach((t) => {
   t.context = {
-    bearerToken: process.env.TEST_TOKEN,
+    bearerToken: testToken(),
     files: {
       photo: {
         data: getFixture("file-types/photo.jpg", false),

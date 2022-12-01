@@ -1,15 +1,15 @@
-import process from "node:process";
 import test from "ava";
 import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
+import { testToken } from "@indiekit-test/token";
 
 test("Returns 401 error from Micropub endpoint", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .set("cookie", [cookie])
     .send("h=entry")
@@ -18,7 +18,7 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .query(`url=${process.env.TEST_PUBLICATION_URL}notes/foobar/`)
+    .query("url=https://website.example/notes/foobar/")
     .query(`token=foo.bar.baz`);
 
   t.is(result.status, 401);

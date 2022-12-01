@@ -1,4 +1,3 @@
-import process from "node:process";
 import { MockAgent } from "undici";
 import { getFixture } from "@indiekit-test/fixtures";
 
@@ -23,7 +22,7 @@ export const mockClient = () => {
       method: "POST",
     })
     .reply(200, {
-      me: process.env.TEST_PUBLICATION_URL,
+      me: "https://website.example",
     });
 
   // Profile URL response (Bad Request)
@@ -42,7 +41,7 @@ export const mockClient = () => {
     })
     .reply(200, {
       access_token: "token",
-      me: process.env.TEST_PUBLICATION_URL,
+      me: "https://website.example",
       scope: "create update delete media",
       token_type: "Bearer",
     });

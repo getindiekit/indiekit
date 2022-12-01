@@ -1,9 +1,9 @@
-import process from "node:process";
 import test from "ava";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
@@ -12,7 +12,7 @@ test("Returns previously published post", async (t) => {
   const request = supertest.agent(server);
   await request
     .post("/micropub")
-    .auth(process.env.TEST_TOKEN, { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .send("h=entry")
     .send("name=Foobar");
