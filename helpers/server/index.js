@@ -6,6 +6,7 @@ import { Indiekit } from "@indiekit/indiekit";
 
 export const testServer = async (options) => {
   sinon.stub(console, "info"); // Disable console.info
+  sinon.stub(console, "warn"); // Disable console.warn
   const config = await testConfig(options);
   const indiekit = new Indiekit({ config });
   const server = await indiekit.server({
