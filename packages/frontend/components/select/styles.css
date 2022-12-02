@@ -2,7 +2,7 @@
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--color-background);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%2324282e' d='M0 8h32L16 24z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23000' d='M0 8h32L16 24z'/%3E%3C/svg%3E");
   background-position: right 0.75em top 50%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 0.75em auto, 100%;
