@@ -1,13 +1,13 @@
 {
-  "packages": ["packages/*"],
-  "ignoreChanges": ["**/fixtures/**", "**/tests/**", "**/*.md"],
   "command": {
-    "bootstrap": {
-      "npmClientArgs": ["--no-package-lock"]
-    },
     "publish": {
       "conventionalCommits": true
     }
   },
+  "ignoreChanges": [
+    "**/tests/**",
+    "**/*.md"
+  ],
+  "useWorkspaces": true,
   "version": "1.0.0-alpha.15"
 }
