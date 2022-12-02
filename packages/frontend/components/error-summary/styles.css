@@ -1,6 +1,6 @@
 .error-summary {
   border: var(--color-error) solid var(--border-width-thickest);
-  border-radius: var(--border-radius-large);
+  border-radius: var(--border-radius-small);
   padding: var(--space-m);
 }
 

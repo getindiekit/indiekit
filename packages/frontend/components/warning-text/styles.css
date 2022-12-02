@@ -3,7 +3,7 @@
   --icon-size: 1.5em;
   align-items: start;
   background-color: var(--color-offset);
-  border-radius: var(--border-radius-large);
+  border-radius: var(--border-radius-small);
   display: flex;
   flex-direction: row;
   font: var(--font-label);
