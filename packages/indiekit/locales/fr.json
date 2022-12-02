@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "L'application peut publier des publications et télécharger des médias",
-      "label": "Créer"
+      "label": "Créer des publications"
     },
     "delete": {
-      "hint": "L'application peut supprimer des publications",
-      "label": "Supprimer"
+      "label": "Supprimer des publications"
     },
     "draft": {
-      "hint": "Les publications créées par cette application seront marquées comme brouillon",
-      "label": "Brouillon"
+      "label": "Créer et mettre à jour des brouillons de publications uniquement"
     },
     "label": "Autorisations de publication",
     "media": {
-      "hint": "L'application peut télécharger des médias",
-      "label": "Médias"
+      "label": "Téléverser des médias"
     },
     "none": {
       "label": "Vous n'avez aucune autorisation pour publier"
     },
     "update": {
-      "hint": "L'application peut mettre à jour les publications",
-      "label": "Mettre à jour"
+      "label": "Mettre à jour les publications"
     }
   },
   "session": {

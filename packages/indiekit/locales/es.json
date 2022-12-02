@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "La aplicación puede publicar publicaciones y subir contenido multimedia",
-      "label": "Crear"
+      "label": "Crear publicaciones"
     },
     "delete": {
-      "hint": "La aplicación puede eliminar publicaciones",
-      "label": "Borrar"
+      "label": "Eliminar publicaciones"
     },
     "draft": {
-      "hint": "Las publicaciones creadas por esta aplicación se marcarán como borrador",
-      "label": "Borrador"
+      "label": "Crea y actualiza solo borradores de publicaciones"
     },
     "label": "Permisos de publicación",
     "media": {
-      "hint": "La aplicación puede subir archivos multimedia",
-      "label": "Multimedia"
+      "label": "Subir contenido multimedia"
     },
     "none": {
       "label": "No tienes ningún permiso de publicación"
     },
     "update": {
-      "hint": "La aplicación puede actualizar publicaciones",
-      "label": "Actualizar"
+      "label": "Actualizar publicaciones"
     }
   },
   "session": {

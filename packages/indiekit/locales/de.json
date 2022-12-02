@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "Die Anwendung kann Beiträge veröffentlichen und Medien hochladen",
-      "label": "Erstellen"
+      "label": "Beiträge erstellen"
     },
     "delete": {
-      "hint": "Die Anwendung kann Beiträge löschen",
-      "label": "Löschen"
+      "label": "Beiträge löschen"
     },
     "draft": {
-      "hint": "Beiträge, die mit dieser Anwendung erstellt wurden, werden als Entwurf markiert",
-      "label": "Entwurf"
+      "label": "Nur Beitragsentwürfe erstellen und aktualisieren"
     },
     "label": "Veröffentlichungsberechtigungen",
     "media": {
-      "hint": "Die Anwendung kann Medien hochladen",
-      "label": "Medien"
+      "label": "Medien hochladen"
     },
     "none": {
       "label": "Sie haben keine Veröffentlichungsberechtigungen"
     },
     "update": {
-      "hint": "Die Anwendung kann Beiträge aktualisieren",
-      "label": "Aktualisierung"
+      "label": "Beiträge aktualisieren"
     }
   },
   "session": {

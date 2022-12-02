@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "Aplikasi dapat menerbitkan posting dan mengunggah media",
-      "label": "Membuat"
+      "label": "Membuat pos"
     },
     "delete": {
-      "hint": "Aplikasi dapat menghapus posting",
-      "label": "Hapus"
+      "label": "Hapus pos"
     },
     "draft": {
-      "hint": "Postingan yang dibuat oleh aplikasi ini akan ditandai sebagai draf",
-      "label": "Draf"
+      "label": "Membuat dan memperbarui draft posting saja"
     },
     "label": "Izin publikasi",
     "media": {
-      "hint": "Aplikasi dapat mengunggah media",
-      "label": "Média"
+      "label": "Unggah media"
     },
     "none": {
       "label": "Anda tidak memiliki izin penerbitan"
     },
     "update": {
-      "hint": "Aplikasi dapat memperbarui postingan",
-      "label": "Perbarui"
+      "label": "Perbarui pos"
     }
   },
   "session": {

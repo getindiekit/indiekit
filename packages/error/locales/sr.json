@@ -22,7 +22,7 @@
   },
   "NotImplementedError": {
     "database": "Ova funkcija zahteva bazu podataka",
-    "postType": "Nije obezbeđena konfiguracija za %s tip objave",
+    "postType": "Nije obezbeđena konfiguracija za %s tip postov",
     "query": "Nepodržani upit za `{{key}}`: `{{value}}`",
     "secret": "Nedostaje `SECRET`",
     "title": "Nije implementirano",

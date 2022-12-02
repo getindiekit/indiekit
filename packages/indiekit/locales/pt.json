@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "Aplicativo pode publicar postagens e fazer upload de mídia",
-      "label": "Criar"
+      "label": "Crie postagens"
     },
     "delete": {
-      "hint": "Aplicativo pode excluir postagens",
-      "label": "Eliminar"
+      "label": "Excluir postagens"
     },
     "draft": {
-      "hint": "As postagens criadas por este aplicativo serão marcadas como rascunho",
-      "label": "Rascunho"
+      "label": "Crie e atualize somente rascunhos de publicações"
     },
     "label": "Permissões de publicação",
     "media": {
-      "hint": "Aplicativo pode fazer upload de mídia",
-      "label": "Multimédia"
+      "label": "Fazer upload de mídia"
     },
     "none": {
       "label": "Você não tem nenhuma permissão de publicação"
     },
     "update": {
-      "hint": "Aplicativo pode atualizar postagens",
-      "label": "Atualizar"
+      "label": "Atualizar postagens"
     }
   },
   "session": {

@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "Aplikacija može objavljivati poruke i otpremiti medije",
-      "label": "Kreiraj"
+      "label": "Kreirajte postova"
     },
     "delete": {
-      "hint": "Aplikacija može da briše postove",
-      "label": "Izbriši"
+      "label": "Obriši postova"
     },
     "draft": {
-      "hint": "Poruke kreirane ovom aplikacijom biće označene kao nacrt",
-      "label": "Nacrt"
+      "label": "Kreirajte i ažurirajte samo nacrte postova"
     },
     "label": "Dozvole za objavljivanje",
     "media": {
-      "hint": "Aplikacija može da otpremi medije",
-      "label": "Mediji"
+      "label": "Otpremite medije"
     },
     "none": {
       "label": "Nemate dozvole za objavljivanje"
     },
     "update": {
-      "hint": "Aplikacija može ažurirati postove",
-      "label": "Ažuriranje"
+      "label": "Ažurirajte postova"
     }
   },
   "session": {

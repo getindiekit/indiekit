@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "Aplikacja może publikować posty i przesyłać multimedia",
-      "label": "Utwórz"
+      "label": "Twórz posty"
     },
     "delete": {
-      "hint": "Aplikacja może usuwać posty",
-      "label": "Usuń"
+      "label": "Usuń posty"
     },
     "draft": {
-      "hint": "Posty utworzone przez tę aplikację zostaną oznaczone jako wersja robocza",
-      "label": "Projekt"
+      "label": "Twórz i aktualizuj tylko wersje robocze postów"
     },
     "label": "Uprawnienia do publikowania",
     "media": {
-      "hint": "Aplikacja może przesyłać multimedia",
-      "label": "Multimedia"
+      "label": "Prześlij multimedia"
     },
     "none": {
       "label": "Nie masz żadnych uprawnień do publikowania"
     },
     "update": {
-      "hint": "Aplikacja może aktualizować posty",
-      "label": "Aktualizuj"
+      "label": "Aktualizuj posty"
     }
   },
   "session": {

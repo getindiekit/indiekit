@@ -4,9 +4,9 @@
       "properties": "Svojstva"
     },
     "posts": {
-      "none": "Nema objava",
-      "title": "Objavljene objave"
+      "none": "Nema postova",
+      "title": "Objavljene postova"
     },
-    "title": "Objave"
+    "title": "Postova"
   }
 }

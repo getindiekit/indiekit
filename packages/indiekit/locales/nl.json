@@ -4,28 +4,23 @@
   },
   "scope": {
     "create": {
-      "hint": "Applicatie kan berichten publiceren en media uploaden",
-      "label": "Creëren"
+      "label": "Posten maken"
     },
     "delete": {
-      "hint": "Applicatie kan berichten verwijderen",
-      "label": "Verwijderen"
+      "label": "Verwijder posten"
     },
     "draft": {
-      "hint": "Berichten die door deze applicatie worden gemaakt, worden gemarkeerd als concept",
-      "label": "Concept"
+      "label": "Maak en update alleen conceptposts"
     },
     "label": "Machtigingen voor publicatie",
     "media": {
-      "hint": "Applicatie kan media uploaden",
-      "label": "Media"
+      "label": "Media uploaden"
     },
     "none": {
       "label": "Je hebt geen publicatierechten"
     },
     "update": {
-      "hint": "Applicatie kan berichten bijwerken",
-      "label": "Updaten"
+      "label": "Posten updaten"
     }
   },
   "session": {
