@@ -111,6 +111,8 @@
   text-align: center;
 }
 
-.checkboxes__fieldset.fieldset {
-  font: var(--font-label);
+.checkboxes__fieldset {
+  & .fieldset__legend {
+    margin-block-end: var(--space-2xs);
+  }
 }

@@ -116,6 +116,8 @@
   text-align: center;
 }
 
-.radios__fieldset.fieldset {
-  font: var(--font-label);
+.radios__fieldset {
+  & .fieldset__legend {
+    margin-block-end: var(--space-2xs);
+  }
 }
