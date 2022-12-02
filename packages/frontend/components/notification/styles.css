@@ -30,9 +30,6 @@
 }
 
 .notification__text {
-  font: var(--font-caption);
-}
-
-.notification__text {
   flex: 1 1 auto;
+  font: var(--font-caption);
 }

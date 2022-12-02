@@ -11,19 +11,19 @@
   padding-inline: var(--space-s);
 }
 
+.button--secondary,
+::file-selector-button {
+  --button-color: var(--color-on-offset);
+  --button-background-color: var(--color-offset);
+  --button-background-hover-color: var(--color-offset-variant);
+}
+
 .button:hover,
 ::file-selector-button:hover {
   background-color: var(
     --button-background-hover-color,
     var(--color-primary-variant)
   );
-}
-
-.button--secondary,
-::file-selector-button {
-  --button-color: var(--color-on-offset);
-  --button-background-color: var(--color-offset);
-  --button-background-hover-color: var(--color-offset-variant);
 }
 
 .button--block {
