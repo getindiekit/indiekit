@@ -41,7 +41,7 @@ legend {
   font-weight: inherit;
   hanging-punctuation: first;
   margin: 0;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
 }
 
 :focus-visible {

@@ -1,5 +1,5 @@
 .notification {
-  --anchor-color: currentColor;
+  --anchor-color: currentcolor;
   background-color: var(--color-offset-variant);
   color: var(--color-on-offset);
 }

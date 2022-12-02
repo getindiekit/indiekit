@@ -10,6 +10,12 @@
       "custom-properties",
       "declarations"
     ],
-    "order/properties-alphabetical-order": true
+    "order/properties-alphabetical-order": true,
+    "value-keyword-case": [
+      "lower",
+      {
+        "camelCaseSvgKeywords": false
+      }
+    ]
   }
 }
