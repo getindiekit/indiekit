@@ -42,7 +42,7 @@
 }
 
 /* [ ] Checkbox */
-.checkboxes__label:before {
+.checkboxes__label::before {
   background: transparent;
   block-size: var(--checkbox-size);
   border: var(--border-width-thick) solid var(--color-outline);
@@ -54,7 +54,7 @@
 }
 
 /* ✔ Check */
-.checkboxes__label:after {
+.checkboxes__label::after {
   background: transparent;
   block-size: calc(var(--check-size) / 2);
   border: solid;
@@ -75,7 +75,7 @@
 }
 
 /* Focused state */
-.checkboxes__input:focus + .checkboxes__label:before {
+.checkboxes__input:focus + .checkboxes__label::before {
   border-color: var(--color-outline-variant);
   box-shadow: 0 0 0 var(--border-width-thickest) var(--color-focus);
   outline: var(--focus-width) solid transparent;
@@ -83,13 +83,13 @@
 }
 
 @media screen and (forced-colors: active) {
-  .checkboxes__input:focus + .checkboxes__label:before {
+  .checkboxes__input:focus + .checkboxes__label::before {
     outline-color: Highlight;
   }
 }
 
 /* Selected state */
-.checkboxes__input:checked + .checkboxes__label:after {
+.checkboxes__input:checked + .checkboxes__label::after {
   opacity: 1;
 }
 
