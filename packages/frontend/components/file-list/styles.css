@@ -1,7 +1,7 @@
 .file-list {
   display: flex;
-  gap: var(--space-l);
   flex-direction: column;
+  gap: var(--space-l);
 }
 
 .file-list__item {

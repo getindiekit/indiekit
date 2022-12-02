@@ -21,10 +21,10 @@
   --input-offset: calc(
     calc(var(--touch-target-size) - var(--checkbox-size)) / 2
   );
-  cursor: pointer;
-  inset: calc(var(--input-offset) * -1);
-  inline-size: var(--touch-target-size);
   block-size: var(--touch-target-size);
+  cursor: pointer;
+  inline-size: var(--touch-target-size);
+  inset: calc(var(--input-offset) * -1);
   margin: 0;
   opacity: 0;
   position: absolute;
@@ -55,15 +55,15 @@
 
 /* ✔ Check */
 .checkboxes__label:after {
-  content: "";
   background: transparent;
   block-size: calc(var(--check-size) / 2);
   border: solid;
   border-block-start-color: transparent;
   border-width: 0 0 var(--border-width-thick) var(--border-width-thick);
+  content: "";
+  inline-size: var(--check-size);
   inset-block-start: calc(calc(var(--checkbox-size) - var(--check-size)) / 1.5);
   inset-inline-start: calc(calc(var(--checkbox-size) - var(--check-size)) / 2);
-  inline-size: var(--check-size);
   opacity: 0;
   position: absolute;
   transform: rotate(-45deg);

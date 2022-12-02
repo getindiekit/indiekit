@@ -1,8 +1,8 @@
 .summary__row {
   border-block-start: var(--color-outline) solid var(--border-width-thin);
   display: flex;
-  gap: var(--space-xs);
   flex-wrap: wrap;
+  gap: var(--space-xs);
   padding-block: var(--space-s);
 }
 

@@ -77,13 +77,13 @@
 }
 
 .token.deleted {
-  color: var(--color-delete);
   background-color: var(--color-background-delete);
+  color: var(--color-delete);
 }
 
 .token.inserted {
-  color: var(--color-insert);
   background-color: var(--color-background-insert);
+  color: var(--color-insert);
 }
 
 .token.deleted .prefix,

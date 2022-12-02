@@ -27,7 +27,6 @@ html {
 }
 
 :root {
-  color-scheme: light;
   --color-background: var(--color-neutral99);
   --color-on-background: var(--color-neutral10);
   --color-offset: var(--color-neutral95);
@@ -101,11 +100,12 @@ html {
   /* Layout */
   --container-inline-size: min(96vw, var(--container-max-inline-size));
   --container-max-inline-size: 60rem;
+
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-color-scheme]) {
-    color-scheme: dark;
     --color-on-background: var(--color-neutral99);
     --color-background: var(--color-neutral10);
     --color-offset: var(--color-neutral20);
@@ -118,7 +118,6 @@ html {
 }
 
 [data-color-scheme="dark"] {
-  color-scheme: dark;
   --color-on-background: var(--color-neutral99);
   --color-background: var(--color-neutral10);
   --color-offset: var(--color-neutral20);

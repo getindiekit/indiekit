@@ -28,10 +28,10 @@
 
 .radios__input {
   --input-offset: calc(calc(var(--touch-target-size) - var(--radio-size)) / 2);
-  cursor: pointer;
-  inset: calc(var(--input-offset) * -1);
-  inline-size: var(--touch-target-size);
   block-size: var(--touch-target-size);
+  cursor: pointer;
+  inline-size: var(--touch-target-size);
+  inset: calc(var(--input-offset) * -1);
   margin: 0;
   opacity: 0;
   position: absolute;
@@ -62,14 +62,14 @@
 
 /* • Button */
 .radios__label:after {
-  content: "";
   background: currentcolor;
   block-size: 0;
   border: var(--check-size) solid currentcolor;
   border-radius: 50%;
+  content: "";
+  inline-size: 0;
   inset-block-start: var(--check-size);
   inset-inline-start: var(--check-size);
-  inline-size: 0;
   opacity: 0;
   position: absolute;
 }

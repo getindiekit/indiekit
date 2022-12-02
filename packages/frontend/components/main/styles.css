@@ -1,7 +1,7 @@
 .main {
   --anchor-color: var(--color-primary-on-background);
-  color: var(--color-on-background);
   background-color: var(--color-background);
+  color: var(--color-on-background);
   flex: 1;
 }
 

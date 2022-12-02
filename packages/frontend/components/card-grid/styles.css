@@ -1,7 +1,7 @@
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   grid-gap: var(--space-l);
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
 }
 
 .card-grid__item {
@@ -35,11 +35,11 @@
 
 .card__title a {
   &::before {
-    content: "";
     border-radius: var(--border-radius-small);
+    content: "";
     display: block;
-    position: absolute;
     inset: 0;
+    position: absolute;
   }
 
   &:focus {

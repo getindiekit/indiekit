@@ -1,17 +1,17 @@
 .notification {
   --anchor-color: currentColor;
-  color: var(--color-on-offset);
   background-color: var(--color-offset-variant);
+  color: var(--color-on-offset);
 }
 
 .notification--error {
-  color: var(--color-on-error);
   background-color: var(--color-error);
+  color: var(--color-on-error);
 }
 
 .notification--success {
-  color: var(--color-on-success);
   background-color: var(--color-success);
+  color: var(--color-on-success);
 }
 
 .notification__container {
