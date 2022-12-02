@@ -3,7 +3,13 @@ import { jsonFeed } from "../json-feed.js";
 export const jf2 = async (request, response) => {
   const { application, publication } = request.app.locals;
   const feedUrl = new URL(request.originalUrl, application.url).href;
-  const posts = await publication.posts.find().toArray();
+  const posts = await publication.posts
+    .find({
+      "properties.post-status": {
+        $ne: "draft",
+      },
+    })
+    .toArray();
 
   return response.type("application/jf2feed+json").json({
     type: "feed",
@@ -16,7 +22,13 @@ export const jf2 = async (request, response) => {
 export const json = async (request, response) => {
   const { application, publication } = request.app.locals;
   const feedUrl = new URL(request.originalUrl, application.url).href;
-  const posts = await publication.posts.find().toArray();
+  const posts = await publication.posts
+    .find({
+      "properties.post-status": {
+        $ne: "draft",
+      },
+    })
+    .toArray();
 
   return response
     .type("application/feed+json")
