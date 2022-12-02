@@ -1,4 +1,5 @@
 import markdownFootnote from "markdown-it-footnote";
+import markdownTaskLists from "markdown-it-task-lists";
 import { version } from "../../packages/indiekit/package.json" assert { type: "json" };
 
 const sidebar = [
@@ -24,7 +25,10 @@ const sidebar = [
   },
   {
     text: "Resources",
-    items: [{ text: "Micropub clients", link: "/clients" }],
+    items: [
+      { text: "Micropub clients", link: "/clients" },
+      { text: "Supported specifications", link: "/specifications" },
+    ],
   },
 ];
 
@@ -89,6 +93,7 @@ export default {
     },
     config: (md) => {
       md.use(markdownFootnote);
+      md.use(markdownTaskLists);
     },
     linkify: false,
   },

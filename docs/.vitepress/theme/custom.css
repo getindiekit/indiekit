@@ -51,13 +51,65 @@
   --vp-c-brand: #b9f;
 }
 
-.custom-block h3:first-of-type {
+.vp-doc .custom-block h3:first-of-type {
   margin-top: 8px;
 }
 
-.client-icon {
+/* Client icon */
+.vp-doc .client-icon {
   float: right;
   height: 96px;
   margin-left: 24px;
   width: 96px;
+}
+
+/* Markdown footnotes */
+.vp-doc .footnote-ref {
+  line-height: 0;
+}
+
+.vp-doc .footnotes-sep {
+  margin: 48px 0 16px;
+}
+
+/* Markdown task list */
+.vp-doc .contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.vp-doc .task-list-item-checkbox {
+  appearance: none;
+  background-color: var(--vp-c-gray-light-4);
+  border-radius: 4px;
+  font-size: 20px;
+  height: 20px;
+  margin: 0 4px 0 0;
+  position: relative;
+  vertical-align: middle;
+  width: 20px;
+}
+
+.vp-doc .task-list-item-checkbox:checked {
+  background: var(--vp-c-green);
+}
+
+.vp-doc .task-list-item-checkbox::before {
+  font-size: 0.75em;
+  font-weight: bold;
+  height: 20px;
+  line-height: 18px;
+  position: absolute;
+  text-align: center;
+  width: 20px;
+}
+
+.vp-doc .task-list-item-checkbox::before {
+  color: var(--vp-c-grey-light-1);
+  content: "×";
+}
+
+.vp-doc .task-list-item-checkbox:checked::before {
+  color: var(--vp-c-gray-light-5);
+  content: "✓";
 }
