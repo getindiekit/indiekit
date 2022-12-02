@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
+
+### Features
+
+- **endpoint-auth:** add draft scope to consent form ([4297ab7](https://github.com/getindiekit/indiekit/commit/4297ab790e46d316717fbc16bc5f8abb281ddedf))
+- **endpoint-auth:** expose username to password managers ([21ff717](https://github.com/getindiekit/indiekit/commit/21ff7176446b2619324357e0528b78881ae54770))
+- **endpoint-auth:** remove scope hints ([4536090](https://github.com/getindiekit/indiekit/commit/4536090639f3d56f37a10b74145b3503d816bf33))
+- **endpoint-auth:** use bcrypt for password hashing ([df0dd67](https://github.com/getindiekit/indiekit/commit/df0dd67cea0fc2d635ed0713677be1e2b630d2ff))
+
 # [1.0.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2022-11-23)
 
 ### Features

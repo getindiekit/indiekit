@@ -4,10 +4,7 @@
       "conventionalCommits": true
     }
   },
-  "ignoreChanges": [
-    "**/tests/**",
-    "**/*.md"
-  ],
+  "ignoreChanges": ["**/tests/**", "**/*.md"],
   "useWorkspaces": true,
-  "version": "1.0.0-alpha.15"
+  "version": "1.0.0-alpha.16"
 }

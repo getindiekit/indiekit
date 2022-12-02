@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
+
+### Features
+
+- update locale catalogs ([ca0e8a9](https://github.com/getindiekit/indiekit/commit/ca0e8a902439945a71210096f0f5db9bbe97397b))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Features

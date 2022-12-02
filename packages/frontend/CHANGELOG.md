@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
+
+### Bug Fixes
+
+- **frontend:** background colour for client icon ([612f30a](https://github.com/getindiekit/indiekit/commit/612f30adaadbab403960dff04061cb554da617e8))
+- **frontend:** dark mode ([5b488b2](https://github.com/getindiekit/indiekit/commit/5b488b2ffde65fe2fc9a4662e7d17c5e1f651733))
+- **frontend:** don’t set theme-colour ([ae28807](https://github.com/getindiekit/indiekit/commit/ae28807f407d8e06ef374236362cb9b27077c093))
+- **frontend:** error appearance with minimal ui ([a958b04](https://github.com/getindiekit/indiekit/commit/a958b040151a6137380ce6501c009270feb7a5ab))
+- **frontend:** fieldset and field classes ([0837a7b](https://github.com/getindiekit/indiekit/commit/0837a7b3e2039a1184f39fd5cb7a2bd1660688d4))
+- **frontend:** increase space below legend in nested fieldsets ([2c04dd2](https://github.com/getindiekit/indiekit/commit/2c04dd2aa5b2d2c4a764f2f754e16f043a407a93))
+- **frontend:** notification anchor style ([c1544ff](https://github.com/getindiekit/indiekit/commit/c1544fff47009ff72a9f89c99e9f15b913a68436))
+- **frontend:** rendering of line breaks in preview ([6332d83](https://github.com/getindiekit/indiekit/commit/6332d839f811719734ea649a44c168996506a473))
+- **frontend:** summary row wrapping ([672554c](https://github.com/getindiekit/indiekit/commit/672554c5ccea01dbd4d6ba6eb744035bd56fa380))
+- **frontend:** tweak adjusted height of textarea ([8789268](https://github.com/getindiekit/indiekit/commit/878926873935776fb2fddb9d5a9c9342896402ba))
+
+### Features
+
+- **frontend:** card grid component ([df4b0e4](https://github.com/getindiekit/indiekit/commit/df4b0e4a8c1c13ea50c650d5380c695bd1040f36))
+- **frontend:** custom icon properties ([7f5ee2a](https://github.com/getindiekit/indiekit/commit/7f5ee2aa84f525c2c889b585a5f25614186b437a))
+- **frontend:** heading component ([11aee2d](https://github.com/getindiekit/indiekit/commit/11aee2df2f1fd9410f83cf9df5aa9999bf797479))
+- **frontend:** logo component ([19a9ee8](https://github.com/getindiekit/indiekit/commit/19a9ee8b2241ff1d7ae3feb998f65a3a070eab27))
+- **frontend:** navigation component ([112c85b](https://github.com/getindiekit/indiekit/commit/112c85b09be262db29a83fed2e6700f4cdc662ac))
+- **frontend:** prose component ([b99e8f4](https://github.com/getindiekit/indiekit/commit/b99e8f42611c21e8d397bfc823553ea0ad4bdafa))
+- **frontend:** section component ([68835ff](https://github.com/getindiekit/indiekit/commit/68835ffa3398134635179ad231c07200fb2c61a2))
+- **frontend:** slugify filter ([230bdb8](https://github.com/getindiekit/indiekit/commit/230bdb812b5deb945d90af9dbccf34cb77f393de))
+- **frontend:** themed touch icon ([80924c5](https://github.com/getindiekit/indiekit/commit/80924c5b3f0914f8dd97f1cc5ab8c327e1f89814))
+- **frontend:** wrap client url on authorize component ([d70156a](https://github.com/getindiekit/indiekit/commit/d70156ac2c2b42b21fb8c641c04efe572768dc7d))
+- **indekit:** feeds ([be582d2](https://github.com/getindiekit/indiekit/commit/be582d219c803216a23a42980be7e2a2c2b4b8a5))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Bug Fixes

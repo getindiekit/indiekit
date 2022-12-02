@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
+
+### Features
+
+- **endpoint-micropub:** check scope for draft value ([3fe3e5c](https://github.com/getindiekit/indiekit/commit/3fe3e5c07893504a2bf82d99cb5547ca96bf9bf6))
+- **endpoint-micropub:** update post status if draft scope ([0be8dcb](https://github.com/getindiekit/indiekit/commit/0be8dcb9d05bd7cfab243a6c8033090f1d8bc2d3))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Bug Fixes

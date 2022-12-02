@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
+
+### Bug Fixes
+
+- **indiekit:** non-closing dt element ([c3032a5](https://github.com/getindiekit/indiekit/commit/c3032a55d67f8281b1e0ffa0b357f2b147892950))
+
+### Features
+
+- **indekit:** feeds ([be582d2](https://github.com/getindiekit/indiekit/commit/be582d219c803216a23a42980be7e2a2c2b4b8a5))
+- **indiekit:** don’t include draft posts in feeds ([2f5f515](https://github.com/getindiekit/indiekit/commit/2f5f515cfe3e6528541a07d4ef0378e522867a92))
+- **indiekit:** installed plugins. fixes [#510](https://github.com/getindiekit/indiekit/issues/510) ([296480e](https://github.com/getindiekit/indiekit/commit/296480e9e8f7d269bad1403162e345b212ecf57f))
+- **indiekit:** simpler scope labels ([bc5ff7d](https://github.com/getindiekit/indiekit/commit/bc5ff7d768a3da51c2a1fbdba46dae617b614e78))
+- **indiekit:** themed touch icon ([21513e4](https://github.com/getindiekit/indiekit/commit/21513e4d37c41c439823b0ad0da94ded330a5dd2))
+- **indiekit:** update default theme colour ([bd7249c](https://github.com/getindiekit/indiekit/commit/bd7249c344a651ce6f6d3a087f28cc1322537b28))
+- update locale catalogs ([ca0e8a9](https://github.com/getindiekit/indiekit/commit/ca0e8a902439945a71210096f0f5db9bbe97397b))
+
 # [1.0.0-alpha.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2022-11-23)
 
 **Note:** Version bump only for package @indiekit/indiekit

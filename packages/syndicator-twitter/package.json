@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/syndicator-twitter",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.16",
   "description": "Twitter syndicator for Indiekit",
   "keywords": [
     "indiekit",
@@ -34,7 +34,7 @@
     "directory": "packages/syndicator-twitter"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.13",
+    "@indiekit/error": "^1.0.0-alpha.16",
     "brevity": "^0.2.9",
     "html-to-text": "^8.0.0",
     "twitter-lite": "^1.1.0",

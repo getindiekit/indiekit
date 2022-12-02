@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/syndicator-internet-archive",
-  "version": "1.0.0-alpha.13",
+  "version": "1.0.0-alpha.16",
   "description": "Internet Archive syndicator for Indiekit",
   "keywords": [
     "indiekit",
@@ -34,7 +34,7 @@
     "directory": "packages/syndicator-internet-archive"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.13",
+    "@indiekit/error": "^1.0.0-alpha.16",
     "undici": "^5.2.0"
   },
   "publishConfig": {
