@@ -5,6 +5,7 @@
 }
 
 .file-list__item {
+  --anchor-decoration-color: var(--color-shadow);
   --icon-size: 2rem;
   --icon-margin: var(--space-xs);
   color: var(--color-on-offset);
@@ -15,7 +16,9 @@
   font: var(--font-label);
 }
 
-.file__meta {
+.file__footer {
   font: var(--font-caption);
+  font-variant: all-small-caps;
+  letter-spacing: 0.0125em;
   margin-block-start: var(--space-2xs);
 }

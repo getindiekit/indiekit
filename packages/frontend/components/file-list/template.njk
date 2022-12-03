@@ -6,7 +6,11 @@
       <h2 class="file__title">
         <a href="{{ item.id | absoluteUrl(parentUrl) }}">{{ item.name or item["post-type"] | capitalize }}</a>
       </h2>
-      <p class="file__meta">{{ item.published | date("p • PPP") }}</p>
+      {% if item.published %}
+      <footer class="file__footer">
+        <time datetime="{{ item.published }}">{{ item.published | date("PPp") }}</time>
+      </footer>
+      {% endif %}
     </div>
   </li>
   {%- endfor %}
