@@ -1,0 +1,19 @@
+{%- macro _actionLink(action) %}
+  <a class="{{ classes("actions__link", action) }}" href="{{ action.href }}"{{ attributes(action.attributes) }}>
+    {{- icon(action.icon) if action.icon -}}
+    {{- action.text | safe -}}
+  </a>
+{% endmacro -%}
+<div class="{{ classes("actions", opts) }}">
+{% if opts.items.length == 1 %}
+  {{- _actionLink(opts.items[0]) | trim -}}
+{% else %}
+  <ul class="actions__list" role="list">
+  {% for item in opts.items %}
+    <li class="actions__list-item">
+      {{- _actionLink(item) | trim -}}
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+</div>

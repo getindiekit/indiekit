@@ -1,0 +1,21 @@
+.actions {
+  --icon-margin: var(--space-2xs);
+  font: var(--font-caption);
+
+  & a {
+    margin: calc(var(--space-s) * -1);
+    padding: var(--space-s);
+    white-space: nowrap;
+  }
+}
+
+.actions__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+}
+
+.actions__link--warning {
+  --anchor-color: var(--color-error);
+  --anchor-color-hover: var(--color-error-variant);
+}
