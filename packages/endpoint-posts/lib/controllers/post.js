@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { fetch } from "undici";
@@ -41,7 +42,10 @@ export const postController = async (request, response, next) => {
     response.render("post", {
       title: post.name,
       post,
-      parent: response.__("posts.posts.title"),
+      parent: {
+        href: path.dirname(request.baseUrl + request.path),
+        text: response.__("posts.posts.title"),
+      },
     });
   } catch (error) {
     next(error);
