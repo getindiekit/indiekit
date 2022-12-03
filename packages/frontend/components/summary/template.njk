@@ -1,3 +1,4 @@
+{%- from "../actions/macro.njk" import actions with context -%}
 <dl class="{{ classes("summary", opts) }}">
   {%- for row in opts.rows %}
   <div class="{{ classes("summary__row", row) }}">
@@ -6,6 +7,9 @@
     </dt>
     <dd class="{{ classes("summary__value", row.value) }} s-flow">
       {{- row.value.text | default(__("noValue")) | safe -}}
+    </dd>
+    <dd class="{{ classes("summary__actions", row.actions) }}">
+      {{- actions({ items: row.actions }) if row.actions.length -}}
     </dd>
   </div>
   {%- endfor %}

@@ -1,15 +1,19 @@
 .summary__row {
+  align-items: baseline;
   border-block-start: var(--color-outline) solid var(--border-width-thin);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
+  justify-content: end;
   padding-block: var(--space-s);
 }
 
 .summary__key {
+  align-self: start;
   flex-basis: 12rem;
   flex-grow: 1;
   font: var(--font-label);
+  line-height: var(--line-height-loose);
 }
 
 .summary__value {
