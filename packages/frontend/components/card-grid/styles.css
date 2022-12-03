@@ -5,6 +5,7 @@
 }
 
 .card-grid__item {
+  --anchor-decoration-color: var(--color-shadow);
   --icon-margin: var(--space-s);
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
@@ -18,10 +19,18 @@
   }
 }
 
-.card__image {
+.card__media {
   border-start-end-radius: var(--border-radius-small);
   border-start-start-radius: var(--border-radius-small);
   overflow: hidden;
+
+  & :is(img, video) {
+    background-color: var(--color-offset);
+    block-size: 100%;
+    display: block;
+    inline-size: 100%;
+    object-fit: cover;
+  }
 }
 
 .card__body {
@@ -29,7 +38,6 @@
 }
 
 .card__title {
-  --anchor-decoration-line: none;
   font: var(--font-label);
 }
 
@@ -53,5 +61,12 @@
 
 .card__meta {
   font: var(--font-caption);
+  margin-block-start: var(--space-2xs);
+}
+
+.card__footer {
+  font: var(--font-caption);
+  font-variant: all-small-caps;
+  letter-spacing: 0.0125em;
   margin-block-start: var(--space-2xs);
 }
