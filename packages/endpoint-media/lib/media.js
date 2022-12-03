@@ -36,4 +36,48 @@ export const media = {
       };
     }
   },
+
+  /**
+   * Delete file
+   *
+   * @param {object} publication - Publication configuration
+   * @param {object} mediaData - Post data
+   * @returns {object} Response data
+   */
+  async delete(publication, mediaData) {
+    const { media, store, storeMessageTemplate } = publication;
+    const metaData = {
+      action: "delete",
+      result: "deleted",
+      fileType: "file",
+      postType: mediaData.properties["post-type"],
+    };
+    const message = storeMessageTemplate(metaData);
+    const deleted = await store.deleteFile(mediaData.path, message);
+
+    if (deleted) {
+      mediaData.date = new Date();
+      mediaData.lastAction = metaData.action;
+
+      if (media) {
+        await media.replaceOne(
+          {
+            "properties.url": mediaData.properties.url,
+          },
+          mediaData,
+          {
+            checkKeys: false,
+          }
+        );
+      }
+
+      return {
+        status: 200,
+        json: {
+          success: "delete",
+          success_description: `File deleted from ${mediaData.properties.url}`,
+        },
+      };
+    }
+  },
 };

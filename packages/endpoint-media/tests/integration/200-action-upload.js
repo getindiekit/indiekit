@@ -1,7 +1,7 @@
 import test from "ava";
 import supertest from "supertest";
-import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 

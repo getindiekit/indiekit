@@ -1,26 +1,33 @@
 import test from "ava";
 import supertest from "supertest";
-import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
-test("Returns 403 error token has insufficient scope", async (t) => {
+test("Deletes file", async (t) => {
+  // Create post
   const server = await testServer();
   const request = supertest.agent(server);
-  const result = await request
+  const response = await request
     .post("/media")
-    .auth(testToken({ scope: "foo" }), { type: "bearer" })
+    .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
-  t.is(result.status, 403);
-  t.is(
-    result.body.error_description,
-    "The request requires higher privileges than provided by the access token"
-  );
+  // Delete post
+  const result = await request
+    .post("/media")
+    .auth(testToken(), { type: "bearer" })
+    .send({
+      action: "delete",
+      url: response.header.location,
+    });
+
+  t.is(result.status, 200);
+  t.regex(result.body.success_description, /\bFile deleted\b/);
 
   server.close(t);
 });

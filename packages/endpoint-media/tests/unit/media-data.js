@@ -19,7 +19,7 @@ test.beforeEach((t) => {
               path: "photo.jpg",
               properties: {
                 "post-type": "photo",
-                url,
+                url: url["properties.url"],
               },
             };
           }
@@ -54,4 +54,11 @@ test("Throws error creating media data for non-configured media type", async (t)
   await t.throwsAsync(mediaData.create(t.context.publication, t.context.file), {
     message: "photo",
   });
+});
+
+test("Reads file data", async (t) => {
+  const result = await mediaData.read(t.context.publication, t.context.url);
+
+  t.is(result.properties["post-type"], "photo");
+  t.is(result.properties.url, "https://website.example/photo.jpg");
 });

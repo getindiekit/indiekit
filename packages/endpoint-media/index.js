@@ -1,5 +1,5 @@
 import express from "express";
-import { uploadController } from "./lib/controllers/upload.js";
+import { actionController } from "./lib/controllers/action.js";
 import { queryController } from "./lib/controllers/query.js";
 
 const defaults = { mountPath: "/media" };
@@ -16,7 +16,7 @@ export default class MediaEndpoint {
 
   get routes() {
     router.get("/", queryController);
-    router.post("/", uploadController);
+    router.post("/", actionController);
 
     return router;
   }

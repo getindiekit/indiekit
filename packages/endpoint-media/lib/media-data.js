@@ -50,4 +50,24 @@ export const mediaData = {
     const mediaData = { path, properties };
     return mediaData;
   },
+
+  /**
+   * Read post data
+   *
+   * @param {object} publication - Publication configuration
+   * @param {string} url - URL of existing post
+   * @returns {object} Post data
+   */
+  async read(publication, url) {
+    const { media } = publication;
+    const file = await media.findOne({
+      "properties.url": url,
+    });
+
+    if (!file) {
+      throw IndiekitError.notFound(url);
+    }
+
+    return file;
+  },
 };
