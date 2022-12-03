@@ -6,7 +6,7 @@
     {%- if type == "audio" %}
       <audio src="{{ item.url }}" controls></audio>
     {%- elif type == "photo" %}
-      <img src="{{ item.url | replace(publication.me, application.url + application.imageEndpoint + '/') }}?w=400&#38;h=400&#38;c=true" alt="{{ item.filename }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';" width="400" height="400">
+      <img src="{{ item.url | replace(publication.me, application.url + application.imageEndpoint + '/') }}?w=400&#38;h=400&#38;c=true" alt="{{ item.alt }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';" width="400" height="400">
     {%- elif type == "video" %}
       <video src="{{ item.url }}"></video>
     {%- else %}

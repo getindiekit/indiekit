@@ -25,6 +25,12 @@ export const queryController = async (request, response, next) => {
 
     const files = await publication.media
       .find()
+      .project({
+        "properties.content-type": 1,
+        "properties.post-type": 1,
+        "properties.published": 1,
+        "properties.url": 1,
+      })
       .sort({ _id: -1 })
       .skip(offset)
       .limit(limit)
@@ -39,7 +45,17 @@ export const queryController = async (request, response, next) => {
 
     let item;
     if (url) {
-      item = await publication.media.findOne({ "properties.url": url });
+      item = await publication.media.findOne(
+        { "properties.url": url },
+        {
+          projection: {
+            "properties.content-type": 1,
+            "properties.post-type": 1,
+            "properties.published": 1,
+            "properties.url": 1,
+          },
+        }
+      );
 
       if (!item) {
         throw IndiekitError.notFound(
