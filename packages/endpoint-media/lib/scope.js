@@ -1,9 +1,23 @@
 /**
  * Check provided scope(s) satisfies required scope
  *
- * @param {object} providedScope - Provided scope
- * @returns {boolean} True if provided scope includes `create` or `media`
+ * @param {string} scope - Provided scope (space separated)
+ * @param {string} [action=media] - Required action
+ * @returns {boolean} `true` if provided scope includes action
  */
-export const checkScope = (providedScope = "media") => {
-  return providedScope.includes("create") || providedScope.includes("media");
+export const checkScope = (scope, action = "media") => {
+  // Default scope request is `create`
+  if (!scope) {
+    scope = "create";
+  }
+
+  // Check for scope matching desired action
+  let hasScope = scope.includes(action);
+
+  // `create` scope encompasses `media` scope
+  if (scope === "create" && action === "media") {
+    hasScope = true;
+  }
+
+  return hasScope;
 };

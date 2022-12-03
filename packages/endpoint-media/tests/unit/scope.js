@@ -1,22 +1,20 @@
 import test from "ava";
 import { checkScope } from "../../lib/scope.js";
 
-test("Returns true if `create` scope is provided by token", (t) => {
-  t.true(checkScope("create"));
-});
-
-test("Returns true if `media` scope is provided by token", (t) => {
+test("Action defaults to `media`", (t) => {
   t.true(checkScope("media"));
 });
 
-test("Returns true if `create media` scope is provided by token", (t) => {
-  t.true(checkScope("create media"));
+test("Scope defaults to `create`", (t) => {
+  t.true(checkScope(null, "create"));
 });
 
-test("Required scope defaults to `media`", (t) => {
-  t.true(checkScope("media", null));
+test("Returns true if action is permitted by scope", (t) => {
+  t.true(checkScope("media", "media"));
+  t.true(checkScope("create", "media"));
+  t.true(checkScope("delete", "delete"));
 });
 
-test("Returns false if required scope not provided by access token", (t) => {
-  t.false(checkScope("post"));
+test("Returns false if action not permitted by scope", (t) => {
+  t.false(checkScope("create media", "delete"));
 });
