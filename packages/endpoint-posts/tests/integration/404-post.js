@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-test("Returns 404 error can’t find previously published post", async (t) => {
+test("Returns 404 error post not found", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request

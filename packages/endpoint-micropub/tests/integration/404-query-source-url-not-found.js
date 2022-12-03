@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 
 await mockAgent("token-endpoint");
 
-test("Returns 404 error source URL can’t be found", async (t) => {
+test("Returns 404 error source URL not found", async (t) => {
   const server = await testServer({
     application: {
       tokenEndpoint: "https://token-endpoint.example",

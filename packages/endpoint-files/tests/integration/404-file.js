@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-test("Returns 404 error can’t find previously uploaded file", async (t) => {
+test("Returns 404 error file not found", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request

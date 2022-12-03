@@ -32,7 +32,7 @@ test.beforeEach((t) => {
                 "mp-slug": "baz",
                 "mp-syndicate-to": "https://archive.org/",
                 "post-type": "note",
-                url,
+                url: url["properties.url"],
               },
             };
           }
@@ -79,6 +79,7 @@ test("Reads post data", async (t) => {
   const result = await postData.read(t.context.publication, t.context.url);
 
   t.is(result.properties["post-type"], "note");
+  t.is(result.properties.url, "https://website.example/foo");
 });
 
 test("Reads post data in draft mode", async (t) => {
