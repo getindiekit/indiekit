@@ -1,3 +1,4 @@
+import path from "node:path";
 import { getPackageData } from "../utils.js";
 
 export const list = (request, response) => {
@@ -17,7 +18,10 @@ export const list = (request, response) => {
   });
 
   response.render("plugins/list", {
-    parent: request.__("status.title"),
+    parent: {
+      href: "/status/",
+      text: request.__("status.title"),
+    },
     title: request.__("status.application.installedPlugins"),
     plugins,
   });
@@ -33,7 +37,10 @@ export const view = (request, response) => {
   plugin.package = getPackageData(plugin.meta.url);
 
   response.render("plugins/view", {
-    parent: request.__("status.application.installedPlugins"),
+    parent: {
+      href: path.dirname(request.path),
+      text: request.__("status.application.installedPlugins"),
+    },
     title: plugin.name,
     plugin,
   });
