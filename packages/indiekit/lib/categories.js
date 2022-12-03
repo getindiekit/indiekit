@@ -13,12 +13,12 @@ export const getCategories = async (cache, publication) => {
   const { categories } = publication;
 
   if (categories && categories.constructor === Array) {
-    return categories;
+    return categories.sort();
   }
 
   if (categories && isUrl(categories)) {
     const cachedCategories = await getCachedResponse(cache, categories);
-    return cachedCategories;
+    return cachedCategories.sort();
   }
 
   return [];

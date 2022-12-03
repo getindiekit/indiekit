@@ -9,7 +9,7 @@ test("Returns array of available categories", async (t) => {
     categories: ["Foo", "Bar"],
   });
 
-  t.deepEqual(result, ["Foo", "Bar"]);
+  t.deepEqual(result, ["Bar", "Foo"]);
 });
 
 test("Fetches array from remote JSON file", async (t) => {
@@ -17,7 +17,7 @@ test("Fetches array from remote JSON file", async (t) => {
     categories: "https://website.example/categories.json",
   });
 
-  t.deepEqual(result, ["Foo", "Bar"]);
+  t.deepEqual(result, ["Bar", "Foo"]);
 });
 
 test("Returns empty array if remote JSON file not found", async (t) => {
