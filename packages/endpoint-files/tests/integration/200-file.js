@@ -21,8 +21,8 @@ test("Returns previously uploaded file", async (t) => {
   // Get file data by parsing list of files and getting values from link
   const filesResponse = await request.get("/files");
   const filesDom = new JSDOM(filesResponse.text);
-  const fileLink = filesDom.window.document.querySelector(".file-grid li a");
-  const fileName = fileLink.querySelector("img").alt;
+  const fileLink = filesDom.window.document.querySelector(".card-grid li a");
+  const fileName = fileLink.textContent;
   const fileId = fileLink.href.split("/").pop();
 
   // Visit file page

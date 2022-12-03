@@ -2,7 +2,7 @@
 
 {% block content %}
   {%- if files.length > 0 %}
-  {{ fileGrid({
+  {{ cardGrid({
     items: files
   }) }}
   {{ pagination(pages(page, limit, count)) }}
