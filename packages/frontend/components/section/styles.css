@@ -10,7 +10,3 @@
 .section__title {
   font: var(--font-heading);
 }
-
-.section__actions {
-  font: var(--font-caption);
-}
