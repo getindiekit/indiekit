@@ -1,8 +1,16 @@
 .heading {
+  align-items: last baseline;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.heading__title {
   font: var(--font-title);
 }
 
 .heading__parent {
+  --anchor-decoration-color: var(--color-shadow);
   color: var(--color-on-offset);
   display: block;
   font: var(--font-body);

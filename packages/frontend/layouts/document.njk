@@ -4,7 +4,8 @@
 <article class="main__container">
   {{ heading({
     parent: parent,
-    text: title
+    text: title,
+    actions: actions
   }) if title }}
 
   {%- block content %}{% endblock -%}
