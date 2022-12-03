@@ -30,6 +30,10 @@
   padding: 0;
 }
 
+.summary__value code {
+  word-break: break-word;
+}
+
 .summary__value small code {
   margin-inline-start: var(--space-2xs);
 }
