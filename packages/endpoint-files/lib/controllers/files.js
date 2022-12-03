@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
+import { getFileName } from "../utils.js";
 
 /**
  * List previously uploaded files
@@ -42,6 +43,7 @@ export const filesController = async (request, response, next) => {
     const body = await mediaResponse.json();
     const files = body.items.map((item) => {
       item.id = Buffer.from(item.url).toString("base64url");
+      item.alt = item.url ? getFileName(item.url) : "File";
       return item;
     });
 

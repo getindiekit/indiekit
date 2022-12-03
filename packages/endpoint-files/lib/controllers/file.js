@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
+import { getFileName } from "../utils.js";
 
 /**
  * View previously uploaded file
@@ -37,7 +38,7 @@ export const fileController = async (request, response, next) => {
     const body = await mediaResponse.json();
 
     response.render("file", {
-      title: body.filename,
+      title: body.url ? getFileName(body.url) : "File",
       file: body,
       parent: response.__("files.files.title"),
     });
