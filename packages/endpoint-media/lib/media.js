@@ -60,15 +60,9 @@ export const media = {
       mediaData.lastAction = metaData.action;
 
       if (media) {
-        await media.replaceOne(
-          {
-            "properties.url": mediaData.properties.url,
-          },
-          mediaData,
-          {
-            checkKeys: false,
-          }
-        );
+        await media.deleteOne({
+          "properties.url": mediaData.properties.url,
+        });
       }
 
       return {
