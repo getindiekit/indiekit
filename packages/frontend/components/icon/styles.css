@@ -3,10 +3,13 @@
   display: inline-block;
   flex-shrink: 0;
   inline-size: var(--icon-size, 1em);
-  inset-block-start: -1px;
   margin-inline-end: var(--icon-margin, var(--space-xs));
   position: relative;
   vertical-align: text-bottom;
+}
+
+svg.icon {
+  inset-block-start: -1px;
 }
 
 .icon--rounded {
