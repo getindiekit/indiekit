@@ -26,6 +26,14 @@
   );
 }
 
+.button--warning {
+  background-color: var(--color-error);
+
+  &:hover {
+    background-color: var(--color-error-variant);
+  }
+}
+
 .button--block {
   inline-size: 100%;
 }
