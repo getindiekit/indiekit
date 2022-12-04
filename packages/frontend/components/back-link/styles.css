@@ -1,4 +1,5 @@
 .back-link {
+  --anchor-decoration-color: transparent;
   --back-link-padding: var(--space-s);
   --chevron-size: 0.5em;
   --chevron-width: var(--text-thickness);

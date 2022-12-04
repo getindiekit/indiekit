@@ -5,7 +5,7 @@
 }
 
 .card-grid__item {
-  --anchor-decoration-color: var(--color-shadow);
+  --anchor-decoration-color: transparent;
   --icon-margin: var(--space-s);
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);

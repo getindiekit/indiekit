@@ -1,4 +1,5 @@
 .actions {
+  --anchor-decoration-color: transparent;
   --icon-margin: var(--space-2xs);
   font: var(--font-caption);
 

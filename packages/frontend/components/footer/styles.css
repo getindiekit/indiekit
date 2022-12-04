@@ -1,7 +1,7 @@
 .footer {
   --anchor-color: var(--color-on-offset);
   --anchor-color-hover: var(--color-on-background);
-  --anchor-decoration-line: none;
+  --anchor-decoration-color: transparent;
   background-color: var(--color-offset);
   color: var(--color-on-offset);
   display: flex;
