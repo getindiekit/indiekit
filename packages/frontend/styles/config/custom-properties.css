@@ -11,9 +11,8 @@ html {
 
   /* Error palette */
   --tint-error: 8 100%;
-  --color-error50: hsl(var(--tint-error) 50%);
+  --color-error45: hsl(var(--tint-error) 45%);
   --color-error30: hsl(var(--tint-error) 30%);
-  --color-error10: hsl(var(--tint-error) 10%);
 
   /* Success palette */
   --tint-success: 144 100%;
@@ -37,9 +36,9 @@ html {
   --color-primary-on-background: var(--color-primary-on-background-light);
 
   /* Common color assigments */
-  --color-error: var(--color-error50);
+  --color-error: var(--color-error45);
   --color-error-variant: var(--color-error30);
-  --color-on-error: var(--color-error10);
+  --color-on-error: var(--color-neutral99);
   --color-success: var(--color-success50);
   --color-success-variant: var(--color-success30);
   --color-on-success: var(--color-success10);
