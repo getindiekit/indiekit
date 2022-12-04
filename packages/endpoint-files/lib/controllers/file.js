@@ -45,6 +45,14 @@ export const fileController = async (request, response, next) => {
         href: path.dirname(request.baseUrl + request.path),
         text: response.__("files.files.title"),
       },
+      actions: [
+        {
+          classes: "actions__link--warning",
+          href: path.join(request.originalUrl, "/delete"),
+          icon: "delete",
+          text: response.__("files.delete.action"),
+        },
+      ],
     });
   } catch (error) {
     next(error);
