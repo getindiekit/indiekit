@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import { getFileName } from "../utils.js";
@@ -40,7 +41,10 @@ export const fileController = async (request, response, next) => {
     response.render("file", {
       title: body.url ? getFileName(body.url) : "File",
       file: body,
-      parent: response.__("files.files.title"),
+      parent: {
+        href: path.dirname(request.baseUrl + request.path),
+        text: response.__("files.files.title"),
+      },
     });
   } catch (error) {
     next(error);

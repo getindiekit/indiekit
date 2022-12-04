@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import { getFileName } from "../utils.js";
@@ -52,6 +53,13 @@ export const filesController = async (request, response, next) => {
      */
     response.render("files", {
       title: response.__("files.files.title"),
+      actions: [
+        {
+          href: path.join(request.baseUrl + request.path, "/new/"),
+          icon: "uploadFile",
+          text: response.__("files.upload.title"),
+        },
+      ],
       files,
       page,
       limit,
