@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Delete file",
+      "title": "Are you sure you want to delete this file?",
+      "note": "It may still be accessible or recoverable from your content store (%s).",
+      "cancel": "No, return to file",
+      "submit": "Yes, delete this file"
+    },
     "file": {
       "download": "Download file",
       "properties": "Properties"

@@ -1,4 +1,5 @@
 import express from "express";
+import { deleteController } from "./lib/controllers/delete.js";
 import { fileController } from "./lib/controllers/file.js";
 import { filesController } from "./lib/controllers/files.js";
 import { uploadController } from "./lib/controllers/upload.js";
@@ -29,6 +30,8 @@ export default class FilesEndpoint {
     router.get("/new", uploadController.get);
     router.post("/new", validate, uploadController.post);
     router.get("/:id", fileController);
+    router.get("/:id/delete", deleteController.get);
+    router.post("/:id/delete", deleteController.post);
 
     return router;
   }

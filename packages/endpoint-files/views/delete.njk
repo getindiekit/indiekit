@@ -1,0 +1,17 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ prose({ text: __("files.delete.note", publication.store.info.name) }) }}
+
+  {{ input({
+    name: "url",
+    value: url,
+    type: "hidden"
+  }) }}
+
+  {{ button({
+    classes: "button--warning",
+    text: __("files.delete.submit")
+  }) }}
+  <p><a href="{{ back }}">{{ __("files.delete.cancel") }}</a></p>
+{% endblock %}
