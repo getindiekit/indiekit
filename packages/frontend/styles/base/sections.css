@@ -47,8 +47,8 @@ legend {
 :focus-visible {
   border-radius: var(--border-radius-small);
   box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
+  color: var(--color-on-background);
   outline: 0;
-  text-decoration: none;
 }
 
 ::selection {
