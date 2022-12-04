@@ -98,6 +98,7 @@ html {
   --space-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem); /* 24 → 32 */
 
   /* Layout */
+  --container-padding-inline: var(--space-l);
   --container-inline-size: min(96vw, var(--container-max-inline-size));
   --container-max-inline-size: 60rem;
 
