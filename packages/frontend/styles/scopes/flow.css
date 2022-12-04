@@ -1,6 +1,12 @@
 .s-flow {
+  --flow-line-measure: var(--line-measure);
   --flow-inset: 1.25em;
   --flow-space: 1em;
+}
+
+.s-flow > * {
+  max-inline-size: var(--flow-line-measure);
+  word-break: break-word;
 }
 
 .s-flow > * + * {
