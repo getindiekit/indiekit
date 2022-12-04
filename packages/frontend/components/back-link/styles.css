@@ -1,0 +1,44 @@
+.back-link {
+  --back-link-padding: var(--space-s);
+  --chevron-size: 0.5em;
+  --chevron-width: var(--text-thickness);
+  inline-size: var(--container-inline-size);
+  margin-inline: auto;
+  max-inline-size: var(--container-max-inline-size);
+  padding-block-start: var(--back-link-padding);
+  padding-inline: var(--space-l);
+}
+
+.back-link a {
+  display: inline-block;
+  font: var(--font-caption);
+  margin-inline: calc(var(--back-link-padding) * -1);
+  padding: var(--back-link-padding);
+  padding-inline-start: calc(var(--back-link-padding) * 2);
+  position: relative;
+}
+
+.back-link a::before {
+  block-size: var(--chevron-size);
+  border: solid;
+  border-color: currentcolor;
+  border-width: var(--chevron-width) var(--chevron-width) 0 0;
+  content: "";
+  display: block;
+  inline-size: var(--chevron-size);
+  inset-block-start: calc(var(--back-link-padding) + var(--chevron-size));
+  inset-inline-start: var(--back-link-padding);
+  position: absolute;
+  transform: rotate(225deg);
+}
+
+.back-link a:focus::before,
+.back-link a:hover::before {
+  --chevron-width: calc(var(--text-thickness) * 2);
+}
+
+.back-link a::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+}

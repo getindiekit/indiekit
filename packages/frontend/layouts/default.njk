@@ -1,3 +1,4 @@
+{%- from "back-link/macro.njk" import backLink with context -%}
 {%- from "bookmarklet/macro.njk" import bookmarklet with context -%}
 {%- from "button/macro.njk" import button with context -%}
 {%- from "card-grid/macro.njk" import cardGrid with context -%}
@@ -64,6 +65,9 @@
         text: error if error else success,
         href: errorUri
       }) | indent(6) if error or success }}
+      {{ backLink({
+        href: back
+      }) | indent(6) if back }}
       {%- block main %}{% endblock %}
     </main>
 

@@ -1,4 +1,7 @@
 {
+  "backLink": {
+    "text": "Back"
+  },
   "error": "Error",
   "errorSummaryTitle": "There is a problem",
   "success": "Success",
