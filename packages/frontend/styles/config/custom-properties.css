@@ -62,6 +62,7 @@ html {
   --line-height-loose: 1.5;
   --line-height-prose: 1.75;
   --line-measure: 45rem;
+  --text-thickness: 0.0625em;
 
   /* Font styles */
   --font-title: 800 var(--font-size-2xl) / var(--line-height-tight)

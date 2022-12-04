@@ -8,15 +8,15 @@ a {
   color: var(--anchor-color, currentcolor);
   text-decoration-color: var(--anchor-decoration-color, currentcolor);
   text-decoration-line: var(--anchor-decoration-line, underline);
-  text-decoration-thickness: 0.0625em;
-  text-underline-offset: 0.125em;
+  text-decoration-thickness: var(--text-thickness);
+  text-underline-offset: calc(var(--text-thickness) * 2);
 }
 
 a:hover {
   color: var(--anchor-color-hover, var(--color-on-background));
   text-decoration-color: currentcolor;
-  text-decoration-thickness: 0.125em;
-  text-underline-offset: 0.0625em;
+  text-decoration-thickness: calc(var(--text-thickness) * 2);
+  text-underline-offset: calc(var(--text-thickness) * 2);
 }
 
 /* Correct text decoration in Chrome/Edge/IE/Opera/Safari */
