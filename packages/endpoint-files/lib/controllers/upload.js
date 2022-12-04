@@ -1,4 +1,5 @@
 /* global Blob */
+import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
 import { fetch, FormData } from "undici";
@@ -14,6 +15,7 @@ export const uploadController = {
   async get(request, response) {
     response.render("upload", {
       title: response.__("files.upload.title"),
+      back: path.dirname(request.baseUrl + request.path),
     });
   },
 
@@ -31,6 +33,7 @@ export const uploadController = {
     if (!errors.isEmpty()) {
       return response.status(422).render("upload", {
         title: response.__("files.upload.title"),
+        back: path.dirname(request.baseUrl + request.path),
         errors: errors.mapped(),
       });
     }
@@ -64,6 +67,7 @@ export const uploadController = {
       response.status(error.status || 500);
       response.render("upload", {
         title: response.__("files.upload.title"),
+        back: path.dirname(request.baseUrl + request.path),
         error: error.message,
       });
     }
