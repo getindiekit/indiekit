@@ -1,5 +1,5 @@
-.field > * {
-  --fieldset-flow-space: var(--space-xs);
+.field > * + * {
+  margin-block-start: var(--space-xs);
 }
 
 .field:has([type="hidden"]) {

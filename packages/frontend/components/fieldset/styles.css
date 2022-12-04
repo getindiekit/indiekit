@@ -2,8 +2,8 @@
   font: var(--font-body);
 }
 
-.fieldset * + * {
-  margin-block-start: var(--fieldset-flow-space, var(--space-l));
+.fieldset > * + * {
+  margin-block-start: var(--space-l);
 }
 
 .fieldset__legend {
