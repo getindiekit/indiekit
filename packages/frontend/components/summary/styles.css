@@ -1,11 +1,11 @@
 .summary__row {
   align-items: baseline;
   border-block-start: var(--color-outline) solid var(--border-width-thin);
+  column-gap: var(--space-s);
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
-  justify-content: end;
   padding-block: var(--space-s);
+  row-gap: var(--space-xs);
 }
 
 .summary__key {
@@ -23,23 +23,23 @@
   flex-grow: 999;
   font: var(--font-body);
   min-inline-size: 50%;
-}
 
-.summary__value a {
-  white-space: nowrap;
-}
+  & a {
+    white-space: nowrap;
+  }
 
-.summary__value pre {
-  background: none;
-  padding: 0;
-}
+  & pre {
+    background: none;
+    padding: 0;
+  }
 
-.summary__value code {
-  word-break: break-word;
-}
+  & code {
+    word-break: break-word;
+  }
 
-.summary__value small code {
-  margin-inline-start: var(--space-2xs);
+  & small code {
+    margin-inline-start: var(--space-2xs);
+  }
 }
 
 .summary__note {
