@@ -32,9 +32,6 @@ export const routes = (indiekitConfig) => {
     next();
   });
 
-  // Homepage
-  router.get("/", homepageController.viewHomepage);
-
   // Assets
   router.use("/assets", express.static(assetsPath));
   router.get("/assets/app.js", assetsController.getScripts);
@@ -71,6 +68,9 @@ export const routes = (indiekitConfig) => {
 
   // Authenticate subsequent requests
   router.use(indieauth.authenticate());
+
+  // Homepage
+  router.get("/", homepageController.viewHomepage);
 
   // Plugin
   router.get("/plugins", limit, pluginController.list);

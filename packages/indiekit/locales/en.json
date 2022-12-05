@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:"
   },
+  "homepage": {
+    "title": "Welcome!"
+  },
   "session": {
     "login": {
       "title": "Sign in",
@@ -40,6 +43,7 @@
       "summaryTitle": "Application settings",
       "accessToken": "Access token",
       "name": "Name",
+      "installedPlugins": "Installed plug-ins",
       "locale": "Language",
       "localeNotAvailable": "{{app}} has not been translated into {{locale}} yet",
       "themeColor": "Theme color",
@@ -49,7 +53,7 @@
         "light": "Light",
         "dark": "Dark"
       },
-      "installedPlugins": "Installed plug-ins"
+      "version": "Version"
     },
     "publication": {
       "summaryTitle": "Publication settings",

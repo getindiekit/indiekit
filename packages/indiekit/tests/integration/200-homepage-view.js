@@ -1,0 +1,20 @@
+import test from "ava";
+import supertest from "supertest";
+import { JSDOM } from "jsdom";
+import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
+
+test("Homepage redirects to status page", async (t) => {
+  const server = await testServer();
+  const request = supertest.agent(server);
+  const response = await request.get("/").auth(testToken(), { type: "bearer" });
+  const dom = new JSDOM(response.text);
+  const result = dom.window.document;
+
+  t.is(
+    result.querySelector("title").textContent,
+    "Welcome! - Test configuration"
+  );
+
+  server.close(t);
+});

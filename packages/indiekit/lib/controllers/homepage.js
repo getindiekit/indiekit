@@ -1,1 +1,5 @@
-export const viewHomepage = (request, response) => response.redirect("/status");
+export const viewHomepage = (request, response) => {
+  response.render("homepage", {
+    title: response.__("homepage.title"),
+  });
+};

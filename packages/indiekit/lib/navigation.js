@@ -12,6 +12,14 @@ export const getNavigation = (application, request, response) => {
         },
   ];
 
+  if (request.session.access_token) {
+    navigation.push({
+      href: "/status",
+      text: "status.title",
+      secondary: true,
+    });
+  }
+
   // Add navigation items from endpoint plug-ins
   for (const endpoint of application.endpoints) {
     if (endpoint.navigationItems) {

@@ -52,7 +52,7 @@
       url: application.url,
       name: application.name,
       navigation: {
-        items: application.navigation,
+        items: application.navigation | rejectattr("secondary"),
         label: "site"
       }
     }) | indent(4) if not minimalui }}
@@ -80,13 +80,10 @@
         alt: "Indiekit"
       },
       navigation: {
-        items: [{
-          href: application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version,
-          text: "v" + application.version
-        }],
+        items: application.navigation | selectattr("secondary"),
         label: "secondary"
       }
-    }) | indent() if not minimalui }}
+    }) | indent(4) if not minimalui }}
   {%- endblock %}
   </body>
 </html>

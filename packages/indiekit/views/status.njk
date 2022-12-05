@@ -1,15 +1,5 @@
 {% extends "document.njk" %}
 
-{% set discovery %}
-{{ __("guidance.discovery", application.name) | safe }}
-
-```html
-<link rel="micropub" href="{{ application.micropubEndpoint }}">
-<link rel="authorization_endpoint" href="{{ application.authorizationEndpoint }}">
-<link rel="token_endpoint" href="{{ application.tokenEndpoint }}">
-```
-{% endset %}
-
 {%- set presetHtml %}
   <img class="icon icon--rounded" src="{{ "/assets/" + publication.preset.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.preset.info.name }}
 {% endset -%}
@@ -39,6 +29,12 @@
   {% endfor %}</ul>
 {% endset -%}
 
+{%- set versionHtml %}
+  <a href="{{ application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version }}">
+    {{ "v" + application.version }}
+  </a>
+{% endset -%}
+
 {%- set localeHtml %}
   <p>{{ application.localeUsed.split("-") | first | languageNativeName }}</p>
   {% if application.locale and (application.locale !== application.localeUsed) %}
@@ -59,15 +55,6 @@
 {% endset -%}
 
 {% block content %}
-  {{ section({
-    id: "discovery",
-    text: discovery
-  }) }}
-
-{% for plugin in application.installedPlugins -%}
-  {% include plugin.id + "-status.njk" ignore missing %}
-{%- endfor %}
-
   {% call section({ title: __("status.publication.summaryTitle") }) %}
     {{ summary({
       rows: [{
@@ -124,11 +111,7 @@
   {% endcall %}
 
   {% call section({
-    title: __("status.application.summaryTitle"),
-    actions: [{
-      text: __("status.application.installedPlugins"),
-      href: "/plugins/"
-    }]
+    title: __("status.application.summaryTitle")
   }) %}
     {{ summary({
       rows: [{
@@ -137,6 +120,13 @@
         },
         value: {
           text: application.name
+        }
+      }, {
+        key: {
+          text: __("status.application.version")
+        },
+        value: {
+          text: versionHtml
         }
       }, {
         key: {

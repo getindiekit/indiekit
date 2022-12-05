@@ -1,0 +1,23 @@
+{% extends "document.njk" %}
+
+{% set discovery %}
+{{ __("guidance.discovery", application.name) | safe }}
+
+```html
+<link rel="micropub" href="{{ application.micropubEndpoint }}">
+<link rel="authorization_endpoint" href="{{ application.authorizationEndpoint }}">
+<link rel="token_endpoint" href="{{ application.tokenEndpoint }}">
+```
+{% endset %}
+
+{% block content %}
+  {{ section({
+    id: "discovery",
+    text: discovery
+  }) }}
+
+{% for plugin in application.installedPlugins -%}
+  {% include plugin.id + "-status.njk" ignore missing %}
+{%- endfor %}
+
+{% endblock %}
