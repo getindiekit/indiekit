@@ -11,7 +11,6 @@ test("Generates JSON Feed", (t) => {
   const feedUrl = "https://server.example/feed.json";
   const posts = [
     {
-      lastAction: "create",
       path: "cheese-sandwich.md",
       properties: JSON.parse(getFixture("jf2/all-properties.jf2")),
     },
