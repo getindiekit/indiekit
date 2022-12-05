@@ -1,6 +1,11 @@
 {
+  "backLink": {
+    "text": "Terug"
+  },
   "error": "Fout",
-  "errorSummaryTitle": "Er is een Probleem",
+  "errorSummary": {
+    "title": "Er is een Probleem"
+  },
   "noValue": "Niet ingesteld",
   "optionalValue": "(optioneel)",
   "pagination": {

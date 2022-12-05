@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Usuń plik",
+      "cancel": "Nie, wróć do pliku",
+      "note": "Może być nadal dostępny lub możliwy do odzyskania ze sklepu z treściami (%s).",
+      "submit": "Tak, usuń ten plik",
+      "title": "Czy na pewno chcesz usunąć ten plik?"
+    },
     "error": {
       "file": "Wybierz plik do przesłania"
     },

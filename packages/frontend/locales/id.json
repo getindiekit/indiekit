@@ -1,6 +1,11 @@
 {
+  "backLink": {
+    "text": "Kembali"
+  },
   "error": "Kesalahan",
-  "errorSummaryTitle": "Ada masalah",
+  "errorSummary": {
+    "title": "Ada masalah"
+  },
   "noValue": "Tidak ada",
   "optionalValue": "(opsional)",
   "pagination": {

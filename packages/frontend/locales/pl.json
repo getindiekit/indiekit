@@ -1,6 +1,11 @@
 {
+  "backLink": {
+    "text": "Wstecz"
+  },
   "error": "Błąd",
-  "errorSummaryTitle": "Wystąpił problem",
+  "errorSummary": {
+    "title": "Wystąpił problem"
+  },
   "noValue": "Nie ustawiono",
   "optionalValue": "(opcjonalnie)",
   "pagination": {

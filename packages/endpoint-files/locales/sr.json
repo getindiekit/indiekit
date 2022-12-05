@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Izbriši datoteku",
+      "cancel": "Ne, vrati se u fajl",
+      "note": "Možda je i dalje dostupan ili oporavljiv u vašoj prodavnici sadržaja (%s).",
+      "submit": "Da, izbrišite ovu datoteku",
+      "title": "Da li ste sigurni da želite da izbrišete ovu datoteku?"
+    },
     "error": {
       "file": "Odaberite datoteku za otpremanje"
     },

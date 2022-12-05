@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Verwijder bestand",
+      "cancel": "Nee, terug naar bestand",
+      "note": "Het is mogelijk nog steeds toegankelijk of kan worden hersteld in uw inhoudswinkel (%s).",
+      "submit": "Ja, verwijder dit bestand",
+      "title": "Weet u zeker dat u dit bestand wilt verwijderen?"
+    },
     "error": {
       "file": "Kies een bestand om te uploaden"
     },

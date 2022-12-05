@@ -1,6 +1,11 @@
 {
+  "backLink": {
+    "text": "Nazad"
+  },
   "error": "Greška",
-  "errorSummaryTitle": "Postoji problem",
+  "errorSummary": {
+    "title": "Postoji problem"
+  },
   "noValue": "Nije rešeno",
   "optionalValue": "(opcionalno)",
   "pagination": {

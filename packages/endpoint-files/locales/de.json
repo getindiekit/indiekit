@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Datei löschen",
+      "cancel": "Nein, zurück zur Datei",
+      "note": "Möglicherweise ist es weiterhin in Ihrem Inhaltsspeicher (%s) zugänglich oder wiederherstellbar.",
+      "submit": "Ja, lösche diese Datei",
+      "title": "Möchten Sie diese Datei wirklich löschen?"
+    },
     "error": {
       "file": "Wählen Sie eine Datei zum Hochladen aus"
     },

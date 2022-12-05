@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Excluir arquivo",
+      "cancel": "Não, retornar ao arquivo",
+      "note": "Ele ainda pode estar acessível ou recuperável em sua loja de conteúdo (%s).",
+      "submit": "Sim, exclua este arquivo",
+      "title": "Tem a certeza de que quer eliminar este ficheiro?"
+    },
     "error": {
       "file": "Escolha um arquivo para fazer upload"
     },

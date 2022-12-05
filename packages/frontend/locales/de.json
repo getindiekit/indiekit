@@ -1,6 +1,11 @@
 {
+  "backLink": {
+    "text": "Zurück"
+  },
   "error": "Fehler",
-  "errorSummaryTitle": "Es gibt ein Problem",
+  "errorSummary": {
+    "title": "Es gibt ein Problem"
+  },
   "noValue": "Nicht festgelegt",
   "optionalValue": "(fakultativ)",
   "pagination": {

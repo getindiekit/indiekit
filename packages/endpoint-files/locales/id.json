@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Hapus file",
+      "cancel": "Tidak, kembali ke berkas",
+      "note": "Mungkin masih dapat diakses atau dipulihkan dari penyimpanan konten Anda (%s).",
+      "submit": "Ya, hapus file ini",
+      "title": "Apakah Anda yakin ingin menghapus file ini?"
+    },
     "error": {
       "file": "Pilih file yang akan diunggah"
     },

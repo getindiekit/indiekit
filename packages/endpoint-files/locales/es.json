@@ -1,5 +1,12 @@
 {
   "files": {
+    "delete": {
+      "action": "Eliminar archivo",
+      "cancel": "No, volver al archivo",
+      "note": "Todavía puede ser accesible o recuperable desde su almacén de contenido (%s).",
+      "submit": "Sí, borra este archivo",
+      "title": "¿Estás seguro de que este archivo debe eliminarse?"
+    },
     "error": {
       "file": "Elige un archivo para subirlo"
     },
