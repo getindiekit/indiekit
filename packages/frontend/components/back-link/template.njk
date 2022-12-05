@@ -1,5 +1,5 @@
 <div class="{{ classes("back-link", opts) }}">
   <a href="{{ opts.href }}">{{
-    opts.text | default(__(__("backLink.text"))) | safe
+    opts.text | default(__("backLink.text")) | safe
   }}</a>
 </div>
