@@ -1,4 +1,5 @@
 .hint {
   color: var(--color-on-offset);
   font: var(--font-caption);
+  overflow-wrap: anywhere;
 }
