@@ -7,7 +7,7 @@
       "label": "Créer des publications"
     },
     "delete": {
-      "label": "Supprimer des publications"
+      "label": "Supprimer des publications et les médias"
     },
     "draft": {
       "label": "Créer et mettre à jour des brouillons de publications uniquement"

@@ -19,7 +19,7 @@
       "label": "Create posts"
     },
     "delete": {
-      "label": "Delete posts"
+      "label": "Delete posts and media"
     },
     "draft": {
       "label": "Create and update draft posts only"
