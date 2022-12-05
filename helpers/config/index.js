@@ -45,6 +45,7 @@ export const testConfig = async (options) => {
       "@indiekit-test/store",
       ...(options.usePreset ? ["@indiekit/preset-jekyll"] : []),
       ...(options.useSyndicator ? ["@indiekit/syndicator-twitter"] : []),
+      ...(options.plugins || []),
     ],
     publication: {
       me: options?.publication?.me || "https://website.example",
