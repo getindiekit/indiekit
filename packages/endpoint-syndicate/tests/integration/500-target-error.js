@@ -12,7 +12,9 @@ test("Returns 500 error syndicating URL", async (t) => {
     .post("/1.1/statuses/update.json")
     .replyWithError("Not found");
 
-  const server = await testServer();
+  const server = await testServer({
+    plugins: ["@indiekit/syndicator-twitter"],
+  });
   const request = supertest.agent(server);
   await request
     .post("/micropub")

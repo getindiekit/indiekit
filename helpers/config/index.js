@@ -8,7 +8,6 @@ const defaultOptions = {
   useDatabase: true,
   usePostTypes: true,
   usePreset: true,
-  useSyndicator: true,
 };
 
 export const testConfig = async (options) => {
@@ -44,7 +43,6 @@ export const testConfig = async (options) => {
     plugins: [
       "@indiekit-test/store",
       ...(options.usePreset ? ["@indiekit/preset-jekyll"] : []),
-      ...(options.useSyndicator ? ["@indiekit/syndicator-twitter"] : []),
       ...(options.plugins || []),
     ],
     publication: {

@@ -7,7 +7,7 @@ import { testToken } from "@indiekit-test/token";
 await mockAgent("store");
 
 test("Returns no syndication targets configured", async (t) => {
-  const server = await testServer({ useSyndicator: false });
+  const server = await testServer();
   const request = supertest.agent(server);
   await request
     .post("/micropub")

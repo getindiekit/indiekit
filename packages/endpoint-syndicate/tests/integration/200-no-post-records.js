@@ -4,7 +4,9 @@ import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
 test("Returns no post records", async (t) => {
-  const server = await testServer();
+  const server = await testServer({
+    plugins: ["@indiekit/syndicator-twitter"],
+  });
   const request = supertest.agent(server);
   const result = await request
     .post("/syndicate")

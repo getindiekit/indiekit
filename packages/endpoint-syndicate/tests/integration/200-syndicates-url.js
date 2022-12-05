@@ -16,7 +16,9 @@ test("Syndicates a URL", async (t) => {
       user: { screen_name: "username" }, // eslint-disable-line camelcase
     });
 
-  const server = await testServer();
+  const server = await testServer({
+    plugins: ["@indiekit/syndicator-twitter"],
+  });
   const request = supertest.agent(server);
   await request
     .post("/micropub")
