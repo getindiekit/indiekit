@@ -19,7 +19,5 @@
     attributes: {
       formenctype: "multipart/form-data"
     }
-  }) if session.access_token else warningText({
-    text: __("scope.none.label")
-  }) }}
+  }) | indent(2) }}
 {% endblock %}

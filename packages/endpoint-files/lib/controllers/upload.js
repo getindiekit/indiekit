@@ -13,10 +13,17 @@ export const uploadController = {
    * @returns {object} HTTP response
    */
   async get(request, response) {
-    response.render("upload", {
-      title: response.__("files.upload.title"),
-      back: path.dirname(request.baseUrl + request.path),
-    });
+    const { scope } = request.session;
+    const back = path.dirname(request.baseUrl + request.path);
+
+    if (scope.includes("create") || scope.includes("media")) {
+      return response.render("upload", {
+        title: response.__("files.upload.title"),
+        back,
+      });
+    }
+
+    response.redirect(back);
   },
 
   /**

@@ -16,6 +16,7 @@ export const fileController = async (request, response, next) => {
   try {
     const { application } = request.app.locals;
     const { id } = request.params;
+    const { scope } = request.session;
     const url = Buffer.from(id, "base64url").toString("utf8");
 
     const mediaUrl = new URL(application.mediaEndpoint);
@@ -46,12 +47,14 @@ export const fileController = async (request, response, next) => {
         text: response.__("files.files.title"),
       },
       actions: [
-        {
-          classes: "actions__link--warning",
-          href: path.join(request.originalUrl, "/delete"),
-          icon: "delete",
-          text: response.__("files.delete.action"),
-        },
+        scope.includes("delete")
+          ? {
+              classes: "actions__link--warning",
+              href: path.join(request.originalUrl, "/delete"),
+              icon: "delete",
+              text: response.__("files.delete.action"),
+            }
+          : {},
       ],
     });
   } catch (error) {

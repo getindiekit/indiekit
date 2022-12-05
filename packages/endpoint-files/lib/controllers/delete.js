@@ -13,15 +13,22 @@ export const deleteController = {
    * @returns {object} HTTP response
    */
   async get(request, response) {
-    const { id } = request.params;
-    const url = Buffer.from(id, "base64url").toString("utf8");
+    const { scope } = request.session;
+    const back = path.dirname(request.baseUrl + request.path);
 
-    response.render("delete-file", {
-      title: response.__("files.delete.title"),
-      back: path.dirname(request.baseUrl + request.path),
-      parent: { text: getFileName(url) },
-      url,
-    });
+    if (scope.includes("delete")) {
+      const { id } = request.params;
+      const url = Buffer.from(id, "base64url").toString("utf8");
+
+      return response.render("delete-file", {
+        title: response.__("files.delete.title"),
+        back,
+        parent: { text: getFileName(url) },
+        url,
+      });
+    }
+
+    response.redirect(back);
   },
 
   /**

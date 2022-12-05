@@ -15,6 +15,7 @@ import { getFileName } from "../utils.js";
 export const filesController = async (request, response, next) => {
   try {
     const { application, publication } = request.app.locals;
+    const { scope } = request.session;
 
     let { page, limit, offset, success } = request.query;
     page = Number.parseInt(page, 10) || 1;
@@ -64,11 +65,13 @@ export const filesController = async (request, response, next) => {
     response.render("files", {
       title: response.__("files.files.title"),
       actions: [
-        {
-          href: path.join(request.baseUrl + request.path, "/new/"),
-          icon: "uploadFile",
-          text: response.__("files.upload.title"),
-        },
+        scope.includes("create") || scope.includes("media")
+          ? {
+              href: path.join(request.baseUrl + request.path, "/new/"),
+              icon: "uploadFile",
+              text: response.__("files.upload.title"),
+            }
+          : {},
       ],
       files,
       page,
