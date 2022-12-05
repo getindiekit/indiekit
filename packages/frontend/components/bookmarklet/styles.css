@@ -9,9 +9,9 @@
   padding-block: calc(var(--space-xs) / 2);
   padding-inline: var(--space-xs);
   white-space: nowrap;
-}
 
-.bookmarklet:hover {
-  background-color: var(--color-offset-variant);
-  border-color: currentcolor;
+  &:hover {
+    background-color: var(--color-offset-variant);
+    border-color: currentcolor;
+  }
 }

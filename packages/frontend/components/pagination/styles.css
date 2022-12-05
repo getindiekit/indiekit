@@ -43,15 +43,15 @@
   display: block;
   padding-block: calc(var(--space-m) / 2);
   padding-inline: var(--space-m);
+
+  &:hover {
+    background-color: var(--color-offset);
+  }
 }
 
 .pagination__item--current .pagination__link {
   color: var(--color-on-background);
   font-weight: 600;
-}
-
-.pagination__link:hover {
-  background-color: var(--color-offset);
 }
 
 .pagination__link-title {

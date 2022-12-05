@@ -1,4 +1,5 @@
 .label {
   display: block;
   font: var(--font-label);
+  font-weight: var(--label-font-weight, 600);
 }

@@ -1,9 +1,11 @@
-.field > * + * {
-  margin-block-start: var(--space-xs);
-}
+.field {
+  &:has([type="hidden"]) {
+    display: none;
+  }
 
-.field:has([type="hidden"]) {
-  display: none;
+  & > * + * {
+    margin-block-start: var(--space-xs);
+  }
 }
 
 .field--error {

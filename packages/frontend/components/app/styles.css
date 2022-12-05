@@ -8,36 +8,36 @@
 
 .app--minimalui {
   --container-max-inline-size: 36rem;
-}
 
-.app--minimalui .header,
-.app--minimalui .main {
-  background-color: transparent;
-}
+  & .header,
+  & .main {
+    background-color: transparent;
+  }
 
-.app--minimalui .header__container,
-.app--minimalui .footer__container {
-  align-items: center;
-  inline-size: auto;
-}
+  & .header__container,
+  & .footer__container {
+    align-items: center;
+    inline-size: auto;
+  }
 
-.app--minimalui .main {
-  flex: 0;
-  margin: auto;
-  overflow: hidden;
-}
+  & .main {
+    flex: 0;
+    margin: auto;
+    overflow: hidden;
+  }
 
-.app--minimalui .main__container {
-  background-color: var(--color-background);
-  border-radius: var(--border-radius-large);
-}
+  & .main__container {
+    background-color: var(--color-background);
+    border-radius: var(--border-radius-large);
+  }
 
-.app--minimalui .notification {
-  border-start-end-radius: var(--border-radius-large);
-  border-start-start-radius: var(--border-radius-large);
-}
+  & .notification {
+    border-start-end-radius: var(--border-radius-large);
+    border-start-start-radius: var(--border-radius-large);
+  }
 
-.app--minimalui .notification + .main__container {
-  border-start-end-radius: 0;
-  border-start-start-radius: 0;
+  & .notification + .main__container {
+    border-start-end-radius: 0;
+    border-start-start-radius: 0;
+  }
 }

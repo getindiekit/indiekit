@@ -11,8 +11,8 @@
   max-inline-size: var(--container-max-inline-size);
   padding-block: var(--space-l);
   padding-inline: var(--container-padding-inline);
-}
 
-.main__container > * + * {
-  margin-block-start: var(--space-xl);
+  & > * + * {
+    margin-block-start: var(--space-xl);
+  }
 }

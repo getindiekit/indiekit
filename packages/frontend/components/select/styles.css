@@ -12,20 +12,20 @@
   inline-size: 100%;
   padding-block: calc(var(--space-s) / 2);
   padding-inline: var(--space-s);
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:focus {
+    border-color: var(--color-outline-variant);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23fff' d='M0 8h32L16 24z'/%3E%3C/svg%3E");
   }
-}
-
-.select::-ms-expand {
-  display: none;
-}
-
-.select:focus {
-  border-color: var(--color-outline-variant);
 }
 
 .select--error {

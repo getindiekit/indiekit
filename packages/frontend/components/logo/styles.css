@@ -1,14 +1,14 @@
 .logo {
   display: block;
   padding: var(--space-s);
-}
 
-.logo img {
-  opacity: 0.25;
-}
+  & img {
+    opacity: 0.25;
+  }
 
-.logo:hover img {
-  opacity: 0.5;
+  &:hover img {
+    opacity: 0.5;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

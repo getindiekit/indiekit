@@ -1,9 +1,9 @@
 .fieldset {
   font: var(--font-body);
-}
 
-.fieldset > * + * {
-  margin-block-start: var(--space-l);
+  & > * + * {
+    margin-block-start: var(--space-l);
+  }
 }
 
 .fieldset__legend {

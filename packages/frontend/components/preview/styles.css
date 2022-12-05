@@ -3,14 +3,14 @@
   border-radius: var(--border-radius-small);
   color: var(--color-on-offset);
   padding: var(--space-m);
-}
 
-.preview > * + * {
-  margin-block-start: var(--space-xs);
-}
+  & output.placeholder {
+    opacity: 0.5;
+  }
 
-.preview output.placeholder {
-  opacity: 0.5;
+  & > * + * {
+    margin-block-start: var(--space-xs);
+  }
 }
 
 .preview__title {
