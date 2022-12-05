@@ -1,4 +1,4 @@
-export const scopes = ["create", "update", "draft", "delete", "media"];
+export const scopes = ["create", "update", "draft", "media", "delete"];
 
 /**
  * Get `items` object for checkboxes component
