@@ -3,7 +3,7 @@ import express from "express";
 import { assetsPath } from "@indiekit/frontend";
 import rateLimit from "express-rate-limit";
 import * as assetsController from "./controllers/assets.js";
-import * as feedsController from "./controllers/feeds.js";
+import * as feedController from "./controllers/feed.js";
 import * as homepageController from "./controllers/homepage.js";
 import * as pluginController from "./controllers/plugin.js";
 import * as sessionController from "./controllers/session.js";
@@ -50,8 +50,7 @@ export const routes = (indiekitConfig) => {
   }
 
   // Feed
-  router.get("/feed.jf2", feedsController.jf2);
-  router.get("/feed.json", feedsController.json);
+  router.get("/feed.jf2", feedController.jf2);
 
   // Session
   router.get("/session/login", limit, sessionController.login);
