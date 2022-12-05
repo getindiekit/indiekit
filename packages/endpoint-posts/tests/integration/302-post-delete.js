@@ -1,13 +1,13 @@
 import test from "ava";
-import { JSDOM } from "jsdom";
 import supertest from "supertest";
+import { JSDOM } from "jsdom";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
-test("Returns previously published post", async (t) => {
+test("Deletes post and redirects to posts page", async (t) => {
   // Create post
   const server = await testServer();
   const request = supertest.agent(server);
@@ -22,18 +22,13 @@ test("Returns previously published post", async (t) => {
   const postsResponse = await request.get("/posts");
   const postsDom = new JSDOM(postsResponse.text);
   const postLink = postsDom.window.document.querySelector(".file-list a");
-  const postName = postLink.textContent;
   const postId = postLink.href.split("/").pop();
 
-  // Visit post page
-  const postResponse = await request.get(`/posts/${postId}`);
-  const postDom = new JSDOM(postResponse.text);
-  const result = postDom.window.document;
+  // Delete post
+  const result = await request.post(`/posts/${postId}/delete`);
 
-  t.is(
-    result.querySelector("title").textContent,
-    `${postName} - Test configuration`
-  );
+  t.is(result.status, 302);
+  t.regex(result.text, /Found. Redirecting to \/posts\?success/);
 
   server.close(t);
 });

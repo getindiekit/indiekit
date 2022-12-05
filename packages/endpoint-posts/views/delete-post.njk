@@ -1,0 +1,9 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ button({
+    classes: "button--warning",
+    text: __("posts.delete.submit")
+  }) }}
+  <p><a href="{{ back }}">{{ __("posts.delete.cancel") }}</a></p>
+{% endblock %}

@@ -1,5 +1,11 @@
 {
   "posts": {
+    "delete": {
+      "action": "Delete post",
+      "title": "Are you sure you want to delete this post?",
+      "cancel": "No, return to post",
+      "submit": "Yes, delete this post"
+    },
     "post": {
       "properties": "Properties"
     },

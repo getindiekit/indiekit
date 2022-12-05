@@ -27,7 +27,7 @@ export const postsController = async (request, response, next) => {
     micropubUrl.searchParams.append("offset", offset);
 
     /**
-     * @todo Third-party media endpoints may require a separate bearer token
+     * @todo Third-party Micropub endpoints may require a separate bearer token
      */
     const micropubResponse = await fetch(micropubUrl.href, {
       headers: {
@@ -40,12 +40,16 @@ export const postsController = async (request, response, next) => {
       throw await IndiekitError.fromFetch(micropubResponse);
     }
 
-    const body = await micropubResponse.json();
     let posts;
+    const body = await micropubResponse.json();
     if (body?.items?.length > 0) {
-      const mf2 = mf2tojf2(body);
-      const items = mf2.children || [mf2];
+      const jf2 = mf2tojf2(body);
+      const items = jf2.children || [jf2];
+
       posts = items.map((item) => {
+        item.classes = item["post-status"]
+          ? `file-list__item--${item["post-status"]}`
+          : "";
         item.id = Buffer.from(item.url).toString("base64url");
         return item;
       });
