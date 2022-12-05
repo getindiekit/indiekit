@@ -12,6 +12,15 @@
   display: flex;
 }
 
+.file-list__item--deleted {
+  --anchor-decoration-line: line-through;
+  --anchor-decoration-color: currentcolor;
+
+  .icon {
+    opacity: 0.5;
+  }
+}
+
 .file__title {
   font: var(--font-label);
 }

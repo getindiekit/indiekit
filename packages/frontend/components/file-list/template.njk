@@ -1,6 +1,6 @@
 <ol class="{{ classes("file-list", opts) }}" role="list">
   {%- for item in opts.items %}
-  <li class="file-list__item">
+  <li class="{{ classes("file-list__item", item) }}">
     {{ icon(item["post-type"]) }}
     <div class="file__body">
       <h2 class="file__title">
