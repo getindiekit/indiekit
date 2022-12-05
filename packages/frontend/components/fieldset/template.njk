@@ -1,7 +1,7 @@
 {%- from "../heading/macro.njk" import heading with context -%}
 {%- set legend %}
   {%- if opts.legend.text %}
-  <legend class="{{ classes("fieldset__legend", opts.legend.classes) }}">
+  <legend class="{{ classes("fieldset__legend", opts.legend) }}">
   {%- if opts.legend.isPageHeading %}
     {{ heading(opts.legend) }}
   {%- else %}
