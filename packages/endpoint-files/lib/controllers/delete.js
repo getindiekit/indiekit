@@ -62,7 +62,7 @@ export const deleteController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("delete", {
-        title: response.__("files.upload.title"),
+        title: response.__("files.delete.title"),
         back: path.dirname(request.baseUrl + request.path),
         parent: { text: getFileName(url) },
         error: error.message,
