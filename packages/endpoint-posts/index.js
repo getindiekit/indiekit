@@ -1,4 +1,5 @@
 import express from "express";
+import { deleteController } from "./lib/controllers/delete.js";
 import { postController } from "./lib/controllers/post.js";
 import { postsController } from "./lib/controllers/posts.js";
 
@@ -25,6 +26,8 @@ export default class PostsEndpoint {
   get routes() {
     router.get("/", postsController);
     router.get("/:id", postController);
+    router.get("/:id/delete", deleteController.get);
+    router.post("/:id/delete", deleteController.post);
 
     return router;
   }

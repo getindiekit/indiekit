@@ -1,8 +1,5 @@
-import { Buffer } from "node:buffer";
 import path from "node:path";
-import { IndiekitError } from "@indiekit/error";
-import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import { fetch } from "undici";
+import { getPostData, getPostName } from "../utils.js";
 
 /**
  * View previously published post
@@ -14,38 +11,32 @@ import { fetch } from "undici";
  */
 export const postController = async (request, response, next) => {
   try {
-    const { application } = request.app.locals;
+    const { access_token, scope } = request.session;
+    const { application, publication } = request.app.locals;
     const { id } = request.params;
-    const url = Buffer.from(id, "base64url").toString("utf8");
-
-    const micropubUrl = new URL(application.micropubEndpoint);
-    micropubUrl.searchParams.append("q", "source");
-    micropubUrl.searchParams.append("url", url);
-
-    /**
-     * @todo Third-party media endpoints may require a separate bearer token
-     */
-    const micropubResponse = await fetch(micropubUrl.href, {
-      headers: {
-        accept: "application/json",
-        authorization: `Bearer ${request.session.access_token}`,
-      },
-    });
-
-    if (!micropubResponse.ok) {
-      throw await IndiekitError.fromFetch(micropubResponse);
-    }
-
-    const body = await micropubResponse.json();
-    const post = mf2tojf2(body);
+    const post = await getPostData(
+      id,
+      application.micropubEndpoint,
+      access_token
+    );
 
     response.render("post", {
-      title: post.name,
+      title: getPostName(post, publication),
       post,
       parent: {
         href: path.dirname(request.baseUrl + request.path),
         text: response.__("posts.posts.title"),
       },
+      actions: [
+        scope.includes("delete") && post["post-status"] !== "deleted"
+          ? {
+              classes: "actions__link--warning",
+              href: path.join(request.originalUrl, "/delete"),
+              icon: "delete",
+              text: response.__("posts.delete.action"),
+            }
+          : {},
+      ],
     });
   } catch (error) {
     next(error);

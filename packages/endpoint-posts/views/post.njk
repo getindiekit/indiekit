@@ -1,7 +1,5 @@
 {% extends "document.njk" %}
 
-{% set title = title or post["post-type"] | capitalize %}
-
 {% block content %}
   {{ prose({ html: post.content.html }) }}
 
