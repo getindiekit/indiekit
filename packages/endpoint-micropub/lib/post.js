@@ -20,7 +20,7 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = metaData.action;
+      postData.properties["post-status"] = "published";
 
       if (posts) {
         await posts.insertOne(postData, {
@@ -61,7 +61,6 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = metaData.action;
 
       if (posts) {
         await posts.replaceOne(
@@ -109,7 +108,7 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = metaData.action;
+      postData.properties["post-status"] = "deleted";
 
       if (posts) {
         await posts.replaceOne(
@@ -143,7 +142,7 @@ export const post = {
   async undelete(publication, postData) {
     const { posts, postTemplate, store, storeMessageTemplate } = publication;
 
-    if (postData.lastAction !== "delete") {
+    if (postData.properties?.["post-status"] !== "deleted") {
       throw new Error("Post was not previously deleted");
     }
 
@@ -159,7 +158,7 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.lastAction = metaData.action;
+      postData.properties["post-status"] = "draft";
 
       if (posts) {
         await posts.replaceOne(
