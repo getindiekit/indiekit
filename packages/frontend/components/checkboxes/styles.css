@@ -119,4 +119,8 @@
   & .fieldset__legend {
     margin-block-end: var(--space-2xs);
   }
+
+  & .checkboxes {
+    margin-block-start: var(--space-xs);
+  }
 }

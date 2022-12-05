@@ -4,6 +4,10 @@
   & > * + * {
     margin-block-start: var(--space-l);
   }
+
+  & .button + .hint {
+    margin-block-start: var(--space-xs);
+  }
 }
 
 .fieldset__legend {

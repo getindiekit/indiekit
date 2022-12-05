@@ -1,4 +1,5 @@
-<p class="{{ classes("hint", opts) }}" id="{{ opts.id }}"
+<p class="{{ classes("hint", opts) }}"
+  {%- if opts.id %} id="{{ opts.id }}"{% endif %}
   {{- attributes(opts.attributes) }}>
   {{- opts.text | safe -}}
 </p>
