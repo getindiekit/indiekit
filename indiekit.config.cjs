@@ -10,6 +10,7 @@ module.exports = {
     }),
   },
   plugins: [
+    "@indiekit/endpoint-json-feed",
     "@indiekit/preset-jekyll",
     "@indiekit/store-file-system",
     "@indiekit/syndicator-mastodon",
