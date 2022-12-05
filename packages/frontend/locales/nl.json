@@ -17,5 +17,8 @@
     "result": "Toont {{from}} van {{count}} {{type}}",
     "results": "Toont {{from}} aan {{to}} van {{count}} {{type}}"
   },
+  "skipLink": {
+    "text": "Skip naar content"
+  },
   "success": "Succes"
 }

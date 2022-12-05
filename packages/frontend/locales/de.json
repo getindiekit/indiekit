@@ -17,5 +17,8 @@
     "result": "{{from}} von {{count}} {{type}} werden angezeigt",
     "results": "{{from}} bis {{to}} von {{count}} {{type}} werden angezeigt"
   },
+  "skipLink": {
+    "text": "Zum Inhalt springen"
+  },
   "success": "Erfolgreich"
 }

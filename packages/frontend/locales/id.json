@@ -17,5 +17,8 @@
     "result": "Menampilkan {{from}} dari {{count}} {{type}}",
     "results": "Menampilkan {{from}} ke {{to}} dari {{count}} {{type}}"
   },
+  "skipLink": {
+    "text": "Langsung ke konten"
+  },
   "success": "Keberhasilan"
 }

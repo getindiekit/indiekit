@@ -6,6 +6,9 @@
   "errorSummary": {
     "title": "There is a problem"
   },
+  "skipLink": {
+    "text": "Skip to content"
+  },
   "success": "Success",
   "noValue": "Not set",
   "optionalValue": "(optional)",

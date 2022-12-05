@@ -17,5 +17,8 @@
     "result": "Wyświetlanie {{from}} z {{count}} {{type}}",
     "results": "Wyświetlanie {{from}} do {{to}} z {{count}} {{type}}"
   },
+  "skipLink": {
+    "text": "Przejdź do treści"
+  },
   "success": "Sukces"
 }

@@ -1,0 +1,12 @@
+.skip-link {
+  background-color: var(--color-focus);
+  display: block;
+  inline-size: 100%;
+  padding: var(--space-s);
+  position: static;
+
+  &:not(:focus) {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-out;
+  }
+}

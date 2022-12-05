@@ -17,5 +17,8 @@
     "result": "Prikazuje se {{from}} od {{count}} {{type}}",
     "results": "Prikazuje se {{from}} do {{to}} od {{count}} {{type}}"
   },
+  "skipLink": {
+    "text": "Preskoči na sadržaj"
+  },
   "success": "Uspeh"
 }

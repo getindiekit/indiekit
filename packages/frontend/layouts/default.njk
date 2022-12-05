@@ -17,6 +17,7 @@
 {%- from "radios/macro.njk" import radios with context -%}
 {%- from "section/macro.njk" import section with context -%}
 {%- from "select/macro.njk" import select with context -%}
+{%- from "skip-link/macro.njk" import skipLink with context -%}
 {%- from "summary/macro.njk" import summary with context -%}
 {%- from "textarea/macro.njk" import textarea with context -%}
 {%- from "warning-text/macro.njk" import warningText with context -%}
@@ -44,6 +45,7 @@
   </head>
 
   <body class="{{ appClasses }}">
+    {{ skipLink() }}
 
   {%- block header %}
     {{ header({
