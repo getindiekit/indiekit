@@ -1,0 +1,43 @@
+{
+  "name": "@indiekit/endpoint-json-feed",
+  "version": "1.0.0-alpha.16",
+  "description": "Syndicate posts from Indiekit using JSON Feed",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "json-feed"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "includes",
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/endpoint-json-feed"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mime-types": "^2.1.35"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

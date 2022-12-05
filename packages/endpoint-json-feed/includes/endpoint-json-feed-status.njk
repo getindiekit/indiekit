@@ -1,0 +1,5 @@
+{%- set feedUrl = application.url + application.jsonFeed -%}
+{{ section({
+  title: "JSON Feed",
+  text: "<a rel=\"alternate\" href=\"" + feedUrl + "\" type=\"application/feed+json\">" + feedUrl + "</a>"
+}) }}
