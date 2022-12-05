@@ -1,7 +1,7 @@
 .fieldset {
   font: var(--font-body);
 
-  & > * + * {
+  & > *:not(.-\!-visually-hidden) + * {
     margin-block-start: var(--space-l);
   }
 
