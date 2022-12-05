@@ -30,6 +30,7 @@ test.failing("Deletes file and redirects to files page", async (t) => {
     .send({ url });
 
   t.is(result.status, 302);
+  t.regex(result.text, /Found. Redirecting to \/files\?success/);
 
   server.close(t);
 });

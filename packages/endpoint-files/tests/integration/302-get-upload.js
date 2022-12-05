@@ -10,6 +10,7 @@ test("Redirects to files page if no upload permissions", async (t) => {
   const result = await request.get("/files/new").set("cookie", [scopedCookie]);
 
   t.is(result.status, 302);
+  t.regex(result.text, /Found. Redirecting to \/files/);
 
   server.close(t);
 });

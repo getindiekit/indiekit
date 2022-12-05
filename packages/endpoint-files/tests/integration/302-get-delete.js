@@ -16,6 +16,7 @@ test("Redirects to file page if no delete permissions", async (t) => {
     .set("cookie", [scopedCookie]);
 
   t.is(result.status, 302);
+  t.regex(result.text, /Found. Redirecting to \/files\/(.*)/);
 
   server.close(t);
 });
