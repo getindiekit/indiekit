@@ -13,7 +13,7 @@ test("Gets delete confirmation page", async (t) => {
   const request = supertest.agent(server);
   const response = await request
     .get(`/files/${id}/delete`)
-    .set("cookie", [cookie]);
+    .set("cookie", [cookie()]);
   const dom = new JSDOM(response.text);
   const result = dom.window.document.querySelector("title").textContent;
 

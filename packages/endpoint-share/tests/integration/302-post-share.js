@@ -12,7 +12,7 @@ test("Posts content and redirects back to share page", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .post("/share")
-    .set("cookie", [cookie])
+    .set("cookie", [cookie()])
     .send(`access_token=${testToken()}`)
     .send("name=Foobar")
     .send("content=Test+of+sharing+a+bookmark")

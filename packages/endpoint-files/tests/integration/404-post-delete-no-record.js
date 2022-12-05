@@ -12,7 +12,7 @@ test("Returns 404 error deleting file with no record", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .post(`/files/${id}/delete`)
-    .set("cookie", [cookie])
+    .set("cookie", [cookie()])
     .send({ url });
 
   t.is(result.status, 404);

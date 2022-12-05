@@ -7,7 +7,7 @@ import { cookie } from "@indiekit-test/session";
 test("Returns 422 error invalid form submission", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-  const response = await request.post("/share").set("cookie", [cookie]);
+  const response = await request.post("/share").set("cookie", [cookie()]);
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
 

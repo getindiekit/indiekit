@@ -11,7 +11,7 @@ test("Returns 401 error from Micropub endpoint", async (t) => {
     .post("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .set("cookie", [cookie])
+    .set("cookie", [cookie()])
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");

@@ -7,7 +7,7 @@ import { cookie } from "@indiekit-test/session";
 test("Returns 500 error as feature requires database", async (t) => {
   const server = await testServer({ useDatabase: false });
   const request = supertest.agent(server);
-  const response = await request.get("/files").set("cookie", [cookie]);
+  const response = await request.get("/files").set("cookie", [cookie()]);
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
 

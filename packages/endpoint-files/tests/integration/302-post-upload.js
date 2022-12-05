@@ -12,7 +12,7 @@ test.failing("Uploads file and redirects to files page", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .post("/files/new")
-    .set("cookie", [cookie])
+    .set("cookie", [cookie()])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   t.is(result.status, 302);
