@@ -1,6 +1,5 @@
 export const mediaData = {
   date: new Date(),
-  lastAction: "upload",
   path: "photo.jpg",
   properties: {
     filename: "photo.jpg",

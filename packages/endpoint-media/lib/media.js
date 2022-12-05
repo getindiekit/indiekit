@@ -20,7 +20,6 @@ export const media = {
 
     if (uploaded) {
       mediaData.date = new Date();
-      mediaData.lastAction = metaData.action;
 
       if (media) {
         await media.insertOne(mediaData);
@@ -57,7 +56,6 @@ export const media = {
 
     if (deleted) {
       mediaData.date = new Date();
-      mediaData.lastAction = metaData.action;
 
       if (media) {
         await media.deleteOne({
