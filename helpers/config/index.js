@@ -61,5 +61,11 @@ export const testConfig = async (options) => {
       accessToken: "abcd1234",
       accessTokenSecret: "abcd1234",
     },
+    "@indiekit/syndicator-mastodon": {
+      checked: true,
+      url: "https://social.example",
+      user: "username",
+      accessToken: "abcd1234",
+    },
   };
 };
