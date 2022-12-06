@@ -1,11 +1,15 @@
 .button,
 ::file-selector-button {
+  --anchor-decoration-line: none;
+  --icon-size: 1.5em;
+  align-items: center;
   background-color: var(--button-background-color, var(--color-primary));
   border: var(--border-width-thick) solid transparent;
   border-block-end-color: var(--color-shadow);
   border-radius: var(--border-radius-small);
   color: var(--button-color, var(--color-on-primary));
   display: inline-block;
+  justify-content: center;
   line-height: var(--line-height-loose);
   padding-block: calc(var(--space-s) / 2);
   padding-inline: var(--space-s);
@@ -26,6 +30,15 @@
   );
 }
 
+.button--secondary-on-offset {
+  --button-color: var(--color-on-background);
+  --button-background-color: var(--color-background);
+
+  &:hover {
+    background-color: var(--color-offset-variant);
+  }
+}
+
 .button--warning {
   background-color: var(--color-error);
 
@@ -35,5 +48,21 @@
 }
 
 .button--block {
+  display: flex;
   inline-size: 100%;
+}
+
+.button--inline {
+  --icon-margin: 0;
+  --icon-size: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding-block: var(--space-m);
+}
+
+.button-grid {
+  display: grid;
+  gap: var(--space-xs);
+  grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));
 }
