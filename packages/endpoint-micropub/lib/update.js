@@ -50,6 +50,10 @@ export const replaceEntries = (object, replacements) => {
     if (Object.prototype.hasOwnProperty.call(replacements, key)) {
       const value = replacements[key];
 
+      if (value.length === 0) {
+        continue;
+      }
+
       if (!Array.isArray(value)) {
         throw new TypeError("Replacement value should be an array");
       }
