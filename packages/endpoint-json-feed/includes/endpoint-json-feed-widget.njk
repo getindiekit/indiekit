@@ -1,5 +1,6 @@
 {%- set feedUrl = application.url + application.jsonFeed -%}
-{{ section({
+{{ widget({
+  image: "/assets/" + plugin.id + "/icon.svg",
   title: "JSON Feed",
   text: "<a rel=\"alternate\" href=\"" + feedUrl + "\" type=\"application/feed+json\">" + feedUrl + "</a>"
 }) }}
