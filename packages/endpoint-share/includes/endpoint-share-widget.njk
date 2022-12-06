@@ -15,7 +15,7 @@
       new_window=window.open(
         '{{ application.url }}{{ application.shareEndpoint }}/bookmarklet?name='+name+'&content='+content+'&url='+encodeURIComponent(document.location.href),
         'Sharer',
-        'resizable,scrollbars,status=0,toolbar=0,menubar=0,titlebar=0,width=560,height=720,location=0'
+        'resizable,scrollbars,status=0,toolbar=0,menubar=0,titlebar=0,width=560,height=660,location=0'
       );
     })();
   {%- endset -%}
@@ -26,7 +26,8 @@
   }) }}
 {%- endset -%}
 
-{{ section({
+{{ widget({
+  image: "/assets/" + plugin.id + "/icon.svg",
   title: __("status.bookmarklet.title"),
   text: __("status.bookmarklet.guidance", bookmarklet)
 }) }}
