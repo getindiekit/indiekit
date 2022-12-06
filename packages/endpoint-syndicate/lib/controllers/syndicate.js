@@ -61,6 +61,7 @@ export const syndicateController = {
               postData.properties,
               publication
             );
+            console.log("syndicatedUrl", syndicatedUrl);
             syndication.push(syndicatedUrl);
           } catch (error) {
             throw new IndiekitError(error.message);
