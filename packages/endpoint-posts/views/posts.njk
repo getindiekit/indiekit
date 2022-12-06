@@ -7,6 +7,6 @@
   }) }}
   {{ pagination(pages(page, limit, count)) }}
   {%- else -%}
-  <p>{{ __("posts.posts.none") }}<p>
+  {{ prose({ text: __("posts.posts.none") }) }}
   {%- endif %}
 {% endblock %}
