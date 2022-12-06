@@ -2,6 +2,7 @@
   title: __("posts.new.title"),
   image: "/assets/" + plugin.id + "/icon.svg"
 }) %}
+{% if application.hasDatabase %}
   <div class="button-grid">{% for config in publication.postTypes %}
     {{ button({
       classes: "button--secondary-on-offset button--inline",
@@ -10,4 +11,9 @@
       text: config.name
     }) }}
   {% endfor %}</div>
+{% else %}
+  {{ prose({
+    text: __("NotImplementedError.database")
+  }) }}
+{% endif %}
 {% endcall %}
