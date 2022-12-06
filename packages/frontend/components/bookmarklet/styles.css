@@ -2,6 +2,7 @@
   --anchor-color: var(--color-on-offset);
   --anchor-decoration-line: none;
   background-color: var(--color-offset);
+  border: var(--border-width-thin) solid var(--color-shadow);
   border-radius: var(--border-radius-small);
   display: inline-block;
   font: var(--font-caption);
