@@ -10,6 +10,7 @@
 }
 
 .footer__container {
+  align-items: center;
   display: flex;
   inline-size: var(--container-inline-size);
   justify-content: space-between;
