@@ -1,5 +1,6 @@
 import test from "ava";
 import nock from "nock";
+import sinon from "sinon";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
@@ -8,6 +9,8 @@ import { testToken } from "@indiekit-test/token";
 await mockAgent("store");
 
 test("Returns 500 error syndicating URL", async (t) => {
+  sinon.stub(console, "error");
+
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .replyWithError("Not found");
@@ -29,10 +32,10 @@ test("Returns 500 error syndicating URL", async (t) => {
     .query({ url: "https://website.example/notes/foobar/" })
     .query({ token: testToken() });
 
-  t.is(result.status, 500);
+  t.is(result.status, 200);
   t.is(
-    result.body.error_description,
-    "Twitter syndicator: request to https://api.twitter.com/1.1/statuses/update.json failed, reason: Not found"
+    result.body.success_description,
+    "Post updated at https://website.example/notes/foobar/. The following target(s) did not return a URL: https://twitter.com/username"
   );
 
   server.close(t);

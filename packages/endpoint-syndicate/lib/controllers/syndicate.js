@@ -42,8 +42,8 @@ export const syndicateController = {
       }
 
       // Only syndicate to selected targets
-      const syndicateTo = postData.properties["mp-syndicate-to"];
-      if (!syndicateTo) {
+      let mpSyndicateTo = postData.properties["mp-syndicate-to"];
+      if (!mpSyndicateTo) {
         return response.json({
           success: "OK",
           success_description: "No posts awaiting syndication",
@@ -51,25 +51,32 @@ export const syndicateController = {
       }
 
       // Syndicate to target(s)
-      const syndication = [];
+      const syndication = postData.properties.syndication || [];
       for await (const target of syndicationTargets) {
         const { uid } = target.info;
-        const canSyndicate = syndicateTo.includes(uid);
+
+        const canSyndicate = mpSyndicateTo.includes(uid);
         if (canSyndicate) {
           try {
             const syndicatedUrl = await target.syndicate(
               postData.properties,
               publication
             );
-            console.log("syndicatedUrl", syndicatedUrl);
+
+            // Add syndicated URL to list of syndicated URLs
             syndication.push(syndicatedUrl);
+
+            // Remove syndication target from list of syndication targets
+            mpSyndicateTo = mpSyndicateTo.filter((target) => target !== uid);
           } catch (error) {
             console.error(error.message);
           }
         }
       }
 
-      // Update post with syndicated URL(s) and removal of syndication target(s)
+      const failedSyndications = mpSyndicateTo.length > 0;
+
+      // Update post with syndicated URL(s) and remaining syndication target(s)
       const micropubResponse = await fetch(application.micropubEndpoint, {
         method: "POST",
         headers: {
@@ -80,8 +87,9 @@ export const syndicateController = {
         body: JSON.stringify({
           action: "update",
           url: postData.properties.url,
-          delete: ["mp-syndicate-to"],
-          add: {
+          ...(!failedSyndications && { delete: ["mp-syndicate-to"] }),
+          replace: {
+            ...(failedSyndications && { "mp-syndicate-to": mpSyndicateTo }),
             syndication,
           },
         }),
@@ -92,6 +100,13 @@ export const syndicateController = {
       }
 
       const body = await micropubResponse.json();
+
+      // Include failed syndication targets in ‘success’ response
+      if (failedSyndications) {
+        body.success_description +=
+          ". The following target(s) did not return a URL: " +
+          mpSyndicateTo.join(" ");
+      }
 
       return response.status(micropubResponse.status).json(body);
     } catch (error) {
