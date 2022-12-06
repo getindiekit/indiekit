@@ -1,5 +1,6 @@
 .button,
 ::file-selector-button {
+  --anchor-decoration-line: none;
   background-color: var(--button-background-color, var(--color-primary));
   border: var(--border-width-thick) solid transparent;
   border-block-end-color: var(--color-shadow);
@@ -26,6 +27,15 @@
   );
 }
 
+.button--secondary-on-offset {
+  --button-color: var(--color-on-background);
+  --button-background-color: var(--color-background);
+
+  &:hover {
+    background-color: var(--color-offset-variant);
+  }
+}
+
 .button--warning {
   background-color: var(--color-error);
 
@@ -36,4 +46,21 @@
 
 .button--block {
   inline-size: 100%;
+}
+
+.button--inline {
+  --icon-margin: 0;
+  --icon-size: 2em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  justify-content: center;
+  padding-block: var(--space-m);
+}
+
+.button-grid {
+  display: grid;
+  gap: var(--space-xs);
+  grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));
 }

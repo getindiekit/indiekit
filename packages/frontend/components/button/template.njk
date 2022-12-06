@@ -7,10 +7,12 @@
 {%- set buttonAttributes %}{% if opts.name %} name="{{ opts.name }}"{% endif %}{% if opts.disabled %} disabled="disabled" aria-disabled="true"{% endif %}{% endset -%}
 {%- if element == "a" -%}
 <a href="{{ opts.href if opts.href else "#" }}" role="button" draggable="false"{{- commonAttributes | safe }}>
+  {{- icon(opts.icon) if opts.icon -}}
   {{- opts.text | safe -}}
 </a>
 {%- elseif element == "button" -%}
 <button{%- if opts.value %} value="{{ opts.value }}"{% endif %}{%- if opts.type %} type="{{ opts.type }}"{% endif %} {{- buttonAttributes | safe }}{{- commonAttributes | safe }}>
+  {{- icon(opts.icon) if opts.icon -}}
   {{- opts.text | safe -}}
 </button>
 {%- endif %}
