@@ -77,7 +77,7 @@ html {
     var(--font-family-system);
   --font-caption: 400 var(--font-size-s) / var(--line-height-loose)
     var(--font-family-system);
-  --font-code: 400 var(--font-size-s) / var(--line-height-tight)
+  --font-code: 400 var(--font-size-s) / var(--line-height-loose)
     var(--font-family-monospace);
 
   /* Borders */

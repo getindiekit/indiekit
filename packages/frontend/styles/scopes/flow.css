@@ -47,6 +47,7 @@
   & pre {
     background-color: var(--color-offset);
     border-radius: var(--border-radius-small);
+    font: var(--font-code);
     overflow: scroll;
     padding-block: calc(var(--space-s) / 2);
     padding-inline: var(--space-s);
