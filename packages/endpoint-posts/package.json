@@ -19,6 +19,7 @@
   "type": "module",
   "main": "index.js",
   "files": [
+    "includes",
     "lib",
     "locales",
     "views",

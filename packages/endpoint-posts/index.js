@@ -34,5 +34,6 @@ export default class PostsEndpoint {
 
   init(Indiekit) {
     Indiekit.addEndpoint(this);
+    Indiekit.config.application.postsEndpoint = this.mountPath;
   }
 }
