@@ -52,7 +52,10 @@ test("Deletes entries for properties of object", (t) => {
 
   const result = deleteEntries(properties, { category: ["foo"] });
 
-  t.deepEqual(result.category, ["bar"]);
+  t.deepEqual(result, {
+    name: "Lunchtime",
+    category: ["bar"],
+  });
 });
 
 test("Deletes entries for properties of object (removing property if last entry removed)", (t) => {
@@ -63,7 +66,9 @@ test("Deletes entries for properties of object (removing property if last entry 
 
   const result = deleteEntries(properties, { category: ["foo", "bar"] });
 
-  t.falsy(result.category);
+  t.deepEqual(result, {
+    name: "Lunchtime",
+  });
 });
 
 test("Deletes entries for properties of object (ignores properties that don’t exist)", (t) => {
@@ -74,7 +79,10 @@ test("Deletes entries for properties of object (ignores properties that don’t 
 
   const result = deleteEntries(properties, { tags: ["foo", "bar"] });
 
-  t.falsy(result.tags);
+  t.deepEqual(result, {
+    name: "Lunchtime",
+    category: ["foo", "bar"],
+  });
 });
 
 test("Throws error requested deletion is not an array", (t) => {
@@ -98,7 +106,9 @@ test("Deletes property", (t) => {
 
   const result = deleteProperties(properties, ["category"]);
 
-  t.falsy(result.category);
+  t.deepEqual(result, {
+    name: "Lunchtime",
+  });
 });
 
 test("Replaces property value", (t) => {
@@ -106,7 +116,9 @@ test("Replaces property value", (t) => {
 
   const result = replaceEntries(properties, { name: ["Dinnertime"] });
 
-  t.is(result.name, "Dinnertime");
+  t.deepEqual(result, {
+    name: "Dinnertime",
+  });
 });
 
 test("Replaces property value (adding property if doesn’t exist)", (t) => {
@@ -116,7 +128,10 @@ test("Replaces property value (adding property if doesn’t exist)", (t) => {
     content: ["I ate a cheese sandwich"],
   });
 
-  t.is(result.content, "I ate a cheese sandwich");
+  t.deepEqual(result, {
+    name: "Lunchtime",
+    content: "I ate a cheese sandwich",
+  });
 });
 
 test("Doesn’t replace property replacement is empty array", (t) => {
