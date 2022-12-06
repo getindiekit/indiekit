@@ -50,15 +50,29 @@ export const replaceEntries = (object, replacements) => {
     if (Object.prototype.hasOwnProperty.call(replacements, key)) {
       const value = replacements[key];
 
-      if (value.length === 0) {
-        continue;
-      }
-
       if (!Array.isArray(value)) {
         throw new TypeError("Replacement value should be an array");
       }
 
-      object = _.set(object, key, value[0]);
+      // Replacement is given as an mf2 array value, but we want flat JF2
+      // If array contains a single value, save as flat value
+      // If array contains multiple values, saves as original array
+      // If array is empty, don’t perform replacement
+      switch (value.length) {
+        case 0: {
+          continue;
+        }
+
+        case 1: {
+          object = _.set(object, key, value[0]);
+          break;
+        }
+
+        default: {
+          object = _.set(object, key, value);
+          break;
+        }
+      }
     }
   }
 

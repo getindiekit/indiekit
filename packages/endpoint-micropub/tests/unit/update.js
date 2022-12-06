@@ -121,6 +121,16 @@ test("Replaces property value", (t) => {
   });
 });
 
+test("Replaces property value (multiple items saved as array)", (t) => {
+  const properties = { category: ["foo"] };
+
+  const result = replaceEntries(properties, { category: ["bar", "baz"] });
+
+  t.deepEqual(result, {
+    category: ["bar", "baz"],
+  });
+});
+
 test("Replaces property value (adding property if doesn’t exist)", (t) => {
   const properties = { name: "Lunchtime" };
 
@@ -134,7 +144,7 @@ test("Replaces property value (adding property if doesn’t exist)", (t) => {
   });
 });
 
-test("Doesn’t replace property replacement is empty array", (t) => {
+test("Replaces property value (ignores empty array)", (t) => {
   const properties = { name: "Lunchtime" };
 
   const result = replaceEntries(properties, {
