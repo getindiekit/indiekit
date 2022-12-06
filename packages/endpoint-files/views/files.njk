@@ -7,6 +7,6 @@
   }) }}
   {{ pagination(pages(page, limit, count)) }}
   {%- else -%}
-  <p>{{ __("files.files.none") }}<p>
+  {{ prose({ text: __("files.files.none") }) }}
   {%- endif %}
 {% endblock %}
