@@ -16,8 +16,10 @@
     text: discovery
   }) }}
 
+<div class="widget-grid">
 {% for plugin in application.installedPlugins -%}
-  {% include plugin.id + "-status.njk" ignore missing %}
+  {% include plugin.id + "-widget.njk" ignore missing %}
 {%- endfor %}
+</div>
 
 {% endblock %}
