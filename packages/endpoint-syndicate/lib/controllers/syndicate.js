@@ -64,7 +64,7 @@ export const syndicateController = {
             console.log("syndicatedUrl", syndicatedUrl);
             syndication.push(syndicatedUrl);
           } catch (error) {
-            throw new IndiekitError(error.message);
+            console.error(error.message);
           }
         }
       }
