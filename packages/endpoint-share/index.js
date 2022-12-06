@@ -14,13 +14,6 @@ export default class ShareEndpoint {
     this.mountPath = this.options.mountPath;
   }
 
-  get navigationItems() {
-    return {
-      href: this.options.mountPath,
-      text: "share.title",
-    };
-  }
-
   get routes() {
     router.get("/:path?", shareController.get);
     router.post("/:path?", validate, shareController.post);
