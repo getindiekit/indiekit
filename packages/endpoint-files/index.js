@@ -38,5 +38,6 @@ export default class FilesEndpoint {
 
   init(Indiekit) {
     Indiekit.addEndpoint(this);
+    Indiekit.config.application.filesEndpoint = this.mountPath;
   }
 }

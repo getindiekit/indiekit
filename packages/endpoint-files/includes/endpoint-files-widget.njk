@@ -1,0 +1,11 @@
+{% call widget({
+  title: __("files.upload.title"),
+  image: "/assets/" + plugin.id + "/icon.svg"
+}) %}
+  {{ button({
+    classes: "button--secondary-on-offset button--block",
+    href: application.filesEndpoint + "/new/",
+    icon: "uploadFile",
+    text: __("files.upload.title")
+  }) }}
+{% endcall %}
