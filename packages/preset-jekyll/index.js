@@ -98,7 +98,7 @@ export default class JekyllPreset {
       },
       {
         type: "rsvp",
-        name: "Reply with RSVP",
+        name: "RSVP",
         post: {
           path: "_replies/{yyyy}-{MM}-{dd}-{slug}.md",
           url: "replies/{yyyy}/{MM}/{dd}/{slug}",
