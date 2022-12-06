@@ -21,6 +21,7 @@
 {%- from "summary/macro.njk" import summary with context -%}
 {%- from "textarea/macro.njk" import textarea with context -%}
 {%- from "warning-text/macro.njk" import warningText with context -%}
+{%- from "widget/macro.njk" import widget with context -%}
 {%- set appClasses = "app" + (" " + appClasses if appClasses) + (" app--minimalui" if minimalui) -%}
 {%- set mainClasses = "main" + (" " + mainClasses if mainClasses) -%}
 <!DOCTYPE html>
