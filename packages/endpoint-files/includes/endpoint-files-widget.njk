@@ -7,5 +7,7 @@
     href: application.filesEndpoint + "/new/",
     icon: "uploadFile",
     text: __("files.upload.title")
+  }) if application.hasDatabase else prose({
+    text: __("NotImplementedError.database")
   }) }}
 {% endcall %}
