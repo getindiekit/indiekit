@@ -168,7 +168,7 @@ export default class HugoPreset {
       },
       {
         type: "rsvp",
-        name: "Reply with RSVP",
+        name: "RSVP",
         post: {
           path: "content/replies/{slug}.md",
           url: "replies/{slug}",
