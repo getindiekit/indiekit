@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Features
+
+- **endpoint-share:** plug-in icon ([eb8d660](https://github.com/getindiekit/indiekit/commit/eb8d660af83d28a0628b56e67ac57515cbbd6462))
+- **endpoint-share:** remove navigation item ([718a9c7](https://github.com/getindiekit/indiekit/commit/718a9c7d46d73fb2b74d15f335c19cd925e33970))
+- **endpoint-share:** use widget component ([7297678](https://github.com/getindiekit/indiekit/commit/7297678c653d27d0a926b11c9863b18deba9e3a4))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 **Note:** Version bump only for package @indiekit/endpoint-share

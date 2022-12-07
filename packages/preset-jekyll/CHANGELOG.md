@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Features
+
+- **preset-jekyll:** rename rsvp post type ([d3e9cdb](https://github.com/getindiekit/indiekit/commit/d3e9cdb5f7e7a4e7f128f3492adc104ed8d9e7fe))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Features

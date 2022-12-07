@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **indiekit:** sort categories array ([1c01e0e](https://github.com/getindiekit/indiekit/commit/1c01e0e04bc777e5a447d4c57b8e690bc3b01d07))
+
+### Features
+
+- **indiekit:** homepage widgets ([7446652](https://github.com/getindiekit/indiekit/commit/7446652298a00123359f8ee57212a50d652edeec))
+- **indiekit:** remove json feed ([533a524](https://github.com/getindiekit/indiekit/commit/533a524f7883e031b4c976d379a5cc96695ddad4))
+- **indiekit:** split homepage from server status ([f4782db](https://github.com/getindiekit/indiekit/commit/f4782db19ef1245ca4c1f7f879783482e2b27f80))
+- **indiekit:** update label for delete scope ([dd52ef9](https://github.com/getindiekit/indiekit/commit/dd52ef99c249389ca2a855046cea19a7fb6be5e3))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 ### Bug Fixes

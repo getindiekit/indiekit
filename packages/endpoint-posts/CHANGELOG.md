@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **endpoint-posts:** only show widget contents if database ([b884385](https://github.com/getindiekit/indiekit/commit/b884385e62f42bd49436d4c2da1ed48262f51844))
+
+### Features
+
+- **endpoint-posts:** delete post ([af98b4b](https://github.com/getindiekit/indiekit/commit/af98b4be57e4daee4ba855facc97945d496c27b2))
+- **endpoint-posts:** homepage widget ([4191e94](https://github.com/getindiekit/indiekit/commit/4191e94fbeb671acecd3e940c29696ee6262982d))
+- **endpoint-posts:** use prose for empty state ([daf205f](https://github.com/getindiekit/indiekit/commit/daf205f0b4b1ad510c616967565c34d20d2c8101))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 ### Features

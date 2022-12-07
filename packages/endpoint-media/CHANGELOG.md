@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **endpoint-media:** delete record from database ([3dff8ff](https://github.com/getindiekit/indiekit/commit/3dff8ff6fb9f85eb80718ac916fdbf09e61bbd0a))
+
+### Features
+
+- **endpoint-media:** check scope against multiple actions ([144d06c](https://github.com/getindiekit/indiekit/commit/144d06cb72f502f4b0b369cb8b90ab9082663b97))
+- **endpoint-media:** delete media action ([bf2ea72](https://github.com/getindiekit/indiekit/commit/bf2ea72aa942c6c22620476a39f46019c3a16950))
+- **endpoint-media:** don’t record last action ([5b12042](https://github.com/getindiekit/indiekit/commit/5b12042dc1705e20c6a2ef640196583249646cfb))
+- **endpoint-media:** remove path components from source query response ([d8ae9cb](https://github.com/getindiekit/indiekit/commit/d8ae9cb3f478732134ef46798cdc2149f5f145e9))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 **Note:** Version bump only for package @indiekit/endpoint-media

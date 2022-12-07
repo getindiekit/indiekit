@@ -1,6 +1,6 @@
 {
   "name": "create-indiekit",
-  "version": "1.0.0-alpha.16",
+  "version": "1.0.0-alpha.17",
   "description": "Get started with Indiekit",
   "keywords": [
     "express",
@@ -35,8 +35,8 @@
     "directory": "packages/create-indiekit"
   },
   "dependencies": {
-    "@indiekit/preset-hugo": "^1.0.0-alpha.13",
-    "@indiekit/preset-jekyll": "^1.0.0-alpha.13",
+    "@indiekit/preset-hugo": "^1.0.0-alpha.17",
+    "@indiekit/preset-jekyll": "^1.0.0-alpha.17",
     "@indiekit/store-bitbucket": "^1.0.0-alpha.16",
     "@indiekit/store-ftp": "^1.0.0-alpha.16",
     "@indiekit/store-gitea": "^1.0.0-alpha.16",

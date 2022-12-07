@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Features
+
+- **preset-hugo:** rename rsvp post type ([00b7bf1](https://github.com/getindiekit/indiekit/commit/00b7bf1f1c5f34b3900386c84bb0d34fcb7e1ac6))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 ### Features

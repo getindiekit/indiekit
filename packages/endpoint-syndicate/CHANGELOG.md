@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **endpoint-syndicator:** don’t throw if syndication fails ([b429a38](https://github.com/getindiekit/indiekit/commit/b429a3892d87c07c3df0518cc26cbaf307b93129))
+- **endpoint-syndicator:** retain syndication targets that failed ([1eea6ca](https://github.com/getindiekit/indiekit/commit/1eea6cafc4863ca9ec00420b94d8e568f8cfa5ca))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 **Note:** Version bump only for package @indiekit/endpoint-syndicate

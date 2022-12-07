@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **endpoint-micropub:** enforce arrays for syndication, only add targets when creating data ([516d479](https://github.com/getindiekit/indiekit/commit/516d47925384236f60711b62169642321c23bbb8))
+
+### Features
+
+- **endpoint-micropub:** replace last action with post-status property ([6350d7f](https://github.com/getindiekit/indiekit/commit/6350d7faebb9a1b50e01a9e3cb9f26e619f0b465))
+- **endpoint-micropub:** smarter replace operation for array values ([b610e3e](https://github.com/getindiekit/indiekit/commit/b610e3e7418760805047879992f29814a161ac41))
+- **endpoint-micropub:** smarter replace operation with empty array ([dcdcf31](https://github.com/getindiekit/indiekit/commit/dcdcf315cc05652df3b1f8f743ece86268eb7380))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 ### Features

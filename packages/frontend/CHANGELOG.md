@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **frontend:** back link default text ([3fd8626](https://github.com/getindiekit/indiekit/commit/3fd8626619ff09271689f58ba866048fdb0d82d5))
+- **frontend:** consistent anchor styling ([a643aac](https://github.com/getindiekit/indiekit/commit/a643aac38f0560eb2d78e70e4f218b56fd4ffe4e))
+- **frontend:** enable overflow wrap within hint component ([af08ab8](https://github.com/getindiekit/indiekit/commit/af08ab8cfeb673c90afa75968bf76c7e6e6c443d))
+- **frontend:** fieldset spacing ([642982d](https://github.com/getindiekit/indiekit/commit/642982d9eb75bd47c7324de6a0ee3a7ba8e14ac0))
+- **frontend:** footer items alignment ([b7e2893](https://github.com/getindiekit/indiekit/commit/b7e28932672a7a8ae6cf77c0552cfc449ab6763b))
+- **frontend:** increase error contrast ([5a69113](https://github.com/getindiekit/indiekit/commit/5a69113d5c984084299ba359dc5c19fa7e33b9e6))
+- **frontend:** only adjust position of svg icons ([796be05](https://github.com/getindiekit/indiekit/commit/796be059f71d13519a639c27fdc600be6616bba6))
+- **frontend:** revisit field and fieldset set flow scope ([d3f01db](https://github.com/getindiekit/indiekit/commit/d3f01dbd908aac58e2ead7ea081c5b2ae9ba59bd))
+- **frontend:** text wrapping in summary key ([07fa951](https://github.com/getindiekit/indiekit/commit/07fa9514089720d0a59e6aa9c81e3752d95ed618))
+- **frontend:** wrapping of code in summary lists ([79426c3](https://github.com/getindiekit/indiekit/commit/79426c386e79117cabe1446a7a4c73c673880c4f))
+
+### Features
+
+- **endpoint-media:** remove path components from source query response ([d8ae9cb](https://github.com/getindiekit/indiekit/commit/d8ae9cb3f478732134ef46798cdc2149f5f145e9))
+- **fronted:** allow card grid component to accept more media types and include a published date ([ea3f2bc](https://github.com/getindiekit/indiekit/commit/ea3f2bc223a06fcca41973a6d9b0bb807e198757))
+- **frontend:** actions component ([17a15b4](https://github.com/getindiekit/indiekit/commit/17a15b412eb74f329f30669245fb2faf7d88d2f0))
+- **frontend:** additional button component styles ([a2236a3](https://github.com/getindiekit/indiekit/commit/a2236a3f8b949c2da99791f2d73566ca90e3a60c))
+- **frontend:** back link component ([5f4ed1d](https://github.com/getindiekit/indiekit/commit/5f4ed1db73dbbaa37d24cbde0b25c2d06e822e98))
+- **frontend:** delete icon ([4570dec](https://github.com/getindiekit/indiekit/commit/4570dec4f91c3537172bdd89d6609f5f68411d22))
+- **frontend:** deleted file style ([98a5778](https://github.com/getindiekit/indiekit/commit/98a5778ba140419059bd3c7dadb40f9b33584594))
+- **frontend:** enforce line measure upon flow content ([ab1cab0](https://github.com/getindiekit/indiekit/commit/ab1cab000672c27bf6764496c8330c72afaa8f32))
+- **frontend:** remove file grid component ([a45cb8a](https://github.com/getindiekit/indiekit/commit/a45cb8a4b38d6cd7fd0270f7b3b373c0165d9914))
+- **frontend:** skip link component ([3e33881](https://github.com/getindiekit/indiekit/commit/3e338819b821ba28778aad6c7c15459e4ddfcf51))
+- **frontend:** warning button style ([b0463f0](https://github.com/getindiekit/indiekit/commit/b0463f019da6e467ed6a8ed098f171869ebd54b9))
+- **frontend:** widget component ([4de91b7](https://github.com/getindiekit/indiekit/commit/4de91b7c4b563866c5a155b5e90641dc59c666f0))
+- **indiekit:** remove json feed ([533a524](https://github.com/getindiekit/indiekit/commit/533a524f7883e031b4c976d379a5cc96695ddad4))
+- **indiekit:** split homepage from server status ([f4782db](https://github.com/getindiekit/indiekit/commit/f4782db19ef1245ca4c1f7f879783482e2b27f80))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 ### Bug Fixes

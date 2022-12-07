@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
+
+### Bug Fixes
+
+- **endpoint-files:** correct delete page title ([206b3d9](https://github.com/getindiekit/indiekit/commit/206b3d9f905e36d672802be4e03ca434f8936926))
+- **endpoint-files:** only show widget contents if database ([16e6384](https://github.com/getindiekit/indiekit/commit/16e6384635f4b215565f8ad191ec82ca2899060a))
+- **endpoint-files:** use unique view name ([f858fdc](https://github.com/getindiekit/indiekit/commit/f858fdc891a6c1b2bd99a700921fcc6fa38af8e1))
+
+### Features
+
+- **endpoint-files:** delete file ([f4649ed](https://github.com/getindiekit/indiekit/commit/f4649edb1c5934cb7bd87b00f3d9abf57dba0d17))
+- **endpoint-files:** get file name from url ([61f3e28](https://github.com/getindiekit/indiekit/commit/61f3e2878de8a7c0f12ae33bbda6dc9a88524c16))
+- **endpoint-files:** homepage widget ([870bbd8](https://github.com/getindiekit/indiekit/commit/870bbd876cd3ec7831134ab116bfa8ae7284d339))
+- **endpoint-files:** respect scope permissions ([a79ef8d](https://github.com/getindiekit/indiekit/commit/a79ef8dd1964230718ef068b9466bad99421261c))
+- **endpoint-files:** use card grid component ([bfa8e8d](https://github.com/getindiekit/indiekit/commit/bfa8e8dd3e0fdcdc42e4583e853debd45cdc744c))
+- **endpoint-files:** use prose for empty state ([0cab0bf](https://github.com/getindiekit/indiekit/commit/0cab0bfc87c8f2bf5d76853aefb90f73a2221d1d))
+
 # [1.0.0-alpha.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2022-12-02)
 
 **Note:** Version bump only for package @indiekit/endpoint-files

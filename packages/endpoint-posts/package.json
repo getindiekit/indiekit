@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-posts",
-  "version": "1.0.0-alpha.16",
+  "version": "1.0.0-alpha.17",
   "description": "Post management endpoint for Indiekit",
   "keywords": [
     "indiekit",
