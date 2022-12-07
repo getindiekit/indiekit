@@ -2,6 +2,9 @@
   --anchor-color: var(--color-on-offset);
   --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-color: transparent;
+  --navigation-item-padding-block: var(--space-s);
+  --navigation-item-padding-inline: var(--space-2xs);
+  --navigation-item-current-color: var(--color-primary-variant);
   background-color: var(--color-offset);
   color: var(--color-on-offset);
   display: flex;
@@ -14,7 +17,7 @@
   inline-size: var(--container-inline-size);
   margin-inline: auto;
   max-inline-size: var(--container-max-inline-size);
-  padding-block: var(--space-m);
+  padding-block-start: var(--space-2xs);
   padding-inline: var(--container-padding-inline);
 }
 
@@ -23,6 +26,7 @@
   display: inline-flex;
   font-weight: 800;
   margin-inline-end: auto;
+  padding-block: var(--navigation-item-padding-block);
 
   & a {
     margin-inline-start: calc(var(--space-s) * -1);
