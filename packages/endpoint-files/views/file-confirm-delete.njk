@@ -13,5 +13,8 @@
     classes: "button--warning",
     text: __("files.delete.submit")
   }) }}
-  <p><a href="{{ back }}">{{ __("files.delete.cancel") }}</a></p>
+
+  {{ prose({
+    text: "[" + __("files.delete.cancel") + "](" + back + ")"
+  }) }}
 {% endblock %}
