@@ -78,15 +78,21 @@
   padding-left: 0;
 }
 
+.vp-doc .task-list-item {
+  position: relative;
+  padding-left: 28px;
+}
+
 .vp-doc .task-list-item-checkbox {
   appearance: none;
   background-color: var(--vp-c-gray-light-4);
   border-radius: 4px;
   font-size: 20px;
   height: 20px;
-  margin: 0 4px 0 0;
-  position: relative;
-  vertical-align: middle;
+  left: 0;
+  margin: 0;
+  position: absolute;
+  top: 2px;
   width: 20px;
 }
 
@@ -105,7 +111,7 @@
 }
 
 .vp-doc .task-list-item-checkbox::before {
-  color: var(--vp-c-grey-light-1);
+  color: var(--vp-c-text-light-1);
   content: "×";
 }
 
