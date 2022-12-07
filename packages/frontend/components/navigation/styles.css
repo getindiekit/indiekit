@@ -1,9 +1,19 @@
-.navigation {
+.navigation__list {
   margin-inline: calc(var(--space-s) * -1);
+}
+
+.navigation__list-item {
+  display: inline-flex;
+  padding-block: var(--navigation-item-padding-block, 0);
+  padding-inline: var(--navigation-item-padding-inline, 0);
 
   & a {
     align-items: center;
-    display: inline-flex;
     padding: var(--space-s);
+  }
+
+  &:has(a[aria-current="true"]) {
+    box-shadow: inset 0 calc(var(--border-width-thickest) * -1) 0 0
+      var(--navigation-item-current-color);
   }
 }
