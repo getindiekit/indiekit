@@ -177,7 +177,7 @@ export const post = {
         status: 200,
         json: {
           success: "delete_undelete",
-          success_description: `Post undeleted from ${postData.properties.url}`,
+          success_description: `Post restored to ${postData.properties.url}`,
         },
       };
     }

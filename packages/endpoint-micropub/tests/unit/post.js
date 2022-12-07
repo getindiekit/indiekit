@@ -78,7 +78,7 @@ test("Undeletes a post", async (t) => {
     status: 200,
     json: {
       success: "delete_undelete",
-      success_description: "Post undeleted from https://website.example/foo",
+      success_description: "Post restored to https://website.example/foo",
     },
   });
 });
