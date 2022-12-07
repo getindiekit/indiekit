@@ -1,8 +1,8 @@
 import { IndiekitError } from "@indiekit/error";
 import { getPostType } from "./post-type-discovery.js";
-import { normaliseProperties } from "./jf2.js";
+import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
 import * as update from "./update.js";
-import { renderPath, getPermalink, getPostTypeConfig } from "./utils.js";
+import { getPermalink, getPostTypeConfig, renderPath } from "./utils.js";
 
 export const postData = {
   /**
@@ -14,7 +14,13 @@ export const postData = {
    * @returns {object} Post data
    */
   async create(publication, properties, draftMode = false) {
-    const { me, postTypes } = publication;
+    const { me, postTypes, syndicationTargets } = publication;
+
+    // Add syndication targets
+    const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
+    if (syndicateTo) {
+      properties["mp-syndicate-to"] = syndicateTo;
+    }
 
     // Normalise properties
     properties = normaliseProperties(publication, properties);

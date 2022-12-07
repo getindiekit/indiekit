@@ -10,6 +10,7 @@ import {
   renderPath,
   slugifyString,
   supplant,
+  toArray,
 } from "../../lib/utils.js";
 
 test("Decodes form-encoded query parameter", (t) => {
@@ -114,4 +115,9 @@ test("Substitutes variables enclosed in { } braces with data from object", (t) =
   const result = supplant(string, object);
 
   t.is(result, "{array} string 1");
+});
+
+test("Convert string to array if not already an array", (t) => {
+  t.deepEqual(toArray(["string"]), ["string"]);
+  t.deepEqual(toArray("string"), ["string"]);
 });

@@ -190,3 +190,11 @@ export const supplant = (string, object) =>
 
     return a;
   });
+
+/**
+ * Convert string to array if not already an array
+ *
+ * @param {string|Array} object - String or array to convert
+ * @returns {Array} Array
+ */
+export const toArray = (object) => (Array.isArray(object) ? object : [object]);

@@ -537,7 +537,7 @@ test("Normalises JF2 (all properties)", (t) => {
   t.deepEqual(result.video, [{ url: "https://website.example/video.mp4" }]);
   t.deepEqual(result.category, ["lunch", "food"]);
   t.true(isValid(parseISO(result.published)));
-  t.is(result["mp-syndicate-to"], "https://social.example");
+  t.deepEqual(result["mp-syndicate-to"], ["https://social.example"]);
 });
 
 test("Normalises JF2 (syndication properties)", (t) => {

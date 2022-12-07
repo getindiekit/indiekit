@@ -9,6 +9,7 @@ import {
   relativeMediaPath,
   randomString,
   slugifyString,
+  toArray,
 } from "./utils.js";
 
 /**
@@ -70,7 +71,7 @@ export const mf2ToJf2 = async (body, requestReferences) => {
  * @returns {object} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties) => {
-  const { me, slugSeparator, syndicationTargets, timeZone } = publication;
+  const { me, slugSeparator, timeZone } = publication;
 
   properties.published = getPublishedProperty(properties, timeZone);
 
@@ -100,13 +101,12 @@ export const normaliseProperties = (publication, properties) => {
 
   properties["mp-slug"] = getSlugProperty(properties, slugSeparator);
 
-  /**
-   * @todo Smarter normalisation of mp-syndicate-to property when updating posts
-   * @see {@link https://github.com/getindiekit/indiekit/issues/437}
-   */
-  const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
-  if (syndicateTo && !properties.syndication) {
-    properties["mp-syndicate-to"] = syndicateTo;
+  if (properties["mp-syndicate-to"]) {
+    properties["mp-syndicate-to"] = toArray(properties["mp-syndicate-to"]);
+  }
+
+  if (properties.syndication) {
+    properties.syndication = toArray(properties.syndication);
   }
 
   return properties;
