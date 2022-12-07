@@ -2,6 +2,7 @@ import express from "express";
 import { deleteController } from "./lib/controllers/delete.js";
 import { postController } from "./lib/controllers/post.js";
 import { postsController } from "./lib/controllers/posts.js";
+import { undeleteController } from "./lib/controllers/undelete.js";
 
 const defaults = { mountPath: "/posts" };
 const router = express.Router(); // eslint-disable-line new-cap
@@ -28,6 +29,8 @@ export default class PostsEndpoint {
     router.get("/:id", postController);
     router.get("/:id/delete", deleteController.get);
     router.post("/:id/delete", deleteController.post);
+    router.get("/:id/undelete", undeleteController.get);
+    router.post("/:id/undelete", undeleteController.post);
 
     return router;
   }

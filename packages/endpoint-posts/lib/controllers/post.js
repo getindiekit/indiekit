@@ -1,5 +1,5 @@
 import path from "node:path";
-import { getPostData, getPostName } from "../utils.js";
+import { getPermissions, getPostData, getPostName } from "../utils.js";
 
 /**
  * View previously published post
@@ -19,6 +19,7 @@ export const postController = async (request, response, next) => {
       application.micropubEndpoint,
       access_token
     );
+    const permissions = getPermissions(scope, post);
 
     response.render("post", {
       title: getPostName(post, publication),
@@ -28,12 +29,19 @@ export const postController = async (request, response, next) => {
         text: response.__("posts.posts.title"),
       },
       actions: [
-        scope.includes("delete") && post["post-status"] !== "deleted"
+        permissions.canDelete
           ? {
               classes: "actions__link--warning",
               href: path.join(request.originalUrl, "/delete"),
               icon: "delete",
               text: response.__("posts.delete.action"),
+            }
+          : {},
+        permissions.canUndelete
+          ? {
+              href: path.join(request.originalUrl, "/undelete"),
+              icon: "undelete",
+              text: response.__("posts.undelete.action"),
             }
           : {},
       ],

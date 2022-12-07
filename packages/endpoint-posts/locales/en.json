@@ -6,6 +6,12 @@
       "cancel": "No, return to post",
       "submit": "Yes, delete this post"
     },
+    "undelete": {
+      "action": "Restore post",
+      "title": "Are you sure you want to restore this post?",
+      "cancel": "No, return to post",
+      "submit": "Yes, restore this post"
+    },
     "new": {
       "action": "New post",
       "title": "Create a new post"
