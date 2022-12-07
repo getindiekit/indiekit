@@ -55,8 +55,8 @@ export const actionController = async (request, response, next) => {
           ? await uploadMedia(application.mediaEndpoint, token, jf2, files)
           : jf2;
 
-        data = await postData.create(publication, jf2, draftMode);
-        published = await post.create(publication, data);
+        data = await postData.create(publication, jf2);
+        published = await post.create(publication, data, draftMode);
         break;
       }
 
@@ -92,8 +92,8 @@ export const actionController = async (request, response, next) => {
       }
 
       case "undelete": {
-        data = await postData.read(publication, url, draftMode);
-        published = await post.undelete(publication, data);
+        data = await postData.read(publication, url);
+        published = await post.undelete(publication, data, draftMode);
         break;
       }
 

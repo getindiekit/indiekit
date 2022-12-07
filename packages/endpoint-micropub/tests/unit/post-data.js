@@ -55,17 +55,6 @@ test("Creates post data", async (t) => {
   t.is(result.properties.url, "https://website.example/notes/2020/07/26/foo");
 });
 
-test("Creates post data in draft mode", async (t) => {
-  const result = await postData.create(
-    t.context.publication,
-    t.context.properties,
-    true
-  );
-
-  t.is(result.properties["post-type"], "note");
-  t.is(result.properties["post-status"], "draft");
-});
-
 test("Throws error creating post data for non-configured post type", async (t) => {
   t.context.publication.postTypes = [];
 
@@ -80,17 +69,6 @@ test("Reads post data", async (t) => {
 
   t.is(result.properties["post-type"], "note");
   t.is(result.properties.url, "https://website.example/foo");
-});
-
-test("Reads post data in draft mode", async (t) => {
-  const result = await postData.read(
-    t.context.publication,
-    t.context.url,
-    true
-  );
-
-  t.is(result.properties["post-type"], "note");
-  t.is(result.properties["post-status"], "draft");
 });
 
 test("Updates post by adding properties", async (t) => {

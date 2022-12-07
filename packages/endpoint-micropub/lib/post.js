@@ -4,9 +4,10 @@ export const post = {
    *
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
+   * @param {boolean} [draftMode=false] - Draft mode
    * @returns {object} Response data
    */
-  async create(publication, postData) {
+  async create(publication, postData, draftMode = false) {
     const { posts, postTemplate, store, storeMessageTemplate } = publication;
     const metaData = {
       action: "create",
@@ -20,7 +21,7 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.properties["post-status"] = "published";
+      postData.properties["post-status"] = draftMode ? "draft" : "published";
 
       if (posts) {
         await posts.insertOne(postData, {
@@ -137,9 +138,10 @@ export const post = {
    *
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
+   * @param {boolean} [draftMode=false] - Draft mode
    * @returns {object} Response data
    */
-  async undelete(publication, postData) {
+  async undelete(publication, postData, draftMode = false) {
     const { posts, postTemplate, store, storeMessageTemplate } = publication;
 
     if (postData.properties?.["post-status"] !== "deleted") {
@@ -158,7 +160,7 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.properties["post-status"] = "draft";
+      postData.properties["post-status"] = draftMode ? "draft" : "published";
 
       if (posts) {
         await posts.replaceOne(
