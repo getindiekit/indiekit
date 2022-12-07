@@ -30,6 +30,7 @@ test("Returns logged out navigation", (t) => {
   const result = getNavigation(
     t.context.application,
     {
+      path: "/bar",
       session: {},
     },
     {
@@ -44,6 +45,7 @@ test("Removes navigation items that require a database", (t) => {
   const result = getNavigation(
     t.context.application,
     {
+      path: "/bar",
       session: {},
     },
     {
@@ -59,6 +61,7 @@ test("Returns logged in navigation", (t) => {
   const result = getNavigation(
     t.context.application,
     {
+      path: "/bar",
       session: {
         access_token: "token",
       },
@@ -69,4 +72,22 @@ test("Returns logged in navigation", (t) => {
   );
 
   t.is(result[1].href, "/session/logout");
+});
+
+test("Indicates current item in navigation", (t) => {
+  const result = getNavigation(
+    t.context.application,
+    {
+      path: "/bar",
+      session: {
+        access_token: "token",
+      },
+    },
+    {
+      __: (string) => string,
+    }
+  );
+
+  t.is(result[0].href, "/bar");
+  t.true(result[0].attributes["aria-current"]);
 });
