@@ -36,7 +36,7 @@ test("Un-deletes post", async (t) => {
     });
 
   t.is(result.status, 200);
-  t.regex(result.body.success_description, /\bPost undeleted\b/);
+  t.regex(result.body.success_description, /\bPost restored\b/);
 
   server.close(t);
 });
