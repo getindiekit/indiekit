@@ -20,6 +20,12 @@ File management endpoint for Indiekit. View files uploaded by your media endpoin
 
 Image resizing endpoint for Indiekit. Adds real-time image processing routes that can be used by your publication.
 
+## [@indiekit/endpoint-json-feed](https://npmjs.org/package/@indiekit/endpoint-json-feed)
+
+<Badge type="tip" text="Offical" />
+
+Syndicate posts from Indiekit using [JSON Feed](https://www.jsonfeed.org/). Adds an additional feed type (in addition to built-in JF2 feed, and queries to the Micropub endpoint).
+
 ## [@indiekit/endpoint-micropub](https://npmjs.org/package/@indiekit/endpoint-micropub)
 
 <Badge type="info" text="Built-in" /> <Badge type="tip" text="Offical" />
