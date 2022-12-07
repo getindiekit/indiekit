@@ -6,7 +6,7 @@
     {%- elif opts.parent -%}
       <span class="heading__parent">{{ opts.parent.text }}</span>
     {%- endif %}
-    {{ opts.text }}
+    {{ opts.text | widont }}
   </h1>
   {{- actions({ items: opts.actions }) if opts.actions.length }}
 </header>
