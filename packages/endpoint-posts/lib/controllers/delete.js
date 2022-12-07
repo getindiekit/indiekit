@@ -24,8 +24,9 @@ export const deleteController = {
         access_token
       );
 
-      return response.render("delete-post", {
+      return response.render("post-confirm", {
         title: response.__("posts.delete.title"),
+        action: "delete",
         back,
         parent: { text: getPostName(post, publication) },
       });
@@ -78,8 +79,9 @@ export const deleteController = {
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("delete-post", {
+      response.render("post-confirm", {
         title: response.__("posts.delete.title"),
+        action: "delete",
         back: path.dirname(request.baseUrl + request.path),
         error: error.message,
       });

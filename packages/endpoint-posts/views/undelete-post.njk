@@ -1,8 +1,0 @@
-{% extends "form.njk" %}
-
-{% block fieldset %}
-  {{ button({
-    text: __("posts.undelete.submit")
-  }) }}
-  <p><a href="{{ back }}">{{ __("posts.undelete.cancel") }}</a></p>
-{% endblock %}

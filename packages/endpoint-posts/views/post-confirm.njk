@@ -1,0 +1,12 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ button({
+    classes: "button--warning" if action == "delete",
+    text: __("posts." + action + ".submit")
+  }) }}
+
+  {{ prose({
+    text: "[" + __("posts.confirm.cancel") + "](" + back + ")"
+  }) }}
+{% endblock %}

@@ -24,8 +24,9 @@ export const undeleteController = {
         access_token
       );
 
-      return response.render("undelete-post", {
+      return response.render("post-confirm", {
         title: response.__("posts.undelete.title"),
+        action: "undelete",
         back,
         parent: { text: getPostName(post, publication) },
       });
@@ -78,8 +79,9 @@ export const undeleteController = {
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("undelete-post", {
+      response.render("post-confirm", {
         title: response.__("posts.undelete.title"),
+        action: "undelete",
         back: path.dirname(request.baseUrl + request.path),
         error: error.message,
       });
