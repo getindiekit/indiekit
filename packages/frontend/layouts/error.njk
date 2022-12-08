@@ -14,9 +14,9 @@
       {{- content | markdown("inline") | safe if content -}}
       {%- if uri -%}</a>{%- endif -%}.
     </p>
-    <details>
-      <summary><small>Status code: <code>{{ status }}</code></small></summary>
-      <pre><code>{{ stack }}</code></pre>
-    </details>
   </div>
+  {{ details({
+    summary: "Status code: <code>" + status + "</code>",
+    text: "```\n" + stack + "\n```"
+  }) }}
 {% endblock %}
