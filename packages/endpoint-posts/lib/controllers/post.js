@@ -23,9 +23,8 @@ export const postController = async (request, response, next) => {
 
     response.render("post", {
       title: getPostName(post, publication),
-      post,
       parent: {
-        href: path.dirname(request.baseUrl + request.path),
+        href: response.locals.back,
         text: response.__("posts.posts.title"),
       },
       actions: [
@@ -45,6 +44,8 @@ export const postController = async (request, response, next) => {
             }
           : {},
       ],
+      back: false,
+      post,
     });
   } catch (error) {
     next(error);
