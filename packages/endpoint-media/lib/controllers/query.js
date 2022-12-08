@@ -31,7 +31,7 @@ export const queryController = async (request, response, next) => {
         "properties.published": 1,
         "properties.url": 1,
       })
-      .sort({ _id: -1 })
+      .sort({ "properties.published": -1 })
       .skip(offset)
       .limit(limit)
       .toArray();
