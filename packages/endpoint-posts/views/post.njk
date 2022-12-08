@@ -17,7 +17,7 @@
     {% endfor %}
   {% endif %}
 
-  {% call section({ title: __("posts.post.properties") }) %}
+  {% call details({ summary: __("posts.post.properties") }) %}
     {{ summary({ rows: summaryRows(post) }) }}
   {% endcall %}
 {% endblock %}
