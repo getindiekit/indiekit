@@ -8,17 +8,17 @@
     title: {
       for: "name",
       value: name,
-      placeholder: __("share.name")
+      placeholder: __("share.name.label")
     },
     text: {
       for: "content",
       value: content,
-      placeholder: __("share.content")
+      placeholder: __("share.content.label")
     },
     url: {
       for: "bookmark-of",
       value: bookmarkOf or url,
-      placeholder: __("share.bookmark-of")
+      placeholder: __("share.bookmark-of.label")
     },
     date: "now",
     locale: application.locale
@@ -29,7 +29,7 @@
     name: "bookmark-of",
     value: errors["bookmark-of"].value or bookmarkOf or url,
     label: {
-      text: __("share.bookmark-of")
+      text: __("share.bookmark-of.label")
     },
     attributes: {
       "data-action": "preview#url"
@@ -44,7 +44,7 @@
     name: "name",
     value: errors.name.value or name,
     label: {
-      text: __("share.name")
+      text: __("share.name.label")
     },
     attributes: {
       "data-action": "preview#title"
@@ -60,7 +60,7 @@
     value: content,
     required: "false",
     label: {
-      text: __("share.content")
+      text: __("share.content.label")
     },
     attributes: {
       "data-action": "preview#text"

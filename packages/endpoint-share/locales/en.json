@@ -1,14 +1,24 @@
 {
   "share": {
-    "title": "Share",
-    "bookmark-of": "URL",
-    "name": "Title",
-    "content": "Content",
-    "submit": "Publish",
     "error": {
-      "bookmark-of": "Enter a web address like https://example.org",
-      "name": "Enter a title"
-    }
+      "bookmark-of": {
+        "empty": "Enter a web address like https://example.org"
+      },
+      "name": {
+        "empty": "Enter a title"
+      }
+    },
+    "title": "Share",
+    "bookmark-of": {
+      "label": "URL"
+    },
+    "name": {
+      "label": "Title"
+    },
+    "content": {
+      "label": "Content"
+    },
+    "submit": "Publish"
   },
   "status": {
     "bookmarklet": {
