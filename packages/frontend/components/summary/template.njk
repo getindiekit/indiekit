@@ -8,9 +8,11 @@
     <dd class="{{ classes("summary__value", row.value) }} s-flow">
       {{- row.value.text | default(__("noValue")) | safe -}}
     </dd>
+    {%- if row.actions -%}
     <dd class="{{ classes("summary__actions", row.actions) }}">
       {{- actions({ items: row.actions }) if row.actions.length -}}
     </dd>
+    {%- endif %}
   </div>
   {%- endfor %}
 </dl>
