@@ -16,6 +16,7 @@ export function mockClient() {
   };
 
   // Create file
+  client.intercept({ path: /.*401\.md/, method: "PUT" }).reply(401);
   client.intercept({ path, method: "PUT" }).reply(201, response).persist();
 
   // Update file
