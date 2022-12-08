@@ -29,7 +29,7 @@ export const queryController = async (request, response, next) => {
 
     const posts = await publication.posts
       .find()
-      .sort({ _id: -1 })
+      .sort({ "properties.published": -1 })
       .skip(offset)
       .limit(limit)
       .toArray();
