@@ -66,3 +66,17 @@
   gap: var(--space-xs);
   grid-template-columns: repeat(auto-fill, minmax(6em, 1fr));
 }
+
+.button-group {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  text-align: center;
+
+  @media (--upto-small-viewport) {
+    & > * {
+      inline-size: 100%;
+    }
+  }
+}
