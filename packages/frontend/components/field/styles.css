@@ -6,6 +6,10 @@
   & > * + * {
     margin-block-start: var(--space-xs);
   }
+
+  & + .field {
+    margin-block-start: var(--space-l);
+  }
 }
 
 .field--error {
