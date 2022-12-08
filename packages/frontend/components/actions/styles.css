@@ -13,7 +13,7 @@
 .actions__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-m);
+  gap: var(--space-2xs) var(--space-l);
 }
 
 .actions__link--warning {
