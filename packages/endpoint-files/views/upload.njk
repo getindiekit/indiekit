@@ -4,14 +4,14 @@
   {{ input({
     id: "file",
     name: "file",
-    value: errors["file"].value or file,
+    value: errors.file.value or file,
     label: {
-      text: __("files.upload.file")
+      text: __("files.upload.file.label")
     },
     type: "file",
     errorMessage: {
-      text: errors["file"].msg
-    } if errors["file"]
+      text: errors.file.msg
+    } if errors.file
   }) | indent(2) }}
 
   {{ button({

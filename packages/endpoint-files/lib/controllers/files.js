@@ -69,7 +69,7 @@ export const filesController = async (request, response, next) => {
           ? {
               href: path.join(request.baseUrl + request.path, "/new/"),
               icon: "uploadFile",
-              text: response.__("files.upload.title"),
+              text: response.__("files.upload.action"),
             }
           : {},
       ],

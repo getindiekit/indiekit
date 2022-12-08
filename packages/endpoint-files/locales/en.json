@@ -1,5 +1,10 @@
 {
   "files": {
+    "error": {
+      "file": {
+        "empty": "Choose a file to upload"
+      }
+    },
     "delete": {
       "action": "Delete file",
       "title": "Are you sure you want to delete this file?",
@@ -15,14 +20,14 @@
       "none": "No files",
       "title": "Uploaded files"
     },
-    "error": {
-      "file": "Choose a file to upload"
-    },
     "title": "Files",
     "upload": {
-      "file": "File",
+      "action": "Upload file",
+      "title": "Upload a new file",
       "submit": "Upload",
-      "title": "Upload a new file"
+      "file": {
+        "label": "File"
+      }
     }
   }
 }
