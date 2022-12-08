@@ -1,0 +1,40 @@
+.details__summary {
+  --details-color: var(--anchor-color, currentcolor);
+  --details-color-hover: var(--anchor-color-hover, var(--color-on-background));
+  --details-decoration-color: var(--details-decoration-color, currentcolor);
+  color: var(--details-color);
+  cursor: pointer;
+  display: inline-block;
+  font: var(--font-label);
+  margin-inline: calc(var(--space-xs) * -1);
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-xs);
+  white-space: nowrap;
+
+  @supports (display: inline list-item) {
+    display: inline list-item;
+  }
+
+  &:hover {
+    color: var(--details-color-hover);
+  }
+
+  &:focus-visible {
+    color: var(--color-on-background);
+  }
+}
+
+.details__summary-text {
+  @nest .details__summary:hover & {
+    text-decoration-color: var(--details-decoration-color);
+    text-decoration-line: underline;
+    text-decoration-thickness: calc(var(--text-thickness) * 2);
+    text-underline-offset: calc(var(--text-thickness) * 2);
+  }
+}
+
+.details__main {
+  border-inline-start: var(--border-width-thickest) solid var(--color-primary);
+  margin-block-start: var(--space-s);
+  padding-inline-start: var(--space-m);
+}
