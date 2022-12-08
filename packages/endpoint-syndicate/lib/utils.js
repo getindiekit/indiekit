@@ -15,15 +15,20 @@ export const getPostData = async (publication, url) => {
       "properties.url": url,
     });
   } else {
-    // Get published posts from database and return first item
+    // Get published posts awaiting syndication and return first item
     const items = await posts
       .find({
+        "properties.mp-syndicate-to": {
+          $exists: true,
+        },
         "properties.post-status": {
           $ne: "draft",
         },
       })
+      .sort({ "properties.published": -1 })
+      .limit(1)
       .toArray();
-    postData = items[items.length - 1];
+    postData = items[0];
   }
 
   return postData;

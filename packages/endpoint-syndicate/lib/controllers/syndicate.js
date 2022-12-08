@@ -37,20 +37,12 @@ export const syndicateController = {
       if (!postData) {
         return response.json({
           success: "OK",
-          success_description: "No post records available",
-        });
-      }
-
-      // Only syndicate to selected targets
-      let mpSyndicateTo = postData.properties["mp-syndicate-to"];
-      if (!mpSyndicateTo) {
-        return response.json({
-          success: "OK",
           success_description: "No posts awaiting syndication",
         });
       }
 
       // Syndicate to target(s)
+      let mpSyndicateTo = postData.properties["mp-syndicate-to"];
       const syndication = postData.properties.syndication || [];
       for await (const target of syndicationTargets) {
         const { uid } = target.info;

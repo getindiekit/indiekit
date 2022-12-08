@@ -14,7 +14,7 @@ test("Returns no post records", async (t) => {
     .set("accept", "application/json");
 
   t.is(result.status, 200);
-  t.is(result.body.success_description, "No post records available");
+  t.is(result.body.success_description, "No posts awaiting syndication");
 
   server.close(t);
 });
