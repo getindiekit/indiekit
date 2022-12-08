@@ -1,8 +1,13 @@
 .heading {
-  align-items: last baseline;
+  align-items: end;
   display: flex;
   flex-wrap: wrap;
+  gap: var(--space-s);
   justify-content: space-between;
+
+  & .actions {
+    margin-block-end: var(--space-2xs);
+  }
 }
 
 .heading__title {
