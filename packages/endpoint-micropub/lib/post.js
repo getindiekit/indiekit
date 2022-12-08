@@ -21,7 +21,9 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.properties["post-status"] = draftMode ? "draft" : "published";
+      postData.properties["post-status"] = draftMode
+        ? "draft"
+        : postData.properties["post-status"] || "published";
 
       if (posts) {
         await posts.insertOne(postData, {
@@ -160,7 +162,9 @@ export const post = {
 
     if (published) {
       postData.date = new Date();
-      postData.properties["post-status"] = draftMode ? "draft" : "published";
+      postData.properties["post-status"] = draftMode
+        ? "draft"
+        : postData.properties["post-status"] || "published";
 
       if (posts) {
         await posts.replaceOne(
