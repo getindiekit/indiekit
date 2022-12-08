@@ -15,8 +15,14 @@ export const getPostData = async (publication, url) => {
       "properties.url": url,
     });
   } else {
-    // Get items in database and return first item
-    const items = await posts.find().toArray();
+    // Get published posts from database and return first item
+    const items = await posts
+      .find({
+        "properties.post-status": {
+          $ne: "draft",
+        },
+      })
+      .toArray();
     postData = items[items.length - 1];
   }
 
