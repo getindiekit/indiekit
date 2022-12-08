@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { fetch } from "undici";
@@ -14,6 +15,7 @@ import { fetch } from "undici";
 export const postsController = async (request, response, next) => {
   try {
     const { application } = request.app.locals;
+    const { scope } = request.session;
 
     let { page, limit, offset, success } = request.query;
     page = Number.parseInt(page, 10) || 1;
@@ -60,6 +62,15 @@ export const postsController = async (request, response, next) => {
      */
     response.render("posts", {
       title: response.__("posts.posts.title"),
+      actions: [
+        scope.includes("create") || scope.includes("draft")
+          ? {
+              href: path.join(request.baseUrl + request.path, "/new/"),
+              icon: "createPost",
+              text: response.__("posts.create.action"),
+            }
+          : {},
+      ],
       posts,
       page,
       limit,

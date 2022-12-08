@@ -1,8 +1,33 @@
 {
   "posts": {
-    "new": {
+    "error": {
+      "content": {
+        "empty": "Enter some content"
+      }
+    },
+    "create": {
       "action": "New post",
-      "title": "Create a new post"
+      "title": "Create a new post",
+      "submit": "Publish post",
+      "submitDraft": "Save draft",
+      "cancel": "Cancel",
+      "advancedOptions": "Advanced options",
+      "content": {
+        "label": "Content"
+      },
+      "mpSlug": {
+        "label": "URL slug"
+      },
+      "mpSyndicateTo": {
+        "label": "Syndicate to"
+      },
+      "visibility": {
+        "label": "Visibility",
+        "_ignore": "Not set",
+        "private": "Private",
+        "public": "Public",
+        "unlisted": "Unlisted"
+      }
     },
     "delete": {
       "action": "Delete post",

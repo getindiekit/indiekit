@@ -75,3 +75,33 @@ export const getPostName = (post, publication) => {
   const postTypeConfig = postTypes.find((item) => item.type === postType);
   return postTypeConfig.name;
 };
+
+/**
+ * Get syndication target `items` for checkboxes component
+ *
+ * @param {object} publication - Publication configuration
+ * @returns {object} Items for checkboxes component
+ */
+export const getSyndicateToItems = (publication) => {
+  return publication.syndicationTargets.map((target) => ({
+    text: target.info.service.name,
+    hint: { text: target.info.uid },
+    value: target.info.uid,
+    checked: target.options.checked,
+  }));
+};
+
+/**
+ * Get visibility `items` for radios component
+ *
+ * @param {object} response - HTTP response
+ * @param {object} [post=false] - Post properties
+ * @returns {object} Items for radios component
+ */
+export const getVisibilityItems = (response, post = false) => {
+  return ["_ignore", "public", "unlisted", "private"].map((value) => ({
+    text: response.__(`posts.create.visibility.${value}`),
+    value,
+    checked: post?.visibility === value,
+  }));
+};

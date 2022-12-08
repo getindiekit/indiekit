@@ -1,0 +1,75 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ input({
+    name: "h",
+    value: "entry",
+    type: "hidden"
+  }) | indent(2) }}
+
+  {{ textarea({
+    id: "content",
+    name: "content",
+    value: errors.content.value,
+    label: {
+      text: __("posts.create.content.label")
+    },
+    errorMessage: {
+      text: errors.content.msg
+    } if errors.content
+  }) | indent(2) }}
+
+  {{ checkboxes({
+    idPrefix: "mp-syndicate-to",
+    name: "mp-syndicate-to",
+    fieldset: {
+      legend: {
+        text: __("posts.create.mpSyndicateTo.label")
+      }
+    },
+    items: syndicationTargetItems
+  }) | indent(2) }}
+
+  {% call details({ summary: __("posts.create.advancedOptions") }) %}
+    {{ input({
+      id: "mp-slug",
+      name: "mp-slug",
+      value: errors["mp-slug"].value,
+      label: {
+        text: __("posts.create.mpSlug.label")
+      },
+      optional: "true"
+    }) | indent(4) }}
+
+    {{ radios({
+      classes: "radios--inline",
+      idPrefix: "visibility",
+      name: "visibility",
+      fieldset: {
+        legend: {
+          text: __("posts.create.visibility.label")
+        }
+      },
+      items: visibilityItems
+    }) | indent(4) }}
+  {% endcall %}
+
+  <div class="button-group">
+    {{ button({
+      name: "post-status",
+      value: "published",
+      text: __("posts.create.submit")
+    }) | indent(4) if not draftMode }}
+
+    {{ button({
+      name: "post-status",
+      value: "draft",
+      classes: "button--secondary",
+      text: __("posts.create.submitDraft")
+    }) | indent(4) }}
+
+    {{ prose({
+      text: "[" + __("posts.create.cancel") + "](" + back + ")"
+    }) | indent(4) }}
+  </div>
+{% endblock %}
