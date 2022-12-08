@@ -9,11 +9,11 @@
   {{- _actionLink(opts.items[0]) | trim -}}
 {% else %}
   <ul class="actions__list" role="list">
-  {% for item in opts.items %}
+  {% for item in opts.items %}{% if item.text %}
     <li class="actions__list-item">
       {{- _actionLink(item) | trim -}}
     </li>
-  {% endfor %}
+  {% endif %}{% endfor %}
   </ul>
 {% endif %}
 </div>
