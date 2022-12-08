@@ -2,11 +2,11 @@
 {%- set legend %}
   {%- if opts.legend.text %}
   <legend class="{{ classes("fieldset__legend", opts.legend) }}">
-  {%- if opts.legend.isPageHeading %}
-    {{ heading(opts.legend) }}
-  {%- else %}
+  {%- if opts.legend.isPageHeading -%}
+    {{- heading(opts.legend) -}}
+  {%- else -%}
     {{- opts.legend.text | safe -}}
-  {%- endif %}
+  {%- endif -%}
   </legend>
   {%- endif %}
 {%- endset %}
