@@ -1,4 +1,5 @@
 {%- from "../actions/macro.njk" import actions with context -%}
+{%- from "../prose/macro.njk" import prose with context -%}
 {%- set id = opts.id or opts.title | slugify -%}
 <section class="{{ classes("section", opts) }}" aria-labelledby="{{ id }}">
   {%- if opts.title or opts.actions %}
