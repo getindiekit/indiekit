@@ -9,11 +9,6 @@
 .app--minimalui {
   --container-max-inline-size: 36rem;
 
-  & .header,
-  & .main {
-    background-color: transparent;
-  }
-
   & .header__container,
   & .footer__container {
     align-items: center;
@@ -21,14 +16,10 @@
   }
 
   & .main {
+    border-radius: var(--border-radius-large);
     flex: 0;
     margin: auto;
     overflow: hidden;
-  }
-
-  & .main__container {
-    background-color: var(--color-background);
-    border-radius: var(--border-radius-large);
   }
 
   & .notification {
