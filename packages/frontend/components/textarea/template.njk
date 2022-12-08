@@ -13,7 +13,7 @@
     classes: opts.label.classes,
     attributes: opts.label.attributes,
     text: opts.label.text,
-    optional: opts.required == "false"
+    optional: opts.optional == "true"
   }) | indent(2) | trim }}
 {%- endif %}
 {%- if opts.hint %}
