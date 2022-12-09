@@ -34,8 +34,8 @@
     classes: opts.errorMessage.classes,
     attributes: opts.errorMessage.attributes,
     text: opts.errorMessage.text,
-    label: opts.errorMessage.label
-  }) | indent(2) }}
+    visuallyHiddenText: opts.errorMessage.visuallyHiddenText
+  }) | indent(2) | trim }}
 {%- endif %}
   <input class="{{ classes("input", opts) }}" name="{{ opts.name }}" type="{{ opts.type | default("text") }}"
   {%- if opts.id %} id="{{ opts.id}}"{% endif %}
