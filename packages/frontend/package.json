@@ -49,7 +49,9 @@
     "postcss-easy-import": "^4.0.0",
     "postcss-lightningcss": "^0.6.0",
     "rollup": "^3.2.0",
+    "rollup-plugin-polyfill-node": "^0.11.0",
     "sharp": "^0.31.2",
+    "tokenfield": "^1.5.2",
     "widont": "^0.3.3"
   },
   "publishConfig": {

@@ -1,0 +1,116 @@
+.tokenfield {
+  --anchor-decoration-line: none;
+  position: relative;
+}
+
+.tokenfield-input {
+  border: none;
+  color: var(--color-on-offset);
+  padding: 0;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.tokenfield-mode-tokens {
+  background-color: var(--color-background);
+  border: var(--border-width-thick) solid var(--color-outline);
+  border-radius: var(--border-radius-small);
+  display: flex;
+  gap: var(--space-2xs);
+  inline-size: 100%;
+  min-height: calc(var(--space-xs) + 2rem);
+  padding: calc(var(--space-s) / 2);
+
+  &.focused {
+    border-color: var(--color-outline-variant);
+    box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
+  }
+
+  &[disabled],
+  &[readonly] {
+    background: var(--color-offset);
+    color: var(--color-on-offset);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  & .selected {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  & .focused {
+    background: var(--color-selection);
+  }
+
+  & .focused:hover {
+    background: var(--color-focus);
+  }
+}
+
+.tokenfield-suggest {
+  background-color: var(--color-background);
+  border: var(--border-width-thick) solid var(--color-outline-variant);
+  border-radius: var(--border-radius-small);
+  box-shadow: 0 6px 12px var(--color-shadow);
+  box-sizing: content-box;
+  inline-size: 100%;
+  inset-block-start: calc(100% - var(--border-width-thick));
+  inset-inline-start: calc(var(--border-width-thick) * -1);
+  overflow: auto;
+  position: absolute;
+  z-index: 10;
+
+  & > ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  & > ul > li {
+    cursor: pointer;
+    padding-block: calc(var(--space-s) / 2);
+    padding-inline: var(--space-s);
+  }
+}
+
+.tokenfield-set {
+  & > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    list-style: none;
+    padding: 0;
+  }
+
+  & > ul > li {
+    background: var(--color-offset);
+    border-radius: var(--border-radius-small);
+    color: var(--color-on-background);
+    cursor: pointer;
+  }
+
+  & > ul > li:hover {
+    background: var(--color-offset-variant);
+  }
+
+  & .item-label {
+    padding-inline-start: var(--space-xs);
+  }
+
+  & .item-remove {
+    color: currentcolor;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    opacity: 0.5;
+    padding-inline: var(--space-xs);
+  }
+
+  & .item-remove:hover {
+    opacity: 1;
+  }
+}
