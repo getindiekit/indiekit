@@ -50,6 +50,12 @@ export const createController = {
         delete properties.visibility;
       }
 
+      // Assign token input `items` property to `categories`
+      if (properties.items) {
+        properties.category = properties.items;
+        delete properties.items;
+      }
+
       const micropubResponse = await fetch(application.micropubEndpoint, {
         method: "POST",
         headers: {

@@ -32,6 +32,18 @@
 
   {% call details({ summary: __("posts.create.advancedOptions") }) %}
     {{ input({
+      value: errors.category.value,
+      label: {
+        text: __("posts.create.category.label")
+      },
+      optional: "true",
+      attributes: {
+        "data-controller": "token-input",
+        "data-token-input-items-value": publication.categories
+      }
+    }) | indent(4) }}
+
+    {{ input({
       id: "mp-slug",
       name: "mp-slug",
       value: errors["mp-slug"].value,
