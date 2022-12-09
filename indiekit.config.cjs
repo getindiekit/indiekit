@@ -18,6 +18,7 @@ module.exports = {
   ],
   publication: {
     me: process.env.PUBLICATION_URL,
+    categories: ["internet", "indieweb", "indiekit", "test", "testing"],
     timeZone: process.env.TZ,
   },
   "@indiekit/store-github": {
