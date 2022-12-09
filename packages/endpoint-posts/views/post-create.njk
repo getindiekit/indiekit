@@ -36,7 +36,7 @@
       label: {
         text: __("posts.create.category.label")
       },
-      optional: "true",
+      optional: true,
       attributes: {
         "data-controller": "token-input",
         "data-token-input-items-value": publication.categories
@@ -50,7 +50,7 @@
       label: {
         text: __("posts.create.mpSlug.label")
       },
-      optional: "true"
+      optional: true
     }) | indent(4) }}
 
     {{ radios({
