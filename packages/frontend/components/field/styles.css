@@ -1,14 +1,14 @@
 .field {
-  &:has([type="hidden"]) {
+  & + .field {
+    margin-block-start: var(--space-l);
+  }
+
+  &:has(.input[type="hidden"]) {
     display: none;
   }
 
   & > * + * {
     margin-block-start: var(--space-xs);
-  }
-
-  & + .field {
-    margin-block-start: var(--space-l);
   }
 }
 
