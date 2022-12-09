@@ -12,6 +12,9 @@
       "submitDraft": "Save draft",
       "cancel": "Cancel",
       "advancedOptions": "Advanced options",
+      "category": {
+        "label": "Categories"
+      },
       "content": {
         "label": "Content"
       },

@@ -30,7 +30,24 @@
     items: syndicationTargetItems
   }) | indent(2) }}
 
-  {% call details({ summary: __("posts.create.advancedOptions") }) %}
+  {% call details({
+    summary: __("posts.create.advancedOptions"),
+    attributes: {
+      open: "true"
+    }
+  }) %}
+    {{ input({
+      value: errors.category.value,
+      label: {
+        text: __("posts.create.category.label")
+      },
+      optional: "true",
+      attributes: {
+        "data-controller": "token-input",
+        "data-token-input-items-value": publication.categories
+      }
+    }) | indent(4) }}
+
     {{ input({
       id: "mp-slug",
       name: "mp-slug",
