@@ -13,6 +13,7 @@ test("Creates post and redirects to posts page", async (t) => {
     .post("/posts/create")
     .type("form")
     .set("cookie", [cookie()])
+    .send({ type: "entry" })
     .send({ content: "Foobar" })
     .send({ visibility: "_ignore" });
 

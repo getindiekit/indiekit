@@ -14,6 +14,19 @@ test.beforeEach((t) => {
         name: "Journal entry",
       },
     ],
+    syndicationTargets: [
+      {
+        info: {
+          service: {
+            name: "Twitter",
+          },
+          uid: "https://twitter.com/username",
+        },
+        options: {
+          checked: true,
+        },
+      },
+    ],
   };
 });
 
@@ -29,28 +42,15 @@ test("Gets post type name as fallback for post name", (t) => {
   t.is(getPostName(t.context.publication, post), "Journal entry");
 });
 
-test("Gets post type name", (t) => {
-  const post = { "post-type": "article" };
-
-  t.is(getPostTypeName(t.context.publication, post), "Journal entry");
+test("Gets post type name (or an empty string)", (t) => {
+  t.is(getPostTypeName(t.context.publication, "article"), "Journal entry");
+  t.is(getPostTypeName(t.context.publication, null), "");
 });
 
 test("Get syndication target `items` for checkboxes component", (t) => {
-  const result = getSyndicateToItems({
-    syndicationTargets: [
-      {
-        info: {
-          service: {
-            name: "Twitter",
-          },
-          uid: "https://twitter.com/username",
-        },
-        options: {
-          checked: true,
-        },
-      },
-    ],
-  });
+  const post = { "mp-syndicate-to": "https://twitter.com/username" };
+
+  const result = getSyndicateToItems(t.context.publication, post);
 
   t.is(result.length, 1);
   t.true(result[0].checked);

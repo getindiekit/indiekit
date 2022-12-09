@@ -3,7 +3,7 @@ import { deleteController } from "./lib/controllers/delete.js";
 import { formController } from "./lib/controllers/form.js";
 import { postController } from "./lib/controllers/post.js";
 import { postsController } from "./lib/controllers/posts.js";
-import { locals } from "./lib/middleware/locals.js";
+import { postData } from "./lib/middleware/post-data.js";
 import { validate } from "./lib/middleware/validation.js";
 
 const defaults = { mountPath: "/posts" };
@@ -29,10 +29,15 @@ export default class PostsEndpoint {
   get routes() {
     router.get("/", postsController);
 
-    router.use("/:id/:action?", locals);
-    router.get("/create", formController.get);
-    router.post("/create", validate, formController.post);
+    router.get("/create", postData.create, formController.get);
+    router.post("/create", postData.create, validate, formController.post);
+
+    router.use("/:id/:action?", postData.read);
     router.get("/:id", postController);
+
+    router.get("/:id/update", formController.get);
+    router.post("/:id/update", validate, formController.post);
+
     router.get("/:id/:action(delete|undelete)", deleteController.get);
     router.post("/:id/:action(delete|undelete)", deleteController.post);
 

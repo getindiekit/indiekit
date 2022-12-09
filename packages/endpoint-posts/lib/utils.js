@@ -42,7 +42,7 @@ export const getPostData = async (id, micropubEndpoint, accessToken) => {
  * Get post name, falling back to post type name
  *
  * @param {string} publication - Publication configuration
- * @param {string} post - Post properties
+ * @param {object} post - Post properties
  * @returns {string} Post name or post type name
  */
 export const getPostName = (publication, post) => {
@@ -50,7 +50,7 @@ export const getPostName = (publication, post) => {
     return post.name;
   }
 
-  return getPostTypeName(publication, post);
+  return getPostTypeName(publication, post["post-type"]);
 };
 
 /**
@@ -58,24 +58,36 @@ export const getPostName = (publication, post) => {
  *
  * @param {object} publication - Publication configuration
  * @param {string} post - Post properties
- * @returns {object} Post type name
+ * @returns {string} Post type name
  */
-export const getPostTypeName = (publication, post) =>
-  publication.postTypes.find((item) => item.type === post["post-type"]).name;
+export const getPostTypeName = (publication, postType) => {
+  if (publication.postTypes && postType) {
+    const postTypeConfig = publication.postTypes.find(
+      (item) => item.type === postType
+    );
+
+    return postTypeConfig.name;
+  }
+
+  return "";
+};
 
 /**
  * Get syndication target `items` for checkboxes component
  *
  * @param {object} publication - Publication configuration
+ * @param {string} post - Post properties
  * @returns {object} Items for checkboxes component
  */
-export const getSyndicateToItems = (publication) => {
-  return publication.syndicationTargets.map((target) => ({
-    text: target.info.service.name,
-    hint: { text: target.info.uid },
-    value: target.info.uid,
-    checked: target.options.checked,
-  }));
+export const getSyndicateToItems = (publication, post = false) => {
+  return publication.syndicationTargets.map((target) => {
+    return {
+      text: target.info.service.name,
+      hint: { text: target.info.uid },
+      value: target.info.uid,
+      checked: post["mp-syndicate-to"]?.includes(target.info.uid),
+    };
+  });
 };
 
 /**
@@ -91,6 +103,6 @@ export const getVisibilityItems = (response, post = false) => {
       value === "_ignore" ? response.__("noValue") : `posts.status.${value}`
     ),
     value,
-    checked: post?.visibility === value,
+    checked: post.visibility ? value === post.visibility : value === "_ignore",
   }));
 };

@@ -2,8 +2,8 @@
 
 {% block fieldset %}
   {{ input({
-    name: "h",
-    value: post.h,
+    name: "type",
+    value: "event" if postType === "event" else "entry",
     type: "hidden"
   }) | indent(2) }}
 
@@ -16,7 +16,7 @@
   {{ input({
     id: "bookmark-of",
     name: "bookmark-of",
-    value: errors["bookmark-of"].value,
+    value: errors["bookmark-of"].value or post["bookmark-of"],
     label: {
       text: __("posts.form.bookmark-of.label")
     },
@@ -28,7 +28,7 @@
   {{ input({
     id: "name",
     name: "name",
-    value: errors.name.value,
+    value: errors.name.value or post.name,
     label: {
       text: __("posts.form.name.label")
     },
@@ -41,7 +41,7 @@
   {{ textarea({
     id: "content",
     name: "content",
-    value: errors.content.value,
+    value: errors.content.value or post.content.text,
     label: {
       text: __("posts.form.content.label")
     },
@@ -64,7 +64,7 @@
 
   {% call details({ summary: __("posts.form.advancedOptions") }) %}
     {{ input({
-      value: errors.category.value,
+      value: errors.category.value or post.category,
       label: {
         text: __("posts.form.category.label")
       },
@@ -78,7 +78,7 @@
     {{ input({
       id: "mp-slug",
       name: "mp-slug",
-      value: errors["mp-slug"].value,
+      value: errors["mp-slug"].value or post["mp-slug"],
       label: {
         text: __("posts.form.mp-slug.label")
       },
@@ -102,15 +102,15 @@
     {{ button({
       name: "post-status",
       value: "published",
-      text: __("posts.form.submit")
-    }) | indent(4) if not draftMode }}
+      text: __("posts.form.update") if postStatus === "published" else __("posts.form.publish")
+    }) if not draftMode | indent(4) }}
 
     {{ button({
       name: "post-status",
       value: "draft",
       classes: "button--secondary",
-      text: __("posts.form.submitDraft")
-    }) | indent(4) }}
+      text: __("posts.form.updateDraft") if postStatus === "draft" else __("posts.form.publishDraft")
+    }) if postStatus !== "published" | indent(4) }}
 
     {{ prose({
       text: "[" + __("posts.form.cancel") + "](" + back + ")"
