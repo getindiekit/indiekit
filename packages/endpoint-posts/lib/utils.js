@@ -70,11 +70,18 @@ export const getPostName = (post, publication) => {
     return post.name;
   }
 
-  const { postTypes } = publication;
-  const postType = post["post-type"];
-  const postTypeConfig = postTypes.find((item) => item.type === postType);
-  return postTypeConfig.name;
+  return getPostTypeConfig(post["post-type"], publication.postTypes).name;
 };
+
+/**
+ * Get post type configuration for a given type
+ *
+ * @param {string} type - Post type
+ * @param {object} postTypes - Publication post types
+ * @returns {object} Post type configuration
+ */
+export const getPostTypeConfig = (type, postTypes) =>
+  postTypes.find((item) => item.type === type);
 
 /**
  * Get syndication target `items` for checkboxes component
