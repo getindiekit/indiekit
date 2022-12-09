@@ -28,13 +28,11 @@ module.exports = {
   },
   "@indiekit/syndicator-mastodon": {
     checked: true,
-    forced: true,
     url: process.env.MASTODON_URL,
     user: process.env.MASTODON_USER,
   },
   "@indiekit/syndicator-twitter": {
     checked: true,
-    forced: true,
     user: process.env.TWITTER_USER,
   },
 };
