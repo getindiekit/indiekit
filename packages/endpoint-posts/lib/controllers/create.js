@@ -14,7 +14,7 @@ export const createController = {
     const { scope } = request.session;
     if (scope.includes("create") || scope.includes("draft")) {
       return response.render("post-create", {
-        title: response.__("posts.create.title"),
+        title: response.__("posts.create.title", response.locals.postType),
       });
     }
 
@@ -34,7 +34,7 @@ export const createController = {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("post-create", {
-        title: response.__("posts.create.title"),
+        title: response.__("posts.create.title", response.locals.postType),
         errors: errors.mapped(),
       });
     }
@@ -77,7 +77,7 @@ export const createController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("post-create", {
-        title: response.__("posts.create.title"),
+        title: response.__("posts.create.title", response.locals.postType),
         error: error.message,
       });
     }

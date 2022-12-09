@@ -1,27 +1,39 @@
 {
   "posts": {
     "error": {
+      "bookmark-of": {
+        "empty": "Enter a web address like https://example.org"
+      },
       "content": {
         "empty": "Enter some content"
+      },
+      "name": {
+        "empty": "Enter a title"
       }
     },
     "create": {
       "action": "New post",
-      "title": "Create a new post",
+      "title": "Create a new %s post",
       "submit": "Publish post",
       "submitDraft": "Save draft",
       "cancel": "Cancel",
       "advancedOptions": "Advanced options",
+      "bookmark-of": {
+        "label": "Bookmark of"
+      },
       "category": {
         "label": "Categories"
       },
       "content": {
         "label": "Content"
       },
-      "mpSlug": {
+      "name": {
+        "label": "Title"
+      },
+      "mp-slug": {
         "label": "URL slug"
       },
-      "mpSyndicateTo": {
+      "mp-syndicate-to": {
         "label": "Syndicate to"
       },
       "visibility": {

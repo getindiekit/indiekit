@@ -1,6 +1,7 @@
 import test from "ava";
 import {
   getPostName,
+  getPostTypeConfig,
   getSyndicateToItems,
   getVisibilityItems,
 } from "../../lib/utils.js";
@@ -28,6 +29,17 @@ test("Gets post type name", (t) => {
     "post-type": "article",
   };
   t.is(getPostName(post, t.context.publication), "Journal entry");
+});
+
+test("Gets post type config", (t) => {
+  const result = getPostTypeConfig("note", [
+    {
+      type: "note",
+      name: "Custom note post type",
+    },
+  ]);
+
+  t.is(result.name, "Custom note post type");
 });
 
 test("Get syndication target `items` for checkboxes component", (t) => {

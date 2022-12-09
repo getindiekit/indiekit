@@ -7,6 +7,37 @@
     type: "hidden"
   }) | indent(2) }}
 
+  {{ input({
+    name: "post-type",
+    value: type,
+    type: "hidden"
+  }) | indent(2) }}
+
+  {{ input({
+    id: "bookmark-of",
+    name: "bookmark-of",
+    value: errors["bookmark-of"].value,
+    label: {
+      text: __("posts.create.bookmark-of.label")
+    },
+    errorMessage: {
+      text: errors["bookmark-of"].msg
+    } if errors["bookmark-of"]
+  }) if type === "bookmark" | indent(2) }}
+
+  {{ input({
+    id: "name",
+    name: "name",
+    value: errors.name.value,
+    label: {
+      text: __("posts.create.name.label")
+    },
+    optional: (type !== "article") and (type !== "bookmark"),
+    errorMessage: {
+      text: errors.name.msg
+    } if errors.name
+  }) if type !== "note" | indent(2) }}
+
   {{ textarea({
     id: "content",
     name: "content",
@@ -14,6 +45,7 @@
     label: {
       text: __("posts.create.content.label")
     },
+    optional: (type !== "article") and (type !== "note"),
     errorMessage: {
       text: errors.content.msg
     } if errors.content
@@ -24,7 +56,7 @@
     name: "mp-syndicate-to",
     fieldset: {
       legend: {
-        text: __("posts.create.mpSyndicateTo.label")
+        text: __("posts.create.mp-syndicate-to.label")
       }
     },
     items: syndicationTargetItems
@@ -48,7 +80,7 @@
       name: "mp-slug",
       value: errors["mp-slug"].value,
       label: {
-        text: __("posts.create.mpSlug.label")
+        text: __("posts.create.mp-slug.label")
       },
       optional: true
     }) | indent(4) }}
