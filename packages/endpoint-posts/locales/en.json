@@ -24,6 +24,10 @@
       "action": "New post",
       "title": "Create a new %s post"
     },
+    "update": {
+      "action": "Edit post",
+      "title": "Update %s post"
+    },
     "delete": {
       "action": "Delete post",
       "title": "Are you sure you want to delete this post?",
@@ -36,10 +40,12 @@
       "submit": "I’m sure – restore this post"
     },
     "form": {
-      "submit": "Publish post",
-      "submitDraft": "Save draft",
-      "cancel": "Cancel",
       "advancedOptions": "Advanced options",
+      "publish": "Publish post",
+      "update": "Update post",
+      "publishDraft": "Save draft",
+      "updateDraft": "Update draft",
+      "cancel": "Cancel",
       "bookmark-of": {
         "label": "Bookmark of"
       },

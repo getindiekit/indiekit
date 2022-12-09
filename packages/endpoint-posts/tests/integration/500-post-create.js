@@ -14,6 +14,7 @@ test("Returns 500 error creating post", async (t) => {
     .post("/posts/create")
     .type("form")
     .set("cookie", [cookie()])
+    .send({ type: "entry" })
     .send({ content: "Foobar" })
     .send({ slug: "401" });
   const dom = new JSDOM(response.text);

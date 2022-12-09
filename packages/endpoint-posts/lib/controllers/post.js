@@ -9,8 +9,10 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
  * @returns {object} HTTP response
  */
 export const postController = async (request, response) => {
-  const { back, post, postName, postStatus, scope } = response.locals;
+  const { back, draftMode, post, postName, postStatus, scope } =
+    response.locals;
 
+  const postEditable = draftMode ? postStatus === "draft" : true;
   const postDeleted = postStatus === "deleted";
 
   response.render("post", {
@@ -20,6 +22,13 @@ export const postController = async (request, response) => {
       text: response.__("posts.posts.title"),
     },
     actions: [
+      scope && checkScope(scope, "update") && !postDeleted && postEditable
+        ? {
+            href: path.join(request.originalUrl, "/update"),
+            icon: "updatePost",
+            text: response.__("posts.update.action"),
+          }
+        : {},
       scope && checkScope(scope, "delete") && !postDeleted
         ? {
             classes: "actions__link--warning",
