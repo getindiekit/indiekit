@@ -47,15 +47,15 @@
     "delete": {
       "action": "Delete post",
       "title": "Are you sure you want to delete this post?",
-      "submit": "Yes, delete this post"
+      "submit": "I’m sure – delete this post"
     },
     "undelete": {
       "action": "Restore post",
       "title": "Are you sure you want to restore this post?",
-      "submit": "Yes, restore this post"
+      "submit": "I’m sure – restore this post"
     },
     "confirm": {
-      "cancel": "No, return to post"
+      "cancel": "No – return to post"
     },
     "post": {
       "properties": "Properties"
