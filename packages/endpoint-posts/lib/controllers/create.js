@@ -12,15 +12,15 @@ export const createController = {
    * @returns {object} HTTP response
    */
   async get(request, response) {
-    const { scope } = request.session;
+    const { back, postTypeName, scope } = response.locals;
 
     if (scope && checkScope(scope, "create")) {
       return response.render("post-create", {
-        title: response.__("posts.create.title", response.locals.postType),
+        title: response.__("posts.create.title", postTypeName.toLowerCase()),
       });
     }
 
-    response.redirect(response.locals.back);
+    response.redirect(back);
   },
 
   /**
@@ -32,11 +32,12 @@ export const createController = {
    */
   async post(request, response) {
     const { application } = request.app.locals;
+    const { accessToken, postTypeName } = response.locals;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("post-create", {
-        title: response.__("posts.create.title", response.locals.postType),
+        title: response.__("posts.create.title", postTypeName.toLowerCase()),
         errors: errors.mapped(),
       });
     }
@@ -62,7 +63,7 @@ export const createController = {
         method: "POST",
         headers: {
           accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
+          authorization: `Bearer ${accessToken}`,
           "content-type": "application/x-www-form-urlencoded",
         },
         body: new URLSearchParams(properties).toString(),
@@ -79,7 +80,7 @@ export const createController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("post-create", {
-        title: response.__("posts.create.title", response.locals.postType),
+        title: response.__("posts.create.title", postTypeName.toLowerCase()),
         error: error.message,
       });
     }

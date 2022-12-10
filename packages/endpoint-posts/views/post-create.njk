@@ -3,13 +3,13 @@
 {% block fieldset %}
   {{ input({
     name: "h",
-    value: "entry",
+    value: post.h,
     type: "hidden"
   }) | indent(2) }}
 
   {{ input({
     name: "post-type",
-    value: type,
+    value: postType,
     type: "hidden"
   }) | indent(2) }}
 
@@ -23,7 +23,7 @@
     errorMessage: {
       text: errors["bookmark-of"].msg
     } if errors["bookmark-of"]
-  }) if type === "bookmark" | indent(2) }}
+  }) if postType === "bookmark" | indent(2) }}
 
   {{ input({
     id: "name",
@@ -32,11 +32,11 @@
     label: {
       text: __("posts.create.name.label")
     },
-    optional: (type !== "article") and (type !== "bookmark"),
+    optional: (postType !== "article") and (postType !== "bookmark"),
     errorMessage: {
       text: errors.name.msg
     } if errors.name
-  }) if type !== "note" | indent(2) }}
+  }) if postType !== "note" | indent(2) }}
 
   {{ textarea({
     id: "content",
@@ -45,7 +45,7 @@
     label: {
       text: __("posts.create.content.label")
     },
-    optional: (type !== "article") and (type !== "note"),
+    optional: (postType !== "article") and (postType !== "note"),
     errorMessage: {
       text: errors.content.msg
     } if errors.content

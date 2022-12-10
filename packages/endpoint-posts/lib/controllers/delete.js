@@ -1,7 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { fetch } from "undici";
-import { getPostData, getPostName } from "../utils.js";
 
 export const deleteController = {
   /**
@@ -12,26 +11,16 @@ export const deleteController = {
    * @returns {object} HTTP response
    */
   async get(request, response) {
-    const { action } = request.params;
-    const { access_token, scope } = request.session;
+    const { action, back, postName, scope } = response.locals;
 
     if (scope && checkScope(scope, action)) {
-      const { application, publication } = request.app.locals;
-      const { id } = request.params;
-      const post = await getPostData(
-        id,
-        application.micropubEndpoint,
-        access_token
-      );
-
       return response.render("post-delete", {
         title: response.__(`posts.${action}.title`),
-        parent: { text: getPostName(post, publication) },
-        action,
+        parent: { text: postName },
       });
     }
 
-    response.redirect(response.locals.back);
+    response.redirect(back);
   },
 
   /**
@@ -43,16 +32,9 @@ export const deleteController = {
    */
   async post(request, response) {
     const { application } = request.app.locals;
-    const { action, id } = request.params;
-    const { access_token } = request.session;
+    const { action, accessToken, post } = response.locals;
 
     try {
-      const post = await getPostData(
-        id,
-        application.micropubEndpoint,
-        access_token
-      );
-
       const micropubUrl = new URL(application.micropubEndpoint);
       micropubUrl.searchParams.append("action", action);
       micropubUrl.searchParams.append("url", post.url);
@@ -64,7 +46,7 @@ export const deleteController = {
         method: "POST",
         headers: {
           accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
+          authorization: `Bearer ${accessToken}`,
         },
       });
 
@@ -80,7 +62,6 @@ export const deleteController = {
       response.status(error.status || 500);
       response.render("post-delete", {
         title: response.__(`posts.${action}.title`),
-        action,
         error: error.message,
       });
     }

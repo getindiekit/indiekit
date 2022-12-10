@@ -7,7 +7,7 @@ import { cookie } from "@indiekit-test/session";
 
 await mockAgent("store");
 
-test("Returns 500 error uploading file", async (t) => {
+test("Returns 500 error creating post", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
