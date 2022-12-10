@@ -1,4 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
+import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { fetch } from "undici";
 import { getPostData, getPostName } from "../utils.js";
 
@@ -12,7 +13,8 @@ export const deleteController = {
    */
   async get(request, response) {
     const { access_token, scope } = request.session;
-    if (scope.includes("delete")) {
+
+    if (scope && checkScope(scope, "delete")) {
       const { application, publication } = request.app.locals;
       const { id } = request.params;
       const post = await getPostData(

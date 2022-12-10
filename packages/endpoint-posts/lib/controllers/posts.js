@@ -1,6 +1,7 @@
 import { Buffer } from "node:buffer";
 import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
+import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { fetch } from "undici";
 
@@ -63,7 +64,7 @@ export const postsController = async (request, response, next) => {
     response.render("posts", {
       title: response.__("posts.posts.title"),
       actions: [
-        scope.includes("create") || scope.includes("draft")
+        scope && checkScope(scope, "create")
           ? {
               href: path.join(request.baseUrl + request.path, "/new/"),
               icon: "createPost",

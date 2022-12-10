@@ -1,4 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
+import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { validationResult } from "express-validator";
 import { fetch } from "undici";
 
@@ -12,7 +13,8 @@ export const createController = {
    */
   async get(request, response) {
     const { scope } = request.session;
-    if (scope.includes("create") || scope.includes("draft")) {
+
+    if (scope && checkScope(scope, "create")) {
       return response.render("post-create", {
         title: response.__("posts.create.title", response.locals.postType),
       });
