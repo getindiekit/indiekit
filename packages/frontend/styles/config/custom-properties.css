@@ -9,20 +9,31 @@ html {
   --color-neutral20: hsl(var(--tint-neutral) 20%);
   --color-neutral10: hsl(var(--tint-neutral) 10%);
 
-  /* Error palette */
-  --tint-error: 8 100%;
-  --color-error45: hsl(var(--tint-error) 45%);
-  --color-error30: hsl(var(--tint-error) 30%);
+  /* Red palette */
+  --tint-red: 8 100%;
+  --color-red90: hsl(var(--tint-red) 90%);
+  --color-red45: hsl(var(--tint-red) 45%);
+  --color-red30: hsl(var(--tint-red) 30%);
+  --color-red10: hsl(var(--tint-red) 10%);
 
-  /* Success palette */
-  --tint-success: 144 100%;
-  --color-success50: hsl(var(--tint-success) 50%);
-  --color-success30: hsl(var(--tint-success) 30%);
-  --color-success10: hsl(var(--tint-success) 10%);
+  /* Purple palette */
+  --tint-purple: 270 100%;
+  --color-purple90: hsl(var(--tint-purple) 90%);
+  --color-purple45: hsl(var(--tint-purple) 45%);
+  --color-purple10: hsl(var(--tint-purple) 10%);
 
-  /* Focus palette */
-  --tint-focus: 44 100%;
-  --color-focus50: hsl(var(--tint-focus) 50%);
+  /* Green palette */
+  --tint-green: 144 100%;
+  --color-green90: hsl(var(--tint-green) 90%);
+  --color-green50: hsl(var(--tint-green) 50%);
+  --color-green30: hsl(var(--tint-green) 30%);
+  --color-green10: hsl(var(--tint-green) 10%);
+
+  /* Yellow palette */
+  --tint-yellow: 44 100%;
+  --color-yellow90: hsl(var(--tint-yellow) 90%);
+  --color-yellow50: hsl(var(--tint-yellow) 50%);
+  --color-yellow10: hsl(var(--tint-yellow) 10%);
 }
 
 :root {
@@ -36,14 +47,14 @@ html {
   --color-primary-on-background: var(--color-primary-on-background-light);
 
   /* Common color assigments */
-  --color-error: var(--color-error45);
-  --color-error-variant: var(--color-error30);
+  --color-error: var(--color-red45);
+  --color-error-variant: var(--color-red30);
   --color-on-error: var(--color-neutral99);
-  --color-success: var(--color-success50);
-  --color-success-variant: var(--color-success30);
-  --color-on-success: var(--color-success10);
-  --color-focus: var(--color-focus50);
-  --color-selection: hsl(var(--tint-focus) 50% / 30%);
+  --color-success: var(--color-green50);
+  --color-success-variant: var(--color-green30);
+  --color-on-success: var(--color-green10);
+  --color-focus: var(--color-yellow50);
+  --color-selection: hsl(var(--tint-yellow) 50% / 30%);
   --color-shadow: hsl(var(--tint-neutral) 10% / 0.2);
 
   /* Fluid type scale */
