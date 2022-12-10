@@ -5,16 +5,17 @@ import { getPostData, getPostName } from "../utils.js";
 
 export const deleteController = {
   /**
-   * Confirm post to delete
+   * Confirm post to delete/undelete
    *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
    */
   async get(request, response) {
+    const { action } = request.params;
     const { access_token, scope } = request.session;
 
-    if (scope && checkScope(scope, "delete")) {
+    if (scope && checkScope(scope, action)) {
       const { application, publication } = request.app.locals;
       const { id } = request.params;
       const post = await getPostData(
@@ -23,10 +24,10 @@ export const deleteController = {
         access_token
       );
 
-      return response.render("post-confirm", {
-        title: response.__("posts.delete.title"),
-        action: "delete",
+      return response.render("post-delete", {
+        title: response.__(`posts.${action}.title`),
         parent: { text: getPostName(post, publication) },
+        action,
       });
     }
 
@@ -34,16 +35,16 @@ export const deleteController = {
   },
 
   /**
-   * Post delete action to Micropub endpoint
+   * Post delete/undelete action to Micropub endpoint
    *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { access_token } = request.session;
     const { application } = request.app.locals;
-    const { id } = request.params;
+    const { action, id } = request.params;
+    const { access_token } = request.session;
 
     try {
       const post = await getPostData(
@@ -53,7 +54,7 @@ export const deleteController = {
       );
 
       const micropubUrl = new URL(application.micropubEndpoint);
-      micropubUrl.searchParams.append("action", "delete");
+      micropubUrl.searchParams.append("action", action);
       micropubUrl.searchParams.append("url", post.url);
 
       /**
@@ -77,9 +78,9 @@ export const deleteController = {
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("post-confirm", {
-        title: response.__("posts.delete.title"),
-        action: "delete",
+      response.render("post-delete", {
+        title: response.__(`posts.${action}.title`),
+        action,
         error: error.message,
       });
     }
