@@ -1,4 +1,5 @@
 import path from "node:path";
+import { status } from "../status.js";
 import {
   getPostData,
   getPostName,
@@ -35,6 +36,7 @@ export const locals = async (request, response, next) => {
       postType: post["post-type"],
       postTypeName: getPostTypeName(publication, post),
       scope,
+      status,
       syndicationTargetItems: getSyndicateToItems(publication),
       visibilityItems: getVisibilityItems(response, {
         visibility: "_ignore",

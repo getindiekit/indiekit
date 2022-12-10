@@ -6,10 +6,13 @@
 
 .file-list__item {
   --anchor-decoration-color: transparent;
-  --icon-size: 2rem;
-  --icon-margin: var(--space-xs);
   color: var(--color-on-offset);
   display: flex;
+
+  & > .icon {
+    --icon-size: 2rem;
+    --icon-margin: var(--space-xs);
+  }
 }
 
 .file-list__item--deleted {

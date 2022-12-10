@@ -87,7 +87,9 @@ export const getSyndicateToItems = (publication) => {
  */
 export const getVisibilityItems = (response, post = false) => {
   return ["_ignore", "public", "unlisted", "private"].map((value) => ({
-    text: response.__(`posts.create.visibility.${value}`),
+    text: response.__(
+      value === "_ignore" ? response.__("noValue") : `posts.status.${value}`
+    ),
     value,
     checked: post?.visibility === value,
   }));

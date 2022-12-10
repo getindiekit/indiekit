@@ -4,6 +4,7 @@ import { IndiekitError } from "@indiekit/error";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { fetch } from "undici";
+import { status } from "../status.js";
 
 /**
  * List previously published posts
@@ -77,6 +78,7 @@ export const postsController = async (request, response, next) => {
       limit,
       count: body._count,
       parentUrl: request.baseUrl + request.path,
+      status,
       success,
     });
   } catch (error) {
