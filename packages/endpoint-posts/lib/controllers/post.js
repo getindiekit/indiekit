@@ -1,5 +1,6 @@
 import path from "node:path";
-import { getPermissions, getPostData, getPostName } from "../utils.js";
+import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { getPostData, getPostName } from "../utils.js";
 
 /**
  * View previously published post
@@ -19,7 +20,6 @@ export const postController = async (request, response, next) => {
       application.micropubEndpoint,
       access_token
     );
-    const permissions = getPermissions(scope, post);
 
     response.render("post", {
       title: getPostName(post, publication),
@@ -28,7 +28,9 @@ export const postController = async (request, response, next) => {
         text: response.__("posts.posts.title"),
       },
       actions: [
-        permissions.canDelete
+        scope &&
+        checkScope(scope, "delete") &&
+        post["post-status"] !== "deleted"
           ? {
               classes: "actions__link--warning",
               href: path.join(request.originalUrl, "/delete"),
@@ -36,7 +38,9 @@ export const postController = async (request, response, next) => {
               text: response.__("posts.delete.action"),
             }
           : {},
-        permissions.canUndelete
+        scope &&
+        checkScope(scope, "undelete") &&
+        post["post-status"] === "deleted"
           ? {
               href: path.join(request.originalUrl, "/undelete"),
               icon: "undelete",

@@ -4,26 +4,6 @@ import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { fetch } from "undici";
 
 /**
- * Get publishing permissions
- *
- * @param {string} scope - Provided scope (space separated)
- * @param {object} post - Post properties
- * @returns {object} List of permissions and values
- */
-export const getPermissions = (scope, post) => {
-  const canCreate = scope.includes("create") || scope.includes("draft");
-  const canUpdate = scope.includes("update") || scope.includes("draft");
-  const canDelete = scope.includes("delete");
-
-  return {
-    canCreate,
-    canUpdate,
-    canDelete: canDelete && post["post-status"] !== "deleted",
-    canUndelete: canCreate && post["post-status"] === "deleted",
-  };
-};
-
-/**
  * Query Micropub endpoint for post data
  *
  * @param {string} id - Post ID
