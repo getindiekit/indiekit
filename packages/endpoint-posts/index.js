@@ -29,7 +29,7 @@ export default class PostsEndpoint {
   get routes() {
     router.get("/", postsController);
 
-    router.use(locals);
+    router.use("/:id/:action?", locals);
     router.get("/new", createController.get);
     router.post("/new", validate, createController.post);
     router.get("/:id", postController);

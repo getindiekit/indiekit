@@ -39,29 +39,29 @@ export const getPostData = async (id, micropubEndpoint, accessToken) => {
 };
 
 /**
- * Get post name or post type name
+ * Get post name, falling back to post type name
  *
- * @param {string} post - Post properties
  * @param {string} publication - Publication configuration
+ * @param {string} post - Post properties
  * @returns {string} Post name or post type name
  */
-export const getPostName = (post, publication) => {
+export const getPostName = (publication, post) => {
   if (post.name) {
     return post.name;
   }
 
-  return getPostTypeConfig(post["post-type"], publication.postTypes).name;
+  return getPostTypeName(publication, post);
 };
 
 /**
- * Get post type configuration for a given type
+ * Get post type name
  *
- * @param {string} type - Post type
- * @param {object} postTypes - Publication post types
- * @returns {object} Post type configuration
+ * @param {object} publication - Publication configuration
+ * @param {string} post - Post properties
+ * @returns {object} Post type name
  */
-export const getPostTypeConfig = (type, postTypes) =>
-  postTypes.find((item) => item.type === type);
+export const getPostTypeName = (publication, post) =>
+  publication.postTypes.find((item) => item.type === post["post-type"]).name;
 
 /**
  * Get syndication target `items` for checkboxes component

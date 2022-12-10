@@ -1,27 +1,49 @@
 import path from "node:path";
 import {
-  getPostTypeConfig,
+  getPostData,
+  getPostName,
+  getPostTypeName,
   getSyndicateToItems,
   getVisibilityItems,
 } from "../utils.js";
 
-export const locals = (request, response, next) => {
-  const { publication } = request.app.locals;
-  const { postTypes } = publication;
-  const { scope } = request.session;
-  const type = request.query.type || "note";
+export const locals = async (request, response, next) => {
+  try {
+    const { application, publication } = request.app.locals;
+    const { action, id } = request.params;
+    const { access_token, scope } = request.session;
 
-  response.locals.back = path.dirname(request.baseUrl + request.path);
-  response.locals.draftMode = scope.includes("draft");
-  response.locals.syndicationTargetItems = getSyndicateToItems(publication);
-  response.locals.type = type;
-  response.locals.postType = getPostTypeConfig(
-    type,
-    postTypes
-  ).name.toLowerCase();
-  response.locals.visibilityItems = getVisibilityItems(response, {
-    visibility: "_ignore",
-  });
+    let post;
+    if (id === "new") {
+      const newPostType = request.query.type || "note";
+      post = {
+        h: newPostType === "event" ? "event" : "entry",
+        "post-type": newPostType,
+      };
+    } else {
+      post = await getPostData(id, application.micropubEndpoint, access_token);
+    }
 
-  next();
+    response.locals = {
+      action,
+      accessToken: access_token,
+      back: path.dirname(request.baseUrl + request.path),
+      draftMode: scope?.includes("draft"),
+      post,
+      postName: getPostName(publication, post),
+      postStatus: post["post-status"],
+      postType: post["post-type"],
+      postTypeName: getPostTypeName(publication, post),
+      scope,
+      syndicationTargetItems: getSyndicateToItems(publication),
+      visibilityItems: getVisibilityItems(response, {
+        visibility: "_ignore",
+      }),
+      ...response.locals,
+    };
+
+    next();
+  } catch (error) {
+    next(error);
+  }
 };

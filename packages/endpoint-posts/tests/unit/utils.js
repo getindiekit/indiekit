@@ -1,7 +1,7 @@
 import test from "ava";
 import {
   getPostName,
-  getPostTypeConfig,
+  getPostTypeName,
   getSyndicateToItems,
   getVisibilityItems,
 } from "../../lib/utils.js";
@@ -18,28 +18,21 @@ test.beforeEach((t) => {
 });
 
 test("Gets post name", (t) => {
-  const post = {
-    name: "My favourite sandwich",
-  };
-  t.is(getPostName(post, t.context.publication), "My favourite sandwich");
+  const post = { name: "My favourite sandwich" };
+
+  t.is(getPostName(t.context.publication, post), "My favourite sandwich");
+});
+
+test("Gets post type name as fallback for post name", (t) => {
+  const post = { "post-type": "article" };
+
+  t.is(getPostName(t.context.publication, post), "Journal entry");
 });
 
 test("Gets post type name", (t) => {
-  const post = {
-    "post-type": "article",
-  };
-  t.is(getPostName(post, t.context.publication), "Journal entry");
-});
+  const post = { "post-type": "article" };
 
-test("Gets post type config", (t) => {
-  const result = getPostTypeConfig("note", [
-    {
-      type: "note",
-      name: "Custom note post type",
-    },
-  ]);
-
-  t.is(result.name, "Custom note post type");
+  t.is(getPostTypeName(t.context.publication, post), "Journal entry");
 });
 
 test("Get syndication target `items` for checkboxes component", (t) => {
