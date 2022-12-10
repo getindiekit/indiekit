@@ -1,6 +1,23 @@
 {% extends "document.njk" %}
 
 {% block content %}
+  {{ badge({
+    classes: "badge--" + status[postStatus].color,
+    text: __(status[postStatus].text)
+  }) if postStatus }}
+
+  {{ badge({
+    classes: "badge--" + status.syndicated.color,
+    icon: status.syndicated.icon,
+    text: __(status.syndicated.text)
+  }) if postStatus === "published" and post.syndication }}
+
+  {{ badge({
+    classes: "badge--" + status[post.visibility].color,
+    icon: status[post.visibility].icon,
+    text: __(status[post.visibility].text)
+  }) if postStatus === "published" and post.visibility and post.visibility !== "_ignore" }}
+
   {{ prose({ html: post.content.html }) }}
 
   {% if post.audio %}

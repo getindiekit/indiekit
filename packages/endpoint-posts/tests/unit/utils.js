@@ -67,6 +67,6 @@ test("Get visibility `items` for radios component", (t) => {
 
   t.is(result.length, 4);
   t.is(result[0].value, "_ignore");
-  t.is(result[0].text, "posts.create.visibility._ignore");
+  t.is(result[0].text, "noValue");
   t.true(result[1].checked);
 });

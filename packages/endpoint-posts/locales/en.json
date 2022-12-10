@@ -11,6 +11,15 @@
         "empty": "Enter a title"
       }
     },
+    "status": {
+      "deleted": "Deleted",
+      "draft": "Draft",
+      "private": "Private",
+      "public": "Public",
+      "published": "Published",
+      "syndicated": "Syndicated",
+      "unlisted": "Unlisted"
+    },
     "create": {
       "action": "New post",
       "title": "Create a new %s post",
@@ -37,11 +46,7 @@
         "label": "Syndicate to"
       },
       "visibility": {
-        "label": "Visibility",
-        "_ignore": "Not set",
-        "private": "Private",
-        "public": "Public",
-        "unlisted": "Unlisted"
+        "label": "Visibility"
       }
     },
     "delete": {
