@@ -6,7 +6,7 @@
   <div class="button-grid">{% for config in publication.postTypes %}
     {{ button({
       classes: "button--secondary-on-offset button--inline",
-      href: application.postsEndpoint + "/new/?type=" + config.type,
+      href: application.postsEndpoint + "/create/?type=" + config.type,
       icon: config.type,
       text: config.name
     }) }}

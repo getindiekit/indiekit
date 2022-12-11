@@ -8,7 +8,7 @@ test("Returns 422 error invalid form submission", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
-    .post("/posts/new")
+    .post("/posts/create")
     .set("cookie", [cookie()])
     .send({ "post-type": "note" });
   const dom = new JSDOM(response.text);

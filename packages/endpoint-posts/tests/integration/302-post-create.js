@@ -10,7 +10,7 @@ test("Creates post and redirects to posts page", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
-    .post("/posts/new")
+    .post("/posts/create")
     .type("form")
     .set("cookie", [cookie()])
     .send({ content: "Foobar" })

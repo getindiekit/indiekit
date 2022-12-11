@@ -7,7 +7,9 @@ test("Redirects to posts page if no create permissions", async (t) => {
   const scopedCookie = cookie({ scope: "update" });
   const server = await testServer();
   const request = supertest.agent(server);
-  const result = await request.get("/posts/new").set("cookie", [scopedCookie]);
+  const result = await request
+    .get("/posts/create")
+    .set("cookie", [scopedCookie]);
 
   t.is(result.status, 302);
   t.regex(result.text, /Found. Redirecting to \/posts/);

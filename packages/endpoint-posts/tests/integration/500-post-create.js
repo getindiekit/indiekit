@@ -11,7 +11,7 @@ test("Returns 500 error creating post", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
-    .post("/posts/new")
+    .post("/posts/create")
     .type("form")
     .set("cookie", [cookie()])
     .send({ content: "Foobar" })
