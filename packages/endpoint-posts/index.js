@@ -30,8 +30,8 @@ export default class PostsEndpoint {
     router.get("/", postsController);
 
     router.use("/:id/:action?", locals);
-    router.get("/new", formController.get);
-    router.post("/new", validate, formController.post);
+    router.get("/create", formController.get);
+    router.post("/create", validate, formController.post);
     router.get("/:id", postController);
     router.get("/:id/:action(delete|undelete)", deleteController.get);
     router.post("/:id/:action(delete|undelete)", deleteController.post);

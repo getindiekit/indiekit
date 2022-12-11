@@ -8,7 +8,7 @@ test("Returns create new post page", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
-    .get("/posts/new")
+    .get("/posts/create")
     .set("cookie", [cookie()])
     .query({ type: "note" });
   const dom = new JSDOM(response.text);

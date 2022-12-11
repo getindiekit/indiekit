@@ -67,7 +67,7 @@ export const postsController = async (request, response, next) => {
       actions: [
         scope && checkScope(scope, "create")
           ? {
-              href: path.join(request.baseUrl + request.path, "/new/"),
+              href: path.join(request.baseUrl + request.path, "/create/"),
               icon: "createPost",
               text: response.__("posts.create.action"),
             }

@@ -15,7 +15,7 @@ export const locals = async (request, response, next) => {
     const { access_token, scope } = request.session;
 
     let post;
-    if (id === "new") {
+    if (id === "create") {
       const newPostType = request.query.type || "note";
       post = {
         h: newPostType === "event" ? "event" : "entry",
