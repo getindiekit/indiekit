@@ -98,7 +98,7 @@ test("Renders post template with JSON front matter", (t) => {
     `{
   "date": "2020-02-02",
   "title": "What I had for lunch",
-  "summary": "A very satisfactory meal.",
+  "description": "A very satisfactory meal.",
   "category": [
     "lunch",
     "food"
@@ -159,7 +159,7 @@ test("Renders post template with TOML front matter", (t) => {
     `+++
 date = "2020-02-02"
 title = "What I had for lunch"
-summary = "A very satisfactory meal."
+description = "A very satisfactory meal."
 category = [ "lunch", "food" ]
 start = "2020-02-02"
 end = "2020-02-20"
@@ -207,7 +207,7 @@ test("Renders post template with YAML front matter", (t) => {
     `---
 date: 2020-02-02
 title: What I had for lunch
-summary: A very satisfactory meal.
+description: A very satisfactory meal.
 category:
   - lunch
   - food

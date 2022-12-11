@@ -230,7 +230,7 @@ export default class HugoPreset {
       date: properties.published,
       ...(properties.updated && { lastmod: properties.updated }),
       ...(properties.name && { title: properties.name }),
-      ...(properties.summary && { summary: properties.summary }),
+      ...(properties.summary && { description: properties.summary }),
       ...(properties.category && { category: properties.category }),
       ...(properties.start && { start: properties.start }),
       ...(properties.end && { end: properties.end }),
