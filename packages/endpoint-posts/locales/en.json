@@ -22,7 +22,20 @@
     },
     "create": {
       "action": "New post",
-      "title": "Create a new %s post",
+      "title": "Create a new %s post"
+    },
+    "delete": {
+      "action": "Delete post",
+      "title": "Are you sure you want to delete this post?",
+      "submit": "I’m sure – delete this post",
+      "cancel": "No – return to post"
+    },
+    "undelete": {
+      "action": "Restore post",
+      "title": "Are you sure you want to restore this post?",
+      "submit": "I’m sure – restore this post"
+    },
+    "form": {
       "submit": "Publish post",
       "submitDraft": "Save draft",
       "cancel": "Cancel",
@@ -48,19 +61,6 @@
       "visibility": {
         "label": "Visibility"
       }
-    },
-    "delete": {
-      "action": "Delete post",
-      "title": "Are you sure you want to delete this post?",
-      "submit": "I’m sure – delete this post"
-    },
-    "undelete": {
-      "action": "Restore post",
-      "title": "Are you sure you want to restore this post?",
-      "submit": "I’m sure – restore this post"
-    },
-    "confirm": {
-      "cancel": "No – return to post"
     },
     "post": {
       "properties": "Properties"
