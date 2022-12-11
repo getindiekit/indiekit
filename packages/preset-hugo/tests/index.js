@@ -34,6 +34,7 @@ test("Gets publication post types", (t) => {
 test("Renders post template without content", (t) => {
   const result = hugo.postTemplate({
     published: "2020-02-02",
+    updated: "2022-12-11",
     name: "What I had for lunch",
   });
 
@@ -41,6 +42,7 @@ test("Renders post template without content", (t) => {
     result,
     `---
 date: 2020-02-02
+lastmod: 2022-12-11
 title: What I had for lunch
 ---
 `
