@@ -1,7 +1,7 @@
 import { Buffer } from "node:buffer";
 import path from "node:path";
-import { IndiekitError } from "@indiekit/error";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { fetch } from "undici";
 import { status } from "../status.js";
