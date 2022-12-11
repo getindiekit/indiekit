@@ -1,6 +1,6 @@
-import { IndiekitError } from "@indiekit/error";
-import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { validationResult } from "express-validator";
+import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 
 export const formController = {
