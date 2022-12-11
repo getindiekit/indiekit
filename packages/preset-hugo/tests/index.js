@@ -42,6 +42,7 @@ test("Renders post template without content", (t) => {
     result,
     `---
 date: 2020-02-02
+publishDate: 2020-02-02
 lastmod: 2022-12-11
 title: What I had for lunch
 ---
@@ -61,6 +62,7 @@ test("Renders post template with basic content", (t) => {
     result,
     `---
 date: 2020-02-02
+publishDate: 2020-02-02
 title: What I had for lunch
 ---
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
@@ -81,6 +83,7 @@ test("Renders post template with HTML content", (t) => {
     result,
     `---
 date: 2020-02-02
+publishDate: 2020-02-02
 title: What I had for lunch
 ---
 <p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
@@ -97,6 +100,7 @@ test("Renders post template with JSON front matter", (t) => {
     result,
     `{
   "date": "2020-02-02",
+  "publishDate": "2020-02-02",
   "title": "What I had for lunch",
   "summary": "A very satisfactory meal.",
   "category": [
@@ -158,6 +162,7 @@ test("Renders post template with TOML front matter", (t) => {
     result,
     `+++
 date = "2020-02-02"
+publishDate = "2020-02-02"
 title = "What I had for lunch"
 summary = "A very satisfactory meal."
 category = [ "lunch", "food" ]
@@ -206,6 +211,7 @@ test("Renders post template with YAML front matter", (t) => {
     result,
     `---
 date: 2020-02-02
+publishDate: 2020-02-02
 title: What I had for lunch
 summary: A very satisfactory meal.
 category:
