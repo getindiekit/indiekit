@@ -20,7 +20,6 @@ export const post = {
     const published = await store.createFile(postData.path, content, message);
 
     if (published) {
-      postData.date = new Date();
       postData.properties["post-status"] = draftMode
         ? "draft"
         : postData.properties["post-status"] || "published";
@@ -63,7 +62,7 @@ export const post = {
     const published = await store.updateFile(postData.path, content, message);
 
     if (published) {
-      postData.date = new Date();
+      postData.properties.updated = new Date();
 
       if (posts) {
         await posts.replaceOne(
@@ -110,8 +109,8 @@ export const post = {
     const published = await store.deleteFile(postData.path, message);
 
     if (published) {
-      postData.date = new Date();
       postData.properties["post-status"] = "deleted";
+      postData.properties.updated = new Date();
 
       if (posts) {
         await posts.replaceOne(
@@ -161,10 +160,10 @@ export const post = {
     const published = await store.createFile(postData.path, content, message);
 
     if (published) {
-      postData.date = new Date();
       postData.properties["post-status"] = draftMode
         ? "draft"
         : postData.properties["post-status"] || "published";
+      postData.properties.updated = new Date();
 
       if (posts) {
         await posts.replaceOne(
