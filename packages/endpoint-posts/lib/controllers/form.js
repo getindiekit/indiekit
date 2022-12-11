@@ -3,7 +3,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { validationResult } from "express-validator";
 import { fetch } from "undici";
 
-export const createController = {
+export const formController = {
   /**
    * Get post to create
    *
@@ -15,7 +15,7 @@ export const createController = {
     const { back, postTypeName, scope } = response.locals;
 
     if (scope && checkScope(scope, "create")) {
-      return response.render("post-create", {
+      return response.render("post-form", {
         title: response.__("posts.create.title", postTypeName.toLowerCase()),
       });
     }
@@ -36,7 +36,7 @@ export const createController = {
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
-      return response.status(422).render("post-create", {
+      return response.status(422).render("post-form", {
         title: response.__("posts.create.title", postTypeName.toLowerCase()),
         errors: errors.mapped(),
       });
@@ -79,7 +79,7 @@ export const createController = {
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("post-create", {
+      response.render("post-form", {
         title: response.__("posts.create.title", postTypeName.toLowerCase()),
         error: error.message,
       });

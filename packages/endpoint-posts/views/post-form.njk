@@ -18,7 +18,7 @@
     name: "bookmark-of",
     value: errors["bookmark-of"].value,
     label: {
-      text: __("posts.create.bookmark-of.label")
+      text: __("posts.form.bookmark-of.label")
     },
     errorMessage: {
       text: errors["bookmark-of"].msg
@@ -30,7 +30,7 @@
     name: "name",
     value: errors.name.value,
     label: {
-      text: __("posts.create.name.label")
+      text: __("posts.form.name.label")
     },
     optional: (postType !== "article") and (postType !== "bookmark"),
     errorMessage: {
@@ -43,7 +43,7 @@
     name: "content",
     value: errors.content.value,
     label: {
-      text: __("posts.create.content.label")
+      text: __("posts.form.content.label")
     },
     optional: (postType !== "article") and (postType !== "note"),
     errorMessage: {
@@ -56,17 +56,17 @@
     name: "mp-syndicate-to",
     fieldset: {
       legend: {
-        text: __("posts.create.mp-syndicate-to.label")
+        text: __("posts.form.mp-syndicate-to.label")
       }
     },
     items: syndicationTargetItems
   }) | indent(2) }}
 
-  {% call details({ summary: __("posts.create.advancedOptions") }) %}
+  {% call details({ summary: __("posts.form.advancedOptions") }) %}
     {{ input({
       value: errors.category.value,
       label: {
-        text: __("posts.create.category.label")
+        text: __("posts.form.category.label")
       },
       optional: true,
       attributes: {
@@ -80,7 +80,7 @@
       name: "mp-slug",
       value: errors["mp-slug"].value,
       label: {
-        text: __("posts.create.mp-slug.label")
+        text: __("posts.form.mp-slug.label")
       },
       optional: true
     }) | indent(4) }}
@@ -91,7 +91,7 @@
       name: "visibility",
       fieldset: {
         legend: {
-          text: __("posts.create.visibility.label")
+          text: __("posts.form.visibility.label")
         }
       },
       items: visibilityItems
@@ -102,18 +102,18 @@
     {{ button({
       name: "post-status",
       value: "published",
-      text: __("posts.create.submit")
+      text: __("posts.form.submit")
     }) | indent(4) if not draftMode }}
 
     {{ button({
       name: "post-status",
       value: "draft",
       classes: "button--secondary",
-      text: __("posts.create.submitDraft")
+      text: __("posts.form.submitDraft")
     }) | indent(4) }}
 
     {{ prose({
-      text: "[" + __("posts.create.cancel") + "](" + back + ")"
+      text: "[" + __("posts.form.cancel") + "](" + back + ")"
     }) | indent(4) }}
   </div>
 {% endblock %}
