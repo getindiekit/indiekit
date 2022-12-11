@@ -121,7 +121,7 @@ bookmark-of: https://website.example
 like-of: https://website.example
 repost-of: https://website.example
 in-reply-to: https://website.example
-draft: true
+published: false
 visibility: private
 syndication: https://website.example/post/12345
 mp-syndicate-to: https://social.example

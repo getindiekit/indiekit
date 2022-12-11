@@ -171,7 +171,7 @@ export default class JekyllPreset {
       ...(properties["in-reply-to"] && {
         "in-reply-to": properties["in-reply-to"],
       }),
-      ...(properties["post-status"] === "draft" && { draft: true }),
+      ...(properties["post-status"] === "draft" && { published: false }),
       ...(properties.visibility && { visibility: properties.visibility }),
       ...(properties.syndication && { syndication: properties.syndication }),
       ...(properties["mp-syndicate-to"] && {
