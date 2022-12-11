@@ -63,7 +63,7 @@ export const queryController = async (request, response, next) => {
       case "source": {
         // Return mf2 for a given source URL (optionally filtered by properties)
         if (url) {
-          const mf2 = { items: [jf2ToMf2(item.properties)] };
+          const mf2 = jf2ToMf2(item.properties);
           return response.json(getMf2Properties(mf2, properties));
         }
 

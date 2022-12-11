@@ -10,12 +10,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
     return mf2;
   }
 
-  const mf2HasItems = mf2.items && mf2.items.length > 0;
-  if (!mf2HasItems) {
-    return {};
-  }
-
-  const item = mf2.items[0];
+  const item = mf2.items ? mf2.items[0] : mf2;
   const { properties } = item;
 
   // Return requested properties
