@@ -33,7 +33,7 @@ export const getPostData = async (id, micropubEndpoint, accessToken) => {
   }
 
   const body = await micropubResponse.json();
-  const postData = mf2tojf2(body);
+  const postData = mf2tojf2({ items: [body] });
 
   return postData;
 };
