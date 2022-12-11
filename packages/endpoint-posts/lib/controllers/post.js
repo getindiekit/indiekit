@@ -11,6 +11,8 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 export const postController = async (request, response) => {
   const { back, post, postName, postStatus, scope } = response.locals;
 
+  const postDeleted = postStatus === "deleted";
+
   response.render("post", {
     title: postName,
     parent: {
@@ -18,7 +20,7 @@ export const postController = async (request, response) => {
       text: response.__("posts.posts.title"),
     },
     actions: [
-      scope && checkScope(scope, "delete") && postStatus !== "deleted"
+      scope && checkScope(scope, "delete") && !postDeleted
         ? {
             classes: "actions__link--warning",
             href: path.join(request.originalUrl, "/delete"),
@@ -26,7 +28,7 @@ export const postController = async (request, response) => {
             text: response.__("posts.delete.action"),
           }
         : {},
-      scope && checkScope(scope, "undelete") && postStatus === "deleted"
+      scope && checkScope(scope, "undelete") && postDeleted
         ? {
             href: path.join(request.originalUrl, "/undelete"),
             icon: "undelete",
