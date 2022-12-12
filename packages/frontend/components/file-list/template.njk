@@ -14,6 +14,10 @@
           text: __(status[item["post-status"]].text)
         }) if item["post-status"] }}
         {{ badge({
+          classes: "badge--small badge--" + status.deleted.color,
+          text: __(status.deleted.text)
+        }) if item.deleted }}
+        {{ badge({
           classes: "badge--small badge--" + status.syndicated.color,
           icon:  status.syndicated.icon,
           text: __(status.syndicated.text)

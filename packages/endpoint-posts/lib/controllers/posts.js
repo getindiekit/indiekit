@@ -40,9 +40,7 @@ export const postsController = async (request, response, next) => {
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
-        item.classes = item["post-status"]
-          ? `file-list__item--${item["post-status"]}`
-          : "";
+        item.classes = item.deleted ? "file-list__item--deleted" : "";
         item.id = Buffer.from(item.url).toString("base64url");
         return item;
       });
