@@ -10,6 +10,9 @@
       "in-reply-to": {
         "empty": "Enter a web address like https://example.org"
       },
+      "like-of": {
+        "empty": "Enter a web address like https://example.org"
+      },
       "repost-of": {
         "empty": "Enter a web address like https://example.org"
       },
@@ -63,6 +66,9 @@
       },
       "in-reply-to": {
         "label": "In reply to"
+      },
+      "like-of": {
+        "label": "Like of"
       },
       "name": {
         "label": "Title"

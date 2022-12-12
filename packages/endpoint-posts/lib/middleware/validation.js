@@ -11,6 +11,11 @@ export const validate = [
     .exists()
     .isURL()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+  check("like-of")
+    .if((value, { req }) => req.body?.["post-type"] === "like")
+    .exists()
+    .isURL()
+    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
   check("repost-of")
     .if((value, { req }) => req.body?.["post-type"] === "repost")
     .exists()

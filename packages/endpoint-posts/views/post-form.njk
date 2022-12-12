@@ -4,11 +4,15 @@
   postType !== "article" and
   postType !== "note" and
   postType !== "reply" %}
+{% set contentIgnored =
+  postType === "like"
+%}
 {% set nameOptional =
   postType !== "article" and
   postType !== "bookmark" %}
-{% set untitledPostType =
+{% set nameIgnored =
   postType === "note" or
+  postType === "like" or
   postType === "reply"
 %}
 
@@ -50,6 +54,18 @@
   }) | indent(2) if postType === "reply" }}
 
   {{ input({
+    id: "like-of",
+    name: "like-of",
+    value: errors["like-of"].value or post["like-of"],
+    label: {
+      text: __("posts.form.like-of.label")
+    },
+    errorMessage: {
+      text: errors["like-of"].msg
+    } if errors["like-of"]
+  }) | indent(2) if postType === "like" }}
+
+  {{ input({
     id: "repost-of",
     name: "repost-of",
     value: errors["repost-of"].value or post["repost-of"],
@@ -72,7 +88,7 @@
     errorMessage: {
       text: errors.name.msg
     } if errors.name
-  }) | indent(2) if not untitledPostType }}
+  }) | indent(2) if not nameIgnored }}
 
   {{ textarea({
     id: "content",
@@ -85,7 +101,7 @@
     errorMessage: {
       text: errors.content.msg
     } if errors.content
-  }) | indent(2) }}
+  }) | indent(2) if not contentIgnored }}
 
   {{ checkboxes({
     idPrefix: "mp-syndicate-to",
