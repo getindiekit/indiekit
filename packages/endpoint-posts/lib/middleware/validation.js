@@ -7,7 +7,11 @@ export const validate = [
     .isURL()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
   check("in-reply-to")
-    .if((value, { req }) => req.body?.["post-type"] === "reply")
+    .if(
+      (value, { req }) =>
+        req.body?.["post-type"] === "reply" ||
+        req.body?.["post-type"] === "rsvp"
+    )
     .exists()
     .isURL()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),

@@ -13,11 +13,11 @@
       "like-of": {
         "empty": "Enter a web address like https://example.org"
       },
-      "repost-of": {
-        "empty": "Enter a web address like https://example.org"
-      },
       "name": {
         "empty": "Enter a title"
+      },
+      "repost-of": {
+        "empty": "Enter a web address like https://example.org"
       }
     },
     "status": {
@@ -81,6 +81,13 @@
       },
       "repost-of": {
         "label": "Repost of"
+      },
+      "rsvp": {
+        "label": "RSVP",
+        "yes": "Yes",
+        "no": "No",
+        "maybe": "Maybe",
+        "interested": "Interested"
       },
       "visibility": {
         "label": "Visibility"

@@ -4,6 +4,7 @@ import {
   getPostData,
   getPostName,
   getPostTypeName,
+  getRsvpItems,
   getSyndicateToItems,
   getVisibilityItems,
 } from "../utils.js";
@@ -29,6 +30,7 @@ export const postData = {
       post,
       postType,
       postTypeName: getPostTypeName(publication, postType),
+      rsvpItems: getRsvpItems(response, post),
       scope,
       syndicationTargetItems: getSyndicateToItems(publication, post),
       visibilityItems: getVisibilityItems(response, post),
@@ -62,6 +64,7 @@ export const postData = {
         postStatus: post["post-status"],
         postType,
         postTypeName: getPostTypeName(publication, postType),
+        rsvpItems: getRsvpItems(response, post),
         scope,
         syndicationTargetItems: getSyndicateToItems(publication, post),
         visibilityItems: getVisibilityItems(response, post),

@@ -58,6 +58,21 @@ export const getPostTypeName = (publication, postType) => {
 };
 
 /**
+ * Get RSVP `items` for radios component
+ *
+ * @param {object} response - HTTP response
+ * @param {object} [post=false] - Post properties
+ * @returns {object} Items for radios component
+ */
+export const getRsvpItems = (response, post = false) => {
+  return ["yes", "no", "maybe", "interested"].map((value) => ({
+    text: response.__(`posts.form.rsvp.${value}`),
+    value,
+    checked: post.rsvp ? value === post.rsvp : value === "yes",
+  }));
+};
+
+/**
  * Get syndication target `items` for checkboxes component
  *
  * @param {object} publication - Publication configuration

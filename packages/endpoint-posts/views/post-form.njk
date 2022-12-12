@@ -13,7 +13,8 @@
 {% set nameIgnored =
   postType === "note" or
   postType === "like" or
-  postType === "reply"
+  postType === "reply" or
+  postType === "rsvp"
 %}
 
 {% block fieldset %}
@@ -51,7 +52,19 @@
     errorMessage: {
       text: errors["in-reply-to"].msg
     } if errors["in-reply-to"]
-  }) | indent(2) if postType === "reply" }}
+  }) | indent(2) if postType === "reply" or postType === "rsvp" }}
+
+  {{ radios({
+    classes: "radios--inline",
+    idPrefix: "rsvp",
+    name: "rsvp",
+    fieldset: {
+      legend: {
+        text: __("posts.form.rsvp.label")
+      }
+    },
+    items: rsvpItems
+  }) | indent(2) if postType === "rsvp" }}
 
   {{ input({
     id: "like-of",

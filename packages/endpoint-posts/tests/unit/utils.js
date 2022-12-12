@@ -2,6 +2,7 @@ import test from "ava";
 import {
   getPostName,
   getPostTypeName,
+  getRsvpItems,
   getSyndicateToItems,
   getVisibilityItems,
 } from "../../lib/utils.js";
@@ -47,7 +48,19 @@ test("Gets post type name (or an empty string)", (t) => {
   t.is(getPostTypeName(t.context.publication, null), "");
 });
 
-test("Get syndication target `items` for checkboxes component", (t) => {
+test("Gets RSVP `items` for radios component", (t) => {
+  const response = { __: (value) => value };
+  const result = getRsvpItems(response, {
+    rsvp: "no",
+  });
+
+  t.is(result.length, 4);
+  t.is(result[1].value, "no");
+  t.is(result[1].text, "posts.form.rsvp.no");
+  t.true(result[1].checked);
+});
+
+test("Gets syndication target `items` for checkboxes component", (t) => {
   const post = { "mp-syndicate-to": "https://twitter.com/username" };
 
   const result = getSyndicateToItems(t.context.publication, post);
@@ -59,7 +72,7 @@ test("Get syndication target `items` for checkboxes component", (t) => {
   t.is(result[0].hint.text, "https://twitter.com/username");
 });
 
-test("Get visibility `items` for radios component", (t) => {
+test("Gets visibility `items` for radios component", (t) => {
   const response = { __: (value) => value };
   const result = getVisibilityItems(response, {
     visibility: "public",
