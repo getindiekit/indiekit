@@ -31,6 +31,7 @@ test("Renders post template without content", (t) => {
   const result = jekyll.postTemplate({
     published: "2020-02-02",
     updated: "2022-12-11",
+    deleted: "2022-12-12",
     name: "Lunchtime",
   });
 
@@ -39,6 +40,7 @@ test("Renders post template without content", (t) => {
     `---
 date: 2020-02-02
 updated: 2022-12-11
+deleted: 2022-12-12
 title: Lunchtime
 ---
 `

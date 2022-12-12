@@ -152,6 +152,7 @@ export default class JekyllPreset {
     properties = {
       date: properties.published,
       ...(properties.updated && { updated: properties.updated }),
+      ...(properties.deleted && { deleted: properties.deleted }),
       ...(properties.name && { title: properties.name }),
       ...(properties.summary && { excerpt: properties.summary }),
       ...(properties.category && { category: properties.category }),
