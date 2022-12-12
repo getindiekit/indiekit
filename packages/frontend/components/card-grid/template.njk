@@ -1,25 +1,9 @@
-<ol class="{{ classes("card-grid", opts) }}" role="list">
+{%- from "../card/macro.njk" import card with context -%}
+<ol class="{{ classes("card-grid", opts) }}" role="list"
+  style="--min-card-size: {{ opts.cardSize | default("12rem") }}">
   {%- for item in opts.items %}
   <li class="card-grid__item">
-    <div class="card__media">
-    {%- set type = item["post-type"] -%}
-    {%- if type === "audio" %}
-      <audio src="{{ item.audio.src }}"{{- attributes(item.audio.attributes) }}></audio>
-    {%- elif type === "video" %}
-      <video src="{{ item.video.src }}"{{- attributes(item.video.attributes) }}></video>
-    {%- else %}
-      <img src="{{ item.image.src }}" alt="{{ item.image.alt }}"{{- attributes(item.image.attributes) }}>
-    {%- endif %}
-    </div>
-    <div class="card__body">
-      <h2 class="card__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
-      <p class="card__meta">{{ item.description }}</p>
-      {% if item.published %}
-      <footer class="card__footer">
-        <time datetime="{{ item.published }}">{{ item.published | date("PPp") }}</time>
-      </footer>
-      {% endif %}
-    </div>
+    {{ card(item) }}
   </li>
   {%- endfor %}
 </ol>
