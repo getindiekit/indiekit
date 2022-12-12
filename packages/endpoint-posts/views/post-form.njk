@@ -50,6 +50,18 @@
   }) | indent(2) if postType === "reply" }}
 
   {{ input({
+    id: "repost-of",
+    name: "repost-of",
+    value: errors["repost-of"].value or post["repost-of"],
+    label: {
+      text: __("posts.form.repost-of.label")
+    },
+    errorMessage: {
+      text: errors["repost-of"].msg
+    } if errors["repost-of"]
+  }) | indent(2) if postType === "repost" }}
+
+  {{ input({
     id: "name",
     name: "name",
     value: errors.name.value or post.name,
