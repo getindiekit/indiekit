@@ -32,7 +32,7 @@ export const deleteController = {
    */
   async post(request, response) {
     const { application } = request.app.locals;
-    const { action, accessToken, post } = response.locals;
+    const { action, accessToken, post, postName } = response.locals;
 
     try {
       const micropubUrl = new URL(application.micropubEndpoint);
@@ -62,6 +62,7 @@ export const deleteController = {
       response.status(error.status || 500);
       response.render("post-delete", {
         title: response.__(`posts.${action}.title`),
+        parent: { text: postName },
         error: error.message,
       });
     }
