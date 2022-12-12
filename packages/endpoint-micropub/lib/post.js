@@ -59,9 +59,9 @@ export const post = {
     };
     const content = postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
-    const published = await store.updateFile(postData.path, content, message);
+    const updated = await store.updateFile(postData.path, content, message);
 
-    if (published) {
+    if (updated) {
       postData.properties.updated = new Date();
 
       if (posts) {
@@ -106,9 +106,9 @@ export const post = {
       postType: postData.properties["post-type"],
     };
     const message = storeMessageTemplate(metaData);
-    const published = await store.deleteFile(postData.path, message);
+    const deleted = await store.deleteFile(postData.path, message);
 
-    if (published) {
+    if (deleted) {
       postData.properties["post-status"] = "deleted";
       postData.properties.updated = new Date();
 
@@ -157,9 +157,9 @@ export const post = {
     };
     const content = postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
-    const published = await store.createFile(postData.path, content, message);
+    const undeleted = await store.createFile(postData.path, content, message);
 
-    if (published) {
+    if (undeleted) {
       postData.properties["post-status"] = draftMode
         ? "draft"
         : postData.properties["post-status"] || "published";
