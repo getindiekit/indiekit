@@ -13,7 +13,6 @@ export const postController = async (request, response) => {
     response.locals;
 
   const postEditable = draftMode ? postStatus === "draft" : true;
-  const postDeleted = postStatus === "deleted";
 
   response.render("post", {
     title: postName,
@@ -22,14 +21,14 @@ export const postController = async (request, response) => {
       text: response.__("posts.posts.title"),
     },
     actions: [
-      scope && checkScope(scope, "update") && !postDeleted && postEditable
+      scope && checkScope(scope, "update") && !post.deleted && postEditable
         ? {
             href: path.join(request.originalUrl, "/update"),
             icon: "updatePost",
             text: response.__("posts.update.action"),
           }
         : {},
-      scope && checkScope(scope, "delete") && !postDeleted
+      scope && checkScope(scope, "delete") && !post.deleted
         ? {
             classes: "actions__link--warning",
             href: path.join(request.originalUrl, "/delete"),
@@ -37,7 +36,7 @@ export const postController = async (request, response) => {
             text: response.__("posts.delete.action"),
           }
         : {},
-      scope && checkScope(scope, "undelete") && postDeleted
+      scope && checkScope(scope, "undelete") && post.deleted
         ? {
             href: path.join(request.originalUrl, "/undelete"),
             icon: "undelete",
