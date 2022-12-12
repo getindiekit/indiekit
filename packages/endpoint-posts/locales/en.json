@@ -7,6 +7,9 @@
       "content": {
         "empty": "Enter some content"
       },
+      "in-reply-to": {
+        "empty": "Enter a web address like https://example.org"
+      },
       "name": {
         "empty": "Enter a title"
       }
@@ -54,6 +57,9 @@
       },
       "content": {
         "label": "Content"
+      },
+      "in-reply-to": {
+        "label": "In reply to"
       },
       "name": {
         "label": "Title"

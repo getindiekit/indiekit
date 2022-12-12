@@ -1,5 +1,17 @@
 {% extends "form.njk" %}
 
+{% set contentOptional =
+  postType !== "article" and
+  postType !== "note" and
+  postType !== "reply" %}
+{% set nameOptional =
+  postType !== "article" and
+  postType !== "bookmark" %}
+{% set untitledPostType =
+  postType === "note" or
+  postType === "reply"
+%}
+
 {% block fieldset %}
   {{ input({
     name: "type",
@@ -23,7 +35,19 @@
     errorMessage: {
       text: errors["bookmark-of"].msg
     } if errors["bookmark-of"]
-  }) if postType === "bookmark" | indent(2) }}
+  }) | indent(2) if postType === "bookmark" }}
+
+  {{ input({
+    id: "in-reply-to",
+    name: "in-reply-to",
+    value: errors["in-reply-to"].value or post["in-reply-to"],
+    label: {
+      text: __("posts.form.in-reply-to.label")
+    },
+    errorMessage: {
+      text: errors["in-reply-to"].msg
+    } if errors["in-reply-to"]
+  }) | indent(2) if postType === "reply" }}
 
   {{ input({
     id: "name",
@@ -32,11 +56,11 @@
     label: {
       text: __("posts.form.name.label")
     },
-    optional: (postType !== "article") and (postType !== "bookmark"),
+    optional: nameOptional,
     errorMessage: {
       text: errors.name.msg
     } if errors.name
-  }) if postType !== "note" | indent(2) }}
+  }) | indent(2) if not untitledPostType }}
 
   {{ textarea({
     id: "content",
@@ -45,7 +69,7 @@
     label: {
       text: __("posts.form.content.label")
     },
-    optional: (postType !== "article") and (postType !== "note"),
+    optional: contentOptional,
     errorMessage: {
       text: errors.content.msg
     } if errors.content
@@ -103,14 +127,14 @@
       name: "post-status",
       value: "published",
       text: __("posts.form.update") if postStatus === "published" else __("posts.form.publish")
-    }) if not draftMode | indent(4) }}
+    }) | indent(4) if not draftMode }}
 
     {{ button({
       name: "post-status",
       value: "draft",
       classes: "button--secondary",
       text: __("posts.form.updateDraft") if postStatus === "draft" else __("posts.form.publishDraft")
-    }) if postStatus !== "published" | indent(4) }}
+    }) | indent(4) if postStatus !== "published" }}
 
     {{ prose({
       text: "[" + __("posts.form.cancel") + "](" + back + ")"
