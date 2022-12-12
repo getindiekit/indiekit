@@ -20,8 +20,8 @@ export const getDate = (setting, dateString) => {
     return dateString || new Date().toISOString();
   }
 
-  // Datetime is given date or new date, set us UTC
-  let datetime = dateString ? new Date(dateString) : new Date();
+  // Date time is given date or new date, set us UTC
+  let dateTime = dateString ? new Date(dateString) : new Date();
 
   // Desired time zone
   const serverTimeZone = getServerTimeZone();
@@ -32,21 +32,21 @@ export const getDate = (setting, dateString) => {
   const dateHasTime = dateString ? dateString.includes("T") : false;
   const dateIsShort = dateString && !dateHasTime;
   if (dateIsShort) {
-    const offset = format(datetime, "XXX", {
+    const offset = format(dateTime, "XXX", {
       timeZone: outputTimeZone,
     });
     return `${dateString}T00:00:00.000${offset}`;
   }
 
   // JS converts dateString to UTC, so need to convert it to output zoned time
-  datetime = utcToZonedTime(datetime, outputTimeZone);
+  dateTime = utcToZonedTime(dateTime, outputTimeZone);
 
-  // Return datetime with desired timezone offset
-  datetime = format(datetime, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", {
+  // Return date time with desired timezone offset
+  dateTime = format(dateTime, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", {
     timeZone: outputTimeZone,
   });
 
-  return datetime;
+  return dateTime;
 };
 
 /**
