@@ -2,23 +2,23 @@
 
 {% block content %}
   {{ badge({
-    classes: "badge--" + status[postStatus].color,
+    color: status[postStatus].color,
     text: __(status[postStatus].text)
   }) if postStatus }}
 
   {{ badge({
-    classes: "badge--" + status.deleted.color,
+    color: status.deleted.color,
     text: __(status.deleted.text)
   }) if post.deleted }}
 
   {{ badge({
-    classes: "badge--" + status.syndicated.color,
+    color: status.syndicated.color,
     icon: status.syndicated.icon,
     text: __(status.syndicated.text)
   }) if postStatus === "published" and post.syndication }}
 
   {{ badge({
-    classes: "badge--" + status[post.visibility].color,
+    color: status[post.visibility].color,
     icon: status[post.visibility].icon,
     text: __(status[post.visibility].text)
   }) if postStatus === "published" and post.visibility and post.visibility !== "_ignore" }}
