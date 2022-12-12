@@ -1,6 +1,6 @@
 import markdownFootnote from "markdown-it-footnote";
 import markdownTaskLists from "markdown-it-task-lists";
-import { version } from "../../packages/indiekit/package.json" assert { type: "json" };
+import _package from "../../packages/indiekit/package.json" assert { type: "json" };
 
 const sidebar = [
   {
@@ -132,7 +132,7 @@ export default {
         activeMatch: "/plugins/",
       },
       {
-        text: version,
+        text: _package.version,
         link: "https://github.com/getindiekit/indiekit/releases",
       },
       {
