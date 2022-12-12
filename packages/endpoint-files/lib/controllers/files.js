@@ -48,7 +48,8 @@ export const filesController = async (request, response, next) => {
 
     const files = body.items.map((item) => {
       item.id = Buffer.from(item.url).toString("base64url");
-      item.image = {
+      item.icon = item["post-type"];
+      item.photo = {
         attributes: { onerror: "this.src='/assets/not-found.svg'" },
         src:
           item.url.replace(publication.me, imageUrl.href) +
