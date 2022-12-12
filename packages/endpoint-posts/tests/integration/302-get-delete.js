@@ -26,7 +26,7 @@ test("Redirects to post page if no delete permissions", async (t) => {
   // Get post data by parsing list of posts and getting values from link
   const postsResponse = await request.get("/posts");
   const postsDom = new JSDOM(postsResponse.text);
-  const postLink = postsDom.window.document.querySelector(".file-list a");
+  const postLink = postsDom.window.document.querySelector(".card a");
   const postId = postLink.href.split("/").pop();
 
   // Confirm deletion page

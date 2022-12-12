@@ -4,6 +4,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { micropub } from "../micropub.js";
 import { status } from "../status.js";
+import { getPostName } from "../utils.js";
 
 /**
  * List previously published posts
@@ -15,7 +16,7 @@ import { status } from "../status.js";
  */
 export const postsController = async (request, response, next) => {
   try {
-    const { application } = request.app.locals;
+    const { application, publication } = request.app.locals;
     const { scope } = request.session;
 
     let { page, limit, offset, success } = request.query;
@@ -40,8 +41,32 @@ export const postsController = async (request, response, next) => {
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
-        item.classes = item.deleted ? "file-list__item--deleted" : "";
         item.id = Buffer.from(item.url).toString("base64url");
+        item.icon = item["post-type"];
+        item.description = item.content?.text;
+        item.title = getPostName(publication, item);
+        item.url = path.join(request.baseUrl, request.path, item.id);
+        item.badges = [
+          ...(item["post-status"]
+            ? [
+                {
+                  color: status[item["post-status"]].color,
+                  size: "small",
+                  text: response.__(status[item["post-status"]].text),
+                },
+              ]
+            : []),
+          ...(item.deleted
+            ? [
+                {
+                  color: status.deleted.color,
+                  size: "small",
+                  text: response.__(status.deleted.text),
+                },
+              ]
+            : []),
+        ];
+
         return item;
       });
     }

@@ -2,7 +2,8 @@
 
 {% block content %}
   {%- if posts.length > 0 %}
-  {{ fileList({
+  {{ cardGrid({
+    cardSize: "16rem",
     items: posts
   }) }}
   {{ pagination(pages(page, limit, count)) }}
