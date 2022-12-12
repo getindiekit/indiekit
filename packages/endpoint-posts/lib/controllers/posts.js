@@ -1,9 +1,8 @@
 import { Buffer } from "node:buffer";
 import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
-import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import { fetch } from "undici";
+import { micropub } from "../micropub.js";
 import { status } from "../status.js";
 
 /**
@@ -30,24 +29,14 @@ export const postsController = async (request, response, next) => {
     micropubUrl.searchParams.append("limit", limit);
     micropubUrl.searchParams.append("offset", offset);
 
-    /**
-     * @todo Third-party Micropub endpoints may require a separate bearer token
-     */
-    const micropubResponse = await fetch(micropubUrl.href, {
-      headers: {
-        accept: "application/json",
-        authorization: `Bearer ${request.session.access_token}`,
-      },
-    });
-
-    if (!micropubResponse.ok) {
-      throw await IndiekitError.fromFetch(micropubResponse);
-    }
+    const micropubResponse = await micropub.get(
+      micropubUrl.href,
+      request.session.access_token
+    );
 
     let posts;
-    const body = await micropubResponse.json();
-    if (body?.items?.length > 0) {
-      const jf2 = mf2tojf2(body);
+    if (micropubResponse?.items?.length > 0) {
+      const jf2 = mf2tojf2(micropubResponse);
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
@@ -76,7 +65,7 @@ export const postsController = async (request, response, next) => {
       posts,
       page,
       limit,
-      count: body._count,
+      count: micropubResponse._count,
       parentUrl: request.baseUrl + request.path,
       status,
       success,

@@ -1,7 +1,6 @@
 import { Buffer } from "node:buffer";
-import { IndiekitError } from "@indiekit/error";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import { fetch } from "undici";
+import { micropub } from "./micropub.js";
 
 /**
  * Query Micropub endpoint for post data
@@ -18,22 +17,8 @@ export const getPostData = async (id, micropubEndpoint, accessToken) => {
   micropubUrl.searchParams.append("q", "source");
   micropubUrl.searchParams.append("url", url);
 
-  /**
-   * @todo Third-party Micropub endpoints may require a separate bearer token
-   */
-  const micropubResponse = await fetch(micropubUrl.href, {
-    headers: {
-      accept: "application/json",
-      authorization: `Bearer ${accessToken}`,
-    },
-  });
-
-  if (!micropubResponse.ok) {
-    throw await IndiekitError.fromFetch(micropubResponse);
-  }
-
-  const body = await micropubResponse.json();
-  const postData = mf2tojf2({ items: [body] });
+  const micropubResponse = await micropub.get(micropubUrl.href, accessToken);
+  const postData = mf2tojf2({ items: [micropubResponse] });
 
   return postData;
 };
@@ -57,7 +42,7 @@ export const getPostName = (publication, post) => {
  * Get post type name
  *
  * @param {object} publication - Publication configuration
- * @param {string} post - Post properties
+ * @param {string} postType - Post type
  * @returns {string} Post type name
  */
 export const getPostTypeName = (publication, postType) => {

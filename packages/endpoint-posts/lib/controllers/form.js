@@ -1,8 +1,7 @@
 import { validationResult } from "express-validator";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
-import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
+import { micropub } from "../micropub.js";
 
 export const formController = {
   /**
@@ -32,7 +31,7 @@ export const formController = {
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { application } = request.app.locals;
+    const { micropubEndpoint } = request.app.locals.application;
     const { action, accessToken, post, postTypeName } = response.locals;
 
     const errors = validationResult(request);
@@ -73,25 +72,12 @@ export const formController = {
         };
       }
 
-      /**
-       * @todo Third-party media endpoints may require a separate bearer token
-       */
-      const micropubResponse = await fetch(application.micropubEndpoint, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${accessToken}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(jsonBody),
-      });
-
-      if (!micropubResponse.ok) {
-        throw await IndiekitError.fromFetch(micropubResponse);
-      }
-
-      const body = await micropubResponse.json();
-      const message = encodeURIComponent(body.success_description);
+      const micropubResponse = await micropub.post(
+        micropubEndpoint,
+        accessToken,
+        jsonBody
+      );
+      const message = encodeURIComponent(micropubResponse.success_description);
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {

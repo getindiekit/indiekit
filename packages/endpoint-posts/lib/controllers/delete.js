@@ -1,6 +1,5 @@
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
-import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
+import { micropub } from "../micropub.js";
 
 export const deleteController = {
   /**
@@ -31,31 +30,19 @@ export const deleteController = {
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { application } = request.app.locals;
+    const { micropubEndpoint } = request.app.locals.application;
     const { action, accessToken, post, postName } = response.locals;
 
     try {
-      const micropubUrl = new URL(application.micropubEndpoint);
+      const micropubUrl = new URL(micropubEndpoint);
       micropubUrl.searchParams.append("action", action);
       micropubUrl.searchParams.append("url", post.url);
 
-      /**
-       * @todo Third-party Micropub endpoints may require a separate bearer token
-       */
-      const micropubResponse = await fetch(micropubUrl.href, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-      if (!micropubResponse.ok) {
-        throw await IndiekitError.fromFetch(micropubResponse);
-      }
-
-      const body = await micropubResponse.json();
-      const message = encodeURIComponent(body.success_description);
+      const micropubResponse = await micropub.post(
+        micropubUrl.href,
+        accessToken
+      );
+      const message = encodeURIComponent(micropubResponse.success_description);
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
