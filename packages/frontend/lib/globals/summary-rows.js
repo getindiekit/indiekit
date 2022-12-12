@@ -1,4 +1,4 @@
-import { markdown } from "../filters/markdown.js";
+import { markdown } from "../filters/string.js";
 
 /**
  * Transform object into array for consumption by summary component
