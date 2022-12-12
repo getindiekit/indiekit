@@ -1,0 +1,39 @@
+{%- from "../badge/macro.njk" import badge with context -%}
+<article class="card">
+  {%- if opts.audio or opts.photo or opts.video %}
+  <div class="card__media">
+  {%- if opts.audio %}
+    <audio src="{{ opts.audio.src }}"{{- attributes(opts.audio.attributes) }}>{{
+      opts.audio.alt
+    }}</audio>
+  {%- elif opts.video %}
+    <video src="{{ opts.video.src }}"{{- attributes(opts.video.attributes) }}>{{
+      opts.video.alt
+    }}</video>
+  {%- else %}
+    <img src="{{ opts.photo.src }}" alt="{{ opts.photo.alt }}"{{- attributes(opts.photo.attributes) }}>
+  {%- endif %}
+  </div>
+  {%- endif %}
+  <div class="card__body">
+    <h2 class="card__title">
+      <a href="{{ opts.url }}">
+        {{- icon(opts.icon) if opts.icon -}}
+        {{- opts.title -}}
+      </a>
+    </h2>
+    {%- if opts.description %}
+    <div class="card__meta">
+      {{ opts.description | excerpt(80, publication.locale) | markdown | safe }}
+    </div>
+    {%- endif %}
+    {% if opts.published or opts.badges %}
+    <footer class="card__footer">
+      <time datetime="{{ opts.published }}">{{ opts.published | date("PPp") }}</time>
+      {%- for item in opts.badges %}
+        {{ badge(item) if item }}
+      {%- endfor %}
+    </footer>
+    {% endif %}
+  </div>
+</div>
