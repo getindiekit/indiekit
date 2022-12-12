@@ -10,21 +10,25 @@
       <footer class="file__footer">
         <time datetime="{{ item.published }}">{{ item.published | date("PPp") }}</time>
         {{ badge({
-          classes: "badge--small badge--" + status[item["post-status"]].color,
+          color: status[item["post-status"]].color,
+          size: "small",
           text: __(status[item["post-status"]].text)
         }) if item["post-status"] }}
         {{ badge({
-          classes: "badge--small badge--" + status.deleted.color,
+          color: status.deleted.color,
+          size: "small",
           text: __(status.deleted.text)
         }) if item.deleted }}
         {{ badge({
-          classes: "badge--small badge--" + status.syndicated.color,
-          icon:  status.syndicated.icon,
+          color: status.syndicated.color,
+          icon: status.syndicated.icon,
+          size: "small",
           text: __(status.syndicated.text)
         }) if item["post-status"] === "published" and item.syndication }}
         {{ badge({
-          classes: "badge--small badge--" + status[item.visibility].color,
+          color: status[item.visibility].color,
           icon:  status[item.visibility].icon,
+          size: "small",
           text: __(status[item.visibility].text)
         }) if item["post-status"] === "published" and item.visibility and item.visibility !== "_ignore" }}
       </footer>
