@@ -58,7 +58,7 @@
       Using markdown and replace filters to output <b> elements because
       concatenated values cannot be rendered as safe strings.
     -#}
-    {%- if opts.results.from == opts.results.to -%}
+    {%- if opts.results.from === opts.results.to -%}
       {{- __("pagination.result", {
         from: "**" + opts.results.from + "**",
         count: "**" + opts.results.count + "**",

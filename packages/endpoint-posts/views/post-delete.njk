@@ -2,7 +2,7 @@
 
 {% block fieldset %}
   {{ button({
-    classes: "button--warning" if action == "delete",
+    classes: "button--warning" if action === "delete",
     text: __("posts." + action + ".submit")
   }) }}
 

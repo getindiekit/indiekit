@@ -3,9 +3,9 @@
   <li class="card-grid__item">
     <div class="card__media">
     {%- set type = item["post-type"] -%}
-    {%- if type == "audio" %}
+    {%- if type === "audio" %}
       <audio src="{{ item.audio.src }}"{{- attributes(item.audio.attributes) }}></audio>
-    {%- elif type == "video" %}
+    {%- elif type === "video" %}
       <video src="{{ item.video.src }}"{{- attributes(item.video.attributes) }}></video>
     {%- else %}
       <img src="{{ item.image.src }}" alt="{{ item.image.alt }}"{{- attributes(item.image.attributes) }}>

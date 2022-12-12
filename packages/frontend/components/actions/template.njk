@@ -5,7 +5,7 @@
   </a>
 {% endmacro -%}
 <div class="{{ classes("actions", opts) }}">
-{% if opts.items.length == 1 %}
+{% if opts.items.length === 1 %}
   {{- _actionLink(opts.items[0]) | trim -}}
 {% else %}
   <ul class="actions__list" role="list">
