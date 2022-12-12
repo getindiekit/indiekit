@@ -1,7 +1,7 @@
 import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { publication } from "@indiekit-test/publication";
-import { postData } from "@indiekit-test/post-data";
+import { deletedPostData, postData } from "@indiekit-test/post-data";
 import { post } from "../../lib/post.js";
 
 await mockAgent("store");
@@ -63,15 +63,12 @@ test("Deletes a post", async (t) => {
 
 test("Throws error deleting a post", async (t) => {
   await t.throwsAsync(post.delete(false, postData), {
-    message: "storeMessageTemplate is not a function",
+    message: "postTemplate is not a function",
   });
 });
 
 test("Undeletes a post", async (t) => {
-  await post.create(publication, postData);
-  await post.delete(publication, postData);
-
-  const result = await post.undelete(publication, postData);
+  const result = await post.undelete(publication, deletedPostData);
 
   t.deepEqual(result, {
     location: "https://website.example/foo",
@@ -84,7 +81,7 @@ test("Undeletes a post", async (t) => {
 });
 
 test("Throws error undeleting a post", async (t) => {
-  await t.throwsAsync(post.undelete(publication, false), {
+  await t.throwsAsync(post.undelete(publication, postData), {
     message: "Post was not previously deleted",
   });
 });

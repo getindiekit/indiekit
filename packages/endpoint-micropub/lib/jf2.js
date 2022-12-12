@@ -1,6 +1,5 @@
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
 import { striptags } from "striptags";
-import { getDate } from "./date.js";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
 import {
@@ -71,9 +70,7 @@ export const mf2ToJf2 = async (body, requestReferences) => {
  * @returns {object} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties) => {
-  const { me, slugSeparator, timeZone } = publication;
-
-  properties.published = getPublishedProperty(properties, timeZone);
+  const { me, slugSeparator } = publication;
 
   if (properties.name) {
     properties.name = properties.name.trim();
@@ -227,16 +224,6 @@ export const getVideoProperty = (properties, me) => {
     url: relativeMediaPath(item.url || item, me),
   }));
 };
-
-/**
- * Get published date (using current date if none given)
- *
- * @param {object} properties - JF2 properties
- * @param {object} timeZone - Publication time zone
- * @returns {Array} `published` property
- */
-export const getPublishedProperty = (properties, timeZone) =>
-  getDate(timeZone, properties.published);
 
 /**
  * Get slug

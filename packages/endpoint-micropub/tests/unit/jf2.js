@@ -1,5 +1,4 @@
 import test from "ava";
-import dateFns from "date-fns";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import {
@@ -10,13 +9,10 @@ import {
   getLocationProperty,
   getPhotoProperty,
   getVideoProperty,
-  getPublishedProperty,
   getSlugProperty,
   getSyndicateToProperty,
   normaliseProperties,
 } from "../../lib/jf2.js";
-
-const { isValid, parseISO } = dateFns;
 
 await mockAgent("website");
 
@@ -308,32 +304,6 @@ test("Gets normalised video property", (t) => {
   t.deepEqual(result, [{ url: "baz.mp4" }, { url: "https://foo.bar/qux.mp4" }]);
 });
 
-test("Gets date from `published` property", (t) => {
-  const properties = JSON.parse(getFixture("jf2/note-published-provided.jf2"));
-
-  const result = getPublishedProperty(properties);
-
-  t.is(result, "2019-01-02T03:04:05.678Z");
-});
-
-test("Gets date from `published` property (short date)", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/note-published-provided-short.jf2")
-  );
-
-  const result = getPublishedProperty(properties);
-
-  t.is(result, "2019-01-02T00:00:00.000Z");
-});
-
-test("Gets date by using current date", (t) => {
-  const properties = JSON.parse(getFixture("jf2/note-published-missing.jf2"));
-
-  const result = getPublishedProperty(properties);
-
-  t.true(isValid(parseISO(result)));
-});
-
 test("Derives slug from `mp-slug` property", (t) => {
   const properties = JSON.parse(getFixture("jf2/note-slug-provided.jf2"));
 
@@ -516,7 +486,6 @@ test("Normalises JF2 (few properties)", (t) => {
   t.falsy(result.audio);
   t.falsy(result.photo);
   t.falsy(result.video);
-  t.true(isValid(parseISO(result.published)));
 });
 
 test("Normalises JF2 (all properties)", (t) => {
@@ -536,7 +505,6 @@ test("Normalises JF2 (all properties)", (t) => {
   ]);
   t.deepEqual(result.video, [{ url: "https://website.example/video.mp4" }]);
   t.deepEqual(result.category, ["lunch", "food"]);
-  t.true(isValid(parseISO(result.published)));
   t.deepEqual(result["mp-syndicate-to"], ["https://social.example"]);
 });
 
