@@ -8,12 +8,6 @@
 
   {{ prose({ text: __("files.delete.note", publication.store.info.name) }) }}
 
-  {{ input({
-    name: "url",
-    value: url,
-    type: "hidden"
-  }) }}
-
   {{ button({
     classes: "button--warning",
     text: __("files.delete.submit")

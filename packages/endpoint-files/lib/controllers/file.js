@@ -1,7 +1,4 @@
-import { Buffer } from "node:buffer";
 import path from "node:path";
-import { endpoint } from "../endpoint.js";
-import { getFileName } from "../utils.js";
 
 /**
  * View previously uploaded file
@@ -13,22 +10,13 @@ import { getFileName } from "../utils.js";
  */
 export const fileController = async (request, response, next) => {
   try {
-    const { mediaEndpoint } = request.app.locals.application;
-    const { id } = request.params;
-    const { access_token, scope } = request.session;
-    const url = Buffer.from(id, "base64url").toString("utf8");
-
-    const mediaUrl = new URL(mediaEndpoint);
-    mediaUrl.searchParams.append("q", "source");
-    mediaUrl.searchParams.append("url", url);
-
-    const mediaResponse = await endpoint.get(mediaUrl.href, access_token);
+    const { back, file, fileName, scope } = response.locals;
 
     response.render("file", {
-      title: getFileName(mediaResponse.url),
-      file: mediaResponse,
+      title: fileName,
+      file,
       parent: {
-        href: path.dirname(request.baseUrl + request.path),
+        href: back,
         text: response.__("files.files.title"),
       },
       actions: [

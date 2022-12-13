@@ -16,7 +16,7 @@ test("Returns 404 error deleting file with no record", async (t) => {
     .send({ url });
 
   t.is(result.status, 404);
-  t.true(result.text.includes("No database record found"));
+  t.true(result.text.includes("No file was found at this URL"));
 
   server.close(t);
 });

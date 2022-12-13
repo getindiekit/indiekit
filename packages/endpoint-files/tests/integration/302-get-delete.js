@@ -1,19 +1,26 @@
 import { Buffer } from "node:buffer";
 import test from "ava";
 import supertest from "supertest";
+import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testToken } from "@indiekit-test/token";
+
+await mockAgent("store");
 
 test("Redirects to file page if no delete permissions", async (t) => {
-  const url = "https://example.website/photo.jpg";
-  const id = Buffer.from(url).toString("base64url");
-
-  const scopedCookie = cookie({ scope: "update" });
+  // Upload file
   const server = await testServer();
   const request = supertest.agent(server);
-  const result = await request
-    .get(`/files/${id}/delete`)
-    .set("cookie", [scopedCookie]);
+  const upload = await request
+    .post("/media")
+    .auth(testToken({ scope: "media" }), { type: "bearer" })
+    .set("accept", "application/json")
+    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+  const id = Buffer.from(upload.headers.location).toString("base64url");
+
+  // Request delete page
+  const result = await request.get(`/files/${id}/delete`);
 
   t.is(result.status, 302);
   t.regex(result.text, /Found. Redirecting to \/files\/(.*)/);
