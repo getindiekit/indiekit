@@ -9,7 +9,9 @@
   {% elif type === "video" %}
     <video src="{{ file.url }}" controls></video>
   {% else %}
-    <a href="{{ file.url }}" download>{{ __("files.file.download") }}</a>
+    {{ prose({
+      html: "<a href=\"" + file.url + "\" download>" + __("files.file.download") + "</a>"
+    }) }}
   {% endif %}
 
   {% call section({ title: __("files.file.properties") }) %}
