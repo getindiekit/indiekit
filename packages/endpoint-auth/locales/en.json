@@ -32,7 +32,6 @@
       },
       "submit": "Generate password secret",
       "password": {
-        "label": "New password",
         "hint": "Enter a password to use for authenticating requests"
       },
       "secret": {
