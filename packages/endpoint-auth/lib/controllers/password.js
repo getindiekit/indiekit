@@ -10,9 +10,13 @@ export const passwordController = {
    * @returns {object} HTTP response
    */
   get(request, response) {
+    const { name } = request.app.locals.application;
+
     response.render("new-password", {
       title: response.__("auth.newPassword.title"),
-      setup: request.query.setup,
+      notice: request.query.setup
+        ? response.__("auth.newPassword.setup.text", { app: name })
+        : false,
     });
   },
 
@@ -25,14 +29,12 @@ export const passwordController = {
    */
   async post(request, response) {
     const { password } = request.body;
-    const { setup } = request.query;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("new-password", {
         title: response.__("auth.newPassword.title"),
         errors: errors.mapped(),
-        setup,
       });
     }
 
@@ -43,7 +45,6 @@ export const passwordController = {
         title: response.__("auth.newPassword.title"),
         password,
         secret,
-        setup,
       });
     }
   },
