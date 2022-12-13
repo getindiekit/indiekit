@@ -78,7 +78,9 @@
     value: "entry",
     type: "hidden"
   }) }}
+{% endblock %}
 
+{% block buttons %}
   {{ button({
     text: __("share.submit")
   }) if session.access_token else warningText({
