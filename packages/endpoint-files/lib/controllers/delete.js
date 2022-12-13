@@ -20,7 +20,7 @@ export const deleteController = {
       const { id } = request.params;
       const url = Buffer.from(id, "base64url").toString("utf8");
 
-      return response.render("file-confirm-delete", {
+      return response.render("file-delete", {
         title: response.__("files.delete.title"),
         back,
         parent: { text: getFileName(url) },
@@ -68,7 +68,7 @@ export const deleteController = {
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("file-confirm-delete", {
+      response.render("file-delete", {
         title: response.__("files.delete.title"),
         back: path.dirname(request.baseUrl + request.path),
         parent: { text: getFileName(url) },
