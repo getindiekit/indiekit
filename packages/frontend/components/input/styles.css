@@ -2,6 +2,7 @@
   background-color: var(--color-background);
   border: var(--border-width-thick) solid var(--color-outline);
   border-radius: var(--border-radius-small);
+  font: var(--font-body);
   inline-size: 100%;
   padding-block: calc(var(--space-s) / 2);
   padding-inline: var(--space-s);
