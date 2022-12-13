@@ -1,8 +1,15 @@
-<div class="{{ classes("notification", opts) }}"
-  role="region" aria-labelledby="notification-title"
+<div class="{{ classes("notification", opts) }}
+  {%- if opts.type %} notification--{{ opts.type }}{% endif %}"
+  role="{{ "alert" if opts.type === "success" else "region" }}"
+  aria-labelledby="notification-title"
+  data-controller="notification"
   {{- attributes(opts.attributes) }}>
   <div class="notification__container">
-    <h2 class="notification__title" id="notification-title">{{- opts.title | markdown("inline") | safe -}}</h2>
+    <h2 class="notification__title" id="notification-title">{{
+      (__("error") if opts.type === "error") or
+      (__("success") if opts.type === "success") or
+      __("important")
+    }}</h2>
     {%- if opts.text %}
     <div class="notification__text s-flow">
       {%- if opts.href %}<a href="{{ opts.href }}">{% endif -%}

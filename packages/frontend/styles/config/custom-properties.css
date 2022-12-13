@@ -53,6 +53,8 @@ html {
   --color-success: var(--color-green50);
   --color-success-variant: var(--color-green30);
   --color-on-success: var(--color-green10);
+  --color-notification: var(--color-purple45);
+  --color-on-notification: var(--color-neutral99);
   --color-focus: var(--color-yellow50);
   --color-on-focus: var(--color-on-background);
   --color-selection: hsl(var(--tint-yellow) 50% / 30%);

@@ -62,11 +62,9 @@
 
     <main class="{{ mainClasses }}" id="main"{% if mainControllers %} data-controller="{{ mainControllers }}"{% endif %}>
       {{ notification({
-        classes: "notification--error" if error else "notification--success",
-        title: __("error") if error else __("success"),
-        text: error if error else success,
-        href: errorUri
-      }) | indent(6) if error or success }}
+        type: ("error" if error) or ("success" if success),
+        text: (error if error) or (success if success) or notice
+      }) | indent(6) if error or success or notice }}
       {{ backLink({
         href: back
       }) | indent(6) if back }}

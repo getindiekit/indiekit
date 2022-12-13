@@ -1,7 +1,7 @@
 .notification {
   --anchor-color: currentcolor;
-  background-color: var(--color-offset-variant);
-  color: var(--color-on-offset);
+  background-color: var(--color-notification);
+  color: var(--color-on-notification);
 }
 
 .notification--error {
@@ -12,6 +12,13 @@
 .notification--success {
   background-color: var(--color-success);
   color: var(--color-on-success);
+
+  &:focus-visible {
+    background-color: var(--color-focus);
+    border-radius: 0;
+    box-shadow: none;
+    color: var(--color-on-focus);
+  }
 }
 
 .notification__container {
