@@ -1,8 +1,8 @@
 /* global Blob */
 import path from "node:path";
-import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
-import { fetch, FormData } from "undici";
+import { FormData } from "undici";
+import { endpoint } from "../endpoint.js";
 
 export const formController = {
   /**
@@ -34,7 +34,8 @@ export const formController = {
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { application } = request.app.locals;
+    const { mediaEndpoint } = request.app.locals.application;
+    const { access_token } = request.session;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -49,25 +50,13 @@ export const formController = {
     const formData = new FormData();
     formData.append("file", new Blob([data]), name);
 
-    /**
-     * @todo Third-party media endpoints may require a separate bearer token
-     */
     try {
-      const mediaResponse = await fetch(application.mediaEndpoint, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
-        },
-        body: formData,
-      });
-
-      if (!mediaResponse.ok) {
-        throw await IndiekitError.fromFetch(mediaResponse);
-      }
-
-      const body = await mediaResponse.json();
-      const message = encodeURIComponent(body.success_description);
+      const mediaResponse = await endpoint.post(
+        mediaEndpoint,
+        access_token,
+        formData
+      );
+      const message = encodeURIComponent(mediaResponse.success_description);
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {

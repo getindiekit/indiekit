@@ -1,7 +1,6 @@
 import { Buffer } from "node:buffer";
 import path from "node:path";
-import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
+import { endpoint } from "../endpoint.js";
 import { getFileName } from "../utils.js";
 
 export const deleteController = {
@@ -39,31 +38,17 @@ export const deleteController = {
    * @returns {object} HTTP response
    */
   async post(request, response) {
-    const { application } = request.app.locals;
+    const { mediaEndpoint } = request.app.locals.application;
     const { url } = request.body;
+    const { access_token } = request.session;
 
-    const mediaUrl = new URL(application.mediaEndpoint);
+    const mediaUrl = new URL(mediaEndpoint);
     mediaUrl.searchParams.append("action", "delete");
     mediaUrl.searchParams.append("url", url);
 
-    /**
-     * @todo Third-party media endpoints may require a separate bearer token
-     */
     try {
-      const mediaResponse = await fetch(mediaUrl.href, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          authorization: `Bearer ${request.session.access_token}`,
-        },
-      });
-
-      if (!mediaResponse.ok) {
-        throw await IndiekitError.fromFetch(mediaResponse);
-      }
-
-      const body = await mediaResponse.json();
-      const message = encodeURIComponent(body.success_description);
+      const mediaResponse = await endpoint.post(mediaUrl.href, access_token);
+      const message = encodeURIComponent(mediaResponse.success_description);
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
