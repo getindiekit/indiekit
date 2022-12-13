@@ -13,7 +13,9 @@
       text: errors.file.msg
     } if errors.file
   }) | indent(2) }}
+{% endblock %}
 
+{% block buttons %}
   {{ button({
     text: __("files.upload.submit"),
     attributes: {

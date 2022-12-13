@@ -1,6 +1,11 @@
 {% extends "form.njk" %}
 
-{% block fieldset %}
+{% block form %}
+  {{ heading({
+    text: title,
+    parent: parent
+  }) }}
+
   {{ prose({ text: __("files.delete.note", publication.store.info.name) }) }}
 
   {{ input({
