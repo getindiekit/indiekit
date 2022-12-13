@@ -5,7 +5,7 @@
   {{ errorSummary({
     errorList: errorList(errors)
   }) | indent(2) if errors }}
-  {% call fieldset({
+  {% block form %}{% call fieldset({
     legend: {
       classes: "-!-visually-hidden" if minimalui,
       parent: parent,
@@ -14,6 +14,7 @@
     }
   }) -%}
     {% block fieldset %}{% endblock %}
-  {% endcall %}
+  {% endcall %}{% endblock %}
+  {% block buttons %}{% endblock %}
 </form>
 {% endblock %}
