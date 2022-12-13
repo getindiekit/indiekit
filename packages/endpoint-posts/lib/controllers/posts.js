@@ -1,10 +1,9 @@
-import { Buffer } from "node:buffer";
 import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { endpoint } from "../endpoint.js";
 import { status } from "../status.js";
-import { getPostName } from "../utils.js";
+import { getPostId, getPostName } from "../utils.js";
 
 /**
  * List previously published posts
@@ -41,7 +40,7 @@ export const postsController = async (request, response, next) => {
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
-        item.id = Buffer.from(item.url).toString("base64url");
+        item.id = getPostId(item.url);
         item.icon = item["post-type"];
         item.description = item.content?.text;
         item.title = getPostName(publication, item);

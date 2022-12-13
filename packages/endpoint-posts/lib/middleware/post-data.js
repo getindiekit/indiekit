@@ -1,4 +1,5 @@
 import path from "node:path";
+import { IndiekitError } from "@indiekit/error";
 import { status } from "../status.js";
 import {
   getPostData,
@@ -74,7 +75,13 @@ export const postData = {
 
       next();
     } catch (error) {
-      next(error);
+      let nextError = error;
+
+      if (error.message === "Invalid URL") {
+        nextError = IndiekitError.notFound(response.__("NotFoundError.page"));
+      }
+
+      next(nextError);
     }
   },
 };

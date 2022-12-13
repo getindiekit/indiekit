@@ -1,7 +1,9 @@
 import test from "ava";
 import {
+  getPostId,
   getPostName,
   getPostTypeName,
+  getPostUrl,
   getRsvpItems,
   getSyndicateToItems,
   getVisibilityItems,
@@ -31,6 +33,13 @@ test.beforeEach((t) => {
   };
 });
 
+test("Gets post ID", (t) => {
+  t.is(
+    getPostId("https://website.example/foobar"),
+    "aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy"
+  );
+});
+
 test("Gets post name", (t) => {
   const post = { name: "My favourite sandwich" };
 
@@ -46,6 +55,13 @@ test("Gets post type name as fallback for post name", (t) => {
 test("Gets post type name (or an empty string)", (t) => {
   t.is(getPostTypeName(t.context.publication, "article"), "Journal entry");
   t.is(getPostTypeName(t.context.publication, null), "");
+});
+
+test("Gets post URL", (t) => {
+  t.is(
+    getPostUrl("aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy"),
+    "https://website.example/foobar"
+  );
 });
 
 test("Gets RSVP `items` for radios component", (t) => {

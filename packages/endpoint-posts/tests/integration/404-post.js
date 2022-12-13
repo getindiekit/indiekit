@@ -11,7 +11,11 @@ test("Returns 404 error post not found", async (t) => {
     .auth(testToken(), { type: "bearer" });
 
   t.is(result.status, 404);
-  t.true(result.text.includes("No post was found at this URL"));
+  t.true(
+    result.text.includes(
+      "If you entered a web address please check it was correct"
+    )
+  );
 
   server.close(t);
 });

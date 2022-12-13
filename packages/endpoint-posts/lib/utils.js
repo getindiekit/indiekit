@@ -3,6 +3,16 @@ import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { endpoint } from "./endpoint.js";
 
 /**
+ * Get post ID from URL
+ *
+ * @param {string} url - URL
+ * @returns {string} Post ID
+ */
+export const getPostId = (url) => {
+  return Buffer.from(url).toString("base64url");
+};
+
+/**
  * Query Micropub endpoint for post data
  *
  * @param {string} id - Post ID
@@ -11,11 +21,9 @@ import { endpoint } from "./endpoint.js";
  * @returns {object} JF2 properties
  */
 export const getPostData = async (id, micropubEndpoint, accessToken) => {
-  const url = Buffer.from(id, "base64").toString("utf8");
-
   const micropubUrl = new URL(micropubEndpoint);
   micropubUrl.searchParams.append("q", "source");
-  micropubUrl.searchParams.append("url", url);
+  micropubUrl.searchParams.append("url", getPostUrl(id));
 
   const micropubResponse = await endpoint.get(micropubUrl.href, accessToken);
   const postData = mf2tojf2({ items: [micropubResponse] });
@@ -55,6 +63,17 @@ export const getPostTypeName = (publication, postType) => {
   }
 
   return "";
+};
+
+/**
+ * Get post URL from ID
+ *
+ * @param {string} id - ID
+ * @returns {string} Post URL
+ */
+export const getPostUrl = (id) => {
+  const url = Buffer.from(id, "base64url").toString("utf8");
+  return new URL(url).href;
 };
 
 /**
