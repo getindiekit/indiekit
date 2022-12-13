@@ -3,3 +3,7 @@
   font: var(--font-caption);
   overflow-wrap: anywhere;
 }
+
+.button + .hint {
+  margin-block-start: var(--space-xs);
+}
