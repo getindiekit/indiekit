@@ -9,8 +9,8 @@
       "action": "Delete file",
       "title": "Are you sure you want to delete this file?",
       "note": "It may still be accessible or recoverable from your content store (%s).",
-      "cancel": "No, return to file",
-      "submit": "Yes, delete this file"
+      "submit": "I’m sure – delete this file",
+      "cancel": "No – return to file"
     },
     "file": {
       "download": "Download file",
@@ -27,6 +27,7 @@
     },
     "form": {
       "submit": "Upload",
+      "cancel": "Cancel",
       "file": {
         "label": "File"
       }

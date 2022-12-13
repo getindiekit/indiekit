@@ -16,10 +16,16 @@
 {% endblock %}
 
 {% block buttons %}
-  {{ button({
-    text: __("files.form.submit"),
-    attributes: {
-      formenctype: "multipart/form-data"
-    }
-  }) | indent(2) }}
+  <div class="button-group">
+    {{ button({
+      text: __("files.form.submit"),
+      attributes: {
+        formenctype: "multipart/form-data"
+      }
+    }) | indent(4) }}
+
+    {{ prose({
+      text: "[" + __("files.form.cancel") + "](" + back + ")"
+    }) | indent(4) }}
+  </div>
 {% endblock %}
