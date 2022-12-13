@@ -51,7 +51,7 @@
 }
 
 .badge--offset {
-  background: var(--color-offset-variant);
+  background: var(--color-shadow);
   color: var(--color-on-background);
 }
 
