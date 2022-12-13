@@ -54,6 +54,7 @@ html {
   --color-success-variant: var(--color-green30);
   --color-on-success: var(--color-green10);
   --color-focus: var(--color-yellow50);
+  --color-on-focus: var(--color-on-background);
   --color-selection: hsl(var(--tint-yellow) 50% / 30%);
   --color-shadow: hsl(var(--tint-neutral) 10% / 0.2);
 

@@ -47,7 +47,7 @@ legend {
 :focus-visible {
   border-radius: var(--border-radius-small);
   box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
-  color: var(--color-on-background);
+  color: var(--color-on-focus);
   outline: 0;
   position: relative;
 }
