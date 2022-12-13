@@ -9,6 +9,8 @@
   border-radius: var(--border-radius-small);
   color: var(--button-color, var(--color-on-primary));
   display: inline-block;
+  font: var(--button-font, var(--font-label));
+  font-weight: normal;
   justify-content: center;
   line-height: var(--line-height-loose);
   padding-block: calc(var(--space-s) / 2);

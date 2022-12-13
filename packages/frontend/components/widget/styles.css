@@ -4,6 +4,7 @@
 }
 
 .widget {
+  --button-font: var(--font-caption);
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   color: var(--color-on-offset);
