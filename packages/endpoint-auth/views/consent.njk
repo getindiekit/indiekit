@@ -64,7 +64,9 @@
     value: csrfCode,
     type: "hidden"
   }) }}
+{% endblock %}
 
+{% block buttons %}
   {{ button({
     text: __("auth.consent." + authType + ".submit"),
     classes: "button--block"
