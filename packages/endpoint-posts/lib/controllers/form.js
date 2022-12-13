@@ -1,7 +1,7 @@
 import { validationResult } from "express-validator";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
-import { micropub } from "../micropub.js";
+import { endpoint } from "../endpoint.js";
 
 export const formController = {
   /**
@@ -72,7 +72,7 @@ export const formController = {
         };
       }
 
-      const micropubResponse = await micropub.post(
+      const micropubResponse = await endpoint.post(
         micropubEndpoint,
         accessToken,
         jsonBody

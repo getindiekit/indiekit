@@ -1,6 +1,6 @@
 import { Buffer } from "node:buffer";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import { micropub } from "./micropub.js";
+import { endpoint } from "./endpoint.js";
 
 /**
  * Query Micropub endpoint for post data
@@ -17,7 +17,7 @@ export const getPostData = async (id, micropubEndpoint, accessToken) => {
   micropubUrl.searchParams.append("q", "source");
   micropubUrl.searchParams.append("url", url);
 
-  const micropubResponse = await micropub.get(micropubUrl.href, accessToken);
+  const micropubResponse = await endpoint.get(micropubUrl.href, accessToken);
   const postData = mf2tojf2({ items: [micropubResponse] });
 
   return postData;

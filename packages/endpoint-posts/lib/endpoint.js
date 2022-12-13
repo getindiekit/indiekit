@@ -1,6 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 
-export const micropub = {
+export const endpoint = {
   /**
    * Micropub query
    *
@@ -9,18 +9,18 @@ export const micropub = {
    * @returns {object} Response data
    */
   async get(url, accessToken) {
-    const micropubResponse = await fetch(url, {
+    const endpointResponse = await fetch(url, {
       headers: {
         accept: "application/json",
         authorization: `Bearer ${accessToken}`,
       },
     });
 
-    if (!micropubResponse.ok) {
-      throw await IndiekitError.fromFetch(micropubResponse);
+    if (!endpointResponse.ok) {
+      throw await IndiekitError.fromFetch(endpointResponse);
     }
 
-    const body = await micropubResponse.json();
+    const body = await endpointResponse.json();
 
     return body;
   },
@@ -34,7 +34,7 @@ export const micropub = {
    * @returns {object} Response data
    */
   async post(url, accessToken, jsonBody = false) {
-    const micropubResponse = await fetch(url, {
+    const endpointResponse = await fetch(url, {
       method: "POST",
       headers: {
         accept: "application/json",
@@ -44,11 +44,11 @@ export const micropub = {
       ...(jsonBody && { body: JSON.stringify(jsonBody) }),
     });
 
-    if (!micropubResponse.ok) {
-      throw await IndiekitError.fromFetch(micropubResponse);
+    if (!endpointResponse.ok) {
+      throw await IndiekitError.fromFetch(endpointResponse);
     }
 
-    const body = await micropubResponse.json();
+    const body = await endpointResponse.json();
 
     return body;
   },

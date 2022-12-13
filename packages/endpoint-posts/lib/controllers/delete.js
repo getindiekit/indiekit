@@ -1,5 +1,5 @@
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
-import { micropub } from "../micropub.js";
+import { endpoint } from "../endpoint.js";
 
 export const deleteController = {
   /**
@@ -38,7 +38,7 @@ export const deleteController = {
       micropubUrl.searchParams.append("action", action);
       micropubUrl.searchParams.append("url", post.url);
 
-      const micropubResponse = await micropub.post(
+      const micropubResponse = await endpoint.post(
         micropubUrl.href,
         accessToken
       );

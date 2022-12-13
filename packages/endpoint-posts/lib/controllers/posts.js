@@ -2,7 +2,7 @@ import { Buffer } from "node:buffer";
 import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
-import { micropub } from "../micropub.js";
+import { endpoint } from "../endpoint.js";
 import { status } from "../status.js";
 import { getPostName } from "../utils.js";
 
@@ -30,7 +30,7 @@ export const postsController = async (request, response, next) => {
     micropubUrl.searchParams.append("limit", limit);
     micropubUrl.searchParams.append("offset", offset);
 
-    const micropubResponse = await micropub.get(
+    const micropubResponse = await endpoint.get(
       micropubUrl.href,
       request.session.access_token
     );
