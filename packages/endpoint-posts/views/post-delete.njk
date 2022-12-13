@@ -1,6 +1,11 @@
 {% extends "form.njk" %}
 
-{% block fieldset %}
+{% block form %}
+  {{ heading({
+    text: title,
+    parent: parent
+  }) }}
+
   {{ button({
     classes: "button--warning" if action === "delete",
     text: __("posts." + action + ".submit")
