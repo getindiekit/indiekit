@@ -4,7 +4,7 @@
 }) %}
   {{ button({
     classes: "button--secondary-on-offset button--block",
-    href: application.filesEndpoint + "/new/",
+    href: application.filesEndpoint + "/upload/",
     icon: "uploadFile",
     text: __("files.upload.title")
   }) if application.hasDatabase else prose({

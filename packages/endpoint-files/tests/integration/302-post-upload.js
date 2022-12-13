@@ -11,7 +11,7 @@ test.failing("Uploads file and redirects to files page", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
-    .post("/files/new")
+    .post("/files/upload")
     .set("cookie", [cookie()])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 

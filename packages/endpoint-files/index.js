@@ -28,8 +28,8 @@ export default class FilesEndpoint {
   get routes() {
     router.get("/", filesController);
 
-    router.get("/new", formController.get);
-    router.post("/new", validate, formController.post);
+    router.get("/upload", formController.get);
+    router.post("/upload", validate, formController.post);
 
     router.get("/:id", fileController);
 

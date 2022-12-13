@@ -12,7 +12,7 @@ test.failing("Returns 500 error uploading file", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
-    .post("/files/new")
+    .post("/files/upload")
     .set("cookie", [cookie()])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
   const dom = new JSDOM(response.text);
