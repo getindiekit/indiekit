@@ -23,7 +23,9 @@
     "title": "Files",
     "upload": {
       "action": "Upload file",
-      "title": "Upload a new file",
+      "title": "Upload a new file"
+    },
+    "form": {
       "submit": "Upload",
       "file": {
         "label": "File"

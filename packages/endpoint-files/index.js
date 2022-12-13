@@ -2,7 +2,7 @@ import express from "express";
 import { deleteController } from "./lib/controllers/delete.js";
 import { fileController } from "./lib/controllers/file.js";
 import { filesController } from "./lib/controllers/files.js";
-import { uploadController } from "./lib/controllers/upload.js";
+import { formController } from "./lib/controllers/form.js";
 import { validate } from "./lib/middleware/validation.js";
 
 const defaults = { mountPath: "/files" };
@@ -27,9 +27,12 @@ export default class FilesEndpoint {
 
   get routes() {
     router.get("/", filesController);
-    router.get("/new", uploadController.get);
-    router.post("/new", validate, uploadController.post);
+
+    router.get("/new", formController.get);
+    router.post("/new", validate, formController.post);
+
     router.get("/:id", fileController);
+
     router.get("/:id/delete", deleteController.get);
     router.post("/:id/delete", deleteController.post);
 

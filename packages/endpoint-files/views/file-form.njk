@@ -6,7 +6,7 @@
     name: "file",
     value: errors.file.value or file,
     label: {
-      text: __("files.upload.file.label")
+      text: __("files.form.file.label")
     },
     type: "file",
     errorMessage: {
@@ -17,7 +17,7 @@
 
 {% block buttons %}
   {{ button({
-    text: __("files.upload.submit"),
+    text: __("files.form.submit"),
     attributes: {
       formenctype: "multipart/form-data"
     }

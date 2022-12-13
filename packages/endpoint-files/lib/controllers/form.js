@@ -4,7 +4,7 @@ import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
 import { fetch, FormData } from "undici";
 
-export const uploadController = {
+export const formController = {
   /**
    * Get file to upload
    *
@@ -17,7 +17,7 @@ export const uploadController = {
     const back = path.dirname(request.baseUrl + request.path);
 
     if (scope.includes("create") || scope.includes("media")) {
-      return response.render("upload", {
+      return response.render("file-form", {
         title: response.__("files.upload.title"),
         back,
       });
@@ -38,7 +38,7 @@ export const uploadController = {
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
-      return response.status(422).render("upload", {
+      return response.status(422).render("file-form", {
         title: response.__("files.upload.title"),
         back: path.dirname(request.baseUrl + request.path),
         errors: errors.mapped(),
@@ -72,7 +72,7 @@ export const uploadController = {
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("upload", {
+      response.render("file-form", {
         title: response.__("files.upload.title"),
         back: path.dirname(request.baseUrl + request.path),
         error: error.message,
