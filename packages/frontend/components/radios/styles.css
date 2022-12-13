@@ -33,7 +33,7 @@
 }
 
 .radios__label {
-  --label-font-weight: normal;
+  --label-font: var(--font-body);
   align-items: center;
   cursor: pointer;
   min-block-size: var(--radio-size);

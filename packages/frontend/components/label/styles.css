@@ -1,5 +1,9 @@
 .label {
   display: block;
-  font: var(--font-label);
-  font-weight: var(--label-font-weight, 600);
+  font: var(--label-font, var(--font-label));
+}
+
+.label__title {
+  --label-font: var(--font-title);
+  max-inline-size: var(--line-measure);
 }
