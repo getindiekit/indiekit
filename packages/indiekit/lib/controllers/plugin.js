@@ -8,7 +8,7 @@ export const list = (request, response) => {
     const _package = plugin.meta ? getPackageData(plugin.meta.url) : {};
     plugin.photo = {
       attributes: { onerror: "this.src='/assets/plug-in.svg'" },
-      src: `/assets/${plugin.id}/icon.svg`,
+      url: `/assets/${plugin.id}/icon.svg`,
     };
     plugin.title = plugin.name;
     plugin.description = _package.description;
