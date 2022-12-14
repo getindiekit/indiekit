@@ -12,7 +12,7 @@ import { getFileId, getFileName } from "../utils.js";
  */
 export const filesController = async (request, response, next) => {
   try {
-    const { application, publication } = request.app.locals;
+    const { application } = request.app.locals;
     const { scope } = request.session;
     const { access_token } = request.session;
 
@@ -20,8 +20,6 @@ export const filesController = async (request, response, next) => {
     page = Number.parseInt(page, 10) || 1;
     limit = Number.parseInt(limit, 10) || 20;
     offset = Number.parseInt(offset, 10) || (page - 1) * limit;
-
-    const imageUrl = new URL(application.imageEndpoint, application.url);
 
     const mediaUrl = new URL(application.mediaEndpoint);
     mediaUrl.searchParams.append("q", "source");
@@ -36,9 +34,7 @@ export const filesController = async (request, response, next) => {
       item.icon = item["post-type"];
       item.photo = {
         attributes: { onerror: "this.src='/assets/not-found.svg'" },
-        src:
-          item.url.replace(publication.me, imageUrl.href) +
-          "?w=240&h=240&c=true",
+        url: item.url,
       };
       item.title = item.url ? getFileName(item.url) : "File";
       item.url = path.join(request.baseUrl, request.path, item.id);
