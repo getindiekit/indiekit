@@ -22,7 +22,7 @@ export const styles = async () => {
   };
 
   const css = fs.readFileSync(options.from, "utf8");
-
   const result = await postcss(options.plugins).process(css, options);
+
   return result.css;
 };

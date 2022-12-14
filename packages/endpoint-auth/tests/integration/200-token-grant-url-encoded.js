@@ -30,7 +30,6 @@ test("Returns URL encoded access token", async (t) => {
     .query({ redirect_uri: "https://auth-endpoint.example/redirect" });
   const responseTextRegexp =
     /access_token=(?<access_token>.*)&token_type=(?<token_type>.*)&me=(?<me>.*)&scope=(?<scope>.*)/;
-
   const result = response.text.match(responseTextRegexp).groups;
 
   t.is(response.status, 200);

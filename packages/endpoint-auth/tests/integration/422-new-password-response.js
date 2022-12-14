@@ -8,7 +8,6 @@ test("Returns 422 error missing new password", async (t) => {
   const request = supertest.agent(server);
   const response = await request.post("/auth/new-password");
   const dom = new JSDOM(response.text);
-
   const result = dom.window.document;
 
   t.is(response.status, 422);

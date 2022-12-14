@@ -78,7 +78,6 @@ test("Gets RSVP `items` for radios component", (t) => {
 
 test("Gets syndication target `items` for checkboxes component", (t) => {
   const post = { "mp-syndicate-to": "https://twitter.com/username" };
-
   const result = getSyndicateToItems(t.context.publication, post);
 
   t.is(result.length, 1);

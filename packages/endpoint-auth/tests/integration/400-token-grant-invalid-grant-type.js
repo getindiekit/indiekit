@@ -8,7 +8,6 @@ await mockAgent("auth-endpoint");
 test("Returns 400 error invalid `grant_type`", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-
   const result = await request
     .post("/auth/token")
     .set("accept", "application/json")

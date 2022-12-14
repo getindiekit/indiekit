@@ -6,7 +6,6 @@ import { testToken } from "@indiekit-test/token";
 test("Returns verified JSON access token", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-
   const result = await request
     .get("/auth/token")
     .auth(testToken(), { type: "bearer" })

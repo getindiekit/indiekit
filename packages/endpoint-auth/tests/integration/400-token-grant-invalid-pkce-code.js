@@ -30,7 +30,6 @@ test("Returns 401 error fails PKCE code challenge", async (t) => {
     scope: "create update delete media",
     token_type: "Bearer",
   });
-
   const result = await request
     .post("/auth/token")
     .set("accept", "application/json")

@@ -5,7 +5,6 @@ import { testServer } from "@indiekit-test/server";
 test("Returns 401 error invalid token", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-
   const result = await request
     .get("/auth/token")
     .auth("foobar", { type: "bearer" })

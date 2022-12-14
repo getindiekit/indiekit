@@ -23,7 +23,6 @@ test("Derives properties from file data", async (t) => {
     data: getFixture("file-types/photo.jpg", false),
     name: "photo.jpg",
   };
-
   const result = await getFileProperties(publication, file);
 
   t.is(result.originalname, "photo.jpg");

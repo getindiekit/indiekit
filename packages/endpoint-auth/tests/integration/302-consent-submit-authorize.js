@@ -14,14 +14,14 @@ test("Returns 302 submitting authorized user", async (t) => {
   const request = supertest.agent(server);
 
   // Get reference for `request_uri`
-  const authRequest = await request
+  const authResponse = await request
     .get("/auth")
     .query({ client_id: "https://auth-endpoint.example" })
     .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
     .query({ response_type: "code" })
     .send({ scope: "create" })
     .query({ state: "12345" });
-  const reference = authRequest.headers.location.slice(-16);
+  const reference = authResponse.headers.location.slice(-16);
 
   // Submit form with expanded scope
   const result = await request

@@ -5,7 +5,6 @@ import { testServer } from "@indiekit-test/server";
 test("Returns 400 error no `redirect_uri`", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-
   const result = await request
     .post("/auth/token")
     .set("accept", "application/json")

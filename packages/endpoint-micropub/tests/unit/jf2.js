@@ -111,7 +111,6 @@ test("Gets audio property (from string)", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/audio-provided-string-value.jf2")
   );
-
   const result = getAudioProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.mp3" }]);
@@ -119,7 +118,6 @@ test("Gets audio property (from string)", (t) => {
 
 test("Gets audio property (from array)", (t) => {
   const properties = JSON.parse(getFixture("jf2/audio-provided-value.jf2"));
-
   const result = getAudioProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.mp3" }, { url: "https://foo.bar/qux.mp3" }]);
@@ -127,7 +125,6 @@ test("Gets audio property (from array)", (t) => {
 
 test("Gets normalised audio property", (t) => {
   const properties = JSON.parse(getFixture("jf2/audio-provided.jf2"));
-
   const result = getAudioProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.mp3" }, { url: "https://foo.bar/qux.mp3" }]);
@@ -137,7 +134,6 @@ test("Gets text and HTML values from `content` property", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-content-provided-html-text.jf2")
   );
-
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
@@ -150,7 +146,6 @@ test("Gets mixed text and HTML values from `content` property", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-content-provided-html-text-mixed.jf2")
   );
-
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
@@ -163,7 +158,6 @@ test("Gets HTML from `content` property and adds text value", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-content-provided-html.jf2")
   );
-
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
@@ -176,7 +170,6 @@ test("Gets content from `content.text` property", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/article-content-provided-text.jf2")
   );
-
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
@@ -187,7 +180,6 @@ test("Gets content from `content.text` property", (t) => {
 
 test("Gets content from `content` property", (t) => {
   const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
-
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
@@ -198,7 +190,6 @@ test("Gets content from `content` property", (t) => {
 
 test("Gets location property", (t) => {
   const properties = JSON.parse(getFixture("jf2/checkin.jf2"));
-
   const result = getLocationProperty(properties);
 
   t.deepEqual(result, {
@@ -211,7 +202,6 @@ test("Gets location property", (t) => {
 
 test("Gets location property by parsing provided Geo URI", (t) => {
   const properties = { location: "geo:37.780080,-122.420160" };
-
   const result = getLocationProperty(properties);
 
   t.deepEqual(result, {
@@ -224,7 +214,6 @@ test("Gets location property by parsing provided Geo URI", (t) => {
 
 test("Gets location property parsing Geo URI with altitude and uncertainty", (t) => {
   const properties = { location: "geo:37.780080,-122.420160,1.0;u=65" };
-
   const result = getLocationProperty(properties);
 
   t.deepEqual(result, {
@@ -240,7 +229,6 @@ test("Gets photo property (from string)", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/photo-provided-string-value.jf2")
   );
-
   const result = getPhotoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.jpg" }]);
@@ -248,7 +236,6 @@ test("Gets photo property (from string)", (t) => {
 
 test("Gets photo property (from array)", (t) => {
   const properties = JSON.parse(getFixture("jf2/photo-provided.jf2"));
-
   const result = getPhotoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.jpg" }, { url: "https://foo.bar/qux.jpg" }]);
@@ -256,7 +243,6 @@ test("Gets photo property (from array)", (t) => {
 
 test("Gets normalised photo property", (t) => {
   const properties = JSON.parse(getFixture("jf2/photo-provided-value-alt.jf2"));
-
   const result = getPhotoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [
@@ -269,7 +255,6 @@ test("Gets normalised photo property, adding provided text alternatives", (t) =>
   const properties = JSON.parse(
     getFixture("jf2/photo-provided-mp-photo-alt.jf2")
   );
-
   const result = getPhotoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [
@@ -282,7 +267,6 @@ test("Gets video property (from string)", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/video-provided-string-value.jf2")
   );
-
   const result = getVideoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.mp4" }]);
@@ -290,7 +274,6 @@ test("Gets video property (from string)", (t) => {
 
 test("Gets video property (from array)", (t) => {
   const properties = JSON.parse(getFixture("jf2/video-provided-value.jf2"));
-
   const result = getVideoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.mp4" }, { url: "https://foo.bar/qux.mp4" }]);
@@ -298,7 +281,6 @@ test("Gets video property (from array)", (t) => {
 
 test("Gets normalised video property", (t) => {
   const properties = JSON.parse(getFixture("jf2/video-provided.jf2"));
-
   const result = getVideoProperty(properties, "https://website.example/");
 
   t.deepEqual(result, [{ url: "baz.mp4" }, { url: "https://foo.bar/qux.mp4" }]);
@@ -306,48 +288,43 @@ test("Gets normalised video property", (t) => {
 
 test("Derives slug from `mp-slug` property", (t) => {
   const properties = JSON.parse(getFixture("jf2/note-slug-provided.jf2"));
+  const result = getSlugProperty(properties, "-");
 
-  const slug = getSlugProperty(properties, "-");
-
-  t.is(slug, "cheese-sandwich");
+  t.is(result, "cheese-sandwich");
 });
 
 test("Derives slug from unslugified `mp-slug` property", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-slug-provided-unslugified.jf2")
   );
+  const result = getSlugProperty(properties, "-");
 
-  const slug = getSlugProperty(properties, "-");
-
-  t.is(slug, "cheese-sandwich");
+  t.is(result, "cheese-sandwich");
 });
 
 test("Derives slug, ignoring empty `mp-slug` property", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/article-slug-provided-empty.jf2")
   );
+  const result = getSlugProperty(properties, "-");
 
-  const slug = getSlugProperty(properties, "-");
-
-  t.is(slug, "what-i-had-for-lunch");
+  t.is(result, "what-i-had-for-lunch");
 });
 
 test("Derives slug from `name` property", (t) => {
   const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
+  const result = getSlugProperty(properties, "-");
 
-  const slug = getSlugProperty(properties, "-");
-
-  t.is(slug, "what-i-had-for-lunch");
+  t.is(result, "what-i-had-for-lunch");
 });
 
 test("Derives slug by generating random number", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-slug-missing-no-name.jf2")
   );
+  const result = getSlugProperty(properties, "-");
 
-  const slug = getSlugProperty(properties, "-");
-
-  t.regex(slug, /[\d\w]{5}/g);
+  t.regex(result, /[\d\w]{5}/g);
 });
 
 test("Does not add syndication target if no syndicators", (t) => {
@@ -355,7 +332,6 @@ test("Does not add syndication target if no syndicators", (t) => {
     getFixture("jf2/article-syndicate-to-provided.jf2")
   );
   const syndicationTargets = [];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.falsy(result);
@@ -370,7 +346,6 @@ test("Adds syndication target checked by client", (t) => {
       info: { uid: "https://example.website/" },
     },
   ];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.deepEqual(result, ["https://example.website/"]);
@@ -384,7 +359,6 @@ test("Adds syndication target not checked by client but forced by server", (t) =
       options: { forced: true },
     },
   ];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.deepEqual(result, ["https://example.website/"]);
@@ -400,7 +374,6 @@ test("Adds syndication target checked by client and forced by server", (t) => {
       options: { forced: true },
     },
   ];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.deepEqual(result, ["https://example.website/"]);
@@ -419,7 +392,6 @@ test("Adds syndication targets, one checked by client, one forced by server", (t
       options: { forced: true },
     },
   ];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.deepEqual(result, [
@@ -435,7 +407,6 @@ test("Doesn’t add unused syndication target", (t) => {
       info: { uid: "https://example.website/" },
     },
   ];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.falsy(result);
@@ -452,7 +423,6 @@ test("Doesn’t add unchecked syndication target", (t) => {
       info: { uid: "https://example.website/" },
     },
   ];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.falsy(result);
@@ -465,7 +435,6 @@ test("Doesn’t add unavailable syndication target", (t) => {
     },
   };
   const syndicationTargets = [];
-
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.falsy(result);
@@ -473,7 +442,6 @@ test("Doesn’t add unavailable syndication target", (t) => {
 
 test("Normalises JF2 (few properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
-
   const result = normaliseProperties(t.context.publication, properties);
 
   t.is(result.type, "entry");
@@ -490,7 +458,6 @@ test("Normalises JF2 (few properties)", (t) => {
 
 test("Normalises JF2 (all properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
-
   const result = normaliseProperties(t.context.publication, properties);
 
   t.is(result.type, "entry");
@@ -512,7 +479,6 @@ test("Normalises JF2 (syndication properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
   delete properties["mp-syndicate-to"];
   properties.syndication = ["https://social.example/status/1"];
-
   const result = normaliseProperties(t.context.publication, properties);
 
   t.is(result.type, "entry");

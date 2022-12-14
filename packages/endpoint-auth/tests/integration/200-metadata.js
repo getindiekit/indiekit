@@ -8,7 +8,6 @@ test("Returns server metadata", async (t) => {
   const response = await request
     .get("/auth/metadata")
     .set("accept", "application/json");
-
   const result = response.body;
 
   t.truthy(result.authorization_endpoint);

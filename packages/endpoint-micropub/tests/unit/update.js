@@ -17,7 +17,6 @@ test.beforeEach((t) => {
 
 test("Add properties to object", (t) => {
   const additions = { syndication: ["http://website.example"] };
-
   const result = addProperties(t.context.properties, additions);
 
   t.deepEqual(result.syndication, ["http://website.example"]);
@@ -25,7 +24,6 @@ test("Add properties to object", (t) => {
 
 test("Add properties to existing value", (t) => {
   const additions = { category: ["bar"] };
-
   const result = addProperties(t.context.properties, additions);
 
   t.deepEqual(result.category, ["foo", "bar"]);
@@ -33,7 +31,6 @@ test("Add properties to existing value", (t) => {
 
 test("Add properties to existing array", (t) => {
   const additions = { category: ["baz"] };
-
   const result = addProperties(
     {
       category: ["foo", "bar"],
@@ -49,7 +46,6 @@ test("Deletes entries for properties of object", (t) => {
     name: "Lunchtime",
     category: ["foo", "bar"],
   };
-
   const result = deleteEntries(properties, { category: ["foo"] });
 
   t.deepEqual(result, {
@@ -63,7 +59,6 @@ test("Deletes entries for properties of object (removing property if last entry 
     name: "Lunchtime",
     category: ["foo", "bar"],
   };
-
   const result = deleteEntries(properties, { category: ["foo", "bar"] });
 
   t.deepEqual(result, {
@@ -76,7 +71,6 @@ test("Deletes entries for properties of object (ignores properties that don’t 
     name: "Lunchtime",
     category: ["foo", "bar"],
   };
-
   const result = deleteEntries(properties, { tags: ["foo", "bar"] });
 
   t.deepEqual(result, {
@@ -103,7 +97,6 @@ test("Deletes property", (t) => {
     name: "Lunchtime",
     category: ["foo", "bar"],
   };
-
   const result = deleteProperties(properties, ["category"]);
 
   t.deepEqual(result, {
@@ -113,7 +106,6 @@ test("Deletes property", (t) => {
 
 test("Replaces property value", (t) => {
   const properties = { name: "Lunchtime" };
-
   const result = replaceEntries(properties, { name: ["Dinnertime"] });
 
   t.deepEqual(result, {
@@ -123,7 +115,6 @@ test("Replaces property value", (t) => {
 
 test("Replaces property value (multiple items saved as array)", (t) => {
   const properties = { category: ["foo"] };
-
   const result = replaceEntries(properties, { category: ["bar", "baz"] });
 
   t.deepEqual(result, {
@@ -133,7 +124,6 @@ test("Replaces property value (multiple items saved as array)", (t) => {
 
 test("Replaces property value (adding property if doesn’t exist)", (t) => {
   const properties = { name: "Lunchtime" };
-
   const result = replaceEntries(properties, {
     content: ["I ate a cheese sandwich"],
   });
@@ -146,7 +136,6 @@ test("Replaces property value (adding property if doesn’t exist)", (t) => {
 
 test("Replaces property value (ignores empty array)", (t) => {
   const properties = { name: "Lunchtime" };
-
   const result = replaceEntries(properties, {
     content: [],
   });

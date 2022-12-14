@@ -21,7 +21,6 @@ test("Returns 401 error invalid `client_id`", async (t) => {
     scope: "create update delete media",
     token_type: "Bearer",
   });
-
   const result = await request
     .post("/auth/token")
     .set("accept", "application/json")

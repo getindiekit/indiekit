@@ -40,7 +40,6 @@ test("Derives a permalink", (t) => {
 
 test("Get post type configuration for a given type", (t) => {
   const { postTypes } = new JekyllPreset();
-
   const result = getPostTypeConfig("note", postTypes);
 
   t.is(result.name, "Note");
@@ -89,7 +88,6 @@ test("Renders path from URI template and properties", async (t) => {
       },
     },
   };
-
   const result = await renderPath(template, properties, publication);
 
   t.regex(
@@ -111,7 +109,6 @@ test("Substitutes variables enclosed in { } braces with data from object", (t) =
     string: "string",
     number: 1,
   };
-
   const result = supplant(string, object);
 
   t.is(result, "{array} string 1");

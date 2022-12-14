@@ -21,7 +21,6 @@ test("Returns JSON profile", async (t) => {
     scope: "create update delete media",
     token_type: "Bearer",
   });
-
   const result = await request
     .post("/auth")
     .set("accept", "application/json")

@@ -12,7 +12,6 @@ test("Returns verified URL encoded access token", async (t) => {
     .set("accept", "application/x-www-form-urlencoded");
   const responseTextRegexp =
     /client_id=(?<client_id>.*)&me=(?<me>.*)&scope=(?<scope>.*)&iat=(?<iat>.*)&exp=(?<exp>.*)/;
-
   const result = response.text.match(responseTextRegexp).groups;
 
   t.is(response.status, 200);

@@ -18,7 +18,6 @@ test.beforeEach((t) => {
 
 test("Returns bearer token from session", (t) => {
   const request = { session: { access_token: t.context.bearerToken } };
-
   const result = findBearerToken(request);
 
   t.is(result, "JWT");
@@ -28,7 +27,6 @@ test("Returns bearer token from `headers.authorization`", (t) => {
   const request = {
     headers: { authorization: `Bearer ${t.context.bearerToken}` },
   };
-
   const result = findBearerToken(request);
 
   t.is(result, "JWT");
@@ -36,7 +34,6 @@ test("Returns bearer token from `headers.authorization`", (t) => {
 
 test("Returns bearer token from `body.access_token`", (t) => {
   const request = { body: { access_token: t.context.bearerToken } };
-
   const result = findBearerToken(request);
 
   t.is(result, "JWT");
@@ -44,7 +41,6 @@ test("Returns bearer token from `body.access_token`", (t) => {
 
 test("Returns bearer token from query", (t) => {
   const request = { query: { token: t.context.bearerToken } };
-
   const result = findBearerToken(request);
 
   t.is(result, "JWT");

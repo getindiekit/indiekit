@@ -14,7 +14,6 @@ test("Returns 401 error unable to grant token", async (t) => {
     .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
     .query({ response_type: "code" })
     .query({ state: "12345" });
-
   const result = await request
     .post("/auth/token")
     .set("accept", "application/json")

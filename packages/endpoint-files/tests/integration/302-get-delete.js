@@ -12,12 +12,12 @@ test("Redirects to file page if no delete permissions", async (t) => {
   // Upload file
   const server = await testServer();
   const request = supertest.agent(server);
-  const upload = await request
+  const uploadResponse = await request
     .post("/media")
     .auth(testToken({ scope: "media" }), { type: "bearer" })
     .set("accept", "application/json")
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
-  const id = Buffer.from(upload.headers.location).toString("base64url");
+  const id = Buffer.from(uploadResponse.headers.location).toString("base64url");
 
   // Request delete page
   const result = await request.get(`/files/${id}/delete`);

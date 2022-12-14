@@ -10,7 +10,6 @@ test("Merges values from custom and preset post types", async (t) => {
   });
   const indiekit = new Indiekit({ config });
   const { publication } = await indiekit.bootstrap();
-
   const result = getPostTypes(publication);
 
   t.is(result[0].name, "Article");
@@ -24,7 +23,6 @@ test("Returns preset post types", async (t) => {
   });
   const indiekit = new Indiekit({ config });
   const { publication } = await indiekit.bootstrap();
-
   const result = getPostTypes(publication);
 
   t.is(result[0].name, "Article");
@@ -38,7 +36,6 @@ test("Returns custom post types", async (t) => {
   });
   const indiekit = new Indiekit({ config });
   const { publication } = await indiekit.bootstrap();
-
   const result = getPostTypes(publication);
 
   t.is(result[0].name, "Custom note post type");

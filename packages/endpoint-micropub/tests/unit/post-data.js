@@ -73,7 +73,6 @@ test("Reads post data", async (t) => {
 
 test("Updates post by adding properties", async (t) => {
   const operation = { add: { syndication: ["http://website.example"] } };
-
   const result = await postData.update(
     t.context.publication,
     t.context.url,
@@ -85,7 +84,6 @@ test("Updates post by adding properties", async (t) => {
 
 test("Updates post by replacing properties", async (t) => {
   const operation = { replace: { content: ["hello moon"] } };
-
   const result = await postData.update(
     t.context.publication,
     t.context.url,
@@ -100,7 +98,6 @@ test("Updates post by replacing properties", async (t) => {
 
 test("Updates post by deleting entries", async (t) => {
   const operation = { delete: { category: ["foo"] } };
-
   const result = await postData.update(
     t.context.publication,
     t.context.url,
@@ -112,7 +109,6 @@ test("Updates post by deleting entries", async (t) => {
 
 test("Updates post by deleting properties", async (t) => {
   const operation = { delete: ["category"] };
-
   const result = await postData.update(
     t.context.publication,
     t.context.url,
@@ -132,7 +128,6 @@ test("Updates post by adding, deleting and updating properties", async (t) => {
     },
     delete: ["mp-syndicate-to"],
   };
-
   const result = await postData.update(
     t.context.publication,
     t.context.url,

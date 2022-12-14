@@ -13,11 +13,11 @@ test.failing("Deletes file and redirects to files page", async (t) => {
   // Upload file
   const server = await testServer();
   const request = supertest.agent(server);
-  const upload = await request
+  const uploadResponse = await request
     .post("/files/upload")
     .set("cookie", [cookie()])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
-  const dom = new JSDOM(upload.text);
+  const dom = new JSDOM(uploadResponse.text);
   const url = dom.window.document.querySelector(
     ".notification__text a"
   ).textContent;

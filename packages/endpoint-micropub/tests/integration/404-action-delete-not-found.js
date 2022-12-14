@@ -3,23 +3,22 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-test("Returns 404 error file not found", async (t) => {
-  // Create post
+test("Returns 404 error post not found performing action", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
-    .post("/media")
+    .post("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .send({
       action: "delete",
-      url: "https://website.example/foo.jpg",
+      url: "https://website.example/foo",
     });
 
   t.is(result.status, 404);
   t.is(
     result.body.error_description,
-    "No database record found for https://website.example/foo.jpg"
+    "No database record found for https://website.example/foo"
   );
 
   server.close(t);

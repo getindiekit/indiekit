@@ -29,7 +29,6 @@ test("Returns URL encoded profile", async (t) => {
     .query({ grant_type: "authorization_code" })
     .query({ redirect_uri: "https://auth-endpoint.example/redirect" });
   const responseTextRegexp = /me=(?<me>.*)/;
-
   const result = response.text.match(responseTextRegexp).groups;
 
   t.is(response.status, 200);

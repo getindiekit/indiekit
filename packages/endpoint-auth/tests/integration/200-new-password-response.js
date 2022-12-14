@@ -11,7 +11,6 @@ test("Returns new password page with generated password secret", async (t) => {
     .type("form")
     .send({ password: "foo" });
   const dom = new JSDOM(response.text);
-
   const result = dom.window.document;
 
   t.regex(result.querySelector("#secret").textContent, /^\$2[ayb]\$.{56}$/);

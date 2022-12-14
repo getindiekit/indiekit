@@ -23,7 +23,6 @@ test("Returns queryable config", (t) => {
     postTypes: new JekyllPreset().postTypes,
     syndicationTargets: [twitter],
   };
-
   const result = getConfig(application, publication);
 
   t.deepEqual(result.categories, ["foo", "bar"]);

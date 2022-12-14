@@ -46,7 +46,6 @@ test("Throws error remote file not found", async (t) => {
 test("Gets data from cache", async (t) => {
   const url = "https://website.example/tags.json";
   await t.context.cache.set(url, ["Cached foo", "Cached bar"]);
-
   const result = await getCachedResponse(t.context.cache, url);
 
   t.deepEqual(result, ["Cached foo", "Cached bar"]);

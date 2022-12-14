@@ -8,7 +8,6 @@ test("Returns new password page", async (t) => {
   const request = supertest.agent(server);
   const response = await request.get("/auth/new-password");
   const dom = new JSDOM(response.text);
-
   const result = dom.window.document;
 
   t.is(

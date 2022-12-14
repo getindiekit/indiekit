@@ -8,7 +8,6 @@ test("Returns service documentation if no bearer token", async (t) => {
   const request = supertest.agent(server);
   const response = await request.get("/auth/token");
   const dom = new JSDOM(response.text);
-
   const result = dom.window.document.querySelector("title").textContent;
 
   t.is(result, "Using this IndieAuth endpoint - Test configuration");

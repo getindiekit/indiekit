@@ -95,7 +95,6 @@ title: What I had for lunch
 
 test("Renders post template with JSON front matter", (t) => {
   const hugo = new HugoPreset({ frontMatterFormat: "json" });
-
   const result = hugo.postTemplate(t.context.properties);
 
   t.is(
@@ -157,7 +156,6 @@ I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 
 test("Renders post template with TOML front matter", (t) => {
   const hugo = new HugoPreset({ frontMatterFormat: "toml" });
-
   const result = hugo.postTemplate(t.context.properties);
 
   t.is(
@@ -206,7 +204,6 @@ I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 
 test("Renders post template with YAML front matter", (t) => {
   const hugo = new HugoPreset({ frontMatterFormat: "yaml" });
-
   const result = hugo.postTemplate(t.context.properties);
 
   t.is(

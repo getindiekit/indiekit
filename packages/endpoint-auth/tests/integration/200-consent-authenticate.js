@@ -18,7 +18,6 @@ test("Returns authentication consent form", async (t) => {
     .query({ response_type: "code" })
     .query({ state: "12345" });
   const reference = authRequest.headers.location.slice(-16);
-
   const result = await request
     .get("/auth/consent")
     .query({ request_uri: `urn:ietf:params:oauth:request_uri:${reference}` });

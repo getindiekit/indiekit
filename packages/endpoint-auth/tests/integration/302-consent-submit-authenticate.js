@@ -11,14 +11,13 @@ test("Returns 302 submitting authenticated user", async (t) => {
   process.env.PASSWORD_SECRET = await createPasswordHash("foo");
   const server = await testServer();
   const request = supertest.agent(server);
-  const authRequest = await request
+  const authResponse = await request
     .get("/auth")
     .query({ client_id: "https://auth-endpoint.example" })
     .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
     .query({ response_type: "code" })
     .query({ state: "12345" });
-  const reference = authRequest.headers.location.slice(-16);
-
+  const reference = authResponse.headers.location.slice(-16);
   const result = await request
     .post("/auth/consent")
     .type("form")

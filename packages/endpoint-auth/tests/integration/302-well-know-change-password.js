@@ -8,7 +8,6 @@ await mockAgent("auth-endpoint");
 test("Returns 302 redirect from well known change password URL", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-
   const result = await request.get("/.well-known/change-password");
 
   t.is(result.status, 302);

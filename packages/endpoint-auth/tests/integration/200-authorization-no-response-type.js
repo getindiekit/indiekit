@@ -8,7 +8,6 @@ await mockAgent("auth-endpoint");
 test("Returns documentation with no `response_type` error", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-
   const result = await request
     .get("/auth")
     .query({ client_id: "https://auth-endpoint.example" })
