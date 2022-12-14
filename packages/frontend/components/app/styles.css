@@ -23,6 +23,10 @@
     overflow: hidden;
   }
 
+  & .main__container {
+    padding: var(--space-l);
+  }
+
   & .notification {
     border-start-end-radius: var(--border-radius-large);
     border-start-start-radius: var(--border-radius-large);
