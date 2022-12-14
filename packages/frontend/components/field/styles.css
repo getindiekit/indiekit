@@ -7,7 +7,7 @@
     display: none;
   }
 
-  & > * + * {
+  & > *:not(.-\!-visually-hidden) + * {
     margin-block-start: var(--space-xs);
   }
 }
