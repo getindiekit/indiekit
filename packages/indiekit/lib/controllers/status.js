@@ -1,8 +1,9 @@
 export const viewStatus = (request, response) => {
-  const { scope } = request.session;
+  const { access_token, scope } = request.session;
 
   response.render("status", {
     title: response.__("status.title"),
+    accessToken: access_token,
     scope: scope?.split(" "),
     actions: [
       {

@@ -153,14 +153,14 @@
               classes: "-!-visually-hidden",
               text: __("status.application.accessToken")
             },
-            value: session.access_token,
+            value: accessToken,
             attributes: {
               readonly: "true",
               onclick: "this.select();"
             }
           })
         }
-      } if session.access_token, {
+      } if accessToken, {
         key: {
           text: __("status.application.themeColorScheme")
         },
