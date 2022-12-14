@@ -51,8 +51,9 @@
 }
 
 .badge--offset {
-  background: var(--color-shadow);
-  color: var(--color-on-background);
+  background: var(--color-offset);
+  box-shadow: inset 0 0 0 1px var(--color-shadow);
+  color: var(--color-on-offset);
 }
 
 .badge--offset-green {
