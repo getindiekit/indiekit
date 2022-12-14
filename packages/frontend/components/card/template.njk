@@ -24,7 +24,7 @@
     </h2>
     {%- if opts.description %}
     <div class="card__meta">
-      {{ opts.description | excerpt(80, publication.locale) | markdown | safe }}
+      {{ opts.description | excerpt(20, publication.locale) | markdown | safe }}
     </div>
     {%- endif %}
     {% if opts.published or opts.badges %}
