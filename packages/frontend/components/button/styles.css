@@ -10,7 +10,7 @@
   color: var(--button-color, var(--color-on-primary));
   display: inline-block;
   font: var(--button-font, var(--font-label));
-  font-weight: normal;
+  font-weight: var(--button-font-weight, 500);
   justify-content: center;
   line-height: var(--line-height-loose);
   padding-block: calc(var(--space-s) / 2);
@@ -22,6 +22,7 @@
   --button-color: var(--color-on-offset);
   --button-background-color: var(--color-offset);
   --button-background-hover-color: var(--color-offset-variant);
+  --button-font-weight: normal;
 }
 
 .button:hover,

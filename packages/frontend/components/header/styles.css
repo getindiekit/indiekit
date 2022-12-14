@@ -24,7 +24,7 @@
 .header__title {
   align-items: center;
   display: inline-flex;
-  font-weight: 800;
+  font-weight: 600;
   margin-inline-end: auto;
   padding-block: var(--navigation-item-padding-block);
 

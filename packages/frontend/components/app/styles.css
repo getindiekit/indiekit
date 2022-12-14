@@ -2,8 +2,9 @@
   background-color: var(--color-offset);
   display: flex;
   flex-direction: column;
-  font-family: var(--font-family-system);
+  font-family: var(--font-family-sans);
   justify-content: space-between;
+  letter-spacing: 0.015em;
 }
 
 .app--minimalui {

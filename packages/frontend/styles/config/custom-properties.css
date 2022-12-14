@@ -70,6 +70,7 @@ html {
 
   /* Typography */
   --font-family-system: system-ui;
+  --font-family-sans: mona-sans, sans-serif;
   --font-family-monospace: ui-monospace, monospace;
   --line-height-solid: 1;
   --line-height-tight: 1.25;
@@ -79,18 +80,18 @@ html {
   --text-thickness: 0.0625em;
 
   /* Font styles */
-  --font-title: 800 var(--font-size-2xl) / var(--line-height-tight)
-    var(--font-family-system);
+  --font-title: 750 expanded var(--font-size-2xl) / var(--line-height-tight)
+    var(--font-family-sans);
   --font-heading: 600 var(--font-size-xl) / var(--line-height-tight)
-    var(--font-family-system);
+    var(--font-family-sans);
   --font-subhead: 500 var(--font-size-l) / var(--line-height-tight)
-    var(--font-family-system);
-  --font-body: 400 var(--font-size-m) / var(--line-height-loose)
-    var(--font-family-system);
+    var(--font-family-sans);
+  --font-body: 425 var(--font-size-m) / var(--line-height-loose)
+    var(--font-family-sans);
   --font-label: 600 var(--font-size-m) / var(--line-height-tight)
-    var(--font-family-system);
+    var(--font-family-sans);
   --font-caption: 400 var(--font-size-s) / var(--line-height-loose)
-    var(--font-family-system);
+    var(--font-family-sans);
   --font-code: 400 var(--font-size-s) / var(--line-height-loose)
     var(--font-family-monospace);
 

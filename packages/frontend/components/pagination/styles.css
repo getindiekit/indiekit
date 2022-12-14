@@ -31,7 +31,6 @@
 }
 
 .pagination__item--divider {
-  font-weight: 500;
   padding-block: calc(var(--space-m) / 2);
   padding-inline: 0;
   pointer-events: none;

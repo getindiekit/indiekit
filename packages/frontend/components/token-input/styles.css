@@ -113,7 +113,7 @@
     color: currentcolor;
     cursor: pointer;
     display: inline-block;
-    font-weight: bold;
+    font-weight: 600;
     opacity: 0.5;
     padding-inline: var(--space-xs);
   }

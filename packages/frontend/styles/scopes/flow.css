@@ -61,6 +61,10 @@
     font-variant-numeric: tabular-nums;
   }
 
+  & *:is(p, li, dd) code {
+    font-size: 90%;
+  }
+
   & table:not([class]) {
     font: var(--font-caption);
     inline-size: 100%;
@@ -78,7 +82,7 @@
   }
 
   & dt {
-    font-weight: 500;
+    font-weight: 600;
   }
 
   & :is(li, dd) {
