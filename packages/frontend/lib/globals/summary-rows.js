@@ -11,8 +11,12 @@ export const summaryRows = (object) => {
 
   for (const [key, value] of Object.entries(object)) {
     const valueText = (value) => {
-      if (typeof value === "string" || typeof value === "boolean") {
-        return `<code class="token attr-value">${value}</code>`;
+      if (typeof value === "string") {
+        return `<code class="token string">"${value}"</code>`;
+      }
+
+      if (typeof value === "object" && typeof value[0] === "boolean") {
+        return `<code class="token boolean">${value}</code>`;
       }
 
       try {
