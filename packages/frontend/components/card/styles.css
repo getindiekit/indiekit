@@ -60,7 +60,8 @@
 }
 
 .card__meta {
-  font: var(--font-caption);
+  --flow-line-measure: 40rem;
+  --prose-font: var(--font-caption);
   margin-block-start: var(--space-xs);
 }
 

@@ -1,4 +1,5 @@
 {%- from "../badge/macro.njk" import badge with context -%}
+{%- from "../prose/macro.njk" import prose with context -%}
 <article class="card">
   {%- if opts.photo %}
   <div class="card__photo">
@@ -12,11 +13,10 @@
         {{- opts.title -}}
       </a>
     </h2>
-    {%- if opts.description %}
-    <div class="card__meta">
-      {{ opts.description | markdown | striptags | excerpt(20, publication.locale) | safe }}
-    </div>
-    {%- endif %}
+    {{ prose({
+      classes: "card__meta",
+      text: opts.description | markdown | striptags | excerpt(20, publication.locale)
+    }) if opts.description }}
     {% if opts.published or opts.badges %}
     <footer class="card__footer">
       <time datetime="{{ opts.published }}">{{ opts.published | date("PPp") }}</time>
