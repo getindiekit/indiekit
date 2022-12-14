@@ -5,8 +5,16 @@ export const PreviewController = class extends Controller {
 
   connect() {
     this.updatePreview(this.textTarget);
-    this.updatePreview(this.titleTarget);
-    this.updatePreview(this.urlTarget);
+
+    this.updatePreview(
+      this.titleTarget,
+      this.element.querySelector("[data-action$=title]")
+    );
+
+    this.updatePreview(
+      this.urlTarget,
+      this.element.querySelector("[data-action$=url]")
+    );
   }
 
   text(event) {
