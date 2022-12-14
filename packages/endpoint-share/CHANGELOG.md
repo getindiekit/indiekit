@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **endpoint-share:** move buttons outside fieldset ([bf39196](https://github.com/getindiekit/indiekit/commit/bf3919616de7b0ae02d84d2e58fb9685a8fc4eb8))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Features

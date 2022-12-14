@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **endpoint-files:** move buttons outside fieldset ([3d2c7d6](https://github.com/getindiekit/indiekit/commit/3d2c7d62b6ea617374f5c5ceacecf4e1751d667c))
+- **endpoint-files:** use prose for download link ([4a2df56](https://github.com/getindiekit/indiekit/commit/4a2df56884f120f21d99e3cf5cb62a6a926c7740))
+
+### Features
+
+- **endpoint-files:** return 404 if no file ([86ef71d](https://github.com/getindiekit/indiekit/commit/86ef71dffb34c13f72f67d1fcdb326d107bc01ec))
+- **endpoint-files:** show post type icon in file card ([8964f0f](https://github.com/getindiekit/indiekit/commit/8964f0fd9d16f144ef5d87a4551e6d29fd1c9bbf))
+- **endpoint-files:** use details component for file properties ([f2efacc](https://github.com/getindiekit/indiekit/commit/f2efacc0e2ddc235098d65e692cf2e6eb7ac4eac))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Bug Fixes

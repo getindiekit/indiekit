@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **endpoint-micropub:** correct response for source url query ([55120e7](https://github.com/getindiekit/indiekit/commit/55120e7e430fa4a4c384cda150db7622e93a62c1))
+- **endpoint-micropub:** only update post-status property after publishing ([38a78e2](https://github.com/getindiekit/indiekit/commit/38a78e28ebc718548dfcd1bb43096aa9be3dba13))
+- **micropub:** use existing post status, if present, when not in draft mode ([4f1baf5](https://github.com/getindiekit/indiekit/commit/4f1baf52d22a18a818b59ea54e926d75a8449198))
+
+### Features
+
+- **endpoint-micropub:** refactor delete/undelete ([118c0e3](https://github.com/getindiekit/indiekit/commit/118c0e3d904e6fa5e79d2c7de5a74f383e1aebdc))
+- **endpoint-micropub:** say restored, not undelete ([261a956](https://github.com/getindiekit/indiekit/commit/261a956689f03ca4f459818618cc0ce69212dbe5))
+- **endpoint-micropub:** say restored, not undelete ([db7308e](https://github.com/getindiekit/indiekit/commit/db7308e2f31c5c21d290a7325dd085e38d738c3b))
+- **endpoint-micropub:** sort source query by published date ([52d9350](https://github.com/getindiekit/indiekit/commit/52d935079f499eac0c53eaffb7a5cd1d922cc563))
+- **endpoint:** add updated date when updating post ([4c98091](https://github.com/getindiekit/indiekit/commit/4c980912a014bb178e726aed345b6c9cd287737f))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Bug Fixes

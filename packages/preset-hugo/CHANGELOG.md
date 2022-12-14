@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **preset-hugo:** populate publishDate with published property ([e4a4140](https://github.com/getindiekit/indiekit/commit/e4a41406f01db158d1f42fe9f099ca4dab2531e1))
+
+### Features
+
+- **preset-hugo:** populate expiryDate if deleted property ([7d7573f](https://github.com/getindiekit/indiekit/commit/7d7573ff33eba9008ac0a98cae42c0e2bcc6fa6f))
+- **preset-hugo:** populate lastmod if updated property ([77b9a10](https://github.com/getindiekit/indiekit/commit/77b9a1045788576f8cc236f4ee107936670d565c))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Features

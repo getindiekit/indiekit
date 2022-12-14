@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **endpoint-auth:** move buttons outside fieldset ([f72a3d9](https://github.com/getindiekit/indiekit/commit/f72a3d9ac72854234682e5fd94f8ce81b7e75f20))
+- **endpoint-auth:** remove fieldset from new password view ([0ccb12b](https://github.com/getindiekit/indiekit/commit/0ccb12bfb36a590913a89b3986c2fd6234f96766))
+- **endpoint-auth:** use notification not warning for new password setup ([f37a493](https://github.com/getindiekit/indiekit/commit/f37a493a97496a8261e489e9f82aea6c68da558e))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Features

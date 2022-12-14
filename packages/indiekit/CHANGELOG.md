@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **indiekit:** always show access token on status page ([f7457ae](https://github.com/getindiekit/indiekit/commit/f7457ae06cef3fd958b968d476d01bf0d4a89d3a))
+- **indiekit:** remove fieldset from login view ([84b04ac](https://github.com/getindiekit/indiekit/commit/84b04acaae4efebbef0fdebc294f351a3be78b0c))
+
+### Features
+
+- **indiekit:** indicate current navigation item ([a8a492a](https://github.com/getindiekit/indiekit/commit/a8a492ab45c7901a78c9a1f67fe88c408e1ff9ba))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-media",
-  "version": "1.0.0-alpha.17",
+  "version": "1.0.0-alpha.18",
   "description": "Micropub media endpoint for Indiekit",
   "keywords": [
     "indiekit",

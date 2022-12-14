@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **endpoint-posts:** use deleted (not post-status) property to indicate deleted posts ([af1d108](https://github.com/getindiekit/indiekit/commit/af1d10875c9eca3d800ba75bf938021514196332))
+- **endpoint-share:** don’t remove preview values on page load ([4faaa6a](https://github.com/getindiekit/indiekit/commit/4faaa6aeaf4fd8dbe09e1dab502c39bd80e74237))
+- **frontend:** add outline to offset badge ([b2cb3c2](https://github.com/getindiekit/indiekit/commit/b2cb3c20903082484659fedd425c8fe00e82cd3b))
+- **frontend:** badge component style refinement ([35100ba](https://github.com/getindiekit/indiekit/commit/35100ba7d0efee77560901d9a64d7a855408fc22))
+- **frontend:** base style for textarea ([8adac07](https://github.com/getindiekit/indiekit/commit/8adac07eae200984069c8faa88abfb72b78624f1))
+- **frontend:** check for actions in summary row ([d339ad1](https://github.com/getindiekit/indiekit/commit/d339ad167a39db6fee44ab3d635f2acf488c1df0))
+- **frontend:** correct errorMessage options ([cd0c4f4](https://github.com/getindiekit/indiekit/commit/cd0c4f44c188f5fca1afda1025b5a83451c58ece))
+- **frontend:** define font for button, allowing override ([89629b6](https://github.com/getindiekit/indiekit/commit/89629b6136be639ece5eb39d6126cc2d87a0f23c))
+- **frontend:** define font for inputs ([5f9ffd5](https://github.com/getindiekit/indiekit/commit/5f9ffd5e772dcb843ffff19bc208b5c5f21c9e46))
+- **frontend:** ensure focus ring stays above other content ([9c87d31](https://github.com/getindiekit/indiekit/commit/9c87d31fce9b940bf59de9a82b323e35e1a8530f))
+- **frontend:** limit heading line length ([99897ba](https://github.com/getindiekit/indiekit/commit/99897bada30235b3b2b5493b8901095589039d8e))
+- **frontend:** main container spacing ([6ed14dc](https://github.com/getindiekit/indiekit/commit/6ed14dc3560b23317f902c81f28c192f5b9d1bf1))
+- **frontend:** offset badge colour ([697ee7c](https://github.com/getindiekit/indiekit/commit/697ee7ca45c632dfecb81f5572bf6493d2020145))
+- **frontend:** only list actions with text ([2ddcbbc](https://github.com/getindiekit/indiekit/commit/2ddcbbc9ebb7a080631ad08b1de9f10f7b1df202))
+- **frontend:** remove field spacing after visually hidden elements ([8442e67](https://github.com/getindiekit/indiekit/commit/8442e67b1889e34c4de2d972f5dcd0b5b697a43a))
+- **frontend:** smaller description excerpt on card ([d0fdb24](https://github.com/getindiekit/indiekit/commit/d0fdb249028731f81f886f4d49374a60a3c7c8ca))
+
+### Features
+
+- **endpoint-posts:** display post status ([facc6ce](https://github.com/getindiekit/indiekit/commit/facc6cecff8973bef138986d134154f141de64bf))
+- **frontend:** add block outside of fieldset, add form block ([602caa0](https://github.com/getindiekit/indiekit/commit/602caa0b1da637576a801b31f17811abbfbe56e9))
+- **frontend:** add undelete icon ([c88daa4](https://github.com/getindiekit/indiekit/commit/c88daa4816011d71f9595e2c76ca7af56db2c76b))
+- **frontend:** allow label to be a page heading ([cc2a942](https://github.com/getindiekit/indiekit/commit/cc2a942fa04413ff2df3b4407835d8ab8924b94d))
+- **frontend:** badge component ([7666d5f](https://github.com/getindiekit/indiekit/commit/7666d5f9ffc38b90e70352fa65e264864fc0aed6))
+- **frontend:** better display of code values in summary rows ([903d2b4](https://github.com/getindiekit/indiekit/commit/903d2b4d0862b2122a21984529d7e90983e07025))
+- **frontend:** button-group style ([340edb8](https://github.com/getindiekit/indiekit/commit/340edb8c25c4c62fec8b7db0fae8a31a94dc9c39))
+- **frontend:** card component ([f3ebbf8](https://github.com/getindiekit/indiekit/commit/f3ebbf85f7b9a29d5b03c427cb83fad72e54fa20))
+- **frontend:** createPost icon ([7eaf867](https://github.com/getindiekit/indiekit/commit/7eaf867688cec9142b8d8a937a021288d269faa7))
+- **frontend:** declarative colour and size properties on badge component ([10529a9](https://github.com/getindiekit/indiekit/commit/10529a9cc7cb4b1879070269b20d88c089556386))
+- **frontend:** define colour to use on focus ([c8bc279](https://github.com/getindiekit/indiekit/commit/c8bc279c57d0b9f6c456413525307f3aa2577739))
+- **frontend:** delete file list component ([f0c666e](https://github.com/getindiekit/indiekit/commit/f0c666e2fcb10c67300d3b305c9300b8615bd155))
+- **frontend:** details component ([981cf18](https://github.com/getindiekit/indiekit/commit/981cf18d3da5e094aab53c19c4dbc168811399e1))
+- **frontend:** excerpt filter ([93134ff](https://github.com/getindiekit/indiekit/commit/93134ff6133928c87108d32cf7299231dfc797c6))
+- **frontend:** header navigation styles ([ff73d89](https://github.com/getindiekit/indiekit/commit/ff73d891c80a7737d6dce62d3502ee6de5abb725))
+- **frontend:** review accessibility and design of notification component ([0e4dff1](https://github.com/getindiekit/indiekit/commit/0e4dff15137f83a7a06e59a1315e1bc0f5480f5c))
+- **frontend:** style for current navigation item ([7ccaa09](https://github.com/getindiekit/indiekit/commit/7ccaa09dfa88efeeb6059c8425bf4b2c79a97390))
+- **frontend:** token input ([b9a58a6](https://github.com/getindiekit/indiekit/commit/b9a58a6259db61c2313f15718245c99527e2f721))
+- **frontend:** updatePost icon ([f78190a](https://github.com/getindiekit/indiekit/commit/f78190ad36b37101c679f957fe1cb1b84782d62b))
+- **frontend:** use mona sans ([0c4a64d](https://github.com/getindiekit/indiekit/commit/0c4a64dc21b874de134dfdb45e87f76c315a3175))
+- **frontend:** widont filter ([675f945](https://github.com/getindiekit/indiekit/commit/675f945eea9ec638318db3ab39e21dc4b7600fbe))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Bug Fixes

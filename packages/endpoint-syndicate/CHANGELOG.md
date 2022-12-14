@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Features
+
+- **endpoint-syndicate:** find posts with syndication target(s) ([29dda48](https://github.com/getindiekit/indiekit/commit/29dda482dba18e55a65718c8dbd61e42d360cfb9))
+- **endpoint-syndicate:** only syndicate posts with published post status ([920d463](https://github.com/getindiekit/indiekit/commit/920d4638a2ce494c7cb9d6b75888453c8b50ceff))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Bug Fixes

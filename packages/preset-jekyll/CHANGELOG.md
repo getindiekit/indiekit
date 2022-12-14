@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
+
+### Bug Fixes
+
+- **preset-jekyll:** use false value for published if draft post status ([11177ac](https://github.com/getindiekit/indiekit/commit/11177acfac06abb59b502249dc584065eee9be05))
+
+### Features
+
+- **preset-jekyll:** populate deleted if deleted property ([47a599b](https://github.com/getindiekit/indiekit/commit/47a599ba4bac1fd6d301bfc78c7aef4b69cf4581))
+- **preset-jekyll:** populate updated if updated property ([00e4887](https://github.com/getindiekit/indiekit/commit/00e4887b30995a51eefa34824c545222b035ef8b))
+
 # [1.0.0-alpha.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2022-12-07)
 
 ### Features
