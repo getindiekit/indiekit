@@ -42,7 +42,13 @@ export const postsController = async (request, response, next) => {
       posts = items.map((item) => {
         item.id = getPostId(item.url);
         item.icon = item["post-type"];
-        item.description = item.content?.text;
+        item.photo = item.photo
+          ? {
+              attributes: { onerror: "this.src='/assets/not-found.svg'" },
+              ...item.photo[0],
+            }
+          : false;
+        item.description = item.summary || item.content?.text;
         item.title = getPostName(publication, item);
         item.url = path.join(request.baseUrl, request.path, item.id);
         item.badges = [
