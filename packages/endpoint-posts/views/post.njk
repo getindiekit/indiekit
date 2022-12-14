@@ -1,7 +1,23 @@
 {% extends "document.njk" %}
 
+{% set media -%}
+{%- if post.audio -%}
+  {%- for item in post.audio -%}
+    <audio src="{{ item.url | absoluteUrl(publication.me) }}" controls>
+  {%- endfor -%}
+{%- elif post.photo -%}
+  {%- for item in post.photo -%}
+    <img src="{{ item.url | absoluteUrl(publication.me) }}" alt="{{ item.alt }}">
+  {%- endfor -%}
+{%- elif post.video -%}
+  {% for item in post.video -%}
+    <video src="{{ item.url | absoluteUrl(publication.me) }}" controls>
+  {%- endfor -%}
+{%- endif -%}
+{%- endset %}
+
 {% block content %}
-  {{ prose({ html: post.content.html }) }}
+  {{ prose({ html: post.content.html + media }) }}
 
   {{ badge({
     color: status[postStatus].color,
@@ -24,20 +40,6 @@
     icon: status[post.visibility].icon,
     text: __(status[post.visibility].text)
   }) if postStatus === "published" and post.visibility and post.visibility !== "_ignore" }}
-
-  {% if post.audio %}
-    {% for item in post.audio %}
-      <audio src="{{ item.url | absoluteUrl(publication.me) }}" controls>
-    {% endfor %}
-  {% elif post.photo %}
-    {% for item in post.photo %}
-      <img src="{{ item.url | absoluteUrl(publication.me) }}" alt="{{ item.alt }}">
-    {% endfor %}
-  {% elif post.video %}
-    {% for item in post.video %}
-      <video src="{{ item.url | absoluteUrl(publication.me) }}" controls>
-    {% endfor %}
-  {% endif %}
 
   {% call section({ title: __("posts.post.properties") }) %}
     {{ summary({ rows: summaryRows(post) }) }}
