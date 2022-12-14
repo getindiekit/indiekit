@@ -7,7 +7,11 @@ export const list = (request, response) => {
   const plugins = application.installedPlugins.map((plugin) => {
     const _package = plugin.meta ? getPackageData(plugin.meta.url) : {};
     plugin.photo = {
-      attributes: { onerror: "this.src='/assets/plug-in.svg'" },
+      attributes: {
+        height: 96,
+        onerror: "this.src='/assets/plug-in.svg'",
+        width: 96,
+      },
       url: `/assets/${plugin.id}/icon.svg`,
     };
     plugin.title = plugin.name;
