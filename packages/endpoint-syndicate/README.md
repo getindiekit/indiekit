@@ -1,6 +1,6 @@
 # @indiekit/endpoint-syndicate
 
-Syndication endpoint for Indiekit.
+Syndication endpoint for Indiekit. Provides an endpoint you can ping to check that recently published posts have been syndicated to any configured targets such as Twitter or Mastodon.
 
 ## Installation
 

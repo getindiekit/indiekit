@@ -1,6 +1,6 @@
 # @indiekit/endpoint-posts
 
-Post management endpoint for Indiekit.
+Post management endpoint for Indiekit. View posts published by your Micropub endpoint and publish new posts to it.
 
 ## Installation
 

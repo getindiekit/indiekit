@@ -1,6 +1,6 @@
 # @indiekit/endpoint-share
 
-Share endpoint for Indiekit. Inspired and developed from [an idea described by Max Böck](https://mxb.dev/blog/indieweb-link-sharing/).
+Share endpoint for Indiekit. Provides a simple interface for bookmarking websites and publishing them on your website. Inspired and developed from [an idea originally described by Max Böck](https://mxb.dev/blog/indieweb-link-sharing/).
 
 ## Installation
 

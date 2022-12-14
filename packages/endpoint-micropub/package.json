@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/endpoint-micropub",
   "version": "1.0.0-alpha.18",
-  "description": "Micropub endpoint for Indiekit",
+  "description": "Micropub endpoint for Indiekit. Enables publishing content to your website using the Micropub protocol.",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

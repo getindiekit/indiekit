@@ -1,6 +1,6 @@
 # @indiekit/endpoint-files
 
-File management endpoint for Indiekit.
+File management endpoint for Indiekit. View files uploaded to your media endpoint and upload new files to it.
 
 ## Installation
 

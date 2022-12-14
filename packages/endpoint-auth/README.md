@@ -1,6 +1,6 @@
 # @indiekit/endpoint-auth
 
-Authentication and authorization endpoint for Indiekit.
+IndieAuth authentication and authorization endpoint for Indiekit. Grants and verifies access tokens and authenticates users.
 
 ## Installation
 

@@ -1,6 +1,6 @@
 # @indiekit/endpoint-media
 
-Micropub media endpoint for Indiekit.
+Micropub media endpoint for Indiekit. Enables publishing media files (audio, photos, videos) to your website using the Micropub protocol.
 
 ## Installation
 

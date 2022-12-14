@@ -1,6 +1,6 @@
 # @indiekit/endpoint-micropub
 
-Micropub endpoint for Indiekit.
+Micropub endpoint for Indiekit. Enables publishing content to your website using the Micropub protocol.
 
 ## Installation
 

@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/endpoint-json-feed",
   "version": "1.0.0-alpha.17",
-  "description": "Syndicate posts from Indiekit using JSON Feed",
+  "description": "Syndicate posts from Indiekit using JSON Feed.",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

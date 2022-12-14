@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/endpoint-posts",
   "version": "1.0.0-alpha.18",
-  "description": "Post management endpoint for Indiekit",
+  "description": "Post management endpoint for Indiekit. View posts published by your Micropub endpoint and publish new posts to it.",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

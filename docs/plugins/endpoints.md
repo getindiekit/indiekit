@@ -12,7 +12,7 @@ IndieAuth authentication and authorization endpoint for Indiekit. Grants and ver
 
 <Badge type="info" text="Built-in" /> <Badge type="tip" text="Offical" />
 
-File management endpoint for Indiekit. View files uploaded by your media endpoint and upload new files to it.
+File management endpoint for Indiekit. View files uploaded to your media endpoint and upload new files to it.
 
 ## [@indiekit/endpoint-image](https://npmjs.org/package/@indiekit/endpoint-image)
 

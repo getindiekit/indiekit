@@ -1,7 +1,7 @@
 {
   "name": "@indiekit/endpoint-syndicate",
   "version": "1.0.0-alpha.18",
-  "description": "Syndication endpoint for Indiekit",
+  "description": "Syndication endpoint for Indiekit. Provides an endpoint you can ping to check that recently published posts have been syndicated to any configured targets such as Twitter or Mastodon.",
   "keywords": [
     "indiekit",
     "indiekit-plugin",

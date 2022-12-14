@@ -1,6 +1,6 @@
 # @indiekit/endpoint-image
 
-Image resizing endpoint for Indiekit.
+Image resizing endpoint for Indiekit. Adds real-time image processing routes that can be used by your publication.
 
 ## Installation
 
