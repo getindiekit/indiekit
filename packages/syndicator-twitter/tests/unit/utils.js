@@ -1,4 +1,5 @@
 import test from "ava";
+import { IndiekitError } from "@indiekit/error";
 import { getFixture } from "@indiekit-test/fixtures";
 import {
   createStatus,
@@ -68,10 +69,16 @@ test("Adds link to status post is in reply to", (t) => {
   t.is(result.in_reply_to_status_id, "1234567890987654321");
 });
 
-test("Doesn’t create a status if post is an off-service reply", (t) => {
-  const result = createStatus(JSON.parse(getFixture("jf2/reply-mastodon.jf2")));
-
-  t.falsy(result);
+test("Throws creating a status if post is off-service reply", (t) => {
+  t.throws(
+    () => {
+      createStatus(JSON.parse(getFixture("jf2/reply-mastodon.jf2")));
+    },
+    {
+      instanceOf: IndiekitError,
+      message: "Not a reply to a URL at this target",
+    }
+  );
 });
 
 test("Creates a status with a location", (t) => {

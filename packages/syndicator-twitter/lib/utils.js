@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import path from "node:path";
+import { IndiekitError } from "@indiekit/error";
 import brevity from "brevity";
 import { htmlToText } from "html-to-text";
 
@@ -11,7 +12,7 @@ import { htmlToText } from "html-to-text";
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, mediaIds = false) => {
-  let parameters = {};
+  const parameters = {};
 
   let status;
   let statusText;
@@ -52,8 +53,7 @@ export const createStatus = (properties, mediaIds = false) => {
       const statusId = getStatusIdFromUrl(inReplyTo);
       parameters.in_reply_to_status_id = statusId;
     } else {
-      // Reply isn’t relevant at this target
-      parameters = null;
+      throw IndiekitError.badRequest("Not a reply to a URL at this target");
     }
   }
 
