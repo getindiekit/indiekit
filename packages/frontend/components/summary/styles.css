@@ -10,7 +10,7 @@
 
 .summary__key {
   align-self: start;
-  flex-basis: 12rem;
+  flex-basis: 15rem;
   flex-grow: 1;
   font: var(--font-label);
   line-height: var(--line-height-loose);
@@ -23,7 +23,7 @@
   flex-basis: 0;
   flex-grow: 999;
   font: var(--font-body);
-  min-inline-size: 50%;
+  min-inline-size: 60%;
 
   & a {
     white-space: nowrap;

@@ -3,13 +3,13 @@
   --flow-inset: 1.25em;
   --flow-space: 1em;
 
-  & > * {
-    max-inline-size: var(--flow-line-measure);
-    word-break: break-word;
-  }
-
   & > * + * {
     margin-block-start: var(--flow-space);
+  }
+
+  & > *:not(pre) {
+    max-inline-size: var(--flow-line-measure);
+    word-break: break-word;
   }
 
   & svg {

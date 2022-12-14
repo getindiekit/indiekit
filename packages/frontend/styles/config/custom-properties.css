@@ -76,7 +76,7 @@ html {
   --line-height-tight: 1.25;
   --line-height-loose: 1.6;
   --line-height-prose: 1.75;
-  --line-measure: 45rem;
+  --line-measure: 48rem;
   --text-thickness: 0.0625em;
 
   /* Font styles */
@@ -115,7 +115,7 @@ html {
   /* Layout */
   --container-padding-inline: var(--space-l);
   --container-inline-size: min(96vw, var(--container-max-inline-size));
-  --container-max-inline-size: 60rem;
+  --container-max-inline-size: 75rem;
 
   color-scheme: light dark;
 }
