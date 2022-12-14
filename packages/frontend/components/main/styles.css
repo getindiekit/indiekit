@@ -9,7 +9,7 @@
   inline-size: var(--container-inline-size);
   margin-inline: auto;
   max-inline-size: var(--container-max-inline-size);
-  padding-block: var(--space-l);
+  padding-block: var(--space-xl);
   padding-inline: var(--container-padding-inline);
 
   & > * + * {
