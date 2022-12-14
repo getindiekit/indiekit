@@ -11,7 +11,11 @@ test("Returns 404 error file not found", async (t) => {
     .set("cookie", [cookie()]);
 
   t.is(result.status, 404);
-  t.true(result.text.includes("No file was found at this URL"));
+  t.true(
+    result.text.includes(
+      "If you entered a web address please check it was correct."
+    )
+  );
 
   server.close(t);
 });

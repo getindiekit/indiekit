@@ -1,7 +1,6 @@
-import { Buffer } from "node:buffer";
 import path from "node:path";
 import { endpoint } from "../endpoint.js";
-import { getFileName } from "../utils.js";
+import { getFileId, getFileName } from "../utils.js";
 
 /**
  * List previously uploaded files
@@ -33,7 +32,7 @@ export const filesController = async (request, response, next) => {
     const mediaResponse = await endpoint.get(mediaUrl.href, access_token);
 
     const files = mediaResponse.items.map((item) => {
-      item.id = Buffer.from(item.url).toString("base64url");
+      item.id = getFileId(item.url);
       item.icon = item["post-type"];
       item.photo = {
         attributes: { onerror: "this.src='/assets/not-found.svg'" },
