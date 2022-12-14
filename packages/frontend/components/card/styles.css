@@ -4,23 +4,18 @@
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
+  flex-wrap: wrap;
   position: relative;
-
-  @media (--from-medium-viewport) {
-    aspect-ratio: 3 / 2;
-  }
 
   &:hover {
     background-color: var(--color-offset-variant);
   }
 }
 
-.card__media {
-  border-start-end-radius: var(--border-radius-small);
-  border-start-start-radius: var(--border-radius-small);
-  overflow: hidden;
+.card__photo {
+  flex-basis: 9rem;
+  flex-grow: 1;
 
   & :is(img, video) {
     aspect-ratio: 1;
@@ -34,8 +29,10 @@
 
 .card__body {
   display: flex;
+  flex-basis: 0;
   flex-direction: column;
-  flex-grow: 1;
+  flex-grow: 999;
+  min-inline-size: 67%;
   padding: var(--space-s);
 }
 

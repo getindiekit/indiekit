@@ -1,18 +1,8 @@
 {%- from "../badge/macro.njk" import badge with context -%}
 <article class="card">
-  {%- if opts.audio or opts.photo or opts.video %}
-  <div class="card__media">
-  {%- if opts.audio %}
-    <audio src="{{ opts.audio.src }}"{{- attributes(opts.audio.attributes) }}>{{
-      opts.audio.alt
-    }}</audio>
-  {%- elif opts.video %}
-    <video src="{{ opts.video.src }}"{{- attributes(opts.video.attributes) }}>{{
-      opts.video.alt
-    }}</video>
-  {%- else %}
-    <img src="{{ opts.photo.src }}" alt="{{ opts.photo.alt }}"{{- attributes(opts.photo.attributes) }}>
-  {%- endif %}
+  {%- if opts.photo %}
+  <div class="card__photo">
+    <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}"{{- attributes(opts.photo.attributes) }}>
   </div>
   {%- endif %}
   <div class="card__body">
@@ -24,7 +14,7 @@
     </h2>
     {%- if opts.description %}
     <div class="card__meta">
-      {{ opts.description | excerpt(20, publication.locale) | markdown | safe }}
+      {{ opts.description | markdown | striptags | excerpt(20, publication.locale) | safe }}
     </div>
     {%- endif %}
     {% if opts.published or opts.badges %}
