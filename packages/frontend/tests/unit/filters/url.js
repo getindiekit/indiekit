@@ -1,5 +1,9 @@
 import test from "ava";
-import { absoluteUrl, friendlyUrl } from "../../../lib/filters/index.js";
+import {
+  absoluteUrl,
+  friendlyUrl,
+  imageUrl,
+} from "../../../lib/filters/index.js";
 
 test("Gets absolute URL from path", (t) => {
   t.is(
@@ -23,4 +27,16 @@ test("Gets absolute path from path", (t) => {
 
 test("Gets friendly URL", (t) => {
   t.is(friendlyUrl("https://website.example/path"), "website.example/path");
+});
+
+test("Gets transformed image URL", (t) => {
+  const application = {
+    imageEndpoint: "/image",
+    url: "https://server.example",
+  };
+  const result = imageUrl("/path/to/image.jpg", application);
+  t.is(
+    result,
+    "https://server.example/image/path/to/image.jpg?w=240&h=240&c=true"
+  );
 });
