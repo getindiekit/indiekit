@@ -4,6 +4,7 @@
 }
 
 .tokenfield-input {
+  background: none;
   border: none;
   color: var(--color-on-offset);
   flex-basis: 10%;
