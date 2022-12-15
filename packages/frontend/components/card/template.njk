@@ -3,7 +3,7 @@
 <article class="card">
   {%- if opts.photo %}
   <div class="card__photo">
-    <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}"{{- attributes(opts.photo.attributes) }}>
+    <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}"{{- attributes(opts.photo.attributes) }} decoding="async" loading="lazy">
   </div>
   {%- endif %}
   <div class="card__body">
