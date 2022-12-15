@@ -4,11 +4,11 @@
   {{ input({
     id: "file",
     name: "file",
+    type: "file",
     value: errors.file.value or file,
     label: {
       text: __("files.form.file.label")
     },
-    type: "file",
     errorMessage: {
       text: errors.file.msg
     } if errors.file

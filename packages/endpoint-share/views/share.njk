@@ -69,14 +69,14 @@
 
   {{ input({
     name: "access_token",
-    value: session.access_token,
-    type: "hidden"
+    type: "hidden",
+    value: session.access_token
   }) }}
 
   {{ input({
     name: "h",
-    value: "entry",
-    type: "hidden"
+    type: "hidden",
+    value: "entry"
   }) }}
 {% endblock %}
 

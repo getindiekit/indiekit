@@ -36,8 +36,8 @@
 
   {#- Hidden field exposing username to password managers -#}
   {{ input({
-    type: "hidden",
     name: "me",
+    type: "hidden",
     value: me,
     autocomplete: "username",
     attributes: {
@@ -61,8 +61,8 @@
 
   {{ input({
     name: "_csrf",
-    value: csrfCode,
-    type: "hidden"
+    type: "hidden",
+    value: csrfCode
   }) }}
 {% endblock %}
 

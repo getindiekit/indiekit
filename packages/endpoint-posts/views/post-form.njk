@@ -20,14 +20,14 @@
 {% block fieldset %}
   {{ input({
     name: "type",
-    value: "event" if postType === "event" else "entry",
-    type: "hidden"
+    type: "hidden",
+    value: "event" if postType === "event" else "entry"
   }) | indent(2) }}
 
   {{ input({
     name: "post-type",
-    value: postType,
-    type: "hidden"
+    type: "hidden",
+    value: postType
   }) | indent(2) }}
 
   {{ input({
