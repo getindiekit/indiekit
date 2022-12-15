@@ -33,7 +33,7 @@
   flex-direction: column;
   flex-grow: 999;
   min-inline-size: 67%;
-  padding: var(--space-s);
+  padding: var(--card-padding);
 }
 
 .card__title {
