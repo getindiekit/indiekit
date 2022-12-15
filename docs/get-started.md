@@ -4,18 +4,22 @@
 
 The [IndieWeb](https://indieweb.org) is a community of personal websites, connected by simple standards. These follow the principles of publishing content at your own domain name and owning your data.
 
-**Indiekit** lets you use these standards to connect with other people’s websites and share your content on popular social networks.
+**Indiekit** uses these standards to help you publish content to your own website and then share it on popular social networks.
 
-Learn [how Indiekit works →](/introduction)
+<picture>
+  <source srcset="/interface-dark.png" media="(prefers-color-scheme: dark)">
+  <img src="/interface-light.png" alt="Indiekit’s application management interface.">
+</picture>
 
 ## Features
 
-- **Publish content to your website** using [apps and services](/clients) that support the [Micropub API](https://micropub.spec.indieweb.org)
+- **Publish content to your website** using Indiekit’s own content management system, or [applications that support the Micropub API](clients.md)
 - **Save files to a content store** such as GitHub, GitLab or an FTP server
 - **Integrate with static site generators** like Jekyll or Hugo
 - **Share content** on social networks like Twitter and Mastodon
+- **Customise everything** from the interface theme to the format of commit messages
 
-Indiekit is extensible via its [plugin API](/plugins/api/) and localized for use in [a growing number of languages](/configuration/localisation).
+Indiekit is extensible via its [plugin API](plugins/api/index.md) and localized for use in [a growing number of languages](configuration/localisation.md).
 
 ## Requirements
 
@@ -45,13 +49,13 @@ This is the fastest way to set up a new Indiekit server from scratch.
 The wizard will walk you through every step of configuring a new server, and will ask you questions about:
 
 - your website’s URL
-- if you want to use a [publication preset](/concepts#publication-preset)
-- details about your [content store](/concepts#content-store)
-- if you want to [syndicate your posts](/concepts#syndicator) to other websites
+- if you want to use a [publication preset](concepts.md#publication-preset)
+- details about your [content store](concepts.md#content-store)
+- if you want to [syndicate your posts](concepts.md#syndicator) to other websites
 
 Once you have completed the configuration wizard, you will have a folder containing a configuration file (`.indiekitrc.json`), as well as a few other files required by Node.js to run your server.
 
-View the full list of [configuration options](/configuration/) to see how you can further customise your Indiekit server.
+View the full list of [configuration options](configuration/index.md) to see how you can further customise your Indiekit server.
 
 ::: tip
 Indiekit needs to be hosted with a publicly addressable URL. However, if you run the command `npm start` in your terminal, you can preview your server by visiting `http://localhost:3000`.
@@ -119,7 +123,7 @@ Any plug-ins you’ve configured may also require their own secret values, so ad
 
 ### 4. Enable discovery of your server
 
-To ensure your Indiekit server’s endpoints can be discovered by [Micropub clients](/clients), and to allow them to request permissions to post to your website, add the following values to your website’s `<head>`:
+To ensure your Indiekit server’s endpoints can be discovered by [Micropub clients](clients.md), and to allow them to request permissions to post to your website, add the following values to your website’s `<head>`:
 
 ```html
 <link rel="authorization_endpoint" href="[INDIEKIT_URL]/auth">
@@ -129,7 +133,7 @@ To ensure your Indiekit server’s endpoints can be discovered by [Micropub clie
 
 ### 5. Authorize your Micropub client
 
-Any [application that supports the Micropub API](/clients) will ask you to enter your website's URL.
+Any [application that supports the Micropub API](clients.md) will ask you to enter your website's URL.
 
 You will then be directed to an authentication page on your Indiekit server. Here you can select which permissions you wish to grant the application before entering your password to allow access.
 

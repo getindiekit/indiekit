@@ -78,12 +78,22 @@ export default {
   description:
     "The little server that connects your website to the independent web.",
   head: [
-    ["link", { rel: "icon", href: "icon.svg" }],
+    [
+      "link",
+      {
+        rel: "preload",
+        href: "/mona-sans.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossorigin: true,
+      },
+    ],
+    ["link", { rel: "icon", href: "/icon.svg" }],
     ["meta", { name: "supported-color-schemes", content: "light dark" }],
     ["meta", { name: "theme-color", content: "#60c" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "opengraph-image.png" }],
-    ["meta", { property: "og:image", content: "opengraph-image.png" }],
+    ["meta", { name: "twitter:image", content: "/opengraph-image.png" }],
+    ["meta", { property: "og:image", content: "/opengraph-image.png" }],
   ],
   lang: "en-GB",
   cleanUrls: "without-subfolders",
@@ -124,7 +134,7 @@ export default {
     nav: [
       {
         text: "Documentation",
-        link: "/introduction",
+        link: "/get-started",
       },
       {
         text: "Plug-ins",

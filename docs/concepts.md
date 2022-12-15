@@ -89,6 +89,6 @@ Then add it to your configuration file, for example:
 }
 ```
 
-The `checked` option is used to tell [Micropub clients](/clients) whether a syndication target should be enabled or not by default.
+The `checked` option is used to tell [Micropub clients](clients.md) whether a syndication target should be enabled or not by default.
 
 Not all clients allow you to disable or enable syndication targets. Setting the `forced` option to `true` will ensure that a syndication target is enabled regardless.

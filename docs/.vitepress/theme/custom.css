@@ -1,3 +1,13 @@
+/* webfont-marker-begin */
+@font-face {
+  font-family: mona-sans;
+  font-stretch: 75% 125%;
+  font-weight: 200 900;
+  src: url("/mona-sans.woff2") format("woff2 supports variations"),
+    url("/mona-sans.woff2") format("woff2-variations");
+}
+/* webfont-marker-end */
+
 :root {
   --indigo-h-s: 224deg 100%;
   --white-h-s: 224deg 33%;
@@ -45,12 +55,29 @@
   --vp-c-text-dark-2: var(--vp-c-gray-light-3);
   --vp-c-text-dark-3: var(--vp-c-gray-light-4);
   --vp-c-text-dark-4: var(--vp-c-gray-light-5);
+
+  --vp-font-family-base: mona-sans, sans-serif;
 }
 
 .dark {
   --vp-c-brand: #b9f;
 }
 
+/* Home page */
+.name,
+.text,
+.title {
+  font-stretch: ultra-expanded;
+}
+
+/* Documentation */
+.vp-doc {
+  font-size: 1.125em;
+  font-weight: 425;
+  line-height: 1.6;
+}
+
+/* Custom block */
 .vp-doc .custom-block h3:first-of-type {
   margin-top: 8px;
 }

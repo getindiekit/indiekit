@@ -1,19 +1,22 @@
 # Indiekit
 
-[![Build status](https://github.com/getindiekit/indiekit/workflows/build/badge.svg)](https://github.com/getindiekit/indiekit/actions)
-
 <img src="https://avatars.githubusercontent.com/u/68553280?s=200" width="100" height="100" align="right" alt="">
 
-Meet [Indiekit](https://getindiekit.com), the little Node.js server with all the pieces needed to share your content with the open, independent web
+[![Build status](https://github.com/getindiekit/indiekit/workflows/build/badge.svg)](https://github.com/getindiekit/indiekit/actions)
+
+Meet [Indiekit](https://getindiekit.com), the little Node.js server with all the pieces needed to share your content with the open, independent web.
+
+![Indiekit’s application management interface.](/docs/public/interface-light.png)
 
 ## Features
 
-- **Publish content to your website** using [apps and services](https://getindiekit.com/clients) that support the [Micropub API](https://micropub.spec.indieweb.org)
+- **Publish content to your website** using [apps and services](docs/clients.md) that support the [Micropub API](https://micropub.spec.indieweb.org)
 - **Save files to a content store** such as GitHub, GitLab or an FTP server
 - **Integrate with static site generators** like Jekyll or Hugo
 - **Share content** on social networks like Twitter and Mastodon
+- **Customise everything** from the interface theme to the format of commit messages
 
-Indiekit is extensible via its [plugin API](https://getindiekit.com/plugins/api/) and localized for use in [a growing number of languages](https://getindiekit.com/configuration/localisation).
+Indiekit is extensible via its [plugin API](docs/plugins/api/index.md) and localized for use in [a growing number of languages](docs/configuration/localisation.md).
 
 ## Requirements
 
@@ -23,7 +26,7 @@ A [MongoDB](https://www.mongodb.com) database is optional, but required for many
 
 ## Get started
 
-Learn how to [set up an Indiekit server](https://getindiekit.com/get-started) and view an [example server configuration](https://github.com/getindiekit/example-config).
+Learn how to [set up an Indiekit server](docs/get-started.md) and view an [example server configuration](https://github.com/getindiekit/example-config).
 
 ## Documentation website
 
