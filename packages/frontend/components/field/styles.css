@@ -1,14 +1,10 @@
 .field {
-  & + .field {
-    margin-block-start: var(--space-l);
-  }
-
   &:has(.input[type="hidden"]) {
     display: none;
   }
 
   & > *:not(.-\!-visually-hidden) + * {
-    margin-block-start: var(--space-xs);
+    --fieldset-flow-space: var(--space-xs);
   }
 }
 

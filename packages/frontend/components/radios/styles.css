@@ -1,12 +1,12 @@
 .radios {
   --radio-size: 1.5em;
   --check-size: calc(var(--radio-size) / 4);
+  --fieldset-flow-space: 0;
   --touch-target-size: 44px;
 }
 
 @media (--from-medium-viewport) {
   .radios--inline {
-    --fieldset-flow-space: 0;
     display: flex;
     gap: var(--space-xl);
   }

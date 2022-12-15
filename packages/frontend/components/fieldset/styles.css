@@ -1,11 +1,19 @@
 .fieldset {
   font: var(--font-body);
+  max-inline-size: var(--line-measure);
 
-  & > *:not(.-\!-visually-hidden) + * {
-    margin-block-start: var(--space-l);
+  & *:not(.-\!-visually-hidden) + * {
+    margin-block-start: var(--fieldset-flow-space, var(--space-l));
   }
 }
 
 .fieldset__legend {
   font: var(--font-label);
+}
+
+.fieldset--group {
+  --fieldset-flow-space: var(--space-xs);
+  --label-font: var(--font-body);
+  display: flex;
+  gap: var(--space-xl);
 }

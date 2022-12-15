@@ -1,6 +1,7 @@
 .checkboxes {
   --checkbox-size: 1.5em;
   --check-size: 0.875em;
+  --fieldset-flow-space: 0;
   --touch-target-size: 44px;
 }
 
