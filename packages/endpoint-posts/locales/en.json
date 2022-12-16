@@ -89,6 +89,9 @@
         "maybe": "Maybe",
         "interested": "Interested"
       },
+      "summary": {
+        "label": "Summary"
+      },
       "visibility": {
         "label": "Visibility"
       }

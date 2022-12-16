@@ -116,6 +116,17 @@
     } if errors.content
   }) | indent(2) if not contentIgnored }}
 
+  {{ textarea({
+    id: "summary",
+    name: "summary",
+    value: post.summary,
+    label: {
+      text: __("posts.form.summary.label")
+    },
+    optional: true,
+    rows: 1
+  }) | indent(2) if postType === "article" }}
+
   {{ checkboxes({
     idPrefix: "mp-syndicate-to",
     name: "mp-syndicate-to",
