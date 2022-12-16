@@ -43,7 +43,7 @@
   &::before {
     background: transparent;
     block-size: var(--radio-size);
-    border: var(--border-width-thick) solid var(--color-outline);
+    border: var(--input-border-width) solid var(--color-outline);
     border-radius: 50%;
     content: "";
     inline-size: var(--radio-size);
@@ -68,8 +68,9 @@
 
 /* Focused state */
 .radios__input:focus + .radios__label::before {
-  border-color: var(--color-outline-variant);
-  box-shadow: 0 0 0 var(--border-width-thickest) var(--color-focus);
+  border-color: var(--color-on-background);
+  border-width: var(--input-border-width-focus);
+  box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
   outline: var(--focus-width) solid transparent;
   outline-offset: var(--border-width-thin);
 }

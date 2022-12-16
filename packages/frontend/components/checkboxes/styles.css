@@ -38,7 +38,7 @@
   &::before {
     background: transparent;
     block-size: var(--checkbox-size);
-    border: var(--border-width-thick) solid var(--color-outline);
+    border: var(--input-border-width) solid var(--color-outline);
     border-radius: var(--border-radius-small);
     content: "";
     inline-size: var(--checkbox-size);
@@ -52,7 +52,7 @@
     block-size: calc(var(--check-size) / 2);
     border: solid;
     border-block-start-color: transparent;
-    border-width: 0 0 var(--border-width-thick) var(--border-width-thick);
+    border-width: 0 0 var(--input-border-width) var(--input-border-width);
     content: "";
     inline-size: var(--check-size);
     inset-block-start: calc(
@@ -69,8 +69,9 @@
 
 /* Focused state */
 .checkboxes__input:focus + .checkboxes__label::before {
-  border-color: var(--color-outline-variant);
-  box-shadow: 0 0 0 var(--border-width-thickest) var(--color-focus);
+  border-color: var(--color-on-background);
+  border-width: var(--input-border-width-focus);
+  box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
   outline: var(--focus-width) solid transparent;
   outline-offset: var(--border-width-thin);
 }

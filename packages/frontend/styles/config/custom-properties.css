@@ -99,8 +99,15 @@ html {
   --border-radius-small: 0.25rem;
   --border-radius-large: 0.5rem;
   --border-width-thin: 1px;
-  --border-width-thick: 0.125rem;
-  --border-width-thickest: 0.1875rem;
+  --border-width-thick: 2px;
+  --border-width-thickest: 3px;
+
+  /* Input borders */
+  --input-border-width: var(--border-width-thick);
+  --input-border-width-focus: var(--border-width-thickest);
+  --input-border-width-focus-offset: 1px;
+
+  /* Box shadows */
   --focus-width: 0.25rem;
 
   /* Fluid space scale */

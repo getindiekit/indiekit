@@ -1,6 +1,10 @@
 .tokenfield {
   --anchor-decoration-line: none;
   position: relative;
+
+  & > * {
+    --fieldset-flow-space: 0;
+  }
 }
 
 .tokenfield-input {
@@ -19,18 +23,25 @@
 
 .tokenfield-mode-tokens {
   background-color: var(--color-background);
-  border: var(--border-width-thick) solid var(--color-outline);
+  border: var(--input-border-width) solid var(--color-outline);
   border-radius: var(--border-radius-small);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2xs);
   inline-size: 100%;
+  margin-block-end: var(--input-border-width-focus-offset);
   min-height: calc(var(--space-xs) + 2rem);
-  padding: calc(var(--space-s) / 2);
+  padding: var(--space-xs);
 
   &.focused {
-    border-color: var(--color-outline-variant);
+    border-color: var(--color-on-background);
+    border-width: var(--input-border-width-focus);
     box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
+    inset-block-start: calc(var(--input-border-width-focus-offset) * -1);
+    margin-block-end: calc(var(--input-border-width-focus-offset) * -2);
+    padding-inline: calc(
+      var(--space-xs) - var(--input-border-width-focus-offset)
+    );
   }
 
   &[disabled],

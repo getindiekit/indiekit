@@ -7,10 +7,11 @@
   background-repeat: no-repeat, repeat;
   background-size: 0.75em auto, 100%;
   block-size: 3rem;
-  border: var(--border-width-thick) solid var(--color-outline);
+  border: var(--input-border-width) solid var(--color-outline);
   border-radius: var(--border-radius-small);
   font: var(--font-body);
   inline-size: 100%;
+  margin-block-end: var(--input-border-width-focus-offset);
   padding-block: calc(var(--space-s) / 2);
   padding-inline: var(--space-s);
 
@@ -19,7 +20,16 @@
   }
 
   &:focus {
-    border-color: var(--color-outline-variant);
+    background-position: right
+        calc(0.75em - var(--input-border-width-focus-offset)) top
+        calc(50% + var(--input-border-width-focus-offset)),
+      0 0;
+    border-color: var(--color-on-background);
+    border-width: var(--input-border-width-focus);
+    inset-block-start: calc(var(--input-border-width-focus-offset) * -1);
+    padding-inline: calc(
+      var(--space-s) - var(--input-border-width-focus-offset)
+    );
   }
 }
 
