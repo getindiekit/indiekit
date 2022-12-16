@@ -47,5 +47,14 @@ export default class PostsEndpoint {
   init(Indiekit) {
     Indiekit.addEndpoint(this);
     Indiekit.config.application.postsEndpoint = this.mountPath;
+    Indiekit.config.application.supportedPostTypes = [
+      "article",
+      "note",
+      "bookmark",
+      "reply",
+      "like",
+      "rsvp",
+      "repost",
+    ];
   }
 }

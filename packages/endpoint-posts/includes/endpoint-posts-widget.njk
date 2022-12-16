@@ -9,7 +9,7 @@
       href: application.postsEndpoint + "/create/?type=" + config.type,
       icon: config.type,
       text: config.name
-    }) }}
+    }) if application.supportedPostTypes | includes(config.type) }}
   {% endfor %}</div>
 {% else %}
   {{ prose({
