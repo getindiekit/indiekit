@@ -3,7 +3,10 @@
   --anchor-decoration-line: none;
   --icon-size: 1.5em;
   align-items: center;
-  background-color: var(--button-background-color, var(--color-primary));
+  background-color: var(
+    --button-background-color,
+    var(--color-primary-variant)
+  );
   border: var(--border-width-thick) solid transparent;
   border-block-end-color: var(--color-shadow);
   border-radius: var(--border-radius-small);
@@ -13,24 +16,21 @@
   font-weight: var(--button-font-weight, 500);
   justify-content: center;
   line-height: var(--line-height-loose);
-  padding-block: calc(var(--space-s) / 2);
-  padding-inline: var(--space-s);
+  padding-block: calc(var(--button-padding, var(--space-m)) / 2);
+  padding-inline: var(--button-padding, var(--space-m));
 }
 
 .button--secondary,
 ::file-selector-button {
   --button-color: var(--color-on-offset);
-  --button-background-color: var(--color-offset);
-  --button-background-hover-color: var(--color-offset-variant);
+  --button-background-color: var(--color-offset-variant);
+  --button-background-hover-color: var(--color-offset);
   --button-font-weight: normal;
 }
 
 .button:hover,
 ::file-selector-button:hover {
-  background-color: var(
-    --button-background-hover-color,
-    var(--color-primary-variant)
-  );
+  background-color: var(--button-background-hover-color, var(--color-primary));
 }
 
 .button--secondary-on-offset {
@@ -48,6 +48,12 @@
   &:hover {
     background-color: var(--color-error-variant);
   }
+}
+
+.button--small {
+  --button-padding: var(--space-s);
+  --button-font: var(--font-caption);
+  --button-font-weight: 500;
 }
 
 .button--block {
