@@ -1,6 +1,7 @@
 .error-summary {
   border: var(--color-error) solid var(--border-width-thickest);
   border-radius: var(--border-radius-small);
+  max-inline-size: var(--line-measure);
   padding: var(--space-m);
 }
 
