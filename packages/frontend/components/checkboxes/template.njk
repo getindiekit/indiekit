@@ -58,6 +58,7 @@
           {%- endif -%}
         {%- endif -%}
         {% set name = item.name if item.name else opts.name %}
+        {% set conditionalId = "conditional-" + id %}
         {%- if item.divider %}
           <div class="checkboxes__divider">{{ item.divider }}</div>
         {%- else %}
@@ -70,6 +71,7 @@
             <input class="checkboxes__input" id="{{ id }}" name="{{ name }}" type="checkbox" value="{{ item.value }}"
             {{-" checked" if isChecked }}
             {{-" disabled" if item.disabled }}
+            {%- if item.conditional.html %} data-aria-controls="{{ conditionalId }}"{% endif -%}
             {%- if item.behaviour %} data-behaviour="{{ item.behaviour }}"{% endif -%}
             {%- if itemDescribedBy %} aria-describedby="{{ itemDescribedBy }}"{% endif -%}
             {{- attributes(opts.attributes) }}>
@@ -90,6 +92,11 @@
             }) | indent(6) | trim }}
             {% endif %}
           </div>
+          {% if item.conditional.html %}
+            <div class="checkboxes__conditional{{ " checkboxes__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">
+              {{ item.conditional.html | safe }}
+            </div>
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endfor %}
