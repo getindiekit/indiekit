@@ -51,6 +51,7 @@
             {%- set id = idPrefix + "-" + loop.index -%}
           {%- endif -%}
         {%- endif -%}
+        {% set conditionalId = "conditional-" + id %}
         {%- if item.divider %}
           <div class="radios__divider">{{ item.divider }}</div>
         {%- else %}
@@ -61,6 +62,7 @@
             <input class="radios__input" id="{{ id }}" name="{{ opts.name }}" type="radio" value="{{ item.value }}"
             {{-" checked" if isChecked }}
             {{-" disabled" if item.disabled }}
+            {%- if item.conditional.html %} data-aria-controls="{{ conditionalId }}"{% endif -%}
             {%- if hasHint %} aria-describedby="{{ itemHintId }}"{% endif -%}
             {{- attributes(opts.attributes) }}>
             {{ label({
@@ -80,6 +82,11 @@
             }) | indent(6) | trim }}
             {% endif %}
           </div>
+          {% if item.conditional.html %}
+            <div class="radios__conditional{{ " radios__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">
+              {{ item.conditional.html | safe }}
+            </div>
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endfor %}

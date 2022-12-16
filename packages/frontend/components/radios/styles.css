@@ -118,3 +118,13 @@
     margin-block-start: var(--space-xs);
   }
 }
+
+/* Conditonal reveals */
+.radios__conditional {
+  --input-border-halved: calc(var(--input-border-width) / 2);
+  border-inline-start: var(--input-border-width) solid var(--color-outline);
+  margin-inline-start: calc(
+    calc(var(--radio-size) / 2) - var(--input-border-halved)
+  );
+  padding-inline-start: calc(var(--space-l) + var(--input-border-halved));
+}
