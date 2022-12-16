@@ -32,6 +32,15 @@ export const excerpt = (string, value = 100, locale = "en") => {
 };
 
 /**
+ * Check if string includes a value
+ *
+ * @param {string} string - String to check
+ * @param {string} value - Value to search for
+ * @returns {boolean} Result
+ */
+export const includes = (string, value) => string.includes(value);
+
+/**
  * Render Markdown string as HTML
  *
  * @param {string} string - Markdown
