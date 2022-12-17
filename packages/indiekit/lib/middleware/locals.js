@@ -37,8 +37,11 @@ export const locals = (indiekitConfig) =>
       // Publication
       request.app.locals.publication = publication;
 
-      // Session
-      request.app.locals.session = request.session;
+      // Persist scope and token
+      request.app.locals.scope =
+        request.app.locals.scope || request.session.scope;
+      request.app.locals.token =
+        request.app.locals.token || request.session.access_token;
 
       return next();
     } catch (error) {
