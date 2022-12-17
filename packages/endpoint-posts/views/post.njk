@@ -1,6 +1,7 @@
 {% extends "document.njk" %}
 
-{% set media -%}
+{% set postHtml = post.content.html or "" %}
+{% set postMedia -%}
 {%- if post.audio -%}
   {%- for item in post.audio -%}
     <audio src="{{ item.url | absoluteUrl(publication.me) }}" controls>
@@ -39,7 +40,7 @@
     text: __(status[post.visibility].text)
   }) if postStatus === "published" and post.visibility and post.visibility !== "_ignore" }}
 
-  {{ prose({ html: post.content.html + media }) }}
+  {{ prose({ html: postHtml + postMedia }) }}
 
   {% if postStatus === "published" and post["mp-syndicate-to"] %}
     {% include "endpoint-posts-syndicate.njk" %}
