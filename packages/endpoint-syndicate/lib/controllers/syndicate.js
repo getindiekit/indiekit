@@ -6,7 +6,9 @@ export const syndicateController = {
   async post(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
-      const { token } = request.query;
+      const token = request.query.token || request.body.token;
+      const url = request.query.url || request.body.url;
+      const redirectUri = request.query.redirectUri || request.body.redirectUri;
 
       if (!application.hasDatabase) {
         throw IndiekitError.notImplemented(
@@ -24,7 +26,6 @@ export const syndicateController = {
       }
 
       // Get post data
-      const { url } = request.query;
       const postData = await getPostData(publication, url);
 
       if (!postData && url) {
@@ -98,6 +99,11 @@ export const syndicateController = {
         body.success_description +=
           ". The following target(s) did not return a URL: " +
           mpSyndicateTo.join(" ");
+      }
+
+      if (redirectUri) {
+        const message = encodeURIComponent(body.success_description);
+        return response.redirect(`${redirectUri}?success=${message}`);
       }
 
       return response.status(micropubResponse.status).json(body);

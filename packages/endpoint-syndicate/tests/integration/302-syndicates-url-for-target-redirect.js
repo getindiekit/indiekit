@@ -29,13 +29,14 @@ test("Syndicates a URL", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .query({ url: "https://website.example/notes/foobar/" })
-    .query({ token: testToken() });
+    .send({ url: "https://website.example/notes/foobar/" })
+    .send({ redirectUri: "https://server.example" })
+    .send({ token: testToken() });
 
-  t.is(result.status, 200);
+  t.is(result.status, 302);
   t.is(
-    result.body.success_description,
-    "Post updated at https://website.example/notes/foobar/"
+    result.headers.location,
+    "https://server.example?success=Post%20updated%20at%20https%3A%2F%2Fwebsite.example%2Fnotes%2Ffoobar%2F"
   );
 
   server.close(t);

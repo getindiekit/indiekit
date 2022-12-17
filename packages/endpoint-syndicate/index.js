@@ -21,5 +21,9 @@ export default class SyndicateEndpoint {
 
   init(Indiekit) {
     Indiekit.addEndpoint(this);
+
+    // Use private value to register syndication endpoint path
+    Indiekit.config.application._syndicationEndpointPath =
+      this.options.mountPath;
   }
 }
