@@ -25,21 +25,18 @@
   font: var(--font-body);
   min-inline-size: 60%;
 
-  & a {
-    white-space: nowrap;
-  }
-
-  & pre {
-    background: none;
-    padding: 0;
-  }
-
+  & a,
   & code {
     word-break: break-word;
   }
 
   & small code {
     margin-inline-start: var(--space-2xs);
+  }
+
+  & pre {
+    background: none;
+    padding: 0;
   }
 }
 
