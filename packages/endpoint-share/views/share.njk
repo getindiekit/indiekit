@@ -70,7 +70,7 @@
   {{ input({
     name: "access_token",
     type: "hidden",
-    value: session.access_token
+    value: token
   }) }}
 
   {{ input({
@@ -83,7 +83,7 @@
 {% block buttons %}
   {{ button({
     text: __("share.submit")
-  }) if session.access_token else warningText({
+  }) if token else warningText({
     text: __("scope.none.label")
   }) }}
 {% endblock %}
