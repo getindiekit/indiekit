@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Pour que %s puisse être découvert par les clients Micropub et demander l'autorisation de publier sur votre site Web, ajoutez les valeurs suivantes à la valeur `<head>` de votre site Web:"
   },
+  "homepage": {
+    "title": "Bienvenue!"
+  },
   "scope": {
     "create": {
       "label": "Créer des publications"
@@ -52,7 +55,8 @@
         "dark": "Sombre",
         "light": "Lumière"
       },
-      "tokenEndpoint": "Endpoint de jeton"
+      "tokenEndpoint": "Endpoint de jeton",
+      "version": "Version"
     },
     "publication": {
       "locale": "Langue",

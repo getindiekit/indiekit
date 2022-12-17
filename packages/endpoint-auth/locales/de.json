@@ -42,8 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Geben Sie ein Passwort ein, das für die Authentifizierung von Anfragen verwendet werden soll",
-        "label": "Neues Passwort"
+        "hint": "Geben Sie ein Passwort ein, das für die Authentifizierung von Anfragen verwendet werden soll"
       },
       "secret": {
         "hint": "Verwenden Sie den folgenden Wert für %s in Ihren Umgebungsvariablen",

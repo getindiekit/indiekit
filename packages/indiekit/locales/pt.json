@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Para que %s possa ser descoberto pelos clientes da Micropub e solicitar permissão para postar em seu site, adicione os seguintes valores ao `<head>` do seu site:"
   },
+  "homepage": {
+    "title": "Bem-vindo!"
+  },
   "scope": {
     "create": {
       "label": "Crie postagens"
@@ -14,7 +17,7 @@
     },
     "label": "Permissões de publicação",
     "media": {
-      "label": "Fazer upload de mídia"
+      "label": "Carregar mídia"
     },
     "none": {
       "label": "Você não tem nenhuma permissão de publicação"
@@ -52,7 +55,8 @@
         "dark": "Escuro",
         "light": "Luz"
       },
-      "tokenEndpoint": "Endpoint de token"
+      "tokenEndpoint": "Endpoint de token",
+      "version": "Versão"
     },
     "publication": {
       "locale": "Idioma",

@@ -42,8 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Voer een wachtwoord in om te gebruiken voor authenticatieverzoeken",
-        "label": "Nieuw wachtwoord"
+        "hint": "Voer een wachtwoord in om te gebruiken voor authenticatieverzoeken"
       },
       "secret": {
         "hint": "Gebruik de volgende waarde voor %s in je omgevingsvariabelen",

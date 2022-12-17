@@ -42,8 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Wprowadź hasło, które będzie używane do uwierzytelniania żądań",
-        "label": "Nowe hasło"
+        "hint": "Wprowadź hasło, które będzie używane do uwierzytelniania żądań"
       },
       "secret": {
         "hint": "Użyj następującej wartości dla %s w swoich zmiennych środowiskowych",

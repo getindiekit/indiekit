@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Nueva publicación",
+      "title": "Crear una nueva publicación de %s"
+    },
+    "delete": {
+      "action": "Eliminar publicación",
+      "cancel": "No — volver a la publicación",
+      "submit": "Estoy seguro – borra esta publicación",
+      "title": "¿Seguro que quieres eliminar esta publicación?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Ingrese una dirección web como https://example.org"
+      },
+      "content": {
+        "empty": "Introducir algún contenido"
+      },
+      "in-reply-to": {
+        "empty": "Ingrese una dirección web como https://example.org"
+      },
+      "like-of": {
+        "empty": "Ingrese una dirección web como https://example.org"
+      },
+      "name": {
+        "empty": "Pon un título"
+      },
+      "repost-of": {
+        "empty": "Ingrese una dirección web como https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Opciones avanzadas",
+      "bookmark-of": {
+        "label": "Marcador de"
+      },
+      "cancel": "Cancelar",
+      "category": {
+        "label": "Categorías"
+      },
+      "content": {
+        "label": "Contenido"
+      },
+      "in-reply-to": {
+        "label": "En respuesta a"
+      },
+      "like-of": {
+        "label": "Como de"
+      },
+      "mp-slug": {
+        "label": "URL slug"
+      },
+      "mp-syndicate-to": {
+        "label": "Sindicar a"
+      },
+      "name": {
+        "label": "Título"
+      },
+      "publish": "Publicar publicación",
+      "publishDraft": "Guardar borrador",
+      "repost-of": {
+        "label": "Republicación de"
+      },
+      "rsvp": {
+        "interested": "Interesado",
+        "label": "RSVP",
+        "maybe": "Quizás",
+        "no": "No",
+        "yes": "Sí"
+      },
+      "summary": {
+        "label": "Resumen"
+      },
+      "update": "Actualizar publicación",
+      "updateDraft": "Actualizar borrador",
+      "visibility": {
+        "label": "Visibilidad"
+      }
+    },
     "post": {
-      "properties": "Propiedades"
+      "properties": "Propiedades",
+      "syndicate": "Sindicar"
     },
     "posts": {
       "none": "No hay publicaciones",
       "title": "Publicaciones publicadas"
     },
-    "title": "Publicaciones"
+    "status": {
+      "deleted": "Eliminado",
+      "draft": "Borrador",
+      "private": "Privado",
+      "public": "Público",
+      "published": "Publicado",
+      "syndicated": "Sindicado",
+      "unlisted": "No enlistado"
+    },
+    "title": "Publicaciones",
+    "undelete": {
+      "action": "Restaurar publicación",
+      "submit": "Estoy seguro – restaura esta publicación",
+      "title": "¿Estás seguro de que quieres restaurar esta publicación?"
+    },
+    "update": {
+      "action": "Editar publicación",
+      "title": "Actualizar publicación de %s"
+    }
   }
 }

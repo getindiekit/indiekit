@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Neuer Beitrag",
+      "title": "Einen neuen %s-Beitrag erstellen"
+    },
+    "delete": {
+      "action": "Beitrag löschen",
+      "cancel": "Nein — zurück zur Post",
+      "submit": "Ich bin mir sicher — lösche diesen Beitrag",
+      "title": "Möchtest du diesen Beitrag wirklich löschen?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      },
+      "content": {
+        "empty": "Geben Sie einige Inhalte ein"
+      },
+      "in-reply-to": {
+        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      },
+      "like-of": {
+        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      },
+      "name": {
+        "empty": "Titel eingeben"
+      },
+      "repost-of": {
+        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Erweiterte Optionen",
+      "bookmark-of": {
+        "label": "Lesezeichen für"
+      },
+      "cancel": "Abbrechen",
+      "category": {
+        "label": "Kategorien"
+      },
+      "content": {
+        "label": "Inhalt"
+      },
+      "in-reply-to": {
+        "label": "Als Antwort auf"
+      },
+      "like-of": {
+        "label": "Wie von"
+      },
+      "mp-slug": {
+        "label": "Slug"
+      },
+      "mp-syndicate-to": {
+        "label": "Syndikat zu"
+      },
+      "name": {
+        "label": "Titel"
+      },
+      "publish": "Beitrag veröffentlichen",
+      "publishDraft": "Entwurf speichern",
+      "repost-of": {
+        "label": "Repost von"
+      },
+      "rsvp": {
+        "interested": "Interessiert",
+        "label": "RSVP",
+        "maybe": "Vielleicht",
+        "no": "Nein",
+        "yes": "Ja"
+      },
+      "summary": {
+        "label": "Übersicht"
+      },
+      "update": "Beitrag aktualisieren",
+      "updateDraft": "Entwurf aktualisieren",
+      "visibility": {
+        "label": "Sichtbarkeit"
+      }
+    },
     "post": {
-      "properties": "Eigenschaften"
+      "properties": "Eigenschaften",
+      "syndicate": "Syndikatsposten"
     },
     "posts": {
       "none": "Keine Beiträge",
       "title": "Veröffentlichte Beiträge"
     },
-    "title": "Beiträge"
+    "status": {
+      "deleted": "Gelöscht",
+      "draft": "Entwurf",
+      "private": "Privat",
+      "public": "Öffentlich",
+      "published": "Veröffentlicht",
+      "syndicated": "Syndiziert",
+      "unlisted": "Nicht gelistete"
+    },
+    "title": "Beiträge",
+    "undelete": {
+      "action": "Beitrag wiederherstellen",
+      "submit": "Ich bin sicher – diesen Beitrag wiederherstellen",
+      "title": "Möchten Sie diesen Beitrag wirklich wiederherstellen?"
+    },
+    "update": {
+      "action": "Beitrag bearbeiten",
+      "title": "%s-Beitrag aktualisieren"
+    }
   }
 }

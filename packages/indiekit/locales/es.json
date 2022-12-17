@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Para que los clientes de Micropub puedan descubrir %s y solicitar permiso para publicar en su sitio web, agregue los siguientes valores a `<head>` de su sitio web:"
   },
+  "homepage": {
+    "title": "¡Bienvenido!"
+  },
   "scope": {
     "create": {
       "label": "Crear publicaciones"
@@ -14,7 +17,7 @@
     },
     "label": "Permisos de publicación",
     "media": {
-      "label": "Subir contenido multimedia"
+      "label": "Cargar archivos multimedia"
     },
     "none": {
       "label": "No tienes ningún permiso de publicación"
@@ -52,7 +55,8 @@
         "dark": "Oscuro",
         "light": "Claro"
       },
-      "tokenEndpoint": "Punto final de token"
+      "tokenEndpoint": "Punto final de token",
+      "version": "Versión"
     },
     "publication": {
       "locale": "Idioma",

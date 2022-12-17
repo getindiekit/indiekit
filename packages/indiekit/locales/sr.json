@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Tako da ti %s mogu biti otkriveni preko Micropub klijenata i potraže dozvolu da objave na vašem vebsajtu, dodajte sledeće vrednosti na vaš vebsajt `<head>`:"
   },
+  "homepage": {
+    "title": "Dobrodošli!"
+  },
   "scope": {
     "create": {
       "label": "Kreirajte postova"
@@ -52,7 +55,8 @@
         "dark": "Mrak",
         "light": "Svetlo"
       },
-      "tokenEndpoint": "Krajnja tačka tokena"
+      "tokenEndpoint": "Krajnja tačka tokena",
+      "version": "Verzija"
     },
     "publication": {
       "locale": "Jezik",

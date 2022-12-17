@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Om ervoor te zorgen dat %s kan worden ontdekt door Micropub-clients en toestemming kan vragen om op uw website te posten, voegt u de volgende waarden toe aan de `<head>` van uw website:"
   },
+  "homepage": {
+    "title": "Welkom!"
+  },
   "scope": {
     "create": {
       "label": "Posten maken"
@@ -52,7 +55,8 @@
         "dark": "Donker",
         "light": "Licht"
       },
-      "tokenEndpoint": "Token-eindpunt"
+      "tokenEndpoint": "Token-eindpunt",
+      "version": "Versie"
     },
     "publication": {
       "locale": "Taal",

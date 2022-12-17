@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Novi post",
+      "title": "Kreiraj novi %s post"
+    },
+    "delete": {
+      "action": "Obriši post",
+      "cancel": "Ne - povratak na post",
+      "submit": "Siguran sam – izbrišite ovaj post",
+      "title": "Da li ste sigurni da želite da izbrišete ovu objavu?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Unesite veb adresu kao što je https://example.org"
+      },
+      "content": {
+        "empty": "Unesite neki sadržaj"
+      },
+      "in-reply-to": {
+        "empty": "Unesite veb adresu kao što je https://example.org"
+      },
+      "like-of": {
+        "empty": "Unesite veb adresu kao što je https://example.org"
+      },
+      "name": {
+        "empty": "Unesite naslov"
+      },
+      "repost-of": {
+        "empty": "Unesite veb adresu kao što je https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Napredne opcije",
+      "bookmark-of": {
+        "label": "Bookmark of"
+      },
+      "cancel": "Otkazati",
+      "category": {
+        "label": "Kategorije"
+      },
+      "content": {
+        "label": "Sadržaj"
+      },
+      "in-reply-to": {
+        "label": "U odgovoru na"
+      },
+      "like-of": {
+        "label": "Kao od"
+      },
+      "mp-slug": {
+        "label": "URL slag"
+      },
+      "mp-syndicate-to": {
+        "label": "Sindicate to"
+      },
+      "name": {
+        "label": "Naslov"
+      },
+      "publish": "Objavi post",
+      "publishDraft": "Sačuvaj nacrt",
+      "repost-of": {
+        "label": "Repost od"
+      },
+      "rsvp": {
+        "interested": "Zainteresovani",
+        "label": "RSVP",
+        "maybe": "Možda",
+        "no": "Ne",
+        "yes": "Da"
+      },
+      "summary": {
+        "label": "Sažetak"
+      },
+      "update": "Ažuriraj post",
+      "updateDraft": "Ažurirajte nacrt",
+      "visibility": {
+        "label": "Vidljivost"
+      }
+    },
     "post": {
-      "properties": "Svojstva"
+      "properties": "Svojstva",
+      "syndicate": "Sindikat post"
     },
     "posts": {
       "none": "Nema postova",
       "title": "Objavljene postova"
     },
-    "title": "Postova"
+    "status": {
+      "deleted": "Izbrisano",
+      "draft": "Nacrt",
+      "private": "Privatni",
+      "public": "Javnosti",
+      "published": "Objavljeno",
+      "syndicated": "Sindicirano",
+      "unlisted": "Nije na listi"
+    },
+    "title": "Postova",
+    "undelete": {
+      "action": "Vrati nacrt",
+      "submit": "Siguran sam – vratite ovaj post",
+      "title": "Da li ste sigurni da želite da vratite ovaj post?"
+    },
+    "update": {
+      "action": "Uredi post",
+      "title": "Ažuriraj %s post"
+    }
   }
 }

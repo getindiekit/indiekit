@@ -42,8 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Entrez un mot de passe à utiliser pour authentifier les demandes",
-        "label": "Nouveau mot de passe"
+        "hint": "Entrez un mot de passe à utiliser pour authentifier les demandes"
       },
       "secret": {
         "hint": "Utilisez la valeur suivante pour %s dans vos variables d'environnement",

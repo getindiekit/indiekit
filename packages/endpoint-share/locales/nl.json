@@ -1,12 +1,22 @@
 {
   "share": {
-    "bookmark-of": "URL",
-    "content": "Inhoud",
-    "error": {
-      "bookmark-of": "Voer een webadres in zoals https://example.org",
-      "name": "Voer titel"
+    "bookmark-of": {
+      "label": "URL"
     },
-    "name": "Titel",
+    "content": {
+      "label": "Inhoud"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Voer een webadres in zoals https://example.org"
+      },
+      "name": {
+        "empty": "Geef een titel in"
+      }
+    },
+    "name": {
+      "label": "Titel"
+    },
     "submit": "Publiceer",
     "title": "Delen"
   },

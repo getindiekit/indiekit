@@ -25,13 +25,11 @@
     "postType": "Nie podano konfiguracji dla typu postu %s",
     "query": "Nieobsługiwane zapytanie dla `{{key}}`: `{{value}}`",
     "secret": "Brakujące `SECRET`",
-    "title": "Nie zaimplementowano",
-    "tokenSecret": "Brakujące `SECRET`"
+    "title": "Nie zaimplementowano"
   },
   "UnauthorizedError": {
     "invalidCode": "Podany kod autoryzacji wygasł, cofnął, zniekształcił się lub został nieważny z innych powodów",
     "invalidToken": "Dostarczony token dostępu jest wygasły, odwołany, zniekształcony lub nieważny z innych powodów",
-    "jwt": "Błąd JSON Web Token: %s",
     "title": "Nieautoryzowany"
   },
   "UnsupportedMediaTypeError": {

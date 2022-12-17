@@ -25,13 +25,11 @@
     "postType": "No se ha proporcionado configuración para el tipo de publicación %s",
     "query": "Consulta no admitida para `{{key}}`: `{{value}}`",
     "secret": "Falta `SECRET`",
-    "title": "No implementado",
-    "tokenSecret": "Falta `SECRET`"
+    "title": "No implementado"
   },
   "UnauthorizedError": {
     "invalidCode": "El código de autorización proporcionado está caducado, revocado, tiene un formato incorrecto o no es válido por otros motivos",
     "invalidToken": "El token de acceso proporcionado ha caducado, se ha revocado, está mal formado o no es válido por otros motivos",
-    "jwt": "Error de JSON Web Token: %s",
     "title": "No autorizado"
   },
   "UnsupportedMediaTypeError": {

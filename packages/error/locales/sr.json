@@ -25,13 +25,11 @@
     "postType": "Nije obezbeđena konfiguracija za %s tip postov",
     "query": "Nepodržani upit za `{{key}}`: `{{value}}`",
     "secret": "Nedostaje `SECRET`",
-    "title": "Nije implementirano",
-    "tokenSecret": "Nedostaje `SECRET`"
+    "title": "Nije implementirano"
   },
   "UnauthorizedError": {
     "invalidCode": "Dostavljeni autorizacioni kod je istekao, opozvan, neispravan ili nevažeći iz drugih razloga",
     "invalidToken": "Obezbeđeni pristupni token je istekao, opozvan, neispravan, ili nevažeći zbog drugih razloga",
-    "jwt": "JSON Web Token greška: %s",
     "title": "Neovlašćen"
   },
   "UnsupportedMediaTypeError": {

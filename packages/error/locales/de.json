@@ -25,13 +25,11 @@
     "postType": "Keine Konfiguration für den Posttyp %s bereitgestellt",
     "query": "Nicht unterstützte Abfrage für `{{key}}`: `{{value}}`",
     "secret": "Fehlt `SECRET`",
-    "title": "Nicht implementiert",
-    "tokenSecret": "Fehlt `SECRET`"
+    "title": "Nicht implementiert"
   },
   "UnauthorizedError": {
     "invalidCode": "Der angegebene Autorisierungscode ist abgelaufen, widerrufen, falsch formatiert oder aus anderen Gründen ungültig",
     "invalidToken": "Das bereitgestellte Zugriffstoken ist abgelaufen, gesperrt, falsch formatiert oder aus anderen Gründen ungültig",
-    "jwt": "JSON Web Token Fehler: %s",
     "title": "Nicht autorisiert"
   },
   "UnsupportedMediaTypeError": {

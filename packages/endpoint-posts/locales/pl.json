@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Nowy post",
+      "title": "Stwórz nowy post %s"
+    },
+    "delete": {
+      "action": "Usuń post",
+      "cancel": "Nie – wróć do postu",
+      "submit": "Jestem pewien – usuń ten post",
+      "title": "Czy na pewno chcesz usunąć ten post?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      },
+      "content": {
+        "empty": "Wprowadź jakąś zawartość"
+      },
+      "in-reply-to": {
+        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      },
+      "like-of": {
+        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      },
+      "name": {
+        "empty": "Wprowadź tytuł"
+      },
+      "repost-of": {
+        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Zaawansowane opcje",
+      "bookmark-of": {
+        "label": "Zakładka z"
+      },
+      "cancel": "Anuluj",
+      "category": {
+        "label": "Kategorie"
+      },
+      "content": {
+        "label": "Zawartość"
+      },
+      "in-reply-to": {
+        "label": "W odpowiedzi na"
+      },
+      "like-of": {
+        "label": "Jak z"
+      },
+      "mp-slug": {
+        "label": "Ślimak URL"
+      },
+      "mp-syndicate-to": {
+        "label": "Syndykat do"
+      },
+      "name": {
+        "label": "Tytuł"
+      },
+      "publish": "Opublikuj post",
+      "publishDraft": "Zapisz szkic",
+      "repost-of": {
+        "label": "Repost z"
+      },
+      "rsvp": {
+        "interested": "Zainteresowani",
+        "label": "RSVP",
+        "maybe": "Może",
+        "no": "Nie",
+        "yes": "Tak"
+      },
+      "summary": {
+        "label": "Podsumowanie"
+      },
+      "update": "Aktualizuj post",
+      "updateDraft": "Zaktualizuj wersję roboczą",
+      "visibility": {
+        "label": "Widoczność"
+      }
+    },
     "post": {
-      "properties": "Właściwości"
+      "properties": "Właściwości",
+      "syndicate": "Post syndykatu"
     },
     "posts": {
       "none": "Brak postów",
       "title": "Opublikowane posty"
     },
-    "title": "Posty"
+    "status": {
+      "deleted": "Usunięto",
+      "draft": "Szkic",
+      "private": "Prywatne",
+      "public": "Publiczne",
+      "published": "Opublikowano",
+      "syndicated": "Syndykowane",
+      "unlisted": "Spoza listy"
+    },
+    "title": "Posty",
+    "undelete": {
+      "action": "Przywróć post",
+      "submit": "Jestem pewien – przywróć ten post",
+      "title": "Czy na pewno chcesz przywrócić ten post?"
+    },
+    "update": {
+      "action": "Edytuj post",
+      "title": "Zaktualizuj %s posta"
+    }
   }
 }

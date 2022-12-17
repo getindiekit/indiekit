@@ -22,16 +22,14 @@
   },
   "NotImplementedError": {
     "database": "Voor deze functie is een database vereist.",
-    "postType": "Geen configuratie voorzien voor %s berichttype",
+    "postType": "Geen configuratie voorzien voor %s post type",
     "query": "Niet-ondersteunde query voor `{{key}}`: `{{value}}`",
     "secret": "`SECRET` ontbreekt",
-    "title": "Niet geïmplementeerd",
-    "tokenSecret": "`SECRET` ontbreekt"
+    "title": "Niet geïmplementeerd"
   },
   "UnauthorizedError": {
     "invalidCode": "De verstrekte autorisatie code is verlopen, intrekken, onjuist gevormd of om andere redenen ongeldig",
     "invalidToken": "Het verstrekte toegangstoken is verlopen, ingetrokken, misvormd of ongeldig",
-    "jwt": "Fout met JSON Web Token: %s",
     "title": "Ongeautoriseerd"
   },
   "UnsupportedMediaTypeError": {

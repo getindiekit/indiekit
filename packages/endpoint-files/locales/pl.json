@@ -2,13 +2,15 @@
   "files": {
     "delete": {
       "action": "Usuń plik",
-      "cancel": "Nie, wróć do pliku",
+      "cancel": "Nie – wróć do pliku",
       "note": "Może być nadal dostępny lub możliwy do odzyskania ze sklepu z treściami (%s).",
-      "submit": "Tak, usuń ten plik",
+      "submit": "Tak – usuń ten plik",
       "title": "Czy na pewno chcesz usunąć ten plik?"
     },
     "error": {
-      "file": "Wybierz plik do przesłania"
+      "file": {
+        "empty": "Wybierz plik do przesłania"
+      }
     },
     "file": {
       "download": "Pobierz plik",
@@ -18,10 +20,16 @@
       "none": "Brak plików",
       "title": "Przesłane pliki"
     },
+    "form": {
+      "cancel": "Anuluj",
+      "file": {
+        "label": "Plik"
+      },
+      "submit": "Przekazać plik"
+    },
     "title": "Pliki",
     "upload": {
-      "file": "Plik",
-      "submit": "Prześlij",
+      "action": "Przesyłanie pliku",
       "title": "Prześlij nowy plik"
     }
   }

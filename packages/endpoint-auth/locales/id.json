@@ -42,8 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Masukkan kata sandi yang akan digunakan untuk mengautentikasi permintaan",
-        "label": "Kata sandi baru"
+        "hint": "Masukkan kata sandi yang akan digunakan untuk mengautentikasi permintaan"
       },
       "secret": {
         "hint": "Gunakan nilai berikut untuk %s dalam variabel lingkungan Anda",

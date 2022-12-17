@@ -25,13 +25,11 @@
     "postType": "Tidak ada konfigurasi yang disediakan untuk tipe postingan %s",
     "query": "Kueri tidak didukung untuk `{{key}}`: `{{value}}`",
     "secret": "Hilang `SECRET`",
-    "title": "Tidak diimplementasikan",
-    "tokenSecret": "Hilang `SECRET`"
+    "title": "Tidak diimplementasikan"
   },
   "UnauthorizedError": {
     "invalidCode": "Kode otorisasi yang diberikan kedaluwarsa, dicabut, cacat, atau tidak valid karena alasan lain",
     "invalidToken": "Token akses yang diberikan kedaluwarsa, dicabut, cacat, atau tidak valid karena alasan lain",
-    "jwt": "Kesalahan JSON Web Token: %s",
     "title": "Tidak diotorisasi"
   },
   "UnsupportedMediaTypeError": {

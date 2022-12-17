@@ -42,8 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Unesite lozinku koju ćete koristiti za zahteve za potvrdu identiteta",
-        "label": "Nova lozinka"
+        "hint": "Unesite lozinku koju ćete koristiti za zahteve za potvrdu identiteta"
       },
       "secret": {
         "hint": "Koristite sledeću vrednost za %s u svojim promenljivim okruženja",

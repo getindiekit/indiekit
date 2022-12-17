@@ -1,12 +1,22 @@
 {
   "share": {
-    "bookmark-of": "URL",
-    "content": "Sadržaj",
-    "error": {
-      "bookmark-of": "Unesite veb adresu kao što je https://example.org",
-      "name": "Unesite naslov"
+    "bookmark-of": {
+      "label": "URL"
     },
-    "name": "Naslov",
+    "content": {
+      "label": "Sadržaj"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Unesite veb adresu kao što je https://example.org"
+      },
+      "name": {
+        "empty": "Unesite naslov"
+      }
+    },
+    "name": {
+      "label": "Naslov"
+    },
     "submit": "Objaviti",
     "title": "Podeli"
   },

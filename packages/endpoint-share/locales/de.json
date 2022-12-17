@@ -1,12 +1,22 @@
 {
   "share": {
-    "bookmark-of": "URL",
-    "content": "Inhalt",
-    "error": {
-      "bookmark-of": "Geben Sie eine Webadresse wie https://example.org",
-      "name": "Titel eingeben"
+    "bookmark-of": {
+      "label": "URL"
     },
-    "name": "Titel",
+    "content": {
+      "label": "Inhalt"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      },
+      "name": {
+        "empty": "Titel eingeben"
+      }
+    },
+    "name": {
+      "label": "Titel"
+    },
     "submit": "Veröffentlichen",
     "title": "Teilen"
   },

@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Postingan Baru",
+      "title": "Buat postingan %s baru"
+    },
+    "delete": {
+      "action": "Hapus postingan",
+      "cancel": "Tidak – kembali ke pos",
+      "submit": "Saya yakin – hapus posting ini",
+      "title": "Yakin ingin menghapus postingan ini?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Masukkan alamat web misalnya https://example.org"
+      },
+      "content": {
+        "empty": "Masukkan beberapa konten"
+      },
+      "in-reply-to": {
+        "empty": "Masukkan alamat web misalnya https://example.org"
+      },
+      "like-of": {
+        "empty": "Masukkan alamat web misalnya https://example.org"
+      },
+      "name": {
+        "empty": "Masukkan judul"
+      },
+      "repost-of": {
+        "empty": "Masukkan alamat web misalnya https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Opsi lanjutan",
+      "bookmark-of": {
+        "label": "Penanda dari"
+      },
+      "cancel": "Batal",
+      "category": {
+        "label": "Kategori"
+      },
+      "content": {
+        "label": "Konten"
+      },
+      "in-reply-to": {
+        "label": "Sebagai balasan"
+      },
+      "like-of": {
+        "label": "Seperti"
+      },
+      "mp-slug": {
+        "label": "URL siput"
+      },
+      "mp-syndicate-to": {
+        "label": "Sindikat ke"
+      },
+      "name": {
+        "label": "Judul"
+      },
+      "publish": "Publikasikan postingan",
+      "publishDraft": "Simpan draf",
+      "repost-of": {
+        "label": "Repost dari"
+      },
+      "rsvp": {
+        "interested": "Tertarik",
+        "label": "RSVP",
+        "maybe": "Mungkin",
+        "no": "Tidak",
+        "yes": "Ya"
+      },
+      "summary": {
+        "label": "Ringkasan"
+      },
+      "update": "Perbarui pos",
+      "updateDraft": "Perbarui draf",
+      "visibility": {
+        "label": "Visibilitas"
+      }
+    },
     "post": {
-      "properties": "Properti"
+      "properties": "Properti",
+      "syndicate": "Pos sindikat"
     },
     "posts": {
       "none": "Tidak ada postingan",
       "title": "Postingan yang diterbitkan"
     },
-    "title": "Postingan"
+    "status": {
+      "deleted": "Dihapus",
+      "draft": "Draf",
+      "private": "Swasta",
+      "public": "Publik",
+      "published": "Diterbitkan",
+      "syndicated": "Bersindikasi",
+      "unlisted": "Tidak terdaftar"
+    },
+    "title": "Postingan",
+    "undelete": {
+      "action": "Pulihkan pos",
+      "submit": "Saya yakin – mengembalikan postingan ini",
+      "title": "Yakin ingin memulihkan postingan ini?"
+    },
+    "update": {
+      "action": "Sunting pos",
+      "title": "Perbarui %s pos"
+    }
   }
 }

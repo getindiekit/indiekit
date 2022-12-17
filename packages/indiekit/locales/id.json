@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Sehingga %s dapat ditemukan oleh klien Micropub dan meminta izin untuk memposting ke situs web Anda, tambahkan nilai berikut ke situs web Anda `<head>`:"
   },
+  "homepage": {
+    "title": "Selamat datang!"
+  },
   "scope": {
     "create": {
       "label": "Membuat pos"
@@ -52,7 +55,8 @@
         "dark": "Gelap",
         "light": "Terang"
       },
-      "tokenEndpoint": "Titik akhir Token"
+      "tokenEndpoint": "Titik akhir Token",
+      "version": "Versi"
     },
     "publication": {
       "locale": "Bahasa",

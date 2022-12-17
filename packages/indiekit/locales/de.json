@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Clients %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen:"
   },
+  "homepage": {
+    "title": "Willkommen!"
+  },
   "scope": {
     "create": {
       "label": "Beiträge erstellen"
@@ -52,7 +55,8 @@
         "dark": "Dunkel",
         "light": "Licht"
       },
-      "tokenEndpoint": "Token-Endpunkt"
+      "tokenEndpoint": "Token-Endpunkt",
+      "version": "Version"
     },
     "publication": {
       "locale": "Sprache",

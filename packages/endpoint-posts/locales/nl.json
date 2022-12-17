@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Nieuwe post",
+      "title": "Maak een nieuw %s post"
+    },
+    "delete": {
+      "action": "Post verwijderen",
+      "cancel": "Nee — ga terug naar de post",
+      "submit": "Ik weet het zeker — verwijder dit post",
+      "title": "Bent u zeker dat u dit post wilt verwijderen?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Voer een webadres in zoals https://example.org"
+      },
+      "content": {
+        "empty": "Voer wat inhoud in"
+      },
+      "in-reply-to": {
+        "empty": "Voer een webadres in zoals https://example.org"
+      },
+      "like-of": {
+        "empty": "Voer een webadres in zoals https://example.org"
+      },
+      "name": {
+        "empty": "Geef een titel in"
+      },
+      "repost-of": {
+        "empty": "Voer een webadres in zoals https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Geavanceerde opties",
+      "bookmark-of": {
+        "label": "Bladwijzer van"
+      },
+      "cancel": "Annuleren",
+      "category": {
+        "label": "Categorieën"
+      },
+      "content": {
+        "label": "Inhoud"
+      },
+      "in-reply-to": {
+        "label": "Als antwoord op"
+      },
+      "like-of": {
+        "label": "Zoals van"
+      },
+      "mp-slug": {
+        "label": "URL-slug"
+      },
+      "mp-syndicate-to": {
+        "label": "Syndicaat voor"
+      },
+      "name": {
+        "label": "Titel"
+      },
+      "publish": "Post publiceren",
+      "publishDraft": "Concept opslaan",
+      "repost-of": {
+        "label": "Repost van"
+      },
+      "rsvp": {
+        "interested": "Geïnteresseerd",
+        "label": "RSVP",
+        "maybe": "Misschien",
+        "no": "Nee",
+        "yes": "Ja"
+      },
+      "summary": {
+        "label": "Samenvatting"
+      },
+      "update": "Post bijwerken",
+      "updateDraft": "Concept bijwerken",
+      "visibility": {
+        "label": "Zichtbaarheid"
+      }
+    },
     "post": {
-      "properties": "Eigenschappen"
+      "properties": "Eigenschappen",
+      "syndicate": "Syndicaatspost"
     },
     "posts": {
-      "none": "Geen berichten",
-      "title": "Gepubliceerde berichten"
+      "none": "Geen posten",
+      "title": "Gepubliceerde posten"
     },
-    "title": "Berichten"
+    "status": {
+      "deleted": "Verwijderd",
+      "draft": "Concept",
+      "private": "Privaat",
+      "public": "Openbaar",
+      "published": "Gepubliceerd",
+      "syndicated": "Gesyndiceerd",
+      "unlisted": "Niet vermeld"
+    },
+    "title": "Posten",
+    "undelete": {
+      "action": "Post herstellen",
+      "submit": "Ik weet het zeker — herstel dit post",
+      "title": "Weet je zeker dat je dit post wilt herstellen?"
+    },
+    "update": {
+      "action": "Post bewerken",
+      "title": "Post %s bijwerken"
+    }
   }
 }

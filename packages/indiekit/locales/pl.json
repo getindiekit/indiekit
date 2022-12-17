@@ -2,6 +2,9 @@
   "guidance": {
     "discovery": "Aby %s mógł zostać wykryty przez klientów Micropub i poprosić o pozwolenie na publikowanie w Twojej witrynie, dodaj następujące wartości do `<head>` witryny:"
   },
+  "homepage": {
+    "title": "Witaj!"
+  },
   "scope": {
     "create": {
       "label": "Twórz posty"
@@ -52,7 +55,8 @@
         "dark": "Ciemny",
         "light": "Jasny"
       },
-      "tokenEndpoint": "Punkt końcowy tokena"
+      "tokenEndpoint": "Punkt końcowy tokena",
+      "version": "Wersja"
     },
     "publication": {
       "locale": "Język",

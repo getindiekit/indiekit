@@ -1,12 +1,22 @@
 {
   "share": {
-    "bookmark-of": "Tautan (URL)",
-    "content": "Konten",
-    "error": {
-      "bookmark-of": "Masukkan alamat web misalnya https://example.org",
-      "name": "Masukkan judul"
+    "bookmark-of": {
+      "label": "Tautan (URL)"
     },
-    "name": "Judul",
+    "content": {
+      "label": "Konten"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Masukkan alamat web misalnya https://example.org"
+      },
+      "name": {
+        "empty": "Masukkan judul"
+      }
+    },
+    "name": {
+      "label": "Judul"
+    },
     "submit": "Terbitkan",
     "title": "Bagikan"
   },

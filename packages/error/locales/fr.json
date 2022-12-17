@@ -25,13 +25,11 @@
     "postType": "Aucune configuration fournie pour le type de publication %s",
     "query": "Requête non prise en charge pour `{{key}}` : `{{value}}`",
     "secret": "`SECRET` manquant",
-    "title": "Non implémenté",
-    "tokenSecret": "`SECRET` manquant"
+    "title": "Non implémenté"
   },
   "UnauthorizedError": {
     "invalidCode": "Le code d'autorisation fourni est expiré, révoqué, mal formé ou non valide pour d'autres raisons",
     "invalidToken": "Le jeton d'accès fourni est expiré, révoqué, mal formé ou non valide pour d'autres raisons",
-    "jwt": "Erreur JSON Web Token: %s",
     "title": "Non autorisé"
   },
   "UnsupportedMediaTypeError": {

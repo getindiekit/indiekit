@@ -2,13 +2,15 @@
   "files": {
     "delete": {
       "action": "Hapus file",
-      "cancel": "Tidak, kembali ke berkas",
+      "cancel": "Tidak – kembali ke file",
       "note": "Mungkin masih dapat diakses atau dipulihkan dari penyimpanan konten Anda (%s).",
-      "submit": "Ya, hapus file ini",
+      "submit": "Saya yakin – hapus file ini",
       "title": "Apakah Anda yakin ingin menghapus file ini?"
     },
     "error": {
-      "file": "Pilih file yang akan diunggah"
+      "file": {
+        "empty": "Pilih file untuk diunggah"
+      }
     },
     "file": {
       "download": "Unduh file",
@@ -18,10 +20,16 @@
       "none": "Tidak ada file",
       "title": "File yang diunggah"
     },
+    "form": {
+      "cancel": "Batal",
+      "file": {
+        "label": "Berkas"
+      },
+      "submit": "Unggah"
+    },
     "title": "File",
     "upload": {
-      "file": "Berkas",
-      "submit": "Unggah",
+      "action": "Unggah berkas",
       "title": "Unggah file baru"
     }
   }

@@ -2,13 +2,15 @@
   "files": {
     "delete": {
       "action": "Verwijder bestand",
-      "cancel": "Nee, terug naar bestand",
+      "cancel": "Nee – terug naar bestand",
       "note": "Het is mogelijk nog steeds toegankelijk of kan worden hersteld in uw inhoudswinkel (%s).",
-      "submit": "Ja, verwijder dit bestand",
+      "submit": "Ja – verwijder dit bestand",
       "title": "Weet u zeker dat u dit bestand wilt verwijderen?"
     },
     "error": {
-      "file": "Kies een bestand om te uploaden"
+      "file": {
+        "empty": "Kies een bestand om te uploaden"
+      }
     },
     "file": {
       "download": "Bestand downloaden",
@@ -18,10 +20,16 @@
       "none": "Geen bestanden",
       "title": "Geüploade bestanden"
     },
+    "form": {
+      "cancel": "Annuleren",
+      "file": {
+        "label": "Bestand"
+      },
+      "submit": "Uploaden"
+    },
     "title": "Bestanden",
     "upload": {
-      "file": "Bestand",
-      "submit": "Uploaden",
+      "action": "Uploaden bestand",
       "title": "Upload een nieuw bestand"
     }
   }

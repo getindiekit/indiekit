@@ -2,13 +2,15 @@
   "files": {
     "delete": {
       "action": "Izbriši datoteku",
-      "cancel": "Ne, vrati se u fajl",
+      "cancel": "Ne – vrati se u fajl",
       "note": "Možda je i dalje dostupan ili oporavljiv u vašoj prodavnici sadržaja (%s).",
-      "submit": "Da, izbrišite ovu datoteku",
+      "submit": "Da – izbrišite ovu datoteku",
       "title": "Da li ste sigurni da želite da izbrišete ovu datoteku?"
     },
     "error": {
-      "file": "Odaberite datoteku za otpremanje"
+      "file": {
+        "empty": "Odaberite datoteku za otpremanje"
+      }
     },
     "file": {
       "download": "Preuzmite datoteku",
@@ -18,10 +20,16 @@
       "none": "Nema datoteka",
       "title": "Otpremljene datoteke"
     },
+    "form": {
+      "cancel": "Otkazati",
+      "file": {
+        "label": "Datoteka"
+      },
+      "submit": "Otpremiti"
+    },
     "title": "Datoteke",
     "upload": {
-      "file": "Datoteka",
-      "submit": "Otpremiti",
+      "action": "Otpremi datoteku",
       "title": "Otpremite novu datoteku"
     }
   }

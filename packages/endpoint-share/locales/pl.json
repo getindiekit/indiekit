@@ -1,12 +1,22 @@
 {
   "share": {
-    "bookmark-of": "Adres URL",
-    "content": "Zawartość",
-    "error": {
-      "bookmark-of": "Wpisz adres internetowy, taki jak https://example.org",
-      "name": "Wprowadź tytuł"
+    "bookmark-of": {
+      "label": "Adres URL"
     },
-    "name": "Tytuł",
+    "content": {
+      "label": "Zawartość"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      },
+      "name": {
+        "empty": "Wprowadź tytuł"
+      }
+    },
+    "name": {
+      "label": "Tytuł"
+    },
     "submit": "Publikuj",
     "title": "Udostępnij"
   },

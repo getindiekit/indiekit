@@ -6,6 +6,7 @@
   "errorSummary": {
     "title": "Há um problema"
   },
+  "important": "Importante",
   "noValue": "Não definido",
   "optionalValue": "(opcional)",
   "pagination": {

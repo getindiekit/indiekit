@@ -1,12 +1,109 @@
 {
   "posts": {
+    "create": {
+      "action": "Nouveau poste",
+      "title": "Créer une nouvelle publication %s"
+    },
+    "delete": {
+      "action": "Supprimer la publication",
+      "cancel": "Non – retour au poste",
+      "submit": "Je suis sûr – supprimez ce post",
+      "title": "Êtes-vous sûr de vouloir supprimer ce post?"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Entrez une adresse Web telle que https://example.org"
+      },
+      "content": {
+        "empty": "Entrez du contenu"
+      },
+      "in-reply-to": {
+        "empty": "Entrez une adresse Web telle que https://example.org"
+      },
+      "like-of": {
+        "empty": "Entrez une adresse Web telle que https://example.org"
+      },
+      "name": {
+        "empty": "Saisir un titre"
+      },
+      "repost-of": {
+        "empty": "Entrez une adresse Web telle que https://example.org"
+      }
+    },
+    "form": {
+      "advancedOptions": "Options avancées",
+      "bookmark-of": {
+        "label": "Signet de"
+      },
+      "cancel": "Annuler",
+      "category": {
+        "label": "Catégories"
+      },
+      "content": {
+        "label": "Contenu"
+      },
+      "in-reply-to": {
+        "label": "En réponse à"
+      },
+      "like-of": {
+        "label": "Comme"
+      },
+      "mp-slug": {
+        "label": "Limace d'URL"
+      },
+      "mp-syndicate-to": {
+        "label": "Distribuer à"
+      },
+      "name": {
+        "label": "Titre"
+      },
+      "publish": "Publier la publication",
+      "publishDraft": "Enregistrer le brouillon",
+      "repost-of": {
+        "label": "Republication de"
+      },
+      "rsvp": {
+        "interested": "Intéressé",
+        "label": "RSVP",
+        "maybe": "Peut-être",
+        "no": "Non",
+        "yes": "Oui"
+      },
+      "summary": {
+        "label": "Résumé"
+      },
+      "update": "Mettre à jour la publication",
+      "updateDraft": "Mettre à jour le brouillon",
+      "visibility": {
+        "label": "Visibilité"
+      }
+    },
     "post": {
-      "properties": "Propriétés"
+      "properties": "Propriétés",
+      "syndicate": "Distribuer la poste"
     },
     "posts": {
       "none": "Pas d'articles",
       "title": "Articles publiés"
     },
-    "title": "Articles"
+    "status": {
+      "deleted": "Supprimé",
+      "draft": "Brouillon",
+      "private": "Privé",
+      "public": "Publique",
+      "published": "Publié",
+      "syndicated": "Distribué",
+      "unlisted": "Non listé"
+    },
+    "title": "Articles",
+    "undelete": {
+      "action": "Restaurer la publication",
+      "submit": "Je suis sûr – restaurer ce post",
+      "title": "Êtes-vous sûr de vouloir restaurer ce post?"
+    },
+    "update": {
+      "action": "Modifier la publication",
+      "title": "Mettre à jour la publication de %s"
+    }
   }
 }

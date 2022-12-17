@@ -6,6 +6,7 @@
   "errorSummary": {
     "title": "Postoji problem"
   },
+  "important": "Važno",
   "noValue": "Nije rešeno",
   "optionalValue": "(opcionalno)",
   "pagination": {
