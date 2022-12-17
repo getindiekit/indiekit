@@ -1,4 +1,5 @@
 name: localazy-upload
+
 on:
   push:
     branches:
