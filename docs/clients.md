@@ -18,6 +18,12 @@ Available for [Android, iOS & iPadOS, macOS and Windows](https://ia.net/download
 
 Available for [Android, Linux, macOS and Windows](https://indiepass.marksuth.dev/downloads).
 
+## OwnYourSwarm
+
+> Post your [Swarm](https://www.swarmapp.com) check-ins to your website via Micropub.
+
+Available at <https://ownyourswarm.p3k.io>.
+
 ## Micro.blog
 
 ![Micro.blog icon](/clients/micro-blog.png){.client-icon}
