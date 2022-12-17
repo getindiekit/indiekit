@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
+
+### Bug Fixes
+
+- **indiekit:** don’t use a grid to list installed plug-ins ([a03d572](https://github.com/getindiekit/indiekit/commit/a03d572f93d592d7bd935bcab65ab5480d5cf40b))
+- **indiekit:** persist scope and token across views ([d8f0894](https://github.com/getindiekit/indiekit/commit/d8f0894d90db3738dbf099b951eb1a60e22eddbf))
+
+### Features
+
+- update locale catalogs ([ff4fecd](https://github.com/getindiekit/indiekit/commit/ff4fecdd200aa6cd7839475a5050426cd60f1b2f))
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Bug Fixes

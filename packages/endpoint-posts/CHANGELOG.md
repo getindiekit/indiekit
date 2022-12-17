@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
+
+### Bug Fixes
+
+- **endpoint-posts:** post content prose ([5dc3ff2](https://github.com/getindiekit/indiekit/commit/5dc3ff21e45edefc75315d04124b2df12ec66b5e))
+- **endpoint-posts:** show media within post prose ([83b52a5](https://github.com/getindiekit/indiekit/commit/83b52a54be32fb57d2b80763daf3e98b621af40b))
+- **endpoint-posts:** show photo in post card ([0342daa](https://github.com/getindiekit/indiekit/commit/0342daafe47335af3357e8cf88b80c44181a168a))
+
+### Features
+
+- **endpoint-posts:** add plug-in icon ([faacd00](https://github.com/getindiekit/indiekit/commit/faacd004784bfbe52766c6018d522f71095feb31))
+- **endpoint-posts:** article summary ([7dfa215](https://github.com/getindiekit/indiekit/commit/7dfa2154a696741a3c06d76553a42844aecd248e))
+- **endpoint-posts:** only show supported post types ([9e0be58](https://github.com/getindiekit/indiekit/commit/9e0be5843de1be2a1444eac5fff0e1ff8367b42c))
+- **endpoint-posts:** syndicate post button ([ada4539](https://github.com/getindiekit/indiekit/commit/ada45398dc6625738a7c034cfab9061ca41861dd))
+- update locale catalogs ([ff4fecd](https://github.com/getindiekit/indiekit/commit/ff4fecdd200aa6cd7839475a5050426cd60f1b2f))
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Bug Fixes

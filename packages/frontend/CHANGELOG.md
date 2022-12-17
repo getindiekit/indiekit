@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
+
+### Bug Fixes
+
+- **frontend:** clearer focused input state ([882ed45](https://github.com/getindiekit/indiekit/commit/882ed4501a2465c546102727d7f7f0ceb867bd36))
+- **frontend:** error summary inline size ([330b8f5](https://github.com/getindiekit/indiekit/commit/330b8f55f5f1ab14f8f2c3b2b18ff0080e07b68d))
+- **frontend:** fieldset spacing ([31764b3](https://github.com/getindiekit/indiekit/commit/31764b3b11bd4831930c6c08e9fa56fc5a5a2dee))
+- **frontend:** height of token input ([4189f10](https://github.com/getindiekit/indiekit/commit/4189f1004dd2f81a77f4a549558cd3d21c23771a))
+- **frontend:** icon alignment ([00906d7](https://github.com/getindiekit/indiekit/commit/00906d767fb3e90f4b2e39f9f52aeb092b07dcb8))
+- **frontend:** main container padding in minimal ui ([09cab79](https://github.com/getindiekit/indiekit/commit/09cab7907fe3a20ffb29fb61f36f411a7e8947a8))
+- **frontend:** still trying to figure out field(set) spacing ([e74d51c](https://github.com/getindiekit/indiekit/commit/e74d51cc8a4412870d7d98a0228f788c4fe2be0a))
+- **frontend:** text wrapping in summary values ([cbe3dc9](https://github.com/getindiekit/indiekit/commit/cbe3dc9ce086fc57aa8da9a2e6f042722448562c))
+- **frontend:** token input background colour on dark scheme ([e9a62a2](https://github.com/getindiekit/indiekit/commit/e9a62a229466283a1c4064db722c74386e87d5f9))
+- **frontend:** warning text flow spacing override ([3fff223](https://github.com/getindiekit/indiekit/commit/3fff2237c8114f88053162ef4386a8da3dbf3ba2))
+
+### Features
+
+- **frontend:** allow prose font to be overridden ([c6d3dc1](https://github.com/getindiekit/indiekit/commit/c6d3dc13ee68c80944b3a2fcaff7061a53aa5586))
+- **frontend:** conditional checkboxes (markup and style) ([7581f27](https://github.com/getindiekit/indiekit/commit/7581f272108dfcefbf0dadf5524f17a6ea7b6de9))
+- **frontend:** conditional radios (markup and style) ([9ce64ce](https://github.com/getindiekit/indiekit/commit/9ce64ce0d4bc740e089e2c9923d3bc828cb2b06a))
+- **frontend:** imageUrl filter ([4a92c83](https://github.com/getindiekit/indiekit/commit/4a92c83146efba675c946c6d943098580b8761a5))
+- **frontend:** includes filter ([f2c8444](https://github.com/getindiekit/indiekit/commit/f2c8444939830b869959a3ed57e0e5a6bd30ca8e))
+- **frontend:** increase maximum container size ([9587b0c](https://github.com/getindiekit/indiekit/commit/9587b0c976d073e7f9f251c8fe40bb54a9720541))
+- **frontend:** lazy loading for card images ([9d87488](https://github.com/getindiekit/indiekit/commit/9d874886cd7468c1902f196a9bc4536a6b56d47c))
+- **frontend:** small button variant ([18c7da9](https://github.com/getindiekit/indiekit/commit/18c7da90c5f94311c72fcdaeb02a64982693ce00))
+- **frontend:** syndicate icon ([307fe0c](https://github.com/getindiekit/indiekit/commit/307fe0ca5bdaf5b84a129c5aa9ecf3261ab69e20))
+- **frontend:** tweak design of default plug-in icon ([84828ef](https://github.com/getindiekit/indiekit/commit/84828efcb25b327f8b3ba4ce8f1b4effb2889e24))
+- **frontend:** tweak design of not-found image ([2153f71](https://github.com/getindiekit/indiekit/commit/2153f7176e568c7a898098ab692185a5a98e4378))
+- **frontend:** use prose for card meta ([b59271f](https://github.com/getindiekit/indiekit/commit/b59271f72c4b52f7f8aa909b3aac2511692e282b))
+- update locale catalogs ([ff4fecd](https://github.com/getindiekit/indiekit/commit/ff4fecdd200aa6cd7839475a5050426cd60f1b2f))
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Bug Fixes

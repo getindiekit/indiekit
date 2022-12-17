@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/indiekit",
-  "version": "1.0.0-alpha.18",
+  "version": "1.0.0-beta.0",
   "description": "The little server that connects your website to the independent web",
   "keywords": [
     "express",
@@ -38,15 +38,15 @@
     "directory": "packages/indiekit"
   },
   "dependencies": {
-    "@indiekit/endpoint-auth": "^1.0.0-alpha.18",
-    "@indiekit/endpoint-files": "^1.0.0-alpha.18",
-    "@indiekit/endpoint-image": "^1.0.0-alpha.13",
-    "@indiekit/endpoint-media": "^1.0.0-alpha.18",
-    "@indiekit/endpoint-micropub": "^1.0.0-alpha.18",
-    "@indiekit/endpoint-posts": "^1.0.0-alpha.18",
-    "@indiekit/endpoint-share": "^1.0.0-alpha.18",
-    "@indiekit/endpoint-syndicate": "^1.0.0-alpha.18",
-    "@indiekit/frontend": "^1.0.0-alpha.18",
+    "@indiekit/endpoint-auth": "^1.0.0-beta.0",
+    "@indiekit/endpoint-files": "^1.0.0-beta.0",
+    "@indiekit/endpoint-image": "^1.0.0-beta.0",
+    "@indiekit/endpoint-media": "^1.0.0-beta.0",
+    "@indiekit/endpoint-micropub": "^1.0.0-beta.0",
+    "@indiekit/endpoint-posts": "^1.0.0-beta.0",
+    "@indiekit/endpoint-share": "^1.0.0-beta.0",
+    "@indiekit/endpoint-syndicate": "^1.0.0-beta.0",
+    "@indiekit/frontend": "^1.0.0-beta.0",
     "@indiekit/preset-jekyll": "^1.0.0-alpha.18",
     "clean-stack": "^5.0.0",
     "commander": "^9.4.0",

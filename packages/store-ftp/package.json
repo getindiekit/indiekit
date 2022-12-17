@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-ftp",
-  "version": "1.0.0-alpha.16",
+  "version": "1.0.0-beta.0",
   "description": "FTP content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/store-ftp"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-alpha.16",
+    "@indiekit/error": "^1.0.0-beta.0",
     "basic-ftp": "^5.0.0"
   },
   "publishConfig": {

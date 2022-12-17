@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
+
+### Bug Fixes
+
+- **endpoint-posts:** post content prose ([5dc3ff2](https://github.com/getindiekit/indiekit/commit/5dc3ff21e45edefc75315d04124b2df12ec66b5e))
+- **endpoint-posts:** show media within post prose ([83b52a5](https://github.com/getindiekit/indiekit/commit/83b52a54be32fb57d2b80763daf3e98b621af40b))
+- **endpoint-posts:** show photo in post card ([0342daa](https://github.com/getindiekit/indiekit/commit/0342daafe47335af3357e8cf88b80c44181a168a))
+- **endpoint-share:** bookmarklet window size ([6d5bce3](https://github.com/getindiekit/indiekit/commit/6d5bce34ef3e793c217134fbf67e6e54c3d5dc87))
+- **endpoint-share:** use persisted access token ([dfe2b99](https://github.com/getindiekit/indiekit/commit/dfe2b995f03c493cb0ce7ace1362095cf1cbaede))
+- **frontend:** clearer focused input state ([882ed45](https://github.com/getindiekit/indiekit/commit/882ed4501a2465c546102727d7f7f0ceb867bd36))
+- **frontend:** error summary inline size ([330b8f5](https://github.com/getindiekit/indiekit/commit/330b8f55f5f1ab14f8f2c3b2b18ff0080e07b68d))
+- **frontend:** fieldset spacing ([31764b3](https://github.com/getindiekit/indiekit/commit/31764b3b11bd4831930c6c08e9fa56fc5a5a2dee))
+- **frontend:** height of token input ([4189f10](https://github.com/getindiekit/indiekit/commit/4189f1004dd2f81a77f4a549558cd3d21c23771a))
+- **frontend:** icon alignment ([00906d7](https://github.com/getindiekit/indiekit/commit/00906d767fb3e90f4b2e39f9f52aeb092b07dcb8))
+- **frontend:** main container padding in minimal ui ([09cab79](https://github.com/getindiekit/indiekit/commit/09cab7907fe3a20ffb29fb61f36f411a7e8947a8))
+- **frontend:** still trying to figure out field(set) spacing ([e74d51c](https://github.com/getindiekit/indiekit/commit/e74d51cc8a4412870d7d98a0228f788c4fe2be0a))
+- **frontend:** text wrapping in summary values ([cbe3dc9](https://github.com/getindiekit/indiekit/commit/cbe3dc9ce086fc57aa8da9a2e6f042722448562c))
+- **frontend:** token input background colour on dark scheme ([e9a62a2](https://github.com/getindiekit/indiekit/commit/e9a62a229466283a1c4064db722c74386e87d5f9))
+- **frontend:** warning text flow spacing override ([3fff223](https://github.com/getindiekit/indiekit/commit/3fff2237c8114f88053162ef4386a8da3dbf3ba2))
+- **indiekit:** don’t use a grid to list installed plug-ins ([a03d572](https://github.com/getindiekit/indiekit/commit/a03d572f93d592d7bd935bcab65ab5480d5cf40b))
+- **indiekit:** persist scope and token across views ([d8f0894](https://github.com/getindiekit/indiekit/commit/d8f0894d90db3738dbf099b951eb1a60e22eddbf))
+
+### Features
+
+- **endpoint-auth:** add plug-in icon ([61f961b](https://github.com/getindiekit/indiekit/commit/61f961b0a9f0f5192ab407dd1b7078c21c956dad))
+- **endpoint-auth:** change colour of plug-in icon ([c5541e3](https://github.com/getindiekit/indiekit/commit/c5541e3c6cb15cc096886dd447c30e3bc9f8bd75))
+- **endpoint-image:** add plug-in icon ([f550914](https://github.com/getindiekit/indiekit/commit/f550914a26fba6af17b1a4ca704a2482bfbbdc0b))
+- **endpoint-media:** change colour of plugin icon ([1b8a565](https://github.com/getindiekit/indiekit/commit/1b8a5656bb78e33379fe3a47b21359fa8e191340))
+- **endpoint-micropub:** change colour of plug-in icon ([f230545](https://github.com/getindiekit/indiekit/commit/f230545794bcb9362ab8dfe487c05c55a05e609a))
+- **endpoint-posts:** add plug-in icon ([faacd00](https://github.com/getindiekit/indiekit/commit/faacd004784bfbe52766c6018d522f71095feb31))
+- **endpoint-posts:** article summary ([7dfa215](https://github.com/getindiekit/indiekit/commit/7dfa2154a696741a3c06d76553a42844aecd248e))
+- **endpoint-posts:** only show supported post types ([9e0be58](https://github.com/getindiekit/indiekit/commit/9e0be5843de1be2a1444eac5fff0e1ff8367b42c))
+- **endpoint-posts:** syndicate post button ([ada4539](https://github.com/getindiekit/indiekit/commit/ada45398dc6625738a7c034cfab9061ca41861dd))
+- **endpoint-share:** tweak design of plug-in icon ([a730668](https://github.com/getindiekit/indiekit/commit/a730668e2979b7f97dd1f0da3b0f064e646652b5))
+- **endpoint-syndicate:** add plug-in icon ([6948294](https://github.com/getindiekit/indiekit/commit/6948294f35629a53086b773c9009039b2e6f4169))
+- **endpoint-syndicate:** support form submission and redirect ([b717a56](https://github.com/getindiekit/indiekit/commit/b717a56c5f4ec573d146e32635ee2ef4a7e9ac55))
+- **frontend:** allow prose font to be overridden ([c6d3dc1](https://github.com/getindiekit/indiekit/commit/c6d3dc13ee68c80944b3a2fcaff7061a53aa5586))
+- **frontend:** conditional checkboxes (markup and style) ([7581f27](https://github.com/getindiekit/indiekit/commit/7581f272108dfcefbf0dadf5524f17a6ea7b6de9))
+- **frontend:** conditional radios (markup and style) ([9ce64ce](https://github.com/getindiekit/indiekit/commit/9ce64ce0d4bc740e089e2c9923d3bc828cb2b06a))
+- **frontend:** imageUrl filter ([4a92c83](https://github.com/getindiekit/indiekit/commit/4a92c83146efba675c946c6d943098580b8761a5))
+- **frontend:** includes filter ([f2c8444](https://github.com/getindiekit/indiekit/commit/f2c8444939830b869959a3ed57e0e5a6bd30ca8e))
+- **frontend:** increase maximum container size ([9587b0c](https://github.com/getindiekit/indiekit/commit/9587b0c976d073e7f9f251c8fe40bb54a9720541))
+- **frontend:** lazy loading for card images ([9d87488](https://github.com/getindiekit/indiekit/commit/9d874886cd7468c1902f196a9bc4536a6b56d47c))
+- **frontend:** small button variant ([18c7da9](https://github.com/getindiekit/indiekit/commit/18c7da90c5f94311c72fcdaeb02a64982693ce00))
+- **frontend:** syndicate icon ([307fe0c](https://github.com/getindiekit/indiekit/commit/307fe0ca5bdaf5b84a129c5aa9ecf3261ab69e20))
+- **frontend:** tweak design of default plug-in icon ([84828ef](https://github.com/getindiekit/indiekit/commit/84828efcb25b327f8b3ba4ce8f1b4effb2889e24))
+- **frontend:** tweak design of not-found image ([2153f71](https://github.com/getindiekit/indiekit/commit/2153f7176e568c7a898098ab692185a5a98e4378))
+- **frontend:** use prose for card meta ([b59271f](https://github.com/getindiekit/indiekit/commit/b59271f72c4b52f7f8aa909b3aac2511692e282b))
+- **store-file-system:** tweak design of plug-in icon ([35c7795](https://github.com/getindiekit/indiekit/commit/35c7795193840b96e771ead85b54037bb4bf0ab2))
+- **store-ftp:** tweak design of plug-in icon ([5ca9dd5](https://github.com/getindiekit/indiekit/commit/5ca9dd5c12d9885425540389bfc3ab88901692a2))
+- update locale catalogs ([ff4fecd](https://github.com/getindiekit/indiekit/commit/ff4fecdd200aa6cd7839475a5050426cd60f1b2f))
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Bug Fixes

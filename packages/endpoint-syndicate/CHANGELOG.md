@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
+
+### Features
+
+- **endpoint-syndicate:** add plug-in icon ([6948294](https://github.com/getindiekit/indiekit/commit/6948294f35629a53086b773c9009039b2e6f4169))
+- **endpoint-syndicate:** support form submission and redirect ([b717a56](https://github.com/getindiekit/indiekit/commit/b717a56c5f4ec573d146e32635ee2ef4a7e9ac55))
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Features

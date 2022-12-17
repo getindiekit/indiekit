@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
+
+### Features
+
+- **endpoint-image:** add plug-in icon ([f550914](https://github.com/getindiekit/indiekit/commit/f550914a26fba6af17b1a4ca704a2482bfbbdc0b))
+
 # [1.0.0-alpha.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2022-11-23)
 
 **Note:** Version bump only for package @indiekit/endpoint-image
