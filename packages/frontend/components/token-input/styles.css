@@ -31,7 +31,8 @@
   inline-size: 100%;
   margin-block-end: var(--input-border-width-focus-offset);
   min-height: calc(var(--space-xs) + 2rem);
-  padding: var(--space-xs);
+  padding-block: calc(var(--space-s) / 2);
+  padding-inline: var(--space-xs);
 
   &.focused {
     border-color: var(--color-on-background);
