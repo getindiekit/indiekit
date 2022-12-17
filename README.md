@@ -8,6 +8,12 @@ Meet [Indiekit](https://getindiekit.com), the little Node.js server with all the
 
 ![Indiekit’s application management interface.](/docs/public/interface-light.png)
 
+## Sponsors
+
+Indiekit is [supported by its community](https://github.com/sponsors/getindiekit). Special thanks to:
+
+<!-- sponsors-readme --><!-- sponsors-readme -->
+
 ## Features
 
 - **Publish content to your website** using [apps and services](docs/clients.md) that support the [Micropub API](https://micropub.spec.indieweb.org)
