@@ -8,8 +8,8 @@
   flex-direction: row;
   font: var(--font-label);
   padding: var(--space-m);
-}
 
-.warning-text__text {
-  margin-block-start: 0;
+  & [class="warning-text__text"] {
+    margin-block-start: 0;
+  }
 }
