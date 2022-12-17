@@ -97,7 +97,8 @@
       }
     },
     "post": {
-      "properties": "Properties"
+      "properties": "Properties",
+      "syndicate": "Syndicate post"
     },
     "posts": {
       "title": "Published posts",

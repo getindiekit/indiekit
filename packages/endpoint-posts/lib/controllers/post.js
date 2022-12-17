@@ -46,5 +46,7 @@ export const postController = async (request, response) => {
     ],
     back: false,
     post,
+    redirectUri: path.join(request.baseUrl, request.params.id),
+    success: request.query.success,
   });
 };
