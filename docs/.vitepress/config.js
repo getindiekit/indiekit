@@ -97,6 +97,7 @@ export default {
     ["meta", { property: "og:image", content: "/opengraph-image.png" }],
   ],
   lang: "en-GB",
+  cacheDir: ".cache",
   cleanUrls: "without-subfolders",
   markdown: {
     anchor: {
