@@ -77,7 +77,7 @@
   & time {
     color: var(--color-on-offset);
     font: var(--font-code);
-    font-size: 0.875rem;
+    font-size: var(--font-size-xs);
     letter-spacing: -0.025em;
     margin-block-end: auto;
     word-spacing: -0.25em;
