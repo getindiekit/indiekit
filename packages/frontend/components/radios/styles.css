@@ -67,7 +67,7 @@
 }
 
 /* Focused state */
-.radios__input:focus + .radios__label::before {
+.radios__input:focus-visible + .radios__label::before {
   border-color: var(--color-on-background);
   border-width: var(--input-border-width-focus);
   box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
@@ -76,7 +76,7 @@
 }
 
 @media screen and (forced-colors: active) {
-  .radios__input:focus + .radios__label::before {
+  .radios__input:focus-visible + .radios__label::before {
     outline-color: Highlight;
   }
 }

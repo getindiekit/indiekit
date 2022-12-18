@@ -68,7 +68,7 @@
 }
 
 /* Focused state */
-.checkboxes__input:focus + .checkboxes__label::before {
+.checkboxes__input:focus-visible + .checkboxes__label::before {
   border-color: var(--color-on-background);
   border-width: var(--input-border-width-focus);
   box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
@@ -77,7 +77,7 @@
 }
 
 @media screen and (forced-colors: active) {
-  .checkboxes__input:focus + .checkboxes__label::before {
+  .checkboxes__input:focus-visible + .checkboxes__label::before {
     outline-color: Highlight;
   }
 }

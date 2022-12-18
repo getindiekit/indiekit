@@ -1,4 +1,5 @@
 .input {
+  appearance: none;
   background-color: var(--color-background);
   border: var(--input-border-width) solid var(--color-outline);
   border-radius: var(--border-radius-small);
@@ -8,7 +9,7 @@
   padding-block: calc(var(--space-s) / 2);
   padding-inline: var(--space-s);
 
-  &:focus {
+  &:focus-visible {
     border-color: var(--color-on-background);
     border-width: var(--input-border-width-focus);
     inset-block-start: calc(var(--input-border-width-focus-offset) * -1);

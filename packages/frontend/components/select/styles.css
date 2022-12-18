@@ -1,5 +1,4 @@
 .select {
-  -webkit-appearance: none;
   appearance: none;
   background-color: var(--color-background);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23000' d='M0 8h32L16 24z'/%3E%3C/svg%3E");
@@ -19,7 +18,7 @@
     display: none;
   }
 
-  &:focus {
+  &:focus-visible {
     background-position: right
         calc(0.75em - var(--input-border-width-focus-offset)) top
         calc(50% + var(--input-border-width-focus-offset)),

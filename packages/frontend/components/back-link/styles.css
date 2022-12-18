@@ -39,7 +39,7 @@
     transform: rotate(var(--back-link-chevron-rotation));
   }
 
-  & a:focus::before,
+  & a:focus-visible::before,
   & a:hover::before {
     --back-link-chevron-thickness: calc(var(--text-thickness) * 2);
   }
