@@ -15,7 +15,7 @@
     </h2>
     {{ prose({
       classes: "card__meta",
-      text: opts.description | markdown | striptags | excerpt(20, publication.locale)
+      text: opts.description | markdown | striptags | excerpt(30, publication.locale)
     }) if opts.description }}
     {% if opts.published or opts.badges %}
     <footer class="card__footer">
