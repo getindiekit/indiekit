@@ -1,0 +1,10 @@
+{
+  "*.js": [
+    "prettier --write",
+    "xo"
+  ],
+  "*.css": [
+    "prettier --write",
+    "stylelint"
+  ]
+}
