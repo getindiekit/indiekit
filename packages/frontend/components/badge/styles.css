@@ -4,6 +4,8 @@
    * Adding an outline ensures that badge still keeps it’s meaning.
    *
    * @link https://accessibility.blog.gov.uk/2017/03/27/how-users-change-colours-on-websites/
+   *
+   * 2. Adjust baseline to visually center text within pill shape.
    */
   --icon-margin: var(--space-2xs);
   align-items: center;
@@ -15,7 +17,8 @@
   font-weight: 500;
   outline: var(--border-width-thick) solid transparent; /* 1 */
   outline-offset: calc(var(--border-width-thick) * -1); /* 1 */
-  padding-block: var(--space-2xs);
+  padding-block-end: calc(var(--space-2xs) - 0.0625rem); /* 2 */
+  padding-block-start: calc(var(--space-2xs) + 0.0625rem); /* 2 */
   padding-inline: var(--space-m);
   white-space: nowrap;
 
@@ -26,7 +29,8 @@
 
 .badge--small {
   font-size: 0.75rem;
-  padding-block: calc(var(--space-2xs) / 2);
+  padding-block-end: calc(var(--space-2xs) / 2 - 0.0625rem);
+  padding-block-start: calc(var(--space-2xs) / 2 + 0.0625rem);
   padding-inline: var(--space-s);
 }
 
