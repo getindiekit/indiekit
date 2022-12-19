@@ -7,7 +7,7 @@
     --button-background-color,
     var(--color-primary-variant)
   );
-  border: var(--border-width-thick) solid transparent;
+  border: var(--input-border-width) solid transparent;
   border-block-end-color: var(--color-shadow);
   border-radius: var(--border-radius-small);
   color: var(--button-color, var(--color-on-primary));
@@ -16,7 +16,13 @@
   font-weight: var(--button-font-weight, 500);
   justify-content: center;
   line-height: var(--line-height-loose);
-  padding-block: calc(var(--button-padding, var(--space-m)) / 2);
+  margin-block-end: var(--input-border-width-focus-offset);
+  padding-block: calc(
+    var(
+      --button-padding,
+      calc(var(--space-m) - var(--input-border-width) * 2) / 2
+    )
+  );
   padding-inline: var(--button-padding, var(--space-m));
 }
 
