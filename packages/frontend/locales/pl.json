@@ -6,6 +6,11 @@
   "errorSummary": {
     "title": "Wystąpił problem"
   },
+  "geoInput": {
+    "denied": "Nie można uzyskać uprawnień do korzystania z bieżącej lokalizacji",
+    "failed": "Nie można uzyskać bieżącej lokalizacji",
+    "getCurrentPosition": "Użyj mojej obecnej lokalizacji"
+  },
   "important": "Ważne",
   "noValue": "Nie ustawiono",
   "optionalValue": "(opcjonalnie)",

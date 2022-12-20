@@ -6,6 +6,11 @@
   "errorSummary": {
     "title": "Postoji problem"
   },
+  "geoInput": {
+    "denied": "Nije moguće dobiti dozvolu za korišćenje vaše trenutne lokacije",
+    "failed": "Nije moguće dobiti vašu trenutnu lokaciju",
+    "getCurrentPosition": "Koristi moju trenutnu lokaciju"
+  },
   "important": "Važno",
   "noValue": "Nije rešeno",
   "optionalValue": "(opcionalno)",

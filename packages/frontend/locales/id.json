@@ -6,6 +6,11 @@
   "errorSummary": {
     "title": "Ada masalah"
   },
+  "geoInput": {
+    "denied": "Tidak dapat memperoleh izin untuk menggunakan lokasi Anda saat ini",
+    "failed": "Tidak bisa mendapatkan lokasi Anda saat ini",
+    "getCurrentPosition": "Gunakan lokasi sekarang"
+  },
   "important": "Penting",
   "noValue": "Tidak ada",
   "optionalValue": "(opsional)",

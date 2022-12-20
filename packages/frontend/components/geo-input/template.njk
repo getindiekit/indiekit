@@ -1,0 +1,38 @@
+{%- from "../error-message/macro.njk" import errorMessage with context -%}
+{%- from "../button/macro.njk" import button with context -%}
+{%- from "../input/macro.njk" import input with context -%}
+{{ input({
+  field: {
+    attributes: {
+      "data-controller": "geo-input",
+      "data-geo-input-denied-value": __("geoInput.denied"),
+      "data-geo-input-failed-value": __("geoInput.failed")
+    }
+  },
+  classes: opts.classes,
+  id: opts.id,
+  name: opts.name,
+  value: opts.value,
+  label: opts.label,
+  hint: opts.hint,
+  optional: opts.optional,
+  attributes: {
+    "data-geo-input-target": "geo"
+  },
+  errorMessage: opts.errorMessage
+}) }}
+<template id="geo-input-button">
+  {{ button({
+    classes: "button--secondary",
+    type: "button",
+    text: __("geoInput.getCurrentPosition"),
+    attributes: {
+      "data-action": "geo-input#find"
+    }
+  }) }}
+</template>
+<template id="geo-input-error-message">
+  {{ errorMessage({
+    id: opts.id + "-error"
+  }) }}
+</template>
