@@ -5,7 +5,7 @@
   {%- if opts.legend.isPageHeading -%}
     {{- heading(opts.legend) -}}
   {%- else -%}
-    {{- opts.legend.text | safe -}}
+    {{- opts.legend.text + (" " + __("optionalValue") if opts.optional) | safe -}}
   {%- endif -%}
   </legend>
   {%- endif %}
