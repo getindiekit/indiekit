@@ -66,3 +66,28 @@
 .input--width-2 {
   max-width: 3ch;
 }
+
+/* Show an input and button combined */
+.input-button-group {
+  align-items: end;
+  display: flex;
+  gap: 0;
+
+  & .input {
+    border-end-end-radius: 0;
+    border-start-end-radius: 0;
+    inline-size: auto;
+    margin-inline-end: calc(var(--input-border-width) * -1);
+    position: relative;
+    z-index: 1;
+  }
+
+  & .input:focus-visible {
+    margin-inline-end: calc(var(--input-border-width-focus) * -1);
+  }
+
+  & .button {
+    border-end-start-radius: 0;
+    border-start-start-radius: 0;
+  }
+}
