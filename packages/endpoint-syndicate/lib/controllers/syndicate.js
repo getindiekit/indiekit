@@ -101,7 +101,7 @@ export const syndicateController = {
           mpSyndicateTo.join(" ");
       }
 
-      if (redirectUri) {
+      if (redirectUri && redirectUri.startsWith("/")) {
         const message = encodeURIComponent(body.success_description);
         return response.redirect(`${redirectUri}?success=${message}`);
       }
