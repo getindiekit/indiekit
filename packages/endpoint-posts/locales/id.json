@@ -17,6 +17,9 @@
       "content": {
         "empty": "Masukkan beberapa konten"
       },
+      "geo": {
+        "invalid": "Masukkan koordinat yang valid"
+      },
       "in-reply-to": {
         "empty": "Masukkan alamat web misalnya https://example.org"
       },
@@ -41,6 +44,10 @@
       },
       "content": {
         "label": "Konten"
+      },
+      "geo": {
+        "hint": "Lintang dan bujur, misalnya %s",
+        "label": "Koordinat lokasi"
       },
       "in-reply-to": {
         "label": "Sebagai balasan"

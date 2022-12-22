@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+import { LAT_LONG_RE } from "../utils.js";
 
 export const validate = [
   check("bookmark-of")
@@ -42,4 +43,10 @@ export const validate = [
     )
     .notEmpty()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+  check("geo")
+    .if((value, { req }) => req.body?.geo)
+    .custom((value) => value.match(LAT_LONG_RE))
+    .withMessage((value, { req, path }) =>
+      req.__(`posts.error.${path}.invalid`)
+    ),
 ];

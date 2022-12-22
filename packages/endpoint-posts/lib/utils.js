@@ -1,6 +1,29 @@
 import { Buffer } from "node:buffer";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+import formatcoords from "formatcoords";
 import { endpoint } from "./endpoint.js";
+
+export const LAT_LONG_RE =
+  /^(?<latitude>(?:-?|\+?)?\d+(?:\.\d+)?),\s*(?<longitude>(?:-?|\+?)?\d+(?:\.\d+)?)$/;
+
+/**
+ * Get location property
+ *
+ * @param {string} geo - Latitude and longitude, comma separated
+ * @returns {object} JF2 location property
+ */
+export const getLocationProperty = (geo) => {
+  const { latitude, longitude } = geo.match(LAT_LONG_RE).groups;
+
+  return {
+    type: "geo",
+    latitude,
+    longitude,
+    name: formatcoords(geo).format({
+      decimalPlaces: 2,
+    }),
+  };
+};
 
 /**
  * Get post ID from URL

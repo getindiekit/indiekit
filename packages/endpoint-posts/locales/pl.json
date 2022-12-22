@@ -17,6 +17,9 @@
       "content": {
         "empty": "Wprowadź jakąś zawartość"
       },
+      "geo": {
+        "invalid": "Wprowadź poprawne współrzędne"
+      },
       "in-reply-to": {
         "empty": "Wpisz adres internetowy, taki jak https://example.org"
       },
@@ -41,6 +44,10 @@
       },
       "content": {
         "label": "Zawartość"
+      },
+      "geo": {
+        "hint": "Szerokość i długość geograficzna, na przykład %s",
+        "label": "Współrzędne lokalizacji"
       },
       "in-reply-to": {
         "label": "W odpowiedzi na"

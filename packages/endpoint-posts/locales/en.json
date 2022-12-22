@@ -7,6 +7,9 @@
       "content": {
         "empty": "Enter some content"
       },
+      "geo": {
+        "invalid": "Enter valid coordinates"
+      },
       "in-reply-to": {
         "empty": "Enter a web address like https://example.org"
       },
@@ -63,6 +66,10 @@
       },
       "content": {
         "label": "Content"
+      },
+      "geo": {
+        "label": "Location coordinates",
+        "hint": "Latitude and longitude, for example %s"
       },
       "in-reply-to": {
         "label": "In reply to"

@@ -17,6 +17,9 @@
       "content": {
         "empty": "Voer wat inhoud in"
       },
+      "geo": {
+        "invalid": "Voer geldige coördinaten in"
+      },
       "in-reply-to": {
         "empty": "Voer een webadres in zoals https://example.org"
       },
@@ -41,6 +44,10 @@
       },
       "content": {
         "label": "Inhoud"
+      },
+      "geo": {
+        "hint": "Lengte- en breedtegraad, bijvoorbeeld %s",
+        "label": "Locatiecoördinaten"
       },
       "in-reply-to": {
         "label": "Als antwoord op"
