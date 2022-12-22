@@ -16,6 +16,7 @@ An [endpoint](../../concepts.md#endpoint) plug-in adds new routes to an Indiekit
 | `navigationItems` | [`Object`][] or [`Array`][] | Add navigation items to the web interface. _Optional_. |
 | `routes` | [`Router`][] | Plug-in routes that require authentication to access. _Optional_. |
 | `routesPublic` | [`Router`][] | Plug-in routes that can be publicly accessed. _Optional_. |
+| `routesWellKnown` | [`Router`][] | Plug-in routes that can be accessed at `/.well-known/`. _Optional_. |
 
 ### `mountPath`
 
@@ -77,26 +78,41 @@ get navigationItems() {
 
 Routes can be added to Indiekit’s [Express](https://expressjs.com) server by providing an instance of an Express [`Router`][] with the paths and methods you wish to support.
 
-For example, to accept a `POST` request to `/example`:
+For example, given a `mountPath` of `/example`, to accept a `POST` request at `/example/secret`, add the following:
 
 ```js
 get routes() {
-  router.post("/", (req, res, next) => {…});
+  router.post("/secret", (req, res, next) => {…});
   return router;
 }
 ```
 
 ### `routesPublic`
 
-Routes added with the `routes` method are attached to Indiekit’s own router after rate limiting and IndieAuth authentication middleware. Any request to your endpoint path will therefore require a user to be signed in or otherwise authenticated.
+The `routes` method attaches routes to Indiekit’s own router after rate limiting and IndieAuth authentication middleware. Any request to your endpoint path will therefore require a user to be signed in or otherwise authenticated.
 
-You can bypass authentication by instead using the `routesPublic` method.
+You can bypass authentication by using the `routesPublic` method.
 
-For example, to accept a `GET` request on the `/example` path that can be accessed publicly:
+For example, given a `mountPath` of `/example`, to accept an unauthenticated `GET` request at `/example/public`, add the following:
 
 ```js
 get routesPublic() {
-  router.get("/", (req, res, next) => {…});
+  router.get("/public", (req, res, next) => {…});
+  return router;
+}
+```
+
+### `routesWellKnown`
+
+Sometimes its necessary to serve requests to [.well-known paths](https://tools.ietf.org/html/rfc5785), standardized locations for discovering domain-wide metadata (see this registry of [Well-Known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)).
+
+The `routesWellKnown` method allows you to add resources at this location.
+
+For example, to accept a `GET` request at [`/.well-known/posh/spice.json`](https://www.rfc-editor.org/rfc/rfc7711.html), add the following:
+
+```js
+get routesWellKnown() {
+  router.get("/posh/spice.json", (req, res, next) => {…});
   return router;
 }
 ```
@@ -124,12 +140,17 @@ export default class ExampleEndpoint {
   }
 
   get routes() {
-    router.post("/", (req, res, next) => {…});
+    router.post("/secret", (req, res, next) => {…});
     return router;
   }
 
   get routesPublic() {
-    router.get("/", (req, res, next) => {…});
+    router.get("/public", (req, res, next) => {…});
+    return router;
+  }
+
+  get routesWellKnown() {
+    router.get("/posh/spice.json", (req, res, next) => {…});
     return router;
   }
 
