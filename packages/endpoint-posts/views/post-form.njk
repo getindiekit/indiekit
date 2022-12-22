@@ -152,7 +152,10 @@
     items: syndicationTargetItems
   }) | indent(2) }}
 
-  {% call details({ summary: __("posts.form.advancedOptions") }) %}
+  {% call details({
+    open: showAdvancedOptions,
+    summary: __("posts.form.advancedOptions")
+  }) %}
     {{ input({
       value: errors.category.value or post.category,
       label: {
