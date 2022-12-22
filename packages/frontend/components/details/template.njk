@@ -1,5 +1,5 @@
 {%- from "../prose/macro.njk" import prose with context -%}
-<details class="{{ classes("details", action) }}"{%- if opts.id %} id="{{ opts.id }}"{% endif %}{{ attributes(opts.attributes) }}>
+<details class="{{ classes("details", action) }}"{%- if opts.id %} id="{{ opts.id }}"{% endif %}{{ attributes(opts.attributes) }}{{- " open" if opts.open }}>
   <summary class="details__summary"><span class="details__summary-text">{{
     opts.summary | safe
   }}</span></summary>
