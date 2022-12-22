@@ -4,9 +4,7 @@ import {
   getPostName,
   getPostTypeName,
   getPostUrl,
-  getRsvpItems,
   getSyndicateToItems,
-  getVisibilityItems,
 } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
@@ -64,18 +62,6 @@ test("Gets post URL", (t) => {
   );
 });
 
-test("Gets RSVP `items` for radios component", (t) => {
-  const response = { __: (value) => value };
-  const result = getRsvpItems(response, {
-    rsvp: "no",
-  });
-
-  t.is(result.length, 4);
-  t.is(result[1].value, "no");
-  t.is(result[1].text, "posts.form.rsvp.no");
-  t.true(result[1].checked);
-});
-
 test("Gets syndication target `items` for checkboxes component", (t) => {
   const post = { "mp-syndicate-to": "https://twitter.com/username" };
   const result = getSyndicateToItems(t.context.publication, post);
@@ -85,16 +71,4 @@ test("Gets syndication target `items` for checkboxes component", (t) => {
   t.is(result[0].value, "https://twitter.com/username");
   t.is(result[0].text, "Twitter");
   t.is(result[0].hint.text, "https://twitter.com/username");
-});
-
-test("Gets visibility `items` for radios component", (t) => {
-  const response = { __: (value) => value };
-  const result = getVisibilityItems(response, {
-    visibility: "public",
-  });
-
-  t.is(result.length, 4);
-  t.is(result[0].value, "_ignore");
-  t.is(result[0].text, "noValue");
-  t.true(result[1].checked);
 });

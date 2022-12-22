@@ -32,13 +32,13 @@
     color: status.syndicated.color,
     icon: status.syndicated.icon,
     text: __(status.syndicated.text)
-  }) if postStatus === "published" and post.syndication }}
+  }) if postStatus === "published" and post.syndication and status.syndicated }}
 
   {{ badge({
     color: status[post.visibility].color,
     icon: status[post.visibility].icon,
     text: __(status[post.visibility].text)
-  }) if postStatus === "published" and post.visibility and post.visibility !== "_ignore" }}
+  }) if postStatus === "published" and status[post.visibility] }}
 
   {{ prose({ html: postHtml + postMedia }) }}
 

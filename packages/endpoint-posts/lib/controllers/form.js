@@ -51,13 +51,10 @@ export const formController = {
         delete values.items;
       }
 
-      // Delete empty and ignored values
+      // Delete empty values
       for (const key in values) {
-        if (Object.prototype.hasOwnProperty.call(values, key)) {
-          const value = values[key];
-          if (!value || value === "_ignore") {
-            delete values[key];
-          }
+        if (Object.prototype.hasOwnProperty.call(values, key) && !values[key]) {
+          delete values[key];
         }
       }
 

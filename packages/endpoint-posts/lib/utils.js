@@ -77,51 +77,17 @@ export const getPostUrl = (id) => {
 };
 
 /**
- * Get RSVP `items` for radios component
- *
- * @param {object} response - HTTP response
- * @param {object} [post=false] - Post properties
- * @returns {object} Items for radios component
- */
-export const getRsvpItems = (response, post = false) => {
-  return ["yes", "no", "maybe", "interested"].map((value) => ({
-    text: response.__(`posts.form.rsvp.${value}`),
-    value,
-    checked: post.rsvp ? value === post.rsvp : value === "yes",
-  }));
-};
-
-/**
  * Get syndication target `items` for checkboxes component
  *
  * @param {object} publication - Publication configuration
- * @param {string} post - Post properties
+ * @param {boolean} checkTargets - Select ’checked’ targets
  * @returns {object} Items for checkboxes component
  */
-export const getSyndicateToItems = (publication, post = false) => {
-  return publication.syndicationTargets.map((target) => {
-    return {
-      text: target.info.service.name,
-      hint: { text: target.info.uid },
-      value: target.info.uid,
-      checked: post["mp-syndicate-to"]?.includes(target.info.uid),
-    };
-  });
-};
-
-/**
- * Get visibility `items` for radios component
- *
- * @param {object} response - HTTP response
- * @param {object} [post=false] - Post properties
- * @returns {object} Items for radios component
- */
-export const getVisibilityItems = (response, post = false) => {
-  return ["_ignore", "public", "unlisted", "private"].map((value) => ({
-    text: response.__(
-      value === "_ignore" ? response.__("noValue") : `posts.status.${value}`
-    ),
-    value,
-    checked: post.visibility ? value === post.visibility : value === "_ignore",
+export const getSyndicateToItems = (publication, checkTargets) => {
+  return publication.syndicationTargets.map((target) => ({
+    text: target.info.service.name,
+    hint: { text: target.info.uid },
+    value: target.info.uid,
+    ...(checkTargets && { checked: target.options.checked }),
   }));
 };

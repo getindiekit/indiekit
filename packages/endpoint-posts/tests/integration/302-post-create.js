@@ -14,8 +14,7 @@ test("Creates post and redirects to posts page", async (t) => {
     .type("form")
     .set("cookie", [cookie()])
     .send({ type: "entry" })
-    .send({ content: "Foobar" })
-    .send({ visibility: "_ignore" });
+    .send({ content: "Foobar" });
 
   t.is(result.status, 302);
   t.regex(result.text, /Found. Redirecting to \/posts\?success/);
