@@ -1,5 +1,6 @@
 import test from "ava";
 import {
+  getLocationProperty,
   getPostId,
   getPostName,
   getPostTypeName,
@@ -29,6 +30,15 @@ test.beforeEach((t) => {
       },
     ],
   };
+});
+
+test("Gets location property", (t) => {
+  t.deepEqual(getLocationProperty("12.3456, -65.4321"), {
+    type: "geo",
+    latitude: "12.3456",
+    longitude: "-65.4321",
+    name: "12° 20′ 44.16″ N 65° 25′ 55.56″ W",
+  });
 });
 
 test("Gets post ID", (t) => {

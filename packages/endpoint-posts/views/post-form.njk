@@ -17,6 +17,8 @@
   postType === "rsvp"
 %}
 
+{% set geo = [post.location.latitude, post.location.longitude] | join(",") if post.location %}
+
 {% block fieldset %}
   {{ input({
     name: "type",
@@ -166,6 +168,22 @@
         "data-controller": "token-input",
         "data-token-input-items-value": publication.categories
       }
+    }) | indent(4) }}
+
+    {{ geoInput({
+      id: "geo",
+      name: "geo",
+      value: errors.geo.value or geo,
+      label: {
+        text: __("posts.form.geo.label")
+      },
+      hint: {
+        text: __("posts.form.geo.hint", "50.8211, -0.1452")
+      },
+      optional: true,
+      errorMessage: {
+        text: errors.geo.msg
+      } if errors.geo
     }) | indent(4) }}
 
     {{ input({

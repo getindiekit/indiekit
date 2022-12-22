@@ -17,6 +17,9 @@
       "content": {
         "empty": "Introducir algún contenido"
       },
+      "geo": {
+        "invalid": "Introduce coordenadas válidas"
+      },
       "in-reply-to": {
         "empty": "Ingrese una dirección web como https://example.org"
       },
@@ -41,6 +44,10 @@
       },
       "content": {
         "label": "Contenido"
+      },
+      "geo": {
+        "hint": "Latitud y longitud, por ejemplo %s",
+        "label": "Coordenadas de ubicación"
       },
       "in-reply-to": {
         "label": "En respuesta a"

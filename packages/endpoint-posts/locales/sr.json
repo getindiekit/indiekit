@@ -17,6 +17,9 @@
       "content": {
         "empty": "Unesite neki sadržaj"
       },
+      "geo": {
+        "invalid": "Unesite važeće koordinate"
+      },
       "in-reply-to": {
         "empty": "Unesite veb adresu kao što je https://example.org"
       },
@@ -41,6 +44,10 @@
       },
       "content": {
         "label": "Sadržaj"
+      },
+      "geo": {
+        "hint": "Geografska širina i dužina, na primer %s",
+        "label": "Koordinate lokacije"
       },
       "in-reply-to": {
         "label": "U odgovoru na"

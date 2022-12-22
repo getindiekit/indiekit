@@ -1,7 +1,8 @@
-import { validationResult } from "express-validator";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
+import { validationResult } from "express-validator";
 import { endpoint } from "../endpoint.js";
+import { getLocationProperty } from "../utils.js";
 
 export const formController = {
   /**
@@ -49,6 +50,12 @@ export const formController = {
       if (values.items) {
         values.category = values.items;
         delete values.items;
+      }
+
+      // Convert geo string into object
+      if (values.geo) {
+        values.location = getLocationProperty(values.geo);
+        delete values.geo;
       }
 
       // Delete empty values

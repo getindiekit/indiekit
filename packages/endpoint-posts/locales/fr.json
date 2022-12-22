@@ -17,6 +17,9 @@
       "content": {
         "empty": "Entrez du contenu"
       },
+      "geo": {
+        "invalid": "Entrez des coordonnées valides"
+      },
       "in-reply-to": {
         "empty": "Entrez une adresse Web telle que https://example.org"
       },
@@ -41,6 +44,10 @@
       },
       "content": {
         "label": "Contenu"
+      },
+      "geo": {
+        "hint": "Latitude et longitude, par exemple %s",
+        "label": "Coordonnées de localisation"
       },
       "in-reply-to": {
         "label": "En réponse à"
