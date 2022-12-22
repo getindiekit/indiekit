@@ -30,13 +30,13 @@ test("Syndicates a URL", async (t) => {
     .post("/syndicate")
     .set("accept", "application/json")
     .send({ url: "https://website.example/notes/foobar/" })
-    .send({ redirectUri: "https://server.example" })
+    .send({ redirectUri: "/posts/12345" })
     .send({ token: testToken() });
 
   t.is(result.status, 302);
   t.is(
     result.headers.location,
-    "https://server.example?success=Post%20updated%20at%20https%3A%2F%2Fwebsite.example%2Fnotes%2Ffoobar%2F"
+    "/posts/12345?success=Post%20updated%20at%20https%3A%2F%2Fwebsite.example%2Fnotes%2Ffoobar%2F"
   );
 
   server.close(t);
