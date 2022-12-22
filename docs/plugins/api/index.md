@@ -44,4 +44,10 @@ Indiekit expects plug-in packages to provide assets in the following directories
 | `/locales` | Localisation files. _Optional_. |
 | `/views` | Nunjucks view templates. _Optional_. |
 
-You can also choose to provide an icon for your plug-in. This should be a square shaped SVG provided at `/assets/icon.svg`.
+### Plug-in icon
+
+To provide an icon for your plug-in, include a square shaped SVG file at `/assets/icon.svg`.
+
+### Homepage widget
+
+To provide a small widget for the signed-in homepage, include a Nunjucks file at `/includes/[plugin.id]-widget.njk`, and use the `widget` component to ensure correct markup and styling. [Here’s an example](https://github.com/getindiekit/indiekit/blob/main/packages/endpoint-posts/includes/endpoint-posts-widget.njk).
