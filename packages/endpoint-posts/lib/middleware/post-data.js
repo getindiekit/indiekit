@@ -5,9 +5,7 @@ import {
   getPostData,
   getPostName,
   getPostTypeName,
-  getRsvpItems,
   getSyndicateToItems,
-  getVisibilityItems,
 } from "../utils.js";
 
 export const postData = {
@@ -18,11 +16,13 @@ export const postData = {
     // Create new post object with default values
     const postType = request.query.type || "note";
     const post = {
-      "mp-syndicate-to": publication.syndicationTargets
-        .filter((target) => target.options.checked === true)
-        .map((target) => target.info.uid),
+      rsvp: "yes",
       visibility: "_ignore",
+      ...request.body,
     };
+
+    // Only select ‘checked’ syndication targets on first view
+    const checkTargets = Object.entries(request.body).length === 0;
 
     response.locals = {
       accessToken: access_token,
@@ -31,10 +31,8 @@ export const postData = {
       post,
       postType,
       postTypeName: getPostTypeName(publication, postType),
-      rsvpItems: getRsvpItems(response, post),
       scope,
-      syndicationTargetItems: getSyndicateToItems(publication, post),
-      visibilityItems: getVisibilityItems(response, post),
+      syndicationTargetItems: getSyndicateToItems(publication, checkTargets),
       ...response.locals,
     };
 
@@ -65,10 +63,8 @@ export const postData = {
         postStatus: post["post-status"],
         postType,
         postTypeName: getPostTypeName(publication, postType),
-        rsvpItems: getRsvpItems(response, post),
         scope,
-        syndicationTargetItems: getSyndicateToItems(publication, post),
-        visibilityItems: getVisibilityItems(response, post),
+        syndicationTargetItems: getSyndicateToItems(publication),
         status,
         ...response.locals,
       };

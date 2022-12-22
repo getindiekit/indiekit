@@ -58,12 +58,25 @@
     classes: "radios--inline",
     idPrefix: "rsvp",
     name: "rsvp",
+    values: post.rsvp,
     fieldset: {
       legend: {
         text: __("posts.form.rsvp.label")
       }
     },
-    items: rsvpItems
+    items: [{
+      text: __("posts.form.rsvp.yes"),
+      value: "yes"
+    }, {
+      text: __("posts.form.rsvp.no"),
+      value: "no"
+    }, {
+      text: __("posts.form.rsvp.maybe"),
+      value: "maybe"
+    }, {
+      text: __("posts.form.rsvp.interested"),
+      value: "interested"
+    }]
   }) | indent(2) if postType === "rsvp" }}
 
   {{ input({
@@ -130,6 +143,7 @@
   {{ checkboxes({
     idPrefix: "mp-syndicate-to",
     name: "mp-syndicate-to",
+    values: post["mp-syndicate-to"],
     fieldset: {
       legend: {
         text: __("posts.form.mp-syndicate-to.label")
@@ -165,12 +179,25 @@
       classes: "radios--inline",
       idPrefix: "visibility",
       name: "visibility",
+      values: post.visibility,
       fieldset: {
         legend: {
           text: __("posts.form.visibility.label")
         }
       },
-      items: visibilityItems
+      items: [{
+        text: __("noValue"),
+        value: "_ignore"
+      }, {
+        text: __("posts.status.private"),
+        value: "private"
+      }, {
+        text: __("posts.status.public"),
+        value: "public"
+      }, {
+        text: __("posts.status.unlisted"),
+        value: "unlisted"
+      }]
     }) | indent(4) }}
   {% endcall %}
 {% endblock %}
