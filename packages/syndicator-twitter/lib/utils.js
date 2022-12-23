@@ -59,8 +59,8 @@ export const createStatus = (properties, mediaIds = false) => {
 
   // Add location parameters
   if (properties.location) {
-    parameters.lat = properties.location.properties.latitude;
-    parameters.long = properties.location.properties.longitude;
+    parameters.lat = properties.location.latitude;
+    parameters.long = properties.location.longitude;
   }
 
   // Add media IDs

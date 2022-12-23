@@ -82,7 +82,9 @@ test("Throws creating a status if post is off-service reply", (t) => {
 });
 
 test("Creates a status with a location", (t) => {
-  const result = createStatus(JSON.parse(getFixture("jf2/checkin.jf2")));
+  const result = createStatus(
+    JSON.parse(getFixture("jf2/note-location-provided.jf2"))
+  );
 
   t.is(result.status, "I ate a cheese sandwich right here!");
   t.is(result.lat, "37.780080");

@@ -189,14 +189,14 @@ test("Gets content from `content` property", (t) => {
 });
 
 test("Gets location property", (t) => {
-  const properties = JSON.parse(getFixture("jf2/checkin.jf2"));
+  const properties = JSON.parse(getFixture("jf2/note-location-provided.jf2"));
   const result = getLocationProperty(properties);
 
   t.deepEqual(result, {
-    properties: {
-      latitude: "37.780080",
-      longitude: "-122.420160",
-    },
+    type: "geo",
+    latitude: "37.780080",
+    longitude: "-122.420160",
+    name: "37° 46′ 48.29″ N 122° 25′ 12.576″ W",
   });
 });
 
@@ -205,10 +205,9 @@ test("Gets location property by parsing provided Geo URI", (t) => {
   const result = getLocationProperty(properties);
 
   t.deepEqual(result, {
-    properties: {
-      latitude: "37.780080",
-      longitude: "-122.420160",
-    },
+    type: "geo",
+    latitude: "37.780080",
+    longitude: "-122.420160",
   });
 });
 
@@ -217,11 +216,10 @@ test("Gets location property parsing Geo URI with altitude and uncertainty", (t)
   const result = getLocationProperty(properties);
 
   t.deepEqual(result, {
-    properties: {
-      latitude: "37.780080",
-      longitude: "-122.420160",
-      altitude: "1.0",
-    },
+    type: "geo",
+    latitude: "37.780080",
+    longitude: "-122.420160",
+    altitude: "1.0",
   });
 });
 

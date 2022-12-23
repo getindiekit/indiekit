@@ -173,11 +173,10 @@ export const getLocationProperty = (properties) => {
       location.match(geoUriRegexp).groups;
 
     location = {
-      properties: {
-        latitude,
-        longitude,
-        ...(altitude ? { altitude } : {}),
-      },
+      type: "geo",
+      latitude,
+      longitude,
+      ...(altitude ? { altitude } : {}),
     };
   }
 
