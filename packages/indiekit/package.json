@@ -59,7 +59,7 @@
     "express-rate-limit": "^6.2.0",
     "i18n": "^0.15.0",
     "keyv": "^4.2.0",
-    "keyv-mongodb": "^2.0.0",
+    "keyv-mongodb": "^3.0.0",
     "lodash": "^4.17.21",
     "mongodb": "^4.12.0",
     "undici": "^5.2.0"
