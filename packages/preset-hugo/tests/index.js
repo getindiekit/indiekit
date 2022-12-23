@@ -112,17 +112,15 @@ test("Renders post template with JSON front matter", (t) => {
   "end": "2020-02-20",
   "rsvp": "Yes",
   "location": {
-    "type": "adr",
-    "countryName": "United Kingdom"
+    "type": "geo",
+    "latitude": "37.780080",
+    "longitude": "-122.420160",
+    "name": "37° 46′ 48.29″ N 122° 25′ 12.576″ W"
   },
   "checkin": {
     "type": "card",
-    "latitude": [
-      50
-    ],
-    "longitude": [
-      0
-    ]
+    "latitude": "50",
+    "longitude": "0"
   },
   "audio": [
     {
@@ -179,13 +177,15 @@ syndication = "https://website.example/post/12345"
 mpSyndicateTo = "https://social.example"
 
 [location]
-type = "adr"
-countryName = "United Kingdom"
+type = "geo"
+latitude = "37.780080"
+longitude = "-122.420160"
+name = "37° 46′ 48.29″ N 122° 25′ 12.576″ W"
 
 [checkin]
 type = "card"
-latitude = [ 50 ]
-longitude = [ 0 ]
+latitude = "50"
+longitude = "0"
 
 [[audio]]
 url = "https://website.example/audio.mp3"
@@ -220,14 +220,14 @@ start: 2020-02-02
 end: 2020-02-20
 rsvp: Yes
 location:
-  type: adr
-  countryName: United Kingdom
+  type: geo
+  latitude: "37.780080"
+  longitude: "-122.420160"
+  name: 37° 46′ 48.29″ N 122° 25′ 12.576″ W
 checkin:
   type: card
-  latitude:
-    - 50
-  longitude:
-    - 0
+  latitude: "50"
+  longitude: "0"
 audio:
   - url: https://website.example/audio.mp3
 images:

@@ -49,9 +49,15 @@ export const jf2ToMf2 = (jf2) => {
 
   delete jf2.type;
 
-  // Convert values to arrays, ie 'a' => ['a'] and move to properties object
+  // Move values to property object
   for (const key in jf2) {
-    if (Object.prototype.hasOwnProperty.call(jf2, key)) {
+    // Convert nested vocabulary to mf2 (i.e. h-card, h-geo, h-adr)
+    if (Object.prototype.hasOwnProperty.call(jf2[key], "type")) {
+      mf2.properties[key] = [jf2ToMf2(jf2[key])];
+    }
+
+    // Convert values to arrays (i.e. 'a' => ['a'])
+    else if (Object.prototype.hasOwnProperty.call(jf2, key)) {
       const value = jf2[key];
       mf2.properties[key] = Array.isArray(value) ? value : [value];
     }
