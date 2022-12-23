@@ -8,7 +8,7 @@ Indiekit has been tested with the following Micropub clients and supporting appl
 
 > iA Writer is a multi-platform Markdown writing app built around the essence of writing. Its minimalistic interface and analytic features were crafted to cut out noise both from the working process and the content.
 
-Available for [Android, iOS & iPadOS, macOS and Windows](https://ia.net/downloads).
+Micropub support available for [iOS, iPadOS and macOS](https://ia.net/downloads).
 
 ## Indigenous
 
