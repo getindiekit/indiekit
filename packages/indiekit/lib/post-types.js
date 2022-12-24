@@ -15,9 +15,5 @@ export const getPostTypes = ({ postTypes, preset }) => {
     );
   }
 
-  if (preset?.postTypes) {
-    return preset.postTypes;
-  }
-
   return postTypes;
 };
