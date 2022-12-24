@@ -34,7 +34,7 @@
 }
 
 .details__main {
-  border-inline-start: var(--border-width-thickest) solid var(--color-primary);
+  border-inline-start: var(--border-width-thickest) solid var(--color-outline);
   margin-block-start: var(--space-s);
   padding-inline-start: var(--space-m);
 }
