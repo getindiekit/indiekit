@@ -76,9 +76,4 @@ export class IndiekitError extends Error {
       return error;
     }
   }
-
-  trimStack() {
-    Error.captureStackTrace(this, IndiekitError);
-    return this;
-  }
 }
