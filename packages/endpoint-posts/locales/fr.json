@@ -1,14 +1,14 @@
 {
   "posts": {
     "create": {
-      "action": "Nouveau poste",
+      "action": "Nouvelle publication",
       "title": "Créer une nouvelle publication %s"
     },
     "delete": {
       "action": "Supprimer la publication",
-      "cancel": "Non – retour au poste",
-      "submit": "Je suis sûr – supprimez ce post",
-      "title": "Êtes-vous sûr de vouloir supprimer ce post?"
+      "cancel": "Non – retour à la publication",
+      "submit": "Je suis sûr – supprimer cette publication",
+      "title": "Êtes-vous sûr de vouloir supprimer cette publication ?"
     },
     "error": {
       "bookmark-of": {
@@ -53,13 +53,13 @@
         "label": "En réponse à"
       },
       "like-of": {
-        "label": "Comme"
+        "label": "J'aime"
       },
       "mp-slug": {
-        "label": "Limace d'URL"
+        "label": "URL d'entrée"
       },
       "mp-syndicate-to": {
-        "label": "Distribuer à"
+        "label": "Publier également sur"
       },
       "name": {
         "label": "Titre"
@@ -87,7 +87,7 @@
     },
     "post": {
       "properties": "Propriétés",
-      "syndicate": "Distribuer la poste"
+      "syndicate": "Distribuer le post"
     },
     "posts": {
       "none": "Pas d'articles",
@@ -105,8 +105,8 @@
     "title": "Articles",
     "undelete": {
       "action": "Restaurer la publication",
-      "submit": "Je suis sûr – restaurer ce post",
-      "title": "Êtes-vous sûr de vouloir restaurer ce post?"
+      "submit": "Je suis sûr – restaurer cette publication",
+      "title": "Êtes-vous sûr de vouloir restaurer cette publication ?"
     },
     "update": {
       "action": "Modifier la publication",

@@ -33,12 +33,12 @@
       },
       "authorization": {
         "redeemCode": "Utiliser un code d'autorisation pour l'URL du profil d'un utilisateur",
-        "requestCode": "Demandez un code d'autorisation",
-        "requestCodeResponse": "Si l'utilisateur approuve la demande, le point de terminaison générer un code d'autorisation et redirigera vers le client:",
+        "requestCode": "Demander un code d'autorisation",
+        "requestCodeResponse": "Si l'utilisateur approuve la demande, le point d'entrée générera un code d'autorisation et redirigera vers le client :",
         "title": "Obtenir l'identité d'un utilisateur"
       },
-      "discovery": "Pour utiliser ce point de terminaison d'authentification, ajoutez les valeurs suivantes au `<head>` de votre site Web",
-      "title": "Utilisation de ce point de terminaison IndieAuth"
+      "discovery": "Pour utiliser ce point d'entrée d'authentification, ajoutez les valeurs suivantes au `<head>` de votre site Web :",
+      "title": "Utilisation de ce point d'entrée IndieAuth"
     },
     "newPassword": {
       "password": {

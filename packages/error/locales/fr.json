@@ -1,8 +1,8 @@
 {
   "BadRequestError": {
-    "invalid": "La demande manque un paramètre requis, comprend un paramètre ou une valeur de paramètre non pris en charge, répète le même paramètre, utilise plus d'une méthode pour inclure un jeton d'accès, ou est mal formée",
-    "invalidValue": "Valeur non valide fournie pour : `%s`",
-    "missingParameter": "Paramètre manquant : `%s`",
+    "invalid": "Il manque un paramètre obligatoire à la demande, elle inclut un paramètre ou une valeur de paramètre non pris en charge, elle répète le même paramètre, elle utilise plus d'une méthode pour inclure un jeton d'accès ou elle est malformée.",
+    "invalidValue": "Valeur non valide fournie pour : `%s`",
+    "missingParameter": "Paramètre manquant : `%s`",
     "missingProperty": "Aucun %s inclus dans la demande",
     "missingToken": "Aucun jeton au porteur fourni sur demande",
     "title": "Mauvaise Requête"
@@ -23,7 +23,7 @@
   "NotImplementedError": {
     "database": "Cette fonctionnalité nécessite une base de données",
     "postType": "Aucune configuration fournie pour le type de publication %s",
-    "query": "Requête non prise en charge pour `{{key}}` : `{{value}}`",
+    "query": "Requête non prise en charge pour `{{key}}` : `{{value}}`",
     "secret": "`SECRET` manquant",
     "title": "Non implémenté"
   },
