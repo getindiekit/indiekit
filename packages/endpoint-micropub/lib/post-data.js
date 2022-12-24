@@ -68,15 +68,15 @@ export const postData = {
    */
   async read(publication, url) {
     const { posts } = publication;
-    const post = await posts.findOne({
+    const postData = await posts.findOne({
       "properties.url": url,
     });
 
-    if (!post) {
+    if (!postData) {
       throw IndiekitError.notFound(url);
     }
 
-    return post;
+    return postData;
   },
 
   /**
