@@ -11,7 +11,8 @@ test("Returns 422 error invalid form submission", async (t) => {
     .post("/posts/create")
     .set("cookie", [cookie()])
     .send({ type: "entry" })
-    .send({ "post-type": "note" });
+    .send({ "post-type": "note" })
+    .send({ geo: "foobar" });
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
 
@@ -23,6 +24,10 @@ test("Returns 422 error invalid form submission", async (t) => {
   t.is(
     result.querySelector("#content-error .error-message__text").textContent,
     "Enter some content"
+  );
+  t.is(
+    result.querySelector("#geo-error .error-message__text").textContent,
+    "Enter valid coordinates"
   );
 
   server.close(t);
