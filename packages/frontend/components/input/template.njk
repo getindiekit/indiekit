@@ -5,6 +5,7 @@
 {%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
 {% call field({
   classes: opts.field.classes,
+  attributes: opts.field.attributes,
   errorMessage: opts.errorMessage
 }) %}
 {%- if opts.label %}
