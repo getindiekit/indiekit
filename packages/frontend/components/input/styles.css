@@ -47,24 +47,20 @@
   border-color: var(--color-error);
 }
 
-.input--width-30 {
-  max-width: 45ch;
-}
-
-.input--width-20 {
-  max-width: 30ch;
+.input--width-25 {
+  max-width: 44ch;
 }
 
 .input--width-10 {
-  max-width: 15ch;
+  max-width: 19ch;
 }
 
 .input--width-5 {
-  max-width: 7.5ch;
+  max-width: 11ch;
 }
 
 .input--width-2 {
-  max-width: 3ch;
+  max-width: 6ch;
 }
 
 /* Show an input and button combined */
