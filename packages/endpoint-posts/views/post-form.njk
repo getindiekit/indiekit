@@ -187,6 +187,7 @@
     }) | indent(4) }}
 
     {{ input({
+      classes: "input--width-25",
       id: "mp-slug",
       name: "mp-slug",
       value: errors["mp-slug"].value or post["mp-slug"],
