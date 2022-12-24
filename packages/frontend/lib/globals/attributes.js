@@ -9,7 +9,10 @@ export const attributes = (attributes) => {
 
   for (const name in attributes) {
     if (Object.prototype.hasOwnProperty.call(attributes, name)) {
-      html += ` ${name}="${attributes[name]}"`;
+      html +=
+        typeof attributes[name] === "boolean"
+          ? ` ${name}`
+          : ` ${name}="${attributes[name]}"`;
     }
   }
 
