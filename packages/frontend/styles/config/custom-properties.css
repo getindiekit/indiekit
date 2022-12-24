@@ -101,12 +101,12 @@ html {
   --border-radius-large: 0.5rem;
   --border-width-thin: 1px;
   --border-width-thick: 2px;
-  --border-width-thickest: 3px;
+  --border-width-thickest: 4px;
 
   /* Input borders */
   --input-border-width: var(--border-width-thick);
   --input-border-width-focus: var(--border-width-thickest);
-  --input-border-width-focus-offset: 1px;
+  --input-border-width-focus-offset: 2px;
 
   /* Box shadows */
   --focus-width: 0.25rem;
