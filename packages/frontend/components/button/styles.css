@@ -28,24 +28,26 @@
 
 .button--secondary,
 ::file-selector-button {
-  --button-color: var(--color-on-offset);
   --button-background-color: var(--color-offset-variant);
   --button-background-hover-color: var(--color-offset);
+  --button-color: var(--color-on-offset);
   --button-font-weight: normal;
 }
 
 .button:disabled {
-  opacity: 0.5;
+  --button-background-color: var(--color-offset);
+  --button-color: var(--color-on-offset);
+  border-block-end-color: transparent;
 }
 
-.button:hover:not:disabled,
+.button:not(:disabled):hover,
 ::file-selector-button:hover {
   background-color: var(--button-background-hover-color, var(--color-primary));
 }
 
 .button--secondary-on-offset {
-  --button-color: var(--color-on-background);
   --button-background-color: var(--color-background);
+  --button-color: var(--color-on-background);
 
   &:hover {
     background-color: var(--color-offset-variant);
@@ -61,9 +63,9 @@
 }
 
 .button--small {
-  --button-padding: var(--space-s);
   --button-font: var(--font-caption);
   --button-font-weight: 500;
+  --button-padding: var(--space-s);
 }
 
 .button--block {
