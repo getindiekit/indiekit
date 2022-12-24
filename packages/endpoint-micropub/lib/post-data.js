@@ -101,7 +101,7 @@ export const postData = {
 
     // Replace property entries
     if (operation.replace) {
-      properties = update.replaceEntries(properties, operation.replace);
+      properties = await update.replaceEntries(properties, operation.replace);
     }
 
     // Remove properties and/or property entries

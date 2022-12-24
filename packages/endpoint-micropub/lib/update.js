@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { mf2ToJf2 } from "./jf2.js";
 
 /**
  * Add properties to object
@@ -43,35 +44,32 @@ export const addProperties = (object, additions) => {
  *
  * @param {object} object - Object to update
  * @param {object} replacements - Properties to replace (mf2)
- * @returns {object} Updated object
+ * @returns {object} Updated object (JF2)
  */
-export const replaceEntries = (object, replacements) => {
-  for (const key in replacements) {
-    if (Object.prototype.hasOwnProperty.call(replacements, key)) {
-      const value = replacements[key];
+export const replaceEntries = async (object, replacements) => {
+  for await (const [key, value] of Object.entries(replacements)) {
+    if (!Array.isArray(value)) {
+      throw new TypeError("Replacement value should be an array");
+    }
 
-      if (!Array.isArray(value)) {
-        throw new TypeError("Replacement value should be an array");
+    // Replacement given as mf2, but data stored as JF2
+    switch (value.length) {
+      case 0: {
+        // Array is empty, don’t perform replacement
+        continue;
       }
 
-      // Replacement is given as an mf2 array value, but we want flat JF2
-      // If array contains a single value, save as flat value
-      // If array contains multiple values, saves as original array
-      // If array is empty, don’t perform replacement
-      switch (value.length) {
-        case 0: {
-          continue;
-        }
+      case 1: {
+        // Array contains a single value, save as JF2
+        const jf2 = await mf2ToJf2(value[0]);
+        object = _.set(object, key, jf2);
+        break;
+      }
 
-        case 1: {
-          object = _.set(object, key, value[0]);
-          break;
-        }
-
-        default: {
-          object = _.set(object, key, value);
-          break;
-        }
+      default: {
+        // Array contains multiple values, save as array
+        object = _.set(object, key, value);
+        break;
       }
     }
   }

@@ -104,27 +104,59 @@ test("Deletes property", (t) => {
   });
 });
 
-test("Replaces property value", (t) => {
+test("Replaces property value", async (t) => {
   const properties = { name: "Lunchtime" };
-  const result = replaceEntries(properties, { name: ["Dinnertime"] });
+  const result = await replaceEntries(properties, { name: ["Dinnertime"] });
 
   t.deepEqual(result, {
     name: "Dinnertime",
   });
 });
 
-test("Replaces property value (multiple items saved as array)", (t) => {
+test("Replaces nested vocabulary values", async (t) => {
+  const properties = {
+    name: "Lunchtime",
+    location: {
+      type: "geo",
+      latitude: 50,
+      longitude: 0,
+    },
+  };
+  const result = await replaceEntries(properties, {
+    name: ["Dinnertime"],
+    location: [
+      {
+        type: ["h-geo"],
+        properties: {
+          latitude: [52],
+          longitude: [-2],
+        },
+      },
+    ],
+  });
+
+  t.deepEqual(result, {
+    name: "Dinnertime",
+    location: {
+      type: "geo",
+      latitude: 52,
+      longitude: -2,
+    },
+  });
+});
+
+test("Replaces property value (multiple items saved as array)", async (t) => {
   const properties = { category: ["foo"] };
-  const result = replaceEntries(properties, { category: ["bar", "baz"] });
+  const result = await replaceEntries(properties, { category: ["bar", "baz"] });
 
   t.deepEqual(result, {
     category: ["bar", "baz"],
   });
 });
 
-test("Replaces property value (adding property if doesn’t exist)", (t) => {
+test("Replaces property value (adding if doesn’t exist)", async (t) => {
   const properties = { name: "Lunchtime" };
-  const result = replaceEntries(properties, {
+  const result = await replaceEntries(properties, {
     content: ["I ate a cheese sandwich"],
   });
 
@@ -134,9 +166,9 @@ test("Replaces property value (adding property if doesn’t exist)", (t) => {
   });
 });
 
-test("Replaces property value (ignores empty array)", (t) => {
+test("Replaces property value (ignores empty array)", async (t) => {
   const properties = { name: "Lunchtime" };
-  const result = replaceEntries(properties, {
+  const result = await replaceEntries(properties, {
     content: [],
   });
 
@@ -145,15 +177,10 @@ test("Replaces property value (ignores empty array)", (t) => {
   });
 });
 
-test("Throws error replacement is not an array", (t) => {
+test("Throws error replacement is not an array", async (t) => {
   const properties = { name: "Lunchtime" };
 
-  t.throws(
-    () => {
-      replaceEntries(properties, { name: "Dinnertime" });
-    },
-    {
-      message: "Replacement value should be an array",
-    }
-  );
+  await t.throwsAsync(replaceEntries(properties, { name: "Dinnertime" }), {
+    message: "Replacement value should be an array",
+  });
 });
