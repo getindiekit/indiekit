@@ -1,10 +1,10 @@
 .field {
-  &:has(.input[type="hidden"]) {
-    display: none;
+  & > * {
+    --fieldset-flow-space: 0;
   }
 
-  & > *:not(.-\!-visually-hidden) + * {
-    --fieldset-flow-space: var(--space-xs);
+  &:has(.input[type="hidden"]) {
+    display: none;
   }
 }
 

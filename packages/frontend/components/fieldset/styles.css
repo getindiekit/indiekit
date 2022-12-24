@@ -3,7 +3,7 @@
   max-inline-size: var(--line-measure);
 
   & *:not(.-\!-visually-hidden) + * {
-    margin-block-start: var(--fieldset-flow-space, var(--space-l));
+    margin-block-start: var(--fieldset-flow-space, var(--space-xl));
   }
 }
 

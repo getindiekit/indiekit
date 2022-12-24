@@ -1,9 +1,11 @@
 .hint {
   color: var(--color-on-offset);
   font: var(--font-caption);
+  margin-block-end: var(--space-xs);
   overflow-wrap: anywhere;
 }
 
 .button + .hint {
-  margin-block-start: var(--space-xs);
+  margin-block-end: 0;
+  margin-block-start: var(--space-s);
 }

@@ -1,7 +1,6 @@
 .checkboxes {
   --checkbox-size: 1.5em;
   --check-size: 0.875em;
-  --fieldset-flow-space: 0;
   --touch-target-size: 44px;
 }
 
@@ -11,6 +10,10 @@
   min-block-size: var(--checkbox-size);
   padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
   position: relative;
+
+  &:last-child {
+    margin-block-end: 0;
+  }
 }
 
 .checkboxes__input {
@@ -27,10 +30,11 @@
   z-index: 1;
 }
 
-.checkboxes__label {
+.checkboxes__label.label {
   --label-font: var(--font-body);
   align-items: center;
   cursor: pointer;
+  margin-block-end: 0;
   min-block-size: var(--checkbox-size);
   touch-action: manipulation; /* remove 300ms pause on mobile */
 
