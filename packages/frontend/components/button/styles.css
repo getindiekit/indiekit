@@ -34,7 +34,11 @@
   --button-font-weight: normal;
 }
 
-.button:hover,
+.button:disabled {
+  opacity: 0.5;
+}
+
+.button:hover:not:disabled,
 ::file-selector-button:hover {
   background-color: var(--button-background-hover-color, var(--color-primary));
 }
