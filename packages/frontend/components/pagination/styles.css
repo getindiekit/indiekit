@@ -9,6 +9,7 @@
 
 .pagination__list {
   display: flex;
+  flex-wrap: wrap;
   margin-inline: calc(var(--space-s) * -1);
 }
 
