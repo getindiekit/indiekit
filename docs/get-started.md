@@ -94,7 +94,7 @@ Some hosts may assign a port, start and restart Node.js servers automatically.
 If your host doesn’t provide this functionality, you should assign a publicly addressable port (for example `8080`) and start your Indiekit server using the following command:
 
 ```sh
-indiekit serve --port 8080
+npx indiekit serve --port 8080
 ```
 
 If your host doesn’t manage starting and restarting a Node.js server, a process manager like [PM2](https://pm2.keymetrics.io) can be used instead.
