@@ -38,6 +38,14 @@ You don’t need access to a [Git](https://git-scm.com) repository, but some hos
 
 > Indiekit is designed to be easy to install and use. However, while this project is in its infancy, some aspects may be a bit technical. If you have any questions, please [submit an issue](https://github.com/getindiekit/indiekit/issues) on GitHub.
 
+### 0. Install dependencies
+
+Indiekit depends on a number of packages to work. Before you can use it, you need to install them:
+
+```sh
+npm install
+```
+
 ### 1. Create a configuration file
 
 Run the following command in your terminal to start the configuration wizard:
