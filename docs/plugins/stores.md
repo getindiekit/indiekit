@@ -6,34 +6,34 @@ A [content store](../concepts#content-store) is a location where Indiekit can sa
 
 <Badge type="tip" text="Offical" />
 
-Store IndieWeb content on [Bitbucket](https://bitbucket.org).
+[Bitbucket](https://bitbucket.org) content store adaptor.
 
 ## [@indiekit/store-file-system](https://npmjs.org/package/@indiekit/store-file-system)
 
 <Badge type="tip" text="Offical" />
 
-Store IndieWeb content on your local file system.
+File system content store adaptor.
 
 ## [@indiekit/store-ftp](https://npmjs.org/package/@indiekit/store-ftp)
 
 <Badge type="tip" text="Offical" />
 
-Store IndieWeb content via FTP.
+FTP content store adaptor.
 
 ## [@indiekit/store-gitea](https://npmjs.org/package/@indiekit/store-gitea)
 
 <Badge type="tip" text="Offical" />
 
-Store IndieWeb content on [Gitea](https://gitea.com).
+[Gitea](https://gitea.com) content store adaptor.
 
 ## [@indiekit/store-github](https://npmjs.org/package/@indiekit/store-github)
 
 <Badge type="tip" text="Offical" />
 
-Store IndieWeb content on [GitHub](https://github.com).
+[GitHub](https://github.com) content store adaptor.
 
 ## [@indiekit/store-gitlab](https://npmjs.org/package/@indiekit/store-gitlab)
 
 <Badge type="tip" text="Offical" />
 
-Store IndieWeb content on [GitLab](https://gitlab.com).
+[GitLab](https://gitlab.com) content store adaptor.

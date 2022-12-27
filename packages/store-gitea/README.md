@@ -1,6 +1,6 @@
 # @indiekit/store-gitea
 
-Store IndieWeb content on Gitea.
+[Gitea](https://gitea.com) content store adaptor for Indiekit.
 
 ## Installation
 

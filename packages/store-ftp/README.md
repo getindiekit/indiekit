@@ -1,6 +1,6 @@
 # @indiekit/store-ftp
 
-Store IndieWeb content via FTP.
+FTP content store adaptor for Indiekit.
 
 ## Installation
 

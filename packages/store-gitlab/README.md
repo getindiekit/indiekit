@@ -1,6 +1,6 @@
 # @indiekit/store-gitlab
 
-Store IndieWeb content on GitLab.
+[GitLab](https://gitlab.com) content store adaptor for Indiekit.
 
 ## Installation
 

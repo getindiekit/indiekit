@@ -1,6 +1,6 @@
 # @indiekit/store-github
 
-Store IndieWeb content on GitHub.
+[GitHub](https://github.com) content store adaptor for Indiekit.
 
 ## Installation
 

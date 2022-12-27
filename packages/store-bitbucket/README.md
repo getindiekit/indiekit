@@ -1,6 +1,6 @@
 # @indiekit/store-bitbucket
 
-Store IndieWeb content on Bitbucket.
+[Bitbucket](https://bitbucket.org) content store adaptor for Indiekit.
 
 ## Installation
 

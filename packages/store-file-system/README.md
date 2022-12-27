@@ -1,6 +1,6 @@
 # @indiekit/store-file-system
 
-Store IndieWeb content on your local file system.
+File system content store adaptor for Indiekit.
 
 ## Installation
 
