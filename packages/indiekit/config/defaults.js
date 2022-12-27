@@ -12,7 +12,7 @@ export const defaultConfig = {
     endpoints: [],
     hasDatabase: false,
     localesAvailable: ["de", "en", "es", "fr", "id", "nl", "pl", "pt", "sr"],
-    mongodbUrl: false,
+    mongodbUrl: process.env.MONGO_URL || false,
     name: "Indiekit",
     repository: package_.repository,
     themeColor: "#04f",
