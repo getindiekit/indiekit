@@ -1,6 +1,6 @@
 # @indiekit/preset-hugo
 
-Indiekit preset for Hugo-based websites.
+[Hugo](https://gohugo.io) publication preset for Indiekit.
 
 ## Installation
 
