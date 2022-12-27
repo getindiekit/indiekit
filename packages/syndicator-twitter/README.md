@@ -1,6 +1,6 @@
 # @indiekit/syndicator-twitter
 
-Syndicate IndieWeb content to Twitter.
+[Twitter](https://twitter.com) syndicator for Indiekit.
 
 ## Installation
 

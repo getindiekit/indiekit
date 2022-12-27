@@ -1,6 +1,6 @@
 # @indiekit/syndicator-internet-archive
 
-Syndicate IndieWeb content to the Internet Archive.
+[Internet Archive](https://archive.org) syndicator for Indiekit.
 
 ## Installation
 

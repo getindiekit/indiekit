@@ -6,16 +6,16 @@ A [syndicator](../concepts#syndicator) enables content to be posted to third-par
 
 <Badge type="tip" text="Offical" />
 
-Syndicate IndieWeb content to the [Internet Archive](https://archive.org).
+[Internet Archive](https://archive.org) syndicator.
 
 ## [@indiekit/syndicator-mastodon](https://npmjs.org/package/@indiekit/syndicator-mastodon)
 
 <Badge type="tip" text="Offical" />
 
-Syndicate IndieWeb content to a [Mastodon](https://joinmastodon.org) server.
+[Mastodon](https://joinmastodon.org) syndicator.
 
 ## [@indiekit/syndicator-twitter](https://npmjs.org/package/@indiekit/syndicator-twitter)
 
 <Badge type="tip" text="Offical" />
 
-Syndicate IndieWeb content to [Twitter](https://twitter.com).
+[Twitter](https://twitter.com) syndicator.

@@ -1,6 +1,6 @@
 # @indiekit/syndicator-mastodon
 
-Syndicate IndieWeb content to a Mastodon server.
+[Mastodon](https://joinmastodon.org) syndicator for Indiekit.
 
 ## Installation
 
