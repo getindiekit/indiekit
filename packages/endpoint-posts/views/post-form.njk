@@ -129,7 +129,7 @@
     errorMessage: {
       text: errors.content.msg
     } if errors.content
-  }) | indent(2) if not contentIgnored }}
+  }) if not contentIgnored }}
 
   {{ textarea({
     id: "summary",
@@ -140,7 +140,7 @@
     },
     optional: true,
     rows: 1
-  }) | indent(2) if postType === "article" }}
+  }) if postType === "article" }}
 
   {{ checkboxes({
     idPrefix: "mp-syndicate-to",
