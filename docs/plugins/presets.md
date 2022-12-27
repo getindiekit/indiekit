@@ -12,8 +12,8 @@ Indiekit preset for [Hugo](https://gohugo.io)-based websites.
 
 <Badge type="tip" text="Offical" />
 
-Indiekit preset for [Jekyll](https://jekyllrb.com)-based websites. 
+[Jekyll](https://jekyllrb.com) publication preset. Can also be used with static site generators that use a similar folder structure and document format, like [Eleventy](https://www.11ty.dev) and [Lume](https://lume.land).
 
 ## [indiekit-preset-fff](https://npmjs.org/package/indiekit-preset-fff)
 
-Indiekit preset for [FFF](https://fff.js.org)-based websites. 
+Indiekit preset for [FFF](https://fff.js.org)-based websites.

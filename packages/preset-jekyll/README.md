@@ -1,6 +1,6 @@
 # @indiekit/preset-jekyll
 
-Indiekit preset for Jekyll-based websites.
+[Jekyll](https://jekyllrb.com) publication preset for Indiekit. Can also be used with static site generators that use a similar folder structure and document format, like [Eleventy](https://www.11ty.dev) and [Lume](https://lume.land).
 
 ## Installation
 
