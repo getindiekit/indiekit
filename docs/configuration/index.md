@@ -79,7 +79,7 @@ _Optional_, defaults to `"[application.url]/micropub"`. For example:
 
 To cache files and save information about previously posts and files, you will need to connect Indiekit to a MongoDB database. You can [host one on MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 
-_Optional_, defaults to `false`. For example:
+_Optional_, defaults to `process.env.MONGO_URL`. For example:
 
 ```json
 {
