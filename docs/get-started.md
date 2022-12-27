@@ -105,9 +105,11 @@ Before you can use Indiekit, some extra configuration values that only you and y
 
 - #### `MONGO_URL`
 
-  A database is optional but required for many features to work.
-
-  A MongoDB URL will have the following format: `mongodb+srv://<username>:<password>@<hostname>`
+  A [MongoDB connection string](https://www.mongodb.com/docs/manual/reference/connection-string/) if you want to use features that require a database.
+  
+  This is a URL with the following format: `mongodb://<username>:<password>@<hostname>:<port>`.
+  
+  The URL may start with `mongodb+srv://` if you’re connecting to a server cluster, not a single server.
 
   ::: tip
   Some hosts include support for MongoDB. If not, you can create a database for free using [MongoDB’s own Atlas service](https://www.mongodb.com/atlas).
