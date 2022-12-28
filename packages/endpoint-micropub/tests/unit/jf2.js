@@ -137,8 +137,8 @@ test("Gets text and HTML values from `content` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: "<p>I ate a <i>cheese</i> sandwich, which was nice.</p>",
-    text: "I ate a cheese sandwich, which was nice.",
+    html: "<blockquote><p>I ate a <i>cheese</i> sandwich, which &gt; 10.</p></blockquote>",
+    text: "I ate a cheese sandwich, which was > 10.",
   });
 });
 
@@ -149,8 +149,8 @@ test("Gets mixed text and HTML values from `content` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: "<p>I ate a <i>cheese</i> sandwich, which was nice.</p>",
-    text: "I ate a cheese sandwich, which was nice.",
+    html: "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>",
+    text: "> I ate a *cheese* sandwich, which was > 10.",
   });
 });
 
@@ -161,8 +161,8 @@ test("Gets HTML from `content` property and adds text value", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: "<p>I ate a <i>cheese</i> sandwich, which was nice.</p>",
-    text: "I ate a *cheese* sandwich, which was nice.",
+    html: "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>",
+    text: "> I ate a *cheese* sandwich, which was > 10.",
   });
 });
 
@@ -173,8 +173,10 @@ test("Gets content from `content.text` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: "<p>I ate a <em>cheese</em> sandwich, which was nice.</p>",
-    text: "I ate a *cheese* sandwich, which was nice.",
+    html: `<blockquote>
+<p>I ate a <em>cheese</em> sandwich, which was &gt; 10.</p>
+</blockquote>`,
+    text: "> I ate a *cheese* sandwich, which was > 10.",
   });
 });
 
@@ -183,8 +185,10 @@ test("Gets content from `content` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
-    text: "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
+    html: `<blockquote>
+<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was &gt; 10.</p>
+</blockquote>`,
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was > 10.",
   });
 });
 
@@ -446,8 +450,10 @@ test("Normalises JF2 (few properties)", (t) => {
   t.is(result.name, "What I had for lunch");
   t.is(result["mp-slug"], "what-i-had-for-lunch");
   t.deepEqual(result.content, {
-    html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
-    text: "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
+    html: `<blockquote>
+<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was &gt; 10.</p>
+</blockquote>`,
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was > 10.",
   });
   t.falsy(result.audio);
   t.falsy(result.photo);

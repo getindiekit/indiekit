@@ -1,6 +1,5 @@
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
-import { striptags } from "striptags";
-import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
+import { markdownToHtml, textToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
 import {
   decodeQueryParameter,
@@ -135,25 +134,29 @@ export const getContentProperty = (properties) => {
   const { content } = properties;
   let { html, text } = content;
 
-  // Strip any HTML from text property
+  // Ensure any existing text property is in fact Markdown
   if (text) {
-    text = striptags(text);
+    text = textToMarkdown(text);
   }
 
-  // Return existing text and HTML representations
+  // Return existing text and HTML representations, unamended
   if (html && text) {
     return { html, text };
   }
 
   // If HTML representation only, add text representation
   if (html && !text) {
-    text = htmlToMarkdown(html);
-    return { html, text };
+    return { html, text: textToMarkdown(html) };
+  }
+
+  // If text representation only, add HTML representation
+  if (!html && text) {
+    return { html: markdownToHtml(text), text };
   }
 
   // Return property with text and HTML representations
-  text = text || striptags(content);
-  html = markdownToHtml(text);
+  text = text || textToMarkdown(content);
+  html = markdownToHtml(content);
   return { html, text };
 };
 
