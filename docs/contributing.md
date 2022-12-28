@@ -1,87 +1,95 @@
 # Contributing
 
-Thanks for considering contributing to this project. Indiekit is still in the early stages of development, but you can help this project grow and improve by:
+Thanks for considering contributing to this project. There are a number of way you can help this project grow and improve:
 
-- [proposing a new feature](#proposing-a-new-feature)
-- [reporting a bug](#reporting-a-bug)
-- [submitting a fix](#submitting-a-fix)
-- [improving the documentation](#improving-the-documentation)
-- [adding a localisation](#adding-a-localisation)
-- [developing a plug-in](#developing-a-plug-in)
+- [tell a friend](#tell-a-friend)
+- [propose a feature](#propose-a-feature)
+- [report a bug](#report-a-bug)
+- [submit a fix](#submit-a-fix)
+- [improve the documentation](#improve-the-documentation)
+- [add a localisation](#add-a-localisation)
+- [develop a plug-in](#develop-a-plug-in)
 
-This project is intended to be a safe, welcoming space for collaboration with contributors expected to adhere to the project’s [code of conduct](https://github.com/getindiekit/.github/blob/main/CODE_OF_CONDUCT.md).
+For this project to be a safe, welcoming space for collaboration, contributors must adhere to our [code of conduct](https://github.com/getindiekit/.github/blob/main/CODE_OF_CONDUCT.md).
 
-## Proposing a new feature
+## Tell a friend
+
+One of the best (and easiest) ways to grow this project is to tell people about it!
+
+If you are using Indiekit, add yourself to the [list of people using Indiekit on the IndieWeb wiki](https://indieweb.org/Indiekit#People_using_it).
+
+## Propose a feature
 
 The motivation behind Indiekit is to build a tool that makes interacting with [IndieWeb](https://indieweb.org) protocols and technologies accessible, adaptable and approachable. Indiekit also aims to be platform agnostic and built for the long term.
 
-New features should be added with these principles in mind, and improvements that move the project closer to this goal are strongly encouraged.
+Features and improvements that move the project closer to these goals are strongly encouraged.
 
-We use GitHub issues to track feature proposals. Browse [existing proposals](https://github.com/getindiekit/indiekit/issues?q=is%3Aissue+label%3Aenhancement) before adding yours.
+We use GitHub issues to track feature requests. Browse [existing proposals](https://github.com/getindiekit/indiekit/issues?q=is%3Aissue+label%3Aenhancement) before adding yours.
 
-## Reporting a bug
+## Report a bug
 
 We use GitHub issues to track bugs. Browse [existing reports](https://github.com/getindiekit/indiekit/issues?q=is%3Aissue+label%3Abug) before adding yours.
 
-## Submitting a fix
+## Submit a fix
 
-If you spot something that’s broken and can supply a fix, you can [fork the project](https://github.com/getindiekit/indiekit/fork) and create a pull request. See [setting up a local development environment](#setting-up-a-local-development-environment) to get started.
+If you spot something broken and can supply a fix, [fork the project](https://github.com/getindiekit/indiekit/fork) and create a pull request. See [setting up a local development environment](#setting-up-a-local-development-environment) to get started.
 
 Commit messages for fixes should be prefixed with `fix:`, for example:
 
-`fix: don’t throw error if a user is signed in`
+`fix: do not throw error for signed in users`
 
 If a fix affects a specific module, include the name of the module in the commit message, for example:
 
 `fix(syndicator-twitter): only post replies to tweets`
 
-## Improving the documentation
+## Improve the documentation
 
-Indiekit’s documentation is designed to be accessible and approachable, but it can always be improved.
+Documentation should be accessible, easy to read and avoid jargon.
 
-Documentation can be found in the [`/docs`](https://github.com/getindiekit/indiekit/tree/main/docs) folder and is written using Markdown syntax. You can [contribute changes using GitHub’s interface](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository).
+Documentation can be found in the [`/docs`](https://github.com/getindiekit/indiekit/tree/main/docs) folder and uses Markdown syntax. You can [use GitHub’s interface to contribute changes](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files#editing-files-in-another-users-repository).
 
 Commit messages for documentation updates should be prefixed with `docs:`, for example:
 
 `docs: fix typo in getting started instructions`
 
-## Adding a localisation
+## Add a localisation
 
-Localisations are managed using Localazy. If you see a translation that is not quite right or would like to add a new language, create an account and [contribute to the project](https://localazy.com/p/indiekit).
+Localazy is used to manage localisations. If you see a translation that is not quite right or would like to add a new language, create an account and [contribute to the project](https://localazy.com/p/indiekit).
 
-## Developing a plug-in
+## Develop a plug-in
 
-Often the best way to add (or prototype) a new feature is to develop a plug-in using [Indiekit’s plug-in API](plugins/api/index.md).
+You can use [Indiekit’s plug-in API](plugins/api/index.md) to add (or prototype) a new feature.
 
-When publishing a plug-in to the npm registry, add the `indiekit-plugin` tag so that other Indiekit users can find it. You can also request to have it listed alongside [other plug-ins](https://getindiekit.com/plugins/) on the project’s website.
+When publishing a plug-in to the npm registry, add the `indiekit-plugin` keyword to help other Indiekit users find it. To have a plug-in listed [in the plug-in directory](https://getindiekit.com/plugins/), submit a pull request against the relevant page in the documentation.
 
 ## Setting up a local development environment
 
 ### Project structure
 
-This project uses a monorepo structure, with concerns split into separate npm modules located in the `/packages` folder:
+This project uses a monorepo structure, with concerns split into separate Node modules located in the `/packages` folder:
 
-| Module | Purpose |
+| Module{width=200px} | Purpose |
 | :----- | :------ |
-| `packages/indiekit` | Core module. Provides coordinating functions and the Express web server. |
-| `packages/error` | Error handling for the core module and plug-ins. |
-| `packages/frontend` | Frontend component library, used for the application interface. |
-| `packages/endpoint-*` | Application endpoint plug-ins. |
-| `packages/preset-*` | Publication preset plug-ins. |
-| `packages/store-*` | Content store plug-ins. |
-| `packages/syndicator-*` | Syndicator plug-ins. |
+| `indiekit` | Core module. Provides coordinating functions and the Express web server. |
+| `frontend` | Frontend component library, used for the application interface. |
+| `error` | Error handling for the core module and plug-ins. |
+| `create-indiekit` | Project initialiser, used when running `npm create indiekit`. |
+| `endpoint-*` | Application endpoint plug-ins. |
+| `preset-*` | Publication preset plug-ins. |
+| `store-*` | Content store plug-ins. |
+| `syndicator-*` | Syndicator plug-ins. |
 
-Helper functions used in tests are also split into modules. These are located in the `/helpers` folder.
+Helper functions used in tests are in the `/helpers` folder.
 
 ### Project architecture
 
 Indiekit uses the [Express server framework](https://expressjs.com).
 
-Configuration defaults are merged with any user-defined values (Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load a configuration object).
+Configuration defaults get merged with any user-defined values (Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load a configuration object).
 
-Plug-ins listed in the configuration’s `plugin` array are then loaded and interrogated for known API methods, which in turn update the server’s configuration further.
+Plug-ins listed under the `plugins` array are then loaded and interrogated for known API methods, which further update the configuration.
 
-Once the configuration has been fully resolved, these values are passed to the Express server before it can then start.
+Express waits for a resolved configuration file before starting the server.
 
 ### Running locally
 
@@ -89,6 +97,36 @@ To run the server locally, first install its dependencies:
 
 ```sh
 npm install
+```
+
+The provided configuration file allows some options to be assigned using environment variables.
+
+Create an `.env` file in the root of the project, for example:
+
+```sh
+# Required
+PUBLICATION_URL="https://example.com"
+
+# Database connection string URI (optional)
+MONGO_URL="mongodb://127.0.0.1:27017"
+
+# Test saving files to a content store on GitHub (optional)
+GITHUB_USER="username"
+GITHUB_REPO="indiekit-test"
+GITHUB_BRANCH="main"
+GITHUB_TOKEN="12345abcde"
+
+# Test syndicating content to a Mastodon server (optional)
+MASTODON_URL="https://example.social"
+MASTODON_USER="indiekit-test"
+MASTODON_ACCESS_TOKEN="12345abcde"
+
+# Test syndicating content to Twitter (optional)
+TWITTER_USER="indiekit-test"
+TWITTER_ACCESS_TOKEN="12345abcde"
+TWITTER_ACCESS_TOKEN_SECRET="12345abcde"
+TWITTER_API_KEY="12345abcde"
+TWITTER_API_KEY_SECRET="12345abcde"
 ```
 
 You can then start the server:
@@ -103,17 +141,23 @@ To automatically restart the server whenever a file change is detected, use:
 npm run dev
 ```
 
+To enable authentication, use the `production` flag:
+
+```sh
+npm run dev --production
+```
+
 ### Tests
 
-[AVA](https://github.com/avajs/ava) is used to run and manage tests, of which both unit and integration types are used.
+[AVA](https://github.com/avajs/ava) is used to run and manage tests. The project uses both unit and integration tests.
 
-Tests can be run using the following command:
+Run tests using the following command:
 
 ```sh
 npm test
 ```
 
-To run tests for an individual file, you can call AVA directly using the `npx` command. For example:
+Call AVA directly using the `npx` command to run tests for an individual file. For example:
 
 ```sh
 npx ava packages/indiekit/tests/index.js
@@ -129,7 +173,7 @@ npm run coverage
 
 ### Linting
 
-[Prettier](https://prettier.io) is used to maintain consistent and high-quality code. You can check that any changes use the preferred code style by running the following command:
+Consistent and high-quality code is maintained using [Prettier](https://prettier.io). You can check that any changes use the preferred code style by running the following command:
 
 ```sh
 npm run lint
