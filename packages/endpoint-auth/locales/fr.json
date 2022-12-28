@@ -21,7 +21,7 @@
     },
     "error": {
       "password": {
-        "invalid": "Entrez un mot de passe valide",
+        "invalid": "Saisir un mot de passe valide",
         "missing": "Saisir le mot de passe"
       }
     },
@@ -42,7 +42,7 @@
     },
     "newPassword": {
       "password": {
-        "hint": "Entrez un mot de passe à utiliser pour authentifier les demandes"
+        "hint": "Saisir un mot de passe à utiliser pour authentifier les demandes"
       },
       "secret": {
         "hint": "Utilisez la valeur suivante pour %s dans vos variables d'environnement",

@@ -6,31 +6,31 @@
     },
     "delete": {
       "action": "Supprimer la publication",
-      "cancel": "Non – retour à la publication",
+      "cancel": "Non – retourner à la publication",
       "submit": "Je suis sûr – supprimer cette publication",
       "title": "Êtes-vous sûr de vouloir supprimer cette publication ?"
     },
     "error": {
       "bookmark-of": {
-        "empty": "Entrez une adresse Web telle que https://example.org"
+        "empty": "Saisir une adresse Web telle que https://example.org"
       },
       "content": {
-        "empty": "Entrez du contenu"
+        "empty": "Saisir du contenu"
       },
       "geo": {
-        "invalid": "Entrez des coordonnées valides"
+        "invalid": "Saisir des coordonnées valides"
       },
       "in-reply-to": {
-        "empty": "Entrez une adresse Web telle que https://example.org"
+        "empty": "Saisir une adresse Web telle que https://example.org"
       },
       "like-of": {
-        "empty": "Entrez une adresse Web telle que https://example.org"
+        "empty": "Saisir une adresse Web telle que https://example.org"
       },
       "name": {
         "empty": "Saisir un titre"
       },
       "repost-of": {
-        "empty": "Entrez une adresse Web telle que https://example.org"
+        "empty": "Saisir une adresse Web telle que https://example.org"
       }
     },
     "form": {
@@ -102,7 +102,7 @@
       "syndicated": "Distribué",
       "unlisted": "Non listé"
     },
-    "title": "Articles",
+    "title": "Publications",
     "undelete": {
       "action": "Restaurer la publication",
       "submit": "Je suis sûr – restaurer cette publication",
