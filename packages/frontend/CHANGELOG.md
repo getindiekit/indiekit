@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- **frontend:** allow fieldset to be marked as optional ([61e5ef4](https://github.com/getindiekit/indiekit/commit/61e5ef4552419d2fa32393212a25135dfd012585))
+- **frontend:** button padding and positioning ([7cf57bb](https://github.com/getindiekit/indiekit/commit/7cf57bb8d17abbc21bfc97df03c82ada471f6fe5))
+- **frontend:** consistent focus behaviour across components ([97c9f4f](https://github.com/getindiekit/indiekit/commit/97c9f4f6cf08a77b9c2602beda0c51500ef95351))
+- **frontend:** correct element for error message ([6e1aa93](https://github.com/getindiekit/indiekit/commit/6e1aa930993ea0de41c408302bbd41977df091f5))
+- **frontend:** fieldset spacing, one more time ([3f70724](https://github.com/getindiekit/indiekit/commit/3f70724f502ebe5792247b7c955b2c4b30bf8907))
+- **frontend:** increase excerpt length ([618a59f](https://github.com/getindiekit/indiekit/commit/618a59fa80962171483e29f0a38138ae7aaea57f))
+- **frontend:** input width classes designed to accept wider font ([320d754](https://github.com/getindiekit/indiekit/commit/320d7542adfba51f6aed464c96a272b0da80db4d))
+- **frontend:** padding shift on focus ([a0966df](https://github.com/getindiekit/indiekit/commit/a0966df2ce6cf260f3a9e1eaff864814fbb7ad22))
+- **frontend:** reduce prominence of details border ([f2712bf](https://github.com/getindiekit/indiekit/commit/f2712bf37bdf8b98ea8f573ce498f2c426d6bb81))
+- **frontend:** visual alignment of badge text ([56b84aa](https://github.com/getindiekit/indiekit/commit/56b84aa81c635cb221ecf987249d0eacba7e3a13))
+- pagination wraps if list width exceed container width ([4fd56e2](https://github.com/getindiekit/indiekit/commit/4fd56e22d89d31124f03a82ad167c1e34cce4442)), closes [getindiekit/indiekit#550](https://github.com/getindiekit/indiekit/issues/550)
+
+### Features
+
+- **frontend:** allow for boolean attributes ([191c9da](https://github.com/getindiekit/indiekit/commit/191c9dad27e1ee61a4671edb27db8f4868d583c8))
+- **frontend:** disabled button style ([045ffbd](https://github.com/getindiekit/indiekit/commit/045ffbde4e710729826eb9b1f3f17b97d2cbf325))
+- **frontend:** disabled button style ([29ae633](https://github.com/getindiekit/indiekit/commit/29ae633da2e149e957a0ac066877a0fbf3a41931))
+- **frontend:** font scale at smaller sizes ([c61e7ff](https://github.com/getindiekit/indiekit/commit/c61e7ff372d6219ff0dfde88889ec3c46627775d))
+- **frontend:** geo input ([daa8914](https://github.com/getindiekit/indiekit/commit/daa8914ec367747f9851d827eedd429178e03dea))
+- **frontend:** increase width of thickest border ([8e6f328](https://github.com/getindiekit/indiekit/commit/8e6f32869916b58cf82d665d3113dd65fbd53fac))
+- **frontend:** input group ([c4af53d](https://github.com/getindiekit/indiekit/commit/c4af53db1842a0d976c7ec0adfc664149e085eb2))
+- **frontend:** open option for details component ([b998fb2](https://github.com/getindiekit/indiekit/commit/b998fb2976b147c8e8ae18c62610dc8f0cecefbf))
+- **frontend:** pass attributes to input fields ([efb75df](https://github.com/getindiekit/indiekit/commit/efb75df396266354f8f27cabdb26ce5701ada08e))
+- **frontend:** remove border around readonly inputs ([cafbe46](https://github.com/getindiekit/indiekit/commit/cafbe46032a3b6c1c69fde996003889266ccb71e))
+- **frontend:** style pre similar to blockquote ([a0ef8fc](https://github.com/getindiekit/indiekit/commit/a0ef8fc4dae3fc2af154fba2662dd98bc91bf315))
+
 # [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
 
 ### Bug Fixes

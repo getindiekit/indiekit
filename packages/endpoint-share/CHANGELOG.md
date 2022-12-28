@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- don’t indent textarea components. fixes [#560](https://github.com/getindiekit/indiekit/issues/560) ([b667a2f](https://github.com/getindiekit/indiekit/commit/b667a2f9e788063f138ec0ec8bb02b15099dccf2))
+
+### Features
+
+- improved french translation ([33d25cc](https://github.com/getindiekit/indiekit/commit/33d25ccd243917caa2069b56a9234b53ac3b555d))
+
 # [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
 
 ### Bug Fixes

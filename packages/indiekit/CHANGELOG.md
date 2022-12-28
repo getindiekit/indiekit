@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- boolean value for readonly attribute ([00e7691](https://github.com/getindiekit/indiekit/commit/00e769179d607b29feb5ae61c050d7c6baf74797))
+- use MONGO_URL env variable if specified ([38ecc55](https://github.com/getindiekit/indiekit/commit/38ecc5575d2b4eedcaf08baf9b69380be6cf672f)), closes [getindiekit/indiekit#556](https://github.com/getindiekit/indiekit/issues/556)
+
+### Features
+
+- improved french translation ([33d25cc](https://github.com/getindiekit/indiekit/commit/33d25ccd243917caa2069b56a9234b53ac3b555d))
+- improved french translation ([aa12036](https://github.com/getindiekit/indiekit/commit/aa12036cff7c04b47396525c5b08ba29df005eb2))
+
 # [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- correct mf2 for nested vocabularies when converting from jf2 ([380fc17](https://github.com/getindiekit/indiekit/commit/380fc17afc9d333ed85054954d3d1c6c009a23be))
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Bug Fixes

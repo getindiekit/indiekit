@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- don’t indent textarea components. fixes [#560](https://github.com/getindiekit/indiekit/issues/560) ([b667a2f](https://github.com/getindiekit/indiekit/commit/b667a2f9e788063f138ec0ec8bb02b15099dccf2))
+- **endpoint-posts:** simplify radio/checkbox selection ([3b0ad05](https://github.com/getindiekit/indiekit/commit/3b0ad052d6b99d291343adf54e06ac9fae3ad40c))
+
+### Features
+
+- **endpoint-posts:** automatically toggle advanced options ([6b9641e](https://github.com/getindiekit/indiekit/commit/6b9641e901c2d7509906b7a0b080a56064435b2e))
+- **endpoint-posts:** change order of badges ([9abffb7](https://github.com/getindiekit/indiekit/commit/9abffb765a177e8f69b0e76d759da6f029e3aa83))
+- **endpoint-posts:** don’t allow editing of slug ([9806696](https://github.com/getindiekit/indiekit/commit/9806696fa554a81d066da1d392d6dfd75b0e9371))
+- **endpoint-posts:** location coordinates field ([b9da438](https://github.com/getindiekit/indiekit/commit/b9da438846d3c9fb69988cd2a973c34dcdebfa9c))
+- **endpoint-posts:** narrower input for slug ([0a5a78d](https://github.com/getindiekit/indiekit/commit/0a5a78d7dcd2976fd13f1823805e7d94ddbff0d8))
+- improved french translation ([33d25cc](https://github.com/getindiekit/indiekit/commit/33d25ccd243917caa2069b56a9234b53ac3b555d))
+- improved french translation ([aa12036](https://github.com/getindiekit/indiekit/commit/aa12036cff7c04b47396525c5b08ba29df005eb2))
+
 # [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
 
 ### Bug Fixes

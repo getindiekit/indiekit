@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- correct jf2 for location ([85fb6a5](https://github.com/getindiekit/indiekit/commit/85fb6a5e8375a345633745dd112431ca1770b053))
+- correctly encode html/text content containing `<`/`>` characters ([b64b7d4](https://github.com/getindiekit/indiekit/commit/b64b7d4757105ac464228706b55edf0841b7c19c))
+
 # [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
 
 **Note:** Version bump only for package @indiekit/syndicator-twitter

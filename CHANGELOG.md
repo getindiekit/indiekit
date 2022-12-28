@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
+
+### Bug Fixes
+
+- boolean value for readonly attribute ([00e7691](https://github.com/getindiekit/indiekit/commit/00e769179d607b29feb5ae61c050d7c6baf74797))
+- correct jf2 for location ([85fb6a5](https://github.com/getindiekit/indiekit/commit/85fb6a5e8375a345633745dd112431ca1770b053))
+- correct mf2 for nested vocabularies when converting from jf2 ([380fc17](https://github.com/getindiekit/indiekit/commit/380fc17afc9d333ed85054954d3d1c6c009a23be))
+- correctly encode html/text content containing `<`/`>` characters ([b64b7d4](https://github.com/getindiekit/indiekit/commit/b64b7d4757105ac464228706b55edf0841b7c19c))
+- don’t indent textarea components. fixes [#560](https://github.com/getindiekit/indiekit/issues/560) ([b667a2f](https://github.com/getindiekit/indiekit/commit/b667a2f9e788063f138ec0ec8bb02b15099dccf2))
+- **endpoint-micropub:** correct replacement of nested vocabularies ([824e660](https://github.com/getindiekit/indiekit/commit/824e660a49e7c74adda3e11fefa451683697044f))
+- **endpoint-posts:** simplify radio/checkbox selection ([3b0ad05](https://github.com/getindiekit/indiekit/commit/3b0ad052d6b99d291343adf54e06ac9fae3ad40c))
+- **endpoint-syndicate:** only allow local redirect ([24749ae](https://github.com/getindiekit/indiekit/commit/24749ae129babfe54eba5c46c542da42663247f8))
+- **frontend:** allow fieldset to be marked as optional ([61e5ef4](https://github.com/getindiekit/indiekit/commit/61e5ef4552419d2fa32393212a25135dfd012585))
+- **frontend:** button padding and positioning ([7cf57bb](https://github.com/getindiekit/indiekit/commit/7cf57bb8d17abbc21bfc97df03c82ada471f6fe5))
+- **frontend:** consistent focus behaviour across components ([97c9f4f](https://github.com/getindiekit/indiekit/commit/97c9f4f6cf08a77b9c2602beda0c51500ef95351))
+- **frontend:** correct element for error message ([6e1aa93](https://github.com/getindiekit/indiekit/commit/6e1aa930993ea0de41c408302bbd41977df091f5))
+- **frontend:** fieldset spacing, one more time ([3f70724](https://github.com/getindiekit/indiekit/commit/3f70724f502ebe5792247b7c955b2c4b30bf8907))
+- **frontend:** increase excerpt length ([618a59f](https://github.com/getindiekit/indiekit/commit/618a59fa80962171483e29f0a38138ae7aaea57f))
+- **frontend:** input width classes designed to accept wider font ([320d754](https://github.com/getindiekit/indiekit/commit/320d7542adfba51f6aed464c96a272b0da80db4d))
+- **frontend:** padding shift on focus ([a0966df](https://github.com/getindiekit/indiekit/commit/a0966df2ce6cf260f3a9e1eaff864814fbb7ad22))
+- **frontend:** reduce prominence of details border ([f2712bf](https://github.com/getindiekit/indiekit/commit/f2712bf37bdf8b98ea8f573ce498f2c426d6bb81))
+- **frontend:** visual alignment of badge text ([56b84aa](https://github.com/getindiekit/indiekit/commit/56b84aa81c635cb221ecf987249d0eacba7e3a13))
+- pagination wraps if list width exceed container width ([4fd56e2](https://github.com/getindiekit/indiekit/commit/4fd56e22d89d31124f03a82ad167c1e34cce4442)), closes [getindiekit/indiekit#550](https://github.com/getindiekit/indiekit/issues/550)
+- use MONGO_URL env variable if specified ([38ecc55](https://github.com/getindiekit/indiekit/commit/38ecc5575d2b4eedcaf08baf9b69380be6cf672f)), closes [getindiekit/indiekit#556](https://github.com/getindiekit/indiekit/issues/556)
+
+### Features
+
+- **endpoint-posts:** automatically toggle advanced options ([6b9641e](https://github.com/getindiekit/indiekit/commit/6b9641e901c2d7509906b7a0b080a56064435b2e))
+- **endpoint-posts:** change order of badges ([9abffb7](https://github.com/getindiekit/indiekit/commit/9abffb765a177e8f69b0e76d759da6f029e3aa83))
+- **endpoint-posts:** don’t allow editing of slug ([9806696](https://github.com/getindiekit/indiekit/commit/9806696fa554a81d066da1d392d6dfd75b0e9371))
+- **endpoint-posts:** location coordinates field ([b9da438](https://github.com/getindiekit/indiekit/commit/b9da438846d3c9fb69988cd2a973c34dcdebfa9c))
+- **endpoint-posts:** narrower input for slug ([0a5a78d](https://github.com/getindiekit/indiekit/commit/0a5a78d7dcd2976fd13f1823805e7d94ddbff0d8))
+- **frontend:** allow for boolean attributes ([191c9da](https://github.com/getindiekit/indiekit/commit/191c9dad27e1ee61a4671edb27db8f4868d583c8))
+- **frontend:** disabled button style ([045ffbd](https://github.com/getindiekit/indiekit/commit/045ffbde4e710729826eb9b1f3f17b97d2cbf325))
+- **frontend:** disabled button style ([29ae633](https://github.com/getindiekit/indiekit/commit/29ae633da2e149e957a0ac066877a0fbf3a41931))
+- **frontend:** font scale at smaller sizes ([c61e7ff](https://github.com/getindiekit/indiekit/commit/c61e7ff372d6219ff0dfde88889ec3c46627775d))
+- **frontend:** geo input ([daa8914](https://github.com/getindiekit/indiekit/commit/daa8914ec367747f9851d827eedd429178e03dea))
+- **frontend:** increase width of thickest border ([8e6f328](https://github.com/getindiekit/indiekit/commit/8e6f32869916b58cf82d665d3113dd65fbd53fac))
+- **frontend:** input group ([c4af53d](https://github.com/getindiekit/indiekit/commit/c4af53db1842a0d976c7ec0adfc664149e085eb2))
+- **frontend:** open option for details component ([b998fb2](https://github.com/getindiekit/indiekit/commit/b998fb2976b147c8e8ae18c62610dc8f0cecefbf))
+- **frontend:** pass attributes to input fields ([efb75df](https://github.com/getindiekit/indiekit/commit/efb75df396266354f8f27cabdb26ce5701ada08e))
+- **frontend:** remove border around readonly inputs ([cafbe46](https://github.com/getindiekit/indiekit/commit/cafbe46032a3b6c1c69fde996003889266ccb71e))
+- **frontend:** style pre similar to blockquote ([a0ef8fc](https://github.com/getindiekit/indiekit/commit/a0ef8fc4dae3fc2af154fba2662dd98bc91bf315))
+- improved french translation ([33d25cc](https://github.com/getindiekit/indiekit/commit/33d25ccd243917caa2069b56a9234b53ac3b555d))
+- improved french translation ([aa12036](https://github.com/getindiekit/indiekit/commit/aa12036cff7c04b47396525c5b08ba29df005eb2))
+
 # [1.0.0-beta.0](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.18...v1.0.0-beta.0) (2022-12-17)
 
 ### Bug Fixes
