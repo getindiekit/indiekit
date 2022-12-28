@@ -69,7 +69,7 @@ get postTypes() {
 
 | Method | Type | Description |
 | :----- | :--- | :---------- |
-| `postTemplate()` | [`Function`][] | Default [post template](../../configuration/post-template.md). |
+| `postTemplate()` | [`AsyncFunction`][]/[`Function`][] | Default [post template](../../configuration/post-template.md). |
 
 ### `postTemplate()`
 
@@ -153,6 +153,7 @@ Example publication preset plug-ins:
 - [`@indiekit/preset-hugo`](https://github.com/getindiekit/indiekit/tree/main/packages/preset-hugo) provides post types and a post template (that accepts an option for the type of front matter format to be used) for Hugo-based websites.
 
 [`Array`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+[`AsyncFunction`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction 
 [`Function`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 [`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [`String`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String

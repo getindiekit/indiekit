@@ -14,7 +14,7 @@ export const post = {
       fileType: "post",
       postType: postData.properties["post-type"],
     };
-    const content = postTemplate(postData.properties);
+    const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
     const published = await store.createFile(postData.path, content, message);
 
@@ -52,7 +52,7 @@ export const post = {
       fileType: "post",
       postType: postData.properties["post-type"],
     };
-    const content = postTemplate(postData.properties);
+    const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
     const updated = await store.updateFile(postData.path, content, message);
 
@@ -98,7 +98,7 @@ export const post = {
       fileType: "post",
       postType: postData.properties["post-type"],
     };
-    const content = postTemplate(postData.properties);
+    const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
     const deleted = await store.updateFile(postData.path, content, message);
 
@@ -145,7 +145,7 @@ export const post = {
       fileType: "post",
       postType: postData.properties["post-type"],
     };
-    const content = postTemplate(postData.properties);
+    const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
     const undeleted = await store.updateFile(postData.path, content, message);
 
