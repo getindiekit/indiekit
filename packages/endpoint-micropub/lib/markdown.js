@@ -23,12 +23,15 @@ export const markdownToHtml = (string) => {
 };
 
 /**
- * Convert HTML to Markdown
+ * Convert text to Markdown
  *
- * @param {string} string - HTML
+ * @param {string} string - String (may be HTML or Markdown)
  * @returns {string} Markdown
  */
-export const htmlToMarkdown = (string) => {
+export const textToMarkdown = (string) => {
+  // Normalise text as HTML before converting to Markdown
+  string = markdownToHtml(string);
+
   const options = {
     codeBlockStyle: "fenced",
     emDelimiter: "*",
@@ -36,6 +39,13 @@ export const htmlToMarkdown = (string) => {
   };
 
   const turndownService = new TurndownService(options);
+
+  /**
+   * Disable escaping of Markdown characters
+   *
+   * @see {@link: https://github.com/mixmark-io/turndown#escaping-markdown-characters}
+   */
+  turndownService.escape = (string) => string;
 
   const markdown = turndownService.turndown(string);
 

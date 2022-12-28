@@ -29,7 +29,7 @@ test("Creates a status with HTML content", (t) => {
     JSON.parse(getFixture("jf2/note-content-provided-html.jf2"))
   );
 
-  t.is(result.status, "I ate a cheese sandwich, which was nice.");
+  t.is(result.status, "> I ate a cheese sandwich, which was > 10.");
 });
 
 test("Creates a status with HTML content and appends last link", (t) => {
@@ -39,7 +39,7 @@ test("Creates a status with HTML content and appends last link", (t) => {
 
   t.is(
     result.status,
-    "I ate a cheese sandwich, which was nice. https://en.wikipedia.org/wiki/Cheese"
+    "> I ate a cheese sandwich, which was > 10. https://en.wikipedia.org/wiki/Cheese"
   );
 });
 
