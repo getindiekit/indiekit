@@ -49,7 +49,7 @@ export const filesController = async (request, response, next) => {
       actions: [
         scope.includes("create") || scope.includes("media")
           ? {
-              href: path.join(request.baseUrl + request.path, "/upload/"),
+              href: path.join(request.baseUrl + request.path, "/upload"),
               icon: "uploadFile",
               text: response.__("files.upload.action"),
             }
