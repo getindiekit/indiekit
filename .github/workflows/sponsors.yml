@@ -26,6 +26,7 @@ jobs:
           marker: "sponsors-website"
           minimum: 2500
           organization: true
+          template: '<p class="sponsor"><img src="https://github.com/{{{login}}}.png?size=112" alt="" height="56" width="56"><b>{{{ name }}}</b><br><a href="{{{websiteUrl}}}">{{{websiteUrl}}}</a></p>'
           token: ${{ secrets.PAT }}
 
       - name: Deploy updated Markdown files

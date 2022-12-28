@@ -143,3 +143,13 @@
   color: var(--vp-c-gray-light-5);
   content: "✓";
 }
+
+/* Sponsor icon */
+.vp-doc .sponsor a {
+  display: block;
+}
+
+.vp-doc .sponsor img {
+  float: left;
+  margin-right: 8px;
+}
