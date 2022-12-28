@@ -36,6 +36,7 @@
 
   & pre {
     background: none;
+    border-inline-start: none;
     padding: 0;
   }
 }

@@ -46,11 +46,11 @@
 
   & pre {
     background-color: var(--color-offset);
-    border-radius: var(--border-radius-small);
+    border-inline-start: var(--border-width-thickest) solid var(--color-outline);
     font: var(--font-code);
     overflow: scroll;
-    padding-block: calc(var(--space-s) / 2);
-    padding-inline: var(--space-s);
+    padding-block: var(--space-s);
+    padding-inline-start: var(--space-m);
     word-break: normal;
   }
 
