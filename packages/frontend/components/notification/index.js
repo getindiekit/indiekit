@@ -4,6 +4,10 @@ export const NotificationController = class extends Controller {
   initialize() {
     const { element } = this;
 
+    if (element.dataset.disableAutoFocus === "true") {
+      return;
+    }
+
     if (element.getAttribute("role") !== "alert") {
       return;
     }

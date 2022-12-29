@@ -2,6 +2,7 @@
   {%- if opts.type %} notification--{{ opts.type }}{% endif %}"
   role="{{ "alert" if opts.type === "success" else "region" }}"
   aria-labelledby="notification-title"
+  {%- if opts.disableAutoFocus !== undefined %} data-disable-auto-focus="{{ opts.disableAutoFocus }}"{% endif -%}
   data-controller="notification"
   {{- attributes(opts.attributes) }}>
   <div class="notification__container">
