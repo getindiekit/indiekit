@@ -39,7 +39,7 @@ export const getNavigation = (application, request, response) => {
   for (const item of navigation) {
     item.text = response.__(item.text);
     item.attributes = {
-      "aria-current": request.path.startsWith(item.href),
+      "aria-current": String(request.path.startsWith(item.href)),
     };
   }
 

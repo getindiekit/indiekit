@@ -89,5 +89,5 @@ test("Indicates current item in navigation", (t) => {
   );
 
   t.is(result[0].href, "/bar");
-  t.true(result[0].attributes["aria-current"]);
+  t.is(result[0].attributes["aria-current"], "true");
 });
