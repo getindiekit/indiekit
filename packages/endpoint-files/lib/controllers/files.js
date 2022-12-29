@@ -33,7 +33,6 @@ export const filesController = async (request, response, next) => {
       item.id = getFileId(item.url);
       item.icon = item["post-type"];
       item.photo = {
-        attributes: { onerror: "this.src='/assets/not-found.svg'" },
         url: item.url,
       };
       item.title = item.url ? getFileName(item.url) : "File";

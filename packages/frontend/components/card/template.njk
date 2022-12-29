@@ -1,9 +1,10 @@
 {%- from "../badge/macro.njk" import badge with context -%}
 {%- from "../prose/macro.njk" import prose with context -%}
+{%- set srcOnError = opts.photo.srcOnError or "/assets/not-found.svg" -%}
 <article class="card">
   {%- if opts.photo %}
   <div class="card__photo">
-    <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}"{{- attributes(opts.photo.attributes) }} decoding="async" loading="lazy">
+    <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}" decoding="async" loading="lazy" onerror="this.src='{{ srcOnError }}'"{{- attributes(opts.photo.attributes) }}>
   </div>
   {%- endif %}
   <div class="card__body">
@@ -26,4 +27,4 @@
     </footer>
     {% endif %}
   </div>
-</div>
+</article>
