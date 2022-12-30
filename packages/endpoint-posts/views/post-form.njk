@@ -158,16 +158,13 @@
     open: showAdvancedOptions,
     summary: __("posts.form.advancedOptions")
   }) %}
-    {{ input({
+    {{ tokenInput({
       value: errors.category.value or post.category,
       label: {
         text: __("posts.form.category.label")
       },
       optional: true,
-      attributes: {
-        "data-controller": "token-input",
-        "data-token-input-items-value": publication.categories
-      }
+      items: publication.categories
     }) | indent(4) }}
 
     {{ geoInput({
