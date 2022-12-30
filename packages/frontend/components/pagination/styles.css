@@ -1,7 +1,7 @@
 .pagination {
   --anchor-color: var(--color-primary-on-background);
   --anchor-color-hover: var(--color-on-offset);
-  --anchor-decoration-line: none;
+  --anchor-decoration-color: transparent;
   border-block-start: var(--border-width-thin) solid var(--color-offset);
   font: var(--font-caption);
   padding-block-start: var(--space-s);
@@ -27,7 +27,7 @@
   .pagination__item--next,
   .pagination__item:nth-child(2),
   .pagination__item:nth-last-child(2) {
-    display: inline-block;
+    display: inline-flex;
   }
 }
 
@@ -47,21 +47,22 @@
   &:hover {
     background-color: var(--color-offset);
   }
-}
 
-.pagination__item--current .pagination__link {
-  color: var(--color-on-background);
-  font-weight: 600;
+  @nest .pagination__item--current & {
+    color: var(--color-on-background);
+    font-weight: 600;
+  }
 }
 
 .pagination__link-title {
   align-items: center;
   display: flex;
+  font-weight: 600;
   gap: var(--space-s);
-}
 
-.pagination__item--next .pagination__link-title {
-  flex-direction: row-reverse;
+  @nest .pagination__item--next & {
+    flex-direction: row-reverse;
+  }
 }
 
 .pagination__link-label {
@@ -76,19 +77,20 @@
  * Block variant
  * Position previous and next links above and below numbers
  */
-.pagination__list--block {
-  flex-direction: column;
-}
+.pagination--block {
+  & .pagination__list {
+    flex-direction: column;
+  }
 
-.pagination__list--block .pagination__item--next {
-  border-block-start: var(--border-width-thin) solid var(--color-offset);
-}
+  & .pagination__item--next {
+    border-block-start: var(--border-width-thin) solid var(--color-offset);
+  }
 
-.pagination__list--block .pagination__item--next .pagination__link-title {
-  flex-direction: row;
-}
+  & .pagination__link-title {
+    flex-direction: row;
+  }
 
-.pagination__list--block .pagination__item--next .pagination__link-label,
-.pagination__list--block .pagination__item--previous .pagination__link-label {
-  padding-inline-start: calc(1em + var(--space-s));
+  & .pagination__link-label {
+    padding-inline-start: calc(1em + var(--space-s));
+  }
 }
