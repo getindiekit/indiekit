@@ -53,7 +53,7 @@ export const icon = (name) => {
   };
 
   const svg = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" role="img">
-    <path d="${paths[name]}"/>
+    <path fill="currentColor" d="${paths[name]}"/>
   </svg>`;
 
   const icon = svg.replace(/(\s{2,}|\r\n\t|\n|\r\t)/gm, "");
