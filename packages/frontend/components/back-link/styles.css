@@ -4,26 +4,20 @@
   --back-link-chevron-rotation: -45deg;
   --back-link-chevron-size: 0.5em;
   --back-link-chevron-thickness: var(--text-thickness);
-  inline-size: var(--container-inline-size);
-  margin-inline: auto;
-  max-inline-size: var(--container-max-inline-size);
-  padding-block-start: var(--back-link-padding);
-  padding-inline: var(--container-padding-inline);
 
   @nest :root[dir="rtl"] & {
     --back-link-chevron-rotation: 45deg;
   }
 
-  & a {
-    display: inline-block;
-    font: var(--font-caption);
-    margin-inline: calc(var(--back-link-padding) * -1);
-    padding: var(--back-link-padding);
-    padding-inline-start: calc(var(--back-link-padding) * 2);
-    position: relative;
-  }
+  display: inline-block;
+  font: var(--font-caption);
+  margin-inline: calc(var(--back-link-padding) * -1);
+  padding: var(--back-link-padding);
+  padding-block-start: var(--back-link-padding);
+  padding-inline-start: calc(var(--back-link-padding) * 2);
+  position: relative;
 
-  & a::before {
+  &::before {
     block-size: var(--back-link-chevron-size);
     border: 0 solid currentcolor;
     border-block-start-width: var(--back-link-chevron-thickness);
@@ -39,12 +33,12 @@
     transform: rotate(var(--back-link-chevron-rotation));
   }
 
-  & a:focus-visible::before,
-  & a:hover::before {
+  &:focus-visible::before,
+  &:hover::before {
     --back-link-chevron-thickness: calc(var(--text-thickness) * 2);
   }
 
-  & a::after {
+  &::after {
     content: "";
     inset: 0;
     position: absolute;
