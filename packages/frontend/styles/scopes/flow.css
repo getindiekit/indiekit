@@ -3,13 +3,17 @@
   --flow-inset: 1.25em;
   --flow-space: 1em;
 
-  & > * + * {
+  & * + * {
     margin-block-start: var(--flow-space);
   }
 
   & > *:not(pre) {
     max-inline-size: var(--flow-line-measure);
     word-break: break-word;
+  }
+
+  & .-\!-visually-hidden + * {
+    margin-block-start: 0;
   }
 
   & svg {
@@ -21,18 +25,24 @@
     margin-block-start: calc(var(--flow-space) * 2);
   }
 
-  & h2:not([class]) + *:not([class]) {
-    margin-block-start: calc(var(--flow-space) * 0.5);
+  & h3:not([class]) {
+    color: var(--color-primary-variant);
+    font: var(--font-subhead);
+    margin-block-start: calc(var(--flow-space) * 2);
   }
 
-  & h3:not([class]) {
-    color: var(--color-on-offset);
-    font: var(--font-subhead);
+  & h4:not([class]) {
+    font: var(--font-label);
     margin-block-start: calc(var(--flow-space) * 1.5);
   }
 
+  & :is(h2, h3, h4):not([class]) + *:not([class]) {
+    margin-block-start: calc(var(--flow-space) * 0.5);
+  }
+
   & hr {
-    border-block-start: 1px solid var(--color-outline);
+    border-block-start: var(--border-width-thickest) solid
+      var(--color-offset-variant);
     inline-size: 100%;
     margin: var(--flow-space) 0;
     max-inline-size: 100%;
