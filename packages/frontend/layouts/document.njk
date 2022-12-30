@@ -1,13 +1,14 @@
 {% extends "default.njk" %}
 
 {% block main %}
-<article class="main__container">
-  {{ heading({
-    parent: parent,
-    text: title,
-    actions: actions
-  }) if title }}
+<article class="main__container -!-container">
+{{ heading({
+  parent: parent,
+  text: title,
+  actions: actions
+}) if title }}
 
-  {%- block content %}{% endblock -%}
+{% block content %}
+{% endblock %}
 </article>
 {% endblock %}

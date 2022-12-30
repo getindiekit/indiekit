@@ -1,11 +1,11 @@
-{%- from "../navigation/macro.njk" import navigation with context -%}
+{% from "../navigation/macro.njk" import navigation with context %}
 <header class="{{ classes("header", opts) }}">
-  <div class="header__container">
+  <div class="header__container -!-container">
     <div class="header__title">
       <a class="u-url" href="{{ opts.url or "/" }}">
         <span class="p-name">{{ opts.name }}</span>
       </a>
     </div>
-    {{ navigation(opts.navigation) if opts.navigation }}
+    {{ navigation(opts.navigation) | indent(4) if opts.navigation.items.length > 0 }}
   </div>
 </header>

@@ -1,22 +1,19 @@
 {% extends "document.njk" %}
 
 {% set appClasses = "app--minimalui" %}
+
 {% block header %}
-  {{ header({
-    url: application.url,
-    name: application.name
-  }) }}
+{{ header({
+  url: application.url,
+  name: application.name
+}) }}
 {% endblock %}
+
 {% block content %}
-  <div class="prose s-flow">
-    <p>
-      {%- if uri %}<a href="{{ uri }}">{% endif -%}
-      {{- content | markdown("inline") | safe if content -}}
-      {%- if uri -%}</a>{%- endif -%}.
-    </p>
-  </div>
-  {{ details({
-    summary: "Status code: <code>" + status + "</code>",
-    text: "```\n" + stack + "\n```"
-  }) }}
+{{ prose({ text: content | linkTo(uri) }) }}
+
+{{ details({
+  summary: "Status code: <code>" + status + "</code>",
+  text: "```\n" + stack + "\n```"
+}) }}
 {% endblock %}

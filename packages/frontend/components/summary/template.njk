@@ -1,18 +1,18 @@
-{%- from "../actions/macro.njk" import actions with context -%}
+{% from "../actions/macro.njk" import actions with context %}
 <dl class="{{ classes("summary", opts) }}">
-  {%- for row in opts.rows %}
+  {% for row in opts.rows %}
   <div class="{{ classes("summary__row", row) }}">
     <dt class="{{ classes("summary__key", row.key) }}">
-      {{- row.key.text | safe -}}
+      {{ row.key.text | safe }}
     </dt>
     <dd class="{{ classes("summary__value", row.value) }} s-flow">
-      {{- row.value.text | default(__("noValue")) | safe -}}
+      {{ row.value.text | default(__("noValue")) | safe }}
     </dd>
-    {%- if row.actions -%}
+    {% if row.actions %}
     <dd class="{{ classes("summary__actions", row.actions) }}">
-      {{- actions({ items: row.actions }) if row.actions.length -}}
+      {{ actions({ items: row.actions }) | indent(6) if row.actions.length }}
     </dd>
-    {%- endif %}
+    {% endif %}
   </div>
-  {%- endfor %}
+  {% endfor %}
 </dl>

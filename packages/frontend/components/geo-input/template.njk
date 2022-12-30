@@ -1,6 +1,6 @@
-{%- from "../error-message/macro.njk" import errorMessage with context -%}
-{%- from "../button/macro.njk" import button with context -%}
-{%- from "../input/macro.njk" import input with context -%}
+{% from "../button/macro.njk" import button with context %}
+{% from "../error-message/macro.njk" import errorMessage with context %}
+{% from "../input/macro.njk" import input with context %}
 {{ input({
   field: {
     attributes: {
@@ -29,10 +29,10 @@
     attributes: {
       "data-action": "geo-input#find"
     }
-  }) }}
+  }) | indent(2) }}
 </template>
 <template id="geo-input-error-message">
   {{ errorMessage({
     id: opts.id + "-error"
-  }) }}
+  }) | indent(2) }}
 </template>

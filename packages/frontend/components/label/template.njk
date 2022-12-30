@@ -1,15 +1,15 @@
-{%- if opts.text -%}
-{%- set labelText = opts.text + (" " + __("optionalValue") if opts.optional) -%}
-{%- set label -%}
+{%- if opts.text %}
+{%- set labelText = opts.text + (" " + __("optionalValue") if opts.optional) %}
+{%- set label %}
 <label class="{{ classes("label", opts) }}"
   {%- if opts.for %} for="{{ opts.for }}"{% endif %}
   {{- attributes(opts.attributes) }}>
   {{- labelText | safe -}}
 </label>
-{%- endset -%}
-{%- if opts.isPageHeading -%}
+{%- endset %}
+{%- if opts.isPageHeading %}
   <h1 class="label__title">{{ label | safe }}</h1>
 {%- else -%}
   {{ label | safe }}
-{%- endif -%}
-{%- endif -%}
+{%- endif %}
+{%- endif %}

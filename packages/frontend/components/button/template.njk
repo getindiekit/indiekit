@@ -1,17 +1,16 @@
-{#- Determine type of element to use, if not explicitly set -#}
-{%- set element = "a" if opts.href else "button" -%}
-{#- Define common attributes that we can use across all element types #}
-{%- set commonAttributes %} class="{{ classes("button", opts) }}"
-  {{- attributes(opts.attributes) }}{% endset -%}
-{#- Define button attributes -#}
-{%- set buttonAttributes %}{% if opts.name %} name="{{ opts.name }}"{% endif %}{% if opts.disabled %} disabled="disabled" aria-disabled="true"{% endif %}{% endset -%}
-{%- if element === "a" -%}
-<a href="{{ opts.href if opts.href else "#" }}" role="button" draggable="false"{{- commonAttributes | safe }}>
+{%- if opts.href %}
+<a class="{{ classes("button", opts) }}" href="{{ opts.href }}" role="button" draggable="false"{{ attributes(opts.attributes) }}>
   {{- icon(opts.icon) if opts.icon -}}
   {{- opts.text | safe -}}
 </a>
-{%- elseif element === "button" -%}
-<button{%- if opts.value %} value="{{ opts.value }}"{% endif %}{%- if opts.type %} type="{{ opts.type }}"{% endif %} {{- buttonAttributes | safe }}{{- commonAttributes | safe }}>
+{%- else %}
+<button class="{{ classes("button", opts) }}"
+  {%- if opts.type %} type="{{ opts.type }}"{% endif %}
+  {%- if opts.name %} name="{{ opts.name }}"{% endif %}
+  {%- if opts.value %} value="{{ opts.value }}"{% endif %}
+  {%- if opts.disabled %} disabled aria-disabled="true"{% endif %}
+  {{- buttonAttributes | safe }}
+  {{- attributes(opts.attributes) }}>
   {{- icon(opts.icon) if opts.icon -}}
   {{- opts.text | safe -}}
 </button>

@@ -1,8 +1,8 @@
-{%- from "../logo/macro.njk" import logo with context -%}
-{%- from "../navigation/macro.njk" import navigation with context -%}
+{% from "../logo/macro.njk" import logo with context %}
+{% from "../navigation/macro.njk" import navigation with context %}
 <footer class="{{ classes("footer", opts) }}">
-  <div class="footer__container">
-    {{ navigation(opts.navigation) if opts.navigation }}
-    {{ logo(opts.logo) if opts.logo }}
+  <div class="footer__container -!-container">
+    {{ navigation(opts.navigation) | indent(4) if opts.navigation.items.length > 0 }}
+    {{ logo(opts.logo) | indent(4) if opts.logo }}
   </div>
 </footer>

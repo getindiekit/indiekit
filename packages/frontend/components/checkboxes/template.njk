@@ -1,26 +1,22 @@
-{%- from "../error-message/macro.njk" import errorMessage with context -%}
-{%- from "../fieldset/macro.njk" import fieldset with context -%}
-{%- from "../field/macro.njk" import field with context -%}
-{%- from "../hint/macro.njk" import hint with context -%}
-{%- from "../label/macro.njk" import label with context -%}
-
-{#- If `idPrefix` not passed, fallback to using name attribute instead.
-  We need this for error messages and hints. -#}
-{%- set idPrefix = opts.idPrefix if opts.idPrefix else opts.name -%}
-
-{#- A record of other elements we need to associate with the input using
-   `aria-describedby`, for example error messages or hints. -#}
-{%- set describedBy = opts.describedBy if opts.describedBy else "" -%}
-{%- if opts.fieldset.describedBy -%}
-  {%- set describedBy = opts.fieldset.describedBy -%}
-{%- endif -%}
-
-{#- `fieldset` is false by default -#}
-{%- set hasFieldset = true if opts.fieldset else false -%}
-
-{#- Capture the HTML so we can optionally nest it within a fieldset -#}
-{%- set innerHtml -%}
-{%- if opts.hint %}
+{% from "../error-message/macro.njk" import errorMessage with context %}
+{% from "../fieldset/macro.njk" import fieldset with context %}
+{% from "../field/macro.njk" import field with context %}
+{% from "../hint/macro.njk" import hint with context %}
+{% from "../label/macro.njk" import label with context %}
+{# If `idPrefix` not passed, fallback to using name attribute instead.
+   We need this for error messages and hints. #}
+{%- set idPrefix = opts.idPrefix if opts.idPrefix else opts.name %}
+{# A record of other elements we need to associate with the input using
+   `aria-describedby`, for example error messages or hints. #}
+{%- set describedBy = opts.describedBy if opts.describedBy else "" %}
+{%- if opts.fieldset.describedBy %}
+  {%- set describedBy = opts.fieldset.describedBy %}
+{%- endif %}
+{# `fieldset` is false by default #}
+{%- set hasFieldset = true if opts.fieldset else false %}
+{# Capture the HTML so we can optionally nest it within a fieldset #}
+{%- set innerHtml %}
+{% if opts.hint %}
   {% set hintId = idPrefix + "-hint" %}
   {% set describedBy = describedBy + " " + hintId if describedBy else hintId %}
   {{ hint({
@@ -29,9 +25,9 @@
     attributes: opts.hint.attributes,
     html: opts.hint.html,
     text: opts.hint.text
-  }) | indent(2) | trim }}
-{%- endif %}
-{%- if opts.errorMessage %}
+  }) | trim }}
+{% endif %}
+{% if opts.errorMessage %}
   {% set errorId = idPrefix + "-error" %}
   {% set describedBy = describedBy + " " + errorId if describedBy else errorId %}
   {{ errorMessage({
@@ -42,81 +38,63 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-  <div class="{{ classes("checkboxes", opts) }}"
+<div class="{{ classes("checkboxes", opts) }}"{{- attributes(opts.attributes) }}>
+{% for item in opts.items %}{% if item %}
+  {% set id = itemId(item.id, idPrefix, loop) %}
+  {% set name = item.name if item.name else opts.name %}
+  {% set conditionalId = "conditional-" + id %}
+  {% if item.divider %}
+  <div class="checkboxes__divider">{{ item.divider }}</div>
+  {% else %}
+  {% set isChecked = item.checked | default(opts.values and item.value in opts.values) %}
+  {% set hasHint = true if item.hint.text or item.hint.html %}
+  {% set itemHintId = id + "-item-hint" if hasHint else "" %}
+  {% set itemDescribedBy = describedBy if not hasFieldset else "" %}
+  {% set itemDescribedBy = (itemDescribedBy + " " + itemHintId) | trim %}
+  <div class="checkboxes__item">
+    <input class="checkboxes__input" id="{{ id }}" name="{{ name }}" type="checkbox" value="{{ item.value }}"
+    {{-" checked" if isChecked }}
+    {{-" disabled" if item.disabled }}
+    {%- if item.conditional.html %} data-aria-controls="{{ conditionalId }}"{% endif -%}
+    {%- if item.behaviour %} data-behaviour="{{ item.behaviour }}"{% endif -%}
+    {%- if itemDescribedBy %} aria-describedby="{{ itemDescribedBy }}"{% endif -%}
     {{- attributes(opts.attributes) }}>
-    {% for item in opts.items %}
-      {% if item %}
-        {#- If user explicitly sets `id`, use this instead of `idPrefix` -#}
-        {%- if item.id -%}
-          {%- set id = item.id -%}
-        {%- else -%}
-          {#- The first `id` should not have a number suffix so it’s easy to link to from the error summary component -#}
-          {%- if loop.first -%}
-            {%- set id = idPrefix %}
-          {% else %}
-            {%- set id = idPrefix + "-" + loop.index -%}
-          {%- endif -%}
-        {%- endif -%}
-        {% set name = item.name if item.name else opts.name %}
-        {% set conditionalId = "conditional-" + id %}
-        {%- if item.divider %}
-          <div class="checkboxes__divider">{{ item.divider }}</div>
-        {%- else %}
-          {% set isChecked = item.checked | default(opts.values and item.value in opts.values) %}
-          {% set hasHint = true if item.hint.text or item.hint.html %}
-          {% set itemHintId = id + "-item-hint" if hasHint else "" %}
-          {% set itemDescribedBy = describedBy if not hasFieldset else "" %}
-          {% set itemDescribedBy = (itemDescribedBy + " " + itemHintId) | trim %}
-          <div class="checkboxes__item">
-            <input class="checkboxes__input" id="{{ id }}" name="{{ name }}" type="checkbox" value="{{ item.value }}"
-            {{-" checked" if isChecked }}
-            {{-" disabled" if item.disabled }}
-            {%- if item.conditional.html %} data-aria-controls="{{ conditionalId }}"{% endif -%}
-            {%- if item.behaviour %} data-behaviour="{{ item.behaviour }}"{% endif -%}
-            {%- if itemDescribedBy %} aria-describedby="{{ itemDescribedBy }}"{% endif -%}
-            {{- attributes(opts.attributes) }}>
-            {{ label({
-              html: item.html,
-              text: item.text,
-              classes: classes("checkboxes__label", item.label.classes),
-              attributes: item.label.attributes,
-              for: id
-            }) | indent(6) | trim }}
-            {% if hasHint %}
-            {{ hint({
-              id: itemHintId,
-              classes: classes("checkboxes__hint", item.hint.classes),
-              attributes: item.hint.attributes,
-              html: item.hint.html,
-              text: item.hint.text
-            }) | indent(6) | trim }}
-            {% endif %}
-          </div>
-          {% if item.conditional.html %}
-            <div class="checkboxes__conditional{{ " checkboxes__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">
-              {{ item.conditional.html | safe }}
-            </div>
-          {% endif %}
-        {% endif %}
-      {% endif %}
-    {% endfor %}
+    {{ label({
+      html: item.html,
+      text: item.text,
+      classes: classes("checkboxes__label", item.label.classes),
+      attributes: item.label.attributes,
+      for: id
+    }) }}
+    {{ hint({
+      id: itemHintId,
+      classes: classes("checkboxes__hint", item.hint.classes),
+      attributes: item.hint.attributes,
+      html: item.hint.html,
+      text: item.hint.text
+    }) if hasHint }}
   </div>
-{%- endset -%}
-
+  {% if item.conditional.html %}
+  <div class="checkboxes__conditional{{ " checkboxes__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">
+    {{ item.conditional.html | safe }}
+  </div>
+  {% endif %}
+  {% endif %}
+{% endif %}{% endfor %}
+</div>
+{% endset %}
 {% call field({
   classes: opts.field.classes,
   errorMessage: opts.errorMessage
 }) %}
-{%- if opts.fieldset %}
+{% if opts.fieldset %}
   {% call fieldset({
     describedBy: describedBy,
     classes: classes("checkboxes__fieldset", opts.fieldset),
     attributes: opts.fieldset.attributes,
     legend: opts.fieldset.legend
-  }) %}
+  }) %}{{ innerHtml | trim | safe }}{% endcall %}
+{% else %}
   {{ innerHtml | trim | safe }}
-  {% endcall %}
-{%- else %}
-  {{ innerHtml | trim | safe }}
-{%- endif %}
-{%- endcall -%}
+{% endif %}
+{% endcall %}

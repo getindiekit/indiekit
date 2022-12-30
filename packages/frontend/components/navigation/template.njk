@@ -1,9 +1,11 @@
 <nav class="{{ classes("navigation", opts) }}" aria-label="{{ opts.label }}">
-  <ul class="navigation__list" role="list">{%- for item in opts.items %}
-    {%- if item.href and item.text %}<li class="navigation__list-item">
-    <a href="{{ item.href }}"{{- attributes(item.attributes) }}>{{
-      item.text | safe
-    }}</a>
-    </li>{%- endif %}
-  {%- endfor %}</ul>
+  <ul class="navigation__list" role="list">
+    {% for item in opts.items %}{% if item.href and item.text %}
+    <li class="navigation__list-item">
+      <a href="{{ item.href }}"{{- attributes(item.attributes) }}>
+        {{- item.text | safe -}}
+      </a>
+    </li>
+    {% endif %}{% endfor %}
+  </ul>
 </nav>

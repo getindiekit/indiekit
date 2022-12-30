@@ -1,10 +1,12 @@
-{%- from "../prose/macro.njk" import prose with context -%}
-<details class="{{ classes("details", action) }}"{%- if opts.id %} id="{{ opts.id }}"{% endif %}{{ attributes(opts.attributes) }}{{- " open" if opts.open }}>
-  <summary class="details__summary"><span class="details__summary-text">{{
-    opts.summary | safe
-  }}</span></summary>
+{% from "../prose/macro.njk" import prose with context %}
+<details class="{{ classes("details", action) }}"
+  {%- if opts.id %} id="{{ opts.id }}"{% endif %}
+  {{- " open" if opts.open }}
+  {{- attributes(opts.attributes) }}>
+  <summary class="details__summary">
+    <span class="details__summary-text">{{ opts.summary | safe }}</span>
+  </summary>
   <div class="details__main">
-    {{- prose({ text: opts.text }) if opts.text }}
-    {{- caller() if caller }}
+    {{ caller() if caller else prose(opts) }}
   </div>
 </details>

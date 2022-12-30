@@ -1,77 +1,62 @@
-{% set type = opts.results.type | default(__("pagination.defaultType")) -%}
-<nav class="{{ classes("pagination", opts) }}" id="pagination-label" aria-label="{{ type }} navigation">
+{% set type = opts.results.type | default(__("pagination.defaultType")) %}
+{%- macro _paginationLabel(label) %}
+<span class="-!-visually-hidden">:</span>
+<span class="pagination__link-label">{{ label }}</span>
+{%- endmacro %}
+<nav class="{{ classes("pagination", opts) }}" aria-label="{{ type }} navigation">
   <ul class="pagination__list" role="list">
-    {%- if opts.previous %}
+    {% if opts.previous %}
     <li class="pagination__item pagination__item--previous">
       <a class="pagination__link" href="{{ opts.previous.href }}">
         <span class="pagination__link-title">
           {{- icon("previous") -}}
-          {%- if opts.previous.text %}{{ opts.previous.text -}}
-          {%- else %}{{ __("pagination.previous", "<span class=\"-!-visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
+          {{- opts.previous.text if opts.previous.text else __("pagination.previous", '<span class="-!-visually-hidden"> ' + __("pagination.page") + "</span>") | safe -}}
         </span>
-        {%- if opts.previous.label %}
-        <span class="pagination__link-divider -!-visually-hidden">:</span>
-        <span class="pagination__link-label">{{ opts.previous.label }}</span>
-        {% endif -%}
+        {{- _paginationLabel(opts.previous.label) | indent(8) if opts.previous.label }}
       </a>
     </li>
-    {% endif -%}
-
-    {%- for item in opts.items %}
-    {%- if item.divider %}
-    <li class="pagination__item pagination__item--divider">
-      {{ item.divider or "…" }}
-    </li>
+    {% endif %}
+  {% for item in opts.items %}
+    {% if item.divider %}
+    <li class="pagination__item pagination__item--divider">&ctdot;</li>
     {% else %}
-    {%- if item.current %}
-    <li class="pagination__item pagination__item--current">
-      <a class="pagination__link" href="{{ item.href }}" aria-label="{{ __("pagination.item", item.text) }}" aria-current="page">{{ item.text }}</a>
+    <li class="pagination__item{{ " pagination__item--current" if item.current }}">
+      <a class="pagination__link" href="{{ item.href }}" aria-label="{{ __("pagination.item", item.text) }}"{{ ' aria-current="page"' if item.current }}>{{ item.text }}</a>
     </li>
-    {%- else %}
-    <li class="pagination__item">
-      <a class="pagination__link" href="{{ item.href }}" aria-label="{{ __("pagination.item", item.text) }}">{{ item.text }}</a>
-    </li>
-    {% endif -%}
-    {% endif -%}
-    {% endfor -%}
-
-    {%- if opts.next %}
+    {% endif %}
+  {% endfor %}
+    {% if opts.next %}
     <li class="pagination__item pagination__item--next">
       <a class="pagination__link" href="{{ opts.next.href }}">
         <span class="pagination__link-title">
           {{- icon("next") -}}
-          {%- if opts.next.text %}{{ opts.next.text -}}
-          {%- else %}{{ __("pagination.next", "<span class=\"-!-visually-hidden\"> " + __("pagination.page") + "</span>") | safe }}{% endif -%}
+          {{- opts.next.text if opts.next.text else __("pagination.next", '<span class="-!-visually-hidden"> ' + __("pagination.page") + "</span>") | safe -}}
         </span>
-        {%- if opts.next.label %}
-        <span class="pagination__link-divider -!-visually-hidden">:</span>
-        <span class="pagination__link-label">{{ opts.next.label }}</span>
-        {% endif -%}
+        {{- _paginationLabel(opts.next.label) | indent(8) if opts.next.label }}
       </a>
     </li>
-    {% endif -%}
+    {% endif %}
   </ul>
-
-  {%- if opts.results %}
+  {% if opts.results %}
   <p class="pagination__results">
     {#-
       Using markdown and replace filters to output <b> elements because
       concatenated values cannot be rendered as safe strings.
     -#}
     {%- if opts.results.from === opts.results.to -%}
-      {{- __("pagination.result", {
+      {{ __("pagination.result", {
         from: "**" + opts.results.from + "**",
         count: "**" + opts.results.count + "**",
         type: type
-      }) | markdown("inline") | replace("strong", "b") | safe -}}
+      }) | markdown("inline") | replace("strong", "b") | safe }}
     {%- else -%}
-      {{- __("pagination.results", {
+      {{ __("pagination.results", {
         from: "**" + opts.results.from + "**",
         to: "**" + opts.results.to + "**",
         count: "**" + opts.results.count + "**",
         type: type
-      }) | markdown("inline") | replace("strong", "b") | safe -}}
+      }) | markdown("inline") | replace("strong", "b") | safe }}
     {%- endif -%}
   </p>
-  {% endif -%}
+  {% endif %}
 </nav>

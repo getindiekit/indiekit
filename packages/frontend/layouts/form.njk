@@ -1,20 +1,26 @@
 {% extends "default.njk" %}
 
 {% block main %}
-<form class="main__container" method="post">
-  {{ errorSummary({
-    errorList: errorList(errors)
-  }) | indent(2) if errors }}
-  {% block form %}{% call fieldset({
-    legend: {
-      classes: "-!-visually-hidden" if minimalui,
-      parent: parent,
-      text: title,
-      isPageHeading: true
-    }
-  }) -%}
-    {% block fieldset %}{% endblock %}
-  {% endcall %}{% endblock %}
-  {% block buttons %}{% endblock %}
+<form class="main__container -!-container" method="post">
+{{ errorSummary({
+  errorList: errorList(errors)
+}) if errors }}
+
+{% block form %}
+{% call fieldset({
+  legend: {
+    classes: "-!-visually-hidden" if minimalui,
+    parent: parent,
+    text: title,
+    isPageHeading: true
+  }
+}) -%}
+  {% block fieldset %}
+  {% endblock %}
+{% endcall %}
+{% endblock %}
+
+{% block buttons %}
+{% endblock %}
 </form>
 {% endblock %}

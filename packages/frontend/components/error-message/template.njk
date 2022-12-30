@@ -1,9 +1,9 @@
 <p class="{{ classes("error-message", opts) }}" id="{{ opts.id }}"
   {{- attributes(opts.attributes) }}>
-  <span class="-!-visually-hidden">{{
-    opts.visuallyHiddenText | default(__("error"))
-  }}:</span>
-  <span class="error-message__text">{{
-    opts.text | safe
-  }}</span>
+  <span class="-!-visually-hidden">
+    {{- opts.visuallyHiddenText | default(__("error")) + ":" -}}
+  </span>
+  <span class="error-message__text">
+    {{- opts.text | safe -}}
+  </span>
 </p>

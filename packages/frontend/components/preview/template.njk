@@ -9,6 +9,6 @@
     <output for="{{ opts.url.for }}" data-preview-target="url" data-placeholder="{{ opts.url.placeholder }}">{{ opts.url.value }}</output>
   </p>
   <p class="preview__date">
-    <date>{{ opts.date | date("PPPppp", opts.locale) }}</date>
+    <time>{{ opts.date | date("PPPppp", opts.locale) }}</time>
   </p>
 </div>

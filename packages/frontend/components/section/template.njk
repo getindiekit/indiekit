@@ -1,19 +1,18 @@
-{%- from "../actions/macro.njk" import actions with context -%}
-{%- from "../prose/macro.njk" import prose with context -%}
-{%- set id = opts.id or opts.title | slugify -%}
+{% from "../actions/macro.njk" import actions with context %}
+{% from "../prose/macro.njk" import prose with context %}
+{% set id = opts.id or opts.title | slugify %}
 <section class="{{ classes("section", opts) }}" aria-labelledby="{{ id }}">
-  {%- if opts.title or opts.actions %}
+  {% if opts.title or opts.actions %}
   <header class="section__header">
-  {%- if opts.title %}
+    {% if opts.title %}
     <h2 class="section__title" id="{{ id }}">
-      {{- opts.title | safe -}}
+      {{ opts.title | safe }}
     </h2>
-  {%- endif %}
-  {{- actions({ items: opts.actions }) if opts.actions.length }}
+    {% endif %}
+    {{ actions({ items: opts.actions }) | indent(4) if opts.actions.length }}
   </header>
-  {%- endif %}
+  {% endif %}
   <div class="section__main">
-    {{- prose({ text: opts.text }) if opts.text }}
-    {{- caller() if caller }}
+    {{ caller() if caller else prose(opts) }}
   </div>
 </section>

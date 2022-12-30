@@ -1,22 +1,19 @@
+{% from "../prose/macro.njk" import prose with context %}
 <div class="{{ classes("notification", opts) }}
-  {%- if opts.type %} notification--{{ opts.type }}{% endif %}"
-  role="{{ "alert" if opts.type === "success" else "region" }}"
-  aria-labelledby="notification-title"
-  {%- if opts.disableAutoFocus !== undefined %} data-disable-auto-focus="{{ opts.disableAutoFocus }}"{% endif -%}
-  data-controller="notification"
+  {{- " notification--" + opts.type if opts.type }}" data-controller="notification" aria-labelledby="notification-title" role="{{ "alert" if opts.type === "success" else "region" }}"
+  {%- if opts.disableAutoFocus !== undefined %} data-disable-auto-focus="{{ opts.disableAutoFocus }}"{% endif %}
   {{- attributes(opts.attributes) }}>
-  <div class="notification__container">
-    <h2 class="notification__title" id="notification-title">{{
-      (__("error") if opts.type === "error") or
-      (__("success") if opts.type === "success") or
-      __("important")
-    }}</h2>
-    {%- if opts.text %}
-    <div class="notification__text s-flow">
-      {%- if opts.href %}<a href="{{ opts.href }}">{% endif -%}
-      {{- opts.text | markdown | safe -}}
-      {%- if opts.href %}</a>{% endif -%}
-    </div>
-    {%- endif %}
+  <div class="notification__container -!-container">
+    <h2 class="notification__title" id="notification-title">
+      {{
+        (__("error") if opts.type === "error") or
+        (__("success") if opts.type === "success") or
+        __("important")
+      }}
+    </h2>
+    {{ prose({
+      classes: "notification__text",
+      text: opts.text | linkTo(opts.href)
+    }) | indent(4) if opts.text }}
   </div>
 </div>

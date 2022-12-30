@@ -1,9 +1,8 @@
-{%- from "../card/macro.njk" import card with context -%}
-<ol class="{{ classes("card-grid", opts) }}" role="list"
-  style="--min-card-size: {{ opts.cardSize | default("12rem") }}">
-  {%- for item in opts.items %}
+{% from "../card/macro.njk" import card with context %}
+<ol class="{{ classes("card-grid", opts) }}" role="list" style="--min-card-size: {{ opts.cardSize | default("12rem") }}">
+  {% for item in opts.items %}
   <li class="card-grid__item">
-    {{ card(item) }}
+    {{ card(item) | indent(4) }}
   </li>
-  {%- endfor %}
+  {% endfor %}
 </ol>

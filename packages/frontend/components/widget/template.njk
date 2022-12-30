@@ -1,19 +1,19 @@
-{%- from "../actions/macro.njk" import actions with context -%}
-{%- set id = opts.id or opts.title | slugify -%}
+{% from "../actions/macro.njk" import actions with context %}
+{% from "../prose/macro.njk" import prose with context %}
+{% set id = opts.id or opts.title | slugify %}
 <section class="{{ classes("widget", opts) }}" aria-labelledby="{{ id }}">
-  {%- if opts.title or opts.actions %}
+  {% if opts.title or opts.actions %}
   <header class="widget__header">
-  {%- if opts.title %}
+    {% if opts.title %}
     <h2 class="widget__title" id="{{ id }}">
       <img class="icon icon--rounded" src="{{ opts.image }}" alt="" onerror="this.src='/assets/plug-in.svg'">
-      {{- opts.title | safe -}}
+      {{- opts.title | safe }}
     </h2>
-  {%- endif %}
-  {{- actions({ items: opts.actions }) if opts.actions.length }}
+    {% endif %}
+    {{ actions({ items: opts.actions }) | indent(4) if opts.actions.length }}
   </header>
-  {%- endif %}
+  {% endif %}
   <div class="widget__main">
-    {{- prose({ text: opts.text }) if opts.text }}
-    {{- caller() if caller }}
+    {{ caller() if caller else prose(opts) }}
   </div>
 </section>

@@ -1,4 +1,3 @@
 <div class="{{ classes("prose", opts) }} s-flow">
-  {{ opts.text | markdown | safe if opts.text }}
-  {{ opts.html | safe if opts.html }}
+  {{ opts.text | markdown | trim | safe if opts.text else opts.html | safe }}
 </div>

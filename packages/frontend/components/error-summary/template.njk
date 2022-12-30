@@ -1,27 +1,27 @@
-<div class="{{ classes("error-summary", opts) }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-controller="error-summary"
+<div class="{{ classes("error-summary", opts) }}" data-controller="error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
   {%- if opts.disableAutoFocus %} data-disable-auto-focus="true"{% endif %}
   {{- attributes(opts.attributes) }}>
   <h2 class="error-summary__title" id="error-summary-title">
     {{ opts.title.text | default(__("errorSummary.title")) | safe }}
   </h2>
   <div class="error-summary__body s-flow">
-  {%- if opts.description.text %}
+  {% if opts.description.text %}
     <p>{{ opts.description.text | markdown | safe }}</p>
-  {%- endif %}
-  {%- if opts.errorList %}
+  {% endif %}
+  {% if opts.errorList %}
     <ul class="error-summary__list" role="list">
-    {%- for item in opts.errorList %}
+    {% for item in opts.errorList %}
       <li>
-      {%- if item.href %}
+      {% if item.href %}
         <a href="{{ item.href }}"{{ attributes(item.attributes) }}>
           {{- item.text | safe -}}
         </a>
-      {%- else %}
+      {% else %}
         {{- item.text | safe -}}
-      {%- endif %}
+      {% endif %}
       </li>
-    {%- endfor %}
+    {% endfor %}
     </ul>
-  {%- endif %}
+  {% endif %}
   </div>
 </div>

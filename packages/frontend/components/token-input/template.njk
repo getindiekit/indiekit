@@ -1,6 +1,4 @@
-{%- from "../error-message/macro.njk" import errorMessage with context -%}
-{%- from "../button/macro.njk" import button with context -%}
-{%- from "../input/macro.njk" import input with context -%}
+{% from "../input/macro.njk" import input with context %}
 {{ input({
   field: opts.field,
   classes: opts.classes,

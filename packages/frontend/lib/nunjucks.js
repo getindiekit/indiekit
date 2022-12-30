@@ -18,6 +18,8 @@ export const templates = (app) => {
   const options = {
     autoescape: true,
     express: app,
+    lstripBlocks: true,
+    trimBlocks: true,
   };
 
   const parser = nunjucks.configure(views, options);

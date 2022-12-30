@@ -1,12 +1,12 @@
-{%- from "../badge/macro.njk" import badge with context -%}
-{%- from "../prose/macro.njk" import prose with context -%}
-{%- set srcOnError = opts.photo.srcOnError or "/assets/not-found.svg" -%}
+{% from "../badge/macro.njk" import badge with context %}
+{% from "../prose/macro.njk" import prose with context %}
+{% set srcOnError = opts.photo.srcOnError or "/assets/not-found.svg" %}
 <article class="card">
-  {%- if opts.photo %}
+  {% if opts.photo %}
   <div class="card__photo">
     <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}" decoding="async" loading="lazy" onerror="this.src='{{ srcOnError }}'"{{- attributes(opts.photo.attributes) }}>
   </div>
-  {%- endif %}
+  {% endif %}
   <div class="card__body">
     <h2 class="card__title">
       <a href="{{ opts.url }}">
@@ -17,13 +17,13 @@
     {{ prose({
       classes: "card__meta",
       text: opts.description | markdown | striptags | excerpt(30, publication.locale)
-    }) if opts.description }}
+    }) | indent(4) if opts.description }}
     {% if opts.published or opts.badges %}
     <footer class="card__footer">
       <time datetime="{{ opts.published }}">{{ opts.published | date("PPp") }}</time>
-      {%- for item in opts.badges %}
-        {{ badge(item) if item }}
-      {%- endfor %}
+      {% for item in opts.badges %}
+      {{ badge(item) | indent(6) if item }}
+      {% endfor %}
     </footer>
     {% endif %}
   </div>

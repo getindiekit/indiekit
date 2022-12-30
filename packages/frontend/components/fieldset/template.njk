@@ -1,19 +1,13 @@
-{%- from "../heading/macro.njk" import heading with context -%}
-{%- set legend %}
-  {%- if opts.legend.text %}
-  <legend class="{{ classes("fieldset__legend", opts.legend) }}">
-  {%- if opts.legend.isPageHeading -%}
-    {{- heading(opts.legend) -}}
-  {%- else -%}
-    {{- opts.legend.text + (" " + __("optionalValue") if opts.optional) | safe -}}
-  {%- endif -%}
-  </legend>
-  {%- endif %}
+{% from "../heading/macro.njk" import heading with context %}
+{% set legend %}
+<legend class="{{ classes("fieldset__legend", opts.legend) }}">
+  {{ heading(opts.legend) | indent(2) if opts.legend.isPageHeading else opts.legend.text + (" " + __("optionalValue") if opts.optional) }}
+</legend>
 {%- endset %}
 <fieldset class="{{ classes("fieldset", opts) }}"
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
   {{- attributes(opts.attributes) }}>
-  {{- legend | safe }}
-  {{- caller() if caller }}
+  {{ legend | indent(2) | safe if opts.legend.text }}
+  {{ caller() | indent(2) if caller }}
 </fieldset>
