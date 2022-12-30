@@ -24,7 +24,7 @@
   }
 
   & .main__container {
-    padding: var(--space-l);
+    padding-block: var(--space-l);
   }
 
   & .notification {
