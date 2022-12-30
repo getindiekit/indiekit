@@ -4,16 +4,12 @@
   --details-decoration-color: var(--details-decoration-color, currentcolor);
   color: var(--details-color);
   cursor: pointer;
-  display: inline-block;
   font: var(--font-label);
   margin-inline: calc(var(--space-xs) * -1);
+  max-width: min-content;
   padding-block: var(--space-2xs);
   padding-inline: var(--space-xs);
   white-space: nowrap;
-
-  @supports (display: inline list-item) {
-    display: inline list-item;
-  }
 
   &:hover {
     color: var(--details-color-hover);
@@ -38,4 +34,9 @@
   border-inline-start: var(--border-width-thickest) solid var(--color-outline);
   margin-block-start: var(--space-s);
   padding-inline-start: var(--space-m);
+
+  & pre {
+    border-inline-start: none;
+    margin-inline-start: calc(var(--space-m) * -1);
+  }
 }
