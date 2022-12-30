@@ -64,20 +64,22 @@ html {
   /* clamp(min=320, preferred, max=960) */
   --font-size-xs: clamp(0.75rem, 0.6875rem + 0.3125vw, 0.875rem); /* 12 → 14 */
   --font-size-s: clamp(0.875rem, 0.8125rem + 0.3125vw, 1rem); /* 14 → 16 */
-  --font-size-m: clamp(1rem, 0.875rem + 0.625vw, 1.25rem); /* 16 → 20 */
-  --font-size-l: clamp(1.125rem, 0.9375rem + 0.9375vw, 1.5rem); /* 18 → 24 */
-  --font-size-xl: clamp(1.25rem, 1rem + 1.25vw, 1.75rem); /* 20 → 28 */
+  --font-size-m: clamp(1rem, 0.9375rem + 0.3125vw, 1.125rem); /* 16 → 18 */
+  --font-size-l: clamp(1.125rem, 1.0313rem + 0.4688vw, 1.3125rem); /* 18 → 21 */
+  --font-size-xl: clamp(1.25rem, 1rem + 1.25vw, 1.75rem); /* 21 → 28 */
   --font-size-2xl: clamp(1.5rem, 1rem + 2.5vw, 2.5rem); /* 24 → 40 */
 
   /* Typography */
   --font-family-system: system-ui;
   --font-family-sans: mona-sans, sans-serif;
-  --font-family-monospace: ui-monospace, monospace;
+  --font-family-monospace: ui-monospace, sfmono-regular, sf mono, menlo,
+    consolas, liberation mono, monospace;
+
   --line-height-solid: 1;
   --line-height-tight: 1.25;
-  --line-height-loose: 1.6;
+  --line-height-loose: 1.66667;
   --line-height-prose: 1.75;
-  --line-measure: 48rem;
+  --line-measure: 45rem;
   --text-thickness: 0.0625em;
 
   /* Font styles */
@@ -85,7 +87,7 @@ html {
     var(--font-family-sans);
   --font-heading: 600 var(--font-size-xl) / var(--line-height-tight)
     var(--font-family-sans);
-  --font-subhead: 500 var(--font-size-l) / var(--line-height-tight)
+  --font-subhead: 550 var(--font-size-l) / var(--line-height-tight)
     var(--font-family-sans);
   --font-body: 425 var(--font-size-m) / var(--line-height-loose)
     var(--font-family-sans);
