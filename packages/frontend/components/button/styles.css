@@ -1,7 +1,9 @@
 .button,
 ::file-selector-button {
+  --anchor-color-hover: var(--button-color, var(--color-on-primary));
   --anchor-decoration-line: none;
   --icon-size: 1.5em;
+  --button-padding: var(--space-m);
   align-items: center;
   background-color: var(
     --button-background-color,
@@ -18,12 +20,9 @@
   line-height: var(--line-height-loose);
   margin-block-end: var(--input-border-width-focus-offset);
   padding-block: calc(
-    var(
-      --button-padding,
-      calc(var(--space-m) - var(--input-border-width) * 2) / 2
-    )
+    calc(var(--button-padding) / 2) - var(--input-border-width)
   );
-  padding-inline: var(--button-padding, var(--space-m));
+  padding-inline: var(--button-padding);
 }
 
 .button--secondary,
@@ -47,11 +46,8 @@
 
 .button--secondary-on-offset {
   --button-background-color: var(--color-background);
+  --button-background-hover-color: var(--color-offset-variant);
   --button-color: var(--color-on-background);
-
-  &:hover {
-    background-color: var(--color-offset-variant);
-  }
 }
 
 .button--warning {
@@ -75,11 +71,12 @@
 
 .button--inline {
   --icon-margin: 0;
-  --icon-size: 2em;
-  display: flex;
+  --icon-size: 1.5em;
+  display: inline flex;
   flex-direction: column;
   gap: var(--space-3xs);
-  padding-block: var(--space-m);
+  padding-block-end: calc(var(--space-m) * 0.75);
+  padding-block-start: var(--space-m);
 }
 
 .button-grid {
