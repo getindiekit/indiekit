@@ -5,7 +5,6 @@
   background-position: right 0.75em top 50%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: 0.75em auto, 100%;
-  block-size: 3rem;
   border: var(--input-border-width) solid var(--color-outline);
   border-radius: var(--border-radius-small);
   font: var(--font-body);
@@ -19,13 +18,12 @@
   }
 
   &:focus-visible {
-    background-position: right
-        calc(0.75em - var(--input-border-width-focus-offset)) top
-        calc(50% + var(--input-border-width-focus-offset)),
-      0 0;
+    background-position-x: right
+      calc(0.75em - var(--input-border-width-focus-offset));
     border-color: var(--color-on-background);
     border-width: var(--input-border-width-focus);
     inset-block-start: calc(var(--input-border-width-focus-offset) * -1);
+    margin-block-end: calc(var(--input-border-width-focus-offset) * -1);
     padding-inline: calc(
       var(--space-s) - var(--input-border-width-focus-offset)
     );
