@@ -1,8 +1,10 @@
 .logo {
-  display: block;
+  display: inline flow-root;
   padding: var(--space-s);
 
   & img {
+    block-size: var(--icon-size, 1em);
+    inline-size: var(--icon-size, 1em);
     opacity: 0.25;
   }
 
