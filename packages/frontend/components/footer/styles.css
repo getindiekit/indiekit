@@ -1,6 +1,6 @@
 .footer {
   --anchor-color: var(--color-on-offset);
-  --anchor-color-hover: var(--color-on-background);
+  --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-color: transparent;
   background-color: var(--color-offset);
   color: var(--color-on-offset);
@@ -12,10 +12,6 @@
 .footer__container {
   align-items: center;
   display: flex;
-  inline-size: var(--container-inline-size);
   justify-content: space-between;
-  margin-inline: auto;
-  max-inline-size: var(--container-max-inline-size);
   padding-block: var(--space-m);
-  padding-inline: var(--container-padding-inline);
 }

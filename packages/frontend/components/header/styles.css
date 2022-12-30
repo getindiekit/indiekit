@@ -14,11 +14,7 @@
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  inline-size: var(--container-inline-size);
-  margin-inline: auto;
-  max-inline-size: var(--container-max-inline-size);
   padding-block-start: var(--space-2xs);
-  padding-inline: var(--container-padding-inline);
 }
 
 .header__title {
