@@ -10,7 +10,7 @@
   --icon-margin: var(--space-2xs);
   align-items: center;
   background-color: var(--color-primary);
-  border-radius: var(--space-m);
+  border-radius: var(--space-l);
   color: var(--color-on-primary);
   display: inline flow-root;
   font: var(--font-caption);
