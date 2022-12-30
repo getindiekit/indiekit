@@ -7,7 +7,6 @@
   --button-font: var(--font-caption);
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
-  color: var(--color-on-offset);
   display: inline-block;
   margin-block-end: var(--space-l);
   min-inline-size: 100%;
@@ -24,6 +23,6 @@
 }
 
 .widget__title {
-  --icon-size: 1.5em;
+  --icon-size: 1.25em;
   font: var(--font-label);
 }
