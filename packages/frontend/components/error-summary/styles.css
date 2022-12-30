@@ -6,7 +6,7 @@
 }
 
 .error-summary__title {
-  font: var(--font-label);
+  font: var(--font-subhead);
 }
 
 .error-summary__body {
