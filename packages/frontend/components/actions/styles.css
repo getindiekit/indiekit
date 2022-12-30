@@ -1,19 +1,16 @@
 .actions {
   --anchor-decoration-color: transparent;
   --icon-margin: var(--space-2xs);
-  font: var(--font-caption);
-
-  & a {
-    margin: calc(var(--space-s) * -1);
-    padding: var(--space-s);
-    white-space: nowrap;
-  }
-}
-
-.actions__list {
   display: flex;
   flex-wrap: wrap;
+  font: var(--font-caption);
   gap: var(--space-2xs) var(--space-l);
+}
+
+.actions__link {
+  margin: calc(var(--space-s) * -1);
+  padding: var(--space-s);
+  white-space: nowrap;
 }
 
 .actions__link--warning {
