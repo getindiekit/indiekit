@@ -26,12 +26,17 @@
   }
 
   &[type="color"] {
+    max-width: 6ch;
     min-block-size: 3rem;
     padding: var(--border-width-thickest);
-  }
 
-  &[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &:focus-visible {
+      min-block-size: calc(3rem + var(--input-border-width-focus-offset));
+    }
   }
 
   &[type="datetime-local"] {
@@ -41,6 +46,11 @@
   &[type="file"] {
     border: 0;
     padding: 0;
+
+    &:focus-visible {
+      inset-block-start: 0;
+      margin-block-end: var(--input-border-width-focus-offset);
+    }
   }
 }
 
@@ -68,15 +78,13 @@
 .input-button-group {
   align-items: end;
   display: flex;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
 
   & .input {
-    border-end-end-radius: 0;
-    border-start-end-radius: 0;
+    flex: 999 1 auto;
     inline-size: auto;
-    margin-inline-end: calc(var(--input-border-width) * -1);
-    position: relative;
-    z-index: 1;
+    max-inline-size: 100%;
   }
 
   & .input:focus-visible {
@@ -84,7 +92,6 @@
   }
 
   & .button {
-    border-end-start-radius: 0;
-    border-start-start-radius: 0;
+    flex: 1 1 auto;
   }
 }
