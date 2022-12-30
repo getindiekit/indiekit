@@ -25,11 +25,7 @@
   align-items: baseline;
   display: flex;
   gap: var(--space-s);
-  inline-size: var(--container-inline-size);
-  margin-inline: auto;
-  max-inline-size: var(--container-max-inline-size);
   padding-block: var(--space-m);
-  padding-inline: var(--space-l);
 }
 
 .notification__title {
@@ -37,6 +33,5 @@
 }
 
 .notification__text {
-  flex: 1 1 auto;
-  font: var(--font-caption);
+  --prose-font: var(--font-caption);
 }
