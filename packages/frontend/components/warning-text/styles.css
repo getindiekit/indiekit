@@ -9,7 +9,7 @@
   font: var(--font-label);
   padding: var(--space-m);
 
-  & [class="warning-text__text"] {
-    margin-block-start: 0;
+  & .warning-text__text {
+    padding-block-start: 0.25rem;
   }
 }
