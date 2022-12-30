@@ -10,6 +10,7 @@ module.exports = {
     }),
   },
   plugins: [
+    "@indiekit-test/frontend",
     "@indiekit/endpoint-json-feed",
     "@indiekit/preset-jekyll",
     "@indiekit/store-github",

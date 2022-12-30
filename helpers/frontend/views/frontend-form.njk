@@ -1,0 +1,203 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+{{ input({
+  errorMessage: { text: "Input error" } if errors,
+  name: "input",
+  id: "input",
+  label: {
+    text: "Input"
+  },
+  hint: {
+    text: "Input hint text"
+  }
+}) }}
+
+{{ input({
+  errorMessage: { text: "Readonly input error" } if errors,
+  name: "input-readonly",
+  id: "input-readonly",
+  label: {
+    text: "Readonly input"
+  },
+  hint: {
+    text: "Readonly input hint text"
+  },
+  attributes: {
+    readonly: true
+  }
+}) }}
+
+{{ input({
+  errorMessage: { text: "File input error" } if errors,
+  type: "file",
+  name: "input-file",
+  id: "input-file",
+  label: {
+    text: "File input"
+  },
+  hint: {
+    text: "File input hint text"
+  }
+}) }}
+
+{{ input({
+  errorMessage: { text: "Color input error" } if errors,
+  type: "color",
+  name: "input-color",
+  id: "input-color",
+  label: {
+    text: "Color input"
+  },
+  hint: {
+    text: "Color input hint text"
+  }
+}) }}
+
+{{ input({
+  errorMessage: { text: "Date input error" } if errors,
+  type: "datetime-local",
+  name: "input-datetime",
+  id: "input-datetime",
+  label: {
+    text: "Date input"
+  },
+  hint: {
+    text: "Date input hint text"
+  }
+}) }}
+
+{{ textarea({
+  errorMessage: { text: "Textarea input error" } if errors,
+  name: "textarea",
+  id: "textarea",
+  label: {
+    text: "Textarea"
+  },
+  hint: {
+    text: "Textarea hint text"
+  }
+}) }}
+
+{{ textarea({
+  errorMessage: { text: "Readonly textarea input error" } if errors,
+  name: "textarea-readonly",
+  id: "textarea-readonly",
+  label: {
+    text: "Readonly textarea"
+  },
+  hint: {
+    text: "Readonly textarea hint text"
+  },
+  attributes: {
+    readonly: true
+  }
+}) }}
+
+{{ geoInput({
+  errorMessage: { text: "Geo input error" } if errors,
+  name: "geo-input",
+  id: "geo-input",
+  label: {
+    text: "Geo input"
+  },
+  hint: {
+    text: "Geo input hint text"
+  }
+}) }}
+
+{{ tokenInput({
+  errorMessage: { text: "Token input error" } if errors,
+  name: "token-input",
+  id: "token-input",
+  label: {
+    text: "Token input"
+  },
+  hint: {
+    text: "Token input hint text"
+  },
+  items: publication.categories
+}) }}
+
+{{ select({
+  errorMessage: { text: "Select error" } if errors,
+  label: {
+    text: "Post types"
+  },
+  hint: {
+    text: "Select hint text"
+  },
+  name: "select",
+  id: "select",
+  items: [{
+    text: "Article",
+    value: "article"
+  }, {
+    text: "Note",
+    value: "note",
+    selected: true
+  }, {
+    text: "Photo",
+    value: "photo"
+  }]
+}) }}
+
+{{ checkboxes({
+  errorMessage: { text: "Checkboxes error" } if errors,
+  fieldset: {
+    legend: {
+      text: "Checkboxes"
+    }
+  },
+  hint: {
+    text: "Checkboxes hint text"
+  },
+  name: "checkboxes",
+  idPrefix: "checkboxes",
+  items: [{
+    text: "Mastodon",
+    hint: {
+      text: "username@example.social"
+    },
+    value: "username@example.social",
+    checked: true
+  }, {
+    text: "Twitter",
+    value: "username@twitter.com",
+    hint: {
+      text: "username@twitter.com"
+    }
+  }]
+}) }}
+
+{{ radios({
+  errorMessage: { text: "Radios error" } if errors,
+  fieldset: {
+    legend: {
+      text: "Radios"
+    }
+  },
+  hint: {
+    text: "Radios hint text"
+  },
+  name: "radios",
+  idPrefix: "radios",
+  items: [{
+    text: "Mastodon",
+    value: "username@example.social",
+    hint: {
+      text: "username@example.social"
+    }
+  }, {
+    text: "Twitter",
+    value: "username@twitter.com",
+    hint: {
+      text: "username@twitter.com"
+    }
+  }]
+}) }}
+
+{{ button({
+  text: "Submit for errors"
+}) }}
+{% endblock %}

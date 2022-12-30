@@ -1,0 +1,301 @@
+{% extends "document.njk" %}
+
+{% set discovery %}
+## Headings
+
+To create a heading, add number signs (`#`) in front of a word or phrase.
+
+The number of number signs you use should correspond to the heading level. For example, to create a heading level 3 (`<h3>`), use 3 number signs (e.g., `### My Header`).
+
+| Markdown                 | Rendered output          |
+| ------------------------ | ------------------------ |
+| `# Heading level 1`      | <h1>Heading level 1</h1> |
+| `## Heading level 2`     | <h2>Heading level 2</h2> |
+| `### Heading level 3`    | <h3>Heading level 3</h3> |
+| `#### Heading level 4`   | <h4>Heading level 4</h4> |
+| `##### Heading level 5`  | <h5>Heading level 5</h5> |
+| `###### Heading level 6` | <h6>Heading level 6</h6> |
+
+## Paragraphs
+
+To create paragraphs, use a blank line to separate one or more lines of text.
+
+| Markdown | Rendered output |
+| -------- | --------------- |
+| <pre tabindex="0">This is the first paragraph.<br><br>And this is the second one.</pre> | <p>This is the first paragraph.</p><p>And this is the second one.</p> |
+
+## Line breaks
+
+To create a line break or new line (`<br>`), end a line with 2 or more spaces, and then type return.
+
+| Markdown | Rendered output |
+| -------- | --------------- |
+| <pre tabindex="0">This is the first line.<br>And this is the second one.</pre> | <p>This is the first line.<br>And this is the second one.</p> |
+
+## Emphasis
+
+To emphasise text, add one asterisk or underscore before and after a word or phrase.
+
+| Markdown | Rendered output |
+| -------- | --------------- |
+| `This text is *emphasised*.` | This text is <em>emphasised</em>. |
+| `This text is _emphasised_.` | This text is <em>emphasised</em>. |
+
+## Strong emphasis
+
+To bold text, add 2 asterisks or underscores before and after a word or phrase.
+
+| Markdown | Rendered output |
+| -------- | --------------- |
+| `This text is **strongly emphasised**.` | This text is <strong>strongly emphasised</strong>. |
+| `This text is __strongly emphasised__.` | This text is <strong>strongly emphasised</strong>. |
+
+## Blockquotes
+
+To create a blockquote, add a `>` in front of a paragraph.
+
+```markdown
+> The IndieWeb is a community of independent and personal websites connected by simple standards, based on the principles of: owning your domain and using it as your primary identity, publishing on your own site (optionally syndicating elsewhere), and owning your data.
+```
+
+The rendered output looks like this:
+
+> The IndieWeb is a community of independent and personal websites connected by simple standards, based on the principles of: owning your domain and using it as your primary identity, publishing on your own site (optionally syndicating elsewhere), and owning your data.
+
+### Blockquotes with multiple paragraphs
+
+Blockquotes can contain multiple paragraphs. Add a `>` on the blank lines between the paragraphs.
+
+```markdown
+> The IndieWeb is a people-focused alternative to the "corporate web".
+>
+> It is a community of independent and personal websites connected by simple standards, based on the principles of: owning your domain and using it as your primary identity, publishing on your own site (optionally syndicating elsewhere), and owning your data.
+```
+
+The rendered output looks like this:
+
+> The IndieWeb is a people-focused alternative to the "corporate web".
+>
+> It is a community of independent and personal websites connected by simple standards, based on the principles of: owning your domain and using it as your primary identity, publishing on your own site (optionally syndicating elsewhere), and owning your data.
+
+### Nested blockquotes
+
+Blockquotes can be nested. Add a `>>` in front of the paragraph you want to nest.
+
+```markdown
+> The IndieWeb is a people-focused alternative to the "corporate web".
+>
+> > It is a community of independent and personal websites connected by simple standards.
+```
+
+The rendered output looks like this:
+
+> The IndieWeb is a people-focused alternative to the "corporate web".
+>
+> > It is a community of independent and personal websites connected by simple standards.
+
+### Blockquotes with other elements
+
+Blockquotes can contain other Markdown formatted elements. Not all elements can be used — you'll need to experiment to see which ones work.
+
+```markdown
+> #### Your content is yours
+>
+> When you post something on the web, it should belong to you, not a corporation. Too many companies have gone out of business and [lost all of their users' data](https://indieweb.org/site-deaths). By joining the IndieWeb, your content stays yours and in your control.
+```
+
+The rendered output looks like this:
+
+> #### Your content is yours
+>
+> When you post something on the web, it should belong to you, not a corporation. Too many companies have gone out of business and [lost all of their users' data](https://indieweb.org/site-deaths). By joining the IndieWeb, your content stays yours and in your control.
+
+## Lists
+
+You can organize items into ordered and unordered lists.
+
+### Ordered lists
+
+To create an ordered list, add line items with numbers followed by periods. The numbers don’t have to be in numerical order, but the list should start with the number one.
+
+```markdown
+1. First item
+2. Second item
+   1. Indented item
+   1. Indented item
+3. Third item
+```
+
+1. First item
+2. Second item
+   1. Indented item
+   1. Indented item
+3. Third item
+
+### Unordered lists
+
+To create an unordered list, add dashes (`-`), asterisks (`*`), or plus signs (`+`) in front of line items. Indent one or more items to create a nested list.
+
+```markdown
+- First item
+- Second item
+  - Indented item
+  - Indented item
+- Third item
+```
+
+- First item
+- Second item
+  - Indented item
+  - Indented item
+- Third item
+
+#### Nesting different list types
+
+You can also nest an unordered list in an ordered list, or vice versa.
+
+```markdown
+1. First item
+2. Second item
+   - Indented item
+   - Indented item
+3. Third item
+```
+
+1. First item
+2. Second item
+   - Indented item
+   - Indented item
+3. Third item
+
+#### Starting unordered list items with numbers
+
+If you need to start an unordered list item with a number followed by a period, you can use a backslash (`\`) to escape the period.
+
+```markdown
+- 2012\. A great year!
+- I think 2009 was second best.
+```
+
+- 2012\. A great year!
+- I think 2009 was second best.
+
+## Code
+
+### Code spans
+
+To denote a word or phrase as code, enclose it in backticks (`` ` ``).
+
+```markdown
+At the command prompt, type `npm install`.
+```
+
+At the command prompt, type `npm install`.
+
+### Code blocks
+
+To create code blocks, indent every line of the block by at least 4 spaces or one tab.
+
+```markdown
+    console.log('Hello, world!')
+```
+
+    console.log('Hello, world!')
+
+## Horizontal rules
+
+To create a horizontal rule, use 3 or more asterisks (`***`), dashes (`---`), or underscores (`___`) on a line by themselves.
+
+```markdown
+***
+---
+
+___
+```
+
+The rendered output of all 3 looks identical:
+
+---
+
+## Links
+
+To create a link, enclose the link text in brackets (e.g., `[Indiekit]`) and then follow it immediately with the URL in parentheses (e.g., `(https://getindiekit.com)`).
+
+```markdown
+Learn more about [Indiekit](https://getindiekit.com).
+```
+
+The rendered output looks like this:
+
+Learn more about [Indiekit](https://getindiekit.com).
+
+### URLs and email addresses
+
+To quickly turn a URL or email address into a link, enclose it in angle brackets.
+
+```markdown
+<https://getindiekit.com>
+<paul@getindiekit.com>
+```
+
+The rendered output looks like this:
+
+<https://getindiekit.com>
+<paul@getindiekit.com>
+
+### Formatting links
+
+To [emphasize](#emphasis) links, add asterisks before and after the brackets and parentheses. To denote links as [code](#code), add backticks in the brackets.
+
+```markdown
+Visit the **[Markdown Guide](https://www.markdownguide.org)**.
+See the section on [`code`](https://www.markdownguide.org/basic-syntax/#code).
+```
+
+The rendered output looks like this:
+
+Visit the **[Markdown Guide](https://www.markdownguide.org)**.
+See the section on [`code`](https://www.markdownguide.org/basic-syntax/#code).
+
+## Images
+
+To add an image, add an exclamation mark (`!`), followed by alternative text in brackets, and the path or URL to the image asset in parentheses. You can optionally add a caption in quotation marks after the path or URL.
+
+The rendered output looks like this:
+
+```markdown
+![Four simple shapes](/assets/app.png "Indiekit’s logo")
+```
+
+![Four simple shapes](/assets/app.png "Indiekit’s logo")
+
+### Linking images
+
+To add a link to an image, enclose the Markdown for the image in brackets, and then add the link in parentheses.
+
+```markdown
+[![Four simple shapes](/assets/app.png "Indiekit")](https://getindiekit.com)
+```
+
+The rendered output looks like this:
+
+[![Four simple shapes](/assets/app.png "Indiekit")](https://getindiekit.com)
+
+## Typographic replacements
+
+| Description          | Text                  | Rendered output     |
+| -------------------- | --------------------- | ------------------- |
+| En dash              | `--`                  | --                  |
+| Em dash              | `---`                 | ---                 |
+| Ellipsis             | `...`                 | ...                 |
+| Single quotes        | `'single'`            | 'single'            |
+| Double quotes        | `"double"`            | "double"            |
+| Plus-minus           | `2.4 +-1`             | 2.4 +-1             |
+| Copyright            | `(C)` `(c)`           | (C)                 |
+| Registered trademark | `(R)` `(r)`           | (R)                 |
+| Trademark            | `(TM)` `(tm)`         | (TM)                |
+{% endset %}
+
+{% block content %}
+  {{ prose({ text: discovery }) }}
+{% endblock %}

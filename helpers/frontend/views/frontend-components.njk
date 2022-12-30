@@ -1,0 +1,481 @@
+{% extends "document.njk" %}
+
+{%- from "actions/macro.njk" import actions with context -%}
+{%- from "authorize/macro.njk" import authorize with context -%}
+{%- from "card/macro.njk" import card with context -%}
+{%- from "logo/macro.njk" import logo with context -%}
+{%- from "navigation/macro.njk" import navigation with context -%}
+{%- from "preview/macro.njk" import preview with context -%}
+
+{% block content %}
+<h2><code>actions</code></h2>
+
+{{ actions({
+  items: [{
+    href: "#",
+    text: "Action item"
+  }]
+}) }}
+
+{{ actions({
+  items: [{
+    href: "#",
+    text: "Action list item"
+  }, {
+    icon: "delete",
+    href: "#",
+    text: "Action list item with icon"
+  }]
+}) }}
+
+<h2><code>authorize</code></h2>
+
+{{ authorize({
+  client: {
+    logo: "/assets/app.png",
+    name: "Indiekit",
+    url: "https://getindiekit.com"
+  },
+  me: "https://website.example",
+  key: "auth.consent.authorize.text"
+}) }}
+
+<h2><code>backLink</code></h2>
+
+{{ backLink({
+  href: "#",
+  text: "Back link"
+}) }}
+
+<h2><code>badge</code></h2>
+
+{{ badge({
+  color: "red",
+  text: "Badge"
+}) }}
+
+{{ badge({
+  color: "offset-red",
+  size: "small",
+  text: "Small badge"
+}) }}
+
+{{ badge({
+  icon: "syndicate",
+  color: "yellow",
+  text: "Badge with icon"
+}) }}
+
+{{ badge({
+  color: "offset-yellow",
+  icon: "syndicate",
+  size: "small",
+  text: "Small badge with icon"
+}) }}
+
+<h2><code>bookmarklet</code></h2>
+
+{{ bookmarklet({
+  href: "#",
+  text: "Bookmarklet"
+}) }}
+
+<h2><code>button</code></h2>
+
+{{ button({
+  text: "Button"
+}) }}
+
+{{ button({
+  text: "Disabled button",
+  disabled: true
+}) }}
+
+{{ button({
+  icon: "syndicate",
+  text: "Button with icon"
+}) }}
+
+{{ button({
+  classes: "button--secondary",
+  text: "Secondary button"
+}) }}
+
+{{ button({
+  classes: "button--warning",
+  text: "Warning button"
+}) }}
+
+{{ button({
+  classes: "button--small",
+  text: "Small button"
+}) }}
+
+{{ button({
+  classes: "button--block",
+  text: "Block button"
+}) }}
+
+{{ button({
+  icon: "note",
+  classes: "button--inline",
+  text: "Inline button"
+}) }}
+
+<h3><code>button (link)</code></h3>
+
+{{ button({
+  href: "#",
+  text: "Link button"
+}) }}
+
+{{ button({
+  icon: "syndicate",
+  href: "#",
+  text: "Link button with icon"
+}) }}
+
+{{ button({
+  href: "#",
+  classes: "button--secondary",
+  text: "Secondary link button"
+}) }}
+
+{{ button({
+  href: "#",
+  classes: "button--warning",
+  text: "Warning link button"
+}) }}
+
+{{ button({
+  href: "#",
+  classes: "button--small",
+  text: "Small link button"
+}) }}
+
+{{ button({
+  href: "#",
+  classes: "button--block",
+  text: "Block link button"
+}) }}
+
+{{ button({
+  icon: "note",
+  href: "#",
+  classes: "button--inline",
+  text: "Inline link button"
+}) }}
+
+<h2><code>card</code></h2>
+
+{{ card({
+  photo: {
+    alt: "Alternative text",
+    url: "/assets/app.png"
+  },
+  icon: "delete",
+  title: "Card",
+  description: "Description",
+  published: "2022-12-29",
+  url: "#",
+  badges: [{
+    color: "red",
+    text: "Badge"
+  }]
+}) }}
+
+<h2><code>cardGrid</code></h2>
+
+{{ cardGrid({
+  items: [{
+    title: "First card",
+    description: "Description",
+    published: "2022-12-29",
+    url: "#"
+  }, {
+    title: "Second card",
+    description: "Description",
+    published: "2022-12-29",
+    url: "#"
+  }]
+}) }}
+
+<h2><code>details</code></h2>
+
+{{ details({
+  summary: "Summary",
+  text: "Details"
+}) }}
+
+<h2><code>footer</code></h2>
+
+{{ footer({
+  logo: {
+    alt: "Indiekit",
+    href: "https://getindiekit.com",
+    src: "/assets/icon.svg"
+  },
+  navigation: {
+    label: "footer",
+    items: [{
+      href: "#",
+      text: "Item one"
+    }, {
+      href: "#",
+      text: "Item two"
+    }]
+  }
+}) }}
+
+<h2><code>header</code></h2>
+
+{{ header({
+  name: "Application name",
+  url: "https://getindiekit.com",
+  navigation: {
+    label: "header",
+    items: [{
+      href: "#",
+      text: "Item one"
+    }, {
+      href: "#",
+      text: "Item two"
+    }]
+  }
+}) }}
+
+<h2><code>heading</code></h2>
+
+{{ heading({
+  parent: {
+    href: "#",
+    text: "Parent"
+  },
+  text: "Heading",
+  actions: [{
+    href: "#",
+    text: "Action"
+  }, {
+    icon: "delete",
+    href: "#",
+    text: "Action with icon"
+  }]
+}) }}
+
+<h2><code>icon</code></h2>
+
+<ul role="list">
+  <li>{{- icon("article") -}} article</li>
+  <li>{{- icon("audio") -}} audio</li>
+  <li>{{- icon("bookmark") -}} bookmark</li>
+  <li>{{- icon("checkin") -}} checkin</li>
+  <li>{{- icon("createPost") -}} createPost</li>
+  <li>{{- icon("delete") -}} delete</li>
+  <li>{{- icon("event") -}} event</li>
+  <li>{{- icon("like") -}} like</li>
+  <li>{{- icon("next") -}} next</li>
+  <li>{{- icon("note") -}} note</li>
+  <li>{{- icon("photo") -}} photo</li>
+  <li>{{- icon("previous") -}} previous</li>
+  <li>{{- icon("public") -}} public</li>
+  <li>{{- icon("publicOff") -}} publicOff</li>
+  <li>{{- icon("reply") -}} reply</li>
+  <li>{{- icon("repost") -}} repost</li>
+  <li>{{- icon("rsvp") -}} rsvp</li>
+  <li>{{- icon("syndicate") -}} syndicate</li>
+  <li>{{- icon("undelete") -}} undelete</li>
+  <li>{{- icon("unlisted") -}} unlisted</li>
+  <li>{{- icon("updatePost") -}} updatePost</li>
+  <li>{{- icon("uploadFile") -}} uploadFile</li>
+  <li>{{- icon("video") -}} video</li>
+  <li>{{- icon("warning") -}} warning</li>
+</ul>
+
+<h2><code>logo</code></h2>
+
+{{ logo({
+  alt: "Indiekit",
+  href: "https://getindiekit.com",
+  size: "40",
+  src: "/assets/icon.svg"
+}) }}
+
+<h2><code>navigation</code></h2>
+
+{{ navigation({
+  label: "example",
+  items: [{
+    href: "#",
+    text: "Current item",
+    attributes: {
+      "aria-current": "true"
+    }
+  }, {
+    href: "#",
+    text: "Another item"
+  }]
+}) }}
+
+<h2><code>notification</code></h2>
+
+{{ notification({
+  text: "Standard notification"
+}) }}
+
+{{ notification({
+  type: "error",
+  text: "Error notification"
+}) }}
+
+{{ notification({
+  disableAutoFocus: true,
+  href: "#",
+  type: "success",
+  text: "Success notification"
+}) }}
+
+<h2><code>pagination</code></h2>
+
+{{ pagination({
+  previous: {
+    href: "#",
+    text: "Back"
+  },
+  next: {
+    href: "#",
+    text: "Forward"
+  }
+}) }}
+
+{{ pagination({
+  previous: {
+    href: "#"
+  },
+  items: [{
+    current: true,
+    href: "#",
+    text: "1"
+  }, {
+    divider: true
+  }, {
+    href: "#",
+    text: "3"
+  }],
+  next: {
+    href: "#"
+  },
+  results: {
+    from: "1",
+    to: "3",
+    count: "100",
+    type: "pages"
+  }
+}) }}
+
+{{ pagination({
+  classes: "pagination--block",
+  previous: {
+    href: "#",
+    text: "Previous text",
+    label: "Previous label"
+  },
+  next: {
+    href: "#",
+    text: "Next text",
+    label: "Next label"
+  }
+}) }}
+
+<h2><code>preview</code></h2>
+
+{{ preview({
+  date: "2022-12-29",
+  title: {
+    for: "title",
+    value: "Preview title"
+  },
+  text: {
+    for: "text",
+    value: "Preview text"
+  },
+  url: {
+    for: "url",
+    value: "https://website.example"
+  }
+}) }}
+
+<h2><code>section</code></h2>
+
+{{ section({
+  title: "Section title",
+  text: "Section text",
+  actions: [{
+    href: "#",
+    text: "Action"
+  }, {
+    icon: "delete",
+    href: "#",
+    text: "Action with icon"
+  }]
+}) }}
+
+<h2><code>skipLink</code></h2>
+
+{{ skipLink({
+  href: "#",
+  text: "Skip to section"
+}) }}
+
+<h2><code>summary</code></h2>
+
+{{ summary({
+  title: "Section title",
+  text: "Section text",
+  rows: [{
+    key: {
+      text: "First key"
+    },
+    value: {
+      text: "Value 1"
+    },
+    actions: [{
+      href: "#",
+      text: "Action"
+    }, {
+      icon: "delete",
+      href: "#",
+      text: "Action with icon"
+    }]
+  }, {
+    key: {
+      text: "Second key"
+    },
+    value: {
+      text: "Value 2"
+    }
+  }]
+}) }}
+
+<h2><code>warningText</code></h2>
+
+{{ warningText({
+  iconFallbackText: "Warning",
+  text: "Warning text"
+}) }}
+
+<h2><code>widget</code></h2>
+
+{{ widget({
+  title: "Widget title",
+  text: "Widget text",
+  actions: [{
+    href: "#",
+    text: "Action"
+  }, {
+    icon: "delete",
+    href: "#",
+    text: "Action with icon"
+  }]
+}) }}
+
+{% endblock %}
