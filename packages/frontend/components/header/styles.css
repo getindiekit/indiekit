@@ -3,7 +3,6 @@
   --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-color: transparent;
   --navigation-item-padding-block: var(--space-s);
-  --navigation-item-padding-inline: var(--space-2xs);
   --navigation-item-current-color: var(--color-primary-variant);
   background-color: var(--color-offset);
   color: var(--color-on-offset);
