@@ -10,11 +10,11 @@
 
 .summary__key {
   align-self: start;
-  flex-basis: 15rem;
+  flex-basis: 12rem;
   flex-grow: 1;
   font: var(--font-label);
-  line-height: var(--line-height-loose);
   overflow-wrap: anywhere;
+  padding-block-start: var(--space-2xs);
 }
 
 .summary__value {
@@ -23,7 +23,7 @@
   flex-basis: 0;
   flex-grow: 999;
   font: var(--font-body);
-  min-inline-size: 60%;
+  min-inline-size: 55%;
 
   & a,
   & code {
@@ -38,6 +38,16 @@
     background: none;
     border-inline-start: none;
     padding: 0;
+  }
+}
+
+.summary__actions {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: max-content;
+
+  & .actions {
+    justify-content: end;
   }
 }
 
