@@ -41,6 +41,21 @@ export const excerpt = (string, value = 100, locale = "en") => {
 export const includes = (string, value) => string.includes(value);
 
 /**
+ * Add Markdown link to text
+ *
+ * @param {string} string - Text
+ * @param {string} href - Hyperlink reference to link to
+ * @returns {string} Markdown string
+ */
+export const linkTo = (string, href) => {
+  if (href) {
+    return `[${string}](${href})`;
+  }
+
+  return string;
+};
+
+/**
  * Render Markdown string as HTML
  *
  * @param {string} string - Markdown
