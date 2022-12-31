@@ -1,6 +1,7 @@
 .card {
   --anchor-decoration-color: transparent;
-  --icon-margin: var(--space-xs);
+  --icon-margin: var(--space-2xs);
+  --icon-size: 1.125em;
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   display: flex;
@@ -37,7 +38,7 @@
 }
 
 .card__title {
-  font: var(--font-label);
+  font: var(--font-subhead);
 }
 
 .card__title a {
