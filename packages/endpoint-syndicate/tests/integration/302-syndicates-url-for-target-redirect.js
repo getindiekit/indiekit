@@ -29,8 +29,12 @@ test("Syndicates a URL", async (t) => {
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
-    .send({ url: "https://website.example/notes/foobar/" })
-    .send({ redirectUri: "/posts/12345" })
+    .send({
+      syndication: {
+        url: "https://website.example/notes/foobar/",
+        redirect_uri: "/posts/12345",
+      },
+    })
     .send({ token: testToken() });
 
   t.is(result.status, 302);

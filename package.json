@@ -134,6 +134,7 @@
             "redirect_uri",
             "request_uri",
             "response_type",
+            "source_url",
             "success_description",
             "token_type"
           ]

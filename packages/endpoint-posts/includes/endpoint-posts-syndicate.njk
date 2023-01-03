@@ -6,14 +6,14 @@
   }) | indent(2) }}
 
   {{ input({
-    name: "redirectUri",
+    name: "syndication[redirect_uri]",
     type: "hidden",
     value: redirectUri
   }) | indent(2) }}
 
   {{ button({
     classes: "button--secondary button--small",
-    name: "url",
+    name: "syndication[source_url]",
     value: post.url,
     icon: "syndicate",
     text: __("posts.post.syndicate")

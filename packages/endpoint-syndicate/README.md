@@ -28,4 +28,4 @@ Add `@indiekit/endpoint-syndicate` to your list of plug-ins, specifying options 
 ## Supported endpoint queries
 
 - Access token (required): `/syndicate?token=XXXXXXX`
-- URL to syndicate: `/syndicate?token=XXXXXXX&url=https%3A%2F%2Fwebsite.example%2Fposts%2F1`
+- URL to syndicate: `/syndicate?token=XXXXXXX&source_url=https%3A%2F%2Fwebsite.example%2Fposts%2F1`

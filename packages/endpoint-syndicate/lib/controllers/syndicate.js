@@ -7,8 +7,10 @@ export const syndicateController = {
     try {
       const { application, publication } = request.app.locals;
       const token = request.query.token || request.body.token;
-      const url = request.query.url || request.body.url;
-      const redirectUri = request.query.redirectUri || request.body.redirectUri;
+      const sourceUrl =
+        request.query.source_url || request.body.syndication?.source_url;
+      const redirectUri =
+        request.query.redirect_uri || request.body.syndication?.redirect_uri;
 
       if (!application.hasDatabase) {
         throw IndiekitError.notImplemented(
@@ -26,12 +28,12 @@ export const syndicateController = {
       }
 
       // Get post data
-      const postData = await getPostData(publication, url);
+      const postData = await getPostData(publication, sourceUrl);
 
-      if (!postData && url) {
+      if (!postData && sourceUrl) {
         return response.json({
           success: "OK",
-          success_description: `No post record available for ${url}`,
+          success_description: `No post record available for ${sourceUrl}`,
         });
       }
 
