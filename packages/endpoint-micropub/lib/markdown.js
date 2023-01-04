@@ -44,7 +44,7 @@ export const textToMarkdown = (string) => {
    * Disable escaping of Markdown characters
    *
    * @param {string} string - String
-   * @returns {string}
+   * @returns {string} String
    * @see {@link: https://github.com/mixmark-io/turndown#escaping-markdown-characters}
    */
   turndownService.escape = (string) => string;
