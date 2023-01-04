@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import process from "node:process";
 import { Command } from "commander";
+import makeDebug from "debug";
+
 import { Indiekit } from "@indiekit/indiekit";
 import { defaultConfig } from "../config/defaults.js";
 
@@ -19,7 +20,8 @@ program
     const { debug, port } = options;
 
     if (debug) {
-      process.env.DEBUG = debug ? `${debug}:*` : "*";
+      // Debug everything if no scope, else only debug within provided scope
+      makeDebug.enable(debug === true ? `*` : debug);
     }
 
     const indiekit = new Indiekit({

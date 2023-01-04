@@ -1,8 +1,11 @@
-import Debug from "debug";
+import makeDebug from "debug";
 
-const debug = new Debug("indiekit:request");
+const debug = makeDebug("indiekit:request");
 
 export const logging = (request, response, next) => {
+  // Send debug logging output to console.info
+  debug.log = console.info.bind(console);
+
   debug("url", request.originalUrl);
   debug("headers", request.headers);
   debug("body", request.body);
