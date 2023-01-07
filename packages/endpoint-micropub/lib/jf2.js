@@ -7,6 +7,7 @@ import {
   relativeMediaPath,
   randomString,
   slugifyString,
+  stringIsHtml,
   toArray,
 } from "./utils.js";
 
@@ -136,7 +137,7 @@ export const getContentProperty = (properties) => {
 
   // Ensure any existing text property is in fact Markdown
   if (text) {
-    text = htmlToMarkdown(text);
+    text = stringIsHtml(text) ? htmlToMarkdown(text) : text;
   }
 
   // Return existing text and HTML representations, unamended
@@ -154,9 +155,12 @@ export const getContentProperty = (properties) => {
     return { html: markdownToHtml(text), text };
   }
 
-  // Return property with text and HTML representations
-  text = text || htmlToMarkdown(content);
-  html = markdownToHtml(content);
+  // If no `text` or `html` properties, derive from given `content` string
+  if (typeof content === "string") {
+    text = stringIsHtml(content) ? htmlToMarkdown(content) : content;
+    html = stringIsHtml(content) ? content : markdownToHtml(content);
+  }
+
   return { html, text };
 };
 

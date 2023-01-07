@@ -174,6 +174,14 @@ export const renderPath = async (path, properties, publication) => {
 };
 
 /**
+ * Check if string is HTML
+ *
+ * @param {string} string - String
+ * @returns {boolean} String is HTML
+ */
+export const stringIsHtml = (string) => /<\/?[a-z][\s\S]*>/i.test(string);
+
+/**
  * Substitute variables enclosed in { } braces with data from object
  *
  * @param {string} string - String to parse
