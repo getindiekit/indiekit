@@ -21,6 +21,9 @@ export const getPostData = async (publication, url) => {
         "properties.mp-syndicate-to": {
           $exists: true,
         },
+        "properties.syndication": {
+          $exists: false,
+        },
         "properties.post-status": {
           $ne: "draft",
         },
