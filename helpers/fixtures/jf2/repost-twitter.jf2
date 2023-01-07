@@ -4,6 +4,5 @@
     "html": "<p>Someone else who likes cheese sandwiches.</p>",
     "text": "Someone else who likes cheese sandwiches."
   },
-  "repost-of": "https://twitter.com/username/status/1234567890987654321",
-  "post-type": "repost"
+  "repost-of": "https://twitter.com/username/status/1234567890987654321"
 }

@@ -5,6 +5,5 @@
     "html": "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>",
     "text": "> I ate a *cheese* sandwich, which was > 10."
   },
-  "url": "https://foo.bar/lunchtime",
-  "post-type": "article"
+  "url": "https://foo.bar/lunchtime"
 }
