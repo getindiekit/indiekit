@@ -45,7 +45,7 @@ export const htmlToMarkdown = (string) => {
    *
    * @param {string} string - String
    * @returns {string} String
-   * @see {@link: https://github.com/mixmark-io/turndown#escaping-markdown-characters}
+   * @see {@link https://github.com/mixmark-io/turndown#escaping-markdown-characters}
    */
   turndownService.escape = (string) => string;
 

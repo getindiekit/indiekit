@@ -1,8 +1,0 @@
-{
-  "type": "entry",
-  "content": {
-    "html": "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>",
-    "text": "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>"
-  },
-  "url": "https://foo.bar/lunchtime"
-}
