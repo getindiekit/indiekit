@@ -41,8 +41,8 @@
   --vp-c-indigo-darker: hsl(var(--indigo-h-s) 10%);
   --vp-c-indigo-soft: hsl(var(--indigo-h-s) 10% / 0.75);
 
-  --vp-c-divider-light-1: hsl(var(--neutral-h-s) 50% / 0.25);
-  --vp-c-divider-light-2: hsl(var(--neutral-h-s) 50% / 0.125);
+  --vp-c-divider-light-1: hsl(var(--neutral-h-s) 50% / 0.2);
+  --vp-c-divider-light-2: hsl(var(--neutral-h-s) 50% / 0.1);
   --vp-c-divider-dark-1: hsl(var(--neutral-h-s) 50% / 0.5);
   --vp-c-divider-dark-2: hsl(var(--neutral-h-s) 50% / 0.33);
 
