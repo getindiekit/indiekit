@@ -19,7 +19,7 @@ test("Returns no post records awaiting syndication", async (t) => {
     .send("name=foobar");
   const result = await request
     .post("/syndicate")
-    .auth(testToken(), { type: "bearer" })
+    .query({ token: testToken() })
     .set("accept", "application/json");
 
   t.is(result.status, 200);

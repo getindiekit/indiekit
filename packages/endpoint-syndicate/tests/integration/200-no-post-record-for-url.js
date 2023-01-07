@@ -10,7 +10,7 @@ test("Returns no post record for URL", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .post("/syndicate")
-    .auth(testToken(), { type: "bearer" })
+    .query({ token: testToken() })
     .set("accept", "application/json")
     .query({ source_url: "https://website.example/notes/foobar/" });
 

@@ -13,7 +13,7 @@ export default class SyndicateEndpoint {
     this.mountPath = this.options.mountPath;
   }
 
-  get routes() {
+  get routesPublic() {
     router.post("/", syndicateController.post);
 
     return router;

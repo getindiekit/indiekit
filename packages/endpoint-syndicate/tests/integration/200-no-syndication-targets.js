@@ -11,14 +11,14 @@ test("Returns no syndication targets configured", async (t) => {
   const request = supertest.agent(server);
   await request
     .post("/micropub")
-    .auth(testToken(), { type: "bearer" })
+    .query(testToken(), { type: "bearer" })
     .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
     .send("mp-syndicate-to=https://twitter.com/username");
   const result = await request
     .post("/syndicate")
-    .auth(testToken(), { type: "bearer" })
+    .query({ token: testToken() })
     .set("accept", "application/json");
 
   t.is(result.status, 200);
