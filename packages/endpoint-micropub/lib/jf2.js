@@ -1,5 +1,5 @@
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
-import { markdownToHtml, textToMarkdown } from "./markdown.js";
+import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
 import {
   decodeQueryParameter,
@@ -136,7 +136,7 @@ export const getContentProperty = (properties) => {
 
   // Ensure any existing text property is in fact Markdown
   if (text) {
-    text = textToMarkdown(text);
+    text = htmlToMarkdown(text);
   }
 
   // Return existing text and HTML representations, unamended
@@ -146,7 +146,7 @@ export const getContentProperty = (properties) => {
 
   // If HTML representation only, add text representation
   if (html && !text) {
-    return { html, text: textToMarkdown(html) };
+    return { html, text: htmlToMarkdown(html) };
   }
 
   // If text representation only, add HTML representation
@@ -155,7 +155,7 @@ export const getContentProperty = (properties) => {
   }
 
   // Return property with text and HTML representations
-  text = text || textToMarkdown(content);
+  text = text || htmlToMarkdown(content);
   html = markdownToHtml(content);
   return { html, text };
 };
