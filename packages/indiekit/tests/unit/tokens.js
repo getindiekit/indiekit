@@ -4,7 +4,7 @@ import {
   findBearerToken,
   requestTokenValues,
   verifyTokenValues,
-} from "../../lib/tokens.js";
+} from "../../lib/token.js";
 
 await mockAgent("token-endpoint");
 

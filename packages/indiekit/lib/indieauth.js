@@ -6,7 +6,7 @@ import {
   findBearerToken,
   requestTokenValues,
   verifyTokenValues,
-} from "./tokens.js";
+} from "./token.js";
 import { generateState, validateState } from "./state.js";
 import { getCanonicalUrl, randomString } from "./utils.js";
 
