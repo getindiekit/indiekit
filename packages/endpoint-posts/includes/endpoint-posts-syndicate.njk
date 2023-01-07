@@ -1,6 +1,6 @@
 <form action="{{ application._syndicationEndpointPath }}" method="post">
   {{ input({
-    name: "token",
+    name: "access_token",
     type: "hidden",
     value: token
   }) | indent(2) }}

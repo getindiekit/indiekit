@@ -1,12 +1,14 @@
 import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
+import { findBearerToken } from "../token.js";
 import { getPostData } from "../utils.js";
 
 export const syndicateController = {
   async post(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
-      const token = request.query.token || request.body.token;
+      const bearerToken = findBearerToken(request);
+
       const sourceUrl =
         request.query.source_url || request.body.syndication?.source_url;
       const redirectUri =
@@ -76,7 +78,7 @@ export const syndicateController = {
         method: "POST",
         headers: {
           accept: "application/json",
-          authorization: `Bearer ${token}`,
+          authorization: `Bearer ${bearerToken}`,
           "content-type": "application/json",
         },
         body: JSON.stringify({

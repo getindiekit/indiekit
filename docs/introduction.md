@@ -8,9 +8,9 @@ Any application that supports [the Micropub protocol](https://micropub.spec.indi
 
 ```sh
 POST /micropub HTTP/1.1
-Host: indiekit.mywebsite.com
+Host: indiekit.website.example
 Content-Type: application/x-www-form-urlencoded
-Authorization: Bearer XXXXXXX
+Authorization: Bearer [ACCESS_TOKEN]
 
 h=entry
 &content=Hello+world
@@ -39,22 +39,27 @@ Note the `mp-syndicate-to` property in the above example. If you’ve configured
 You can then send a second `POST` request, this time to `https://indiekit.website.example/syndicate` along with your access token which you can find on your server’s status page:
 
 ```sh
-POST /syndicate HTTP/1.1
-Host: indiekit.mywebsite.com
-Content-Type: application/x-www-form-urlencoded
-
-token=XXXXXXX
+POST /syndicate?token=[ACCESS_TOKEN] HTTP/1.1
+Host: indiekit.website.example
+Accept: application/json
 ```
 
-This will tell Indiekit to syndicate the most recent un-syndicated post to the third-party websites listed in the front matter.
+This will tell Indiekit to syndicate the most recent un-syndicated post to the third-party websites listed in a post’s front matter.
 
 ::: tip
 
 ### Use an outgoing webhook on Netlify
 
-Netlify allows [posting to an outgoing webhook](https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks) once a deploy has succeeded.
+If you are using [Netlify](https://www.netlify.com) to host your website, you can send a notification to the syndication endpoint once a deployment has been completed.
 
-In ‘URL to notify’, enter your server’s syndication endpoint with your access token as the `token` parameter, for example: `https://indiekit.website.example/syndicate?token=XXXXXXX`.
+First, create an environment variable for your Indiekit server called `WEBHOOK_SECRET` and give it a secret, hard-to-guess value.
+
+Then on Netlify, in your site’s ‘Build & Deploy’ settings, add an [outgoing webhook](https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks) with the following values:
+
+* **Event to listen for:** ‘Deploy succeeded’
+* **URL to notify:** `[YOUR_INDIEKIT_URL]/syndicate`
+* **JWS secret token:** The same value you used for `WEBHOOK_SECRET`
+
 :::
 
 Once this has been completed, Indiekit will update the post, replacing `mp-syndicate-to` with a `syndication` property listing the location of each syndicated copy:

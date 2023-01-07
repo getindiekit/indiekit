@@ -10,7 +10,7 @@ test("Returns no post records", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .post("/syndicate")
-    .auth(testToken(), { type: "bearer" })
+    .query({ token: testToken() })
     .set("accept", "application/json");
 
   t.is(result.status, 200);
