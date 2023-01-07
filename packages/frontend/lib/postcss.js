@@ -10,7 +10,7 @@ export const styles = async () => {
     plugins: [
       postcssEasyImport,
       postcssLightningcss({
-        browsers: ">= 0.5%",
+        browsers: ">= 1%",
         lightningcssOptions: {
           drafts: {
             customMedia: true,
