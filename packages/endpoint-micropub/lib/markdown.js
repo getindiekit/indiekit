@@ -23,12 +23,12 @@ export const markdownToHtml = (string) => {
 };
 
 /**
- * Convert text to Markdown
+ * Convert HTML to Markdown
  *
  * @param {string} string - String (may be HTML or Markdown)
  * @returns {string} Markdown
  */
-export const textToMarkdown = (string) => {
+export const htmlToMarkdown = (string) => {
   // Normalise text as HTML before converting to Markdown
   string = markdownToHtml(string);
 

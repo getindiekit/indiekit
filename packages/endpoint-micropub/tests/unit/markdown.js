@@ -1,5 +1,5 @@
 import test from "ava";
-import { markdownToHtml, textToMarkdown } from "../../lib/markdown.js";
+import { markdownToHtml, htmlToMarkdown } from "../../lib/markdown.js";
 
 test("Converts Markdown to HTML", (t) => {
   t.is(
@@ -8,18 +8,9 @@ test("Converts Markdown to HTML", (t) => {
   );
 });
 
-test("Converts text to Markdown", (t) => {
-  // HTML to Markdown
+test("Converts HTML to Markdown", (t) => {
   t.is(
-    textToMarkdown('<p>This is a <strong><a href="#">link</a></strong></p>'),
+    htmlToMarkdown('<p>This is a <strong><a href="#">link</a></strong></p>'),
     "This is a **[link](#)**"
-  );
-
-  // Markdown to Markdown
-  t.is(
-    textToMarkdown("**First** paragraph\n\n**Second** paragraph"),
-    `**First** paragraph
-
-**Second** paragraph`
   );
 });
