@@ -6,6 +6,7 @@ test("Generates space-separated list of HTML attribute key values", (t) => {
     id: "foo",
     "data-value": "bar",
     readonly: true,
+    class: "",
   });
 
   t.is(result, ' id="foo" data-value="bar" readonly');
