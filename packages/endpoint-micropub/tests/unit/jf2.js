@@ -132,37 +132,25 @@ test("Gets normalised audio property", (t) => {
 
 test("Gets text and HTML values from `content` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/note-content-provided-html-text.jf2")
+    getFixture("jf2/article-content-provided-html-text.jf2")
   );
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: "<blockquote><p>I ate a <i>cheese</i> sandwich, which &gt; 10.</p></blockquote>",
-    text: "I ate a cheese sandwich, which was > 10.",
+    html: '<blockquote><p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>',
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
 });
 
 test("Gets mixed text and HTML values from `content` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/note-content-provided-html-text-mixed.jf2")
+    getFixture("jf2/article-content-provided-html-text-mixed.jf2")
   );
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>",
-    text: "> I ate a *cheese* sandwich, which was > 10.",
-  });
-});
-
-test("Gets HTML from `content` property and adds text value", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/note-content-provided-html.jf2")
-  );
-  const result = getContentProperty(properties);
-
-  t.deepEqual(result, {
-    html: "<blockquote><p>I ate a <i>cheese</i> sandwich, which was &gt; 10.</p></blockquote>",
-    text: "> I ate a *cheese* sandwich, which was > 10.",
+    html: '<blockquote><p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>',
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from [https://cafe.example](https://cafe.example), which was > 10.\n\n– Me, then.",
   });
 });
 
@@ -173,22 +161,32 @@ test("Gets content from `content.text` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: `<blockquote>
-<p>I ate a <em>cheese</em> sandwich, which was &gt; 10.</p>
-</blockquote>`,
-    text: "> I ate a *cheese* sandwich, which was > 10.",
+    html: `<blockquote>\n<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>`,
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
 });
 
-test("Gets content from `content` property", (t) => {
-  const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
+test("Gets HTML from `content` property and adds text value", (t) => {
+  const properties = JSON.parse(
+    getFixture("jf2/article-content-provided-as-html.jf2")
+  );
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: `<blockquote>
-<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was &gt; 10.</p>
-</blockquote>`,
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was > 10.",
+    html: '<blockquote><p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>',
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from [https://cafe.example](https://cafe.example), which was > 10.\n\n– Me, then.",
+  });
+});
+
+test("Gets text content from `content` and adds HTML property", (t) => {
+  const properties = JSON.parse(
+    getFixture("jf2/article-content-provided-as-text.jf2")
+  );
+  const result = getContentProperty(properties);
+
+  t.deepEqual(result, {
+    html: '<blockquote>\n<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>',
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
 });
 
@@ -314,7 +312,9 @@ test("Derives slug, ignoring empty `mp-slug` property", (t) => {
 });
 
 test("Derives slug from `name` property", (t) => {
-  const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
+  const properties = JSON.parse(
+    getFixture("jf2/article-content-provided-text.jf2")
+  );
   const result = getSlugProperty(properties, "-");
 
   t.is(result, "what-i-had-for-lunch");
@@ -443,17 +443,17 @@ test("Doesn’t add unavailable syndication target", (t) => {
 });
 
 test("Normalises JF2 (few properties)", (t) => {
-  const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
+  const properties = JSON.parse(
+    getFixture("jf2/article-content-provided-as-text.jf2")
+  );
   const result = normaliseProperties(t.context.publication, properties);
 
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
   t.is(result["mp-slug"], "what-i-had-for-lunch");
   t.deepEqual(result.content, {
-    html: `<blockquote>
-<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was &gt; 10.</p>
-</blockquote>`,
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was > 10.",
+    html: '<blockquote>\n<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>',
+    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
   t.falsy(result.audio);
   t.falsy(result.photo);

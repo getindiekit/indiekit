@@ -3,7 +3,6 @@
   "name": "What I had for lunch",
   "content": {
     "html": "<blockquote><p>I ate a <a href=\"https://en.wikipedia.org/wiki/Cheese\">cheese</a> sandwich from <a href=\"https://cafe.example\">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>",
-    "text": "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then."
-  },
-  "url": "https://foo.bar/lunchtime"
+    "text": "<blockquote><p>I ate a <a href=\"https://en.wikipedia.org/wiki/Cheese\">cheese</a> sandwich from <a href=\"https://cafe.example\">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>"
+  }
 }
