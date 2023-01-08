@@ -1,5 +1,9 @@
 import test from "ava";
-import { getPostData } from "../../lib/utils.js";
+import {
+  getPostData,
+  hasSyndicationUrl,
+  isSyndicationTarget,
+} from "../../lib/utils.js";
 
 test.beforeEach((t) => {
   t.context = {
@@ -31,6 +35,13 @@ test.beforeEach((t) => {
         async replaceOne() {},
         async updateOne() {},
       },
+      syndicationTargets: [
+        {
+          info: {
+            uid: "https://twitter.com",
+          },
+        },
+      ],
     },
     url: "https://website.example/post/12345",
   };
@@ -46,4 +57,21 @@ test("Gets post data from database", async (t) => {
   const result = await getPostData(t.context.publication);
 
   t.is(result.properties["mp-syndicate-to"], "https://social.example/");
+});
+
+test("Checks if target already returned a syndication URL", (t) => {
+  const syndicationUrls = [
+    "https://mastodon.social/example/12345",
+    "https://twitter.com/example/status/12345",
+  ];
+
+  t.true(hasSyndicationUrl(syndicationUrls, "https://twitter.com"));
+  t.false(hasSyndicationUrl(syndicationUrls, "https://social.example"));
+});
+
+test("Check if post target is a publication target", (t) => {
+  const { syndicationTargets } = t.context.publication;
+
+  t.true(isSyndicationTarget(syndicationTargets, "https://twitter.com"));
+  t.false(isSyndicationTarget(syndicationTargets, "https://mastodon.social"));
 });
