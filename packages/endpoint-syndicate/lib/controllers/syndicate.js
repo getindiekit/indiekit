@@ -1,7 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import { findBearerToken } from "../token.js";
-import { getPostData } from "../utils.js";
+import { getPostData, syndicateToTargets } from "../utils.js";
 
 export const syndicateController = {
   async post(request, response, next) {
@@ -46,32 +46,11 @@ export const syndicateController = {
         });
       }
 
-      // Syndicate to target(s)
-      let mpSyndicateTo = postData.properties["mp-syndicate-to"];
-      const syndication = postData.properties.syndication || [];
-      for await (const target of syndicationTargets) {
-        const { uid } = target.info;
-
-        const canSyndicate = mpSyndicateTo.includes(uid);
-        if (canSyndicate) {
-          try {
-            const syndicatedUrl = await target.syndicate(
-              postData.properties,
-              publication
-            );
-
-            // Add syndicated URL to list of syndicated URLs
-            syndication.push(syndicatedUrl);
-
-            // Remove syndication target from list of syndication targets
-            mpSyndicateTo = mpSyndicateTo.filter((target) => target !== uid);
-          } catch (error) {
-            console.error(error.message);
-          }
-        }
-      }
-
-      const failedSyndications = mpSyndicateTo.length > 0;
+      // Syndicate to targets
+      const { failedTargets, syndicatedUrls } = await syndicateToTargets(
+        publication,
+        postData.properties
+      );
 
       // Update post with syndicated URL(s) and remaining syndication target(s)
       const micropubResponse = await fetch(application.micropubEndpoint, {
@@ -84,10 +63,10 @@ export const syndicateController = {
         body: JSON.stringify({
           action: "update",
           url: postData.properties.url,
-          ...(!failedSyndications && { delete: ["mp-syndicate-to"] }),
+          ...(!failedTargets && { delete: ["mp-syndicate-to"] }),
           replace: {
-            ...(failedSyndications && { "mp-syndicate-to": mpSyndicateTo }),
-            syndication,
+            ...(failedTargets && { "mp-syndicate-to": failedTargets }),
+            ...(syndicatedUrls && { syndication: syndicatedUrls }),
           },
         }),
       });
@@ -99,10 +78,10 @@ export const syndicateController = {
       const body = await micropubResponse.json();
 
       // Include failed syndication targets in ‘success’ response
-      if (failedSyndications) {
+      if (failedTargets) {
         body.success_description +=
           ". The following target(s) did not return a URL: " +
-          mpSyndicateTo.join(" ");
+          failedTargets.join(" ");
       }
 
       if (redirectUri && redirectUri.startsWith("/")) {

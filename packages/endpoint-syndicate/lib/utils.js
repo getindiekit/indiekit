@@ -3,7 +3,7 @@
  *
  * @param {object} publication - Publication configuration
  * @param {string} url - URL of existing post (optional)
- * @returns {object} Post data for given url else recently published post
+ * @returns {object} Post data for given URL else recently published post
  */
 export const getPostData = async (publication, url) => {
   const { posts } = publication;
@@ -35,4 +35,59 @@ export const getPostData = async (publication, url) => {
   }
 
   return postData;
+};
+
+/**
+ * Check if target already returned a syndication URL
+ *
+ * @param {Array} syndicatedUrls - Syndication URLs
+ * @param {string} syndicateTo - Syndication target
+ * @returns {boolean} Target returned a syndication URL
+ */
+export const hasSyndicationUrl = (syndicatedUrls, syndicateTo) => {
+  return syndicatedUrls.some((url) => url.startsWith(syndicateTo));
+};
+
+/**
+ * Check if post syndication target is a publication target
+ *
+ * @param {Array} publicationTargets - Publication syndication targets
+ * @param {string} syndicateTo - Syndication target
+ * @returns {boolean} Post syndication target is a publication target
+ */
+export const isSyndicationTarget = (publicationTargets, syndicateTo) => {
+  return publicationTargets.some((target) =>
+    syndicateTo.includes(target?.info?.uid)
+  );
+};
+
+export const syndicateToTargets = async (publication, properties) => {
+  const syndicateTo = properties["mp-syndicate-to"];
+  const syndicatedUrls = properties.syndication || [];
+  const { syndicationTargets } = publication;
+  const failedTargets = [];
+
+  for await (const target of syndicationTargets) {
+    const canSyndicate =
+      !hasSyndicationUrl(syndicatedUrls, syndicateTo) &&
+      isSyndicationTarget(syndicationTargets, syndicateTo);
+
+    if (canSyndicate) {
+      try {
+        const syndicatedUrl = await target.syndicate(properties, publication);
+
+        // Add syndicated URL to list of syndicated URLs
+        syndicatedUrls.push(syndicatedUrl);
+      } catch (error) {
+        // Add failed syndication target to list of failed targets
+        failedTargets.push(target.info.uid);
+        console.error(error.message);
+      }
+    }
+  }
+
+  return {
+    ...(failedTargets.length > 0 && { failedTargets }),
+    syndicatedUrls,
+  };
 };
