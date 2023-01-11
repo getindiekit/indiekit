@@ -1,0 +1,8 @@
+{
+  "type": "entry",
+  "name": "What I had for lunch",
+  "content": {
+    "html": "<blockquote><p>I <del>ate</del><ins>had</ins> a <cite><a href=\"https://en.wikipedia.org/wiki/Cheese\">cheese</a></cite> sandwich from <a href=\"https://cafe.example\">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>"
+  },
+  "url": "https://foo.bar/lunchtime"
+}

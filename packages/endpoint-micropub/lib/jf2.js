@@ -7,7 +7,6 @@ import {
   relativeMediaPath,
   randomString,
   slugifyString,
-  stringIsHtml,
   toArray,
 } from "./utils.js";
 
@@ -126,19 +125,18 @@ export const getAudioProperty = (properties, me) => {
 };
 
 /**
- * Get content property (HTML, else object value, else property value)
+ * Get content property.
+ *
+ * JF2 allows for the provision of both plaintext and HTML representations.
+ * Use existing values, or add HTML representation if only plaintext provided.
  *
  * @param {object} properties - JF2 properties
  * @returns {Array} `content` property
+ * @see {@link https://www.w3.org/TR/jf2/#html-content}
  */
 export const getContentProperty = (properties) => {
   const { content } = properties;
   let { html, text } = content;
-
-  // Ensure any existing text property is in fact Markdown
-  if (text) {
-    text = stringIsHtml(text) ? htmlToMarkdown(text) : text;
-  }
 
   // Return existing text and HTML representations, unamended
   if (html && text) {
@@ -155,10 +153,10 @@ export const getContentProperty = (properties) => {
     return { html: markdownToHtml(text), text };
   }
 
-  // If no `text` or `html` properties, derive from given `content` string
+  // If content is a string, add `html` and move plaintext to `text.
   if (typeof content === "string") {
-    text = stringIsHtml(content) ? htmlToMarkdown(content) : content;
-    html = stringIsHtml(content) ? content : markdownToHtml(content);
+    text = content;
+    html = markdownToHtml(content);
   }
 
   return { html, text };

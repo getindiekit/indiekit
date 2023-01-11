@@ -1,8 +1,0 @@
-{
-  "type": "entry",
-  "name": "What I had for lunch",
-  "content": {
-    "html": "<blockquote><p>I ate a <a href=\"https://en.wikipedia.org/wiki/Cheese\">cheese</a> sandwich from <a href=\"https://cafe.example\">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>",
-    "text": "<blockquote><p>I ate a <a href=\"https://en.wikipedia.org/wiki/Cheese\">cheese</a> sandwich from <a href=\"https://cafe.example\">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>"
-  }
-}

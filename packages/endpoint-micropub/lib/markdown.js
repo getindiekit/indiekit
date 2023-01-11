@@ -48,6 +48,11 @@ export const htmlToMarkdown = (string) => {
    */
   turndownService.escape = (string) => string;
 
+  /**
+   * List of inline elements to keep in Markdown
+   */
+  turndownService.keep(["cite", "del", "ins"]);
+
   const markdown = turndownService.turndown(string);
 
   return markdown;
