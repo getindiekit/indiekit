@@ -8,10 +8,10 @@ import {
   isTootUrl,
 } from "./utils.js";
 
-export const mastodon = (options) => ({
+export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
   client() {
     const generator = megalodon.default;
-    return generator("mastodon", options.url, options.accessToken);
+    return generator("mastodon", serverUrl, accessToken);
   },
 
   /**
@@ -106,16 +106,17 @@ export const mastodon = (options) => ({
 
     if (properties["repost-of"]) {
       // Syndicate repost of Mastodon URL with content as a reblog
-      if (
-        isTootUrl(properties["repost-of"], options.url) &&
-        properties.content
-      ) {
-        const status = createStatus(properties, mediaIds);
+      if (isTootUrl(properties["repost-of"], serverUrl) && properties.content) {
+        const status = createStatus(properties, {
+          characterLimit,
+          mediaIds,
+          serverUrl,
+        });
         return this.postStatus(status);
       }
 
       // Syndicate repost of Mastodon URL as a reblog
-      if (isTootUrl(properties["repost-of"], options.url)) {
+      if (isTootUrl(properties["repost-of"], serverUrl)) {
         return this.postReblog(properties["repost-of"]);
       }
 
@@ -125,7 +126,7 @@ export const mastodon = (options) => ({
 
     if (properties["like-of"]) {
       // Syndicate like of Mastodon URL as a like
-      if (isTootUrl(properties["like-of"], options.url)) {
+      if (isTootUrl(properties["like-of"], serverUrl)) {
         return this.postFavourite(properties["like-of"]);
       }
 
@@ -133,7 +134,11 @@ export const mastodon = (options) => ({
       return false;
     }
 
-    const status = createStatus(properties, options.url, mediaIds);
+    const status = createStatus(properties, {
+      characterLimit,
+      mediaIds,
+      serverUrl,
+    });
     if (status) {
       return this.postStatus(status);
     }

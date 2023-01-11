@@ -5,6 +5,7 @@ import { mastodon } from "./lib/mastodon.js";
 
 const defaults = {
   accessToken: process.env.MASTODON_ACCESS_TOKEN,
+  characterLimit: 500,
   checked: false,
 };
 
@@ -65,8 +66,9 @@ export default class MastodonSyndicator {
   async syndicate(properties, publication) {
     try {
       return await mastodon({
-        url: `${this.#url.protocol}//${this.#url.hostname}`,
         accessToken: this.options.accessToken,
+        characterLimit: this.options.characterLimit,
+        serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
       }).post(properties, publication);
     } catch (error) {
       throw new IndiekitError(error.message, {
