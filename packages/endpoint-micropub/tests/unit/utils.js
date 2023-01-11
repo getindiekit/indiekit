@@ -9,7 +9,6 @@ import {
   relativeMediaPath,
   renderPath,
   slugifyString,
-  stringIsHtml,
   supplant,
   toArray,
 } from "../../lib/utils.js";
@@ -101,11 +100,6 @@ test("Slugifies a string", (t) => {
   t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
   t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
   t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
-});
-
-test("Checks if string is HTML", (t) => {
-  t.true(stringIsHtml('<p>The <a href="#">cheese</a> was &gt; 10.</p>'));
-  t.false(stringIsHtml("> The [cheese](#) was > 10."));
 });
 
 test("Substitutes variables enclosed in { } braces with data from object", (t) => {

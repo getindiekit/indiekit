@@ -137,20 +137,20 @@ test("Gets text and HTML values from `content` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: '<blockquote><p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>',
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
+    html: `<blockquote><p>I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>`,
+    text: "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
 });
 
-test("Gets mixed text and HTML values from `content` property", (t) => {
+test("Gets content from `content.html` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-html-text-mixed.jf2")
+    getFixture("jf2/article-content-provided-html.jf2")
   );
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: '<blockquote><p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>',
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from [https://cafe.example](https://cafe.example), which was > 10.\n\n– Me, then.",
+    html: `<blockquote><p>I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>`,
+    text: `> I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from [https://cafe.example](https://cafe.example), which was > 10.\n\n– Me, then.`,
   });
 });
 
@@ -161,32 +161,18 @@ test("Gets content from `content.text` property", (t) => {
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: `<blockquote>\n<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>`,
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
-  });
-});
-
-test("Gets HTML from `content` property and adds text value", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-as-html.jf2")
-  );
-  const result = getContentProperty(properties);
-
-  t.deepEqual(result, {
-    html: '<blockquote><p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from <a href="https://cafe.example">https://cafe.example</a>, which was &gt; 10.</p></blockquote><p>– Me, then.</p>',
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from [https://cafe.example](https://cafe.example), which was > 10.\n\n– Me, then.",
+    html: `<blockquote>\n<p>I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>`,
+    text: "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
 });
 
 test("Gets text content from `content` and adds HTML property", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-as-text.jf2")
-  );
+  const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
   const result = getContentProperty(properties);
 
   t.deepEqual(result, {
-    html: '<blockquote>\n<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>',
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
+    html: `<blockquote>\n<p>I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>`,
+    text: "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
 });
 
@@ -443,17 +429,15 @@ test("Doesn’t add unavailable syndication target", (t) => {
 });
 
 test("Normalises JF2 (few properties)", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-as-text.jf2")
-  );
+  const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
   const result = normaliseProperties(t.context.publication, properties);
 
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
   t.is(result["mp-slug"], "what-i-had-for-lunch");
   t.deepEqual(result.content, {
-    html: '<blockquote>\n<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>',
-    text: "> I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
+    html: `<blockquote>\n<p>I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>`,
+    text: "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
   });
   t.falsy(result.audio);
   t.falsy(result.photo);
@@ -467,7 +451,7 @@ test("Normalises JF2 (all properties)", (t) => {
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
   t.deepEqual(result.content, {
-    html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
+    html: `<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>`,
     text: "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
   });
   t.deepEqual(result.audio, [{ url: "https://website.example/audio.mp3" }]);
