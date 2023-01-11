@@ -28,10 +28,11 @@ Add `@indiekit/syndicator-mastodon` to your list of plug-ins, specifying options
 
 ## Options
 
-| Option        | Type      | Description                                                                                                   |
-| :------------ | :-------- | :------------------------------------------------------------------------------------------------------------ |
-| `accessToken` | `string`  | Your Mastodon access token. _Required_, defaults to `process.env.MASTODON_ACCESS_TOKEN`.                      |
-| `url`         | `string`  | Your Mastodon server, i.e. `https://mastodon.social`. _Required_.                                             |
-| `user`        | `string`  | Your Mastodon username (without the `@`). _Required_.                                                         |
-| `checked`     | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. _Optional_, defaults to `false`. |
-| `forced`      | `boolean` | Ignore the presence or value of `checked` and always syndicate. _Optional_.                                   |
+| Option           | Type      | Description                                                                                                   |
+| :--------------- | :-------- | :------------------------------------------------------------------------------------------------------------ |
+| `accessToken`    | `string`  | Your Mastodon access token. _Required_, defaults to `process.env.MASTODON_ACCESS_TOKEN`.                      |
+| `url`            | `string`  | Your Mastodon server, i.e. `https://mastodon.social`. _Required_.                                             |
+| `user`           | `string`  | Your Mastodon username (without the `@`). _Required_.                                                         |
+| `characterLimit` | `number`  | Maximum number of characters before a post is truncated. _Optional_, defaults to `500`.                       |
+| `checked`        | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. _Optional_, defaults to `false`. |
+| `forced`         | `boolean` | Ignore the presence or value of `checked` and always syndicate. _Optional_.                                   |

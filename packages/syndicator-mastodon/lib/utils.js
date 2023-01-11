@@ -8,11 +8,14 @@ import { htmlToText } from "html-to-text";
  * Get status parameters from given JF2 properties
  *
  * @param {object} properties - A JF2 properties object
- * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
- * @param {Array} mediaIds - Mastodon media IDs
+ * @param {object} [options={}] - Options
+ * @param {number} options.characterLimit - Character limit
+ * @param {Array} options.mediaIds - Mastodon media IDs
+ * @param {string} options.serverUrl - Server URL, i.e. https://mastodon.social
  * @returns {object} Status parameters
  */
-export const createStatus = (properties, serverUrl, mediaIds) => {
+export const createStatus = (properties, options = {}) => {
+  const { characterLimit, mediaIds, serverUrl } = options;
   const parameters = {};
 
   let status;
@@ -40,7 +43,7 @@ export const createStatus = (properties, serverUrl, mediaIds) => {
       properties.url,
       false, // https://indieweb.org/permashortlink
       false, // https://indieweb.org/permashortcitation
-      500
+      characterLimit
     );
   }
 

@@ -23,8 +23,7 @@ test.beforeEach((t) => {
     statusId: "1234567890987654321",
     options: {
       accessToken: "0123456789abcdefghijklmno",
-      url: "https://mastodon.example",
-      user: "username",
+      serverUrl: "https://mastodon.example",
     },
     publication: {
       me: "https://website.example",
@@ -33,7 +32,7 @@ test.beforeEach((t) => {
 });
 
 test("Posts a favourite", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/favourite`)
     .reply(200, t.context.apiResponse);
 
@@ -45,7 +44,7 @@ test("Posts a favourite", async (t) => {
 });
 
 test("Throws error posting a favourite", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/favourite`)
     .reply(404, { message: "Not found" });
 
@@ -58,7 +57,7 @@ test("Throws error posting a favourite", async (t) => {
 });
 
 test("Posts a reblog", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/reblog`)
     .reply(200, t.context.apiResponse);
 
@@ -70,7 +69,7 @@ test("Posts a reblog", async (t) => {
 });
 
 test("Throws error posting a reblog", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/reblog`)
     .reply(404, { message: "Not found" });
 
@@ -83,28 +82,22 @@ test("Throws error posting a reblog", async (t) => {
 });
 
 test("Posts a status", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post("/api/v1/statuses")
     .reply(200, t.context.apiResponse);
 
-  const result = await mastodon(t.context.options).postStatus(
-    t.context.status,
-    t.context.options.url
-  );
+  const result = await mastodon(t.context.options).postStatus(t.context.status);
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
 test("Throws error posting a status", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post("/api/v1/statuses")
     .reply(404, { message: "Not found" });
 
   await t.throwsAsync(
-    mastodon(t.context.options).postStatus(
-      t.context.status,
-      t.context.options.url
-    ),
+    mastodon(t.context.options).postStatus(t.context.status),
     {
       message: "Request failed with status code 404",
     }
@@ -130,10 +123,10 @@ test.failing("Uploads media and returns a media id", async (t) => {
   nock("https://website.example")
     .get("/image.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-  nock(t.context.options.url).post("/api/v1/media").reply(200, {
+  nock(t.context.options.serverUrl).post("/api/v1/media").reply(200, {
     id: "1234567890987654321",
   });
-  nock(t.context.options.url).post("/api/v1/media").reply(200, {});
+  nock(t.context.options.serverUrl).post("/api/v1/media").reply(200, {});
 
   const result = await mastodon(t.context.options).uploadMedia(
     t.context.media,
@@ -148,7 +141,7 @@ test.failing("Throws error uploading media", async (t) => {
   nock("https://website.example")
     .get("/image.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post("/api/v1/media")
     .reply(404, { message: "Not found" });
 
@@ -173,7 +166,7 @@ test("Returns false passing an object to media upload function", async (t) => {
 });
 
 test("Posts a favourite of a toot to Mastodon", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/favourite`)
     .reply(200, t.context.apiResponse);
 
@@ -199,7 +192,7 @@ test("Doesn’t post a favourite of a URL to Mastodon", async (t) => {
 });
 
 test("Posts a repost of a toot to Mastodon", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/reblog`)
     .reply(200, t.context.apiResponse);
 
@@ -225,7 +218,7 @@ test("Doesn’t post a repost of a URL to Mastodon", async (t) => {
 });
 
 test("Posts a quote status to Mastodon", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post("/api/v1/statuses")
     .reply(200, t.context.apiResponse);
 
@@ -244,7 +237,7 @@ test("Posts a quote status to Mastodon", async (t) => {
 });
 
 test("Posts a status to Mastodon", async (t) => {
-  nock(t.context.options.url)
+  nock(t.context.options.serverUrl)
     .post("/api/v1/statuses")
     .reply(200, t.context.apiResponse);
 

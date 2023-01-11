@@ -19,7 +19,9 @@ test.beforeEach((t) => {
 test("Creates a status with article post name and URL", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/article-content-provided-html-text.jf2")),
-    "https://mastodon.example"
+    {
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(result.status, "What I had for lunch https://foo.bar/lunchtime");
@@ -28,7 +30,9 @@ test("Creates a status with article post name and URL", (t) => {
 test("Creates a status with HTML content", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/note-content-provided-html.jf2")),
-    "https://mastodon.example"
+    {
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(result.status, "> I ate a cheese sandwich, which was > 10.");
@@ -37,7 +41,9 @@ test("Creates a status with HTML content", (t) => {
 test("Creates a status with HTML content and appends last link", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/note-content-provided-html-with-link.jf2")),
-    "https://mastodon.example"
+    {
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(
@@ -51,7 +57,9 @@ test("Creates a status with HTML content and doesn’t append Mastodon link", (t
     JSON.parse(
       getFixture("jf2/note-content-provided-html-with-mastodon-link.jf2")
     ),
-    "https://mastodon.example"
+    {
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(result.status, "I ate @cheese’s sandwich, which was nice.");
@@ -60,7 +68,9 @@ test("Creates a status with HTML content and doesn’t append Mastodon link", (t
 test("Creates a reblog with status URL and post content", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/repost-mastodon.jf2")),
-    "https://mastodon.example"
+    {
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(
@@ -72,7 +82,9 @@ test("Creates a reblog with status URL and post content", (t) => {
 test("Adds link to status post is in reply to", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/reply-mastodon.jf2")),
-    "https://mastodon.example"
+    {
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(result.status, "I ate a cheese sandwich too!");
@@ -82,10 +94,9 @@ test("Adds link to status post is in reply to", (t) => {
 test("Throws creating a status if post is off-service reply", (t) => {
   t.throws(
     () => {
-      createStatus(
-        JSON.parse(getFixture("jf2/reply-twitter.jf2")),
-        "https://mastodon.example"
-      );
+      createStatus(JSON.parse(getFixture("jf2/reply-twitter.jf2")), {
+        serverUrl: "https://mastodon.example",
+      });
     },
     {
       instanceOf: IndiekitError,
@@ -101,8 +112,10 @@ test("Creates a status with a photo", (t) => {
         html: "<p>Here’s the cheese sandwich I ate.</p>",
       },
     },
-    "https://mastodon.example",
-    ["1", "2", "3", "4"]
+    {
+      mediaIds: ["1", "2", "3", "4"],
+      serverUrl: "https://mastodon.example",
+    }
   );
 
   t.is(result.status, "Here’s the cheese sandwich I ate.");
