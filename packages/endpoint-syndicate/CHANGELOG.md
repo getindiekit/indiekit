@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
+
+
+### Bug Fixes
+
+* **endpoint-syndicate:** don’t syndicate posts that have already been syndicated ([711f61a](https://github.com/getindiekit/indiekit/commit/711f61ae8a5aeaba829ee7fa3e20e1d07e8b216d))
+* **endpoint-syndicate:** prevent repeated syndication ([0e185d4](https://github.com/getindiekit/indiekit/commit/0e185d40604938b16a2613f92d3dd03edf01807b))
+* update syndication endpoint params. fixes [#567](https://github.com/getindiekit/indiekit/issues/567) ([f7fc748](https://github.com/getindiekit/indiekit/commit/f7fc748f09f5f6e8135828f238f25b8ab2e07ac5))
+
+
+### Features
+
+* **endpoint-syndicate:** support multiple methods of supplying a token ([f0aab70](https://github.com/getindiekit/indiekit/commit/f0aab701b70d51ac758c37d6349eec1e7724a520))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
 
 ### Bug Fixes

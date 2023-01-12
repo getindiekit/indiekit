@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
+
+
+### Bug Fixes
+
+* **endpoint-files:** absolute hrefs for action links ([19e32a1](https://github.com/getindiekit/indiekit/commit/19e32a11fa5ac8ef1c05b25ded43638aad539e12))
+* **endpoint-micropub:** don’t linkify incoming context text ([7128915](https://github.com/getindiekit/indiekit/commit/71289153267c46c55fb2590cc482db9fd3e40501))
+* **endpoint-micropub:** only convert content when necessary ([d2db706](https://github.com/getindiekit/indiekit/commit/d2db706998c413f22cc9329190bc6ee8e4eb152f))
+* **endpoint-posts:** absolute hrefs for action links ([8274ed4](https://github.com/getindiekit/indiekit/commit/8274ed451387199b21a032f8cbeda19ee0477dcb))
+* **endpoint-syndicate:** don’t syndicate posts that have already been syndicated ([711f61a](https://github.com/getindiekit/indiekit/commit/711f61ae8a5aeaba829ee7fa3e20e1d07e8b216d))
+* **endpoint-syndicate:** prevent repeated syndication ([0e185d4](https://github.com/getindiekit/indiekit/commit/0e185d40604938b16a2613f92d3dd03edf01807b))
+* **frontend:** don’t return attributes with falsy values ([37e15d5](https://github.com/getindiekit/indiekit/commit/37e15d59a825c1ad9c27d5db408891ca0fcb7e9a))
+* **frontend:** flow relative values not widely supported ([9b7c7dc](https://github.com/getindiekit/indiekit/commit/9b7c7dc034f6902632b022ddee403725d8f081ad))
+* **frontend:** prevent img overflowing container ([71f2856](https://github.com/getindiekit/indiekit/commit/71f285670912ba84271df31388774939a0026609))
+* **indiekit:** enable debugging when debug flag set ([ab00b34](https://github.com/getindiekit/indiekit/commit/ab00b34a96ceda8147e8c5878cdb9205df372222))
+* **indiekit:** use string not boolean to indicate current navigation item ([8777bd0](https://github.com/getindiekit/indiekit/commit/8777bd04b7af6062e8e2a2455cb013ab1988af29))
+* update syndication endpoint params. fixes [#567](https://github.com/getindiekit/indiekit/issues/567) ([f7fc748](https://github.com/getindiekit/indiekit/commit/f7fc748f09f5f6e8135828f238f25b8ab2e07ac5))
+
+
+### Features
+
+* **endpoint-micropub:** allow async postTemplate method. fixes [#562](https://github.com/getindiekit/indiekit/issues/562) ([8e19a05](https://github.com/getindiekit/indiekit/commit/8e19a05d60139c5d67e6af9b385c84abf1ca921b))
+* **endpoint-syndicate:** support multiple methods of supplying a token ([f0aab70](https://github.com/getindiekit/indiekit/commit/f0aab701b70d51ac758c37d6349eec1e7724a520))
+* **frontend:** container utility ([47a979b](https://github.com/getindiekit/indiekit/commit/47a979b1aa41f263e7a9a7c62184205e53cd24f9))
+* **frontend:** itemId global ([7bf85bc](https://github.com/getindiekit/indiekit/commit/7bf85bce4352c1c9acbd8999c54c189ab0c73e97))
+* **frontend:** linkTo filter ([b7c3f18](https://github.com/getindiekit/indiekit/commit/b7c3f18624b7fcf1625f1d690c3a3e6cb1735a56))
+* **frontend:** option to disable auto focus on notification banner ([797fb8b](https://github.com/getindiekit/indiekit/commit/797fb8b7c5b01996b346b15f831f25ba32923939))
+* **frontend:** token input component macro ([68e7de6](https://github.com/getindiekit/indiekit/commit/68e7de657d314e74f9489184dfc506bfb8a9c3c6))
+* **syndicator-mastodon:** character limit option. fixes [#572](https://github.com/getindiekit/indiekit/issues/572) ([8c026cd](https://github.com/getindiekit/indiekit/commit/8c026cd2d514eafb648c1f1fcc6992524de61a8b))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
 
 ### Bug Fixes

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
+
+
+### Bug Fixes
+
+* **indiekit:** enable debugging when debug flag set ([ab00b34](https://github.com/getindiekit/indiekit/commit/ab00b34a96ceda8147e8c5878cdb9205df372222))
+* **indiekit:** use string not boolean to indicate current navigation item ([8777bd0](https://github.com/getindiekit/indiekit/commit/8777bd04b7af6062e8e2a2455cb013ab1988af29))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
 
 ### Bug Fixes

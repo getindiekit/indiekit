@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
+
+
+### Bug Fixes
+
+* **frontend:** don’t return attributes with falsy values ([37e15d5](https://github.com/getindiekit/indiekit/commit/37e15d59a825c1ad9c27d5db408891ca0fcb7e9a))
+* **frontend:** flow relative values not widely supported ([9b7c7dc](https://github.com/getindiekit/indiekit/commit/9b7c7dc034f6902632b022ddee403725d8f081ad))
+* **frontend:** prevent img overflowing container ([71f2856](https://github.com/getindiekit/indiekit/commit/71f285670912ba84271df31388774939a0026609))
+
+
+### Features
+
+* **frontend:** container utility ([47a979b](https://github.com/getindiekit/indiekit/commit/47a979b1aa41f263e7a9a7c62184205e53cd24f9))
+* **frontend:** itemId global ([7bf85bc](https://github.com/getindiekit/indiekit/commit/7bf85bce4352c1c9acbd8999c54c189ab0c73e97))
+* **frontend:** linkTo filter ([b7c3f18](https://github.com/getindiekit/indiekit/commit/b7c3f18624b7fcf1625f1d690c3a3e6cb1735a56))
+* **frontend:** option to disable auto focus on notification banner ([797fb8b](https://github.com/getindiekit/indiekit/commit/797fb8b7c5b01996b346b15f831f25ba32923939))
+* **frontend:** token input component macro ([68e7de6](https://github.com/getindiekit/indiekit/commit/68e7de657d314e74f9489184dfc506bfb8a9c3c6))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
 
 ### Bug Fixes
