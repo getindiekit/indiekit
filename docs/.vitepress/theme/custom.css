@@ -77,6 +77,11 @@
   line-height: 1.6;
 }
 
+.vp-doc a:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+
 /* Custom block */
 .vp-doc .custom-block h3:first-of-type {
   margin-top: 8px;
@@ -97,6 +102,27 @@
 
 .vp-doc .footnotes-sep {
   margin: 48px 0 16px;
+}
+
+/* Markdown heading anchors */
+.vp-doc .heading-anchor {
+  color: var(--vp-c-text-1);
+  font-weight: inherit;
+  position: relative;
+}
+
+.vp-doc .heading-anchor:hover {
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc .heading-anchor:hover::after {
+  color: var(--vp-c-gray);
+  content: "#";
+  font-size: 20px;
+  font-weight: normal;
+  left: -20px;
+  position: absolute;
+  width: 20px;
 }
 
 /* Markdown task list */

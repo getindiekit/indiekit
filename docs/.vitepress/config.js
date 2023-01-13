@@ -1,3 +1,4 @@
+import markdownAnchor from "markdown-it-anchor";
 import markdownFootnote from "markdown-it-footnote";
 import markdownTaskLists from "markdown-it-task-lists";
 import _package from "../../packages/indiekit/package.json" assert { type: "json" };
@@ -102,6 +103,10 @@ export default {
   markdown: {
     anchor: {
       level: [1, 2, 3],
+      permalink: markdownAnchor.permalink.headerLink({
+        class: "heading-anchor",
+        safariReaderFix: true,
+      }),
     },
     config: (md) => {
       md.use(markdownFootnote);
