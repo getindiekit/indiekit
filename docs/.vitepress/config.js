@@ -28,6 +28,7 @@ const sidebar = [
   {
     text: "Resources",
     items: [
+      { text: "Accessibility statement", link: "/accessibility" },
       { text: "Micropub clients", link: "/clients" },
       { text: "Supported specifications", link: "/specifications" },
     ],
