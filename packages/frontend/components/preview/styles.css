@@ -1,11 +1,11 @@
 .preview {
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
-  color: var(--color-on-offset);
   padding: var(--space-m);
 
   & output.placeholder {
-    opacity: 0.5;
+    color: var(--color-on-offset);
+    opacity: 0.8;
   }
 
   & > * + * {
