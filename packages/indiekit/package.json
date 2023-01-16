@@ -49,7 +49,7 @@
     "@indiekit/frontend": "^1.0.0-beta.2",
     "@indiekit/preset-jekyll": "^1.0.0-beta.1",
     "clean-stack": "^5.0.0",
-    "commander": "^9.4.0",
+    "commander": "^10.0.0",
     "cookie-session": "^2.0.0",
     "cosmiconfig": "^8.0.0",
     "debug": "^4.3.2",
