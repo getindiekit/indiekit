@@ -20,7 +20,7 @@ export const mediaData = {
     const type = await getMediaType(file);
     properties["post-type"] = type;
 
-    // Throw error if trying to post unsupported media
+    // Throw error if trying to create unsupported media
     const supportedMediaTypes = ["audio", "photo", "video"];
     if (!supportedMediaTypes.includes(type)) {
       throw IndiekitError.unsupportedMediaType(type);
@@ -52,22 +52,22 @@ export const mediaData = {
   },
 
   /**
-   * Read post data
+   * Read media data
    *
    * @param {object} publication - Publication configuration
-   * @param {string} url - URL of existing post
-   * @returns {object} Post data
+   * @param {string} url - URL of existing media
+   * @returns {object} Media data
    */
   async read(publication, url) {
     const { media } = publication;
-    const file = await media.findOne({
+    const mediaData = await media.findOne({
       "properties.url": url,
     });
 
-    if (!file) {
+    if (!mediaData) {
       throw IndiekitError.notFound(url);
     }
 
-    return file;
+    return mediaData;
   },
 };

@@ -56,7 +56,7 @@ test("Throws error creating media data for non-configured media type", async (t)
   });
 });
 
-test("Reads file data", async (t) => {
+test("Reads media data", async (t) => {
   const result = await mediaData.read(t.context.publication, t.context.url);
 
   t.is(result.properties["post-type"], "photo");
