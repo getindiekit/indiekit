@@ -1,5 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
-import { media } from "../media.js";
+import { mediaContent } from "../media-content.js";
 import { mediaData } from "../media-data.js";
 import { checkScope } from "../scope.js";
 
@@ -29,7 +29,7 @@ export const actionController = async (request, response, next) => {
     }
 
     let data;
-    let uploaded;
+    let content;
     switch (action) {
       case "media": {
         // Check for file in request
@@ -40,7 +40,7 @@ export const actionController = async (request, response, next) => {
         }
 
         data = await mediaData.create(publication, files.file);
-        uploaded = await media.upload(publication, data, files.file);
+        content = await mediaContent.upload(publication, data, files.file);
         break;
       }
 
@@ -53,7 +53,10 @@ export const actionController = async (request, response, next) => {
         }
 
         data = await mediaData.read(publication, url);
-        uploaded = await media.delete(publication, data);
+        content = await mediaContent.delete(publication, data);
+
+        // Once file deleted from content store, delete data from database
+        await mediaData.delete(publication, url);
         break;
       }
 
@@ -61,9 +64,9 @@ export const actionController = async (request, response, next) => {
     }
 
     return response
-      .status(uploaded.status)
-      .location(uploaded.location)
-      .json(uploaded.json);
+      .status(content.status)
+      .location(content.location)
+      .json(content.json);
   } catch (error) {
     let nextError = error;
 

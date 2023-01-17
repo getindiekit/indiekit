@@ -3,7 +3,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "@indiekit-test/media-data";
 import { publication } from "@indiekit-test/publication";
-import { media } from "../../lib/media.js";
+import { mediaContent } from "../../lib/media-content.js";
 
 await mockAgent("store");
 
@@ -15,7 +15,11 @@ test.beforeEach((t) => {
 });
 
 test("Uploads a file", async (t) => {
-  const result = await media.upload(publication, mediaData, t.context.file);
+  const result = await mediaContent.upload(
+    publication,
+    mediaData,
+    t.context.file
+  );
 
   t.deepEqual(result, {
     location: "https://website.example/photo.jpg",
@@ -29,7 +33,7 @@ test("Uploads a file", async (t) => {
 });
 
 test("Throws error uploading a file", async (t) => {
-  await t.throwsAsync(media.upload(false, mediaData, t.context.file), {
+  await t.throwsAsync(mediaContent.upload(false, mediaData, t.context.file), {
     message: "storeMessageTemplate is not a function",
   });
 });
