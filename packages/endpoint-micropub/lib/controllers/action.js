@@ -1,6 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
-import { post } from "../post.js";
+import { postContent } from "../post-content.js";
 import { postData } from "../post-data.js";
 import { checkScope } from "../scope.js";
 import { uploadMedia } from "../media.js";
@@ -42,7 +42,7 @@ export const actionController = async (request, response, next) => {
 
     let data;
     let jf2;
-    let published;
+    let content;
     switch (action) {
       case "create": {
         // Create and normalise JF2 data
@@ -56,7 +56,7 @@ export const actionController = async (request, response, next) => {
           : jf2;
 
         data = await postData.create(publication, jf2, draftMode);
-        published = await post.create(publication, data);
+        content = await postContent.create(publication, data);
         break;
       }
 
@@ -81,19 +81,19 @@ export const actionController = async (request, response, next) => {
           );
         }
 
-        published = await post.update(publication, data, url);
+        content = await postContent.update(publication, data, url);
         break;
       }
 
       case "delete": {
         data = await postData.delete(publication, url);
-        published = await post.delete(publication, data);
+        content = await postContent.delete(publication, data);
         break;
       }
 
       case "undelete": {
         data = await postData.undelete(publication, url, draftMode);
-        published = await post.undelete(publication, data);
+        content = await postContent.undelete(publication, data);
         break;
       }
 
@@ -101,9 +101,9 @@ export const actionController = async (request, response, next) => {
     }
 
     return response
-      .status(published.status)
-      .location(published.location)
-      .json(published.json);
+      .status(content.status)
+      .location(content.location)
+      .json(content.json);
   } catch (error) {
     let nextError = error;
 

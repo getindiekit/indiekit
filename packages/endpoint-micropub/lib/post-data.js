@@ -15,7 +15,7 @@ export const postData = {
    * @returns {object} Post data
    */
   async create(publication, properties, draftMode = false) {
-    const { me, postTypes, syndicationTargets } = publication;
+    const { me, posts, postTypes, syndicationTargets } = publication;
 
     // Add syndication targets
     const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
@@ -54,8 +54,10 @@ export const postData = {
       ? "draft"
       : properties["post-status"] || "published";
 
-    // Post data
+    // Add data to posts collection
     const postData = { path, properties };
+    await posts.insertOne(postData, { checkKeys: false });
+
     return postData;
   },
 
@@ -68,10 +70,9 @@ export const postData = {
    */
   async read(publication, url) {
     const { posts } = publication;
-    const postData = await posts.findOne({
-      "properties.url": url,
-    });
+    const query = { "properties.url": url };
 
+    const postData = await posts.findOne(query);
     if (!postData) {
       throw IndiekitError.notFound(url);
     }
@@ -89,7 +90,7 @@ export const postData = {
    * @returns {object} Post data
    */
   async update(publication, url, operation) {
-    const { me, postTypes } = publication;
+    const { me, posts, postTypes } = publication;
 
     // Read properties
     let { properties } = await this.read(publication, url);
@@ -135,8 +136,11 @@ export const postData = {
     );
     properties.url = getPermalink(me, updatedUrl);
 
-    // Return updated post data
+    // Update data in posts collection
     const postData = { path, properties };
+    const query = { "properties.url": url };
+    await posts.replaceOne(query, postData, { checkKeys: false });
+
     return postData;
   },
 
@@ -149,7 +153,7 @@ export const postData = {
    * @returns {object} Post data
    */
   async delete(publication, url) {
-    const { postTypes } = publication;
+    const { posts, postTypes } = publication;
 
     // Read properties
     const { properties } = await this.read(publication, url);
@@ -177,8 +181,11 @@ export const postData = {
       publication
     );
 
-    // Return post data
+    // Update data in posts collection
     const postData = { path, properties, _deletedProperties };
+    const query = { "properties.url": url };
+    await posts.replaceOne(query, postData, { checkKeys: false });
+
     return postData;
   },
 
@@ -192,7 +199,7 @@ export const postData = {
    * @returns {object} Post data
    */
   async undelete(publication, url, draftMode) {
-    const { postTypes } = publication;
+    const { posts, postTypes } = publication;
 
     // Read deleted properties
     const { _deletedProperties } = await this.read(publication, url);
@@ -216,8 +223,11 @@ export const postData = {
       ? "draft"
       : properties["post-status"] || "published";
 
-    // Return post data
-    const postData = { path, properties, _deletedProperties };
+    // Update data in posts collection
+    const postData = { path, properties };
+    const query = { "properties.url": url };
+    await posts.replaceOne(query, postData, { checkKeys: false });
+
     return postData;
   },
 };
