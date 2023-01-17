@@ -1,79 +1,139 @@
 # How Indiekit works
 
+## Authorizing an application
+
+With Indiekit, you can publish content to your website from any third-party application or service that supports Micropub.
+
+However, asking for a password each time you want to publish a post can get tiresome. If you want to use an automated service to publish content for you, there needs to be a mechanism to prove it has permission.
+
+For these reasons, Micropub applications can ask your Indiekit server for an access token. This base64url-encoded [JSON Web Token](https://jwt.io) contains the following:
+
+* your website’s URL (`me`)
+* what permissions it grants (`scope`)
+* when the token was created (`iat`)
+* when it expires (`exp`)
+
+Here’s an example of a decrypted and decoded access token:
+
+```json
+{
+ "me": "http://website.example/",
+ "scope": "create update delete",
+ "iat": 1673475400,
+ "exp": 1681251400
+}
+```
+
+Once an application has a token, it will not need to authorize itself again until the token expires (or its permissions need to be updated).
+
+![Authorization flow](authorization-flow.png)
+
+1. The authorization flow starts with the Micropub application (for example, iA Writer) asking for your website’s URL. The application then visits the given URL and looks for the following link relationships in the response:
+
+    * a Micropub endpoint (`rel="micropub"`)
+    * an IndieAuth metadata endpoint (`rel="indieauth-metadata"`), which in turn provides the location of your authorization and token endpoints[^1]
+
+2. Having discovered this information, the application makes a second request to the authorization endpoint with information about itself and the permissions it requires. A consent screen allows you to change the requested permissions before entering your password and authorizing the application.
+
+3. If the password is correct, the authorization endpoint makes a request to the token endpoint which generates an access token.
+
+4. This access token is returned to the application which can store it for future use.
+
 ## Publishing content
 
-Let’s say you have installed Indiekit on your web server, and set it up so that it can be reached at `https://indiekit.website.example`.
+Once an application knows your server’s Micropub endpoint and has permission to publish to your website, it can make authorized requests to your Micropub endpoint.
 
-Any application that supports [the Micropub protocol](https://micropub.spec.indieweb.org) can make the following `POST` request to `https://indiekit.website.example/micropub`:
+![Publication flow](publication-flow.png)
 
-```sh
-POST /micropub HTTP/1.1
-Host: indiekit.website.example
-Content-Type: application/x-www-form-urlencoded
-Authorization: Bearer [ACCESS_TOKEN]
+1. The publication flow starts with the Micropub application making a request to your Indiekit server’s Micropub endpoint.
 
-h=entry
-&content=Hello+world
-```
+2. This endpoint verifies the provided access token with the token endpoint.
 
-Indiekit will recognise this as a Micropub request and create a new note post with the content ‘Hello world’.
+3. Indiekit will then interpret the Micropub request. For example, Indiekit will identify this as a note post with the content ‘Hello world’:
 
-If you’ve configured Indiekit to publish files to GitHub for a site generated using [Jekyll](https://jekyllrb.com), Indiekit will create the following file and commit it to your repository at your specified location:
+    ```sh
+    POST /micropub HTTP/1.1
+    Host: indiekit.example
+    Content-Type: application/x-www-form-urlencoded
+    Authorization: Bearer [ACCESS_TOKEN]
 
-```yaml
----
-date: 2021-02-15T21:38:25.343Z
-mp-syndicate-to:
-  - https://twitter.com/username
-  - https://mastodon.social/@username
----
-Hello world
-```
+    h=entry
+    &content=Hello+world
+    ```
 
-Assuming your publication is deployed every time there is a new commit, this new post will appear on your website (this may take a few minutes if you’re using a static site generator).
+    Your post type settings, template and other configuration values are then used to determine how the post file should be formatted.
 
-## Sharing content with third-party websites
+    For example, if you have configured Indiekit to publish files to a site generated using [Jekyll](https://jekyllrb.com), Indiekit would create the following file:
 
-Note the `mp-syndicate-to` property in the above example. If you’ve configured Indiekit to syndicate to third-party websites they will appear in this list.
+    ```yaml
+    ---
+    date: 2021-02-15T21:38:25.343Z
+    mp-syndicate-to:
+    - https://mastodon.example/@username
+    ---
+    Hello world
+    ```
 
-You can then send a second `POST` request, this time to `https://indiekit.website.example/syndicate` along with your access token which you can find on your server’s status page:
+4. This file is then saved to your content store using the configured location for the note post type. For example, if your content store is on GitHub, this file will be committed to your chosen repo and branch.
 
-```sh
-POST /syndicate?token=[ACCESS_TOKEN] HTTP/1.1
-Host: indiekit.website.example
-Accept: application/json
-```
+5. If your website is deployed every time there is a new commit, the new post will appear on your website (this may take a few minutes, depending on how you have set up deployments).
 
-This will tell Indiekit to syndicate the most recent un-syndicated post to the third-party websites listed in a post’s front matter.
+## Sharing content with third-party websites (syndication)
 
-::: tip
+Note the `mp-syndicate-to` property in the above example. Indiekit can be configured to share posts on other social networks. This is called [syndication](concepts.md#syndication). Any syndication targets you have configured will appear under this property.
 
-### Use an outgoing webhook on Netlify
+After publishing a post, pinging Indiekit’s syndication endpoint will check if any posts need syndicating.
 
-If you are using [Netlify](https://www.netlify.com) to host your website, you can send a notification to the syndication endpoint once a deployment has been completed.
+![Syndication flow.](syndication-flow.png)
 
-First, create an environment variable for your Indiekit server called `WEBHOOK_SECRET` and give it a secret, hard-to-guess value.
+1. The syndication flow starts with a syndication trigger. For example, this could be [a Netlify webhook](concepts.md#using-an-outgoing-webhook-on-netlify) making a POST request to Indiekit’s syndication endpoint:
 
-Then on Netlify, in your site’s ‘Build & Deploy’ settings, add an [outgoing webhook](https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks) with the following values:
+    ```sh
+    POST /syndicate HTTP/1.1
+    Host: indiekit.example
+    X-Webhook-Signature: [WEBHOOK_SECRET]
+    ```
 
-* **Event to listen for:** ‘Deploy succeeded’
-* **URL to notify:** `[YOUR_INDIEKIT_URL]/syndicate`
-* **JWS secret token:** The same value you used for `WEBHOOK_SECRET`
+2. Indiekit will look for the most recent un-syndicated post. If a post is found, each syndication target listed under its `mp-syndicate-to` property will be sent a copy of the post. Each target then returns the URL of their syndicated copy.
 
-:::
+3. The syndication endpoint then calls the Micropub endpoint with a request to update the post with these syndicated URLs:
 
-Once this has been completed, Indiekit will update the post, replacing `mp-syndicate-to` with a `syndication` property listing the location of each syndicated copy:
+    ```sh
+    POST /micropub HTTP/1.1
+    Host: indiekit.example
+    Content-Type: application/json
+    Authorization: Bearer [ACCESS_TOKEN]
 
-```yaml
----
-date: 2021-02-15T21:38:25.343Z
-syndication:
-  - https://twitter.com/username/1234567890
-  - https://mastodon.social/@username/1234567890
----
-Hello world
-```
+    {
+      "action": "update",
+      "url": "https://website.example/notes/1",
+      "delete": "mp-syndicate"
+      "replace": {
+        "syndication": [
+          "https://mastodon.example/@username/12345"
+        ]
+      }
+    }
+    ```
+
+4. The updated file is saved to your content store. If your content store is on GitHub, an updated file is committed to your chosen repo and branch:
+
+    ```diff
+      ---
+      date: 2021-02-15T21:38:25.343Z
+    + updated: 2021-02-15T21:40:15.131Z
+    + syndication:
+    + - https://mastodon.example/@username/12345
+    - mp-syndicate-to:
+    - - https://mastodon.example/@username
+      ---
+      Hello world
+    ```
+
+5. Your website is deployed. Depending on your website’s design, your post may now include links to syndicated copies.
 
 ## Notifying other websites that you’ve mentioned
 
-Indiekit is in the early stages of development so only supports the Micropub protocol and post syndication for now. Future releases may add support for [Webmention](https://www.w3.org/TR/webmention/) and other IndieWeb standards.
+Indiekit only supports IndieAuth, Micropub and syndication for now. Future releases will include support for [Webmention](https://www.w3.org/TR/webmention/) and possibly other IndieWeb standards.
+
+[^1]: For compatibility with older Micropub applications, you can provide individual values for your authorization and token endpoints in your website’s `<head>` (`rel="authorization_endpoint"` and `rel="token_endpoint"`).

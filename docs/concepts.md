@@ -66,25 +66,26 @@ Then add it to your configuration file:
 }
 ```
 
-## Syndicator
+## Syndication
 
-A key idea of the IndieWeb movement is [POSSE](https://indieweb.org/POSSE) (_Publish on your Own Site, Syndicate Elsewhere_). This is the practice of posting content on your own website, and then publishing copies or sharing it on third-party websites. A syndicator plug-in provides this functionality.
+Indiekit can be setup to share posts on other social networks, a process sometimes called syndication or [cross-posting](https://indieweb.org/cross-posting).
 
-For example, if you want to syndicate your content to Twitter, you can install the [Twitter syndicator](plugins/index.md#twitter):
+Syndicator plug-ins provide this functionality. For example, if you want to syndicate your content to Mastodon, you can install the [Mastodon syndicator](plugins/index.md#mastodon):
 
 ```sh
-npm install @indiekit/syndicator-twitter
+npm install @indiekit/syndicator-mastodon
 ```
 
 Then add it to your configuration file, for example:
 
 ```json
 {
-  "plugins": ["@indiekit/syndicator-twitter"],
-  "@indiekit/syndicator-twitter": {
+  "plugins": ["@indiekit/syndicator-mastodon"],
+  "@indiekit/syndicator-mastodon": {
     "checked": true,
     "forced": true,
-    "user": "YOUR_TWITTER_USERNAME"
+    "url": "https://mastodon.example",
+    "user": "username"
   }
 }
 ```
@@ -92,3 +93,44 @@ Then add it to your configuration file, for example:
 The `checked` option is used to tell [Micropub clients](clients.md) whether a syndication target should be enabled or not by default.
 
 Not all clients allow you to disable or enable syndication targets. Setting the `forced` option to `true` will ensure that a syndication target is enabled regardless.
+
+### Using the application interface to syndicate a post
+
+A ‘Syndicate post’ button is shown on the detail page for any post that can be syndicated. Clicking this button will syndicate the post to any outstanding syndication targets (shown under the `mp-syndicate-to` property).
+
+### Using the syndication endpoint
+
+Use the syndication endpoint to check if any posts are awaiting syndication.
+
+This `POST` request should include your server’s access token. You can find this on your server’s status page.
+
+This token can be provided in the URL using the `token` query parameter:
+
+```sh
+POST /syndicate?token=[ACCESS_TOKEN] HTTP/1.1
+Host: indiekit.example
+Accept: application/json
+```
+
+You can also use the `access_token` form field:
+
+```sh
+POST /syndicate HTTP/1.1
+Host: indiekit.example
+Content-type: application/x-www-form-urlencoded
+Accept: application/json
+
+access_token=[ACCESS_TOKEN]
+```
+
+### Using an outgoing webhook on Netlify
+
+If you are using [Netlify](https://www.netlify.com) to host your website, you can ping the syndication endpoint once a deployment has completed.
+
+First, create an environment variable for your Indiekit server called `WEBHOOK_SECRET` and give it a secret, hard-to-guess value.
+
+Then on Netlify, in your site’s ‘Build & Deploy’ settings, add an [outgoing webhook](https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks) with the following values:
+
+* **Event to listen for:** ‘Deploy succeeded’
+* **URL to notify:** `[YOUR_INDIEKIT_URL]/syndicate`
+* **JWS secret token:** The same value used for `WEBHOOK_SECRET`
