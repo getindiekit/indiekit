@@ -11,7 +11,7 @@ export const mediaData = {
    * @returns {object} Media data
    */
   async create(publication, file) {
-    const { me, postTypes } = publication;
+    const { me, media, postTypes } = publication;
 
     // Media properties
     const properties = await getFileProperties(publication, file);
@@ -46,8 +46,10 @@ export const mediaData = {
     properties.filename = urlPathSegment[urlPathSegment.length - 1];
     properties.basename = properties.filename.split(".")[0];
 
-    // Media data
+    // Add data to media collection
     const mediaData = { path, properties };
+    await media.insertOne(mediaData);
+
     return mediaData;
   },
 
@@ -60,14 +62,31 @@ export const mediaData = {
    */
   async read(publication, url) {
     const { media } = publication;
-    const mediaData = await media.findOne({
-      "properties.url": url,
-    });
+    const query = { "properties.url": url };
 
+    const mediaData = await media.findOne(query);
     if (!mediaData) {
       throw IndiekitError.notFound(url);
     }
 
     return mediaData;
+  },
+
+  /**
+   * Delete media data
+   *
+   * @param {object} publication - Publication configuration
+   * @param {string} url - URL of existing post
+   */
+  async delete(publication, url) {
+    const { media } = publication;
+    const query = { "properties.url": url };
+
+    const result = await media.deleteOne(query);
+    if (result?.deletedCount === 1) {
+      return true;
+    }
+
+    throw new Error("No media data to delete");
   },
 };
