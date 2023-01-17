@@ -68,8 +68,6 @@ Once an application knows your server’s Micropub endpoint and has permission t
     ```yaml
     ---
     date: 2021-02-15T21:38:25.343Z
-    mp-syndicate-to:
-    - https://mastodon.example/@username
     ---
     Hello world
     ```
@@ -80,7 +78,7 @@ Once an application knows your server’s Micropub endpoint and has permission t
 
 ## Sharing content with third-party websites (syndication)
 
-Note the `mp-syndicate-to` property in the above example. Indiekit can be configured to share posts on other social networks. This is called [syndication](concepts.md#syndication). Any syndication targets you have configured will appear under this property.
+Indiekit can be configured to share posts on other social networks, a process called [syndication](concepts.md#syndication).
 
 After publishing a post, pinging Indiekit’s syndication endpoint will check if any posts need syndicating.
 
@@ -107,7 +105,7 @@ After publishing a post, pinging Indiekit’s syndication endpoint will check if
     {
       "action": "update",
       "url": "https://website.example/notes/1",
-      "delete": "mp-syndicate"
+      "delete": "mp-syndicate-to"
       "replace": {
         "syndication": [
           "https://mastodon.example/@username/12345"
@@ -124,8 +122,6 @@ After publishing a post, pinging Indiekit’s syndication endpoint will check if
     + updated: 2021-02-15T21:40:15.131Z
     + syndication:
     + - https://mastodon.example/@username/12345
-    - mp-syndicate-to:
-    - - https://mastodon.example/@username
       ---
       Hello world
     ```

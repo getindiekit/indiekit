@@ -175,9 +175,6 @@ export default class JekyllPreset {
       ...(properties["post-status"] === "draft" && { published: false }),
       ...(properties.visibility && { visibility: properties.visibility }),
       ...(properties.syndication && { syndication: properties.syndication }),
-      ...(properties["mp-syndicate-to"] && {
-        "mp-syndicate-to": properties["mp-syndicate-to"],
-      }),
       ...(properties.references && { references: properties.references }),
     };
     let frontMatter = YAML.stringify(properties, { lineWidth: 0 });

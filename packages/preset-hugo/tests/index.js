@@ -144,8 +144,7 @@ test("Renders post template with JSON front matter", (t) => {
   "inReplyTo": "https://website.example",
   "draft": true,
   "visibility": "private",
-  "syndication": "https://website.example/post/12345",
-  "mpSyndicateTo": "https://social.example"
+  "syndication": "https://website.example/post/12345"
 }
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
@@ -174,7 +173,6 @@ inReplyTo = "https://website.example"
 draft = true
 visibility = "private"
 syndication = "https://website.example/post/12345"
-mpSyndicateTo = "https://social.example"
 
 [location]
 type = "geo"
@@ -242,7 +240,6 @@ inReplyTo: https://website.example
 draft: true
 visibility: private
 syndication: https://website.example/post/12345
-mpSyndicateTo: https://social.example
 ---
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
