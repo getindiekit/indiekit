@@ -249,9 +249,6 @@ export default class HugoPreset {
       ...(properties.postStatus === "draft" && { draft: true }),
       ...(properties.visibility && { visibility: properties.visibility }),
       ...(properties.syndication && { syndication: properties.syndication }),
-      ...(properties.mpSyndicateTo && {
-        mpSyndicateTo: properties.mpSyndicateTo,
-      }),
       ...(properties.references && { references: properties.references }),
     };
 

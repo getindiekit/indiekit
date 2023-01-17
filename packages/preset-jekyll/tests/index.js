@@ -125,7 +125,6 @@ in-reply-to: https://website.example
 published: false
 visibility: private
 syndication: https://website.example/post/12345
-mp-syndicate-to: https://social.example
 ---
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
