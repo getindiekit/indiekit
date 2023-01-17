@@ -37,6 +37,8 @@ test.beforeEach((t) => {
             };
           }
         },
+        async insertOne() {},
+        async replaceOne() {},
       },
     },
     url: "https://website.example/foo",

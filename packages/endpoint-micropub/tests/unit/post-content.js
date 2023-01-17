@@ -2,7 +2,7 @@ import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { publication } from "@indiekit-test/publication";
 import { deletedPostData, postData } from "@indiekit-test/post-data";
-import { post } from "../../lib/post.js";
+import { postContent } from "../../lib/post-content.js";
 
 await mockAgent("store");
 
@@ -11,7 +11,7 @@ test.beforeEach((t) => {
 });
 
 test("Creates a post", async (t) => {
-  const result = await post.create(publication, postData);
+  const result = await postContent.create(publication, postData);
 
   t.deepEqual(result, {
     location: "https://website.example/foo",
@@ -25,13 +25,13 @@ test("Creates a post", async (t) => {
 });
 
 test("Throws error creating a post", async (t) => {
-  await t.throwsAsync(post.create(false, postData), {
+  await t.throwsAsync(postContent.create(false, postData), {
     message: "postTemplate is not a function",
   });
 });
 
 test("Updates a post", async (t) => {
-  const result = await post.update(publication, postData, t.context.url);
+  const result = await postContent.update(publication, postData, t.context.url);
 
   t.deepEqual(result, {
     location: "https://website.example/foo",
@@ -44,13 +44,13 @@ test("Updates a post", async (t) => {
 });
 
 test("Throws error updating a post", async (t) => {
-  await t.throwsAsync(post.update(false, postData, t.context.url), {
+  await t.throwsAsync(postContent.update(false, postData, t.context.url), {
     message: "postTemplate is not a function",
   });
 });
 
 test("Deletes a post", async (t) => {
-  const result = await post.delete(publication, postData);
+  const result = await postContent.delete(publication, postData);
 
   t.deepEqual(result, {
     status: 200,
@@ -62,13 +62,13 @@ test("Deletes a post", async (t) => {
 });
 
 test("Throws error deleting a post", async (t) => {
-  await t.throwsAsync(post.delete(false, postData), {
+  await t.throwsAsync(postContent.delete(false, postData), {
     message: "postTemplate is not a function",
   });
 });
 
 test("Undeletes a post", async (t) => {
-  const result = await post.undelete(publication, deletedPostData);
+  const result = await postContent.undelete(publication, deletedPostData);
 
   t.deepEqual(result, {
     location: "https://website.example/foo",
@@ -81,7 +81,7 @@ test("Undeletes a post", async (t) => {
 });
 
 test("Throws error undeleting a post", async (t) => {
-  await t.throwsAsync(post.undelete(publication, postData), {
-    message: "Post was not previously deleted",
+  await t.throwsAsync(postContent.undelete(false, postData), {
+    message: "postTemplate is not a function",
   });
 });
