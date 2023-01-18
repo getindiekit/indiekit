@@ -9,58 +9,29 @@
 /* webfont-marker-end */
 
 :root {
-  --indigo-h-s: 224deg 100%;
-  --white-h-s: 224deg 33%;
   --neutral-h-s: 224deg 10%;
   --brand-h-s: 270deg 100%;
 
-  --vp-c-brand-lighter: hsl(var(--brand-h-s) 90%);
-  --vp-c-brand-light: hsl(var(--brand-h-s) 70%);
-  --vp-c-brand: hsl(var(--brand-h-s) 40%);
-  --vp-c-brand-dark: hsl(var(--brand-h-s) 30%);
   --vp-c-brand-darker: hsl(var(--brand-h-s) 10%);
+  --vp-c-brand-dark: hsl(var(--brand-h-s) 30%);
+  --vp-c-brand: hsl(var(--brand-h-s) 40%);
+  --vp-c-brand-light: hsl(var(--brand-h-s) 70%);
+  --vp-c-brand-lighter: hsl(var(--brand-h-s) 90%);
 
-  --vp-c-white-soft: hsl(var(--white-h-s) 97%);
-
-  --vp-c-gray-dark-5: hsl(var(--neutral-h-s) 5%);
-  --vp-c-gray-dark-4: hsl(var(--neutral-h-s) 10%);
-  --vp-c-gray-dark-3: hsl(var(--neutral-h-s) 25%);
-  --vp-c-gray-dark-2: hsl(var(--neutral-h-s) 33%);
-  --vp-c-gray-dark-1: hsl(var(--neutral-h-s) 40%);
-  --vp-c-gray: hsl(var(--neutral-h-s) 50%);
-  --vp-c-gray-light-1: hsl(var(--neutral-h-s) 60%);
-  --vp-c-gray-light-2: hsl(var(--neutral-h-s) 67%);
-  --vp-c-gray-light-3: hsl(var(--neutral-h-s) 75%);
-  --vp-c-gray-light-4: hsl(var(--neutral-h-s) 90%);
-  --vp-c-gray-light-5: hsl(var(--neutral-h-s) 95%);
-
-  --vp-c-indigo-lighter: hsl(var(--indigo-h-s) 90%);
-  --vp-c-indigo-light: hsl(var(--indigo-h-s) 70%);
-  --vp-c-indigo: hsl(var(--indigo-h-s) 50%);
-  --vp-c-indigo-dark: hsl(var(--indigo-h-s) 30%);
-  --vp-c-indigo-darker: hsl(var(--indigo-h-s) 10%);
-  --vp-c-indigo-soft: hsl(var(--indigo-h-s) 10% / 0.75);
-
-  --vp-c-divider-light-1: hsl(var(--neutral-h-s) 50% / 0.2);
-  --vp-c-divider-light-2: hsl(var(--neutral-h-s) 50% / 0.1);
-  --vp-c-divider-dark-1: hsl(var(--neutral-h-s) 50% / 0.5);
-  --vp-c-divider-dark-2: hsl(var(--neutral-h-s) 50% / 0.33);
-
-  --vp-c-text-light-1: var(--vp-c-black);
-  --vp-c-text-light-2: var(--vp-c-gray-dark-3);
-  --vp-c-text-light-3: var(--vp-c-gray-dark-4);
-  --vp-c-text-light-4: var(--vp-c-gray-dark-5);
-
+  --vp-c-text-code: var(--vp-c-text-light-2);
   --vp-c-text-dark-1: var(--vp-c-white);
-  --vp-c-text-dark-2: var(--vp-c-gray-light-3);
-  --vp-c-text-dark-3: var(--vp-c-gray-light-4);
-  --vp-c-text-dark-4: var(--vp-c-gray-light-5);
+  --vp-c-text-dark-2: hsl(var(--neutral-h-s) 75%);
+  --vp-c-text-dark-3: hsl(var(--neutral-h-s) 90%);
+  --vp-c-text-light-1: var(--vp-c-black);
+  --vp-c-text-light-2: hsl(var(--neutral-h-s) 25%);
+  --vp-c-text-light-3: hsl(var(--neutral-h-s) 10%);
 
   --vp-font-family-base: mona-sans, sans-serif;
 }
 
 .dark {
   --vp-c-brand: #b9f;
+  --vp-c-text-code: var(--vp-c-text-dark-2);
 }
 
 /* Home page */
@@ -138,7 +109,7 @@
 
 .vp-doc .task-list-item-checkbox {
   appearance: none;
-  background-color: var(--vp-c-gray-light-4);
+  background-color: var(--vp-c-bg-soft-mute);
   border-radius: 4px;
   font-size: 20px;
   height: 20px;
@@ -151,10 +122,10 @@
 
 .vp-doc .task-list-item-checkbox:checked {
   background: var(--vp-c-green);
+  color: var(--vp-c-white);
 }
 
 .vp-doc .task-list-item-checkbox::before {
-  color: var(--vp-c-text-light-1);
   content: "×";
   font-size: 0.75em;
   font-weight: bold;
@@ -166,7 +137,6 @@
 }
 
 .vp-doc .task-list-item-checkbox:checked::before {
-  color: var(--vp-c-gray-light-5);
   content: "✓";
 }
 
