@@ -17,7 +17,7 @@ Then add it to your configuration file:
 ```json
 {
   "plugins": ["@indiekit/store-file-system"],
-  "@indiekit/store-github": {
+  "@indiekit/store-file-system": {
     "directory": "project/www"
   }
 }
