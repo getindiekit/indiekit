@@ -1,10 +1,8 @@
 import path from "node:path";
-import dateFnsTz from "date-fns-tz";
+import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
 import { v4 as uuidv4 } from "uuid";
 import { getServerTimeZone } from "./date.js";
-
-const { format } = dateFnsTz;
 
 /**
  * Generate random alpha-numeric string, 5 characters long

@@ -1,6 +1,4 @@
-import dateFnsTz from "date-fns-tz";
-
-const { format, utcToZonedTime } = dateFnsTz;
+import { format, utcToZonedTime } from "date-fns-tz";
 
 /**
  * Converts date to use configured time zone

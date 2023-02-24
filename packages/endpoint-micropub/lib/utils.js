@@ -1,12 +1,10 @@
 import path from "node:path";
-import dateFnsTz from "date-fns-tz";
+import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
 import slugify from "@sindresorhus/slugify";
 import { v4 as uuidv4 } from "uuid";
 import { getServerTimeZone } from "./date.js";
 import { postTypeCount } from "./post-type-count.js";
-
-const { format } = dateFnsTz;
 
 /**
  * Decode form-encoded query parameter
