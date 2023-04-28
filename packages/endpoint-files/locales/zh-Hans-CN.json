@@ -1,0 +1,36 @@
+{
+  "files": {
+    "delete": {
+      "action": "删除文件",
+      "cancel": "否 — 返回文件",
+      "note": "它可能仍然可以从您的内容存储中访问或恢复 (%s)。",
+      "submit": "我确定 — 删除这个文件",
+      "title": "你确定要删除这个文件吗?"
+    },
+    "error": {
+      "file": {
+        "empty": "选择要上传的文件"
+      }
+    },
+    "file": {
+      "download": "下载文件",
+      "properties": "属性"
+    },
+    "files": {
+      "none": "没有文件",
+      "title": "上传的文件"
+    },
+    "form": {
+      "cancel": "取消",
+      "file": {
+        "label": "文件"
+      },
+      "submit": "上传"
+    },
+    "title": "文件",
+    "upload": {
+      "action": "上传文件",
+      "title": "上传新文件"
+    }
+  }
+}

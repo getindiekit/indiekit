@@ -1,0 +1,30 @@
+{
+  "backLink": {
+    "text": "返回"
+  },
+  "error": "错误",
+  "errorSummary": {
+    "title": "有一个问题"
+  },
+  "geoInput": {
+    "denied": "无法获得使用您当前位置的权限",
+    "failed": "无法获取您当前所在的位置。",
+    "getCurrentPosition": "使用我当前的位置"
+  },
+  "important": "重要",
+  "noValue": "未设置",
+  "optionalValue": "（可选）",
+  "pagination": {
+    "defaultType": "结果",
+    "item": "第 %s 页",
+    "next": "后 %s",
+    "page": "页",
+    "previous": "前 %s",
+    "result": "当前显示的是 {{type}} 的第 {{count}} 个，总共 {{from}}",
+    "results": "当前显示的是 {{type}} 的从 {{from}} 到 {{to}}，总共 {{count}}"
+  },
+  "skipLink": {
+    "text": "跳到内容"
+  },
+  "success": "成功"
+}

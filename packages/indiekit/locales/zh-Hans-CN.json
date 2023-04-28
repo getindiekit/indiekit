@@ -1,0 +1,73 @@
+{
+  "guidance": {
+    "discovery": "为使 %s 可以被 Micropub 客户端发现并请求在您的网站上发帖的权限，请将以下值添加到您网站的 `<head>`："
+  },
+  "homepage": {
+    "title": "欢迎！"
+  },
+  "scope": {
+    "create": {
+      "label": "创建帖子"
+    },
+    "delete": {
+      "label": "删除帖子和媒体"
+    },
+    "draft": {
+      "label": "仅创建和更新草稿帖子"
+    },
+    "label": "发布权限",
+    "media": {
+      "label": "上传媒体文件"
+    },
+    "none": {
+      "label": "你没有任何发布权限"
+    },
+    "update": {
+      "label": "更新帖子"
+    }
+  },
+  "session": {
+    "login": {
+      "description": "使用 IndieAuth 登录以验证你是否拥有 %s",
+      "me": "网址",
+      "submit": "使用 IndieAuth 登录",
+      "title": "登录"
+    },
+    "logout": {
+      "title": "登出"
+    }
+  },
+  "status": {
+    "application": {
+      "accessToken": "访问令牌",
+      "authorizationEndpoint": "授权终端节点",
+      "installedPlugins": "已安装的插件",
+      "locale": "语言",
+      "localeNotAvailable": "{{app}} 尚未翻译成 {{locale}}",
+      "mediaEndpoint": "媒体终端节点",
+      "micropubEndpoint": "Micropub 终端节点",
+      "name": "名字",
+      "summaryTitle": "应用设置",
+      "themeColor": "主题颜色",
+      "themeColorScheme": "主题",
+      "themeColorSchemeValue": {
+        "automatic": "自动",
+        "dark": "深色",
+        "light": "浅色"
+      },
+      "tokenEndpoint": "令牌终端节点",
+      "version": "版本"
+    },
+    "publication": {
+      "locale": "语言",
+      "me": "网址",
+      "postTypes": "帖文类型",
+      "preset": "预设",
+      "store": "内容存储",
+      "summaryTitle": "发布设置",
+      "syndicationTargets": "内容联合目标",
+      "timeZone": "时区"
+    },
+    "title": "服务器状态"
+  }
+}

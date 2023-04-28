@@ -1,0 +1,39 @@
+{
+  "BadRequestError": {
+    "invalid": "请求缺少必需的参数、包含不支持的参数或参数值、重复相同的参数、使用多个方法来包含访问令牌，或者格式不正确",
+    "invalidValue": "为 “%s” 提供的值无效",
+    "missingParameter": "缺少参数：“%s”",
+    "missingProperty": "请求中未包含 %s",
+    "missingToken": "未按要求提供 bearer 令牌",
+    "title": "错误请求"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "该请求所需的权限高于访问令牌提供的权限",
+    "invalidMe": "出版物 URL 与访问令牌提供的网址不匹配",
+    "invalidRedirect": "尝试的重定向无效",
+    "invalidState": "`state` 的值无效",
+    "title": "被禁止"
+  },
+  "NotFoundError": {
+    "page": "如果您输入了网址，请检查其是否正确",
+    "record": "在数据库中找不到 %s 的记录",
+    "resource": "在此 URL 中找不到 %s",
+    "title": "未找到"
+  },
+  "NotImplementedError": {
+    "database": "此功能需要数据库",
+    "postType": "未为 %s 帖子类型提供配置",
+    "query": "不支持 `{{key}}` 的查询：`{{value}}`",
+    "secret": "缺少 `SECRET`",
+    "title": "未实现"
+  },
+  "UnauthorizedError": {
+    "invalidCode": "提供的授权码已过期、已吊销、格式错误或由于其他原因无效",
+    "invalidToken": "提供的访问令牌已过期、已吊销、格式错误或由于其他原因无效",
+    "title": "未授权"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "不支持的媒体类型",
+    "type": "不支持 %s 媒体类型"
+  }
+}

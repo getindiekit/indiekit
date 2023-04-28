@@ -1,0 +1,30 @@
+{
+  "share": {
+    "bookmark-of": {
+      "label": "网址"
+    },
+    "content": {
+      "label": "内容"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "输入像 https://example.org 这样的网址"
+      },
+      "name": {
+        "empty": "输入标题"
+      }
+    },
+    "name": {
+      "label": "标题"
+    },
+    "submit": "发布",
+    "title": "分享"
+  },
+  "status": {
+    "bookmarklet": {
+      "guidance": "将此链接拖到您的书签栏：%s",
+      "label": "分享页面",
+      "title": "分享书签"
+    }
+  }
+}

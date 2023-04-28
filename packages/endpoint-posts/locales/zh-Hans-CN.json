@@ -1,0 +1,116 @@
+{
+  "posts": {
+    "create": {
+      "action": "新帖子",
+      "title": "创建新的 %s 帖子"
+    },
+    "delete": {
+      "action": "删除帖文",
+      "cancel": "否 — 返回帖子",
+      "submit": "我确定 — 删除这篇文章",
+      "title": "您确定要删除这个帖子吗？"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "输入像 https://example.org 这样的网址"
+      },
+      "content": {
+        "empty": "输入一些内容"
+      },
+      "geo": {
+        "invalid": "输入有效坐标"
+      },
+      "in-reply-to": {
+        "empty": "输入像 https://example.org 这样的网址"
+      },
+      "like-of": {
+        "empty": "输入像 https://example.org 这样的网址"
+      },
+      "name": {
+        "empty": "输入标题"
+      },
+      "repost-of": {
+        "empty": "输入像 https://example.org 这样的网址"
+      }
+    },
+    "form": {
+      "advancedOptions": "高级选项",
+      "bookmark-of": {
+        "label": "书签来自"
+      },
+      "cancel": "取消",
+      "category": {
+        "label": "类别"
+      },
+      "content": {
+        "label": "内容"
+      },
+      "geo": {
+        "hint": "纬度和经度，例如 %s",
+        "label": "位置坐标"
+      },
+      "in-reply-to": {
+        "label": "在回复中"
+      },
+      "like-of": {
+        "label": "像这样"
+      },
+      "mp-slug": {
+        "label": "网址 slug"
+      },
+      "mp-syndicate-to": {
+        "label": "内容联合到"
+      },
+      "name": {
+        "label": "标题"
+      },
+      "publish": "发布帖子",
+      "publishDraft": "保存草稿",
+      "repost-of": {
+        "label": "重新发布的"
+      },
+      "rsvp": {
+        "interested": "感兴趣",
+        "label": "回复",
+        "maybe": "可能",
+        "no": "否",
+        "yes": "是"
+      },
+      "summary": {
+        "label": "摘要"
+      },
+      "update": "更新帖子",
+      "updateDraft": "更新草稿",
+      "visibility": {
+        "label": "可见度"
+      }
+    },
+    "post": {
+      "properties": "属性",
+      "syndicate": "辛迪加帖子"
+    },
+    "posts": {
+      "none": "没有帖子",
+      "title": "已发布的帖子"
+    },
+    "status": {
+      "deleted": "已删除",
+      "draft": "草稿",
+      "private": "私密",
+      "public": "公开",
+      "published": "已发布",
+      "syndicated": "已内容联合",
+      "unlisted": "不公开列出"
+    },
+    "title": "帖子",
+    "undelete": {
+      "action": "恢复帖子",
+      "submit": "我确定 — 恢复这篇文章",
+      "title": "你确定要恢复这篇文章吗？"
+    },
+    "update": {
+      "action": "编辑帖子",
+      "title": "更新 %s 帖子"
+    }
+  }
+}

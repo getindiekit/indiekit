@@ -1,0 +1,58 @@
+{
+  "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "登录",
+        "text": "以 {{me}} 的身份登录 {{client}}",
+        "title": "登录"
+      },
+      "authorize": {
+        "submit": "允许",
+        "text": "{{client}} 正在请求访问 {{me}} 的权限",
+        "title": "授权应用程序"
+      },
+      "password": {
+        "label": "密码"
+      },
+      "pkce": {
+        "text": "{{client}} 未使用更安全的密钥代码交换证明 (PKCE)。"
+      },
+      "redirect": "授权此应用程序后，您将被重定向到 %s"
+    },
+    "error": {
+      "password": {
+        "invalid": "输入有效密码",
+        "missing": "输入密码"
+      }
+    },
+    "guidance": {
+      "authentication": {
+        "redeemCode": "用授权码兑换访问令牌",
+        "title": "获取用户的访问权限",
+        "verifyToken": "验证访问令牌"
+      },
+      "authorization": {
+        "redeemCode": "兑换用户个人资料网址的授权码",
+        "requestCode": "申请授权码",
+        "requestCodeResponse": "如果用户批准请求，则端点将生成授权码并重定向回客户端：",
+        "title": "获取用户的身份"
+      },
+      "discovery": "要使用此身份验证端点，请将以下值添加到您网站的 `<head>`：",
+      "title": "使用这个 IndieAuth 端点"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "输入用于验证请求的密码"
+      },
+      "secret": {
+        "hint": "在您的环境变量中使用 %s 的以下值",
+        "label": "密码密钥"
+      },
+      "setup": {
+        "text": "在 {{app}} 对 IndieAuth 请求进行身份验证之前，需要密码密钥。"
+      },
+      "submit": "生成密码密钥",
+      "title": "新密码"
+    }
+  }
+}
