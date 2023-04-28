@@ -3,7 +3,6 @@ import mime from "mime-types";
 
 /**
  * Generate JSON Feed
- *
  * @param {object} application - Application configuration
  * @param {string} feedUrl - Feed URL
  * @param {object} posts - JF2 posts

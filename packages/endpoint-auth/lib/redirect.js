@@ -1,6 +1,5 @@
 /**
  * Validate `redirect_uri`
- *
  * @see {@link https://indieauth.spec.indieweb.org/#redirect-url}
  * @todo If redirect URIs doesn’t share same host as `client_id`, validate
  * against list of redirect URIs fetched from `<link>` tags or `Link` HTTP

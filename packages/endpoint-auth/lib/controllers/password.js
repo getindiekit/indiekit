@@ -4,7 +4,6 @@ import { createPasswordHash } from "../password.js";
 export const passwordController = {
   /**
    * New password request
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
@@ -22,7 +21,6 @@ export const passwordController = {
 
   /**
    * New password response
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

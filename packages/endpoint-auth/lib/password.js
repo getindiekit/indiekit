@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 
 /**
  * Create password hash
- *
  * @param {string} password - Password
  * @returns {boolean} Password hash
  */
@@ -13,7 +12,6 @@ export async function createPasswordHash(password) {
 
 /**
  * Verify password
- *
  * @param {string} password - Password
  * @returns {boolean} Password is valid
  */

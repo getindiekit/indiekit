@@ -47,7 +47,6 @@ export default class HugoPreset {
 
   /**
    * Get front matter
-   *
    * @private
    * @param {object} properties - Post data variables
    * @returns {string} Front matter in chosen format
@@ -81,7 +80,6 @@ export default class HugoPreset {
 
   /**
    * Post types
-   *
    * @returns {object} Post types configuration
    */
   get postTypes() {
@@ -203,7 +201,6 @@ export default class HugoPreset {
 
   /**
    * Post template
-   *
    * @param {object} properties - Post data variables
    * @returns {string} Rendered template
    */

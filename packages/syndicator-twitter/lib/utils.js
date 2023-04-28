@@ -6,7 +6,6 @@ import { htmlToText } from "html-to-text";
 
 /**
  * Get status parameters from given JF2 properties
- *
  * @param {object} properties - A JF2 properties object
  * @param {Array} mediaIds - Twitter media IDs
  * @returns {object} Status parameters
@@ -73,7 +72,6 @@ export const createStatus = (properties, mediaIds = false) => {
 
 /**
  * Get absolute URL
- *
  * @param {string} string - URL or path
  * @param {string} me - Publication URL
  * @returns {URL} Absolute URL
@@ -89,7 +87,6 @@ export const getAbsoluteUrl = (string, me) => {
 
 /**
  * Get status ID from Twitter status URL
- *
  * @param {string} url - Twitter status URL
  * @returns {string} Status ID
  */
@@ -100,9 +97,7 @@ export const getStatusIdFromUrl = (url) => {
 };
 
 /**
- * Convert HTML to plain text, appending last link href
- * if present
- *
+ * Convert HTML to plain text, appending last link href if present
  * @param {string} html - HTML
  * @returns {string} Text
  */
@@ -145,7 +140,6 @@ export const htmlToStatusText = (html) => {
 
 /**
  * Test if string is a Twitter status URL
- *
  * @param {string} string - URL
  * @returns {boolean} Twitter status URL?
  */

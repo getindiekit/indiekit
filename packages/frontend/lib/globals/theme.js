@@ -7,8 +7,7 @@ import Color from "color";
 
 /**
  * Generate an accessible colour with sufficient contrast
- * https://medium.com/confrere/e735c3f2f45e
- *
+ * @see {@link https://medium.com/confrere/e735c3f2f45e}
  * @param {object} options - Options
  * @param {Color} options.colorToChange - Original colour
  * @param {Color} [options.colorToValidate] - Color to validate against
@@ -46,7 +45,6 @@ export const _getValidatedColor = ({
 
 /**
  * Return theme color as CSS custom properties
- *
  * @param {string} string - Color (as hexadecimal)
  * @returns {string} CSS custom properties
  */

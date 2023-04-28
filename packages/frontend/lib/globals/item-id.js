@@ -1,6 +1,5 @@
 /**
  * Get item `id` for radio/checkbox
- *
  * @param {string} id - Item `id`
  * @param {string} idPrefix - Prefix for each item `id` if no `id` specified
  * @param {object} loop - Nunjucks for loop object

@@ -1,7 +1,6 @@
 export const postContent = {
   /**
    * Create post
-   *
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
    * @returns {object} Response data
@@ -31,7 +30,6 @@ export const postContent = {
 
   /**
    * Update post
-   *
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
    * @param {string} url - Files attached to request
@@ -65,7 +63,6 @@ export const postContent = {
 
   /**
    * Delete post
-   *
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
    * @returns {object} Response data
@@ -94,7 +91,6 @@ export const postContent = {
 
   /**
    * Undelete post
-   *
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
    * @returns {object} Response data

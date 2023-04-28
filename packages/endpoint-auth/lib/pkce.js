@@ -2,7 +2,6 @@ import crypto from "node:crypto";
 
 /**
  * Verify PKCE (Proof Key for Code Exchange) code
- *
  * @param {string} verifier - Code verifier
  * @param {string} challenge - Code challenge
  * @param {string} [challengeMethod=sha256] - Code challenge method

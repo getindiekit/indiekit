@@ -10,7 +10,6 @@ const secretKey = randomBytes(32);
 
 /**
  * Encrypt a string
- *
  * @param {string} string - String to encrypt
  * @param {string} iv - Initialization vector
  * @returns {string} Encrypted hash
@@ -24,7 +23,6 @@ export const encrypt = (string, iv) => {
 
 /**
  * Decrypt a string
- *
  * @param {string} hash - Hash to decrypt
  * @param {string} iv - Initialization vector
  * @returns {string} Decrypted string
@@ -45,7 +43,6 @@ export const decrypt = (hash, iv) => {
 
 /**
  * Canonicalise URL according to IndieAuth spec
- *
  * @param {string} url - The URL to canonicalise
  * @returns {string} The canonicalised URL
  * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
@@ -53,7 +50,7 @@ export const decrypt = (hash, iv) => {
 export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
- *
+ * Get fully resolved server URL
  * @param {object} request - HTTP request
  * @returns {string} Fully resolved URL
  */
@@ -63,7 +60,6 @@ export const getUrl = (request) => {
 
 /**
  * Check if given string is a valid URL
- *
  * @param {object} string - URL
  * @returns {boolean} String is a URL
  */
@@ -82,7 +78,6 @@ export const isUrl = (string) => {
 
 /**
  * Get package JSON object
- *
  * @param {string} fileUrl - File URL
  * @returns {object} package.json
  */
@@ -98,7 +93,6 @@ export const getPackageData = (fileUrl) => {
 
 /**
  * Generate cryptographically random string
- *
  * @param {number} [length=21] - Length of string
  * @returns {string} Random string
  */

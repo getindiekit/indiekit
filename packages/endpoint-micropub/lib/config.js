@@ -1,6 +1,5 @@
 /**
  * Return queryable publication configuration
- *
  * @param {object} application - Application configuration
  * @param {object} publication - Publication configuration
  * @returns {object} Queryable configuration
@@ -41,7 +40,6 @@ export const getConfig = (application, publication) => {
 
 /**
  * Query config value
- *
  * @param {Array} property - Property to query
  * @param {object} options - List options (filter, limit, offset)
  * @returns {Array} Updated config property

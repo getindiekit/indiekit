@@ -41,7 +41,6 @@ export default class FileSystemStore {
 
   /**
    * Get absolute file path
-   *
    * @private
    * @param {string} filePath - Path to file
    * @returns {string} Absolute file path
@@ -52,7 +51,6 @@ export default class FileSystemStore {
 
   /**
    * Create file in a directory
-   *
    * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @returns {Promise<Response>} A promise to the response
@@ -80,7 +78,6 @@ export default class FileSystemStore {
 
   /**
    * Update file in a directory
-   *
    * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @returns {Promise<Response>} A promise to the response
@@ -103,7 +100,6 @@ export default class FileSystemStore {
 
   /**
    * Delete file in a directory
-   *
    * @param {string} filePath - Path to file
    * @returns {Promise<Response>} A promise to the response
    */

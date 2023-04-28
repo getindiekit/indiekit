@@ -20,7 +20,6 @@ export const IndieAuth = class {
 
   /**
    * Get authentication URL
-   *
    * @param {string} authorizationEndpoint - Authorization endpoint
    * @param {string} state - State
    * @returns {Promise|string} Authentication URL
@@ -48,7 +47,6 @@ export const IndieAuth = class {
 
   /**
    * Exchange authorization code for access token
-   *
    * @param {string} tokenEndpoint - Token endpoint
    * @param {string} code - Code received from authentication endpoint
    * @returns {Promise|object} Access token
@@ -77,7 +75,6 @@ export const IndieAuth = class {
 
   /**
    * Redirect user to IndieAuth login
-   *
    * @returns {object} HTTP response
    */
   login() {
@@ -111,7 +108,6 @@ export const IndieAuth = class {
   /**
    * Authorize user (i.e. check they are allowed access) by verifying
    * authorization code with token endpoint (which grants an access token).
-   *
    * @returns {object} HTTP response
    */
   authorize() {
@@ -184,7 +180,6 @@ export const IndieAuth = class {
   /**
    * Authenticate user (i.e. check they are who they say they are) by
    * checking bearer token matches access token saved in current session.
-   *
    * @returns {Function} Next middleware
    */
   authenticate() {

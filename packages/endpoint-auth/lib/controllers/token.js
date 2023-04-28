@@ -4,7 +4,6 @@ import { signToken, verifyToken } from "../token.js";
 export const tokenController = {
   /**
    * Verify bearer token
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @param {Function} next - Next middleware callback
@@ -45,7 +44,6 @@ export const tokenController = {
    * Authorization code request
    *
    * Redeem verified authorization code for an access token.
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

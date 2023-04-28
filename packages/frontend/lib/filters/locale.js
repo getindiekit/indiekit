@@ -6,7 +6,6 @@ const { format, parseISO } = dateFns;
 
 /**
  * Format a date
- *
  * @param {string} string - ISO 8601 date
  * @param {string} tokens - Tokenised date format
  * @param {string} locale - ISO 639-1 (plus optional country code)
@@ -21,7 +20,6 @@ export const date = (string, tokens, locale = "en") => {
 
 /**
  * Get a language name
- *
  * @param {string} string - ISO 639-1 language code
  * @returns {string} Native language name
  * @example language('de') => Deutsch
@@ -30,7 +28,6 @@ export const languageName = (string) => languages.getName(string);
 
 /**
  * Get a language’s native name
- *
  * @param {string} string - ISO 639-1 language code
  * @returns {string} Native language name
  * @example language('de') => Deutsch

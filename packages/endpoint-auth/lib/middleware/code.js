@@ -6,7 +6,6 @@ import { getCanonicalUrl, getRequestParameters } from "../utils.js";
 
 /**
  * Validate authorization code before redeeming
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

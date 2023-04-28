@@ -9,7 +9,6 @@ import { signToken } from "../token.js";
 export const consentController = {
   /**
    * View consent form
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
@@ -45,7 +44,6 @@ export const consentController = {
 
   /**
    * Submit consent form
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

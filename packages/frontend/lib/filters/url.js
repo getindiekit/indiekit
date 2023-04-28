@@ -2,7 +2,6 @@ import path from "node:path";
 
 /**
  * Get absolute URL or path
- *
  * @param {string} string - URL or path
  * @param {string} baseUrl - Base URL
  * @returns {URL} Absolute URL
@@ -19,7 +18,6 @@ export const absoluteUrl = (string, baseUrl) => {
 
 /**
  * Get friendly URL
- *
  * @param {string} string - URL or path
  * @returns {URL} Friendly URL
  */
@@ -36,7 +34,6 @@ export const friendlyUrl = (string) => {
 
 /**
  * Get transformed image URL
- *
  * @param {string} string - Image URL (or path)
  * @param {object} application - Application configuration
  * @param {object} options - Transform options

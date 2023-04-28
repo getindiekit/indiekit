@@ -4,7 +4,6 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
 /**
  * Query previously published posts
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

@@ -2,7 +2,6 @@ import { markdown } from "../filters/string.js";
 
 /**
  * Transform object into array for consumption by summary component
- *
  * @param {object} object - Object
  * @returns {Array} Rows
  */

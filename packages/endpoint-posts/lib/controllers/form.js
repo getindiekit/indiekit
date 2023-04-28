@@ -7,7 +7,6 @@ import { getLocationProperty } from "../utils.js";
 export const formController = {
   /**
    * Get post to create/update
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
@@ -26,7 +25,6 @@ export const formController = {
 
   /**
    * Post to Micropub endpoint
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

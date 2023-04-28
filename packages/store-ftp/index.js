@@ -56,8 +56,8 @@ export default class FtpStore {
 
   /**
    * Get FTP client interface
-   *
    * @private
+   * @returns {Function} FTP client interface
    */
   async #client() {
     const { host, user, password, port, verbose } = this.options;
@@ -69,7 +69,6 @@ export default class FtpStore {
 
   /**
    * Create readable stream
-   *
    * @private
    * @param {string} content - File content
    * @returns {string} Readable stream
@@ -84,7 +83,6 @@ export default class FtpStore {
 
   /**
    * Get absolute file path
-   *
    * @private
    * @param {string} filePath - Path to file
    * @returns {string} Absolute file path
@@ -95,7 +93,6 @@ export default class FtpStore {
 
   /**
    * Create file
-   *
    * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @returns {Promise<Response>} A promise to the response
@@ -124,7 +121,6 @@ export default class FtpStore {
 
   /**
    * Update file
-   *
    * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @returns {Promise<Response>} A promise to the response
@@ -150,7 +146,6 @@ export default class FtpStore {
 
   /**
    * Delete file
-   *
    * @param {string} filePath - Path to file
    * @returns {Promise<Response>} A promise to the response
    */

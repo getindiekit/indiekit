@@ -3,7 +3,6 @@ import { endpoint } from "./endpoint.js";
 
 /**
  * Get file ID from URL
- *
  * @param {string} url - URL
  * @returns {string} File ID
  */
@@ -13,7 +12,6 @@ export const getFileId = (url) => {
 
 /**
  * Query Micropub media endpoint for file data
- *
  * @param {string} id - Post ID
  * @param {string} mediaEndpoint - Micropub media endpoint
  * @param {string} accessToken - Access token
@@ -31,7 +29,6 @@ export const getFileData = async (id, mediaEndpoint, accessToken) => {
 
 /**
  * Get file name from a URL
- *
  * @param {string} url - File URL
  * @returns {string} File name
  */
@@ -42,7 +39,6 @@ export const getFileName = (url) => {
 
 /**
  * Get file URL from ID
- *
  * @param {string} id - ID
  * @returns {string} File URL
  */

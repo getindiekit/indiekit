@@ -2,7 +2,6 @@ import { IndiekitError } from "@indiekit/error";
 
 /**
  * FormData interface
- *
  * @typedef FormData
  * @property {object} FormData - Form Data
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/FormData}
@@ -11,7 +10,6 @@ import { IndiekitError } from "@indiekit/error";
 export const endpoint = {
   /**
    * Micropub media query
-   *
    * @param {string} url - URL
    * @param {string} accessToken - Access token
    * @returns {object} Response data
@@ -35,7 +33,6 @@ export const endpoint = {
 
   /**
    * Micropub action
-   *
    * @param {string} url - URL
    * @param {string} accessToken - Access token
    * @param {Object<FormData>} [formData=false] - Form data

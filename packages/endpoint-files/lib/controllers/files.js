@@ -4,7 +4,6 @@ import { getFileId, getFileName } from "../utils.js";
 
 /**
  * List previously uploaded files
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

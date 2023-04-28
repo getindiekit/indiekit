@@ -4,7 +4,6 @@ import { endpoint } from "../endpoint.js";
 export const deleteController = {
   /**
    * Confirm post to delete/undelete
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
@@ -24,7 +23,6 @@ export const deleteController = {
 
   /**
    * Post delete/undelete action to Micropub endpoint
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

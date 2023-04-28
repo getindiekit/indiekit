@@ -26,7 +26,6 @@ export const findBearerToken = (request) => {
 
 /**
  * Generate short-lived bearer token with update scope
- *
  * @param {object} verifiedToken - JSON Web Token
  * @param {string} url - Publication URL
  * @returns {string} Signed JSON Web Token
@@ -45,7 +44,6 @@ export const signToken = (verifiedToken, url) =>
 
 /**
  * Verify that token provided by signature was issued by Netlify
- *
  * @param {string} signature - JSON Web Signature
  * @returns {object} JSON Web Token
  * @see {@link https://docs.netlify.com/site-deploys/notifications/#payload-signature}

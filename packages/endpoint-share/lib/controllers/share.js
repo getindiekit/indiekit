@@ -5,7 +5,6 @@ import { validationResult } from "express-validator";
 export const shareController = {
   /**
    * View share page
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    */
@@ -24,7 +23,6 @@ export const shareController = {
 
   /**
    * Post share content
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

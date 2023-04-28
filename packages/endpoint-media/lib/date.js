@@ -2,7 +2,6 @@ import { format, utcToZonedTime } from "date-fns-tz";
 
 /**
  * Converts date to use configured time zone
- *
  * @param {string} setting - Time zone setting
  * @param {string} dateString - Date string
  * @returns {string} Converted date
@@ -49,7 +48,6 @@ export const getDate = (setting, dateString) => {
 
 /**
  * Get local time zone offset in hours and minutes
- *
  * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
  */
 export const getServerTimeZone = () => {

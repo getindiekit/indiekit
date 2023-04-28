@@ -4,7 +4,6 @@ import { randomString } from "./utils.js";
 
 /**
  * Derive properties from file data
- *
  * @param {object} publication - Publication configuration
  * @param {object} file - Original file object
  * @returns {object} File properties
@@ -36,7 +35,6 @@ export const getFileProperties = async (publication, file) => {
 
 /**
  * Derive media type (and return equivalent IndieWeb post type)
- *
  * @param {object} file - File object
  * @returns {string} Post type ('photo', 'video' or 'audio')
  * @example getMediaType('brighton-pier.jpg') => 'photo'
@@ -54,7 +52,6 @@ export const getMediaType = async (file) => {
 
 /**
  * Get published date
- *
  * @param {object} timeZone - Publication time zone
  * @returns {string} ISO 8601 date
  */

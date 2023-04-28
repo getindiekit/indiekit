@@ -1,6 +1,5 @@
 /**
  * Generate space-separated list of class names
- *
  * @param {string} baseClass - Base class name
  * @param {string} [options={}] - Component options
  * @returns {string} Space-separated list of class names

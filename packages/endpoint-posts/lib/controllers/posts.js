@@ -7,7 +7,6 @@ import { getPostId, getPostName } from "../utils.js";
 
 /**
  * List previously published posts
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

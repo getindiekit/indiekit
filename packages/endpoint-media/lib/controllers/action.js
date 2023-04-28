@@ -5,7 +5,6 @@ import { checkScope } from "../scope.js";
 
 /**
  * Perform requested file action
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

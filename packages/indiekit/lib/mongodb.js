@@ -2,7 +2,6 @@ import mongodb from "mongodb";
 
 /**
  * Connect to MongoDB database
- *
  * @param {*} mongodbUrl - MongoDB URL
  * @returns {Promise|object} MongoDB database instance
  */

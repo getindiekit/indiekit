@@ -58,7 +58,6 @@ export default class TestStore {
 
   /**
    * Create file
-   *
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
@@ -71,7 +70,6 @@ export default class TestStore {
 
   /**
    * Read file
-   *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
    */
@@ -83,7 +81,6 @@ export default class TestStore {
 
   /**
    * Update file
-   *
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
@@ -96,7 +93,6 @@ export default class TestStore {
 
   /**
    * Delete file
-   *
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response

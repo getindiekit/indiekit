@@ -3,7 +3,6 @@ import { IndiekitError } from "@indiekit/error";
 export const endpoint = {
   /**
    * Micropub query
-   *
    * @param {string} url - URL
    * @param {string} accessToken - Access token
    * @returns {object} Response data
@@ -27,7 +26,6 @@ export const endpoint = {
 
   /**
    * Micropub action
-   *
    * @param {string} url - URL
    * @param {string} accessToken - Access token
    * @param {object} [jsonBody=false] - JSON body

@@ -6,7 +6,6 @@ const require = createRequire(import.meta.url);
 
 /**
  * Add catalog of localised strings to application configuration
- *
  * @param {object} application - Application config
  * @returns {object} Catalog of localised strings
  */

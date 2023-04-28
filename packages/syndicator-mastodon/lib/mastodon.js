@@ -16,7 +16,6 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
   /**
    * Post a favourite
-   *
    * @param {string} tootUrl - URL of toot to favourite
    * @returns {string} Mastodon status URL
    */
@@ -28,7 +27,6 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
   /**
    * Post a reblog
-   *
    * @param {string} tootUrl - URL of toot to reblog
    * @returns {string} Mastodon status URL
    */
@@ -40,7 +38,6 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
   /**
    * Post a status
-   *
    * @param {object} parameters - Status parameters
    * @returns {string} Mastodon status URL
    */
@@ -54,7 +51,6 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
   /**
    * Upload media and return Mastodon media id
-   *
    * @param {string} media - JF2 media object
    * @param {string} me - Publication URL
    * @returns {string} Mastodon media id
@@ -83,7 +79,6 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
   /**
    * Post to Mastodon
-   *
    * @param {object} properties - JF2 properties object
    * @param {object} publication - Publication configuration
    * @returns {string} URL of syndicated toot

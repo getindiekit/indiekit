@@ -3,7 +3,6 @@ import { IndiekitError } from "@indiekit/error";
 
 /**
  * Check that server secret has been set
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

@@ -2,8 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 /**
- * Based by the error summary component provided by GOV.UK Frontend.
- *
+ * Based by the error summary component provided by GOV.UK Frontend
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/error-summary/error-summary.js}
  */
 export const ErrorSummaryController = class extends Controller {
@@ -33,7 +32,6 @@ export const ErrorSummaryController = class extends Controller {
 
   /**
    * Click event handler
-   *
    * @param {object} event - Click event
    */
   handleClick(event) {
@@ -56,7 +54,6 @@ export const ErrorSummaryController = class extends Controller {
    * This also results in the label and/or legend being announced correctly in
    * NVDA - without this only the field type is announced (e.g. "Edit, has
    * autocomplete").
-   *
    * @param {Object<HTMLElement>} target - Event target
    * @returns {boolean} True if the target was able to be focussed
    */
@@ -87,7 +84,6 @@ export const ErrorSummaryController = class extends Controller {
 
   /**
    * Get fragment name from a URL
-   *
    * @param {string} url - URL
    * @returns {string} Fragment name (without the hash)
    */
@@ -105,7 +101,6 @@ export const ErrorSummaryController = class extends Controller {
    *   bottom of the input
    * - The first `<label>` that is associated with the input using for="inputId"
    * - The closest parent `<label>`
-   *
    * @param {Object<HTMLElement>} input - The input
    * @returns {Object<HTMLElement>} Associated legend or label, null if none found
    */

@@ -1,7 +1,6 @@
 export const postTypeCount = {
   /**
    * Count the number of posts of a given type
-   *
    * @param {object} publication - Publication configuration
    * @param {object} properties - JF2 properties
    * @returns {object} Post count

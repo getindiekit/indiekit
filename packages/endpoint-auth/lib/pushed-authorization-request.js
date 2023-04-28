@@ -5,14 +5,12 @@ import { randomString } from "./utils.js";
  *
  * Ordinarily a PAR would make a request to endpoint. Instead, we will use a
  * request URI to look up data in locals.
- *
  * @see {@link https://datatracker.ietf.org/doc/html/rfc9126}
  * @see {@link https://www.jvt.me/posts/2020/12/09/personal-indieauth-server/#pushed-authorization-requests-par}
  */
 
 /**
  * Create a PAR URI
- *
  * @param {object} request - HTTP request
  * @returns {string} OAuth request URI
  */
@@ -25,7 +23,6 @@ export const createRequestUri = (request) => {
 
 /**
  * Get data from PAR URI
- *
  * @param {object} request - HTTP request
  * @returns {object} Saved payload
  */

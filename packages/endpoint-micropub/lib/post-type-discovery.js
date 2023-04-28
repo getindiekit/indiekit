@@ -1,6 +1,5 @@
 /**
  * Accepts a JF2 object and attempts to determine the post type
- *
  * @param {object} properties - JF2 properties
  * @returns {string|null} The post type or null if unknown
  */

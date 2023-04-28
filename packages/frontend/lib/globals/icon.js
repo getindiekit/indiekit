@@ -1,6 +1,5 @@
 /**
  * Render SVG icon
- *
  * @param {string} name - Icon name
  * @returns {string} HTML
  */

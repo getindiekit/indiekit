@@ -73,7 +73,6 @@ export default class GitlabStore {
 
   /**
    * Create file in a repository
-   *
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
@@ -106,7 +105,6 @@ export default class GitlabStore {
 
   /**
    * Read file in a repository
-   *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
@@ -132,7 +130,6 @@ export default class GitlabStore {
 
   /**
    * Update file in a repository
-   *
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
@@ -165,7 +162,6 @@ export default class GitlabStore {
 
   /**
    * Delete file in a repository
-   *
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response

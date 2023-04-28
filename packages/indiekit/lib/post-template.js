@@ -1,6 +1,5 @@
 /**
  * Get post template
- *
  * @param {object} publication - Publication configuration
  * @param {Function} publication.postTemplate - Publication post template
  * @param {object} publication.preset - Publication preset

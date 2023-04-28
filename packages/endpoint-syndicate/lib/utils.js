@@ -1,6 +1,5 @@
 /**
  * Get post data
- *
  * @param {object} publication - Publication configuration
  * @param {string} url - URL of existing post (optional)
  * @returns {object} Post data for given URL else recently published post
@@ -39,7 +38,6 @@ export const getPostData = async (publication, url) => {
 
 /**
  * Check if target already returned a syndication URL
- *
  * @param {Array} syndicatedUrls - Syndication URLs
  * @param {string} syndicateTo - Syndication target
  * @returns {boolean} Target returned a syndication URL
@@ -50,7 +48,6 @@ export const hasSyndicationUrl = (syndicatedUrls, syndicateTo) => {
 
 /**
  * Check if post syndication target is a publication target
- *
  * @param {Array} publicationTargets - Publication syndication targets
  * @param {string} syndicateTo - Syndication target
  * @returns {boolean} Post syndication target is a publication target

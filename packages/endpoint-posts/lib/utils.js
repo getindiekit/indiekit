@@ -8,7 +8,6 @@ export const LAT_LONG_RE =
 
 /**
  * Get location property
- *
  * @param {string} geo - Latitude and longitude, comma separated
  * @returns {object} JF2 location property
  */
@@ -27,7 +26,6 @@ export const getLocationProperty = (geo) => {
 
 /**
  * Get post ID from URL
- *
  * @param {string} url - URL
  * @returns {string} Post ID
  */
@@ -37,7 +35,6 @@ export const getPostId = (url) => {
 
 /**
  * Query Micropub endpoint for post data
- *
  * @param {string} id - Post ID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
@@ -56,7 +53,6 @@ export const getPostData = async (id, micropubEndpoint, accessToken) => {
 
 /**
  * Get post name, falling back to post type name
- *
  * @param {string} publication - Publication configuration
  * @param {object} post - Post properties
  * @returns {string} Post name or post type name
@@ -71,7 +67,6 @@ export const getPostName = (publication, post) => {
 
 /**
  * Get post type name
- *
  * @param {object} publication - Publication configuration
  * @param {string} postType - Post type
  * @returns {string} Post type name
@@ -90,7 +85,6 @@ export const getPostTypeName = (publication, postType) => {
 
 /**
  * Get post URL from ID
- *
  * @param {string} id - ID
  * @returns {string} Post URL
  */
@@ -101,7 +95,6 @@ export const getPostUrl = (id) => {
 
 /**
  * Get syndication target `items` for checkboxes component
- *
  * @param {object} publication - Publication configuration
  * @param {boolean} checkTargets - Select ’checked’ targets
  * @returns {object} Items for checkboxes component

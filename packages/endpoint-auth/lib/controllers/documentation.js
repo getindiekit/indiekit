@@ -1,6 +1,5 @@
 /**
  * Service documentation
- *
  * @param {object} error - Error
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response

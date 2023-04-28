@@ -1,7 +1,6 @@
 export const mediaContent = {
   /**
    * Upload file to content store
-   *
    * @param {object} publication - Publication configuration
    * @param {object} mediaData - Media data
    * @param {object} file - File to upload
@@ -31,7 +30,6 @@ export const mediaContent = {
 
   /**
    * Delete file from content store
-   *
    * @param {object} publication - Publication configuration
    * @param {object} mediaData - Post data
    * @returns {object} Response data

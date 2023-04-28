@@ -2,7 +2,6 @@
 
 /**
  * Delay a function
- *
  * @param {Function} callback - Function to delay
  * @param {number} delay - Delay, in milliseconds
  * @returns {Function} Debounced function

@@ -4,7 +4,6 @@ import { defaultConfig } from "../config/defaults.js";
 
 /**
  * Get user configuration values from package.json or configuration file
- *
  * @access private
  * @param {string} configFilePath - Explicity declared configuration file path
  * @returns {object} User configuration
@@ -21,7 +20,6 @@ function _getUserConfig(configFilePath) {
 
 /**
  * Get configuration derived from user and default values
- *
  * @param {object} options - Options
  * @param {object} options.config - Configuration object
  * @param {string} options.configFilePath - Configuration file path

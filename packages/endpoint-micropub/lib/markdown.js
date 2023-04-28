@@ -3,7 +3,6 @@ import TurndownService from "turndown";
 
 /**
  * Convert Markdown to HTML
- *
  * @param {string} string - Markdown
  * @returns {string} HTML
  */
@@ -23,7 +22,6 @@ export const markdownToHtml = (string) => {
 
 /**
  * Convert HTML to Markdown
- *
  * @param {string} string - String (may be HTML or Markdown)
  * @returns {string} Markdown
  */
@@ -41,7 +39,6 @@ export const htmlToMarkdown = (string) => {
 
   /**
    * Disable escaping of Markdown characters
-   *
    * @param {string} string - String
    * @returns {string} String
    * @see {@link https://github.com/mixmark-io/turndown#escaping-markdown-characters}

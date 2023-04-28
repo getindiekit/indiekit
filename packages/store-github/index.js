@@ -88,7 +88,6 @@ export default class GithubStore {
 
   /**
    * Create file in a repository
-   *
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
@@ -109,7 +108,6 @@ export default class GithubStore {
 
   /**
    * Read file in a repository
-   *
    * @param {string} path - Path to file
    * @returns {Promise<Response>} A promise to the response
    * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
@@ -123,7 +121,6 @@ export default class GithubStore {
 
   /**
    * Update file in a repository
-   *
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
@@ -147,7 +144,6 @@ export default class GithubStore {
 
   /**
    * Delete file in a repository
-   *
    * @param {string} path - Path to file
    * @param {string} message - Commit message
    * @returns {Promise<Response>} A promise to the response

@@ -2,7 +2,6 @@ import _ from "lodash";
 
 /**
  * Get merged preset and custom post types
- *
  * @param {object} publication - Publication configuration
  * @param {Array} publication.postTypes - Publication post types
  * @param {object} publication.preset - Publication preset

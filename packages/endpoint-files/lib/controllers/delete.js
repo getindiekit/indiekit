@@ -3,7 +3,6 @@ import { endpoint } from "../endpoint.js";
 export const deleteController = {
   /**
    * Confirm file to delete
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
@@ -24,7 +23,6 @@ export const deleteController = {
 
   /**
    * Post delete action to media endpoint
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

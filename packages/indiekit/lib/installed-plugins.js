@@ -1,6 +1,5 @@
 /**
  * Add plug-ins to application configuration
- *
  * @param {object} Indiekit - Indiekit instance
  * @returns {Promise|Array} Installed plug-ins
  */

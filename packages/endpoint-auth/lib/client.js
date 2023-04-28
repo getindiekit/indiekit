@@ -3,7 +3,6 @@ import { mf2 } from "microformats-parser";
 
 /**
  * Get client information
- *
  * @param {string} client_id - Client URL
  * @returns {object} Information about the client
  */

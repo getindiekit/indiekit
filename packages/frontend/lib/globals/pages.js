@@ -1,6 +1,5 @@
 /**
  * Generate pagination data
- *
  * @param {number} currentPage - Current page
  * @param {limit} limit - Limit of items per page
  * @param {count} count - Count of all items

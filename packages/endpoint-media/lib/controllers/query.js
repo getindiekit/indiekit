@@ -2,7 +2,6 @@ import { IndiekitError } from "@indiekit/error";
 
 /**
  * Query uploaded files
- *
  * @param {object} request - HTTP request
  * @param {object} response - HTTP response
  * @param {Function} next - Next middleware callback

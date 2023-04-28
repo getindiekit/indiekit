@@ -3,7 +3,6 @@ import { fetch, FormData } from "undici";
 
 /**
  * Upload attached file(s) via media endpoint
- *
  * @param {string} mediaEndpoint - Media endpoint URL
  * @param {string} token - Bearer token
  * @param {object} properties - JF2 properties

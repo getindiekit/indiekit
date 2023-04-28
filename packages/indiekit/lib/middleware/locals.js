@@ -4,7 +4,6 @@ import { getUrl } from "../utils.js";
 
 /**
  * Expose configuration to frontend templates and plug-ins
- *
  * @param {object} indiekitConfig - Indiekit configuration
  * @returns {Function} Next middleware
  */

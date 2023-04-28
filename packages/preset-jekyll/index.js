@@ -15,7 +15,6 @@ export default class JekyllPreset {
 
   /**
    * Post types
-   *
    * @returns {object} Post types configuration
    */
   get postTypes() {
@@ -133,7 +132,6 @@ export default class JekyllPreset {
 
   /**
    * Post template
-   *
    * @param {object} properties - Post data variables
    * @returns {string} Rendered template
    */

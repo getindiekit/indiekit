@@ -1,6 +1,5 @@
 /**
  * Generate space-separated list of HTML attribute key values
- *
  * @param {object} attributes - Attributes
  * @returns {string} Space-separated list of HTML attribute key values
  */

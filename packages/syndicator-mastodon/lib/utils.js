@@ -6,7 +6,6 @@ import { htmlToText } from "html-to-text";
 
 /**
  * Get status parameters from given JF2 properties
- *
  * @param {object} properties - A JF2 properties object
  * @param {object} [options={}] - Options
  * @param {number} options.characterLimit - Character limit
@@ -72,7 +71,6 @@ export const createStatus = (properties, options = {}) => {
 
 /**
  * Get absolute URL
- *
  * @param {string} string - URL or path
  * @param {string} me - Publication URL
  * @returns {URL} Absolute URL
@@ -88,7 +86,6 @@ export const getAbsoluteUrl = (string, me) => {
 
 /**
  * Get status ID from Mastodon status URL
- *
  * @param {string} url Mastodon status URL
  * @returns {string} Status ID
  */
@@ -99,9 +96,7 @@ export const getStatusIdFromUrl = (url) => {
 };
 
 /**
- * Convert HTML to plain text, appending last link href
- * if present
- *
+ * Convert HTML to plain text, appending last link href if present
  * @param {string} html - HTML
  * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
  * @returns {string} Text
@@ -146,7 +141,6 @@ export const htmlToStatusText = (html, serverUrl) => {
 
 /**
  * Test if string is a Mastodon status URL
- *
  * @param {string} string - Text that may be a URL
  * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
  * @returns {boolean} Mastodon status URL?

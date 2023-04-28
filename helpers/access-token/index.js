@@ -4,7 +4,6 @@ import { signToken } from "@indiekit/endpoint-auth/lib/token.js";
 
 /**
  * Generate access token for testing
- *
  * @param {object} options - Options
  * @param {string} [options.me] - Publication URL
  * @param {string} [options.scope] - Permissions scope

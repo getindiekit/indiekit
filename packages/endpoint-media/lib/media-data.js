@@ -5,7 +5,6 @@ import { getFileProperties, getMediaType } from "./file.js";
 export const mediaData = {
   /**
    * Create media data
-   *
    * @param {object} publication - Publication configuration
    * @param {object} file - File
    * @returns {object} Media data
@@ -55,7 +54,6 @@ export const mediaData = {
 
   /**
    * Read media data
-   *
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing media
    * @returns {object} Media data
@@ -74,9 +72,9 @@ export const mediaData = {
 
   /**
    * Delete media data
-   *
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
+   * @returns {boolean} Media data deleted
    */
   async delete(publication, url) {
     const { media } = publication;

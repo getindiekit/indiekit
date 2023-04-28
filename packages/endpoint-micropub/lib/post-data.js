@@ -8,7 +8,6 @@ import { getPermalink, getPostTypeConfig, renderPath } from "./utils.js";
 export const postData = {
   /**
    * Create post data
-   *
    * @param {object} publication - Publication configuration
    * @param {object} properties - JF2 properties
    * @param {boolean} [draftMode=false] - Draft mode
@@ -63,7 +62,6 @@ export const postData = {
 
   /**
    * Read post data
-   *
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @returns {object} Post data
@@ -82,8 +80,8 @@ export const postData = {
 
   /**
    * Update post data
-   * Add, delete or replace properties and/or replace property values
    *
+   * Add, delete or replace properties and/or replace property values
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {object} operation - Requested operation(s)
@@ -146,8 +144,8 @@ export const postData = {
 
   /**
    * Delete post data
-   * Delete (most) properties, keeping a record of deleted for later retrieval
    *
+   * Delete (most) properties, keeping a record of deleted for later retrieval
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @returns {object} Post data
@@ -191,8 +189,8 @@ export const postData = {
 
   /**
    * Undelete post data
-   * Restore previously deleted properties
    *
+   * Restore previously deleted properties
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {boolean} [draftMode=false] - Draft mode

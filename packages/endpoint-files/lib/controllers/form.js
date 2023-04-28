@@ -6,7 +6,6 @@ import { endpoint } from "../endpoint.js";
 export const formController = {
   /**
    * Get file to upload
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response
@@ -25,7 +24,6 @@ export const formController = {
 
   /**
    * Post file to media endpoint
-   *
    * @param {object} request - HTTP request
    * @param {object} response - HTTP response
    * @returns {object} HTTP response

@@ -8,7 +8,6 @@ import { postTypeCount } from "./post-type-count.js";
 
 /**
  * Decode form-encoded query parameter
- *
  * @param {string} string - String to decode
  * @returns {string} Decoded string
  * @example decodeQueryParameter('foo+bar') => 'foo bar'
@@ -19,7 +18,6 @@ export const decodeQueryParameter = (string) =>
 
 /**
  * Excerpt the first n words from a string
- *
  * @param {string} string - String to excerpt
  * @param {number} n - Max number of words
  * @returns {string} Excerpt
@@ -34,7 +32,6 @@ export const excerptString = (string, n) => {
 
 /**
  * Slugify a string
- *
  * @param {string} string - String to excerpt
  * @param {number} separator - Character used to separate words
  * @returns {string} Slugified string
@@ -57,7 +54,6 @@ export const slugifyString = (string, separator = "-") => {
 /**
  * Derive a permalink (by combining publication URL, that may include a
  * path, with the path to a post or file
- *
  * @param {object} url - URL
  * @param {object} pathname - Permalink path
  * @returns {string} Returns either 'photo', 'video' or audio
@@ -74,7 +70,6 @@ export const getPermalink = (url, pathname) => {
 
 /**
  * Get post type configuration for a given type
- *
  * @param {string} type - Post type
  * @param {object} postTypes - Publication post types
  * @returns {object} Post type configuration
@@ -84,7 +79,6 @@ export const getPostTypeConfig = (type, postTypes) =>
 
 /**
  * Generate random alpha-numeric string, 5 characters long
- *
  * @returns {string} Alpha-numeric string
  * @example random() => 'jb6zm'
  */
@@ -92,7 +86,6 @@ export const randomString = () => Math.random().toString(36).slice(-5);
 
 /**
  * Render relative path if URL is on publication
- *
  * @param {URL} url - External URL
  * @param {URL} me - Publication URL
  * @returns {string} Path
@@ -102,7 +95,6 @@ export const relativeMediaPath = (url, me) =>
 
 /**
  * Render path from URI template and properties
- *
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
  * @param {object} publication - Publication configuration
@@ -173,7 +165,6 @@ export const renderPath = async (path, properties, publication) => {
 
 /**
  * Substitute variables enclosed in { } braces with data from object
- *
  * @param {string} string - String to parse
  * @param {object} object - Properties to use
  * @returns {string} String with substituted
@@ -191,7 +182,6 @@ export const supplant = (string, object) =>
 
 /**
  * Convert string to array if not already an array
- *
  * @param {string|Array} object - String or array to convert
  * @returns {Array} Array
  */
