@@ -63,7 +63,7 @@
     "c8": "^7.8.0",
     "cookie-session": "^2.0.0",
     "create-indiekit": "*",
-    "eslint-plugin-jsdoc": "^40.0.0",
+    "eslint-plugin-jsdoc": "^43.0.0",
     "jsdom": "^21.0.0",
     "lint-staged": "^13.1.0",
     "markdown-it-anchor": "^8.6.6",
@@ -78,13 +78,13 @@
     "prettier": "^2.5.1",
     "sinon": "^15.0.0",
     "stylelint": "^15.0.0",
-    "stylelint-config-recommended": "^10.0.0",
+    "stylelint-config-recommended": "^12.0.0",
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
     "undici": "^5.2.0",
     "vitepress": "^1.0.0-alpha.27",
     "vue": "^3.2.41",
-    "xo": "^0.53.0"
+    "xo": "^0.54.0"
   },
   "ava": {
     "workerThreads": false

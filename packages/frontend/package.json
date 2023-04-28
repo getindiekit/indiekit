@@ -47,10 +47,10 @@
     "nunjucks": "^3.2.3",
     "postcss": "^8.3.6",
     "postcss-easy-import": "^4.0.0",
-    "postcss-lightningcss": "^0.6.0",
+    "postcss-lightningcss": "^0.7.0",
     "rollup": "^3.2.0",
     "rollup-plugin-polyfill-node": "^0.12.0",
-    "sharp": "^0.31.2",
+    "sharp": "^0.32.0",
     "tokenfield": "^1.5.2",
     "widont": "^0.3.3"
   },
