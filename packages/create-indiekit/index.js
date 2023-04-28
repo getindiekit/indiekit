@@ -5,7 +5,7 @@ import chalk from "chalk";
 import prompts from "prompts";
 import { setupPrompts } from "./lib/setup-prompts.js";
 import { addPluginConfig } from "./lib/utils.js";
-
+// eslint-ignore import/order
 const require = createRequire(import.meta.url);
 const { name, version, bugs } = require("./package.json");
 

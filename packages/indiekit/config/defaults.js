@@ -2,7 +2,7 @@ import crypto from "node:crypto";
 import { createRequire } from "node:module";
 import process from "node:process";
 import cookieSession from "cookie-session";
-
+// eslint-ignore import/order
 const require = createRequire(import.meta.url);
 const package_ = require("../package.json");
 
