@@ -6,7 +6,7 @@ test("Transforms errors provided by express-validator", (t) => {
     me: {
       value: "foo",
       msg: "Enter a valid URL",
-      param: "customConfigUrl",
+      path: "customConfigUrl",
       location: "body",
     },
   });

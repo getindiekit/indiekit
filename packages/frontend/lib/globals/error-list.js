@@ -14,7 +14,7 @@ export const errorList = (errorMap) => {
   for (const fieldError of fieldsWithErrors) {
     errorList.push({
       text: fieldError[1].msg,
-      href: `#${camelToSnakeCase(fieldError[1].param)}`,
+      href: `#${camelToSnakeCase(fieldError[1].path)}`,
     });
   }
 
