@@ -69,7 +69,7 @@ export const isUrl = (string) => {
   }
 
   try {
-    new URL(string); // eslint-disable-line no-new
+    new URL(decodeURIComponent(string)); // eslint-disable-line no-new
     return true;
   } catch {
     return false;

@@ -18,8 +18,9 @@ test("Encrypts and decrypts a string", (t) => {
 });
 
 test("Checks if given string is a valid URL", (t) => {
-  t.false(isUrl("foo.bar"));
+  t.true(isUrl("https%3A%2F%2Ffoo.bar"));
   t.true(isUrl("https://foo.bar"));
+  t.false(isUrl("foo.bar"));
 });
 
 test("Throws error given URL is not a string", (t) => {
