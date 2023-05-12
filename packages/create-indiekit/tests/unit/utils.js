@@ -38,7 +38,8 @@ test("Gets question prompts specified by plug-in", async (t) => {
 });
 
 test("Checks if given string is a valid URL", (t) => {
-  t.true(isUrl("http://foo.bar"));
+  t.true(isUrl("https%3A%2F%2Ffoo.bar"));
+  t.true(isUrl("https://foo.bar"));
   t.false(isUrl("foo.bar"));
 });
 
