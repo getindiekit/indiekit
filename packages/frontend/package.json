@@ -54,9 +54,6 @@
     "tokenfield": "^1.5.2",
     "widont": "^0.3.3"
   },
-  "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "1.18.0"
-  },
   "publishConfig": {
     "access": "public"
   }
