@@ -35,7 +35,7 @@ export const endpoint = {
    * Micropub action
    * @param {string} url - URL
    * @param {string} accessToken - Access token
-   * @param {Object<FormData>} [formData=false] - Form data
+   * @param {FormData} [formData=false] - Form data
    * @returns {object} Response data
    */
   async post(url, accessToken, formData) {

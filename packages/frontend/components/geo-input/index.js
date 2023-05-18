@@ -68,7 +68,7 @@ export const GeoInputController = class extends Controller {
     const { element, geoTarget, deniedValue, failedValue, showError } = this;
 
     /**
-     * @param {Object<GeolocationPosition>} position - Position
+     * @param {GeolocationPosition} position - Position
      */
     function success(position) {
       const latitude = position.coords.latitude.toFixed(5);
@@ -77,7 +77,7 @@ export const GeoInputController = class extends Controller {
     }
 
     /**
-     * @param {Object<GeolocationPositionError>} error - Position error
+     * @param {GeolocationPositionError} error - Position error
      */
     function error(error) {
       element.querySelector(".button").disabled = true;

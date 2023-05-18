@@ -54,7 +54,7 @@ export const ErrorSummaryController = class extends Controller {
    * This also results in the label and/or legend being announced correctly in
    * NVDA - without this only the field type is announced (e.g. "Edit, has
    * autocomplete").
-   * @param {Object<HTMLElement>} target - Event target
+   * @param {HTMLElement} target - Event target
    * @returns {boolean} True if the target was able to be focussed
    */
   focusTarget(target) {
@@ -101,8 +101,8 @@ export const ErrorSummaryController = class extends Controller {
    *   bottom of the input
    * - The first `<label>` that is associated with the input using for="inputId"
    * - The closest parent `<label>`
-   * @param {Object<HTMLElement>} input - The input
-   * @returns {Object<HTMLElement>} Associated legend or label, null if none found
+   * @param {HTMLElement} input - The input
+   * @returns {HTMLElement} Associated legend or label, null if none found
    */
   getAssociatedLegendOrLabel(input) {
     const fieldset = input.closest("fieldset");
