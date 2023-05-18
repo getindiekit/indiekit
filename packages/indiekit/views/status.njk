@@ -7,7 +7,7 @@
 {%- set postTypesHtml %}
   <ul role="list">{% for config in publication.postTypes %}
     <li>
-      {{ icon(config.type) }}{{ config.name }}
+      {{ icon(config.type) or icon("note") }}{{ config.name }}
       <small><code class="token attr-name">{{ config.type }}</code></small>
     </li>
   {% endfor %}</ul>
