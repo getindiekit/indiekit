@@ -1,7 +1,7 @@
+import crypto from "node:crypto";
 import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
-import { v4 as uuidv4 } from "uuid";
 import { getRequestUriData } from "../pushed-authorization-request.js";
 import { getScopeItems } from "../scope.js";
 import { signToken } from "../token.js";
@@ -84,7 +84,7 @@ export const consentController = {
       client_id,
       ...(code_challenge && { code_challenge }),
       ...(code_challenge_method && { code_challenge_method }),
-      jti: uuidv4(),
+      jti: crypto.randomUUID(),
       me,
       redirect_uri,
       ...(scope && { scope }),

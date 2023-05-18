@@ -1,7 +1,7 @@
+import crypto from "node:crypto";
 import path from "node:path";
 import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
-import { v4 as uuidv4 } from "uuid";
 import { getServerTimeZone } from "./date.js";
 
 /**
@@ -67,7 +67,7 @@ export const renderPath = (path, properties, publication) => {
   }
 
   // Add UUID token
-  tokens.uuid = uuidv4();
+  tokens.uuid = crypto.randomUUID();
 
   // Populate URI template path with properties
   tokens = { ...tokens, ...properties };
