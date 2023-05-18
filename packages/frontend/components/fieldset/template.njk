@@ -9,5 +9,5 @@
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
   {{- attributes(opts.attributes) }}>
   {{ legend | indent(2) | safe if opts.legend.text }}
-  {{ caller() | indent(2) if caller }}
+  {{ caller() if caller }}
 </fieldset>
