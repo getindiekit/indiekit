@@ -13,12 +13,6 @@ export const queryController = async (request, response, next) => {
   const { application, publication } = request.app.locals;
 
   try {
-    if (!application.hasDatabase) {
-      throw IndiekitError.notImplemented(
-        response.__("NotImplementedError.database")
-      );
-    }
-
     const config = getConfig(application, publication);
 
     let { page, limit, offset } = request.query;
@@ -26,29 +20,11 @@ export const queryController = async (request, response, next) => {
     limit = Number.parseInt(limit, 10) || 40;
     offset = Number.parseInt(offset, 10) || (page - 1) * limit;
 
-    const posts = await publication.posts
-      .find()
-      .sort({ "properties.published": -1 })
-      .skip(offset)
-      .limit(limit)
-      .toArray();
-
     let { filter, properties, q, url } = request.query;
     if (!q) {
       throw IndiekitError.badRequest(
         response.__("BadRequestError.missingParameter", "q")
       );
-    }
-
-    let item;
-    if (url) {
-      item = await publication.posts.findOne({ "properties.url": url });
-
-      if (!item) {
-        throw IndiekitError.notFound(
-          response.__("NotFoundError.resource", "post")
-        );
-      }
     }
 
     // `category` param is used to query `categories` configuration property
@@ -60,13 +36,36 @@ export const queryController = async (request, response, next) => {
       }
 
       case "source": {
+        if (!application.hasDatabase) {
+          throw IndiekitError.notImplemented(
+            response.__("NotImplementedError.database")
+          );
+        }
+
         // Return mf2 for a given source URL (optionally filtered by properties)
         if (url) {
+          const item = await publication.posts.findOne({
+            "properties.url": url,
+          });
+
+          if (!item) {
+            throw IndiekitError.notFound(
+              response.__("NotFoundError.resource", "post")
+            );
+          }
+
           const mf2 = jf2ToMf2(item.properties);
           return response.json(getMf2Properties(mf2, properties));
         }
 
         // Return mf2 for previously published posts
+        const posts = await publication.posts
+          .find()
+          .sort({ "properties.published": -1 })
+          .skip(offset)
+          .limit(limit)
+          .toArray();
+
         return response.json({
           _count: await publication.posts.countDocuments(),
           items: posts.map((post) => jf2ToMf2(post.properties)),
