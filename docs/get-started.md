@@ -26,11 +26,15 @@ Indiekit is extensible via its [plug-in API](plugins/api/index.md) and localised
 - Your own website, published using a static site generator
 - [Node.js](https://nodejs.org) v18+
 
-A [MongoDB](https://www.mongodb.com) database is optional but required for the following features to work:
+A [MongoDB](https://www.mongodb.com) database is optional, but required for the following features to work:
 
 - Viewing, editing, deleting and restoring previously published posts
 - Syndicating posts
 - Viewing and deleting previously uploaded media files
+
+::: info Note
+This project is known to work with MongoDB v4.4 or later. It may also work with the last openly licenced version, v4.0.3, but this has not been tested.
+:::
 
 You don’t need access to a [Git](https://git-scm.com) repository, but some hosts can deploy and update your server automatically when you commit changes.
 
