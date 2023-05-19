@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
+
+
+### Bug Fixes
+
+* **endpoint-media:** don’t require database to query config. fixes [#600](https://github.com/getindiekit/indiekit/issues/600) ([edbfc15](https://github.com/getindiekit/indiekit/commit/edbfc15528ecfae6af9e489f21c31c96ea968340))
+
+
+### Features
+
+* **endpoint-media:** update database before content store ([38d39a5](https://github.com/getindiekit/indiekit/commit/38d39a5bf678a2f30ba701a989b36f327e1712e5))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
 
 **Note:** Version bump only for package @indiekit/endpoint-media

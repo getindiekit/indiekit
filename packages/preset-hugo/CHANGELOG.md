@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
+
+
+### Features
+
+* don’t include mp-syndicate-to in post file ([9b6e9a7](https://github.com/getindiekit/indiekit/commit/9b6e9a7175e9ade9a3726da9a9f3794be6e4545c))
+
+
+
+
+
 # [1.0.0-alpha.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2022-12-14)
 
 ### Bug Fixes

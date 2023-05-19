@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
+
+
+### Features
+
+* add simplified chinese ([70cbb8b](https://github.com/getindiekit/indiekit/commit/70cbb8b773e59f4fa8c8eed47486a5ebaf2dbcf9))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2022-12-28)
 
 ### Features

@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
+
+
+### Bug Fixes
+
+* **create-indiekit:** decode url before testing if valid ([2eb5963](https://github.com/getindiekit/indiekit/commit/2eb5963cb8e1dd0c89554f05cd166351756c714b))
+* **endpoint-auth:** decode url before testing if valid ([e0cebb1](https://github.com/getindiekit/indiekit/commit/e0cebb108866c5cfe75000359675d147fd28fca7))
+* **endpoint-media:** don’t require database to query config. fixes [#600](https://github.com/getindiekit/indiekit/issues/600) ([edbfc15](https://github.com/getindiekit/indiekit/commit/edbfc15528ecfae6af9e489f21c31c96ea968340))
+* **endpoint-micropub:** don’t require database to query config. fixes [#600](https://github.com/getindiekit/indiekit/issues/600) ([0ffc63a](https://github.com/getindiekit/indiekit/commit/0ffc63ab98b906b48631dc052d563113bfc178f7))
+* **frontend:** allow for conditional summary rows. fixes [#599](https://github.com/getindiekit/indiekit/issues/599) ([2851eff](https://github.com/getindiekit/indiekit/commit/2851eff2168568f1596e157c14f6f895e6600bf4))
+* **frontend:** correct heading hierarchy in preview component ([4681e51](https://github.com/getindiekit/indiekit/commit/4681e51fae59f1d3cf53606719d66011f29630b6))
+* **frontend:** increase text contrast in syntax highlighting ([078dfab](https://github.com/getindiekit/indiekit/commit/078dfab8f467f817919e1a10d1fdb1f7d8e00656))
+* **frontend:** increase text contrast of preview placeholder ([5a51dc1](https://github.com/getindiekit/indiekit/commit/5a51dc194acba728e69158b7a2c7a4ecb747d8e7))
+* **frontend:** prevent indented textarea content. fixes [#560](https://github.com/getindiekit/indiekit/issues/560) ([b4cbd4b](https://github.com/getindiekit/indiekit/commit/b4cbd4bcbd4ea38035c2694b3e504f1a5b37c9b2))
+* **indiekit:** decode url before testing if valid ([f9f4202](https://github.com/getindiekit/indiekit/commit/f9f4202d4dd7822a4a365158b04dd0e515eac829))
+* **indiekit:** use fallback post type icon on status page ([5434ac2](https://github.com/getindiekit/indiekit/commit/5434ac2af7970bc28d1b6a7d836f2dcbf2f6eb89))
+
+
+### Features
+
+* add simplified chinese ([70cbb8b](https://github.com/getindiekit/indiekit/commit/70cbb8b773e59f4fa8c8eed47486a5ebaf2dbcf9))
+* don’t include mp-syndicate-to in post file ([9b6e9a7](https://github.com/getindiekit/indiekit/commit/9b6e9a7175e9ade9a3726da9a9f3794be6e4545c))
+* **endpoint-media:** update database before content store ([38d39a5](https://github.com/getindiekit/indiekit/commit/38d39a5bf678a2f30ba701a989b36f327e1712e5))
+* **endpoint-micropub:** update database before content store ([c6a5fbb](https://github.com/getindiekit/indiekit/commit/c6a5fbb84ff8a5dc45e71d9fe813dea9a970d188))
+* **frontend:** return undefined for unknown icon name ([bda5ff1](https://github.com/getindiekit/indiekit/commit/bda5ff19982682a1c5da5ea6b9b53abea7196af5))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
 
 

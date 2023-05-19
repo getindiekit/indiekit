@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
+
+
+### Bug Fixes
+
+* **create-indiekit:** decode url before testing if valid ([2eb5963](https://github.com/getindiekit/indiekit/commit/2eb5963cb8e1dd0c89554f05cd166351756c714b))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
 
 **Note:** Version bump only for package create-indiekit

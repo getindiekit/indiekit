@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
+
+
+### Bug Fixes
+
+* **indiekit:** decode url before testing if valid ([f9f4202](https://github.com/getindiekit/indiekit/commit/f9f4202d4dd7822a4a365158b04dd0e515eac829))
+* **indiekit:** use fallback post type icon on status page ([5434ac2](https://github.com/getindiekit/indiekit/commit/5434ac2af7970bc28d1b6a7d836f2dcbf2f6eb89))
+
+
+### Features
+
+* add simplified chinese ([70cbb8b](https://github.com/getindiekit/indiekit/commit/70cbb8b773e59f4fa8c8eed47486a5ebaf2dbcf9))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-01-12)
 
 
