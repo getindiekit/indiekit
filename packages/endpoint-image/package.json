@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-sharp": "^4.2.40"
+    "ipx": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"

@@ -8,7 +8,7 @@ describe("frontend/lib/filters/url", () => {
     assert.equal(friendlyUrl("foo.example/bar"), "foo.example/bar");
   });
 
-  it("Gets transformed image URL", () => {
+  it("Gets image URL", () => {
     const application = {
       imageEndpoint: "/image",
       url: "https://server.example",
@@ -17,7 +17,24 @@ describe("frontend/lib/filters/url", () => {
 
     assert.equal(
       result,
-      "https://server.example/image/path/to/image.jpg?w=240&h=240&c=true",
+      "https://server.example/image/_/%2Fpath%2Fto%2Fimage.jpg",
+    );
+  });
+
+  it("Gets transformed image URL", () => {
+    const application = {
+      imageEndpoint: "/image",
+      url: "https://server.example",
+    };
+    const result = imageUrl("/path/to/image.jpg", application, {
+      width: 100,
+      height: 100,
+      fit: "contain",
+    });
+
+    assert.equal(
+      result,
+      "https://server.example/image/s_100x100,fit_contain/%2Fpath%2Fto%2Fimage.jpg",
     );
   });
 });

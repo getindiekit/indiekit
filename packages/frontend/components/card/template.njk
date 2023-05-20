@@ -5,7 +5,7 @@
 <article class="card">
   {% if opts.photo %}
   <div class="card__photo">
-    <img src="{{ opts.photo.url | imageUrl(application) }}" alt="{{ opts.photo.alt }}" decoding="async" loading="lazy" onerror="this.src='{{ srcOnError }}'"{{- attributes(opts.photo.attributes) }}>
+    <img src="{{ opts.photo.url | imageUrl(application, width=240, height=240) }}" alt="{{ opts.photo.alt }}" width="240" height="240" decoding="async" loading="lazy" onerror="this.src='{{ srcOnError }}'"{{- attributes(opts.photo.attributes) }}>
   </div>
   {% endif %}
   <div class="card__body">

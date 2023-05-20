@@ -1,7 +1,10 @@
 import express from "express";
-import { expressSharp } from "express-sharp";
-import { Adapter } from "./lib/adapter.js";
-import { cacheControl } from "./lib/middleware/cache.js";
+import {
+  createIPX,
+  ipxFSStorage,
+  ipxHttpStorage,
+  createIPXNodeServer,
+} from "ipx";
 
 const defaults = { mountPath: "/image" };
 const router = express.Router(); // eslint-disable-line new-cap
@@ -14,15 +17,12 @@ export default class ImageEndpoint {
   }
 
   _routes(indiekitConfig) {
-    router.use(
-      cacheControl,
-      expressSharp({
-        cache: indiekitConfig.application.cache,
-        imageAdapter: new Adapter({
-          prefixUrl: indiekitConfig.publication.me,
-        }),
-      }),
-    );
+    const ipx = createIPX({
+      storage: ipxFSStorage({ dir: "./public" }),
+      httpStorage: ipxHttpStorage({ domains: indiekitConfig.publication.me }),
+    });
+
+    router.use(createIPXNodeServer(ipx));
 
     return router;
   }
