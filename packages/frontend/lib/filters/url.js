@@ -20,28 +20,49 @@ export const friendlyUrl = (string) => {
  * Get transformed image URL
  * @param {string} string - Image URL (or path)
  * @param {object} application - Application configuration
- * @param {object} options - Transform options
+ * @param {object} [kwargs] - Transform options
+ * @param {number} [kwargs.width] - Width of transformed image
+ * @param {number} [kwargs.height] - Height of transformed image
+ * @param {string} [kwargs.fit] - Resize crop method for transformed image
  * @returns {string} Resized image URL
  */
-export const imageUrl = (string, application, options = {}) => {
+export const imageUrl = (string, application, kwargs) => {
   // Don’t transform SVG images
   if (string.includes(".svg")) {
     return string;
   }
 
-  let imagePath;
-  try {
-    new URL(string); // eslint-disable-line no-new
-    imagePath = new URL(string).pathname;
-  } catch {
-    imagePath = string;
+  // Resize dimensions
+  let resize;
+  if (kwargs?.width && kwargs?.height) {
+    resize = `s_${kwargs.width}x${kwargs.height}`;
+  } else if (kwargs?.width) {
+    resize = `w_${kwargs.width}`;
+  } else if (kwargs?.height) {
+    resize = `h_${kwargs.height}`;
   }
 
-  const imageResizePath = path.join(application.imageEndpoint, imagePath);
+  // Resize crop method
+  const fit = kwargs?.fit ? `fit_${kwargs.fit}` : false;
+
+  // Build modification path
+  let modifierPath;
+  if (resize && fit) {
+    modifierPath = `${resize},${fit}`;
+  } else if (resize) {
+    modifierPath = resize;
+  } else if (fit) {
+    modifierPath = fit;
+  } else {
+    modifierPath = "_";
+  }
+
+  const imageResizePath = path.join(
+    application.imageEndpoint,
+    modifierPath,
+    encodeURIComponent(string),
+  );
   const resizedURL = new URL(imageResizePath, application.url);
-  resizedURL.searchParams.append("w", options.width || 240);
-  resizedURL.searchParams.append("h", options.height || 240);
-  resizedURL.searchParams.append("c", options.crop || true);
 
   return resizedURL.href;
 };
