@@ -1,5 +1,8 @@
 import { IndiekitError } from "@indiekit/error";
 import cleanStack from "clean-stack";
+import makeDebug from "debug";
+
+const debug = makeDebug("indiekit:error");
 
 export const notFound = (request, response, next) => {
   const error = IndiekitError.notFound(response.__("NotFoundError.page"));
@@ -10,6 +13,10 @@ export const notFound = (request, response, next) => {
 // eslint-disable-next-line no-unused-vars
 export const internalServer = (error, request, response, next) => {
   response.status(error.status || 500);
+
+  // Send debug logging output to console.error
+  debug.log = console.error.bind(console);
+  debug("error", error);
 
   if (request.accepts("html")) {
     response.render("error", {
