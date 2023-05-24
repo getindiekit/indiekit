@@ -1,8 +1,8 @@
 /**
  * Generate pagination data
  * @param {number} currentPage - Current page
- * @param {limit} limit - Limit of items per page
- * @param {count} count - Count of all items
+ * @param {number} limit - Limit of items per page
+ * @param {number} count - Count of all items
  * @returns {object} Options for pagination component
  */
 export const pages = (currentPage, limit, count) => {

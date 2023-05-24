@@ -15,7 +15,7 @@ export const randomString = () => Math.random().toString(36).slice(-5);
  * Render path from URI template and properties
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
- * @param {string} publication - Publication configuration
+ * @param {object} publication - Publication configuration
  * @returns {string} Path
  */
 export const renderPath = (path, properties, publication) => {
@@ -54,6 +54,7 @@ export const renderPath = (path, properties, publication) => {
         publication.timeZone === "server"
           ? serverTimeZone
           : publication.timeZone,
+      // @ts-ignore (https://github.com/marnusw/date-fns-tz/issues/239)
       useAdditionalDayOfYearTokens: true,
     });
   }
@@ -82,16 +83,19 @@ export const renderPath = (path, properties, publication) => {
  * @param {object} object - Properties to use
  * @returns {string} String with substituted
  */
-export const supplant = (string, object) =>
-  string.replace(/{([^{}]*)}/g, (a, b) => {
-    const r = object[b];
+export const supplant = (string, object) => {
+  const replacer = function (match, p1) {
+    const r = object[p1];
 
     if (typeof r === "string" || typeof r === "number") {
       return r;
     }
 
-    return a;
-  });
+    return match;
+  };
+
+  return string.replace(/{([^{}]*)}/g, replacer);
+};
 
 /**
  * Derive a permalink (by combining publication URL, that may include a path,

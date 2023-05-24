@@ -4,10 +4,7 @@ import { signToken, verifyToken } from "../token.js";
 export const tokenController = {
   /**
    * Verify bearer token
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @param {Function} next - Next middleware callback
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    */
   get(request, response, next) {
     try {
@@ -44,9 +41,7 @@ export const tokenController = {
    * Authorization code request
    *
    * Redeem verified authorization code for an access token.
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#redeeming-the-authorization-code}
    * @see {@link https://indieauth.spec.indieweb.org/#access-token-response}
    */

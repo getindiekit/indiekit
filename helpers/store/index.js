@@ -26,11 +26,11 @@ export default class TestStore {
   }
 
   /**
-   * @private
+   * @access private
    * @param {string} path - Request path
    * @param {string} [method=GET] - Request method
    * @param {object} [body] - Request body
-   * @returns {Function} Store client interface
+   * @returns {Promise<Response>} Store client interface
    */
   async #client(path, method = "GET", body) {
     const { baseUrl, user } = this.options;
@@ -61,7 +61,7 @@ export default class TestStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File created
    */
   async createFile(path, content, message) {
     await this.#client(path, "PUT", { content, message });
@@ -71,7 +71,7 @@ export default class TestStore {
   /**
    * Read file
    * @param {string} path - Path to file
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<string>} File content
    */
   async readFile(path) {
     const response = await this.#client(path);
@@ -84,7 +84,7 @@ export default class TestStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File updated
    */
   async updateFile(path, content, message) {
     await this.#client(path, "PATCH", { content, message });
@@ -95,7 +95,7 @@ export default class TestStore {
    * Delete file
    * @param {string} path - Path to file
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File deleted
    */
   async deleteFile(path, message) {
     await this.#client(path, "DELETE", { message });

@@ -5,8 +5,7 @@ import { validationResult } from "express-validator";
 export const shareController = {
   /**
    * View share page
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
+   * @type {import("express").RequestHandler}
    */
   get(request, response) {
     const { content, name, url, success } = request.query;
@@ -23,9 +22,7 @@ export const shareController = {
 
   /**
    * Post share content
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    */
   async post(request, response) {
     const { application } = request.app.locals;
@@ -58,7 +55,9 @@ export const shareController = {
         throw await IndiekitError.fromFetch(micropubResponse);
       }
 
+      /** @type {object} */
       const body = await micropubResponse.json();
+
       const message = encodeURIComponent(body.success_description);
 
       response.redirect(`?success=${message}`);

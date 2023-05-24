@@ -22,7 +22,7 @@ export const IndieAuth = class {
    * Get authentication URL
    * @param {string} authorizationEndpoint - Authorization endpoint
    * @param {string} state - State
-   * @returns {Promise|string} Authentication URL
+   * @returns {Promise<string>} Authentication URL
    */
   async getAuthUrl(authorizationEndpoint, state) {
     // PKCE code challenge
@@ -49,7 +49,7 @@ export const IndieAuth = class {
    * Exchange authorization code for access token
    * @param {string} tokenEndpoint - Token endpoint
    * @param {string} code - Code received from authentication endpoint
-   * @returns {Promise|object} Access token
+   * @returns {Promise<object>} Access token
    */
   async authorizationCodeGrant(tokenEndpoint, code) {
     const tokenUrl = new URL(tokenEndpoint);
@@ -180,7 +180,7 @@ export const IndieAuth = class {
   /**
    * Authenticate user (i.e. check they are who they say they are) by
    * checking bearer token matches access token saved in current session.
-   * @returns {Function} Next middleware
+   * @returns {import("express").RequestHandler} Next middleware
    */
   authenticate() {
     const { devMode, me } = this;

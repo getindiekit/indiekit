@@ -7,7 +7,7 @@ import prompts from "prompts";
  * Add plug-in to Indiekit configuration
  * @param {string} pluginName - Name of selected plug-in
  * @param {object} config - Indiekit configuration
- * @returns {object} Updated configuration
+ * @returns {Promise<object>} Updated configuration
  */
 export const addPluginConfig = async (pluginName, config) => {
   const plugin = await getPlugin(pluginName);
@@ -64,7 +64,7 @@ export const isUrl = (string) => {
 /**
  * Get question prompts specified by plugin
  * @param {string} pluginName - Plug-in name
- * @returns {object} Plug-in
+ * @returns {Promise<object>} Plug-in
  */
 export const getPlugin = async (pluginName) => {
   const { default: IndiekitPlugin } = await import(pluginName);

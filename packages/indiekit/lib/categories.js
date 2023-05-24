@@ -6,7 +6,7 @@ import { isUrl } from "./utils.js";
  * from remote JSON file specified in `url` value.
  * @param {object} cache - Application cache
  * @param {object} publication - Publication configuration
- * @returns {Promise|Array} Array of categories
+ * @returns {Promise<Array>} Array of categories
  */
 export const getCategories = async (cache, publication) => {
   const { categories } = publication;

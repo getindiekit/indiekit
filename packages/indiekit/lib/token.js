@@ -31,7 +31,7 @@ export const findBearerToken = (request) => {
  * Request token values
  * @param {string} tokenEndpoint - Token endpoint
  * @param {object} bearerToken - OAuth bearer token
- * @returns {Promise|object} Token values to verify
+ * @returns {Promise<object>} Token values to verify
  */
 export const requestTokenValues = async (tokenEndpoint, bearerToken) => {
   const tokenResponse = await fetch(tokenEndpoint, {

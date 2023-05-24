@@ -47,7 +47,7 @@ export default class HugoPreset {
 
   /**
    * Get front matter
-   * @private
+   * @access private
    * @param {object} properties - Post data variables
    * @returns {string} Front matter in chosen format
    */

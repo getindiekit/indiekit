@@ -3,10 +3,7 @@ import { IndiekitError } from "@indiekit/error";
 
 /**
  * Check that server secret has been set
- * @param {object} request - HTTP request
- * @param {object} response - HTTP response
- * @param {Function} next - Next middleware callback
- * @returns {object} HTTP response
+ * @type {import("express").RequestHandler}
  */
 export const hasSecret = (request, response, next) => {
   if (!process.env.SECRET) {

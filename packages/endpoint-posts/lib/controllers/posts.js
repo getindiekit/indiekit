@@ -7,10 +7,7 @@ import { getPostId, getPostName } from "../utils.js";
 
 /**
  * List previously published posts
- * @param {object} request - HTTP request
- * @param {object} response - HTTP response
- * @param {Function} next - Next middleware callback
- * @returns {object} HTTP response
+ * @type {import("express").RequestHandler}
  */
 export const postsController = async (request, response, next) => {
   try {

@@ -33,7 +33,7 @@ export const excerptString = (string, n) => {
 /**
  * Slugify a string
  * @param {string} string - String to excerpt
- * @param {number} separator - Character used to separate words
+ * @param {string} [separator="-"] - Character used to separate words
  * @returns {string} Slugified string
  * @example slugifyString('Foo bar baz', '_') => 'foo_bar_baz'
  */
@@ -86,8 +86,8 @@ export const randomString = () => Math.random().toString(36).slice(-5);
 
 /**
  * Render relative path if URL is on publication
- * @param {URL} url - External URL
- * @param {URL} me - Publication URL
+ * @param {string} url - External URL
+ * @param {string} me - Publication URL
  * @returns {string} Path
  */
 export const relativeMediaPath = (url, me) =>
@@ -98,7 +98,7 @@ export const relativeMediaPath = (url, me) =>
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
  * @param {object} publication - Publication configuration
- * @returns {string} Path
+ * @returns {Promise<string>} Path
  */
 export const renderPath = async (path, properties, publication) => {
   const dateObject = new Date(properties.published);
@@ -137,6 +137,7 @@ export const renderPath = async (path, properties, publication) => {
         publication.timeZone === "server"
           ? serverTimeZone
           : publication.timeZone,
+      // @ts-ignore (https://github.com/marnusw/date-fns-tz/issues/239)
       useAdditionalDayOfYearTokens: true,
     });
   }
@@ -169,16 +170,19 @@ export const renderPath = async (path, properties, publication) => {
  * @param {object} object - Properties to use
  * @returns {string} String with substituted
  */
-export const supplant = (string, object) =>
-  string.replace(/{([^{}]*)}/g, (a, b) => {
-    const r = object[b];
+export const supplant = (string, object) => {
+  const replacer = function (match, p1) {
+    const r = object[p1];
 
     if (typeof r === "string" || typeof r === "number") {
       return r;
     }
 
-    return a;
-  });
+    return match;
+  };
+
+  return string.replace(/{([^{}]*)}/g, replacer);
+};
 
 /**
  * Convert string to array if not already an array

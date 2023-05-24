@@ -4,7 +4,7 @@ import { mf2 } from "microformats-parser";
 /**
  * Get client information
  * @param {string} client_id - Client URL
- * @returns {object} Information about the client
+ * @returns {Promise<object>} Information about the client
  */
 export const getClientInformation = async (client_id) => {
   let client = {

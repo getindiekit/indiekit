@@ -4,7 +4,8 @@ import * as filters from "./filters/index.js";
 import * as globals from "./globals/index.js";
 
 /**
- * @param {Function} app - Express
+ * @typedef {import("express").Application} Application
+ * @param {Application} app - Express
  * @returns {object} Nunjucks environment
  */
 export const templates = (app) => {

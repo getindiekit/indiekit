@@ -4,9 +4,7 @@ import { endpoint } from "../endpoint.js";
 export const deleteController = {
   /**
    * Confirm post to delete/undelete
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    */
   async get(request, response) {
     const { action, back, postName, scope } = response.locals;
@@ -23,9 +21,7 @@ export const deleteController = {
 
   /**
    * Post delete/undelete action to Micropub endpoint
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    */
   async post(request, response) {
     const { micropubEndpoint } = request.app.locals.application;

@@ -20,7 +20,7 @@ export const generateState = (clientId, iv) => {
 
 /**
  * Validate state generated using `generateState` method
- * @param {string} state - State
+ * @param {object} state - State
  * @param {string} clientId - Client ID
  * @param {object} iv - Initialization vector
  * @returns {object|boolean} Validated state object, returns false on failure

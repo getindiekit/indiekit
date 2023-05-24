@@ -3,7 +3,7 @@ export const postContent = {
    * Create post
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async create(publication, postData) {
     const { postTemplate, store, storeMessageTemplate } = publication;
@@ -33,7 +33,7 @@ export const postContent = {
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
    * @param {string} url - Files attached to request
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async update(publication, postData, url) {
     const { postTemplate, store, storeMessageTemplate } = publication;
@@ -65,7 +65,7 @@ export const postContent = {
    * Delete post
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async delete(publication, postData) {
     const { postTemplate, store, storeMessageTemplate } = publication;
@@ -93,7 +93,7 @@ export const postContent = {
    * Undelete post
    * @param {object} publication - Publication configuration
    * @param {object} postData - Post data
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async undelete(publication, postData) {
     const { postTemplate, store, storeMessageTemplate } = publication;

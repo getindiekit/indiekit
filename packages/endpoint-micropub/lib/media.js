@@ -7,7 +7,7 @@ import { fetch, FormData } from "undici";
  * @param {string} token - Bearer token
  * @param {object} properties - JF2 properties
  * @param {object} files - Files to upload
- * @returns {Array} Uploaded file locations
+ * @returns {Promise<Array>} Uploaded file locations
  */
 export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
   for await (let [mediaProperty, media] of Object.entries(files)) {
@@ -31,7 +31,9 @@ export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
       });
 
       if (!response.ok) {
+        /** @type {object} */
         const body = await response.json();
+
         const message = body.error_description || response.statusText;
         throw new Error(message);
       }

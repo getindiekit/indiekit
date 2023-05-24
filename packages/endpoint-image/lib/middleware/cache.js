@@ -1,8 +1,6 @@
 /**
  * Send cache control headers in response
- * @param {object} request - HTTP request
- * @param {object} response - HTTP response
- * @param {Function} next - Next middleware callback
+ * @type {import("express").RequestHandler}
  */
 export function cacheControl(request, response, next) {
   response.set({

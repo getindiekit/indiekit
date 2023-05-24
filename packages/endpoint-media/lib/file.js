@@ -6,7 +6,7 @@ import { randomString } from "./utils.js";
  * Derive properties from file data
  * @param {object} publication - Publication configuration
  * @param {object} file - Original file object
- * @returns {object} File properties
+ * @returns {Promise<object>} File properties
  * @example fileData('brighton-pier.jpg') => {
  *   basename: 'ds48s',
  *   ext: '.jpg'
@@ -36,7 +36,7 @@ export const getFileProperties = async (publication, file) => {
 /**
  * Derive media type (and return equivalent IndieWeb post type)
  * @param {object} file - File object
- * @returns {string} Post type ('photo', 'video' or 'audio')
+ * @returns {Promise<string>} Post type ('photo', 'video' or 'audio')
  * @example getMediaType('brighton-pier.jpg') => 'photo'
  */
 export const getMediaType = async (file) => {

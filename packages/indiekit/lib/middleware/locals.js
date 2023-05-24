@@ -5,7 +5,7 @@ import { getUrl } from "../utils.js";
 /**
  * Expose configuration to frontend templates and plug-ins
  * @param {object} indiekitConfig - Indiekit configuration
- * @returns {Function} Next middleware
+ * @returns {import("express").RequestHandler} Next middleware
  */
 export const locals = (indiekitConfig) =>
   function (request, response, next) {

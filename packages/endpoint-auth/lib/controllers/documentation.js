@@ -1,10 +1,6 @@
 /**
  * Service documentation
- * @param {object} error - Error
- * @param {object} request - HTTP request
- * @param {object} response - HTTP response
- * @param {Function} next - Next middleware callback
- * @returns {object} HTTP response
+ * @type {import("express").ErrorRequestHandler}
  */
 export const documentationController = (error, request, response, next) => {
   if (request.accepts("html")) {

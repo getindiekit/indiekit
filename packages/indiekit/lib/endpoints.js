@@ -3,7 +3,7 @@ import { isUrl, getUrl } from "./utils.js";
 /**
  * Get endpoint URLs from application configuration or default plug-ins
  * @param {object} application - Application configuration
- * @param {object} request - HTTP request
+ * @param {import("express").Request} request - Request
  * @returns {object} Endpoint URLs
  */
 export const getEndpoints = (application, request) => {

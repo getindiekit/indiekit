@@ -15,7 +15,7 @@ export const getFileId = (url) => {
  * @param {string} id - Post ID
  * @param {string} mediaEndpoint - Micropub media endpoint
  * @param {string} accessToken - Access token
- * @returns {object} JF2 properties
+ * @returns {Promise<object>} JF2 properties
  */
 export const getFileData = async (id, mediaEndpoint, accessToken) => {
   const mediaUrl = new URL(mediaEndpoint);

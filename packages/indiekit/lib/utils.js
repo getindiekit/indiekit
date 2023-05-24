@@ -51,7 +51,7 @@ export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
  * Get fully resolved server URL
- * @param {object} request - HTTP request
+ * @param {import("express").Request} request - Request
  * @returns {string} Fully resolved URL
  */
 export const getUrl = (request) => {

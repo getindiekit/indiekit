@@ -4,7 +4,7 @@ import path from "node:path";
  * Get absolute URL or path
  * @param {string} string - URL or path
  * @param {string} baseUrl - Base URL
- * @returns {URL} Absolute URL
+ * @returns {string} Absolute URL
  */
 export const absoluteUrl = (string, baseUrl) => {
   string = String(string);
@@ -19,7 +19,7 @@ export const absoluteUrl = (string, baseUrl) => {
 /**
  * Get friendly URL
  * @param {string} string - URL or path
- * @returns {URL} Friendly URL
+ * @returns {string} Friendly URL
  */
 export const friendlyUrl = (string) => {
   string = String(string);

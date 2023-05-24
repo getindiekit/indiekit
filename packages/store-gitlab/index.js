@@ -10,10 +10,18 @@ const defaults = {
 };
 
 /**
- * @typedef Response
- * @property {object} response - HTTP response
+ * @typedef {import("@gitbeaker/core").Gitlab} Gitlab
  */
 export default class GitlabStore {
+  /**
+   * @param {object} [options={}] - Plugin options
+   * @param {string} [options.instance] - Instance URL
+   * @param {string} [options.projectId] - Project ID
+   * @param {string} [options.user] - Username
+   * @param {string} [options.repo] - Repository
+   * @param {string} [options.branch] - Branch
+   * @param {string} [options.token] - Access token
+   */
   constructor(options = {}) {
     this.id = "gitlab";
     this.meta = import.meta;
@@ -60,8 +68,8 @@ export default class GitlabStore {
   }
 
   /**
-   * @private
-   * @returns {Function} GitLab client interface
+   * @access private
+   * @returns {Gitlab} GitLab client interface
    */
   get #client() {
     const { Gitlab } = gitbeaker;
@@ -76,7 +84,7 @@ export default class GitlabStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} HTTP response
+   * @returns {Promise<boolean>} File created
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(path, content, message) {
@@ -106,7 +114,7 @@ export default class GitlabStore {
   /**
    * Read file in a repository
    * @param {string} path - Path to file
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<string>} File content
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
    */
   async readFile(path) {
@@ -133,7 +141,7 @@ export default class GitlabStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
   async updateFile(path, content, message) {
@@ -164,7 +172,7 @@ export default class GitlabStore {
    * Delete file in a repository
    * @param {string} path - Path to file
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File deleted
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository}
    */
   async deleteFile(path, message) {

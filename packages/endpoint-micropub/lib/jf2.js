@@ -12,8 +12,8 @@ import {
 
 /**
  * Create JF2 object from form-encoded request
- * @param {string} body - Form-encoded request body
- * @returns {string} Micropub action
+ * @param {object} body - Form-encoded request body
+ * @returns {object} Micropub action
  */
 export const formEncodedToJf2 = (body) => {
   const jf2 = {
@@ -45,7 +45,7 @@ export const formEncodedToJf2 = (body) => {
  * Convert mf2 to JF2
  * @param {string} body - Form-encoded request body
  * @param {boolean} requestReferences - Request data for any referenced URLs
- * @returns {string} Micropub action
+ * @returns {Promise<object>} Micropub action
  */
 export const mf2ToJf2 = async (body, requestReferences) => {
   const mf2 = {
@@ -126,7 +126,7 @@ export const getAudioProperty = (properties, me) => {
  * JF2 allows for the provision of both plaintext and HTML representations.
  * Use existing values, or add HTML representation if only plaintext provided.
  * @param {object} properties - JF2 properties
- * @returns {Array} `content` property
+ * @returns {object} `content` property
  * @see {@link https://www.w3.org/TR/jf2/#html-content}
  */
 export const getContentProperty = (properties) => {
@@ -225,7 +225,7 @@ export const getVideoProperty = (properties, me) => {
  * Get slug
  * @param {object} properties - JF2 properties
  * @param {string} separator - Slug separator
- * @returns {Array} Array containing slug value
+ * @returns {string} Array containing slug value
  */
 export const getSlugProperty = (properties, separator) => {
   const suggested = properties["mp-slug"];

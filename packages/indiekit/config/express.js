@@ -9,6 +9,11 @@ import { logging } from "../lib/middleware/logging.js";
 import { routes } from "../lib/routes.js";
 import { views } from "../lib/views.js";
 
+/**
+ * @typedef {import("express").Application} Application
+ * @param {object} indiekitConfig - Indiekit configuration
+ * @returns {Application} Express application
+ */
 export const expressConfig = (indiekitConfig) => {
   const app = express();
 

@@ -3,7 +3,7 @@ import mongodb from "mongodb";
 /**
  * Connect to MongoDB database
  * @param {*} mongodbUrl - MongoDB URL
- * @returns {Promise|object} MongoDB database instance
+ * @returns {Promise<object>} MongoDB database instance
  */
 export const getMongodbConfig = async (mongodbUrl) => {
   if (mongodbUrl) {

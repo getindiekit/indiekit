@@ -9,9 +9,7 @@ import { signToken } from "../token.js";
 export const consentController = {
   /**
    * View consent form
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    */
   get(request, response) {
     if (!request.query.request_uri) {
@@ -44,9 +42,7 @@ export const consentController = {
 
   /**
    * Submit consent form
-   * @param {object} request - HTTP request
-   * @param {object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
   post(request, response) {

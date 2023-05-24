@@ -4,12 +4,20 @@ import makeDebug from "debug";
 
 const debug = makeDebug("indiekit:error");
 
+/**
+ * Return not found error
+ * @type {import("express").RequestHandler}
+ */
 export const notFound = (request, response, next) => {
   const error = IndiekitError.notFound(response.__("NotFoundError.page"));
 
   next(error);
 };
 
+/**
+ * Return error
+ * @type {import("express").ErrorRequestHandler}
+ */
 // eslint-disable-next-line no-unused-vars
 export const internalServer = (error, request, response, next) => {
   response.status(error.status || 500);

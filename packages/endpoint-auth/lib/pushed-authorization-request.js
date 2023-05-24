@@ -11,7 +11,7 @@ import { randomString } from "./utils.js";
 
 /**
  * Create a PAR URI
- * @param {object} request - HTTP request
+ * @param {import("express").Request} request - Request
  * @returns {string} OAuth request URI
  */
 export const createRequestUri = (request) => {
@@ -23,7 +23,7 @@ export const createRequestUri = (request) => {
 
 /**
  * Get data from PAR URI
- * @param {object} request - HTTP request
+ * @param {import("express").Request} request - Request
  * @returns {object} Saved payload
  */
 export const getRequestUriData = (request) => {

@@ -2,10 +2,7 @@ import path from "node:path";
 
 /**
  * View previously uploaded file
- * @param {object} request - HTTP request
- * @param {object} response - HTTP response
- * @param {Function} next - Next middleware callback
- * @returns {object} HTTP response
+ * @type {import("express").RequestHandler}
  */
 export const fileController = async (request, response, next) => {
   try {

@@ -5,7 +5,7 @@ export const endpoint = {
    * Micropub query
    * @param {string} url - URL
    * @param {string} accessToken - Access token
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async get(url, accessToken) {
     const endpointResponse = await fetch(url, {
@@ -29,7 +29,7 @@ export const endpoint = {
    * @param {string} url - URL
    * @param {string} accessToken - Access token
    * @param {object} [jsonBody=false] - JSON body
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async post(url, accessToken, jsonBody = false) {
     const endpointResponse = await fetch(url, {

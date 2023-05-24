@@ -75,6 +75,7 @@ export const syndicateController = {
         throw await IndiekitError.fromFetch(micropubResponse);
       }
 
+      /** @type {object} */
       const body = await micropubResponse.json();
 
       // Include failed syndication targets in ‘success’ response

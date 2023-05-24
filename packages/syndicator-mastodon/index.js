@@ -10,6 +10,15 @@ const defaults = {
 };
 
 export default class MastodonSyndicator {
+  /**
+   * @param {object} [options={}] - Plugin options
+   * @param {string} [options.accessToken] - Access token
+   * @param {string} [options.characterLimit] - Server character limit
+   * @param {string} [options.url] - Server URL
+   * @param {string} [options.user] - Username
+   * @param {boolean} [options.checked] - Check syndicator in UI
+   * @param {boolean} [options.forced] - Force syndicator
+   */
   constructor(options = {}) {
     this.id = "mastodon";
     this.meta = import.meta;

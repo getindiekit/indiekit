@@ -4,7 +4,7 @@ export const mediaContent = {
    * @param {object} publication - Publication configuration
    * @param {object} mediaData - Media data
    * @param {object} file - File to upload
-   * @returns {object} Data to use in response
+   * @returns {Promise<object>} Data to use in response
    */
   async upload(publication, mediaData, file) {
     const { store, storeMessageTemplate } = publication;
@@ -32,7 +32,7 @@ export const mediaContent = {
    * Delete file from content store
    * @param {object} publication - Publication configuration
    * @param {object} mediaData - Post data
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async delete(publication, mediaData) {
     const { store, storeMessageTemplate } = publication;

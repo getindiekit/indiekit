@@ -11,7 +11,7 @@ export const postData = {
    * @param {object} publication - Publication configuration
    * @param {object} properties - JF2 properties
    * @param {boolean} [draftMode=false] - Draft mode
-   * @returns {object} Post data
+   * @returns {Promise<object>} Post data
    */
   async create(publication, properties, draftMode = false) {
     const { me, posts, postTypes, syndicationTargets } = publication;
@@ -64,7 +64,7 @@ export const postData = {
    * Read post data
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @returns {object} Post data
+   * @returns {Promise<object>} Post data
    */
   async read(publication, url) {
     const { posts } = publication;
@@ -85,7 +85,7 @@ export const postData = {
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {object} operation - Requested operation(s)
-   * @returns {object} Post data
+   * @returns {Promise<object>} Post data
    */
   async update(publication, url, operation) {
     const { me, posts, postTypes } = publication;
@@ -148,7 +148,7 @@ export const postData = {
    * Delete (most) properties, keeping a record of deleted for later retrieval
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @returns {object} Post data
+   * @returns {Promise<object>} Post data
    */
   async delete(publication, url) {
     const { posts, postTypes } = publication;
@@ -194,7 +194,7 @@ export const postData = {
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {boolean} [draftMode=false] - Draft mode
-   * @returns {object} Post data
+   * @returns {Promise<object>} Post data
    */
   async undelete(publication, url, draftMode) {
     const { posts, postTypes } = publication;

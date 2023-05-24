@@ -12,7 +12,7 @@ export const endpoint = {
    * Micropub media query
    * @param {string} url - URL
    * @param {string} accessToken - Access token
-   * @returns {object} Response data
+   * @returns {Promise<object>} Response data
    */
   async get(url, accessToken) {
     const endpointResponse = await fetch(url, {
@@ -35,10 +35,10 @@ export const endpoint = {
    * Micropub action
    * @param {string} url - URL
    * @param {string} accessToken - Access token
-   * @param {FormData} [formData=false] - Form data
-   * @returns {object} Response data
+   * @param {FormData} [formData=null] - Form data
+   * @returns {Promise<object>} Response data
    */
-  async post(url, accessToken, formData) {
+  async post(url, accessToken, formData = null) {
     const endpointResponse = await fetch(url, {
       method: "POST",
       headers: {

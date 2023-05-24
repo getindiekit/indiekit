@@ -9,11 +9,15 @@ const defaults = {
   token: process.env.GITEA_TOKEN,
 };
 
-/**
- * @typedef Response
- * @property {object} response - HTTP response
- */
 export default class GiteaStore {
+  /**
+   * @param {object} [options={}] - Plugin options
+   * @param {string} [options.instance] - Instance URL
+   * @param {string} [options.user] - Username
+   * @param {string} [options.repo] - Repository
+   * @param {string} [options.branch] - Branch
+   * @param {string} [options.token] - Access token
+   */
   constructor(options = {}) {
     this.id = "gitea";
     this.meta = import.meta;
@@ -59,11 +63,11 @@ export default class GiteaStore {
   }
 
   /**
-   * @private
+   * @access private
    * @param {string} path - Request path
    * @param {string} [method=GET] - Request method
    * @param {object} [body] - Request body
-   * @returns {Function} Gitea client interface
+   * @returns {Promise<Response>} Gitea client interface
    */
   async #client(path, method = "GET", body) {
     const { instance, user, repo } = this.options;
@@ -92,7 +96,7 @@ export default class GiteaStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} HTTP response
+   * @returns {Promise<boolean>} File created
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(path, content, message) {
@@ -117,7 +121,7 @@ export default class GiteaStore {
   /**
    * Read file in a repository
    * @param {string} path - Path to file
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<string>} File contents
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
   async readFile(path) {
@@ -141,7 +145,7 @@ export default class GiteaStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File updated
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(path, content, message) {
@@ -170,7 +174,7 @@ export default class GiteaStore {
    * Delete file in a repository
    * @param {string} path - Path to file
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File deleted
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
   async deleteFile(path, message) {

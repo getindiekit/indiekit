@@ -18,7 +18,7 @@ export const randomString = (length = 16) =>
 
 /**
  * Get request parameters from either query string or JSON body
- * @param {object} request - HTTP request
+ * @param {import("express").Request} request - Request
  * @returns {object} - Request parameters
  */
 export const getRequestParameters = (request) => {

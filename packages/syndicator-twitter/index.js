@@ -11,6 +11,16 @@ const defaults = {
 };
 
 export default class TwitterSyndicator {
+  /**
+   * @param {object} [options={}] - Plugin options
+   * @param {string} [options.accessToken] - Access token
+   * @param {string} [options.accessTokenSecret] - Access token secret
+   * @param {string} [options.apiKey] - API key
+   * @param {string} [options.apiKeySecret] - API key secret
+   * @param {string} [options.user] - Username
+   * @param {boolean} [options.checked] - Check syndicator in UI
+   * @param {boolean} [options.forced] - Force syndicator
+   */
   constructor(options = {}) {
     this.id = "twitter";
     this.meta = import.meta;

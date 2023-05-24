@@ -8,10 +8,16 @@ const defaults = {
 };
 
 /**
- * @typedef Response
- * @property {object} response - HTTP response
+ * @typedef {import("bitbucket").APIClient} APIClient
  */
 export default class BitbucketStore {
+  /**
+   * @param {object} [options={}] - Plugin options
+   * @param {string} [options.user] - Username
+   * @param {string} [options.repo] - Repository
+   * @param {string} [options.branch] - Branch
+   * @param {string} [options.password] - Password
+   */
   constructor(options = {}) {
     this.id = "bitbucket";
     this.meta = import.meta;
@@ -50,8 +56,8 @@ export default class BitbucketStore {
   }
 
   /**
-   * @private
-   * @returns {Function} Bitbucket client interface
+   * @access private
+   * @returns {APIClient} Bitbucket client interface
    */
   get #client() {
     const { Bitbucket } = bitbucket;
@@ -69,7 +75,7 @@ export default class BitbucketStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File created
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async createFile(path, content, message) {
@@ -95,7 +101,7 @@ export default class BitbucketStore {
   /**
    * Read file in a repository
    * @param {string} path - Path to file
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<string>} File content
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc}
    */
   async readFile(path) {
@@ -124,7 +130,7 @@ export default class BitbucketStore {
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File updated
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async updateFile(path, content, message) {
@@ -151,7 +157,7 @@ export default class BitbucketStore {
    * Delete file in a repository
    * @param {string} path - Path to file
    * @param {string} message - Commit message
-   * @returns {Promise<Response>} A promise to the response
+   * @returns {Promise<boolean>} File deleted
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async deleteFile(path, message) {

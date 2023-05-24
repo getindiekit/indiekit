@@ -12,7 +12,7 @@ const { name, version, bugs } = require("./package.json");
 const nodeVersion = 18;
 
 /**
- * @returns {Function} init
+ * @returns {Promise<any>} init
  */
 export async function init() {
   const { log } = console;

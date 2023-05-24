@@ -42,7 +42,7 @@ export const addProperties = (object, additions) => {
  * Replace entries of a property. If property doesn’t exist, create it.
  * @param {object} object - Object to update
  * @param {object} replacements - Properties to replace (mf2)
- * @returns {object} Updated object (JF2)
+ * @returns {Promise<object>} Updated object (JF2)
  */
 export const replaceEntries = async (object, replacements) => {
   for await (const [key, value] of Object.entries(replacements)) {

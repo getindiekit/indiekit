@@ -38,7 +38,7 @@ export const getPostId = (url) => {
  * @param {string} id - Post ID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
- * @returns {object} JF2 properties
+ * @returns {Promise<object>} JF2 properties
  */
 export const getPostData = async (id, micropubEndpoint, accessToken) => {
   const micropubUrl = new URL(micropubEndpoint);

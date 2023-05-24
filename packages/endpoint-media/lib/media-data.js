@@ -7,7 +7,7 @@ export const mediaData = {
    * Create media data
    * @param {object} publication - Publication configuration
    * @param {object} file - File
-   * @returns {object} Media data
+   * @returns {Promise<object>} Media data
    */
   async create(publication, file) {
     const { me, media, postTypes } = publication;
@@ -56,7 +56,7 @@ export const mediaData = {
    * Read media data
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing media
-   * @returns {object} Media data
+   * @returns {Promise<object>} Media data
    */
   async read(publication, url) {
     const { media } = publication;
@@ -74,7 +74,7 @@ export const mediaData = {
    * Delete media data
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @returns {boolean} Media data deleted
+   * @returns {Promise<boolean>} Media data deleted
    */
   async delete(publication, url) {
     const { media } = publication;

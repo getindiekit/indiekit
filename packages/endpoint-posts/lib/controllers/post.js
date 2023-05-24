@@ -3,9 +3,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 
 /**
  * View previously published post
- * @param {object} request - HTTP request
- * @param {object} response - HTTP response
- * @returns {object} HTTP response
+ * @type {import("express").RequestHandler}
  */
 export const postController = async (request, response) => {
   const { back, draftMode, post, postName, postStatus, scope } =

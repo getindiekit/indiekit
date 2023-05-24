@@ -10,10 +10,7 @@ export const authorizationController = {
    *
    * Validate parameters in request before redirecting to consent form
    * where the user is prompted to authenticate themselves.
-   * @param {object} request - HTTP request
-   * @param {Promise|object} response - HTTP response
-   * @param {Function} next - Next middleware callback
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-request}
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
@@ -93,9 +90,7 @@ export const authorizationController = {
   /**
    * Authorization code request
    * Redeem verified authorization code for a profile URL.
-   * @param {object} request - HTTP request
-   * @param {Promise|object} response - HTTP response
-   * @returns {object} HTTP response
+   * @type {import("express").RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#redeeming-the-authorization-code}
    * @see {@link https://indieauth.spec.indieweb.org/#profile-url-response}
    */

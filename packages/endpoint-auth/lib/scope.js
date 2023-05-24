@@ -3,7 +3,7 @@ export const scopes = ["create", "update", "draft", "media", "delete"];
 /**
  * Get `items` object for checkboxes component
  * @param {string} scope - Selected scope(s)
- * @param {object} response - HTTP response
+ * @param {import("express").Response} response - Response
  * @returns {object} Items for checkboxes component
  */
 export function getScopeItems(scope, response) {
