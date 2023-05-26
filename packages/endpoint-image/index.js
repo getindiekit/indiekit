@@ -3,7 +3,7 @@ import { expressSharp } from "express-sharp";
 import { Adapter } from "./lib/adapter.js";
 import { cacheControl } from "./lib/middleware/cache.js";
 
-const defaults = { cache: false, me: "", mountPath: "/image" };
+const defaults = { cache: null, me: "", mountPath: "/image" };
 const router = express.Router(); // eslint-disable-line new-cap
 
 export default class ImageEndpoint {
