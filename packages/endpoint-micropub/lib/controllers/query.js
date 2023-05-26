@@ -29,7 +29,9 @@ export const queryController = async (request, response, next) => {
 
     switch (q) {
       case "config": {
-        return response.json(config);
+        response.json(config);
+
+        break;
       }
 
       case "source": {
@@ -52,7 +54,7 @@ export const queryController = async (request, response, next) => {
           }
 
           const mf2 = jf2ToMf2(item.properties);
-          return response.json(getMf2Properties(mf2, properties));
+          response.json(getMf2Properties(mf2, properties));
         }
 
         // Return mf2 for previously published posts
@@ -63,16 +65,18 @@ export const queryController = async (request, response, next) => {
           .limit(limit)
           .toArray();
 
-        return response.json({
+        response.json({
           _count: await publication.posts.countDocuments(),
           items: posts.map((post) => jf2ToMf2(post.properties)),
         });
+
+        break;
       }
 
       default: {
         // Query configuration value (can be filtered, limited and offset)
         if (config[q]) {
-          return response.json({
+          response.json({
             [q]: queryConfig(config[q], { filter, limit, offset }),
           });
         }

@@ -96,7 +96,7 @@ export const actionController = async (request, response, next) => {
       default:
     }
 
-    return response
+    response
       .status(content.status)
       .location(content.location)
       .json(content.json);
