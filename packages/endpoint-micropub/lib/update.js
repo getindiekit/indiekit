@@ -59,7 +59,7 @@ export const replaceEntries = async (object, replacements) => {
 
       case 1: {
         // Array contains a single value, save as JF2
-        const jf2 = await mf2ToJf2(value[0]);
+        const jf2 = await mf2ToJf2(value[0], false);
         object = _.set(object, key, jf2);
         break;
       }
