@@ -16,7 +16,7 @@ export const locals = (indiekitConfig) =>
       request.app.locals.application = application;
 
       // Application locale
-      application.localeUsed = request.getLocale();
+      application.localeUsed = response.locals.getLocale();
 
       // Application URL
       application.url = application.url || getUrl(request);
