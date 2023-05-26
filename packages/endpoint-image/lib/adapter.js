@@ -18,7 +18,7 @@ export const Adapter = class {
       // Blob returned by fetch() but express-sharp expects a Buffer
       const body = await response.blob();
       const arrayBuffer = await body.arrayBuffer();
-      const buffer = await Buffer.from(arrayBuffer, "binary");
+      const buffer = await Buffer.from(arrayBuffer);
 
       return buffer;
     } catch {
