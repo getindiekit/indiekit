@@ -11,7 +11,6 @@ export const getMongodbConfig = async (mongodbUrl) => {
       const { MongoClient } = mongodb;
       const client = new MongoClient(mongodbUrl, {
         connectTimeoutMS: 5000,
-        useUnifiedTopology: true,
       });
       await client.connect();
       const database = client.db("indiekit");
