@@ -38,5 +38,4 @@ test("Marks proxy as secure", async (t) => {
   await forceHttps(request, response, next);
 
   t.true(next.calledOnce);
-  t.true(request.connection.proxySecure);
 });

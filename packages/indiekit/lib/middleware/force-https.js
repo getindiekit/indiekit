@@ -14,7 +14,5 @@ export function forceHttps(request, response, next) {
     );
   }
 
-  // Mark proxy as secure (allows secure cookies)
-  request.connection.proxySecure = true;
   next();
 }
