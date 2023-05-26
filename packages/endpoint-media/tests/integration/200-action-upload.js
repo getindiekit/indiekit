@@ -14,7 +14,7 @@ test("Uploads file", async (t) => {
     .post("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
 
   t.is(result.status, 201);
   t.regex(result.headers.location, /\b.jpg\b/);

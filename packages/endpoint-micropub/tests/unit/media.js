@@ -11,7 +11,7 @@ test.beforeEach((t) => {
     bearerToken: testToken(),
     files: {
       photo: {
-        data: getFixture("file-types/photo.jpg", false),
+        data: getFixture("file-types/photo.jpg", null),
         name: "photo",
         originalname: "photo1.jpg",
       },
@@ -43,11 +43,11 @@ test("Uploads attached files via media endpoint", async (t) => {
   const files = {
     photo: [
       {
-        data: getFixture("file-types/photo.jpg", false),
+        data: getFixture("file-types/photo.jpg", null),
         name: "photo2.jpg",
       },
       {
-        buffer: getFixture("file-types/photo.jpg", false),
+        buffer: getFixture("file-types/photo.jpg", null),
         name: "photo3.jpg",
       },
     ],

@@ -17,7 +17,7 @@ test("Gets delete confirmation page", async (t) => {
     .post("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
   const id = Buffer.from(uploadResponse.headers.location).toString("base64url");
 
   // Request delete page

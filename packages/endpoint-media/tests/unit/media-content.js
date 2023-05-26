@@ -9,7 +9,7 @@ await mockAgent("store");
 
 test.beforeEach((t) => {
   t.context.file = {
-    data: getFixture("file-types/photo.jpg", false),
+    data: getFixture("file-types/photo.jpg", null),
     name: "photo.jpg",
   };
 });

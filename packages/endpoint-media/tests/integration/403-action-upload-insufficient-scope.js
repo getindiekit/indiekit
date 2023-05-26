@@ -14,7 +14,7 @@ test("Returns 403 error token has insufficient scope", async (t) => {
     .post("/media")
     .auth(testToken({ scope: "foo" }), { type: "bearer" })
     .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
 
   t.is(result.status, 403);
   t.is(

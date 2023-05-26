@@ -10,8 +10,8 @@ export function mockClient() {
   agent.disableNetConnect();
 
   const client = agent.get("https://token-endpoint.example");
-  const postHtml = getFixture("html/post.html", false);
-  const pageHtml = getFixture("html/page.html", false);
+  const postHtml = getFixture("html/post.html", null);
+  const pageHtml = getFixture("html/page.html", null);
 
   // Verify access token
   client

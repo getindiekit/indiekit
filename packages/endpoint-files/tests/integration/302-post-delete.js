@@ -16,7 +16,7 @@ test.failing("Deletes file and redirects to files page", async (t) => {
   const uploadResponse = await request
     .post("/files/upload")
     .set("cookie", [cookie()])
-    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
   const dom = new JSDOM(uploadResponse.text);
   const url = dom.window.document.querySelector(
     ".notification__text a"

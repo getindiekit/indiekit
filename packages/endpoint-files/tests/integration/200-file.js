@@ -16,7 +16,7 @@ test("Returns previously uploaded file", async (t) => {
     .post("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
 
   // Get file data by parsing list of files and getting values from link
   const filesResponse = await request.get("/files");

@@ -122,7 +122,7 @@ test.serial("Throws error fetching media to upload", async (t) => {
 test.failing("Uploads media and returns a media id", async (t) => {
   nock("https://website.example")
     .get("/image.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.options.serverUrl).post("/api/v1/media").reply(200, {
     id: "1234567890987654321",
   });
@@ -140,7 +140,7 @@ test.failing("Uploads media and returns a media id", async (t) => {
 test.failing("Throws error uploading media", async (t) => {
   nock("https://website.example")
     .get("/image.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.options.serverUrl)
     .post("/api/v1/media")
     .reply(404, { message: "Not found" });
@@ -259,16 +259,16 @@ test("Posts a status to Mastodon", async (t) => {
 test.failing("Posts a status to Mastodon with 4 out of 5 photos", async (t) => {
   nock(t.context.publication.me)
     .get("/image1.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.publication.me)
     .get("/image2.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.publication.me)
     .get("/image3.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock("https://website.example")
     .get("/image4.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "1" });
   nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "2" });
   nock(t.context.options.url).post("/api/v1/media").reply(200, { id: "3" });
@@ -299,16 +299,16 @@ test.failing("Posts a status to Mastodon with 4 out of 5 photos", async (t) => {
 test("Throws an error posting a status to Mastodon with 4 out of 5 photos", async (t) => {
   nock(t.context.publication.me)
     .get("/image1.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.publication.me)
     .get("/image2.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock(t.context.publication.me)
     .get("/image3.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
   nock("https://website.example")
     .get("/image4.jpg")
-    .reply(200, { body: getFixture("file-types/photo.jpg", false) });
+    .reply(200, { body: getFixture("file-types/photo.jpg", null) });
 
   await t.throwsAsync(
     mastodon(t.context.options).post(

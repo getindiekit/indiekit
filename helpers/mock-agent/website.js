@@ -23,7 +23,7 @@ export function mockClient() {
   client.intercept({ path: "/404" }).reply(404, { message: "Not found" });
 
   // Get media files
-  const photo = getFixture("file-types/photo.jpg", false);
+  const photo = getFixture("file-types/photo.jpg", null);
   for (let path of [1, 2, 3, 4, 5, 6]) {
     path = `/photo${path}.jpg`;
     client.intercept({ path }).reply(200, photo);
