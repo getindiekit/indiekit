@@ -61,5 +61,5 @@ export const defaultConfig = {
 
 defaultConfig.application.sessionMiddleware = cookieSession({
   name: defaultConfig.application.name,
-  secret: crypto.randomBytes(16),
+  secret: crypto.randomBytes(16).toString(),
 });
