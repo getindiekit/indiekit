@@ -38,7 +38,7 @@ export const authorizationController = {
       }
 
       // `response_type` must be `code` (or deprecated `id`)
-      if (!/^(code|id)$/.test(request.query.response_type)) {
+      if (!/^(code|id)$/.test(String(request.query.response_type))) {
         throw IndiekitError.badRequest(
           response.locals.__("BadRequestError.invalidValue", "response_type")
         );
@@ -54,7 +54,7 @@ export const authorizationController = {
 
         // Canonicalise URLs for later comparison
         if (request.query[uri]) {
-          request.query[uri] = getCanonicalUrl(request.query[uri]);
+          request.query[uri] = getCanonicalUrl(String(request.query[uri]));
         }
       }
 
@@ -70,7 +70,7 @@ export const authorizationController = {
       }
 
       // Add client information to locals
-      request.app.locals.client = await getClientInformation(client_id);
+      request.app.locals.client = await getClientInformation(String(client_id));
 
       // Use PKCE if code challenge parameters provided
       request.app.locals.usePkce = code_challenge && code_challenge_method;

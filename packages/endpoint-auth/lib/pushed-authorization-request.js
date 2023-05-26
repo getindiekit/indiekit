@@ -28,7 +28,7 @@ export const createRequestUri = (request) => {
  */
 export const getRequestUriData = (request) => {
   const { request_uri } = request.query;
-  const reference = request_uri.split(":")[5];
+  const reference = String(request_uri).split(":")[5];
 
   return request.app.locals[reference];
 };
