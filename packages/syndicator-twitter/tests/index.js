@@ -6,10 +6,10 @@ import { getFixture } from "@indiekit-test/fixtures";
 import TwitterSyndicator from "../index.js";
 
 const twitter = new TwitterSyndicator({
+  accessToken: "ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789",
+  accessTokenSecret: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN",
   apiKey: "0123456789abcdefghijklmno",
   apiKeySecret: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789",
-  accessTokenKey: "ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789",
-  accessTokenSecret: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN",
   user: "username",
 });
 
