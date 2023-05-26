@@ -48,7 +48,7 @@ export const queryController = async (request, response, next) => {
             );
           }
 
-          return response.json(item.properties);
+          response.json(item.properties);
         }
 
         // Return properties for previously uploaded files
@@ -65,10 +65,12 @@ export const queryController = async (request, response, next) => {
           .limit(limit)
           .toArray();
 
-        return response.json({
+        response.json({
           _count: await publication.media.countDocuments(),
           items: files.map((media) => media.properties),
         });
+
+        break;
       }
 
       default: {
