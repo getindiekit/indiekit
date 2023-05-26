@@ -19,7 +19,7 @@ export const summaryRows = (object) => {
       }
 
       try {
-        return markdown(`~~~js\n${JSON.stringify(value, 0, 2)}\n~~~`);
+        return markdown(`~~~js\n${JSON.stringify(value, null, 2)}\n~~~`);
       } catch {
         return `<code class="token class-name">${value.constructor.name}</code>`;
       }
