@@ -6,7 +6,6 @@ const ftp = new FtpStore({
   host: "ftp.server.example",
   user: "username",
   password: "password",
-  repo: "repo",
 });
 
 test("Gets plug-in info", (t) => {
