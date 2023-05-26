@@ -113,7 +113,9 @@ test("Throws error authenticating invalid token", async (t) => {
     method: "POST",
     session: {},
   });
-  const response = mockResponse({ __() {} });
+  const response = mockResponse({
+    locals: { __() {} },
+  });
   const next = sinon.spy();
 
   await indieauth.authenticate()(request, response, next);
@@ -136,7 +138,9 @@ test("Throws error authenticating token with URL mismatch", async (t) => {
     method: "POST",
     session: {},
   });
-  const response = mockResponse({ __() {} });
+  const response = mockResponse({
+    locals: { __() {} },
+  });
   const next = sinon.spy();
 
   await indieauth.authenticate()(request, response, next);
@@ -166,8 +170,10 @@ test("Throws error redirecting user to IndieAuth login", async (t) => {
     query: { redirect: "/status" },
   });
   const response = mockResponse({
-    __: () => ({ session: {} }),
-    locals: { application: { url: "http://localhost" } },
+    locals: {
+      __: () => ({ session: {} }),
+      application: { url: "http://localhost" },
+    },
   });
 
   await indieauth.login()(request, response);
@@ -182,7 +188,7 @@ test("Throws error authorizing returned credentials", async (t) => {
     query: { code: "", state: "" },
   });
   const response = mockResponse({
-    __: () => ({ session: {} }),
+    locals: { __: () => ({ session: {} }) },
   });
 
   await indieauth.authorize()(request, response);

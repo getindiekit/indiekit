@@ -40,13 +40,13 @@ export const filesController = async (request, response, next) => {
      * @todo Remove requirement for private `_count` parameter
      */
     response.render("files", {
-      title: response.__("files.files.title"),
+      title: response.locals.__("files.files.title"),
       actions: [
         scope.includes("create") || scope.includes("media")
           ? {
               href: path.join(request.baseUrl + request.path, "/upload"),
               icon: "uploadFile",
-              text: response.__("files.upload.action"),
+              text: response.locals.__("files.upload.action"),
             }
           : {},
       ],

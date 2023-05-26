@@ -14,7 +14,7 @@ export const consentController = {
   get(request, response) {
     if (!request.query.request_uri) {
       throw IndiekitError.badRequest(
-        response.__("BadRequestError.missingParameter", "request_uri")
+        response.locals.__("BadRequestError.missingParameter", "request_uri")
       );
     }
 
@@ -24,7 +24,7 @@ export const consentController = {
 
       if (process.env.PASSWORD_SECRET) {
         response.render("consent", {
-          title: response.__(`auth.consent.${authType}.title`),
+          title: response.locals.__(`auth.consent.${authType}.title`),
           authType,
           me,
           redirect_uri,
@@ -35,7 +35,7 @@ export const consentController = {
       }
     } catch {
       throw IndiekitError.badRequest(
-        response.__("BadRequestError.invalidValue", "request_uri")
+        response.locals.__("BadRequestError.invalidValue", "request_uri")
       );
     }
   },
@@ -60,7 +60,7 @@ export const consentController = {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("consent", {
-        title: response.__(`auth.consent.${authType}.title`),
+        title: response.locals.__(`auth.consent.${authType}.title`),
         authType,
         errors: errors.mapped(),
         me,

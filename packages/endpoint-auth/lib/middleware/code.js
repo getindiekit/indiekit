@@ -24,7 +24,7 @@ export const codeValidator = (request, response, next) => {
     ]) {
       if (!Object.keys(parameters).includes(parameter)) {
         throw IndiekitError.badRequest(
-          response.__("BadRequestError.missingParameter", parameter)
+          response.locals.__("BadRequestError.missingParameter", parameter)
         );
       }
     }
@@ -32,14 +32,14 @@ export const codeValidator = (request, response, next) => {
     // `grant_type` must equal `authorization_code`
     if (grant_type !== "authorization_code") {
       throw IndiekitError.badRequest(
-        response.__("BadRequestError.invalidValue", "grant_type")
+        response.locals.__("BadRequestError.invalidValue", "grant_type")
       );
     }
 
     // Validate `client_id` against that provided in authorization request
     if (getCanonicalUrl(client_id) !== client.url) {
       throw IndiekitError.unauthorized(
-        response.__("BadRequestError.invalidValue", "client_id")
+        response.locals.__("BadRequestError.invalidValue", "client_id")
       );
     }
 
@@ -47,7 +47,7 @@ export const codeValidator = (request, response, next) => {
     const validRedirect = validateRedirect(redirect_uri, client_id);
     if (!validRedirect) {
       throw IndiekitError.badRequest(
-        response.__("BadRequestError.invalidValue", "redirect_uri")
+        response.locals.__("BadRequestError.invalidValue", "redirect_uri")
       );
     }
 
@@ -56,7 +56,7 @@ export const codeValidator = (request, response, next) => {
       request.verifiedToken = verifyToken(code);
     } catch {
       throw IndiekitError.unauthorized(
-        response.__("UnauthorizedError.invalidToken")
+        response.locals.__("UnauthorizedError.invalidToken")
       );
     }
 
@@ -66,7 +66,7 @@ export const codeValidator = (request, response, next) => {
       const verifiedCode = verifyCode(code_verifier, code_challenge);
       if (!verifiedCode) {
         throw IndiekitError.unauthorized(
-          response.__("BadRequestError.invalidValue", "code_verifier")
+          response.locals.__("BadRequestError.invalidValue", "code_verifier")
         );
       }
     }

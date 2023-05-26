@@ -4,7 +4,7 @@ export const login = (request, response) => {
   }
 
   return response.render("session/login", {
-    title: response.__("session.login.title"),
+    title: response.locals.__("session.login.title"),
     referrer: request.query.referrer,
   });
 };

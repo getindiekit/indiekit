@@ -10,9 +10,9 @@ export const passwordController = {
     const { name } = request.app.locals.application;
 
     response.render("new-password", {
-      title: response.__("auth.newPassword.title"),
+      title: response.locals.__("auth.newPassword.title"),
       notice: request.query.setup
-        ? response.__("auth.newPassword.setup.text", { app: name })
+        ? response.locals.__("auth.newPassword.setup.text", { app: name })
         : false,
     });
   },
@@ -27,7 +27,7 @@ export const passwordController = {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("new-password", {
-        title: response.__("auth.newPassword.title"),
+        title: response.locals.__("auth.newPassword.title"),
         errors: errors.mapped(),
       });
     }
@@ -36,7 +36,7 @@ export const passwordController = {
       const secret = await createPasswordHash(password);
 
       response.render("new-password", {
-        title: response.__("auth.newPassword.title"),
+        title: response.locals.__("auth.newPassword.title"),
         password,
         secret,
       });

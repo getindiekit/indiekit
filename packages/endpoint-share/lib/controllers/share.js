@@ -11,7 +11,7 @@ export const shareController = {
     const { content, name, url, success } = request.query;
 
     response.render("share", {
-      title: response.__("share.title"),
+      title: response.locals.__("share.title"),
       content,
       name,
       url,
@@ -32,7 +32,7 @@ export const shareController = {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("share", {
-        title: response.__("share.title"),
+        title: response.locals.__("share.title"),
         name,
         content,
         "bookmark-of": bookmarkOf,
@@ -64,7 +64,7 @@ export const shareController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("share", {
-        title: response.__("share.title"),
+        title: response.locals.__("share.title"),
         content,
         name,
         bookmarkOf,

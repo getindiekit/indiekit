@@ -10,7 +10,7 @@ export const deleteController = {
 
     if (scope.includes("delete")) {
       return response.render("file-delete", {
-        title: response.__("files.delete.title"),
+        title: response.locals.__("files.delete.title"),
         back,
         parent: { text: fileName },
       });
@@ -39,7 +39,7 @@ export const deleteController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("file-delete", {
-        title: response.__("files.delete.title"),
+        title: response.locals.__("files.delete.title"),
         parent: { text: fileName },
         error: error.message,
       });

@@ -16,7 +16,7 @@ export const queryController = async (request, response, next) => {
     const { q, url } = request.query;
     if (!q) {
       throw IndiekitError.badRequest(
-        response.__("BadRequestError.missingParameter", "q")
+        response.locals.__("BadRequestError.missingParameter", "q")
       );
     }
 
@@ -24,7 +24,7 @@ export const queryController = async (request, response, next) => {
       case "source": {
         if (!application.hasDatabase) {
           throw IndiekitError.notImplemented(
-            response.__("NotImplementedError.database")
+            response.locals.__("NotImplementedError.database")
           );
         }
 
@@ -44,7 +44,7 @@ export const queryController = async (request, response, next) => {
 
           if (!item) {
             throw IndiekitError.notFound(
-              response.__("NotFoundError.resource", "file")
+              response.locals.__("NotFoundError.resource", "file")
             );
           }
 
@@ -73,7 +73,10 @@ export const queryController = async (request, response, next) => {
 
       default: {
         throw IndiekitError.notImplemented(
-          response.__("NotImplementedError.query", { key: "q", value: q })
+          response.locals.__("NotImplementedError.query", {
+            key: "q",
+            value: q,
+          })
         );
       }
     }

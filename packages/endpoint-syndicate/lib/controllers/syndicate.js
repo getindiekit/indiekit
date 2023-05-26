@@ -16,7 +16,7 @@ export const syndicateController = {
 
       if (!application.hasDatabase) {
         throw IndiekitError.notImplemented(
-          response.__("NotImplementedError.database")
+          response.locals.__("NotImplementedError.database")
         );
       }
 

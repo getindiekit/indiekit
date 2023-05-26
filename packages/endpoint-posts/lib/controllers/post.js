@@ -15,14 +15,14 @@ export const postController = async (request, response) => {
     title: postName,
     parent: {
       href: back,
-      text: response.__("posts.posts.title"),
+      text: response.locals.__("posts.posts.title"),
     },
     actions: [
       scope && checkScope(scope, "update") && !post.deleted && postEditable
         ? {
             href: path.join(request.baseUrl + request.path, "/update"),
             icon: "updatePost",
-            text: response.__("posts.update.action"),
+            text: response.locals.__("posts.update.action"),
           }
         : {},
       scope && checkScope(scope, "delete") && !post.deleted
@@ -30,14 +30,14 @@ export const postController = async (request, response) => {
             classes: "actions__link--warning",
             href: path.join(request.baseUrl + request.path, "/delete"),
             icon: "delete",
-            text: response.__("posts.delete.action"),
+            text: response.locals.__("posts.delete.action"),
           }
         : {},
       scope && checkScope(scope, "undelete") && post.deleted
         ? {
             href: path.join(request.baseUrl + request.path, "/undelete"),
             icon: "undelete",
-            text: response.__("posts.undelete.action"),
+            text: response.locals.__("posts.undelete.action"),
           }
         : {},
     ],

@@ -13,7 +13,7 @@ export const fileController = async (request, response, next) => {
       file,
       parent: {
         href: back,
-        text: response.__("files.files.title"),
+        text: response.locals.__("files.files.title"),
       },
       actions: [
         scope.includes("delete")
@@ -21,7 +21,7 @@ export const fileController = async (request, response, next) => {
               classes: "actions__link--warning",
               href: path.join(request.baseUrl + request.path, "/delete"),
               icon: "delete",
-              text: response.__("files.delete.action"),
+              text: response.locals.__("files.delete.action"),
             }
           : {},
       ],

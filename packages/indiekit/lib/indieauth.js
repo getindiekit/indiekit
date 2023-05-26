@@ -98,7 +98,7 @@ export const IndieAuth = class {
         return response.redirect(authUrl);
       } catch (error) {
         return response.status(401).render("session/login", {
-          title: response.__("session.login.title"),
+          title: response.locals.__("session.login.title"),
           error: error.message,
         });
       }
@@ -122,27 +122,27 @@ export const IndieAuth = class {
 
           if (!validRedirect) {
             throw IndiekitError.forbidden(
-              response.__("ForbiddenError.invalidRedirect")
+              response.locals.__("ForbiddenError.invalidRedirect")
             );
           }
         }
 
         if (!code) {
           throw IndiekitError.badRequest(
-            response.__("BadRequestError.missingParameter", "code")
+            response.locals.__("BadRequestError.missingParameter", "code")
           );
         }
 
         if (!state) {
           throw IndiekitError.badRequest(
-            response.__("BadRequestError.missingParameter", "state")
+            response.locals.__("BadRequestError.missingParameter", "state")
           );
         }
 
         // Check for state mismatch
         if (!validateState(state, this.clientId, this.iv)) {
           throw IndiekitError.forbidden(
-            response.__("ForbiddenError.invalidState")
+            response.locals.__("ForbiddenError.invalidState")
           );
         }
 
@@ -155,7 +155,7 @@ export const IndieAuth = class {
         // Check that access token is valid
         if (!authorizedToken.access_token) {
           throw IndiekitError.unauthorized(
-            response.__("UnauthorizedError.invalidToken")
+            response.locals.__("UnauthorizedError.invalidToken")
           );
         }
 
@@ -170,7 +170,7 @@ export const IndieAuth = class {
       } catch (error) {
         response.status(error.status || 500);
         return response.render("session/login", {
-          title: response.__("session.login.title"),
+          title: response.locals.__("session.login.title"),
           error: error.message,
         });
       }
@@ -209,7 +209,7 @@ export const IndieAuth = class {
         // Check if token values contain a `me` value
         if (!tokenValues.me) {
           throw IndiekitError.unauthorized(
-            response.__("UnauthorizedError.invalidToken")
+            response.locals.__("UnauthorizedError.invalidToken")
           );
         }
 
@@ -217,7 +217,7 @@ export const IndieAuth = class {
         const verifiedTokenValues = verifyTokenValues(me, tokenValues);
         if (!verifiedTokenValues) {
           throw IndiekitError.forbidden(
-            response.__("ForbiddenError.invalidMe")
+            response.locals.__("ForbiddenError.invalidMe")
           );
         }
 

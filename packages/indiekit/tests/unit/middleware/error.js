@@ -8,7 +8,7 @@ const { mockRequest, mockResponse } = mockReqRes;
 
 test("Passes error onto next middleware", (t) => {
   const request = mockRequest({ accepts: () => false });
-  const response = mockResponse({ __() {} });
+  const response = mockResponse({ locals: { __() {} } });
   const next = sinon.spy();
 
   notFound(request, response, next);
@@ -32,7 +32,9 @@ test("Renders error as HTML", (t) => {
   const request = mockRequest({
     accepts: (mimeType) => mimeType.includes("html"),
   });
-  const response = mockResponse({ __() {} });
+  const response = mockResponse({
+    locals: { __() {} },
+  });
   const next = sinon.spy();
 
   internalServer(testError, request, response, next);

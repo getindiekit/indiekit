@@ -2,7 +2,9 @@ import test from "ava";
 import { getScopeItems } from "../../lib/scope.js";
 
 test("Gets `items` object for checkboxes component", (t) => {
-  const response = { __: (value) => value };
+  const response = {
+    locals: { __: (value) => value },
+  };
   const result = getScopeItems("create update", response);
 
   t.is(result.length, 5);

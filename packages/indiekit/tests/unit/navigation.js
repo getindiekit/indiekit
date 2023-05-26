@@ -34,7 +34,9 @@ test("Returns logged out navigation", (t) => {
       session: {},
     },
     {
-      __: (string) => string,
+      locals: {
+        __: (string) => string,
+      },
     }
   );
 
@@ -49,7 +51,9 @@ test("Removes navigation items that require a database", (t) => {
       session: {},
     },
     {
-      __: (string) => string,
+      locals: {
+        __: (string) => string,
+      },
     }
   );
 
@@ -67,7 +71,9 @@ test("Returns logged in navigation", (t) => {
       },
     },
     {
-      __: (string) => string,
+      locals: {
+        __: (string) => string,
+      },
     }
   );
 
@@ -84,7 +90,9 @@ test("Indicates current item in navigation", (t) => {
       },
     },
     {
-      __: (string) => string,
+      locals: {
+        __: (string) => string,
+      },
     }
   );
 

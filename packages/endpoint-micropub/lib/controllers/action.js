@@ -21,7 +21,7 @@ export const actionController = async (request, response, next) => {
     const hasScope = checkScope(scope, action);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(
-        response.__("ForbiddenError.insufficientScope"),
+        response.locals.__("ForbiddenError.insufficientScope"),
         { scope: action }
       );
     }
@@ -32,7 +32,7 @@ export const actionController = async (request, response, next) => {
     // Check for URL if not creating a new post
     if (action !== "create" && !url) {
       throw IndiekitError.badRequest(
-        response.__("BadRequestError.missingParameter", "url")
+        response.locals.__("BadRequestError.missingParameter", "url")
       );
     }
 
@@ -60,7 +60,7 @@ export const actionController = async (request, response, next) => {
         // Check for update operations
         if (!(body.replace || body.add || body.remove)) {
           throw IndiekitError.badRequest(
-            response.__(
+            response.locals.__(
               "BadRequestError.missingProperty",
               "replace, add or remove operations"
             )
@@ -72,7 +72,7 @@ export const actionController = async (request, response, next) => {
         // Draft mode: Only update posts that have `draft` post status
         if (draftMode && data.properties["post-status"] !== "draft") {
           throw IndiekitError.insufficientScope(
-            response.__("ForbiddenError.insufficientScope"),
+            response.locals.__("ForbiddenError.insufficientScope"),
             { scope: action }
           );
         }
@@ -106,14 +106,14 @@ export const actionController = async (request, response, next) => {
     // Hoist not found error to controller to localise response
     if (error.name === "NotFoundError") {
       nextError = IndiekitError.notFound(
-        response.__("NotFoundError.record", error.message)
+        response.locals.__("NotFoundError.record", error.message)
       );
     }
 
     // Hoist unsupported post type error to controller to localise response
     if (error.name === "NotImplementedError") {
       nextError = IndiekitError.notImplemented(
-        response.__("NotImplementedError.postType", error.message),
+        response.locals.__("NotImplementedError.postType", error.message),
         { uri: "https://getindiekit.com/configuration/post-types" }
       );
     }

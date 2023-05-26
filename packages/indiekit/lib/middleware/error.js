@@ -9,7 +9,9 @@ const debug = makeDebug("indiekit:error");
  * @type {import("express").RequestHandler}
  */
 export const notFound = (request, response, next) => {
-  const error = IndiekitError.notFound(response.__("NotFoundError.page"));
+  const error = IndiekitError.notFound(
+    response.locals.__("NotFoundError.page")
+  );
 
   next(error);
 };
@@ -28,7 +30,7 @@ export const internalServer = (error, request, response, next) => {
 
   if (request.accepts("html")) {
     response.render("error", {
-      title: response.__(`${error.name}.title:${error.name}`),
+      title: response.locals.__(`${error.name}.title:${error.name}`),
       content: error.message,
       name: error.name,
       stack: error.stack,

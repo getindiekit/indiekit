@@ -76,7 +76,9 @@ export const postData = {
       let nextError = error;
 
       if (error.message === "Invalid URL") {
-        nextError = IndiekitError.notFound(response.__("NotFoundError.page"));
+        nextError = IndiekitError.notFound(
+          response.locals.__("NotFoundError.page")
+        );
       }
 
       next(nextError);

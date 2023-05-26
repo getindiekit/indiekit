@@ -19,7 +19,7 @@ export const actionController = async (request, response, next) => {
     const hasScope = checkScope(scope);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(
-        response.__("ForbiddenError.insufficientScope"),
+        response.locals.__("ForbiddenError.insufficientScope"),
         { scope: action }
       );
     }
@@ -31,7 +31,7 @@ export const actionController = async (request, response, next) => {
         // Check for file in request
         if (!files || !files.file || files.file.truncated) {
           throw IndiekitError.badRequest(
-            response.__("BadRequestError.missingProperty", "file")
+            response.locals.__("BadRequestError.missingProperty", "file")
           );
         }
 
@@ -44,7 +44,7 @@ export const actionController = async (request, response, next) => {
         // Check for URL if deleting a file
         if (action === "delete" && !url) {
           throw IndiekitError.badRequest(
-            response.__("BadRequestError.missingParameter", "url")
+            response.locals.__("BadRequestError.missingParameter", "url")
           );
         }
 
@@ -69,21 +69,21 @@ export const actionController = async (request, response, next) => {
     // Hoist not found error to controller to localise response
     if (error.name === "NotFoundError") {
       nextError = IndiekitError.notFound(
-        response.__("NotFoundError.record", error.message)
+        response.locals.__("NotFoundError.record", error.message)
       );
     }
 
     // Hoist unsupported media type error to controller to localise response
     if (error.name === "UnsupportedMediaTypeError") {
       nextError = IndiekitError.unsupportedMediaType(
-        response.__("UnsupportedMediaTypeError.type", error.message)
+        response.locals.__("UnsupportedMediaTypeError.type", error.message)
       );
     }
 
     // Hoist unsupported post type error to controller to localise response
     if (error.name === "NotImplementedError") {
       nextError = IndiekitError.notImplemented(
-        response.__("NotImplementedError.postType", error.message),
+        response.locals.__("NotImplementedError.postType", error.message),
         { uri: "https://getindiekit.com/configuration/post-types" }
       );
     }

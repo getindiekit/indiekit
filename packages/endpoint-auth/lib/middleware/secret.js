@@ -8,7 +8,7 @@ import { IndiekitError } from "@indiekit/error";
 export const hasSecret = (request, response, next) => {
   if (!process.env.SECRET) {
     const error = IndiekitError.notImplemented(
-      response.__("NotImplementedError.secret")
+      response.locals.__("NotImplementedError.secret")
     );
 
     next(error);

@@ -11,7 +11,7 @@ export const deleteController = {
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-delete", {
-        title: response.__(`posts.${action}.title`),
+        title: response.locals.__(`posts.${action}.title`),
         parent: { text: postName },
       });
     }
@@ -42,7 +42,7 @@ export const deleteController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("post-delete", {
-        title: response.__(`posts.${action}.title`),
+        title: response.locals.__(`posts.${action}.title`),
         parent: { text: postName },
         error: error.message,
       });

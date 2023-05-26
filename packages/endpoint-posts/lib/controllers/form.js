@@ -14,7 +14,10 @@ export const formController = {
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-form", {
-        title: response.__(`posts.${action}.title`, postTypeName.toLowerCase()),
+        title: response.locals.__(
+          `posts.${action}.title`,
+          postTypeName.toLowerCase()
+        ),
       });
     }
 
@@ -32,7 +35,10 @@ export const formController = {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("post-form", {
-        title: response.__(`posts.${action}.title`, postTypeName.toLowerCase()),
+        title: response.locals.__(
+          `posts.${action}.title`,
+          postTypeName.toLowerCase()
+        ),
         errors: errors.mapped(),
       });
     }
@@ -81,7 +87,10 @@ export const formController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("post-form", {
-        title: response.__(`posts.${action}.title`, postTypeName.toLowerCase()),
+        title: response.locals.__(
+          `posts.${action}.title`,
+          postTypeName.toLowerCase()
+        ),
         error: error.message,
       });
     }

@@ -48,7 +48,7 @@ export const postsController = async (request, response, next) => {
                 {
                   color: status[item["post-status"]].color,
                   size: "small",
-                  text: response.__(status[item["post-status"]].text),
+                  text: response.locals.__(status[item["post-status"]].text),
                 },
               ]
             : []),
@@ -57,7 +57,7 @@ export const postsController = async (request, response, next) => {
                 {
                   color: status.deleted.color,
                   size: "small",
-                  text: response.__(status.deleted.text),
+                  text: response.locals.__(status.deleted.text),
                 },
               ]
             : []),
@@ -71,13 +71,13 @@ export const postsController = async (request, response, next) => {
      * @todo Remove requirement for private `_count` parameter
      */
     response.render("posts", {
-      title: response.__("posts.posts.title"),
+      title: response.locals.__("posts.posts.title"),
       actions: [
         scope && checkScope(scope, "create")
           ? {
               href: path.join(request.baseUrl + request.path, "/create"),
               icon: "createPost",
-              text: response.__("posts.create.action"),
+              text: response.locals.__("posts.create.action"),
             }
           : {},
       ],

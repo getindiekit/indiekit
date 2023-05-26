@@ -22,7 +22,7 @@ export const tokenController = {
         accessToken = verifyToken(bearerToken);
       } catch {
         throw IndiekitError.unauthorized(
-          response.__("UnauthorizedError.invalidToken")
+          response.locals.__("UnauthorizedError.invalidToken")
         );
       }
 

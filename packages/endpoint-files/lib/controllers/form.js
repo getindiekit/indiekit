@@ -13,7 +13,7 @@ export const formController = {
 
     if (scope.includes("create") || scope.includes("media")) {
       return response.render("file-form", {
-        title: response.__("files.upload.title"),
+        title: response.locals.__("files.upload.title"),
       });
     }
 
@@ -31,7 +31,7 @@ export const formController = {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("file-form", {
-        title: response.__("files.upload.title"),
+        title: response.locals.__("files.upload.title"),
         errors: errors.mapped(),
       });
     }
@@ -52,7 +52,7 @@ export const formController = {
     } catch (error) {
       response.status(error.status || 500);
       response.render("file-form", {
-        title: response.__("files.upload.title"),
+        title: response.locals.__("files.upload.title"),
         error: error.message,
       });
     }

@@ -37,7 +37,7 @@ export const getNavigation = (application, request, response) => {
 
   // Translate text strings
   for (const item of navigation) {
-    item.text = response.__(item.text);
+    item.text = response.locals.__(item.text);
     item.attributes = {
       "aria-current": String(request.path.startsWith(item.href)),
     };
