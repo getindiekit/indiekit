@@ -13,5 +13,5 @@ export const verifyCode = (verifier, challenge, challengeMethod = "sha256") => {
     .update(verifier)
     .digest("base64url");
 
-  return challenge === base64Digest.toString("base64url");
+  return challenge === base64Digest.toString();
 };
