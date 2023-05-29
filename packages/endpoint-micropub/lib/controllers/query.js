@@ -25,7 +25,7 @@ export const queryController = async (request, response, next) => {
     }
 
     // `category` param is used to query `categories` configuration property
-    q = q === "category" ? "categories" : q;
+    q = q === "category" ? "categories" : String(q);
 
     switch (q) {
       case "config": {
