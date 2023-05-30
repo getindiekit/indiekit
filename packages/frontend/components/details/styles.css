@@ -33,7 +33,8 @@
 .details__main:not(#fieldset) {
   border-inline-start: var(--border-width-thickest) solid var(--color-outline);
   margin-block-start: var(--space-s);
-  padding-inline-start: var(--space-m);
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-m);
 
   & pre {
     border-inline-start: none;
