@@ -23,7 +23,7 @@ test("Returns 500 error creating post", async (t) => {
   ).textContent;
 
   t.is(response.status, 500);
-  t.is(result, "Test store: Unauthorized");
+  t.regex(result, /\bTest store: Unauthorized\b/g);
 
   server.close(t);
 });

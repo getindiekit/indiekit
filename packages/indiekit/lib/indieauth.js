@@ -100,6 +100,7 @@ export const IndieAuth = class {
         return response.status(401).render("session/login", {
           title: response.locals.__("session.login.title"),
           error: error.message,
+          error_details: error.stack,
         });
       }
     };
@@ -172,6 +173,7 @@ export const IndieAuth = class {
         return response.render("session/login", {
           title: response.locals.__("session.login.title"),
           error: error.message,
+          error_details: error.stack,
         });
       }
     };

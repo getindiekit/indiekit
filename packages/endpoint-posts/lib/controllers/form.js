@@ -92,6 +92,7 @@ export const formController = {
           postTypeName.toLowerCase()
         ),
         error: error.message,
+        error_details: error.stack,
       });
     }
   },

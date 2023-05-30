@@ -42,6 +42,7 @@ export const deleteController = {
         title: response.locals.__("files.delete.title"),
         parent: { text: fileName },
         error: error.message,
+        error_details: error.stack,
       });
     }
   },

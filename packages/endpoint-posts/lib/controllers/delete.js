@@ -45,6 +45,7 @@ export const deleteController = {
         title: response.locals.__(`posts.${action}.title`),
         parent: { text: postName },
         error: error.message,
+        error_details: error.stack,
       });
     }
   },
