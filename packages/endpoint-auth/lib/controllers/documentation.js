@@ -7,6 +7,7 @@ export const documentationController = (error, request, response, next) => {
     response.render("auth", {
       title: response.locals.__("auth.guidance.title"),
       error: error.message,
+      error_details: error.stack,
     });
   } else if (request.accepts("json")) {
     return next(error);

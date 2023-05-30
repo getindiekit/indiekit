@@ -17,9 +17,9 @@ test("Returns 400 error publishing post", async (t) => {
   const result = dom.window.document;
 
   t.is(response.status, 400);
-  t.is(
+  t.regex(
     result.querySelector(".notification--error p").textContent,
-    "No bearer token provided by request"
+    /\bNo bearer token provided by request\b/g
   );
 
   server.close(t);
