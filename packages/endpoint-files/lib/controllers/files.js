@@ -9,19 +9,17 @@ import { getFileId, getFileName } from "../utils.js";
 export const filesController = async (request, response, next) => {
   try {
     const { application } = request.app.locals;
-    const { scope } = request.session;
-    const { access_token } = request.session;
-
-    let { page, limit, offset, success } = request.query;
-    page = Number.parseInt(page, 10) || 1;
-    limit = Number.parseInt(limit, 10) || 20;
-    offset = Number.parseInt(offset, 10) || (page - 1) * limit;
+    const { access_token, scope } = request.session;
+    const { success } = request.query;
+    const page = Number(request.query.page) || 1;
+    const limit = Number(request.query.limit) || 20;
+    const offset = Number(request.query.offset) || (page - 1) * limit;
 
     const mediaUrl = new URL(application.mediaEndpoint);
     mediaUrl.searchParams.append("q", "source");
-    mediaUrl.searchParams.append("page", page);
-    mediaUrl.searchParams.append("limit", limit);
-    mediaUrl.searchParams.append("offset", offset);
+    mediaUrl.searchParams.append("page", String(page));
+    mediaUrl.searchParams.append("limit", String(limit));
+    mediaUrl.searchParams.append("offset", String(offset));
 
     const mediaResponse = await endpoint.get(mediaUrl.href, access_token);
 
