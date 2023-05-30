@@ -11,13 +11,10 @@ export const queryController = async (request, response, next) => {
 
   try {
     const config = getConfig(application, publication);
-
-    let { page, limit, offset } = request.query;
-    page = Number.parseInt(page, 10) || 1;
-    limit = Number.parseInt(limit, 10) || 40;
-    offset = Number.parseInt(offset, 10) || (page - 1) * limit;
-
+    const limit = Number(request.query.limit) || 0;
+    const offset = Number(request.query.offset) || 0;
     let { filter, properties, q, url } = request.query;
+
     if (!q) {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.missingParameter", "q")
@@ -79,14 +76,14 @@ export const queryController = async (request, response, next) => {
           response.json({
             [q]: queryConfig(config[q], { filter, limit, offset }),
           });
+        } else {
+          throw IndiekitError.notImplemented(
+            response.locals.__("NotImplementedError.query", {
+              key: "q",
+              value: q,
+            })
+          );
         }
-
-        throw IndiekitError.notImplemented(
-          response.locals.__("NotImplementedError.query", {
-            key: "q",
-            value: q,
-          })
-        );
       }
     }
   } catch (error) {
