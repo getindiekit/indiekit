@@ -42,6 +42,9 @@ export const getConfig = (application, publication) => {
  * Query config value
  * @param {Array} property - Property to query
  * @param {object} options - List options (filter, limit, offset)
+ * @param {*} [options.filter] - Value to filter items by
+ * @param {number} [options.limit] - Limit of items to return
+ * @param {number} [options.offset] - Offset to start limit of items
  * @returns {Array} Updated config property
  */
 export const queryConfig = (property, options) => {
