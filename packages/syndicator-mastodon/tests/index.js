@@ -71,6 +71,20 @@ test("Throws error getting syndicated URL if no server URL provided", async (t) 
   });
 });
 
+test("Throws error getting username if no username provided", (t) => {
+  const mastodonNoUser = new MastodonSyndicator({
+    accessToken: "token",
+    url: t.context.instanceUrl,
+  });
+
+  t.throws(
+    () => {
+      mastodonNoUser.info.name();
+    },
+    { message: "Mastodon user name required" }
+  );
+});
+
 test("Throws error getting syndicated URL if no access token provided", async (t) => {
   nock(t.context.instanceUrl)
     .post("/api/v1/statuses")

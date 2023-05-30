@@ -34,9 +34,17 @@ export default class MastodonSyndicator {
     throw new Error("Mastodon server URL required");
   }
 
+  get #user() {
+    if (this.options.user) {
+      return `@${this.options.user.replace("@", "")}`;
+    }
+
+    throw new Error("Mastodon user name required");
+  }
+
   get info() {
-    let { checked, user } = this.options;
-    user = `@${user.replace("@", "")}`;
+    const { checked } = this.options;
+    const user = this.#user;
     const url = this.#url;
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
 
