@@ -13,17 +13,16 @@ export const postsController = async (request, response, next) => {
   try {
     const { application, publication } = request.app.locals;
     const { scope } = request.session;
-
-    let { page, limit, offset, success } = request.query;
-    page = Number.parseInt(page, 10) || 1;
-    limit = Number.parseInt(limit, 10) || 12;
-    offset = Number.parseInt(offset, 10) || (page - 1) * limit;
+    const { success } = request.query;
+    const page = Number(request.query.page) || 1;
+    const limit = Number(request.query.limit) || 12;
+    const offset = Number(request.query.offset) || (page - 1) * limit;
 
     const micropubUrl = new URL(application.micropubEndpoint);
     micropubUrl.searchParams.append("q", "source");
-    micropubUrl.searchParams.append("page", page);
-    micropubUrl.searchParams.append("limit", limit);
-    micropubUrl.searchParams.append("offset", offset);
+    micropubUrl.searchParams.append("page", String(page));
+    micropubUrl.searchParams.append("limit", String(limit));
+    micropubUrl.searchParams.append("offset", String(offset));
 
     const micropubResponse = await endpoint.get(
       micropubUrl.href,
