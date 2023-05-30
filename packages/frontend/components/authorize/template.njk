@@ -1,6 +1,6 @@
 {% set clientLink = opts.client.name | friendlyUrl | linkTo(opts.client.url) %}
 {% set meLink = opts.me | friendlyUrl | replace("/", "/<wbr>") | linkTo(opts.me) %}
-<p class="{{ classes("authorize", opts.classes) }} s-flow"
+<p class="{{ classes("authorize", opts) }} s-flow"
   {{- attributes(opts.attributes) }}>
   {% if opts.client.logo %}
   <a class="authorize__client" href="{{ opts.client.url }}">
