@@ -152,7 +152,7 @@
       }
     },
     items: syndicationTargetItems
-  }) | indent(2) }}
+  }) | indent(2) if syndicationTargetItems.length }}
 
   {% call details({
     open: showAdvancedOptions,
