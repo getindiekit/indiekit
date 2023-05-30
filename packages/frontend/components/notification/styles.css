@@ -1,5 +1,6 @@
 .notification {
   --anchor-color: currentcolor;
+  --anchor-color-hover: currentcolor;
   background-color: var(--color-notification);
   color: var(--color-on-notification);
 }
@@ -22,9 +23,6 @@
 }
 
 .notification__container {
-  align-items: baseline;
-  display: flex;
-  gap: var(--space-s);
   padding-block: var(--space-m);
 }
 
@@ -34,4 +32,20 @@
 
 .notification__text {
   --prose-font: var(--font-caption);
+}
+
+.notification__details {
+  --color-outline: currentcolor;
+  --font-label: var(--font-caption);
+  --prose-font: var(--font-code);
+
+  & .details__summary {
+    padding-block: 0;
+  }
+
+  & .details__main {
+    background-color: var(--color-shadow);
+    overflow: scroll;
+    white-space: nowrap;
+  }
 }
