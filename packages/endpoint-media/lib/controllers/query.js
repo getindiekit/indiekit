@@ -8,12 +8,10 @@ export const queryController = async (request, response, next) => {
   const { application, publication } = request.app.locals;
 
   try {
-    let { page, limit, offset } = request.query;
-    page = Number.parseInt(page, 10) || 1;
-    limit = Number.parseInt(limit, 10) || 18;
-    offset = Number.parseInt(offset, 10) || (page - 1) * limit;
-
+    const limit = Number(request.query.limit) || 0;
+    const offset = Number(request.query.offset) || 0;
     const { q, url } = request.query;
+
     if (!q) {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.missingParameter", "q")
