@@ -28,8 +28,17 @@ export default class TwitterSyndicator {
     this.options = { ...defaults, ...options };
   }
 
+  get #user() {
+    if (this.options.user) {
+      return this.options.user;
+    }
+
+    throw new Error("Twitter user name required");
+  }
+
   get info() {
-    const { checked, user } = this.options;
+    const { checked } = this.options;
+    const user = this.#user;
 
     return {
       checked,

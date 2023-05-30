@@ -57,6 +57,22 @@ test("Returns syndicated URL", async (t) => {
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
 });
 
+test("Throws error getting username if no username provided", (t) => {
+  const twitterNoUser = new TwitterSyndicator({
+    accessToken: "ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789",
+    accessTokenSecret: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN",
+    apiKey: "0123456789abcdefghijklmno",
+    apiKeySecret: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789",
+  });
+
+  t.throws(
+    () => {
+      twitterNoUser.info.name();
+    },
+    { message: "Twitter user name required" }
+  );
+});
+
 test("Throws error getting syndicated URL with no API keys", async (t) => {
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
