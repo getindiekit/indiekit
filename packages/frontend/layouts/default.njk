@@ -66,7 +66,8 @@
 <main class="{{ mainClasses }}" id="main"{% if mainControllers %} data-controller="{{ mainControllers }}"{% endif %}>
 {{- notification({
   type: ("error" if error) or ("success" if success),
-  text: (error if error) or (success if success) or notice
+  text: (error if error) or (success if success) or notice,
+  details: (error_details if error_details) or (success_details if success_details)
 }) if error or success or notice }}
 {{- backLink({
   href: back
