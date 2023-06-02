@@ -26,8 +26,8 @@ export const queryController = async (request, response, next) => {
           );
         }
 
-        // Return properties for a given source URL
         if (url) {
+          // Return properties for a given URL
           const item = await publication.media.findOne(
             { "properties.url": url },
             {
@@ -47,26 +47,26 @@ export const queryController = async (request, response, next) => {
           }
 
           response.json(item.properties);
+        } else {
+          // Return properties for all previously uploaded files
+          const files = await publication.media
+            .find()
+            .project({
+              "properties.content-type": 1,
+              "properties.post-type": 1,
+              "properties.published": 1,
+              "properties.url": 1,
+            })
+            .sort({ "properties.published": -1 })
+            .skip(offset)
+            .limit(limit)
+            .toArray();
+
+          response.json({
+            _count: await publication.media.countDocuments(),
+            items: files.map((media) => media.properties),
+          });
         }
-
-        // Return properties for previously uploaded files
-        const files = await publication.media
-          .find()
-          .project({
-            "properties.content-type": 1,
-            "properties.post-type": 1,
-            "properties.published": 1,
-            "properties.url": 1,
-          })
-          .sort({ "properties.published": -1 })
-          .skip(offset)
-          .limit(limit)
-          .toArray();
-
-        response.json({
-          _count: await publication.media.countDocuments(),
-          items: files.map((media) => media.properties),
-        });
 
         break;
       }
