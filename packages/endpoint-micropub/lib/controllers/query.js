@@ -38,8 +38,8 @@ export const queryController = async (request, response, next) => {
           );
         }
 
-        // Return mf2 for a given source URL (optionally filtered by properties)
         if (url) {
+          // Return mf2 for a given URL (optionally filtered by properties)
           const item = await publication.posts.findOne({
             "properties.url": url,
           });
@@ -52,20 +52,20 @@ export const queryController = async (request, response, next) => {
 
           const mf2 = jf2ToMf2(item.properties);
           response.json(getMf2Properties(mf2, properties));
+        } else {
+          // Return mf2 for all previously published posts
+          const posts = await publication.posts
+            .find()
+            .sort({ "properties.published": -1 })
+            .skip(offset)
+            .limit(limit)
+            .toArray();
+
+          response.json({
+            _count: await publication.posts.countDocuments(),
+            items: posts.map((post) => jf2ToMf2(post.properties)),
+          });
         }
-
-        // Return mf2 for previously published posts
-        const posts = await publication.posts
-          .find()
-          .sort({ "properties.published": -1 })
-          .skip(offset)
-          .limit(limit)
-          .toArray();
-
-        response.json({
-          _count: await publication.posts.countDocuments(),
-          items: posts.map((post) => jf2ToMf2(post.properties)),
-        });
 
         break;
       }
