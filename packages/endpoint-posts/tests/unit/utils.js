@@ -3,32 +3,38 @@ import {
   getLocationProperty,
   getPostId,
   getPostName,
+  getPostStatusBadges,
   getPostTypeName,
   getPostUrl,
   getSyndicateToItems,
 } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
-  t.context.publication = {
-    postTypes: [
-      {
-        type: "article",
-        name: "Journal entry",
-      },
-    ],
-    syndicationTargets: [
-      {
-        info: {
-          service: {
-            name: "Twitter",
+  t.context = {
+    publication: {
+      postTypes: [
+        {
+          type: "article",
+          name: "Journal entry",
+        },
+      ],
+      syndicationTargets: [
+        {
+          info: {
+            service: {
+              name: "Twitter",
+            },
+            uid: "https://twitter.com/username",
           },
-          uid: "https://twitter.com/username",
+          options: {
+            checked: true,
+          },
         },
-        options: {
-          checked: true,
-        },
-      },
-    ],
+      ],
+    },
+    response: {
+      locals: { __: (value) => value },
+    },
   };
 });
 
@@ -58,6 +64,26 @@ test("Gets post type name as fallback for post name", (t) => {
   const post = { "post-type": "article" };
 
   t.is(getPostName(t.context.publication, post), "Journal entry");
+});
+
+test("Gets post status badges", (t) => {
+  const post = {
+    deleted: true,
+    "post-status": "unlisted",
+  };
+
+  t.deepEqual(getPostStatusBadges(post, t.context.response), [
+    {
+      color: "offset-purple",
+      size: "small",
+      text: "posts.status.unlisted",
+    },
+    {
+      color: "red",
+      size: "small",
+      text: "posts.status.deleted",
+    },
+  ]);
 });
 
 test("Gets post type name (or an empty string)", (t) => {

@@ -2,6 +2,7 @@ import { Buffer } from "node:buffer";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
 import { endpoint } from "./endpoint.js";
+import { status } from "./status.js";
 
 export const LAT_LONG_RE =
   /^(?<latitude>(?:-?|\+?)?\d+(?:\.\d+)?),\s*(?<longitude>(?:-?|\+?)?\d+(?:\.\d+)?)$/;
@@ -22,6 +23,35 @@ export const getLocationProperty = (geo) => {
       decimalPlaces: 2,
     }),
   };
+};
+
+/**
+ * Get post status badges
+ * @param {object} post - Post
+ * @param {import("express").Response} response - Response
+ * @returns {Array} Badges
+ */
+export const getPostStatusBadges = (post, response) => {
+  const badges = [];
+
+  if (post["post-status"]) {
+    const statusType = post["post-status"];
+    badges.push({
+      color: status[statusType].color,
+      size: "small",
+      text: response.locals.__(status[statusType].text),
+    });
+  }
+
+  if (post.deleted) {
+    badges.push({
+      color: status.deleted.color,
+      size: "small",
+      text: response.locals.__(status.deleted.text),
+    });
+  }
+
+  return badges;
 };
 
 /**

@@ -3,7 +3,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { endpoint } from "../endpoint.js";
 import { status } from "../status.js";
-import { getPostId, getPostName } from "../utils.js";
+import { getPostStatusBadges, getPostId, getPostName } from "../utils.js";
 
 /**
  * List previously published posts
@@ -41,26 +41,7 @@ export const postsController = async (request, response, next) => {
         item.description = item.summary || item.content?.text;
         item.title = getPostName(publication, item);
         item.url = path.join(request.baseUrl, request.path, item.id);
-        item.badges = [
-          ...(item["post-status"]
-            ? [
-                {
-                  color: status[item["post-status"]].color,
-                  size: "small",
-                  text: response.locals.__(status[item["post-status"]].text),
-                },
-              ]
-            : []),
-          ...(item.deleted
-            ? [
-                {
-                  color: status.deleted.color,
-                  size: "small",
-                  text: response.locals.__(status.deleted.text),
-                },
-              ]
-            : []),
-        ];
+        item.badges = getPostStatusBadges(item, response);
 
         return item;
       });
