@@ -69,10 +69,6 @@
   display: block;
 }
 
-.pagination__results {
-  margin-block-start: var(--space-s);
-}
-
 /**
  * Block variant
  * Position previous and next links above and below numbers
