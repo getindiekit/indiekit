@@ -3,6 +3,7 @@
 <span class="-!-visually-hidden">:</span>
 <span class="pagination__link-label">{{ label }}</span>
 {%- endmacro %}
+{% if opts.previous or opts.next %}
 <nav class="{{ classes("pagination", opts) }}" aria-label="{{ type }} navigation">
   <ul class="pagination__list" role="list">
     {% if opts.previous %}
@@ -38,3 +39,4 @@
     {% endif %}
   </ul>
 </nav>
+{%- endif %}
