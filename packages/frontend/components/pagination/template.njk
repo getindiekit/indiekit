@@ -37,26 +37,4 @@
     </li>
     {% endif %}
   </ul>
-  {% if opts.results %}
-  <p class="pagination__results">
-    {#-
-      Using markdown and replace filters to output <b> elements because
-      concatenated values cannot be rendered as safe strings.
-    -#}
-    {%- if opts.results.from === opts.results.to -%}
-      {{ __("pagination.result", {
-        from: "**" + opts.results.from + "**",
-        count: "**" + opts.results.count + "**",
-        type: type
-      }) | markdown("inline") | replace("strong", "b") | safe }}
-    {%- else -%}
-      {{ __("pagination.results", {
-        from: "**" + opts.results.from + "**",
-        to: "**" + opts.results.to + "**",
-        count: "**" + opts.results.count + "**",
-        type: type
-      }) | markdown("inline") | replace("strong", "b") | safe }}
-    {%- endif -%}
-  </p>
-  {% endif %}
 </nav>
