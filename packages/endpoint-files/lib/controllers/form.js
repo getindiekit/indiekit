@@ -53,8 +53,7 @@ export const formController = {
       response.status(error.status || 500);
       response.render("file-form", {
         title: response.locals.__("files.upload.title"),
-        error: error.message,
-        error_details: error.stack,
+        error,
       });
     }
   },

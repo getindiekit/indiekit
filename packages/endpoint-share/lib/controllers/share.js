@@ -68,8 +68,7 @@ export const shareController = {
         content,
         name,
         bookmarkOf,
-        error: error.message,
-        error_details: error.stack,
+        error,
         minimalui: request.params.path === "bookmarklet",
       });
     }

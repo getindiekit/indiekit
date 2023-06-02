@@ -91,8 +91,7 @@ export const formController = {
           `posts.${action}.title`,
           postTypeName.toLowerCase()
         ),
-        error: error.message,
-        error_details: error.stack,
+        error,
       });
     }
   },
