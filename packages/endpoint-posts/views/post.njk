@@ -19,26 +19,26 @@
 
 {% block content %}
   {{ badge({
-    color: status.deleted.color,
-    text: __(status.deleted.text)
+    color: statusTypes.deleted.color,
+    text: __(statusTypes.deleted.text)
   }) if post.deleted }}
 
   {{ badge({
-    color: status[postStatus].color,
-    text: __(status[postStatus].text)
+    color: statusTypes[postStatus].color,
+    text: __(statusTypes[postStatus].text)
   }) if postStatus }}
 
   {{ badge({
-    color: status[post.visibility].color,
-    icon: status[post.visibility].icon,
-    text: __(status[post.visibility].text)
-  }) if postStatus === "published" and status[post.visibility] }}
+    color: statusTypes[post.visibility].color,
+    icon: statusTypes[post.visibility].icon,
+    text: __(statusTypes[post.visibility].text)
+  }) if postStatus === "published" and statusTypes[post.visibility] }}
 
   {{ badge({
-    color: status.syndicated.color,
-    icon: status.syndicated.icon,
-    text: __(status.syndicated.text)
-  }) if postStatus === "published" and post.syndication and status.syndicated }}
+    color: statusTypes.syndicated.color,
+    icon: statusTypes.syndicated.icon,
+    text: __(statusTypes.syndicated.text)
+  }) if postStatus === "published" and post.syndication and statusTypes.syndicated }}
 
   {{ prose({ html: postHtml + postMedia }) }}
 

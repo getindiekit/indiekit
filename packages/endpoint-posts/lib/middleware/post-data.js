@@ -1,6 +1,6 @@
 import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
-import { status } from "../status.js";
+import { statusTypes } from "../status-types.js";
 import {
   getPostData,
   getPostName,
@@ -67,7 +67,7 @@ export const postData = {
         scope,
         showAdvancedOptions: true,
         syndicationTargetItems: getSyndicateToItems(publication),
-        status,
+        statusTypes,
         ...response.locals,
       };
 

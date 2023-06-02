@@ -1,4 +1,4 @@
-export const status = {
+export const statusTypes = {
   deleted: {
     color: "red",
     text: "posts.status.deleted",

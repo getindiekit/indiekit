@@ -2,7 +2,7 @@ import { Buffer } from "node:buffer";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
 import { endpoint } from "./endpoint.js";
-import { status } from "./status.js";
+import { statusTypes } from "./status-types.js";
 
 export const LAT_LONG_RE =
   /^(?<latitude>(?:-?|\+?)?\d+(?:\.\d+)?),\s*(?<longitude>(?:-?|\+?)?\d+(?:\.\d+)?)$/;
@@ -37,17 +37,17 @@ export const getPostStatusBadges = (post, response) => {
   if (post["post-status"]) {
     const statusType = post["post-status"];
     badges.push({
-      color: status[statusType].color,
+      color: statusTypes[statusType].color,
       size: "small",
-      text: response.locals.__(status[statusType].text),
+      text: response.locals.__(statusTypes[statusType].text),
     });
   }
 
   if (post.deleted) {
     badges.push({
-      color: status.deleted.color,
+      color: statusTypes.deleted.color,
       size: "small",
-      text: response.locals.__(status.deleted.text),
+      text: response.locals.__(statusTypes.deleted.text),
     });
   }
 
