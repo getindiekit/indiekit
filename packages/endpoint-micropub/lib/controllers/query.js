@@ -1,6 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { getConfig, queryConfig } from "../config.js";
 import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
+import { getCursor } from "../pagination.js";
 
 /**
  * Query previously published posts
@@ -13,7 +14,7 @@ export const queryController = async (request, response, next) => {
     const config = getConfig(application, publication);
     const limit = Number(request.query.limit) || 0;
     const offset = Number(request.query.offset) || 0;
-    let { filter, properties, q, url } = request.query;
+    let { after, before, filter, properties, q, url } = request.query;
 
     if (!q) {
       throw IndiekitError.badRequest(
@@ -53,17 +54,20 @@ export const queryController = async (request, response, next) => {
           const mf2 = jf2ToMf2(item.properties);
           response.json(getMf2Properties(mf2, properties));
         } else {
-          // Return mf2 for all previously published posts
-          const posts = await application.posts
-            .find()
-            .sort({ "properties.published": -1 })
-            .skip(offset)
-            .limit(limit)
-            .toArray();
+          // Return mf2 for previously published posts
+          const cursor = await getCursor(
+            application.posts,
+            after,
+            before,
+            limit
+          );
 
           response.json({
-            _count: await application.posts.countDocuments(),
-            items: posts.map((post) => jf2ToMf2(post.properties)),
+            items: cursor.items.map((post) => jf2ToMf2(post.properties)),
+            paging: {
+              ...(cursor.hasNext && { after: cursor.lastItem }),
+              ...(cursor.hasPrev && { before: cursor.firstItem }),
+            },
           });
         }
 
