@@ -109,7 +109,7 @@ postTemplate(properties) {
 
 This would then generate the following file:
 
-```text
+```txt
 ---
 Date: 2020-02-02
 ---
