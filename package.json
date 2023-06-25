@@ -64,7 +64,7 @@
     "@types/express-fileupload": "^1.4.1",
     "@types/lodash": "^4.14.195",
     "ava": "^5.0.0",
-    "c8": "^7.8.0",
+    "c8": "^8.0.0",
     "cookie-session": "^2.0.0",
     "create-indiekit": "*",
     "eslint-plugin-jsdoc": "^46.0.0",
