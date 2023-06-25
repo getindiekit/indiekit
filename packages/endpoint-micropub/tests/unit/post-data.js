@@ -10,9 +10,7 @@ test.beforeEach((t) => {
       name: "Foo",
       "mp-slug": "foo",
     },
-    publication: {
-      me: "https://website.example",
-      postTypes: new JekyllPreset().postTypes,
+    application: {
       posts: {
         aggregate: () => ({
           toArray: async () => [],
@@ -41,12 +39,17 @@ test.beforeEach((t) => {
         async replaceOne() {},
       },
     },
+    publication: {
+      me: "https://website.example",
+      postTypes: new JekyllPreset().postTypes,
+    },
     url: "https://website.example/foo",
   };
 });
 
 test("Creates post data", async (t) => {
   const result = await postData.create(
+    t.context.application,
     t.context.publication,
     t.context.properties
   );
@@ -61,13 +64,17 @@ test("Throws error creating post data for non-configured post type", async (t) =
   t.context.publication.postTypes = [];
 
   await t.throwsAsync(
-    postData.create(t.context.publication, t.context.properties),
+    postData.create(
+      t.context.application,
+      t.context.publication,
+      t.context.properties
+    ),
     { message: "note" }
   );
 });
 
 test("Reads post data", async (t) => {
-  const result = await postData.read(t.context.publication, t.context.url);
+  const result = await postData.read(t.context.application, t.context.url);
 
   t.is(result.properties["post-type"], "note");
   t.is(result.properties.url, "https://website.example/foo");
@@ -76,6 +83,7 @@ test("Reads post data", async (t) => {
 test("Updates post by adding properties", async (t) => {
   const operation = { add: { syndication: ["http://website.example"] } };
   const result = await postData.update(
+    t.context.application,
     t.context.publication,
     t.context.url,
     operation
@@ -87,6 +95,7 @@ test("Updates post by adding properties", async (t) => {
 test("Updates post by replacing properties", async (t) => {
   const operation = { replace: { content: ["hello moon"] } };
   const result = await postData.update(
+    t.context.application,
     t.context.publication,
     t.context.url,
     operation
@@ -101,6 +110,7 @@ test("Updates post by replacing properties", async (t) => {
 test("Updates post by deleting entries", async (t) => {
   const operation = { delete: { category: ["foo"] } };
   const result = await postData.update(
+    t.context.application,
     t.context.publication,
     t.context.url,
     operation
@@ -112,6 +122,7 @@ test("Updates post by deleting entries", async (t) => {
 test("Updates post by deleting properties", async (t) => {
   const operation = { delete: ["category"] };
   const result = await postData.update(
+    t.context.application,
     t.context.publication,
     t.context.url,
     operation
@@ -131,6 +142,7 @@ test("Updates post by adding, deleting and updating properties", async (t) => {
     delete: ["mp-syndicate-to"],
   };
   const result = await postData.update(
+    t.context.application,
     t.context.publication,
     t.context.url,
     operation
@@ -149,6 +161,7 @@ test("Throws error updating post data if no record available", async (t) => {
 
   await t.throwsAsync(
     postData.update(
+      t.context.application,
       t.context.publication,
       "https://website.example/bar",
       operation

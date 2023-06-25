@@ -40,7 +40,7 @@ export const queryController = async (request, response, next) => {
 
         if (url) {
           // Return mf2 for a given URL (optionally filtered by properties)
-          const item = await publication.posts.findOne({
+          const item = await application.posts.findOne({
             "properties.url": url,
           });
 
@@ -54,7 +54,7 @@ export const queryController = async (request, response, next) => {
           response.json(getMf2Properties(mf2, properties));
         } else {
           // Return mf2 for all previously published posts
-          const posts = await publication.posts
+          const posts = await application.posts
             .find()
             .sort({ "properties.published": -1 })
             .skip(offset)
@@ -62,7 +62,7 @@ export const queryController = async (request, response, next) => {
             .toArray();
 
           response.json({
-            _count: await publication.posts.countDocuments(),
+            _count: await application.posts.countDocuments(),
             items: posts.map((post) => jf2ToMf2(post.properties)),
           });
         }

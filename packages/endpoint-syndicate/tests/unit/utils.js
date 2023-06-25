@@ -7,7 +7,7 @@ import {
 
 test.beforeEach((t) => {
   t.context = {
-    publication: {
+    application: {
       posts: {
         find: () => ({
           sort: () => ({
@@ -35,6 +35,8 @@ test.beforeEach((t) => {
         async replaceOne() {},
         async updateOne() {},
       },
+    },
+    publication: {
       syndicationTargets: [
         {
           info: {
@@ -48,13 +50,13 @@ test.beforeEach((t) => {
 });
 
 test("Gets post for given URL from database", async (t) => {
-  const result = await getPostData(t.context.publication, t.context.url);
+  const result = await getPostData(t.context.application, t.context.url);
 
   t.is(result.properties["mp-syndicate-to"], "https://social.example/");
 });
 
 test("Gets post data from database", async (t) => {
-  const result = await getPostData(t.context.publication);
+  const result = await getPostData(t.context.application);
 
   t.is(result.properties["mp-syndicate-to"], "https://social.example/");
 });

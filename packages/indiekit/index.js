@@ -53,8 +53,8 @@ export const Indiekit = class {
         store: new KeyvMongoDB({ db: database }),
         ttl: this.application.ttl,
       });
-      this.publication.posts = database.collection("posts");
-      this.publication.media = database.collection("media");
+      this.application.posts = database.collection("posts");
+      this.application.media = database.collection("media");
     }
 
     // Update application configuration

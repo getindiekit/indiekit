@@ -5,12 +5,14 @@ import { getFileProperties, getMediaType } from "./file.js";
 export const mediaData = {
   /**
    * Create media data
+   * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {object} file - File
    * @returns {Promise<object>} Media data
    */
-  async create(publication, file) {
-    const { me, media, postTypes } = publication;
+  async create(application, publication, file) {
+    const { media } = application;
+    const { me, postTypes } = publication;
 
     // Media properties
     const properties = await getFileProperties(publication, file);
@@ -54,12 +56,12 @@ export const mediaData = {
 
   /**
    * Read media data
-   * @param {object} publication - Publication configuration
+   * @param {object} application - Application configuration
    * @param {string} url - URL of existing media
    * @returns {Promise<object>} Media data
    */
-  async read(publication, url) {
-    const { media } = publication;
+  async read(application, url) {
+    const { media } = application;
     const query = { "properties.url": url };
 
     const mediaData = await media.findOne(query);
@@ -72,12 +74,12 @@ export const mediaData = {
 
   /**
    * Delete media data
-   * @param {object} publication - Publication configuration
+   * @param {object} application - Application configuration
    * @param {string} url - URL of existing post
    * @returns {Promise<boolean>} Media data deleted
    */
-  async delete(publication, url) {
-    const { media } = publication;
+  async delete(application, url) {
+    const { media } = application;
     const query = { "properties.url": url };
 
     const result = await media.deleteOne(query);
