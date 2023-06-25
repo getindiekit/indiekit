@@ -46,8 +46,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(gitlab.prompts[0].message, "Where is GitLab hosted?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   gitlab.init(indiekit);
 
   t.is(indiekit.publication.store.info.name, "username/repo on GitLab");

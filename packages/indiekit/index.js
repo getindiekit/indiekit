@@ -12,14 +12,24 @@ import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 
 export const Indiekit = class {
-  constructor(options = {}) {
-    this.config = getIndiekitConfig({
-      config: options.config,
-      configFilePath: options.configFilePath,
-    });
+  /**
+   * @private
+   * @param {object} config - Indiekit configuration
+   */
+  constructor(config) {
+    this.config = config;
     this.application = this.config.application;
     this.plugins = this.config.plugins;
     this.publication = this.config.publication;
+  }
+
+  static async initialize(options = {}) {
+    const config = await getIndiekitConfig({
+      config: options.config,
+      configFilePath: options.configFilePath,
+    });
+
+    return new Indiekit(config);
   }
 
   addEndpoint(endpoint) {

@@ -28,8 +28,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(gitea.prompts[0].message, "Where is Gitea hosted?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   gitea.init(indiekit);
 
   t.is(indiekit.publication.store.info.name, "username/repo on Gitea");

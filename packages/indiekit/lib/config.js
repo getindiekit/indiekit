@@ -1,19 +1,19 @@
 import deepmerge from "deepmerge";
-import { cosmiconfigSync } from "cosmiconfig";
+import { cosmiconfig } from "cosmiconfig";
 import { defaultConfig } from "../config/defaults.js";
 
 /**
  * Get user configuration values from package.json or configuration file
  * @access private
  * @param {string} configFilePath - Explicity declared configuration file path
- * @returns {object} User configuration
- * @see {@link https://github.com/davidtheclark/cosmiconfig#readme}
+ * @returns {Promise<object>} User configuration
+ * @see {@link https://github.com/cosmiconfig/cosmiconfig#readme}
  */
-function _getUserConfig(configFilePath) {
-  const explorerSync = cosmiconfigSync("indiekit");
-  const result = configFilePath
-    ? explorerSync.load(configFilePath)
-    : explorerSync.search();
+async function _getUserConfig(configFilePath) {
+  const explorer = await cosmiconfig("indiekit");
+  const result = await (configFilePath
+    ? explorer.load(configFilePath)
+    : explorer.search());
 
   return result.config;
 }
@@ -23,11 +23,11 @@ function _getUserConfig(configFilePath) {
  * @param {object} options - Options
  * @param {object} options.config - Configuration object
  * @param {string} options.configFilePath - Configuration file path
- * @returns {object} Combined configuration
+ * @returns {Promise<object>} Combined configuration
  */
-export function getIndiekitConfig(options) {
+export async function getIndiekitConfig(options) {
   const { config, configFilePath } = options;
-  const userConfig = config || _getUserConfig(configFilePath);
+  const userConfig = config || (await _getUserConfig(configFilePath));
   const mergedConfig = deepmerge(defaultConfig, userConfig);
 
   return mergedConfig;

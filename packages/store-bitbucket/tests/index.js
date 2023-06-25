@@ -23,8 +23,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(bitbucket.prompts[0].message, "What is your Bitbucket username?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   bitbucket.init(indiekit);
 
   t.is(indiekit.publication.store.info.name, "username/repo on Bitbucket");

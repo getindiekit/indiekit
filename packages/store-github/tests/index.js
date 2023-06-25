@@ -21,8 +21,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(github.prompts[0].message, "What is your GitHub username?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   github.init(indiekit);
 
   t.is(indiekit.publication.store.info.name, "user/repo on GitHub");

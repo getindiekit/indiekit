@@ -15,7 +15,7 @@ test("Gets custom post template", (t) => {
 
 test("Gets preset post template", async (t) => {
   const config = await testConfig();
-  const indiekit = new Indiekit({ config });
+  const indiekit = await Indiekit.initialize({ config });
   const { publication } = await indiekit.bootstrap();
   const postTemplate = getPostTemplate(publication);
   const result = postTemplate({ published: "2021-01-21" });

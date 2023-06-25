@@ -22,8 +22,8 @@ test("Gets plug-in installation prompts", (t) => {
   );
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   fileSystem.init(indiekit);
 
   t.is(indiekit.publication.store.info.name, "directory");

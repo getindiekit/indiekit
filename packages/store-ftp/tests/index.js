@@ -18,8 +18,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(ftp.prompts[0].message, "Where is your FTP server hosted?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   ftp.init(indiekit);
 
   t.is(indiekit.publication.store.info.name, "username on ftp.server.example");
