@@ -71,7 +71,7 @@ _Optional_, defaults to `"[application.url]/micropub"`. For example:
 ```json
 {
   "application": {
-    "micropubEndpoint ": "https://website.example/micropub"
+    "micropubEndpoint": "https://website.example/micropub"
   }
 }
 ```
