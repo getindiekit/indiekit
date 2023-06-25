@@ -25,6 +25,7 @@ export const defaultConfig = {
     ],
     mongodbUrl: process.env.MONGO_URL || false,
     name: "Indiekit",
+    port: process.env.PORT || "3000",
     repository: package_.repository,
     themeColor: "#04f",
     themeColorScheme: "automatic",
@@ -53,9 +54,6 @@ export const defaultConfig = {
       `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
     syndicationTargets: [],
     timeZone: "UTC",
-  },
-  server: {
-    port: process.env.PORT || "3000",
   },
 };
 

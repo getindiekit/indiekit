@@ -14,7 +14,11 @@ program
   .command("serve")
   .description("start the indiekit server")
   .option("-d, --debug [scope]", "enable debugging")
-  .option("-p, --port <port>", "port to bind on", defaultConfig.server.port)
+  .option(
+    "-p, --port <port>",
+    "port to bind on",
+    defaultConfig.application.port
+  )
   .action((options) => {
     const { debug, port } = options;
 
