@@ -142,7 +142,7 @@ export default class JekyllPreset {
         properties.content.text ||
         properties.content.html ||
         properties.content;
-      content = `${content}\n`;
+      content = `\n${content}\n`;
     } else {
       content = "";
     }
