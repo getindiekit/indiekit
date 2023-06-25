@@ -85,7 +85,7 @@ Helper functions used in tests are in the `/helpers` folder.
 
 Indiekit uses the [Express server framework](https://expressjs.com).
 
-Configuration defaults get merged with any user-defined values (Indiekit uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load a configuration object).
+Configuration defaults get merged with any user-defined values (Indiekit uses [cosmiconfig](https://github.com/cosmiconfig/cosmiconfig) to find and load a configuration object).
 
 Plug-ins listed under the `plugins` array are then loaded and interrogated for known API methods, which further update the configuration.
 
