@@ -1,7 +1,9 @@
-const process = require("node:process");
-require("dotenv").config();
+import process from "node:process";
+import * as dotenv from "dotenv";
 
-module.exports = {
+dotenv.config();
+
+const config = {
   application: {
     _devMode: process.env.NODE_ENV === "development",
     mongodbUrl: process.env.MONGO_URL,
@@ -37,3 +39,5 @@ module.exports = {
     user: process.env.TWITTER_USER,
   },
 };
+
+export default config;
