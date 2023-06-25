@@ -3,7 +3,7 @@ import { expressSharp } from "express-sharp";
 import { Adapter } from "./lib/adapter.js";
 import { cacheControl } from "./lib/middleware/cache.js";
 
-const defaults = { cache: null, me: "", mountPath: "/image" };
+const defaults = { mountPath: "/image" };
 const router = express.Router(); // eslint-disable-line new-cap
 
 export default class ImageEndpoint {
@@ -15,13 +15,13 @@ export default class ImageEndpoint {
     this.mountPath = this.options.mountPath;
   }
 
-  get routesPublic() {
+  _routes(indiekitConfig) {
     router.use(
       cacheControl,
       expressSharp({
-        cache: this.options.cache,
+        cache: indiekitConfig.application.cache,
         imageAdapter: new Adapter({
-          prefixUrl: this.options.me,
+          prefixUrl: indiekitConfig.publication.me,
         }),
       })
     );
