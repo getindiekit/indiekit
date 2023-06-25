@@ -72,15 +72,9 @@ export const Indiekit = class {
     return this;
   }
 
-  async createApp() {
-    const config = await this.bootstrap();
-    const app = expressConfig(config);
-
-    return app;
-  }
-
   async server(options = {}) {
-    const { application, publication } = this.config;
+    const config = await this.bootstrap();
+    const { application, publication } = config;
 
     // Check for required configuration options
     if (!publication.me) {
@@ -93,7 +87,7 @@ export const Indiekit = class {
 
     const { name, version } = application;
     const port = options.port || application.port;
-    const app = await this.createApp();
+    const app = expressConfig(config);
 
     return app.listen(port, () => {
       console.info(`Starting ${name} (v${version}) on port ${port}`);

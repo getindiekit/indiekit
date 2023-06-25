@@ -79,12 +79,6 @@ test("Adds content store", (t) => {
   t.is(t.context.indiekit.publication.store.info.name, "Test");
 });
 
-test("Creates an express application", async (t) => {
-  const result = await t.context.indiekit.createApp();
-
-  t.truthy(result.locals);
-});
-
 test("Returns a server bound to given port", async (t) => {
   sinon.stub(console, "info"); // Disable console.info
   const result = await t.context.indiekit.server({ port: 1234 });
