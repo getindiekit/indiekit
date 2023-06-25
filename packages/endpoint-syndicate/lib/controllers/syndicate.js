@@ -30,7 +30,7 @@ export const syndicateController = {
       }
 
       // Get post data
-      const postData = await getPostData(publication, sourceUrl);
+      const postData = await getPostData(application, sourceUrl);
 
       if (!postData && sourceUrl) {
         return response.json({

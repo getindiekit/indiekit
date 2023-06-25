@@ -5,7 +5,7 @@ import { IndiekitError } from "@indiekit/error";
  * @type {import("express").RequestHandler}
  */
 export const queryController = async (request, response, next) => {
-  const { application, publication } = request.app.locals;
+  const { application } = request.app.locals;
 
   try {
     const limit = Number(request.query.limit) || 0;
@@ -28,7 +28,7 @@ export const queryController = async (request, response, next) => {
 
         if (url) {
           // Return properties for a given URL
-          const item = await publication.media.findOne(
+          const item = await application.media.findOne(
             { "properties.url": url },
             {
               projection: {
@@ -49,7 +49,7 @@ export const queryController = async (request, response, next) => {
           response.json(item.properties);
         } else {
           // Return properties for all previously uploaded files
-          const files = await publication.media
+          const files = await application.media
             .find()
             .project({
               "properties.content-type": 1,
@@ -63,7 +63,7 @@ export const queryController = async (request, response, next) => {
             .toArray();
 
           response.json({
-            _count: await publication.media.countDocuments(),
+            _count: await application.media.countDocuments(),
             items: files.map((media) => media.properties),
           });
         }

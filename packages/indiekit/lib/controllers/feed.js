@@ -1,7 +1,7 @@
 export const jf2 = async (request, response) => {
-  const { application, publication } = request.app.locals;
+  const { application } = request.app.locals;
   const feedUrl = new URL(request.originalUrl, application.url).href;
-  const posts = await publication.posts
+  const posts = await application.posts
     .find({
       "properties.post-status": {
         $ne: "draft",

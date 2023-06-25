@@ -11,7 +11,7 @@ export const actionController = async (request, response, next) => {
   const { body, files, query } = request;
   const action = query.action || body.action || "media";
   const url = query.url || body.url;
-  const { publication } = request.app.locals;
+  const { application, publication } = request.app.locals;
 
   try {
     // Check provided scope
@@ -35,7 +35,7 @@ export const actionController = async (request, response, next) => {
           );
         }
 
-        data = await mediaData.create(publication, files.file);
+        data = await mediaData.create(application, publication, files.file);
         content = await mediaContent.upload(publication, data, files.file);
         break;
       }
@@ -48,11 +48,11 @@ export const actionController = async (request, response, next) => {
           );
         }
 
-        data = await mediaData.read(publication, url);
+        data = await mediaData.read(application, url);
         content = await mediaContent.delete(publication, data);
 
         // Once file deleted from content store, delete data from database
-        await mediaData.delete(publication, url);
+        await mediaData.delete(application, url);
         break;
       }
 
