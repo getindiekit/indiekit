@@ -91,6 +91,20 @@ _Optional_, defaults to `process.env.MONGO_URL`. For example:
 
 <!--@include: .option-contains-secrets.md-->
 
+### application.port `number`
+
+Port for application server to listen on.
+
+_Optional_, defaults to `3000`. For example:
+
+```json
+{
+  "application": {
+    "port": 1234
+  }
+}
+```
+
 ### application.name `string`
 
 The name of your server.
