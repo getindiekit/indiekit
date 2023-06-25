@@ -67,6 +67,7 @@ date: 2020-02-02
 publishDate: 2020-02-02
 title: What I had for lunch
 ---
+
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
   );
@@ -88,6 +89,7 @@ date: 2020-02-02
 publishDate: 2020-02-02
 title: What I had for lunch
 ---
+
 <p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
 `
   );
@@ -146,6 +148,7 @@ test("Renders post template with JSON front matter", (t) => {
   "visibility": "private",
   "syndication": "https://website.example/post/12345"
 }
+
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
   );
@@ -195,6 +198,7 @@ url = "https://website.example/photo.jpg"
 [[videos]]
 url = "https://website.example/video.mp4"
 +++
+
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
   );
@@ -241,6 +245,7 @@ draft: true
 visibility: private
 syndication: https://website.example/post/12345
 ---
+
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `
   );

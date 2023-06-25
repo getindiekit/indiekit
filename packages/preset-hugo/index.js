@@ -218,7 +218,7 @@ export default class HugoPreset {
         properties.content.text ||
         properties.content.html ||
         properties.content;
-      content = `${content}\n`;
+      content = `\n${content}\n`;
     } else {
       content = "";
     }
