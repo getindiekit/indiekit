@@ -87,7 +87,7 @@ export const Indiekit = class {
   }
 
   async server(options = {}) {
-    const { application, publication, server } = this.config;
+    const { application, publication } = this.config;
 
     // Check for required configuration options
     if (!publication.me) {
@@ -98,11 +98,8 @@ export const Indiekit = class {
       process.exit();
     }
 
-    // Merge options with default server configuration
-    options = { ...server, ...options };
-
     const { name, version } = application;
-    const { port } = options;
+    const port = options.port || application.port;
     const app = await this.createApp();
 
     return app.listen(port, () => {
