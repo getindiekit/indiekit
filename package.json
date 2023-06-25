@@ -144,6 +144,7 @@
           ]
         }
       ],
+      "complexity": 0,
       "jsdoc/no-undefined-types": [
         "warn",
         {
