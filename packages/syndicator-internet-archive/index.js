@@ -12,7 +12,7 @@ const defaults = {
 
 export default class InternetArchiveSyndicator {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.accessKey] - S3 access key
    * @param {string} [options.secretKey] - S3 secret key
    * @param {boolean} [options.checked] - Check syndicator in UI

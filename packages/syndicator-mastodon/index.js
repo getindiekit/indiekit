@@ -11,7 +11,7 @@ const defaults = {
 
 export default class MastodonSyndicator {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.accessToken] - Access token
    * @param {string} [options.characterLimit] - Server character limit
    * @param {string} [options.url] - Server URL

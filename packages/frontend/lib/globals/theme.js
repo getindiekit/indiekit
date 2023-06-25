@@ -11,11 +11,11 @@ import Color from "color";
  * @param {object} options - Options
  * @param {Color} options.colorToChange - Original colour
  * @param {Color} [options.colorToValidate] - Color to validate against
- * @param {number} [options.minimumContrastRatio=4.5] - Minimum contrast ratio
+ * @param {number} [options.minimumContrastRatio] - Minimum contrast ratio
  * @param {Color} options.mixingColor - Color to mix with original
  * @param {number} options.mixingAmount - Amount of color to mix with original
- * @param {number} [options.tries=0] - Tries
- * @param {number} [options.maxTries=8] - Maximum tries
+ * @param {number} [options.tries] - Tries
+ * @param {number} [options.maxTries] - Maximum tries
  * @returns {string} RGB hex code, i.e. "#7f1de4"
  */
 export const _getValidatedColor = ({

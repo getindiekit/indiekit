@@ -28,7 +28,7 @@ export default class TestStore {
   /**
    * @access private
    * @param {string} path - Request path
-   * @param {string} [method=GET] - Request method
+   * @param {string} [method] - Request method
    * @param {object} [body] - Request body
    * @returns {Promise<Response>} Store client interface
    */

@@ -7,7 +7,7 @@ import { htmlToText } from "html-to-text";
 /**
  * Get status parameters from given JF2 properties
  * @param {object} properties - A JF2 properties object
- * @param {Array|null} [mediaIds=null] - Twitter media IDs
+ * @param {Array|null} [mediaIds] - Twitter media IDs
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, mediaIds = null) => {

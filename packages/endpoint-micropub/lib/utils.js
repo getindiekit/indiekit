@@ -33,7 +33,7 @@ export const excerptString = (string, n) => {
 /**
  * Slugify a string
  * @param {string} string - String to excerpt
- * @param {string} [separator="-"] - Character used to separate words
+ * @param {string} [separator] - Character used to separate words
  * @returns {string} Slugified string
  * @example slugifyString('Foo bar baz', '_') => 'foo_bar_baz'
  */

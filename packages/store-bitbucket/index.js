@@ -12,7 +12,7 @@ const defaults = {
  */
 export default class BitbucketStore {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.user] - Username
    * @param {string} [options.repo] - Repository
    * @param {string} [options.branch] - Branch

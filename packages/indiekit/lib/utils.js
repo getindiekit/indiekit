@@ -93,7 +93,7 @@ export const getPackageData = (fileUrl) => {
 
 /**
  * Generate cryptographically random string
- * @param {number} [length=21] - Length of string
+ * @param {number} [length] - Length of string
  * @returns {string} Random string
  */
 export const randomString = (length = 21) =>

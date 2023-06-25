@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 /**
  * @param {string} filename - Fixture’s file name
- * @param {NodeJS.BufferEncoding} encoding - String encoding
+ * @param {globalThis.NodeJS.BufferEncoding} encoding - String encoding
  * @returns {object} File contents
  */
 export const getFixture = (filename, encoding = "utf8") => {

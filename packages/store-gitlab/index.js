@@ -14,7 +14,7 @@ const defaults = {
  */
 export default class GitlabStore {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.instance] - Instance URL
    * @param {string} [options.projectId] - Project ID
    * @param {string} [options.user] - Username

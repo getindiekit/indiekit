@@ -11,7 +11,7 @@ const defaults = {
 
 export default class GiteaStore {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.instance] - Instance URL
    * @param {string} [options.user] - Username
    * @param {string} [options.repo] - Repository
@@ -65,7 +65,7 @@ export default class GiteaStore {
   /**
    * @access private
    * @param {string} path - Request path
-   * @param {string} [method=GET] - Request method
+   * @param {string} [method] - Request method
    * @param {object} [body] - Request body
    * @returns {Promise<Response>} Gitea client interface
    */

@@ -28,7 +28,7 @@ export const endpoint = {
    * Micropub action
    * @param {string} url - URL
    * @param {string} accessToken - Access token
-   * @param {object} [jsonBody=false] - JSON body
+   * @param {object} [jsonBody] - JSON body
    * @returns {Promise<object>} Response data
    */
   async post(url, accessToken, jsonBody = false) {

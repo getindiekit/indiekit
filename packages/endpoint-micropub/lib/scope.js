@@ -1,7 +1,7 @@
 /**
  * Check provided scope(s) satisfies required scope
  * @param {string} scope - Provided scope (space separated)
- * @param {string} [action=create] - Required action
+ * @param {string} [action] - Required action
  * @returns {boolean|string} `true` if provided scope includes action,
  *                           `draft` if draft scope, otherwise `false`
  */

@@ -3,7 +3,7 @@ import { format, utcToZonedTime } from "date-fns-tz";
 /**
  * Converts date to use configured time zone
  * @param {string} setting - Time zone setting
- * @param {string} [dateString=null] - Date string
+ * @param {string} [dateString] - Date string
  * @returns {string} Converted date
  *
  * setting options:

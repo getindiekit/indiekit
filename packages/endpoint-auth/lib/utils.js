@@ -10,7 +10,7 @@ export const getCanonicalUrl = (url) => new URL(url).href;
 
 /**
  * Generate cryptographically random string
- * @param {number} [length=16] - Length of string
+ * @param {number} [length] - Length of string
  * @returns {string} Random string
  */
 export const randomString = (length = 16) =>

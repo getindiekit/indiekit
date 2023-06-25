@@ -1,7 +1,7 @@
 /**
  * Check provided scope(s) satisfies required scope
  * @param {string} scope - Provided scope (space separated)
- * @param {string} [action=media] - Required action
+ * @param {string} [action] - Required action
  * @returns {boolean} `true` if provided scope includes action
  */
 export const checkScope = (scope, action = "media") => {

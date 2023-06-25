@@ -7,7 +7,7 @@ import { htmlToText } from "html-to-text";
 /**
  * Get status parameters from given JF2 properties
  * @param {object} properties - A JF2 properties object
- * @param {object} [options={}] - Options
+ * @param {object} [options] - Options
  * @param {number} [options.characterLimit] - Character limit
  * @param {Array} [options.mediaIds] - Mastodon media IDs
  * @param {string} [options.serverUrl] - Server URL, i.e. https://mastodon.social

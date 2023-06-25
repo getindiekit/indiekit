@@ -11,7 +11,7 @@ export const postData = {
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {object} properties - JF2 properties
-   * @param {boolean} [draftMode=false] - Draft mode
+   * @param {boolean} [draftMode] - Draft mode
    * @returns {Promise<object>} Post data
    */
   async create(application, publication, properties, draftMode = false) {
@@ -200,7 +200,7 @@ export const postData = {
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @param {boolean} [draftMode=false] - Draft mode
+   * @param {boolean} [draftMode] - Draft mode
    * @returns {Promise<object>} Post data
    */
   async undelete(application, publication, url, draftMode) {

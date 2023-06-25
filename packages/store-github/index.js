@@ -11,7 +11,7 @@ const defaults = {
 
 export default class GithubStore {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.user] - Username
    * @param {string} [options.repo] - Repository
    * @param {string} [options.branch] - Branch
@@ -57,7 +57,7 @@ export default class GithubStore {
   /**
    * @access private
    * @param {string} path - Request path
-   * @param {string} [method=GET] - Request method
+   * @param {string} [method] - Request method
    * @param {object} [body] - Request body
    * @returns {Promise<Response>} GitHub client interface
    */

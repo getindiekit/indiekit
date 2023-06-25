@@ -12,7 +12,7 @@ const defaults = {
 
 export default class TwitterSyndicator {
   /**
-   * @param {object} [options={}] - Plugin options
+   * @param {object} [options] - Plugin options
    * @param {string} [options.accessToken] - Access token
    * @param {string} [options.accessTokenSecret] - Access token secret
    * @param {string} [options.apiKey] - API key

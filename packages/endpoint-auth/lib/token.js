@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 /**
  * Sign token
  * @param {object} payload - JSON Web Token payload
- * @param {string} [expiresIn="10m"] - Token expiry
+ * @param {string} [expiresIn] - Token expiry
  * @returns {string} Signed JSON Web Token
  */
 export const signToken = (payload, expiresIn = "10m") =>
