@@ -8,7 +8,7 @@ test("Merges values from custom and preset post types", async (t) => {
     usePostTypes: true,
     usePreset: true,
   });
-  const indiekit = new Indiekit({ config });
+  const indiekit = await Indiekit.initialize({ config });
   const { publication } = await indiekit.bootstrap();
   const result = getPostTypes(publication);
 
@@ -21,7 +21,7 @@ test("Returns preset post types", async (t) => {
     usePostTypes: false,
     usePreset: true,
   });
-  const indiekit = new Indiekit({ config });
+  const indiekit = await Indiekit.initialize({ config });
   const { publication } = await indiekit.bootstrap();
   const result = getPostTypes(publication);
 
@@ -34,7 +34,7 @@ test("Returns custom post types", async (t) => {
     usePostTypes: true,
     usePreset: false,
   });
-  const indiekit = new Indiekit({ config });
+  const indiekit = await Indiekit.initialize({ config });
   const { publication } = await indiekit.bootstrap();
   const result = getPostTypes(publication);
 
@@ -46,7 +46,7 @@ test("Returns array if no preset or custom post types", async (t) => {
     usePostTypes: false,
     usePreset: false,
   });
-  const indiekit = new Indiekit({ config });
+  const indiekit = await Indiekit.initialize({ config });
   const { publication } = await indiekit.bootstrap();
 
   t.deepEqual(getPostTypes(publication), []);

@@ -40,8 +40,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(mastodon.prompts[0].message, "What is the URL of your Mastodon server?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   mastodon.init(indiekit);
 
   t.is(

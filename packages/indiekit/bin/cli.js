@@ -19,7 +19,7 @@ program
     "port to bind on",
     defaultConfig.application.port
   )
-  .action((options) => {
+  .action(async (options) => {
     const { debug, port } = options;
 
     if (debug) {
@@ -27,7 +27,7 @@ program
       makeDebug.enable(debug === true ? `*` : debug);
     }
 
-    const indiekit = new Indiekit({
+    const indiekit = await Indiekit.initialize({
       configFilePath: program.opts().config,
     });
 

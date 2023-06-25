@@ -24,8 +24,8 @@ test("Gets plug-in info", (t) => {
   t.truthy(internetArchive.info.service);
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   internetArchive.init(indiekit);
 
   t.is(

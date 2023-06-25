@@ -14,8 +14,8 @@ test("Gets plug-in info", (t) => {
   t.is(jekyll.info.name, "Jekyll");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   jekyll.init(indiekit);
 
   t.is(indiekit.publication.preset.info.name, "Jekyll");

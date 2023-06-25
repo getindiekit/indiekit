@@ -18,8 +18,8 @@ test("Gets plug-in installation prompts", (t) => {
   t.is(hugo.prompts[0].message, "Which front matter format are you using?");
 });
 
-test("Initiates plug-in", (t) => {
-  const indiekit = new Indiekit();
+test("Initiates plug-in", async (t) => {
+  const indiekit = await Indiekit.initialize();
   hugo.init(indiekit);
 
   t.is(indiekit.publication.preset.info.name, "Hugo");

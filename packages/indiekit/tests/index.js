@@ -5,7 +5,7 @@ import { Indiekit } from "../index.js";
 
 test.beforeEach(async (t) => {
   const config = await testConfig();
-  const indiekit = new Indiekit({ config });
+  const indiekit = await Indiekit.initialize({ config });
   const { application, publication } = await indiekit.bootstrap();
 
   t.context = {
