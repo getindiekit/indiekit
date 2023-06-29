@@ -1,4 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
+import { getCursor } from "../pagination.js";
 
 /**
  * Query uploaded files
@@ -9,8 +10,7 @@ export const queryController = async (request, response, next) => {
 
   try {
     const limit = Number(request.query.limit) || 0;
-    const offset = Number(request.query.offset) || 0;
-    const { q, url } = request.query;
+    const { after, before, q, url } = request.query;
 
     if (!q) {
       throw IndiekitError.badRequest(
@@ -49,22 +49,24 @@ export const queryController = async (request, response, next) => {
           response.json(item.properties);
         } else {
           // Return properties for all previously uploaded files
-          const files = await application.media
-            .find()
-            .project({
-              "properties.content-type": 1,
-              "properties.post-type": 1,
-              "properties.published": 1,
-              "properties.url": 1,
-            })
-            .sort({ "properties.published": -1 })
-            .skip(offset)
-            .limit(limit)
-            .toArray();
+          const cursor = await getCursor(
+            application.media,
+            after,
+            before,
+            limit
+          );
 
           response.json({
-            _count: await application.media.countDocuments(),
-            items: files.map((media) => media.properties),
+            items: cursor.items.map((post) => ({
+              "content-type": post.properties["content-type"],
+              "post-type": post.properties["post-type"],
+              published: post.properties.published,
+              url: post.properties.url,
+            })),
+            paging: {
+              ...(cursor.hasNext && { after: cursor.lastItem }),
+              ...(cursor.hasPrev && { before: cursor.firstItem }),
+            },
           });
         }
 
