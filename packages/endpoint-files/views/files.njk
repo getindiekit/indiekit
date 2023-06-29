@@ -5,7 +5,7 @@
   {{ cardGrid({
     items: files
   }) }}
-  {{ pagination(pages(page, limit, count)) }}
+  {{ pagination(cursor) }}
   {%- else -%}
   {{ prose({ text: __("files.files.none") }) }}
   {%- endif %}
