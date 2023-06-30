@@ -31,7 +31,7 @@ export const filesController = async (request, response, next) => {
     if (mediaResponse?.items?.length > 0) {
       files = mediaResponse.items.map((item) => {
         item.id = getFileId(item.url);
-        item.icon = item["post-type"];
+        item.icon = item["media-type"];
         item.photo = {
           url: item.url,
         };

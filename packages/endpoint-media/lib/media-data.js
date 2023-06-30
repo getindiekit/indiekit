@@ -19,7 +19,7 @@ export const mediaData = {
 
     // Get post type configuration
     const type = await getMediaType(file);
-    properties["post-type"] = type;
+    properties["media-type"] = type;
 
     // Throw error if trying to create unsupported media
     const supportedMediaTypes = ["audio", "photo", "video"];
