@@ -11,11 +11,11 @@ export const mediaData = {
    * @returns {Promise<object>} Media data
    */
   async create(application, publication, file) {
-    const { media } = application;
+    const { media, timeZone } = application;
     const { me, postTypes } = publication;
 
     // Media properties
-    const properties = await getFileProperties(publication, file);
+    const properties = await getFileProperties(timeZone, file);
 
     // Get post type configuration
     const type = await getMediaType(file);
@@ -34,11 +34,11 @@ export const mediaData = {
     }
 
     // Media paths
-    const path = renderPath(typeConfig.media.path, properties, publication);
+    const path = renderPath(typeConfig.media.path, properties, application);
     const url = renderPath(
       typeConfig.media.url || typeConfig.media.path,
       properties,
-      publication
+      application
     );
     properties.url = getPermalink(me, url);
 

@@ -38,8 +38,8 @@ test("Renders path from URI template and properties", (t) => {
     published: "2020-01-01",
     "mp-slug": "foo",
   };
-  const publication = {};
-  const result = renderPath(template, properties, publication);
+  const application = {};
+  const result = renderPath(template, properties, application);
 
   t.regex(
     result,

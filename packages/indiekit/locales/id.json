@@ -55,6 +55,7 @@
         "dark": "Gelap",
         "light": "Terang"
       },
+      "timeZone": "Zona Waktu",
       "tokenEndpoint": "Titik akhir Token",
       "version": "Versi"
     },
@@ -65,8 +66,7 @@
       "preset": "Prasetel",
       "store": "Penyimpanan Konten",
       "summaryTitle": "Pengaturan publikasi",
-      "syndicationTargets": "Sasaran sindikasi",
-      "timeZone": "Zona Waktu"
+      "syndicationTargets": "Sasaran sindikasi"
     },
     "title": "Status server"
   }

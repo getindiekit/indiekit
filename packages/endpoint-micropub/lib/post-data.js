@@ -15,7 +15,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async create(application, publication, properties, draftMode = false) {
-    const { posts } = application;
+    const { posts, timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
 
     // Add syndication targets
@@ -28,7 +28,7 @@ export const postData = {
     properties = normaliseProperties(publication, properties);
 
     // Add published date (or use that provided by client)
-    properties.published = getDate(publication.timeZone, properties.published);
+    properties.published = getDate(timeZone, properties.published);
 
     // Post type
     const type = getPostType(properties);
@@ -44,9 +44,9 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      publication
+      application
     );
-    const url = await renderPath(typeConfig.post.url, properties, publication);
+    const url = await renderPath(typeConfig.post.url, properties, application);
     properties.url = getPermalink(me, url);
 
     // Post status
@@ -91,7 +91,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async update(application, publication, url, operation) {
-    const { posts } = application;
+    const { posts, timeZone } = application;
     const { me, postTypes } = publication;
 
     // Read properties
@@ -118,7 +118,7 @@ export const postData = {
     properties = normaliseProperties(publication, properties);
 
     // Add updated date
-    properties.updated = getDate(publication.timeZone);
+    properties.updated = getDate(timeZone);
 
     // Post type
     const type = getPostType(properties);
@@ -129,12 +129,12 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      publication
+      application
     );
     const updatedUrl = await renderPath(
       typeConfig.post.url,
       properties,
-      publication
+      application
     );
     properties.url = getPermalink(me, updatedUrl);
 
@@ -156,7 +156,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async delete(application, publication, url) {
-    const { posts } = application;
+    const { posts, timeZone } = application;
     const { postTypes } = publication;
 
     // Read properties
@@ -173,7 +173,7 @@ export const postData = {
     }
 
     // Add deleted date
-    properties.deleted = getDate(publication.timeZone);
+    properties.deleted = getDate(timeZone);
 
     // Post type
     const typeConfig = getPostTypeConfig(properties["post-type"], postTypes);
@@ -182,7 +182,7 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      publication
+      application
     );
 
     // Update data in posts collection
@@ -220,7 +220,7 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      publication
+      application
     );
 
     // Post status
