@@ -75,7 +75,7 @@ Values for `*.path` and `*.url` can be customised using the following tokens:
 | `T` | `post` `media` | UNIX epoch milliseconds, eg <samp>51296952000</samp> |
 | `uuid` | `post` `media` | A [random UUID][uuid] |
 | `slug` | `post` | Provided slug, slugified `name` or a 5 character string, eg <samp>ycf9o</samp> |
-| `n`[^1] | `post` | Incremental count of posts (for type) in the same day, eg <samp>1</samp> |
+| `n`[^1] | `post` `media` | Incremental count of posts (for type) in the same day, eg <samp>1</samp> |
 | `basename` | `media` | 5 character alpha-numeric string, eg <samp>w9gwi</samp> |
 | `ext` | `media` | File extension of uploaded file, eg <samp>jpg</samp> |
 | `filename` | `media` | `basename` plus `ext`, eg <samp>w9gwi.jpg</samp> |
