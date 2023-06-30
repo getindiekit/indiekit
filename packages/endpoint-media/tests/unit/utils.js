@@ -32,14 +32,14 @@ test("Generates random alpha-numeric string, 5 characters long", (t) => {
   t.regex(randomString(), /[\d\w]{5}/g);
 });
 
-test("Renders path from URI template and properties", (t) => {
+test("Renders path from URI template and properties", async (t) => {
   const template = "{yyyy}/{MM}/{uuid}/{slug}";
   const properties = {
     published: "2020-01-01",
     "mp-slug": "foo",
   };
   const application = {};
-  const result = renderPath(template, properties, application);
+  const result = await renderPath(template, properties, application);
 
   t.regex(
     result,
