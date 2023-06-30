@@ -56,7 +56,6 @@
         "light": "浅色"
       },
       "timeZone": "时区",
-      "tokenEndpoint": "令牌终端节点",
       "version": "版本"
     },
     "publication": {

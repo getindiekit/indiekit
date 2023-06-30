@@ -56,7 +56,6 @@
         "light": "Lumière"
       },
       "timeZone": "Fuseau horaire",
-      "tokenEndpoint": "Endpoint de jeton",
       "version": "Version"
     },
     "publication": {

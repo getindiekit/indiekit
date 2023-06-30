@@ -56,7 +56,6 @@
         "light": "Svetlo"
       },
       "timeZone": "Vremenska zona",
-      "tokenEndpoint": "Krajnja tačka tokena",
       "version": "Verzija"
     },
     "publication": {
