@@ -38,6 +38,7 @@ export const testConfig = async (options) => {
         name: "test",
         secret: process.env.SECRET,
       }),
+      timeZone: "UTC",
       tokenEndpoint: options?.application?.tokenEndpoint,
     },
     plugins: [
@@ -48,7 +49,6 @@ export const testConfig = async (options) => {
     publication: {
       me: options?.publication?.me || "https://website.example",
       ...(options.usePostTypes && { postTypes }),
-      timeZone: "UTC",
     },
     "@indiekit-test/store": {
       user: "user",

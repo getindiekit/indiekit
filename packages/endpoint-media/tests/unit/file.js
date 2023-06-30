@@ -18,12 +18,11 @@ test("Derives media type and returns equivalent post type", async (t) => {
 });
 
 test("Derives properties from file data", async (t) => {
-  const publication = { timeZone: "UTC" };
   const file = {
     data: getFixture("file-types/photo.jpg", null),
     name: "photo.jpg",
   };
-  const result = await getFileProperties(publication, file);
+  const result = await getFileProperties("UTC", file);
 
   t.is(result.originalname, "photo.jpg");
   t.is(result.ext, "jpg");

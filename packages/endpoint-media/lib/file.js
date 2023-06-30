@@ -4,7 +4,7 @@ import { randomString } from "./utils.js";
 
 /**
  * Derive properties from file data
- * @param {object} publication - Publication configuration
+ * @param {object} timeZone - Application time zone
  * @param {object} file - Original file object
  * @returns {Promise<object>} File properties
  * @example fileData('brighton-pier.jpg') => {
@@ -16,9 +16,7 @@ import { randomString } from "./utils.js";
  *   published: '2020-07-19T22:59:23.497Z',
  * }
  */
-export const getFileProperties = async (publication, file) => {
-  const { timeZone } = publication;
-
+export const getFileProperties = async (timeZone, file) => {
   const basename = randomString();
   const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);

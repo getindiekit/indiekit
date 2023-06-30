@@ -55,6 +55,7 @@
         "dark": "Mrak",
         "light": "Svetlo"
       },
+      "timeZone": "Vremenska zona",
       "tokenEndpoint": "Krajnja tačka tokena",
       "version": "Verzija"
     },
@@ -65,8 +66,7 @@
       "preset": "Postavljeno unapred",
       "store": "Prodavnica sadržaja",
       "summaryTitle": "Podešavanja publikacije",
-      "syndicationTargets": "Ciljevi sindikacije",
-      "timeZone": "Vremenska zona"
+      "syndicationTargets": "Ciljevi sindikacije"
     },
     "title": "Status servera"
   }

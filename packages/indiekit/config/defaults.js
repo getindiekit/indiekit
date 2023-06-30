@@ -29,6 +29,7 @@ export const defaultConfig = {
     repository: package_.repository,
     themeColor: "#04f",
     themeColorScheme: "automatic",
+    timeZone: "UTC",
     ttl: 604_800, // 7 days
     version: package_.version,
   },
@@ -53,7 +54,6 @@ export const defaultConfig = {
     storeMessageTemplate: (metaData) =>
       `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
     syndicationTargets: [],
-    timeZone: "UTC",
   },
 };
 

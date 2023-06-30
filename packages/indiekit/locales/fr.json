@@ -55,6 +55,7 @@
         "dark": "Sombre",
         "light": "Lumière"
       },
+      "timeZone": "Fuseau horaire",
       "tokenEndpoint": "Endpoint de jeton",
       "version": "Version"
     },
@@ -65,8 +66,7 @@
       "preset": "Préréglage",
       "store": "Magasin de contenu",
       "summaryTitle": "Paramètres de publication",
-      "syndicationTargets": "Cibles de syndication",
-      "timeZone": "Fuseau horaire"
+      "syndicationTargets": "Cibles de syndication"
     },
     "title": "Statut du serveur"
   }

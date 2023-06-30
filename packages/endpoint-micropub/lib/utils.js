@@ -97,10 +97,10 @@ export const relativeMediaPath = (url, me) =>
  * Render path from URI template and properties
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
- * @param {object} publication - Publication configuration
+ * @param {object} application - Application configuration
  * @returns {Promise<string>} Path
  */
-export const renderPath = async (path, properties, publication) => {
+export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getServerTimeZone();
   const dateTokens = [
@@ -134,9 +134,9 @@ export const renderPath = async (path, properties, publication) => {
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
       timeZone:
-        publication.timeZone === "server"
+        application.timeZone === "server"
           ? serverTimeZone
-          : publication.timeZone,
+          : application.timeZone,
       // @ts-ignore (https://github.com/marnusw/date-fns-tz/issues/239)
       useAdditionalDayOfYearTokens: true,
     });
@@ -146,7 +146,7 @@ export const renderPath = async (path, properties, publication) => {
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
   // Add count of post-type for the day
-  const count = await postTypeCount.get(publication, properties);
+  const count = await postTypeCount.get(application, properties);
   tokens.n = count + 1;
 
   // Add slug token if 'mp-slug' property

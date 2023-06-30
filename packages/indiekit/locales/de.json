@@ -55,6 +55,7 @@
         "dark": "Dunkel",
         "light": "Licht"
       },
+      "timeZone": "Zeitzone",
       "tokenEndpoint": "Token-Endpunkt",
       "version": "Version"
     },
@@ -65,8 +66,7 @@
       "preset": "Voreinstellung",
       "store": "Inhaltsspeicher",
       "summaryTitle": "Veröffentlichungseinstellungen",
-      "syndicationTargets": "Syndikationsziele",
-      "timeZone": "Zeitzone"
+      "syndicationTargets": "Syndikationsziele"
     },
     "title": "Server Status"
   }

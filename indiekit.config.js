@@ -10,6 +10,7 @@ const config = {
     ...(process.env.RAILWAY_ENVIRONMENT && {
       url: `https://${process.env.RAILWAY_STATIC_URL}`,
     }),
+    timeZone: process.env.TZ,
   },
   plugins: [
     "@indiekit-test/frontend",
@@ -22,7 +23,6 @@ const config = {
   publication: {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
-    timeZone: process.env.TZ,
   },
   "@indiekit/store-github": {
     user: process.env.GITHUB_USER,

@@ -26,7 +26,6 @@ test.beforeEach((t) => {
           info: { uid: "https://social.example/" },
         },
       ],
-      timeZone: "UTC",
     },
   };
 });

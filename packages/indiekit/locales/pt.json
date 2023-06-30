@@ -55,6 +55,7 @@
         "dark": "Escuro",
         "light": "Luz"
       },
+      "timeZone": "Fuso horário",
       "tokenEndpoint": "Endpoint de token",
       "version": "Versão"
     },
@@ -65,8 +66,7 @@
       "preset": "Pré-ajuste",
       "store": "Loja de conteúdo",
       "summaryTitle": "Configurações de publicação",
-      "syndicationTargets": "Locais de distribuição",
-      "timeZone": "Fuso horário"
+      "syndicationTargets": "Locais de distribuição"
     },
     "title": "Status do servidor"
   }

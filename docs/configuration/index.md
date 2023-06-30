@@ -148,6 +148,22 @@ _Optional_, defaults to `"automatic"`. For example:
 }
 ```
 
+### application.timeZone `string`
+
+The time zone for the application. By default this is set to `"UTC"`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This option also accepts a number of other values.
+
+_Optional_, defaults to `"UTC"`. For example:
+
+```json
+{
+  "application": {
+    "timeZone": "Europe/Berlin"
+  }
+}
+```
+
+See [customising the time zone →](time-zone.md)
+
 ### application.tokenEndpoint `URL`
 
 Indiekit uses its own token endpoint, but you can use a third-party service by setting a value for this option.
@@ -398,19 +414,3 @@ export default {
 <!--@include: .option-requires-js.md-->
 
 See [customising commit messages →](commit-messages.md)
-
-### publication.timeZone `string`
-
-The time zone for your publication. By default this is set to `"UTC"`, however if you want to offset dates according to your time zone you can provide [a time zone name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This option also accepts a number of other values.
-
-_Optional_, defaults to `"UTC"`. For example:
-
-```json
-{
-  "publication": {
-    "timeZone": "Europe/Berlin"
-  }
-}
-```
-
-See [customising the time zone →](time-zone.md)

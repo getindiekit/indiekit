@@ -1,6 +1,6 @@
 # Time zone
 
-You can provide one of the following values for `publication.timeZone`:
+You can provide one of the following values for `application.timeZone`:
 
 - `client`:
 
@@ -17,7 +17,7 @@ You can provide one of the following values for `publication.timeZone`:
   - If the client sends a date, Indiekit will update the date to use the given time zone
   - If the client does not send a date, Indiekit will use the current date with the given time zone
 
-> The default value for `publication.timeZone` is `UTC`.
+> The default value for `application.timeZone` is `UTC`.
 
 So for example, assuming the current local time is `2020-09-23T19:00:00+01:00 Europe/London`, given the following values sent by the client for `published`, the date Indiekit saves would be as follows:
 

@@ -55,6 +55,7 @@
         "dark": "Donker",
         "light": "Licht"
       },
+      "timeZone": "Tijdzone",
       "tokenEndpoint": "Token-eindpunt",
       "version": "Versie"
     },
@@ -65,8 +66,7 @@
       "preset": "Vooringestelde",
       "store": "Content store",
       "summaryTitle": "Publicatie-instellingen",
-      "syndicationTargets": "Syndicatiedoelen",
-      "timeZone": "Tijdzone"
+      "syndicationTargets": "Syndicatiedoelen"
     },
     "title": "Status server"
   }

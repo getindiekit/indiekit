@@ -15,10 +15,10 @@ export const randomString = () => Math.random().toString(36).slice(-5);
  * Render path from URI template and properties
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
- * @param {object} publication - Publication configuration
+ * @param {object} application - Application configuration
  * @returns {string} Path
  */
-export const renderPath = (path, properties, publication) => {
+export const renderPath = (path, properties, application) => {
   let tokens = {};
   const dateObject = new Date(properties.published);
   const serverTimeZone = getServerTimeZone();
@@ -51,9 +51,9 @@ export const renderPath = (path, properties, publication) => {
   for (const dateToken of dateTokens) {
     tokens[dateToken] = format(dateObject, dateToken, {
       timeZone:
-        publication.timeZone === "server"
+        application.timeZone === "server"
           ? serverTimeZone
-          : publication.timeZone,
+          : application.timeZone,
       // @ts-ignore (https://github.com/marnusw/date-fns-tz/issues/239)
       useAdditionalDayOfYearTokens: true,
     });

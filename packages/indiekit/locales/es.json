@@ -55,6 +55,7 @@
         "dark": "Oscuro",
         "light": "Claro"
       },
+      "timeZone": "Zona horaria",
       "tokenEndpoint": "Punto final de token",
       "version": "Versión"
     },
@@ -65,8 +66,7 @@
       "preset": "Preestablecido",
       "store": "Almacén de contenido",
       "summaryTitle": "Configuración de publicación",
-      "syndicationTargets": "Objetivos de sindicación",
-      "timeZone": "Zona horaria"
+      "syndicationTargets": "Objetivos de sindicación"
     },
     "title": "Estado del servidor"
   }

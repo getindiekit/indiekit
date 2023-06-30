@@ -53,13 +53,13 @@
         "light": "Light",
         "dark": "Dark"
       },
+      "timeZone": "Time zone",
       "version": "Version"
     },
     "publication": {
       "summaryTitle": "Publication settings",
       "me": "Web address",
       "locale": "Language",
-      "timeZone": "Time zone",
       "store": "Content store",
       "preset": "Preset",
       "postTypes": "Post types",

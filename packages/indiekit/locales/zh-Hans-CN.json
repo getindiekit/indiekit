@@ -55,6 +55,7 @@
         "dark": "深色",
         "light": "浅色"
       },
+      "timeZone": "时区",
       "tokenEndpoint": "令牌终端节点",
       "version": "版本"
     },
@@ -65,8 +66,7 @@
       "preset": "预设",
       "store": "内容存储",
       "summaryTitle": "发布设置",
-      "syndicationTargets": "内容联合目标",
-      "timeZone": "时区"
+      "syndicationTargets": "内容联合目标"
     },
     "title": "服务器状态"
   }

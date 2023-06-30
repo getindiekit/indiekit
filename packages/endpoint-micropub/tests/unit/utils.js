@@ -72,7 +72,7 @@ test("Renders path from URI template and properties", async (t) => {
     published: "2020-01-01",
     "mp-slug": "foo",
   };
-  const publication = {
+  const application = {
     posts: {
       aggregate: () => ({
         toArray: async () => [],
@@ -88,7 +88,7 @@ test("Renders path from URI template and properties", async (t) => {
       },
     },
   };
-  const result = await renderPath(template, properties, publication);
+  const result = await renderPath(template, properties, application);
 
   t.regex(
     result,
