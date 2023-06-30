@@ -11,7 +11,7 @@ test.beforeEach((t) => {
       "mp-slug": "bar",
       "post-type": "note",
     },
-    publication: {
+    application: {
       me: "https://website.example",
       postTypes: new JekyllPreset().postTypes,
       posts: {
@@ -37,7 +37,7 @@ test.beforeEach((t) => {
 
 test("Counts the number of posts of a given type", async (t) => {
   const result = await postTypeCount.get(
-    t.context.publication,
+    t.context.application,
     t.context.properties
   );
 
