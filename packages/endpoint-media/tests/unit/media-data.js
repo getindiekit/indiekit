@@ -23,7 +23,7 @@ test.beforeEach((t) => {
             return {
               path: "photo.jpg",
               properties: {
-                "post-type": "photo",
+                "media-type": "photo",
                 url: url["properties.url"],
               },
             };
@@ -48,7 +48,7 @@ test("Creates media data", async (t) => {
   );
 
   t.regex(result.path, /\b[\d\w]{5}\b/g);
-  t.is(result.properties["post-type"], "photo");
+  t.is(result.properties["media-type"], "photo");
 });
 
 test("Throws error creating media data for unsupported media type", async (t) => {
@@ -83,7 +83,7 @@ test("Throws error creating media data for non-configured media type", async (t)
 test("Reads media data", async (t) => {
   const result = await mediaData.read(t.context.application, t.context.url);
 
-  t.is(result.properties["post-type"], "photo");
+  t.is(result.properties["media-type"], "photo");
   t.is(result.properties.url, "https://website.example/photo.jpg");
 });
 

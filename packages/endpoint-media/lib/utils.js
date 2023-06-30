@@ -63,7 +63,7 @@ export const renderPath = async (path, properties, application) => {
   // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
 
-  // Add count of post-type for the day
+  // Add count of media type for the day
   const count = await mediaTypeCount.get(application, properties);
   tokens.n = count + 1;
 

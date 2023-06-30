@@ -16,7 +16,7 @@ export const mediaTypeCount = {
     }
 
     // Post type
-    const postType = properties["post-type"];
+    const postType = properties["media-type"];
     const startDate = new Date(new Date(properties.published).toDateString());
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 1);

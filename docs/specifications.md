@@ -62,7 +62,7 @@ The following [scopes](https://indieweb.org/scope) are supported:
 * [x] [Offset](https://github.com/indieweb/micropub-extensions/issues/36) query parameter
 * [x] [Delete media](https://github.com/indieweb/micropub-extensions/issues/30)
 
-[^1]: A media endpoint source query includes the following properties in its [response](https://github.com/indieweb/micropub-extensions/issues/13): `content-type`, `published`, `post-type` and `url`.
+[^1]: A media endpoint source query includes the following properties in its [response](https://github.com/indieweb/micropub-extensions/issues/13): `content-type`, `media-type`, `published` and `url`.
 
 ### Server commands
 

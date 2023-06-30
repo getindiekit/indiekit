@@ -33,7 +33,7 @@ export const queryController = async (request, response, next) => {
             {
               projection: {
                 "properties.content-type": 1,
-                "properties.post-type": 1,
+                "properties.media-type": 1,
                 "properties.published": 1,
                 "properties.url": 1,
               },
@@ -59,7 +59,7 @@ export const queryController = async (request, response, next) => {
           response.json({
             items: cursor.items.map((post) => ({
               "content-type": post.properties["content-type"],
-              "post-type": post.properties["post-type"],
+              "media-type": post.properties["media-type"],
               published: post.properties.published,
               url: post.properties.url,
             })),

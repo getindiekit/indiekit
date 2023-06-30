@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {% set type = file["post-type"] %}
+  {% set type = file["media-type"] %}
   {% if type === "audio" %}
     <audio src="{{ file.url }}" controls></audio>
   {% elif type === "photo" %}

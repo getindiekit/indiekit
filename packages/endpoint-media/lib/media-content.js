@@ -12,7 +12,7 @@ export const mediaContent = {
       action: "upload",
       result: "uploaded",
       fileType: "file",
-      postType: mediaData.properties["post-type"],
+      postType: mediaData.properties["media-type"],
     };
     const message = storeMessageTemplate(metaData);
 
@@ -40,7 +40,7 @@ export const mediaContent = {
       action: "delete",
       result: "deleted",
       fileType: "file",
-      postType: mediaData.properties["post-type"],
+      postType: mediaData.properties["media-type"],
     };
     const message = storeMessageTemplate(metaData);
 
