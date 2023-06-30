@@ -3,6 +3,7 @@ import path from "node:path";
 import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
 import { getServerTimeZone } from "./date.js";
+import { mediaTypeCount } from "./media-type-count.js";
 
 /**
  * Generate random alpha-numeric string, 5 characters long
@@ -16,9 +17,9 @@ export const randomString = () => Math.random().toString(36).slice(-5);
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
  * @param {object} application - Application configuration
- * @returns {string} Path
+ * @returns {Promise<string>} Path
  */
-export const renderPath = (path, properties, application) => {
+export const renderPath = async (path, properties, application) => {
   let tokens = {};
   const dateObject = new Date(properties.published);
   const serverTimeZone = getServerTimeZone();
@@ -61,6 +62,10 @@ export const renderPath = (path, properties, application) => {
 
   // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
+
+  // Add count of post-type for the day
+  const count = await mediaTypeCount.get(application, properties);
+  tokens.n = count + 1;
 
   // Add slug token if 'mp-slug' property
   if (properties["mp-slug"]) {

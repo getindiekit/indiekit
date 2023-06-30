@@ -34,8 +34,12 @@ export const mediaData = {
     }
 
     // Media paths
-    const path = renderPath(typeConfig.media.path, properties, application);
-    const url = renderPath(
+    const path = await renderPath(
+      typeConfig.media.path,
+      properties,
+      application
+    );
+    const url = await renderPath(
       typeConfig.media.url || typeConfig.media.path,
       properties,
       application
