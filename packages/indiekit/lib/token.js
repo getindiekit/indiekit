@@ -28,24 +28,28 @@ export const findBearerToken = (request) => {
 };
 
 /**
- * Request token values
- * @param {string} tokenEndpoint - Token endpoint
+ * Introspect token values
+ * @param {string} introspectionEndpoint - Introspection endpoint
  * @param {object} bearerToken - OAuth bearer token
  * @returns {Promise<object>} Token values to verify
  */
-export const requestTokenValues = async (tokenEndpoint, bearerToken) => {
-  const tokenResponse = await fetch(tokenEndpoint, {
+export const introspectToken = async (introspectionEndpoint, bearerToken) => {
+  const introspectionUrl = new URL(introspectionEndpoint);
+  introspectionUrl.searchParams.append("token", bearerToken);
+
+  const introspectionResponse = await fetch(introspectionUrl, {
+    method: "POST",
     headers: {
       accept: "application/json",
       authorization: `Bearer ${bearerToken}`,
     },
   });
 
-  if (!tokenResponse.ok) {
-    throw await IndiekitError.fromFetch(tokenResponse);
+  if (!introspectionResponse.ok) {
+    throw await IndiekitError.fromFetch(introspectionResponse);
   }
 
-  return tokenResponse.json();
+  return introspectionResponse.json();
 };
 
 /**
