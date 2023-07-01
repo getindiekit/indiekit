@@ -1,20 +1,19 @@
 import test from "ava";
 import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
+import { testToken } from "@indiekit-test/token";
 
-test("Returns 401 error invalid token", async (t) => {
+test("Returns inactive access token", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
+
   const result = await request
-    .get("/auth/token")
-    .auth("foobar", { type: "bearer" })
+    .post("/auth/introspect")
+    .auth(testToken({ invalid: true }), { type: "bearer" })
     .set("accept", "application/json");
 
-  t.is(result.status, 401);
-  t.is(
-    result.body.error_description,
-    "The access token provided is expired, revoked, malformed, or invalid for other reasons"
-  );
+  t.is(result.status, 200);
+  t.false(result.body.active);
 
   server.close(t);
 });
