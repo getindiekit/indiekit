@@ -89,9 +89,12 @@ Content-Type: application/json
 ### {{ __("auth.guidance.authentication.verifyToken") }}
 
 ```http
-GET {{ application.tokenEndpoint }}
+POST {{ application.introspectionEndpoint }}
+Content-type: application/x-www-form-urlencoded
 Accept: application/json
 Authorization: Bearer xxxxxxxx
+
+token=xxxxxxxx
 ```
 
 ```http
@@ -99,6 +102,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+  "active": true,
+  "client_id": "{{ application.url }}",
   "me": "{{ publication.me }}",
   "scope": "create delete update",
   "iat": 1668682284,
