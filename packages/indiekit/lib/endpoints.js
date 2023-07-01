@@ -11,6 +11,7 @@ export const getEndpoints = (application, request) => {
 
   for (const endpoint of [
     "authorizationEndpoint",
+    "introspectionEndpoint",
     "mediaEndpoint",
     "micropubEndpoint",
     "tokenEndpoint",

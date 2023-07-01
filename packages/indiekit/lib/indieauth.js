@@ -4,7 +4,7 @@ import { IndiekitError } from "@indiekit/error";
 import { fetch } from "undici";
 import {
   findBearerToken,
-  requestTokenValues,
+  introspectToken,
   verifyTokenValues,
 } from "./token.js";
 import { generateState, validateState } from "./state.js";
@@ -197,17 +197,17 @@ export const IndieAuth = class {
         return next();
       }
 
-      // Validate bearer token sent in request
+      // Introspect token sent in request
       try {
         const { application } = request.app.locals;
         const bearerToken = findBearerToken(request);
-        const tokenValues = await requestTokenValues(
-          application.tokenEndpoint,
+        const tokenValues = await introspectToken(
+          application.introspectionEndpoint,
           bearerToken
         );
 
-        // Check if token values contain a `me` value
-        if (!tokenValues.me) {
+        // Check token is active and contains a `me` value
+        if (!tokenValues.active || !tokenValues.me) {
           throw IndiekitError.unauthorized(
             response.locals.__("UnauthorizedError.invalidToken")
           );
