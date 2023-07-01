@@ -89,6 +89,7 @@ export const authorizationController = {
 
   /**
    * Authorization code request
+   *
    * Redeem verified authorization code for a profile URL.
    * @type {import("express").RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#redeeming-the-authorization-code}
