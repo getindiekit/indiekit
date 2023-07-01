@@ -1,7 +1,8 @@
 import express from "express";
 import { authorizationController } from "./lib/controllers/authorization.js";
-import { documentationController } from "./lib/controllers/documentation.js";
 import { consentController } from "./lib/controllers/consent.js";
+import { documentationController } from "./lib/controllers/documentation.js";
+import { introspectionController } from "./lib/controllers/introspection.js";
 import { metadataController } from "./lib/controllers/metadata.js";
 import { passwordController } from "./lib/controllers/password.js";
 import { tokenController } from "./lib/controllers/token.js";
@@ -40,8 +41,10 @@ export default class AuthorizationEndpoint {
     router.post("/new-password", passwordValidator, passwordController.post);
 
     // Authentication
-    router.get("/token", tokenController.get, documentationController);
     router.post("/token", codeValidator, tokenController.post);
+
+    // Verification
+    router.post("/introspect", introspectionController.post);
 
     // Metadata
     router.get("/metadata", metadataController);
@@ -64,6 +67,10 @@ export default class AuthorizationEndpoint {
     // Use private value to register IndieAuth authorization endpoint path
     Indiekit.config.application._authorizationEndpointPath =
       this.options.mountPath;
+
+    // Use private value to register IndieAuth introspection endpoint path
+    Indiekit.config.application._introspectionEndpointPath =
+      this.options.mountPath + "/introspect";
 
     // Use private value to register IndieAuth token endpoint path
     Indiekit.config.application._tokenEndpointPath =

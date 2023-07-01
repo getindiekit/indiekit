@@ -1,42 +1,6 @@
-import { IndiekitError } from "@indiekit/error";
-import { signToken, verifyToken } from "../token.js";
+import { signToken } from "../token.js";
 
 export const tokenController = {
-  /**
-   * Verify bearer token
-   * @type {import("express").RequestHandler}
-   */
-  get(request, response, next) {
-    try {
-      // If no authorization header, show service documentation
-      if (!request.headers.authorization) {
-        return next(true);
-      }
-
-      // Remove ‘Bearer ’ from authorization header
-      const bearerToken = request.headers.authorization.trim().split(/\s+/)[1];
-
-      // Verify JSON Web Token
-      let accessToken;
-      try {
-        accessToken = verifyToken(bearerToken);
-      } catch {
-        throw IndiekitError.unauthorized(
-          response.locals.__("UnauthorizedError.invalidToken")
-        );
-      }
-
-      if (request.accepts("application/json")) {
-        response.json(accessToken);
-      } else {
-        response.set("content-type", "application/x-www-form-urlencoded");
-        response.send(new URLSearchParams(accessToken).toString());
-      }
-    } catch (error) {
-      return next(error);
-    }
-  },
-
   /**
    * Authorization code request
    *
