@@ -23,7 +23,7 @@ Indiekit uses Proof Key for Code Exchange (PKCE), but doesn’t require clients 
 
 ### Access tokens
 
-* [ ] [Token introspection](https://indieauth.spec.indieweb.org/#access-token-verification)
+* [x] [Token introspection](https://indieauth.spec.indieweb.org/#access-token-verification)
 * [ ] [Token revocation](https://indieauth.spec.indieweb.org/#token-revocation)
 
 ### User information

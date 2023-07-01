@@ -27,7 +27,21 @@ _Optional_, defaults to `"[application.url]/auth"`. For example:
 ```json
 {
   "application": {
-    "authorizationEndpoint": "https://indieauth.com/auth"
+    "authorizationEndpoint": "https://server.example/auth"
+  }
+}
+```
+
+### application.introspectionEndpoint `URL`
+
+Indiekit uses its own token introspection endpoint, but you can use a third-party service by setting a value for this option.
+
+_Optional_, defaults to `"[application.url]/auth/introspect"`. For example:
+
+```json
+{
+  "application": {
+    "authorizationEndpoint": "https://server.example/introspect"
   }
 }
 ```
@@ -57,7 +71,7 @@ _Optional_, defaults to `"[application.url]/media"`. For example:
 ```json
 {
   "application": {
-    "mediaEndpoint": "https://website.example/media"
+    "mediaEndpoint": "https://server.example/media"
   }
 }
 ```
@@ -71,7 +85,7 @@ _Optional_, defaults to `"[application.url]/micropub"`. For example:
 ```json
 {
   "application": {
-    "micropubEndpoint": "https://website.example/micropub"
+    "micropubEndpoint": "https://server.example/micropub"
   }
 }
 ```
@@ -173,7 +187,7 @@ _Optional_, defaults to `"[application.url]/auth/token"`. For example:
 ```json
 {
   "application": {
-    "tokenEndpoint": "https://tokens.indieauth.com/token"
+    "tokenEndpoint": "https://server.example/token"
   }
 }
 ```
