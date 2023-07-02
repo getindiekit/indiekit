@@ -9,6 +9,7 @@ test("Returns 404 error source URL not found", async (t) => {
   const server = await testServer({
     application: {
       tokenEndpoint: "https://token-endpoint.example",
+      introspectionEndpoint: "https://token-endpoint.example/introspect",
     },
     publication: {
       me: "https://website.example",
