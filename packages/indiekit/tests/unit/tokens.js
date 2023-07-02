@@ -2,7 +2,7 @@ import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import {
   findBearerToken,
-  requestTokenValues,
+  introspectToken,
   verifyTokenValues,
 } from "../../lib/token.js";
 
@@ -12,7 +12,7 @@ test.beforeEach((t) => {
   t.context = {
     bearerToken: "JWT",
     me: "https://website.example",
-    tokenEndpoint: "https://token-endpoint.example",
+    introspectionEndpoint: "https://token-endpoint.example/introspect",
   };
 });
 
@@ -59,26 +59,29 @@ test("Throws error if no bearer token provided by request", (t) => {
 });
 
 test("Requests an access token", async (t) => {
-  const result = await requestTokenValues(
-    t.context.tokenEndpoint,
+  const result = await introspectToken(
+    t.context.introspectionEndpoint,
     t.context.bearerToken
   );
 
+  t.true(result.active);
   t.is(result.me, "https://website.example");
   t.is(result.scope, "create");
 });
 
 test("Token endpoint refuses to grant an access token", async (t) => {
-  await t.throwsAsync(requestTokenValues(t.context.tokenEndpoint, "foo"), {
-    name: "InvalidRequestError",
-    message: "The token provided was malformed",
-  });
+  const result = await introspectToken(
+    t.context.introspectionEndpoint,
+    "invalid"
+  );
+
+  t.false(result.active);
 });
 
 test("Throws error contacting token endpoint", async (t) => {
   await t.throwsAsync(
-    requestTokenValues(
-      `${t.context.tokenEndpoint}/token`,
+    introspectToken(
+      `${t.context.introspectionEndpoint}/token`,
       t.context.bearerToken
     ),
     {
