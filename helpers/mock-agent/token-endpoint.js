@@ -15,30 +15,46 @@ export function mockClient() {
 
   // Verify access token
   client
-    .intercept({ path: "/", headers: { authorization: "Bearer JWT" } })
-    .reply(200, { me: "https://website.example", scope: "create" });
+    .intercept({
+      path: "/introspect?token=JWT",
+      headers: { authorization: "Bearer JWT" },
+      method: "POST",
+    })
+    .reply(200, {
+      active: true,
+      me: "https://website.example",
+      scope: "create",
+    });
 
   // Verify access token (wrong token)
   client
-    .intercept({ path: "/", headers: { authorization: "Bearer another" } })
-    .reply(200, { me: "https://another.example", scope: "create" });
-
-  // Verify access token (malformed token)
-  client
-    .intercept({ path: "/", headers: { authorization: "Bearer invalid" } })
-    .reply(200, { moi: "https://website.example", scope: "create" });
-
-  // Verify access token (Bad Request)
-  client
-    .intercept({ path: "/", headers: { authorization: "Bearer foo" } })
-    .reply(400, {
-      error: "invalid_request",
-      error_description: "The token provided was malformed",
+    .intercept({
+      path: "/introspect?token=another",
+      headers: { authorization: "Bearer another" },
+      method: "POST",
+    })
+    .reply(200, {
+      active: true,
+      me: "https://another.example",
+      scope: "create",
     });
+
+  // Verify access token (inactive token)
+  client
+    .intercept({
+      path: "/introspect?token=invalid",
+      headers: { authorization: "Bearer invalid" },
+      method: "POST",
+    })
+    .reply(200, { active: false });
 
   // Verify access token (Not found)
   client
-    .intercept({ path: "/token", headers: { authorization: "Bearer JWT" } })
+    .intercept({
+      path: "/introspect/token?token=JWT",
+      headers: { authorization: "Bearer JWT" },
+      method: "POST",
+    })
     .reply(404, { message: "Not found" });
 
   // Exchange authorization code for access token (empty response)
