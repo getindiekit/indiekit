@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  <img class="icon--rounded" src="{{ "/assets/" + plugin.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'" width="80" height="80">
+  <img class="icon icon--rounded" style="--icon-size: 5rem" src="{{ "/assets/" + plugin.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'" width="80" height="80">
 
   {% call section({ title: "About this plug-in" }) %}
     {{ summary({
