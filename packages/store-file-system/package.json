@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-file-system",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "File system content store adaptor for Indiekit",
   "keywords": [
     "indiekit",

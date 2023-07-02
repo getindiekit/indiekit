@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **endpoint-media:** correctly parse limit/offset query ([c21981e](https://github.com/getindiekit/indiekit/commit/c21981e4a4dc297be9671db71c5de277a6804d2a))
+* **endpoint-media:** only add data to configured database ([ad554f8](https://github.com/getindiekit/indiekit/commit/ad554f8a2753f21821d9de200d6872b604dc8ec5))
+* **endpoint-media:** respond once to source query ([7ca788e](https://github.com/getindiekit/indiekit/commit/7ca788ec77e1df617a49480c00f36a1c24a1b5cc))
+
+
+### Features
+
+* **endpoint-media:** add post count token ([ff0578e](https://github.com/getindiekit/indiekit/commit/ff0578ee8a3f2fdb3f2e18abf2625c12408320f2))
+* **endpoint-media:** cursor-based pagination ([f2a1667](https://github.com/getindiekit/indiekit/commit/f2a166746b19fef63e3196e55ca9871377ffe66d))
+* **endpoint-media:** use media-type property ([3a6a008](https://github.com/getindiekit/indiekit/commit/3a6a008e57245892a3f3d16d65b514c47aae3d84))
+* move timeZone option to application ([a72ff74](https://github.com/getindiekit/indiekit/commit/a72ff74a0e32bf56b1cd697cb3989dee3be99b17))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

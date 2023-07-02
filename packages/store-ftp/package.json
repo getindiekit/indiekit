@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-ftp",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "FTP content store adaptor for Indiekit",
   "keywords": [
     "indiekit",

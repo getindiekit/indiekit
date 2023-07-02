@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** correctly parse limit/offset query. fixes [#603](https://github.com/getindiekit/indiekit/issues/603) ([bacbe2d](https://github.com/getindiekit/indiekit/commit/bacbe2d98d64cefb1e11312a1ea1f3951005bc46))
+* **endpoint-micropub:** missing param on mf2ToJf2 ([981db18](https://github.com/getindiekit/indiekit/commit/981db18b06dd108601c47d8fdd0f3359928aaeb0))
+* **endpoint-micropub:** only add data to configured database ([ead04f7](https://github.com/getindiekit/indiekit/commit/ead04f7f8ad5f2f88f46b65d4124a198000f7a65))
+* **endpoint-micropub:** respond once to source query ([e41d5a6](https://github.com/getindiekit/indiekit/commit/e41d5a68247a1c57d02baa49db66669148793e9d))
+
+
+### Features
+
+* **endpoint-micropub:** cursor-based pagination ([9bc6a35](https://github.com/getindiekit/indiekit/commit/9bc6a3571825198eb034b16679ce367429d52961))
+* move timeZone option to application ([a72ff74](https://github.com/getindiekit/indiekit/commit/a72ff74a0e32bf56b1cd697cb3989dee3be99b17))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

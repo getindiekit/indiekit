@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **preset-jekyll:** add empty line between front matter and content ([45352e2](https://github.com/getindiekit/indiekit/commit/45352e22e52b97e9afbf6f54e9a0b2e26c01a0e6))
+
+
+### Features
+
+* enable async configuration ([f2aa036](https://github.com/getindiekit/indiekit/commit/f2aa03689085da4757e7cd279b82c921ab6058ee))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

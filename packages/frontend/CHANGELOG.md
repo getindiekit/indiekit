@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **frontend:** add block padding to details ([70c4494](https://github.com/getindiekit/indiekit/commit/70c44948f5504a1e4ffac42cce88162deaec60a2))
+* **frontend:** conditionally show pagination ([be536ee](https://github.com/getindiekit/indiekit/commit/be536ee7cc9df94ee6ae783dc0183b4ec4adb16c))
+* **frontend:** correct type JSON.stringify replacer ([0366a2b](https://github.com/getindiekit/indiekit/commit/0366a2bb36515679225c86825f24247698b5d82d))
+* **frontend:** correct value for classes global ([9ef433f](https://github.com/getindiekit/indiekit/commit/9ef433f93d635137256006760605d57898ff7eb9))
+* **frontend:** options in details component ([fe7e797](https://github.com/getindiekit/indiekit/commit/fe7e7970b2f0477c86455372b83f357f2fc9629a))
+
+
+### Features
+
+* **frontend:** details in notification component ([9a42bad](https://github.com/getindiekit/indiekit/commit/9a42bad6c18a1388d3fdf714da10f01dc8ce6a30))
+* **frontend:** pass details to notification component ([a03562e](https://github.com/getindiekit/indiekit/commit/a03562ef2ac654b35e9058b0bfa9da1a980b9d71))
+* **frontend:** remove pages global ([2f3f645](https://github.com/getindiekit/indiekit/commit/2f3f645a6eca9ce7b4b8789042baaf5ee15364e8))
+* **frontend:** remove results summary from pagination component ([2245d8e](https://github.com/getindiekit/indiekit/commit/2245d8e0daf342ca469b049699eeb8cb353fcf41))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

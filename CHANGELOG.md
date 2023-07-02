@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **docs:** correct language for syntax highlighting ([8e071fe](https://github.com/getindiekit/indiekit/commit/8e071fe10f48b4756da74ecdf7dca74aff552910))
+* **endpoint-auth:** remove param on toString ([dd7983a](https://github.com/getindiekit/indiekit/commit/dd7983a33b42beb074140706c43a752b0249b23d))
+* **endpoint-image:** correct type for cache option ([62f5e9b](https://github.com/getindiekit/indiekit/commit/62f5e9b04c746d4793b4d764cf4b5f4becf600b6))
+* **endpoint-image:** no second param on Buffer.from ([1a66ca5](https://github.com/getindiekit/indiekit/commit/1a66ca5077e8a9c4487a6cad91d0fba4b53706f0))
+* **endpoint-media:** correctly parse limit/offset query ([c21981e](https://github.com/getindiekit/indiekit/commit/c21981e4a4dc297be9671db71c5de277a6804d2a))
+* **endpoint-media:** only add data to configured database ([ad554f8](https://github.com/getindiekit/indiekit/commit/ad554f8a2753f21821d9de200d6872b604dc8ec5))
+* **endpoint-media:** respond once to source query ([7ca788e](https://github.com/getindiekit/indiekit/commit/7ca788ec77e1df617a49480c00f36a1c24a1b5cc))
+* **endpoint-micropub:** correctly parse limit/offset query. fixes [#603](https://github.com/getindiekit/indiekit/issues/603) ([bacbe2d](https://github.com/getindiekit/indiekit/commit/bacbe2d98d64cefb1e11312a1ea1f3951005bc46))
+* **endpoint-micropub:** missing param on mf2ToJf2 ([981db18](https://github.com/getindiekit/indiekit/commit/981db18b06dd108601c47d8fdd0f3359928aaeb0))
+* **endpoint-micropub:** only add data to configured database ([ead04f7](https://github.com/getindiekit/indiekit/commit/ead04f7f8ad5f2f88f46b65d4124a198000f7a65))
+* **endpoint-micropub:** respond once to source query ([e41d5a6](https://github.com/getindiekit/indiekit/commit/e41d5a68247a1c57d02baa49db66669148793e9d))
+* **endpoint-posts:** default checkTargets to false ([79e6d8c](https://github.com/getindiekit/indiekit/commit/79e6d8c2e21004b7f47a752568bf137fdb48d400))
+* **endpoint-posts:** only show label if syndication targets. fixes [#602](https://github.com/getindiekit/indiekit/issues/602) ([763841d](https://github.com/getindiekit/indiekit/commit/763841dc7f292d6e81f7b4afd609b2ee411377c4))
+* **frontend:** add block padding to details ([70c4494](https://github.com/getindiekit/indiekit/commit/70c44948f5504a1e4ffac42cce88162deaec60a2))
+* **frontend:** conditionally show pagination ([be536ee](https://github.com/getindiekit/indiekit/commit/be536ee7cc9df94ee6ae783dc0183b4ec4adb16c))
+* **frontend:** correct type JSON.stringify replacer ([0366a2b](https://github.com/getindiekit/indiekit/commit/0366a2bb36515679225c86825f24247698b5d82d))
+* **frontend:** correct value for classes global ([9ef433f](https://github.com/getindiekit/indiekit/commit/9ef433f93d635137256006760605d57898ff7eb9))
+* **frontend:** options in details component ([fe7e797](https://github.com/getindiekit/indiekit/commit/fe7e7970b2f0477c86455372b83f357f2fc9629a))
+* **indiekit:** correct minimum node version ([38be651](https://github.com/getindiekit/indiekit/commit/38be651d730c37f006761112c41c992cad0ac214))
+* **indiekit:** plug-in icon size ([e7d7fc2](https://github.com/getindiekit/indiekit/commit/e7d7fc2bba266b4e6ce8b8be5ce6b54a10ea21df))
+* **indiekit:** remove deprecated connection value ([7d66a10](https://github.com/getindiekit/indiekit/commit/7d66a10c70257a4ae7e6b7c3b95985eda66abd39))
+* **indiekit:** remove deprecated MongoClient option ([5e3deb9](https://github.com/getindiekit/indiekit/commit/5e3deb9873e042e8d0b4a3e4dd37242d52e7e207))
+* **indiekit:** remove param on toString ([6be7582](https://github.com/getindiekit/indiekit/commit/6be7582b455286ce95f9ebfcabafb5a98a1dc3be))
+* **indiekit:** use string for cookieSession secret ([d628aa1](https://github.com/getindiekit/indiekit/commit/d628aa1a487259fcad277e43ceb84a4af5d4cb17))
+* minimum cosmiconfig version ([9bce515](https://github.com/getindiekit/indiekit/commit/9bce515a0b59fbc937500b1f44cc2c12785aceb2))
+* **preset-hugo:** add empty line between front matter and content ([26eb118](https://github.com/getindiekit/indiekit/commit/26eb1189953fdf17a4a56a7d813b89bd3f7b306f))
+* **preset-jekyll:** add empty line between front matter and content ([45352e2](https://github.com/getindiekit/indiekit/commit/45352e22e52b97e9afbf6f54e9a0b2e26c01a0e6))
+
+
+### Features
+
+* enable async configuration ([f2aa036](https://github.com/getindiekit/indiekit/commit/f2aa03689085da4757e7cd279b82c921ab6058ee))
+* **endpoint-auth:** introspection endpoint ([68056b1](https://github.com/getindiekit/indiekit/commit/68056b1fc6220f2f206a02a9670ee576dcad1ac0))
+* **endpoint-files:** use cursor-based pagination ([c3e8f76](https://github.com/getindiekit/indiekit/commit/c3e8f76d0e93fb7fea791fd33429b934b992870e))
+* **endpoint-media:** add post count token ([ff0578e](https://github.com/getindiekit/indiekit/commit/ff0578ee8a3f2fdb3f2e18abf2625c12408320f2))
+* **endpoint-media:** cursor-based pagination ([f2a1667](https://github.com/getindiekit/indiekit/commit/f2a166746b19fef63e3196e55ca9871377ffe66d))
+* **endpoint-media:** use media-type property ([3a6a008](https://github.com/getindiekit/indiekit/commit/3a6a008e57245892a3f3d16d65b514c47aae3d84))
+* **endpoint-micropub:** cursor-based pagination ([9bc6a35](https://github.com/getindiekit/indiekit/commit/9bc6a3571825198eb034b16679ce367429d52961))
+* **endpoint-posts:** use cursor-based pagination ([e6dbab7](https://github.com/getindiekit/indiekit/commit/e6dbab7ef3bc14bd45909175ca058088d9f559b6))
+* **frontend:** details in notification component ([9a42bad](https://github.com/getindiekit/indiekit/commit/9a42bad6c18a1388d3fdf714da10f01dc8ce6a30))
+* **frontend:** pass details to notification component ([a03562e](https://github.com/getindiekit/indiekit/commit/a03562ef2ac654b35e9058b0bfa9da1a980b9d71))
+* **frontend:** remove pages global ([2f3f645](https://github.com/getindiekit/indiekit/commit/2f3f645a6eca9ce7b4b8789042baaf5ee15364e8))
+* **frontend:** remove results summary from pagination component ([2245d8e](https://github.com/getindiekit/indiekit/commit/2245d8e0daf342ca469b049699eeb8cb353fcf41))
+* **indiekit:** log errors ([e415ce6](https://github.com/getindiekit/indiekit/commit/e415ce6a4f5b3658e29221980063afa8de3d4bc1))
+* **indiekit:** use token introspection endpoint ([712e0ac](https://github.com/getindiekit/indiekit/commit/712e0ac21b836cc8c68f40487e98e2a67466f0ee))
+* move timeZone option to application ([a72ff74](https://github.com/getindiekit/indiekit/commit/a72ff74a0e32bf56b1cd697cb3989dee3be99b17))
+* show stack in frontend error messages ([28f6d3f](https://github.com/getindiekit/indiekit/commit/28f6d3fc976cd15413ed079015da4e2ddb9b6365))
+* **syndicator-mastodon:** check for user option ([874b2d7](https://github.com/getindiekit/indiekit/commit/874b2d7cfdde4691522a934a483925bd7dc1107f))
+* **syndicator-twitter:** check for user option ([721217a](https://github.com/getindiekit/indiekit/commit/721217addb12bb14981c66f1ee8df3188a50caca))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

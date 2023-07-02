@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **preset-hugo:** add empty line between front matter and content ([26eb118](https://github.com/getindiekit/indiekit/commit/26eb1189953fdf17a4a56a7d813b89bd3f7b306f))
+
+
+### Features
+
+* enable async configuration ([f2aa036](https://github.com/getindiekit/indiekit/commit/f2aa03689085da4757e7cd279b82c921ab6058ee))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

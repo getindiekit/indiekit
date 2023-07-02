@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **indiekit:** correct minimum node version ([38be651](https://github.com/getindiekit/indiekit/commit/38be651d730c37f006761112c41c992cad0ac214))
+* **indiekit:** plug-in icon size ([e7d7fc2](https://github.com/getindiekit/indiekit/commit/e7d7fc2bba266b4e6ce8b8be5ce6b54a10ea21df))
+* **indiekit:** remove deprecated connection value ([7d66a10](https://github.com/getindiekit/indiekit/commit/7d66a10c70257a4ae7e6b7c3b95985eda66abd39))
+* **indiekit:** remove deprecated MongoClient option ([5e3deb9](https://github.com/getindiekit/indiekit/commit/5e3deb9873e042e8d0b4a3e4dd37242d52e7e207))
+* **indiekit:** remove param on toString ([6be7582](https://github.com/getindiekit/indiekit/commit/6be7582b455286ce95f9ebfcabafb5a98a1dc3be))
+* **indiekit:** use string for cookieSession secret ([d628aa1](https://github.com/getindiekit/indiekit/commit/d628aa1a487259fcad277e43ceb84a4af5d4cb17))
+* minimum cosmiconfig version ([9bce515](https://github.com/getindiekit/indiekit/commit/9bce515a0b59fbc937500b1f44cc2c12785aceb2))
+
+
+### Features
+
+* enable async configuration ([f2aa036](https://github.com/getindiekit/indiekit/commit/f2aa03689085da4757e7cd279b82c921ab6058ee))
+* **indiekit:** log errors ([e415ce6](https://github.com/getindiekit/indiekit/commit/e415ce6a4f5b3658e29221980063afa8de3d4bc1))
+* **indiekit:** use token introspection endpoint ([712e0ac](https://github.com/getindiekit/indiekit/commit/712e0ac21b836cc8c68f40487e98e2a67466f0ee))
+* move timeZone option to application ([a72ff74](https://github.com/getindiekit/indiekit/commit/a72ff74a0e32bf56b1cd697cb3989dee3be99b17))
+* show stack in frontend error messages ([28f6d3f](https://github.com/getindiekit/indiekit/commit/28f6d3fc976cd15413ed079015da4e2ddb9b6365))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

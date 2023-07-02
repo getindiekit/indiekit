@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/preset-jekyll",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "Jekyll publication preset for Indiekit",
   "keywords": [
     "indiekit",

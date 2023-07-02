@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** default checkTargets to false ([79e6d8c](https://github.com/getindiekit/indiekit/commit/79e6d8c2e21004b7f47a752568bf137fdb48d400))
+* **endpoint-posts:** only show label if syndication targets. fixes [#602](https://github.com/getindiekit/indiekit/issues/602) ([763841d](https://github.com/getindiekit/indiekit/commit/763841dc7f292d6e81f7b4afd609b2ee411377c4))
+
+
+### Features
+
+* **endpoint-posts:** use cursor-based pagination ([e6dbab7](https://github.com/getindiekit/indiekit/commit/e6dbab7ef3bc14bd45909175ca058088d9f559b6))
+* show stack in frontend error messages ([28f6d3f](https://github.com/getindiekit/indiekit/commit/28f6d3fc976cd15413ed079015da4e2ddb9b6365))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

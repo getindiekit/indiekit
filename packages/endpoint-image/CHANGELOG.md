@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* **endpoint-image:** correct type for cache option ([62f5e9b](https://github.com/getindiekit/indiekit/commit/62f5e9b04c746d4793b4d764cf4b5f4becf600b6))
+* **endpoint-image:** no second param on Buffer.from ([1a66ca5](https://github.com/getindiekit/indiekit/commit/1a66ca5077e8a9c4487a6cad91d0fba4b53706f0))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 **Note:** Version bump only for package @indiekit/endpoint-image

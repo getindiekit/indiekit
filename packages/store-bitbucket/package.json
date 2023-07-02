@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-bitbucket",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "Bitbucket content store adaptor for Indiekit",
   "keywords": [
     "indiekit",

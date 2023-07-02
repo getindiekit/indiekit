@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-files",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "File management endpoint for Indiekit. View files uploaded to your media endpoint and upload new files to it.",
   "keywords": [
     "indiekit",
