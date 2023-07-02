@@ -31,6 +31,7 @@ export const testConfig = async (options) => {
 
   return {
     application: {
+      introspectionEndpoint: options?.application?.introspectionEndpoint,
       locale: options.locale,
       mongodbUrl: options && options.useDatabase !== false ? mongodbUrl : false,
       name: "Test configuration",
