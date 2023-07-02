@@ -51,9 +51,12 @@ export const mediaData = {
     properties.filename = urlPathSegment[urlPathSegment.length - 1];
     properties.basename = properties.filename.split(".")[0];
 
-    // Add data to media collection
     const mediaData = { path, properties };
-    await media.insertOne(mediaData);
+
+    // Add data to media collection (if present)
+    if (application.hasDatabase) {
+      await media.insertOne(mediaData);
+    }
 
     return mediaData;
   },
