@@ -55,9 +55,12 @@ export const postData = {
       ? "draft"
       : properties["post-status"] || "published";
 
-    // Add data to posts collection
     const postData = { path, properties };
-    await posts.insertOne(postData, { checkKeys: false });
+
+    // Add data to posts collection (if present)
+    if (application.hasDatabase) {
+      await posts.insertOne(postData, { checkKeys: false });
+    }
 
     return postData;
   },
