@@ -1,5 +1,13 @@
+import { Buffer } from "node:buffer";
 import test from "ava";
-import { slugify, supplant } from "../../lib/string.js";
+import { randomString, slugify, supplant } from "../../lib/string.js";
+
+test("Generates cryptographically random string", (t) => {
+  const result = randomString(8);
+
+  t.is(result.length, 8);
+  t.true(Buffer.from(result, "base64url").toString("base64url") === result);
+});
 
 test("Slugifies a string", (t) => {
   t.is(slugify("Foo bar baz", "_"), "foo_bar_baz");
