@@ -1,1 +1,1 @@
-export { isSameOrigin, isUrl } from "./lib/url.js";
+export { getCanonicalUrl, isSameOrigin, isUrl } from "./lib/url.js";
