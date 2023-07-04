@@ -2,7 +2,6 @@ import crypto from "node:crypto";
 import { supplant } from "@indiekit/util";
 import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
-import slugify from "@sindresorhus/slugify";
 import { getServerTimeZone } from "./date.js";
 import { postTypeCount } from "./post-type-count.js";
 
@@ -27,27 +26,6 @@ export const excerptString = (string, n) => {
   if (typeof string === "string") {
     const excerpt = string.split(/\s+/).slice(0, n).join(" ");
     return excerpt;
-  }
-};
-
-/**
- * Slugify a string
- * @param {string} string - String to excerpt
- * @param {string} [separator] - Character used to separate words
- * @returns {string} Slugified string
- * @example slugifyString('Foo bar baz', '_') => 'foo_bar_baz'
- */
-export const slugifyString = (string, separator = "-") => {
-  if (typeof string === "string") {
-    const slug = slugify(string, {
-      customReplacements: [
-        ["'", ""],
-        ["’", ""],
-      ],
-      decamelize: false,
-      separator,
-    });
-    return slug;
   }
 };
 
