@@ -39,7 +39,6 @@
     "@hotwired/stimulus": "^3.0.1",
     "@indiekit/util": "^1.0.0-beta.4",
     "@rollup/plugin-node-resolve": "^15.0.0",
-    "@sindresorhus/slugify": "^2.1.1",
     "color": "^4.0.1",
     "date-fns": "^2.23.0",
     "iso-639-1": "^2.1.9",
