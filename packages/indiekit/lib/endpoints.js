@@ -1,4 +1,5 @@
-import { isUrl, getUrl } from "./utils.js";
+import { isUrl } from "@indiekit/util";
+import { getUrl } from "./utils.js";
 
 /**
  * Get endpoint URLs from application configuration or default plug-ins

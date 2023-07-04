@@ -1,5 +1,5 @@
+import { isUrl } from "@indiekit/util";
 import { getCachedResponse } from "./cache.js";
-import { isUrl } from "./utils.js";
 
 /**
  * Return array of available categories. If not a simple array, fetch array
