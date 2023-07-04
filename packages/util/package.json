@@ -1,0 +1,30 @@
+{
+  "name": "@indiekit/util",
+  "version": "1.0.0-beta.4",
+  "description": "Common utilities for Indiekit",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/util"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
