@@ -42,14 +42,6 @@ export const decrypt = (hash, iv) => {
 };
 
 /**
- * Canonicalise URL according to IndieAuth spec
- * @param {string} url - The URL to canonicalise
- * @returns {string} The canonicalised URL
- * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
- */
-export const getCanonicalUrl = (url) => new URL(url).href;
-
-/**
  * Get fully resolved server URL
  * @param {import("express").Request} request - Request
  * @returns {string} Fully resolved URL
