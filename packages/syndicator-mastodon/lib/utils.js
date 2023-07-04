@@ -138,15 +138,3 @@ export const htmlToStatusText = (html, serverUrl) => {
 
   return statusText;
 };
-
-/**
- * Test if string is a Mastodon status URL
- * @param {string} string - Text that may be a URL
- * @param {string} serverUrl - Server URL, i.e. https://mastodon.social
- * @returns {boolean} Mastodon status URL?
- */
-export const isTootUrl = (string, serverUrl) => {
-  const parsedHostname = new URL(string).hostname;
-  const serverHostname = new URL(serverUrl).hostname;
-  return parsedHostname === serverHostname;
-};

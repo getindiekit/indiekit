@@ -6,7 +6,6 @@ import {
   getAbsoluteUrl,
   getStatusIdFromUrl,
   htmlToStatusText,
-  isTootUrl,
 } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
@@ -120,16 +119,6 @@ test("Creates a status with a photo", (t) => {
 
   t.is(result.status, "Here’s the cheese sandwich I ate.");
   t.deepEqual(result.media_ids, ["1", "2", "3", "4"]);
-});
-
-test("Tests if string is a toot permalink", (t) => {
-  t.true(
-    isTootUrl(
-      "https://mastodon.example/@username/1234567890987654321",
-      "https://mastodon.example"
-    )
-  );
-  t.false(isTootUrl("https://getindiekit.com", "https://mastodon.example"));
 });
 
 test("Gets absolute URL", (t) => {
