@@ -1,4 +1,4 @@
-import { isUrl } from "./utils.js";
+import { isUrl } from "@indiekit/util";
 
 export const setupPrompts = [
   {
