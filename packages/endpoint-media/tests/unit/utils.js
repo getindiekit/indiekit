@@ -4,7 +4,6 @@ import {
   getPostTypeConfig,
   randomString,
   renderPath,
-  supplant,
 } from "../../lib/utils.js";
 
 test("Get post type configuration for a given type", (t) => {
@@ -31,16 +30,4 @@ test("Renders path from URI template and properties", async (t) => {
     result,
     /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/
   );
-});
-
-test("Substitutes variables enclosed in { } braces with data from object", (t) => {
-  const string = "{array} {string} {number}";
-  const object = {
-    array: ["Array"],
-    string: "string",
-    number: 1,
-  };
-  const result = supplant(string, object);
-
-  t.is(result, "{array} string 1");
 });
