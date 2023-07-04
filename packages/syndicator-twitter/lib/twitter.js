@@ -1,13 +1,9 @@
 /* eslint-disable camelcase */
 import { Buffer } from "node:buffer";
+import { isSameOrigin } from "@indiekit/util";
 import { fetch } from "undici";
 import Twitter from "twitter-lite";
-import {
-  createStatus,
-  getAbsoluteUrl,
-  getStatusIdFromUrl,
-  isTweetUrl,
-} from "./utils.js";
+import { createStatus, getAbsoluteUrl, getStatusIdFromUrl } from "./utils.js";
 
 export const twitter = (options) => ({
   client: (subdomain = "api") =>
@@ -142,13 +138,16 @@ export const twitter = (options) => ({
 
     if (properties["repost-of"]) {
       // Syndicate repost of Twitter URL with content as a quote tweet
-      if (isTweetUrl(properties["repost-of"]) && properties.content) {
+      if (
+        isSameOrigin(properties["repost-of"], "https://twitter.com") &&
+        properties.content
+      ) {
         const status = createStatus(properties, mediaIds);
         return this.postStatus(status);
       }
 
       // Syndicate repost of Twitter URL as a retweet
-      if (isTweetUrl(properties["repost-of"])) {
+      if (isSameOrigin(properties["repost-of"], "https://twitter.com")) {
         return this.postRetweet(properties["repost-of"]);
       }
 
@@ -158,7 +157,7 @@ export const twitter = (options) => ({
 
     if (properties["like-of"]) {
       // Syndicate like of Twitter URL as a like
-      if (isTweetUrl(properties["like-of"])) {
+      if (isSameOrigin(properties["like-of"], "https://twitter.com")) {
         return this.postLike(properties["like-of"]);
       }
 
