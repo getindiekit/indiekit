@@ -24,6 +24,9 @@
     "url": "https://github.com/getindiekit/indiekit.git",
     "directory": "packages/util"
   },
+  "dependencies": {
+    "@sindresorhus/slugify": "^2.1.0"
+  },
   "publishConfig": {
     "access": "public"
   }
