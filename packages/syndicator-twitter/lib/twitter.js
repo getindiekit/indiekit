@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 import { Buffer } from "node:buffer";
-import { isSameOrigin } from "@indiekit/util";
+import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import { fetch } from "undici";
 import Twitter from "twitter-lite";
-import { createStatus, getAbsoluteUrl, getStatusIdFromUrl } from "./utils.js";
+import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
 export const twitter = (options) => ({
   client: (subdomain = "api") =>
@@ -86,7 +86,7 @@ export const twitter = (options) => ({
     }
 
     try {
-      const mediaUrl = getAbsoluteUrl(url, me);
+      const mediaUrl = getCanonicalUrl(url, me);
       const response = await fetch(mediaUrl);
 
       if (!response.ok) {

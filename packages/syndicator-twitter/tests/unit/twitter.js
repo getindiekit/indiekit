@@ -139,7 +139,7 @@ test("Throws error fetching media to upload", async (t) => {
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
       t.context.media("image.jpg"),
-      t.context.publication
+      t.context.publication.me
     ),
     {
       message: "Not Found",
@@ -157,7 +157,7 @@ test("Uploads media and returns a media id", async (t) => {
 
   const result = await twitter(t.context.options).uploadMedia(
     t.context.media("photo1.jpg"),
-    t.context.publication
+    t.context.publication.me
   );
 
   t.is(result, "1234567890987654321");
@@ -173,7 +173,7 @@ test("Throws error uploading media", async (t) => {
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
       t.context.media("photo2.jpg"),
-      t.context.publication
+      t.context.publication.me
     ),
     {
       message: /Not found/,
@@ -184,7 +184,7 @@ test("Throws error uploading media", async (t) => {
 test("Returns false passing an object to media upload function", async (t) => {
   const result = await twitter(t.context.options).uploadMedia(
     { foo: "bar" },
-    t.context.publication
+    t.context.publication.me
   );
 
   t.falsy(result);
