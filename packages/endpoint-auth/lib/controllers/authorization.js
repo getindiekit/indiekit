@@ -1,8 +1,9 @@
 import { IndiekitError } from "@indiekit/error";
+import { isUrl } from "@indiekit/util";
 import { getClientInformation } from "../client.js";
 import { createRequestUri } from "../pushed-authorization-request.js";
 import { validateRedirect } from "../redirect.js";
-import { getCanonicalUrl, isUrl } from "../utils.js";
+import { getCanonicalUrl } from "../utils.js";
 
 export const authorizationController = {
   /**
