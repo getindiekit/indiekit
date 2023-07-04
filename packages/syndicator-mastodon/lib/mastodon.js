@@ -1,12 +1,8 @@
 /* eslint-disable camelcase */
+import { isSameOrigin } from "@indiekit/util";
 import axios from "axios";
 import megalodon from "megalodon";
-import {
-  createStatus,
-  getAbsoluteUrl,
-  getStatusIdFromUrl,
-  isTootUrl,
-} from "./utils.js";
+import { createStatus, getAbsoluteUrl, getStatusIdFromUrl } from "./utils.js";
 
 export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
   client() {
@@ -101,7 +97,10 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
     if (properties["repost-of"]) {
       // Syndicate repost of Mastodon URL with content as a reblog
-      if (isTootUrl(properties["repost-of"], serverUrl) && properties.content) {
+      if (
+        isSameOrigin(properties["repost-of"], serverUrl) &&
+        properties.content
+      ) {
         const status = createStatus(properties, {
           characterLimit,
           mediaIds,
@@ -111,7 +110,7 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
       }
 
       // Syndicate repost of Mastodon URL as a reblog
-      if (isTootUrl(properties["repost-of"], serverUrl)) {
+      if (isSameOrigin(properties["repost-of"], serverUrl)) {
         return this.postReblog(properties["repost-of"]);
       }
 
@@ -121,7 +120,7 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
     if (properties["like-of"]) {
       // Syndicate like of Mastodon URL as a like
-      if (isTootUrl(properties["like-of"], serverUrl)) {
+      if (isSameOrigin(properties["like-of"], serverUrl)) {
         return this.postFavourite(properties["like-of"]);
       }
 
