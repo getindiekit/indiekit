@@ -1,9 +1,5 @@
 import test from "ava";
-import { getCanonicalUrl, getRequestParameters } from "../../lib/utils.js";
-
-test("Canonicalises URL", (t) => {
-  t.is(getCanonicalUrl("https://foo.bar"), "https://foo.bar/");
-});
+import { getRequestParameters } from "../../lib/utils.js";
 
 test("Gets request parameters from either query string or JSON body", (t) => {
   const resultBody = {
