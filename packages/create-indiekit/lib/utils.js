@@ -44,24 +44,6 @@ export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
 };
 
 /**
- * Check if given string is a valid URL
- * @param {object} string - URL
- * @returns {boolean} String is a URL
- */
-export const isUrl = (string) => {
-  if (typeof string !== "string") {
-    throw new TypeError("Expected a string");
-  }
-
-  try {
-    new URL(decodeURIComponent(string)); // eslint-disable-line no-new
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-/**
  * Get question prompts specified by plugin
  * @param {string} pluginName - Plug-in name
  * @returns {Promise<object>} Plug-in

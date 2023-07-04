@@ -5,7 +5,6 @@ import {
   addPluginConfig,
   checkNodeVersion,
   getPlugin,
-  isUrl,
 } from "../../lib/utils.js";
 
 test("Adds plug-in to Indiekit configuration", async (t) => {
@@ -35,22 +34,4 @@ test("Gets question prompts specified by plug-in", async (t) => {
   t.is(name, "Hugo preset");
   t.is(prompts[0].message, "Which front matter format are you using?");
   t.is(prompts[0].type, "select");
-});
-
-test("Checks if given string is a valid URL", (t) => {
-  t.true(isUrl("https%3A%2F%2Ffoo.bar"));
-  t.true(isUrl("https://foo.bar"));
-  t.false(isUrl("foo.bar"));
-});
-
-test("Throws error given URL is not a string", (t) => {
-  t.throws(
-    () => {
-      isUrl({});
-    },
-    {
-      instanceOf: TypeError,
-      message: "Expected a string",
-    }
-  );
 });
