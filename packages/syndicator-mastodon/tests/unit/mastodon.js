@@ -110,7 +110,7 @@ test.serial("Throws error fetching media to upload", async (t) => {
   await t.throwsAsync(
     mastodon(t.context.options).uploadMedia(
       t.context.media,
-      t.context.publication
+      t.context.publication.me
     ),
     {
       message: /Not found/,
@@ -130,7 +130,7 @@ test.failing("Uploads media and returns a media id", async (t) => {
 
   const result = await mastodon(t.context.options).uploadMedia(
     t.context.media,
-    t.context.publication
+    t.context.publication.me
   );
 
   t.is(result, "1234567890987654321");
@@ -148,7 +148,7 @@ test.failing("Throws error uploading media", async (t) => {
   await t.throwsAsync(
     mastodon(t.context.options).uploadMedia(
       t.context.media,
-      t.context.publication
+      t.context.publication.me
     ),
     {
       message: "Request failed with status code 404",
@@ -159,7 +159,7 @@ test.failing("Throws error uploading media", async (t) => {
 test("Returns false passing an object to media upload function", async (t) => {
   const result = await mastodon(t.context.options).uploadMedia(
     { foo: "bar" },
-    t.context.publication
+    t.context.publication.me
   );
 
   t.falsy(result);

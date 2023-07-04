@@ -70,21 +70,6 @@ export const createStatus = (properties, options = {}) => {
 };
 
 /**
- * Get absolute URL
- * @param {string} string - URL or path
- * @param {string} me - Publication URL
- * @returns {string} Absolute URL
- */
-export const getAbsoluteUrl = (string, me) => {
-  try {
-    return new URL(string).href;
-  } catch {
-    const absoluteUrl = path.posix.join(me, string);
-    return new URL(absoluteUrl).href;
-  }
-};
-
-/**
  * Get status ID from Mastodon status URL
  * @param {string} url Mastodon status URL
  * @returns {string} Status ID

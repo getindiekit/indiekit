@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import { isSameOrigin } from "@indiekit/util";
+import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import axios from "axios";
 import megalodon from "megalodon";
-import { createStatus, getAbsoluteUrl, getStatusIdFromUrl } from "./utils.js";
+import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
 export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
   client() {
@@ -59,7 +59,7 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
     }
 
     try {
-      const mediaUrl = getAbsoluteUrl(url, me);
+      const mediaUrl = getCanonicalUrl(url, me);
       const response = await axios(mediaUrl, {
         responseType: "stream",
       });
