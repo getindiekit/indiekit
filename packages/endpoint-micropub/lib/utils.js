@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { supplant } from "@indiekit/util";
 import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
 import slugify from "@sindresorhus/slugify";
@@ -144,26 +145,6 @@ export const renderPath = async (path, properties, application) => {
   path = supplant(path, tokens);
 
   return path;
-};
-
-/**
- * Substitute variables enclosed in { } braces with data from object
- * @param {string} string - String to parse
- * @param {object} object - Properties to use
- * @returns {string} String with substituted
- */
-export const supplant = (string, object) => {
-  const replacer = function (match, p1) {
-    const r = object[p1];
-
-    if (typeof r === "string" || typeof r === "number") {
-      return r;
-    }
-
-    return match;
-  };
-
-  return string.replace(/{([^{}]*)}/g, replacer);
 };
 
 /**

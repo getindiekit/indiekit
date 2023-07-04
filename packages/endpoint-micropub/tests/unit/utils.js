@@ -8,7 +8,6 @@ import {
   relativeMediaPath,
   renderPath,
   slugifyString,
-  supplant,
   toArray,
 } from "../../lib/utils.js";
 
@@ -86,18 +85,6 @@ test("Slugifies a string", (t) => {
   t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
   t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
   t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
-});
-
-test("Substitutes variables enclosed in { } braces with data from object", (t) => {
-  const string = "{array} {string} {number}";
-  const object = {
-    array: ["Array"],
-    string: "string",
-    number: 1,
-  };
-  const result = supplant(string, object);
-
-  t.is(result, "{array} string 1");
 });
 
 test("Convert string to array if not already an array", (t) => {
