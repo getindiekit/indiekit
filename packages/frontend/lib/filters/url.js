@@ -1,22 +1,6 @@
 import path from "node:path";
 
 /**
- * Get absolute URL or path
- * @param {string} string - URL or path
- * @param {string} baseUrl - Base URL
- * @returns {string} Absolute URL
- */
-export const absoluteUrl = (string, baseUrl) => {
-  string = String(string);
-
-  try {
-    return new URL(string, baseUrl).href;
-  } catch {
-    return path.posix.join(baseUrl, string);
-  }
-};
-
-/**
  * Get friendly URL
  * @param {string} string - URL or path
  * @returns {string} Friendly URL
