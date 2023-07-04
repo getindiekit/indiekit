@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
-import { getCanonicalUrl } from "@indiekit/util";
+import { getCanonicalUrl, randomString } from "@indiekit/util";
 import { fetch } from "undici";
 import {
   findBearerToken,
@@ -9,7 +9,6 @@ import {
   verifyTokenValues,
 } from "./token.js";
 import { generateState, validateState } from "./state.js";
-import { randomString } from "./utils.js";
 
 export const IndieAuth = class {
   constructor(options = {}) {

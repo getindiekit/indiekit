@@ -64,11 +64,3 @@ export const getPackageData = (fileUrl) => {
     return {};
   }
 };
-
-/**
- * Generate cryptographically random string
- * @param {number} [length] - Length of string
- * @returns {string} Random string
- */
-export const randomString = (length = 21) =>
-  randomBytes(length).toString("hex").slice(0, length);
