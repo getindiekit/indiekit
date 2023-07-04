@@ -1,9 +1,10 @@
 import { IndiekitError } from "@indiekit/error";
+import { getCanonicalUrl } from "@indiekit/util";
 import { getPostType } from "./post-type-discovery.js";
 import { getDate } from "./date.js";
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
 import * as update from "./update.js";
-import { getPermalink, getPostTypeConfig, renderPath } from "./utils.js";
+import { getPostTypeConfig, renderPath } from "./utils.js";
 
 export const postData = {
   /**
@@ -47,7 +48,7 @@ export const postData = {
       application
     );
     const url = await renderPath(typeConfig.post.url, properties, application);
-    properties.url = getPermalink(me, url);
+    properties.url = getCanonicalUrl(url, me);
 
     // Post status
     // Draft mode: Only create post with a `draft` post-status
@@ -139,7 +140,7 @@ export const postData = {
       properties,
       application
     );
-    properties.url = getPermalink(me, updatedUrl);
+    properties.url = getCanonicalUrl(updatedUrl, me);
 
     // Update data in posts collection
     const postData = { path, properties };

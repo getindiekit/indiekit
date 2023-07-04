@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.3",
+    "@indiekit/util": "^1.0.0-beta.4",
     "@paulrobertlloyd/mf2tojf2": "^1.0.0",
     "@sindresorhus/slugify": "^2.1.0",
     "date-fns": "^2.23.0",

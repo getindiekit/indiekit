@@ -3,7 +3,6 @@ import JekyllPreset from "@indiekit/preset-jekyll";
 import {
   decodeQueryParameter,
   excerptString,
-  getPermalink,
   getPostTypeConfig,
   randomString,
   relativeMediaPath,
@@ -23,19 +22,6 @@ test("Excerpts the first n words from a string", (t) => {
   const result = excerptString("The quick fox jumped over the lazy fox", 5);
 
   t.is(result, "The quick fox jumped over");
-});
-
-test("Derives a permalink", (t) => {
-  t.is(getPermalink("http://foo.bar", "baz"), "http://foo.bar/baz");
-  t.is(getPermalink("http://foo.bar/", "/baz"), "http://foo.bar/baz");
-  t.is(
-    getPermalink("http://foo.bar/baz", "/qux/quux"),
-    "http://foo.bar/baz/qux/quux"
-  );
-  t.is(
-    getPermalink("http://foo.bar/baz/", "/qux/quux"),
-    "http://foo.bar/baz/qux/quux"
-  );
 });
 
 test("Get post type configuration for a given type", (t) => {
