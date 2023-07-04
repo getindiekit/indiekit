@@ -2,7 +2,7 @@ import crypto from "node:crypto";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import test from "ava";
-import { decrypt, encrypt, isUrl, getPackageData } from "../../lib/utils.js";
+import { decrypt, encrypt, getPackageData } from "../../lib/utils.js";
 
 test.beforeEach((t) => {
   t.context = {
@@ -15,24 +15,6 @@ test("Encrypts and decrypts a string", (t) => {
   const encryptedResult = encrypt("foo", t.context.iv);
   t.regex(encryptedResult, /[\da-fA-F]+/);
   t.is(decrypt(encryptedResult, t.context.iv), "foo");
-});
-
-test("Checks if given string is a valid URL", (t) => {
-  t.true(isUrl("https%3A%2F%2Ffoo.bar"));
-  t.true(isUrl("https://foo.bar"));
-  t.false(isUrl("foo.bar"));
-});
-
-test("Throws error given URL is not a string", (t) => {
-  t.throws(
-    () => {
-      isUrl({ url: "https://foo.bar" });
-    },
-    {
-      instanceOf: TypeError,
-      message: "Expected a string",
-    }
-  );
 });
 
 test("Gets package JSON object", (t) => {
