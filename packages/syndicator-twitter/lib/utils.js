@@ -137,13 +137,3 @@ export const htmlToStatusText = (html) => {
 
   return statusText;
 };
-
-/**
- * Test if string is a Twitter status URL
- * @param {string} string - URL
- * @returns {boolean} Twitter status URL?
- */
-export const isTweetUrl = (string) => {
-  const parsedUrl = new URL(string);
-  return parsedUrl.hostname === "twitter.com";
-};
