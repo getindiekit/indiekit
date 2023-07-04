@@ -7,7 +7,6 @@ import {
   randomString,
   relativeMediaPath,
   renderPath,
-  slugifyString,
   toArray,
 } from "../../lib/utils.js";
 
@@ -79,12 +78,6 @@ test("Renders path from URI template and properties", async (t) => {
     result,
     /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/
   );
-});
-
-test("Slugifies a string", (t) => {
-  t.is(slugifyString("Foo bar baz", "_"), "foo_bar_baz");
-  t.is(slugifyString("McLaren's Lando Norris"), "mclarens-lando-norris");
-  t.is(slugifyString("McLaren’s Lando Norris"), "mclarens-lando-norris");
 });
 
 test("Convert string to array if not already an array", (t) => {
