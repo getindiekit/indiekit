@@ -1,4 +1,4 @@
-import { randomString } from "./utils.js";
+import { randomString } from "@indiekit/util";
 
 /**
  * Mimic a Pushed Authorization Request (PAR)
