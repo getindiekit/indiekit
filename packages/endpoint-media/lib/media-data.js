@@ -1,5 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
-import { getPermalink, getPostTypeConfig, renderPath } from "./utils.js";
+import { getCanonicalUrl } from "@indiekit/util";
+import { getPostTypeConfig, renderPath } from "./utils.js";
 import { getFileProperties, getMediaType } from "./file.js";
 
 export const mediaData = {
@@ -44,7 +45,7 @@ export const mediaData = {
       properties,
       application
     );
-    properties.url = getPermalink(me, url);
+    properties.url = getCanonicalUrl(url, me);
 
     // Update media properties based on type configuration
     const urlPathSegment = properties.url.split("/");

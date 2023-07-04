@@ -1,25 +1,11 @@
 import test from "ava";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import {
-  getPermalink,
   getPostTypeConfig,
   randomString,
   renderPath,
   supplant,
 } from "../../lib/utils.js";
-
-test("Derives a permalink", (t) => {
-  t.is(getPermalink("http://foo.bar", "baz"), "http://foo.bar/baz");
-  t.is(getPermalink("http://foo.bar/", "/baz"), "http://foo.bar/baz");
-  t.is(
-    getPermalink("http://foo.bar/baz", "/qux/quux"),
-    "http://foo.bar/baz/qux/quux"
-  );
-  t.is(
-    getPermalink("http://foo.bar/baz/", "/qux/quux"),
-    "http://foo.bar/baz/qux/quux"
-  );
-});
 
 test("Get post type configuration for a given type", (t) => {
   const { postTypes } = new JekyllPreset();
