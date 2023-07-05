@@ -1,5 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
-import { getCursor } from "../pagination.js";
+import { getCursor } from "@indiekit/util";
 
 /**
  * Query uploaded files
