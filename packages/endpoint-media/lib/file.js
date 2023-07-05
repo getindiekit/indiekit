@@ -1,6 +1,6 @@
+import { randomString } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
 import { getDate } from "./date.js";
-import { randomString } from "./utils.js";
 
 /**
  * Derive properties from file data
@@ -17,7 +17,7 @@ import { randomString } from "./utils.js";
  * }
  */
 export const getFileProperties = async (timeZone, file) => {
-  const basename = randomString();
+  const basename = randomString(5).toLowerCase();
   const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);
 

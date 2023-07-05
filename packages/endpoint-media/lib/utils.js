@@ -6,13 +6,6 @@ import { getServerTimeZone } from "./date.js";
 import { mediaTypeCount } from "./media-type-count.js";
 
 /**
- * Generate random alpha-numeric string, 5 characters long
- * @returns {string} Alpha-numeric string
- * @example random() => 'f0pjf'
- */
-export const randomString = () => Math.random().toString(36).slice(-5);
-
-/**
  * Render path from URI template and properties
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use
