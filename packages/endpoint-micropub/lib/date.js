@@ -1,3 +1,4 @@
+import { getServerTimeZone } from "@indiekit/util";
 import { format, utcToZonedTime } from "date-fns-tz";
 
 /**
@@ -44,32 +45,4 @@ export const getDate = (setting, dateString = null) => {
   });
 
   return formattedDateTime;
-};
-
-/**
- * Get local time zone offset in hours and minutes
- * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
- */
-export const getServerTimeZone = () => {
-  const timeZoneOffsetMinutes = new Date().getTimezoneOffset();
-  const timeZoneOffsetHours = Math.abs(timeZoneOffsetMinutes / 60).toString();
-
-  const offsetHours = Number.parseInt(timeZoneOffsetHours, 10);
-  const offsetMinutes = Math.abs(timeZoneOffsetMinutes % 60);
-
-  const hh = String(offsetHours).padStart(2, "0");
-  const mm = String(offsetMinutes).padStart(2, "0");
-
-  // Add an opposite sign to the offset
-  // If offset is 0, timezone is UTC
-  let timeZoneOffset;
-  if (timeZoneOffsetMinutes < 0) {
-    timeZoneOffset = `+${hh}:${mm}`;
-  } else if (timeZoneOffsetMinutes > 0) {
-    timeZoneOffset = `-${hh}:${mm}`;
-  } else if (timeZoneOffsetMinutes === 0) {
-    timeZoneOffset = "Z";
-  }
-
-  return timeZoneOffset;
 };
