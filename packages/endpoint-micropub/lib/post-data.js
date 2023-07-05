@@ -1,7 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
-import { getCanonicalUrl } from "@indiekit/util";
+import { getCanonicalUrl, getDate } from "@indiekit/util";
 import { getPostType } from "./post-type-discovery.js";
-import { getDate } from "./date.js";
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
 import * as update from "./update.js";
 import { getPostTypeConfig, renderPath } from "./utils.js";
