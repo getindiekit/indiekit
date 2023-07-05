@@ -1,3 +1,4 @@
+import process from "node:process";
 import test from "ava";
 import sinon from "sinon";
 import { testConfig } from "@indiekit-test/config";
@@ -77,6 +78,15 @@ test("Adds content store", (t) => {
 
   t.context.indiekit.addStore(testStore);
   t.is(t.context.indiekit.publication.store.info.name, "Test");
+});
+
+test("Exits process if no publication URL in configuration", async (t) => {
+  sinon.stub(console, "error");
+  sinon.stub(process, "exit");
+  t.context.publication.me = undefined;
+  await t.throwsAsync(t.context.indiekit.server({ port: 1234 }));
+
+  t.true(console.error.calledWith("No publication URL in configuration"));
 });
 
 test("Returns a server bound to given port", async (t) => {
