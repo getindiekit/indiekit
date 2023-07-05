@@ -15,6 +15,7 @@ test("Gets canonical URL", (t) => {
     getCanonicalUrl("https://website.example/path3", "https://website.example"),
     "https://website.example/path3"
   );
+  t.is(getCanonicalUrl("path5", "path4"), "path4/path5");
 });
 
 test("Checks if parsed URL string has given origin", (t) => {
