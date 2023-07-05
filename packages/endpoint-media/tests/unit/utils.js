@@ -1,20 +1,12 @@
 import test from "ava";
 import JekyllPreset from "@indiekit/preset-jekyll";
-import {
-  getPostTypeConfig,
-  randomString,
-  renderPath,
-} from "../../lib/utils.js";
+import { getPostTypeConfig, renderPath } from "../../lib/utils.js";
 
 test("Get post type configuration for a given type", (t) => {
   const { postTypes } = new JekyllPreset();
   const result = getPostTypeConfig("note", postTypes);
 
   t.is(result.name, "Note");
-});
-
-test("Generates random alpha-numeric string, 5 characters long", (t) => {
-  t.regex(randomString(), /[\d\w]{5}/g);
 });
 
 test("Renders path from URI template and properties", async (t) => {
