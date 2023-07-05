@@ -1,7 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
+import { getCursor } from "@indiekit/util";
 import { getConfig, queryConfig } from "../config.js";
 import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
-import { getCursor } from "../pagination.js";
 
 /**
  * Query previously published posts
