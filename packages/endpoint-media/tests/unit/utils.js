@@ -1,6 +1,12 @@
 import test from "ava";
+import sinon from "sinon";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import { getPostTypeConfig, renderPath } from "../../lib/utils.js";
+
+test.before(() => {
+  sinon.stub(console, "info"); // Disable console.info
+  sinon.stub(console, "warn"); // Disable console.warn
+});
 
 test("Get post type configuration for a given type", (t) => {
   const { postTypes } = new JekyllPreset();

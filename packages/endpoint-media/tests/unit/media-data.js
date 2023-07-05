@@ -1,7 +1,13 @@
 import test from "ava";
+import sinon from "sinon";
 import { getFixture } from "@indiekit-test/fixtures";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import { mediaData } from "../../lib/media-data.js";
+
+test.before(() => {
+  sinon.stub(console, "info"); // Disable console.info
+  sinon.stub(console, "warn"); // Disable console.warn
+});
 
 test.beforeEach((t) => {
   const mediaUrl = "https://website.example/photo.jpg";
