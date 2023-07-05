@@ -39,13 +39,6 @@ export const getPostTypeConfig = (type, postTypes) =>
   postTypes.find((item) => item.type === type);
 
 /**
- * Generate random alpha-numeric string, 5 characters long
- * @returns {string} Alpha-numeric string
- * @example random() => 'jb6zm'
- */
-export const randomString = () => Math.random().toString(36).slice(-5);
-
-/**
  * Render relative path if URL is on publication
  * @param {string} url - External URL
  * @param {string} me - Publication URL

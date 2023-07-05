@@ -4,7 +4,6 @@ import {
   decodeQueryParameter,
   excerptString,
   getPostTypeConfig,
-  randomString,
   relativeMediaPath,
   renderPath,
   toArray,
@@ -27,12 +26,6 @@ test("Get post type configuration for a given type", (t) => {
   const result = getPostTypeConfig("note", postTypes);
 
   t.is(result.name, "Note");
-});
-
-test("Generates random alpha-numeric string, 5 characters long", (t) => {
-  const result = randomString();
-
-  t.regex(result, /[\d\w]{5}/g);
 });
 
 test("Renders relative path if at publication URL", (t) => {
