@@ -1,4 +1,5 @@
 import test from "ava";
+import sinon from "sinon";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import {
   decodeQueryParameter,
@@ -8,6 +9,11 @@ import {
   renderPath,
   toArray,
 } from "../../lib/utils.js";
+
+test.before(() => {
+  sinon.stub(console, "info"); // Disable console.info
+  sinon.stub(console, "warn"); // Disable console.warn
+});
 
 test("Decodes form-encoded query parameter", (t) => {
   const result = decodeQueryParameter("https%3A%2F%2Ffoo.bar");

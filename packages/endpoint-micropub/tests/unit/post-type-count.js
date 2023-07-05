@@ -1,6 +1,12 @@
 import test from "ava";
+import sinon from "sinon";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import { postTypeCount } from "../../lib/post-type-count.js";
+
+test.before(() => {
+  sinon.stub(console, "info"); // Disable console.info
+  sinon.stub(console, "warn"); // Disable console.warn
+});
 
 test.beforeEach((t) => {
   t.context = {

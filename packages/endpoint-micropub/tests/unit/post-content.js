@@ -1,10 +1,16 @@
 import test from "ava";
+import sinon from "sinon";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { publication } from "@indiekit-test/publication";
 import { deletedPostData, postData } from "@indiekit-test/post-data";
 import { postContent } from "../../lib/post-content.js";
 
 await mockAgent("store");
+
+test.before(() => {
+  sinon.stub(console, "info"); // Disable console.info
+  sinon.stub(console, "warn"); // Disable console.warn
+});
 
 test.beforeEach((t) => {
   t.context.url = "https://website.example/foo";
