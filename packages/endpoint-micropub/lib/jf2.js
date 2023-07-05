@@ -1,4 +1,4 @@
-import { slugify } from "@indiekit/util";
+import { randomString, slugify } from "@indiekit/util";
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
@@ -6,7 +6,6 @@ import {
   decodeQueryParameter,
   excerptString,
   relativeMediaPath,
-  randomString,
   toArray,
 } from "./utils.js";
 
@@ -237,7 +236,7 @@ export const getSlugProperty = (properties, separator) => {
   } else if (name) {
     string = excerptString(name, 5);
   } else {
-    string = randomString();
+    string = randomString(5);
   }
 
   return slugify(string, separator);
