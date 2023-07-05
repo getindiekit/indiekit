@@ -1,6 +1,5 @@
-import { randomString } from "@indiekit/util";
+import { getDate, randomString } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
-import { getDate } from "./date.js";
 
 /**
  * Derive properties from file data
