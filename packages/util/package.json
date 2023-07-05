@@ -25,7 +25,8 @@
     "directory": "packages/util"
   },
   "dependencies": {
-    "@sindresorhus/slugify": "^2.1.0"
+    "@sindresorhus/slugify": "^2.1.0",
+    "date-fns": "^2.23.0"
   },
   "publishConfig": {
     "access": "public"
