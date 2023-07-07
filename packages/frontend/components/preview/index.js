@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/no-undefined-types */
 import { Controller } from "@hotwired/stimulus";
 
 export const PreviewController = class extends Controller {
@@ -31,10 +32,10 @@ export const PreviewController = class extends Controller {
 
   /**
    * Update preview in output based on inputted value
-   * @param {HTMLElement} outputElement - Output element
-   * @param {HTMLElement} inputElement - Input element
+   * @param {HTMLOutputElement} outputElement - Output element
+   * @param {HTMLInputElement} inputElement - Input element
    */
-  updatePreview(outputElement, inputElement = false) {
+  updatePreview(outputElement, inputElement = null) {
     outputElement.classList.add("placeholder");
     outputElement.value = outputElement.dataset.placeholder;
 

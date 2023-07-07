@@ -122,14 +122,6 @@
     "rules": {
       "camelcase": 0,
       "complexity": 0,
-      "jsdoc/no-undefined-types": [
-        "warn",
-        {
-          "definedTypes": [
-            "HTMLElement"
-          ]
-        }
-      ],
       "jsdoc/require-returns-check": 0,
       "unicorn/prevent-abbreviations": [
         "error",
