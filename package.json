@@ -122,7 +122,6 @@
     "rules": {
       "camelcase": 0,
       "complexity": 0,
-      "jsdoc/require-returns-check": 0,
       "unicorn/prevent-abbreviations": [
         "error",
         {

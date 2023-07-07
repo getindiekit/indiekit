@@ -18,7 +18,7 @@ export const decodeQueryParameter = (string) =>
  * Excerpt the first n words from a string
  * @param {string} string - String to excerpt
  * @param {number} n - Max number of words
- * @returns {string} Excerpt
+ * @returns {string|undefined} Excerpt
  * @example excerptString('Foo bar baz', 2) => 'Foo bar'
  */
 export const excerptString = (string, n) => {

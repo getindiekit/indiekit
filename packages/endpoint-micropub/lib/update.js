@@ -5,7 +5,7 @@ import { mf2ToJf2 } from "./jf2.js";
  * Add properties to object
  * @param {object} object - Object to update
  * @param {object} additions - Properties to add (mf2)
- * @returns {object} Updated object
+ * @returns {object|undefined} Updated object
  */
 export const addProperties = (object, additions) => {
   for (const key in additions) {

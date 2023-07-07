@@ -246,7 +246,7 @@ export const getSlugProperty = (properties, separator) => {
  * Get mp-syndicate-to property
  * @param {object} properties - JF2 properties
  * @param {Array} syndicationTargets - Configured syndication targets
- * @returns {Array} Resolved syndication targets
+ * @returns {Array|undefined} Resolved syndication targets
  */
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
   const property = [];

@@ -13,7 +13,7 @@ export const randomString = (length = 16) =>
  * Slugify a string
  * @param {string} string - String to excerpt
  * @param {string} [separator] - Character used to separate words
- * @returns {string} Slugified string
+ * @returns {string|undefined} Slugified string
  * @example slugify('Foo bar baz', '_') => 'foo_bar_baz'
  */
 export const slugify = (string, separator = "-") => {

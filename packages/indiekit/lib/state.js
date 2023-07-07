@@ -23,7 +23,7 @@ export const generateState = (clientId, iv) => {
  * @param {object} state - State
  * @param {string} clientId - Client ID
  * @param {object} iv - Initialization vector
- * @returns {object|boolean} Validated state object, returns false on failure
+ * @returns {object|boolean|undefined} Validated state object, returns false on failure
  */
 export const validateState = (state, clientId, iv) => {
   try {

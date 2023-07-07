@@ -1,7 +1,7 @@
 /**
  * Render SVG icon
  * @param {string} name - Icon name
- * @returns {string} HTML
+ * @returns {string|undefined} HTML
  */
 export const icon = (name) => {
   const paths = {
