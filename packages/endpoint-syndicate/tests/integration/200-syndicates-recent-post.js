@@ -19,8 +19,8 @@ test("Syndicates recent post (via Netlify webhook)", async (t) => {
   nock("https://api.twitter.com")
     .post("/1.1/statuses/update.json")
     .reply(200, {
-      id_str: "1234567890987654321", // eslint-disable-line camelcase
-      user: { screen_name: "username" }, // eslint-disable-line camelcase
+      id_str: "1234567890987654321",
+      user: { screen_name: "username" },
     });
 
   const sha256 = createHash("sha256").update("foo").digest("hex");

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { Buffer } from "node:buffer";
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import { fetch } from "undici";

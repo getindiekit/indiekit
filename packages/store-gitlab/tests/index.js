@@ -22,15 +22,15 @@ test.beforeEach((t) => {
     gitlabInstanceUrl: "https://gitlab.instance",
     getResponse: {
       content: "Zm9vYmFy",
-      commit_id: "\b[0-9a-f]{5,40}\b", // eslint-disable-line camelcase
-      file_path: "foo.txt", // eslint-disable-line camelcase
+      commit_id: "\b[0-9a-f]{5,40}\b",
+      file_path: "foo.txt",
     },
     postResponse: {
-      file_path: "foo.txt", // eslint-disable-line camelcase
+      file_path: "foo.txt",
       branch: "main",
     },
     putResponse: {
-      file_path: "foo.txt", // eslint-disable-line camelcase
+      file_path: "foo.txt",
       branch: "main",
     },
   };

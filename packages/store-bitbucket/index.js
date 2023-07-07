@@ -84,7 +84,7 @@ export default class BitbucketStore {
         [path]: content,
         branch: this.options.branch,
         message,
-        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        repo_slug: this.options.repo,
         workspace: this.options.user,
       });
 
@@ -110,7 +110,7 @@ export default class BitbucketStore {
         format: "rendered",
         commit: this.options.branch,
         path,
-        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        repo_slug: this.options.repo,
         workspace: this.options.user,
       });
       const content = response.data.raw;
@@ -139,7 +139,7 @@ export default class BitbucketStore {
         [path]: content,
         branch: this.options.branch,
         message,
-        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        repo_slug: this.options.repo,
         workspace: this.options.user,
       });
 
@@ -166,7 +166,7 @@ export default class BitbucketStore {
         branch: this.options.branch,
         files: path,
         message,
-        repo_slug: this.options.repo, // eslint-disable-line camelcase
+        repo_slug: this.options.repo,
         workspace: this.options.user,
       });
 

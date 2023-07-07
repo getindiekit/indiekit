@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import test from "ava";
 import nock from "nock";
 import { Indiekit } from "@indiekit/indiekit";

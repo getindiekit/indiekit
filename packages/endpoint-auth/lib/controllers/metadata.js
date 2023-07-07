@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { scopes } from "../scope.js";
 
 export const metadataController = (request, response) => {

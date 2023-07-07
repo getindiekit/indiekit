@@ -120,30 +120,7 @@
     ],
     "prettier": "true",
     "rules": {
-      "camelcase": [
-        "warn",
-        {
-          "allow": [
-            "access_token",
-            "client_id",
-            "code_challenge",
-            "code_challenge_method",
-            "code_verifier",
-            "date_issued",
-            "error_description",
-            "error_uri",
-            "grant_type",
-            "job_id",
-            "original_url",
-            "redirect_uri",
-            "request_uri",
-            "response_type",
-            "source_url",
-            "success_description",
-            "token_type"
-          ]
-        }
-      ],
+      "camelcase": 0,
       "complexity": 0,
       "jsdoc/no-undefined-types": [
         "warn",

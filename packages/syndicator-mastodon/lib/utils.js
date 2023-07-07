@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import brevity from "brevity";

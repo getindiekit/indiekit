@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import axios from "axios";
 import megalodon from "megalodon";
