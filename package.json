@@ -86,7 +86,7 @@
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
     "undici": "^5.2.0",
-    "vitepress": "^1.0.0-alpha.27",
+    "vitepress": "^1.0.0-beta",
     "vue": "^3.2.41",
     "xo": "^0.54.0"
   },
