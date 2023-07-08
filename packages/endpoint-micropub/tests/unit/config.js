@@ -1,6 +1,6 @@
 import test from "ava";
 import JekyllPreset from "@indiekit/preset-jekyll";
-import TwitterSyndicator from "@indiekit/syndicator-twitter";
+import MastodonSyndicator from "@indiekit/syndicator-mastodon";
 import { getConfig, queryConfig } from "../../lib/config.js";
 
 test.beforeEach((t) => {
@@ -14,8 +14,9 @@ test("Returns queryable config", (t) => {
   const application = {
     url: "https://endpoint.example",
   };
-  const twitter = new TwitterSyndicator({
+  const twitter = new MastodonSyndicator({
     checked: true,
+    url: "https://mastodon.example",
     user: "username",
   });
   const publication = {
@@ -28,8 +29,8 @@ test("Returns queryable config", (t) => {
   t.deepEqual(result.categories, ["foo", "bar"]);
   t.falsy(result["post-types"][0].path);
   t.true(result["syndicate-to"][0].checked);
-  t.is(result["syndicate-to"][0].service.name, "Twitter");
-  t.is(result["syndicate-to"][0].user.name, "username");
+  t.is(result["syndicate-to"][0].service.name, "Mastodon");
+  t.is(result["syndicate-to"][0].user.name, "@username");
 });
 
 test("Filters a list", (t) => {
