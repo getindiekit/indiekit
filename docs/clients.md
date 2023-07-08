@@ -42,6 +42,14 @@ Available for [Android](https://play.google.com/store/apps/details?id=blog.micro
 
 Available at <https://micropublish.net>.
 
+## Sparkles
+
+![Sparkles icon](/clients/sparkles.png){.client-icon}
+
+Sparkles is [a fully-featured Micropub client with a retro vibe](https://www.benji.dog/articles/sparkles/). It supports different post types including movie and book reviews, and can upload images to your media endpoint.
+
+Available at <https://sparkles.sploot.com> or [deployable to Netlify](https://github.com/benjifs/sparkles).
+
 ## Sunlit
 
 ![Sunlit icon](/clients/sunlit.png){.client-icon}
