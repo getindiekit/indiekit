@@ -1,4 +1,3 @@
-/* global Blob */
 import { validationResult } from "express-validator";
 import { endpoint } from "../endpoint.js";
 

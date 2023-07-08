@@ -28,7 +28,7 @@ export const getLocaleCatalog = (application) => {
       const translationPath = fileURLToPath(translationUrl);
       try {
         translations.push(require(translationPath));
-      } catch {}
+      } catch {} // eslint-disable-line no-empty
     }
 
     catalog.set(locale, deepmerge.all(translations));

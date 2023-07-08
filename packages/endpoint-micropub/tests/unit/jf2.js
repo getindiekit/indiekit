@@ -311,7 +311,7 @@ test("Derives slug by generating random number", (t) => {
   );
   const result = getSlugProperty(properties, "-");
 
-  t.regex(result, /[\d\w-]{5}/g);
+  t.regex(result, /[\w-]{5}/g);
 });
 
 test("Does not add syndication target if no syndicators", (t) => {

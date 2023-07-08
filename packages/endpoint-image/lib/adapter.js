@@ -11,7 +11,7 @@ export const Adapter = class {
       const response = await fetch(url);
 
       if (!response.ok) {
-        return undefined;
+        return;
       }
 
       // Blob returned by fetch() but express-sharp expects a Buffer
@@ -21,7 +21,7 @@ export const Adapter = class {
 
       return buffer;
     } catch {
-      return undefined;
+      return;
     }
   }
 };

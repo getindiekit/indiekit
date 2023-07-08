@@ -33,9 +33,9 @@ export const PreviewController = class extends Controller {
   /**
    * Update preview in output based on inputted value
    * @param {HTMLOutputElement} outputElement - Output element
-   * @param {HTMLInputElement} inputElement - Input element
+   * @param {HTMLInputElement} [inputElement] - Input element
    */
-  updatePreview(outputElement, inputElement = null) {
+  updatePreview(outputElement, inputElement) {
     outputElement.classList.add("placeholder");
     outputElement.value = outputElement.dataset.placeholder;
 

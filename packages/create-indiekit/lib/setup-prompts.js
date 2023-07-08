@@ -17,7 +17,7 @@ export const setupPrompts = [
     message: "Do you want to use a publication preset?",
   },
   {
-    type: (previous) => (previous === true ? "select" : null),
+    type: (previous) => (previous === true ? "select" : undefined),
     name: "presetPlugin",
     message: "Which publication preset do you want to use?",
     choices: [
@@ -68,7 +68,7 @@ export const setupPrompts = [
     message: "Do you want to syndicate your posts to other websites?",
   },
   {
-    type: (previous) => (previous === true ? "multiselect" : null),
+    type: (previous) => (previous === true ? "multiselect" : undefined),
     name: "syndicatorPlugins",
     message: "Which websites do you want to syndicate your posts to?",
     choices: [

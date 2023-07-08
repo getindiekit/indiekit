@@ -10,14 +10,14 @@ import { uploadMedia } from "../media.js";
  * @type {import("express").RequestHandler}
  */
 export const actionController = async (request, response, next) => {
-  const { body, files, query } = request;
+  const { app, body, files, query, session } = request;
   const action = query.action || body.action || "create";
   const url = query.url || body.url;
-  const { application, publication } = request.app.locals;
+  const { application, publication } = app.locals;
 
   try {
     // Check provided scope
-    const { scope, token } = request.session;
+    const { scope, token } = session;
     const hasScope = checkScope(scope, action);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(

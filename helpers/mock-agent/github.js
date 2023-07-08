@@ -21,7 +21,6 @@ export function mockClient() {
     sha: "1234",
   };
   const deleteResponse = {
-    content: null,
     commit: { message: "Message" },
   };
   const errorResponse = {

@@ -13,7 +13,7 @@ test("Returns new password page with generated password secret", async (t) => {
   const dom = new JSDOM(response.text);
   const result = dom.window.document;
 
-  t.regex(result.querySelector("#secret").textContent, /^\$2[ayb]\$.{56}$/);
+  t.regex(result.querySelector("#secret").textContent, /^\$2[aby]\$.{56}$/);
 
   server.close(t);
 });

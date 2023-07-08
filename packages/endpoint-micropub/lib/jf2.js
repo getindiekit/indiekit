@@ -166,7 +166,7 @@ export const getLocationProperty = (properties) => {
 
   if (typeof location === "string" && location.startsWith("geo:")) {
     const geoUriRegexp =
-      /geo:(?<latitude>[-?\d+.]*),(?<longitude>[-?\d+.]*)(?:,(?<altitude>[-?\d+.]*))?/;
+      /geo:(?<latitude>[\d+.?-]*),(?<longitude>[\d+.?-]*)(?:,(?<altitude>[\d+.?-]*))?/;
     const { latitude, longitude, altitude } =
       location.match(geoUriRegexp).groups;
 

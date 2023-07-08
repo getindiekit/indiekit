@@ -117,7 +117,7 @@ export const IndieAuth = class {
 
         // Check redirect is to a local path
         if (redirect) {
-          const validRedirect = redirect.match(/^\/[\w\d/?=&]*$/);
+          const validRedirect = redirect.match(/^\/[\w&/=?]*$/);
 
           if (!validRedirect) {
             throw IndiekitError.forbidden(

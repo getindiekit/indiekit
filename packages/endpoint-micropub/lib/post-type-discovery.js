@@ -43,7 +43,7 @@ export const getPostType = (properties) => {
   }
 
   // Check that `name` value is not a prefix of processed `content` value
-  let content = null;
+  let content;
   if (propertiesMap.has("content")) {
     content =
       properties.content.text || properties.content.html || properties.content;

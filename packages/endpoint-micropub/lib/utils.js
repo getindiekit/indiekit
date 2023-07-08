@@ -12,7 +12,7 @@ import { postTypeCount } from "./post-type-count.js";
  * @example decodeQueryParameter('https%3A%2F%2Ffoo.bar') => 'https://foo.bar'
  */
 export const decodeQueryParameter = (string) =>
-  decodeURIComponent(string.replace(/\+/g, " "));
+  decodeURIComponent(string.replaceAll("+", " "));
 
 /**
  * Excerpt the first n words from a string

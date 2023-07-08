@@ -1,4 +1,4 @@
-/* global window, Stimulus */
+/* global Stimulus */
 import { Application } from "@hotwired/stimulus";
 import { ErrorSummaryController } from "../components/error-summary/index.js";
 import { GeoInputController } from "../components/geo-input/index.js";

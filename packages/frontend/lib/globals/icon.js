@@ -60,7 +60,7 @@ export const icon = (name) => {
     <path fill="currentColor" d="${paths[name]}"/>
   </svg>`;
 
-  const icon = svg.replace(/(\s{2,}|\r\n\t|\n|\r\t)/gm, "");
+  const icon = svg.replaceAll(/(\s{2,}|\r\n\t|\n|\r\t)/gm, "");
 
   return icon;
 };

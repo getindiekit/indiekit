@@ -1,5 +1,3 @@
-/* global window */
-
 /**
  * Delay a function
  * @param {Function} callback - Function to delay
@@ -8,7 +6,7 @@
  * @see {@link https://www.joshwcomeau.com/snippets/javascript/debounce/}
  */
 export const debounce = (callback, delay) => {
-  let timeoutId = null;
+  let timeoutId;
 
   return (...arguments_) => {
     window.clearTimeout(timeoutId);

@@ -15,7 +15,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async create(application, publication, properties, draftMode = false) {
-    const { posts, timeZone } = application;
+    const { hasDatabase, posts, timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
 
     // Add syndication targets
@@ -58,7 +58,7 @@ export const postData = {
     const postData = { path, properties };
 
     // Add data to posts collection (if present)
-    if (application.hasDatabase) {
+    if (hasDatabase) {
       await posts.insertOne(postData, { checkKeys: false });
     }
 

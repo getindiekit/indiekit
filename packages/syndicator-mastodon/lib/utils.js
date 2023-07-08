@@ -98,7 +98,7 @@ export const htmlToStatusText = (html, serverUrl) => {
   });
 
   // Get the last link mentioned, or return false
-  const lastHref = hrefs.length > 0 ? hrefs[hrefs.length - 1][1] : false;
+  const lastHref = hrefs.length > 0 ? hrefs.at(-1)[1] : false;
 
   // Convert HTML to plain text, removing any links
   const text = htmlToText(html, {

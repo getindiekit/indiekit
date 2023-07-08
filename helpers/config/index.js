@@ -1,5 +1,5 @@
 import process from "node:process";
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
+import "dotenv/config.js";
 import cookieSession from "cookie-session";
 import { MongoMemoryServer } from "mongodb-memory-server";
 

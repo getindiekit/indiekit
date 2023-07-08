@@ -53,7 +53,7 @@ test("Creates media data", async (t) => {
     t.context.file
   );
 
-  t.regex(result.path, /\b[\d\w]{5}\b/g);
+  t.regex(result.path, /\b\w{5}\b/g);
   t.is(result.properties["media-type"], "photo");
 });
 

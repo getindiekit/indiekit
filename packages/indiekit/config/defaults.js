@@ -46,10 +46,10 @@ export const defaultConfig = {
   publication: {
     categories: [],
     locale: "en",
-    me: null,
-    postTemplate: null,
+    me: undefined,
+    postTemplate: undefined,
     postTypes: [],
-    preset: null,
+    preset: undefined,
     slugSeparator: "-",
     storeMessageTemplate: (metaData) =>
       `${metaData.action} ${metaData.postType} ${metaData.fileType}`,

@@ -7,7 +7,7 @@ test.beforeEach(() => {
 });
 
 test("Creates password hash", async (t) => {
-  t.regex(await createPasswordHash("foo"), /^\$2[ayb]\$.{56}$/);
+  t.regex(await createPasswordHash("foo"), /^\$2[aby]\$.{56}$/);
 });
 
 test("Verifies password", async (t) => {

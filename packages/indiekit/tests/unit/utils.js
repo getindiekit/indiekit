@@ -13,7 +13,7 @@ test.beforeEach((t) => {
 
 test("Encrypts and decrypts a string", (t) => {
   const encryptedResult = encrypt("foo", t.context.iv);
-  t.regex(encryptedResult, /[\da-fA-F]+/);
+  t.regex(encryptedResult, /[\dA-Fa-f]+/);
   t.is(decrypt(encryptedResult, t.context.iv), "foo");
 });
 

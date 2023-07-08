@@ -69,7 +69,7 @@ export default class GiteaStore {
    * @returns {Promise<Response>} Gitea client interface
    */
   async #client(path, method = "GET", body) {
-    const { instance, user, repo } = this.options;
+    const { instance, user, repo, token } = this.options;
     const url = new URL(
       path,
       `${instance}/api/v1/repos/${user}/${repo}/contents/`
@@ -78,7 +78,7 @@ export default class GiteaStore {
     const response = await fetch(url.href, {
       method,
       headers: {
-        authorization: `token ${this.options.token}`,
+        authorization: `token ${token}`,
       },
       body: JSON.stringify(body),
     });

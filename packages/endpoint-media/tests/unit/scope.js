@@ -6,7 +6,7 @@ test("Action defaults to `media`", (t) => {
 });
 
 test("Scope defaults to `create`", (t) => {
-  t.true(checkScope(null, "create"));
+  t.true(checkScope(undefined, "create"));
 });
 
 test("Returns true if action is permitted by scope", (t) => {

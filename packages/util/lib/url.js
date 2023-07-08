@@ -7,7 +7,7 @@ import posix from "node:path/posix";
  * @returns {string} Canonical URL
  * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
  */
-export const getCanonicalUrl = (string, baseUrl = undefined) => {
+export const getCanonicalUrl = (string, baseUrl) => {
   string = String(string);
 
   try {

@@ -1,4 +1,4 @@
-import "dotenv/config.js"; // eslint-disable-line import/no-unassigned-import
+import "dotenv/config.js";
 import getPort from "get-port";
 import sinon from "sinon";
 import { testConfig } from "@indiekit-test/config";

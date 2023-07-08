@@ -1,4 +1,3 @@
-/* eslint-disable-next-line import/no-unassigned-import */
 import "dotenv/config.js"; // Load process.env.SECRET for signing token
 import { signToken } from "@indiekit/endpoint-auth/lib/token.js";
 

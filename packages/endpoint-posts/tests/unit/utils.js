@@ -88,7 +88,7 @@ test("Gets post status badges", (t) => {
 
 test("Gets post type name (or an empty string)", (t) => {
   t.is(getPostTypeName(t.context.publication, "article"), "Journal entry");
-  t.is(getPostTypeName(t.context.publication, null), "");
+  t.is(getPostTypeName(t.context.publication), "");
 });
 
 test("Gets post URL", (t) => {

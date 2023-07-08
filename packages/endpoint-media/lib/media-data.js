@@ -12,7 +12,7 @@ export const mediaData = {
    * @returns {Promise<object>} Media data
    */
   async create(application, publication, file) {
-    const { media, timeZone } = application;
+    const { hasDatabase, media, timeZone } = application;
     const { me, postTypes } = publication;
 
     // Media properties
@@ -49,13 +49,13 @@ export const mediaData = {
 
     // Update media properties based on type configuration
     const urlPathSegment = properties.url.split("/");
-    properties.filename = urlPathSegment[urlPathSegment.length - 1];
+    properties.filename = urlPathSegment.at(-1);
     properties.basename = properties.filename.split(".")[0];
 
     const mediaData = { path, properties };
 
     // Add data to media collection (if present)
-    if (application.hasDatabase) {
+    if (hasDatabase) {
       await media.insertOne(mediaData);
     }
 

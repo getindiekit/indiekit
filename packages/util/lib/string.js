@@ -47,5 +47,5 @@ export const supplant = (string, object) => {
     return match;
   };
 
-  return string.replace(/{([^{}]*)}/g, replacer);
+  return string.replaceAll(/{([^{}]*)}/g, replacer);
 };

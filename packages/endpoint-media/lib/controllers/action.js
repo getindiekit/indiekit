@@ -8,14 +8,14 @@ import { checkScope } from "../scope.js";
  * @type {import("express").RequestHandler}
  */
 export const actionController = async (request, response, next) => {
-  const { body, files, query } = request;
+  const { app, body, files, query, session } = request;
   const action = query.action || body.action || "media";
   const url = query.url || body.url;
-  const { application, publication } = request.app.locals;
+  const { application, publication } = app.locals;
 
   try {
     // Check provided scope
-    const { scope } = request.session;
+    const { scope } = session;
     const hasScope = checkScope(scope);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(

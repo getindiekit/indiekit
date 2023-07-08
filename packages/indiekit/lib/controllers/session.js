@@ -10,6 +10,6 @@ export const login = (request, response) => {
 };
 
 export const logout = (request, response) => {
-  request.session = null;
+  request.session = undefined;
   return response.redirect("/");
 };

@@ -38,7 +38,7 @@ export const endpoint = {
    * @param {FormData} [formData] - Form data
    * @returns {Promise<object>} Response data
    */
-  async post(url, accessToken, formData = null) {
+  async post(url, accessToken, formData) {
     const endpointResponse = await fetch(url, {
       method: "POST",
       headers: {

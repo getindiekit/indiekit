@@ -1,4 +1,3 @@
-/* global document, navigator */
 import { Controller } from "@hotwired/stimulus";
 
 export const GeoInputController = class extends Controller {

@@ -1,5 +1,4 @@
 /* eslint-disable jsdoc/no-undefined-types */
-/* global window document */
 import { Controller } from "@hotwired/stimulus";
 
 /**

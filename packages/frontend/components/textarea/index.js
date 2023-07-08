@@ -1,4 +1,3 @@
-/* global window */
 import { Controller } from "@hotwired/stimulus";
 import { debounce } from "../../lib/utils/debounce.js";
 
