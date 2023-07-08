@@ -30,7 +30,7 @@
     "docs:build": "vitepress build docs",
     "dev": "nodemon",
     "start": "indiekit serve",
-    "lint:scripts": "xo '**/*.js'",
+    "lint:scripts": "eslint '**/*.js'",
     "lint:styles": "stylelint '**/*.css'",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "test": "NODE_NO_WARNINGS=1 ava",
@@ -67,7 +67,10 @@
     "c8": "^8.0.0",
     "cookie-session": "^2.0.0",
     "create-indiekit": "*",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jsdoc": "^46.0.0",
+    "eslint-plugin-unicorn": "^47.0.0",
     "jsdom": "^22.0.0",
     "lint-staged": "^13.1.0",
     "markdown-it-anchor": "^8.6.6",
@@ -86,8 +89,7 @@
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
     "vitepress": "^1.0.0-beta",
-    "vue": "^3.2.41",
-    "xo": "^0.54.0"
+    "vue": "^3.2.41"
   },
   "ava": {
     "workerThreads": false
@@ -108,27 +110,5 @@
   },
   "nodemonConfig": {
     "ext": "css,cjs,js,json,njk,md"
-  },
-  "xo": {
-    "space": true,
-    "extends": [
-      "plugin:jsdoc/recommended"
-    ],
-    "plugins": [
-      "jsdoc"
-    ],
-    "prettier": "true",
-    "rules": {
-      "camelcase": 0,
-      "complexity": 0,
-      "unicorn/prevent-abbreviations": [
-        "error",
-        {
-          "replacements": {
-            "application": false
-          }
-        }
-      ]
-    }
   }
 }

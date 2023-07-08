@@ -1,7 +1,7 @@
 {
   "*.js": [
     "prettier --write",
-    "xo"
+    "eslint"
   ],
   "*.css": [
     "prettier --write",
