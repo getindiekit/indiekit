@@ -10,13 +10,13 @@ Indiekit has been tested with the following Micropub clients and supporting appl
 
 Micropub support available for [iOS, iPadOS and macOS](https://ia.net/downloads).
 
-## Indigenous
+## IndiePass
 
-![Indigenous icon](/clients/indigenous.png){.client-icon}
+![IndiePass icon](/clients/indiepass.png){.client-icon}
 
-> Indigenous allows you to engage with the internet as you do on social media sites, and post on your IndieWeb-powered website or a federated instance like Mastodon, Pleroma or Pixelfed.
+> IndiePass allows you to engage with the internet as you do on social media sites, and post on your IndieWeb-powered website or a federated instance like Mastodon, Pleroma or Pixelfed.
 
-Available for [Android, Linux, macOS and Windows](https://indiepass.marksuth.dev/downloads).
+Available for [Android, Linux, macOS and Windows](https://indiepass.app).
 
 ## OwnYourSwarm
 
