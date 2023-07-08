@@ -14,7 +14,7 @@ test.failing("Returns 500 error uploading file", async (t) => {
   const response = await request
     .post("/files/upload")
     .set("cookie", [cookie()])
-    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
   const dom = new JSDOM(response.text);
   const result = dom.window.document.querySelector(
     ".notification--error p"

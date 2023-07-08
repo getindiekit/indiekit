@@ -11,7 +11,7 @@ test("Returns 501 error unsupported post type", async (t) => {
     .post("/media")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   t.is(result.status, 501);
   t.is(

@@ -12,7 +12,7 @@ export const mockClient = () => {
   const client = agent.get("https://auth-endpoint.example");
 
   // Client information
-  const homeHtml = getFixture("html/home.html", null);
+  const homeHtml = getFixture("html/home.html");
   client.intercept({ path: "/" }).reply(200, homeHtml);
 
   // Profile URL response

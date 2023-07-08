@@ -14,7 +14,7 @@ test.beforeEach((t) => {
 
   t.context = {
     file: {
-      data: getFixture("file-types/photo.jpg", null),
+      data: getFixture("file-types/photo.jpg", false),
       name: "photo.jpg",
     },
     application: {
@@ -59,7 +59,7 @@ test("Creates media data", async (t) => {
 
 test("Throws error creating media data for unsupported media type", async (t) => {
   const file = {
-    data: getFixture("file-types/font.ttf", null),
+    data: getFixture("file-types/font.ttf", false),
     name: "font.ttf",
   };
 

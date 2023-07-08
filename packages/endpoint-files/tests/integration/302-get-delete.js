@@ -16,7 +16,7 @@ test("Redirects to file page if no delete permissions", async (t) => {
     .post("/media")
     .auth(testToken({ scope: "media" }), { type: "bearer" })
     .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", null), "photo.jpg");
+    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
   const id = Buffer.from(uploadResponse.headers.location).toString("base64url");
 
   // Request delete page

@@ -15,7 +15,7 @@ test.before(() => {
 
 test.beforeEach((t) => {
   t.context.file = {
-    data: getFixture("file-types/photo.jpg", null),
+    data: getFixture("file-types/photo.jpg", false),
     name: "photo.jpg",
   };
 });
