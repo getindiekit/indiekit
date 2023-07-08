@@ -33,8 +33,7 @@
     "directory": "packages/store-gitea"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.3",
-    "undici": "^5.2.0"
+    "@indiekit/error": "^1.0.0-beta.3"
   },
   "publishConfig": {
     "access": "public"

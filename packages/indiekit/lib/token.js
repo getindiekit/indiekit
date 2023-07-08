@@ -1,6 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
-import { fetch } from "undici";
 
 export const findBearerToken = (request) => {
   if (request.session?.access_token) {

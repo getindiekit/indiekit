@@ -1,7 +1,6 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
 
 const defaults = {
   branch: "main",

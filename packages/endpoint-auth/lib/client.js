@@ -1,4 +1,3 @@
-import { fetch } from "undici";
 import { mf2 } from "microformats-parser";
 
 /**

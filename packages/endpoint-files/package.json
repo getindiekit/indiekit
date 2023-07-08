@@ -37,8 +37,7 @@
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.3",
     "express": "^4.17.1",
-    "express-validator": "^7.0.0",
-    "undici": "^5.2.0"
+    "express-validator": "^7.0.0"
   },
   "publishConfig": {
     "access": "public"

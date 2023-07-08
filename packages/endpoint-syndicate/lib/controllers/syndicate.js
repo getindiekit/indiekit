@@ -1,5 +1,4 @@
 import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
 import { findBearerToken } from "../token.js";
 import { getPostData, syndicateToTargets } from "../utils.js";
 

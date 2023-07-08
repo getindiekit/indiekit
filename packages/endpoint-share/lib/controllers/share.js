@@ -1,5 +1,4 @@
 import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
 import { validationResult } from "express-validator";
 
 export const shareController = {

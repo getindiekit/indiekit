@@ -1,5 +1,4 @@
 import { Buffer } from "node:buffer";
-import { fetch } from "undici";
 
 export const Adapter = class {
   constructor(options = {}) {

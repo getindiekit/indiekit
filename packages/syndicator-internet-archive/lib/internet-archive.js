@@ -1,5 +1,3 @@
-import { fetch } from "undici";
-
 /**
  * Save Page Now 2 (SPN2) API
  * @param {object} options - Options

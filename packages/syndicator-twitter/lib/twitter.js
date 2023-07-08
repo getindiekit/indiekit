@@ -1,6 +1,5 @@
 import { Buffer } from "node:buffer";
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
-import { fetch } from "undici";
 import Twitter from "twitter-lite";
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 

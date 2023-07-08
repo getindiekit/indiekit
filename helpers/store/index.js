@@ -1,5 +1,4 @@
 import { IndiekitError } from "@indiekit/error";
-import { fetch } from "undici";
 
 const defaults = {
   baseUrl: "https://store.example",

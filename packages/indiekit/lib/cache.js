@@ -1,5 +1,3 @@
-import { fetch } from "undici";
-
 /**
  * Get cached response value
  * @typedef {import("keyv")} Keyv

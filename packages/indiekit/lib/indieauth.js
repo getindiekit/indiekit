@@ -2,7 +2,6 @@ import crypto from "node:crypto";
 import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, randomString } from "@indiekit/util";
-import { fetch } from "undici";
 import {
   findBearerToken,
   introspectToken,

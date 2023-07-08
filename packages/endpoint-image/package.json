@@ -36,8 +36,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "express-sharp": "^4.2.40",
-    "undici": "^5.5.1"
+    "express-sharp": "^4.2.40"
   },
   "publishConfig": {
     "access": "public"

@@ -41,8 +41,7 @@
     "express": "^4.17.1",
     "express-validator": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
-    "microformats-parser": "^1.4.1",
-    "undici": "^5.2.0"
+    "microformats-parser": "^1.4.1"
   },
   "publishConfig": {
     "access": "public"
