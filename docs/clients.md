@@ -32,7 +32,7 @@ Available at <https://ownyourswarm.p3k.io>.
 
 Micro.blog’s official clients can post to Micro.blog or any blog that supports the Micropub API.
 
-Available for [iOS](https://apps.apple.com/gb/app/micro-blog/id1253201335) & [macOS](https://help.micro.blog/t/micro-blog-for-mac/45).
+Available for [Android](https://play.google.com/store/apps/details?id=blog.micro.android), [iOS](https://apps.apple.com/gb/app/micro-blog/id1253201335) & [macOS](https://help.micro.blog/t/micro-blog-for-mac/45).
 
 ## Micropublish
 
