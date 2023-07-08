@@ -1,7 +1,7 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
-import gitbeaker from "@gitbeaker/node";
+import { RepositoryFiles } from "@gitbeaker/rest";
 
 const defaults = {
   branch: "main",
@@ -10,7 +10,7 @@ const defaults = {
 };
 
 /**
- * @typedef {import("@gitbeaker/core").Gitlab} Gitlab
+ * @typedef {import("@gitbeaker/rest").RepositoryFiles} RepositoryFiles
  */
 export default class GitlabStore {
   /**
@@ -69,11 +69,10 @@ export default class GitlabStore {
 
   /**
    * @access private
-   * @returns {Gitlab} GitLab client interface
+   * @returns {RepositoryFiles} GitLab repository files interface
    */
   get #client() {
-    const { Gitlab } = gitbeaker;
-    return new Gitlab({
+    return new RepositoryFiles({
       host: this.options.instance,
       token: this.options.token,
     });
@@ -90,7 +89,7 @@ export default class GitlabStore {
   async createFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      await this.#client.RepositoryFiles.create(
+      await this.#client.create(
         this.projectId,
         path,
         this.options.branch,
@@ -119,14 +118,13 @@ export default class GitlabStore {
    */
   async readFile(path) {
     try {
-      const response = await this.#client.RepositoryFiles.show(
+      const response = await this.#client.showRaw(
         this.projectId,
         path,
         this.options.branch
       );
-      const content = Buffer.from(response.content, "base64").toString("utf8");
 
-      return content;
+      return response.text();
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -147,7 +145,7 @@ export default class GitlabStore {
   async updateFile(path, content, message) {
     try {
       content = Buffer.from(content).toString("base64");
-      await this.#client.RepositoryFiles.edit(
+      await this.#client.edit(
         this.projectId,
         path,
         this.options.branch,
@@ -177,7 +175,7 @@ export default class GitlabStore {
    */
   async deleteFile(path, message) {
     try {
-      await this.#client.RepositoryFiles.remove(
+      await this.#client.remove(
         this.projectId,
         path,
         this.options.branch,
