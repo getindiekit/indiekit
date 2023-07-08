@@ -10,13 +10,6 @@
       "custom-properties",
       "declarations"
     ],
-    "order/properties-alphabetical-order": true,
-    "selector-pseudo-element-colon-notation": "double",
-    "value-keyword-case": [
-      "lower",
-      {
-        "camelCaseSvgKeywords": false
-      }
-    ]
+    "order/properties-alphabetical-order": true
   }
 }
