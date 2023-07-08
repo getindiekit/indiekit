@@ -82,7 +82,7 @@
     "prettier": "^2.5.1",
     "sinon": "^15.0.0",
     "stylelint": "^15.0.0",
-    "stylelint-config-recommended": "^12.0.0",
+    "stylelint-config-recommended": "^13.0.0",
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
     "undici": "^5.2.0",
