@@ -8,7 +8,7 @@ await mockAgent("store");
 
 test("Returns no post records awaiting syndication", async (t) => {
   const server = await testServer({
-    plugins: ["@indiekit/syndicator-twitter"],
+    plugins: ["@indiekit/syndicator-mastodon"],
   });
   const request = supertest.agent(server);
   await request

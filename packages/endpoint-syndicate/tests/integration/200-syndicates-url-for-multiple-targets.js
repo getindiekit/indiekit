@@ -9,18 +9,18 @@ import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
-test("Syndicates a URL", async (t) => {
+test("Syndicates a URL to multiple targets (one fails)", async (t) => {
   sinon.stub(console, "error");
 
-  nock("https://api.twitter.com")
-    .post("/1.1/statuses/update.json")
-    .reply(200, {
-      id_str: "1234567890987654321",
-      user: { screen_name: "username" },
-    });
+  nock("https://social.example").post("/api/v1/statuses").reply(200, {
+    url: "https://social.example/@username/1234567890987654321",
+  });
 
   const server = await testServer({
-    plugins: ["@indiekit/syndicator-mastodon", "@indiekit/syndicator-twitter"],
+    plugins: [
+      "@indiekit/syndicator-internet-archive",
+      "@indiekit/syndicator-mastodon",
+    ],
   });
   const request = supertest.agent(server);
   await request
@@ -33,7 +33,7 @@ test("Syndicates a URL", async (t) => {
       properties: {
         name: ["foobar"],
         "mp-syndicate-to": [
-          "https://twitter.com/username",
+          "https://web.archive.org/",
           "https://social.example/@username",
         ],
       },
@@ -47,7 +47,7 @@ test("Syndicates a URL", async (t) => {
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    "Post updated at https://website.example/notes/foobar/. The following target(s) did not return a URL: https://social.example/@username"
+    "Post updated at https://website.example/notes/foobar/. The following target(s) did not return a URL: https://web.archive.org/"
   );
 
   server.close(t);

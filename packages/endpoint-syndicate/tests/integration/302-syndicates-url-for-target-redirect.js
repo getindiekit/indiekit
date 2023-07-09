@@ -7,16 +7,13 @@ import { testToken } from "@indiekit-test/token";
 
 await mockAgent("store");
 
-test("Syndicates a URL", async (t) => {
-  nock("https://api.twitter.com")
-    .post("/1.1/statuses/update.json")
-    .reply(200, {
-      id_str: "1234567890987654321",
-      user: { screen_name: "username" },
-    });
+test("Syndicates a URL and redirects", async (t) => {
+  nock("https://social.example").post("/api/v1/statuses").reply(200, {
+    url: "https://social.example/@username/1234567890987654321",
+  });
 
   const server = await testServer({
-    plugins: ["@indiekit/syndicator-twitter"],
+    plugins: ["@indiekit/syndicator-mastodon"],
   });
   const request = supertest.agent(server);
   await request
@@ -25,7 +22,7 @@ test("Syndicates a URL", async (t) => {
     .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
-    .send("mp-syndicate-to=https://twitter.com/username");
+    .send("mp-syndicate-to=https://social.com/@username");
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")

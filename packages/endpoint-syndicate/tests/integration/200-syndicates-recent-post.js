@@ -16,12 +16,9 @@ test.beforeEach(() => {
 });
 
 test("Syndicates recent post (via Netlify webhook)", async (t) => {
-  nock("https://api.twitter.com")
-    .post("/1.1/statuses/update.json")
-    .reply(200, {
-      id_str: "1234567890987654321",
-      user: { screen_name: "username" },
-    });
+  nock("https://social.example").post("/api/v1/statuses").reply(200, {
+    url: "https://social.example/@username/1234567890987654321",
+  });
 
   const sha256 = createHash("sha256").update("foo").digest("hex");
   const webhookSignature = jwt.sign(
@@ -30,7 +27,7 @@ test("Syndicates recent post (via Netlify webhook)", async (t) => {
   );
 
   const server = await testServer({
-    plugins: ["@indiekit/syndicator-twitter"],
+    plugins: ["@indiekit/syndicator-mastodon"],
   });
   const request = supertest.agent(server);
   await request
@@ -39,7 +36,7 @@ test("Syndicates recent post (via Netlify webhook)", async (t) => {
     .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
-    .send("mp-syndicate-to=https://twitter.com/username");
+    .send("mp-syndicate-to=https://social.example/@username");
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
