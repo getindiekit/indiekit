@@ -6,7 +6,7 @@ import {
   verifyTokenValues,
 } from "../../lib/token.js";
 
-await mockAgent("token-endpoint");
+await mockAgent("indiekit");
 
 test.beforeEach((t) => {
   t.context = {

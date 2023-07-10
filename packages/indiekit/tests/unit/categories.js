@@ -2,7 +2,7 @@ import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { getCategories } from "../../lib/categories.js";
 
-await mockAgent("website");
+await mockAgent("indiekit");
 
 test("Returns array of available categories", async (t) => {
   const result = await getCategories(undefined, {

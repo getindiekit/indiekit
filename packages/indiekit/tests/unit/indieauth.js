@@ -6,7 +6,7 @@ import mockReqRes from "mock-req-res";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { IndieAuth } from "../../lib/indieauth.js";
 
-await mockAgent("token-endpoint");
+await mockAgent("indiekit");
 
 const { mockRequest, mockResponse } = mockReqRes;
 const indieauth = new IndieAuth({

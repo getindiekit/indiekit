@@ -5,7 +5,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { getCachedResponse } from "../../lib/cache.js";
 
-await mockAgent("website");
+await mockAgent("indiekit");
 
 test.beforeEach(async (t) => {
   const mongod = await MongoMemoryServer.create();

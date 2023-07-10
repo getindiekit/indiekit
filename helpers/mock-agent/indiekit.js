@@ -1,20 +1,19 @@
 import { MockAgent } from "undici";
-import { getFixture } from "@indiekit-test/fixtures";
 
 /**
- * @returns {Function} Undici MockClient
- * @see {@link https://undici.nodejs.org/#/docs/api/MockClient}
+ * @returns {import("undici").MockAgent} Undici MockAgent
+ * @see {@link https://undici.nodejs.org/#/docs/api/MockAgent}
  */
 export function mockClient() {
   const agent = new MockAgent();
   agent.disableNetConnect();
 
-  const client = agent.get("https://token-endpoint.example");
-  const postHtml = getFixture("html/post.html");
-  const pageHtml = getFixture("html/page.html");
+  const tokenEndpointOrigin = "https://token-endpoint.example";
+  const websiteOrigin = "https://website.example";
 
   // Verify access token
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: "/introspect?token=JWT",
       headers: { authorization: "Bearer JWT" },
@@ -27,7 +26,8 @@ export function mockClient() {
     });
 
   // Verify access token (wrong token)
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: "/introspect?token=another",
       headers: { authorization: "Bearer another" },
@@ -40,7 +40,8 @@ export function mockClient() {
     });
 
   // Verify access token (inactive token)
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: "/introspect?token=invalid",
       headers: { authorization: "Bearer invalid" },
@@ -49,7 +50,8 @@ export function mockClient() {
     .reply(200, { active: false });
 
   // Verify access token (Not found)
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: "/introspect/token?token=JWT",
       headers: { authorization: "Bearer JWT" },
@@ -58,7 +60,8 @@ export function mockClient() {
     .reply(404, { message: "Not found" });
 
   // Exchange authorization code for access token (empty response)
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: /\?client_id=(.*)&code=invalid&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
       method: "POST",
@@ -66,7 +69,8 @@ export function mockClient() {
     .reply(200, {});
 
   // Exchange authorization code for access token (Bad Request)
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: /\?client_id=(.*)&code=foobar&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
       method: "POST",
@@ -77,7 +81,8 @@ export function mockClient() {
     });
 
   // Exchange authorization code for access token (Not Found)
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: /\?client_id=(.*)&code=404&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
       method: "POST",
@@ -87,7 +92,8 @@ export function mockClient() {
     });
 
   // Exchange authorization code for access token
-  client
+  agent
+    .get(tokenEndpointOrigin)
     .intercept({
       path: /\?client_id=(.*)&code=(.*)&code_verifier=(.*)&grant_type=authorization_code&redirect_uri=(.*)/,
       method: "POST",
@@ -98,13 +104,14 @@ export function mockClient() {
       token_type: "Bearer",
     });
 
-  // Mock HTML requests (need to use same origin as token endpoint)
-  // See: https://github.com/nodejs/undici/discussions/1440
-  client.intercept({ path: "/post.html" }).reply(200, postHtml);
-  client.intercept({ path: "/page.html" }).reply(200, pageHtml);
-  client.intercept({ path: "/404.html" }).reply(404, {
-    message: "Not found",
-  });
+  // Get categories from website
+  agent
+    .get(websiteOrigin)
+    .intercept({ path: "/categories.json" })
+    .reply(200, ["Foo", "Bar"]);
 
-  return client;
+  // Get categories from website (Not Found)
+  agent.get(websiteOrigin).intercept({ path: "/404.json" }).reply(404);
+
+  return agent;
 }

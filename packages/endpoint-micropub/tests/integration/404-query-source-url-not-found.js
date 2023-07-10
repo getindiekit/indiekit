@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-await mockAgent("token-endpoint");
+await mockAgent("indiekit");
 
 test("Returns 404 error source URL not found", async (t) => {
   const server = await testServer({
