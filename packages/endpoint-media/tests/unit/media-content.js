@@ -6,7 +6,7 @@ import { mediaData } from "@indiekit-test/media-data";
 import { publication } from "@indiekit-test/publication";
 import { mediaContent } from "../../lib/media-content.js";
 
-await mockAgent("store");
+await mockAgent("endpoint-media");
 
 test.before(() => {
   sinon.stub(console, "info"); // Disable console.info
