@@ -5,7 +5,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { createPasswordHash } from "../../lib/password.js";
 
-await mockAgent("auth-endpoint");
+await mockAgent("endpoint-auth");
 
 test("Returns authorization consent form", async (t) => {
   process.env.PASSWORD_SECRET = createPasswordHash("foo");

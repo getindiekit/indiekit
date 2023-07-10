@@ -4,7 +4,7 @@ import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-await mockAgent("auth-endpoint");
+await mockAgent("endpoint-auth");
 
 test("Returns 302 setup password secret", async (t) => {
   process.env.PASSWORD_SECRET = "";

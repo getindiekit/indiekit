@@ -4,7 +4,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { signToken } from "../../lib/token.js";
 
-await mockAgent("auth-endpoint");
+await mockAgent("endpoint-auth");
 
 test("Returns 400 error invalid `redirect_uri`", async (t) => {
   const server = await testServer();

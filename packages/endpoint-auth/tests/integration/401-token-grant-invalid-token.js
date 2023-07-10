@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-await mockAgent("auth-endpoint");
+await mockAgent("endpoint-auth");
 
 test("Returns 401 error unable to grant token", async (t) => {
   const server = await testServer();

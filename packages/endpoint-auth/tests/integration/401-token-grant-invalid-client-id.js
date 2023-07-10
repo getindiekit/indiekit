@@ -4,7 +4,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { signToken } from "../../lib/token.js";
 
-await mockAgent("auth-endpoint");
+await mockAgent("endpoint-auth");
 
 test("Returns 401 error invalid `client_id`", async (t) => {
   const server = await testServer();

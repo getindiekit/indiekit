@@ -4,7 +4,7 @@ import { JSDOM } from "jsdom";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 
-await mockAgent("auth-endpoint");
+await mockAgent("endpoint-auth");
 
 test("Returns 422 error missing password", async (t) => {
   const server = await testServer();
