@@ -2,7 +2,7 @@ import test from "ava";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { internetArchive } from "../../lib/internet-archive.js";
 
-await mockAgent("internet-archive");
+await mockAgent("syndicator-internet-archive");
 
 test.beforeEach((t) => {
   t.context = {

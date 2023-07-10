@@ -1,39 +1,45 @@
 import { MockAgent } from "undici";
 
 /**
- * @returns {Function} Undici MockClient
- * @see {@link https://undici.nodejs.org/#/docs/api/MockClient}
+ * @returns {import("undici").MockAgent} Undici MockAgent
+ * @see {@link https://undici.nodejs.org/#/docs/api/MockAgent}
  */
 export function mockClient() {
   const agent = new MockAgent();
   agent.disableNetConnect();
 
-  const client = agent.get("https://web.archive.org");
   const authorization = "LOW token:secret";
   const job_id = "ac58789b-f3ca-48d0-9ea6-1d1225e98695";
-  const url = "http://website.example/post/1";
+  const origin = "https://web.archive.org";
   const timestamp = "20180326070330";
+  const url = "http://website.example/post/1";
 
   // Request capture
-  client
+  agent
+    .get(origin)
     .intercept({ path: "/save", method: "POST", headers: { authorization } })
     .reply(201, { job_id, url });
 
   // Request capture (Unauthorized)
-  client.intercept({ path: "/save", method: "POST" }).reply(401, {
+  agent.get(origin).intercept({ path: "/save", method: "POST" }).reply(401, {
     message: "You need to be logged in to use Save Page Now.",
   });
 
-  // Capture status
-  client
+  // Capture status (pending)
+  agent
+    .get(origin)
     .intercept({ path: `/save/status/${job_id}`, headers: { authorization } })
     .reply(200, { status: "pending" });
-  client
+
+  // Capture status (success)
+  agent
+    .get(origin)
     .intercept({ path: `/save/status/${job_id}`, headers: { authorization } })
     .reply(200, { status: "success", original_url: url, timestamp });
 
-  // Capture status with error message
-  client
+  // Capture status (error)
+  agent
+    .get(origin)
     .intercept({ path: "/save/status/foobar", headers: { authorization } })
     .reply(200, {
       status: "error",
@@ -41,9 +47,12 @@ export function mockClient() {
     });
 
   // Capture status (Unauthorized)
-  client.intercept({ path: `/save/status/${job_id}` }).reply(401, {
-    message: "You need to be logged in to use Save Page Now.",
-  });
+  agent
+    .get(origin)
+    .intercept({ path: `/save/status/${job_id}` })
+    .reply(401, {
+      message: "You need to be logged in to use Save Page Now.",
+    });
 
-  return client;
+  return agent;
 }

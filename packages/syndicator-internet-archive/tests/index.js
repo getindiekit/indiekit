@@ -3,7 +3,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { Indiekit } from "@indiekit/indiekit";
 import InternetArchiveSyndicator from "../index.js";
 
-await mockAgent("internet-archive");
+await mockAgent("syndicator-internet-archive");
 
 const internetArchive = new InternetArchiveSyndicator({
   accessKey: "token",
