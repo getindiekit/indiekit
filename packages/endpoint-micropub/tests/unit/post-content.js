@@ -5,7 +5,7 @@ import { publication } from "@indiekit-test/publication";
 import { deletedPostData, postData } from "@indiekit-test/post-data";
 import { postContent } from "../../lib/post-content.js";
 
-await mockAgent("store");
+await mockAgent("endpoint-micropub");
 
 test.before(() => {
   sinon.stub(console, "info"); // Disable console.info

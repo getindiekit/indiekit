@@ -4,7 +4,7 @@ import { getFixture } from "@indiekit-test/fixtures";
 import { testToken } from "@indiekit-test/token";
 import { uploadMedia } from "../../lib/media.js";
 
-await mockAgent("media-endpoint");
+await mockAgent("endpoint-micropub");
 
 test.beforeEach((t) => {
   t.context = {

@@ -14,7 +14,7 @@ import {
   normaliseProperties,
 } from "../../lib/jf2.js";
 
-await mockAgent("website");
+await mockAgent("endpoint-micropub");
 
 test.beforeEach((t) => {
   t.context = {
@@ -83,7 +83,7 @@ test("Converts mf2 to JF2 with referenced URL data", async (t) => {
       properties: {
         content: ["I ate a cheese sandwich, which was nice."],
         category: ["foo", "bar"],
-        "bookmark-of": ["https://website.example/post.html"],
+        "bookmark-of": ["https://website.example/post"],
       },
     },
     true
@@ -93,14 +93,14 @@ test("Converts mf2 to JF2 with referenced URL data", async (t) => {
     type: "entry",
     content: "I ate a cheese sandwich, which was nice.",
     category: ["foo", "bar"],
-    "bookmark-of": "https://website.example/post.html",
+    "bookmark-of": "https://website.example/post",
     references: {
-      "https://website.example/post.html": {
+      "https://website.example/post": {
         type: "entry",
         name: "I ate a cheese sandwich, which was nice.",
         published: "2013-03-07",
         content: "I ate a cheese sandwich, which was nice.",
-        url: "https://website.example/post.html",
+        url: "https://website.example/post",
       },
     },
   });
