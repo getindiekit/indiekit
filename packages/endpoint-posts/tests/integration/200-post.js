@@ -5,7 +5,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-micropub");
 
 test("Returns previously published post", async (t) => {
   // Create post

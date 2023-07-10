@@ -55,6 +55,12 @@ export function mockClient() {
       error_description: "The token provided was malformed",
     });
 
+  // Create file on content store (Unauthorized)
+  agent
+    .get(storeOrigin)
+    .intercept({ path: /.*401\.md/, method: "PUT" })
+    .reply(401);
+
   // Create file on content store
   agent
     .get(storeOrigin)

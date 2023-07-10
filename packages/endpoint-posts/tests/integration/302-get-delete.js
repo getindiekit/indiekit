@@ -5,7 +5,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-micropub");
 
 test("Redirects to post page if no delete permissions", async (t) => {
   // Create post
