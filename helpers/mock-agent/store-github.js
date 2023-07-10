@@ -1,16 +1,16 @@
 import { MockAgent } from "undici";
 
 /**
- * @returns {Function} Undici MockClient
- * @see {@link https://undici.nodejs.org/#/docs/api/MockClient}
+ * @returns {import("undici").MockAgent} Undici MockAgent
+ * @see {@link https://undici.nodejs.org/#/docs/api/MockAgent}
  */
 export function mockClient() {
   const agent = new MockAgent();
   agent.disableNetConnect();
   agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
 
-  const client = agent.get("https://api.github.com");
-  const path = /\/repos\/user\/repo\/contents\/.*\.md/;
+  const origin = "https://api.github.com";
+  const path = /\/repos\/user\/repo\/contents\/\D{3}\.md/;
   const createResponse = {
     content: { path: "foo.txt" },
     commit: { message: "Message" },
@@ -23,43 +23,46 @@ export function mockClient() {
   const deleteResponse = {
     commit: { message: "Message" },
   };
-  const errorResponse = {
-    message: "Bad credentials",
-  };
 
   // Create/update file
-  client
+  agent
+    .get(origin)
     .intercept({ path, method: "PUT" })
     .reply(201, createResponse)
     .persist();
 
   // Create/update file (Unauthorized)
-  client
-    .intercept({
-      path: /.*401\.txt/,
-      method: "PUT",
-    })
-    .reply(401, errorResponse);
+  agent
+    .get(origin)
+    .intercept({ path: /.*401\.md/, method: "PUT" })
+    .reply(401);
 
   // Read file
-  client.intercept({ path }).reply(200, readResponse).persist();
+  agent
+    .get(origin)
+    .intercept({ path, method: "GET" })
+    .reply(200, readResponse)
+    .persist();
 
   // Read file (Unauthorized)
-  client
-    .intercept({
-      path: /.*401\.txt/,
-    })
-    .reply(401, errorResponse)
+  agent
+    .get(origin)
+    .intercept({ path: /.*401\.md/, method: "GET" })
+    .reply(401)
     .persist();
 
   // Read file (Not Found)
-  client
-    .intercept({ path: /.*404\.txt/ })
+  agent
+    .get(origin)
+    .intercept({ path: /.*404\.md/, method: "GET" })
     .reply(404)
     .persist();
 
   // Delete file
-  client.intercept({ path, method: "DELETE" }).reply(200, deleteResponse);
+  agent
+    .get(origin)
+    .intercept({ path, method: "DELETE" })
+    .reply(200, deleteResponse);
 
-  return client;
+  return agent;
 }

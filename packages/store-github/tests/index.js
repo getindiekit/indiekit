@@ -3,7 +3,7 @@ import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import GithubStore from "../index.js";
 
-await mockAgent("github");
+await mockAgent("store-github");
 
 const github = new GithubStore({
   token: "abcd1234",
@@ -33,7 +33,7 @@ test("Creates file in a repository", async (t) => {
 });
 
 test("Throws error creating file in a repository", async (t) => {
-  await t.throwsAsync(github.createFile("401.txt", "foobar", "Message"), {
+  await t.throwsAsync(github.createFile("401.md", "foobar", "Message"), {
     message: "GitHub store: Unauthorized",
   });
 });
@@ -43,7 +43,7 @@ test("Reads file in a repository", async (t) => {
 });
 
 test("Throws error reading file in a repository", async (t) => {
-  await t.throwsAsync(github.readFile("404.txt", "Message"), {
+  await t.throwsAsync(github.readFile("404.md", "Message"), {
     message: "GitHub store: Not Found",
   });
 });
@@ -57,7 +57,7 @@ test("Creates file if original Not Found in repository", async (t) => {
 });
 
 test("Throws error updating file in a repository", async (t) => {
-  await t.throwsAsync(github.updateFile("401.txt", "foobar", "Message"), {
+  await t.throwsAsync(github.updateFile("401.md", "foobar", "Message"), {
     message: "GitHub store: Unauthorized",
   });
 });
@@ -67,13 +67,13 @@ test("Deletes a file in a repository", async (t) => {
 });
 
 test("Throws error file Not Found in repository", async (t) => {
-  await t.throwsAsync(github.deleteFile("404.txt", "Message"), {
+  await t.throwsAsync(github.deleteFile("404.md", "Message"), {
     message: "GitHub store: Not Found",
   });
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
-  await t.throwsAsync(github.deleteFile("401.txt", "Message"), {
+  await t.throwsAsync(github.deleteFile("401.md", "Message"), {
     message: "GitHub store: Unauthorized",
   });
 });
