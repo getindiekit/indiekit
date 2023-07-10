@@ -33,7 +33,7 @@ get info() {
     },
     user: {
       name: user,
-      url: `https://social.example/${user}`,
+      url: `https://service.example/${user}`,
     },
   };
 }
@@ -109,7 +109,7 @@ export default class ExampleStore {
       },
       user: {
         name: user,
-        url: `https://social.example/${user}`,
+        url: `https://service.example/${user}`,
       },
     };
   }
