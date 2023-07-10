@@ -3,7 +3,7 @@ import nock from "nock";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { twitter } from "../../lib/twitter.js";
 
-await mockAgent("website");
+await mockAgent("syndicator-twitter");
 
 test.beforeEach((t) => {
   t.context = {
@@ -135,7 +135,7 @@ test("Throws API error posting a status", async (t) => {
 test("Throws error fetching media to upload", async (t) => {
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
-      t.context.media("image.jpg"),
+      t.context.media("404.jpg"),
       t.context.me
     ),
     {
