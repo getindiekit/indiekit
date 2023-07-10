@@ -4,7 +4,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-syndicate");
 
 test("Returns no syndication targets configured", async (t) => {
   const server = await testServer();

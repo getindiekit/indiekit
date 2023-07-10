@@ -5,7 +5,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-syndicate");
 
 test("Syndicates a URL", async (t) => {
   nock("https://mastodon.example").post("/api/v1/statuses").reply(200, {

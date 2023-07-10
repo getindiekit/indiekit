@@ -7,7 +7,7 @@ import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-syndicate");
 
 test("Syndicates a URL to multiple targets (one fails)", async (t) => {
   sinon.stub(console, "error");
