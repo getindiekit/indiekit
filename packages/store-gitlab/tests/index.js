@@ -3,7 +3,7 @@ import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import GitlabStore from "../index.js";
 
-await mockAgent("gitlab");
+await mockAgent("store-gitlab");
 
 const gitlab = new GitlabStore({
   token: "token",
@@ -35,59 +35,59 @@ test("Initiates plug-in", async (t) => {
 });
 
 test("Creates file in a repository", async (t) => {
-  const result = await gitlab.createFile("foo.txt", "foo", "Message");
+  const result = await gitlab.createFile("foo.md", "foo", "Message");
 
   t.true(result);
 });
 
 test("Creates file in a repository with projectId at custom instance", async (t) => {
-  await mockAgent("gitlab", {
+  await mockAgent("store-gitlab", {
     projectId: "1234",
     instance: "https://gitlab.instance",
   });
-  const result = await gitlabInstance.createFile("foo.txt", "foo", "Message");
+  const result = await gitlabInstance.createFile("foo.md", "foo", "Message");
 
   t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.createFile("foo.txt", "foo", "Message"), {
-    message: "GitLab store: Not Found",
+  await t.throwsAsync(gitlab.createFile("401.md", "foo", "Message"), {
+    message: "GitLab store: Unauthorized",
   });
 });
 
 test("Reads file in a repository", async (t) => {
-  const result = await gitlab.readFile("foo.txt");
+  const result = await gitlab.readFile("foo.md");
 
   t.is(result, "foobar");
 });
 
 test("Throws error reading file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.readFile("foo.txt"), {
-    message: "GitLab store: Not Found",
+  await t.throwsAsync(gitlab.readFile("401.md"), {
+    message: "GitLab store: Unauthorized",
   });
 });
 
 test("Updates file in a repository", async (t) => {
-  const result = await gitlab.updateFile("foo.txt", "foo", "Message");
+  const result = await gitlab.updateFile("foo.md", "foo", "Message");
 
   t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.updateFile("foo.txt", "foo", "Message"), {
-    message: "GitLab store: Not Found",
+  await t.throwsAsync(gitlab.updateFile("401.md", "foo", "Message"), {
+    message: "GitLab store: Unauthorized",
   });
 });
 
 test("Deletes a file in a repository", async (t) => {
-  const result = await gitlab.deleteFile("foo.txt", "Message");
+  const result = await gitlab.deleteFile("foo.md", "Message");
 
   t.true(result);
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.deleteFile("foo.txt", "Message"), {
-    message: "GitLab store: Not Found",
+  await t.throwsAsync(gitlab.deleteFile("401.md", "Message"), {
+    message: "GitLab store: Unauthorized",
   });
 });
