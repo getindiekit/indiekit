@@ -16,7 +16,7 @@ test.beforeEach((t) => {
                 {
                   properties: {
                     type: "entry",
-                    "mp-syndicate-to": "https://social.example/",
+                    "mp-syndicate-to": "https://mastodon.example/",
                     url: "https://website.example/notes/2020/10/17/12345",
                   },
                 },
@@ -27,7 +27,7 @@ test.beforeEach((t) => {
         findOne: () => ({
           properties: {
             type: "entry",
-            "mp-syndicate-to": "https://social.example/",
+            "mp-syndicate-to": "https://mastodon.example/",
             url: "https://website.example/notes/2020/10/17/12345",
           },
         }),
@@ -52,13 +52,13 @@ test.beforeEach((t) => {
 test("Gets post for given URL from database", async (t) => {
   const result = await getPostData(t.context.application, t.context.url);
 
-  t.is(result.properties["mp-syndicate-to"], "https://social.example/");
+  t.is(result.properties["mp-syndicate-to"], "https://mastodon.example/");
 });
 
 test("Gets post data from database", async (t) => {
   const result = await getPostData(t.context.application);
 
-  t.is(result.properties["mp-syndicate-to"], "https://social.example/");
+  t.is(result.properties["mp-syndicate-to"], "https://mastodon.example/");
 });
 
 test("Checks if target already returned a syndication URL", (t) => {
@@ -68,7 +68,7 @@ test("Checks if target already returned a syndication URL", (t) => {
   ];
 
   t.true(hasSyndicationUrl(syndicationUrls, "https://twitter.com"));
-  t.false(hasSyndicationUrl(syndicationUrls, "https://social.example"));
+  t.false(hasSyndicationUrl(syndicationUrls, "https://mastodon.example"));
 });
 
 test("Check if post target is a publication target", (t) => {

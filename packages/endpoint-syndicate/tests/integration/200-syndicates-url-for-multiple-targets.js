@@ -12,8 +12,8 @@ await mockAgent("store");
 test("Syndicates a URL to multiple targets (one fails)", async (t) => {
   sinon.stub(console, "error");
 
-  nock("https://social.example").post("/api/v1/statuses").reply(200, {
-    url: "https://social.example/@username/1234567890987654321",
+  nock("https://mastodon.example").post("/api/v1/statuses").reply(200, {
+    url: "https://mastodon.example/@username/1234567890987654321",
   });
 
   const server = await testServer({
@@ -34,7 +34,7 @@ test("Syndicates a URL to multiple targets (one fails)", async (t) => {
         name: ["foobar"],
         "mp-syndicate-to": [
           "https://web.archive.org/",
-          "https://social.example/@username",
+          "https://mastodon.example/@username",
         ],
       },
     });

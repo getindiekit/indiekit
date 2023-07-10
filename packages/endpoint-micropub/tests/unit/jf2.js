@@ -23,7 +23,7 @@ test.beforeEach((t) => {
       syndicationTargets: [
         {
           name: "Example social network",
-          info: { uid: "https://social.example/" },
+          info: { uid: "https://mastodon.example/" },
         },
       ],
     },
@@ -459,18 +459,18 @@ test("Normalises JF2 (all properties)", (t) => {
   ]);
   t.deepEqual(result.video, [{ url: "https://website.example/video.mp4" }]);
   t.deepEqual(result.category, ["lunch", "food"]);
-  t.deepEqual(result["mp-syndicate-to"], ["https://social.example"]);
+  t.deepEqual(result["mp-syndicate-to"], ["https://mastodon.example"]);
 });
 
 test("Normalises JF2 (syndication properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
   delete properties["mp-syndicate-to"];
-  properties.syndication = ["https://social.example/status/1"];
+  properties.syndication = ["https://mastodon.example/status/1"];
   const result = normaliseProperties(t.context.publication, properties);
 
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
-  t.is(result.syndication[0], "https://social.example/status/1");
+  t.is(result.syndication[0], "https://mastodon.example/status/1");
   t.falsy(result["mp-syndicate-to"]);
 });
 

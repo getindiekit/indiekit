@@ -67,7 +67,7 @@ test("Convert JF2 to mf2", (t) => {
       visibility: ["private"],
       syndication: ["https://website.example/post/12345"],
       "mp-slug": ["cheese-sandwich"],
-      "mp-syndicate-to": ["https://social.example"],
+      "mp-syndicate-to": ["https://mastodon.example"],
     },
   });
 });

@@ -8,8 +8,8 @@ import { testToken } from "@indiekit-test/token";
 await mockAgent("store");
 
 test("Syndicates a URL and redirects", async (t) => {
-  nock("https://social.example").post("/api/v1/statuses").reply(200, {
-    url: "https://social.example/@username/1234567890987654321",
+  nock("https://mastodon.example").post("/api/v1/statuses").reply(200, {
+    url: "https://mastodon.example/@username/1234567890987654321",
   });
 
   const server = await testServer({

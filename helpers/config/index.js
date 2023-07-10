@@ -64,7 +64,7 @@ export const testConfig = async (options) => {
     },
     "@indiekit/syndicator-mastodon": {
       checked: true,
-      url: "https://social.example",
+      url: "https://mastodon.example",
       user: "username",
       accessToken: "abcd1234",
     },
