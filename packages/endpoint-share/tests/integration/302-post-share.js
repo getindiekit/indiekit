@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-micropub");
 
 test("Posts content and redirects back to share page", async (t) => {
   const server = await testServer();
