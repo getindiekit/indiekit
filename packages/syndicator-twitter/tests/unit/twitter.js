@@ -11,6 +11,7 @@ test.beforeEach((t) => {
       id_str: "1234567890987654321",
       user: { screen_name: "username" },
     },
+    me: "https://website.example",
     media: (filename) => ({
       url: `https://website.example/${filename}`,
       alt: "Example image",
@@ -23,9 +24,6 @@ test.beforeEach((t) => {
       accessTokenKey: "ABCDEFGHIJKLMNabcdefghijklmnopqrstuvwxyz0123456789",
       accessTokenSecret: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN",
       user: "username",
-    },
-    publication: {
-      me: "https://website.example",
     },
   };
 });
@@ -138,7 +136,7 @@ test("Throws error fetching media to upload", async (t) => {
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
       t.context.media("image.jpg"),
-      t.context.publication.me
+      t.context.me
     ),
     {
       message: "Not Found",
@@ -156,7 +154,7 @@ test("Uploads media and returns a media id", async (t) => {
 
   const result = await twitter(t.context.options).uploadMedia(
     t.context.media("photo1.jpg"),
-    t.context.publication.me
+    t.context.me
   );
 
   t.is(result, "1234567890987654321");
@@ -172,7 +170,7 @@ test("Throws error uploading media", async (t) => {
   await t.throwsAsync(
     twitter(t.context.options).uploadMedia(
       t.context.media("photo2.jpg"),
-      t.context.publication.me
+      t.context.me
     ),
     {
       message: /Not found/,
@@ -183,7 +181,7 @@ test("Throws error uploading media", async (t) => {
 test("Returns false passing an object to media upload function", async (t) => {
   const result = await twitter(t.context.options).uploadMedia(
     { foo: "bar" },
-    t.context.publication.me
+    t.context.me
   );
 
   t.falsy(result);
@@ -198,7 +196,7 @@ test("Posts a like of a tweet to Twitter", async (t) => {
     {
       "like-of": t.context.tweetUrl,
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
@@ -209,7 +207,7 @@ test("Doesn’t post a like of a URL to Twitter", async (t) => {
     {
       "like-of": "https://foo.bar/lunchtime",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.falsy(result);
@@ -224,7 +222,7 @@ test("Posts a repost of a tweet to Twitter", async (t) => {
     {
       "repost-of": t.context.tweetUrl,
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
@@ -235,7 +233,7 @@ test("Doesn’t post a repost of a URL to Twitter", async (t) => {
     {
       "repost-of": "https://foo.bar/lunchtime",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.falsy(result);
@@ -254,7 +252,7 @@ test("Posts a quote status to Twitter", async (t) => {
       "repost-of": t.context.tweetUrl,
       "post-type": "repost",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
@@ -273,7 +271,7 @@ test("Posts a status to Twitter", async (t) => {
       },
       url: "https://foo.bar/lunchtime",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
@@ -302,14 +300,14 @@ test("Posts a status to Twitter with 4 out of 5 photos", async (t) => {
         html: "<p>Here’s the cheese sandwiches I ate.</p>",
       },
       photo: [
-        { url: `${t.context.publication.me}/photo3.jpg` },
-        { url: `${t.context.publication.me}/photo4.jpg` },
-        { url: `${t.context.publication.me}/photo5.jpg` },
-        { url: `${t.context.publication.me}/photo6.jpg` },
-        { url: `${t.context.publication.me}/photo7.jpg` },
+        { url: `${t.context.me}/photo3.jpg` },
+        { url: `${t.context.me}/photo4.jpg` },
+        { url: `${t.context.me}/photo5.jpg` },
+        { url: `${t.context.me}/photo6.jpg` },
+        { url: `${t.context.me}/photo7.jpg` },
       ],
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://twitter.com/username/status/1234567890987654321");

@@ -68,7 +68,7 @@ export default class TwitterSyndicator {
 
   async syndicate(properties, publication) {
     try {
-      return await twitter(this.options).post(properties, publication);
+      return await twitter(this.options).post(properties, publication.me);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,

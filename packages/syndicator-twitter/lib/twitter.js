@@ -115,10 +115,10 @@ export const twitter = (options) => ({
   /**
    * Post to Twitter
    * @param {object} properties - JF2 properties object
-   * @param {object} publication - Publication configuration
+   * @param {string} me - Publication URL
    * @returns {Promise<string|boolean>} URL of syndicated tweet
    */
-  async post(properties, publication) {
+  async post(properties, me) {
     let mediaIds = [];
 
     // Upload photos
@@ -128,7 +128,7 @@ export const twitter = (options) => ({
       // Trim to 4 photos as Twitter doesn’t support more
       const photos = properties.photo.slice(0, 4);
       for await (const photo of photos) {
-        uploads.push(this.uploadMedia(photo, publication.me));
+        uploads.push(this.uploadMedia(photo, me));
       }
 
       mediaIds = await Promise.all(uploads);

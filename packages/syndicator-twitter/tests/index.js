@@ -21,6 +21,9 @@ test.beforeEach((t) => {
     properties: JSON.parse(
       getFixture("jf2/article-content-provided-html-text.jf2")
     ),
+    publication: {
+      me: "https://website.example",
+    },
   };
 });
 
@@ -51,7 +54,8 @@ test("Returns syndicated URL", async (t) => {
     .post("/1.1/statuses/update.json")
     .reply(200, t.context.apiResponse);
 
-  const result = await twitter.syndicate(t.context.properties);
+  const { properties, publication } = t.context;
+  const result = await twitter.syndicate(properties, publication);
 
   t.is(result, "https://twitter.com/username/status/1234567890987654321");
 });
@@ -83,9 +87,10 @@ test("Throws error getting syndicated URL with no API keys", async (t) => {
       ],
     });
 
+  const { properties, publication } = t.context;
   const twitterNoOptions = new TwitterSyndicator({});
 
-  await t.throwsAsync(twitterNoOptions.syndicate(t.context.properties), {
+  await t.throwsAsync(twitterNoOptions.syndicate(properties, publication), {
     message: "Twitter syndicator: Could not authenticate you.",
   });
 });
