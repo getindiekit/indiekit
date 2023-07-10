@@ -5,7 +5,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-await mockAgent("store");
+await mockAgent("endpoint-media");
 
 test.failing("Uploads file and redirects to files page", async (t) => {
   const server = await testServer();

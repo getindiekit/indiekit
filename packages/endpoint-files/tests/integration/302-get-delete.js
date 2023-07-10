@@ -6,7 +6,7 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-await mockAgent("store");
+await mockAgent("endpoint-media");
 
 test("Redirects to file page if no delete permissions", async (t) => {
   // Upload file
