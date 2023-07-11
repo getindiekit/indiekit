@@ -1,12 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
 
-/**
- * FormData interface
- * @typedef FormData
- * @property {object} FormData - Form Data
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/FormData}
- */
-
 export const endpoint = {
   /**
    * Micropub media query
