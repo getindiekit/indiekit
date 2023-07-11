@@ -5,7 +5,6 @@
  * against list of redirect URIs fetched from `<link>` tags or `Link` HTTP
  * headers with a `rel` attribute of `redirect_uri` at the `client_id` URL.
  */
-
 export const validateRedirect = (redirectUri, clientId) => {
   const redirectHost = new URL(redirectUri).host;
   const clientHost = new URL(clientId).host;
