@@ -29,7 +29,7 @@ export const actionController = async (request, response, next) => {
     switch (action) {
       case "media": {
         // Check for file in request
-        if (!files || !files.file || files.file.truncated) {
+        if (!files || !files.file) {
           throw IndiekitError.badRequest(
             response.locals.__("BadRequestError.missingProperty", "file")
           );
