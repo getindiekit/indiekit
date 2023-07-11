@@ -1,36 +1,24 @@
 import test from "ava";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
-import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { testToken } from "@indiekit-test/token";
+import { cookie } from "@indiekit-test/session";
+import { getFileId } from "../../lib/utils.js";
 
-await mockAgent("endpoint-media");
+await mockAgent("endpoint-files");
 
 test("Returns uploaded file", async (t) => {
-  // Upload file
-  const server = await testServer();
+  const id = getFileId("https://website.example/photo.jpg");
+  const server = await testServer({
+    application: { mediaEndpoint: "https://media-endpoint.example" },
+  });
   const request = supertest.agent(server);
-  await request
-    .post("/media")
-    .auth(testToken(), { type: "bearer" })
-    .set("accept", "application/json")
-    .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
-
-  // Get file data by parsing list of files and getting values from link
-  const filesResponse = await request.get("/files");
-  const filesDom = new JSDOM(filesResponse.text);
-  const fileLink = filesDom.window.document.querySelector(".card-grid li a");
-  const fileName = fileLink.textContent;
-  const fileId = fileLink.href.split("/").pop();
-
-  // Visit file page
-  const fileResponse = await request.get(`/files/${fileId}`);
-  const fileDom = new JSDOM(fileResponse.text);
+  const response = await request.get(`/files/${id}`).set("cookie", [cookie()]);
+  const fileDom = new JSDOM(response.text);
   const result = fileDom.window.document.querySelector("title").textContent;
 
-  t.is(result, `${fileName} - Test configuration`);
+  t.is(result, `photo.jpg - Test configuration`);
 
   server.close(t);
 });

@@ -5,10 +5,12 @@ import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-await mockAgent("endpoint-media");
+await mockAgent("endpoint-files");
 
-test.failing("Uploads file and redirects to files page", async (t) => {
-  const server = await testServer();
+test("Uploads file and redirects to files page", async (t) => {
+  const server = await testServer({
+    application: { mediaEndpoint: "https://media-endpoint.example" },
+  });
   const request = supertest.agent(server);
   const result = await request
     .post("/files/upload")

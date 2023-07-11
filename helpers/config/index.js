@@ -33,6 +33,7 @@ export const testConfig = async (options) => {
     application: {
       introspectionEndpoint: options?.application?.introspectionEndpoint,
       locale: options.locale,
+      mediaEndpoint: options?.application?.mediaEndpoint,
       mongodbUrl: options && options.useDatabase !== false ? mongodbUrl : false,
       name: "Test configuration",
       sessionMiddleware: cookieSession({
