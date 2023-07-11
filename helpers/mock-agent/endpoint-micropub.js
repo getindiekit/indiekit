@@ -30,7 +30,7 @@ export function mockClient() {
         201,
         {
           success: "create",
-          description: `https://website.example/media/photo${path}.jpg`,
+          success_description: `https://website.example/media/photo${path}.jpg`,
           type: "photo",
         },
         {
