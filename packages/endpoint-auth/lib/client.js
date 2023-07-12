@@ -21,13 +21,13 @@ export const getClientInformation = async (client_id) => {
   const { items } = mf2(body, { baseUrl: client_id });
 
   for (const item of items) {
-    if (item.type.includes("h-app") || item.type.includes("h-x-app")) {
-      const { logo, name, url } = item.properties;
+    if (item.type.includes("h-x-app") || item.type.includes("h-app")) {
+      const { logo, name } = item.properties;
 
       return {
         ...(logo && { logo: logo[0]?.value || logo[0] }),
-        name: name[0] || hostname,
-        url: (url && url[0]) || client_id,
+        name: name[0],
+        url: client_id,
       };
     }
   }

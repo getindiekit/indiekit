@@ -4,7 +4,16 @@ import { getClientInformation } from "../../lib/client.js";
 
 await mockAgent("endpoint-auth");
 
-test("Gets client information", async (t) => {
+test("Gets client information (h-app)", async (t) => {
+  const result = await getClientInformation("https://auth-endpoint.example");
+
+  t.deepEqual(result, {
+    name: "Example website",
+    url: "https://auth-endpoint.example",
+  });
+});
+
+test("Gets client information (h-x-app with logo)", async (t) => {
   const result = await getClientInformation("https://auth-endpoint.example");
 
   t.deepEqual(result, {

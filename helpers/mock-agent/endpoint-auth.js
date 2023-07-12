@@ -11,11 +11,17 @@ export const mockClient = () => {
 
   const origin = "https://auth-endpoint.example";
 
-  // Client information
+  // Client information (h-app)
   agent
     .get(origin)
     .intercept({ path: "/" })
     .reply(200, getFixture("html/home.html"));
+
+  // Client information (h-x-app with logo)
+  agent
+    .get(origin)
+    .intercept({ path: "/" })
+    .reply(200, getFixture("html/client.html"));
 
   // Client information (Not Found)
   agent.get(origin).intercept({ path: "/404" }).reply(404);
