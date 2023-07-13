@@ -53,6 +53,14 @@
   text-decoration-style: solid;
 }
 
+.vp-doc h4 {
+  margin-top: 32px;
+}
+
+.vp-doc h4 code {
+  margin-left: -6px;
+}
+
 /* Custom block */
 .vp-doc .custom-block h3:first-of-type {
   margin-top: 8px;
