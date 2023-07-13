@@ -12,41 +12,39 @@ The `postTemplate()` method takes one argument, `properties`, which contains the
 }
 ```
 
-The `postTemplate()` method determines how this data will get transformed. For example, if you wanted to output a format used by Kirby, you might write the following function:
+The `postTemplate()` method determines how this data will get formatted.
+
+To change the post format, make sure your configuration is provided as a JavaScript object. JSON and YAML formats are not supported.
+
+You can then provide a formatting function for `publication.postTemplate`. For example, if you wanted to output a post format used by [Kirby](https://getkirby.com), you might write the following function:
 
 ```js
-// my-post-template.js
-export const myPostTemplate = (properties) => {
-  let text;
-
-  if (properties.published) {
-    text += `\n---\nDate: ${properties.published}\n---`;
-  }
-
-  if (properties.name) {
-    text += `\n---\nTitle: ${properties.name}\n---`;
-  }
-
-  if (properties.content) {
-    text += `\n---\nText: ${properties.content}`;
-  }
-
-  return text;
-};
-```
-
-You can then reference this function in your config file:
-
-```js
-// indiekit.config.cjs
-import { myPostTemplate } from "./my-post-template.js";
-
 export default {
   publication: {
-    postTemplate: myPostTemplate,
+    postTemplate: (properties) => {
+      let text;
+
+      if (properties.published) {
+        text += `\n---\nDate: ${properties.published}\n---`;
+      }
+
+      if (properties.name) {
+        text += `\n---\nTitle: ${properties.name}\n---`;
+      }
+
+      if (properties.content) {
+        text += `\n---\nText: ${properties.content}`;
+      }
+
+      return text;
+    },
   },
 };
 ```
+
+::: info
+To use this `export` syntax, add `"type": "module"` to your project’s `package.json`.
+:::
 
 This would then generate the following file:
 

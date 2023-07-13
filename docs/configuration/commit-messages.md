@@ -12,10 +12,11 @@ By default, Indiekit outputs the `action`, `postType` and `fileType`, for exampl
 > `create photo post`  
 > `upload photo file`
 
-If you want to change the commit message format, you can do the following:
+To change the commit message format, make sure your configuration is provided as a JavaScript object. JSON and YAML formats are not supported.
+
+You can then provide a naming function for `publication.storeMessageTemplate`. For example:
 
 ```js
-// indiekit.config.cjs
 export default {
   publication: {
     storeMessageTemplate: (metaData) =>
@@ -23,6 +24,10 @@ export default {
   },
 };
 ```
+
+::: info
+To use this `export` syntax, add `"type": "module"` to your project’s `package.json`.
+:::
 
 For a photo post, this would create the following commit messages:
 

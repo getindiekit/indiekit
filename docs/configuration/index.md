@@ -358,20 +358,7 @@ _Required_. For example:
 
 A post template is a function that takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
 
-_Optional_, defaults to MF2 JSON. For example:
-
-```js
-// indiekit.config.cjs
-import { myPostTemplate } from "./my-post-template.js";
-
-export default {
-  publication: {
-    postTemplate: myPostTemplate,
-  },
-};
-```
-
-<!--@include: .option-requires-js.md-->
+_Optional_, defaults to MF2 JSON.
 
 See [customising a post template →](post-template.md)
 
@@ -414,17 +401,6 @@ _Optional_, defaults to `"-"` (hyphen). For example:
 
 Function used to customise message format.
 
-_Optional_, defaults to `[action] [postType] [fileType]`. For example:
-
-```js
-export default {
-  publication: {
-    storeMessageTemplate: (metaData) =>
-      `🤖 ${metaData.result} a ${metaData.postType} ${metaData.fileType}`,
-  },
-};
-```
-
-<!--@include: .option-requires-js.md-->
+_Optional_, defaults to `[action] [postType] [fileType]`.
 
 See [customising commit messages →](commit-messages.md)
