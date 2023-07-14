@@ -4,7 +4,7 @@ import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-test("Returns 500 error as feature requires database", async (t) => {
+test("Returns no uploaded files (no database)", async (t) => {
   const server = await testServer({ useDatabase: false });
   const request = supertest.agent(server);
   const response = await request.get("/files").set("cookie", [cookie()]);
@@ -13,12 +13,9 @@ test("Returns 500 error as feature requires database", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Not implemented - Test configuration"
+    "Uploaded files - Test configuration"
   );
-  t.regex(
-    result.querySelector(".main__container p").textContent,
-    /This feature requires a database/
-  );
+  t.regex(result.querySelector(".main__container p").textContent, /No files/);
 
   server.close(t);
 });
