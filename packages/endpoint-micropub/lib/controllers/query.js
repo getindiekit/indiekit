@@ -33,20 +33,18 @@ export const queryController = async (request, response, next) => {
       }
 
       case "source": {
-        if (!application.hasDatabase) {
-          throw IndiekitError.notImplemented(
-            response.locals.__("NotImplementedError.database")
-          );
-        }
-
         if (url) {
           // Return mf2 for a given URL (optionally filtered by properties)
-          const item = await application.posts.findOne({
-            "properties.url": url,
-          });
+          let item;
+
+          if (application.hasDatabase) {
+            item = await application.posts.findOne({
+              "properties.url": url,
+            });
+          }
 
           if (!item) {
-            throw IndiekitError.notFound(
+            throw IndiekitError.badRequest(
               response.locals.__("NotFoundError.resource", "post")
             );
           }
@@ -55,12 +53,15 @@ export const queryController = async (request, response, next) => {
           response.json(getMf2Properties(mf2, properties));
         } else {
           // Return mf2 for  published posts
-          const cursor = await getCursor(
-            application.posts,
-            after,
-            before,
-            limit
-          );
+          let cursor = {
+            items: [],
+            hasNext: false,
+            hasPrev: false,
+          };
+
+          if (application.hasDatabase) {
+            cursor = await getCursor(application.posts, after, before, limit);
+          }
 
           response.json({
             items: cursor.items.map((post) => jf2ToMf2(post.properties)),
