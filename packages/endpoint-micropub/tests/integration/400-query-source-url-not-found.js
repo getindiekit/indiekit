@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 
 await mockAgent("indiekit");
 
-test("Returns 404 error source URL not found", async (t) => {
+test("Returns 400 error source URL not found", async (t) => {
   const server = await testServer({
     application: {
       tokenEndpoint: "https://token-endpoint.example",
@@ -24,7 +24,7 @@ test("Returns 404 error source URL not found", async (t) => {
     .query({ "properties[]": "name" })
     .query({ url: "https://website.example/404.html" });
 
-  t.is(result.status, 404);
+  t.is(result.status, 400);
   t.is(result.body.error_description, "No post was found at this URL");
 
   server.close(t);
