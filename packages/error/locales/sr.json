@@ -4,6 +4,7 @@
     "invalidValue": "Neispravna vrednost predviđena za: `%s`",
     "missingParameter": "Nedostajući parametar: “%s”",
     "missingProperty": "Nema %s uključene u zahtev",
+    "missingResource": "Nijedan %s nije pronađen na ovoj URL adresi",
     "missingToken": "Nijedan žeton nosioca nije obezbeđen zahtevom",
     "title": "Loš zahtev"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "Ako ste uneli veb adresu proverite da li je tačno",
     "record": "Nije pronađen zapis baze podataka za %s",
-    "resource": "Nijedan %s nije pronađen na ovoj URL adresi",
     "title": "Nije pronađeno"
   },
   "NotImplementedError": {

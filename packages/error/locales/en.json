@@ -5,6 +5,7 @@
     "invalidValue": "Invalid value provided for: `%s`",
     "missingParameter": "Missing parameter: `%s`",
     "missingProperty": "No %s included in request",
+    "missingResource": "No %s was found at this URL",
     "missingToken": "No bearer token provided by request"
   },
   "UnauthorizedError": {
@@ -22,8 +23,7 @@
   "NotFoundError": {
     "title": "Not found",
     "page": "If you entered a web address please check it was correct",
-    "record": "No database record found for %s",
-    "resource": "No %s was found at this URL"
+    "record": "No database record found for %s"
   },
   "UnsupportedMediaTypeError": {
     "title": "Unsupported media type",

@@ -4,6 +4,7 @@
     "invalidValue": "Nilai tidak valid disediakan untuk: `%s`",
     "missingParameter": "Parameter hilang: `%s`",
     "missingProperty": "Tidak ada %s yang disertakan dalam permintaan",
+    "missingResource": "Tidak ada %s ditemukan di URL ini",
     "missingToken": "Tidak ada token pembawa yang disediakan oleh permintaan",
     "title": "Permintaan buruk"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "Jika Anda memasukkan alamat web silakan periksa apakah alamat sudah benar",
     "record": "Tidak ditemukan rekaman basisdata untuk %s",
-    "resource": "Tidak ada %s ditemukan di URL ini",
     "title": "Tidak ditemukan"
   },
   "NotImplementedError": {

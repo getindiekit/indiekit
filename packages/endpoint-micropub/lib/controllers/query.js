@@ -45,7 +45,7 @@ export const queryController = async (request, response, next) => {
 
           if (!item) {
             throw IndiekitError.badRequest(
-              response.locals.__("NotFoundError.resource", "post")
+              response.locals.__("BadRequestError.missingResource", "post")
             );
           }
 

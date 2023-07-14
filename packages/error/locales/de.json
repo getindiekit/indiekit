@@ -4,6 +4,7 @@
     "invalidValue": "Ungültiger Wert angegeben für: `%s`",
     "missingParameter": "Fehlender Parameter: `%s`",
     "missingProperty": "Kein %s in der Anfrage enthalten",
+    "missingResource": "Unter dieser URL wurde kein %s gefunden",
     "missingToken": "Auf Anfrage wurde kein Inhaber-Token bereitgestellt",
     "title": "Schlechte Anfrage"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "Wenn Sie eine Webadresse eingegeben haben, überprüfen Sie bitte, ob sie korrekt war",
     "record": "Kein Datenbankeintrag für %s gefunden",
-    "resource": "Unter dieser URL wurde kein %s gefunden",
     "title": "Nicht gefunden"
   },
   "NotImplementedError": {
