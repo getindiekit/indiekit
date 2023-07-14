@@ -4,7 +4,7 @@ import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 
 await mockAgent("endpoint-files");
 
@@ -17,7 +17,7 @@ test("Returns 401 error uploading file", async (t) => {
   const request = supertest.agent(server);
   const response = await request
     .post("/files/upload")
-    .set("cookie", [cookie({ scope: "profile" })])
+    .set("cookie", [testCookie({ scope: "profile" })])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
   const dom = new JSDOM(response.text);
   const result = dom.window.document.querySelector(

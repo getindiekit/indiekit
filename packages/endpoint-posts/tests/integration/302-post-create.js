@@ -2,7 +2,7 @@ import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 
 await mockAgent("endpoint-micropub");
 
@@ -12,7 +12,7 @@ test("Creates post and redirects to posts page", async (t) => {
   const result = await request
     .post("/posts/create")
     .type("form")
-    .set("cookie", [cookie()])
+    .set("cookie", [testCookie()])
     .send({ type: "entry" })
     .send({ content: "Foobar" });
 

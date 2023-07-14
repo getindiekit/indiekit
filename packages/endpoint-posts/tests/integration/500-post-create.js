@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 
 await mockAgent("endpoint-micropub");
 
@@ -13,7 +13,7 @@ test("Returns 500 error creating post", async (t) => {
   const response = await request
     .post("/posts/create")
     .type("form")
-    .set("cookie", [cookie()])
+    .set("cookie", [testCookie()])
     .send({ type: "entry" })
     .send({ content: "Foobar" })
     .send({ slug: "401" });

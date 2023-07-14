@@ -4,7 +4,7 @@ import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie as testCookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 
 await mockAgent("endpoint-media");
 

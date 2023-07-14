@@ -2,14 +2,14 @@ import test from "ava";
 import supertest from "supertest";
 import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 
 test("Returns 422 error invalid form submission", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
     .post("/posts/create")
-    .set("cookie", [cookie()])
+    .set("cookie", [testCookie()])
     .send({ type: "entry" })
     .send({ "post-type": "note" })
     .send({ geo: "foobar" });

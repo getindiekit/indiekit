@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 import { getFileId } from "../../lib/utils.js";
 
 await mockAgent("endpoint-files");
@@ -14,7 +14,9 @@ test("Returns uploaded file", async (t) => {
     application: { mediaEndpoint: "https://media-endpoint.example" },
   });
   const request = supertest.agent(server);
-  const response = await request.get(`/files/${id}`).set("cookie", [cookie()]);
+  const response = await request
+    .get(`/files/${id}`)
+    .set("cookie", [testCookie()]);
   const fileDom = new JSDOM(response.text);
   const result = fileDom.window.document.querySelector("title").textContent;
 

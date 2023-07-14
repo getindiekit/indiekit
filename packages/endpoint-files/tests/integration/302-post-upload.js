@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 
 await mockAgent("endpoint-files");
 
@@ -14,7 +14,7 @@ test("Uploads file and redirects to files page", async (t) => {
   const request = supertest.agent(server);
   const result = await request
     .post("/files/upload")
-    .set("cookie", [cookie()])
+    .set("cookie", [testCookie()])
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
 
   t.is(result.status, 302);

@@ -4,7 +4,7 @@ import sinon from "sinon";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { cookie } from "@indiekit-test/session";
+import { testCookie } from "@indiekit-test/session";
 import { testToken } from "@indiekit-test/token";
 
 await mockAgent("endpoint-syndicate");
@@ -27,7 +27,7 @@ test("Syndicates a URL to multiple targets (one fails)", async (t) => {
     .post("/micropub")
     .auth(testToken(), { type: "bearer" })
     .set("accept", "application/json")
-    .set("cookie", [cookie()])
+    .set("cookie", [testCookie()])
     .send({
       type: ["h-entry"],
       properties: {
