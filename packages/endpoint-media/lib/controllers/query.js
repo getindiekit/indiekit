@@ -20,28 +20,26 @@ export const queryController = async (request, response, next) => {
 
     switch (q) {
       case "source": {
-        if (!application.hasDatabase) {
-          throw IndiekitError.notImplemented(
-            response.locals.__("NotImplementedError.database")
-          );
-        }
-
         if (url) {
           // Return properties for a given URL
-          const item = await application.media.findOne(
-            { "properties.url": url },
-            {
-              projection: {
-                "properties.content-type": 1,
-                "properties.media-type": 1,
-                "properties.published": 1,
-                "properties.url": 1,
-              },
-            }
-          );
+          let item;
+
+          if (application.hasDatabase) {
+            item = await application.media.findOne(
+              { "properties.url": url },
+              {
+                projection: {
+                  "properties.content-type": 1,
+                  "properties.media-type": 1,
+                  "properties.published": 1,
+                  "properties.url": 1,
+                },
+              }
+            );
+          }
 
           if (!item) {
-            throw IndiekitError.notFound(
+            throw IndiekitError.badRequest(
               response.locals.__("NotFoundError.resource", "file")
             );
           }
@@ -49,12 +47,15 @@ export const queryController = async (request, response, next) => {
           response.json(item.properties);
         } else {
           // Return properties for all uploaded files
-          const cursor = await getCursor(
-            application.media,
-            after,
-            before,
-            limit
-          );
+          let cursor = {
+            items: [],
+            hasNext: false,
+            hasPrev: false,
+          };
+
+          if (application.hasDatabase) {
+            cursor = await getCursor(application.media, after, before, limit);
+          }
 
           response.json({
             items: cursor.items.map((post) => ({

@@ -3,8 +3,10 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-test("Returns 404 error source URL not found", async (t) => {
-  const server = await testServer();
+test("Returns 400 error source URL not found (no database)", async (t) => {
+  const server = await testServer({
+    useDatabase: false,
+  });
   const request = supertest.agent(server);
   const result = await request
     .get("/media")
@@ -13,7 +15,7 @@ test("Returns 404 error source URL not found", async (t) => {
     .query({ q: "source" })
     .query({ url: "https://website.example/photo.jpg" });
 
-  t.is(result.status, 404);
+  t.is(result.status, 400);
   t.is(result.body.error_description, "No file was found at this URL");
 
   server.close(t);
