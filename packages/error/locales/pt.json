@@ -4,6 +4,7 @@
     "invalidValue": "Valor inválido fornecido para: `%s`",
     "missingParameter": "Parâmetro ausente: `%s`",
     "missingProperty": "Nenhum %s incluído na solicitação",
+    "missingResource": "Nenhum %s foi encontrado neste URL",
     "missingToken": "Nenhum token de portador fornecido na solicitação",
     "title": "Pedido incorreto"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "Se você inseriu um endereço da web, verifique se ele estava correto",
     "record": "Nenhum registro de banco de dados encontrado para %s",
-    "resource": "Nenhum %s foi encontrado neste URL",
     "title": "Não encontrado"
   },
   "NotImplementedError": {

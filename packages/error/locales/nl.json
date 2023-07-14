@@ -4,6 +4,7 @@
     "invalidValue": "Ongeldige waarde opgegeven voor: `%s`",
     "missingParameter": "Ontbrekende parameter: `%s`",
     "missingProperty": "Geen %s opgenomen in verzoek",
+    "missingResource": "Er is geen %s gevonden op deze URL",
     "missingToken": "Geen token aan toonder verstrekt op verzoek",
     "title": "Slecht verzoek"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "Als je een webadres hebt ingevoerd, controleer dan of het correct was.",
     "record": "Geen databaserecord gevonden voor %s",
-    "resource": "Er is geen %s gevonden op deze URL",
     "title": "Niet gevonden"
   },
   "NotImplementedError": {

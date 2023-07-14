@@ -4,6 +4,7 @@
     "invalidValue": "Podano nieprawidłową wartość dla: `%s`",
     "missingParameter": "Brakujący parametr: `%s`",
     "missingProperty": "Żądanie nie zawiera %s",
+    "missingResource": "Nie znaleziono %s pod tym adresem URL",
     "missingToken": "Brak tokena na okaziciela dostarczonego na żądanie",
     "title": "Zła prośba"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "Jeśli podałeś adres internetowy, sprawdź, czy jest poprawny",
     "record": "Nie znaleziono rekordu bazy danych dla %s",
-    "resource": "Nie znaleziono %s pod tym adresem URL",
     "title": "Nie znaleziono"
   },
   "NotImplementedError": {

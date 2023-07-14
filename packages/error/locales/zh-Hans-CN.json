@@ -4,6 +4,7 @@
     "invalidValue": "为 “%s” 提供的值无效",
     "missingParameter": "缺少参数：“%s”",
     "missingProperty": "请求中未包含 %s",
+    "missingResource": "在此 URL 中找不到 %s",
     "missingToken": "未按要求提供 bearer 令牌",
     "title": "错误请求"
   },
@@ -17,7 +18,6 @@
   "NotFoundError": {
     "page": "如果您输入了网址，请检查其是否正确",
     "record": "在数据库中找不到 %s 的记录",
-    "resource": "在此 URL 中找不到 %s",
     "title": "未找到"
   },
   "NotImplementedError": {
