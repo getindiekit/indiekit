@@ -6,7 +6,7 @@ import { statusTypes } from "../status-types.js";
 import { getPostStatusBadges, getPostId, getPostName } from "../utils.js";
 
 /**
- * List previously published posts
+ * List published posts
  * @type {import("express").RequestHandler}
  */
 export const postsController = async (request, response, next) => {

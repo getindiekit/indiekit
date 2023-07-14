@@ -4,7 +4,7 @@ import { getConfig, queryConfig } from "../config.js";
 import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
 /**
- * Query previously published posts
+ * Query published posts
  * @type {import("express").RequestHandler}
  */
 export const queryController = async (request, response, next) => {
@@ -54,7 +54,7 @@ export const queryController = async (request, response, next) => {
           const mf2 = jf2ToMf2(item.properties);
           response.json(getMf2Properties(mf2, properties));
         } else {
-          // Return mf2 for previously published posts
+          // Return mf2 for  published posts
           const cursor = await getCursor(
             application.posts,
             after,

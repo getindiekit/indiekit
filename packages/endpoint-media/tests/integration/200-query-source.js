@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-test("Returns list of previously uploaded files", async (t) => {
+test("Returns list of uploaded files", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request

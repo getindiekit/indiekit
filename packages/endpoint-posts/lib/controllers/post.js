@@ -2,7 +2,7 @@ import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 
 /**
- * View previously published post
+ * View published post
  * @type {import("express").RequestHandler}
  */
 export const postController = async (request, response) => {

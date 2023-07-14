@@ -48,7 +48,7 @@ export const queryController = async (request, response, next) => {
 
           response.json(item.properties);
         } else {
-          // Return properties for all previously uploaded files
+          // Return properties for all uploaded files
           const cursor = await getCursor(
             application.media,
             after,

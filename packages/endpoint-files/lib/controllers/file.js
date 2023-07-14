@@ -1,7 +1,7 @@
 import path from "node:path";
 
 /**
- * View previously uploaded file
+ * View uploaded file
  * @type {import("express").RequestHandler}
  */
 export const fileController = async (request, response, next) => {

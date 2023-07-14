@@ -8,7 +8,7 @@ import { testToken } from "@indiekit-test/token";
 
 await mockAgent("endpoint-media");
 
-test("Returns previously uploaded file", async (t) => {
+test("Returns uploaded file", async (t) => {
   // Upload file
   const server = await testServer();
   const request = supertest.agent(server);

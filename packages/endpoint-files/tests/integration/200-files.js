@@ -4,7 +4,7 @@ import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 import { cookie } from "@indiekit-test/session";
 
-test("Returns list of previously uploaded files", async (t) => {
+test("Returns list of uploaded files", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request.get("/files").set("cookie", [cookie()]);

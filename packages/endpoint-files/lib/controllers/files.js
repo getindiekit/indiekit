@@ -3,7 +3,7 @@ import { endpoint } from "../endpoint.js";
 import { getFileId, getFileName } from "../utils.js";
 
 /**
- * List previously uploaded files
+ * List uploaded files
  * @type {import("express").RequestHandler}
  */
 export const filesController = async (request, response, next) => {

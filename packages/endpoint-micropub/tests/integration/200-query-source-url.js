@@ -6,7 +6,7 @@ import { testToken } from "@indiekit-test/token";
 
 await mockAgent("endpoint-micropub");
 
-test("Returns previously published post", async (t) => {
+test("Returns published post", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request
