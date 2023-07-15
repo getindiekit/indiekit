@@ -23,7 +23,7 @@ test("Syndicates a URL and redirects", async (t) => {
     .set("accept", "application/json")
     .send("h=entry")
     .send("name=foobar")
-    .send("mp-syndicate-to=https://social.com/@username");
+    .send("mp-syndicate-to=https://mastodon.example/@username");
   const result = await request
     .post("/syndicate")
     .set("accept", "application/json")
