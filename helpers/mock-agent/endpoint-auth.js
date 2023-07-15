@@ -11,17 +11,23 @@ export const mockClient = () => {
 
   const origin = "https://auth-endpoint.example";
 
-  // Client information (h-app)
-  agent
-    .get(origin)
-    .intercept({ path: "/" })
-    .reply(200, getFixture("html/home.html"));
-
-  // Client information (h-x-app with logo)
+  // Client information (h-x-app)
   agent
     .get(origin)
     .intercept({ path: "/" })
     .reply(200, getFixture("html/client.html"));
+
+  // Client information (no h-x-app microformats)
+  agent
+    .get(origin)
+    .intercept({ path: "/mf2" })
+    .reply(200, getFixture("html/post.html"));
+
+  // Client information (no microformats)
+  agent
+    .get(origin)
+    .intercept({ path: "/no-mf2" })
+    .reply(200, getFixture("html/page.html"));
 
   // Client information (Not Found)
   agent.get(origin).intercept({ path: "/404" }).reply(404);
