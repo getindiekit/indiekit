@@ -88,8 +88,7 @@
     "stylelint-config-recommended": "^13.0.0",
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
-    "vitepress": "^1.0.0-beta",
-    "vue": "^3.2.41"
+    "vitepress": "^1.0.0-beta"
   },
   "ava": {
     "workerThreads": false
