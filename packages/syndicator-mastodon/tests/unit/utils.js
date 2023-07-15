@@ -7,13 +7,6 @@ import {
   htmlToStatusText,
 } from "../../lib/utils.js";
 
-test.beforeEach((t) => {
-  t.context = {
-    me: "https://website.example",
-    tootUrl: "https://mastodon.example/@username/1234567890987654321",
-  };
-});
-
 test("Creates a status with article post name and URL", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/article-content-provided-html-text.jf2")),
@@ -73,7 +66,7 @@ test("Creates a reblog with status URL and post content", (t) => {
 
   t.is(
     result.status,
-    `Someone else who likes cheese sandwiches. ${t.context.tootUrl}`
+    `Someone else who likes cheese sandwiches. https://mastodon.example/@username/1234567890987654321`
   );
 });
 

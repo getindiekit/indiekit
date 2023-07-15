@@ -50,14 +50,14 @@ export const createStatus = (properties, options = {}) => {
     parameters.media_ids = mediaIds;
   }
 
-  // If post is in reply to a toot, add respective parameter
+  // If post is in reply to a status, add respective parameter
   if (properties["in-reply-to"]) {
     const inReplyTo = properties["in-reply-to"];
     const inReplyToHostname = new URL(inReplyTo).hostname;
     const serverHostname = new URL(serverUrl).hostname;
 
     if (inReplyToHostname === serverHostname) {
-      // Reply to toot
+      // Reply to status
       const statusId = getStatusIdFromUrl(inReplyTo);
       parameters.in_reply_to_status_id = statusId;
     } else {

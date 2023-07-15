@@ -24,7 +24,7 @@ test.beforeEach((t) => {
     },
     status: "Toot",
     statusId: "1234567890987654321",
-    tootUrl: "https://mastodon.example/@username/1234567890987654321",
+    statusUrl: "https://mastodon.example/@username/1234567890987654321",
   };
 });
 
@@ -34,7 +34,7 @@ test("Posts a favourite", async (t) => {
     .reply(200, t.context.apiResponse);
 
   const result = await mastodon(t.context.options).postFavourite(
-    t.context.tootUrl
+    t.context.statusUrl
   );
 
   t.is(result, `https://mastodon.example/@username/${t.context.statusId}`);
@@ -46,7 +46,7 @@ test("Throws error posting a favourite", async (t) => {
     .reply(404, { message: "Not found" });
 
   await t.throwsAsync(
-    mastodon(t.context.options).postFavourite(t.context.tootUrl),
+    mastodon(t.context.options).postFavourite(t.context.statusUrl),
     {
       message: "Request failed with status code 404",
     }
@@ -59,7 +59,7 @@ test("Posts a reblog", async (t) => {
     .reply(200, t.context.apiResponse);
 
   const result = await mastodon(t.context.options).postReblog(
-    t.context.tootUrl
+    t.context.statusUrl
   );
 
   t.is(result, `https://mastodon.example/@username/${t.context.statusId}`);
@@ -71,7 +71,7 @@ test("Throws error posting a reblog", async (t) => {
     .reply(404, { message: "Not found" });
 
   await t.throwsAsync(
-    mastodon(t.context.options).postReblog(t.context.tootUrl),
+    mastodon(t.context.options).postReblog(t.context.statusUrl),
     {
       message: "Request failed with status code 404",
     }
@@ -156,14 +156,14 @@ test("Returns false passing an object to media upload function", async (t) => {
   t.falsy(result);
 });
 
-test("Posts a favourite of a toot to Mastodon", async (t) => {
+test("Posts a favourite of a Mastodon status to Mastodon", async (t) => {
   nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/favourite`)
     .reply(200, t.context.apiResponse);
 
   const result = await mastodon(t.context.options).post(
     {
-      "like-of": t.context.tootUrl,
+      "like-of": t.context.statusUrl,
     },
     t.context.me
   );
@@ -182,14 +182,14 @@ test("Doesn’t post a favourite of a URL to Mastodon", async (t) => {
   t.falsy(result);
 });
 
-test("Posts a repost of a toot to Mastodon", async (t) => {
+test("Posts a repost of a Mastodon status to Mastodon", async (t) => {
   nock(t.context.options.serverUrl)
     .post(`/api/v1/statuses/${t.context.statusId}/reblog`)
     .reply(200, t.context.apiResponse);
 
   const result = await mastodon(t.context.options).post(
     {
-      "repost-of": t.context.tootUrl,
+      "repost-of": t.context.statusUrl,
     },
     t.context.me
   );
@@ -218,7 +218,7 @@ test("Posts a quote status to Mastodon", async (t) => {
       content: {
         html: "<p>Someone else who likes cheese sandwiches.</p>",
       },
-      "repost-of": t.context.tootUrl,
+      "repost-of": t.context.statusUrl,
       "post-type": "repost",
     },
     t.context.me

@@ -11,22 +11,22 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
   /**
    * Post a favourite
-   * @param {string} tootUrl - URL of toot to favourite
+   * @param {string} statusUrl - URL of status to favourite
    * @returns {Promise<string>} Mastodon status URL
    */
-  async postFavourite(tootUrl) {
-    const statusId = getStatusIdFromUrl(tootUrl);
+  async postFavourite(statusUrl) {
+    const statusId = getStatusIdFromUrl(statusUrl);
     const { data } = await this.client().favouriteStatus(statusId);
     return data.url;
   },
 
   /**
    * Post a reblog
-   * @param {string} tootUrl - URL of toot to reblog
+   * @param {string} statusUrl - URL of status to reblog
    * @returns {Promise<string>} Mastodon status URL
    */
-  async postReblog(tootUrl) {
-    const statusId = getStatusIdFromUrl(tootUrl);
+  async postReblog(statusUrl) {
+    const statusId = getStatusIdFromUrl(statusUrl);
     const { data } = await this.client().reblogStatus(statusId);
     return data.url;
   },
@@ -76,7 +76,7 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * Post to Mastodon
    * @param {object} properties - JF2 properties object
    * @param {string} me - Publication URL
-   * @returns {Promise<string|boolean>} URL of syndicated toot
+   * @returns {Promise<string|boolean>} URL of syndicated status
    */
   async post(properties, me) {
     let mediaIds = [];
