@@ -9,7 +9,7 @@ import { htmlToText } from "html-to-text";
  * @param {object} [options] - Options
  * @param {number} [options.characterLimit] - Character limit
  * @param {Array} [options.mediaIds] - Mastodon media IDs
- * @param {string} [options.serverUrl] - Server URL, i.e. https://mastodon.social
+ * @param {string} [options.serverUrl] - Server URL
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, options = {}) => {
@@ -47,7 +47,7 @@ export const createStatus = (properties, options = {}) => {
 
   // Add media IDs
   if (mediaIds) {
-    parameters.media_ids = mediaIds;
+    parameters.mediaIds = mediaIds;
   }
 
   // If post is in reply to a status, add respective parameter
@@ -59,7 +59,7 @@ export const createStatus = (properties, options = {}) => {
     if (inReplyToHostname === serverHostname) {
       // Reply to status
       const statusId = getStatusIdFromUrl(inReplyTo);
-      parameters.in_reply_to_status_id = statusId;
+      parameters.inReplyToId = statusId;
     } else {
       throw IndiekitError.badRequest("Not a reply to a URL at this target");
     }

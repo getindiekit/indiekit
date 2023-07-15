@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 import process from "node:process";
 import test from "ava";
-import nock from "nock";
 import supertest from "supertest";
 import jwt from "jsonwebtoken";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -16,10 +15,6 @@ test.beforeEach(() => {
 });
 
 test("Syndicates recent post (via Netlify webhook)", async (t) => {
-  nock("https://mastodon.example").post("/api/v1/statuses").reply(200, {
-    url: "https://mastodon.example/@username/1234567890987654321",
-  });
-
   const sha256 = createHash("sha256").update("foo").digest("hex");
   const webhookSignature = jwt.sign(
     { iss: "netlify", sha256 },

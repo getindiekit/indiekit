@@ -1,12 +1,14 @@
+import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
-import axios from "axios";
-import megalodon from "megalodon";
+import { login } from "masto";
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
 export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
-  client() {
-    const generator = megalodon.default;
-    return generator("mastodon", serverUrl, accessToken);
+  async client() {
+    return login({
+      accessToken: accessToken,
+      url: serverUrl,
+    });
   },
 
   /**
@@ -15,9 +17,10 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * @returns {Promise<string>} Mastodon status URL
    */
   async postFavourite(statusUrl) {
+    const { v1 } = await this.client();
     const statusId = getStatusIdFromUrl(statusUrl);
-    const { data } = await this.client().favouriteStatus(statusId);
-    return data.url;
+    const status = await v1.statuses.favourite(statusId);
+    return status.url;
   },
 
   /**
@@ -26,9 +29,10 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * @returns {Promise<string>} Mastodon status URL
    */
   async postReblog(statusUrl) {
+    const { v1 } = await this.client();
     const statusId = getStatusIdFromUrl(statusUrl);
-    const { data } = await this.client().reblogStatus(statusId);
-    return data.url;
+    const status = await v1.statuses.reblog(statusId);
+    return status.url;
   },
 
   /**
@@ -37,11 +41,9 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * @returns {Promise<string>} Mastodon status URL
    */
   async postStatus(parameters) {
-    const { data } = await this.client().postStatus(parameters.status, {
-      in_reply_to_id: parameters.in_reply_to_status_id,
-      media_ids: parameters.media_ids,
-    });
-    return data.url;
+    const { v1 } = await this.client();
+    const status = await v1.statuses.create(parameters);
+    return status.url;
   },
 
   /**
@@ -59,15 +61,22 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
     try {
       const mediaUrl = getCanonicalUrl(url, me);
-      const response = await axios(mediaUrl, {
-        responseType: "stream",
-      });
-      const { data } = await this.client().uploadMedia(response.data, {
+      const mediaResponse = await fetch(mediaUrl);
+
+      if (!mediaResponse.ok) {
+        throw await IndiekitError.fromFetch(mediaResponse);
+      }
+
+      const { v2 } = await this.client();
+      const blob = await mediaResponse.blob();
+      const attachment = await v2.mediaAttachments.create({
+        file: new Blob([blob]),
         description: alt,
       });
-      return data.id;
+
+      return attachment.id;
     } catch (error) {
-      const message = error.response?.data?.error || error.message;
+      const message = error.message;
       throw new Error(message);
     }
   },

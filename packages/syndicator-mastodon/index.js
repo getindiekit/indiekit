@@ -91,7 +91,7 @@ export default class MastodonSyndicator {
       throw new IndiekitError(error.message, {
         cause: error,
         plugin: this.name,
-        status: error.status,
+        status: error.statusCode,
       });
     }
   }

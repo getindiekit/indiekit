@@ -79,7 +79,7 @@ test("Adds link to status post is in reply to", (t) => {
   );
 
   t.is(result.status, "I ate a cheese sandwich too!");
-  t.is(result.in_reply_to_status_id, "1234567890987654321");
+  t.is(result.inReplyToId, "1234567890987654321");
 });
 
 test("Throws creating a status if post is off-service reply", (t) => {
@@ -110,7 +110,7 @@ test("Creates a status with a photo", (t) => {
   );
 
   t.is(result.status, "Here’s the cheese sandwich I ate.");
-  t.deepEqual(result.media_ids, ["1", "2", "3", "4"]);
+  t.deepEqual(result.mediaIds, ["1", "2", "3", "4"]);
 });
 
 test("Gets status ID from Mastodon permalink", (t) => {

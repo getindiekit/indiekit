@@ -1,5 +1,4 @@
 import test from "ava";
-import nock from "nock";
 import sinon from "sinon";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -11,10 +10,6 @@ await mockAgent("endpoint-syndicate");
 
 test("Syndicates a URL to multiple targets (one fails)", async (t) => {
   sinon.stub(console, "error");
-
-  nock("https://mastodon.example").post("/api/v1/statuses").reply(200, {
-    url: "https://mastodon.example/@username/1234567890987654321",
-  });
 
   const server = await testServer({
     plugins: [
