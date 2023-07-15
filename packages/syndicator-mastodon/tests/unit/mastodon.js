@@ -13,20 +13,18 @@ test.beforeEach((t) => {
       tags: [],
       url: "https://mastodon.example/@username/1234567890987654321",
     },
+    me: "https://website.example",
     media: {
       url: "https://website.example/image.jpg",
       alt: "Example image",
     },
-    tootUrl: "https://mastodon.example/@username/1234567890987654321",
-    status: "Toot",
-    statusId: "1234567890987654321",
     options: {
       accessToken: "0123456789abcdefghijklmno",
       serverUrl: "https://mastodon.example",
     },
-    publication: {
-      me: "https://website.example",
-    },
+    status: "Toot",
+    statusId: "1234567890987654321",
+    tootUrl: "https://mastodon.example/@username/1234567890987654321",
   };
 });
 
@@ -107,10 +105,7 @@ test.serial("Throws error fetching media to upload", async (t) => {
   nock("https://website.example").get("/image.jpg").replyWithError("Not found");
 
   await t.throwsAsync(
-    mastodon(t.context.options).uploadMedia(
-      t.context.media,
-      t.context.publication.me
-    ),
+    mastodon(t.context.options).uploadMedia(t.context.media, t.context.me),
     {
       message: /Not found/,
     }
@@ -129,7 +124,7 @@ test.failing("Uploads media and returns a media id", async (t) => {
 
   const result = await mastodon(t.context.options).uploadMedia(
     t.context.media,
-    t.context.publication.me
+    t.context.me
   );
 
   t.is(result, "1234567890987654321");
@@ -145,10 +140,7 @@ test.failing("Throws error uploading media", async (t) => {
     .reply(404, { message: "Not found" });
 
   await t.throwsAsync(
-    mastodon(t.context.options).uploadMedia(
-      t.context.media,
-      t.context.publication.me
-    ),
+    mastodon(t.context.options).uploadMedia(t.context.media, t.context.me),
     {
       message: "Request failed with status code 404",
     }
@@ -158,7 +150,7 @@ test.failing("Throws error uploading media", async (t) => {
 test("Returns false passing an object to media upload function", async (t) => {
   const result = await mastodon(t.context.options).uploadMedia(
     { foo: "bar" },
-    t.context.publication.me
+    t.context.me
   );
 
   t.falsy(result);
@@ -173,7 +165,7 @@ test("Posts a favourite of a toot to Mastodon", async (t) => {
     {
       "like-of": t.context.tootUrl,
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
@@ -184,7 +176,7 @@ test("Doesn’t post a favourite of a URL to Mastodon", async (t) => {
     {
       "like-of": "https://foo.bar/lunchtime",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.falsy(result);
@@ -199,7 +191,7 @@ test("Posts a repost of a toot to Mastodon", async (t) => {
     {
       "repost-of": t.context.tootUrl,
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
@@ -210,7 +202,7 @@ test("Doesn’t post a repost of a URL to Mastodon", async (t) => {
     {
       "repost-of": "https://foo.bar/lunchtime",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.falsy(result);
@@ -229,7 +221,7 @@ test("Posts a quote status to Mastodon", async (t) => {
       "repost-of": t.context.tootUrl,
       "post-type": "repost",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
@@ -248,7 +240,7 @@ test("Posts a status to Mastodon", async (t) => {
       },
       url: "https://foo.bar/lunchtime",
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
@@ -256,13 +248,13 @@ test("Posts a status to Mastodon", async (t) => {
 
 // Fails as Nock doesn’t send _httpMessage.path value used by form-data module
 test.failing("Posts a status to Mastodon with 4 out of 5 photos", async (t) => {
-  nock(t.context.publication.me)
+  nock(t.context.me)
     .get("/image1.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-  nock(t.context.publication.me)
+  nock(t.context.me)
     .get("/image2.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-  nock(t.context.publication.me)
+  nock(t.context.me)
     .get("/image3.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
   nock("https://website.example")
@@ -282,31 +274,31 @@ test.failing("Posts a status to Mastodon with 4 out of 5 photos", async (t) => {
         html: "<p>Here’s the cheese sandwiches I ate.</p>",
       },
       photo: [
-        { url: `${t.context.publication.me}/image1.jpg` },
-        { url: `${t.context.publication.me}/image2.jpg` },
-        { url: "image3.jpg" },
-        { url: "https://website.example/image4.jpg" },
-        { url: "https://website.example/image5.jpg" },
+        { url: `${t.context.me}/photo1.jpg` },
+        { url: `${t.context.me}/photo2.jpg` },
+        { url: `${t.context.me}/photo3.jpg` },
+        { url: `${t.context.me}/photo4.jpg` },
+        { url: `${t.context.me}/photo5.jpg` },
       ],
     },
-    t.context.publication
+    t.context.me
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
 test("Throws an error posting a status to Mastodon with 4 out of 5 photos", async (t) => {
-  nock(t.context.publication.me)
-    .get("/image1.jpg")
+  nock(t.context.me)
+    .get("/photo1.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-  nock(t.context.publication.me)
-    .get("/image2.jpg")
+  nock(t.context.me)
+    .get("/photo2.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
-  nock(t.context.publication.me)
-    .get("/image3.jpg")
+  nock(t.context.me)
+    .get("/photo3.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
   nock("https://website.example")
-    .get("/image4.jpg")
+    .get("/photo4.jpg")
     .reply(200, { body: getFixture("file-types/photo.jpg", false) });
 
   await t.throwsAsync(
@@ -316,14 +308,14 @@ test("Throws an error posting a status to Mastodon with 4 out of 5 photos", asyn
           html: "<p>Here’s the cheese sandwiches I ate.</p>",
         },
         photo: [
-          { url: `${t.context.publication.me}/image1.jpg` },
-          { url: `${t.context.publication.me}/image2.jpg` },
-          { url: "image3.jpg" },
-          { url: "https://website.example/image4.jpg" },
-          { url: "https://website.example/image5.jpg" },
+          { url: `${t.context.me}/photo1.jpg` },
+          { url: `${t.context.me}/photo2.jpg` },
+          { url: `${t.context.me}/photo3.jpg` },
+          { url: `${t.context.me}/photo4.jpg` },
+          { url: `${t.context.me}/photo5.jpg` },
         ],
       },
-      t.context.publication
+      t.context.me
     ),
     {
       message: "Cannot read properties of undefined (reading 'path')",

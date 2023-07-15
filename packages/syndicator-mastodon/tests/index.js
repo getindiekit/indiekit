@@ -23,6 +23,9 @@ test.beforeEach((t) => {
     properties: JSON.parse(
       getFixture("jf2/article-content-provided-html-text.jf2")
     ),
+    publication: {
+      me: "https://website.example",
+    },
     instanceUrl: "https://mastodon.example",
   };
 });
@@ -50,22 +53,23 @@ test("Initiates plug-in", async (t) => {
 });
 
 test("Returns syndicated URL", async (t) => {
-  nock(t.context.instanceUrl)
-    .post("/api/v1/statuses")
-    .reply(200, t.context.apiResponse);
+  const { apiResponse, instanceUrl, properties, publication } = t.context;
 
-  const result = await mastodon.syndicate(t.context.properties);
+  nock(instanceUrl).post("/api/v1/statuses").reply(200, apiResponse);
+
+  const result = await mastodon.syndicate(properties, publication);
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
 });
 
 test("Throws error getting syndicated URL if no server URL provided", async (t) => {
+  const { properties, publication } = t.context;
   const mastodonNoServer = new MastodonSyndicator({
     accessToken: "token",
     user: "username",
   });
 
-  await t.throwsAsync(mastodonNoServer.syndicate(t.context.properties), {
+  await t.throwsAsync(mastodonNoServer.syndicate(properties, publication), {
     message: "Mastodon syndicator: Mastodon server URL required",
   });
 });
@@ -85,7 +89,9 @@ test("Throws error getting username if no username provided", (t) => {
 });
 
 test("Throws error getting syndicated URL if no access token provided", async (t) => {
-  nock(t.context.instanceUrl)
+  const { instanceUrl, properties, publication } = t.context;
+
+  nock(instanceUrl)
     .post("/api/v1/statuses")
     .reply(401, {
       errors: [
@@ -96,11 +102,11 @@ test("Throws error getting syndicated URL if no access token provided", async (t
     });
 
   const mastodonNoToken = new MastodonSyndicator({
-    url: t.context.instanceUrl,
+    url: instanceUrl,
     user: "username",
   });
 
-  await t.throwsAsync(mastodonNoToken.syndicate(t.context.properties), {
+  await t.throwsAsync(mastodonNoToken.syndicate(properties, publication), {
     message: "Mastodon syndicator: Request failed with status code 401",
   });
 });

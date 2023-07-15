@@ -86,7 +86,7 @@ export default class MastodonSyndicator {
         accessToken: this.options.accessToken,
         characterLimit: this.options.characterLimit,
         serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
-      }).post(properties, publication);
+      }).post(properties, publication.me);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
