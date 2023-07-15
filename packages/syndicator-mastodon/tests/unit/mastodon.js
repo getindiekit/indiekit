@@ -19,7 +19,7 @@ test.beforeEach((t) => {
       alt: "Example image",
     },
     options: {
-      accessToken: "0123456789abcdefghijklmno",
+      accessToken: "token",
       serverUrl: "https://mastodon.example",
     },
     status: "Toot",
