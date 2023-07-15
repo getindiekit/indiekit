@@ -54,7 +54,7 @@ export class IndiekitError extends Error {
     this.message = options.plugin ? `${options.plugin}: ${message}` : message;
     this.code = options.code || "indiekit";
     this.name = this.getError(this.code)?.name || this.name;
-    this.status = this.getError(this.code)?.status || 500;
+    this.status = options.status || this.getError(this.code)?.status || 500;
 
     if (options.scope) {
       this.scope = options.scope;
