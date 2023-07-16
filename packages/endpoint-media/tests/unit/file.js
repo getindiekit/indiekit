@@ -26,6 +26,6 @@ test("Derives properties from file data", async (t) => {
 
   t.is(result.originalname, "photo.jpg");
   t.is(result.ext, "jpg");
-  t.regex(result.filename, /[\w-]{5}.jpg/g);
+  t.regex(result.filename, /\w{5}.jpg/g);
   t.true(isValid(parseISO(result.published)));
 });

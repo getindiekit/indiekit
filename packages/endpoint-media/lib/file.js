@@ -16,7 +16,9 @@ import { fileTypeFromBuffer } from "file-type";
  * }
  */
 export const getFileProperties = async (timeZone, file) => {
-  const basename = randomString(5).toLowerCase();
+  const basename = randomString(5)
+    .replace(/-|_/, "0") // Don’t use common slug separator characters
+    .toLowerCase();
   const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);
 
