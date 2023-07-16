@@ -70,7 +70,8 @@
   details: error.stack if error
 }) if error or success or notice }}
 {{- backLink({
-  href: back
+  href: back.href or back,
+  text: back.text
 }) if back }}
 {% block main %}
 {% endblock %}
