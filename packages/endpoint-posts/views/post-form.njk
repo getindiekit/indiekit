@@ -237,7 +237,7 @@
     }) | indent(4) if postStatus !== "published" }}
 
     {{ prose({
-      text: "[" + __("posts.form.cancel") + "](" + back + ")"
+      text: "[" + __("posts.form.cancel") + "](" + postsPath + ")"
     }) | indent(4) }}
   </div>
 {% endblock %}

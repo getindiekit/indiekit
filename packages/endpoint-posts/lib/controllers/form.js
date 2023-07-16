@@ -10,7 +10,7 @@ export const formController = {
    * @type {import("express").RequestHandler}
    */
   async get(request, response) {
-    const { action, back, postTypeName, scope } = response.locals;
+    const { action, postsPath, postTypeName, scope } = response.locals;
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-form", {
@@ -21,7 +21,7 @@ export const formController = {
       });
     }
 
-    response.redirect(back);
+    response.redirect(postsPath);
   },
 
   /**

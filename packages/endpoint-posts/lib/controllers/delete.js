@@ -7,7 +7,7 @@ export const deleteController = {
    * @type {import("express").RequestHandler}
    */
   async get(request, response) {
-    const { action, back, postName, scope } = response.locals;
+    const { action, postName, postsPath, scope } = response.locals;
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-delete", {
@@ -16,7 +16,7 @@ export const deleteController = {
       });
     }
 
-    response.redirect(back);
+    response.redirect(postsPath);
   },
 
   /**

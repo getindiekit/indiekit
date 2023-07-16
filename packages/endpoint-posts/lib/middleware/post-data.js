@@ -27,8 +27,8 @@ export const postData = {
     response.locals = {
       accessToken: access_token,
       action: "create",
-      back: path.dirname(request.baseUrl + request.path),
       post,
+      postsPath: path.dirname(request.baseUrl + request.path),
       postType,
       postTypeName: getPostTypeName(publication, postType),
       scope,
@@ -57,10 +57,10 @@ export const postData = {
       response.locals = {
         accessToken: access_token,
         action: action || "create",
-        back: path.dirname(request.baseUrl + request.path),
         draftMode: scope?.includes("draft"),
         post,
         postName: getPostName(publication, post),
+        postsPath: path.dirname(request.baseUrl + request.path),
         postStatus: post["post-status"],
         postType,
         postTypeName: getPostTypeName(publication, postType),
