@@ -1,0 +1,22 @@
+{% extends "form.njk" %}
+
+{% block fieldset %}
+  {{ radios({
+    idPrefix: "type",
+    name: "type",
+    values: postType,
+    items: postTypeItems
+  }) | indent(2) }}
+{% endblock %}
+
+{% block buttons %}
+  <div class="button-group">
+    {{ button({
+      text: __("posts.form.continue")
+    }) | indent(4) }}
+
+    {{ prose({
+      text: "[" + __("posts.form.cancel") + "](" + postsPath + ")"
+    }) | indent(4) }}
+  </div>
+{% endblock %}

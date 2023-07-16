@@ -32,6 +32,9 @@
       "syndicated": "Syndicated",
       "unlisted": "Unlisted"
     },
+    "new": {
+      "title": "What type of post do you want to create?"
+    },
     "create": {
       "action": "New post",
       "title": "Create a new %s post"
@@ -53,6 +56,8 @@
     },
     "form": {
       "advancedOptions": "Advanced options",
+      "back": "Change post type",
+      "continue": "Continue",
       "publish": "Publish post",
       "update": "Update post",
       "publishDraft": "Save draft",

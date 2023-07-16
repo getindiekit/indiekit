@@ -35,6 +35,7 @@
     },
     "form": {
       "advancedOptions": "Geavanceerde opties",
+      "back": "Berichttype wijzigen",
       "bookmark-of": {
         "label": "Bladwijzer van"
       },
@@ -45,6 +46,7 @@
       "content": {
         "label": "Inhoud"
       },
+      "continue": "Doorgaan",
       "geo": {
         "hint": "Lengte- en breedtegraad, bijvoorbeeld %s",
         "label": "Locatiecoördinaten"
@@ -84,6 +86,9 @@
       "visibility": {
         "label": "Zichtbaarheid"
       }
+    },
+    "new": {
+      "title": "Wat voor soort post wil je maken?"
     },
     "post": {
       "properties": "Eigenschappen",
