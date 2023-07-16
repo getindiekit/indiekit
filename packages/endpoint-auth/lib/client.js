@@ -25,8 +25,8 @@ export const getClientInformation = async (client_id) => {
     const { properties, type } = item;
 
     if (/^h-(?:x-)?app$/.test(type[0])) {
-      // Only return values if URL property matches client_id
-      if (!properties.url.includes(client_id)) {
+      // Only return values if URL property matches `client_id`
+      if (!properties.url?.includes(client_id)) {
         continue;
       }
 
