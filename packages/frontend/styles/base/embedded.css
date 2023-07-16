@@ -14,7 +14,6 @@ embed,
 object {
   block-size: auto;
   display: block;
-  inline-size: 100%;
   max-inline-size: 100%;
   page-break-inside: avoid;
 }
