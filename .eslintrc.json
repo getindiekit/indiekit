@@ -9,6 +9,7 @@
     "plugin:unicorn/recommended",
     "prettier"
   ],
+  "ignorePatterns": ["_site/**"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"

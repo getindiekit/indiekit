@@ -1,5 +1,6 @@
 {
   "extends": ["stylelint-config-recommended"],
+  "ignoreFiles": ["_site/**"],
   "plugins": ["stylelint-order"],
   "rules": {
     "order/order": ["custom-properties", "declarations"],
