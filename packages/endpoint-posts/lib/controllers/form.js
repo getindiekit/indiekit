@@ -1,3 +1,4 @@
+import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
 import { validationResult } from "express-validator";
@@ -10,10 +11,15 @@ export const formController = {
    * @type {import("express").RequestHandler}
    */
   async get(request, response) {
-    const { action, postsPath, postTypeName, scope } = response.locals;
+    const { action, postsPath, postType, postTypeName, scope } =
+      response.locals;
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-form", {
+        back: {
+          href: `${path.join(postsPath, "new")}?type=${postType}`,
+          text: response.locals.__(`posts.form.back`),
+        },
         title: response.locals.__(
           `posts.${action}.title`,
           postTypeName.toLowerCase().replace("rsvp", "RSVP")
