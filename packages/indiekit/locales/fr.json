@@ -1,9 +1,9 @@
 {
   "guidance": {
-    "discovery": "Pour que %s puisse être découvert par les clients Micropub et demander l'autorisation de publier sur votre site Web, ajoutez les valeurs suivantes à la valeur `<head>` de votre site Web :"
+    "discovery": "Pour que %s puisse être découvert par les clients Micropub et demander l’autorisation de publier sur votre site Web, ajoutez les valeurs suivantes à la valeur `<head>` de votre site Web :"
   },
   "homepage": {
-    "title": "Bienvenue !"
+    "title": "Bienvenue !"
   },
   "scope": {
     "create": {
@@ -20,7 +20,7 @@
       "label": "Téléverser des médias"
     },
     "none": {
-      "label": "Vous n'avez aucune autorisation pour publier"
+      "label": "Vous n’avez aucune autorisation pour publier"
     },
     "update": {
       "label": "Mettre à jour les publications"
@@ -39,15 +39,15 @@
   },
   "status": {
     "application": {
-      "accessToken": "Jeton d'accès",
-      "authorizationEndpoint": "Endpoint d'autorisation",
+      "accessToken": "Jeton d’accès",
+      "authorizationEndpoint": "Endpoint d’autorisation",
       "installedPlugins": "Plug-ins installés",
       "locale": "Langue",
       "localeNotAvailable": "{{app}} n’a pas encore été traduit en {{locale}}",
       "mediaEndpoint": "Endpoint de média",
       "micropubEndpoint": "Endpoint de Micropub",
       "name": "Nom",
-      "summaryTitle": "Paramètres d'application",
+      "summaryTitle": "Paramètres d’application",
       "themeColor": "Couleur du thème",
       "themeColorScheme": "Schéma de couleurs du thème",
       "themeColorSchemeValue": {

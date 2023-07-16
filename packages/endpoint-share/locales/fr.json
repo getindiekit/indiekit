@@ -22,7 +22,7 @@
   },
   "status": {
     "bookmarklet": {
-      "guidance": "Faites glisser ce lien vers votre barre de favoris: %s",
+      "guidance": "Faites glisser ce lien vers votre barre de favoris : %s",
       "label": "Partager la page",
       "title": "Partager bookmarklet"
     }

@@ -3,9 +3,9 @@
     "delete": {
       "action": "Supprimer le fichier",
       "cancel": "Non – retourner au dossier",
-      "note": "Il est possible qu'il soit toujours accessible ou récupérable depuis votre magasin de contenu (%s).",
+      "note": "Il est possible qu’il soit toujours accessible ou récupérable depuis votre magasin de contenu (%s).",
       "submit": "Oui – supprimer ce fichier",
-      "title": "Êtes-vous sûr de vouloir supprimer ce fichier ?"
+      "title": "Êtes-vous sûr de vouloir supprimer ce fichier ?"
     },
     "error": {
       "file": {

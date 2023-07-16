@@ -8,14 +8,14 @@
       },
       "authorize": {
         "submit": "Permettre",
-        "text": "{{client}} demander l'autorisation d'accéder {{me}}",
-        "title": "Autoriser l'application"
+        "text": "{{client}} demander l’autorisation d’accéder {{me}}",
+        "title": "Autoriser l’application"
       },
       "password": {
         "label": "Mot de passe"
       },
       "pkce": {
-        "text": "{{client}} n'utilise pas le Proof of Key Code Exchange (PKCE), qui est plus sécurisé."
+        "text": "{{client}} n’utilise pas le Proof of Key Code Exchange (PKCE), qui est plus sécurisé."
       },
       "redirect": "Après avoir autorisé cette application, vous serez redirigé vers %s"
     },
@@ -27,25 +27,25 @@
     },
     "guidance": {
       "authentication": {
-        "redeemCode": "Échangez un code d'autorisation contre un jeton d'accès",
-        "title": "Obtenir les autorisations d'accès d'un utilisateur",
-        "verifyToken": "Vérifier un jeton d'accès"
+        "redeemCode": "Échangez un code d’autorisation contre un jeton d’accès",
+        "title": "Obtenir les autorisations d’accès d’un utilisateur",
+        "verifyToken": "Vérifier un jeton d’accès"
       },
       "authorization": {
-        "redeemCode": "Utiliser un code d'autorisation pour l'URL du profil d'un utilisateur",
-        "requestCode": "Demander un code d'autorisation",
-        "requestCodeResponse": "Si l'utilisateur approuve la demande, le point d'entrée générera un code d'autorisation et redirigera vers le client :",
-        "title": "Obtenir l'identité d'un utilisateur"
+        "redeemCode": "Utiliser un code d’autorisation pour l’URL du profil d’un utilisateur",
+        "requestCode": "Demander un code d’autorisation",
+        "requestCodeResponse": "Si l’utilisateur approuve la demande, le point d’entrée générera un code d’autorisation et redirigera vers le client :",
+        "title": "Obtenir l’identité d’un utilisateur"
       },
-      "discovery": "Pour utiliser ce point d'entrée d'authentification, ajoutez les valeurs suivantes au `<head>` de votre site Web :",
-      "title": "Utilisation de ce point d'entrée IndieAuth"
+      "discovery": "Pour utiliser ce point d’entrée d’authentification, ajoutez les valeurs suivantes au `<head>` de votre site Web :",
+      "title": "Utilisation de ce point d’entrée IndieAuth"
     },
     "newPassword": {
       "password": {
         "hint": "Saisir un mot de passe à utiliser pour authentifier les demandes"
       },
       "secret": {
-        "hint": "Utilisez la valeur suivante pour %s dans vos variables d'environnement",
+        "hint": "Utilisez la valeur suivante pour %s dans vos variables d’environnement",
         "label": "Mot de passe secret"
       },
       "setup": {

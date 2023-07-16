@@ -1,39 +1,39 @@
 {
   "BadRequestError": {
-    "invalid": "Il manque un paramètre obligatoire à la demande, elle inclut un paramètre ou une valeur de paramètre non pris en charge, elle répète le même paramètre, elle utilise plus d'une méthode pour inclure un jeton d'accès ou elle est malformée.",
-    "invalidValue": "Valeur non valide fournie pour : `%s`",
-    "missingParameter": "Paramètre manquant : `%s`",
+    "invalid": "Il manque un paramètre obligatoire à la demande, elle inclut un paramètre ou une valeur de paramètre non pris en charge, elle répète le même paramètre, elle utilise plus d’une méthode pour inclure un jeton d’accès ou elle est malformée.",
+    "invalidValue": "Valeur non valide fournie pour : `%s`",
+    "missingParameter": "Paramètre manquant : `%s`",
     "missingProperty": "Aucun %s inclus dans la demande",
-    "missingResource": "Aucun %s n'a été trouvé à cette URL",
+    "missingResource": "Aucun %s n’a été trouvé à cette URL",
     "missingToken": "Aucun jeton au porteur fourni sur demande",
     "title": "Mauvaise Requête"
   },
   "ForbiddenError": {
-    "insufficientScope": "La demande nécessite des privilèges plus élevés que ceux fournis par le jeton d'accès",
-    "invalidMe": "L'URL de publication ne correspond pas à celle fournie par le jeton d'accès",
+    "insufficientScope": "La demande nécessite des privilèges plus élevés que ceux fournis par le jeton d’accès",
+    "invalidMe": "L’URL de publication ne correspond pas à celle fournie par le jeton d’accès",
     "invalidRedirect": "Tentative de redirection non valide",
     "invalidState": "Valeur invalide pour `state`",
     "title": "Interdit"
   },
   "NotFoundError": {
-    "page": "Si vous avez saisi une adresse Web, veuillez vérifier qu'elle est correcte",
+    "page": "Si vous avez saisi une adresse Web, veuillez vérifier qu’elle est correcte",
     "record": "Aucun enregistrement de base de données trouvé pour %s",
     "title": "Introuvable"
   },
   "NotImplementedError": {
     "database": "Cette fonctionnalité nécessite une base de données",
     "postType": "Aucune configuration fournie pour le type de publication %s",
-    "query": "Requête non prise en charge pour `{{key}}` : `{{value}}`",
+    "query": "Requête non prise en charge pour `{{key}}` : `{{value}}`",
     "secret": "`SECRET` manquant",
     "title": "Non implémenté"
   },
   "UnauthorizedError": {
-    "invalidCode": "Le code d'autorisation fourni est expiré, révoqué, mal formé ou non valide pour d'autres raisons",
-    "invalidToken": "Le jeton d'accès fourni est expiré, révoqué, mal formé ou non valide pour d'autres raisons",
+    "invalidCode": "Le code d’autorisation fourni est expiré, révoqué, mal formé ou non valide pour d’autres raisons",
+    "invalidToken": "Le jeton d’accès fourni est expiré, révoqué, mal formé ou non valide pour d’autres raisons",
     "title": "Non autorisé"
   },
   "UnsupportedMediaTypeError": {
     "title": "Format de média non géré",
-    "type": "Le type de support %s n'est pas pris en charge"
+    "type": "Le type de support %s n’est pas pris en charge"
   }
 }
