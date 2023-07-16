@@ -26,6 +26,14 @@ Add `@indiekit/syndicator-mastodon` to your list of plug-ins, specifying options
 }
 ```
 
+When sharing content to Mastodon using this syndicator, any post visibility setting will be used for the syndicated status:
+
+| Micropub post visibility | Mastodon status visibility |
+| ------------------------ | -------------------------- |
+| Public                   | Public                     |
+| Unlisted                 | Unlisted                   |
+| Private                  | Followers only             |
+
 ## Options
 
 | Option           | Type      | Description                                                                                                   |

@@ -18,6 +18,18 @@ test("Creates a status with article post name and URL", (t) => {
   t.is(result.status, "What I had for lunch https://foo.bar/lunchtime");
 });
 
+test("Creates a status that is unlisted", (t) => {
+  const result = createStatus(
+    JSON.parse(getFixture("jf2/note-visibility-unlisted.jf2")),
+    {
+      serverUrl: "https://mastodon.example",
+    }
+  );
+
+  t.is(result.status, "I ate a cheese sandwich, which was nice.");
+  t.is(result.visibility, "unlisted");
+});
+
 test("Creates a status with HTML content", (t) => {
   const result = createStatus(
     JSON.parse(getFixture("jf2/note-content-provided-html.jf2")),
