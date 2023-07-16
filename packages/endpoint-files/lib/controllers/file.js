@@ -6,13 +6,13 @@ import path from "node:path";
  */
 export const fileController = async (request, response, next) => {
   try {
-    const { back, file, fileName, scope } = response.locals;
+    const { file, fileName, filesPath, scope } = response.locals;
 
     response.render("file", {
       title: fileName,
       file,
       parent: {
-        href: back,
+        href: filesPath,
         text: response.locals.__("files.files.title"),
       },
       actions: [

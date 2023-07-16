@@ -8,7 +8,7 @@ export const fileData = {
 
     response.locals = {
       accessToken: access_token,
-      back: path.dirname(request.baseUrl + request.path),
+      filesPath: path.dirname(request.baseUrl + request.path),
       scope,
       ...response.locals,
     };
@@ -30,7 +30,7 @@ export const fileData = {
 
       response.locals = {
         accessToken: access_token,
-        back: path.dirname(request.baseUrl + request.path),
+        filesPath: path.dirname(request.baseUrl + request.path),
         file,
         fileName: getFileName(file.url),
         scope,

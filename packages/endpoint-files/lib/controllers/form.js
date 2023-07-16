@@ -7,7 +7,7 @@ export const formController = {
    * @type {import("express").RequestHandler}
    */
   async get(request, response) {
-    const { back, scope } = response.locals;
+    const { filesPath, scope } = response.locals;
 
     if (scope.includes("create") || scope.includes("media")) {
       return response.render("file-form", {
@@ -15,7 +15,7 @@ export const formController = {
       });
     }
 
-    response.redirect(back);
+    response.redirect(filesPath);
   },
 
   /**

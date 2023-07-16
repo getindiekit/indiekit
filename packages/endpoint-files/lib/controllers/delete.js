@@ -6,17 +6,17 @@ export const deleteController = {
    * @type {import("express").RequestHandler}
    */
   async get(request, response) {
-    const { back, fileName, scope } = response.locals;
+    const { fileName, filesPath, scope } = response.locals;
 
     if (scope.includes("delete")) {
       return response.render("file-delete", {
         title: response.locals.__("files.delete.title"),
-        back,
+        filesPath,
         parent: { text: fileName },
       });
     }
 
-    response.redirect(back);
+    response.redirect(filesPath);
   },
 
   /**
