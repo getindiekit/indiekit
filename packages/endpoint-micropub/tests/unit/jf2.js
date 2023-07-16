@@ -305,13 +305,13 @@ test("Derives slug from `name` property", (t) => {
   t.is(result, "what-i-had-for-lunch");
 });
 
-test("Derives slug by generating random number", (t) => {
+test("Derives slug by generating random string", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/note-slug-missing-no-name.jf2")
   );
   const result = getSlugProperty(properties, "-");
 
-  t.regex(result, /[\w-]{5}/g);
+  t.regex(result, /\w{5}/g);
 });
 
 test("Does not add syndication target if no syndicators", (t) => {

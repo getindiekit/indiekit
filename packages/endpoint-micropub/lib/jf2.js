@@ -236,7 +236,9 @@ export const getSlugProperty = (properties, separator) => {
   } else if (name) {
     string = excerptString(name, 5);
   } else {
-    string = randomString(5);
+    string = randomString(5)
+      .replace("_", "0") // Slugify function strips any leading underscore
+      .replace(separator, "0"); // Don’t include slug separator character
   }
 
   return slugify(string, separator);
