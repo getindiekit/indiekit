@@ -65,6 +65,11 @@ export const createStatus = (properties, options = {}) => {
     }
   }
 
+  // If post visibility set, use the same setting when sharing to Mastodon
+  if (properties.visibility) {
+    parameters.visibility = properties.visibility;
+  }
+
   return parameters;
 };
 
