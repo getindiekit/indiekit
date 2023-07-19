@@ -1,32 +1,48 @@
 import { Controller } from "@hotwired/stimulus";
 import Tokenfield from "tokenfield";
+import { focusableElements } from "../../lib/utils/focusable-elements.js";
 
 export const TokenInputController = class extends Controller {
   static values = {
     items: String,
   };
 
-  getTokenFieldItems = (array) => {
-    return array.split(",").map((item, index) => ({
-      id: index,
-      name: item,
-    }));
+  getTokenFieldItems = (string) => {
+    return (
+      string &&
+      string.split(",").map((item, index) => ({
+        id: index,
+        name: item,
+      }))
+    );
   };
 
   initialize() {
-    const { element, itemsValue } = this;
+    const { element } = this;
+
+    const tokenFieldInput = element.querySelector(".input");
 
     const tokenField = new Tokenfield({
-      el: element,
-      items: this.getTokenFieldItems(itemsValue),
+      el: tokenFieldInput,
+      items: this.getTokenFieldItems(tokenFieldInput.dataset.items),
       itemValue: "name",
-      newItems: false,
+      newItems: true,
     });
 
     // Add previously entered tokens
     if (element.value !== "") {
-      tokenField.setItems(this.getTokenFieldItems(element.value));
+      tokenField.setItems(this.getTokenFieldItems(tokenFieldInput.value));
     }
+
+    tokenField.onInput = (value, event) => {
+      if (event.shiftKey && event.key === "Tab") {
+        focusableElements.previous.focus();
+      } else if (event.key === "Tab") {
+        focusableElements.next.focus();
+      }
+
+      return value;
+    };
 
     return tokenField;
   }

@@ -1,16 +1,17 @@
 {% from "../input/macro.njk" import input with context %}
-{{ input({
-  field: opts.field,
-  classes: opts.classes,
-  id: opts.id,
-  name: opts.name,
-  value: opts.value,
-  label: opts.label,
-  hint: opts.hint,
-  optional: opts.optional,
-  attributes: {
-    "data-controller": "token-input",
-    "data-token-input-items-value": opts.items
-  },
-  errorMessage: opts.errorMessage
-}) }}
+<div data-controller="token-input">
+  {{ input({
+    field: opts.field,
+    classes: opts.classes,
+    id: opts.id,
+    name: opts.name,
+    value: opts.value,
+    label: opts.label,
+    hint: opts.hint,
+    optional: opts.optional,
+    attributes: {
+      "data-items": opts.items
+    },
+    errorMessage: opts.errorMessage
+  }) }}
+</div>
