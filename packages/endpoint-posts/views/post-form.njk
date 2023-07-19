@@ -159,6 +159,8 @@
     summary: __("posts.form.advancedOptions")
   }) %}
     {{ tokenInput({
+      id: "category",
+      name: "category",
       value: errors.category.value or post.category,
       label: {
         text: __("posts.form.category.label")
