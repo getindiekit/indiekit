@@ -8,9 +8,7 @@ The application interface and this website are partially compliant with the [Web
 
 ### Application interface
 
-The items listed below are currently non-accessible or may present issues with accessibility software:
-
-* **Categories input:** When creating or updating a post and navigating the interface using a keyboard, focus gets trapped in the input field used to enter categories. This field also doesn’t have an accessible label. ([\#578](https://github.com/getindiekit/indiekit/issues/578))
+There are no known accessibility issues in the application interface.
 
 ### Documentation website
 
@@ -22,8 +20,8 @@ Items listed below are currently not accessible or may present issues with acces
 
 ## Preparation of this statement
 
-This statement was prepared on 14 January 2023. A self-assessment was carried out on both the website and application interface.
+This statement was prepared on 20 July 2023. A self-assessment was carried out on both the website and application interface.
 
 ## Feedback
 
-I’m always looking to improve the accessibility of Indiekit and its documentation. If you find any problems not listed on this page, or think it’s not meeting accessibility requirements, [submit a new issue on GitHub](https://github.com/getindiekit/indiekit/issues/new/choose) or email <paul@getindiekit.com>.
+I’m always looking to improve the accessibility of Indiekit and its documentation. If you find any problems not listed on this page, or think it’s not meeting accessibility requirements, [submit a new issue on GitHub](https://github.com/getindiekit/indiekit/issues/new/choose).
