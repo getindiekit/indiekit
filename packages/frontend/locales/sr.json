@@ -26,5 +26,6 @@
   "skipLink": {
     "text": "Preskoči na sadržaj"
   },
-  "success": "Uspeh"
+  "success": "Uspeh",
+  "warning": "Upozorenje"
 }

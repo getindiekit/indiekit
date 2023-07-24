@@ -26,5 +26,6 @@
   "skipLink": {
     "text": "Pular para o conteúdo"
   },
-  "success": "Sucesso"
+  "success": "Sucesso",
+  "warning": "Atenção"
 }

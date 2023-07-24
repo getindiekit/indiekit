@@ -26,5 +26,6 @@
   "skipLink": {
     "text": "跳到内容"
   },
-  "success": "成功"
+  "success": "成功",
+  "warning": "警告"
 }

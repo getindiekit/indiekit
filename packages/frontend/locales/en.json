@@ -26,5 +26,6 @@
     "defaultType": "results",
     "result": "Showing {{from}} of {{count}} {{type}}",
     "results": "Showing {{from}} to {{to}} of {{count}} {{type}}"
-  }
+  },
+  "warning": "Warning"
 }
