@@ -10,6 +10,6 @@
   padding: var(--space-m);
 
   & .warning-text__text {
-    padding-block-start: 0.25rem;
+    margin-block-start: var(--space-2xs);
   }
 }
