@@ -78,4 +78,9 @@ export const setupPrompts = [
       },
     ],
   },
+  {
+    type: "confirm",
+    name: "useDocker",
+    message: "Do you want to deploy your server using Docker?",
+  },
 ];
