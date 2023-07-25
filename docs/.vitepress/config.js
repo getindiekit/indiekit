@@ -94,8 +94,6 @@ export default {
     ["link", { rel: "icon", href: "/icon.svg" }],
     ["meta", { name: "supported-color-schemes", content: "light dark" }],
     ["meta", { name: "theme-color", content: "#60c" }],
-    ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "/opengraph-image.png" }],
     ["meta", { property: "og:image", content: "/opengraph-image.png" }],
   ],
   lang: "en-GB",
