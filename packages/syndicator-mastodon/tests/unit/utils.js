@@ -97,7 +97,7 @@ test("Adds link to status post is in reply to", (t) => {
 test("Throws creating a status if post is off-service reply", (t) => {
   t.throws(
     () => {
-      createStatus(JSON.parse(getFixture("jf2/reply-twitter.jf2")), {
+      createStatus(JSON.parse(getFixture("jf2/reply-off-service.jf2")), {
         serverUrl: "https://mastodon.example",
       });
     },
