@@ -14,7 +14,7 @@ test("Returns queryable config", (t) => {
   const application = {
     url: "https://endpoint.example",
   };
-  const twitter = new MastodonSyndicator({
+  const mastodon = new MastodonSyndicator({
     checked: true,
     url: "https://mastodon.example",
     user: "username",
@@ -22,7 +22,7 @@ test("Returns queryable config", (t) => {
   const publication = {
     categories: ["foo", "bar"],
     postTypes: new JekyllPreset().postTypes,
-    syndicationTargets: [twitter],
+    syndicationTargets: [mastodon],
   };
   const result = getConfig(application, publication);
 
