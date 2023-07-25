@@ -16,7 +16,7 @@ The [IndieWeb](https://indieweb.org) is a community of personal websites, connec
 - **Publish content to your website** using Indiekit’s own content management system, or [applications that support the Micropub API](clients.md)
 - **Save files to a content store** such as GitHub, GitLab or an FTP server
 - **Integrate with static site generators** like Jekyll or Hugo
-- **Share content** on social networks like Mastodon and Twitter
+- **Share content** on social networks like Mastodon
 - **Customise everything** from the interface theme to the format of your commit messages
 
 Indiekit is extensible via its [plug-in API](plugins/api/index.md) and localised for use in [a growing number of languages](configuration/localisation.md).
