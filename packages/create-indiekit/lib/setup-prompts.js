@@ -76,10 +76,6 @@ export const setupPrompts = [
         title: "Mastodon",
         value: "@indiekit/syndicator-mastodon",
       },
-      {
-        title: "Twitter",
-        value: "@indiekit/syndicator-twitter",
-      },
     ],
   },
 ];
