@@ -56,7 +56,7 @@ The `info` property returns the following values:
 
 | Method | Type | Description |
 | :----- | :--- | :---------- |
-| `syndicate()` | `async function` | Syndicate a post to a third-party service. |
+| `syndicate()` | [`async function`][] | Syndicate a post to a third-party service. |
 
 ### `syndicate()`
 
@@ -140,3 +140,4 @@ Example syndicator plug-ins:
 [`Boolean`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 [`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [`String`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+[`IndiekitError`]: error.md

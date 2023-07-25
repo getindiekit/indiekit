@@ -21,6 +21,5 @@ throw new IndiekitError(message, options);
 [Error code]: https://github.com/getindiekit/indiekit/blob/main/packages/error/errors.js
 [`Error`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
 [`Number`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
-[`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [`String`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 [HTTP response status code]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
