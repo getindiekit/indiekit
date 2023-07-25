@@ -230,7 +230,6 @@ An array of plug-ins you wish to use with Indiekit. For example:
     "@indiekit/preset-jekyll",
     "@indiekit/store-github",
     "@indiekit/syndicator-mastodon",
-    "@indiekit/syndicator-twitter",
   ],
 }
 ```
