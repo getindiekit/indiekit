@@ -40,7 +40,7 @@ Commit messages for fixes should be prefixed with `fix:`, for example:
 
 If a fix affects a specific module, include the name of the module in the commit message, for example:
 
-`fix(syndicator-twitter): only post replies to tweets`
+`fix(endpoint-micropub): only return queried values`
 
 ## Improve the documentation
 
