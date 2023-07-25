@@ -61,7 +61,7 @@ The wizard will walk you through every step of configuring a new server, and wil
 - details about your [content store](concepts.md#content-store)
 - if you want to [syndicate your posts](concepts.md#syndicator) to other websites
 
-Once you have completed the configuration wizard, you will have a folder containing a configuration file (`.indiekitrc.json`), as well as a few other files required by Node.js to run your server.
+Once you have completed the configuration wizard, you will have a folder containing the files required by Node.js to run your server.
 
 View the full list of [configuration options](configuration/index.md) to see how you can further customise your Indiekit server.
 

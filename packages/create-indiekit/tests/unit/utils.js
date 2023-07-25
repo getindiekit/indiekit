@@ -13,7 +13,6 @@ test("Adds plug-in to Indiekit configuration", async (t) => {
   });
 
   t.deepEqual(result, {
-    "@indiekit/preset-jekyll": {},
     plugins: ["@indiekit/preset-jekyll"],
   });
 });
