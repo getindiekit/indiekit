@@ -19,15 +19,15 @@ test("Returns 422 error invalid form submission", async (t) => {
   t.is(response.status, 422);
   t.is(
     result.querySelector("title").textContent,
-    "Error: Create a new custom note post type post - Test configuration"
+    "Error: Create a new custom note post type post - Test configuration",
   );
   t.is(
     result.querySelector("#content-error .error-message__text").textContent,
-    "Enter some content"
+    "Enter some content",
   );
   t.is(
     result.querySelector("#geo-error .error-message__text").textContent,
-    "Enter valid coordinates"
+    "Enter valid coordinates",
   );
 
   server.close(t);

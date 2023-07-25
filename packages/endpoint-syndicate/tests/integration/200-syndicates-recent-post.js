@@ -18,7 +18,7 @@ test("Syndicates recent post (via Netlify webhook)", async (t) => {
   const sha256 = createHash("sha256").update("foo").digest("hex");
   const webhookSignature = jwt.sign(
     { iss: "netlify", sha256 },
-    process.env.WEBHOOK_SECRET
+    process.env.WEBHOOK_SECRET,
   );
 
   const server = await testServer({
@@ -41,7 +41,7 @@ test("Syndicates recent post (via Netlify webhook)", async (t) => {
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    "Post updated at https://website.example/notes/foobar/"
+    "Post updated at https://website.example/notes/foobar/",
   );
 
   server.close(t);

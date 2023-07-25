@@ -32,7 +32,7 @@ test("Returns published post", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    `${postName} - Test configuration`
+    `${postName} - Test configuration`,
   );
 
   server.close(t);

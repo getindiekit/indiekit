@@ -68,13 +68,13 @@ export const themeCustomProperties = (string) => {
     _getValidatedColor({
       colorToChange: primary,
       mixingColor: neutral10,
-    })
+    }),
   ).hsl();
   const primaryOnBackgroundDark = new Color(
     _getValidatedColor({
       colorToChange: primary,
       mixingColor: neutral99,
-    })
+    }),
   ).hsl();
 
   return `

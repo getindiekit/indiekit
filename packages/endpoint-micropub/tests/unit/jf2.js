@@ -86,7 +86,7 @@ test("Converts mf2 to JF2 with referenced URL data", async (t) => {
         "bookmark-of": ["https://website.example/post"],
       },
     },
-    true
+    true,
   );
 
   t.deepEqual(result, {
@@ -108,7 +108,7 @@ test("Converts mf2 to JF2 with referenced URL data", async (t) => {
 
 test("Gets audio property (from string)", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/audio-provided-string-value.jf2")
+    getFixture("jf2/audio-provided-string-value.jf2"),
   );
   const result = getAudioProperty(properties, "https://website.example/");
 
@@ -131,7 +131,7 @@ test("Gets normalised audio property", (t) => {
 
 test("Gets text and HTML values from `content` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-html-text.jf2")
+    getFixture("jf2/article-content-provided-html-text.jf2"),
   );
   const result = getContentProperty(properties);
 
@@ -143,7 +143,7 @@ test("Gets text and HTML values from `content` property", (t) => {
 
 test("Gets content from `content.html` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-html.jf2")
+    getFixture("jf2/article-content-provided-html.jf2"),
   );
   const result = getContentProperty(properties);
 
@@ -155,7 +155,7 @@ test("Gets content from `content.html` property", (t) => {
 
 test("Gets content from `content.text` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-text.jf2")
+    getFixture("jf2/article-content-provided-text.jf2"),
   );
   const result = getContentProperty(properties);
 
@@ -212,7 +212,7 @@ test("Gets location property parsing Geo URI with altitude and uncertainty", (t)
 
 test("Gets photo property (from string)", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/photo-provided-string-value.jf2")
+    getFixture("jf2/photo-provided-string-value.jf2"),
   );
   const result = getPhotoProperty(properties, "https://website.example/");
 
@@ -238,7 +238,7 @@ test("Gets normalised photo property", (t) => {
 
 test("Gets normalised photo property, adding provided text alternatives", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/photo-provided-mp-photo-alt.jf2")
+    getFixture("jf2/photo-provided-mp-photo-alt.jf2"),
   );
   const result = getPhotoProperty(properties, "https://website.example/");
 
@@ -250,7 +250,7 @@ test("Gets normalised photo property, adding provided text alternatives", (t) =>
 
 test("Gets video property (from string)", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/video-provided-string-value.jf2")
+    getFixture("jf2/video-provided-string-value.jf2"),
   );
   const result = getVideoProperty(properties, "https://website.example/");
 
@@ -280,7 +280,7 @@ test("Derives slug from `mp-slug` property", (t) => {
 
 test("Derives slug from unslugified `mp-slug` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/note-slug-provided-unslugified.jf2")
+    getFixture("jf2/note-slug-provided-unslugified.jf2"),
   );
   const result = getSlugProperty(properties, "-");
 
@@ -289,7 +289,7 @@ test("Derives slug from unslugified `mp-slug` property", (t) => {
 
 test("Derives slug, ignoring empty `mp-slug` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-slug-provided-empty.jf2")
+    getFixture("jf2/article-slug-provided-empty.jf2"),
   );
   const result = getSlugProperty(properties, "-");
 
@@ -298,7 +298,7 @@ test("Derives slug, ignoring empty `mp-slug` property", (t) => {
 
 test("Derives slug from `name` property", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-content-provided-text.jf2")
+    getFixture("jf2/article-content-provided-text.jf2"),
   );
   const result = getSlugProperty(properties, "-");
 
@@ -307,7 +307,7 @@ test("Derives slug from `name` property", (t) => {
 
 test("Derives slug by generating random string", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/note-slug-missing-no-name.jf2")
+    getFixture("jf2/note-slug-missing-no-name.jf2"),
   );
   const result = getSlugProperty(properties, "-");
 
@@ -316,7 +316,7 @@ test("Derives slug by generating random string", (t) => {
 
 test("Does not add syndication target if no syndicators", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-syndicate-to-provided.jf2")
+    getFixture("jf2/article-syndicate-to-provided.jf2"),
   );
   const syndicationTargets = [];
   const result = getSyndicateToProperty(properties, syndicationTargets);
@@ -326,7 +326,7 @@ test("Does not add syndication target if no syndicators", (t) => {
 
 test("Adds syndication target checked by client", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-syndicate-to-provided.jf2")
+    getFixture("jf2/article-syndicate-to-provided.jf2"),
   );
   const syndicationTargets = [
     {
@@ -353,7 +353,7 @@ test("Adds syndication target not checked by client but forced by server", (t) =
 
 test("Adds syndication target checked by client and forced by server", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-syndicate-to-provided.jf2")
+    getFixture("jf2/article-syndicate-to-provided.jf2"),
   );
   const syndicationTargets = [
     {
@@ -368,7 +368,7 @@ test("Adds syndication target checked by client and forced by server", (t) => {
 
 test("Adds syndication targets, one checked by client, one forced by server", (t) => {
   const properties = JSON.parse(
-    getFixture("jf2/article-syndicate-to-provided.jf2")
+    getFixture("jf2/article-syndicate-to-provided.jf2"),
   );
   const syndicationTargets = [
     {

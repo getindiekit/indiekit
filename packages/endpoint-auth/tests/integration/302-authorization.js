@@ -18,7 +18,7 @@ test("Returns 302 authorization request", async (t) => {
   t.is(result.status, 302);
   t.regex(
     result.headers.location,
-    /request_uri=urn:ietf:params:oauth:request_uri:[\w-]{16}$/
+    /request_uri=urn:ietf:params:oauth:request_uri:[\w-]{16}$/,
   );
 
   server.close(t);

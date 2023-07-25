@@ -54,14 +54,14 @@ test("Throws error if no bearer token provided by request", (t) => {
     {
       name: "InvalidRequestError",
       message: "No bearer token provided by request",
-    }
+    },
   );
 });
 
 test("Requests an access token", async (t) => {
   const result = await introspectToken(
     t.context.introspectionEndpoint,
-    t.context.bearerToken
+    t.context.bearerToken,
   );
 
   t.true(result.active);
@@ -72,7 +72,7 @@ test("Requests an access token", async (t) => {
 test("Token endpoint refuses to grant an access token", async (t) => {
   const result = await introspectToken(
     t.context.introspectionEndpoint,
-    "invalid"
+    "invalid",
   );
 
   t.false(result.active);
@@ -82,12 +82,12 @@ test("Throws error contacting token endpoint", async (t) => {
   await t.throwsAsync(
     introspectToken(
       `${t.context.introspectionEndpoint}/token`,
-      t.context.bearerToken
+      t.context.bearerToken,
     ),
     {
       name: "NotFoundError",
       message: "Not Found",
-    }
+    },
   );
 });
 

@@ -18,8 +18,8 @@ test("Returns documentation with invalid `client_id` error", async (t) => {
   t.is(result.status, 200);
   t.true(
     result.text.includes(
-      "Invalid value provided for: <code>redirect_uri</code>"
-    )
+      "Invalid value provided for: <code>redirect_uri</code>",
+    ),
   );
 
   server.close(t);

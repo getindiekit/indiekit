@@ -32,7 +32,7 @@ test("Returns 401 error invalid `client_id`", async (t) => {
   t.is(result.status, 401);
   t.is(
     result.body.error_description,
-    "Invalid value provided for: `client_id`"
+    "Invalid value provided for: `client_id`",
   );
 
   server.close(t);

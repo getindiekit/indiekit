@@ -15,7 +15,7 @@ test("Returns status page", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Server status - Test configuration"
+    "Server status - Test configuration",
   );
 
   server.close(t);

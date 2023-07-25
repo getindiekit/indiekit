@@ -43,7 +43,7 @@ updated: 2022-12-11
 deleted: 2022-12-12
 title: Lunchtime
 ---
-`
+`,
   );
 });
 
@@ -63,7 +63,7 @@ title: Lunchtime
 ---
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`
+`,
   );
 });
 
@@ -84,7 +84,7 @@ title: Lunchtime
 ---
 
 <p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
-`
+`,
   );
 });
 
@@ -130,6 +130,6 @@ syndication: https://website.example/post/12345
 ---
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`
+`,
   );
 });

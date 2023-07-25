@@ -97,7 +97,7 @@ export default class GitlabStore {
         message,
         {
           encoding: "base64",
-        }
+        },
       );
 
       return true;
@@ -121,7 +121,7 @@ export default class GitlabStore {
       const response = await this.#client.showRaw(
         this.projectId,
         path,
-        this.options.branch
+        this.options.branch,
       );
 
       return response.text();
@@ -153,7 +153,7 @@ export default class GitlabStore {
         message,
         {
           encoding: "base64",
-        }
+        },
       );
 
       return true;
@@ -179,7 +179,7 @@ export default class GitlabStore {
         this.projectId,
         path,
         this.options.branch,
-        message
+        message,
       );
 
       return true;

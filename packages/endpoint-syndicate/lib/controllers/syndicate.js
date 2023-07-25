@@ -15,7 +15,7 @@ export const syndicateController = {
 
       if (!application.hasDatabase) {
         throw IndiekitError.notImplemented(
-          response.locals.__("NotImplementedError.database")
+          response.locals.__("NotImplementedError.database"),
         );
       }
 
@@ -48,7 +48,7 @@ export const syndicateController = {
       // Syndicate to targets
       const { failedTargets, syndicatedUrls } = await syndicateToTargets(
         publication,
-        postData.properties
+        postData.properties,
       );
 
       // Update post with syndicated URL(s) and remaining syndication target(s)

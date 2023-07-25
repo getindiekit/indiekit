@@ -42,7 +42,7 @@ export const formController = {
       const mediaResponse = await endpoint.post(
         mediaEndpoint,
         accessToken,
-        formData
+        formData,
       );
       const message = encodeURIComponent(mediaResponse.success_description);
 

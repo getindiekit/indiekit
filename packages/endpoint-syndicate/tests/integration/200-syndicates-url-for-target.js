@@ -27,7 +27,7 @@ test("Syndicates a URL", async (t) => {
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    "Post updated at https://website.example/notes/foobar/"
+    "Post updated at https://website.example/notes/foobar/",
   );
 
   server.close(t);

@@ -38,12 +38,12 @@ export const mediaData = {
     const path = await renderPath(
       typeConfig.media.path,
       properties,
-      application
+      application,
     );
     const url = await renderPath(
       typeConfig.media.url || typeConfig.media.path,
       properties,
-      application
+      application,
     );
     properties.url = getCanonicalUrl(url, me);
 

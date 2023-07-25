@@ -33,7 +33,7 @@ export const view = (request, response) => {
   const { pluginId } = request.params;
 
   const plugin = application.installedPlugins.find(
-    (plugin) => plugin.id === pluginId
+    (plugin) => plugin.id === pluginId,
   );
   plugin.package = getPackageData(plugin.meta.url);
 

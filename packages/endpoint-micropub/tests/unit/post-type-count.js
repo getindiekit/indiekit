@@ -44,7 +44,7 @@ test.beforeEach((t) => {
 test("Counts the number of posts of a given type", async (t) => {
   const result = await postTypeCount.get(
     t.context.application,
-    t.context.properties
+    t.context.properties,
   );
 
   t.is(result, 1);

@@ -22,7 +22,7 @@ export const actionController = async (request, response, next) => {
     if (!hasScope) {
       throw IndiekitError.insufficientScope(
         response.locals.__("ForbiddenError.insufficientScope"),
-        { scope: action }
+        { scope: action },
       );
     }
 
@@ -32,7 +32,7 @@ export const actionController = async (request, response, next) => {
     // Check for URL if not creating a new post
     if (action !== "create" && !url) {
       throw IndiekitError.badRequest(
-        response.locals.__("BadRequestError.missingParameter", "url")
+        response.locals.__("BadRequestError.missingParameter", "url"),
       );
     }
 
@@ -62,8 +62,8 @@ export const actionController = async (request, response, next) => {
           throw IndiekitError.badRequest(
             response.locals.__(
               "BadRequestError.missingProperty",
-              "replace, add or remove operations"
-            )
+              "replace, add or remove operations",
+            ),
           );
         }
 
@@ -73,7 +73,7 @@ export const actionController = async (request, response, next) => {
         if (draftMode && data.properties["post-status"] !== "draft") {
           throw IndiekitError.insufficientScope(
             response.locals.__("ForbiddenError.insufficientScope"),
-            { scope: action }
+            { scope: action },
           );
         }
 
@@ -92,7 +92,7 @@ export const actionController = async (request, response, next) => {
           application,
           publication,
           url,
-          draftMode
+          draftMode,
         );
         content = await postContent.undelete(publication, data);
         break;
@@ -111,7 +111,7 @@ export const actionController = async (request, response, next) => {
     // Hoist not found error to controller to localise response
     if (error.name === "NotFoundError") {
       nextError = IndiekitError.notFound(
-        response.locals.__("NotFoundError.record", error.message)
+        response.locals.__("NotFoundError.record", error.message),
       );
     }
 
@@ -119,7 +119,7 @@ export const actionController = async (request, response, next) => {
     if (error.name === "NotImplementedError") {
       nextError = IndiekitError.notImplemented(
         response.locals.__("NotImplementedError.postType", error.message),
-        { uri: "https://getindiekit.com/configuration/post-types" }
+        { uri: "https://getindiekit.com/configuration/post-types" },
       );
     }
 

@@ -13,7 +13,7 @@ test("Returns no uploaded files (no database)", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Uploaded files - Test configuration"
+    "Uploaded files - Test configuration",
   );
   t.regex(result.querySelector(".main__container p").textContent, /No files/);
 

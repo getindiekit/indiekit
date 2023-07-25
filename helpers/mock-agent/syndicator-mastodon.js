@@ -84,7 +84,7 @@ export function mockClient() {
     .reply(
       200,
       { id: 1, url: `https://mastodon.example/1.jpg` },
-      responseOptions
+      responseOptions,
     )
     .persist();
 

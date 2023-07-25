@@ -23,7 +23,7 @@ export default class ImageEndpoint {
         imageAdapter: new Adapter({
           prefixUrl: indiekitConfig.publication.me,
         }),
-      })
+      }),
     );
 
     return router;

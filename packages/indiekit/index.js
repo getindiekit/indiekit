@@ -74,7 +74,7 @@ export const Indiekit = class {
     // Update publication configuration
     this.publication.categories = await getCategories(
       this.application.cache,
-      this.publication
+      this.publication,
     );
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
@@ -90,7 +90,7 @@ export const Indiekit = class {
     if (!publication.me) {
       console.error("No publication URL in configuration");
       console.info(
-        "See https://getindiekit.com/configuration/#publication-me-url"
+        "See https://getindiekit.com/configuration/#publication-me-url",
       );
       process.exit();
     }

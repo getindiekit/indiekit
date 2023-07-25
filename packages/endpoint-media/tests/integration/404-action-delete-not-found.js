@@ -18,7 +18,7 @@ test("Returns 404 error file not found performing action", async (t) => {
   t.is(result.status, 404);
   t.is(
     result.body.error_description,
-    "No database record found for https://website.example/foo.jpg"
+    "No database record found for https://website.example/foo.jpg",
   );
 
   server.close(t);

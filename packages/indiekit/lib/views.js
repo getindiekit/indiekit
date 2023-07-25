@@ -16,7 +16,7 @@ export const views = (indiekitConfig) => {
     if (plugin.meta?.url) {
       views.push(
         fileURLToPath(new URL("includes", plugin.meta.url)),
-        fileURLToPath(new URL("views", plugin.meta.url))
+        fileURLToPath(new URL("views", plugin.meta.url)),
       );
     }
   }

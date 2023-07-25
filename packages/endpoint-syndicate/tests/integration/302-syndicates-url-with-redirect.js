@@ -32,7 +32,7 @@ test("Syndicates a URL and redirects", async (t) => {
   t.is(result.status, 302);
   t.is(
     result.headers.location,
-    "/posts/12345?success=Post%20updated%20at%20https%3A%2F%2Fwebsite.example%2Fnotes%2Ffoobar%2F"
+    "/posts/12345?success=Post%20updated%20at%20https%3A%2F%2Fwebsite.example%2Fnotes%2Ffoobar%2F",
   );
 
   server.close(t);

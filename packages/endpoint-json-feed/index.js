@@ -28,7 +28,7 @@ export default class jsonFeedEndpoint {
     Indiekit.addEndpoint(this);
     Indiekit.config.application.jsonFeed = path.join(
       this.mountPath,
-      this.feedName
+      this.feedName,
     );
   }
 }

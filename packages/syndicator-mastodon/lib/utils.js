@@ -41,7 +41,7 @@ export const createStatus = (properties, options = {}) => {
       properties.url,
       false, // https://indieweb.org/permashortlink
       false, // https://indieweb.org/permashortcitation
-      characterLimit
+      characterLimit,
     );
   }
 

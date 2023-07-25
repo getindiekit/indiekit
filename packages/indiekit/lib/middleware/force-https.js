@@ -10,7 +10,7 @@ export function forceHttps(request, response, next) {
     // 302 temporary. This is a feature that can be disabled
     return response.redirect(
       302,
-      "https://" + request.get("Host") + request.originalUrl
+      "https://" + request.get("Host") + request.originalUrl,
     );
   }
 

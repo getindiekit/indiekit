@@ -17,7 +17,7 @@ program
   .option(
     "-p, --port <port>",
     "port to bind on",
-    defaultConfig.application.port
+    defaultConfig.application.port,
   )
   .action(async (options) => {
     const { debug, port } = options;

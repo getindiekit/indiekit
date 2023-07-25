@@ -37,7 +37,7 @@ test("Returns logged out navigation", (t) => {
       locals: {
         __: (string) => string,
       },
-    }
+    },
   );
 
   t.is(result[1].href, "/session/login");
@@ -54,7 +54,7 @@ test("Removes navigation items that require a database", (t) => {
       locals: {
         __: (string) => string,
       },
-    }
+    },
   );
 
   t.not(result[0].href, "/foo");
@@ -74,7 +74,7 @@ test("Returns logged in navigation", (t) => {
       locals: {
         __: (string) => string,
       },
-    }
+    },
   );
 
   t.is(result[1].href, "/session/logout");
@@ -93,7 +93,7 @@ test("Indicates current item in navigation", (t) => {
       locals: {
         __: (string) => string,
       },
-    }
+    },
   );
 
   t.is(result[0].href, "/bar");

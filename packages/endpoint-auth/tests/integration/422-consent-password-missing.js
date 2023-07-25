@@ -27,11 +27,11 @@ test("Returns 422 error missing password", async (t) => {
   t.is(response.status, 422);
   t.is(
     result.querySelector("title").textContent,
-    "Error: Authorize application - Test configuration"
+    "Error: Authorize application - Test configuration",
   );
   t.is(
     result.querySelector("#password-error .error-message__text").textContent,
-    "Enter a password"
+    "Enter a password",
   );
 
   server.close(t);

@@ -18,8 +18,8 @@ test("Returns documentation with invalid `response_type` error", async (t) => {
   t.is(result.status, 200);
   t.true(
     result.text.includes(
-      "Invalid value provided for: <code>response_type</code>"
-    )
+      "Invalid value provided for: <code>response_type</code>",
+    ),
   );
 
   server.close(t);

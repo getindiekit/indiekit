@@ -17,7 +17,7 @@ test("Returns documentation with invalid `client_id` error", async (t) => {
 
   t.is(result.status, 200);
   t.true(
-    result.text.includes("Invalid value provided for: <code>client_id</code>")
+    result.text.includes("Invalid value provided for: <code>client_id</code>"),
   );
 
   server.close(t);

@@ -37,7 +37,7 @@ test("Returns 403 error update non-draft post with draft scope", async (t) => {
   t.is(result.status, 403);
   t.is(
     result.body.error_description,
-    "The request requires higher privileges than provided by the access token"
+    "The request requires higher privileges than provided by the access token",
   );
 
   server.close(t);

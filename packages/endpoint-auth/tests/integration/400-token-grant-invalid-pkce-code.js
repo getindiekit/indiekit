@@ -42,7 +42,7 @@ test("Returns 401 error fails PKCE code challenge", async (t) => {
   t.is(result.status, 401);
   t.is(
     result.body.error_description,
-    "Invalid value provided for: `code_verifier`"
+    "Invalid value provided for: `code_verifier`",
   );
 
   server.close(t);

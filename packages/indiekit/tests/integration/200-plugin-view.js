@@ -15,7 +15,7 @@ test("Returns installed plugin detail page", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Micropub endpoint - Test configuration"
+    "Micropub endpoint - Test configuration",
   );
 
   server.close(t);

@@ -10,7 +10,7 @@ const debug = makeDebug("indiekit:error");
  */
 export const notFound = (request, response, next) => {
   const error = IndiekitError.notFound(
-    response.locals.__("NotFoundError.page")
+    response.locals.__("NotFoundError.page"),
   );
 
   next(error);

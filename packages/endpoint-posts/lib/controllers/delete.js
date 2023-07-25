@@ -34,7 +34,7 @@ export const deleteController = {
 
       const micropubResponse = await endpoint.post(
         micropubUrl.href,
-        accessToken
+        accessToken,
       );
       const message = encodeURIComponent(micropubResponse.success_description);
 

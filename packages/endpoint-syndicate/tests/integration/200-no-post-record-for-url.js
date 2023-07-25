@@ -17,7 +17,7 @@ test("Returns no post record for URL", async (t) => {
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    `No post record available for https://website.example/notes/foobar/`
+    `No post record available for https://website.example/notes/foobar/`,
   );
 
   server.close(t);

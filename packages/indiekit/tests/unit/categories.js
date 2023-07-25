@@ -27,7 +27,7 @@ test("Returns empty array if remote JSON file not found", async (t) => {
     }),
     {
       message: "Not Found",
-    }
+    },
   );
 });
 

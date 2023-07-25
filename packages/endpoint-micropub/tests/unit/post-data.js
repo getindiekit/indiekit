@@ -57,7 +57,7 @@ test("Creates post data", async (t) => {
   const result = await postData.create(
     t.context.application,
     t.context.publication,
-    t.context.properties
+    t.context.properties,
   );
 
   t.is(result.properties["post-type"], "note");
@@ -73,9 +73,9 @@ test("Throws error creating post data for non-configured post type", async (t) =
     postData.create(
       t.context.application,
       t.context.publication,
-      t.context.properties
+      t.context.properties,
     ),
-    { message: "note" }
+    { message: "note" },
   );
 });
 
@@ -92,7 +92,7 @@ test("Updates post by adding properties", async (t) => {
     t.context.application,
     t.context.publication,
     t.context.url,
-    operation
+    operation,
   );
 
   t.truthy(result.properties.syndication);
@@ -104,7 +104,7 @@ test("Updates post by replacing properties", async (t) => {
     t.context.application,
     t.context.publication,
     t.context.url,
-    operation
+    operation,
   );
 
   t.deepEqual(result.properties.content, {
@@ -119,7 +119,7 @@ test("Updates post by deleting entries", async (t) => {
     t.context.application,
     t.context.publication,
     t.context.url,
-    operation
+    operation,
   );
 
   t.deepEqual(result.properties.category, ["bar"]);
@@ -131,7 +131,7 @@ test("Updates post by deleting properties", async (t) => {
     t.context.application,
     t.context.publication,
     t.context.url,
-    operation
+    operation,
   );
 
   t.falsy(result.properties.category);
@@ -151,7 +151,7 @@ test("Updates post by adding, deleting and updating properties", async (t) => {
     t.context.application,
     t.context.publication,
     t.context.url,
-    operation
+    operation,
   );
 
   t.deepEqual(result.properties.content, {
@@ -170,10 +170,10 @@ test("Throws error updating post data if no record available", async (t) => {
       t.context.application,
       t.context.publication,
       "https://website.example/bar",
-      operation
+      operation,
     ),
     {
       message: "https://website.example/bar",
-    }
+    },
   );
 });

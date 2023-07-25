@@ -42,7 +42,7 @@ test("Syndicates a URL to multiple targets (one fails)", async (t) => {
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    "Post updated at https://website.example/notes/foobar/. The following target(s) did not return a URL: https://web.archive.org/"
+    "Post updated at https://website.example/notes/foobar/. The following target(s) did not return a URL: https://web.archive.org/",
   );
 
   server.close(t);

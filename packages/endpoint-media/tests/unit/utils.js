@@ -26,6 +26,6 @@ test("Renders path from URI template and properties", async (t) => {
 
   t.regex(
     result,
-    /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/
+    /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/,
   );
 });

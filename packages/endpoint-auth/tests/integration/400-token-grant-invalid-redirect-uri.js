@@ -32,7 +32,7 @@ test("Returns 400 error invalid `redirect_uri`", async (t) => {
   t.is(result.status, 400);
   t.is(
     result.body.error_description,
-    "Invalid value provided for: `redirect_uri`"
+    "Invalid value provided for: `redirect_uri`",
   );
 
   server.close(t);

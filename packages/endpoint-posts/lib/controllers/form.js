@@ -22,7 +22,7 @@ export const formController = {
         },
         title: response.locals.__(
           `posts.${action}.title`,
-          postTypeName.toLowerCase().replace("rsvp", "RSVP")
+          postTypeName.toLowerCase().replace("rsvp", "RSVP"),
         ),
       });
     }
@@ -43,7 +43,7 @@ export const formController = {
       return response.status(422).render("post-form", {
         title: response.locals.__(
           `posts.${action}.title`,
-          postTypeName.toLowerCase().replace("rsvp", "RSVP")
+          postTypeName.toLowerCase().replace("rsvp", "RSVP"),
         ),
         errors: errors.mapped(),
       });
@@ -85,7 +85,7 @@ export const formController = {
       const micropubResponse = await endpoint.post(
         micropubEndpoint,
         accessToken,
-        jsonBody
+        jsonBody,
       );
       const message = encodeURIComponent(micropubResponse.success_description);
 
@@ -95,7 +95,7 @@ export const formController = {
       response.render("post-form", {
         title: response.locals.__(
           `posts.${action}.title`,
-          postTypeName.toLowerCase().replace("rsvp", "RSVP")
+          postTypeName.toLowerCase().replace("rsvp", "RSVP"),
         ),
         error,
       });

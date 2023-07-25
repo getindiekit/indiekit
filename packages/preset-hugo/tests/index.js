@@ -48,7 +48,7 @@ lastmod: 2022-12-11
 expiryDate: 2022-12-12
 title: What I had for lunch
 ---
-`
+`,
   );
 });
 
@@ -69,7 +69,7 @@ title: What I had for lunch
 ---
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`
+`,
   );
 });
 
@@ -91,7 +91,7 @@ title: What I had for lunch
 ---
 
 <p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
-`
+`,
   );
 });
 
@@ -150,7 +150,7 @@ test("Renders post template with JSON front matter", (t) => {
 }
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`
+`,
   );
 });
 
@@ -200,7 +200,7 @@ url = "https://website.example/video.mp4"
 +++
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`
+`,
   );
 });
 
@@ -247,6 +247,6 @@ syndication: https://website.example/post/12345
 ---
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
-`
+`,
   );
 });

@@ -4,7 +4,7 @@ import sharp from "sharp";
 
 export const touchIcon = async (themeColor) => {
   const svgPath = fileURLToPath(
-    new URL("../assets/touch-icon.svg", import.meta.url)
+    new URL("../assets/touch-icon.svg", import.meta.url),
   );
 
   const svg = fs.readFileSync(svgPath);

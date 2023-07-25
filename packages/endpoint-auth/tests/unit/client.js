@@ -16,7 +16,7 @@ test("Gets client information (with h-x-app microformat)", async (t) => {
 
 test("Gets client information (without h-x-app microformat)", async (t) => {
   const result = await getClientInformation(
-    "https://auth-endpoint.example/mf2"
+    "https://auth-endpoint.example/mf2",
   );
 
   t.deepEqual(result, {
@@ -27,7 +27,7 @@ test("Gets client information (without h-x-app microformat)", async (t) => {
 
 test("Gets client information (without microformats)", async (t) => {
   const result = await getClientInformation(
-    "https://auth-endpoint.example/no-mf2"
+    "https://auth-endpoint.example/no-mf2",
   );
 
   t.deepEqual(result, {
@@ -38,7 +38,7 @@ test("Gets client information (without microformats)", async (t) => {
 
 test("Returns client information (no response)", async (t) => {
   const result = await getClientInformation(
-    "https://auth-endpoint.example/404"
+    "https://auth-endpoint.example/404",
   );
 
   t.deepEqual(result, {

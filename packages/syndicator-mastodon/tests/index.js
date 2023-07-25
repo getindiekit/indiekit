@@ -15,7 +15,7 @@ const mastodon = new MastodonSyndicator({
 test.beforeEach((t) => {
   t.context = {
     properties: JSON.parse(
-      getFixture("jf2/article-content-provided-html-text.jf2")
+      getFixture("jf2/article-content-provided-html-text.jf2"),
     ),
     publication: {
       me: "https://website.example",
@@ -41,7 +41,7 @@ test("Initiates plug-in", async (t) => {
 
   t.is(
     indiekit.publication.syndicationTargets[0].info.name,
-    "@username@mastodon.example"
+    "@username@mastodon.example",
   );
 });
 
@@ -74,7 +74,7 @@ test("Throws error getting username if no username provided", (t) => {
     () => {
       mastodonNoUser.info.name();
     },
-    { message: "Mastodon user name required" }
+    { message: "Mastodon user name required" },
   );
 });
 

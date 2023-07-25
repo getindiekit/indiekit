@@ -15,7 +15,7 @@ export const newController = {
 
     const postTypeItems = publication.postTypes
       .filter((postType) =>
-        application.supportedPostTypes.includes(postType.type)
+        application.supportedPostTypes.includes(postType.type),
       )
       .sort((a, b) => {
         return a.name.localeCompare(b.name);

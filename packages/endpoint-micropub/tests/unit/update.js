@@ -35,7 +35,7 @@ test("Add properties to existing array", (t) => {
     {
       category: ["foo", "bar"],
     },
-    additions
+    additions,
   );
 
   t.deepEqual(result.category, ["foo", "bar", "baz"]);
@@ -88,7 +88,7 @@ test("Throws error requested deletion is not an array", (t) => {
     },
     {
       message: "category should be an array",
-    }
+    },
   );
 });
 

@@ -27,11 +27,11 @@ test("Returns 422 error missing password", async (t) => {
   t.is(response.status, 422);
   t.is(
     result.querySelector("title").textContent,
-    "Error: Sign in - Test configuration"
+    "Error: Sign in - Test configuration",
   );
   t.is(
     result.querySelector("#password-error .error-message__text").textContent,
-    "Enter a valid password"
+    "Enter a valid password",
   );
 
   server.close(t);

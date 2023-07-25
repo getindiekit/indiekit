@@ -23,6 +23,6 @@ test("Returns theme color as CSS custom properties", (t) => {
 --color-on-primary: hsl(0, 5%, 99%);
 --color-primary-variant: hsl(0, 90%, 42.5%);
 --color-primary-on-background-light: hsl(0, 84.2%, 30%);
---color-primary-on-background-dark: hsl(0, 89.3%, 92.3%);`
+--color-primary-on-background-dark: hsl(0, 89.3%, 92.3%);`,
   );
 });

@@ -13,7 +13,7 @@ test.beforeEach((t) => {
   t.context = {
     bearerToken: jwt.sign(
       { me: "https://website.example" },
-      process.env.SECRET
+      process.env.SECRET,
     ),
     signature: jwt.sign({ iss: "netlify", sha256 }, process.env.WEBHOOK_SECRET),
   };
@@ -51,7 +51,7 @@ test("Throws error if no bearer token provided by request", (t) => {
     {
       name: "InvalidRequestError",
       message: "No bearer token provided by request",
-    }
+    },
   );
 });
 

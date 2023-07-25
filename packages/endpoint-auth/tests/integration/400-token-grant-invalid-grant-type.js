@@ -19,7 +19,7 @@ test("Returns 400 error invalid `grant_type`", async (t) => {
   t.is(result.status, 400);
   t.is(
     result.body.error_description,
-    "Invalid value provided for: `grant_type`"
+    "Invalid value provided for: `grant_type`",
   );
 
   server.close(t);

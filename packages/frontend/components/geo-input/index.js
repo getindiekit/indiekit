@@ -34,7 +34,7 @@ export const GeoInputController = class extends Controller {
 
     // Create error message
     const errorMessageTemplate = document.querySelector(
-      "#geo-input-error-message"
+      "#geo-input-error-message",
     );
     const errorMessageElement = errorMessageTemplate.content.cloneNode(true);
     inputButtonGroup.before(errorMessageElement);
@@ -51,7 +51,7 @@ export const GeoInputController = class extends Controller {
     const inputAttributes = input.getAttribute("aria-describedby") || "";
     input.setAttribute(
       "aria-describedby",
-      [inputAttributes, errorMessage.id].join(" ")
+      [inputAttributes, errorMessage.id].join(" "),
     );
   }
 

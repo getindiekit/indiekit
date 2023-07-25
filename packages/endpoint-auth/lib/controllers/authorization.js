@@ -32,7 +32,7 @@ export const authorizationController = {
       ]) {
         if (!request.query[parameter]) {
           throw IndiekitError.badRequest(
-            response.locals.__("BadRequestError.missingParameter", parameter)
+            response.locals.__("BadRequestError.missingParameter", parameter),
           );
         }
       }
@@ -40,7 +40,7 @@ export const authorizationController = {
       // `response_type` must be `code` (or deprecated `id`)
       if (!/^(code|id)$/.test(String(request.query.response_type))) {
         throw IndiekitError.badRequest(
-          response.locals.__("BadRequestError.invalidValue", "response_type")
+          response.locals.__("BadRequestError.invalidValue", "response_type"),
         );
       }
 
@@ -48,7 +48,7 @@ export const authorizationController = {
       for (const uri of ["client_id", "me", "redirect_uri"]) {
         if (request.query[uri] && !isUrl(request.query[uri])) {
           throw IndiekitError.badRequest(
-            response.locals.__("BadRequestError.invalidValue", uri)
+            response.locals.__("BadRequestError.invalidValue", uri),
           );
         }
 
@@ -65,7 +65,7 @@ export const authorizationController = {
       const validRedirect = validateRedirect(redirect_uri, client_id);
       if (!validRedirect) {
         throw IndiekitError.badRequest(
-          response.locals.__("BadRequestError.invalidValue", "redirect_uri")
+          response.locals.__("BadRequestError.invalidValue", "redirect_uri"),
         );
       }
 

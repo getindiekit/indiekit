@@ -24,8 +24,8 @@ test("Returns false if can’t connect to a MongoDB database", async (t) => {
 
   t.true(
     console.warn.calledWith(
-      'Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"'
-    )
+      'Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"',
+    ),
   );
   t.false(result);
 });

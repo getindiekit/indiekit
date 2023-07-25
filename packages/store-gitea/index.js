@@ -72,7 +72,7 @@ export default class GiteaStore {
     const { instance, user, repo, token } = this.options;
     const url = new URL(
       path,
-      `${instance}/api/v1/repos/${user}/${repo}/contents/`
+      `${instance}/api/v1/repos/${user}/${repo}/contents/`,
     );
 
     const response = await fetch(url.href, {

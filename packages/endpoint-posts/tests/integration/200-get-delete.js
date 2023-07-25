@@ -31,7 +31,7 @@ test("Gets delete confirmation page", async (t) => {
 
   t.is(
     result,
-    "Are you sure you want to delete this post? - Test configuration"
+    "Are you sure you want to delete this post? - Test configuration",
   );
 
   server.close(t);

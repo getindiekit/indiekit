@@ -32,7 +32,7 @@ test("Uploads attached file via media endpoint", async (t) => {
     mediaEndpoint,
     bearerToken,
     properties,
-    files
+    files,
   );
 
   t.deepEqual(result.photo, ["https://website.example/media/photo1.jpg"]);
@@ -56,7 +56,7 @@ test("Uploads attached files via media endpoint", async (t) => {
     mediaEndpoint,
     bearerToken,
     properties,
-    files
+    files,
   );
 
   t.deepEqual(result.photo, [

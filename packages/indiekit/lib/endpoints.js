@@ -25,7 +25,7 @@ export const getEndpoints = (application, request) => {
           // to construct a fully resolvable URL mounted on application URL
           (endpoints[endpoint] = new URL(
             application[`_${endpoint}Path`],
-            getUrl(request)
+            getUrl(request),
           ).href);
   }
 

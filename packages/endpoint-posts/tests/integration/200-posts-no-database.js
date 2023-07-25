@@ -13,7 +13,7 @@ test("Returns no published posts (no database)", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Published posts - Test configuration"
+    "Published posts - Test configuration",
   );
   t.regex(result.querySelector(".main__container p").textContent, /No posts/);
 

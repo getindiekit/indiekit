@@ -18,7 +18,7 @@ test("Gets plug-in info", (t) => {
 test("Gets plug-in installation prompts", (t) => {
   t.is(
     fileSystem.prompts[0].message,
-    "Which directory do you want to save files in?"
+    "Which directory do you want to save files in?",
   );
 });
 

@@ -43,7 +43,7 @@ test("Renders relative path if at publication URL", (t) => {
 test("Renders relative path if at publication URL which has a path", (t) => {
   const result = relativeMediaPath(
     "http://foo.bar/baz/media/",
-    "http://foo.bar/baz/"
+    "http://foo.bar/baz/",
   );
 
   t.is(result, "media/");
@@ -75,7 +75,7 @@ test("Renders path from URI template and properties", async (t) => {
 
   t.regex(
     result,
-    /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/
+    /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/,
   );
 });
 

@@ -19,7 +19,7 @@ test("Returns 400 error publishing post", async (t) => {
   t.is(response.status, 400);
   t.regex(
     result.querySelector(".notification--error p").textContent,
-    /\bNo bearer token provided by request\b/g
+    /\bNo bearer token provided by request\b/g,
   );
 
   server.close(t);

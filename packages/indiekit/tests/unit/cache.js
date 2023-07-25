@@ -28,7 +28,7 @@ test.afterEach((t) => {
 test("Returns data from remote file and saves to cache", async (t) => {
   const result = await getCachedResponse(
     t.context.cache,
-    "https://website.example/categories.json"
+    "https://website.example/categories.json",
   );
 
   t.deepEqual(result, ["Foo", "Bar"]);
@@ -39,7 +39,7 @@ test("Throws error remote file not found", async (t) => {
     getCachedResponse(t.context.cache, "https://website.example/404.json"),
     {
       message: "Not Found",
-    }
+    },
   );
 });
 

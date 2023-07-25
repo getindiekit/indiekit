@@ -11,7 +11,9 @@ test("Returns 400 with no `request_uri`", async (t) => {
 
   t.is(result.status, 400);
   t.true(
-    result.text.includes("Invalid value provided for: <code>request_uri</code>")
+    result.text.includes(
+      "Invalid value provided for: <code>request_uri</code>",
+    ),
   );
 
   server.close(t);

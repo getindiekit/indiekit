@@ -25,7 +25,7 @@ export const fileData = {
       const file = await getFileData(
         id,
         application.mediaEndpoint,
-        access_token
+        access_token,
       );
 
       response.locals = {
@@ -43,7 +43,7 @@ export const fileData = {
 
       if (error.message === "Invalid URL") {
         nextError = IndiekitError.notFound(
-          response.locals.__("NotFoundError.page")
+          response.locals.__("NotFoundError.page"),
         );
       }
 

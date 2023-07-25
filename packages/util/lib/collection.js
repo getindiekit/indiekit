@@ -37,12 +37,12 @@ export const getCursor = async (collection, after, before, limit) => {
     cursor.hasNext = Boolean(
       await collection.findOne({
         _id: { $lt: cursor.lastItem },
-      })
+      }),
     );
     cursor.hasPrev = Boolean(
       await collection.findOne({
         _id: { $gt: cursor.firstItem },
-      })
+      }),
     );
   }
 

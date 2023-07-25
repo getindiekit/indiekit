@@ -41,7 +41,7 @@ export function mockClient() {
         urls: { streaming_api: "https://streaming.mastodon.example" },
         version: "4.1.2",
       },
-      syndicatorResponseOptions
+      syndicatorResponseOptions,
     )
     .persist();
 
@@ -55,7 +55,7 @@ export function mockClient() {
         id: statusId,
         url: `https://mastodon.example/@username/${statusId}`,
       },
-      syndicatorResponseOptions
+      syndicatorResponseOptions,
     )
     .persist();
 

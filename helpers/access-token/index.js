@@ -20,6 +20,6 @@ export const testToken = (options = {}) => {
       me,
       scope,
     },
-    expiresIn
+    expiresIn,
   );
 };

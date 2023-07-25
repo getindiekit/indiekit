@@ -14,7 +14,7 @@ export const consentController = {
   get(request, response) {
     if (!request.query.request_uri) {
       throw IndiekitError.badRequest(
-        response.locals.__("BadRequestError.missingParameter", "request_uri")
+        response.locals.__("BadRequestError.missingParameter", "request_uri"),
       );
     }
 
@@ -35,7 +35,7 @@ export const consentController = {
       }
     } catch {
       throw IndiekitError.badRequest(
-        response.locals.__("BadRequestError.invalidValue", "request_uri")
+        response.locals.__("BadRequestError.invalidValue", "request_uri"),
       );
     }
   },

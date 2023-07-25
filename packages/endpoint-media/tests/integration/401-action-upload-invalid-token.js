@@ -13,7 +13,7 @@ test("Returns 401 error invalid token", async (t) => {
   t.is(result.status, 401);
   t.is(
     result.body.error_description,
-    "The access token provided is expired, revoked, malformed, or invalid for other reasons"
+    "The access token provided is expired, revoked, malformed, or invalid for other reasons",
   );
 
   server.close(t);

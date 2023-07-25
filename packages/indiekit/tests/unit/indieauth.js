@@ -25,7 +25,7 @@ test.beforeEach((t) => {
 test("Exchanges authorization code for access token", async (t) => {
   const result = await indieauth.authorizationCodeGrant(
     "https://token-endpoint.example",
-    "code"
+    "code",
   );
 
   t.is(result.access_token, "token");
@@ -35,11 +35,11 @@ test("Throws error exchanging invalid code for access token", async (t) => {
   await t.throwsAsync(
     indieauth.authorizationCodeGrant(
       "https://token-endpoint.example",
-      "foobar"
+      "foobar",
     ),
     {
       message: "The code provided was not valid",
-    }
+    },
   );
 });
 
@@ -48,7 +48,7 @@ test("Throws error exchanging authorization code during request", async (t) => {
     indieauth.authorizationCodeGrant("https://token-endpoint.example", "404"),
     {
       message: "Not Found",
-    }
+    },
   );
 });
 

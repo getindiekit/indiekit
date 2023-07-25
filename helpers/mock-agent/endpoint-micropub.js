@@ -37,7 +37,7 @@ export function mockClient() {
           headers: {
             location: `https://website.example/media/photo${path}.jpg`,
           },
-        }
+        },
       );
   }
 

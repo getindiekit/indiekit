@@ -13,6 +13,6 @@ test("Gets transformed image URL", (t) => {
   const result = imageUrl("/path/to/image.jpg", application);
   t.is(
     result,
-    "https://server.example/image/path/to/image.jpg?w=240&h=240&c=true"
+    "https://server.example/image/path/to/image.jpg?w=240&h=240&c=true",
   );
 });

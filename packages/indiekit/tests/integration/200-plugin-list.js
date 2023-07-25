@@ -15,7 +15,7 @@ test("Returns installed plugins page", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Installed plug-ins - Test configuration"
+    "Installed plug-ins - Test configuration",
   );
 
   server.close(t);

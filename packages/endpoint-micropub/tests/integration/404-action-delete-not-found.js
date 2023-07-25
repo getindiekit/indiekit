@@ -18,7 +18,7 @@ test("Returns 404 error post not found performing action", async (t) => {
   t.is(result.status, 404);
   t.is(
     result.body.error_description,
-    "No database record found for https://website.example/foo"
+    "No database record found for https://website.example/foo",
   );
 
   server.close(t);

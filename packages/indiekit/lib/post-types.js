@@ -10,7 +10,7 @@ import _ from "lodash";
 export const getPostTypes = ({ postTypes, preset }) => {
   if (preset?.postTypes && postTypes) {
     return _.values(
-      _.merge(_.keyBy(preset.postTypes, "type"), _.keyBy(postTypes, "type"))
+      _.merge(_.keyBy(preset.postTypes, "type"), _.keyBy(postTypes, "type")),
     );
   }
 

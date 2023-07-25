@@ -28,7 +28,7 @@ test("Throws custom error", (t) => {
       code: "indiekit",
       message: "Message",
       name: "IndiekitError",
-    }
+    },
   );
 
   t.is(result.status, 500);
@@ -45,7 +45,7 @@ test("Throws custom error as a string", (t) => {
       code: "indiekit",
       message: "Message",
       name: "IndiekitError",
-    }
+    },
   );
   const result = error.toString();
 
@@ -62,7 +62,7 @@ test("Throws 400 bad request error", (t) => {
       code: "bad_request",
       message: "Message",
       name: "BadRequestError",
-    }
+    },
   );
 
   t.is(result.status, 400);
@@ -78,7 +78,7 @@ test("Throws 401 unauthorized error", (t) => {
       code: "unauthorized",
       message: "Message",
       name: "UnauthorizedError",
-    }
+    },
   );
 
   t.is(result.status, 401);
@@ -94,7 +94,7 @@ test("Throws 403 forbidden error", (t) => {
       code: "forbidden",
       message: "Message",
       name: "ForbiddenError",
-    }
+    },
   );
 
   t.is(result.status, 403);
@@ -110,7 +110,7 @@ test("Throws 404 not found error", (t) => {
       code: "not_found",
       message: "Message",
       name: "NotFoundError",
-    }
+    },
   );
 
   t.is(result.status, 404);
@@ -126,7 +126,7 @@ test("Throws 415 unsupported media type error", (t) => {
       code: "unsupported_media_type",
       message: "Message",
       name: "UnsupportedMediaTypeError",
-    }
+    },
   );
 
   t.is(result.status, 415);
@@ -142,7 +142,7 @@ test("Throws 501 not implemented error", (t) => {
       code: "not_implemented",
       message: "Message",
       name: "NotImplementedError",
-    }
+    },
   );
 
   t.is(result.status, 501);

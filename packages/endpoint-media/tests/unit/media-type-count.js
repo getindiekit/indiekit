@@ -44,7 +44,7 @@ test.beforeEach((t) => {
 test("Counts the number of media of a given type", async (t) => {
   const result = await mediaTypeCount.get(
     t.context.application,
-    t.context.properties
+    t.context.properties,
   );
 
   t.is(result, 1);

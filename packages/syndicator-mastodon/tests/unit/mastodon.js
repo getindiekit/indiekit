@@ -77,7 +77,7 @@ test("Throws error fetching media to upload", async (t) => {
     mastodon(options).uploadMedia({ url: `${me}/404.jpg` }, me),
     {
       message: "Not Found",
-    }
+    },
   );
 });
 
@@ -99,7 +99,7 @@ test("Doesn’t post a favourite of a URL to Mastodon", async (t) => {
   const { me, options } = t.context;
   const result = await mastodon(options).post(
     { "like-of": "https://foo.bar/lunchtime" },
-    me
+    me,
   );
 
   t.falsy(result);
@@ -116,7 +116,7 @@ test("Doesn’t post a repost of a URL to Mastodon", async (t) => {
   const { me, options } = t.context;
   const result = await mastodon(options).post(
     { "repost-of": "https://foo.bar/lunchtime" },
-    me
+    me,
   );
 
   t.falsy(result);
@@ -132,7 +132,7 @@ test("Posts a quote status to Mastodon", async (t) => {
       "repost-of": statusUrl,
       "post-type": "repost",
     },
-    me
+    me,
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
@@ -148,7 +148,7 @@ test("Posts a status to Mastodon", async (t) => {
       },
       url: "https://foo.bar/lunchtime",
     },
-    me
+    me,
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");
@@ -163,7 +163,7 @@ test("Posts a status with photo to Mastodon", async (t) => {
       },
       photo,
     },
-    me
+    me,
   );
 
   t.is(result, "https://mastodon.example/@username/1234567890987654321");

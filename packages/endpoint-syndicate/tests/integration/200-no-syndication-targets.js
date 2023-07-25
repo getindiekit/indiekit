@@ -24,7 +24,7 @@ test("Returns no syndication targets configured", async (t) => {
   t.is(result.status, 200);
   t.is(
     result.body.success_description,
-    "No syndication targets have been configured"
+    "No syndication targets have been configured",
   );
 
   server.close(t);

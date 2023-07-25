@@ -54,7 +54,7 @@ export const hasSyndicationUrl = (syndicatedUrls, syndicateTo) => {
  */
 export const isSyndicationTarget = (publicationTargets, syndicateTo) => {
   return publicationTargets.some((target) =>
-    syndicateTo.includes(target?.info?.uid)
+    syndicateTo.includes(target?.info?.uid),
   );
 };
 

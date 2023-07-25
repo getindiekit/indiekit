@@ -50,7 +50,7 @@ test("Gets location property", (t) => {
 test("Gets post ID", (t) => {
   t.is(
     getPostId("https://website.example/foobar"),
-    "aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy"
+    "aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy",
   );
 });
 
@@ -94,7 +94,7 @@ test("Gets post type name (or an empty string)", (t) => {
 test("Gets post URL", (t) => {
   t.is(
     getPostUrl("aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy"),
-    "https://website.example/foobar"
+    "https://website.example/foobar",
   );
 });
 

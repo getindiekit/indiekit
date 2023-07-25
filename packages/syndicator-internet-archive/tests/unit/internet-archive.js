@@ -17,7 +17,7 @@ test.beforeEach((t) => {
 
 test("Makes capture request", async (t) => {
   const result = await internetArchive(t.context.options).capture(
-    t.context.url
+    t.context.url,
   );
 
   t.deepEqual(result, {
@@ -34,7 +34,7 @@ test("Throws error making capture request", async (t) => {
 
 test("Makes status request", async (t) => {
   const result = await internetArchive(t.context.options).status(
-    t.context.job_id
+    t.context.job_id,
   );
 
   t.deepEqual(result, {

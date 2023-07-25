@@ -104,7 +104,7 @@ export const getPostName = (publication, post) => {
 export const getPostTypeName = (publication, postType) => {
   if (publication.postTypes && postType) {
     const postTypeConfig = publication.postTypes.find(
-      (item) => item.type === postType
+      (item) => item.type === postType,
     );
 
     return postTypeConfig.name;

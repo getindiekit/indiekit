@@ -109,5 +109,8 @@
   },
   "nodemonConfig": {
     "ext": "css,cjs,js,json,njk,md"
+  },
+  "prettier": {
+    "trailingComma": "all"
   }
 }

@@ -28,8 +28,8 @@ test("Returns authenticated session", async (t) => {
   t.is(result.status, 401);
   t.true(
     result.text.includes(
-      "The access token provided is expired, revoked, malformed, or invalid for other reasons"
-    )
+      "The access token provided is expired, revoked, malformed, or invalid for other reasons",
+    ),
   );
 
   server.close(t);

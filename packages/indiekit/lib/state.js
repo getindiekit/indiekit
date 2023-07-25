@@ -12,7 +12,7 @@ export const generateState = (clientId, iv) => {
       clientId,
       date: Date.now(),
     }),
-    iv
+    iv,
   );
 
   return state;

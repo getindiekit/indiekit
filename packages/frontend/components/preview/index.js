@@ -9,12 +9,12 @@ export const PreviewController = class extends Controller {
 
     this.updatePreview(
       this.titleTarget,
-      this.element.querySelector("[data-action$=title]")
+      this.element.querySelector("[data-action$=title]"),
     );
 
     this.updatePreview(
       this.urlTarget,
-      this.element.querySelector("[data-action$=url]")
+      this.element.querySelector("[data-action$=url]"),
     );
   }
 

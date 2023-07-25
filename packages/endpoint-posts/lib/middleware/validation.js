@@ -11,7 +11,7 @@ export const validate = [
     .if(
       (value, { req }) =>
         req.body?.["post-type"] === "reply" ||
-        req.body?.["post-type"] === "rsvp"
+        req.body?.["post-type"] === "rsvp",
     )
     .exists()
     .isURL()
@@ -30,7 +30,7 @@ export const validate = [
     .if(
       (value, { req }) =>
         req.body?.["post-type"] === "article" ||
-        req.body?.["post-type"] === "bookmark"
+        req.body?.["post-type"] === "bookmark",
     )
     .notEmpty()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
@@ -39,7 +39,7 @@ export const validate = [
       (value, { req }) =>
         req.body?.["post-type"] === "article" ||
         req.body?.["post-type"] === "note" ||
-        req.body?.["post-type"] === "reply"
+        req.body?.["post-type"] === "reply",
     )
     .notEmpty()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
@@ -47,6 +47,6 @@ export const validate = [
     .if((value, { req }) => req.body?.geo)
     .custom((value) => value.match(LAT_LONG_RE))
     .withMessage((value, { req, path }) =>
-      req.__(`posts.error.${path}.invalid`)
+      req.__(`posts.error.${path}.invalid`),
     ),
 ];

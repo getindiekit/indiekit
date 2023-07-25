@@ -12,7 +12,7 @@ export const consentValidator = [
       }
     })
     .withMessage((value, { req, path }) =>
-      req.__(`auth.error.${path}.invalid`)
+      req.__(`auth.error.${path}.invalid`),
     ),
 ];
 
@@ -20,6 +20,6 @@ export const passwordValidator = [
   check("password")
     .notEmpty()
     .withMessage((value, { req, path }) =>
-      req.__(`auth.error.${path}.missing`)
+      req.__(`auth.error.${path}.missing`),
     ),
 ];

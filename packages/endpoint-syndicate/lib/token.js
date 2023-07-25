@@ -39,7 +39,7 @@ export const signToken = (verifiedToken, url) =>
     process.env.SECRET,
     {
       expiresIn: "10m",
-    }
+    },
   );
 
 /**

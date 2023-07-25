@@ -13,7 +13,7 @@ test("Homepage redirects to status page", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "Welcome! - Test configuration"
+    "Welcome! - Test configuration",
   );
 
   server.close(t);

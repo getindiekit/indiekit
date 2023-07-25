@@ -24,7 +24,7 @@ test("Uploads a file", async (t) => {
   const result = await mediaContent.upload(
     publication,
     mediaData,
-    t.context.file
+    t.context.file,
   );
 
   t.deepEqual(result, {

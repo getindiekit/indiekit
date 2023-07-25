@@ -14,7 +14,7 @@ export const queryController = async (request, response, next) => {
 
     if (!q) {
       throw IndiekitError.badRequest(
-        response.locals.__("BadRequestError.missingParameter", "q")
+        response.locals.__("BadRequestError.missingParameter", "q"),
       );
     }
 
@@ -34,13 +34,13 @@ export const queryController = async (request, response, next) => {
                   "properties.published": 1,
                   "properties.url": 1,
                 },
-              }
+              },
             );
           }
 
           if (!item) {
             throw IndiekitError.badRequest(
-              response.locals.__("BadRequestError.missingResource", "file")
+              response.locals.__("BadRequestError.missingResource", "file"),
             );
           }
 
@@ -79,7 +79,7 @@ export const queryController = async (request, response, next) => {
           response.locals.__("NotImplementedError.query", {
             key: "q",
             value: q,
-          })
+          }),
         );
       }
     }

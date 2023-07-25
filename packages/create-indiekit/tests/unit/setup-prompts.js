@@ -8,7 +8,7 @@ test("Gets plug-in installation prompts", (t) => {
 test("Asks for a valid URL", (t) => {
   t.is(
     setupPrompts[0].validate("foo.bar"),
-    "Enter a valid URL, for example, https://website.example"
+    "Enter a valid URL, for example, https://website.example",
   );
   t.true(setupPrompts[0].validate("https://foo.bar"));
 });

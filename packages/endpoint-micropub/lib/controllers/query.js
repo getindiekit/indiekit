@@ -18,7 +18,7 @@ export const queryController = async (request, response, next) => {
 
     if (!q) {
       throw IndiekitError.badRequest(
-        response.locals.__("BadRequestError.missingParameter", "q")
+        response.locals.__("BadRequestError.missingParameter", "q"),
       );
     }
 
@@ -45,7 +45,7 @@ export const queryController = async (request, response, next) => {
 
           if (!item) {
             throw IndiekitError.badRequest(
-              response.locals.__("BadRequestError.missingResource", "post")
+              response.locals.__("BadRequestError.missingResource", "post"),
             );
           }
 
@@ -86,7 +86,7 @@ export const queryController = async (request, response, next) => {
             response.locals.__("NotImplementedError.query", {
               key: "q",
               value: q,
-            })
+            }),
           );
         }
       }

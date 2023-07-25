@@ -54,7 +54,7 @@ export default class AuthorizationEndpoint {
 
   get routesWellKnown() {
     router.get("/change-password", (request, response) =>
-      response.redirect(`${this.options.mountPath}/new-password`)
+      response.redirect(`${this.options.mountPath}/new-password`),
     );
     router.get("/oauth-authorization-server", metadataController);
 

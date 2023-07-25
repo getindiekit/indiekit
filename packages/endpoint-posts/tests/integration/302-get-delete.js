@@ -17,7 +17,7 @@ test("Redirects to post page if no delete permissions", async (t) => {
       testToken({
         scope: "create",
       }),
-      { type: "bearer" }
+      { type: "bearer" },
     )
     .set("accept", "application/json")
     .send("h=entry")

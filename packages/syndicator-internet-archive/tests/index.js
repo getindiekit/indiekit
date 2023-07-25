@@ -30,7 +30,7 @@ test("Initiates plug-in", async (t) => {
 
   t.is(
     indiekit.publication.syndicationTargets[0].info.name,
-    "Internet Archive"
+    "Internet Archive",
   );
 });
 

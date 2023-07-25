@@ -31,7 +31,7 @@ export const decrypt = (hash, iv) => {
   const decipher = createDecipheriv(
     algorithm,
     secretKey,
-    Buffer.from(iv, "hex")
+    Buffer.from(iv, "hex"),
   );
   const decrypted = Buffer.concat([
     decipher.update(Buffer.from(hash, "hex")),

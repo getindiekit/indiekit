@@ -12,7 +12,7 @@ test("Returns new password page", async (t) => {
 
   t.is(
     result.querySelector("title").textContent,
-    "New password - Test configuration"
+    "New password - Test configuration",
   );
 
   server.close(t);

@@ -44,7 +44,7 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      application
+      application,
     );
     const url = await renderPath(typeConfig.post.url, properties, application);
     properties.url = getCanonicalUrl(url, me);
@@ -132,12 +132,12 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      application
+      application,
     );
     const updatedUrl = await renderPath(
       typeConfig.post.url,
       properties,
-      application
+      application,
     );
     properties.url = getCanonicalUrl(updatedUrl, me);
 
@@ -185,7 +185,7 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      application
+      application,
     );
 
     // Update data in posts collection
@@ -223,7 +223,7 @@ export const postData = {
     const path = await renderPath(
       typeConfig.post.path,
       properties,
-      application
+      application,
     );
 
     // Post status

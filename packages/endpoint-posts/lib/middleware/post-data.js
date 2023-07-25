@@ -49,7 +49,7 @@ export const postData = {
       const post = await getPostData(
         id,
         application.micropubEndpoint,
-        access_token
+        access_token,
       );
 
       const postType = post["post-type"];
@@ -77,7 +77,7 @@ export const postData = {
 
       if (error.message === "Invalid URL") {
         nextError = IndiekitError.notFound(
-          response.locals.__("NotFoundError.page")
+          response.locals.__("NotFoundError.page"),
         );
       }
 

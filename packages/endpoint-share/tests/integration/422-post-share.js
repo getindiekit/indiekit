@@ -14,15 +14,15 @@ test("Returns 422 error invalid form submission", async (t) => {
   t.is(response.status, 422);
   t.is(
     result.querySelector("title").textContent,
-    "Error: Share - Test configuration"
+    "Error: Share - Test configuration",
   );
   t.is(
     result.querySelector("#name-error .error-message__text").textContent,
-    "Enter a title"
+    "Enter a title",
   );
   t.is(
     result.querySelector("#bookmark-of-error .error-message__text").textContent,
-    "Invalid value"
+    "Invalid value",
   );
 
   server.close(t);

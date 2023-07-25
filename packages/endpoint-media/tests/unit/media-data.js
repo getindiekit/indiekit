@@ -50,7 +50,7 @@ test("Creates media data", async (t) => {
   const result = await mediaData.create(
     t.context.application,
     t.context.publication,
-    t.context.file
+    t.context.file,
   );
 
   t.regex(result.path, /\b\w{5}\b/g);
@@ -67,7 +67,7 @@ test("Throws error creating media data for unsupported media type", async (t) =>
     mediaData.create(t.context.application, t.context.publication, file),
     {
       message: "font",
-    }
+    },
   );
 });
 
@@ -78,11 +78,11 @@ test("Throws error creating media data for non-configured media type", async (t)
     mediaData.create(
       t.context.application,
       t.context.publication,
-      t.context.file
+      t.context.file,
     ),
     {
       message: "photo",
-    }
+    },
   );
 });
 

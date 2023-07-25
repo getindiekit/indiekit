@@ -91,7 +91,7 @@ export const IndieAuth = class {
         const state = generateState(this.clientId, this.iv);
         const authUrl = await this.getAuthUrl(
           application.authorizationEndpoint,
-          state
+          state,
         );
 
         return response.redirect(authUrl);
@@ -121,40 +121,40 @@ export const IndieAuth = class {
 
           if (!validRedirect) {
             throw IndiekitError.forbidden(
-              response.locals.__("ForbiddenError.invalidRedirect")
+              response.locals.__("ForbiddenError.invalidRedirect"),
             );
           }
         }
 
         if (!code) {
           throw IndiekitError.badRequest(
-            response.locals.__("BadRequestError.missingParameter", "code")
+            response.locals.__("BadRequestError.missingParameter", "code"),
           );
         }
 
         if (!state) {
           throw IndiekitError.badRequest(
-            response.locals.__("BadRequestError.missingParameter", "state")
+            response.locals.__("BadRequestError.missingParameter", "state"),
           );
         }
 
         // Check for state mismatch
         if (!validateState(state, this.clientId, this.iv)) {
           throw IndiekitError.forbidden(
-            response.locals.__("ForbiddenError.invalidState")
+            response.locals.__("ForbiddenError.invalidState"),
           );
         }
 
         // Request access token
         const authorizedToken = await this.authorizationCodeGrant(
           application.tokenEndpoint,
-          code
+          code,
         );
 
         // Check that access token is valid
         if (!authorizedToken.access_token) {
           throw IndiekitError.unauthorized(
-            response.locals.__("UnauthorizedError.invalidToken")
+            response.locals.__("UnauthorizedError.invalidToken"),
           );
         }
 
@@ -202,13 +202,13 @@ export const IndieAuth = class {
         const bearerToken = findBearerToken(request);
         const tokenValues = await introspectToken(
           application.introspectionEndpoint,
-          bearerToken
+          bearerToken,
         );
 
         // Check token is active and contains a `me` value
         if (!tokenValues.active || !tokenValues.me) {
           throw IndiekitError.unauthorized(
-            response.locals.__("UnauthorizedError.invalidToken")
+            response.locals.__("UnauthorizedError.invalidToken"),
           );
         }
 
@@ -216,7 +216,7 @@ export const IndieAuth = class {
         const verifiedTokenValues = verifyTokenValues(me, tokenValues);
         if (!verifiedTokenValues) {
           throw IndiekitError.forbidden(
-            response.locals.__("ForbiddenError.invalidMe")
+            response.locals.__("ForbiddenError.invalidMe"),
           );
         }
 
@@ -230,7 +230,7 @@ export const IndieAuth = class {
       } catch (error) {
         if (request.method === "GET") {
           return response.redirect(
-            `/session/login?redirect=${request.originalUrl}`
+            `/session/login?redirect=${request.originalUrl}`,
           );
         }
 

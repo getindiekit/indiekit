@@ -4,7 +4,7 @@ import { getFileId, getFileName, getFileUrl } from "../../lib/utils.js";
 test("Gets file ID", (t) => {
   t.is(
     getFileId("https://website.example/foobar"),
-    "aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy"
+    "aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy",
   );
 });
 
@@ -16,6 +16,6 @@ test("Gets file name from a URL", (t) => {
 test("Gets file URL", (t) => {
   t.is(
     getFileUrl("aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy"),
-    "https://website.example/foobar"
+    "https://website.example/foobar",
   );
 });

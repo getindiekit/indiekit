@@ -38,7 +38,7 @@ export function mockClient() {
         headers: {
           location: mediaOrigin,
         },
-      }
+      },
     );
 
   // Upload file to external media endpoint
@@ -59,7 +59,7 @@ export function mockClient() {
         headers: {
           location: mediaOrigin,
         },
-      }
+      },
     );
 
   // Upload file to external media endpoint

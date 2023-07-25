@@ -8,7 +8,7 @@ export const focusableElements = {
     const focusable = [...document.querySelectorAll(focusableSelector)];
     const navigable = focusable.filter((element) => element.tabIndex !== -1);
     const visible = navigable.filter(
-      (element) => window.getComputedStyle(element).display !== "none"
+      (element) => window.getComputedStyle(element).display !== "none",
     );
 
     return visible;
