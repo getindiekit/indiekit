@@ -2,6 +2,7 @@
 import { readFile } from "node:fs/promises";
 import process from "node:process";
 import path from "node:path";
+import { getDockerComposeFileContent, getDockerEnvironment } from "./docker.js";
 
 /**
  * Get file contents
@@ -27,7 +28,7 @@ export const getFileContents = async (fileName) => {
  * @returns {Promise<Array>} - Files to create
  */
 export const getFiles = async (setup) => {
-  const { me } = setup;
+  const { me, useDocker } = setup;
 
   const files = [
     {
@@ -39,6 +40,25 @@ export const getFiles = async (setup) => {
       contents: await getFileContents("template.gitignore"),
     },
   ];
+
+  if (useDocker) {
+    const environment = await getDockerEnvironment(setup);
+
+    files.push(
+      {
+        path: "docker-compose.yml",
+        contents: getDockerComposeFileContent(environment),
+      },
+      {
+        path: "Dockerfile",
+        contents: await getFileContents("template.dockerfile"),
+      },
+      {
+        path: ".dockerignore",
+        contents: await getFileContents("template.dockerignore"),
+      },
+    );
+  }
 
   return files;
 };

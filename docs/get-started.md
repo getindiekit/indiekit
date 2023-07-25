@@ -60,8 +60,11 @@ The wizard will walk you through every step of configuring a new server, and wil
 - if you want to use a [publication preset](concepts.md#publication-preset)
 - details about your [content store](concepts.md#content-store)
 - if you want to [syndicate your posts](concepts.md#syndicator) to other websites
+- if you want to deploy your server using [Docker](https://www.docker.com)
 
 Once you have completed the configuration wizard, you will have a folder containing the files required by Node.js to run your server.
+
+If you chose server deployment using Docker, `docker-compose.yml`, `Dockerfile` and `.dockerignore` files will also be generated.
 
 View the full list of [configuration options](configuration/index.md) to see how you can further customise your Indiekit server.
 

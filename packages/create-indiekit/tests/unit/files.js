@@ -39,3 +39,14 @@ test("Gets files to create", async (t) => {
     },
   ]);
 });
+
+test("Gets files to create, including docker files", async (t) => {
+  const result = await getFiles({
+    me: "https://website.example",
+    useDocker: true,
+  });
+
+  t.is(result[2].path, "docker-compose.yml");
+  t.is(result[3].path, "Dockerfile");
+  t.is(result[4].path, ".dockerignore");
+});

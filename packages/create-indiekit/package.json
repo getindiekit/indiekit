@@ -47,7 +47,8 @@
     "@indiekit/util": "^1.0.0-beta.4",
     "base-create": "^3.0.7",
     "chalk": "^5.0.0",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "yaml": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"
