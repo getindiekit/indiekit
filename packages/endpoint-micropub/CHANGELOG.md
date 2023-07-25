@@ -221,7 +221,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- always syndicate to Twitter using HTML content property ([dea22bb](https://github.com/getindiekit/indiekit/commit/dea22bbb73393084bf39d7ffd04d3e61f851f4f5))
 - **endpoint-micropub:** relative media path for publication url with path component ([9dd58ef](https://github.com/getindiekit/indiekit/commit/9dd58ef524635a90d714f86eb2e5c3fc94192f8a))
 
 ### Features
