@@ -120,13 +120,6 @@ GITHUB_TOKEN="12345abcde"
 MASTODON_URL="https://example.social"
 MASTODON_USER="indiekit-test"
 MASTODON_ACCESS_TOKEN="12345abcde"
-
-# Test syndicating content to Twitter (optional)
-TWITTER_USER="indiekit-test"
-TWITTER_ACCESS_TOKEN="12345abcde"
-TWITTER_ACCESS_TOKEN_SECRET="12345abcde"
-TWITTER_API_KEY="12345abcde"
-TWITTER_API_KEY_SECRET="12345abcde"
 ```
 
 You can then start the server:

@@ -18,7 +18,6 @@ const config = {
     "@indiekit/preset-jekyll",
     "@indiekit/store-github",
     "@indiekit/syndicator-mastodon",
-    "@indiekit/syndicator-twitter",
   ],
   publication: {
     me: process.env.PUBLICATION_URL,
@@ -33,10 +32,6 @@ const config = {
     checked: true,
     url: process.env.MASTODON_URL,
     user: process.env.MASTODON_USER,
-  },
-  "@indiekit/syndicator-twitter": {
-    checked: true,
-    user: process.env.TWITTER_USER,
   },
 };
 
