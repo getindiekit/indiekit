@@ -22,9 +22,9 @@ test.beforeEach((t) => {
         {
           info: {
             service: {
-              name: "Twitter",
+              name: "Mastodon",
             },
-            uid: "https://twitter.com/username",
+            uid: "https://mastodon.example/@username",
           },
           options: {
             checked: true,
@@ -99,12 +99,12 @@ test("Gets post URL", (t) => {
 });
 
 test("Gets syndication target `items` for checkboxes component", (t) => {
-  const post = { "mp-syndicate-to": "https://twitter.com/username" };
+  const post = { "mp-syndicate-to": "https://mastodon.example/@username" };
   const result = getSyndicateToItems(t.context.publication, post);
 
   t.is(result.length, 1);
   t.true(result[0].checked);
-  t.is(result[0].value, "https://twitter.com/username");
-  t.is(result[0].text, "Twitter");
-  t.is(result[0].hint.text, "https://twitter.com/username");
+  t.is(result[0].value, "https://mastodon.example/@username");
+  t.is(result[0].text, "Mastodon");
+  t.is(result[0].hint.text, "https://mastodon.example/@username");
 });
