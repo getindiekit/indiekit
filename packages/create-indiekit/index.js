@@ -4,6 +4,7 @@ import create from "base-create";
 import chalk from "chalk";
 import prompts from "prompts";
 import { setupPrompts } from "./lib/setup-prompts.js";
+import { getFiles } from "./lib/files.js";
 import { getPackageValues } from "./lib/package.js";
 // eslint-ignore import/order
 const require = createRequire(import.meta.url);
@@ -29,18 +30,12 @@ export async function init() {
   // Get values for package.json based on answers
   const { config, dependencies } = await getPackageValues(setup);
 
+  // Get files to be generated
+  const files = await getFiles(setup);
+
   create({
     dependencies,
-    files: [
-      {
-        path: "README.md",
-        contents: `# Indiekit server for ${setup.me}\n\nLearn more at <https://getindiekit.com>\n`,
-      },
-      {
-        path: ".gitignore",
-        contents: "node_modules/",
-      },
-    ],
+    files,
     package: {
       description: `Indiekit server for ${setup.me}`,
       keywords: ["indiekit", "indieweb"],

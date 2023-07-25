@@ -23,6 +23,7 @@
   },
   "files": [
     "bin",
+    "files",
     "lib",
     "index.js"
   ],
