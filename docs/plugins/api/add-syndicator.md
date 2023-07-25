@@ -136,8 +136,6 @@ Example syndicator plug-ins:
 
 - [`@indiekit/syndicator-internet-archive`](https://github.com/getindiekit/indiekit/tree/main/packages/syndicator-internet-archive) saves content to the Internet Archive.
 
-- [`@indiekit/syndicator-twitter`](https://github.com/getindiekit/indiekit/tree/main/packages/syndicator-twitter) syndicates content to Twitter.
-
 [`async function`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 [`Boolean`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 [`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object

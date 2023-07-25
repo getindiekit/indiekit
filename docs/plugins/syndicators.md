@@ -13,9 +13,3 @@ A [syndicator](../concepts#syndicator) enables content to be posted to third-par
 <Badge type="tip" text="Offical" />
 
 [Mastodon](https://joinmastodon.org) syndicator.
-
-## [@indiekit/syndicator-twitter](https://npmjs.org/package/@indiekit/syndicator-twitter)
-
-<Badge type="tip" text="Offical" />
-
-[Twitter](https://twitter.com) syndicator.
