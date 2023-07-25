@@ -55,14 +55,6 @@ export const testConfig = async (options) => {
     "@indiekit-test/store": {
       user: "user",
     },
-    "@indiekit/syndicator-twitter": {
-      checked: true,
-      user: "username",
-      apiKey: "abcd1234",
-      apiKeySecret: "abcd1234",
-      accessToken: "abcd1234",
-      accessTokenSecret: "abcd1234",
-    },
     "@indiekit/syndicator-mastodon": {
       checked: true,
       url: "https://mastodon.example",
