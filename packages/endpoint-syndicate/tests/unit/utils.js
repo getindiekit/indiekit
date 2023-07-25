@@ -36,15 +36,6 @@ test.beforeEach((t) => {
         async updateOne() {},
       },
     },
-    publication: {
-      syndicationTargets: [
-        {
-          info: {
-            uid: "https://twitter.com",
-          },
-        },
-      ],
-    },
     url: "https://website.example/post/12345",
   };
 });
@@ -63,17 +54,23 @@ test("Gets post data from database", async (t) => {
 
 test("Checks if target already returned a syndication URL", (t) => {
   const syndicationUrls = [
-    "https://mastodon.social/example/12345",
-    "https://twitter.com/example/status/12345",
+    "https://web.archive.org/",
+    "https://mastodon.example/@username/67890",
   ];
 
-  t.true(hasSyndicationUrl(syndicationUrls, "https://twitter.com"));
-  t.false(hasSyndicationUrl(syndicationUrls, "https://mastodon.example"));
+  t.true(hasSyndicationUrl(syndicationUrls, "https://mastodon.example"));
+  t.false(hasSyndicationUrl(syndicationUrls, "https://mastodon.foo"));
 });
 
 test("Check if post target is a publication target", (t) => {
-  const { syndicationTargets } = t.context.publication;
+  const syndicationTargets = [
+    {
+      info: {
+        uid: "https://mastodon.example",
+      },
+    },
+  ];
 
-  t.true(isSyndicationTarget(syndicationTargets, "https://twitter.com"));
-  t.false(isSyndicationTarget(syndicationTargets, "https://mastodon.social"));
+  t.true(isSyndicationTarget(syndicationTargets, "https://mastodon.example"));
+  t.false(isSyndicationTarget(syndicationTargets, "https://mastodon.foo"));
 });
