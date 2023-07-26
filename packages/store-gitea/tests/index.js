@@ -18,6 +18,10 @@ const giteaInstance = new GiteaStore({
   repo: "repo",
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(gitea.environment, ["GITEA_TOKEN"]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(gitea.name, "Gitea store");
   t.is(gitea.info.name, "username/repo on Gitea");
