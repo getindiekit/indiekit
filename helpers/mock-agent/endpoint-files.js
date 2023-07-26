@@ -11,17 +11,50 @@ export function mockClient() {
 
   const mediaEndpointOrigin = "https://media-endpoint.example";
   const mediaOrigin = "https://website.example/photo.jpg";
+  const mediaBadOrigin = "https://website.example/401.jpg";
 
   // Get source information from external media endpoint
   agent
     .get(mediaEndpointOrigin)
     .intercept({
-      path: `/?q=source&url=${encodeURIComponent(mediaOrigin)}`,
+      path: /\/\?q=source&url=.+jpg/,
     })
-    .reply(200, { url: "https://website.example/photo.jpg" })
+    .reply(200, (options) => {
+      const { searchParams } = new URL(options.path, options.origin);
+      return { url: searchParams.get("url") };
+    })
     .persist();
 
   // Upload file to external media endpoint
+  agent
+    .get(mediaEndpointOrigin)
+    .intercept({
+      path: "/",
+      method: "POST",
+    })
+    .reply(
+      201,
+      {
+        success: "create",
+        success_description: mediaOrigin,
+      },
+      {
+        headers: {
+          location: mediaOrigin,
+        },
+      },
+    );
+
+  // Upload file to external media endpoint (Unauthorized)
+  agent
+    .get("https://401-post-upload-unauthorized.example")
+    .intercept({
+      path: "/",
+      method: "POST",
+    })
+    .reply(401, {});
+
+  // Delete file at external media endpoint
   agent
     .get(mediaEndpointOrigin)
     .intercept({
@@ -41,32 +74,11 @@ export function mockClient() {
       },
     );
 
-  // Upload file to external media endpoint
+  // Delete file at external media endpoint (Unauthorized)
   agent
     .get(mediaEndpointOrigin)
     .intercept({
-      path: "/",
-      method: "POST",
-      // headers: { authorization: `Bearer ${testToken()}` },
-    })
-    .reply(
-      201,
-      {
-        success: "create",
-        success_description: mediaOrigin,
-      },
-      {
-        headers: {
-          location: mediaOrigin,
-        },
-      },
-    );
-
-  // Upload file to external media endpoint
-  agent
-    .get("https://401-post-upload-unauthorized.example")
-    .intercept({
-      path: "/",
+      path: `/?action=delete&url=${encodeURIComponent(mediaBadOrigin)}`,
       method: "POST",
     })
     .reply(401, {});
