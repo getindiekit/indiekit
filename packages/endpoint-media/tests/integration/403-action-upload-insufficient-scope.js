@@ -1,11 +1,8 @@
 import test from "ava";
 import supertest from "supertest";
 import { getFixture } from "@indiekit-test/fixtures";
-import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
-
-await mockAgent("endpoint-media");
 
 test("Returns 403 error token has insufficient scope", async (t) => {
   const server = await testServer();
