@@ -30,6 +30,10 @@ export default class FtpStore {
     this.options = { ...defaults, ...options };
   }
 
+  get environment() {
+    return ["FTP_PASSWORD", "FTP_USER"];
+  }
+
   get info() {
     const { directory, host, user } = this.options;
 

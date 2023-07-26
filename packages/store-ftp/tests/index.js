@@ -8,6 +8,10 @@ const ftp = new FtpStore({
   password: "password",
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(ftp.environment, ["FTP_PASSWORD", "FTP_USER"]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(ftp.name, "FTP store");
   t.is(ftp.info.name, "username on ftp.server.example");
