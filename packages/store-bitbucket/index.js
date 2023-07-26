@@ -25,6 +25,10 @@ export default class BitbucketStore {
     this.options = { ...defaults, ...options };
   }
 
+  get environment() {
+    return ["BITBUCKET_PASSWORD"];
+  }
+
   get info() {
     const { repo, user } = this.options;
 
