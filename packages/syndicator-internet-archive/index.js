@@ -25,6 +25,10 @@ export default class InternetArchiveSyndicator {
     this.options = { ...defaults, ...options };
   }
 
+  get environment() {
+    return ["INTERNET_ARCHIVE_ACCESS_KEY", "INTERNET_ARCHIVE_SECRET_KEY"];
+  }
+
   get info() {
     return {
       checked: this.options.checked,
