@@ -24,6 +24,10 @@ export default class GiteaStore {
     this.options = { ...defaults, ...options };
   }
 
+  get environment() {
+    return ["GITEA_TOKEN"];
+  }
+
   get info() {
     const { instance, repo, user } = this.options;
 
