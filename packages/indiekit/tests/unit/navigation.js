@@ -9,7 +9,7 @@ test.beforeEach((t) => {
     endpoints: [
       {
         id: "foo",
-        name: "Foo plugin",
+        name: "Foo plug-in",
         navigationItems: [
           {
             href: "/foo",

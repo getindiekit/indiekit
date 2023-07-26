@@ -44,7 +44,7 @@ export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
 };
 
 /**
- * Get question prompts specified by plugin
+ * Get question prompts specified by plug-in
  * @param {string} pluginName - Plug-in name
  * @returns {Promise<object>} Plug-in
  */

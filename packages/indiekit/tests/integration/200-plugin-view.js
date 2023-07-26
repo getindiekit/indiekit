@@ -4,7 +4,7 @@ import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-test("Returns installed plugin detail page", async (t) => {
+test("Returns installed plug-in detail page", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const response = await request

@@ -10,7 +10,7 @@ const defaults = {
 
 export default class GithubStore {
   /**
-   * @param {object} [options] - Plugin options
+   * @param {object} [options] - Plug-in options
    * @param {string} [options.user] - Username
    * @param {string} [options.repo] - Repository
    * @param {string} [options.branch] - Branch

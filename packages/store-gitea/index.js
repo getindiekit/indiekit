@@ -10,7 +10,7 @@ const defaults = {
 
 export default class GiteaStore {
   /**
-   * @param {object} [options] - Plugin options
+   * @param {object} [options] - Plug-in options
    * @param {string} [options.instance] - Instance URL
    * @param {string} [options.user] - Username
    * @param {string} [options.repo] - Repository

@@ -17,7 +17,7 @@ const defaults = {
  */
 export default class FtpStore {
   /**
-   * @param {object} [options] - Plugin options
+   * @param {object} [options] - Plug-in options
    * @param {string} [options.host] - FTP hostname
    * @param {string} [options.user] - FTP username
    * @param {string} [options.password] - FTP password
