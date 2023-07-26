@@ -42,6 +42,10 @@ export default class MastodonSyndicator {
     throw new Error("Mastodon user name required");
   }
 
+  get environment() {
+    return ["MASTODON_ACCESS_TOKEN"];
+  }
+
   get info() {
     const { checked } = this.options;
     const user = this.#user;

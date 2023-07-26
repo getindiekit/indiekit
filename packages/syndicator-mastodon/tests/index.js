@@ -23,6 +23,10 @@ test.beforeEach((t) => {
   };
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(mastodon.environment, ["MASTODON_ACCESS_TOKEN"]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(mastodon.name, "Mastodon syndicator");
   t.false(mastodon.info.checked);
