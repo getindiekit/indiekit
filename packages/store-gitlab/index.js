@@ -30,6 +30,10 @@ export default class GitlabStore {
     this.projectId = options.projectId || `${options.user}/${options.repo}`;
   }
 
+  get environment() {
+    return ["GITLAB_TOKEN"];
+  }
+
   get info() {
     const { instance, repo, user } = this.options;
 

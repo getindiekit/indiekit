@@ -17,6 +17,10 @@ const gitlabInstance = new GitlabStore({
   instance: "https://gitlab.instance",
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(gitlab.environment, ["GITLAB_TOKEN"]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(gitlab.name, "GitLab store");
   t.is(gitlab.info.name, "username/repo on GitLab");
