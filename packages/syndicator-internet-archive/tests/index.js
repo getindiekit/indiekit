@@ -16,6 +16,13 @@ test.beforeEach((t) => {
   };
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(internetArchive.environment, [
+    "INTERNET_ARCHIVE_ACCESS_KEY",
+    "INTERNET_ARCHIVE_SECRET_KEY",
+  ]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(internetArchive.name, "Internet Archive syndicator");
   t.false(internetArchive.info.checked);
