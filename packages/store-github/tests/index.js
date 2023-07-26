@@ -11,6 +11,10 @@ const github = new GithubStore({
   repo: "repo",
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(github.environment, ["GITHUB_TOKEN"]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(github.name, "GitHub store");
   t.is(github.info.name, "user/repo on GitHub");
