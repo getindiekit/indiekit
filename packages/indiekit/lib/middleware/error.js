@@ -22,7 +22,8 @@ export const notFound = (request, response, next) => {
  */
 // eslint-disable-next-line no-unused-vars
 export const internalServer = (error, request, response, next) => {
-  response.status(error.status || 500);
+  const status = error.status || 500;
+  response.status(status);
 
   // Send debug logging output to console.error
   debug.log = console.error.bind(console);
@@ -34,7 +35,7 @@ export const internalServer = (error, request, response, next) => {
       content: error.message,
       name: error.name,
       stack: error.stack,
-      status: error.status,
+      status,
       uri: error.uri,
     });
   } else if (request.accepts("json")) {
