@@ -23,6 +23,10 @@ export default class GithubStore {
     this.options = { ...defaults, ...options };
   }
 
+  get environment() {
+    return ["GITHUB_TOKEN"];
+  }
+
   get info() {
     const { repo, user } = this.options;
 
