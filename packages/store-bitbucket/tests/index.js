@@ -13,6 +13,10 @@ test.beforeEach((t) => {
   t.context.bitbucketUrl = "https://api.bitbucket.org";
 });
 
+test("Gets plug-in environment", (t) => {
+  t.deepEqual(bitbucket.environment, ["BITBUCKET_PASSWORD"]);
+});
+
 test("Gets plug-in info", (t) => {
   t.is(bitbucket.name, "Bitbucket store");
   t.is(bitbucket.info.name, "username/repo on Bitbucket");
