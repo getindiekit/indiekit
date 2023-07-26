@@ -13,7 +13,7 @@ export const excerpt = (string, value = 100, locale = "en") => {
 
   let excerpt = "";
   let n = 0;
-  let words;
+  let words = 0;
   [...segments].map((segment) => {
     words = segment.isWordLike ? n++ : n;
     if (words < value) {
