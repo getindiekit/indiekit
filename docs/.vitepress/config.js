@@ -114,6 +114,9 @@ export default {
     linkify: false,
   },
   outDir: "../_site",
+  sitemap: {
+    hostname: "https://getindiekit.com",
+  },
   themeConfig: {
     algolia: {
       appId: "ASMV5WWEJ4",
