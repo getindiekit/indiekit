@@ -1,3 +1,4 @@
+import util from "node:util";
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, getDate } from "@indiekit/util";
 import { getPostType } from "./post-type-discovery.js";
@@ -100,6 +101,9 @@ export const postData = {
     // Read properties
     let { properties } = await this.read(application, url);
 
+    // Save incoming properties for later comparison
+    const savedProperties = structuredClone(properties);
+
     // Add properties
     if (operation.add) {
       properties = update.addProperties(properties, operation.add);
@@ -120,9 +124,6 @@ export const postData = {
     // Normalise properties
     properties = normaliseProperties(publication, properties);
 
-    // Add updated date
-    properties.updated = getDate(timeZone);
-
     // Post type
     const type = getPostType(properties);
     const typeConfig = getPostTypeConfig(type, postTypes);
@@ -140,6 +141,14 @@ export const postData = {
       application,
     );
     properties.url = getCanonicalUrl(updatedUrl, me);
+
+    // Return if no changes to properties detected
+    if (util.isDeepStrictEqual(properties, savedProperties)) {
+      return;
+    }
+
+    // Add updated date
+    properties.updated = getDate(timeZone);
 
     // Update data in posts collection
     const postData = { path, properties };

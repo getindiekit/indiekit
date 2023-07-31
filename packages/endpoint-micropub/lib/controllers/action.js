@@ -69,6 +69,18 @@ export const actionController = async (request, response, next) => {
 
         data = await postData.update(application, publication, url, body);
 
+        if (!data) {
+          content = {
+            status: 200,
+            location: url,
+            json: {
+              success: "update",
+              success_description: `Post at ${url} not updated as no properties changed`,
+            },
+          };
+          break;
+        }
+
         // Draft mode: Only update posts that have `draft` post status
         if (draftMode && data.properties["post-status"] !== "draft") {
           throw IndiekitError.insufficientScope(
