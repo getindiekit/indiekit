@@ -324,7 +324,7 @@ test("Does not add syndication target if no syndicators", (t) => {
   t.falsy(result);
 });
 
-test("Adds syndication target checked by client", (t) => {
+test("Adds syndication target", (t) => {
   const properties = JSON.parse(
     getFixture("jf2/article-syndicate-to-provided.jf2"),
   );
@@ -336,55 +336,6 @@ test("Adds syndication target checked by client", (t) => {
   const result = getSyndicateToProperty(properties, syndicationTargets);
 
   t.deepEqual(result, ["https://example.website/"]);
-});
-
-test("Adds syndication target not checked by client but forced by server", (t) => {
-  const properties = false;
-  const syndicationTargets = [
-    {
-      info: { uid: "https://example.website/" },
-      options: { forced: true },
-    },
-  ];
-  const result = getSyndicateToProperty(properties, syndicationTargets);
-
-  t.deepEqual(result, ["https://example.website/"]);
-});
-
-test("Adds syndication target checked by client and forced by server", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/article-syndicate-to-provided.jf2"),
-  );
-  const syndicationTargets = [
-    {
-      info: { uid: "https://example.website/" },
-      options: { forced: true },
-    },
-  ];
-  const result = getSyndicateToProperty(properties, syndicationTargets);
-
-  t.deepEqual(result, ["https://example.website/"]);
-});
-
-test("Adds syndication targets, one checked by client, one forced by server", (t) => {
-  const properties = JSON.parse(
-    getFixture("jf2/article-syndicate-to-provided.jf2"),
-  );
-  const syndicationTargets = [
-    {
-      info: { uid: "https://example.website/" },
-    },
-    {
-      info: { uid: "https://another-example.website/" },
-      options: { forced: true },
-    },
-  ];
-  const result = getSyndicateToProperty(properties, syndicationTargets);
-
-  t.deepEqual(result, [
-    "https://example.website/",
-    "https://another-example.website/",
-  ]);
 });
 
 test("Doesn’t add unused syndication target", (t) => {
