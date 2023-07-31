@@ -1,12 +1,12 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
-import { login } from "masto";
+import { createRestAPIClient } from "masto";
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
 export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
-  async client() {
-    return login({
-      accessToken: accessToken,
+  client() {
+    return createRestAPIClient({
+      accessToken,
       url: serverUrl,
     });
   },
@@ -17,9 +17,9 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * @returns {Promise<string>} Mastodon status URL
    */
   async postFavourite(statusUrl) {
-    const { v1 } = await this.client();
+    const { v1 } = this.client();
     const statusId = getStatusIdFromUrl(statusUrl);
-    const status = await v1.statuses.favourite(statusId);
+    const status = await v1.statuses.$select(statusId).favourite();
     return status.url;
   },
 
@@ -29,9 +29,9 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * @returns {Promise<string>} Mastodon status URL
    */
   async postReblog(statusUrl) {
-    const { v1 } = await this.client();
+    const { v1 } = this.client();
     const statusId = getStatusIdFromUrl(statusUrl);
-    const status = await v1.statuses.reblog(statusId);
+    const status = await v1.statuses.$select(statusId).reblog();
     return status.url;
   },
 
@@ -41,7 +41,7 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
    * @returns {Promise<string>} Mastodon status URL
    */
   async postStatus(parameters) {
-    const { v1 } = await this.client();
+    const { v1 } = this.client();
     const status = await v1.statuses.create(parameters);
     return status.url;
   },
@@ -67,9 +67,9 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
         throw await IndiekitError.fromFetch(mediaResponse);
       }
 
-      const { v2 } = await this.client();
+      const { v2 } = this.client();
       const blob = await mediaResponse.blob();
-      const attachment = await v2.mediaAttachments.create({
+      const attachment = await v2.media.create({
         file: new Blob([blob]),
         description: alt,
       });

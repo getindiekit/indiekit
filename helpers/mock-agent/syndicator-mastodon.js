@@ -11,11 +11,6 @@ export function mockClient() {
 
   const id = "1234567890987654321";
   const instanceOrigin = "https://mastodon.example";
-  const instanceResponse = {
-    uri: instanceOrigin,
-    urls: { streaming_api: "https://streaming.mastodon.example" },
-    version: "4.1.2",
-  };
   const statusResponse = {
     id,
     url: `https://mastodon.example/@username/${id}`,
@@ -25,43 +20,18 @@ export function mockClient() {
   };
   const websiteOrigin = "https://website.example";
 
-  // Instance information
-  agent
-    .get(instanceOrigin)
-    .intercept({
-      path: `/api/v1/instance`,
-      headers: { authorization: "Bearer token" },
-    })
-    .reply(200, instanceResponse, responseOptions)
-    .persist();
-
-  // Instance information (Unauthorized, invalid access token)
-  agent
-    .get(instanceOrigin)
-    .intercept({
-      path: `/api/v1/instance`,
-      headers: {
-        authorization: "Bearer invalid",
-      },
-    })
-    .reply(401)
-    .persist();
-
-  // Instance information (Unauthorized, no access token provided)
-  agent
-    .get(instanceOrigin)
-    .intercept({
-      path: `/api/v1/instance`,
-    })
-    .reply(401)
-    .persist();
-
   // Post favourite
   agent
     .get(instanceOrigin)
     .intercept({ path: `/api/v1/statuses/${id}/favourite`, method: "POST" })
     .reply(200, statusResponse, responseOptions)
     .persist();
+
+  // Post favourite (Not Found)
+  agent
+    .get(instanceOrigin)
+    .intercept({ path: `/api/v1/statuses/404/favourite`, method: "POST" })
+    .reply(404, { error: "Record not found" }, responseOptions);
 
   // Post reblog
   agent
@@ -70,12 +40,32 @@ export function mockClient() {
     .reply(200, statusResponse, responseOptions)
     .persist();
 
+  // Post reblog (Not Found)
+  agent
+    .get(instanceOrigin)
+    .intercept({ path: `/api/v1/statuses/404/reblog`, method: "POST" })
+    .reply(404, { error: "Record not found" }, responseOptions);
+
   // Post status
   agent
     .get(instanceOrigin)
-    .intercept({ path: `/api/v1/statuses`, method: "POST" })
+    .intercept({
+      path: `/api/v1/statuses`,
+      headers: { authorization: "Bearer token" },
+      method: "POST",
+    })
     .reply(200, statusResponse, responseOptions)
     .persist();
+
+  // Post status (Unauthorized)
+  agent
+    .get(instanceOrigin)
+    .intercept({
+      path: `/api/v1/statuses`,
+      headers: { authorization: "Bearer invalid" },
+      method: "POST",
+    })
+    .reply(401, { error: "The access token is invalid" }, responseOptions);
 
   // Media information
   agent

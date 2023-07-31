@@ -20,6 +20,7 @@ test.beforeEach((t) => {
     statusParameters: { status: "Toot" },
     statusId: "1234567890987654321",
     statusUrl: "https://mastodon.example/@username/1234567890987654321",
+    statusUrlNotFound: "https://mastodon.example/@username/404",
   };
 });
 
@@ -31,11 +32,10 @@ test("Posts a favourite", async (t) => {
 });
 
 test("Throws error posting a favourite", async (t) => {
-  const { options, statusUrl } = t.context;
-  options.accessToken = "invalid";
+  const { options, statusUrlNotFound } = t.context;
 
-  await t.throwsAsync(mastodon(options).postFavourite(statusUrl), {
-    message: "Unexpected error occurred",
+  await t.throwsAsync(mastodon(options).postFavourite(statusUrlNotFound), {
+    message: "Record not found",
   });
 });
 
@@ -47,11 +47,10 @@ test("Posts a reblog", async (t) => {
 });
 
 test("Throws error posting a reblog", async (t) => {
-  const { options, statusUrl } = t.context;
-  options.accessToken = "invalid";
+  const { options, statusUrlNotFound } = t.context;
 
-  await t.throwsAsync(mastodon(options).postReblog(statusUrl), {
-    message: "Unexpected error occurred",
+  await t.throwsAsync(mastodon(options).postReblog(statusUrlNotFound), {
+    message: "Record not found",
   });
 });
 
@@ -67,7 +66,7 @@ test("Throws error posting a status", async (t) => {
   options.accessToken = "invalid";
 
   await t.throwsAsync(mastodon(options).postStatus(statusParameters), {
-    message: "Unexpected error occurred",
+    message: "The access token is invalid",
   });
 });
 

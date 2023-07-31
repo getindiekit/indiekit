@@ -82,14 +82,15 @@ test("Throws error getting username if no username provided", (t) => {
   );
 });
 
-test("Throws error getting syndicated URL if no access token provided", async (t) => {
+test("Throws error getting syndicated URL if access token invalid", async (t) => {
   const { properties, publication } = t.context;
   const mastodonNoToken = new MastodonSyndicator({
+    accessToken: "invalid",
     url: "https://mastodon.example",
     user: "username",
   });
 
   await t.throwsAsync(mastodonNoToken.syndicate(properties, publication), {
-    message: "Mastodon syndicator: Unexpected error occurred",
+    message: "Mastodon syndicator: The access token is invalid",
   });
 });

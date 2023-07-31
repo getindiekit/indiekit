@@ -28,23 +28,6 @@ export function mockClient() {
     .intercept({ path: /\/user\/.*\.(md|jpg)/, method: "PATCH" })
     .reply(201);
 
-  // Get instance information from syndication target
-  agent
-    .get(syndicatorOrigin)
-    .intercept({
-      path: `/api/v1/instance`,
-    })
-    .reply(
-      200,
-      {
-        uri: syndicatorOrigin,
-        urls: { streaming_api: "https://streaming.mastodon.example" },
-        version: "4.1.2",
-      },
-      syndicatorResponseOptions,
-    )
-    .persist();
-
   // Post status to syndication target
   agent
     .get(syndicatorOrigin)
