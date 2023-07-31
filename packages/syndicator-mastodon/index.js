@@ -17,7 +17,6 @@ export default class MastodonSyndicator {
    * @param {string} [options.url] - Server URL
    * @param {string} [options.user] - Username
    * @param {boolean} [options.checked] - Check syndicator in UI
-   * @param {boolean} [options.forced] - Force syndicator
    */
   constructor(options = {}) {
     this.id = "mastodon";
