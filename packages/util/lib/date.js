@@ -19,7 +19,7 @@ export const formatDate = (string, tokens, lang = "en") => {
 /**
  * Converts date to use configured time zone
  * @param {string} setting - Time zone setting
- * @param {string} dateString - Date string
+ * @param {string} [dateString] - Date string
  * @returns {string} Converted date
  *
  * setting options:
@@ -27,7 +27,7 @@ export const formatDate = (string, tokens, lang = "en") => {
  *   `server`: use server’s time zone
  *   [IANA tz timezone]: use specified time zone
  */
-export const getDate = (setting, dateString) => {
+export const getDate = (setting, dateString = "") => {
   if (setting === "client") {
     // Return given date string or create ISO string using current date
     return dateString || new Date().toISOString();
