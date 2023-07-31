@@ -245,7 +245,7 @@ export const getSlugProperty = (properties, separator) => {
 };
 
 /**
- * Get mp-syndicate-to property
+ * Get `mp-syndicate-to` property
  * @param {object} properties - JF2 properties
  * @param {Array} syndicationTargets - Configured syndication targets
  * @returns {Array|undefined} Resolved syndication targets
@@ -259,11 +259,9 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
 
   for (const target of syndicationTargets) {
     const { uid } = target.info;
-    const syndicateTo = properties && properties["mp-syndicate-to"];
-    const clientChecked = syndicateTo && syndicateTo.includes(uid);
-    const serverForced = target.options && target.options.forced;
+    const syndicateTo = properties["mp-syndicate-to"];
 
-    if (clientChecked || serverForced) {
+    if (syndicateTo?.includes(uid)) {
       property.push(uid);
     }
   }
