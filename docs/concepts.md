@@ -83,7 +83,6 @@ Then add it to your configuration file, for example:
   "plugins": ["@indiekit/syndicator-mastodon"],
   "@indiekit/syndicator-mastodon": {
     "checked": true,
-    "forced": true,
     "url": "https://mastodon.example",
     "user": "username"
   }
@@ -91,8 +90,6 @@ Then add it to your configuration file, for example:
 ```
 
 The `checked` option is used to tell [Micropub clients](clients.md) whether a syndication target should be enabled or not by default.
-
-Not all clients allow you to disable or enable syndication targets. Setting the `forced` option to `true` will ensure that a syndication target is enabled regardless.
 
 ### Using the application interface to syndicate a post
 
