@@ -193,11 +193,8 @@
       label: {
         text: __("posts.form.mp-slug.label")
       },
-      optional: true,
-      attributes: {
-        readonly: true if post["mp-slug"]
-      }
-    }) | indent(4) }}
+      optional: true
+    }) if action == "create" | indent(4) }}
 
     {{ radios({
       classes: "radios--inline",
