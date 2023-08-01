@@ -16,6 +16,7 @@ export const formController = {
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-form", {
+        action,
         back: {
           href: `${path.join(postsPath, "new")}?type=${postType}`,
           text: response.locals.__(`posts.form.back`),

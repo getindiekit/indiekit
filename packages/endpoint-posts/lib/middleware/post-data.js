@@ -21,8 +21,7 @@ export const postData = {
     const checkTargets = Object.entries(request.body).length === 0;
 
     // Only show advanced options if one of those fields has been updated
-    const showAdvancedOptions =
-      post.category || post.geo || post["mp-slug"] || post.visibility;
+    const showAdvancedOptions = post.category || post.geo || post.visibility;
 
     response.locals = {
       accessToken: access_token,
