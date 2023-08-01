@@ -17,6 +17,7 @@ export const postTypeCount = {
 
     // Post type
     const postType = properties["post-type"];
+    const postUrl = properties.url;
     const startDate = new Date(new Date(properties.published).toDateString());
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 1);
@@ -32,6 +33,7 @@ export const postTypeCount = {
         {
           $match: {
             "properties.post-type": postType,
+            "properties.url": { $ne: postUrl },
             convertedDate: {
               $gte: startDate,
               $lt: endDate,
