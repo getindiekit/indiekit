@@ -58,6 +58,7 @@
         "label": "Kao od"
       },
       "mp-slug": {
+        "hint": "Slug se ne može promeniti nakon što je poruka sačuvana",
         "label": "URL slag"
       },
       "mp-syndicate-to": {

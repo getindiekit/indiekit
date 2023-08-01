@@ -58,6 +58,7 @@
         "label": "Jak z"
       },
       "mp-slug": {
+        "hint": "Ślimak nie może zostać zmieniony po zapisaniu postu",
         "label": "Ślimak URL"
       },
       "mp-syndicate-to": {

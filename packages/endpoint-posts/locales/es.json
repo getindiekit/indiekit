@@ -58,6 +58,7 @@
         "label": "Como de"
       },
       "mp-slug": {
+        "hint": "El slug no se puede cambiar una vez que se ha guardado la publicación",
         "label": "URL slug"
       },
       "mp-syndicate-to": {
