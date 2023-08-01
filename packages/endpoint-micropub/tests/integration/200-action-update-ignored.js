@@ -6,7 +6,7 @@ import { testToken } from "@indiekit-test/token";
 
 await mockAgent("endpoint-micropub");
 
-test("Updates post", async (t) => {
+test("Ignores updating post as no properties changed", async (t) => {
   // Create post
   const server = await testServer();
   const request = supertest.agent(server);
