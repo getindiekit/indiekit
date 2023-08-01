@@ -17,6 +17,9 @@ import { views } from "../lib/views.js";
 export const expressConfig = (indiekitConfig) => {
   const app = express();
 
+  // Enable reversed proxy connections
+  app.enable("trust proxy");
+
   // Body parsers
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));

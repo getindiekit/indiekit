@@ -16,6 +16,7 @@ const limit = rateLimit({
   max: 250,
   standardHeaders: true,
   legacyHeaders: false,
+  validate: false,
 });
 
 export const routes = (indiekitConfig) => {
