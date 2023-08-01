@@ -58,6 +58,7 @@
         "label": "J’aime"
       },
       "mp-slug": {
+        "hint": "Slug cannot be changed once post has been saved",
         "label": "URL d’entrée"
       },
       "mp-syndicate-to": {

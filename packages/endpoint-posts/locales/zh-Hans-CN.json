@@ -58,6 +58,7 @@
         "label": "像这样"
       },
       "mp-slug": {
+        "hint": "帖子保存后无法更改 Slug",
         "label": "网址 slug"
       },
       "mp-syndicate-to": {
