@@ -46,16 +46,24 @@ export const postContent = {
     const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
     const hasUpdatedUrl = url !== postData.properties.url;
+    const { _originalPath, path, properties } = postData;
 
-    await store.updateFile(postData.path, content, { message });
+    _originalPath === path
+      ? await store.updateFile(path, content, { message })
+      : await store.updateFile(_originalPath, content, {
+          message,
+          newPath: path,
+        });
+
+    delete postData._originalPath;
 
     return {
-      location: postData.properties.url,
+      location: properties.url,
       status: hasUpdatedUrl ? 201 : 200,
       json: {
         success: "update",
         success_description: hasUpdatedUrl
-          ? `Post updated and moved to ${postData.properties.url}`
+          ? `Post updated and moved to ${properties.url}`
           : `Post updated at ${url}`,
       },
     };
