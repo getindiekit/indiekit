@@ -86,11 +86,12 @@ export default class GitlabStore {
    * Create file in a repository
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
-  async createFile(path, content, message) {
+  async createFile(path, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
       await this.#client.create(
@@ -142,11 +143,12 @@ export default class GitlabStore {
    * Update file in a repository
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
-  async updateFile(path, content, message) {
+  async updateFile(path, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
       await this.#client.edit(
@@ -173,11 +175,12 @@ export default class GitlabStore {
   /**
    * Delete file in a repository
    * @param {string} path - Path to file
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository}
    */
-  async deleteFile(path, message) {
+  async deleteFile(path, { message }) {
     try {
       await this.#client.remove(
         this.projectId,

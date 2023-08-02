@@ -39,7 +39,9 @@ test("Initiates plug-in", async (t) => {
 });
 
 test("Creates file in a repository", async (t) => {
-  const result = await gitlab.createFile("foo.md", "foo", "Message");
+  const result = await gitlab.createFile("foo.md", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
@@ -49,15 +51,20 @@ test("Creates file in a repository with projectId at custom instance", async (t)
     projectId: "1234",
     instance: "https://gitlab.instance",
   });
-  const result = await gitlabInstance.createFile("foo.md", "foo", "Message");
+  const result = await gitlabInstance.createFile("foo.md", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.createFile("401.md", "foo", "Message"), {
-    message: "GitLab store: Unauthorized",
-  });
+  await t.throwsAsync(
+    gitlab.createFile("401.md", "foo", { message: "Message" }),
+    {
+      message: "GitLab store: Unauthorized",
+    },
+  );
 });
 
 test("Reads file in a repository", async (t) => {
@@ -73,25 +80,30 @@ test("Throws error reading file in a repository", async (t) => {
 });
 
 test("Updates file in a repository", async (t) => {
-  const result = await gitlab.updateFile("foo.md", "foo", "Message");
+  const result = await gitlab.updateFile("foo.md", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.updateFile("401.md", "foo", "Message"), {
-    message: "GitLab store: Unauthorized",
-  });
+  await t.throwsAsync(
+    gitlab.updateFile("401.md", "foo", { message: "Message" }),
+    {
+      message: "GitLab store: Unauthorized",
+    },
+  );
 });
 
 test("Deletes a file in a repository", async (t) => {
-  const result = await gitlab.deleteFile("foo.md", "Message");
+  const result = await gitlab.deleteFile("foo.md", { message: "Message" });
 
   t.true(result);
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
-  await t.throwsAsync(gitlab.deleteFile("401.md", "Message"), {
+  await t.throwsAsync(gitlab.deleteFile("401.md", { message: "Message" }), {
     message: "GitLab store: Unauthorized",
   });
 });
