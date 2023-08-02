@@ -41,7 +41,9 @@ test("Creates file in a repository", async (t) => {
       "content-type": "application/json",
     });
 
-  const result = await bitbucket.createFile("foo.txt", "foo", "Message");
+  const result = await bitbucket.createFile("foo.txt", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
@@ -51,10 +53,13 @@ test("Throws error creating file in a repository", async (t) => {
     .post("/2.0/repositories/username/repo/src")
     .replyWithError("Not found");
 
-  await t.throwsAsync(bitbucket.createFile("foo.txt", "foo", "Message"), {
-    message:
-      "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
-  });
+  await t.throwsAsync(
+    bitbucket.createFile("foo.txt", "foo", { message: "Message" }),
+    {
+      message:
+        "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
+    },
+  );
 });
 
 test("Reads file in a repository", async (t) => {
@@ -87,7 +92,9 @@ test("Updates file in a repository", async (t) => {
       "content-type": "application/json",
     });
 
-  const result = await bitbucket.updateFile("foo.txt", "foo", "Message");
+  const result = await bitbucket.updateFile("foo.txt", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
@@ -97,10 +104,13 @@ test("Throws error updating file in a repository", async (t) => {
     .post("/2.0/repositories/username/repo/src")
     .replyWithError("Not found");
 
-  await t.throwsAsync(bitbucket.updateFile("foo.txt", "foo", "Message"), {
-    message:
-      "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
-  });
+  await t.throwsAsync(
+    bitbucket.updateFile("foo.txt", "foo", { message: "Message" }),
+    {
+      message:
+        "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
+    },
+  );
 });
 
 test("Deletes a file in a repository", async (t) => {
@@ -110,7 +120,7 @@ test("Deletes a file in a repository", async (t) => {
       "content-type": "application/json",
     });
 
-  const result = await bitbucket.deleteFile("foo.txt", "Message");
+  const result = await bitbucket.deleteFile("foo.txt", { message: "Message" });
 
   t.true(result);
 });
@@ -120,7 +130,7 @@ test("Throws error deleting a file in a repository", async (t) => {
     .post("/2.0/repositories/username/repo/src")
     .replyWithError("Not found");
 
-  await t.throwsAsync(bitbucket.deleteFile("foo.txt", "Message"), {
+  await t.throwsAsync(bitbucket.deleteFile("foo.txt", { message: "Message" }), {
     message:
       "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
   });
