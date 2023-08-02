@@ -96,11 +96,12 @@ export default class GithubStore {
    * Create file in a repository
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
-  async createFile(path, content, message) {
+  async createFile(path, content, { message }) {
     content = Buffer.from(content).toString("base64");
 
     await this.#client(path, "PUT", {
@@ -129,11 +130,12 @@ export default class GithubStore {
    * Update file in a repository
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
-  async updateFile(path, content, message) {
+  async updateFile(path, content, { message }) {
     const response = await this.#client(`${path}?ref=${this.options.branch}`);
     const json = await response.json();
     content = Buffer.from(content).toString("base64");
@@ -151,11 +153,12 @@ export default class GithubStore {
   /**
    * Delete file in a repository
    * @param {string} path - Path to file
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
-  async deleteFile(path, message) {
+  async deleteFile(path, { message }) {
     const response = await this.#client(`${path}?ref=${this.options.branch}`);
     const json = await response.json();
 
