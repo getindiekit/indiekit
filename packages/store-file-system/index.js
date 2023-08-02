@@ -80,13 +80,19 @@ export default class FileSystemStore {
    * Update file in a directory
    * @param {string} filePath - Path to file
    * @param {string} content - File content
+   * @param {object} options - Options
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    */
-  async updateFile(filePath, content) {
+  async updateFile(filePath, content, options) {
     try {
       const absolutePath = this.#absolutePath(filePath);
 
       await fs.writeFile(absolutePath, content);
+
+      if (options?.newPath) {
+        await fs.rename(absolutePath, this.#absolutePath(options.newPath));
+      }
 
       return true;
     } catch (error) {

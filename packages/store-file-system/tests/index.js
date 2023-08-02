@@ -61,6 +61,18 @@ test.serial("Updates file in a directory", async (t) => {
   mockFs.restore();
 });
 
+test.serial("Updates and renames file in a directory", async (t) => {
+  mockFs({
+    "directory/foo.txt": "foo",
+  });
+
+  await fileSystem.updateFile("foo.txt", "bar", { newPath: "bar.txt" });
+  const result = await fs.readFile("directory/bar.txt", "utf8");
+
+  t.is(result, "bar");
+  mockFs.restore();
+});
+
 test("Throws error updating file in a directory", async (t) => {
   mockFs();
 
