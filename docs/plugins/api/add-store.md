@@ -90,13 +90,14 @@ async readFile(path) {
 | `path` | [`String`][] | Path to file. _Required_. |
 | `content` | [`String`][] | File content. _Required_. |
 | `options.message` | [`String`][] | Commit message. _Optional_. |
+| `options.newPath` | [`String`][] | New path to file. _Optional_. |
 
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async updateFile(path, content, { message }) {
+async updateFile(path, content, { message, newPath }) {
   try {
-    await exampleClient.update(path, content, message);
+    await exampleClient.update(filePath, content, message, newPath);
     return true;
   } catch (error) {
     throw new IndiekitError(error.message);
