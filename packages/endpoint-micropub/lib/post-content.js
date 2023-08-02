@@ -16,7 +16,7 @@ export const postContent = {
     const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
 
-    await store.createFile(postData.path, content, message);
+    await store.createFile(postData.path, content, { message });
 
     return {
       location: postData.properties.url,
@@ -47,7 +47,7 @@ export const postContent = {
     const message = storeMessageTemplate(metaData);
     const hasUpdatedUrl = url !== postData.properties.url;
 
-    await store.updateFile(postData.path, content, message);
+    await store.updateFile(postData.path, content, { message });
 
     return {
       location: postData.properties.url,
@@ -78,7 +78,7 @@ export const postContent = {
     const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
 
-    await store.updateFile(postData.path, content, message);
+    await store.updateFile(postData.path, content, { message });
 
     return {
       status: 200,
@@ -107,7 +107,7 @@ export const postContent = {
     const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
 
-    await store.updateFile(postData.path, content, message);
+    await store.updateFile(postData.path, content, { message });
 
     return {
       location: postData.properties.url,
