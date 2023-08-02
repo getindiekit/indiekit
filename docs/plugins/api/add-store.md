@@ -49,12 +49,12 @@ The `info` property returns the following values:
 | :--------- | :--- | :---------- |
 | `path` | [`String`][] | Path to file. _Required_. |
 | `content` | [`String`][] | File content. _Required_. |
-| `message` | [`String`][] | Commit message. _Optional_. |
+| `options.message` | [`String`][] | Commit message. _Optional_. |
 
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async createFile(path, content, message) {
+async createFile(path, content, { message }) {
   try {
     await exampleClient.create(path, content, message);
     return true;
@@ -89,12 +89,12 @@ async readFile(path) {
 | :--------- | :--- | :---------- |
 | `path` | [`String`][] | Path to file. _Required_. |
 | `content` | [`String`][] | File content. _Required_. |
-| `message` | [`String`][] | Commit message. _Optional_. |
+| `options.message` | [`String`][] | Commit message. _Optional_. |
 
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async updateFile(path, content, message) {
+async updateFile(path, content, { message }) {
   try {
     await exampleClient.update(path, content, message);
     return true;
@@ -109,14 +109,14 @@ async updateFile(path, content, message) {
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
 | `path` | [`String`][] | Path to file. _Required_. |
-| `message` | [`String`][] | Commit message. _Optional_. |
+| `options.message` | [`String`][] | Commit message. _Optional_. |
 
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async deleteFile(path, message) {
+async deleteFile(path, { message }) {
   try {
-    await exampleClient.delete(path, content, message);
+    await exampleClient.delete(path, message);
     return true;
   } catch (error) {
     throw new IndiekitError(error.message);
