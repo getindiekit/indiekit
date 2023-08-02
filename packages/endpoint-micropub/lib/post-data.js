@@ -99,10 +99,10 @@ export const postData = {
     const { me, postTypes } = publication;
 
     // Read properties
-    let { properties } = await this.read(application, url);
+    let { path: _originalPath, properties } = await this.read(application, url);
 
     // Save incoming properties for later comparison
-    const savedProperties = structuredClone(properties);
+    const _originalProperties = structuredClone(properties);
 
     // Add properties
     if (operation.add) {
@@ -143,7 +143,7 @@ export const postData = {
     properties.url = getCanonicalUrl(updatedUrl, me);
 
     // Return if no changes to properties detected
-    if (util.isDeepStrictEqual(properties, savedProperties)) {
+    if (util.isDeepStrictEqual(properties, _originalProperties)) {
       return;
     }
 
@@ -151,7 +151,7 @@ export const postData = {
     properties.updated = getDate(timeZone);
 
     // Update data in posts collection
-    const postData = { path, properties };
+    const postData = { _originalPath, path, properties };
     const query = { "properties.url": url };
     await posts.replaceOne(query, postData, { checkKeys: false });
 
