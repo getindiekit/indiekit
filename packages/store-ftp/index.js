@@ -87,7 +87,8 @@ export default class FtpStore {
     const readableStream = new Readable();
     readableStream._read = () => {};
     readableStream.push(content, "utf8");
-    readableStream.push(undefined); // eslint-disable-line unicorn/no-array-push-push
+    // eslint-disable-next-line unicorn/no-array-push-push, unicorn/no-null
+    readableStream.push(null);
     return readableStream;
   }
 
@@ -133,15 +134,21 @@ export default class FtpStore {
    * Update file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
+   * @param {object} options - Options
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    */
-  async updateFile(filePath, content) {
+  async updateFile(filePath, content, options) {
     try {
       const client = await this.#client();
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#absolutePath(filePath);
 
       await client.uploadFrom(readableStream, absolutePath);
+
+      if (options?.newPath) {
+        await client.rename(absolutePath, this.#absolutePath(options.newPath));
+      }
 
       client.close();
       return true;
