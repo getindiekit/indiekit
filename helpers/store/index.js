@@ -59,10 +59,11 @@ export default class TestStore {
    * Create file
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    */
-  async createFile(path, content, message) {
+  async createFile(path, content, { message }) {
     await this.#client(path, "PUT", { content, message });
     return true;
   }
@@ -82,11 +83,14 @@ export default class TestStore {
    * Update file
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    */
-  async updateFile(path, content, message) {
-    await this.#client(path, "PATCH", { content, message });
+  async updateFile(path, content, { message, newPath }) {
+    path = path || newPath;
+    await this.#client(path, "PATCH", { content, message, newPath });
     return true;
   }
 
