@@ -40,7 +40,9 @@ test("Initiates plug-in", async (t) => {
 });
 
 test("Creates file in a repository", async (t) => {
-  const result = await gitea.createFile("foo.md", "foo", "Message");
+  const result = await gitea.createFile("foo.md", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
@@ -49,15 +51,20 @@ test("Creates file in a repository at custom instance", async (t) => {
   await mockAgent("store-gitea", {
     instance: "https://gitea.instance",
   });
-  const result = await giteaInstance.createFile("foo.md", "foo", "Message");
+  const result = await giteaInstance.createFile("foo.md", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
 
 test("Throws error creating file in a repository", async (t) => {
-  await t.throwsAsync(gitea.createFile("401.md", "foo", "Message"), {
-    message: "Gitea store: Unauthorized",
-  });
+  await t.throwsAsync(
+    gitea.createFile("401.md", "foo", { message: "Message" }),
+    {
+      message: "Gitea store: Unauthorized",
+    },
+  );
 });
 
 test("Reads file in a repository", async (t) => {
@@ -73,25 +80,30 @@ test("Throws error reading file in a repository", async (t) => {
 });
 
 test.serial("Updates file in a repository", async (t) => {
-  const result = await gitea.updateFile("foo.md", "foo", "Message");
+  const result = await gitea.updateFile("foo.md", "foo", {
+    message: "Message",
+  });
 
   t.true(result);
 });
 
 test("Throws error updating file in a repository", async (t) => {
-  await t.throwsAsync(gitea.updateFile("401.md", "foo", "Message"), {
-    message: "Gitea store: Unauthorized",
-  });
+  await t.throwsAsync(
+    gitea.updateFile("401.md", "foo", { message: "Message" }),
+    {
+      message: "Gitea store: Unauthorized",
+    },
+  );
 });
 
 test.serial("Deletes a file in a repository", async (t) => {
-  const result = await gitea.deleteFile("foo.md", "Message");
+  const result = await gitea.deleteFile("foo.md", { message: "Message" });
 
   t.true(result);
 });
 
 test("Throws error deleting a file in a repository", async (t) => {
-  await t.throwsAsync(gitea.deleteFile("401.md", "Message"), {
+  await t.throwsAsync(gitea.deleteFile("401.md", { message: "Message" }), {
     message: "Gitea store: Unauthorized",
   });
 });

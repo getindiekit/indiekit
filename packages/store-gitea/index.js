@@ -98,11 +98,12 @@ export default class GiteaStore {
    * Create file in a repository
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
-  async createFile(path, content, message) {
+  async createFile(path, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
       await this.#client(path, "POST", {
@@ -147,11 +148,12 @@ export default class GiteaStore {
    * Update file in a repository
    * @param {string} path - Path to file
    * @param {string} content - File content
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File updated
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
-  async updateFile(path, content, message) {
+  async updateFile(path, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
       const response = await this.#client(`${path}?ref=${this.options.branch}`);
@@ -176,11 +178,12 @@ export default class GiteaStore {
   /**
    * Delete file in a repository
    * @param {string} path - Path to file
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
-  async deleteFile(path, message) {
+  async deleteFile(path, { message }) {
     try {
       const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
