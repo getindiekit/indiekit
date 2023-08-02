@@ -16,7 +16,7 @@ export const mediaContent = {
     };
     const message = storeMessageTemplate(metaData);
 
-    await store.createFile(mediaData.path, file.data, message);
+    await store.createFile(mediaData.path, file.data, { message });
 
     return {
       location: mediaData.properties.url,
@@ -44,7 +44,7 @@ export const mediaContent = {
     };
     const message = storeMessageTemplate(metaData);
 
-    await store.deleteFile(mediaData.path, message);
+    await store.deleteFile(mediaData.path, { message });
 
     return {
       status: 200,
