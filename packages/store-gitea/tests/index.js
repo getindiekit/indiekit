@@ -75,7 +75,7 @@ test("Reads file in a repository", async (t) => {
 
 test("Throws error reading file in a repository", async (t) => {
   await t.throwsAsync(gitea.readFile("404.md"), {
-    message: "Gitea store: Not Found",
+    message: "Gitea store: Not found",
   });
 });
 

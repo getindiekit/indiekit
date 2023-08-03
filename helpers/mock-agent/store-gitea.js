@@ -27,7 +27,7 @@ export function mockClient(options) {
   agent
     .get(origin)
     .intercept({ path: /.*401\.md/, method: "POST" })
-    .reply(401);
+    .reply(401, { message: "Unauthorized" });
 
   // Read file
   agent
@@ -40,14 +40,14 @@ export function mockClient(options) {
   agent
     .get(origin)
     .intercept({ path: /.*401\.md/, method: "GET" })
-    .reply(401)
+    .reply(401, { message: "Unauthorized" })
     .persist();
 
   // Read file (Not Found)
   agent
     .get(origin)
     .intercept({ path: /.*404\.md/, method: "GET" })
-    .reply(404);
+    .reply(404, { message: "Not found" });
 
   // Update file
   agent

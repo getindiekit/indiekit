@@ -89,7 +89,8 @@ export default class GiteaStore {
     });
 
     if (!response.ok) {
-      throw new Error(response.statusText);
+      const body = await response.json();
+      throw new Error(body.message);
     }
 
     return response;
