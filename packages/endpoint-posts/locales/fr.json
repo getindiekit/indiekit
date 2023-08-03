@@ -58,7 +58,7 @@
         "label": "J’aime"
       },
       "mp-slug": {
-        "label": "URL d’entrée"
+        "label": "Identifiant unique d’URL (slug)"
       },
       "mp-syndicate-to": {
         "label": "Publier également sur"
