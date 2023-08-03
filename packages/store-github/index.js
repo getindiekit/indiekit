@@ -137,14 +137,14 @@ export default class GithubStore {
    */
   async updateFile(path, content, { message }) {
     const response = await this.#client(`${path}?ref=${this.options.branch}`);
-    const json = await response.json();
+    const body = await response.json();
     content = Buffer.from(content).toString("base64");
 
     await this.#client(path, "PUT", {
       branch: this.options.branch,
       content,
       message,
-      sha: json ? json.sha : false,
+      sha: body ? body.sha : false,
     });
 
     return true;
@@ -160,11 +160,11 @@ export default class GithubStore {
    */
   async deleteFile(path, { message }) {
     const response = await this.#client(`${path}?ref=${this.options.branch}`);
-    const json = await response.json();
+    const body = await response.json();
 
     await this.#client(path, "DELETE", {
       branch: this.options.branch,
-      sha: json.sha,
+      sha: body.sha,
       message,
     });
 
