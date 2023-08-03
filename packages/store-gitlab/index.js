@@ -1,7 +1,7 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
-import { RepositoryFiles } from "@gitbeaker/rest";
+import { Commits, RepositoryFiles } from "@gitbeaker/rest";
 
 const defaults = {
   branch: "main",
@@ -73,13 +73,20 @@ export default class GitlabStore {
 
   /**
    * @access private
-   * @returns {RepositoryFiles} GitLab repository files interface
+   * @returns {object} GitLab interfaces
    */
   get #client() {
-    return new RepositoryFiles({
+    const commits = new Commits({
       host: this.options.instance,
       token: this.options.token,
     });
+
+    const files = new RepositoryFiles({
+      host: this.options.instance,
+      token: this.options.token,
+    });
+
+    return { commits, files };
   }
 
   /**
@@ -94,7 +101,7 @@ export default class GitlabStore {
   async createFile(path, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
-      await this.#client.create(
+      await this.#client.files.create(
         this.projectId,
         path,
         this.options.branch,
@@ -123,7 +130,7 @@ export default class GitlabStore {
    */
   async readFile(path) {
     try {
-      const response = await this.#client.showRaw(
+      const response = await this.#client.files.showRaw(
         this.projectId,
         path,
         this.options.branch,
@@ -145,21 +152,35 @@ export default class GitlabStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
-  async updateFile(path, content, { message }) {
+  async updateFile(path, content, { message, newPath }) {
     try {
       content = Buffer.from(content).toString("base64");
-      await this.#client.edit(
+
+      await this.#client.commits.create(
         this.projectId,
-        path,
         this.options.branch,
-        content,
         message,
-        {
-          encoding: "base64",
-        },
+        [
+          {
+            action: "update",
+            content,
+            encoding: "base64",
+            filePath: path,
+          },
+          ...(newPath
+            ? [
+                {
+                  action: "move",
+                  filePath: newPath,
+                  previousPath: path,
+                },
+              ]
+            : []),
+        ],
       );
 
       return true;
@@ -182,7 +203,7 @@ export default class GitlabStore {
    */
   async deleteFile(path, { message }) {
     try {
-      await this.#client.remove(
+      await this.#client.files.remove(
         this.projectId,
         path,
         this.options.branch,

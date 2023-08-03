@@ -87,6 +87,15 @@ test("Updates file in a repository", async (t) => {
   t.true(result);
 });
 
+test("Updates and renames file in a repository", async (t) => {
+  const result = await gitlab.updateFile("foo.md", "foo", {
+    message: "Message",
+    newPath: "bar.md",
+  });
+
+  t.true(result);
+});
+
 test("Throws error updating file in a repository", async (t) => {
   await t.throwsAsync(
     gitlab.updateFile("401.md", "foo", { message: "Message" }),

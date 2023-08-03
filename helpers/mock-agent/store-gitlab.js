@@ -43,10 +43,25 @@ export function mockClient(options) {
     .intercept({ path, method: "PUT" })
     .reply(200, { file_path: "foo.md", branch: "main" });
 
-  // Update file (Unauthorized)
+  // Update commit
   agent
     .get(origin)
-    .intercept({ path: /.*401\.md/, method: "PUT" })
+    .intercept({
+      path: `/api/v4/projects/${projectId}/repository/commits`,
+      method: "POST",
+      body: /.*\D{3}.md/,
+    })
+    .reply(200, { message: "message" })
+    .persist();
+
+  // Update commit (Unauthorized)
+  agent
+    .get(origin)
+    .intercept({
+      path: `/api/v4/projects/${projectId}/repository/commits`,
+      method: "POST",
+      body: /.*401\.md/,
+    })
     .reply(401);
 
   // Delete file
