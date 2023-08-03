@@ -62,7 +62,8 @@ export function mockClient() {
   agent
     .get(origin)
     .intercept({ path, method: "DELETE" })
-    .reply(200, deleteResponse);
+    .reply(200, deleteResponse)
+    .persist();
 
   return agent;
 }
