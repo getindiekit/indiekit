@@ -53,7 +53,8 @@ export function mockClient(options) {
   agent
     .get(origin)
     .intercept({ path, method: "PUT" })
-    .reply(200, { path: "foo.md", branch: "main" });
+    .reply(200, { path: "foo.md", branch: "main" })
+    .persist();
 
   // Delete file
   agent

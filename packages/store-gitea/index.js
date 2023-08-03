@@ -152,17 +152,21 @@ export default class GiteaStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
-  async updateFile(path, content, { message }) {
+  async updateFile(path, content, { message, newPath }) {
     try {
       content = Buffer.from(content).toString("base64");
       const response = await this.#client(`${path}?ref=${this.options.branch}`);
       const body = await response.json();
-      await this.#client(path, "PUT", {
+
+      const updateFilePath = newPath || path;
+      await this.#client(updateFilePath, "PUT", {
         branch: this.options.branch,
         content,
+        fromPath: path,
         message,
         sha: body.sha,
       });
