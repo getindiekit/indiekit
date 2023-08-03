@@ -58,7 +58,6 @@
         "label": "Zoals van"
       },
       "mp-slug": {
-        "hint": "Slug kan niet worden gewijzigd nadat het bericht is opgeslagen",
         "label": "URL-slug"
       },
       "mp-syndicate-to": {

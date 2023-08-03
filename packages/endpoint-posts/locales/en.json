@@ -86,8 +86,7 @@
         "label": "Title"
       },
       "mp-slug": {
-        "label": "URL slug",
-        "hint": "Slug cannot be changed once post has been saved"
+        "label": "URL slug"
       },
       "mp-syndicate-to": {
         "label": "Syndicate to"

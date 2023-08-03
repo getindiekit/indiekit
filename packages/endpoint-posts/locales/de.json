@@ -58,7 +58,6 @@
         "label": "Wie von"
       },
       "mp-slug": {
-        "hint": "Slug kann nicht geändert werden, sobald der Beitrag gespeichert wurde",
         "label": "Slug"
       },
       "mp-syndicate-to": {

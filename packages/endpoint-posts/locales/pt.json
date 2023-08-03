@@ -58,7 +58,6 @@
         "label": "Como de"
       },
       "mp-slug": {
-        "hint": "O Slug não pode ser alterado depois que a postagem for salva",
         "label": "Slug de URL"
       },
       "mp-syndicate-to": {

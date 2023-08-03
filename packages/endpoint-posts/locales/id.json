@@ -58,7 +58,6 @@
         "label": "Seperti"
       },
       "mp-slug": {
-        "hint": "Slug tidak dapat diubah setelah posting telah disimpan",
         "label": "URL siput"
       },
       "mp-syndicate-to": {
