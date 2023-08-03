@@ -132,20 +132,26 @@ export default class GithubStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
-  async updateFile(path, content, { message }) {
+  async updateFile(path, content, { message, newPath }) {
     const response = await this.#client(`${path}?ref=${this.options.branch}`);
     const body = await response.json();
     content = Buffer.from(content).toString("base64");
 
-    await this.#client(path, "PUT", {
+    const updateFilePath = newPath || path;
+    await this.#client(updateFilePath, "PUT", {
       branch: this.options.branch,
       content,
       message,
       sha: body ? body.sha : false,
     });
+
+    if (newPath) {
+      await this.deleteFile(path, { message });
+    }
 
     return true;
   }

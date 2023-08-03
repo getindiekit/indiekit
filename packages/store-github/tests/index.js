@@ -59,6 +59,15 @@ test("Updates file in a repository", async (t) => {
   t.true(await github.updateFile("foo.md", "foobar", { message: "Message" }));
 });
 
+test("Updates and renames file in a repository", async (t) => {
+  t.true(
+    await github.updateFile("foo.md", "foobar", {
+      message: "Message",
+      newPath: "bar.md",
+    }),
+  );
+});
+
 test("Creates file if original Not Found in repository", async (t) => {
   t.true(await github.updateFile("bar.md", "foobar", { message: "Message" }));
 });
