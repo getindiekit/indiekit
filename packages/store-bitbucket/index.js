@@ -136,18 +136,24 @@ export default class BitbucketStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
+   * @param {string} options.newPath - New path to file
    * @returns {Promise<boolean>} File updated
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
-  async updateFile(path, content, { message }) {
+  async updateFile(path, content, { message, newPath }) {
     try {
+      const updateFilePath = newPath || path;
       await this.#client.repositories.createSrcFileCommit({
-        [path]: content,
+        [updateFilePath]: content,
         branch: this.options.branch,
         message,
         repo_slug: this.options.repo,
         workspace: this.options.user,
       });
+
+      if (newPath) {
+        await this.deleteFile(path, { message });
+      }
 
       return true;
     } catch (error) {

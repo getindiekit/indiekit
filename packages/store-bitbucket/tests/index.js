@@ -99,6 +99,22 @@ test("Updates file in a repository", async (t) => {
   t.true(result);
 });
 
+test.serial("Updates and renames file in a repository", async (t) => {
+  nock(t.context.bitbucketUrl)
+    .post("/2.0/repositories/username/repo/src")
+    .twice()
+    .reply(201, {
+      "content-type": "application/json",
+    });
+
+  const result = await bitbucket.updateFile("foo.txt", "foo", {
+    message: "Message",
+    newPath: "bar.txt",
+  });
+
+  t.true(result);
+});
+
 test("Throws error updating file in a repository", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
