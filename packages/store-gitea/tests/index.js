@@ -87,6 +87,15 @@ test.serial("Updates file in a repository", async (t) => {
   t.true(result);
 });
 
+test.serial("Updates and renames file in a repository", async (t) => {
+  const result = await gitea.updateFile("foo.md", "foo", {
+    message: "Message",
+    newPath: "bar.md",
+  });
+
+  t.true(result);
+});
+
 test("Throws error updating file in a repository", async (t) => {
   await t.throwsAsync(
     gitea.updateFile("401.md", "foo", { message: "Message" }),
