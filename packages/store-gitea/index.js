@@ -83,6 +83,7 @@ export default class GiteaStore {
       method,
       headers: {
         authorization: `token ${token}`,
+        "content-type": "application/json",
       },
       body: JSON.stringify(body),
     });
