@@ -19,9 +19,7 @@
     "item": "Halaman %s",
     "next": "Berikutnya %s",
     "page": "halaman",
-    "previous": "Sebelumnya %s",
-    "result": "Menampilkan {{from}} dari {{count}} {{type}}",
-    "results": "Menampilkan {{from}} ke {{to}} dari {{count}} {{type}}"
+    "previous": "Sebelumnya %s"
   },
   "skipLink": {
     "text": "Langsung ke konten"

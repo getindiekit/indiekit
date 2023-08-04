@@ -19,9 +19,7 @@
     "item": "Página %s",
     "next": "Próximo %s",
     "page": "página",
-    "previous": "%s anterior",
-    "result": "Mostrando {{from}} de {{count}} {{type}}",
-    "results": "Mostrando {{from}} a {{to}} de {{count}} {{type}}"
+    "previous": "%s anterior"
   },
   "skipLink": {
     "text": "Pular para o conteúdo"

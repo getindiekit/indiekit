@@ -19,9 +19,7 @@
     "item": "Pagina %s",
     "next": "Volgende %s",
     "page": "pagina",
-    "previous": "Vorige %s",
-    "result": "Toont {{from}} van {{count}} {{type}}",
-    "results": "Toont {{from}} aan {{to}} van {{count}} {{type}}"
+    "previous": "Vorige %s"
   },
   "skipLink": {
     "text": "Skip naar content"

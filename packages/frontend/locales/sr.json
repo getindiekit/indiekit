@@ -19,9 +19,7 @@
     "item": "Stranica %s",
     "next": "Sledeći %s",
     "page": "stranica",
-    "previous": "Prethodni %s",
-    "result": "Prikazuje se {{from}} od {{count}} {{type}}",
-    "results": "Prikazuje se {{from}} do {{to}} od {{count}} {{type}}"
+    "previous": "Prethodni %s"
   },
   "skipLink": {
     "text": "Preskoči na sadržaj"

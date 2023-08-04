@@ -19,9 +19,7 @@
     "item": "Seite %s",
     "next": "Weiter %s",
     "page": "seite",
-    "previous": "Frühere %s",
-    "result": "{{from}} von {{count}} {{type}} werden angezeigt",
-    "results": "{{from}} bis {{to}} von {{count}} {{type}} werden angezeigt"
+    "previous": "Frühere %s"
   },
   "skipLink": {
     "text": "Zum Inhalt springen"
