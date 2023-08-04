@@ -36,6 +36,9 @@ export const newController = {
 
     if (scope && checkScope(scope, action)) {
       return response.render("new", {
+        back: {
+          href: postsPath,
+        },
         title: response.locals.__(`posts.new.title`),
       });
     }
