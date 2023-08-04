@@ -3,11 +3,16 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s);
-  justify-content: space-between;
 
   & .actions {
     margin-block-end: var(--space-2xs);
+    margin-inline-start: auto;
   }
+}
+
+.heading__photo {
+  --icon-size: 5em;
+  --icon-margin: 0;
 }
 
 .heading__title {
