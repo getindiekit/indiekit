@@ -16,10 +16,15 @@ export const formController = {
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-form", {
-        back: {
-          href: `${path.join(postsPath, "new")}?type=${postType}`,
-          text: response.locals.__(`posts.form.back`),
-        },
+        back:
+          action === "create"
+            ? {
+                href: `${path.join(postsPath, "new")}?type=${postType}`,
+                text: response.locals.__(`posts.form.back`),
+              }
+            : {
+                href: path.dirname(request.baseUrl + request.path),
+              },
         title: response.locals.__(
           `posts.${action}.title`,
           postTypeName.toLowerCase().replace("rsvp", "RSVP"),
