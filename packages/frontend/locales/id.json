@@ -7,9 +7,9 @@
     "title": "Ada masalah"
   },
   "geoInput": {
-    "denied": "Tidak dapat memperoleh izin untuk menggunakan lokasi Anda saat ini",
-    "failed": "Tidak bisa mendapatkan lokasi Anda saat ini",
-    "getCurrentPosition": "Gunakan lokasi sekarang"
+    "denied": "Tidak dapat memperoleh izin untuk menggunakan lokasi saat ini",
+    "failed": "Tidak bisa mendapatkan lokasi saat ini",
+    "getCurrentPosition": "Gunakan lokasi saat ini"
   },
   "important": "Penting",
   "noValue": "Tidak ada",

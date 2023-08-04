@@ -7,9 +7,9 @@
     "title": "Es gibt ein Problem"
   },
   "geoInput": {
-    "denied": "Die Erlaubnis zur Nutzung Ihres aktuellen Standorts konnte nicht eingeholt werden",
-    "failed": "Ihr aktueller Standort kann nicht abgerufen werden",
-    "getCurrentPosition": "Meinen aktuellen Standort verwenden"
+    "denied": "Erlaubnis zur Nutzung des aktuellen Standorts konnte nicht eingeholt werden",
+    "failed": "Der aktuelle Standort kann nicht abgerufen werden",
+    "getCurrentPosition": "Aktuellen Standort verwenden"
   },
   "important": "Wichtig",
   "noValue": "Nicht festgelegt",

@@ -7,9 +7,9 @@
     "title": "Postoji problem"
   },
   "geoInput": {
-    "denied": "Nije moguće dobiti dozvolu za korišćenje vaše trenutne lokacije",
-    "failed": "Nije moguće dobiti vašu trenutnu lokaciju",
-    "getCurrentPosition": "Koristi moju trenutnu lokaciju"
+    "denied": "Nije moguće dobiti dozvolu za korišćenje trenutne lokacije",
+    "failed": "Nije moguće dobiti trenutnu lokaciju",
+    "getCurrentPosition": "Koristite trenutnu lokaciju"
   },
   "important": "Važno",
   "noValue": "Nije rešeno",

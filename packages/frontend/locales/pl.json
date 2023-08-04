@@ -9,7 +9,7 @@
   "geoInput": {
     "denied": "Nie można uzyskać uprawnień do korzystania z bieżącej lokalizacji",
     "failed": "Nie można uzyskać bieżącej lokalizacji",
-    "getCurrentPosition": "Użyj mojej obecnej lokalizacji"
+    "getCurrentPosition": "Użyj bieżącej lokalizacji"
   },
   "important": "Ważne",
   "noValue": "Nie ustawiono",

@@ -7,9 +7,9 @@
     "title": "Er is een Probleem"
   },
   "geoInput": {
-    "denied": "Kan geen toestemming krijgen om je huidige locatie te gebruiken",
-    "failed": "Kan uw huidige locatie niet ophalen",
-    "getCurrentPosition": "Mijn huidige locatie gebruiken"
+    "denied": "Kan geen toestemming krijgen om de huidige locatie te gebruiken",
+    "failed": "Kan de huidige locatie niet ophalen",
+    "getCurrentPosition": "Huidige locatie gebruiken"
   },
   "important": "Belangrijk",
   "noValue": "Niet ingesteld",
