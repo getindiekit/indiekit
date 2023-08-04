@@ -25,5 +25,18 @@
     "text": "跳到内容"
   },
   "success": "成功",
+  "tagInput": {
+    "added": "{{tag}} {{name}} 已添加。",
+    "defaultTag": "标签",
+    "defaultTags": "标签",
+    "delete": "删除 {{tag}} {{name}}。",
+    "deleted": "{{tag}} {{name}} 已删除。",
+    "edit": "编辑 {{tag}}。",
+    "instruction": "{{list}} {{tags}}。使用向左和向右箭头键导航，使用 Enter 或 Tab 键创建，使用删除键删除 {{tags}}。",
+    "noneSelected": "未选择 {{tags}}。",
+    "placeholder": "添加 {{tags}}",
+    "selected": "{{tag}} {{name}} 已选择。按 Enter 键进行编辑，按 “删除” 进行删除。",
+    "updated": "{{tag}} 已更新至 {{name}}。"
+  },
   "warning": "警告"
 }

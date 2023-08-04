@@ -25,5 +25,18 @@
     "text": "Aller au contenu"
   },
   "success": "Réussite",
+  "tagInput": {
+    "added": "{{tag}} {{name}} ajouté.",
+    "defaultTag": "étiqueter",
+    "defaultTags": "étiquettes",
+    "delete": "Supprimer {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} supprimée.",
+    "edit": "Modifier {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Utilisez les flèches gauche et droite pour naviguer, entrez ou tapez la touche de tabulation pour créer, supprimez pour supprimer {{tags}}.",
+    "noneSelected": "Aucun {{tags}} sélectionné.",
+    "placeholder": "Ajouter {{tags}}",
+    "selected": "{{tag}} {{name}} sélectionné. Appuyez sur Entrée pour modifier, sur Supprimer pour supprimer.",
+    "updated": "{{tag}} mise à jour à {{name}}."
+  },
   "warning": "Avertissement"
 }

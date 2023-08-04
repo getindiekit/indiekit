@@ -25,5 +25,18 @@
     "text": "Saltar al contenido"
   },
   "success": "Éxito",
+  "tagInput": {
+    "added": "{{tag}} {{name}} añadido.",
+    "defaultTag": "etiqueta",
+    "defaultTags": "etiquetas",
+    "delete": "Eliminar {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} eliminado.",
+    "edit": "Editar {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Usa las teclas de flecha izquierda y derecha para navegar, ingresar o tabular para crear, eliminar para eliminar {{tags}}.",
+    "noneSelected": "No se ha seleccionado ninguna {{tags}}.",
+    "placeholder": "Añadir {{tags}}",
+    "selected": "{{tag}} {{name}} seleccionado. Pulsa enter para editar y borrar para borrar.",
+    "updated": "{{tag}} actualizado a {{name}}."
+  },
   "warning": "Atención"
 }

@@ -25,5 +25,18 @@
     "text": "Przejdź do treści"
   },
   "success": "Sukces",
+  "tagInput": {
+    "added": "{{tag}} {{name}} dodano.",
+    "defaultTag": "etykietka",
+    "defaultTags": "tagi",
+    "delete": "Usuń {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} usunięte.",
+    "edit": "Edytuj {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Użyj klawiszy strzałek w lewo i w prawo, aby nawigować, wprowadź lub zakładaj, aby utworzyć, usuń, aby usunąć {{tags}}.",
+    "noneSelected": "Nie wybrano {{tags}}.",
+    "placeholder": "Dodaj {{tags}}",
+    "selected": "{{tag}} {{name}} zaznaczono. Naciśnij klawisz Enter, aby edytować, usuń, aby usunąć.",
+    "updated": "{{tag}} zaktualizowano do {{name}}."
+  },
   "warning": "Uwaga"
 }

@@ -106,17 +106,37 @@
   }
 }) }}
 
-{{ tokenInput({
-  errorMessage: { text: "Token input error" } if errors,
-  name: "token-input",
-  id: "token-input",
+{{ tagInput({
+  errorMessage: { text: "Tag input error" } if errors,
+  name: "tag-input",
+  id: "tag-input",
+  localisation: {
+    tag: "category",
+    tags: "categories"
+  },
   label: {
-    text: "Token input"
+    text: "Tag input"
   },
   hint: {
-    text: "Token input hint text"
+    text: "Tag input hint text"
   },
-  items: publication.categories
+  value: ["foo", "bar"]
+}) }}
+
+{{ tagInput({
+  errorMessage: { text: "Disabled tag input error" } if errors,
+  name: "tag-input-disabled",
+  id: "tag-input-disabled",
+  label: {
+    text: "Disabled tag input"
+  },
+  hint: {
+    text: "Disabled tag input hint text"
+  },
+  attributes: {
+    disabled: "true"
+  },
+  value: ["foo", "bar"]
 }) }}
 
 {{ select({

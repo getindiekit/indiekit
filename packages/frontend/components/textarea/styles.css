@@ -18,6 +18,7 @@
     );
   }
 
+  &:disabled,
   &[readonly] {
     background: var(--color-offset);
     border-color: var(--color-offset);

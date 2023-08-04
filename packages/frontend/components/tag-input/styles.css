@@ -1,0 +1,159 @@
+.tag-input-label {
+  display: block;
+  font: var(--label-font, var(--font-label));
+  margin-block-end: var(--space-xs);
+}
+
+.tag-input {
+  --fieldset-flow-space: 0;
+  background-color: var(--color-background);
+  border: var(--input-border-width) solid var(--color-outline);
+  border-radius: var(--border-radius-small);
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  font: var(--font-body);
+  gap: var(--space-2xs);
+  margin-block-end: var(--input-border-width-focus-offset);
+  overflow-x: auto;
+  padding-block: calc(var(--space-s) / 3);
+  padding-inline: var(--space-2xs);
+  position: relative;
+
+  &:focus-within {
+    border-color: var(--color-on-background);
+    border-width: var(--input-border-width-focus);
+    box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
+    inset-block-start: calc(var(--input-border-width-focus-offset) * -1);
+    margin-block-end: calc(var(--input-border-width-focus-offset) * -2);
+    padding-inline-start: calc(
+      var(--space-2xs) - var(--input-border-width-focus-offset)
+    );
+  }
+}
+
+/* Input to add new tag  */
+.tag-input__input {
+  background-color: var(--color-background);
+  border: 0;
+  flex: 1;
+  font: var(--font-body);
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-xs);
+
+  &::placeholder {
+    color: var(--color-on-background);
+    opacity: 0.5;
+  }
+
+  &:disabled {
+    opacity: 0;
+  }
+
+  &:focus-visible {
+    box-shadow: none;
+  }
+}
+
+/* Input to edit existing tag */
+.tag-input__edit {
+  background-color: transparent;
+  border: none;
+  font: var(--font-body);
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  z-index: -1;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+/* Remove button */
+.tag-input__remove-button {
+  align-items: center;
+  background-color: transparent;
+  block-size: 1em;
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  display: inline-flex;
+  inline-size: 1em;
+  justify-content: center;
+  margin-left: var(--space-2xs);
+  margin-right: calc(var(--space-2xs) * -1);
+  outline: none;
+  padding: var(--space-2xs);
+}
+
+/* Remove button icon */
+.tag-input__remove-icon {
+  block-size: 1em;
+  display: block;
+  inline-size: 1em;
+  stroke: currentcolor;
+}
+
+/* Tag - Editable */
+.tag-input__tag--editable {
+  & .tag-input__edit {
+    opacity: 1;
+    position: static;
+    z-index: initial;
+  }
+
+  & .tag-input__text {
+    opacity: 0;
+    position: absolute;
+    white-space: nowrap;
+    z-index: -1;
+  }
+
+  & .tag-input__remove-button {
+    visibility: hidden;
+  }
+}
+
+/* Tag */
+.tag-input__tag {
+  align-items: center;
+  background-color: var(--color-offset);
+  border-radius: var(--border-radius-small);
+  color: var(--color-on-offset);
+  display: inline-flex;
+  padding-block: calc(var(--space-2xs) / 2);
+  padding-inline: var(--space-xs);
+
+  &:hover {
+    background-color: var(--color-offset-variant);
+  }
+
+  &:hover .tag-input__remove-button:hover {
+    background-color: var(--color-shadow);
+  }
+}
+
+/* Disabled */
+.tag-input--disabled {
+  background: var(--color-offset);
+  border-color: var(--color-offset);
+  color: var(--color-on-offset);
+  gap: 0;
+
+  & .tag-input__tag {
+    background-color: transparent;
+    color: var(--color-on-offset);
+  }
+}
+
+/* Tag - Selected */
+.tag-input__tag--selected {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+
+  &:hover {
+    background-color: var(--color-primary-variant);
+  }
+}

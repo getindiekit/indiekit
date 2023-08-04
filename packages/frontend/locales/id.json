@@ -25,5 +25,18 @@
     "text": "Langsung ke konten"
   },
   "success": "Keberhasilan",
+  "tagInput": {
+    "added": "{{tag}} {{name}} ditambahkan.",
+    "defaultTag": "menandai",
+    "defaultTags": "tag",
+    "delete": "Hapus {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} dihapus.",
+    "edit": "Edit {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Gunakan tombol panah kiri dan kanan untuk menavigasi, masuk atau tab untuk membuat, menghapus untuk menghapus {{tags}}.",
+    "noneSelected": "Tidak ada {{tags}} yang dipilih.",
+    "placeholder": "Tambahkan {{tags}}",
+    "selected": "{{tag}} {{name}} dipilih. Tekan enter untuk mengedit, hapus untuk menghapus.",
+    "updated": "{{tag}} diperbarui ke {{name}}."
+  },
   "warning": "Peringatan"
 }
