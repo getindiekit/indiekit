@@ -5,7 +5,6 @@ export default (() => {
   const options = {
     html: true,
     breaks: true,
-    linkify: true,
     typographer: true,
   };
 
