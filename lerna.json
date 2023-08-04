@@ -5,6 +5,9 @@
       "conventionalCommits": true
     }
   },
-  "ignoreChanges": ["**/tests/**", "**/*.md"],
-  "version": "1.0.0-beta.4"
+  "ignoreChanges": [
+    "**/tests/**",
+    "**/*.md"
+  ],
+  "version": "1.0.0-beta.5"
 }

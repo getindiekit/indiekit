@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Features
+
+* **error:** allow status to be set via options ([0e6d460](https://github.com/getindiekit/indiekit/commit/0e6d4605867dd1a6138413ba5d97b3474e48cae2))
+* update french localisation strings ([b649a77](https://github.com/getindiekit/indiekit/commit/b649a77809af34072776af3b89fa4a0d1190e098))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-05-19)
 
 

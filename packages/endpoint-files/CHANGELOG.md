@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Features
+
+* **endpoint-files:** remove back link ([f55eaaa](https://github.com/getindiekit/indiekit/commit/f55eaaaf71fd21846c121545d5de27decb6b11d3))
+* update french localisation strings ([b649a77](https://github.com/getindiekit/indiekit/commit/b649a77809af34072776af3b89fa4a0d1190e098))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

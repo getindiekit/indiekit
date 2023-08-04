@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Features
+
+* **syndicator-mastodon:** post visibility ([0135219](https://github.com/getindiekit/indiekit/commit/01352195464d532a6e6efba9553c346f0a98b679))
+* **syndicator-mastodon:** provide environment variables ([85fbe85](https://github.com/getindiekit/indiekit/commit/85fbe85cb91e25de12c80ce42ae509b120537e05))
+* **syndicator-mastodon:** remove support for forced syndication ([d6f58b4](https://github.com/getindiekit/indiekit/commit/d6f58b437c3aad2b80e059c53ec71118256ed49e))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

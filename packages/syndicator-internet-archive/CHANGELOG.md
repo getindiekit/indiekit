@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Features
+
+* **syndicator-internet-archive:** provide environment variables ([936f8b6](https://github.com/getindiekit/indiekit/commit/936f8b6fd9532e62ebcb155488faeb5c1151b903))
+* **syndicator-internet-archive:** remove support for forced syndication ([637c357](https://github.com/getindiekit/indiekit/commit/637c3573e11c13f6e4ae0fa3dbaf0e7c9a06357a))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

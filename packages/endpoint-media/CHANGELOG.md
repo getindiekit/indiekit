@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **endpoint-media:** correct source response ([274ad1b](https://github.com/getindiekit/indiekit/commit/274ad1b69a3a542cbf2b5437db8df924e5e9b321))
+* **endpoint-media:** don’t use slug separating characters in file basename ([e69b0a5](https://github.com/getindiekit/indiekit/commit/e69b0a5a79fefde7460a3ea87497248962ac746c))
+* **endpoint-media:** remove unused dependency ([2cf3cb2](https://github.com/getindiekit/indiekit/commit/2cf3cb20af333ea7755c78334bcdd9b19a0cb9b7))
+
+
+### Features
+
+* **endpoint-media:** pass commit message as option ([74215c0](https://github.com/getindiekit/indiekit/commit/74215c074000f8f21c60fe7e3811dc774e00eff9))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Features
+
+* **store-bitbucket:** file renaming for updates ([2350ac9](https://github.com/getindiekit/indiekit/commit/2350ac9b5fd4a06a4f05b0831ab203278ab025b5))
+* **store-bitbucket:** provide environment variables ([0d27789](https://github.com/getindiekit/indiekit/commit/0d2778958bff6d73a82e2d5c6e2178161bfda09b))
+* **store-bitbucket:** use object for optional params ([0c95340](https://github.com/getindiekit/indiekit/commit/0c9534014203d0d35922a632271a251618a99909))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

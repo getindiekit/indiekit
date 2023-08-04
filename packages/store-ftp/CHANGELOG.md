@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Features
+
+* **store-ftp:** file renaming for updates ([c988dfa](https://github.com/getindiekit/indiekit/commit/c988dfad11c4e03f9766182c6d3a439080c3cd4b))
+* **store-ftp:** provide environment variables ([bba1a6b](https://github.com/getindiekit/indiekit/commit/bba1a6b36842110a62c35a5ca974ba2de1e86e84))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

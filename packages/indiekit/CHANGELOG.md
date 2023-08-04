@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **indiekit:** always return a status code to template ([786f128](https://github.com/getindiekit/indiekit/commit/786f128a22981c3644a5ed9b360cc9d5ca407fab))
+
+
+### Features
+
+* **indiekit:** move plug-in icon to heading ([5f81502](https://github.com/getindiekit/indiekit/commit/5f8150257c965f1c91de7041eef3f65b1b1f6701))
+* **indiekit:** plug-in presentation in server status ([e315635](https://github.com/getindiekit/indiekit/commit/e315635292e063fd1a923f32379f36c45c440348))
+* **indiekit:** remove express proxy trust ([0d56d7d](https://github.com/getindiekit/indiekit/commit/0d56d7d39da2465d89a34ace666fd22ef107151b))
+* **indiekit:** restore express proxy trust ([ef89611](https://github.com/getindiekit/indiekit/commit/ef89611a37f3094aeddf4c0ee99aed29a1535581))
+* update french localisation strings ([b649a77](https://github.com/getindiekit/indiekit/commit/b649a77809af34072776af3b89fa4a0d1190e098))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

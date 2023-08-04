@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** correct source response ([e63ea84](https://github.com/getindiekit/indiekit/commit/e63ea845270cbbcfe5636c447aba3ebb47142d62))
+* **endpoint-micropub:** ensure random slug is 5 characters long ([539d8d9](https://github.com/getindiekit/indiekit/commit/539d8d94823799737f94c393ed2a365eb307e0c9))
+* **endpoint-micropub:** exclude current document from aggregated post type count. fixes [#621](https://github.com/getindiekit/indiekit/issues/621) ([f6606eb](https://github.com/getindiekit/indiekit/commit/f6606eb062241de9b1253a4767ea2b7f7544ad90))
+* **endpoint-micropub:** only post to content store if update includes changes ([a050649](https://github.com/getindiekit/indiekit/commit/a05064961f3675da219fa0e715a90d20eae4db06))
+
+
+### Features
+
+* **endpoint-micropub:** file renaming for updates ([f18e9fa](https://github.com/getindiekit/indiekit/commit/f18e9fa9647190b1f4c1237965615314aa34119f))
+* **endpoint-micropub:** pass commit message as option ([573c71e](https://github.com/getindiekit/indiekit/commit/573c71e5adb3bb0aace150d1527a05cb405cda84))
+* **endpoint-micropub:** remove support for forced syndication ([7f72141](https://github.com/getindiekit/indiekit/commit/7f7214131c0665eed1d7394527069cc4ea02ad6c))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

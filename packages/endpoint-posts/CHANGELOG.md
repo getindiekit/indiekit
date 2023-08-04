@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** correct back link from edit form ([9d357c3](https://github.com/getindiekit/indiekit/commit/9d357c3d079ca67895cec5206854e4ed41d377d6))
+* **endpoint-posts:** missing category input label ([4e383f2](https://github.com/getindiekit/indiekit/commit/4e383f2f0b35600cdee021c5e88dada093e5af3e))
+* **endpoint-posts:** uppercase rsvp in form title ([3407ba3](https://github.com/getindiekit/indiekit/commit/3407ba348a9440efaed700f29beeb4aa56ab4eaf))
+* **endpoint-posts:** use accessible categories input ([b9b25d3](https://github.com/getindiekit/indiekit/commit/b9b25d33dc488e89a8e9974f1b094e691b4d7318))
+
+
+### Features
+
+* **endpoint-posts:** add back link to new post form ([bb148bc](https://github.com/getindiekit/indiekit/commit/bb148bc8ace3682adc6476592be6ff2a502f9764))
+* **endpoint-posts:** add hint text for slug field ([2ccd4ed](https://github.com/getindiekit/indiekit/commit/2ccd4edeba13f6c09aa64018edf7400db8b92ace))
+* **endpoint-posts:** editable url slug ([1ad70ed](https://github.com/getindiekit/indiekit/commit/1ad70ed026a55aa5d26ad367296cebce6a26e5d3))
+* **endpoint-posts:** new post type ([2f93ad7](https://github.com/getindiekit/indiekit/commit/2f93ad76568c2d84c7684d4ec0d283b32f483e5e))
+* **endpoint-posts:** only show slug field for new posts ([86e1d90](https://github.com/getindiekit/indiekit/commit/86e1d9034792f593de84d6ab15772e80421a1c4f))
+* **endpoint-posts:** remove back link ([8869296](https://github.com/getindiekit/indiekit/commit/886929678ecbac808ccdff431f8adabce8104a28))
+* **endpoint-posts:** update french locale ([994627f](https://github.com/getindiekit/indiekit/commit/994627f885060f4d01f26fd47011e4c8a6d3d744))
+* update french localisation strings ([b649a77](https://github.com/getindiekit/indiekit/commit/b649a77809af34072776af3b89fa4a0d1190e098))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

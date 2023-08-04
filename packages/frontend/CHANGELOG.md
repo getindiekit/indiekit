@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **frontend:** max inline size for images ([97d9c8c](https://github.com/getindiekit/indiekit/commit/97d9c8c80a0fe570d035b5c36ca925086e44c107))
+* **frontend:** missing warning icon fallback text ([18bb9b2](https://github.com/getindiekit/indiekit/commit/18bb9b25092ff14e9ef33fe5a190559d0a4f645e))
+* **frontend:** token input focus trap. fixes [#578](https://github.com/getindiekit/indiekit/issues/578) ([0b03990](https://github.com/getindiekit/indiekit/commit/0b0399004e3f6bbe7a2b94318a9c231730568a53))
+* **frontend:** warning button hover colour ([0d0f367](https://github.com/getindiekit/indiekit/commit/0d0f367a289091f71c685df2ca173c38e68129c4))
+* **frontend:** warning text spacing ([919e2a3](https://github.com/getindiekit/indiekit/commit/919e2a3624d9eab3cf63a0475428f32abf48b98e))
+
+
+### Features
+
+* **frontend:** accessible tag input component ([f437c22](https://github.com/getindiekit/indiekit/commit/f437c22d20778e8aa8dad73d5fba66e2db20f0fd))
+* **frontend:** add card component to default layout ([4c7bbd9](https://github.com/getindiekit/indiekit/commit/4c7bbd955599d1d6b8bde3428799d2829be2990f))
+* **frontend:** add heading level option for card component ([0a1bcd5](https://github.com/getindiekit/indiekit/commit/0a1bcd53b3ee135b096e8324e255644c18558726))
+* **frontend:** add photo option to heading component ([72ffad4](https://github.com/getindiekit/indiekit/commit/72ffad426a780416a6835030bfb5a528ac38139f))
+* **frontend:** add photo to document heading ([142bf29](https://github.com/getindiekit/indiekit/commit/142bf29f6690f9be1d843c8792644ce9d0f0a233))
+* **frontend:** disable automatic linking in markdown ([03e2d93](https://github.com/getindiekit/indiekit/commit/03e2d9314b6339ec49a92d28a4661f80ce4701fe))
+* **frontend:** except custom back link text ([b93db16](https://github.com/getindiekit/indiekit/commit/b93db167160f44f08c32affbc10d9d000bbe007c))
+* **frontend:** remove deprecated pagination localisations ([b08559f](https://github.com/getindiekit/indiekit/commit/b08559f84a490bd63099e14fc29afc7d29bfdfb1))
+* **frontend:** simpler card footer layout ([79e5da8](https://github.com/getindiekit/indiekit/commit/79e5da82630da3204467ba8d288eb65a7fb8b0a4))
+* **frontend:** simpler text for geo input button ([e660b78](https://github.com/getindiekit/indiekit/commit/e660b78c409e7455f7f0df50730721d902fc58e1))
+* **frontend:** update samp text style ([b13f80f](https://github.com/getindiekit/indiekit/commit/b13f80f534d8acaa9da03474e00dec8e20f397fc))
+* update french localisation strings ([b649a77](https://github.com/getindiekit/indiekit/commit/b649a77809af34072776af3b89fa4a0d1190e098))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

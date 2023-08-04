@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **store-gitea:** set content-type header ([f658fc7](https://github.com/getindiekit/indiekit/commit/f658fc7239dd525f29cf79adf04a3eef51a86130))
+
+
+### Features
+
+* **store-gitea:** file renaming for updates ([18b193d](https://github.com/getindiekit/indiekit/commit/18b193d43519040f7367ccfeb3e902a4a4775b60))
+* **store-gitea:** provide environment variables ([775da2e](https://github.com/getindiekit/indiekit/commit/775da2e70faa49d776d2bda1056942ba38dcea10))
+* **store-gitea:** return error message ([037b47e](https://github.com/getindiekit/indiekit/commit/037b47eb2622bedb16434bc120bf1e3159ea35ee))
+* **store-gitea:** use object for optional params ([19a8d97](https://github.com/getindiekit/indiekit/commit/19a8d97a6afe958493681a2ad4dda5b77a9785e7))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** canonicalise client url ([0b75534](https://github.com/getindiekit/indiekit/commit/0b755343adbdd7989430118c19f609432e11c4e6))
+* **endpoint-auth:** check for existence of app url ([e22b80f](https://github.com/getindiekit/indiekit/commit/e22b80f750b6237824e8c58b8e42c6eb09052511))
+* **endpoint-auth:** client logo not appearing ([58faea4](https://github.com/getindiekit/indiekit/commit/58faea4a43b76c6c9683651112e7369b2224a0b5))
+* **endpoint-auth:** improve client information discovery. fixes [#626](https://github.com/getindiekit/indiekit/issues/626) ([5ee9c1a](https://github.com/getindiekit/indiekit/commit/5ee9c1a3265b80d095b6d345d5647644b221bd23))
+
+
+### Features
+
+* **endpoint-auth:** shorter redirect hint on consent form ([512ed92](https://github.com/getindiekit/indiekit/commit/512ed92b9e087bce9b81525b5db2eabfd436c996))
+* update french localisation strings ([b649a77](https://github.com/getindiekit/indiekit/commit/b649a77809af34072776af3b89fa4a0d1190e098))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2023-07-02)
 
 
