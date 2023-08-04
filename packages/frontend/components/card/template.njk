@@ -1,6 +1,7 @@
 {% from "../badge/macro.njk" import badge with context %}
 {% from "../prose/macro.njk" import prose with context %}
 {% set srcOnError = opts.photo.srcOnError or "/assets/not-found.svg" %}
+{% set headingLevel = opts.headingLevel or 2 %}
 <article class="card">
   {% if opts.photo %}
   <div class="card__photo">
@@ -8,12 +9,12 @@
   </div>
   {% endif %}
   <div class="card__body">
-    <h2 class="card__title">
+    <h{{ headingLevel }} class="card__title">
       <a href="{{ opts.url }}">
         {{- icon(opts.icon) if opts.icon -}}
         {{- opts.title -}}
       </a>
-    </h2>
+    </h{{ headingLevel }}>
     {{ prose({
       classes: "card__meta",
       text: opts.description | markdown | striptags | excerpt(30, publication.locale)
