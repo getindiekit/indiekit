@@ -52,13 +52,22 @@ export const formController = {
     try {
       const values = request.body;
 
-      // Assign token input `items` property to `categories`
-      if (values.items) {
-        values.category = values.items;
-        delete values.items;
+      // Convert category value to Array
+      if (values.category) {
+        try {
+          // Entered using progressively enhanced tag input, for example:
+          // `["foo", "bar"]`
+          values.category = JSON.parse(values.category);
+        } catch {
+          // Entered using comma separated values, for example:
+          // `foo, bar`
+          values.category = values.category
+            .split(",")
+            .map((category) => (category = category.trim()));
+        }
       }
 
-      // Convert geo string into object
+      // Convert geo value to object
       if (values.geo) {
         values.location = getLocationProperty(values.geo);
         delete values.geo;

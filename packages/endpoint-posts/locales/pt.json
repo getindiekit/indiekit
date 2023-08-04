@@ -41,7 +41,9 @@
       },
       "cancel": "Cancelar",
       "category": {
-        "label": "Categorias"
+        "hint": "Separe cada categoria com uma vírgula",
+        "label": "Categorias",
+        "tag": "categoria"
       },
       "content": {
         "label": "Conteúdo"
