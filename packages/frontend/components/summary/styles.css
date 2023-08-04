@@ -18,6 +18,9 @@
 }
 
 .summary__value {
+  --card-photo-size: 3.75em;
+  --card-space: var(--space-xs);
+  --card-title-font: var(--font-label);
   --flow-inset: 0;
   --flow-space: var(--space-s);
   flex-basis: 0;

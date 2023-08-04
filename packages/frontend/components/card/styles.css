@@ -7,15 +7,20 @@
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
+  overflow: hidden;
   position: relative;
 
   &:hover {
     background-color: var(--color-offset-variant);
   }
+
+  &:has(:focus-visible) {
+    overflow: visible;
+  }
 }
 
 .card__photo {
-  flex-basis: 9rem;
+  flex-basis: var(--card-photo-size, 8em);
   flex-grow: 1;
 
   & :is(img, video) {
@@ -33,12 +38,14 @@
   flex-basis: 0;
   flex-direction: column;
   flex-grow: 999;
+  gap: calc(var(--card-space, var(--space-s)) / 2);
+  margin-block-start: 0;
   min-inline-size: 67%;
-  padding: var(--card-padding);
+  padding: var(--card-space, var(--space-s));
 }
 
 .card__title {
-  font: var(--font-subhead);
+  font: var(--card-title-font, var(--font-subhead));
 }
 
 .card__title a {
@@ -63,7 +70,7 @@
 .card__meta {
   --flow-line-measure: 40rem;
   --prose-font: var(--font-caption);
-  margin-block-start: var(--space-xs);
+  margin-block-start: 0;
 }
 
 .card__footer {
