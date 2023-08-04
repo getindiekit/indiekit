@@ -43,6 +43,10 @@ export const view = (request, response) => {
       text: request.__("status.application.installedPlugins"),
     },
     title: plugin.name,
+    photo: {
+      src: `/assets/${plugin.id}/icon.svg`,
+      srcOnError: `/assets/plug-in.svg`,
+    },
     plugin,
   });
 };
