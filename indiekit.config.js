@@ -17,6 +17,7 @@ const config = {
     "@indiekit/endpoint-json-feed",
     "@indiekit/preset-jekyll",
     "@indiekit/store-github",
+    "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
   ],
   publication: {
@@ -27,6 +28,11 @@ const config = {
     user: process.env.GITHUB_USER,
     repo: process.env.GITHUB_REPO,
     branch: process.env.GITHUB_BRANCH,
+  },
+  "@indiekit/syndicator-internet-archive": {
+    checked: false,
+    accessKey: process.env.INTERNET_ARCHIVE_ACCESS_KEY,
+    secretKey: process.env.INTERNET_ARCHIVE_SECRET_KEY,
   },
   "@indiekit/syndicator-mastodon": {
     checked: true,
