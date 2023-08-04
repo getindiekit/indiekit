@@ -1,9 +1,5 @@
 {% extends "document.njk" %}
 
-{%- set presetHtml %}
-  <img class="icon icon--rounded" src="{{ "/assets/" + publication.preset.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.preset.info.name }}
-{% endset -%}
-
 {%- set postTypesHtml %}
   <ul role="list">{% for config in publication.postTypes %}
     <li>
@@ -13,21 +9,21 @@
   {% endfor %}</ul>
 {% endset -%}
 
-{%- set storeHtml %}
-  <a href="{{ publication.store.info.uid }}">
-    <img class="icon icon--rounded" src="{{ "/assets/" + publication.store.id + "/icon.svg" }}" onerror="this.src='/assets/plug-in.svg'">{{ publication.store.info.name }}
-  </a>
-{% endset -%}
-
-{%- set syndicationTargetsHtml %}
-  <ul role="list">{% for target in publication.syndicationTargets %}
-    <li>
-      <a href="{{ target.info.uid }}">
-        {%- if target.info.service.photo %}<img class="icon icon--rounded" src="{{ target.info.service.photo }}" width="24" height="24" alt="">{% endif -%}{{ target.info.name }}
-      </a>
-    </li>
-  {% endfor %}</ul>
-{% endset -%}
+{%- macro syndicationTargetsHtml(card) %}
+{% for target in publication.syndicationTargets %}
+  {{ card({
+    photo: {
+      srcOnError: "/assets/plug-in.svg",
+      attributes: { height: 68, width: 68 },
+      url: "/assets/" + target.id + "/icon.svg"
+    },
+    headingLevel: 3,
+    title: target.name,
+    description: target.info.uid,
+    url: "/plugins/" + target.id
+  }) }}
+{% endfor %}
+{% endmacro -%}
 
 {%- set versionHtml %}
   <a href="{{ application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version }}">
@@ -73,13 +69,6 @@
         }
       }, {
         key: {
-          text: __("status.publication.preset")
-        },
-        value: {
-          text: presetHtml | indent(4)
-        }
-      } if publication.preset, {
-        key: {
           text: __("status.publication.postTypes")
         },
         value: {
@@ -87,17 +76,43 @@
         }
       } if publication.postTypes.length > 0, {
         key: {
+          text: __("status.publication.preset")
+        },
+        value: {
+          text: card({
+            photo: {
+              srcOnError: "/assets/plug-in.svg",
+              attributes: { height: 68, width: 68 },
+              url: "/assets/" + publication.preset.id + "/icon.svg"
+            },
+            headingLevel: 3,
+            title: publication.preset.name,
+            url: "/plugins/" + publication.preset.id
+          })
+        }
+      } if publication.preset, {
+        key: {
           text: __("status.publication.store")
         },
         value: {
-          text: storeHtml
+          text: card({
+            photo: {
+              srcOnError: "/assets/plug-in.svg",
+              attributes: { height: 68, width: 68 },
+              url: "/assets/" + publication.store.id + "/icon.svg"
+            },
+            headingLevel: 3,
+            title: publication.store.name,
+            description: publication.store.info.uid,
+            url: "/plugins/" + publication.store.id
+          })
         }
       } if publication.store, {
         key: {
           text: __("status.publication.syndicationTargets")
         },
         value: {
-          text: syndicationTargetsHtml | indent(4)
+          text: syndicationTargetsHtml(card) | indent(4)
         }
       } if publication.syndicationTargets.length > 0]
     }) }}
