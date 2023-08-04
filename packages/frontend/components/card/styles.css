@@ -74,11 +74,10 @@
 }
 
 .card__footer {
-  align-items: center;
+  align-items: start;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--space-xs);
-  justify-content: space-between;
   margin-block-start: auto;
   padding-block-start: var(--space-m);
 

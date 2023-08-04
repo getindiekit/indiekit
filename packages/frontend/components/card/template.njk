@@ -21,10 +21,10 @@
     }) | indent(4) if opts.description }}
     {% if opts.published or opts.badges %}
     <footer class="card__footer">
-      <time datetime="{{ opts.published }}">{{ opts.published | date("PPp") }}</time>
       {% for item in opts.badges %}
       {{ badge(item) | indent(6) if item }}
       {% endfor %}
+      <time datetime="{{ opts.published }}">{{ opts.published | date("PPp") }}</time>
     </footer>
     {% endif %}
   </div>
