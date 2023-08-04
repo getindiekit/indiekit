@@ -41,7 +41,9 @@
       },
       "cancel": "Cancelar",
       "category": {
-        "label": "Categorías"
+        "hint": "Separe cada categoría con una coma",
+        "label": "Categorías",
+        "tag": "categoría"
       },
       "content": {
         "label": "Contenido"

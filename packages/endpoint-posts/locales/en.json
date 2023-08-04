@@ -67,7 +67,9 @@
         "label": "Bookmark of"
       },
       "category": {
-        "label": "Categories"
+        "hint": "Separate each category with a comma",
+        "label": "Categories",
+        "tag": "category"
       },
       "content": {
         "label": "Content"

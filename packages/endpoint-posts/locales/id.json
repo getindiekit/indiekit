@@ -41,7 +41,9 @@
       },
       "cancel": "Batal",
       "category": {
-        "label": "Kategori"
+        "hint": "Pisahkan setiap kategori dengan koma",
+        "label": "Kategori",
+        "tag": "kategori"
       },
       "content": {
         "label": "Konten"

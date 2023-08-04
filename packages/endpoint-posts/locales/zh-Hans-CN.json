@@ -41,7 +41,9 @@
       },
       "cancel": "取消",
       "category": {
-        "label": "类别"
+        "hint": "用逗号分隔每个类别",
+        "label": "类别",
+        "tag": "类别"
       },
       "content": {
         "label": "内容"

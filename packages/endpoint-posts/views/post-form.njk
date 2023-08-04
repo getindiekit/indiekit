@@ -158,15 +158,21 @@
     open: showAdvancedOptions,
     summary: __("posts.form.advancedOptions")
   }) %}
-    {{ tokenInput({
+    {{ tagInput({
       id: "category",
       name: "category",
       value: errors.category.value or post.category,
       label: {
         text: __("posts.form.category.label")
       },
+      hint: {
+        text: __("posts.form.category.hint")
+      },
       optional: true,
-      items: publication.categories
+      localisation: {
+        tag: __("posts.form.category.tag"),
+        tags: __("posts.form.category.label") | lower
+      }
     }) | indent(4) }}
 
     {{ geoInput({

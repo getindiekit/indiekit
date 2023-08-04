@@ -41,7 +41,9 @@
       },
       "cancel": "Annuleren",
       "category": {
-        "label": "Categorieën"
+        "hint": "Scheid elke categorie van elkaar met een komma",
+        "label": "Categorieën",
+        "tag": "categorie"
       },
       "content": {
         "label": "Inhoud"

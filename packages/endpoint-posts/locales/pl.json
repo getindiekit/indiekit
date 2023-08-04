@@ -41,7 +41,9 @@
       },
       "cancel": "Anuluj",
       "category": {
-        "label": "Kategorie"
+        "hint": "Oddziel każdą kategorię przecinkiem",
+        "label": "Kategorie",
+        "tag": "kategoria"
       },
       "content": {
         "label": "Zawartość"

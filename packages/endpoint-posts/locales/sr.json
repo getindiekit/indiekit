@@ -41,7 +41,9 @@
       },
       "cancel": "Otkazati",
       "category": {
-        "label": "Kategorije"
+        "hint": "Odvojite svaku kategoriju zarezom",
+        "label": "Kategorije",
+        "tag": "kategorija"
       },
       "content": {
         "label": "Sadržaj"
