@@ -12,10 +12,6 @@
     "getCurrentPosition": "Use my current location"
   },
   "important": "Important",
-  "skipLink": {
-    "text": "Skip to content"
-  },
-  "success": "Success",
   "noValue": "Not set",
   "optionalValue": "(optional)",
   "pagination": {
@@ -25,5 +21,22 @@
     "page": "page",
     "previous": "Previous %s"
   },
+  "tagInput": {
+    "added": "{{tag}} {{name}} added.",
+    "defaultTag": "tag",
+    "defaultTags": "tags",
+    "delete": "Delete {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} deleted.",
+    "edit": "Edit {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Use left and right arrow keys to navigate, enter or tab to create, delete to delete {{tags}}.",
+    "noneSelected": "No {{tags}} selected.",
+    "placeholder": "Add {{tags}}",
+    "selected": "{{tag}} {{name}} selected. Press enter to edit, delete to delete.",
+    "updated": "{{tag}} updated to {{name}}."
+  },
+  "skipLink": {
+    "text": "Skip to content"
+  },
+  "success": "Success",
   "warning": "Warning"
 }

@@ -25,5 +25,18 @@
     "text": "Skip naar content"
   },
   "success": "Succes",
+  "tagInput": {
+    "added": "{{tag}} {{name}} toegevoegd.",
+    "defaultTag": "label",
+    "defaultTags": "labels",
+    "delete": "{{tag}} {{name}} verwijderen.",
+    "deleted": "{{tag}} {{name}} verwijderd.",
+    "edit": "{{tag}} bewerken.",
+    "instruction": "{{list}} {{tags}}. Gebruik de linker- en rechterpijltoetsen om te navigeren, enter of tab om te creëren, verwijder om {{tags}} te verwijderen.",
+    "noneSelected": "Geen {{tags}} geselecteerd.",
+    "placeholder": "{{tags}} toevoegen",
+    "selected": "{{tag}} {{name}} geselecteerd. Druk op enter om te bewerken, verwijder om te verwijderen.",
+    "updated": "{{tag}} geüpdatet naar {{name}}."
+  },
   "warning": "Waarschuwing"
 }

@@ -25,5 +25,18 @@
     "text": "Preskoči na sadržaj"
   },
   "success": "Uspeh",
+  "tagInput": {
+    "added": "{{tag}} {{name}} dodato.",
+    "defaultTag": "tag",
+    "defaultTags": "tagovi",
+    "delete": "Obriši {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} izbrisan.",
+    "edit": "Edit {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Koristite levo i desno tastere sa strelicama za navigaciju, unos ili karticu za kreiranje, brisanje da biste izbrisali {{tags}}.",
+    "noneSelected": "Nije izabrano {{tags}}.",
+    "placeholder": "Dodaj {{tags}}",
+    "selected": "{{tag}} {{name}} izabran. Pritisnite enter da biste izmenili, izbrišite da biste izbrisali.",
+    "updated": "{{tag}} ažuriran na {{name}}."
+  },
   "warning": "Upozorenje"
 }

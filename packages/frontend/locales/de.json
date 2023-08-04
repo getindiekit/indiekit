@@ -25,5 +25,18 @@
     "text": "Zum Inhalt springen"
   },
   "success": "Erfolgreich",
+  "tagInput": {
+    "added": "{{tag}} {{name}} hinzugefügt.",
+    "defaultTag": "Etikett",
+    "defaultTags": "Schlagwörter",
+    "delete": "{{tag}} {{name}} löschen.",
+    "deleted": "{{tag}} {{name}} gelöscht.",
+    "edit": "Bearbeiten {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Benutze die linke und rechte Pfeiltaste, um zu navigieren, Eingabe oder Tabulator, um {{tags}} zu erstellen, und lösche, um {{tags}} zu löschen.",
+    "noneSelected": "Keine {{tags}} ausgewählt.",
+    "placeholder": "Hinzufügen {{tags}}",
+    "selected": "{{tag}} {{name}} ausgewählt. Drücken Sie die Eingabetaste, um zu bearbeiten, und löschen Sie, um zu löschen.",
+    "updated": "{{tag}} wurde auf {{name}} aktualisiert."
+  },
   "warning": "Warnung"
 }
