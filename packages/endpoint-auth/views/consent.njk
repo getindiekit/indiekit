@@ -73,6 +73,6 @@
   }) | indent(2) }}
 
   {{ hint({
-    text: __("auth.consent.redirect", redirect_uri)
+    text: __("auth.consent.redirect", "<samp>" + redirect_uri + "</samp>")
   }) | indent(2) }}
 {% endblock %}

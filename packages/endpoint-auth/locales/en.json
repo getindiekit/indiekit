@@ -23,7 +23,7 @@
       "pkce": {
         "text": "{{client}} is not using Proof of Key Code Exchange (PKCE), which is more secure."
       },
-      "redirect": "After authorizing this application you will be redirected to %s"
+      "redirect": "After authorizing you will be redirected to %s"
     },
     "newPassword": {
       "title": "New password",

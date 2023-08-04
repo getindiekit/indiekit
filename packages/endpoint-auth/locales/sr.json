@@ -17,7 +17,7 @@
       "pkce": {
         "text": "{{client}} ne koristi Proof of Key Code Exchange (PKCE), što je bezbednije."
       },
-      "redirect": "Nakon autorizacije ove aplikacije bićete preusmereni na %s"
+      "redirect": "Nakon autorizacije bićete preusmereni na %s"
     },
     "error": {
       "password": {

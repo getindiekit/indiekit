@@ -17,7 +17,7 @@
       "pkce": {
         "text": "{{client}} não está usando o Proof of Key Code Exchange (PKCE), que é mais seguro."
       },
-      "redirect": "Depois de autorizar este aplicativo, você será redirecionado para %s"
+      "redirect": "Depois de autorizar você será redirecionado para %s"
     },
     "error": {
       "password": {
