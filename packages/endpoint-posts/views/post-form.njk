@@ -19,6 +19,44 @@
 
 {% set geo = [post.location.latitude, post.location.longitude] | join(",") if post.location %}
 
+{% macro photoFieldset(index, photo) %}
+{% call fieldset({
+  classes: "fieldset--group",
+  legend: {
+    text: __("posts.form.photo.title", index) if photo else __("posts.form.photo.label")
+  }
+}) %}
+  {{ input({
+    id: "photo",
+    name: "photo",
+    type: "url",
+    value: errors.photo.value or photo.url,
+    label: {
+      text: __("posts.form.photo.url.label")
+    },
+    attributes: {
+      placeholder: "https://"
+    },
+    errorMessage: {
+      text: errors.photo.msg
+    } if errors.photo
+  }) | indent(2) }}
+
+  {{ textarea({
+    id: "mp-photo-alt",
+    name: "mp-photo-alt",
+    value: errors["mp-photo-alt"].value or photo.alt,
+    label: {
+      text: __("posts.form.photo.alt.label")
+    },
+    rows: 1,
+    errorMessage: {
+      text: errors["mp-photo-alt"].msg
+    } if errors["mp-photo-alt"]
+  }) | indent(2) }}
+{% endcall %}
+{% endmacro %}
+
 {% block fieldset %}
   {{ input({
     name: "type",
@@ -157,6 +195,14 @@
     optional: true,
     rows: 1
   }) if postType === "article" }}
+
+{% if postType === "photo" %}
+  {% for photo in post.photo %}
+    {{ photoFieldset(loop.index, photo) }}
+  {% else %}
+    {{ photoFieldset(1, false) }}
+  {% endfor %}
+{% endif %}
 
   {{ checkboxes({
     idPrefix: "mp-syndicate-to",

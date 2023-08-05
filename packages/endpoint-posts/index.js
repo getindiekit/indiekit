@@ -57,6 +57,7 @@ export default class PostsEndpoint {
       "bookmark",
       "reply",
       "like",
+      "photo",
       "rsvp",
       "repost",
     ];
