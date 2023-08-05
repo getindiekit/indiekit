@@ -34,6 +34,10 @@ button,
   padding: 0;
 }
 
+[placeholder]:focus::placeholder {
+  color: transparent;
+}
+
 /*
   * http://thatemil.com/blog/2015/01/03/reset-your-fieldset/
   * 1. Reset minimum width based on content inside fieldset

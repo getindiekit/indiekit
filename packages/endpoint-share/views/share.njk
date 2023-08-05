@@ -27,11 +27,13 @@
   {{ input({
     id: "bookmark-of",
     name: "bookmark-of",
+    type: "url",
     value: errors["bookmark-of"].value or bookmarkOf or url,
     label: {
       text: __("share.bookmark-of.label")
     },
     attributes: {
+      "placeholder": "https://",
       "data-action": "preview#url"
     },
     errorMessage: {

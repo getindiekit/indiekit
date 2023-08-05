@@ -35,9 +35,13 @@
   {{ input({
     id: "bookmark-of",
     name: "bookmark-of",
+    type: "url",
     value: errors["bookmark-of"].value or post["bookmark-of"],
     label: {
       text: __("posts.form.bookmark-of.label")
+    },
+    attributes: {
+      placeholder: "https://"
     },
     errorMessage: {
       text: errors["bookmark-of"].msg
@@ -47,9 +51,13 @@
   {{ input({
     id: "in-reply-to",
     name: "in-reply-to",
+    type: "url",
     value: errors["in-reply-to"].value or post["in-reply-to"],
     label: {
       text: __("posts.form.in-reply-to.label")
+    },
+    attributes: {
+      placeholder: "https://"
     },
     errorMessage: {
       text: errors["in-reply-to"].msg
@@ -84,9 +92,13 @@
   {{ input({
     id: "like-of",
     name: "like-of",
+    type: "url",
     value: errors["like-of"].value or post["like-of"],
     label: {
       text: __("posts.form.like-of.label")
+    },
+    attributes: {
+      placeholder: "https://"
     },
     errorMessage: {
       text: errors["like-of"].msg
@@ -96,9 +108,13 @@
   {{ input({
     id: "repost-of",
     name: "repost-of",
+    type: "url",
     value: errors["repost-of"].value or post["repost-of"],
     label: {
       text: __("posts.form.repost-of.label")
+    },
+    attributes: {
+      placeholder: "https://"
     },
     errorMessage: {
       text: errors["repost-of"].msg
