@@ -12,8 +12,17 @@
 }
 
 .fieldset--group {
-  --fieldset-flow-space: var(--space-xs);
+  --fieldset-flow-space: var(--space-m);
   --label-font: var(--font-body);
+  background-color: var(--color-offset);
+  border-radius: var(--border-radius-small);
+  color: var(--color-on-offset);
   display: flex;
-  gap: var(--space-xl);
+  flex-direction: column;
+  padding: var(--space-m);
+
+  & .fieldset__legend {
+    inset-block-start: var(--space-l);
+    position: relative;
+  }
 }
