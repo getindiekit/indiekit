@@ -11,30 +11,31 @@
       "title": "您确定要删除这个帖子吗？"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "输入像 https://example.org 这样的网址"
-      },
       "content": {
         "empty": "输入一些内容"
       },
       "geo": {
         "invalid": "输入有效坐标"
       },
-      "in-reply-to": {
-        "empty": "输入像 https://example.org 这样的网址"
-      },
-      "like-of": {
-        "empty": "输入像 https://example.org 这样的网址"
+      "mp-photo-alt": {
+        "empty": "输入这张照片的描述"
       },
       "name": {
         "empty": "输入标题"
       },
-      "repost-of": {
-        "empty": "输入像 https://example.org 这样的网址"
+      "url": {
+        "empty": "输入像 %s 这样的网址"
       }
     },
     "form": {
       "advancedOptions": "高级选项",
+      "audio": {
+        "label": "音频",
+        "title": "音频 %s",
+        "url": {
+          "label": "网址"
+        }
+      },
       "back": "更改帖子类型",
       "bookmark-of": {
         "label": "书签来自"
@@ -68,6 +69,16 @@
       "name": {
         "label": "标题"
       },
+      "photo": {
+        "alt": {
+          "label": "无障碍描述"
+        },
+        "label": "照片",
+        "title": "照片 %s",
+        "url": {
+          "label": "网址"
+        }
+      },
       "publish": "发布帖子",
       "publishDraft": "保存草稿",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "更新帖子",
       "updateDraft": "更新草稿",
+      "video": {
+        "label": "视频",
+        "title": "视频 %s",
+        "url": {
+          "label": "网址"
+        }
+      },
       "visibility": {
         "label": "可见度"
       }

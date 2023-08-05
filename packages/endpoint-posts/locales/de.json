@@ -11,30 +11,31 @@
       "title": "Möchtest du diesen Beitrag wirklich löschen?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Geben Sie eine Webadresse wie https://example.org"
-      },
       "content": {
         "empty": "Geben Sie einige Inhalte ein"
       },
       "geo": {
         "invalid": "Geben Sie gültige Koordinaten ein"
       },
-      "in-reply-to": {
-        "empty": "Geben Sie eine Webadresse wie https://example.org"
-      },
-      "like-of": {
-        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      "mp-photo-alt": {
+        "empty": "Geben Sie eine Beschreibung dieses Fotos ein"
       },
       "name": {
         "empty": "Titel eingeben"
       },
-      "repost-of": {
-        "empty": "Geben Sie eine Webadresse wie https://example.org"
+      "url": {
+        "empty": "Geben Sie eine Webadresse wie %s"
       }
     },
     "form": {
       "advancedOptions": "Erweiterte Optionen",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "back": "Beitragstyp ändern",
       "bookmark-of": {
         "label": "Lesezeichen für"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Titel"
       },
+      "photo": {
+        "alt": {
+          "label": "Barrierefreie Beschreibung"
+        },
+        "label": "Foto",
+        "title": "Foto %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "publish": "Beitrag veröffentlichen",
       "publishDraft": "Entwurf speichern",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Beitrag aktualisieren",
       "updateDraft": "Entwurf aktualisieren",
+      "video": {
+        "label": "Video",
+        "title": "Video %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "visibility": {
         "label": "Sichtbarkeit"
       }

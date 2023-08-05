@@ -1,23 +1,11 @@
 {
   "posts": {
     "error": {
-      "audio": {
-        "empty": "Enter a web address like https://example.org/audio.mp3"
-      },
-      "bookmark-of": {
-        "empty": "Enter a web address like https://example.org"
-      },
       "content": {
         "empty": "Enter some content"
       },
       "geo": {
         "invalid": "Enter valid coordinates"
-      },
-      "in-reply-to": {
-        "empty": "Enter a web address like https://example.org"
-      },
-      "like-of": {
-        "empty": "Enter a web address like https://example.org"
       },
       "mp-photo-alt": {
         "empty": "Enter a description of this photo"
@@ -25,14 +13,8 @@
       "name": {
         "empty": "Enter a title"
       },
-      "photo": {
-        "empty": "Enter a web address like https://example.org/photo.jpg"
-      },
-      "repost-of": {
-        "empty": "Enter a web address like https://example.org"
-      },
-      "video": {
-        "empty": "Enter a web address like https://example.org/video.mp4"
+      "url": {
+        "empty": "Enter a web address like %s"
       }
     },
     "status": {

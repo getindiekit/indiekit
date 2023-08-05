@@ -11,30 +11,31 @@
       "title": "Tem certeza de que deseja excluir este post?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Insira um endereço da web como https://example.org"
-      },
       "content": {
         "empty": "Insira algum conteúdo"
       },
       "geo": {
         "invalid": "Insira coordenadas válidas"
       },
-      "in-reply-to": {
-        "empty": "Insira um endereço da web como https://example.org"
-      },
-      "like-of": {
-        "empty": "Insira um endereço da web como https://example.org"
+      "mp-photo-alt": {
+        "empty": "Insira uma descrição desta foto"
       },
       "name": {
         "empty": "Introduza um título"
       },
-      "repost-of": {
-        "empty": "Insira um endereço da web como https://example.org"
+      "url": {
+        "empty": "Insira um endereço da web como %s"
       }
     },
     "form": {
       "advancedOptions": "Opções avançadas",
+      "audio": {
+        "label": "Áudio",
+        "title": "Áudio %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "back": "Alterar tipo de postagem",
       "bookmark-of": {
         "label": "Marcador de"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Título"
       },
+      "photo": {
+        "alt": {
+          "label": "Descrição acessível"
+        },
+        "label": "Foto",
+        "title": "Foto %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "publish": "Publicar postagem",
       "publishDraft": "Salvar rascunho",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Atualizar postagem",
       "updateDraft": "Atualizar rascunho",
+      "video": {
+        "label": "Vídeo",
+        "title": "Vídeo %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "visibility": {
         "label": "Visibilidade"
       }
