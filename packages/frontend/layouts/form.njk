@@ -1,7 +1,7 @@
 {% extends "default.njk" %}
 
 {% block main %}
-<form class="main__container -!-container" method="post">
+<form class="main__container -!-container" method="post" novalidate>
 {{ errorSummary({
   errorList: errorList(errors)
 }) if errors }}
