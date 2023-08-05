@@ -60,6 +60,7 @@ export default class PostsEndpoint {
       "photo",
       "rsvp",
       "repost",
+      "video",
     ];
   }
 }

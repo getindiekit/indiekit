@@ -58,4 +58,9 @@ export const validate = [
     .withMessage((value, { req, path }) =>
       req.__(`posts.error.${path}.invalid`),
     ),
+  check("video")
+    .if((value, { req }) => req.body?.["post-type"] === "video")
+    .exists()
+    .isURL()
+    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
 ];
