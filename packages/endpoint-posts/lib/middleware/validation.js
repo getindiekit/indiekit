@@ -43,6 +43,15 @@ export const validate = [
     )
     .notEmpty()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+  check("photo")
+    .if((value, { req }) => req.body?.["post-type"] === "photo")
+    .exists()
+    .isURL()
+    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+  check("mp-photo-alt")
+    .if((value, { req }) => req.body?.["post-type"] === "photo")
+    .notEmpty()
+    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
   check("geo")
     .if((value, { req }) => req.body?.geo)
     .custom((value) => value.match(LAT_LONG_RE))

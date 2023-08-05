@@ -16,8 +16,14 @@
       "like-of": {
         "empty": "Enter a web address like https://example.org"
       },
+      "mp-photo-alt": {
+        "empty": "Enter a description of this photo"
+      },
       "name": {
         "empty": "Enter a title"
+      },
+      "photo": {
+        "empty": "Enter a web address like https://example.org/photo.jpg"
       },
       "repost-of": {
         "empty": "Enter a web address like https://example.org"
@@ -86,6 +92,16 @@
       },
       "name": {
         "label": "Title"
+      },
+      "photo": {
+        "label": "Photo",
+        "title": "Photo %s",
+        "alt": {
+          "label": "Accessible description"
+        },
+        "url": {
+          "label": "URL"
+        }
       },
       "mp-slug": {
         "label": "URL slug"
