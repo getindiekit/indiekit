@@ -1,6 +1,9 @@
 {
   "posts": {
     "error": {
+      "audio": {
+        "empty": "Enter a web address like https://example.org/audio.mp3"
+      },
       "bookmark-of": {
         "empty": "Enter a web address like https://example.org"
       },
@@ -72,6 +75,13 @@
       "publishDraft": "Save draft",
       "updateDraft": "Update draft",
       "cancel": "Cancel",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "bookmark-of": {
         "label": "Bookmark of"
       },

@@ -2,6 +2,11 @@ import { check } from "express-validator";
 import { LAT_LONG_RE } from "../utils.js";
 
 export const validate = [
+  check("audio")
+    .if((value, { req }) => req.body?.["post-type"] === "audio")
+    .exists()
+    .isURL()
+    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
   check("bookmark-of")
     .if((value, { req }) => req.body?.["post-type"] === "bookmark")
     .exists()
