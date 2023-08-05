@@ -27,6 +27,9 @@
       },
       "repost-of": {
         "empty": "Enter a web address like https://example.org"
+      },
+      "video": {
+        "empty": "Enter a web address like https://example.org/video.mp4"
       }
     },
     "status": {
@@ -121,6 +124,13 @@
       },
       "summary": {
         "label": "Summary"
+      },
+      "video": {
+        "label": "Video",
+        "title": "Video %s",
+        "url": {
+          "label": "URL"
+        }
       },
       "visibility": {
         "label": "Visibility"

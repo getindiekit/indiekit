@@ -57,6 +57,31 @@
 {% endcall %}
 {% endmacro %}
 
+{% macro videoFieldset(index, video) %}
+{% call fieldset({
+  classes: "fieldset--group",
+  legend: {
+    text: __("posts.form.video.title", index) if video else __("posts.form.video.label")
+  }
+}) %}
+  {{ input({
+    id: "video",
+    name: "video",
+    type: "url",
+    value: errors.video.value or video.url,
+    label: {
+      text: __("posts.form.video.url.label")
+    },
+    attributes: {
+      placeholder: "https://"
+    },
+    errorMessage: {
+      text: errors.video.msg
+    } if errors.video
+  }) | indent(2) }}
+{% endcall %}
+{% endmacro %}
+
 {% block fieldset %}
   {{ input({
     name: "type",
@@ -201,6 +226,14 @@
     {{ photoFieldset(loop.index, photo) }}
   {% else %}
     {{ photoFieldset(1, false) }}
+  {% endfor %}
+{% endif %}
+
+{% if postType === "video" %}
+  {% for video in post.video %}
+    {{ videoFieldset(loop.index, video) }}
+  {% else %}
+    {{ videoFieldset(1, false) }}
   {% endfor %}
 {% endif %}
 
