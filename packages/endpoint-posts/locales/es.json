@@ -11,30 +11,31 @@
       "title": "¿Seguro que quieres eliminar esta publicación?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Ingrese una dirección web como https://example.org"
-      },
       "content": {
         "empty": "Introducir algún contenido"
       },
       "geo": {
         "invalid": "Introduce coordenadas válidas"
       },
-      "in-reply-to": {
-        "empty": "Ingrese una dirección web como https://example.org"
-      },
-      "like-of": {
-        "empty": "Ingrese una dirección web como https://example.org"
+      "mp-photo-alt": {
+        "empty": "Introduce una descripción de esta foto"
       },
       "name": {
         "empty": "Pon un título"
       },
-      "repost-of": {
-        "empty": "Ingrese una dirección web como https://example.org"
+      "url": {
+        "empty": "Introduce una dirección web como %s"
       }
     },
     "form": {
       "advancedOptions": "Opciones avanzadas",
+      "audio": {
+        "label": "Sonido",
+        "title": "Sonido %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "back": "Cambiar tipo de publicación",
       "bookmark-of": {
         "label": "Marcador de"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Título"
       },
+      "photo": {
+        "alt": {
+          "label": "Descripción accesible"
+        },
+        "label": "Foto",
+        "title": "Foto %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "publish": "Publicar publicación",
       "publishDraft": "Guardar borrador",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Actualizar publicación",
       "updateDraft": "Actualizar borrador",
+      "video": {
+        "label": "Vídeo",
+        "title": "Vídeo %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "visibility": {
         "label": "Visibilidad"
       }

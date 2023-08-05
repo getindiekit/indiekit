@@ -11,30 +11,31 @@
       "title": "Czy na pewno chcesz usunąć ten post?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Wpisz adres internetowy, taki jak https://example.org"
-      },
       "content": {
         "empty": "Wprowadź jakąś zawartość"
       },
       "geo": {
         "invalid": "Wprowadź poprawne współrzędne"
       },
-      "in-reply-to": {
-        "empty": "Wpisz adres internetowy, taki jak https://example.org"
-      },
-      "like-of": {
-        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      "mp-photo-alt": {
+        "empty": "Wprowadź opis tego zdjęcia"
       },
       "name": {
         "empty": "Wprowadź tytuł"
       },
-      "repost-of": {
-        "empty": "Wpisz adres internetowy, taki jak https://example.org"
+      "url": {
+        "empty": "Wpisz adres internetowy, taki jak %s"
       }
     },
     "form": {
       "advancedOptions": "Zaawansowane opcje",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "Adres URL"
+        }
+      },
       "back": "Zmień typ posta",
       "bookmark-of": {
         "label": "Zakładka z"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Tytuł"
       },
+      "photo": {
+        "alt": {
+          "label": "Dostępny opis"
+        },
+        "label": "Zdjęcie",
+        "title": "Zdjęcie %s",
+        "url": {
+          "label": "Adres URL"
+        }
+      },
       "publish": "Opublikuj post",
       "publishDraft": "Zapisz szkic",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Aktualizuj post",
       "updateDraft": "Zaktualizuj wersję roboczą",
+      "video": {
+        "label": "Wideo",
+        "title": "Wideo %s",
+        "url": {
+          "label": "Adres URL"
+        }
+      },
       "visibility": {
         "label": "Widoczność"
       }

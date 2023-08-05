@@ -11,30 +11,31 @@
       "title": "Da li ste sigurni da želite da izbrišete ovu objavu?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Unesite veb adresu kao što je https://example.org"
-      },
       "content": {
         "empty": "Unesite neki sadržaj"
       },
       "geo": {
         "invalid": "Unesite važeće koordinate"
       },
-      "in-reply-to": {
-        "empty": "Unesite veb adresu kao što je https://example.org"
-      },
-      "like-of": {
-        "empty": "Unesite veb adresu kao što je https://example.org"
+      "mp-photo-alt": {
+        "empty": "Unesite opis ove fotografije"
       },
       "name": {
         "empty": "Unesite naslov"
       },
-      "repost-of": {
-        "empty": "Unesite veb adresu kao što je https://example.org"
+      "url": {
+        "empty": "Unesite veb adresu kao što je %s"
       }
     },
     "form": {
       "advancedOptions": "Napredne opcije",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "back": "Promenite tip posta",
       "bookmark-of": {
         "label": "Bookmark of"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Naslov"
       },
+      "photo": {
+        "alt": {
+          "label": "Pristupačan opis"
+        },
+        "label": "Fotografija",
+        "title": "Fotografija %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "publish": "Objavi post",
       "publishDraft": "Sačuvaj nacrt",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Ažuriraj post",
       "updateDraft": "Ažurirajte nacrt",
+      "video": {
+        "label": "Video",
+        "title": "Video %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "visibility": {
         "label": "Vidljivost"
       }

@@ -11,30 +11,31 @@
       "title": "Bent u zeker dat u dit post wilt verwijderen?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Voer een webadres in zoals https://example.org"
-      },
       "content": {
         "empty": "Voer wat inhoud in"
       },
       "geo": {
         "invalid": "Voer geldige coördinaten in"
       },
-      "in-reply-to": {
-        "empty": "Voer een webadres in zoals https://example.org"
-      },
-      "like-of": {
-        "empty": "Voer een webadres in zoals https://example.org"
+      "mp-photo-alt": {
+        "empty": "Voer een beschrijving van deze foto in"
       },
       "name": {
         "empty": "Geef een titel in"
       },
-      "repost-of": {
-        "empty": "Voer een webadres in zoals https://example.org"
+      "url": {
+        "empty": "Voer een webadres in zoals %s"
       }
     },
     "form": {
       "advancedOptions": "Geavanceerde opties",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "back": "Berichttype wijzigen",
       "bookmark-of": {
         "label": "Bladwijzer van"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Titel"
       },
+      "photo": {
+        "alt": {
+          "label": "Toegankelijke beschrijving"
+        },
+        "label": "Foto",
+        "title": "Foto %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "publish": "Post publiceren",
       "publishDraft": "Concept opslaan",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Post bijwerken",
       "updateDraft": "Concept bijwerken",
+      "video": {
+        "label": "Video",
+        "title": "Video %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "visibility": {
         "label": "Zichtbaarheid"
       }

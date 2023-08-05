@@ -6,12 +6,16 @@ export const validate = [
     .if((value, { req }) => req.body?.["post-type"] === "audio")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org/audio.mp3"),
+    ),
   check("bookmark-of")
     .if((value, { req }) => req.body?.["post-type"] === "bookmark")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org"),
+    ),
   check("in-reply-to")
     .if(
       (value, { req }) =>
@@ -20,17 +24,23 @@ export const validate = [
     )
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org"),
+    ),
   check("like-of")
     .if((value, { req }) => req.body?.["post-type"] === "like")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org"),
+    ),
   check("repost-of")
     .if((value, { req }) => req.body?.["post-type"] === "repost")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org"),
+    ),
   check("name")
     .if(
       (value, { req }) =>
@@ -52,7 +62,9 @@ export const validate = [
     .if((value, { req }) => req.body?.["post-type"] === "photo")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org/photo.jpg"),
+    ),
   check("mp-photo-alt")
     .if((value, { req }) => req.body?.["post-type"] === "photo")
     .notEmpty()
@@ -67,5 +79,7 @@ export const validate = [
     .if((value, { req }) => req.body?.["post-type"] === "video")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.url.empty`, "https://example.org/video.mp4"),
+    ),
 ];

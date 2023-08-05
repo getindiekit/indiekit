@@ -11,30 +11,31 @@
       "title": "Êtes-vous sûr de vouloir supprimer cette publication ?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Saisir une adresse Web telle que https://example.org"
-      },
       "content": {
         "empty": "Saisir du contenu"
       },
       "geo": {
         "invalid": "Saisir des coordonnées valides"
       },
-      "in-reply-to": {
-        "empty": "Saisir une adresse Web telle que https://example.org"
-      },
-      "like-of": {
-        "empty": "Saisir une adresse Web telle que https://example.org"
+      "mp-photo-alt": {
+        "empty": "Entrez une description de cette photo"
       },
       "name": {
         "empty": "Saisir un titre"
       },
-      "repost-of": {
-        "empty": "Saisir une adresse Web telle que https://example.org"
+      "url": {
+        "empty": "Saisir une adresse Web telle que %s"
       }
     },
     "form": {
       "advancedOptions": "Options avancées",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "back": "Modifier le type de publication",
       "bookmark-of": {
         "label": "Signet de"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Titre"
       },
+      "photo": {
+        "alt": {
+          "label": "Description accessible"
+        },
+        "label": "Photo",
+        "title": "Photo %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "publish": "Publier la publication",
       "publishDraft": "Enregistrer le brouillon",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Mettre à jour la publication",
       "updateDraft": "Mettre à jour le brouillon",
+      "video": {
+        "label": "Vidéo",
+        "title": "Vidéo %s",
+        "url": {
+          "label": "URL"
+        }
+      },
       "visibility": {
         "label": "Visibilité"
       }

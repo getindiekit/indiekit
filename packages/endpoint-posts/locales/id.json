@@ -11,30 +11,31 @@
       "title": "Yakin ingin menghapus postingan ini?"
     },
     "error": {
-      "bookmark-of": {
-        "empty": "Masukkan alamat web misalnya https://example.org"
-      },
       "content": {
         "empty": "Masukkan beberapa konten"
       },
       "geo": {
         "invalid": "Masukkan koordinat yang valid"
       },
-      "in-reply-to": {
-        "empty": "Masukkan alamat web misalnya https://example.org"
-      },
-      "like-of": {
-        "empty": "Masukkan alamat web misalnya https://example.org"
+      "mp-photo-alt": {
+        "empty": "Masukkan deskripsi foto ini"
       },
       "name": {
         "empty": "Masukkan judul"
       },
-      "repost-of": {
-        "empty": "Masukkan alamat web misalnya https://example.org"
+      "url": {
+        "empty": "Masukkan alamat web misalnya %s"
       }
     },
     "form": {
       "advancedOptions": "Opsi lanjutan",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s",
+        "url": {
+          "label": "Tautan (URL)"
+        }
+      },
       "back": "Ubah jenis posting",
       "bookmark-of": {
         "label": "Penanda dari"
@@ -68,6 +69,16 @@
       "name": {
         "label": "Judul"
       },
+      "photo": {
+        "alt": {
+          "label": "Deskripsi yang dapat diakses"
+        },
+        "label": "Foto",
+        "title": "Foto %s",
+        "url": {
+          "label": "Tautan (URL)"
+        }
+      },
       "publish": "Publikasikan postingan",
       "publishDraft": "Simpan draf",
       "repost-of": {
@@ -85,6 +96,13 @@
       },
       "update": "Perbarui pos",
       "updateDraft": "Perbarui draf",
+      "video": {
+        "label": "Video",
+        "title": "Video %s",
+        "url": {
+          "label": "Tautan (URL)"
+        }
+      },
       "visibility": {
         "label": "Visibilitas"
       }
