@@ -7,5 +7,7 @@ export const validate = [
   check("bookmark-of")
     .exists()
     .isURL()
-    .withMessage((value, { req, path }) => req.__(`share.error.${path}.empty`)),
+    .withMessage((value, { req, path }) =>
+      req.__(`share.error.${path}.empty`, "https://example.org"),
+    ),
 ];

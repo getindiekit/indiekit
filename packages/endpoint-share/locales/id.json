@@ -8,7 +8,7 @@
     },
     "error": {
       "bookmark-of": {
-        "empty": "Masukkan alamat web misalnya https://example.org"
+        "empty": "Masukkan alamat web misalnya %s"
       },
       "name": {
         "empty": "Masukkan judul"

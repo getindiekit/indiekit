@@ -2,7 +2,7 @@
   "share": {
     "error": {
       "bookmark-of": {
-        "empty": "Enter a web address like https://example.org"
+        "empty": "Enter a web address like %s"
       },
       "name": {
         "empty": "Enter a title"

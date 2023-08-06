@@ -8,7 +8,7 @@
     },
     "error": {
       "bookmark-of": {
-        "empty": "输入像 https://example.org 这样的网址"
+        "empty": "输入像 %s 这样的网址"
       },
       "name": {
         "empty": "输入标题"

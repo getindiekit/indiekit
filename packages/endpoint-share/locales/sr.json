@@ -8,7 +8,7 @@
     },
     "error": {
       "bookmark-of": {
-        "empty": "Unesite veb adresu kao što je https://example.org"
+        "empty": "Unesite veb adresu kao što je %s"
       },
       "name": {
         "empty": "Unesite naslov"

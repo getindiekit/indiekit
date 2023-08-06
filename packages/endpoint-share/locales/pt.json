@@ -8,7 +8,7 @@
     },
     "error": {
       "bookmark-of": {
-        "empty": "Insira um endereço da web como https://example.org"
+        "empty": "Insira um endereço da web como %s"
       },
       "name": {
         "empty": "Introduza um título"
