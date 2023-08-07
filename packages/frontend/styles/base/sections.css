@@ -44,6 +44,7 @@ legend {
   text-rendering: optimizelegibility;
 }
 
+[tabindex="-1"]:focus,
 :focus-visible {
   border-radius: var(--border-radius-small);
   box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
