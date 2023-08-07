@@ -1,4 +1,8 @@
 {
+  "addAnother": {
+    "add": "Add another %s",
+    "delete": "Delete"
+  },
   "backLink": {
     "text": "Kembali"
   },

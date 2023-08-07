@@ -1,4 +1,8 @@
 {
+  "addAnother": {
+    "add": "Dodaj još %s",
+    "delete": "Izbriši"
+  },
   "backLink": {
     "text": "Nazad"
   },

@@ -1,4 +1,8 @@
 {
+  "addAnother": {
+    "add": "再添加一个 %s",
+    "delete": "删除"
+  },
   "backLink": {
     "text": "返回"
   },

@@ -1,4 +1,8 @@
 {
+  "addAnother": {
+    "add": "Adicionar outro %s",
+    "delete": "Apagar"
+  },
   "backLink": {
     "text": "Voltar"
   },

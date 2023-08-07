@@ -1,4 +1,8 @@
 {
+  "addAnother": {
+    "add": "Nog een %s toevoegen",
+    "delete": "Verwijderen"
+  },
   "backLink": {
     "text": "Terug"
   },

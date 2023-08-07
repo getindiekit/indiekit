@@ -1,0 +1,50 @@
+{% from "../button/macro.njk" import button with context %}
+{% from "../button/macro.njk" import button with context %}
+{% from "../field/macro.njk" import field with context %}
+{% from "../fieldset/macro.njk" import fieldset with context %}
+{% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
+{# `fieldset` is false by default #}
+{%- set hasFieldset = true if opts.fieldset else false %}
+{# Capture the HTML so we can optionally nest it within a fieldset #}
+{%- set innerHtml %}
+<ol class="{{ classes("add-another", opts) }}"{{- attributes(opts.attributes) }} role="list" data-add-another-target="list">
+  {{ caller() if caller }}
+</ol>
+{% endset %}
+{% call field({
+  attributes: {
+    id: id,
+    "data-controller": "add-another"
+  },
+  errorMessage: opts.errorMessage
+}) %}
+{% if opts.fieldset %}
+  {% call fieldset({
+    describedBy: describedBy,
+    classes: opts.fieldset.classes,
+    attributes: opts.fieldset.attributes,
+    legend: opts.fieldset.legend
+  }) %}{{ innerHtml | trim | safe }}{% endcall %}
+{% else %}
+  {{ innerHtml | trim | safe }}
+{% endif %}
+  <template id="add-another-add-button">
+    {{ button({
+      classes: "add-another__add button--secondary",
+      text: __("addAnother.add", opts.name),
+      attributes: {
+        "data-action": "add-another#add"
+      }
+    }) | indent(4) }}
+  </template>
+  <template id="add-another-delete-button">
+    {{ button({
+      classes: "add-another__delete button--warning",
+      icon: "delete",
+      iconText: __("addAnother.delete"),
+      attributes: {
+        "data-action": "add-another#delete"
+      }
+    }) | indent(4) }}
+  </template>
+{% endcall %}
