@@ -3,7 +3,6 @@
   --anchor-color-hover: var(--button-color, var(--color-on-primary));
   --anchor-decoration-line: none;
   --icon-size: 1.5em;
-  --button-padding: var(--space-m);
   align-items: center;
   background-color: var(
     --button-background-color,
@@ -20,9 +19,9 @@
   line-height: var(--line-height-loose);
   margin-block-end: var(--input-border-width-focus-offset);
   padding-block: calc(
-    calc(var(--button-padding) / 2) - var(--input-border-width)
+    calc(var(--button-padding, var(--space-m)) / 2) - var(--input-border-width)
   );
-  padding-inline: var(--button-padding);
+  padding-inline: var(--button-padding, var(--space-m));
 }
 
 .button--secondary,
