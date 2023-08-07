@@ -1,9 +1,10 @@
 /**
  * Render SVG icon
  * @param {string} name - Icon name
+ * @param {string} title - Accessible title
  * @returns {string|undefined} HTML
  */
-export const icon = (name) => {
+export const icon = (name, title) => {
   const paths = {
     article:
       "M36 4H12c-4 0-8 4-8 8v24c0 5 4 8 8 8h24c5 0 8-3 8-8V12c0-4-3-8-8-8zM12 8h24c2 0 4 2 4 4v24c0 2-2 4-4 4H12c-2 0-4-2-4-4V12c0-2 2-4 4-4zm0 6h12v4H12v-4zm0 8h12v4H12v-4zm0 8h24v4H12v-4zm16-16h8v12h-8V14z",
@@ -56,7 +57,12 @@ export const icon = (name) => {
     return;
   }
 
-  const svg = `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" role="img">
+  const svg = title
+    ? `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" focusable="false" aria-labelledby="${name}-title" role="img">
+    <title id="${name}-title">${title}</title>
+    <path fill="currentColor" d="${paths[name]}"/>
+  </svg>`
+    : `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" focusable="false" aria-hidden="true">
     <path fill="currentColor" d="${paths[name]}"/>
   </svg>`;
 
