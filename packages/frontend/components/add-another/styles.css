@@ -1,0 +1,56 @@
+[data-controller="add-another"] {
+  --counter-size: 1.5em;
+}
+
+.add-another {
+  counter-reset: items;
+}
+
+.add-another__item {
+  --label-font: var(--font-body);
+  margin-block-end: var(--space-m);
+  padding-inline-start: calc(var(--counter-size) + var(--space-s));
+  position: relative;
+
+  &::before {
+    align-items: center;
+    background-color: var(--color-offset);
+    block-size: var(--counter-size);
+    border-radius: var(--border-radius-small);
+    color: var(--color-on-offset);
+    content: counter(items);
+    counter-increment: items;
+    display: flex;
+    font: var(--font-label);
+    inline-size: var(--counter-size);
+    inset: 0;
+    justify-content: center;
+    position: absolute;
+  }
+
+  &:not([hidden]) {
+    display: flex;
+  }
+
+  & > :first-child {
+    flex: 1;
+  }
+}
+
+.add-another__add.button {
+  display: flex;
+  inline-size: calc(100% - var(--counter-size) - var(--space-s));
+  margin-inline-start: calc(var(--counter-size) + var(--space-s));
+}
+
+.add-another__delete.button {
+  --button-padding: 0;
+  --icon-size: 0.875em;
+
+  block-size: var(--counter-size);
+  display: flex;
+  inline-size: var(--counter-size);
+  inset-block-start: calc(var(--counter-size) + var(--space-s));
+  inset-inline-start: 0;
+  position: absolute;
+}

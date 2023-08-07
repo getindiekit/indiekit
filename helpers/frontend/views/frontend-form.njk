@@ -1,6 +1,24 @@
 {% extends "form.njk" %}
 
 {% block fieldset %}
+{% call addAnother({
+  name: "thing",
+  fieldset: {
+    legend: "Things"
+  }
+}) %}
+  {{ input({
+    errorMessage: { text: "Add another input error" } if errors,
+    name: "add-another-input[0]",
+    label: "Add another input",
+    field: {
+      attributes: {
+        "data-add-another-target": "field"
+      }
+    }
+  }) | indent(2) }}
+{% endcall %}
+
 {{ input({
   errorMessage: { text: "Input error" } if errors,
   name: "input",
