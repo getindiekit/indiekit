@@ -113,16 +113,6 @@
   text-align: center;
 }
 
-.fieldset.radios__fieldset {
-  & .fieldset__legend {
-    margin-block-end: var(--space-2xs);
-  }
-
-  & .radios {
-    margin-block-start: var(--space-xs);
-  }
-}
-
 /* Conditonal reveals */
 .radios__conditional {
   --input-border-halved: calc(var(--input-border-width) / 2);

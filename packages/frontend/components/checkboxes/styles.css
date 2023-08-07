@@ -114,16 +114,6 @@
   text-align: center;
 }
 
-.fieldset.checkboxes__fieldset {
-  & .fieldset__legend {
-    margin-block-end: var(--space-2xs);
-  }
-
-  & .checkboxes {
-    margin-block-start: var(--space-xs);
-  }
-}
-
 /* Conditonal reveals */
 .checkboxes__conditional {
   --input-border-halved: calc(var(--input-border-width) / 2);
