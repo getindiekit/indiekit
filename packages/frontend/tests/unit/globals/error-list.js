@@ -6,11 +6,11 @@ test("Transforms errors provided by express-validator", (t) => {
     me: {
       value: "foo",
       msg: "Enter a valid URL",
-      path: "customConfigUrl",
+      path: "fooBar[0].url",
       location: "body",
     },
   });
 
-  t.is(result[0].href, "#custom-config-url");
+  t.is(result[0].href, "#foo-bar-0-url");
   t.is(result[0].text, "Enter a valid URL");
 });

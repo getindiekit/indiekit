@@ -1,5 +1,4 @@
-const _camelToSnakeCase = (string) =>
-  string.replaceAll(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+import { slugify } from "@indiekit/util";
 
 /**
  * Transform errors provided by express-validator into array that can be
@@ -14,7 +13,7 @@ export const errorList = (errorMap) => {
   for (const fieldError of fieldsWithErrors) {
     errorList.push({
       text: fieldError[1].msg,
-      href: `#${_camelToSnakeCase(fieldError[1].path)}`,
+      href: `#${slugify(fieldError[1].path, { decamelize: true })}`,
     });
   }
 
