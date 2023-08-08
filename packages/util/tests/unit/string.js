@@ -10,7 +10,7 @@ test("Generates cryptographically random string", (t) => {
 });
 
 test("Slugifies a string", (t) => {
-  t.is(slugify("Foo bar baz", "_"), "foo_bar_baz");
+  t.is(slugify("Foo bar baz", { separator: "_" }), "foo_bar_baz");
   t.is(slugify("McLaren's Lando Norris"), "mclarens-lando-norris");
   t.is(slugify("McLaren’s Lando Norris"), "mclarens-lando-norris");
 });

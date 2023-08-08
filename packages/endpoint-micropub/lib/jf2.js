@@ -241,7 +241,7 @@ export const getSlugProperty = (properties, separator) => {
       .replace(separator, "0"); // Don’t include slug separator character
   }
 
-  return slugify(string, separator);
+  return slugify(string, { separator });
 };
 
 /**
