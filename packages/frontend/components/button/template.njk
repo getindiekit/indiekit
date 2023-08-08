@@ -1,6 +1,6 @@
 {%- if opts.href %}
 <a class="{{ classes("button", opts) }}" href="{{ opts.href }}" role="button" draggable="false"{{ attributes(opts.attributes) }}>
-  {{- icon(opts.icon) if opts.icon -}}
+  {{- icon(opts.icon, opts.iconText) if opts.icon -}}
   {{- opts.text | safe -}}
 </a>
 {%- else %}
@@ -11,7 +11,7 @@
   {%- if opts.disabled %} disabled aria-disabled="true"{% endif %}
   {{- buttonAttributes | safe }}
   {{- attributes(opts.attributes) }}>
-  {{- icon(opts.icon) if opts.icon -}}
+  {{- icon(opts.icon, opts.iconText) if opts.icon -}}
   {{- opts.text | safe -}}
 </button>
 {%- endif %}

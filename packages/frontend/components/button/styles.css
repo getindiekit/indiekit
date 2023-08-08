@@ -32,6 +32,13 @@
   --button-font-weight: normal;
 }
 
+/* Icon button with text moved to SVG title */
+.button:has(title) {
+  --icon-margin: 0;
+  font: unset;
+  padding: calc(var(--button-padding, var(--space-m)) / 2);
+}
+
 .button:disabled {
   --button-background-color: var(--color-offset);
   --button-color: var(--color-on-offset);
