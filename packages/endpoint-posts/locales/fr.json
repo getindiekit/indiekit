@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Saisir des coordonnées valides"
       },
+      "media": {
+        "empty": "Entrez un chemin de fichier ou une adresse Web telle que %s"
+      },
       "mp-photo-alt": {
         "empty": "Entrez une description de cette photo"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Options avancées",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Audio %s"
       },
       "back": "Modifier le type de publication",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "J’aime"
       },
+      "media": {
+        "label": "Chemin du fichier ou URL"
+      },
+      "mp-photo-alt": {
+        "label": "Description accessible"
+      },
       "mp-slug": {
         "label": "Identifiant unique d’URL (slug)"
       },
@@ -70,14 +76,8 @@
         "label": "Titre"
       },
       "photo": {
-        "alt": {
-          "label": "Description accessible"
-        },
         "label": "Photo",
-        "title": "Photo %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Photo %s"
       },
       "publish": "Publier la publication",
       "publishDraft": "Enregistrer le brouillon",
@@ -98,10 +98,7 @@
       "updateDraft": "Mettre à jour le brouillon",
       "video": {
         "label": "Vidéo",
-        "title": "Vidéo %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Vidéo %s"
       },
       "visibility": {
         "label": "Visibilité"

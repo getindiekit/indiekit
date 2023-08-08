@@ -2,12 +2,11 @@ import { check } from "express-validator";
 import { LAT_LONG_RE } from "../utils.js";
 
 export const validate = [
-  check("audio")
+  check("audio.*")
     .if((value, { req }) => req.body?.["post-type"] === "audio")
-    .exists()
-    .isURL()
+    .notEmpty()
     .withMessage((value, { req }) =>
-      req.__(`posts.error.url.empty`, "https://example.org/audio.mp3"),
+      req.__(`posts.error.media.empty`, "/music/audio.mp3"),
     ),
   check("bookmark-of")
     .if((value, { req }) => req.body?.["post-type"] === "bookmark")
@@ -58,28 +57,26 @@ export const validate = [
     )
     .notEmpty()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
-  check("photo")
-    .if((value, { req }) => req.body?.["post-type"] === "photo")
-    .exists()
-    .isURL()
-    .withMessage((value, { req }) =>
-      req.__(`posts.error.url.empty`, "https://example.org/photo.jpg"),
-    ),
-  check("mp-photo-alt")
+  check("photo.*.url")
     .if((value, { req }) => req.body?.["post-type"] === "photo")
     .notEmpty()
-    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+    .withMessage((value, { req }) =>
+      req.__(`posts.error.media.empty`, "/photos/image.jpg"),
+    ),
+  check("photo.*.alt")
+    .if((value, { req }) => req.body?.["post-type"] === "photo")
+    .notEmpty()
+    .withMessage((value, { req }) => req.__(`posts.error.mp-photo-alt.empty`)),
   check("geo")
     .if((value, { req }) => req.body?.geo)
     .custom((value) => value.match(LAT_LONG_RE))
     .withMessage((value, { req, path }) =>
       req.__(`posts.error.${path}.invalid`),
     ),
-  check("video")
+  check("video.*")
     .if((value, { req }) => req.body?.["post-type"] === "video")
-    .exists()
-    .isURL()
+    .notEmpty()
     .withMessage((value, { req }) =>
-      req.__(`posts.error.url.empty`, "https://example.org/video.mp4"),
+      req.__(`posts.error.media.empty`, "/movies/video.mp4"),
     ),
 ];

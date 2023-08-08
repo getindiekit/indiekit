@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Unesite važeće koordinate"
       },
+      "media": {
+        "empty": "Unesite putanju datoteke ili veb adresu kao što je %s"
+      },
       "mp-photo-alt": {
         "empty": "Unesite opis ove fotografije"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Napredne opcije",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Audio %s"
       },
       "back": "Promenite tip posta",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "Kao od"
       },
+      "media": {
+        "label": "Putanja ili URL datoteke"
+      },
+      "mp-photo-alt": {
+        "label": "Pristupačan opis"
+      },
       "mp-slug": {
         "label": "URL slag"
       },
@@ -70,14 +76,8 @@
         "label": "Naslov"
       },
       "photo": {
-        "alt": {
-          "label": "Pristupačan opis"
-        },
         "label": "Fotografija",
-        "title": "Fotografija %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Fotografija %s"
       },
       "publish": "Objavi post",
       "publishDraft": "Sačuvaj nacrt",
@@ -98,10 +98,7 @@
       "updateDraft": "Ažurirajte nacrt",
       "video": {
         "label": "Video",
-        "title": "Video %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Video %s"
       },
       "visibility": {
         "label": "Vidljivost"

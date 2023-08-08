@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Geben Sie gültige Koordinaten ein"
       },
+      "media": {
+        "empty": "Geben Sie einen Dateipfad oder eine Webadresse wie %s ein"
+      },
       "mp-photo-alt": {
         "empty": "Geben Sie eine Beschreibung dieses Fotos ein"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Erweiterte Optionen",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Audio %s"
       },
       "back": "Beitragstyp ändern",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "Wie von"
       },
+      "media": {
+        "label": "Dateipfad oder URL"
+      },
+      "mp-photo-alt": {
+        "label": "Barrierefreie Beschreibung"
+      },
       "mp-slug": {
         "label": "Slug"
       },
@@ -70,14 +76,8 @@
         "label": "Titel"
       },
       "photo": {
-        "alt": {
-          "label": "Barrierefreie Beschreibung"
-        },
         "label": "Foto",
-        "title": "Foto %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Foto %s"
       },
       "publish": "Beitrag veröffentlichen",
       "publishDraft": "Entwurf speichern",
@@ -98,10 +98,7 @@
       "updateDraft": "Entwurf aktualisieren",
       "video": {
         "label": "Video",
-        "title": "Video %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Video %s"
       },
       "visibility": {
         "label": "Sichtbarkeit"

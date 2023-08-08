@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Introduce coordenadas válidas"
       },
+      "media": {
+        "empty": "Introduce una ruta de archivo o una dirección web como %s"
+      },
       "mp-photo-alt": {
         "empty": "Introduce una descripción de esta foto"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Opciones avanzadas",
       "audio": {
         "label": "Sonido",
-        "title": "Sonido %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Sonido %s"
       },
       "back": "Cambiar tipo de publicación",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "Como de"
       },
+      "media": {
+        "label": "Ruta o URL del archivo"
+      },
+      "mp-photo-alt": {
+        "label": "Descripción accesible"
+      },
       "mp-slug": {
         "label": "URL slug"
       },
@@ -70,14 +76,8 @@
         "label": "Título"
       },
       "photo": {
-        "alt": {
-          "label": "Descripción accesible"
-        },
         "label": "Foto",
-        "title": "Foto %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Foto %s"
       },
       "publish": "Publicar publicación",
       "publishDraft": "Guardar borrador",
@@ -98,10 +98,7 @@
       "updateDraft": "Actualizar borrador",
       "video": {
         "label": "Vídeo",
-        "title": "Vídeo %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Vídeo %s"
       },
       "visibility": {
         "label": "Visibilidad"

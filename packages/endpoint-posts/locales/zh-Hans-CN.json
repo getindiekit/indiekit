@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "输入有效坐标"
       },
+      "media": {
+        "empty": "输入文件路径或网址，如 %s"
+      },
       "mp-photo-alt": {
         "empty": "输入这张照片的描述"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "高级选项",
       "audio": {
         "label": "音频",
-        "title": "音频 %s",
-        "url": {
-          "label": "网址"
-        }
+        "title": "音频 %s"
       },
       "back": "更改帖子类型",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "像这样"
       },
+      "media": {
+        "label": "文件路径或 URL"
+      },
+      "mp-photo-alt": {
+        "label": "无障碍描述"
+      },
       "mp-slug": {
         "label": "网址 slug"
       },
@@ -70,14 +76,8 @@
         "label": "标题"
       },
       "photo": {
-        "alt": {
-          "label": "无障碍描述"
-        },
         "label": "照片",
-        "title": "照片 %s",
-        "url": {
-          "label": "网址"
-        }
+        "title": "照片 %s"
       },
       "publish": "发布帖子",
       "publishDraft": "保存草稿",
@@ -98,10 +98,7 @@
       "updateDraft": "更新草稿",
       "video": {
         "label": "视频",
-        "title": "视频 %s",
-        "url": {
-          "label": "网址"
-        }
+        "title": "视频 %s"
       },
       "visibility": {
         "label": "可见度"

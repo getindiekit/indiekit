@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Masukkan koordinat yang valid"
       },
+      "media": {
+        "empty": "Masukkan jalur berkas atau alamat web seperti %s"
+      },
       "mp-photo-alt": {
         "empty": "Masukkan deskripsi foto ini"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Opsi lanjutan",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "Tautan (URL)"
-        }
+        "title": "Audio %s"
       },
       "back": "Ubah jenis posting",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "Seperti"
       },
+      "media": {
+        "label": "Jalur file atau URL"
+      },
+      "mp-photo-alt": {
+        "label": "Deskripsi yang dapat diakses"
+      },
       "mp-slug": {
         "label": "URL siput"
       },
@@ -70,14 +76,8 @@
         "label": "Judul"
       },
       "photo": {
-        "alt": {
-          "label": "Deskripsi yang dapat diakses"
-        },
         "label": "Foto",
-        "title": "Foto %s",
-        "url": {
-          "label": "Tautan (URL)"
-        }
+        "title": "Foto %s"
       },
       "publish": "Publikasikan postingan",
       "publishDraft": "Simpan draf",
@@ -98,10 +98,7 @@
       "updateDraft": "Perbarui draf",
       "video": {
         "label": "Video",
-        "title": "Video %s",
-        "url": {
-          "label": "Tautan (URL)"
-        }
+        "title": "Video %s"
       },
       "visibility": {
         "label": "Visibilitas"

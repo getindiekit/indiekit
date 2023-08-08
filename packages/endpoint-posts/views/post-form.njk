@@ -23,23 +23,24 @@
 {% call fieldset({
   classes: "fieldset--group",
   legend: {
-    text: __("posts.form.audio.title", index) if audio else __("posts.form.audio.label")
+    text: __("posts.form.audio.title", index + 1)
   }
 }) %}
+  {% set errorPath = errors["audio[" + index + "]"] %}
   {{ input({
-    id: "audio",
-    name: "audio",
+    id: "audio-" + index,
+    name: "audio[" + index + "]",
     type: "url",
-    value: errors.audio.value or audio.url,
+    value: errorPath.value or audio,
     label: {
-      text: __("posts.form.audio.url.label")
+      text: __("posts.form.media.label")
     },
     attributes: {
       placeholder: "https://"
     },
     errorMessage: {
-      text: errors.audio.msg
-    } if errors.audio
+      text: errorPath.msg
+    } if errorPath
   }) | indent(2) }}
 {% endcall %}
 {% endmacro %}
@@ -48,36 +49,38 @@
 {% call fieldset({
   classes: "fieldset--group",
   legend: {
-    text: __("posts.form.photo.title", index) if photo else __("posts.form.photo.label")
+    text: __("posts.form.photo.title", index + 1)
   }
 }) %}
+  {% set errorPath = errors["photo[" + index + "].url"] %}
   {{ input({
-    id: "photo",
-    name: "photo",
+    id: "photo-" + index + "-url",
+    name: "photo[" + index + "][url]",
     type: "url",
-    value: errors.photo.value or photo.url,
+    value: errorPath.value or photo.url,
     label: {
-      text: __("posts.form.photo.url.label")
+      text: __("posts.form.media.label")
     },
     attributes: {
       placeholder: "https://"
     },
     errorMessage: {
-      text: errors.photo.msg
-    } if errors.photo
+      text: errorPath.msg
+    } if errorPath
   }) | indent(2) }}
 
+  {% set errorPath = errors["photo[" + index + "].alt"] %}
   {{ textarea({
-    id: "mp-photo-alt",
-    name: "mp-photo-alt",
-    value: errors["mp-photo-alt"].value or photo.alt,
+    id: "photo-" + index + "-alt",
+    name: "photo[" + index + "][alt]",
+    value: errorPath.value or photo.alt,
     label: {
-      text: __("posts.form.photo.alt.label")
+      text: __("posts.form.mp-photo-alt.label")
     },
     rows: 1,
     errorMessage: {
-      text: errors["mp-photo-alt"].msg
-    } if errors["mp-photo-alt"]
+      text: errorPath.msg
+    } if errorPath
   }) | indent(2) }}
 {% endcall %}
 {% endmacro %}
@@ -86,23 +89,24 @@
 {% call fieldset({
   classes: "fieldset--group",
   legend: {
-    text: __("posts.form.video.title", index) if video else __("posts.form.video.label")
+    text: __("posts.form.video.title", index + 1)
   }
 }) %}
+  {% set errorPath = errors["video[" + index + "]"] %}
   {{ input({
-    id: "video",
-    name: "video",
+    id: "video-" + index,
+    name: "video[" + index + "]",
     type: "url",
-    value: errors.video.value or video.url,
+    value: errorPath.value or video,
     label: {
-      text: __("posts.form.video.url.label")
+      text: __("posts.form.media.label")
     },
     attributes: {
       placeholder: "https://"
     },
     errorMessage: {
-      text: errors.video.msg
-    } if errors.video
+      text: errorPath.msg
+    } if errorPath
   }) | indent(2) }}
 {% endcall %}
 {% endmacro %}
@@ -248,25 +252,25 @@
 
 {% if postType === "audio" %}
   {% for audio in post.audio %}
-    {{ audioFieldset(loop.index, audio) }}
+    {{ audioFieldset(loop.index0, audio) }}
   {% else %}
-    {{ audioFieldset(1, false) }}
+    {{ audioFieldset(0, false) }}
   {% endfor %}
 {% endif %}
 
 {% if postType === "photo" %}
   {% for photo in post.photo %}
-    {{ photoFieldset(loop.index, photo) }}
+    {{ photoFieldset(loop.index0, photo) }}
   {% else %}
-    {{ photoFieldset(1, false) }}
+    {{ photoFieldset(0, false) }}
   {% endfor %}
 {% endif %}
 
 {% if postType === "video" %}
   {% for video in post.video %}
-    {{ videoFieldset(loop.index, video) }}
+    {{ videoFieldset(loop.index0, video) }}
   {% else %}
-    {{ videoFieldset(1, false) }}
+    {{ videoFieldset(0, false) }}
   {% endfor %}
 {% endif %}
 

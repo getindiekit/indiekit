@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Wprowadź poprawne współrzędne"
       },
+      "media": {
+        "empty": "Wprowadź ścieżkę pliku lub adres internetowy, taki jak %s"
+      },
       "mp-photo-alt": {
         "empty": "Wprowadź opis tego zdjęcia"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Zaawansowane opcje",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "Adres URL"
-        }
+        "title": "Audio %s"
       },
       "back": "Zmień typ posta",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "Jak z"
       },
+      "media": {
+        "label": "Ścieżka pliku lub adres URL"
+      },
+      "mp-photo-alt": {
+        "label": "Dostępny opis"
+      },
       "mp-slug": {
         "label": "Ślimak URL"
       },
@@ -70,14 +76,8 @@
         "label": "Tytuł"
       },
       "photo": {
-        "alt": {
-          "label": "Dostępny opis"
-        },
         "label": "Zdjęcie",
-        "title": "Zdjęcie %s",
-        "url": {
-          "label": "Adres URL"
-        }
+        "title": "Zdjęcie %s"
       },
       "publish": "Opublikuj post",
       "publishDraft": "Zapisz szkic",
@@ -98,10 +98,7 @@
       "updateDraft": "Zaktualizuj wersję roboczą",
       "video": {
         "label": "Wideo",
-        "title": "Wideo %s",
-        "url": {
-          "label": "Adres URL"
-        }
+        "title": "Wideo %s"
       },
       "visibility": {
         "label": "Widoczność"

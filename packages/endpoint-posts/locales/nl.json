@@ -17,6 +17,9 @@
       "geo": {
         "invalid": "Voer geldige coördinaten in"
       },
+      "media": {
+        "empty": "Voer een bestandspad of webadres in, zoals %s"
+      },
       "mp-photo-alt": {
         "empty": "Voer een beschrijving van deze foto in"
       },
@@ -31,10 +34,7 @@
       "advancedOptions": "Geavanceerde opties",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Audio %s"
       },
       "back": "Berichttype wijzigen",
       "bookmark-of": {
@@ -60,6 +60,12 @@
       "like-of": {
         "label": "Zoals van"
       },
+      "media": {
+        "label": "Bestandspad of URL"
+      },
+      "mp-photo-alt": {
+        "label": "Toegankelijke beschrijving"
+      },
       "mp-slug": {
         "label": "URL-slug"
       },
@@ -70,14 +76,8 @@
         "label": "Titel"
       },
       "photo": {
-        "alt": {
-          "label": "Toegankelijke beschrijving"
-        },
         "label": "Foto",
-        "title": "Foto %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Foto %s"
       },
       "publish": "Post publiceren",
       "publishDraft": "Concept opslaan",
@@ -98,10 +98,7 @@
       "updateDraft": "Concept bijwerken",
       "video": {
         "label": "Video",
-        "title": "Video %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Video %s"
       },
       "visibility": {
         "label": "Zichtbaarheid"

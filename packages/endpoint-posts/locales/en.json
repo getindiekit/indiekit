@@ -15,6 +15,9 @@
       },
       "url": {
         "empty": "Enter a web address like %s"
+      },
+      "media": {
+        "empty": "Enter a file path or web address like %s"
       }
     },
     "status": {
@@ -59,10 +62,7 @@
       "cancel": "Cancel",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Audio %s"
       },
       "bookmark-of": {
         "label": "Bookmark of"
@@ -88,21 +88,21 @@
       "name": {
         "label": "Title"
       },
-      "photo": {
-        "label": "Photo",
-        "title": "Photo %s",
-        "alt": {
-          "label": "Accessible description"
-        },
-        "url": {
-          "label": "URL"
-        }
+      "media": {
+        "label": "File path or URL"
+      },
+      "mp-photo-alt": {
+        "label": "Accessible description"
       },
       "mp-slug": {
         "label": "URL slug"
       },
       "mp-syndicate-to": {
         "label": "Syndicate to"
+      },
+      "photo": {
+        "label": "Photo",
+        "title": "Photo %s"
       },
       "repost-of": {
         "label": "Repost of"
@@ -119,10 +119,7 @@
       },
       "video": {
         "label": "Video",
-        "title": "Video %s",
-        "url": {
-          "label": "URL"
-        }
+        "title": "Video %s"
       },
       "visibility": {
         "label": "Visibility"
