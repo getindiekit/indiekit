@@ -2,7 +2,8 @@
 <dl class="{{ classes("summary", opts) }}">
   {% for row in opts.rows %}{% if row %}
   <div class="{{ classes("summary__row", row) }}">
-    <dt class="{{ classes("summary__key", row.key) }}">
+    <dt class="{{ classes("summary__key", row.key) }}"
+      {%- if row.key.id %} id="{{ row.key.id }}"{% endif %}>
       {{ row.key.text | safe }}
     </dt>
     <dd class="{{ classes("summary__value", row.value) }} s-flow">
