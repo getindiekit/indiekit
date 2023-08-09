@@ -3,8 +3,3 @@
   font: var(--label-font, var(--font-label));
   margin-block-end: var(--space-xs);
 }
-
-.label__title {
-  --label-font: var(--font-title);
-  max-inline-size: var(--line-measure);
-}

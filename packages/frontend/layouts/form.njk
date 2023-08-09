@@ -10,9 +10,7 @@
 {% call fieldset({
   legend: {
     classes: "-!-visually-hidden" if minimalui,
-    parent: parent,
-    text: title,
-    isPageHeading: true
+    text: heading({ text: title, parent: parent })
   }
 }) -%}
   {% block fieldset %}

@@ -2,7 +2,7 @@
 {% set legend %}
 <legend class="{{ classes("fieldset__legend", opts.legend) }}"
   {{- attributes(opts.legend.attributes) }}>
-  {{ heading(opts.legend) | indent(2) if opts.legend.isPageHeading else opts.legend.text + (" " + __("optionalValue") if opts.optional) }}
+  {{ opts.legend.text }}{{ " " + __("optionalValue") if opts.optional }}
 </legend>
 {%- endset %}
 <fieldset class="{{ classes("fieldset", opts) }}"
