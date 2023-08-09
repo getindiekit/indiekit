@@ -25,7 +25,6 @@
   }
 }) %}
   {{ input({
-    id: "audio-" + index,
     name: "audio[" + index + "]",
     type: "url",
     value: fieldData("audio[" + index + "]").value,
@@ -48,7 +47,6 @@
   }
 }) %}
   {{ input({
-    id: "photo-" + index + "-url",
     name: "photo[" + index + "][url]",
     type: "url",
     value: fieldData("photo[" + index + "].url").value,
@@ -62,7 +60,6 @@
   }) | indent(2) }}
 
   {{ textarea({
-    id: "photo-" + index + "-alt",
     name: "photo[" + index + "][alt]",
     value: fieldData("photo[" + index + "].alt").value,
     label: {
@@ -82,7 +79,6 @@
   }
 }) %}
   {{ input({
-    id: "video-" + index,
     name: "video[" + index + "]",
     type: "url",
     value: fieldData("video[" + index + "]").value,
@@ -111,7 +107,6 @@
   }) | indent(2) }}
 
   {{ input({
-    id: "bookmark-of",
     name: "bookmark-of",
     type: "url",
     value: fieldData("bookmark-of").value,
@@ -125,7 +120,6 @@
   }) | indent(2) if postType === "bookmark" }}
 
   {{ input({
-    id: "in-reply-to",
     name: "in-reply-to",
     type: "url",
     value: fieldData("in-reply-to").value,
@@ -140,7 +134,6 @@
 
   {{ radios({
     classes: "radios--inline",
-    idPrefix: "rsvp",
     name: "rsvp",
     values: data.rsvp or "yes",
     fieldset: {
@@ -164,7 +157,6 @@
   }) | indent(2) if postType === "rsvp" }}
 
   {{ input({
-    id: "like-of",
     name: "like-of",
     type: "url",
     value: fieldData("like-of").value,
@@ -178,7 +170,6 @@
   }) | indent(2) if postType === "like" }}
 
   {{ input({
-    id: "repost-of",
     name: "repost-of",
     type: "url",
     value: fieldData("repost-of").value,
@@ -192,7 +183,6 @@
   }) | indent(2) if postType === "repost" }}
 
   {{ input({
-    id: "name",
     name: "name",
     value: fieldData("name").value,
     label: {
@@ -203,7 +193,6 @@
   }) | indent(2) if not nameIgnored }}
 
   {{ textarea({
-    id: "content",
     name: "content",
     value: errors.content.value or data.content.text,
     label: {
@@ -214,7 +203,6 @@
   }) if not contentIgnored }}
 
   {{ textarea({
-    id: "summary",
     name: "summary",
     value: data.summary,
     label: {
@@ -249,7 +237,6 @@
 {% endif %}
 
   {{ checkboxes({
-    idPrefix: "mp-syndicate-to",
     name: "mp-syndicate-to",
     values: data["mp-syndicate-to"],
     fieldset: {
@@ -265,7 +252,6 @@
     summary: __("posts.form.advancedOptions")
   }) %}
     {{ tagInput({
-      id: "category",
       name: "category",
       value: fieldData("category").value,
       label: {
@@ -282,7 +268,6 @@
     }) | indent(4) }}
 
     {{ geoInput({
-      id: "geo",
       name: "geo",
       value: fieldData("geo").value,
       label: {
@@ -297,7 +282,6 @@
 
     {{ input({
       classes: "input--width-25",
-      id: "mp-slug",
       name: "mp-slug",
       value: fieldData("mp-slug").value,
       label: {
@@ -308,7 +292,6 @@
 
     {{ radios({
       classes: "radios--inline",
-      idPrefix: "visibility",
       name: "visibility",
       values: data.visibility or "public",
       fieldset: {

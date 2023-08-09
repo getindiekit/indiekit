@@ -4,7 +4,6 @@
 {{ input({
   errorMessage: { text: "Input error" } if errors,
   name: "input",
-  id: "input",
   label: {
     text: "Input"
   },
@@ -16,7 +15,6 @@
 {{ input({
   errorMessage: { text: "Readonly input error" } if errors,
   name: "input-readonly",
-  id: "input-readonly",
   label: {
     text: "Readonly input"
   },
@@ -32,7 +30,6 @@
   errorMessage: { text: "File input error" } if errors,
   type: "file",
   name: "input-file",
-  id: "input-file",
   label: {
     text: "File input"
   },
@@ -45,7 +42,6 @@
   errorMessage: { text: "Color input error" } if errors,
   type: "color",
   name: "input-color",
-  id: "input-color",
   label: {
     text: "Color input"
   },
@@ -58,7 +54,6 @@
   errorMessage: { text: "Date input error" } if errors,
   type: "datetime-local",
   name: "input-datetime",
-  id: "input-datetime",
   label: {
     text: "Date input"
   },
@@ -70,7 +65,6 @@
 {{ textarea({
   errorMessage: { text: "Textarea input error" } if errors,
   name: "textarea",
-  id: "textarea",
   label: {
     text: "Textarea"
   },
@@ -82,7 +76,6 @@
 {{ textarea({
   errorMessage: { text: "Readonly textarea input error" } if errors,
   name: "textarea-readonly",
-  id: "textarea-readonly",
   label: {
     text: "Readonly textarea"
   },
@@ -97,7 +90,6 @@
 {{ geoInput({
   errorMessage: { text: "Geo input error" } if errors,
   name: "geo-input",
-  id: "geo-input",
   label: {
     text: "Geo input"
   },
@@ -109,7 +101,6 @@
 {{ tagInput({
   errorMessage: { text: "Tag input error" } if errors,
   name: "tag-input",
-  id: "tag-input",
   localisation: {
     tag: "category",
     tags: "categories"
@@ -126,7 +117,6 @@
 {{ tagInput({
   errorMessage: { text: "Disabled tag input error" } if errors,
   name: "tag-input-disabled",
-  id: "tag-input-disabled",
   label: {
     text: "Disabled tag input"
   },
@@ -148,7 +138,6 @@
     text: "Select hint text"
   },
   name: "select",
-  id: "select",
   items: [{
     text: "Article",
     value: "article"
@@ -173,7 +162,6 @@
     text: "Checkboxes hint text"
   },
   name: "checkboxes",
-  idPrefix: "checkboxes",
   items: [{
     text: "Internet Archive",
     value: "https://web.archive.org/",
@@ -201,7 +189,6 @@
     text: "Radios hint text"
   },
   name: "radios",
-  idPrefix: "radios",
   items: [{
     text: "Internet Archive",
     value: "https://web.archive.org/",

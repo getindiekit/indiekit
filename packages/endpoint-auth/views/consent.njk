@@ -21,7 +21,6 @@
   }) if not usePkce }}
 
   {{ checkboxes({
-    idPrefix: "scope",
     name: "scope",
     fieldset: {
       legend: {
@@ -44,7 +43,6 @@
   }) }}
 
   {{ input({
-    id: "password",
     name: "password",
     type: "password",
     value: fieldData("password").value,
