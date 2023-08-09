@@ -12,10 +12,6 @@
     word-break: break-word;
   }
 
-  & .-\!-visually-hidden + * {
-    margin-block-start: 0;
-  }
-
   & svg {
     vertical-align: text-bottom;
   }
