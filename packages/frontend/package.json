@@ -43,6 +43,7 @@
     "@rollup/plugin-node-resolve": "^15.0.0",
     "color": "^4.0.1",
     "iso-639-1": "^2.1.9",
+    "lodash": "^4.17.21",
     "markdown-it": "^13.0.0",
     "markdown-it-prism": "^2.2.0",
     "nunjucks": "^3.2.3",
