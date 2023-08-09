@@ -5,13 +5,11 @@
     id: "file",
     name: "file",
     type: "file",
-    value: errors.file.value or data.file,
+    value: fieldData("file").value,
     label: {
       text: __("files.form.file.label")
     },
-    errorMessage: {
-      text: errors.file.msg
-    } if errors.file
+    errorMessage: fieldData("file").errorMessage
   }) | indent(2) }}
 {% endblock %}
 
