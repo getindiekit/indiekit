@@ -28,7 +28,7 @@
     id: "bookmark-of",
     name: "bookmark-of",
     type: "url",
-    value: errors["bookmark-of"].value or data["bookmark-of"] or data.url,
+    value: fieldData("bookmark-of").value or data.url,
     label: {
       text: __("share.bookmark-of.label")
     },
@@ -36,24 +36,20 @@
       "placeholder": "https://",
       "data-action": "preview#url"
     },
-    errorMessage: {
-      text: errors["bookmark-of"].msg
-    } if errors["bookmark-of"]
+    errorMessage: fieldData("bookmark-of").errorMessage
   }) }}
 
   {{ input({
     id: "name",
     name: "name",
-    value: errors.name.value or data.name,
+    value: fieldData("name").value,
     label: {
       text: __("share.name.label")
     },
     attributes: {
       "data-action": "preview#title"
     },
-    errorMessage: {
-      text: errors.name.msg
-    } if errors.name
+    errorMessage: fieldData("name").errorMessage
   }) }}
 
   {{ textarea({
