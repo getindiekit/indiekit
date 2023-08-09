@@ -22,9 +22,7 @@
   {%- set describedBy = describedBy + " " + hintId if describedBy else hintId %}
   {{- hint({
     id: hintId,
-    classes: opts.hint.classes,
-    attributes: opts.hint.attributes,
-    text: opts.hint.text
+    text: opts.hint
   }) }}
 {% endif %}
 {% if opts.errorMessage %}

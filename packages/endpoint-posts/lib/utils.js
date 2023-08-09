@@ -132,7 +132,7 @@ export const getPostUrl = (id) => {
 export const getSyndicateToItems = (publication, checkTargets = false) => {
   return publication.syndicationTargets.map((target) => ({
     text: target.info.service.name,
-    hint: { text: target.info.uid },
+    hint: target.info.uid,
     value: target.info.uid,
     ...(checkTargets && { checked: target.options.checked }),
   }));

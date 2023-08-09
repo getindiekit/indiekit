@@ -21,10 +21,7 @@
   {% set describedBy = describedBy + " " + hintId if describedBy else hintId %}
   {{ hint({
     id: hintId,
-    classes: opts.hint.classes,
-    attributes: opts.hint.attributes,
-    html: opts.hint.html,
-    text: opts.hint.text
+    text: opts.hint
   }) | trim }}
 {% endif %}
 {% if opts.errorMessage %}
@@ -47,8 +44,7 @@
   <div class="checkboxes__divider">{{ item.divider }}</div>
   {% else %}
   {% set isChecked = item.checked | default(opts.values and item.value in opts.values) %}
-  {% set hasHint = true if item.hint.text or item.hint.html %}
-  {% set itemHintId = id + "-item-hint" if hasHint else "" %}
+  {% set itemHintId = id + "-item-hint" if item.hint else "" %}
   {% set itemDescribedBy = describedBy if not hasFieldset else "" %}
   {% set itemDescribedBy = (itemDescribedBy + " " + itemHintId) | trim %}
   <div class="checkboxes__item">
@@ -67,12 +63,10 @@
       for: id
     }) }}
     {{ hint({
+      classes: "checkboxes__hint",
       id: itemHintId,
-      classes: classes("checkboxes__hint", item.hint.classes),
-      attributes: item.hint.attributes,
-      html: item.hint.html,
-      text: item.hint.text
-    }) if hasHint }}
+      text: item.hint
+    }) if item.hint }}
   </div>
   {% if item.conditional.html %}
   <div class="checkboxes__conditional{{ " checkboxes__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">

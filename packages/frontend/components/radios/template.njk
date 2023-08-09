@@ -16,10 +16,7 @@
   {% set describedBy = describedBy + " " + hintId if describedBy else hintId %}
   {{ hint({
     id: hintId,
-    classes: opts.hint.classes,
-    attributes: opts.hint.attributes,
-    html: opts.hint.html,
-    text: opts.hint.text
+    text: opts.hint
   }) | trim }}
 {% endif %}
 {% if opts.errorMessage %}
@@ -41,14 +38,13 @@
   <div class="radios__divider">{{ item.divider }}</div>
   {% else %}
   {% set isChecked = item.checked | default(opts.values and item.value in opts.values) %}
-  {% set hasHint = true if item.hint.text or item.hint.html %}
-  {% set itemHintId = id + "-item-hint" if hasHint else "" %}
+  {% set itemHintId = id + "-item-hint" if item.hint else "" %}
   <div class="radios__item">
     <input class="radios__input" id="{{ id }}" name="{{ opts.name }}" type="radio" value="{{ item.value }}"
     {{-" checked" if isChecked }}
     {{-" disabled" if item.disabled }}
     {%- if item.conditional.html %} data-aria-controls="{{ conditionalId }}"{% endif -%}
-    {%- if hasHint %} aria-describedby="{{ itemHintId }}"{% endif -%}
+    {%- if item.hint %} aria-describedby="{{ itemHintId }}"{% endif -%}
     {{- attributes(opts.attributes) }}>
     {{ label({
       html: item.html,
@@ -58,12 +54,10 @@
       for: id
     }) }}
     {{ hint({
+      classes: "radios__hint",
       id: itemHintId,
-      classes: classes("radios__hint", item.hint.classes),
-      attributes: item.hint.attributes,
-      html: item.hint.html,
-      text: item.hint.text
-    }) if hasHint }}
+      text: item.hint
+    }) if item.hint }}
   </div>
   {% if item.conditional.html %}
   <div class="radios__conditional{{ " radios__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">
