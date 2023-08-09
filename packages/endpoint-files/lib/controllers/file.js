@@ -5,11 +5,10 @@ import path from "node:path";
  * @type {import("express").RequestHandler}
  */
 export const fileController = async (request, response) => {
-  const { file, fileName, filesPath, scope } = response.locals;
+  const { fileName, filesPath, scope } = response.locals;
 
   response.render("file", {
     title: fileName,
-    file,
     parent: {
       href: filesPath,
       text: response.locals.__("files.files.title"),

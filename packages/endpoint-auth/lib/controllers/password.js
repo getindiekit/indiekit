@@ -22,7 +22,7 @@ export const passwordController = {
    * @type {import("express").RequestHandler}
    */
   async post(request, response) {
-    const { password } = request.body;
+    const data = request.body;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -32,12 +32,12 @@ export const passwordController = {
       });
     }
 
-    if (password) {
-      const secret = await createPasswordHash(password);
+    if (data.password) {
+      const secret = await createPasswordHash(data.password);
 
       response.render("new-password", {
         title: response.locals.__("auth.newPassword.title"),
-        password,
+        data,
         secret,
       });
     }

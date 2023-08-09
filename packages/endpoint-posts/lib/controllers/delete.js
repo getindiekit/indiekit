@@ -25,12 +25,12 @@ export const deleteController = {
    */
   async post(request, response) {
     const { micropubEndpoint } = request.app.locals.application;
-    const { action, accessToken, post, postName } = response.locals;
+    const { action, accessToken, data, postName } = response.locals;
 
     try {
       const micropubUrl = new URL(micropubEndpoint);
       micropubUrl.searchParams.append("action", action);
-      micropubUrl.searchParams.append("url", post.url);
+      micropubUrl.searchParams.append("url", data.url);
 
       const micropubResponse = await endpoint.post(
         micropubUrl.href,

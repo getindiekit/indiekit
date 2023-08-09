@@ -28,7 +28,7 @@
     id: "bookmark-of",
     name: "bookmark-of",
     type: "url",
-    value: errors["bookmark-of"].value or bookmarkOf or url,
+    value: errors["bookmark-of"].value or data["bookmark-of"] or data.url,
     label: {
       text: __("share.bookmark-of.label")
     },
@@ -44,7 +44,7 @@
   {{ input({
     id: "name",
     name: "name",
-    value: errors.name.value or name,
+    value: errors.name.value or data.name,
     label: {
       text: __("share.name.label")
     },

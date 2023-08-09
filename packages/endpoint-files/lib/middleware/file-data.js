@@ -22,7 +22,7 @@ export const fileData = {
       const { id } = request.params;
       const { access_token, scope } = request.session;
 
-      const file = await getFileData(
+      const data = await getFileData(
         id,
         application.mediaEndpoint,
         access_token,
@@ -30,9 +30,9 @@ export const fileData = {
 
       response.locals = {
         accessToken: access_token,
+        data,
         filesPath: path.dirname(request.baseUrl + request.path),
-        file,
-        fileName: getFileName(file.url),
+        fileName: getFileName(data.url),
         scope,
         ...response.locals,
       };

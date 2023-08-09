@@ -1,17 +1,17 @@
 {% extends "document.njk" %}
 
-{% set postHtml = post.content.html or "" %}
+{% set postHtml = data.content.html or "" %}
 {% set postMedia -%}
-{%- if post.audio -%}
-  {%- for item in post.audio -%}
+{%- if data.audio -%}
+  {%- for item in data.audio -%}
     <audio src="{{ item.url | url(publication.me) }}" controls>
   {%- endfor -%}
-{%- elif post.photo -%}
-  {%- for item in post.photo -%}
+{%- elif data.photo -%}
+  {%- for item in data.photo -%}
     <img src="{{ item.url | url(publication.me) }}" alt="{{ item.alt }}">
   {%- endfor -%}
-{%- elif post.video -%}
-  {% for item in post.video -%}
+{%- elif data.video -%}
+  {% for item in data.video -%}
     <video src="{{ item.url | url(publication.me) }}" controls>
   {%- endfor -%}
 {%- endif -%}
@@ -21,7 +21,7 @@
   {{ badge({
     color: statusTypes.deleted.color,
     text: __(statusTypes.deleted.text)
-  }) if post.deleted }}
+  }) if data.deleted }}
 
   {{ badge({
     color: statusTypes[postStatus].color,
@@ -29,24 +29,24 @@
   }) if postStatus }}
 
   {{ badge({
-    color: statusTypes[post.visibility].color,
-    icon: statusTypes[post.visibility].icon,
-    text: __(statusTypes[post.visibility].text)
-  }) if postStatus === "published" and statusTypes[post.visibility] }}
+    color: statusTypes[data.visibility].color,
+    icon: statusTypes[data.visibility].icon,
+    text: __(statusTypes[data.visibility].text)
+  }) if postStatus === "published" and statusTypes[data.visibility] }}
 
   {{ badge({
     color: statusTypes.syndicated.color,
     icon: statusTypes.syndicated.icon,
     text: __(statusTypes.syndicated.text)
-  }) if postStatus === "published" and post.syndication and statusTypes.syndicated }}
+  }) if postStatus === "published" and data.syndication and statusTypes.syndicated }}
 
   {{ prose({ html: postHtml + postMedia }) }}
 
-  {% if postStatus === "published" and post["mp-syndicate-to"] %}
+  {% if postStatus === "published" and data["mp-syndicate-to"] %}
     {% include "endpoint-posts-syndicate.njk" %}
   {% endif %}
 
   {% call section({ title: __("posts.post.properties") }) %}
-    {{ summary({ rows: summaryRows(post) }) }}
+    {{ summary({ rows: summaryRows(data) }) }}
   {% endcall %}
 {% endblock %}

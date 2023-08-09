@@ -25,11 +25,11 @@ export const deleteController = {
    */
   async post(request, response) {
     const { mediaEndpoint } = request.app.locals.application;
-    const { accessToken, file, fileName } = response.locals;
+    const { accessToken, data, fileName } = response.locals;
 
     const mediaUrl = new URL(mediaEndpoint);
     mediaUrl.searchParams.append("action", "delete");
-    mediaUrl.searchParams.append("url", file.url);
+    mediaUrl.searchParams.append("url", data.url);
 
     try {
       const mediaResponse = await endpoint.post(mediaUrl.href, accessToken);

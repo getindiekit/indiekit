@@ -6,7 +6,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
  * @type {import("express").RequestHandler}
  */
 export const postController = async (request, response) => {
-  const { draftMode, post, postName, postsPath, postStatus, scope } =
+  const { data, draftMode, postName, postsPath, postStatus, scope } =
     response.locals;
 
   const postEditable = draftMode ? postStatus === "draft" : true;
@@ -18,14 +18,14 @@ export const postController = async (request, response) => {
       text: response.locals.__("posts.posts.title"),
     },
     actions: [
-      scope && checkScope(scope, "update") && !post.deleted && postEditable
+      scope && checkScope(scope, "update") && !data.deleted && postEditable
         ? {
             href: path.join(request.baseUrl + request.path, "/update"),
             icon: "updatePost",
             text: response.locals.__("posts.update.action"),
           }
         : {},
-      scope && checkScope(scope, "delete") && !post.deleted
+      scope && checkScope(scope, "delete") && !data.deleted
         ? {
             classes: "actions__link--warning",
             href: path.join(request.baseUrl + request.path, "/delete"),
@@ -33,7 +33,7 @@ export const postController = async (request, response) => {
             text: response.locals.__("posts.delete.action"),
           }
         : {},
-      scope && checkScope(scope, "undelete") && post.deleted
+      scope && checkScope(scope, "undelete") && data.deleted
         ? {
             href: path.join(request.baseUrl + request.path, "/undelete"),
             icon: "undelete",
@@ -41,7 +41,6 @@ export const postController = async (request, response) => {
           }
         : {},
     ],
-    post,
     redirectUri: path.join(request.baseUrl, request.params.id),
     success: request.query.success,
   });

@@ -17,7 +17,7 @@
   postType === "rsvp"
 %}
 
-{% set geo = [post.location.latitude, post.location.longitude] | join(",") if post.location %}
+{% set geo = [data.location.latitude, data.location.longitude] | join(",") if data.location %}
 
 {% macro audioFieldset(index, audio) %}
 {% call fieldset({
@@ -128,7 +128,7 @@
     id: "bookmark-of",
     name: "bookmark-of",
     type: "url",
-    value: errors["bookmark-of"].value or post["bookmark-of"],
+    value: errors["bookmark-of"].value or data["bookmark-of"],
     label: {
       text: __("posts.form.bookmark-of.label")
     },
@@ -144,7 +144,7 @@
     id: "in-reply-to",
     name: "in-reply-to",
     type: "url",
-    value: errors["in-reply-to"].value or post["in-reply-to"],
+    value: errors["in-reply-to"].value or data["in-reply-to"],
     label: {
       text: __("posts.form.in-reply-to.label")
     },
@@ -160,7 +160,7 @@
     classes: "radios--inline",
     idPrefix: "rsvp",
     name: "rsvp",
-    values: post.rsvp or "yes",
+    values: data.rsvp or "yes",
     fieldset: {
       legend: {
         text: __("posts.form.rsvp.label")
@@ -185,7 +185,7 @@
     id: "like-of",
     name: "like-of",
     type: "url",
-    value: errors["like-of"].value or post["like-of"],
+    value: errors["like-of"].value or data["like-of"],
     label: {
       text: __("posts.form.like-of.label")
     },
@@ -201,7 +201,7 @@
     id: "repost-of",
     name: "repost-of",
     type: "url",
-    value: errors["repost-of"].value or post["repost-of"],
+    value: errors["repost-of"].value or data["repost-of"],
     label: {
       text: __("posts.form.repost-of.label")
     },
@@ -216,7 +216,7 @@
   {{ input({
     id: "name",
     name: "name",
-    value: errors.name.value or post.name,
+    value: errors.name.value or data.name,
     label: {
       text: __("posts.form.name.label")
     },
@@ -229,7 +229,7 @@
   {{ textarea({
     id: "content",
     name: "content",
-    value: errors.content.value or post.content.text,
+    value: errors.content.value or data.content.text,
     label: {
       text: __("posts.form.content.label")
     },
@@ -242,7 +242,7 @@
   {{ textarea({
     id: "summary",
     name: "summary",
-    value: post.summary,
+    value: data.summary,
     label: {
       text: __("posts.form.summary.label")
     },
@@ -251,7 +251,7 @@
   }) if postType === "article" }}
 
 {% if postType === "audio" %}
-  {% for audio in post.audio %}
+  {% for audio in data.audio %}
     {{ audioFieldset(loop.index0, audio) }}
   {% else %}
     {{ audioFieldset(0, false) }}
@@ -259,7 +259,7 @@
 {% endif %}
 
 {% if postType === "photo" %}
-  {% for photo in post.photo %}
+  {% for photo in data.photo %}
     {{ photoFieldset(loop.index0, photo) }}
   {% else %}
     {{ photoFieldset(0, false) }}
@@ -267,7 +267,7 @@
 {% endif %}
 
 {% if postType === "video" %}
-  {% for video in post.video %}
+  {% for video in data.video %}
     {{ videoFieldset(loop.index0, video) }}
   {% else %}
     {{ videoFieldset(0, false) }}
@@ -277,7 +277,7 @@
   {{ checkboxes({
     idPrefix: "mp-syndicate-to",
     name: "mp-syndicate-to",
-    values: post["mp-syndicate-to"],
+    values: data["mp-syndicate-to"],
     fieldset: {
       legend: {
         text: __("posts.form.mp-syndicate-to.label")
@@ -293,7 +293,7 @@
     {{ tagInput({
       id: "category",
       name: "category",
-      value: errors.category.value or post.category,
+      value: errors.category.value or data.category,
       label: {
         text: __("posts.form.category.label")
       },
@@ -327,7 +327,7 @@
       classes: "input--width-25",
       id: "mp-slug",
       name: "mp-slug",
-      value: errors["mp-slug"].value or post["mp-slug"],
+      value: errors["mp-slug"].value or data["mp-slug"],
       label: {
         text: __("posts.form.mp-slug.label")
       },
@@ -338,7 +338,7 @@
       classes: "radios--inline",
       idPrefix: "visibility",
       name: "visibility",
-      values: post.visibility or "public",
+      values: data.visibility or "public",
       fieldset: {
         legend: {
           text: __("posts.form.visibility.label")

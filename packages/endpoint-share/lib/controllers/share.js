@@ -11,9 +11,7 @@ export const shareController = {
 
     response.render("share", {
       title: response.locals.__("share.title"),
-      content,
-      name,
-      url,
+      data: { content, name, url },
       success,
       minimalui: request.params.path === "bookmarklet",
     });
@@ -25,16 +23,14 @@ export const shareController = {
    */
   async post(request, response) {
     const { application } = request.app.locals;
-    const { content, name, url } = request.body;
-    const bookmarkOf = url || request.body["bookmark-of"];
+    const data = request.body;
+    data["bookmark-of"] = data.url || request.body["bookmark-of"];
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("share", {
         title: response.locals.__("share.title"),
-        name,
-        content,
-        "bookmark-of": bookmarkOf,
+        data,
         errors: errors.mapped(),
         minimalui: request.params.path === "bookmarklet",
       });
@@ -64,9 +60,7 @@ export const shareController = {
       response.status(error.status || 500);
       response.render("share", {
         title: response.locals.__("share.title"),
-        content,
-        name,
-        bookmarkOf,
+        data,
         error,
         minimalui: request.params.path === "bookmarklet",
       });
