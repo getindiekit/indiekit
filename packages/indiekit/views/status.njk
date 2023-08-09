@@ -159,15 +159,13 @@
         }
       }, {
         key: {
+          id: "access-token",
           text: __("status.application.accessToken")
         },
         value: {
           text: textarea({
             classes: "textarea--monospace",
-            label: {
-              classes: "-!-visually-hidden",
-              text: __("status.application.accessToken")
-            },
+            describedBy: "access-token",
             value: token,
             attributes: {
               readonly: true,
