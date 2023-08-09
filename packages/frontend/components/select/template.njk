@@ -2,6 +2,7 @@
 {% from "../field/macro.njk" import field with context %}
 {% from "../hint/macro.njk" import hint with context %}
 {% from "../label/macro.njk" import label with context %}
+{% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
 {% set describedBy = opts.describedBy if opts.describedBy else "" %}
 {% call field({
   classes: opts.field.classes,
@@ -9,7 +10,7 @@
   errorMessage: opts.errorMessage
 }) %}
   {{- label({
-    for: opts.id,
+    for: id,
     classes: opts.label.classes,
     attributes: opts.label.attributes,
     text: opts.label.text,
@@ -17,7 +18,7 @@
     optional: opts.optional === true
   }) if opts.label }}
 {% if opts.hint %}
-  {%- set hintId = opts.id + "-hint" %}
+  {%- set hintId = id + "-hint" %}
   {%- set describedBy = describedBy + " " + hintId if describedBy else hintId %}
   {{- hint({
     id: hintId,
@@ -27,7 +28,7 @@
   }) }}
 {% endif %}
 {% if opts.errorMessage %}
-  {%- set errorId = opts.id + "-error" %}
+  {%- set errorId = id + "-error" %}
   {%- set describedBy = describedBy + " " + errorId if describedBy else errorId %}
   {{- errorMessage({
     id: errorId,
@@ -37,8 +38,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) }}
 {% endif %}
-<select class="{{ classes("select", opts) }}" name="{{ opts.name }}"
-  {%- if opts.id %} id="{{ opts.id}}"{% endif %}
+<select class="{{ classes("select", opts) }}" id="{{ id }}" name="{{ opts.name }}"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {{- attributes(opts.attributes) }}>
   {% for item in opts.items %}{% if item %}

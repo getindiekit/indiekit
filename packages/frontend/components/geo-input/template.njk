@@ -1,6 +1,7 @@
 {% from "../button/macro.njk" import button with context %}
 {% from "../error-message/macro.njk" import errorMessage with context %}
 {% from "../input/macro.njk" import input with context %}
+{% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
 {{ input({
   field: {
     attributes: {
@@ -10,7 +11,7 @@
     }
   },
   classes: opts.classes,
-  id: opts.id,
+  id: id,
   name: opts.name,
   value: opts.value,
   label: opts.label,
@@ -33,6 +34,6 @@
 </template>
 <template id="geo-input-error-message">
   {{ errorMessage({
-    id: opts.id + "-error"
+    id: id + "-error"
   }) | indent(2) }}
 </template>
