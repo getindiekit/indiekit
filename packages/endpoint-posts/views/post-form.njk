@@ -17,8 +17,6 @@
   postType === "rsvp"
 %}
 
-{% set geo = [data.location.latitude, data.location.longitude] | join(",") if data.location %}
-
 {% macro audioFieldset(index, audio) %}
 {% call fieldset({
   classes: "fieldset--group",
@@ -26,21 +24,18 @@
     text: __("posts.form.audio.title", index + 1)
   }
 }) %}
-  {% set errorPath = errors["audio[" + index + "]"] %}
   {{ input({
     id: "audio-" + index,
     name: "audio[" + index + "]",
     type: "url",
-    value: errorPath.value or audio,
+    value: fieldData("audio[" + index + "]").value,
     label: {
       text: __("posts.form.media.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errorPath.msg
-    } if errorPath
+    errorMessage: fieldData("audio[" + index + "]").errorMessage
   }) | indent(2) }}
 {% endcall %}
 {% endmacro %}
@@ -52,35 +47,29 @@
     text: __("posts.form.photo.title", index + 1)
   }
 }) %}
-  {% set errorPath = errors["photo[" + index + "].url"] %}
   {{ input({
     id: "photo-" + index + "-url",
     name: "photo[" + index + "][url]",
     type: "url",
-    value: errorPath.value or photo.url,
+    value: fieldData("photo[" + index + "].url").value,
     label: {
       text: __("posts.form.media.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errorPath.msg
-    } if errorPath
+    errorMessage: fieldData("photo[" + index + "].url").errorMessage
   }) | indent(2) }}
 
-  {% set errorPath = errors["photo[" + index + "].alt"] %}
   {{ textarea({
     id: "photo-" + index + "-alt",
     name: "photo[" + index + "][alt]",
-    value: errorPath.value or photo.alt,
+    value: fieldData("photo[" + index + "].alt").value,
     label: {
       text: __("posts.form.mp-photo-alt.label")
     },
     rows: 1,
-    errorMessage: {
-      text: errorPath.msg
-    } if errorPath
+    errorMessage: fieldData("photo[" + index + "].alt").errorMessage
   }) | indent(2) }}
 {% endcall %}
 {% endmacro %}
@@ -92,21 +81,18 @@
     text: __("posts.form.video.title", index + 1)
   }
 }) %}
-  {% set errorPath = errors["video[" + index + "]"] %}
   {{ input({
     id: "video-" + index,
     name: "video[" + index + "]",
     type: "url",
-    value: errorPath.value or video,
+    value: fieldData("video[" + index + "]").value,
     label: {
       text: __("posts.form.media.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errorPath.msg
-    } if errorPath
+    errorMessage: fieldData("video[" + index + "]").errorMessage
   }) | indent(2) }}
 {% endcall %}
 {% endmacro %}
@@ -128,32 +114,28 @@
     id: "bookmark-of",
     name: "bookmark-of",
     type: "url",
-    value: errors["bookmark-of"].value or data["bookmark-of"],
+    value: fieldData("bookmark-of").value,
     label: {
       text: __("posts.form.bookmark-of.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errors["bookmark-of"].msg
-    } if errors["bookmark-of"]
+    errorMessage: fieldData("bookmark-of").errorMessage
   }) | indent(2) if postType === "bookmark" }}
 
   {{ input({
     id: "in-reply-to",
     name: "in-reply-to",
     type: "url",
-    value: errors["in-reply-to"].value or data["in-reply-to"],
+    value: fieldData("in-reply-to").value,
     label: {
       text: __("posts.form.in-reply-to.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errors["in-reply-to"].msg
-    } if errors["in-reply-to"]
+    errorMessage: fieldData("in-reply-to").errorMessage
   }) | indent(2) if postType === "reply" or postType === "rsvp" }}
 
   {{ radios({
@@ -185,45 +167,39 @@
     id: "like-of",
     name: "like-of",
     type: "url",
-    value: errors["like-of"].value or data["like-of"],
+    value: fieldData("like-of").value,
     label: {
       text: __("posts.form.like-of.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errors["like-of"].msg
-    } if errors["like-of"]
+    errorMessage: fieldData("like-of").errorMessage
   }) | indent(2) if postType === "like" }}
 
   {{ input({
     id: "repost-of",
     name: "repost-of",
     type: "url",
-    value: errors["repost-of"].value or data["repost-of"],
+    value: fieldData("repost-of").value,
     label: {
       text: __("posts.form.repost-of.label")
     },
     attributes: {
       placeholder: "https://"
     },
-    errorMessage: {
-      text: errors["repost-of"].msg
-    } if errors["repost-of"]
+    errorMessage: fieldData("repost-of").errorMessage
   }) | indent(2) if postType === "repost" }}
 
   {{ input({
     id: "name",
     name: "name",
-    value: errors.name.value or data.name,
+    value: fieldData("name").value,
     label: {
       text: __("posts.form.name.label")
     },
     optional: nameOptional,
-    errorMessage: {
-      text: errors.name.msg
-    } if errors.name
+    errorMessage: fieldData("name").errorMessage
   }) | indent(2) if not nameIgnored }}
 
   {{ textarea({
@@ -234,9 +210,7 @@
       text: __("posts.form.content.label")
     },
     optional: contentOptional,
-    errorMessage: {
-      text: errors.content.msg
-    } if errors.content
+    errorMessage: fieldData("content").errorMessage
   }) if not contentIgnored }}
 
   {{ textarea({
@@ -293,7 +267,7 @@
     {{ tagInput({
       id: "category",
       name: "category",
-      value: errors.category.value or data.category,
+      value: fieldData("category").value,
       label: {
         text: __("posts.form.category.label")
       },
@@ -310,7 +284,7 @@
     {{ geoInput({
       id: "geo",
       name: "geo",
-      value: errors.geo.value or geo,
+      value: fieldData("geo").value,
       label: {
         text: __("posts.form.geo.label")
       },
@@ -318,16 +292,14 @@
         text: __("posts.form.geo.hint", "50.8211, -0.1452")
       },
       optional: true,
-      errorMessage: {
-        text: errors.geo.msg
-      } if errors.geo
+      errorMessage: fieldData("geo").errorMessage
     }) | indent(4) }}
 
     {{ input({
       classes: "input--width-25",
       id: "mp-slug",
       name: "mp-slug",
-      value: errors["mp-slug"].value or data["mp-slug"],
+      value: fieldData("mp-slug").value,
       label: {
         text: __("posts.form.mp-slug.label")
       },

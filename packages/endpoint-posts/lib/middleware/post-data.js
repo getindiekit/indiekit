@@ -51,6 +51,10 @@ export const postData = {
         access_token,
       );
 
+      if (data.location) {
+        data.geo = [data.location.latitude, data.location.longitude].toString();
+      }
+
       const postType = data["post-type"];
 
       response.locals = {
