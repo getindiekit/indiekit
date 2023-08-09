@@ -20,9 +20,7 @@
 {% macro audioFieldset(index, audio) %}
 {% call fieldset({
   classes: "fieldset--group",
-  legend: {
-    text: __("posts.form.audio.title", index + 1)
-  }
+  legend: __("posts.form.audio.title", index + 1)
 }) %}
   {{ input({
     name: "audio[" + index + "]",
@@ -40,9 +38,7 @@
 {% macro photoFieldset(index, photo) %}
 {% call fieldset({
   classes: "fieldset--group",
-  legend: {
-    text: __("posts.form.photo.title", index + 1)
-  }
+  legend: __("posts.form.photo.title", index + 1)
 }) %}
   {{ input({
     name: "photo[" + index + "][url]",
@@ -68,9 +64,7 @@
 {% macro videoFieldset(index, video) %}
 {% call fieldset({
   classes: "fieldset--group",
-  legend: {
-    text: __("posts.form.video.title", index + 1)
-  }
+  legend: __("posts.form.video.title", index + 1)
 }) %}
   {{ input({
     name: "video[" + index + "]",
@@ -125,9 +119,7 @@
     name: "rsvp",
     values: data.rsvp or "yes",
     fieldset: {
-      legend: {
-        text: __("posts.form.rsvp.label")
-      }
+      legend: __("posts.form.rsvp.label")
     },
     items: [{
       label: __("posts.form.rsvp.yes"),
@@ -218,9 +210,7 @@
     name: "mp-syndicate-to",
     values: data["mp-syndicate-to"],
     fieldset: {
-      legend: {
-        text: __("posts.form.mp-syndicate-to.label")
-      }
+      legend: __("posts.form.mp-syndicate-to.label")
     },
     items: syndicationTargetItems
   }) | indent(2) if syndicationTargetItems.length }}
@@ -263,9 +253,7 @@
       name: "visibility",
       values: data.visibility or "public",
       fieldset: {
-        legend: {
-          text: __("posts.form.visibility.label")
-        }
+        legend: __("posts.form.visibility.label")
       },
       items: [{
         label: __("posts.status.public"),

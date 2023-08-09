@@ -8,10 +8,8 @@
 
 {% block form %}
 {% call fieldset({
-  legend: {
-    classes: "-!-visually-hidden" if minimalui,
-    text: heading({ text: title, parent: parent })
-  }
+  attributes: { "aria-label": title } if minimalui,
+  legend: heading({ text: title, parent: parent }) if not minimalui
 }) -%}
   {% block fieldset %}
   {% endblock %}

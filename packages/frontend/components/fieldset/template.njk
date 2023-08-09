@@ -1,14 +1,13 @@
 {% from "../heading/macro.njk" import heading with context %}
 {% set legend %}
-<legend class="{{ classes("fieldset__legend", opts.legend) }}"
-  {{- attributes(opts.legend.attributes) }}>
-  {{ opts.legend.text }}{{ " " + __("optionalValue") if opts.optional }}
+<legend class="fieldset__legend">
+  {{ opts.legend }}{{ " " + __("optionalValue") if opts.optional }}
 </legend>
 {%- endset %}
 <fieldset class="{{ classes("fieldset", opts) }}"
   {%- if opts.role %} role="{{ opts.role }}"{% endif %}
   {%- if opts.describedBy %} aria-describedby="{{ opts.describedBy }}"{% endif %}
   {{- attributes(opts.attributes) }}>
-  {{ legend | indent(2) | safe if opts.legend.text }}
+  {{ legend | indent(2) | safe if opts.legend }}
   {{ caller() if caller }}
 </fieldset>
