@@ -47,11 +47,9 @@
     {%- if item.hint %} aria-describedby="{{ itemHintId }}"{% endif -%}
     {{- attributes(opts.attributes) }}>
     {{ label({
-      html: item.html,
-      text: item.text,
-      classes: classes("radios__label", item.label.classes),
-      attributes: item.label.attributes,
-      for: id
+      classes: "radios__label",
+      for: id,
+      text: item.label
     }) }}
     {{ hint({
       classes: "radios__hint",

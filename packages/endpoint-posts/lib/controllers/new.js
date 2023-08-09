@@ -21,7 +21,7 @@ export const newController = {
         return a.name.localeCompare(b.name);
       })
       .map((postType) => ({
-        text: postType.name,
+        label: postType.name,
         value: postType.type,
       }));
 

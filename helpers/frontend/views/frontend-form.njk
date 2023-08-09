@@ -4,18 +4,14 @@
 {{ input({
   errorMessage: { text: "Input error" } if errors,
   name: "input",
-  label: {
-    text: "Input"
-  },
+  label: "Input",
   hint: "Input hint text"
 }) }}
 
 {{ input({
   errorMessage: { text: "Readonly input error" } if errors,
   name: "input-readonly",
-  label: {
-    text: "Readonly input"
-  },
+  label: "Readonly input",
   hint: "Readonly input hint text",
   attributes: {
     readonly: true
@@ -26,9 +22,7 @@
   errorMessage: { text: "File input error" } if errors,
   type: "file",
   name: "input-file",
-  label: {
-    text: "File input"
-  },
+  label: "File input",
   hint: "File input hint text"
 }) }}
 
@@ -36,9 +30,7 @@
   errorMessage: { text: "Color input error" } if errors,
   type: "color",
   name: "input-color",
-  label: {
-    text: "Color input"
-  },
+  label: "Color input",
   hint: "Color input hint text"
 }) }}
 
@@ -46,27 +38,21 @@
   errorMessage: { text: "Date input error" } if errors,
   type: "datetime-local",
   name: "input-datetime",
-  label: {
-    text: "Date input"
-  },
+  label: "Date input",
   hint: "Date input hint text"
 }) }}
 
 {{ textarea({
   errorMessage: { text: "Textarea input error" } if errors,
   name: "textarea",
-  label: {
-    text: "Textarea"
-  },
+  label: "Textarea",
   hint: "Textarea hint text"
 }) }}
 
 {{ textarea({
   errorMessage: { text: "Readonly textarea input error" } if errors,
   name: "textarea-readonly",
-  label: {
-    text: "Readonly textarea"
-  },
+  label: "Readonly textarea",
   hint: "Readonly textarea hint text",
   attributes: {
     readonly: true
@@ -76,9 +62,7 @@
 {{ geoInput({
   errorMessage: { text: "Geo input error" } if errors,
   name: "geo-input",
-  label: {
-    text: "Geo input"
-  },
+  label: "Geo input",
   hint: "Geo input hint text"
 }) }}
 
@@ -89,9 +73,7 @@
     tag: "category",
     tags: "categories"
   },
-  label: {
-    text: "Tag input"
-  },
+  label: "Tag input",
   hint: "Tag input hint text",
   value: ["foo", "bar"]
 }) }}
@@ -99,9 +81,7 @@
 {{ tagInput({
   errorMessage: { text: "Disabled tag input error" } if errors,
   name: "tag-input-disabled",
-  label: {
-    text: "Disabled tag input"
-  },
+  label: "Disabled tag input",
   hint: "Disabled tag input hint text",
   attributes: {
     disabled: "true"
@@ -111,9 +91,7 @@
 
 {{ select({
   errorMessage: { text: "Select error" } if errors,
-  label: {
-    text: "Post types"
-  },
+  label: "Post types",
   hint: "Select hint text",
   name: "select",
   items: [{
@@ -139,11 +117,11 @@
   hint: "Checkboxes hint text",
   name: "checkboxes",
   items: [{
-    text: "Internet Archive",
+    label: "Internet Archive",
     value: "https://web.archive.org/",
     hint: "https://web.archive.org/"
   }, {
-    text: "Mastodon",
+    label: "Mastodon",
     value: "https://mastodon.example/@username",
     hint: "https://mastodon.example/@username",
     checked: true
@@ -160,11 +138,11 @@
   hint: "Radios hint text",
   name: "radios",
   items: [{
-    text: "Internet Archive",
+    label: "Internet Archive",
     value: "https://web.archive.org/",
     hint: "https://web.archive.org/"
   }, {
-    text: "Mastodon",
+    label: "Mastodon",
     value: "https://mastodon.example/@username",
     hint: "https://mastodon.example/@username",
     checked: true

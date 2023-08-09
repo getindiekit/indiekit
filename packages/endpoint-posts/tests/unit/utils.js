@@ -104,7 +104,7 @@ test("Gets syndication target `items` for checkboxes component", (t) => {
 
   t.is(result.length, 1);
   t.true(result[0].checked);
-  t.is(result[0].value, "https://mastodon.example/@username");
-  t.is(result[0].text, "Mastodon");
   t.is(result[0].hint, "https://mastodon.example/@username");
+  t.is(result[0].label, "Mastodon");
+  t.is(result[0].value, "https://mastodon.example/@username");
 });

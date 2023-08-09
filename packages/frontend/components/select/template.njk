@@ -11,10 +11,8 @@
 }) %}
   {{- label({
     for: id,
-    classes: opts.label.classes,
-    attributes: opts.label.attributes,
-    text: opts.label.text,
-    optional: opts.optional === true
+    optional: opts.optional === true,
+    text: opts.label
   }) if opts.label }}
 {% if opts.hint %}
   {%- set hintId = id + "-hint" %}

@@ -28,9 +28,7 @@
     name: "audio[" + index + "]",
     type: "url",
     value: fieldData("audio[" + index + "]").value,
-    label: {
-      text: __("posts.form.media.label")
-    },
+    label: __("posts.form.media.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -50,9 +48,7 @@
     name: "photo[" + index + "][url]",
     type: "url",
     value: fieldData("photo[" + index + "].url").value,
-    label: {
-      text: __("posts.form.media.label")
-    },
+    label: __("posts.form.media.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -62,9 +58,7 @@
   {{ textarea({
     name: "photo[" + index + "][alt]",
     value: fieldData("photo[" + index + "].alt").value,
-    label: {
-      text: __("posts.form.mp-photo-alt.label")
-    },
+    label: __("posts.form.mp-photo-alt.label"),
     rows: 1,
     errorMessage: fieldData("photo[" + index + "].alt").errorMessage
   }) | indent(2) }}
@@ -82,9 +76,7 @@
     name: "video[" + index + "]",
     type: "url",
     value: fieldData("video[" + index + "]").value,
-    label: {
-      text: __("posts.form.media.label")
-    },
+    label: __("posts.form.media.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -110,9 +102,7 @@
     name: "bookmark-of",
     type: "url",
     value: fieldData("bookmark-of").value,
-    label: {
-      text: __("posts.form.bookmark-of.label")
-    },
+    label: __("posts.form.bookmark-of.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -123,9 +113,7 @@
     name: "in-reply-to",
     type: "url",
     value: fieldData("in-reply-to").value,
-    label: {
-      text: __("posts.form.in-reply-to.label")
-    },
+    label: __("posts.form.in-reply-to.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -142,16 +130,16 @@
       }
     },
     items: [{
-      text: __("posts.form.rsvp.yes"),
+      label: __("posts.form.rsvp.yes"),
       value: "yes"
     }, {
-      text: __("posts.form.rsvp.no"),
+      label: __("posts.form.rsvp.no"),
       value: "no"
     }, {
-      text: __("posts.form.rsvp.maybe"),
+      label: __("posts.form.rsvp.maybe"),
       value: "maybe"
     }, {
-      text: __("posts.form.rsvp.interested"),
+      label: __("posts.form.rsvp.interested"),
       value: "interested"
     }]
   }) | indent(2) if postType === "rsvp" }}
@@ -160,9 +148,7 @@
     name: "like-of",
     type: "url",
     value: fieldData("like-of").value,
-    label: {
-      text: __("posts.form.like-of.label")
-    },
+    label: __("posts.form.like-of.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -173,9 +159,7 @@
     name: "repost-of",
     type: "url",
     value: fieldData("repost-of").value,
-    label: {
-      text: __("posts.form.repost-of.label")
-    },
+    label: __("posts.form.repost-of.label"),
     attributes: {
       placeholder: "https://"
     },
@@ -185,9 +169,7 @@
   {{ input({
     name: "name",
     value: fieldData("name").value,
-    label: {
-      text: __("posts.form.name.label")
-    },
+    label: __("posts.form.name.label"),
     optional: nameOptional,
     errorMessage: fieldData("name").errorMessage
   }) | indent(2) if not nameIgnored }}
@@ -195,9 +177,7 @@
   {{ textarea({
     name: "content",
     value: errors.content.value or data.content.text,
-    label: {
-      text: __("posts.form.content.label")
-    },
+    label: __("posts.form.content.label"),
     optional: contentOptional,
     errorMessage: fieldData("content").errorMessage
   }) if not contentIgnored }}
@@ -205,9 +185,7 @@
   {{ textarea({
     name: "summary",
     value: data.summary,
-    label: {
-      text: __("posts.form.summary.label")
-    },
+    label: __("posts.form.summary.label"),
     optional: true,
     rows: 1
   }) if postType === "article" }}
@@ -254,9 +232,7 @@
     {{ tagInput({
       name: "category",
       value: fieldData("category").value,
-      label: {
-        text: __("posts.form.category.label")
-      },
+      label: __("posts.form.category.label"),
       hint: __("posts.form.category.hint"),
       optional: true,
       localisation: {
@@ -268,9 +244,7 @@
     {{ geoInput({
       name: "geo",
       value: fieldData("geo").value,
-      label: {
-        text: __("posts.form.geo.label")
-      },
+      label: __("posts.form.geo.label"),
       hint: __("posts.form.geo.hint", "50.8211, -0.1452"),
       optional: true,
       errorMessage: fieldData("geo").errorMessage
@@ -280,9 +254,7 @@
       classes: "input--width-25",
       name: "mp-slug",
       value: fieldData("mp-slug").value,
-      label: {
-        text: __("posts.form.mp-slug.label")
-      },
+      label: __("posts.form.mp-slug.label"),
       optional: true
     }) | indent(4) }}
 
@@ -296,13 +268,13 @@
         }
       },
       items: [{
-        text: __("posts.status.public"),
+        label: __("posts.status.public"),
         value: "public"
       }, {
-        text: __("posts.status.private"),
+        label: __("posts.status.private"),
         value: "private"
       }, {
-        text: __("posts.status.unlisted"),
+        label: __("posts.status.unlisted"),
         value: "unlisted"
       }]
     }) | indent(4) }}

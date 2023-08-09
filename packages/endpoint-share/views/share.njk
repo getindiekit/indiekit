@@ -28,9 +28,7 @@
     name: "bookmark-of",
     type: "url",
     value: fieldData("bookmark-of").value or data.url,
-    label: {
-      text: __("share.bookmark-of.label")
-    },
+    label: __("share.bookmark-of.label"),
     attributes: {
       "placeholder": "https://",
       "data-action": "preview#url"
@@ -41,9 +39,7 @@
   {{ input({
     name: "name",
     value: fieldData("name").value,
-    label: {
-      text: __("share.name.label")
-    },
+    label: __("share.name.label"),
     attributes: {
       "data-action": "preview#title"
     },
@@ -54,9 +50,7 @@
     name: "content",
     value: content,
     optional: true,
-    label: {
-      text: __("share.content.label")
-    },
+    label: __("share.content.label"),
     attributes: {
       "data-action": "preview#text"
     }

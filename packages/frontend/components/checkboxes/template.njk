@@ -56,11 +56,9 @@
     {%- if itemDescribedBy %} aria-describedby="{{ itemDescribedBy }}"{% endif -%}
     {{- attributes(opts.attributes) }}>
     {{ label({
-      html: item.html,
-      text: item.text,
-      classes: classes("checkboxes__label", item.label.classes),
-      attributes: item.label.attributes,
-      for: id
+      classes: "checkboxes__label",
+      for: id,
+      text: item.label
     }) }}
     {{ hint({
       classes: "checkboxes__hint",
