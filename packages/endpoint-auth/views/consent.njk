@@ -29,9 +29,7 @@
       }
     },
     items: scopeItems,
-    errorMessage: {
-      text: errors.scope.msg
-    } if errors.scope
+    errorMessage: fieldData("scope").errorMessage
   }) if authType === "authorize" }}
 
   {#- Hidden field exposing username to password managers -#}
@@ -49,14 +47,12 @@
     id: "password",
     name: "password",
     type: "password",
-    value: errors.password.value,
+    value: fieldData("password").value,
     autocomplete: "current-password",
     label: {
       text: __("auth.consent.password.label")
     },
-    errorMessage: {
-      text: errors.password.msg
-    } if errors.password
+    errorMessage: fieldData("password").errorMessage
   }) }}
 
   {{ input({
