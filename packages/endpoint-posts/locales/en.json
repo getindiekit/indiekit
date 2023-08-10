@@ -62,7 +62,7 @@
       "cancel": "Cancel",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s"
+        "name": "audio file"
       },
       "bookmark-of": {
         "label": "Bookmark of"
@@ -101,8 +101,8 @@
         "label": "Syndicate to"
       },
       "photo": {
-        "label": "Photo",
-        "title": "Photo %s"
+        "label": "Photos",
+        "name": "photo"
       },
       "repost-of": {
         "label": "Repost of"
@@ -118,8 +118,8 @@
         "label": "Summary"
       },
       "video": {
-        "label": "Video",
-        "title": "Video %s"
+        "label": "Videos",
+        "name": "video"
       },
       "visibility": {
         "label": "Visibility"

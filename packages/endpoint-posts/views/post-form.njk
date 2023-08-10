@@ -17,11 +17,7 @@
   postType === "rsvp"
 %}
 
-{% macro audioFieldset(index, audio) %}
-{% call fieldset({
-  classes: "fieldset--group",
-  legend: __("posts.form.audio.title", index + 1)
-}) %}
+{% macro audioFieldset(index) %}
   {{ input({
     name: "audio[" + index + "]",
     type: "url",
@@ -30,15 +26,21 @@
     attributes: {
       placeholder: "https://"
     },
+    field: {
+      attributes: {
+        "data-add-another-target": "field"
+      }
+    },
     errorMessage: fieldData("audio[" + index + "]").errorMessage
   }) | indent(2) }}
-{% endcall %}
 {% endmacro %}
 
-{% macro photoFieldset(index, photo) %}
+{% macro photoFieldset(index) %}
 {% call fieldset({
   classes: "fieldset--group",
-  legend: __("posts.form.photo.title", index + 1)
+  attributes: {
+    "data-add-another-target": "field"
+  }
 }) %}
   {{ input({
     name: "photo[" + index + "][url]",
@@ -61,11 +63,7 @@
 {% endcall %}
 {% endmacro %}
 
-{% macro videoFieldset(index, video) %}
-{% call fieldset({
-  classes: "fieldset--group",
-  legend: __("posts.form.video.title", index + 1)
-}) %}
+{% macro videoFieldset(index) %}
   {{ input({
     name: "video[" + index + "]",
     type: "url",
@@ -74,9 +72,13 @@
     attributes: {
       placeholder: "https://"
     },
+    field: {
+      attributes: {
+        "data-add-another-target": "field"
+      }
+    },
     errorMessage: fieldData("video[" + index + "]").errorMessage
   }) | indent(2) }}
-{% endcall %}
 {% endmacro %}
 
 {% block fieldset %}
@@ -183,27 +185,42 @@
   }) if postType === "article" }}
 
 {% if postType === "audio" %}
-  {% for audio in data.audio %}
-    {{ audioFieldset(loop.index0, audio) }}
+{% call addAnother({
+  fieldset: { legend: __("posts.form.audio.label") },
+  name: __("posts.form.audio.name")
+}) %}
+  {% for audio in fieldData("audio").value %}
+    {{ audioFieldset(loop.index0) }}
   {% else %}
-    {{ audioFieldset(0, false) }}
+    {{ audioFieldset(0) }}
   {% endfor %}
+{% endcall %}
 {% endif %}
 
 {% if postType === "photo" %}
-  {% for photo in data.photo %}
-    {{ photoFieldset(loop.index0, photo) }}
+{% call addAnother({
+  fieldset: { legend: __("posts.form.photo.label") },
+  name: __("posts.form.photo.name")
+}) %}
+  {% for photo in fieldData("photo").value %}
+    {{ photoFieldset(loop.index0) }}
   {% else %}
-    {{ photoFieldset(0, false) }}
+    {{ photoFieldset(0) }}
   {% endfor %}
+{% endcall %}
 {% endif %}
 
 {% if postType === "video" %}
-  {% for video in data.video %}
-    {{ videoFieldset(loop.index0, video) }}
+{% call addAnother({
+  name: __("posts.form.video.name"),
+  fieldset: { legend: __("posts.form.video.label") }
+}) %}
+  {% for video in fieldData("video").value %}
+    {{ videoFieldset(loop.index0) }}
   {% else %}
-    {{ videoFieldset(0, false) }}
+    {{ videoFieldset(0) }}
   {% endfor %}
+{% endcall %}
 {% endif %}
 
   {{ checkboxes({

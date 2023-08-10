@@ -34,7 +34,7 @@
       "advancedOptions": "Napredne opcije",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s"
+        "name": "audio fajl"
       },
       "back": "Promenite tip posta",
       "bookmark-of": {
@@ -76,8 +76,8 @@
         "label": "Naslov"
       },
       "photo": {
-        "label": "Fotografija",
-        "title": "Fotografija %s"
+        "label": "Fotografije",
+        "name": "photo"
       },
       "publish": "Objavi post",
       "publishDraft": "Sačuvaj nacrt",
@@ -97,8 +97,8 @@
       "update": "Ažuriraj post",
       "updateDraft": "Ažurirajte nacrt",
       "video": {
-        "label": "Video",
-        "title": "Video %s"
+        "label": "Video snimci",
+        "name": "video"
       },
       "visibility": {
         "label": "Vidljivost"

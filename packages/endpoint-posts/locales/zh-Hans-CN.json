@@ -34,7 +34,7 @@
       "advancedOptions": "高级选项",
       "audio": {
         "label": "音频",
-        "title": "音频 %s"
+        "name": "音频文件"
       },
       "back": "更改帖子类型",
       "bookmark-of": {
@@ -77,7 +77,7 @@
       },
       "photo": {
         "label": "照片",
-        "title": "照片 %s"
+        "name": "照片"
       },
       "publish": "发布帖子",
       "publishDraft": "保存草稿",
@@ -98,7 +98,7 @@
       "updateDraft": "更新草稿",
       "video": {
         "label": "视频",
-        "title": "视频 %s"
+        "name": "视频"
       },
       "visibility": {
         "label": "可见度"

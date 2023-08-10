@@ -34,7 +34,7 @@
       "advancedOptions": "Zaawansowane opcje",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s"
+        "name": "plik audio"
       },
       "back": "Zmień typ posta",
       "bookmark-of": {
@@ -76,8 +76,8 @@
         "label": "Tytuł"
       },
       "photo": {
-        "label": "Zdjęcie",
-        "title": "Zdjęcie %s"
+        "label": "Zdjęcia",
+        "name": "zdjęcie"
       },
       "publish": "Opublikuj post",
       "publishDraft": "Zapisz szkic",
@@ -98,7 +98,7 @@
       "updateDraft": "Zaktualizuj wersję roboczą",
       "video": {
         "label": "Wideo",
-        "title": "Wideo %s"
+        "name": "wideo"
       },
       "visibility": {
         "label": "Widoczność"

@@ -34,7 +34,7 @@
       "advancedOptions": "Geavanceerde opties",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s"
+        "name": "audiobestand"
       },
       "back": "Berichttype wijzigen",
       "bookmark-of": {
@@ -76,8 +76,8 @@
         "label": "Titel"
       },
       "photo": {
-        "label": "Foto",
-        "title": "Foto %s"
+        "label": "Foto’s",
+        "name": "foto"
       },
       "publish": "Post publiceren",
       "publishDraft": "Concept opslaan",
@@ -97,8 +97,8 @@
       "update": "Post bijwerken",
       "updateDraft": "Concept bijwerken",
       "video": {
-        "label": "Video",
-        "title": "Video %s"
+        "label": "Video’s",
+        "name": "video"
       },
       "visibility": {
         "label": "Zichtbaarheid"

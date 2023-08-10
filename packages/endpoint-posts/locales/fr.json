@@ -34,7 +34,7 @@
       "advancedOptions": "Options avancées",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s"
+        "name": "fichier audio"
       },
       "back": "Modifier le type de publication",
       "bookmark-of": {
@@ -76,8 +76,8 @@
         "label": "Titre"
       },
       "photo": {
-        "label": "Photo",
-        "title": "Photo %s"
+        "label": "Photos",
+        "name": "photo"
       },
       "publish": "Publier la publication",
       "publishDraft": "Enregistrer le brouillon",
@@ -97,8 +97,8 @@
       "update": "Mettre à jour la publication",
       "updateDraft": "Mettre à jour le brouillon",
       "video": {
-        "label": "Vidéo",
-        "title": "Vidéo %s"
+        "label": "Vidéos",
+        "name": "vidéo"
       },
       "visibility": {
         "label": "Visibilité"

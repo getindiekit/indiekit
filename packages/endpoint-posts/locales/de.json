@@ -34,7 +34,7 @@
       "advancedOptions": "Erweiterte Optionen",
       "audio": {
         "label": "Audio",
-        "title": "Audio %s"
+        "name": "audiodatei"
       },
       "back": "Beitragstyp ändern",
       "bookmark-of": {
@@ -76,8 +76,8 @@
         "label": "Titel"
       },
       "photo": {
-        "label": "Foto",
-        "title": "Foto %s"
+        "label": "Fotos",
+        "name": "foto"
       },
       "publish": "Beitrag veröffentlichen",
       "publishDraft": "Entwurf speichern",
@@ -97,8 +97,8 @@
       "update": "Beitrag aktualisieren",
       "updateDraft": "Entwurf aktualisieren",
       "video": {
-        "label": "Video",
-        "title": "Video %s"
+        "label": "Videos",
+        "name": "video"
       },
       "visibility": {
         "label": "Sichtbarkeit"

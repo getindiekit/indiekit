@@ -72,6 +72,13 @@ export const formController = {
         }
       }
 
+      // Convert media values object to Array
+      for (const key of ["audio", "photo", "video"]) {
+        if (values[key]) {
+          values[key] = Object.values(values[key]);
+        }
+      }
+
       // Convert geo value to object
       if (values.geo) {
         values.location = getLocationProperty(values.geo);
