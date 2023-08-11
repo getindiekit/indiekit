@@ -1,0 +1,42 @@
+{
+  "backLink": {
+    "text": "Atrás"
+  },
+  "error": "Error",
+  "errorSummary": {
+    "title": "Hay un problema"
+  },
+  "geoInput": {
+    "denied": "No se puede obtener el permiso para usar la ubicación actual",
+    "failed": "No se puede obtener la ubicación actual",
+    "getCurrentPosition": "Usar ubicación actual"
+  },
+  "important": "Importante",
+  "noValue": "No establecido",
+  "optionalValue": "(opcional)",
+  "pagination": {
+    "defaultType": "resultados",
+    "item": "Página %s",
+    "next": "Siguiente: %s",
+    "page": "página",
+    "previous": "Anterior %s"
+  },
+  "skipLink": {
+    "text": "Saltar al contenido"
+  },
+  "success": "Éxito",
+  "tagInput": {
+    "added": "{{tag}} {{name}} agregada",
+    "defaultTag": "etiqueta",
+    "defaultTags": "etiquetas",
+    "delete": "Eliminar {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} eliminada",
+    "edit": "Editar {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Usar las teclas de flecha izquierda y derecha para navegar, ingresar o tabular para crear, eliminar para borrar {{tags}}.",
+    "noneSelected": "No se han seleccionado {{tags}}.",
+    "placeholder": "Agregar {{tags}}",
+    "selected": "{{tag}} {{name}} seleccionada. Pulsa enter para editar y eliminar para borrar.",
+    "updated": "{{tag}} actualizada a {{name}}."
+  },
+  "warning": "Advertencia"
+}

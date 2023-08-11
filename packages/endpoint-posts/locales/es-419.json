@@ -1,0 +1,138 @@
+{
+  "posts": {
+    "create": {
+      "action": "Nueva publicación",
+      "title": "Crear una nueva publicación %s"
+    },
+    "delete": {
+      "action": "Eliminar publicación",
+      "cancel": "No – volver a la publicación",
+      "submit": "Estoy seguro – borrar esta publicación",
+      "title": "¿Está seguro que quiere eliminar esta publicación?"
+    },
+    "error": {
+      "content": {
+        "empty": "Introducir algún contenido"
+      },
+      "geo": {
+        "invalid": "Introduce coordenadas válidas"
+      },
+      "media": {
+        "empty": "Introduce una ruta de archivo o una dirección web como %s"
+      },
+      "mp-photo-alt": {
+        "empty": "Introducir una descripción de esta foto"
+      },
+      "name": {
+        "empty": "Ingresar un título"
+      },
+      "url": {
+        "empty": "Introducir una dirección web como %s"
+      }
+    },
+    "form": {
+      "advancedOptions": "Opciones avanzadas",
+      "audio": {
+        "label": "Audio",
+        "title": "Audio %s"
+      },
+      "back": "Cambiar tipo de publicación",
+      "bookmark-of": {
+        "label": "Marcador de"
+      },
+      "cancel": "Cancelar",
+      "category": {
+        "hint": "Separe cada categoría con una coma",
+        "label": "Categorías",
+        "tag": "categoría"
+      },
+      "content": {
+        "label": "Contenido"
+      },
+      "continue": "Continuar",
+      "geo": {
+        "hint": "Latitud y longitud, por ejemplo %s",
+        "label": "Coordenadas de ubicación"
+      },
+      "in-reply-to": {
+        "label": "En respuesta a"
+      },
+      "like-of": {
+        "label": "Como de"
+      },
+      "media": {
+        "label": "Ruta o URL del archivo"
+      },
+      "mp-photo-alt": {
+        "label": "Descripción accesible"
+      },
+      "mp-slug": {
+        "label": "Babosa de URL"
+      },
+      "mp-syndicate-to": {
+        "label": "Sindicarse con"
+      },
+      "name": {
+        "label": "Título"
+      },
+      "photo": {
+        "label": "Foto",
+        "title": "Foto %s"
+      },
+      "publish": "Publicar publicación",
+      "publishDraft": "Guardar borrador",
+      "repost-of": {
+        "label": "Republicación de"
+      },
+      "rsvp": {
+        "interested": "Interesado",
+        "label": "RSVP",
+        "maybe": "Quizás",
+        "no": "No",
+        "yes": "Sí"
+      },
+      "summary": {
+        "label": "Resumen"
+      },
+      "update": "Actualizar publicación",
+      "updateDraft": "Actualizar borrador",
+      "video": {
+        "label": "Vídeo",
+        "title": "Video %s"
+      },
+      "visibility": {
+        "label": "Visibilidad"
+      }
+    },
+    "new": {
+      "title": "¿Qué tipo de publicación quiere crear?"
+    },
+    "post": {
+      "properties": "Propiedades",
+      "syndicate": "Publicación del sindicato"
+    },
+    "posts": {
+      "none": "No hay publicaciones",
+      "title": "Publicaciones publicadas"
+    },
+    "status": {
+      "deleted": "Eliminado",
+      "draft": "Borrador",
+      "private": "Privado",
+      "public": "Público",
+      "published": "Publicado",
+      "syndicated": "Sindicado",
+      "unlisted": "No está en la lista"
+    },
+    "title": "Publicaciones",
+    "undelete": {
+      "action": "Restaurar publicación",
+      "submit": "Estoy seguro – restaura esta publicación",
+      "title": "¿Está seguro que quiere restaurar esta publicación?"
+    },
+    "update": {
+      "action": "Editar publicación",
+      "title": "Actualizar publicación %s"
+    }
+  }
+}

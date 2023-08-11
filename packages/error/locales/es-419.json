@@ -1,0 +1,39 @@
+{
+  "BadRequestError": {
+    "invalid": "Falta un parámetro obligatorio en la solicitud, incluye un parámetro o valor de parámetro no admitido, repite el mismo parámetro, usa más de un método para incluir un token de acceso o tiene un formato incorrecto",
+    "invalidValue": "Se ha proporcionado un valor inválido para: `%s`",
+    "missingParameter": "Falta el parámetro: `%s`",
+    "missingProperty": "No se incluye %s en la solicitud",
+    "missingResource": "No se encontró ninguna %s en esta URL",
+    "missingToken": "No se ha proporcionado ningún token de portador por solicitud",
+    "title": "Solicitud incorrecta"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "La solicitud requiere privilegios superiores a los proporcionados por el token de acceso",
+    "invalidMe": "La URL de publicación no coincide con la proporcionada por el token de acceso",
+    "invalidRedirect": "Intento de redirección inválido",
+    "invalidState": "Valor inválido para `state`",
+    "title": "Prohibido"
+  },
+  "NotFoundError": {
+    "page": "Si ha introducido una dirección web, compruebe que sea correcta.",
+    "record": "No se ha encontrado ningún registro en la base de datos para %s",
+    "title": "No encontrado"
+  },
+  "NotImplementedError": {
+    "database": "Esta función requiere una base de datos",
+    "postType": "No se ha proporcionado configuración para el tipo de publicación %s",
+    "query": "Consulta no admitida para `{{key}}`: `{{value}}`",
+    "secret": "Falta `SECRET`",
+    "title": " No ejecutado"
+  },
+  "UnauthorizedError": {
+    "invalidCode": "El código de autorización proporcionado está caduco, revocado, tiene un formato incorrecto o no es válido por otros motivos",
+    "invalidToken": "El token de acceso proporcionado ha caducado, se ha revocado, está mal formado o no es válido por otros motivos",
+    "title": "No autorizado"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Tipo de medio no compatible",
+    "type": "El tipo de medio %s no es compatible"
+  }
+}
