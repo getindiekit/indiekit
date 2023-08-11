@@ -1,0 +1,72 @@
+{
+  "guidance": {
+    "discovery": "Para que %s pueda ser descubierto por los clientes de Micropub y solicitar permiso para publicar en su sitio web, agregue los siguientes valores `<head>`:"
+  },
+  "homepage": {
+    "title": "¡Bienvenido!"
+  },
+  "scope": {
+    "create": {
+      "label": "Crear publicaciones"
+    },
+    "delete": {
+      "label": "Eliminar publicaciones y contenido multimedia"
+    },
+    "draft": {
+      "label": "Crear y actualizar solo borradores de publicaciones"
+    },
+    "label": "Permisos de publicación",
+    "media": {
+      "label": "Subir contenido multimedia"
+    },
+    "none": {
+      "label": "No tiene ningún permiso de publicación"
+    },
+    "update": {
+      "label": "Actualizar publicaciones"
+    }
+  },
+  "session": {
+    "login": {
+      "description": "Inicie sesión con IndieAuth para verificar que es propietario de %s",
+      "me": "Dirección web",
+      "submit": "Iniciar sesión con IndieAuth",
+      "title": "Iniciar sesión"
+    },
+    "logout": {
+      "title": "Salir"
+    }
+  },
+  "status": {
+    "application": {
+      "accessToken": "Token de acceso",
+      "authorizationEndpoint": "Punto final de autorización",
+      "installedPlugins": "Plug-ins instalados",
+      "locale": "Idioma",
+      "localeNotAvailable": "{{app}} aún no se ha traducido a {{locale}}",
+      "mediaEndpoint": "Punto final de medios",
+      "micropubEndpoint": "Punto final de Micropub",
+      "name": "Nombre",
+      "summaryTitle": "Configuración de la aplicación",
+      "themeColor": "Color del tema",
+      "themeColorScheme": "Tema",
+      "themeColorSchemeValue": {
+        "automatic": "Automático",
+        "dark": "Oscuro",
+        "light": "Claro"
+      },
+      "timeZone": "Zona horaria",
+      "version": "Versión"
+    },
+    "publication": {
+      "locale": "Idioma",
+      "me": "Dirección web",
+      "postTypes": "Tipos de publicaciones",
+      "preset": "Preestablecido",
+      "store": "Tienda de contenido",
+      "summaryTitle": "Configuración de publicación",
+      "syndicationTargets": "Objetivos de sindicación"
+    },
+    "title": "Estado del servidor"
+  }
+}

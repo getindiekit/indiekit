@@ -7,6 +7,7 @@ Indiekit has been localised into the following languages:
 - `en`: US English
 - `de`: Deutsch (with contributions from [Andreas Fink](https://github.com/AFink))
 - `es`: Español (with contributions from [Anthony Ciccarello](https://github.com/aciccarello))
+- `es-419`: Español (Latin American Spanish, with contributions from Claudia Botero)
 - `fr`: Français (with contributions from David Legrand)
 - `id`: bahasa Indonesia (with contributions from Zeky Chandra)
 - `nl`: Nederlands

@@ -1,0 +1,36 @@
+{
+  "files": {
+    "delete": {
+      "action": "Eliminar archivo",
+      "cancel": "No – volver al archivo",
+      "note": "Puede que aún esté accesible o recuperable desde su almacén de contenido (%s).",
+      "submit": "Estoy seguro – borrar este archivo",
+      "title": "¿Está seguro de que quiere eliminar este archivo?"
+    },
+    "error": {
+      "file": {
+        "empty": "Elija un archivo para subir"
+      }
+    },
+    "file": {
+      "download": "Descargar archivo",
+      "properties": "Propiedades"
+    },
+    "files": {
+      "none": "Sin archivos",
+      "title": "Archivos subidos"
+    },
+    "form": {
+      "cancel": "Cancelar",
+      "file": {
+        "label": "Archivo"
+      },
+      "submit": "Cargar"
+    },
+    "title": "Archivos",
+    "upload": {
+      "action": "Cargar archivo",
+      "title": "Cargar un archivo nuevo"
+    }
+  }
+}
