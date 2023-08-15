@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import { wrapElement } from "../../lib/utils/wrap-element.js";
 
 export const GeoInputController = class extends Controller {
   static targets = ["errorMessage", "geo"];
@@ -22,9 +23,11 @@ export const GeoInputController = class extends Controller {
     const button = buttonTemplate.content.cloneNode(true);
     const input = this.element.querySelector(".input");
 
-    // Move input into group, and append find location button
-    input.parentNode.insertBefore(inputButtonGroup, input);
-    inputButtonGroup.append(input, button);
+    // Wrap input within `input-button-group` container
+    wrapElement(input, inputButtonGroup);
+
+    // Add button to `input-button-group` container
+    inputButtonGroup.append(button);
   }
 
   showError(element, message) {
