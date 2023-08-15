@@ -18,8 +18,6 @@
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   color: var(--color-on-offset);
-  display: flex;
-  flex-direction: column;
   padding: var(--space-m);
 
   & .fieldset__legend {
