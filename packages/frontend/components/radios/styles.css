@@ -1,5 +1,5 @@
 .radios {
-  --radio-size: 1.5em;
+  --radio-size: 1.66667em;
   --check-size: calc(var(--radio-size) / 4);
   --touch-target-size: 44px;
 }
@@ -8,19 +8,18 @@
   .radios--inline {
     display: flex;
     gap: var(--space-xl);
+
+    & .radios__item {
+      margin-block-start: 0;
+    }
   }
 }
 
 .radios__item {
-  display: block;
-  margin-block-end: var(--space-m);
-  min-block-size: var(--radio-size);
+  display: flex;
+  flex-wrap: wrap;
   padding-inline-start: calc(var(--radio-size) + var(--space-s));
   position: relative;
-
-  &:last-child {
-    margin-block-end: 0;
-  }
 }
 
 .radios__input {
@@ -37,10 +36,8 @@
 
 .radios__label.label {
   --label-font: var(--font-body);
-  align-items: center;
   cursor: pointer;
-  margin-block-end: 0;
-  min-block-size: var(--radio-size);
+  margin-block-start: 0;
   touch-action: manipulation; /* remove 300ms pause on mobile */
 
   /* ( ) Ring */
@@ -102,8 +99,7 @@
 }
 
 .radios__hint {
-  display: block;
-  margin-block-start: 0;
+  width: 100%;
 }
 
 /* Divider (‘or’) */
@@ -116,6 +112,7 @@
 /* Conditonal reveals */
 .radios__conditional {
   --input-border-halved: calc(var(--input-border-width) / 2);
+  --label-font: var(--font-body);
   border-inline-start: var(--input-border-width) solid var(--color-outline);
   margin-inline-start: calc(
     calc(var(--radio-size) / 2) - var(--input-border-halved)

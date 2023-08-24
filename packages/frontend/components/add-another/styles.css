@@ -1,5 +1,5 @@
 [data-controller="add-another"] {
-  --counter-size: 1.5em;
+  --counter-size: 1.66667em;
 }
 
 .add-another {
@@ -40,6 +40,7 @@
 .add-another__add.button {
   display: flex;
   inline-size: calc(100% - var(--counter-size) - var(--space-s));
+  margin-block-start: 0;
   margin-inline-start: calc(var(--counter-size) + var(--space-s));
 }
 
@@ -50,7 +51,7 @@
   block-size: var(--counter-size);
   display: flex;
   inline-size: var(--counter-size);
-  inset-block-start: calc(var(--counter-size) + var(--space-s));
+  inset-block-start: var(--counter-size);
   inset-inline-start: 0;
   position: absolute;
 }

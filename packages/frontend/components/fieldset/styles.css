@@ -9,7 +9,6 @@
 
 .fieldset__legend {
   font: var(--font-label);
-  margin-block-end: var(--space-xs);
 }
 
 .fieldset--group {

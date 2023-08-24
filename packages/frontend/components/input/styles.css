@@ -95,5 +95,6 @@
 
   & .button {
     flex: 1 1 auto;
+    margin-block-start: 0;
   }
 }
