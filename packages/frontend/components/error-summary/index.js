@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 /**
  * Based by the error summary component provided by GOV.UK Frontend
- * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/src/govuk/components/error-summary/error-summary.js}
+ * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/error-summary/error-summary.mjs}
  */
 export const ErrorSummaryController = class extends Controller {
   connect() {
@@ -12,7 +12,7 @@ export const ErrorSummaryController = class extends Controller {
   }
 
   /**
-   * Focus the error summary
+   * Focus error summary
    */
   setFocus() {
     if (this.element.dataset.disableAutoFocus === "true") {
@@ -54,22 +54,24 @@ export const ErrorSummaryController = class extends Controller {
    * This also results in the label and/or legend being announced correctly in
    * NVDA - without this only the field type is announced (e.g. "Edit, has
    * autocomplete").
-   * @param {HTMLElement} target - Event target
+   * @param {HTMLElement} $target - Event target
    * @returns {boolean} True if the target was able to be focussed
    */
-  focusTarget(target) {
+  focusTarget($target) {
     // If the element that was clicked was not a link, return early
-    if (target.tagName !== "A" || target.href === false) {
+    if ($target.tagName !== "A" || $target.href === false) {
       return false;
     }
 
-    const fragment = this.getFragmentFromUrl(target.href);
-    const input = document.querySelector(`#${fragment}`);
-    if (!input) {
+    const fragment = this.getFragmentFromUrl($target.href);
+
+    /** @satisfies {HTMLInputElement} */
+    const $input = document.querySelector(`#${fragment}`);
+    if (!$input) {
       return false;
     }
 
-    const legendOrLabel = this.getAssociatedLegendOrLabel(input);
+    const legendOrLabel = this.getAssociatedLegendOrLabel($input);
     if (!legendOrLabel) {
       return false;
     }
@@ -77,7 +79,7 @@ export const ErrorSummaryController = class extends Controller {
     // Scroll the legend or label into view _before_ calling focus on the input
     // to avoid extra scrolling in browsers that don’t support `preventScroll`
     legendOrLabel.scrollIntoView();
-    input.focus({ preventScroll: true });
+    $input.focus({ preventScroll: true });
 
     return true;
   }
@@ -85,7 +87,7 @@ export const ErrorSummaryController = class extends Controller {
   /**
    * Get fragment name from a URL
    * @param {string} url - URL
-   * @returns {string} Fragment name (without the hash)
+   * @returns {string|boolean} Fragment name (without the hash)
    */
   getFragmentFromUrl(url) {
     return url.startsWith("#") ? false : url.split("#").pop();
@@ -101,21 +103,22 @@ export const ErrorSummaryController = class extends Controller {
    *   bottom of the input
    * - The first `<label>` that is associated with the input using for="inputId"
    * - The closest parent `<label>`
-   * @param {HTMLElement} input - The input
-   * @returns {HTMLLegendElement|HTMLLabelElement} Associated legend or label, null if none found
+   * @param {HTMLInputElement} $input - The input
+   * @returns {HTMLLegendElement|HTMLLabelElement} Associated legend or label
    */
-  getAssociatedLegendOrLabel(input) {
-    const fieldset = input.closest("fieldset");
+  getAssociatedLegendOrLabel($input) {
+    const $fieldset = $input.closest("fieldset");
+    const inputId = $input.getAttribute("id");
 
-    if (fieldset) {
-      const legends = fieldset.querySelectorAll("legend");
+    if ($fieldset) {
+      const $legends = $fieldset.querySelectorAll("legend");
 
-      if (legends.length > 0) {
-        const candidateLegend = legends[0];
+      if ($legends.length > 0) {
+        const $candidateLegend = $legends[0];
 
         // If input type is radio or checkbox, use legend if there is one
-        if (input.type === "checkbox" || input.type === "radio") {
-          return candidateLegend;
+        if ($input.type === "checkbox" || $input.type === "radio") {
+          return $candidateLegend;
         }
 
         // For other input types, only scroll to the fieldset’s legend (instead
@@ -124,8 +127,8 @@ export const ErrorSummaryController = class extends Controller {
         //
         // This should avoid situations where the input either ends up off the
         // screen, or obscured by a software keyboard.
-        const legendTop = candidateLegend.getBoundingClientRect().top;
-        const inputRect = input.getBoundingClientRect();
+        const legendTop = $candidateLegend.getBoundingClientRect().top;
+        const inputRect = $input.getBoundingClientRect();
 
         // If the browser doesn’t support Element.getBoundingClientRect().height
         // or window.innerHeight (like IE8), bail and just link to the label.
@@ -133,15 +136,15 @@ export const ErrorSummaryController = class extends Controller {
           const inputBottom = inputRect.top + inputRect.height;
 
           if (inputBottom - legendTop < window.innerHeight / 2) {
-            return candidateLegend;
+            return $candidateLegend;
           }
         }
       }
     }
 
     return (
-      document.querySelector("label[for='" + input.getAttribute("id") + "']") ||
-      input.closest("label")
+      document.querySelector(`label[for="${inputId}"]`) ||
+      $input.closest("label")
     );
   }
 };
