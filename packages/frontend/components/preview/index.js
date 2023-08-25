@@ -32,16 +32,16 @@ export const PreviewController = class extends Controller {
 
   /**
    * Update preview in output based on inputted value
-   * @param {HTMLOutputElement} outputElement - Output element
-   * @param {HTMLInputElement} [inputElement] - Input element
+   * @param {HTMLOutputElement} $outputElement - Output element
+   * @param {HTMLInputElement} [$inputElement] - Input element
    */
-  updatePreview(outputElement, inputElement) {
-    outputElement.classList.add("placeholder");
-    outputElement.value = outputElement.dataset.placeholder;
+  updatePreview($outputElement, $inputElement) {
+    $outputElement.classList.add("placeholder");
+    $outputElement.value = $outputElement.dataset.placeholder;
 
-    if (inputElement && inputElement.value !== "") {
-      outputElement.classList.remove("placeholder");
-      outputElement.value = decodeURIComponent(inputElement.value);
+    if ($inputElement && $inputElement.value !== "") {
+      $outputElement.classList.remove("placeholder");
+      $outputElement.value = decodeURIComponent($inputElement.value);
     }
   }
 };
