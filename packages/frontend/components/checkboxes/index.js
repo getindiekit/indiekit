@@ -37,6 +37,18 @@ export const CheckboxesController = class extends Controller {
     if ($clickedInput.hasAttribute("aria-controls")) {
       this.syncConditionalRevealWithInputState($clickedInput);
     }
+
+    // No further behaviour needed for unchecking
+    if (!$clickedInput.checked) {
+      return;
+    }
+
+    // Handle ‘exclusive’ checkbox behaviour (ie “None of these”)
+    if ($clickedInput.dataset.behaviour === "exclusive") {
+      this.unCheckAllInputsExcept($clickedInput);
+    } else {
+      this.unCheckExclusiveInputs($clickedInput);
+    }
   }
 
   /**
@@ -70,6 +82,52 @@ export const CheckboxesController = class extends Controller {
         "checkboxes__conditional--hidden",
         !inputIsChecked,
       );
+    }
+  }
+
+  /**
+   * Uncheck other checkboxes
+   *
+   * Find any other checkbox inputs with same name value, and uncheck them.
+   * Useful when a “None of these” checkbox is checked.
+   * @param {HTMLInputElement} $input - Checkbox input
+   */
+  unCheckAllInputsExcept($input) {
+    /** @satisfies {NodeListOf<HTMLInputElement>} */
+    const $allInputsWithSameName = document.querySelectorAll(
+      `input[type="checkbox"][name="${$input.name}"]`,
+    );
+
+    for (const $inputWithSameName of $allInputsWithSameName) {
+      const hasSameFormOwner = $input.form === $inputWithSameName.form;
+      if (hasSameFormOwner && $inputWithSameName !== $input) {
+        $inputWithSameName.checked = false;
+        this.syncConditionalRevealWithInputState($inputWithSameName);
+      }
+    }
+  }
+
+  /**
+   * Uncheck exclusive checkboxes
+   *
+   * Find any checkbox inputs with same name value and has the ‘exclusive’
+   * behaviour, and uncheck them. This helps prevent someone checking both a
+   * regular checkbox and a “None of these” checkbox in the same fieldset.
+   * @param {HTMLInputElement} $input - Checkbox input
+   */
+  unCheckExclusiveInputs($input) {
+    /** @satisfies {NodeListOf<HTMLInputElement>} */
+    const $allInputsWithSameNameAndExclusiveBehaviour =
+      document.querySelectorAll(
+        `input[data-behaviour="exclusive"][type="checkbox"][name="${$input.name}"]`,
+      );
+
+    for (const $exclusiveInput of $allInputsWithSameNameAndExclusiveBehaviour) {
+      const hasSameFormOwner = $input.form === $exclusiveInput.form;
+      if (hasSameFormOwner) {
+        $exclusiveInput.checked = false;
+        this.syncConditionalRevealWithInputState($exclusiveInput);
+      }
     }
   }
 };
