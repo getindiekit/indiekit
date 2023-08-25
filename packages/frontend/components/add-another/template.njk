@@ -28,7 +28,7 @@
 {% else %}
   {{ innerHtml | trim | safe }}
 {% endif %}
-  <template id="add-another-add-button">
+  <template data-add-another-target="addButton">
     {{ button({
       classes: "add-another__add button--secondary",
       text: __("addAnother.add", opts.name),
@@ -37,7 +37,7 @@
       }
     }) | indent(4) }}
   </template>
-  <template id="add-another-delete-button">
+  <template data-add-another-target="deleteButton">
     {{ button({
       classes: "add-another__delete button--warning",
       icon: "delete",
