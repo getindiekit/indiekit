@@ -2,27 +2,25 @@ import { Controller } from "@hotwired/stimulus";
 
 export const NotificationController = class extends Controller {
   initialize() {
-    const { element } = this;
-
-    if (element.dataset.disableAutoFocus === "true") {
+    if (this.element.dataset.disableAutoFocus === "true") {
       return;
     }
 
-    if (element.getAttribute("role") !== "alert") {
+    if (this.element.getAttribute("role") !== "alert") {
       return;
     }
 
     // Set tabindex to -1 to make element focusable with JavaScript.
     // Remove tabindex on blur as component doesn’t need to be focusable
     // after page has loaded.
-    if (!element.getAttribute("tabindex")) {
-      element.setAttribute("tabindex", "-1");
+    if (!this.element.getAttribute("tabindex")) {
+      this.element.setAttribute("tabindex", "-1");
 
-      element.addEventListener("blur", function () {
-        element.removeAttribute("tabindex");
+      this.element.addEventListener("blur", function () {
+        this.element.removeAttribute("tabindex");
       });
     }
 
-    element.focus();
+    this.element.focus();
   }
 };
