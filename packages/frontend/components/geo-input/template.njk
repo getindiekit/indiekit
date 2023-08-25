@@ -2,7 +2,7 @@
 {% from "../error-message/macro.njk" import errorMessage with context %}
 {% from "../input/macro.njk" import input with context %}
 {% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
-{{ input({
+{% call input({
   field: {
     attributes: {
       "data-controller": "geo-input",
@@ -17,23 +17,20 @@
   label: opts.label,
   hint: opts.hint,
   optional: opts.optional,
-  attributes: {
-    "data-geo-input-target": "geo"
-  },
+  attributes: { "data-geo-input-target": "geo" },
   errorMessage: opts.errorMessage
-}) }}
-<template id="geo-input-button">
-  {{ button({
-    classes: "button--secondary",
-    type: "button",
-    text: __("geoInput.getCurrentPosition"),
-    attributes: {
-      "data-action": "geo-input#find"
-    }
-  }) | indent(2) }}
-</template>
-<template id="geo-input-error-message">
-  {{ errorMessage({
-    id: id + "-error"
-  }) | indent(2) }}
-</template>
+}) %}
+  <template data-geo-input-target="findButton">
+    {{ button({
+      classes: "button--secondary",
+      type: "button",
+      text: __("geoInput.getCurrentPosition"),
+      attributes: { "data-action": "geo-input#find" }
+    }) | indent(4) }}
+  </template>
+  <template data-geo-input-target="errorMessage">
+    {{ errorMessage({
+      id: id + "-error"
+    }) | indent(4) }}
+  </template>
+{% endcall %}
