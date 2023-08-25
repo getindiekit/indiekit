@@ -41,4 +41,5 @@
   {%- if opts.inputmode %} inputmode="{{ opts.inputmode }}"{% endif %}
   {%- if opts.required %} required{% endif %}
   {{- attributes(opts.attributes) }}>
+  {{ caller() if caller }}
 {%- endcall %}
