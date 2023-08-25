@@ -144,6 +144,29 @@
   }]
 }) }}
 
+{{ checkboxes({
+  errorMessage: { text: "Conditional checkboxes error" } if errors,
+  fieldset: {
+    legend: "Conditional checkboxes"
+  },
+  hint: "Conditional checkboxes hint text",
+  name: "conditional-checkboxes",
+  items: [{
+    label: "First checkbox option",
+    value: "first"
+  }, {
+    label: "Second checkbox option",
+    value: "second",
+    checked: true,
+    conditional: input({
+      errorMessage: { text: "Second checkbox option input error" } if errors,
+      name: "conditional-checkboxes-input",
+      label: "Second checkbox option input",
+      hint: "Second checkbox option input hint text"
+    })
+  }]
+}) }}
+
 {{ radios({
   errorMessage: { text: "Radios error" } if errors,
   fieldset: {
