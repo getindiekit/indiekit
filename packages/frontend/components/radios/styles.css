@@ -118,4 +118,8 @@
     calc(var(--radio-size) / 2) - var(--input-border-halved)
   );
   padding-inline-start: calc(var(--space-l) + var(--input-border-halved));
+
+  @nest .js-enabled &--hidden {
+    display: none;
+  }
 }

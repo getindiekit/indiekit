@@ -30,7 +30,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-<div class="{{ classes("radios", opts) }}"{{- attributes(opts.attributes) }}>
+<div class="{{ classes("radios", opts) }}"{{- attributes(opts.attributes) }} data-controller="radios">
 {% for item in opts.items %}{% if item %}
   {% set id = itemId(item.id, idPrefix, loop) %}
   {% set conditionalId = "conditional-" + id %}
@@ -43,9 +43,11 @@
     <input class="radios__input" id="{{ id }}" name="{{ opts.name }}" type="radio" value="{{ item.value }}"
     {{-" checked" if isChecked }}
     {{-" disabled" if item.disabled }}
-    {%- if item.conditional.html %} data-aria-controls="{{ conditionalId }}"{% endif -%}
+    {%- if item.conditional %} data-aria-controls="{{ conditionalId }}"{% endif -%}
     {%- if item.hint %} aria-describedby="{{ itemHintId }}"{% endif -%}
-    {{- attributes(opts.attributes) }}>
+    {{- attributes(opts.attributes) }}
+    data-radios-target="input"
+    data-action="radios#toggleConditionals">
     {{ label({
       classes: "radios__label",
       for: id,
@@ -57,9 +59,9 @@
       text: item.hint
     }) if item.hint }}
   </div>
-  {% if item.conditional.html %}
+  {% if item.conditional %}
   <div class="radios__conditional{{ " radios__conditional--hidden" if not isChecked }}" id="{{ conditionalId }}">
-    {{ item.conditional.html | safe }}
+    {{ item.conditional | safe }}
   </div>
   {% endif %}
   {% endif %}

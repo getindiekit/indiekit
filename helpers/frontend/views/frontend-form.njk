@@ -163,6 +163,29 @@
   }]
 }) }}
 
+{{ radios({
+  errorMessage: { text: "Conditional radios error" } if errors,
+  fieldset: {
+    legend: "Conditional radios"
+  },
+  hint: "Conditional radios hint text",
+  name: "conditional-radios",
+  items: [{
+    label: "First radio option",
+    value: "first"
+  }, {
+    label: "Second radio option",
+    value: "second",
+    checked: true,
+    conditional: input({
+      errorMessage: { text: "Second radio option input error" } if errors,
+      name: "conditional-radios-input",
+      label: "Second radio option input",
+      hint: "Second radio option input hint text"
+    })
+  }]
+}) }}
+
 {{ button({
   text: "Submit for errors"
 }) }}
