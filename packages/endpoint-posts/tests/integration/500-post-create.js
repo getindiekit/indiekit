@@ -16,6 +16,7 @@ test("Returns 500 error creating post", async (t) => {
     .set("cookie", [testCookie()])
     .send({ type: "entry" })
     .send({ content: "Foobar" })
+    .send({ published: "2023-08-28T12:30" })
     .send({ slug: "401" });
   const dom = new JSDOM(response.text);
   const result = dom.window.document.querySelector(

@@ -1,6 +1,7 @@
 import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
+import { getTimeZoneDesignator, getTimeZoneOffset } from "@indiekit/util";
 import { validationResult } from "express-validator";
 import { endpoint } from "../endpoint.js";
 import { getLocationProperty } from "../utils.js";
@@ -40,7 +41,7 @@ export const formController = {
    * @type {import("express").RequestHandler}
    */
   async post(request, response) {
-    const { micropubEndpoint } = request.app.locals.application;
+    const { micropubEndpoint, timeZone } = request.app.locals.application;
     const { action, accessToken, data, postTypeName } = response.locals;
 
     const errors = validationResult(request);
@@ -56,6 +57,18 @@ export const formController = {
 
     try {
       const values = request.body;
+      if (values["publication-date"] === "now") {
+        // Remove empty local date value and let server set date
+        delete values.published;
+      } else {
+        // Add timezone designator to local date value
+        const timeZoneOffsetMinutes = getTimeZoneOffset(
+          timeZone,
+          values.published,
+        );
+        const timeZoneDesignator = getTimeZoneDesignator(timeZoneOffsetMinutes);
+        values.published = values.published + timeZoneDesignator;
+      }
 
       // Convert category value to Array
       if (values.category) {

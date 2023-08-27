@@ -81,6 +81,11 @@
       },
       "publish": "Publicar postagem",
       "publishDraft": "Salvar rascunho",
+      "published": {
+        "label": "Data de publicação",
+        "now": "Agora",
+        "scheduled": "Data e hora específicas"
+      },
       "repost-of": {
         "label": "Republicação de"
       },

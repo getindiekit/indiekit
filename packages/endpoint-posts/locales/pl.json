@@ -81,6 +81,11 @@
       },
       "publish": "Opublikuj post",
       "publishDraft": "Zapisz szkic",
+      "published": {
+        "label": "Data publikacji",
+        "now": "Teraz",
+        "scheduled": "Konkretna data i godzina"
+      },
       "repost-of": {
         "label": "Repost z"
       },

@@ -81,6 +81,11 @@
       },
       "publish": "Publicar publicación",
       "publishDraft": "Guardar borrador",
+      "published": {
+        "label": "Fecha de publicación",
+        "now": "Ahora",
+        "scheduled": "Fecha y hora específicas"
+      },
       "repost-of": {
         "label": "Republicación de"
       },
