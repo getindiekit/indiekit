@@ -81,6 +81,11 @@
       },
       "publish": "Objavi post",
       "publishDraft": "Sačuvaj nacrt",
+      "published": {
+        "label": "Datum objavljivanja",
+        "now": "Sada",
+        "scheduled": "Specifičan datum i vreme"
+      },
       "repost-of": {
         "label": "Repost od"
       },

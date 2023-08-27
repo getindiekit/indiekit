@@ -81,6 +81,11 @@
       },
       "publish": "发布帖子",
       "publishDraft": "保存草稿",
+      "published": {
+        "label": "出版日期",
+        "now": "现在",
+        "scheduled": "具体日期和时间"
+      },
       "repost-of": {
         "label": "重新发布的"
       },

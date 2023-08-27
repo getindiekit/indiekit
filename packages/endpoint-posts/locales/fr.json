@@ -81,6 +81,11 @@
       },
       "publish": "Publier la publication",
       "publishDraft": "Enregistrer le brouillon",
+      "published": {
+        "label": "Date de publication",
+        "now": "Maintenant",
+        "scheduled": "Date et heure spécifiques"
+      },
       "repost-of": {
         "label": "Republication de"
       },

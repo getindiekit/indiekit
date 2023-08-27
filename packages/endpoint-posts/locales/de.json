@@ -81,6 +81,11 @@
       },
       "publish": "Beitrag veröffentlichen",
       "publishDraft": "Entwurf speichern",
+      "published": {
+        "label": "Veröffentlichungsdatum",
+        "now": "Jetzt",
+        "scheduled": "Bestimmtes Datum und Uhrzeit"
+      },
       "repost-of": {
         "label": "Repost von"
       },

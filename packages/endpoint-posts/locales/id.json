@@ -81,6 +81,11 @@
       },
       "publish": "Publikasikan postingan",
       "publishDraft": "Simpan draf",
+      "published": {
+        "label": "Tanggal penerbitan",
+        "now": "Sekarang",
+        "scheduled": "Tanggal dan waktu tertentu"
+      },
       "repost-of": {
         "label": "Repost dari"
       },

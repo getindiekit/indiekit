@@ -237,6 +237,32 @@
     summary: __("posts.form.advancedOptions")
   }) %}
     {{ radios({
+      fieldset: {
+        legend: __("posts.form.published.label")
+      },
+      name: "publication-date",
+      values: fieldData("publication-date").value,
+      items: [{
+        label: __("posts.form.published.now"),
+        value: "now",
+        checked: true
+      }, {
+        label: __("posts.form.published.scheduled"),
+        value: "scheduled",
+        conditional: input({
+          name: "published",
+          type: "datetime-local",
+          label: __("posts.form.published.label")
+        })
+      }]
+    }) if postStatus !== "published" else input({
+      name: "published",
+      value: fieldData("published").value | localDate(application.timeZone),
+      type: "datetime-local",
+      label: __("posts.form.published.label")
+    }) | indent(4) }}
+
+    {{ radios({
       classes: "radios--inline",
       name: "visibility",
       values: data.visibility or "public",

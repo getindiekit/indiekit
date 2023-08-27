@@ -81,6 +81,11 @@
       },
       "publish": "Post publiceren",
       "publishDraft": "Concept opslaan",
+      "published": {
+        "label": "Publicatie datum",
+        "now": "Nu",
+        "scheduled": "Specifieke datum en tijd"
+      },
       "repost-of": {
         "label": "Repost van"
       },

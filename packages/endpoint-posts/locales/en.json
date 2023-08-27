@@ -104,6 +104,11 @@
         "label": "Photos",
         "name": "photo"
       },
+      "published": {
+        "label": "Publication date",
+        "now": "Now",
+        "scheduled": "Specific date and time"
+      },
       "repost-of": {
         "label": "Repost of"
       },
