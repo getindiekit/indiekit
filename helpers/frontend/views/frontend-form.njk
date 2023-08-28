@@ -82,6 +82,14 @@
   hint: "Character count hint text"
 }) }}
 
+{{ fileInput({
+  errorMessage: { text: "File upload input error" } if errors,
+  name: "file-input",
+  label: "File upload input",
+  hint: "File upload input hint text",
+  uploadEndpoint: application.mediaEndpoint
+}) }}
+
 {{ geoInput({
   errorMessage: { text: "Geo input error" } if errors,
   name: "geo-input",

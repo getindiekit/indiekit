@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "Ada masalah"
   },
+  "fileInput": {
+    "uploadFile": "Unggah berkas…",
+    "uploadingFile": "Mengunggah berkas"
+  },
   "geoInput": {
     "denied": "Tidak dapat memperoleh izin untuk menggunakan lokasi saat ini",
     "failed": "Tidak bisa mendapatkan lokasi saat ini",

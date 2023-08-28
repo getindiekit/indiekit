@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "有一个问题"
   },
+  "fileInput": {
+    "uploadFile": "上传文件…",
+    "uploadingFile": "正在上传文件"
+  },
   "geoInput": {
     "denied": "无法获得使用当前位置的权限",
     "failed": "无法获取当前位置",

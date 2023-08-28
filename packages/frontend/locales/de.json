@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "Es gibt ein Problem"
   },
+  "fileInput": {
+    "uploadFile": "Datei hochladen…",
+    "uploadingFile": "Datei wird hochgeladen"
+  },
   "geoInput": {
     "denied": "Erlaubnis zur Nutzung des aktuellen Standorts konnte nicht eingeholt werden",
     "failed": "Der aktuelle Standort kann nicht abgerufen werden",

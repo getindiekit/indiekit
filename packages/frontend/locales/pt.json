@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "Há um problema"
   },
+  "fileInput": {
+    "uploadFile": "Subir arquivo…",
+    "uploadingFile": "Carregando arquivo"
+  },
   "geoInput": {
     "denied": "Não foi possível obter permissão para usar a localização atual",
     "failed": "Não é possível obter a localização atual",

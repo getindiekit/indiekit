@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "Det finns ett problem"
   },
+  "fileInput": {
+    "uploadFile": "Ladda upp fil…",
+    "uploadingFile": "Laddar upp fil"
+  },
   "geoInput": {
     "denied": "Det gick inte att få behörighet att använda aktuell plats",
     "failed": "Det gick inte att hämta aktuell plats",
