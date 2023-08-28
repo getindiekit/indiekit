@@ -1,5 +1,5 @@
 import { parseISO } from "date-fns";
-import { format, utcToZonedTime } from "date-fns-tz";
+import { format, utcToZonedTime, zonedTimeToUtc } from "date-fns-tz";
 import locales from "date-fns/locale/index.js";
 
 /**
@@ -13,6 +13,22 @@ export const formatDate = (string, tokens, lang = "en") => {
   const locale = locales[lang.replace("-", "")];
   const date = string === "now" ? new Date() : parseISO(string);
   const dateTime = format(date, tokens, { locale });
+  return dateTime;
+};
+
+/**
+ * Format a date as local date
+ * Used to convert date to value consumable by input[type="datetime-local"]
+ * @param {Date|string|number} string - Zoned date, i.e. 2023-08-28T12:30+01:00
+ * @param {string} timeZone - Time zone
+ * @returns {string} Formatted local date, i.e. 2023-08-28T12:30
+ */
+export const formatDateToLocal = (string, timeZone) => {
+  const zonedDateTime = zonedTimeToUtc(string, timeZone);
+  const dateTime = format(zonedDateTime, "yyyy-MM-dd'T'HH:mm", {
+    timeZone,
+  });
+
   return dateTime;
 };
 

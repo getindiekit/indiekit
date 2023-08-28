@@ -1,7 +1,12 @@
 import process from "node:process";
 import test from "ava";
 import dateFns from "date-fns";
-import { formatDate, getDate, getTimeZoneDesignator } from "../../lib/date.js";
+import {
+  formatDate,
+  formatDateToLocal,
+  getDate,
+  getTimeZoneDesignator,
+} from "../../lib/date.js";
 
 const { isValid, parseISO } = dateFns;
 
@@ -17,6 +22,16 @@ test("Formats the date right now", (t) => {
   const result = Math.round(formatDate("now", "t") / 1000);
 
   t.is(result, now);
+});
+
+test("Formats a date as local date", (t) => {
+  const tz1 = formatDateToLocal("2019-11-30T12:30:00+01:00", "Asia/Taipei");
+  const tz2 = formatDateToLocal("2019-11-30T12:30:00+01:00", "America/Panama");
+  const utc = formatDateToLocal("2019-11-30T12:30:00+01:00", "UTC");
+
+  t.is(tz1, "2019-11-30T03:30");
+  t.is(tz2, "2019-11-30T16:30");
+  t.is(utc, "2019-11-30T11:30");
 });
 
 test("`client` option creates UTC date time", (t) => {
