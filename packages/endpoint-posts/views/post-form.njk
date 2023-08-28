@@ -236,6 +236,25 @@
     open: showAdvancedOptions,
     summary: __("posts.form.advancedOptions")
   }) %}
+    {{ radios({
+      classes: "radios--inline",
+      name: "visibility",
+      values: data.visibility or "public",
+      fieldset: {
+        legend: __("posts.form.visibility.label")
+      },
+      items: [{
+        label: __("posts.status.public"),
+        value: "public"
+      }, {
+        label: __("posts.status.private"),
+        value: "private"
+      }, {
+        label: __("posts.status.unlisted"),
+        value: "unlisted"
+      }]
+    }) | indent(4) }}
+
     {{ tagInput({
       name: "category",
       value: fieldData("category").value,
@@ -263,25 +282,6 @@
       value: fieldData("mp-slug").value,
       label: __("posts.form.mp-slug.label"),
       optional: true
-    }) | indent(4) }}
-
-    {{ radios({
-      classes: "radios--inline",
-      name: "visibility",
-      values: data.visibility or "public",
-      fieldset: {
-        legend: __("posts.form.visibility.label")
-      },
-      items: [{
-        label: __("posts.status.public"),
-        value: "public"
-      }, {
-        label: __("posts.status.private"),
-        value: "private"
-      }, {
-        label: __("posts.status.unlisted"),
-        value: "unlisted"
-      }]
     }) | indent(4) }}
   {% endcall %}
 {% endblock %}
