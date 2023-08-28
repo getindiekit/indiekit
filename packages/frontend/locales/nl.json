@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "Er is een Probleem"
   },
+  "fileInput": {
+    "uploadFile": "Upload bestand…",
+    "uploadingFile": "Uploaden van bestanden"
+  },
   "geoInput": {
     "denied": "Kan geen toestemming krijgen om de huidige locatie te gebruiken",
     "failed": "Kan de huidige locatie niet ophalen",

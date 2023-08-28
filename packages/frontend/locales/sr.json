@@ -20,6 +20,10 @@
   "errorSummary": {
     "title": "Postoji problem"
   },
+  "fileInput": {
+    "uploadFile": "Otpremi datoteku…",
+    "uploadingFile": "Otpremanje datoteke"
+  },
   "geoInput": {
     "denied": "Nije moguće dobiti dozvolu za korišćenje trenutne lokacije",
     "failed": "Nije moguće dobiti trenutnu lokaciju",
