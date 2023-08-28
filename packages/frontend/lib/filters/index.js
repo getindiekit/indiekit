@@ -1,5 +1,6 @@
 export {
   formatDate as date,
+  formatDateToLocal as localDate,
   getCanonicalUrl as url,
   slugify,
 } from "@indiekit/util";
