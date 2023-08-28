@@ -6,6 +6,7 @@ import {
   formatDateToLocal,
   getDate,
   getTimeZoneDesignator,
+  getTimeZoneOffset,
 } from "../../lib/date.js";
 
 const { isValid, parseISO } = dateFns;
@@ -179,4 +180,10 @@ test("Gets server timezone offset from local time", (t) => {
 
   process.env.TZ = "UTC";
   t.is(getTimeZoneDesignator(), "Z");
+});
+
+test("Gets offset minutes from time zone name", (t) => {
+  t.is(getTimeZoneOffset("Asia/Taipei"), -480);
+  t.is(getTimeZoneOffset("America/Panama"), 300);
+  t.is(getTimeZoneOffset("UTC"), 0);
 });
