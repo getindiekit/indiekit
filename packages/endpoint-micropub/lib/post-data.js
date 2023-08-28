@@ -26,10 +26,7 @@ export const postData = {
     }
 
     // Normalise properties
-    properties = normaliseProperties(publication, properties);
-
-    // Add published date (or use that provided by client)
-    properties.published = getDate(timeZone, properties.published);
+    properties = normaliseProperties(publication, properties, timeZone);
 
     // Post type
     const type = getPostType(properties);
@@ -122,7 +119,7 @@ export const postData = {
     }
 
     // Normalise properties
-    properties = normaliseProperties(publication, properties);
+    properties = normaliseProperties(publication, properties, timeZone);
 
     // Post type
     const type = getPostType(properties);

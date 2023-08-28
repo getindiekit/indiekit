@@ -1,4 +1,4 @@
-import { randomString, slugify } from "@indiekit/util";
+import { getDate, randomString, slugify } from "@indiekit/util";
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
@@ -62,10 +62,13 @@ export const mf2ToJf2 = async (body, requestReferences) => {
  * Normalise JF2 properties
  * @param {object} publication - Publication configuration
  * @param {object} properties - Source JF2 properties
+ * @param {string} timeZone - Application time zone
  * @returns {object} Normalised JF2 properties
  */
-export const normaliseProperties = (publication, properties) => {
+export const normaliseProperties = (publication, properties, timeZone) => {
   const { me, slugSeparator } = publication;
+
+  properties.published = getDate(timeZone, properties.published);
 
   if (properties.name) {
     properties.name = properties.name.trim();

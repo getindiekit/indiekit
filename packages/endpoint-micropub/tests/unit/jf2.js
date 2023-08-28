@@ -380,7 +380,7 @@ test("Doesn’t add unavailable syndication target", (t) => {
 
 test("Normalises JF2 (few properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/article-content-provided.jf2"));
-  const result = normaliseProperties(t.context.publication, properties);
+  const result = normaliseProperties(t.context.publication, properties, "UTC");
 
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
@@ -396,7 +396,7 @@ test("Normalises JF2 (few properties)", (t) => {
 
 test("Normalises JF2 (all properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
-  const result = normaliseProperties(t.context.publication, properties);
+  const result = normaliseProperties(t.context.publication, properties, "UTC");
 
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
@@ -417,7 +417,7 @@ test("Normalises JF2 (syndication properties)", (t) => {
   const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
   delete properties["mp-syndicate-to"];
   properties.syndication = ["https://mastodon.example/status/1"];
-  const result = normaliseProperties(t.context.publication, properties);
+  const result = normaliseProperties(t.context.publication, properties, "UTC");
 
   t.is(result.type, "entry");
   t.is(result.name, "What I had for lunch");
@@ -426,9 +426,13 @@ test("Normalises JF2 (syndication properties)", (t) => {
 });
 
 test("Normalises JF2 (trims name property)", (t) => {
-  const result = normaliseProperties(t.context.publication, {
-    name: "  What I had for lunch  ",
-  });
+  const result = normaliseProperties(
+    t.context.publication,
+    {
+      name: "  What I had for lunch  ",
+    },
+    "UTC",
+  );
 
   t.is(result.name, "What I had for lunch");
 });
