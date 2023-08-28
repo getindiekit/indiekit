@@ -1,7 +1,7 @@
 import process from "node:process";
 import test from "ava";
 import dateFns from "date-fns";
-import { formatDate, getDate, getServerTimeZone } from "../../lib/date.js";
+import { formatDate, getDate, getTimeZoneDesignator } from "../../lib/date.js";
 
 const { isValid, parseISO } = dateFns;
 
@@ -149,16 +149,19 @@ test("`UTC` option converts offset to Z offset date time", (t) => {
   t.is(result, "2020-01-02T16:00:00.000Z");
 });
 
-test("Gets server timezone offset", (t) => {
-  process.env.TZ = "Asia/Taipei"; // Does not observe DST
-  const ahead = getServerTimeZone();
-  t.is(ahead, "+08:00");
+test("Gets server timezone offset from minutes", (t) => {
+  t.is(getTimeZoneDesignator(0), "Z");
+  t.is(getTimeZoneDesignator(150), "-02:30");
+  t.is(getTimeZoneDesignator(-300), "+05:00");
+});
 
-  process.env.TZ = "America/Panama"; // Does not observe DS
-  const behind = getServerTimeZone();
-  t.is(behind, "-05:00");
+test("Gets server timezone offset from local time", (t) => {
+  process.env.TZ = "Asia/Taipei"; // Does not observe DST
+  t.is(getTimeZoneDesignator(), "+08:00");
+
+  process.env.TZ = "America/Panama"; // Does not observe DST
+  t.is(getTimeZoneDesignator(), "-05:00");
 
   process.env.TZ = "UTC";
-  const utc = getServerTimeZone();
-  t.is(utc, "Z");
+  t.is(getTimeZoneDesignator(), "Z");
 });

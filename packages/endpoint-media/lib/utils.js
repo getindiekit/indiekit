@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { getServerTimeZone, supplant } from "@indiekit/util";
+import { getTimeZoneDesignator, supplant } from "@indiekit/util";
 import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
 import { mediaTypeCount } from "./media-type-count.js";
@@ -14,7 +14,7 @@ import { mediaTypeCount } from "./media-type-count.js";
 export const renderPath = async (path, properties, application) => {
   let tokens = {};
   const dateObject = new Date(properties.published);
-  const serverTimeZone = getServerTimeZone();
+  const serverTimeZone = getTimeZoneDesignator();
   const dateTokens = [
     "y", // Calendar year, eg 2020
     "yyyy", // Calendar year (zero-padded), eg 2020

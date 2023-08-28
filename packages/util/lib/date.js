@@ -37,7 +37,7 @@ export const getDate = (setting, dateString = "") => {
   let dateTime = dateString ? new Date(dateString) : new Date();
 
   // Desired time zone
-  const serverTimeZone = getServerTimeZone();
+  const serverTimeZone = getTimeZoneDesignator();
   const outputTimeZone = setting === "server" ? serverTimeZone : setting;
 
   // Short dates, i.e. 2019-02-01
@@ -64,28 +64,29 @@ export const getDate = (setting, dateString = "") => {
 
 /**
  * Get local time zone offset in hours and minutes
- * @returns {string} Local time zone offset, i.e. +5:30, -6:00 or Z
+ * @param {number} [minutes] - Time zone offset in minutes
+ * @returns {string} Local time zone designator, i.e. +05:30, -06:00 or Z
  */
-export const getServerTimeZone = () => {
-  const timeZoneOffsetMinutes = new Date().getTimezoneOffset();
-  const timeZoneOffsetHours = Math.abs(timeZoneOffsetMinutes / 60).toString();
+export const getTimeZoneDesignator = (minutes) => {
+  minutes = minutes || minutes === 0 ? minutes : new Date().getTimezoneOffset();
+  const hours = Math.abs(minutes / 60).toString();
 
-  const offsetHours = Number.parseInt(timeZoneOffsetHours, 10);
-  const offsetMinutes = Math.abs(timeZoneOffsetMinutes % 60);
+  const offsetHours = Number.parseInt(hours, 10);
+  const offsetMinutes = Math.abs(minutes % 60);
 
   const hh = String(offsetHours).padStart(2, "0");
   const mm = String(offsetMinutes).padStart(2, "0");
 
-  // Add an opposite sign to the offset
-  // If offset is 0, timezone is UTC
-  let timeZoneOffset;
-  if (timeZoneOffsetMinutes < 0) {
-    timeZoneOffset = `+${hh}:${mm}`;
-  } else if (timeZoneOffsetMinutes > 0) {
-    timeZoneOffset = `-${hh}:${mm}`;
-  } else if (timeZoneOffsetMinutes === 0) {
-    timeZoneOffset = "Z";
+  // Prepend positive/negative symbol to designator
+  // If offset minutes is 0, time zone is UTC, so use Z
+  let designator;
+  if (minutes < 0) {
+    designator = `+${hh}:${mm}`;
+  } else if (minutes > 0) {
+    designator = `-${hh}:${mm}`;
+  } else if (minutes === 0) {
+    designator = "Z";
   }
 
-  return timeZoneOffset;
+  return designator;
 };
