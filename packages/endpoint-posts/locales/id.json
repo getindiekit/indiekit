@@ -34,7 +34,7 @@
       "advancedOptions": "Opsi lanjutan",
       "audio": {
         "label": "Audio",
-        "name": "audio file"
+        "name": "berkas audio"
       },
       "back": "Ubah jenis posting",
       "bookmark-of": {
@@ -77,7 +77,7 @@
       },
       "photo": {
         "label": "Foto",
-        "name": "photo"
+        "name": "foto"
       },
       "publish": "Publikasikan postingan",
       "publishDraft": "Simpan draf",
