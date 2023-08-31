@@ -5,6 +5,7 @@
 {%- from "card/macro.njk" import card with context -%}
 {%- from "logo/macro.njk" import logo with context -%}
 {%- from "navigation/macro.njk" import navigation with context -%}
+{%- from "progress/macro.njk" import progress with context -%}
 {%- from "share-preview/macro.njk" import sharePreview with context -%}
 
 {% block content %}
@@ -402,6 +403,13 @@
     text: "Next text",
     label: "Next label"
   }
+}) }}
+
+<h2><code>progress</code></h2>
+
+{{ progress({
+  label: "Uploading file",
+  id: "progress"
 }) }}
 
 <h2><code>section</code></h2>
