@@ -17,6 +17,12 @@ export const mockClient = () => {
     .intercept({ path: "/" })
     .reply(200, getFixture("html/client.html"));
 
+  // Client information (h-app with no URL in markup)
+  agent
+    .get("https://simple-client.example")
+    .intercept({ path: "/" })
+    .reply(200, getFixture("html/client-simple.html"));
+
   // Client information (no h-x-app microformats)
   agent
     .get(origin)

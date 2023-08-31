@@ -4,7 +4,7 @@ import { getClientInformation } from "../../lib/client.js";
 
 await mockAgent("endpoint-auth");
 
-test("Gets client information (with h-x-app microformat)", async (t) => {
+test("Gets client information (has h-x-app microformat)", async (t) => {
   const result = await getClientInformation("https://auth-endpoint.example/");
 
   t.deepEqual(result, {
@@ -14,7 +14,16 @@ test("Gets client information (with h-x-app microformat)", async (t) => {
   });
 });
 
-test("Gets client information (without h-x-app microformat)", async (t) => {
+test("Gets client information (has h-app microformat, no URL)", async (t) => {
+  const result = await getClientInformation("https://simple-client.example/");
+
+  t.deepEqual(result, {
+    name: "Simple client example",
+    url: "https://simple-client.example/",
+  });
+});
+
+test("Gets client information (no h-x-app microformat)", async (t) => {
   const result = await getClientInformation(
     "https://auth-endpoint.example/mf2",
   );
@@ -25,7 +34,7 @@ test("Gets client information (without h-x-app microformat)", async (t) => {
   });
 });
 
-test("Gets client information (without microformats)", async (t) => {
+test("Gets client information (no microformats)", async (t) => {
   const result = await getClientInformation(
     "https://auth-endpoint.example/no-mf2",
   );
