@@ -27,7 +27,8 @@
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
     "date-fns": "^2.23.0",
-    "date-fns-tz": "^2.0.0"
+    "date-fns-tz": "^2.0.0",
+    "mongodb": "^4.14.0"
   },
   "publishConfig": {
     "access": "public"
