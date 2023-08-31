@@ -1,0 +1,10 @@
+{% from "../label/macro.njk" import label with context %}
+<div class="{{ classes("progress", opts) }}" {{- attributes(opts.attributes) }}>
+  {{- label({
+    for: opts.id,
+    text: opts.label
+  }) if opts.label }}
+  <progress id="{{ opts.id }}">
+    {{- caller() if caller -}}
+  </progress>
+</div>
