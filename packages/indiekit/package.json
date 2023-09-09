@@ -62,7 +62,7 @@
     "keyv": "^4.2.0",
     "keyv-mongodb": "^3.0.0",
     "lodash": "^4.17.21",
-    "mongodb": "^4.14.0"
+    "mongodb": "^4.17"
   },
   "publishConfig": {
     "access": "public"
