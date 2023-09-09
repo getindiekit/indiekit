@@ -76,17 +76,16 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async delete(publication, postData) {
-    const { postTemplate, store, storeMessageTemplate } = publication;
+    const { store, storeMessageTemplate } = publication;
     const metaData = {
       action: "delete",
       result: "deleted",
       fileType: "post",
       postType: postData.properties["post-type"],
     };
-    const content = await postTemplate(postData.properties);
     const message = storeMessageTemplate(metaData);
 
-    await store.updateFile(postData.path, content, { message });
+    await store.deleteFile(postData.path, { message });
 
     return {
       status: 200,

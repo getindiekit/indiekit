@@ -69,7 +69,7 @@ test("Deletes a post", async (t) => {
 
 test("Throws error deleting a post", async (t) => {
   await t.throwsAsync(postContent.delete(false, postData), {
-    message: "postTemplate is not a function",
+    message: "storeMessageTemplate is not a function",
   });
 });
 
