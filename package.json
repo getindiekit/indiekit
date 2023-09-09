@@ -59,6 +59,7 @@
     "@indiekit-test/session": "*",
     "@indiekit-test/store": "*",
     "@indiekit-test/token": "*",
+    "@micham/sftp-mock-server": "^0.0.6",
     "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.17",
     "@types/express-fileupload": "^1.4.1",

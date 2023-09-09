@@ -2,19 +2,15 @@ import path from "node:path";
 import process from "node:process";
 import { Readable } from "node:stream";
 import { IndiekitError } from "@indiekit/error";
-import ftp from "basic-ftp";
+import Client from "ssh2-sftp-client";
 
 const defaults = {
   directory: "",
   password: process.env.FTP_PASSWORD,
-  port: 21,
+  port: 22,
   user: process.env.FTP_USER,
-  verbose: true,
 };
 
-/**
- * @typedef {import("basic-ftp").Client} Client - FTP client
- */
 export default class FtpStore {
   /**
    * @param {object} [options] - Plug-in options
@@ -70,11 +66,19 @@ export default class FtpStore {
    * @returns {Promise<Client>} FTP client interface
    */
   async #client() {
-    const { host, user, password, port, verbose } = this.options;
-    const client = new ftp.Client();
-    client.ftp.verbose = verbose;
-    await client.access({ host, user, password, port, secure: true });
-    return client;
+    const { host, user: username, password, port } = this.options;
+    const client = new Client();
+
+    try {
+      await client.connect({ host, username, password, port });
+      return client;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
   }
 
   /**
@@ -106,27 +110,56 @@ export default class FtpStore {
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @returns {Promise<boolean>} File created
+   * @returns {Promise<string>} File created
    */
   async createFile(filePath, content) {
+    const client = await this.#client();
+
     try {
-      const client = await this.#client();
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#absolutePath(filePath);
-      const dirname = path.dirname(absolutePath);
-      const basename = path.basename(absolutePath);
 
-      await client.ensureDir(dirname);
-      await client.uploadFrom(readableStream, basename);
+      // Create directory if doesn’t exist
+      const directory = path.dirname(absolutePath);
+      const directoryType = await client.exists(directory);
+      if (directoryType !== "d") {
+        await client.mkdir(directory, true);
+      }
 
-      client.close();
-      return true;
+      return await client.put(readableStream, absolutePath);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
         plugin: this.name,
         status: error.status,
       });
+    } finally {
+      await client.end();
+    }
+  }
+
+  /**
+   * Read file
+   * @param {string} filePath - Path to file
+   * @returns {Promise<string>} File content
+   */
+  async readFile(filePath) {
+    const client = await this.#client();
+
+    try {
+      const absolutePath = this.#absolutePath(filePath);
+
+      return await client.get(absolutePath, undefined, {
+        readStreamOptions: { encoding: "utf8" },
+      });
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error,
+        plugin: this.name,
+        status: error.status,
+      });
+    } finally {
+      await client.end();
     }
   }
 
@@ -136,51 +169,51 @@ export default class FtpStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.newPath - New path to file
-   * @returns {Promise<boolean>} File updated
+   * @returns {Promise<string>} File updated
    */
   async updateFile(filePath, content, options) {
+    const client = await this.#client();
+
     try {
-      const client = await this.#client();
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#absolutePath(filePath);
 
-      await client.uploadFrom(readableStream, absolutePath);
+      const update = await client.put(readableStream, absolutePath);
 
-      if (options?.newPath) {
-        await client.rename(absolutePath, this.#absolutePath(options.newPath));
-      }
-
-      client.close();
-      return true;
+      return options?.newPath
+        ? await client.rename(absolutePath, this.#absolutePath(options.newPath))
+        : update;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
         plugin: this.name,
         status: error.status,
       });
+    } finally {
+      await client.end();
     }
   }
 
   /**
    * Delete file
    * @param {string} filePath - Path to file
-   * @returns {Promise<boolean>} File deleted
+   * @returns {Promise<string>} File deleted
    */
   async deleteFile(filePath) {
+    const client = await this.#client();
+
     try {
       const absolutePath = this.#absolutePath(filePath);
-      const client = await this.#client();
 
-      await client.remove(absolutePath);
-
-      client.close();
-      return true;
+      return await client.delete(absolutePath);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
         plugin: this.name,
         status: error.status,
       });
+    } finally {
+      await client.end();
     }
   }
 
