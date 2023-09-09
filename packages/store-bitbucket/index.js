@@ -75,7 +75,7 @@ export default class BitbucketStore {
   }
 
   /**
-   * Create file in a repository
+   * Create file
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
@@ -104,7 +104,7 @@ export default class BitbucketStore {
   }
 
   /**
-   * Read file in a repository
+   * Read file
    * @param {string} path - Path to file
    * @returns {Promise<string>} File content
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc}
@@ -131,7 +131,7 @@ export default class BitbucketStore {
   }
 
   /**
-   * Update file in a repository
+   * Update file
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
@@ -166,7 +166,7 @@ export default class BitbucketStore {
   }
 
   /**
-   * Delete file in a repository
+   * Delete file
    * @param {string} path - Path to file
    * @param {object} options - Options
    * @param {string} options.message - Commit message

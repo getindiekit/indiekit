@@ -50,7 +50,7 @@ export default class FileSystemStore {
   }
 
   /**
-   * Create file in a directory
+   * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @returns {Promise<boolean>} File created
@@ -77,7 +77,7 @@ export default class FileSystemStore {
   }
 
   /**
-   * Update file in a directory
+   * Update file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
@@ -105,7 +105,7 @@ export default class FileSystemStore {
   }
 
   /**
-   * Delete file in a directory
+   * Delete file
    * @param {string} filePath - Path to file
    * @returns {Promise<boolean>} File deleted
    */

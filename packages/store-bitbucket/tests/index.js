@@ -34,7 +34,7 @@ test("Initiates plug-in", async (t) => {
   t.is(indiekit.publication.store.info.name, "username/repo on Bitbucket");
 });
 
-test("Creates file in a repository", async (t) => {
+test("Creates file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .reply(201, {
@@ -48,7 +48,7 @@ test("Creates file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Throws error creating file in a repository", async (t) => {
+test("Throws error creating file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .replyWithError("Not found");
@@ -62,7 +62,7 @@ test("Throws error creating file in a repository", async (t) => {
   );
 });
 
-test("Reads file in a repository", async (t) => {
+test("Reads file", async (t) => {
   nock(t.context.bitbucketUrl)
     .get("/2.0/repositories/username/repo/src/main/foo.txt")
     .query({ format: "rendered" })
@@ -73,7 +73,7 @@ test("Reads file in a repository", async (t) => {
   t.is(result, "foo");
 });
 
-test("Throws error reading file in a repository", async (t) => {
+test("Throws error reading file", async (t) => {
   nock(t.context.bitbucketUrl)
     .get("/2.0/repositories/username/repo/src/main/foo.txt")
     .query({ format: "rendered" })
@@ -85,7 +85,7 @@ test("Throws error reading file in a repository", async (t) => {
   });
 });
 
-test("Updates file in a repository", async (t) => {
+test("Updates file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .reply(201, {
@@ -99,7 +99,7 @@ test("Updates file in a repository", async (t) => {
   t.true(result);
 });
 
-test.serial("Updates and renames file in a repository", async (t) => {
+test.serial("Updates and renames file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .twice()
@@ -115,7 +115,7 @@ test.serial("Updates and renames file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Throws error updating file in a repository", async (t) => {
+test("Throws error updating file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .replyWithError("Not found");
@@ -129,7 +129,7 @@ test("Throws error updating file in a repository", async (t) => {
   );
 });
 
-test("Deletes a file in a repository", async (t) => {
+test("Deletes a file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .reply(201, {
@@ -141,7 +141,7 @@ test("Deletes a file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Throws error deleting a file in a repository", async (t) => {
+test("Throws error deleting a file", async (t) => {
   nock(t.context.bitbucketUrl)
     .post("/2.0/repositories/username/repo/src")
     .replyWithError("Not found");

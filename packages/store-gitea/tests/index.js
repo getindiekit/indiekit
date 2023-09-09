@@ -39,7 +39,7 @@ test("Initiates plug-in", async (t) => {
   t.is(indiekit.publication.store.info.name, "username/repo on Gitea");
 });
 
-test("Creates file in a repository", async (t) => {
+test("Creates file", async (t) => {
   const result = await gitea.createFile("foo.md", "foo", {
     message: "Message",
   });
@@ -47,7 +47,7 @@ test("Creates file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Creates file in a repository at custom instance", async (t) => {
+test("Creates file at custom instance", async (t) => {
   await mockAgent("store-gitea", {
     instance: "https://gitea.instance",
   });
@@ -58,7 +58,7 @@ test("Creates file in a repository at custom instance", async (t) => {
   t.true(result);
 });
 
-test("Throws error creating file in a repository", async (t) => {
+test("Throws error creating file", async (t) => {
   await t.throwsAsync(
     gitea.createFile("401.md", "foo", { message: "Message" }),
     {
@@ -67,19 +67,19 @@ test("Throws error creating file in a repository", async (t) => {
   );
 });
 
-test("Reads file in a repository", async (t) => {
+test("Reads file", async (t) => {
   const result = await gitea.readFile("foo.md");
 
   t.is(result, "foobar");
 });
 
-test("Throws error reading file in a repository", async (t) => {
+test("Throws error reading file", async (t) => {
   await t.throwsAsync(gitea.readFile("404.md"), {
     message: "Gitea store: Not found",
   });
 });
 
-test.serial("Updates file in a repository", async (t) => {
+test.serial("Updates file", async (t) => {
   const result = await gitea.updateFile("foo.md", "foo", {
     message: "Message",
   });
@@ -87,7 +87,7 @@ test.serial("Updates file in a repository", async (t) => {
   t.true(result);
 });
 
-test.serial("Updates and renames file in a repository", async (t) => {
+test.serial("Updates and renames file", async (t) => {
   const result = await gitea.updateFile("foo.md", "foo", {
     message: "Message",
     newPath: "bar.md",
@@ -96,7 +96,7 @@ test.serial("Updates and renames file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Throws error updating file in a repository", async (t) => {
+test("Throws error updating file", async (t) => {
   await t.throwsAsync(
     gitea.updateFile("401.md", "foo", { message: "Message" }),
     {
@@ -105,13 +105,13 @@ test("Throws error updating file in a repository", async (t) => {
   );
 });
 
-test.serial("Deletes a file in a repository", async (t) => {
+test.serial("Deletes a file", async (t) => {
   const result = await gitea.deleteFile("foo.md", { message: "Message" });
 
   t.true(result);
 });
 
-test("Throws error deleting a file in a repository", async (t) => {
+test("Throws error deleting a file", async (t) => {
   await t.throwsAsync(gitea.deleteFile("401.md", { message: "Message" }), {
     message: "Gitea store: Unauthorized",
   });

@@ -32,11 +32,11 @@ test("Initiates plug-in", async (t) => {
   t.is(indiekit.publication.store.info.name, "user/repo on GitHub");
 });
 
-test("Creates file in a repository", async (t) => {
+test("Creates file", async (t) => {
   t.true(await github.createFile("foo.md", "foobar", { message: "Message" }));
 });
 
-test("Throws error creating file in a repository", async (t) => {
+test("Throws error creating file", async (t) => {
   await t.throwsAsync(
     github.createFile("401.md", "foobar", { message: "Message" }),
     {
@@ -45,21 +45,21 @@ test("Throws error creating file in a repository", async (t) => {
   );
 });
 
-test("Reads file in a repository", async (t) => {
+test("Reads file", async (t) => {
   t.is(await github.readFile("foo.md", { message: "Message" }), "foobar");
 });
 
-test("Throws error reading file in a repository", async (t) => {
+test("Throws error reading file", async (t) => {
   await t.throwsAsync(github.readFile("404.md", { message: "Message" }), {
     message: "GitHub store: Not Found",
   });
 });
 
-test("Updates file in a repository", async (t) => {
+test("Updates file", async (t) => {
   t.true(await github.updateFile("foo.md", "foobar", { message: "Message" }));
 });
 
-test("Updates and renames file in a repository", async (t) => {
+test("Updates and renames file", async (t) => {
   t.true(
     await github.updateFile("foo.md", "foobar", {
       message: "Message",
@@ -72,7 +72,7 @@ test("Creates file if original Not Found in repository", async (t) => {
   t.true(await github.updateFile("bar.md", "foobar", { message: "Message" }));
 });
 
-test("Throws error updating file in a repository", async (t) => {
+test("Throws error updating file", async (t) => {
   await t.throwsAsync(
     github.updateFile("401.md", "foobar", { message: "Message" }),
     {
@@ -81,7 +81,7 @@ test("Throws error updating file in a repository", async (t) => {
   );
 });
 
-test("Deletes a file in a repository", async (t) => {
+test("Deletes a file", async (t) => {
   t.true(await github.deleteFile("foo.md", { message: "Message" }));
 });
 
@@ -91,7 +91,7 @@ test("Throws error file Not Found in repository", async (t) => {
   });
 });
 
-test("Throws error deleting a file in a repository", async (t) => {
+test("Throws error deleting a file", async (t) => {
   await t.throwsAsync(github.deleteFile("401.md", { message: "Message" }), {
     message: "GitHub store: Unauthorized",
   });

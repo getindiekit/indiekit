@@ -38,7 +38,7 @@ test("Initiates plug-in", async (t) => {
   t.is(indiekit.publication.store.info.name, "username/repo on GitLab");
 });
 
-test("Creates file in a repository", async (t) => {
+test("Creates file", async (t) => {
   const result = await gitlab.createFile("foo.md", "foo", {
     message: "Message",
   });
@@ -46,7 +46,7 @@ test("Creates file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Creates file in a repository with projectId at custom instance", async (t) => {
+test("Creates file with projectId at custom instance", async (t) => {
   await mockAgent("store-gitlab", {
     projectId: "1234",
     instance: "https://gitlab.instance",
@@ -58,7 +58,7 @@ test("Creates file in a repository with projectId at custom instance", async (t)
   t.true(result);
 });
 
-test("Throws error creating file in a repository", async (t) => {
+test("Throws error creating file", async (t) => {
   await t.throwsAsync(
     gitlab.createFile("401.md", "foo", { message: "Message" }),
     {
@@ -67,19 +67,19 @@ test("Throws error creating file in a repository", async (t) => {
   );
 });
 
-test("Reads file in a repository", async (t) => {
+test("Reads file", async (t) => {
   const result = await gitlab.readFile("foo.md");
 
   t.is(result, "foobar");
 });
 
-test("Throws error reading file in a repository", async (t) => {
+test("Throws error reading file", async (t) => {
   await t.throwsAsync(gitlab.readFile("401.md"), {
     message: "GitLab store: Unauthorized",
   });
 });
 
-test("Updates file in a repository", async (t) => {
+test("Updates file", async (t) => {
   const result = await gitlab.updateFile("foo.md", "foo", {
     message: "Message",
   });
@@ -87,7 +87,7 @@ test("Updates file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Updates and renames file in a repository", async (t) => {
+test("Updates and renames file", async (t) => {
   const result = await gitlab.updateFile("foo.md", "foo", {
     message: "Message",
     newPath: "bar.md",
@@ -96,7 +96,7 @@ test("Updates and renames file in a repository", async (t) => {
   t.true(result);
 });
 
-test("Throws error updating file in a repository", async (t) => {
+test("Throws error updating file", async (t) => {
   await t.throwsAsync(
     gitlab.updateFile("401.md", "foo", { message: "Message" }),
     {
@@ -105,13 +105,13 @@ test("Throws error updating file in a repository", async (t) => {
   );
 });
 
-test("Deletes a file in a repository", async (t) => {
+test("Deletes a file", async (t) => {
   const result = await gitlab.deleteFile("foo.md", { message: "Message" });
 
   t.true(result);
 });
 
-test("Throws error deleting a file in a repository", async (t) => {
+test("Throws error deleting a file", async (t) => {
   await t.throwsAsync(gitlab.deleteFile("401.md", { message: "Message" }), {
     message: "GitLab store: Unauthorized",
   });

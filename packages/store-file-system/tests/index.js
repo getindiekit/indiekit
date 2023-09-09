@@ -29,7 +29,7 @@ test("Initiates plug-in", async (t) => {
   t.is(indiekit.publication.store.info.name, "directory");
 });
 
-test.serial("Creates file in a directory", async (t) => {
+test.serial("Creates file", async (t) => {
   mockFs();
 
   await fileSystem.createFile("foo.txt", "foo");
@@ -39,7 +39,7 @@ test.serial("Creates file in a directory", async (t) => {
   mockFs.restore();
 });
 
-test("Throws error creating file in a directory", async (t) => {
+test("Throws error creating file", async (t) => {
   mockFs();
 
   await t.throwsAsync(fileSystem.createFile("", "foo"), {
@@ -49,7 +49,7 @@ test("Throws error creating file in a directory", async (t) => {
   mockFs.restore();
 });
 
-test.serial("Updates file in a directory", async (t) => {
+test.serial("Updates file", async (t) => {
   mockFs({
     "directory/foo.txt": "foo",
   });
@@ -61,7 +61,7 @@ test.serial("Updates file in a directory", async (t) => {
   mockFs.restore();
 });
 
-test.serial("Updates and renames file in a directory", async (t) => {
+test.serial("Updates and renames file", async (t) => {
   mockFs({
     "directory/foo.txt": "foo",
   });
@@ -73,7 +73,7 @@ test.serial("Updates and renames file in a directory", async (t) => {
   mockFs.restore();
 });
 
-test("Throws error updating file in a directory", async (t) => {
+test("Throws error updating file", async (t) => {
   mockFs();
 
   await t.throwsAsync(fileSystem.updateFile("foo.txt", "foo"), {
@@ -84,7 +84,7 @@ test("Throws error updating file in a directory", async (t) => {
   mockFs.restore();
 });
 
-test.serial("Deletes file in a directory", async (t) => {
+test.serial("Deletes file", async (t) => {
   mockFs({
     "directory/foo.txt": "foo",
   });
@@ -96,7 +96,7 @@ test.serial("Deletes file in a directory", async (t) => {
   mockFs.restore();
 });
 
-test("Throws error deleting file in a directory", async (t) => {
+test("Throws error deleting file", async (t) => {
   mockFs();
 
   await t.throwsAsync(fileSystem.deleteFile("foo.txt"), {

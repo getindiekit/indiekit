@@ -97,7 +97,7 @@ export default class GiteaStore {
   }
 
   /**
-   * Create file in a repository
+   * Create file
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
@@ -125,7 +125,7 @@ export default class GiteaStore {
   }
 
   /**
-   * Read file in a repository
+   * Read file
    * @param {string} path - Path to file
    * @returns {Promise<string>} File contents
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
@@ -147,7 +147,7 @@ export default class GiteaStore {
   }
 
   /**
-   * Update file in a repository
+   * Update file
    * @param {string} path - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
@@ -182,7 +182,7 @@ export default class GiteaStore {
   }
 
   /**
-   * Delete file in a repository
+   * Delete file
    * @param {string} path - Path to file
    * @param {object} options - Options
    * @param {string} options.message - Commit message
