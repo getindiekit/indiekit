@@ -51,7 +51,7 @@ The `info` property returns the following values:
 | `content` | [`String`][] | File content. _Required_. |
 | `options.message` | [`String`][] | Commit message. _Optional_. |
 
-Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
+Returns a [`String`][] containing the file’s URL if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async createFile(filePath, content, { message }) {
@@ -70,7 +70,7 @@ async createFile(filePath, content, { message }) {
 | :--------- | :--- | :---------- |
 | `filePath` | [`String`][] | Path to file. _Required_. |
 
-Returns content as a [`String`][] if successful, else returns [`IndiekitError`][]. For example:
+Returns content as a [`String`][] containing the file’s content if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async readFile(filePath) {
@@ -92,7 +92,7 @@ async readFile(filePath) {
 | `options.message` | [`String`][] | Commit message. _Optional_. |
 | `options.newPath` | [`String`][] | New path to file. _Optional_. |
 
-Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
+Returns a [`String`][] containing the file’s updated URL if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async updateFile(filePath, content, { message, newPath }) {
@@ -112,7 +112,7 @@ async updateFile(filePath, content, { message, newPath }) {
 | `filePath` | [`String`][] | Path to file. _Required_. |
 | `options.message` | [`String`][] | Commit message. _Optional_. |
 
-Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
+Returns a [`Boolean`][] `true` if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async deleteFile(filePath, { message }) {
