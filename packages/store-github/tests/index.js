@@ -33,7 +33,10 @@ test("Initiates plug-in", async (t) => {
 });
 
 test("Creates file", async (t) => {
-  t.true(await github.createFile("foo.md", "foobar", { message: "Message" }));
+  const result = await github.createFile("foo.md", "foobar", {
+    message: "Message",
+  });
+  t.is(result, "https://github.com/user/repo/blob/main/foo.txt");
 });
 
 test("Throws error creating file", async (t) => {
@@ -56,20 +59,25 @@ test("Throws error reading file", async (t) => {
 });
 
 test("Updates file", async (t) => {
-  t.true(await github.updateFile("foo.md", "foobar", { message: "Message" }));
+  const result = await github.updateFile("foo.md", "foobar", {
+    message: "Message",
+  });
+  t.is(result, "https://github.com/user/repo/blob/main/foo.txt");
 });
 
 test("Updates and renames file", async (t) => {
-  t.true(
-    await github.updateFile("foo.md", "foobar", {
-      message: "Message",
-      newPath: "bar.md",
-    }),
-  );
+  const result = await github.updateFile("foo.md", "qux", {
+    message: "Message",
+    newPath: "bar.md",
+  });
+  t.is(result, "https://github.com/user/repo/blob/main/bar.txt");
 });
 
 test("Creates file if original Not Found in repository", async (t) => {
-  t.true(await github.updateFile("bar.md", "foobar", { message: "Message" }));
+  const result = await github.updateFile("bar.md", "foobar", {
+    message: "Message",
+  });
+  t.is(result, "https://github.com/user/repo/blob/main/bar.txt");
 });
 
 test("Throws error updating file", async (t) => {

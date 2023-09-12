@@ -98,17 +98,19 @@ export default class GithubStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<boolean>} File created
+   * @returns {Promise<string>} Created file URL
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(filePath, content, { message }) {
-    await this.#client(filePath, "PUT", {
+    const createResponse = await this.#client(filePath, "PUT", {
       branch: this.options.branch,
       content: Buffer.from(content).toString("base64"),
       message,
     });
 
-    return true;
+    const file = await createResponse.json();
+
+    return file.content.html_url;
   }
 
   /**
@@ -133,7 +135,7 @@ export default class GithubStore {
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @param {string} options.newPath - New path to file
-   * @returns {Promise<boolean>} File updated
+   * @returns {Promise<string>} Updated file URL
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async updateFile(filePath, content, { message, newPath }) {
@@ -142,19 +144,20 @@ export default class GithubStore {
     );
     const { sha } = await readResponse.json();
     const updateFilePath = newPath || filePath;
-
-    await this.#client(updateFilePath, "PUT", {
+    const updateResponse = await this.#client(updateFilePath, "PUT", {
       branch: this.options.branch,
       content: Buffer.from(content).toString("base64"),
       message,
       sha: sha || false,
     });
 
+    const file = await updateResponse.json();
+
     if (newPath) {
       await this.deleteFile(filePath, { message });
     }
 
-    return true;
+    return file.content.html_url;
   }
 
   /**
