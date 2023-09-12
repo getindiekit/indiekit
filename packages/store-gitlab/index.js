@@ -1,3 +1,4 @@
+import path from "node:path";
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
@@ -96,12 +97,12 @@ export default class GitlabStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<boolean>} File created
+   * @returns {Promise<string>} Created file URL
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(filePath, content, { message }) {
     try {
-      await this.#client.files.create(
+      const createResponse = await this.#client.files.create(
         this.projectId,
         filePath,
         this.options.branch,
@@ -112,7 +113,12 @@ export default class GitlabStore {
         },
       );
 
-      return true;
+      const { file_path } = JSON.parse(await createResponse.text());
+
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, file_path);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -153,12 +159,12 @@ export default class GitlabStore {
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @param {string} options.newPath - New path to file
-   * @returns {Promise<boolean>} File updated
+   * @returns {Promise<string>} Updated file URL
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
   async updateFile(filePath, content, { message, newPath }) {
     try {
-      await this.#client.commits.create(
+      const updateResponse = await this.#client.commits.create(
         this.projectId,
         this.options.branch,
         message,
@@ -181,7 +187,12 @@ export default class GitlabStore {
         ],
       );
 
-      return true;
+      const { file_path } = JSON.parse(await updateResponse.text());
+
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, file_path);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
