@@ -12,7 +12,17 @@ export function mockClient() {
   const origin = "https://api.github.com";
   const path = /\/repos\/user\/repo\/contents\/\D{3}\.md/;
   const createResponse = {
-    content: { path: "foo.txt" },
+    content: {
+      path: "foo.txt",
+      html_url: "https://github.com/user/repo/blob/main/foo.txt",
+    },
+    commit: { message: "Message" },
+  };
+  const updateResponse = {
+    content: {
+      path: "bar.txt",
+      html_url: "https://github.com/user/repo/blob/main/bar.txt",
+    },
     commit: { message: "Message" },
   };
   const readResponse = {
@@ -27,7 +37,7 @@ export function mockClient() {
   // Create/update file
   agent
     .get(origin)
-    .intercept({ path, method: "PUT" })
+    .intercept({ path: /.*foo\.md/, method: "PUT" })
     .reply(201, createResponse)
     .persist();
 
@@ -36,6 +46,13 @@ export function mockClient() {
     .get(origin)
     .intercept({ path: /.*401\.md/, method: "PUT" })
     .reply(401);
+
+  // Update and rename file
+  agent
+    .get(origin)
+    .intercept({ path: /.*bar\.md/, method: "PUT" })
+    .reply(201, updateResponse)
+    .persist();
 
   // Read file
   agent
