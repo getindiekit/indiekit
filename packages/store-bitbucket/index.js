@@ -1,3 +1,4 @@
+import path from "node:path";
 import process from "node:process";
 import bitbucket from "bitbucket";
 import { IndiekitError } from "@indiekit/error";
@@ -80,7 +81,7 @@ export default class BitbucketStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<boolean>} File created
+   * @returns {Promise<string>} Created file URL
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async createFile(filePath, content, { message }) {
@@ -93,7 +94,10 @@ export default class BitbucketStore {
         workspace: this.options.user,
       });
 
-      return true;
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, filePath);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -137,7 +141,7 @@ export default class BitbucketStore {
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @param {string} options.newPath - New path to file
-   * @returns {Promise<boolean>} File updated
+   * @returns {Promise<string>} Updated file URL
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */
   async updateFile(filePath, content, { message, newPath }) {
@@ -156,7 +160,10 @@ export default class BitbucketStore {
         await this.deleteFile(filePath, { message });
       }
 
-      return true;
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, updateFilePath);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,

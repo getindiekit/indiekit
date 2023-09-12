@@ -45,7 +45,7 @@ test("Creates file", async (t) => {
     message: "Message",
   });
 
-  t.true(result);
+  t.is(result, "https://bitbucket.org/username/repo/foo.txt");
 });
 
 test("Throws error creating file", async (t) => {
@@ -96,7 +96,7 @@ test("Updates file", async (t) => {
     message: "Message",
   });
 
-  t.true(result);
+  t.is(result, "https://bitbucket.org/username/repo/foo.txt");
 });
 
 test.serial("Updates and renames file", async (t) => {
@@ -112,7 +112,7 @@ test.serial("Updates and renames file", async (t) => {
     newPath: "bar.txt",
   });
 
-  t.true(result);
+  t.is(result, "https://bitbucket.org/username/repo/bar.txt");
 });
 
 test("Throws error updating file", async (t) => {
