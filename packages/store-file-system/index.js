@@ -53,7 +53,7 @@ export default class FileSystemStore {
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @returns {Promise<boolean>} File created
+   * @returns {Promise<string>} Created file URL
    */
   async createFile(filePath, content) {
     try {
@@ -66,7 +66,10 @@ export default class FileSystemStore {
 
       await fs.writeFile(absolutePath, content);
 
-      return true;
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, filePath);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -82,7 +85,7 @@ export default class FileSystemStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.newPath - New path to file
-   * @returns {Promise<boolean>} File updated
+   * @returns {Promise<string>} Updated file URL
    */
   async updateFile(filePath, content, options) {
     try {
@@ -94,7 +97,10 @@ export default class FileSystemStore {
         await fs.rename(absolutePath, this.#absolutePath(options.newPath));
       }
 
-      return true;
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, options?.newPath || filePath);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,

@@ -32,10 +32,11 @@ test("Initiates plug-in", async (t) => {
 test.serial("Creates file", async (t) => {
   mockFs();
 
-  await fileSystem.createFile("foo.txt", "foo");
-  const result = await fs.readFile("directory/foo.txt", "utf8");
+  const result = await fileSystem.createFile("foo.txt", "foo");
 
-  t.is(result, "foo");
+  t.is(result, "file://directory/foo.txt");
+  t.is(await fs.readFile("directory/foo.txt", "utf8"), "foo");
+
   mockFs.restore();
 });
 
@@ -50,26 +51,26 @@ test("Throws error creating file", async (t) => {
 });
 
 test.serial("Updates file", async (t) => {
-  mockFs({
-    "directory/foo.txt": "foo",
-  });
+  mockFs({ "directory/foo.txt": "foo" });
 
-  await fileSystem.updateFile("foo.txt", "bar");
-  const result = await fs.readFile("directory/foo.txt", "utf8");
+  const result = await fileSystem.updateFile("foo.txt", "bar");
 
-  t.is(result, "bar");
+  t.is(result, "file://directory/foo.txt");
+  t.is(await fs.readFile("directory/foo.txt", "utf8"), "bar");
+
   mockFs.restore();
 });
 
 test.serial("Updates and renames file", async (t) => {
-  mockFs({
-    "directory/foo.txt": "foo",
+  mockFs({ "directory/foo.txt": "foo" });
+
+  const result = await fileSystem.updateFile("foo.txt", "bar", {
+    newPath: "bar.txt",
   });
 
-  await fileSystem.updateFile("foo.txt", "bar", { newPath: "bar.txt" });
-  const result = await fs.readFile("directory/bar.txt", "utf8");
+  t.is(result, "file://directory/bar.txt");
+  t.is(await fs.readFile("directory/bar.txt", "utf8"), "bar");
 
-  t.is(result, "bar");
   mockFs.restore();
 });
 
@@ -85,14 +86,13 @@ test("Throws error updating file", async (t) => {
 });
 
 test.serial("Deletes file", async (t) => {
-  mockFs({
-    "directory/foo.txt": "foo",
-  });
+  mockFs({ "directory/foo.txt": "foo" });
 
   await fileSystem.deleteFile("foo.txt");
   const result = existsSync("directory/foo.txt");
 
   t.false(result);
+
   mockFs.restore();
 });
 
