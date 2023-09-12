@@ -35,11 +35,12 @@ export default class GitlabStore {
   }
 
   get info() {
-    const { instance, repo, user } = this.options;
+    const { instance, projectId, repo, user } = this.options;
+    const path = projectId ? `/projects/${projectId}` : `/${user}/${repo}`;
 
     return {
       name: `${this.projectId} on GitLab`,
-      uid: `${instance}/${user}/${repo}`,
+      uid: `${instance}${path}`,
     };
   }
 
