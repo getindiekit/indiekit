@@ -111,14 +111,14 @@ export default class BitbucketStore {
    */
   async readFile(filePath) {
     try {
-      const response = await this.#client.repositories.readSrc({
+      const readResponse = await this.#client.repositories.readSrc({
         format: "rendered",
         commit: this.options.branch,
         path: filePath,
         repo_slug: this.options.repo,
         workspace: this.options.user,
       });
-      const content = response.data.raw;
+      const content = readResponse.data.raw;
 
       return content;
     } catch (error) {
@@ -143,6 +143,7 @@ export default class BitbucketStore {
   async updateFile(filePath, content, { message, newPath }) {
     try {
       const updateFilePath = newPath || filePath;
+
       await this.#client.repositories.createSrcFileCommit({
         [updateFilePath]: content,
         branch: this.options.branch,

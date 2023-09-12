@@ -107,10 +107,9 @@ export default class GiteaStore {
    */
   async createFile(filePath, content, { message }) {
     try {
-      content = Buffer.from(content).toString("base64");
       await this.#client(filePath, "POST", {
         branch: this.options.branch,
-        content,
+        content: Buffer.from(content).toString("base64"),
         message,
       });
 
@@ -132,10 +131,10 @@ export default class GiteaStore {
    */
   async readFile(filePath) {
     try {
-      const response = await this.#client(
+      const readResponse = await this.#client(
         `${filePath}?ref=${this.options.branch}`,
       );
-      const body = await response.json();
+      const body = await readResponse.json();
       const content = Buffer.from(body.content, "base64").toString("utf8");
 
       return content;
@@ -160,19 +159,18 @@ export default class GiteaStore {
    */
   async updateFile(filePath, content, { message, newPath }) {
     try {
-      content = Buffer.from(content).toString("base64");
-      const response = await this.#client(
+      const readResponse = await this.#client(
         `${filePath}?ref=${this.options.branch}`,
       );
-      const body = await response.json();
-
+      const { sha } = await readResponse.json();
       const updateFilePath = newPath || filePath;
+
       await this.#client(updateFilePath, "PUT", {
         branch: this.options.branch,
-        content,
+        content: Buffer.from(content).toString("base64"),
         fromPath: filePath,
         message,
-        sha: body.sha,
+        sha,
       });
 
       return true;
@@ -195,14 +193,15 @@ export default class GiteaStore {
    */
   async deleteFile(filePath, { message }) {
     try {
-      const response = await this.#client(
+      const readResponse = await this.#client(
         `${filePath}?ref=${this.options.branch}`,
       );
-      const body = await response.json();
+      const { sha } = await readResponse.json();
+
       await this.#client(filePath, "DELETE", {
         branch: this.options.branch,
         message,
-        sha: body.sha,
+        sha,
       });
 
       return true;

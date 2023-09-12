@@ -101,12 +101,11 @@ export default class GitlabStore {
    */
   async createFile(filePath, content, { message }) {
     try {
-      content = Buffer.from(content).toString("base64");
       await this.#client.files.create(
         this.projectId,
         filePath,
         this.options.branch,
-        content,
+        Buffer.from(content).toString("base64"),
         message,
         {
           encoding: "base64",
@@ -131,13 +130,13 @@ export default class GitlabStore {
    */
   async readFile(filePath) {
     try {
-      const response = await this.#client.files.showRaw(
+      const readResponse = await this.#client.files.showRaw(
         this.projectId,
         filePath,
         this.options.branch,
       );
 
-      return response.text();
+      return readResponse.text();
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -159,8 +158,6 @@ export default class GitlabStore {
    */
   async updateFile(filePath, content, { message, newPath }) {
     try {
-      content = Buffer.from(content).toString("base64");
-
       await this.#client.commits.create(
         this.projectId,
         this.options.branch,
@@ -168,7 +165,7 @@ export default class GitlabStore {
         [
           {
             action: "update",
-            content,
+            content: Buffer.from(content).toString("base64"),
             encoding: "base64",
             filePath,
           },

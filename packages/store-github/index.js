@@ -102,11 +102,9 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(filePath, content, { message }) {
-    content = Buffer.from(content).toString("base64");
-
     await this.#client(filePath, "PUT", {
       branch: this.options.branch,
-      content,
+      content: Buffer.from(content).toString("base64"),
       message,
     });
 
@@ -120,10 +118,10 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
    */
   async readFile(filePath) {
-    const response = await this.#client(
+    const readResponse = await this.#client(
       `${filePath}?ref=${this.options.branch}`,
     );
-    const { content } = await response.json();
+    const { content } = await readResponse.json();
 
     return Buffer.from(content, "base64").toString("utf8");
   }
@@ -139,18 +137,17 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async updateFile(filePath, content, { message, newPath }) {
-    const response = await this.#client(
+    const readResponse = await this.#client(
       `${filePath}?ref=${this.options.branch}`,
     );
-    const body = await response.json();
-    content = Buffer.from(content).toString("base64");
-
+    const { sha } = await readResponse.json();
     const updateFilePath = newPath || filePath;
+
     await this.#client(updateFilePath, "PUT", {
       branch: this.options.branch,
-      content,
+      content: Buffer.from(content).toString("base64"),
       message,
-      sha: body ? body.sha : false,
+      sha: sha || false,
     });
 
     if (newPath) {
@@ -169,14 +166,14 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
   async deleteFile(filePath, { message }) {
-    const response = await this.#client(
+    const readResponse = await this.#client(
       `${filePath}?ref=${this.options.branch}`,
     );
-    const body = await response.json();
+    const { sha } = await readResponse.json();
 
     await this.#client(filePath, "DELETE", {
       branch: this.options.branch,
-      sha: body.sha,
+      sha,
       message,
     });
 
