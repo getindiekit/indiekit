@@ -43,7 +43,7 @@ test("Creates file", async (t) => {
     message: "Message",
   });
 
-  t.true(result);
+  t.is(result, "https://gitlab.com/username/repo/foo.md");
 });
 
 test("Creates file with projectId at custom instance", async (t) => {
@@ -55,7 +55,7 @@ test("Creates file with projectId at custom instance", async (t) => {
     message: "Message",
   });
 
-  t.true(result);
+  t.is(result, "https://gitlab.instance/projects/1234/foo.md");
 });
 
 test("Throws error creating file", async (t) => {
@@ -84,7 +84,7 @@ test("Updates file", async (t) => {
     message: "Message",
   });
 
-  t.true(result);
+  t.is(result, "https://gitlab.com/username/repo/foo.md");
 });
 
 test("Updates and renames file", async (t) => {
@@ -93,7 +93,7 @@ test("Updates and renames file", async (t) => {
     newPath: "bar.md",
   });
 
-  t.true(result);
+  t.is(result, "https://gitlab.com/username/repo/bar.md");
 });
 
 test("Throws error updating file", async (t) => {
