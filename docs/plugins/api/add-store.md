@@ -47,16 +47,16 @@ The `info` property returns the following values:
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `path` | [`String`][] | Path to file. _Required_. |
+| `filePath` | [`String`][] | Path to file. _Required_. |
 | `content` | [`String`][] | File content. _Required_. |
 | `options.message` | [`String`][] | Commit message. _Optional_. |
 
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async createFile(path, content, { message }) {
+async createFile(filePath, content, { message }) {
   try {
-    await exampleClient.create(path, content, message);
+    await exampleClient.create(filePath, content, message);
     return true;
   } catch (error) {
     throw new IndiekitError(error.message);
@@ -68,14 +68,14 @@ async createFile(path, content, { message }) {
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `path` | [`String`][] | Path to file. _Required_. |
+| `filePath` | [`String`][] | Path to file. _Required_. |
 
 Returns content as a [`String`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async readFile(path) {
+async readFile(filePath) {
   try {
-    await exampleClient.read(path);
+    await exampleClient.read(filePath);
     return true;
   } catch (error) {
     throw new IndiekitError(error.message);
@@ -87,7 +87,7 @@ async readFile(path) {
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `path` | [`String`][] | Path to file. _Required_. |
+| `filePath` | [`String`][] | Path to file. _Required_. |
 | `content` | [`String`][] | File content. _Required_. |
 | `options.message` | [`String`][] | Commit message. _Optional_. |
 | `options.newPath` | [`String`][] | New path to file. _Optional_. |
@@ -95,7 +95,7 @@ async readFile(path) {
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async updateFile(path, content, { message, newPath }) {
+async updateFile(filePath, content, { message, newPath }) {
   try {
     await exampleClient.update(filePath, content, message, newPath);
     return true;
@@ -109,15 +109,15 @@ async updateFile(path, content, { message, newPath }) {
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `path` | [`String`][] | Path to file. _Required_. |
+| `filePath` | [`String`][] | Path to file. _Required_. |
 | `options.message` | [`String`][] | Commit message. _Optional_. |
 
 Returns a [`Boolean`][] if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
-async deleteFile(path, { message }) {
+async deleteFile(filePath, { message }) {
   try {
-    await exampleClient.delete(path, message);
+    await exampleClient.delete(filePath, message);
     return true;
   } catch (error) {
     throw new IndiekitError(error.message);
@@ -145,36 +145,36 @@ export default class ExampleStore {
     };
   }
 
-  async createFile(path, content, message) {
+  async createFile(filePath, content, message) {
     try {
-      await exampleClient.create(path, content, message);
+      await exampleClient.create(filePath, content, message);
       return true;
     } catch (error) {
       throw new IndiekitError(error.message);
     }
   }
 
-  async readFile(path) {
+  async readFile(filePath) {
     try {
-      await exampleClient.read(path);
+      await exampleClient.read(filePath);
       return true;
     } catch (error) {
       throw new IndiekitError(error.message);
     }
   }
 
-  async updateFile(path, content, message) {
+  async updateFile(filePath, content, message) {
     try {
-      await exampleClient.update(path, content, message);
+      await exampleClient.update(filePath, content, message);
       return true;
     } catch (error) {
       throw new IndiekitError(error.message);
     }
   }
 
-  async deleteFile(path, message) {
+  async deleteFile(filePath, message) {
     try {
-      await exampleClient.delete(path, content, message);
+      await exampleClient.delete(filePath, content, message);
       return true;
     } catch (error) {
       throw new IndiekitError(error.message);

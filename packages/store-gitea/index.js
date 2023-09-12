@@ -67,15 +67,15 @@ export default class GiteaStore {
 
   /**
    * @access private
-   * @param {string} path - Request path
+   * @param {string} filePath - Request path
    * @param {string} [method] - Request method
    * @param {object} [body] - Request body
    * @returns {Promise<Response>} Gitea client interface
    */
-  async #client(path, method = "GET", body) {
+  async #client(filePath, method = "GET", body) {
     const { instance, user, repo, token } = this.options;
     const url = new URL(
-      path,
+      filePath,
       `${instance}/api/v1/repos/${user}/${repo}/contents/`,
     );
 
@@ -98,17 +98,17 @@ export default class GiteaStore {
 
   /**
    * Create file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
-  async createFile(path, content, { message }) {
+  async createFile(filePath, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
-      await this.#client(path, "POST", {
+      await this.#client(filePath, "POST", {
         branch: this.options.branch,
         content,
         message,
@@ -126,13 +126,15 @@ export default class GiteaStore {
 
   /**
    * Read file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @returns {Promise<string>} File contents
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
-  async readFile(path) {
+  async readFile(filePath) {
     try {
-      const response = await this.#client(`${path}?ref=${this.options.branch}`);
+      const response = await this.#client(
+        `${filePath}?ref=${this.options.branch}`,
+      );
       const body = await response.json();
       const content = Buffer.from(body.content, "base64").toString("utf8");
 
@@ -148,7 +150,7 @@ export default class GiteaStore {
 
   /**
    * Update file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
@@ -156,17 +158,19 @@ export default class GiteaStore {
    * @returns {Promise<boolean>} File updated
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
-  async updateFile(path, content, { message, newPath }) {
+  async updateFile(filePath, content, { message, newPath }) {
     try {
       content = Buffer.from(content).toString("base64");
-      const response = await this.#client(`${path}?ref=${this.options.branch}`);
+      const response = await this.#client(
+        `${filePath}?ref=${this.options.branch}`,
+      );
       const body = await response.json();
 
-      const updateFilePath = newPath || path;
+      const updateFilePath = newPath || filePath;
       await this.#client(updateFilePath, "PUT", {
         branch: this.options.branch,
         content,
-        fromPath: path,
+        fromPath: filePath,
         message,
         sha: body.sha,
       });
@@ -183,17 +187,19 @@ export default class GiteaStore {
 
   /**
    * Delete file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
-  async deleteFile(path, { message }) {
+  async deleteFile(filePath, { message }) {
     try {
-      const response = await this.#client(`${path}?ref=${this.options.branch}`);
+      const response = await this.#client(
+        `${filePath}?ref=${this.options.branch}`,
+      );
       const body = await response.json();
-      await this.#client(path, "DELETE", {
+      await this.#client(filePath, "DELETE", {
         branch: this.options.branch,
         message,
         sha: body.sha,

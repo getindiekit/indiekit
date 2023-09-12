@@ -59,14 +59,14 @@ export default class GithubStore {
 
   /**
    * @access private
-   * @param {string} path - Request path
+   * @param {string} filePath - Request path
    * @param {string} [method] - Request method
    * @param {object} [body] - Request body
    * @returns {Promise<Response>} GitHub client interface
    */
-  async #client(path, method = "GET", body) {
+  async #client(filePath, method = "GET", body) {
     const { baseUrl, user, repo, token } = this.options;
-    const url = new URL(path, `${baseUrl}/repos/${user}/${repo}/contents/`);
+    const url = new URL(filePath, `${baseUrl}/repos/${user}/${repo}/contents/`);
 
     try {
       const response = await fetch(url.href, {
@@ -94,17 +94,17 @@ export default class GithubStore {
 
   /**
    * Create file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
-  async createFile(path, content, { message }) {
+  async createFile(filePath, content, { message }) {
     content = Buffer.from(content).toString("base64");
 
-    await this.#client(path, "PUT", {
+    await this.#client(filePath, "PUT", {
       branch: this.options.branch,
       content,
       message,
@@ -115,12 +115,14 @@ export default class GithubStore {
 
   /**
    * Read file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @returns {Promise<string>} File content
    * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
    */
-  async readFile(path) {
-    const response = await this.#client(`${path}?ref=${this.options.branch}`);
+  async readFile(filePath) {
+    const response = await this.#client(
+      `${filePath}?ref=${this.options.branch}`,
+    );
     const { content } = await response.json();
 
     return Buffer.from(content, "base64").toString("utf8");
@@ -128,7 +130,7 @@ export default class GithubStore {
 
   /**
    * Update file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
@@ -136,12 +138,14 @@ export default class GithubStore {
    * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
-  async updateFile(path, content, { message, newPath }) {
-    const response = await this.#client(`${path}?ref=${this.options.branch}`);
+  async updateFile(filePath, content, { message, newPath }) {
+    const response = await this.#client(
+      `${filePath}?ref=${this.options.branch}`,
+    );
     const body = await response.json();
     content = Buffer.from(content).toString("base64");
 
-    const updateFilePath = newPath || path;
+    const updateFilePath = newPath || filePath;
     await this.#client(updateFilePath, "PUT", {
       branch: this.options.branch,
       content,
@@ -150,7 +154,7 @@ export default class GithubStore {
     });
 
     if (newPath) {
-      await this.deleteFile(path, { message });
+      await this.deleteFile(filePath, { message });
     }
 
     return true;
@@ -158,17 +162,19 @@ export default class GithubStore {
 
   /**
    * Delete file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
-  async deleteFile(path, { message }) {
-    const response = await this.#client(`${path}?ref=${this.options.branch}`);
+  async deleteFile(filePath, { message }) {
+    const response = await this.#client(
+      `${filePath}?ref=${this.options.branch}`,
+    );
     const body = await response.json();
 
-    await this.#client(path, "DELETE", {
+    await this.#client(filePath, "DELETE", {
       branch: this.options.branch,
       sha: body.sha,
       message,

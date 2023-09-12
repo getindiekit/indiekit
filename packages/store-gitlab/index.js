@@ -92,19 +92,19 @@ export default class GitlabStore {
 
   /**
    * Create file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File created
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
-  async createFile(path, content, { message }) {
+  async createFile(filePath, content, { message }) {
     try {
       content = Buffer.from(content).toString("base64");
       await this.#client.files.create(
         this.projectId,
-        path,
+        filePath,
         this.options.branch,
         content,
         message,
@@ -125,15 +125,15 @@ export default class GitlabStore {
 
   /**
    * Read file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @returns {Promise<string>} File content
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
    */
-  async readFile(path) {
+  async readFile(filePath) {
     try {
       const response = await this.#client.files.showRaw(
         this.projectId,
-        path,
+        filePath,
         this.options.branch,
       );
 
@@ -149,7 +149,7 @@ export default class GitlabStore {
 
   /**
    * Update file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
@@ -157,7 +157,7 @@ export default class GitlabStore {
    * @returns {Promise<boolean>} File updated
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#update-existing-file-in-repository}
    */
-  async updateFile(path, content, { message, newPath }) {
+  async updateFile(filePath, content, { message, newPath }) {
     try {
       content = Buffer.from(content).toString("base64");
 
@@ -170,14 +170,14 @@ export default class GitlabStore {
             action: "update",
             content,
             encoding: "base64",
-            filePath: path,
+            filePath,
           },
           ...(newPath
             ? [
                 {
                   action: "move",
                   filePath: newPath,
-                  previousPath: path,
+                  previousPath: filePath,
                 },
               ]
             : []),
@@ -196,17 +196,17 @@ export default class GitlabStore {
 
   /**
    * Delete file
-   * @param {string} path - Path to file
+   * @param {string} filePath - Path to file
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#delete-existing-file-in-repository}
    */
-  async deleteFile(path, { message }) {
+  async deleteFile(filePath, { message }) {
     try {
       await this.#client.files.remove(
         this.projectId,
-        path,
+        filePath,
         this.options.branch,
         message,
       );
