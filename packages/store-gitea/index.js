@@ -102,18 +102,20 @@ export default class GiteaStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<boolean>} File created
+   * @returns {Promise<string>} Created file URL
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(filePath, content, { message }) {
     try {
-      await this.#client(filePath, "POST", {
+      const createResponse = await this.#client(filePath, "POST", {
         branch: this.options.branch,
         content: Buffer.from(content).toString("base64"),
         message,
       });
 
-      return true;
+      const { commit } = await createResponse.json();
+
+      return commit.html_url;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -154,7 +156,7 @@ export default class GiteaStore {
    * @param {object} options - Options
    * @param {string} options.message - Commit message
    * @param {string} options.newPath - New path to file
-   * @returns {Promise<boolean>} File updated
+   * @returns {Promise<string>} Updated file URL
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(filePath, content, { message, newPath }) {
@@ -165,7 +167,7 @@ export default class GiteaStore {
       const { sha } = await readResponse.json();
       const updateFilePath = newPath || filePath;
 
-      await this.#client(updateFilePath, "PUT", {
+      const updateResponse = await this.#client(updateFilePath, "PUT", {
         branch: this.options.branch,
         content: Buffer.from(content).toString("base64"),
         fromPath: filePath,
@@ -173,7 +175,9 @@ export default class GiteaStore {
         sha,
       });
 
-      return true;
+      const { commit } = await updateResponse.json();
+
+      return commit.html_url;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,

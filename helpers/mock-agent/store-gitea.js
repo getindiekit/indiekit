@@ -21,7 +21,13 @@ export function mockClient(options) {
   agent
     .get(origin)
     .intercept({ path, method: "POST" })
-    .reply(201, { path: "foo.md", branch: "main" });
+    .reply(201, {
+      branch: "main",
+      commit: {
+        html_url: `${origin}/username/repo/foo.md`,
+      },
+      path: "foo.md",
+    });
 
   // Create file (Unauthorized)
   agent
@@ -49,11 +55,30 @@ export function mockClient(options) {
     .intercept({ path: /.*404\.md/, method: "GET" })
     .reply(404, { message: "Not found" });
 
+  // Update and rename file
+  agent
+    .get(origin)
+    .intercept({ path: /.*bar\.md/, method: "PUT" })
+    .reply(200, {
+      branch: "main",
+      commit: {
+        html_url: `${origin}/username/repo/bar.md`,
+      },
+      path: "bar.md",
+    })
+    .persist();
+
   // Update file
   agent
     .get(origin)
     .intercept({ path, method: "PUT" })
-    .reply(200, { path: "foo.md", branch: "main" })
+    .reply(200, {
+      branch: "main",
+      commit: {
+        html_url: `${origin}/username/repo/foo.md`,
+      },
+      path: "foo.md",
+    })
     .persist();
 
   // Delete file
