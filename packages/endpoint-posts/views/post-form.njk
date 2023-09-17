@@ -119,7 +119,7 @@
   {{ radios({
     classes: "radios--inline",
     name: "rsvp",
-    values: data.rsvp or "yes",
+    values: properties.rsvp or "yes",
     fieldset: {
       legend: __("posts.form.rsvp.label")
     },
@@ -170,7 +170,7 @@
 
   {{ textarea({
     name: "content",
-    value: errors.content.value or data.content.text,
+    value: errors.content.value or properties.content.text,
     label: __("posts.form.content.label"),
     optional: contentOptional,
     errorMessage: fieldData("content").errorMessage
@@ -178,7 +178,7 @@
 
   {{ textarea({
     name: "summary",
-    value: data.summary,
+    value: properties.summary,
     label: __("posts.form.summary.label"),
     optional: true,
     rows: 1
@@ -225,7 +225,7 @@
 
   {{ checkboxes({
     name: "mp-syndicate-to",
-    values: data["mp-syndicate-to"],
+    values: properties["mp-syndicate-to"],
     fieldset: {
       legend: __("posts.form.mp-syndicate-to.label")
     },
@@ -265,7 +265,7 @@
     {{ radios({
       classes: "radios--inline",
       name: "visibility",
-      values: data.visibility or "public",
+      values: properties.visibility or "public",
       fieldset: {
         legend: __("posts.form.visibility.label")
       },

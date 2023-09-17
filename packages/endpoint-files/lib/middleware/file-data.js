@@ -1,6 +1,6 @@
 import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
-import { getFileData, getFileName } from "../utils.js";
+import { getFileProperties, getFileName } from "../utils.js";
 
 export const fileData = {
   upload(request, response, next) {
@@ -22,7 +22,7 @@ export const fileData = {
       const { id } = request.params;
       const { access_token, scope } = request.session;
 
-      const data = await getFileData(
+      const properties = await getFileProperties(
         id,
         application.mediaEndpoint,
         access_token,
@@ -30,9 +30,9 @@ export const fileData = {
 
       response.locals = {
         accessToken: access_token,
-        data,
         filesPath: path.dirname(request.baseUrl + request.path),
-        fileName: getFileName(data.url),
+        fileName: getFileName(properties.url),
+        properties,
         scope,
         ...response.locals,
       };

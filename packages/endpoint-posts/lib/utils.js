@@ -64,35 +64,35 @@ export const getPostId = (url) => {
 };
 
 /**
+ * Get post name, falling back to post type name
+ * @param {string} publication - Publication configuration
+ * @param {object} properties - Post properties
+ * @returns {string} Post name or post type name
+ */
+export const getPostName = (publication, properties) => {
+  if (properties.name) {
+    return properties.name;
+  }
+
+  return getPostTypeName(publication, properties["post-type"]);
+};
+
+/**
  * Query Micropub endpoint for post data
  * @param {string} id - Post ID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
  * @returns {Promise<object>} JF2 properties
  */
-export const getPostData = async (id, micropubEndpoint, accessToken) => {
+export const getPostProperties = async (id, micropubEndpoint, accessToken) => {
   const micropubUrl = new URL(micropubEndpoint);
   micropubUrl.searchParams.append("q", "source");
   micropubUrl.searchParams.append("url", getPostUrl(id));
 
   const micropubResponse = await endpoint.get(micropubUrl.href, accessToken);
-  const postData = mf2tojf2({ items: [micropubResponse] });
+  const properties = mf2tojf2({ items: [micropubResponse] });
 
-  return postData;
-};
-
-/**
- * Get post name, falling back to post type name
- * @param {string} publication - Publication configuration
- * @param {object} post - Post properties
- * @returns {string} Post name or post type name
- */
-export const getPostName = (publication, post) => {
-  if (post.name) {
-    return post.name;
-  }
-
-  return getPostTypeName(publication, post["post-type"]);
+  return properties;
 };
 
 /**

@@ -17,14 +17,14 @@ export const getFileId = (url) => {
  * @param {string} accessToken - Access token
  * @returns {Promise<object>} JF2 properties
  */
-export const getFileData = async (id, mediaEndpoint, accessToken) => {
+export const getFileProperties = async (id, mediaEndpoint, accessToken) => {
   const mediaUrl = new URL(mediaEndpoint);
   mediaUrl.searchParams.append("q", "source");
   mediaUrl.searchParams.append("url", getFileUrl(id));
 
-  const fileData = await endpoint.get(mediaUrl.href, accessToken);
+  const properties = await endpoint.get(mediaUrl.href, accessToken);
 
-  return fileData;
+  return properties;
 };
 
 /**

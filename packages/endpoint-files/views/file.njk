@@ -1,20 +1,20 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {% set type = data["media-type"] %}
+  {% set type = properties["media-type"] %}
   {% if type === "audio" %}
-    <audio src="{{ data.url }}" controls></audio>
+    <audio src="{{ properties.url }}" controls></audio>
   {% elif type === "photo" %}
-    <img src="{{ data.url }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';">
+    <img src="{{ properties.url }}" onerror="this.src='/assets/not-found.svg'; this.className='not-found';">
   {% elif type === "video" %}
-    <video src="{{ data.url }}" controls></video>
+    <video src="{{ properties.url }}" controls></video>
   {% else %}
     {{ prose({
-      html: "<a href=\"" + data.url + "\" download>" + __("files.file.download") + "</a>"
+      html: "<a href=\"" + properties.url + "\" download>" + __("files.file.download") + "</a>"
     }) }}
   {% endif %}
 
   {% call section({ title: __("files.file.properties") }) %}
-    {{ summary({ rows: summaryRows(data) }) }}
+    {{ summary({ rows: summaryRows(properties) }) }}
   {% endcall %}
 {% endblock %}

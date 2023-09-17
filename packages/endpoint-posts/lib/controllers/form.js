@@ -42,7 +42,7 @@ export const formController = {
    */
   async post(request, response) {
     const { micropubEndpoint, timeZone } = request.app.locals.application;
-    const { action, accessToken, data, postTypeName } = response.locals;
+    const { accessToken, action, postTypeName, properties } = response.locals;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -111,7 +111,7 @@ export const formController = {
       if (action === "update") {
         jsonBody = {
           action,
-          url: data.url,
+          url: properties.url,
           replace: mf2.properties,
         };
       }

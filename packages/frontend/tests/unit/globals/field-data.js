@@ -5,7 +5,7 @@ test("Gets field data", (t) => {
   const result = fieldData.call(
     {
       ctx: {
-        data: { foo: "foo" },
+        properties: { foo: "foo" },
       },
     },
     "foo",
@@ -19,7 +19,7 @@ test("Gets field data with errors", (t) => {
   const result = fieldData.call(
     {
       ctx: {
-        data: { foo: "foo" },
+        properties: { foo: "foo" },
         errors: { foo: { value: "bar", msg: "Enter a foo" } },
       },
     },

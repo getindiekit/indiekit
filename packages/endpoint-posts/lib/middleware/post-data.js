@@ -2,8 +2,8 @@ import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { statusTypes } from "../status-types.js";
 import {
-  getPostData,
   getPostName,
+  getPostProperties,
   getPostTypeName,
   getSyndicateToItems,
 } from "../utils.js";
@@ -15,21 +15,22 @@ export const postData = {
 
     // Create new post object with default values
     const postType = request.query.type || "note";
-    const data = request.body;
+    const properties = request.body;
 
     // Only select ‘checked’ syndication targets on first view
     const checkTargets = Object.entries(request.body).length === 0;
 
     // Only show advanced options if one of those fields has been updated
-    const showAdvancedOptions = data.category || data.geo || data.visibility;
+    const showAdvancedOptions =
+      properties.category || properties.geo || properties.visibility;
 
     response.locals = {
       accessToken: access_token,
       action: "create",
-      data,
       postsPath: path.dirname(request.baseUrl + request.path),
       postType,
       postTypeName: getPostTypeName(publication, postType),
+      properties,
       scope,
       showAdvancedOptions,
       syndicationTargetItems: getSyndicateToItems(publication, checkTargets),
@@ -45,28 +46,31 @@ export const postData = {
       const { action, id } = request.params;
       const { access_token, scope } = request.session;
 
-      const data = await getPostData(
+      const properties = await getPostProperties(
         id,
         application.micropubEndpoint,
         access_token,
       );
 
-      if (data.location) {
-        data.geo = [data.location.latitude, data.location.longitude].toString();
+      if (properties.location) {
+        properties.geo = [
+          properties.location.latitude,
+          properties.location.longitude,
+        ].toString();
       }
 
-      const postType = data["post-type"];
+      const postType = properties["post-type"];
 
       response.locals = {
         accessToken: access_token,
         action: action || "create",
-        data,
         draftMode: scope?.includes("draft"),
-        postName: getPostName(publication, data),
+        postName: getPostName(publication, properties),
         postsPath: path.dirname(request.baseUrl + request.path),
-        postStatus: data["post-status"],
+        postStatus: properties["post-status"],
         postType,
         postTypeName: getPostTypeName(publication, postType),
+        properties,
         scope,
         showAdvancedOptions: true,
         syndicationTargetItems: getSyndicateToItems(publication),

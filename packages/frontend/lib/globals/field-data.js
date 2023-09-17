@@ -6,11 +6,11 @@ import _ from "lodash";
  * @returns {object} Field data
  */
 export function fieldData(key) {
-  const { errors, data } = this.ctx;
+  const { errors, properties } = this.ctx;
   const errorData = _.get(errors, key);
 
   return {
-    value: errorData ? errorData?.value : _.get(data, key),
+    value: errorData ? errorData?.value : _.get(properties, key),
     ...(errorData && {
       errorMessage: {
         text: errorData?.msg,
