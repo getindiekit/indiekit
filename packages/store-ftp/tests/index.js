@@ -58,10 +58,7 @@ test("Throws error connecting to FTP server", async (t) => {
 });
 
 test.serial("Creates file", async (t) => {
-  t.is(
-    await ftp.createFile("foo.md", "foobar"),
-    "Uploaded data stream to foo.md",
-  );
+  t.is(await ftp.createFile("foo.md", "foobar"), "sftp://127.0.0.1/foo.md");
 });
 
 test("Throws error creating file", async (t) => {
@@ -81,10 +78,7 @@ test("Throws error reading file", async (t) => {
 });
 
 test.serial("Updates file", async (t) => {
-  t.is(
-    await ftp.updateFile("foo.md", "foobar"),
-    "Uploaded data stream to foo.md",
-  );
+  t.is(await ftp.updateFile("foo.md", "foobar"), "sftp://127.0.0.1/foo.md");
 });
 
 test("Updates and renames file", async (t) => {
@@ -92,15 +86,12 @@ test("Updates and renames file", async (t) => {
     await ftp.updateFile("foo.md", "foobar", {
       newPath: "bar.md",
     }),
-    "Successfully renamed foo.md to bar.md",
+    "sftp://127.0.0.1/bar.md",
   );
 });
 
 test("Creates file if original not found", async (t) => {
-  t.is(
-    await ftp.updateFile("qux.md", "foobar"),
-    "Uploaded data stream to qux.md",
-  );
+  t.is(await ftp.updateFile("qux.md", "foobar"), "sftp://127.0.0.1/qux.md");
 });
 
 test("Throws error updating file", async (t) => {

@@ -126,7 +126,12 @@ export default class FtpStore {
         await client.mkdir(directory, true);
       }
 
-      return await client.put(readableStream, absolutePath);
+      await client.put(readableStream, absolutePath);
+
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, filePath);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -178,11 +183,16 @@ export default class FtpStore {
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#absolutePath(filePath);
 
-      const update = await client.put(readableStream, absolutePath);
+      await client.put(readableStream, absolutePath);
 
-      return options?.newPath
-        ? await client.rename(absolutePath, this.#absolutePath(options.newPath))
-        : update;
+      if (options?.newPath) {
+        await client.rename(absolutePath, this.#absolutePath(options.newPath));
+      }
+
+      const url = new URL(this.info.uid);
+      url.pathname = path.join(url.pathname, options?.newPath || filePath);
+
+      return url.href;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
