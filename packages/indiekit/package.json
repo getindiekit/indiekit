@@ -57,7 +57,7 @@
     "deepmerge": "^4.2.2",
     "express": "^4.17.1",
     "express-fileupload": "^1.4.0",
-    "express-rate-limit": "^6.2.0",
+    "express-rate-limit": "^7.0.0",
     "i18n": "^0.15.0",
     "keyv": "^4.2.0",
     "keyv-mongodb": "^3.0.0",
