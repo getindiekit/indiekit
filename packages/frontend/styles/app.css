@@ -1,6 +1,63 @@
-@import "./config/*.css";
-@import "./base/*.css";
-@import "./scopes/*.css";
-@import "../components/**/*.css";
-@import "./utilities/*.css";
-@import "./vendor/*.css";
+/* Config */
+@import url("./config/custom-media.css");
+@import url("./config/custom-properties.css");
+@import url("./config/font-face.css");
+
+/* Base */
+@import url("./base/embedded.css");
+@import url("./base/forms.css");
+@import url("./base/grouping.css");
+@import url("./base/sections.css");
+@import url("./base/tables.css");
+@import url("./base/text.css");
+
+/* Scopes */
+@import url("./scopes/flow.css");
+
+/* Components */
+@import url("../components/actions/styles.css");
+@import url("../components/add-another/styles.css");
+@import url("../components/app/styles.css");
+@import url("../components/authorize/styles.css");
+@import url("../components/back-link/styles.css");
+@import url("../components/badge/styles.css");
+@import url("../components/bookmarklet/styles.css");
+@import url("../components/button/styles.css");
+@import url("../components/card/styles.css");
+@import url("../components/card-grid/styles.css");
+@import url("../components/checkboxes/styles.css");
+@import url("../components/details/styles.css");
+@import url("../components/error-message/styles.css");
+@import url("../components/error-summary/styles.css");
+@import url("../components/field/styles.css");
+@import url("../components/fieldset/styles.css");
+@import url("../components/footer/styles.css");
+@import url("../components/header/styles.css");
+@import url("../components/heading/styles.css");
+@import url("../components/hint/styles.css");
+@import url("../components/icon/styles.css");
+@import url("../components/input/styles.css");
+@import url("../components/label/styles.css");
+@import url("../components/logo/styles.css");
+@import url("../components/main/styles.css");
+@import url("../components/navigation/styles.css");
+@import url("../components/notification/styles.css");
+@import url("../components/pagination/styles.css");
+@import url("../components/preview/styles.css");
+@import url("../components/prose/styles.css");
+@import url("../components/radios/styles.css");
+@import url("../components/section/styles.css");
+@import url("../components/select/styles.css");
+@import url("../components/skip-link/styles.css");
+@import url("../components/summary/styles.css");
+@import url("../components/tag-input/styles.css");
+@import url("../components/textarea/styles.css");
+@import url("../components/warning-text/styles.css");
+@import url("../components/widget/styles.css");
+
+/* Utilities */
+@import url("./utilities/container.css");
+@import url("./utilities/visually-hidden.css");
+
+/* Vendor */
+@import url("./vendor/markdown-it-prism.css");
