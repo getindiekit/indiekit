@@ -5,6 +5,7 @@ import {
   getGeoValue,
   getPostName,
   getPostProperties,
+  getStoreProperties,
   getSyndicateToItems,
 } from "../utils.js";
 
@@ -67,6 +68,7 @@ export const postData = {
 
       // Get post type config
       const { name, fields, h } = publication.postTypes[postType];
+      const storeProperties = await getStoreProperties(application, uid);
 
       response.locals = {
         accessToken: access_token,
@@ -86,6 +88,7 @@ export const postData = {
         showAdvancedOptions: true,
         syndicationTargetItems: getSyndicateToItems(publication),
         statusTypes,
+        storeProperties,
         ...response.locals,
       };
 

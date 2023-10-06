@@ -31,6 +31,51 @@
   {% include "post-types/" + name + ".njk" ignore missing %}
 {% endfor %}
 
+  {% if storeProperties %}
+    {% call details({
+      open: true,
+      summary: publication.store.name
+    }) %}
+      {{ summary({
+        rows: [{
+          key: {
+            text: __("posts.post.published") | title
+          },
+          value: {
+            text: (storeProperties.published | date("PPPppp")) or warningText({
+              text: __("posts.post.storeError", __("posts.post.published"))
+            })
+          } if properties.published
+        }, {
+          key: {
+            text: __("posts.post.updated") | title
+          },
+          value: {
+            text: (storeProperties.updated | date("PPPppp")) or warningText({
+              text: __("posts.post.storeError", __("posts.post.updated"))
+            })
+          }
+        } if properties.updated, {
+          key: {
+            text: __("posts.post.deleted") | title
+          },
+          value: {
+            text: (storeProperties.deleted | date("PPPppp")) or warningText({
+              text: __("posts.post.storeError", __("posts.post.deleted"))
+            })
+          }
+        } if properties.deleted, {
+          key: {
+            text: __("posts.post.storeUrl")
+          },
+          value: {
+            text: storeProperties.url | urlize
+          }
+        } if storeProperties.url]
+      }) }}
+    {% endcall %}
+  {% endif %}
+
   {% call details({
     summary: __("posts.post.properties")
   }) %}

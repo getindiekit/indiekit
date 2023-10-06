@@ -1,15 +1,9 @@
 .warning-text {
-  --icon-margin: var(--space-s);
+  --flow-space: 0;
+  --icon-margin: var(--space-xs);
   --icon-size: 1.5em;
   align-items: start;
-  background-color: var(--color-offset);
-  border-radius: var(--border-radius-small);
   display: flex;
   flex-direction: row;
   font: var(--font-label);
-  padding: var(--space-m);
-
-  & .warning-text__text {
-    margin-block-start: var(--space-2xs);
-  }
 }

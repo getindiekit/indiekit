@@ -52,7 +52,7 @@ export const actionController = async (request, response, next) => {
           : jf2;
 
         data = await postData.create(application, publication, jf2, draftMode);
-        content = await postContent.create(publication, data);
+        content = await postContent.create(application, publication, data);
         break;
       }
 
@@ -89,13 +89,13 @@ export const actionController = async (request, response, next) => {
           );
         }
 
-        content = await postContent.update(publication, data, url);
+        content = await postContent.update(application, publication, data, url);
         break;
       }
 
       case "delete": {
         data = await postData.delete(application, publication, url);
-        content = await postContent.delete(publication, data);
+        content = await postContent.delete(application, publication, data);
         break;
       }
 
@@ -106,7 +106,7 @@ export const actionController = async (request, response, next) => {
           url,
           draftMode,
         );
-        content = await postContent.undelete(publication, data);
+        content = await postContent.undelete(application, publication, data);
         break;
       }
 

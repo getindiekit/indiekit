@@ -32,9 +32,13 @@ export const dateTokens = [
  * @param {string} string - ISO 8601 date
  * @param {string} tokens - Tokenised date format
  * @param {import("date-fns-tz").OptionsWithTZ} [options] - Options
- * @returns {string} Formatted date
+ * @returns {string|boolean} Formatted date
  */
 export const formatDate = (string, tokens, options = {}) => {
+  if (!string) {
+    return false;
+  }
+
   const locale = options.locale || "en";
   options.locale = locales[String(locale).replace("-", "")];
 

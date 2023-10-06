@@ -106,7 +106,12 @@
     },
     "post": {
       "properties": "Properties",
-      "syndicate": "Syndicate post"
+      "syndicate": "Syndicate post",
+      "published": "published",
+      "updated": "updated",
+      "deleted": "deleted",
+      "storeError": "Post may not be %s in content store",
+      "storeUrl": "Store URL"
     },
     "posts": {
       "title": "Published posts",

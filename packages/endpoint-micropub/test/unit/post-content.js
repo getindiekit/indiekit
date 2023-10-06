@@ -9,8 +9,10 @@ await mockAgent("endpoint-micropub");
 const url = "https://website.example/foo";
 
 describe("endpoint-micropub/lib/post-content", () => {
+  const application = { hasDatabase: false };
+
   it("Creates a post", async () => {
-    const result = await postContent.create(publication, postData);
+    const result = await postContent.create(application, publication, postData);
 
     assert.deepEqual(result, {
       location: "https://website.example/foo",
@@ -24,13 +26,18 @@ describe("endpoint-micropub/lib/post-content", () => {
   });
 
   it("Throws error creating a post", async () => {
-    await assert.rejects(postContent.create(false, postData), {
+    await assert.rejects(postContent.create(application, false, postData), {
       message: "postTemplate is not a function",
     });
   });
 
   it("Updates a post", async () => {
-    const result = await postContent.update(publication, postData, url);
+    const result = await postContent.update(
+      application,
+      publication,
+      postData,
+      url,
+    );
 
     assert.deepEqual(result, {
       location: "https://website.example/foo",
@@ -43,13 +50,16 @@ describe("endpoint-micropub/lib/post-content", () => {
   });
 
   it("Throws error updating a post", async () => {
-    await assert.rejects(postContent.update(false, postData, url), {
-      message: "postTemplate is not a function",
-    });
+    await assert.rejects(
+      postContent.update(application, false, postData, url),
+      {
+        message: "postTemplate is not a function",
+      },
+    );
   });
 
   it("Deletes a post", async () => {
-    const result = await postContent.delete(publication, postData);
+    const result = await postContent.delete(application, publication, postData);
 
     assert.deepEqual(result, {
       status: 200,
@@ -61,13 +71,17 @@ describe("endpoint-micropub/lib/post-content", () => {
   });
 
   it("Throws error deleting a post", async () => {
-    await assert.rejects(postContent.delete(false, postData), {
+    await assert.rejects(postContent.delete(application, false, postData), {
       message: "storeMessageTemplate is not a function",
     });
   });
 
   it("Undeletes a post", async () => {
-    const result = await postContent.undelete(publication, deletedPostData);
+    const result = await postContent.undelete(
+      application,
+      publication,
+      deletedPostData,
+    );
 
     assert.deepEqual(result, {
       location: "https://website.example/foo",
@@ -80,7 +94,7 @@ describe("endpoint-micropub/lib/post-content", () => {
   });
 
   it("Throws error undeleting a post", async () => {
-    await assert.rejects(postContent.undelete(false, postData), {
+    await assert.rejects(postContent.undelete(application, false, postData), {
       message: "postTemplate is not a function",
     });
   });

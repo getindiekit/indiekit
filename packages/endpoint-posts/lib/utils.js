@@ -1,5 +1,5 @@
 import { Buffer } from "node:buffer";
-import { sanitise, ISO_6709_RE } from "@indiekit/util";
+import { getObjectId, sanitise, ISO_6709_RE } from "@indiekit/util";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
 import { endpoint } from "./endpoint.js";
@@ -140,6 +140,24 @@ export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
 export const getPostUrl = (id) => {
   const url = Buffer.from(id, "base64url").toString("utf8");
   return new URL(url).href;
+};
+
+/**
+ * Query database for post storage data
+ * @param {object} application - Application configuration
+ * @param {string} uid - Item UID
+ * @returns {Promise<object>} Post storage properties
+ */
+export const getStoreProperties = async (application, uid) => {
+  if (!application.hasDatabase) {
+    return;
+  }
+
+  const { posts } = application;
+  const query = { _id: getObjectId(uid) };
+  const properties = await posts.findOne(query);
+
+  return properties.storeProperties;
 };
 
 /**

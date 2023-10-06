@@ -1,5 +1,7 @@
 export const postData = {
-  path: "foo.md",
+  storeProperties: {
+    path: "foo.md",
+  },
   properties: {
     name: "note",
     "post-status": "published",
@@ -10,7 +12,9 @@ export const postData = {
 };
 
 export const deletedPostData = {
-  path: "foo.md",
+  storeProperties: {
+    path: "foo.md",
+  },
   properties: {
     deleted: "2020-01-02T00:00:00+00:00",
     name: "note",
