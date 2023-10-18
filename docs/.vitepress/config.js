@@ -111,6 +111,11 @@ export default {
       md.use(markdownFootnote);
       md.use(markdownTaskLists);
     },
+    container: {
+      tipLabel: "Tip",
+      warningLabel: "Warning",
+      infoLabel: "Information",
+    },
     linkify: false,
   },
   outDir: "../_site",
