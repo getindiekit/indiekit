@@ -50,7 +50,7 @@
     "@indiekit/preset-jekyll": "^1.0.0-beta.4",
     "@indiekit/util": "^1.0.0-beta.5",
     "clean-stack": "^5.0.0",
-    "commander": "^11.0.0",
+    "commander": "^11.1.0",
     "cookie-session": "^2.0.0",
     "cosmiconfig": "^8.2.0",
     "debug": "^4.3.2",
