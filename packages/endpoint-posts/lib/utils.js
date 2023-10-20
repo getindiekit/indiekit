@@ -55,15 +55,6 @@ export const getPostStatusBadges = (post, response) => {
 };
 
 /**
- * Get post ID from URL
- * @param {string} url - URL
- * @returns {string} Post ID
- */
-export const getPostId = (url) => {
-  return Buffer.from(url).toString("base64url");
-};
-
-/**
  * Get post name, falling back to post type name
  * @param {string} publication - Publication configuration
  * @param {object} properties - Post properties
@@ -79,20 +70,24 @@ export const getPostName = (publication, properties) => {
 
 /**
  * Query Micropub endpoint for post data
- * @param {string} id - Post ID
+ * @param {string} uid - Item UID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
  * @returns {Promise<object>} JF2 properties
  */
-export const getPostProperties = async (id, micropubEndpoint, accessToken) => {
+export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
   const micropubUrl = new URL(micropubEndpoint);
   micropubUrl.searchParams.append("q", "source");
-  micropubUrl.searchParams.append("url", getPostUrl(id));
 
   const micropubResponse = await endpoint.get(micropubUrl.href, accessToken);
-  const properties = mf2tojf2({ items: [micropubResponse] });
 
-  return properties;
+  if (micropubResponse?.items?.length > 0) {
+    const jf2 = mf2tojf2(micropubResponse);
+    const items = jf2.children || [jf2];
+    return items.find((item) => item.uid === uid);
+  }
+
+  return false;
 };
 
 /**

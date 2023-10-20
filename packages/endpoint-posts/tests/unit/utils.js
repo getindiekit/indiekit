@@ -1,7 +1,6 @@
 import test from "ava";
 import {
   getLocationProperty,
-  getPostId,
   getPostName,
   getPostStatusBadges,
   getPostTypeName,
@@ -45,13 +44,6 @@ test("Gets location property", (t) => {
     longitude: "-65.4321",
     name: "12° 20′ 44.16″ N 65° 25′ 55.56″ W",
   });
-});
-
-test("Gets post ID", (t) => {
-  t.is(
-    getPostId("https://website.example/foobar"),
-    "aHR0cHM6Ly93ZWJzaXRlLmV4YW1wbGUvZm9vYmFy",
-  );
 });
 
 test("Gets post name", (t) => {
