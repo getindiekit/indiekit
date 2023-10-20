@@ -3,7 +3,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { endpoint } from "../endpoint.js";
 import { statusTypes } from "../status-types.js";
-import { getPostStatusBadges, getPostId, getPostName } from "../utils.js";
+import { getPostStatusBadges, getPostName } from "../utils.js";
 
 /**
  * List published posts
@@ -36,12 +36,12 @@ export const postsController = async (request, response, next) => {
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
-        item.id = getPostId(item.url);
+        item.id = item.uid;
         item.icon = item["post-type"];
         item.photo = item.photo ? item.photo[0] : false;
         item.description = item.summary || item.content?.text;
         item.title = getPostName(publication, item);
-        item.url = path.join(request.baseUrl, request.path, item.id);
+        item.url = path.join(request.baseUrl, request.path, item.uid);
         item.badges = getPostStatusBadges(item, response);
 
         return item;

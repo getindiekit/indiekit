@@ -43,14 +43,18 @@ export const postData = {
   async read(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
-      const { action, id } = request.params;
+      const { action, uid } = request.params;
       const { access_token, scope } = request.session;
 
       const properties = await getPostProperties(
-        id,
+        uid,
         application.micropubEndpoint,
         access_token,
       );
+
+      if (!properties) {
+        throw IndiekitError.notFound(response.locals.__("NotFoundError.page"));
+      }
 
       if (properties.location) {
         properties.geo = [
@@ -80,15 +84,7 @@ export const postData = {
 
       next();
     } catch (error) {
-      let nextError = error;
-
-      if (error.message === "Invalid URL") {
-        nextError = IndiekitError.notFound(
-          response.locals.__("NotFoundError.page"),
-        );
-      }
-
-      next(nextError);
+      next(error);
     }
   },
 };

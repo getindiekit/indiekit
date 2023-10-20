@@ -7,7 +7,7 @@ test("Returns 404 error post not found", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
   const result = await request
-    .get("/posts/5ffcc8025c561a7bf53bd6e8")
+    .get("/posts/404")
     .auth(testToken(), { type: "bearer" });
 
   t.is(result.status, 404);
