@@ -1,6 +1,6 @@
 .field {
   & > * {
-    --fieldset-flow-space: var(--space-s);
+    --fieldset-flow-space: var(--space-xs);
   }
 
   &:has(.input[type="hidden"]) {
