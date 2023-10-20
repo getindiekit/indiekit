@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -14,12 +13,10 @@ test("Returns 401 error deleting file", async (t) => {
     },
   });
   const request = supertest.agent(server);
-  const url = "https://website.example/401.jpg";
-  const id = Buffer.from(url).toString("base64url");
   const result = await request
-    .post(`/files/${id}/delete`)
+    .post(`/files/401/delete`)
     .set("cookie", [testCookie()])
-    .send({ url });
+    .send({ url: "https://website.example/401.jpg" });
 
   t.is(result.status, 401);
 

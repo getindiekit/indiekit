@@ -13,7 +13,27 @@ export function mockClient() {
   const mediaOrigin = "https://website.example/photo.jpg";
   const mediaBadOrigin = "https://website.example/401.jpg";
 
-  // Get source information from external media endpoint
+  // Get source information for all items from external media endpoint
+  agent
+    .get(mediaEndpointOrigin)
+    .intercept({
+      path: /\/\?q=source/,
+    })
+    .reply(200, {
+      items: [
+        {
+          uid: "123",
+          url: "https://website.example/photo.jpg",
+        },
+        {
+          uid: "401",
+          url: "https://website.example/401.jpg",
+        },
+      ],
+    })
+    .persist();
+
+  // Get source information for single item from external media endpoint
   agent
     .get(mediaEndpointOrigin)
     .intercept({
