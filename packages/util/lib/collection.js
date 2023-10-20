@@ -22,10 +22,10 @@ export const getCursor = async (collection, after, before, limit) => {
   };
 
   if (before) {
-    query._id = { $gt: new ObjectId(before) };
+    query._id = { $gt: getObjectId(before) };
     options.sort._id = 1;
   } else if (after) {
-    query._id = { $lt: new ObjectId(after) };
+    query._id = { $lt: getObjectId(after) };
   }
 
   const items = await collection.find(query, options).toArray();
@@ -47,4 +47,13 @@ export const getCursor = async (collection, after, before, limit) => {
   }
 
   return cursor;
+};
+
+/**
+ * Get object ID
+ * @param {string} uid - Item UID
+ * @returns {ObjectId} Object ID
+ */
+export const getObjectId = (uid) => {
+  return new ObjectId(uid);
 };

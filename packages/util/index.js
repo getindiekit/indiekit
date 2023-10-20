@@ -1,4 +1,4 @@
-export { getCursor } from "./lib/collection.js";
+export { getCursor, getObjectId } from "./lib/collection.js";
 export {
   formatDate,
   formatDateToLocal,
