@@ -42,7 +42,7 @@
 
   /* ( ) Ring */
   &::before {
-    background: transparent;
+    background-color: var(--color-background);
     block-size: var(--radio-size);
     border: var(--input-border-width) solid var(--color-outline);
     border-radius: 50%;

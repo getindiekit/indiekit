@@ -33,7 +33,7 @@
 
   /* [ ] Checkbox */
   &::before {
-    background: transparent;
+    background-color: var(--color-background);
     block-size: var(--checkbox-size);
     border: var(--input-border-width) solid var(--color-outline);
     border-radius: var(--border-radius-small);
