@@ -5,6 +5,21 @@ import newbase60 from "newbase60";
 import { mediaTypeCount } from "./media-type-count.js";
 
 /**
+ * Get media properties
+ * @param {object} mediaData - Media data
+ * @returns {object} Media properties
+ */
+export const getMediaProperties = (mediaData) => {
+  return {
+    uid: mediaData._id,
+    "content-type": mediaData.properties["content-type"],
+    "media-type": mediaData.properties["media-type"],
+    published: mediaData.properties.published,
+    url: mediaData.properties.url,
+  };
+};
+
+/**
  * Render path from URI template and properties
  * @param {string} path - URI template path
  * @param {object} properties - Properties to use

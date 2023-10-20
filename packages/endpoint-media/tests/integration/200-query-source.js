@@ -21,6 +21,7 @@ test("Returns list of uploaded files", async (t) => {
     .set("accept", "application/json")
     .query({ q: "source" });
 
+  t.truthy(result.body.items[0].uid);
   t.is(result.body.items[0]["content-type"], "image/jpeg");
   t.is(result.body.items[0]["media-type"], "photo");
   t.truthy(result.body.items[0].published);

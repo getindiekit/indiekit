@@ -1,5 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCursor } from "@indiekit/util";
+import { getMediaProperties } from "../utils.js";
 
 /**
  * Query uploaded files
@@ -22,29 +23,21 @@ export const queryController = async (request, response, next) => {
       case "source": {
         if (url) {
           // Return properties for a given URL
-          let item;
+          let mediaData;
 
           if (application.hasDatabase) {
-            item = await application.media.findOne(
-              { "properties.url": url },
-              {
-                projection: {
-                  "properties.content-type": 1,
-                  "properties.media-type": 1,
-                  "properties.published": 1,
-                  "properties.url": 1,
-                },
-              },
-            );
+            mediaData = await application.media.findOne({
+              "properties.url": url,
+            });
           }
 
-          if (!item) {
+          if (!mediaData) {
             throw IndiekitError.badRequest(
               response.locals.__("BadRequestError.missingResource", "file"),
             );
           }
 
-          response.json(item.properties);
+          response.json(getMediaProperties(mediaData));
         } else {
           // Return properties for all uploaded files
           let cursor = {
@@ -58,12 +51,9 @@ export const queryController = async (request, response, next) => {
           }
 
           response.json({
-            items: cursor.items.map((post) => ({
-              "content-type": post.properties["content-type"],
-              "media-type": post.properties["media-type"],
-              published: post.properties.published,
-              url: post.properties.url,
-            })),
+            items: cursor.items.map((mediaData) =>
+              getMediaProperties(mediaData),
+            ),
             paging: {
               ...(cursor.hasNext && { after: cursor.lastItem }),
               ...(cursor.hasPrev && { before: cursor.firstItem }),
