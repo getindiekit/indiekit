@@ -105,7 +105,7 @@ export const formController = {
         }
       }
 
-      const mf2 = jf2ToMf2(values);
+      const mf2 = jf2ToMf2({ properties: values });
 
       let jsonBody = mf2;
       if (action === "update") {

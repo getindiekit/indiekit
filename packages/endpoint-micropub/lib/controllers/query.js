@@ -35,21 +35,21 @@ export const queryController = async (request, response, next) => {
       case "source": {
         if (url) {
           // Return mf2 for a given URL (optionally filtered by properties)
-          let item;
+          let postData;
 
           if (application.hasDatabase) {
-            item = await application.posts.findOne({
+            postData = await application.posts.findOne({
               "properties.url": url,
             });
           }
 
-          if (!item) {
+          if (!postData) {
             throw IndiekitError.badRequest(
               response.locals.__("BadRequestError.missingResource", "post"),
             );
           }
 
-          const mf2 = jf2ToMf2(item.properties);
+          const mf2 = jf2ToMf2(postData);
           response.json(getMf2Properties(mf2, properties));
         } else {
           // Return mf2 for  published posts
@@ -64,7 +64,7 @@ export const queryController = async (request, response, next) => {
           }
 
           response.json({
-            items: cursor.items.map((post) => jf2ToMf2(post.properties)),
+            items: cursor.items.map((postData) => jf2ToMf2(postData)),
             paging: {
               ...(cursor.hasNext && { after: cursor.lastItem }),
               ...(cursor.hasPrev && { before: cursor.firstItem }),

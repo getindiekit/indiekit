@@ -35,28 +35,33 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 };
 
 /**
- * Convert JF2 to mf2
- * @param {object} jf2 - JF2
+ * Convert JF2 post data to mf2
+ * @param {object} postData - Post data
+ * @param {boolean} [includeObjectId] - Include ObjectID from post data
  * @returns {object} mf2
  */
-export const jf2ToMf2 = (jf2) => {
+export const jf2ToMf2 = (postData, includeObjectId = true) => {
+  const { properties, _id } = postData;
+
   const mf2 = {
-    type: [`h-${jf2.type}`],
-    properties: {},
+    type: [`h-${properties.type}`],
+    properties: {
+      ...(includeObjectId && _id && { uid: [_id] }),
+    },
   };
 
-  delete jf2.type;
+  delete properties.type;
 
   // Move values to property object
-  for (const key in jf2) {
+  for (const key in properties) {
     // Convert nested vocabulary to mf2 (i.e. h-card, h-geo, h-adr)
-    if (Object.prototype.hasOwnProperty.call(jf2[key], "type")) {
-      mf2.properties[key] = [jf2ToMf2(jf2[key])];
+    if (Object.prototype.hasOwnProperty.call(properties[key], "type")) {
+      mf2.properties[key] = [jf2ToMf2({ properties: properties[key] }, false)];
     }
 
     // Convert values to arrays (i.e. 'a' => ['a'])
-    else if (Object.prototype.hasOwnProperty.call(jf2, key)) {
-      const value = jf2[key];
+    else if (Object.prototype.hasOwnProperty.call(properties, key)) {
+      const value = properties[key];
       mf2.properties[key] = Array.isArray(value) ? value : [value];
     }
   }
@@ -67,7 +72,7 @@ export const jf2ToMf2 = (jf2) => {
     mf2.properties.content[0] &&
     mf2.properties.content[0].text
   ) {
-    mf2.properties.content[0].value = jf2.content.text;
+    mf2.properties.content[0].value = properties.content.text;
     delete mf2.properties.content[0].text;
   }
 

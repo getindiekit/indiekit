@@ -3,12 +3,14 @@ import { getFixture } from "@indiekit-test/fixtures";
 import { jf2ToMf2 } from "../../lib/mf2.js";
 
 test("Convert JF2 to mf2", (t) => {
-  const jf2 = JSON.parse(getFixture("jf2/all-properties.jf2"));
-  const result = jf2ToMf2(jf2);
+  const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
+  const postData = { _id: 123, properties };
+  const result = jf2ToMf2(postData);
 
   t.deepEqual(result, {
     type: ["h-entry"],
     properties: {
+      uid: [123],
       url: ["https://website.example/posts/cheese-sandwich"],
       name: ["What I had for lunch"],
       content: [
