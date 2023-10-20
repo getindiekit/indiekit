@@ -1,43 +1,26 @@
+.details {
+  background-color: var(--color-offset);
+  border-radius: var(--border-radius-small);
+  padding-block: var(--space-s);
+  padding-inline: var(--space-m);
+}
+
 .details__summary {
-  --details-color: var(--anchor-color, currentcolor);
-  --details-color-hover: var(--anchor-color-hover, var(--color-on-background));
-  --details-decoration-color: var(--details-decoration-color, currentcolor);
-  color: var(--details-color);
   cursor: pointer;
   font: var(--font-label);
-  margin-inline: calc(var(--space-xs) * -1);
-  max-width: min-content;
-  padding-block: var(--space-2xs);
-  padding-inline: var(--space-xs);
+  margin-block: calc(var(--space-xs) * -1);
+  margin-inline: calc(var(--space-m) * -1);
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-m);
   white-space: nowrap;
-
-  &:hover {
-    color: var(--details-color-hover);
-  }
 
   &:focus-visible {
     color: var(--color-on-background);
   }
 }
 
-.details__summary-text {
-  @nest .details__summary:hover & {
-    text-decoration-color: var(--details-decoration-color);
-    text-decoration-line: underline;
-    text-decoration-thickness: calc(var(--text-thickness) * 2);
-    text-underline-offset: calc(var(--text-thickness) * 2);
-  }
-}
-
-/* Use :not() selector to increase specificity over .fieldset */
 .details__main:not(#fieldset) {
-  border-inline-start: var(--border-width-thickest) solid var(--color-outline);
-  margin-block-start: var(--space-s);
-  padding-block: var(--space-xs);
-  padding-inline: var(--space-m);
-
-  & pre {
-    border-inline-start: none;
-    margin-inline-start: calc(var(--space-m) * -1);
-  }
+  margin-block: var(--space-s);
+  padding-inline-end: var(--space-2xs);
+  padding-inline-start: var(--space-l);
 }

@@ -38,13 +38,10 @@
   --color-outline: currentcolor;
   --font-label: var(--font-caption);
   --prose-font: var(--font-code);
-
-  & .details__summary {
-    padding-block: 0;
-  }
+  background-color: var(--color-shadow);
+  margin-block-start: var(--space-s);
 
   & .details__main {
-    background-color: var(--color-shadow);
     overflow: scroll;
     white-space: nowrap;
   }
