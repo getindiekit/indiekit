@@ -6,9 +6,7 @@ import { testCookie } from "@indiekit-test/session";
 test("Returns 404 error file not found", async (t) => {
   const server = await testServer();
   const request = supertest.agent(server);
-  const result = await request
-    .get("/files/5ffcc8025c561a7bf53bd6e8")
-    .set("cookie", [testCookie()]);
+  const result = await request.get("/files/404").set("cookie", [testCookie()]);
 
   t.is(result.status, 404);
   t.true(

@@ -19,14 +19,18 @@ export const fileData = {
   async read(request, response, next) {
     try {
       const { application } = request.app.locals;
-      const { id } = request.params;
+      const { uid } = request.params;
       const { access_token, scope } = request.session;
 
       const properties = await getFileProperties(
-        id,
+        uid,
         application.mediaEndpoint,
         access_token,
       );
+
+      if (!properties) {
+        throw IndiekitError.notFound(response.locals.__("NotFoundError.page"));
+      }
 
       response.locals = {
         accessToken: access_token,
@@ -39,15 +43,7 @@ export const fileData = {
 
       next();
     } catch (error) {
-      let nextError = error;
-
-      if (error.message === "Invalid URL") {
-        nextError = IndiekitError.notFound(
-          response.locals.__("NotFoundError.page"),
-        );
-      }
-
-      next(nextError);
+      next(error);
     }
   },
 };

@@ -1,4 +1,3 @@
-import { Buffer } from "node:buffer";
 import test from "ava";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -12,12 +11,10 @@ test("Deletes file and redirects to files page", async (t) => {
     application: { mediaEndpoint: "https://media-endpoint.example" },
   });
   const request = supertest.agent(server);
-  const url = "https://website.example/photo.jpg";
-  const id = Buffer.from(url).toString("base64url");
   const result = await request
-    .post(`/files/${id}/delete`)
+    .post(`/files/123/delete`)
     .set("cookie", [testCookie()])
-    .send({ url });
+    .send({ url: "https://website.example/photo.jpg" });
 
   t.is(result.status, 302);
   t.regex(result.text, /Found. Redirecting to \/files\?success/);

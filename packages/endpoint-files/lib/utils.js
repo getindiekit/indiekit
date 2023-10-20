@@ -2,29 +2,23 @@ import { Buffer } from "node:buffer";
 import { endpoint } from "./endpoint.js";
 
 /**
- * Get file ID from URL
- * @param {string} url - URL
- * @returns {string} File ID
- */
-export const getFileId = (url) => {
-  return Buffer.from(url).toString("base64url");
-};
-
-/**
  * Query Micropub media endpoint for file data
- * @param {string} id - Post ID
+ * @param {string} uid - Item UID
  * @param {string} mediaEndpoint - Micropub media endpoint
  * @param {string} accessToken - Access token
  * @returns {Promise<object>} JF2 properties
  */
-export const getFileProperties = async (id, mediaEndpoint, accessToken) => {
+export const getFileProperties = async (uid, mediaEndpoint, accessToken) => {
   const mediaUrl = new URL(mediaEndpoint);
   mediaUrl.searchParams.append("q", "source");
-  mediaUrl.searchParams.append("url", getFileUrl(id));
 
-  const properties = await endpoint.get(mediaUrl.href, accessToken);
+  const mediaResponse = await endpoint.get(mediaUrl.href, accessToken);
 
-  return properties;
+  if (mediaResponse?.items?.length > 0) {
+    return mediaResponse.items.find((item) => item.uid === uid);
+  }
+
+  return false;
 };
 
 /**

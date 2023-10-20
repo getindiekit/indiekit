@@ -1,6 +1,6 @@
 import path from "node:path";
 import { endpoint } from "../endpoint.js";
-import { getFileId, getFileName } from "../utils.js";
+import { getFileName } from "../utils.js";
 
 /**
  * List uploaded files
@@ -30,13 +30,13 @@ export const filesController = async (request, response, next) => {
     let files;
     if (mediaResponse?.items?.length > 0) {
       files = mediaResponse.items.map((item) => {
-        item.id = getFileId(item.url);
+        item.id = item.uid;
         item.icon = item["media-type"];
         item.photo = {
           url: item.url,
         };
         item.title = item.url ? getFileName(item.url) : "File";
-        item.url = path.join(request.baseUrl, request.path, item.id);
+        item.url = path.join(request.baseUrl, request.path, item.uid);
 
         return item;
       });
