@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { getObjectId } from "@indiekit/util";
 
 export const postTypeCount = {
   /**
@@ -34,7 +34,7 @@ export const postTypeCount = {
         },
         {
           $match: {
-            _id: new ObjectId(postUid),
+            _id: getObjectId(postUid),
             "properties.post-type": postType,
             convertedDate: {
               $gte: startDate,
