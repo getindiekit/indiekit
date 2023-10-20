@@ -14,7 +14,6 @@
   flex-grow: 1;
   font: var(--font-label);
   overflow-wrap: anywhere;
-  padding-block-start: var(--space-2xs);
 }
 
 .summary__value {
