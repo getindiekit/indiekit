@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export const postTypeCount = {
   /**
    * Count the number of posts of a given type
@@ -17,7 +19,7 @@ export const postTypeCount = {
 
     // Post type
     const postType = properties["post-type"];
-    const postUrl = properties.url;
+    const postUid = properties.uid;
     const startDate = new Date(new Date(properties.published).toDateString());
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 1);
@@ -32,8 +34,8 @@ export const postTypeCount = {
         },
         {
           $match: {
+            _id: new ObjectId(postUid),
             "properties.post-type": postType,
-            "properties.url": { $ne: postUrl },
             convertedDate: {
               $gte: startDate,
               $lt: endDate,
