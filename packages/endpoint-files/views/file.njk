@@ -14,7 +14,10 @@
     }) }}
   {% endif %}
 
-  {% call section({ title: __("files.file.properties") }) %}
+  {% call details({
+    open: true,
+    summary: __("files.file.properties")
+  }) %}
     {{ summary({ rows: summaryRows(properties) }) }}
   {% endcall %}
 {% endblock %}
