@@ -5,7 +5,7 @@
   --back-link-chevron-size: 0.5em;
   --back-link-chevron-thickness: var(--text-thickness);
 
-  @nest :root[dir="rtl"] & {
+  :root[dir="rtl"] & {
     --back-link-chevron-rotation: 45deg;
   }
 

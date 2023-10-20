@@ -18,7 +18,7 @@
   margin-inline-end: var(--space-s);
   padding: var(--space-2xs);
 
-  @nest :root[dir="rtl"] & {
+  :root[dir="rtl"] & {
     float: right;
   }
 

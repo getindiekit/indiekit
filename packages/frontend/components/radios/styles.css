@@ -119,7 +119,7 @@
   );
   padding-inline-start: calc(var(--space-l) + var(--input-border-halved));
 
-  @nest .js-enabled &--hidden {
+  .js-enabled &.radios__conditional--hidden {
     display: none;
   }
 }

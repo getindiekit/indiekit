@@ -116,7 +116,7 @@
   );
   padding-inline-start: calc(var(--space-l) + var(--input-border-halved));
 
-  @nest .js-enabled &--hidden {
+  .js-enabled &.checkboxes__conditional--hidden {
     display: none;
   }
 }

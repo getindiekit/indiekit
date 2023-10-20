@@ -48,7 +48,7 @@
     background-color: var(--color-offset);
   }
 
-  @nest .pagination__item--current & {
+  .pagination__item--current & {
     color: var(--color-on-background);
     font-weight: 600;
   }
@@ -60,7 +60,7 @@
   font-weight: 600;
   gap: var(--space-s);
 
-  @nest .pagination__item--next & {
+  .pagination__item--next & {
     flex-direction: row-reverse;
   }
 }
