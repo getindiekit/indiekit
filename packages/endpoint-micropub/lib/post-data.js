@@ -3,7 +3,7 @@ import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, getDate } from "@indiekit/util";
 import { getPostType } from "./post-type-discovery.js";
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
-import * as update from "./update.js";
+import * as updateMf2 from "./update.js";
 import { getPostTypeConfig, renderPath } from "./utils.js";
 
 export const postData = {
@@ -103,19 +103,22 @@ export const postData = {
 
     // Add properties
     if (operation.add) {
-      properties = update.addProperties(properties, operation.add);
+      properties = updateMf2.addProperties(properties, operation.add);
     }
 
     // Replace property entries
     if (operation.replace) {
-      properties = await update.replaceEntries(properties, operation.replace);
+      properties = await updateMf2.replaceEntries(
+        properties,
+        operation.replace,
+      );
     }
 
     // Remove properties and/or property entries
     if (operation.delete) {
       properties = Array.isArray(operation.delete)
-        ? update.deleteProperties(properties, operation.delete)
-        : update.deleteEntries(properties, operation.delete);
+        ? updateMf2.deleteProperties(properties, operation.delete)
+        : updateMf2.deleteEntries(properties, operation.delete);
     }
 
     // Normalise properties
