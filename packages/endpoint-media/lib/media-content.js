@@ -8,22 +8,23 @@ export const mediaContent = {
    */
   async upload(publication, mediaData, file) {
     const { store, storeMessageTemplate } = publication;
+    const { path, properties } = mediaData;
     const metaData = {
       action: "upload",
       result: "uploaded",
       fileType: "file",
-      postType: mediaData.properties["media-type"],
+      postType: properties["media-type"],
     };
     const message = storeMessageTemplate(metaData);
 
-    await store.createFile(mediaData.path, file.data, { message });
+    await store.createFile(path, file.data, { message });
 
     return {
-      location: mediaData.properties.url,
+      location: properties.url,
       status: 201,
       json: {
         success: "create",
-        success_description: `Media uploaded to ${mediaData.properties.url}`,
+        success_description: `Media uploaded to ${properties.url}`,
       },
     };
   },
@@ -36,21 +37,22 @@ export const mediaContent = {
    */
   async delete(publication, mediaData) {
     const { store, storeMessageTemplate } = publication;
+    const { path, properties } = mediaData;
     const metaData = {
       action: "delete",
       result: "deleted",
       fileType: "file",
-      postType: mediaData.properties["media-type"],
+      postType: properties["media-type"],
     };
     const message = storeMessageTemplate(metaData);
 
-    await store.deleteFile(mediaData.path, { message });
+    await store.deleteFile(path, { message });
 
     return {
       status: 200,
       json: {
         success: "delete",
-        success_description: `File deleted from ${mediaData.properties.url}`,
+        success_description: `File deleted from ${properties.url}`,
       },
     };
   },
