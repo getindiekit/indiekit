@@ -1,43 +1,29 @@
 import test from "ava";
+import { testDatabase } from "@indiekit-test/database";
 import {
   getPostData,
   hasSyndicationUrl,
   isSyndicationTarget,
 } from "../../lib/utils.js";
 
+const posts = await testDatabase("posts");
+
 test.beforeEach((t) => {
   t.context = {
     application: {
-      posts: {
-        find: () => ({
-          sort: () => ({
-            limit: () => ({
-              toArray: () => [
-                {
-                  properties: {
-                    type: "entry",
-                    "mp-syndicate-to": "https://mastodon.example/",
-                    url: "https://website.example/notes/2020/10/17/12345",
-                  },
-                },
-              ],
-            }),
-          }),
-        }),
-        findOne: () => ({
-          properties: {
-            type: "entry",
-            "mp-syndicate-to": "https://mastodon.example/",
-            url: "https://website.example/notes/2020/10/17/12345",
-          },
-        }),
-        async insertOne() {},
-        async replaceOne() {},
-        async updateOne() {},
-      },
+      posts,
+      useDatabase: true,
     },
     url: "https://website.example/post/12345",
   };
+
+  posts.insertOne({
+    properties: {
+      type: "entry",
+      "mp-syndicate-to": "https://mastodon.example/",
+      url: t.context.url,
+    },
+  });
 });
 
 test("Gets post for given URL from database", async (t) => {
