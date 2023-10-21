@@ -1,8 +1,11 @@
 import test from "ava";
 import sinon from "sinon";
+import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import { mediaData } from "../../lib/media-data.js";
+
+const media = await testDatabase("media");
 
 test.before(() => {
   sinon.stub(console, "info"); // Disable console.info
@@ -10,40 +13,29 @@ test.before(() => {
 });
 
 test.beforeEach((t) => {
-  const mediaUrl = "https://website.example/photo.jpg";
-
   t.context = {
     file: {
       data: getFixture("file-types/photo.jpg", false),
       name: "photo.jpg",
     },
     application: {
-      media: {
-        async deleteOne(url) {
-          if (url["properties.url"] === mediaUrl) {
-            return { deletedCount: 1 };
-          }
-        },
-        async findOne(url) {
-          if (url["properties.url"] === mediaUrl) {
-            return {
-              path: "photo.jpg",
-              properties: {
-                "media-type": "photo",
-                url: url["properties.url"],
-              },
-            };
-          }
-        },
-        async insertOne() {},
-      },
+      media,
+      hasDatabase: true,
     },
     publication: {
       me: "https://website.example",
       postTypes: new JekyllPreset().postTypes,
     },
-    url: mediaUrl,
+    url: "https://website.example/photo.jpg",
   };
+
+  media.insertOne({
+    path: "photo.jpg",
+    properties: {
+      "media-type": "photo",
+      url: t.context.url,
+    },
+  });
 });
 
 test("Creates media data", async (t) => {
