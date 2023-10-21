@@ -4,9 +4,9 @@ import { ObjectId } from "mongodb";
 /**
  * Get pagination cursor
  * @param {object} collection - Database collection
- * @param {ObjectId} after - Items created after object with this ID
- * @param {ObjectId} before - Items created before object with this ID
- * @param {number} limit - Number of items to return within cursor
+ * @param {ObjectId} [after] - Items created after object with this ID
+ * @param {ObjectId} [before] - Items created before object with this ID
+ * @param {number} [limit] - Number of items to return within cursor
  * @returns {Promise<object>} Pagination cursor
  */
 export const getCursor = async (collection, after, before, limit) => {
@@ -22,10 +22,10 @@ export const getCursor = async (collection, after, before, limit) => {
   };
 
   if (before) {
-    query._id = { $gt: getObjectId(before) };
+    query._id = { $lt: getObjectId(before) };
     options.sort._id = 1;
   } else if (after) {
-    query._id = { $lt: getObjectId(after) };
+    query._id = { $gt: getObjectId(after) };
   }
 
   const items = await collection.find(query, options).toArray();
