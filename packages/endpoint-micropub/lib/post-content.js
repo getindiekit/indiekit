@@ -116,7 +116,7 @@ export const postContent = {
     const content = await postTemplate(properties);
     const message = storeMessageTemplate(metaData);
 
-    await store.updateFile(path, content, { message });
+    await store.createFile(path, content, { message });
 
     return {
       location: properties.url,
