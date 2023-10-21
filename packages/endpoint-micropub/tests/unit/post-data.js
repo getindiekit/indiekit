@@ -1,7 +1,10 @@
 import test from "ava";
 import sinon from "sinon";
+import { testDatabase } from "@indiekit-test/database";
 import JekyllPreset from "@indiekit/preset-jekyll";
 import { postData } from "../../lib/post-data.js";
+
+const posts = await testDatabase("posts");
 
 test.before(() => {
   sinon.stub(console, "info"); // Disable console.info
@@ -17,33 +20,8 @@ test.beforeEach((t) => {
       "mp-slug": "foo",
     },
     application: {
-      posts: {
-        aggregate: () => ({
-          toArray: async () => [],
-        }),
-        count() {
-          return 1;
-        },
-        async findOne(url) {
-          if (url["properties.url"] === "https://website.example/foo") {
-            return {
-              path: "foo",
-              properties: {
-                type: "entry",
-                content: "hello world",
-                published: "2019-08-17T23:56:38.977+01:00",
-                category: ["foo", "bar"],
-                "mp-slug": "baz",
-                "mp-syndicate-to": "https://archive.org/",
-                "post-type": "note",
-                url: url["properties.url"],
-              },
-            };
-          }
-        },
-        async insertOne() {},
-        async replaceOne() {},
-      },
+      posts,
+      hasDatabase: true,
     },
     publication: {
       me: "https://website.example",
@@ -51,6 +29,20 @@ test.beforeEach((t) => {
     },
     url: "https://website.example/foo",
   };
+
+  posts.insertOne({
+    path: "foo",
+    properties: {
+      type: "entry",
+      content: "hello world",
+      published: "2019-08-17T23:56:38.977+01:00",
+      category: ["foo", "bar"],
+      "mp-slug": "baz",
+      "mp-syndicate-to": "https://archive.org/",
+      "post-type": "note",
+      url: t.context.url,
+    },
+  });
 });
 
 test("Creates post data", async (t) => {
