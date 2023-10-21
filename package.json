@@ -49,6 +49,7 @@
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "@indiekit-test/config": "*",
+    "@indiekit-test/database": "*",
     "@indiekit-test/fixtures": "*",
     "@indiekit-test/frontend": "*",
     "@indiekit-test/media-data": "*",
