@@ -46,8 +46,8 @@
     "lerna": "^7.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.0",
-    "@commitlint/config-conventional": "^17.0.0",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
     "@indiekit-test/config": "*",
     "@indiekit-test/database": "*",
     "@indiekit-test/fixtures": "*",
@@ -85,7 +85,7 @@
     "nock": "^13.1.3",
     "nodemon": "^3.0.0",
     "prettier": "^3.0.0",
-    "sinon": "^16.1.3",
+    "sinon": "^17.0.0",
     "stylelint": "^15.0.0",
     "stylelint-config-recommended": "^13.0.0",
     "stylelint-order": "^6.0.0",
