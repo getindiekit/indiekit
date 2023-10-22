@@ -46,8 +46,8 @@ export const endpoint = {
       throw await IndiekitError.fromFetch(endpointResponse);
     }
 
-    const body = await endpointResponse.json();
-
-    return body;
+    return endpointResponse.status === 204
+      ? { success_description: endpointResponse.headers.get("location") }
+      : await endpointResponse.json();
   },
 };
