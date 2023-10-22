@@ -9,7 +9,7 @@ export default (() => {
   };
 
   const parser = markdownIt(options);
-  parser.use(markdownItPrism);
+  parser.use(markdownItPrism.default);
 
   return parser;
 })();

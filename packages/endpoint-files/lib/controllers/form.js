@@ -34,6 +34,11 @@ export const formController = {
       });
     }
 
+    // Caught by validation, but needed to satisfy nullable UploadedFile typedef
+    if (!Object.entries(request?.files)) {
+      throw new Error(response.locals.__("files.error.file.empty"));
+    }
+
     const { data, name } = request.files.file;
     const formData = new FormData();
     formData.append("file", new Blob([data]), name);

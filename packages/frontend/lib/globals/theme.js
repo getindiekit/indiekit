@@ -1,18 +1,13 @@
 import Color from "color";
 
 /**
- * @typedef Color
- * @property {object} color - Color object
- */
-
-/**
  * Generate an accessible colour with sufficient contrast
  * @see {@link https://medium.com/confrere/e735c3f2f45e}
  * @param {object} options - Options
- * @param {Color} options.colorToChange - Original colour
- * @param {Color} [options.colorToValidate] - Color to validate against
+ * @param {object} options.colorToChange - Original colour
+ * @param {object} [options.colorToValidate] - Color to validate against
  * @param {number} [options.minimumContrastRatio] - Minimum contrast ratio
- * @param {Color} options.mixingColor - Color to mix with original
+ * @param {object} options.mixingColor - Color to mix with original
  * @param {number} options.mixingAmount - Amount of color to mix with original
  * @param {number} [options.tries] - Tries
  * @param {number} [options.maxTries] - Maximum tries

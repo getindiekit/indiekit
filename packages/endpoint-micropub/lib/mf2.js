@@ -1,7 +1,7 @@
 /**
  * Return mf2 properties of a post
  * @param {object} mf2 - mf2 object
- * @param {Array|string} requestedProperties - mf2 properties to select
+ * @param {Array<string>|string} requestedProperties - mf2 properties to select
  * @returns {Promise<object>} mf2 with requested properties
  */
 export const getMf2Properties = (mf2, requestedProperties) => {

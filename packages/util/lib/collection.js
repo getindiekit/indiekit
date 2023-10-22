@@ -4,8 +4,8 @@ import { ObjectId } from "mongodb";
 /**
  * Get pagination cursor
  * @param {object} collection - Database collection
- * @param {ObjectId} [after] - Items created after object with this ID
- * @param {ObjectId} [before] - Items created before object with this ID
+ * @param {string} [after] - Items created after object with this ID
+ * @param {string} [before] - Items created before object with this ID
  * @param {number} [limit] - Number of items to return within cursor
  * @returns {Promise<object>} Pagination cursor
  */

@@ -62,7 +62,10 @@ export const authorizationController = {
         request.query;
 
       // Validate `redirect_uri`
-      const validRedirect = validateRedirect(redirect_uri, client_id);
+      const validRedirect = validateRedirect(
+        String(redirect_uri),
+        String(client_id),
+      );
       if (!validRedirect) {
         throw IndiekitError.badRequest(
           response.locals.__("BadRequestError.invalidValue", "redirect_uri"),

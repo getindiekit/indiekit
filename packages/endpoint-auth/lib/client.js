@@ -38,7 +38,9 @@ export const getClientInformation = async (client_id) => {
       const keys = ["logo", "name", "url"];
       for (const key of keys) {
         if (properties[key] && properties[key][0]) {
-          client[key] = properties[key][0].value || properties[key][0];
+          /** @type {object|string} Image or string */
+          const property = properties[key][0];
+          client[key] = property.value || property;
         }
       }
     }
