@@ -112,8 +112,8 @@
   content: "✓";
 }
 
-/* Client icon */
-.vp-doc .client-icon {
+/* Icon */
+.vp-doc .icon {
   float: right;
   height: 96px;
   margin-left: 24px;
