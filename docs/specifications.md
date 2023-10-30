@@ -4,6 +4,8 @@ The current status of Indiekit’s support for IndieWeb specifications and proto
 
 ## IndieAuth
 
+![IndieAuth icon](/icons/indieauth.svg){.icon}
+
 [IndieAuth](https://indieauth.spec.indieweb.org) is an identity layer on top of OAuth 2.0, primarily used to obtain an OAuth 2.0 Bearer Token for use by Micropub clients. Users and clients are all represented by URLs. IndieAuth enables clients to verify the identity of a user, as well as to obtain an access token that can be used to access resources under the control of the user.
 
 ### Discovery
@@ -31,6 +33,8 @@ Indiekit uses Proof Key for Code Exchange (PKCE), but doesn’t require clients 
 * [ ] [Get user information](https://indieauth.spec.indieweb.org/#user-information)
 
 ## Micropub
+
+![Micropub icon](/icons/micropub.svg){.icon}
 
 [Micropub](https://micropub.spec.indieweb.org) is used to create, update and delete posts on one’s own domain using third-party clients. Web apps and native apps can use Micropub to post and edit articles, short notes, comments, likes, photos, events or other kinds of posts on your own website.
 
@@ -72,11 +76,15 @@ The following [scopes](https://indieweb.org/scope) are supported:
 
 ## Microsub
 
+![Microsub icon](/icons/microsub.svg){.icon}
+
 [Microsub](https://indieweb.org/Microsub-spec) provides a standardized way for clients to consume and interact with feeds collected by a server.
 
 Microsub is not currently supported by Indiekit, but might be in the future.
 
 ## Webmention
+
+![Webmention icon](/icons/webmention.svg){.icon}
 
 [Webmention](https://webmention.net/draft) is a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it.
 

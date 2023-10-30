@@ -1,0 +1,5 @@
+<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <title>IndieAuth</title>
+  <path fill="#cc0081" fill-rule="evenodd"
+    d="M76 16h40a32 32 0 0 1 31.5 27l20.1 128.4a4 4 0 0 1-4 4.6H29a4 4 0 0 1-4-4.6L44.3 43.3A32 32 0 0 1 75.9 16Zm20.4 88a12 12 0 0 1 6 22.4V176h-12v-49.6a12 12 0 0 1 6-22.4Zm0-24a12 12 0 1 0 0-24 12 12 0 0 0 0 24Z" />
+</svg>
