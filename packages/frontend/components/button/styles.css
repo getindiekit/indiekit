@@ -4,10 +4,7 @@
   --anchor-decoration-line: none;
   --icon-size: 1.5em;
   align-items: center;
-  background-color: var(
-    --button-background-color,
-    var(--color-primary-variant)
-  );
+  background-color: var(--button-background-color, var(--color-primary));
   border: var(--input-border-width) solid transparent;
   border-block-end-color: var(--color-shadow);
   border-radius: var(--border-radius-small);
@@ -26,8 +23,8 @@
 
 .button--secondary,
 ::file-selector-button {
-  --button-background-color: var(--color-offset-variant);
-  --button-background-hover-color: var(--color-offset);
+  --button-background-color: var(--color-offset);
+  --button-background-hover-color: var(--color-offset-variant);
   --button-color: var(--color-on-offset);
   --button-font-weight: normal;
 }
@@ -47,7 +44,10 @@
 
 .button:not(:disabled):hover,
 ::file-selector-button:hover {
-  background-color: var(--button-background-hover-color, var(--color-primary));
+  background-color: var(
+    --button-background-hover-color,
+    var(--color-primary-variant)
+  );
 }
 
 .button--secondary-on-offset {

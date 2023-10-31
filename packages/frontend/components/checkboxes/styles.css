@@ -35,7 +35,7 @@
   &::before {
     background-color: var(--color-background);
     block-size: var(--checkbox-size);
-    border: var(--input-border-width) solid var(--color-outline);
+    border: var(--input-border-width) solid var(--color-outline-variant);
     border-radius: var(--border-radius-small);
     content: "";
     inline-size: var(--checkbox-size);
@@ -110,7 +110,8 @@
 .checkboxes__conditional {
   --input-border-halved: calc(var(--input-border-width) / 2);
   --label-font: var(--font-body);
-  border-inline-start: var(--input-border-width) solid var(--color-outline);
+  border-inline-start: var(--input-border-width) solid
+    var(--color-outline-variant);
   margin-inline-start: calc(
     calc(var(--checkbox-size) / 2) - var(--input-border-halved)
   );

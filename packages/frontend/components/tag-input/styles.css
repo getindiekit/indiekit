@@ -7,7 +7,7 @@
 .tag-input {
   --fieldset-flow-space: 0;
   background-color: var(--color-background);
-  border: var(--input-border-width) solid var(--color-outline);
+  border: var(--input-border-width) solid var(--color-outline-variant);
   border-radius: var(--border-radius-small);
   cursor: default;
   display: flex;

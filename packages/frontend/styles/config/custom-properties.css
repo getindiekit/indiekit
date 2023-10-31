@@ -3,7 +3,9 @@ html {
   --color-neutral99: hsl(var(--tint-neutral) 99%);
   --color-neutral95: hsl(var(--tint-neutral) 95%);
   --color-neutral90: hsl(var(--tint-neutral) 90%);
+  --color-neutral80: hsl(var(--tint-neutral) 80%);
   --color-neutral70: hsl(var(--tint-neutral) 70%);
+  --color-neutral60: hsl(var(--tint-neutral) 60%);
   --color-neutral50: hsl(var(--tint-neutral) 50%);
   --color-neutral30: hsl(var(--tint-neutral) 30%);
   --color-neutral20: hsl(var(--tint-neutral) 20%);
@@ -42,8 +44,8 @@ html {
   --color-offset: var(--color-neutral95);
   --color-offset-variant: var(--color-neutral90);
   --color-on-offset: var(--color-neutral30);
-  --color-outline: var(--color-neutral70);
-  --color-outline-variant: var(--color-neutral50);
+  --color-outline: var(--color-neutral80);
+  --color-outline-variant: var(--color-neutral60);
   --color-primary-on-background: var(--color-primary-on-background-light);
 
   /* Common color assigments */

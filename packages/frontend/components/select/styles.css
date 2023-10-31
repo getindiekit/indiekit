@@ -9,7 +9,7 @@
   background-size:
     0.75em auto,
     100%;
-  border: var(--input-border-width) solid var(--color-outline);
+  border: var(--input-border-width) solid var(--color-outline-variant);
   border-radius: var(--border-radius-small);
   font: var(--font-body);
   inline-size: 100%;
