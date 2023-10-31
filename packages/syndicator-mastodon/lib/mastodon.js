@@ -3,7 +3,12 @@ import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import { createRestAPIClient } from "masto";
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
-export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
+export const mastodon = ({
+  accessToken,
+  characterLimit,
+  includePermalink,
+  serverUrl,
+}) => ({
   client() {
     return createRestAPIClient({
       accessToken,
@@ -138,6 +143,7 @@ export const mastodon = ({ accessToken, characterLimit, serverUrl }) => ({
 
     const status = createStatus(properties, {
       characterLimit,
+      includePermalink,
       mediaIds,
       serverUrl,
     });

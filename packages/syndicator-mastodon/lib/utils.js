@@ -8,12 +8,13 @@ import { htmlToText } from "html-to-text";
  * @param {object} properties - A JF2 properties object
  * @param {object} [options] - Options
  * @param {number} [options.characterLimit] - Character limit
+ * @param {number} [options.includePermalink] - Always include permalink
  * @param {Array} [options.mediaIds] - Mastodon media IDs
  * @param {string} [options.serverUrl] - Server URL
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, options = {}) => {
-  const { characterLimit, mediaIds, serverUrl } = options;
+  const { characterLimit, includePermalink, mediaIds, serverUrl } = options;
   const parameters = {};
 
   let status;
@@ -36,12 +37,20 @@ export const createStatus = (properties, options = {}) => {
 
   // Truncate status if longer than 500 characters
   if (status) {
-    parameters.status = brevity.shorten(
+    const statusText = brevity.shorten(
       status,
       properties.url,
-      false, // https://indieweb.org/permashortlink
+      includePermalink // https://indieweb.org/permashortlink
+        ? properties.url
+        : false,
       false, // https://indieweb.org/permashortcitation
       characterLimit,
+    );
+
+    // Show permalink below status, not within brackets
+    parameters.status = statusText.replace(
+      `(${properties.url})`,
+      `\n\n${properties.url}`,
     );
   }
 

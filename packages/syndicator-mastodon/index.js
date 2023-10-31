@@ -7,6 +7,7 @@ const defaults = {
   accessToken: process.env.MASTODON_ACCESS_TOKEN,
   characterLimit: 500,
   checked: false,
+  includePermalink: false,
 };
 
 export default class MastodonSyndicator {
@@ -88,6 +89,7 @@ export default class MastodonSyndicator {
       return await mastodon({
         accessToken: this.options.accessToken,
         characterLimit: this.options.characterLimit,
+        includePermalink: this.options.includePermalink,
         serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
       }).post(properties, publication.me);
     } catch (error) {
