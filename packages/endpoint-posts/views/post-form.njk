@@ -170,7 +170,7 @@
 
   {{ textarea({
     name: "content",
-    value: errors.content.value or properties.content.text,
+    value: fieldData("content").value or properties.content.text,
     label: __("posts.form.content.label"),
     optional: contentOptional,
     errorMessage: fieldData("content").errorMessage
