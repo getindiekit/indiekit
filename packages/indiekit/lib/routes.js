@@ -5,6 +5,7 @@ import rateLimit from "express-rate-limit";
 import * as assetsController from "./controllers/assets.js";
 import * as feedController from "./controllers/feed.js";
 import * as homepageController from "./controllers/homepage.js";
+import * as manifestController from "./controllers/manifest.js";
 import * as pluginController from "./controllers/plugin.js";
 import * as sessionController from "./controllers/session.js";
 import * as statusController from "./controllers/status.js";
@@ -49,6 +50,9 @@ export const routes = (indiekitConfig) => {
 
   // Feed
   router.get("/feed.jf2", feedController.jf2);
+
+  // Web App Manifest
+  router.get("/app.webmanifest", manifestController.get);
 
   // Session
   router.get("/session/login", limit, sessionController.login);
