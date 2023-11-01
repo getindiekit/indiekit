@@ -42,6 +42,7 @@
   <link rel="mask-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg" color="{{ application.themeColor }}">
   <link rel="preload" href="{{ application.url }}{{ assetPath | default("/assets") }}/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css">
+  <link rel="manifest" href="{{ application.url }}/app.webmanifest">
   <style>
     :root {
       {{- themeCustomProperties(application.themeColor) | indent(6) }}
