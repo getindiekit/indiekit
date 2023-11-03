@@ -1,7 +1,8 @@
-.radios {
+radios-field {
   --radio-size: 1.66667em;
   --check-size: calc(var(--radio-size) / 4);
   --touch-target-size: 44px;
+  display: block;
 }
 
 @media (--from-medium-viewport) {

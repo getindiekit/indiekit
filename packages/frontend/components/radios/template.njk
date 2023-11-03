@@ -30,7 +30,6 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-<div class="{{ classes("radios", opts) }}"{{- attributes(opts.attributes) }} data-controller="radios">
 {% for item in opts.items %}{% if item %}
   {% set id = itemId(item.id, idPrefix, loop) %}
   {% set conditionalId = "conditional-" + id %}
@@ -45,9 +44,7 @@
     {{-" disabled" if item.disabled }}
     {%- if item.conditional %} data-aria-controls="{{ conditionalId }}"{% endif -%}
     {%- if item.hint %} aria-describedby="{{ itemHintId }}"{% endif -%}
-    {{- attributes(opts.attributes) }}
-    data-radios-target="input"
-    data-action="radios#toggleConditionals">
+    {{- attributes(opts.attributes) }}>
     {{ label({
       classes: "radios__label",
       for: id,
@@ -66,9 +63,9 @@
   {% endif %}
   {% endif %}
 {% endif %}{% endfor %}
-</div>
 {% endset %}
 {% call field({
+  element: "radios-field",
   classes: opts.field.classes,
   errorMessage: opts.errorMessage
 }) %}

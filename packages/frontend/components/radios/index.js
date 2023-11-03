@@ -1,15 +1,16 @@
-/* eslint-disable jsdoc/no-undefined-types */
-import { Controller } from "@hotwired/stimulus";
-
 /**
  * Based by the radios component provided by GOV.UK Frontend
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/radios/radios.mjs}
  */
-export const RadiosController = class extends Controller {
-  static targets = ["input"];
+export const RadiosFieldComponent = class extends HTMLElement {
+  constructor() {
+    super();
 
-  initialize() {
-    for (const $input of this.inputTargets.values()) {
+    this.inputTargets = this.querySelectorAll("input");
+  }
+
+  connectedCallback() {
+    for (const $input of this.inputTargets) {
       const targetId = $input.dataset.ariaControls;
       const $conditional = document.querySelector(`#${targetId}`);
 
@@ -19,6 +20,10 @@ export const RadiosController = class extends Controller {
         $input.setAttribute("aria-controls", targetId);
         delete $input.dataset.ariaControls;
       }
+
+      $input.addEventListener("input", (event) =>
+        this.toggleConditionals(event),
+      );
     }
 
     this.syncAllConditionalReveals();
@@ -36,7 +41,6 @@ export const RadiosController = class extends Controller {
 
     // Only consider radios with conditional reveals, those which have an
     // `aria-controls` attribute
-    /** @satisfies {NodeListOf<HTMLInputElement>} */
     const $allInputs = document.querySelectorAll(
       `input[type="radio"][aria-controls]`,
     );
