@@ -18,5 +18,16 @@ export const get = async (request, response) => {
         type: "image/png",
       },
     ],
+    ...(application.shareEndpoint && {
+      share_target: {
+        action: application.shareEndpoint,
+        method: "GET",
+        params: {
+          title: "name",
+          text: "content",
+          url: "url",
+        },
+      },
+    }),
   });
 };
