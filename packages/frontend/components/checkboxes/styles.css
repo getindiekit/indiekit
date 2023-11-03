@@ -1,7 +1,8 @@
-.checkboxes {
+checkboxes-field {
   --checkbox-size: 1.66667em;
   --check-size: 1em;
   --touch-target-size: 44px;
+  display: block;
 }
 
 .checkboxes__item {

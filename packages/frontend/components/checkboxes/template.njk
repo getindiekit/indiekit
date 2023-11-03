@@ -35,7 +35,6 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-<div class="{{ classes("checkboxes", opts) }}"{{- attributes(opts.attributes) }} data-controller="checkboxes">
 {% for item in opts.items %}{% if item %}
   {% set id = itemId(item.id, idPrefix, loop) %}
   {% set name = item.name if item.name else opts.name %}
@@ -54,9 +53,7 @@
     {%- if item.conditional %} data-aria-controls="{{ conditionalId }}"{% endif -%}
     {%- if item.behaviour %} data-behaviour="{{ item.behaviour }}"{% endif -%}
     {%- if itemDescribedBy %} aria-describedby="{{ itemDescribedBy }}"{% endif -%}
-    {{- attributes(opts.attributes) }}
-    data-checkboxes-target="input"
-    data-action="checkboxes#toggleConditional">
+    {{- attributes(opts.attributes) }}>
     {{ label({
       classes: "checkboxes__label",
       for: id,
@@ -75,9 +72,9 @@
   {% endif %}
   {% endif %}
 {% endif %}{% endfor %}
-</div>
 {% endset %}
 {% call field({
+  element: "checkboxes-field",
   classes: opts.field.classes,
   errorMessage: opts.errorMessage
 }) %}

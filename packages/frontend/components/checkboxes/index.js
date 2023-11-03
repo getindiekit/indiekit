@@ -1,15 +1,16 @@
-/* eslint-disable jsdoc/no-undefined-types */
-import { Controller } from "@hotwired/stimulus";
-
 /**
  * Based by the checkboxes component provided by GOV.UK Frontend
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/checkboxes/checkboxes.mjs}
  */
-export const CheckboxesController = class extends Controller {
-  static targets = ["input"];
+export const CheckboxesFieldComponent = class extends HTMLElement {
+  constructor() {
+    super();
 
-  initialize() {
-    for (const $input of this.inputTargets.values()) {
+    this.inputTargets = this.querySelectorAll("input");
+  }
+
+  connectedCallback() {
+    for (const $input of this.inputTargets) {
       const targetId = $input.dataset.ariaControls;
       const $conditional = document.querySelector(`#${targetId}`);
 
@@ -19,6 +20,10 @@ export const CheckboxesController = class extends Controller {
         $input.setAttribute("aria-controls", targetId);
         delete $input.dataset.ariaControls;
       }
+
+      $input.addEventListener("input", (event) =>
+        this.toggleConditional(event),
+      );
     }
 
     this.syncAllConditionalReveals();
@@ -55,7 +60,7 @@ export const CheckboxesController = class extends Controller {
    * Sync conditional reveal states for all checkboxes in this checkbox group
    */
   syncAllConditionalReveals() {
-    for (const $input of this.inputTargets.values()) {
+    for (const $input of this.inputTargets) {
       this.syncConditionalRevealWithInputState($input);
     }
   }
@@ -93,7 +98,6 @@ export const CheckboxesController = class extends Controller {
    * @param {HTMLInputElement} $input - Checkbox input
    */
   unCheckAllInputsExcept($input) {
-    /** @satisfies {NodeListOf<HTMLInputElement>} */
     const $allInputsWithSameName = document.querySelectorAll(
       `input[type="checkbox"][name="${$input.name}"]`,
     );
@@ -116,7 +120,6 @@ export const CheckboxesController = class extends Controller {
    * @param {HTMLInputElement} $input - Checkbox input
    */
   unCheckExclusiveInputs($input) {
-    /** @satisfies {NodeListOf<HTMLInputElement>} */
     const $allInputsWithSameNameAndExclusiveBehaviour =
       document.querySelectorAll(
         `input[data-behaviour="exclusive"][type="checkbox"][name="${$input.name}"]`,
