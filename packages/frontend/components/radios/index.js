@@ -25,14 +25,14 @@ export const RadiosController = class extends Controller {
   }
 
   /**
-   * Click event handler
+   * Input event handler
    *
    * Sync state of conditional reveal for all radios in same form with
    * same name (checking one radio could uncheck radio in another radio group)
-   * @param {MouseEvent} event - Click event
+   * @param {Event} event - Event
    */
   toggleConditionals(event) {
-    const $clickedInput = event.target;
+    const $target = event.target;
 
     // Only consider radios with conditional reveals, those which have an
     // `aria-controls` attribute
@@ -42,8 +42,8 @@ export const RadiosController = class extends Controller {
     );
 
     for (const $input of $allInputs) {
-      const hasSameFormOwner = $input.form === $clickedInput.form;
-      const hasSameName = $input.name === $clickedInput.name;
+      const hasSameFormOwner = $input.form === $target.form;
+      const hasSameName = $input.name === $target.name;
 
       if (hasSameName && hasSameFormOwner) {
         this.syncConditionalRevealWithInputState($input);

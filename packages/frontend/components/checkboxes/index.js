@@ -25,29 +25,29 @@ export const CheckboxesController = class extends Controller {
   }
 
   /**
-   * Click event handler
+   * Input event handler
    *
    * Sync state of conditional reveal with checkbox state
-   * @param {MouseEvent} event - Click event
+   * @param {Event} event - Event
    */
   toggleConditional(event) {
-    const $clickedInput = event.target;
+    const $target = event.target;
 
     // If the checkbox conditionally-reveals content, sync the state
-    if ($clickedInput.hasAttribute("aria-controls")) {
-      this.syncConditionalRevealWithInputState($clickedInput);
+    if ($target.hasAttribute("aria-controls")) {
+      this.syncConditionalRevealWithInputState($target);
     }
 
     // No further behaviour needed for unchecking
-    if (!$clickedInput.checked) {
+    if (!$target.checked) {
       return;
     }
 
     // Handle ‘exclusive’ checkbox behaviour (ie “None of these”)
-    if ($clickedInput.dataset.behaviour === "exclusive") {
-      this.unCheckAllInputsExcept($clickedInput);
+    if ($target.dataset.behaviour === "exclusive") {
+      this.unCheckAllInputsExcept($target);
     } else {
-      this.unCheckExclusiveInputs($clickedInput);
+      this.unCheckExclusiveInputs($target);
     }
   }
 
