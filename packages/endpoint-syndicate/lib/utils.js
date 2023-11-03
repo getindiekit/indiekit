@@ -43,33 +43,48 @@ export const getPostData = async (application, url) => {
  * @returns {boolean} Target returned a syndication URL
  */
 export const hasSyndicationUrl = (syndicatedUrls, syndicateTo) => {
-  return syndicatedUrls.some((url) => url.startsWith(syndicateTo));
+  return syndicatedUrls.some((url) => {
+    const { origin } = new URL(url);
+    return syndicateTo.includes(origin);
+  });
 };
 
 /**
- * Check if post syndication target is a publication target
- * @param {Array} publicationTargets - Publication syndication targets
- * @param {string} syndicateTo - Syndication target
- * @returns {boolean} Post syndication target is a publication target
+ * Get syndication target for syndication URL
+ * @param {Array} syndicationTargets - Publication syndication targets
+ * @param {string} syndicateTo - Syndication URL
+ * @returns {object|undefined} Publication syndication target
  */
-export const isSyndicationTarget = (publicationTargets, syndicateTo) => {
-  return publicationTargets.some((target) =>
-    syndicateTo.includes(target?.info?.uid),
-  );
+export const getSyndicationTarget = (syndicationTargets, syndicateTo) => {
+  return syndicationTargets.find((target) => {
+    if (!target?.info?.uid) {
+      return;
+    }
+
+    const targetOrigin = new URL(target.info.uid).origin;
+    const syndicateToOrigin = new URL(syndicateTo).origin;
+    return targetOrigin === syndicateToOrigin;
+  });
 };
 
+/**
+ * Syndicate URLs to configured syndication targets
+ * @param {object} publication - Publication configuration
+ * @param {object} properties - JF2 properties
+ * @returns {Promise<object>} Syndication target
+ */
 export const syndicateToTargets = async (publication, properties) => {
-  const syndicateTo = properties["mp-syndicate-to"];
-  const syndicatedUrls = properties.syndication || [];
   const { syndicationTargets } = publication;
+  const syndicateTo = properties["mp-syndicate-to"];
+  const syndicateToUrls = Array.isArray ? syndicateTo : [syndicateTo];
+  const syndicatedUrls = properties.syndication || [];
   const failedTargets = [];
 
-  for await (const target of syndicationTargets) {
-    const canSyndicate =
-      !hasSyndicationUrl(syndicatedUrls, syndicateTo) &&
-      isSyndicationTarget(syndicationTargets, syndicateTo);
+  for (const url of syndicateToUrls) {
+    const target = getSyndicationTarget(syndicationTargets, url);
+    const alreadySyndicated = hasSyndicationUrl(syndicatedUrls, url);
 
-    if (canSyndicate) {
+    if (target && !alreadySyndicated) {
       try {
         const syndicatedUrl = await target.syndicate(properties, publication);
 
