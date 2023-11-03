@@ -1,5 +1,8 @@
+tag-input-field {
+  display: block;
+}
+
 .tag-input {
-  --fieldset-flow-space: 0;
   background-color: var(--color-background);
   border: var(--input-border-width) solid var(--color-outline-variant);
   border-radius: var(--border-radius-small);
@@ -13,6 +16,10 @@
   padding-block: calc(var(--space-s) / 3);
   padding-inline: var(--space-2xs);
   position: relative;
+
+  & > * {
+    --fieldset-flow-space: 0;
+  }
 
   &:focus-within {
     border-color: var(--color-on-background);

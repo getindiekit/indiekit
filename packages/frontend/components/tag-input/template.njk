@@ -1,51 +1,29 @@
 {% from "../input/macro.njk" import input with context %}
 {% set tag = opts.localisation.tag | default(__("tagInput.defaultTag")) %}
 {% set tags = opts.localisation.tags | default(__("tagInput.defaultTags")) %}
-<div data-controller="tag-input"
-  data-tag-input-tag-value="{{ "{{TAG}} " + tag + "." }}"
-  data-tag-input-placeholder-value="{{ __("tagInput.placeholder", {
-    tags: tags
-  }) }}"
-  data-tag-input-edit-value="{{ __("tagInput.edit", {
-    tag: tag
-  }) }}"
-  data-tag-input-delete-value="{{ __("tagInput.delete", {
-    name: "{{TAG}}",
-    tag: tag
-  }) }}"
-  data-tag-input-added-value="{{ __("tagInput.added", {
-    name: "{{TAG}}",
-    tag: tag
-  }) }}"
-  data-tag-input-updated-value="{{ __("tagInput.updated", {
-    name: "{{TAG}}",
-    tag: tag
-  }) }}"
-  data-tag-input-deleted-value="{{ __("tagInput.deleted", {
-    name: "{{TAG}}",
-    tag: tag
-  }) }}"
-  data-tag-input-selected-value="{{ __("tagInput.selected", {
-    name: "{{TAG}}",
-    tag: tag
-  }) }}"
-  data-tag-input-none-selected-value="{{ __("tagInput.noneSelected", {
-    tags: tags
-  }) }}"
-  data-tag-input-instruction-value="{{ __("tagInput.instruction", {
-    list: "{{TAGS}}",
-    tags: tags
-  }) }}">
-  {{ input({
-    field: opts.field,
-    classes: opts.classes,
-    id: opts.id or opts.name,
-    name: opts.name,
-    value: opts.value,
-    label: opts.label,
-    hint: opts.hint,
-    optional: opts.optional,
-    attributes: opts.attributes,
-    errorMessage: opts.errorMessage
-  }) }}
-</div>
+{{ input({
+  field: {
+    element: "tag-input-field",
+    attributes: {
+      tag: "{{TAG}} " + tag + ".",
+      placeholder: __("tagInput.placeholder", { tags: tags }),
+      edit: __("tagInput.edit", { tag: tag }),
+      delete: __("tagInput.delete", { name: "{{TAG}}", tag: tag }),
+      added: __("tagInput.added", { name: "{{TAG}}", tag: tag }),
+      updated: __("tagInput.updated", { name: "{{TAG}}", tag: tag }),
+      deleted: __("tagInput.deleted", { name: "{{TAG}}", tag: tag }),
+      selected: __("tagInput.selected", { name: "{{TAG}}", tag: tag }),
+      "none-selected": __("tagInput.noneSelected", { tags: tags }),
+      instruction: __("tagInput.instruction", { list: "{{TAGS}}", tags: tags })
+    }
+  },
+  classes: opts.classes,
+  id: opts.id or opts.name,
+  name: opts.name,
+  value: opts.value,
+  label: opts.label,
+  hint: opts.hint,
+  optional: opts.optional,
+  attributes: opts.attributes,
+  errorMessage: opts.errorMessage
+}) }}

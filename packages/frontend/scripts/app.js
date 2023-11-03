@@ -7,7 +7,7 @@ import { GeoInputFieldComponent } from "../components/geo-input/index.js";
 import { NotificationBannerComponent } from "../components/notification-banner/index.js";
 import { RadiosFieldComponent } from "../components/radios/index.js";
 import { SharePreviewComponent } from "../components/share-preview/index.js";
-import { TagInputController } from "../components/tag-input/index.js";
+import { TagInputFieldComponent } from "../components/tag-input/index.js";
 import { TextareaController } from "../components/textarea/index.js";
 
 window.Stimulus = Application.start();
@@ -18,5 +18,5 @@ customElements.define("geo-input-field", GeoInputFieldComponent);
 customElements.define("notification-banner", NotificationBannerComponent);
 customElements.define("radios-field", RadiosFieldComponent);
 customElements.define("share-preview", SharePreviewComponent);
-Stimulus.register("tag-input", TagInputController);
+customElements.define("tag-input-field", TagInputFieldComponent);
 Stimulus.register("textarea", TextareaController);
