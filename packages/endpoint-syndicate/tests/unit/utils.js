@@ -2,8 +2,8 @@ import test from "ava";
 import { testDatabase } from "@indiekit-test/database";
 import {
   getPostData,
+  getSyndicationTarget,
   hasSyndicationUrl,
-  isSyndicationTarget,
 } from "../../lib/utils.js";
 
 const posts = await testDatabase("posts");
@@ -38,25 +38,34 @@ test("Gets post data from database", async (t) => {
   t.is(result.properties["mp-syndicate-to"], "https://mastodon.example/");
 });
 
-test("Checks if target already returned a syndication URL", (t) => {
-  const syndicationUrls = [
-    "https://web.archive.org/",
-    "https://mastodon.example/@username/67890",
-  ];
+test("Gets syndication target for syndication URL", (t) => {
+  const targets = [{ info: { uid: "https://mastodon.example" } }];
+  const result = getSyndicationTarget(targets, "https://mastodon.example");
 
-  t.true(hasSyndicationUrl(syndicationUrls, "https://mastodon.example"));
-  t.false(hasSyndicationUrl(syndicationUrls, "https://mastodon.foo"));
+  t.is(result.info.uid, "https://mastodon.example");
 });
 
-test("Check if post target is a publication target", (t) => {
-  const syndicationTargets = [
-    {
-      info: {
-        uid: "https://mastodon.example",
-      },
-    },
+test("Returns undefined getting unknown target for syndication URL", (t) => {
+  const targets = [{ info: { uid: "https://mastodon.example" } }];
+  const result = getSyndicationTarget(targets, "https://mastodon.foo");
+
+  t.falsy(result);
+});
+
+test("Returns undefined if no target URLs defined for syndication URL", (t) => {
+  const targets = [{ info: { name: "Example" } }];
+  const result = getSyndicationTarget(targets, "https://mastodon.example");
+
+  t.falsy(result);
+});
+
+test("Checks if target already returned a syndication URL", (t) => {
+  const syndication = [
+    "https://mastodon.example/@username/67890",
+    "https://web.archive.org/web/20230116193035/https://example.com/",
   ];
 
-  t.true(isSyndicationTarget(syndicationTargets, "https://mastodon.example"));
-  t.false(isSyndicationTarget(syndicationTargets, "https://mastodon.foo"));
+  t.true(hasSyndicationUrl(syndication, "https://mastodon.example"));
+  t.true(hasSyndicationUrl(syndication, "https://web.archive.org"));
+  t.false(hasSyndicationUrl(syndication, "https://mastodon.foo"));
 });
