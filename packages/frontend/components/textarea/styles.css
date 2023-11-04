@@ -1,3 +1,7 @@
+textarea-field {
+  display: block;
+}
+
 .textarea {
   appearance: none;
   background-color: var(--color-background);

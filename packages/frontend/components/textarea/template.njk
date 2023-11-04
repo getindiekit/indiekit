@@ -5,6 +5,7 @@
 {% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
 {% set describedBy = opts.describedBy if opts.describedBy else "" %}
 {% call field({
+  element: "textarea-field",
   classes: opts.field.classes,
   attributes: opts.field.attributes,
   errorMessage: opts.errorMessage
