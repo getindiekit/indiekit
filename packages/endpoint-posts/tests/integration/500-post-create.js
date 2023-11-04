@@ -20,7 +20,7 @@ test("Returns 500 error creating post", async (t) => {
     .send({ slug: "401" });
   const dom = new JSDOM(response.text);
   const result = dom.window.document.querySelector(
-    ".notification--error p",
+    `notification-banner[type="error"] p`,
   ).textContent;
 
   t.is(response.status, 500);
