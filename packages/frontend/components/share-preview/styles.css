@@ -1,6 +1,7 @@
-.share-preview {
+share-preview {
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
+  display: block;
   padding: var(--space-m);
 
   & output.placeholder {

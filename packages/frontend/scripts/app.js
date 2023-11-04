@@ -6,7 +6,7 @@ import { ErrorSummaryComponent } from "../components/error-summary/index.js";
 import { GeoInputFieldComponent } from "../components/geo-input/index.js";
 import { NotificationBannerComponent } from "../components/notification-banner/index.js";
 import { RadiosFieldComponent } from "../components/radios/index.js";
-import { SharePreviewController } from "../components/share-preview/index.js";
+import { SharePreviewComponent } from "../components/share-preview/index.js";
 import { TagInputController } from "../components/tag-input/index.js";
 import { TextareaController } from "../components/textarea/index.js";
 
@@ -17,6 +17,6 @@ customElements.define("error-summary", ErrorSummaryComponent);
 customElements.define("geo-input-field", GeoInputFieldComponent);
 customElements.define("notification-banner", NotificationBannerComponent);
 customElements.define("radios-field", RadiosFieldComponent);
-Stimulus.register("share-preview", SharePreviewController);
+customElements.define("share-preview", SharePreviewComponent);
 Stimulus.register("tag-input", TagInputController);
 Stimulus.register("textarea", TextareaController);
