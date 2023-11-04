@@ -7,14 +7,14 @@
 {%- set hasFieldset = true if opts.fieldset else false %}
 {# Capture the HTML so we can optionally nest it within a fieldset #}
 {%- set innerHtml %}
-<ol class="add-another__list" role="list" data-add-another-target="list">
+<ol class="add-another__list" role="list">
   {{ caller() if caller }}
 </ol>
 {% endset %}
 {% call field({
+  element: "add-another",
   attributes: {
-    id: id,
-    "data-controller": "add-another"
+    id: id
   },
   errorMessage: opts.errorMessage
 }) %}
@@ -28,23 +28,17 @@
 {% else %}
   {{ innerHtml | trim | safe }}
 {% endif %}
-  <template data-add-another-target="addButton">
+  <template id="add-button">
     {{ button({
       classes: "add-another__add button--secondary",
-      text: __("addAnother.add", opts.name),
-      attributes: {
-        "data-action": "add-another#add"
-      }
+      text: __("addAnother.add", opts.name)
     }) | indent(4) }}
   </template>
-  <template data-add-another-target="deleteButton">
+  <template id="delete-button">
     {{ button({
       classes: "add-another__delete button--warning",
       icon: "delete",
-      iconText: __("addAnother.delete"),
-      attributes: {
-        "data-action": "add-another#delete"
-      }
+      iconText: __("addAnother.delete")
     }) | indent(4) }}
   </template>
 {% endcall %}

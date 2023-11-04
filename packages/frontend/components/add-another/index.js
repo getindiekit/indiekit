@@ -1,12 +1,18 @@
-import { Controller } from "@hotwired/stimulus";
 import { wrapElement } from "../../lib/utils/wrap-element.js";
 
 const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]`;
 
-export const AddAnotherController = class extends Controller {
-  static targets = ["addButton", "deleteButton", "field", "list", "item"];
+export const AddAnotherComponent = class extends HTMLElement {
+  constructor() {
+    super();
 
-  initialize() {
+    this.addButtonTemplate = this.querySelector("#add-button");
+    this.deleteButtonTemplate = this.querySelector("#delete-button");
+    this.fields = this.querySelectorAll(".field");
+    this.list = this.querySelector(".add-another__list");
+  }
+
+  connectedCallback() {
     this.setupItems();
     this.updateItems();
     this.createAddButton();
@@ -19,7 +25,7 @@ export const AddAnotherController = class extends Controller {
   add(event) {
     event.preventDefault();
     const $newItem = this.createItem();
-    this.listTarget.append($newItem);
+    this.list.append($newItem);
     this.updateItems();
     $newItem.querySelector(focusableSelector).focus();
   }
@@ -40,7 +46,7 @@ export const AddAnotherController = class extends Controller {
    * @returns {HTMLLegendElement} - Group legend
    */
   getHeading() {
-    return this.element.querySelector("legend");
+    return this.querySelector("legend");
   }
 
   /**
@@ -57,9 +63,12 @@ export const AddAnotherController = class extends Controller {
    * Create add button
    */
   createAddButton() {
-    const $addButton = this.addButtonTarget.content.cloneNode(true);
+    let $addButton = this.addButtonTemplate.content.cloneNode(true);
 
-    this.element.append($addButton);
+    this.append($addButton);
+
+    $addButton = this.querySelector(".add-another__add");
+    $addButton.addEventListener("click", (event) => this.add(event));
   }
 
   /**
@@ -68,7 +77,7 @@ export const AddAnotherController = class extends Controller {
    * @returns {HTMLButtonElement} - Delete button
    */
   getDeleteButton(element) {
-    return element.querySelector(".button--warning");
+    return element.querySelector(".add-another__delete");
   }
 
   /**
@@ -77,7 +86,7 @@ export const AddAnotherController = class extends Controller {
    */
   createDeleteButton(element) {
     const $deleteButton =
-      this.deleteButtonTarget.content.firstElementChild.cloneNode(true);
+      this.deleteButtonTemplate.content.firstElementChild.cloneNode(true);
 
     element.append($deleteButton);
   }
@@ -89,18 +98,18 @@ export const AddAnotherController = class extends Controller {
   updateDeleteButton(element) {
     const $deleteButton = this.getDeleteButton(element);
     $deleteButton.setAttribute("aria-labelledby", `delete-title ${element.id}`);
+    $deleteButton.addEventListener("click", (event) => this.delete(event));
   }
 
   /**
    * Take existing form fields and warp in list item
    */
   setupItems() {
-    for (const field of this.fieldTargets.values()) {
+    for (const $field of this.fields) {
       const $item = document.createElement("li");
       $item.classList.add("add-another__list-item");
-      $item.dataset.addAnotherTarget = "item";
 
-      wrapElement(field, $item);
+      wrapElement($field, $item);
     }
   }
 
@@ -109,7 +118,8 @@ export const AddAnotherController = class extends Controller {
    * @returns {HTMLLIElement} - List item containing form field(s)
    */
   createItem() {
-    const $item = this.itemTargets.at(0).cloneNode(true);
+    const $items = this.querySelectorAll(".add-another__list-item");
+    const $item = $items[0].cloneNode(true);
     const uid = Date.now().toString();
 
     const $fields = $item.querySelectorAll("input, select, textarea");
@@ -125,7 +135,7 @@ export const AddAnotherController = class extends Controller {
       $label.setAttribute("for", forAttribute.replace("-0", `-${uid}`));
     }
 
-    $item.id = `${this.element.id}-${uid}`;
+    $item.id = `${this.id}-${uid}`;
 
     return $item;
   }
@@ -137,10 +147,10 @@ export const AddAnotherController = class extends Controller {
    * - Add remove buttons (or remove if only one item remaining in list)
    */
   updateItems() {
-    const $items = this.itemTargets;
+    const $items = this.querySelectorAll(".add-another__list-item");
 
     for (const [index, $item] of $items.entries()) {
-      $item.id = $item.id || `${this.element.id}-${index}`;
+      $item.id = $item.id || `${this.id}-${index}`;
       $item.setAttribute("aria-label", `Item ${index + 1}`);
 
       // If no delete button, add one (if more than 1 item in list)
