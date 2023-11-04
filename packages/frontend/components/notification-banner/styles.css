@@ -1,18 +1,19 @@
-.notification-banner {
+notification-banner {
   --anchor-color: currentcolor;
   --anchor-color-hover: currentcolor;
   background-color: var(--color-notification);
   color: var(--color-on-notification);
-}
+  display: block;
 
-.notification-banner--error {
-  background-color: var(--color-error);
-  color: var(--color-on-error);
-}
+  &[type="error"] {
+    background-color: var(--color-error);
+    color: var(--color-on-error);
+  }
 
-.notification-banner--success {
-  background-color: var(--color-success);
-  color: var(--color-on-success);
+  &[type="success"] {
+    background-color: var(--color-success);
+    color: var(--color-on-success);
+  }
 
   &:focus-visible {
     background-color: var(--color-focus);

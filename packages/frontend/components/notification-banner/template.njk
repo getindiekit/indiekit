@@ -1,8 +1,6 @@
 {% from "../prose/macro.njk" import prose with context %}
 {% from "../details/macro.njk" import details with context %}
-<div class="{{ classes("notification-banner", opts) }}
-  {{- " notification-banner--" + opts.type if opts.type }}" data-controller="notification-banner" aria-labelledby="notification-banner-title" role="{{ "alert" if opts.type === "success" else "region" }}"
-  {%- if opts.disableAutoFocus !== undefined %} data-disable-auto-focus="{{ opts.disableAutoFocus }}"{% endif %}
+<notification-banner class="{{ classes("notification-banner", opts) }}" type="{{ opts.type or "message" }}" aria-labelledby="notification-banner-title" role="{{ "alert" if opts.type === "success" else "region" }}"
   {{- attributes(opts.attributes) }}>
   <div class="notification-banner__container -!-container">
     <h2 class="notification-banner__title" id="notification-banner-title">{{
@@ -19,4 +17,4 @@
       text: opts.text | linkTo(opts.href)
     }) | indent(4) }}
   </div>
-</div>
+</notification-banner>
