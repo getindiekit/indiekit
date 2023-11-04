@@ -1,16 +1,18 @@
 /* eslint-disable jsdoc/no-undefined-types */
-import { Controller } from "@hotwired/stimulus";
 import { wrapElement } from "../../lib/utils/wrap-element.js";
 
-export const GeoInputController = class extends Controller {
-  static targets = ["errorMessage", "findButton", "geo"];
+export const GeoInputFieldComponent = class extends HTMLElement {
+  constructor() {
+    super();
 
-  static values = {
-    denied: String,
-    failed: String,
-  };
+    this.denied = this.getAttribute("denied");
+    this.failed = this.getAttribute("failed");
+    this.geoInput = this.querySelector("input");
+    this.findButtonTemplate = this.querySelector("#find-button");
+    this.errorMessageTemplate = this.querySelector("#error-message");
+  }
 
-  initialize() {
+  connectedCallback() {
     if (!navigator.geolocation) {
       return;
     }
@@ -20,14 +22,17 @@ export const GeoInputController = class extends Controller {
     $inputButtonGroup.classList.add("input-button-group");
 
     // Create and display find location button
-    const $button = this.findButtonTarget.content.cloneNode(true);
-    const $input = this.element.querySelector(".input");
+    let $findButton = this.findButtonTemplate.content.cloneNode(true);
 
     // Wrap input within `input-button-group` container
-    wrapElement($input, $inputButtonGroup);
+    wrapElement(this.geoInput, $inputButtonGroup);
 
     // Add button to `input-button-group` container
-    $inputButtonGroup.append($button);
+    $inputButtonGroup.append($findButton);
+
+    // Add event to cloned button
+    $findButton = this.querySelector("button");
+    $findButton.addEventListener("click", () => this.find());
   }
 
   /**
@@ -51,7 +56,7 @@ export const GeoInputController = class extends Controller {
   positionSuccess(position) {
     const latitude = position.coords.latitude.toFixed(5);
     const longitude = position.coords.longitude.toFixed(5);
-    this.geoTarget.value = [latitude, longitude].join(",");
+    this.geoInput.value = [latitude, longitude].join(",");
   }
 
   /**
@@ -60,29 +65,29 @@ export const GeoInputController = class extends Controller {
    */
   positionError(error) {
     /** @satisfies {HTMLButtonElement} */
-    const $button = this.element.querySelector(".button");
+    const $button = this.querySelector(".button");
 
     $button.disabled = true;
 
     if (error.PERMISSION_DENIED) {
-      this.showErrorMessage(this.element, this.deniedValue);
+      this.showErrorMessage(this.denied);
     } else if (error.POSITION_UNAVAILABLE) {
-      this.showErrorMessage(this.element, this.failedValue);
+      this.showErrorMessage(this.failed);
     }
   }
 
-  showErrorMessage($field, message) {
-    const $input = $field.querySelector(".input");
-    const $inputButtonGroup = $field.querySelector(".input-button-group");
+  showErrorMessage(message) {
+    const $input = this.querySelector(".input");
+    const $inputButtonGroup = this.querySelector(".input-button-group");
 
     // Create error message
-    let $errorMessage = this.errorMessageTarget.content.cloneNode(true);
+    let $errorMessage = this.errorMessageTemplate.content.cloneNode(true);
     $inputButtonGroup.before($errorMessage);
-    $errorMessage = $field.querySelector(".error-message");
-    const $errorMessageText = $field.querySelector(".error-message__text");
+    $errorMessage = this.querySelector(".error-message");
+    const $errorMessageText = this.querySelector(".error-message__text");
 
-    // Add field error class
-    $field.classList.add("field--error");
+    // Add error class to field
+    this.classList.add("field--error");
 
     // Add error message text
     $errorMessageText.textContent = message;

@@ -4,10 +4,10 @@
 {% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
 {% call input({
   field: {
+    element: "geo-input-field",
     attributes: {
-      "data-controller": "geo-input",
-      "data-geo-input-denied-value": __("geoInput.denied"),
-      "data-geo-input-failed-value": __("geoInput.failed")
+      denied: __("geoInput.denied"),
+      failed: __("geoInput.failed")
     }
   },
   classes: opts.classes,
@@ -17,18 +17,16 @@
   label: opts.label,
   hint: opts.hint,
   optional: opts.optional,
-  attributes: { "data-geo-input-target": "geo" },
   errorMessage: opts.errorMessage
 }) %}
-  <template data-geo-input-target="findButton">
+  <template id="find-button">
     {{ button({
       classes: "button--secondary",
       type: "button",
-      text: __("geoInput.getCurrentPosition"),
-      attributes: { "data-action": "geo-input#find" }
+      text: __("geoInput.getCurrentPosition")
     }) | indent(4) }}
   </template>
-  <template data-geo-input-target="errorMessage">
+  <template id="error-message">
     {{ errorMessage({
       id: id + "-error"
     }) | indent(4) }}
