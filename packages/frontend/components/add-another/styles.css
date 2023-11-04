@@ -1,5 +1,6 @@
-[data-controller="add-another"] {
+add-another {
   --counter-size: 1.66667em;
+  display: block;
 }
 
 .add-another__list {
