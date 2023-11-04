@@ -61,7 +61,7 @@ export const mf2ToJf2 = async (body, requestReferences) => {
 /**
  * Normalise JF2 properties
  * @param {object} publication - Publication configuration
- * @param {object} properties - Source JF2 properties
+ * @param {object} properties - JF2 properties
  * @param {string} timeZone - Application time zone
  * @returns {object} Normalised JF2 properties
  */

@@ -2,7 +2,7 @@ export const mediaTypeCount = {
   /**
    * Count the number of media of a given type
    * @param {object} application - Application configuration
-   * @param {object} properties - JF2 properties
+   * @param {object} properties - Media properties
    * @returns {Promise<object>} Media count
    */
   async get(application, properties) {

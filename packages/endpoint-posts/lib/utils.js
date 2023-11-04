@@ -57,7 +57,7 @@ export const getPostStatusBadges = (post, response) => {
 /**
  * Get post name, falling back to post type name
  * @param {string} publication - Publication configuration
- * @param {object} properties - Post properties
+ * @param {object} properties - JF2 properties
  * @returns {string} Post name or post type name
  */
 export const getPostName = (publication, properties) => {

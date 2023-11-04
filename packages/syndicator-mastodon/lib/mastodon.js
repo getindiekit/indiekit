@@ -88,7 +88,7 @@ export const mastodon = ({
 
   /**
    * Post to Mastodon
-   * @param {object} properties - JF2 properties object
+   * @param {object} properties - JF2 properties
    * @param {string} me - Publication URL
    * @returns {Promise<string|boolean>} URL of syndicated status
    */

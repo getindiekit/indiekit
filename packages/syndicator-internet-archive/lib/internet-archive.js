@@ -64,7 +64,7 @@ export const internetArchive = (options) => ({
 
   /**
    * Save to Internet Archive
-   * @param {object} properties - JF2 properties object
+   * @param {object} properties - JF2 properties
    * @returns {Promise<string>} URL of archived web page
    */
   async save(properties) {

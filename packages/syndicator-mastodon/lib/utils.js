@@ -5,7 +5,7 @@ import { htmlToText } from "html-to-text";
 
 /**
  * Get status parameters from given JF2 properties
- * @param {object} properties - A JF2 properties object
+ * @param {object} properties - JF2 properties
  * @param {object} [options] - Options
  * @param {number} [options.characterLimit] - Character limit
  * @param {number} [options.includePermalink] - Always include permalink

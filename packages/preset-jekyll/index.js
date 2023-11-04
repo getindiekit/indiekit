@@ -132,7 +132,7 @@ export default class JekyllPreset {
 
   /**
    * Post template
-   * @param {object} properties - Post data variables
+   * @param {object} properties - JF2 properties
    * @returns {string} Rendered template
    */
   postTemplate(properties) {

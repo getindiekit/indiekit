@@ -49,7 +49,7 @@ export const relativeMediaPath = (url, me) =>
 /**
  * Render path from URI template and properties
  * @param {string} path - URI template path
- * @param {object} properties - Properties to use
+ * @param {object} properties - JF2 properties
  * @param {object} application - Application configuration
  * @returns {Promise<string>} Path
  */

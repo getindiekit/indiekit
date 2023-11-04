@@ -48,7 +48,7 @@ export default class HugoPreset {
   /**
    * Get front matter
    * @access private
-   * @param {object} properties - Post data variables
+   * @param {object} properties - JF2 properties
    * @returns {string} Front matter in chosen format
    */
   #frontMatter(properties) {
@@ -201,7 +201,7 @@ export default class HugoPreset {
 
   /**
    * Post template
-   * @param {object} properties - Post data variables
+   * @param {object} properties - JF2 properties
    * @returns {string} Rendered template
    */
   postTemplate(properties) {

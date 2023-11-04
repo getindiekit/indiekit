@@ -22,7 +22,7 @@ export const getMediaProperties = (mediaData) => {
 /**
  * Render path from URI template and properties
  * @param {string} path - URI template path
- * @param {object} properties - Properties to use
+ * @param {object} properties - Media properties
  * @param {object} application - Application configuration
  * @returns {Promise<string>} Path
  */
