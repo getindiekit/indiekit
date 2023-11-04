@@ -97,7 +97,7 @@ export const AddAnotherController = class extends Controller {
   setupItems() {
     for (const field of this.fieldTargets.values()) {
       const $item = document.createElement("li");
-      $item.classList.add("add-another__item");
+      $item.classList.add("add-another__list-item");
       $item.dataset.addAnotherTarget = "item";
 
       wrapElement(field, $item);

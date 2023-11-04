@@ -2,11 +2,11 @@
   --counter-size: 1.66667em;
 }
 
-.add-another {
+.add-another__list {
   counter-reset: items;
 }
 
-.add-another__item {
+.add-another__list-item {
   --label-font: var(--font-body);
   margin-block-end: var(--space-m);
   padding-inline-start: calc(var(--counter-size) + var(--space-s));

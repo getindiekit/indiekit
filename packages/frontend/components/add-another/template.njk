@@ -7,7 +7,7 @@
 {%- set hasFieldset = true if opts.fieldset else false %}
 {# Capture the HTML so we can optionally nest it within a fieldset #}
 {%- set innerHtml %}
-<ol class="{{ classes("add-another", opts) }}"{{- attributes(opts.attributes) }} role="list" data-add-another-target="list">
+<ol class="add-another__list" role="list" data-add-another-target="list">
   {{ caller() if caller }}
 </ol>
 {% endset %}
