@@ -1,33 +1,30 @@
-/* eslint-disable jsdoc/no-undefined-types */
-import { Controller } from "@hotwired/stimulus";
-
 /**
  * Based by the error summary component provided by GOV.UK Frontend
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/error-summary/error-summary.mjs}
  */
-export const ErrorSummaryController = class extends Controller {
-  connect() {
+export const ErrorSummaryComponent = class extends HTMLElement {
+  connectedCallback() {
     this.setFocus();
-    this.element.addEventListener("click", this.handleClick.bind(this));
+    this.addEventListener("click", this.handleClick.bind(this));
   }
 
   /**
    * Focus error summary
    */
   setFocus() {
-    if (this.element.dataset.disableAutoFocus === "true") {
+    if (this.getAttribute("disable-auto-focus") === "true") {
       return;
     }
 
     // Set tabindex to -1 to make the element programmatically focusable…
-    this.element.setAttribute("tabindex", "-1");
+    this.setAttribute("tabindex", "-1");
 
     // …and remove it on blur as error summary doesn’t need to be focused again
-    this.element.addEventListener("blur", function (event) {
+    this.addEventListener("blur", function (event) {
       event.target.removeAttribute("tabindex");
     });
 
-    this.element.focus();
+    this.focus();
   }
 
   /**
@@ -54,12 +51,12 @@ export const ErrorSummaryController = class extends Controller {
    * This also results in the label and/or legend being announced correctly in
    * NVDA - without this only the field type is announced (e.g. "Edit, has
    * autocomplete").
-   * @param {HTMLElement} $target - Event target
+   * @param {HTMLAnchorElement} $target - Event target
    * @returns {boolean} True if the target was able to be focussed
    */
   focusTarget($target) {
     // If the element that was clicked was not a link, return early
-    if ($target.tagName !== "A" || $target.href === false) {
+    if (!($target instanceof HTMLAnchorElement)) {
       return false;
     }
 

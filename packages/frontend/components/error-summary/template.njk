@@ -1,4 +1,4 @@
-<div class="{{ classes("error-summary", opts) }}" data-controller="error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
+<error-summary class="{{ classes("error-summary", opts) }}" aria-labelledby="error-summary-title" role="alert" tabindex="-1"
   {%- if opts.disableAutoFocus %} data-disable-auto-focus="true"{% endif %}
   {{- attributes(opts.attributes) }}>
   <h2 class="error-summary__title" id="error-summary-title">
@@ -24,4 +24,4 @@
     </ul>
   {% endif %}
   </div>
-</div>
+</error-summary>
