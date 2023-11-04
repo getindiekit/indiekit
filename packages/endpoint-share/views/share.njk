@@ -1,10 +1,10 @@
 {% extends "form.njk" %}
 
-{% from "preview/macro.njk" import preview %}
-{% set mainControllers = "preview" %}
+{% from "share-preview/macro.njk" import sharePreview %}
+{% set mainControllers = "share-preview" %}
 
 {% block fieldset %}
-  {{ preview({
+  {{ sharePreview({
     title: {
       for: "name",
       value: name,
@@ -31,7 +31,7 @@
     label: __("share.bookmark-of.label"),
     attributes: {
       "placeholder": "https://",
-      "data-action": "preview#url"
+      "data-action": "share-preview#url"
     },
     errorMessage: fieldData("bookmark-of").errorMessage
   }) }}
@@ -41,7 +41,7 @@
     value: fieldData("name").value,
     label: __("share.name.label"),
     attributes: {
-      "data-action": "preview#title"
+      "data-action": "share-preview#title"
     },
     errorMessage: fieldData("name").errorMessage
   }) }}
@@ -52,7 +52,7 @@
     optional: true,
     label: __("share.content.label"),
     attributes: {
-      "data-action": "preview#text"
+      "data-action": "share-preview#text"
     }
   }) }}
 
