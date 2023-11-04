@@ -1,0 +1,14 @@
+<div class="{{ classes("share-preview", opts.field) }}">
+  <h2 class="share-preview__title">
+    <output for="{{ opts.title.for }}" data-share-preview-target="title" data-placeholder="{{ opts.title.placeholder }}">{{ opts.title.value }}</output>
+  </h2>
+  <p class="share-preview__text">
+    <output for="{{ opts.text.for }}" data-share-preview-target="text" data-placeholder="{{ opts.text.placeholder }}">{{ opts.text.value }}</output>
+  </p>
+  <p class="share-preview__url">
+    <output for="{{ opts.url.for }}" data-share-preview-target="url" data-placeholder="{{ opts.url.placeholder }}">{{ opts.url.value }}</output>
+  </p>
+  <p class="share-preview__date">
+    <time>{{ opts.date | date("PPPppp", opts.locale) }}</time>
+  </p>
+</div>

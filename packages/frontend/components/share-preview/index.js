@@ -1,7 +1,7 @@
 /* eslint-disable jsdoc/no-undefined-types */
 import { Controller } from "@hotwired/stimulus";
 
-export const PreviewController = class extends Controller {
+export const SharePreviewController = class extends Controller {
   static targets = ["text", "title", "url"];
 
   connect() {

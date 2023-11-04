@@ -1,4 +1,4 @@
-.preview {
+.share-preview {
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   padding: var(--space-m);
@@ -13,23 +13,23 @@
   }
 }
 
-.preview__title {
+.share-preview__title {
   font: var(--font-heading);
 }
 
-.preview__text,
-.preview__url {
+.share-preview__text,
+.share-preview__url {
   font: var(--font-body);
 }
 
-.preview__text {
+.share-preview__text {
   --flow-space: var(--space-2xs);
   display: flex;
   min-block-size: 4rem;
   white-space: pre-line;
 }
 
-.preview__date {
+.share-preview__date {
   color: var(--color-on-offset);
   font: var(--font-caption);
 }

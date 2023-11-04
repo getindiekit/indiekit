@@ -5,7 +5,7 @@
 {%- from "card/macro.njk" import card with context -%}
 {%- from "logo/macro.njk" import logo with context -%}
 {%- from "navigation/macro.njk" import navigation with context -%}
-{%- from "preview/macro.njk" import preview with context -%}
+{%- from "share-preview/macro.njk" import sharePreview with context -%}
 
 {% block content %}
 <h2><code>actions</code></h2>
@@ -397,24 +397,6 @@
   }
 }) }}
 
-<h2><code>preview</code></h2>
-
-{{ preview({
-  date: "2022-12-29",
-  title: {
-    for: "title",
-    value: "Preview title"
-  },
-  text: {
-    for: "text",
-    value: "Preview text"
-  },
-  url: {
-    for: "url",
-    value: "https://website.example"
-  }
-}) }}
-
 <h2><code>section</code></h2>
 
 {{ section({
@@ -428,6 +410,24 @@
     href: "#",
     text: "Action with icon"
   }]
+}) }}
+
+<h2><code>sharePreview</code></h2>
+
+{{ sharePreview({
+  date: "2022-12-29",
+  title: {
+    for: "title",
+    value: "Preview title"
+  },
+  text: {
+    for: "text",
+    value: "Preview text"
+  },
+  url: {
+    for: "url",
+    value: "https://website.example"
+  }
 }) }}
 
 <h2><code>skipLink</code></h2>

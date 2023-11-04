@@ -43,11 +43,11 @@
 @import url("../components/navigation/styles.css");
 @import url("../components/notification-banner/styles.css");
 @import url("../components/pagination/styles.css");
-@import url("../components/preview/styles.css");
 @import url("../components/prose/styles.css");
 @import url("../components/radios/styles.css");
 @import url("../components/section/styles.css");
 @import url("../components/select/styles.css");
+@import url("../components/share-preview/styles.css");
 @import url("../components/skip-link/styles.css");
 @import url("../components/summary/styles.css");
 @import url("../components/tag-input/styles.css");
