@@ -1,9 +1,3 @@
-.tag-input-label {
-  display: block;
-  font: var(--label-font, var(--font-label));
-  margin-block-end: var(--space-xs);
-}
-
 .tag-input {
   --fieldset-flow-space: 0;
   background-color: var(--color-background);

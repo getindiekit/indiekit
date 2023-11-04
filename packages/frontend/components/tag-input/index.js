@@ -54,6 +54,8 @@ export const TagInputController = class extends Controller {
       tags,
     });
 
+    element.querySelector(".tag-input-label").classList.add("label");
+
     $replacedField.remove();
 
     return tagInput;
