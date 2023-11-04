@@ -26,21 +26,13 @@
     attributes: {
       placeholder: "https://"
     },
-    field: {
-      attributes: {
-        "data-add-another-target": "field"
-      }
-    },
     errorMessage: fieldData("audio[" + index + "]").errorMessage
   }) | indent(2) }}
 {% endmacro %}
 
 {% macro photoFieldset(index) %}
 {% call fieldset({
-  classes: "fieldset--group",
-  attributes: {
-    "data-add-another-target": "field"
-  }
+  classes: "fieldset--group"
 }) %}
   {{ input({
     name: "photo[" + index + "][url]",
@@ -71,11 +63,6 @@
     label: __("posts.form.media.label"),
     attributes: {
       placeholder: "https://"
-    },
-    field: {
-      attributes: {
-        "data-add-another-target": "field"
-      }
     },
     errorMessage: fieldData("video[" + index + "]").errorMessage
   }) | indent(2) }}
