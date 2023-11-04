@@ -1,16 +1,16 @@
-.notification {
+.notification-banner {
   --anchor-color: currentcolor;
   --anchor-color-hover: currentcolor;
   background-color: var(--color-notification);
   color: var(--color-on-notification);
 }
 
-.notification--error {
+.notification-banner--error {
   background-color: var(--color-error);
   color: var(--color-on-error);
 }
 
-.notification--success {
+.notification-banner--success {
   background-color: var(--color-success);
   color: var(--color-on-success);
 
@@ -22,19 +22,19 @@
   }
 }
 
-.notification__container {
+.notification-banner__container {
   padding-block: var(--space-m);
 }
 
-.notification__title {
+.notification-banner__title {
   font: var(--font-subhead);
 }
 
-.notification__text {
+.notification-banner__text {
   --prose-font: var(--font-caption);
 }
 
-.notification__details {
+.notification-banner__details {
   --color-outline: currentcolor;
   --font-label: var(--font-caption);
   --prose-font: var(--font-code);

@@ -1,21 +1,21 @@
 {% from "../prose/macro.njk" import prose with context %}
 {% from "../details/macro.njk" import details with context %}
-<div class="{{ classes("notification", opts) }}
-  {{- " notification--" + opts.type if opts.type }}" data-controller="notification" aria-labelledby="notification-title" role="{{ "alert" if opts.type === "success" else "region" }}"
+<div class="{{ classes("notification-banner", opts) }}
+  {{- " notification-banner--" + opts.type if opts.type }}" data-controller="notification-banner" aria-labelledby="notification-banner-title" role="{{ "alert" if opts.type === "success" else "region" }}"
   {%- if opts.disableAutoFocus !== undefined %} data-disable-auto-focus="{{ opts.disableAutoFocus }}"{% endif %}
   {{- attributes(opts.attributes) }}>
-  <div class="notification__container -!-container">
-    <h2 class="notification__title" id="notification-title">{{
+  <div class="notification-banner__container -!-container">
+    <h2 class="notification-banner__title" id="notification-banner-title">{{
       (__("error") if opts.type === "error") or
       (__("success") if opts.type === "success") or
       __("important")
     }}</h2>
     {{ details({
-      classes: "notification__details",
+      classes: "notification-banner__details",
       summary: opts.text,
       text: opts.details
     }) if opts.details else prose({
-      classes: "notification__text",
+      classes: "notification-banner__text",
       text: opts.text | linkTo(opts.href)
     }) | indent(4) }}
   </div>

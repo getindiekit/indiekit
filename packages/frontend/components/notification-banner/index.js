@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-export const NotificationController = class extends Controller {
+export const NotificationBannerController = class extends Controller {
   initialize() {
     if (this.element.dataset.disableAutoFocus === "true") {
       return;

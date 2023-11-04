@@ -15,7 +15,7 @@
 {% from "heading/macro.njk" import heading with context %}
 {% from "hint/macro.njk" import hint with context %}
 {% from "input/macro.njk" import input with context %}
-{% from "notification/macro.njk" import notification with context %}
+{% from "notification-banner/macro.njk" import notificationBanner with context %}
 {% from "pagination/macro.njk" import pagination with context %}
 {% from "prose/macro.njk" import prose with context %}
 {% from "radios/macro.njk" import radios with context %}
@@ -68,7 +68,7 @@
 {% endblock %}
 
 <main class="{{ mainClasses }}" id="main"{% if mainControllers %} data-controller="{{ mainControllers }}"{% endif %}>
-{{- notification({
+{{- notificationBanner({
   type: ("error" if error) or ("success" if success),
   text: (error.message if error) or (success if success) or notice,
   details: error.stack if error
