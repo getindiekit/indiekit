@@ -344,11 +344,13 @@
 }) }}
 
 {{ notificationBanner({
-  disableAutoFocus: true,
   href: "#",
   type: "success",
   text: "Success notification",
-  details: "Details"
+  details: "Details",
+  attributes: {
+    "disable-auto-focus": "true"
+  }
 }) }}
 
 <h2><code>pagination</code></h2>
