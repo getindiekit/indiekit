@@ -21,7 +21,7 @@ test("Returns 401 error uploading file", async (t) => {
     .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
   const dom = new JSDOM(response.text);
   const result = dom.window.document.querySelector(
-    ".notification--error p",
+    `notification-banner[type="error"] p`,
   ).textContent;
 
   t.is(response.status, 401);
