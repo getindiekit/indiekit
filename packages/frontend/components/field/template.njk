@@ -1,3 +1,4 @@
-<div class="{{ classes("field", opts) }}"{{ attributes(opts.attributes) }}>
+{%- set element = opts.element or "div" %}
+<{{element}} class="{{ classes("field", opts) }}"{{ attributes(opts.attributes) }}>
   {{ caller() if caller }}
-</div>
+</{{element}}>
