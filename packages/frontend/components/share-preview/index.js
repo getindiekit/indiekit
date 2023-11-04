@@ -1,47 +1,41 @@
-/* eslint-disable jsdoc/no-undefined-types */
-import { Controller } from "@hotwired/stimulus";
-
-export const SharePreviewController = class extends Controller {
+export const SharePreviewComponent = class extends HTMLElement {
   static targets = ["text", "title", "url"];
 
-  connect() {
-    this.updatePreview(this.textTarget);
+  constructor() {
+    super();
 
-    this.updatePreview(
-      this.titleTarget,
-      this.element.querySelector("[data-action$=title]"),
-    );
-
-    this.updatePreview(
-      this.urlTarget,
-      this.element.querySelector("[data-action$=url]"),
-    );
+    this.outputs = this.querySelectorAll("output");
   }
 
-  text(event) {
-    this.updatePreview(this.textTarget, event.target);
-  }
-
-  title(event) {
-    this.updatePreview(this.titleTarget, event.target);
-  }
-
-  url(event) {
-    this.updatePreview(this.urlTarget, event.target);
+  connectedCallback() {
+    for (const $output of this.outputs) {
+      this.updatePreview($output);
+    }
   }
 
   /**
    * Update preview in output based on inputted value
    * @param {HTMLOutputElement} $outputElement - Output element
-   * @param {HTMLInputElement} [$inputElement] - Input element
    */
-  updatePreview($outputElement, $inputElement) {
-    $outputElement.classList.add("placeholder");
-    $outputElement.value = $outputElement.dataset.placeholder;
+  updatePreview($outputElement) {
+    const { classList, dataset, htmlFor } = $outputElement;
+    const $inputElement = document.querySelector(`[name=${htmlFor}]`);
 
-    if ($inputElement && $inputElement.value !== "") {
-      $outputElement.classList.remove("placeholder");
-      $outputElement.value = decodeURIComponent($inputElement.value);
+    if (!$inputElement) {
+      return;
     }
+
+    classList.add("placeholder");
+    $outputElement.value = dataset.placeholder;
+
+    $inputElement.addEventListener("input", () => {
+      if ($inputElement.value) {
+        classList.remove("placeholder");
+        $outputElement.value = decodeURIComponent($inputElement.value);
+      } else {
+        classList.add("placeholder");
+        $outputElement.value = dataset.placeholder;
+      }
+    });
   }
 };

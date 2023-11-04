@@ -67,7 +67,7 @@
 }) if not minimalui }}
 {% endblock %}
 
-<main class="{{ mainClasses }}" id="main"{% if mainControllers %} data-controller="{{ mainControllers }}"{% endif %}>
+<main class="{{ mainClasses }}" id="main">
 {{- notificationBanner({
   type: ("error" if error) or ("success" if success),
   text: (error.message if error) or (success if success) or notice,
