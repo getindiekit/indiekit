@@ -47,10 +47,6 @@ test("Creates file", async (t) => {
 });
 
 test("Creates file with projectId at custom instance", async (t) => {
-  await mockAgent("store-gitlab", {
-    projectId: "1234",
-    instance: "https://gitlab.instance",
-  });
   const result = await gitlabInstance.createFile("foo.md", "foo", {
     message: "Message",
   });
