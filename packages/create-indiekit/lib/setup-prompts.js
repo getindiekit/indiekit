@@ -1,5 +1,3 @@
-import { isUrl } from "@indiekit/util";
-
 export const setupPrompts = [
   {
     type: "text",
@@ -7,7 +5,7 @@ export const setupPrompts = [
     message: "What is your website’s URL?",
     description: "i.e. https://website.example",
     validate: (value) =>
-      isUrl(value)
+      URL.canParse(value)
         ? true
         : "Enter a valid URL, for example, https://website.example",
   },
