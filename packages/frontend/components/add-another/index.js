@@ -1,5 +1,3 @@
-import { wrapElement } from "../../lib/utils/wrap-element.js";
-
 const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]`;
 
 export const AddAnotherComponent = class extends HTMLElement {
@@ -13,7 +11,6 @@ export const AddAnotherComponent = class extends HTMLElement {
   }
 
   connectedCallback() {
-    this.setupItems();
     this.updateItems();
     this.createAddButton();
   }
@@ -99,18 +96,6 @@ export const AddAnotherComponent = class extends HTMLElement {
     const $deleteButton = this.getDeleteButton(element);
     $deleteButton.setAttribute("aria-labelledby", `delete-title ${element.id}`);
     $deleteButton.addEventListener("click", (event) => this.delete(event));
-  }
-
-  /**
-   * Take existing form fields and warp in list item
-   */
-  setupItems() {
-    for (const $field of this.fields) {
-      const $item = document.createElement("li");
-      $item.classList.add("add-another__list-item");
-
-      wrapElement($field, $item);
-    }
   }
 
   /**
