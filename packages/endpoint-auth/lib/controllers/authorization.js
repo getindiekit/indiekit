@@ -1,5 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
-import { getCanonicalUrl, isUrl } from "@indiekit/util";
+import { getCanonicalUrl } from "@indiekit/util";
 import { getClientInformation } from "../client.js";
 import { createRequestUri } from "../pushed-authorization-request.js";
 import { validateRedirect } from "../redirect.js";
@@ -45,16 +45,18 @@ export const authorizationController = {
       }
 
       // `client_id`, `redirect_uri` and `me` (optional) must be valid URLs
-      for (const uri of ["client_id", "me", "redirect_uri"]) {
-        if (request.query[uri] && !isUrl(request.query[uri])) {
+      for (const parameter of ["client_id", "me", "redirect_uri"]) {
+        let uri = request.query[parameter];
+
+        if (uri && !URL.canParse(String(uri))) {
           throw IndiekitError.badRequest(
-            response.locals.__("BadRequestError.invalidValue", uri),
+            response.locals.__("BadRequestError.invalidValue", parameter),
           );
         }
 
         // Canonicalise URLs for later comparison
-        if (request.query[uri]) {
-          request.query[uri] = getCanonicalUrl(String(request.query[uri]));
+        if (uri) {
+          uri = getCanonicalUrl(String(uri));
         }
       }
 
