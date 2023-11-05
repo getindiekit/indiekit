@@ -13,17 +13,8 @@
   block-size: var(--authorize-client-icon-size);
   border-radius: var(--border-radius-small);
   box-shadow: inset 0 0 0 1px var(--color-shadow);
-  float: left;
+  float: inline-start;
   inline-size: var(--authorize-client-icon-size);
   margin-inline-end: var(--space-s);
   padding: var(--space-2xs);
-
-  :root[dir="rtl"] & {
-    float: right;
-  }
-
-  /* https://caniuse.com/mdn-css_properties_clear_flow_relative_values */
-  @supports (float: inline-start) {
-    float: inline-start;
-  }
 }
