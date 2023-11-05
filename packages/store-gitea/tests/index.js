@@ -48,9 +48,6 @@ test("Creates file", async (t) => {
 });
 
 test("Creates file at custom instance", async (t) => {
-  await mockAgent("store-gitea", {
-    instance: "https://gitea.instance",
-  });
   const result = await giteaInstance.createFile("foo.md", "foo", {
     message: "Message",
   });

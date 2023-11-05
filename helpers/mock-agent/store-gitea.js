@@ -1,15 +1,14 @@
 import { MockAgent } from "undici";
 
 /**
- * @param {object} [options] - Options
  * @returns {import("undici").MockAgent} Undici MockAgent
  * @see {@link https://undici.nodejs.org/#/docs/api/MockAgent}
  */
-export function mockClient(options) {
+export function mockClient() {
   const agent = new MockAgent();
   agent.disableNetConnect();
 
-  const origin = options.instance || "https://gitea.com";
+  const origin = /https:\/\/gitea\..*/;
   const path = /\/api\/v1\/repos\/username\/repo\/contents\/\D{3}.md/;
   const getResponse = {
     content: "Zm9vYmFy", // ‘foobar’ Base64 encoded
@@ -21,13 +20,12 @@ export function mockClient(options) {
   agent
     .get(origin)
     .intercept({ path, method: "POST" })
-    .reply(201, {
+    .reply(201, (options) => ({
       branch: "main",
-      commit: {
-        html_url: `${origin}/username/repo/foo.md`,
-      },
+      commit: { html_url: `${options.origin}/username/repo/foo.md` },
       path: "foo.md",
-    });
+    }))
+    .persist();
 
   // Create file (Unauthorized)
   agent
@@ -59,26 +57,22 @@ export function mockClient(options) {
   agent
     .get(origin)
     .intercept({ path: /.*bar\.md/, method: "PUT" })
-    .reply(200, {
+    .reply(200, (options) => ({
       branch: "main",
-      commit: {
-        html_url: `${origin}/username/repo/bar.md`,
-      },
+      commit: { html_url: `${options.origin}/username/repo/bar.md` },
       path: "bar.md",
-    })
+    }))
     .persist();
 
   // Update file
   agent
     .get(origin)
     .intercept({ path, method: "PUT" })
-    .reply(200, {
+    .reply(200, (options) => ({
       branch: "main",
-      commit: {
-        html_url: `${origin}/username/repo/foo.md`,
-      },
+      commit: { html_url: `${options.origin}/username/repo/foo.md` },
       path: "foo.md",
-    })
+    }))
     .persist();
 
   // Delete file
