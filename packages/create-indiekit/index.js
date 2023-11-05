@@ -10,7 +10,7 @@ import { getPackageValues } from "./lib/package.js";
 const require = createRequire(import.meta.url);
 const { name, version, bugs } = require("./package.json");
 
-const nodeVersion = 18;
+const nodeVersion = 20;
 
 /**
  * @returns {Promise<any>} init

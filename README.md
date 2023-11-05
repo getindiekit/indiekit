@@ -27,7 +27,7 @@ Indiekit is extensible via its [plugin API](docs/plugins/api/index.md) and local
 ## Requirements
 
 - Your own website, published using a static site generator
-- [Node.js](https://nodejs.org) v18+
+- [Node.js](https://nodejs.org) v20+
 
 A [MongoDB](https://www.mongodb.com) database is optional, but required for the following features to work:
 
