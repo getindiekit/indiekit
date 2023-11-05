@@ -1,4 +1,3 @@
-import { isUrl } from "@indiekit/util";
 import { getCachedResponse } from "./cache.js";
 
 /**
@@ -15,7 +14,7 @@ export const getCategories = async (cache, publication) => {
     return categories.sort();
   }
 
-  if (categories && isUrl(categories)) {
+  if (categories && URL.canParse(categories)) {
     const cachedCategories = await getCachedResponse(cache, categories);
     return cachedCategories.sort();
   }

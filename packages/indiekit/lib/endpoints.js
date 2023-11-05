@@ -1,4 +1,3 @@
-import { isUrl } from "@indiekit/util";
 import { getUrl } from "./utils.js";
 
 /**
@@ -18,7 +17,7 @@ export const getEndpoints = (application, request) => {
     "tokenEndpoint",
   ]) {
     endpoints[endpoint] =
-      application[endpoint] && isUrl(application[endpoint])
+      application[endpoint] && URL.canParse(application[endpoint])
         ? // Use endpoint URL in application config
           application[endpoint]
         : // Else, use private path value provided by default endpoint plug-in
