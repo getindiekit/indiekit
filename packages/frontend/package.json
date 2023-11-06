@@ -47,7 +47,7 @@
     "markdown-it": "^13.0.0",
     "markdown-it-prism": "^2.2.0",
     "nunjucks": "^3.2.3",
-    "rollup": "4.2.0",
+    "rollup": "^4.3.0",
     "sharp": "^0.32.0",
     "widont": "^0.3.3"
   },

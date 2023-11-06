@@ -90,6 +90,7 @@
     "stylelint-config-recommended": "^13.0.0",
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
+    "undici": "^5.27.2",
     "vitepress": "^1.0.0-beta"
   },
   "ava": {
