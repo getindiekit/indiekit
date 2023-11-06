@@ -93,7 +93,7 @@ html {
     var(--font-family-sans);
   --font-body: 425 var(--font-size-m) / var(--line-height-loose)
     var(--font-family-sans);
-  --font-label: 600 var(--font-size-m) / var(--line-height-loose)
+  --font-label: 600 var(--font-size-m) / var(--line-height-tight)
     var(--font-family-sans);
   --font-caption: 400 var(--font-size-s) / var(--line-height-loose)
     var(--font-family-sans);
