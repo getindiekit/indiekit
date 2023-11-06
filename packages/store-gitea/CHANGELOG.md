@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Features
+
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+* **store-gitea:** return url for createFile and updateFile ([1ea85e8](https://github.com/getindiekit/indiekit/commit/1ea85e88172bbc74b0c920ed0e6fbf2936d86c20))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

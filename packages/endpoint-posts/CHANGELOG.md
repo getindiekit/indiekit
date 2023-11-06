@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* add missing indonesian translations ([ed3a9ce](https://github.com/getindiekit/indiekit/commit/ed3a9ce4ed4a30655e64169062faf06ecfe78819))
+* **endpoint-posts:** return content if validation error ([fbfdc2d](https://github.com/getindiekit/indiekit/commit/fbfdc2d5e9751d15c95c80ee07241f8895e25a24))
+
+
+### Features
+
+* add Latin American Spanish localisation from Claudia Botero ([8898656](https://github.com/getindiekit/indiekit/commit/8898656ab4b90c25321b6cd4aa3354eb76babc26))
+* **endpoint-micropub:** add uid to post properties ([15551cc](https://github.com/getindiekit/indiekit/commit/15551ccead1423123bd11115393790702085216e))
+* **endpoint-posts:** accept micropub response with no content ([a20b395](https://github.com/getindiekit/indiekit/commit/a20b395a0a6d2ec64526a73b1c8f918c906e210b))
+* **endpoint-posts:** basic audio post support ([6a01836](https://github.com/getindiekit/indiekit/commit/6a0183667a9401d811534f1c40503b2127b86177))
+* **endpoint-posts:** basic photo post support ([e0cc7d2](https://github.com/getindiekit/indiekit/commit/e0cc7d24533367bb018e07ffcb2b7be2e2ca223b))
+* **endpoint-posts:** basic video post support ([3096e7a](https://github.com/getindiekit/indiekit/commit/3096e7a38d81420c60a1991a7eee6ddfa277482e))
+* **endpoint-posts:** change order of advanced options ([97d5811](https://github.com/getindiekit/indiekit/commit/97d58111f22cdfb57fd51a5757d682a7a44726c3))
+* **endpoint-posts:** editable publication date ([c362219](https://github.com/getindiekit/indiekit/commit/c362219835c2d6c500cad3bcedeb5f330db407b9))
+* **endpoint-posts:** locales for basic media post support ([2d5f7e0](https://github.com/getindiekit/indiekit/commit/2d5f7e03c449b9012718413aab421fa87458bf4e))
+* **endpoint-posts:** query posts using uid ([32be7f4](https://github.com/getindiekit/indiekit/commit/32be7f472b2e8dca26c3233cb84de87a03137807))
+* **endpoint-posts:** use add another component ([a12b052](https://github.com/getindiekit/indiekit/commit/a12b0528e861342247b49bb77eafca56fd95b38e))
+* **endpoint-posts:** validate media arrays, allow for file paths ([25d14a7](https://github.com/getindiekit/indiekit/commit/25d14a700a383e6a8eed03e8184d87587ec01bcb))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+* use url input type with placeholder ([e958fa3](https://github.com/getindiekit/indiekit/commit/e958fa3a067ac6a1d61130102075d671f7f0c646))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

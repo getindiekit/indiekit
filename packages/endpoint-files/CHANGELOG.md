@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Features
+
+* add Latin American Spanish localisation from Claudia Botero ([8898656](https://github.com/getindiekit/indiekit/commit/8898656ab4b90c25321b6cd4aa3354eb76babc26))
+* **endpoint-files:** accept micropub response with no content ([23a0adf](https://github.com/getindiekit/indiekit/commit/23a0adf6204e3b32a007cd9393f59e1ca6cdc765))
+* **endpoint-files:** query media using uid ([02dbe5f](https://github.com/getindiekit/indiekit/commit/02dbe5f07a0c9cf1596915aa4348b6d922bfd979))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

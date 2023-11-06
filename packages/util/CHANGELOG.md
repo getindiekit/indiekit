@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* **util:** add mongodb as a dependency. fixes [#658](https://github.com/getindiekit/indiekit/issues/658) ([e8fd8ce](https://github.com/getindiekit/indiekit/commit/e8fd8ce87bc059b86f030db75a59f63989b60e48))
+
+
+### Features
+
+* pass all options to slugify util ([01c4542](https://github.com/getindiekit/indiekit/commit/01c45423beceddcaa2fbbf42243a26faf79286e1))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+* **util:** format a date as local date ([ca1ad47](https://github.com/getindiekit/indiekit/commit/ca1ad47775f8e9c20d1d6d387e45fe0d651af5d6))
+* **util:** get object id ([447b2a7](https://github.com/getindiekit/indiekit/commit/447b2a7949f947634ebb4f8a3132b44266a2ff87))
+* **util:** get offset minutes from time zone name ([66a5cc4](https://github.com/getindiekit/indiekit/commit/66a5cc4a22ff9bc4f6195817ed20ca0c009f8d31))
+* **util:** remove isUrl util ([59dd42e](https://github.com/getindiekit/indiekit/commit/59dd42e3db529318b3a7cd7bbdbb2c4e105a8cc4))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

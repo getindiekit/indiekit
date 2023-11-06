@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* **store-gitlab:** correct uid when projectId credentials ([a06f235](https://github.com/getindiekit/indiekit/commit/a06f2356d1f70224ec9e4e6b41ac30763f17ab33))
+
+
+### Features
+
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+* **store-gitlab:** return url for createFile and updateFile ([f63258b](https://github.com/getindiekit/indiekit/commit/f63258b24bfdbf4fb2009799632118af6ad5aef6))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

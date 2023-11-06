@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Features
+
+* add Latin American Spanish localisation from Claudia Botero ([8898656](https://github.com/getindiekit/indiekit/commit/8898656ab4b90c25321b6cd4aa3354eb76babc26))
+* **indiekit:** add share_target to web app manifest ([6fa88d1](https://github.com/getindiekit/indiekit/commit/6fa88d19a47e9f67e3626eef2b3a172b86e0d9a7))
+* **indiekit:** web app manifest ([cd57f2c](https://github.com/getindiekit/indiekit/commit/cd57f2c5ac736ee99191d152543ac393ffd04d13))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

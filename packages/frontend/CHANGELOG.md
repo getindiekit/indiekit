@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* add missing indonesian translations ([ed3a9ce](https://github.com/getindiekit/indiekit/commit/ed3a9ce4ed4a30655e64169062faf06ecfe78819))
+* **frontend:** don’t use client-side validation on forms ([66eb7c9](https://github.com/getindiekit/indiekit/commit/66eb7c99fbbbc947b7c0cda3df26919d172b943a))
+* **frontend:** fix css nesting ([84afe66](https://github.com/getindiekit/indiekit/commit/84afe664d61b58f3a0d17fcf5bcafdd7e4495da4))
+* **frontend:** missing add another list item ([f428367](https://github.com/getindiekit/indiekit/commit/f428367e9be0569254129e8a444e8c55a6ad050b))
+* **frontend:** remove background from file input ([fa8d337](https://github.com/getindiekit/indiekit/commit/fa8d3374aa93ee1214a3e982eb1919176891daa4))
+* **frontend:** remove spacing around summary keys ([d6d8f53](https://github.com/getindiekit/indiekit/commit/d6d8f534804f22a2848bfdb72fa5128760d9b842))
+* **frontend:** small icon in small button ([a193a27](https://github.com/getindiekit/indiekit/commit/a193a275b39e9fa2f6707720cf4d201c81a65a88))
+
+
+### Features
+
+* add Latin American Spanish localisation from Claudia Botero ([8898656](https://github.com/getindiekit/indiekit/commit/8898656ab4b90c25321b6cd4aa3354eb76babc26))
+* **frontend:** add another component ([0fa5e0a](https://github.com/getindiekit/indiekit/commit/0fa5e0a9291ab4046e83ead87a5b18cd8bcb813b))
+* **frontend:** add attributes to fieldset legend ([084023a](https://github.com/getindiekit/indiekit/commit/084023ae04708355d6ea76342d078ed86b1de90b))
+* **frontend:** add caller to input component ([e98f044](https://github.com/getindiekit/indiekit/commit/e98f044d495bd2988baa4cf765eb0687898e14c9))
+* **frontend:** add element wrapping utility ([cfcfe3d](https://github.com/getindiekit/indiekit/commit/cfcfe3d536c54790e93d293155c1d214cba841b7))
+* **frontend:** add localDate filter ([35bd0b3](https://github.com/getindiekit/indiekit/commit/35bd0b323ebd72f8d9fd3c77feb009a20810f618))
+* **frontend:** apply focus styles to programmatically focused elements ([9c865fb](https://github.com/getindiekit/indiekit/commit/9c865fb6f611635e08ecdf80eb6d709d560250ee))
+* **frontend:** conditional checkboxes ([9b6a640](https://github.com/getindiekit/indiekit/commit/9b6a64061632ea9b7276d06732a25500fdb4b1d0))
+* **frontend:** conditional radios ([2c2b6b4](https://github.com/getindiekit/indiekit/commit/2c2b6b4424d9e2ba20ea832a14a0e695b0703806))
+* **frontend:** customisable button padding ([1b5f278](https://github.com/getindiekit/indiekit/commit/1b5f278dbfe0d2497b6db79e1dbc85f96850f119))
+* **frontend:** element option on field component ([27cca75](https://github.com/getindiekit/indiekit/commit/27cca75747931e68885b800b2126d58a015257f8))
+* **frontend:** exclusive checkbox behaviour ([b722b0b](https://github.com/getindiekit/indiekit/commit/b722b0b52773491b78daec6e51f092ae0924971a))
+* **frontend:** fieldset group styles ([f4dafd7](https://github.com/getindiekit/indiekit/commit/f4dafd7ed9106380721c4319c7d89d65ad90fc50))
+* **frontend:** global helper to get field data ([54acbf4](https://github.com/getindiekit/indiekit/commit/54acbf4c87021b130169d53e0f9f840f02479249))
+* **frontend:** icon only button component ([e7f96c2](https://github.com/getindiekit/indiekit/commit/e7f96c224a22e3e4fd349b0910cb25c2bef7c1a9))
+* **frontend:** id option for summary row keys ([48de30b](https://github.com/getindiekit/indiekit/commit/48de30bfe8a5d28637a27baa4506aae8bf1a6235))
+* **frontend:** increase size of touch icon ([4bb7cc1](https://github.com/getindiekit/indiekit/commit/4bb7cc188efeff0b6ed53ca5a39bed4087ded1ae))
+* **frontend:** link to web app manifest ([caaa34f](https://github.com/getindiekit/indiekit/commit/caaa34ff1ddd45bed8bc20e6c16eee56ee4f620e))
+* **frontend:** option to add icon title ([e145311](https://github.com/getindiekit/indiekit/commit/e145311434dec45902739396d0e441959a146d54))
+* **frontend:** slugify error-list paths ([daec422](https://github.com/getindiekit/indiekit/commit/daec422ed9bb9482a9ccfe914b74683f83a13c37))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+* use url input type with placeholder ([e958fa3](https://github.com/getindiekit/indiekit/commit/e958fa3a067ac6a1d61130102075d671f7f0c646))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* **endpoint-syndicate:** correctly syndicate to targets ([bc1939a](https://github.com/getindiekit/indiekit/commit/bc1939a98abb1c972a8f19bae011af67852dc3b8))
+
+
+### Features
+
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 **Note:** Version bump only for package @indiekit/endpoint-syndicate

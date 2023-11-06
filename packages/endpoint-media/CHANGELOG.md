@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Features
+
+* **endpoint-media:** add uid to media properties ([3a18c3d](https://github.com/getindiekit/indiekit/commit/3a18c3d16df0c7c38f7f8ef01b1a51b3ea5d2162))
+* **endpoint-media:** use proposed micropub icon ([50c3c22](https://github.com/getindiekit/indiekit/commit/50c3c22b02ac86fa7befb68e7dfefb1973fdf3bd))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

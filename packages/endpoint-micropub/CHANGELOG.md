@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** create file on content store when undeleting ([18e7b22](https://github.com/getindiekit/indiekit/commit/18e7b22eef61ae55e66514662a1c5b7da02ca4e7))
+* **endpoint-micropub:** delete content from store ([261aca3](https://github.com/getindiekit/indiekit/commit/261aca32a43da80a29649491533637ad9b01890c))
+* **endpoint-micropub:** use getObjectId util ([3df6c8b](https://github.com/getindiekit/indiekit/commit/3df6c8b12ea6d6e0c99ed03994fac8920f40d928))
+
+
+### Features
+
+* **endpoint-micropub:** add uid to post properties ([15551cc](https://github.com/getindiekit/indiekit/commit/15551ccead1423123bd11115393790702085216e))
+* **endpoint-micropub:** get post count using uid ([310a351](https://github.com/getindiekit/indiekit/commit/310a3515231875706965e39d7bd77d965ed96641))
+* **endpoint-micropub:** include publication date in property normalisation ([b3ddac8](https://github.com/getindiekit/indiekit/commit/b3ddac8f61dc5273b4902ec09cba7b13d4a18cb3))
+* **endpoint-micropub:** use proposed micropub icon ([82f9414](https://github.com/getindiekit/indiekit/commit/82f941451666d117f1699891a1fd392c0d9c9310))
+* pass all options to slugify util ([01c4542](https://github.com/getindiekit/indiekit/commit/01c45423beceddcaa2fbbf42243a26faf79286e1))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 

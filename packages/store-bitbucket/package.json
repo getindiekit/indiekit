@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-bitbucket",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Bitbucket content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -32,7 +32,7 @@
     "directory": "packages/store-bitbucket"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.5",
+    "@indiekit/error": "^1.0.0-beta.6",
     "bitbucket": "^2.6.2"
   },
   "publishConfig": {

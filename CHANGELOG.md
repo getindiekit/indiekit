@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
+
+
+### Bug Fixes
+
+* add missing indonesian translations ([ed3a9ce](https://github.com/getindiekit/indiekit/commit/ed3a9ce4ed4a30655e64169062faf06ecfe78819))
+* **endpoint-micropub:** create file on content store when undeleting ([18e7b22](https://github.com/getindiekit/indiekit/commit/18e7b22eef61ae55e66514662a1c5b7da02ca4e7))
+* **endpoint-micropub:** delete content from store ([261aca3](https://github.com/getindiekit/indiekit/commit/261aca32a43da80a29649491533637ad9b01890c))
+* **endpoint-micropub:** use getObjectId util ([3df6c8b](https://github.com/getindiekit/indiekit/commit/3df6c8b12ea6d6e0c99ed03994fac8920f40d928))
+* **endpoint-posts:** return content if validation error ([fbfdc2d](https://github.com/getindiekit/indiekit/commit/fbfdc2d5e9751d15c95c80ee07241f8895e25a24))
+* **endpoint-syndicate:** correctly syndicate to targets ([bc1939a](https://github.com/getindiekit/indiekit/commit/bc1939a98abb1c972a8f19bae011af67852dc3b8))
+* **frontend:** don’t use client-side validation on forms ([66eb7c9](https://github.com/getindiekit/indiekit/commit/66eb7c99fbbbc947b7c0cda3df26919d172b943a))
+* **frontend:** fix css nesting ([84afe66](https://github.com/getindiekit/indiekit/commit/84afe664d61b58f3a0d17fcf5bcafdd7e4495da4))
+* **frontend:** missing add another list item ([f428367](https://github.com/getindiekit/indiekit/commit/f428367e9be0569254129e8a444e8c55a6ad050b))
+* **frontend:** remove background from file input ([fa8d337](https://github.com/getindiekit/indiekit/commit/fa8d3374aa93ee1214a3e982eb1919176891daa4))
+* **frontend:** remove spacing around summary keys ([d6d8f53](https://github.com/getindiekit/indiekit/commit/d6d8f534804f22a2848bfdb72fa5128760d9b842))
+* **frontend:** small icon in small button ([a193a27](https://github.com/getindiekit/indiekit/commit/a193a275b39e9fa2f6707720cf4d201c81a65a88))
+* **store-gitlab:** correct uid when projectId credentials ([a06f235](https://github.com/getindiekit/indiekit/commit/a06f2356d1f70224ec9e4e6b41ac30763f17ab33))
+* **util:** add mongodb as a dependency. fixes [#658](https://github.com/getindiekit/indiekit/issues/658) ([e8fd8ce](https://github.com/getindiekit/indiekit/commit/e8fd8ce87bc059b86f030db75a59f63989b60e48))
+
+
+### Features
+
+* add Latin American Spanish localisation from Claudia Botero ([8898656](https://github.com/getindiekit/indiekit/commit/8898656ab4b90c25321b6cd4aa3354eb76babc26))
+* **endpoint-files:** accept micropub response with no content ([23a0adf](https://github.com/getindiekit/indiekit/commit/23a0adf6204e3b32a007cd9393f59e1ca6cdc765))
+* **endpoint-files:** query media using uid ([02dbe5f](https://github.com/getindiekit/indiekit/commit/02dbe5f07a0c9cf1596915aa4348b6d922bfd979))
+* **endpoint-indieauth:** use proposed indieauth icon ([d26748b](https://github.com/getindiekit/indiekit/commit/d26748b16fecd73a01370b937c761abe272123a1))
+* **endpoint-media:** add uid to media properties ([3a18c3d](https://github.com/getindiekit/indiekit/commit/3a18c3d16df0c7c38f7f8ef01b1a51b3ea5d2162))
+* **endpoint-media:** use proposed micropub icon ([50c3c22](https://github.com/getindiekit/indiekit/commit/50c3c22b02ac86fa7befb68e7dfefb1973fdf3bd))
+* **endpoint-micropub:** add uid to post properties ([15551cc](https://github.com/getindiekit/indiekit/commit/15551ccead1423123bd11115393790702085216e))
+* **endpoint-micropub:** get post count using uid ([310a351](https://github.com/getindiekit/indiekit/commit/310a3515231875706965e39d7bd77d965ed96641))
+* **endpoint-micropub:** include publication date in property normalisation ([b3ddac8](https://github.com/getindiekit/indiekit/commit/b3ddac8f61dc5273b4902ec09cba7b13d4a18cb3))
+* **endpoint-micropub:** use proposed micropub icon ([82f9414](https://github.com/getindiekit/indiekit/commit/82f941451666d117f1699891a1fd392c0d9c9310))
+* **endpoint-posts:** accept micropub response with no content ([a20b395](https://github.com/getindiekit/indiekit/commit/a20b395a0a6d2ec64526a73b1c8f918c906e210b))
+* **endpoint-posts:** basic audio post support ([6a01836](https://github.com/getindiekit/indiekit/commit/6a0183667a9401d811534f1c40503b2127b86177))
+* **endpoint-posts:** basic photo post support ([e0cc7d2](https://github.com/getindiekit/indiekit/commit/e0cc7d24533367bb018e07ffcb2b7be2e2ca223b))
+* **endpoint-posts:** basic video post support ([3096e7a](https://github.com/getindiekit/indiekit/commit/3096e7a38d81420c60a1991a7eee6ddfa277482e))
+* **endpoint-posts:** change order of advanced options ([97d5811](https://github.com/getindiekit/indiekit/commit/97d58111f22cdfb57fd51a5757d682a7a44726c3))
+* **endpoint-posts:** editable publication date ([c362219](https://github.com/getindiekit/indiekit/commit/c362219835c2d6c500cad3bcedeb5f330db407b9))
+* **endpoint-posts:** locales for basic media post support ([2d5f7e0](https://github.com/getindiekit/indiekit/commit/2d5f7e03c449b9012718413aab421fa87458bf4e))
+* **endpoint-posts:** query posts using uid ([32be7f4](https://github.com/getindiekit/indiekit/commit/32be7f472b2e8dca26c3233cb84de87a03137807))
+* **endpoint-posts:** use add another component ([a12b052](https://github.com/getindiekit/indiekit/commit/a12b0528e861342247b49bb77eafca56fd95b38e))
+* **endpoint-posts:** validate media arrays, allow for file paths ([25d14a7](https://github.com/getindiekit/indiekit/commit/25d14a700a383e6a8eed03e8184d87587ec01bcb))
+* **frontend:** add another component ([0fa5e0a](https://github.com/getindiekit/indiekit/commit/0fa5e0a9291ab4046e83ead87a5b18cd8bcb813b))
+* **frontend:** add attributes to fieldset legend ([084023a](https://github.com/getindiekit/indiekit/commit/084023ae04708355d6ea76342d078ed86b1de90b))
+* **frontend:** add caller to input component ([e98f044](https://github.com/getindiekit/indiekit/commit/e98f044d495bd2988baa4cf765eb0687898e14c9))
+* **frontend:** add element wrapping utility ([cfcfe3d](https://github.com/getindiekit/indiekit/commit/cfcfe3d536c54790e93d293155c1d214cba841b7))
+* **frontend:** add localDate filter ([35bd0b3](https://github.com/getindiekit/indiekit/commit/35bd0b323ebd72f8d9fd3c77feb009a20810f618))
+* **frontend:** apply focus styles to programmatically focused elements ([9c865fb](https://github.com/getindiekit/indiekit/commit/9c865fb6f611635e08ecdf80eb6d709d560250ee))
+* **frontend:** conditional checkboxes ([9b6a640](https://github.com/getindiekit/indiekit/commit/9b6a64061632ea9b7276d06732a25500fdb4b1d0))
+* **frontend:** conditional radios ([2c2b6b4](https://github.com/getindiekit/indiekit/commit/2c2b6b4424d9e2ba20ea832a14a0e695b0703806))
+* **frontend:** customisable button padding ([1b5f278](https://github.com/getindiekit/indiekit/commit/1b5f278dbfe0d2497b6db79e1dbc85f96850f119))
+* **frontend:** element option on field component ([27cca75](https://github.com/getindiekit/indiekit/commit/27cca75747931e68885b800b2126d58a015257f8))
+* **frontend:** exclusive checkbox behaviour ([b722b0b](https://github.com/getindiekit/indiekit/commit/b722b0b52773491b78daec6e51f092ae0924971a))
+* **frontend:** fieldset group styles ([f4dafd7](https://github.com/getindiekit/indiekit/commit/f4dafd7ed9106380721c4319c7d89d65ad90fc50))
+* **frontend:** global helper to get field data ([54acbf4](https://github.com/getindiekit/indiekit/commit/54acbf4c87021b130169d53e0f9f840f02479249))
+* **frontend:** icon only button component ([e7f96c2](https://github.com/getindiekit/indiekit/commit/e7f96c224a22e3e4fd349b0910cb25c2bef7c1a9))
+* **frontend:** id option for summary row keys ([48de30b](https://github.com/getindiekit/indiekit/commit/48de30bfe8a5d28637a27baa4506aae8bf1a6235))
+* **frontend:** increase size of touch icon ([4bb7cc1](https://github.com/getindiekit/indiekit/commit/4bb7cc188efeff0b6ed53ca5a39bed4087ded1ae))
+* **frontend:** link to web app manifest ([caaa34f](https://github.com/getindiekit/indiekit/commit/caaa34ff1ddd45bed8bc20e6c16eee56ee4f620e))
+* **frontend:** option to add icon title ([e145311](https://github.com/getindiekit/indiekit/commit/e145311434dec45902739396d0e441959a146d54))
+* **frontend:** slugify error-list paths ([daec422](https://github.com/getindiekit/indiekit/commit/daec422ed9bb9482a9ccfe914b74683f83a13c37))
+* **indiekit:** add share_target to web app manifest ([6fa88d1](https://github.com/getindiekit/indiekit/commit/6fa88d19a47e9f67e3626eef2b3a172b86e0d9a7))
+* **indiekit:** web app manifest ([cd57f2c](https://github.com/getindiekit/indiekit/commit/cd57f2c5ac736ee99191d152543ac393ffd04d13))
+* pass all options to slugify util ([01c4542](https://github.com/getindiekit/indiekit/commit/01c45423beceddcaa2fbbf42243a26faf79286e1))
+* require node.js v20 ([4785170](https://github.com/getindiekit/indiekit/commit/47851702ebbc1372c468cedfecbc05e1111605ff))
+* **store-bitbucket:** return url for createFile and updateFile ([c5adcde](https://github.com/getindiekit/indiekit/commit/c5adcdec0f64a97e0858bfd3f350553c753508ae))
+* **store-file-system:** return url for createFile and updateFile ([80bbf9a](https://github.com/getindiekit/indiekit/commit/80bbf9a6d850274fa00c44bfc1e7d4e857c1fa8e))
+* **store-ftp:** return url for createFile and updateFile ([440a5e8](https://github.com/getindiekit/indiekit/commit/440a5e8ff9fdc6ea590a4c46e8da71887b827c7e))
+* **store-gitea:** return url for createFile and updateFile ([1ea85e8](https://github.com/getindiekit/indiekit/commit/1ea85e88172bbc74b0c920ed0e6fbf2936d86c20))
+* **store-github:** return url for createFile and updateFile ([48e5f00](https://github.com/getindiekit/indiekit/commit/48e5f00f689f1c66d872f6d523762e3a6ab6f556))
+* **store-gitlab:** return url for createFile and updateFile ([f63258b](https://github.com/getindiekit/indiekit/commit/f63258b24bfdbf4fb2009799632118af6ad5aef6))
+* **syndicator-mastodon:** add option to include permalink in status ([ee056d8](https://github.com/getindiekit/indiekit/commit/ee056d841aebc124a8300db7a5fe988de55c8e9f))
+* use url input type with placeholder ([e958fa3](https://github.com/getindiekit/indiekit/commit/e958fa3a067ac6a1d61130102075d671f7f0c646))
+* **util:** format a date as local date ([ca1ad47](https://github.com/getindiekit/indiekit/commit/ca1ad47775f8e9c20d1d6d387e45fe0d651af5d6))
+* **util:** get object id ([447b2a7](https://github.com/getindiekit/indiekit/commit/447b2a7949f947634ebb4f8a3132b44266a2ff87))
+* **util:** get offset minutes from time zone name ([66a5cc4](https://github.com/getindiekit/indiekit/commit/66a5cc4a22ff9bc4f6195817ed20ca0c009f8d31))
+* **util:** remove isUrl util ([59dd42e](https://github.com/getindiekit/indiekit/commit/59dd42e3db529318b3a7cd7bbdbb2c4e105a8cc4))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-08-04)
 
 
