@@ -13,6 +13,7 @@
   flex-basis: 12rem;
   flex-grow: 1;
   font: var(--font-label);
+  line-height: var(--line-height-loose);
   overflow-wrap: anywhere;
 }
 
