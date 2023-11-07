@@ -157,7 +157,7 @@
 
   {{ textarea({
     name: "content",
-    value: fieldData("content").value or properties.content.text,
+    value: properties.content.text or fieldData("content").value,
     label: __("posts.form.content.label"),
     optional: contentOptional,
     errorMessage: fieldData("content").errorMessage
