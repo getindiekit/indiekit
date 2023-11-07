@@ -43,6 +43,7 @@ html {
   --color-on-background: var(--color-neutral10);
   --color-offset: var(--color-neutral95);
   --color-offset-variant: var(--color-neutral90);
+  --color-offset-variant-darker: var(--color-neutral80);
   --color-on-offset: var(--color-neutral30);
   --color-outline: var(--color-neutral80);
   --color-outline-variant: var(--color-neutral60);
@@ -138,6 +139,7 @@ html {
     --color-background: var(--color-neutral10);
     --color-offset: var(--color-neutral20);
     --color-offset-variant: var(--color-neutral30);
+    --color-offset-variant-darker: var(--color-neutral20);
     --color-on-offset: var(--color-neutral95);
     --color-outline: var(--color-neutral50);
     --color-outline-variant: var(--color-neutral70);
@@ -150,6 +152,7 @@ html {
   --color-background: var(--color-neutral10);
   --color-offset: var(--color-neutral20);
   --color-offset-variant: var(--color-neutral30);
+  --color-offset-variant-darker: var(--color-neutral20);
   --color-on-offset: var(--color-neutral95);
   --color-outline: var(--color-neutral50);
   --color-outline-variant: var(--color-neutral70);

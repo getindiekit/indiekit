@@ -23,8 +23,8 @@
 
 .button--secondary,
 ::file-selector-button {
-  --button-background-color: var(--color-offset);
-  --button-background-hover-color: var(--color-offset-variant);
+  --button-background-color: var(--color-offset-variant);
+  --button-background-hover-color: var(--color-offset-variant-darker);
   --button-color: var(--color-on-offset);
   --button-font-weight: normal;
 }
