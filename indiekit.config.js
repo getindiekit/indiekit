@@ -24,6 +24,8 @@ const config = {
     "@indiekit/post-type-rsvp",
     "@indiekit/post-type-video",
     "@indiekit/preset-eleventy",
+    "@indiekit/endpoint-webmention",
+    "@indiekit/preset-jekyll",
     "@indiekit/store-github",
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",

@@ -46,6 +46,7 @@
     "@indiekit/endpoint-posts": "^1.0.0-beta.8",
     "@indiekit/endpoint-share": "^1.0.0-beta.8",
     "@indiekit/endpoint-syndicate": "^1.0.0-beta.8",
+    "@indiekit/endpoint-webmention": "^1.0.0-beta.9",
     "@indiekit/frontend": "^1.0.0-beta.9",
     "@indiekit/post-type-article": "^1.0.0-beta.8",
     "@indiekit/post-type-bookmark": "^1.0.0-beta.8",

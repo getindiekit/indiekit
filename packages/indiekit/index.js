@@ -94,6 +94,7 @@ export const Indiekit = class {
       this.application.cache = new Keyv(this.application.mongodbUrl);
       this.application.posts = database.collection("posts");
       this.application.media = database.collection("media");
+      this.application.mentions = database.collection("mentions");
     }
 
     if (mongodbClient?.error) {
