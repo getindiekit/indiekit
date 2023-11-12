@@ -52,7 +52,7 @@ export const queryController = async (request, response, next) => {
           const mf2 = jf2ToMf2(postData);
           response.json(getMf2Properties(mf2, properties));
         } else {
-          // Return mf2 for  published posts
+          // Return mf2 for published posts
           let cursor = {
             items: [],
             hasNext: false,
