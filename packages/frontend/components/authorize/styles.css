@@ -1,7 +1,10 @@
 .authorize {
   --authorize-client-icon-size: 4rem;
   line-height: var(--line-height-tight);
-  min-block-size: var(--authorize-client-icon-size);
+
+  &:has(.authorize__client-icon) {
+    min-block-size: var(--authorize-client-icon-size);
+  }
 
   & a {
     font-weight: 600;
