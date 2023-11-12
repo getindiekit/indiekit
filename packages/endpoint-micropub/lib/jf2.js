@@ -1,5 +1,6 @@
 import { getDate, randomString, slugify } from "@indiekit/util";
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
+import { fetchReferences } from "@paulrobertlloyd/mf2tojf2/lib/fetch-references.js";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
 import {
@@ -12,9 +13,10 @@ import {
 /**
  * Create JF2 object from form-encoded request
  * @param {object} body - Form-encoded request body
- * @returns {object} Micropub action
+ * @param {boolean} requestReferences - Request data for any referenced URLs
+ * @returns {Promise<object>} Micropub action
  */
-export const formEncodedToJf2 = (body) => {
+export const formEncodedToJf2 = async (body, requestReferences) => {
   const jf2 = {
     type: body.h || "entry",
   };
@@ -35,6 +37,10 @@ export const formEncodedToJf2 = (body) => {
       // Adds values to JF2 object
       jf2[key] = value;
     }
+  }
+
+  if (requestReferences) {
+    return fetchReferences(jf2);
   }
 
   return jf2;

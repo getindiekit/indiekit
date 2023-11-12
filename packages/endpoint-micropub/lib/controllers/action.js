@@ -44,7 +44,7 @@ export const actionController = async (request, response, next) => {
         // Create and normalise JF2 data
         jf2 = request.is("json")
           ? await mf2ToJf2(body, publication.enrichPostData)
-          : formEncodedToJf2(body);
+          : await formEncodedToJf2(body, publication.enrichPostData);
 
         // Attach files
         jf2 = files

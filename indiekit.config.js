@@ -23,6 +23,7 @@ const config = {
   publication: {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
+    enrichPostData: true,
   },
   "@indiekit/store-github": {
     user: process.env.GITHUB_USER,
