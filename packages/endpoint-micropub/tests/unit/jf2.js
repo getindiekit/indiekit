@@ -30,8 +30,8 @@ test.beforeEach((t) => {
   };
 });
 
-test("Creates JF2 object from form-encoded request", (t) => {
-  const result = formEncodedToJf2({
+test("Creates JF2 object from form-encoded request", async (t) => {
+  const result = await formEncodedToJf2({
     h: "entry",
     content: "I+ate+a+cheese+sandwich,+which+was+nice.",
     category: ["foo", "bar"],
