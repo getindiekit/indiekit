@@ -22,8 +22,6 @@
   "files": [
     "assets",
     "lib",
-    "locales",
-    "views",
     "index.js"
   ],
   "bugs": {
