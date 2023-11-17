@@ -24,6 +24,16 @@ const config = {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
     enrichPostData: true,
+    postTypes: [
+      {
+        type: "like",
+        name: "Favourite",
+      },
+      {
+        type: "watch",
+        name: "Film",
+      },
+    ],
   },
   "@indiekit/store-github": {
     user: process.env.GITHUB_USER,
