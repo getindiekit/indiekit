@@ -1,6 +1,6 @@
 # Indiekit
 
-<img src="https://avatars.githubusercontent.com/u/68553280?s=200" width="100" height="100" align="right" alt="">
+<img src="https://github.com/getindiekit.png?s=200" width="100" height="100" align="right" alt="Indiekit logo.">
 
 [![Build status](https://github.com/getindiekit/indiekit/workflows/build/badge.svg)](https://github.com/getindiekit/indiekit/actions)
 
