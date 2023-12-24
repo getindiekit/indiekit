@@ -1,14 +1,13 @@
-import mongodb from "mongodb";
+import { MongoClient } from "mongodb";
 
 /**
  * Connect to MongoDB database
- * @param {*} mongodbUrl - MongoDB URL
- * @returns {Promise<object>} MongoDB database instance
+ * @param {string} mongodbUrl - MongoDB URL
+ * @returns {Promise<import('mongodb').Db>} MongoDB database instance
  */
 export const getMongodbConfig = async (mongodbUrl) => {
   if (mongodbUrl) {
     try {
-      const { MongoClient } = mongodb;
       const client = new MongoClient(mongodbUrl, {
         connectTimeoutMS: 5000,
       });
