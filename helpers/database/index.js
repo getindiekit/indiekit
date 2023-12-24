@@ -1,5 +1,5 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { getMongodbConfig } from "@indiekit/indiekit/lib/mongodb.js";
+import { getMongodbClient } from "@indiekit/indiekit/lib/mongodb.js";
 
 /**
  * Generate access token for testing
@@ -9,7 +9,8 @@ import { getMongodbConfig } from "@indiekit/indiekit/lib/mongodb.js";
 export const testDatabase = async (name) => {
   const mongod = await MongoMemoryServer.create();
   const mongodbUrl = mongod.getUri();
-  const database = await getMongodbConfig(mongodbUrl);
+  const client = await getMongodbClient(mongodbUrl);
+  const database = client.db("indiekit-test");
 
   return database.collection(name);
 };

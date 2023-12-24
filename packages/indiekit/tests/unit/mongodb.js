@@ -1,7 +1,7 @@
 import test from "ava";
 import sinon from "sinon";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { getMongodbConfig } from "../../lib/mongodb.js";
+import { getMongodbClient } from "../../lib/mongodb.js";
 
 test.beforeEach(async (t) => {
   const mongod = await MongoMemoryServer.create();
@@ -13,14 +13,14 @@ test.beforeEach(async (t) => {
 });
 
 test("Connects to MongoDB database", async (t) => {
-  const result = await getMongodbConfig(t.context.url);
+  const result = await getMongodbClient(t.context.url);
 
-  t.is(result.s.namespace.db, "indiekit");
+  t.is(result.s.namespace.db, "admin");
 });
 
 test("Returns false if can’t connect to a MongoDB database", async (t) => {
   sinon.stub(console, "warn");
-  await getMongodbConfig("https://foo.bar");
+  await getMongodbClient("https://foo.bar");
 
   t.true(
     console.warn.calledWith(

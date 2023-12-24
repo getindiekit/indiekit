@@ -7,7 +7,7 @@ import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getInstalledPlugins } from "./lib/installed-plugins.js";
 import { getLocaleCatalog } from "./lib/locale-catalog.js";
-import { getMongodbConfig } from "./lib/mongodb.js";
+import { getMongodbClient } from "./lib/mongodb.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 
@@ -53,10 +53,12 @@ export const Indiekit = class {
   }
 
   async bootstrap() {
-    const database = await getMongodbConfig(this.application.mongodbUrl);
+    const client = await getMongodbClient(this.application.mongodbUrl);
 
-    // Setup databases
-    if (database) {
+    // Setup database
+    if (client) {
+      const database = client.db("indiekit");
+
       this.application.hasDatabase = true;
       this.application.cache = new Keyv({
         collectionName: "cache",
