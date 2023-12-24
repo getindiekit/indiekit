@@ -5,12 +5,11 @@ import { ObjectId } from "mongodb";
 
 test.before(async (t) => {
   const items = await testDatabase("items");
-  items.insertMany([{ name: "foo" }, { name: "bar" }, { name: "baz" }]);
-  items.count();
+  await items.insertMany([{ name: "foo" }, { name: "bar" }, { name: "baz" }]);
   t.context.items = items;
 });
 
-test.serial("Gets pagination cursor", async (t) => {
+test("Gets pagination cursor", async (t) => {
   const result = await getCursor(t.context.items, false, false, 3);
 
   // baz, bar, foo
@@ -21,7 +20,7 @@ test.serial("Gets pagination cursor", async (t) => {
   t.false(result.hasPrev);
 });
 
-test.serial("Gets pagination cursor after ID", async (t) => {
+test("Gets pagination cursor after ID", async (t) => {
   const after = await t.context.items.findOne({ name: "baz" });
   const result = await getCursor(t.context.items, after._id);
 
@@ -31,7 +30,7 @@ test.serial("Gets pagination cursor after ID", async (t) => {
   t.true(result.hasPrev);
 });
 
-test.serial("Gets pagination cursor after and before IDs", async (t) => {
+test("Gets pagination cursor after and before IDs", async (t) => {
   const after = await t.context.items.findOne({ name: "baz" });
   const before = await t.context.items.findOne({ name: "foo" });
   const result = await getCursor(t.context.items, after._id, before._id, 1);
