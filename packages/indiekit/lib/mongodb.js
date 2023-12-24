@@ -16,7 +16,6 @@ export const getMongodbConfig = async (mongodbUrl) => {
       return database;
     } catch (error) {
       console.warn(error.message);
-      return false;
     }
   }
 };
