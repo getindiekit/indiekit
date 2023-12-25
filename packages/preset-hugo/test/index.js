@@ -1,47 +1,50 @@
-import test from "ava";
+import { strict as assert } from "node:assert";
+import { describe, it } from "node:test";
 import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
 import HugoPreset from "../index.js";
 
-const hugo = new HugoPreset();
+describe("preset-jekyll", () => {
+  const hugo = new HugoPreset();
 
-test.beforeEach((t) => {
-  t.context.properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
-});
+  const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
 
-test("Gets plug-in info", (t) => {
-  t.is(hugo.name, "Hugo preset");
-  t.is(hugo.info.name, "Hugo");
-});
-
-test("Gets plug-in installation prompts", (t) => {
-  t.is(hugo.prompts[0].message, "Which front matter format are you using?");
-});
-
-test("Initiates plug-in", async (t) => {
-  const indiekit = await Indiekit.initialize();
-  hugo.init(indiekit);
-
-  t.is(indiekit.publication.preset.info.name, "Hugo");
-});
-
-test("Gets publication post types", (t) => {
-  const result = hugo.postTypes;
-
-  t.is(result[0].type, "article");
-});
-
-test("Renders post template without content", (t) => {
-  const result = hugo.postTemplate({
-    published: "2020-02-02",
-    updated: "2022-12-11",
-    deleted: "2022-12-12",
-    name: "What I had for lunch",
+  it("Gets plug-in info", () => {
+    assert.equal(hugo.name, "Hugo preset");
+    assert.equal(hugo.info.name, "Hugo");
   });
 
-  t.is(
-    result,
-    `---
+  it("Gets plug-in installation prompts", () => {
+    assert.equal(
+      hugo.prompts[0].message,
+      "Which front matter format are you using?",
+    );
+  });
+
+  it("Initiates plug-in", async () => {
+    const indiekit = await Indiekit.initialize({ config: {} });
+    hugo.init(indiekit);
+
+    assert.equal(indiekit.publication.preset.info.name, "Hugo");
+  });
+
+  it("Gets publication post types", () => {
+    const result = hugo.postTypes;
+
+    assert.equal(result[0].type, "article");
+  });
+
+  it("Renders post template without content", () => {
+    const result = hugo.postTemplate({
+      published: "2020-02-02",
+      updated: "2022-12-11",
+      deleted: "2022-12-12",
+      name: "What I had for lunch",
+    });
+
+    assert.equal(
+      result,
+      `---
 date: 2020-02-02
 publishDate: 2020-02-02
 lastmod: 2022-12-11
@@ -49,20 +52,20 @@ expiryDate: 2022-12-12
 title: What I had for lunch
 ---
 `,
-  );
-});
-
-test("Renders post template with basic content", (t) => {
-  const result = hugo.postTemplate({
-    published: "2020-02-02",
-    name: "What I had for lunch",
-    content:
-      "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
+    );
   });
 
-  t.is(
-    result,
-    `---
+  it("Renders post template with basic content", () => {
+    const result = hugo.postTemplate({
+      published: "2020-02-02",
+      name: "What I had for lunch",
+      content:
+        "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
+    });
+
+    assert.equal(
+      result,
+      `---
 date: 2020-02-02
 publishDate: 2020-02-02
 title: What I had for lunch
@@ -70,21 +73,21 @@ title: What I had for lunch
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `,
-  );
-});
-
-test("Renders post template with HTML content", (t) => {
-  const result = hugo.postTemplate({
-    published: "2020-02-02",
-    name: "What I had for lunch",
-    content: {
-      html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
-    },
+    );
   });
 
-  t.is(
-    result,
-    `---
+  it("Renders post template with HTML content", () => {
+    const result = hugo.postTemplate({
+      published: "2020-02-02",
+      name: "What I had for lunch",
+      content: {
+        html: '<p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>',
+      },
+    });
+
+    assert.equal(
+      result,
+      `---
 date: 2020-02-02
 publishDate: 2020-02-02
 title: What I had for lunch
@@ -92,16 +95,16 @@ title: What I had for lunch
 
 <p>I ate a <a href="https://en.wikipedia.org/wiki/Cheese">cheese</a> sandwich, which was nice.</p>
 `,
-  );
-});
+    );
+  });
 
-test("Renders post template with JSON front matter", (t) => {
-  const hugo = new HugoPreset({ frontMatterFormat: "json" });
-  const result = hugo.postTemplate(t.context.properties);
+  it("Renders post template with JSON front matter", () => {
+    const hugo = new HugoPreset({ frontMatterFormat: "json" });
+    const result = hugo.postTemplate(properties);
 
-  t.is(
-    result,
-    `{
+    assert.equal(
+      result,
+      `{
   "date": "2020-02-02",
   "publishDate": "2020-02-02",
   "title": "What I had for lunch",
@@ -151,16 +154,16 @@ test("Renders post template with JSON front matter", (t) => {
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `,
-  );
-});
+    );
+  });
 
-test("Renders post template with TOML front matter", (t) => {
-  const hugo = new HugoPreset({ frontMatterFormat: "toml" });
-  const result = hugo.postTemplate(t.context.properties);
+  it("Renders post template with TOML front matter", () => {
+    const hugo = new HugoPreset({ frontMatterFormat: "toml" });
+    const result = hugo.postTemplate(properties);
 
-  t.is(
-    result,
-    `+++
+    assert.equal(
+      result,
+      `+++
 date = "2020-02-02"
 publishDate = "2020-02-02"
 title = "What I had for lunch"
@@ -201,16 +204,16 @@ url = "https://website.example/video.mp4"
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `,
-  );
-});
+    );
+  });
 
-test("Renders post template with YAML front matter", (t) => {
-  const hugo = new HugoPreset({ frontMatterFormat: "yaml" });
-  const result = hugo.postTemplate(t.context.properties);
+  it("Renders post template with YAML front matter", () => {
+    const hugo = new HugoPreset({ frontMatterFormat: "yaml" });
+    const result = hugo.postTemplate(properties);
 
-  t.is(
-    result,
-    `---
+    assert.equal(
+      result,
+      `---
 date: 2020-02-02
 publishDate: 2020-02-02
 title: What I had for lunch
@@ -248,5 +251,6 @@ syndication: https://website.example/post/12345
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 `,
-  );
+    );
+  });
 });
