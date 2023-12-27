@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
@@ -14,5 +15,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["jsdoc", "unicorn"]
+  "plugins": ["jsdoc", "unicorn"],
+  "rules": {
+    "jsdoc/no-undefined-types": [
+      1,
+      {
+        "definedTypes": ["NodeJS"]
+      }
+    ]
+  }
 }
