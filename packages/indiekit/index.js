@@ -21,6 +21,7 @@ export const Indiekit = class {
     this.application = this.config.application;
     this.plugins = this.config.plugins;
     this.publication = this.config.publication;
+    this.client = getMongodbClient(this.application.mongodbUrl);
   }
 
   static async initialize(options = {}) {
@@ -53,11 +54,16 @@ export const Indiekit = class {
   }
 
   async bootstrap() {
-    const client = await getMongodbClient(this.application.mongodbUrl);
+    // Check for required configuration options
+    if (!this.publication.me) {
+      console.error("No publication URL in configuration");
+      console.info("https://getindiekit.com/configuration/#publication-me-url");
+      process.exit();
+    }
 
     // Setup database
-    if (client) {
-      const database = client.db("indiekit");
+    if (this.client) {
+      const database = this.client.db("indiekit");
 
       this.application.hasDatabase = true;
       this.application.cache = new Keyv({
@@ -84,25 +90,27 @@ export const Indiekit = class {
     return this;
   }
 
+  stop(server, name) {
+    server.close(() => {
+      console.info(`Stopping ${name}`);
+      this.client.close();
+      process.exit(0);
+    });
+  }
+
   async server(options = {}) {
     const config = await this.bootstrap();
-    const { application, publication } = config;
-
-    // Check for required configuration options
-    if (!publication.me) {
-      console.error("No publication URL in configuration");
-      console.info(
-        "See https://getindiekit.com/configuration/#publication-me-url",
-      );
-      process.exit();
-    }
-
-    const { name, version } = application;
-    const port = options.port || application.port;
+    const { name, version } = config.application;
+    const port = options.port || config.application.port;
     const app = expressConfig(config);
 
-    return app.listen(port, () => {
+    const server = app.listen(port, () => {
       console.info(`Starting ${name} (v${version}) on port ${port}`);
     });
+
+    process.on("SIGINT", () => this.stop(server, name));
+    process.on("SIGTERM", () => this.stop(server, name));
+
+    return server;
   }
 };
