@@ -17,7 +17,7 @@ const _valueText = (value) => {
 };
 
 /**
- * Transform object into array for consumption by summary component
+ * Transform object to array for consumption by summary component
  * @param {object} object - Object
  * @returns {Array} Rows
  */
