@@ -15,6 +15,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "overrides": [
+    {
+      "files": ["**/test/**/*.js"],
+      "rules": {
+        "unicorn/no-process-exit": 0
+      }
+    }
+  ],
   "plugins": ["jsdoc", "unicorn"],
   "rules": {
     "jsdoc/no-undefined-types": [
