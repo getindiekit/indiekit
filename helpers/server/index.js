@@ -9,9 +9,8 @@ export const testServer = async (options) => {
   sinon.stub(console, "warn"); // Disable console.warn
   const config = await testConfig(options);
   const indiekit = await Indiekit.initialize({ config });
-  const server = await indiekit.server({
-    port: await getPort(),
-  });
+  const port = await getPort();
+  const server = await indiekit.server({ port });
 
   return server;
 };
