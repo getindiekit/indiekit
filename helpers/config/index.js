@@ -5,7 +5,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 
 const defaultOptions = {
   locale: "en",
-  useDatabase: true,
+  useDatabase: false,
   usePostTypes: true,
   usePreset: true,
 };
@@ -14,8 +14,11 @@ export const testConfig = async (options) => {
   options = { ...defaultOptions, ...options };
 
   // Configure MongoDb
-  const mongod = await MongoMemoryServer.create();
-  const mongodbUrl = mongod.getUri();
+  let mongodbUrl = "";
+  if (options.useDatabase) {
+    const mongod = await MongoMemoryServer.create();
+    mongodbUrl = mongod.getUri();
+  }
 
   // Configure custom note post type with date-less URL for easier testing
   const postTypes = [
@@ -34,7 +37,7 @@ export const testConfig = async (options) => {
       introspectionEndpoint: options?.application?.introspectionEndpoint,
       locale: options.locale,
       mediaEndpoint: options?.application?.mediaEndpoint,
-      mongodbUrl: options && options.useDatabase !== false ? mongodbUrl : false,
+      mongodbUrl,
       name: "Test configuration",
       sessionMiddleware: cookieSession({
         name: "test",
