@@ -15,6 +15,7 @@ export default class FtpStore {
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.host] - FTP hostname
+   * @param {number} [options.port] - FTP port
    * @param {string} [options.user] - FTP username
    * @param {string} [options.password] - FTP password
    * @param {string} [options.directory] - Directory

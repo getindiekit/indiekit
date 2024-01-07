@@ -26,6 +26,7 @@ Add `@indiekit/store-ftp` to your list of plug-ins, specifying options as requir
 | Option      | Type     | Description                                                            |
 | :---------- | :------- | :--------------------------------------------------------------------- |
 | `host`      | `string` | Your FTP hostname, for example ftp.server.example. _Required_.         |
+| `port`      | `number` | Your FTP port. _Optional_, defaults to `22`.                           |
 | `user`      | `string` | Your FTP username. _Required_, defaults to `process.env.FTP_USER`.     |
 | `password`  | `string` | Your FTP password. _Required_, defaults to `process.env.FTP_PASSWORD`. |
 | `directory` | `string` | Directory to save files to. _Optional_.                                |
