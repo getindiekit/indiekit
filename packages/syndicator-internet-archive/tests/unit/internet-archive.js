@@ -9,7 +9,7 @@ test.beforeEach((t) => {
     job_id: "ac58789b-f3ca-48d0-9ea6-1d1225e98695",
     options: {
       accessKey: "token",
-      secret: "secret",
+      secretKey: "secret",
     },
     url: "http://website.example/post/1",
   };

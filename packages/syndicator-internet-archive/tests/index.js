@@ -7,7 +7,7 @@ await mockAgent("syndicator-internet-archive");
 
 const internetArchive = new InternetArchiveSyndicator({
   accessKey: "token",
-  secret: "secret",
+  secretKey: "secret",
 });
 
 test.beforeEach((t) => {

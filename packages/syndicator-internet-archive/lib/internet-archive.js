@@ -12,7 +12,7 @@ export const internetArchive = (options) => ({
       method,
       headers: {
         accept: "application/json",
-        authorization: `LOW ${options.accessKey}:${options.secret}`,
+        authorization: `LOW ${options.accessKey}:${options.secretKey}`,
       },
       ...(data && { body: new URLSearchParams(data).toString() }),
     });
