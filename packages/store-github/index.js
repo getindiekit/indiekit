@@ -134,7 +134,7 @@ export default class GithubStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @param {string} options.newPath - New path to file
+   * @param {string} [options.newPath] - New path to file
    * @returns {Promise<string>} Updated file URL
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */

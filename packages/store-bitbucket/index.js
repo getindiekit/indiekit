@@ -140,7 +140,7 @@ export default class BitbucketStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @param {string} options.newPath - New path to file
+   * @param {string} [options.newPath] - New path to file
    * @returns {Promise<string>} Updated file URL
    * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_createSrcFileCommit}
    */

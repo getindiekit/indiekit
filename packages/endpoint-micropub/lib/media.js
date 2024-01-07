@@ -4,7 +4,7 @@
  * @param {string} token - Bearer token
  * @param {object} properties - JF2 properties
  * @param {object} files - Files to upload
- * @returns {Promise<Array>} Uploaded file locations
+ * @returns {Promise<object>} Uploaded file locations
  */
 export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
   for await (let [mediaProperty, media] of Object.entries(files)) {

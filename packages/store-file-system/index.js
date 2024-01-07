@@ -83,8 +83,8 @@ export default class FileSystemStore {
    * Update file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @param {object} options - Options
-   * @param {string} options.newPath - New path to file
+   * @param {object} [options] - Options
+   * @param {string} [options.newPath] - New path to file
    * @returns {Promise<string>} Updated file URL
    */
   async updateFile(filePath, content, options) {

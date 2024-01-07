@@ -1,7 +1,7 @@
 /**
  * Render SVG icon
  * @param {string} name - Icon name
- * @param {string} title - Accessible title
+ * @param {string} [title] - Accessible title
  * @returns {string|undefined} HTML
  */
 export const icon = (name, title) => {

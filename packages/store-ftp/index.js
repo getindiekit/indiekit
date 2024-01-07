@@ -147,7 +147,7 @@ export default class FtpStore {
   /**
    * Read file
    * @param {string} filePath - Path to file
-   * @returns {Promise<string>} File content
+   * @returns {Promise<string|NodeJS.WritableStream|Buffer>} File content
    */
   async readFile(filePath) {
     const client = await this.#client();
@@ -173,8 +173,8 @@ export default class FtpStore {
    * Update file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @param {object} options - Options
-   * @param {string} options.newPath - New path to file
+   * @param {object} [options] - Options
+   * @param {string} [options.newPath] - New path to file
    * @returns {Promise<string>} File updated
    */
   async updateFile(filePath, content, options) {

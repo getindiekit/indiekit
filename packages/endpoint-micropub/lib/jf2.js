@@ -13,7 +13,7 @@ import {
 /**
  * Create JF2 object from form-encoded request
  * @param {object} body - Form-encoded request body
- * @param {boolean} requestReferences - Request data for any referenced URLs
+ * @param {boolean} [requestReferences] - Request data for any referenced URLs
  * @returns {Promise<object>} Micropub action
  */
 export const formEncodedToJf2 = async (body, requestReferences) => {
@@ -48,8 +48,8 @@ export const formEncodedToJf2 = async (body, requestReferences) => {
 
 /**
  * Convert mf2 to JF2
- * @param {string} body - Form-encoded request body
- * @param {boolean} requestReferences - Request data for any referenced URLs
+ * @param {object} body - Form-encoded request body
+ * @param {boolean} [requestReferences] - Request data for any referenced URLs
  * @returns {Promise<object>} Micropub action
  */
 export const mf2ToJf2 = async (body, requestReferences) => {

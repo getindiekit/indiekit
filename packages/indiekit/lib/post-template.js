@@ -1,8 +1,8 @@
 /**
  * Get post template
  * @param {object} publication - Publication configuration
- * @param {Function} publication.postTemplate - Publication post template
- * @param {object} publication.preset - Publication preset
+ * @param {Function} [publication.postTemplate] - Publication post template
+ * @param {object} [publication.preset] - Publication preset
  * @returns {Function} Post template rendering function
  */
 export const getPostTemplate = ({ postTemplate, preset }) => {
