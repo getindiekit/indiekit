@@ -14,7 +14,8 @@ export default class MastodonSyndicator {
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.accessToken] - Access token
-   * @param {string} [options.characterLimit] - Server character limit
+   * @param {number} [options.characterLimit] - Server character limit
+   * @param {boolean} [options.includePermalink] - Include permalink in status
    * @param {string} [options.url] - Server URL
    * @param {string} [options.user] - Username
    * @param {boolean} [options.checked] - Check syndicator in UI

@@ -3,6 +3,15 @@ import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import { createRestAPIClient } from "masto";
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
+/**
+ * Syndicate post to Mastodon
+ * @param {object} options - Syndicator options
+ * @param {string} options.accessToken - Access token
+ * @param {number} options.characterLimit - Server character limit
+ * @param {boolean} options.includePermalink - Include permalink in status
+ * @param {string} options.serverUrl - Server URL
+ * @returns {object} Post functions
+ */
 export const mastodon = ({
   accessToken,
   characterLimit,

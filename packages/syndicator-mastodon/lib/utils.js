@@ -8,7 +8,7 @@ import { htmlToText } from "html-to-text";
  * @param {object} properties - JF2 properties
  * @param {object} [options] - Options
  * @param {number} [options.characterLimit] - Character limit
- * @param {number} [options.includePermalink] - Always include permalink
+ * @param {boolean} [options.includePermalink] - Include permalink in status
  * @param {Array} [options.mediaIds] - Mastodon media IDs
  * @param {string} [options.serverUrl] - Server URL
  * @returns {object} Status parameters
