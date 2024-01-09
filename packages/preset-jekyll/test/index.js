@@ -31,8 +31,8 @@ describe("preset-jekyll", async () => {
 
   it("Gets publication post types", () => {
     assert.deepEqual(jekyll.postTypes[0].post, {
-      path: "_puppies/{yyyy}-{MM}-{dd}-{slug}.md",
-      url: "puppies/{yyyy}/{MM}/{dd}/{slug}",
+      path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
+      url: "{yyyy}/{MM}/{dd}/{slug}",
     });
   });
 
