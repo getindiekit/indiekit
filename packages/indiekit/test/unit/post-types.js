@@ -12,18 +12,20 @@ describe("indiekit/lib/post-types", () => {
     });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
-    const result = getPostTypes(publication);
+    const result = getPostTypes(publication)[0];
 
-    assert.deepEqual(result[0], {
-      name: "Custom note post type",
-      type: "note",
-      post: {
-        path: "src/content/notes/{slug}.md",
-        url: "notes/{slug}/",
-      },
-      media: {
-        path: "media/notes/{yyyy}/{MM}/{dd}/{filename}",
-      },
+    assert.equal(result.name, "Article");
+    assert.equal(result.type, "article");
+    assert.equal(result.h, "entry");
+    assert.equal(result.fields.length, 8);
+    assert.equal(result.requiredFields.length, 3);
+    assert.ok(result.validationSchema);
+    assert.deepEqual(result.post, {
+      path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
+      url: "{yyyy}/{MM}/{dd}/{slug}",
+    });
+    assert.deepEqual(result.media, {
+      path: "media/{yyyy}/{MM}/{dd}/{filename}",
     });
   });
 
@@ -33,14 +35,19 @@ describe("indiekit/lib/post-types", () => {
     const { publication } = await indiekit.bootstrap();
     const result = getPostTypes(publication);
 
-    assert.equal(result[0].name, "Custom note post type");
+    assert.equal(result[1].name, "Custom note post type");
   });
 
-  it("Returns array if no preset or custom post types", async () => {
-    const config = await testConfig({ usePostTypes: false });
+  it("Returns default if no preset or custom post types", async () => {
+    const config = await testConfig({
+      usePostTypes: false,
+      usePreset: false,
+    });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
+    const result = getPostTypes(publication);
 
-    assert.deepEqual(getPostTypes(publication), []);
+    assert.equal(result[0].name, "Article");
+    assert.equal(result[10].name, "Like");
   });
 });

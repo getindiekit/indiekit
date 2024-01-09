@@ -28,10 +28,20 @@ const config = {
       {
         type: "like",
         name: "Favourite",
+        fields: ["like-of", "published"],
+        requiredFields: ["like-of", "published"],
       },
       {
-        type: "watch",
-        name: "Film",
+        type: "jam",
+        name: "Jam",
+        discovery: "jam-of",
+        h: "entry",
+        fields: ["jam-of", "content", "post-status", "published"],
+        requiredFields: ["jam-of", "published"],
+        post: {
+          path: "_jams/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "jams/{yyyy}/{MM}/{dd}/{slug}",
+        },
       },
     ],
   },

@@ -38,8 +38,8 @@ describe("preset-hugo", async () => {
 
   it("Gets publication post types", () => {
     assert.deepEqual(hugo.postTypes[0].post, {
-      path: "content/puppies/{slug}.md",
-      url: "puppies/{slug}",
+      path: "content/articles/{slug}.md",
+      url: "articles/{slug}",
     });
   });
 
