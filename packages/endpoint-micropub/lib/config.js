@@ -32,6 +32,9 @@ export const getConfig = (application, publication) => {
     "post-types": postTypes.map((postType) => ({
       type: postType.type,
       name: postType.name,
+      h: postType.h,
+      properties: postType.fields,
+      "required-properties": postType.requiredFields,
     })),
     "syndicate-to": syndicateTo,
     q,
