@@ -73,6 +73,7 @@
   {% endif %}
 {% endif %}{% endfor %}
 {% endset %}
+{% if opts.items %}
 {% call field({
   element: "checkboxes-field",
   classes: opts.field.classes,
@@ -89,3 +90,4 @@
   {{ innerHtml | trim | safe }}
 {% endif %}
 {% endcall %}
+{% endif %}

@@ -64,6 +64,7 @@
   {% endif %}
 {% endif %}{% endfor %}
 {% endset %}
+{% if opts.items %}
 {% call field({
   element: "radios-field",
   classes: opts.field.classes,
@@ -80,3 +81,4 @@
   {{ innerHtml | trim | safe }}
 {% endif %}
 {% endcall %}
+{% endif %}
