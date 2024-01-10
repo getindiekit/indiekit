@@ -26,6 +26,9 @@
       "name": {
         "empty": "Unesite naslov"
       },
+      "start": {
+        "empty": "Unesite datum početka"
+      },
       "url": {
         "empty": "Unesite veb adresu kao što je %s"
       }
@@ -50,6 +53,12 @@
         "label": "Sadržaj"
       },
       "continue": "Nastavi",
+      "event": {
+        "all-day": "Ceo dan",
+        "end": "Krajevi",
+        "label": "Datum i vreme",
+        "start": "Počinje"
+      },
       "geo": {
         "hint": "Geografska širina i dužina, na primer %s",
         "label": "Koordinate lokacije"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "Kao od"
+      },
+      "location": {
+        "country-name": "Zemlja",
+        "label": "Lokacija",
+        "locality": "Grad",
+        "name": "Mesto održavanja",
+        "postal-code": "Poštanski kod",
+        "street-address": "Ulica i broj"
       },
       "media": {
         "label": "Putanja ili URL datoteke"

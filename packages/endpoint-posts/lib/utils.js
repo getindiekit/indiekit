@@ -8,21 +8,63 @@ export const LAT_LONG_RE =
   /^(?<latitude>(?:-?|\+?)?\d+(?:\.\d+)?),\s*(?<longitude>(?:-?|\+?)?\d+(?:\.\d+)?)$/;
 
 /**
- * Get location property
+ * Get geographic coordinates property
  * @param {string} geo - Latitude and longitude, comma separated
- * @returns {object} JF2 location property
+ * @returns {object} JF2 geo location property
  */
-export const getLocationProperty = (geo) => {
+export const getGeoProperty = (geo) => {
   const { latitude, longitude } = geo.match(LAT_LONG_RE).groups;
 
   return {
     type: "geo",
-    latitude,
-    longitude,
     name: formatcoords(geo).format({
       decimalPlaces: 2,
     }),
+    latitude: Number(latitude),
+    longitude: Number(longitude),
   };
+};
+
+/**
+ * Get comma separated geographic coordinates
+ * @param {object} geo - JF2 geo location property
+ * @returns {string} Latitude and longitude, comma separated
+ */
+export const getGeoValue = (geo) => {
+  return [geo.latitude, geo.longitude].toString();
+};
+
+/**
+ * Get location property
+ * @param {object} values - Latitude and longitude, comma separated
+ * @returns {object} JF2 location property
+ */
+export const getLocationProperty = (values) => {
+  const { location, geo } = values;
+
+  // Determine Microformat type
+  if (location && location.name) {
+    location.type = "card";
+  } else if (location) {
+    location.type = "adr";
+  }
+
+  // Add (or use) any provided geo location properties
+  if (location && geo) {
+    location.geo = getGeoProperty(geo);
+  } else if (geo) {
+    return getGeoProperty(geo);
+  }
+
+  // Delete empty values
+  for (const key in location) {
+    const noValue = !location[key] || location[key] === "";
+    if (Object.prototype.hasOwnProperty.call(location, key) && noValue) {
+      delete location[key];
+    }
+  }
+
+  return location;
 };
 
 /**

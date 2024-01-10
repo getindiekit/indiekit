@@ -2,6 +2,7 @@ import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { statusTypes } from "../status-types.js";
 import {
+  getGeoValue,
   getPostName,
   getPostProperties,
   getPostTypeName,
@@ -56,11 +57,8 @@ export const postData = {
         throw IndiekitError.notFound(response.locals.__("NotFoundError.page"));
       }
 
-      if (properties.location) {
-        properties.geo = [
-          properties.location.latitude,
-          properties.location.longitude,
-        ].toString();
+      if (properties.location.geo) {
+        properties.geo = getGeoValue(properties.geo);
       }
 
       const postType = properties["post-type"];

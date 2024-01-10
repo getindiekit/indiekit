@@ -26,6 +26,9 @@
       "name": {
         "empty": "Geef een titel in"
       },
+      "start": {
+        "empty": "Voer een startdatum in"
+      },
       "url": {
         "empty": "Voer een webadres in zoals %s"
       }
@@ -50,6 +53,12 @@
         "label": "Inhoud"
       },
       "continue": "Doorgaan",
+      "event": {
+        "all-day": "Hele dag",
+        "end": "Eindigt",
+        "label": "Datum en tijd",
+        "start": "Begint"
+      },
       "geo": {
         "hint": "Lengte- en breedtegraad, bijvoorbeeld %s",
         "label": "Locatiecoördinaten"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "Zoals van"
+      },
+      "location": {
+        "country-name": "Land",
+        "label": "Locatie",
+        "locality": "Stad",
+        "name": "Plaats",
+        "postal-code": "Postcode",
+        "street-address": "Adres"
       },
       "media": {
         "label": "Bestandspad of URL"

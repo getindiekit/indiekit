@@ -26,6 +26,9 @@
       "name": {
         "empty": "Pon un título"
       },
+      "start": {
+        "empty": "Introduce una fecha de inicio"
+      },
       "url": {
         "empty": "Introduce una dirección web como %s"
       }
@@ -50,6 +53,12 @@
         "label": "Contenido"
       },
       "continue": "Continuar",
+      "event": {
+        "all-day": "Todo el día",
+        "end": "Termina",
+        "label": "Fecha y hora",
+        "start": "Comienza"
+      },
       "geo": {
         "hint": "Latitud y longitud, por ejemplo %s",
         "label": "Coordenadas de ubicación"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "Como de"
+      },
+      "location": {
+        "country-name": "País",
+        "label": "Ubicación",
+        "locality": "Ciudad o pueblo",
+        "name": "Campo",
+        "postal-code": "Código postal",
+        "street-address": "Dirección"
       },
       "media": {
         "label": "Ruta o URL del archivo"

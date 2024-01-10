@@ -92,10 +92,9 @@ export const formController = {
         }
       }
 
-      // Convert geo value to object
-      if (values.geo) {
-        values.location = getLocationProperty(values.geo);
-        delete values.geo;
+      // Derive location from location and/or geo values
+      if (values.location || values.geo) {
+        values.location = getLocationProperty(values);
       }
 
       // Delete empty values

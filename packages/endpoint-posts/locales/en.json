@@ -13,6 +13,9 @@
       "name": {
         "empty": "Enter a title"
       },
+      "start": {
+        "empty": "Enter a start date"
+      },
       "url": {
         "empty": "Enter a web address like %s"
       },
@@ -75,6 +78,12 @@
       "content": {
         "label": "Content"
       },
+      "event": {
+        "label": "Date and time",
+        "start": "Starts",
+        "end": "Ends",
+        "all-day": "All-day"
+      },
       "geo": {
         "label": "Location coordinates",
         "hint": "Latitude and longitude, for example %s"
@@ -84,6 +93,14 @@
       },
       "like-of": {
         "label": "Like of"
+      },
+      "location": {
+        "label": "Location",
+        "name": "Venue",
+        "street-address": "Street address",
+        "locality": "City or town",
+        "country-name": "Country",
+        "postal-code": "Postal code"
       },
       "name": {
         "label": "Title"

@@ -26,6 +26,9 @@
       "name": {
         "empty": "输入标题"
       },
+      "start": {
+        "empty": "输入开始日期"
+      },
       "url": {
         "empty": "输入像 %s 这样的网址"
       }
@@ -50,6 +53,12 @@
         "label": "内容"
       },
       "continue": "继续",
+      "event": {
+        "all-day": "全天",
+        "end": "结束",
+        "label": "日期和时间",
+        "start": "开始"
+      },
       "geo": {
         "hint": "纬度和经度，例如 %s",
         "label": "位置坐标"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "像这样"
+      },
+      "location": {
+        "country-name": "国家",
+        "label": "地点",
+        "locality": "城市",
+        "name": "举办地点",
+        "postal-code": "邮政编码",
+        "street-address": "街道地址"
       },
       "media": {
         "label": "文件路径或 URL"
