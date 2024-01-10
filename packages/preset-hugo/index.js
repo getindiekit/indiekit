@@ -46,6 +46,24 @@ export default class HugoPreset {
   }
 
   /**
+   * Get content
+   * @access private
+   * @param {object} properties - JF2 properties
+   * @returns {string} Content
+   */
+  #content(properties) {
+    if (properties.content) {
+      const content =
+        properties.content.text ||
+        properties.content.html ||
+        properties.content;
+      return `\n${content}\n`;
+    } else {
+      return "";
+    }
+  }
+
+  /**
    * Get front matter
    * @access private
    * @param {object} properties - JF2 properties
@@ -54,6 +72,39 @@ export default class HugoPreset {
   #frontMatter(properties) {
     let delimiters;
     let frontMatter;
+
+    /*
+     * Go templates don’t accept hyphens in property names
+     * and Hugo camelCases its predefined front matter keys
+     * @see {link: https://gohugo.io/content-management/front-matter/}
+     */
+    properties = camelcaseKeys(properties, { deep: true });
+
+    /*
+     * Replace Microformat properties with Hugo equivalents
+     * @see {link: https://gohugo.io/content-management/front-matter/}
+     */
+    properties = {
+      date: properties.published,
+      publishDate: properties.published,
+      ...(properties.postStatus === "draft" && { draft: true }),
+      ...(properties.updated && { lastmod: properties.updated }),
+      ...(properties.deleted && { expiryDate: properties.deleted }),
+      ...(properties.name && { title: properties.name }),
+      ...(properties.photo && {
+        images: properties.photo.map((image) => image.url),
+      }),
+      ...properties,
+    };
+
+    delete properties.content; // Shown below front matter
+    delete properties.deleted; // Use `expiryDate`
+    delete properties.name; // Use `title`
+    delete properties.postStatus; // Use `draft`
+    delete properties.published; // Use `date`
+    delete properties.type; // Not required
+    delete properties.updated; // Use `lastmod`
+    delete properties.url; // Not required
 
     switch (this.options.frontMatterFormat) {
       case "json": {
@@ -205,50 +256,7 @@ export default class HugoPreset {
    * @returns {string} Rendered template
    */
   postTemplate(properties) {
-    /*
-     * Go templates don’t accept hyphens in property names
-     * and Hugo camelCases its predefined front matter keys
-     * https://gohugo.io/content-management/front-matter/
-     */
-    properties = camelcaseKeys(properties, { deep: true });
-
-    let content;
-    if (properties.content) {
-      content =
-        properties.content.text ||
-        properties.content.html ||
-        properties.content;
-      content = `\n${content}\n`;
-    } else {
-      content = "";
-    }
-
-    properties = {
-      date: properties.published,
-      publishDate: properties.published,
-      ...(properties.updated && { lastmod: properties.updated }),
-      ...(properties.deleted && { expiryDate: properties.deleted }),
-      ...(properties.name && { title: properties.name }),
-      ...(properties.summary && { summary: properties.summary }),
-      ...(properties.category && { category: properties.category }),
-      ...(properties.start && { start: properties.start }),
-      ...(properties.end && { end: properties.end }),
-      ...(properties.rsvp && { rsvp: properties.rsvp }),
-      ...(properties.location && { location: properties.location }),
-      ...(properties.checkin && { checkin: properties.checkin }),
-      ...(properties.audio && { audio: properties.audio }),
-      ...(properties.photo && { images: properties.photo }),
-      ...(properties.video && { videos: properties.video }),
-      ...(properties.bookmarkOf && { bookmarkOf: properties.bookmarkOf }),
-      ...(properties.likeOf && { likeOf: properties.likeOf }),
-      ...(properties.repostOf && { repostOf: properties.repostOf }),
-      ...(properties.inReplyTo && { inReplyTo: properties.inReplyTo }),
-      ...(properties.postStatus === "draft" && { draft: true }),
-      ...(properties.visibility && { visibility: properties.visibility }),
-      ...(properties.syndication && { syndication: properties.syndication }),
-      ...(properties.references && { references: properties.references }),
-    };
-
+    const content = this.#content(properties);
     const frontMatter = this.#frontMatter(properties);
 
     return frontMatter + content;

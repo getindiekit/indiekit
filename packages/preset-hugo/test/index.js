@@ -4,10 +4,10 @@ import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
 import HugoPreset from "../index.js";
 
-describe("preset-jekyll", () => {
+describe("preset-hugo", () => {
   const hugo = new HugoPreset();
 
-  const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
+  const properties = JSON.parse(getFixture("jf2/post-template-properties.jf2"));
 
   it("Gets plug-in info", () => {
     assert.equal(hugo.name, "Hugo preset");
@@ -55,12 +55,13 @@ title: What I had for lunch
     );
   });
 
-  it("Renders post template with basic content", () => {
+  it("Renders post template with basic draft content", () => {
     const result = hugo.postTemplate({
       published: "2020-02-02",
       name: "What I had for lunch",
       content:
         "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
+      "post-status": "draft",
     });
 
     assert.equal(
@@ -68,6 +69,7 @@ title: What I had for lunch
       `---
 date: 2020-02-02
 publishDate: 2020-02-02
+draft: true
 title: What I had for lunch
 ---
 
@@ -108,10 +110,29 @@ title: What I had for lunch
   "date": "2020-02-02",
   "publishDate": "2020-02-02",
   "title": "What I had for lunch",
+  "images": [
+    "https://website.example/photo.jpg"
+  ],
   "summary": "A very satisfactory meal.",
   "category": [
     "lunch",
     "food"
+  ],
+  "audio": [
+    {
+      "url": "https://website.example/audio.mp3"
+    }
+  ],
+  "photo": [
+    {
+      "alt": "Alternative text",
+      "url": "https://website.example/photo.jpg"
+    }
+  ],
+  "video": [
+    {
+      "url": "https://website.example/video.mp4"
+    }
   ],
   "start": "2020-02-02",
   "end": "2020-02-20",
@@ -127,27 +148,10 @@ title: What I had for lunch
     "latitude": "50",
     "longitude": "0"
   },
-  "audio": [
-    {
-      "url": "https://website.example/audio.mp3"
-    }
-  ],
-  "images": [
-    {
-      "alt": "Alternative text",
-      "url": "https://website.example/photo.jpg"
-    }
-  ],
-  "videos": [
-    {
-      "url": "https://website.example/video.mp4"
-    }
-  ],
   "bookmarkOf": "https://website.example",
   "likeOf": "https://website.example",
   "repostOf": "https://website.example",
   "inReplyTo": "https://website.example",
-  "draft": true,
   "visibility": "private",
   "syndication": "https://website.example/post/12345"
 }
@@ -167,6 +171,7 @@ I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 date = "2020-02-02"
 publishDate = "2020-02-02"
 title = "What I had for lunch"
+images = [ "https://website.example/photo.jpg" ]
 summary = "A very satisfactory meal."
 category = [ "lunch", "food" ]
 start = "2020-02-02"
@@ -176,9 +181,18 @@ bookmarkOf = "https://website.example"
 likeOf = "https://website.example"
 repostOf = "https://website.example"
 inReplyTo = "https://website.example"
-draft = true
 visibility = "private"
 syndication = "https://website.example/post/12345"
+
+[[audio]]
+url = "https://website.example/audio.mp3"
+
+[[photo]]
+alt = "Alternative text"
+url = "https://website.example/photo.jpg"
+
+[[video]]
+url = "https://website.example/video.mp4"
 
 [location]
 type = "geo"
@@ -190,16 +204,6 @@ name = "37° 46′ 48.29″ N 122° 25′ 12.576″ W"
 type = "card"
 latitude = "50"
 longitude = "0"
-
-[[audio]]
-url = "https://website.example/audio.mp3"
-
-[[images]]
-alt = "Alternative text"
-url = "https://website.example/photo.jpg"
-
-[[videos]]
-url = "https://website.example/video.mp4"
 +++
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
@@ -217,10 +221,19 @@ I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
 date: 2020-02-02
 publishDate: 2020-02-02
 title: What I had for lunch
+images:
+  - https://website.example/photo.jpg
 summary: A very satisfactory meal.
 category:
   - lunch
   - food
+audio:
+  - url: https://website.example/audio.mp3
+photo:
+  - alt: Alternative text
+    url: https://website.example/photo.jpg
+video:
+  - url: https://website.example/video.mp4
 start: 2020-02-02
 end: 2020-02-20
 rsvp: Yes
@@ -233,18 +246,10 @@ checkin:
   type: card
   latitude: "50"
   longitude: "0"
-audio:
-  - url: https://website.example/audio.mp3
-images:
-  - alt: Alternative text
-    url: https://website.example/photo.jpg
-videos:
-  - url: https://website.example/video.mp4
 bookmarkOf: https://website.example
 likeOf: https://website.example
 repostOf: https://website.example
 inReplyTo: https://website.example
-draft: true
 visibility: private
 syndication: https://website.example/post/12345
 ---
