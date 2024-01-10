@@ -16,8 +16,7 @@ export const formController = {
    * @type {import("express").RequestHandler}
    */
   async get(request, response) {
-    const { action, postsPath, postType, postTypeName, scope } =
-      response.locals;
+    const { action, postsPath, postType, name, scope } = response.locals;
 
     if (scope && checkScope(scope, action)) {
       return response.render("post-form", {
@@ -32,7 +31,7 @@ export const formController = {
               },
         title: response.locals.__(
           `posts.${action}.title`,
-          postTypeName.toLowerCase().replace("rsvp", "RSVP"),
+          name.toLowerCase().replace("rsvp", "RSVP"),
         ),
       });
     }
@@ -46,14 +45,14 @@ export const formController = {
    */
   async post(request, response) {
     const { micropubEndpoint, timeZone } = request.app.locals.application;
-    const { accessToken, action, postTypeName, properties } = response.locals;
+    const { accessToken, action, name, properties } = response.locals;
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("post-form", {
         title: response.locals.__(
           `posts.${action}.title`,
-          postTypeName.toLowerCase().replace("rsvp", "RSVP"),
+          name.toLowerCase().replace("rsvp", "RSVP"),
         ),
         errors: errors.mapped(),
       });
@@ -132,7 +131,7 @@ export const formController = {
       response.render("post-form", {
         title: response.locals.__(
           `posts.${action}.title`,
-          postTypeName.toLowerCase().replace("rsvp", "RSVP"),
+          name.toLowerCase().replace("rsvp", "RSVP"),
         ),
         error,
       });

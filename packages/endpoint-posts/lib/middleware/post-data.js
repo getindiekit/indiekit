@@ -5,7 +5,7 @@ import {
   getGeoValue,
   getPostName,
   getPostProperties,
-  getPostTypeName,
+  getPostTypeConfig,
   getSyndicateToItems,
 } from "../utils.js";
 
@@ -18,6 +18,12 @@ export const postData = {
     const postType = request.query.type || "note";
     const properties = request.body;
 
+    // Get post type config
+    const { name, fields, h, requiredFields } = getPostTypeConfig(
+      publication,
+      postType,
+    );
+
     // Only select ‘checked’ syndication targets on first view
     const checkTargets = Object.entries(request.body).length === 0;
 
@@ -28,13 +34,16 @@ export const postData = {
     response.locals = {
       accessToken: access_token,
       action: "create",
+      fields,
+      name,
       postsPath: path.dirname(request.baseUrl + request.path),
       postType,
-      postTypeName: getPostTypeName(publication, postType),
       properties,
       scope,
+      requiredFields,
       showAdvancedOptions,
       syndicationTargetItems: getSyndicateToItems(publication, checkTargets),
+      type: h,
       ...response.locals,
     };
 
@@ -61,18 +70,27 @@ export const postData = {
       const geo = properties?.location && getGeoValue(properties.location);
       const postType = properties["post-type"];
 
+      // Get post type config
+      const { name, fields, h, requiredFields } = getPostTypeConfig(
+        publication,
+        postType,
+      );
+
       response.locals = {
         accessToken: access_token,
         action: action || "create",
         allDay,
         draftMode: scope?.includes("draft"),
+        fields,
         geo,
+        h,
+        name,
         postName: getPostName(publication, properties),
         postsPath: path.dirname(request.baseUrl + request.path),
         postStatus: properties["post-status"],
         postType,
-        postTypeName: getPostTypeName(publication, postType),
         properties,
+        requiredFields,
         scope,
         showAdvancedOptions: true,
         syndicationTargetItems: getSyndicateToItems(publication),

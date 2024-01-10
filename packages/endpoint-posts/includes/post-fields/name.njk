@@ -1,0 +1,7 @@
+{{ input({
+  name: "name",
+  value: fieldData("name").value,
+  label: __("posts.form.name.label"),
+  optional: not requiredFields | includes("name"),
+  errorMessage: fieldData("name").errorMessage
+}) }}

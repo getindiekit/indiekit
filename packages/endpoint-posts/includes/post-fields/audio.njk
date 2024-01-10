@@ -1,0 +1,23 @@
+{% macro audioFieldset(index) %}
+  {{ input({
+    name: "audio[" + index + "]",
+    type: "url",
+    value: fieldData("audio[" + index + "]").value,
+    label: __("posts.form.media.label"),
+    attributes: {
+      placeholder: "https://"
+    },
+    errorMessage: fieldData("audio[" + index + "]").errorMessage
+  }) | indent(2) }}
+{% endmacro %}
+
+{% call addAnother({
+  fieldset: { legend: __("posts.form.audio.label") },
+  name: __("posts.form.audio.name")
+}) %}
+  {% for audio in fieldData("audio").value %}
+    {{ audioFieldset(loop.index0) }}
+  {% else %}
+    {{ audioFieldset(0) }}
+  {% endfor %}
+{% endcall %}

@@ -1,0 +1,42 @@
+{% call fieldset({
+  classes: "fieldset--group",
+  legend: __("posts.form.location.label"),
+  optional: not requiredFields | includes("location")
+}) %}
+  {{ input({
+    name: "location[name]",
+    value: fieldData("location.name").value,
+    label: __("posts.form.location.name")
+  }) | indent(2) }}
+
+  {{ input({
+    name: "location[street-address]",
+    value: fieldData("location.street-address").value,
+    label: __("posts.form.location.street-address"),
+    autocomplete: "address-line1"
+  }) | indent(2) }}
+
+  {{ input({
+    classes: "input--width-25",
+    name: "location[locality]",
+    value: fieldData("location.locality").value,
+    label: __("posts.form.location.locality"),
+    autocomplete: "address-level2"
+  }) | indent(2) }}
+
+  {{ input({
+    classes: "input--width-25",
+    name: "location[country-name]",
+    value: fieldData("location.country-name").value,
+    label: __("posts.form.location.country-name"),
+    autocomplete: "country-name"
+  }) | indent(2) }}
+
+  {{ input({
+    classes: "input--width-10",
+    name: "location[postal-code]",
+    value: fieldData("location.postal-code").value,
+    label: __("posts.form.location.postal-code"),
+    autocomplete: "postal-code"
+  }) | indent(2) }}
+{% endcall %}

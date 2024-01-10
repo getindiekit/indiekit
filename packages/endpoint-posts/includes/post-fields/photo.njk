@@ -1,0 +1,35 @@
+{% macro photoFieldset(index) %}
+{% call fieldset({
+  classes: "fieldset--group"
+}) %}
+  {{ input({
+    name: "photo[" + index + "][url]",
+    type: "url",
+    value: fieldData("photo[" + index + "].url").value,
+    label: __("posts.form.media.label"),
+    attributes: {
+      placeholder: "https://"
+    },
+    errorMessage: fieldData("photo[" + index + "].url").errorMessage
+  }) | indent(2) }}
+
+  {{ textarea({
+    name: "photo[" + index + "][alt]",
+    value: fieldData("photo[" + index + "].alt").value,
+    label: __("posts.form.mp-photo-alt.label"),
+    rows: 1,
+    errorMessage: fieldData("photo[" + index + "].alt").errorMessage
+  }) | indent(2) }}
+{% endcall %}
+{% endmacro %}
+
+{% call addAnother({
+  fieldset: { legend: __("posts.form.photo.label") },
+  name: __("posts.form.photo.name")
+}) %}
+  {% for photo in fieldData("photo").value %}
+    {{ photoFieldset(loop.index0) }}
+  {% else %}
+    {{ photoFieldset(0) }}
+  {% endfor %}
+{% endcall %}

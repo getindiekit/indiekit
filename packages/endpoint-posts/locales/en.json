@@ -75,6 +75,11 @@
         "label": "Categories",
         "tag": "category"
       },
+      "cite": {
+        "name": "Name",
+        "author": "Author",
+        "url": "URL"
+      },
       "content": {
         "label": "Content"
       },
@@ -93,6 +98,9 @@
       },
       "like-of": {
         "label": "Like of"
+      },
+      "jam-of": {
+        "label": "Jam of"
       },
       "location": {
         "label": "Location",

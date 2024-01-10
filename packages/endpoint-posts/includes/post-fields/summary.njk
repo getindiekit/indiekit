@@ -1,0 +1,7 @@
+{{ textarea({
+  name: "summary",
+  value: properties.summary,
+  label: __("posts.form.summary.label"),
+  optional: not requiredFields | includes("summary"),
+  rows: 1
+}) }}

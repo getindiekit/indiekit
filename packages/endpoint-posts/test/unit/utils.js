@@ -7,7 +7,7 @@ import {
   getLocationProperty,
   getPostName,
   getPostStatusBadges,
-  getPostTypeName,
+  getPostTypeConfig,
   getPostUrl,
   getSyndicateToItems,
 } from "../../lib/utils.js";
@@ -218,8 +218,11 @@ describe("endpoint-posts/lib/utils", () => {
   });
 
   it("Gets post type name (or an empty string)", () => {
-    assert.equal(getPostTypeName(publication, "article"), "Journal entry");
-    assert.equal(getPostTypeName(publication, ""), "");
+    assert.deepEqual(getPostTypeConfig(publication, "article"), {
+      type: "article",
+      name: "Journal entry",
+    });
+    assert.equal(getPostTypeConfig(publication, ""), "");
   });
 
   it("Gets post URL", () => {

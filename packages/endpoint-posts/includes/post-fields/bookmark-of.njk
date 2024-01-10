@@ -1,0 +1,11 @@
+{{ input({
+  name: "bookmark-of",
+  type: "url",
+  value: fieldData("bookmark-of").value,
+  label: __("posts.form.bookmark-of.label"),
+  optional: not requiredFields | includes("bookmark-of"),
+  attributes: {
+    placeholder: "https://"
+  },
+  errorMessage: fieldData("bookmark-of").errorMessage
+}) }}

@@ -1,0 +1,11 @@
+{{ tagInput({
+  name: "category",
+  value: fieldData("category").value,
+  label: __("posts.form.category.label"),
+  hint: __("posts.form.category.hint"),
+  optional: true,
+  localisation: {
+    tag: __("posts.form.category.tag"),
+    tags: __("posts.form.category.label") | lower
+  }
+}) }}
