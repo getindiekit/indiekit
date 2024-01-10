@@ -1,0 +1,42 @@
+{
+  "type": "entry",
+  "url": "https://website.example/posts/cheese-sandwich",
+  "name": "What I had for lunch",
+  "content": {
+    "html": "<p>I ate a <a href=\"https://en.wikipedia.org/wiki/Cheese\">cheese</a> sandwich, which was nice.</p>",
+    "text": "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice."
+  },
+  "summary": "A very satisfactory meal.",
+  "published": "2020-02-02",
+  "category": ["lunch", "food"],
+  "audio": [{
+    "url": "https://website.example/audio.mp3"
+  }],
+  "photo": [{
+    "alt": "Alternative text",
+    "url": "https://website.example/photo.jpg"
+  }],
+  "video": [{
+    "url": "https://website.example/video.mp4"
+  }],
+  "start": "2020-02-02",
+  "end": "2020-02-20",
+  "rsvp": "Yes",
+  "location": {
+    "type": "geo",
+    "latitude": "37.780080",
+    "longitude": "-122.420160",
+    "name": "37° 46′ 48.29″ N 122° 25′ 12.576″ W"
+  },
+  "checkin": {
+    "type": "card",
+    "latitude": "50",
+    "longitude": "0"
+  },
+  "bookmark-of": "https://website.example",
+  "like-of": "https://website.example",
+  "repost-of": "https://website.example",
+  "in-reply-to": "https://website.example",
+  "visibility": "private",
+  "syndication": "https://website.example/post/12345"
+}
