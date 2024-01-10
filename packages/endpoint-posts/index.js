@@ -59,6 +59,7 @@ export default class PostsEndpoint {
       "reply",
       "like",
       "photo",
+      "event",
       "rsvp",
       "repost",
       "video",

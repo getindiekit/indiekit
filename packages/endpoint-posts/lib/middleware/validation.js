@@ -44,8 +44,13 @@ export const validate = [
     .if(
       (value, { req }) =>
         req.body?.["post-type"] === "article" ||
-        req.body?.["post-type"] === "bookmark",
+        req.body?.["post-type"] === "bookmark" ||
+        req.body?.["post-type"] === "event",
     )
+    .notEmpty()
+    .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
+  check("start")
+    .if((value, { req }) => req.body?.["post-type"] === "event")
     .notEmpty()
     .withMessage((value, { req, path }) => req.__(`posts.error.${path}.empty`)),
   check("content")

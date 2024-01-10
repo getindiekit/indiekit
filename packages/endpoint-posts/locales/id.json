@@ -26,6 +26,9 @@
       "name": {
         "empty": "Masukkan judul"
       },
+      "start": {
+        "empty": "Masukkan tanggal mulai"
+      },
       "url": {
         "empty": "Masukkan alamat web misalnya %s"
       }
@@ -50,6 +53,12 @@
         "label": "Konten"
       },
       "continue": "Lanjutkan",
+      "event": {
+        "all-day": "Sepanjang hari",
+        "end": "Berakhir",
+        "label": "Tanggal dan waktu",
+        "start": "Mulai"
+      },
       "geo": {
         "hint": "Lintang dan bujur, misalnya %s",
         "label": "Koordinat lokasi"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "Seperti"
+      },
+      "location": {
+        "country-name": "Negara",
+        "label": "Lokasi",
+        "locality": "Kota",
+        "name": "Tempat",
+        "postal-code": "Kode pos",
+        "street-address": "Alamat jalan"
       },
       "media": {
         "label": "Jalur file atau URL"

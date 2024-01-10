@@ -26,6 +26,9 @@
       "name": {
         "empty": "Wprowadź tytuł"
       },
+      "start": {
+        "empty": "Wpisz datę rozpoczęcia"
+      },
       "url": {
         "empty": "Wpisz adres internetowy, taki jak %s"
       }
@@ -50,6 +53,12 @@
         "label": "Zawartość"
       },
       "continue": "Kontynuuj",
+      "event": {
+        "all-day": "Cały dzień",
+        "end": "Kończy się",
+        "label": "Data i godzina",
+        "start": "Rozpoczyna się"
+      },
       "geo": {
         "hint": "Szerokość i długość geograficzna, na przykład %s",
         "label": "Współrzędne lokalizacji"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "Jak z"
+      },
+      "location": {
+        "country-name": "Kraj",
+        "label": "Lokalizacja",
+        "locality": "Miasto",
+        "name": "Miejsce",
+        "postal-code": "Kod pocztowy",
+        "street-address": "Adres"
       },
       "media": {
         "label": "Ścieżka pliku lub adres URL"

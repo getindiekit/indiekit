@@ -26,6 +26,9 @@
       "name": {
         "empty": "Titel eingeben"
       },
+      "start": {
+        "empty": "Geben Sie ein Startdatum ein"
+      },
       "url": {
         "empty": "Geben Sie eine Webadresse wie %s"
       }
@@ -50,6 +53,12 @@
         "label": "Inhalt"
       },
       "continue": "Fortsetzen",
+      "event": {
+        "all-day": "Ganztägig",
+        "end": "Endet",
+        "label": "Datum und Uhrzeit",
+        "start": "Beginnt"
+      },
       "geo": {
         "hint": "Breitengrad und Längengrad, zum Beispiel %s",
         "label": "Koordinaten des Standorts"
@@ -59,6 +68,14 @@
       },
       "like-of": {
         "label": "Wie von"
+      },
+      "location": {
+        "country-name": "Land",
+        "label": "Standort",
+        "locality": "Stadt oder Ort",
+        "name": "Veranstaltungsort",
+        "postal-code": "Postleitzahl",
+        "street-address": "Straße"
       },
       "media": {
         "label": "Dateipfad oder URL"
