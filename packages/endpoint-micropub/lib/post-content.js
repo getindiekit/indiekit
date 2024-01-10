@@ -14,7 +14,13 @@ export const postContent = {
       fileType: "post",
       postType: properties["post-type"],
     };
-    const content = await postTemplate(properties);
+
+    // Remove server commands from post template properties
+    const templateProperties = Object.keys(properties).filter(
+      (key) => !key.startsWith("mp-"),
+    );
+
+    const content = await postTemplate(templateProperties);
     const message = storeMessageTemplate(metaData);
 
     await store.createFile(path, content, { message });
