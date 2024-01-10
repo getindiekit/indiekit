@@ -1,0 +1,22 @@
+{{ radios({
+  inline: true,
+  name: "rsvp",
+  values: properties.rsvp or "yes",
+  fieldset: {
+    legend: __("posts.form.rsvp.label")
+  },
+  optional: not requiredFields | includes("rsvp"),
+  items: [{
+    label: __("posts.form.rsvp.yes"),
+    value: "yes"
+  }, {
+    label: __("posts.form.rsvp.no"),
+    value: "no"
+  }, {
+    label: __("posts.form.rsvp.maybe"),
+    value: "maybe"
+  }, {
+    label: __("posts.form.rsvp.interested"),
+    value: "interested"
+  }]
+}) }}

@@ -14,7 +14,7 @@ describe("endpoint-posts POST /posts/create", () => {
       .post("/posts/create")
       .set("cookie", testCookie())
       .send({ type: "entry" })
-      .send({ "post-type": "note" })
+      .send({ postType: "note" })
       .send({ geo: "foobar" });
     const dom = new JSDOM(response.text);
     const result = dom.window.document;

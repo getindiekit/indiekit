@@ -1,0 +1,11 @@
+{{ input({
+  name: "like-of",
+  type: "url",
+  value: fieldData("like-of").value,
+  label: __("posts.form.like-of.label"),
+  optional: not requiredFields | includes("like-of"),
+  attributes: {
+    placeholder: "https://"
+  },
+  errorMessage: fieldData("like-of").errorMessage
+}) }}

@@ -8,15 +8,12 @@ export const newController = {
    */
   async get(request, response) {
     const action = "create";
-    const { application, publication } = request.app.locals;
+    const { publication } = request.app.locals;
     const postsPath = path.dirname(request.baseUrl + request.path);
     const postType = request.query.type || "article";
     const { scope } = request.session;
 
     const postTypeItems = publication.postTypes
-      .filter((postType) =>
-        application.supportedPostTypes.includes(postType.type),
-      )
       .sort((a, b) => {
         return a.name.localeCompare(b.name);
       })

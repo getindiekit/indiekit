@@ -1,0 +1,23 @@
+{% macro videoFieldset(index) %}
+  {{ input({
+    name: "video[" + index + "]",
+    type: "url",
+    value: fieldData("video[" + index + "]").value,
+    label: __("posts.form.media.label"),
+    attributes: {
+      placeholder: "https://"
+    },
+    errorMessage: fieldData("video[" + index + "]").errorMessage
+  }) | indent(2) }}
+{% endmacro %}
+
+{% call addAnother({
+  name: __("posts.form.video.name"),
+  fieldset: { legend: __("posts.form.video.label") }
+}) %}
+  {% for video in fieldData("video").value %}
+    {{ videoFieldset(loop.index0) }}
+  {% else %}
+    {{ videoFieldset(0) }}
+  {% endfor %}
+{% endcall %}

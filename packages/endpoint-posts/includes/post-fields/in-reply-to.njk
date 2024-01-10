@@ -1,0 +1,11 @@
+{{ input({
+  name: "in-reply-to",
+  type: "url",
+  value: fieldData("in-reply-to").value,
+  label: __("posts.form.in-reply-to.label"),
+  optional: not requiredFields | includes("in-reply-to"),
+  attributes: {
+    placeholder: "https://"
+  },
+  errorMessage: fieldData("in-reply-to").errorMessage
+}) }}

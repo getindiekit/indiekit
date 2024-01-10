@@ -1,0 +1,33 @@
+{% call fieldset({
+  classes: "fieldset--group",
+  legend: __("posts.form.event.label")
+}) %}
+  <event-duration>
+    {{ input({
+      name: "start",
+      type: "datetime-local",
+      value: fieldData("start").value,
+      label: __("posts.form.event.start"),
+      optional: not requiredFields | includes("start"),
+      errorMessage: fieldData("start").errorMessage
+    }) | indent(2) }}
+
+    {{ input({
+      name: "end",
+      type: "datetime-local",
+      value: fieldData("end").value,
+      label: __("posts.form.event.end"),
+      optional: not requiredFields | includes("end"),
+      errorMessage: fieldData("end").errorMessage
+    }) | indent(2) }}
+
+    {{ checkboxes({
+      name: "all-day",
+      items: [{
+        label: __("posts.form.event.all-day"),
+        value: "true",
+        checked: allDay
+      }]
+    }) | indent(2) }}
+  </event-duration>
+{% endcall %}

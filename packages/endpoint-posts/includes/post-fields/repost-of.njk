@@ -1,0 +1,11 @@
+{{ input({
+  name: "repost-of",
+  type: "url",
+  value: fieldData("repost-of").value,
+  label: __("posts.form.repost-of.label"),
+  optional: not requiredFields | includes("repost-of"),
+  attributes: {
+    placeholder: "https://"
+  },
+  errorMessage: fieldData("repost-of").errorMessage
+}) }}

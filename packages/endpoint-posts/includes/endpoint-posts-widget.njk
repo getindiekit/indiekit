@@ -7,9 +7,8 @@
     {{ button({
       classes: "button--secondary-on-offset button--inline",
       href: application.postsEndpoint + "/create/?type=" + config.type,
-      icon: config.type,
-      text: config.name
-    }) if application.supportedPostTypes | includes(config.type) }}
+      text: (icon(config.type) or icon("note")) + config.name
+    }) }}
   {% endfor %}</div>
 {% else %}
   {{ prose({
