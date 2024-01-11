@@ -39,6 +39,7 @@ tag-input-field {
   border: 0;
   flex: 1;
   font: var(--font-body);
+  inline-size: 100%;
   padding-block: var(--space-2xs);
   padding-inline: var(--space-xs);
 
