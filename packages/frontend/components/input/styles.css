@@ -40,6 +40,10 @@
     }
   }
 
+  &[type="datetime-local"] {
+    min-block-size: 2.5rem;
+  }
+
   &[type="file"] {
     background: none;
     border: 0;
