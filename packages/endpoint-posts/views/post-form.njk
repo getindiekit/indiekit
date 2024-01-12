@@ -32,7 +32,7 @@
 
 {% macro photoFieldset(index) %}
 {% call fieldset({
-  classes: "fieldset--group"
+  classes: "fieldset--group fieldset--offset"
 }) %}
   {{ input({
     name: "photo[" + index + "][url]",
