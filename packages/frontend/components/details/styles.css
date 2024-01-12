@@ -10,7 +10,7 @@
   font: var(--font-label);
   margin-block: calc(var(--space-xs) * -1);
   margin-inline: calc(var(--space-m) * -1);
-  padding-block: var(--space-xs);
+  padding-block: var(--space-s);
   padding-inline: var(--space-m);
   white-space: nowrap;
 
