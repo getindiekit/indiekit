@@ -111,14 +111,19 @@ checkboxes-field {
 
 /* Conditonal reveals */
 .checkboxes__conditional {
-  --input-border-halved: calc(var(--input-border-width) / 2);
   --label-font: var(--font-fieldset-label);
-  border-inline-start: var(--input-border-width) solid
-    var(--color-outline-variant);
-  margin-inline-start: calc(
-    calc(var(--checkbox-size) / 2) - var(--input-border-halved)
-  );
-  padding-inline-start: calc(var(--space-l) + var(--input-border-halved));
+  padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
+  position: relative;
+
+  &::before {
+    border-inline-start: var(--input-border-width) solid
+      var(--color-outline-variant);
+    content: "";
+    display: block;
+    inset-block: 0;
+    inset-inline-start: calc(var(--checkbox-size) / 2);
+    position: absolute;
+  }
 
   .js-enabled &.checkboxes__conditional--hidden {
     display: none;
