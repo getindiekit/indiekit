@@ -1,0 +1,11 @@
+event-duration {
+  align-items: end;
+  column-gap: var(--space-xl);
+  display: flex;
+  flex-wrap: wrap;
+  margin-block-start: 0 !important;
+
+  & .field {
+    min-inline-size: 20ch;
+  }
+}
