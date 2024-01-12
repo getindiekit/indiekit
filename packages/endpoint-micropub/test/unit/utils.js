@@ -5,6 +5,7 @@ import {
   decodeQueryParameter,
   excerptString,
   getPostTypeConfig,
+  getPostTemplateProperties,
   relativeMediaPath,
   renderPath,
   toArray,
@@ -28,7 +29,19 @@ describe("endpoint-media/lib/utils", () => {
     assert.equal(result, "The quick fox jumped over");
   });
 
-  it("Get post type configuration for a given type", () => {
+  it("Gets post template properties", () => {
+    const result = getPostTemplateProperties({
+      name: "foo",
+      "mp-destination": "https://website.example",
+      "mp-slug": "foo",
+    });
+
+    assert.deepEqual(result, {
+      name: "foo",
+    });
+  });
+
+  it("Gets post type configuration for a given type", () => {
     const { postTypes } = new JekyllPreset();
     const result = getPostTypeConfig("note", postTypes);
 
