@@ -121,7 +121,7 @@ html {
   /* Fluid space scale */
   /* clamp(min=320, preferred, max=960) */
   --space-2xs: 0.25rem; /* 4 */
-  --space-xs: clamp(0.25rem, 0.125rem + 0.625vw, 0.5rem); /* 4 → 8 */
+  --space-xs: 0.5rem; /* 8 */
   --space-s: clamp(0.5rem, 0.375rem + 0.625vw, 0.75rem); /* 8 → 12 */
   --space-m: clamp(0.75rem, 0.625rem + 0.625vw, 1rem); /* 12 → 16 */
   --space-l: clamp(1rem, 0.75rem + 1.25vw, 1.5rem); /* 16 → 24 */
