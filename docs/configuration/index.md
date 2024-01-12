@@ -94,12 +94,12 @@ _Optional_, defaults to `"[application.url]/micropub"`. For example:
 
 A [MongoDB connection string](https://www.mongodb.com/docs/manual/reference/connection-string/). Used by features that require a database.
 
-_Optional_, defaults to `process.env.MONGO_URL`. For example:
+_Optional_, defaults to `process.env.MONGO_URL`. Make sure to include a database name in the path. For example:
 
 ```json
 {
   "application": {
-    "mongodbUrl": "mongodb://mongodb0.example.com:27017"
+    "mongodbUrl": "mongodb://mongodb0.example.com:27017/indiekit"
   }
 }
 ```
