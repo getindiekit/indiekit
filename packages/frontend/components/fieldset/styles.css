@@ -13,7 +13,7 @@
 
 .fieldset--group {
   --fieldset-flow-space: var(--space-m);
-  --label-font: var(--font-body);
+  --label-font: var(--font-fieldset-label);
   background-color: var(--color-offset);
   border-radius: var(--border-radius-small);
   color: var(--color-on-offset);

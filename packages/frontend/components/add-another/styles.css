@@ -8,8 +8,9 @@ add-another {
 }
 
 .add-another__list-item {
-  --label-font: var(--font-body);
+  --label-font: var(--font-fieldset-label);
   margin-block-end: var(--space-m);
+  padding-block: var(--space-xs);
   padding-inline-start: calc(var(--counter-size) + var(--space-s));
   position: relative;
 

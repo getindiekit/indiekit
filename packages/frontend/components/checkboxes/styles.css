@@ -8,6 +8,8 @@ checkboxes-field {
 .checkboxes__item {
   display: flex;
   flex-wrap: wrap;
+  margin-block: var(--space-xs);
+  padding-block: var(--space-xs);
   padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
   position: relative;
 }
@@ -27,7 +29,7 @@ checkboxes-field {
 }
 
 .checkboxes__label.label {
-  --label-font: var(--font-body);
+  --label-font: var(--font-fieldset-label);
   cursor: pointer;
   margin-block-start: 0;
   touch-action: manipulation; /* remove 300ms pause on mobile */
@@ -110,7 +112,7 @@ checkboxes-field {
 /* Conditonal reveals */
 .checkboxes__conditional {
   --input-border-halved: calc(var(--input-border-width) / 2);
-  --label-font: var(--font-body);
+  --label-font: var(--font-fieldset-label);
   border-inline-start: var(--input-border-width) solid
     var(--color-outline-variant);
   margin-inline-start: calc(
