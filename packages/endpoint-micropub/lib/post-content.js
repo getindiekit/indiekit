@@ -1,3 +1,5 @@
+import { getPostTemplateProperties } from "./utils.js";
+
 export const postContent = {
   /**
    * Create post
@@ -14,12 +16,7 @@ export const postContent = {
       fileType: "post",
       postType: properties["post-type"],
     };
-
-    // Remove server commands from post template properties
-    const templateProperties = Object.keys(properties).filter(
-      (key) => !key.startsWith("mp-"),
-    );
-
+    const templateProperties = getPostTemplateProperties(properties);
     const content = await postTemplate(templateProperties);
     const message = storeMessageTemplate(metaData);
 
@@ -51,7 +48,8 @@ export const postContent = {
       fileType: "post",
       postType: properties["post-type"],
     };
-    const content = await postTemplate(properties);
+    const templateProperties = getPostTemplateProperties(properties);
+    const content = await postTemplate(templateProperties);
     const message = storeMessageTemplate(metaData);
     const hasUpdatedUrl = url !== properties.url;
 
@@ -119,7 +117,8 @@ export const postContent = {
       fileType: "post",
       postType: properties["post-type"],
     };
-    const content = await postTemplate(properties);
+    const templateProperties = getPostTemplateProperties(properties);
+    const content = await postTemplate(templateProperties);
     const message = storeMessageTemplate(metaData);
 
     await store.createFile(path, content, { message });

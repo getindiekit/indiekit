@@ -38,6 +38,24 @@ export const getPostTypeConfig = (type, postTypes) =>
   postTypes.find((item) => item.type === type);
 
 /**
+ * Get post template properties
+ * @param {object} properties - JF2 properties
+ * @returns {object} Template properties
+ */
+export const getPostTemplateProperties = (properties) => {
+  const templateProperties = structuredClone(properties);
+
+  // Remove server commands from post template properties
+  for (let key in templateProperties) {
+    if (key.startsWith("mp-")) {
+      delete templateProperties[key];
+    }
+  }
+
+  return templateProperties;
+};
+
+/**
  * Render relative path if URL is on publication
  * @param {string} url - External URL
  * @param {string} me - Publication URL
