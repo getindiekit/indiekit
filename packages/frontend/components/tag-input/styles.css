@@ -84,8 +84,8 @@ tag-input-field {
   display: inline-flex;
   inline-size: 1em;
   justify-content: center;
-  margin-left: var(--space-2xs);
-  margin-right: calc(var(--space-2xs) * -1);
+  margin-inline-end: calc(var(--space-2xs) * -1);
+  margin-inline-start: var(--space-2xs);
   outline: none;
   padding: var(--space-2xs);
 }

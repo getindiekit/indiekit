@@ -99,7 +99,7 @@ checkboxes-field {
 }
 
 .checkboxes__hint {
-  width: 100%;
+  inline-size: 100%;
 }
 
 /* Divider (‘or’) */

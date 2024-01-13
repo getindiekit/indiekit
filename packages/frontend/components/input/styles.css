@@ -27,7 +27,7 @@
   }
 
   &[type="color"] {
-    max-width: 6ch;
+    max-inline-size: 6ch;
     min-block-size: 3rem;
     padding: var(--border-width-thickest);
 
@@ -64,19 +64,19 @@
 }
 
 .input--width-25 {
-  max-width: 44ch;
+  max-inline-size: 44ch;
 }
 
 .input--width-10 {
-  max-width: 19ch;
+  max-inline-size: 19ch;
 }
 
 .input--width-5 {
-  max-width: 11ch;
+  max-inline-size: 11ch;
 }
 
 .input--width-2 {
-  max-width: 6ch;
+  max-inline-size: 6ch;
 }
 
 /* Show an input and button combined */

@@ -25,5 +25,5 @@
   color: var(--color-on-offset);
   display: block;
   font: var(--font-body);
-  max-width: max-content;
+  max-inline-size: max-content;
 }
