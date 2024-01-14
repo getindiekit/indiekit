@@ -143,11 +143,6 @@ title: What I had for lunch
     "longitude": "-122.420160",
     "name": "37° 46′ 48.29″ N 122° 25′ 12.576″ W"
   },
-  "checkin": {
-    "type": "card",
-    "latitude": "50",
-    "longitude": "0"
-  },
   "bookmarkOf": "https://website.example",
   "likeOf": "https://website.example",
   "repostOf": "https://website.example",
@@ -199,11 +194,6 @@ type = "geo"
 latitude = "37.780080"
 longitude = "-122.420160"
 name = "37° 46′ 48.29″ N 122° 25′ 12.576″ W"
-
-[checkin]
-type = "card"
-latitude = "50"
-longitude = "0"
 +++
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
@@ -242,10 +232,6 @@ location:
   latitude: "37.780080"
   longitude: "-122.420160"
   name: 37° 46′ 48.29″ N 122° 25′ 12.576″ W
-checkin:
-  type: card
-  latitude: "50"
-  longitude: "0"
 bookmarkOf: https://website.example
 likeOf: https://website.example
 repostOf: https://website.example

@@ -54,15 +54,6 @@ describe("endpoint-micropub/lib/mf2", () => {
             },
           },
         ],
-        checkin: [
-          {
-            type: ["h-card"],
-            properties: {
-              latitude: ["50"],
-              longitude: ["0"],
-            },
-          },
-        ],
         "bookmark-of": ["https://website.example"],
         "like-of": ["https://website.example"],
         "repost-of": ["https://website.example"],

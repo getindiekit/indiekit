@@ -118,10 +118,6 @@ location:
   latitude: "37.780080"
   longitude: "-122.420160"
   name: 37° 46′ 48.29″ N 122° 25′ 12.576″ W
-checkin:
-  type: card
-  latitude: "50"
-  longitude: "0"
 bookmark-of: https://website.example
 like-of: https://website.example
 repost-of: https://website.example
