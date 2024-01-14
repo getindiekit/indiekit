@@ -14,5 +14,11 @@ export const getPostTypes = ({ postTypes, preset }) => {
     );
   }
 
-  return postTypes;
+  // Add post type name if not provided
+  for (const key of Object.keys(postTypes)) {
+    const { name, type } = postTypes[key];
+    postTypes[key].name = name || _.upperFirst(type);
+  }
+
+  return _.values(postTypes);
 };
