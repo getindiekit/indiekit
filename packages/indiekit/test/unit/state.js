@@ -1,10 +1,10 @@
 import { strict as assert } from "node:assert";
-import crypto from "node:crypto";
+import { randomBytes } from "node:crypto";
 import { describe, it } from "node:test";
 import { generateState, validateState } from "../../lib/state.js";
 
 const clientId = "https://server.example";
-const iv = crypto.randomBytes(16);
+const iv = randomBytes(16);
 
 describe("indiekit/lib/state", () => {
   it("Validates state", () => {

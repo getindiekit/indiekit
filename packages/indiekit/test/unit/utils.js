@@ -1,11 +1,11 @@
 import { strict as assert } from "node:assert";
-import crypto from "node:crypto";
+import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { describe, it } from "node:test";
 import { pathToFileURL } from "node:url";
 import { decrypt, encrypt, getPackageData } from "../../lib/utils.js";
 
-const iv = crypto.randomBytes(16);
+const iv = randomBytes(16);
 
 describe("indiekit/lib/utils", () => {
   it("Encrypts and decrypts a string", () => {

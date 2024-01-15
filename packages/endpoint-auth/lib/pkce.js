@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+import { createHash } from "node:crypto";
 
 /**
  * Verify PKCE (Proof Key for Code Exchange) code
@@ -8,8 +8,7 @@ import crypto from "node:crypto";
  * @returns {boolean} - Code challenge result
  */
 export const verifyCode = (verifier, challenge, challengeMethod = "sha256") => {
-  const base64Digest = crypto
-    .createHash(challengeMethod)
+  const base64Digest = createHash(challengeMethod)
     .update(verifier)
     .digest("base64url");
 

@@ -1,4 +1,4 @@
-import crypto from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, randomString } from "@indiekit/util";
@@ -13,7 +13,7 @@ export const IndieAuth = class {
   constructor(options = {}) {
     this.codeVerifier = randomString(100);
     this.devMode = options.devMode;
-    this.iv = crypto.randomBytes(16);
+    this.iv = randomBytes(16);
     this.me = getCanonicalUrl(options.me);
   }
 
@@ -25,8 +25,7 @@ export const IndieAuth = class {
    */
   async getAuthUrl(authorizationEndpoint, state) {
     // PKCE code challenge
-    const base64Digest = crypto
-      .createHash("sha256")
+    const base64Digest = createHash("sha256")
       .update(this.codeVerifier)
       .digest("base64url");
     const codeChallenge = base64Digest.toString();

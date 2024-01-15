@@ -1,5 +1,5 @@
 import { strict as assert } from "node:assert";
-import crypto from "node:crypto";
+import { createHash } from "node:crypto";
 import { after, before, describe, it } from "node:test";
 import supertest from "supertest";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -9,10 +9,7 @@ import { signToken } from "../../lib/token.js";
 await mockAgent("endpoint-auth");
 const server = await testServer();
 const request = supertest.agent(server);
-const base64Digest = crypto
-  .createHash("sha256")
-  .update("foobar")
-  .digest("base64url");
+const base64Digest = createHash("sha256").update("foobar").digest("base64url");
 const codeChallenge = base64Digest.toString();
 
 describe("endpoint-auth POST /auth/token", () => {
