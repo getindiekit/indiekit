@@ -1,4 +1,3 @@
-import crypto from "node:crypto";
 import { createRequire } from "node:module";
 import process from "node:process";
 import cookieSession from "cookie-session";
@@ -60,5 +59,5 @@ export const defaultConfig = {
 
 defaultConfig.application.sessionMiddleware = cookieSession({
   name: defaultConfig.application.name,
-  secret: crypto.randomBytes(16).toString(),
+  secret: crypto.randomUUID(),
 });
