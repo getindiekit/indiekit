@@ -14,7 +14,7 @@ describe("endpoint-auth/lib/pushed-authorization-request", () => {
     });
     const result = createRequestUri(request);
 
-    assert.match(result, /^urn:ietf:params:oauth:request_uri:[\w-]{16}$/);
+    assert.match(result, /^urn:ietf:params:oauth:request_uri:[\w-]{36}$/);
   });
 
   it("Gets data from PAR URI", () => {

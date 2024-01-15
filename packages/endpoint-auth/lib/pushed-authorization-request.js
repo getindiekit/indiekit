@@ -1,5 +1,3 @@
-import { randomString } from "@indiekit/util";
-
 /**
  * Mimic a Pushed Authorization Request (PAR)
  *
@@ -15,7 +13,7 @@ import { randomString } from "@indiekit/util";
  * @returns {string} OAuth request URI
  */
 export const createRequestUri = (request) => {
-  const reference = randomString();
+  const reference = crypto.randomUUID();
   request.app.locals[reference] = request.query;
 
   return "urn:ietf:params:oauth:request_uri:" + reference;
