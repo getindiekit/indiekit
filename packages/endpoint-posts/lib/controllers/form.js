@@ -101,6 +101,13 @@ export const formController = {
         values.location = getLocationProperty(values);
       }
 
+      // Delete non-MF2 properties
+      // @todo Use `properties` for field names whose values should be submitted
+      delete values["all-day"];
+      delete values.geo;
+      delete values["post-type"];
+      delete values["publication-date"];
+
       const mf2 = jf2ToMf2({ properties: sanitise(values) });
 
       let jsonBody = mf2;
