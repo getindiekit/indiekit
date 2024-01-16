@@ -1,7 +1,11 @@
 import path from "node:path";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
-import { getTimeZoneDesignator, getTimeZoneOffset } from "@indiekit/util";
+import {
+  getTimeZoneDesignator,
+  getTimeZoneOffset,
+  sanitise,
+} from "@indiekit/util";
 import { validationResult } from "express-validator";
 import { endpoint } from "../endpoint.js";
 import { getLocationProperty } from "../utils.js";
@@ -97,14 +101,7 @@ export const formController = {
         values.location = getLocationProperty(values);
       }
 
-      // Delete empty values
-      for (const key in values) {
-        if (Object.prototype.hasOwnProperty.call(values, key) && !values[key]) {
-          delete values[key];
-        }
-      }
-
-      const mf2 = jf2ToMf2({ properties: values });
+      const mf2 = jf2ToMf2({ properties: sanitise(values) });
 
       let jsonBody = mf2;
       if (action === "update") {

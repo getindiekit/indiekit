@@ -1,4 +1,5 @@
 import { Buffer } from "node:buffer";
+import { sanitise } from "@indiekit/util";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
 import { endpoint } from "./endpoint.js";
@@ -56,15 +57,7 @@ export const getLocationProperty = (values) => {
     return getGeoProperty(geo);
   }
 
-  // Delete empty values
-  for (const key in location) {
-    const noValue = !location[key] || location[key] === "";
-    if (Object.prototype.hasOwnProperty.call(location, key) && noValue) {
-      delete location[key];
-    }
-  }
-
-  return location;
+  return sanitise(location);
 };
 
 /**
