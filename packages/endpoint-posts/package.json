@@ -37,7 +37,7 @@
   "dependencies": {
     "@indiekit/endpoint-micropub": "^1.0.0-beta.6",
     "@indiekit/error": "^1.0.0-beta.6",
-    "@paulrobertlloyd/mf2tojf2": "^2.0.0",
+    "@paulrobertlloyd/mf2tojf2": "^2.1.0",
     "express": "^4.17.1",
     "express-validator": "^7.0.0",
     "formatcoords": "^1.1.3"
