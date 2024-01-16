@@ -28,11 +28,15 @@ export const getGeoProperty = (geo) => {
 
 /**
  * Get comma separated geographic coordinates
- * @param {object} geo - JF2 geo location property
+ * @param {object} location - JF2 location property
  * @returns {string} Latitude and longitude, comma separated
  */
-export const getGeoValue = (geo) => {
-  return [geo.latitude, geo.longitude].toString();
+export const getGeoValue = (location) => {
+  if (location && location.geo) {
+    return [location.geo.latitude, location.geo.longitude].toString();
+  } else if (location && location.type === "geo") {
+    return [location.latitude, location.longitude].toString();
+  }
 };
 
 /**

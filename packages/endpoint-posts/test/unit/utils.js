@@ -44,16 +44,34 @@ describe("endpoint-posts/lib/utils", () => {
     });
   });
 
-  it("Gets comma separated geographic coordinates", () => {
-    assert.equal(
-      getGeoValue({
-        type: "geo",
-        name: "50° 49′ 30.72″ N 0° 8′ 17.88″ W",
-        latitude: 50.8252,
-        longitude: -0.1383,
-      }),
-      "50.8252,-0.1383",
-    );
+  it("Gets comma separated geographic coordinates", async (t) => {
+    await t.test("from address", () => {
+      assert.equal(
+        getGeoValue({
+          "street-address": "Jubilee Street",
+          locality: "Brighton",
+          geo: {
+            type: "geo",
+            name: "50° 49′ 30.72″ N 0° 8′ 17.88″ W",
+            latitude: 50.8252,
+            longitude: -0.1383,
+          },
+        }),
+        "50.8252,-0.1383",
+      );
+    });
+
+    await t.test("from geographic coordinates", () => {
+      assert.equal(
+        getGeoValue({
+          type: "geo",
+          name: "50° 49′ 30.72″ N 0° 8′ 17.88″ W",
+          latitude: 50.8252,
+          longitude: -0.1383,
+        }),
+        "50.8252,-0.1383",
+      );
+    });
   });
 
   it("Gets location property", async (t) => {

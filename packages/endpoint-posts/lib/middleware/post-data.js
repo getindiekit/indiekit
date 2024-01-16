@@ -23,7 +23,7 @@ export const postData = {
 
     // Only show advanced options if one of those fields has been updated
     const showAdvancedOptions =
-      properties.category || properties.geo || properties.visibility;
+      properties.category || properties.location || properties.visibility;
 
     response.locals = {
       accessToken: access_token,
@@ -57,16 +57,14 @@ export const postData = {
         throw IndiekitError.notFound(response.locals.__("NotFoundError.page"));
       }
 
-      if (properties.location.geo) {
-        properties.geo = getGeoValue(properties.geo);
-      }
-
+      const geo = properties?.location && getGeoValue(properties.location);
       const postType = properties["post-type"];
 
       response.locals = {
         accessToken: access_token,
         action: action || "create",
         draftMode: scope?.includes("draft"),
+        geo,
         postName: getPostName(publication, properties),
         postsPath: path.dirname(request.baseUrl + request.path),
         postStatus: properties["post-status"],
