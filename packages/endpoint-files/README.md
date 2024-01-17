@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-files` to your list of plug-ins, specifying options as r
 {
   "plugins": ["@indiekit/endpoint-files"],
   "@indiekit/endpoint-files": {
-    "mountPath": "/dossiers" // fr-FR
-  }
+    "mountPath": "/dossiers", // fr-FR
+  },
 }
 ```
 

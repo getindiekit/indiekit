@@ -15,8 +15,8 @@ Add `@indiekit/endpoint-json-feed` to your list of plug-ins, specifying options 
   "plugins": ["@indiekit/endpoint-json-feed"],
   "@indiekit/endpoint-share": {
     "fileName": "posts.json",
-    "mountPath": "/feeds"
-  }
+    "mountPath": "/feeds",
+  },
 }
 ```
 

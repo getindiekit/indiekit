@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-auth` to your list of plug-ins, specifying options as re
 {
   "plugins": ["@indiekit/endpoint-auth"],
   "@indiekit/endpoint-auth": {
-    "mountPath": "/authorize"
-  }
+    "mountPath": "/authorize",
+  },
 }
 ```
 

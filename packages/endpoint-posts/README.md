@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-posts` to your list of plug-ins, specifying options as r
 {
   "plugins": ["@indiekit/endpoint-posts"],
   "@indiekit/endpoint-posts": {
-    "mountPath": "/artikel" // de-DE
-  }
+    "mountPath": "/artikel", // de-DE
+  },
 }
 ```
 

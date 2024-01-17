@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-share` to your list of plug-ins, specifying options as r
 {
   "plugins": ["@indiekit/endpoint-share"],
   "@indiekit/endpoint-share": {
-    "mountPath": "/teilen" // de-DE
-  }
+    "mountPath": "/teilen", // de-DE
+  },
 }
 ```
 

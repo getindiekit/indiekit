@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-media` to your list of plug-ins, specifying options as r
 {
   "plugins": ["@indiekit/endpoint-media"],
   "@indiekit/endpoint-media": {
-    "mountPath": "/medien" // de-DE
-  }
+    "mountPath": "/medien", // de-DE
+  },
 }
 ```
 

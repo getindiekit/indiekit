@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-image` to your list of plug-ins, specifying options as r
 {
   "plugins": ["@indiekit/endpoint-image"],
   "@indiekit/endpoint-image": {
-    "mountPath": "/bild" // de-DE
-  }
+    "mountPath": "/bild", // de-DE
+  },
 }
 ```
 

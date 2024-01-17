@@ -14,8 +14,8 @@ Add `@indiekit/endpoint-syndicate` to your list of plug-ins, specifying options 
 {
   "plugins": ["@indiekit/endpoint-syndicate"],
   "@indiekit/endpoint-syndicate": {
-    "mountPath": "/syndikat" // de-DE
-  }
+    "mountPath": "/syndikat", // de-DE
+  },
 }
 ```
 
