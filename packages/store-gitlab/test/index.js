@@ -6,11 +6,7 @@ import GitlabStore from "../index.js";
 
 await mockAgent("store-gitlab");
 
-/**
- * @todo Remove skip once Gitbeaker process not prevented from exiting
- * @see {@link https://github.com/jdalrymple/gitbeaker/issues/3493}
- */
-describe.skip("store-gitlab", async () => {
+describe("store-gitlab", async () => {
   const gitlab = new GitlabStore({
     token: "token",
     user: "username",
