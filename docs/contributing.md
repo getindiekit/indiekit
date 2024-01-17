@@ -70,7 +70,7 @@ This project uses a monorepo structure, with concerns split into separate Node m
 
 | Module{width=200px} | Purpose |
 | :----- | :------ |
-| `indiekit` | Core module. Provides coordinating functions and the Express web server. |
+| `indiekit` | Coordinating functions and the Express web server. |
 | `frontend` | Frontend component library, used for the application interface. |
 | `error` | Error handling for the core module and plug-ins. |
 | `create-indiekit` | Project initialiser, used when running `npm create indiekit`. |
@@ -142,18 +142,16 @@ npm run dev --production
 
 ### Tests
 
-[AVA](https://github.com/avajs/ava) is used to run and manage tests. The project uses both unit and integration tests.
-
-Run tests using the following command:
+The project uses both unit and integration tests. Run tests using the following command:
 
 ```sh
 npm test
 ```
 
-Call AVA directly using the `npx` command to run tests for an individual file. For example:
+To run an individual test, use `node` followed by the path to the test. For example:
 
 ```sh
-npx ava packages/indiekit/tests/index.js
+node packages/indiekit/test/index.js
 ```
 
 ### Test coverage
@@ -161,13 +159,21 @@ npx ava packages/indiekit/tests/index.js
 The project aims to achieve close to 100% test coverage. You can check code coverage by running the following command:
 
 ```sh
-npm run coverage
+npm run test:coverage
 ```
 
 ### Linting
 
-Consistent and high-quality code is maintained using [Prettier](https://prettier.io). You can check that any changes use the preferred code style by running the following command:
+Consistent and high-quality code is maintained using [Prettier](https://prettier.io) with [ESLint](https://eslint.org) used to check JavaScript files and [Stylelint](https://stylelint.io) used to check CSS stylesheets.
+
+You can check that any changes use the preferred code style by running the following command:
 
 ```sh
 npm run lint
+```
+
+You automatically fix any issues by running the following command:
+
+```sh
+npm run lint:fix
 ```
