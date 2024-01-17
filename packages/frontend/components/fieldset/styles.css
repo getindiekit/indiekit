@@ -14,7 +14,7 @@
 .fieldset--group {
   --label-font: var(--font-fieldset-label);
 
-  & .field {
+  & * + .field {
     margin-block-start: var(--space-m);
   }
 }
