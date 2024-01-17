@@ -3,8 +3,8 @@
     "checkJs": true,
     "module": "nodenext",
     "resolveJsonModule": true,
-    "target": "es2022"
+    "target": "es2022",
   },
   "exclude": ["node_modules"],
-  "typeRoots": ["types", "./node_modules/@types"]
+  "typeRoots": ["types", "./node_modules/@types"],
 }
