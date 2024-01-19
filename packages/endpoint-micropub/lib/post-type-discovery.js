@@ -20,6 +20,7 @@ export const getPostType = (properties) => {
   basePostTypes.set("quotation-of", "quotation");
   basePostTypes.set("like-of", "like");
   basePostTypes.set("checkin", "checkin");
+  basePostTypes.set("jam-of", "jam");
   basePostTypes.set("listen-of", "listen");
   basePostTypes.set("read-of", "read");
   basePostTypes.set("watch-of", "watch");

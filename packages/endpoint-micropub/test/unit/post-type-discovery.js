@@ -247,4 +247,15 @@ describe("endpoint-media/lib/post-type-discovery", () => {
 
     assert.equal(result, "event");
   });
+
+  it("Discovers jam post type", () => {
+    const result = getPostType({
+      type: "entry",
+      name: "Jam title",
+      "jam-of":
+        "https://music.apple.com/gb/album/love-story-taylors-version/1552791073?i=1552791427",
+    });
+
+    assert.equal(result, "jam");
+  });
 });
