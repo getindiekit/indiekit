@@ -5,7 +5,7 @@ radios-field {
   display: block;
 }
 
-@media (--from-medium-viewport) {
+@media (width >= 30rem) {
   .radios--inline {
     display: flex;
     gap: var(--space-xl);

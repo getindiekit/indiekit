@@ -99,7 +99,7 @@
   gap: var(--space-m);
   text-align: center;
 
-  @media (--upto-small-viewport) {
+  @media (width < 30rem) {
     & > * {
       inline-size: 100%;
     }
