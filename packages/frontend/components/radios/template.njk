@@ -30,6 +30,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
+<div class="radios">
 {% for item in opts.items %}{% if item %}
   {% set id = itemId(item.id, idPrefix, loop) %}
   {% set conditionalId = "conditional-" + id %}
@@ -63,6 +64,7 @@
   {% endif %}
   {% endif %}
 {% endif %}{% endfor %}
+</div>
 {% endset %}
 {% if opts.items %}
 {% call field({

@@ -8,18 +8,15 @@ radios-field {
 @media (width >= 30rem) {
   .radios--inline {
     display: flex;
-    gap: var(--space-xl);
-
-    & .radios__item {
-      margin-block-start: 0;
-    }
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space-xl);
   }
 }
 
 .radios__item {
   display: flex;
   flex-wrap: wrap;
-  margin-block: var(--space-xs);
+  margin-block: var(--space-2xs);
   padding-block: var(--space-xs);
   padding-inline-start: calc(var(--radio-size) + var(--space-s));
   position: relative;

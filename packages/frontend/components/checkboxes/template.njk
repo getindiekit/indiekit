@@ -35,6 +35,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
+<div class="checkboxes">
 {% for item in opts.items %}{% if item %}
   {% set id = itemId(item.id, idPrefix, loop) %}
   {% set name = item.name if item.name else opts.name %}
@@ -72,6 +73,7 @@
   {% endif %}
   {% endif %}
 {% endif %}{% endfor %}
+</div>
 {% endset %}
 {% if opts.items %}
 {% call field({

@@ -8,7 +8,7 @@ checkboxes-field {
 .checkboxes__item {
   display: flex;
   flex-wrap: wrap;
-  margin-block: var(--space-xs);
+  margin-block: var(--space-2xs);
   padding-block: var(--space-xs);
   padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
   position: relative;
