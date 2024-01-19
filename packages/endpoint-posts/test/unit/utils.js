@@ -173,6 +173,20 @@ describe("endpoint-posts/lib/utils", () => {
     });
   });
 
+  it("Returns empty object if location property is empty", () => {
+    assert.deepEqual(
+      getLocationProperty({
+        location: {
+          "street-address": "",
+          locality: "",
+          "postal-code": "",
+        },
+        geo: "",
+      }),
+      {},
+    );
+  });
+
   it("Gets post name", () => {
     const post = { name: "My favourite sandwich" };
 

@@ -45,19 +45,22 @@ export const getGeoValue = (location) => {
  * @returns {object} JF2 location property
  */
 export const getLocationProperty = (values) => {
-  const { location, geo } = values;
+  const { geo, location } = values;
+
+  const hasGeo = geo && geo.length > 0;
+  const hasLocation = location && Object.entries(sanitise(location)).length > 0;
 
   // Determine Microformat type
-  if (location && location.name) {
+  if (hasLocation && location.name) {
     location.type = "card";
-  } else if (location) {
+  } else if (hasLocation && !hasGeo) {
     location.type = "adr";
   }
 
   // Add (or use) any provided geo location properties
-  if (location && geo) {
+  if (hasLocation && hasGeo) {
     location.geo = getGeoProperty(geo);
-  } else if (geo) {
+  } else if (hasGeo) {
     return getGeoProperty(geo);
   }
 
