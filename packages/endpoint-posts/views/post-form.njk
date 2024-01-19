@@ -224,10 +224,10 @@
 
     {{ checkboxes({
       name: "all-day",
-      values: fieldData("all-day").value,
       items: [{
         label: __("posts.form.event.all-day"),
-        value: true
+        value: "true",
+        checked: allDay
       }]
     }) | indent(2) }}
   </event-duration>

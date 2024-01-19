@@ -57,12 +57,14 @@ export const postData = {
         throw IndiekitError.notFound(response.locals.__("NotFoundError.page"));
       }
 
+      const allDay = properties?.start && !properties.start.includes("T");
       const geo = properties?.location && getGeoValue(properties.location);
       const postType = properties["post-type"];
 
       response.locals = {
         accessToken: access_token,
         action: action || "create",
+        allDay,
         draftMode: scope?.includes("draft"),
         geo,
         postName: getPostName(publication, properties),
