@@ -14,12 +14,15 @@ describe("indiekit/lib/post-types", () => {
     const { publication } = await indiekit.bootstrap();
     const result = getPostTypes(publication);
 
-    assert.deepEqual(result[1], {
+    assert.deepEqual(result[0], {
       name: "Custom note post type",
       type: "note",
       post: {
         path: "src/content/notes/{slug}.md",
         url: "notes/{slug}/",
+      },
+      media: {
+        path: "media/notes/{yyyy}/{MM}/{dd}/{filename}",
       },
     });
   });
