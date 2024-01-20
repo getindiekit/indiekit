@@ -53,7 +53,7 @@ deleted: 2022-12-12
       name: "Lunchtime",
       content:
         "I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.",
-      "post-status": "draft",
+      post_status: "draft",
     });
 
     assert.equal(
@@ -118,10 +118,10 @@ location:
   latitude: "37.780080"
   longitude: "-122.420160"
   name: 37° 46′ 48.29″ N 122° 25′ 12.576″ W
-bookmark-of: https://website.example
-like-of: https://website.example
-repost-of: https://website.example
-in-reply-to: https://website.example
+bookmark_of: https://website.example
+like_of: https://website.example
+repost_of: https://website.example
+in_reply_to: https://website.example
 visibility: private
 syndication: https://website.example/post/12345
 ---

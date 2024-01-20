@@ -1,3 +1,4 @@
+import snakecaseKeys from "snakecase-keys";
 import YAML from "yaml";
 
 export default class JekyllPreset {
@@ -35,9 +36,15 @@ export default class JekyllPreset {
    * Get front matter
    * @access private
    * @param {object} properties - JF2 properties
-   * @returns {string} Front matter in chosen format
+   * @returns {string} Front matter
    */
   #frontMatter(properties) {
+    /*
+     * Jekyll uses snake_case for YAML property keys, i.e. `excerpt_separator`
+     * @see {link: https://jekyllrb.com/docs/posts/#post-excerpts}
+     */
+    properties = snakecaseKeys(properties, { deep: true });
+
     /*
      * Replace Microformat properties with Jekyll equivalents
      * @see {@link https://jekyllrb.com/docs/front-matter/#predefined-variables-for-posts}
@@ -53,7 +60,7 @@ export default class JekyllPreset {
      * Draft posts
      * @see {@link https://jekyllrb.com/docs/front-matter/#predefined-global-variables}
      */
-    if (properties["post-status"] === "draft") {
+    if (properties.post_status === "draft") {
       properties.published = false;
     } else {
       delete properties.published;
@@ -61,7 +68,7 @@ export default class JekyllPreset {
 
     delete properties.content; // Shown below front matter
     delete properties.name; // Use `title`
-    delete properties["post-status"]; // Use `published`
+    delete properties.post_status; // Use `published`
     delete properties.summary; // Use `excerpt`
     delete properties.type; // Not required
     delete properties.url; // Not required
