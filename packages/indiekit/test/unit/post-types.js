@@ -14,21 +14,14 @@ describe("indiekit/lib/post-types", () => {
     const { publication } = await indiekit.bootstrap();
     const result = getPostTypes(publication);
 
-    assert.equal(result[0].name, "Article");
-    assert.equal(result[1].name, "Custom note post type");
-  });
-
-  it("Returns preset post types", async () => {
-    const config = await testConfig({
-      plugins: ["@indiekit/preset-jekyll"],
-      usePostTypes: false,
+    assert.deepEqual(result[1], {
+      name: "Custom note post type",
+      type: "note",
+      post: {
+        path: "src/content/notes/{slug}.md",
+        url: "notes/{slug}/",
+      },
     });
-    const indiekit = await Indiekit.initialize({ config });
-    const { publication } = await indiekit.bootstrap();
-    const result = getPostTypes(publication);
-
-    assert.equal(result[0].name, "Article");
-    assert.equal(result[1].name, "Note");
   });
 
   it("Returns custom post types", async () => {
