@@ -14,8 +14,20 @@
 .fieldset--group {
   --label-font: var(--font-fieldset-label);
 
-  & * + .field {
+  & .field {
     margin-block-start: var(--space-m);
+  }
+}
+
+.fieldset--inline {
+  box-shadow: inset var(--border-width-thickest) 0 var(--color-offset-variant);
+  padding-inline-start: var(--space-m);
+
+  & .fieldset__legend {
+    background-color: var(--color-background);
+    margin-block-end: calc(var(--space-s) * -1);
+    margin-inline-start: calc(var(--space-m) * -1);
+    padding-block-end: var(--space-s);
   }
 }
 
