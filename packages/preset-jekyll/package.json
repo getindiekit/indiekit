@@ -25,6 +25,7 @@
   "main": "index.js",
   "files": [
     "assets",
+    "lib",
     "index.js"
   ],
   "bugs": {
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "snakecase-keys": "^6.0.0",
+    "plur": "^5.1.0",
     "yaml": "^2.0.0"
   },
   "publishConfig": {
