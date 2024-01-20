@@ -1,24 +1,21 @@
 import { strict as assert } from "node:assert";
 import { after, before, beforeEach, describe, it, mock } from "node:test";
+import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
-import JekyllPreset from "@indiekit/preset-jekyll";
 import { mediaData } from "../../lib/media-data.js";
 
-const { client, database, mongoServer } = await testDatabase();
-const media = database.collection("media");
-const application = { media, useDatabase: true };
-const publication = {
-  me: "https://website.example",
-  postTypes: new JekyllPreset().postTypes,
-};
-const file = {
-  data: getFixture("file-types/photo.jpg", false),
-  name: "photo.jpg",
-};
-const url = "https://website.example/photo.jpg";
+describe("endpoint-media/lib/media-data", async () => {
+  let application;
+  let publication;
+  const { client, database, mongoServer } = await testDatabase();
+  const media = database.collection("media");
+  const file = {
+    data: getFixture("file-types/photo.jpg", false),
+    name: "photo.jpg",
+  };
+  const url = "https://website.example/photo.jpg";
 
-describe("endpoint-media/lib/media-data", () => {
   before(() => {
     mock.method(console, "info", () => {});
     mock.method(console, "warn", () => {});
@@ -32,6 +29,11 @@ describe("endpoint-media/lib/media-data", () => {
         url,
       },
     });
+
+    const config = await testConfig({ usePostTypes: true });
+
+    application = { media, useDatabase: true };
+    publication = config.publication;
   });
 
   after(() => {

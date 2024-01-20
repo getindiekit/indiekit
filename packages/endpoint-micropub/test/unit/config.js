@@ -1,9 +1,10 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import JekyllPreset from "@indiekit/preset-jekyll";
+import { testConfig } from "@indiekit-test/config";
 import MastodonSyndicator from "@indiekit/syndicator-mastodon";
 import { getConfig, queryConfig } from "../../lib/config.js";
 
+const config = await testConfig({ usePostTypes: true });
 const list = ["blog", "indieweb", "microblog", "web", "website"];
 
 describe("endpoint-micropub/lib/config", () => {
@@ -18,7 +19,7 @@ describe("endpoint-micropub/lib/config", () => {
     });
     const publication = {
       categories: ["foo", "bar"],
-      postTypes: new JekyllPreset().postTypes,
+      postTypes: config.publication.postTypes,
       syndicationTargets: [mastodon],
     };
     const result = getConfig(application, publication);

@@ -30,6 +30,18 @@ export const testConfig = async (options) => {
         url: "notes/{slug}/",
       },
     },
+    {
+      type: "photo",
+      name: "Custom photo post type",
+      post: {
+        path: "src/content/photos/{slug}.md",
+        url: "photos/{slug}/",
+      },
+      media: {
+        path: "src/media/photos/{filename}",
+        url: "media/photos/{filename}",
+      },
+    },
   ];
 
   return {

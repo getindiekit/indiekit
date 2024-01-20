@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
-import JekyllPreset from "@indiekit/preset-jekyll";
+import { testConfig } from "@indiekit-test/config";
 import {
   decodeQueryParameter,
   excerptString,
@@ -41,11 +41,11 @@ describe("endpoint-media/lib/utils", () => {
     });
   });
 
-  it("Gets post type configuration for a given type", () => {
-    const { postTypes } = new JekyllPreset();
-    const result = getPostTypeConfig("note", postTypes);
+  it("Gets post type configuration for a given type", async () => {
+    const { publication } = await testConfig({ usePostTypes: true });
+    const result = getPostTypeConfig("note", publication.postTypes);
 
-    assert.equal(result.name, "Note");
+    assert.equal(result.name, "Custom note post type");
   });
 
   it("Renders relative path if at publication URL", () => {

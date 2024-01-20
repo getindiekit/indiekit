@@ -1,22 +1,22 @@
 import { strict as assert } from "node:assert";
 import { after, before, beforeEach, describe, it, mock } from "node:test";
+import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
-import JekyllPreset from "@indiekit/preset-jekyll";
 import { postData } from "../../lib/post-data.js";
 
-const { client, database, mongoServer } = await testDatabase();
-const posts = database.collection("posts");
-const application = { posts, useDatabase: true };
-const publication = { me: "https://website.example" };
-const properties = {
-  type: "entry",
-  published: "2020-07-26T20:10:57.062Z",
-  name: "Foo",
-  "mp-slug": "foo",
-};
-const url = "https://website.example/foo";
+describe("endpoint-micropub/lib/post-data", async () => {
+  let application;
+  let publication;
+  const { client, database, mongoServer } = await testDatabase();
+  const posts = database.collection("posts");
+  const properties = {
+    type: "entry",
+    published: "2020-07-26T20:10:57.062Z",
+    name: "Foo",
+    "mp-slug": "foo",
+  };
+  const url = "https://website.example/foo";
 
-describe("endpoint-micropub/lib/post-data", () => {
   before(() => {
     mock.method(console, "info", () => {});
     mock.method(console, "warn", () => {});
@@ -37,7 +37,10 @@ describe("endpoint-micropub/lib/post-data", () => {
       },
     });
 
-    publication.postTypes = new JekyllPreset().postTypes;
+    const config = await testConfig({ usePostTypes: true });
+
+    application = { posts, useDatabase: true };
+    publication = config.publication;
   });
 
   after(() => {
@@ -51,10 +54,7 @@ describe("endpoint-micropub/lib/post-data", () => {
     assert.equal(result.properties["post-type"], "note");
     assert.equal(result.properties["mp-slug"], "foo");
     assert.equal(result.properties.type, "entry");
-    assert.equal(
-      result.properties.url,
-      "https://website.example/notes/2020/07/26/foo",
-    );
+    assert.equal(result.properties.url, "https://website.example/notes/foo/");
   });
 
   it("Throws error creating post data for non-configured post type", async () => {
