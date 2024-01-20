@@ -5,7 +5,7 @@ import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-const server = await testServer({ usePreset: false });
+const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-media POST /media", () => {

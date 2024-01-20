@@ -7,7 +7,6 @@ const defaultOptions = {
   locale: "en",
   useDatabase: false,
   usePostTypes: true,
-  usePreset: true,
 };
 
 export const testConfig = async (options) => {
@@ -58,11 +57,7 @@ export const testConfig = async (options) => {
       timeZone: "UTC",
       tokenEndpoint: options?.application?.tokenEndpoint,
     },
-    plugins: [
-      "@indiekit-test/store",
-      ...(options.usePreset ? ["@indiekit/preset-jekyll"] : []),
-      ...(options.plugins || []),
-    ],
+    plugins: ["@indiekit-test/store", ...(options.plugins || [])],
     publication: {
       me: options?.publication?.me || "https://website.example",
       ...(options.usePostTypes && { postTypes }),

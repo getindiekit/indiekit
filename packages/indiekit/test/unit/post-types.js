@@ -7,8 +7,8 @@ import { getPostTypes } from "../../lib/post-types.js";
 describe("indiekit/lib/post-types", () => {
   it("Merges values from custom and preset post types", async () => {
     const config = await testConfig({
+      plugins: ["@indiekit/preset-jekyll"],
       usePostTypes: true,
-      usePreset: true,
     });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
@@ -20,8 +20,8 @@ describe("indiekit/lib/post-types", () => {
 
   it("Returns preset post types", async () => {
     const config = await testConfig({
+      plugins: ["@indiekit/preset-jekyll"],
       usePostTypes: false,
-      usePreset: true,
     });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
@@ -32,10 +32,7 @@ describe("indiekit/lib/post-types", () => {
   });
 
   it("Returns custom post types", async () => {
-    const config = await testConfig({
-      usePostTypes: true,
-      usePreset: false,
-    });
+    const config = await testConfig({ usePostTypes: true });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
     const result = getPostTypes(publication);
@@ -44,10 +41,7 @@ describe("indiekit/lib/post-types", () => {
   });
 
   it("Returns array if no preset or custom post types", async () => {
-    const config = await testConfig({
-      usePostTypes: false,
-      usePreset: false,
-    });
+    const config = await testConfig({ usePostTypes: false });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
 

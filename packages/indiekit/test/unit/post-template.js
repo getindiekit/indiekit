@@ -16,7 +16,9 @@ describe("indiekit/lib/post-templates", () => {
   });
 
   it("Gets preset post template", async () => {
-    const config = await testConfig();
+    const config = await testConfig({
+      plugins: ["@indiekit/preset-jekyll"],
+    });
     const indiekit = await Indiekit.initialize({ config });
     const { publication } = await indiekit.bootstrap();
     const postTemplate = getPostTemplate(publication);

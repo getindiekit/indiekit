@@ -4,7 +4,7 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-const server = await testServer({ usePreset: false });
+const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-micropub POST /micropub", () => {

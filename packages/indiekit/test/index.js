@@ -22,8 +22,7 @@ describe("indiekit", () => {
 
   it("Gets publication configuration values", () => {
     assert.equal(publication.slugSeparator, "-");
-    assert.equal(publication.postTypes[0].name, "Article");
-    assert.equal(publication.preset.name, "Jekyll preset");
+    assert.equal(publication.me, "https://website.example");
   });
 
   it("Adds endpoint", () => {
