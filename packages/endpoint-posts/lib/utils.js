@@ -1,12 +1,9 @@
 import { Buffer } from "node:buffer";
-import { sanitise } from "@indiekit/util";
+import { sanitise, ISO_6709_RE } from "@indiekit/util";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
 import { endpoint } from "./endpoint.js";
 import { statusTypes } from "./status-types.js";
-
-export const LAT_LONG_RE =
-  /^(?<latitude>(?:-?|\+?)?\d+(?:\.\d+)?),\s*(?<longitude>(?:-?|\+?)?\d+(?:\.\d+)?)$/;
 
 /**
  * Get geographic coordinates property
@@ -14,7 +11,7 @@ export const LAT_LONG_RE =
  * @returns {object} JF2 geo location property
  */
 export const getGeoProperty = (geo) => {
-  const { latitude, longitude } = geo.match(LAT_LONG_RE).groups;
+  const { latitude, longitude } = geo.match(ISO_6709_RE).groups;
 
   return {
     type: "geo",
