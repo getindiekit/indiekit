@@ -57,6 +57,7 @@ The following [scopes](https://indieweb.org/scope) are supported:
 
 * [x] [Category](https://github.com/indieweb/micropub-extensions/issues/5) query
 * [x] [Post list](https://github.com/indieweb/micropub-extensions/issues/4) query
+* [x] [Supported properties](https://github.com/indieweb/micropub-extensions/issues/33) query
 * [x] [Supported queries](https://github.com/indieweb/micropub-extensions/issues/7) query
 * [x] [Supported vocabulary](https://github.com/indieweb/micropub-extensions/issues/1) query
 * [x] [Media source](https://github.com/indieweb/micropub-extensions/issues/14) query, including [filtering by URL parameter](https://github.com/indieweb/micropub-extensions/issues/37)[^1]
