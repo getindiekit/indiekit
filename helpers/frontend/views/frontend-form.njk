@@ -10,7 +10,8 @@
   {{ input({
     errorMessage: { text: "Add another input error" } if errors,
     name: "add-another-input[0]",
-    label: "Add another input"
+    label: "Add another input",
+    hint: "Add another hint"
   }) | indent(2) }}
 {% endcall %}
 
@@ -224,6 +225,23 @@
     })
   }]
 }) }}
+
+{% call fieldset({
+  classes: "fieldset--group",
+  legend: "Fieldset group"
+}) %}
+  {{ input({
+    errorMessage: { text: "Fieldset group input 1 error" } if errors,
+    name: "fieldset-group-input-1",
+    label: "Fieldset group input 1"
+  }) }}
+
+  {{ input({
+    errorMessage: { text: "Fieldset group input 2 error" } if errors,
+    name: "fieldset-group-input-2",
+    label: "Fieldset group input 2"
+  }) }}
+{% endcall %}
 
 {{ button({
   text: "Submit for errors"

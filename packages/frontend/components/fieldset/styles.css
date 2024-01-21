@@ -12,34 +12,16 @@
 }
 
 .fieldset--group {
+  --fieldset-flow-space: var(--space-l);
   --label-font: var(--font-fieldset-label);
-
-  & .field {
-    margin-block-start: var(--space-m);
-  }
-}
-
-.fieldset--inline {
   box-shadow: inset var(--border-width-thickest) 0 var(--color-offset-variant);
+  margin-block-start: calc(var(--fieldset-flow-space) + var(--space-xs));
   padding-inline-start: var(--space-m);
 
   & .fieldset__legend {
     background-color: var(--color-background);
     margin-block-end: calc(var(--space-s) * -1);
     margin-inline-start: calc(var(--space-m) * -1);
-    padding-block-end: var(--space-s);
-  }
-}
-
-.fieldset--offset {
-  background-color: var(--color-offset);
-  border-radius: var(--border-radius-small);
-  color: var(--color-on-offset);
-  margin-block: calc(var(--space-xs) * -1);
-  padding: var(--space-m);
-
-  & .fieldset__legend {
-    inset-block-start: var(--space-l);
-    position: relative;
+    padding-block-end: var(--space-xs);
   }
 }

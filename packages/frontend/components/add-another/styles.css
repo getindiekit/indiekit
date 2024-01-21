@@ -14,6 +14,10 @@ add-another {
   padding-inline-start: calc(var(--counter-size) + var(--space-s));
   position: relative;
 
+  & .fieldset--group {
+    margin-block-start: 0;
+  }
+
   &::before {
     align-items: center;
     background-color: var(--color-offset);
