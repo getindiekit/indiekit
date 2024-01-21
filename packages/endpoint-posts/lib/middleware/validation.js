@@ -1,5 +1,5 @@
 import { check } from "express-validator";
-import { LAT_LONG_RE } from "../utils.js";
+import { ISO_6709_RE } from "@indiekit/util";
 
 export const validate = [
   check("audio.*")
@@ -74,7 +74,7 @@ export const validate = [
     .withMessage((value, { req }) => req.__(`posts.error.mp-photo-alt.empty`)),
   check("geo")
     .if((value, { req }) => req.body?.geo)
-    .custom((value) => value.match(LAT_LONG_RE))
+    .custom((value) => value.match(ISO_6709_RE))
     .withMessage((value, { req, path }) =>
       req.__(`posts.error.${path}.invalid`),
     ),
