@@ -30,7 +30,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) | indent(2) | trim }}
 {%- endif %}
-<div class="radios">
+<div class="radios {{- " radios--inline" if opts.inline }}">
 {% for item in opts.items %}{% if item %}
   {% set id = itemId(item.id, idPrefix, loop) %}
   {% set conditionalId = "conditional-" + id %}

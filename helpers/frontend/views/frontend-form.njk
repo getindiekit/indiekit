@@ -186,6 +186,23 @@
 }) }}
 
 {{ radios({
+  inline: true,
+  errorMessage: { text: "Inline radios error" } if errors,
+  fieldset: {
+    legend: "Inline radios"
+  },
+  hint: "Inline radios hint text",
+  name: "inline-radios",
+  items: [{
+    label: "Yes",
+    value: "true"
+  }, {
+    label: "No",
+    value: "false"
+  }]
+}) }}
+
+{{ radios({
   errorMessage: { text: "Conditional radios error" } if errors,
   fieldset: {
     legend: "Conditional radios"
