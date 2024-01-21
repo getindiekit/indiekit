@@ -35,14 +35,17 @@ For example, to use the Jekyll preset but override the `note` and `photo` post t
 
 Each post type can take the following values:
 
-| Name | Description |
-| :--- | :---------- |
-| `type` | The IndieWeb [post type](https://indieweb.org/Category:PostType). _Required_. |
-| `name` | The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use it in their publishing interfaces. _Required_. |
-| `post.path` | Where posts should be saved in your content store. _Required_. |
-| `post.url` | Permalink (the URL path) for posts on your website. _Required_. |
-| `media.path` | Where media files should be saved in your content store. _Required_ for `photo`, `video` and `audio` post types only. |
-| `media.url` | Public accessible URL for media files. This can use the same template variables as `media.path`. _Optional_, defaults to `media.path`. |
+| Property | Type | Description |
+| :--- | :---------- | :---------- |
+| `type` | `string` | The IndieWeb [post type](https://indieweb.org/Category:PostType). _Required_. |
+| `name` | `string` | The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use this value in their publishing interfaces. |
+| `fields` | `Array[string]` | Which input fields to display in Indiekit’s publishing interface. Other Micropub clients may use these values in their publishing interfaces. |
+| `requiredFields` | `Array[string]` | Which input fields are required. Other Micropub clients may use these values in their publishing interfaces. |
+| `validationSchema` | `Array[object]` | [Validation schema for express-validator](https://express-validator.github.io/docs/guides/schema-validation). Used to validate input fields in Indiekit’s own publishing interface. |
+| `post.path` | `string` | Where posts should be saved in your content store. _Required_. |
+| `post.url` | `string` | Permalink (the URL path) for posts on your website. _Required_. |
+| `media.path` | `string` | Where media files should be saved in your content store. _Required_ |
+| `media.url` | `string` | Public accessible URL for media files. This can use the same template variables as `media.path`. _Optional_, defaults to `media.path`. |
 
 ## Path and URL tokens
 
