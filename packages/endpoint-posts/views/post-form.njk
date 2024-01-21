@@ -105,10 +105,10 @@
   }) | indent(2) if postType === "reply" or postType === "rsvp" }}
 
   {{ radios({
+    inline: true,
     name: "rsvp",
     values: properties.rsvp or "yes",
     fieldset: {
-      classes: "radios--inline",
       legend: __("posts.form.rsvp.label")
     },
     items: [{
@@ -330,10 +330,10 @@
     }) | indent(4) }}
 
     {{ radios({
+      inline: true,
       name: "visibility",
       values: properties.visibility or "public",
       fieldset: {
-        classes: "radios--inline",
         legend: __("posts.form.visibility.label")
       },
       items: [{
