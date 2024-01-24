@@ -3,8 +3,13 @@ import { describe, it } from "node:test";
 import { getPostType } from "../../lib/post-type-discovery.js";
 
 describe("endpoint-media/lib/post-type-discovery", () => {
+  const postTypes = [
+    { type: "audio", discovery: "audio" },
+    { type: "bookmark", discovery: "bookmark-of" },
+  ];
+
   it("Discovers note post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       content: "Note content",
     });
@@ -13,7 +18,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers note post type (with name)", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Note title",
       content: "Note title: Note content",
@@ -23,7 +28,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers note post type (with summary)", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Note title",
       summary: "Note summary",
@@ -33,7 +38,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers article post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Article title",
       content: "Article content",
@@ -43,7 +48,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers article post type (with HTML)", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Article title",
       content: {
@@ -55,7 +60,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers article post type (with plaintext)", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Article title",
       content: {
@@ -67,7 +72,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers article post type (with HTML and plaintext)", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Article title",
       content: {
@@ -80,7 +85,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers article post type (with summary)", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Article title",
       summary: "Article summary",
@@ -94,7 +99,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers photo post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Photo title",
       photo: ["https://website.example/photo.jpg"],
@@ -104,7 +109,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers video post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Video title",
       video: ["https://website.example/video.mp4"],
@@ -114,7 +119,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers audio post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Audio title",
       audio: ["https://website.example/audio.mp3"],
@@ -124,7 +129,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers like post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Like title",
       "like-of": "https://website.example",
@@ -134,7 +139,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers repost post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Repost title",
       "repost-of": "https://website.example",
@@ -144,7 +149,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers bookmark post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Bookmark title",
       "bookmark-of": "https://website.example",
@@ -153,19 +158,8 @@ describe("endpoint-media/lib/post-type-discovery", () => {
     assert.equal(result, "bookmark");
   });
 
-  it("Discovers quotation post type", () => {
-    const result = getPostType({
-      type: "entry",
-      name: "Quotation title",
-      "quotation-of": "https://website.example",
-      content: "Quotation content",
-    });
-
-    assert.equal(result, "quotation");
-  });
-
   it("Discovers rsvp post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Event title",
       rsvp: "yes",
@@ -176,7 +170,7 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers reply post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Reply title",
       "in-reply-to": "https://website.example",
@@ -186,48 +180,8 @@ describe("endpoint-media/lib/post-type-discovery", () => {
     assert.equal(result, "reply");
   });
 
-  it("Discovers watch post type", () => {
-    const result = getPostType({
-      type: "entry",
-      name: "Watch title",
-      "watch-of": "https://website.example/video.mp4",
-    });
-
-    assert.equal(result, "watch");
-  });
-
-  it("Discovers listen post type", () => {
-    const result = getPostType({
-      type: "entry",
-      name: "Listen title",
-      "listen-of": "https://website.example/audio.mp3",
-    });
-
-    assert.equal(result, "listen");
-  });
-
-  it("Discovers read post type", () => {
-    const result = getPostType({
-      type: "entry",
-      name: "Read title",
-      "read-of": "https://website.example/article",
-    });
-
-    assert.equal(result, "read");
-  });
-
-  it("Discovers checkin post type", () => {
-    const result = getPostType({
-      type: "entry",
-      name: "Checkin title",
-      checkin: "https://website.example/place",
-    });
-
-    assert.equal(result, "checkin");
-  });
-
   it("Discovers collection post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "entry",
       name: "Collection title",
       children: [
@@ -240,22 +194,11 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   });
 
   it("Discovers event post type", () => {
-    const result = getPostType({
+    const result = getPostType(postTypes, {
       type: "event",
       name: "Event title",
     });
 
     assert.equal(result, "event");
-  });
-
-  it("Discovers jam post type", () => {
-    const result = getPostType({
-      type: "entry",
-      name: "Jam title",
-      "jam-of":
-        "https://music.apple.com/gb/album/love-story-taylors-version/1552791073?i=1552791427",
-    });
-
-    assert.equal(result, "jam");
   });
 });
