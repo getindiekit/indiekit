@@ -29,7 +29,7 @@ export const postData = {
     properties = normaliseProperties(publication, properties, timeZone);
 
     // Post type
-    const type = getPostType(properties);
+    const type = getPostType(postTypes, properties);
     properties["post-type"] = type;
 
     // Get post type configuration
@@ -125,7 +125,7 @@ export const postData = {
     properties = normaliseProperties(publication, properties, timeZone);
 
     // Post type
-    const type = getPostType(properties);
+    const type = getPostType(postTypes, properties);
     const typeConfig = getPostTypeConfig(type, postTypes);
     properties["post-type"] = type;
 

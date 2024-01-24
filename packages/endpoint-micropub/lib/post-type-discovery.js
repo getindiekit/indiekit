@@ -1,36 +1,36 @@
 /**
  * Accepts a JF2 object and attempts to determine the post type
+ * @param {object} postTypes - Configured post types
  * @param {object} properties - JF2 properties
  * @returns {string|null} The post type or null if unknown
+ * @see {@link https://ptd.spec.indieweb.org/#algorithm}
  */
-export const getPostType = (properties) => {
+export const getPostType = (postTypes, properties) => {
   const propertiesMap = new Map(Object.entries(properties));
 
-  // If already has a type that’s not entry, return that value
-  if (properties.type && properties.type !== "entry") {
+  // If post has the event type, it’s an event
+  if (properties.type && properties.type === "event") {
     return properties.type;
   }
 
-  // Then continue to base post type discovery
   const basePostTypes = new Map();
+
+  // Types defined in Post Type Discovery specification
   basePostTypes.set("rsvp", "rsvp");
-  basePostTypes.set("in-reply-to", "reply");
-  basePostTypes.set("repost-of", "repost");
-  basePostTypes.set("bookmark-of", "bookmark");
-  basePostTypes.set("quotation-of", "quotation");
-  basePostTypes.set("like-of", "like");
-  basePostTypes.set("checkin", "checkin");
-  basePostTypes.set("jam-of", "jam");
-  basePostTypes.set("listen-of", "listen");
-  basePostTypes.set("read-of", "read");
-  basePostTypes.set("watch-of", "watch");
+  basePostTypes.set("repost", "repost-of");
+  basePostTypes.set("like", "like-of");
+  basePostTypes.set("reply", "in-reply-to");
   basePostTypes.set("video", "video");
-  basePostTypes.set("audio", "audio");
   basePostTypes.set("photo", "photo");
 
+  // Types defined in post type configuration
+  for (const postType of postTypes) {
+    basePostTypes.set(postType.type, postType.discovery);
+  }
+
   for (const basePostType of basePostTypes) {
-    if (propertiesMap.has(basePostType[0])) {
-      return basePostType[1];
+    if (propertiesMap.has(basePostType[1])) {
+      return basePostType[0];
     }
   }
 
