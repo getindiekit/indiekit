@@ -25,9 +25,8 @@ export default {
 };
 ```
 
-::: info
-To use this `export` syntax, add `"type": "module"` to your project’s `package.json`.
-:::
+> [!TIP]
+> To use this `export` syntax, add `"type": "module"` to your project’s `package.json`.
 
 For a photo post, this would create the following commit messages:
 

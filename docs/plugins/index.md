@@ -12,6 +12,5 @@
 * [Syndicators](syndicators.md)  
   Enable content to be posted to third-party websites.
 
-::: tip
-You can find more plug-ins on npm under the [`indiekit-plugin`](https://www.npmjs.com/search?q=keywords%3Aindiekit-plugin) tag.
-:::
+> [!TIP]
+> You can find more plug-ins on npm under the [`indiekit-plugin`](https://www.npmjs.com/search?q=keywords%3Aindiekit-plugin) tag.

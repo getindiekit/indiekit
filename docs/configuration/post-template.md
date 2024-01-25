@@ -42,9 +42,8 @@ export default {
 };
 ```
 
-::: info
-To use this `export` syntax, add `"type": "module"` to your project’s `package.json`.
-:::
+> [!TIP]
+> To use this `export` syntax, add `"type": "module"` to your project’s `package.json`.
 
 This would then generate the following file:
 

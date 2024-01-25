@@ -32,9 +32,8 @@ A [MongoDB](https://www.mongodb.com) database is optional, but required for the 
 - Syndicating posts
 - Viewing and deleting previously uploaded media files
 
-::: info Note
-This project is known to work with MongoDB v4.4 or later. It may also work with the last openly licenced version, v4.0.3, but this has not been tested.
-:::
+> [!NOTE]
+> This project is known to work with MongoDB v4.4 or later. It may also work with the last openly licenced version, v4.0.3, but this has not been tested.
 
 You don’t need access to a [Git](https://git-scm.com) repository, but some hosts can deploy and update your server automatically when you commit changes.
 
@@ -68,9 +67,8 @@ If you chose server deployment using Docker, `docker-compose.yml`, `Dockerfile` 
 
 View the full list of [configuration options](configuration/index.md) to see how you can further customise your Indiekit server.
 
-::: tip
-Indiekit needs to be hosted with a publicly addressable URL. However, if you run the command `npm start` in your terminal, you can preview your server by visiting `http://localhost:3000`.
-:::
+> [!TIP]
+> Indiekit needs to be hosted with a publicly addressable URL. However, if you run the command `npm start` in your terminal, you can preview your server by visiting `http://localhost:3000`.
 
 ### 2. Set up a web server
 
@@ -135,9 +133,8 @@ This is a URL with the following format: `mongodb://<username>:<password>@<hostn
 
 The URL may start with `mongodb+srv://` if you’re connecting to a server cluster, not a single server.
 
-::: tip
-Some hosts include support for MongoDB. If not, you can create a database for free using [MongoDB Atlas](https://www.mongodb.com/atlas).
-:::
+> [!TIP]
+> Some hosts include support for MongoDB. If not, you can create a database for free using [MongoDB Atlas](https://www.mongodb.com/atlas).
 
 Any plug-ins you’ve configured may also require their own secret values, so add their environment variables as well.
 
