@@ -1,0 +1,13 @@
+{
+  "posts": {
+    "form": {
+      "rsvp": {
+        "interested": "感兴趣",
+        "label": "回复",
+        "maybe": "可能",
+        "no": "否",
+        "yes": "是"
+      }
+    }
+  }
+}

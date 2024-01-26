@@ -1,0 +1,10 @@
+{
+  "posts": {
+    "form": {
+      "audio": {
+        "label": "Áudio",
+        "name": "arquivo de áudio"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "输入开始日期"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "全天",
+        "end": "结束",
+        "label": "日期和时间",
+        "start": "开始"
+      }
+    }
+  }
+}

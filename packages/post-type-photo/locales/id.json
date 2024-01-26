@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "Masukkan deskripsi foto ini"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "Deskripsi yang dapat diakses"
+      },
+      "photo": {
+        "label": "Foto",
+        "name": "foto"
+      }
+    }
+  }
+}

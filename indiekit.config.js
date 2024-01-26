@@ -15,6 +15,12 @@ const config = {
   plugins: [
     "@indiekit-test/frontend",
     "@indiekit/endpoint-json-feed",
+    "@indiekit/post-type-audio",
+    "@indiekit/post-type-event",
+    "@indiekit/post-type-jam",
+    "@indiekit/post-type-repost",
+    "@indiekit/post-type-rsvp",
+    "@indiekit/post-type-video",
     "@indiekit/preset-jekyll",
     "@indiekit/store-github",
     "@indiekit/syndicator-internet-archive",
@@ -34,13 +40,6 @@ const config = {
       },
       jam: {
         name: "Jam",
-        discovery: "jam-of",
-        fields: {
-          "jam-of": { required: true },
-          content: {},
-          "post-status": {},
-          published: { required: true },
-        },
         post: {
           path: "_jams/{yyyy}-{MM}-{dd}-{slug}.md",
           url: "jams/{yyyy}/{MM}/{dd}/{slug}",

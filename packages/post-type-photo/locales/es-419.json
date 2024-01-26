@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "Introducir una descripción de esta foto"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "Descripción accesible"
+      },
+      "photo": {
+        "label": "Fotos",
+        "name": "foto"
+      }
+    }
+  }
+}

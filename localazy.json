@@ -43,6 +43,66 @@
         "path": "packages/indiekit/locales",
         "pattern": "packages/indiekit/locales/en.json",
         "module": "indiekit"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-audio/locales",
+        "pattern": "packages/post-type-audio/locales/en.json",
+        "module": "post-type-audio"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-bookmark/locales",
+        "pattern": "packages/post-type-bookmark/locales/en.json",
+        "module": "post-type-bookmark"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-event/locales",
+        "pattern": "packages/post-type-event/locales/en.json",
+        "module": "post-type-event"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-jam/locales",
+        "pattern": "packages/post-type-jam/locales/en.json",
+        "module": "post-type-jam"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-like/locales",
+        "pattern": "packages/post-type-like/locales/en.json",
+        "module": "post-type-like"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-photo/locales",
+        "pattern": "packages/post-type-photo/locales/en.json",
+        "module": "post-type-photo"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-reply/locales",
+        "pattern": "packages/post-type-reply/locales/en.json",
+        "module": "post-type-reply"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-repost/locales",
+        "pattern": "packages/post-type-repost/locales/en.json",
+        "module": "post-type-repost"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-rsvp/locales",
+        "pattern": "packages/post-type-rsvp/locales/en.json",
+        "module": "post-type-rsvp"
+      },
+      {
+        "file": "en.json",
+        "path": "packages/post-type-video/locales",
+        "pattern": "packages/post-type-video/locales/en.json",
+        "module": "post-type-video"
       }
     ]
   },

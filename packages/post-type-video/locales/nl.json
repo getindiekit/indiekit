@@ -1,0 +1,10 @@
+{
+  "posts": {
+    "form": {
+      "video": {
+        "label": "Video’s",
+        "name": "video"
+      }
+    }
+  }
+}

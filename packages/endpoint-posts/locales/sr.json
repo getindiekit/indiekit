@@ -20,14 +20,8 @@
       "media": {
         "empty": "Unesite putanju datoteke ili veb adresu kao što je %s"
       },
-      "mp-photo-alt": {
-        "empty": "Unesite opis ove fotografije"
-      },
       "name": {
         "empty": "Unesite naslov"
-      },
-      "start": {
-        "empty": "Unesite datum početka"
       },
       "type": {
         "empty": "Izaberite vrstu posta"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Napredne opcije",
-      "audio": {
-        "label": "Audio",
-        "name": "audio fajl"
-      },
       "back": "Promenite tip posta",
-      "bookmark-of": {
-        "label": "Bookmark of"
-      },
       "cancel": "Otkazati",
       "category": {
         "hint": "Odvojite svaku kategoriju zarezom",
@@ -56,21 +43,9 @@
         "label": "Sadržaj"
       },
       "continue": "Nastavi",
-      "event": {
-        "all-day": "Ceo dan",
-        "end": "Krajevi",
-        "label": "Datum i vreme",
-        "start": "Počinje"
-      },
       "geo": {
         "hint": "Geografska širina i dužina, na primer %s",
         "label": "Koordinate lokacije"
-      },
-      "in-reply-to": {
-        "label": "U odgovoru na"
-      },
-      "like-of": {
-        "label": "Kao od"
       },
       "location": {
         "country-name": "Zemlja",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Putanja ili URL datoteke"
       },
-      "mp-photo-alt": {
-        "label": "Pristupačan opis"
-      },
       "mp-slug": {
         "label": "URL slag"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Naslov"
       },
-      "photo": {
-        "label": "Fotografije",
-        "name": "photo"
-      },
       "publish": "Objavi post",
       "publishDraft": "Sačuvaj nacrt",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Sada",
         "scheduled": "Specifičan datum i vreme"
       },
-      "repost-of": {
-        "label": "Repost od"
-      },
-      "rsvp": {
-        "interested": "Zainteresovani",
-        "label": "RSVP",
-        "maybe": "Možda",
-        "no": "Ne",
-        "yes": "Da"
-      },
       "summary": {
         "label": "Sažetak"
       },
       "update": "Ažuriraj post",
       "updateDraft": "Ažurirajte nacrt",
-      "video": {
-        "label": "Video snimci",
-        "name": "video"
-      },
       "visibility": {
         "label": "Vidljivost"
       }

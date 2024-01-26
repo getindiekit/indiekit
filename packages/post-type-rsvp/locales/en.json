@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "content": {
+        "rsvp": "Select a response"
+      }
+    },
+    "form": {
+      "rsvp": {
+        "label": "RSVP",
+        "yes": "Yes",
+        "no": "No",
+        "maybe": "Maybe",
+        "interested": "Interested"
+      }
+    }
+  }
+}

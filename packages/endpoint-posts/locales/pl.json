@@ -20,14 +20,8 @@
       "media": {
         "empty": "Wprowadź ścieżkę pliku lub adres internetowy, taki jak %s"
       },
-      "mp-photo-alt": {
-        "empty": "Wprowadź opis tego zdjęcia"
-      },
       "name": {
         "empty": "Wprowadź tytuł"
-      },
-      "start": {
-        "empty": "Wpisz datę rozpoczęcia"
       },
       "type": {
         "empty": "Wybierz typ posta"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Zaawansowane opcje",
-      "audio": {
-        "label": "Audio",
-        "name": "plik audio"
-      },
       "back": "Zmień typ posta",
-      "bookmark-of": {
-        "label": "Zakładka z"
-      },
       "cancel": "Anuluj",
       "category": {
         "hint": "Oddziel każdą kategorię przecinkiem",
@@ -56,21 +43,9 @@
         "label": "Zawartość"
       },
       "continue": "Kontynuuj",
-      "event": {
-        "all-day": "Cały dzień",
-        "end": "Kończy się",
-        "label": "Data i godzina",
-        "start": "Rozpoczyna się"
-      },
       "geo": {
         "hint": "Szerokość i długość geograficzna, na przykład %s",
         "label": "Współrzędne lokalizacji"
-      },
-      "in-reply-to": {
-        "label": "W odpowiedzi na"
-      },
-      "like-of": {
-        "label": "Jak z"
       },
       "location": {
         "country-name": "Kraj",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Ścieżka pliku lub adres URL"
       },
-      "mp-photo-alt": {
-        "label": "Dostępny opis"
-      },
       "mp-slug": {
         "label": "Ślimak URL"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Tytuł"
       },
-      "photo": {
-        "label": "Zdjęcia",
-        "name": "zdjęcie"
-      },
       "publish": "Opublikuj post",
       "publishDraft": "Zapisz szkic",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Teraz",
         "scheduled": "Konkretna data i godzina"
       },
-      "repost-of": {
-        "label": "Repost z"
-      },
-      "rsvp": {
-        "interested": "Zainteresowani",
-        "label": "RSVP",
-        "maybe": "Może",
-        "no": "Nie",
-        "yes": "Tak"
-      },
       "summary": {
         "label": "Podsumowanie"
       },
       "update": "Aktualizuj post",
       "updateDraft": "Zaktualizuj wersję roboczą",
-      "video": {
-        "label": "Wideo",
-        "name": "wideo"
-      },
       "visibility": {
         "label": "Widoczność"
       }

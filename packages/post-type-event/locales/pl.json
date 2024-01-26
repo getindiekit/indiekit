@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Wpisz datę rozpoczęcia"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "Cały dzień",
+        "end": "Kończy się",
+        "label": "Data i godzina",
+        "start": "Rozpoczyna się"
+      }
+    }
+  }
+}

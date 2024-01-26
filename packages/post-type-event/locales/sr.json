@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Unesite datum početka"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "Ceo dan",
+        "end": "Krajevi",
+        "label": "Datum i vreme",
+        "start": "Počinje"
+      }
+    }
+  }
+}

@@ -20,14 +20,8 @@
       "media": {
         "empty": "Voer een bestandspad of webadres in, zoals %s"
       },
-      "mp-photo-alt": {
-        "empty": "Voer een beschrijving van deze foto in"
-      },
       "name": {
         "empty": "Geef een titel in"
-      },
-      "start": {
-        "empty": "Voer een startdatum in"
       },
       "type": {
         "empty": "Selecteer een berichttype"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Geavanceerde opties",
-      "audio": {
-        "label": "Audio",
-        "name": "audiobestand"
-      },
       "back": "Berichttype wijzigen",
-      "bookmark-of": {
-        "label": "Bladwijzer van"
-      },
       "cancel": "Annuleren",
       "category": {
         "hint": "Scheid elke categorie van elkaar met een komma",
@@ -56,21 +43,9 @@
         "label": "Inhoud"
       },
       "continue": "Doorgaan",
-      "event": {
-        "all-day": "Hele dag",
-        "end": "Eindigt",
-        "label": "Datum en tijd",
-        "start": "Begint"
-      },
       "geo": {
         "hint": "Lengte- en breedtegraad, bijvoorbeeld %s",
         "label": "Locatiecoördinaten"
-      },
-      "in-reply-to": {
-        "label": "Als antwoord op"
-      },
-      "like-of": {
-        "label": "Zoals van"
       },
       "location": {
         "country-name": "Land",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Bestandspad of URL"
       },
-      "mp-photo-alt": {
-        "label": "Toegankelijke beschrijving"
-      },
       "mp-slug": {
         "label": "URL-slug"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Titel"
       },
-      "photo": {
-        "label": "Foto’s",
-        "name": "foto"
-      },
       "publish": "Post publiceren",
       "publishDraft": "Concept opslaan",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Nu",
         "scheduled": "Specifieke datum en tijd"
       },
-      "repost-of": {
-        "label": "Repost van"
-      },
-      "rsvp": {
-        "interested": "Geïnteresseerd",
-        "label": "RSVP",
-        "maybe": "Misschien",
-        "no": "Nee",
-        "yes": "Ja"
-      },
       "summary": {
         "label": "Samenvatting"
       },
       "update": "Post bijwerken",
       "updateDraft": "Concept bijwerken",
-      "video": {
-        "label": "Video’s",
-        "name": "video"
-      },
       "visibility": {
         "label": "Zichtbaarheid"
       }
