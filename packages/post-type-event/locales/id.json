@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Masukkan tanggal mulai"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "Sepanjang hari",
+        "end": "Berakhir",
+        "label": "Tanggal dan waktu",
+        "start": "Mulai"
+      }
+    }
+  }
+}

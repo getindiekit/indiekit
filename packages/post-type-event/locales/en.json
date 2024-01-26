@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Enter a start date"
+      }
+    },
+    "form": {
+      "event": {
+        "label": "Date and time",
+        "start": "Starts",
+        "end": "Ends",
+        "all-day": "All-day"
+      }
+    }
+  }
+}

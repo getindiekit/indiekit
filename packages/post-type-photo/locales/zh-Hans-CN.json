@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "输入这张照片的描述"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "无障碍描述"
+      },
+      "photo": {
+        "label": "照片",
+        "name": "照片"
+      }
+    }
+  }
+}

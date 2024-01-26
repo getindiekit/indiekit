@@ -20,14 +20,8 @@
       "media": {
         "empty": "Masukkan jalur berkas atau alamat web seperti %s"
       },
-      "mp-photo-alt": {
-        "empty": "Masukkan deskripsi foto ini"
-      },
       "name": {
         "empty": "Masukkan judul"
-      },
-      "start": {
-        "empty": "Masukkan tanggal mulai"
       },
       "type": {
         "empty": "Pilih Jenis Postingan"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Opsi lanjutan",
-      "audio": {
-        "label": "Audio",
-        "name": "berkas audio"
-      },
       "back": "Ubah jenis posting",
-      "bookmark-of": {
-        "label": "Penanda dari"
-      },
       "cancel": "Batal",
       "category": {
         "hint": "Pisahkan setiap kategori dengan koma",
@@ -56,21 +43,9 @@
         "label": "Konten"
       },
       "continue": "Lanjutkan",
-      "event": {
-        "all-day": "Sepanjang hari",
-        "end": "Berakhir",
-        "label": "Tanggal dan waktu",
-        "start": "Mulai"
-      },
       "geo": {
         "hint": "Lintang dan bujur, misalnya %s",
         "label": "Koordinat lokasi"
-      },
-      "in-reply-to": {
-        "label": "Sebagai balasan"
-      },
-      "like-of": {
-        "label": "Seperti"
       },
       "location": {
         "country-name": "Negara",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Jalur file atau URL"
       },
-      "mp-photo-alt": {
-        "label": "Deskripsi yang dapat diakses"
-      },
       "mp-slug": {
         "label": "URL siput"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Judul"
       },
-      "photo": {
-        "label": "Foto",
-        "name": "foto"
-      },
       "publish": "Publikasikan postingan",
       "publishDraft": "Simpan draf",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Sekarang",
         "scheduled": "Tanggal dan waktu tertentu"
       },
-      "repost-of": {
-        "label": "Repost dari"
-      },
-      "rsvp": {
-        "interested": "Tertarik",
-        "label": "RSVP",
-        "maybe": "Mungkin",
-        "no": "Tidak",
-        "yes": "Ya"
-      },
       "summary": {
         "label": "Ringkasan"
       },
       "update": "Perbarui pos",
       "updateDraft": "Perbarui draf",
-      "video": {
-        "label": "Video",
-        "name": "video"
-      },
       "visibility": {
         "label": "Visibilitas"
       }

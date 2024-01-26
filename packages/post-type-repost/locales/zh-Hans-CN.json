@@ -1,0 +1,9 @@
+{
+  "posts": {
+    "form": {
+      "repost-of": {
+        "label": "重新发布的"
+      }
+    }
+  }
+}

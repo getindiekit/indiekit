@@ -2,17 +2,25 @@ import _ from "lodash";
 
 /**
  * Get merged preset and custom post types
- * @param {object} publication - Publication configuration
- * @param {object} publication.postTypes - Publication post types
- * @param {object} [publication.preset] - Publication preset
+ * @param {object} Indiekit - Indiekit instance
+ * @param {object} Indiekit.application - Application configuration
+ * @param {object} Indiekit.publication - Publication configuration
  * @returns {object} Merged configuration
  */
-export const getPostTypes = ({ postTypes, preset }) => {
-  if (preset?.postTypes) {
-    postTypes = _.merge(postTypes, preset.postTypes);
+export const getPostTypes = ({ application, publication }) => {
+  let { postTypes } = application;
+
+  // Add publication preset values
+  if (publication.preset?.postTypes) {
+    postTypes = _.merge(postTypes, publication.preset.postTypes);
   }
 
-  // Add fallback values to post type if not provided
+  // Add user configuration values
+  if (publication.postTypes) {
+    postTypes = _.merge(postTypes, publication.postTypes);
+  }
+
+  // Add fallback values
   for (const type of Object.keys(postTypes)) {
     const { fields, h, name } = postTypes[type];
 

@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "Unesite opis ove fotografije"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "Pristupačan opis"
+      },
+      "photo": {
+        "label": "Fotografije",
+        "name": "photo"
+      }
+    }
+  }
+}

@@ -35,6 +35,15 @@ export const Indiekit = class {
     this.application.endpoints.push(endpoint);
   }
 
+  addPostType(type, postType) {
+    if (postType.config) {
+      this.application.postTypes[type] = {
+        ...this.application.postTypes[type],
+        ...postType.config,
+      };
+    }
+  }
+
   addPreset(preset) {
     this.publication.preset = preset;
   }
@@ -91,7 +100,7 @@ export const Indiekit = class {
     // Update publication configuration
     this.publication.categories = await getCategories(this);
     this.publication.postTemplate = getPostTemplate(this.publication);
-    this.publication.postTypes = getPostTypes(this.publication);
+    this.publication.postTypes = getPostTypes(this);
 
     return this;
   }

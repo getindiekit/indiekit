@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "Voer een beschrijving van deze foto in"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "Toegankelijke beschrijving"
+      },
+      "photo": {
+        "label": "Foto’s",
+        "name": "foto"
+      }
+    }
+  }
+}

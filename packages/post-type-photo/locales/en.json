@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "Enter a description of this photo"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "Accessible description"
+      },
+      "photo": {
+        "label": "Photos",
+        "name": "photo"
+      }
+    }
+  }
+}

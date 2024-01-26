@@ -20,14 +20,8 @@
       "media": {
         "empty": "Insira um caminho de arquivo ou endereço da web como %s"
       },
-      "mp-photo-alt": {
-        "empty": "Insira uma descrição desta foto"
-      },
       "name": {
         "empty": "Introduza um título"
-      },
-      "start": {
-        "empty": "Insira uma data de início"
       },
       "type": {
         "empty": "Selecione um tipo de publicação"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Opções avançadas",
-      "audio": {
-        "label": "Áudio",
-        "name": "arquivo de áudio"
-      },
       "back": "Alterar tipo de postagem",
-      "bookmark-of": {
-        "label": "Marcador de"
-      },
       "cancel": "Cancelar",
       "category": {
         "hint": "Separe cada categoria com uma vírgula",
@@ -56,21 +43,9 @@
         "label": "Conteúdo"
       },
       "continue": "Continuar",
-      "event": {
-        "all-day": "Todo o dia",
-        "end": "Termina",
-        "label": "Data e hora",
-        "start": "Começa"
-      },
       "geo": {
         "hint": "Latitude e longitude, por exemplo %s",
         "label": "Coordenadas de localização"
-      },
-      "in-reply-to": {
-        "label": "Em resposta a"
-      },
-      "like-of": {
-        "label": "Como de"
       },
       "location": {
         "country-name": "País",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Caminho do arquivo ou URL"
       },
-      "mp-photo-alt": {
-        "label": "Descrição acessível"
-      },
       "mp-slug": {
         "label": "Slug de URL"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Título"
       },
-      "photo": {
-        "label": "Fotos",
-        "name": "foto"
-      },
       "publish": "Publicar postagem",
       "publishDraft": "Salvar rascunho",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Agora",
         "scheduled": "Data e hora específicas"
       },
-      "repost-of": {
-        "label": "Republicação de"
-      },
-      "rsvp": {
-        "interested": "Interessados",
-        "label": "RSVP",
-        "maybe": "Talvez",
-        "no": "Não",
-        "yes": "Sim"
-      },
       "summary": {
         "label": "Resumo"
       },
       "update": "Atualizar postagem",
       "updateDraft": "Atualizar rascunho",
-      "video": {
-        "label": "Vídeos",
-        "name": "vídeo"
-      },
       "visibility": {
         "label": "Visibilidade"
       }

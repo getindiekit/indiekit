@@ -1,0 +1,13 @@
+{
+  "posts": {
+    "form": {
+      "rsvp": {
+        "interested": "Intéressé",
+        "label": "RSVP",
+        "maybe": "Peut-être",
+        "no": "Non",
+        "yes": "Oui"
+      }
+    }
+  }
+}

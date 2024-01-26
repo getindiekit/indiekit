@@ -1,0 +1,9 @@
+{
+  "posts": {
+    "form": {
+      "in-reply-to": {
+        "label": "Sebagai balasan"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Voer een startdatum in"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "Hele dag",
+        "end": "Eindigt",
+        "label": "Datum en tijd",
+        "start": "Begint"
+      }
+    }
+  }
+}

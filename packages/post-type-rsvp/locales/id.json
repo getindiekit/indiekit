@@ -1,0 +1,13 @@
+{
+  "posts": {
+    "form": {
+      "rsvp": {
+        "interested": "Tertarik",
+        "label": "RSVP",
+        "maybe": "Mungkin",
+        "no": "Tidak",
+        "yes": "Ya"
+      }
+    }
+  }
+}

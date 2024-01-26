@@ -1,0 +1,10 @@
+{
+  "posts": {
+    "form": {
+      "audio": {
+        "label": "Audio",
+        "name": "berkas audio"
+      }
+    }
+  }
+}

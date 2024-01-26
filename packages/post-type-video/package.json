@@ -1,0 +1,40 @@
+{
+  "name": "@indiekit/post-type-video",
+  "version": "1.0.0-beta.6",
+  "description": "Video post type for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "post-type",
+    "video"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "includes",
+    "locales",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/post-type-video"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

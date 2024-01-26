@@ -20,14 +20,8 @@
       "media": {
         "empty": "输入文件路径或网址，如 %s"
       },
-      "mp-photo-alt": {
-        "empty": "输入这张照片的描述"
-      },
       "name": {
         "empty": "输入标题"
-      },
-      "start": {
-        "empty": "输入开始日期"
       },
       "type": {
         "empty": "选择帖子类型"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "高级选项",
-      "audio": {
-        "label": "音频",
-        "name": "音频文件"
-      },
       "back": "更改帖子类型",
-      "bookmark-of": {
-        "label": "书签来自"
-      },
       "cancel": "取消",
       "category": {
         "hint": "用逗号分隔每个类别",
@@ -56,21 +43,9 @@
         "label": "内容"
       },
       "continue": "继续",
-      "event": {
-        "all-day": "全天",
-        "end": "结束",
-        "label": "日期和时间",
-        "start": "开始"
-      },
       "geo": {
         "hint": "纬度和经度，例如 %s",
         "label": "位置坐标"
-      },
-      "in-reply-to": {
-        "label": "在回复中"
-      },
-      "like-of": {
-        "label": "像这样"
       },
       "location": {
         "country-name": "国家",
@@ -83,9 +58,6 @@
       "media": {
         "label": "文件路径或 URL"
       },
-      "mp-photo-alt": {
-        "label": "无障碍描述"
-      },
       "mp-slug": {
         "label": "网址 slug"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "标题"
       },
-      "photo": {
-        "label": "照片",
-        "name": "照片"
-      },
       "publish": "发布帖子",
       "publishDraft": "保存草稿",
       "published": {
@@ -106,25 +74,11 @@
         "now": "现在",
         "scheduled": "具体日期和时间"
       },
-      "repost-of": {
-        "label": "重新发布的"
-      },
-      "rsvp": {
-        "interested": "感兴趣",
-        "label": "回复",
-        "maybe": "可能",
-        "no": "否",
-        "yes": "是"
-      },
       "summary": {
         "label": "摘要"
       },
       "update": "更新帖子",
       "updateDraft": "更新草稿",
-      "video": {
-        "label": "视频",
-        "name": "视频"
-      },
       "visibility": {
         "label": "可见度"
       }

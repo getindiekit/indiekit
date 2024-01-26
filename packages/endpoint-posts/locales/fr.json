@@ -20,14 +20,8 @@
       "media": {
         "empty": "Entrez un chemin de fichier ou une adresse Web telle que %s"
       },
-      "mp-photo-alt": {
-        "empty": "Entrez une description de cette photo"
-      },
       "name": {
         "empty": "Saisir un titre"
-      },
-      "start": {
-        "empty": "Entrez la date de début"
       },
       "type": {
         "empty": "Sélectionnez un type de publication"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Options avancées",
-      "audio": {
-        "label": "Audio",
-        "name": "fichier audio"
-      },
       "back": "Modifier le type de publication",
-      "bookmark-of": {
-        "label": "Signet de"
-      },
       "cancel": "Annuler",
       "category": {
         "hint": "Séparez chaque catégorie par une virgule",
@@ -56,21 +43,9 @@
         "label": "Contenu"
       },
       "continue": "Continuer",
-      "event": {
-        "all-day": "Toute la journée",
-        "end": "Fin",
-        "label": "Date et heure",
-        "start": "Commence"
-      },
       "geo": {
         "hint": "Latitude et longitude, par exemple %s",
         "label": "Coordonnées de localisation"
-      },
-      "in-reply-to": {
-        "label": "En réponse à"
-      },
-      "like-of": {
-        "label": "J’aime"
       },
       "location": {
         "country-name": "Pays",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Chemin du fichier ou URL"
       },
-      "mp-photo-alt": {
-        "label": "Description accessible"
-      },
       "mp-slug": {
         "label": "Identifiant unique d’URL (slug)"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Titre"
       },
-      "photo": {
-        "label": "Photos",
-        "name": "photo"
-      },
       "publish": "Publier la publication",
       "publishDraft": "Enregistrer le brouillon",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Maintenant",
         "scheduled": "Date et heure spécifiques"
       },
-      "repost-of": {
-        "label": "Republication de"
-      },
-      "rsvp": {
-        "interested": "Intéressé",
-        "label": "RSVP",
-        "maybe": "Peut-être",
-        "no": "Non",
-        "yes": "Oui"
-      },
       "summary": {
         "label": "Résumé"
       },
       "update": "Mettre à jour la publication",
       "updateDraft": "Mettre à jour le brouillon",
-      "video": {
-        "label": "Vidéos",
-        "name": "vidéo"
-      },
       "visibility": {
         "label": "Visibilité"
       }

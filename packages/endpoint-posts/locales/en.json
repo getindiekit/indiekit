@@ -7,14 +7,8 @@
       "geo": {
         "invalid": "Enter valid coordinates"
       },
-      "mp-photo-alt": {
-        "empty": "Enter a description of this photo"
-      },
       "name": {
         "empty": "Enter a title"
-      },
-      "start": {
-        "empty": "Enter a start date"
       },
       "type": {
         "empty": "Select a post type"
@@ -66,13 +60,6 @@
       "publishDraft": "Save draft",
       "updateDraft": "Update draft",
       "cancel": "Cancel",
-      "audio": {
-        "label": "Audio",
-        "name": "audio file"
-      },
-      "bookmark-of": {
-        "label": "Bookmark of"
-      },
       "category": {
         "hint": "Separate each category with a comma",
         "label": "Categories",
@@ -86,24 +73,9 @@
       "content": {
         "label": "Content"
       },
-      "event": {
-        "label": "Date and time",
-        "start": "Starts",
-        "end": "Ends",
-        "all-day": "All-day"
-      },
       "geo": {
         "label": "Location coordinates",
         "hint": "Latitude and longitude, for example %s"
-      },
-      "in-reply-to": {
-        "label": "In reply to"
-      },
-      "like-of": {
-        "label": "Like of"
-      },
-      "jam-of": {
-        "label": "Jam of"
       },
       "location": {
         "label": "Location",
@@ -119,40 +91,19 @@
       "media": {
         "label": "File path or URL"
       },
-      "mp-photo-alt": {
-        "label": "Accessible description"
-      },
       "mp-slug": {
         "label": "URL slug"
       },
       "mp-syndicate-to": {
         "label": "Syndicate to"
       },
-      "photo": {
-        "label": "Photos",
-        "name": "photo"
-      },
       "published": {
         "label": "Publication date",
         "now": "Now",
         "scheduled": "Specific date and time"
       },
-      "repost-of": {
-        "label": "Repost of"
-      },
-      "rsvp": {
-        "label": "RSVP",
-        "yes": "Yes",
-        "no": "No",
-        "maybe": "Maybe",
-        "interested": "Interested"
-      },
       "summary": {
         "label": "Summary"
-      },
-      "video": {
-        "label": "Videos",
-        "name": "video"
       },
       "visibility": {
         "label": "Visibility"

@@ -20,14 +20,8 @@
       "media": {
         "empty": "Geben Sie einen Dateipfad oder eine Webadresse wie %s ein"
       },
-      "mp-photo-alt": {
-        "empty": "Geben Sie eine Beschreibung dieses Fotos ein"
-      },
       "name": {
         "empty": "Titel eingeben"
-      },
-      "start": {
-        "empty": "Geben Sie ein Startdatum ein"
       },
       "type": {
         "empty": "Wählen Sie einen Beitragstyp"
@@ -38,14 +32,7 @@
     },
     "form": {
       "advancedOptions": "Erweiterte Optionen",
-      "audio": {
-        "label": "Audio",
-        "name": "audiodatei"
-      },
       "back": "Beitragstyp ändern",
-      "bookmark-of": {
-        "label": "Lesezeichen für"
-      },
       "cancel": "Abbrechen",
       "category": {
         "hint": "Trennen Sie jede Kategorie durch ein Komma",
@@ -56,21 +43,9 @@
         "label": "Inhalt"
       },
       "continue": "Fortsetzen",
-      "event": {
-        "all-day": "Ganztägig",
-        "end": "Endet",
-        "label": "Datum und Uhrzeit",
-        "start": "Beginnt"
-      },
       "geo": {
         "hint": "Breitengrad und Längengrad, zum Beispiel %s",
         "label": "Koordinaten des Standorts"
-      },
-      "in-reply-to": {
-        "label": "Als Antwort auf"
-      },
-      "like-of": {
-        "label": "Wie von"
       },
       "location": {
         "country-name": "Land",
@@ -83,9 +58,6 @@
       "media": {
         "label": "Dateipfad oder URL"
       },
-      "mp-photo-alt": {
-        "label": "Barrierefreie Beschreibung"
-      },
       "mp-slug": {
         "label": "Slug"
       },
@@ -95,10 +67,6 @@
       "name": {
         "label": "Titel"
       },
-      "photo": {
-        "label": "Fotos",
-        "name": "foto"
-      },
       "publish": "Beitrag veröffentlichen",
       "publishDraft": "Entwurf speichern",
       "published": {
@@ -106,25 +74,11 @@
         "now": "Jetzt",
         "scheduled": "Bestimmtes Datum und Uhrzeit"
       },
-      "repost-of": {
-        "label": "Repost von"
-      },
-      "rsvp": {
-        "interested": "Interessiert",
-        "label": "RSVP",
-        "maybe": "Vielleicht",
-        "no": "Nein",
-        "yes": "Ja"
-      },
       "summary": {
         "label": "Übersicht"
       },
       "update": "Beitrag aktualisieren",
       "updateDraft": "Entwurf aktualisieren",
-      "video": {
-        "label": "Videos",
-        "name": "video"
-      },
       "visibility": {
         "label": "Sichtbarkeit"
       }

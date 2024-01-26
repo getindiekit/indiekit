@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Geben Sie ein Startdatum ein"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "Ganztägig",
+        "end": "Endet",
+        "label": "Datum und Uhrzeit",
+        "start": "Beginnt"
+      }
+    }
+  }
+}
