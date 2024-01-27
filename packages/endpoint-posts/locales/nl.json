@@ -29,6 +29,9 @@
       "start": {
         "empty": "Voer een startdatum in"
       },
+      "type": {
+        "empty": "Selecteer een berichttype"
+      },
       "url": {
         "empty": "Voer een webadres in zoals %s"
       }

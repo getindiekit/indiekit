@@ -29,6 +29,9 @@
       "start": {
         "empty": "Introduce una fecha de inicio"
       },
+      "type": {
+        "empty": "Selecciona un tipo de publicación"
+      },
       "url": {
         "empty": "Introducir una dirección web como %s"
       }

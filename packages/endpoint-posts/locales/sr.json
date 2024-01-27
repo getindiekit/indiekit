@@ -29,6 +29,9 @@
       "start": {
         "empty": "Unesite datum početka"
       },
+      "type": {
+        "empty": "Izaberite vrstu posta"
+      },
       "url": {
         "empty": "Unesite veb adresu kao što je %s"
       }

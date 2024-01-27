@@ -1,7 +1,7 @@
-import { checkSchema } from "express-validator";
+import { check, checkSchema } from "express-validator";
 
-export const validate = () => {
-  return async (request, response, next) => {
+export const validate = {
+  async form(request, response, next) {
     const { postTypes } = request.app.locals.publication;
     const validations = [];
 
@@ -20,5 +20,10 @@ export const validate = () => {
     }
 
     next();
-  };
+  },
+  new: [
+    check("type")
+      .exists()
+      .withMessage((value, { req }) => req.__("posts.error.type.empty")),
+  ],
 };

@@ -29,6 +29,9 @@
       "start": {
         "empty": "Masukkan tanggal mulai"
       },
+      "type": {
+        "empty": "Pilih Jenis Postingan"
+      },
       "url": {
         "empty": "Masukkan alamat web misalnya %s"
       }

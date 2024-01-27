@@ -31,16 +31,16 @@ export default class PostsEndpoint {
     router.get("/", postsController);
 
     router.get("/new", newController.get);
-    router.post("/new", newController.post);
+    router.post("/new", validate.new, newController.post);
 
     router.get("/create", postData.create, formController.get);
-    router.post("/create", postData.create, validate(), formController.post);
+    router.post("/create", postData.create, validate.form, formController.post);
 
     router.use("/:uid/:action?", postData.read);
     router.get("/:uid", postController);
 
     router.get("/:uid/update", formController.get);
-    router.post("/:uid/update", validate(), formController.post);
+    router.post("/:uid/update", validate.form, formController.post);
 
     router.get("/:uid/:action(delete|undelete)", deleteController.get);
     router.post("/:uid/:action(delete|undelete)", deleteController.post);

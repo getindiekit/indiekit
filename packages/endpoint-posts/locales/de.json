@@ -29,6 +29,9 @@
       "start": {
         "empty": "Geben Sie ein Startdatum ein"
       },
+      "type": {
+        "empty": "Wählen Sie einen Beitragstyp"
+      },
       "url": {
         "empty": "Geben Sie eine Webadresse wie %s"
       }

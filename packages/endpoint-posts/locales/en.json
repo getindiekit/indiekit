@@ -16,6 +16,9 @@
       "start": {
         "empty": "Enter a start date"
       },
+      "type": {
+        "empty": "Select a post type"
+      },
       "url": {
         "empty": "Enter a web address like %s"
       },

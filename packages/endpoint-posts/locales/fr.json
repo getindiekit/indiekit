@@ -29,6 +29,9 @@
       "start": {
         "empty": "Entrez la date de début"
       },
+      "type": {
+        "empty": "Sélectionnez un type de publication"
+      },
       "url": {
         "empty": "Saisir une adresse Web telle que %s"
       }

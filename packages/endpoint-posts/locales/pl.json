@@ -29,6 +29,9 @@
       "start": {
         "empty": "Wpisz datę rozpoczęcia"
       },
+      "type": {
+        "empty": "Wybierz typ posta"
+      },
       "url": {
         "empty": "Wpisz adres internetowy, taki jak %s"
       }
