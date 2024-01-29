@@ -8,12 +8,11 @@ describe("preset-jekyll", async () => {
   const indiekit = await Indiekit.initialize({
     config: {
       publication: {
-        postTypes: [
-          {
-            type: "puppy",
+        postTypes: {
+          puppy: {
             name: "Puppy posts",
           },
-        ],
+        },
       },
     },
   });
@@ -30,7 +29,7 @@ describe("preset-jekyll", async () => {
   });
 
   it("Gets publication post types", () => {
-    assert.deepEqual(jekyll.postTypes[0].post, {
+    assert.deepEqual(jekyll.postTypes.article.post, {
       path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
       url: "{yyyy}/{MM}/{dd}/{slug}",
     });

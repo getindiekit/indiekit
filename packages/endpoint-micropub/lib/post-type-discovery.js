@@ -24,8 +24,12 @@ export const getPostType = (postTypes, properties) => {
   basePostTypes.set("photo", "photo");
 
   // Types defined in post type configuration
-  for (const postType of postTypes) {
-    basePostTypes.set(postType.type, postType.discovery);
+  for (const [type, { discovery }] of Object.entries(postTypes)) {
+    if (!discovery) {
+      continue;
+    }
+
+    basePostTypes.set(type, discovery);
   }
 
   for (const basePostType of basePostTypes) {

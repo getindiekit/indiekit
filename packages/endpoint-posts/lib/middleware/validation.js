@@ -5,12 +5,12 @@ export const validate = {
     const { postTypes } = request.app.locals.publication;
     const validations = [];
 
-    for (const postType of postTypes) {
-      if (!postType.validationSchema) {
+    for (const typeConfig of Object.values(postTypes)) {
+      if (!typeConfig.validationSchema) {
         continue;
       }
 
-      for (const schema of postType.validationSchema) {
+      for (const schema of typeConfig.validationSchema) {
         validations.push(checkSchema(schema));
       }
     }

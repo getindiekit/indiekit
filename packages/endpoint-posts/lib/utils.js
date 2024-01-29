@@ -104,7 +104,8 @@ export const getPostName = (publication, properties) => {
     return properties.name;
   }
 
-  const { name } = getPostTypeConfig(publication, properties["post-type"]);
+  const type = properties["post-type"];
+  const { name } = publication.postTypes[type];
 
   return name;
 };
@@ -129,24 +130,6 @@ export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
   }
 
   return false;
-};
-
-/**
- * Get post type config
- * @param {object} publication - Publication configuration
- * @param {string} postType - Post type
- * @returns {object} Post type configuration
- */
-export const getPostTypeConfig = (publication, postType) => {
-  if (publication.postTypes && postType) {
-    const postTypeConfig = publication.postTypes.find(
-      (item) => item.type === postType,
-    );
-
-    return postTypeConfig;
-  }
-
-  return "";
 };
 
 /**

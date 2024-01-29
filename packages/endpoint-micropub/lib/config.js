@@ -29,7 +29,7 @@ export const getConfig = (application, publication) => {
   return {
     categories,
     "media-endpoint": mediaEndpoint,
-    "post-types": postTypes.map((postType) => ({
+    "post-types": Object.values(postTypes).map((postType) => ({
       type: postType.type,
       name: postType.name,
       h: postType.h,

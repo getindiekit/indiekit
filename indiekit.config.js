@@ -24,15 +24,13 @@ const config = {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
     enrichPostData: true,
-    postTypes: [
-      {
-        type: "like",
+    postTypes: {
+      like: {
         name: "Favourite",
         fields: ["like-of", "published"],
         requiredFields: ["like-of", "published"],
       },
-      {
-        type: "jam",
+      jam: {
         name: "Jam",
         discovery: "jam-of",
         h: "entry",
@@ -43,7 +41,7 @@ const config = {
           url: "jams/{yyyy}/{MM}/{dd}/{slug}",
         },
       },
-    ],
+    },
   },
   "@indiekit/store-github": {
     user: process.env.GITHUB_USER,

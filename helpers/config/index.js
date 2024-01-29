@@ -20,9 +20,8 @@ export const testConfig = async (options) => {
   }
 
   // Configure custom note post type with date-less URL for easier testing
-  const postTypes = [
-    {
-      type: "note",
+  const postTypes = {
+    note: {
       name: "Custom note post type",
       fields: ["content", "geo"],
       post: {
@@ -30,8 +29,7 @@ export const testConfig = async (options) => {
         url: "notes/{slug}/",
       },
     },
-    {
-      type: "photo",
+    photo: {
       name: "Custom photo post type",
       fields: ["photo"],
       post: {
@@ -43,7 +41,7 @@ export const testConfig = async (options) => {
         url: "media/photos/{filename}",
       },
     },
-  ];
+  };
 
   return {
     application: {

@@ -1,10 +1,10 @@
 {% extends "document.njk" %}
 
 {%- set postTypesHtml %}
-  <ul role="list">{% for config in publication.postTypes %}
+  <ul role="list">{% for type, config in publication.postTypes | dictsort %}
     <li>
-      {{ icon(config.type) or icon("note") }}{{ config.name }}
-      <small><code class="token attr-name">{{ config.type }}</code></small>
+      {{ icon(type) or icon("note") }}{{ config.name }}
+      <small><code class="token attr-name">{{ type }}</code></small>
     </li>
   {% endfor %}</ul>
 {% endset -%}
@@ -74,7 +74,7 @@
         value: {
           text: postTypesHtml | indent(4)
         }
-      } if publication.postTypes.length > 0, {
+      }, {
         key: {
           text: __("status.publication.preset")
         },

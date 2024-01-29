@@ -49,9 +49,8 @@ export const defaultConfig = {
     locale: "en",
     me: undefined,
     postTemplate: undefined,
-    postTypes: [
-      {
-        type: "article",
+    postTypes: {
+      article: {
         name: "Article",
         h: "entry",
         fields: [
@@ -73,8 +72,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "note",
+      note: {
         name: "Note",
         h: "entry",
         fields: [
@@ -93,8 +91,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "photo",
+      photo: {
         name: "Photo",
         h: "entry",
         fields: [
@@ -115,8 +112,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "video",
+      video: {
         name: "Video",
         h: "entry",
         fields: [
@@ -136,8 +132,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "audio",
+      audio: {
         name: "Audio",
         discovery: "audio",
         h: "entry",
@@ -158,8 +153,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "bookmark",
+      bookmark: {
         name: "Bookmark",
         discovery: "bookmark-of",
         h: "entry",
@@ -179,8 +173,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "event",
+      event: {
         name: "Event",
         h: "event",
         fields: [
@@ -203,8 +196,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "rsvp",
+      rsvp: {
         name: "RSVP",
         h: "entry",
         fields: [
@@ -224,8 +216,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "reply",
+      reply: {
         name: "Reply",
         h: "entry",
         fields: [
@@ -244,8 +235,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "repost",
+      repost: {
         name: "Repost",
         h: "entry",
         fields: [
@@ -263,8 +253,7 @@ export const defaultConfig = {
           },
         ],
       },
-      {
-        type: "like",
+      like: {
         name: "Like",
         h: "entry",
         fields: [
@@ -282,7 +271,7 @@ export const defaultConfig = {
           },
         ],
       },
-    ],
+    },
     preset: undefined,
     slugSeparator: "-",
     storeMessageTemplate: (metaData) =>

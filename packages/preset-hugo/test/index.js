@@ -8,12 +8,11 @@ describe("preset-hugo", async () => {
   const indiekit = await Indiekit.initialize({
     config: {
       publication: {
-        postTypes: [
-          {
-            type: "puppy",
+        postTypes: {
+          puppy: {
             name: "Puppy posts",
           },
-        ],
+        },
       },
     },
   });
@@ -37,7 +36,7 @@ describe("preset-hugo", async () => {
   });
 
   it("Gets publication post types", () => {
-    assert.deepEqual(hugo.postTypes[0].post, {
+    assert.deepEqual(hugo.postTypes.article.post, {
       path: "content/articles/{slug}.md",
       url: "articles/{slug}",
     });
