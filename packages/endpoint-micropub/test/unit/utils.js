@@ -1,10 +1,8 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
-import { testConfig } from "@indiekit-test/config";
 import {
   decodeQueryParameter,
   excerptString,
-  getPostTypeConfig,
   getPostTemplateProperties,
   relativeMediaPath,
   renderPath,
@@ -39,13 +37,6 @@ describe("endpoint-media/lib/utils", () => {
     assert.deepEqual(result, {
       name: "foo",
     });
-  });
-
-  it("Gets post type configuration for a given type", async () => {
-    const { publication } = await testConfig({ usePostTypes: true });
-    const result = getPostTypeConfig("note", publication.postTypes);
-
-    assert.equal(result.name, "Custom note post type");
   });
 
   it("Renders relative path if at publication URL", () => {

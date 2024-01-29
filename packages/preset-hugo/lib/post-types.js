@@ -6,10 +6,7 @@ import plur from "plur";
  * @returns {object} Updated post type configuration
  */
 export const getPostTypes = (postTypes) => {
-  const types = [];
-
-  for (const postType of postTypes) {
-    const { type } = postType;
+  for (const type of Object.keys(postTypes)) {
     const section = plur(type);
 
     /**
@@ -17,8 +14,8 @@ export const getPostTypes = (postTypes) => {
      * @see {@link https://gohugo.io/content-management/organization/}
      * @see {@link https://gohugo.io/content-management/static-files/}
      */
-    types.push({
-      type,
+    postTypes[type] = {
+      ...postTypes[type],
       post: {
         path: `content/${section}/{slug}.md`,
         url: `${section}/{slug}`,
@@ -27,8 +24,8 @@ export const getPostTypes = (postTypes) => {
         path: `static/${section}/{filename}`,
         url: `${section}/{filename}`,
       },
-    });
+    };
   }
 
-  return types;
+  return postTypes;
 };

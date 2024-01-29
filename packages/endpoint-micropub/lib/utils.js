@@ -28,15 +28,6 @@ export const excerptString = (string, n) => {
 };
 
 /**
- * Get post type configuration for a given type
- * @param {string} type - Post type
- * @param {object} postTypes - Publication post types
- * @returns {object} Post type configuration
- */
-export const getPostTypeConfig = (type, postTypes) =>
-  postTypes.find((item) => item.type === type);
-
-/**
  * Get post template properties
  * @param {object} properties - JF2 properties
  * @returns {object} Template properties

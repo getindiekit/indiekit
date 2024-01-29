@@ -60,7 +60,7 @@ describe("endpoint-media/lib/media-data", async () => {
   });
 
   it("Throws error creating media data for non-configured media type", async () => {
-    publication.postTypes = [];
+    publication.postTypes = {};
 
     await assert.rejects(mediaData.create(application, publication, file), {
       message: "photo",

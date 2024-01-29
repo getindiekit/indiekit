@@ -3,7 +3,7 @@
   image: "/assets/" + plugin.id + "/icon.svg"
 }) %}
 {% if application.hasDatabase %}
-  <div class="button-grid">{% for config in publication.postTypes %}
+  <div class="button-grid">{% for type, config in publication.postTypes | dictsort %}
     {{ button({
       classes: "button--secondary-on-offset button--inline",
       href: application.postsEndpoint + "/create/?type=" + config.type,

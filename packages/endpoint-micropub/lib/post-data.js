@@ -4,7 +4,7 @@ import { getCanonicalUrl, getDate } from "@indiekit/util";
 import { getPostType } from "./post-type-discovery.js";
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
 import * as updateMf2 from "./update.js";
-import { getPostTypeConfig, renderPath } from "./utils.js";
+import { renderPath } from "./utils.js";
 
 export const postData = {
   /**
@@ -33,7 +33,7 @@ export const postData = {
     properties["post-type"] = type;
 
     // Get post type configuration
-    const typeConfig = getPostTypeConfig(type, postTypes);
+    const typeConfig = postTypes[type];
     if (!typeConfig) {
       throw IndiekitError.notImplemented(type);
     }
@@ -126,7 +126,7 @@ export const postData = {
 
     // Post type
     const type = getPostType(postTypes, properties);
-    const typeConfig = getPostTypeConfig(type, postTypes);
+    const typeConfig = postTypes[type];
     properties["post-type"] = type;
 
     // Post paths
@@ -188,7 +188,8 @@ export const postData = {
     properties.deleted = getDate(timeZone);
 
     // Post type
-    const typeConfig = getPostTypeConfig(properties["post-type"], postTypes);
+    const type = properties["post-type"];
+    const typeConfig = postTypes[type];
 
     // Post paths
     const path = await renderPath(
@@ -226,7 +227,8 @@ export const postData = {
     const properties = _deletedProperties;
 
     // Post type
-    const typeConfig = getPostTypeConfig(properties["post-type"], postTypes);
+    const type = properties["post-type"];
+    const typeConfig = postTypes[type];
 
     // Post paths
     const path = await renderPath(

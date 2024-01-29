@@ -1,7 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
-import { getPostTypeConfig, renderPath } from "./utils.js";
 import { getFileProperties, getMediaType } from "./file.js";
+import { renderPath } from "./utils.js";
 
 export const mediaData = {
   /**
@@ -29,7 +29,7 @@ export const mediaData = {
     }
 
     // Get post type configuration
-    const typeConfig = getPostTypeConfig(type, postTypes);
+    const typeConfig = postTypes[type];
     if (!typeConfig) {
       throw IndiekitError.notImplemented(type);
     }

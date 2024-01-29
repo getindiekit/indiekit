@@ -3,10 +3,10 @@ import { describe, it } from "node:test";
 import { getPostType } from "../../lib/post-type-discovery.js";
 
 describe("endpoint-media/lib/post-type-discovery", () => {
-  const postTypes = [
-    { type: "audio", discovery: "audio" },
-    { type: "bookmark", discovery: "bookmark-of" },
-  ];
+  const postTypes = {
+    audio: { discovery: "audio" },
+    bookmark: { discovery: "bookmark-of" },
+  };
 
   it("Discovers note post type", () => {
     const result = getPostType(postTypes, {

@@ -7,18 +7,16 @@ import {
   getLocationProperty,
   getPostName,
   getPostStatusBadges,
-  getPostTypeConfig,
   getPostUrl,
   getSyndicateToItems,
 } from "../../lib/utils.js";
 
 const publication = {
-  postTypes: [
-    {
-      type: "article",
+  postTypes: {
+    article: {
       name: "Journal entry",
     },
-  ],
+  },
   syndicationTargets: [
     {
       info: {
@@ -215,14 +213,6 @@ describe("endpoint-posts/lib/utils", () => {
         text: "posts.status.deleted",
       },
     ]);
-  });
-
-  it("Gets post type name (or an empty string)", () => {
-    assert.deepEqual(getPostTypeConfig(publication, "article"), {
-      type: "article",
-      name: "Journal entry",
-    });
-    assert.equal(getPostTypeConfig(publication, ""), "");
   });
 
   it("Gets post URL", () => {

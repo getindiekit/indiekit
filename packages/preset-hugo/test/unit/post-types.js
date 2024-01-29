@@ -2,26 +2,23 @@ import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 import { getPostTypes } from "../../lib/post-types.js";
 
-const postTypes = [
-  {
-    type: "article",
+const postTypes = {
+  article: {
     name: "Journal post",
   },
-  {
-    type: "note",
+  note: {
     name: "Micro post",
   },
-  {
-    type: "puppy",
+  puppy: {
     name: "Puppy post",
   },
-];
+};
 
 describe("preset-hugo/lib/post-types", () => {
   it("Gets paths and URLs for configured post types", () => {
-    assert.deepEqual(getPostTypes(postTypes), [
-      {
-        type: "article",
+    assert.deepEqual(getPostTypes(postTypes), {
+      article: {
+        name: "Journal post",
         post: {
           path: "content/articles/{slug}.md",
           url: "articles/{slug}",
@@ -31,8 +28,8 @@ describe("preset-hugo/lib/post-types", () => {
           url: "articles/{filename}",
         },
       },
-      {
-        type: "note",
+      note: {
+        name: "Micro post",
         post: {
           path: "content/notes/{slug}.md",
           url: "notes/{slug}",
@@ -42,8 +39,8 @@ describe("preset-hugo/lib/post-types", () => {
           url: "notes/{filename}",
         },
       },
-      {
-        type: "puppy",
+      puppy: {
+        name: "Puppy post",
         post: {
           path: "content/puppies/{slug}.md",
           url: "puppies/{slug}",
@@ -53,6 +50,6 @@ describe("preset-hugo/lib/post-types", () => {
           url: "puppies/{filename}",
         },
       },
-    ]);
+    });
   });
 });

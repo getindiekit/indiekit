@@ -14,7 +14,7 @@ export const newController = {
     const postType = request.query.type;
     const { scope } = request.session;
 
-    const postTypeItems = publication.postTypes
+    const postTypeItems = Object.values(publication.postTypes)
       .sort((a, b) => {
         return a.name.localeCompare(b.name);
       })
@@ -51,7 +51,8 @@ export const newController = {
   async post(request, response) {
     const { publication } = request.app.locals;
     const postsPath = path.dirname(request.baseUrl + request.path);
-    const postTypeItems = publication.postTypes
+
+    const postTypeItems = Object.values(publication.postTypes)
       .sort((a, b) => {
         return a.name.localeCompare(b.name);
       })

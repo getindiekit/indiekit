@@ -58,7 +58,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
   });
 
   it("Throws error creating post data for non-configured post type", async () => {
-    publication.postTypes = [];
+    publication.postTypes = {};
 
     await assert.rejects(
       postData.create(application, publication, properties),
