@@ -107,11 +107,26 @@ export const AddAnotherComponent = class extends HTMLElement {
     const $item = $items[0].cloneNode(true);
     const uid = Date.now().toString();
 
-    const $fields = $item.querySelectorAll("input, select, textarea");
+    const $fields = $item.querySelectorAll(".field--error");
     for (const $field of $fields) {
-      $field.id = $field.id.replace("-0", `-${uid}`);
-      $field.name = $field.name.replace("[0]", `[${uid}]`);
-      $field.value = "";
+      $field.classList.remove("field--error");
+    }
+
+    const $errorMessages = $item.querySelectorAll(".error-message");
+    for (const $errorMessage of $errorMessages) {
+      $errorMessage.remove();
+    }
+
+    const $inputs = $item.querySelectorAll("input, select, textarea");
+    for (const $input of $inputs) {
+      $input.id = $input.id.replace("-0", `-${uid}`);
+      $input.name = $input.name.replace("[0]", `[${uid}]`);
+      $input.value = "";
+      $input.classList.remove(
+        "input--error",
+        "select--error",
+        "textarea--error",
+      );
     }
 
     const $labels = $item.querySelectorAll("label");
