@@ -7,7 +7,7 @@ export const validationSchemas = {
     exists: {
       if: (value, { req }) => req.body?.postType === "audio",
     },
-    notEmpty: true,
+    isURL: true,
   },
   content: {
     errorMessage: (value, { req }) => req.__("posts.error.content.empty"),
@@ -64,7 +64,7 @@ export const validationSchemas = {
     exists: {
       if: (value, { req }) => req.body?.postType === "photo",
     },
-    notEmpty: true,
+    isURL: true,
   },
   "photo.*.alt": {
     errorMessage: (value, { req }) => req.__(`posts.error.mp-photo-alt.empty`),
@@ -101,6 +101,6 @@ export const validationSchemas = {
     exists: {
       if: (value, { req }) => req.body?.postType === "video",
     },
-    notEmpty: true,
+    isURL: true,
   },
 };
