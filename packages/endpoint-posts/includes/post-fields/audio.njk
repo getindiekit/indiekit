@@ -12,12 +12,18 @@
 {% endmacro %}
 
 {% call addAnother({
-  fieldset: { legend: __("posts.form.audio.label") },
-  name: __("posts.form.audio.name")
+  name: __("posts.form.audio.name"),
+  fieldset: { legend: __("posts.form.audio.label") }
 }) %}
-  {% for audio in fieldData("audio").value %}
-    {{ audioFieldset(loop.index0) }}
+<ol class="add-another__list" role="list">
+  {% for key, value in fieldData("audio").value %}
+  <li class="add-another__list-item">
+    {{ audioFieldset(key) }}
+  </li>
   {% else %}
+  <li class="add-another__list-item">
     {{ audioFieldset(0) }}
+  </li>
   {% endfor %}
+</ol>
 {% endcall %}

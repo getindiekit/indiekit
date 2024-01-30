@@ -6,11 +6,7 @@
 {# `fieldset` is false by default #}
 {%- set hasFieldset = true if opts.fieldset else false %}
 {# Capture the HTML so we can optionally nest it within a fieldset #}
-{%- set innerHtml %}
-<ol class="add-another__list" role="list">
-  <li class="add-another__list-item">{{ caller() if caller }}</li>
-</ol>
-{% endset %}
+{%- set innerHtml %}{{ caller() if caller }}{% endset %}
 {% call field({
   element: "add-another",
   attributes: {

@@ -15,9 +15,15 @@
   name: __("posts.form.video.name"),
   fieldset: { legend: __("posts.form.video.label") }
 }) %}
-  {% for video in fieldData("video").value %}
-    {{ videoFieldset(loop.index0) }}
+<ol class="add-another__list" role="list">
+  {% for key, value in fieldData("video").value %}
+  <li class="add-another__list-item">
+    {{ videoFieldset(key) }}
+  </li>
   {% else %}
+  <li class="add-another__list-item">
     {{ videoFieldset(0) }}
+  </li>
   {% endfor %}
+</ol>
 {% endcall %}

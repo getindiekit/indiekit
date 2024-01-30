@@ -3,16 +3,18 @@
 {% block fieldset %}
 {% call addAnother({
   name: "thing",
-  fieldset: {
-    legend: "Things"
-  }
+  fieldset: { legend: "Things" }
 }) %}
-  {{ input({
-    errorMessage: { text: "Add another input error" } if errors,
-    name: "add-another-input[0]",
-    label: "Add another input",
-    hint: "Add another hint"
-  }) | indent(2) }}
+<ol class="add-another__list" role="list">
+  <li class="add-another__list-item">
+    {{ input({
+      errorMessage: { text: "Add another input error" } if errors,
+      name: "add-another-input[0]",
+      label: "Add another input",
+      hint: "Add another hint"
+    }) | indent(4) }}
+  </li>
+</ol>
 {% endcall %}
 
 {{ input({

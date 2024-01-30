@@ -27,9 +27,15 @@
   fieldset: { legend: __("posts.form.photo.label") },
   name: __("posts.form.photo.name")
 }) %}
-  {% for photo in fieldData("photo").value %}
-    {{ photoFieldset(loop.index0) }}
+<ol class="add-another__list" role="list">
+  {% for key, value in fieldData("photo").value %}
+  <li class="add-another__list-item">
+    {{ photoFieldset(key) }}
+  </li>
   {% else %}
+  <li class="add-another__list-item">
     {{ photoFieldset(0) }}
+  </li>
   {% endfor %}
+</ol>
 {% endcall %}
