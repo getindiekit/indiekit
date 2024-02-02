@@ -1,9 +1,11 @@
-import { touchIcon, scripts, styles } from "@indiekit/frontend";
+import { appIcon, scripts, styles } from "@indiekit/frontend";
 
-export const getTouchIcon = async (request, response) => {
-  const { application } = request.app.locals;
-  const png = await touchIcon(application.themeColor);
-  return response.type("image/png").send(png).end();
+export const getAppIcon = (size) => {
+  return async (request, response) => {
+    const { application } = request.app.locals;
+    const png = await appIcon(application.themeColor, size);
+    return response.type("image/png").send(png).end();
+  };
 };
 
 export const getScripts = async (request, response) => {

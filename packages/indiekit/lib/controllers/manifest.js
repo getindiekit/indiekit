@@ -8,13 +8,13 @@ export const get = async (request, response) => {
     theme_color: application.themeColor,
     icons: [
       {
-        src: "assets/icon.svg",
-        sizes: "32x32",
-        type: "image/svg+xml",
+        src: "assets/app-icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
       },
       {
-        src: "assets/app.png",
-        sizes: "1024x1024",
+        src: "assets/app-icon-512.png",
+        sizes: "512x512",
         type: "image/png",
       },
     ],
