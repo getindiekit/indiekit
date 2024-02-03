@@ -143,6 +143,27 @@
 }) }}
 
 {{ checkboxes({
+  errorMessage: { text: "Disabled checkboxes error" } if errors,
+  fieldset: {
+    legend: "Disabled checkboxes"
+  },
+  hint: "Disabled checkboxes hint text",
+  name: "disabled-checkboxes",
+  items: [{
+    label: "Internet Archive",
+    value: "https://web.archive.org/",
+    hint: "https://web.archive.org/",
+    disabled: true
+  }, {
+    label: "Mastodon",
+    value: "https://mastodon.example/@username",
+    hint: "https://mastodon.example/@username",
+    checked: true,
+    disabled: true
+  }]
+}) }}
+
+{{ checkboxes({
   errorMessage: { text: "Conditional checkboxes error" } if errors,
   fieldset: {
     legend: "Conditional checkboxes"
@@ -189,6 +210,35 @@
 }) }}
 
 {{ radios({
+  errorMessage: { text: "Disabled radios error" } if errors,
+  fieldset: {
+    legend: "Disabled radios"
+  },
+  hint: "Disabled radios hint text",
+  name: "disabled-radios",
+  items: [{
+    label: "Internet Archive",
+    value: "https://web.archive.org/",
+    hint: "https://web.archive.org/",
+    disabled: true
+  }, {
+    label: "Mastodon",
+    value: "https://mastodon.example/@username",
+    hint: "https://mastodon.example/@username",
+    checked: true,
+    disabled: true
+  }, {
+    divider: "or"
+  }, {
+    label: "Bluesky",
+    value: "https://bsky.app/@username",
+    hint: "https://bsky.app/@username",
+    checked: true,
+    disabled: true
+  }]
+}) }}
+
+{{ radios({
   inline: true,
   errorMessage: { text: "Inline radios error" } if errors,
   fieldset: {
@@ -215,6 +265,8 @@
   items: [{
     label: "First radio option",
     value: "first"
+  }, {
+    divider: "or"
   }, {
     label: "Second radio option",
     value: "second",

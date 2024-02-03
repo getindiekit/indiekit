@@ -1,101 +1,75 @@
 radios-field {
-  --radio-size: 1.66667em;
-  --check-size: calc(var(--radio-size) / 4);
-  --touch-target-size: 44px;
+  --radio-size: 2rem;
+  --radio-space: var(--space-s);
+  --radio-padding-inline: calc(var(--radio-size) + var(--radio-space));
   display: block;
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (width >= 30rem) {
   .radios--inline {
-    display: flex;
+    column-gap: var(--space-xl);
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--space-xs) var(--space-xl);
   }
 }
 
 .radios__item {
-  display: flex;
-  flex-wrap: wrap;
   margin-block: var(--space-2xs);
   padding-block: var(--space-xs);
-  padding-inline-start: calc(var(--radio-size) + var(--space-s));
+  padding-inline-start: var(--radio-padding-inline);
   position: relative;
 }
 
 .radios__input {
-  --input-offset: calc(calc(var(--touch-target-size) - var(--radio-size)) / 2);
-  block-size: var(--touch-target-size);
+  appearance: none;
+  background: var(--color-background);
+  block-size: var(--radio-size);
+  border: var(--input-border-width) solid var(--color-outline-variant);
+  border-radius: 50%;
   cursor: pointer;
-  inline-size: var(--touch-target-size);
-  inset: calc(var(--input-offset) * -1);
-  margin: 0;
-  opacity: 0;
+  inline-size: var(--radio-size);
+  inset: 0;
   position: absolute;
   z-index: 1;
+
+  &:checked {
+    background: var(--color-background)
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="4"/></svg>')
+      center center / 100% auto no-repeat;
+
+    @media (prefers-color-scheme: dark) {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle fill="white" cx="8" cy="8" r="4"/></svg>');
+    }
+  }
+
+  &:focus-visible {
+    border-color: var(--color-on-background);
+    border-width: var(--input-border-width-focus);
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: var(--color-offset);
+    border-color: var(--color-offset);
+    color: var(--color-on-offset);
+    cursor: default;
+
+    & + .radios__label {
+      cursor: default;
+    }
+  }
 }
 
 .radios__label.label {
   --label-font: var(--font-fieldset-label);
   cursor: pointer;
-  margin-block-start: 0;
+  margin: 0;
   touch-action: manipulation; /* remove 300ms pause on mobile */
-
-  /* ( ) Ring */
-  &::before {
-    background-color: var(--color-background);
-    block-size: var(--radio-size);
-    border: var(--input-border-width) solid var(--color-outline-variant);
-    border-radius: 50%;
-    content: "";
-    inline-size: var(--radio-size);
-    inset: 0;
-    position: absolute;
-  }
-
-  /* • Button */
-  &::after {
-    background: currentcolor;
-    block-size: 0;
-    border: var(--check-size) solid currentcolor;
-    border-radius: 50%;
-    content: "";
-    inline-size: 0;
-    inset-block-start: var(--check-size);
-    inset-inline-start: var(--check-size);
-    opacity: 0;
-    position: absolute;
-  }
-}
-
-/* Focused state */
-.radios__input:focus-visible + .radios__label::before {
-  border-color: var(--color-on-background);
-  border-width: var(--input-border-width-focus);
-  box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
-  outline: var(--focus-width) solid transparent;
-  outline-offset: var(--border-width-thin);
-}
-
-@media screen and (forced-colors: active) {
-  .radios__input:focus-visible + .radios__label::before {
-    outline-color: Highlight;
-  }
-}
-
-/* Selected state */
-.radios__input:checked + .radios__label::after {
-  opacity: 1;
-}
-
-/* Disabled state */
-.radios__input:disabled,
-.radios__input:disabled + .radios__label {
-  cursor: default;
-}
-
-.radios__input:disabled + .radios__label,
-.radios__input:disabled ~ .hint {
-  opacity: 0.5;
 }
 
 .radios__hint {
@@ -105,14 +79,13 @@ radios-field {
 /* Divider (‘or’) */
 .radios__divider {
   inline-size: var(--radio-size);
-  margin-block-end: var(--radio-size);
   text-align: center;
 }
 
 /* Conditonal reveals */
 .radios__conditional {
   --label-font: var(--font-fieldset-label);
-  padding-inline-start: calc(var(--radio-size) + var(--space-s));
+  padding-inline-start: var(--radio-padding-inline);
   position: relative;
 
   &::before {

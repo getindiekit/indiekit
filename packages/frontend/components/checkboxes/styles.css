@@ -1,101 +1,67 @@
 checkboxes-field {
-  --checkbox-size: 1.66667em;
-  --check-size: 1em;
-  --touch-target-size: 44px;
+  --checkbox-size: 2rem;
+  --checkbox-space: var(--space-s);
+  --checkbox-padding-inline: calc(var(--checkbox-size) + var(--checkbox-space));
   display: block;
 }
 
-.checkboxes__item {
+.checkboxes {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.checkboxes__item {
   margin-block: var(--space-2xs);
   padding-block: var(--space-xs);
-  padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
+  padding-inline-start: var(--checkbox-padding-inline);
   position: relative;
 }
 
 .checkboxes__input {
-  --input-offset: calc(
-    calc(var(--touch-target-size) - var(--checkbox-size)) / 2
-  );
-  block-size: var(--touch-target-size);
+  appearance: none;
+  background: var(--color-background);
+  block-size: var(--checkbox-size);
+  border: var(--input-border-width) solid var(--color-outline-variant);
+  border-radius: var(--border-radius-small);
   cursor: pointer;
-  inline-size: var(--touch-target-size);
-  inset: calc(var(--input-offset) * -1);
-  margin: 0;
-  opacity: 0;
+  inline-size: var(--checkbox-size);
+  inset: 0;
   position: absolute;
   z-index: 1;
+
+  &:checked {
+    background: var(--color-background)
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5 13 2 8.5 3.5 7l3 3 6-6L14 5.5z"/></svg>')
+      center center / 100% auto no-repeat;
+
+    @media (prefers-color-scheme: dark) {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M6.5 13 2 8.5 3.5 7l3 3 6-6L14 5.5z"/></svg>');
+    }
+  }
+
+  &:focus-visible {
+    border-color: var(--color-on-background);
+    border-width: var(--input-border-width-focus);
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: var(--color-offset);
+    border-color: var(--color-offset);
+    color: var(--color-on-offset);
+    cursor: default;
+
+    & + .checkboxes__label {
+      cursor: default;
+    }
+  }
 }
 
 .checkboxes__label.label {
   --label-font: var(--font-fieldset-label);
   cursor: pointer;
-  margin-block-start: 0;
+  margin: 0;
   touch-action: manipulation; /* remove 300ms pause on mobile */
-
-  /* [ ] Checkbox */
-  &::before {
-    background-color: var(--color-background);
-    block-size: var(--checkbox-size);
-    border: var(--input-border-width) solid var(--color-outline-variant);
-    border-radius: var(--border-radius-small);
-    content: "";
-    inline-size: var(--checkbox-size);
-    inset: 0;
-    position: absolute;
-  }
-
-  /* ✔ Check */
-  &::after {
-    background: transparent;
-    block-size: calc(var(--check-size) / 2);
-    border: solid;
-    border-block-start-color: transparent;
-    border-width: 0 0 var(--input-border-width) var(--input-border-width);
-    content: "";
-    inline-size: var(--check-size);
-    inset-block-start: calc(
-      calc(var(--checkbox-size) - var(--check-size)) / 1.5
-    );
-    inset-inline-start: calc(
-      calc(var(--checkbox-size) - var(--check-size)) / 2
-    );
-    opacity: 0;
-    position: absolute;
-    transform: rotate(-45deg);
-  }
-}
-
-/* Focused state */
-.checkboxes__input:focus-visible + .checkboxes__label::before {
-  border-color: var(--color-on-background);
-  border-width: var(--input-border-width-focus);
-  box-shadow: 0 0 0 var(--focus-width) var(--color-focus);
-  outline: var(--focus-width) solid transparent;
-  outline-offset: var(--border-width-thin);
-}
-
-@media screen and (forced-colors: active) {
-  .checkboxes__input:focus-visible + .checkboxes__label::before {
-    outline-color: Highlight;
-  }
-}
-
-/* Selected state */
-.checkboxes__input:checked + .checkboxes__label::after {
-  opacity: 1;
-}
-
-/* Disabled state */
-.checkboxes__input:disabled,
-.checkboxes__input:disabled + .checkboxes__label {
-  cursor: default;
-}
-
-.checkboxes__input:disabled + .checkboxes__label,
-.checkboxes__input:disabled ~ .hint {
-  opacity: 0.5;
 }
 
 .checkboxes__hint {
@@ -105,14 +71,13 @@ checkboxes-field {
 /* Divider (‘or’) */
 .checkboxes__divider {
   inline-size: var(--checkbox-size);
-  margin-block-end: var(--checkbox-size);
   text-align: center;
 }
 
 /* Conditonal reveals */
 .checkboxes__conditional {
   --label-font: var(--font-fieldset-label);
-  padding-inline-start: calc(var(--checkbox-size) + var(--space-s));
+  padding-inline-start: var(--checkbox-padding-inline);
   position: relative;
 
   &::before {
