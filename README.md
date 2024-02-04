@@ -74,11 +74,11 @@ Read about the different ways [you can contribute to this project](docs/contribu
 
 Developed by [Paul Robert Lloyd](https://paulrobertlloyd.com).
 
-Thank-you to [Aron Carroll](https://aroncarroll.com) for mentoring me during the development of this project. Indiekit is a much better project for his feedback and advice.
+Thank-you to [Aron Carroll](https://aroncarroll.com) for mentoring me during the early development of this project. Indiekit is a better project for his feedback and advice.
 
 ## Similar projects
 
-Indiekit is inspired by similar projects made by members of the [IndieWeb community](https://indieweb.org), all of which you are encouraged to try:
+Indiekit is inspired by similar projects made by members of the [IndieWeb community](https://indieweb.org):
 
 - [Mastr Cntrl](https://github.com/vipickering/mastr-cntrl) by [Vincent Pickering](https://vincentp.me)
 - [Micropub endpoint](https://github.com/muan/micropub-endpoint) by [Mu-An Chiou](https://muan.co)
