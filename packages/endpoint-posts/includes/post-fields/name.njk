@@ -2,6 +2,6 @@
   name: "name",
   value: fieldData("name").value,
   label: __("posts.form.name.label"),
-  optional: not requiredFields | includes("name"),
+  optional: not field.required,
   errorMessage: fieldData("name").errorMessage
 }) }}

@@ -17,8 +17,9 @@ describe("indiekit/lib/post-types", () => {
     assert.equal(result.name, "Article");
     assert.equal(result.type, "article");
     assert.equal(result.h, "entry");
-    assert.equal(result.fields.length, 8);
-    assert.equal(result.requiredFields.length, 3);
+    assert.equal(Object.entries(result.fields).length, 8);
+    assert.equal(result.properties.length, 8);
+    assert.equal(result["required-properties"].length, 3);
     assert.deepEqual(result.post, {
       path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
       url: "{yyyy}/{MM}/{dd}/{slug}",

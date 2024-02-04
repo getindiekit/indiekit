@@ -41,8 +41,8 @@ Each post type can take the following values:
 | `name` | `string` | The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use this value in their publishing interfaces. |
 | `h` | `string` | Microformat vocabulary to use. _Optional_, defaults to `"entry"`. |
 | `discovery` | `string` | Property to use for [post type discovery](https://www.w3.org/TR/post-type-discovery/). _Optional_. |
-| `fields` | `Array[string]` | Which input fields to display in Indiekit’s publishing interface. Other Micropub clients may use these values in their publishing interfaces. |
-| `requiredFields` | `Array[string]` | Which input fields are required. Other Micropub clients may use these values in their publishing interfaces. |
+| `fields` | `Array[object]` | Which input fields to display in Indiekit’s publishing interface. Micropub clients may use these values in their publishing interfaces. |
+| `fields[].required` | `boolean` | Input field is required. Micropub clients may use this value in their publishing interfaces. |
 | `post.path` | `string` | Where posts should be saved in your content store. _Required_. |
 | `post.url` | `string` | Permalink (the URL path) for posts on your website. _Required_. |
 | `media.path` | `string` | Where media files should be saved in your content store. _Required_ |

@@ -2,6 +2,6 @@
   name: "content",
   value: properties.content.text or fieldData("content").value,
   label: __("posts.form.content.label"),
-  optional: not requiredFields | includes("content"),
+  optional: not field.required,
   errorMessage: fieldData("content").errorMessage
 }) }}

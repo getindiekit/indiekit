@@ -13,8 +13,8 @@
     value: postType
   }) | indent(2) }}
 
-{% for field in fields %}
-  {% include "post-fields/" + field + ".njk" ignore missing %}
+{% for name, field in fields %}
+  {% include "post-fields/" + name + ".njk" ignore missing %}
 {% endfor %}
 
   {{ checkboxes({
@@ -75,7 +75,7 @@
         label: __("posts.status.unlisted"),
         value: "unlisted"
       }]
-    }) | indent(4) if fields | includes("visibility") }}
+    }) | indent(4) if fields.visibility }}
 
     {{ input({
       classes: "input--width-25",

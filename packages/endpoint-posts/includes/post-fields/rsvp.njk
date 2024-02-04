@@ -5,7 +5,7 @@
   fieldset: {
     legend: __("posts.form.rsvp.label")
   },
-  optional: not requiredFields | includes("rsvp"),
+  optional: not field.required,
   items: [{
     label: __("posts.form.rsvp.yes"),
     value: "yes"
