@@ -40,6 +40,7 @@ Each post type can take the following values:
 | `type` | `string` | The IndieWeb [post type](https://indieweb.org/Category:PostType). _Required_. |
 | `name` | `string` | The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use this value in their publishing interfaces. |
 | `h` | `string` | Microformat vocabulary to use. _Optional_, defaults to `"entry"`. |
+| `discovery` | `string` | Property to use for [post type discovery](https://www.w3.org/TR/post-type-discovery/). _Optional_. |
 | `fields` | `Array[string]` | Which input fields to display in Indiekit’s publishing interface. Other Micropub clients may use these values in their publishing interfaces. |
 | `requiredFields` | `Array[string]` | Which input fields are required. Other Micropub clients may use these values in their publishing interfaces. |
 | `post.path` | `string` | Where posts should be saved in your content store. _Required_. |
