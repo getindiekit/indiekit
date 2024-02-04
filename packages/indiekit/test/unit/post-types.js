@@ -19,7 +19,6 @@ describe("indiekit/lib/post-types", () => {
     assert.equal(result.h, "entry");
     assert.equal(result.fields.length, 8);
     assert.equal(result.requiredFields.length, 3);
-    assert.ok(result.validationSchema);
     assert.deepEqual(result.post, {
       path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
       url: "{yyyy}/{MM}/{dd}/{slug}",

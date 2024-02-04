@@ -32,6 +32,7 @@ export const defaultConfig = {
     themeColorScheme: "automatic",
     timeZone: "UTC",
     ttl: 604_800, // 7 days
+    validationSchemas,
     version: package_.version,
   },
   plugins: [
@@ -64,13 +65,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["content", "name", "published"],
-        validationSchema: [
-          {
-            content: validationSchemas.content,
-            geo: validationSchemas.geo,
-            name: validationSchemas.name,
-          },
-        ],
       },
       note: {
         name: "Note",
@@ -84,12 +78,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["content", "published"],
-        validationSchema: [
-          {
-            content: validationSchemas.content,
-            geo: validationSchemas.geo,
-          },
-        ],
       },
       photo: {
         name: "Photo",
@@ -104,13 +92,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["photo", "published", "mp-photo-alt"],
-        validationSchema: [
-          {
-            geo: validationSchemas.geo,
-            "photo.*.alt": validationSchemas["photo.*.alt"],
-            "photo.*.url": validationSchemas["photo.*.url"],
-          },
-        ],
       },
       video: {
         name: "Video",
@@ -125,12 +106,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["video", "published"],
-        validationSchema: [
-          {
-            geo: validationSchemas.geo,
-            "video.*": validationSchemas["video.*"],
-          },
-        ],
       },
       audio: {
         name: "Audio",
@@ -146,12 +121,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["audio", "published"],
-        validationSchema: [
-          {
-            "audio.*": validationSchemas["audio.*"],
-            geo: validationSchemas.geo,
-          },
-        ],
       },
       bookmark: {
         name: "Bookmark",
@@ -167,11 +136,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["bookmark-of", "published"],
-        validationSchema: [
-          {
-            "bookmark-of": validationSchemas["bookmark-of"],
-          },
-        ],
       },
       event: {
         name: "Event",
@@ -189,12 +153,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["name", "start", "published"],
-        validationSchema: [
-          {
-            name: validationSchemas.name,
-            start: validationSchemas.start,
-          },
-        ],
       },
       rsvp: {
         name: "RSVP",
@@ -209,12 +167,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["rsvp", "in-reply-to", "published"],
-        validationSchema: [
-          {
-            "in-reply-to": validationSchemas["in-reply-to"],
-            rsvp: validationSchemas.rsvp,
-          },
-        ],
       },
       reply: {
         name: "Reply",
@@ -228,12 +180,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["content", "in-reply-to", "published"],
-        validationSchema: [
-          {
-            content: validationSchemas.content,
-            "in-reply-to": validationSchemas["in-reply-to"],
-          },
-        ],
       },
       repost: {
         name: "Repost",
@@ -247,11 +193,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["repost-of", "published"],
-        validationSchema: [
-          {
-            "repost-of": validationSchemas["repost-of"],
-          },
-        ],
       },
       like: {
         name: "Like",
@@ -265,11 +206,6 @@ export const defaultConfig = {
           "visibility",
         ],
         requiredFields: ["like-of", "published"],
-        validationSchema: [
-          {
-            "like-of": validationSchemas["like-of"],
-          },
-        ],
       },
     },
     preset: undefined,

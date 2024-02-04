@@ -41,7 +41,6 @@ Each post type can take the following values:
 | `name` | `string` | The name you use for this post type on your own site. You needn’t specify this value, but some Micropub clients use this value in their publishing interfaces. |
 | `fields` | `Array[string]` | Which input fields to display in Indiekit’s publishing interface. Other Micropub clients may use these values in their publishing interfaces. |
 | `requiredFields` | `Array[string]` | Which input fields are required. Other Micropub clients may use these values in their publishing interfaces. |
-| `validationSchema` | `Array[object]` | [Validation schema for express-validator](https://express-validator.github.io/docs/guides/schema-validation). Used to validate input fields in Indiekit’s own publishing interface. |
 | `post.path` | `string` | Where posts should be saved in your content store. _Required_. |
 | `post.url` | `string` | Permalink (the URL path) for posts on your website. _Required_. |
 | `media.path` | `string` | Where media files should be saved in your content store. _Required_ |
