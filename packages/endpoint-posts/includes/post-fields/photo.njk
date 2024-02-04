@@ -30,7 +30,7 @@
 <ol class="add-another__list" role="list">
   {% for key, value in fieldData("photo").value %}
   <li class="add-another__list-item">
-    {{ photoFieldset(key) }}
+    {{ photoFieldset(key or loop.index0) }}
   </li>
   {% else %}
   <li class="add-another__list-item">
