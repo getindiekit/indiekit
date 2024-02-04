@@ -33,7 +33,6 @@ const config = {
       jam: {
         name: "Jam",
         discovery: "jam-of",
-        h: "entry",
         fields: ["jam-of", "content", "post-status", "published"],
         requiredFields: ["jam-of", "published"],
         post: {

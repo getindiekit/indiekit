@@ -53,7 +53,6 @@ export const defaultConfig = {
     postTypes: {
       article: {
         name: "Article",
-        h: "entry",
         fields: [
           "name",
           "content",
@@ -68,7 +67,6 @@ export const defaultConfig = {
       },
       note: {
         name: "Note",
-        h: "entry",
         fields: [
           "content",
           "category",
@@ -81,7 +79,6 @@ export const defaultConfig = {
       },
       photo: {
         name: "Photo",
-        h: "entry",
         fields: [
           "photo",
           "content",
@@ -95,7 +92,6 @@ export const defaultConfig = {
       },
       video: {
         name: "Video",
-        h: "entry",
         fields: [
           "video",
           "content",
@@ -110,7 +106,6 @@ export const defaultConfig = {
       audio: {
         name: "Audio",
         discovery: "audio",
-        h: "entry",
         fields: [
           "audio",
           "content",
@@ -125,7 +120,6 @@ export const defaultConfig = {
       bookmark: {
         name: "Bookmark",
         discovery: "bookmark-of",
-        h: "entry",
         fields: [
           "bookmark-of",
           "name",
@@ -156,7 +150,6 @@ export const defaultConfig = {
       },
       rsvp: {
         name: "RSVP",
-        h: "entry",
         fields: [
           "in-reply-to",
           "rsvp",
@@ -170,7 +163,6 @@ export const defaultConfig = {
       },
       reply: {
         name: "Reply",
-        h: "entry",
         fields: [
           "in-reply-to",
           "content",
@@ -183,7 +175,6 @@ export const defaultConfig = {
       },
       repost: {
         name: "Repost",
-        h: "entry",
         fields: [
           "repost-of",
           "content",
@@ -196,7 +187,6 @@ export const defaultConfig = {
       },
       like: {
         name: "Like",
-        h: "entry",
         fields: [
           "like-of",
           "category",

@@ -14,9 +14,10 @@ export const getPostTypes = ({ postTypes, preset }) => {
 
   // Add fallback values to post type if not provided
   for (const type of Object.keys(postTypes)) {
-    const { fields, name, requiredFields } = postTypes[type];
+    const { fields, h, name, requiredFields } = postTypes[type];
     postTypes[type].type = type;
     postTypes[type].name = name || _.upperFirst(type);
+    postTypes[type].h = h || "entry";
     postTypes[type].fields = fields || [];
     postTypes[type].requiredFields = requiredFields || [];
   }
