@@ -8,7 +8,7 @@
       type: "datetime-local",
       value: fieldData("start").value,
       label: __("posts.form.event.start"),
-      optional: not requiredFields | includes("start"),
+      optional: not field.required,
       errorMessage: fieldData("start").errorMessage
     }) | indent(2) }}
 
@@ -17,7 +17,7 @@
       type: "datetime-local",
       value: fieldData("end").value,
       label: __("posts.form.event.end"),
-      optional: not requiredFields | includes("end"),
+      optional: not field.required,
       errorMessage: fieldData("end").errorMessage
     }) | indent(2) }}
 

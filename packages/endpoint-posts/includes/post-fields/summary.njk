@@ -2,6 +2,6 @@
   name: "summary",
   value: properties.summary,
   label: __("posts.form.summary.label"),
-  optional: not requiredFields | includes("summary"),
+  optional: not field.required,
   rows: 1
 }) }}

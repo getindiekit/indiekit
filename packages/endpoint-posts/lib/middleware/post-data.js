@@ -18,7 +18,7 @@ export const postData = {
     const properties = request.body;
 
     // Get post type config
-    const { name, fields, h, requiredFields } = publication.postTypes[postType];
+    const { name, fields, h } = publication.postTypes[postType];
 
     // Only select ‘checked’ syndication targets on first view
     const checkTargets = Object.entries(request.body).length === 0;
@@ -36,7 +36,6 @@ export const postData = {
       postType,
       properties,
       scope,
-      requiredFields,
       showAdvancedOptions,
       syndicationTargetItems: getSyndicateToItems(publication, checkTargets),
       type: h,
@@ -67,8 +66,7 @@ export const postData = {
       const postType = properties["post-type"];
 
       // Get post type config
-      const { name, fields, h, requiredFields } =
-        publication.postTypes[postType];
+      const { name, fields, h } = publication.postTypes[postType];
 
       response.locals = {
         accessToken: access_token,
@@ -84,7 +82,6 @@ export const postData = {
         postStatus: properties["post-status"],
         postType,
         properties,
-        requiredFields,
         scope,
         showAdvancedOptions: true,
         syndicationTargetItems: getSyndicateToItems(publication),

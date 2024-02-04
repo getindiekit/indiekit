@@ -1,7 +1,7 @@
 {% call fieldset({
   classes: "fieldset--group",
   legend: __("posts.form.location.label"),
-  optional: not requiredFields | includes("location")
+  optional: not field.required
 }) %}
   {{ input({
     name: "location[name]",

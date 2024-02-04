@@ -3,7 +3,7 @@
   type: "url",
   value: fieldData("bookmark-of").value,
   label: __("posts.form.bookmark-of.label"),
-  optional: not requiredFields | includes("bookmark-of"),
+  optional: not field.required,
   attributes: {
     placeholder: "https://"
   },

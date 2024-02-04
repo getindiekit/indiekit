@@ -27,14 +27,20 @@ const config = {
     postTypes: {
       like: {
         name: "Favourite",
-        fields: ["like-of", "published"],
-        requiredFields: ["like-of", "published"],
+        fields: {
+          "like-of": { required: true },
+          published: { required: true },
+        },
       },
       jam: {
         name: "Jam",
         discovery: "jam-of",
-        fields: ["jam-of", "content", "post-status", "published"],
-        requiredFields: ["jam-of", "published"],
+        fields: {
+          "jam-of": { required: true },
+          content: {},
+          "post-status": {},
+          published: { required: true },
+        },
         post: {
           path: "_jams/{yyyy}-{MM}-{dd}-{slug}.md",
           url: "jams/{yyyy}/{MM}/{dd}/{slug}",

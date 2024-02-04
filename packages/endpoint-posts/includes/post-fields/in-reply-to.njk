@@ -3,7 +3,7 @@
   type: "url",
   value: fieldData("in-reply-to").value,
   label: __("posts.form.in-reply-to.label"),
-  optional: not requiredFields | includes("in-reply-to"),
+  optional: not field.required,
   attributes: {
     placeholder: "https://"
   },
