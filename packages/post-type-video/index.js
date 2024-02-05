@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Video",
   fields: {
@@ -22,6 +24,17 @@ export default class PhotoPostType {
       name: this.options.name,
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "video.*": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.media.empty`, "/movies/video.mp4"),
+        exists: { if: (value, { req }) => isRequired(req, "video") },
+        isURL: true,
+      },
     };
   }
 

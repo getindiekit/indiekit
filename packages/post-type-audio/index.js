@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Audio",
   fields: {
@@ -23,6 +25,17 @@ export default class AudioPostType {
       discovery: "audio",
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "audio.*": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.media.empty`, "/music/audio.mp3"),
+        exists: { if: (value, { req }) => isRequired(req, "audio") },
+        isURL: true,
+      },
     };
   }
 

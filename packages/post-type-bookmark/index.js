@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Bookmark",
   fields: {
@@ -23,6 +25,17 @@ export default class BookmarkPostType {
       discovery: "bookmark-of",
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "bookmark-of": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.url.empty`, "https://example.org"),
+        exists: { if: (value, { req }) => isRequired(req, "bookmark-of") },
+        isURL: true,
+      },
     };
   }
 

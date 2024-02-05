@@ -1,3 +1,4 @@
+import { ISO_6709_RE, isRequired } from "@indiekit/util";
 import express from "express";
 import { deleteController } from "./lib/controllers/delete.js";
 import { formController } from "./lib/controllers/form.js";
@@ -46,8 +47,31 @@ export default class PostsEndpoint {
     return router;
   }
 
+  get validationSchemas() {
+    return {
+      content: {
+        errorMessage: (value, { req }) => req.__("posts.error.content.empty"),
+        exists: { if: (value, { req }) => isRequired(req, "content") },
+        notEmpty: true,
+      },
+      geo: {
+        errorMessage: (value, { req }) => req.__(`posts.error.geo.invalid`),
+        exists: { if: (value, { req }) => req.body?.geo },
+        custom: {
+          options: (value) => value.match(ISO_6709_RE),
+        },
+      },
+      name: {
+        errorMessage: (value, { req }) => req.__("posts.error.name.empty"),
+        exists: { if: (value, { req }) => isRequired(req, "name") },
+        notEmpty: true,
+      },
+    };
+  }
+
   init(Indiekit) {
     Indiekit.addEndpoint(this);
+    Indiekit.addPostType(false, this);
     Indiekit.config.application.postsEndpoint = this.mountPath;
   }
 }

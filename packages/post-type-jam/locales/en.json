@@ -1,8 +1,21 @@
 {
   "posts": {
+    "error": {
+      "jam": {
+        "author": {
+          "empty": "Enter an artist"
+        },
+        "name": {
+          "empty": "Enter a song title"
+        }
+      }
+    },
     "form": {
       "jam-of": {
-        "label": "Jam of"
+        "label": "Jam of",
+        "name": "Song title",
+        "author": "Artist",
+        "url": "URL"
       }
     }
   }

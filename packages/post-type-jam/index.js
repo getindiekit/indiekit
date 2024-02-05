@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Jam",
   fields: {
@@ -20,6 +22,31 @@ export default class JamPostType {
       h: "entry",
       discovery: "jam-of",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "jam-of.url": {
+        errorMessage: (value, { req }) =>
+          req.__(
+            `posts.error.url.empty`,
+            "https://www.youtube.com/watch?v=g5nzLQ63c9E",
+          ),
+        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+        isURL: true,
+      },
+      "jam-of.name": {
+        errorMessage: (value, { req }) => req.__(`posts.error.jam.name.empty`),
+        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+        notEmpty: true,
+      },
+      "jam-of.author": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.jam.author.empty`),
+        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+        notEmpty: true,
+      },
     };
   }
 
