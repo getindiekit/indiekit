@@ -8,6 +8,7 @@ describe("preset-jekyll", async () => {
   const indiekit = await Indiekit.initialize({
     config: {
       publication: {
+        me: "https://website.example",
         postTypes: {
           puppy: {
             name: "Puppy posts",
@@ -16,8 +17,9 @@ describe("preset-jekyll", async () => {
       },
     },
   });
+  const bootstrappedConfig = await indiekit.bootstrap();
 
-  jekyll.init(indiekit);
+  jekyll.init(bootstrappedConfig);
 
   it("Initiates plug-in", async () => {
     assert.equal(indiekit.publication.preset.info.name, "Jekyll");
