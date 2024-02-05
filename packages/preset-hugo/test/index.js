@@ -8,6 +8,7 @@ describe("preset-hugo", async () => {
   const indiekit = await Indiekit.initialize({
     config: {
       publication: {
+        me: "https://website.example",
         postTypes: {
           puppy: {
             name: "Puppy posts",
@@ -16,8 +17,9 @@ describe("preset-hugo", async () => {
       },
     },
   });
+  const bootstrappedConfig = await indiekit.bootstrap();
 
-  hugo.init(indiekit);
+  hugo.init(bootstrappedConfig);
 
   it("Initiates plug-in", async () => {
     assert.equal(indiekit.publication.preset.info.name, "Hugo");
