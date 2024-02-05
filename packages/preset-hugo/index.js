@@ -47,8 +47,8 @@ export default class HugoPreset {
   }
 
   init(Indiekit) {
-    const { publication } = Indiekit.config;
-    this.postTypes = getPostTypes(publication.postTypes);
+    const { application } = Indiekit.config;
+    this.postTypes = getPostTypes(application.postTypes);
 
     Indiekit.addPreset(this);
   }
