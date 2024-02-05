@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Event",
   fields: {
@@ -25,6 +27,16 @@ export default class EventPostType {
       name: this.options.name,
       h: "event",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      start: {
+        errorMessage: (value, { req }) => req.__("posts.error.start.empty"),
+        exists: { if: (value, { req }) => isRequired(req, "start") },
+        notEmpty: true,
+      },
     };
   }
 

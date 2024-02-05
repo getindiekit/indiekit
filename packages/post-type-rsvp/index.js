@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "RSVP",
   fields: {
@@ -22,6 +24,16 @@ export default class RsvpPostType {
       name: this.options.name,
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      rsvp: {
+        errorMessage: (value, { req }) => req.__("posts.error.rsvp.empty"),
+        exists: { if: (value, { req }) => isRequired(req, "rsvp") },
+        notEmpty: true,
+      },
     };
   }
 

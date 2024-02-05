@@ -42,6 +42,13 @@ export const Indiekit = class {
         ...postType.config,
       };
     }
+
+    if (postType.validationSchemas) {
+      this.application.validationSchemas = {
+        ...this.application.validationSchemas,
+        ...postType.validationSchemas,
+      };
+    }
   }
 
   addPreset(preset) {

@@ -12,4 +12,4 @@ export { sanitise } from "./lib/object.js";
 export { ISO_6709_RE } from "./lib/regex.js";
 export { randomString, slugify, supplant } from "./lib/string.js";
 export { getCanonicalUrl, isSameOrigin } from "./lib/url.js";
-export { validationSchemas } from "./lib/validation-schema.js";
+export { isRequired } from "./lib/validation-schema.js";

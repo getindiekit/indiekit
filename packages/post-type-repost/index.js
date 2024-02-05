@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Repost",
   fields: {
@@ -21,6 +23,17 @@ export default class RepostPostType {
       name: this.options.name,
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "repost-of": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.url.empty`, "https://example.org"),
+        exists: { if: (value, { req }) => isRequired(req, "repost-of") },
+        isURL: true,
+      },
     };
   }
 

@@ -5,7 +5,7 @@ export const validate = {
     const { application } = request.app.locals;
     const validations = [];
 
-    for (const schema of application.validationSchemas) {
+    for (const schema of [application.validationSchemas]) {
       validations.push(checkSchema(schema));
     }
 

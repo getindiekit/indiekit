@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Reply",
   fields: {
@@ -21,6 +23,17 @@ export default class ReplyPostType {
       name: this.options.name,
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "in-reply-to": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.url.empty`, "https://example.org"),
+        exists: { if: (value, { req }) => isRequired(req, "in-reply-to") },
+        isURL: true,
+      },
     };
   }
 

@@ -1,3 +1,5 @@
+import { isRequired } from "@indiekit/util";
+
 const defaults = {
   name: "Like",
   fields: {
@@ -21,6 +23,17 @@ export default class LikePostType {
       name: this.options.name,
       h: "entry",
       fields: this.options.fields,
+    };
+  }
+
+  get validationSchemas() {
+    return {
+      "like-of": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.url.empty`, "https://example.org"),
+        exists: { if: (value, { req }) => isRequired(req, "like-of") },
+        isURL: true,
+      },
     };
   }
 

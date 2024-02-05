@@ -23,7 +23,6 @@ export const testConfig = async (options) => {
   const postTypes = {
     note: {
       name: "Custom note post type",
-      fields: ["content", "geo"],
       post: {
         path: "src/content/notes/{slug}.md",
         url: "notes/{slug}/",
@@ -31,7 +30,6 @@ export const testConfig = async (options) => {
     },
     photo: {
       name: "Custom photo post type",
-      fields: ["photo"],
       post: {
         path: "src/content/photos/{slug}.md",
         url: "photos/{slug}/",

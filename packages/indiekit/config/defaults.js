@@ -1,6 +1,5 @@
 import { createRequire } from "node:module";
 import process from "node:process";
-import { validationSchemas } from "@indiekit/util";
 import cookieSession from "cookie-session";
 // eslint-ignore import/order
 const require = createRequire(import.meta.url);
@@ -33,7 +32,7 @@ export const defaultConfig = {
     themeColorScheme: "automatic",
     timeZone: "UTC",
     ttl: 604_800, // 7 days
-    validationSchemas,
+    validationSchemas: {},
     version: package_.version,
   },
   plugins: [
