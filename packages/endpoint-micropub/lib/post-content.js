@@ -1,4 +1,7 @@
+import makeDebug from "debug";
 import { getPostTemplateProperties } from "./utils.js";
+
+const debug = makeDebug("indiekit:endpoint-micropub:post-content");
 
 export const postContent = {
   /**
@@ -8,6 +11,8 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async create(publication, postData) {
+    debug(`create %O`, { postData });
+
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
     const metaData = {
@@ -40,6 +45,8 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async update(publication, postData, url) {
+    debug(`update ${url} %O`, { postData });
+
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { _originalPath, path, properties } = postData;
     const metaData = {
@@ -81,6 +88,8 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async delete(publication, postData) {
+    debug(`delete %O`, { postData });
+
     const { store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
     const metaData = {
@@ -109,6 +118,8 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async undelete(publication, postData) {
+    debug(`undelete %O`, { postData });
+
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
     const metaData = {

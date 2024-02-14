@@ -1,10 +1,13 @@
 import util from "node:util";
+import makeDebug from "debug";
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, getDate } from "@indiekit/util";
 import { getPostType } from "./post-type-discovery.js";
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
 import * as updateMf2 from "./update.js";
 import { renderPath } from "./utils.js";
+
+const debug = makeDebug("indiekit:endpoint-micropub:post-data");
 
 export const postData = {
   /**
@@ -16,6 +19,8 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async create(application, publication, properties, draftMode = false) {
+    debug(`create %O`, { draftMode, properties });
+
     const { hasDatabase, posts, timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
 
@@ -70,6 +75,8 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async read(application, url) {
+    debug(`read ${url}`);
+
     const { posts } = application;
     const query = { "properties.url": url };
 
@@ -92,6 +99,8 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async update(application, publication, url, operation) {
+    debug(`update ${url} %O`, { operation });
+
     const { posts, timeZone } = application;
     const { me, postTypes } = publication;
 
@@ -168,6 +177,8 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async delete(application, publication, url) {
+    debug(`delete ${url}`);
+
     const { posts, timeZone } = application;
     const { postTypes } = publication;
 
@@ -217,6 +228,8 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async undelete(application, publication, url, draftMode) {
+    debug(`undelete ${url} %O`, { draftMode });
+
     const { posts } = application;
     const { postTypes } = publication;
 
