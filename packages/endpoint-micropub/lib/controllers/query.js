@@ -63,8 +63,23 @@ export const queryController = async (request, response, next) => {
             cursor = await getCursor(application.posts, after, before, limit);
           }
 
+          const items = [];
+          for (let item of cursor.items) {
+            if (item.properties) {
+              items.push(jf2ToMf2(item));
+            } else {
+              /**
+               * @todo Consider better way to handle item with no properties
+               * - notify user and remove item from database?
+               * - notify user and don’t delete item from database?
+               * - fail silently?
+               */
+              console.warn(`Item ignored because it has no properties`, item);
+            }
+          }
+
           response.json({
-            items: cursor.items.map((postData) => jf2ToMf2(postData)),
+            items,
             paging: {
               ...(cursor.hasNext && { after: cursor.lastItem }),
               ...(cursor.hasPrev && { before: cursor.firstItem }),
