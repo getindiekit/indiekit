@@ -63,8 +63,21 @@ export const queryController = async (request, response, next) => {
             cursor = await getCursor(application.posts, after, before, limit);
           }
 
+          const items = [];
+          for (let item of cursor.items) {
+            if (item.properties) {
+              items.push(jf2ToMf2(item));
+            } else {
+              // TODO: think about a proper way to handle this scenario:
+              // - remove the item from MongoDB? Silently? After having notified the user?
+              // - just notify the user and don't delete the item from MongoDB?
+              // - do nothing?
+              console.warn(`item discarded because it has no properties`, item);
+            }
+          }
+
           response.json({
-            items: cursor.items.map((postData) => jf2ToMf2(postData)),
+            items,
             paging: {
               ...(cursor.hasNext && { after: cursor.lastItem }),
               ...(cursor.hasPrev && { before: cursor.firstItem }),
