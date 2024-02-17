@@ -4,7 +4,6 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { getMongodbClient } from "../../lib/mongodb.js";
 
 const mongod = await MongoMemoryServer.create();
-const mongodbUrl = mongod.getUri();
 
 describe("indiekit/lib/mongodb", () => {
   after(() => {
@@ -12,20 +11,32 @@ describe("indiekit/lib/mongodb", () => {
   });
 
   it("Connects to MongoDB database", async () => {
+    const mongodbUrl = mongod.getUri();
     const result = await getMongodbClient(mongodbUrl);
 
-    assert.equal(result.s.namespace.db, "admin");
+    assert.equal(result.client.s.url, mongodbUrl);
+
+    result.client.close();
   });
 
-  it("Returns false if can’t connect to a MongoDB database", async () => {
-    mock.method(console, "warn", () => {});
+  it("Returns error if can’t create a MongoDB client", async () => {
+    mock.method(console, "error", () => {});
 
     await getMongodbClient("https://foo.bar");
-    const result = console.warn.mock.calls[0].arguments[0];
+    const result = console.error.mock.calls[0].arguments[0];
 
     assert.equal(
       result,
       `Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"`,
     );
+  });
+
+  it("Returns error if can’t connect to MongoDB client", async () => {
+    mock.method(console, "error", () => {});
+
+    await getMongodbClient("mongodb://foo:bar@localhost");
+    const result = console.error.mock.calls[0].arguments[0];
+
+    assert.equal(result, `Authentication failed.`);
   });
 });

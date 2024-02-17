@@ -20,7 +20,6 @@ export const Indiekit = class {
     this.application = this.config.application;
     this.plugins = this.config.plugins;
     this.publication = this.config.publication;
-    this.client = getMongodbClient(this.application.mongodbUrl);
   }
 
   static async initialize(options = {}) {
@@ -60,14 +59,23 @@ export const Indiekit = class {
       process.exit();
     }
 
-    // Setup database
-    if (this.client) {
-      const database = this.client.db("indiekit");
+    // Connect to database client
+    const mongodbClient = await getMongodbClient(this.application.mongodbUrl);
+
+    if (mongodbClient?.client) {
+      this.client = mongodbClient.client;
+
+      const { databaseName } = this.client.db();
+      const database = this.client.db(databaseName);
 
       this.application.hasDatabase = true;
       this.application.cache = new Keyv(this.application.mongodbUrl);
       this.application.posts = database.collection("posts");
       this.application.media = database.collection("media");
+    }
+
+    if (mongodbClient?.error) {
+      this.application._mongodbClientError = mongodbClient.error;
     }
 
     // Update application configuration
@@ -85,7 +93,11 @@ export const Indiekit = class {
   stop(server, name) {
     server.close(() => {
       console.info(`Stopping ${name}`);
-      this.client.close();
+
+      if (this.client) {
+        this.client.close();
+      }
+
       process.exit(0);
     });
   }
