@@ -3,18 +3,35 @@ import { MongoClient } from "mongodb";
 /**
  * Connect to MongoDB client
  * @param {string} mongodbUrl - MongoDB URL
- * @returns {import('mongodb').MongoClient|undefined} MongoDB client
+ * @returns {Promise<object>} MongoDB client
  */
-export const getMongodbClient = (mongodbUrl) => {
-  if (mongodbUrl) {
-    try {
-      const client = new MongoClient(mongodbUrl, {
-        connectTimeoutMS: 5000,
-      });
+export const getMongodbClient = async (mongodbUrl) => {
+  let client;
 
-      return client;
-    } catch (error) {
-      console.warn(error.message);
-    }
+  if (!mongodbUrl) {
+    return;
   }
+
+  // Create client
+  try {
+    client = new MongoClient(mongodbUrl, {
+      connectTimeoutMS: 5000,
+    });
+  } catch (error) {
+    console.error(error.message);
+
+    return { error };
+  }
+
+  // Connect to client
+  try {
+    await client.connect();
+  } catch (error) {
+    console.error(error.message);
+
+    await client.close();
+    return { error };
+  }
+
+  return { client };
 };

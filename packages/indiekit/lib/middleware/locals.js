@@ -15,6 +15,11 @@ export const locals = (indiekitConfig) =>
       // Application
       request.app.locals.application = application;
 
+      // Display any MongoDB client connection errors
+      if (application._mongodbClientError) {
+        request.app.locals.error = application._mongodbClientError;
+      }
+
       // Application locale
       application.localeUsed = response.locals.getLocale();
 
