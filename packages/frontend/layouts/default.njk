@@ -69,7 +69,7 @@
 <main class="{{ mainClasses }}" id="main">
 {{- notificationBanner({
   type: ("error" if error) or ("success" if success),
-  text: (error.message if error) or (success if success) or notice,
+  text: (error if error) or (success if success) or notice,
   details: error.stack if error
 }) if error or success or notice }}
 {{- backLink({
