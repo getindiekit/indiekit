@@ -22,8 +22,8 @@ describe("util/lib/collection", async () => {
     const result = await getCursor(items, undefined, undefined, 3);
     // baz, bar, foo
     assert.equal(result.items.length, 3);
-    assert.equal(result.firstItem instanceof ObjectId, true);
-    assert.equal(result.lastItem instanceof ObjectId, true);
+    assert.equal(ObjectId.isValid(result.firstItem), true);
+    assert.equal(ObjectId.isValid(result.lastItem), true);
     assert.equal(result.hasNext, false);
     assert.equal(result.hasPrev, false);
   });
