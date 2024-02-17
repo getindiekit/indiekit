@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import process from "node:process";
 import Keyv from "keyv";
-import KeyvMongoDB from "keyv-mongodb";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
@@ -66,11 +65,7 @@ export const Indiekit = class {
       const database = this.client.db("indiekit");
 
       this.application.hasDatabase = true;
-      this.application.cache = new Keyv({
-        collectionName: "cache",
-        store: new KeyvMongoDB({ db: database }),
-        ttl: this.application.ttl,
-      });
+      this.application.cache = new Keyv(this.application.mongodbUrl);
       this.application.posts = database.collection("posts");
       this.application.media = database.collection("media");
     }
@@ -80,10 +75,7 @@ export const Indiekit = class {
     this.application.localeCatalog = await getLocaleCatalog(this.application);
 
     // Update publication configuration
-    this.publication.categories = await getCategories(
-      this.application.cache,
-      this.publication,
-    );
+    this.publication.categories = await getCategories(this);
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this.publication);
 

@@ -2,10 +2,11 @@
  * Get cached response value
  * @typedef {import("keyv")} Keyv
  * @param {Keyv} cache - Application cache (returns `false` if no database)
+ * @param {number} ttl - Time to live
  * @param {string} url - URL to fetch and cache (used as key)
  * @returns {Promise<object>} Cached response value
  */
-export const getCachedResponse = async (cache, url) => {
+export const getCachedResponse = async (cache, ttl, url) => {
   let cachedResponse = cache && (await cache.get(url));
 
   if (!cachedResponse) {
@@ -18,7 +19,7 @@ export const getCachedResponse = async (cache, url) => {
     cachedResponse = await response.json();
 
     if (cache) {
-      await cache.set(url, cachedResponse);
+      await cache.set(url, cachedResponse, ttl);
     }
   }
 
