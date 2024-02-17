@@ -7,5 +7,5 @@ export const testDatabase = async () => {
   const client = await getMongodbClient(mongoUri);
   const database = await client.db();
 
-  return { client, database, mongoServer };
+  return { client, database, mongoServer, mongoUri };
 };
