@@ -126,3 +126,18 @@ export const getTimeZoneOffset = (timeZone, date) => {
   const offset = minutes === 0 ? 0 : minutes * -1;
   return offset;
 };
+
+/**
+ * Check if a string can be parsed as a date
+ * @param {string} string - String
+ * @returns {boolean} String is a date
+ */
+export const isDate = (string) => {
+  try {
+    const date = new Date(string);
+    date.toISOString();
+    return true;
+  } catch {
+    return false;
+  }
+};
