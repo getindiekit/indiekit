@@ -1,3 +1,7 @@
+import makeDebug from "debug";
+
+const debug = makeDebug("indiekit:endpoint-media:media-content");
+
 export const mediaContent = {
   /**
    * Upload file to content store
@@ -7,6 +11,8 @@ export const mediaContent = {
    * @returns {Promise<object>} Data to use in response
    */
   async upload(publication, mediaData, file) {
+    debug(`upload %O`, { mediaData });
+
     const { store, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
     const metaData = {
@@ -36,6 +42,8 @@ export const mediaContent = {
    * @returns {Promise<object>} Response data
    */
   async delete(publication, mediaData) {
+    debug(`delete %O`, { mediaData });
+
     const { store, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
     const metaData = {

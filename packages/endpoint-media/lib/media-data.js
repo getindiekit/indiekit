@@ -1,7 +1,10 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
+import makeDebug from "debug";
 import { getFileProperties, getMediaType } from "./file.js";
 import { renderPath } from "./utils.js";
+
+const debug = makeDebug("indiekit:endpoint-media:media-data");
 
 export const mediaData = {
   /**
@@ -12,6 +15,8 @@ export const mediaData = {
    * @returns {Promise<object>} Media data
    */
   async create(application, publication, file) {
+    debug(`create %O`, { file });
+
     const { hasDatabase, media, timeZone } = application;
     const { me, postTypes } = publication;
 
@@ -69,6 +74,8 @@ export const mediaData = {
    * @returns {Promise<object>} Media data
    */
   async read(application, url) {
+    debug(`read ${url}`);
+
     const { media } = application;
     const query = { "properties.url": url };
 
@@ -87,6 +94,8 @@ export const mediaData = {
    * @returns {Promise<boolean>} Media data deleted
    */
   async delete(application, url) {
+    debug(`delete ${url}`);
+
     const { media } = application;
     const query = { "properties.url": url };
 
