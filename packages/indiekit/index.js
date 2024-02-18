@@ -65,7 +65,13 @@ export const Indiekit = class {
     if (mongodbClient?.client) {
       this.client = mongodbClient.client;
 
-      const { databaseName } = this.client.db();
+      // Get database name from connection string
+      let { databaseName } = this.client.db();
+
+      // If no database given, use ‘indiekit’ as default database, not ‘test’
+      databaseName = databaseName === "test" ? "indiekit" : databaseName;
+
+      // Set database
       const database = this.client.db(databaseName);
 
       this.application.hasDatabase = true;
