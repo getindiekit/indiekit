@@ -1,17 +1,26 @@
-import { getTimeZoneDesignator, supplant } from "@indiekit/util";
+import { getTimeZoneDesignator, isDate, supplant } from "@indiekit/util";
 import { format } from "date-fns-tz";
 import newbase60 from "newbase60";
 import { postTypeCount } from "./post-type-count.js";
 
 /**
  * Decode form-encoded query parameter
- * @param {string} string - String to decode
- * @returns {string} Decoded string
- * @example decodeQueryParameter('foo+bar') => 'foo bar'
+ * @param {*} value - Parameter value to decode
+ * @returns {*} Decoded string, else original parameter value
+ * @example decodeQueryParameter(['foo', 'bar']) => ['foo', 'bar']
+ * @example decodeQueryParameter('2024-02-14T13:24:00+0100') => '2024-02-14T13:24:00+0100'
  * @example decodeQueryParameter('https%3A%2F%2Ffoo.bar') => 'https://foo.bar'
+ * @example decodeQueryParameter('foo+bar') => 'foo bar'
  */
-export const decodeQueryParameter = (string) =>
-  decodeURIComponent(string.replaceAll("+", " "));
+export const decodeQueryParameter = (value) => {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  return isDate(value)
+    ? decodeURIComponent(value)
+    : decodeURIComponent(value.replaceAll("+", " "));
+};
 
 /**
  * Excerpt the first n words from a string
