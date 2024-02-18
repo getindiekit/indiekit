@@ -1,5 +1,9 @@
-import { getTimeZoneDesignator, supplant } from "@indiekit/util";
-import { format } from "date-fns-tz";
+import {
+  dateTokens,
+  formatDate,
+  getTimeZoneDesignator,
+  supplant,
+} from "@indiekit/util";
 import newbase60 from "newbase60";
 import { mediaTypeCount } from "./media-type-count.js";
 
@@ -26,41 +30,16 @@ export const getMediaProperties = (mediaData) => {
  * @returns {Promise<string>} Path
  */
 export const renderPath = async (path, properties, application) => {
-  let tokens = {};
   const dateObject = new Date(properties.published);
   const serverTimeZone = getTimeZoneDesignator();
-  const dateTokens = [
-    "y", // Calendar year, eg 2020
-    "yyyy", // Calendar year (zero-padded), eg 2020
-    "M", // Month number, eg 9
-    "MM", // Month number (zero-padded), eg 09
-    "MMM", // Month name (abbreviated), eg Sep
-    "MMMM", // Month name (wide), eg September
-    "w", // Week number, eg 1
-    "ww", // Week number (zero-padded), eg 01
-    "D", // Day of the year, eg 1
-    "DDD", // Day of the year (zero-padded), eg 001
-    "d", // Day of the month, eg 1
-    "dd", // Day of the month (zero-padded), eg 01
-    "h", // Hour (12-hour-cycle), eg 1
-    "hh", // Hour (12-hour-cycle, zero-padded), eg 01
-    "H", // Hour (24-hour-cycle), eg 1
-    "HH", // Hour (24-hour-cycle, zero-padded), eg 01
-    "m", // Minute, eg 1
-    "mm", // Minute (zero-padded), eg 01
-    "s", // Second, eg 1
-    "ss", // Second (zero-padded), eg 01
-    "t", // UNIX epoch seconds, eg 512969520
-    "T", // UNIX epoch milliseconds, eg 51296952000
-  ];
+  const { timeZone } = application;
+  let tokens = {};
 
   // Add date tokens
   for (const dateToken of dateTokens) {
-    tokens[dateToken] = format(dateObject, dateToken, {
-      timeZone:
-        application.timeZone === "server"
-          ? serverTimeZone
-          : application.timeZone,
+    tokens[dateToken] = formatDate(properties.published, dateToken, {
+      locale: application.locale,
+      timeZone: timeZone === "server" ? serverTimeZone : timeZone,
       // @ts-ignore (https://github.com/marnusw/date-fns-tz/issues/239)
       useAdditionalDayOfYearTokens: true,
     });
