@@ -5,6 +5,7 @@ export {
   getDate,
   getTimeZoneDesignator,
   getTimeZoneOffset,
+  isDate,
 } from "./lib/date.js";
 export { sanitise } from "./lib/object.js";
 export { ISO_6709_RE } from "./lib/regex.js";

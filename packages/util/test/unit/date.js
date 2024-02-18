@@ -7,6 +7,7 @@ import {
   getDate,
   getTimeZoneDesignator,
   getTimeZoneOffset,
+  isDate,
 } from "../../lib/date.js";
 
 const { isValid, parseISO } = dateFns;
@@ -203,5 +204,11 @@ describe("util/lib/date", () => {
     assert.equal(getTimeZoneOffset("Asia/Taipei", date), -480);
     assert.equal(getTimeZoneOffset("America/Panama", date), 300);
     assert.equal(getTimeZoneOffset("UTC", date), 0);
+  });
+
+  it("Check if a string can be parsed as a date", () => {
+    assert.equal(isDate("2024-02-14T13:24:00+0100"), true);
+    assert.equal(isDate("Wed Feb 14 2024 13:24:00 GMT+0100"), true);
+    assert.equal(isDate("valentines+day"), false);
   });
 });
