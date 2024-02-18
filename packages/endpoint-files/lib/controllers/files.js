@@ -32,6 +32,7 @@ export const filesController = async (request, response, next) => {
       files = mediaResponse.items.map((item) => {
         item.id = item.uid;
         item.icon = item["media-type"];
+        item.locale = application.locale;
         item.photo = {
           url: item.url,
         };

@@ -24,7 +24,9 @@
       {% for item in opts.badges %}
       {{ badge(item) | indent(6) if item }}
       {% endfor %}
-      <time datetime="{{ opts.published }}">{{ opts.published | date("PPp") }}</time>
+      <time datetime="{{ opts.published }}">
+        {{ opts.published | date("PPp", { locale: opts.locale }) }}
+      </time>
     </footer>
     {% endif %}
   </div>

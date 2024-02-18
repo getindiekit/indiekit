@@ -38,6 +38,7 @@ export const postsController = async (request, response, next) => {
       posts = items.map((item) => {
         item.id = item.uid;
         item.icon = item["post-type"];
+        item.locale = application.locale;
         item.photo = item.photo ? item.photo[0] : false;
         item.description = item.summary || item.content?.text;
         item.title = getPostName(publication, item);
