@@ -30,12 +30,8 @@ export const formEncodedToJf2 = async (body, requestReferences) => {
         continue;
       }
 
-      // Decode string values
-      const isStringValue = typeof body[key] === "string";
-      const value = isStringValue ? decodeQueryParameter(body[key]) : body[key];
-
-      // Adds values to JF2 object
-      jf2[key] = value;
+      // Add decoded string value to JF2 object
+      jf2[key] = decodeQueryParameter(body[key]);
     }
   }
 

@@ -16,9 +16,16 @@ describe("endpoint-media/lib/utils", () => {
   });
 
   it("Decodes form-encoded query parameter", () => {
-    const result = decodeQueryParameter("https%3A%2F%2Ffoo.bar");
-
-    assert.equal(result, "https://foo.bar");
+    assert.deepEqual(decodeQueryParameter(["foo", "bar"]), ["foo", "bar"]);
+    assert.equal(
+      decodeQueryParameter("2024-02-14T13%3A24%3A00%2B0100"),
+      "2024-02-14T13:24:00+0100",
+    );
+    assert.equal(
+      decodeQueryParameter("https%3A%2F%2Ffoo.bar"),
+      "https://foo.bar",
+    );
+    assert.equal(decodeQueryParameter("foo+bar"), "foo bar");
   });
 
   it("Excerpts the first n words from a string", () => {
