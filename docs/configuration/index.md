@@ -104,6 +104,9 @@ _Optional_, defaults to `process.env.MONGO_URL`. For example:
 }
 ```
 
+> [!TIP] Change in upcoming version <Badge type="info" text="1.0.0-beta.8" />
+> To use a specifically named database, include this in your path (the default database is `test`). For example, `mongodb://mongodb0.example.com:27017/indiekit`.
+
 <!--@include: .option-contains-secrets.md-->
 
 ### application.port `number`
