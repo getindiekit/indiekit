@@ -42,6 +42,7 @@ const sidebarPlugins = [
     items: [
       { text: "Content stores", link: "/plugins/stores" },
       { text: "Endpoints", link: "/plugins/endpoints" },
+      { text: "Post types", link: "/plugins/post-types" },
       { text: "Publication presets", link: "/plugins/presets" },
       { text: "Syndicators", link: "/plugins/syndicators" },
     ],
