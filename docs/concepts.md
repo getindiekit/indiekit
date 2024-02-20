@@ -25,7 +25,9 @@ Then add it to your configuration file:
 
 ## Endpoint
 
-An endpoint is a path on your Indiekit server that applications can send requests to or users can access certain features at. By default Indiekit provides the following endpoints:
+An endpoint is a path on your Indiekit server that applications can send requests to or users can access certain features at.
+
+By default Indiekit provides the following endpoints:
 
 | Endpoint     | Functionality                                               |
 | ------------ | ----------------------------------------------------------- |
@@ -36,6 +38,23 @@ An endpoint is a path on your Indiekit server that applications can send request
 | `/posts`     | Interface for creating and managing posts.                  |
 | `/share`     | Interface for creating bookmark posts.                      |
 | `/syndicate` | Endpoint that can be pinged to initiate post syndication.   |
+
+## Post type
+
+A post type is used to identify a type of content based on common definitions agreed by the IndieWeb community.
+
+Common post types include notes, articles, photos, replies and likes. A [full list of post types](https://indieweb.org/Category:PostType) can be found on the IndieWeb wiki.
+
+By default Indiekit supports creating the following post types:
+
+| Post type    | Functionality                                               |
+| ------------ | ----------------------------------------------------------- |
+| `article`    | Posts with more structure than a note that include a title, multiple paragraphs, and often subheadings, blockquotes and images. |
+| `bookmark`   | Posts that comprise of a URL with a title and text describing or quoting from its content. |
+| `like`       | Posts used to share likes of other people’s posts. |
+| `note`       | Posts containing short, unstructured thoughts. |
+| `photo`      | Posts whose primary content is a photograph or other image. |
+| `reply`      | posts are used to reply to other people’s posts. |
 
 ## Publication
 
