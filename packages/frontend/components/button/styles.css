@@ -57,6 +57,7 @@
 }
 
 .button--warning {
+  --button-color: var(--color-on-error);
   background-color: var(--color-error);
 
   &:not(:disabled):hover {

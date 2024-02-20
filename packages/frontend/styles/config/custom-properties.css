@@ -14,6 +14,7 @@ html {
   /* Red palette */
   --tint-red: 8 100%;
   --color-red90: hsl(var(--tint-red) 90%);
+  --color-red80: hsl(var(--tint-red) 80%);
   --color-red45: hsl(var(--tint-red) 45%);
   --color-red30: hsl(var(--tint-red) 30%);
   --color-red10: hsl(var(--tint-red) 10%);
@@ -146,6 +147,11 @@ html {
     --color-outline: var(--color-neutral50);
     --color-outline-variant: var(--color-neutral70);
     --color-primary-on-background: var(--color-primary-on-background-dark);
+
+    /* Common color assigments */
+    --color-error: var(--color-red80);
+    --color-error-variant: var(--color-red90);
+    --color-on-error: var(--color-neutral10);
   }
 }
 
@@ -159,4 +165,9 @@ html {
   --color-outline: var(--color-neutral50);
   --color-outline-variant: var(--color-neutral70);
   --color-primary-on-background: var(--color-primary-on-background-dark);
+
+  /* Common color assigments */
+  --color-error: var(--color-red80);
+  --color-error-variant: var(--color-red90);
+  --color-on-error: var(--color-neutral10);
 }
