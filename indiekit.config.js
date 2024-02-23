@@ -52,6 +52,14 @@ const config = {
       },
     },
   },
+  "@indiekit/endpoint-media": {
+    imageProcessing: {
+      resize: {
+        width: 320,
+        height: 320,
+      },
+    },
+  },
   "@indiekit/store-github": {
     user: process.env.GITHUB_USER,
     repo: process.env.GITHUB_REPO,

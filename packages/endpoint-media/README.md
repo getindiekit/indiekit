@@ -14,6 +14,12 @@ Add `@indiekit/endpoint-media` to your list of plug-ins, specifying options as r
 {
   "plugins": ["@indiekit/endpoint-media"],
   "@indiekit/endpoint-media": {
+    "imageProcessing": {
+      "resize": {
+        "width": 320,
+        "height": 320,
+      },
+    },
     "mountPath": "/medien", // de-DE
   },
 }
@@ -21,9 +27,11 @@ Add `@indiekit/endpoint-media` to your list of plug-ins, specifying options as r
 
 ## Options
 
-| Option      | Type     | Description                                                                |
-| :---------- | :------- | :------------------------------------------------------------------------- |
-| `mountPath` | `string` | Path to listen to media upload requests. _Optional_, defaults to `/media`. |
+| Option                   | Type     | Description                                                                 |
+| :----------------------- | :------- | :-------------------------------------------------------------------------- |
+| `imageProcessing`        | `object` | Image processing options. Only supports resizing for now.                   |
+| `imageProcessing.resize` | `object` | Sharp [image resizing options](https://sharp.pixelplumbing.com/api-resize). |
+| `mountPath`              | `string` | Path to listen to media upload requests. _Optional_, defaults to `/media`.  |
 
 ## Supported endpoint queries
 
