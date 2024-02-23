@@ -1,0 +1,14 @@
+{% from "../hint/macro.njk" import hint with context %}
+{% from "../textarea/macro.njk" import textarea with context %}
+{%- set id = opts.id or opts.name | slugify({ decamelize: true }) -%}
+<character-count
+  i18n-char="{{ __("characterCount.char.one") }}"
+  i18n-chars="{{ __("characterCount.char.other") }}"
+  i18n-word="{{ __("characterCount.word.one") }}"
+  i18n-words="{{ __("characterCount.word.other") }}">
+  {{- textarea(opts) }}
+  {{ hint({
+    text: "&nbsp;",
+    id: id + "-info"
+  }) | trim | indent(2) }}
+</character-count>

@@ -6,6 +6,16 @@
   "backLink": {
     "text": "返回"
   },
+  "characterCount": {
+    "char": {
+      "one": "%s字符",
+      "other": "%s字符"
+    },
+    "word": {
+      "one": "%s字",
+      "other": "%s字"
+    }
+  },
   "error": "错误",
   "errorSummary": {
     "title": "有一个问题"

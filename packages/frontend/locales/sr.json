@@ -6,6 +6,16 @@
   "backLink": {
     "text": "Nazad"
   },
+  "characterCount": {
+    "char": {
+      "one": "%s karaktera",
+      "other": "%s znakova"
+    },
+    "word": {
+      "one": "%s reč",
+      "other": "%s reči"
+    }
+  },
   "error": "Greška",
   "errorSummary": {
     "title": "Postoji problem"

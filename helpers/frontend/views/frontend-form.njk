@@ -75,6 +75,13 @@
   }
 }) }}
 
+{{ characterCount({
+  errorMessage: { text: "Character count input error" } if errors,
+  name: "character-count",
+  label: "Character count",
+  hint: "Character count hint text"
+}) }}
+
 {{ geoInput({
   errorMessage: { text: "Geo input error" } if errors,
   name: "geo-input",

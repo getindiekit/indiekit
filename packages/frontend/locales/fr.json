@@ -6,6 +6,16 @@
   "backLink": {
     "text": "Retour"
   },
+  "characterCount": {
+    "char": {
+      "one": "%s caractère",
+      "other": "%s caractères"
+    },
+    "word": {
+      "one": "%s mot",
+      "other": "%s mots"
+    }
+  },
   "error": "Erreur",
   "errorSummary": {
     "title": "Il y a un problème"

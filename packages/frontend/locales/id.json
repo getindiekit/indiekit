@@ -6,6 +6,16 @@
   "backLink": {
     "text": "Kembali"
   },
+  "characterCount": {
+    "char": {
+      "one": "%s huruf",
+      "other": "%s huruf"
+    },
+    "word": {
+      "one": "%s kata",
+      "other": "%s kata"
+    }
+  },
   "error": "Kesalahan",
   "errorSummary": {
     "title": "Ada masalah"
