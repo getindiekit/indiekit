@@ -5,9 +5,11 @@ export const GeoInputFieldComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.denied = this.getAttribute("denied");
-    this.failed = this.getAttribute("failed");
     this.geoInput = this.querySelector("input");
+
+    this.i18nDenied = this.getAttribute("i18n-denied");
+    this.i18nFailed = this.getAttribute("i18n-failed");
+
     this.findButtonTemplate = this.querySelector("#find-button");
     this.errorMessageTemplate = this.querySelector("#error-message");
   }
@@ -70,9 +72,9 @@ export const GeoInputFieldComponent = class extends HTMLElement {
     $button.disabled = true;
 
     if (error.PERMISSION_DENIED) {
-      this.showErrorMessage(this.denied);
+      this.showErrorMessage(this.i18nDenied);
     } else if (error.POSITION_UNAVAILABLE) {
-      this.showErrorMessage(this.failed);
+      this.showErrorMessage(this.i18nFailed);
     }
   }
 
