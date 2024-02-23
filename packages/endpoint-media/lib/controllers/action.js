@@ -1,6 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { mediaContent } from "../media-content.js";
 import { mediaData } from "../media-data.js";
+import { mediaTransform } from "../media-transform.js";
 import { checkScope } from "../scope.js";
 
 /**
@@ -25,6 +26,7 @@ export const actionController = async (request, response, next) => {
     }
 
     let data;
+    let file;
     let content;
     switch (action) {
       case "media": {
@@ -35,8 +37,10 @@ export const actionController = async (request, response, next) => {
           );
         }
 
-        data = await mediaData.create(application, publication, files.file);
-        content = await mediaContent.upload(publication, data, files.file);
+        file = await mediaTransform(publication, files.file);
+
+        data = await mediaData.create(application, publication, file);
+        content = await mediaContent.upload(publication, data, file);
         break;
       }
 

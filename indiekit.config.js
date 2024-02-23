@@ -40,6 +40,15 @@ const config = {
           published: { required: true },
         },
       },
+      photo: {
+        media: {
+          resize: {
+            width: 100,
+            height: 50,
+            fit: "fill",
+          },
+        },
+      },
       jam: {
         name: "Jam",
         post: {
