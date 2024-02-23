@@ -6,6 +6,16 @@
   "backLink": {
     "text": "Terug"
   },
+  "characterCount": {
+    "char": {
+      "one": "%s karakter",
+      "other": "%s karakters"
+    },
+    "word": {
+      "one": "%s woord",
+      "other": "%s woorden"
+    }
+  },
   "error": "Fout",
   "errorSummary": {
     "title": "Er is een Probleem"

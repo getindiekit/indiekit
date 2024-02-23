@@ -6,6 +6,16 @@
   "backLink": {
     "text": "Voltar"
   },
+  "characterCount": {
+    "char": {
+      "one": "%s caracter",
+      "other": "%s caracteres"
+    },
+    "word": {
+      "one": "%s palavra",
+      "other": "%s palavras"
+    }
+  },
   "error": "Erro",
   "errorSummary": {
     "title": "Há um problema"
