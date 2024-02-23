@@ -5,16 +5,16 @@
   field: {
     element: "tag-input-field",
     attributes: {
-      tag: "{{TAG}} " + tag + ".",
       placeholder: __("tagInput.placeholder", { tags: tags }),
-      edit: __("tagInput.edit", { tag: tag }),
-      delete: __("tagInput.delete", { name: "{{TAG}}", tag: tag }),
-      added: __("tagInput.added", { name: "{{TAG}}", tag: tag }),
-      updated: __("tagInput.updated", { name: "{{TAG}}", tag: tag }),
-      deleted: __("tagInput.deleted", { name: "{{TAG}}", tag: tag }),
-      selected: __("tagInput.selected", { name: "{{TAG}}", tag: tag }),
-      "none-selected": __("tagInput.noneSelected", { tags: tags }),
-      instruction: __("tagInput.instruction", { list: "{{TAGS}}", tags: tags })
+      "i18n-tag": "{{TAG}} " + tag + ".",
+      "i18n-edit": __("tagInput.edit", { tag: tag }),
+      "i18n-delete": __("tagInput.delete", { name: "{{TAG}}", tag: tag }),
+      "i18n-added": __("tagInput.added", { name: "{{TAG}}", tag: tag }),
+      "i18n-deleted": __("tagInput.deleted", { name: "{{TAG}}", tag: tag }),
+      "i18n-updated": __("tagInput.updated", { name: "{{TAG}}", tag: tag }),
+      "i18n-selected": __("tagInput.selected", { name: "{{TAG}}", tag: tag }),
+      "i18n-none-selected": __("tagInput.noneSelected", { tags: tags }),
+      "i18n-instruction": __("tagInput.instruction", { list: "{{TAGS}}", tags: tags })
     }
   },
   classes: opts.classes,
