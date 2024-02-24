@@ -12,7 +12,7 @@
     <h{{ headingLevel }} class="card__title">
       <a href="{{ opts.url }}">
         {{- icon(opts.icon) if opts.icon -}}
-        {{- opts.title -}}
+        {{- opts.title | safe -}}
       </a>
     </h{{ headingLevel }}>
     {{ prose({
