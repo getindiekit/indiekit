@@ -1,0 +1,6 @@
+{% set html %}{% for item in property -%}
+  <img src="{{ item.url | url(publication.me) }}" alt="{{ item.alt }}">
+{%- endfor %}{% endset -%}
+{{- prose({
+  html: html
+}) if property }}

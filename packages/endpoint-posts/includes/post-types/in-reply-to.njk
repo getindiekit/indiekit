@@ -1,0 +1,9 @@
+{% set html -%}
+  {{- icon("reply") -}}
+  {{- __("posts.form.in-reply-to.label") }}
+  {{ property | urlize | safe -}}
+{% endset -%}
+{{- prose({
+  classes: "prose--caption",
+  html: html
+}) if property }}

@@ -1,0 +1,18 @@
+{{ badge({
+  color: "green",
+  icon: "tick",
+  text: __("posts.form.rsvp.yes")
+}) if property == "yes" -}}
+{{- badge({
+  color: "red",
+  icon: "cross",
+  text: __("posts.form.rsvp.no")
+}) if property == "no" -}}
+{{- badge({
+  color: "offset-yellow",
+  text: __("posts.form.rsvp.maybe")
+}) if property == "maybe" -}}
+{{- badge({
+  color: "offset-green",
+  text: __("posts.form.rsvp.interested")
+}) if property == "interested" }}

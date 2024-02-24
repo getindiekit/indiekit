@@ -1,22 +1,5 @@
 {% extends "document.njk" %}
 
-{% set postHtml = properties.content.html or "" %}
-{% set postMedia -%}
-{%- if properties.audio -%}
-  {%- for item in properties.audio -%}
-    <audio src="{{ item.url | url(publication.me) }}" controls>
-  {%- endfor -%}
-{%- elif properties.photo -%}
-  {%- for item in properties.photo -%}
-    <img src="{{ item.url | url(publication.me) }}" alt="{{ item.alt }}">
-  {%- endfor -%}
-{%- elif properties.video -%}
-  {% for item in properties.video -%}
-    <video src="{{ item.url | url(publication.me) }}" controls>
-  {%- endfor -%}
-{%- endif -%}
-{%- endset %}
-
 {% block content %}
   {{ badge({
     color: statusTypes.deleted.color,
@@ -40,11 +23,13 @@
     text: __(statusTypes.syndicated.text)
   }) if postStatus === "published" and properties.syndication and statusTypes.syndicated }}
 
-  {{ prose({ html: postHtml + postMedia }) }}
+{% if postStatus === "published" and properties["mp-syndicate-to"] %}
+  {% include "endpoint-posts-syndicate.njk" %}
+{% endif %}
 
-  {% if postStatus === "published" and properties["mp-syndicate-to"] %}
-    {% include "endpoint-posts-syndicate.njk" %}
-  {% endif %}
+{% for name, property in properties %}
+  {% include "post-types/" + name + ".njk" ignore missing %}
+{% endfor %}
 
   {% call details({
     summary: __("posts.post.properties")

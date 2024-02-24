@@ -1,0 +1,9 @@
+{% set html -%}
+  {{- icon("like") -}}
+  {{- __("posts.form.like-of.label") }}
+  {{ property | urlize | safe -}}
+{% endset -%}
+{{- prose({
+  classes: "prose--caption",
+  html: html
+}) if property }}

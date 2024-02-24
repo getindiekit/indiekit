@@ -1,0 +1,9 @@
+{% set html -%}
+  {{- icon("bookmark") -}}
+  {{- __("posts.form.bookmark-of.label") }}
+  {{ property | urlize | safe -}}
+{% endset -%}
+{{- prose({
+  classes: "prose--caption",
+  html: html
+}) if property }}

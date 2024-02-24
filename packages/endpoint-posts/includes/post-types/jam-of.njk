@@ -1,0 +1,7 @@
+{{ prose({
+  html: card({
+    url: property.url if property.url,
+    title: "<cite>" + property.name + "</cite>" if property.name,
+    description: "by " + property.author if property.author
+  })
+}) if property }}

@@ -1,0 +1,6 @@
+{% set html %}{% for item in property -%}
+  <audio src="{{ item.url | url(publication.me) }}" controls>
+{%- endfor %}{% endset -%}
+{{- prose({
+  html: html
+}) if property }}

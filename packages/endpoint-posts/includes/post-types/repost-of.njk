@@ -1,0 +1,9 @@
+{% set html -%}
+  {{- icon("repost") -}}
+  {{- __("posts.form.repost-of.label") }}
+  {{ property | urlize | safe -}}
+{% endset -%}
+{{- prose({
+  classes: "prose--caption",
+  html: html
+}) if property }}

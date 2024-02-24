@@ -1,0 +1,12 @@
+{% set html -%}
+  {{- icon("location") -}}
+  {{- property.name + ", " if property.name -}}
+  {{- property["street-address"] + ", " if property["street-address"] -}}
+  {{- property.locality + ", " if property.locality -}}
+  {{- property["country-name"] + ". " if property["country-name"] -}}
+  {{- property["postal-code"] if property["postal-code"] -}}
+{%- endset -%}
+{{- prose({
+  classes: "prose--caption",
+  html: html
+}) if property }}

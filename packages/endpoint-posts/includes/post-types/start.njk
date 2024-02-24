@@ -1,0 +1,11 @@
+{%- set startFormat = "PPp" if property | includes("T") else "PP" -%}
+{%- set endFormat = "PPp" if properties.end | includes("T") else "PP" -%}
+{%- set html -%}
+  {{ icon("event") }}
+  {{- property | date(startFormat, { locale: opts.locale }) -}}
+  {{- " – " + properties.end | date(endFormat, { locale: opts.locale }) if properties.end -}}
+{%- endset -%}
+{{- prose({
+  classes: "prose--caption",
+  html: html
+}) if property }}
