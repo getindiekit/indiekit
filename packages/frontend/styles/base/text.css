@@ -24,6 +24,10 @@ abbr[title] {
   text-decoration: none;
 }
 
+cite {
+  font-style: normal;
+}
+
 /* Prevent `sub` and `sup` from affecting line height */
 sub,
 sup {
