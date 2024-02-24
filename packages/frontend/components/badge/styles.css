@@ -7,7 +7,7 @@
    *
    * 2. Adjust baseline to visually center text within pill shape.
    */
-  --icon-margin: var(--space-2xs);
+  --icon-margin: var(--space-xs);
   align-items: center;
   background-color: var(--color-primary);
   border-radius: var(--space-l);
@@ -24,6 +24,10 @@
 
   & + .badge {
     margin-inline-start: var(--space-2xs);
+  }
+
+  & .icon {
+    inset-block-start: -0.125em;
   }
 }
 
