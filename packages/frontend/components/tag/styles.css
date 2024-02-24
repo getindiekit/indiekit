@@ -1,0 +1,14 @@
+.tag {
+  align-items: center;
+  background-color: var(--color-offset);
+  border-radius: var(--border-radius-small);
+  color: var(--color-on-offset);
+  display: inline-flex;
+  font: var(--font-caption);
+  padding-block: var(--space-2xs);
+  padding-inline: var(--space-s);
+
+  & + .tag {
+    margin-inline-start: var(--space-xs);
+  }
+}
