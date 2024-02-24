@@ -1,3 +1,12 @@
 .prose {
   font: var(--prose-font, var(--font-body));
 }
+
+.prose--caption {
+  --prose-font: var(--font-caption);
+  color: var(--color-on-offset);
+}
+
+.prose--subhead {
+  --prose-font: var(--font-subhead);
+}
