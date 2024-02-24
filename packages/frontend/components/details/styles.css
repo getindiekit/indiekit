@@ -16,7 +16,7 @@
   white-space: nowrap;
 
   &:focus-visible {
-    color: var(--color-on-background);
+    color: currentcolor;
   }
 }
 
