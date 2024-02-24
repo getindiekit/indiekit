@@ -14,7 +14,7 @@
   }) | indent(2) }}
 
 {% for name, field in fields %}
-  {% include "post-fields/" + name + ".njk" ignore missing %}
+  {% include "post-types/" + name + "-field.njk" ignore missing %}
 {% endfor %}
 
   {{ checkboxes({
