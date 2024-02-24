@@ -12,8 +12,8 @@ An [endpoint](../../concepts.md#endpoint) plug-in adds new routes to an Indiekit
 
 | Property | Type | Description |
 | :------- | :--- | :---------- |
-| `mountPath` | [`String`][] | Path to mount routes onto. _Required_. |
-| `navigationItems` | [`Object`][] or [`Array`][] | Add navigation items to the web interface. _Optional_. |
+| `mountPath` | `String` | Path to mount routes onto. _Required_. |
+| `navigationItems` | `Object` or `Array` | Add navigation items to the web interface. _Optional_. |
 | `routes` | [`Router`][] | Plug-in routes that require authentication to access. _Optional_. |
 | `routesPublic` | [`Router`][] | Plug-in routes that can be publicly accessed. _Optional_. |
 | `routesWellKnown` | [`Router`][] | Plug-in routes that can be accessed at `/.well-known/`. _Optional_. |
@@ -41,7 +41,7 @@ get navigationItems() {
 }
 ```
 
-`navigationItems` will accept either an [`Object`][] or an [`Array`][]. Use an [`Array`][] if you want to add multiple items to the navigation menu, for example:
+`navigationItems` will accept either an `Object` or an `Array`. Use an `Array` if you want to add multiple items to the navigation menu, for example:
 
 ```js
 get navigationItems() {
@@ -59,9 +59,9 @@ Each object in `navigationItems` should return the following values:
 
 | Property | Type | Description |
 | :------- | :--- | :---------- |
-| `href` | [`String`][] | The value of the navigation link’s href attribute. _Required_. |
-| `text` | [`String`][] | Text of the navigation link. _Required_. |
-| `requiresDatabase` | [`Boolean`][] | Whether feature requires a database. _Optional_, defaults to `false`. |
+| `href` | `String` | The value of the navigation link’s href attribute. _Required_. |
+| `text` | `String` | Text of the navigation link. _Required_. |
+| `requiresDatabase` | `Boolean` | Whether feature requires a database. _Optional_, defaults to `false`. |
 
 Note that, if your plug-in is localised, the `text` value should be the key path to the corresponding localisation string, for example:
 
@@ -166,8 +166,4 @@ Example endpoint plug-ins:
 
 - [`@indiekit/endpoint-share`](https://github.com/getindiekit/indiekit/tree/main/packages/endpoint-share) adds a share page to Indiekit’s web interface.
 
-[`Array`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-[`Boolean`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-[`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
-[`String`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 [`Router`]: https://expressjs.com/en/4x/api.html#router

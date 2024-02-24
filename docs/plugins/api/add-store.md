@@ -12,7 +12,7 @@ A [content store](../../concepts.md#content-store) plug-in interfaces with CRUD 
 
 | Property | Type | Description |
 | :------- | :--- | :---------- |
-| `info` | [`Object`][] | Information about the content store. _Required_. |
+| `info` | `Object` | Information about the content store. _Required_. |
 
 ### `info`
 
@@ -31,27 +31,27 @@ The `info` property returns the following values:
 
 | Property | Type | Description |
 | :------- | :--- | :---------- |
-| `name` | [`String`][] | The name of the content store the preset supports. _Required_. |
-| `uid` | [`String`][] | URL or path to content store. _Required_. |
+| `name` | `String` | The name of the content store the preset supports. _Required_. |
+| `uid` | `String` | URL or path to content store. _Required_. |
 
 ## Methods
 
 | Method | Type | Description |
 | :----- | :--- | :---------- |
-| `createFile()` | [`async function`][] | Create a file on the content store. |
-| `readFile()` | [`async function`][] | Read a file from the content store. |
-| `updateFile()` | [`async function`][] | Update a file on the content store. |
-| `deleteFile()` | [`async function`][] | Delete a file on the content store. |
+| `createFile()` | `AsyncFunction` | Create a file on the content store. |
+| `readFile()` | `AsyncFunction` | Read a file from the content store. |
+| `updateFile()` | `AsyncFunction` | Update a file on the content store. |
+| `deleteFile()` | `AsyncFunction` | Delete a file on the content store. |
 
 ### `createFile()`
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `filePath` | [`String`][] | Path to file. _Required_. |
-| `content` | [`String`][] | File content. _Required_. |
-| `options.message` | [`String`][] | Commit message. _Optional_. |
+| `filePath` | `String` | Path to file. _Required_. |
+| `content` | `String` | File content. _Required_. |
+| `options.message` | `String` | Commit message. _Optional_. |
 
-Returns a [`String`][] containing the file’s URL if successful, else returns [`IndiekitError`][]. For example:
+Returns a `String` containing the file’s URL if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async createFile(filePath, content, { message }) {
@@ -68,9 +68,9 @@ async createFile(filePath, content, { message }) {
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `filePath` | [`String`][] | Path to file. _Required_. |
+| `filePath` | `String` | Path to file. _Required_. |
 
-Returns content as a [`String`][] containing the file’s content if successful, else returns [`IndiekitError`][]. For example:
+Returns content as a `String` containing the file’s content if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async readFile(filePath) {
@@ -87,12 +87,12 @@ async readFile(filePath) {
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `filePath` | [`String`][] | Path to file. _Required_. |
-| `content` | [`String`][] | File content. _Required_. |
-| `options.message` | [`String`][] | Commit message. _Optional_. |
-| `options.newPath` | [`String`][] | New path to file. _Optional_. |
+| `filePath` | `String` | Path to file. _Required_. |
+| `content` | `String` | File content. _Required_. |
+| `options.message` | `String` | Commit message. _Optional_. |
+| `options.newPath` | `String` | New path to file. _Optional_. |
 
-Returns a [`String`][] containing the file’s updated URL if successful, else returns [`IndiekitError`][]. For example:
+Returns a `String` containing the file’s updated URL if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async updateFile(filePath, content, { message, newPath }) {
@@ -109,10 +109,10 @@ async updateFile(filePath, content, { message, newPath }) {
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `filePath` | [`String`][] | Path to file. _Required_. |
-| `options.message` | [`String`][] | Commit message. _Optional_. |
+| `filePath` | `String` | Path to file. _Required_. |
+| `options.message` | `String` | Commit message. _Optional_. |
 
-Returns a [`Boolean`][] `true` if successful, else returns [`IndiekitError`][]. For example:
+Returns a `Boolean` `true` if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async deleteFile(filePath, { message }) {
@@ -193,8 +193,4 @@ Example content store plug-ins:
 
 - [`@indiekit/store-file-system`](https://github.com/getindiekit/indiekit/tree/main/packages/store-file-system) saves content to a directory on a local file system.
 
-[`async function`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
-[`Boolean`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-[`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
-[`String`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 [`IndiekitError`]: error.md

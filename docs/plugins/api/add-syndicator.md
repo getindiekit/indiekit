@@ -12,7 +12,7 @@ A [syndicator](../../concepts.md#syndicator) plug-in syndicates content to a thi
 
 | Property | Type | Description |
 | :------- | :--- | :---------- |
-| `info` | [`Object`][]  | Information about the syndicator. |
+| `info` | `Object`  | Information about the syndicator. |
 
 ### `info`
 
@@ -43,29 +43,29 @@ The `info` property returns the following values:
 
 | Property | Type | Description |
 | :------- | :--- | :---------- |
-| `name` | [`String`][] | The name of the third-party service the syndicator supports. _Required_. |
-| `uid` | [`String`][] | URL or path to the syndication target. _Required_. |
-| `checked` | [`Boolean`][] | Whether this syndicator should be enabled by default in Micropub clients. _Optional_. |
-| `service.name` | [`String`][] | Name of the third-party service. _Optional_. |
-| `service.url` | [`String`][] | URL of the third-party service. _Optional_. |
-| `service.photo` | [`String`][] | Icon, logo or photo used to identify the third-party service in Micropub clients. _Optional_. |
-| `user.name` | [`String`][] | Name of the user on the third-party service. _Optional_. |
-| `user.url` | [`String`][] | URL for the user on the third-party service. _Optional_. |
+| `name` | `String` | The name of the third-party service the syndicator supports. _Required_. |
+| `uid` | `String` | URL or path to the syndication target. _Required_. |
+| `checked` | `Boolean` | Whether this syndicator should be enabled by default in Micropub clients. _Optional_. |
+| `service.name` | `String` | Name of the third-party service. _Optional_. |
+| `service.url` | `String` | URL of the third-party service. _Optional_. |
+| `service.photo` | `String` | Icon, logo or photo used to identify the third-party service in Micropub clients. _Optional_. |
+| `user.name` | `String` | Name of the user on the third-party service. _Optional_. |
+| `user.url` | `String` | URL for the user on the third-party service. _Optional_. |
 
 ## Methods
 
 | Method | Type | Description |
 | :----- | :--- | :---------- |
-| `syndicate()` | [`async function`][] | Syndicate a post to a third-party service. |
+| `syndicate()` | `AsyncFunction` | Syndicate a post to a third-party service. |
 
 ### `syndicate()`
 
 | Parameters | Type | Description |
 | :--------- | :--- | :---------- |
-| `properties` | [`Object`][] | Path to file. _Required_. |
-| `publication` | [`Object`][] | Path to file. _Required_. |
+| `properties` | `Object` | Path to file. _Required_. |
+| `publication` | `Object` | Path to file. _Required_. |
 
-Returns the URL for the syndicated content as a [`String`][] if successful, else returns [`IndiekitError`][]. For example:
+Returns the URL for the syndicated content as a `String` if successful, else returns [`IndiekitError`][]. For example:
 
 ```js
 async syndicate(properties, publication) {
@@ -136,8 +136,4 @@ Example syndicator plug-ins:
 
 - [`@indiekit/syndicator-internet-archive`](https://github.com/getindiekit/indiekit/tree/main/packages/syndicator-internet-archive) saves content to the Internet Archive.
 
-[`async function`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
-[`Boolean`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-[`Object`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
-[`String`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 [`IndiekitError`]: error.md
