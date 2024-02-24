@@ -56,6 +56,10 @@ const sidebarPlugins = [
         link: "/plugins/api/add-endpoint",
       },
       {
+        text: "<code>Indiekit.addPostType</code>",
+        link: "/plugins/api/add-post-type",
+      },
+      {
         text: "<code>Indiekit.addPreset</code>",
         link: "/plugins/api/add-preset",
       },
