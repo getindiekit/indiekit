@@ -5,7 +5,7 @@ export const list = (request, response) => {
   const { application } = response.app.locals;
 
   const plugins = application.installedPlugins.map((plugin) => {
-    const _package = plugin.meta ? getPackageData(plugin.meta.url) : {};
+    const _package = getPackageData(plugin.filePath);
     plugin.photo = {
       srcOnError: "/assets/plug-in.svg",
       attributes: { height: 96, width: 96 },
@@ -35,7 +35,7 @@ export const view = (request, response) => {
   const plugin = application.installedPlugins.find(
     (plugin) => plugin.id === pluginId,
   );
-  plugin.package = getPackageData(plugin.meta.url);
+  plugin.package = getPackageData(plugin.filePath);
 
   response.render("plugins/view", {
     parent: {

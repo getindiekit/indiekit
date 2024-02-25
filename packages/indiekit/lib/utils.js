@@ -2,7 +2,6 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { Buffer } from "node:buffer";
 import { createRequire } from "node:module";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
 const require = createRequire(import.meta.url);
 const algorithm = "aes-256-ctr";
@@ -52,14 +51,13 @@ export const getUrl = (request) => {
 
 /**
  * Get package JSON object
- * @param {URL} fileUrl - File URL
+ * @param {string} filePath - File path
  * @returns {object} package.json
  */
-export const getPackageData = (fileUrl) => {
+export const getPackageData = (filePath) => {
+  console.log(filePath);
   try {
-    const filePath = fileURLToPath(fileUrl);
-    const packageDirectory = path.dirname(filePath);
-    return require(path.join(packageDirectory, "package.json"));
+    return require(path.join(filePath, "package.json"));
   } catch {
     return {};
   }

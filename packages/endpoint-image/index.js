@@ -9,7 +9,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 export default class ImageEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-image";
-    this.meta = import.meta;
     this.name = "Image resizing endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

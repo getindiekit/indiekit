@@ -1,5 +1,5 @@
 import { createRequire } from "node:module";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 import deepmerge from "deepmerge";
 
 const require = createRequire(import.meta.url);
@@ -24,10 +24,9 @@ export const getLocaleCatalog = (application) => {
 
     // Plug-in translations
     for (const plugin of application.installedPlugins) {
-      const translationUrl = new URL(`locales/${locale}.json`, plugin.meta.url);
-      const translationPath = fileURLToPath(translationUrl);
+      const localePath = path.join(plugin.filePath, `locales/${locale}.json`);
       try {
-        translations.push(require(translationPath));
+        translations.push(require(localePath));
       } catch {} // eslint-disable-line no-empty
     }
 

@@ -17,7 +17,6 @@ A plug-in is a `Class` with an `init()` function that is used to register endpoi
 export default class PluginName {
   constructor() {
     this.id = "plugin-name";
-    this.meta = import.meta;
     this.name = "Plugin name";
   }
 

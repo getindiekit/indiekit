@@ -11,7 +11,6 @@ const defaults = {
 export default class TestStore {
   constructor(options = {}) {
     this.id = "test-store";
-    this.meta = import.meta;
     this.name = "Test store";
     this.options = { ...defaults, ...options };
   }

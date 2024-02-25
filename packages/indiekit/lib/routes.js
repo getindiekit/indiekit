@@ -1,4 +1,4 @@
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 import express from "express";
 import { assetsPath } from "@indiekit/frontend";
 import rateLimit from "express-rate-limit";
@@ -44,8 +44,8 @@ export const routes = (indiekitConfig) => {
 
   // Plug-in assets
   for (const plugin of application.installedPlugins) {
-    if (plugin.meta?.url) {
-      const assetsPath = fileURLToPath(new URL("assets", plugin.meta.url));
+    if (plugin.filePath) {
+      const assetsPath = path.join(plugin.filePath, "assets");
       router.use(`/assets/${plugin.id}`, express.static(assetsPath));
     }
   }

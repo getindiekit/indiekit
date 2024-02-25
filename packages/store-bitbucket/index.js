@@ -21,7 +21,6 @@ export default class BitbucketStore {
    */
   constructor(options = {}) {
     this.id = "bitbucket";
-    this.meta = import.meta;
     this.name = "Bitbucket store";
     this.options = { ...defaults, ...options };
   }

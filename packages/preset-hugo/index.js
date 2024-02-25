@@ -8,7 +8,6 @@ const defaults = {
 export default class HugoPreset {
   constructor(options = {}) {
     this.id = "hugo";
-    this.meta = import.meta;
     this.name = "Hugo preset";
     this.options = { ...defaults, ...options };
   }

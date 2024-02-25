@@ -1,8 +1,7 @@
 import { strict as assert } from "node:assert";
 import { randomBytes } from "node:crypto";
-import path from "node:path";
 import { describe, it } from "node:test";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { decrypt, encrypt, getPackageData } from "../../lib/utils.js";
 
 const iv = randomBytes(16);
@@ -15,14 +14,18 @@ describe("indiekit/lib/utils", () => {
   });
 
   it("Gets package JSON object", () => {
-    const url = pathToFileURL(path.resolve("packages/preset-hugo/index.js"));
-    const result = getPackageData(url);
+    const filePath = fileURLToPath(
+      new URL("../../../../packages/preset-hugo", import.meta.url),
+    );
+    const result = getPackageData(filePath);
     assert.equal(result.description, "Hugo publication preset for Indiekit");
   });
 
   it("Returns empty object getting unknown package JSON", () => {
-    const url = pathToFileURL(path.resolve("packages/foobar/index.js"));
-    const result = getPackageData(url);
+    const filePath = fileURLToPath(
+      new URL("../../../../packages/foobar", import.meta.url),
+    );
+    const result = getPackageData(filePath);
     assert.deepEqual(result, {});
   });
 });

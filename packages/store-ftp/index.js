@@ -22,7 +22,6 @@ export default class FtpStore {
    */
   constructor(options = {}) {
     this.id = "ftp";
-    this.meta = import.meta;
     this.name = "FTP store";
     this.options = { ...defaults, ...options };
   }

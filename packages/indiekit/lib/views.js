@@ -1,3 +1,4 @@
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 /**
@@ -13,10 +14,10 @@ export const views = (indiekitConfig) => {
 
   // Plug-in views
   for (const plugin of application.installedPlugins) {
-    if (plugin.meta?.url) {
+    if (plugin.filePath) {
       views.push(
-        fileURLToPath(new URL("includes", plugin.meta.url)),
-        fileURLToPath(new URL("views", plugin.meta.url)),
+        path.join(plugin.filePath, "includes"),
+        path.join(plugin.filePath, "views"),
       );
     }
   }

@@ -11,7 +11,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 export default class jsonFeedEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-json-feed";
-    this.meta = import.meta;
     this.name = "JSON Feed";
     this.options = { ...defaults, ...options };
     this.feedName = this.options.feedName;
