@@ -19,7 +19,6 @@ export default class InternetArchiveSyndicator {
    */
   constructor(options = {}) {
     this.id = "internet-archive";
-    this.meta = import.meta;
     this.name = "Internet Archive syndicator";
     this.options = { ...defaults, ...options };
   }

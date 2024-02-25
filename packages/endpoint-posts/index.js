@@ -13,7 +13,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 export default class PostsEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-posts";
-    this.meta = import.meta;
     this.name = "Post management endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

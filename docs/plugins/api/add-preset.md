@@ -124,7 +124,6 @@ Text: I ate a cheese sandwich, which was nice.
 export default class ExamplePreset {
   constructor() {
     this.id = "example-preset";
-    this.meta = import.meta;
     this.name = "Example preset";
   }
 

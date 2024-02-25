@@ -18,7 +18,6 @@ export default class GithubStore {
    */
   constructor(options = {}) {
     this.id = "github";
-    this.meta = import.meta;
     this.name = "GitHub store";
     this.options = { ...defaults, ...options };
   }

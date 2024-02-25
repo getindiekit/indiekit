@@ -90,7 +90,6 @@ import exampleClient from 'example-client';
 export default class ExampleStore {
   constructor(options) {
     this.id = "example-syndicator";
-    this.meta = import.meta;
     this.name = "Example syndicator";
     this.options = options;
   }

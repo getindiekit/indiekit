@@ -22,7 +22,6 @@ export default class MastodonSyndicator {
    */
   constructor(options = {}) {
     this.id = "mastodon";
-    this.meta = import.meta;
     this.name = "Mastodon syndicator";
     this.options = { ...defaults, ...options };
   }

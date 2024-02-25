@@ -12,7 +12,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 export default class FilesEndpoint {
   constructor(options = {}) {
     this.id = "endpoint-files";
-    this.meta = import.meta;
     this.name = "File management endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

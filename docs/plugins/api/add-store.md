@@ -134,7 +134,6 @@ import exampleClient from 'example-client';
 export default class ExampleStore {
   constructor() {
     this.id = "example-store";
-    this.meta = import.meta;
     this.name = "Example store";
   }
 
