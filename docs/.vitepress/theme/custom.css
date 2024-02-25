@@ -37,8 +37,36 @@
   line-height: 1.6;
 }
 
-.vp-doc a {
-  font-weight: normal;
+/* Headings */
+.vp-doc h3 {
+  margin-top: 48px;
+}
+
+.vp-doc h3 code {
+  background: none;
+  font-size: inherit;
+  padding: 0;
+}
+
+.vp-doc h4 {
+  font-size: inherit;
+  margin-top: 24px;
+}
+
+/* Definition lists */
+.vp-doc dl dl {
+  border-left: 1px solid var(--vp-c-divider);
+  padding-left: 16px;
+}
+
+.vp-doc dd {
+  margin-left: 16px;
+  margin-top: 8px;
+}
+
+.vp-doc dt {
+  font-weight: 500;
+  margin-top: 16px;
 }
 
 /* Markdown footnotes */
