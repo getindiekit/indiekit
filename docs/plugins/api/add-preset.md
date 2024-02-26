@@ -1,21 +1,91 @@
+---
+outline: deep
+---
+
 # `Indiekit.addPreset`
 
-A [publication preset](../../concepts.md#publication-preset) plug-in sets default values for post types and provides a post template for a given publication, static site generator, content management system or other publishing application.
+A [publication preset](../../concepts.md#publication-preset) can set default storage locations and URL formats for [post types](../../concepts.md#post-type), and post templates for a given publication, be that a static site generator, content management system or other publishing software.
 
-[[toc]]
+## Syntax
+
+```js
+new Indiekit.addPreset(options);
+```
 
 ## Constructor
 
-<!--@include: .plugin-constructor.md-->
+`options`
+: An object used to customise the behaviour of the plug-in.
 
 ## Properties
 
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `info` | `Object` | Information about the preset. _Required_. |
-| `postTypes` | `Array` | Default values for [post types](../../configuration/post-types.md). |
+`info` <Badge type="info" text="Required" />
+: An object representing information about the preset. The `info` property should return the following values:
 
-### `info`
+  `name` <Badge type="info" text="Required" />
+  : The name of the publishing software the plug-in supports.
+
+`postTypes`
+: An object providing default configuration values for publication [post types](../../configuration/post-types.md).
+
+## Methods
+
+### `postTemplate()`
+
+An (async) function providing a [post template](../../configuration/post-template.md).
+
+### `init()`
+
+Used to register the plug-in. Accepts an `Indiekit` instance to allow its modification before returning.
+
+#### Parameters
+
+`properties`
+: Object containing properties for a post, that conform to the [JF2 Post Serialisation Format](https://jf2.spec.indieweb.org).
+
+#### Return value
+
+A string representing the file content that should be saved to a content store.
+
+## Example
+
+```js
+export default class ExamplePreset {
+  constructor() {
+    this.name = "Example preset";
+  }
+
+  get info() {
+    return {
+      name: "Example",
+    };
+  }
+
+  get postTypes() {
+    return {
+      note: {
+        post: {
+          path: "_content/notes/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "notes/{yyyy}/{MM}/{slug}"
+        }
+      }
+    };
+  }
+
+  postTemplate(properties) {
+    // Return post properties as a JSON string
+    return JSON.stringify(properties);
+  }
+
+  init(Indiekit) {
+    const { publication } = Indiekit.config;
+
+    Indiekit.addPreset(this);
+  }
+}
+```
+
+### Add preset information
 
 Indiekit’s web interface expects a preset plugin to provide some information about the publication or content management system it supports. This is provided by the `info` property:
 
@@ -27,65 +97,39 @@ get info() {
 }
 ```
 
-The `info` property returns the following values:
+### Add post type defaults
 
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `name` | `String` | The name of the publishing application the preset supports. _Required_. |
-
-### `postTypes`
-
-The Micropub API lets you publish a variety of [post types](https://indieweb.org/posts#Types_of_Posts). A publication preset defines the default values for these post types, which users can override in their [configuration](../../configuration/post-types.md).
+A publication preset defines default store and URL path values for a publication’s [post types](../../concepts.md#post-type). Users can override these in their own [configuration](../../configuration/post-types.md).
 
 For example, to add default values for `note` and `photo` post types:
 
 ```js
 get postTypes() {
-  return [
-    {
-      "type": "note",
-      "name": "Diary entry",
-      "post": {
-        "path": "diary/{yyyy}-{MM}-{dd}-{slug}.md",
-        "url": "diary/{yyyy}/{MM}/{slug}"
+  return {
+    note: {
+      post: {
+        path: "notes/{yyyy}-{MM}-{dd}-{slug}.md",
+        url: "notes/{yyyy}/{MM}/{slug}"
       }
     },
-    {
-      "type": "photo",
-      "name": "Image entry",
-      "post": {
-        "path": "images/{yyyy}-{MM}-{dd}-{slug}.md",
-        "url": "images/{yyyy}/{MM}/{slug}"
+    photo: {
+      post: {
+        path: "photos/{yyyy}-{MM}-{dd}-{slug}.md",
+        url: "photos/{yyyy}/{MM}/{slug}"
       },
-      "media": {
-        "path": "media/images/{yyyy}/{filename}"
+      media: {
+        path: "media/photos/{yyyy}/{filename}"
       }
     }
-  ];
+  };
 }
 ```
 
-## Methods
+### Add a post template
 
-| Method | Type | Description |
-| :----- | :--- | :---------- |
-| `postTemplate()` | `AsyncFunction`/`Function` | Default [post template](../../configuration/post-template.md). |
+A post template takes properties received and parsed by the Micropub endpoint and renders them in a given file format, for example a Markdown file with YAML front matter.
 
-### `postTemplate()`
-
-A post template takes post properties received and parsed by the Micropub endpoint and renders them in a given file format, for example, a Markdown file with YAML front matter.
-
-The `postTemplate()` method takes one argument, `properties`, which contains the derived properties for a post, for example:
-
-```js
-{
-  published: '2020-02-02',
-  name: 'What I had for lunch',
-  content: 'I ate a cheese sandwich, which was nice.',
-}
-```
-
-The `postTemplate()` method determines how this data will get transformed. For example, if you wanted to output a format used by Kirby, you might provide the following function:
+For example, if you wanted to use the text file format used by [Kirby](https://getkirby.com), you might create the following function:
 
 ```js
 postTemplate(properties) {
@@ -107,7 +151,17 @@ postTemplate(properties) {
 }
 ```
 
-This would then generate the following file:
+Assuming the incoming JF2 properties were as follows:
+
+```js
+{
+  published: "2020-02-02",
+  name: "What I had for lunch",
+  content: "I ate a cheese sandwich, which was nice."
+}
+```
+
+Then the `postTemplate()` method would translate this into the following:
 
 ```txt
 ---
@@ -118,33 +172,9 @@ Title: What I had for lunch
 Text: I ate a cheese sandwich, which was nice.
 ```
 
-## Example
+## See also
 
-```js
-export default class ExamplePreset {
-  constructor() {
-    this.name = "Example preset";
-  }
-
-  get info() {
-    return {
-      name: "Example",
-    };
-  }
-
-  get postTypes() {
-    return […];
-  }
-
-  postTemplate(properties) {…}
-
-  init(Indiekit) {
-    Indiekit.addPreset(this);
-  }
-}
-```
-
-Example publication preset plug-ins:
+Example publication preset plug-in implementations:
 
 - [`@indiekit/preset-jekyll`](https://github.com/getindiekit/indiekit/tree/main/packages/preset-jekyll) provides post types and a post template for Jekyll-based websites.
 
