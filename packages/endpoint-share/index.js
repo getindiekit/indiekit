@@ -7,7 +7,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 export default class ShareEndpoint {
   constructor(options = {}) {
-    this.id = "endpoint-share";
     this.name = "Share endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

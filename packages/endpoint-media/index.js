@@ -7,7 +7,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 export default class MediaEndpoint {
   constructor(options = {}) {
-    this.id = "endpoint-media";
     this.name = "Micropub media endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

@@ -123,7 +123,6 @@ Text: I ate a cheese sandwich, which was nice.
 ```js
 export default class ExamplePreset {
   constructor() {
-    this.id = "example-preset";
     this.name = "Example preset";
   }
 

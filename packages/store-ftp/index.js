@@ -21,7 +21,6 @@ export default class FtpStore {
    * @param {string} [options.directory] - Directory
    */
   constructor(options = {}) {
-    this.id = "ftp";
     this.name = "FTP store";
     this.options = { ...defaults, ...options };
   }

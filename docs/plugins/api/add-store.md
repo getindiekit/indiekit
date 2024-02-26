@@ -133,7 +133,6 @@ import exampleClient from 'example-client';
 
 export default class ExampleStore {
   constructor() {
-    this.id = "example-store";
     this.name = "Example store";
   }
 

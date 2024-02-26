@@ -17,7 +17,6 @@ export default class GithubStore {
    * @param {string} [options.token] - Personal access token
    */
   constructor(options = {}) {
-    this.id = "github";
     this.name = "GitHub store";
     this.options = { ...defaults, ...options };
   }

@@ -18,7 +18,6 @@ export default class InternetArchiveSyndicator {
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
   constructor(options = {}) {
-    this.id = "internet-archive";
     this.name = "Internet Archive syndicator";
     this.options = { ...defaults, ...options };
   }

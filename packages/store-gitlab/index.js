@@ -24,7 +24,6 @@ export default class GitlabStore {
    * @param {string} [options.token] - Access token
    */
   constructor(options = {}) {
-    this.id = "gitlab";
     this.name = "GitLab store";
     this.options = { ...defaults, ...options };
     this.projectId = options.projectId || `${options.user}/${options.repo}`;

@@ -24,7 +24,7 @@
   }) if postStatus === "published" and properties.syndication and statusTypes.syndicated }}
 
 {% if postStatus === "published" and properties["mp-syndicate-to"] %}
-  {% include "endpoint-posts-syndicate.njk" %}
+  {% include "@indiekit-endpoint-posts-syndicate.njk" %}
 {% endif %}
 
 {% for name, property in properties %}

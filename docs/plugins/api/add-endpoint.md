@@ -126,7 +126,6 @@ const router = express.Router();
 
 export default class ExampleEndpoint {
   constructor() {
-    this.id = "example-endpoint";
     this.name = "Example endpoint";
     this.mountPath = "/example";
   }

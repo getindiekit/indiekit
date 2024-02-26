@@ -28,7 +28,6 @@ describe("indiekit", () => {
   it("Adds endpoint", () => {
     const TestEndpoint = class {
       constructor() {
-        this.id = "test";
         this.name = "Test endpoint";
       }
     };
@@ -42,7 +41,6 @@ describe("indiekit", () => {
   it("Adds publication preset", () => {
     const TestPreset = class {
       constructor() {
-        this.id = "test";
         this.name = "Test preset";
       }
 

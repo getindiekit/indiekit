@@ -14,7 +14,6 @@ const defaults = {
  */
 export default class FileSystemStore {
   constructor(options = {}) {
-    this.id = "file-system";
     this.name = "File system store";
     this.options = { ...defaults, ...options };
   }

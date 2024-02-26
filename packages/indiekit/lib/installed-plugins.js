@@ -17,6 +17,9 @@ export const getInstalledPlugins = async (Indiekit) => {
     // Add plug-in file path
     plugin.filePath = path.dirname(require.resolve(pluginName));
 
+    // Add plug-in ID
+    plugin.id = pluginName.replace("/", "-");
+
     // Register plug-in functions
     if (plugin.init) {
       await plugin.init(Indiekit);

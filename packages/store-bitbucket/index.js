@@ -20,7 +20,6 @@ export default class BitbucketStore {
    * @param {string} [options.password] - Password
    */
   constructor(options = {}) {
-    this.id = "bitbucket";
     this.name = "Bitbucket store";
     this.options = { ...defaults, ...options };
   }

@@ -21,7 +21,6 @@ export default class MastodonSyndicator {
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
   constructor(options = {}) {
-    this.id = "mastodon";
     this.name = "Mastodon syndicator";
     this.options = { ...defaults, ...options };
   }

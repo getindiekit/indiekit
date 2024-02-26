@@ -9,7 +9,6 @@ const router = express.Router({ caseSensitive: true, mergeParams: true });
 
 export default class FrontendEndpoint {
   constructor(options = {}) {
-    this.id = "endpoint-frontend";
     this.name = "Frontend endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

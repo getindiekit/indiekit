@@ -3,7 +3,6 @@ import { getPostTypes } from "./lib/post-types.js";
 
 export default class JekyllPreset {
   constructor() {
-    this.id = "jekyll";
     this.name = "Jekyll preset";
   }
 

@@ -10,7 +10,6 @@ const defaults = {
  */
 export default class TestStore {
   constructor(options = {}) {
-    this.id = "test-store";
     this.name = "Test store";
     this.options = { ...defaults, ...options };
   }

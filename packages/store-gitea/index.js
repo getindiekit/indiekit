@@ -18,7 +18,6 @@ export default class GiteaStore {
    * @param {string} [options.token] - Access token
    */
   constructor(options = {}) {
-    this.id = "gitea";
     this.name = "Gitea store";
     this.options = { ...defaults, ...options };
   }

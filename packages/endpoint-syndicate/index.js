@@ -6,7 +6,6 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 export default class SyndicateEndpoint {
   constructor(options = {}) {
-    this.id = "endpoint-syndicate";
     this.name = "Syndication endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;

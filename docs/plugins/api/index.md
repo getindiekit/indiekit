@@ -16,7 +16,6 @@ A plug-in is a `Class` with an `init()` function that is used to register endpoi
 ```js
 export default class PluginName {
   constructor() {
-    this.id = "plugin-name";
     this.name = "Plugin name";
   }
 
@@ -49,4 +48,4 @@ To provide an icon for your plug-in, include a square shaped SVG file at `/asset
 
 ### Homepage widget
 
-To provide a small widget for the signed-in homepage, include a Nunjucks file at `/includes/[plugin.id]-widget.njk`, and use the `widget` component to ensure correct markup and styling. [Here’s an example](https://github.com/getindiekit/indiekit/blob/main/packages/endpoint-posts/includes/endpoint-posts-widget.njk).
+To provide a small widget for the signed-in homepage, include a Nunjucks file at `/includes/[module-name]-widget.njk`, and use the `widget` component to ensure correct markup and styling. [Here’s an example](https://github.com/getindiekit/indiekit/blob/main/packages/endpoint-posts/includes/@indiekit-endpoint-posts-widget.njk).
