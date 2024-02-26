@@ -1,36 +1,117 @@
+---
+outline: deep
+---
+
 # `Indiekit.addEndpoint`
 
-An [endpoint](../../concepts.md#endpoint) plug-in adds new routes to an Indiekit server. Routes can add new pages to the web interface, or provide API endpoints that support IndieWeb (or other) protocols or APIs.
+An [endpoint](../../concepts.md#endpoint) adds Express routes to an Indiekit server. Routes can add new pages to the web interface, or provide API endpoints that support IndieWeb (or other) protocols or APIs.
 
-[[toc]]
+## Syntax
+
+```js
+new Indiekit.addEndpoint(options);
+```
 
 ## Constructor
 
-<!--@include: .plugin-constructor.md-->
+`options`
+: An object used to customise the behaviour of the plug-in.
 
 ## Properties
 
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `mountPath` | `String` | Path to mount routes onto. _Required_. |
-| `navigationItems` | `Object` or `Array` | Add navigation items to the web interface. _Optional_. |
-| `routes` | [`Router`][] | Plug-in routes that require authentication to access. _Optional_. |
-| `routesPublic` | [`Router`][] | Plug-in routes that can be publicly accessed. _Optional_. |
-| `routesWellKnown` | [`Router`][] | Plug-in routes that can be accessed at `/.well-known/`. _Optional_. |
+`name` <Badge type="info" text="Required" />
+: A string with a human readable plug-in name.
 
-### `mountPath`
+`mountPath` <Badge type="info" text="Required" />
+: A string representing the path to mount routes onto.
 
-Path to mount routes onto.
+`navigationItems`
+: A single [`NavigationItem`](#navigationitem) or an array of multiple [`NavigationItem`](#navigationitem)’s used to add items to the web interface’s navigation menu.
+
+## Methods
+
+### `routes()`
+
+An Express [`Router`](#router) supplying routes that require authentication to access.
+
+### `routesPublic()`
+
+An Express [`Router`](#router) supplying routes that can be publicly accessed.
+
+### `routesWellKnown()`
+
+An Express [`Router`](#router) supplying routes that can be accessed at `/.well-known/`.
+
+### `init()`
+
+Used to register the plug-in. Accepts an `Indiekit` instance to allow its modification before returning.
+
+## Interfaces
+
+### `NavigationItem`
+
+`href` <Badge type="info" text="Required" />
+: A string representing the path to the page and used for the link’s `href` attribute.
+
+`text` <Badge type="info" text="Required" />
+: A string representing the text shown in the navigation item.
+
+`requiresDatabase`
+: A boolean for whether the item should only be displayed if a database has been configured.
+
+### `Router`
+
+[Learn about `Router` in the Express.js documentation](https://expressjs.com/en/4x/api.html#router):
+
+> A router object is an isolated instance of middleware and routes. You can think of it as a “mini-application,” capable only of performing middleware and routing functions.
+
+## Example
 
 ```js
-get mountPath() {
-  return "/example";
+import express from "express";
+
+const router = express.Router();
+
+export default class ExampleEndpoint {
+  constructor(options) {
+    this.name = "Example endpoint";
+    this.mountPath = this.options.mountPath;
+  }
+
+  get navigationItems() {
+    return {
+      href: this.mountPath,
+      text: "Example",
+    };
+  }
+
+  get routes() {
+    router.post("/secret", (req, res, next) => {…});
+
+    return router;
+  }
+
+  get routesPublic() {
+    router.get("/public", (req, res, next) => {…});
+
+    return router;
+  }
+
+  get routesWellKnown() {
+    router.get("/posh/spice.json", (req, res, next) => {…});
+
+    return router;
+  }
+
+  init(Indiekit) {
+    Indiekit.addEndpoint(this);
+  }
 }
 ```
 
-### `navigationItems`
+### Add navigation items
 
-Add items to the web interface’s navigation menu using the `navigationItems` property. For example, to add a link to the `/example` path:
+You can add items to the web interface’s navigation menu using the `navigationItems` method. For example, to add a link to the `/example` path:
 
 ```js
 get navigationItems() {
@@ -41,7 +122,7 @@ get navigationItems() {
 }
 ```
 
-`navigationItems` will accept either an `Object` or an `Array`. Use an `Array` if you want to add multiple items to the navigation menu, for example:
+`navigationItems` will accept either an object or an array. Use an array if you want to add multiple items, for example:
 
 ```js
 get navigationItems() {
@@ -55,15 +136,7 @@ get navigationItems() {
 }
 ```
 
-Each object in `navigationItems` should return the following values:
-
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `href` | `String` | The value of the navigation link’s href attribute. _Required_. |
-| `text` | `String` | Text of the navigation link. _Required_. |
-| `requiresDatabase` | `Boolean` | Whether feature requires a database. _Optional_, defaults to `false`. |
-
-Note that, if your plug-in is localised, the `text` value should be the key path to the corresponding localisation string, for example:
+If your plug-in is localised, the `text` value should be the key path used in the corresponding localisation string, for example:
 
 ```js
 get navigationItems() {
@@ -74,7 +147,7 @@ get navigationItems() {
 }
 ```
 
-### `routes`
+### Add routes
 
 Routes can be added to Indiekit’s [Express](https://expressjs.com) server by providing an instance of an Express [`Router`][] with the paths and methods you wish to support.
 
@@ -87,9 +160,7 @@ get routes() {
 }
 ```
 
-### `routesPublic`
-
-The `routes` method attaches routes to Indiekit’s own router after rate limiting and IndieAuth authentication middleware. Any request to your endpoint path will therefore require a user to be signed in or otherwise authenticated.
+The `routes` method attaches routes to Indiekit’s own router after rate limiting and authentication middleware. Any request to your endpoint path will therefore require a user to be signed in or otherwise authenticated.
 
 You can bypass authentication by using the `routesPublic` method.
 
@@ -101,8 +172,6 @@ get routesPublic() {
   return router;
 }
 ```
-
-### `routesWellKnown`
 
 Sometimes its necessary to serve requests to [.well-known paths](https://tools.ietf.org/html/rfc5785), standardized locations for discovering domain-wide metadata (see this registry of [Well-Known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)).
 
@@ -117,51 +186,10 @@ get routesWellKnown() {
 }
 ```
 
-## Example
+## See also
 
-```js
-import express from "express";
-
-const router = express.Router();
-
-export default class ExampleEndpoint {
-  constructor() {
-    this.name = "Example endpoint";
-    this.mountPath = "/example";
-  }
-
-  get navigationItems() {
-    return {
-      href: this.mountPath,
-      text: "Example",
-    };
-  }
-
-  get routes() {
-    router.post("/secret", (req, res, next) => {…});
-    return router;
-  }
-
-  get routesPublic() {
-    router.get("/public", (req, res, next) => {…});
-    return router;
-  }
-
-  get routesWellKnown() {
-    router.get("/posh/spice.json", (req, res, next) => {…});
-    return router;
-  }
-
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
-  }
-}
-```
-
-Example endpoint plug-ins:
+Example endpoint plug-in implementations:
 
 - [`@indiekit/endpoint-auth`](https://github.com/getindiekit/indiekit/tree/main/packages/endpoint-auth) adds supports for granting and verifying IndieAuth tokens and authenticating users.
 
 - [`@indiekit/endpoint-share`](https://github.com/getindiekit/indiekit/tree/main/packages/endpoint-share) adds a share page to Indiekit’s web interface.
-
-[`Router`]: https://expressjs.com/en/4x/api.html#router
