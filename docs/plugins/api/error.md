@@ -2,21 +2,39 @@
 
 A custom error handler, [`IndiekitError`](https://github.com/getindiekit/indiekit/blob/main/packages/error/index.js), is available to plug-ins to return consistent and predictable error responses to Indiekit.
 
+## Syntax
+
 ```js
 import { IndiekitError } from "@indiekit/error";
 
 throw new IndiekitError(message, options);
 ```
 
-| Parameters | Type | Description |
-| :--------- | :--- | :---------- |
-| `message` | `String` | Human readable error message. _Required_. |
-| `options.cause` | `Error` | Original error. _Optional_. |
-| `options.code` | `String` | [Error code][]. _Optional_. |
-| `options.plugin` | `String` | Name of plug-in. This is used to prefix any error messages caused by a plug-in. _Optional_. |
-| `options.scope` | `String` | OAuth authentication scope. _Optional_. |
-| `options.status` | `Number` | [HTTP response status code][]. _Optional_. |
-| `options.uri` | `String` | URL to webpage providing information about the cause of the error and how to resolve it. _Optional_. |
+## Constructor
 
-[Error code]: https://github.com/getindiekit/indiekit/blob/main/packages/error/errors.js
+`message` <Badge type="info" text="Required" />
+: Human readable error message.
+
+`options`
+: An object used to customise the behaviour of the error.
+
+  `cause`
+  : An error object containing the original error.
+
+  `code`
+  : A string representing the internal [error code][].
+
+  `plugin`
+  : A string representing the name of plug-in. Used to prefix error messages caused by a plug-in.
+
+  `scope`
+  : A string representing an OAuth authentication scope.
+
+  `status`
+  : A number representing an [HTTP response status code][].
+
+  `uri`
+  : A string representing a URL to webpage providing information about the cause of the error and how to resolve it.
+
+[error code]: https://github.com/getindiekit/indiekit/blob/main/packages/error/errors.js
 [HTTP response status code]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
