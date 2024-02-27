@@ -1,85 +1,78 @@
+---
+outline: deep
+---
+
 # `Indiekit.addSyndicator`
 
-A [syndicator](../../concepts.md#syndicator) plug-in syndicates content to a third-party service such as a social network via its API.
+A [syndicator](../../concepts.md#syndicator) shares content to a third-party service such as a social network, typically via its API.
 
-[[toc]]
+## Syntax
+
+```js
+new Indiekit.addSyndicator(options);
+```
 
 ## Constructor
 
-<!--@include: .plugin-constructor.md-->
+`options`
+: An object used to customise the behaviour of the plug-in.
 
 ## Properties
 
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `info` | `Object`  | Information about the syndicator. |
+`info` <Badge type="info" text="Required" />
+: An object representing information about the third-party service. The `info` property should return the following values:
 
-### `info`
+  `name` <Badge type="info" text="Required" />
+  : A string representing the name of the third-party service the plug-in supports.
 
-Indiekit’s web interface expects a syndicator plug-in to provide some information about the third-party service it supports. In addition, some Micropub clients may also use this information in their publishing interface. This information is provided by the `info` property:
+  `uid` <Badge type="info" text="Required" />
+  : A string representing the URL to third-party service.
 
-```js
-get info() {
-  const { user } = this.options;
+  `checked`
+  : A boolean indicating whether this syndicator should be enabled by default in Micropub clients.
 
-  return {
-    name: `${user} on Example service`,
-    uid: `https://service.example/${user}`,
-    checked: true,
-    service: {
-      name: "Example service",
-      url: "https://service.example/",
-      photo: "/assets/example-syndicator/icon.svg",
-    },
-    user: {
-      name: user,
-      url: `https://service.example/${user}`,
-    },
-  };
-}
-```
+  `service`
+  : An object containing information about the third-party service.
 
-The `info` property returns the following values:
+    `name`
+    : A string representing the name of the third-party service.
 
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `name` | `String` | The name of the third-party service the syndicator supports. _Required_. |
-| `uid` | `String` | URL or path to the syndication target. _Required_. |
-| `checked` | `Boolean` | Whether this syndicator should be enabled by default in Micropub clients. _Optional_. |
-| `service.name` | `String` | Name of the third-party service. _Optional_. |
-| `service.url` | `String` | URL of the third-party service. _Optional_. |
-| `service.photo` | `String` | Icon, logo or photo used to identify the third-party service in Micropub clients. _Optional_. |
-| `user.name` | `String` | Name of the user on the third-party service. _Optional_. |
-| `user.url` | `String` | URL for the user on the third-party service. _Optional_. |
+    `url`
+    : A string representing the URL of the third-party service.
+
+    `photo`
+    : A string providing a URL to an icon, logo or photo used to identify the third-party service in Micropub clients.
+
+  `user`
+  : An object containing information about the user account on the third-party service.
+
+    `name`
+    : A string representing the name of the user account.
+
+    `url`
+    : A string representing the URL for the user account.
 
 ## Methods
 
-| Method | Type | Description |
-| :----- | :--- | :---------- |
-| `syndicate()` | `AsyncFunction` | Syndicate a post to a third-party service. |
-
 ### `syndicate()`
 
-| Parameters | Type | Description |
-| :--------- | :--- | :---------- |
-| `properties` | `Object` | Path to file. _Required_. |
-| `publication` | `Object` | Path to file. _Required_. |
+An async function used to syndicate posts to the third-party service.
 
-Returns the URL for the syndicated content as a `String` if successful, else returns [`IndiekitError`][]. For example:
+### `init()`
 
-```js
-async syndicate(properties, publication) {
-  try {
-    return await exampleClient.post(properties, publication);
-  } catch (error) {
-    throw new IndiekitError(error.message, {
-      cause: error,
-      plugin: this.name,
-      status: error.status,
-    });
-  }
-}
-```
+Used to register the plug-in. Accepts an `Indiekit` instance to allow its modification before returning.
+
+#### Parameters
+
+`properties` <Badge type="info" text="Required" />
+: An object containing properties for a post. These conform to the [JF2 Post Serialisation Format](https://jf2.spec.indieweb.org).
+
+`publication` <Badge type="info" text="Required" />
+: An object containing the [publication’s configuration](/configuration/#publication).
+
+#### Return value
+
+A string representing the URL for the syndicated content if successful, else [`IndiekitError`][].
 
 ## Example
 
@@ -129,6 +122,33 @@ export default class ExampleStore {
   }
 }
 ```
+
+### Add target information
+
+Indiekit’s web interface expects a syndicator plug-in to provide some information about the third-party service it supports. In addition, some Micropub clients may also use this information in their publishing interface. This information is provided by the `info` property:
+
+```js
+get info() {
+  const { user } = this.options;
+
+  return {
+    name: `${user} on Example service`,
+    uid: `https://service.example/${user}`,
+    checked: true,
+    service: {
+      name: "Example service",
+      url: "https://service.example/",
+      photo: "/assets/example-syndicator/icon.svg",
+    },
+    user: {
+      name: user,
+      url: `https://service.example/${user}`,
+    },
+  };
+}
+```
+
+## See also
 
 Example syndicator plug-ins:
 
