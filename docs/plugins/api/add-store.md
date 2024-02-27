@@ -1,129 +1,108 @@
+---
+outline: deep
+---
+
 # `Indiekit.addStore`
 
-A [content store](../../concepts.md#content-store) plug-in interfaces with CRUD (create, read, update, delete) methods provided by a file system, server, database or API.
+A [content store](../../concepts.md#content-store) interfaces with CRUD (create, read, update, delete) methods provided by a file system, version control system, server, database or API.
 
-[[toc]]
+## Syntax
+
+```js
+new Indiekit.addStore(options);
+```
 
 ## Constructor
 
-<!--@include: .plugin-constructor.md-->
+`options`
+: An object used to customise the behaviour of the plug-in.
 
 ## Properties
 
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `info` | `Object` | Information about the content store. _Required_. |
+`info` <Badge type="info" text="Required" />
+: An object representing information about the content store. The `info` property should return the following values:
 
-### `info`
+  `name` <Badge type="info" text="Required" />
+  : The name of the content store the plug-in supports.
 
-Indiekit’s web interface expects a content store plugin to provide some information about the content store it supports. This is provided by the `info` property:
-
-```js
-get info() {
-  return {
-    name: "Example content store",
-    uid: "https://store.example"
-  };
-}
-```
-
-The `info` property returns the following values:
-
-| Property | Type | Description |
-| :------- | :--- | :---------- |
-| `name` | `String` | The name of the content store the preset supports. _Required_. |
-| `uid` | `String` | URL or path to content store. _Required_. |
+  `uid` <Badge type="info" text="Required" />
+  : URL or path to content store.
 
 ## Methods
 
-| Method | Type | Description |
-| :----- | :--- | :---------- |
-| `createFile()` | `AsyncFunction` | Create a file on the content store. |
-| `readFile()` | `AsyncFunction` | Read a file from the content store. |
-| `updateFile()` | `AsyncFunction` | Update a file on the content store. |
-| `deleteFile()` | `AsyncFunction` | Delete a file on the content store. |
-
 ### `createFile()`
 
-| Parameters | Type | Description |
-| :--------- | :--- | :---------- |
-| `filePath` | `String` | Path to file. _Required_. |
-| `content` | `String` | File content. _Required_. |
-| `options.message` | `String` | Commit message. _Optional_. |
+An async function that creates a file on the content store.
 
-Returns a `String` containing the file’s URL if successful, else returns [`IndiekitError`][]. For example:
+#### Parameters
 
-```js
-async createFile(filePath, content, { message }) {
-  try {
-    await exampleClient.create(filePath, content, message);
-    return true;
-  } catch (error) {
-    throw new IndiekitError(error.message);
-  }
-}
-```
+`filePath` <Badge type="info" text="Required" />
+: A string representing the path to a file.
+
+`content` <Badge type="info" text="Required" />
+: A string representing the file content.
+
+`options.message`
+: A string representing the commit message.
+
+#### Return value
+
+A string containing the file’s URL if successful, else [`IndiekitError`][].
 
 ### `readFile()`
 
-| Parameters | Type | Description |
-| :--------- | :--- | :---------- |
-| `filePath` | `String` | Path to file. _Required_. |
+An async function that reads a file from the content store.
 
-Returns content as a `String` containing the file’s content if successful, else returns [`IndiekitError`][]. For example:
+#### Parameters
 
-```js
-async readFile(filePath) {
-  try {
-    await exampleClient.read(filePath);
-    return true;
-  } catch (error) {
-    throw new IndiekitError(error.message);
-  }
-}
-```
+`filePath` <Badge type="info" text="Required" />
+: A string representing the path to a file.
+
+#### Return value
+
+A string containing the file’s content if successful, else [`IndiekitError`][].
 
 ### `updateFile()`
 
-| Parameters | Type | Description |
-| :--------- | :--- | :---------- |
-| `filePath` | `String` | Path to file. _Required_. |
-| `content` | `String` | File content. _Required_. |
-| `options.message` | `String` | Commit message. _Optional_. |
-| `options.newPath` | `String` | New path to file. _Optional_. |
+An async function that updates a file on the content store.
 
-Returns a `String` containing the file’s updated URL if successful, else returns [`IndiekitError`][]. For example:
+#### Parameters
 
-```js
-async updateFile(filePath, content, { message, newPath }) {
-  try {
-    await exampleClient.update(filePath, content, message, newPath);
-    return true;
-  } catch (error) {
-    throw new IndiekitError(error.message);
-  }
-}
-```
+`filePath` <Badge type="info" text="Required" />
+: A string representing the path to a file.
+
+`content` <Badge type="info" text="Required" />
+: A string representing the updated file content.
+
+`options.message`
+: A string representing the commit message.
+
+`options.newPath`
+: A string representing the new path to file, if changed.
+
+#### Return value
+
+A string containing the file’s updated URL if successful, else [`IndiekitError`][].
 
 ### `deleteFile()`
 
-| Parameters | Type | Description |
-| :--------- | :--- | :---------- |
-| `filePath` | `String` | Path to file. _Required_. |
-| `options.message` | `String` | Commit message. _Optional_. |
+An async function that deletes a file on the content store.
 
-Returns a `Boolean` `true` if successful, else returns [`IndiekitError`][]. For example:
+#### Parameters
 
-```js
-async deleteFile(filePath, { message }) {
-  try {
-    await exampleClient.delete(filePath, message);
-    return true;
-  } catch (error) {
-    throw new IndiekitError(error.message);
-  }
-}
-```
+`filePath` <Badge type="info" text="Required" />
+: A string representing the path to a file.
+
+`options.message`
+: A string representing the commit message.
+
+#### Return value
+
+`true` if successful, else [`IndiekitError`][].
+
+### `init()`
+
+Used to register the plug-in. Accepts an `Indiekit` instance to allow its modification before returning.
 
 ## Example
 
@@ -184,6 +163,21 @@ export default class ExampleStore {
   }
 }
 ```
+
+### Add store information
+
+Indiekit’s web interface expects a content store plugin to provide some information about the content store it supports. This is provided by the `info` property:
+
+```js
+get info() {
+  return {
+    name: "Example content store",
+    uid: "https://store.example"
+  };
+}
+```
+
+## See also
 
 Example content store plug-ins:
 
