@@ -29,7 +29,7 @@ describe("indiekit/lib/post-types", () => {
     });
   });
 
-  it.skip("Returns custom post types", async () => {
+  it("Returns custom post types", async () => {
     const config = await testConfig({ usePostTypes: true });
     const indiekit = await Indiekit.initialize({ config });
     const bootstrappedConfig = await indiekit.bootstrap();
@@ -38,7 +38,7 @@ describe("indiekit/lib/post-types", () => {
     assert.equal(result.name, "Custom note post type");
   });
 
-  it.skip("Returns default if no preset or custom post types", async () => {
+  it("Returns default if no preset or custom post types", async () => {
     const config = await testConfig({
       usePostTypes: false,
       usePreset: false,
