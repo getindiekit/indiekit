@@ -5,6 +5,7 @@ Indiekit is a Node.js Express server designed to interoperate with IndieWeb prot
 A plug-in can provide any of the following features:
 
 * [application endpoints](add-endpoint.md)
+* [post types](add-post-type.md)
 * [publication presets](add-preset.md)
 * [content store functions](add-store.md)
 * [syndication functions](add-syndicator.md)

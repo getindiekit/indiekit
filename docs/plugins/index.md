@@ -6,6 +6,9 @@
 * [Endpoints](endpoints.md)  
   Add extra features or support other IndieWeb protocols.
 
+* [Post types](post-types.md)  
+  Add new post types.
+
 * [Publication presets](presets.md)  
   Provide default values for post types and post templates.
 
