@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "error": {
+      "jam": {
+        "author": {
+          "empty": "Masukkan artis"
+        },
+        "name": {
+          "empty": "Masukkan judul lagu"
+        }
+      }
+    },
+    "form": {
+      "jam-of": {
+        "author": "Artis",
+        "label": "Jam dari",
+        "name": "Judul lagu",
+        "url": "Tautan"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "error": {
+      "jam": {
+        "author": {
+          "empty": "Unesite umetnika"
+        },
+        "name": {
+          "empty": "Unesite naslov pesme"
+        }
+      }
+    },
+    "form": {
+      "jam-of": {
+        "author": "Umetnik",
+        "label": "Jam od",
+        "name": "Naslov pesme",
+        "url": "URL"
+      }
+    }
+  }
+}

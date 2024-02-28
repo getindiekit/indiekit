@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "error": {
+      "jam": {
+        "author": {
+          "empty": "Voer een artiest in"
+        },
+        "name": {
+          "empty": "Voer een titel van een nummer in"
+        }
+      }
+    },
+    "form": {
+      "jam-of": {
+        "author": "Artiest",
+        "label": "Jam van",
+        "name": "Titel",
+        "url": "URL"
+      }
+    }
+  }
+}

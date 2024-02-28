@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "error": {
+      "jam": {
+        "author": {
+          "empty": "输入艺术家"
+        },
+        "name": {
+          "empty": "输入歌曲标题"
+        }
+      }
+    },
+    "form": {
+      "jam-of": {
+        "author": "艺术家",
+        "label": "Jam",
+        "name": "歌曲标题",
+        "url": "网址"
+      }
+    }
+  }
+}
