@@ -1,0 +1,72 @@
+{
+  "guidance": {
+    "discovery": "Så att %s kan upptäckas av Micropub-klienter och begära tillstånd att posta på din webbplats, lägg till följande värden till din webbplats `<head>`:"
+  },
+  "homepage": {
+    "title": "Välkommen!"
+  },
+  "scope": {
+    "create": {
+      "label": "Skapa inlägg"
+    },
+    "delete": {
+      "label": "Radera inlägg och media"
+    },
+    "draft": {
+      "label": "Skapa och uppdatera endast inläggsutkast"
+    },
+    "label": "Publiceringsbehörigheter",
+    "media": {
+      "label": "Ladda upp mediefiler"
+    },
+    "none": {
+      "label": "Du har inga publiceringsbehörigheter"
+    },
+    "update": {
+      "label": "Uppdatera inlägg"
+    }
+  },
+  "session": {
+    "login": {
+      "description": "Logga in med IndieAuth för att verifiera att du äger %s",
+      "me": "Webbadress",
+      "submit": "Logga in med IndieAuth",
+      "title": "Logga in"
+    },
+    "logout": {
+      "title": "Logga ut"
+    }
+  },
+  "status": {
+    "application": {
+      "accessToken": "Åtkomsttoken",
+      "authorizationEndpoint": "Auktoriserings-slutpunkt",
+      "installedPlugins": "Installerade plugins",
+      "locale": "Språk",
+      "localeNotAvailable": "{{app}} har inte översatts till {{locale}} än",
+      "mediaEndpoint": "Medie-slutpunkt",
+      "micropubEndpoint": "Micropub-slutpunkt",
+      "name": "Namn",
+      "summaryTitle": "Applikationsinställningar",
+      "themeColor": "Temafärg",
+      "themeColorScheme": "Tema",
+      "themeColorSchemeValue": {
+        "automatic": "Automatisk",
+        "dark": "Mörkt",
+        "light": "Ljust"
+      },
+      "timeZone": "Tidszon",
+      "version": "Version"
+    },
+    "publication": {
+      "locale": "Språk",
+      "me": "Webbadress",
+      "postTypes": "Inläggstyper",
+      "preset": "Förval",
+      "store": "Innehållsbank",
+      "summaryTitle": "Publikationsinställningar",
+      "syndicationTargets": "Syndikeringsmål"
+    },
+    "title": "Serverstatus"
+  }
+}

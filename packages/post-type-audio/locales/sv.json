@@ -1,0 +1,10 @@
+{
+  "posts": {
+    "form": {
+      "audio": {
+        "label": "Ljud",
+        "name": "ljudfil"
+      }
+    }
+  }
+}

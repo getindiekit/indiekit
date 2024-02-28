@@ -21,6 +21,7 @@ export const defaultConfig = {
       "pl",
       "pt",
       "sr",
+      "sv",
       "zh-Hans-CN",
     ],
     mongodbUrl: process.env.MONGO_URL || false,

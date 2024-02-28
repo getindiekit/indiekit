@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "Ange en beskrivning av det här fotot"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "Tillgänglig beskrivning"
+      },
+      "photo": {
+        "label": "Foton",
+        "name": "foto"
+      }
+    }
+  }
+}

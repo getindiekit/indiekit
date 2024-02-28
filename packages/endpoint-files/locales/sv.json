@@ -1,0 +1,36 @@
+{
+  "files": {
+    "delete": {
+      "action": "Radera fil",
+      "cancel": "Nej — återgå till fil",
+      "note": "Det kan fortfarande vara tillgängligt eller återställbart från din innehållsbank (%s).",
+      "submit": "Jag är säker – ta bort den här filen",
+      "title": "Är du säker på att radera den här filen?"
+    },
+    "error": {
+      "file": {
+        "empty": "Välj en fil att ladda upp"
+      }
+    },
+    "file": {
+      "download": "Ladda ned fil",
+      "properties": "Egenskaper"
+    },
+    "files": {
+      "none": "Inga filer",
+      "title": "Uppladdade filer"
+    },
+    "form": {
+      "cancel": "Avbryt",
+      "file": {
+        "label": "Fil"
+      },
+      "submit": "Ladda upp"
+    },
+    "title": "Filer",
+    "upload": {
+      "action": "Ladda upp fil",
+      "title": "Ladda upp en ny fil"
+    }
+  }
+}

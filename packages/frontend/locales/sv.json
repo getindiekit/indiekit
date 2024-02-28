@@ -1,0 +1,56 @@
+{
+  "addAnother": {
+    "add": "Lägg till en ny %s",
+    "delete": "Radera"
+  },
+  "backLink": {
+    "text": "Tillbaka"
+  },
+  "characterCount": {
+    "char": {
+      "one": "%s tecken",
+      "other": "%s tecken"
+    },
+    "word": {
+      "one": "%s ord",
+      "other": "%s ord"
+    }
+  },
+  "error": "Fel",
+  "errorSummary": {
+    "title": "Det finns ett problem"
+  },
+  "geoInput": {
+    "denied": "Det gick inte att få behörighet att använda aktuell plats",
+    "failed": "Det gick inte att hämta aktuell plats",
+    "getCurrentPosition": "Använd aktuell plats"
+  },
+  "important": "Viktigt",
+  "noValue": "Ej angett",
+  "optionalValue": "(valfritt)",
+  "pagination": {
+    "defaultType": "resultat",
+    "item": "Sida %s",
+    "next": "Nästa %s",
+    "page": "sida",
+    "previous": "Föregående %s"
+  },
+  "skipLink": {
+    "text": "Hoppa till innehåll"
+  },
+  "success": "Framgång",
+  "tagInput": {
+    "added": "{{tag}} {{name}} tillagd.",
+    "defaultTag": "etikett",
+    "defaultTags": "etiketter",
+    "delete": "Radera {{tag}} {{name}}.",
+    "deleted": "{{tag}} {{name}} raderad.",
+    "edit": "Redigera {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Använd vänster och höger piltangenter för att navigera, enter eller tab för att skapa, delete för att radera {{tags}}.",
+    "noneSelected": "Inga {{tags}} valda.",
+    "placeholder": "Lägg till {{tags}}",
+    "selected": "{{tag}} {{name}} vald. Tryck på enter för att redigera, delete för att radera.",
+    "updated": "{{tag}} uppdaterad till {{name}}"
+  },
+  "warning": "Varning"
+}

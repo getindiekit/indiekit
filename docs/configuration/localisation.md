@@ -14,6 +14,7 @@ Indiekit has been localised into the following languages:
 - `pl`: Polski (with contributions from Arookei The Wolf)
 - `pt`: Português
 - `sr`: Srpski (with contributions from Anđela Radojlović)
+- `sv`: Svenska (with contributions from [Carl Räfting](https://github.com/carlrafting))
 - `zh-Hans-CN`: 中文 (Simplified Chinese, with contributions from [Xie Yanbo](https://github.com/xyb) and [藍](https://github.com/kwaa))
 
 You can change the application’s locale by changing the `application.locale` option, for example:

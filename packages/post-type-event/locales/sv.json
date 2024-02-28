@@ -1,0 +1,17 @@
+{
+  "posts": {
+    "error": {
+      "start": {
+        "empty": "Ange ett startdatum"
+      }
+    },
+    "form": {
+      "event": {
+        "all-day": "Hela dagen",
+        "end": "Slutar",
+        "label": "Datum och tid",
+        "start": "Börjar"
+      }
+    }
+  }
+}

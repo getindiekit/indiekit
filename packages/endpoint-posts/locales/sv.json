@@ -1,0 +1,117 @@
+{
+  "posts": {
+    "create": {
+      "action": "Nytt inlägg",
+      "title": "Skapa ett nytt %s inlägg"
+    },
+    "delete": {
+      "action": "Radera inlägg",
+      "cancel": "Nej — återgå till inlägget",
+      "submit": "Jag är säker – ta bort det här inlägget",
+      "title": "Är du säker på att du vill ta bort det här inlägget?"
+    },
+    "error": {
+      "content": {
+        "empty": "Ange innehåll"
+      },
+      "geo": {
+        "invalid": "Ange giltiga koordinater"
+      },
+      "media": {
+        "empty": "Ange en filsökväg eller webbadress som %s"
+      },
+      "name": {
+        "empty": "Ange en titel"
+      },
+      "type": {
+        "empty": "Välj en inläggstyp"
+      },
+      "url": {
+        "empty": "Ange en webbadress som %s"
+      }
+    },
+    "form": {
+      "advancedOptions": "Avancerade alternativ",
+      "back": "Ändra inläggstyp",
+      "cancel": "Avbryt",
+      "category": {
+        "hint": "Separera varje kategori med ett komma",
+        "label": "Kategorier",
+        "tag": "kategori"
+      },
+      "content": {
+        "label": "Innehåll"
+      },
+      "continue": "Fortsätt",
+      "geo": {
+        "hint": "Latitud och longitud, till exempel %s",
+        "label": "Platskoordinater"
+      },
+      "location": {
+        "country-name": "Land",
+        "label": "Plats",
+        "locality": "Stad eller kommun",
+        "name": "Mötesplats",
+        "postal-code": "Postnummer",
+        "street-address": "Gatuadress"
+      },
+      "media": {
+        "label": "Filsökväg eller URL"
+      },
+      "mp-slug": {
+        "label": "URL-slug"
+      },
+      "mp-syndicate-to": {
+        "label": "Syndikera till"
+      },
+      "name": {
+        "label": "Titel"
+      },
+      "publish": "Publicera inlägg",
+      "publishDraft": "Spara utkast",
+      "published": {
+        "label": "Publiceringsdatum",
+        "now": "Nu",
+        "scheduled": "Specifikt datum och tid"
+      },
+      "summary": {
+        "label": "Sammanfattning"
+      },
+      "update": "Uppdatera inlägg",
+      "updateDraft": "Uppdatera utkast",
+      "visibility": {
+        "label": "Synlighet"
+      }
+    },
+    "new": {
+      "title": "Vilken typ av inlägg vill du skapa?"
+    },
+    "post": {
+      "properties": "Egenskaper",
+      "syndicate": "Syndikera inlägg"
+    },
+    "posts": {
+      "none": "Inga inlägg",
+      "title": "Publicerade inlägg"
+    },
+    "status": {
+      "deleted": "Raderad",
+      "draft": "Utkast",
+      "private": "Privat",
+      "public": "Publik",
+      "published": "Publicerad",
+      "syndicated": "Syndikerad",
+      "unlisted": "Olistad"
+    },
+    "title": "Inlägg",
+    "undelete": {
+      "action": "Återställ inlägg",
+      "submit": "Jag är säker – återställ det här inlägget",
+      "title": "Är du säker på att du vill återställa det här inlägget?"
+    },
+    "update": {
+      "action": "Redigera inlägg",
+      "title": "Uppdatera %s inlägg"
+    }
+  }
+}

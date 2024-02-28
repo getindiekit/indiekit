@@ -1,0 +1,9 @@
+{
+  "posts": {
+    "form": {
+      "repost-of": {
+        "label": "Återpostning av"
+      }
+    }
+  }
+}

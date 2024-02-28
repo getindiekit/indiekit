@@ -1,0 +1,30 @@
+{
+  "share": {
+    "bookmark-of": {
+      "label": "URL"
+    },
+    "content": {
+      "label": "Innehåll"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Ange en webbadress som %s"
+      },
+      "name": {
+        "empty": "Ange titel"
+      }
+    },
+    "name": {
+      "label": "Titel"
+    },
+    "submit": "Publicera",
+    "title": "Dela"
+  },
+  "status": {
+    "bookmarklet": {
+      "guidance": "Dra den här länken till bokmärkesfältet: %s",
+      "label": "Dela sida",
+      "title": "Dela bookmarklet"
+    }
+  }
+}

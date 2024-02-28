@@ -1,0 +1,39 @@
+{
+  "BadRequestError": {
+    "invalid": "Begäran saknar en obligatorisk parameter, innehåller en parameter eller parametervärde som inte stöds, upprepar samma parameter, använder mer än en metod för att inkludera en åtkomst-token eller är på annat sätt felaktig",
+    "invalidValue": "Ogiltigt värde angivet för: `%s`",
+    "missingParameter": "Saknad parameter: `%s`",
+    "missingProperty": "Inga %s inkluderade i begäran",
+    "missingResource": "Inget %s hittades för denna URL",
+    "missingToken": "Ingen bärare-token tillhandahålls i begäran",
+    "title": "Felaktig begäran."
+  },
+  "ForbiddenError": {
+    "insufficientScope": "Begäran kräver högre privilegier än vad som tillhandahålls av åtkomsttoken",
+    "invalidMe": "Publikationens URL matchar inte den som tillhandahålls av åtkomst-token",
+    "invalidRedirect": "Försök av ogiltig omdirigering",
+    "invalidState": "Ogiltigt värde för `state`",
+    "title": "Förbjuden"
+  },
+  "NotFoundError": {
+    "page": "Om du angav en webbadress, kontrollera att den var korrekt",
+    "record": "Ingen databaspost hittades för %s",
+    "title": "Hittades inte"
+  },
+  "NotImplementedError": {
+    "database": "Den här funktionen kräver en databas",
+    "postType": "Ingen konfiguration angavs för inläggs-typen %s",
+    "query": "Frågor som `{{key}}`: ` {{value}}` stöds inte",
+    "secret": "Saknar `SECRET`",
+    "title": "Ej implementerad"
+  },
+  "UnauthorizedError": {
+    "invalidCode": "Den angivna auktoriserings-koden har upphört att gälla, återkallats, missformad eller ogiltigt av andra skäl",
+    "invalidToken": "Åtkomsttoken som försågs har löpt ut, återkallats, missbildats eller är ogiltigt av andra skäl",
+    "title": "Obehörig"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Media-typen stöds inte",
+    "type": "Media-typen %s stöds inte"
+  }
+}

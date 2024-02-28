@@ -1,0 +1,58 @@
+{
+  "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Logga in",
+        "text": "Logga in {{client}} som {{me}}",
+        "title": "Logga in"
+      },
+      "authorize": {
+        "submit": "Tillåt",
+        "text": "{{client}} begär tillstånd att komma åt {{me}}",
+        "title": "Godkänn applikation"
+      },
+      "password": {
+        "label": "Lösenord"
+      },
+      "pkce": {
+        "text": "{{client}} använder inte Proof of Key Code Exchange (PKCE), vilket är säkrare."
+      },
+      "redirect": "Efter godkännande kommer du att omdirigeras till %s"
+    },
+    "error": {
+      "password": {
+        "invalid": "Ange ett giltigt lösenord",
+        "missing": "Ange lösenord"
+      }
+    },
+    "guidance": {
+      "authentication": {
+        "redeemCode": "Lös in en auktoriseringskod för en åtkomsttoken",
+        "title": "Få en användares åtkomstbehörigheter",
+        "verifyToken": "Verifiera en åtkomsttoken"
+      },
+      "authorization": {
+        "redeemCode": "Lös in en auktoriseringskod för en användares profil-URL",
+        "requestCode": "Begär en auktoriseringskod",
+        "requestCodeResponse": "Om användaren godkänner begäran genererar slutpunkten en auktoriseringskod och omdirigerar tillbaka till klienten:",
+        "title": "Få en användares identitet"
+      },
+      "discovery": "Om du vill använda denna autentiseringsslutpunkt lägger du till följande värden i webbplatsens `<head>`:",
+      "title": "Använda denna IndieAuth-slutpunkt"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Ange ett lösenord som ska användas för autentisering av förfrågningar"
+      },
+      "secret": {
+        "hint": "Använd följande värde för %s i dina miljövariabler",
+        "label": "Lösenordshemlighet"
+      },
+      "setup": {
+        "text": "En lösenordshemlighet behövs innan du {{app}} kan autentisera IndieAuth-förfrågningar."
+      },
+      "submit": "Generera lösenordshemlighet",
+      "title": "Nytt lösenord"
+    }
+  }
+}

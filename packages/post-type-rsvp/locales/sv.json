@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "rsvp": {
+        "empty": "Välj ett svar"
+      }
+    },
+    "form": {
+      "rsvp": {
+        "interested": "Intresserad",
+        "label": "OSA",
+        "maybe": "Kanske",
+        "no": "Nej",
+        "yes": "Ja"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "posts": {
+    "error": {
+      "jam": {
+        "author": {
+          "empty": "Ange en artist"
+        },
+        "name": {
+          "empty": "Ange en låttitel"
+        }
+      }
+    },
+    "form": {
+      "jam-of": {
+        "author": "Artist",
+        "label": "Jam av",
+        "name": "Låttitel",
+        "url": "URL"
+      }
+    }
+  }
+}
