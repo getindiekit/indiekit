@@ -14,6 +14,17 @@ describe("indiekit/lib/middleware/locals", () => {
     assert.equal(next.mock.calls.length, 1);
   });
 
+  it("Displays MongoDB client connection error", async () => {
+    const request = mockRequest({ app: { locals: {} } });
+    const response = mockResponse();
+    const next = mock.fn();
+
+    defaultConfig.application._mongodbClientError = new Error("test");
+    await locals(defaultConfig)(request, response, next);
+
+    assert.equal(request.app.locals.error instanceof Error, true);
+  });
+
   it("Throws error exposing configuration to frontend templates", async () => {
     const request = mockRequest();
     const response = mockResponse();

@@ -15,7 +15,7 @@ export const locals = (indiekitConfig) =>
       // Application
       request.app.locals.application = application;
 
-      // Display any MongoDB client connection errors
+      // Display MongoDB client connection error
       if (application._mongodbClientError) {
         request.app.locals.error = application._mongodbClientError;
       }
