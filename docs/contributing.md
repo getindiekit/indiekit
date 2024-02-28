@@ -75,6 +75,7 @@ This project uses a monorepo structure, with concerns split into separate Node m
 | `error` | Error handling for the core module and plug-ins. |
 | `create-indiekit` | Project initialiser, used when running `npm create indiekit`. |
 | `endpoint-*` | Application endpoint plug-ins. |
+| `post-type-*` | Post type plug-ins. |
 | `preset-*` | Publication preset plug-ins. |
 | `store-*` | Content store plug-ins. |
 | `syndicator-*` | Syndicator plug-ins. |
