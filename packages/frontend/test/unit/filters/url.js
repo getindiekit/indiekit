@@ -4,10 +4,8 @@ import { friendlyUrl, imageUrl } from "../../../lib/filters/index.js";
 
 describe("frontend/lib/filters/url", () => {
   it("Gets friendly URL", () => {
-    assert.equal(
-      friendlyUrl("https://website.example/path"),
-      "website.example/path",
-    );
+    assert.equal(friendlyUrl("https://foo.example/bar"), "foo.example/bar");
+    assert.equal(friendlyUrl("foo.example/bar"), "foo.example/bar");
   });
 
   it("Gets transformed image URL", () => {
