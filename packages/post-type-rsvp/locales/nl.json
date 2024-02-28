@@ -1,5 +1,10 @@
 {
   "posts": {
+    "error": {
+      "rsvp": {
+        "empty": "Selecteer een antwoord"
+      }
+    },
     "form": {
       "rsvp": {
         "interested": "Geïnteresseerd",

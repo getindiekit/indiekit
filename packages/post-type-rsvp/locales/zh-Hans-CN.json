@@ -1,5 +1,10 @@
 {
   "posts": {
+    "error": {
+      "rsvp": {
+        "empty": "选择回应"
+      }
+    },
     "form": {
       "rsvp": {
         "interested": "感兴趣",

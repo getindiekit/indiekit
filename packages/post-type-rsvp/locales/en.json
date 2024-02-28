@@ -1,8 +1,8 @@
 {
   "posts": {
     "error": {
-      "content": {
-        "rsvp": "Select a response"
+      "rsvp": {
+        "empty": "Select a response"
       }
     },
     "form": {

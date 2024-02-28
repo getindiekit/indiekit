@@ -1,9 +1,14 @@
 {
   "posts": {
+    "error": {
+      "rsvp": {
+        "empty": "Seleccione una respuesta"
+      }
+    },
     "form": {
       "rsvp": {
         "interested": "Interesado",
-        "label": "RSVP",
+        "label": "Responder",
         "maybe": "Quizás",
         "no": "No",
         "yes": "Sí"
