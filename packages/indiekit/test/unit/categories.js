@@ -35,9 +35,17 @@ describe("indiekit/lib/categories", async () => {
   it("Returns empty array if remote JSON file not found", async () => {
     bootstrappedConfig.publication.categories =
       "https://website.example/404.json";
-    await assert.rejects(getCategories(bootstrappedConfig), {
-      message: "Not Found",
-    });
+    const result = await getCategories(bootstrappedConfig);
+
+    assert.deepEqual(result, []);
+  });
+
+  it("Returns empty array if remote JSON file not reachable", async () => {
+    bootstrappedConfig.publication.categories =
+      "https://foo.bar/categories.json";
+    const result = await getCategories(bootstrappedConfig);
+
+    assert.deepEqual(result, []);
   });
 
   it("Returns empty array if no publication configuration", async () => {

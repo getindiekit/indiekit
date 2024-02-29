@@ -10,17 +10,22 @@ export const getCategories = async (Indiekit) => {
   const { application, publication } = Indiekit;
   const { categories } = publication;
 
+  let categoryList = [];
+
   if (categories && categories.constructor === Array) {
-    return categories.sort();
+    categoryList = categories;
   }
 
   if (categories && URL.canParse(categories)) {
-    const cachedCategories = await getCachedResponse(
+    categoryList = await getCachedResponse(
       application.cache,
       application.ttl,
       categories,
     );
-    return cachedCategories.sort();
+  }
+
+  if (categoryList) {
+    return categoryList.sort();
   }
 
   return [];

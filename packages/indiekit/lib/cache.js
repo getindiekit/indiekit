@@ -10,13 +10,18 @@ export const getCachedResponse = async (cache, ttl, url) => {
   let cachedResponse = cache && (await cache.get(url));
 
   if (!cachedResponse) {
-    const response = await fetch(url);
+    try {
+      const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error(response.statusText);
+      if (!response.ok) {
+        console.error(url, response.statusText);
+        return;
+      }
+
+      cachedResponse = await response.json();
+    } catch (error) {
+      console.error(error);
     }
-
-    cachedResponse = await response.json();
 
     if (cache) {
       await cache.set(url, cachedResponse, ttl);
