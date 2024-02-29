@@ -21,6 +21,7 @@ html:focus-within {
 body {
   margin: 0;
   min-block-size: 100dvh;
+  overflow-x: hidden;
 }
 
 @media print {
