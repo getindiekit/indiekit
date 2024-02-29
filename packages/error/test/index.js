@@ -117,12 +117,15 @@ describe("error", () => {
   it("Throws 501 not implemented error", () => {
     assert.throws(
       () => {
-        throw IndiekitError.notImplemented("Message");
+        throw IndiekitError.notImplemented("Message", {
+          uri: "https://help.example/501",
+        });
       },
       {
         code: "not_implemented",
         name: "NotImplementedError",
         status: 501,
+        uri: "https://help.example/501",
       },
     );
   });
