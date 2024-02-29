@@ -130,7 +130,7 @@ html {
 
   /* Layout */
   --container-padding-inline: var(--space-l);
-  --container-inline-size: min(96vw, var(--container-max-inline-size));
+  --container-inline-size: min(100vw, var(--container-max-inline-size));
   --container-max-inline-size: 75rem;
 
   color-scheme: light dark;

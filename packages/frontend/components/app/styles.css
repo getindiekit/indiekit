@@ -17,10 +17,12 @@
   }
 
   & .main {
-    border-radius: var(--border-radius-large);
-    flex: 0;
-    margin: auto;
-    overflow: hidden;
+    @media (width > 36rem) {
+      border-radius: var(--border-radius-large);
+      flex: 0;
+      margin: auto;
+      overflow: hidden;
+    }
   }
 
   & .main__container {
