@@ -36,21 +36,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="supported-color-schemes" content="light dark">
 
-  <link rel="alternate" href="{{ application.url }}/feed.jf2" type="application/jf2feed+json" title="JF2 Feed">
-  <link rel="apple-touch-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/app-icon-180.png">
-  <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg">
-  <link rel="preload" href="{{ application.url }}{{ assetPath | default("/assets") }}/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css">
-  <link rel="manifest" href="{{ application.url }}/app.webmanifest">
+  <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
+
+  <script async defer src="{{ application.url }}{{ assetPath | default("/assets") }}/app.js" type="module"></script>
+
   <style>
     :root {
       {{- themeCustomProperties(application.themeColor) | indent(6) }}
     }
   </style>
-  <script async defer src="{{ application.url }}{{ assetPath | default("/assets") }}/app.js" type="module"></script>
-  <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
+
+  <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css">
+  <link rel="preload" href="{{ application.url }}{{ assetPath | default("/assets") }}/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="alternate" href="{{ application.url }}/feed.jf2" type="application/jf2feed+json" title="JF2 Feed">
+  <link rel="apple-touch-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/app-icon-180.png">
+  <link rel="icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/icon.svg">
+  <link rel="manifest" href="{{ application.url }}/app.webmanifest">
+
+  <meta name="supported-color-schemes" content="light dark">
 </head>
 
 <body class="{{ appClasses }}">
