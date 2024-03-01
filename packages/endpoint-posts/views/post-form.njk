@@ -61,9 +61,10 @@
     {{ radios({
       inline: true,
       name: "visibility",
-      values: properties.visibility or "public",
+      values: properties.visibility,
       fieldset: {
-        legend: __("posts.form.visibility.label")
+        legend: __("posts.form.visibility.label"),
+        optional: true
       },
       items: [{
         label: __("posts.status.public"),
