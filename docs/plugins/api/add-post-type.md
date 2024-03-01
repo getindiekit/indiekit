@@ -35,7 +35,7 @@ new Indiekit.addPostType(type, options);
   : A string representing the [Microformat vocabulary](http://microformats.org/wiki/microformats2#v2_vocabularies) to use. Defaults to `entry`.
 
   `fields` <Badge type="info" text="Required" />
-  : A object containing [FieldType](#postfield) objects, keyed by field name.
+  : An object containing [FieldType](#postfield) objects, keyed by field name.
 
   `discovery`
   : A string representing the field name to use when identifying incoming Micropub requests.
@@ -45,7 +45,7 @@ new Indiekit.addPostType(type, options);
     In most cases this option is required. Only post types already defined in the [post type discovery][] algorithm (`article`, `event`, `like`, `note`, `photo`, `repost`, `rsvp`, `reply` and `video`) can ignore this option.
 
 `validationSchemas`
-: A object containing [Schema](#postfield) objects.
+: An object containing [Schema](#postfield) objects.
 
 ## Interfaces
 
