@@ -21,9 +21,9 @@ export const list = (request, response) => {
   response.render("plugins/list", {
     parent: {
       href: "/status/",
-      text: request.__("status.title"),
+      text: response.locals.__("status.title"),
     },
-    title: request.__("status.application.installedPlugins"),
+    title: response.locals.__("status.application.installedPlugins"),
     plugins,
   });
 };
@@ -40,7 +40,7 @@ export const view = (request, response) => {
   response.render("plugins/view", {
     parent: {
       href: path.dirname(request.path),
-      text: request.__("status.application.installedPlugins"),
+      text: response.locals.__("status.application.installedPlugins"),
     },
     title: plugin.name,
     photo: {
