@@ -49,10 +49,15 @@ export const excerptString = (string, n) => {
 export const getPostTemplateProperties = (properties) => {
   const templateProperties = structuredClone(properties);
 
-  // Remove server commands from post template properties
   for (let key in templateProperties) {
+    // Remove server commands from post template properties
     if (key.startsWith("mp-")) {
       delete templateProperties[key];
+    }
+
+    // Remove post-type property, only needed internally
+    if (key === "post-type") {
+      delete templateProperties["post-type"];
     }
   }
 
