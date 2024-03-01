@@ -11,6 +11,23 @@ export const SharePreviewComponent = class extends HTMLElement {
     for (const $output of this.outputs) {
       this.updatePreview($output);
     }
+
+    this.resizeWindow();
+  }
+
+  /**
+   * Resize parent window to fit output preview and input form
+   */
+  resizeWindow() {
+    const { scrollWidth, scrollHeight } = this.closest("form");
+
+    const chromeWidth = window.outerWidth - window.innerWidth;
+    const chromeHeight = window.outerHeight - window.innerHeight;
+
+    const width = scrollWidth + chromeWidth;
+    const height = scrollHeight + chromeHeight;
+
+    window.resizeTo(width, height);
   }
 
   /**
