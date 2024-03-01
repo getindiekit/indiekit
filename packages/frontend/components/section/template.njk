@@ -1,7 +1,8 @@
 {% from "../actions/macro.njk" import actions with context %}
 {% from "../prose/macro.njk" import prose with context %}
 {% set id = opts.id or opts.title | slugify({ decamelize: true }) %}
-<section class="{{ classes("section", opts) }}" aria-labelledby="{{ id }}">
+<section class="{{ classes("section", opts) }}"
+  {%- if opts.title %} aria-labelledby="{{ id }}"{% endif %}>
   {% if opts.title or opts.actions %}
   <header class="section__header">
     {% if opts.title %}
