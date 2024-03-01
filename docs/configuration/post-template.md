@@ -6,9 +6,9 @@ The `postTemplate()` method takes one argument, `properties`, which contains the
 
 ```js
 {
-  published: '2020-02-02',
-  name: 'What I had for lunch',
-  content: 'I ate a cheese sandwich, which was nice.',
+  published: "2020-02-02",
+  name: "What I had for lunch",
+  content: "I ate a cheese sandwich, which was nice.",
 }
 ```
 
