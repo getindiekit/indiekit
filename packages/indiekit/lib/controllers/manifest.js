@@ -5,7 +5,6 @@ export const get = async (request, response) => {
     $schema: "https://json.schemastore.org/web-manifest-combined.json",
     lang: application.locale,
     name: application.name,
-    theme_color: application.themeColor,
     icons: [
       {
         src: "assets/app-icon-192.png",
