@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Witaj!"
   },
+  "plugin": {
+    "options": "Opcje"
+  },
   "scope": {
     "create": {
       "label": "Twórz posty"

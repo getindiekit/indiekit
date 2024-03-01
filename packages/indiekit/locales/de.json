@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Willkommen!"
   },
+  "plugin": {
+    "options": "Optionen"
+  },
   "scope": {
     "create": {
       "label": "Beiträge erstellen"

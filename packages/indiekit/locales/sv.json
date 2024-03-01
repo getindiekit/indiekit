@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Välkommen!"
   },
+  "plugin": {
+    "options": "Alternativ"
+  },
   "scope": {
     "create": {
       "label": "Skapa inlägg"

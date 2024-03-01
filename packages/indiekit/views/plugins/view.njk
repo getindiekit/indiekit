@@ -23,7 +23,7 @@
   {% endcall %}
 
   {% if plugin.options %}
-    {% call section({ title: "Options" }) %}
+    {% call section({ title: __("plugin.options") }) %}
       {{ summary({
         rows: summaryRows(plugin.options)
       }) }}

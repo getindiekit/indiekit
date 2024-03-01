@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Bem-vindo!"
   },
+  "plugin": {
+    "options": "Opções"
+  },
   "scope": {
     "create": {
       "label": "Crie postagens"

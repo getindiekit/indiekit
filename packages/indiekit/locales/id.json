@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Selamat datang!"
   },
+  "plugin": {
+    "options": "Pilihan"
+  },
   "scope": {
     "create": {
       "label": "Membuat pos"

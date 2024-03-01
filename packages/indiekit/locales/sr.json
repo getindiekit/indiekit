@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Dobrodošli!"
   },
+  "plugin": {
+    "options": "Opcije"
+  },
   "scope": {
     "create": {
       "label": "Kreirajte postova"

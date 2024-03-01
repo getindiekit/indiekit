@@ -5,6 +5,9 @@
   "homepage": {
     "title": "¡Bienvenido!"
   },
+  "plugin": {
+    "options": "Opciones"
+  },
   "scope": {
     "create": {
       "label": "Crear publicaciones"

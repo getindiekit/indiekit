@@ -5,6 +5,9 @@
   "homepage": {
     "title": "欢迎！"
   },
+  "plugin": {
+    "options": "选项"
+  },
   "scope": {
     "create": {
       "label": "创建帖子"

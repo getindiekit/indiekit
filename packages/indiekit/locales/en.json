@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Welcome!"
   },
+  "plugin": {
+    "options": "Options"
+  },
   "session": {
     "login": {
       "title": "Sign in",

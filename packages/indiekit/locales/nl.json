@@ -5,6 +5,9 @@
   "homepage": {
     "title": "Welkom!"
   },
+  "plugin": {
+    "options": "Opties"
+  },
   "scope": {
     "create": {
       "label": "Posten maken"
