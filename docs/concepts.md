@@ -54,7 +54,7 @@ By default Indiekit supports creating the following post types:
 | `like`       | Posts used to share likes of other people’s posts. |
 | `note`       | Posts containing short, unstructured thoughts. |
 | `photo`      | Posts whose primary content is a photograph or other image. |
-| `reply`      | posts are used to reply to other people’s posts. |
+| `reply`      | Posts used to reply to other people’s posts. |
 
 ## Publication
 

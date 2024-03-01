@@ -3,7 +3,7 @@
 Indiekit provides content store plug-ins with a `metaData` object. This contains the following meta data that can be used in commit messages:
 
 - `action`: Action to take i.e. ‘create’, ‘upload’.
-- `result`: Result of action, i.e. ‘created’, ’uploaded'.
+- `result`: Result of action, i.e. ‘created’, ’uploaded’.
 - `fileType`: File type, i.e. ’post’ or ‘file‘.
 - `postType`: IndieWeb post type, i.e. ‘note’, ‘photo’, ‘reply’.
 
