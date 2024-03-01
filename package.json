@@ -52,8 +52,8 @@
     "lerna": "^8.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.0.0",
-    "@commitlint/config-conventional": "^18.0.0",
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
     "@indiekit-test/config": "*",
     "@indiekit-test/database": "*",
     "@indiekit-test/fixtures": "*",
