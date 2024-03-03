@@ -18,12 +18,15 @@ const sidebar = [
   {
     text: "Configuration",
     items: [
-      { text: "Options", link: "/configuration/" },
-      { text: "Post types", link: "/configuration/post-types" },
-      { text: "Post template", link: "/configuration/post-template" },
+      { text: "Introduction", link: "/configuration/" },
+      { text: "Application options", link: "/configuration/application" },
+      { text: "Publication options", link: "/configuration/publication" },
       { text: "Commit messages", link: "/configuration/commit-messages" },
       { text: "Localisation", link: "/configuration/localisation" },
+      { text: "Post types", link: "/configuration/post-types" },
+      { text: "Post template", link: "/configuration/post-template" },
       { text: "Time zone", link: "/configuration/time-zone" },
+      { text: "Tokens", link: "/configuration/tokens" },
     ],
   },
   {
