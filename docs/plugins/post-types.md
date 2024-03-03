@@ -2,9 +2,6 @@
 
 A [post type](../concepts#post-type) provides an interface for creating and editing different content types.
 
-> [!TIP] New feature
-> Post type plug-ins will be introduced in <Badge text="1.0.0-beta.8" />
-
 Plug-ins are available for the following post types:
 
 ## [@indiekit/post-type-article](https://npmjs.org/package/@indiekit/post-type-article)
