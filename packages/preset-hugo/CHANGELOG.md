@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Features
+
+* **indiekit:** add default post type properties ([1368667](https://github.com/getindiekit/indiekit/commit/1368667fd29e2642373917e09e0452bd304701e7))
+* **preset-hugo:** accept unknown post properties ([f7ccce9](https://github.com/getindiekit/indiekit/commit/f7ccce991db5c5c9b16860b9df971f9a2574a1b4))
+* **preset-hugo:** support configured post types ([e0ce1ed](https://github.com/getindiekit/indiekit/commit/e0ce1ed49e5911ae01a6992d892f6e7600e1e1da))
+* remove need for plugins to provide id value ([a866ec0](https://github.com/getindiekit/indiekit/commit/a866ec053db79d368cfa9cee197521723e39a59b))
+* remove need for plugins to provide meta value ([833893e](https://github.com/getindiekit/indiekit/commit/833893e0fd45747abbd44695182d889de190830c))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
 
 

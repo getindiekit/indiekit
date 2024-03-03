@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Bug Fixes
+
+* **frontend:** adjust icon spacing in badge component ([717817b](https://github.com/getindiekit/indiekit/commit/717817bf8eb5f67596e54833930fcacb0f24c2f2))
+* **frontend:** conditional checkbox and radio inline padding ([c39017d](https://github.com/getindiekit/indiekit/commit/c39017d0051222bb8d238f95e6833cee3892db68))
+* **frontend:** details spacing ([e493f85](https://github.com/getindiekit/indiekit/commit/e493f854c99694f9d8754742874cc1927eb069b9))
+* **frontend:** error colors with dark scheme ([ccc68be](https://github.com/getindiekit/indiekit/commit/ccc68be7d46053c46a5143a8fcf76cd5e3748f79))
+* **frontend:** error message spacing ([ba2761e](https://github.com/getindiekit/indiekit/commit/ba2761eb89aab88c613626cef641440ce2dc43f1))
+* **frontend:** event-duration spacing ([dc211b9](https://github.com/getindiekit/indiekit/commit/dc211b978f33df7a15238c661ffc128577306b96))
+* **frontend:** field spacing in fieldset group ([771e5c5](https://github.com/getindiekit/indiekit/commit/771e5c5914037df0f64cd8c00a166378d2e644fb))
+* **frontend:** focused text colour for detail summary ([cc67ab8](https://github.com/getindiekit/indiekit/commit/cc67ab878f3c88a7b7f400d05a1b9f47fc90b1e4))
+* **frontend:** force datetime input height on iOS ([d1ea3db](https://github.com/getindiekit/indiekit/commit/d1ea3db2f56c811bd1799b1050fbff49f5eef442))
+* **frontend:** head order ([3968e06](https://github.com/getindiekit/indiekit/commit/3968e06a1f5b223080adb427d5055170e74b1990))
+* **frontend:** hint spacing ([28cf9a2](https://github.com/getindiekit/indiekit/commit/28cf9a26e358f01d9a0e3af016b656870f4a98c8))
+* **frontend:** label typography ([0c3a37d](https://github.com/getindiekit/indiekit/commit/0c3a37da0bac63d9827b0ba1d660a0d9044b1180))
+* **frontend:** mark title in card component as safe ([3b374ac](https://github.com/getindiekit/indiekit/commit/3b374acecae101a59ce9089592884cfed4cfa8a8))
+* **frontend:** more specific selector for tag component styles ([da5db8c](https://github.com/getindiekit/indiekit/commit/da5db8ca1559624c7d854f0094891b904de568b6))
+* **frontend:** only add aria-labelledby if section has title ([db7ea28](https://github.com/getindiekit/indiekit/commit/db7ea28a1df97989c41e797c098a8ce07c541a1e))
+* **frontend:** only add aria-labelledby if widget has title ([8565cbf](https://github.com/getindiekit/indiekit/commit/8565cbffd98afe2e25e3a2eff9cad61b645a8247))
+* **frontend:** only apply min-block-size to authorize component when it contains client icon ([c3bbd6c](https://github.com/getindiekit/indiekit/commit/c3bbd6c3de0514fba0a8d009cabd82f29f59b901))
+* **frontend:** prevent horizontal scrolling ([54d2850](https://github.com/getindiekit/indiekit/commit/54d285046842d1d4ad825d8e82092275e09ab0e4))
+* **frontend:** remove any errors when cloning another item ([0a38ff9](https://github.com/getindiekit/indiekit/commit/0a38ff9d117cb8476f68ae07c7ae451643b3372f))
+* **frontend:** remove width on datetime-local input ([e175dd1](https://github.com/getindiekit/indiekit/commit/e175dd14916f8cf8d2c38436bb943e81a73a906e))
+* **frontend:** show full error name in notification banner ([b21db87](https://github.com/getindiekit/indiekit/commit/b21db8703ec8f7d8c9c6c61196d116b21966232a))
+* **frontend:** tag input input width ([9c0a9fe](https://github.com/getindiekit/indiekit/commit/9c0a9fe69f6f18a4c1316f64008b9819ceace446))
+* **frontend:** use fixed value for xs space ([6e64bd5](https://github.com/getindiekit/indiekit/commit/6e64bd5814f0e4d9abe23f4e973c20c6b8877d0a))
+* **frontend:** use option to enable inline radios ([b22d42b](https://github.com/getindiekit/indiekit/commit/b22d42b63428e4037275a32024382fa3e894e06b))
+* provide add another list in caller ([5f8f33e](https://github.com/getindiekit/indiekit/commit/5f8f33ed1b62e5817aa02a29de1d052d5b2b1fc5))
+* show localised date in cards ([f03f608](https://github.com/getindiekit/indiekit/commit/f03f60850731cd36990ac4705222a827e81a5522))
+
+
+### Features
+
+* add swedish localisation from [@carlrafting](https://github.com/carlrafting) ([37f2124](https://github.com/getindiekit/indiekit/commit/37f2124dabbf6272ebb94a90f17c7758a9962a37))
+* **frontend:** add border to inline fieldset ([fe30dc1](https://github.com/getindiekit/indiekit/commit/fe30dc1ceab1e69db4bb83bcd156a0dd6e619c33))
+* **frontend:** add items conditional to checkbox and radio components ([28892be](https://github.com/getindiekit/indiekit/commit/28892be40b4cab1471fc0fd28a64580563885a1d))
+* **frontend:** additional prose styles ([14188fc](https://github.com/getindiekit/indiekit/commit/14188fc5238648b24b2c941edf59633dcb858edd))
+* **frontend:** allow radios to be marked as optional ([5a39225](https://github.com/getindiekit/indiekit/commit/5a39225074c027ac4a6cd7844d2622ba100672d1))
+* **frontend:** character count component ([621d582](https://github.com/getindiekit/indiekit/commit/621d582835d6c4ac2960856b219e4978c3b32156))
+* **frontend:** cross, location and tick icons ([48ac368](https://github.com/getindiekit/indiekit/commit/48ac368b8094dae0bd93e5dca31f7b8aa0b201fd))
+* **frontend:** event duration component ([d126e61](https://github.com/getindiekit/indiekit/commit/d126e61e924ad4a6e5f57dbb57f16f6bef115d16))
+* **frontend:** isArray filter ([41060db](https://github.com/getindiekit/indiekit/commit/41060db435c958a9d7a144b40033e5f60539320b))
+* **frontend:** jam post icon ([9b5bc48](https://github.com/getindiekit/indiekit/commit/9b5bc487e49c35e19427f7839ce2e0d1e2d39a6f))
+* **frontend:** resize share preview window to fit form ([5f95f51](https://github.com/getindiekit/indiekit/commit/5f95f51473b8e8dba1b14947ffb822fcdaab924e))
+* **frontend:** simplify minimal ui layout on narrower viewports ([925ebbf](https://github.com/getindiekit/indiekit/commit/925ebbf195c3287732edff0c634343bbf1896627))
+* **frontend:** split offset and group fieldset modifiers ([435ea84](https://github.com/getindiekit/indiekit/commit/435ea84c979a5d89a9abb5d32b5f98236a9e40e5))
+* **frontend:** tag component ([bf04eb9](https://github.com/getindiekit/indiekit/commit/bf04eb9e269745e1d12321cd7ed6c6aa8c68d2c2))
+* **frontend:** update app icon ([b73cf33](https://github.com/getindiekit/indiekit/commit/b73cf33b86b2fbed9116c6b86fe4312a02076487))
+* **frontend:** use normal font style for citations ([048635c](https://github.com/getindiekit/indiekit/commit/048635cfad4f3ee56c58edf57b6ccfe2a358ffde))
+
+
+
+
+
 # [1.0.0-beta.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2023-11-07)
 
 

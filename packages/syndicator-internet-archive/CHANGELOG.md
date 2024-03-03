@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Bug Fixes
+
+* **internet-archive:** correct option name for secretKey ([f3231c5](https://github.com/getindiekit/indiekit/commit/f3231c59705180c102870cf4a5b1c383576aeeca))
+
+
+### Features
+
+* remove need for plugins to provide id value ([a866ec0](https://github.com/getindiekit/indiekit/commit/a866ec053db79d368cfa9cee197521723e39a59b))
+* remove need for plugins to provide meta value ([833893e](https://github.com/getindiekit/indiekit/commit/833893e0fd45747abbd44695182d889de190830c))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
 
 

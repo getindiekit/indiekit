@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Bug Fixes
+
+* **util:** validate that media item is url ([194c291](https://github.com/getindiekit/indiekit/commit/194c2914f927f6f0c5b8aad70ecfc28ad19255ee))
+
+
+### Features
+
+* move post type validation into plug-ins via api method ([7e396bf](https://github.com/getindiekit/indiekit/commit/7e396bf961c60f122062e8f92fbf2440c05bd1bd))
+* **util:** isDate ([ae7b907](https://github.com/getindiekit/indiekit/commit/ae7b907c57e2a6c40b39eaa3cfd634142bd09a1a))
+* **util:** regex for geographic location coordinates ([1eb1456](https://github.com/getindiekit/indiekit/commit/1eb1456f927724e442d389d870c68acb4125505b))
+* **util:** santise ([2c91f5d](https://github.com/getindiekit/indiekit/commit/2c91f5d54cff3ae3d751c03bbaa18c5bd24a766c))
+* **util:** validation schemes ([833a3b7](https://github.com/getindiekit/indiekit/commit/833a3b727e331bb5f73f6673501d99fae5712876))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
 
 

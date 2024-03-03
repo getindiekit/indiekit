@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** discard items in posts collection without properties ([3937452](https://github.com/getindiekit/indiekit/commit/3937452be72bb2384bd5a43ae6c75b65cf289a4d))
+* **endpoint-micropub:** don’t decode date strings in query parameters ([4c6198e](https://github.com/getindiekit/indiekit/commit/4c6198e06e186bd92d429363524c9a5416feb90c))
+* **endpoint-micropub:** don’t send post-type property to template ([bdb1fb3](https://github.com/getindiekit/indiekit/commit/bdb1fb3542a1fd9737d886677340d664e112f440))
+* **endpoint-micropub:** fetch references for form-encoded requests ([a3ad0fa](https://github.com/getindiekit/indiekit/commit/a3ad0faaa176946065955a7f056340d4f514b77a))
+* **endpoint-micropub:** files list in package.json ([f4bab79](https://github.com/getindiekit/indiekit/commit/f4bab79bccebf0ae3b1807e11833867cc2cbcf4e))
+* **endpoint-micropub:** post template properties ([0eb3fd5](https://github.com/getindiekit/indiekit/commit/0eb3fd5e8d568c45c3a2ada04da382ff65ef1329))
+
+
+### Features
+
+* **endpoint-micropub:** add custom types to post type discovery ([1aec035](https://github.com/getindiekit/indiekit/commit/1aec035240fcd0c0558ec0f3d678207c30c44aa4))
+* **endpoint-micropub:** add jam to post type discovery ([91eeae6](https://github.com/getindiekit/indiekit/commit/91eeae65b2fee23bac2ac3373a0de389bdb71d5a))
+* **endpoint-micropub:** log CRUD operations ([06c7785](https://github.com/getindiekit/indiekit/commit/06c7785f02acc5d6e4d5aae94ee9535535f0e757))
+* **endpoint-micropub:** query supported post type properties ([feadee6](https://github.com/getindiekit/indiekit/commit/feadee6fea95979fabea76fed67d3f56d28ec66e))
+* **endpoint-micropub:** remove server commands from post template properties ([128299c](https://github.com/getindiekit/indiekit/commit/128299c08bfce21605fe333d5bd7ac05b2543e9e))
+* **endpoint-micropub:** update link to documentation ([5bee191](https://github.com/getindiekit/indiekit/commit/5bee1912d13edb4469a534eb2595037ffd720369))
+* remove need for plugins to provide id value ([a866ec0](https://github.com/getindiekit/indiekit/commit/a866ec053db79d368cfa9cee197521723e39a59b))
+* remove need for plugins to provide meta value ([833893e](https://github.com/getindiekit/indiekit/commit/833893e0fd45747abbd44695182d889de190830c))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
 
 

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Bug Fixes
+
+* **indiekit:** add default post type dependencies ([48b586e](https://github.com/getindiekit/indiekit/commit/48b586ee3dae4e46e6857ca6fe2b0b396a9571ff))
+* **indiekit:** add post type name if not provided ([dedae13](https://github.com/getindiekit/indiekit/commit/dedae13aca586002412182d831a3e54a398fb04d))
+* **indiekit:** check for database before querying for posts ([f957218](https://github.com/getindiekit/indiekit/commit/f957218cc8dcd3445c7553382d5eeebcf2b39792))
+* **indiekit:** get localised plug-in strings from response.locals ([8858ba4](https://github.com/getindiekit/indiekit/commit/8858ba4fe719126055c07c980eecbfc640e98473))
+* **indiekit:** log don’t throw request cache errors ([16877da](https://github.com/getindiekit/indiekit/commit/16877da08b784ec33bf9a584177b152249a67b1f))
+
+
+### Features
+
+* add swedish localisation from [@carlrafting](https://github.com/carlrafting) ([37f2124](https://github.com/getindiekit/indiekit/commit/37f2124dabbf6272ebb94a90f17c7758a9962a37))
+* **indiekit:** add default post type properties ([1368667](https://github.com/getindiekit/indiekit/commit/1368667fd29e2642373917e09e0452bd304701e7))
+* **indiekit:** default h value to entry ([77f8d70](https://github.com/getindiekit/indiekit/commit/77f8d70695bd1268bf1357082a273492e6897eac))
+* **indiekit:** gracefully shutdown server ([bbf2f8b](https://github.com/getindiekit/indiekit/commit/bbf2f8b847273678f71ca15f64ec0d5fe6d559a8))
+* **indiekit:** improve mongo connection error notifications ([c42225b](https://github.com/getindiekit/indiekit/commit/c42225be850c9f412810c4da0ce03ca9a6e42e64))
+* **indiekit:** keep ‘indiekit’ as default database name ([78ac4a8](https://github.com/getindiekit/indiekit/commit/78ac4a89dae608baccecc961148c027ad724f45d))
+* **indiekit:** remove superfluous heading on plug-in view ([c9d572c](https://github.com/getindiekit/indiekit/commit/c9d572c08e4a43fdc8d0ef8835335385550087e8))
+* **indiekit:** remove theme_color from web app manifest ([ef9f019](https://github.com/getindiekit/indiekit/commit/ef9f019551dd2cce02b2334cd6e967690a0b73ad))
+* **indiekit:** translate plug-in options heading ([5975b61](https://github.com/getindiekit/indiekit/commit/5975b61f2539d3f5a7f25bc537582a4b5df719d3))
+* **indiekit:** update app icon ([6a98b44](https://github.com/getindiekit/indiekit/commit/6a98b44e1a89077a425dcbfd6e9ac9ad56ed3e1d))
+* **indiekit:** update link to documentation ([ded4559](https://github.com/getindiekit/indiekit/commit/ded45596378c99f7cb3a06e8ce6d1417d6254095))
+* move post type validation into plug-ins via api method ([7e396bf](https://github.com/getindiekit/indiekit/commit/7e396bf961c60f122062e8f92fbf2440c05bd1bd))
+* move post types into plug-ins ([841bce1](https://github.com/getindiekit/indiekit/commit/841bce15406c79edac3377c9632c6c3cc86a7d7d))
+* **preset-jekyll:** support configured post types ([e3891fa](https://github.com/getindiekit/indiekit/commit/e3891fa68a80339620c7b479506085ba64a3d2e8))
+* remove need for plugins to provide id value ([a866ec0](https://github.com/getindiekit/indiekit/commit/a866ec053db79d368cfa9cee197521723e39a59b))
+* remove need for plugins to provide meta value ([833893e](https://github.com/getindiekit/indiekit/commit/833893e0fd45747abbd44695182d889de190830c))
+
+
+
+
+
 # [1.0.0-beta.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2023-11-07)
 
 **Note:** Version bump only for package @indiekit/indiekit

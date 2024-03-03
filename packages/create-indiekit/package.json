@@ -1,6 +1,6 @@
 {
   "name": "create-indiekit",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.8",
   "description": "Get started with Indiekit",
   "keywords": [
     "express",
@@ -36,14 +36,14 @@
     "directory": "packages/create-indiekit"
   },
   "dependencies": {
-    "@indiekit/preset-hugo": "^1.0.0-beta.6",
-    "@indiekit/preset-jekyll": "^1.0.0-beta.6",
-    "@indiekit/store-bitbucket": "^1.0.0-beta.6",
-    "@indiekit/store-ftp": "^1.0.0-beta.6",
-    "@indiekit/store-gitea": "^1.0.0-beta.6",
-    "@indiekit/store-github": "^1.0.0-beta.6",
-    "@indiekit/store-gitlab": "^1.0.0-beta.6",
-    "@indiekit/syndicator-mastodon": "^1.0.0-beta.6",
+    "@indiekit/preset-hugo": "^1.0.0-beta.8",
+    "@indiekit/preset-jekyll": "^1.0.0-beta.8",
+    "@indiekit/store-bitbucket": "^1.0.0-beta.8",
+    "@indiekit/store-ftp": "^1.0.0-beta.8",
+    "@indiekit/store-gitea": "^1.0.0-beta.8",
+    "@indiekit/store-github": "^1.0.0-beta.8",
+    "@indiekit/store-gitlab": "^1.0.0-beta.8",
+    "@indiekit/syndicator-mastodon": "^1.0.0-beta.8",
     "base-create": "^3.0.7",
     "chalk": "^5.0.0",
     "prompts": "^2.4.2",

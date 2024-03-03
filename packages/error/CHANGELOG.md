@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Features
+
+* add swedish localisation from [@carlrafting](https://github.com/carlrafting) ([37f2124](https://github.com/getindiekit/indiekit/commit/37f2124dabbf6272ebb94a90f17c7758a9962a37))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
 
 

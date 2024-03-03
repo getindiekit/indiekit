@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Features
+
+* **indiekit:** add default post type properties ([1368667](https://github.com/getindiekit/indiekit/commit/1368667fd29e2642373917e09e0452bd304701e7))
+* **preset-jekyll:** accept unknown post properties ([adbfc2a](https://github.com/getindiekit/indiekit/commit/adbfc2ae290d2d1c755c1711ecb6933baac74403))
+* **preset-jekyll:** support configured post types ([e3891fa](https://github.com/getindiekit/indiekit/commit/e3891fa68a80339620c7b479506085ba64a3d2e8))
+* **preset-jekyll:** use snake_case for front matter property keys ([8e9736e](https://github.com/getindiekit/indiekit/commit/8e9736e7f7085f960eb24bd599b55953d11809b5))
+* remove need for plugins to provide id value ([a866ec0](https://github.com/getindiekit/indiekit/commit/a866ec053db79d368cfa9cee197521723e39a59b))
+* remove need for plugins to provide meta value ([833893e](https://github.com/getindiekit/indiekit/commit/833893e0fd45747abbd44695182d889de190830c))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-11-06)
 
 

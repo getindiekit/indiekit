@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** add width class to published date input ([fc21a27](https://github.com/getindiekit/indiekit/commit/fc21a27776ae2e13a94b870c069ce3ea8af2b2a6))
+* **endpoint-posts:** check all day if event date has no time ([9c6c4b1](https://github.com/getindiekit/indiekit/commit/9c6c4b1857293446d2c676b62a61065944768d14))
+* **endpoint-posts:** don’t return useless location property ([0778519](https://github.com/getindiekit/indiekit/commit/0778519ae5d6055a7bc4379e997938924810c2ab))
+* **endpoint-posts:** index value in media post fields ([cc6dc9a](https://github.com/getindiekit/indiekit/commit/cc6dc9a0c29026a2d0b9b4ca059a20958688aa20))
+* **endpoint-posts:** inline radios ([a2da82c](https://github.com/getindiekit/indiekit/commit/a2da82c0cf5d86871a062bf69c93211612746678))
+* **endpoint-posts:** reading/editing geographic coordinates ([f28325a](https://github.com/getindiekit/indiekit/commit/f28325af685d2917c82acdd546dca486adcd2543))
+* **endpoint-posts:** use option to enable inline radios ([dbcef51](https://github.com/getindiekit/indiekit/commit/dbcef517bc8ca8f175095560c4cfce3f6263758e))
+* provide add another list in caller ([5f8f33e](https://github.com/getindiekit/indiekit/commit/5f8f33ed1b62e5817aa02a29de1d052d5b2b1fc5))
+* show localised date in cards ([f03f608](https://github.com/getindiekit/indiekit/commit/f03f60850731cd36990ac4705222a827e81a5522))
+
+
+### Features
+
+* add swedish localisation from [@carlrafting](https://github.com/carlrafting) ([37f2124](https://github.com/getindiekit/indiekit/commit/37f2124dabbf6272ebb94a90f17c7758a9962a37))
+* **endpoint-posts:** close post properties ([1941232](https://github.com/getindiekit/indiekit/commit/19412327d493b388cd1fba4ccce37c702e2212be))
+* **endpoint-posts:** delete non-mf2 post values ([5a6cc36](https://github.com/getindiekit/indiekit/commit/5a6cc36b6f736306548262c322a4b54c629e0a1b))
+* **endpoint-posts:** display all property values for a post ([07e9a94](https://github.com/getindiekit/indiekit/commit/07e9a94c745e8a174cf335831e3e0d5e47639ff1))
+* **endpoint-posts:** event post fields ([0deba98](https://github.com/getindiekit/indiekit/commit/0deba98fe5ccaffd64b4036df0842d51ba5b8b36))
+* **endpoint-posts:** make visibility optional ([6ddb244](https://github.com/getindiekit/indiekit/commit/6ddb244122569863fd049342f576772f6fdc1cb5))
+* **endpoint-posts:** new form validation ([9d9703d](https://github.com/getindiekit/indiekit/commit/9d9703da62516b922fb1361141c3ba4423211f3f))
+* **endpoint-posts:** only show fields for supported properties ([650791b](https://github.com/getindiekit/indiekit/commit/650791bfc45a048926b800d2dd59a13b64ff46a7))
+* **endpoint-posts:** sanitise submitted post values ([ebb0f95](https://github.com/getindiekit/indiekit/commit/ebb0f95033c33c641e42af233554289f4652f69b))
+* **endpoint-posts:** show character and word count on content field ([ba769f9](https://github.com/getindiekit/indiekit/commit/ba769f9986df77316626b057402189af67fe10c0))
+* **endpoint-posts:** use validation schema from post type config ([aa348c8](https://github.com/getindiekit/indiekit/commit/aa348c8d46bbeeaae56ff3e54daa014aea0404fe))
+* **frontend:** split offset and group fieldset modifiers ([435ea84](https://github.com/getindiekit/indiekit/commit/435ea84c979a5d89a9abb5d32b5f98236a9e40e5))
+* move post type validation into plug-ins via api method ([7e396bf](https://github.com/getindiekit/indiekit/commit/7e396bf961c60f122062e8f92fbf2440c05bd1bd))
+* move post types into plug-ins ([841bce1](https://github.com/getindiekit/indiekit/commit/841bce15406c79edac3377c9632c6c3cc86a7d7d))
+* remove need for plugins to provide id value ([a866ec0](https://github.com/getindiekit/indiekit/commit/a866ec053db79d368cfa9cee197521723e39a59b))
+* remove need for plugins to provide meta value ([833893e](https://github.com/getindiekit/indiekit/commit/833893e0fd45747abbd44695182d889de190830c))
+
+
+
+
+
 # [1.0.0-beta.7](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2023-11-07)
 
 
