@@ -9,7 +9,7 @@ export const mediaTypeCount = {
     if (!application.posts || !application.posts.count()) {
       console.warn("No database configuration provided");
       console.info(
-        "See https://getindiekit.com/configuration/#application-mongodburl-url",
+        "See https://getindiekit.com/configuration/application/#mongodburl",
       );
 
       return;
