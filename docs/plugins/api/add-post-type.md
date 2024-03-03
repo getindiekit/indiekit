@@ -6,9 +6,6 @@ outline: deep
 
 A [post type](../../concepts.md#post-type) defines fields for creating and editing different post (or content) types, either using Indiekit or via third-party Micropub clients.
 
-> [!TIP] New feature
-> Post type plug-ins will be introduced in <Badge text="1.0.0-beta.8" />
-
 ## Syntax
 
 ```js
