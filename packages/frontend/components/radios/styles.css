@@ -1,5 +1,5 @@
 radios-field {
-  --radio-size: 2rem;
+  --radio-size: 1.7778em;
   --radio-space: var(--space-s);
   --radio-padding-inline: calc(var(--radio-size) + var(--radio-space));
   display: block;

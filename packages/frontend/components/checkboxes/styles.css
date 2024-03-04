@@ -1,5 +1,5 @@
 checkboxes-field {
-  --checkbox-size: 2rem;
+  --checkbox-size: 1.7778em;
   --checkbox-space: var(--space-s);
   --checkbox-padding-inline: calc(var(--checkbox-size) + var(--checkbox-space));
   display: block;
