@@ -21,7 +21,7 @@ const config = {
     "@indiekit/post-type-repost",
     "@indiekit/post-type-rsvp",
     "@indiekit/post-type-video",
-    "@indiekit/preset-jekyll",
+    "@indiekit/preset-eleventy",
     "@indiekit/store-github",
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
