@@ -1,0 +1,45 @@
+{
+  "name": "@indiekit/preset-eleventy",
+  "version": "1.0.0-beta.8",
+  "description": "Eleventy publication preset for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "micropub",
+    "eleventy",
+    "11ty"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/preset-eleventy"
+  },
+  "dependencies": {
+    "plur": "^5.1.0",
+    "camelcase-keys": "^9.0.0",
+    "yaml": "^2.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
