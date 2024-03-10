@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/preset-eleventy",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "Eleventy publication preset for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,8 +35,8 @@
     "directory": "packages/preset-eleventy"
   },
   "dependencies": {
-    "plur": "^5.1.0",
     "camelcase-keys": "^9.0.0",
+    "plur": "^5.1.0",
     "yaml": "^2.4.0"
   },
   "publishConfig": {
