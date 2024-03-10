@@ -34,6 +34,24 @@ describe("syndicator-mastodon", () => {
     assert.ok(mastodon.info.service);
   });
 
+  it("Returns error information if no server URL provided", async () => {
+    const result = new MastodonSyndicator({
+      accessToken: "token",
+      user: "username",
+    });
+
+    assert.equal(result.info.error, "Server URL required");
+  });
+
+  it("Returns error information if no username provided", () => {
+    const result = new MastodonSyndicator({
+      accessToken: "token",
+      url: "https://mastodon.example",
+    });
+
+    assert.equal(result.info.error, "User name required");
+  });
+
   it("Gets plug-in installation prompts", () => {
     assert.equal(
       mastodon.prompts[0].message,
@@ -57,31 +75,6 @@ describe("syndicator-mastodon", () => {
     assert.equal(
       result,
       "https://mastodon.example/@username/1234567890987654321",
-    );
-  });
-
-  it("Throws error getting syndicated URL if no server URL provided", async () => {
-    const mastodonNoServer = new MastodonSyndicator({
-      accessToken: "token",
-      user: "username",
-    });
-
-    await assert.rejects(mastodonNoServer.syndicate(properties, publication), {
-      message: "Mastodon syndicator: Mastodon server URL required",
-    });
-  });
-
-  it("Throws error getting username if no username provided", () => {
-    const mastodonNoUser = new MastodonSyndicator({
-      accessToken: "token",
-      url: "https://mastodon.example",
-    });
-
-    assert.throws(
-      () => {
-        mastodonNoUser.info.name;
-      },
-      { message: "Mastodon user name required" },
     );
   });
 

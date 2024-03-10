@@ -26,19 +26,13 @@ export default class MastodonSyndicator {
   }
 
   get #url() {
-    if (this.options.url) {
-      return new URL(this.options.url);
-    }
-
-    throw new Error("Mastodon server URL required");
+    return this.options?.url ? new URL(this.options.url) : false;
   }
 
   get #user() {
-    if (this.options.user) {
-      return `@${this.options.user.replace("@", "")}`;
-    }
-
-    throw new Error("Mastodon user name required");
+    return this.options?.user
+      ? `@${this.options.user.replace("@", "")}`
+      : false;
   }
 
   get environment() {
@@ -46,20 +40,35 @@ export default class MastodonSyndicator {
   }
 
   get info() {
-    const { checked } = this.options;
+    const service = {
+      name: "Mastodon",
+      photo: "/assets/mastodon/icon.svg",
+    };
     const user = this.#user;
     const url = this.#url;
+
+    if (!url) {
+      return {
+        error: "Server URL required",
+        service,
+      };
+    }
+
+    if (!user) {
+      return {
+        error: "User name required",
+        service,
+      };
+    }
+
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
+    service.url = url.href;
 
     return {
-      checked,
+      checked: this.options.checked,
       name: `${user}@${url.hostname}`,
       uid,
-      service: {
-        name: "Mastodon",
-        url: url.href,
-        photo: "/assets/mastodon/icon.svg",
-      },
+      service,
       user: {
         name: user,
         url: uid,
