@@ -29,6 +29,22 @@ describe("syndicator-internet-archive", () => {
     assert.ok(internetArchive.info.service);
   });
 
+  it("Returns error information if no secret key provided", async () => {
+    const result = new InternetArchiveSyndicator({
+      accessKey: "token",
+    });
+
+    assert.equal(result.info.error, "Secret key required");
+  });
+
+  it("Returns error information if no access key provided", () => {
+    const result = new InternetArchiveSyndicator({
+      secretKey: "secret",
+    });
+
+    assert.equal(result.info.error, "Access key required");
+  });
+
   it("Initiates plug-in", async () => {
     const indiekit = await Indiekit.initialize({ config: {} });
     internetArchive.init(indiekit);
