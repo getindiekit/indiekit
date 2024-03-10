@@ -27,15 +27,31 @@ export default class InternetArchiveSyndicator {
   }
 
   get info() {
+    const service = {
+      name: "Internet Archive",
+      url: "https://web.archive.org/",
+      photo: "/assets/internet-archive/icon.svg",
+    };
+
+    if (!this.options?.accessKey) {
+      return {
+        error: "Access key required",
+        service,
+      };
+    }
+
+    if (!this.options?.secretKey) {
+      return {
+        error: "Secret key required",
+        service,
+      };
+    }
+
     return {
       checked: this.options.checked,
       name: this.options.name,
       uid: this.options.uid,
-      service: {
-        name: "Internet Archive",
-        url: "https://web.archive.org/",
-        photo: "/assets/internet-archive/icon.svg",
-      },
+      service,
     };
   }
 
