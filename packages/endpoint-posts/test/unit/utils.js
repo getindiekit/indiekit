@@ -29,6 +29,14 @@ const publication = {
         checked: true,
       },
     },
+    {
+      info: {
+        error: "Secret key required",
+        service: {
+          name: "Internet Archive",
+        },
+      },
+    },
   ],
 };
 
@@ -225,10 +233,14 @@ describe("endpoint-posts/lib/utils", () => {
   it("Gets syndication target `items` for checkboxes component", () => {
     const result = getSyndicateToItems(publication, true);
 
-    assert.equal(result.length, 1);
+    assert.equal(result.length, 2);
     assert.equal(result[0].checked, true);
     assert.equal(result[0].hint, "https://mastodon.example/@username");
     assert.equal(result[0].label, "Mastodon");
     assert.equal(result[0].value, "https://mastodon.example/@username");
+    assert.equal(result[1].checked, undefined);
+    assert.equal(result[1].hint, "Secret key required");
+    assert.equal(result[1].label, "Internet Archive");
+    assert.equal(result[1].value, undefined);
   });
 });
