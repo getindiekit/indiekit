@@ -18,7 +18,7 @@ Indiekit is [supported by its community](https://github.com/sponsors/getindiekit
 
 - **Publish content to your website** using [apps and services](docs/clients.md) that support the [Micropub API](https://micropub.spec.indieweb.org)
 - **Save files to a content store** such as GitHub, GitLab or an FTP server
-- **Integrate with static site generators** like Jekyll or Hugo
+- **Integrate with static site generators** like Eleventy, Hugo or Jekyll
 - **Share content** on social networks like Mastodon
 - **Customise everything** from the interface theme to the format of commit messages
 
