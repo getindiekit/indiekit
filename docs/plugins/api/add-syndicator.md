@@ -31,6 +31,9 @@ new Indiekit.addSyndicator(options);
   `checked`
   : A boolean indicating whether this syndicator should be enabled by default in Micropub clients.
 
+  `error`
+  : Information about any configuration errors. This will be shown in Indiekit’s interface.
+
   `service`
   : An object containing information about the third-party service.
 
