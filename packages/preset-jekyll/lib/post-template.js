@@ -24,13 +24,13 @@ const getContent = (properties) => {
  * @returns {string} Front matter in chosen format
  */
 const getFrontMatter = (properties) => {
-  /*
+  /**
    * Jekyll uses snake_case for YAML property keys, i.e. `excerpt_separator`
-   * @see {link: https://jekyllrb.com/docs/posts/#post-excerpts}
+   * @see {@link https://jekyllrb.com/docs/posts/#post-excerpts}
    */
   properties = snakecaseKeys(properties, { deep: true });
 
-  /*
+  /**
    * Replace Microformat properties with Jekyll equivalents
    * @see {@link https://jekyllrb.com/docs/front-matter/ #predefined-variables-for-posts}
    */
@@ -41,7 +41,7 @@ const getFrontMatter = (properties) => {
     ...properties,
   };
 
-  /*
+  /**
    * Draft posts
    * @see {@link https://jekyllrb.com/docs/front-matter/#predefined-global-variables}
    */
