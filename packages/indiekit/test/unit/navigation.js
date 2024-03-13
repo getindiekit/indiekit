@@ -40,7 +40,7 @@ describe("indiekit/lib/navigation", () => {
     assert.equal(result[1].href, "/session/login");
   });
 
-  it("Removes navigation items that require a database", () => {
+  it("Returns navigation items that require a database", () => {
     const result = getNavigation(
       application,
       { path: "/bar", session: {} },
