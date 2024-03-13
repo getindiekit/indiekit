@@ -17,6 +17,7 @@ export const get = async (request, response) => {
         type: "image/png",
       },
     ],
+    shortcuts: application.shortcuts,
     ...(application.shareEndpoint && {
       share_target: {
         action: application.shareEndpoint,

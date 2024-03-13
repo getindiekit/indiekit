@@ -1,5 +1,6 @@
 import { getEndpoints } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
+import { getShortcuts } from "../shortcuts.js";
 import { getUrl } from "../utils.js";
 
 /**
@@ -31,6 +32,9 @@ export const locals = (indiekitConfig) =>
       if (request.accepts("html")) {
         application.navigation = getNavigation(application, request, response);
       }
+
+      // Application shortcuts
+      application.shortcuts = getShortcuts(application, response);
 
       // Application endpoints
       request.app.locals.application = {
