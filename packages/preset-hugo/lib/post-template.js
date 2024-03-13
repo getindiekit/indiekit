@@ -29,16 +29,16 @@ const getFrontMatter = (properties, frontMatterFormat) => {
   let delimiters;
   let frontMatter;
 
-  /*
+  /**
    * Go templates don’t accept hyphens in property names
    * and Hugo camelCases its predefined front matter keys
-   * @see {link: https://gohugo.io/content-management/front-matter/}
+   * @see {@link https://gohugo.io/content-management/front-matter/}
    */
   properties = camelcaseKeys(properties, { deep: true });
 
-  /*
+  /**
    * Replace Microformat properties with Hugo equivalents
-   * @see {link: https://gohugo.io/content-management/front-matter/}
+   * @see {@link https://gohugo.io/content-management/front-matter/}
    */
   properties = {
     date: properties.published,
