@@ -20,6 +20,10 @@ export const setupPrompts = [
     message: "Which publication preset do you want to use?",
     choices: [
       {
+        title: "Eleventy",
+        value: "@indiekit/preset-eleventy",
+      },
+      {
         title: "Hugo",
         value: "@indiekit/preset-hugo",
       },
