@@ -32,6 +32,20 @@ export const TagInputFieldComponent = class extends HTMLElement {
     $replacedLabel.remove();
     $replacedInput.remove();
 
+    /**
+     * @type {HTMLInputElement}
+     */
+    const $tagInputInput = this.querySelector(".tag-input__input");
+
+    // Capture any value in input not converted to tag (for example, by clicking
+    // outside component before pressing tab key) and add to list of tags.
+    $tagInputInput.addEventListener("blur", () => {
+      if ($tagInputInput.value) {
+        tagInput.addTag($tagInputInput.value, false);
+        $tagInputInput.value = "";
+      }
+    });
+
     return tagInput;
   }
 };
