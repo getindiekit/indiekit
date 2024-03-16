@@ -149,7 +149,7 @@ get navigationItems() {
 
 ### Add routes
 
-Routes can be added to Indiekit’s [Express](https://expressjs.com) server by providing an instance of an Express [`Router`][] with the paths and methods you wish to support.
+Routes can be added to Indiekit’s [Express](https://expressjs.com) server by providing an instance of an Express [`Router`](https://expressjs.com/en/4x/api.html#router) with the paths and methods you wish to support.
 
 For example, given a `mountPath` of `/example`, to accept a `POST` request at `/example/secret`, add the following:
 
