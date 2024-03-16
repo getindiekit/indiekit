@@ -19,14 +19,16 @@ new Indiekit.addSyndicator(options);
 
 ## Properties
 
-`info` <Badge type="info" text="Required" />
-: An object representing information about the third-party service. The `info` property should return the following values:
+`info`
+: An object representing information about the third-party service. **Required**.
 
-  `name` <Badge type="info" text="Required" />
-  : A string representing the name of the third-party service the plug-in supports.
+  The `info` property should return the following values:
 
-  `uid` <Badge type="info" text="Required" />
-  : A string representing the URL to third-party service.
+  `name`
+  : A string representing the name of the third-party service the plug-in supports. **Required**.
+
+  `uid`
+  : A string representing the URL to third-party service. **Required**.
 
   `checked`
   : A boolean indicating whether this syndicator should be enabled by default in Micropub clients.
@@ -67,11 +69,11 @@ Used to register the plug-in. Accepts an `Indiekit` instance to allow its modifi
 
 #### Parameters
 
-`properties` <Badge type="info" text="Required" />
-: An object containing properties for a post. These conform to the [JF2 Post Serialisation Format](https://jf2.spec.indieweb.org).
+`properties`
+: An object containing properties for a post. These conform to the [JF2 Post Serialisation Format](https://jf2.spec.indieweb.org). **Required**
 
-`publication` <Badge type="info" text="Required" />
-: An object containing the [publication’s configuration](/configuration/#publication).
+`publication`
+: An object containing the [publication’s configuration](/configuration/#publication). **Required**
 
 #### Return value
 

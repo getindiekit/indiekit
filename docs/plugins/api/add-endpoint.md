@@ -19,11 +19,11 @@ new Indiekit.addEndpoint(options);
 
 ## Properties
 
-`name` <Badge type="info" text="Required" />
-: A string with a human readable plug-in name.
+`name`
+: A string with a human readable plug-in name. **Required**.
 
-`mountPath` <Badge type="info" text="Required" />
-: A string representing the path to mount routes onto.
+`mountPath`
+: A string representing the path to mount routes onto. **Required**.
 
 `navigationItems`
 : A single [`NavigationItem`](#navigationitem) or an array of multiple [`NavigationItem`](#navigationitem)’s used to add items to the web interface’s navigation menu.
@@ -50,11 +50,11 @@ Used to register the plug-in. Accepts an `Indiekit` instance to allow its modifi
 
 ### `NavigationItem`
 
-`href` <Badge type="info" text="Required" />
-: A string representing the path to the page and used for the link’s `href` attribute.
+`href`
+: A string representing the path to the page and used for the link’s `href` attribute. **Required**.
 
-`text` <Badge type="info" text="Required" />
-: A string representing the text shown in the navigation item.
+`text`
+: A string representing the text shown in the navigation item. **Required**.
 
 `requiresDatabase`
 : A boolean for whether the item should only be displayed if a database has been configured.

@@ -19,11 +19,13 @@ new Indiekit.addPreset(options);
 
 ## Properties
 
-`info` <Badge type="info" text="Required" />
-: An object representing information about the preset. The `info` property should return the following values:
+`info`
+: An object representing information about the preset. **Required**.
 
-  `name` <Badge type="info" text="Required" />
-  : The name of the publishing software the plug-in supports.
+  The `info` property should return the following values:
+
+  `name`
+  : The name of the publishing software the plug-in supports. **Required**.
 
 `postTypes`
 : An object providing default configuration values for publication [post types](../../configuration/post-types.md).

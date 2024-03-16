@@ -22,8 +22,8 @@ new Indiekit.addPostType(type, options);
 
 ## Properties
 
-`config` <Badge type="info" text="Required" />
-: An object providing a post type’s configuration.
+`config`
+: An object providing a post type’s configuration. **Required**.
 
   `name`
   : A string representing the post type name.
@@ -31,8 +31,8 @@ new Indiekit.addPostType(type, options);
   `h`
   : A string representing the [Microformat vocabulary](http://microformats.org/wiki/microformats2#v2_vocabularies) to use. Defaults to `entry`.
 
-  `fields` <Badge type="info" text="Required" />
-  : An object containing [FieldType](#postfield) objects, keyed by field name.
+  `fields`
+  : An object containing [FieldType](#postfield) objects, keyed by field name.**Required**.
 
   `discovery`
   : A string representing the field name to use when identifying incoming Micropub requests.

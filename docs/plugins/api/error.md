@@ -12,8 +12,8 @@ throw new IndiekitError(message, options);
 
 ## Constructor
 
-`message` <Badge type="info" text="Required" />
-: Human readable error message.
+`message`
+: Human readable error message. **Required**
 
 `options`
 : An object used to customise the behaviour of the error.

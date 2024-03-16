@@ -19,14 +19,16 @@ new Indiekit.addStore(options);
 
 ## Properties
 
-`info` <Badge type="info" text="Required" />
-: An object representing information about the content store. The `info` property should return the following values:
+`info`
+: An object representing information about the content store. **Required**.
 
-  `name` <Badge type="info" text="Required" />
-  : The name of the content store the plug-in supports.
+  The `info` property should return the following values:
 
-  `uid` <Badge type="info" text="Required" />
-  : URL or path to content store.
+  `name`
+  : The name of the content store the plug-in supports. **Required**.
+
+  `uid`
+  : URL or path to content store. **Required**.
 
 ## Methods
 
@@ -36,11 +38,11 @@ An async function that creates a file on the content store.
 
 #### Parameters
 
-`filePath` <Badge type="info" text="Required" />
-: A string representing the path to a file.
+`filePath`
+: A string representing the path to a file. **Required**.
 
-`content` <Badge type="info" text="Required" />
-: A string representing the file content.
+`content`
+: A string representing the file content. **Required**.
 
 `options.message`
 : A string representing the commit message.
@@ -55,8 +57,8 @@ An async function that reads a file from the content store.
 
 #### Parameters
 
-`filePath` <Badge type="info" text="Required" />
-: A string representing the path to a file.
+`filePath`
+: A string representing the path to a file. **Required**.
 
 #### Return value
 
@@ -68,11 +70,11 @@ An async function that updates a file on the content store.
 
 #### Parameters
 
-`filePath` <Badge type="info" text="Required" />
-: A string representing the path to a file.
+`filePath`
+: A string representing the path to a file. **Required**.
 
-`content` <Badge type="info" text="Required" />
-: A string representing the updated file content.
+`content`
+: A string representing the updated file content. **Required**.
 
 `options.message`
 : A string representing the commit message.
@@ -90,8 +92,8 @@ An async function that deletes a file on the content store.
 
 #### Parameters
 
-`filePath` <Badge type="info" text="Required" />
-: A string representing the path to a file.
+`filePath`
+: A string representing the path to a file. **Required**.
 
 `options.message`
 : A string representing the commit message.
