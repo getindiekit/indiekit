@@ -47,7 +47,7 @@ export const getPostType = (postTypes, properties) => {
     return "collection";
   }
 
-  // Check that `name` value is not a prefix of processed `content` value
+  // Use summary value for content if no content value
   let content;
   if (propertiesMap.has("content")) {
     content =
@@ -56,12 +56,11 @@ export const getPostType = (postTypes, properties) => {
     content = properties.summary;
   }
 
-  // Check if post could be an article
-  if (propertiesMap.has("name") && propertiesMap.has("content")) {
-    const name = properties.name.trim();
-    if (!content.startsWith(name)) {
-      return "article";
-    }
+  // If post has `name` and content, it’s an article
+  // This is a deviation from the Post Type Algorithm, which identifies a post
+  // as a note if the content is prefixed with the `name` value.
+  if (propertiesMap.has("name") && content) {
+    return "article";
   }
 
   return "note";

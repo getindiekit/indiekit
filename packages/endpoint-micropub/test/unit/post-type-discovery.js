@@ -17,26 +17,6 @@ describe("endpoint-media/lib/post-type-discovery", () => {
     assert.equal(result, "note");
   });
 
-  it("Discovers note post type (with name)", () => {
-    const result = getPostType(postTypes, {
-      type: "entry",
-      name: "Note title",
-      content: "Note title: Note content",
-    });
-
-    assert.equal(result, "note");
-  });
-
-  it("Discovers note post type (with summary)", () => {
-    const result = getPostType(postTypes, {
-      type: "entry",
-      name: "Note title",
-      summary: "Note summary",
-    });
-
-    assert.equal(result, "note");
-  });
-
   it("Discovers article post type", () => {
     const result = getPostType(postTypes, {
       type: "entry",
@@ -79,6 +59,16 @@ describe("endpoint-media/lib/post-type-discovery", () => {
         html: "<p>Article content in <em>HTML</em> format.</p>",
         text: "Article content in plaintext format.",
       },
+    });
+
+    assert.equal(result, "article");
+  });
+
+  it("Discovers article post type (with summary, no content)", () => {
+    const result = getPostType(postTypes, {
+      type: "entry",
+      name: "Article title",
+      summary: "Article summary",
     });
 
     assert.equal(result, "article");
