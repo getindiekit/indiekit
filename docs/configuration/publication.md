@@ -2,6 +2,9 @@
 
 The following properties in the `publication` configuration option are used to provide information to Indiekit about a publication and how to interact with it.
 
+> [!NOTE]
+> [`publication.me`](#me) is required. All other properties are optional.
+
 ## `categories`
 
 A list of categories or tags used on your website. Can be an array of values, or a URL pointing to the location of a JSON file that provides an array of values.
@@ -99,9 +102,7 @@ Defaults to `"en"` (English).
 
 ## `me`
 
-Your website’s URL.
-
-<Badge type="info" text="Required" />
+Your website’s URL. **Required**.
 
 ## `postTemplate`
 
