@@ -30,7 +30,9 @@ Indiekit’s configuration file uses the following top-level properties:
 
 ## Example
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "application": {
     "locale": "de",
@@ -54,5 +56,32 @@ Indiekit’s configuration file uses the following top-level properties:
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  application: {
+    locale: "de",
+    name: "Unabhängigkeit"
+  },
+  publication: {
+    locale: "de",
+    me: "https://website.example",
+    postTypes: {
+      event: {
+        name: "Veranstaltungen"
+      }
+    }
+  },
+  plugins: [
+    "@indiekit/post-type-event",
+    "@indiekit/preset-hugo"
+  ],
+  "@indiekit/preset-hugo": {
+    frontMatterFormat: "yaml"
+  }
+}
+```
+
+:::
 
 [This example configuration](https://github.com/getindiekit/example-config) can be used as a starting point for configuring your own Indiekit server.

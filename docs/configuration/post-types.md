@@ -16,7 +16,9 @@ While both plug-in types set default values for post types, these can be changed
 
 For example, to use the Jekyll preset but override the location `note` and `event` post files are saved to, you would add the following to your configuration:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "plugins": [
     "@indiekit/post-type-event",
@@ -42,5 +44,34 @@ For example, to use the Jekyll preset but override the location `note` and `even
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  plugins: [
+    "@indiekit/post-type-event",
+    "@indiekit/preset-jekyll"
+  ],
+  publication: {
+    postTypes: {
+      note: {
+        name: "Journal",
+        post: {
+          path: "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "journal/{yyyy}/{MM}/{slug}"
+        }
+      },
+      event: {
+        name: "Calendar",
+        post: {
+          path: "_calendar/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "calendar/{yyyy}/{MM}/{slug}"
+        }
+      }
+    }
+  }
+}
+```
+
+:::
 
 In addition, by setting values for `name` property for each post type, this overrides the default value provided by the `@indiekit/post-type-note` plug-in (installed by default) and the `@indiekit/post-type-event` plug-in.

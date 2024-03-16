@@ -19,13 +19,25 @@ Indiekit has been localised into the following languages:
 
 You can change the application’s locale by changing the `application.locale` option, for example:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "application": {
     "locale": "de"
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  application: {
+    locale: "de"
+  }
+}
+```
+
+:::
 
 ## Contribute a new localisation
 

@@ -8,7 +8,9 @@ A list of categories or tags used on your website. Can be an array of values, or
 
 Example, using an array:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "publication": {
     "categories": ["sport", "technology", "travel"]
@@ -16,15 +18,37 @@ Example, using an array:
 }
 ```
 
+```js [JavaScript]
+export default {
+  publication: {
+    categories: ["sport", "technology", "travel"]
+  }
+}
+```
+
+:::
+
 Example, using a URL:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "publication": {
     "categories": "https://website.example/categories.json"
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  publication: {
+    categories: "https://website.example/categories.json"
+  }
+}
+```
+
+:::
 
 ## `enrichPostData`
 
@@ -91,29 +115,61 @@ See [customising a post template →](post-template.md)
 
 A keyed collection of configuration properties for different post types. For example:
 
-````json
+::: code-group
+
+```json [JSON]
 {
-  "postTypes": {
-    "note": {
-      "name": "Journal entry",
-      "post": {
-        "path": "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
-        "url": "journal/{yyyy}/{MM}/{slug}"
-      }
-    },
-    "photo": {
-      "name": "Photograph",
-      "post": {
-        "path": "_photos/{yyyy}-{MM}-{dd}-{slug}.md",
-        "url": "photos/{yyyy}/{MM}/{slug}"
+  "publication": {
+    "postTypes": {
+      "note": {
+        "name": "Journal entry",
+        "post": {
+          "path": "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
+          "url": "journal/{yyyy}/{MM}/{slug}"
+        }
       },
-      "media": {
-        "path": "media/photos/{yyyy}/{filename}"
+      "photo": {
+        "name": "Photograph",
+        "post": {
+          "path": "_photos/{yyyy}-{MM}-{dd}-{slug}.md",
+          "url": "photos/{yyyy}/{MM}/{slug}"
+        },
+        "media": {
+          "path": "media/photos/{yyyy}/{filename}"
+        }
       }
     }
   }
 }
-````
+```
+
+```js [JavaScript]
+export default {
+  publication: {
+    postTypes: {
+      note: {
+        name: "Journal entry",
+        post: {
+          path: "_journal/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "journal/{yyyy}/{MM}/{slug}"
+        }
+      },
+      photo: {
+        name: "Photograph",
+        post: {
+          path: "_photos/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "photos/{yyyy}/{MM}/{slug}"
+        },
+        media: {
+          path: "media/photos/{yyyy}/{filename}"
+        }
+      }
+    }
+  }
+}
+```
+
+:::
 
 Some of these values may already be set by a preset plugin or any post type plugins, but you can overwrite any configuration values they have set.
 
@@ -133,7 +189,9 @@ See [customising post types →](post-types.md)
 `fields`
 : An object containing [FieldType](/plugins/api/add-post-type.md#fieldtype) objects, optionally with a `required` property, and keyed by field name. For example:
 
-  ```json
+  ::: code-group
+
+  ```json [JSON]
   {
     "name": "Journal entry",
     "fields": {
@@ -143,6 +201,19 @@ See [customising post types →](post-types.md)
     }
   }
   ```
+
+  ```js [JavaScript]
+  {
+    name: "Journal entry",
+    fields: {
+      content: { required: true },
+      categories: { required: true },
+      location: {}
+    }
+  }
+  ```
+
+  :::
 
 `post`
 : An object containing options for how post files should be stored.

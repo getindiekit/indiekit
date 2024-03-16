@@ -12,9 +12,11 @@ For example, if you are saving your posts to the file system, install the [file 
 npm install @indiekit/store-file-system
 ```
 
-Then add it to your configuration file:
+Then add it to your configuration:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "plugins": ["@indiekit/store-file-system"],
   "@indiekit/store-file-system": {
@@ -22,6 +24,17 @@ Then add it to your configuration file:
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  plugins: ["@indiekit/store-file-system"],
+  "@indiekit/store-file-system": {
+    directory: "project/www"
+  }
+}
+```
+
+:::
 
 ## Endpoint
 
@@ -74,9 +87,11 @@ For example, if you use the Hugo static site generator, you can install the [Hug
 npm install @indiekit/preset-hugo
 ```
 
-Then add it to your configuration file:
+Then add it to your configuration:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "plugins": ["@indiekit/preset-hugo"],
   "@indiekit/preset-hugo": {
@@ -84,6 +99,17 @@ Then add it to your configuration file:
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  plugins: ["@indiekit/preset-hugo"],
+  "@indiekit/preset-hugo": {
+    frontMatterFormat: "json"
+  }
+}
+```
+
+:::
 
 ## Syndication
 
@@ -95,9 +121,11 @@ Syndicator plug-ins provide this functionality. For example, if you want to synd
 npm install @indiekit/syndicator-mastodon
 ```
 
-Then add it to your configuration file, for example:
+Then add it to your configuration, for example:
 
-```json
+::: code-group
+
+```json [JSON]
 {
   "plugins": ["@indiekit/syndicator-mastodon"],
   "@indiekit/syndicator-mastodon": {
@@ -107,6 +135,19 @@ Then add it to your configuration file, for example:
   }
 }
 ```
+
+```js [JavaScript]
+export default {
+  plugins: ["@indiekit/syndicator-mastodon"],
+  "@indiekit/syndicator-mastodon": {
+    checked: true,
+    url: "https://mastodon.example",
+    user: "username"
+  }
+}
+```
+
+:::
 
 The `checked` option is used to tell [Micropub clients](clients.md) whether a syndication target should be enabled or not by default.
 
