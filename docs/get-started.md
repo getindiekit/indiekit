@@ -49,6 +49,8 @@ Run the following command in your terminal to start the configuration wizard:
 npm create indiekit [directory]
 ```
 
+where `[directory]` is the name of the directory within which you want to save your configuration and other files.
+
 This is the fastest way to set up a new Indiekit server from scratch.
 
 > Alternatively, you can clone this [example configuration](https://github.com/getindiekit/example-config) repository on GitHub and manually edit the values in the configuration file.
