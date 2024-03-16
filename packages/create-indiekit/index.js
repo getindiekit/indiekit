@@ -10,7 +10,7 @@ import { getPackageValues } from "./lib/package.js";
 const require = createRequire(import.meta.url);
 const { name, version, bugs } = require("./package.json");
 
-const nodeVersion = 20;
+const nodeVersion = ">=20";
 
 /**
  * @returns {Promise<any>} init
@@ -43,7 +43,7 @@ export async function init() {
         start: "indiekit serve",
       },
       engines: {
-        node: nodeVersion.toString(),
+        node: nodeVersion,
       },
       type: "module",
       indiekit: config,
