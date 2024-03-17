@@ -39,6 +39,7 @@ export default class AuthorizationEndpoint {
     router.post("/new-password", passwordValidator, passwordController.post);
 
     // Authentication
+    router.get("/token", introspectionController.post);
     router.post("/token", codeValidator, tokenController.post);
 
     // Verification
