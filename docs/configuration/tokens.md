@@ -51,6 +51,7 @@ Tokens are available for a number of file properties, with many allowing you to 
 | `ss` | Second (zero-padded), for example `01` |
 | `t` | UNIX epoch seconds, for example `512969520` |
 | `T` | UNIX epoch milliseconds, for example `51296952000` |
+| `random` | A random 5-character string, for example `w9gwi` |
 | `uuid` | A [random UUID][uuid] |
 | `n` | Incremental count of posts (for type) in the same day, for example `1`. This token requires a [database to be configured](https://getindiekit.com/configuration/#application-mongodburl-url). |
 
@@ -60,7 +61,7 @@ The following tokens are only available for post files:
 
 | Token | Description |
 | :---- | :---------- |
-| `slug` | Slug provided in `mp-slug` property, slugified `name` or a 5 character string, for example `ycf9o` |
+| `slug` | Slug provided in `mp-slug` property, else slugified `name` property, else a 5 character string, for example `ycf9o` |
 
 ### Media file tokens
 
@@ -68,9 +69,7 @@ The following tokens are only available for media files:
 
 | Token | Description |
 | :---- | :---------- |
-| `basename` | 5 character alpha-numeric string, for example `w9gwi` |
 | `ext` | File extension of uploaded file, for example `jpg` |
-| `filename` | `basename` plus `ext`, for example `w9gwi.jpg` |
-| `originalname` | Original name of uploaded file, for example `flower.jpg` |
+| `filename` | Original name of uploaded file, for example `flower.jpg` |
 
 [uuid]: https://www.rfc-editor.org/rfc/rfc4122.html#section-4.4
