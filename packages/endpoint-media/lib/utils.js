@@ -59,11 +59,6 @@ export const renderPath = async (path, properties, application, separator) => {
     .replace(separator, "0") // Don’t use slug separator character
     .toLowerCase();
 
-  // Add slug token if 'mp-slug' property
-  if (properties["mp-slug"]) {
-    tokens.slug = properties["mp-slug"];
-  }
-
   // Add UUID token
   tokens.uuid = crypto.randomUUID();
 
