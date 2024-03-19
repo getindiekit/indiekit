@@ -32,13 +32,13 @@ export const getMediaProperties = (mediaData) => {
 export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getTimeZoneDesignator();
-  const { timeZone } = application;
+  const { locale, timeZone } = application;
   let tokens = {};
 
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = formatDate(properties.published, dateToken, {
-      locale: application.locale,
+      locale,
       timeZone: timeZone === "server" ? serverTimeZone : timeZone,
       // @ts-ignore (https://github.com/marnusw/date-fns-tz/issues/239)
       useAdditionalDayOfYearTokens: true,
