@@ -62,7 +62,7 @@ describe("endpoint-media/lib/utils", () => {
   });
 
   it("Renders path from URI template and properties", async () => {
-    const template = "{yyyy}/{MM}/{uuid}/{slug}";
+    const template = "{yyyy}/{MM}/{uuid}/{random}/{slug}";
     const properties = {
       published: "2020-01-01",
       "mp-slug": "foo",
@@ -83,11 +83,11 @@ describe("endpoint-media/lib/utils", () => {
         },
       },
     };
-    const result = await renderPath(template, properties, application);
+    const result = await renderPath(template, properties, application, "-");
 
     assert.match(
       result,
-      /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/foo/,
+      /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/\w{5}\/foo/,
     );
   });
 
