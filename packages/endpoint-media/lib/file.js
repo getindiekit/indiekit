@@ -1,4 +1,4 @@
-import { getDate, randomString } from "@indiekit/util";
+import { getDate } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
 
 /**
@@ -7,26 +7,19 @@ import { fileTypeFromBuffer } from "file-type";
  * @param {object} file - Original file object
  * @returns {Promise<object>} File properties
  * @example fileData('brighton-pier.jpg') => {
- *   basename: 'ds48s',
  *   ext: '.jpg'
- *   filename: 'ds48s.jpg'
- *   originalname: 'brighton-pier.jpg',
+ *   filename: 'brighton-pier.jpg',
  *   'content-type': image/jpeg,
  *   published: '2020-07-19T22:59:23.497Z',
  * }
  */
 export const getFileProperties = async (timeZone, file) => {
-  const basename = randomString(5)
-    .replace(/-|_/, "0") // Don’t use common slug separator characters
-    .toLowerCase();
   const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);
 
   return {
-    basename,
     ext,
-    filename: `${basename}.${ext}`,
-    originalname: file.name,
+    filename: file.name,
     "content-type": file.mimetype,
     published,
   };

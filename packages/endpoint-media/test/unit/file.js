@@ -24,9 +24,8 @@ describe("endpoint-media/lib/file", () => {
     };
     const result = await getFileProperties("UTC", file);
 
-    assert.equal(result.originalname, "photo.jpg");
     assert.equal(result.ext, "jpg");
-    assert.match(result.filename, /\w{5}.jpg/g);
+    assert.equal(result.filename, "photo.jpg");
     assert.equal(isValid(parseISO(result.published)), true);
   });
 });
