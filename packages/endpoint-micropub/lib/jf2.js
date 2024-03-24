@@ -1,14 +1,9 @@
-import { getDate, randomString, slugify } from "@indiekit/util";
+import { getDate } from "@indiekit/util";
 import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
 import { fetchReferences } from "@paulrobertlloyd/mf2tojf2";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
-import {
-  decodeQueryParameter,
-  excerptString,
-  relativeMediaPath,
-  toArray,
-} from "./utils.js";
+import { decodeQueryParameter, relativeMediaPath, toArray } from "./utils.js";
 
 /**
  * Create JF2 object from form-encoded request
@@ -68,7 +63,7 @@ export const mf2ToJf2 = async (body, requestReferences) => {
  * @returns {object} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties, timeZone) => {
-  const { me, slugSeparator } = publication;
+  const { me } = publication;
 
   properties.published = getDate(timeZone, properties.published);
 
@@ -96,7 +91,9 @@ export const normaliseProperties = (publication, properties, timeZone) => {
     properties.video = getVideoProperty(properties, me);
   }
 
-  properties["mp-slug"] = getSlugProperty(properties, slugSeparator);
+  if (properties["mp-slug"]) {
+    properties.slug = properties["mp-slug"];
+  }
 
   if (properties["mp-syndicate-to"]) {
     properties["mp-syndicate-to"] = toArray(properties["mp-syndicate-to"]);
@@ -223,30 +220,6 @@ export const getVideoProperty = (properties, me) => {
   return video.map((item) => ({
     url: relativeMediaPath(item.url || item, me),
   }));
-};
-
-/**
- * Get slug
- * @param {object} properties - JF2 properties
- * @param {string} separator - Slug separator
- * @returns {string} Array containing slug value
- */
-export const getSlugProperty = (properties, separator) => {
-  const suggested = properties["mp-slug"];
-  const { name } = properties;
-
-  let string;
-  if (suggested) {
-    string = suggested;
-  } else if (name) {
-    string = excerptString(name, 5);
-  } else {
-    string = randomString(5)
-      .replace("_", "0") // Slugify function strips any leading underscore
-      .replace(separator, "0"); // Don’t include slug separator character
-  }
-
-  return slugify(string, { separator });
 };
 
 /**

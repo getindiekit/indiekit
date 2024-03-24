@@ -10,7 +10,6 @@ import {
   getLocationProperty,
   getPhotoProperty,
   getVideoProperty,
-  getSlugProperty,
   getSyndicateToProperty,
   normaliseProperties,
 } from "../../lib/jf2.js";
@@ -287,49 +286,6 @@ describe("endpoint-micropub/lib/jf2", () => {
     ]);
   });
 
-  it("Derives slug from `mp-slug` property", () => {
-    const properties = JSON.parse(getFixture("jf2/note-slug-provided.jf2"));
-    const result = getSlugProperty(properties, "-");
-
-    assert.equal(result, "cheese-sandwich");
-  });
-
-  it("Derives slug from unslugified `mp-slug` property", () => {
-    const properties = JSON.parse(
-      getFixture("jf2/note-slug-provided-unslugified.jf2"),
-    );
-    const result = getSlugProperty(properties, "-");
-
-    assert.equal(result, "cheese-sandwich");
-  });
-
-  it("Derives slug, ignoring empty `mp-slug` property", () => {
-    const properties = JSON.parse(
-      getFixture("jf2/article-slug-provided-empty.jf2"),
-    );
-    const result = getSlugProperty(properties, "-");
-
-    assert.equal(result, "what-i-had-for-lunch");
-  });
-
-  it("Derives slug from `name` property", () => {
-    const properties = JSON.parse(
-      getFixture("jf2/article-content-provided-text.jf2"),
-    );
-    const result = getSlugProperty(properties, "-");
-
-    assert.equal(result, "what-i-had-for-lunch");
-  });
-
-  it("Derives slug by generating random string", () => {
-    const properties = JSON.parse(
-      getFixture("jf2/note-slug-missing-no-name.jf2"),
-    );
-    const result = getSlugProperty(properties, "-");
-
-    assert.match(result, /\w{5}/g);
-  });
-
   it("Does not add syndication target if no syndicators", () => {
     const properties = JSON.parse(
       getFixture("jf2/article-syndicate-to-provided.jf2"),
@@ -402,7 +358,7 @@ describe("endpoint-micropub/lib/jf2", () => {
 
     assert.equal(result.type, "entry");
     assert.equal(result.name, "What I had for lunch");
-    assert.equal(result["mp-slug"], "what-i-had-for-lunch");
+    assert.equal(result.slug, "lunch");
     assert.deepEqual(result.content, {
       html: `<blockquote>\n<p>I <del>ate</del><ins>had</ins> a <cite><a href="https://en.wikipedia.org/wiki/Cheese">cheese</a></cite> sandwich from https://cafe.example, which was &gt; 10.</p>\n</blockquote>\n<p>– Me, then.</p>`,
       text: "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",

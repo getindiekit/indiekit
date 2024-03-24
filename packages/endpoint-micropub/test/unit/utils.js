@@ -3,6 +3,7 @@ import { before, describe, it, mock } from "node:test";
 import {
   decodeQueryParameter,
   excerptString,
+  getSlug,
   getPostTemplateProperties,
   relativeMediaPath,
   renderPath,
@@ -32,6 +33,37 @@ describe("endpoint-media/lib/utils", () => {
     const result = excerptString("The quick fox jumped over the lazy fox", 5);
 
     assert.equal(result, "The quick fox jumped over");
+  });
+
+  it("Derives slug from `slug` property", () => {
+    const properties = { slug: "cheese-sandwich" };
+    const result = getSlug(properties, "-");
+
+    assert.equal(result, "cheese-sandwich");
+  });
+
+  it("Derives slug from `name` property", () => {
+    const properties = { name: "Cheese sandwich" };
+    const result = getSlug(properties, "-");
+
+    assert.equal(result, "cheese-sandwich");
+  });
+
+  it("Derives slug, ignoring empty `slug` property", () => {
+    const properties = {
+      name: "What I had for lunch",
+      slug: "",
+    };
+    const result = getSlug(properties, "-");
+
+    assert.equal(result, "what-i-had-for-lunch");
+  });
+
+  it("Derives slug by generating random string", () => {
+    const properties = { content: "I ate a cheese sandwich, which was nice." };
+    const result = getSlug(properties, "-");
+
+    assert.match(result, /\w{5}/g);
   });
 
   it("Gets post template properties", () => {
@@ -65,7 +97,7 @@ describe("endpoint-media/lib/utils", () => {
     const template = "{yyyy}/{MM}/{uuid}/{random}/{slug}";
     const properties = {
       published: "2020-01-01",
-      "mp-slug": "foo",
+      slug: "foo",
     };
     const application = {
       posts: {
