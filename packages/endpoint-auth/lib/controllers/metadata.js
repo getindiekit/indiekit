@@ -1,4 +1,4 @@
-import { scopes } from "../scope.js";
+import { supportedScopes } from "../scope.js";
 
 export const metadataController = (request, response) => {
   const { application } = request.app.locals;
@@ -10,7 +10,7 @@ export const metadataController = (request, response) => {
     token_endpoint: application.tokenEndpoint,
     code_challenge_methods_supported: ["S256"],
     response_types_supported: ["code"],
-    scopes_supported: scopes,
+    scopes_supported: supportedScopes,
     service_documentation: application.authorizationEndpoint,
     ui_locales_supported: application.localeUsed,
   };

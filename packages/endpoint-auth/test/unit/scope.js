@@ -10,7 +10,7 @@ describe("endpoint-auth/lib/scope", () => {
     });
     const result = getScopeItems("create update", response);
 
-    assert.equal(result.length, 5);
+    assert.equal(result.length, 2);
     assert.equal(result[0].checked, true);
     assert.equal(result[0].value, "create");
   });
