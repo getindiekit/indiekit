@@ -62,8 +62,13 @@ export const renderPath = async (path, properties, application, separator) => {
   // Add UUID token
   tokens.uuid = crypto.randomUUID();
 
+  // Add file extension
+  tokens.ext = properties.ext;
+
+  // Add file name
+  tokens.filename = properties.filename;
+
   // Populate URI template path with properties
-  tokens = { ...tokens, ...properties };
   path = supplant(path, tokens);
 
   return path;
