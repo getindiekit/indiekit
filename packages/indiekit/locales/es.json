@@ -9,6 +9,12 @@
     "options": "Opciones"
   },
   "scope": {
+    "block": {
+      "label": "Bloquear usuarios"
+    },
+    "channels": {
+      "label": "Gestiona los canales"
+    },
     "create": {
       "label": "Crear publicaciones"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Crea y actualiza solo borradores de publicaciones"
     },
-    "label": "Permisos de publicación",
+    "email": {
+      "label": "Dirección de email"
+    },
+    "follow": {
+      "label": "Administrar la lista de seguimiento"
+    },
+    "label": "Permisos solicitados",
     "media": {
       "label": "Cargar archivos multimedia"
     },
+    "mute": {
+      "label": "Silenciar usuarios"
+    },
     "none": {
       "label": "No tienes ningún permiso de publicación"
+    },
+    "notSupported": {
+      "hint": "No se admite"
+    },
+    "profile": {
+      "label": "Información de perfil"
+    },
+    "read": {
+      "label": "Leer canales"
     },
     "update": {
       "label": "Actualizar publicaciones"

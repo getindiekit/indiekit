@@ -9,6 +9,12 @@
     "options": "Pilihan"
   },
   "scope": {
+    "block": {
+      "label": "Blokir pengguna"
+    },
+    "channels": {
+      "label": "Kelola saluran"
+    },
     "create": {
       "label": "Membuat pos"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Membuat dan memperbarui draft posting saja"
     },
-    "label": "Izin publikasi",
+    "email": {
+      "label": "Alamat Email"
+    },
+    "follow": {
+      "label": "Kelola daftar berikut"
+    },
+    "label": "Izin yang diminta",
     "media": {
       "label": "Unggah media"
     },
+    "mute": {
+      "label": "Bisukan pengguna"
+    },
     "none": {
       "label": "Anda tidak memiliki izin penerbitan"
+    },
+    "notSupported": {
+      "hint": "Tidak didukung"
+    },
+    "profile": {
+      "label": "Informasi profil"
+    },
+    "read": {
+      "label": "Baca saluran"
     },
     "update": {
       "label": "Perbarui pos"

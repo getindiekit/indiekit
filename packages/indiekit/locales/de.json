@@ -9,6 +9,12 @@
     "options": "Optionen"
   },
   "scope": {
+    "block": {
+      "label": "Nutzer blockieren"
+    },
+    "channels": {
+      "label": "Kanäle verwalten"
+    },
     "create": {
       "label": "Beiträge erstellen"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Nur Beitragsentwürfe erstellen und aktualisieren"
     },
-    "label": "Veröffentlichungsberechtigungen",
+    "email": {
+      "label": "E-Mail-Adresse"
+    },
+    "follow": {
+      "label": "Verwalten Sie folgende Liste"
+    },
+    "label": "Angeforderte Berechtigungen",
     "media": {
       "label": "Medien hochladen"
     },
+    "mute": {
+      "label": "Benutzer stummschalten"
+    },
     "none": {
       "label": "Sie haben keine Veröffentlichungsberechtigungen"
+    },
+    "notSupported": {
+      "hint": "Nicht unterstützt"
+    },
+    "profile": {
+      "label": "Informationen zum Profil"
+    },
+    "read": {
+      "label": "Kanäle lesen"
     },
     "update": {
       "label": "Beiträge aktualisieren"

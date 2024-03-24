@@ -9,6 +9,12 @@
     "options": "Opcje"
   },
   "scope": {
+    "block": {
+      "label": "Blokuj użytkowników"
+    },
+    "channels": {
+      "label": "Zarządzanie kanałami"
+    },
     "create": {
       "label": "Twórz posty"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Twórz i aktualizuj tylko wersje robocze postów"
     },
-    "label": "Uprawnienia do publikowania",
+    "email": {
+      "label": "Adres e-mail"
+    },
+    "follow": {
+      "label": "Zarządzaj następującą listą"
+    },
+    "label": "Żądane uprawnienia",
     "media": {
       "label": "Prześlij multimedia"
     },
+    "mute": {
+      "label": "Wycisz użytkowników"
+    },
     "none": {
       "label": "Nie masz żadnych uprawnień do publikowania"
+    },
+    "notSupported": {
+      "hint": "Nieobsługiwane"
+    },
+    "profile": {
+      "label": "Informacje o profilu"
+    },
+    "read": {
+      "label": "Odczytaj kanały"
     },
     "update": {
       "label": "Aktualizuj posty"

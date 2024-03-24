@@ -9,6 +9,12 @@
     "options": "Opções"
   },
   "scope": {
+    "block": {
+      "label": "Bloquear usuários"
+    },
+    "channels": {
+      "label": "Gerenciar canais"
+    },
     "create": {
       "label": "Crie postagens"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Crie e atualize somente rascunhos de publicações"
     },
-    "label": "Permissões de publicação",
+    "email": {
+      "label": "Endereço de e-mail"
+    },
+    "follow": {
+      "label": "Gerenciar a lista a seguir"
+    },
+    "label": "Permissões solicitadas",
     "media": {
       "label": "Carregar mídia"
     },
+    "mute": {
+      "label": "Silenciar usuários"
+    },
     "none": {
       "label": "Você não tem nenhuma permissão de publicação"
+    },
+    "notSupported": {
+      "hint": "Não suportado"
+    },
+    "profile": {
+      "label": "Informação de Perfil"
+    },
+    "read": {
+      "label": "Leia canais"
     },
     "update": {
       "label": "Atualizar postagens"

@@ -9,6 +9,12 @@
     "options": "Opties"
   },
   "scope": {
+    "block": {
+      "label": "Gebruikers blokkeren"
+    },
+    "channels": {
+      "label": "Kanalen beheren"
+    },
     "create": {
       "label": "Posten maken"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Maak en update alleen conceptposts"
     },
-    "label": "Machtigingen voor publicatie",
+    "email": {
+      "label": "Emailadres"
+    },
+    "follow": {
+      "label": "De volgende lijst beheren"
+    },
+    "label": "Permissies gevraagd",
     "media": {
       "label": "Media uploaden"
     },
+    "mute": {
+      "label": "Gebruikers dempen"
+    },
     "none": {
       "label": "Je hebt geen publicatierechten"
+    },
+    "notSupported": {
+      "hint": "Niet ondersteund"
+    },
+    "profile": {
+      "label": "Informatie over het profiel"
+    },
+    "read": {
+      "label": "Kanalen lezen"
     },
     "update": {
       "label": "Posten updaten"

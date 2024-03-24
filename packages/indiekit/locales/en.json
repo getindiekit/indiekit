@@ -20,24 +20,48 @@
     }
   },
   "scope": {
-    "label": "Publishing permissions",
+    "label": "Requested permissions",
+    "email": {
+      "label": "Email address"
+    },
+    "profile": {
+      "label": "Profile information"
+    },
     "create": {
       "label": "Create posts"
-    },
-    "delete": {
-      "label": "Delete posts and media"
     },
     "draft": {
       "label": "Create and update draft posts only"
     },
+    "update": {
+      "label": "Update posts"
+    },
+    "delete": {
+      "label": "Delete posts and media"
+    },
     "media": {
       "label": "Upload media"
+    },
+    "read": {
+      "label": "Read channels"
+    },
+    "follow": {
+      "label": "Manage following list"
+    },
+    "mute": {
+      "label": "Mute users"
+    },
+    "block": {
+      "label": "Block users"
+    },
+    "channels": {
+      "label": "Manage channels"
     },
     "none": {
       "label": "You don’t have any publishing permissions"
     },
-    "update": {
-      "label": "Update posts"
+    "notSupported": {
+      "hint": "Not supported"
     }
   },
   "status": {

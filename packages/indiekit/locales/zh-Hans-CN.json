@@ -9,6 +9,12 @@
     "options": "选项"
   },
   "scope": {
+    "block": {
+      "label": "阻止用户"
+    },
+    "channels": {
+      "label": "管理频道"
+    },
     "create": {
       "label": "创建帖子"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "仅创建和更新草稿帖子"
     },
-    "label": "发布权限",
+    "email": {
+      "label": "电子邮件地址"
+    },
+    "follow": {
+      "label": "管理以下列表"
+    },
+    "label": "请求的权限",
     "media": {
       "label": "上传媒体文件"
     },
+    "mute": {
+      "label": "将用户静音"
+    },
     "none": {
       "label": "你没有任何发布权限"
+    },
+    "notSupported": {
+      "hint": "不支持"
+    },
+    "profile": {
+      "label": "个人资料信息"
+    },
+    "read": {
+      "label": "读取频道"
     },
     "update": {
       "label": "更新帖子"
