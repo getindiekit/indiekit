@@ -134,14 +134,13 @@ export const renderPath = async (path, properties, application, separator) => {
     .replace(separator, "0") // Don’t use slug separator character
     .toLowerCase();
 
-  // Add slug token (falls back to name or random if no `mp-slug`)
-  tokens.slug = getSlug(properties, separator);
-
   // Add UUID token
   tokens.uuid = crypto.randomUUID();
 
+  // Add slug token (falls back to name or random if no `mp-slug`)
+  tokens.slug = getSlug(properties, separator);
+
   // Populate URI template path with properties
-  tokens = { ...tokens, ...properties };
   path = supplant(path, tokens);
 
   return path;
