@@ -1,5 +1,6 @@
 {
   "type": "entry",
   "name": "What I had for lunch",
-  "content": "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then."
+  "content": "> I <del>ate</del><ins>had</ins> a <cite>[cheese](https://en.wikipedia.org/wiki/Cheese)</cite> sandwich from https://cafe.example, which was > 10.\n\n-- Me, then.",
+  "mp-slug": "lunch"
 }
