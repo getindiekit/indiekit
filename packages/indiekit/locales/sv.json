@@ -9,6 +9,12 @@
     "options": "Alternativ"
   },
   "scope": {
+    "block": {
+      "label": "Blockera användare"
+    },
+    "channels": {
+      "label": "Hantera kanaler"
+    },
     "create": {
       "label": "Skapa inlägg"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Skapa och uppdatera endast inläggsutkast"
     },
-    "label": "Publiceringsbehörigheter",
+    "email": {
+      "label": "E-postadress"
+    },
+    "follow": {
+      "label": "Hantera följande lista"
+    },
+    "label": "Begärde behörigheter",
     "media": {
       "label": "Ladda upp mediefiler"
     },
+    "mute": {
+      "label": "Stäng av användare"
+    },
     "none": {
       "label": "Du har inga publiceringsbehörigheter"
+    },
+    "notSupported": {
+      "hint": "Stöds inte"
+    },
+    "profile": {
+      "label": "Profil information"
+    },
+    "read": {
+      "label": "Läs kanaler"
     },
     "update": {
       "label": "Uppdatera inlägg"

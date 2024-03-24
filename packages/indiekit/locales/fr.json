@@ -9,6 +9,12 @@
     "options": "Paramètres"
   },
   "scope": {
+    "block": {
+      "label": "Bloquer les utilisateurs"
+    },
+    "channels": {
+      "label": "Gérer les chaînes"
+    },
     "create": {
       "label": "Créer des publications"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Créer et mettre à jour des brouillons de publications uniquement"
     },
-    "label": "Autorisations de publication",
+    "email": {
+      "label": "Addresse email"
+    },
+    "follow": {
+      "label": "Gérer la liste suivante"
+    },
+    "label": "Autorisations demandées",
     "media": {
       "label": "Téléverser des médias"
     },
+    "mute": {
+      "label": "Désactiver les utilisateurs"
+    },
     "none": {
       "label": "Vous n’avez aucune autorisation pour publier"
+    },
+    "notSupported": {
+      "hint": "Non pris en charge"
+    },
+    "profile": {
+      "label": "Informations sur le profil"
+    },
+    "read": {
+      "label": "Lire les chaînes"
     },
     "update": {
       "label": "Mettre à jour les publications"

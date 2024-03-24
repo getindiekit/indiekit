@@ -9,6 +9,12 @@
     "options": "Opcije"
   },
   "scope": {
+    "block": {
+      "label": "Blokirajte korisnike"
+    },
+    "channels": {
+      "label": "Upravljanje kanalima"
+    },
     "create": {
       "label": "Kreirajte postova"
     },
@@ -18,12 +24,30 @@
     "draft": {
       "label": "Kreirajte i ažurirajte samo nacrte postova"
     },
-    "label": "Dozvole za objavljivanje",
+    "email": {
+      "label": "Adresa e-pošte"
+    },
+    "follow": {
+      "label": "Upravljajte sledećom listom"
+    },
+    "label": "Zahtevane dozvole",
     "media": {
       "label": "Otpremite medije"
     },
+    "mute": {
+      "label": "Isključite korisnike"
+    },
     "none": {
       "label": "Nemate dozvole za objavljivanje"
+    },
+    "notSupported": {
+      "hint": "Nije podržano"
+    },
+    "profile": {
+      "label": "Informacije o profilu"
+    },
+    "read": {
+      "label": "Pročitajte kanale"
     },
     "update": {
       "label": "Ažurirajte postova"
