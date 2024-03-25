@@ -1,3 +1,4 @@
+import path from "node:path";
 import express from "express";
 import { deleteController } from "./lib/controllers/delete.js";
 import { fileController } from "./lib/controllers/file.js";
@@ -20,6 +21,14 @@ export default class FilesEndpoint {
     return {
       href: this.options.mountPath,
       text: "files.title",
+      requiresDatabase: true,
+    };
+  }
+
+  get shortcutItems() {
+    return {
+      url: path.join(this.options.mountPath, "upload"),
+      name: "files.upload.action",
       requiresDatabase: true,
     };
   }
