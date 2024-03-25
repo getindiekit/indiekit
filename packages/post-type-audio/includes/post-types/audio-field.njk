@@ -1,9 +1,11 @@
 {% macro audioFieldset(index) %}
-  {{ input({
+  {{ fileInput({
     name: "audio[" + index + "]",
     type: "url",
     value: fieldData("audio[" + index + "]").value,
     label: __("posts.form.media.label"),
+    accept: "audio/*",
+    uploadEndpoint: application.mediaEndpoint,
     attributes: {
       placeholder: "https://"
     },
