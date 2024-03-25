@@ -30,7 +30,7 @@ export default class InternetArchiveSyndicator {
     const service = {
       name: "Internet Archive",
       url: "https://web.archive.org/",
-      photo: "/assets/internet-archive/icon.svg",
+      photo: "/assets/@indiekit-syndicator-internet-archive/icon.svg",
     };
 
     if (!this.options?.accessKey) {
