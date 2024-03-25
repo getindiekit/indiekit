@@ -42,7 +42,7 @@ export default class MastodonSyndicator {
   get info() {
     const service = {
       name: "Mastodon",
-      photo: "/assets/mastodon/icon.svg",
+      photo: "/assets/@indiekit-syndicator-mastodon/icon.svg",
     };
     const user = this.#user;
     const url = this.#url;
