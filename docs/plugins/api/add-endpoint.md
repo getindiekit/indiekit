@@ -26,7 +26,10 @@ new Indiekit.addEndpoint(options);
 : A string representing the path to mount routes onto. **Required**.
 
 `navigationItems`
-: A single [`NavigationItem`](#navigationitem) or an array of multiple [`NavigationItem`](#navigationitem)’s used to add items to the web interface’s navigation menu.
+: A single or array of [`NavigationItem`](#navigationitem) objects used to add items to the web interface’s navigation menu.
+
+`shortcutItems`
+: A single or array of [`ShortcutItem`](#shortcutitem) objects used to add [`shortcut` items](https://developer.mozilla.org/en-US/docs/Web/Manifest/shortcuts) to the web app manifest.
 
 ## Methods
 
@@ -64,6 +67,17 @@ Used to register the plug-in. Accepts an `Indiekit` instance to allow its modifi
 [Learn about `Router` in the Express.js documentation](https://expressjs.com/en/4x/api.html#router):
 
 > A router object is an isolated instance of middleware and routes. You can think of it as a “mini-application,” capable only of performing middleware and routing functions.
+
+### `ShortcutItem`
+
+`url`
+: A string representing the path to the page and used for the shortcut’s `url` attribute. **Required**.
+
+`name`
+: A string representing the text shown in the shortcut item. **Required**.
+
+`requiresDatabase`
+: A boolean for whether the item should only be displayed if a database has been configured.
 
 ## Example
 
