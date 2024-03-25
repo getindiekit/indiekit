@@ -1,9 +1,11 @@
 {% macro videoFieldset(index) %}
-  {{ input({
+  {{ fileInput({
     name: "video[" + index + "]",
     type: "url",
     value: fieldData("video[" + index + "]").value,
     label: __("posts.form.media.label"),
+    accept: "video/*",
+    uploadEndpoint: application.mediaEndpoint,
     attributes: {
       placeholder: "https://"
     },
