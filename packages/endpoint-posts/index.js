@@ -1,3 +1,4 @@
+import path from "node:path";
 import { ISO_6709_RE, isRequired } from "@indiekit/util";
 import express from "express";
 import { deleteController } from "./lib/controllers/delete.js";
@@ -22,6 +23,14 @@ export default class PostsEndpoint {
     return {
       href: this.options.mountPath,
       text: "posts.title",
+      requiresDatabase: true,
+    };
+  }
+
+  get shortcutItems() {
+    return {
+      url: path.join(this.options.mountPath, "new"),
+      name: "posts.create.action",
       requiresDatabase: true,
     };
   }
