@@ -25,11 +25,11 @@
       "file": {
         "label": "Arquivo"
       },
-      "submit": "Upload"
+      "submit": "Fazer upload"
     },
     "title": "Arquivos",
     "upload": {
-      "action": "Carregar ficheiro",
+      "action": "Subir arquivo",
       "title": "Carregar um novo arquivo"
     }
   }
