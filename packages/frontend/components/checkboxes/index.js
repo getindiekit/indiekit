@@ -6,11 +6,11 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.inputTargets = this.querySelectorAll("input");
+    this.$$inputTargets = this.querySelectorAll("input");
   }
 
   connectedCallback() {
-    for (const $input of this.inputTargets) {
+    for (const $input of this.$$inputTargets) {
       const targetId = $input.dataset.ariaControls;
       const $conditional = document.querySelector(`#${targetId}`);
 
@@ -60,7 +60,7 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
    * Sync conditional reveal states for all checkboxes in this checkbox group
    */
   syncAllConditionalReveals() {
-    for (const $input of this.inputTargets) {
+    for (const $input of this.$$inputTargets) {
       this.syncConditionalRevealWithInputState($input);
     }
   }
@@ -98,11 +98,11 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
    * @param {HTMLInputElement} $input - Checkbox input
    */
   unCheckAllInputsExcept($input) {
-    const $allInputsWithSameName = document.querySelectorAll(
+    const $$inputsWithSameName = document.querySelectorAll(
       `input[type="checkbox"][name="${$input.name}"]`,
     );
 
-    for (const $inputWithSameName of $allInputsWithSameName) {
+    for (const $inputWithSameName of $$inputsWithSameName) {
       const hasSameFormOwner = $input.form === $inputWithSameName.form;
       if (hasSameFormOwner && $inputWithSameName !== $input) {
         $inputWithSameName.checked = false;
@@ -120,12 +120,11 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
    * @param {HTMLInputElement} $input - Checkbox input
    */
   unCheckExclusiveInputs($input) {
-    const $allInputsWithSameNameAndExclusiveBehaviour =
-      document.querySelectorAll(
-        `input[data-behaviour="exclusive"][type="checkbox"][name="${$input.name}"]`,
-      );
+    const $$inputsWithSameNameAndExclusiveBehaviour = document.querySelectorAll(
+      `input[data-behaviour="exclusive"][type="checkbox"][name="${$input.name}"]`,
+    );
 
-    for (const $exclusiveInput of $allInputsWithSameNameAndExclusiveBehaviour) {
+    for (const $exclusiveInput of $$inputsWithSameNameAndExclusiveBehaviour) {
       const hasSameFormOwner = $input.form === $exclusiveInput.form;
       if (hasSameFormOwner) {
         $exclusiveInput.checked = false;

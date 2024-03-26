@@ -4,11 +4,11 @@ export const SharePreviewComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.outputs = this.querySelectorAll("output");
+    this.$$outputs = this.querySelectorAll("output");
   }
 
   connectedCallback() {
-    for (const $output of this.outputs) {
+    for (const $output of this.$$outputs) {
       this.updatePreview($output);
     }
 

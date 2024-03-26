@@ -4,10 +4,10 @@ export const AddAnotherComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.addButtonTemplate = this.querySelector("#add-button");
-    this.deleteButtonTemplate = this.querySelector("#delete-button");
-    this.fields = this.querySelectorAll(".field");
-    this.list = this.querySelector(".add-another__list");
+    this.$addButtonTemplate = this.querySelector("#add-button");
+    this.$deleteButtonTemplate = this.querySelector("#delete-button");
+    this.$$fields = this.querySelectorAll(".field");
+    this.$list = this.querySelector(".add-another__list");
   }
 
   connectedCallback() {
@@ -22,7 +22,7 @@ export const AddAnotherComponent = class extends HTMLElement {
   add(event) {
     event.preventDefault();
     const $newItem = this.createItem();
-    this.list.append($newItem);
+    this.$list.append($newItem);
     this.updateItems();
     $newItem.querySelector(focusableSelector).focus();
   }
@@ -60,7 +60,7 @@ export const AddAnotherComponent = class extends HTMLElement {
    * Create add button
    */
   createAddButton() {
-    let $addButton = this.addButtonTemplate.content.cloneNode(true);
+    let $addButton = this.$addButtonTemplate.content.cloneNode(true);
 
     this.append($addButton);
 
@@ -83,7 +83,7 @@ export const AddAnotherComponent = class extends HTMLElement {
    */
   createDeleteButton(element) {
     const $deleteButton =
-      this.deleteButtonTemplate.content.firstElementChild.cloneNode(true);
+      this.$deleteButtonTemplate.content.firstElementChild.cloneNode(true);
 
     element.append($deleteButton);
   }
@@ -103,22 +103,22 @@ export const AddAnotherComponent = class extends HTMLElement {
    * @returns {HTMLLIElement} - List item containing form field(s)
    */
   createItem() {
-    const $items = this.querySelectorAll(".add-another__list-item");
-    const $item = $items[0].cloneNode(true);
+    const $$items = this.querySelectorAll(".add-another__list-item");
+    const $item = $$items[0].cloneNode(true);
     const uid = Date.now().toString();
 
-    const $fields = $item.querySelectorAll(".field--error");
-    for (const $field of $fields) {
+    const $$fields = $item.querySelectorAll(".field--error");
+    for (const $field of $$fields) {
       $field.classList.remove("field--error");
     }
 
-    const $errorMessages = $item.querySelectorAll(".error-message");
-    for (const $errorMessage of $errorMessages) {
+    const $$errorMessages = $item.querySelectorAll(".error-message");
+    for (const $errorMessage of $$errorMessages) {
       $errorMessage.remove();
     }
 
-    const $inputs = $item.querySelectorAll("input, select, textarea");
-    for (const $input of $inputs) {
+    const $$inputs = $item.querySelectorAll("input, select, textarea");
+    for (const $input of $$inputs) {
       $input.id = $input.id.replace("-0", `-${uid}`);
       $input.name = $input.name.replace("[0]", `[${uid}]`);
       $input.value = "";
@@ -129,8 +129,8 @@ export const AddAnotherComponent = class extends HTMLElement {
       );
     }
 
-    const $labels = $item.querySelectorAll("label");
-    for (const $label of $labels) {
+    const $$labels = $item.querySelectorAll("label");
+    for (const $label of $$labels) {
       const forAttribute = $label.getAttribute("for");
       $label.setAttribute("for", forAttribute.replace("-0", `-${uid}`));
     }
@@ -147,21 +147,21 @@ export const AddAnotherComponent = class extends HTMLElement {
    * - Add remove buttons (or remove if only one item remaining in list)
    */
   updateItems() {
-    const $items = this.querySelectorAll(".add-another__list-item");
+    const $$items = this.querySelectorAll(".add-another__list-item");
 
-    for (const [index, $item] of $items.entries()) {
+    for (const [index, $item] of $$items.entries()) {
       $item.id = $item.id || `${this.id}-${index}`;
       $item.setAttribute("aria-label", `Item ${index + 1}`);
 
       // If no delete button, add one (if more than 1 item in list)
       // Used when initializing
-      if (!this.getDeleteButton($item) && $items.length > 1) {
+      if (!this.getDeleteButton($item) && $$items.length > 1) {
         this.createDeleteButton($item);
       }
 
       // If has delete button
       if (this.getDeleteButton($item)) {
-        if ($items.length === 1) {
+        if ($$items.length === 1) {
           // If only 1 item in list, remove button
           this.getDeleteButton($item).remove();
         } else {

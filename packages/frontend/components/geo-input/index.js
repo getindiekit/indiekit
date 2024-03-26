@@ -5,13 +5,13 @@ export const GeoInputFieldComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.geoInput = this.querySelector("input");
+    this.$geoInput = this.querySelector("input");
 
     this.i18nDenied = this.getAttribute("i18n-denied");
     this.i18nFailed = this.getAttribute("i18n-failed");
 
-    this.findButtonTemplate = this.querySelector("#find-button");
-    this.errorMessageTemplate = this.querySelector("#error-message");
+    this.$findButtonTemplate = this.querySelector("#find-button");
+    this.$errorMessageTemplate = this.querySelector("#error-message");
   }
 
   connectedCallback() {
@@ -24,10 +24,10 @@ export const GeoInputFieldComponent = class extends HTMLElement {
     $inputButtonGroup.classList.add("input-button-group");
 
     // Create and display find location button
-    let $findButton = this.findButtonTemplate.content.cloneNode(true);
+    let $findButton = this.$findButtonTemplate.content.cloneNode(true);
 
     // Wrap input within `input-button-group` container
-    wrapElement(this.geoInput, $inputButtonGroup);
+    wrapElement(this.$geoInput, $inputButtonGroup);
 
     // Add button to `input-button-group` container
     $inputButtonGroup.append($findButton);
@@ -58,7 +58,7 @@ export const GeoInputFieldComponent = class extends HTMLElement {
   positionSuccess(position) {
     const latitude = position.coords.latitude.toFixed(5);
     const longitude = position.coords.longitude.toFixed(5);
-    this.geoInput.value = [latitude, longitude].join(",");
+    this.$geoInput.value = [latitude, longitude].join(",");
   }
 
   /**
@@ -83,7 +83,7 @@ export const GeoInputFieldComponent = class extends HTMLElement {
     const $inputButtonGroup = this.querySelector(".input-button-group");
 
     // Create error message
-    let $errorMessage = this.errorMessageTemplate.content.cloneNode(true);
+    let $errorMessage = this.$errorMessageTemplate.content.cloneNode(true);
     $inputButtonGroup.before($errorMessage);
     $errorMessage = this.querySelector(".error-message");
     const $errorMessageText = this.querySelector(".error-message__text");

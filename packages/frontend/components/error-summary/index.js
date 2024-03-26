@@ -108,10 +108,10 @@ export const ErrorSummaryComponent = class extends HTMLElement {
     const inputId = $input.getAttribute("id");
 
     if ($fieldset) {
-      const $legends = $fieldset.querySelectorAll("legend");
+      const $$legends = $fieldset.querySelectorAll("legend");
 
-      if ($legends.length > 0) {
-        const $candidateLegend = $legends[0];
+      if ($$legends.length > 0) {
+        const $candidateLegend = $$legends[0];
 
         // If input type is radio or checkbox, use legend if there is one
         if ($input.type === "checkbox" || $input.type === "radio") {

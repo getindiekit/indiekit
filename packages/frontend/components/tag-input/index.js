@@ -1,13 +1,17 @@
 import TagInput from "@accessible-components/tag-input";
 
 export const TagInputFieldComponent = class extends HTMLElement {
-  connectedCallback() {
-    const $hint = this.querySelector(".hint");
-    const $replacedInput = this.querySelector(".input");
-    const $replacedLabel = this.querySelector(".label");
+  constructor() {
+    super();
 
-    const value = $replacedInput.getAttribute("value");
-    const tags = value ? $replacedInput.getAttribute("value").split(",") : [];
+    this.$hint = this.querySelector(".hint");
+    this.$replacedLabel = this.querySelector(".label");
+    this.$replacedInput = this.querySelector(".input");
+    this.value = this.$replacedInput.getAttribute("value");
+  }
+
+  connectedCallback() {
+    const tags = this.value ? this.value.split(",") : [];
 
     const tagInput = new TagInput(this, {
       ariaTag: this.getAttribute("i18n-tag"),
@@ -19,18 +23,18 @@ export const TagInputFieldComponent = class extends HTMLElement {
       ariaTagSelected: this.getAttribute("i18n-selected"),
       ariaNoTagsSelected: this.getAttribute("i18n-none-selected"),
       ariaInputLabel: this.getAttribute("i18n-instruction"),
-      disabled: $replacedInput.getAttribute("disabled"),
-      label: $replacedLabel.innerHTML,
-      name: $replacedInput.getAttribute("name"),
+      disabled: this.$replacedInput.getAttribute("disabled"),
+      label: this.$replacedLabel.innerHTML,
+      name: this.$replacedInput.getAttribute("name"),
       placeholder: this.getAttribute("placeholder"),
       tags,
     });
 
-    this.insertBefore($hint, this.querySelector(".tag-input"));
+    this.insertBefore(this.$hint, this.querySelector(".tag-input"));
     this.querySelector(".tag-input-label").classList.add("label");
 
-    $replacedLabel.remove();
-    $replacedInput.remove();
+    this.$replacedLabel.remove();
+    this.$replacedInput.remove();
 
     /**
      * @type {HTMLInputElement}

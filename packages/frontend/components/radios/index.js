@@ -6,11 +6,11 @@ export const RadiosFieldComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.inputTargets = this.querySelectorAll("input");
+    this.$$inputTargets = this.querySelectorAll("input");
   }
 
   connectedCallback() {
-    for (const $input of this.inputTargets) {
+    for (const $input of this.$$inputTargets) {
       const targetId = $input.dataset.ariaControls;
       const $conditional = document.querySelector(`#${targetId}`);
 
@@ -41,11 +41,11 @@ export const RadiosFieldComponent = class extends HTMLElement {
 
     // Only consider radios with conditional reveals, those which have an
     // `aria-controls` attribute
-    const $allInputs = document.querySelectorAll(
+    const $$allInputs = document.querySelectorAll(
       `input[type="radio"][aria-controls]`,
     );
 
-    for (const $input of $allInputs) {
+    for (const $input of $$allInputs) {
       const hasSameFormOwner = $input.form === $target.form;
       const hasSameName = $input.name === $target.name;
 
@@ -59,7 +59,7 @@ export const RadiosFieldComponent = class extends HTMLElement {
    * Sync conditional reveal states for all radios in this radio group
    */
   syncAllConditionalReveals() {
-    for (const $input of this.inputTargets.values()) {
+    for (const $input of this.$$inputTargets.values()) {
       this.syncConditionalRevealWithInputState($input);
     }
   }
