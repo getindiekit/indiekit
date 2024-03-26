@@ -34,7 +34,7 @@
     visuallyHiddenText: opts.errorMessage.visuallyHiddenText
   }) }}
 {% endif %}
-<textarea class="{{ classes("textarea", opts) }}" id="{{ id }}" name="{{ opts.name }}" rows="{{ opts.rows or 3 }}" data-controller="textarea"
+<textarea class="{{ classes("textarea", opts) }}" id="{{ id }}" name="{{ opts.name }}" rows="{{ opts.rows or 3 }}"
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}
   {{- attributes(opts.attributes) }}>{{ opts.value }}</textarea>
