@@ -95,7 +95,7 @@
     "stylelint-order": "^6.0.0",
     "supertest": "^6.1.6",
     "undici": "^6.2.0",
-    "vitepress": "^1.0.0-beta"
+    "vitepress": "^1.0.0"
   },
   "nodemonConfig": {
     "ext": "css,cjs,js,json,njk,md"
