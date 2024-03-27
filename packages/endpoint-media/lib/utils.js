@@ -1,8 +1,10 @@
+import { basename as getBasename } from "node:path";
 import {
   dateTokens,
   formatDate,
   getTimeZoneDesignator,
   randomString,
+  slugify,
   supplant,
 } from "@indiekit/util";
 import newbase60 from "newbase60";
@@ -65,8 +67,10 @@ export const renderPath = async (path, properties, application, separator) => {
   // Add file extension
   tokens.ext = properties.ext;
 
-  // Add file name
-  tokens.filename = properties.filename;
+  // Add slugified file name
+  let basename = getBasename(properties.filename, properties.ext);
+  basename = slugify(basename, separator);
+  tokens.filename = `${basename}.${properties.ext}`;
 
   // Populate URI template path with properties
   path = supplant(path, tokens);

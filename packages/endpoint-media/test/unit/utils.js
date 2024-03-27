@@ -11,6 +11,7 @@ describe("endpoint-media/lib/util", () => {
   it("Renders path from URI template and properties", async () => {
     const template = "{yyyy}/{MM}/{uuid}/{random}/{filename}";
     const properties = {
+      ext: "jpg",
       published: "2020-01-01",
       filename: "foo.jpg",
     };
