@@ -70,6 +70,6 @@ The following tokens are only available for media files:
 | Token | Description |
 | :---- | :---------- |
 | `ext` | File extension of uploaded file, for example `jpg` |
-| `filename` | Original name of uploaded file, for example `flower.jpg` |
+| `filename` | Slugified name of uploaded file, for example `flower_1.jpg` for a file with the original name `Flower 1.jpg`. |
 
 [uuid]: https://www.rfc-editor.org/rfc/rfc4122.html#section-4.4
