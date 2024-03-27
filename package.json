@@ -98,6 +98,6 @@
     "vitepress": "^1.0.0"
   },
   "nodemonConfig": {
-    "ext": "css,cjs,js,json,njk,md"
+    "ext": "css,js,json,njk,md"
   }
 }
