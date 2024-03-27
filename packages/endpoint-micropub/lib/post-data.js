@@ -50,7 +50,12 @@ export const postData = {
       application,
       slugSeparator,
     );
-    const url = await renderPath(typeConfig.post.url, properties, application);
+    const url = await renderPath(
+      typeConfig.post.url,
+      properties,
+      application,
+      slugSeparator,
+    );
     properties.url = getCanonicalUrl(url, me);
 
     // Post status
