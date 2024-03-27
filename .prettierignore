@@ -1,5 +1,4 @@
 coverage
-docs/_site
 docs/**/*.md
 **/locales/*.json
 *.html
