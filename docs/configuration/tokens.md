@@ -71,5 +71,6 @@ The following tokens are only available for media files:
 | :---- | :---------- |
 | `ext` | File extension of uploaded file, for example `jpg` |
 | `filename` | Slugified name of uploaded file, for example `flower_1.jpg` for a file with the original name `Flower 1.jpg`. |
+| `md5` | MD5 checksum of the uploaded file, for example `be7d321488de26f2eb38834af7162164` |
 
 [uuid]: https://www.rfc-editor.org/rfc/rfc4122.html#section-4.4
