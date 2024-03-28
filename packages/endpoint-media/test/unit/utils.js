@@ -3,24 +3,29 @@ import { before, describe, it, mock } from "node:test";
 import { renderPath } from "../../lib/utils.js";
 
 describe("endpoint-media/lib/util", () => {
+  const properties = {
+    ext: "jpg",
+    filename: "Foo 1.jpg",
+    md5: "be7d321488de26f2eb38834af7162164",
+    published: "2020-01-01",
+  };
+
   before(() => {
     mock.method(console, "info", () => {});
     mock.method(console, "warn", () => {});
   });
 
   it("Renders path from URI template and properties", async () => {
-    const template = "{yyyy}/{MM}/{uuid}/{random}/{filename}";
-    const properties = {
-      ext: "jpg",
-      published: "2020-01-01",
-      filename: "foo.jpg",
-    };
-    const application = {};
-    const result = await renderPath(template, properties, application, "-");
+    const dateToken = await renderPath("{yyyy}/{MM}", properties, {}, "-");
+    const fileToken = await renderPath("{filename}", properties, {}, "-");
+    const uuidToken = await renderPath("{uuid}", properties, {}, "-");
+    const randomToken = await renderPath("{random}", properties, {}, "-");
+    const md5Token = await renderPath("{md5}", properties, {}, "-");
 
-    assert.match(
-      result,
-      /\d{4}\/\d{2}\/[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}\/\w{5}\/foo\.jpg/,
-    );
+    assert.match(dateToken, /^\d{4}\/\d{2}/);
+    assert.match(fileToken, /^foo-1\.jpg/);
+    assert.match(uuidToken, /^[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}/);
+    assert.match(randomToken, /^\w{5}/);
+    assert.match(md5Token, /^([\da-f]{32}|[\dA-F]{32})$/);
   });
 });

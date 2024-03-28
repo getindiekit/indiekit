@@ -64,13 +64,16 @@ export const renderPath = async (path, properties, application, separator) => {
   // Add UUID token
   tokens.uuid = crypto.randomUUID();
 
-  // Add file extension
+  // Add file extension token
   tokens.ext = properties.ext;
 
-  // Add slugified file name
+  // Add slugified file name token
   let basename = getBasename(properties.filename, properties.ext);
   basename = slugify(basename, separator);
   tokens.filename = `${basename}.${properties.ext}`;
+
+  // Add md5 token
+  tokens.md5 = properties.md5;
 
   // Populate URI template path with properties
   path = supplant(path, tokens);

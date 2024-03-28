@@ -18,9 +18,10 @@ export const getFileProperties = async (timeZone, file) => {
   const published = getPublishedProperty(timeZone);
 
   return {
+    "content-type": file.mimetype,
     ext,
     filename: file.name,
-    "content-type": file.mimetype,
+    md5: file.md5,
     published,
   };
 };
