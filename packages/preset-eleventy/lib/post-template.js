@@ -53,6 +53,7 @@ const getFrontMatter = (properties) => {
   delete properties.name; // Use `title`
   delete properties.postStatus; // Use `draft`
   delete properties.published; // Use `date`
+  delete properties.slug; // use `page.fileSlug`
   delete properties.type; // Not required
   delete properties.url; // Not required
 
