@@ -1,0 +1,41 @@
+{
+  "name": "@indiekit/store-s3",
+  "version": "1.0.0-beta.8",
+  "description": "S3-compatible content store adaptor for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "s3"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/store-s3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.540.0",
+    "@indiekit/error": "^1.0.0-beta.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
