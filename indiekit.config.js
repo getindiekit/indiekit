@@ -25,6 +25,7 @@ const config = {
     "@indiekit/post-type-video",
     "@indiekit/preset-eleventy",
     "@indiekit/store-github",
+    "@indiekit/store-s3",
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
   ],
@@ -53,6 +54,11 @@ const config = {
     user: process.env.GITHUB_USER,
     repo: process.env.GITHUB_REPO,
     branch: process.env.GITHUB_BRANCH,
+  },
+  "@indiekit/store-s3": {
+    region: process.env.S3_REGION,
+    endpoint: process.env.S3_ENDPOINT,
+    bucket: process.env.S3_BUCKET,
   },
   "@indiekit/syndicator-internet-archive": {
     checked: false,
