@@ -4,7 +4,6 @@ import {
   getTimeZoneDesignator,
   isDate,
   randomString,
-  slugify,
   supplant,
 } from "@indiekit/util";
 import newbase60 from "newbase60";
@@ -41,29 +40,6 @@ export const excerptString = (string, n) => {
     const excerpt = string.split(/\s+/).slice(0, n).join(" ");
     return excerpt;
   }
-};
-
-/**
- * Get slug
- * @param {object} properties - JF2 properties
- * @param {string} separator - Slug separator
- * @returns {string} Slug
- */
-export const getSlug = (properties, separator) => {
-  const { name, slug } = properties;
-
-  let string;
-  if (slug) {
-    string = slug;
-  } else if (name) {
-    string = excerptString(name, 5);
-  } else {
-    string = randomString(5)
-      .replace("_", "0") // Slugify function strips any leading underscore
-      .replace(separator, "0"); // Don’t use slug separator character
-  }
-
-  return slugify(string, { separator });
 };
 
 /**
@@ -134,11 +110,11 @@ export const renderPath = async (path, properties, application, separator) => {
     .replace(separator, "0") // Don’t use slug separator character
     .toLowerCase();
 
+  // Add slug token
+  tokens.slug = properties.slug;
+
   // Add UUID token
   tokens.uuid = crypto.randomUUID();
-
-  // Add slug token (falls back to name or random if no `mp-slug`)
-  tokens.slug = getSlug(properties, separator);
 
   // Populate URI template path with properties
   path = supplant(path, tokens);

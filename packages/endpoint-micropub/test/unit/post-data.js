@@ -52,7 +52,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
     const result = await postData.create(application, publication, properties);
 
     assert.equal(result.properties["post-type"], "note");
-    assert.equal(result.properties["mp-slug"], "foo");
+    assert.equal(result.properties.slug, "foo");
     assert.equal(result.properties.type, "entry");
     assert.equal(result.properties.url, "https://website.example/notes/foo/");
   });
