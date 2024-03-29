@@ -1,0 +1,58 @@
+action-table,
+action-table-filters,
+action-table-no-results {
+  display: block;
+}
+
+action-table {
+  table {
+    inline-size: 100%;
+  }
+
+  & tbody tr {
+    &:hover {
+      background-color: var(--color-offset);
+    }
+  }
+
+  td,
+  th {
+    border-block-end: var(--border-width-thin) solid var(--color-outline);
+    padding-block: var(--space-m);
+    padding-inline-end: var(--space-l);
+    padding-inline-start: var(--space-xs);
+  }
+
+  & button {
+    background: none;
+  }
+
+  & th button {
+    display: flex;
+    gap: var(--space-2xs);
+    place-items: center;
+
+    &::after {
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M3 5 1.5 6.5 8 13l6.5-6.5L13 5l-5 5z"/></svg>');
+      background-repeat: no-repeat;
+      block-size: 1em;
+      content: "";
+      display: block;
+      inline-size: 1em;
+      opacity: 0.25;
+    }
+  }
+
+  & th[aria-sort$="ing"] button::after {
+    opacity: 1;
+  }
+
+  & th[aria-sort="descending"] button::after {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+
+  .s-flow {
+    --font-heading: var(--font-subhead);
+  }
+}

@@ -1,3 +1,5 @@
+import "@colinaut/action-table";
+
 import { AddAnotherComponent } from "../components/add-another/index.js";
 import { CheckboxesFieldComponent } from "../components/checkboxes/index.js";
 import { ErrorSummaryComponent } from "../components/error-summary/index.js";
