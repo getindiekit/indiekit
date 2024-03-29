@@ -1,8 +1,12 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {{ cardGrid({
-    cardSize: "100%",
-    items: plugins
+  {{ actionTable({
+    sort: "name",
+    head: [
+      { text: "Name" },
+      { text: "Version" }
+    ],
+    rows: pluginRows
   }) }}
 {% endblock %}
