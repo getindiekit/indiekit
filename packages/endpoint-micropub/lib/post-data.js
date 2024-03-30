@@ -22,7 +22,7 @@ export const postData = {
     debug(`create %O`, { draftMode, properties });
 
     const { hasDatabase, posts, timeZone } = application;
-    const { me, postTypes, slugSeparator, syndicationTargets } = publication;
+    const { me, postTypes, syndicationTargets } = publication;
 
     // Add syndication targets
     const syndicateTo = getSyndicateToProperty(properties, syndicationTargets);
@@ -48,14 +48,8 @@ export const postData = {
       typeConfig.post.path,
       properties,
       application,
-      slugSeparator,
     );
-    const url = await renderPath(
-      typeConfig.post.url,
-      properties,
-      application,
-      slugSeparator,
-    );
+    const url = await renderPath(typeConfig.post.url, properties, application);
     properties.url = getCanonicalUrl(url, me);
 
     // Post status
@@ -108,7 +102,7 @@ export const postData = {
     debug(`update ${url} %O`, { operation });
 
     const { posts, timeZone } = application;
-    const { me, postTypes, slugSeparator } = publication;
+    const { me, postTypes } = publication;
 
     // Read properties
     let { path: _originalPath, properties } = await this.read(application, url);
@@ -149,13 +143,11 @@ export const postData = {
       typeConfig.post.path,
       properties,
       application,
-      slugSeparator,
     );
     const updatedUrl = await renderPath(
       typeConfig.post.url,
       properties,
       application,
-      slugSeparator,
     );
     properties.url = getCanonicalUrl(updatedUrl, me);
 
@@ -188,7 +180,7 @@ export const postData = {
     debug(`delete ${url}`);
 
     const { posts, timeZone } = application;
-    const { postTypes, slugSeparator } = publication;
+    const { postTypes } = publication;
 
     // Read properties
     const { properties } = await this.read(application, url);
@@ -215,7 +207,6 @@ export const postData = {
       typeConfig.post.path,
       properties,
       application,
-      slugSeparator,
     );
 
     // Update data in posts collection
@@ -240,7 +231,7 @@ export const postData = {
     debug(`undelete ${url} %O`, { draftMode });
 
     const { posts } = application;
-    const { postTypes, slugSeparator } = publication;
+    const { postTypes } = publication;
 
     // Read deleted properties
     const { _deletedProperties } = await this.read(application, url);
@@ -257,7 +248,6 @@ export const postData = {
       typeConfig.post.path,
       properties,
       application,
-      slugSeparator,
     );
 
     // Post status

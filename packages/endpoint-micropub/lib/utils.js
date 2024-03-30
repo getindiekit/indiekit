@@ -3,7 +3,6 @@ import {
   formatDate,
   getTimeZoneDesignator,
   isDate,
-  randomString,
   supplant,
 } from "@indiekit/util";
 import newbase60 from "newbase60";
@@ -79,10 +78,9 @@ export const relativeMediaPath = (url, me) =>
  * @param {string} path - URI template path
  * @param {object} properties - JF2 properties
  * @param {object} application - Application configuration
- * @param {string} separator - Slug separator
  * @returns {Promise<string>} Path
  */
-export const renderPath = async (path, properties, application, separator) => {
+export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getTimeZoneDesignator();
   const { locale, timeZone } = application;
@@ -104,11 +102,6 @@ export const renderPath = async (path, properties, application, separator) => {
   // Add count of post-type for the day
   const count = await postTypeCount.get(application, properties);
   tokens.n = count + 1;
-
-  // Add random token
-  tokens.random = randomString(5)
-    .replace(separator, "0") // Don’t use slug separator character
-    .toLowerCase();
 
   // Add slug token
   tokens.slug = properties.slug;
