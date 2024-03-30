@@ -55,9 +55,6 @@ export const renderPath = async (path, properties, application, separator) => {
   const count = await mediaTypeCount.get(application, properties);
   tokens.n = count + 1;
 
-  // Add UUID token
-  tokens.uuid = crypto.randomUUID();
-
   // Add file extension token
   tokens.ext = properties.ext;
 
