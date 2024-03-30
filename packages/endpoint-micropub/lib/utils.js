@@ -106,9 +106,6 @@ export const renderPath = async (path, properties, application) => {
   // Add slug token
   tokens.slug = properties.slug;
 
-  // Add UUID token
-  tokens.uuid = crypto.randomUUID();
-
   // Populate URI template path with properties
   path = supplant(path, tokens);
 
