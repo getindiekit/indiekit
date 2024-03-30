@@ -51,8 +51,6 @@ Tokens are available for a number of file properties, with many allowing you to 
 | `ss` | Second (zero-padded), for example `01` |
 | `t` | UNIX epoch seconds, for example `512969520` |
 | `T` | UNIX epoch milliseconds, for example `51296952000` |
-| `random` | A random 5-character string, for example `w9gwi` |
-| `uuid` | A [random UUID][uuid] |
 | `n` | Incremental count of posts (for type) in the same day, for example `1`. This token requires a [database to be configured](https://getindiekit.com/configuration/#application-mongodburl-url). |
 
 ### Post file tokens
@@ -72,5 +70,3 @@ The following tokens are only available for media files:
 | `ext` | File extension of uploaded file, for example `jpg` |
 | `filename` | Slugified name of uploaded file, for example `flower_1.jpg` for a file with the original name `Flower 1.jpg`. |
 | `md5` | MD5 checksum of the uploaded file, for example `be7d321488de26f2eb38834af7162164` |
-
-[uuid]: https://www.rfc-editor.org/rfc/rfc4122.html#section-4.4
