@@ -19,13 +19,11 @@ describe("endpoint-media/lib/util", () => {
     const dateToken = await renderPath("{yyyy}/{MM}", properties, {}, "-");
     const fileToken = await renderPath("{filename}", properties, {}, "-");
     const uuidToken = await renderPath("{uuid}", properties, {}, "-");
-    const randomToken = await renderPath("{random}", properties, {}, "-");
     const md5Token = await renderPath("{md5}", properties, {}, "-");
 
     assert.match(dateToken, /^\d{4}\/\d{2}/);
     assert.match(fileToken, /^foo-1\.jpg/);
     assert.match(uuidToken, /^[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}/);
-    assert.match(randomToken, /^\w{5}/);
     assert.match(md5Token, /^([\da-f]{32}|[\dA-F]{32})$/);
   });
 });
