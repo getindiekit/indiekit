@@ -3,7 +3,6 @@ import {
   dateTokens,
   formatDate,
   getTimeZoneDesignator,
-  randomString,
   slugify,
   supplant,
 } from "@indiekit/util";
@@ -55,11 +54,6 @@ export const renderPath = async (path, properties, application, separator) => {
   // Add count of media type for the day
   const count = await mediaTypeCount.get(application, properties);
   tokens.n = count + 1;
-
-  // Add random token
-  tokens.random = randomString(5)
-    .replace(separator, "0") // Don’t use slug separator character
-    .toLowerCase();
 
   // Add UUID token
   tokens.uuid = crypto.randomUUID();
