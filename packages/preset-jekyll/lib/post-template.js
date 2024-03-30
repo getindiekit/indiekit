@@ -54,6 +54,7 @@ const getFrontMatter = (properties) => {
   delete properties.content; // Shown below front matter
   delete properties.name; // Use `title`
   delete properties.post_status; // Use `published`
+  delete properties.slug; // File path dictates slug
   delete properties.summary; // Use `excerpt`
   delete properties.type; // Not required
   delete properties.url; // Not required
