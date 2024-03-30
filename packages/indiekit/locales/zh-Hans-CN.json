@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "使用 IndieAuth 登录以验证你是否拥有 %s",
+      "description": "登录以验证您是否拥有 %s",
       "me": "网址",
-      "submit": "使用 IndieAuth 登录",
+      "submit": "继续",
       "title": "登录"
     },
     "logout": {

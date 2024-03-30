@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Prijavi se pomoću IndieAuth da potvrdiš da poseduješ %s",
+      "description": "Prijavite se da biste potvrdili da ste vlasnik %s",
       "me": "Veb adresa\n",
-      "submit": "Prijavi se pomoću IndieAuth",
+      "submit": "Nastavi",
       "title": "Prijavi se"
     },
     "logout": {

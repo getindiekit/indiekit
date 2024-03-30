@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Faça login com IndieAuth para verificar se você possui %s",
+      "description": "Faça login para verificar se você possui %s",
       "me": "Endereço Web",
-      "submit": "Faça login com IndieAuth",
+      "submit": "Continuar",
       "title": "Fazer login"
     },
     "logout": {

@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Masuk dengan IndieAuth untuk memverifikasi bahwa Anda memiliki %s",
+      "description": "Masuk untuk memverifikasi bahwa Anda memiliki %s",
       "me": "Alamat web",
-      "submit": "Masuk dengan IndieAuth",
+      "submit": "Lanjutkan",
       "title": "Masuk"
     },
     "logout": {

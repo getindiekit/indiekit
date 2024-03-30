@@ -11,9 +11,9 @@
   "session": {
     "login": {
       "title": "Sign in",
-      "description": "Sign in with IndieAuth to verify that you own %s",
+      "description": "Sign in to verify that you own %s",
       "me": "Web address",
-      "submit": "Sign in with IndieAuth"
+      "submit": "Continue"
     },
     "logout": {
       "title": "Sign out"
