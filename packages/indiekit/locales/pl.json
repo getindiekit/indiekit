@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Zaloguj się za pomocą IndieAuth, aby sprawdzić, czy posiadasz %s",
+      "description": "Zaloguj się, aby sprawdzić, czy jesteś właścicielem %s",
       "me": "Adres sieci Web",
-      "submit": "Zaloguj się za pomocą IndieAuth",
+      "submit": "Kontynuuj",
       "title": "Zaloguj się"
     },
     "logout": {

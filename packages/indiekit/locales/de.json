@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Melde dich mit IndieAuth an, um zu verifizieren, dass du %s besitzt",
+      "description": "Melden Sie sich an, um zu überprüfen, ob Sie Eigentümer sind %s",
       "me": "Webadresse",
-      "submit": "Mit IndieAuth anmelden",
+      "submit": "Fortsetzen",
       "title": "Anmelden"
     },
     "logout": {

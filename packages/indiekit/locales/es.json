@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Inicia sesión con IndieAuth para verificar que eres propietario de %s",
+      "description": "Inicia sesión para verificar que eres dueño de %s",
       "me": "Dirección web",
-      "submit": "Iniciar sesión con IndieAuth",
+      "submit": "Continuar",
       "title": "Iniciar sesión"
     },
     "logout": {

@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Meld u aan met IndieAuth om te controleren of u eigenaar bent van %s",
+      "description": "Meld je aan om te verifiëren dat je de eigenaar bent %s",
       "me": "Webadres",
-      "submit": "Log in met IndieAuth",
+      "submit": "Doorgaan",
       "title": "Inloggen"
     },
     "logout": {
