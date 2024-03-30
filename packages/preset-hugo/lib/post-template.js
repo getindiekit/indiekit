@@ -58,6 +58,7 @@ const getFrontMatter = (properties, frontMatterFormat) => {
   delete properties.name; // Use `title`
   delete properties.postStatus; // Use `draft`
   delete properties.published; // Use `date`
+  delete properties.slug; // File path dictates slug
   delete properties.type; // Not required
   delete properties.updated; // Use `lastmod`
   delete properties.url; // Not required
