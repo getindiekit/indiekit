@@ -10,7 +10,8 @@ export const friendlyUrl = (string) => {
 
   try {
     const { host, pathname } = new URL(string);
-    return host + pathname;
+
+    return pathname === "/" ? host : host + pathname;
   } catch {
     return string;
   }
