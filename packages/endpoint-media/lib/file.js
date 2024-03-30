@@ -1,26 +1,31 @@
-import { getDate } from "@indiekit/util";
+import path from "node:path";
+import { getDate, slugify } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
 
 /**
  * Derive properties from file data
- * @param {object} timeZone - Application time zone
+ * @param {object} publication - Publication configuration
  * @param {object} file - Original file object
+ * @param {object} timeZone - Application time zone
  * @returns {Promise<object>} File properties
- * @example fileData('brighton-pier.jpg') => {
+ * @example fileData('Brighton Pier.jpg') => {
  *   ext: '.jpg'
  *   filename: 'brighton-pier.jpg',
  *   'content-type': image/jpeg,
  *   published: '2020-07-19T22:59:23.497Z',
  * }
  */
-export const getFileProperties = async (timeZone, file) => {
+export const getFileProperties = async (publication, file, timeZone) => {
   const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);
+
+  let basename = path.basename(file.name, ext);
+  basename = slugify(basename, publication.slugSeparator);
 
   return {
     "content-type": file.mimetype,
     ext,
-    filename: file.name,
+    filename: `${basename}.${ext}`,
     md5: file.md5,
     published,
   };

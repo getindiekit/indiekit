@@ -1,9 +1,7 @@
-import { basename as getBasename } from "node:path";
 import {
   dateTokens,
   formatDate,
   getTimeZoneDesignator,
-  slugify,
   supplant,
 } from "@indiekit/util";
 import newbase60 from "newbase60";
@@ -29,10 +27,9 @@ export const getMediaProperties = (mediaData) => {
  * @param {string} path - URI template path
  * @param {object} properties - Media properties
  * @param {object} application - Application configuration
- * @param {string} separator - Slug separator
  * @returns {Promise<string>} Path
  */
-export const renderPath = async (path, properties, application, separator) => {
+export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getTimeZoneDesignator();
   const { locale, timeZone } = application;
@@ -58,10 +55,8 @@ export const renderPath = async (path, properties, application, separator) => {
   // Add file extension token
   tokens.ext = properties.ext;
 
-  // Add slugified file name token
-  let basename = getBasename(properties.filename, properties.ext);
-  basename = slugify(basename, separator);
-  tokens.filename = `${basename}.${properties.ext}`;
+  // Add file name token
+  tokens.filename = properties.filename;
 
   // Add md5 token
   tokens.md5 = properties.md5;

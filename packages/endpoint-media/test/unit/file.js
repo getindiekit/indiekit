@@ -18,15 +18,18 @@ describe("endpoint-media/lib/file", () => {
   });
 
   it("Derives properties from file data", async () => {
+    const publication = {
+      slugSeparator: "-",
+    };
     const file = {
       data: getFixture("file-types/photo.jpg", false),
-      name: "photo.jpg",
+      name: "Photo 1.jpg",
       md5: "be7d321488de26f2eb38834af7162164",
     };
-    const result = await getFileProperties("UTC", file);
+    const result = await getFileProperties(publication, file, "UTC");
 
     assert.equal(result.ext, "jpg");
-    assert.equal(result.filename, "photo.jpg");
+    assert.equal(result.filename, "photo-1.jpg");
     assert.equal(result.md5, "be7d321488de26f2eb38834af7162164");
     assert.equal(isValid(parseISO(result.published)), true);
   });

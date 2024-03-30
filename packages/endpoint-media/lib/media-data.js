@@ -18,10 +18,10 @@ export const mediaData = {
     debug(`create %O`, { file });
 
     const { hasDatabase, media, timeZone } = application;
-    const { me, postTypes, slugSeparator } = publication;
+    const { me, postTypes } = publication;
 
     // Media properties
-    const properties = await getFileProperties(timeZone, file);
+    const properties = await getFileProperties(publication, file, timeZone);
 
     // Get post type configuration
     const type = await getMediaType(file);
@@ -44,13 +44,11 @@ export const mediaData = {
       typeConfig.media.path,
       properties,
       application,
-      slugSeparator,
     );
     const url = await renderPath(
       typeConfig.media.url || typeConfig.media.path,
       properties,
       application,
-      slugSeparator,
     );
     properties.url = getCanonicalUrl(url, me);
 
