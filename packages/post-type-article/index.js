@@ -2,8 +2,8 @@ const defaults = {
   name: "Article",
   fields: {
     name: { required: true },
-    content: { required: true },
     summary: {},
+    content: { required: true },
     category: {},
     geo: {},
     "post-status": {},
