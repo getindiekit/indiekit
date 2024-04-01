@@ -64,6 +64,15 @@ html {
   --color-selection: hsl(var(--tint-yellow) 50% / 30%);
   --color-shadow: hsl(var(--tint-neutral) 10% / 0.2);
 
+  /* Syntax highlighting */
+  --color-token-comment: var(--color-on-offset);
+  --color-token-operator: var(--color-on-background);
+  --color-token-function: #900;
+  --color-token-keyword: #069;
+  --color-token-selector: #009;
+  --color-token-string: #c06;
+  --color-token-variable: #399;
+
   /* Fluid type scale */
   /* clamp(min=320, preferred, max=960) */
   --font-size-xs: clamp(0.75rem, 0.6875rem + 0.3125vw, 0.875rem); /* 12 → 14 */
@@ -152,6 +161,13 @@ html {
     --color-error: var(--color-red80);
     --color-error-variant: var(--color-red90);
     --color-on-error: var(--color-neutral10);
+
+    /* Syntax highlighting */
+    --color-token-function: #f99;
+    --color-token-keyword: #0cf;
+    --color-token-selector: #99f;
+    --color-token-string: #f6f;
+    --color-token-variable: #9ff;
   }
 }
 
@@ -170,4 +186,11 @@ html {
   --color-error: var(--color-red80);
   --color-error-variant: var(--color-red90);
   --color-on-error: var(--color-neutral10);
+
+  /* Syntax highlighting */
+  --color-token-function: #f99;
+  --color-token-keyword: #0cf;
+  --color-token-selector: #99f;
+  --color-token-string: #f6f;
+  --color-token-variable: #9ff;
 }
