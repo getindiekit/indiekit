@@ -143,8 +143,8 @@ export const CharacterCountComponent = class extends HTMLElement {
    */
   #count(string, countWords = false) {
     if (countWords) {
-      // Matches consecutive non-whitespace characters
-      const tokens = string.match(/\S+/g) ?? [];
+      // Matches consecutive non-whitespace characters up to a word boundary
+      const tokens = string.match(/\S+\b/g) ?? [];
       return tokens.length;
     }
 
