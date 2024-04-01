@@ -17,6 +17,7 @@ textarea-field {
     border-color: var(--color-on-background);
     border-width: var(--input-border-width-focus);
     inset-block-start: calc(var(--input-border-width-focus-offset) * -1);
+    margin-block-end: calc(var(--input-border-width-focus-offset) * -2);
     padding-inline-start: calc(
       var(--space-s) - var(--input-border-width-focus-offset)
     );

@@ -65,4 +65,6 @@
 @import url("./utilities/visually-hidden.css");
 
 /* Vendor */
+@import url("./vendor/codemirror.css");
+@import url("./vendor/easy-markdown-editor.css");
 @import url("./vendor/markdown-it-prism.css");

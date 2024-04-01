@@ -1,0 +1,107 @@
+@import url("../../../../node_modules/codemirror/lib/codemirror.css");
+
+.CodeMirror {
+  --fieldset-flow-space: 0;
+
+  background: var(--color-background);
+  block-size: auto;
+  border: var(--input-border-width) solid transparent;
+  border-radius: var(--border-radius-small);
+  color: var(--color-on-backround);
+  font-family: var(--font-family-monospace);
+  margin-block-start: 0;
+  padding: var(--space-s);
+
+  :focus-visible {
+    box-shadow: none;
+  }
+
+  .cm-attribute {
+    color: var(--color-token-keyword);
+  }
+
+  .cm-comment {
+    color: var(--color-token-comment);
+  }
+
+  .cm-string {
+    color: var(--color-token-string);
+  }
+
+  .cm-tag {
+    color: var(--color-token-selector);
+  }
+
+  .cm-header-1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .cm-header-2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .cm-header-3 {
+    font-size: var(--font-size-l);
+  }
+
+  .cm-header-4 {
+    font-size: var(--font-size-m);
+  }
+
+  .cm-header-5 {
+    font-size: var(--font-size-s);
+  }
+
+  .cm-header-6 {
+    font-size: var(--font-size-xs);
+  }
+
+  .cm-link {
+    color: var(--anchor-color);
+  }
+
+  .cm-quote {
+    color: var(--color-on-offset);
+    font-style: italic;
+  }
+
+  .cm-url {
+    color: var(--anchor-color-hover);
+  }
+}
+
+.CodeMirror-focused {
+  &:not(.CodeMirror-fullscreen) {
+    border-color: var(--color-on-background);
+    border-width: var(--input-border-width-focus);
+    margin-inline: calc(var(--input-border-width-focus) * -1);
+    outline: var(--input-border-width-focus) solid var(--color-focus);
+    padding-block: calc(
+      var(--space-s) - var(--input-border-width-focus-offset)
+    );
+    padding-inline: calc(
+      var(--space-s) + var(--input-border-width-focus-offset)
+    );
+  }
+
+  .CodeMirror-selected {
+    background: var(--color-selection);
+  }
+}
+
+.CodeMirror-fullscreen {
+  block-size: auto;
+  inset: 0;
+  inset-block-start: var(--toolbar-height);
+  position: fixed;
+  z-index: 8;
+}
+
+.CodeMirror-placeholder {
+  color: var(--color-on-background);
+  opacity: 0.5;
+}
+
+.CodeMirror-sided {
+  inline-size: 50%;
+}
