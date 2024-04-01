@@ -45,6 +45,10 @@
     max-inline-size: 100%;
   }
 
+  & figcaption {
+    color: var(--color-on-offset);
+  }
+
   & blockquote {
     border-inline-start: var(--border-width-thickest) solid var(--color-primary);
     color: var(--color-on-offset);
