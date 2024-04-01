@@ -18,18 +18,19 @@
 
   & h2:not([class]) {
     font: var(--font-heading);
-    margin-block-start: calc(var(--flow-space) * 2);
   }
 
   & h3:not([class]) {
     color: var(--color-primary-variant);
     font: var(--font-subhead);
-    margin-block-start: calc(var(--flow-space) * 2);
   }
 
   & h4:not([class]) {
     font: var(--font-label);
-    margin-block-start: calc(var(--flow-space) * 1.5);
+  }
+
+  & *:has(+ h2, + h3, + h4):not([class]) {
+    margin-block-start: calc(var(--flow-space) * 2);
   }
 
   & :is(h2, h3, h4):not([class]) + *:not([class]) {
