@@ -9,7 +9,6 @@ tmp
 
 # Dependencies
 node_modules/
-vendor
 
 # Documentation
 _site
