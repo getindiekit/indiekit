@@ -1,7 +1,17 @@
-{{ characterCount({
+{{ textarea({
   name: "content",
   value: properties.content.text or fieldData("content").value,
   label: __("posts.form.content.label"),
   optional: not field.required,
-  errorMessage: fieldData("content").errorMessage
+  errorMessage: fieldData("content").errorMessage,
+  field: {
+    attributes: {
+      editor: true,
+      "editor-id": (properties.uid or ("new-" + postType)) + "-content",
+      "editor-height": "50vh" if field.required else "6rem",
+      "editor-locale": application.locale,
+      "editor-image-upload": "false" if postType == "note",
+      "editor-status": "false" if not field.required
+    }
+  }
 }) }}

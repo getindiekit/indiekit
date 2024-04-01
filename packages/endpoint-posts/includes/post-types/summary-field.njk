@@ -3,5 +3,15 @@
   value: properties.summary,
   label: __("posts.form.summary.label"),
   optional: not field.required,
-  rows: 1
+  rows: 1,
+  field: {
+    attributes: {
+      editor: true,
+      "editor-id": (properties.uid or ("new-" + postType)) + "-summary",
+      "editor-height": "60vh" if field.required else "2rem",
+      "editor-locale": application.locale,
+      "editor-status": "false",
+      "editor-toolbar": "false"
+    }
+  }
 }) }}
