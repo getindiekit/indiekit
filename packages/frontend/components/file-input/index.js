@@ -9,7 +9,7 @@ export const FileInputFieldController = class extends HTMLElement {
 
     /** @type {HTMLElement} */
     this.$uploadProgress = this.querySelector(".file-input__progress");
-    this.$pathInput = this.querySelector("input");
+    this.$pathInput = this.querySelector(".file-input__path");
 
     this.$filePickerTemplate = this.querySelector("#file-input-picker");
     this.$errorMessageTemplate = this.querySelector("#error-message");
