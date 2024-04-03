@@ -37,3 +37,9 @@ FTP content store adaptor.
 <Badge type="tip" text="Offical" />
 
 [GitLab](https://gitlab.com) content store adaptor.
+
+## [@indiekit/store-s3](https://npmjs.org/package/@indiekit/store-s3)
+
+<Badge type="tip" text="Offical" />
+
+[S3-compatible](https://aws.amazon.com/s3/) content store adaptor.
