@@ -13,7 +13,7 @@ export const mediaContent = {
   async upload(publication, mediaData, file) {
     debug(`upload %O`, { mediaData });
 
-    const { store, storeMessageTemplate } = publication;
+    const { mediaStore, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
     const metaData = {
       action: "upload",
@@ -23,7 +23,7 @@ export const mediaContent = {
     };
     const message = storeMessageTemplate(metaData);
 
-    await store.createFile(path, file.data, { message });
+    await mediaStore.createFile(path, file.data, { message });
 
     return {
       location: properties.url,
@@ -44,7 +44,7 @@ export const mediaContent = {
   async delete(publication, mediaData) {
     debug(`delete %O`, { mediaData });
 
-    const { store, storeMessageTemplate } = publication;
+    const { mediaStore, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
     const metaData = {
       action: "delete",
@@ -54,7 +54,7 @@ export const mediaContent = {
     };
     const message = storeMessageTemplate(metaData);
 
-    await store.deleteFile(path, { message });
+    await mediaStore.deleteFile(path, { message });
 
     return {
       status: 200,

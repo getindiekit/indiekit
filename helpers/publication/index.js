@@ -7,6 +7,9 @@ export const publication = {
   postTemplate(properties) {
     return JSON.stringify(properties);
   },
+  mediaStore: new TestStore({
+    user: "user",
+  }),
   store: new TestStore({
     user: "user",
   }),
