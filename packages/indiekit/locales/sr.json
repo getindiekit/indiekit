@@ -88,6 +88,7 @@
     "publication": {
       "locale": "Jezik",
       "me": "Veb adresa",
+      "mediaStore": "Medijska prodavnica",
       "postTypes": "Vrste postova",
       "preset": "Postavljeno unapred",
       "store": "Prodavnica sadržaja",

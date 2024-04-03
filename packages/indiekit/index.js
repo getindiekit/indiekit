@@ -4,11 +4,12 @@ import Keyv from "keyv";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
-import { getInstalledPlugins } from "./lib/installed-plugins.js";
 import { getLocaleCatalog } from "./lib/locale-catalog.js";
 import { getMongodbClient } from "./lib/mongodb.js";
+import { getInstalledPlugins } from "./lib/plugins.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
+import { getMediaStore, getStore } from "./lib/store.js";
 
 export const Indiekit = class {
   /**
@@ -56,7 +57,7 @@ export const Indiekit = class {
   }
 
   addStore(store) {
-    this.publication.store = store;
+    this.application.stores.push(store);
   }
 
   addSyndicator(syndicator) {
@@ -106,8 +107,10 @@ export const Indiekit = class {
 
     // Update publication configuration
     this.publication.categories = await getCategories(this);
+    this.publication.mediaStore = getMediaStore(this);
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this);
+    this.publication.store = getStore(this);
 
     return this;
   }

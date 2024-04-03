@@ -88,6 +88,7 @@
     "publication": {
       "locale": "Idioma",
       "me": "Dirección web",
+      "mediaStore": "Tienda multimedia",
       "postTypes": "Tipos de publicaciones",
       "preset": "Preestablecido",
       "store": "Tienda de contenido",

@@ -87,9 +87,10 @@
       "summaryTitle": "Publication settings",
       "me": "Web address",
       "locale": "Language",
-      "store": "Content store",
+      "mediaStore": "Media store",
       "preset": "Preset",
       "postTypes": "Post types",
+      "store": "Content store",
       "syndicationTargets": "Syndication targets"
     }
   }

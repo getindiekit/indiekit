@@ -88,6 +88,7 @@
     "publication": {
       "locale": "语言",
       "me": "网址",
+      "mediaStore": "媒体商店",
       "postTypes": "帖文类型",
       "preset": "预设",
       "store": "内容存储",
