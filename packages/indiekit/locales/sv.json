@@ -88,6 +88,7 @@
     "publication": {
       "locale": "Språk",
       "me": "Webbadress",
+      "mediaStore": "Mediebutik",
       "postTypes": "Inläggstyper",
       "preset": "Förval",
       "store": "Innehållsbank",

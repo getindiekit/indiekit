@@ -88,6 +88,7 @@
     "publication": {
       "locale": "Langue",
       "me": "Adresse Web",
+      "mediaStore": "Magasin multimédia",
       "postTypes": "Types de publications",
       "preset": "Préréglage",
       "store": "Magasin de contenu",

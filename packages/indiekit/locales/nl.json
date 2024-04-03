@@ -88,6 +88,7 @@
     "publication": {
       "locale": "Taal",
       "me": "Webadres",
+      "mediaStore": "Mediawinkel",
       "postTypes": "Artikeltype",
       "preset": "Vooringestelde",
       "store": "Content store",

@@ -109,6 +109,23 @@
         }
       } if publication.store, {
         key: {
+          text: __("status.publication.mediaStore")
+        },
+        value: {
+          text: card({
+            photo: {
+              srcOnError: "/assets/plug-in.svg",
+              attributes: { height: 68, width: 68 },
+              url: "/assets/" + publication.mediaStore.id + "/icon.svg"
+            },
+            headingLevel: 3,
+            title: publication.mediaStore.name,
+            description: publication.mediaStore.info.uid,
+            url: "/plugins/" + publication.mediaStore.id
+          })
+        }
+      } if publication.mediaStore, {
+        key: {
           text: __("status.publication.syndicationTargets")
         },
         value: {

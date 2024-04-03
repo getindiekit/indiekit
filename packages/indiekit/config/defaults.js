@@ -29,6 +29,7 @@ export const defaultConfig = {
     port: process.env.PORT || "3000",
     postTypes: {},
     repository: package_.repository,
+    stores: [],
     themeColor: "#04f",
     themeColorScheme: "automatic",
     timeZone: "UTC",

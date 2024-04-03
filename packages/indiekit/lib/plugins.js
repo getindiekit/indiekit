@@ -18,7 +18,7 @@ export const getInstalledPlugins = async (Indiekit) => {
     plugin.filePath = path.dirname(require.resolve(pluginName));
 
     // Add plug-in ID
-    plugin.id = pluginName.replace("/", "-");
+    plugin.id = getPluginId(pluginName);
 
     // Register plug-in functions
     if (plugin.init) {
@@ -28,4 +28,25 @@ export const getInstalledPlugins = async (Indiekit) => {
   }
 
   return installedPlugins;
+};
+
+/**
+ * Get installed plug-in
+ * @param {object} application - Application configuration
+ * @param {string} pluginName - Plug-in Name
+ * @returns {string} Plug-in ID
+ */
+export const getInstalledPlugin = (application, pluginName) => {
+  return application.installedPlugins.find(
+    (plugin) => plugin.id === getPluginId(pluginName),
+  );
+};
+
+/**
+ * Get normalised plug-in ID
+ * @param {string} pluginName - Plug-in Name
+ * @returns {string} Plug-in ID
+ */
+export const getPluginId = (pluginName) => {
+  return pluginName.replace("/", "-");
 };

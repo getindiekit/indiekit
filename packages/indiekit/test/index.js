@@ -59,7 +59,7 @@ describe("indiekit", () => {
     const testStore = new TestStore();
     indiekit.addStore(testStore);
 
-    assert.equal(indiekit.publication.store.info.name, "Test store");
+    assert.equal(indiekit.application.stores[0].info.name, "Test store");
   });
 
   it("Exits process if no publication URL in configuration", async () => {

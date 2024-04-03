@@ -33,6 +33,7 @@ const config = {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
     enrichPostData: true,
+    mediaStore: "@indiekit/store-s3",
     postTypes: {
       like: {
         name: "Favourite",
