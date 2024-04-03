@@ -29,8 +29,14 @@ describe("store-file-system", () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    fileSystem.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-file-system"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-file-system": { directory: "directory" },
+      },
+    });
+    await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "directory");
   });

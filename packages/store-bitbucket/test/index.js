@@ -31,12 +31,18 @@ describe("store-bitbucket", () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    bitbucket.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-bitbucket"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-bitbucket": { user: "user", repo: "repo" },
+      },
+    });
+    await indiekit.bootstrap();
 
     assert.equal(
       indiekit.publication.store.info.name,
-      "username/repo on Bitbucket",
+      "user/repo on Bitbucket",
     );
   });
 

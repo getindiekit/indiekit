@@ -30,8 +30,14 @@ describe("store-s3", () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    s3.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-s3"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-s3": { bucket: "website" },
+      },
+    });
+    await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "website bucket");
   });

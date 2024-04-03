@@ -28,8 +28,14 @@ describe("store-github", async () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    github.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-github"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-github": { user: "user", repo: "repo" },
+      },
+    });
+    await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "user/repo on GitHub");
   });
