@@ -49,8 +49,14 @@ describe("store-ftp", () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    ftp.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-ftp"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-ftp": { user: "username", host: "127.0.0.1" },
+      },
+    });
+    await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "username on 127.0.0.1");
   });

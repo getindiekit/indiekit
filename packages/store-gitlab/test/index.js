@@ -34,8 +34,14 @@ describe("store-gitlab", async () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    gitlab.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-gitlab"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-gitlab": { user: "username", repo: "repo" },
+      },
+    });
+    await indiekit.bootstrap();
 
     assert.equal(
       indiekit.publication.store.info.name,

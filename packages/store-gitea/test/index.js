@@ -35,13 +35,16 @@ describe("store-github", async () => {
   });
 
   it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    gitea.init(indiekit);
+    const indiekit = await Indiekit.initialize({
+      config: {
+        plugins: ["@indiekit/store-gitea"],
+        publication: { me: "https://website.example" },
+        "@indiekit/store-gitea": { user: "user", repo: "repo" },
+      },
+    });
+    await indiekit.bootstrap();
 
-    assert.equal(
-      indiekit.publication.store.info.name,
-      "username/repo on Gitea",
-    );
+    assert.equal(indiekit.publication.store.info.name, "user/repo on Gitea");
   });
 
   it("Creates file", async () => {
