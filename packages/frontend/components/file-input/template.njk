@@ -32,8 +32,10 @@
     }
   }) }}
   <template id="file-input-picker">
-    <label class="button button--secondary" for="{{ id }}-file" role="button" tabindex="0">{{ __("fileInput.uploadFile") }}</label>
-    <input hidden id="{{ id }}-file" type="file"{% if opts.accept %} accept="{{ opts.accept }}"{% endif %}>
+    <div class="file-input__picker">
+      <label class="file-input__button button button--secondary" for="{{ id }}-file" role="button" tabindex="0">{{ __("fileInput.uploadFile") }}</label>
+      <input class="file-input__file" hidden id="{{ id }}-file" type="file"{% if opts.accept %} accept="{{ opts.accept }}"{% endif %}>
+    </div>
   </template>
   <template id="error-message">
     {{ errorMessage({
