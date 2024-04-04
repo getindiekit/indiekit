@@ -5,13 +5,13 @@ export const GeoInputFieldComponent = class extends HTMLElement {
   constructor() {
     super();
 
-    this.$geoInput = this.querySelector("input");
+    this.$geoInput = this.querySelector(".geo-input");
+    this.$geoInputButton = this.querySelector(".geo-input__button");
+    this.$geoInputButtonTemplate = this.querySelector("#geo-input-button");
+    this.$errorMessageTemplate = this.querySelector("#error-message");
 
     this.i18nDenied = this.getAttribute("i18n-denied");
     this.i18nFailed = this.getAttribute("i18n-failed");
-
-    this.$findButtonTemplate = this.querySelector("#find-button");
-    this.$errorMessageTemplate = this.querySelector("#error-message");
   }
 
   connectedCallback() {
@@ -19,22 +19,27 @@ export const GeoInputFieldComponent = class extends HTMLElement {
       return;
     }
 
-    // Create group to hold input and button
-    const $inputButtonGroup = document.createElement("div");
-    $inputButtonGroup.classList.add("input-button-group");
+    if (!this.$geoInputButton) {
+      // Create group to hold input and button
+      const $inputButtonGroup = document.createElement("div");
+      $inputButtonGroup.classList.add("input-button-group");
 
-    // Create and display find location button
-    let $findButton = this.$findButtonTemplate.content.cloneNode(true);
+      // Create find location button
+      const $geoInputButton =
+        this.$geoInputButtonTemplate.content.cloneNode(true);
 
-    // Wrap input within `input-button-group` container
-    wrapElement(this.$geoInput, $inputButtonGroup);
+      // Wrap input within `input-button-group` container
+      wrapElement(this.$geoInput, $inputButtonGroup);
 
-    // Add button to `input-button-group` container
-    $inputButtonGroup.append($findButton);
+      // Add find location button to `input-button-group` container
+      $inputButtonGroup.append($geoInputButton);
+
+      // Update `this.$geoInputButton`
+      this.$geoInputButton = this.querySelector(".geo-input__button");
+    }
 
     // Add event to cloned button
-    $findButton = this.querySelector("button");
-    $findButton.addEventListener("click", () => this.find());
+    this.$geoInputButton.addEventListener("click", () => this.find());
   }
 
   /**

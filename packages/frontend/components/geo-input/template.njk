@@ -10,7 +10,7 @@
       "i18n-failed": __("geoInput.failed")
     }
   },
-  classes: opts.classes,
+  classes: classes("geo-input", opts),
   id: id,
   name: opts.name,
   value: opts.value,
@@ -19,9 +19,9 @@
   optional: opts.optional,
   errorMessage: opts.errorMessage
 }) %}
-  <template id="find-button">
+  <template id="geo-input-button">
     {{ button({
-      classes: "button--secondary",
+      classes: "geo-input__button button--secondary",
       type: "button",
       text: __("geoInput.getCurrentPosition")
     }) | indent(4) }}
