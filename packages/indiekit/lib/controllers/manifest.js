@@ -1,6 +1,7 @@
 export const get = async (request, response) => {
   const { application } = request.app.locals;
 
+  response.set("Cache-Control", "public, max-age=604800"); // 7 days
   return response.type("application/manifest+json").json({
     $schema: "https://json.schemastore.org/web-manifest-combined.json",
     lang: application.locale,
