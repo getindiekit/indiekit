@@ -35,7 +35,7 @@ export const routes = (indiekitConfig) => {
   });
 
   // Assets
-  router.use("/assets", express.static(assetsPath));
+  router.use("/assets", express.static(assetsPath, { maxAge: "7d" }));
   router.get("/assets/app-:hash.js", assetsController.getScripts);
   router.get("/assets/app-:hash.css", assetsController.getStyles);
   router.get("/assets/app-icon-180.png", assetsController.getAppIcon(180));
