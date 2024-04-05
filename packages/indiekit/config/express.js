@@ -21,6 +21,9 @@ export const expressConfig = (indiekitConfig) => {
   // Enable reversed proxy connections
   app.enable("trust proxy");
 
+  // Don’t advertise server details
+  app.set("x-powered-by", false);
+
   // Body parsers
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
