@@ -15,7 +15,7 @@ export const scripts = async () => {
     ],
   });
 
-  const { output } = await bundle.generate({ format: "iife", name: "app" });
+  const { output } = await bundle.generate({ name: "app" });
 
   return output[0].code;
 };
