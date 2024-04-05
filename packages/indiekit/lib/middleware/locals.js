@@ -1,3 +1,5 @@
+import { scripts, styles } from "@indiekit/frontend";
+import { hash } from "hasha";
 import { getEndpoints } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
 import { getShortcuts } from "../shortcuts.js";
@@ -9,7 +11,7 @@ import { getUrl } from "../utils.js";
  * @returns {import("express").RequestHandler} Next middleware
  */
 export const locals = (indiekitConfig) =>
-  function (request, response, next) {
+  async function (request, response, next) {
     try {
       const { application, publication } = indiekitConfig;
 
@@ -26,6 +28,15 @@ export const locals = (indiekitConfig) =>
 
       // Application URL
       application.url = application.url || getUrl(request);
+
+      // Asset paths
+      const js = await scripts();
+      const jsHash = await hash(js, { algorithm: "md5" });
+      application.jsPath = `${application.url}/assets/app-${jsHash}.js`;
+
+      const css = await styles();
+      const cssHash = await hash(css, { algorithm: "md5" });
+      application.cssPath = `${application.url}/assets/app-${cssHash}.css`;
 
       // Application navigation
       // Only update if serving HTML to prevent wrong session link being shown
