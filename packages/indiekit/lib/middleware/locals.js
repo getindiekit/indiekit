@@ -5,6 +5,9 @@ import { getNavigation } from "../navigation.js";
 import { getShortcuts } from "../shortcuts.js";
 import { getUrl } from "../utils.js";
 
+const jsHash = await hash(await scripts(), { algorithm: "md5" });
+const cssHash = await hash(await styles(), { algorithm: "md5" });
+
 /**
  * Expose configuration to frontend templates and plug-ins
  * @param {object} indiekitConfig - Indiekit configuration
@@ -30,12 +33,7 @@ export const locals = (indiekitConfig) =>
       application.url = application.url || getUrl(request);
 
       // Asset paths
-      const js = await scripts();
-      const jsHash = await hash(js, { algorithm: "md5" });
       application.jsPath = `${application.url}/assets/app-${jsHash}.js`;
-
-      const css = await styles();
-      const cssHash = await hash(css, { algorithm: "md5" });
       application.cssPath = `${application.url}/assets/app-${cssHash}.css`;
 
       // Application navigation

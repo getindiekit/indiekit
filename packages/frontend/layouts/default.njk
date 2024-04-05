@@ -40,7 +40,7 @@
 
   <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
 
-  <script async defer src="{{ application.url }}{{ assetPath | default("/assets") }}/app.js" type="module"></script>
+  <script async defer src="{{ application.jsPath }}" type="module"></script>
 
   <style>
     :root {
@@ -48,7 +48,7 @@
     }
   </style>
 
-  <link rel="stylesheet" href="{{ application.url }}{{ assetPath | default("/assets") }}/app.css">
+  <link rel="stylesheet" href="{{ application.cssPath }}">
   <link rel="preload" href="{{ application.url }}{{ assetPath | default("/assets") }}/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="alternate" href="{{ application.url }}/feed.jf2" type="application/jf2feed+json" title="JF2 Feed">
   <link rel="apple-touch-icon" href="{{ application.url }}{{ assetPath | default("/assets") }}/app-icon-180.png">

@@ -6,9 +6,9 @@ import { testServer } from "@indiekit-test/server";
 const server = await testServer();
 const request = supertest.agent(server);
 
-describe("indiekit GET /assets/app.js", () => {
+describe("indiekit GET /assets/app-[hash].js", () => {
   it("Returns JavaScript", async () => {
-    const result = await request.get("/assets/app.js");
+    const result = await request.get("/assets/app-[hash].js");
 
     assert.equal(result.status, 200);
     assert.equal(result.type, "text/javascript");

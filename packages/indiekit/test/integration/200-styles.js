@@ -6,9 +6,9 @@ import { testServer } from "@indiekit-test/server";
 const server = await testServer();
 const request = supertest.agent(server);
 
-describe("indiekit GET /assets/app.css", () => {
+describe("indiekit GET /assets/app-[hash].css", () => {
   it("Returns CSS", async () => {
-    const result = await request.get("/assets/app.css");
+    const result = await request.get("/assets/app-[hash].css");
 
     assert.equal(result.status, 200);
     assert.equal(result.type, "text/css");
