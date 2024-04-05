@@ -50,7 +50,7 @@ html {
   --color-outline-variant: var(--color-neutral60);
   --color-primary-on-background: var(--color-primary-on-background-light);
 
-  /* Common color assigments */
+  /* Common color assignments */
   --color-error: var(--color-red45);
   --color-error-variant: var(--color-red30);
   --color-on-error: var(--color-neutral99);
@@ -148,7 +148,7 @@ html {
     --color-outline-variant: var(--color-neutral70);
     --color-primary-on-background: var(--color-primary-on-background-dark);
 
-    /* Common color assigments */
+    /* Common color assignments */
     --color-error: var(--color-red80);
     --color-error-variant: var(--color-red90);
     --color-on-error: var(--color-neutral10);
@@ -166,7 +166,7 @@ html {
   --color-outline-variant: var(--color-neutral70);
   --color-primary-on-background: var(--color-primary-on-background-dark);
 
-  /* Common color assigments */
+  /* Common color assignments */
   --color-error: var(--color-red80);
   --color-error-variant: var(--color-red90);
   --color-on-error: var(--color-neutral10);
