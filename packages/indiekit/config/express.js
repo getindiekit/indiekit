@@ -1,3 +1,4 @@
+import compression from "compression";
 import express from "express";
 import fileUpload from "express-fileupload";
 import { templates } from "@indiekit/frontend";
@@ -24,6 +25,9 @@ export const expressConfig = (indiekitConfig) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(fileUpload());
+
+  // Compression
+  app.use(compression());
 
   // Session
   app.use(indiekitConfig.application.sessionMiddleware);
