@@ -62,7 +62,6 @@ This project aims to keep dependencies up-to-date, however the following depende
 
 | Dependency              | Current | Latest | Reason                                                   |
 | ----------------------- | ------- | ------ | -------------------------------------------------------- |
-| `date-fns`              | 2.30.x  | 3.x.x  | `date-fns-tz v2.0.0` requires `date-fns >=2.0.0`.        |
 | `mongodb`               | 4.17.x  | 6.x.x  | `@keyv/mongo v2.2.8` requires `mongodb ^4.5.0`           |
 | `mongodb-memory-server` | 8.16.x  | 9.x.x  | `mongodb-memory-server v9.x.x` requires `mongodb ^5.9.1` |
 

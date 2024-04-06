@@ -1,6 +1,11 @@
 import { parseISO } from "date-fns";
-import * as dateFnsTz from "date-fns-tz";
-import locales from "date-fns/locale/index.js";
+import {
+  format,
+  getTimezoneOffset,
+  fromZonedTime,
+  toZonedTime,
+} from "date-fns-tz";
+import * as locales from "date-fns/locale";
 
 export const dateTokens = [
   "y", // Calendar year, eg 2020
@@ -31,15 +36,16 @@ export const dateTokens = [
  * Format a date
  * @param {string} string - ISO 8601 date
  * @param {string} tokens - Tokenised date format
+ * @param {string} [locale] - Locale name
  * @param {import("date-fns-tz").OptionsWithTZ} [options] - Options
  * @returns {string} Formatted date
  */
-export const formatDate = (string, tokens, options = {}) => {
-  const locale = options.locale || "en";
-  options.locale = locales[String(locale).replace("-", "")];
+export const formatDate = (string, tokens, locale, options = {}) => {
+  locale = String(locale || "en").replace("-", "");
+  options.locale = locales[locale];
 
   const date = string === "now" ? new Date() : parseISO(string);
-  const dateTime = dateFnsTz.format(date, tokens, options);
+  const dateTime = format(date, tokens, options);
   return dateTime;
 };
 
@@ -51,8 +57,8 @@ export const formatDate = (string, tokens, options = {}) => {
  * @returns {string} Formatted local date, i.e. 2023-08-28T12:30
  */
 export const formatDateToLocal = (string, timeZone) => {
-  const zonedDateTime = dateFnsTz.zonedTimeToUtc(string, timeZone);
-  const dateTime = dateFnsTz.format(zonedDateTime, "yyyy-MM-dd'T'HH:mm", {
+  const zonedDateTime = fromZonedTime(string, timeZone);
+  const dateTime = format(zonedDateTime, "yyyy-MM-dd'T'HH:mm", {
     timeZone,
   });
 
@@ -88,23 +94,19 @@ export const getDate = (setting, dateString = "") => {
   const dateHasTime = dateString ? dateString.includes("T") : false;
   const dateIsShort = dateString && !dateHasTime;
   if (dateIsShort) {
-    const offset = dateFnsTz.format(dateTime, "XXX", {
+    const offset = format(dateTime, "XXX", {
       timeZone: outputTimeZone,
     });
     return `${dateString}T00:00:00.000${offset}`;
   }
 
   // JS converts dateString to UTC, so need to convert it to output zoned time
-  dateTime = dateFnsTz.utcToZonedTime(dateTime, outputTimeZone);
+  dateTime = toZonedTime(dateTime, outputTimeZone);
 
   // Return date time with desired timezone offset
-  const formattedDateTime = dateFnsTz.format(
-    dateTime,
-    "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
-    {
-      timeZone: outputTimeZone,
-    },
-  );
+  const formattedDateTime = format(dateTime, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", {
+    timeZone: outputTimeZone,
+  });
 
   return formattedDateTime;
 };
@@ -145,7 +147,7 @@ export const getTimeZoneDesignator = (minutes) => {
  * @returns {number} Minutes offset from UTC
  */
 export const getTimeZoneOffset = (timeZone, date) => {
-  const milliseconds = dateFnsTz.getTimezoneOffset(timeZone, date);
+  const milliseconds = getTimezoneOffset(timeZone, date);
 
   // Ensure `dateFnsTz.getTimezoneOffset()` returns same value as
   // `Date.prototype.getTimezoneOffset()`

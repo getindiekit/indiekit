@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import dateFns from "date-fns";
+import { isValid, parseISO } from "date-fns";
 import {
   formatDate,
   formatDateToLocal,
@@ -10,21 +10,16 @@ import {
   isDate,
 } from "../../lib/date.js";
 
-const { isValid, parseISO } = dateFns;
-
 describe("util/lib/date", () => {
   it("Formats a date", () => {
     assert.equal(formatDate("2019-11-30", "dd MMMM yyyy"), "30 November 2019");
+    assert.equal(formatDate("2019-11-30", "PPP", "en-GB"), "30 November 2019");
     assert.equal(
-      formatDate("2019-11-30", "PPP", { locale: "en-GB" }),
-      "30 November 2019",
-    );
-    assert.equal(
-      formatDate("2019-11-30", "PPP", { locale: "en-US" }),
+      formatDate("2019-11-30", "PPP", "en-US"),
       "November 30th, 2019",
     );
     assert.equal(
-      formatDate("2019-11-30", "PPP", { locale: "pt-BR" }),
+      formatDate("2019-11-30", "PPP", "pt-BR"),
       "30 de novembro de 2019",
     );
   });

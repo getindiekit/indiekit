@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
-    "date-fns": "^2.23.0",
-    "date-fns-tz": "^2.0.0",
+    "date-fns": "^3.6.0",
+    "date-fns-tz": "^3.0.0",
     "mongodb": "^4.17.0"
   },
   "publishConfig": {
