@@ -55,9 +55,9 @@
   },
   "session": {
     "login": {
-      "description": "Logga in med IndieAuth för att verifiera att du äger %s",
+      "description": "Logga in för att verifiera att du äger %s",
       "me": "Webbadress",
-      "submit": "Logga in med IndieAuth",
+      "submit": "Fortsätt",
       "title": "Logga in"
     },
     "logout": {
