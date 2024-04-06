@@ -1,4 +1,4 @@
-import util from "node:util";
+import { isDeepStrictEqual } from "node:util";
 import makeDebug from "debug";
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, getDate } from "@indiekit/util";
@@ -152,7 +152,7 @@ export const postData = {
     properties.url = getCanonicalUrl(updatedUrl, me);
 
     // Return if no changes to properties detected
-    if (util.isDeepStrictEqual(properties, _originalProperties)) {
+    if (isDeepStrictEqual(properties, _originalProperties)) {
       return;
     }
 
