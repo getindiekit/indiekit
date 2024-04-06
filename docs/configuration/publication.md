@@ -61,7 +61,7 @@ Defaults to `false`.
 
 When enabled, Indiekit will try to fetch Microformats data for any URL in a new post (for example URLs for `bookmark-of`, `like-of`, `repost-of`, `in-reply-to`).
 
-If any data is found, a `references` property will be included in the resulting post data. For example, given the following Micropub request:
+If any data is found, a `references` property is included in the resulting post data. For example, given the following Micropub request:
 
 ```sh
 POST /micropub HTTP/1.1
@@ -103,6 +103,10 @@ Defaults to `"en"` (English).
 ## `me`
 
 Your website’s URL. **Required**.
+
+## `mediaStore`
+
+A string representing the package name of a [content store plugin](../plugins/stores.md) to use for storing media files. If no value is provided, the [default content store](#store) is used.
 
 ## `postTemplate`
 
@@ -239,6 +243,10 @@ See [customising post types →](post-types.md)
 A string representing the character used to replace spaces when creating a slug.
 
 Defaults to `"-"` (hyphen).
+
+## `store`
+
+A string representing the package name of a [content store plugin](../plugins/stores.md). If no value is provided, the first store plug-in listed under `plugins` is used.
 
 ## `storeMessageTemplate`
 
