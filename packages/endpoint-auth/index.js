@@ -17,7 +17,6 @@ const defaults = {
   mountPath: "/auth",
 };
 
-// eslint-disable-next-line new-cap
 const router = express.Router({ caseSensitive: true, mergeParams: true });
 
 export default class AuthorizationEndpoint {

@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/no-undefined-types */
 import { wrapElement } from "../../lib/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {

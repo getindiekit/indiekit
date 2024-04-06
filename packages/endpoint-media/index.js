@@ -3,7 +3,7 @@ import { actionController } from "./lib/controllers/action.js";
 import { queryController } from "./lib/controllers/query.js";
 
 const defaults = { mountPath: "/media" };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class MediaEndpoint {
   constructor(options = {}) {

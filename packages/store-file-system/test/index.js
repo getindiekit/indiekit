@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-useless-undefined */
 import { strict as assert } from "node:assert";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";

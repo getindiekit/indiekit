@@ -8,7 +8,7 @@ import { fileData } from "./lib/middleware/file-data.js";
 import { validate } from "./lib/middleware/validation.js";
 
 const defaults = { mountPath: "/files" };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class FilesEndpoint {
   constructor(options = {}) {

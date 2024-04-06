@@ -4,7 +4,6 @@ const defaults = {
   mountPath: "/frontend",
 };
 
-// eslint-disable-next-line new-cap
 const router = express.Router({ caseSensitive: true, mergeParams: true });
 
 export default class FrontendEndpoint {

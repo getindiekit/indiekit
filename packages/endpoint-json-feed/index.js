@@ -6,7 +6,7 @@ const defaults = {
   feedName: "feed.json",
   mountPath: "/",
 };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class jsonFeedEndpoint {
   constructor(options = {}) {

@@ -3,7 +3,7 @@ import { shareController } from "./lib/controllers/share.js";
 import { validate } from "./lib/middleware/validation.js";
 
 const defaults = { mountPath: "/share" };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class ShareEndpoint {
   constructor(options = {}) {

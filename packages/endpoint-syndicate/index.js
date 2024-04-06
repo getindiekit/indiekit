@@ -2,7 +2,7 @@ import express from "express";
 import { syndicateController } from "./lib/controllers/syndicate.js";
 
 const defaults = { mountPath: "/syndicate" };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class SyndicateEndpoint {
   constructor(options = {}) {

@@ -11,7 +11,7 @@ import * as sessionController from "./controllers/session.js";
 import * as statusController from "./controllers/status.js";
 import { IndieAuth } from "./indieauth.js";
 
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 250,

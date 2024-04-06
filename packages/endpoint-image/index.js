@@ -7,7 +7,7 @@ import {
 } from "ipx";
 
 const defaults = { mountPath: "/image" };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class ImageEndpoint {
   constructor(options = {}) {

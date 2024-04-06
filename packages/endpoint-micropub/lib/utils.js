@@ -96,7 +96,7 @@ export const renderPath = async (path, properties, application) => {
   }
 
   // Add day of the year (NewBase60) token
-  tokens.D60 = newbase60.DateToSxg(dateObject); // eslint-disable-line new-cap
+  tokens.D60 = newbase60.DateToSxg(dateObject);
 
   // Add count of post-type for the day
   const count = await postTypeCount.get(application, properties);

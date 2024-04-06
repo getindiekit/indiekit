@@ -10,7 +10,7 @@ import { postData } from "./lib/middleware/post-data.js";
 import { validate } from "./lib/middleware/validation.js";
 
 const defaults = { mountPath: "/posts" };
-const router = express.Router(); // eslint-disable-line new-cap
+const router = express.Router();
 
 export default class PostsEndpoint {
   constructor(options = {}) {
