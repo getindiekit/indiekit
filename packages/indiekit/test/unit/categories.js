@@ -1,5 +1,5 @@
 import { strict as assert } from "node:assert";
-import { beforeEach, describe, it } from "node:test";
+import { beforeEach, describe, it, mock } from "node:test";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../../index.js";
@@ -33,6 +33,8 @@ describe("indiekit/lib/categories", async () => {
   });
 
   it("Returns empty array if remote JSON file not found", async () => {
+    mock.method(console, "error", () => {});
+
     bootstrappedConfig.publication.categories =
       "https://website.example/404.json";
     const result = await getCategories(bootstrappedConfig);
