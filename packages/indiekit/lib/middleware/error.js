@@ -41,7 +41,7 @@ export const internalServer = (error, request, response, next) => {
   } else if (request.accepts("json")) {
     response.json({
       error: error.code || error.name,
-      error_description: error.message || error.cause.message,
+      error_description: error.message || error.cause?.message,
       ...(error.uri && { error_uri: error.uri }),
       ...(error.scope && { scope: error.scope }),
       stack: cleanStack(error.stack),
