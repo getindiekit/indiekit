@@ -36,24 +36,32 @@ Indiekit’s configuration file uses the following top-level properties:
 {
   "application": {
     "locale": "de",
-    "name": "Unabhängigkeit"
+    "name": "Indiekit-Server"
   },
   "publication": {
     "locale": "de",
     "me": "https://website.example",
-    "postTypes": {
-      "event": {
-        "name": "Veranstaltungen"
-      }
-    }
+    "mediaStore": "@indiekit/store-s3",
+    "store": "@indiekit/store-github"
   },
   "plugins": [
     "@indiekit/post-type-event",
-    "@indiekit/preset-hugo"
+    "@indiekit/preset-hugo",
+    "@indiekit/store-github",
+    "@indiekit/store-s3"
   ],
   "@indiekit/preset-hugo": {
     "frontMatterFormat": "yaml"
-  }
+  },
+  "@indiekit/store-github": {
+    "user": "example",
+    "repo": "website"
+  },
+  "@indiekit/store-s3": {
+    "region": "eu-central-1",
+    "endpoint": "https://s3-example-eu-central-1.amazonaws.com",
+    "bucket": "website"
+  },
 }
 ```
 
@@ -61,24 +69,32 @@ Indiekit’s configuration file uses the following top-level properties:
 export default {
   application: {
     locale: "de",
-    name: "Unabhängigkeit"
+    name: "Indiekit-Server"
   },
   publication: {
     locale: "de",
     me: "https://website.example",
-    postTypes: {
-      event: {
-        name: "Veranstaltungen"
-      }
-    }
+    mediaStore: "@indiekit/store-s3",
+    store: "@indiekit/store-github"
   },
   plugins: [
     "@indiekit/post-type-event",
-    "@indiekit/preset-hugo"
+    "@indiekit/preset-hugo",
+    "@indiekit/store-github",
+    "@indiekit/store-s3"
   ],
   "@indiekit/preset-hugo": {
     frontMatterFormat: "yaml"
-  }
+  },
+  "@indiekit/store-github": {
+    user: "example",
+    repo: "website"
+  },
+  "@indiekit/store-s3": {
+    region: "eu-central-1",
+    endpoint: "https://s3-example-eu-central-1.amazonaws.com",
+    bucket: "website"
+  },
 }
 ```
 
