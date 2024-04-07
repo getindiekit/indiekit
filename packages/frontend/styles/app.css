@@ -1,6 +1,6 @@
 /* Config */
 @import url("./config/custom-properties.css");
-@import url("./config/font-face.css");
+/* @import url("./config/font-face.css"); */
 
 /* Base */
 @import url("./base/embedded.css");
