@@ -84,7 +84,7 @@ html {
 
   /* Typography */
   --font-family-system: system-ui;
-  --font-family-sans: mona-sans, sans-serif;
+  --font-family-sans: system-ui, sans-serif;
   --font-family-monospace: ui-monospace, sfmono-regular, sf mono, menlo,
     consolas, liberation mono, monospace;
 
