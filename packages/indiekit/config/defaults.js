@@ -70,4 +70,5 @@ export const defaultConfig = {
 defaultConfig.application.sessionMiddleware = cookieSession({
   name: defaultConfig.application.name,
   secret: crypto.randomUUID(),
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days,
 });
