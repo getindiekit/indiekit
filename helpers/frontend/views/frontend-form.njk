@@ -1,5 +1,7 @@
 {% extends "form.njk" %}
 
+{%- from "character-count/macro.njk" import characterCount with context -%}
+
 {% block fieldset %}
 {% call addAnother({
   name: "thing",
