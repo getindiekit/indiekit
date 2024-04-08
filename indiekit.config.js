@@ -50,6 +50,16 @@ const config = {
           url: "jams/{yyyy}/{MM}/{dd}/{slug}",
         },
       },
+      photo: {
+        post: {
+          path: "_photos/{yyyy}-{MM}-{dd}-{n}.markdown",
+          url: "photos/{yyyy}/{DDD}/p{n}/",
+        },
+        media: {
+          path: "media/photos/{yyyy}/{DDD}/p{n}/{filename}",
+          url: "media/photos/{yyyy}/{DDD}/p{n}/{filename}",
+        },
+      },
     },
   },
   "@indiekit/endpoint-media": {
