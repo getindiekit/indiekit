@@ -62,7 +62,7 @@ html {
   --color-focus: var(--color-yellow50);
   --color-on-focus: var(--color-on-background);
   --color-selection: hsl(var(--tint-yellow) 50% / 30%);
-  --color-shadow: hsl(var(--tint-neutral) 10% / 0.2);
+  --color-shadow: hsl(var(--tint-neutral) 10% / 0.15);
 
   /* Syntax highlighting */
   --color-token-comment: var(--color-on-offset);
@@ -116,9 +116,13 @@ html {
   /* Borders */
   --border-radius-small: 0.25rem;
   --border-radius-large: 0.5rem;
+  --border-width-hairline: 0.5px;
   --border-width-thin: 1px;
   --border-width-thick: 2px;
   --border-width-thickest: 4px;
+
+  /* Border styles */
+  --border-hairline: var(--border-width-hairline) solid var(--color-shadow);
 
   /* Input borders */
   --input-border-width: var(--border-width-thick);

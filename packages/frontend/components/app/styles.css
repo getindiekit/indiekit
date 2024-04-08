@@ -10,6 +10,11 @@
 .app--minimalui {
   --container-max-inline-size: 36rem;
 
+  & .header,
+  & .footer {
+    border: 0;
+  }
+
   & .header__container,
   & .footer__container {
     align-items: center;

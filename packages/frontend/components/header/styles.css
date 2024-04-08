@@ -1,19 +1,49 @@
+@keyframes scroll-shadow {
+  0% {
+    --header-shadow: none;
+  }
+  100% {
+    --header-shadow: 0 1px 3px var(--color-shadow);
+  }
+}
+
 .header {
   --anchor-color: var(--color-on-offset);
   --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-color: transparent;
+  --header-background-color: hsl(var(--tint-neutral) 95% / 0.9);
   --navigation-item-padding-block: var(--space-s);
   --navigation-item-current-color: var(--color-primary-variant);
-  background-color: var(--color-offset);
   color: var(--color-on-offset);
   display: flex;
+}
+
+body:not(.app--minimalui) .header {
+  backdrop-filter: blur(16px);
+  background-color: var(--header-background-color);
+  border-block-end: var(--border-hairline);
+  box-shadow: var(--header-shadow);
+  inset-block-start: 0;
+  position: sticky;
+  z-index: 1;
+
+  @supports not (backdrop-filter: blur()) {
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    animation-fill-mode: both;
+    animation-name: scroll-shadow;
+    animation-range: 0ex 8ex;
+    animation-timeline: scroll();
+    animation-timing-function: linear;
+  }
 }
 
 .header__container {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  padding-block-start: var(--space-2xs);
 }
 
 .header__title {

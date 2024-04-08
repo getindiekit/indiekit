@@ -3,6 +3,7 @@
   --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-color: transparent;
   background-color: var(--color-offset);
+  border-block-start: var(--border-hairline);
   color: var(--color-on-offset);
   display: flex;
   font: var(--font-caption);
