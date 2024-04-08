@@ -2,7 +2,6 @@
   --anchor-color: var(--color-primary-on-background);
   --anchor-color-hover: var(--color-on-offset);
   --anchor-decoration-color: transparent;
-  border-block-start: var(--border-width-thin) solid var(--color-offset);
   font: var(--font-caption);
   padding-block-start: var(--space-s);
 }
@@ -79,7 +78,7 @@
   }
 
   & .pagination__item--next {
-    border-block-start: var(--border-width-thin) solid var(--color-offset);
+    border-block-start: var(--border-width-thin) solid var(--color-outline);
   }
 
   & .pagination__link-title {
