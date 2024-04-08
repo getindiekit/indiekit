@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **create-indiekit:** use semver for node version ([4da1170](https://github.com/getindiekit/indiekit/commit/4da1170fea8c762de1ed9f3a61906cbb1686e767))
+
+
+### Features
+
+* **create-indiekit:** add eleventy as publication preset option ([e27fc4f](https://github.com/getindiekit/indiekit/commit/e27fc4f9b16deb16c8e64ff2eeaf8625b753ab4e))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

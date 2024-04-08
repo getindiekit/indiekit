@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **syndicator-internet-archive:** photo path ([3db6d7f](https://github.com/getindiekit/indiekit/commit/3db6d7f071890e67896a68179ec8522eac75fd76))
+
+
+### Features
+
+* **syndicator-internet-archive:** return configuration errors ([685f85f](https://github.com/getindiekit/indiekit/commit/685f85f299cb7ba4cede729da818f6f44815672f))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

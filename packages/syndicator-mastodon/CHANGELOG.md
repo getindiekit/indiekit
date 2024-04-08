@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **syndicator-mastodon:** photo path ([0198f5f](https://github.com/getindiekit/indiekit/commit/0198f5faf6277651deb2d51e64442a6329b9004e))
+
+
+### Features
+
+* **syndicator-mastodon:** return configuration errors ([6ec8287](https://github.com/getindiekit/indiekit/commit/6ec82874b543e6c3eee2c6dea1d88100fc62dfde))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** missing renderPath param ([5a195c9](https://github.com/getindiekit/indiekit/commit/5a195c9220d9db3fdac40e6fabc2e622924768cc))
+* **endpoint-micropub:** prevent slug property from being deleted ([fc3bcfc](https://github.com/getindiekit/indiekit/commit/fc3bcfc740e861785fe3503c12de2edd1df918fe))
+* **endpoint-micropub:** update ptd algorithm. fixes [#711](https://github.com/getindiekit/indiekit/issues/711) ([a3d6c35](https://github.com/getindiekit/indiekit/commit/a3d6c35906e15f55e264814442e07e1b30117d22))
+
+
+### Features
+
+* **endpoint-media:** decouple slug post property from slug token ([306596a](https://github.com/getindiekit/indiekit/commit/306596a4ccf39e78f9d493fa51f3a6ce05c4d3ec))
+* **endpoint-micropub:** add random token ([7d91e6f](https://github.com/getindiekit/indiekit/commit/7d91e6f391f10d2af2f40d1694c0f4684f003362))
+* **endpoint-micropub:** remove random token ([ce9b38b](https://github.com/getindiekit/indiekit/commit/ce9b38b912344b0442b525a25d509dd0613aa737))
+* **endpoint-micropub:** remove uuid token ([6c6590e](https://github.com/getindiekit/indiekit/commit/6c6590ed168d21f70ad264ff7e7dfffb09c573cf))
+* **endpoint-micropub:** revert decoupling slug post property from slug token ([8970fe3](https://github.com/getindiekit/indiekit/commit/8970fe3dc3acd7181faf887b08dbd18ae05826ae))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

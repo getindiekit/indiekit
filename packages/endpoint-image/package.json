@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-image",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "description": "Image resizing endpoint for Indiekit. Adds real-time image processing routes that can be used by your publication.",
   "keywords": [
     "indiekit",

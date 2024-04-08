@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **frontend:** add class to file path input ([4afca24](https://github.com/getindiekit/indiekit/commit/4afca24d578440e323fdc174fd06d38724fe88b6))
+* **frontend:** add implicit tags. fixes [#707](https://github.com/getindiekit/indiekit/issues/707) ([e7901e0](https://github.com/getindiekit/indiekit/commit/e7901e00cd4874bbd3c3504b7457d6f695def9f3))
+* **frontend:** adjust heading spacing ([60524c4](https://github.com/getindiekit/indiekit/commit/60524c44afa59b975ff8c8a818d4cd5c336a9f72))
+* **frontend:** don’t count markdown syntax in character count component ([90812c5](https://github.com/getindiekit/indiekit/commit/90812c5d3a47f72714bd96aeb19f0afd3f5f1687))
+* **frontend:** prevent re-cloning of file picker in file input ([c115498](https://github.com/getindiekit/indiekit/commit/c11549890e452bbe72a76836158f4b385533ba7b))
+* **frontend:** prevent re-cloning of find button in geo input ([7168c47](https://github.com/getindiekit/indiekit/commit/7168c4760853371e503a2f1afe5c24fac2ddd292))
+* **frontend:** remove unused data attribute ([4183980](https://github.com/getindiekit/indiekit/commit/41839806713b3e423332a7ec50801f19ea1484c2))
+* **frontend:** use browser exports in bundle ([d9aa206](https://github.com/getindiekit/indiekit/commit/d9aa2062b29e4be01ec270e6e4e1ed87610b93f9))
+
+
+### Features
+
+* **frontend:** add easy-markdown-editor ([714b8aa](https://github.com/getindiekit/indiekit/commit/714b8aa3f2d709557b253e88b7821c4df6648a75))
+* **frontend:** add hairline border to full screen editor toolbar ([8c78cc7](https://github.com/getindiekit/indiekit/commit/8c78cc737f63d71629a66994babcd3ba490e3177))
+* **frontend:** bundle javascript as es module ([47a58d6](https://github.com/getindiekit/indiekit/commit/47a58d604daec9ec9735b656b1ff85f22be90474))
+* **frontend:** disable character-count component ([a6b0173](https://github.com/getindiekit/indiekit/commit/a6b0173a95ec0f6717229ce3ce058b6f897acd1b))
+* **frontend:** file upload input component ([6082299](https://github.com/getindiekit/indiekit/commit/6082299615abc295008588bf7c78ee2a14430cbe))
+* **frontend:** minify javascript bundle ([558f546](https://github.com/getindiekit/indiekit/commit/558f546ab923f705412bee843d91ce203694cb03))
+* **frontend:** progress component ([e3b3791](https://github.com/getindiekit/indiekit/commit/e3b379190bc210376f19eaba852605c5f69a17f1))
+* **frontend:** remove web font ([d21ad28](https://github.com/getindiekit/indiekit/commit/d21ad2837c855396100fbabaeb7e86b029bf822d))
+* **frontend:** sticky glass header ([96ea922](https://github.com/getindiekit/indiekit/commit/96ea92239c3cf04fac6e6efdd66f954c6128e13c))
+* **frontend:** strip final slash from pathless friendly url ([6f24cfa](https://github.com/getindiekit/indiekit/commit/6f24cfaccdabf990c997de5534642aaeb51c671f))
+* **frontend:** support common markdown extensions ([3cf0b90](https://github.com/getindiekit/indiekit/commit/3cf0b90d78dff0a1c06f9d3f44d0f9357fcbef22))
+* **frontend:** swap in webfont when loaded ([0e2fbcf](https://github.com/getindiekit/indiekit/commit/0e2fbcf41c1bbf2530ba42f92d83eb205d231180))
+* **frontend:** update borders on block pagination ([e39c6e7](https://github.com/getindiekit/indiekit/commit/e39c6e7337171d5cce8886c1533b70791bc2fbbd))
+* **frontend:** use application css and js paths ([d235828](https://github.com/getindiekit/indiekit/commit/d2358287afd8b6e8bafce8bef1adc3130c4ca605))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2024-03-10)
 
 

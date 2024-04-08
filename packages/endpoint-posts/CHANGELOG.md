@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** get saved slug property ([cd52726](https://github.com/getindiekit/indiekit/commit/cd5272602626ba2ffffbeddf5e02a35b077a234c))
+* **endpoint-posts:** hide image upload toolbar button for photo post type ([b05e52e](https://github.com/getindiekit/indiekit/commit/b05e52e29f8c0196a17b63f72f2cc0bc348ffeec))
+
+
+### Features
+
+* **endpoint-posts:** add web app shortcut ([324213e](https://github.com/getindiekit/indiekit/commit/324213e3d9f47b76ffbcd65fcba2984fba77f879))
+* **endpoint-posts:** show syndication target error ([f6f4559](https://github.com/getindiekit/indiekit/commit/f6f4559e207ec9784cfabd525d45c5374598d895))
+* **endpoint-posts:** use markdown editor for content and summary fields ([c480a9f](https://github.com/getindiekit/indiekit/commit/c480a9f6739115b8845dc9ac37cee2f7d3d4a93c))
+* **frontend:** support common markdown extensions ([3cf0b90](https://github.com/getindiekit/indiekit/commit/3cf0b90d78dff0a1c06f9d3f44d0f9357fcbef22))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

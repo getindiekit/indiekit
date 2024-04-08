@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **endpoint-files:** update localisations ([db0ba5b](https://github.com/getindiekit/indiekit/commit/db0ba5bf222110c7a131e5c1781ab412bac44adc))
+
+
+### Features
+
+* **endpoint-files:** add web app shortcut ([80fe919](https://github.com/getindiekit/indiekit/commit/80fe919309d322513b98d2a72ae6f45a7c63a651))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

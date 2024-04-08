@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Features
+
+* **endpoint-media:** add md5 path token ([2b0f247](https://github.com/getindiekit/indiekit/commit/2b0f2476f9c1173d697b114149316fb0e010c57d))
+* **endpoint-media:** add random token ([33fd39f](https://github.com/getindiekit/indiekit/commit/33fd39f0317b745963906d5896c4dfc33fc33ef6))
+* **endpoint-media:** media transformations ([2061f15](https://github.com/getindiekit/indiekit/commit/2061f15341a11e788431bbbc0716b43f1e3fc001))
+* **endpoint-media:** remove random token ([7042e68](https://github.com/getindiekit/indiekit/commit/7042e684f01ecd66c24f24144202b34cf33e8e09))
+* **endpoint-media:** remove uuid token ([1a763a5](https://github.com/getindiekit/indiekit/commit/1a763a5a828782d934fed08fa6ea15912bb6b6b0))
+* **endpoint-media:** slugify filename to make url safe ([d2beef9](https://github.com/getindiekit/indiekit/commit/d2beef96980033468fbe953760a31aa0a3551b87))
+* **endpoint-media:** use publication’s media store ([98f083a](https://github.com/getindiekit/indiekit/commit/98f083a590cdb52cea194eee4884c9b8cdef82a1))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

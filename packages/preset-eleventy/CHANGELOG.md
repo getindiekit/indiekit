@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Features
+
+* **preset-eleventy:** remove slug property ([c13c705](https://github.com/getindiekit/indiekit/commit/c13c705e4a21d12d4388add72c20278df535d64e))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2024-03-10)
 
 

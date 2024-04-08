@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** support older token verification endpoint. fixes [#716](https://github.com/getindiekit/indiekit/issues/716) ([5ed629d](https://github.com/getindiekit/indiekit/commit/5ed629d7459c5266dadbf5e918d5d528f9b0d8ac))
+
+
+### Features
+
+* **endpoint-auth:** show requested scopes and indicate which are supported ([91537d6](https://github.com/getindiekit/indiekit/commit/91537d6302f0f8e2851a231bc51e01dc957b8f36))
+
+
+
+
+
 # [1.0.0-beta.8](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2024-03-03)
 
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **indiekit:** add conditional for error cause message ([97cd803](https://github.com/getindiekit/indiekit/commit/97cd803e6ad26a42fbddf83bc045c1e6fbe40db3))
+* **indiekit:** update swedish localisation strings ([6cff940](https://github.com/getindiekit/indiekit/commit/6cff9403d00bbcc7239014745bc60f4e8989eb87))
+
+
+### Features
+
+* **frontend:** use application css and js paths ([d235828](https://github.com/getindiekit/indiekit/commit/d2358287afd8b6e8bafce8bef1adc3130c4ca605))
+* **indiekit:** add shortcuts ([02b3a8d](https://github.com/getindiekit/indiekit/commit/02b3a8d4ebbec19e58b2ddd81ecc2f768aa1daec))
+* **indiekit:** configure separate media store for a publication ([a08392f](https://github.com/getindiekit/indiekit/commit/a08392ff4bb381810f658d30865eb0082699cb3a))
+* **indiekit:** don’t send x-powered-by header ([b797b2b](https://github.com/getindiekit/indiekit/commit/b797b2b208fa944af2556337041ec060ef9974ee))
+* **indiekit:** expire session cookie after 7 days ([91a08c7](https://github.com/getindiekit/indiekit/commit/91a08c744024d9e24636f70a245c8165bb190df9))
+* **indiekit:** fingerprint and immutably caching for css and js assets ([343b8ec](https://github.com/getindiekit/indiekit/commit/343b8ec7fbb8515f8bfc69c75c51a802a71f0377))
+* **indiekit:** localised scopes ([fe4e98d](https://github.com/getindiekit/indiekit/commit/fe4e98d61d635f9f4db20f611d31fe150f7fcbf8))
+* **indiekit:** remove mentions of IndieAuth from login view ([d78aac8](https://github.com/getindiekit/indiekit/commit/d78aac8094d80cefd14ae493966ca0b28b98b31c))
+* **indiekit:** set 7 day cache on static assets ([1b7992d](https://github.com/getindiekit/indiekit/commit/1b7992deb323cd85bd93b1235fd21608b9e12e73))
+* **indiekit:** set 7 day cache on web manifest ([320fd0a](https://github.com/getindiekit/indiekit/commit/320fd0aae420480988ff7d40b85786e7ad28b7d5))
+* **indiekit:** use compression on responses ([7884249](https://github.com/getindiekit/indiekit/commit/788424971141a2a0f80d4e262347b7c1c364ccb0))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2024-03-10)
 
 **Note:** Version bump only for package @indiekit/indiekit

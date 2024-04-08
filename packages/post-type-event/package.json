@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/post-type-event",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.10",
   "description": "Event post type for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/post-type-event"
   },
   "dependencies": {
-    "@indiekit/util": "^1.0.0-beta.8"
+    "@indiekit/util": "^1.0.0-beta.10"
   },
   "publishConfig": {
     "access": "public"

@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
+
+
+### Bug Fixes
+
+* **create-indiekit:** use semver for node version ([4da1170](https://github.com/getindiekit/indiekit/commit/4da1170fea8c762de1ed9f3a61906cbb1686e767))
+* **endpoint-auth:** support older token verification endpoint. fixes [#716](https://github.com/getindiekit/indiekit/issues/716) ([5ed629d](https://github.com/getindiekit/indiekit/commit/5ed629d7459c5266dadbf5e918d5d528f9b0d8ac))
+* **endpoint-files:** update localisations ([db0ba5b](https://github.com/getindiekit/indiekit/commit/db0ba5bf222110c7a131e5c1781ab412bac44adc))
+* **endpoint-micropub:** missing renderPath param ([5a195c9](https://github.com/getindiekit/indiekit/commit/5a195c9220d9db3fdac40e6fabc2e622924768cc))
+* **endpoint-micropub:** prevent slug property from being deleted ([fc3bcfc](https://github.com/getindiekit/indiekit/commit/fc3bcfc740e861785fe3503c12de2edd1df918fe))
+* **endpoint-micropub:** update ptd algorithm. fixes [#711](https://github.com/getindiekit/indiekit/issues/711) ([a3d6c35](https://github.com/getindiekit/indiekit/commit/a3d6c35906e15f55e264814442e07e1b30117d22))
+* **endpoint-posts:** get saved slug property ([cd52726](https://github.com/getindiekit/indiekit/commit/cd5272602626ba2ffffbeddf5e02a35b077a234c))
+* **endpoint-posts:** hide image upload toolbar button for photo post type ([b05e52e](https://github.com/getindiekit/indiekit/commit/b05e52e29f8c0196a17b63f72f2cc0bc348ffeec))
+* **frontend:** add class to file path input ([4afca24](https://github.com/getindiekit/indiekit/commit/4afca24d578440e323fdc174fd06d38724fe88b6))
+* **frontend:** add implicit tags. fixes [#707](https://github.com/getindiekit/indiekit/issues/707) ([e7901e0](https://github.com/getindiekit/indiekit/commit/e7901e00cd4874bbd3c3504b7457d6f695def9f3))
+* **frontend:** adjust heading spacing ([60524c4](https://github.com/getindiekit/indiekit/commit/60524c44afa59b975ff8c8a818d4cd5c336a9f72))
+* **frontend:** don’t count markdown syntax in character count component ([90812c5](https://github.com/getindiekit/indiekit/commit/90812c5d3a47f72714bd96aeb19f0afd3f5f1687))
+* **frontend:** prevent re-cloning of file picker in file input ([c115498](https://github.com/getindiekit/indiekit/commit/c11549890e452bbe72a76836158f4b385533ba7b))
+* **frontend:** prevent re-cloning of find button in geo input ([7168c47](https://github.com/getindiekit/indiekit/commit/7168c4760853371e503a2f1afe5c24fac2ddd292))
+* **frontend:** remove unused data attribute ([4183980](https://github.com/getindiekit/indiekit/commit/41839806713b3e423332a7ec50801f19ea1484c2))
+* **frontend:** use browser exports in bundle ([d9aa206](https://github.com/getindiekit/indiekit/commit/d9aa2062b29e4be01ec270e6e4e1ed87610b93f9))
+* **indiekit:** add conditional for error cause message ([97cd803](https://github.com/getindiekit/indiekit/commit/97cd803e6ad26a42fbddf83bc045c1e6fbe40db3))
+* **indiekit:** update swedish localisation strings ([6cff940](https://github.com/getindiekit/indiekit/commit/6cff9403d00bbcc7239014745bc60f4e8989eb87))
+* **syndicator-internet-archive:** photo path ([3db6d7f](https://github.com/getindiekit/indiekit/commit/3db6d7f071890e67896a68179ec8522eac75fd76))
+* **syndicator-mastodon:** photo path ([0198f5f](https://github.com/getindiekit/indiekit/commit/0198f5faf6277651deb2d51e64442a6329b9004e))
+
+
+### Features
+
+* **create-indiekit:** add eleventy as publication preset option ([e27fc4f](https://github.com/getindiekit/indiekit/commit/e27fc4f9b16deb16c8e64ff2eeaf8625b753ab4e))
+* **endpoint-auth:** show requested scopes and indicate which are supported ([91537d6](https://github.com/getindiekit/indiekit/commit/91537d6302f0f8e2851a231bc51e01dc957b8f36))
+* **endpoint-files:** add web app shortcut ([80fe919](https://github.com/getindiekit/indiekit/commit/80fe919309d322513b98d2a72ae6f45a7c63a651))
+* **endpoint-media:** add md5 path token ([2b0f247](https://github.com/getindiekit/indiekit/commit/2b0f2476f9c1173d697b114149316fb0e010c57d))
+* **endpoint-media:** add random token ([33fd39f](https://github.com/getindiekit/indiekit/commit/33fd39f0317b745963906d5896c4dfc33fc33ef6))
+* **endpoint-media:** decouple slug post property from slug token ([306596a](https://github.com/getindiekit/indiekit/commit/306596a4ccf39e78f9d493fa51f3a6ce05c4d3ec))
+* **endpoint-media:** media transformations ([2061f15](https://github.com/getindiekit/indiekit/commit/2061f15341a11e788431bbbc0716b43f1e3fc001))
+* **endpoint-media:** remove random token ([7042e68](https://github.com/getindiekit/indiekit/commit/7042e684f01ecd66c24f24144202b34cf33e8e09))
+* **endpoint-media:** remove uuid token ([1a763a5](https://github.com/getindiekit/indiekit/commit/1a763a5a828782d934fed08fa6ea15912bb6b6b0))
+* **endpoint-media:** slugify filename to make url safe ([d2beef9](https://github.com/getindiekit/indiekit/commit/d2beef96980033468fbe953760a31aa0a3551b87))
+* **endpoint-media:** use publication’s media store ([98f083a](https://github.com/getindiekit/indiekit/commit/98f083a590cdb52cea194eee4884c9b8cdef82a1))
+* **endpoint-micropub:** add random token ([7d91e6f](https://github.com/getindiekit/indiekit/commit/7d91e6f391f10d2af2f40d1694c0f4684f003362))
+* **endpoint-micropub:** remove random token ([ce9b38b](https://github.com/getindiekit/indiekit/commit/ce9b38b912344b0442b525a25d509dd0613aa737))
+* **endpoint-micropub:** remove uuid token ([6c6590e](https://github.com/getindiekit/indiekit/commit/6c6590ed168d21f70ad264ff7e7dfffb09c573cf))
+* **endpoint-micropub:** revert decoupling slug post property from slug token ([8970fe3](https://github.com/getindiekit/indiekit/commit/8970fe3dc3acd7181faf887b08dbd18ae05826ae))
+* **endpoint-posts:** add web app shortcut ([324213e](https://github.com/getindiekit/indiekit/commit/324213e3d9f47b76ffbcd65fcba2984fba77f879))
+* **endpoint-posts:** show syndication target error ([f6f4559](https://github.com/getindiekit/indiekit/commit/f6f4559e207ec9784cfabd525d45c5374598d895))
+* **endpoint-posts:** use markdown editor for content and summary fields ([c480a9f](https://github.com/getindiekit/indiekit/commit/c480a9f6739115b8845dc9ac37cee2f7d3d4a93c))
+* **frontend:** add easy-markdown-editor ([714b8aa](https://github.com/getindiekit/indiekit/commit/714b8aa3f2d709557b253e88b7821c4df6648a75))
+* **frontend:** add hairline border to full screen editor toolbar ([8c78cc7](https://github.com/getindiekit/indiekit/commit/8c78cc737f63d71629a66994babcd3ba490e3177))
+* **frontend:** bundle javascript as es module ([47a58d6](https://github.com/getindiekit/indiekit/commit/47a58d604daec9ec9735b656b1ff85f22be90474))
+* **frontend:** disable character-count component ([97b6151](https://github.com/getindiekit/indiekit/commit/97b61514638060bd2b5bcd95f01dc957917812c9))
+* **frontend:** disable character-count component ([a6b0173](https://github.com/getindiekit/indiekit/commit/a6b0173a95ec0f6717229ce3ce058b6f897acd1b))
+* **frontend:** file upload input component ([6082299](https://github.com/getindiekit/indiekit/commit/6082299615abc295008588bf7c78ee2a14430cbe))
+* **frontend:** minify javascript bundle ([558f546](https://github.com/getindiekit/indiekit/commit/558f546ab923f705412bee843d91ce203694cb03))
+* **frontend:** progress component ([e3b3791](https://github.com/getindiekit/indiekit/commit/e3b379190bc210376f19eaba852605c5f69a17f1))
+* **frontend:** remove web font ([d21ad28](https://github.com/getindiekit/indiekit/commit/d21ad2837c855396100fbabaeb7e86b029bf822d))
+* **frontend:** sticky glass header ([96ea922](https://github.com/getindiekit/indiekit/commit/96ea92239c3cf04fac6e6efdd66f954c6128e13c))
+* **frontend:** strip final slash from pathless friendly url ([6f24cfa](https://github.com/getindiekit/indiekit/commit/6f24cfaccdabf990c997de5534642aaeb51c671f))
+* **frontend:** support common markdown extensions ([3cf0b90](https://github.com/getindiekit/indiekit/commit/3cf0b90d78dff0a1c06f9d3f44d0f9357fcbef22))
+* **frontend:** swap in webfont when loaded ([0e2fbcf](https://github.com/getindiekit/indiekit/commit/0e2fbcf41c1bbf2530ba42f92d83eb205d231180))
+* **frontend:** update borders on block pagination ([e39c6e7](https://github.com/getindiekit/indiekit/commit/e39c6e7337171d5cce8886c1533b70791bc2fbbd))
+* **frontend:** use application css and js paths ([d235828](https://github.com/getindiekit/indiekit/commit/d2358287afd8b6e8bafce8bef1adc3130c4ca605))
+* **indiekit:** add shortcuts ([02b3a8d](https://github.com/getindiekit/indiekit/commit/02b3a8d4ebbec19e58b2ddd81ecc2f768aa1daec))
+* **indiekit:** configure separate media store for a publication ([a08392f](https://github.com/getindiekit/indiekit/commit/a08392ff4bb381810f658d30865eb0082699cb3a))
+* **indiekit:** don’t send x-powered-by header ([b797b2b](https://github.com/getindiekit/indiekit/commit/b797b2b208fa944af2556337041ec060ef9974ee))
+* **indiekit:** expire session cookie after 7 days ([91a08c7](https://github.com/getindiekit/indiekit/commit/91a08c744024d9e24636f70a245c8165bb190df9))
+* **indiekit:** fingerprint and immutably caching for css and js assets ([343b8ec](https://github.com/getindiekit/indiekit/commit/343b8ec7fbb8515f8bfc69c75c51a802a71f0377))
+* **indiekit:** localised scopes ([fe4e98d](https://github.com/getindiekit/indiekit/commit/fe4e98d61d635f9f4db20f611d31fe150f7fcbf8))
+* **indiekit:** remove mentions of IndieAuth from login view ([d78aac8](https://github.com/getindiekit/indiekit/commit/d78aac8094d80cefd14ae493966ca0b28b98b31c))
+* **indiekit:** set 7 day cache on static assets ([1b7992d](https://github.com/getindiekit/indiekit/commit/1b7992deb323cd85bd93b1235fd21608b9e12e73))
+* **indiekit:** set 7 day cache on web manifest ([320fd0a](https://github.com/getindiekit/indiekit/commit/320fd0aae420480988ff7d40b85786e7ad28b7d5))
+* **indiekit:** use compression on responses ([7884249](https://github.com/getindiekit/indiekit/commit/788424971141a2a0f80d4e262347b7c1c364ccb0))
+* **post-type-article:** show summary above content ([d3d953a](https://github.com/getindiekit/indiekit/commit/d3d953abbeea4ab8e0c7c3c26531e727e8f2cbc6))
+* **post-type-audio:** use file upload component ([d3ef94f](https://github.com/getindiekit/indiekit/commit/d3ef94f097fd13e3eae8a087196259ecac147c36))
+* **post-type-photo:** use file upload component ([4da8c20](https://github.com/getindiekit/indiekit/commit/4da8c20b485abe792ef59419d9b37fdd45b813bd))
+* **post-type-video:** use file upload component ([b8c0fc1](https://github.com/getindiekit/indiekit/commit/b8c0fc1cc0ca976c43d77982a58d8a12e1958b3b))
+* **preset-eleventy:** remove slug property ([c13c705](https://github.com/getindiekit/indiekit/commit/c13c705e4a21d12d4388add72c20278df535d64e))
+* **preset-hugo:** remove slug property ([485bbf3](https://github.com/getindiekit/indiekit/commit/485bbf32279385e499081b8d8728ea36d03e5928))
+* **preset-jekyll:** remove slug property ([c7b5a0a](https://github.com/getindiekit/indiekit/commit/c7b5a0a9da08606380127bdb36e30f654e53198a))
+* **store-s3:** s3-compatible content store ([21e77aa](https://github.com/getindiekit/indiekit/commit/21e77aaaf65105070fe651478d61cc1ff0e84ccb))
+* **syndicator-internet-archive:** return configuration errors ([685f85f](https://github.com/getindiekit/indiekit/commit/685f85f299cb7ba4cede729da818f6f44815672f))
+* **syndicator-mastodon:** return configuration errors ([6ec8287](https://github.com/getindiekit/indiekit/commit/6ec82874b543e6c3eee2c6dea1d88100fc62dfde))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2024-03-10)
 
 
