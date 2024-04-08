@@ -1,6 +1,6 @@
 .summary__row {
   align-items: baseline;
-  border-block-end: var(--color-outline) solid var(--border-width-thin);
+  border-block-end: var(--border-width-thin) solid var(--color-outline);
   column-gap: var(--space-s);
   display: flex;
   flex-wrap: wrap;
