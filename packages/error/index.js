@@ -40,12 +40,21 @@ export class IndiekitError extends Error {
   }
 
   static async fromFetch(response) {
-    const body = await response.json();
-    const message = body.error_description || response.statusText;
+    let body;
+    let message = response.statusText;
+
+    try {
+      // Parse JSON response, if provided
+      body = await response.json();
+      message = body.error_description || response.statusText;
+    } catch (error) {
+      console.error(error);
+    }
+
     return new IndiekitError(message, {
       status: response.status,
-      code: body.error || response.statusText,
-      cause: body.cause,
+      code: body?.error || response.statusText,
+      cause: body?.cause,
     });
   }
 
