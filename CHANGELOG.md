@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2024-04-09)
+
+
+### Bug Fixes
+
+* **frontend:** resolve path to css imported from node_modules ([b369ced](https://github.com/getindiekit/indiekit/commit/b369ced90db49325c378b632b5f3993914d1ca19))
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
 
 
