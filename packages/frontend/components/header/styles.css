@@ -11,7 +11,7 @@
   --anchor-color: var(--color-on-offset);
   --anchor-color-hover: var(--color-primary-on-background);
   --anchor-decoration-color: transparent;
-  --header-background-color: hsl(var(--tint-neutral) 95% / 0.9);
+  --header-background-color: var(--glass-background-color);
   --navigation-item-padding-block: var(--space-s);
   --navigation-item-current-color: var(--color-primary-variant);
   color: var(--color-on-offset);

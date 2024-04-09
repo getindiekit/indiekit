@@ -146,6 +146,9 @@ html {
   --container-inline-size: min(100vw, var(--container-max-inline-size));
   --container-max-inline-size: 75rem;
 
+  /* Glass */
+  --glass-background-color: hsl(var(--tint-neutral) 95% / 0.9);
+
   color-scheme: light dark;
 }
 
@@ -172,6 +175,9 @@ html {
     --color-token-selector: #99f;
     --color-token-string: #f6f;
     --color-token-variable: #9ff;
+
+    /* Glass */
+    --glass-background-color: hsl(var(--tint-neutral) 20% / 0.9);
   }
 }
 
@@ -197,4 +203,7 @@ html {
   --color-token-selector: #99f;
   --color-token-string: #f6f;
   --color-token-variable: #9ff;
+
+  /* Glass */
+  --glass-background-color: hsl(var(--tint-neutral) 20% / 0.9);
 }
