@@ -116,7 +116,9 @@ export const TextareaFieldComponent = class extends HTMLElement {
     /** @type {HTMLElement} */
     const $characters = this.querySelector(".editor-statusbar .characters");
     editor.codemirror.on("update", () => {
-      $characters.innerHTML = String(editor.value().length);
+      if ($characters) {
+        $characters.innerHTML = String(editor.value().length);
+      }
     });
 
     const $editorToolbar = this.querySelector(".editor-toolbar");
