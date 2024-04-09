@@ -26,7 +26,6 @@ const config = {
     "@indiekit/post-type-video",
     "@indiekit/preset-eleventy",
     "@indiekit/store-github",
-    "@indiekit/store-s3",
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
   ],
@@ -34,7 +33,6 @@ const config = {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
     enrichPostData: true,
-    mediaStore: "@indiekit/store-s3",
     postTypes: {
       like: {
         name: "Favourite",
