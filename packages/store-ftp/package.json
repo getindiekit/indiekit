@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-ftp",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.12",
   "description": "FTP content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/store-ftp"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.8",
+    "@indiekit/error": "^1.0.0-beta.12",
     "ssh2-sftp-client": "^10.0.0"
   },
   "publishConfig": {

@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-gitea",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.12",
   "description": "Gitea content store adaptor for Indiekit",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/store-gitea"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.8"
+    "@indiekit/error": "^1.0.0-beta.12"
   },
   "publishConfig": {
     "access": "public"

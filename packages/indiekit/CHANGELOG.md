@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
+
+
+### Bug Fixes
+
+* **indiekit:** correctly resolve media store fallback ([dcd42ee](https://github.com/getindiekit/indiekit/commit/dcd42ee0e4e746c17dc6fad2c3fe180c8191984a))
+
+
+
+
+
 # [1.0.0-beta.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2024-04-09)
 
 **Note:** Version bump only for package @indiekit/indiekit

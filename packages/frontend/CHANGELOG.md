@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
+
+
+### Bug Fixes
+
+* **frontend:** check for textarea character count before updating ([309b11f](https://github.com/getindiekit/indiekit/commit/309b11fe5cf41b786d715de3a170b23446c7094c))
+* **frontend:** header background colour in dark mode ([508343c](https://github.com/getindiekit/indiekit/commit/508343cefb09fdf9918d789177aeb1602673e5a2))
+* **frontend:** resolve fetched error message in file upload component ([dc6174a](https://github.com/getindiekit/indiekit/commit/dc6174a385000148371c01640e17b0b59c9a678b))
+
+
+### Features
+
+* **frontend:** replace widont filter with text-wrap balance ([60d4dec](https://github.com/getindiekit/indiekit/commit/60d4deca1e69cda2fe0fc415d2b2fab7c70258e9))
+
+
+
+
+
 # [1.0.0-beta.11](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2024-04-09)
 
 
