@@ -14,7 +14,7 @@
       {{- opts.parent.text -}}
     </span>
     {% endif %}
-    {{ opts.text | widont }}
+    {{ opts.text }}
   </h1>
   {{ actions({ items: opts.actions }) | indent(2) if opts.actions.length }}
 </header>

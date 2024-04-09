@@ -18,6 +18,7 @@
 .heading__title {
   font: var(--font-title);
   max-inline-size: var(--line-measure);
+  text-wrap: balance;
 }
 
 .heading__parent {
