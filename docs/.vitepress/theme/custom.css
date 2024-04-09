@@ -1,14 +1,6 @@
-@font-face {
-  font-family: mona-sans;
-  font-stretch: 75% 125%;
-  font-weight: 200 900;
-  src:
-    url("/mona-sans.woff2") format("woff2 supports variations"),
-    url("/mona-sans.woff2") format("woff2-variations");
-}
-
 :root {
-  --vp-font-family-base: mona-sans, sans-serif;
+  --vp-font-family-base: system-ui, sans-serif;
+  --vp-custom-block-font-size: 1rem;
   --vp-home-hero-name-color: var(--vp-c-brand-2);
 
   --vp-c-indigo-1: hsl(270deg 100% 20%);
@@ -25,9 +17,8 @@
 
 /* Home page */
 .name,
-.text,
 .title {
-  font-stretch: ultra-expanded;
+  font-stretch: expanded;
 }
 
 /* Documentation */
@@ -81,7 +72,7 @@
 /* Markdown heading anchors */
 .vp-doc .heading-anchor {
   color: var(--vp-c-text-1);
-  font-stretch: ultra-expanded;
+  font-stretch: expanded;
   font-weight: inherit;
   position: relative;
   text-decoration: none;
