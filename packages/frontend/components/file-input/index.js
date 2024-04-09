@@ -1,3 +1,4 @@
+import { IndiekitError } from "@indiekit/error";
 import { wrapElement } from "../../lib/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
@@ -8,6 +9,7 @@ export const FileInputFieldController = class extends HTMLElement {
 
     /** @type {HTMLElement} */
     this.$uploadProgress = this.querySelector(".file-input__progress");
+    /** @type {HTMLInputElement} */
     this.$fileInputPath = this.querySelector(".file-input__path");
     this.$fileInputPicker = this.querySelector(".file-input__picker");
     this.$fileInputPickerTemplate = this.querySelector("#file-input-picker");
@@ -76,21 +78,23 @@ export const FileInputFieldController = class extends HTMLElement {
       this.$fileInputPath.readOnly = true;
 
       const endpointResponse = await fetch(this.endpoint, {
-        method: "POST",
         body: formData,
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
       });
 
-      if (endpointResponse.ok) {
-        this.$fileInputPath.value =
-          await endpointResponse.headers.get("location");
-      } else {
-        this.showErrorMessage(endpointResponse.statusText);
+      if (!endpointResponse.ok) {
+        throw await IndiekitError.fromFetch(endpointResponse);
       }
 
+      this.$fileInputPath.value =
+        await endpointResponse.headers.get("location");
       this.$fileInputPath.readOnly = false;
       this.$uploadProgress.hidden = true;
     } catch (error) {
-      this.showErrorMessage(error);
+      this.showErrorMessage(error.message);
       this.$fileInputPath.readOnly = false;
       this.$uploadProgress.hidden = true;
     }
