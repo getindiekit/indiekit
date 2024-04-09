@@ -35,10 +35,10 @@ describe("indiekit/lib/store", async () => {
     assert.equal(result.info.name, "Test store");
   });
 
-  it("Returns false if no media store configured", () => {
+  it("Gets default content store if no media store configured", () => {
     const Indiekit = { publication: { store } };
     const result = getMediaStore(Indiekit);
 
-    assert.equal(result, false);
+    assert.equal(result.info.name, "Test store");
   });
 });

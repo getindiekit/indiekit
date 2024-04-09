@@ -33,5 +33,5 @@ export const getMediaStore = (Indiekit) => {
 
   return publication?.mediaStore
     ? getInstalledPlugin(application, publication.mediaStore)
-    : false;
+    : getStore(Indiekit);
 };
