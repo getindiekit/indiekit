@@ -26,7 +26,10 @@ export const TagInputFieldComponent = class extends HTMLElement {
       tags,
     });
 
-    this.insertBefore(this.$hint, this.querySelector(".tag-input"));
+    if (this.$hint) {
+      this.insertBefore(this.$hint, this.querySelector(".tag-input"));
+    }
+
     this.querySelector(".tag-input-label").classList.add("label");
 
     this.$replacedLabel.remove();
