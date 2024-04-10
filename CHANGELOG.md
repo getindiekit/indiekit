@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** resolve item photo ([605a8d0](https://github.com/getindiekit/indiekit/commit/605a8d06cbd72c6eb13ccd5a68286405947a796d))
+* **frontend:** check for hint in tag input before insertion ([d55e936](https://github.com/getindiekit/indiekit/commit/d55e93629575c00ac9e0b2675b24d01a2bd59700))
+
+
+### Features
+
+* **post-type-audio:** loosen audio field validation ([27c9504](https://github.com/getindiekit/indiekit/commit/27c95047d19aab5cb6c09699bc82f4146eeb0dc6))
+* **post-type-photo:** loosen photo field validation ([8dab984](https://github.com/getindiekit/indiekit/commit/8dab9849e61d1e4b56d859db9dd360010b7c44e9))
+* **post-type-video:** loosen video field validation ([8283485](https://github.com/getindiekit/indiekit/commit/8283485b705e7247663252d260bdb59e89f61299))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 

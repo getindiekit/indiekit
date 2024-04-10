@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
+
+
+### Bug Fixes
+
+* **frontend:** check for hint in tag input before insertion ([d55e936](https://github.com/getindiekit/indiekit/commit/d55e93629575c00ac9e0b2675b24d01a2bd59700))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 

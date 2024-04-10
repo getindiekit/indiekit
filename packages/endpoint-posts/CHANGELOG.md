@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** resolve item photo ([605a8d0](https://github.com/getindiekit/indiekit/commit/605a8d06cbd72c6eb13ccd5a68286405947a796d))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 **Note:** Version bump only for package @indiekit/endpoint-posts

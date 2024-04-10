@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
+
+
+### Features
+
+* **post-type-video:** loosen video field validation ([8283485](https://github.com/getindiekit/indiekit/commit/8283485b705e7247663252d260bdb59e89f61299))
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
 
 

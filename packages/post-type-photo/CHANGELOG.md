@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
+
+
+### Features
+
+* **post-type-photo:** loosen photo field validation ([8dab984](https://github.com/getindiekit/indiekit/commit/8dab9849e61d1e4b56d859db9dd360010b7c44e9))
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
 
 
