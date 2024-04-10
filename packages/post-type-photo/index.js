@@ -34,7 +34,7 @@ export default class PhotoPostType {
         errorMessage: (value, { req }) =>
           req.__(`posts.error.media.empty`, "/photos/image.jpg"),
         exists: { if: (value, { req }) => isRequired(req, "photo") },
-        isURL: true,
+        notEmpty: true,
       },
       "photo.*.alt": {
         errorMessage: (value, { req }) =>
