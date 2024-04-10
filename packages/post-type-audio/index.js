@@ -34,7 +34,7 @@ export default class AudioPostType {
         errorMessage: (value, { req }) =>
           req.__(`posts.error.media.empty`, "/music/audio.mp3"),
         exists: { if: (value, { req }) => isRequired(req, "audio") },
-        isURL: true,
+        notEmpty: true,
       },
     };
   }
