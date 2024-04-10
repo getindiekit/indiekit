@@ -1,16 +1,12 @@
 const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]`;
 
 export const AddAnotherComponent = class extends HTMLElement {
-  constructor() {
-    super();
-
+  connectedCallback() {
     this.$addButtonTemplate = this.querySelector("#add-button");
     this.$deleteButtonTemplate = this.querySelector("#delete-button");
     this.$$fields = this.querySelectorAll(".field");
     this.$list = this.querySelector(".add-another__list");
-  }
 
-  connectedCallback() {
     this.updateItems();
     this.createAddButton();
   }

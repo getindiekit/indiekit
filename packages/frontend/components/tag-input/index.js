@@ -1,16 +1,12 @@
 import TagInput from "@accessible-components/tag-input";
 
 export const TagInputFieldComponent = class extends HTMLElement {
-  constructor() {
-    super();
-
+  connectedCallback() {
     this.$hint = this.querySelector(".hint");
     this.$replacedLabel = this.querySelector(".label");
     this.$replacedInput = this.querySelector(".input");
     this.value = this.$replacedInput.getAttribute("value");
-  }
 
-  connectedCallback() {
     const tags = this.value ? this.value.split(",") : [];
 
     const tagInput = new TagInput(this, {

@@ -1,13 +1,6 @@
 export const SharePreviewComponent = class extends HTMLElement {
-  static targets = ["text", "title", "url"];
-
-  constructor() {
-    super();
-
-    this.$$outputs = this.querySelectorAll("output");
-  }
-
   connectedCallback() {
+    this.$$outputs = this.querySelectorAll("output");
     for (const $output of this.$$outputs) {
       this.updatePreview($output);
     }

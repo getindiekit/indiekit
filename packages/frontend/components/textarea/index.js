@@ -35,10 +35,12 @@ const getButtonSvg = (name) => {
 };
 
 export const TextareaFieldComponent = class extends HTMLElement {
-  constructor() {
-    super();
-
+  connectedCallback() {
     this.editor = this.getAttribute("editor");
+    if (this.editor !== "") {
+      return;
+    }
+
     this.editorId = this.getAttribute("editor-id");
     this.editorHeight = this.getAttribute("editor-height");
     this.editorImageUpload = this.getAttribute("editor-image-upload");
@@ -47,12 +49,6 @@ export const TextareaFieldComponent = class extends HTMLElement {
     this.editorToolbar = this.getAttribute("editor-toolbar");
     this.$label = this.querySelector("label");
     this.$textarea = this.querySelector("textarea");
-  }
-
-  connectedCallback() {
-    if (this.editor !== "") {
-      return;
-    }
 
     const status =
       this?.editorStatus === "false"

@@ -2,9 +2,7 @@ import { IndiekitError } from "@indiekit/error";
 import { wrapElement } from "../../lib/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
-  constructor() {
-    super();
-
+  connectedCallback() {
     this.endpoint = this.getAttribute("endpoint");
 
     /** @type {HTMLElement} */
@@ -14,9 +12,7 @@ export const FileInputFieldController = class extends HTMLElement {
     this.$fileInputPicker = this.querySelector(".file-input__picker");
     this.$fileInputPickerTemplate = this.querySelector("#file-input-picker");
     this.$errorMessageTemplate = this.querySelector("#error-message");
-  }
 
-  connectedCallback() {
     if (!this.$fileInputPicker) {
       // Create group to hold input and button
       const $inputButtonGroup = document.createElement("div");

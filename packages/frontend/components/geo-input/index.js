@@ -2,19 +2,15 @@
 import { wrapElement } from "../../lib/utils/wrap-element.js";
 
 export const GeoInputFieldComponent = class extends HTMLElement {
-  constructor() {
-    super();
+  connectedCallback() {
+    this.i18nDenied = this.getAttribute("i18n-denied");
+    this.i18nFailed = this.getAttribute("i18n-failed");
 
     this.$geoInput = this.querySelector(".geo-input");
     this.$geoInputButton = this.querySelector(".geo-input__button");
     this.$geoInputButtonTemplate = this.querySelector("#geo-input-button");
     this.$errorMessageTemplate = this.querySelector("#error-message");
 
-    this.i18nDenied = this.getAttribute("i18n-denied");
-    this.i18nFailed = this.getAttribute("i18n-failed");
-  }
-
-  connectedCallback() {
     if (!navigator.geolocation) {
       return;
     }

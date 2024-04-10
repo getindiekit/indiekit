@@ -3,13 +3,8 @@
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/radios/radios.mjs}
  */
 export const RadiosFieldComponent = class extends HTMLElement {
-  constructor() {
-    super();
-
-    this.$$inputTargets = this.querySelectorAll("input");
-  }
-
   connectedCallback() {
+    this.$$inputTargets = this.querySelectorAll("input");
     for (const $input of this.$$inputTargets) {
       const targetId = $input.dataset.ariaControls;
       const $conditional = document.querySelector(`#${targetId}`);
