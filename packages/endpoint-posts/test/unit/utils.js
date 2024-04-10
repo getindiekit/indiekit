@@ -5,6 +5,7 @@ import {
   getGeoProperty,
   getGeoValue,
   getLocationProperty,
+  getPhotoUrl,
   getPostName,
   getPostStatusBadges,
   getPostUrl,
@@ -12,6 +13,7 @@ import {
 } from "../../lib/utils.js";
 
 const publication = {
+  me: "https://website.example",
   postTypes: {
     article: {
       name: "Journal entry",
@@ -191,6 +193,19 @@ describe("endpoint-posts/lib/utils", () => {
       }),
       {},
     );
+  });
+
+  it("Gets photo URL", () => {
+    const photo = { url: "https://external.example/foo.jpg" };
+    const photos = [{ url: "/path/to/foo.jpg" }, { url: "/path/to/bar.jpg" }];
+
+    assert.equal(getPhotoUrl(publication, { name: "foo" }), false);
+    assert.deepEqual(getPhotoUrl(publication, { photo }), {
+      url: "https://external.example/foo.jpg",
+    });
+    assert.deepEqual(getPhotoUrl(publication, { photo: photos }), {
+      url: "https://website.example/path/to/foo.jpg",
+    });
   });
 
   it("Gets post name", () => {

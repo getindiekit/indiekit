@@ -65,6 +65,28 @@ export const getLocationProperty = (values) => {
 };
 
 /**
+ * Get photo URL
+ * @param {object} publication - Publication configuration
+ * @param {object} properties - JF2 properties
+ * @returns {object|boolean} Photo object, with URL
+ */
+export const getPhotoUrl = (publication, properties) => {
+  const photo = Array.isArray(properties.photo)
+    ? properties.photo[0]
+    : properties.photo;
+
+  if (!photo) {
+    return false;
+  } else if (URL.canParse(photo.url)) {
+    return photo;
+  } else {
+    return {
+      url: new URL(photo.url, publication.me).href,
+    };
+  }
+};
+
+/**
  * Get post status badges
  * @param {object} post - Post
  * @param {import("express").Response} response - Response
