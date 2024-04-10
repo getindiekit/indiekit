@@ -33,7 +33,7 @@ export default class PhotoPostType {
         errorMessage: (value, { req }) =>
           req.__(`posts.error.media.empty`, "/movies/video.mp4"),
         exists: { if: (value, { req }) => isRequired(req, "video") },
-        isURL: true,
+        notEmpty: true,
       },
     };
   }
