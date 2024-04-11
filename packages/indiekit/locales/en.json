@@ -11,9 +11,14 @@
   "session": {
     "login": {
       "title": "Sign in",
-      "description": "Sign in to verify that you own %s",
-      "me": "Web address",
       "submit": "Continue"
+    },
+    "publication": {
+      "label": "Which website do you want to manage?",
+      "external": "Another website"
+    },
+    "external": {
+      "label": "Web address"
     },
     "logout": {
       "title": "Sign out"

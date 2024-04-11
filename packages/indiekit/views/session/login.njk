@@ -14,8 +14,24 @@
     text: title
   }) | indent(2) }}
 
-  {{ prose({
-    text: __("session.login.description", "**" + me + "**")
+  {{ radios({
+    fieldset: {
+      legend: __("session.publication.label")
+    },
+    name: "publication",
+    items: [{
+      label: me,
+      value: publication.me,
+      checked: true
+    }, {
+      label: __("session.publication.external"),
+      value: "external",
+      conditional: input({
+        label: __("session.external.label"),
+        name: "external",
+        value: external
+      })
+    }]
   }) | indent(2) }}
 
   {{ button({

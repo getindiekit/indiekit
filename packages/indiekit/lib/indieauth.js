@@ -2,6 +2,7 @@ import { createHash, randomBytes } from "node:crypto";
 import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, randomString } from "@indiekit/util";
+import { discoverEndpoints } from "./endpoint-discovery.js";
 import {
   findBearerToken,
   introspectToken,
@@ -14,16 +15,16 @@ export const IndieAuth = class {
     this.codeVerifier = randomString(100);
     this.devMode = options.devMode;
     this.iv = randomBytes(16);
-    this.me = getCanonicalUrl(options.me);
   }
 
   /**
    * Get authentication URL
    * @param {string} authorizationEndpoint - Authorization endpoint
+   * @param {string} me - Publication URL
    * @param {string} state - State
    * @returns {Promise<string>} Authentication URL
    */
-  async getAuthUrl(authorizationEndpoint, state) {
+  async getAuthUrl(authorizationEndpoint, me, state) {
     // PKCE code challenge
     const base64Digest = createHash("sha256")
       .update(this.codeVerifier)
@@ -34,7 +35,7 @@ export const IndieAuth = class {
     authUrl.searchParams.append("client_id", this.clientId);
     authUrl.searchParams.append("code_challenge_method", "S256");
     authUrl.searchParams.append("code_challenge", codeChallenge);
-    authUrl.searchParams.append("me", this.me);
+    authUrl.searchParams.append("me", me);
     authUrl.searchParams.append("redirect_uri", this.redirectUri);
     authUrl.searchParams.append("response_type", "code");
     authUrl.searchParams.append("scope", "create update delete media");
@@ -79,7 +80,21 @@ export const IndieAuth = class {
     return async (request, response) => {
       try {
         const { application } = request.app.locals;
+        const { external, publication } = request.body;
         this.clientId = getCanonicalUrl(application.url);
+
+        if (URL.canParse(publication)) {
+          // Use locally application authentication endpoints
+          this.authorizationEndpoint = application.authorizationEndpoint;
+          this.tokenEndpoint = application.tokenEndpoint;
+          this.me = getCanonicalUrl(publication);
+        } else if (publication === "external") {
+          // Use external websites specified authentication endpoints
+          const endpoints = discoverEndpoints(external);
+          this.authorizationEndpoint = endpoints.authorizationEndpoint;
+          this.tokenEndpoint = endpoints.tokenEndpoint;
+          this.me = getCanonicalUrl(external);
+        }
 
         const callbackUrl = `${application.url}/session/auth`;
         const { redirect } = request.query;
@@ -89,7 +104,8 @@ export const IndieAuth = class {
 
         const state = generateState(this.clientId, this.iv);
         const authUrl = await this.getAuthUrl(
-          application.authorizationEndpoint,
+          this.authorizationEndpoint,
+          this.me,
           state,
         );
 
@@ -111,7 +127,6 @@ export const IndieAuth = class {
   authorize() {
     return async (request, response) => {
       try {
-        const { application } = request.app.locals;
         const { code, redirect, state } = request.query;
 
         // Check redirect is to a local path
@@ -146,7 +161,7 @@ export const IndieAuth = class {
 
         // Request access token
         const authorizedToken = await this.authorizationCodeGrant(
-          application.tokenEndpoint,
+          this.tokenEndpoint,
           code,
         );
 
