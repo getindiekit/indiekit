@@ -23,7 +23,7 @@ describe("endpoint-media/lib/file", () => {
     };
     const file = {
       data: getFixture("file-types/photo.jpg", false),
-      name: "Photo 1.jpg",
+      name: "Photo 1.jpeg",
       md5: "be7d321488de26f2eb38834af7162164",
     };
     const result = await getFileProperties(publication, file, "UTC");

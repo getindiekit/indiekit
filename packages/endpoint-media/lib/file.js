@@ -19,7 +19,7 @@ export const getFileProperties = async (publication, file, timeZone) => {
   const { ext } = await fileTypeFromBuffer(file.data);
   const published = getPublishedProperty(timeZone);
 
-  let basename = path.basename(file.name, ext);
+  let basename = path.basename(file.name, path.extname(file.name));
   basename = slugify(basename, publication.slugSeparator);
 
   return {
