@@ -8,7 +8,6 @@
     attributes: {
       editor: true,
       "editor-id": (properties.uid or ("new-" + postType)) + "-content",
-      "editor-height": "50vh" if field.required else "6rem",
       "editor-locale": application.locale,
       "editor-image-upload": "false" if postType == "note" or postType == "photo",
       "editor-status": "false" if not field.required
