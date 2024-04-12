@@ -40,6 +40,16 @@ export const TagInputFieldComponent = class extends HTMLElement {
      */
     const $tagInputInput = this.querySelector(".tag-input__input");
 
+    // Add a tag when the Comma key is pressed. This matches the parsing done
+    // when JavaScript is not enabled, meaning hint text correct in both cases.
+    $tagInputInput.addEventListener("keydown", (event) => {
+      if (event.code === "Comma") {
+        event.preventDefault();
+        tagInput.addTag($tagInputInput.value, false);
+        $tagInputInput.value = "";
+      }
+    });
+
     // Capture any value in input not converted to tag (for example, by clicking
     // outside component before pressing tab key) and add to list of tags.
     $tagInputInput.addEventListener("blur", () => {
