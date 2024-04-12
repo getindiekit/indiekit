@@ -73,21 +73,6 @@ export const formController = {
         values.published = values.published + timeZoneDesignator;
       }
 
-      // Convert category value to Array
-      if (values.category) {
-        try {
-          // Entered using progressively enhanced tag input, for example:
-          // `["foo", "bar"]`
-          values.category = JSON.parse(values.category);
-        } catch {
-          // Entered using comma separated values, for example:
-          // `foo, bar`
-          values.category = values.category
-            .split(",")
-            .map((category) => (category = category.trim()));
-        }
-      }
-
       // Convert media values object to Array
       for (const key of ["audio", "photo", "video"]) {
         if (values[key]) {

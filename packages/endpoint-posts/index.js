@@ -1,5 +1,6 @@
 import path from "node:path";
 import { ISO_6709_RE, isRequired } from "@indiekit/util";
+import { tagInputSanitizer } from "@indiekit/frontend";
 import express from "express";
 import { deleteController } from "./lib/controllers/delete.js";
 import { formController } from "./lib/controllers/form.js";
@@ -58,6 +59,11 @@ export default class PostsEndpoint {
 
   get validationSchemas() {
     return {
+      category: {
+        exists: { if: (value, { req }) => req.body?.category },
+        tagInput: tagInputSanitizer,
+        isArray: true,
+      },
       content: {
         errorMessage: (value, { req }) => req.__("posts.error.content.empty"),
         exists: { if: (value, { req }) => isRequired(req, "content") },
