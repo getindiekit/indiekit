@@ -24,6 +24,15 @@
     color: var(--color-token-comment);
   }
 
+  .cm-spell-error {
+    /* Safari doesn’t accept text-decoration shorthand */
+    text-decoration-color: var(--color-error);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 0.125em;
+    text-underline-offset: 0.25em;
+  }
+
   .cm-string {
     color: var(--color-token-string);
   }
