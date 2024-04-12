@@ -1,3 +1,4 @@
+import path from "node:path";
 import { validationResult } from "express-validator";
 import { endpoint } from "../endpoint.js";
 
@@ -11,6 +12,9 @@ export const formController = {
 
     if (scope.includes("create") || scope.includes("media")) {
       return response.render("file-form", {
+        back: {
+          href: path.dirname(request.baseUrl + request.path),
+        },
         title: response.locals.__("files.upload.title"),
       });
     }
