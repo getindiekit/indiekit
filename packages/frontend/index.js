@@ -5,3 +5,5 @@ export { appIcon } from "./lib/app-icon.js";
 export { templates } from "./lib/nunjucks.js";
 export { styles } from "./lib/lightningcss.js";
 export { scripts } from "./lib/rollup.js";
+
+export { tagInputSanitizer } from "./components/tag-input/sanitizer.js";
