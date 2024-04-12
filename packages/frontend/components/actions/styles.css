@@ -3,7 +3,7 @@
   --icon-margin: var(--space-2xs);
   display: flex;
   flex-wrap: wrap;
-  font: var(--font-caption);
+  font: var(--font-body);
   gap: var(--space-2xs) var(--space-l);
 }
 
