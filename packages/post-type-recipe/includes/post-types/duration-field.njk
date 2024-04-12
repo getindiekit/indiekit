@@ -1,0 +1,9 @@
+{{ input({
+   classes: "input--width-5",
+  name: "duration",
+  type: "time",
+  value: fieldData("duration").value,
+  label: __("posts.form.duration.label"),
+  optional: not field.required,
+  errorMessage: fieldData("duration").errorMessage
+}) }}

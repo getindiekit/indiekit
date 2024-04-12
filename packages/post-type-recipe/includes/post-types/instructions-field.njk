@@ -1,0 +1,17 @@
+{{ textarea({
+  name: "[instructions][text]",
+  value: properties.instructions.text or fieldData("instructions.text").value,
+  label: __("posts.form.instructions.label"),
+  optional: not field.required,
+  errorMessage: fieldData("instructions.text").errorMessage,
+  field: {
+    attributes: {
+      editor: true,
+      "editor-id": (properties.uid or ("new-" + postType)) + "-instructions",
+      "editor-height": "50vh" if field.required else "6rem",
+      "editor-locale": application.locale,
+      "editor-image-upload": "false" if postType == "note" or postType == "photo",
+      "editor-status": "false" if not field.required
+    }
+  }
+}) }}

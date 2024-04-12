@@ -1,0 +1,26 @@
+{% macro ingredientFieldset(index) %}
+  {{ input({
+    name: "ingredient[" + index + "]",
+    type: "url",
+    value: fieldData("ingredient[" + index + "]").value,
+    label: __("posts.form.ingredient.item"),
+    errorMessage: fieldData("ingredient[" + index + "]").errorMessage
+  }) | indent(2) }}
+{% endmacro %}
+
+{% call addAnother({
+  name: __("posts.form.ingredient.name"),
+  fieldset: { legend: __("posts.form.ingredient.label") }
+}) %}
+<ol class="add-another__list" role="list">
+  {% for key, value in fieldData("ingredient").value %}
+  <li class="add-another__list-item">
+    {{ ingredientFieldset(key or loop.index0) }}
+  </li>
+  {% else %}
+  <li class="add-another__list-item">
+    {{ ingredientFieldset(0) }}
+  </li>
+  {% endfor %}
+</ol>
+{% endcall %}

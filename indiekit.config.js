@@ -21,6 +21,7 @@ const config = {
     "@indiekit/post-type-audio",
     "@indiekit/post-type-event",
     "@indiekit/post-type-jam",
+    "@indiekit/post-type-recipe",
     "@indiekit/post-type-repost",
     "@indiekit/post-type-rsvp",
     "@indiekit/post-type-video",

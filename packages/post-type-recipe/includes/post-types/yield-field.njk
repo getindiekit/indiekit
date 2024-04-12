@@ -1,0 +1,9 @@
+{{ input({
+  classes: "input--width-2",
+  name: "yield",
+  type: "number",
+  value: fieldData("yield").value,
+  label: __("posts.form.yield.label"),
+  optional: not field.required,
+  errorMessage: fieldData("yield").errorMessage
+}) }}

@@ -1,0 +1,20 @@
+{
+  "posts": {
+    "form": {
+      "duration": {
+        "label": "Duration"
+      },
+      "ingredient": {
+        "label": "Ingredients",
+        "item": "Ingredient name",
+        "name": "ingredient"
+      },
+      "instructions": {
+        "label": "Instructions"
+      },
+      "yield": {
+        "label": "Serves"
+      }
+    }
+  }
+}
