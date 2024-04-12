@@ -42,7 +42,6 @@ export const TextareaFieldComponent = class extends HTMLElement {
     }
 
     this.editorId = this.getAttribute("editor-id");
-    this.editorHeight = this.getAttribute("editor-height");
     this.editorImageUpload = this.getAttribute("editor-image-upload");
     this.editorLocale = this.getAttribute("editor-locale");
     this.editorStatus = this.getAttribute("editor-status");
@@ -93,7 +92,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
       },
       element: this.$textarea,
       imageUploadFunction: this.uploadFile,
-      maxHeight: this.editorHeight,
+      minHeight: "6rem",
       previewClass: ["editor-preview", "s-flow"],
       status,
       // @ts-ignore
