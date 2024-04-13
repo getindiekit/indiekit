@@ -174,8 +174,8 @@ export default class GithubStore {
 
     await this.#client(filePath, "DELETE", {
       branch: this.options.branch,
-      sha,
       message,
+      sha,
     });
 
     return true;
