@@ -23,10 +23,6 @@ export const postData = {
     // Only select ‘checked’ syndication targets on first view
     const checkTargets = Object.entries(request.body).length === 0;
 
-    // Only show advanced options if one of those fields has been updated
-    const showAdvancedOptions =
-      properties.category || properties.location || properties.visibility;
-
     response.locals = {
       accessToken: access_token,
       action: "create",
@@ -36,7 +32,7 @@ export const postData = {
       postType,
       properties,
       scope,
-      showAdvancedOptions,
+      showAdvancedOptions: false,
       syndicationTargetItems: getSyndicateToItems(publication, checkTargets),
       type: h,
       ...response.locals,
