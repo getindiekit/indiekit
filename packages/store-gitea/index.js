@@ -77,21 +77,29 @@ export default class GiteaStore {
       `${instance}/api/v1/repos/${user}/${repo}/contents/`,
     );
 
-    const response = await fetch(url.href, {
-      method,
-      headers: {
-        authorization: `token ${token}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    try {
+      const response = await fetch(url.href, {
+        method,
+        headers: {
+          authorization: `token ${token}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
-    if (!response.ok) {
-      const body = await response.json();
-      throw new Error(body.message);
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.message);
+      }
+
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error.cause,
+        plugin: this.name,
+        status: error.status,
+      });
     }
-
-    return response;
   }
 
   /**
@@ -104,23 +112,15 @@ export default class GiteaStore {
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(filePath, content, { message }) {
-    try {
-      const createResponse = await this.#client(filePath, "POST", {
-        branch: this.options.branch,
-        content: Buffer.from(content).toString("base64"),
-        message,
-      });
+    const createResponse = await this.#client(filePath, "POST", {
+      branch: this.options.branch,
+      content: Buffer.from(content).toString("base64"),
+      message,
+    });
 
-      const { commit } = await createResponse.json();
+    const { commit } = await createResponse.json();
 
-      return commit.html_url;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    return commit.html_url;
   }
 
   /**
@@ -130,21 +130,13 @@ export default class GiteaStore {
    * @see {@link https://gitea.com/api/swagger#/repository/repoGetContents}
    */
   async readFile(filePath) {
-    try {
-      const readResponse = await this.#client(
-        `${filePath}?ref=${this.options.branch}`,
-      );
-      const body = await readResponse.json();
-      const content = Buffer.from(body.content, "base64").toString("utf8");
+    const readResponse = await this.#client(
+      `${filePath}?ref=${this.options.branch}`,
+    );
+    const body = await readResponse.json();
+    const content = Buffer.from(body.content, "base64").toString("utf8");
 
-      return content;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    return content;
   }
 
   /**
@@ -158,31 +150,23 @@ export default class GiteaStore {
    * @see {@link https://gitea.com/api/swagger#/repository/repoUpdateFile}
    */
   async updateFile(filePath, content, { message, newPath }) {
-    try {
-      const readResponse = await this.#client(
-        `${filePath}?ref=${this.options.branch}`,
-      );
-      const { sha } = await readResponse.json();
-      const updateFilePath = newPath || filePath;
+    const readResponse = await this.#client(
+      `${filePath}?ref=${this.options.branch}`,
+    );
+    const { sha } = await readResponse.json();
+    const updateFilePath = newPath || filePath;
 
-      const updateResponse = await this.#client(updateFilePath, "PUT", {
-        branch: this.options.branch,
-        content: Buffer.from(content).toString("base64"),
-        fromPath: filePath,
-        message,
-        sha,
-      });
+    const updateResponse = await this.#client(updateFilePath, "PUT", {
+      branch: this.options.branch,
+      content: Buffer.from(content).toString("base64"),
+      fromPath: filePath,
+      message,
+      sha,
+    });
 
-      const { commit } = await updateResponse.json();
+    const { commit } = await updateResponse.json();
 
-      return commit.html_url;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    return commit.html_url;
   }
 
   /**
@@ -194,26 +178,18 @@ export default class GiteaStore {
    * @see {@link https://gitea.com/api/swagger#/repository/repoDeleteFile}
    */
   async deleteFile(filePath, { message }) {
-    try {
-      const readResponse = await this.#client(
-        `${filePath}?ref=${this.options.branch}`,
-      );
-      const { sha } = await readResponse.json();
+    const readResponse = await this.#client(
+      `${filePath}?ref=${this.options.branch}`,
+    );
+    const { sha } = await readResponse.json();
 
-      await this.#client(filePath, "DELETE", {
-        branch: this.options.branch,
-        message,
-        sha,
-      });
+    await this.#client(filePath, "DELETE", {
+      branch: this.options.branch,
+      message,
+      sha,
+    });
 
-      return true;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
+    return true;
   }
 
   init(Indiekit) {
