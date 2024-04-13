@@ -1,0 +1,42 @@
+<action-table class="{{ classes("action-table", opts) }}" sort="{{ opts.sort }}"
+  {{- attributes(opts.attributes) }}>
+  <table class="action-table__table">
+{% if opts.caption %}
+    <caption class="action-table__caption">{{- opts.caption -}}</caption>
+{% endif %}
+{% if opts.head %}
+    <thead class="action-table__head">
+      <tr class="action-table__row">
+      {% for item in opts.head %}
+        <th scope="col" class="{{ classes("action-table__header", opts.head) }}"
+          {{- attributes(item.attributes) }}>
+          {{- item.text | safe -}}
+        </th>
+      {% endfor %}
+      </tr>
+    </thead>
+{% endif %}
+    <tbody class="action-table__body">
+{% for row in opts.rows %}
+    {% if row %}
+      <tr class="action-table__row">
+      {% for cell in row %}
+        {% if loop.first and opts.firstCellIsHeader %}
+        <th scope="row" class="{{ classes("action-table__header", cell) }}"
+          {{- attributes(cell.attributes) }}>
+          {{- cell.text | safe -}}
+        </th>
+        {% else %}
+        <td class="{{ classes("action-table__cell", cell) }}"
+          {{- attributes(cell.attributes) }}>
+          {{- cell.text | safe -}}
+        </td>
+        {% endif %}
+      {% endfor %}
+      </tr>
+    {% endif %}
+{% endfor %}
+    </tbody>
+  </table>
+{% if caller %}{{ caller() }}{%- endif %}
+</action-table>

@@ -29,6 +29,39 @@
   }]
 }) }}
 
+<h2><code>action-table</code></h2>
+
+{{ actionTable({
+  caption: "Dates and amounts",
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Age"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Peter"
+      },
+      {
+        text: "10"
+      }
+    ],
+    [
+      {
+        text: "Paul"
+      },
+      {
+        text: "12"
+      }
+    ]
+  ]
+}) }}
+
 <h2><code>authorize</code></h2>
 
 {{ authorize({

@@ -4,18 +4,24 @@ import { getPackageData } from "../utils.js";
 export const list = (request, response) => {
   const { application } = response.app.locals;
 
-  const plugins = application.installedPlugins.map((plugin) => {
+  const pluginRows = application.installedPlugins.map((plugin) => {
     const _package = getPackageData(plugin.filePath);
-    plugin.photo = {
-      srcOnError: "/assets/plug-in.svg",
-      attributes: { height: 96, width: 96 },
-      url: `/assets/${plugin.id}/icon.svg`,
-    };
-    plugin.title = plugin.name;
-    plugin.description = _package.description;
-    plugin.url = `/plugins/${plugin.id}`;
 
-    return plugin;
+    let name = `<h2><a href="/plugins/${plugin.id}">${plugin.name}</a></h2>`;
+
+    if (_package.description) {
+      name += `<p>${_package.description}</p>`;
+    }
+
+    return [
+      {
+        text: name,
+        classes: "s-flow",
+      },
+      {
+        text: _package.version,
+      },
+    ];
   });
 
   response.render("plugins/list", {
@@ -24,7 +30,7 @@ export const list = (request, response) => {
       text: response.locals.__("status.title"),
     },
     title: response.locals.__("status.application.installedPlugins"),
-    plugins,
+    pluginRows,
   });
 };
 
