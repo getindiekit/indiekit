@@ -17,7 +17,8 @@
 
 /* Home page */
 .name,
-.title {
+.title,
+.VPHero .text {
   font-stretch: expanded;
 }
 
