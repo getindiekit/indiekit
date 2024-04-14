@@ -54,6 +54,8 @@
   <link rel="manifest" href="{{ application.url }}/app.webmanifest">
 
   <meta name="supported-color-schemes" content="light dark">
+  <meta name="theme-color" content="{{ themeColor(application.themeColor) }}" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="{{ themeColor(application.themeColor, "dark") }}" media="(prefers-color-scheme: dark)">
 </head>
 
 <body class="{{ appClasses }}">

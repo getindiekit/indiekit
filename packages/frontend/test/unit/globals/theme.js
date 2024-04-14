@@ -3,6 +3,8 @@ import { describe, it } from "node:test";
 import Color from "color";
 import {
   _getValidatedColor,
+  backgroundColor,
+  themeColor,
   themeCustomProperties,
 } from "../../../lib/globals/theme.js";
 
@@ -14,6 +16,16 @@ describe("frontend/lib/globals/icon", () => {
     });
 
     assert.equal(result.hex(), "#800080");
+  });
+
+  it("Returns background color as HSL", () => {
+    assert.equal(backgroundColor("#f00"), "hsl(0, 5%, 99%)");
+    assert.equal(backgroundColor("#f00", "dark"), "hsl(0, 5%, 10%)");
+  });
+
+  it("Returns theme color as HSL", () => {
+    assert.equal(themeColor("#f00"), "hsl(0, 5%, 95%)");
+    assert.equal(themeColor("#f00", "dark"), "hsl(0, 5%, 20%)");
   });
 
   it("Returns theme color as CSS custom properties", () => {

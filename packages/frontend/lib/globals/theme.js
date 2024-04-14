@@ -39,6 +39,39 @@ export const _getValidatedColor = ({
 };
 
 /**
+ * Return background color
+ * @param {string} string - Color (as hexadecimal)
+ * @param {string} colorScheme - Color scheme
+ * @returns {string} CSS color value (HSL)
+ */
+export const backgroundColor = (string, colorScheme = "light") => {
+  const primary = new Color(string).hsl().round();
+
+  return new Color({
+    h: primary.hue(),
+    s: 5,
+    l: colorScheme === "light" ? 99 : 10,
+  })
+    .hsl()
+    .toString();
+};
+
+/**
+ * Return theme color
+ * @param {string} string - Color (as hexadecimal)
+ * @param {string} colorScheme - Color scheme
+ * @returns {string} CSS color value (HSL)
+ */
+export const themeColor = (string, colorScheme = "light") => {
+  const primary = new Color(string).hsl().round();
+  const h = primary.hue();
+  const s = 5;
+  const l = colorScheme === "light" ? 95 : 20;
+
+  return new Color({ h, s, l }).hsl().toString();
+};
+
+/**
  * Return theme color as CSS custom properties
  * @param {string} string - Color (as hexadecimal)
  * @returns {string} CSS custom properties
@@ -49,8 +82,8 @@ export const themeCustomProperties = (string) => {
   const primarySaturation = 5;
 
   // Calculate neutral lightest and darkest hues used in custom properties
-  const neutral99 = new Color({ h: primaryHue, s: primarySaturation, l: 99 });
-  const neutral10 = new Color({ h: primaryHue, s: primarySaturation, l: 10 });
+  const neutral99 = new Color(backgroundColor(string));
+  const neutral10 = new Color(backgroundColor(string, "dark"));
 
   // Generate a darker variant of primary colour
   const primaryVariant = primary.darken(0.15).desaturate(0.1);
