@@ -32,6 +32,7 @@ export default class PostsEndpoint {
     return {
       url: path.join(this.options.mountPath, "new"),
       name: "posts.create.action",
+      iconName: "createPost",
       requiresDatabase: true,
     };
   }
