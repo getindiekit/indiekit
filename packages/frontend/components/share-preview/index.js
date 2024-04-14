@@ -1,5 +1,6 @@
 export const SharePreviewComponent = class extends HTMLElement {
   connectedCallback() {
+    this.$form = this.closest("form");
     this.$$outputs = this.querySelectorAll("output");
     for (const $output of this.$$outputs) {
       this.updatePreview($output);
@@ -12,15 +13,17 @@ export const SharePreviewComponent = class extends HTMLElement {
    * Resize parent window to fit output preview and input form
    */
   resizeWindow() {
-    const { scrollWidth, scrollHeight } = this.closest("form");
+    if (this.$form) {
+      const { scrollWidth, scrollHeight } = this.$form;
 
-    const chromeWidth = window.outerWidth - window.innerWidth;
-    const chromeHeight = window.outerHeight - window.innerHeight;
+      const chromeWidth = window.outerWidth - window.innerWidth;
+      const chromeHeight = window.outerHeight - window.innerHeight;
 
-    const width = scrollWidth + chromeWidth;
-    const height = scrollHeight + chromeHeight;
+      const width = scrollWidth + chromeWidth;
+      const height = scrollHeight + chromeHeight;
 
-    window.resizeTo(width, height);
+      window.resizeTo(width, height);
+    }
   }
 
   /**
