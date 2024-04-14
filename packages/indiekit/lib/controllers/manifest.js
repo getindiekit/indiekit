@@ -1,3 +1,5 @@
+import { getShortcuts } from "../shortcuts.js";
+
 export const get = async (request, response) => {
   const { application } = request.app.locals;
 
@@ -18,7 +20,7 @@ export const get = async (request, response) => {
         type: "image/png",
       },
     ],
-    shortcuts: application.shortcuts,
+    shortcuts: getShortcuts(application, response),
     ...(application.shareEndpoint && {
       share_target: {
         action: application.shareEndpoint,
