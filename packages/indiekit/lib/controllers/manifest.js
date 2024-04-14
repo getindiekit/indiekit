@@ -1,3 +1,4 @@
+import { getBackgroundColor, getThemeColor } from "@indiekit/frontend";
 import { getShortcuts } from "../shortcuts.js";
 
 export const get = async (request, response) => {
@@ -29,6 +30,8 @@ export const get = async (request, response) => {
       },
     ],
     shortcuts: getShortcuts(application, response),
+    theme_color: getThemeColor(application.themeColor),
+    background_color: getBackgroundColor(application.themeColor),
     ...(application.shareEndpoint && {
       share_target: {
         action: application.shareEndpoint,
