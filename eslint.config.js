@@ -24,6 +24,10 @@ export default [
     rules: { "wc/no-self-class": "warn" },
   },
   {
+    files: ["**/frontend/lib/serviceworker.js"],
+    languageOptions: { globals: { ...globals.serviceworker } },
+  },
+  {
     files: ["**/test/**/*.js"],
     rules: { "unicorn/no-process-exit": 0 },
   },
