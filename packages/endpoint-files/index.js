@@ -29,6 +29,7 @@ export default class FilesEndpoint {
     return {
       url: path.join(this.options.mountPath, "upload"),
       name: "files.upload.action",
+      iconName: "uploadFile",
       requiresDatabase: true,
     };
   }
