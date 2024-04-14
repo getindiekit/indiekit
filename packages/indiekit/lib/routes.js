@@ -38,9 +38,7 @@ export const routes = (indiekitConfig) => {
   router.use("/assets", express.static(assetsPath, { maxAge: "7d" }));
   router.get("/assets/app-:hash.js", assetsController.getScripts);
   router.get("/assets/app-:hash.css", assetsController.getStyles);
-  router.get("/assets/app-icon-180.png", assetsController.getAppIcon(180));
-  router.get("/assets/app-icon-192.png", assetsController.getAppIcon(192));
-  router.get("/assets/app-icon-512.png", assetsController.getAppIcon(512));
+  router.get("/assets/app-icon-:size.png", assetsController.getAppIcon);
 
   // Plug-in assets
   for (const plugin of application.installedPlugins) {
