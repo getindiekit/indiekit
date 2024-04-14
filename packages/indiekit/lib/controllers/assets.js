@@ -1,10 +1,15 @@
 import { appIcon, scripts, styles } from "@indiekit/frontend";
 
-export const getAppIcon = async (request, response) => {
-  const { size } = request.params;
+export const getAppIcon = async (request, response, next) => {
+  const { purpose, size } = request.params;
   const { themeColor } = request.app.locals.application;
-  const png = await appIcon(themeColor, Number(size));
-  return response.type("image/png").send(png).end();
+
+  try {
+    const png = await appIcon(size, themeColor, purpose);
+    return response.type("image/png").send(png).end();
+  } catch {
+    next();
+  }
 };
 
 export const getScripts = async (request, response) => {
