@@ -17,9 +17,11 @@ export const getShortcuts = (application, response) => {
     shortcuts = shortcuts.filter((item) => !item.requiresDatabase);
   }
 
-  // Translate text strings
   for (const item of shortcuts) {
+    // Translate text strings
     item.name = response.locals.__(item.name);
+    // Remove database requirement check
+    delete item.requiresDatabase;
   }
 
   return shortcuts;
