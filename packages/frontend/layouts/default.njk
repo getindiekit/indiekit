@@ -101,5 +101,19 @@
   }
 }) if not minimalui }}
 {% endblock %}
+<script type="module">
+  if (navigator.serviceWorker) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/serviceworker.js", {
+        scope: '/'
+      });
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          command: "trimCaches"
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
