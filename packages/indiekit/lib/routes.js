@@ -33,6 +33,10 @@ export const routes = (indiekitConfig) => {
     response.setHeader("X-Robots-Tag", "noindex");
     next();
   });
+  router.get("/robots.txt", (request, response) => {
+    response.type("text/plain");
+    response.send("User-agent: *\nDisallow: /");
+  });
 
   // Assets
   router.use("/assets", express.static(assetsPath, { maxAge: "7d" }));
