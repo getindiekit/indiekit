@@ -76,6 +76,9 @@ Used to register the plug-in. Accepts an `Indiekit` instance to allow its modifi
 `name`
 : A string representing the text shown in the shortcut item. **Required**.
 
+`iconName`
+: A string representing the name of the icon to use for the shortcut item.
+
 `requiresDatabase`
 : A boolean for whether the item should only be displayed if a database has been configured.
 

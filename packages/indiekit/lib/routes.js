@@ -42,6 +42,10 @@ export const routes = (indiekitConfig) => {
     "/assets/app-icon-:size-:purpose.png",
     assetsController.getAppIcon,
   );
+  router.get(
+    "/assets/shortcut-icon-:size-:name.png",
+    assetsController.getShortcutIcon,
+  );
 
   // Plug-in assets
   for (const plugin of application.installedPlugins) {
