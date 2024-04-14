@@ -62,7 +62,7 @@ export const icon = (name, title) => {
   }
 
   const svg = title
-    ? `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" focusable="false" aria-labelledby="${name}-title" role="img">
+    ? `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" aria-labelledby="${name}-title" role="img">
     <title id="${name}-title">${title}</title>
     <path fill="currentColor" d="${paths[name]}"/>
   </svg>`
