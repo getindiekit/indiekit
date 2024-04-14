@@ -7,7 +7,7 @@
   <header class="widget__header">
     {% if opts.title %}
     <h2 class="widget__title" id="{{ id }}">
-      <img class="icon icon--rounded" src="{{ opts.image }}" alt="" onerror="this.src='/assets/plug-in.svg'">
+      <img class="icon icon--rounded" src="{{ opts.image }}" alt="" onerror="this.src='/assets/plug-in.svg'" height="20" width="20">
       {{- opts.title | safe }}
     </h2>
     {% endif %}
