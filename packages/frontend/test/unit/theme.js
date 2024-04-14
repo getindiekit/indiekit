@@ -3,10 +3,10 @@ import { describe, it } from "node:test";
 import Color from "color";
 import {
   _getValidatedColor,
-  backgroundColor,
-  themeColor,
-  themeCustomProperties,
-} from "../../../lib/globals/theme.js";
+  getBackgroundColor,
+  getThemeColor,
+  getThemeCustomProperties,
+} from "../../lib/utils/theme.js";
 
 describe("frontend/lib/globals/icon", () => {
   it("Generates an accessible colour with sufficient contrast", () => {
@@ -19,18 +19,18 @@ describe("frontend/lib/globals/icon", () => {
   });
 
   it("Returns background color as HSL", () => {
-    assert.equal(backgroundColor("#f00"), "hsl(0, 5%, 99%)");
-    assert.equal(backgroundColor("#f00", "dark"), "hsl(0, 5%, 10%)");
+    assert.equal(getBackgroundColor("#f00"), "hsl(0, 5%, 99%)");
+    assert.equal(getBackgroundColor("#f00", "dark"), "hsl(0, 5%, 10%)");
   });
 
   it("Returns theme color as HSL", () => {
-    assert.equal(themeColor("#f00"), "hsl(0, 5%, 95%)");
-    assert.equal(themeColor("#f00", "dark"), "hsl(0, 5%, 20%)");
+    assert.equal(getThemeColor("#f00"), "hsl(0, 5%, 95%)");
+    assert.equal(getThemeColor("#f00", "dark"), "hsl(0, 5%, 20%)");
   });
 
   it("Returns theme color as CSS custom properties", () => {
     assert.equal(
-      themeCustomProperties("#f00"),
+      getThemeCustomProperties("#f00"),
       `
 --tint-neutral: 0 5%;
 --color-primary: hsl(0, 100%, 50%);
