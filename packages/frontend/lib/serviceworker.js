@@ -134,87 +134,77 @@ self.addEventListener("fetch", (event) => {
     request.headers.get("Accept").includes("text/html")
   ) {
     event.respondWith(
-      new Promise((resolveWithResponse) => {
-        const timer = setTimeout(() => {
-          // Time out: CACHE
-          retrieveFromCache.then((responseFromCache) => {
-            if (responseFromCache) {
-              resolveWithResponse(responseFromCache);
-            }
-          });
+      (async () => {
+        // CHECK CACHE
+        const timer = setTimeout(async () => {
+          const responseFromCache = await retrieveFromCache;
+          if (responseFromCache) {
+            return responseFromCache;
+          }
         }, timeout);
 
-        Promise.resolve(event.preloadResponse)
-          .then((preloadResponse) => preloadResponse || fetch(request))
-          .then((responseFromPreloadOrFetch) => {
-            // NETWORK
-            clearTimeout(timer);
-            const copy = responseFromPreloadOrFetch.clone();
-            // Stash a copy of this page in the pages cache
-            try {
-              event.waitUntil(
-                caches.open(pagesCacheName).then((pagesCache) => {
-                  return pagesCache.put(request, copy);
-                }),
-              );
-            } catch (error) {
-              console.error(error);
-            }
-            resolveWithResponse(responseFromPreloadOrFetch);
-          })
-          .catch((preloadOrFetchError) => {
-            clearTimeout(timer);
-            console.error(preloadOrFetchError, request);
-            // CACHE or FALLBACK
-            retrieveFromCache.then((responseFromCache) => {
-              resolveWithResponse(
-                responseFromCache || caches.match("/offline"),
-              );
-            });
-          });
-      }),
+        try {
+          const preloadResponse = await Promise.resolve(event.preloadResponse);
+          const responseFromPreloadOrFetch =
+            preloadResponse || (await fetch(request));
+
+          // NETWORK
+          // Save a copy of page to pages cache
+          clearTimeout(timer);
+          const copy = responseFromPreloadOrFetch.clone();
+          const pagesCache = await caches.open(pagesCacheName);
+          await pagesCache.put(request, copy);
+
+          return responseFromPreloadOrFetch;
+        } catch (error) {
+          console.error(error, request);
+
+          // CACHE or OFFLINE PAGE
+          clearTimeout(timer);
+          const responseFromCache = await retrieveFromCache;
+          return responseFromCache || caches.match("/offline");
+        }
+      })(),
     );
+
     return;
   }
 
   // For non-HTML requests, look in cache first, fall back to network
   event.respondWith(
-    retrieveFromCache.then((responseFromCache) => {
-      // CACHE
-      return (
-        responseFromCache ||
-        fetch(request)
-          .then((responseFromFetch) => {
-            // NETWORK
-            // If request is for an image, stash copy in image cache
-            if (/\.(jpe?g|png|gif|svg|webp)/.test(request.url)) {
-              const copy = responseFromFetch.clone();
-              try {
-                event.waitUntil(
-                  caches.open(imageCacheName).then((imagesCache) => {
-                    return imagesCache.put(request, copy);
-                  }),
-                );
-              } catch (error) {
-                console.error(error);
-              }
-            }
-            return responseFromFetch;
-          })
-          .catch((fetchError) => {
-            console.error(fetchError);
-            // FALLBACK
-            // Show an offline placeholder
-            if (/\.(jpe?g|png|gif|svg|webp)/.test(request.url)) {
-              return new Response(placeholderImage, {
-                headers: {
-                  "Content-Type": "image/svg+xml",
-                  "Cache-Control": "no-store",
-                },
-              });
-            }
-          })
-      );
-    }),
+    (async () => {
+      try {
+        const responseFromCache = await retrieveFromCache;
+
+        if (responseFromCache) {
+          // CACHE
+          return responseFromCache;
+        } else {
+          const responseFromFetch = await fetch(request);
+
+          // NETWORK
+          // If request is for an image, save a copy to images cache
+          if (/\.(jpe?g|png|gif|svg|webp)/.test(request.url)) {
+            const copy = responseFromFetch.clone();
+            const imagesCache = await caches.open(imageCacheName);
+            await imagesCache.put(request, copy);
+          }
+
+          return responseFromFetch;
+        }
+      } catch (error) {
+        console.error(error);
+
+        // OFFLINE IMAGE
+        if (/\.(jpe?g|png|gif|svg|webp)/.test(request.url)) {
+          return new Response(placeholderImage, {
+            headers: {
+              "Content-Type": "image/svg+xml",
+              "Cache-Control": "no-store",
+            },
+          });
+        }
+      }
+    })(),
   );
 });

@@ -5,6 +5,10 @@
   "homepage": {
     "title": "Välkommen!"
   },
+  "offline": {
+    "description": "Den här sidan kan inte visas eftersom du för närvarande är offline.",
+    "title": "Offline"
+  },
   "plugin": {
     "options": "Alternativ"
   },

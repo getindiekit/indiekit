@@ -5,6 +5,10 @@
   "homepage": {
     "title": "Bienvenue !"
   },
+  "offline": {
+    "description": "Cette page ne peut pas être affichée car vous êtes actuellement hors ligne.",
+    "title": "Hors ligne"
+  },
   "plugin": {
     "options": "Paramètres"
   },
