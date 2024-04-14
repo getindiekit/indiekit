@@ -10,14 +10,22 @@ export const get = async (request, response) => {
     name: application.name,
     icons: [
       {
-        src: "assets/app-icon-192.png",
+        src: "assets/app-icon-192-any.png",
         sizes: "192x192",
         type: "image/png",
+        purpose: "any",
       },
       {
-        src: "assets/app-icon-512.png",
+        src: "assets/app-icon-512-any.png",
         sizes: "512x512",
         type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "assets/app-icon-512-maskable.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
     shortcuts: getShortcuts(application, response),
