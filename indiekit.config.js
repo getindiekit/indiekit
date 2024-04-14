@@ -12,7 +12,7 @@ const config = {
       url: `https://${process.env.RAILWAY_STATIC_URL}`,
     }),
     name: "Indiekit Test Server",
-    themeColor: "#f70",
+    themeColor: process.env.THEME_COLOR,
     timeZone: process.env.TZ,
   },
   plugins: [
