@@ -9,6 +9,7 @@ export const get = async (request, response) => {
     $schema: "https://json.schemastore.org/web-manifest-combined.json",
     lang: application.locale,
     name: application.name,
+    scope: "/",
     icons: [
       {
         src: "assets/app-icon-192-any.png",
@@ -29,9 +30,12 @@ export const get = async (request, response) => {
         purpose: "maskable",
       },
     ],
-    shortcuts: getShortcuts(application, response),
+    display: "standalone",
+    start_url: "/?homescreen",
+    id: "/?homescreen",
     theme_color: getThemeColor(application.themeColor),
     background_color: getBackgroundColor(application.themeColor),
+    shortcuts: getShortcuts(application, response),
     ...(application.shareEndpoint && {
       share_target: {
         action: application.shareEndpoint,
