@@ -2,7 +2,7 @@
   {{- attributes(opts.attributes) }}>
   {{ icon(opts.icon | default("warning")) }}
   <strong class="warning-text__text">
-    <span class="-!-visually-hidden">{{ opts.iconFallbackText | default(__("warning")) }}</span>
+    {% if not opts.iconFallbackText %}<span class="-!-visually-hidden">{{ opts.iconFallbackText | default(__("warning")) }}</span>{% endif %}
     {{ opts.text | safe }}
   </strong>
 </div>

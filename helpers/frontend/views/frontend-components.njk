@@ -492,7 +492,13 @@
 <h2><code>warningText</code></h2>
 
 {{ warningText({
-  text: "Warning text"
+  text: "Warning"
+}) }}
+
+{{ warningText({
+  text: "With different icon (and without hidden ‘warning’ prefix)",
+  icon: "cross",
+  iconFallbackText: "false"
 }) }}
 
 <h2><code>widget</code></h2>
