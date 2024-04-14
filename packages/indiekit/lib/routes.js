@@ -6,6 +6,7 @@ import * as assetsController from "./controllers/assets.js";
 import * as feedController from "./controllers/feed.js";
 import * as homepageController from "./controllers/homepage.js";
 import * as manifestController from "./controllers/manifest.js";
+import * as offlineController from "./controllers/offline.js";
 import * as pluginController from "./controllers/plugin.js";
 import * as sessionController from "./controllers/session.js";
 import * as statusController from "./controllers/status.js";
@@ -50,6 +51,10 @@ export const routes = (indiekitConfig) => {
     "/assets/shortcut-icon-:size-:name.png",
     assetsController.getShortcutIcon,
   );
+
+  // Service worker
+  router.get("/serviceworker.js", offlineController.serviceworker);
+  router.get("/offline", offlineController.offline);
 
   // Plug-in assets
   for (const plugin of application.installedPlugins) {

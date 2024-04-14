@@ -1,5 +1,6 @@
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 import { Buffer } from "node:buffer";
+import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
 
@@ -38,6 +39,25 @@ export const decrypt = (hash, iv) => {
   ]);
 
   return decrypted.toString();
+};
+
+/**
+ * Get serviceworker.js and update asset versions
+ * @param {object} application - Application locals
+ * @returns {Promise<string>} - serviceworker.js file
+ */
+export const getServiceWorker = async (application) => {
+  try {
+    const filePath = require.resolve("@indiekit/frontend/lib/serviceworker.js");
+    let serviceworker = await readFile(filePath, { encoding: "utf8" });
+    serviceworker = serviceworker
+      .replace("APP_VERSION", application.version)
+      .replace("APP_CSS_PATH", application.cssPath)
+      .replace("APP_JS_PATH", application.jsPath);
+    return serviceworker;
+  } catch (error) {
+    console.error(error.message);
+  }
 };
 
 /**

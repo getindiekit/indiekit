@@ -1,0 +1,9 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {{ warningText({
+    icon: "offline",
+    iconFallbackText: false,
+    text: __("offline.description")
+  }) | indent(2) }}
+{% endblock %}

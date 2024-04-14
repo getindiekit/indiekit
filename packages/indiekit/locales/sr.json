@@ -5,6 +5,10 @@
   "homepage": {
     "title": "Dobrodošli!"
   },
+  "offline": {
+    "description": "Nije moguće prikazati ovu stranicu jer ste trenutno van mreže.",
+    "title": "Vanmrežne"
+  },
   "plugin": {
     "options": "Opcije"
   },

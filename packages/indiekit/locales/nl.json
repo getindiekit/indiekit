@@ -5,6 +5,10 @@
   "homepage": {
     "title": "Welkom!"
   },
+  "offline": {
+    "description": "Deze pagina kan niet worden weergegeven omdat je momenteel offline bent.",
+    "title": "Offline"
+  },
   "plugin": {
     "options": "Opties"
   },

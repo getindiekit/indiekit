@@ -5,6 +5,10 @@
   "homepage": {
     "title": "¡Bienvenido!"
   },
+  "offline": {
+    "description": "No se puede mostrar esta página porque estás desconectado actualmente.",
+    "title": "Sin conexión"
+  },
   "plugin": {
     "options": "Opciones"
   },

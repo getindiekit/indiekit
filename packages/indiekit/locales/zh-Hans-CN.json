@@ -5,6 +5,10 @@
   "homepage": {
     "title": "欢迎！"
   },
+  "offline": {
+    "description": "无法显示此页面，因为您当前处于脱机状态。",
+    "title": "离线"
+  },
   "plugin": {
     "options": "选项"
   },

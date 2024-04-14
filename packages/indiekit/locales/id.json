@@ -5,6 +5,10 @@
   "homepage": {
     "title": "Selamat datang!"
   },
+  "offline": {
+    "description": "Halaman ini tidak dapat ditampilkan karena Anda sedang offline.",
+    "title": "Luring"
+  },
   "plugin": {
     "options": "Pilihan"
   },
