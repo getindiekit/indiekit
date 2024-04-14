@@ -33,8 +33,8 @@ export const locals = (indiekitConfig) =>
       application.url = application.url || getUrl(request);
 
       // Asset paths
-      application.jsPath = `${application.url}/assets/app-${jsHash}.js`;
-      application.cssPath = `${application.url}/assets/app-${cssHash}.css`;
+      application.jsPath = `/assets/app-${jsHash}.js`;
+      application.cssPath = `/assets/app-${cssHash}.css`;
 
       // Application navigation
       // Only update if serving HTML to prevent wrong session link being shown
