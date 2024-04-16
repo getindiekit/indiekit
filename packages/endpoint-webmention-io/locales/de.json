@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "mit einem Lesezeichen versehen %s",
+      "in-reply-to": "antwortete auf %s",
+      "like-of": "gemocht %s",
+      "mention-of": "erwähnt %s",
+      "repost-of": "neu gepostet %s",
+      "rsvp": "antwortete auf %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "Keine Webmentions"
+    }
+  }
+}

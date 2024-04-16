@@ -17,6 +17,7 @@ const config = {
   plugins: [
     "@indiekit-test/frontend",
     "@indiekit/endpoint-json-feed",
+    "@indiekit/endpoint-webmention-io",
     "@indiekit/post-type-audio",
     "@indiekit/post-type-event",
     "@indiekit/post-type-jam",

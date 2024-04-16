@@ -1,0 +1,25 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {%- if webmentions.length > 0 %}
+  {% for item in webmentions %}
+    {{ mention({
+      user: {
+        avatar: item.user.avatar,
+        meta: __("webmention-io.mention." + item["wm-property"], item["wm-target"]) | urlize,
+        name: item.user.name
+      },
+      mention: {
+        title: item.title,
+        icon: item.icon,
+        description: item.description if item.description.html,
+        permalink: item.url,
+        published: item.published
+      }
+    }) | indent(6) }}
+  {% endfor %}
+  {{ pagination(cursor) }}
+  {%- else -%}
+  {{ prose({ text: __("webmention-io.webmentions.none") }) }}
+  {%- endif %}
+{% endblock %}

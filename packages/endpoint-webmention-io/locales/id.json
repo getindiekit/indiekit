@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "ditandai %s",
+      "in-reply-to": "menjawab %s",
+      "like-of": "suka %s",
+      "mention-of": "disebutkan %s",
+      "repost-of": "diposting ulang %s",
+      "rsvp": "menanggapi %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "Tidak ada webmentions"
+    }
+  }
+}

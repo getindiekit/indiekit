@@ -1,0 +1,45 @@
+{
+  "name": "@indiekit/endpoint-webmention-io",
+  "version": "1.0.0-beta.19",
+  "description": "Webmention.io endpoint for Indiekit. View webmentions collected by the Webmention.io service.",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "webmention"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "lib",
+    "locales",
+    "views",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/endpoint-webmention-io"
+  },
+  "dependencies": {
+    "@indiekit/error": "^1.0.0-beta.15",
+    "express": "^4.17.1",
+    "sanitize-html": "^2.14.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "bokmärkt %s",
+      "in-reply-to": "svarade på %s",
+      "like-of": "gillade %s",
+      "mention-of": "nämns %s",
+      "repost-of": "ompostat %s",
+      "rsvp": "svarade på %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "Inga webmentions"
+    }
+  }
+}

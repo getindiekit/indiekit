@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "gemarkeerd als bladwijzer %s",
+      "in-reply-to": "antwoordde op %s",
+      "like-of": "vond leuk %s",
+      "mention-of": "genoemd %s",
+      "repost-of": "opnieuw gepost %s",
+      "rsvp": "reageerde op %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "Geen webmentions"
+    }
+  }
+}

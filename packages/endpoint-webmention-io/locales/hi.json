@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "बुकमार्क किया हुआ %s",
+      "in-reply-to": "को जवाब दिया %s",
+      "like-of": "पसंद आया %s",
+      "mention-of": "उल्लेख किया %s",
+      "repost-of": "फिर से पोस्ट किया गया %s",
+      "rsvp": "को जवाब दिया %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "%s webmentions"
+    }
+  }
+}

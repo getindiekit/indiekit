@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "obeležen %s",
+      "in-reply-to": "odgovorio na %s",
+      "like-of": "svidelo se %s",
+      "mention-of": "pomenuto %s",
+      "repost-of": "ponovo objavljeno %s",
+      "rsvp": "odgovorio na %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "Nema webmentions"
+    }
+  }
+}
