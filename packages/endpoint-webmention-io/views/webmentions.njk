@@ -1,0 +1,13 @@
+{% extends "document.njk" %}
+
+{% block content %}
+  {%- if webmentions.length > 0 %}
+  {{ cardGrid({
+    cardSize: "100%",
+    items: webmentions
+  }) }}
+  {{ pagination(cursor) }}
+  {%- else -%}
+  {{ prose({ text: __("webmention-io.webmentions.none") }) }}
+  {%- endif %}
+{% endblock %}
