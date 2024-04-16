@@ -77,7 +77,7 @@ title: Lunchtime
       `---
 date: 2020-02-02
 title: What I had for lunch
-excerpt: A very satisfactory meal.
+summary: A very satisfactory meal.
 category:
   - lunch
   - food

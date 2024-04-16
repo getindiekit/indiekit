@@ -37,7 +37,6 @@ const getFrontMatter = (properties) => {
   properties = {
     date: properties.published,
     ...(properties.name && { title: properties.name }),
-    ...(properties.summary && { excerpt: properties.summary }),
     ...properties,
   };
 
@@ -55,7 +54,6 @@ const getFrontMatter = (properties) => {
   delete properties.name; // Use `title`
   delete properties.post_status; // Use `published`
   delete properties.slug; // File path dictates slug
-  delete properties.summary; // Use `excerpt`
   delete properties.type; // Not required
   delete properties.url; // Not required
 
