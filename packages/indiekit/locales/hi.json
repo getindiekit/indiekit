@@ -1,0 +1,104 @@
+{
+  "guidance": {
+    "discovery": "ताकि %s Micropub क्लाइंट द्वारा खोजा जा सके और अपनी वेबसाइट पर पोस्ट करने की अनुमति का अनुरोध कर सकें, अपनी वेबसाइट के में निम्न मान जोड़ें `<head>`:"
+  },
+  "homepage": {
+    "title": "आपका स्वागत है!"
+  },
+  "offline": {
+    "description": "यह पेज प्रदर्शित नहीं किया जा सकता क्योंकि आप वर्तमान में ऑफ़लाइन हैं।",
+    "title": "ऑफ़लाइन"
+  },
+  "plugin": {
+    "options": "ऑप्शंस"
+  },
+  "scope": {
+    "block": {
+      "label": "उपयोगकर्ताओं को ब्लॉक करें"
+    },
+    "channels": {
+      "label": "चैनल मैनेज करें"
+    },
+    "create": {
+      "label": "पोस्ट बनाएं"
+    },
+    "delete": {
+      "label": "पोस्ट और मीडिया डिलीट करें"
+    },
+    "draft": {
+      "label": "केवल ड्राफ़्ट पोस्ट बनाएं और अपडेट करें"
+    },
+    "email": {
+      "label": "ईमेल पता"
+    },
+    "follow": {
+      "label": "फ़ॉलोइंग सूची प्रबंधित करें"
+    },
+    "label": "अनुरोधित अनुमतियां",
+    "media": {
+      "label": "मीडिया अपलोड करें"
+    },
+    "mute": {
+      "label": "उपयोगकर्ताओं को म्यूट करें"
+    },
+    "none": {
+      "label": "आपके पास प्रकाशन की कोई अनुमति नहीं है"
+    },
+    "notSupported": {
+      "hint": "समर्थित नहीं"
+    },
+    "profile": {
+      "label": "प्रोफ़ाइल की जानकारी"
+    },
+    "read": {
+      "label": "चैनल पढ़ें"
+    },
+    "update": {
+      "label": "पोस्ट अपडेट करें"
+    }
+  },
+  "session": {
+    "login": {
+      "description": "यह सत्यापित करने के लिए साइन इन करें कि आप अपने स्वामी हैं %s",
+      "me": "वेब पता",
+      "submit": "जारी रखना",
+      "title": "साइन इन करें"
+    },
+    "logout": {
+      "title": "साइन आउट करें"
+    }
+  },
+  "status": {
+    "application": {
+      "accessToken": "ऐक्सेस टोकन",
+      "authorizationEndpoint": "ऑथराइज़ेशन एंडपॉइंट",
+      "installedPlugins": "इंस्टॉल किए गए प्लग-इन",
+      "locale": "भाषा",
+      "localeNotAvailable": "{{app}} का अभी तक {{locale}} में अनुवाद नहीं किया गया है",
+      "mediaEndpoint": "मीडिया एंडपॉइंट",
+      "micropubEndpoint": "Micropub एंडपॉइंट",
+      "name": "नाम",
+      "summaryTitle": "एप्लिकेशन सेटिंग",
+      "themeColor": "थीम का रंग",
+      "themeColorScheme": "थीम",
+      "themeColorSchemeValue": {
+        "automatic": "ऑटोमेटिक",
+        "dark": "डार्क",
+        "light": "लाइट"
+      },
+      "timeZone": "समय क्षेत्र",
+      "version": "वर्ज़न"
+    },
+    "publication": {
+      "locale": "भाषा",
+      "me": "वेब पता",
+      "mediaStore": "मीडिया स्टोर",
+      "postTypes": "पोस्ट के प्रकार",
+      "preset": "प्रीसेट",
+      "store": "कंटेंट स्टोर",
+      "summaryTitle": "प्रकाशन सेटिंग",
+      "syndicationTargets": "सिंडिकेशन टारगेट"
+    },
+    "title": "सर्वर की स्थिति"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "error": {
+      "mp-photo-alt": {
+        "empty": "इस फ़ोटो का विवरण दर्ज करें"
+      }
+    },
+    "form": {
+      "mp-photo-alt": {
+        "label": "सुलभ वर्णन"
+      },
+      "photo": {
+        "label": "फ़ोटोज़",
+        "name": "तस्वीर"
+      }
+    }
+  }
+}

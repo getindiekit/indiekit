@@ -16,6 +16,7 @@ export const defaultConfig = {
       "es",
       "es-419",
       "fr",
+      "hi",
       "id",
       "nl",
       "pl",

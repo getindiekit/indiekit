@@ -1,0 +1,60 @@
+{
+  "addAnother": {
+    "add": "एक और जोड़ें %s",
+    "delete": "डिलीट करें"
+  },
+  "backLink": {
+    "text": "पिछे"
+  },
+  "characterCount": {
+    "char": {
+      "one": "%s चरित्र",
+      "other": "%s अक्षर"
+    },
+    "word": {
+      "one": "%s शब्द",
+      "other": "%s शब्दों"
+    }
+  },
+  "error": "त्रुटि",
+  "errorSummary": {
+    "title": "एक समस्या है"
+  },
+  "fileInput": {
+    "uploadFile": "फ़ाइल अपलोड करें…",
+    "uploadingFile": "फ़ाइल अपलोड कर रहा है"
+  },
+  "geoInput": {
+    "denied": "मौज़ूदा स्थान का उपयोग करने की अनुमति प्राप्त करने में असमर्थ",
+    "failed": "मौज़ूदा स्थान पाने में असमर्थ",
+    "getCurrentPosition": "मौज़ूदा स्थान का उपयोग करें"
+  },
+  "important": "महत्वपूर्ण",
+  "noValue": "सेट नहीं किया गया",
+  "optionalValue": "(ऐच्छिक)",
+  "pagination": {
+    "defaultType": "रिजल्ट",
+    "item": "पेज %s",
+    "next": "अगला %s",
+    "page": "पृष्ठ",
+    "previous": "पिछला %s"
+  },
+  "skipLink": {
+    "text": "कॉन्टेंट पर जाएं"
+  },
+  "success": "सक्सेस",
+  "tagInput": {
+    "added": "{{tag}} {{name}} जोड़ा गया।",
+    "defaultTag": "टैग",
+    "defaultTags": "टैग्स",
+    "delete": "डिलीट करें {{tag}} {{name}}।",
+    "deleted": "{{tag}} {{name}} हटाए गए।",
+    "edit": "संपादित करें{{tag}}।",
+    "instruction": "{{list}} {{tags}}। नेविगेट करने के लिए बाएँ और दाएँ तीर कुंजियों का उपयोग करें, दर्ज करें या टैब बनाने, हटाने के लिए हटाएँ {{tags}}।",
+    "noneSelected": "नहीं {{tags}} चुना गया।",
+    "placeholder": "जोड़ें {{tags}}",
+    "selected": "{{tag}} {{name}} चयनित। संपादित करने के लिए एंटर दबाएँ, हटाने के लिए हटाएँ।",
+    "updated": "{{tag}} को अपडेट किया गया {{name}}।"
+  },
+  "warning": "चेतावनी"
+}
