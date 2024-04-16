@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Features
+
+* **endpoint-posts:** always hide advanced options when creating new post ([8a0e42c](https://github.com/getindiekit/indiekit/commit/8a0e42ca627a413b8ddc868d430d66885ec8843f))
+* **endpoint-posts:** remove editor height attributes ([860c8ef](https://github.com/getindiekit/indiekit/commit/860c8efefb526698a867794f013e499a5d616f44))
+* **endpoint-posts:** sanitize tag input ([50a3497](https://github.com/getindiekit/indiekit/commit/50a34977a7c821d8c8198684874d42020a037c70))
+* **endpoint-posts:** shortcut icon ([4969d37](https://github.com/getindiekit/indiekit/commit/4969d37d094c6c3834bf604626dd731455f38d45))
+
+
+
+
+
 # [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
 
 

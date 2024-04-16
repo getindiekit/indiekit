@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Bug Fixes
+
+* **indiekit:** remove database requirement check from shortcuts ([e6b2099](https://github.com/getindiekit/indiekit/commit/e6b209999dc714b913858c4fc674f95c6690cc76))
+
+
+### Features
+
+* **indiekit:** add theme_color and background_color to web app manifest ([b1ffaf5](https://github.com/getindiekit/indiekit/commit/b1ffaf5e9adfbca0f663123f30ec7887933ec0b3))
+* **indiekit:** maskable app icon ([6fabca3](https://github.com/getindiekit/indiekit/commit/6fabca31e08c9daae896bd35a8aec9367b736a8b))
+* **indiekit:** robots.txt ([e6bac12](https://github.com/getindiekit/indiekit/commit/e6bac12d05bb678f629171f82bbedc32b33fc96f))
+* **indiekit:** shortcut icons ([5229634](https://github.com/getindiekit/indiekit/commit/522963416d76da8d530e9c8af565aad794d1e8ff))
+* **indiekit:** update web app manifest ([da11b4f](https://github.com/getindiekit/indiekit/commit/da11b4fad126ceb793476e5ebefc5d0b3538f559))
+* **indiekit:** use service worker ([fac293a](https://github.com/getindiekit/indiekit/commit/fac293adb0450b2b62107355b7f75e9715ea08f1))
+
+
+
+
+
 # [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
 
 **Note:** Version bump only for package @indiekit/indiekit

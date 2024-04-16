@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Features
+
+* **endpoint-files:** add back link to file upload page ([acb0721](https://github.com/getindiekit/indiekit/commit/acb0721a35b7fdc8f88de14764d9ff4c3d87599c))
+* **endpoint-files:** shortcut icon ([8140b27](https://github.com/getindiekit/indiekit/commit/8140b27dd5033f5edfb69829e496f0ad71a10340))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 **Note:** Version bump only for package @indiekit/endpoint-files

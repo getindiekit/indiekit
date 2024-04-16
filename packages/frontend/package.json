@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/frontend",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "Frontend components for Indiekit",
   "keywords": [
     "express",

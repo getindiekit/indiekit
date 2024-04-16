@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Bug Fixes
+
+* **endpoint-media:** correctly remove original file extension ([f17ba2e](https://github.com/getindiekit/indiekit/commit/f17ba2e16dc2a1ff6d74e6604f7c55acf7feac0e))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 **Note:** Version bump only for package @indiekit/endpoint-media

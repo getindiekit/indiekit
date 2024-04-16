@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Bug Fixes
+
+* **post-type-video:** contain video within figure ([aa0d6ae](https://github.com/getindiekit/indiekit/commit/aa0d6ae77d4242cd974a64b284f616c6c4de2298))
+
+
+
+
+
 # [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
 
 

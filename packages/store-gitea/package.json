@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-gitea",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.14",
   "description": "Gitea content store adaptor for Indiekit",
   "keywords": [
     "indiekit",

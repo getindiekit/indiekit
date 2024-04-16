@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Bug Fixes
+
+* **endpoint-media:** correctly remove original file extension ([f17ba2e](https://github.com/getindiekit/indiekit/commit/f17ba2e16dc2a1ff6d74e6604f7c55acf7feac0e))
+* **frontend:** increase size of logo in maskable icon ([b48c3db](https://github.com/getindiekit/indiekit/commit/b48c3db9244beab7fd028f8724519ad6fb07be0b))
+* **frontend:** only resize share preview when parent form ([c071059](https://github.com/getindiekit/indiekit/commit/c07105990049f133a03ac2ae58caf30e1e69b7d1))
+* **frontend:** style misspelt words in markdown editor ([e4fb607](https://github.com/getindiekit/indiekit/commit/e4fb607fe7a253945ac7672131caee1feac0d8f0))
+* **frontend:** svg icons with titles should be focusable ([cc5fde9](https://github.com/getindiekit/indiekit/commit/cc5fde9f4187deb2dda18b5155df8d59e17ae034))
+* **frontend:** use explicit image dimensions ([5800028](https://github.com/getindiekit/indiekit/commit/5800028e953bf4d551687b5d19fcd8ae768e87b1))
+* **indiekit:** remove database requirement check from shortcuts ([e6b2099](https://github.com/getindiekit/indiekit/commit/e6b209999dc714b913858c4fc674f95c6690cc76))
+* **post-type-audio:** contain audio within figure ([18162c5](https://github.com/getindiekit/indiekit/commit/18162c57d9bfc15626bf5d45d59e479c947e94ed))
+* **post-type-photo:** contain photo within figure ([34a506f](https://github.com/getindiekit/indiekit/commit/34a506fe0bc8c03f4cc32a8d982e3013705451c5))
+* **post-type-video:** contain video within figure ([aa0d6ae](https://github.com/getindiekit/indiekit/commit/aa0d6ae77d4242cd974a64b284f616c6c4de2298))
+
+
+### Features
+
+* **endpoint-files:** add back link to file upload page ([acb0721](https://github.com/getindiekit/indiekit/commit/acb0721a35b7fdc8f88de14764d9ff4c3d87599c))
+* **endpoint-files:** shortcut icon ([8140b27](https://github.com/getindiekit/indiekit/commit/8140b27dd5033f5edfb69829e496f0ad71a10340))
+* **endpoint-posts:** always hide advanced options when creating new post ([8a0e42c](https://github.com/getindiekit/indiekit/commit/8a0e42ca627a413b8ddc868d430d66885ec8843f))
+* **endpoint-posts:** remove editor height attributes ([860c8ef](https://github.com/getindiekit/indiekit/commit/860c8efefb526698a867794f013e499a5d616f44))
+* **endpoint-posts:** sanitize tag input ([50a3497](https://github.com/getindiekit/indiekit/commit/50a34977a7c821d8c8198684874d42020a037c70))
+* **endpoint-posts:** shortcut icon ([4969d37](https://github.com/getindiekit/indiekit/commit/4969d37d094c6c3834bf604626dd731455f38d45))
+* **frontend:** add icon option to warning component ([55c2c2f](https://github.com/getindiekit/indiekit/commit/55c2c2fbc1016e874f277c5bbf5a887a7787e021))
+* **frontend:** add sanitizer for tag input ([e0b47db](https://github.com/getindiekit/indiekit/commit/e0b47dbc6e553892cba8b08fad58880d8cd00b9a))
+* **frontend:** add shortcut icon function ([8d77a53](https://github.com/getindiekit/indiekit/commit/8d77a5314cefb846d58ce719dabd182ac56fb12b))
+* **frontend:** create a new tag when comma key pressed ([08906d1](https://github.com/getindiekit/indiekit/commit/08906d1136ebdd9470afcec5e0d63375a3abca70))
+* **frontend:** export theme color helpers ([5322184](https://github.com/getindiekit/indiekit/commit/5322184f2ec4740804c8f91ea7981da6a25cc611))
+* **frontend:** increase font size of actions component ([a9b3415](https://github.com/getindiekit/indiekit/commit/a9b3415fb6ab8881ecb93583f53bd25b4b09bc1c))
+* **frontend:** move actions below heading ([14aa3e1](https://github.com/getindiekit/indiekit/commit/14aa3e11ac6c0f58bc9d06569066d3f358432055))
+* **frontend:** offline icon ([0c0d9d6](https://github.com/getindiekit/indiekit/commit/0c0d9d615ca09d8b072d4fd3a0e71c92d294215b))
+* **frontend:** option to not show hidden prefix for warning text ([2a66c36](https://github.com/getindiekit/indiekit/commit/2a66c36782aa80e8c5c1d4439753b94350ea9657))
+* **frontend:** service worker ([799134c](https://github.com/getindiekit/indiekit/commit/799134c4dc996c0f24b600e282d0febaef39ec50))
+* **frontend:** update app icon function to take purpose ([7bc22c6](https://github.com/getindiekit/indiekit/commit/7bc22c6c622f727d9bcb7ccaceba798228799701))
+* **frontend:** update path to apple-touch-icon ([aea2f54](https://github.com/getindiekit/indiekit/commit/aea2f540c6834b0339f190202f53803745e26e8d))
+* **frontend:** use fixed min, not customisable max height for markdown editor ([3af3cfa](https://github.com/getindiekit/indiekit/commit/3af3cfa67c8feadd9a45c43283e52bb483bd0fd9))
+* **frontend:** use theme color based on color scheme ([c66b7a3](https://github.com/getindiekit/indiekit/commit/c66b7a39cf0a5ee854717a1403958d8ae2c88a8a))
+* **indiekit:** add theme_color and background_color to web app manifest ([b1ffaf5](https://github.com/getindiekit/indiekit/commit/b1ffaf5e9adfbca0f663123f30ec7887933ec0b3))
+* **indiekit:** maskable app icon ([6fabca3](https://github.com/getindiekit/indiekit/commit/6fabca31e08c9daae896bd35a8aec9367b736a8b))
+* **indiekit:** robots.txt ([e6bac12](https://github.com/getindiekit/indiekit/commit/e6bac12d05bb678f629171f82bbedc32b33fc96f))
+* **indiekit:** shortcut icons ([5229634](https://github.com/getindiekit/indiekit/commit/522963416d76da8d530e9c8af565aad794d1e8ff))
+* **indiekit:** update web app manifest ([da11b4f](https://github.com/getindiekit/indiekit/commit/da11b4fad126ceb793476e5ebefc5d0b3538f559))
+* **indiekit:** use service worker ([fac293a](https://github.com/getindiekit/indiekit/commit/fac293adb0450b2b62107355b7f75e9715ea08f1))
+
+
+
+
+
 # [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
 
 

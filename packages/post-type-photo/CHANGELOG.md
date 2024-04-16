@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
+
+
+### Bug Fixes
+
+* **post-type-photo:** contain photo within figure ([34a506f](https://github.com/getindiekit/indiekit/commit/34a506fe0bc8c03f4cc32a8d982e3013705451c5))
+
+
+
+
+
 # [1.0.0-beta.13](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2024-04-10)
 
 
