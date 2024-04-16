@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "已加入书签 %s",
+      "in-reply-to": "回复了 %s",
+      "like-of": "喜欢 %s",
+      "mention-of": "提到 %s",
+      "repost-of": "重新发布了 %s",
+      "rsvp": "回复了 %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "没有 webmentions"
+    }
+  }
+}

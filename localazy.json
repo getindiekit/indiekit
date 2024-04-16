@@ -28,6 +28,12 @@
       },
       {
         "file": "en.json",
+        "path": "packages/endpoint-webmention-io/locales",
+        "pattern": "packages/endpoint-webmention-io/locales/en.json",
+        "module": "endpoint-webmention-io"
+      },
+      {
+        "file": "en.json",
         "path": "packages/error/locales",
         "pattern": "packages/error/locales/en.json",
         "module": "error"

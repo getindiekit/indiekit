@@ -63,5 +63,8 @@ export const testConfig = async (options) => {
       user: "username",
       accessToken: "abcd1234",
     },
+    "@indiekit/endpoint-webmention-io": {
+      token: "abcd1234",
+    },
   };
 };
