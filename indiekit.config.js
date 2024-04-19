@@ -13,7 +13,7 @@ const config = {
     }),
     name: "Indiekit Test Server",
     themeColor: process.env.THEME_COLOR,
-    timeZone: process.env.TZ,
+    timeZone: "Europe/London",
   },
   plugins: [
     "@indiekit-test/frontend",
