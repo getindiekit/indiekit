@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
+
+
+### Features
+
+* add Hindi localisation from Sesa Malinda ([3fb8e5c](https://github.com/getindiekit/indiekit/commit/3fb8e5c619ae73a4820e3a61b320472e70e403d7))
+* **post-type-photo:** increase rows for photo description ([a1023cc](https://github.com/getindiekit/indiekit/commit/a1023ccabca4b637c9003c9dd0de1d17d029e06f))
+
+
+
+
+
 # [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
 
 

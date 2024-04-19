@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-media",
-  "version": "1.0.0-beta.14",
+  "version": "1.0.0-beta.15",
   "description": "Micropub media endpoint for Indiekit. Enables publishing media files (audio, photos, videos) to your website using the Micropub protocol.",
   "keywords": [
     "indiekit",
@@ -33,8 +33,8 @@
     "directory": "packages/endpoint-media"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.12",
-    "@indiekit/util": "^1.0.0-beta.10",
+    "@indiekit/error": "^1.0.0-beta.15",
+    "@indiekit/util": "^1.0.0-beta.15",
     "deepmerge": "^4.3.1",
     "express": "^4.17.1",
     "file-type": "^19.0.0",

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
+
+
+### Bug Fixes
+
+* **frontend:** fix textarea shift on focus ([8ea2cbf](https://github.com/getindiekit/indiekit/commit/8ea2cbf48742c42c8bd6731688e85c98e9395408))
+* **frontend:** move error message before tag input ([4e7dd1d](https://github.com/getindiekit/indiekit/commit/4e7dd1db6844df64872edefafff901bb4ad62bed))
+* **frontend:** replace hard-coded media endpoint with value provided in attribute ([f4f72f2](https://github.com/getindiekit/indiekit/commit/f4f72f285a3f98ca83a28e33a5b25ffdd4951451))
+
+
+### Features
+
+* add Hindi localisation from Sesa Malinda ([3fb8e5c](https://github.com/getindiekit/indiekit/commit/3fb8e5c619ae73a4820e3a61b320472e70e403d7))
+* pass timeZone to date format filter ([4a7a08b](https://github.com/getindiekit/indiekit/commit/4a7a08bb61e4afd871d201d991b5a3684b528df9))
+
+
+
+
+
 # [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
 
 

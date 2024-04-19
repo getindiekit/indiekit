@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
+
+
+### Bug Fixes
+
+* **preset-jekyll:** remove incorrect use of excerpt property ([c1e3c5f](https://github.com/getindiekit/indiekit/commit/c1e3c5f2b848cf5e7d7ca1d0cbd9eb0c81dfbe62))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 **Note:** Version bump only for package @indiekit/preset-jekyll

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
+
+
+### Bug Fixes
+
+* **endpoint-posts:** add media endpoint to markdown editors ([84db24f](https://github.com/getindiekit/indiekit/commit/84db24fb4f647a49627a31b30a7188f06f71cdb5))
+* **endpoint-posts:** remove image value from post form data ([2139877](https://github.com/getindiekit/indiekit/commit/2139877b4710d3c31c2dcdf6a45396a41d750227))
+
+
+### Features
+
+* add Hindi localisation from Sesa Malinda ([3fb8e5c](https://github.com/getindiekit/indiekit/commit/3fb8e5c619ae73a4820e3a61b320472e70e403d7))
+* **endpoint-posts:** keep radio options when editing published date ([b2bce8d](https://github.com/getindiekit/indiekit/commit/b2bce8d0b428e36ea4a103165c8e2d4d73845a34))
+* **endpoint-posts:** update formatting for published date ([a48a039](https://github.com/getindiekit/indiekit/commit/a48a039abedb32cde1a7485601d04aa86362812c))
+* pass timeZone to date format filter ([4a7a08b](https://github.com/getindiekit/indiekit/commit/4a7a08bb61e4afd871d201d991b5a3684b528df9))
+
+
+
+
+
 # [1.0.0-beta.14](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2024-04-16)
 
 

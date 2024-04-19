@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** show password validation without tripping up on scope ([9f4810c](https://github.com/getindiekit/indiekit/commit/9f4810cb651edc131f2c474d380efde0196ab7ae))
+
+
+### Features
+
+* add Hindi localisation from Sesa Malinda ([3fb8e5c](https://github.com/getindiekit/indiekit/commit/3fb8e5c619ae73a4820e3a61b320472e70e403d7))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2024-04-09)
 
 **Note:** Version bump only for package @indiekit/endpoint-auth
