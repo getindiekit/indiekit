@@ -1,6 +1,6 @@
 {
   "name": "create-indiekit",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.16",
   "description": "Get started with Indiekit",
   "keywords": [
     "express",
@@ -44,7 +44,7 @@
     "@indiekit/store-gitea": "^1.0.0-beta.15",
     "@indiekit/store-github": "^1.0.0-beta.15",
     "@indiekit/store-gitlab": "^1.0.0-beta.15",
-    "@indiekit/syndicator-mastodon": "^1.0.0-beta.15",
+    "@indiekit/syndicator-mastodon": "^1.0.0-beta.16",
     "base-create": "^3.0.7",
     "chalk": "^5.0.0",
     "prompts": "^2.4.2",

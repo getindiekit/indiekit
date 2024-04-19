@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/frontend",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.16",
   "description": "Frontend components for Indiekit",
   "keywords": [
     "express",
@@ -38,7 +38,7 @@
   "dependencies": {
     "@accessible-components/tag-input": "^0.2.0",
     "@indiekit/error": "^1.0.0-beta.15",
-    "@indiekit/util": "^1.0.0-beta.15",
+    "@indiekit/util": "^1.0.0-beta.16",
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "color": "^4.0.1",

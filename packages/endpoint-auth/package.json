@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-auth",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.16",
   "description": "IndieAuth authentication and authorization endpoint for Indiekit. Grants and verifies access tokens and authenticates users.",
   "keywords": [
     "indiekit",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.15",
-    "@indiekit/util": "^1.0.0-beta.15",
+    "@indiekit/util": "^1.0.0-beta.16",
     "bcrypt": "^5.1.0",
     "express": "^4.17.1",
     "express-validator": "^7.0.0",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2024-04-19)
+
+
+### Bug Fixes
+
+* pass timeZone to date format filter ([3202fe9](https://github.com/getindiekit/indiekit/commit/3202fe9a53f2ada93c8266ce5303738f8a1fff6a))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/endpoint-micropub
