@@ -37,10 +37,12 @@ const getButtonSvg = (name) => {
 export const TextareaFieldComponent = class extends HTMLElement {
   connectedCallback() {
     this.editor = this.getAttribute("editor");
+
     if (this.editor !== "") {
       return;
     }
 
+    this.editorEndpoint = this.getAttribute("editor-endpoint");
     this.editorId = this.getAttribute("editor-id");
     this.editorImageUpload = this.getAttribute("editor-image-upload");
     this.editorLocale = this.getAttribute("editor-locale");
@@ -91,6 +93,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
         italic: "_",
       },
       element: this.$textarea,
+      imageUploadEndpoint: this.editorEndpoint,
       imageUploadFunction: this.uploadFile,
       minHeight: "6rem",
       previewClass: ["editor-preview", "s-flow"],
@@ -150,7 +153,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
     formData.append("file", file);
 
     try {
-      const endpointResponse = await fetch("http://localhost:3000/media", {
+      const endpointResponse = await fetch(this.options.imageUploadEndpoint, {
         method: "POST",
         body: formData,
       });
