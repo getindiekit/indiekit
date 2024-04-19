@@ -9,6 +9,6 @@
     <output for="{{ opts.url.for }}" data-placeholder="{{ opts.url.placeholder }}">{{ opts.url.value }}</output>
   </p>
   <p class="share-preview__date">
-    <time>{{ opts.date | date("PPPppp", { locale: opts.locale }) }}</time>
+    <time>{{ opts.date | date("PPPppp", { locale: opts.locale, timeZone: application.timeZone }) }}</time>
   </p>
 </share-preview>

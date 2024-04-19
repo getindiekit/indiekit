@@ -37,7 +37,7 @@
       name: "publication-date",
       values: fieldData("publication-date").value,
       items: [{
-        label: __("posts.form.published.now") if postStatus !== "published" else fieldData("published").value | date("PPPppp", { locale: opts.locale }),
+        label: __("posts.form.published.now") if postStatus !== "published" else fieldData("published").value | date("PPPppp", { locale: opts.locale, timeZone: application.timeZone }),
         value: "now",
         checked: true
       }, {

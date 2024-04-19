@@ -2,8 +2,8 @@
 {%- set endFormat = "PPp" if properties.end | includes("T") else "PP" -%}
 {%- set html -%}
   {{ icon("event") }}
-  {{- property | date(startFormat, { locale: opts.locale }) -}}
-  {{- " – " + properties.end | date(endFormat, { locale: opts.locale }) if properties.end -}}
+  {{- property | date(startFormat, { locale: opts.locale, timeZone: application.timeZone }) -}}
+  {{- " – " + properties.end | date(endFormat, { locale: opts.locale, timeZone: application.timeZone }) if properties.end -}}
 {%- endset -%}
 {{- prose({
   classes: "prose--caption",
