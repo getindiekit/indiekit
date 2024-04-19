@@ -2,6 +2,7 @@ import TagInput from "@accessible-components/tag-input";
 
 export const TagInputFieldComponent = class extends HTMLElement {
   connectedCallback() {
+    this.$errorMessage = this.querySelector(".error-message");
     this.$hint = this.querySelector(".hint");
     this.$replacedLabel = this.querySelector(".label");
     this.$replacedInput = this.querySelector(".input");
@@ -28,6 +29,10 @@ export const TagInputFieldComponent = class extends HTMLElement {
 
     if (this.$hint) {
       this.insertBefore(this.$hint, this.querySelector(".tag-input"));
+    }
+
+    if (this.$errorMessage) {
+      this.insertBefore(this.$errorMessage, this.querySelector(".tag-input"));
     }
 
     this.querySelector(".tag-input-label").classList.add("label");
