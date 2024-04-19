@@ -39,6 +39,7 @@ export const dateTokens = [
  * @param {object} [options] - Options
  * @param {string} [options.locale] - Locale
  * @param {string} [options.timeZone] - Time zone
+ * @param {boolean} [options.useAdditionalDayOfYearTokens] - Allows day of year tokens
  * @returns {string} Formatted date
  */
 export const formatDate = (string, tokens, options = {}) => {

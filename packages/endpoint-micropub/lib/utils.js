@@ -88,7 +88,8 @@ export const renderPath = async (path, properties, application) => {
 
   // Add date tokens
   for (const dateToken of dateTokens) {
-    tokens[dateToken] = formatDate(properties.published, dateToken, locale, {
+    tokens[dateToken] = formatDate(properties.published, dateToken, {
+      locale,
       timeZone: timeZone === "server" ? serverTimeZone : timeZone,
       useAdditionalDayOfYearTokens: true,
     });
