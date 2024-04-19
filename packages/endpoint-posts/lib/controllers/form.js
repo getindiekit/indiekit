@@ -92,6 +92,9 @@ export const formController = {
       delete values.postType;
       delete values["publication-date"];
 
+      // Easy MDE appends `image` value to formData for last image uploaded
+      delete values.image;
+
       const mf2 = jf2ToMf2({ properties: sanitise(values) });
 
       let jsonBody = mf2;
