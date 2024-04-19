@@ -3,12 +3,16 @@
   classes: "fieldset--group"
 }) %}
   {{ fileInput({
+    field: {
+      attributes: {
+        endpoint: application.mediaEndpoint
+      }
+    },
     name: "photo[" + index + "][url]",
     type: "url",
     value: fieldData("photo[" + index + "].url").value,
     label: __("posts.form.media.label"),
     accept: "image/*",
-    uploadEndpoint: application.mediaEndpoint,
     attributes: {
       placeholder: "https://"
     },

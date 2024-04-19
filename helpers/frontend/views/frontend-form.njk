@@ -99,10 +99,14 @@
 
 {{ fileInput({
   errorMessage: { text: "File upload input error" } if errors,
+  field: {
+    attributes: {
+      endpoint: application.mediaEndpoint
+    }
+  },
   name: "file-input",
   label: "File upload input",
-  hint: "File upload input hint text",
-  uploadEndpoint: application.mediaEndpoint
+  hint: "File upload input hint text"
 }) }}
 
 {{ geoInput({

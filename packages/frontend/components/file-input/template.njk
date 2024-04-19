@@ -6,9 +6,9 @@
 {% call input({
   field: {
     element: "file-input-field",
-    attributes: {
-      "endpoint": opts.uploadEndpoint
-    }
+    classes: opts.field.classes,
+    attributes: opts.field.attributes,
+    errorMessage: opts.errorMessage
   },
   classes: classes("file-input__path", opts),
   id: id,
