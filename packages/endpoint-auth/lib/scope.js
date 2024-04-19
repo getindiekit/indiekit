@@ -22,13 +22,14 @@ export const supportedScopes = Object.entries(scopes)
 
 /**
  * Get `items` object for checkboxes component
- * @param {string} scope - Selected scope(s)
+ * @param {Array|string} scope - Selected scope(s)
  * @param {import("express").Response} response - Response
  * @returns {object} Items for checkboxes component
  */
 export function getScopeItems(scope, response) {
   const localisedScopes = Object.keys(scopes);
-  const requestedScopes = scope ? scope.split(" ") : [];
+  let requestedScopes = scope || [];
+  requestedScopes = typeof scope === "string" ? scope.split(" ") : scope;
 
   return requestedScopes.map((value) => ({
     label: localisedScopes.includes(value)
