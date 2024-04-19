@@ -13,13 +13,16 @@ import {
 describe("util/lib/date", () => {
   it("Formats a date", () => {
     assert.equal(formatDate("2019-11-30", "dd MMMM yyyy"), "30 November 2019");
-    assert.equal(formatDate("2019-11-30", "PPP", "en-GB"), "30 November 2019");
     assert.equal(
-      formatDate("2019-11-30", "PPP", "en-US"),
+      formatDate("2019-11-30", "PPP", { locale: "en-GB" }),
+      "30 November 2019",
+    );
+    assert.equal(
+      formatDate("2019-11-30", "PPP", { locale: "en-US" }),
       "November 30th, 2019",
     );
     assert.equal(
-      formatDate("2019-11-30", "PPP", "pt-BR"),
+      formatDate("2019-11-30", "PPP", { locale: "pt-BR" }),
       "30 de novembro de 2019",
     );
   });

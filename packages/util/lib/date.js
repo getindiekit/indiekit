@@ -36,16 +36,22 @@ export const dateTokens = [
  * Format a date
  * @param {string} string - ISO 8601 date
  * @param {string} tokens - Tokenised date format
- * @param {string} [locale] - Locale name
- * @param {import("date-fns-tz").OptionsWithTZ} [options] - Options
+ * @param {object} [options] - Options
+ * @param {string} [options.locale] - Locale
+ * @param {string} [options.timeZone] - Time zone
  * @returns {string} Formatted date
  */
-export const formatDate = (string, tokens, locale, options = {}) => {
-  locale = String(locale || "en").replace("-", "");
-  options.locale = locales[locale];
+export const formatDate = (string, tokens, options = {}) => {
+  const formattedLocale = String(options.locale || "en").replace("-", "");
+
+  // Convert options object to options expected for `FormatOptionsWithTZ`
+  const formatOptions = {
+    ...options,
+    ...(options.locale && { locale: locales[formattedLocale] }),
+  };
 
   const date = string === "now" ? new Date() : parseISO(string);
-  const dateTime = format(date, tokens, options);
+  const dateTime = format(date, tokens, formatOptions);
   return dateTime;
 };
 
