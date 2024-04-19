@@ -69,15 +69,15 @@
 
 {{ textarea({
   errorMessage: { text: "Richtext input error" } if errors,
-  name: "richtext",
-  label: "Richtext",
-  hint: "Richtext hint text",
   field: {
     attributes: {
       editor: true,
       "editor-endpoint": application.mediaEndpoint
     }
-  }
+  },
+  name: "richtext",
+  label: "Richtext",
+  hint: "Richtext hint text"
 }) }}
 
 {{ textarea({

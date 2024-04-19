@@ -5,6 +5,7 @@
 {% call input({
   field: {
     element: "geo-input-field",
+    classes: opts.field.classes,
     attributes: {
       "i18n-denied": __("geoInput.denied"),
       "i18n-failed": __("geoInput.failed")

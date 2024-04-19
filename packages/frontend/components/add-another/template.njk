@@ -9,10 +9,10 @@
 {%- set innerHtml %}{{ caller() if caller }}{% endset %}
 {% call field({
   element: "add-another",
+  classes: opts.field.classes,
   attributes: {
     id: id
-  },
-  errorMessage: opts.errorMessage
+  }
 }) %}
 {% if opts.fieldset %}
   {% call fieldset({
