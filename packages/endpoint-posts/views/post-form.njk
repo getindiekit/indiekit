@@ -37,7 +37,7 @@
       name: "publication-date",
       values: fieldData("publication-date").value,
       items: [{
-        label: __("posts.form.published.now"),
+        label: __("posts.form.published.now") if postStatus !== "published" else fieldData("published").value | date("PPPppp", { locale: opts.locale }),
         value: "now",
         checked: true
       }, {
@@ -50,13 +50,7 @@
           label: __("posts.form.published.label")
         })
       }]
-    }) if postStatus !== "published" else input({
-      classes: "input--width-10",
-      name: "published",
-      value: fieldData("published").value | localDate(application.timeZone),
-      type: "datetime-local",
-      label: __("posts.form.published.label")
-    }) | indent(4) }}
+    }) }}
 
     {{ radios({
       inline: true,
