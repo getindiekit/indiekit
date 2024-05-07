@@ -45,6 +45,14 @@
   &[type="time"] {
     min-block-size: 2.5rem;
     padding-block: 0.25rem;
+
+    &::-webkit-datetime-edit-year-field:focus,
+    &::-webkit-datetime-edit-month-field:focus,
+    &::-webkit-datetime-edit-day-field:focus,
+    &::-webkit-datetime-edit-hour-field:focus,
+    &::-webkit-datetime-edit-minute-field:focus {
+      background-color: var(--color-selection);
+    }
   }
 
   &[type="file"] {
