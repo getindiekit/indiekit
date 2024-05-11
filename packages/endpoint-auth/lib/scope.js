@@ -28,8 +28,7 @@ export const supportedScopes = Object.entries(scopes)
  */
 export function getScopeItems(scope, response) {
   const localisedScopes = Object.keys(scopes);
-  let requestedScopes = scope || [];
-  requestedScopes = typeof scope === "string" ? scope.split(" ") : scope;
+  const requestedScopes = typeof scope === "string" ? scope.split(" ") : scope;
 
   return requestedScopes.map((value) => ({
     label: localisedScopes.includes(value)

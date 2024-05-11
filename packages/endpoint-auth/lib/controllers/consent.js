@@ -27,12 +27,13 @@ export const consentController = {
           authType,
           me,
           redirect_uri,
-          scopeItems: getScopeItems(scope, response),
+          scopeItems: scope && getScopeItems(scope, response),
         });
       } else {
         response.redirect(request.baseUrl + "/new-password?setup=true");
       }
-    } catch {
+    } catch (error) {
+      console.error("ERROR", error);
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.invalidValue", "request_uri"),
       );
