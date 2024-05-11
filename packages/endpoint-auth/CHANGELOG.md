@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-05-11)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** authorization flow ([2f1da8e](https://github.com/getindiekit/indiekit/commit/2f1da8e5c29bde39e5a16380fe2a37b3710d151d))
+
+
+
+
+
 # [1.0.0-beta.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/endpoint-auth

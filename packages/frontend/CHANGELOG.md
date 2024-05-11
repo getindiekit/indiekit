@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-05-11)
+
+
+### Bug Fixes
+
+* **frontend:** date input focus background colour ([7722750](https://github.com/getindiekit/indiekit/commit/7722750e9319c91f3279ebc5e5a5fa62f19b65d6))
+* **frontend:** unset token header styles ([0617dc4](https://github.com/getindiekit/indiekit/commit/0617dc4255b297bdc2b337c3b89d30f3b7c9d28d))
+
+
+### Features
+
+* **frontend:** remove global letter spacing ([5f695c7](https://github.com/getindiekit/indiekit/commit/5f695c78ad94910782f59f8ffb9b6af48e47ca95))
+
+
+
+
+
 # [1.0.0-beta.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/frontend

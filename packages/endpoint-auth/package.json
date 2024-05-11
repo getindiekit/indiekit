@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-auth",
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "description": "IndieAuth authentication and authorization endpoint for Indiekit. Grants and verifies access tokens and authenticates users.",
   "keywords": [
     "indiekit",
