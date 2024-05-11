@@ -73,7 +73,7 @@
   font-style: italic;
 }
 
+/* Class clashes with that used by header component */
 .token.header {
-  background: none;
-  display: inline;
+  all: unset !important;
 }
