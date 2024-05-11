@@ -78,7 +78,7 @@
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jsdoc": "^48.0.0",
-    "eslint-plugin-unicorn": "^52.0.0",
+    "eslint-plugin-unicorn": "^53.0.0",
     "eslint-plugin-wc": "^2.1.0",
     "jsdom": "^24.0.0",
     "lint-staged": "^15.0.0",
