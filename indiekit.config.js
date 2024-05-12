@@ -26,6 +26,7 @@ const config = {
     "@indiekit/post-type-video",
     "@indiekit/preset-eleventy",
     "@indiekit/store-github",
+    "@indiekit/syndicator-bluesky",
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
   ],
@@ -99,6 +100,11 @@ const config = {
     region: process.env.S3_REGION,
     endpoint: process.env.S3_ENDPOINT,
     bucket: process.env.S3_BUCKET,
+  },
+  "@indiekit/syndicator-bluesky": {
+    checked: true,
+    handle: process.env.BLUESKY_HANDLE,
+    password: process.env.BLUESKY_PASSWORD,
   },
   "@indiekit/syndicator-internet-archive": {
     checked: false,
