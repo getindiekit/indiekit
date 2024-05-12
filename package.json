@@ -55,6 +55,7 @@
     "sharp": "^0.34.1"
   },
   "devDependencies": {
+    "@atproto/dev-env": "^0.3.115",
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
     "@indiekit-test/config": "*",

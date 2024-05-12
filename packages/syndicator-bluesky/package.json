@@ -1,0 +1,47 @@
+{
+  "name": "@indiekit/syndicator-bluesky",
+  "version": "1.0.0-beta.16",
+  "description": "Bluesky syndicator for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indiekit-plugin",
+    "indieweb",
+    "syndication",
+    "at-protocol",
+    "atproto"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "assets",
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/syndicator-bluesky"
+  },
+  "dependencies": {
+    "@atproto/api": "^0.14.16",
+    "@indiekit/error": "^1.0.0-beta.15",
+    "@indiekit/util": "^1.0.0-beta.16",
+    "brevity": "^0.2.9",
+    "html-to-text": "^9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
