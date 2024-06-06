@@ -1,6 +1,9 @@
+import makeDebug from "debug";
 import { IndiekitError } from "@indiekit/error";
 import { findBearerToken } from "../token.js";
 import { getPostData, syndicateToTargets } from "../utils.js";
+
+const debug = makeDebug(`indiekit:endpoint-syndicate:controllers:syndicate`);
 
 export const syndicateController = {
   async post(request, response, next) {
@@ -45,13 +48,14 @@ export const syndicateController = {
         });
       }
 
-      // Syndicate to targets
       const { failedTargets, syndicatedUrls } = await syndicateToTargets(
         publication,
         postData.properties,
       );
 
-      // Update post with syndicated URL(s) and remaining syndication target(s)
+      debug(
+        `update post with syndicated URL(s) and remaining syndication target(s)`,
+      );
       const micropubResponse = await fetch(application.micropubEndpoint, {
         method: "POST",
         headers: {
