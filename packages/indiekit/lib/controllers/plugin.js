@@ -1,5 +1,8 @@
 import path from "node:path";
+import makeDebug from "debug";
 import { getPackageData } from "../utils.js";
+
+const debug = makeDebug(`indiekit:controllers:plugin`);
 
 export const list = (request, response) => {
   const { application } = response.app.locals;
@@ -18,6 +21,7 @@ export const list = (request, response) => {
     return plugin;
   });
 
+  debug(`render view plugins/list (${plugins.length} plugins)`);
   response.render("plugins/list", {
     parent: {
       href: "/status/",
@@ -31,12 +35,14 @@ export const list = (request, response) => {
 export const view = (request, response) => {
   const { application } = response.app.locals;
   const { pluginId } = request.params;
+  debug(`view request.params %O`, request.params);
 
   const plugin = application.installedPlugins.find(
     (plugin) => plugin.id === pluginId,
   );
   plugin.package = getPackageData(plugin.filePath);
 
+  debug(`render view plugins/view (plugin ${plugin.name})`);
   response.render("plugins/view", {
     parent: {
       href: path.dirname(request.path),
