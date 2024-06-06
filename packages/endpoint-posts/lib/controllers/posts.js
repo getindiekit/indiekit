@@ -1,9 +1,12 @@
 import path from "node:path";
+import makeDebug from "debug";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import { endpoint } from "../endpoint.js";
 import { statusTypes } from "../status-types.js";
 import { getPostStatusBadges, getPostName, getPhotoUrl } from "../utils.js";
+
+const debug = makeDebug(`indiekit:endpoint-posts:controllers:posts`);
 
 /**
  * List published posts
@@ -63,6 +66,7 @@ export const postsController = async (request, response, next) => {
       };
     }
 
+    debug(`render view posts`);
     response.render("posts", {
       title: response.locals.__("posts.posts.title"),
       actions: [
