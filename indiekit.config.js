@@ -27,6 +27,7 @@ const config = {
     "@indiekit/preset-eleventy",
     "@indiekit/store-github",
     "@indiekit/syndicator-internet-archive",
+    "@indiekit/syndicator-linkedin",
     "@indiekit/syndicator-mastodon",
   ],
   publication: {

@@ -1,4 +1,5 @@
 import path from "node:path";
+import makeDebug from "debug";
 import express from "express";
 import { assetsPath } from "@indiekit/frontend";
 import rateLimit from "express-rate-limit";
@@ -12,7 +13,11 @@ import * as sessionController from "./controllers/session.js";
 import * as statusController from "./controllers/status.js";
 import { IndieAuth } from "./indieauth.js";
 
+const debug = makeDebug(`indiekit:routes`);
+
+debug(`instantiate Express router`);
 const router = express.Router();
+
 const limit = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 250,
@@ -82,10 +87,12 @@ export const routes = (indiekitConfig) => {
     // Currently used for endpoint-image which requires configuration values
     // to be passed on to express-sharp middleware
     if (endpoint.mountPath && endpoint._routes) {
+      debug(`mount _routes of ${endpoint.name} (rate-limited)`);
       router.use(endpoint.mountPath, limit, endpoint._routes(indiekitConfig));
     }
 
     if (endpoint.mountPath && endpoint.routesPublic) {
+      debug(`mount routesPublic of ${endpoint.name} (rate-limited)`);
       router.use(endpoint.mountPath, limit, endpoint.routesPublic);
     }
 
@@ -110,6 +117,7 @@ export const routes = (indiekitConfig) => {
   // Authenticated endpoints
   for (const endpoint of application.endpoints) {
     if (endpoint.mountPath && endpoint.routes) {
+      debug(`mount routes of ${endpoint.name} (rate-limited, require auth)`);
       router.use(endpoint.mountPath, limit, endpoint.routes);
     }
   }
