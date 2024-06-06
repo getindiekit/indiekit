@@ -1,11 +1,29 @@
 import process from "node:process";
 import { Buffer } from "node:buffer";
+import makeDebug from "debug";
 import { IndiekitError } from "@indiekit/error";
+
+const debug = makeDebug(`indiekit-store:github`);
 
 const defaults = {
   baseUrl: "https://api.github.com",
   branch: "main",
   token: process.env.GITHUB_TOKEN,
+};
+
+const crudErrorMessage = ({ error, operation, filePath, branch, repo }) => {
+  const summary = `Could not ${operation} file ${filePath} in repo ${repo}, branch ${branch}`;
+
+  const details = [
+    `Original error message: ${error.message}`,
+    `Ensure the GitHub token is not expired and has the necessary permissions`,
+    `You can check your tokens here: https://github.com/settings/tokens`,
+  ];
+  if (operation !== "create") {
+    details.push(`Ensure the file exists`);
+  }
+
+  return `${summary}. ${details.join(". ")}`;
 };
 
 export default class GithubStore {
@@ -100,11 +118,28 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(filePath, content, { message }) {
-    const createResponse = await this.#client(filePath, "PUT", {
-      branch: this.options.branch,
-      content: Buffer.from(content).toString("base64"),
-      message,
-    });
+    const { branch, repo } = this.options;
+
+    let createResponse;
+    try {
+      debug(`Try creating file ${filePath} in repo ${repo}, branch ${branch}`);
+      createResponse = await this.#client(filePath, "PUT", {
+        branch,
+        content: Buffer.from(content).toString("base64"),
+        message,
+      });
+      debug(`Created file ${filePath}`);
+    } catch (error) {
+      const message = crudErrorMessage({
+        error,
+        operation: "create",
+        filePath,
+        repo,
+        branch,
+      });
+      debug(message);
+      throw new Error(message);
+    }
 
     const file = await createResponse.json();
 
@@ -118,9 +153,24 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
    */
   async readFile(filePath) {
-    const readResponse = await this.#client(
-      `${filePath}?ref=${this.options.branch}`,
-    );
+    const { branch, repo } = this.options;
+
+    let readResponse;
+    try {
+      debug(`Try reading file ${filePath} in repo ${repo}, branch ${branch}`);
+      readResponse = await this.#client(`${filePath}?ref=${branch}`);
+    } catch (error) {
+      const message = crudErrorMessage({
+        error,
+        operation: "read",
+        filePath,
+        repo,
+        branch,
+      });
+      debug(message);
+      throw new Error(message);
+    }
+
     const { content } = await readResponse.json();
 
     return Buffer.from(content, "base64").toString("utf8");
@@ -137,22 +187,55 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async updateFile(filePath, content, { message, newPath }) {
-    const readResponse = await this.#client(
-      `${filePath}?ref=${this.options.branch}`,
-    );
+    const { branch, repo } = this.options;
+
+    let readResponse;
+    try {
+      debug(`Try reading file ${filePath} in repo ${repo}, branch ${branch}`);
+      readResponse = await this.#client(`${filePath}?ref=${branch}`);
+    } catch (error) {
+      const message = crudErrorMessage({
+        error,
+        operation: "read",
+        filePath,
+        repo,
+        branch,
+      });
+      debug(message);
+      throw new Error(message);
+    }
+
     const { sha } = await readResponse.json();
     const updateFilePath = newPath || filePath;
-    const updateResponse = await this.#client(updateFilePath, "PUT", {
-      branch: this.options.branch,
-      content: Buffer.from(content).toString("base64"),
-      message,
-      sha: sha || false,
-    });
+
+    let updateResponse;
+    try {
+      debug(`Try updating file ${filePath} in repo ${repo}, branch ${branch}`);
+      updateResponse = await this.#client(updateFilePath, "PUT", {
+        branch,
+        content: Buffer.from(content).toString("base64"),
+        message,
+        sha: sha || false,
+      });
+      debug(`Updated file ${filePath}`);
+    } catch (error) {
+      const message = crudErrorMessage({
+        error,
+        operation: "update",
+        filePath,
+        repo,
+        branch,
+      });
+      debug(message);
+      throw new Error(message);
+    }
 
     const file = await updateResponse.json();
 
     if (newPath) {
+      debug(`Try deleting file ${filePath} in repo ${repo}, branch ${branch}`);
       await this.deleteFile(filePath, { message });
+      debug(`Deleted file ${filePath}`);
     }
 
     return file.content.html_url;
@@ -167,21 +250,60 @@ export default class GithubStore {
    * @see {@link https://docs.github.com/en/rest/repos/contents#delete-a-file}
    */
   async deleteFile(filePath, { message }) {
-    const readResponse = await this.#client(
-      `${filePath}?ref=${this.options.branch}`,
-    );
+    const repo = this.options.repo;
+    const branch = this.options.branch;
+
+    let readResponse;
+    try {
+      debug(`Try reading file ${filePath} in repo ${repo}, branch ${branch}`);
+      readResponse = await this.#client(`${filePath}?ref=${branch}`);
+    } catch (error) {
+      const message = crudErrorMessage({
+        error,
+        operation: "read",
+        filePath,
+        repo,
+        branch,
+      });
+      debug(message);
+      throw new Error(message);
+    }
+
     const { sha } = await readResponse.json();
 
-    await this.#client(filePath, "DELETE", {
-      branch: this.options.branch,
-      message,
-      sha,
-    });
+    try {
+      debug(`Try deleting file ${filePath} in repo ${repo}, branch ${branch}`);
+      await this.#client(filePath, "DELETE", {
+        branch,
+        message,
+        sha,
+      });
+      debug(`Deleted file ${filePath}`);
+    } catch (error) {
+      const message = crudErrorMessage({
+        error,
+        operation: "delete",
+        filePath,
+        repo,
+        branch,
+      });
+      debug(message);
+      throw new Error(message);
+    }
 
     return true;
   }
 
   init(Indiekit) {
+    const required_configs = ["baseUrl", "branch", "repo", "token", "user"];
+    for (const required of required_configs) {
+      if (!this.options[required]) {
+        const message = `Could not initialize ${this.name}: ${required} not set. See https://www.npmjs.com/package/@indiekit/store-github for details.`;
+        debug(message);
+        console.error(message);
+        throw new Error(message);
+      }
+    }
     Indiekit.addStore(this);
   }
 }
