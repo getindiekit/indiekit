@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import process from "node:process";
+import makeDebug from "debug";
 import Keyv from "keyv";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
@@ -10,6 +11,8 @@ import { getInstalledPlugins } from "./lib/plugins.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 import { getMediaStore, getStore } from "./lib/store.js";
+
+const debug = makeDebug(`indiekit:index`);
 
 export const Indiekit = class {
   /**
@@ -54,10 +57,13 @@ export const Indiekit = class {
 
   addPreset(preset) {
     this.publication.preset = preset;
+    debug(`added ${preset.name}`);
   }
 
   addStore(store) {
+    // debug(`this.application.endpoints %O`, this.application.endpoints);
     this.application.stores.push(store);
+    debug(`added ${store.name}`);
   }
 
   addSyndicator(syndicator) {
@@ -66,9 +72,12 @@ export const Indiekit = class {
       ...this.publication.syndicationTargets,
       ...syndicator,
     ];
+    const names = this.publication.syndicationTargets.map((st) => st.name);
+    debug(`added ${names.length} syndication target/s: ${names.join(", ")}`);
   }
 
   async bootstrap() {
+    debug(`bootstrap - check for required configuration options`);
     // Check for required configuration options
     if (!this.publication.me) {
       console.error("No publication URL in configuration");
@@ -76,11 +85,12 @@ export const Indiekit = class {
       process.exit();
     }
 
-    // Connect to database client
-    const mongodbClient = await getMongodbClient(this.application.mongodbUrl);
+    const mongodbClientOrError = await getMongodbClient(
+      this.application.mongodbUrl,
+    );
 
-    if (mongodbClient?.client) {
-      this.client = mongodbClient.client;
+    if (mongodbClientOrError?.client) {
+      this.client = mongodbClientOrError.client;
 
       // Get database name from connection string
       let { databaseName } = this.client.db();
@@ -88,17 +98,19 @@ export const Indiekit = class {
       // If no database given, use ‘indiekit’ as default database, not ‘test’
       databaseName = databaseName === "test" ? "indiekit" : databaseName;
 
-      // Set database
+      debug(`bootstrap - connect to MongoDB database ${databaseName}`);
       const database = this.client.db(databaseName);
 
       this.application.hasDatabase = true;
       this.application.cache = new Keyv(this.application.mongodbUrl);
+      debug(`bootstrap - add database collection posts`);
       this.application.posts = database.collection("posts");
+      debug(`bootstrap - add database collection media`);
       this.application.media = database.collection("media");
     }
 
-    if (mongodbClient?.error) {
-      this.application._mongodbClientError = mongodbClient.error;
+    if (mongodbClientOrError?.error) {
+      this.application._mongodbClientError = mongodbClientOrError.error;
     }
 
     // Update application configuration
@@ -134,10 +146,13 @@ export const Indiekit = class {
     const app = expressConfig(config);
 
     const server = app.listen(port, () => {
+      debug(`start ${name} (v${version}) on port ${port}`);
       console.info(`Starting ${name} (v${version}) on port ${port}`);
     });
 
+    debug(`attach SIGINT handler`);
     process.on("SIGINT", () => this.stop(server, name));
+    debug(`attach SIGTERM handler`);
     process.on("SIGTERM", () => this.stop(server, name));
 
     return server;

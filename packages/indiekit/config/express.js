@@ -1,4 +1,5 @@
 import compression from "compression";
+import makeDebug from "debug";
 import express from "express";
 import fileUpload from "express-fileupload";
 import { templates } from "@indiekit/frontend";
@@ -10,12 +11,15 @@ import { logging } from "../lib/middleware/logging.js";
 import { routes } from "../lib/routes.js";
 import { views } from "../lib/views.js";
 
+const debug = makeDebug(`indiekit:express`);
+
 /**
  * @typedef {import("express").Application} Application
  * @param {object} indiekitConfig - Indiekit configuration
  * @returns {Application} Express application
  */
 export const expressConfig = (indiekitConfig) => {
+  debug(`create Express app`);
   const app = express();
 
   // Enable reversed proxy connections
@@ -23,6 +27,8 @@ export const expressConfig = (indiekitConfig) => {
 
   // Don’t advertise server details
   app.set("x-powered-by", false);
+
+  debug(`add middlewares`);
 
   // Body parsers
   app.use(express.json());
@@ -48,6 +54,7 @@ export const expressConfig = (indiekitConfig) => {
   app.use(logging);
 
   // Views
+  debug(`add view engine and templates`);
   app.set("views", views(indiekitConfig));
   app.engine("njk", templates(app).render);
   app.set("view engine", "njk");
@@ -56,6 +63,7 @@ export const expressConfig = (indiekitConfig) => {
   app.use(routes(indiekitConfig));
 
   // Handle errors
+  debug(`add error handling middlewares`);
   app.use(error.notFound, error.internalServer);
 
   return app;
