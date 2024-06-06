@@ -1,8 +1,10 @@
 # Setting up a local development environment
 
+To begin local development on the Indiekit project, clone this repository, configure a [content store](concepts#content-store), [publication preset](concepts#publication-preset) and [syndicator](concepts#syndication), and create a MongoDB database you can connect to.
+
 ## Project structure
 
-This project uses a monorepo structure, with concerns split into separate Node modules located in the `/packages` folder:
+The Indiekit project uses a monorepo structure, with concerns split into separate npm packages located in the `/packages` folder:
 
 | Module{width=200px} | Purpose |
 | :----- | :------ |
@@ -28,38 +30,122 @@ Plug-ins listed under the `plugins` array are then loaded and interrogated for k
 
 Express waits for a resolved configuration file before starting the server.
 
-## Running locally
+## MongoDB
 
-To run the server locally, first install its dependencies:
+Indiekit uses a MongoDB database for persistence. A convenient way to run MongoDB locally is to use [Docker Compose](https://docs.docker.com/compose/). Since the filesystem of a Docker container is ephemeral, you will need to create a [Docker volume](https://docs.docker.com/storage/volumes/). You can do this with the following docker command:
+
+```sh
+docker volume create mongo-data
+```
+
+Create a `docker-compose.yml` file that runs a service on an available port of your Docker host (e.g. 27018) and uses the Docker volume you have just created.
+
+```yml
+version: '3.9'
+services:
+  mongo:
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+    image: mongo:7.0.11
+    network_mode: bridge
+    ports:
+    - '27018:27017'
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
+    external: true
+```
+
+This configuration tells Docker to run the `mongo` service on port 27017 of the `mongo` container, and expose port 27018 on the Docker host (e.g. your computer).
+
+You can set the necessary environment variables in a `.env` file:
+
+```dotenv
+MONGO_INITDB_ROOT_USERNAME="username"
+MONGO_INITDB_ROOT_PASSWORD="password"
+MONGO_URL="mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@localhost:27018"
+```
+
+> [!TIP]
+> Alternatively, create a `.envrc` file that can be automatically loaded by [direnv](https://direnv.net/) when you enter the root of the project.
+
+> [!TIP]
+> To inspect data stored in a MongoDB database, use the [MongoDB shell](https://www.mongodb.com/products/tools/shell) or an application like [Compass](https://www.mongodb.com/products/tools/compass).
+
+## Configure a content store
+
+Indiekit performs create, read, update and delete (CRUD) operations on files that are stored in a content store. Different content stores require different configurations and credentials.
+
+### GitHub
+
+To use a GitHub repository as a content store, first create a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+If you create a [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens), give it **Read and write** access to **Contents**, and set a reasonable expiration (e.g. 90 days).
+
+Add the following details to your `.env` file:
+
+```dotenv
+GITHUB_USER="username" # Your GitHub username
+GITHUB_REPO="repo" # The name of your repository
+GITHUB_BRANCH="main"
+GITHUB_TOKEN="github_pat_*****"
+```
+
+## Configure a syndicator
+
+To [share content with other third-party websites](introduction#sharing-content-with-third-party-websites-syndication), configure one or more syndicators.
+
+### Mastodon syndicator
+
+To syndicate content to a Mastodon account, create a Mastodon access token with **read and write** access. You can generate an access token using [this web app](https://takahashim.github.io/mastodon-access-token/), or by [making a `POST` request](https://docs.joinmastodon.org/client/token/) to your chosen Mastodon server.
+
+> [!WARNING]
+> Mastodon access tokens do not expire.
+
+Add the following details to your `.env` file:
+
+```dotenv
+MASTODON_ACCESS_TOKEN="*****"
+MASTODON_USER="username"
+MASTODON_URL="https://mastodon.social"
+```
+
+## Running Indiekit locally
+
+### Installation
+
+Install all dependencies:
 
 ```sh
 npm install
 ```
 
-The provided configuration file allows some options to be assigned using environment variables.
+### Environment variables
 
-Create an `.env` file in the root of the project, for example:
+Update your `.env` file with the environment variables required by the Indiekit server, the MongoDB database, the Indiekit content store and the Indiekit syndicators.
 
-```sh
-# Required
-PUBLICATION_URL="https://example.com"
+```dotenv
+PUBLICATION_URL="https://website.example"
 
-# Database connection string URI (optional)
-MONGO_URL="mongodb://127.0.0.1:27017"
+# Used by @indiekit/endpoint-auth to sign and verify tokens and salt password
+SECRET="*****"
 
-# Test saving files to a content store on GitHub (optional)
-GITHUB_USER="username"
-GITHUB_REPO="indiekit-test"
-GITHUB_BRANCH="main"
-GITHUB_TOKEN="12345abcde"
+# Hashed and salted password used when signing in.
+# Generate this value by visiting /auth/new-password
+PASSWORD_SECRET="*****"
 
-# Test syndicating content to a Mastodon server (optional)
-MASTODON_URL="https://example.social"
-MASTODON_USER="indiekit-test"
-MASTODON_ACCESS_TOKEN="12345abcde"
+# Environment variables for MongoDB
+# Environment variables for your content store (e.g. GitHub)
+# Environment variables for any syndicators (e.g. Mastodon)
 ```
 
-You can then start the server:
+### Run Indiekit
+
+Start the server:
 
 ```sh
 npm start
@@ -85,13 +171,13 @@ The project uses both unit and integration tests. Run tests using the following 
 npm test
 ```
 
-To run an individual test, use `node` followed by the path to the test. For example:
+To run a single test suite, use `node` followed by the path to the test. For example:
 
 ```sh
 node packages/indiekit/test/index.js
 ```
 
-## Test coverage
+### Test coverage
 
 The project aims to achieve close to 100% test coverage. You can check code coverage by running the following command:
 
