@@ -16,6 +16,7 @@ docs/.cache
 
 # Environment variables
 *.env
+.envrc
 
 # Localisation keys
 localazy.keys.json
