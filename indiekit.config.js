@@ -90,6 +90,10 @@ const config = {
     accessKey: process.env.INTERNET_ARCHIVE_ACCESS_KEY,
     secretKey: process.env.INTERNET_ARCHIVE_SECRET_KEY,
   },
+  "@indiekit/syndicator-linkedin": {
+    checked: true,
+    authorProfileUrl: process.env.LINKEDIN_AUTHOR_PROFILE_URL,
+  },
   "@indiekit/syndicator-mastodon": {
     checked: true,
     url: process.env.MASTODON_URL,

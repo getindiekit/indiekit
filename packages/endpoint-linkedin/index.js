@@ -143,16 +143,28 @@ export default class LinkedInEndpoint {
       response.redirect(this.authorizationUri);
     });
 
+    // If the member chooses to cancel, or the request fails for any reason,
+    // the client is redirected to your redirect_uri with the following
+    // additional query parameters appended: error, error_description, state.
     // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow?tabs=HTTPS1#member-approves-request
     router.get("/callback", async (request, response) => {
       debug(`GET ${this.mountPath}${request.path}`);
 
+      // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow#failed-requests
       const { code, error, error_description, state } = request.query;
       if (error) {
         // TODO: display error page
         return response.status(400).json({ error, error_description });
       }
 
+      // Before you use the authorization code, your application should ensure
+      // that the value returned in the state parameter matches the state value
+      // from your original authorization code request. This ensures that you
+      // are dealing with the real member and not a malicious script.
+      // If the state values do not match, you are likely the victim of a CSRF
+      // attack and your application should return a 401 Unauthorized error code
+      // in response.
+      // https://learn.microsoft.com/en-us/linkedin/shared/authentication/authorization-code-flow#member-approves-request
       debug(`state received from LinkedIn: ${state}`);
       // TODO: should we check that `state` is the same as the one we sent in
       // the initial request?
