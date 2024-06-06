@@ -1,7 +1,10 @@
 import path from "node:path";
 import process from "node:process";
+import makeDebug from "debug";
 import { IndiekitError } from "@indiekit/error";
 import { mastodon } from "./lib/mastodon.js";
+
+const debug = makeDebug(`indiekit-syndicator:mastodon`);
 
 const defaults = {
   accessToken: process.env.MASTODON_ACCESS_TOKEN,
@@ -93,13 +96,19 @@ export default class MastodonSyndicator {
   }
 
   async syndicate(properties, publication) {
+    const server_url = this.options.url;
+    const user = this.options.user;
+
     try {
-      return await mastodon({
+      debug(`try syndicating to Mastodon server ${server_url} as user ${user}`);
+      const url = await mastodon({
         accessToken: this.options.accessToken,
         characterLimit: this.options.characterLimit,
         includePermalink: this.options.includePermalink,
         serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
       }).post(properties, publication.me);
+      debug(`syndicated to Mastodon server ${server_url} as user ${user}`);
+      return url;
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
@@ -110,6 +119,15 @@ export default class MastodonSyndicator {
   }
 
   init(Indiekit) {
+    const required_configs = ["accessToken", "url", "user"];
+    for (const required of required_configs) {
+      if (!this.options[required]) {
+        const message = `could not initialize ${this.name}: ${required} not set. See https://npmjs.org/package/@indiekit/syndicator-mastodon for details.`;
+        debug(message);
+        console.error(message);
+        throw new Error(message);
+      }
+    }
     Indiekit.addSyndicator(this);
   }
 }
