@@ -1,9 +1,12 @@
+import makeDebug from "debug";
 import { IndiekitError } from "@indiekit/error";
 import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
 import { postContent } from "../post-content.js";
 import { postData } from "../post-data.js";
 import { checkScope } from "../scope.js";
 import { uploadMedia } from "../media.js";
+
+const debug = makeDebug(`indiekit:endpoint-micropub:controllers:action`);
 
 /**
  * Perform requested post action
@@ -41,6 +44,7 @@ export const actionController = async (request, response, next) => {
     let content;
     switch (action) {
       case "create": {
+        debug(`create and normalise JF2 data %O`, body);
         // Create and normalise JF2 data
         jf2 = request.is("json")
           ? await mf2ToJf2(body, publication.enrichPostData)
@@ -57,6 +61,7 @@ export const actionController = async (request, response, next) => {
       }
 
       case "update": {
+        debug(`update URL ${url} with body %O`, body);
         // Check for update operations
         if (!(body.replace || body.add || body.remove)) {
           throw IndiekitError.badRequest(
@@ -94,12 +99,14 @@ export const actionController = async (request, response, next) => {
       }
 
       case "delete": {
+        debug(`delete URL ${url}`);
         data = await postData.delete(application, publication, url);
         content = await postContent.delete(publication, data);
         break;
       }
 
       case "undelete": {
+        debug(`undelete URL ${url}`);
         data = await postData.undelete(
           application,
           publication,

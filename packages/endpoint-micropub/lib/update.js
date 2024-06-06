@@ -1,5 +1,8 @@
+import makeDebug from "debug";
 import _ from "lodash";
 import { mf2ToJf2 } from "./jf2.js";
+
+const debug = makeDebug("indiekit:endpoint-micropub:update");
 
 /**
  * Add properties to object
@@ -8,6 +11,7 @@ import { mf2ToJf2 } from "./jf2.js";
  * @returns {object|undefined} Updated object
  */
 export const addProperties = (object, additions) => {
+  debug(`addProperties %O`, { object, additions });
   for (const key in additions) {
     if (Object.prototype.hasOwnProperty.call(additions, key)) {
       const newValue = additions[key];
@@ -45,6 +49,7 @@ export const addProperties = (object, additions) => {
  * @returns {Promise<object>} Updated object (JF2)
  */
 export const replaceEntries = async (object, replacements) => {
+  debug(`replaceEntries %O`, { object, replacements });
   for await (const [key, value] of Object.entries(replacements)) {
     if (!Array.isArray(value)) {
       throw new TypeError("Replacement value should be an array");
@@ -82,6 +87,7 @@ export const replaceEntries = async (object, replacements) => {
  * @returns {object} Updated object
  */
 export const deleteEntries = (object, deletions) => {
+  debug(`replaceEntries %O`, { object, deletions });
   for (const key in deletions) {
     if (Object.prototype.hasOwnProperty.call(deletions, key)) {
       const valuesToDelete = deletions[key];
@@ -120,6 +126,7 @@ export const deleteEntries = (object, deletions) => {
  * @returns {object} Updated object
  */
 export const deleteProperties = (object, deletions) => {
+  debug(`deleteProperties %O`, { object, deletions });
   for (const key of deletions) {
     delete object[key];
   }

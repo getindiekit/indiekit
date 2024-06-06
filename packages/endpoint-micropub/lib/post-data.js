@@ -75,15 +75,15 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async read(application, url) {
-    debug(`read ${url}`);
-
     const { posts } = application;
     const query = { "properties.url": url };
 
+    debug(`try finding MongoDB document that matches this query %O`, query);
     const postData = await posts.findOne(query);
     if (!postData) {
       throw IndiekitError.notFound(url);
     }
+    debug(`found MongoDB document that matches this query %O`, query);
 
     return postData;
   },
@@ -177,8 +177,6 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async delete(application, publication, url) {
-    debug(`delete ${url}`);
-
     const { posts, timeZone } = application;
     const { postTypes } = publication;
 
