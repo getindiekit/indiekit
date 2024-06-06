@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import process from "node:process";
 import Keyv from "keyv";
+import makeDebug from "debug";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
@@ -10,6 +11,8 @@ import { getInstalledPlugins } from "./lib/plugins.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 import { getMediaStore, getStore } from "./lib/store.js";
+
+const debug = makeDebug(`indiekit:index`);
 
 export const Indiekit = class {
   /**
@@ -53,14 +56,17 @@ export const Indiekit = class {
   }
 
   addPreset(preset) {
+    debug(`add preset %O`, { id: preset.id, name: preset.name });
     this.publication.preset = preset;
   }
 
   addStore(store) {
+    debug(`add store %O`, { id: store.id, name: store.name });
     this.application.stores.push(store);
   }
 
   addSyndicator(syndicator) {
+    debug(`add syndicator %O`, { id: syndicator.id, name: syndicator.name });
     syndicator = Array.isArray(syndicator) ? syndicator : [syndicator];
     this.publication.syndicationTargets = [
       ...this.publication.syndicationTargets,
