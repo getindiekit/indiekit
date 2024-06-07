@@ -1,5 +1,8 @@
 import path from "node:path";
+import makeDebug from "debug";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+
+const debug = makeDebug(`indiekit:endpoint-posts:controllers:post`);
 
 /**
  * View published post
@@ -11,6 +14,7 @@ export const postController = async (request, response) => {
 
   const postEditable = draftMode ? postStatus === "draft" : true;
 
+  debug(`render view post`);
   response.render("post", {
     title: postName,
     parent: {

@@ -1,8 +1,12 @@
 import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
+import makeDebug from "debug";
 import jwt from "jsonwebtoken";
 
+const debug = makeDebug(`indiekit:endpoint-syndicate:token`);
+
 export const findBearerToken = (request) => {
+  debug(`find bearer token`);
   if (request.headers?.["x-webhook-signature"]) {
     const signature = request.headers["x-webhook-signature"];
     const verifiedToken = verifyToken(signature);
@@ -30,17 +34,15 @@ export const findBearerToken = (request) => {
  * @param {string} url - Publication URL
  * @returns {string} Signed JSON Web Token
  */
-export const signToken = (verifiedToken, url) =>
-  jwt.sign(
-    {
-      me: url,
-      scope: "update",
-    },
-    process.env.SECRET,
-    {
-      expiresIn: "10m",
-    },
-  );
+export const signToken = (verifiedToken, url) => {
+  const expiresIn = "10m";
+  const scope = "update";
+  debug(`sign token %O`, { scope, expiresIn });
+
+  return jwt.sign({ me: url, scope }, process.env.SECRET, {
+    expiresIn,
+  });
+};
 
 /**
  * Verify that token provided by signature was issued by Netlify
@@ -48,8 +50,12 @@ export const signToken = (verifiedToken, url) =>
  * @returns {object} JSON Web Token
  * @see {@link https://docs.netlify.com/site-deploys/notifications/#payload-signature}
  */
-export const verifyToken = (signature) =>
-  jwt.verify(signature, process.env.WEBHOOK_SECRET, {
+export const verifyToken = (signature) => {
+  const issuer = ["netlify"];
+  debug(`verify token %O`, { issuer });
+
+  return jwt.verify(signature, process.env.WEBHOOK_SECRET, {
     algorithms: ["HS256"],
-    issuer: ["netlify"],
+    issuer,
   });
+};

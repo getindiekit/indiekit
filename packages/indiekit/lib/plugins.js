@@ -1,6 +1,9 @@
 import { createRequire } from "node:module";
 import path from "node:path";
+import makeDebug from "debug";
 const require = createRequire(import.meta.url);
+
+const debug = makeDebug(`indiekit:plugins`);
 
 /**
  * Add plug-ins to application configuration
@@ -8,10 +11,16 @@ const require = createRequire(import.meta.url);
  * @returns {Promise<Array>} Installed plug-ins
  */
 export const getInstalledPlugins = async (Indiekit) => {
+  debug(`getInstalledPlugins`);
   const installedPlugins = [];
 
   for await (const pluginName of Indiekit.config.plugins) {
+    debug(`register plugin ${pluginName}`);
     const { default: IndiekitPlugin } = await import(pluginName);
+    debug(
+      `instantiate plugin ${pluginName} using these options %O`,
+      Indiekit.config[pluginName],
+    );
     const plugin = new IndiekitPlugin(Indiekit.config[pluginName]);
 
     // Add plug-in file path
@@ -37,6 +46,7 @@ export const getInstalledPlugins = async (Indiekit) => {
  * @returns {string} Plug-in ID
  */
 export const getInstalledPlugin = (application, pluginName) => {
+  debug(`getInstalledPlugin ${pluginName}`);
   return application.installedPlugins.find(
     (plugin) => plugin.id === getPluginId(pluginName),
   );
@@ -48,5 +58,6 @@ export const getInstalledPlugin = (application, pluginName) => {
  * @returns {string} Plug-in ID
  */
 export const getPluginId = (pluginName) => {
+  // debug(`getPluginId ${pluginName}`);
   return pluginName.replace("/", "-");
 };

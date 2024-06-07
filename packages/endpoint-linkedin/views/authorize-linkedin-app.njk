@@ -1,0 +1,15 @@
+{% extends "document.njk" %}
+
+{% block content %}
+<p>Authorize Indiekit to post on LinkedIn on your behalf</p>
+
+<a href="{{ linkOAuthFlow.href }}">{{ linkOAuthFlow.text }}</a>
+
+<h2>Useful links</h2>
+<ul>
+  {% for link in links %}
+  <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -18,6 +18,7 @@ const config = {
   plugins: [
     "@indiekit-test/frontend",
     "@indiekit/endpoint-json-feed",
+    "@indiekit/endpoint-linkedin",
     "@indiekit/post-type-audio",
     "@indiekit/post-type-event",
     "@indiekit/post-type-jam",
@@ -27,6 +28,7 @@ const config = {
     "@indiekit/preset-eleventy",
     "@indiekit/store-github",
     "@indiekit/syndicator-internet-archive",
+    "@indiekit/syndicator-linkedin",
     "@indiekit/syndicator-mastodon",
   ],
   publication: {
@@ -60,6 +62,11 @@ const config = {
       },
     },
   },
+  "@indiekit/endpoint-linkedin": {
+    callbackUrl: process.env.LINKEDIN_CALLBACK_URL,
+    clientId: "78fnklq6mank6p",
+    clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+  },
   "@indiekit/endpoint-media": {
     imageProcessing: {
       resize: {
@@ -82,6 +89,10 @@ const config = {
     checked: false,
     accessKey: process.env.INTERNET_ARCHIVE_ACCESS_KEY,
     secretKey: process.env.INTERNET_ARCHIVE_SECRET_KEY,
+  },
+  "@indiekit/syndicator-linkedin": {
+    checked: true,
+    authorProfileUrl: process.env.LINKEDIN_AUTHOR_PROFILE_URL,
   },
   "@indiekit/syndicator-mastodon": {
     checked: true,
