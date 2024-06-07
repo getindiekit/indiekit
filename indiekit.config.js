@@ -18,6 +18,7 @@ const config = {
   plugins: [
     "@indiekit-test/frontend",
     "@indiekit/endpoint-json-feed",
+    "@indiekit/endpoint-linkedin",
     "@indiekit/post-type-audio",
     "@indiekit/post-type-event",
     "@indiekit/post-type-jam",
@@ -60,6 +61,11 @@ const config = {
         },
       },
     },
+  },
+  "@indiekit/endpoint-linkedin": {
+    callbackUrl: process.env.LINKEDIN_CALLBACK_URL,
+    clientId: "78fnklq6mank6p",
+    clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
   },
   "@indiekit/endpoint-media": {
     imageProcessing: {
