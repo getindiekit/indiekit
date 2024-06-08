@@ -32,8 +32,7 @@ export const consentController = {
       } else {
         response.redirect(request.baseUrl + "/new-password?setup=true");
       }
-    } catch (error) {
-      console.error("ERROR", error);
+    } catch {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.invalidValue", "request_uri"),
       );
