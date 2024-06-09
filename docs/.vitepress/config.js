@@ -35,6 +35,7 @@ const sidebar = [
       { text: "Accessibility statement", link: "/accessibility" },
       { text: "Micropub clients", link: "/clients" },
       { text: "Supported specifications", link: "/specifications" },
+      { text: "Local development", link: "/development" },
     ],
   },
 ];
