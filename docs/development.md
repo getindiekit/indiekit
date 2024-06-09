@@ -4,7 +4,7 @@ For developing Indiekit, you will need to clone this repository, configure all t
 
 ## Project structure
 
-The Indiekit project uses a monorepo structure, with concerns split into separate npm packages located in the `/packages` folder:
+This project uses a monorepo structure, with concerns split into separate Node modules located in the `/packages` folder:
 
 | Module{width=200px} | Purpose |
 | :----- | :------ |
@@ -94,7 +94,7 @@ export GITHUB_TOKEN="github_pat_*****"
 
 In order to tell Indiekit to [share content with other third-party websites](introduction#sharing-content-with-third-party-websites-syndication), you need to configure one or more syndicators.
 
-## Mastodon syndicator
+### Mastodon syndicator
 
 If you want to syndicate your content to Mastodon, you will need to provide a Mastodon access token with **read and write** access. You can generate an access token using [this web app](https://takahashim.github.io/mastodon-access-token/), or making a POST request as explained [on this page of the Mastodon documentation](https://docs.joinmastodon.org/client/token/).
 

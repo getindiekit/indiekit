@@ -35,6 +35,7 @@ const sidebar = [
       { text: "Accessibility statement", link: "/accessibility" },
       { text: "Micropub clients", link: "/clients" },
       { text: "Supported specifications", link: "/specifications" },
+      { text: "Local development", link: "/development" },
     ],
   },
 ];
@@ -90,16 +91,6 @@ export default {
   description:
     "The little server that connects your website to the independent web.",
   head: [
-    [
-      "link",
-      {
-        rel: "preload",
-        href: "/mona-sans.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossorigin: true,
-      },
-    ],
     ["link", { rel: "icon", href: "/icon.svg" }],
     ["meta", { name: "supported-color-schemes", content: "light dark" }],
     ["meta", { name: "theme-color", content: "#60c" }],
