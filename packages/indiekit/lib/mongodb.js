@@ -1,4 +1,7 @@
+import makeDebug from "debug";
 import { MongoClient } from "mongodb";
+
+const debug = makeDebug(`indiekit:mongodb`);
 
 /**
  * Connect to MongoDB client
@@ -12,23 +15,26 @@ export const getMongodbClient = async (mongodbUrl) => {
     return;
   }
 
-  // Create client
+  const connectTimeoutMS = 5000;
   try {
+    debug(`try creating MongoDB client`);
     client = new MongoClient(mongodbUrl, {
-      connectTimeoutMS: 5000,
+      connectTimeoutMS,
     });
   } catch (error) {
+    debug(
+      `could not create MongoDB client with ${connectTimeoutMS}ms: ${error.message}`,
+    );
     console.error(error.message);
-
     return { error };
   }
 
-  // Connect to client
   try {
+    debug(`try connecting to MongoDB client`);
     await client.connect();
   } catch (error) {
+    debug(`could not connect to MongoDB client: ${error.message}`);
     console.error(error.message);
-
     await client.close();
     return { error };
   }
