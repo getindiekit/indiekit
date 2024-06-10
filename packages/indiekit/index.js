@@ -57,13 +57,13 @@ export const Indiekit = class {
 
   addPreset(preset) {
     this.publication.preset = preset;
-    debug(`added ${preset.name}`);
+    debug(`added publication preset: ${preset.name}`);
   }
 
   addStore(store) {
     // debug(`this.application.endpoints %O`, this.application.endpoints);
     this.application.stores.push(store);
-    debug(`added ${store.name}`);
+    debug(`added content store: ${store.name}`);
   }
 
   addSyndicator(syndicator) {
@@ -72,7 +72,7 @@ export const Indiekit = class {
       ...this.publication.syndicationTargets,
       ...syndicator,
     ];
-    const names = this.publication.syndicationTargets.map((st) => st.name);
+    const names = this.publication.syndicationTargets.map((target) => target.name);
     debug(`added ${names.length} syndication target/s: ${names.join(", ")}`);
   }
 
