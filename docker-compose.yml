@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  mongo:
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+    image: mongo:7.0.11
+    network_mode: bridge
+    ports:
+    - '27018:27017'
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
+    external: true
