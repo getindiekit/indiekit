@@ -90,7 +90,7 @@ export GITHUB_BRANCH="main"
 export GITHUB_TOKEN="github_pat_*****"
 ```
 
-## Configure the syndicators
+## Configure a syndicator (optional)
 
 In order to tell Indiekit to [share content with other third-party websites](introduction#sharing-content-with-third-party-websites-syndication), you need to configure one or more syndicators.
 
