@@ -75,7 +75,7 @@ MONGO_URL="mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@loc
 > [!TIP]
 > If you want to inspect data stored in a MongoDB database, you can use the [MongoDB shell](https://www.mongodb.com/products/tools/shell) or a GUI like [Compass](https://www.mongodb.com/products/tools/compass).
 
-## Configure the content store
+## Configure a content store
 
 Indiekit performs CRUD operations on files. These files needs to be stored in a so-called content store. Different content stores require different configurations and credentials.
 
