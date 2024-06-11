@@ -66,9 +66,9 @@ You can set the necessary environment variables in a `.env` file, or use an `.en
 you enter the root of the project.
 
 ```txt
-export MONGO_INITDB_ROOT_USERNAME="user"
-export MONGO_INITDB_ROOT_PASSWORD="password"
-export MONGO_URL="mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@localhost:27018"
+MONGO_INITDB_ROOT_USERNAME="user"
+MONGO_INITDB_ROOT_PASSWORD="password"
+MONGO_URL="mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@localhost:27018"
 
 ```
 
