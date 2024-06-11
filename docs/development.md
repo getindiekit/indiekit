@@ -143,7 +143,7 @@ Start the server:
 npm start
 ```
 
-In alternative, automatically restart the server whenever a file change is detected:
+Alternatively, you restart the server whenever a file change is detected:
 
 ```sh
 npm run dev
