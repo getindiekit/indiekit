@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import process from "node:process";
 import Keyv from "keyv";
+import KeyvMongo from "@keyv/mongo";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
@@ -92,7 +93,9 @@ export const Indiekit = class {
       const database = this.client.db(databaseName);
 
       this.application.hasDatabase = true;
-      this.application.cache = new Keyv(this.application.mongodbUrl);
+      this.application.cache = new Keyv(
+        new KeyvMongo(this.application.mongodbUrl),
+      );
       this.application.posts = database.collection("posts");
       this.application.media = database.collection("media");
     }
