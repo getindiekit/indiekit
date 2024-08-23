@@ -9,6 +9,7 @@ tmp
 
 # Dependencies
 node_modules/
+package-lock.json
 
 # Documentation
 _site
