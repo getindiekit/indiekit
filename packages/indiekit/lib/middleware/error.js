@@ -27,7 +27,7 @@ export const internalServer = (error, request, response, next) => {
 
   // Send debug logging output to console.error
   debug.log = console.error.bind(console);
-  debug("error", error);
+  debug("Error", error);
 
   if (request.accepts("html")) {
     response.render("error", {

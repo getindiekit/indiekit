@@ -15,7 +15,7 @@ export const mediaData = {
    * @returns {Promise<object>} Media data
    */
   async create(application, publication, file) {
-    debug(`create %O`, { file });
+    debug(`Create %O`, { file });
 
     const { hasDatabase, media, timeZone } = application;
     const { me, postTypes } = publication;
@@ -73,7 +73,7 @@ export const mediaData = {
    * @returns {Promise<object>} Media data
    */
   async read(application, url) {
-    debug(`read ${url}`);
+    debug(`Read ${url}`);
 
     const { media } = application;
     const query = { "properties.url": url };
@@ -93,7 +93,7 @@ export const mediaData = {
    * @returns {Promise<boolean>} Media data deleted
    */
   async delete(application, url) {
-    debug(`delete ${url}`);
+    debug(`Delete ${url}`);
 
     const { media } = application;
     const query = { "properties.url": url };

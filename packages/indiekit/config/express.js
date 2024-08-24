@@ -19,7 +19,7 @@ const debug = makeDebug(`indiekit:express`);
  * @returns {Application} Express application
  */
 export const expressConfig = (indiekitConfig) => {
-  debug(`create Express app`);
+  debug(`Create Express app`);
   const app = express();
 
   // Enable reversed proxy connections
@@ -28,7 +28,7 @@ export const expressConfig = (indiekitConfig) => {
   // Don’t advertise server details
   app.set("x-powered-by", false);
 
-  debug(`add middlewares`);
+  debug(`Add middlewares`);
 
   // Body parsers
   app.use(express.json());
@@ -54,7 +54,7 @@ export const expressConfig = (indiekitConfig) => {
   app.use(logging);
 
   // Views
-  debug(`add view engine and templates`);
+  debug(`Add view engine and templates`);
   app.set("views", views(indiekitConfig));
   app.engine("njk", templates(app).render);
   app.set("view engine", "njk");
@@ -63,7 +63,7 @@ export const expressConfig = (indiekitConfig) => {
   app.use(routes(indiekitConfig));
 
   // Handle errors
-  debug(`add error handling middlewares`);
+  debug(`Add error handling middlewares`);
   app.use(error.notFound, error.internalServer);
 
   return app;

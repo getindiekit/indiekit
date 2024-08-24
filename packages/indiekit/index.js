@@ -58,12 +58,12 @@ export const Indiekit = class {
 
   addPreset(preset) {
     this.publication.preset = preset;
-    debug(`added publication preset: ${preset.name}`);
+    debug(`Added publication preset: ${preset.name}`);
   }
 
   addStore(store) {
     this.application.stores.push(store);
-    debug(`added content store: ${store.name}`);
+    debug(`Added content store: ${store.name}`);
   }
 
   addSyndicator(syndicator) {
@@ -75,11 +75,11 @@ export const Indiekit = class {
     const names = this.publication.syndicationTargets.map(
       (target) => target.name,
     );
-    debug(`added ${names.length} syndication target/s: ${names.join(", ")}`);
+    debug(`Added ${names.length} syndication target/s: ${names.join(", ")}`);
   }
 
   async bootstrap() {
-    debug(`bootstrap - check for required configuration options`);
+    debug(`Bootstrap: check for required configuration options`);
     // Check for required configuration options
     if (!this.publication.me) {
       console.error("No publication URL in configuration");
@@ -100,7 +100,7 @@ export const Indiekit = class {
       // If no database given, use ‘indiekit’ as default database, not ‘test’
       databaseName = databaseName === "test" ? "indiekit" : databaseName;
 
-      debug(`bootstrap - connect to MongoDB database ${databaseName}`);
+      debug(`Bootstrap: connect to MongoDB database ${databaseName}`);
       const database = this.client.db(databaseName);
 
       this.application.hasDatabase = true;
@@ -108,10 +108,10 @@ export const Indiekit = class {
         new KeyvMongo(this.application.mongodbUrl),
       );
 
-      debug(`bootstrap - add database collection posts`);
+      debug(`Bootstrap: add database collection posts`);
       this.application.posts = database.collection("posts");
 
-      debug(`bootstrap - add database collection media`);
+      debug(`Bootstrap: add database collection media`);
       this.application.media = database.collection("media");
     }
 
@@ -152,13 +152,13 @@ export const Indiekit = class {
     const app = expressConfig(config);
 
     const server = app.listen(port, () => {
-      debug(`start ${name} (v${version}) on port ${port}`);
+      debug(`Start ${name} (v${version}) on port ${port}`);
       console.info(`Starting ${name} (v${version}) on port ${port}`);
     });
 
-    debug(`attach SIGINT handler`);
+    debug(`Attach SIGINT handler`);
     process.on("SIGINT", () => this.stop(server, name));
-    debug(`attach SIGTERM handler`);
+    debug(`Attach SIGTERM handler`);
     process.on("SIGTERM", () => this.stop(server, name));
 
     return server;

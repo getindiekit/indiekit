@@ -17,23 +17,23 @@ export const getMongodbClient = async (mongodbUrl) => {
 
   const connectTimeoutMS = 5000;
   try {
-    debug(`try creating MongoDB client`);
+    debug(`Try creating MongoDB client`);
     client = new MongoClient(mongodbUrl, {
       connectTimeoutMS,
     });
   } catch (error) {
     debug(
-      `could not create MongoDB client with ${connectTimeoutMS}ms: ${error.message}`,
+      `Could not create MongoDB client with ${connectTimeoutMS}ms: ${error.message}`,
     );
     console.error(error.message);
     return { error };
   }
 
   try {
-    debug(`try connecting to MongoDB client`);
+    debug(`Try connecting to MongoDB client`);
     await client.connect();
   } catch (error) {
-    debug(`could not connect to MongoDB client: ${error.message}`);
+    debug(`Could not connect to MongoDB client: ${error.message}`);
     console.error(error.message);
     await client.close();
     return { error };

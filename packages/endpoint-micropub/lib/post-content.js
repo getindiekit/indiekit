@@ -11,7 +11,7 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async create(publication, postData) {
-    debug(`create %O`, { postData });
+    debug(`Create %O`, { postData });
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
@@ -45,7 +45,7 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async update(publication, postData, url) {
-    debug(`update ${url} %O`, { postData });
+    debug(`Update ${url} %O`, { postData });
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { _originalPath, path, properties } = postData;
@@ -88,7 +88,7 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async delete(publication, postData) {
-    debug(`delete %O`, { postData });
+    debug(`Delete %O`, { postData });
 
     const { store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
@@ -118,7 +118,7 @@ export const postContent = {
    * @returns {Promise<object>} Response data
    */
   async undelete(publication, postData) {
-    debug(`undelete %O`, { postData });
+    debug(`Undelete %O`, { postData });
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;

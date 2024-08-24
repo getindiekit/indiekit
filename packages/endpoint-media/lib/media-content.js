@@ -11,7 +11,7 @@ export const mediaContent = {
    * @returns {Promise<object>} Data to use in response
    */
   async upload(publication, mediaData, file) {
-    debug(`upload %O`, { mediaData });
+    debug(`Upload %O`, { mediaData });
 
     const { mediaStore, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
@@ -42,7 +42,7 @@ export const mediaContent = {
    * @returns {Promise<object>} Response data
    */
   async delete(publication, mediaData) {
-    debug(`delete %O`, { mediaData });
+    debug(`Delete %O`, { mediaData });
 
     const { mediaStore, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;

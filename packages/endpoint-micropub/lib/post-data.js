@@ -19,7 +19,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async create(application, publication, properties, draftMode = false) {
-    debug(`create %O`, { draftMode, properties });
+    debug(`Create %O`, { draftMode, properties });
 
     const { hasDatabase, posts, timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
@@ -75,7 +75,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async read(application, url) {
-    debug(`read ${url}`);
+    debug(`Read ${url}`);
 
     const { posts } = application;
     const query = { "properties.url": url };
@@ -99,7 +99,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async update(application, publication, url, operation) {
-    debug(`update ${url} %O`, { operation });
+    debug(`Update ${url} %O`, { operation });
 
     const { posts, timeZone } = application;
     const { me, postTypes } = publication;
@@ -177,7 +177,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async delete(application, publication, url) {
-    debug(`delete ${url}`);
+    debug(`Delete ${url}`);
 
     const { posts, timeZone } = application;
     const { postTypes } = publication;
@@ -228,7 +228,7 @@ export const postData = {
    * @returns {Promise<object>} Post data
    */
   async undelete(application, publication, url, draftMode) {
-    debug(`undelete ${url} %O`, { draftMode });
+    debug(`Undelete ${url} %O`, { draftMode });
 
     const { posts } = application;
     const { postTypes } = publication;
