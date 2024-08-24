@@ -35,7 +35,7 @@ A [MongoDB](https://www.mongodb.com) database is optional, but required for the 
 - Syndicating posts
 - Viewing and deleting previously uploaded media files
 
-> [!NOTE]\
+> [!NOTE]
 > This project is known to work with MongoDB v4.4 or later. It may also work with the last openly licenced version, v4.0.3, but this has not been tested.
 
 ## Get started
