@@ -50,7 +50,8 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "husky": "^9.0.0",
-    "lerna": "^8.0.0"
+    "lerna": "^8.0.0",
+    "sharp": "^0.33.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
@@ -99,5 +100,9 @@
     "supertest": "^7.0.0",
     "undici": "^6.11.0",
     "vitepress": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.21.0",
+    "lightningcss-linux-x64-gnu": "^1.26.0"
   }
 }
