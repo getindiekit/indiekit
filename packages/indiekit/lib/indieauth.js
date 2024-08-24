@@ -79,14 +79,16 @@ export const IndieAuth = class {
     return async (request, response) => {
       try {
         const { application } = request.app.locals;
-        this.clientId = getCanonicalUrl(application.url);
+        const applicationUrl = getCanonicalUrl(application.url);
+        const { href: clientId } = new URL("id", applicationUrl);
+        const { href: callbackUrl } = new URL("session/auth", applicationUrl);
 
-        const callbackUrl = `${application.url}/session/auth`;
         const { redirect } = request.query;
         this.redirectUri = redirect
           ? `${callbackUrl}?redirect=${redirect}`
           : `${callbackUrl}`;
 
+        this.clientId = clientId;
         const state = generateState(this.clientId, this.iv);
         const authUrl = await this.getAuthUrl(
           application.authorizationEndpoint,

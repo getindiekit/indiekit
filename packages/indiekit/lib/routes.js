@@ -3,6 +3,7 @@ import express from "express";
 import { assetsPath } from "@indiekit/frontend";
 import rateLimit from "express-rate-limit";
 import * as assetsController from "./controllers/assets.js";
+import * as clientController from "./controllers/client.js";
 import * as feedController from "./controllers/feed.js";
 import * as homepageController from "./controllers/homepage.js";
 import * as manifestController from "./controllers/manifest.js";
@@ -69,6 +70,9 @@ export const routes = (indiekitConfig) => {
 
   // Web App Manifest
   router.get("/app.webmanifest", manifestController.get);
+
+  // Client metadata
+  router.get("/id", clientController.get);
 
   // Session
   router.get("/session/login", limit, sessionController.login);
