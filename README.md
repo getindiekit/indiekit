@@ -56,15 +56,6 @@ The browser will refresh to reflect any changes you make to the documentation.
 
 Architectural decisions made on this project are documented using Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions). These can be found in [`/docs/decisions`](docs/decisions).
 
-## Dependencies
-
-This project aims to keep dependencies up-to-date, however the following dependencies cannot be updated at this time:
-
-| Dependency              | Current | Latest | Reason                                                   |
-| ----------------------- | ------- | ------ | -------------------------------------------------------- |
-| `mongodb`               | 4.17.x  | 6.x.x  | `@keyv/mongo v2.2.8` requires `mongodb ^4.5.0`           |
-| `mongodb-memory-server` | 8.16.x  | 9.x.x  | `mongodb-memory-server v9.x.x` requires `mongodb ^5.9.1` |
-
 ## Releasing
 
 [Lerna](https://lerna.js.org) is used to manage and publish packages from this monorepo.

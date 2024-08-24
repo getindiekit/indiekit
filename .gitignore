@@ -9,6 +9,7 @@ tmp
 
 # Dependencies
 node_modules/
+package-lock.json
 
 # Documentation
 _site
@@ -16,6 +17,7 @@ docs/.cache
 
 # Environment variables
 *.env
+.envrc
 
 # Localisation keys
 localazy.keys.json

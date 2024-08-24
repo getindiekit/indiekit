@@ -13,7 +13,6 @@
   padding-block: var(--space-xs);
   padding-block: calc(calc(var(--space-m) / 2) - var(--input-border-width));
   padding-inline: var(--space-m);
-  white-space: nowrap;
 
   &:focus-visible {
     color: currentcolor;

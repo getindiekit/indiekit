@@ -17,6 +17,16 @@ describe("endpoint-media/lib/post-type-discovery", () => {
     assert.equal(result, "note");
   });
 
+  it("Discovers note post type (with an empty title)", () => {
+    const result = getPostType(postTypes, {
+      type: "entry",
+      name: "",
+      content: "Note content",
+    });
+
+    assert.equal(result, "note");
+  });
+
   it("Discovers article post type", () => {
     const result = getPostType(postTypes, {
       type: "entry",
@@ -82,6 +92,20 @@ describe("endpoint-media/lib/post-type-discovery", () => {
       content: {
         html: "<p>Article content in <em>HTML</em> format.</p>",
         text: "Article content in plaintext format.",
+      },
+    });
+
+    assert.equal(result, "article");
+  });
+
+  it("Discovers article post type (content begins with name)", () => {
+    // Indiekit deviates from the Post Type Algorithm, which identifies a post
+    // as a note if the content is prefixed with the `name` value.
+    const result = getPostType(postTypes, {
+      type: "entry",
+      name: "Article about something",
+      content: {
+        text: "Article about something fishy.",
       },
     });
 

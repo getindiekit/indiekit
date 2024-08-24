@@ -28,7 +28,7 @@
     "@sindresorhus/slugify": "^2.1.0",
     "date-fns": "^3.6.0",
     "date-fns-tz": "^3.0.0",
-    "mongodb": "^4.17.0"
+    "mongodb": "^6.8.0"
   },
   "publishConfig": {
     "access": "public"

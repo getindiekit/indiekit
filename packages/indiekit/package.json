@@ -55,7 +55,7 @@
     "@indiekit/post-type-reply": "^1.0.0-beta.16",
     "@indiekit/preset-jekyll": "^1.0.0-beta.15",
     "@indiekit/util": "^1.0.0-beta.16",
-    "@keyv/mongo": "^2.2.8",
+    "@keyv/mongo": "^3.0.0",
     "clean-stack": "^5.0.0",
     "commander": "^12.0.0",
     "compression": "^1.7.4",
@@ -68,9 +68,9 @@
     "express-rate-limit": "^7.0.0",
     "hasha": "^6.0.0",
     "i18n": "^0.15.0",
-    "keyv": "^4.2.0",
+    "keyv": "^5.0.0",
     "lodash": "^4.17.21",
-    "mongodb": "^4.17.0"
+    "mongodb": "^6.8.0"
   },
   "publishConfig": {
     "access": "public"
