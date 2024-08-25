@@ -82,7 +82,7 @@
     "eslint-plugin-jsdoc": "^50.0.0",
     "eslint-plugin-unicorn": "^55.0.0",
     "eslint-plugin-wc": "^2.1.0",
-    "jsdom": "^24.0.0",
+    "jsdom": "^25.0.0",
     "lint-staged": "^15.0.0",
     "markdown-it-anchor": "^9.0.0",
     "markdown-it-deflist": "^3.0.0",
