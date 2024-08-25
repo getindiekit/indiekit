@@ -10,7 +10,6 @@ export const introspectionController = {
    */
   post(request, response) {
     try {
-      const { application } = request.app.locals;
       let { token } = request.body;
 
       if (!token) {
@@ -21,7 +20,6 @@ export const introspectionController = {
       let accessToken = verifyToken(token);
       accessToken = {
         active: true,
-        client_id: application.url,
         ...accessToken,
       };
 
