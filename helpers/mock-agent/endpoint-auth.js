@@ -11,6 +11,17 @@ export const mockClient = () => {
 
   const origin = "https://auth-endpoint.example";
 
+  // Client metadata
+  agent
+    .get(origin)
+    .intercept({ path: "/id" })
+    .reply(200, {
+      client_id: `${origin}/id`,
+      client_name: "Client with metadata",
+      client_uri: origin,
+      logo_uri: `${origin}/logo.png`,
+    });
+
   // Client information (h-x-app)
   agent
     .get(origin)
