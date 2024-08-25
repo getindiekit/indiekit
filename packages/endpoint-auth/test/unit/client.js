@@ -6,6 +6,18 @@ import { getClientInformation } from "../../lib/client.js";
 await mockAgent("endpoint-auth");
 
 describe("endpoint-auth/lib/client", () => {
+  it("Gets client information (from metadata)", async () => {
+    const result = await getClientInformation(
+      "https://auth-endpoint.example/id",
+    );
+
+    assert.deepEqual(result, {
+      logo: "https://auth-endpoint.example/logo.png",
+      name: "Client with metadata",
+      url: "https://auth-endpoint.example",
+    });
+  });
+
   it("Gets client information (has h-x-app microformat)", async () => {
     const result = await getClientInformation("https://auth-endpoint.example/");
 
