@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** ignore empty name property in PTD. fixes [#756](https://github.com/getindiekit/indiekit/issues/756) ([6bbb284](https://github.com/getindiekit/indiekit/commit/6bbb28414b533a9e640950f34c62420c44089844))
+
+
+
+
+
 # [1.0.0-beta.16](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2024-04-19)
 
 

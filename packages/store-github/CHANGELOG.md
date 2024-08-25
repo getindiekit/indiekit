@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
+
+
+### Features
+
+* **store-github:** improve error messages for CRUD operations ([bbb9990](https://github.com/getindiekit/indiekit/commit/bbb9990907ee74651a648438ff389a3e5c761cb7))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/store-github

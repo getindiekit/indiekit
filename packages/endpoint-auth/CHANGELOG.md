@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** exclude client_id from introspection response ([53d6eae](https://github.com/getindiekit/indiekit/commit/53d6eaec29fa7b3c0f3dedf3c9eeebfad2bcb308))
+* **endpoint-auth:** remove console debugging ([14ef31f](https://github.com/getindiekit/indiekit/commit/14ef31f9bd0c9ea68d5fa27a0aaa99ba935c0305))
+* **endpoint-auth:** validate client_id against local client.id ([4721836](https://github.com/getindiekit/indiekit/commit/47218360c744def2b4217bf372a8683f7f089d74))
+
+
+### Features
+
+* **endpoint-auth:** accept client metadata ([212684d](https://github.com/getindiekit/indiekit/commit/212684da3925855ea10b6b5266ebefb06cd84cdf))
+
+
+
+
+
 # [1.0.0-beta.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-05-11)
 
 

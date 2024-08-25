@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
+
+
+### Bug Fixes
+
+* **frontend:** allow detail summary to wrap. fixes [#753](https://github.com/getindiekit/indiekit/issues/753) ([c8cdb89](https://github.com/getindiekit/indiekit/commit/c8cdb899a57290ea2659ffbe4a1c8db1b95c3593))
+
+
+
+
+
 # [1.0.0-beta.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-05-11)
 
 

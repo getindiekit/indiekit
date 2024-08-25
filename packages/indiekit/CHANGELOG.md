@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
+
+
+### Features
+
+* **indiekit:** add debug logs to troubleshoot Indiekit/Express server configuration ([d02b5b8](https://github.com/getindiekit/indiekit/commit/d02b5b8c6e0ac9711592ba210766a9d43a46cb3f))
+* **indiekit:** add debug logs to troubleshoot the connection to MongoDB ([20bc5a3](https://github.com/getindiekit/indiekit/commit/20bc5a377d86056c96754261c56b72e82532a89e))
+* **indiekit:** client metadata endpoint ([7a36846](https://github.com/getindiekit/indiekit/commit/7a3684666ed7df2fedaa2f4927b5d6882f96d0e5))
+
+
+
+
+
 # [1.0.0-beta.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-05-11)
 
 **Note:** Version bump only for package @indiekit/indiekit

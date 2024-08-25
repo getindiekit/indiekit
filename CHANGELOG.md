@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** exclude client_id from introspection response ([53d6eae](https://github.com/getindiekit/indiekit/commit/53d6eaec29fa7b3c0f3dedf3c9eeebfad2bcb308))
+* **endpoint-auth:** remove console debugging ([14ef31f](https://github.com/getindiekit/indiekit/commit/14ef31f9bd0c9ea68d5fa27a0aaa99ba935c0305))
+* **endpoint-auth:** validate client_id against local client.id ([4721836](https://github.com/getindiekit/indiekit/commit/47218360c744def2b4217bf372a8683f7f089d74))
+* **endpoint-micropub:** ignore empty name property in PTD. fixes [#756](https://github.com/getindiekit/indiekit/issues/756) ([6bbb284](https://github.com/getindiekit/indiekit/commit/6bbb28414b533a9e640950f34c62420c44089844))
+* **frontend:** allow detail summary to wrap. fixes [#753](https://github.com/getindiekit/indiekit/issues/753) ([c8cdb89](https://github.com/getindiekit/indiekit/commit/c8cdb899a57290ea2659ffbe4a1c8db1b95c3593))
+
+
+### Features
+
+* **endpoint-auth:** accept client metadata ([212684d](https://github.com/getindiekit/indiekit/commit/212684da3925855ea10b6b5266ebefb06cd84cdf))
+* **indiekit:** add debug logs to troubleshoot Indiekit/Express server configuration ([d02b5b8](https://github.com/getindiekit/indiekit/commit/d02b5b8c6e0ac9711592ba210766a9d43a46cb3f))
+* **indiekit:** add debug logs to troubleshoot the connection to MongoDB ([20bc5a3](https://github.com/getindiekit/indiekit/commit/20bc5a377d86056c96754261c56b72e82532a89e))
+* **indiekit:** client metadata endpoint ([7a36846](https://github.com/getindiekit/indiekit/commit/7a3684666ed7df2fedaa2f4927b5d6882f96d0e5))
+* **store-github:** improve error messages for CRUD operations ([bbb9990](https://github.com/getindiekit/indiekit/commit/bbb9990907ee74651a648438ff389a3e5c761cb7))
+
+
+
+
+
 # [1.0.0-beta.17](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2024-05-11)
 
 
