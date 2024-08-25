@@ -38,7 +38,7 @@ export const codeValidator = (request, response, next) => {
     }
 
     // Validate `client_id` against that provided in authorization request
-    if (getCanonicalUrl(client_id) !== getCanonicalUrl(client.url)) {
+    if (getCanonicalUrl(client_id) !== getCanonicalUrl(client.id)) {
       throw IndiekitError.unauthorized(
         response.locals.__("BadRequestError.invalidValue", "client_id"),
       );
