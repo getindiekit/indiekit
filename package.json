@@ -76,7 +76,7 @@
     "aws-sdk-client-mock": "^4.0.0",
     "cookie-session": "^2.0.0",
     "create-indiekit": "*",
-    "date-fns": "^3.6.0",
+    "date-fns": "^4.0.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jsdoc": "^50.0.0",
