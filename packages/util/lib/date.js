@@ -1,10 +1,5 @@
-import { parseISO } from "date-fns";
-import {
-  format,
-  getTimezoneOffset,
-  fromZonedTime,
-  toZonedTime,
-} from "date-fns-tz";
+import { format, parseISO } from "date-fns";
+import { tz, tzOffset } from "@date-fns/tz";
 import * as locales from "date-fns/locale";
 
 export const dateTokens = [
@@ -64,9 +59,8 @@ export const formatDate = (string, tokens, options = {}) => {
  * @returns {string} Formatted local date, i.e. 2023-08-28T12:30
  */
 export const formatDateToLocal = (string, timeZone) => {
-  const zonedDateTime = fromZonedTime(string, timeZone);
-  const dateTime = format(zonedDateTime, "yyyy-MM-dd'T'HH:mm", {
-    timeZone,
+  const dateTime = format(string, "yyyy-MM-dd'T'HH:mm", {
+    in: tz(timeZone),
   });
 
   return dateTime;
@@ -90,7 +84,7 @@ export const getDate = (setting, dateString = "") => {
   }
 
   // Date time is given date or new date, set us UTC
-  let dateTime = dateString ? new Date(dateString) : new Date();
+  const dateTime = dateString ? new Date(dateString) : new Date();
 
   // Desired time zone
   const serverTimeZone = getTimeZoneDesignator();
@@ -102,17 +96,14 @@ export const getDate = (setting, dateString = "") => {
   const dateIsShort = dateString && !dateHasTime;
   if (dateIsShort) {
     const offset = format(dateTime, "XXX", {
-      timeZone: outputTimeZone,
+      in: tz(outputTimeZone),
     });
     return `${dateString}T00:00:00.000${offset}`;
   }
 
-  // JS converts dateString to UTC, so need to convert it to output zoned time
-  dateTime = toZonedTime(dateTime, outputTimeZone);
-
   // Return date time with desired timezone offset
   const formattedDateTime = format(dateTime, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", {
-    timeZone: outputTimeZone,
+    in: tz(outputTimeZone),
   });
 
   return formattedDateTime;
@@ -150,15 +141,14 @@ export const getTimeZoneDesignator = (minutes) => {
 /**
  * Get offset minutes from time zone name
  * @param {string} timeZone - IANA tz timezone
- * @param {Date|number} date - Date time
+ * @param {Date} date - Date time
  * @returns {number} Minutes offset from UTC
  */
 export const getTimeZoneOffset = (timeZone, date) => {
-  const milliseconds = getTimezoneOffset(timeZone, date);
+  const minutes = tzOffset(timeZone, date);
 
-  // Ensure `dateFnsTz.getTimezoneOffset()` returns same value as
+  // Ensure `tzOffset()` returns same value as
   // `Date.prototype.getTimezoneOffset()`
-  const minutes = milliseconds / 1000 / 60;
   const offset = minutes === 0 ? 0 : minutes * -1;
   return offset;
 };

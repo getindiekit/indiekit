@@ -42,8 +42,8 @@ describe("util/lib/date", () => {
     );
     const utc = formatDateToLocal("2019-11-30T12:30:00+01:00", "UTC");
 
-    assert.equal(tz1, "2019-11-30T03:30");
-    assert.equal(tz2, "2019-11-30T16:30");
+    assert.equal(tz1, "2019-11-30T19:30");
+    assert.equal(tz2, "2019-11-30T06:30");
     assert.equal(utc, "2019-11-30T11:30");
   });
 
