@@ -14,7 +14,7 @@ Post type plug-ins define the fields used to created and edit posts in Indiekitâ
 
 While both plug-in types set default values for post types, these can be changed by defining alternative values in `publication.postTypes`
 
-For example, to use the Jekyll preset but override the location `note` and `event` post files are saved to, you would add the following to your configuration:
+For example, to use the Jekyll preset but override the location `note` and `photo` post files are saved to, you would add the following to your configuration:
 
 ::: code-group
 
@@ -33,11 +33,14 @@ For example, to use the Jekyll preset but override the location `note` and `even
           "url": "journal/{yyyy}/{MM}/{slug}"
         }
       },
-      "event": {
-        "name": "Calendar",
+      "photo": {
+        "name": "Gallery",
         "post": {
-          "path": "_calendar/{yyyy}-{MM}-{dd}-{slug}.md",
-          "url": "calendar/{yyyy}/{MM}/{slug}"
+          "path": "_gallery/{yyyy}-{MM}-{dd}-{slug}.md",
+          "url": "gallery/{yyyy}/{MM}/{slug}"
+        },
+        "media": {
+          "path": "media/gallery/{yyyy}/{MM}/{filename}"
         }
       }
     }
@@ -60,11 +63,14 @@ export default {
           url: "journal/{yyyy}/{MM}/{slug}"
         }
       },
-      event: {
-        name: "Calendar",
+      photo: {
+        name: "Gallery",
         post: {
-          path: "_calendar/{yyyy}-{MM}-{dd}-{slug}.md",
-          url: "calendar/{yyyy}/{MM}/{slug}"
+          path: "_gallery/{yyyy}-{MM}-{dd}-{slug}.md",
+          url: "gallery/{yyyy}/{MM}/{slug}"
+        },
+        media: {
+          path: "media/gallery/{yyyy}/{MM}/{filename}"
         }
       }
     }
