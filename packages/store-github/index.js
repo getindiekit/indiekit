@@ -1,3 +1,4 @@
+import path from "node:path";
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import makeDebug from "debug";
@@ -82,7 +83,8 @@ export default class GithubStore {
    */
   async #client(filePath, method = "GET", body) {
     const { baseUrl, user, repo, token } = this.options;
-    const url = new URL(filePath, `${baseUrl}/repos/${user}/${repo}/contents/`);
+    const apiPath = path.join(`repos/${user}/${repo}/contents`, filePath);
+    const url = new URL(apiPath, baseUrl);
 
     try {
       const response = await fetch(url.href, {
