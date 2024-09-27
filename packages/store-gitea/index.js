@@ -1,3 +1,4 @@
+import path from "node:path";
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
@@ -72,10 +73,11 @@ export default class GiteaStore {
    */
   async #client(filePath, method = "GET", body) {
     const { instance, user, repo, token } = this.options;
-    const url = new URL(
+    const apiPath = path.join(
+      `api/v1/repos/${user}/${repo}/contents`,
       filePath,
-      `${instance}/api/v1/repos/${user}/${repo}/contents/`,
     );
+    const url = new URL(apiPath, instance);
 
     try {
       const response = await fetch(url.href, {
