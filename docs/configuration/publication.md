@@ -227,7 +227,7 @@ See [customising post types →](post-types.md)
   : A string representing where posts should be saved in your content store.
 
   `url`
-  : A string representing a permalink (or URL path) format for posts on your website.
+  : A string representing a permalink (or URL path) format for posts on your website. Defaults to `path` if no value provided.
 
 `media`
 : An object containing options for how media files should be stored.
@@ -236,7 +236,7 @@ See [customising post types →](post-types.md)
   : A string representing where media files should be saved in your content store.
 
   `url`
-  : A string representing the public accessible URL for media files.
+  : A string representing the public accessible URL for media files. Defaults to `path` if no value provided.
 
 ## `slugSeparator`
 
