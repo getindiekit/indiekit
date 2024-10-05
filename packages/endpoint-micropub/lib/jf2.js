@@ -1,4 +1,4 @@
-import { getDate, randomString, slugify } from "@indiekit/util";
+import { getDate, md5, slugify } from "@indiekit/util";
 import {
   fetchReferences,
   mf2tojf2,
@@ -236,7 +236,7 @@ export const getVideoProperty = (properties, me) => {
  */
 export const getSlugProperty = (properties, separator) => {
   const suggested = properties["mp-slug"];
-  const { name } = properties;
+  const { name, published } = properties;
 
   let string;
   if (suggested) {
@@ -244,9 +244,7 @@ export const getSlugProperty = (properties, separator) => {
   } else if (name) {
     string = excerptString(name, 5);
   } else {
-    string = randomString(5)
-      .replace("_", "0") // Slugify function strips any leading underscore
-      .replace(separator, "0"); // Don’t include slug separator character
+    string = md5(published).slice(0, 5);
   }
 
   return slugify(string, { separator });
