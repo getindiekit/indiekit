@@ -58,9 +58,10 @@ export const mediaData = {
 
     const mediaData = { path, properties };
 
-    // Add data to media collection (if present)
+    // Add data to media collection (or replace existing if present)
     if (hasDatabase) {
-      await media.insertOne(mediaData);
+      const query = { "properties.url": properties.url };
+      await media.replaceOne(query, mediaData, { upsert: true });
     }
 
     return mediaData;
