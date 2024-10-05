@@ -323,7 +323,7 @@ describe("endpoint-micropub/lib/jf2", () => {
 
   it("Derives slug by generating random string", () => {
     const properties = JSON.parse(
-      getFixture("jf2/note-slug-missing-no-name.jf2"),
+      getFixture("jf2/note-published-provided.jf2"),
     );
     const result = getSlugProperty(properties, "-");
 
