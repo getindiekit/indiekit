@@ -50,12 +50,12 @@ const config = {
       },
       photo: {
         post: {
-          path: "_photos/{yyyy}-{MM}-{dd}-{n}.markdown",
-          url: "photos/{yyyy}/{DDD}/p{n}/",
+          path: "_photos/{yyyy}-{MM}-{dd}-{slug}.markdown",
+          url: "photos/{yyyy}/{DDD}/{slug}/",
         },
         media: {
-          path: "media/photos/{yyyy}/{DDD}/p{n}/{filename}",
-          url: "media/photos/{yyyy}/{DDD}/p{n}/{filename}",
+          path: "media/photos/{yyyy}/{DDD}/{slug}/{filename}",
+          url: "media/photos/{yyyy}/{DDD}/{slug}/{filename}",
         },
       },
     },
