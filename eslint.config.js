@@ -1,3 +1,4 @@
+import importPlugin from "eslint-plugin-import";
 import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 import jsdoc from "eslint-plugin-jsdoc";
@@ -6,6 +7,7 @@ import webComponents from "eslint-plugin-wc";
 import globals from "globals";
 
 export default [
+  importPlugin.flatConfigs.recommended,
   js.configs.recommended,
   jsdoc.configs["flat/recommended"],
   unicorn.configs["flat/recommended"],
@@ -15,7 +17,7 @@ export default [
   },
   {
     files: ["**/{packages,helpers}/**/*.js"],
-    languageOptions: { globals: { ...globals.node } },
+    languageOptions: { globals: { ...globals.node }, ecmaVersion: "latest" },
     rules: { "jsdoc/no-undefined-types": [1, { definedTypes: ["NodeJS"] }] },
   },
   {
