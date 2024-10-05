@@ -60,9 +60,13 @@ export const postData = {
 
     const postData = { path, properties };
 
-    // Add data to posts collection (if present)
+    // Add data to posts collection (or replace existing if present)
     if (hasDatabase) {
-      await posts.insertOne(postData, { checkKeys: false });
+      const query = { "properties.url": properties.url };
+      await posts.replaceOne(query, postData, {
+        checkKeys: false,
+        upsert: true,
+      });
     }
 
     return postData;
