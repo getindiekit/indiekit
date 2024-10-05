@@ -33,7 +33,8 @@
     "directory": "packages/store-github"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.15"
+    "@indiekit/error": "^1.0.0-beta.15",
+    "debug": "^4.3.2"
   },
   "publishConfig": {
     "access": "public"
