@@ -9,7 +9,7 @@ import sharp from "sharp";
 export const mediaTransform = async (imageProcessing, file) => {
   const { resize } = imageProcessing;
 
-  file.data = await sharp(file.data).resize(resize).toBuffer();
+  file.data = await sharp(file.data).rotate().resize(resize).toBuffer();
 
   return file;
 };
