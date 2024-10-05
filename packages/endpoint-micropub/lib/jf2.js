@@ -1,6 +1,9 @@
 import { getDate, randomString, slugify } from "@indiekit/util";
-import { mf2tojf2, mf2tojf2referenced } from "@paulrobertlloyd/mf2tojf2";
-import { fetchReferences } from "@paulrobertlloyd/mf2tojf2";
+import {
+  fetchReferences,
+  mf2tojf2,
+  mf2tojf2referenced,
+} from "@paulrobertlloyd/mf2tojf2";
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
 import {

@@ -2,6 +2,7 @@ import path from "node:path";
 import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
+// eslint-disable-next-line import/no-unresolved
 import { Commits, RepositoryFiles } from "@gitbeaker/rest";
 
 const defaults = {

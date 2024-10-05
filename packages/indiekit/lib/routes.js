@@ -1,7 +1,7 @@
 import path from "node:path";
 import express from "express";
 import { assetsPath } from "@indiekit/frontend";
-import rateLimit from "express-rate-limit";
+import { default as rateLimit } from "express-rate-limit";
 import * as assetsController from "./controllers/assets.js";
 import * as clientController from "./controllers/client.js";
 import * as feedController from "./controllers/feed.js";

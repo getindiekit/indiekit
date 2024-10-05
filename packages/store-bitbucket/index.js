@@ -1,5 +1,6 @@
 import path from "node:path";
 import process from "node:process";
+// eslint-disable-next-line import/default
 import bitbucket from "bitbucket";
 import { IndiekitError } from "@indiekit/error";
 
@@ -63,6 +64,7 @@ export default class BitbucketStore {
    * @returns {APIClient} Bitbucket client interface
    */
   get #client() {
+    // eslint-disable-next-line import/no-named-as-default-member
     const { Bitbucket } = bitbucket;
     return new Bitbucket({
       auth: {

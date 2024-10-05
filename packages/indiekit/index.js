@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import process from "node:process";
 import makeDebug from "debug";
-import Keyv from "keyv";
-import KeyvMongo from "@keyv/mongo";
+import { default as Keyv } from "keyv";
+import { default as KeyvMongo } from "@keyv/mongo";
 import { expressConfig } from "./config/express.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";

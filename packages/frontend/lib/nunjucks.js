@@ -27,11 +27,13 @@ export const templates = (app) => {
 
   // Add filters
   for (const filter of Object.keys(filters)) {
+    // eslint-disable-next-line import/namespace
     parser.addFilter(filter, filters[filter]);
   }
 
   // Add globals
   for (const global of Object.keys(globals)) {
+    // eslint-disable-next-line import/namespace
     parser.addGlobal(global, nunjucks.runtime.markSafe(globals[global]));
   }
 
