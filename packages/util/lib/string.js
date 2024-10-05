@@ -1,5 +1,12 @@
-import { randomBytes } from "node:crypto";
+import { randomBytes, createHash } from "node:crypto";
 import slugifyString from "@sindresorhus/slugify";
+
+/**
+ * Generate MD5 hashed string
+ * @param {string} string - String
+ * @returns {string} MD5 hashed string
+ */
+export const md5 = (string) => createHash("md5").update(string).digest("hex");
 
 /**
  * Generate cryptographically random string
