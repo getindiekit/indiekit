@@ -3,7 +3,7 @@ import process from "node:process";
 import { Buffer } from "node:buffer";
 import { IndiekitError } from "@indiekit/error";
 // eslint-disable-next-line import/no-unresolved
-import { Commits, RepositoryFiles } from "@gitbeaker/rest";
+import { Gitlab } from "@gitbeaker/rest";
 
 const defaults = {
   branch: "main",
@@ -77,17 +77,12 @@ export default class GitlabStore {
    * @returns {object} GitLab interfaces
    */
   get #client() {
-    const commits = new Commits({
+    const client = new Gitlab({
       host: this.options.instance,
       token: this.options.token,
     });
 
-    const files = new RepositoryFiles({
-      host: this.options.instance,
-      token: this.options.token,
-    });
-
-    return { commits, files };
+    return client;
   }
 
   /**
@@ -101,7 +96,7 @@ export default class GitlabStore {
    */
   async createFile(filePath, content, { message }) {
     try {
-      const createResponse = await this.#client.files.create(
+      const createResponse = await this.#client.RepositoryFiles.create(
         this.projectId,
         filePath,
         this.options.branch,
@@ -112,10 +107,8 @@ export default class GitlabStore {
         },
       );
 
-      const { file_path } = JSON.parse(await createResponse.text());
-
       const url = new URL(this.info.uid);
-      url.pathname = path.join(url.pathname, file_path);
+      url.pathname = path.join(url.pathname, createResponse.file_path);
 
       return url.href;
     } catch (error) {
@@ -135,7 +128,7 @@ export default class GitlabStore {
    */
   async readFile(filePath) {
     try {
-      const readResponse = await this.#client.files.showRaw(
+      const readResponse = await this.#client.RepositoryFiles.showRaw(
         this.projectId,
         filePath,
         this.options.branch,
@@ -163,7 +156,7 @@ export default class GitlabStore {
    */
   async updateFile(filePath, content, { message, newPath }) {
     try {
-      const updateResponse = await this.#client.commits.create(
+      await this.#client.Commits.create(
         this.projectId,
         this.options.branch,
         message,
@@ -186,10 +179,9 @@ export default class GitlabStore {
         ],
       );
 
-      const { file_path } = JSON.parse(await updateResponse.text());
-
+      const updateFilePath = newPath || filePath;
       const url = new URL(this.info.uid);
-      url.pathname = path.join(url.pathname, file_path);
+      url.pathname = path.join(url.pathname, updateFilePath);
 
       return url.href;
     } catch (error) {
@@ -211,7 +203,7 @@ export default class GitlabStore {
    */
   async deleteFile(filePath, { message }) {
     try {
-      await this.#client.files.remove(
+      await this.#client.RepositoryFiles.remove(
         this.projectId,
         filePath,
         this.options.branch,
