@@ -49,20 +49,33 @@ describe("store-gitlab", async () => {
     );
   });
 
-  it("Creates file", { timeout: 60 }, async () => {
+  it("Checks if file exists", async () => {
+    assert.equal(await gitlab.fileExists("foo.txt"), true);
+    assert.equal(await gitlab.fileExists("404.txt"), false);
+  });
+
+  it("Creates file", async () => {
+    const result = await gitlab.createFile("new.txt", "new", {
+      message: "Message",
+    });
+
+    assert.equal(result, "https://gitlab.com/username/repo/new.txt");
+  });
+
+  it("Doesn’t create file if already exists", async () => {
     const result = await gitlab.createFile("foo.txt", "foo", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitlab.com/username/repo/foo.txt");
+    assert.equal(result, undefined);
   });
 
   it("Creates file with projectId at custom instance", async () => {
-    const result = await gitlabInstance.createFile("foo.txt", "foo", {
+    const result = await gitlabInstance.createFile("new.txt", "new", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitlab.instance/projects/1234/foo.txt");
+    assert.equal(result, "https://gitlab.instance/projects/1234/new.txt");
   });
 
   it("Throws error creating file", async () => {
@@ -77,7 +90,7 @@ describe("store-gitlab", async () => {
   it("Reads file", async () => {
     const result = await gitlab.readFile("foo.txt");
 
-    assert.equal(result, "foobar");
+    assert.equal(result, "foo");
   });
 
   it("Throws error reading file", async () => {

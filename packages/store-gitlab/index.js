@@ -86,6 +86,26 @@ export default class GitlabStore {
   }
 
   /**
+   * Check if file exists
+   * @param {string} filePath - Path to file
+   * @returns {Promise<boolean>} File exists
+   * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#get-file-from-repository}
+   */
+  async fileExists(filePath) {
+    try {
+      await this.#client.RepositoryFiles.show(
+        this.projectId,
+        filePath,
+        this.options.branch,
+      );
+
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
@@ -96,6 +116,11 @@ export default class GitlabStore {
    */
   async createFile(filePath, content, { message }) {
     try {
+      const fileExists = await this.fileExists(filePath);
+      if (fileExists) {
+        return;
+      }
+
       const createResponse = await this.#client.RepositoryFiles.create(
         this.projectId,
         filePath,
