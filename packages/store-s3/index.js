@@ -139,19 +139,19 @@ export default class S3Store {
       const { ETag } = await this.client().send(putCommand);
 
       if (ETag && options?.newPath) {
-        const deleteCommand = new DeleteObjectCommand({
-          Bucket: this.options.bucket,
-          Key: filePath,
-        });
-
         const copyCommand = new CopyObjectCommand({
           Bucket: this.options.bucket,
           CopySource: path.join(this.options.bucket, filePath),
           Key: options.newPath,
         });
 
-        await this.client().send(deleteCommand);
+        const deleteCommand = new DeleteObjectCommand({
+          Bucket: this.options.bucket,
+          Key: filePath,
+        });
+
         await this.client().send(copyCommand);
+        await this.client().send(deleteCommand);
       }
 
       if (ETag) {
