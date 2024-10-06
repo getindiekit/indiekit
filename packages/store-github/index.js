@@ -111,6 +111,25 @@ export default class GithubStore {
   }
 
   /**
+   * Check if file exists
+   * @param {string} filePath - Path to file
+   * @returns {Promise<boolean>} File exists
+   * @see {@link https://docs.github.com/en/rest/repos/contents#get-repository-content}
+   */
+  async fileExists(filePath) {
+    const { branch, repo } = this.options;
+
+    try {
+      debug(`Try reading file ${filePath} in repo ${repo}, branch ${branch}`);
+      await this.#client(`${filePath}?ref=${branch}`);
+
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
@@ -124,13 +143,22 @@ export default class GithubStore {
 
     let createResponse;
     try {
+      const fileExists = await this.fileExists(filePath);
+      if (fileExists) {
+        return;
+      }
+
       debug(`Try creating file ${filePath} in repo ${repo}, branch ${branch}`);
       createResponse = await this.#client(filePath, "PUT", {
         branch,
         content: Buffer.from(content).toString("base64"),
         message,
       });
-      debug(`Created file ${filePath}`);
+      debug(`Creating file ${filePath}`);
+
+      const file = await createResponse.json();
+
+      return file.content.html_url;
     } catch (error) {
       const message = crudErrorMessage({
         error,
@@ -142,10 +170,6 @@ export default class GithubStore {
       debug(message);
       throw new Error(message);
     }
-
-    const file = await createResponse.json();
-
-    return file.content.html_url;
   }
 
   /**
