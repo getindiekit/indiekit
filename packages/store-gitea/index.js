@@ -105,6 +105,22 @@ export default class GiteaStore {
   }
 
   /**
+   * Check if file exists
+   * @param {string} filePath - Path to file
+   * @returns {Promise<boolean>} File exists
+   * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc}
+   */
+  async fileExists(filePath) {
+    try {
+      await this.#client(`${filePath}?ref=${this.options.branch}`);
+
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
@@ -114,6 +130,11 @@ export default class GiteaStore {
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(filePath, content, { message }) {
+    const fileExists = await this.fileExists(filePath);
+    if (fileExists) {
+      return;
+    }
+
     const createResponse = await this.#client(filePath, "POST", {
       branch: this.options.branch,
       content: Buffer.from(content).toString("base64"),

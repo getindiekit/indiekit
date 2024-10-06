@@ -9,28 +9,39 @@ export function mockClient() {
   agent.disableNetConnect();
 
   const origin = /https:\/\/gitea\..*/;
-  const path = /\/api\/v1\/repos\/username\/repo\/contents\/\D{3}.md/;
+  const path = /\/api\/v1\/repos\/username\/repo\/contents\/(foo|bar).txt/;
   const getResponse = {
-    content: "Zm9vYmFy", // ‘foobar’ Base64 encoded
-    path: "foo.md",
+    content: "Zm9v", // ‘foo’ Base64 encoded
+    path: "foo.txt",
     sha: "1234",
   };
 
-  // Create file
+  // Create new file
+  agent
+    .get(origin)
+    .intercept({ path: /.*new\.txt/, method: "POST" })
+    .reply(201, (options) => ({
+      branch: "main",
+      commit: { html_url: `${options.origin}/username/repo/new.txt` },
+      path: "foo.txt",
+    }))
+    .persist();
+
+  // Create/update file
   agent
     .get(origin)
     .intercept({ path, method: "POST" })
     .reply(201, (options) => ({
       branch: "main",
-      commit: { html_url: `${options.origin}/username/repo/foo.md` },
-      path: "foo.md",
+      commit: { html_url: `${options.origin}/username/repo/foo.txt` },
+      path: "foo.txt",
     }))
     .persist();
 
   // Create file (Unauthorized)
   agent
     .get(origin)
-    .intercept({ path: /.*401\.md/, method: "POST" })
+    .intercept({ path: /.*401\.txt/, method: "POST" })
     .reply(401, { message: "Unauthorized" });
 
   // Read file
@@ -43,24 +54,25 @@ export function mockClient() {
   // Read file (Unauthorized)
   agent
     .get(origin)
-    .intercept({ path: /.*401\.md/, method: "GET" })
+    .intercept({ path: /.*401\.txt/, method: "GET" })
     .reply(401, { message: "Unauthorized" })
     .persist();
 
   // Read file (Not Found)
   agent
     .get(origin)
-    .intercept({ path: /.*404\.md/, method: "GET" })
-    .reply(404, { message: "Not found" });
+    .intercept({ path: /.*404\.txt/, method: "GET" })
+    .reply(404, { message: "Not found" })
+    .persist();
 
   // Update and rename file
   agent
     .get(origin)
-    .intercept({ path: /.*bar\.md/, method: "PUT" })
+    .intercept({ path: /.*bar\.txt/, method: "PUT" })
     .reply(200, (options) => ({
       branch: "main",
-      commit: { html_url: `${options.origin}/username/repo/bar.md` },
-      path: "bar.md",
+      commit: { html_url: `${options.origin}/username/repo/bar.txt` },
+      path: "bar.txt",
     }))
     .persist();
 
@@ -70,8 +82,8 @@ export function mockClient() {
     .intercept({ path, method: "PUT" })
     .reply(200, (options) => ({
       branch: "main",
-      commit: { html_url: `${options.origin}/username/repo/foo.md` },
-      path: "foo.md",
+      commit: { html_url: `${options.origin}/username/repo/foo.txt` },
+      path: "foo.txt",
     }))
     .persist();
 
