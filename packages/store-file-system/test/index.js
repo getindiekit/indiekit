@@ -50,6 +50,14 @@ describe("store-file-system", () => {
     assert.equal(await fs.readFile("directory/foo.txt", "utf8"), "foo");
   });
 
+  it("Doesn’t create file if already exists", async () => {
+    mockFs({ "directory/bar.txt": "foo" });
+
+    const result = await fileSystem.createFile("bar.txt", "foo");
+
+    assert.equal(result, undefined);
+  });
+
   it("Throws error creating file", async () => {
     mockFs();
 

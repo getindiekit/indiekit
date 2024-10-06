@@ -58,6 +58,10 @@ export default class FileSystemStore {
       const absolutePath = this.#absolutePath(filePath);
       const dirname = path.dirname(absolutePath);
 
+      if (existsSync(absolutePath)) {
+        return;
+      }
+
       if (!existsSync(dirname)) {
         await fs.mkdir(dirname, { recursive: true });
       }
