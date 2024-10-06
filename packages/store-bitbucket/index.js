@@ -76,6 +76,28 @@ export default class BitbucketStore {
   }
 
   /**
+   * Check if file exists
+   * @param {string} filePath - Path to file
+   * @returns {Promise<boolean>} File exists
+   * @see {@link https://bitbucketjs.netlify.app/#api-repositories-repositories_readSrc}
+   */
+  async fileExists(filePath) {
+    try {
+      await this.#client.repositories.readSrc({
+        format: "meta",
+        commit: this.options.branch,
+        path: filePath,
+        repo_slug: this.options.repo,
+        workspace: this.options.user,
+      });
+
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
@@ -86,6 +108,11 @@ export default class BitbucketStore {
    */
   async createFile(filePath, content, { message }) {
     try {
+      const fileExists = await this.fileExists(filePath);
+      if (fileExists) {
+        return;
+      }
+
       await this.#client.repositories.createSrcFileCommit({
         [filePath]: content,
         branch: this.options.branch,
