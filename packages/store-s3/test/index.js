@@ -42,7 +42,16 @@ describe("store-s3", () => {
     assert.equal(indiekit.publication.store.info.name, "website bucket");
   });
 
+  it("Checks if file exists", async () => {
+    mockS3Client.on(GetObjectCommand).resolves({ ETag: "true" });
+    assert.equal(await s3.fileExists("foo.md"), true);
+
+    mockS3Client.on(GetObjectCommand).rejects("Couldn’t get object");
+    assert.equal(await s3.fileExists("foo.md"), false);
+  });
+
   it("Creates file", async () => {
+    mockS3Client.on(GetObjectCommand).rejects("Couldn’t get object");
     mockS3Client.on(PutObjectCommand).resolves({ ETag: "true" });
 
     assert.equal(
@@ -51,7 +60,14 @@ describe("store-s3", () => {
     );
   });
 
+  it("Doesn’t create file if already exists", async () => {
+    mockS3Client.on(GetObjectCommand).resolves({ ETag: "true" });
+
+    assert.equal(await s3.createFile("foo.md", "foobar"), undefined);
+  });
+
   it("Throws error creating file", async () => {
+    mockS3Client.on(GetObjectCommand).rejects("Couldn’t get object");
     mockS3Client.on(PutObjectCommand).rejects("Couldn’t put object");
 
     await assert.rejects(s3.createFile("foo.md", ""), {
