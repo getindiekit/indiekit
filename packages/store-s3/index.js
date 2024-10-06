@@ -62,6 +62,26 @@ export default class S3Store {
   }
 
   /**
+   * Check if file exists
+   * @param {string} filePath - Path to file
+   * @returns {Promise<boolean>} File exists
+   */
+  async fileExists(filePath) {
+    try {
+      const getCommand = new GetObjectCommand({
+        Bucket: this.options.bucket,
+        Key: filePath,
+      });
+
+      await this.client().send(getCommand);
+
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
@@ -75,6 +95,11 @@ export default class S3Store {
     });
 
     try {
+      const fileExists = await this.fileExists(filePath);
+      if (fileExists) {
+        return;
+      }
+
       const { ETag } = await this.client().send(putCommand);
 
       if (ETag) {
