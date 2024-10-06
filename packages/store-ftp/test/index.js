@@ -75,6 +75,12 @@ describe("store-ftp", () => {
     );
   });
 
+  it("Doesn’t create file if already exists", async () => {
+    await ftp.createFile("foo.md", "foobar");
+
+    assert.equal(await ftp.createFile("foo.md", "foobar"), undefined);
+  });
+
   it("Throws error creating file", async () => {
     await assert.rejects(ftp.createFile(undefined, ""), {
       message: `FTP store: The "path" argument must be of type string. Received undefined`,
