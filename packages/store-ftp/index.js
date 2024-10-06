@@ -118,6 +118,12 @@ export default class FtpStore {
       const readableStream = this.#createReadableStream(content);
       const absolutePath = this.#absolutePath(filePath);
 
+      // Return if file already exists
+      const fileExists = await client.exists(absolutePath);
+      if (fileExists) {
+        return;
+      }
+
       // Create directory if doesn’t exist
       const directory = path.dirname(absolutePath);
       const directoryType = await client.exists(directory);
