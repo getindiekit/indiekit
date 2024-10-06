@@ -10,7 +10,14 @@ export function mockClient() {
   agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
 
   const origin = "https://api.github.com";
-  const path = /\/repos\/user\/repo\/contents\/\D{3}\.md/;
+  const path = /\/repos\/user\/repo\/contents\/(foo|bar)\.txt/;
+  const createNewResponse = {
+    content: {
+      path: "new.txt",
+      html_url: "https://github.com/user/repo/blob/main/new.txt",
+    },
+    commit: { message: "Message" },
+  };
   const createResponse = {
     content: {
       path: "foo.txt",
@@ -26,7 +33,7 @@ export function mockClient() {
     commit: { message: "Message" },
   };
   const readResponse = {
-    content: "Zm9vYmFy", // ‘foobar’ Base64 encoded
+    content: "Zm9v", // ‘foo’ Base64 encoded
     path: "foo.txt",
     sha: "1234",
   };
@@ -34,23 +41,30 @@ export function mockClient() {
     commit: { message: "Message" },
   };
 
+  // Create new file
+  agent
+    .get(origin)
+    .intercept({ path: /.*new\.txt/, method: "PUT" })
+    .reply(201, createNewResponse)
+    .persist();
+
   // Create/update file
   agent
     .get(origin)
-    .intercept({ path: /.*foo\.md/, method: "PUT" })
+    .intercept({ path: /.*foo\.txt/, method: "PUT" })
     .reply(201, createResponse)
     .persist();
 
   // Create/update file (Unauthorized)
   agent
     .get(origin)
-    .intercept({ path: /.*401\.md/, method: "PUT" })
+    .intercept({ path: /.*401\.txt/, method: "PUT" })
     .reply(401);
 
   // Update and rename file
   agent
     .get(origin)
-    .intercept({ path: /.*bar\.md/, method: "PUT" })
+    .intercept({ path: /.*bar\.txt/, method: "PUT" })
     .reply(201, updateResponse)
     .persist();
 
@@ -64,14 +78,14 @@ export function mockClient() {
   // Read file (Unauthorized)
   agent
     .get(origin)
-    .intercept({ path: /.*401\.md/, method: "GET" })
+    .intercept({ path: /.*401\.txt/, method: "GET" })
     .reply(401)
     .persist();
 
   // Read file (Not Found)
   agent
     .get(origin)
-    .intercept({ path: /.*404\.md/, method: "GET" })
+    .intercept({ path: /.*404\.txt/, method: "GET" })
     .reply(404)
     .persist();
 
