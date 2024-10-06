@@ -47,25 +47,38 @@ describe("store-github", async () => {
     assert.equal(indiekit.publication.store.info.name, "user/repo on Gitea");
   });
 
+  it("Checks if file exists", async () => {
+    assert.equal(await gitea.fileExists("foo.txt"), true);
+    assert.equal(await gitea.fileExists("404.txt"), false);
+  });
+
   it("Creates file", async () => {
-    const result = await gitea.createFile("foo.md", "foo", {
+    const result = await gitea.createFile("new.txt", "new", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitea.com/username/repo/foo.md");
+    assert.equal(result, "https://gitea.com/username/repo/new.txt");
+  });
+
+  it("Doesn’t create file if already exists", async () => {
+    const result = await gitea.createFile("foo.txt", "foo", {
+      message: "Message",
+    });
+
+    assert.equal(result, undefined);
   });
 
   it("Creates file at custom instance", async () => {
-    const result = await giteaInstance.createFile("foo.md", "foo", {
+    const result = await giteaInstance.createFile("new.txt", "foo", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitea.instance/username/repo/foo.md");
+    assert.equal(result, "https://gitea.instance/username/repo/new.txt");
   });
 
   it("Throws error creating file", async () => {
     await assert.rejects(
-      gitea.createFile("401.md", "foo", { message: "Message" }),
+      gitea.createFile("401.txt", "foo", { message: "Message" }),
       {
         message: "Gitea store: Unauthorized",
       },
@@ -73,37 +86,37 @@ describe("store-github", async () => {
   });
 
   it("Reads file", async () => {
-    const result = await gitea.readFile("foo.md");
+    const result = await gitea.readFile("foo.txt");
 
-    assert.equal(result, "foobar");
+    assert.equal(result, "foo");
   });
 
   it("Throws error reading file", async () => {
-    await assert.rejects(gitea.readFile("404.md"), {
+    await assert.rejects(gitea.readFile("404.txt"), {
       message: "Gitea store: Not found",
     });
   });
 
   it("Updates file", async () => {
-    const result = await gitea.updateFile("foo.md", "foo", {
+    const result = await gitea.updateFile("foo.txt", "foo", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitea.com/username/repo/foo.md");
+    assert.equal(result, "https://gitea.com/username/repo/foo.txt");
   });
 
   it("Updates and renames file", async () => {
-    const result = await gitea.updateFile("foo.md", "foo", {
+    const result = await gitea.updateFile("foo.txt", "foo", {
       message: "Message",
-      newPath: "bar.md",
+      newPath: "bar.txt",
     });
 
-    assert.equal(result, "https://gitea.com/username/repo/bar.md");
+    assert.equal(result, "https://gitea.com/username/repo/bar.txt");
   });
 
   it("Throws error updating file", async () => {
     await assert.rejects(
-      gitea.updateFile("401.md", "foo", { message: "Message" }),
+      gitea.updateFile("401.txt", "foo", { message: "Message" }),
       {
         message: "Gitea store: Unauthorized",
       },
@@ -111,13 +124,13 @@ describe("store-github", async () => {
   });
 
   it("Deletes a file", async () => {
-    const result = await gitea.deleteFile("foo.md", { message: "Message" });
+    const result = await gitea.deleteFile("foo.txt", { message: "Message" });
 
     assert.equal(result, true);
   });
 
   it("Throws error deleting a file", async () => {
-    await assert.rejects(gitea.deleteFile("401.md", { message: "Message" }), {
+    await assert.rejects(gitea.deleteFile("401.txt", { message: "Message" }), {
       message: "Gitea store: Unauthorized",
     });
   });
