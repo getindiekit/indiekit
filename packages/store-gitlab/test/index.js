@@ -50,24 +50,24 @@ describe("store-gitlab", async () => {
   });
 
   it("Creates file", { timeout: 60 }, async () => {
-    const result = await gitlab.createFile("foo.md", "foo", {
+    const result = await gitlab.createFile("foo.txt", "foo", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitlab.com/username/repo/foo.md");
+    assert.equal(result, "https://gitlab.com/username/repo/foo.txt");
   });
 
   it("Creates file with projectId at custom instance", async () => {
-    const result = await gitlabInstance.createFile("foo.md", "foo", {
+    const result = await gitlabInstance.createFile("foo.txt", "foo", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitlab.instance/projects/1234/foo.md");
+    assert.equal(result, "https://gitlab.instance/projects/1234/foo.txt");
   });
 
   it("Throws error creating file", async () => {
     await assert.rejects(
-      gitlab.createFile("401.md", "foo", { message: "Message" }),
+      gitlab.createFile("401.txt", "foo", { message: "Message" }),
       {
         message: "GitLab store: Unauthorized",
       },
@@ -75,37 +75,37 @@ describe("store-gitlab", async () => {
   });
 
   it("Reads file", async () => {
-    const result = await gitlab.readFile("foo.md");
+    const result = await gitlab.readFile("foo.txt");
 
     assert.equal(result, "foobar");
   });
 
   it("Throws error reading file", async () => {
-    await assert.rejects(gitlab.readFile("401.md"), {
+    await assert.rejects(gitlab.readFile("401.txt"), {
       message: "GitLab store: Unauthorized",
     });
   });
 
   it("Updates file", async () => {
-    const result = await gitlab.updateFile("foo.md", "foo", {
+    const result = await gitlab.updateFile("foo.txt", "foo", {
       message: "Message",
     });
 
-    assert.equal(result, "https://gitlab.com/username/repo/foo.md");
+    assert.equal(result, "https://gitlab.com/username/repo/foo.txt");
   });
 
   it("Updates and renames file", async () => {
-    const result = await gitlab.updateFile("foo.md", "foo", {
+    const result = await gitlab.updateFile("foo.txt", "foo", {
       message: "Message",
-      newPath: "bar.md",
+      newPath: "bar.txt",
     });
 
-    assert.equal(result, "https://gitlab.com/username/repo/bar.md");
+    assert.equal(result, "https://gitlab.com/username/repo/bar.txt");
   });
 
   it("Throws error updating file", async () => {
     await assert.rejects(
-      gitlab.updateFile("401.md", "foo", { message: "Message" }),
+      gitlab.updateFile("401.txt", "foo", { message: "Message" }),
       {
         message: "GitLab store: Unauthorized",
       },
@@ -113,13 +113,13 @@ describe("store-gitlab", async () => {
   });
 
   it("Deletes a file", async () => {
-    const result = await gitlab.deleteFile("foo.md", { message: "Message" });
+    const result = await gitlab.deleteFile("foo.txt", { message: "Message" });
 
     assert.equal(result, true);
   });
 
   it("Throws error deleting a file", async () => {
-    await assert.rejects(gitlab.deleteFile("401.md", { message: "Message" }), {
+    await assert.rejects(gitlab.deleteFile("401.txt", { message: "Message" }), {
       message: "GitLab store: Unauthorized",
     });
   });
