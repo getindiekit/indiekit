@@ -46,6 +46,20 @@ describe("store-bitbucket", () => {
     );
   });
 
+  it("Checks if file exists", async () => {
+    nock(bitbucketUrl)
+      .get("/2.0/repositories/username/repo/src/main/foo.txt")
+      .query({ format: "meta" })
+      .reply(201, { path: "foo.txt", type: "meta" });
+    nock(bitbucketUrl)
+      .post("/2.0/repositories/username/repo/src/main/bar.txt")
+      .query({ format: "meta" })
+      .replyWithError("Not found");
+
+    assert.equal(await bitbucket.fileExists("foo.txt"), true);
+    assert.equal(await bitbucket.fileExists("bar.txt"), false);
+  });
+
   it("Creates file", async () => {
     nock(bitbucketUrl).post("/2.0/repositories/username/repo/src").reply(201, {
       "content-type": "application/json",
@@ -56,6 +70,29 @@ describe("store-bitbucket", () => {
     });
 
     assert.equal(result, "https://bitbucket.org/username/repo/foo.txt");
+  });
+
+  it("Doesn’t create file if already exists", async () => {
+    nock(bitbucketUrl).post("/2.0/repositories/username/repo/src").reply(201, {
+      "content-type": "application/json",
+    });
+
+    // Create file
+    await bitbucket.createFile("foo.txt", "foo", {
+      message: "Message",
+    });
+
+    nock(bitbucketUrl)
+      .get("/2.0/repositories/username/repo/src/main/foo.txt")
+      .query({ format: "meta" })
+      .reply(201, { path: "foo.txt", type: "meta" });
+
+    // Create file a second time
+    const result = await bitbucket.createFile("foo.txt", "foo", {
+      message: "Message",
+    });
+
+    assert.equal(result, undefined);
   });
 
   it("Throws error creating file", async () => {
