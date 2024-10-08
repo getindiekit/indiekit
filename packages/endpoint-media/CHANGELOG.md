@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **endpoint-media:** add debug dependency ([3d702e2](https://github.com/getindiekit/indiekit/commit/3d702e2f7c6763271f544808206a90ef926028dd))
+* **endpoint-media:** resize image while keeping original orientation ([0d51c95](https://github.com/getindiekit/indiekit/commit/0d51c95db8dd07c78630d04fa612ffa62a9b922a))
+
+
+### Features
+
+* **endpoint-media:** replace existing if uploading media with the same url ([fc24e1c](https://github.com/getindiekit/indiekit/commit/fc24e1cebd416268b478a72a98abc97d56dc4aef))
+
+
+
+
+
 # [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
 
 **Note:** Version bump only for package @indiekit/endpoint-media

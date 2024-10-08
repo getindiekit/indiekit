@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **store-github:** add debug dependency. fixes [#763](https://github.com/getindiekit/indiekit/issues/763) ([bd2a3f7](https://github.com/getindiekit/indiekit/commit/bd2a3f70e4dc7a2a39cb34fa9781c1703788352b))
+* **store-github:** join file and instance paths to normalise client url ([a9ff68e](https://github.com/getindiekit/indiekit/commit/a9ff68ecb8beb1a0f1f213f8ca85ba404b6d365c))
+
+
+### Features
+
+* **store-github:** check if file exists before creating ([f89b8f1](https://github.com/getindiekit/indiekit/commit/f89b8f1142dacb070e2c34c4941b1142600acf4c))
+
+
+
+
+
 # [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Features
+
+* **util:** md5 ([b09a8c4](https://github.com/getindiekit/indiekit/commit/b09a8c444b92d974cde3a9b3b98e2d80b3f8465b))
+
+
+
+
+
 # [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
 
 **Note:** Version bump only for package @indiekit/util

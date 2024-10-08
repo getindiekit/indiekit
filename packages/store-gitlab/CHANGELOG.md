@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **store-gitlab:** check if file exists before creating ([101637b](https://github.com/getindiekit/indiekit/commit/101637b72b0dfb754dfc7b2b68220d0e62947900))
+* **store-gitlab:** update integration ([b4c88ce](https://github.com/getindiekit/indiekit/commit/b4c88ced4b70b85552a8499fca7bd6bb526a0fce))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/store-gitlab

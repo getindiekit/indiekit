@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/post-type-rsvp",
-  "version": "1.0.0-beta.18",
+  "version": "1.0.0-beta.19",
   "description": "RSVP post type for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/post-type-rsvp"
   },
   "dependencies": {
-    "@indiekit/util": "^1.0.0-beta.18"
+    "@indiekit/util": "^1.0.0-beta.19"
   },
   "publishConfig": {
     "access": "public"

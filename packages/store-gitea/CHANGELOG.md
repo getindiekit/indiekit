@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **store-gitea:** check if file exists before creating ([2512507](https://github.com/getindiekit/indiekit/commit/2512507ec47c92af31794546bdd0bb2c5d289465))
+* **store-gitea:** join file and instance paths to normalise client url ([3a83733](https://github.com/getindiekit/indiekit/commit/3a83733ae166652f0ca171265b6e4aec192fb453))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/store-gitea

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **store-s3:** check if file exists before creating ([e1468c4](https://github.com/getindiekit/indiekit/commit/e1468c42955c033aca00213fe8b600f3c58e110c))
+* **store-s3:** copy file before deleting when moving ([c6dcb25](https://github.com/getindiekit/indiekit/commit/c6dcb25cc8fcbff495df12418e80a3d6dd6d91a6))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/store-s3

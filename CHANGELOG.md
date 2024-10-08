@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **endpoint-media:** add debug dependency ([3d702e2](https://github.com/getindiekit/indiekit/commit/3d702e2f7c6763271f544808206a90ef926028dd))
+* **endpoint-media:** resize image while keeping original orientation ([0d51c95](https://github.com/getindiekit/indiekit/commit/0d51c95db8dd07c78630d04fa612ffa62a9b922a))
+* **endpoint-micropub:** add debug dependency ([ca92293](https://github.com/getindiekit/indiekit/commit/ca92293c7533707b6a89989bd152caad4223e13b))
+* **endpoint-micropub:** remove deprecated checkKeys option ([330e023](https://github.com/getindiekit/indiekit/commit/330e023783c45fe6e3d944e8f8e994bb7859ab41))
+* **post-type-event:** add missing conditional for end property ([3e1a8a0](https://github.com/getindiekit/indiekit/commit/3e1a8a08aacbd9ddfbe7bd5dcc6cdee0ff9619b7))
+* **store-ftp:** check if file exists before creating ([e50e32c](https://github.com/getindiekit/indiekit/commit/e50e32c8a643b5ad5a3b5022bff1207ea20ffaf1))
+* **store-gitea:** check if file exists before creating ([2512507](https://github.com/getindiekit/indiekit/commit/2512507ec47c92af31794546bdd0bb2c5d289465))
+* **store-gitea:** join file and instance paths to normalise client url ([3a83733](https://github.com/getindiekit/indiekit/commit/3a83733ae166652f0ca171265b6e4aec192fb453))
+* **store-github:** add debug dependency. fixes [#763](https://github.com/getindiekit/indiekit/issues/763) ([bd2a3f7](https://github.com/getindiekit/indiekit/commit/bd2a3f70e4dc7a2a39cb34fa9781c1703788352b))
+* **store-github:** join file and instance paths to normalise client url ([a9ff68e](https://github.com/getindiekit/indiekit/commit/a9ff68ecb8beb1a0f1f213f8ca85ba404b6d365c))
+* **store-gitlab:** check if file exists before creating ([101637b](https://github.com/getindiekit/indiekit/commit/101637b72b0dfb754dfc7b2b68220d0e62947900))
+* **store-gitlab:** update integration ([b4c88ce](https://github.com/getindiekit/indiekit/commit/b4c88ced4b70b85552a8499fca7bd6bb526a0fce))
+* **store-s3:** check if file exists before creating ([e1468c4](https://github.com/getindiekit/indiekit/commit/e1468c42955c033aca00213fe8b600f3c58e110c))
+* **store-s3:** copy file before deleting when moving ([c6dcb25](https://github.com/getindiekit/indiekit/commit/c6dcb25cc8fcbff495df12418e80a3d6dd6d91a6))
+
+
+### Features
+
+* **endpoint-media:** replace existing if uploading media with the same url ([fc24e1c](https://github.com/getindiekit/indiekit/commit/fc24e1cebd416268b478a72a98abc97d56dc4aef))
+* **endpoint-micropub:** replace existing if creating a post with the same url ([b3b0baa](https://github.com/getindiekit/indiekit/commit/b3b0baa7b3ea5cddabb264c10fec625e85c394b6))
+* **endpoint-micropub:** use md5 hash of published date as final option for a slug ([2ea5a8c](https://github.com/getindiekit/indiekit/commit/2ea5a8c7af9f0706da6fc043b921470119fdd711))
+* **store-bitbucket:** check if file exists before creating ([e394e4a](https://github.com/getindiekit/indiekit/commit/e394e4a17aa9fa644af5b9ad7d10b5e7358c79e5))
+* **store-file-system:** check if file exists before creating ([1aa437e](https://github.com/getindiekit/indiekit/commit/1aa437ee2dcecb946bec3f4b599b72b3bac4284b))
+* **store-github:** check if file exists before creating ([f89b8f1](https://github.com/getindiekit/indiekit/commit/f89b8f1142dacb070e2c34c4941b1142600acf4c))
+* **util:** md5 ([b09a8c4](https://github.com/getindiekit/indiekit/commit/b09a8c444b92d974cde3a9b3b98e2d80b3f8465b))
+
+
+
+
+
 # [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
 
 

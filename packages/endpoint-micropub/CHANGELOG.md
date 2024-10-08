@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** add debug dependency ([ca92293](https://github.com/getindiekit/indiekit/commit/ca92293c7533707b6a89989bd152caad4223e13b))
+* **endpoint-micropub:** remove deprecated checkKeys option ([330e023](https://github.com/getindiekit/indiekit/commit/330e023783c45fe6e3d944e8f8e994bb7859ab41))
+
+
+### Features
+
+* **endpoint-micropub:** replace existing if creating a post with the same url ([b3b0baa](https://github.com/getindiekit/indiekit/commit/b3b0baa7b3ea5cddabb264c10fec625e85c394b6))
+* **endpoint-micropub:** use md5 hash of published date as final option for a slug ([2ea5a8c](https://github.com/getindiekit/indiekit/commit/2ea5a8c7af9f0706da6fc043b921470119fdd711))
+
+
+
+
+
 # [1.0.0-beta.18](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2024-08-25)
 
 
