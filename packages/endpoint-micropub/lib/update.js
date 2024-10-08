@@ -97,7 +97,7 @@ export const deleteEntries = (object, deletions) => {
 
       for (const value of valuesToDelete) {
         const index = values.indexOf(value);
-        if (index > -1) {
+        if (index !== -1) {
           values.splice(index, 1);
         }
 

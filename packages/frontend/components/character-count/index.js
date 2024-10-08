@@ -77,7 +77,7 @@ export const CharacterCountComponent = class extends HTMLElement {
    * @access private
    */
   #handleFocus() {
-    this.valueChecker = window.setInterval(() => {
+    this.valueChecker = globalThis.setInterval(() => {
       if (
         !this.lastInputTimestamp ||
         Date.now() - 500 >= this.lastInputTimestamp
@@ -93,7 +93,7 @@ export const CharacterCountComponent = class extends HTMLElement {
    */
   #handleBlur() {
     if (this.valueChecker) {
-      window.clearInterval(this.valueChecker);
+      globalThis.clearInterval(this.valueChecker);
     }
   }
 

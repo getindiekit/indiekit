@@ -91,7 +91,7 @@ self.addEventListener("install", async (event) => {
     (async () => {
       await updateAssetCache();
       await cacheClients();
-      self.skipWaiting();
+      globalThis.skipWaiting();
     })(),
   );
 });

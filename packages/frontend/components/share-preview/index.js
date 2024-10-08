@@ -16,8 +16,8 @@ export const SharePreviewComponent = class extends HTMLElement {
     if (this.$form) {
       const { scrollWidth, scrollHeight } = this.$form;
 
-      const chromeWidth = window.outerWidth - window.innerWidth;
-      const chromeHeight = window.outerHeight - window.innerHeight;
+      const chromeWidth = globalThis.outerWidth - window.innerWidth;
+      const chromeHeight = globalThis.outerHeight - window.innerHeight;
 
       const width = scrollWidth + chromeWidth;
       const height = scrollHeight + chromeHeight;
