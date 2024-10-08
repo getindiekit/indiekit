@@ -1,5 +1,7 @@
 {%- set startFormat = "PPp" if property | includes("T") else "PP" -%}
-{%- set endFormat = "PPp" if properties.end | includes("T") else "PP" -%}
+{%- if properties.end -%}
+  {%- set endFormat = "PPp" if properties.end | includes("T") else "PP" -%}
+{%- endif -%}
 {%- set html -%}
   {{ icon("event") }}
   {{- property | date(startFormat, { locale: opts.locale, timeZone: application.timeZone }) -}}
