@@ -63,10 +63,7 @@ export const postData = {
     // Add data to posts collection (or replace existing if present)
     if (hasDatabase) {
       const query = { "properties.url": properties.url };
-      await posts.replaceOne(query, postData, {
-        checkKeys: false,
-        upsert: true,
-      });
+      await posts.replaceOne(query, postData, { upsert: true });
     }
 
     return postData;
@@ -166,7 +163,7 @@ export const postData = {
     // Update data in posts collection
     const postData = { _originalPath, path, properties };
     const query = { "properties.url": url };
-    await posts.replaceOne(query, postData, { checkKeys: false });
+    await posts.replaceOne(query, postData);
 
     return postData;
   },
@@ -216,7 +213,7 @@ export const postData = {
     // Update data in posts collection
     const postData = { path, properties, _deletedProperties };
     const query = { "properties.url": url };
-    await posts.replaceOne(query, postData, { checkKeys: false });
+    await posts.replaceOne(query, postData);
 
     return postData;
   },
@@ -263,7 +260,7 @@ export const postData = {
     // Update data in posts collection
     const postData = { path, properties };
     const query = { "properties.url": url };
-    await posts.replaceOne(query, postData, { checkKeys: false });
+    await posts.replaceOne(query, postData);
 
     return postData;
   },
