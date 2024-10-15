@@ -32,6 +32,12 @@ FTP content store adaptor.
 
 [GitHub](https://github.com) content store adaptor.
 
+The GitHub content store uses the [GitHub Contents API](https://docs.github.com/en/rest/repos/contents) to create and update files. In order to use it, you will need a GitHub token that has access to the repository you want to use as content store, and that has the required **Repository permissions**.
+
+You can create a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) that has **Read and Write** access to **Contents**. The token expiration is up to you.
+
+![Required permissions for the fine-grained GitHub personal access token used by the Indiekit GitHub content store](/github-token-permissions-for-github-content-store.png)
+
 ## [@indiekit/store-gitlab](https://npmjs.org/package/@indiekit/store-gitlab)
 
 <Badge type="tip" text="Offical" />
