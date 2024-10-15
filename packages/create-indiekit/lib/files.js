@@ -39,6 +39,10 @@ export const getFiles = async (setup) => {
       path: ".gitignore",
       contents: await getFileContents("template.gitignore"),
     },
+    {
+      path: path.join(".vscode", "launch.json"),
+      contents: await getFileContents("template.vscode_launch.json"),
+    },
   ];
 
   if (useDocker) {
