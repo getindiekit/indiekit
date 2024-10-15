@@ -20,3 +20,11 @@ docs/.cache
 
 # Localisation keys
 localazy.keys.json
+
+.devenv/
+.devenv.flake.nix
+devenv.local.nix
+
+.direnv/
+
+.pre-commit-config.yaml
