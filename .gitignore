@@ -20,3 +20,15 @@ docs/.cache
 
 # Localisation keys
 localazy.keys.json
+
+.devenv/
+.devenv.flake.nix
+devenv.local.nix
+
+.direnv/
+
+.pre-commit-config.yaml
+
+# Frontend bundles, sourcemaps, manifests
+packages/frontend/public/
+!packages/frontend/public/README.md

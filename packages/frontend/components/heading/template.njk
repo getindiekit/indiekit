@@ -1,4 +1,17 @@
 {% from "../actions/macro.njk" import actions with context %}
+{# {% set opts = {
+    actions: [
+      { icon: "create", href: "#", text: "Create" },
+      { icon: "delete", href: "#", text: "Delete" }
+    ],
+    parent: {
+      href: "#", text: "TODO"
+    },
+    photo: { 
+      alt: "accessible description", src: "https://httpbin.org/image/svg"
+    },
+    text: "TODO"
+  } %} #}
 {% set srcOnError = opts.photo.srcOnError or "/assets/not-found.svg" %}
 <header class="{{ classes("heading", opts) }}">
   {% if opts.photo %}
