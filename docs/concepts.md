@@ -81,7 +81,7 @@ This information can be provided by setting the `publication.postTypes` and `pub
 
 A publication preset plug-in provides default values for these 2 options (which you can then override).
 
-For example, if you use the Hugo static site generator, you can install the [Hugo publication preset](plugins/index.md#hugo):
+For example, if you use the Hugo static site generator, you can install the [Hugo publication preset](plugins/presets#indiekit-preset-hugo):
 
 ```sh
 npm install @indiekit/preset-hugo
