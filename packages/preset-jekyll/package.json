@@ -39,7 +39,7 @@
   "dependencies": {
     "plur": "^5.1.0",
     "snakecase-keys": "^8.0.0",
-    "yaml": "^2.4.0"
+    "yaml": "^2.6.0"
   },
   "publishConfig": {
     "access": "public"
