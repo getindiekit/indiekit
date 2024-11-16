@@ -56,6 +56,7 @@ The following [scopes](https://indieweb.org/scope) are supported:
 ### Extensions
 
 * [x] [Category](https://github.com/indieweb/micropub-extensions/issues/5) query
+* [x] [Channel](https://github.com/indieweb/micropub-extensions/issues/40) query
 * [x] [Post list](https://github.com/indieweb/micropub-extensions/issues/4) query
 * [x] [Supported properties](https://github.com/indieweb/micropub-extensions/issues/33) query
 * [x] [Supported queries](https://github.com/indieweb/micropub-extensions/issues/7) query
@@ -71,6 +72,7 @@ The following [scopes](https://indieweb.org/scope) are supported:
 
 ### Server commands
 
+* [x] `mp-channel`: Channel(s) to use for a published post
 * [x] `mp-photo-alt`: Alternative text to use for a published photo
 * [x] `mp-slug`: URL slug to use in published post
 * [x] `mp-syndicate-to`: Which syndication targets to syndicate post to

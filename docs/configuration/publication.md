@@ -53,6 +53,44 @@ export default {
 
 :::
 
+## `channels`
+
+A keyed collection of configuration properties for different channels, which can be used to organise posts within your publication. For example:
+
+::: code-group
+
+```json [JSON]
+{
+  "publication": {
+    "channels": {
+      "posts": {
+        "name": "Posts"
+      },
+      "pages": {
+        "name": "Pages"
+      }
+    }
+  }
+}
+```
+
+```js [JavaScript]
+export default {
+  publication: {
+    channels: {
+      posts: {
+        name: "Posts"
+      },
+      pages: {
+        name: "Pages"
+      }
+    }
+  }
+}
+```
+
+:::
+
 ## `enrichPostData`
 
 A boolean to determine if data about URLs referenced in new posts is fetched and appended to a post’s properties.
