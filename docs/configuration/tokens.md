@@ -59,6 +59,7 @@ The following tokens are only available for post files:
 
 | Token | Description |
 | :---- | :---------- |
+| `channel` | Channel provided in `mp-channel` property, else default channel UID. Token only available if `publication.channels` is configured. |
 | `slug` | Slug provided in `mp-slug` property, else slugified `name` property, else a 5 character string, for example `ycf9o` |
 
 ### Media file tokens
