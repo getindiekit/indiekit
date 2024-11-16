@@ -86,7 +86,8 @@
     describedBy: describedBy,
     classes: opts.fieldset.classes,
     attributes: opts.fieldset.attributes,
-    legend: opts.fieldset.legend
+    legend: opts.fieldset.legend,
+    optional: opts.fieldset.optional
   }) %}{{ innerHtml | trim | safe }}{% endcall %}
 {% else %}
   {{ innerHtml | trim | safe }}
