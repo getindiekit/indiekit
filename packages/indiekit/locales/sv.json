@@ -90,6 +90,7 @@
       "version": "Version"
     },
     "publication": {
+      "channels": "Kanaler",
       "locale": "Språk",
       "me": "Webbadress",
       "mediaStore": "Mediebutik",

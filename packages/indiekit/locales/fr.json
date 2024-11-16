@@ -90,6 +90,7 @@
       "version": "Version"
     },
     "publication": {
+      "channels": "Chaînes",
       "locale": "Langue",
       "me": "Adresse Web",
       "mediaStore": "Magasin multimédia",

@@ -90,6 +90,7 @@
       "version": "Versie"
     },
     "publication": {
+      "channels": "Kanalen",
       "locale": "Taal",
       "me": "Webadres",
       "mediaStore": "Mediawinkel",

@@ -56,6 +56,7 @@ export const defaultConfig = {
   ],
   publication: {
     categories: [],
+    channels: {},
     locale: "en",
     me: undefined,
     postTemplate: undefined,
