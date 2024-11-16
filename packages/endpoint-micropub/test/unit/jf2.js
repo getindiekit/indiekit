@@ -6,6 +6,7 @@ import {
   formEncodedToJf2,
   mf2ToJf2,
   getAudioProperty,
+  getChannelProperty,
   getContentProperty,
   getLocationProperty,
   getPhotoProperty,
@@ -17,6 +18,14 @@ import {
 
 await mockAgent("endpoint-micropub");
 const publication = {
+  channels: {
+    posts: {
+      name: "Posts",
+    },
+    pages: {
+      name: "Pages",
+    },
+  },
   slugSeparator: "-",
   syndicationTargets: [
     {
@@ -130,6 +139,28 @@ describe("endpoint-micropub/lib/jf2", () => {
       { url: "baz.mp3" },
       { url: "https://foo.bar/qux.mp3" },
     ]);
+  });
+
+  it("Gets normalised channel property", () => {
+    const one = { "mp-channel": "posts" };
+    const none = { "mp-channel": "" };
+    const many = { "mp-channel": ["posts", "pages"] };
+    const { channels } = publication;
+
+    assert.deepEqual(getChannelProperty(one, channels), ["posts"]);
+    assert.deepEqual(getChannelProperty(none, channels), ["posts"]);
+    assert.deepEqual(getChannelProperty(many, channels), ["posts", "pages"]);
+  });
+
+  it("Gets normalised channel property, returning default channel", () => {
+    const oneMissing = { "mp-channel": "foo" };
+    const manyMissing = { "mp-channel": ["foo", "bar"] };
+    const someMissing = { "mp-channel": ["foo", "bar", "pages"] };
+    const { channels } = publication;
+
+    assert.deepEqual(getChannelProperty(oneMissing, channels), ["posts"]);
+    assert.deepEqual(getChannelProperty(manyMissing, channels), ["posts"]);
+    assert.deepEqual(getChannelProperty(someMissing, channels), ["pages"]);
   });
 
   it("Gets text and HTML values from `content` property", () => {
@@ -400,6 +431,7 @@ describe("endpoint-micropub/lib/jf2", () => {
     );
     const result = normaliseProperties(publication, properties, "UTC");
 
+    assert.equal(result.channels, undefined);
     assert.equal(result.type, "entry");
     assert.equal(result.name, "What I had for lunch");
     assert.equal(result.slug, "what-i-had-for-lunch");

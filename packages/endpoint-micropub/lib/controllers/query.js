@@ -25,6 +25,9 @@ export const queryController = async (request, response, next) => {
     // `category` param is used to query `categories` configuration property
     q = q === "category" ? "categories" : String(q);
 
+    // `channel` param is used to query `channels` configuration property
+    q = q === "channel" ? "channels" : String(q);
+
     switch (q) {
       case "config": {
         response.json(config);

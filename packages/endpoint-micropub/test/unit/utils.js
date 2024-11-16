@@ -62,9 +62,10 @@ describe("endpoint-media/lib/utils", () => {
   });
 
   it("Renders path from URI template and properties", async () => {
-    const template = "{yyyy}/{MM}/{slug}";
+    const template = "{channel}/{yyyy}/{MM}/{slug}";
     const properties = {
       published: "2020-01-01",
+      channel: ["foo", "bar"],
       slug: "foo",
     };
     const application = {
@@ -83,9 +84,17 @@ describe("endpoint-media/lib/utils", () => {
         },
       },
     };
-    const result = await renderPath(template, properties, application);
+    const publication = {
+      slugSeparator: "_",
+    };
+    const result = await renderPath(
+      template,
+      properties,
+      application,
+      publication,
+    );
 
-    assert.match(result, /\d{4}\/\d{2}\/foo/);
+    assert.match(result, /foo_bar\/\d{4}\/\d{2}\/foo/);
   });
 
   it("Convert string to array if not already an array", () => {

@@ -50,6 +50,11 @@ export const getPostTemplateProperties = (properties) => {
   const templateProperties = structuredClone(properties);
 
   for (let key in templateProperties) {
+    // Pass mp-channel to template as channel
+    if (key === "mp-channel") {
+      templateProperties.channel = templateProperties["mp-channel"];
+    }
+
     // Remove server commands from post template properties
     if (key.startsWith("mp-")) {
       delete templateProperties[key];
@@ -78,12 +83,19 @@ export const relativeMediaPath = (url, me) =>
  * @param {string} path - URI template path
  * @param {object} properties - JF2 properties
  * @param {object} application - Application configuration
+ * @param {object} publication - Publication configuration
  * @returns {Promise<string>} Path
  */
-export const renderPath = async (path, properties, application) => {
+export const renderPath = async (
+  path,
+  properties,
+  application,
+  publication,
+) => {
   const dateObject = new Date(properties.published);
   const serverTimeZone = getTimeZoneDesignator();
   const { locale, timeZone } = application;
+  const { slugSeparator } = publication;
   let tokens = {};
 
   // Add date tokens
@@ -104,6 +116,13 @@ export const renderPath = async (path, properties, application) => {
 
   // Add slug token
   tokens.slug = properties.slug;
+
+  // Add channel token
+  if (properties.channel) {
+    tokens.channel = Array.isArray(properties.channel)
+      ? properties.channel.join(slugSeparator)
+      : properties.channel;
+  }
 
   // Populate URI template path with properties
   path = supplant(path, tokens);
