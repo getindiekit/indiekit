@@ -58,6 +58,9 @@
       "media": {
         "label": "Bestandspad of URL"
       },
+      "mp-channel": {
+        "label": "Kanaal"
+      },
       "mp-slug": {
         "label": "URL-slug"
       },

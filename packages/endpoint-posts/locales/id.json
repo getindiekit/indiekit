@@ -58,6 +58,9 @@
       "media": {
         "label": "Jalur file atau URL"
       },
+      "mp-channel": {
+        "label": "Saluran"
+      },
       "mp-slug": {
         "label": "URL siput"
       },

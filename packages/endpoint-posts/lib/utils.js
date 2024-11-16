@@ -6,6 +6,18 @@ import { endpoint } from "./endpoint.js";
 import { statusTypes } from "./status-types.js";
 
 /**
+ * Get channel `items` for checkboxes component
+ * @param {object} publication - Publication configuration
+ * @returns {object} Items for checkboxes component
+ */
+export const getChannelItems = (publication) => {
+  return Object.entries(publication.channels).map(([uid, channel]) => ({
+    label: channel.name,
+    value: uid,
+  }));
+};
+
+/**
  * Get geographic coordinates property
  * @param {string} geo - Latitude and longitude, comma separated
  * @returns {object} JF2 geo location property

@@ -86,6 +86,9 @@
       "media": {
         "label": "File path or URL"
       },
+      "mp-channel": {
+        "label": "Channel"
+      },
       "mp-slug": {
         "label": "URL slug"
       },
