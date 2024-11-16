@@ -32,6 +32,14 @@ const config = {
   publication: {
     me: process.env.PUBLICATION_URL,
     categories: ["internet", "indieweb", "indiekit", "test", "testing"],
+    channels: {
+      posts: {
+        name: "Posts",
+      },
+      pages: {
+        name: "Pages",
+      },
+    },
     enrichPostData: true,
     postTypes: {
       like: {
