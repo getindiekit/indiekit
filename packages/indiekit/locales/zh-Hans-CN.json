@@ -90,6 +90,7 @@
       "version": "版本"
     },
     "publication": {
+      "channels": "频道",
       "locale": "语言",
       "me": "网址",
       "mediaStore": "媒体商店",

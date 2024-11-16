@@ -1,5 +1,14 @@
 {% extends "document.njk" %}
 
+{%- set channelsHtml %}
+  <ul role="list">{% for uid, channel in publication.channels | dictsort %}
+    <li>
+      {{ channel.name }}
+      <small><code class="token attr-name">{{ uid }}</code></small>
+    </li>
+  {% endfor %}</ul>
+{% endset -%}
+
 {%- set postTypesHtml %}
   <ul role="list">{% for type, config in publication.postTypes | dictsort %}
     <li>
@@ -68,6 +77,13 @@
           text: publication.locale.split("-") | first | languageNativeName
         }
       }, {
+        key: {
+          text: __("status.publication.channels")
+        },
+        value: {
+          text: channelsHtml | indent(4)
+        }
+      } if publication.channels, {
         key: {
           text: __("status.publication.postTypes")
         },

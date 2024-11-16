@@ -90,6 +90,7 @@
       "version": "Versi"
     },
     "publication": {
+      "channels": "Saluran",
       "locale": "Bahasa",
       "me": "Alamat web",
       "mediaStore": "Toko media",

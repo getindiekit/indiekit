@@ -90,6 +90,7 @@
       "version": "Verzija"
     },
     "publication": {
+      "channels": "Kanali",
       "locale": "Jezik",
       "me": "Veb adresa",
       "mediaStore": "Medijska prodavnica",

@@ -90,6 +90,7 @@
       "version": "Wersja"
     },
     "publication": {
+      "channels": "Kanały",
       "locale": "Język",
       "me": "Adres sieci Web",
       "mediaStore": "Sklep multimedialny",

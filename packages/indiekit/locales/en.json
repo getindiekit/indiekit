@@ -88,6 +88,7 @@
       "version": "Version"
     },
     "publication": {
+      "channels": "Channels",
       "summaryTitle": "Publication settings",
       "me": "Web address",
       "locale": "Language",

@@ -90,6 +90,7 @@
       "version": "वर्ज़न"
     },
     "publication": {
+      "channels": "चैनल",
       "locale": "भाषा",
       "me": "वेब पता",
       "mediaStore": "मीडिया स्टोर",
