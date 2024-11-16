@@ -184,7 +184,7 @@ describe("util/lib/date", () => {
   });
 
   it("Gets server timezone offset from minutes", () => {
-    assert.equal(getTimeZoneDesignator(0), "Z");
+    assert.equal(getTimeZoneDesignator(0), "+00:00");
     assert.equal(getTimeZoneDesignator(150), "-02:30");
     assert.equal(getTimeZoneDesignator(-300), "+05:00");
   });
@@ -197,7 +197,7 @@ describe("util/lib/date", () => {
     assert.equal(getTimeZoneDesignator(), "-05:00");
 
     process.env.TZ = "UTC";
-    assert.equal(getTimeZoneDesignator(), "Z");
+    assert.equal(getTimeZoneDesignator(), "+00:00");
   });
 
   it("Gets offset minutes from time zone name", () => {

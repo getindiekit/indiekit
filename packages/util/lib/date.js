@@ -133,7 +133,7 @@ export const getTimeZoneDesignator = (minutes) => {
   } else if (minutes > 0) {
     designator = `-${hh}:${mm}`;
   } else if (minutes === 0) {
-    designator = "Z";
+    designator = "+00:00";
   }
 
   return designator;
