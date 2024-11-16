@@ -52,6 +52,16 @@
       }]
     }) }}
 
+    {{ checkboxes({
+      name: "mp-channel",
+      values: properties["mp-channel"],
+      fieldset: {
+        legend: __("posts.form.mp-channel.label"),
+        optional: true
+      },
+      items: channelItems
+    }) | indent(2) if publication.channels }}
+
     {{ radios({
       inline: true,
       name: "visibility",

@@ -58,6 +58,9 @@
       "media": {
         "label": "Putanja ili URL datoteke"
       },
+      "mp-channel": {
+        "label": "Kanal"
+      },
       "mp-slug": {
         "label": "URL slag"
       },

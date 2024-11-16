@@ -58,6 +58,9 @@
       "media": {
         "label": "फ़ाइल पथ या URL"
       },
+      "mp-channel": {
+        "label": "चैनल"
+      },
       "mp-slug": {
         "label": "URL स्लग"
       },

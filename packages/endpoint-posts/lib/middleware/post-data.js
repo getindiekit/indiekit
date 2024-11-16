@@ -2,6 +2,7 @@ import path from "node:path";
 import { IndiekitError } from "@indiekit/error";
 import { statusTypes } from "../status-types.js";
 import {
+  getChannelItems,
   getGeoValue,
   getPostName,
   getPostProperties,
@@ -26,6 +27,7 @@ export const postData = {
     response.locals = {
       accessToken: access_token,
       action: "create",
+      channelItems: getChannelItems(publication),
       fields,
       name,
       postsPath: path.dirname(request.baseUrl + request.path),
@@ -68,6 +70,7 @@ export const postData = {
         accessToken: access_token,
         action: action || "create",
         allDay,
+        channelItems: getChannelItems(publication),
         draftMode: scope?.includes("draft"),
         fields,
         geo,

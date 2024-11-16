@@ -58,6 +58,9 @@
       "media": {
         "label": "Ścieżka pliku lub adres URL"
       },
+      "mp-channel": {
+        "label": "Kanał"
+      },
       "mp-slug": {
         "label": "Ślimak URL"
       },
