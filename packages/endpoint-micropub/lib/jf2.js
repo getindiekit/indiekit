@@ -71,7 +71,7 @@ export const mf2ToJf2 = async (body, requestReferences) => {
  * @returns {object} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties, timeZone) => {
-  const { me, slugSeparator } = publication;
+  const { channels, me, slugSeparator } = publication;
 
   properties.published = getDate(timeZone, properties.published);
 
@@ -101,6 +101,11 @@ export const normaliseProperties = (publication, properties, timeZone) => {
 
   properties.slug = getSlugProperty(properties, slugSeparator);
 
+  const publicationHasChannels = channels && Object.keys(channels).length > 0;
+  if (publicationHasChannels) {
+    properties["mp-channel"] = getChannelProperty(properties, channels);
+  }
+
   if (properties["mp-syndicate-to"]) {
     properties["mp-syndicate-to"] = toArray(properties["mp-syndicate-to"]);
   }
@@ -125,6 +130,44 @@ export const getAudioProperty = (properties, me) => {
   return audio.map((item) => ({
     url: relativeMediaPath(item.url || item, me),
   }));
+};
+
+/**
+ * Get channel property.
+ *
+ * If a publication has configured channels, but no channel has been selected,
+ * the default channel is used.
+ *
+ * If `mp-channel` provides a UID that does not appear in the publication’s
+ * channels, the default channel is used.
+ *
+ * The first item in a publication’s configured channels is considered the
+ * default channel.
+ * @param {object} properties - JF2 properties
+ * @param {object} channels - Publication channels
+ * @returns {Array} `mp-channel` property
+ * @see {@link https://github.com/indieweb/micropub-extensions/issues/40}
+ */
+export const getChannelProperty = (properties, channels) => {
+  channels = Object.keys(channels);
+  const mpChannel = properties["mp-channel"];
+  const providedChannels = Array.isArray(mpChannel) ? mpChannel : [mpChannel];
+  const selectedChannels = new Set();
+
+  // Only select channels that have been configured
+  for (const uid of providedChannels) {
+    if (channels.includes(uid)) {
+      selectedChannels.add(uid);
+    }
+  }
+
+  // If no channels provided, use default channel UID
+  if (selectedChannels.size === 0) {
+    const defaultChannel = channels[0];
+    selectedChannels.add(defaultChannel);
+  }
+
+  return toArray([...selectedChannels]);
 };
 
 /**

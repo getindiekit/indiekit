@@ -6,11 +6,12 @@
  */
 export const getConfig = (application, publication) => {
   const { mediaEndpoint, url } = application;
-  const { categories, postTypes, syndicationTargets } = publication;
+  const { categories, channels, postTypes, syndicationTargets } = publication;
 
   // Supported queries
   const q = [
     "category",
+    "channel",
     "config",
     "media-endpoint",
     "post-types",
@@ -28,6 +29,10 @@ export const getConfig = (application, publication) => {
 
   return {
     categories,
+    channels: Object.entries(channels).map(([uid, channel]) => ({
+      uid,
+      name: channel.name,
+    })),
     "media-endpoint": mediaEndpoint,
     "post-types": Object.values(postTypes).map((postType) => ({
       type: postType.type,
