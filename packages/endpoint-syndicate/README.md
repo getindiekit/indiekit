@@ -6,6 +6,9 @@ Syndication endpoint for Indiekit. Provides an endpoint you can ping to check th
 
 `npm install @indiekit/endpoint-syndicate`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/endpoint-syndicate` to your list of plug-ins, specifying options as required:

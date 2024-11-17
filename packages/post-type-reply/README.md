@@ -6,6 +6,9 @@ Reply post type for Indiekit.
 
 `npm install @indiekit/post-type-reply`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/post-type-reply` to your list of plug-ins, specifying options as required:
