@@ -11,11 +11,10 @@ Reply post type for Indiekit.
 
 ## Usage
 
-Add `@indiekit/post-type-reply` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/post-type-reply` to your configuration, specifying options as required:
 
 ```json
 {
-  "plugins": ["@indiekit/post-type-reply"],
   "@indiekit/post-type-reply": {
     "name": "Reply"
   }

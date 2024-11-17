@@ -11,11 +11,10 @@ IndieAuth authentication and authorization endpoint for Indiekit. Grants and ver
 
 ## Usage
 
-Add `@indiekit/endpoint-auth` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-auth` to your configuration, specifying options as required:
 
 ```jsonc
 {
-  "plugins": ["@indiekit/endpoint-auth"],
   "@indiekit/endpoint-auth": {
     "mountPath": "/authorize",
   },

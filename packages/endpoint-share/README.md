@@ -11,11 +11,10 @@ Share endpoint for Indiekit. Provides a simple interface for bookmarking website
 
 ## Usage
 
-Add `@indiekit/endpoint-share` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-share` to your configuration, specifying options as required:
 
 ```jsonc
 {
-  "plugins": ["@indiekit/endpoint-share"],
   "@indiekit/endpoint-share": {
     "mountPath": "/teilen", // de-DE
   },

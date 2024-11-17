@@ -11,11 +11,10 @@ File management endpoint for Indiekit. View files uploaded to your media endpoin
 
 ## Usage
 
-Add `@indiekit/endpoint-files` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-files` to your configuration, specifying options as required:
 
 ```jsonc
 {
-  "plugins": ["@indiekit/endpoint-files"],
   "@indiekit/endpoint-files": {
     "mountPath": "/dossiers", // fr-FR
   },

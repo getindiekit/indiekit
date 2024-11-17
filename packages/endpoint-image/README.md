@@ -11,11 +11,10 @@ Image resizing endpoint for Indiekit. Adds real-time image processing routes tha
 
 ## Usage
 
-Add `@indiekit/endpoint-image` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-image` to your configuration, specifying options as required:
 
 ```jsonc
 {
-  "plugins": ["@indiekit/endpoint-image"],
   "@indiekit/endpoint-image": {
     "mountPath": "/bild", // de-DE
   },

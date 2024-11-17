@@ -11,11 +11,10 @@ Syndication endpoint for Indiekit. Provides an endpoint you can ping to check th
 
 ## Usage
 
-Add `@indiekit/endpoint-syndicate` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-syndicate` to your configuration, specifying options as required:
 
 ```jsonc
 {
-  "plugins": ["@indiekit/endpoint-syndicate"],
   "@indiekit/endpoint-syndicate": {
     "mountPath": "/syndikat", // de-DE
   },
