@@ -5,8 +5,8 @@ The Micropub API lets you publish a variety of [post types](../concepts#post-typ
 Post types can be configured in a few different ways. In order of priority:
 
 1. [`publication.postTypes`](publication#posttypes) configuration
-2. a [publication preset plug-in](/plugins/presets)
-3. a [post type plug-in](/plugins/post-types)
+2. a [publication preset plug-in](../plugins/presets/index.md)
+3. a [post type plug-in](../plugins/post-types/index.md)
 
 Publication preset plug-ins provide default values for where post and media files should be saved, as well as a post template that formats incoming properties according to the file format expected by that publication.
 
