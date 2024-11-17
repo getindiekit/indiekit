@@ -81,7 +81,7 @@ This information can be provided by setting the `publication.postTypes` and `pub
 
 A publication preset plug-in provides default values for these 2 options (which you can then override).
 
-For example, if you use the Hugo static site generator, you can install the [Hugo publication preset](plugins/presets#indiekit-preset-hugo):
+For example, if you use the Hugo static site generator, you can install the [Hugo publication preset](plugins/presets/hugo.md):
 
 ```sh
 npm install @indiekit/preset-hugo
@@ -115,7 +115,7 @@ export default {
 
 Indiekit can be setup to share posts on other social networks, a process sometimes called syndication or [cross-posting](https://indieweb.org/cross-posting).
 
-Syndicator plug-ins provide this functionality. For example, if you want to syndicate your content to Mastodon, you can install the [Mastodon syndicator](plugins/index.md#mastodon):
+Syndicator plug-ins provide this functionality. For example, if you want to syndicate your content to Mastodon, you can install the [Mastodon syndicator](plugins/syndicators/mastodon.md):
 
 ```sh
 npm install @indiekit/syndicator-mastodon
