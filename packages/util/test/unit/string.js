@@ -1,13 +1,25 @@
 import { strict as assert } from "node:assert";
 import { Buffer } from "node:buffer";
 import { describe, it } from "node:test";
-import { md5, randomString, slugify, supplant } from "../../lib/string.js";
+import {
+  md5,
+  randomString,
+  sha1,
+  slugify,
+  supplant,
+} from "../../lib/string.js";
 
 describe("util/lib/string", () => {
   it("Generates MD5 hashed string", () => {
     const result = md5("foo");
 
     assert.equal(result, "acbd18db4cc2f85cedef654fccc4a4d8");
+  });
+
+  it("Generates SHA1 hashed string", () => {
+    const result = sha1("foo");
+
+    assert.equal(result, "0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33");
   });
 
   it("Generates cryptographically random string", () => {
