@@ -9,6 +9,13 @@ import slugifyString from "@sindresorhus/slugify";
 export const md5 = (string) => createHash("md5").update(string).digest("hex");
 
 /**
+ * Generate SHA1 hashed string
+ * @param {string} string - String
+ * @returns {string} SHA1 hashed string
+ */
+export const sha1 = (string) => createHash("sha1").update(string).digest("hex");
+
+/**
  * Generate cryptographically random string
  * @param {number} [length] - Length of string
  * @returns {string} Random string
