@@ -8,7 +8,13 @@
 
 ## Requirements
 
-A set of Mastodon API keys. You can get these from `/settings/applications` on your Mastodon server.
+An Mastodon API access token. You can request one from `/settings/applications` on your Mastodon server.
+
+> [!IMPORTANT]
+> Store your API key in an environment variable called `MASTODON_ACCESS_TOKEN` so that only you and the application can see it.
+
+> [!IMPORTANT]
+> Mastodon access tokens do not expire.
 
 ## Usage
 

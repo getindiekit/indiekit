@@ -6,6 +6,13 @@ FTP content store adaptor for Indiekit.
 
 `npm install @indiekit/store-ftp`
 
+## Requirements
+
+A FTP server you can access with a username and password.
+
+> [!IMPORTANT]
+> Store your username and password in environment variables called `FTP_USER` and `FTP_PASSWORD` so that only you and the application can see them.
+
 ## Usage
 
 Add `@indiekit/store-ftp` to your list of plug-ins, specifying options as required:

@@ -1,10 +1,17 @@
 # @indiekit/store-gitea
 
-[Gitea](https://gitea.com) content store adaptor for Indiekit.
+[Gitea](https://gitea.com) (or Forgejo-based) content store adaptor for Indiekit.
 
 ## Installation
 
 `npm install @indiekit/store-gitea`
+
+## Requirements
+
+A Gitea access token with read and write permissions to a repository.
+
+> [!IMPORTANT]
+> Store your access token in an environment variable called `GITEA_TOKEN` so that only you and the application can see it.
 
 ## Usage
 
