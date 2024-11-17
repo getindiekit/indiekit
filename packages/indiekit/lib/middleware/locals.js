@@ -1,12 +1,12 @@
 import { scripts, styles } from "@indiekit/frontend";
-import { hash } from "hasha";
+import { sha1 } from "@indiekit/util";
 import { getEndpoints } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
 import { getShortcuts } from "../shortcuts.js";
 import { getUrl } from "../utils.js";
 
-const jsHash = await hash(await scripts(), { algorithm: "md5" });
-const cssHash = await hash(await styles(), { algorithm: "md5" });
+const jsHash = sha1(await scripts());
+const cssHash = sha1(await styles());
 
 /**
  * Expose configuration to frontend templates and plug-ins
