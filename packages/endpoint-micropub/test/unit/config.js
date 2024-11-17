@@ -19,6 +19,7 @@ describe("endpoint-micropub/lib/config", () => {
     });
     const publication = {
       categories: ["foo", "bar"],
+      channels: {},
       postTypes: config.publication.postTypes,
       syndicationTargets: [mastodon],
     };
