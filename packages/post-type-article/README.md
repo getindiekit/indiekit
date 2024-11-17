@@ -11,11 +11,10 @@ Article post type for Indiekit.
 
 ## Usage
 
-Add `@indiekit/post-type-article` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/post-type-article` to your configuration, specifying options as required:
 
 ```json
 {
-  "plugins": ["@indiekit/post-type-article"],
   "@indiekit/post-type-article": {
     "name": "Article"
   }

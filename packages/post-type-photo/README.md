@@ -11,11 +11,10 @@ Photo post type for Indiekit.
 
 ## Usage
 
-Add `@indiekit/post-type-photo` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/post-type-photo` to your configuration, specifying options as required:
 
 ```json
 {
-  "plugins": ["@indiekit/post-type-photo"],
   "@indiekit/post-type-photo": {
     "name": "Photo"
   }

@@ -11,11 +11,10 @@ Like post type for Indiekit.
 
 ## Usage
 
-Add `@indiekit/post-type-like` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/post-type-like` to your configuration, specifying options as required:
 
 ```json
 {
-  "plugins": ["@indiekit/post-type-like"],
   "@indiekit/post-type-like": {
     "name": "Like"
   }

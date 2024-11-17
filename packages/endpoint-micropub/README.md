@@ -11,11 +11,10 @@ Micropub endpoint for Indiekit. Enables publishing content to your website using
 
 ## Usage
 
-Add `@indiekit/endpoint-micropub` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-micropub` to your configuration, specifying options as required:
 
 ```json
 {
-  "plugins": ["@indiekit/endpoint-micropub"],
   "@indiekit/endpoint-micropub": {
     "mountPath": "/publisher"
   }

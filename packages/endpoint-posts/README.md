@@ -11,11 +11,10 @@ Post management endpoint for Indiekit. View posts published by your Micropub end
 
 ## Usage
 
-Add `@indiekit/endpoint-posts` to your list of plug-ins, specifying options as required:
+To customise the behaviour of this plug-in, add `@indiekit/endpoint-posts` to your configuration, specifying options as required:
 
 ```jsonc
 {
-  "plugins": ["@indiekit/endpoint-posts"],
   "@indiekit/endpoint-posts": {
     "mountPath": "/artikel", // de-DE
   },
