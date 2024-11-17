@@ -39,7 +39,7 @@ Defaults to `"[application.url]/micropub"`.
 A [MongoDB connection string](https://www.mongodb.com/docs/manual/reference/connection-string/). Used by features that require a database.
 
 > [!WARNING]
-> This value may contain private information such as a username and password. It’s recommended that you store this value in an environment (or configuration) variable which can only be seen by you and the application.
+> This value may contain private information such as a username and password. Store this value in an environment variable which can only be seen by you and the application.
 
 To use a specifically named database, include this in your path (the default database name is `indiekit`). For example, `mongodb://mongodb0.example.com:27017/custom-name`.
 
