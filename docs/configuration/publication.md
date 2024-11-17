@@ -230,7 +230,7 @@ See [customising post types →](post-types.md)
 : A string representing the field name to use when identifying incoming Micropub requests.
 
 `fields`
-: An object containing [FieldType](/plugins/api/add-post-type.md#fieldtype) objects, optionally with a `required` property, and keyed by field name. For example:
+: An object containing [FieldType](../api/add-post-type.md#fieldtype) objects, optionally with a `required` property, and keyed by field name. For example:
 
   ::: code-group
 

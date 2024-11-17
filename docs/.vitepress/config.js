@@ -40,201 +40,194 @@ const sidebar = [
   },
 ];
 
+const sidebarApi = [
+  { text: "Introduction", link: "/api/" },
+  {
+    text: "<code>Indiekit.addEndpoint</code>",
+    link: "/api/add-endpoint",
+  },
+  {
+    text: "<code>Indiekit.addPostType</code>",
+    link: "/api/add-post-type",
+  },
+  {
+    text: "<code>Indiekit.addPreset</code>",
+    link: "/api/add-preset",
+  },
+  {
+    text: "<code>Indiekit.addStore</code>",
+    link: "/api/add-store",
+  },
+  {
+    text: "<code>Indiekit.addSyndicator</code>",
+    link: "/api/add-syndicator",
+  },
+  {
+    text: "<code>IndiekitError</code>",
+    link: "/api/error",
+  },
+];
+
 const sidebarPlugins = [
   {
-    text: "Plug-ins",
+    text: "Content stores",
+    link: "/plugins/stores",
     items: [
       {
-        text: "Content stores",
-        link: "/plugins/stores",
-        items: [
-          {
-            text: "Bitbucket",
-            link: "/plugins/stores/bitbucket",
-          },
-          {
-            text: "File system",
-            link: "/plugins/stores/file-system",
-          },
-          {
-            text: "FTP",
-            link: "/plugins/stores/ftp",
-          },
-          {
-            text: "Gitea",
-            link: "/plugins/stores/gitea",
-          },
-          {
-            text: "GitHub",
-            link: "/plugins/stores/github",
-          },
-          {
-            text: "GitLab",
-            link: "/plugins/stores/gitlab",
-          },
-          {
-            text: "S3-compatible",
-            link: "/plugins/stores/s3",
-          },
-        ],
+        text: "Bitbucket",
+        link: "/plugins/stores/bitbucket",
       },
       {
-        text: "Endpoints",
-        link: "/plugins/endpoints",
-        items: [
-          {
-            text: "IndieAuth",
-            link: "/plugins/endpoints/auth",
-          },
-          {
-            text: "Files",
-            link: "/plugins/endpoints/files",
-          },
-          {
-            text: "Image resizing",
-            link: "/plugins/endpoints/image",
-          },
-          {
-            text: "JSON Feed",
-            link: "/plugins/endpoints/json-feed",
-          },
-          {
-            text: "Micropub",
-            link: "/plugins/endpoints/micropub",
-          },
-          {
-            text: "Micropub media",
-            link: "/plugins/endpoints/media",
-          },
-          {
-            text: "Posts",
-            link: "/plugins/endpoints/posts",
-          },
-          {
-            text: "Share",
-            link: "/plugins/endpoints/share",
-          },
-          {
-            text: "Syndicate",
-            link: "/plugins/endpoints/syndicate",
-          },
-        ],
+        text: "File system",
+        link: "/plugins/stores/file-system",
       },
       {
-        text: "Post types",
-        link: "/plugins/post-types",
-        items: [
-          {
-            text: "Article",
-            link: "/plugins/post-types/article",
-          },
-          {
-            text: "Audio",
-            link: "/plugins/post-types/audio",
-          },
-          {
-            text: "Bookmark",
-            link: "/plugins/post-types/bookmark",
-          },
-          {
-            text: "Event",
-            link: "/plugins/post-types/event",
-          },
-          {
-            text: "Jam",
-            link: "/plugins/post-types/jam",
-          },
-          {
-            text: "Like",
-            link: "/plugins/post-types/like",
-          },
-          {
-            text: "Note",
-            link: "/plugins/post-types/note",
-          },
-          {
-            text: "Photo",
-            link: "/plugins/post-types/photo",
-          },
-          {
-            text: "Reply",
-            link: "/plugins/post-types/reply",
-          },
-          {
-            text: "Repost",
-            link: "/plugins/post-types/repost",
-          },
-          {
-            text: "RSVP",
-            link: "/plugins/post-types/rsvp",
-          },
-          {
-            text: "Video",
-            link: "/plugins/post-types/video",
-          },
-        ],
+        text: "FTP",
+        link: "/plugins/stores/ftp",
       },
       {
-        text: "Publication presets",
-        link: "/plugins/presets",
-        items: [
-          {
-            text: "Eleventy",
-            link: "/plugins/presets/eleventy",
-          },
-          {
-            text: "Hugo",
-            link: "/plugins/presets/hugo",
-          },
-          {
-            text: "Jekyll",
-            link: "/plugins/presets/jekyll",
-          },
-        ],
+        text: "Gitea",
+        link: "/plugins/stores/gitea",
       },
       {
-        text: "Syndicators",
-        link: "/plugins/syndicators",
-        items: [
-          {
-            text: "Internet Archive",
-            link: "/plugins/syndicators/internet-archive",
-          },
-          {
-            text: "Mastodon",
-            link: "/plugins/syndicators/mastodon",
-          },
-        ],
+        text: "GitHub",
+        link: "/plugins/stores/github",
+      },
+      {
+        text: "GitLab",
+        link: "/plugins/stores/gitlab",
+      },
+      {
+        text: "S3-compatible",
+        link: "/plugins/stores/s3",
       },
     ],
   },
   {
-    text: "Plug-in API",
+    text: "Endpoints",
+    link: "/plugins/endpoints",
     items: [
-      { text: "Introduction", link: "/plugins/api/" },
       {
-        text: "<code>Indiekit.addEndpoint</code>",
-        link: "/plugins/api/add-endpoint",
+        text: "IndieAuth",
+        link: "/plugins/endpoints/auth",
       },
       {
-        text: "<code>Indiekit.addPostType</code>",
-        link: "/plugins/api/add-post-type",
+        text: "Files",
+        link: "/plugins/endpoints/files",
       },
       {
-        text: "<code>Indiekit.addPreset</code>",
-        link: "/plugins/api/add-preset",
+        text: "Image resizing",
+        link: "/plugins/endpoints/image",
       },
       {
-        text: "<code>Indiekit.addStore</code>",
-        link: "/plugins/api/add-store",
+        text: "JSON Feed",
+        link: "/plugins/endpoints/json-feed",
       },
       {
-        text: "<code>Indiekit.addSyndicator</code>",
-        link: "/plugins/api/add-syndicator",
+        text: "Micropub",
+        link: "/plugins/endpoints/micropub",
       },
       {
-        text: "<code>IndiekitError</code>",
-        link: "/plugins/api/error",
+        text: "Micropub media",
+        link: "/plugins/endpoints/media",
+      },
+      {
+        text: "Posts",
+        link: "/plugins/endpoints/posts",
+      },
+      {
+        text: "Share",
+        link: "/plugins/endpoints/share",
+      },
+      {
+        text: "Syndicate",
+        link: "/plugins/endpoints/syndicate",
+      },
+    ],
+  },
+  {
+    text: "Post types",
+    link: "/plugins/post-types",
+    items: [
+      {
+        text: "Article",
+        link: "/plugins/post-types/article",
+      },
+      {
+        text: "Audio",
+        link: "/plugins/post-types/audio",
+      },
+      {
+        text: "Bookmark",
+        link: "/plugins/post-types/bookmark",
+      },
+      {
+        text: "Event",
+        link: "/plugins/post-types/event",
+      },
+      {
+        text: "Jam",
+        link: "/plugins/post-types/jam",
+      },
+      {
+        text: "Like",
+        link: "/plugins/post-types/like",
+      },
+      {
+        text: "Note",
+        link: "/plugins/post-types/note",
+      },
+      {
+        text: "Photo",
+        link: "/plugins/post-types/photo",
+      },
+      {
+        text: "Reply",
+        link: "/plugins/post-types/reply",
+      },
+      {
+        text: "Repost",
+        link: "/plugins/post-types/repost",
+      },
+      {
+        text: "RSVP",
+        link: "/plugins/post-types/rsvp",
+      },
+      {
+        text: "Video",
+        link: "/plugins/post-types/video",
+      },
+    ],
+  },
+  {
+    text: "Publication presets",
+    link: "/plugins/presets",
+    items: [
+      {
+        text: "Eleventy",
+        link: "/plugins/presets/eleventy",
+      },
+      {
+        text: "Hugo",
+        link: "/plugins/presets/hugo",
+      },
+      {
+        text: "Jekyll",
+        link: "/plugins/presets/jekyll",
+      },
+    ],
+  },
+  {
+    text: "Syndicators",
+    link: "/plugins/syndicators",
+    items: [
+      {
+        text: "Internet Archive",
+        link: "/plugins/syndicators/internet-archive",
+      },
+      {
+        text: "Mastodon",
+        link: "/plugins/syndicators/mastodon",
       },
     ],
   },
@@ -314,6 +307,10 @@ export default {
         activeMatch: "/plugins/",
       },
       {
+        text: "API",
+        link: "/api",
+      },
+      {
         text: _package.version,
         link: "https://github.com/getindiekit/indiekit/releases",
       },
@@ -324,6 +321,7 @@ export default {
     ],
     sidebar: {
       "/": sidebar,
+      "/api/": sidebarApi,
       "/plugins/": sidebarPlugins,
     },
     socialLinks: [

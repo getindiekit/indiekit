@@ -1,6 +1,8 @@
 # Plug-in API
 
-Indiekit is a Node.js Express server designed to interoperate with IndieWeb protocols and features. Plug-ins allow new features to be added, and different protocols and specifications to be supported.
+Indiekit is a Node.js Express server designed to interoperate with IndieWeb protocols and features.
+
+Indiekit has an API which can be accessed via [plug-ins](../plugins/index.md). Plug-ins can add new features or provide support for different protocols and specifications.
 
 A plug-in can provide any of the following features:
 

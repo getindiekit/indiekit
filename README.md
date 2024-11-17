@@ -22,7 +22,7 @@ Indiekit is [supported by its community](https://github.com/sponsors/getindiekit
 - **Share content** on social networks like Mastodon
 - **Customise everything** from the interface theme to the format of commit messages
 
-Indiekit is extensible via its [plugin API](docs/plugins/api/index.md) and localized for use in [a growing number of languages](docs/configuration/localisation.md).
+Indiekit is extensible via its [plug-in API](docs/api/index.md) and localized for use in [a growing number of languages](docs/configuration/localisation.md).
 
 ## Requirements
 
