@@ -4,4 +4,4 @@ Common utilities for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/util`
+`npm install @indiekit/util`

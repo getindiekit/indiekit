@@ -4,7 +4,7 @@ Syndicate posts from Indiekit using [JSON Feed](https://www.jsonfeed.org).
 
 ## Installation
 
-`npm i @indiekit/endpoint-json-feed`
+`npm install @indiekit/endpoint-json-feed`
 
 ## Usage
 

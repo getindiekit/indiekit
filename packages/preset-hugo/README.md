@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/preset-hugo`
+`npm install @indiekit/preset-hugo`
 
 ## Usage
 

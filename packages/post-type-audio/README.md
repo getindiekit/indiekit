@@ -4,7 +4,7 @@ Audio post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-audio`
+`npm install @indiekit/post-type-audio`
 
 ## Usage
 

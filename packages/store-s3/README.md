@@ -4,7 +4,7 @@ S3-compatible content store adaptor for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/store-s3`
+`npm install @indiekit/store-s3`
 
 ## Usage
 

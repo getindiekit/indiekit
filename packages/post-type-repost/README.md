@@ -4,7 +4,7 @@ Repost post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-repost`
+`npm install @indiekit/post-type-repost`
 
 ## Usage
 

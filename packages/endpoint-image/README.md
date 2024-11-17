@@ -4,7 +4,7 @@ Image resizing endpoint for Indiekit. Adds real-time image processing routes tha
 
 ## Installation
 
-`npm i @indiekit/endpoint-image`
+`npm install @indiekit/endpoint-image`
 
 ## Usage
 

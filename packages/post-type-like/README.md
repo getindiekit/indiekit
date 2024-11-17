@@ -4,7 +4,7 @@ Like post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-like`
+`npm install @indiekit/post-type-like`
 
 ## Usage
 

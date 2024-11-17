@@ -4,7 +4,7 @@ Syndication endpoint for Indiekit. Provides an endpoint you can ping to check th
 
 ## Installation
 
-`npm i @indiekit/endpoint-syndicate`
+`npm install @indiekit/endpoint-syndicate`
 
 ## Usage
 

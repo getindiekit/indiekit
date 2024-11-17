@@ -4,7 +4,7 @@ Share endpoint for Indiekit. Provides a simple interface for bookmarking website
 
 ## Installation
 
-`npm i @indiekit/endpoint-share`
+`npm install @indiekit/endpoint-share`
 
 ## Usage
 

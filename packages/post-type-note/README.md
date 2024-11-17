@@ -4,7 +4,7 @@ Note post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-note`
+`npm install @indiekit/post-type-note`
 
 ## Usage
 

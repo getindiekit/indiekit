@@ -4,7 +4,7 @@ IndieAuth authentication and authorization endpoint for Indiekit. Grants and ver
 
 ## Installation
 
-`npm i @indiekit/endpoint-auth`
+`npm install @indiekit/endpoint-auth`
 
 ## Usage
 

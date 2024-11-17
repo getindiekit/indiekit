@@ -4,7 +4,7 @@ Post management endpoint for Indiekit. View posts published by your Micropub end
 
 ## Installation
 
-`npm i @indiekit/endpoint-posts`
+`npm install @indiekit/endpoint-posts`
 
 ## Usage
 

@@ -4,4 +4,4 @@ Frontend components for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/frontend`
+`npm install @indiekit/frontend`

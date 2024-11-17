@@ -4,4 +4,4 @@ Error handling for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/error`
+`npm install @indiekit/error`
