@@ -84,7 +84,7 @@ Indiekit performs create, read, update and delete (CRUD) operations on files tha
 
 To use a GitHub repository as a content store, first create a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
-If you create a [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens), give it **Read and write** access to **Contents**, and set a reasonable expiration (e.g. 90 days).
+If creating a [fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens), ensure that permissions for your repository include **Read** access to **Metadata** and **Read and write** access to **Contents**. You should also set a reasonable expiration (e.g. 90 days).
 
 Add the following details to your `.env` file:
 

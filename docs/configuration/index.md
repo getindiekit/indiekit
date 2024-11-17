@@ -26,7 +26,7 @@ Indiekit’s configuration file uses the following top-level properties:
 - and finally, each plug-in may accept its own configuration options, and these should be provided under a key with the plug-in’s name.
 
   > [!WARNING]
-  > Plug-ins may include options that require private information such as passwords or API keys to be given. It’s recommended that you store these values in environment (or configuration) variables which can only be seen by you and the application.
+  > Plug-ins may include options that require private information such as passwords or API keys to be given. Store these values in environment variables which can only be seen by you and the application.
 
 ## Example
 

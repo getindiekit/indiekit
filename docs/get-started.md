@@ -108,7 +108,7 @@ If your host doesn’t manage starting and restarting a Node.js server, a proces
 
 ### 3. Add environment variables
 
-Before you can use Indiekit, some extra configuration values that only you and your server can see need to be set. Look on your host for environment (or configuration) variables, and add the following values:
+Before you can use Indiekit, some extra configuration values that only you and your server can see need to be set. Look on your host for environment variables, and add the following values:
 
 #### `SECRET`
 
