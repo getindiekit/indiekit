@@ -20,15 +20,21 @@ function resolveModuleFilePath(filePath) {
   return filePath;
 }
 
-let { code } = await bundleAsync({
-  filename: fileURLToPath(new URL("../styles/app.css", import.meta.url)),
-  minify: true,
-  resolver: {
-    read(filePath) {
-      filePath = resolveModuleFilePath(filePath);
-      return fs.readFileSync(filePath, "utf8");
-    },
-  },
-});
+export const styles = async () => {
+  const inputFile = fileURLToPath(
+    new URL("../styles/app.css", import.meta.url),
+  );
 
-export const styles = () => code.toString();
+  let { code } = await bundleAsync({
+    filename: inputFile,
+    minify: true,
+    resolver: {
+      read(filePath) {
+        filePath = resolveModuleFilePath(filePath);
+        return fs.readFileSync(filePath, "utf8");
+      },
+    },
+  });
+
+  return code.toString();
+};
