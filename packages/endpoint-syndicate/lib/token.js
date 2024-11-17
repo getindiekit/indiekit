@@ -3,14 +3,14 @@ import { IndiekitError } from "@indiekit/error";
 import jwt from "jsonwebtoken";
 
 export const findBearerToken = (request) => {
-  if (request.headers?.["x-webhook-signature"]) {
+  if (request.headers?.["x-webhook-signature"] && request?.body?.url) {
     const signature = request.headers["x-webhook-signature"];
     const verifiedToken = verifyToken(signature);
     const bearerToken = signToken(verifiedToken, request.body.url);
     return bearerToken;
   }
 
-  if (request.body?.access_token) {
+  if (request?.body?.access_token) {
     const bearerToken = request.body.access_token;
     delete request.body.access_token;
     return bearerToken;

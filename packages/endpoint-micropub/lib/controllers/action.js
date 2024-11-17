@@ -11,8 +11,8 @@ import { uploadMedia } from "../media.js";
  */
 export const actionController = async (request, response, next) => {
   const { app, body, files, query, session } = request;
-  const action = query.action || body.action || "create";
-  const url = query.url || body.url;
+  const action = query.action || body?.action || "create";
+  const url = query.url || body?.url;
   const { application, publication } = app.locals;
 
   try {
