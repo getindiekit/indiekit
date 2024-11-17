@@ -103,7 +103,6 @@
     "vitepress": "^1.0.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.21.0",
     "lightningcss-linux-x64-gnu": "^1.26.0"
   }
 }
