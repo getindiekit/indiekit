@@ -4,7 +4,7 @@ Reply post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-reply`
+`npm install @indiekit/post-type-reply`
 
 ## Usage
 

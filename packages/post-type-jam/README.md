@@ -4,7 +4,7 @@ Jam post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-jam`
+`npm install @indiekit/post-type-jam`
 
 ## Usage
 

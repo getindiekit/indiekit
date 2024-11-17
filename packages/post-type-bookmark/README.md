@@ -4,7 +4,7 @@ Bookmark post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-bookmark`
+`npm install @indiekit/post-type-bookmark`
 
 ## Usage
 

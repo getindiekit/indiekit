@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/preset-eleventy`
+`npm install @indiekit/preset-eleventy`
 
 ## Usage
 

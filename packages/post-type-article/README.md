@@ -4,7 +4,7 @@ Article post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-article`
+`npm install @indiekit/post-type-article`
 
 ## Usage
 

@@ -4,7 +4,7 @@ FTP content store adaptor for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/store-ftp`
+`npm install @indiekit/store-ftp`
 
 ## Usage
 

@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/syndicator-mastodon`
+`npm install @indiekit/syndicator-mastodon`
 
 ## Requirements
 

@@ -4,7 +4,7 @@ Micropub media endpoint for Indiekit. Enables publishing media files (audio, pho
 
 ## Installation
 
-`npm i @indiekit/endpoint-media`
+`npm install @indiekit/endpoint-media`
 
 ## Usage
 

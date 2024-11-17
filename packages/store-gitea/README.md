@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/store-gitea`
+`npm install @indiekit/store-gitea`
 
 ## Usage
 

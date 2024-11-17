@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/preset-jekyll`
+`npm install @indiekit/preset-jekyll`
 
 ## Usage
 

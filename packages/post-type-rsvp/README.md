@@ -4,7 +4,7 @@ RSVP post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-rsvp`
+`npm install @indiekit/post-type-rsvp`
 
 ## Usage
 

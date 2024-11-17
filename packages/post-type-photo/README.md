@@ -4,7 +4,7 @@ Photo post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-photo`
+`npm install @indiekit/post-type-photo`
 
 ## Usage
 

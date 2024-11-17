@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/syndicator-internet-archive`
+`npm install @indiekit/syndicator-internet-archive`
 
 ## Requirements
 

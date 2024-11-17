@@ -4,7 +4,7 @@ File system content store adaptor for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/store-file-system`
+`npm install @indiekit/store-file-system`
 
 ## Usage
 

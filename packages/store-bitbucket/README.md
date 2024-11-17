@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/store-bitbucket`
+`npm install @indiekit/store-bitbucket`
 
 ## Usage
 

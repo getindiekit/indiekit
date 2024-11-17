@@ -4,7 +4,7 @@ Event post type for Indiekit.
 
 ## Installation
 
-`npm i @indiekit/post-type-event`
+`npm install @indiekit/post-type-event`
 
 ## Usage
 

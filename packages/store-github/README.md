@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/store-github`
+`npm install @indiekit/store-github`
 
 ## Usage
 

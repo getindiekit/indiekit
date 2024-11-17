@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/store-gitlab`
+`npm install @indiekit/store-gitlab`
 
 ## Usage
 
