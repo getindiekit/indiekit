@@ -6,6 +6,13 @@ S3-compatible content store adaptor for Indiekit.
 
 `npm install @indiekit/store-s3`
 
+## Requirements
+
+A pair of S3-compatible API access and secret keys.
+
+> [!IMPORTANT]
+> Store your API access and secret keys in environment variables called `S3_ACCESS_KEY` and `S3_SECRET_KEY` so that only you and the application can see them.
+
 ## Usage
 
 Add `@indiekit/store-s3` to your list of plug-ins, specifying options as required:

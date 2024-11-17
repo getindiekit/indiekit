@@ -8,7 +8,10 @@
 
 ## Requirements
 
-A set of Internet Archive API keys. You can get these from <https://archive.org/account/s3.php>.
+A pair of [Internet Archive API access and secret keys](https://archive.org/account/s3.php).
+
+> [!IMPORTANT]
+> Store your API access and secret keys in environment variables called `INTERNET_ARCHIVE_ACCESS_KEY` and `INTERNET_ARCHIVE_SECRET_KEY` so that only you and the application can see them.
 
 ## Usage
 

@@ -6,6 +6,13 @@
 
 `npm install @indiekit/store-gitlab`
 
+## Requirements
+
+A [GitLab personal access token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) with read and write permissions to a repository.
+
+> [!IMPORTANT]
+> Store your personal access token in an environment variable called `GITLAB_TOKEN` so that only you and the application can see it.
+
 ## Usage
 
 Add `@indiekit/store-gitlab` to your list of plug-ins, specifying options as required:
