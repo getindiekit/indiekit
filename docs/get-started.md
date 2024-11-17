@@ -19,7 +19,7 @@ The [IndieWeb](https://indieweb.org) is a community of personal websites, connec
 - **Share content** on social networks like Mastodon
 - **Customise everything** from the interface theme to the format of your commit messages
 
-Indiekit is extensible via its [plug-in API](plugins/api/index.md) and localised for use in [a growing number of languages](configuration/localisation.md).
+Indiekit is extensible via its [API](api/index.md) and localised for use in [a growing number of languages](configuration/localisation.md).
 
 ## Requirements
 

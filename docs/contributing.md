@@ -58,7 +58,7 @@ Localazy is used to manage localisations. If you see a translation that is not q
 
 ## Develop a plug-in
 
-You can use [Indiekit’s plug-in API](plugins/api/index.md) to add (or prototype) a new feature.
+You can use [Indiekit’s plug-in API](api/index.md) to add (or prototype) a new feature.
 
 When publishing a plug-in to the npm registry, add the `indiekit-plugin` keyword to help other Indiekit users find it. To have a plug-in listed [in the plug-in directory](https://getindiekit.com/plugins/), submit a pull request against the relevant page in the documentation.
 
