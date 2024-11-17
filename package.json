@@ -101,8 +101,5 @@
     "supertest": "^7.0.0",
     "undici": "^6.11.0",
     "vitepress": "^1.0.0"
-  },
-  "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "^1.26.0"
   }
 }
