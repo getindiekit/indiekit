@@ -6,6 +6,9 @@ Photo post type for Indiekit.
 
 `npm install @indiekit/post-type-photo`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/post-type-photo` to your list of plug-ins, specifying options as required:

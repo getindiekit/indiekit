@@ -6,6 +6,9 @@ File management endpoint for Indiekit. View files uploaded to your media endpoin
 
 `npm install @indiekit/endpoint-files`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/endpoint-files` to your list of plug-ins, specifying options as required:

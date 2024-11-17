@@ -6,6 +6,9 @@ Article post type for Indiekit.
 
 `npm install @indiekit/post-type-article`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/post-type-article` to your list of plug-ins, specifying options as required:

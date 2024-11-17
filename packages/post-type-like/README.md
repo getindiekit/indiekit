@@ -6,6 +6,9 @@ Like post type for Indiekit.
 
 `npm install @indiekit/post-type-like`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/post-type-like` to your list of plug-ins, specifying options as required:

@@ -6,6 +6,9 @@ Micropub endpoint for Indiekit. Enables publishing content to your website using
 
 `npm install @indiekit/endpoint-micropub`
 
+> [!NOTE]
+> This package is installed alongside `@indiekit/indiekit`
+
 ## Usage
 
 Add `@indiekit/endpoint-micropub` to your list of plug-ins, specifying options as required:
