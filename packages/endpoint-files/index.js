@@ -40,7 +40,7 @@ export default class FilesEndpoint {
     router.get("/upload", fileData.upload, formController.get);
     router.post("/upload", fileData.upload, validate, formController.post);
 
-    router.use("/:uid/:action?", fileData.read);
+    router.use("/:uid{/:action}", fileData.read);
     router.get("/:uid", fileController);
 
     router.get("/:uid/delete", deleteController.get);

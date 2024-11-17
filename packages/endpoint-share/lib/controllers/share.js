@@ -23,8 +23,8 @@ export const shareController = {
    */
   async post(request, response) {
     const { application } = request.app.locals;
-    const data = request.body;
-    data["bookmark-of"] = data.url || request.body["bookmark-of"];
+    const data = request.body || {};
+    data["bookmark-of"] = data.url || data["bookmark-of"];
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -43,7 +43,7 @@ export const shareController = {
           accept: "application/json",
           "content-type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams(request.body).toString(),
+        body: new URLSearchParams(data).toString(),
       });
 
       if (!micropubResponse.ok) {

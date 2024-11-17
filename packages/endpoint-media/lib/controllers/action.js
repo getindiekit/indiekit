@@ -12,8 +12,8 @@ import { checkScope } from "../scope.js";
 export const actionController = (imageProcessing) =>
   async function (request, response, next) {
     const { app, body, files, query, session } = request;
-    const action = query.action || body.action || "media";
-    const url = query.url || body.url;
+    const action = query.action || body?.action || "media";
+    const url = query.url || body?.url;
     const { application, publication } = app.locals;
 
     try {

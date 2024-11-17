@@ -70,7 +70,7 @@
     "@indiekit-test/token": "*",
     "@micham/sftp-mock-server": "^0.0.6",
     "@types/cookie-session": "^2.0.44",
-    "@types/express": "^4.17.17",
+    "@types/express": "^5.0.0",
     "@types/express-fileupload": "^1.4.1",
     "@types/lodash": "^4.14.195",
     "aws-sdk-client-mock": "^4.0.0",

@@ -16,13 +16,13 @@ export const postData = {
 
     // Create new post object with default values
     const postType = request.query.type || "note";
-    const properties = request.body;
+    const properties = request?.body || {};
 
     // Get post type config
     const { name, fields, h } = publication.postTypes[postType];
 
     // Only select ‘checked’ syndication targets on first view
-    const checkTargets = Object.entries(request.body).length === 0;
+    const checkTargets = Object.entries(properties).length === 0;
 
     response.locals = {
       accessToken: access_token,

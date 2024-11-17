@@ -13,8 +13,8 @@ export default class ShareEndpoint {
   }
 
   get routes() {
-    router.get("/:path?", shareController.get);
-    router.post("/:path?", validate, shareController.post);
+    router.get("/{:path}", shareController.get);
+    router.post("/{:path}", validate, shareController.post);
 
     return router;
   }
