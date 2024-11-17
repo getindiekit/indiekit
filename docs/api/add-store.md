@@ -4,7 +4,7 @@ outline: deep
 
 # `Indiekit.addStore`
 
-A [content store](../../concepts.md#content-store) interfaces with CRUD (create, read, update, delete) methods provided by a file system, version control system, server, database or API.
+A [content store](../concepts.md#content-store) interfaces with CRUD (create, read, update, delete) methods provided by a file system, version control system, server, database or API.
 
 ## Syntax
 

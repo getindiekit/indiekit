@@ -1,6 +1,6 @@
 # Content stores
 
-A [content store](../concepts#content-store) is a location where Indiekit can save post content and media files. Plug-ins are available for the following platforms:
+A [content store](../../concepts#content-store) is a location where Indiekit can save post content and media files. Plug-ins are available for the following platforms:
 
 ## Official plug-ins
 

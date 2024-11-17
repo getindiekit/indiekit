@@ -4,7 +4,7 @@ outline: deep
 
 # `Indiekit.addPostType`
 
-A [post type](../../concepts.md#post-type) defines fields for creating and editing different post (or content) types, either using Indiekit or via third-party Micropub clients.
+A [post type](../concepts.md#post-type) defines fields for creating and editing different post (or content) types, either using Indiekit or via third-party Micropub clients.
 
 ## Syntax
 

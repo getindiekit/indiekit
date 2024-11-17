@@ -1,6 +1,6 @@
 # Syndicators
 
-A [syndicator](../concepts#syndicator) enables content to be posted to third-party websites, in addition to your own. Plug-ins are available for the following platforms:
+A [syndicator](../../concepts#syndicator) enables content to be posted to third-party websites, in addition to your own. Plug-ins are available for the following platforms:
 
 ## Official plug-ins
 

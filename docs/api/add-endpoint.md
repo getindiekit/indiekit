@@ -4,7 +4,7 @@ outline: deep
 
 # `Indiekit.addEndpoint`
 
-An [endpoint](../../concepts.md#endpoint) adds Express routes to an Indiekit server. Routes can add new pages to the web interface, or provide API endpoints that support IndieWeb (or other) protocols or APIs.
+An [endpoint](../concepts.md#endpoint) adds Express routes to an Indiekit server. Routes can add new pages to the web interface, or provide API endpoints that support IndieWeb (or other) protocols or APIs.
 
 ## Syntax
 

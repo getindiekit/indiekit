@@ -1,18 +1,18 @@
 # Plug-ins
 
-* [Content stores](stores.md)  
+* [Content stores](stores/index.md)  
   Save post and media files to third-party content stores.
 
-* [Endpoints](endpoints.md)  
+* [Endpoints](endpoints/index.md)  
   Add extra features or support other IndieWeb protocols.
 
-* [Post types](post-types.md)  
+* [Post types](post-types/index.md)  
   Add new post types.
 
-* [Publication presets](presets.md)  
+* [Publication presets](presets/index.md)  
   Provide default values for post types and post templates.
 
-* [Syndicators](syndicators.md)  
+* [Syndicators](syndicators/index.md)  
   Enable content to be posted to third-party websites.
 
 > [!TIP]

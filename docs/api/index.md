@@ -14,7 +14,7 @@ A plug-in can provide any of the following features:
 
 ## Anatomy of a plug-in
 
-A plug-in is a `Class` with an `init()` function that is used to register endpoints, presets, stores and syndicators. You can also use the `init()` function to modify Indiekit’s [configuration](../../configuration/index.md). For example:
+A plug-in is a `Class` with an `init()` function that is used to register endpoints, presets, stores and syndicators. You can also use the `init()` function to modify Indiekit’s [configuration](../configuration/index.md). For example:
 
 ```js
 export default class PluginName {

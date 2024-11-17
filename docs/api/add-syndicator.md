@@ -4,7 +4,7 @@ outline: deep
 
 # `Indiekit.addSyndicator`
 
-A [syndicator](../../concepts.md#syndicator) shares content to a third-party service such as a social network, typically via its API.
+A [syndicator](../concepts.md#syndicator) shares content to a third-party service such as a social network, typically via its API.
 
 ## Syntax
 

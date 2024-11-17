@@ -4,7 +4,7 @@ outline: deep
 
 # `Indiekit.addPreset`
 
-A [publication preset](../../concepts.md#publication-preset) can set default storage locations and URL formats for [post types](../../concepts.md#post-type), and post templates for a given publication, be that a static site generator, content management system or other publishing software.
+A [publication preset](../concepts.md#publication-preset) can set default storage locations and URL formats for [post types](../concepts.md#post-type), and post templates for a given publication, be that a static site generator, content management system or other publishing software.
 
 ## Syntax
 
@@ -28,13 +28,13 @@ new Indiekit.addPreset(options);
   : The name of the publishing software the plug-in supports. **Required**.
 
 `postTypes`
-: An object providing default configuration values for publication [post types](../../configuration/post-types.md).
+: An object providing default configuration values for publication [post types](../configuration/post-types.md).
 
 ## Methods
 
 ### `postTemplate()`
 
-An (async) function providing a [post template](../../configuration/post-template.md).
+An (async) function providing a [post template](../configuration/post-template.md).
 
 ### `init()`
 
@@ -101,7 +101,7 @@ get info() {
 
 ### Add post type defaults
 
-A publication preset defines default store and URL path values for a publication’s [post types](../../concepts.md#post-type). Users can override these in their own [configuration](../../configuration/post-types.md).
+A publication preset defines default store and URL path values for a publication’s [post types](../concepts.md#post-type). Users can override these in their own [configuration](../configuration/post-types.md).
 
 For example, to add default values for `note` and `photo` post types:
 

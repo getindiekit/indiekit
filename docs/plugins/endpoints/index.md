@@ -1,6 +1,6 @@
 # Endpoints
 
-An [endpoint](../concepts#endpoint) is a path on your Indiekit server that applications can send requests to or users can access certain features at.
+An [endpoint](../../concepts#endpoint) is a path on your Indiekit server that applications can send requests to or users can access certain features at.
 
 ## Pre-installed plug-ins
 

@@ -1,6 +1,6 @@
 # Post types
 
-A [post type](../concepts#post-type) provides an interface for creating and editing different content types.
+A [post type](../../concepts#post-type) provides an interface for creating and editing different content types.
 
 ## Pre-installed plug-ins
 

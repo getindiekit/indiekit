@@ -144,7 +144,7 @@ Your website’s URL. **Required**.
 
 ## `mediaStore`
 
-A string representing the package name of a [content store plugin](../plugins/stores.md) to use for storing media files. If no value is provided, the [default content store](#store) is used.
+A string representing the package name of a [content store plugin](../plugins/stores/index.md) to use for storing media files. If no value is provided, the [default content store](#store) is used.
 
 ## `postTemplate`
 
@@ -284,7 +284,7 @@ Defaults to `"-"` (hyphen).
 
 ## `store`
 
-A string representing the package name of a [content store plugin](../plugins/stores.md). If no value is provided, the first store plug-in listed under `plugins` is used.
+A string representing the package name of a [content store plugin](../plugins/stores/index.md). If no value is provided, the first store plug-in listed under `plugins` is used.
 
 ## `storeMessageTemplate`
 
