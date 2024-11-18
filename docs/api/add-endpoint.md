@@ -6,6 +6,9 @@ outline: deep
 
 An [endpoint](../concepts.md#endpoint) adds Express routes to an Indiekit server. Routes can add new pages to the web interface, or provide API endpoints that support IndieWeb (or other) protocols or APIs.
 
+> [!NOTE]
+> As of `v1.0.0-beta.20`, Indiekit uses [Express v5](https://expressjs.com/en/5x/api.html). Of particular note, this means paths should follow the [revised syntax for matching routes](https://expressjs.com/en/guide/migrating-5.html#path-syntax).
+
 ## Syntax
 
 ```js
