@@ -4,7 +4,7 @@ Video post type for Indiekit.
 
 ## Installation
 
-`npm install @indiekit/post-type-photo`
+`npm install @indiekit/post-type-video`
 
 ## Usage
 
