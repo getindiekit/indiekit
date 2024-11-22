@@ -1,3 +1,4 @@
+{% if application.mediaEndpoint %}
 {% call widget({
   title: __("files.upload.title"),
   image: "/assets/" + plugin.id + "/icon.svg"
@@ -7,7 +8,6 @@
     href: application.filesEndpoint + "/upload/",
     icon: "uploadFile",
     text: __("files.upload.title")
-  }) if application.hasDatabase else prose({
-    text: __("NotImplementedError.database")
   }) }}
 {% endcall %}
+{% endif %}
