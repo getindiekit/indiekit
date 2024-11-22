@@ -1,8 +1,8 @@
+{% if application.micropubEndpoint %}
 {% call widget({
   title: __("posts.create.title", ""),
   image: "/assets/" + plugin.id + "/icon.svg"
 }) %}
-{% if application.hasDatabase %}
   <div class="button-grid">{% for type, config in publication.postTypes | dictsort %}
     {{ button({
       classes: "button--secondary-on-offset button--inline",
@@ -10,9 +10,5 @@
       text: (icon(config.type) or icon("note")) + config.name
     }) }}
   {% endfor %}</div>
-{% else %}
-  {{ prose({
-    text: __("NotImplementedError.database")
-  }) }}
-{% endif %}
 {% endcall %}
+{% endif %}
