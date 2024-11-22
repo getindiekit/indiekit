@@ -13,7 +13,7 @@ export const syndicateController = {
       const redirectUri =
         request.query.redirect_uri || request.body.syndication?.redirect_uri;
 
-      if (!application.hasDatabase) {
+      if (!application.posts) {
         throw IndiekitError.notImplemented(
           response.locals.__("NotImplementedError.database"),
         );
