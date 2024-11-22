@@ -17,7 +17,7 @@ export const mediaData = {
   async create(application, publication, file) {
     debug(`Create %O`, { file });
 
-    const { hasDatabase, media, timeZone } = application;
+    const { media, timeZone } = application;
     const { me, postTypes } = publication;
 
     // Media properties
@@ -59,7 +59,7 @@ export const mediaData = {
     const mediaData = { path, properties };
 
     // Add data to media collection (or replace existing if present)
-    if (hasDatabase) {
+    if (media) {
       const query = { "properties.url": properties.url };
       await media.replaceOne(query, mediaData, { upsert: true });
     }

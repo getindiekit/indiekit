@@ -25,7 +25,7 @@ export const queryController = async (request, response, next) => {
           // Return properties for a given URL
           let mediaData;
 
-          if (application.hasDatabase) {
+          if (application.media) {
             mediaData = await application.media.findOne({
               "properties.url": url,
             });
@@ -46,7 +46,7 @@ export const queryController = async (request, response, next) => {
             hasPrev: false,
           };
 
-          if (application.hasDatabase) {
+          if (application.media) {
             cursor = await getCursor(application.media, after, before, limit);
           }
 
