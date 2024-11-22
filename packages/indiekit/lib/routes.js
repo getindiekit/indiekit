@@ -26,7 +26,7 @@ export const routes = (indiekitConfig) => {
   const { application, publication } = indiekitConfig;
 
   const indieauth = new IndieAuth({
-    devMode: application._devMode,
+    devMode: process.env.NODE_ENV === "development",
     me: publication.me,
   });
 

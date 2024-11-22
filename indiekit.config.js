@@ -5,7 +5,6 @@ dotenv.config();
 
 const config = {
   application: {
-    _devMode: process.env.NODE_ENV === "development",
     locale: "en-GB",
     mongodbUrl: process.env.MONGO_URL,
     ...(process.env.RAILWAY_ENVIRONMENT && {
