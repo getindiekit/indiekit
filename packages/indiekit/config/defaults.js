@@ -8,7 +8,6 @@ const package_ = require("../package.json");
 export const defaultConfig = {
   application: {
     endpoints: [],
-    hasDatabase: false,
     localesAvailable: [
       "de",
       "en",

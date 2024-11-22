@@ -3,7 +3,7 @@ export const jf2 = async (request, response) => {
   const feedUrl = new URL(request.originalUrl, application.url).href;
   let posts = [];
 
-  if (application.hasDatabase) {
+  if (application.posts) {
     posts = await application.posts
       .find({
         "properties.post-status": {

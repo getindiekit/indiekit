@@ -4,7 +4,6 @@ import { mockResponse } from "mock-req-res";
 import { getNavigation } from "../../lib/navigation.js";
 
 const application = {
-  hasDatabase: false,
   installedPlugins: [],
   locale: "en",
   endpoints: [

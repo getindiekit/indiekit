@@ -13,7 +13,7 @@ export const getShortcuts = (application, response) => {
   }
 
   // Remove shortcut items that require a database if no database configured
-  if (!application.hasDatabase) {
+  if (!application.client) {
     shortcuts = shortcuts.filter((item) => !item.requiresDatabase);
   }
 

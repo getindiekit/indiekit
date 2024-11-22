@@ -92,18 +92,17 @@ export const Indiekit = class {
     );
 
     if (mongodbClientOrError?.client) {
-      this.client = mongodbClientOrError.client;
+      this.application.client = mongodbClientOrError.client;
 
       // Get database name from connection string
-      let { databaseName } = this.client.db();
+      let { databaseName } = this.application.client.db();
 
       // If no database given, use ‘indiekit’ as default database, not ‘test’
       databaseName = databaseName === "test" ? "indiekit" : databaseName;
 
       debug(`Bootstrap: connect to MongoDB database ${databaseName}`);
-      const database = this.client.db(databaseName);
+      const database = this.application.client.db(databaseName);
 
-      this.application.hasDatabase = true;
       this.application.cache = new Keyv(
         new KeyvMongo(this.application.mongodbUrl),
       );
@@ -137,8 +136,8 @@ export const Indiekit = class {
     server.close(() => {
       console.info(`Stopping ${name}`);
 
-      if (this.client) {
-        this.client.close();
+      if (this.application.client) {
+        this.application.client.close();
       }
 
       process.exit(0);

@@ -4,7 +4,6 @@ import { mockResponse } from "mock-req-res";
 import { getShortcuts } from "../../lib/shortcuts.js";
 
 const application = {
-  hasDatabase: false,
   installedPlugins: [],
   locale: "en",
   endpoints: [
