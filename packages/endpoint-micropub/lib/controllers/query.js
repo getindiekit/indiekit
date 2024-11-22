@@ -40,7 +40,7 @@ export const queryController = async (request, response, next) => {
           // Return mf2 for a given URL (optionally filtered by properties)
           let postData;
 
-          if (application.hasDatabase) {
+          if (application.posts) {
             postData = await application.posts.findOne({
               "properties.url": url,
             });
@@ -62,7 +62,7 @@ export const queryController = async (request, response, next) => {
             hasPrev: false,
           };
 
-          if (application.hasDatabase) {
+          if (application.posts) {
             cursor = await getCursor(application.posts, after, before, limit);
           }
 

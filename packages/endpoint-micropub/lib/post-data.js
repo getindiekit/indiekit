@@ -21,7 +21,7 @@ export const postData = {
   async create(application, publication, properties, draftMode = false) {
     debug(`Create %O`, { draftMode, properties });
 
-    const { hasDatabase, posts, timeZone } = application;
+    const { posts, timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
 
     // Add syndication targets
@@ -67,7 +67,7 @@ export const postData = {
     const postData = { path, properties };
 
     // Add data to posts collection (or replace existing if present)
-    if (hasDatabase) {
+    if (posts) {
       const query = { "properties.url": properties.url };
       await posts.replaceOne(query, postData, { upsert: true });
     }
