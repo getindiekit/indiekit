@@ -38,6 +38,7 @@ describe("store-bitbucket", () => {
         "@indiekit/store-bitbucket": { user: "user", repo: "repo" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(

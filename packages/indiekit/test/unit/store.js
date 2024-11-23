@@ -17,7 +17,7 @@ describe("indiekit/lib/store", async () => {
 
   it("Gets store from publication config", () => {
     const Indiekit = {
-      application: { installedPlugins: [store] },
+      installedPlugins: new Set([store]),
       publication: { store: "@indiekit-test/store" },
     };
     const result = getStore(Indiekit);
@@ -27,7 +27,7 @@ describe("indiekit/lib/store", async () => {
 
   it("Gets media store from publication config", () => {
     const Indiekit = {
-      application: { installedPlugins: [store] },
+      installedPlugins: new Set([store]),
       publication: { mediaStore: "@indiekit-test/store" },
     };
     const result = getMediaStore(Indiekit);

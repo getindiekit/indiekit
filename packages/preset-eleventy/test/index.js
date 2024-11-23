@@ -17,6 +17,7 @@ describe("preset-eleventy", async () => {
       },
     },
   });
+  await indiekit.installPlugins();
   const bootstrappedConfig = await indiekit.bootstrap();
 
   eleventy.init(bootstrappedConfig);

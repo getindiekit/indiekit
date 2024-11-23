@@ -17,7 +17,7 @@
   }) }}
 
 <div class="widget-grid">
-{% for plugin in application.installedPlugins -%}
+{% for plugin in installedPlugins -%}
   {% include plugin.id + "-widget.njk" ignore missing %}
 {%- endfor %}
 </div>

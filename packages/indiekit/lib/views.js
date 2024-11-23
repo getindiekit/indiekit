@@ -7,13 +7,11 @@ import { fileURLToPath } from "node:url";
  * @returns {Array} Directories containing view templates
  */
 export const views = (Indiekit) => {
-  const { application } = Indiekit;
-
   // Application views
   const views = [fileURLToPath(new URL("../views", import.meta.url))];
 
   // Plug-in views
-  for (const plugin of application.installedPlugins) {
+  for (const plugin of Indiekit.installedPlugins) {
     if (plugin.filePath) {
       views.push(
         path.join(plugin.filePath, "includes"),

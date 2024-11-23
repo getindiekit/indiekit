@@ -11,9 +11,8 @@ const require = createRequire(import.meta.url);
  */
 export const getLocaleCatalog = (Indiekit) => {
   const catalog = new Map();
-  const { application, locales } = Indiekit;
 
-  for (const locale of locales) {
+  for (const locale of Indiekit.locales) {
     const translations = [
       // Application translations
       require(`../locales/${locale}.json`),
@@ -24,7 +23,7 @@ export const getLocaleCatalog = (Indiekit) => {
     ];
 
     // Plug-in translations
-    for (const plugin of application.installedPlugins) {
+    for (const plugin of Indiekit.installedPlugins) {
       const localePath = path.join(plugin.filePath, `locales/${locale}.json`);
       try {
         translations.push(require(localePath));

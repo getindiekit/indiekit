@@ -4,17 +4,18 @@ import { getInstalledPlugin, getPluginId } from "../../lib/plugins.js";
 
 describe("indiekit/lib/plugins", async () => {
   it("Gets installed plug-in", () => {
-    const application = {
-      installedPlugins: [
-        {
-          id: "@scope-package-name",
-        },
-      ],
-    };
+    const installedPlugins = new Set([
+      {
+        id: "@scope-package-name",
+      },
+    ]);
 
-    assert.deepEqual(getInstalledPlugin(application, "@scope/package-name"), {
-      id: "@scope-package-name",
-    });
+    assert.deepEqual(
+      getInstalledPlugin(installedPlugins, "@scope/package-name"),
+      {
+        id: "@scope-package-name",
+      },
+    );
   });
 
   it("Gets normalised plug-in ID", () => {

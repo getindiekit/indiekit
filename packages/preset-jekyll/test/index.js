@@ -17,6 +17,7 @@ describe("preset-jekyll", async () => {
       },
     },
   });
+  await indiekit.installPlugins();
   const bootstrappedConfig = await indiekit.bootstrap();
 
   jekyll.init(bootstrappedConfig);

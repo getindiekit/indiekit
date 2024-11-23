@@ -56,6 +56,7 @@ describe("store-ftp", () => {
         "@indiekit/store-ftp": { user: "username", host: "127.0.0.1" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "username on 127.0.0.1");

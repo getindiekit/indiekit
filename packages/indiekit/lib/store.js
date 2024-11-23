@@ -6,7 +6,7 @@ import { getInstalledPlugin } from "./plugins.js";
  * @returns {object} Content store
  */
 export const getStore = (Indiekit) => {
-  const { application, publication } = Indiekit;
+  const { application, installedPlugins, publication } = Indiekit;
 
   // `publication.store` may already be a resolved store function
   if (typeof publication?.store === "object") {
@@ -14,7 +14,7 @@ export const getStore = (Indiekit) => {
   }
 
   return publication?.store
-    ? getInstalledPlugin(application, publication.store)
+    ? getInstalledPlugin(installedPlugins, publication.store)
     : application?.stores[0];
 };
 
@@ -24,7 +24,7 @@ export const getStore = (Indiekit) => {
  * @returns {object} Media store
  */
 export const getMediaStore = (Indiekit) => {
-  const { application, publication } = Indiekit;
+  const { installedPlugins, publication } = Indiekit;
 
   // `publication.mediaStore` may already be a resolved store function
   if (typeof publication?.mediaStore === "object") {
@@ -32,6 +32,6 @@ export const getMediaStore = (Indiekit) => {
   }
 
   return publication?.mediaStore
-    ? getInstalledPlugin(application, publication.mediaStore)
+    ? getInstalledPlugin(installedPlugins, publication.mediaStore)
     : getStore(Indiekit);
 };
