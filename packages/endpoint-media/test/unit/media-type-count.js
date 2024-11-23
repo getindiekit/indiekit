@@ -5,7 +5,6 @@ import { mediaTypeCount } from "../../lib/media-type-count.js";
 
 const { client, database, mongoServer } = await testDatabase();
 const posts = database.collection("posts");
-const application = { posts };
 
 describe("endpoint-media/lib/media-type-count", () => {
   before(async () => {
@@ -25,7 +24,7 @@ describe("endpoint-media/lib/media-type-count", () => {
   });
 
   it("Counts the number of media of a given type", async () => {
-    const result = await mediaTypeCount.get(application, {
+    const result = await mediaTypeCount.get(posts, {
       type: "entry",
       published: new Date(),
       name: "Bar",

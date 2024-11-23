@@ -1,12 +1,12 @@
 export const mediaTypeCount = {
   /**
    * Count the number of media of a given type
-   * @param {object} application - Application configuration
+   * @param {object} postsCollection - Posts database collection
    * @param {object} properties - Media properties
    * @returns {Promise<object>} Media count
    */
-  async get(application, properties) {
-    if (!application.posts || !application.posts.count()) {
+  async get(postsCollection, properties) {
+    if (!postsCollection || !postsCollection.count()) {
       console.warn("No database configuration provided");
       console.info(
         "See https://getindiekit.com/configuration/application/#mongodburl",
@@ -20,7 +20,7 @@ export const mediaTypeCount = {
     const startDate = new Date(new Date(properties.published).toDateString());
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 1);
-    const response = await application.posts
+    const response = await postsCollection
       .aggregate([
         {
           $addFields: {

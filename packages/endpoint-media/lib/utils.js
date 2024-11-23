@@ -48,7 +48,8 @@ export const renderPath = async (path, properties, application) => {
   tokens.D60 = newbase60.DateToSxg(dateObject);
 
   // Add count of media type for the day
-  const count = await mediaTypeCount.get(application, properties);
+  const postsCollection = application?.collections?.get("posts");
+  const count = await mediaTypeCount.get(postsCollection, properties);
   tokens.n = count + 1;
 
   // Add file extension token

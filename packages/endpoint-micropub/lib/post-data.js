@@ -21,7 +21,7 @@ export const postData = {
   async create(application, publication, properties, draftMode = false) {
     debug(`Create %O`, { draftMode, properties });
 
-    const { posts, timeZone } = application;
+    const { timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
 
     // Add syndication targets
@@ -67,9 +67,10 @@ export const postData = {
     const postData = { path, properties };
 
     // Add data to posts collection (or replace existing if present)
-    if (posts) {
+    const postsCollection = application?.collections?.get("posts");
+    if (postsCollection) {
       const query = { "properties.url": properties.url };
-      await posts.replaceOne(query, postData, { upsert: true });
+      await postsCollection.replaceOne(query, postData, { upsert: true });
     }
 
     return postData;
@@ -84,10 +85,10 @@ export const postData = {
   async read(application, url) {
     debug(`Read ${url}`);
 
-    const { posts } = application;
     const query = { "properties.url": url };
+    const postsCollection = application?.collections?.get("posts");
 
-    const postData = await posts.findOne(query);
+    const postData = await postsCollection.findOne(query);
     if (!postData) {
       throw IndiekitError.notFound(url);
     }
@@ -108,8 +109,9 @@ export const postData = {
   async update(application, publication, url, operation) {
     debug(`Update ${url} %O`, { operation });
 
-    const { posts, timeZone } = application;
+    const { timeZone } = application;
     const { me, postTypes } = publication;
+    const postsCollection = application?.collections?.get("posts");
 
     // Read properties
     let { path: _originalPath, properties } = await this.read(application, url);
@@ -171,7 +173,7 @@ export const postData = {
     // Update data in posts collection
     const postData = { _originalPath, path, properties };
     const query = { "properties.url": url };
-    await posts.replaceOne(query, postData);
+    await postsCollection.replaceOne(query, postData);
 
     return postData;
   },
@@ -188,8 +190,9 @@ export const postData = {
   async delete(application, publication, url) {
     debug(`Delete ${url}`);
 
-    const { posts, timeZone } = application;
+    const { timeZone } = application;
     const { postTypes } = publication;
+    const postsCollection = application?.collections?.get("posts");
 
     // Read properties
     const { properties } = await this.read(application, url);
@@ -222,7 +225,7 @@ export const postData = {
     // Update data in posts collection
     const postData = { path, properties, _deletedProperties };
     const query = { "properties.url": url };
-    await posts.replaceOne(query, postData);
+    await postsCollection.replaceOne(query, postData);
 
     return postData;
   },
@@ -240,8 +243,8 @@ export const postData = {
   async undelete(application, publication, url, draftMode) {
     debug(`Undelete ${url} %O`, { draftMode });
 
-    const { posts } = application;
     const { postTypes } = publication;
+    const postsCollection = application?.collections?.get("posts");
 
     // Read deleted properties
     const { _deletedProperties } = await this.read(application, url);
@@ -270,7 +273,7 @@ export const postData = {
     // Update data in posts collection
     const postData = { path, properties };
     const query = { "properties.url": url };
-    await posts.replaceOne(query, postData);
+    await postsCollection.replaceOne(query, postData);
 
     return postData;
   },

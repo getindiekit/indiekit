@@ -8,13 +8,12 @@ import {
 } from "../../lib/utils.js";
 
 const { client, database, mongoServer } = await testDatabase();
-const posts = database.collection("posts");
-const application = { posts };
+const postsCollection = database.collection("posts");
 const url = "https://website.example/post/12345";
 
 describe("endpoint-syndicate/lib/token", () => {
   beforeEach(async () => {
-    await posts.insertOne({
+    await postsCollection.insertOne({
       properties: {
         type: "entry",
         "mp-syndicate-to": "https://mastodon.example/",
@@ -29,7 +28,7 @@ describe("endpoint-syndicate/lib/token", () => {
   });
 
   it("Gets post for given URL from database", async () => {
-    const result = await getPostData(application, url);
+    const result = await getPostData(postsCollection, url);
 
     assert.equal(
       result.properties["mp-syndicate-to"],
@@ -38,7 +37,7 @@ describe("endpoint-syndicate/lib/token", () => {
   });
 
   it("Gets post data from database", async () => {
-    const result = await getPostData(application, "");
+    const result = await getPostData(postsCollection, "");
 
     assert.equal(
       result.properties["mp-syndicate-to"],

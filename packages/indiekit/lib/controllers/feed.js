@@ -3,8 +3,9 @@ export const jf2 = async (request, response) => {
   const feedUrl = new URL(request.originalUrl, application.url).href;
   let posts = [];
 
-  if (application.posts) {
-    posts = await application.posts
+  const postsCollection = application?.collections?.get("posts");
+  if (postsCollection) {
+    posts = await postsCollection
       .find({
         "properties.post-status": {
           $ne: "draft",
