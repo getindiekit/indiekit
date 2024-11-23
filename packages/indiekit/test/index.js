@@ -71,6 +71,6 @@ describe("indiekit", async () => {
     const testStore = new TestStore();
     indiekit.addStore(testStore);
 
-    assert.equal(indiekit.application.stores[0].info.name, "Test store");
+    assert.equal([...indiekit.stores][0].info.name, "Test store");
   });
 });
