@@ -64,6 +64,7 @@ describe("indiekit", () => {
 
   it("Exits process if no publication URL in configuration", async () => {
     mock.method(console, "error", () => {});
+    mock.method(console, "info", () => {});
     mock.method(process, "exit", () => {});
 
     publication.me = undefined;
