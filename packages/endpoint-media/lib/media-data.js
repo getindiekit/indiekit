@@ -17,7 +17,7 @@ export const mediaData = {
   async create(application, publication, file) {
     debug(`Create %O`, { file });
 
-    const { media, timeZone } = application;
+    const { timeZone } = application;
     const { me, postTypes } = publication;
 
     // Media properties
@@ -59,9 +59,10 @@ export const mediaData = {
     const mediaData = { path, properties };
 
     // Add data to media collection (or replace existing if present)
-    if (media) {
+    const mediaCollection = application?.collections?.get("media");
+    if (mediaCollection) {
       const query = { "properties.url": properties.url };
-      await media.replaceOne(query, mediaData, { upsert: true });
+      await mediaCollection.replaceOne(query, mediaData, { upsert: true });
     }
 
     return mediaData;
@@ -76,10 +77,10 @@ export const mediaData = {
   async read(application, url) {
     debug(`Read ${url}`);
 
-    const { media } = application;
     const query = { "properties.url": url };
 
-    const mediaData = await media.findOne(query);
+    const mediaCollection = application?.collections?.get("media");
+    const mediaData = await mediaCollection.findOne(query);
     if (!mediaData) {
       throw IndiekitError.notFound(url);
     }
@@ -96,10 +97,10 @@ export const mediaData = {
   async delete(application, url) {
     debug(`Delete ${url}`);
 
-    const { media } = application;
     const query = { "properties.url": url };
 
-    const result = await media.deleteOne(query);
+    const mediaCollection = application?.collections?.get("media");
+    const result = await mediaCollection.deleteOne(query);
     if (result?.deletedCount === 1) {
       return true;
     }

@@ -5,7 +5,6 @@ import { postTypeCount } from "../../lib/post-type-count.js";
 
 const { client, database, mongoServer } = await testDatabase();
 const posts = database.collection("posts");
-const application = { posts };
 
 describe("endpoint-media/lib/post-type-count", () => {
   before(async () => {
@@ -27,7 +26,7 @@ describe("endpoint-media/lib/post-type-count", () => {
 
   it("Counts the number of posts of a given type", async () => {
     const post = await posts.findOne({});
-    const result = await postTypeCount.get(application, {
+    const result = await postTypeCount.get(posts, {
       uid: post._id.toString(),
       type: "entry",
       published: new Date(),

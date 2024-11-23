@@ -8,6 +8,7 @@ import { getMediaProperties } from "../utils.js";
  */
 export const queryController = async (request, response, next) => {
   const { application } = request.app.locals;
+  const mediaCollection = application.collections.get("media");
 
   try {
     const limit = Number(request.query.limit) || 0;
@@ -25,8 +26,8 @@ export const queryController = async (request, response, next) => {
           // Return properties for a given URL
           let mediaData;
 
-          if (application.media) {
-            mediaData = await application.media.findOne({
+          if (mediaCollection) {
+            mediaData = await mediaCollection.findOne({
               "properties.url": url,
             });
           }
@@ -46,8 +47,8 @@ export const queryController = async (request, response, next) => {
             hasPrev: false,
           };
 
-          if (application.media) {
-            cursor = await getCursor(application.media, after, before, limit);
+          if (mediaCollection) {
+            cursor = await getCursor(mediaCollection, after, before, limit);
           }
 
           response.json({

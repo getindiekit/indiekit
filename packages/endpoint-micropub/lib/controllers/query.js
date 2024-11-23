@@ -9,6 +9,7 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
  */
 export const queryController = async (request, response, next) => {
   const { application, publication } = request.app.locals;
+  const postsCollection = application?.collections?.get("posts");
 
   try {
     const config = getConfig(application, publication);
@@ -40,8 +41,8 @@ export const queryController = async (request, response, next) => {
           // Return mf2 for a given URL (optionally filtered by properties)
           let postData;
 
-          if (application.posts) {
-            postData = await application.posts.findOne({
+          if (postsCollection) {
+            postData = await postsCollection.findOne({
               "properties.url": url,
             });
           }
@@ -62,8 +63,8 @@ export const queryController = async (request, response, next) => {
             hasPrev: false,
           };
 
-          if (application.posts) {
-            cursor = await getCursor(application.posts, after, before, limit);
+          if (postsCollection) {
+            cursor = await getCursor(postsCollection, after, before, limit);
           }
 
           const items = [];

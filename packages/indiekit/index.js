@@ -22,6 +22,7 @@ export const Indiekit = class {
    */
   constructor(config) {
     this.config = config;
+    this.collections = new Map();
     this.application = this.config.application;
     this.plugins = this.config.plugins;
     this.publication = this.config.publication;
@@ -34,6 +35,15 @@ export const Indiekit = class {
     });
 
     return new Indiekit(config);
+  }
+
+  addCollection(name) {
+    if (this.collections.has(name)) {
+      console.warn(`Collection ‘${name}’ already added`);
+    } else if (this.database) {
+      this.collections.set(name, this.database.collection(name));
+      debug(`Added database collection: ${name}`);
+    }
   }
 
   addEndpoint(endpoint) {
@@ -127,14 +137,6 @@ export const Indiekit = class {
       console.error("No publication URL in configuration");
       console.info("https://getindiekit.com/configuration/publication#me");
       process.exit();
-    }
-
-    if (this.database) {
-      debug(`Bootstrap: add database collection posts`);
-      this.application.posts = this.database.collection("posts");
-
-      debug(`Bootstrap: add database collection media`);
-      this.application.media = this.database.collection("media");
     }
 
     // Update application configuration

@@ -1,21 +1,20 @@
 /**
  * Get post data
- * @param {object} application - Application configuration
+ * @param {object} postsCollection - Posts database collection
  * @param {string} url - URL of existing post (optional)
  * @returns {Promise<object>} Post data for given URL else recently published post
  */
-export const getPostData = async (application, url) => {
-  const { posts } = application;
+export const getPostData = async (postsCollection, url) => {
   let postData = {};
 
   if (url) {
     // Get item in database which matching URL
-    postData = await posts.findOne({
+    postData = await postsCollection.findOne({
       "properties.url": url,
     });
   } else {
     // Get published posts awaiting syndication and return first item
-    const items = await posts
+    const items = await postsCollection
       .find({
         "properties.mp-syndicate-to": {
           $exists: true,

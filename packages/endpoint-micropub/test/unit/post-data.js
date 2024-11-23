@@ -8,7 +8,6 @@ describe("endpoint-micropub/lib/post-data", async () => {
   let application;
   let publication;
   const { client, database, mongoServer } = await testDatabase();
-  const posts = database.collection("posts");
   const properties = {
     type: "entry",
     published: "2020-07-26T20:10:57.062Z",
@@ -23,7 +22,8 @@ describe("endpoint-micropub/lib/post-data", async () => {
   });
 
   beforeEach(async () => {
-    await posts.insertOne({
+    const postsCollection = database.collection("posts");
+    await postsCollection.insertOne({
       path: "foo",
       properties: {
         type: "entry",
@@ -38,8 +38,10 @@ describe("endpoint-micropub/lib/post-data", async () => {
     });
 
     const config = await testConfig({ usePostTypes: true });
+    const collections = new Map();
+    collections.set("posts", postsCollection);
 
-    application = { posts };
+    application = { collections };
     publication = config.publication;
   });
 

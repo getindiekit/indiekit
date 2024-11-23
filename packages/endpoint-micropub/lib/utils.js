@@ -111,7 +111,8 @@ export const renderPath = async (
   tokens.D60 = newbase60.DateToSxg(dateObject);
 
   // Add count of post-type for the day
-  const count = await postTypeCount.get(application, properties);
+  const postsCollection = application?.collections?.get("posts");
+  const count = await postTypeCount.get(postsCollection, properties);
   tokens.n = count + 1;
 
   // Add slug token

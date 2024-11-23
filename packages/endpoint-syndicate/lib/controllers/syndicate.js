@@ -7,13 +7,13 @@ export const syndicateController = {
     try {
       const { application, publication } = request.app.locals;
       const bearerToken = findBearerToken(request);
-
       const sourceUrl =
         request.query.source_url || request.body.syndication?.source_url;
       const redirectUri =
         request.query.redirect_uri || request.body.syndication?.redirect_uri;
 
-      if (!application.posts) {
+      const postsCollection = application?.collections?.get("posts");
+      if (!postsCollection) {
         throw IndiekitError.notImplemented(
           response.locals.__("NotImplementedError.database"),
         );
@@ -29,7 +29,7 @@ export const syndicateController = {
       }
 
       // Get post data
-      const postData = await getPostData(application, sourceUrl);
+      const postData = await getPostData(postsCollection, sourceUrl);
 
       if (!postData && sourceUrl) {
         return response.json({

@@ -9,7 +9,6 @@ describe("endpoint-media/lib/media-data", async () => {
   let application;
   let publication;
   const { client, database, mongoServer } = await testDatabase();
-  const media = database.collection("media");
   const file = {
     data: getFixture("file-types/photo.jpg", false),
     name: "photo.jpg",
@@ -22,7 +21,8 @@ describe("endpoint-media/lib/media-data", async () => {
   });
 
   beforeEach(async () => {
-    await media.insertOne({
+    const mediaCollection = database.collection("media");
+    await mediaCollection.insertOne({
       path: "photo.jpg",
       properties: {
         "media-type": "photo",
@@ -31,8 +31,10 @@ describe("endpoint-media/lib/media-data", async () => {
     });
 
     const config = await testConfig({ usePostTypes: true });
+    const collections = new Map();
+    collections.set("media", mediaCollection);
 
-    application = { media };
+    application = { collections };
     publication = config.publication;
   });
 
