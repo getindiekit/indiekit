@@ -6,7 +6,7 @@ import { getInstalledPlugin } from "./plugins.js";
  * @returns {object} Content store
  */
 export const getStore = (Indiekit) => {
-  const { application, installedPlugins, publication } = Indiekit;
+  const { installedPlugins, publication, stores } = Indiekit;
 
   // `publication.store` may already be a resolved store function
   if (typeof publication?.store === "object") {
@@ -15,7 +15,7 @@ export const getStore = (Indiekit) => {
 
   return publication?.store
     ? getInstalledPlugin(installedPlugins, publication.store)
-    : application?.stores[0];
+    : [...stores][0];
 };
 
 /**

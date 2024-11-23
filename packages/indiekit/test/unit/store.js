@@ -9,7 +9,7 @@ describe("indiekit/lib/store", async () => {
   store.id = "@indiekit-test-store";
 
   it("Gets store from application config", () => {
-    const Indiekit = { application: { stores: [store] } };
+    const Indiekit = { stores: new Set([store]) };
     const result = getStore(Indiekit);
 
     assert.equal(result.info.name, "Test store");

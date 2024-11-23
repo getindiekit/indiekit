@@ -34,6 +34,7 @@ export const Indiekit = class {
     this.collections = new Map();
     this.installedPlugins = new Set();
     this.locales = locales;
+    this.stores = new Set();
   }
 
   static async initialize(options = {}) {
@@ -80,7 +81,7 @@ export const Indiekit = class {
   }
 
   addStore(store) {
-    this.application.stores.push(store);
+    this.stores.add(store);
     debug(`Added content store: ${store.name}`);
   }
 

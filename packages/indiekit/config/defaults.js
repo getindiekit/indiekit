@@ -7,7 +7,6 @@ export const defaultConfig = {
     name: "Indiekit",
     port: process.env.PORT || "3000",
     postTypes: {},
-    stores: [],
     themeColor: "#04f",
     themeColorScheme: "automatic",
     timeZone: "UTC",
