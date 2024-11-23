@@ -37,6 +37,7 @@ describe("store-s3", () => {
         "@indiekit/store-s3": { bucket: "website" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "website bucket");

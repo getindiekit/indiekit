@@ -20,6 +20,7 @@ export const locals = (Indiekit) =>
         application,
         collections,
         database,
+        installedPlugins,
         mongodbClientError,
         publication,
       } = Indiekit;
@@ -66,6 +67,9 @@ export const locals = (Indiekit) =>
         ...application,
         ...getEndpointUrls(application, request),
       };
+
+      // Installed plug-ins
+      request.app.locals.installedPlugins = installedPlugins;
 
       // Publication
       request.app.locals.publication = publication;

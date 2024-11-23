@@ -11,6 +11,7 @@ describe("indiekit/lib/post-types", () => {
       usePostTypes: true,
     });
     const indiekit = await Indiekit.initialize({ config });
+    await indiekit.installPlugins();
     const bootstrappedConfig = await indiekit.bootstrap();
     const { article: result } = getPostTypes(bootstrappedConfig);
 
@@ -45,6 +46,7 @@ describe("indiekit/lib/post-types", () => {
     });
     const indiekit = await Indiekit.initialize({ config });
     const bootstrappedConfig = await indiekit.bootstrap();
+    await indiekit.installPlugins();
     const result = getPostTypes(bootstrappedConfig);
 
     assert.equal(result.article.name, "Article");

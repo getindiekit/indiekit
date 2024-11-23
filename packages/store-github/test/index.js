@@ -36,6 +36,7 @@ describe("store-github", async () => {
         "@indiekit/store-github": { user: "user", repo: "repo", token: "123" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "user/repo on GitHub");

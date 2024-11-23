@@ -28,7 +28,7 @@ const limit = rateLimit({
  * @returns {import("express").Router} Express router
  */
 export const routes = (Indiekit) => {
-  const { application, publication } = Indiekit;
+  const { application, installedPlugins, publication } = Indiekit;
 
   const indieauth = new IndieAuth({
     devMode: process.env.NODE_ENV === "development",
@@ -63,7 +63,7 @@ export const routes = (Indiekit) => {
   router.get("/offline", offlineController.offline);
 
   // Plug-in assets
-  for (const plugin of application.installedPlugins) {
+  for (const plugin of installedPlugins) {
     if (plugin.filePath) {
       const assetsPath = path.join(plugin.filePath, "assets");
       router.use(`/assets/${plugin.id}`, express.static(assetsPath));

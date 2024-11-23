@@ -41,6 +41,7 @@ describe("store-gitlab", async () => {
         "@indiekit/store-gitlab": { user: "username", repo: "repo" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(

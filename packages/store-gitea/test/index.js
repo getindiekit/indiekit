@@ -42,6 +42,7 @@ describe("store-github", async () => {
         "@indiekit/store-gitea": { user: "user", repo: "repo" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "user/repo on Gitea");

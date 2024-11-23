@@ -2,9 +2,9 @@ import path from "node:path";
 import { getPackageData } from "../utils.js";
 
 export const list = (request, response) => {
-  const { application } = response.app.locals;
+  const { installedPlugins } = response.app.locals;
 
-  const plugins = application.installedPlugins.map((plugin) => {
+  const plugins = [...installedPlugins].map((plugin) => {
     const _package = getPackageData(plugin.filePath);
     plugin.photo = {
       srcOnError: "/assets/plug-in.svg",
@@ -29,12 +29,10 @@ export const list = (request, response) => {
 };
 
 export const view = (request, response) => {
-  const { application } = response.app.locals;
+  const { installedPlugins } = response.app.locals;
   const { pluginId } = request.params;
 
-  const plugin = application.installedPlugins.find(
-    (plugin) => plugin.id === pluginId,
-  );
+  const plugin = installedPlugins.find((plugin) => plugin.id === pluginId);
   plugin.package = getPackageData(plugin.filePath);
 
   response.render("plugins/view", {

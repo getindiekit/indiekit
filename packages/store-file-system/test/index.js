@@ -36,6 +36,7 @@ describe("store-file-system", () => {
         "@indiekit/store-file-system": { directory: "directory" },
       },
     });
+    await indiekit.installPlugins();
     await indiekit.bootstrap();
 
     assert.equal(indiekit.publication.store.info.name, "directory");

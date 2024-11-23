@@ -20,6 +20,7 @@ describe("indiekit/lib/post-templates", () => {
       plugins: ["@indiekit/preset-jekyll"],
     });
     const indiekit = await Indiekit.initialize({ config });
+    await indiekit.installPlugins();
     const { publication } = await indiekit.bootstrap();
     const postTemplate = getPostTemplate(publication);
     const result = postTemplate({ published: "2021-01-21" });

@@ -32,6 +32,7 @@ export const Indiekit = class {
     this.publication = this.config.publication;
 
     this.collections = new Map();
+    this.installedPlugins = new Set();
     this.locales = locales;
   }
 
@@ -141,6 +142,10 @@ export const Indiekit = class {
     return getLocaleCatalog(this);
   }
 
+  async installPlugins() {
+    await getInstalledPlugins(this);
+  }
+
   async bootstrap() {
     debug(`Bootstrap: check for required configuration options`);
     // Check for required configuration options
@@ -149,9 +154,6 @@ export const Indiekit = class {
       console.info("https://getindiekit.com/configuration/publication#me");
       process.exit();
     }
-
-    // Update application configuration
-    this.application.installedPlugins = await getInstalledPlugins(this);
 
     // Update publication configuration
     this.publication.categories = await getCategories(this);
@@ -175,6 +177,7 @@ export const Indiekit = class {
 
   async server(options = {}) {
     await this.connectMongodbClient();
+    await this.installPlugins();
     const config = await this.bootstrap();
     const app = expressConfig(config);
     let { name, port } = config.application;
