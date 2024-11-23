@@ -8,7 +8,7 @@ import i18n from "i18n";
 export const internationalisation = (Indiekit) =>
   function (request, response, next) {
     try {
-      const { application } = Indiekit;
+      const { application, localeCatalog } = Indiekit;
 
       i18n.configure({
         cookie: "locale",
@@ -16,7 +16,7 @@ export const internationalisation = (Indiekit) =>
         indent: "  ",
         objectNotation: true,
         queryParameter: "lang",
-        staticCatalog: Object.fromEntries(application.localeCatalog),
+        staticCatalog: Object.fromEntries(localeCatalog),
       });
 
       i18n.init(request, response);
