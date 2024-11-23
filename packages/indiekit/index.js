@@ -115,7 +115,7 @@ export const Indiekit = class {
     }
 
     if (mongodbClientOrError?.error) {
-      this.application._mongodbClientError = mongodbClientOrError.error;
+      this.mongodbClientError = mongodbClientOrError.error;
     }
 
     // Update application configuration

@@ -19,8 +19,11 @@ describe("indiekit/lib/middleware/locals", () => {
     const response = mockResponse();
     const next = mock.fn();
 
-    defaultConfig.application._mongodbClientError = new Error("test");
-    await locals(defaultConfig)(request, response, next);
+    await locals({ mongodbClientError: new Error("test") })(
+      request,
+      response,
+      next,
+    );
 
     assert.equal(request.app.locals.error instanceof Error, true);
   });
