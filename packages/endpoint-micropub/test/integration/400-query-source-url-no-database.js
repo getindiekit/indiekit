@@ -13,7 +13,7 @@ const server = await testServer({
   publication: {
     me: "https://website.example",
   },
-  useDatabase: false,
+  mongodbUrl: false,
 });
 const request = supertest.agent(server);
 

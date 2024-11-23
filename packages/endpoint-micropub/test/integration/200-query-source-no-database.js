@@ -6,7 +6,7 @@ import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
 await mockAgent("endpoint-micropub");
-const server = await testServer({ useDatabase: false });
+const server = await testServer({ mongodbUrl: false });
 const request = supertest.agent(server);
 
 describe("endpoint-micropub GET /micropub?q=source", () => {

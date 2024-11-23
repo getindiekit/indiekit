@@ -5,7 +5,7 @@ import { mediaTypeCount } from "../../lib/media-type-count.js";
 
 const { client, database, mongoServer } = await testDatabase();
 const posts = database.collection("posts");
-const application = { posts, useDatabase: true };
+const application = { posts };
 
 describe("endpoint-media/lib/media-type-count", () => {
   before(async () => {

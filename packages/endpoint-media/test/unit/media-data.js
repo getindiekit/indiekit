@@ -32,7 +32,7 @@ describe("endpoint-media/lib/media-data", async () => {
 
     const config = await testConfig({ usePostTypes: true });
 
-    application = { media, useDatabase: true };
+    application = { media };
     publication = config.publication;
   });
 

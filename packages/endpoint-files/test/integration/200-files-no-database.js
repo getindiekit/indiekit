@@ -5,7 +5,7 @@ import { JSDOM } from "jsdom";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 
-const server = await testServer({ useDatabase: false });
+const server = await testServer({ mongodbUrl: false });
 const request = supertest.agent(server);
 
 describe("endpoint-files GET /files", () => {

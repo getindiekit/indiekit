@@ -39,7 +39,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
 
     const config = await testConfig({ usePostTypes: true });
 
-    application = { posts, useDatabase: true };
+    application = { posts };
     publication = config.publication;
   });
 

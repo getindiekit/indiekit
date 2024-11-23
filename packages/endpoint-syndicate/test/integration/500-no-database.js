@@ -4,7 +4,7 @@ import supertest from "supertest";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 
-const server = await testServer({ useDatabase: false });
+const server = await testServer({ mongodbUrl: false });
 const request = supertest.agent(server);
 
 describe("endpoint-syndicate POST /syndicate", () => {

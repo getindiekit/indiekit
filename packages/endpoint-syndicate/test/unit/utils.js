@@ -9,7 +9,7 @@ import {
 
 const { client, database, mongoServer } = await testDatabase();
 const posts = database.collection("posts");
-const application = { posts, useDatabase: true };
+const application = { posts };
 const url = "https://website.example/post/12345";
 
 describe("endpoint-syndicate/lib/token", () => {

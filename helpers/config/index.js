@@ -1,23 +1,14 @@
 import process from "node:process";
 import "dotenv/config.js";
 import cookieSession from "cookie-session";
-import { MongoMemoryServer } from "mongodb-memory-server";
 
 const defaultOptions = {
   locale: "en",
-  useDatabase: false,
   usePostTypes: true,
 };
 
 export const testConfig = async (options) => {
   options = { ...defaultOptions, ...options };
-
-  // Configure MongoDb
-  let mongodbUrl = "";
-  if (options.useDatabase) {
-    const mongod = await MongoMemoryServer.create();
-    mongodbUrl = mongod.getUri();
-  }
 
   // Configure custom note post type with date-less URL for easier testing
   const postTypes = {
@@ -46,7 +37,7 @@ export const testConfig = async (options) => {
       introspectionEndpoint: options?.application?.introspectionEndpoint,
       locale: options.locale,
       mediaEndpoint: options?.application?.mediaEndpoint,
-      mongodbUrl,
+      mongodbUrl: options.mongodbUrl,
       name: "Test configuration",
       sessionMiddleware: cookieSession({
         name: "test",

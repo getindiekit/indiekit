@@ -5,7 +5,7 @@ import { postTypeCount } from "../../lib/post-type-count.js";
 
 const { client, database, mongoServer } = await testDatabase();
 const posts = database.collection("posts");
-const application = { posts, useDatabase: true };
+const application = { posts };
 
 describe("endpoint-media/lib/post-type-count", () => {
   before(async () => {

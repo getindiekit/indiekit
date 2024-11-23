@@ -2,11 +2,11 @@ import { mock } from "node:test";
 import "dotenv/config.js";
 import getPort from "get-port";
 import { testConfig } from "@indiekit-test/config";
+import { testDatabase } from "@indiekit-test/database";
 import { Indiekit } from "@indiekit/indiekit";
 
-const defaultOptions = {
-  useDatabase: true,
-};
+const { mongoUri } = await testDatabase();
+const defaultOptions = { mongodbUrl: mongoUri };
 
 export const testServer = async (options) => {
   options = { ...defaultOptions, ...options };
