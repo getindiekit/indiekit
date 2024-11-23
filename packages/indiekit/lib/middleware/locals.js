@@ -10,10 +10,10 @@ const cssHash = sha1(await styles());
 
 /**
  * Expose configuration to frontend templates and plug-ins
- * @param {object} indiekitConfig - Indiekit configuration
+ * @param {object} Indiekit - Indiekit instance
  * @returns {import("express").RequestHandler} Next middleware
  */
-export const locals = (indiekitConfig) =>
+export const locals = (Indiekit) =>
   async function (request, response, next) {
     try {
       const {
@@ -22,7 +22,7 @@ export const locals = (indiekitConfig) =>
         database,
         mongodbClientError,
         publication,
-      } = indiekitConfig;
+      } = Indiekit;
 
       // Application
       request.app.locals.application = application;

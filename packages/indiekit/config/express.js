@@ -15,10 +15,10 @@ const debug = makeDebug(`indiekit:express`);
 
 /**
  * @typedef {import("express").Application} Application
- * @param {object} indiekitConfig - Indiekit configuration
+ * @param {object} Indiekit - Indiekit instance
  * @returns {Application} Express application
  */
-export const expressConfig = (indiekitConfig) => {
+export const expressConfig = (Indiekit) => {
   debug(`Create Express app`);
   const app = express();
 
@@ -39,28 +39,28 @@ export const expressConfig = (indiekitConfig) => {
   app.use(compression());
 
   // Session
-  app.use(indiekitConfig.application.sessionMiddleware);
+  app.use(Indiekit.application.sessionMiddleware);
 
   // Force HTTPS
   app.use(forceHttps);
 
   // Internationalisation
-  app.use(internationalisation(indiekitConfig));
+  app.use(internationalisation(Indiekit));
 
   // Locals
-  app.use(locals(indiekitConfig));
+  app.use(locals(Indiekit));
 
   // Log requests
   app.use(logging);
 
   // Views
   debug(`Add view engine and templates`);
-  app.set("views", views(indiekitConfig));
+  app.set("views", views(Indiekit));
   app.engine("njk", templates(app).render);
   app.set("view engine", "njk");
 
   // Routes
-  app.use(routes(indiekitConfig));
+  app.use(routes(Indiekit));
 
   // Handle errors
   debug(`Add error handling middlewares`);

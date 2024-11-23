@@ -22,8 +22,13 @@ const limit = rateLimit({
   validate: false,
 });
 
-export const routes = (indiekitConfig) => {
-  const { application, publication } = indiekitConfig;
+/**
+ * Expose configuration to frontend templates and plug-ins
+ * @param {object} Indiekit - Indiekit instance
+ * @returns {import("express").Router} Express router
+ */
+export const routes = (Indiekit) => {
+  const { application, publication } = Indiekit;
 
   const indieauth = new IndieAuth({
     devMode: process.env.NODE_ENV === "development",
@@ -86,7 +91,7 @@ export const routes = (indiekitConfig) => {
     // Currently used for endpoint-image which requires configuration values
     // to be passed on to express-sharp middleware
     if (endpoint.mountPath && endpoint._routes) {
-      router.use(endpoint.mountPath, limit, endpoint._routes(indiekitConfig));
+      router.use(endpoint.mountPath, limit, endpoint._routes(Indiekit));
     }
 
     if (endpoint.mountPath && endpoint.routesPublic) {

@@ -2,13 +2,13 @@ import i18n from "i18n";
 
 /**
  * Set locale
- * @param {object} indiekitConfig - Indiekit configuration
+ * @param {object} Indiekit - Indiekit instance
  * @returns {import("express").RequestHandler} Next middleware
  */
-export const internationalisation = (indiekitConfig) =>
+export const internationalisation = (Indiekit) =>
   function (request, response, next) {
     try {
-      const { application } = indiekitConfig;
+      const { application } = Indiekit;
 
       i18n.configure({
         cookie: "locale",
