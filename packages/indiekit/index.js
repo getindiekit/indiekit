@@ -103,9 +103,7 @@ export const Indiekit = class {
       debug(`Bootstrap: connect to MongoDB database ${databaseName}`);
       const database = this.application.client.db(databaseName);
 
-      this.application.cache = new Keyv(
-        new KeyvMongo(this.application.mongodbUrl),
-      );
+      this.cache = new Keyv(new KeyvMongo(this.application.mongodbUrl));
 
       debug(`Bootstrap: add database collection posts`);
       this.application.posts = database.collection("posts");

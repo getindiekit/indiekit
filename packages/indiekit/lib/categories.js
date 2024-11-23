@@ -7,7 +7,7 @@ import { getCachedResponse } from "./cache.js";
  * @returns {Promise<Array>} Array of categories
  */
 export const getCategories = async (Indiekit) => {
-  const { application, publication } = Indiekit;
+  const { application, cache, publication } = Indiekit;
   const { categories } = publication;
 
   let categoryList = [];
@@ -17,11 +17,7 @@ export const getCategories = async (Indiekit) => {
   }
 
   if (categories && URL.canParse(categories)) {
-    categoryList = await getCachedResponse(
-      application.cache,
-      application.ttl,
-      categories,
-    );
+    categoryList = await getCachedResponse(cache, application.ttl, categories);
   }
 
   if (categoryList) {
