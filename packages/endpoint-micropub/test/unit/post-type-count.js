@@ -20,9 +20,9 @@ describe("endpoint-media/lib/post-type-count", () => {
     });
   });
 
-  after(() => {
-    client.close();
-    mongoServer.stop();
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
   });
 
   it("Counts the number of posts of a given type", async () => {

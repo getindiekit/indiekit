@@ -43,9 +43,9 @@ describe("endpoint-micropub/lib/post-data", async () => {
     publication = config.publication;
   });
 
-  after(() => {
-    client.close();
-    mongoServer.stop();
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
   });
 
   it("Creates post data", async () => {

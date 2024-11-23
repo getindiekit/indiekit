@@ -23,9 +23,9 @@ describe("endpoint-syndicate/lib/token", () => {
     });
   });
 
-  after(() => {
-    client.close();
-    mongoServer.stop();
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
   });
 
   it("Gets post for given URL from database", async () => {

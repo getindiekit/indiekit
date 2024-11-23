@@ -19,9 +19,9 @@ describe("endpoint-media/lib/media-type-count", () => {
     });
   });
 
-  after(() => {
-    client.close();
-    mongoServer.stop();
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
   });
 
   it("Counts the number of media of a given type", async () => {

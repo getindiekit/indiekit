@@ -13,9 +13,9 @@ describe("util/lib/collection", async () => {
     await items.insertMany([{ name: "foo" }, { name: "bar" }, { name: "baz" }]);
   });
 
-  after(() => {
-    client.close();
-    mongoServer.stop();
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
   });
 
   it("Gets pagination cursor", async () => {

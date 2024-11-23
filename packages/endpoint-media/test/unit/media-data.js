@@ -36,9 +36,9 @@ describe("endpoint-media/lib/media-data", async () => {
     publication = config.publication;
   });
 
-  after(() => {
-    client.close();
-    mongoServer.stop();
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
   });
 
   it("Creates media data", async () => {
