@@ -56,11 +56,11 @@ export const locals = (Indiekit) =>
       // Application navigation
       // Only update if serving HTML to prevent wrong session link being shown
       if (request.accepts("html")) {
-        application.navigation = getNavigation(application, request, response);
+        application.navigation = getNavigation(Indiekit, request, response);
       }
 
       // Application shortcuts
-      application.shortcuts = getShortcuts(application, response);
+      application.shortcuts = getShortcuts(Indiekit, response);
 
       // Application endpoints
       request.app.locals.application = {

@@ -47,7 +47,7 @@ describe("indiekit", async () => {
     const testEndpoint = new TestEndpoint();
     indiekit.addEndpoint(testEndpoint);
 
-    assert.equal(indiekit.application.endpoints.at(-1).name, "Test endpoint");
+    assert.equal([...indiekit.endpoints].at(-1).name, "Test endpoint");
   });
 
   it("Adds publication preset", () => {

@@ -2,7 +2,6 @@ import process from "node:process";
 
 export const defaultConfig = {
   application: {
-    endpoints: [],
     mongodbUrl: process.env.MONGO_URL || false,
     name: "Indiekit",
     port: process.env.PORT || "3000",

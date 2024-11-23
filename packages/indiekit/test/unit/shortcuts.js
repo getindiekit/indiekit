@@ -3,10 +3,10 @@ import { describe, it } from "node:test";
 import { mockResponse } from "mock-req-res";
 import { getShortcuts } from "../../lib/shortcuts.js";
 
-const application = {
-  installedPlugins: [],
-  locale: "en",
-  endpoints: [
+const Indiekit = {
+  application: { locale: "en" },
+  installedPlugins: new Set(),
+  endpoints: new Set([
     {
       id: "foo",
       name: "Foo plug-in",
@@ -22,7 +22,7 @@ const application = {
         },
       ],
     },
-  ],
+  ]),
 };
 const response = mockResponse({
   locals: { __: (value) => value },
@@ -30,7 +30,7 @@ const response = mockResponse({
 
 describe("indiekit/lib/shortcuts", () => {
   it("Returns shortcut items that require a database", () => {
-    const result = getShortcuts(application, response);
+    const result = getShortcuts(Indiekit, response);
 
     assert.notEqual(result[0].url, "/foo");
     assert.equal(result[0].url, "/bar");

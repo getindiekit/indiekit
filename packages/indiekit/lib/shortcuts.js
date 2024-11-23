@@ -1,9 +1,17 @@
-export const getShortcuts = (application, response) => {
+/**
+ * Get shortcuts
+ * @param {object} Indiekit - Indiekit instance
+ * @param {import("express").Response} response - Response
+ * @returns {object} Shortcuts
+ */
+export const getShortcuts = (Indiekit, response) => {
+  const { application, endpoints } = Indiekit;
+
   // Default shortcut items
   let shortcuts = [];
 
   // Add shortcut items from endpoint plug-ins
-  for (const endpoint of application.endpoints) {
+  for (const endpoint of endpoints) {
     if (endpoint.shortcutItems) {
       const shortcutItems = Array.isArray(endpoint.shortcutItems)
         ? endpoint.shortcutItems

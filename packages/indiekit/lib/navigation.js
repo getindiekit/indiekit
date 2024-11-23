@@ -1,4 +1,13 @@
-export const getNavigation = (application, request, response) => {
+/**
+ * Get navigation items
+ * @param {object} Indiekit - Indiekit instance
+ * @param {import("express").Request} request - Request
+ * @param {import("express").Response} response - Response
+ * @returns {object} Shortcuts
+ */
+export const getNavigation = (Indiekit, request, response) => {
+  const { application, endpoints } = Indiekit;
+
   // Default navigation items
   let navigation = [
     request.session.access_token
@@ -21,7 +30,7 @@ export const getNavigation = (application, request, response) => {
   }
 
   // Add navigation items from endpoint plug-ins
-  for (const endpoint of application.endpoints) {
+  for (const endpoint of endpoints) {
     if (endpoint.navigationItems) {
       const navigationItems = Array.isArray(endpoint.navigationItems)
         ? endpoint.navigationItems
