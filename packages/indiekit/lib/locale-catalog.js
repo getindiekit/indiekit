@@ -6,13 +6,14 @@ const require = createRequire(import.meta.url);
 
 /**
  * Add catalog of localised strings to application configuration
- * @param {object} application - Application config
+ * @param {object} Indiekit - Indiekit instance
  * @returns {object} Catalog of localised strings
  */
-export const getLocaleCatalog = (application) => {
+export const getLocaleCatalog = (Indiekit) => {
   const catalog = new Map();
+  const { application, locales } = Indiekit;
 
-  for (const locale of application.localesAvailable) {
+  for (const locale of locales) {
     const translations = [
       // Application translations
       require(`../locales/${locale}.json`),

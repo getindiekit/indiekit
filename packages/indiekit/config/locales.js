@@ -1,0 +1,15 @@
+export const locales = new Set([
+  "de",
+  "en",
+  "es",
+  "es-419",
+  "fr",
+  "hi",
+  "id",
+  "nl",
+  "pl",
+  "pt",
+  "sr",
+  "sv",
+  "zh-Hans-CN",
+]);

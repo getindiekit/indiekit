@@ -5,6 +5,7 @@ import makeDebug from "debug";
 import { default as Keyv } from "keyv";
 import { default as KeyvMongo } from "@keyv/mongo";
 import { expressConfig } from "./config/express.js";
+import { locales } from "./config/locales.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getLocaleCatalog } from "./lib/locale-catalog.js";
@@ -25,11 +26,13 @@ export const Indiekit = class {
    */
   constructor(config) {
     this.config = config;
-    this.collections = new Map();
     this.application = this.config.application;
     this.package = package_;
     this.plugins = this.config.plugins;
     this.publication = this.config.publication;
+
+    this.collections = new Map();
+    this.locales = locales;
   }
 
   static async initialize(options = {}) {
@@ -134,6 +137,10 @@ export const Indiekit = class {
     return false;
   }
 
+  get localeCatalog() {
+    return getLocaleCatalog(this);
+  }
+
   async bootstrap() {
     debug(`Bootstrap: check for required configuration options`);
     // Check for required configuration options
@@ -145,7 +152,6 @@ export const Indiekit = class {
 
     // Update application configuration
     this.application.installedPlugins = await getInstalledPlugins(this);
-    this.application.localeCatalog = await getLocaleCatalog(this.application);
 
     // Update publication configuration
     this.publication.categories = await getCategories(this);
