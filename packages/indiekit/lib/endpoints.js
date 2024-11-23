@@ -6,7 +6,7 @@ import { getUrl } from "./utils.js";
  * @param {import("express").Request} request - Request
  * @returns {object} Endpoint URLs
  */
-export const getEndpoints = (application, request) => {
+export const getEndpointUrls = (application, request) => {
   const endpoints = {};
 
   for (const endpoint of [

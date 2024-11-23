@@ -1,6 +1,6 @@
 import { scripts, styles } from "@indiekit/frontend";
 import { sha1 } from "@indiekit/util";
-import { getEndpoints } from "../endpoints.js";
+import { getEndpointUrls } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
 import { getShortcuts } from "../shortcuts.js";
 import { getUrl } from "../utils.js";
@@ -60,7 +60,7 @@ export const locals = (Indiekit) =>
       // Application endpoints
       request.app.locals.application = {
         ...application,
-        ...getEndpoints(application, request),
+        ...getEndpointUrls(application, request),
       };
 
       // Publication

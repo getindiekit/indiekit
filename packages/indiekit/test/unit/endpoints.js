@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 import { mockRequest } from "mock-req-res";
-import { getEndpoints } from "../../lib/endpoints.js";
+import { getEndpointUrls } from "../../lib/endpoints.js";
 
 const application = {
   _mediaEndpointPath: "/media",
@@ -10,7 +10,7 @@ const application = {
 
 describe("indiekit/lib/endpoints", () => {
   it("Gets endpoints from server derived values", () => {
-    const result = getEndpoints(
+    const result = getEndpointUrls(
       application,
       mockRequest({
         headers: { host: "server.example" },
@@ -24,7 +24,7 @@ describe("indiekit/lib/endpoints", () => {
 
   it("Gets endpoints from publication configuration", () => {
     application.mediaEndpoint = "https://website.example/media";
-    const result = getEndpoints(
+    const result = getEndpointUrls(
       application,
       mockRequest({
         headers: { host: "server.example" },
