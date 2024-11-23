@@ -78,6 +78,48 @@ export const Indiekit = class {
     debug(`Added ${names.length} syndication target/s: ${names.join(", ")}`);
   }
 
+  async connectMongodbClient() {
+    const mongodbClientOrError = await getMongodbClient(
+      this.application.mongodbUrl,
+    );
+
+    if (mongodbClientOrError?.client) {
+      this.mongodbClient = mongodbClientOrError.client;
+    }
+
+    if (mongodbClientOrError?.error) {
+      this.mongodbClientError = mongodbClientOrError.error;
+    }
+  }
+
+  closeMongodbClient() {
+    if (this.mongodbClient) {
+      console.info(`Closing MongoDB client`);
+      this.mongodbClient.close();
+    }
+  }
+
+  get cache() {
+    return this.mongodbClient
+      ? new Keyv(new KeyvMongo(this.application.mongodbUrl))
+      : false;
+  }
+
+  get database() {
+    if (this.mongodbClient) {
+      // Get database name from connection string
+      let { databaseName } = this.mongodbClient.db();
+
+      // If no database given, use ‘indiekit’ as default database, not ‘test’
+      databaseName = databaseName === "test" ? "indiekit" : databaseName;
+
+      debug(`Connect to MongoDB database ${databaseName}`);
+      return this.mongodbClient.db(databaseName);
+    }
+
+    return false;
+  }
+
   async bootstrap() {
     debug(`Bootstrap: check for required configuration options`);
     // Check for required configuration options
@@ -87,33 +129,12 @@ export const Indiekit = class {
       process.exit();
     }
 
-    const mongodbClientOrError = await getMongodbClient(
-      this.application.mongodbUrl,
-    );
-
-    if (mongodbClientOrError?.client) {
-      this.application.client = mongodbClientOrError.client;
-
-      // Get database name from connection string
-      let { databaseName } = this.application.client.db();
-
-      // If no database given, use ‘indiekit’ as default database, not ‘test’
-      databaseName = databaseName === "test" ? "indiekit" : databaseName;
-
-      debug(`Bootstrap: connect to MongoDB database ${databaseName}`);
-      const database = this.application.client.db(databaseName);
-
-      this.cache = new Keyv(new KeyvMongo(this.application.mongodbUrl));
-
+    if (this.database) {
       debug(`Bootstrap: add database collection posts`);
-      this.application.posts = database.collection("posts");
+      this.application.posts = this.database.collection("posts");
 
       debug(`Bootstrap: add database collection media`);
-      this.application.media = database.collection("media");
-    }
-
-    if (mongodbClientOrError?.error) {
-      this.mongodbClientError = mongodbClientOrError.error;
+      this.application.media = this.database.collection("media");
     }
 
     // Update application configuration
@@ -134,15 +155,14 @@ export const Indiekit = class {
     server.close(() => {
       console.info(`Stopping ${name}`);
 
-      if (this.application.client) {
-        this.application.client.close();
-      }
+      this.closeMongodbClient();
 
       process.exit(0);
     });
   }
 
   async server(options = {}) {
+    await this.connectMongodbClient();
     const config = await this.bootstrap();
     const { name, version } = config.application;
     const port = options.port || config.application.port;

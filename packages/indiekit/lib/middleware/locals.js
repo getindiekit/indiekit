@@ -16,7 +16,8 @@ const cssHash = sha1(await styles());
 export const locals = (indiekitConfig) =>
   async function (request, response, next) {
     try {
-      const { application, mongodbClientError, publication } = indiekitConfig;
+      const { application, database, mongodbClientError, publication } =
+        indiekitConfig;
 
       // Application
       request.app.locals.application = application;
@@ -25,6 +26,9 @@ export const locals = (indiekitConfig) =>
       if (mongodbClientError) {
         request.app.locals.error = mongodbClientError;
       }
+
+      // Application database client
+      application.database = database;
 
       // Application locale
       application.localeUsed = response.locals.getLocale();

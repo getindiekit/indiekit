@@ -31,7 +31,7 @@ export const getNavigation = (application, request, response) => {
   }
 
   // Remove navigation items that require a database if no database configured
-  if (!application.client) {
+  if (!application.database) {
     navigation = navigation.filter((item) => !item.requiresDatabase);
   }
 
