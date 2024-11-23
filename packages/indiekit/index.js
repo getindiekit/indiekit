@@ -32,6 +32,7 @@ export const Indiekit = class {
     this.publication = this.config.publication;
 
     this.collections = new Map();
+    this.endpoints = new Set();
     this.installedPlugins = new Set();
     this.locales = locales;
     this.stores = new Set();
@@ -56,7 +57,8 @@ export const Indiekit = class {
   }
 
   addEndpoint(endpoint) {
-    this.application.endpoints.push(endpoint);
+    this.endpoints.add(endpoint);
+    debug(`Added endpoint: ${endpoint.name}`);
   }
 
   addPostType(type, postType) {

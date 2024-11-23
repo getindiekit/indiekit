@@ -28,7 +28,7 @@ const limit = rateLimit({
  * @returns {import("express").Router} Express router
  */
 export const routes = (Indiekit) => {
-  const { application, installedPlugins, publication } = Indiekit;
+  const { endpoints, installedPlugins, publication } = Indiekit;
 
   const indieauth = new IndieAuth({
     devMode: process.env.NODE_ENV === "development",
@@ -86,7 +86,7 @@ export const routes = (Indiekit) => {
   router.get("/session/logout", sessionController.logout);
 
   // Public and .well-known endpoints
-  for (const endpoint of application.endpoints) {
+  for (const endpoint of endpoints) {
     // Internal routing
     // Currently used for endpoint-image which requires configuration values
     // to be passed on to express-sharp middleware
@@ -117,7 +117,7 @@ export const routes = (Indiekit) => {
   router.get("/status", limit, statusController.viewStatus);
 
   // Authenticated endpoints
-  for (const endpoint of application.endpoints) {
+  for (const endpoint of endpoints) {
     if (endpoint.mountPath && endpoint.routes) {
       router.use(endpoint.mountPath, limit, endpoint.routes);
     }

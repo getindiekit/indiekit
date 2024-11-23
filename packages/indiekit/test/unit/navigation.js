@@ -1,12 +1,12 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import { mockResponse } from "mock-req-res";
+import { mockRequest, mockResponse } from "mock-req-res";
 import { getNavigation } from "../../lib/navigation.js";
 
-const application = {
-  installedPlugins: [],
-  locale: "en",
-  endpoints: [
+const Indiekit = {
+  application: { locale: "en" },
+  installedPlugins: new Set(),
+  endpoints: new Set([
     {
       id: "foo",
       name: "Foo plug-in",
@@ -22,7 +22,7 @@ const application = {
         },
       ],
     },
-  ],
+  ]),
 };
 const response = mockResponse({
   locals: { __: (value) => value },
@@ -31,8 +31,8 @@ const response = mockResponse({
 describe("indiekit/lib/navigation", () => {
   it("Returns logged out navigation", () => {
     const result = getNavigation(
-      application,
-      { path: "/bar", session: {} },
+      Indiekit,
+      mockRequest({ path: "/bar", session: {} }),
       response,
     );
 
@@ -41,8 +41,8 @@ describe("indiekit/lib/navigation", () => {
 
   it("Returns navigation items that require a database", () => {
     const result = getNavigation(
-      application,
-      { path: "/bar", session: {} },
+      Indiekit,
+      mockRequest({ path: "/bar", session: {} }),
       response,
     );
 
@@ -52,8 +52,8 @@ describe("indiekit/lib/navigation", () => {
 
   it("Returns logged in navigation", () => {
     const result = getNavigation(
-      application,
-      { path: "/bar", session: { access_token: "token" } },
+      Indiekit,
+      mockRequest({ path: "/bar", session: { access_token: "token" } }),
       response,
     );
 
@@ -62,8 +62,8 @@ describe("indiekit/lib/navigation", () => {
 
   it("Indicates current item in navigation", () => {
     const result = getNavigation(
-      application,
-      { path: "/bar", session: { access_token: "token" } },
+      Indiekit,
+      mockRequest({ path: "/bar", session: { access_token: "token" } }),
       response,
     );
 
