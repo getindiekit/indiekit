@@ -12,6 +12,8 @@ A plug-in can provide any of the following features:
 * [content store functions](add-store.md)
 * [syndication functions](add-syndicator.md)
 
+A plug-in can also [add a collection](add-collection.md) to the MongoDb database.
+
 ## Anatomy of a plug-in
 
 A plug-in is a `Class` with an `init()` function that is used to register endpoints, presets, stores and syndicators. You can also use the `init()` function to modify Indiekit’s [configuration](../configuration/index.md). For example:

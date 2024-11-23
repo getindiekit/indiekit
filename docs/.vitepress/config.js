@@ -43,6 +43,10 @@ const sidebar = [
 const sidebarApi = [
   { text: "Introduction", link: "/api/" },
   {
+    text: "<code>Indiekit.addCollection</code>",
+    link: "/api/add-collection",
+  },
+  {
     text: "<code>Indiekit.addEndpoint</code>",
     link: "/api/add-endpoint",
   },
