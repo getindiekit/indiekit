@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { createRequire } from "node:module";
 import process from "node:process";
 import makeDebug from "debug";
 import { default as Keyv } from "keyv";
@@ -13,6 +14,8 @@ import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 import { getMediaStore, getStore } from "./lib/store.js";
 
+const require = createRequire(import.meta.url);
+const package_ = require("./package.json");
 const debug = makeDebug(`indiekit:index`);
 
 export const Indiekit = class {
@@ -24,6 +27,7 @@ export const Indiekit = class {
     this.config = config;
     this.collections = new Map();
     this.application = this.config.application;
+    this.package = package_;
     this.plugins = this.config.plugins;
     this.publication = this.config.publication;
   }
@@ -166,9 +170,10 @@ export const Indiekit = class {
   async server(options = {}) {
     await this.connectMongodbClient();
     const config = await this.bootstrap();
-    const { name, version } = config.application;
-    const port = options.port || config.application.port;
     const app = expressConfig(config);
+    let { name, port } = config.application;
+    const { version } = this.package;
+    port = options.port || port;
 
     const server = app.listen(port, () => {
       debug(`Start ${name} (v${version}) on port ${port}`);

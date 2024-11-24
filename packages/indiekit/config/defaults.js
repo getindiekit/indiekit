@@ -1,9 +1,5 @@
-import { createRequire } from "node:module";
 import process from "node:process";
 import cookieSession from "cookie-session";
-// eslint-ignore import/order
-const require = createRequire(import.meta.url);
-const package_ = require("../package.json");
 
 export const defaultConfig = {
   application: {
@@ -27,14 +23,12 @@ export const defaultConfig = {
     name: "Indiekit",
     port: process.env.PORT || "3000",
     postTypes: {},
-    repository: package_.repository,
     stores: [],
     themeColor: "#04f",
     themeColorScheme: "automatic",
     timeZone: "UTC",
     ttl: 604_800, // 7 days
     validationSchemas: {},
-    version: package_.version,
   },
   plugins: [
     "@indiekit/endpoint-auth",

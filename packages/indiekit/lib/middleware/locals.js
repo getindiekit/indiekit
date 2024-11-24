@@ -41,6 +41,10 @@ export const locals = (Indiekit) =>
       // Application locale
       application.localeUsed = response.locals.getLocale();
 
+      // Application meta
+      application.repository = Indiekit.package.repository;
+      application.version = Indiekit.package.version;
+
       // Application URL
       application.url = application.url || getUrl(request);
 

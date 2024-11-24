@@ -1,13 +1,16 @@
 #!/usr/bin/env node
+import { createRequire } from "node:module";
 import { Command } from "commander";
 import makeDebug from "debug";
 import { Indiekit } from "@indiekit/indiekit";
 import { defaultConfig } from "../config/defaults.js";
 
+const require = createRequire(import.meta.url);
+const package_ = require("../package.json");
 const program = new Command();
 
 program
-  .version(defaultConfig.application.version)
+  .version(package_.version)
   .option("-c, --config <path>", "path to configuration file");
 
 program
