@@ -4,8 +4,8 @@ import { mockRequest } from "mock-req-res";
 import { getEndpointUrls } from "../../lib/endpoints.js";
 
 const application = {
-  _mediaEndpointPath: "/media",
-  _tokenEndpointPath: "/token",
+  mediaEndpoint: "/media",
+  tokenEndpoint: "/token",
 };
 
 describe("indiekit/lib/endpoints", () => {

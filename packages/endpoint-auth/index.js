@@ -52,7 +52,7 @@ export default class AuthorizationEndpoint {
 
   get routesWellKnown() {
     router.get("/change-password", (request, response) =>
-      response.redirect(`${this.options.mountPath}/new-password`),
+      response.redirect(`${this.mountPath}/new-password`),
     );
     router.get("/oauth-authorization-server", metadataController);
 
@@ -62,16 +62,8 @@ export default class AuthorizationEndpoint {
   init(Indiekit) {
     Indiekit.addEndpoint(this);
 
-    // Use private value to register IndieAuth authorization endpoint path
-    Indiekit.config.application._authorizationEndpointPath =
-      this.options.mountPath;
-
-    // Use private value to register IndieAuth introspection endpoint path
-    Indiekit.config.application._introspectionEndpointPath =
-      this.options.mountPath + "/introspect";
-
-    // Use private value to register IndieAuth token endpoint path
-    Indiekit.config.application._tokenEndpointPath =
-      this.options.mountPath + "/token";
+    Indiekit.config.application.authorizationEndpoint = this.mountPath;
+    Indiekit.config.application.introspectionEndpoint = `${this.mountPath}/introspect`;
+    Indiekit.config.application.tokenEndpoint = `${this.mountPath}/token`;
   }
 }

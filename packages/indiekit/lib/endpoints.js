@@ -1,7 +1,7 @@
 import { getUrl } from "./utils.js";
 
 /**
- * Get endpoint URLs from application configuration or default plug-ins
+ * Get provided endpoint URL, else add path to application URL
  * @param {object} application - Application configuration
  * @param {import("express").Request} request - Request
  * @returns {object} Endpoint URLs
@@ -18,14 +18,8 @@ export const getEndpointUrls = (application, request) => {
   ]) {
     endpoints[endpoint] =
       application[endpoint] && URL.canParse(application[endpoint])
-        ? // Use endpoint URL in application config
-          application[endpoint]
-        : // Else, use private path value provided by default endpoint plug-in
-          // to construct a fully resolvable URL mounted on application URL
-          (endpoints[endpoint] = new URL(
-            application[`_${endpoint}Path`],
-            getUrl(request),
-          ).href);
+        ? application[endpoint]
+        : new URL(application[endpoint], getUrl(request)).href;
   }
 
   return endpoints;

@@ -23,7 +23,6 @@ export default class MicropubEndpoint {
     Indiekit.addCollection("posts");
     Indiekit.addEndpoint(this);
 
-    // Use private value to register Micropub endpoint path
-    Indiekit.config.application._micropubEndpointPath = this.options.mountPath;
+    Indiekit.config.application.micropubEndpoint = this.mountPath;
   }
 }
