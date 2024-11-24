@@ -1,6 +1,4 @@
-import process from "node:process";
 import "dotenv/config.js";
-import cookieSession from "cookie-session";
 
 const defaultOptions = {
   locale: "en",
@@ -39,10 +37,6 @@ export const testConfig = async (options) => {
       mediaEndpoint: options?.application?.mediaEndpoint,
       mongodbUrl: options.mongodbUrl,
       name: "Test configuration",
-      sessionMiddleware: cookieSession({
-        name: "test",
-        secret: process.env.SECRET,
-      }),
       timeZone: "UTC",
       tokenEndpoint: options?.application?.tokenEndpoint,
     },

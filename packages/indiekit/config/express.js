@@ -1,4 +1,5 @@
 import compression from "compression";
+import cookieSession from "cookie-session";
 import makeDebug from "debug";
 import express from "express";
 import fileUpload from "express-fileupload";
@@ -39,7 +40,13 @@ export const expressConfig = (Indiekit) => {
   app.use(compression());
 
   // Session
-  app.use(Indiekit.application.sessionMiddleware);
+  app.use(
+    cookieSession({
+      name: Indiekit.application.name,
+      secret: crypto.randomUUID(),
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days,
+    }),
+  );
 
   // Force HTTPS
   app.use(forceHttps);

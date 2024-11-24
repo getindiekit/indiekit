@@ -1,5 +1,4 @@
 import process from "node:process";
-import cookieSession from "cookie-session";
 
 export const defaultConfig = {
   application: {
@@ -60,9 +59,3 @@ export const defaultConfig = {
     syndicationTargets: [],
   },
 };
-
-defaultConfig.application.sessionMiddleware = cookieSession({
-  name: defaultConfig.application.name,
-  secret: crypto.randomUUID(),
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days,
-});
