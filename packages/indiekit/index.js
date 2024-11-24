@@ -36,6 +36,7 @@ export const Indiekit = class {
     this.installedPlugins = new Set();
     this.locales = locales;
     this.stores = new Set();
+    this.validationSchemas = new Map();
   }
 
   static async initialize(options = {}) {
@@ -70,10 +71,11 @@ export const Indiekit = class {
     }
 
     if (postType.validationSchemas) {
-      this.application.validationSchemas = {
-        ...this.application.validationSchemas,
-        ...postType.validationSchemas,
-      };
+      for (const [field, schema] of Object.entries(
+        postType.validationSchemas,
+      )) {
+        this.validationSchemas.set(field, schema);
+      }
     }
   }
 
