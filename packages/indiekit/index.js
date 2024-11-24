@@ -35,6 +35,7 @@ export const Indiekit = class {
     this.endpoints = new Set();
     this.installedPlugins = new Set();
     this.locales = locales;
+    this.postTypes = new Map();
     this.stores = new Set();
     this.validationSchemas = new Map();
   }
@@ -64,10 +65,10 @@ export const Indiekit = class {
 
   addPostType(type, postType) {
     if (postType.config) {
-      this.application.postTypes[type] = {
-        ...this.application.postTypes[type],
+      this.postTypes.set(type, {
+        ...this.postTypes.get(type),
         ...postType.config,
-      };
+      });
     }
 
     if (postType.validationSchemas) {

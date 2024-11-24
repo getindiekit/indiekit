@@ -2,11 +2,11 @@ import plur from "plur";
 
 /**
  * Get paths and URLs for configured post types
- * @param {object} postTypes - Post type configuration
+ * @param {Map} postTypes - Post type configuration
  * @returns {object} Updated post type configuration
  */
 export const getPostTypes = (postTypes) => {
-  for (const type of Object.keys(postTypes)) {
+  for (const type of postTypes.keys()) {
     const section = plur(type);
 
     /**
@@ -14,8 +14,8 @@ export const getPostTypes = (postTypes) => {
      * @see {@link https://gohugo.io/content-management/organization/}
      * @see {@link https://gohugo.io/content-management/static-files/}
      */
-    postTypes[type] = {
-      ...postTypes[type],
+    postTypes.set(type, {
+      ...postTypes.get(type),
       post: {
         path: `content/${section}/{slug}.md`,
         url: `${section}/{slug}`,
@@ -24,7 +24,7 @@ export const getPostTypes = (postTypes) => {
         path: `static/${section}/{filename}`,
         url: `${section}/{filename}`,
       },
-    };
+    });
   }
 
   return postTypes;
