@@ -2,10 +2,10 @@ import { check, checkSchema } from "express-validator";
 
 export const validate = {
   async form(request, response, next) {
-    const { application } = request.app.locals;
+    const { validationSchemas } = request.app.locals;
     const validations = [];
 
-    for (const schema of [application.validationSchemas]) {
+    for (const schema of [Object.fromEntries(validationSchemas)]) {
       validations.push(checkSchema(schema));
     }
 

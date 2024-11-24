@@ -23,6 +23,7 @@ export const locals = (Indiekit) =>
         installedPlugins,
         mongodbClientError,
         publication,
+        validationSchemas,
       } = Indiekit;
 
       // Application
@@ -73,6 +74,9 @@ export const locals = (Indiekit) =>
 
       // Publication
       request.app.locals.publication = publication;
+
+      // Publication
+      request.app.locals.validationSchemas = validationSchemas;
 
       // Persist scope and token
       request.app.locals.scope =

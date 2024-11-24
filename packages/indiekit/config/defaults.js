@@ -10,7 +10,6 @@ export const defaultConfig = {
     themeColorScheme: "automatic",
     timeZone: "UTC",
     ttl: 604_800, // 7 days
-    validationSchemas: {},
   },
   plugins: [
     "@indiekit/endpoint-auth",
