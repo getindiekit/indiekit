@@ -5,7 +5,6 @@ export const defaultConfig = {
     mongodbUrl: process.env.MONGO_URL || false,
     name: "Indiekit",
     port: process.env.PORT || "3000",
-    postTypes: {},
     themeColor: "#04f",
     themeColorScheme: "automatic",
     timeZone: "UTC",

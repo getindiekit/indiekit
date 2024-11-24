@@ -12,8 +12,8 @@ describe("indiekit/lib/post-types", () => {
     });
     const indiekit = await Indiekit.initialize({ config });
     await indiekit.installPlugins();
-    const bootstrappedConfig = await indiekit.bootstrap();
-    const { article: result } = getPostTypes(bootstrappedConfig);
+    await indiekit.bootstrap();
+    const { article: result } = getPostTypes(indiekit);
 
     assert.equal(result.name, "Article");
     assert.equal(result.type, "article");
@@ -33,8 +33,8 @@ describe("indiekit/lib/post-types", () => {
   it("Returns custom post types", async () => {
     const config = await testConfig({ usePostTypes: true });
     const indiekit = await Indiekit.initialize({ config });
-    const bootstrappedConfig = await indiekit.bootstrap();
-    const { note: result } = getPostTypes(bootstrappedConfig);
+    await indiekit.bootstrap();
+    const { note: result } = getPostTypes(indiekit);
 
     assert.equal(result.name, "Custom note post type");
   });
@@ -45,9 +45,9 @@ describe("indiekit/lib/post-types", () => {
       usePreset: false,
     });
     const indiekit = await Indiekit.initialize({ config });
-    const bootstrappedConfig = await indiekit.bootstrap();
+    await indiekit.bootstrap();
     await indiekit.installPlugins();
-    const result = getPostTypes(bootstrappedConfig);
+    const result = getPostTypes(indiekit);
 
     assert.equal(result.article.name, "Article");
     assert.equal(result.like.name, "Like");

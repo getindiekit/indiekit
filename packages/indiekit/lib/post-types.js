@@ -3,12 +3,12 @@ import _ from "lodash";
 /**
  * Get merged preset and custom post types
  * @param {object} Indiekit - Indiekit instance
- * @param {object} Indiekit.application - Application configuration
+ * @param {Map} Indiekit.postTypes - Application post types
  * @param {object} Indiekit.publication - Publication configuration
  * @returns {object} Merged configuration
  */
-export const getPostTypes = ({ application, publication }) => {
-  let { postTypes } = application;
+export const getPostTypes = ({ postTypes, publication }) => {
+  postTypes = Object.fromEntries(postTypes);
 
   // Add publication preset values
   if (publication.preset?.postTypes) {
