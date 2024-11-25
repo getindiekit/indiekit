@@ -10,7 +10,7 @@ export const introspectionController = {
    */
   post(request, response) {
     try {
-      let { token } = request.body;
+      let token = request.body?.token;
 
       if (!token) {
         // Remove ‘Bearer ’ from authorization header

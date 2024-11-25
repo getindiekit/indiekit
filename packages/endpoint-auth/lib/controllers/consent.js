@@ -45,7 +45,7 @@ export const consentController = {
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
   post(request, response) {
-    let { scope } = request.body;
+    let scope = request.body?.scope;
     const {
       client_id,
       code_challenge,

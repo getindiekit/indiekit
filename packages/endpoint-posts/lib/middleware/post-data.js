@@ -16,7 +16,7 @@ export const postData = {
 
     // Create new post object with default values
     const postType = request.query.type || "note";
-    const properties = request?.body || {};
+    const properties = request.body || {};
 
     // Get post type config
     const { name, fields, h } = publication.postTypes[postType];
