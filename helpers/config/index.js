@@ -42,6 +42,7 @@ export const testConfig = async (options) => {
     },
     plugins: ["@indiekit-test/store", ...(options.plugins || [])],
     publication: {
+      categories: options?.publication?.categories,
       me: options?.publication?.me || "https://website.example",
       ...(options.usePostTypes && { postTypes }),
     },

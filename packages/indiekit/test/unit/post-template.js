@@ -21,8 +21,8 @@ describe("indiekit/lib/post-templates", () => {
     });
     const indiekit = await Indiekit.initialize({ config });
     await indiekit.installPlugins();
-    const { publication } = await indiekit.bootstrap();
-    const postTemplate = getPostTemplate(publication);
+    await indiekit.updatePublicationConfig();
+    const postTemplate = getPostTemplate(indiekit.publication);
     const result = postTemplate({ published: "2021-01-21" });
 
     assert.equal(result, "---\ndate: 2021-01-21\n---\n");

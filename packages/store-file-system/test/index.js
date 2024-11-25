@@ -37,7 +37,7 @@ describe("store-file-system", () => {
       },
     });
     await indiekit.installPlugins();
-    await indiekit.bootstrap();
+    await indiekit.updatePublicationConfig();
 
     assert.equal(indiekit.publication.store.info.name, "directory");
   });

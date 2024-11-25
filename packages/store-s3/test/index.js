@@ -38,7 +38,7 @@ describe("store-s3", () => {
       },
     });
     await indiekit.installPlugins();
-    await indiekit.bootstrap();
+    await indiekit.updatePublicationConfig();
 
     assert.equal(indiekit.publication.store.info.name, "website bucket");
   });
