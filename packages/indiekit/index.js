@@ -34,6 +34,7 @@ export const Indiekit = class {
     this.endpoints = new Set();
     this.installedPlugins = new Set();
     this.locales = locales;
+    this.mongodbUrl = config.application.mongodbUrl;
     this.postTypes = new Map();
     this.stores = new Set();
     this.validationSchemas = new Map();
@@ -102,9 +103,7 @@ export const Indiekit = class {
   }
 
   async connectMongodbClient() {
-    const mongodbClientOrError = await getMongodbClient(
-      this.application.mongodbUrl,
-    );
+    const mongodbClientOrError = await getMongodbClient(this.mongodbUrl);
 
     if (mongodbClientOrError?.client) {
       this.mongodbClient = mongodbClientOrError.client;
@@ -124,7 +123,7 @@ export const Indiekit = class {
 
   get cache() {
     return this.mongodbClient
-      ? new Keyv(new KeyvMongo(this.application.mongodbUrl))
+      ? new Keyv(new KeyvMongo(this.mongodbUrl))
       : false;
   }
 
