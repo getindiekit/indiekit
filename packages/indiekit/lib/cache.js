@@ -1,6 +1,6 @@
 /**
  * Get cached response value
- * @typedef {import("keyv")} Keyv
+ * @typedef {import("keyv").Keyv} Keyv
  * @param {Keyv} cache - Application cache (returns `false` if no database)
  * @param {number} ttl - Time to live
  * @param {string} url - URL to fetch and cache (used as key)
