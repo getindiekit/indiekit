@@ -28,7 +28,6 @@ export const Indiekit = class {
     this.config = config;
     this.application = this.config.application;
     this.package = package_;
-    this.plugins = this.config.plugins;
     this.publication = this.config.publication;
 
     this.collections = new Map();
