@@ -57,7 +57,7 @@ describe("store-ftp", () => {
       },
     });
     await indiekit.installPlugins();
-    await indiekit.bootstrap();
+    await indiekit.updatePublicationConfig();
 
     assert.equal(indiekit.publication.store.info.name, "username on 127.0.0.1");
   });

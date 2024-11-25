@@ -18,9 +18,9 @@ describe("preset-hugo", async () => {
     },
   });
   await indiekit.installPlugins();
-  const bootstrappedConfig = await indiekit.bootstrap();
+  await indiekit.updatePublicationConfig();
 
-  hugo.init(bootstrappedConfig);
+  hugo.init(indiekit);
 
   it("Initiates plug-in", async () => {
     assert.equal(indiekit.publication.preset.info.name, "Hugo");

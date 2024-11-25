@@ -150,23 +150,18 @@ export const Indiekit = class {
     await getInstalledPlugins(this);
   }
 
-  async bootstrap() {
-    debug(`Bootstrap: check for required configuration options`);
-    // Check for required configuration options
+  async updatePublicationConfig() {
     if (!this.publication.me) {
       console.error("No publication URL in configuration");
       console.info("https://getindiekit.com/configuration/publication#me");
       process.exit();
     }
 
-    // Update publication configuration
     this.publication.categories = await getCategories(this);
     this.publication.mediaStore = getMediaStore(this);
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this);
     this.publication.store = getStore(this);
-
-    return this;
   }
 
   stop(server, name) {
@@ -182,9 +177,10 @@ export const Indiekit = class {
   async server(options = {}) {
     await this.connectMongodbClient();
     await this.installPlugins();
-    const config = await this.bootstrap();
-    const app = expressConfig(config);
-    let { name, port } = config.application;
+    await this.updatePublicationConfig();
+
+    const app = expressConfig(this);
+    let { name, port } = this.config.application;
     const { version } = this.package;
     port = options.port || port;
 

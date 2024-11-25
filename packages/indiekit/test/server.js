@@ -10,9 +10,9 @@ describe("indiekit server", async () => {
   before(async () => {
     const config = await testConfig();
     indiekit = await Indiekit.initialize({ config });
-    const bootstrappedConfig = await indiekit.bootstrap();
-    application = bootstrappedConfig.application;
-    publication = bootstrappedConfig.publication;
+    await indiekit.updatePublicationConfig();
+    application = indiekit.config.application;
+    publication = indiekit.config.publication;
   });
 
   it("Gets application configuration value", () => {
