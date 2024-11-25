@@ -5,7 +5,7 @@
  * @returns {object} Shortcuts
  */
 export const getShortcuts = (Indiekit, response) => {
-  const { application, endpoints } = Indiekit;
+  const { database, endpoints } = Indiekit;
 
   // Default shortcut items
   let shortcuts = [];
@@ -21,7 +21,7 @@ export const getShortcuts = (Indiekit, response) => {
   }
 
   // Remove shortcut items that require a database if no database configured
-  if (!application.database) {
+  if (!database) {
     shortcuts = shortcuts.filter((item) => !item.requiresDatabase);
   }
 

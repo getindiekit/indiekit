@@ -19,7 +19,6 @@ export const locals = (Indiekit) =>
       const {
         application,
         collections,
-        database,
         installedPlugins,
         mongodbClientError,
         publication,
@@ -33,9 +32,6 @@ export const locals = (Indiekit) =>
       if (mongodbClientError) {
         request.app.locals.error = mongodbClientError;
       }
-
-      // Application database client
-      application.database = database;
 
       // Application database collections
       application.collections = collections;

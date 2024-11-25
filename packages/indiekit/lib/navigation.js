@@ -6,7 +6,7 @@
  * @returns {object} Shortcuts
  */
 export const getNavigation = (Indiekit, request, response) => {
-  const { application, endpoints } = Indiekit;
+  const { database, endpoints } = Indiekit;
 
   // Default navigation items
   let navigation = [
@@ -40,7 +40,7 @@ export const getNavigation = (Indiekit, request, response) => {
   }
 
   // Remove navigation items that require a database if no database configured
-  if (!application.database) {
+  if (!database) {
     navigation = navigation.filter((item) => !item.requiresDatabase);
   }
 
