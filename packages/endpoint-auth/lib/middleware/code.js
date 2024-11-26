@@ -1,5 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
+
 import { verifyCode } from "../pkce.js";
 import { validateRedirect } from "../redirect.js";
 import { verifyToken } from "../token.js";

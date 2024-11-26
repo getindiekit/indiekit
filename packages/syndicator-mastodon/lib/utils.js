@@ -1,4 +1,5 @@
 import path from "node:path";
+
 import { IndiekitError } from "@indiekit/error";
 import brevity from "brevity";
 import { htmlToText } from "html-to-text";
@@ -84,7 +85,7 @@ export const createStatus = (properties, options = {}) => {
 
 /**
  * Get status ID from Mastodon status URL
- * @param {string} url Mastodon status URL
+ * @param {string} url - Mastodon status URL
  * @returns {string} Status ID
  */
 export const getStatusIdFromUrl = (url) => {

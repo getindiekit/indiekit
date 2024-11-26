@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
+
 import { testDatabase } from "@indiekit-test/database";
-import { getCursor } from "../../lib/collection.js";
 import { ObjectId } from "mongodb";
+
+import { getCursor } from "../../lib/collection.js";
 
 describe("util/lib/collection", async () => {
   const { client, database, mongoServer } = await testDatabase();

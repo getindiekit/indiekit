@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { getFixture } from "@indiekit-test/fixtures";
+
 import { jsonFeed } from "../../lib/json-feed.js";
 
 describe("endpoint-json-feed/lib/json-feed", () => {

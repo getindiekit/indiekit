@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import Color from "color";
+
 import {
   _getValidatedColor,
   getBackgroundColor,

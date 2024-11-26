@@ -1,5 +1,7 @@
 import process from "node:process";
+
 import { IndiekitError } from "@indiekit/error";
+
 import { internetArchive } from "./lib/internet-archive.js";
 
 const defaults = {

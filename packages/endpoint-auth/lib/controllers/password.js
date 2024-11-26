@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+
 import { createPasswordHash } from "../password.js";
 
 export const passwordController = {

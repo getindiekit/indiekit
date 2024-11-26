@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
+
 import { getFileContents, getFiles } from "../../lib/files.js";
 
 describe("create-indiekit/lib/files", () => {

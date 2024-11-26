@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { checkScope } from "../../lib/scope.js";
 
 describe("endpoint-media/lib/scope", () => {

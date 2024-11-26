@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { validateRedirect } from "../../lib/redirect.js";
 
 describe("endpoint-auth/lib/redirect", () => {

@@ -1,6 +1,8 @@
 import process from "node:process";
+
 import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
+
 import { getRequestUriData } from "../pushed-authorization-request.js";
 import { getScopeItems } from "../scope.js";
 import { signToken } from "../token.js";

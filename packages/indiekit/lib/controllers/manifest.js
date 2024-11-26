@@ -1,4 +1,5 @@
 import { getBackgroundColor, getThemeColor } from "@indiekit/frontend";
+
 import { getShortcuts } from "../shortcuts.js";
 
 export const get = async (request, response) => {

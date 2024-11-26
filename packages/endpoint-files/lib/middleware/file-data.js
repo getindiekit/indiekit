@@ -1,5 +1,7 @@
 import path from "node:path";
+
 import { IndiekitError } from "@indiekit/error";
+
 import { getFileProperties, getFileName } from "../utils.js";
 
 export const fileData = {

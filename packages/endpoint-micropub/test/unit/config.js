@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import { testConfig } from "@indiekit-test/config";
+
 import MastodonSyndicator from "@indiekit/syndicator-mastodon";
+import { testConfig } from "@indiekit-test/config";
+
 import { getConfig, queryConfig } from "../../lib/config.js";
 
 const config = await testConfig({ usePostTypes: true });

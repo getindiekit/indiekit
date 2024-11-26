@@ -1,4 +1,5 @@
 import path from "node:path";
+
 import { getDate, slugify } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
 

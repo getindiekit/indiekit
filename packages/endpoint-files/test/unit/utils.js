@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { getFileName, getFileUrl } from "../../lib/utils.js";
 
 describe("endpoint-files/lib/utils", () => {

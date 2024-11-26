@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { Indiekit } from "@indiekit/indiekit";
+import { mockAgent } from "@indiekit-test/mock-agent";
+
 import InternetArchiveSyndicator from "../index.js";
 
 await mockAgent("syndicator-internet-archive");

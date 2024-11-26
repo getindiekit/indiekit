@@ -1,4 +1,5 @@
 import path from "node:path";
+
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 
 /**

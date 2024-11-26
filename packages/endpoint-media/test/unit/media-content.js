@@ -1,9 +1,11 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
-import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "@indiekit-test/media-data";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { publication } from "@indiekit-test/publication";
+
 import { mediaContent } from "../../lib/media-content.js";
 
 await mockAgent("endpoint-media");

@@ -1,5 +1,7 @@
 import path from "node:path";
+
 import express from "express";
+
 import { jsonFeedController } from "./lib/controllers/json-feed.js";
 
 const defaults = {

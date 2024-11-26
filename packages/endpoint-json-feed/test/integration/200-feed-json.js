@@ -1,7 +1,8 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
-import supertest from "supertest";
+
 import { testServer } from "@indiekit-test/server";
+import supertest from "supertest";
 
 const server = await testServer({
   plugins: ["@indiekit/endpoint-json-feed"],

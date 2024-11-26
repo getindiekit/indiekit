@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, before, beforeEach, describe, it, mock } from "node:test";
+
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
+
 import { mediaData } from "../../lib/media-data.js";
 
 describe("endpoint-media/lib/media-data", async () => {

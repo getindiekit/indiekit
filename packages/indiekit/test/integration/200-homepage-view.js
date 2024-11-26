@@ -1,9 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
-import supertest from "supertest";
-import { JSDOM } from "jsdom";
+
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
+import { JSDOM } from "jsdom";
+import supertest from "supertest";
 
 const server = await testServer();
 const request = supertest.agent(server);

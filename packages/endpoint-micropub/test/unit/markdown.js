@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { markdownToHtml, htmlToMarkdown } from "../../lib/markdown.js";
 
 describe("endpoint-micropub/lib/markdown", () => {

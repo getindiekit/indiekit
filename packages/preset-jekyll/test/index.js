@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { Indiekit } from "@indiekit/indiekit";
+
 import JekyllPreset from "../index.js";
 
 describe("preset-jekyll", async () => {

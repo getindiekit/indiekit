@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { getFixture } from "@indiekit-test/fixtures";
+
 import { jf2ToMf2 } from "../../lib/mf2.js";
 
 describe("endpoint-micropub/lib/mf2", () => {

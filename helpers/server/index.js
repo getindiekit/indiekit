@@ -1,9 +1,10 @@
 import { mock } from "node:test";
+
 import "dotenv/config.js";
-import getPort from "get-port";
+import { Indiekit } from "@indiekit/indiekit";
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
-import { Indiekit } from "@indiekit/indiekit";
+import getPort from "get-port";
 
 const { mongoUri } = await testDatabase();
 const defaultOptions = { mongodbUrl: mongoUri };

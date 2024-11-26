@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
+
 import { renderPath } from "../../lib/utils.js";
 
 describe("endpoint-media/lib/util", () => {

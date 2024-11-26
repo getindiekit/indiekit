@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
-import { mockRequest, mockResponse } from "mock-req-res";
+
 import { IndiekitError } from "@indiekit/error";
 import { mockAgent } from "@indiekit-test/mock-agent";
+import { mockRequest, mockResponse } from "mock-req-res";
+
 import { IndieAuth } from "../../lib/indieauth.js";
 
 await mockAgent("indiekit");

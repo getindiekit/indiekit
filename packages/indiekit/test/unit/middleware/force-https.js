@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
+
 import { mockRequest, mockResponse } from "mock-req-res";
+
 import { forceHttps } from "../../../lib/middleware/force-https.js";
 
 describe("indiekit/lib/middleware/error", () => {

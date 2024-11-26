@@ -1,9 +1,9 @@
 import markdownIt from "markdown-it";
-import markdownItPrism from "markdown-it-prism";
 import markdownItAbbr from "markdown-it-abbr";
 import markdownItDeflist from "markdown-it-deflist";
 import markdownItFootnote from "markdown-it-footnote";
 import markdownItImageFigures from "markdown-it-image-figures";
+import markdownItPrism from "markdown-it-prism";
 
 export default (() => {
   const options = {

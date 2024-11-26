@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { createHash } from "node:crypto";
 import { describe, it } from "node:test";
+
 import jwt from "jsonwebtoken";
+
 import { findBearerToken, signToken, verifyToken } from "../../lib/token.js";
 
 describe("endpoint-syndicate/lib/token", () => {

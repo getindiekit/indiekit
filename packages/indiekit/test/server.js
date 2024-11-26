@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
+
 import { testConfig } from "@indiekit-test/config";
+
 import { Indiekit } from "../index.js";
 
 describe("indiekit server", async () => {

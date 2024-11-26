@@ -1,9 +1,10 @@
+import { templates } from "@indiekit/frontend";
 import compression from "compression";
 import cookieSession from "cookie-session";
 import makeDebug from "debug";
 import express from "express";
 import fileUpload from "express-fileupload";
-import { templates } from "@indiekit/frontend";
+
 import * as error from "../lib/middleware/error.js";
 import { forceHttps } from "../lib/middleware/force-https.js";
 import { internationalisation } from "../lib/middleware/internationalisation.js";

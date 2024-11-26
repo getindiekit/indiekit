@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { randomBytes } from "node:crypto";
 import { describe, it } from "node:test";
+
 import { generateState, validateState } from "../../lib/state.js";
 
 const clientId = "https://server.example";

@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { Indiekit } from "@indiekit/indiekit";
+
 import EleventyPreset from "../index.js";
 
 describe("preset-eleventy", async () => {

@@ -2,6 +2,7 @@ import { strict as assert } from "node:assert";
 import { randomBytes } from "node:crypto";
 import { describe, it } from "node:test";
 import { fileURLToPath } from "node:url";
+
 import { decrypt, encrypt, getPackageData } from "../../lib/utils.js";
 
 const iv = randomBytes(16);

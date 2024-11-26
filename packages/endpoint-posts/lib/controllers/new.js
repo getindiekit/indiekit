@@ -1,6 +1,7 @@
 import path from "node:path";
-import { validationResult } from "express-validator";
+
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { validationResult } from "express-validator";
 
 export const newController = {
   /**

@@ -1,5 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCursor } from "@indiekit/util";
+
 import { getMediaProperties } from "../utils.js";
 
 /**

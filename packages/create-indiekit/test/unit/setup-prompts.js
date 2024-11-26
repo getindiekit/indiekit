@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { setupPrompts } from "../../lib/setup-prompts.js";
 
 describe("create-indiekit/lib/setup-prompts", () => {

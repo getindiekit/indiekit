@@ -1,10 +1,11 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
-import supertest from "supertest";
-import { JSDOM } from "jsdom";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
+import { JSDOM } from "jsdom";
+import supertest from "supertest";
 
 await mockAgent("endpoint-micropub");
 const server = await testServer();

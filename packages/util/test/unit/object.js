@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { sanitise } from "../../lib/object.js";
 
 describe("util/lib/object", () => {

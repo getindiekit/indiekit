@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { getPostTypes } from "../../lib/post-types.js";
 
 const postTypes = new Map();

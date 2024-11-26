@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { after, before, beforeEach, describe, it, mock } from "node:test";
+
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
+
 import { postData } from "../../lib/post-data.js";
 
 describe("endpoint-micropub/lib/post-data", async () => {

@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { mockResponse } from "mock-req-res";
+
 import { getShortcuts } from "../../lib/shortcuts.js";
 
 const Indiekit = {

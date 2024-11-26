@@ -1,8 +1,10 @@
 /* eslint-disable unicorn/no-useless-undefined */
 import { strict as assert } from "node:assert";
 import { before, after, describe, it } from "node:test";
+
 import { Indiekit } from "@indiekit/indiekit";
 import { closeServer, createSftpMockServer } from "@micham/sftp-mock-server";
+
 import FtpStore from "../index.js";
 
 describe("store-ftp", () => {

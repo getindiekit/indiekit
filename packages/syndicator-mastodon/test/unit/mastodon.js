@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { beforeEach, describe, it } from "node:test";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { mastodon } from "../../lib/mastodon.js";
 
 await mockAgent("syndicator-mastodon");

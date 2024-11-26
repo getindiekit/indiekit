@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { friendlyUrl, imageUrl } from "../../../lib/filters/index.js";
 
 describe("frontend/lib/filters/url", () => {

@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import nock from "nock";
+
 import { Indiekit } from "@indiekit/indiekit";
+import nock from "nock";
+
 import BitbucketStore from "../index.js";
 
 describe("store-bitbucket", () => {
