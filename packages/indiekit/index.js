@@ -26,16 +26,16 @@ export const Indiekit = class {
    */
   constructor(config) {
     this.config = config;
-    this.application = this.config.application;
     this.package = package_;
-    this.publication = this.config.publication;
 
     this.collections = new Map();
     this.endpoints = new Set();
     this.installedPlugins = new Set();
+    this.locale = config.application?.locale;
     this.locales = locales;
-    this.mongodbUrl = config.application.mongodbUrl;
+    this.mongodbUrl = config.application?.mongodbUrl;
     this.postTypes = new Map();
+    this.publication = this.config.publication;
     this.stores = new Set();
     this.validationSchemas = new Map();
   }
