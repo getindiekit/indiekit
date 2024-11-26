@@ -35,8 +35,8 @@
 {% endmacro -%}
 
 {%- set versionHtml %}
-  <a href="{{ application.repository.url | replace(".git", "") + "/releases/tag/v" + application.version }}">
-    {{ "v" + application.version }}
+  <a href="{{ application.package.repository.url | replace(".git", "") + "/releases/tag/v" + application.package.version }}">
+    {{- "v" + application.package.version -}}
   </a>
 {% endset -%}
 

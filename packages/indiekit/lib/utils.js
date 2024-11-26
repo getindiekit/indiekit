@@ -51,7 +51,7 @@ export const getServiceWorker = async (application) => {
     const filePath = require.resolve("@indiekit/frontend/lib/serviceworker.js");
     let serviceworker = await readFile(filePath, { encoding: "utf8" });
     serviceworker = serviceworker
-      .replace("APP_VERSION", application.version)
+      .replace("APP_VERSION", application.package.version)
       .replace("APP_CSS_PATH", application.cssPath)
       .replace("APP_JS_PATH", application.jsPath);
     return serviceworker;
