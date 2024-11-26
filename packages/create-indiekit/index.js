@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 import { createRequire } from "node:module";
+
 import create from "base-create";
 import chalk from "chalk";
 import prompts from "prompts";
-import { setupPrompts } from "./lib/setup-prompts.js";
+
 import { getFiles } from "./lib/files.js";
 import { getPackageValues } from "./lib/package.js";
+import { setupPrompts } from "./lib/setup-prompts.js";
+
 // eslint-ignore import/order
 const require = createRequire(import.meta.url);
 const { name, version, bugs } = require("./package.json");

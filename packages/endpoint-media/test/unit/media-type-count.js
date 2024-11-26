@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
+
 import { testDatabase } from "@indiekit-test/database";
+
 import { mediaTypeCount } from "../../lib/media-type-count.js";
 
 const { client, database, mongoServer } = await testDatabase();

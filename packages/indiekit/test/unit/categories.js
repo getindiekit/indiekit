@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
-import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { testConfig } from "@indiekit-test/config";
+import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { Indiekit } from "../../index.js";
 import { getCategories } from "../../lib/categories.js";
 

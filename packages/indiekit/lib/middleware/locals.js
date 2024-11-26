@@ -1,5 +1,6 @@
 import { scripts, styles } from "@indiekit/frontend";
 import { sha1 } from "@indiekit/util";
+
 import { getEndpointUrls } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
 import { getShortcuts } from "../shortcuts.js";

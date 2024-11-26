@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { beforeEach, describe, it } from "node:test";
-import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testToken } from "@indiekit-test/token";
+
 import { uploadMedia } from "../../lib/media.js";
 
 await mockAgent("endpoint-micropub");

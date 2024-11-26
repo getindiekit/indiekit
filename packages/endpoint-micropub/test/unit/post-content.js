@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
-import { publication } from "@indiekit-test/publication";
 import { deletedPostData, postData } from "@indiekit-test/post-data";
+import { publication } from "@indiekit-test/publication";
+
 import { postContent } from "../../lib/post-content.js";
 
 await mockAgent("endpoint-micropub");

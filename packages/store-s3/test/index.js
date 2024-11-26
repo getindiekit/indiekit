@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
-import { Indiekit } from "@indiekit/indiekit";
+
 import {
   CopyObjectCommand,
   DeleteObjectCommand,
@@ -8,7 +8,9 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
+import { Indiekit } from "@indiekit/indiekit";
 import { mockClient } from "aws-sdk-client-mock";
+
 import S3Store from "../index.js";
 
 describe("store-s3", () => {

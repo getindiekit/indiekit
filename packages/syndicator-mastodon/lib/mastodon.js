@@ -1,6 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 import { createRestAPIClient } from "masto";
+
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
 /**

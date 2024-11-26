@@ -1,4 +1,5 @@
 import express from "express";
+
 import { syndicateController } from "./lib/controllers/syndicate.js";
 
 const defaults = { mountPath: "/syndicate" };

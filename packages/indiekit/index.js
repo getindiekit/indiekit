@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import { createRequire } from "node:module";
 import process from "node:process";
+
+import { default as KeyvMongo } from "@keyv/mongo";
 import makeDebug from "debug";
 import { default as Keyv } from "keyv";
-import { default as KeyvMongo } from "@keyv/mongo";
+
 import { expressConfig } from "./config/express.js";
 import { locales } from "./config/locales.js";
 import { getCategories } from "./lib/categories.js";

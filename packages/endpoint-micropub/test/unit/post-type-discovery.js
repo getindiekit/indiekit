@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { getPostType } from "../../lib/post-type-discovery.js";
 
 describe("endpoint-media/lib/post-type-discovery", () => {

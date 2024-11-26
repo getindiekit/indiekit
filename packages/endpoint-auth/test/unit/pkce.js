@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { createHash, randomBytes } from "node:crypto";
 import { describe, it } from "node:test";
+
 import { verifyCode } from "../../lib/pkce.js";
 
 describe("endpoint-auth/lib/pkce", () => {

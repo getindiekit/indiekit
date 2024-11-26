@@ -1,9 +1,11 @@
 import { isDeepStrictEqual } from "node:util";
-import makeDebug from "debug";
+
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, getDate } from "@indiekit/util";
-import { getPostType } from "./post-type-discovery.js";
+import makeDebug from "debug";
+
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
+import { getPostType } from "./post-type-discovery.js";
 import * as updateMf2 from "./update.js";
 import { renderPath } from "./utils.js";
 

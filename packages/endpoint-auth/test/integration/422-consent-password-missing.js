@@ -1,9 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
-import supertest from "supertest";
-import { JSDOM } from "jsdom";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
+import { JSDOM } from "jsdom";
+import supertest from "supertest";
 
 await mockAgent("endpoint-auth");
 const server = await testServer();

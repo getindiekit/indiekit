@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
+
 import { mockRequest, mockResponse } from "mock-req-res";
+
 import { defaultConfig } from "../../../config/defaults.js";
 import { locals } from "../../../lib/middleware/locals.js";
 

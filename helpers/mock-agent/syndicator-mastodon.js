@@ -1,5 +1,5 @@
-import { MockAgent } from "undici";
 import { getFixture } from "@indiekit-test/fixtures";
+import { MockAgent } from "undici";
 
 /**
  * @returns {import("undici").MockAgent} Undici MockAgent

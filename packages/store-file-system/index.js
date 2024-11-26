@@ -1,7 +1,8 @@
-import fs from "node:fs/promises";
 import { existsSync } from "node:fs";
+import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+
 import { IndiekitError } from "@indiekit/error";
 
 const defaults = {

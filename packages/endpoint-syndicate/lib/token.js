@@ -1,4 +1,5 @@
 import process from "node:process";
+
 import { IndiekitError } from "@indiekit/error";
 import jwt from "jsonwebtoken";
 

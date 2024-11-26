@@ -1,5 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
+
 import { getClientInformation } from "../client.js";
 import { createRequestUri } from "../pushed-authorization-request.js";
 import { validateRedirect } from "../redirect.js";

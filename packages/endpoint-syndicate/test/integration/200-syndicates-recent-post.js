@@ -1,11 +1,12 @@
 import { strict as assert } from "node:assert";
 import { createHash } from "node:crypto";
 import { after, before, describe, it } from "node:test";
-import supertest from "supertest";
-import jwt from "jsonwebtoken";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
+import jwt from "jsonwebtoken";
+import supertest from "supertest";
 
 await mockAgent("endpoint-syndicate");
 const server = await testServer({

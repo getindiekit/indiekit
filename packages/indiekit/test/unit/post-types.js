@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { testConfig } from "@indiekit-test/config";
+
 import { Indiekit } from "../../index.js";
 import { getPostTypes } from "../../lib/post-types.js";
 

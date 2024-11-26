@@ -1,5 +1,7 @@
 import path from "node:path";
+
 import { IndiekitError } from "@indiekit/error";
+
 import { statusTypes } from "../status-types.js";
 import {
   getChannelItems,

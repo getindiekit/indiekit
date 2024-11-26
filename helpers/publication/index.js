@@ -1,5 +1,5 @@
-import TestStore from "@indiekit-test/store";
 import JekyllPreset from "@indiekit/preset-jekyll";
+import TestStore from "@indiekit-test/store";
 
 export const publication = {
   categories: `https://website.example/categories.json`,

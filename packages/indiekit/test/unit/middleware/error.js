@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
-import { mockRequest, mockResponse } from "mock-req-res";
+
 import { IndiekitError } from "@indiekit/error";
+import { mockRequest, mockResponse } from "mock-req-res";
+
 import { notFound, internalServer } from "../../../lib/middleware/error.js";
 
 describe("indiekit/lib/middleware/error", () => {

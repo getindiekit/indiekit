@@ -1,4 +1,5 @@
 import { fileURLToPath } from "node:url";
+
 import * as esbuild from "esbuild";
 
 export const scripts = async () => {

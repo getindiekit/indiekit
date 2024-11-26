@@ -1,4 +1,5 @@
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+
 import { endpoint } from "../endpoint.js";
 
 export const deleteController = {

@@ -1,8 +1,9 @@
+import { Buffer } from "node:buffer";
 import path from "node:path";
 import process from "node:process";
-import { Buffer } from "node:buffer";
-import makeDebug from "debug";
+
 import { IndiekitError } from "@indiekit/error";
+import makeDebug from "debug";
 
 const debug = makeDebug(`indiekit-store:github`);
 

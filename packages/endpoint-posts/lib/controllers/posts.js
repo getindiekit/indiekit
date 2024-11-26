@@ -1,6 +1,8 @@
 import path from "node:path";
+
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+
 import { endpoint } from "../endpoint.js";
 import { statusTypes } from "../status-types.js";
 import { getPostStatusBadges, getPostName, getPhotoUrl } from "../utils.js";

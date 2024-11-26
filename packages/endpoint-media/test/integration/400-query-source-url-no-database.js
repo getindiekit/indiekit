@@ -1,8 +1,9 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
-import supertest from "supertest";
+
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
+import supertest from "supertest";
 
 const server = await testServer({ mongodbUrl: false });
 const request = supertest.agent(server);

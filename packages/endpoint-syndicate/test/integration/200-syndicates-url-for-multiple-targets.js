@@ -1,10 +1,11 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it, mock } from "node:test";
-import supertest from "supertest";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 import { testToken } from "@indiekit-test/token";
+import supertest from "supertest";
 
 await mockAgent("endpoint-syndicate");
 const server = await testServer({

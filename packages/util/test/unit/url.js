@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { getCanonicalUrl, isSameOrigin } from "../../lib/url.js";
 
 describe("util/lib/url", () => {

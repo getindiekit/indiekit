@@ -1,6 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
 import makeDebug from "debug";
+
 import { getFileProperties, getMediaType } from "./file.js";
 import { renderPath } from "./utils.js";
 

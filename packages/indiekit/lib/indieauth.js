@@ -1,13 +1,15 @@
 import { createHash, randomBytes } from "node:crypto";
 import process from "node:process";
+
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, randomString } from "@indiekit/util";
+
+import { generateState, validateState } from "./state.js";
 import {
   findBearerToken,
   introspectToken,
   verifyTokenValues,
 } from "./token.js";
-import { generateState, validateState } from "./state.js";
 
 export const IndieAuth = class {
   constructor(options = {}) {

@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { signToken, verifyToken } from "../../lib/token.js";
 
 describe("endpoint-auth/lib/token", () => {

@@ -1,4 +1,5 @@
 import express from "express";
+
 import { authorizationController } from "./lib/controllers/authorization.js";
 import { consentController } from "./lib/controllers/consent.js";
 import { documentationController } from "./lib/controllers/documentation.js";

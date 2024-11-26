@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { errorList } from "../../../lib/globals/index.js";
 
 describe("frontend/lib/globals/error-list", () => {

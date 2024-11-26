@@ -1,5 +1,7 @@
 import { fileURLToPath } from "node:url";
+
 import nunjucks from "nunjucks";
+
 import * as filters from "./filters/index.js";
 import * as globals from "./globals/index.js";
 

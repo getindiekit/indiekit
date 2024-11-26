@@ -1,8 +1,9 @@
 import path from "node:path";
 import process from "node:process";
+
+import { IndiekitError } from "@indiekit/error";
 // eslint-disable-next-line import/default
 import bitbucket from "bitbucket";
-import { IndiekitError } from "@indiekit/error";
 
 const defaults = {
   branch: "main",

@@ -1,6 +1,8 @@
 import path from "node:path";
 import process from "node:process";
+
 import { IndiekitError } from "@indiekit/error";
+
 import { mastodon } from "./lib/mastodon.js";
 
 const defaults = {

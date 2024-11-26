@@ -2,8 +2,10 @@ import { strict as assert } from "node:assert";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import { afterEach, describe, it } from "node:test";
-import mockFs from "mock-fs";
+
 import { Indiekit } from "@indiekit/indiekit";
+import mockFs from "mock-fs";
+
 import FileSystemStore from "../index.js";
 
 describe("store-file-system", () => {

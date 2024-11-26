@@ -1,4 +1,5 @@
 import makeDebug from "debug";
+
 import { getPostTemplateProperties } from "./utils.js";
 
 const debug = makeDebug("indiekit:endpoint-micropub:post-content");

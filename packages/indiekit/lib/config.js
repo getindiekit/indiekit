@@ -1,5 +1,6 @@
-import deepmerge from "deepmerge";
 import { cosmiconfig } from "cosmiconfig";
+import deepmerge from "deepmerge";
+
 import { defaultConfig } from "../config/defaults.js";
 
 /**

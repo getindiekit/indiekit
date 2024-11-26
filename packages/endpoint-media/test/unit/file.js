@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
-import { isValid, parseISO } from "date-fns";
+
 import { getFixture } from "@indiekit-test/fixtures";
+import { isValid, parseISO } from "date-fns";
+
 import { getFileProperties, getMediaType } from "../../lib/file.js";
 
 describe("endpoint-media/lib/file", () => {

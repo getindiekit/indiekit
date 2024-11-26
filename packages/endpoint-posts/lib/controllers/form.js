@@ -1,12 +1,14 @@
 import path from "node:path";
-import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
+import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 import {
   getTimeZoneDesignator,
   getTimeZoneOffset,
   sanitise,
 } from "@indiekit/util";
 import { validationResult } from "express-validator";
+
 import { endpoint } from "../endpoint.js";
 import { getLocationProperty } from "../utils.js";
 

@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
+
 import { getClientInformation } from "../../lib/client.js";
 
 await mockAgent("endpoint-auth");

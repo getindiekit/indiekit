@@ -1,6 +1,6 @@
 import path from "node:path";
 import process from "node:process";
-import { IndiekitError } from "@indiekit/error";
+
 import {
   CopyObjectCommand,
   DeleteObjectCommand,
@@ -8,6 +8,7 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
+import { IndiekitError } from "@indiekit/error";
 
 const defaults = {
   accessKey: process.env.S3_ACCESS_KEY,

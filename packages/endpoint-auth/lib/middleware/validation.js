@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+
 import { verifyPassword } from "../password.js";
 
 export const consentValidator = [

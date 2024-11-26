@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
+
 import { getPackageValues } from "../../lib/package.js";
 
 describe("create-indiekit/lib/package", () => {

@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { createPasswordHash, verifyPassword } from "../../lib/password.js";
 
 describe("endpoint-auth/lib/client", () => {

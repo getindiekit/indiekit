@@ -1,9 +1,11 @@
 import { strict as assert } from "node:assert";
 import { createHash } from "node:crypto";
 import { after, before, describe, it } from "node:test";
-import supertest from "supertest";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
+import supertest from "supertest";
+
 import { signToken } from "../../lib/token.js";
 
 await mockAgent("endpoint-auth");

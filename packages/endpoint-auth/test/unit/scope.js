@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { mockResponse } from "mock-req-res";
+
 import { getScopeItems } from "../../lib/scope.js";
 
 describe("endpoint-auth/lib/scope", () => {

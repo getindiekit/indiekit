@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
+
 import { mockRequest, mockResponse } from "mock-req-res";
+
 import { getNavigation } from "../../lib/navigation.js";
 
 const Indiekit = {

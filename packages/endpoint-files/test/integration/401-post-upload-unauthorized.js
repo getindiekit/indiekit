@@ -1,11 +1,12 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
-import { JSDOM } from "jsdom";
-import supertest from "supertest";
+
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
+import { JSDOM } from "jsdom";
+import supertest from "supertest";
 
 await mockAgent("endpoint-files");
 const server = await testServer({

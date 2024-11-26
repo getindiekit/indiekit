@@ -1,9 +1,10 @@
 import { IndiekitError } from "@indiekit/error";
+
 import { formEncodedToJf2, mf2ToJf2 } from "../jf2.js";
+import { uploadMedia } from "../media.js";
 import { postContent } from "../post-content.js";
 import { postData } from "../post-data.js";
 import { checkScope } from "../scope.js";
-import { uploadMedia } from "../media.js";
 
 /**
  * Perform requested post action

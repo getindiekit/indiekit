@@ -1,6 +1,7 @@
+import { Buffer } from "node:buffer";
 import path from "node:path";
 import process from "node:process";
-import { Buffer } from "node:buffer";
+
 import { IndiekitError } from "@indiekit/error";
 
 const defaults = {

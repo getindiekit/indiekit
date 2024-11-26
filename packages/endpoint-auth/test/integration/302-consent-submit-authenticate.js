@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
-import supertest from "supertest";
+
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
+import supertest from "supertest";
+
 import { createPasswordHash } from "../../lib/password.js";
 
 await mockAgent("endpoint-auth");

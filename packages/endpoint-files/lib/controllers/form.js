@@ -1,5 +1,7 @@
 import path from "node:path";
+
 import { validationResult } from "express-validator";
+
 import { endpoint } from "../endpoint.js";
 
 export const formController = {

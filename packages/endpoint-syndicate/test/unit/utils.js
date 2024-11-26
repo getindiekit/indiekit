@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
+
 import { testDatabase } from "@indiekit-test/database";
+
 import {
   getPostData,
   getSyndicationTarget,

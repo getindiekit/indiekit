@@ -1,4 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
+
 import { findBearerToken } from "../token.js";
 import { getPostData, syndicateToTargets } from "../utils.js";
 

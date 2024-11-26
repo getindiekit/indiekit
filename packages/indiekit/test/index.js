@@ -1,8 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it, mock } from "node:test";
+
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
 import TestStore from "@indiekit-test/store";
+
 import { Indiekit } from "../index.js";
 
 describe("indiekit", async () => {
