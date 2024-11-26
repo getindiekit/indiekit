@@ -16,62 +16,41 @@ const cssHash = sha1(await styles());
 export const locals = (Indiekit) =>
   async function (request, response, next) {
     try {
-      const {
-        application,
-        collections,
-        installedPlugins,
-        mongodbClientError,
-        publication,
-        validationSchemas,
-      } = Indiekit;
-
-      // Application
-      request.app.locals.application = application;
-
       // Display MongoDB client connection error
-      if (mongodbClientError) {
-        request.app.locals.error = mongodbClientError;
+      if (Indiekit.mongodbClientError) {
+        request.app.locals.error = Indiekit.mongodbClientError;
       }
 
-      // Application database collections
-      application.collections = collections;
+      // Application
+      const { application } = Indiekit.config;
 
-      // Application locale
+      application.collections = Indiekit.collections;
       application.localeUsed = response.locals.getLocale();
-
-      // Application package
       application.package = Indiekit.package;
-
-      // Application URL
+      application.shortcuts = getShortcuts(Indiekit, response);
       application.url = application.url || getUrl(request);
 
-      // Asset paths
-      application.jsPath = `/assets/app-${jsHash}.js`;
-      application.cssPath = `/assets/app-${cssHash}.css`;
-
-      // Application navigation
-      // Only update if serving HTML to prevent wrong session link being shown
       if (request.accepts("html")) {
+        application.cssPath = `/assets/app-${cssHash}.css`;
+        application.jsPath = `/assets/app-${jsHash}.js`;
+
+        // Only update if serving HTML to prevent wrong session link being shown
         application.navigation = getNavigation(Indiekit, request, response);
       }
 
-      // Application shortcuts
-      application.shortcuts = getShortcuts(Indiekit, response);
-
-      // Application endpoints
       request.app.locals.application = {
         ...application,
         ...getEndpointUrls(application, request),
       };
 
       // Installed plug-ins
-      request.app.locals.installedPlugins = installedPlugins;
+      request.app.locals.installedPlugins = Indiekit.installedPlugins;
 
       // Publication
-      request.app.locals.publication = publication;
+      request.app.locals.publication = Indiekit.publication;
 
       // Validation schemas
-      request.app.locals.validationSchemas = validationSchemas;
+      request.app.locals.validationSchemas = Indiekit.validationSchemas;
 
       // Persist scope and token
       request.app.locals.scope =
