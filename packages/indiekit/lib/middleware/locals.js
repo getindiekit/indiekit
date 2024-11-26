@@ -2,7 +2,6 @@ import { scripts, styles } from "@indiekit/frontend";
 import { sha1 } from "@indiekit/util";
 import { getEndpointUrls } from "../endpoints.js";
 import { getNavigation } from "../navigation.js";
-import { getShortcuts } from "../shortcuts.js";
 import { getUrl } from "../utils.js";
 
 const jsHash = sha1(await scripts());
@@ -55,9 +54,6 @@ export const locals = (Indiekit) =>
       if (request.accepts("html")) {
         application.navigation = getNavigation(Indiekit, request, response);
       }
-
-      // Application shortcuts
-      application.shortcuts = getShortcuts(Indiekit, response);
 
       // Application endpoints
       request.app.locals.application = {
