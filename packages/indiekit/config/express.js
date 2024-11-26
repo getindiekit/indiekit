@@ -42,7 +42,7 @@ export const expressConfig = (Indiekit) => {
   // Session
   app.use(
     cookieSession({
-      name: Indiekit.application.name,
+      name: Indiekit.config.application.name,
       secret: crypto.randomUUID(),
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days,
     }),

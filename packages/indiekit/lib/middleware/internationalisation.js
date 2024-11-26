@@ -8,7 +8,7 @@ import i18n from "i18n";
 export const internationalisation = (Indiekit) =>
   function (request, response, next) {
     try {
-      const { application, localeCatalog } = Indiekit;
+      const { locale, localeCatalog } = Indiekit;
 
       i18n.configure({
         cookie: "locale",
@@ -22,8 +22,8 @@ export const internationalisation = (Indiekit) =>
       i18n.init(request, response);
 
       // Override system locale with configured value
-      if (application.locale) {
-        response.locals.setLocale(application.locale);
+      if (locale) {
+        response.locals.setLocale(locale);
       }
 
       next();
