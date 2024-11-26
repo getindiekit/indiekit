@@ -18,7 +18,17 @@ export default [
   {
     files: ["**/{packages,helpers}/**/*.js"],
     languageOptions: { globals: { ...globals.node }, ecmaVersion: "latest" },
-    rules: { "jsdoc/no-undefined-types": [1, { definedTypes: ["NodeJS"] }] },
+    rules: {
+      "import/order": [
+        "error",
+        {
+          alphabetize: { order: "asc" },
+          "newlines-between": "always",
+        },
+      ],
+      "jsdoc/no-undefined-types": [1, { definedTypes: ["NodeJS"] }],
+      "jsdoc/require-hyphen-before-param-description": "warn",
+    },
   },
   {
     files: ["**/frontend/**/*.js"],
