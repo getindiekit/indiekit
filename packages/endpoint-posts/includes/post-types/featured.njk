@@ -1,0 +1,8 @@
+{% set html %}
+<figure>
+  <img src="{{ property[0].url | url(publication.me) }}" alt="{{ property[0].alt }}">
+</figure>
+{% endset -%}
+{{- prose({
+  html: html
+}) if property }}

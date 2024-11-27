@@ -14,6 +14,9 @@
       "content": {
         "empty": "Ange innehåll"
       },
+      "featured-alt": {
+        "empty": "Ange en beskrivning av den här bilden"
+      },
       "geo": {
         "invalid": "Ange giltiga koordinater"
       },
@@ -43,6 +46,10 @@
         "label": "Innehåll"
       },
       "continue": "Fortsätt",
+      "featured": {
+        "alt": "Tillgänglig beskrivning",
+        "label": "Utvald bild"
+      },
       "geo": {
         "hint": "Latitud och longitud, till exempel %s",
         "label": "Platskoordinater"

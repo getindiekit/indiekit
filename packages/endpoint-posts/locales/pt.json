@@ -14,6 +14,9 @@
       "content": {
         "empty": "Insira algum conteúdo"
       },
+      "featured-alt": {
+        "empty": "Insira uma descrição desta imagem"
+      },
       "geo": {
         "invalid": "Insira coordenadas válidas"
       },
@@ -43,6 +46,10 @@
         "label": "Conteúdo"
       },
       "continue": "Continuar",
+      "featured": {
+        "alt": "Descrição acessível",
+        "label": "Imagem em destaque"
+      },
       "geo": {
         "hint": "Latitude e longitude, por exemplo %s",
         "label": "Coordenadas de localização"

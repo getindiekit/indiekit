@@ -14,6 +14,9 @@
       "content": {
         "empty": "Wprowadź jakąś zawartość"
       },
+      "featured-alt": {
+        "empty": "Wprowadź opis tego obrazu"
+      },
       "geo": {
         "invalid": "Wprowadź poprawne współrzędne"
       },
@@ -43,6 +46,10 @@
         "label": "Zawartość"
       },
       "continue": "Kontynuuj",
+      "featured": {
+        "alt": "Dostępny opis",
+        "label": "Wyróżniony obraz"
+      },
       "geo": {
         "hint": "Szerokość i długość geograficzna, na przykład %s",
         "label": "Współrzędne lokalizacji"
