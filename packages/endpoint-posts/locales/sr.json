@@ -14,6 +14,9 @@
       "content": {
         "empty": "Unesite neki sadržaj"
       },
+      "featured-alt": {
+        "empty": "Unesite opis ove slike"
+      },
       "geo": {
         "invalid": "Unesite važeće koordinate"
       },
@@ -43,6 +46,10 @@
         "label": "Sadržaj"
       },
       "continue": "Nastavi",
+      "featured": {
+        "alt": "Pristupačan opis",
+        "label": "Istaknuta slika"
+      },
       "geo": {
         "hint": "Geografska širina i dužina, na primer %s",
         "label": "Koordinate lokacije"

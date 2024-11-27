@@ -14,6 +14,9 @@
       "content": {
         "empty": "Masukkan beberapa konten"
       },
+      "featured-alt": {
+        "empty": "Masukkan deskripsi gambar ini"
+      },
       "geo": {
         "invalid": "Masukkan koordinat yang valid"
       },
@@ -43,6 +46,10 @@
         "label": "Konten"
       },
       "continue": "Lanjutkan",
+      "featured": {
+        "alt": "Deskripsi yang dapat diakses",
+        "label": "Gambar unggulan"
+      },
       "geo": {
         "hint": "Lintang dan bujur, misalnya %s",
         "label": "Koordinat lokasi"

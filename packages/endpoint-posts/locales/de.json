@@ -14,6 +14,9 @@
       "content": {
         "empty": "Geben Sie einige Inhalte ein"
       },
+      "featured-alt": {
+        "empty": "Geben Sie eine Beschreibung dieses Bildes ein"
+      },
       "geo": {
         "invalid": "Geben Sie gültige Koordinaten ein"
       },
@@ -43,6 +46,10 @@
         "label": "Inhalt"
       },
       "continue": "Fortsetzen",
+      "featured": {
+        "alt": "Barrierefreie Beschreibung",
+        "label": "Ausgewähltes Bild"
+      },
       "geo": {
         "hint": "Breitengrad und Längengrad, zum Beispiel %s",
         "label": "Koordinaten des Standorts"
