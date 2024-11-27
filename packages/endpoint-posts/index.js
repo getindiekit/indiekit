@@ -72,6 +72,18 @@ export default class PostsEndpoint {
         exists: { if: (value, { req }) => isRequired(req, "content") },
         notEmpty: true,
       },
+      "featured.url": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.media.empty`, "/photos/image.jpg"),
+        exists: { if: (value, { req }) => isRequired(req, "featured") },
+        notEmpty: true,
+      },
+      "featured.alt": {
+        errorMessage: (value, { req }) =>
+          req.__(`posts.error.featured-alt.empty`),
+        exists: { if: (value, { req }) => req.body?.featured.url },
+        notEmpty: true,
+      },
       geo: {
         errorMessage: (value, { req }) => req.__(`posts.error.geo.invalid`),
         exists: { if: (value, { req }) => req.body?.geo },

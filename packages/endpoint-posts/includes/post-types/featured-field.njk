@@ -1,0 +1,30 @@
+{% call fieldset({
+  classes: "fieldset--group",
+  legend: __("posts.form.featured.label"),
+  optional: not field.required
+}) %}
+  {{ fileInput({
+    field: {
+      attributes: {
+        endpoint: application.mediaEndpoint
+      }
+    },
+    name: "featured[url]",
+    type: "url",
+    value: fieldData("featured.url").value,
+    label: __("posts.form.media.label"),
+    accept: "image/*",
+    attributes: {
+      placeholder: "https://"
+    },
+    errorMessage: fieldData("featured.url").errorMessage
+  }) | indent(2) }}
+
+  {{ textarea({
+    name: "featured[alt]",
+    value: fieldData("featured.alt").value,
+    label: __("posts.form.featured.alt"),
+    rows: 1,
+    errorMessage: fieldData("featured.alt").errorMessage
+  }) | indent(2) }}
+{% endcall %}

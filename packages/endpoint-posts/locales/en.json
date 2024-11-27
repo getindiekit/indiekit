@@ -4,6 +4,9 @@
       "content": {
         "empty": "Enter some content"
       },
+      "featured-alt": {
+        "empty": "Enter a description of this image"
+      },
       "geo": {
         "invalid": "Enter valid coordinates"
       },
@@ -67,6 +70,10 @@
       },
       "content": {
         "label": "Content"
+      },
+      "featured": {
+        "label": "Featured image",
+        "alt": "Accessible description"
       },
       "geo": {
         "label": "Location coordinates",

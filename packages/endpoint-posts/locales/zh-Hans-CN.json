@@ -14,6 +14,9 @@
       "content": {
         "empty": "输入一些内容"
       },
+      "featured-alt": {
+        "empty": "输入此图片的描述"
+      },
       "geo": {
         "invalid": "输入有效坐标"
       },
@@ -43,6 +46,10 @@
         "label": "内容"
       },
       "continue": "继续",
+      "featured": {
+        "alt": "无障碍描述",
+        "label": "特色图片"
+      },
       "geo": {
         "hint": "纬度和经度，例如 %s",
         "label": "位置坐标"

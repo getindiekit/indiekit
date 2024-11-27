@@ -14,6 +14,9 @@
       "content": {
         "empty": "Voer wat inhoud in"
       },
+      "featured-alt": {
+        "empty": "Voer een beschrijving van deze afbeelding in"
+      },
       "geo": {
         "invalid": "Voer geldige coördinaten in"
       },
@@ -43,6 +46,10 @@
         "label": "Inhoud"
       },
       "continue": "Doorgaan",
+      "featured": {
+        "alt": "Toegankelijke beschrijving",
+        "label": "Uitgelichte afbeelding"
+      },
       "geo": {
         "hint": "Lengte- en breedtegraad, bijvoorbeeld %s",
         "label": "Locatiecoördinaten"
