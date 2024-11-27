@@ -41,6 +41,20 @@ const config = {
     },
     enrichPostData: true,
     postTypes: {
+      article: {
+        name: "Article",
+        fields: {
+          name: { required: true },
+          summary: {},
+          featured: {},
+          content: { required: true },
+          category: {},
+          geo: {},
+          "post-status": {},
+          published: { required: true },
+          visibility: {},
+        },
+      },
       like: {
         name: "Favourite",
         fields: {
