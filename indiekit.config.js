@@ -75,8 +75,8 @@ const config = {
           url: "photos/{yyyy}/{DDD}/{slug}/",
         },
         media: {
-          path: "media/photos/{yyyy}/{DDD}/{slug}/{filename}",
-          url: "media/photos/{yyyy}/{DDD}/{slug}/{filename}",
+          path: "media/photos/{yyyy}/{DDD}/{filename}",
+          url: "media/photos/{yyyy}/{DDD}/{filename}",
         },
       },
     },
