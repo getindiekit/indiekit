@@ -25,6 +25,7 @@ const config = {
     "@indiekit/post-type-video",
     "@indiekit/preset-eleventy",
     "@indiekit/store-github",
+    "@indiekit/syndicator-atproto",
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
   ],
@@ -98,6 +99,12 @@ const config = {
     region: process.env.S3_REGION,
     endpoint: process.env.S3_ENDPOINT,
     bucket: process.env.S3_BUCKET,
+  },
+  "@indiekit/syndicator-atproto": {
+    checked: true,
+    url: process.env.ATPROTO_URL,
+    user: process.env.ATPROTO_USER,
+    password: process.env.ATPROTO_PASSWORD,
   },
   "@indiekit/syndicator-internet-archive": {
     checked: false,
