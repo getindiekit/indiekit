@@ -143,6 +143,7 @@ Indiekit provides automatic support for the following field types:
 
 - `category`
 - `content`
+- `featured`
 - `geo`
 - `location`
 - `name`
