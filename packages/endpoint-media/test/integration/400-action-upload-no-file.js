@@ -19,7 +19,5 @@ describe("endpoint-media POST /media", () => {
     assert.equal(result.body.error_description, "No file included in request");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

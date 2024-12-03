@@ -22,7 +22,5 @@ describe("endpoint-auth POST /auth/introspect", () => {
     assert.ok(result.body.scope);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

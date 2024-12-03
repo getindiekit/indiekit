@@ -20,7 +20,5 @@ describe("endpoint-files GET /files/:uid/delete", () => {
     assert.equal(result, "Upload a new file - Test configuration");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

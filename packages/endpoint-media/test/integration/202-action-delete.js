@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { before, after, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
@@ -8,10 +9,13 @@ import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
 await mockAgent("endpoint-media");
-const server = await testServer();
-const request = supertest.agent(server);
 
-describe("endpoint-media POST /media", () => {
+describe("endpoint-media POST /media", async () => {
+  const { client, mongoServer, mongoUri } = await testDatabase();
+  const server = await testServer({
+    application: { mongodbUrl: mongoUri },
+  });
+  const request = supertest.agent(server);
   let response;
 
   before(async () => {
@@ -35,7 +39,11 @@ describe("endpoint-media POST /media", () => {
     assert.match(result.body.success_description, /\bFile deleted\b/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => {
+      process.exit(error ? 1 : 0);
+    });
   });
 });

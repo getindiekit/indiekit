@@ -21,7 +21,5 @@ describe("endpoint-micropub GET /micropub?q=source", () => {
     assert.deepEqual(result.body.items, []);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

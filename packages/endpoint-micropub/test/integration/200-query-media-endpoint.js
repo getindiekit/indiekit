@@ -19,7 +19,5 @@ describe("endpoint-micropub GET /micropub?q=media-endpoint", () => {
     assert.ok(response.body["media-endpoint"]);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

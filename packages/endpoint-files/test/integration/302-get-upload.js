@@ -18,7 +18,5 @@ describe("endpoint-files GET /files/upload", () => {
     assert.match(result.text, /Found. Redirecting to \/files/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

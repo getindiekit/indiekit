@@ -23,7 +23,5 @@ describe("indiekit POST /session/login", () => {
     assert.ok(parameters.state);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

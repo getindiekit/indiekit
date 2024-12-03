@@ -42,7 +42,5 @@ describe("endpoint-micropub POST /micropub", () => {
     assert.match(result.body.success_description, /\bPost updated\b/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

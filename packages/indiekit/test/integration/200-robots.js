@@ -15,7 +15,5 @@ describe("indiekit GET /robots.txt", () => {
     assert.equal(result.type, "text/plain");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

@@ -50,7 +50,5 @@ describe("endpoint-auth POST /auth/token", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

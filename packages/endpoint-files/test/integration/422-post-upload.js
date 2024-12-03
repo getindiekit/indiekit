@@ -28,7 +28,5 @@ describe("endpoint-files POST /posts/create", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

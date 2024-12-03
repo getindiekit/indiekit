@@ -14,7 +14,5 @@ describe("endpoint-auth GET /auth", () => {
     assert.equal(result.status, 500);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

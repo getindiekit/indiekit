@@ -24,7 +24,5 @@ describe("endpoint-media POST /media", () => {
     assert.match(result.body.success_description, /\bMedia uploaded\b/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

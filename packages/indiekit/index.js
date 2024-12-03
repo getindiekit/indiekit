@@ -176,17 +176,20 @@ export const Indiekit = class {
     });
   }
 
+  get app() {
+    return expressConfig(this);
+  }
+
   async server(options = {}) {
     await this.connectMongodbClient();
     await this.installPlugins();
     await this.updatePublicationConfig();
 
-    const app = expressConfig(this);
     let { name, port } = this.config.application;
     const { version } = this.package;
     port = options.port || port;
 
-    const server = app.listen(port, () => {
+    const server = this.app.listen(port, () => {
       debug(`Start ${name} (v${version}) on port ${port}`);
       console.info(`Starting ${name} (v${version}) on port ${port}`);
     });

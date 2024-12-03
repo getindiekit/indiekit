@@ -15,7 +15,5 @@ describe("indiekit GET /assets/app-icon-512-any.png", () => {
     assert.equal(result.type, "image/png");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

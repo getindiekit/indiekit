@@ -24,7 +24,5 @@ describe("endpoint-files POST /files/:uid/delete", () => {
     assert.equal(result.status, 401);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

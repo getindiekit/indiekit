@@ -23,7 +23,5 @@ describe("endpoint-media POST /media?q=foo", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

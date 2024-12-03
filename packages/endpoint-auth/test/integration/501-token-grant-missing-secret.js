@@ -25,7 +25,5 @@ describe("endpoint-auth GET /auth", () => {
     assert.equal(result.body.error_description, "Missing `SECRET`");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

@@ -19,7 +19,5 @@ describe("endpoint-media GET /media?q=source", () => {
     assert.deepEqual(result.body.items, []);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

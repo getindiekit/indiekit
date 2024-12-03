@@ -19,7 +19,5 @@ describe("endpoint-micropub GET /micropub?q=category", () => {
     assert.ok(response.body.categories);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

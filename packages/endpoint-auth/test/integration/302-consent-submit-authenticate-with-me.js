@@ -23,7 +23,7 @@ describe("endpoint-auth POST /auth/consent", () => {
       .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
       .query({ response_type: "code" })
       .query({ state: "12345" });
-    reference = response.headers.location.slice(-16);
+    reference = response.headers.location.split(":").at(-1);
   });
 
   it("Returns 302 submitting authenticated user", async () => {
@@ -40,7 +40,5 @@ describe("endpoint-auth POST /auth/consent", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

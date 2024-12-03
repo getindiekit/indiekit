@@ -24,7 +24,5 @@ describe("endpoint-media GET /media?q=source&url=*", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

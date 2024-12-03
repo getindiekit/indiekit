@@ -20,7 +20,5 @@ describe("endpoint-media GET /media?foo=bar", () => {
     assert.equal(result.body.error_description, "Missing parameter: `q`");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

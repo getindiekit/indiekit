@@ -16,7 +16,5 @@ describe("indiekit GET /session/login", () => {
     assert.equal(result.type, "text/html");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

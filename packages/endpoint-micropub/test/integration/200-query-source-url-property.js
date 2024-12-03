@@ -34,7 +34,5 @@ describe("endpoint-micropub GET /micropub?q=source&properties=*", () => {
     assert.deepEqual(result.body, { properties: { name: ["Foobar"] } });
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

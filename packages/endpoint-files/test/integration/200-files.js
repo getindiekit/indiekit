@@ -18,7 +18,5 @@ describe("endpoint-files GET /files", () => {
     assert.equal(result, "Uploaded files - Test configuration");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

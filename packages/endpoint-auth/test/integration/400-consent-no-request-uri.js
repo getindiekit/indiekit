@@ -18,7 +18,5 @@ describe("endpoint-auth GET /auth/consent", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

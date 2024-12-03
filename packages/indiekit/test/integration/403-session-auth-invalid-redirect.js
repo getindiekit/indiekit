@@ -17,7 +17,5 @@ describe("indiekit GET /session/auth", () => {
     assert.equal(result.text.includes("Invalid redirect attempted"), true);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

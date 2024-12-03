@@ -18,7 +18,5 @@ describe("endpoint-posts GET /posts", () => {
     assert.equal(result, "Published posts - Test configuration");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

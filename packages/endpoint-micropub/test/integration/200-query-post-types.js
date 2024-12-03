@@ -19,7 +19,5 @@ describe("endpoint-micropub GET /micropub?q=post-types", () => {
     assert.ok(response.body["post-types"]);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

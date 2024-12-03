@@ -21,11 +21,9 @@ describe("endpoint-auth GET /auth", () => {
     assert.equal(result.status, 302);
     assert.match(
       result.headers.location,
-      /request_uri=urn:ietf:params:oauth:request_uri:[\w-]{16}$/,
+      /request_uri=urn:ietf:params:oauth:request_uri:[\w-]{36}$/,
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

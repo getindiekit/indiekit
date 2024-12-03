@@ -19,7 +19,5 @@ describe("indiekit GET /id", () => {
     assert.equal(result.body.logo_uri.includes("app-icon-512-any.png"), true);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

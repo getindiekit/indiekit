@@ -23,7 +23,7 @@ describe("endpoint-auth GET /auth/consent", () => {
       .query({ response_type: "code" })
       .query({ scope: "create" })
       .query({ state: "12345" });
-    reference = response.headers.location.slice(-16);
+    reference = response.headers.location.split(":").at(-1);
   });
 
   it("Returns authorization consent form", async () => {
@@ -35,7 +35,5 @@ describe("endpoint-auth GET /auth/consent", () => {
     assert.equal(result.text.includes("Authorize application"), true);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

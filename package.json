@@ -39,7 +39,7 @@
     "lint:css:fix": "stylelint '**/*.css' --fix",
     "lint": "npm run lint:prettier && npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:prettier:fix && npm run lint:js:fix && npm run lint:css:fix",
-    "test": "node --test --test-reporter=spec",
+    "test": "NODE_ENV=test node --test --test-reporter=spec",
     "test:coverage": "node --test --experimental-test-coverage",
     "test:lcov": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info"
   },

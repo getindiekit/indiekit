@@ -25,7 +25,5 @@ describe("endpoint-files GET /files", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

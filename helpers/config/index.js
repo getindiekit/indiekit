@@ -35,7 +35,7 @@ export const testConfig = async (options) => {
       introspectionEndpoint: options?.application?.introspectionEndpoint,
       locale: options.locale,
       mediaEndpoint: options?.application?.mediaEndpoint,
-      mongodbUrl: options.mongodbUrl,
+      mongodbUrl: options?.application?.mongodbUrl,
       name: "Test configuration",
       timeZone: "UTC",
       tokenEndpoint: options?.application?.tokenEndpoint,

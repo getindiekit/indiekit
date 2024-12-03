@@ -24,7 +24,5 @@ describe("endpoint-posts POST /posts/create", () => {
     assert.match(result.text, /Found. Redirecting to \/posts\?success/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

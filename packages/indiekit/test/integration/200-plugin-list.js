@@ -23,7 +23,5 @@ describe("indiekit GET /plugins", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

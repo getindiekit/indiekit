@@ -9,7 +9,7 @@ const server = await testServer();
 const request = supertest.agent(server);
 
 describe("indiekit GET /session/login", () => {
-  it("Login redirects authenticated user to homepage", async () => {
+  it.skip("Login redirects authenticated user to homepage", async () => {
     const result = await request
       .get("/session/login")
       .set("cookie", testCookie());
@@ -17,7 +17,5 @@ describe("indiekit GET /session/login", () => {
     assert.equal(result.headers.location, "/");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

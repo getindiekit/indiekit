@@ -30,7 +30,5 @@ describe("endpoint-posts POST /posts/create", () => {
     assert.match(result, /\bTest store: Unauthorized\b/g);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

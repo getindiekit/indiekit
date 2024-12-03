@@ -39,7 +39,5 @@ describe("endpoint-posts GET /posts/:uid/delete", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

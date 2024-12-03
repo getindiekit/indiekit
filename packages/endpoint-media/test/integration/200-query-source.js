@@ -1,15 +1,19 @@
 import { strict as assert } from "node:assert";
 import { before, after, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
-const server = await testServer();
+const { client, mongoServer, mongoUri } = await testDatabase();
+const server = await testServer({
+  application: { mongodbUrl: mongoUri },
+});
 const request = supertest.agent(server);
 
-describe("endpoint-media GET /media?q=source", () => {
+describe("endpoint-media GET /media?q=source", async () => {
   before(async () => {
     await request
       .post("/media")
@@ -35,7 +39,11 @@ describe("endpoint-media GET /media?q=source", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => {
+      process.exit(error ? 1 : 0);
+    });
   });
 });

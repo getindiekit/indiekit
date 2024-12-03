@@ -22,7 +22,5 @@ describe("indiekit GET /session/auth", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

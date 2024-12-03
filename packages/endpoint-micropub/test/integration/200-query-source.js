@@ -36,7 +36,5 @@ describe("endpoint-micropub GET /micropub?q=source", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });
