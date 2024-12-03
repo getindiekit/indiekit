@@ -24,6 +24,9 @@ export default class MicropubEndpoint {
     Indiekit.addCollection("posts");
     Indiekit.addEndpoint(this);
 
-    Indiekit.config.application.micropubEndpoint = this.mountPath;
+    // Only mount if micropub endpoint not already configured
+    if (!Indiekit.config.application.micropubEndpoint) {
+      Indiekit.config.application.micropubEndpoint = this.mountPath;
+    }
   }
 }
