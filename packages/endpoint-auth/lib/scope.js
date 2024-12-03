@@ -24,9 +24,13 @@ export const supportedScopes = Object.entries(scopes)
  * Get `items` object for checkboxes component
  * @param {Array|string} scope - Selected scope(s)
  * @param {import("express").Response} response - Response
- * @returns {object} Items for checkboxes component
+ * @returns {object|undefined} Items for checkboxes component
  */
 export function getScopeItems(scope, response) {
+  if (!scope) {
+    return;
+  }
+
   const localisedScopes = Object.keys(scopes);
   const requestedScopes = typeof scope === "string" ? scope.split(" ") : scope;
 

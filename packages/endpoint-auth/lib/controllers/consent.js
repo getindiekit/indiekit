@@ -29,7 +29,7 @@ export const consentController = {
           authType,
           me,
           redirect_uri,
-          scopeItems: scope && getScopeItems(scope, response),
+          scopeItems: getScopeItems(scope, response),
         });
       } else {
         response.redirect(request.baseUrl + "/new-password?setup=true");
