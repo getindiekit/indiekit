@@ -20,7 +20,5 @@ describe("endpoint-auth POST /auth/token", () => {
     assert.equal(result.body.error_description, "Missing parameter: `code`");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

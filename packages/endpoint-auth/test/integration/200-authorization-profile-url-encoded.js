@@ -42,7 +42,5 @@ describe("endpoint-auth POST /auth", () => {
     assert.equal(result.me, encodeURIComponent("https://website.example"));
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

@@ -20,7 +20,7 @@ describe("endpoint-auth GET /auth/consent", () => {
       .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
       .query({ response_type: "code" })
       .query({ state: "12345" });
-    reference = response.headers.location.slice(-16);
+    reference = response.headers.location.split(":").at(-1);
   });
 
   it("Returns 302 setup password secret", async () => {
@@ -32,7 +32,5 @@ describe("endpoint-auth GET /auth/consent", () => {
     assert.equal(result.headers.location, "/auth/new-password?setup=true");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

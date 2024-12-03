@@ -46,7 +46,5 @@ describe("endpoint-auth POST /auth/token", () => {
     assert.equal(result.token_type, "Bearer");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

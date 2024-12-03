@@ -24,7 +24,5 @@ describe("endpoint-auth GET /auth/metadata", () => {
     assert.equal(result.ui_locales_supported, "en");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

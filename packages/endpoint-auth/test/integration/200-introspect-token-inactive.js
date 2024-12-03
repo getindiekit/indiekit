@@ -19,7 +19,5 @@ describe("endpoint-auth POST /auth/introspect", () => {
     assert.equal(result.body.active, false);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

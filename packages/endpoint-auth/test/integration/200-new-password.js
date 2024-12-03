@@ -20,7 +20,5 @@ describe("endpoint-auth GET /auth/new-password", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

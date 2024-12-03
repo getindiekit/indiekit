@@ -17,7 +17,5 @@ describe("endpoint-auth GET /auth", () => {
     assert.equal(result, "Using this IndieAuth endpoint - Test configuration");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

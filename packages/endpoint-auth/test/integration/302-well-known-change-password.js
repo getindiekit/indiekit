@@ -17,7 +17,5 @@ describe("endpoint-auth GET /.well-known/change-password", () => {
     assert.equal(result.headers.location, "/auth/new-password");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

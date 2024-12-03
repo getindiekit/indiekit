@@ -23,7 +23,7 @@ describe("endpoint-auth POST /auth/consent", () => {
       .query({ response_type: "code" })
       .send({ scope: "create" })
       .query({ state: "12345" });
-    reference = response.headers.location.slice(-16);
+    reference = response.headers.location.split(":").at(-1);
   });
 
   it("Returns 302 submitting authorized user", async () => {
@@ -38,7 +38,5 @@ describe("endpoint-auth POST /auth/consent", () => {
     assert.match(result.headers.location, /code=(.*)&iss=(.*)&state=(.*)/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

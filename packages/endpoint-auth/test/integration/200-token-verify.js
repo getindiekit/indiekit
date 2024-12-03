@@ -22,7 +22,5 @@ describe("endpoint-auth GET /auth/token", () => {
     assert.ok(result.body.scope);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });
