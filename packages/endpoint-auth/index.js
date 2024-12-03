@@ -63,8 +63,19 @@ export default class AuthorizationEndpoint {
   init(Indiekit) {
     Indiekit.addEndpoint(this);
 
-    Indiekit.config.application.authorizationEndpoint = this.mountPath;
-    Indiekit.config.application.introspectionEndpoint = `${this.mountPath}/introspect`;
-    Indiekit.config.application.tokenEndpoint = `${this.mountPath}/token`;
+    // Only mount if authorization endpoint not already configured
+    if (!Indiekit.config.application.authorizationEndpoint) {
+      Indiekit.config.application.authorizationEndpoint = this.mountPath;
+    }
+
+    // Only mount if introspection endpoint not already configured
+    if (!Indiekit.config.application.introspectionEndpoint) {
+      Indiekit.config.application.introspectionEndpoint = `${this.mountPath}/introspect`;
+    }
+
+    // Only mount if token endpoint not already configured
+    if (!Indiekit.config.application.tokenEndpoint) {
+      Indiekit.config.application.tokenEndpoint = `${this.mountPath}/token`;
+    }
   }
 }
