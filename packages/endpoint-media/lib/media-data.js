@@ -36,7 +36,7 @@ export const mediaData = {
 
     // Get post type configuration
     const typeConfig = postTypes[type];
-    if (!typeConfig) {
+    if (!typeConfig || !typeConfig.media?.path) {
       throw IndiekitError.notImplemented(type);
     }
 
