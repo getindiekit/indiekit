@@ -22,7 +22,5 @@ describe("endpoint-micropub GET /micropub?q=config", () => {
     assert.ok(response.body.q);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

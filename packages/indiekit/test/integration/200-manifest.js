@@ -17,7 +17,5 @@ describe("indiekit GET /app.webmanifest", () => {
     assert.ok(result.body.icons);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

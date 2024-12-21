@@ -31,7 +31,5 @@ describe("endpoint-share POST /share", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

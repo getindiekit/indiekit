@@ -22,7 +22,5 @@ describe("endpoint-media POST /media", () => {
     assert.equal(result.body.error_description, "Missing parameter: `url`");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

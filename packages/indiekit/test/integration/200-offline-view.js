@@ -15,7 +15,5 @@ describe("indiekit GET /offline", () => {
     assert.equal(result.type, "text/html");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

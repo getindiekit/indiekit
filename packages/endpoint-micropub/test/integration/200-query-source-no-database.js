@@ -7,7 +7,7 @@ import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
 await mockAgent("endpoint-micropub");
-const server = await testServer({ mongodbUrl: false });
+const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-micropub GET /micropub?q=source", () => {
@@ -21,7 +21,5 @@ describe("endpoint-micropub GET /micropub?q=source", () => {
     assert.deepEqual(result.body.items, []);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

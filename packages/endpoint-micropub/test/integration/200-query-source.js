@@ -1,13 +1,17 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
 await mockAgent("endpoint-micropub");
-const server = await testServer();
+const { client, mongoServer, mongoUri } = await testDatabase();
+const server = await testServer({
+  application: { mongodbUrl: mongoUri },
+});
 const request = supertest.agent(server);
 
 describe("endpoint-micropub GET /micropub?q=source", () => {
@@ -36,7 +40,9 @@ describe("endpoint-micropub GET /micropub?q=source", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

@@ -17,7 +17,5 @@ describe("indiekit GET /session/login", () => {
     assert.equal(result, "Anmelden - Test configuration");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

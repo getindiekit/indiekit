@@ -7,30 +7,31 @@ import { testCookie } from "@indiekit-test/session";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
 
-await mockAgent("endpoint-micropub");
-const server = await testServer();
+await mockAgent("endpoint-posts");
+const server = await testServer({
+  application: {
+    micropubEndpoint: "https://401-post-upload-unauthorized.example",
+  },
+});
 const request = supertest.agent(server);
 
-describe("endpoint-posts POST /posts/create", () => {
-  it("Returns 500 error creating post", async () => {
+describe("endpoint-files POST /posts/create", () => {
+  it("Returns 401 error creating post", async () => {
     const response = await request
       .post("/posts/create")
       .type("form")
       .set("cookie", testCookie())
       .send({ type: "entry" })
       .send({ content: "Foobar" })
-      .send({ published: "2023-08-28T12:30" })
-      .send({ slug: "401" });
+      .send({ published: "2023-08-28T12:30" });
     const dom = new JSDOM(response.text);
     const result = dom.window.document.querySelector(
       `notification-banner[type="error"] p`,
     ).textContent;
 
-    assert.equal(response.status, 500);
-    assert.match(result, /\bTest store: Unauthorized\b/g);
+    assert.equal(response.status, 401);
+    assert.match(result, /Unauthorized/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

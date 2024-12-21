@@ -10,6 +10,13 @@ export const testConfig = async (options) => {
 
   // Configure custom note post type with date-less URL for easier testing
   const postTypes = {
+    bookmark: {
+      name: "Custom bookmark post type",
+      post: {
+        path: "src/content/bookmarks/{slug}.md",
+        url: "bookmarks/{slug}/",
+      },
+    },
     note: {
       name: "Custom note post type",
       post: {
@@ -35,7 +42,8 @@ export const testConfig = async (options) => {
       introspectionEndpoint: options?.application?.introspectionEndpoint,
       locale: options.locale,
       mediaEndpoint: options?.application?.mediaEndpoint,
-      mongodbUrl: options.mongodbUrl,
+      micropubEndpoint: options?.application?.micropubEndpoint,
+      mongodbUrl: options?.application?.mongodbUrl,
       name: "Test configuration",
       timeZone: "UTC",
       tokenEndpoint: options?.application?.tokenEndpoint,

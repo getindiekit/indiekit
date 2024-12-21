@@ -17,7 +17,5 @@ describe("indiekit GET /feed.jf2", () => {
     assert.deepEqual(result.body.children, []);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

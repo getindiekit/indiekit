@@ -1,13 +1,16 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
 await mockAgent("endpoint-syndicate");
+const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
+  application: { mongodbUrl: mongoUri },
   plugins: ["@indiekit/syndicator-mastodon"],
 });
 const request = supertest.agent(server);
@@ -24,7 +27,7 @@ describe("endpoint-syndicate POST /syndicate", () => {
       .send("mp-syndicate-to=https://mastodon.example/@username");
   });
 
-  it("Syndicates a URL and redirects", async () => {
+  it("Returns 403 error syndicating a URL", async () => {
     const result = await request
       .post("/syndicate")
       .set("accept", "application/json")
@@ -33,7 +36,7 @@ describe("endpoint-syndicate POST /syndicate", () => {
           url: "https://website.example/notes/foobar/",
           redirect_uri: "/posts/12345",
         },
-        token,
+        access_token: token,
       });
 
     assert.equal(result.status, 403);
@@ -43,7 +46,9 @@ describe("endpoint-syndicate POST /syndicate", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

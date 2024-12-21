@@ -27,7 +27,5 @@ describe("endpoint-micropub POST /micropub", () => {
     assert.match(result.body.success_description, /\bPost will be created\b/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

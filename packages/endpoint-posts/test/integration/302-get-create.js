@@ -18,7 +18,5 @@ describe("endpoint-posts GET /posts/create", () => {
     assert.match(result.text, /Found. Redirecting to \/posts/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

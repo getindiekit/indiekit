@@ -13,7 +13,7 @@ describe("indiekit", async () => {
 
   before(async () => {
     mock.method(console, "info", () => {});
-    const config = await testConfig({ mongodbUrl: mongoUri });
+    const config = await testConfig({ application: { mongodbUrl: mongoUri } });
     indiekit = await Indiekit.initialize({ config });
     await indiekit.connectMongodbClient();
   });

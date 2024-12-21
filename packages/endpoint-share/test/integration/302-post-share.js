@@ -24,7 +24,5 @@ describe("endpoint-share POST /share", () => {
     assert.equal(result.status, 302);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

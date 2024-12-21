@@ -1,12 +1,18 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
-const server = await testServer();
+await mockAgent("endpoint-media");
+const { client, mongoServer, mongoUri } = await testDatabase();
+const server = await testServer({
+  application: { mongodbUrl: mongoUri },
+});
 const request = supertest.agent(server);
 
 describe("endpoint-media POST /media", () => {
@@ -15,12 +21,12 @@ describe("endpoint-media POST /media", () => {
       .post("/media")
       .auth(testToken(), { type: "bearer" })
       .set("accept", "application/json")
-      .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
+      .attach("file", getFixture("file-types/video.mp4", false), "video.mp4");
 
     assert.equal(result.status, 501);
     assert.equal(
       result.body.error_description,
-      "No configuration provided for photo post type",
+      "No configuration provided for video post type",
     );
     assert.equal(
       result.body.error_uri,
@@ -28,7 +34,9 @@ describe("endpoint-media POST /media", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

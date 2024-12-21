@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it, mock } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
@@ -8,7 +9,9 @@ import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
 await mockAgent("endpoint-syndicate");
+const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
+  application: { mongodbUrl: mongoUri },
   plugins: [
     "@indiekit/syndicator-internet-archive",
     "@indiekit/syndicator-mastodon",
@@ -51,7 +54,9 @@ describe("endpoint-syndicate POST /syndicate", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

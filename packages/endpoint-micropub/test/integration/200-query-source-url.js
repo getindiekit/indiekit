@@ -1,13 +1,17 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
 await mockAgent("endpoint-micropub");
-const server = await testServer();
+const { client, mongoServer, mongoUri } = await testDatabase();
+const server = await testServer({
+  application: { mongodbUrl: mongoUri },
+});
 const request = supertest.agent(server);
 
 describe("endpoint-micropub GET /micropub?q=source&url=*", () => {
@@ -32,13 +36,15 @@ describe("endpoint-micropub GET /micropub?q=source&url=*", () => {
 
     assert.equal(result.body.type[0], "h-entry");
     assert.equal(result.body.properties.name[0], "Foobar");
-    assert.equal(result.body.properties["mp-slug"][0], "foobar");
+    assert.equal(result.body.properties.slug[0], "foobar");
     assert.equal(result.body.properties["post-type"][0], "note");
     assert.ok(result.body.properties.published[0]);
     assert.ok(result.body.properties.url[0]);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

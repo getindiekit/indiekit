@@ -6,7 +6,7 @@ import { testCookie } from "@indiekit-test/session";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
 
-const server = await testServer({ mongodbUrl: false });
+const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-posts GET /posts", () => {
@@ -25,7 +25,5 @@ describe("endpoint-posts GET /posts", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

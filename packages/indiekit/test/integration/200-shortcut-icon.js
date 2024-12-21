@@ -15,7 +15,5 @@ describe("indiekit GET /assets/shortcut-icon-96-tick.png", () => {
     assert.equal(result.type, "image/png");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

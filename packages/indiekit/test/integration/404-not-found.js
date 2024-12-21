@@ -17,7 +17,5 @@ describe("indiekit GET /not-found", () => {
     assert.equal(result.status, 404);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

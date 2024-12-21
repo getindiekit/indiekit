@@ -18,7 +18,5 @@ describe("endpoint-share GET /share", () => {
     assert.equal(result, "Share - Test configuration");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

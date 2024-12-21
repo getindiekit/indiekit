@@ -1,11 +1,15 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
-const server = await testServer();
+const { client, mongoServer, mongoUri } = await testDatabase();
+const server = await testServer({
+  application: { mongodbUrl: mongoUri },
+});
 const request = supertest.agent(server);
 
 describe("endpoint-media POST /media", () => {
@@ -26,7 +30,9 @@ describe("endpoint-media POST /media", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

@@ -23,7 +23,5 @@ describe("indiekit GET /status", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

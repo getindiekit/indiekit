@@ -1,41 +1,26 @@
 import { strict as assert } from "node:assert";
-import { after, before, describe, it } from "node:test";
+import { after, describe, it } from "node:test";
 
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { testServer } from "@indiekit-test/server";
-import { testToken } from "@indiekit-test/token";
-import { JSDOM } from "jsdom";
+import { testCookie } from "@indiekit-test/session";
 import supertest from "supertest";
 
-await mockAgent("endpoint-micropub");
-const server = await testServer();
+await mockAgent("endpoint-posts");
+const server = await testServer({
+  application: { micropubEndpoint: "https://micropub-endpoint.example" },
+});
 const request = supertest.agent(server);
 
 describe("endpoint-posts GET /posts/:uid/delete", () => {
-  before(async () => {
-    await request
-      .post("/micropub")
-      .auth(testToken({ scope: "create" }), { type: "bearer" })
-      .set("accept", "application/json")
-      .send("h=entry")
-      .send("name=Foobar");
-  });
-
   it("Redirects to post page if no delete permissions", async () => {
-    // Get post data by parsing list of posts and getting values from link
-    const postsResponse = await request.get("/posts");
-    const postsDom = new JSDOM(postsResponse.text);
-    const postLink = postsDom.window.document.querySelector(".card a");
-    const postId = postLink.href.split("/").pop();
-
-    // Confirm deletion page
-    const result = await request.get(`/posts/${postId}/delete`);
+    const result = await request
+      .get(`/posts/123/delete`)
+      .set("cookie", testCookie({ scope: "create" }));
 
     assert.equal(result.status, 302);
     assert.match(result.text, /Found. Redirecting to \/posts\/(.*)/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

@@ -14,7 +14,6 @@ const server = await testServer({
   publication: {
     me: "https://website.example",
   },
-  mongodbUrl: false,
 });
 const request = supertest.agent(server);
 
@@ -35,7 +34,5 @@ describe("endpoint-micropub GET /micropub?foo=bar", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

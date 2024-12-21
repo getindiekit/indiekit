@@ -10,38 +10,42 @@ export function mockClient() {
   agent.enableNetConnect(/(?:127\.0\.0\.1:\d{5})/);
 
   const mediaEndpointOrigin = "https://media-endpoint.example";
-  const mediaOrigin = "https://website.example/photo.jpg";
-  const mediaBadOrigin = "https://website.example/401.jpg";
+  const photoOrigin = "https://website.example/photo.jpg";
+  const photoBadOrigin = "https://website.example/401.jpg";
 
-  // Get source information for all items from external media endpoint
+  // Get source information for limited items from external media endpoint
   agent
     .get(mediaEndpointOrigin)
     .intercept({
-      path: /\/\?q=source/,
+      path: "/?q=source&limit=20",
     })
     .reply(200, {
       items: [
         {
           uid: "123",
-          url: "https://website.example/photo.jpg",
-        },
-        {
-          uid: "401",
-          url: "https://website.example/401.jpg",
+          url: photoOrigin,
         },
       ],
     })
     .persist();
 
-  // Get source information for single item from external media endpoint
+  // Get source information for all items from external media endpoint
   agent
     .get(mediaEndpointOrigin)
     .intercept({
-      path: /\/\?q=source&url=.+jpg/,
+      path: "/?q=source",
     })
-    .reply(200, (options) => {
-      const { searchParams } = new URL(options.path, options.origin);
-      return { url: searchParams.get("url") };
+    .reply(200, {
+      items: [
+        {
+          uid: "123",
+          url: photoOrigin,
+        },
+        {
+          uid: "401",
+          url: photoBadOrigin,
+        },
+      ],
     })
     .persist();
 
@@ -56,11 +60,11 @@ export function mockClient() {
       201,
       {
         success: "create",
-        success_description: mediaOrigin,
+        success_description: photoOrigin,
       },
       {
         headers: {
-          location: mediaOrigin,
+          location: photoOrigin,
         },
       },
     );
@@ -78,18 +82,18 @@ export function mockClient() {
   agent
     .get(mediaEndpointOrigin)
     .intercept({
-      path: `/?action=delete&url=${encodeURIComponent(mediaOrigin)}`,
+      path: `/?action=delete&url=${encodeURIComponent(photoOrigin)}`,
       method: "POST",
     })
     .reply(
       201,
       {
         success: "delete",
-        success_description: mediaOrigin,
+        success_description: photoOrigin,
       },
       {
         headers: {
-          location: mediaOrigin,
+          location: photoOrigin,
         },
       },
     );
@@ -98,7 +102,7 @@ export function mockClient() {
   agent
     .get(mediaEndpointOrigin)
     .intercept({
-      path: `/?action=delete&url=${encodeURIComponent(mediaBadOrigin)}`,
+      path: `/?action=delete&url=${encodeURIComponent(photoBadOrigin)}`,
       method: "POST",
     })
     .reply(401, {});

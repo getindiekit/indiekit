@@ -19,7 +19,5 @@ describe("endpoint-micropub GET /micropub?q=syndicate-to", () => {
     assert.ok(response.body["syndicate-to"]);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

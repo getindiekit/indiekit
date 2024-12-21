@@ -6,8 +6,10 @@ import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 import supertest from "supertest";
 
-await mockAgent("endpoint-micropub");
-const server = await testServer();
+await mockAgent("endpoint-posts");
+const server = await testServer({
+  application: { micropubEndpoint: "https://micropub-endpoint.example" },
+});
 const request = supertest.agent(server);
 
 describe("endpoint-posts POST /posts/create", () => {
@@ -24,7 +26,5 @@ describe("endpoint-posts POST /posts/create", () => {
     assert.match(result.text, /Found. Redirecting to \/posts\?success/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

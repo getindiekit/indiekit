@@ -27,7 +27,5 @@ describe("endpoint-files GET /files/:uid/delete", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

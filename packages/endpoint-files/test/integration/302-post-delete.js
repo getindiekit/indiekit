@@ -23,7 +23,5 @@ describe("endpoint-files POST /files/:uid/delete", () => {
     assert.match(result.text, /Found. Redirecting to \/files\?success/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

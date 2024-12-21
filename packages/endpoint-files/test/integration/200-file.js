@@ -24,7 +24,5 @@ describe("endpoint-files GET /files/:uid", () => {
     assert.equal(result, `photo.jpg - Test configuration`);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

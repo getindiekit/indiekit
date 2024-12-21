@@ -21,7 +21,5 @@ describe("endpoint-files GET /files/:uid", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

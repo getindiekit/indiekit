@@ -1,10 +1,13 @@
 import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
 import { testServer } from "@indiekit-test/server";
 import supertest from "supertest";
 
+const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
+  application: { mongodbUrl: mongoUri },
   plugins: ["@indiekit/endpoint-json-feed"],
 });
 const request = supertest.agent(server);
@@ -19,7 +22,9 @@ describe("endpoint-json-feed GET /feed.json", () => {
     assert.deepEqual(result.body.items, []);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
+  after(async () => {
+    await client.close();
+    await mongoServer.stop();
+    server.close((error) => process.exit(error ? 1 : 0));
   });
 });

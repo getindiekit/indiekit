@@ -31,7 +31,5 @@ describe("endpoint-files POST /files/upload", () => {
     assert.match(result, /Unauthorized/);
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

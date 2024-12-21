@@ -15,7 +15,5 @@ describe("indiekit GET /assets/app-[hash].css", () => {
     assert.equal(result.type, "text/css");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

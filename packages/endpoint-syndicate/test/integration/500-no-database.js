@@ -5,7 +5,7 @@ import { testServer } from "@indiekit-test/server";
 import { testToken } from "@indiekit-test/token";
 import supertest from "supertest";
 
-const server = await testServer({ mongodbUrl: false });
+const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-syndicate POST /syndicate", () => {
@@ -33,7 +33,5 @@ describe("endpoint-syndicate POST /syndicate", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

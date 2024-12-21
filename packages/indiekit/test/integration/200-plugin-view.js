@@ -12,7 +12,7 @@ const request = supertest.agent(server);
 describe("indiekit GET /plugins/endpoint-micropub", () => {
   it("Returns installed plug-in detail page", async () => {
     const response = await request
-      .get("/plugins/endpoint-micropub")
+      .get("/plugins/@indiekit-endpoint-micropub")
       .auth(testToken(), { type: "bearer" });
     const dom = new JSDOM(response.text);
     const result = dom.window.document;
@@ -23,7 +23,5 @@ describe("indiekit GET /plugins/endpoint-micropub", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

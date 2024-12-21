@@ -13,14 +13,19 @@ const server = await testServer({
 });
 const request = supertest.agent(server);
 
-describe("endpoint-posts GET /posts", () => {
-  it("Returns list of published posts", async () => {
-    const response = await request.get("/posts").set("cookie", testCookie());
+describe("endpoint-files POST /posts/:uid/delete", () => {
+  it("Returns 401 error deleting post", async () => {
+    const response = await request
+      .post(`/posts/401/delete`)
+      .set("cookie", testCookie())
+      .send({ url: "https://website.example/401" });
     const dom = new JSDOM(response.text);
-    const result =
-      dom.window.document.querySelector(".card__title a").textContent;
+    const result = dom.window.document.querySelector(
+      `notification-banner[type="error"] p`,
+    ).textContent;
 
-    assert.equal(result.includes("Foobar"), true);
+    assert.equal(response.status, 401);
+    assert.match(result, /Unauthorized/);
   });
 
   after(() => server.close());

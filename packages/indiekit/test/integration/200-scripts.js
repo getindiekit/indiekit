@@ -15,7 +15,5 @@ describe("indiekit GET /assets/app-[hash].js", () => {
     assert.equal(result.type, "text/javascript");
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });

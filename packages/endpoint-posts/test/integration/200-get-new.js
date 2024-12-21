@@ -23,7 +23,5 @@ describe("endpoint-posts GET /posts/new", () => {
     );
   });
 
-  after(() => {
-    server.close(() => process.exit(0));
-  });
+  after(() => server.close());
 });
