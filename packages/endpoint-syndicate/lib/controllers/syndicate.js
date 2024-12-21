@@ -9,9 +9,9 @@ export const syndicateController = {
       const { application, publication } = request.app.locals;
       const bearerToken = findBearerToken(request);
       const sourceUrl =
-        request.query.source_url || request.body.syndication?.source_url;
+        request.query.source_url || request.body?.syndication?.source_url;
       const redirectUri =
-        request.query.redirect_uri || request.body.syndication?.redirect_uri;
+        request.query.redirect_uri || request.body?.syndication?.redirect_uri;
 
       const postsCollection = application?.collections?.get("posts");
       if (!postsCollection) {
