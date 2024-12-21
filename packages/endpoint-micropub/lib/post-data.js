@@ -41,7 +41,7 @@ export const postData = {
 
     // Get post type configuration
     const typeConfig = postTypes[type];
-    if (!typeConfig) {
+    if (!typeConfig || !typeConfig.post?.path) {
       throw IndiekitError.notImplemented(type);
     }
 
@@ -53,7 +53,7 @@ export const postData = {
       publication,
     );
     const url = await renderPath(
-      typeConfig.post.url,
+      typeConfig.post.url || typeConfig.post.path,
       properties,
       application,
       publication,
