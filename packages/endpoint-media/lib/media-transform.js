@@ -7,6 +7,11 @@ import sharp from "sharp";
  * @returns {Promise<object>} Media file
  */
 export const mediaTransform = async (imageProcessing, file) => {
+  // Function currently only supports transforming images
+  if (!file.mimetype.includes("image/")) {
+    return file;
+  }
+
   const { resize } = imageProcessing;
 
   file.data = await sharp(file.data).rotate().resize(resize).toBuffer();
