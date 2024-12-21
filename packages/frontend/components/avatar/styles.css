@@ -1,0 +1,23 @@
+.avatar {
+  background:
+    radial-gradient(
+        circle,
+        var(--color-offset-variant-darker) 50%,
+        transparent 50%
+      )
+      50% 20%/75% 75% no-repeat,
+    radial-gradient(
+        circle,
+        var(--color-offset-variant-darker) 50%,
+        transparent 50%
+      )
+      50% -50%/100% 160% no-repeat,
+    var(--color-offset);
+  block-size: var(--avatar-size, 3rem);
+  border-radius: var(--border-radius-small);
+  inline-size: var(--avatar-size, 3rem);
+  max-inline-size: none;
+  object-fit: cover;
+  outline: var(--border-width-thin) solid var(--color-shadow);
+  outline-offset: calc(var(--border-width-thin) * -1);
+}
