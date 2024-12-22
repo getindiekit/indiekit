@@ -1,0 +1,20 @@
+.user {
+  align-items: center;
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.user__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.user__name {
+  font: var(--user-name-font, var(--font-label));
+}
+
+.user__meta {
+  color: var(--color-on-offset);
+  font: var(--font-caption);
+}

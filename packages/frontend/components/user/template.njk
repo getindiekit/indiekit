@@ -1,0 +1,15 @@
+{% from "../avatar/macro.njk" import avatar with context %}
+<div class="{{ classes("user", opts) }}">
+  {{ avatar(opts.avatar) if opts.avatar }}
+
+  <div class="user__body">
+  {% if opts.url %}
+    <a class="user__name" href="{{ opts.url }}">{{- opts.name | safe -}}</a>
+  {% else %}
+    <span class="user__name">{{- opts.name | safe -}}</span>
+  {% endif %}
+  {% if opts.meta %}
+    <span class="user__meta">{{ opts.meta | safe }}</span>
+  {% endif %}
+  </div>
+</div>
