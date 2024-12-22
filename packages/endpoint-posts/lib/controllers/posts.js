@@ -1,6 +1,7 @@
 import path from "node:path";
 
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { excerpt } from "@indiekit/util";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 
 import { endpoint } from "../endpoint.js";
@@ -42,7 +43,10 @@ export const postsController = async (request, response, next) => {
         item.icon = item["post-type"];
         item.locale = application.locale;
         item.photo = getPhotoUrl(publication, item);
-        item.description = item.summary || item.content?.text;
+        item.description =
+          item.summary ||
+          (item.content?.text &&
+            excerpt(item.content.text, 30, publication.locale));
         item.title = getPostName(publication, item);
         item.url = path.join(request.baseUrl, request.path, item.uid);
         item.badges = getPostStatusBadges(item, response);
