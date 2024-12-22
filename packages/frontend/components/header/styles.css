@@ -25,7 +25,7 @@ body:not(.app--minimalui) .header {
   box-shadow: var(--header-shadow);
   inset-block-start: 0;
   position: sticky;
-  z-index: 1;
+  z-index: 99;
 
   @supports not (backdrop-filter: blur()) {
     -webkit-backdrop-filter: blur(16px);
