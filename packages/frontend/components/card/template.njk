@@ -17,7 +17,7 @@
     </h{{ headingLevel }}>
     {{ prose({
       classes: "card__meta",
-      text: opts.description | markdown | striptags | excerpt(30, publication.locale)
+      text: opts.description | markdown | striptags
     }) | indent(4) if opts.description }}
     {% if opts.published or opts.badges %}
     <footer class="card__footer">
