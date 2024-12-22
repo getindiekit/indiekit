@@ -23,7 +23,8 @@
     {% endif %}
     {{ prose({
       classes: "card__meta",
-      text: opts.description | markdown | striptags
+      text: opts.description.text,
+      html: opts.description.html
     }) | indent(4) if opts.description }}
     {% if opts.published or opts.badges %}
     <footer class="card__footer">

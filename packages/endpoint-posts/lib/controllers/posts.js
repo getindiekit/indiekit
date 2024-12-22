@@ -43,10 +43,12 @@ export const postsController = async (request, response, next) => {
         item.icon = item["post-type"];
         item.locale = application.locale;
         item.photo = getPhotoUrl(publication, item);
-        item.description =
-          item.summary ||
-          (item.content?.text &&
-            excerpt(item.content.text, 30, publication.locale));
+        item.description = {
+          text:
+            item.summary ||
+            (item.content?.text &&
+              excerpt(item.content.text, 30, publication.locale)),
+        };
         item.title = getPostName(publication, item);
         item.url = path.join(request.baseUrl, request.path, item.uid);
         item.badges = getPostStatusBadges(item, response);

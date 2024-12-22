@@ -42,6 +42,11 @@
   margin-block-start: 0;
   min-inline-size: 67%;
   padding: var(--card-space, var(--space-s));
+
+  a:not([rel="bookmark"]) {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .card__title {
