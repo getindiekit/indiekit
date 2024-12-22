@@ -1,4 +1,4 @@
-import { getDate, md5, slugify } from "@indiekit/util";
+import { excerpt, getDate, md5, slugify } from "@indiekit/util";
 import {
   fetchReferences,
   mf2tojf2,
@@ -7,12 +7,7 @@ import {
 
 import { markdownToHtml, htmlToMarkdown } from "./markdown.js";
 import { reservedProperties } from "./reserved-properties.js";
-import {
-  decodeQueryParameter,
-  excerptString,
-  relativeMediaPath,
-  toArray,
-} from "./utils.js";
+import { decodeQueryParameter, relativeMediaPath, toArray } from "./utils.js";
 
 /**
  * Create JF2 object from form-encoded request
@@ -286,7 +281,7 @@ export const getSlugProperty = (properties, separator) => {
   if (suggested) {
     string = suggested;
   } else if (name) {
-    string = excerptString(name, 5);
+    string = excerpt(name, 5);
   } else {
     string = md5(published).slice(0, 5);
   }

@@ -3,7 +3,6 @@ import { before, describe, it, mock } from "node:test";
 
 import {
   decodeQueryParameter,
-  excerptString,
   getPostTemplateProperties,
   relativeMediaPath,
   renderPath,
@@ -27,12 +26,6 @@ describe("endpoint-media/lib/utils", () => {
       "https://foo.bar",
     );
     assert.equal(decodeQueryParameter("foo+bar"), "foo bar");
-  });
-
-  it("Excerpts the first n words from a string", () => {
-    const result = excerptString("The quick fox jumped over the lazy fox", 5);
-
-    assert.equal(result, "The quick fox jumped over");
   });
 
   it("Gets post template properties", () => {

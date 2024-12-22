@@ -29,20 +29,6 @@ export const decodeQueryParameter = (value) => {
 };
 
 /**
- * Excerpt the first n words from a string
- * @param {string} string - String to excerpt
- * @param {number} n - Max number of words
- * @returns {string|undefined} Excerpt
- * @example excerptString('Foo bar baz', 2) => 'Foo bar'
- */
-export const excerptString = (string, n) => {
-  if (typeof string === "string") {
-    const excerpt = string.split(/\s+/).slice(0, n).join(" ");
-    return excerpt;
-  }
-};
-
-/**
  * Get post template properties
  * @param {object} properties - JF2 properties
  * @returns {object} Template properties
