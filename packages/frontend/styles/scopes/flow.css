@@ -29,7 +29,7 @@
     font: var(--font-label);
   }
 
-  & *:has(+ h2, + h3, + h4):not([class]) {
+  & *:has(+ h2, + h3, + h4):not([class]):not(:first-child) {
     margin-block-start: calc(var(--flow-space) * 2);
   }
 
