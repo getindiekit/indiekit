@@ -48,7 +48,7 @@
   font: var(--card-title-font, var(--font-subhead));
 }
 
-.card__title a {
+.card a[rel="bookmark"] {
   &::before {
     border-radius: var(--border-radius-small);
     content: "";
