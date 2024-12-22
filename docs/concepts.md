@@ -4,7 +4,7 @@ Several terms are used throughout Indiekit’s documentation.
 
 ## Content store
 
-A content store is a location where Indiekit can save post content and media files. This could be a Git repository, an FTP server or even a database. A content store plug-in provides this functionality.
+A content store is a location where Indiekit can save post content and media files. This could be a Git repository, an FTP server or even a database. [Content store plug-ins](plugins/stores/index.md) add support for different services.
 
 For example, if you are saving your posts to the file system, install the [file system store](https://npmjs.org/package/@indiekit/store-file-system):
 
@@ -38,7 +38,7 @@ export default {
 
 ## Endpoint
 
-An endpoint is a path on your Indiekit server that applications can send requests to or users can access certain features at.
+An endpoint is a path on your Indiekit server that applications can send requests to or users can access certain features at. [Endpoint plug-ins](plugins/endpoints/index.md) add different features.
 
 By default Indiekit provides the following endpoints:
 
@@ -54,11 +54,11 @@ By default Indiekit provides the following endpoints:
 
 ## Post type
 
-A post type is used to identify a type of content based on common definitions agreed by the IndieWeb community.
+A post type is used to identify a type of content based on common definitions agreed by the IndieWeb community. [Post type plug-ins](plugins/post-types/index.md) add support for different post types.
 
 Common post types include notes, articles, photos, replies and likes. A [full list of post types](https://indieweb.org/Category:PostType) can be found on the IndieWeb wiki.
 
-By default Indiekit supports creating the following post types:
+By default Indiekit supports the following post types:
 
 | Post type    | Functionality                                               |
 | ------------ | ----------------------------------------------------------- |
@@ -79,7 +79,7 @@ Indiekit needs to know what [post types](https://indieweb.org/posts#Types_of_Pos
 
 This information can be provided by setting the `publication.postTypes` and `publication.postTemplate` configuration values. See customising [post types](configuration/post-types.md) and [post template](configuration/post-template.md).
 
-A publication preset plug-in provides default values for these 2 options (which you can then override).
+[Publication preset plug-ins](plugins/presets/index.md) add default values for these 2 options (which you can then override).
 
 For example, if you use the Hugo static site generator, you can install the [Hugo publication preset](plugins/presets/hugo.md):
 
@@ -113,9 +113,9 @@ export default {
 
 ## Syndication
 
-Indiekit can be setup to share posts on other social networks, a process sometimes called syndication or [cross-posting](https://indieweb.org/cross-posting).
+Indiekit can be setup to share posts on other social networks, a process sometimes called syndication or [cross-posting](https://indieweb.org/cross-posting). [Syndicator plug-ins](plugins/syndicators/index.md) add support for different services.
 
-Syndicator plug-ins provide this functionality. For example, if you want to syndicate your content to Mastodon, you can install the [Mastodon syndicator](plugins/syndicators/mastodon.md):
+For example, if you want to syndicate your content to Mastodon, you can install the [Mastodon syndicator](plugins/syndicators/mastodon.md):
 
 ```sh
 npm install @indiekit/syndicator-mastodon
