@@ -3,6 +3,7 @@ import { Buffer } from "node:buffer";
 import { describe, it } from "node:test";
 
 import {
+  excerpt,
   md5,
   randomString,
   sha1,
@@ -11,6 +12,11 @@ import {
 } from "../../lib/string.js";
 
 describe("util/lib/string", () => {
+  it("Excerpts a string", () => {
+    assert.equal(excerpt("Well, well, well!", 1), "Well…");
+    assert.equal(excerpt("Well, indeed."), "Well, indeed.");
+  });
+
   it("Generates MD5 hashed string", () => {
     const result = md5("foo");
 
