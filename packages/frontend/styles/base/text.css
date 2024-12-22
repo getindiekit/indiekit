@@ -54,7 +54,7 @@ sup {
   inset-block-start: -0.5em;
 }
 
-time {
+footer time {
   font-family: var(--font-family-monospace);
   letter-spacing: -0.025em;
   word-spacing: -0.25em;
