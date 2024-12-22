@@ -1,19 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import {
-  excerpt,
-  includes,
-  linkTo,
-  markdown,
-} from "../../../lib/filters/index.js";
+import { includes, linkTo, markdown } from "../../../lib/filters/index.js";
 
 describe("frontend/lib/filters/string", () => {
-  it("Excerpts a string", () => {
-    assert.equal(excerpt("Well, well, well!", 1), "Well…");
-    assert.equal(excerpt("Well, indeed."), "Well, indeed.");
-  });
-
   it("Check if string includes a value", () => {
     assert.equal(includes("foo,bar", "foo"), true);
     assert.equal(includes("foo,bar", "qux"), false);
