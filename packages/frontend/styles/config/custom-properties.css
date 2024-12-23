@@ -140,6 +140,7 @@ html {
   --space-m: clamp(0.75rem, 0.625rem + 0.625vw, 1rem); /* 12 → 16 */
   --space-l: clamp(1rem, 0.75rem + 1.25vw, 1.5rem); /* 16 → 24 */
   --space-xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem); /* 24 → 32 */
+  --space-2xl: clamp(2rem, 1.5rem + 2vw, 4rem); /* 32 → 64 */
 
   /* Layout */
   --container-padding-inline: var(--space-l);
