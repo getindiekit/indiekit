@@ -1,0 +1,9 @@
+.mention {
+  display: grid;
+  gap: var(--space-s);
+  max-inline-size: var(--line-measure);
+
+  + .mention {
+    margin-block-start: var(--space-2xl);
+  }
+}

@@ -336,6 +336,26 @@
   src: "/assets/icon.svg"
 }) }}
 
+<h2><code>mention</code></h2>
+
+{{ mention({
+  user: {
+    avatar: {},
+    name: "Joe Bloggs",
+    url: "#",
+    meta: "bookmarked https://getindiekit.com" | safe | urlize
+  },
+  mention: {
+    title: "Indiekit",
+    icon: "bookmark",
+    description: {
+      text: "Meet the little Node.js server with all the parts needed to publish content to your personal website and share it on social networks."
+    },
+    permalink: "#",
+    published: "2024-12-24T18:15"
+  }
+}) }}
+
 <h2><code>navigation</code></h2>
 
 {{ navigation({

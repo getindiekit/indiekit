@@ -1,0 +1,6 @@
+{% from "../card/macro.njk" import card with context %}
+{% from "../user/macro.njk" import user with context %}
+<div class="{{ classes("mention", opts) }}">
+  {{ user(opts.user) }}
+  {{ card(opts.mention) }}
+</div>
