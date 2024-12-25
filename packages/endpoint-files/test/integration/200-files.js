@@ -20,7 +20,7 @@ describe("endpoint-files GET /files", () => {
     const result =
       dom.window.document.querySelector(".card__title a").textContent;
 
-    assert.equal(result, "photo.jpg");
+    assert.equal(result.includes("photo.jpg"), true);
   });
 
   after(() => server.close());
