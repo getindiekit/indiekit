@@ -7,13 +7,14 @@ export const list = (request, response) => {
 
   const plugins = [...installedPlugins].map((plugin) => {
     const _package = getPackageData(plugin.filePath);
+
     plugin.photo = {
       srcOnError: "/assets/plug-in.svg",
       attributes: { height: 96, width: 96 },
       url: `/assets/${plugin.id}/icon.svg`,
     };
     plugin.title = plugin.name;
-    plugin.description = _package.description;
+    plugin.description = { text: _package.description };
     plugin.url = `/plugins/${plugin.id}`;
 
     return plugin;
