@@ -147,6 +147,10 @@ const sidebarPlugins = [
         text: "Syndicate",
         link: "/plugins/endpoints/syndicate",
       },
+      {
+        text: "Webmention.io",
+        link: "/plugins/endpoints/webmention-io",
+      },
     ],
   },
   {

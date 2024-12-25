@@ -16,3 +16,4 @@ An [endpoint](../../concepts#endpoint) is a path on your Indiekit server that ap
 ## Official plug-ins
 
 - [JSON Feed](json-feed.md) `@indiekit/endpoint-json-feed`
+- [Webmention.io](webmention-io.md) `@indiekit/endpoint-webmention-io`
