@@ -1,9 +1,4 @@
-import {
-  dateTokens,
-  formatDate,
-  getTimeZoneDesignator,
-  supplant,
-} from "@indiekit/util";
+import { dateTokens, formatDate, supplant } from "@indiekit/util";
 import newbase60 from "newbase60";
 
 import { mediaTypeCount } from "./media-type-count.js";
@@ -32,15 +27,15 @@ export const getMediaProperties = (mediaData) => {
  */
 export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
-  const serverTimeZone = getTimeZoneDesignator();
-  const { locale, timeZone } = application;
+  const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
   let tokens = {};
 
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = formatDate(properties.published, dateToken, {
-      locale,
-      timeZone: timeZone === "server" ? serverTimeZone : timeZone,
+      locale: application.locals,
+      timeZone:
+        application.timeZone === "server" ? timeZone : application.timeZone,
       useAdditionalDayOfYearTokens: true,
     });
   }

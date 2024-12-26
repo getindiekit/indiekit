@@ -88,8 +88,8 @@ export const getDate = (setting, dateString = "") => {
   const dateTime = dateString ? new Date(dateString) : new Date();
 
   // Desired time zone
-  const serverTimeZone = getTimeZoneDesignator();
-  const outputTimeZone = setting === "server" ? serverTimeZone : setting;
+  const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+  const outputTimeZone = setting === "server" ? timeZone : setting;
 
   // Short dates, i.e. 2019-02-01
   // Don’t covert dates without a given time
