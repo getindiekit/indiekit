@@ -2,11 +2,7 @@ import path from "node:path";
 
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
-import {
-  getTimeZoneDesignator,
-  getTimeZoneOffset,
-  sanitise,
-} from "@indiekit/util";
+import { formatLocalToZonedDate, sanitise } from "@indiekit/util";
 import { validationResult } from "express-validator";
 
 import { endpoint } from "../endpoint.js";
@@ -67,12 +63,7 @@ export const formController = {
         delete values.published;
       } else {
         // Add timezone designator to local date value
-        const timeZoneOffsetMinutes = getTimeZoneOffset(
-          timeZone,
-          values.published,
-        );
-        const timeZoneDesignator = getTimeZoneDesignator(timeZoneOffsetMinutes);
-        values.published = values.published + timeZoneDesignator;
+        values.published = formatLocalToZonedDate(values.published, timeZone);
       }
 
       // Convert media values object to Array
