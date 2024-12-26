@@ -28,7 +28,9 @@
     },
     headingLevel: 3,
     title: target.name,
-    description: target.info.uid,
+    description: {
+      text: target.info.uid
+    },
     url: "/plugins/" + target.id
   }) }}
 {% endfor %}
@@ -119,7 +121,9 @@
             },
             headingLevel: 3,
             title: publication.store.name,
-            description: publication.store.info.uid,
+            description: {
+              text: publication.store.info.uid
+            },
             url: "/plugins/" + publication.store.id
           })
         }
@@ -136,7 +140,9 @@
             },
             headingLevel: 3,
             title: publication.mediaStore.name,
-            description: publication.mediaStore.info.uid,
+            description: {
+              text: publication.mediaStore.info.uid
+            },
             url: "/plugins/" + publication.mediaStore.id
           })
         }
