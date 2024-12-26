@@ -1,7 +1,7 @@
 export {
   excerpt,
   formatDate as date,
-  formatDateToLocal as localDate,
+  formatZonedToLocalDate as localDate,
   getCanonicalUrl as url,
   slugify,
 } from "@indiekit/util";

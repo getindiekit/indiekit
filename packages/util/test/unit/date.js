@@ -5,7 +5,8 @@ import { isValid, parseISO } from "date-fns";
 
 import {
   formatDate,
-  formatDateToLocal,
+  formatZonedToLocalDate,
+  formatLocalToZonedDate,
   getDate,
   getTimeZoneDesignator,
   getTimeZoneOffset,
@@ -36,17 +37,30 @@ describe("util/lib/date", () => {
     assert.equal(result, now);
   });
 
-  it("Formats a date as local date", () => {
-    const tz1 = formatDateToLocal("2019-11-30T12:30:00+01:00", "Asia/Taipei");
-    const tz2 = formatDateToLocal(
+  it("Formats zoned date as local date", () => {
+    const tz1 = formatZonedToLocalDate(
+      "2019-11-30T12:30:00+01:00",
+      "Asia/Taipei",
+    );
+    const tz2 = formatZonedToLocalDate(
       "2019-11-30T12:30:00+01:00",
       "America/Panama",
     );
-    const utc = formatDateToLocal("2019-11-30T12:30:00+01:00", "UTC");
+    const utc = formatZonedToLocalDate("2019-11-30T12:30:00+01:00", "UTC");
 
     assert.equal(tz1, "2019-11-30T19:30");
     assert.equal(tz2, "2019-11-30T06:30");
     assert.equal(utc, "2019-11-30T11:30");
+  });
+
+  it("Formats local date to zoned date", () => {
+    const tz1 = formatLocalToZonedDate("2019-11-30T12:30:00", "Asia/Taipei");
+    const tz2 = formatLocalToZonedDate("2019-11-30T12:30:00", "America/Panama");
+    const utc = formatLocalToZonedDate("2019-11-30T12:30:00", "UTC");
+
+    assert.equal(tz1, "2019-11-30T12:30:00+08:00");
+    assert.equal(tz2, "2019-11-30T12:30:00-05:00");
+    assert.equal(utc, "2019-11-30T12:30:00Z");
   });
 
   it("Creates UTC datetime from `client`", () => {

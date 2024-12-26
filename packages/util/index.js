@@ -2,7 +2,8 @@ export { getCursor, getObjectId } from "./lib/collection.js";
 export {
   dateTokens,
   formatDate,
-  formatDateToLocal,
+  formatZonedToLocalDate,
+  formatLocalToZonedDate,
   getDate,
   getTimeZoneDesignator,
   getTimeZoneOffset,

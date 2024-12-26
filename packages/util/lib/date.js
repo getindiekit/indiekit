@@ -53,18 +53,32 @@ export const formatDate = (string, tokens, options = {}) => {
 };
 
 /**
- * Format a date as local date
+ * Formats zoned date as local date
  * Used to convert date to value consumable by input[type="datetime-local"]
  * @param {Date|string|number} string - Zoned date, i.e. 2023-08-28T12:30+01:00
  * @param {string} timeZone - Time zone
  * @returns {string} Formatted local date, i.e. 2023-08-28T12:30
  */
-export const formatDateToLocal = (string, timeZone) => {
+export const formatZonedToLocalDate = (string, timeZone) => {
   const dateTime = format(string, "yyyy-MM-dd'T'HH:mm", {
     in: tz(timeZone),
   });
 
   return dateTime;
+};
+
+/**
+ * Format local date to zoned date
+ * @param {Date|string|number} string - Local date, i.e. 2023-08-28T12:30
+ * @param {string} timeZone - Time zone
+ * @returns {string} Zoned date, i.e. 2023-08-28T12:30+01:00
+ */
+export const formatLocalToZonedDate = (string, timeZone) => {
+  const formattedDateTime = format(string, "XXX", {
+    in: tz(timeZone),
+  });
+
+  return `${string}${formattedDateTime}`;
 };
 
 /**
