@@ -5,8 +5,6 @@ export {
   formatZonedToLocalDate,
   formatLocalToZonedDate,
   getDate,
-  getTimeZoneDesignator,
-  getTimeZoneOffset,
   isDate,
 } from "./lib/date.js";
 export { sanitise } from "./lib/object.js";

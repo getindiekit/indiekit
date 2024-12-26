@@ -8,8 +8,6 @@ import {
   formatZonedToLocalDate,
   formatLocalToZonedDate,
   getDate,
-  getTimeZoneDesignator,
-  getTimeZoneOffset,
   isDate,
 } from "../../lib/date.js";
 
@@ -197,30 +195,6 @@ describe("util/lib/date", () => {
     const result = getDate("UTC", "2020-01-02T12:00:00.000-04:00");
 
     assert.equal(result, "2020-01-02T16:00:00.000Z");
-  });
-
-  it("Gets server timezone offset from minutes", () => {
-    assert.equal(getTimeZoneDesignator(0), "+00:00");
-    assert.equal(getTimeZoneDesignator(150), "-02:30");
-    assert.equal(getTimeZoneDesignator(-300), "+05:00");
-  });
-
-  it("Gets server timezone offset from local time", () => {
-    process.env.TZ = "Asia/Taipei"; // Does not observe DST
-    assert.equal(getTimeZoneDesignator(), "+08:00");
-
-    process.env.TZ = "America/Panama"; // Does not observe DST
-    assert.equal(getTimeZoneDesignator(), "-05:00");
-
-    process.env.TZ = "UTC";
-    assert.equal(getTimeZoneDesignator(), "+00:00");
-  });
-
-  it("Gets offset minutes from time zone name", () => {
-    const date = new Date();
-    assert.equal(getTimeZoneOffset("Asia/Taipei", date), -480);
-    assert.equal(getTimeZoneOffset("America/Panama", date), 300);
-    assert.equal(getTimeZoneOffset("UTC", date), 0);
   });
 
   it("Check if a string can be parsed as a date", () => {

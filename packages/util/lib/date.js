@@ -1,4 +1,4 @@
-import { tz, tzOffset } from "@date-fns/tz";
+import { tz } from "@date-fns/tz";
 import { format, parseISO } from "date-fns";
 import * as locales from "date-fns/locale";
 
@@ -122,50 +122,6 @@ export const getDate = (setting, dateString = "") => {
   });
 
   return formattedDateTime;
-};
-
-/**
- * Get local time zone offset in hours and minutes
- * @param {number} [minutes] - Time zone offset in minutes
- * @returns {string} Local time zone designator, i.e. +05:30, -06:00 or Z
- */
-export const getTimeZoneDesignator = (minutes) => {
-  minutes = minutes || minutes === 0 ? minutes : new Date().getTimezoneOffset();
-  const hours = Math.abs(minutes / 60).toString();
-
-  const offsetHours = Number.parseInt(hours, 10);
-  const offsetMinutes = Math.abs(minutes % 60);
-
-  const hh = String(offsetHours).padStart(2, "0");
-  const mm = String(offsetMinutes).padStart(2, "0");
-
-  // Prepend positive/negative symbol to designator
-  // If offset minutes is 0, time zone is UTC, so use Z
-  let designator;
-  if (minutes < 0) {
-    designator = `+${hh}:${mm}`;
-  } else if (minutes > 0) {
-    designator = `-${hh}:${mm}`;
-  } else if (minutes === 0) {
-    designator = "+00:00";
-  }
-
-  return designator;
-};
-
-/**
- * Get offset minutes from time zone name
- * @param {string} timeZone - IANA tz timezone
- * @param {Date} date - Date time
- * @returns {number} Minutes offset from UTC
- */
-export const getTimeZoneOffset = (timeZone, date) => {
-  const minutes = tzOffset(timeZone, date);
-
-  // Ensure `tzOffset()` returns same value as
-  // `Date.prototype.getTimezoneOffset()`
-  const offset = minutes === 0 ? 0 : minutes * -1;
-  return offset;
 };
 
 /**
