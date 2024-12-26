@@ -49,7 +49,7 @@ Defaults to connection string provided in `process.env.MONGO_URL`.
 
 A number representing the port the application server should listen on.
 
-Defaults to `3000`.
+Defaults to `process.env.PORT`, else `3000`.
 
 ## `name`
 
