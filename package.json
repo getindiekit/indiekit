@@ -20,8 +20,8 @@
     "url": "https://github.com/getindiekit/indiekit.git"
   },
   "engines": {
-    "node": "^22",
-    "npm": "^10"
+    "node": ">=22",
+    "npm": ">=10"
   },
   "type": "module",
   "scripts": {
