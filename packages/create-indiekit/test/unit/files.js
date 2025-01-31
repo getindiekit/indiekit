@@ -1,4 +1,5 @@
 import { strict as assert } from "node:assert";
+import path from "node:path";
 import { describe, it, mock } from "node:test";
 
 import { getFileContents, getFiles } from "../../lib/files.js";
@@ -24,16 +25,17 @@ describe("create-indiekit/lib/files", () => {
   it("Gets files to create", async () => {
     const result = await getFiles({ me: "https://website.example" });
 
-    assert.deepEqual(result, [
-      {
-        path: "README.md",
-        contents: `# Indiekit server for https://website.example\n\nLearn more at <https://getindiekit.com>\n`,
-      },
-      {
-        path: ".gitignore",
-        contents: "node_modules/\n",
-      },
-    ]);
+    assert.deepEqual(result[0], {
+      path: "README.md",
+      contents: `# Indiekit server for https://website.example\n\nLearn more at <https://getindiekit.com>\n`,
+    });
+
+    assert.deepEqual(result[1], {
+      path: ".gitignore",
+      contents: "node_modules/\n",
+    });
+
+    assert.equal(result[2].path, path.join(".vscode", "launch.json"));
   });
 
   it("Gets files to create, including docker files", async () => {
@@ -42,8 +44,8 @@ describe("create-indiekit/lib/files", () => {
       useDocker: true,
     });
 
-    assert.equal(result[2].path, "docker-compose.yml");
-    assert.equal(result[3].path, "Dockerfile");
-    assert.equal(result[4].path, ".dockerignore");
+    assert.equal(result[3].path, "docker-compose.yml");
+    assert.equal(result[4].path, "Dockerfile");
+    assert.equal(result[5].path, ".dockerignore");
   });
 });
