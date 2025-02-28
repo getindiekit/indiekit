@@ -37,6 +37,7 @@
     "directory": "packages/preset-jekyll"
   },
   "dependencies": {
+    "@indiekit/plugin": "^1.0.0-beta.19",
     "plur": "^5.1.0",
     "snakecase-keys": "^8.0.0",
     "yaml": "^2.6.0"

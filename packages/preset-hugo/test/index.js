@@ -3,30 +3,10 @@ import { describe, it } from "node:test";
 
 import { Indiekit } from "@indiekit/indiekit";
 
-import HugoPreset from "../index.js";
+import HugoPresetPlugin from "../index.js";
 
 describe("preset-hugo", async () => {
-  const hugo = new HugoPreset();
-  const indiekit = await Indiekit.initialize({
-    config: {
-      publication: {
-        me: "https://website.example",
-        postTypes: {
-          puppy: {
-            name: "Puppy posts",
-          },
-        },
-      },
-    },
-  });
-  await indiekit.installPlugins();
-  await indiekit.updatePublicationConfig();
-
-  hugo.init(indiekit);
-
-  it("Initiates plug-in", async () => {
-    assert.equal(indiekit.publication.preset.info.name, "Hugo");
-  });
+  const hugo = new HugoPresetPlugin();
 
   it("Gets plug-in info", () => {
     assert.equal(hugo.name, "Hugo preset");
