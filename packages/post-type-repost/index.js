@@ -1,43 +1,30 @@
+import { IndiekitPostTypePlugin } from "@indiekit/plugin";
 import { isRequired } from "@indiekit/util";
 
-const defaults = {
-  name: "Repost",
-  fields: {
-    "repost-of": { required: true },
-    content: {},
-    category: {},
-    "post-status": {},
-    published: { required: true },
-    visibility: {},
-  },
-};
+export default class RepostPostTypePlugin extends IndiekitPostTypePlugin {
+  name = "Repost post type";
 
-export default class RepostPostType {
-  constructor(options = {}) {
-    this.name = "Repost post type";
-    this.options = { ...defaults, ...options };
-  }
+  postType = "repost";
 
-  get config() {
-    return {
-      name: this.options.name,
-      h: "entry",
-      fields: this.options.fields,
-    };
-  }
+  config = {
+    name: "Repost",
+    h: "entry",
+    fields: {
+      "repost-of": { required: true },
+      content: {},
+      category: {},
+      "post-status": {},
+      published: { required: true },
+      visibility: {},
+    },
+  };
 
-  get validationSchemas() {
-    return {
-      "repost-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "repost-of") },
-        isURL: true,
-      },
-    };
-  }
-
-  init(Indiekit) {
-    Indiekit.addPostType("repost", this);
-  }
+  validationSchemas = {
+    "repost-of": {
+      errorMessage: (value, { req }) =>
+        req.__(`posts.error.url.empty`, "https://example.org"),
+      exists: { if: (value, { req }) => isRequired(req, "repost-of") },
+      isURL: true,
+    },
+  };
 }

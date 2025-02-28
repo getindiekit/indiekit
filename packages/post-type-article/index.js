@@ -1,32 +1,22 @@
-const defaults = {
-  name: "Article",
-  fields: {
-    name: { required: true },
-    summary: {},
-    content: { required: true },
-    category: {},
-    geo: {},
-    "post-status": {},
-    published: { required: true },
-    visibility: {},
-  },
-};
+import { IndiekitPostTypePlugin } from "@indiekit/plugin";
 
-export default class ArticlePostType {
-  constructor(options = {}) {
-    this.name = "Article post type";
-    this.options = { ...defaults, ...options };
-  }
+export default class ArticlePostTypePlugin extends IndiekitPostTypePlugin {
+  name = "Article post type";
 
-  get config() {
-    return {
-      name: this.options.name,
-      h: "entry",
-      fields: this.options.fields,
-    };
-  }
+  postType = "article";
 
-  init(Indiekit) {
-    Indiekit.addPostType("article", this);
-  }
+  config = {
+    name: "Article",
+    h: "entry",
+    fields: {
+      name: { required: true },
+      summary: {},
+      content: { required: true },
+      category: {},
+      geo: {},
+      "post-status": {},
+      published: { required: true },
+      visibility: {},
+    },
+  };
 }

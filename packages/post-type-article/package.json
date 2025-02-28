@@ -32,6 +32,9 @@
     "url": "https://github.com/getindiekit/indiekit.git",
     "directory": "packages/post-type-article"
   },
+  "dependencies": {
+    "@indiekit/plugin": "^1.0.0-beta.19"
+  },
   "publishConfig": {
     "access": "public"
   }
