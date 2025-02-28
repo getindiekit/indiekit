@@ -57,6 +57,12 @@ export class IndiekitPlugin {
   prompts = undefined;
 
   /**
+   * Get validation schemas for form validation
+   * @type {import('express-validator').Schema} Form validation
+   */
+  validationSchemas = undefined;
+
+  /**
    * NPM package name
    * @type {string}
    */
@@ -101,6 +107,19 @@ export class IndiekitPlugin {
   }
 
   /**
+   * Add validation schemas
+   */
+  #addValidationSchemas() {
+    const validationSchemas = this.validationSchemas;
+    if (validationSchemas) {
+      for (const [field, schema] of Object.entries(validationSchemas)) {
+        debug("Adding validation schemas for", field);
+        this.indiekit.validationSchemas.set(field, schema);
+      }
+    }
+  }
+
+  /**
    * Initialize plug-in
    *
    * This method should be overridden by plug-in implementations to add
@@ -110,5 +129,6 @@ export class IndiekitPlugin {
    */
   async init() {
     debug(`Initiating ${this.#packageName}`);
+    this.#addValidationSchemas();
   }
 }
