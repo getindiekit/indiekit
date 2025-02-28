@@ -1,43 +1,30 @@
+import { IndiekitPostTypePlugin } from "@indiekit/plugin";
 import { isRequired } from "@indiekit/util";
 
-const defaults = {
-  name: "Like",
-  fields: {
-    "like-of": { required: true },
-    category: {},
-    content: {},
-    "post-status": {},
-    published: { required: true },
-    visibility: {},
-  },
-};
+export default class LikePostTypePlugin extends IndiekitPostTypePlugin {
+  name = "Like post type";
 
-export default class LikePostType {
-  constructor(options = {}) {
-    this.name = "Like post type";
-    this.options = { ...defaults, ...options };
-  }
+  postType = "like";
 
-  get config() {
-    return {
-      name: this.options.name,
-      h: "entry",
-      fields: this.options.fields,
-    };
-  }
+  config = {
+    name: "Like",
+    h: "entry",
+    fields: {
+      "like-of": { required: true },
+      category: {},
+      content: {},
+      "post-status": {},
+      published: { required: true },
+      visibility: {},
+    },
+  };
 
-  get validationSchemas() {
-    return {
-      "like-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "like-of") },
-        isURL: true,
-      },
-    };
-  }
-
-  init(Indiekit) {
-    Indiekit.addPostType("like", this);
-  }
+  validationSchemas = {
+    "like-of": {
+      errorMessage: (value, { req }) =>
+        req.__(`posts.error.url.empty`, "https://example.org"),
+      exists: { if: (value, { req }) => isRequired(req, "like-of") },
+      isURL: true,
+    },
+  };
 }

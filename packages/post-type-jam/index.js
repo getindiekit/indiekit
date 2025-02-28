@@ -1,56 +1,42 @@
+import { IndiekitPostTypePlugin } from "@indiekit/plugin";
 import { isRequired } from "@indiekit/util";
 
-const defaults = {
-  name: "Jam",
-  fields: {
-    "jam-of": { required: true },
-    content: {},
-    "post-status": {},
-    published: { required: true },
-  },
-};
+export default class JamPostTypePlugin extends IndiekitPostTypePlugin {
+  name = "Jam post type";
 
-export default class JamPostType {
-  constructor(options = {}) {
-    this.name = "Jam post type";
-    this.options = { ...defaults, ...options };
-  }
+  postType = "jam";
 
-  get config() {
-    return {
-      name: this.options.name,
-      h: "entry",
-      discovery: "jam-of",
-      fields: this.options.fields,
-    };
-  }
+  config = {
+    name: "Jam",
+    h: "entry",
+    discovery: "jam-of",
+    fields: {
+      "jam-of": { required: true },
+      content: {},
+      "post-status": {},
+      published: { required: true },
+    },
+  };
 
-  get validationSchemas() {
-    return {
-      "jam-of.url": {
-        errorMessage: (value, { req }) =>
-          req.__(
-            `posts.error.url.empty`,
-            "https://www.youtube.com/watch?v=g5nzLQ63c9E",
-          ),
-        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
-        isURL: true,
-      },
-      "jam-of.name": {
-        errorMessage: (value, { req }) => req.__(`posts.error.jam.name.empty`),
-        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
-        notEmpty: true,
-      },
-      "jam-of.author": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.jam.author.empty`),
-        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
-        notEmpty: true,
-      },
-    };
-  }
-
-  init(Indiekit) {
-    Indiekit.addPostType("jam", this);
-  }
+  validationSchemas = {
+    "jam-of.url": {
+      errorMessage: (value, { req }) =>
+        req.__(
+          `posts.error.url.empty`,
+          "https://www.youtube.com/watch?v=g5nzLQ63c9E",
+        ),
+      exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+      isURL: true,
+    },
+    "jam-of.name": {
+      errorMessage: (value, { req }) => req.__(`posts.error.jam.name.empty`),
+      exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+      notEmpty: true,
+    },
+    "jam-of.author": {
+      errorMessage: (value, { req }) => req.__(`posts.error.jam.author.empty`),
+      exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+      notEmpty: true,
+    },
+  };
 }
