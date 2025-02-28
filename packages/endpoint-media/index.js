@@ -1,5 +1,5 @@
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 import deepmerge from "deepmerge";
-import express from "express";
 
 import { actionController } from "./lib/controllers/action.js";
 import { queryController } from "./lib/controllers/query.js";
@@ -13,29 +13,38 @@ const defaults = {
   },
   mountPath: "/media",
 };
-const router = express.Router();
 
-export default class MediaEndpoint {
+export default class MediaEndpointPlugin extends IndiekitEndpointPlugin {
+  collection = "media";
+
+  name = "Micropub media endpoint";
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {object} [options.imageProcessing] - Image processing options
+   * @param {string} [options.mountPath] - Path to endpoint
+   */
   constructor(options = {}) {
-    this.name = "Micropub media endpoint";
+    super(options);
+
     this.options = deepmerge(defaults, options);
+
     this.mountPath = this.options.mountPath;
   }
 
   get routes() {
-    router.get("/", queryController);
-    router.post("/", actionController(this.options.imageProcessing));
+    this.router.get("/", queryController);
+    this.router.post("/", actionController(this.options.imageProcessing));
 
-    return router;
+    return this.router;
   }
 
-  init(Indiekit) {
-    Indiekit.addCollection("media");
-    Indiekit.addEndpoint(this);
+  async init() {
+    await super.init();
 
     // Only mount if media endpoint not already configured
-    if (!Indiekit.config.application.mediaEndpoint) {
-      Indiekit.config.application.mediaEndpoint = this.mountPath;
+    if (!this.indiekit.config.application.mediaEndpoint) {
+      this.indiekit.config.application.mediaEndpoint = this.mountPath;
     }
   }
 }

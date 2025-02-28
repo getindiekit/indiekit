@@ -1,20 +1,12 @@
-import express from "express";
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 
-const defaults = {
-  mountPath: "/frontend",
-};
+export default class FrontendEndpointPlugin extends IndiekitEndpointPlugin {
+  mountPath = "/frontend";
 
-const router = express.Router({ caseSensitive: true, mergeParams: true });
-
-export default class FrontendEndpoint {
-  constructor(options = {}) {
-    this.name = "Frontend endpoint";
-    this.options = { ...defaults, ...options };
-    this.mountPath = this.options.mountPath;
-  }
+  name = "Frontend endpoint";
 
   get routesPublic() {
-    router.get("/:page", (request, response) => {
+    this.router.get("/:page", (request, response) => {
       const { page } = request.params;
 
       response.render(`frontend-${page}`, {
@@ -22,7 +14,7 @@ export default class FrontendEndpoint {
       });
     });
 
-    router.post("/form", (request, response) => {
+    this.router.post("/form", (request, response) => {
       response.render(`frontend-form`, {
         title: `Frontend form (with errors)`,
         errors: {
@@ -34,10 +26,6 @@ export default class FrontendEndpoint {
       });
     });
 
-    return router;
-  }
-
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
+    return this.router;
   }
 }

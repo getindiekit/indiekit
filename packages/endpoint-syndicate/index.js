@@ -1,28 +1,36 @@
-import express from "express";
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 
 import { syndicateController } from "./lib/controllers/syndicate.js";
 
-const defaults = { mountPath: "/syndicate" };
-const router = express.Router();
+const defaults = {
+  mountPath: "/syndicate",
+};
 
-export default class SyndicateEndpoint {
+export default class SyndicateEndpointPlugin extends IndiekitEndpointPlugin {
+  name = "Syndication endpoint";
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.mountPath] - Path to endpoint
+   */
   constructor(options = {}) {
-    this.name = "Syndication endpoint";
+    super(options);
+
     this.options = { ...defaults, ...options };
+
     this.mountPath = this.options.mountPath;
   }
 
   get routesPublic() {
-    router.post("/", syndicateController.post);
+    this.router.post("/", syndicateController.post);
 
-    return router;
+    return this.router;
   }
 
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
+  async init() {
+    await super.init();
 
     // Use private value to register syndication endpoint path
-    Indiekit.config.application._syndicationEndpointPath =
-      this.options.mountPath;
+    this.indiekit.config.application._syndicationEndpointPath = this.mountPath;
   }
 }

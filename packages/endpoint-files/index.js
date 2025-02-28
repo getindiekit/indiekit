@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import express from "express";
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 
 import { deleteController } from "./lib/controllers/delete.js";
 import { fileController } from "./lib/controllers/file.js";
@@ -9,27 +9,32 @@ import { formController } from "./lib/controllers/form.js";
 import { fileData } from "./lib/middleware/file-data.js";
 import { validate } from "./lib/middleware/validation.js";
 
-const defaults = { mountPath: "/files" };
-const router = express.Router();
+const defaults = {
+  mountPath: "/files",
+};
 
-export default class FilesEndpoint {
+export default class FilesEndpointPlugin extends IndiekitEndpointPlugin {
+  name = "File management endpoint";
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.mountPath] - Path to endpoint
+   */
   constructor(options = {}) {
-    this.name = "File management endpoint";
-    this.options = { ...defaults, ...options };
-    this.mountPath = this.options.mountPath;
-  }
+    super(options);
 
-  get navigationItems() {
-    return {
-      href: this.options.mountPath,
+    this.options = { ...defaults, ...options };
+
+    this.mountPath = this.options.mountPath;
+
+    this.navigationItems = {
+      href: this.mountPath,
       text: "files.title",
       requiresDatabase: true,
     };
-  }
 
-  get shortcutItems() {
-    return {
-      url: path.join(this.options.mountPath, "upload"),
+    this.shortcutItems = {
+      url: path.join(this.mountPath, "upload"),
       name: "files.upload.action",
       iconName: "uploadFile",
       requiresDatabase: true,
@@ -37,22 +42,23 @@ export default class FilesEndpoint {
   }
 
   get routes() {
-    router.get("/", filesController);
+    this.router.get("/", filesController);
 
-    router.get("/upload", fileData.upload, formController.get);
-    router.post("/upload", fileData.upload, validate, formController.post);
+    this.router.get("/upload", fileData.upload, formController.get);
+    this.router.post("/upload", fileData.upload, validate, formController.post);
 
-    router.use("/:uid{/:action}", fileData.read);
-    router.get("/:uid", fileController);
+    this.router.use("/:uid{/:action}", fileData.read);
+    this.router.get("/:uid", fileController);
 
-    router.get("/:uid/delete", deleteController.get);
-    router.post("/:uid/delete", deleteController.post);
+    this.router.get("/:uid/delete", deleteController.get);
+    this.router.post("/:uid/delete", deleteController.post);
 
-    return router;
+    return this.router;
   }
 
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
-    Indiekit.config.application.filesEndpoint = this.mountPath;
+  async init() {
+    await super.init();
+
+    this.indiekit.config.application.filesEndpoint = this.mountPath;
   }
 }
