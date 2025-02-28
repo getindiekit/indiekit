@@ -51,11 +51,6 @@ export const Indiekit = class {
     this.validationSchemas = new Map();
   }
 
-  addPreset(preset) {
-    this.publication.preset = preset;
-    debug(`Added publication preset: ${preset.name}`);
-  }
-
   addStore(store) {
     this.stores.add(store);
     debug(`Added content store: ${store.name}`);
