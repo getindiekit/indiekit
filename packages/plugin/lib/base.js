@@ -39,6 +39,12 @@ export class IndiekitPlugin {
   }
 
   /**
+   * Database collection used by the plug-in
+   * @type {string}
+   */
+  collection = undefined;
+
+  /**
    * Environment variables (used when configuring Docker)
    * @type {string[]}
    */
@@ -107,6 +113,25 @@ export class IndiekitPlugin {
   }
 
   /**
+   * Add database collection
+   */
+  #addCollection() {
+    if (!this.collection) {
+      return;
+    }
+
+    if (this.indiekit.collections.has(this.collection)) {
+      console.warn(`Collection ‘${this.collection}’ already added`);
+    } else if (this.indiekit.database) {
+      this.indiekit.collections.set(
+        this.collection,
+        this.indiekit.database.collection(this.collection),
+      );
+      debug(`Added database collection: ${this.collection}`);
+    }
+  }
+
+  /**
    * Add validation schemas
    */
   #addValidationSchemas() {
@@ -129,6 +154,7 @@ export class IndiekitPlugin {
    */
   async init() {
     debug(`Initiating ${this.#packageName}`);
+    this.#addCollection();
     this.#addValidationSchemas();
   }
 }

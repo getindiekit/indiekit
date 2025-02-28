@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.15",
-    "debug": "^4.3.2"
+    "debug": "^4.3.2",
+    "express": "^5.0.0"
   },
   "peerDependencies": {
     "@indiekit/indiekit": "^1.0.0-beta.19"
