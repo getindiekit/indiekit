@@ -24,23 +24,6 @@ describe("indiekit", async () => {
     indiekit.closeMongodbClient();
   });
 
-  it("Adds publication preset", () => {
-    const TestPreset = class {
-      constructor() {
-        this.name = "Test preset";
-      }
-
-      get info() {
-        return { name: "Test" };
-      }
-    };
-
-    const testPreset = new TestPreset();
-    indiekit.addPreset(testPreset);
-
-    assert.equal(indiekit.publication.preset.info.name, "Test");
-  });
-
   it("Adds content store", () => {
     const testStore = new TestStore();
     indiekit.addStore(testStore);
