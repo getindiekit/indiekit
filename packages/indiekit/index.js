@@ -51,15 +51,6 @@ export const Indiekit = class {
     this.validationSchemas = new Map();
   }
 
-  addCollection(name) {
-    if (this.collections.has(name)) {
-      console.warn(`Collection ‘${name}’ already added`);
-    } else if (this.database) {
-      this.collections.set(name, this.database.collection(name));
-      debug(`Added database collection: ${name}`);
-    }
-  }
-
   addEndpoint(endpoint) {
     this.endpoints.add(endpoint);
     debug(`Added endpoint: ${endpoint.name}`);

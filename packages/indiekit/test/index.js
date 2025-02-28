@@ -24,21 +24,6 @@ describe("indiekit", async () => {
     indiekit.closeMongodbClient();
   });
 
-  it("Adds database collection", async () => {
-    indiekit.addCollection("test");
-
-    assert.equal(indiekit.collections.has("test"), true);
-  });
-
-  it("Doesn’t allow duplicate database collections", async () => {
-    mock.method(console, "warn", () => {});
-
-    indiekit.addCollection("test");
-    const result = console.warn.mock.calls[0].arguments[0];
-
-    assert.equal(result.includes(`Collection ‘test’ already added`), true);
-  });
-
   it("Adds endpoint", () => {
     const TestEndpoint = class {
       constructor() {
