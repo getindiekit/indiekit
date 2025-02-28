@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import express from "express";
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 
 import { jsonFeedController } from "./lib/controllers/json-feed.js";
 
@@ -8,27 +8,36 @@ const defaults = {
   feedName: "feed.json",
   mountPath: "/",
 };
-const router = express.Router();
 
-export default class jsonFeedEndpoint {
+export default class jsonFeedEndpointPlugin extends IndiekitEndpointPlugin {
+  name = "JSON Feed";
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.feedName] - File name
+   * @param {string} [options.mountPath] - Path to endpoint
+   */
   constructor(options = {}) {
-    this.name = "JSON Feed";
+    super(options);
+
     this.options = { ...defaults, ...options };
-    this.feedName = this.options.feedName;
+
     this.mountPath = this.options.mountPath;
   }
 
-  get routesPublic() {
-    router.get(`/${this.feedName}`, jsonFeedController);
-
-    return router;
+  get jsonFeedPath() {
+    return path.join(this.mountPath, this.options.feedName);
   }
 
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
-    Indiekit.config.application.jsonFeed = path.join(
-      this.mountPath,
-      this.feedName,
-    );
+  get routesPublic() {
+    this.router.get(this.jsonFeedPath, jsonFeedController);
+
+    return this.router;
+  }
+
+  async init() {
+    await super.init();
+
+    this.indiekit.config.application.jsonFeed = this.jsonFeedPath;
   }
 }
