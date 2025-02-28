@@ -24,19 +24,6 @@ describe("indiekit", async () => {
     indiekit.closeMongodbClient();
   });
 
-  it("Adds endpoint", () => {
-    const TestEndpoint = class {
-      constructor() {
-        this.name = "Test endpoint";
-      }
-    };
-
-    const testEndpoint = new TestEndpoint();
-    indiekit.addEndpoint(testEndpoint);
-
-    assert.equal([...indiekit.endpoints].at(-1).name, "Test endpoint");
-  });
-
   it("Adds publication preset", () => {
     const TestPreset = class {
       constructor() {
