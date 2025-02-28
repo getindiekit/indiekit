@@ -89,13 +89,6 @@ export const routes = (Indiekit) => {
 
   // Public and .well-known endpoints
   for (const endpoint of endpoints) {
-    // Internal routing
-    // Currently used for endpoint-image which requires configuration values
-    // to be passed on to express-sharp middleware
-    if (endpoint.mountPath && endpoint._routes) {
-      router.use(endpoint.mountPath, limit, endpoint._routes(Indiekit));
-    }
-
     if (endpoint.mountPath && endpoint.routesPublic) {
       router.use(endpoint.mountPath, limit, endpoint.routesPublic);
     }
