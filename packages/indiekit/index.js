@@ -65,23 +65,6 @@ export const Indiekit = class {
     debug(`Added endpoint: ${endpoint.name}`);
   }
 
-  addPostType(type, postType) {
-    if (postType.config) {
-      this.postTypes.set(type, {
-        ...this.postTypes.get(type),
-        ...postType.config,
-      });
-    }
-
-    if (postType.validationSchemas) {
-      for (const [field, schema] of Object.entries(
-        postType.validationSchemas,
-      )) {
-        this.validationSchemas.set(field, schema);
-      }
-    }
-  }
-
   addPreset(preset) {
     this.publication.preset = preset;
     debug(`Added publication preset: ${preset.name}`);
