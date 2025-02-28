@@ -64,7 +64,7 @@ export class IndiekitPlugin {
 
   /**
    * Get validation schemas for form validation
-   * @type {import('express-validator').Schema} Form validation
+   * @type {import("express-validator").Schema} Form validation
    */
   validationSchemas = undefined;
 
