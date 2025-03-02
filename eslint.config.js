@@ -10,15 +10,21 @@ export default [
   importPlugin.flatConfigs.recommended,
   js.configs.recommended,
   jsdoc.configs["flat/recommended"],
-  unicorn.configs["flat/recommended"],
+  unicorn.configs["recommended"],
   webComponents.configs["flat/recommended"],
   {
-    ignores: ["**/.cache/", "_site", "docs/.vitepress/config.js"],
+    ignores: [
+      "**/.cache/",
+      "_site",
+      "docs/.vitepress/config.js",
+      "eslint.config.js",
+    ],
   },
   {
     files: ["**/{packages,helpers}/**/*.js"],
     languageOptions: { globals: { ...globals.node }, ecmaVersion: "latest" },
     rules: {
+      "import/no-named-as-default": 0,
       "import/order": [
         "error",
         {
@@ -28,6 +34,12 @@ export default [
       ],
       "jsdoc/no-undefined-types": [1, { definedTypes: ["NodeJS"] }],
       "jsdoc/require-hyphen-before-param-description": "warn",
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          allowList: { utils: true },
+        },
+      ],
     },
   },
   {
