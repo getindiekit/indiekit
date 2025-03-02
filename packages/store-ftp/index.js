@@ -3,6 +3,7 @@ import process from "node:process";
 import { Readable } from "node:stream";
 
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 import Client from "ssh2-sftp-client";
 
 const defaults = {
@@ -12,7 +13,32 @@ const defaults = {
   user: process.env.FTP_USER,
 };
 
-export default class FtpStore {
+export default class FtpStorePlugin extends IndiekitStorePlugin {
+  environment = ["FTP_PASSWORD", "FTP_USER"];
+
+  name = "FTP store";
+
+  /**
+   * @type {import('prompts').PromptObject[]}
+   */
+  prompts = [
+    {
+      type: "text",
+      name: "host",
+      message: "Where is your FTP server hosted?",
+    },
+    {
+      type: "text",
+      name: "user",
+      message: "What is your FTP username?",
+    },
+    {
+      type: "text",
+      name: "directory",
+      message: "Which directory do you want to save files in?",
+    },
+  ];
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.host] - FTP hostname
@@ -22,42 +48,14 @@ export default class FtpStore {
    * @param {string} [options.directory] - Directory
    */
   constructor(options = {}) {
-    this.name = "FTP store";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get environment() {
-    return ["FTP_PASSWORD", "FTP_USER"];
-  }
-
-  get info() {
-    const { directory, host, user } = this.options;
-
-    return {
-      name: `${user} on ${host}`,
-      uid: `sftp://${host}/${directory}`,
+    this.info = {
+      name: `${this.options.user} on ${this.options.host}`,
+      uid: `sftp://${this.options.host}/${this.options.directory}`,
     };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "host",
-        message: "Where is your FTP server hosted?",
-        description: "i.e. ftp.server.example",
-      },
-      {
-        type: "text",
-        name: "user",
-        message: "What is your FTP username?",
-      },
-      {
-        type: "text",
-        name: "directory",
-        message: "Which directory do you want to save files in?",
-      },
-    ];
   }
 
   /**
@@ -231,9 +229,5 @@ export default class FtpStore {
     } finally {
       await client.end();
     }
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }

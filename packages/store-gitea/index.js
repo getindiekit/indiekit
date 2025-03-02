@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 
 const defaults = {
   branch: "main",
@@ -10,7 +11,39 @@ const defaults = {
   token: process.env.GITEA_TOKEN,
 };
 
-export default class GiteaStore {
+export default class GiteaStorePlugin extends IndiekitStorePlugin {
+  environment = ["GITEA_TOKEN"];
+
+  name = "Gitea store";
+
+  /**
+   * @type {import('prompts').PromptObject[]}
+   */
+  prompts = [
+    {
+      type: "text",
+      name: "instance",
+      message: "Where is Gitea hosted?",
+      initial: defaults.instance,
+    },
+    {
+      type: "text",
+      name: "user",
+      message: "What is your Gitea username?",
+    },
+    {
+      type: "text",
+      name: "repo",
+      message: "Which repository is your publication stored on?",
+    },
+    {
+      type: "text",
+      name: "branch",
+      message: "Which branch are you publishing from?",
+      initial: defaults.branch,
+    },
+  ];
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.instance] - Instance URL
@@ -20,49 +53,14 @@ export default class GiteaStore {
    * @param {string} [options.token] - Access token
    */
   constructor(options = {}) {
-    this.name = "Gitea store";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get environment() {
-    return ["GITEA_TOKEN"];
-  }
-
-  get info() {
-    const { instance, repo, user } = this.options;
-
-    return {
-      name: `${user}/${repo} on Gitea`,
-      uid: `${instance}/${user}/${repo}`,
+    this.info = {
+      name: `${this.options.user}/${this.options.repo} on Gitea`,
+      uid: `${this.options.instance}/${this.options.user}/${this.options.repo}`,
     };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "instance",
-        message: "Where is Gitea hosted?",
-        description: "i.e. https://gitea.com",
-        initial: defaults.instance,
-      },
-      {
-        type: "text",
-        name: "user",
-        message: "What is your Gitea username?",
-      },
-      {
-        type: "text",
-        name: "repo",
-        message: "Which repository is your publication stored on?",
-      },
-      {
-        type: "text",
-        name: "branch",
-        message: "Which branch are you publishing from?",
-        initial: defaults.branch,
-      },
-    ];
   }
 
   /**
@@ -214,9 +212,5 @@ export default class GiteaStore {
     });
 
     return true;
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }

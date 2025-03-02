@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 import makeDebug from "debug";
 
 const debug = makeDebug(`indiekit-store:github`);
@@ -28,7 +29,33 @@ const crudErrorMessage = ({ error, operation, filePath, branch, repo }) => {
   return `${summary}. ${details.join(". ")}`;
 };
 
-export default class GithubStore {
+export default class GithubStorePlugin extends IndiekitStorePlugin {
+  environment = ["GITHUB_TOKEN"];
+
+  name = "GitHub store";
+
+  /**
+   * @type {import('prompts').PromptObject[]}
+   */
+  prompts = [
+    {
+      type: "text",
+      name: "user",
+      message: "What is your GitHub username?",
+    },
+    {
+      type: "text",
+      name: "repo",
+      message: "Which repository is your publication stored on?",
+    },
+    {
+      type: "text",
+      name: "branch",
+      message: "Which branch are you publishing from?",
+      initial: defaults.branch,
+    },
+  ];
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.user] - Username
@@ -37,42 +64,14 @@ export default class GithubStore {
    * @param {string} [options.token] - Personal access token
    */
   constructor(options = {}) {
-    this.name = "GitHub store";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get environment() {
-    return ["GITHUB_TOKEN"];
-  }
-
-  get info() {
-    const { repo, user } = this.options;
-
-    return {
-      name: `${user}/${repo} on GitHub`,
-      uid: `https://github.com/${user}/${repo}`,
+    this.info = {
+      name: `${this.options.user}/${this.options.repo} on GitHub`,
+      uid: `https://github.com/${this.options.user}/${this.options.repo}`,
     };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "user",
-        message: "What is your GitHub username?",
-      },
-      {
-        type: "text",
-        name: "repo",
-        message: "Which repository is your publication stored on?",
-      },
-      {
-        type: "text",
-        name: "branch",
-        message: "Which branch are you publishing from?",
-        initial: defaults.branch,
-      },
-    ];
   }
 
   /**
@@ -321,7 +320,9 @@ export default class GithubStore {
     return true;
   }
 
-  init(Indiekit) {
+  async init() {
+    await super.init();
+
     const required_configs = ["baseUrl", "branch", "repo", "token", "user"];
     for (const required of required_configs) {
       if (!this.options[required]) {
@@ -331,6 +332,5 @@ export default class GithubStore {
         throw new Error(message);
       }
     }
-    Indiekit.addStore(this);
   }
 }

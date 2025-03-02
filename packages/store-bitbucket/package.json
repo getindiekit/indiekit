@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.15",
+    "@indiekit/plugin": "^1.0.0-beta.19",
     "bitbucket": "^2.6.2"
   },
   "publishConfig": {
