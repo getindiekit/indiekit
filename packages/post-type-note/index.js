@@ -21,7 +21,6 @@ export default class NotePostType {
       name: this.options.name,
       h: "entry",
       fields: this.options.fields,
-      requiredFields: ["content", "published"],
     };
   }
 
