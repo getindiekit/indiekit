@@ -56,18 +56,6 @@ export const Indiekit = class {
     debug(`Added content store: ${store.name}`);
   }
 
-  addSyndicator(syndicator) {
-    syndicator = Array.isArray(syndicator) ? syndicator : [syndicator];
-    this.publication.syndicationTargets = [
-      ...this.publication.syndicationTargets,
-      ...syndicator,
-    ];
-    const names = this.publication.syndicationTargets.map(
-      (target) => target.name,
-    );
-    debug(`Added ${names.length} syndication target/s: ${names.join(", ")}`);
-  }
-
   async connectMongodbClient() {
     const mongodbClientOrError = await getMongodbClient(this.mongodbUrl);
 
