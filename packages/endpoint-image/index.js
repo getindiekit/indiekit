@@ -16,6 +16,11 @@ export default class ImageEndpoint {
     this.mountPath = this.options.mountPath;
   }
 
+  init(Indiekit) {
+    Indiekit.addEndpoint(this);
+    Indiekit.config.application.imageEndpoint = this.options.mountPath;
+  }
+
   _routes(indiekitConfig) {
     const ipx = createIPX({
       storage: ipxFSStorage({ dir: "./public" }),
@@ -25,10 +30,5 @@ export default class ImageEndpoint {
     router.use(createIPXNodeServer(ipx));
 
     return router;
-  }
-
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
-    Indiekit.config.application.imageEndpoint = this.options.mountPath;
   }
 }

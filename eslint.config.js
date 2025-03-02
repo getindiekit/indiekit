@@ -2,6 +2,7 @@ import importPlugin from "eslint-plugin-import";
 import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 import jsdoc from "eslint-plugin-jsdoc";
+import sortClassMembers from "eslint-plugin-sort-class-members";
 import unicorn from "eslint-plugin-unicorn";
 import webComponents from "eslint-plugin-wc";
 import globals from "globals";
@@ -10,6 +11,7 @@ export default [
   importPlugin.flatConfigs.recommended,
   js.configs.recommended,
   jsdoc.configs["flat/recommended"],
+  sortClassMembers.configs["flat/recommended"],
   unicorn.configs["recommended"],
   webComponents.configs["flat/recommended"],
   {

@@ -82,6 +82,7 @@
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsdoc": "^50.0.0",
+    "eslint-plugin-sort-class-members": "^1.21.0",
     "eslint-plugin-unicorn": "^57.0.0",
     "eslint-plugin-wc": "^2.1.0",
     "jsdom": "^26.0.0",

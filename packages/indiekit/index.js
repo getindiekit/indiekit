@@ -22,6 +22,15 @@ const package_ = require("./package.json");
 const debug = makeDebug(`indiekit:index`);
 
 export const Indiekit = class {
+  static async initialize(options = {}) {
+    const config = await getIndiekitConfig({
+      config: options.config,
+      configFilePath: options.configFilePath,
+    });
+
+    return new Indiekit(config);
+  }
+
   /**
    * @private
    * @param {object} config - Indiekit configuration
@@ -40,15 +49,6 @@ export const Indiekit = class {
     this.publication = this.config.publication;
     this.stores = new Set();
     this.validationSchemas = new Map();
-  }
-
-  static async initialize(options = {}) {
-    const config = await getIndiekitConfig({
-      config: options.config,
-      configFilePath: options.configFilePath,
-    });
-
-    return new Indiekit(config);
   }
 
   addCollection(name) {
