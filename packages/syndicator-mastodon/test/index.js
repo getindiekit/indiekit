@@ -1,16 +1,15 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
-import MastodonSyndicator from "../index.js";
+import MastodonSyndicatorPlugin from "../index.js";
 
 await mockAgent("syndicator-mastodon");
 
 describe("syndicator-mastodon", () => {
-  const mastodon = new MastodonSyndicator({
+  const mastodon = new MastodonSyndicatorPlugin({
     accessToken: "token",
     url: "https://mastodon.example",
     user: "username",
@@ -37,7 +36,7 @@ describe("syndicator-mastodon", () => {
   });
 
   it("Returns error information if no server URL provided", async () => {
-    const result = new MastodonSyndicator({
+    const result = new MastodonSyndicatorPlugin({
       accessToken: "token",
       user: "username",
     });
@@ -46,7 +45,7 @@ describe("syndicator-mastodon", () => {
   });
 
   it("Returns error information if no username provided", () => {
-    const result = new MastodonSyndicator({
+    const result = new MastodonSyndicatorPlugin({
       accessToken: "token",
       url: "https://mastodon.example",
     });
@@ -61,18 +60,8 @@ describe("syndicator-mastodon", () => {
     );
   });
 
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    mastodon.init(indiekit);
-
-    assert.equal(
-      indiekit.publication.syndicationTargets[0].info.name,
-      "@username@mastodon.example",
-    );
-  });
-
   it("Returns syndicated URL", async () => {
-    const result = await mastodon.syndicate(properties, publication);
+    const result = await mastodon.syndicate(properties);
 
     assert.equal(
       result,
@@ -81,13 +70,13 @@ describe("syndicator-mastodon", () => {
   });
 
   it("Throws error getting syndicated URL if access token invalid", async () => {
-    const mastodonNoToken = new MastodonSyndicator({
+    const mastodonNoToken = new MastodonSyndicatorPlugin({
       accessToken: "invalid",
       url: "https://mastodon.example",
       user: "username",
     });
 
-    await assert.rejects(mastodonNoToken.syndicate(properties, publication), {
+    await assert.rejects(mastodonNoToken.syndicate(properties), {
       message: "Mastodon syndicator: The access token is invalid",
     });
   });
