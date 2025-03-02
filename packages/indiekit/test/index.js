@@ -1,9 +1,7 @@
-import { strict as assert } from "node:assert";
-import { after, before, describe, it, mock } from "node:test";
+import { after, before, describe, mock } from "node:test";
 
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
-import TestStore from "@indiekit-test/store";
 
 import { Indiekit } from "../index.js";
 
@@ -22,12 +20,5 @@ describe("indiekit", async () => {
     await client.close();
     await mongoServer.stop();
     indiekit.closeMongodbClient();
-  });
-
-  it("Adds content store", () => {
-    const testStore = new TestStore();
-    indiekit.addStore(testStore);
-
-    assert.equal([...indiekit.stores][0].info.name, "Test store");
   });
 });

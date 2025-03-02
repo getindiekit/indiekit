@@ -51,11 +51,6 @@ export const Indiekit = class {
     this.validationSchemas = new Map();
   }
 
-  addStore(store) {
-    this.stores.add(store);
-    debug(`Added content store: ${store.name}`);
-  }
-
   async connectMongodbClient() {
     const mongodbClientOrError = await getMongodbClient(this.mongodbUrl);
 
