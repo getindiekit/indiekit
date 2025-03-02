@@ -30,7 +30,7 @@
 
   & a,
   & code {
-    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   & small code {

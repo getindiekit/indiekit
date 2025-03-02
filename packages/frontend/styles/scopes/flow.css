@@ -9,7 +9,7 @@
 
   & > *:not(pre) {
     max-inline-size: var(--flow-line-measure);
-    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   & svg {

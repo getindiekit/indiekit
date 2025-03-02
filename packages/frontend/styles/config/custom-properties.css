@@ -85,8 +85,9 @@ html {
   /* Typography */
   --font-family-system: system-ui;
   --font-family-sans: system-ui, sans-serif;
-  --font-family-monospace: ui-monospace, sfmono-regular, sf mono, menlo,
-    consolas, liberation mono, monospace;
+  --font-family-monospace:
+    ui-monospace, sfmono-regular, sf mono, menlo, consolas, liberation mono,
+    monospace;
 
   --line-height-solid: 1;
   --line-height-tight: 1.25;
