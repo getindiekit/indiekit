@@ -2,9 +2,9 @@
 import { createRequire } from "node:module";
 import process from "node:process";
 
-import { default as KeyvMongo } from "@keyv/mongo";
+import KeyvMongo from "@keyv/mongo";
 import makeDebug from "debug";
-import { default as Keyv } from "keyv";
+import Keyv from "keyv";
 
 import { expressConfig } from "./config/express.js";
 import { locales } from "./config/locales.js";

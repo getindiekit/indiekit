@@ -69,7 +69,7 @@ describe("store-github", async () => {
     await assert.rejects(
       github.createFile("401.txt", "foo", { message: "Message" }),
       (error) => {
-        assert(error.message.includes("Could not create file 401.txt"));
+        assert.ok(error.message.includes("Could not create file 401.txt"));
         return true;
       },
     );
@@ -81,7 +81,7 @@ describe("store-github", async () => {
 
   it("Throws error reading file", async () => {
     await assert.rejects(github.readFile("404.txt"), (error) => {
-      assert(error.message.includes("Could not read file 404.txt"));
+      assert.ok(error.message.includes("Could not read file 404.txt"));
       return true;
     });
   });
@@ -115,7 +115,7 @@ describe("store-github", async () => {
     await assert.rejects(
       github.updateFile("401.txt", "foo", { message: "Message" }),
       (error) => {
-        assert(error.message.includes("Could not read file 401.txt"));
+        assert.ok(error.message.includes("Could not read file 401.txt"));
         return true;
       },
     );
@@ -129,7 +129,7 @@ describe("store-github", async () => {
     await assert.rejects(
       github.deleteFile("404.txt", { message: "Message" }),
       (error) => {
-        assert(error.message.includes("Could not read file 404.txt"));
+        assert.ok(error.message.includes("Could not read file 404.txt"));
         return true;
       },
     );
@@ -139,7 +139,7 @@ describe("store-github", async () => {
     await assert.rejects(
       github.deleteFile("401.txt", { message: "Message" }),
       (error) => {
-        assert(error.message.includes("Could not delete file 401.txt"));
+        assert.ok(error.message.includes("Could not delete file 401.txt"));
         return true;
       },
     );

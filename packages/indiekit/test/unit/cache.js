@@ -2,7 +2,7 @@ import { strict as assert } from "node:assert";
 import { describe, it, mock } from "node:test";
 
 import { mockAgent } from "@indiekit-test/mock-agent";
-import { default as Keyv } from "keyv";
+import Keyv from "keyv";
 
 import { getCachedResponse } from "../../lib/cache.js";
 
