@@ -1,4 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 
 const defaults = {
   baseUrl: "https://store.example",
@@ -8,17 +9,22 @@ const defaults = {
  * @typedef Response
  * @property {object} response - HTTP response
  */
-export default class TestStore {
-  constructor(options = {}) {
-    this.name = "Test store";
-    this.options = { ...defaults, ...options };
-  }
+export default class TestStorePlugin extends IndiekitStorePlugin {
+  name = "Test store";
 
-  get info() {
-    const { baseUrl, user } = this.options;
-    return {
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.baseUrl] - Base URL
+   * @param {string} [options.user] - Username
+   */
+  constructor(options = {}) {
+    super(options);
+
+    this.options = { ...defaults, ...options };
+
+    this.info = {
       name: "Test store",
-      uid: `${baseUrl}/${user}`,
+      uid: `${this.options.baseUrl}/${this.options.user}`,
     };
   }
 
@@ -101,9 +107,5 @@ export default class TestStore {
   async deleteFile(path, message) {
     await this.#client(path, "DELETE", { message });
     return true;
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }

@@ -2,6 +2,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 // eslint-disable-next-line import/default
 import bitbucket from "bitbucket";
 
@@ -13,7 +14,33 @@ const defaults = {
 /**
  * @typedef {import("bitbucket").APIClient} APIClient
  */
-export default class BitbucketStore {
+export default class BitbucketStorePlugin extends IndiekitStorePlugin {
+  environment = ["BITBUCKET_PASSWORD"];
+
+  name = "Bitbucket store";
+
+  /**
+   * @type {import('prompts').PromptObject[]}
+   */
+  prompts = [
+    {
+      type: "text",
+      name: "user",
+      message: "What is your Bitbucket username?",
+    },
+    {
+      type: "text",
+      name: "repo",
+      message: "Which repository is your publication stored on?",
+    },
+    {
+      type: "text",
+      name: "branch",
+      message: "Which branch are you publishing from?",
+      initial: defaults.branch,
+    },
+  ];
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.user] - Username
@@ -22,42 +49,14 @@ export default class BitbucketStore {
    * @param {string} [options.password] - Password
    */
   constructor(options = {}) {
-    this.name = "Bitbucket store";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get environment() {
-    return ["BITBUCKET_PASSWORD"];
-  }
-
-  get info() {
-    const { repo, user } = this.options;
-
-    return {
-      name: `${user}/${repo} on Bitbucket`,
-      uid: `https://bitbucket.org/${user}/${repo}`,
+    this.info = {
+      name: `${this.options.user}/${this.options.repo} on Bitbucket`,
+      uid: `https://bitbucket.org/${this.options.user}/${this.options.repo}`,
     };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "user",
-        message: "What is your Bitbucket username?",
-      },
-      {
-        type: "text",
-        name: "repo",
-        message: "Which repository is your publication stored on?",
-      },
-      {
-        type: "text",
-        name: "branch",
-        message: "Which branch are you publishing from?",
-        initial: defaults.branch,
-      },
-    ];
   }
 
   /**
@@ -227,9 +226,5 @@ export default class BitbucketStore {
         status: error.status,
       });
     }
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }
