@@ -67,7 +67,7 @@ describe("store-ftp", () => {
   it("Throws error connecting to FTP server", async () => {
     await assert.rejects(unauthorizedFtp.readFile("foo.md"), {
       message:
-        "FTP store: connect: getConnection: All configured authentication methods failed",
+        "FTP store: getConnection: All configured authentication methods failed",
     });
   });
 
