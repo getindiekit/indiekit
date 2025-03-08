@@ -1,32 +1,10 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
-
-import EleventyPreset from "../index.js";
+import EleventyPresetPlugin from "../index.js";
 
 describe("preset-eleventy", async () => {
-  const eleventy = new EleventyPreset();
-  const indiekit = await Indiekit.initialize({
-    config: {
-      publication: {
-        me: "https://website.example",
-        postTypes: {
-          puppy: {
-            name: "Puppy posts",
-          },
-        },
-      },
-    },
-  });
-  await indiekit.installPlugins();
-  await indiekit.updatePublicationConfig();
-
-  eleventy.init(indiekit);
-
-  it("Initiates plug-in", async () => {
-    assert.equal(indiekit.publication.preset.info.name, "Eleventy");
-  });
+  const eleventy = new EleventyPresetPlugin();
 
   it("Gets plug-in info", () => {
     assert.equal(eleventy.name, "Eleventy preset");

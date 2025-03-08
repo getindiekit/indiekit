@@ -9,6 +9,7 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 
 const defaults = {
   accessKey: process.env.S3_ACCESS_KEY,
@@ -18,7 +19,11 @@ const defaults = {
   bucket: "",
 };
 
-export default class S3Store {
+export default class S3StorePlugin extends IndiekitStorePlugin {
+  environment = ["S3_ACCESS_KEY", "S3_SECRET_KEY"];
+
+  name = "S3 store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.accessKey] - Access key
@@ -28,20 +33,13 @@ export default class S3Store {
    * @param {string} [options.bucket] - Bucket name
    */
   constructor(options = {}) {
-    this.name = "S3 store";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get environment() {
-    return ["S3_ACCESS_KEY", "S3_SECRET_KEY"];
-  }
-
-  get info() {
-    const { endpoint, bucket } = this.options;
-
-    return {
-      name: `${bucket} bucket`,
-      uid: `${endpoint}/${bucket}`,
+    this.info = {
+      name: `${this.options.bucket} bucket`,
+      uid: `${this.options.endpoint}/${this.options.bucket}`,
     };
   }
 
@@ -218,9 +216,5 @@ export default class S3Store {
         status: error.status,
       });
     }
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }

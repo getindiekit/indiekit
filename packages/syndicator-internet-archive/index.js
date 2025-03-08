@@ -1,6 +1,7 @@
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitSyndicatorPlugin } from "@indiekit/plugin";
 
 import { internetArchive } from "./lib/internet-archive.js";
 
@@ -12,48 +13,25 @@ const defaults = {
   uid: "https://web.archive.org/",
 };
 
-export default class InternetArchiveSyndicator {
-  /**
-   * @param {object} [options] - Plug-in options
-   * @param {string} [options.accessKey] - S3 access key
-   * @param {string} [options.secretKey] - S3 secret key
-   * @param {boolean} [options.checked] - Check syndicator in UI
-   */
+export default class InternetArchiveSyndicatorPlugin extends IndiekitSyndicatorPlugin {
+  environment = ["INTERNET_ARCHIVE_ACCESS_KEY", "INTERNET_ARCHIVE_SECRET_KEY"];
+
+  name = "Internet Archive syndicator";
+
   constructor(options = {}) {
-    this.name = "Internet Archive syndicator";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get environment() {
-    return ["INTERNET_ARCHIVE_ACCESS_KEY", "INTERNET_ARCHIVE_SECRET_KEY"];
-  }
-
-  get info() {
-    const service = {
-      name: "Internet Archive",
-      url: "https://web.archive.org/",
-      photo: "/assets/@indiekit-syndicator-internet-archive/icon.svg",
-    };
-
-    if (!this.options?.accessKey) {
-      return {
-        error: "Access key required",
-        service,
-      };
-    }
-
-    if (!this.options?.secretKey) {
-      return {
-        error: "Secret key required",
-        service,
-      };
-    }
-
-    return {
+    this.info = {
       checked: this.options.checked,
-      name: this.options.name,
+      name: "Internet Archive",
       uid: this.options.uid,
-      service,
+      service: {
+        name: "Internet Archive",
+        photo: "/assets/@indiekit-syndicator-internet-archive/icon.svg",
+        url: "https://web.archive.org/",
+      },
     };
   }
 
@@ -67,9 +45,5 @@ export default class InternetArchiveSyndicator {
         status: error.status,
       });
     }
-  }
-
-  init(Indiekit) {
-    Indiekit.addSyndicator(this);
   }
 }

@@ -3,13 +3,12 @@ import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import { afterEach, describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import mockFs from "mock-fs";
 
-import FileSystemStore from "../index.js";
+import FileSystemStorePlugin from "../index.js";
 
 describe("store-file-system", () => {
-  const fileSystem = new FileSystemStore({
+  const fileSystem = new FileSystemStorePlugin({
     directory: "directory",
   });
 
@@ -28,20 +27,6 @@ describe("store-file-system", () => {
       fileSystem.prompts[0].message,
       "Which directory do you want to save files in?",
     );
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-file-system"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-file-system": { directory: "directory" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(indiekit.publication.store.info.name, "directory");
   });
 
   it("Creates file", async () => {

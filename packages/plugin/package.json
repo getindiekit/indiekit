@@ -1,0 +1,43 @@
+{
+  "name": "@indiekit/plugin",
+  "version": "1.0.0-beta.19",
+  "description": "Plug-in API for Indiekit",
+  "keywords": [
+    "indiekit",
+    "indieweb"
+  ],
+  "homepage": "https://getindiekit.com",
+  "author": {
+    "name": "Paul Robert Lloyd",
+    "url": "https://paulrobertlloyd.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/getindiekit/indiekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getindiekit/indiekit.git",
+    "directory": "packages/plugin"
+  },
+  "dependencies": {
+    "@indiekit/error": "^1.0.0-beta.15",
+    "debug": "^4.3.2",
+    "express": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@indiekit/indiekit": "^1.0.0-beta.19"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

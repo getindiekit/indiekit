@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { getInstalledPlugin, getPluginId } from "../../lib/plugins.js";
+import { getInstalledPlugin } from "../../lib/plugins.js";
 
 describe("indiekit/lib/plugins", async () => {
   it("Gets installed plug-in", () => {
@@ -17,9 +17,5 @@ describe("indiekit/lib/plugins", async () => {
         id: "@scope-package-name",
       },
     );
-  });
-
-  it("Gets normalised plug-in ID", () => {
-    assert.equal(getPluginId("@scope/package-name"), "@scope-package-name");
   });
 });

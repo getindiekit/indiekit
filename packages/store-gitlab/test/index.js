@@ -1,21 +1,20 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
-import GitlabStore from "../index.js";
+import GitlabStorePlugin from "../index.js";
 
 await mockAgent("store-gitlab");
 
 describe("store-gitlab", async () => {
-  const gitlab = new GitlabStore({
+  const gitlab = new GitlabStorePlugin({
     token: "token",
     user: "username",
     repo: "repo",
   });
 
-  const gitlabInstance = new GitlabStore({
+  const gitlabInstance = new GitlabStorePlugin({
     token: "token",
     projectId: "1234",
     instance: "https://gitlab.instance",
@@ -33,23 +32,6 @@ describe("store-gitlab", async () => {
 
   it("Gets plug-in installation prompts", () => {
     assert.equal(gitlab.prompts[0].message, "Where is GitLab hosted?");
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-gitlab"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-gitlab": { user: "username", repo: "repo" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(
-      indiekit.publication.store.info.name,
-      "username/repo on GitLab",
-    );
   });
 
   it("Checks if file exists", async () => {

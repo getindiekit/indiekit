@@ -1,32 +1,10 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
-
-import JekyllPreset from "../index.js";
+import JekyllPresetPlugin from "../index.js";
 
 describe("preset-jekyll", async () => {
-  const jekyll = new JekyllPreset();
-  const indiekit = await Indiekit.initialize({
-    config: {
-      publication: {
-        me: "https://website.example",
-        postTypes: {
-          puppy: {
-            name: "Puppy posts",
-          },
-        },
-      },
-    },
-  });
-  await indiekit.installPlugins();
-  await indiekit.updatePublicationConfig();
-
-  jekyll.init(indiekit);
-
-  it("Initiates plug-in", async () => {
-    assert.equal(indiekit.publication.preset.info.name, "Jekyll");
-  });
+  const jekyll = new JekyllPresetPlugin();
 
   it("Gets plug-in info", () => {
     assert.equal(jekyll.name, "Jekyll preset");

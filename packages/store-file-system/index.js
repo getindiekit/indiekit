@@ -4,6 +4,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 
 const defaults = {
   directory: process.cwd(),
@@ -13,29 +14,33 @@ const defaults = {
  * @typedef Response
  * @property {object} response - Response
  */
-export default class FileSystemStore {
+export default class FileSystemStorePlugin extends IndiekitStorePlugin {
+  name = "File system store";
+
+  /**
+   * @type {import('prompts').PromptObject[]}
+   */
+  prompts = [
+    {
+      type: "text",
+      name: "directory",
+      message: "Which directory do you want to save files in?",
+    },
+  ];
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.directory] - Directory to save files to
+   */
   constructor(options = {}) {
-    this.name = "File system store";
+    super(options);
+
     this.options = { ...defaults, ...options };
-  }
 
-  get info() {
-    const { directory } = this.options;
-
-    return {
-      name: directory,
-      uid: `file://${directory}`,
+    this.info = {
+      name: this.options.directory,
+      uid: `file://${this.options.directory}`,
     };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "directory",
-        message: "Which directory do you want to save files in?",
-      },
-    ];
   }
 
   /**
@@ -132,9 +137,5 @@ export default class FileSystemStore {
         status: error.status,
       });
     }
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }

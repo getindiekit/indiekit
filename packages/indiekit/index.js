@@ -51,59 +51,6 @@ export const Indiekit = class {
     this.validationSchemas = new Map();
   }
 
-  addCollection(name) {
-    if (this.collections.has(name)) {
-      console.warn(`Collection ‘${name}’ already added`);
-    } else if (this.database) {
-      this.collections.set(name, this.database.collection(name));
-      debug(`Added database collection: ${name}`);
-    }
-  }
-
-  addEndpoint(endpoint) {
-    this.endpoints.add(endpoint);
-    debug(`Added endpoint: ${endpoint.name}`);
-  }
-
-  addPostType(type, postType) {
-    if (postType.config) {
-      this.postTypes.set(type, {
-        ...this.postTypes.get(type),
-        ...postType.config,
-      });
-    }
-
-    if (postType.validationSchemas) {
-      for (const [field, schema] of Object.entries(
-        postType.validationSchemas,
-      )) {
-        this.validationSchemas.set(field, schema);
-      }
-    }
-  }
-
-  addPreset(preset) {
-    this.publication.preset = preset;
-    debug(`Added publication preset: ${preset.name}`);
-  }
-
-  addStore(store) {
-    this.stores.add(store);
-    debug(`Added content store: ${store.name}`);
-  }
-
-  addSyndicator(syndicator) {
-    syndicator = Array.isArray(syndicator) ? syndicator : [syndicator];
-    this.publication.syndicationTargets = [
-      ...this.publication.syndicationTargets,
-      ...syndicator,
-    ];
-    const names = this.publication.syndicationTargets.map(
-      (target) => target.name,
-    );
-    debug(`Added ${names.length} syndication target/s: ${names.join(", ")}`);
-  }
-
   async connectMongodbClient() {
     const mongodbClientOrError = await getMongodbClient(this.mongodbUrl);
 

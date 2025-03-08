@@ -1,4 +1,6 @@
-import express from "express";
+import process from "node:process";
+
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 
 import { webmentionsController } from "./lib/controllers/webmentions.js";
 
@@ -6,34 +8,31 @@ const defaults = {
   mountPath: "/webmentions",
   token: process.env.WEBMENTION_IO_TOKEN,
 };
-const router = express.Router();
 
-export default class WebmentionEndpoint {
+export default class WebmentionEndpointPlugin extends IndiekitEndpointPlugin {
+  name = "Webmention.io endpoint";
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.mountPath] - Path to endpoint
+   * @param {string} [options.token] - Webmention.io API token
+   */
   constructor(options = {}) {
-    this.name = "Webmention.io endpoint";
-    this.options = { ...defaults, ...options };
-    this.mountPath = this.options.mountPath;
-  }
+    super(options);
 
-  get navigationItems() {
-    return {
-      href: this.options.mountPath,
+    this.options = { ...defaults, ...options };
+
+    this.mountPath = this.options.mountPath;
+
+    this.navigationItems = {
+      href: this.mountPath,
       text: "webmention-io.title",
     };
   }
 
   get routes() {
-    router.get(
-      "/",
-      webmentionsController({
-        token: this.options.token,
-      }),
-    );
+    this.router.get("/", webmentionsController({ token: this.options.token }));
 
-    return router;
-  }
-
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
+    return this.router;
   }
 }

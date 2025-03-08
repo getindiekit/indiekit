@@ -1,4 +1,4 @@
-import express from "express";
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 import {
   createIPX,
   ipxFSStorage,
@@ -6,29 +6,41 @@ import {
   createIPXNodeServer,
 } from "ipx";
 
-const defaults = { mountPath: "/image" };
-const router = express.Router();
+const defaults = {
+  mountPath: "/image",
+};
 
-export default class ImageEndpoint {
+export default class ImageEndpointPlugin extends IndiekitEndpointPlugin {
+  name = "Image resizing endpoint";
+
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.mountPath] - Path to endpoint
+   */
   constructor(options = {}) {
-    this.name = "Image resizing endpoint";
+    super(options);
+
     this.options = { ...defaults, ...options };
+
     this.mountPath = this.options.mountPath;
   }
 
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
-    Indiekit.config.application.imageEndpoint = this.options.mountPath;
-  }
-
-  _routes(indiekitConfig) {
+  routes() {
     const ipx = createIPX({
       storage: ipxFSStorage({ dir: "./public" }),
-      httpStorage: ipxHttpStorage({ domains: indiekitConfig.publication.me }),
+      httpStorage: ipxHttpStorage({
+        domains: this.indiekit.config.publication.me,
+      }),
     });
 
-    router.use(createIPXNodeServer(ipx));
+    this.router.use(createIPXNodeServer(ipx));
 
-    return router;
+    return this.router;
+  }
+
+  async init() {
+    await super.init();
+
+    this.indiekit.config.application.imageEndpoint = this.mountPath;
   }
 }

@@ -1,30 +1,20 @@
-const defaults = {
-  name: "Note",
-  fields: {
-    content: { required: true },
-    category: {},
-    geo: {},
-    "post-status": {},
-    published: { required: true },
-    visibility: {},
-  },
-};
+import { IndiekitPostTypePlugin } from "@indiekit/plugin";
 
-export default class NotePostType {
-  constructor(options = {}) {
-    this.name = "Note post type";
-    this.options = { ...defaults, ...options };
-  }
+export default class NotePostTypePlugin extends IndiekitPostTypePlugin {
+  name = "Note post type";
 
-  get config() {
-    return {
-      name: this.options.name,
-      h: "entry",
-      fields: this.options.fields,
-    };
-  }
+  postType = "note";
 
-  init(Indiekit) {
-    Indiekit.addPostType("note", this);
-  }
+  config = {
+    name: "Note",
+    h: "entry",
+    fields: {
+      content: { required: true },
+      category: {},
+      geo: {},
+      "post-status": {},
+      published: { required: true },
+      visibility: {},
+    },
+  };
 }

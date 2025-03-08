@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
+    "@indiekit/plugin": "^1.0.0-beta.19",
     "camelcase-keys": "^9.0.0",
     "plur": "^5.1.0",
     "yaml": "^2.6.0"

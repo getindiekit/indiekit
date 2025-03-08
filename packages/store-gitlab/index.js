@@ -5,6 +5,7 @@ import process from "node:process";
 // eslint-disable-next-line import/no-unresolved
 import { Gitlab } from "@gitbeaker/rest";
 import { IndiekitError } from "@indiekit/error";
+import { IndiekitStorePlugin } from "@indiekit/plugin";
 
 const defaults = {
   branch: "main",
@@ -15,7 +16,40 @@ const defaults = {
 /**
  * @typedef {import("@gitbeaker/rest").RepositoryFiles} RepositoryFiles
  */
-export default class GitlabStore {
+
+export default class GitlabStorePlugin extends IndiekitStorePlugin {
+  environment = ["GITLAB_TOKEN"];
+
+  name = "GitLab store";
+
+  /**
+   * @type {import('prompts').PromptObject[]}
+   */
+  prompts = [
+    {
+      type: "text",
+      name: "instance",
+      message: "Where is GitLab hosted?",
+      initial: defaults.instance,
+    },
+    {
+      type: "text",
+      name: "user",
+      message: "What is your GitLab username?",
+    },
+    {
+      type: "text",
+      name: "repo",
+      message: "Which repository is your publication stored on?",
+    },
+    {
+      type: "text",
+      name: "branch",
+      message: "Which branch are you publishing from?",
+      initial: defaults.branch,
+    },
+  ];
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.instance] - Instance URL
@@ -26,51 +60,20 @@ export default class GitlabStore {
    * @param {string} [options.token] - Access token
    */
   constructor(options = {}) {
-    this.name = "GitLab store";
+    super(options);
+
     this.options = { ...defaults, ...options };
+
     this.projectId = options.projectId || `${options.user}/${options.repo}`;
-  }
 
-  get environment() {
-    return ["GITLAB_TOKEN"];
-  }
+    this.projectPath = this.options.projectId
+      ? `/projects/${this.options.projectId}`
+      : `/${this.options.user}/${this.options.repo}`;
 
-  get info() {
-    const { instance, projectId, repo, user } = this.options;
-    const path = projectId ? `/projects/${projectId}` : `/${user}/${repo}`;
-
-    return {
+    this.info = {
       name: `${this.projectId} on GitLab`,
-      uid: `${instance}${path}`,
+      uid: `${this.options.instance}${this.projectPath}`,
     };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "instance",
-        message: "Where is GitLab hosted?",
-        description: "i.e. https://gitlab.com",
-        initial: defaults.instance,
-      },
-      {
-        type: "text",
-        name: "user",
-        message: "What is your GitLab username?",
-      },
-      {
-        type: "text",
-        name: "repo",
-        message: "Which repository is your publication stored on?",
-      },
-      {
-        type: "text",
-        name: "branch",
-        message: "Which branch are you publishing from?",
-        initial: defaults.branch,
-      },
-    ];
   }
 
   /**
@@ -244,9 +247,5 @@ export default class GitlabStore {
         status: error.status,
       });
     }
-  }
-
-  init(Indiekit) {
-    Indiekit.addStore(this);
   }
 }
