@@ -78,7 +78,7 @@
     "cookie-session": "^2.0.0",
     "create-indiekit": "*",
     "date-fns": "^4.0.0",
-    "eslint": "9.21.0",
+    "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsdoc": "^50.0.0",
