@@ -1,4 +1,4 @@
-import express from "express";
+import { IndiekitEndpointPlugin } from "@indiekit/plugin";
 
 import { authorizationController } from "./lib/controllers/authorization.js";
 import { consentController } from "./lib/controllers/consent.js";
@@ -18,64 +18,76 @@ const defaults = {
   mountPath: "/auth",
 };
 
-const router = express.Router({ caseSensitive: true, mergeParams: true });
+export default class AuthorizationEndpointPlugin extends IndiekitEndpointPlugin {
+  name = "IndieAuth endpoint";
 
-export default class AuthorizationEndpoint {
+  /**
+   * @param {object} [options] - Plug-in options
+   * @param {string} [options.mountPath] - Path to endpoint
+   */
   constructor(options = {}) {
-    this.name = "IndieAuth endpoint";
+    super(options);
+
     this.options = { ...defaults, ...options };
+
     this.mountPath = this.options.mountPath;
   }
 
   get routesPublic() {
-    router.use(hasSecret);
+    this.router.use(hasSecret);
 
     // Authorization
-    router.get("/", authorizationController.get, documentationController);
-    router.post("/", codeValidator, authorizationController.post);
-    router.get("/consent", consentController.get);
-    router.post("/consent", consentValidator, consentController.post);
-    router.get("/new-password", passwordController.get);
-    router.post("/new-password", passwordValidator, passwordController.post);
+    this.router.get("/", authorizationController.get, documentationController);
+    this.router.post("/", codeValidator, authorizationController.post);
+    this.router.get("/consent", consentController.get);
+    this.router.post("/consent", consentValidator, consentController.post);
+    this.router.get("/new-password", passwordController.get);
+    this.router.post(
+      "/new-password",
+      passwordValidator,
+      passwordController.post,
+    );
 
     // Authentication
-    router.get("/token", introspectionController.post);
-    router.post("/token", codeValidator, tokenController.post);
+    this.router.get("/token", introspectionController.post);
+    this.router.post("/token", codeValidator, tokenController.post);
 
     // Verification
-    router.post("/introspect", introspectionController.post);
+    this.router.post("/introspect", introspectionController.post);
 
     // Metadata
-    router.get("/metadata", metadataController);
+    this.router.get("/metadata", metadataController);
 
-    return router;
+    return this.router;
   }
 
   get routesWellKnown() {
-    router.get("/change-password", (request, response) =>
+    this.router.get("/change-password", (request, response) =>
       response.redirect(`${this.mountPath}/new-password`),
     );
-    router.get("/oauth-authorization-server", metadataController);
+    this.router.get("/oauth-authorization-server", metadataController);
 
-    return router;
+    return this.router;
   }
 
-  init(Indiekit) {
-    Indiekit.addEndpoint(this);
+  async init() {
+    await super.init();
+
+    const { application } = this.indiekit.config;
 
     // Only mount if authorization endpoint not already configured
-    if (!Indiekit.config.application.authorizationEndpoint) {
-      Indiekit.config.application.authorizationEndpoint = this.mountPath;
+    if (!application.authorizationEndpoint) {
+      application.authorizationEndpoint = this.mountPath;
     }
 
     // Only mount if introspection endpoint not already configured
-    if (!Indiekit.config.application.introspectionEndpoint) {
-      Indiekit.config.application.introspectionEndpoint = `${this.mountPath}/introspect`;
+    if (!application.introspectionEndpoint) {
+      application.introspectionEndpoint = `${this.mountPath}/introspect`;
     }
 
     // Only mount if token endpoint not already configured
-    if (!Indiekit.config.application.tokenEndpoint) {
-      Indiekit.config.application.tokenEndpoint = `${this.mountPath}/token`;
+    if (!application.tokenEndpoint) {
+      application.tokenEndpoint = `${this.mountPath}/token`;
     }
   }
 }

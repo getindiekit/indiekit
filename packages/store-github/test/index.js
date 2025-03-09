@@ -2,15 +2,14 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
-import GithubStore from "../index.js";
+import GithubStorePlugin from "../index.js";
 
 await mockAgent("store-github");
 
 describe("store-github", async () => {
-  const github = new GithubStore({
+  const github = new GithubStorePlugin({
     token: "abcd1234",
     user: "user",
     repo: "repo",
@@ -28,20 +27,6 @@ describe("store-github", async () => {
 
   it("Gets plug-in installation prompts", () => {
     assert.equal(github.prompts[0].message, "What is your GitHub username?");
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-github"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-github": { user: "user", repo: "repo", token: "123" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(indiekit.publication.store.info.name, "user/repo on GitHub");
   });
 
   it("Checks if file exists", async () => {

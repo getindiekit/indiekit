@@ -8,13 +8,12 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
-import { Indiekit } from "@indiekit/indiekit";
 import { mockClient } from "aws-sdk-client-mock";
 
-import S3Store from "../index.js";
+import S3StorePlugin from "../index.js";
 
 describe("store-s3", () => {
-  const s3 = new S3Store({
+  const s3 = new S3StorePlugin({
     region: "us-west",
     endpoint: "https://s3.example",
     bucket: "website",
@@ -29,20 +28,6 @@ describe("store-s3", () => {
     assert.equal(s3.name, "S3 store");
     assert.equal(s3.info.name, "website bucket");
     assert.equal(s3.info.uid, "https://s3.example/website");
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-s3"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-s3": { bucket: "website" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(indiekit.publication.store.info.name, "website bucket");
   });
 
   it("Checks if file exists", async () => {

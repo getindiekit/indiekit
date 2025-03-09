@@ -6,23 +6,23 @@ import prompts from "prompts";
 
 /**
  * Add plug-in to Indiekit configuration
- * @param {string} pluginName - Name of selected plug-in
+ * @param {string} packageName - Plug-in package name
  * @param {object} config - Indiekit configuration
  * @returns {Promise<object>} Updated configuration
  */
-export const addPluginConfig = async (pluginName, config) => {
-  const plugin = await getPlugin(pluginName);
+export const addPluginConfig = async (packageName, config) => {
+  const plugin = await getPlugin(packageName);
   const { info } = console;
 
   info(`${chalk.green(">")} ${chalk.white(`Configuring ${plugin.name}…`)}`);
 
   // Add plug-in to list of installed plug-ins
-  config.plugins.push(pluginName);
+  config.plugins.push(packageName);
 
   // Add any plug-in configuration values
   const pluginConfig = await prompts(plugin.prompts);
   if (Object.keys(pluginConfig).length > 0) {
-    config[pluginName] = pluginConfig;
+    config[packageName] = pluginConfig;
   }
 
   return config;
@@ -48,11 +48,11 @@ export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
 
 /**
  * Get question prompts specified by plug-in
- * @param {string} pluginName - Plug-in name
+ * @param {string} packageName - Plug-in package name
  * @returns {Promise<object>} Plug-in
  */
-export const getPlugin = async (pluginName) => {
-  const { default: IndiekitPlugin } = await import(pluginName);
+export const getPlugin = async (packageName) => {
+  const { default: IndiekitPlugin } = await import(packageName);
   const plugin = new IndiekitPlugin();
 
   return plugin;

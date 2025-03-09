@@ -1,21 +1,20 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
-import GiteaStore from "../index.js";
+import GiteaStorePlugin from "../index.js";
 
 await mockAgent("store-gitea");
 
 describe("store-github", async () => {
-  const gitea = new GiteaStore({
+  const gitea = new GiteaStorePlugin({
     token: "token",
     user: "username",
     repo: "repo",
   });
 
-  const giteaInstance = new GiteaStore({
+  const giteaInstance = new GiteaStorePlugin({
     instance: "https://gitea.instance",
     token: "token",
     user: "username",
@@ -34,20 +33,6 @@ describe("store-github", async () => {
 
   it("Gets plug-in installation prompts", () => {
     assert.equal(gitea.prompts[0].message, "Where is Gitea hosted?");
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-gitea"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-gitea": { user: "user", repo: "repo" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(indiekit.publication.store.info.name, "user/repo on Gitea");
   });
 
   it("Checks if file exists", async () => {

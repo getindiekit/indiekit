@@ -35,6 +35,7 @@
     "directory": "packages/post-type-reply"
   },
   "dependencies": {
+    "@indiekit/plugin": "^1.0.0-beta.19",
     "@indiekit/util": "^1.0.0-beta.19"
   },
   "publishConfig": {

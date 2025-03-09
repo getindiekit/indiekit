@@ -22,7 +22,7 @@
     }) }}
   {% endcall %}
 
-  {% if plugin.options %}
+  {% if plugin.options | length %}
     {% call section({ title: __("plugin.options") }) %}
       {{ summary({
         rows: summaryRows(plugin.options)

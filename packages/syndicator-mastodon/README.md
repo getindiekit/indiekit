@@ -44,7 +44,7 @@ When sharing content to Mastodon using this syndicator, any post visibility sett
 | Option             | Type      | Description                                                                                                   |
 | :----------------- | :-------- | :------------------------------------------------------------------------------------------------------------ |
 | `accessToken`      | `string`  | Your Mastodon access token. _Required_, defaults to `process.env.MASTODON_ACCESS_TOKEN`.                      |
-| `url`              | `string`  | Your Mastodon server, i.e. `https://mastodon.social`. _Required_.                                             |
+| `url`              | `string`  | Your Mastodon server. _Required_, defaults to `https://mastodon.social`. _Required_.                          |
 | `user`             | `string`  | Your Mastodon username (without the `@`). _Required_.                                                         |
 | `characterLimit`   | `number`  | Maximum number of characters before a post is truncated. _Optional_, defaults to `500`.                       |
 | `checked`          | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. _Optional_, defaults to `false`. |

@@ -32,7 +32,8 @@
     "directory": "packages/store-file-system"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.15"
+    "@indiekit/error": "^1.0.0-beta.15",
+    "@indiekit/plugin": "^1.0.0-beta.19"
   },
   "publishConfig": {
     "access": "public"

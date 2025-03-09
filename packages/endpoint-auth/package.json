@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.15",
+    "@indiekit/plugin": "^1.0.0-beta.19",
     "@indiekit/util": "^1.0.0-beta.19",
     "bcrypt": "^5.1.0",
-    "express": "^5.0.0",
     "express-validator": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
     "microformats-parser": "^2.0.0"

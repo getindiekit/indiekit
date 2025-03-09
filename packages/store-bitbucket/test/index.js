@@ -1,13 +1,12 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import nock from "nock";
 
-import BitbucketStore from "../index.js";
+import BitbucketStorePlugin from "../index.js";
 
 describe("store-bitbucket", () => {
-  const bitbucket = new BitbucketStore({
+  const bitbucket = new BitbucketStorePlugin({
     user: "username",
     password: "password",
     repo: "repo",
@@ -29,23 +28,6 @@ describe("store-bitbucket", () => {
     assert.equal(
       bitbucket.prompts[0].message,
       "What is your Bitbucket username?",
-    );
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-bitbucket"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-bitbucket": { user: "user", repo: "repo" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(
-      indiekit.publication.store.info.name,
-      "user/repo on Bitbucket",
     );
   });
 

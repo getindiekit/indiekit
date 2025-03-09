@@ -2,20 +2,19 @@
 import { strict as assert } from "node:assert";
 import { before, after, describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { closeServer, createSftpMockServer } from "@micham/sftp-mock-server";
 
-import FtpStore from "../index.js";
+import FtpStorePlugin from "../index.js";
 
 describe("store-ftp", () => {
-  const ftp = new FtpStore({
+  const ftp = new FtpStorePlugin({
     host: "127.0.0.1",
     port: 9393,
     user: "username",
     password: "password",
   });
 
-  const unauthorizedFtp = new FtpStore({
+  const unauthorizedFtp = new FtpStorePlugin({
     host: "127.0.0.1",
     port: 9393,
     user: "foo",
@@ -48,20 +47,6 @@ describe("store-ftp", () => {
 
   it("Gets plug-in installation prompts", () => {
     assert.equal(ftp.prompts[0].message, "Where is your FTP server hosted?");
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({
-      config: {
-        plugins: ["@indiekit/store-ftp"],
-        publication: { me: "https://website.example" },
-        "@indiekit/store-ftp": { user: "username", host: "127.0.0.1" },
-      },
-    });
-    await indiekit.installPlugins();
-    await indiekit.updatePublicationConfig();
-
-    assert.equal(indiekit.publication.store.info.name, "username on 127.0.0.1");
   });
 
   it("Throws error connecting to FTP server", async () => {

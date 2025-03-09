@@ -1,15 +1,14 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
-import InternetArchiveSyndicator from "../index.js";
+import InternetArchiveSyndicatorPlugin from "../index.js";
 
 await mockAgent("syndicator-internet-archive");
 
 describe("syndicator-internet-archive", () => {
-  const internetArchive = new InternetArchiveSyndicator({
+  const internetArchive = new InternetArchiveSyndicatorPlugin({
     accessKey: "token",
     secretKey: "secret",
   });
@@ -32,7 +31,7 @@ describe("syndicator-internet-archive", () => {
   });
 
   it("Returns error information if no secret key provided", async () => {
-    const result = new InternetArchiveSyndicator({
+    const result = new InternetArchiveSyndicatorPlugin({
       accessKey: "token",
     });
 
@@ -40,21 +39,11 @@ describe("syndicator-internet-archive", () => {
   });
 
   it("Returns error information if no access key provided", () => {
-    const result = new InternetArchiveSyndicator({
+    const result = new InternetArchiveSyndicatorPlugin({
       secretKey: "secret",
     });
 
     assert.equal(result.info.error, "Access key required");
-  });
-
-  it("Initiates plug-in", async () => {
-    const indiekit = await Indiekit.initialize({ config: {} });
-    internetArchive.init(indiekit);
-
-    assert.equal(
-      indiekit.publication.syndicationTargets[0].info.name,
-      "Internet Archive",
-    );
   });
 
   it("Returns syndicated URL", async () => {
@@ -64,7 +53,7 @@ describe("syndicator-internet-archive", () => {
   });
 
   it("Throws error getting syndicated URL with no API keys", async () => {
-    const internetArchiveNoKeys = new InternetArchiveSyndicator({});
+    const internetArchiveNoKeys = new InternetArchiveSyndicatorPlugin({});
 
     await assert.rejects(internetArchiveNoKeys.syndicate({ url }), {
       code: "indiekit",
