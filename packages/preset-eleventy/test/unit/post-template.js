@@ -5,7 +5,7 @@ import { getFixture } from "@indiekit-test/fixtures";
 
 import { getPostTemplate } from "../../lib/post-template.js";
 
-describe("preset-jekyll/lib/post-template", async () => {
+describe("preset-eleventy/lib/post-template", async () => {
   const properties = JSON.parse(getFixture("jf2/post-template-properties.jf2"));
 
   it("Renders post template without content", () => {

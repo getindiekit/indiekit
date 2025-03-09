@@ -8,7 +8,7 @@ postTypes.set("article", { name: "Journal post" });
 postTypes.set("note", { name: "Micro post" });
 postTypes.set("puppy", { name: "Puppy post" });
 
-describe("preset-jekyll/lib/post-types", () => {
+describe("preset-eleventy/lib/post-types", () => {
   it("Gets paths and URLs for configured post types", () => {
     const result = getPostTypes(postTypes);
 
