@@ -27,17 +27,20 @@ describe("endpoint-auth POST /auth/consent", () => {
   });
 
   it("Returns 302 submitting authenticated user", async () => {
-    const result = await request
+    const response = await request
       .post("/auth/consent")
       .type("form")
       .query({ request_uri: `urn:ietf:params:oauth:request_uri:${reference}` })
       .send({ password: "foo" });
+    const { host, protocol } = new URL(response.request.url);
+    const issuer = encodeURIComponent(`${protocol}//${host}`);
 
-    assert.equal(result.status, 302);
+    assert.equal(response.status, 302);
     assert.match(
-      result.headers.location,
+      response.headers.location,
       /code=(.*)&iss=(.*)&state=(.*)&me=(.*)/,
     );
+    assert.ok(response.headers.location.includes(`iss=${issuer}`));
   });
 
   after(() => server.close());

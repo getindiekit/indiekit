@@ -47,6 +47,8 @@ export const consentController = {
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
   post(request, response) {
+    const { application } = request.app.locals;
+
     let scope = request.body?.scope;
     const {
       client_id,
@@ -90,7 +92,7 @@ export const consentController = {
     // Authorization response
     const redirect = new URL(redirect_uri);
     redirect.searchParams.set("code", code);
-    redirect.searchParams.set("iss", client_id);
+    redirect.searchParams.set("iss", application.url);
     redirect.searchParams.set("state", state);
 
     // If client sent optional `me` value  in initial authorization request,
