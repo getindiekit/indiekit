@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **util:** date-fns tz function doesn’t accept ‘Z’ time zone designator ([231c5fa](https://github.com/getindiekit/indiekit/commit/231c5fa4dc88a5d8d0d11f79a7faae8919dfb5ee))
+
+
+### Features
+
+* **util:** excerpt string ([8caecf6](https://github.com/getindiekit/indiekit/commit/8caecf6544f6f92c9e48fba0d2be2552e7c3a9c9))
+* **util:** formatLocalToZonedDate helper ([361fe13](https://github.com/getindiekit/indiekit/commit/361fe135160db66c233a2a29b0b84e97aec2c7b8))
+* **util:** remove getTimeZoneDesignator and getTimeZoneOffset helpers ([742898d](https://github.com/getindiekit/indiekit/commit/742898db2b461c13396026571fcc0cf04f061798))
+* **util:** sha1 hash ([e146fe2](https://github.com/getindiekit/indiekit/commit/e146fe2e5d65c0c9fea9855720b701fb109a5462))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 

@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** always return if no scope ([e499a4f](https://github.com/getindiekit/indiekit/commit/e499a4fbb171926f89342b0575bc5a4e6bf03d61))
+* **endpoint-auth:** iss in authorization response should match issuer provided by metadata endpoint ([f43ddfd](https://github.com/getindiekit/indiekit/commit/f43ddfd46dbdae2f775e30c2615598b4e227b9b8))
+* **endpoint-auth:** respect user configured endpoints ([6a1d969](https://github.com/getindiekit/indiekit/commit/6a1d969be3f4bddca7f8f4103ab848ad437407ce))
+* **endpoint-media:** only perform image transformations on images ([81a8838](https://github.com/getindiekit/indiekit/commit/81a8838038cc9f3c35102a4824f50d7bc170e2bc))
+* **endpoint-media:** respect user configured endpoint ([eed9053](https://github.com/getindiekit/indiekit/commit/eed9053b54ddf0cfcf4a4a5dbda66310be99dd0f))
+* **endpoint-media:** throw not implemented error if media path not configured ([52da779](https://github.com/getindiekit/indiekit/commit/52da779b7d779a3218de6ae1be0825fd4cbc9c82))
+* **endpoint-micropub:** respect user configured endpoint ([f877637](https://github.com/getindiekit/indiekit/commit/f877637e61c1379c952683fbc150994e026d2a43))
+* **endpoint-micropub:** throw not implemented error if post path not configured ([d5e7394](https://github.com/getindiekit/indiekit/commit/d5e7394d8ba2875d625ee798b77e13b8e582bcf0))
+* **endpoint-syndication:** request.body can return undefined with express 5 ([3ee6ac6](https://github.com/getindiekit/indiekit/commit/3ee6ac699a4b7419622aad282889fbfad761154f))
+* **frontend:** don’t add margin above first heading in prose ([299cce6](https://github.com/getindiekit/indiekit/commit/299cce67f4742c6d06bf97469f160c50bae7229e))
+* **frontend:** increase z-index of header ([c7104a5](https://github.com/getindiekit/indiekit/commit/c7104a5b2c8016db849e160153e3a98bab68dace))
+* **frontend:** only use monospace for time inside a footer ([d0bd5dc](https://github.com/getindiekit/indiekit/commit/d0bd5dca64f9bcf43fc99fcf13aae16ed1d6be2e))
+* **frontend:** reduce space above card footer ([83707d6](https://github.com/getindiekit/indiekit/commit/83707d6e7b294135073e06fa66dcdca2df71eeb3))
+* **frontend:** show optional text on checkboxes fieldset ([7b41927](https://github.com/getindiekit/indiekit/commit/7b41927fc6ffaf25ea1849ed9eab9fbce22cf64d))
+* **indiekit:** faster algorithm for asset hashes ([7fc81ab](https://github.com/getindiekit/indiekit/commit/7fc81aba0c172b846abb9ce07b0e9769fc6954de))
+* **indiekit:** get installed plug-ins for list view ([a80f389](https://github.com/getindiekit/indiekit/commit/a80f3893a57eb738ab40928d9798f06afbc94012))
+* **indiekit:** show plugin description on list cards ([9ecf68a](https://github.com/getindiekit/indiekit/commit/9ecf68a5673dd59f7d11d3f8772f19e8c54e2538))
+* **indiekit:** show plugin information on status cards ([be413d8](https://github.com/getindiekit/indiekit/commit/be413d887a0b62c08e6b8494b5adcbed375d8381))
+* **post-type-note:** remove unused property ([88491e0](https://github.com/getindiekit/indiekit/commit/88491e01b3fa305c15696ec5b361037a1c713510))
+* request.body can return undefined with express 5 ([c11e926](https://github.com/getindiekit/indiekit/commit/c11e92654e0fe34321329fc379c1df258267351f))
+* **util:** date-fns tz function doesn’t accept ‘Z’ time zone designator ([231c5fa](https://github.com/getindiekit/indiekit/commit/231c5fa4dc88a5d8d0d11f79a7faae8919dfb5ee))
+
+
+### Features
+
+* addCollection API method ([d92026c](https://github.com/getindiekit/indiekit/commit/d92026cda47bc20e46a4de7368617a7ca792fb9f))
+* **endpoint-files:** hide widget if no media endpoint ([576f4ed](https://github.com/getindiekit/indiekit/commit/576f4ed363be976a2692475d7550200e62e55956))
+* **endpoint-micropub:** channels ([eaeee31](https://github.com/getindiekit/indiekit/commit/eaeee313c0c6985d770c412c4bf9e929bb263e06))
+* **endpoint-micropub:** use excerpt method from util package ([81ecdcb](https://github.com/getindiekit/indiekit/commit/81ecdcba592c7a63aeff5a7d74a31cd43b30fac6))
+* **endpoint-posts:** channels ([7516856](https://github.com/getindiekit/indiekit/commit/7516856c99de1d8fe05ec1168401141cd47f5a95))
+* **endpoint-posts:** excerpt post description in controller ([032d32b](https://github.com/getindiekit/indiekit/commit/032d32b8d31f6546a37127b671e2cdf3001db6de))
+* **endpoint-posts:** featured field ([a1c84f6](https://github.com/getindiekit/indiekit/commit/a1c84f69f73fc1568facdc5d0a868113a160c72b))
+* **endpoint-posts:** hide widget if no micropub endpoint ([5a16792](https://github.com/getindiekit/indiekit/commit/5a16792d785ed0aa767e9357faf4605ec510996d))
+* **endpoint-webmention-io:** webmention.io endpoint ([9ceb623](https://github.com/getindiekit/indiekit/commit/9ceb6230efc180c24891567b3e1a4f382fb71f64))
+* **frontend:** allow additional links in card body ([10101d4](https://github.com/getindiekit/indiekit/commit/10101d4816a931d2ad9499862a6488456154c84c))
+* **frontend:** avatar component ([a9902de](https://github.com/getindiekit/indiekit/commit/a9902de30c0599c1923fdba5c6feb996164a1eee))
+* **frontend:** don’t excerpt card description ([2d333a4](https://github.com/getindiekit/indiekit/commit/2d333a40f6267c3080dfcd196945320dc3eb6847))
+* **frontend:** mention component ([ee3a9d5](https://github.com/getindiekit/indiekit/commit/ee3a9d5d9982fb36748f14f1dc03d03c6a7fd4b7))
+* **frontend:** mention icon ([9bb8388](https://github.com/getindiekit/indiekit/commit/9bb838827040628b893ee2d794f5718a6869850b))
+* **frontend:** replace rollup with esbuild ([f659476](https://github.com/getindiekit/indiekit/commit/f65947646105dbbdaa25cf929ee1295a415d7994))
+* **frontend:** support different card uses ([c6a6b9c](https://github.com/getindiekit/indiekit/commit/c6a6b9cda172d4625f6d0f55d5d9df0de4ab5184))
+* **frontend:** use excerpt method from util package ([2965e6d](https://github.com/getindiekit/indiekit/commit/2965e6d9dbdeb2487d518ccffdf7dc6c2f7a5e92))
+* **frontend:** user component ([68a4e2f](https://github.com/getindiekit/indiekit/commit/68a4e2fe5abe6d2e8f35bedf7f9f768fc30a870c))
+* **indiekit:** channels ([de0183c](https://github.com/getindiekit/indiekit/commit/de0183c272119763caa4b03316534870a78b5f80))
+* **indiekit:** remove configurable session middleware ([d92c4d3](https://github.com/getindiekit/indiekit/commit/d92c4d3e61be83f2a1f300576c584e99d694cd5d))
+* **indiekit:** set session secret using environment variable ([8ca0c34](https://github.com/getindiekit/indiekit/commit/8ca0c340dac2c5ac1dfd74045f8d3c467ad36324))
+* **util:** excerpt string ([8caecf6](https://github.com/getindiekit/indiekit/commit/8caecf6544f6f92c9e48fba0d2be2552e7c3a9c9))
+* **util:** formatLocalToZonedDate helper ([361fe13](https://github.com/getindiekit/indiekit/commit/361fe135160db66c233a2a29b0b84e97aec2c7b8))
+* **util:** remove getTimeZoneDesignator and getTimeZoneOffset helpers ([742898d](https://github.com/getindiekit/indiekit/commit/742898db2b461c13396026571fcc0cf04f061798))
+* **util:** sha1 hash ([e146fe2](https://github.com/getindiekit/indiekit/commit/e146fe2e5d65c0c9fea9855720b701fb109a5462))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 

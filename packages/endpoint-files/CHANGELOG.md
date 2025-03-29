@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Features
+
+* **endpoint-files:** hide widget if no media endpoint ([576f4ed](https://github.com/getindiekit/indiekit/commit/576f4ed363be976a2692475d7550200e62e55956))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 

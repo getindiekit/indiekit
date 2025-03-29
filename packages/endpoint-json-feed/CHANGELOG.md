@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Features
+
+* addCollection API method ([d92026c](https://github.com/getindiekit/indiekit/commit/d92026cda47bc20e46a4de7368617a7ca792fb9f))
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
 
 **Note:** Version bump only for package @indiekit/endpoint-json-feed

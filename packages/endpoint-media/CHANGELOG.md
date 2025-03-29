@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **endpoint-media:** only perform image transformations on images ([81a8838](https://github.com/getindiekit/indiekit/commit/81a8838038cc9f3c35102a4824f50d7bc170e2bc))
+* **endpoint-media:** respect user configured endpoint ([eed9053](https://github.com/getindiekit/indiekit/commit/eed9053b54ddf0cfcf4a4a5dbda66310be99dd0f))
+* **endpoint-media:** throw not implemented error if media path not configured ([52da779](https://github.com/getindiekit/indiekit/commit/52da779b7d779a3218de6ae1be0825fd4cbc9c82))
+
+
+### Features
+
+* addCollection API method ([d92026c](https://github.com/getindiekit/indiekit/commit/d92026cda47bc20e46a4de7368617a7ca792fb9f))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 

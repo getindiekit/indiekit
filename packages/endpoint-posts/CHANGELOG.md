@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* request.body can return undefined with express 5 ([c11e926](https://github.com/getindiekit/indiekit/commit/c11e92654e0fe34321329fc379c1df258267351f))
+
+
+### Features
+
+* **endpoint-posts:** channels ([7516856](https://github.com/getindiekit/indiekit/commit/7516856c99de1d8fe05ec1168401141cd47f5a95))
+* **endpoint-posts:** excerpt post description in controller ([032d32b](https://github.com/getindiekit/indiekit/commit/032d32b8d31f6546a37127b671e2cdf3001db6de))
+* **endpoint-posts:** featured field ([a1c84f6](https://github.com/getindiekit/indiekit/commit/a1c84f69f73fc1568facdc5d0a868113a160c72b))
+* **endpoint-posts:** hide widget if no micropub endpoint ([5a16792](https://github.com/getindiekit/indiekit/commit/5a16792d785ed0aa767e9357faf4605ec510996d))
+* **frontend:** allow additional links in card body ([10101d4](https://github.com/getindiekit/indiekit/commit/10101d4816a931d2ad9499862a6488456154c84c))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 **Note:** Version bump only for package @indiekit/endpoint-posts

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **endpoint-syndication:** request.body can return undefined with express 5 ([3ee6ac6](https://github.com/getindiekit/indiekit/commit/3ee6ac699a4b7419622aad282889fbfad761154f))
+* request.body can return undefined with express 5 ([c11e926](https://github.com/getindiekit/indiekit/commit/c11e92654e0fe34321329fc379c1df258267351f))
+
+
+### Features
+
+* addCollection API method ([d92026c](https://github.com/getindiekit/indiekit/commit/d92026cda47bc20e46a4de7368617a7ca792fb9f))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 **Note:** Version bump only for package @indiekit/endpoint-syndicate

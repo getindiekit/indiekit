@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **frontend:** don’t add margin above first heading in prose ([299cce6](https://github.com/getindiekit/indiekit/commit/299cce67f4742c6d06bf97469f160c50bae7229e))
+* **frontend:** increase z-index of header ([c7104a5](https://github.com/getindiekit/indiekit/commit/c7104a5b2c8016db849e160153e3a98bab68dace))
+* **frontend:** only use monospace for time inside a footer ([d0bd5dc](https://github.com/getindiekit/indiekit/commit/d0bd5dca64f9bcf43fc99fcf13aae16ed1d6be2e))
+* **frontend:** reduce space above card footer ([83707d6](https://github.com/getindiekit/indiekit/commit/83707d6e7b294135073e06fa66dcdca2df71eeb3))
+* **frontend:** show optional text on checkboxes fieldset ([7b41927](https://github.com/getindiekit/indiekit/commit/7b41927fc6ffaf25ea1849ed9eab9fbce22cf64d))
+
+
+### Features
+
+* **frontend:** allow additional links in card body ([10101d4](https://github.com/getindiekit/indiekit/commit/10101d4816a931d2ad9499862a6488456154c84c))
+* **frontend:** avatar component ([a9902de](https://github.com/getindiekit/indiekit/commit/a9902de30c0599c1923fdba5c6feb996164a1eee))
+* **frontend:** don’t excerpt card description ([2d333a4](https://github.com/getindiekit/indiekit/commit/2d333a40f6267c3080dfcd196945320dc3eb6847))
+* **frontend:** mention component ([ee3a9d5](https://github.com/getindiekit/indiekit/commit/ee3a9d5d9982fb36748f14f1dc03d03c6a7fd4b7))
+* **frontend:** mention icon ([9bb8388](https://github.com/getindiekit/indiekit/commit/9bb838827040628b893ee2d794f5718a6869850b))
+* **frontend:** replace rollup with esbuild ([f659476](https://github.com/getindiekit/indiekit/commit/f65947646105dbbdaa25cf929ee1295a415d7994))
+* **frontend:** support different card uses ([c6a6b9c](https://github.com/getindiekit/indiekit/commit/c6a6b9cda172d4625f6d0f55d5d9df0de4ab5184))
+* **frontend:** use excerpt method from util package ([2965e6d](https://github.com/getindiekit/indiekit/commit/2965e6d9dbdeb2487d518ccffdf7dc6c2f7a5e92))
+* **frontend:** user component ([68a4e2f](https://github.com/getindiekit/indiekit/commit/68a4e2fe5abe6d2e8f35bedf7f9f768fc30a870c))
+* **util:** formatLocalToZonedDate helper ([361fe13](https://github.com/getindiekit/indiekit/commit/361fe135160db66c233a2a29b0b84e97aec2c7b8))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 **Note:** Version bump only for package @indiekit/frontend

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** respect user configured endpoint ([f877637](https://github.com/getindiekit/indiekit/commit/f877637e61c1379c952683fbc150994e026d2a43))
+* **endpoint-micropub:** throw not implemented error if post path not configured ([d5e7394](https://github.com/getindiekit/indiekit/commit/d5e7394d8ba2875d625ee798b77e13b8e582bcf0))
+
+
+### Features
+
+* addCollection API method ([d92026c](https://github.com/getindiekit/indiekit/commit/d92026cda47bc20e46a4de7368617a7ca792fb9f))
+* **endpoint-micropub:** channels ([eaeee31](https://github.com/getindiekit/indiekit/commit/eaeee313c0c6985d770c412c4bf9e929bb263e06))
+* **endpoint-micropub:** use excerpt method from util package ([81ecdcb](https://github.com/getindiekit/indiekit/commit/81ecdcba592c7a63aeff5a7d74a31cd43b30fac6))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 

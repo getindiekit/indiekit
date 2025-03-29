@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **endpoint-auth:** always return if no scope ([e499a4f](https://github.com/getindiekit/indiekit/commit/e499a4fbb171926f89342b0575bc5a4e6bf03d61))
+* **endpoint-auth:** iss in authorization response should match issuer provided by metadata endpoint ([f43ddfd](https://github.com/getindiekit/indiekit/commit/f43ddfd46dbdae2f775e30c2615598b4e227b9b8))
+* **endpoint-auth:** respect user configured endpoints ([6a1d969](https://github.com/getindiekit/indiekit/commit/6a1d969be3f4bddca7f8f4103ab848ad437407ce))
+* request.body can return undefined with express 5 ([c11e926](https://github.com/getindiekit/indiekit/commit/c11e92654e0fe34321329fc379c1df258267351f))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 **Note:** Version bump only for package @indiekit/endpoint-auth

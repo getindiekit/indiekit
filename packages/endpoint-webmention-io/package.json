@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-webmention-io",
-  "version": "1.0.0-beta.19",
+  "version": "1.0.0-beta.20",
   "description": "Webmention.io endpoint for Indiekit. View webmentions collected by the Webmention.io service.",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/endpoint-webmention-io"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.15",
+    "@indiekit/error": "^1.0.0-beta.20",
     "express": "^4.17.1",
     "sanitize-html": "^2.14.0"
   },

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
+
+
+### Bug Fixes
+
+* **indiekit:** faster algorithm for asset hashes ([7fc81ab](https://github.com/getindiekit/indiekit/commit/7fc81aba0c172b846abb9ce07b0e9769fc6954de))
+* **indiekit:** get installed plug-ins for list view ([a80f389](https://github.com/getindiekit/indiekit/commit/a80f3893a57eb738ab40928d9798f06afbc94012))
+* **indiekit:** show plugin description on list cards ([9ecf68a](https://github.com/getindiekit/indiekit/commit/9ecf68a5673dd59f7d11d3f8772f19e8c54e2538))
+* **indiekit:** show plugin information on status cards ([be413d8](https://github.com/getindiekit/indiekit/commit/be413d887a0b62c08e6b8494b5adcbed375d8381))
+
+
+### Features
+
+* addCollection API method ([d92026c](https://github.com/getindiekit/indiekit/commit/d92026cda47bc20e46a4de7368617a7ca792fb9f))
+* **indiekit:** channels ([de0183c](https://github.com/getindiekit/indiekit/commit/de0183c272119763caa4b03316534870a78b5f80))
+* **indiekit:** remove configurable session middleware ([d92c4d3](https://github.com/getindiekit/indiekit/commit/d92c4d3e61be83f2a1f300576c584e99d694cd5d))
+* **indiekit:** set session secret using environment variable ([8ca0c34](https://github.com/getindiekit/indiekit/commit/8ca0c340dac2c5ac1dfd74045f8d3c467ad36324))
+
+
+
+
+
 # [1.0.0-beta.19](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2024-10-08)
 
 **Note:** Version bump only for package @indiekit/indiekit

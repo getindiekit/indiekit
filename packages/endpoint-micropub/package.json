@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-micropub",
-  "version": "1.0.0-beta.19",
+  "version": "1.0.0-beta.20",
   "description": "Micropub endpoint for Indiekit. Enables publishing content to your website using the Micropub protocol.",
   "keywords": [
     "indiekit",
@@ -33,8 +33,8 @@
     "directory": "packages/endpoint-micropub"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.15",
-    "@indiekit/util": "^1.0.0-beta.19",
+    "@indiekit/error": "^1.0.0-beta.20",
+    "@indiekit/util": "^1.0.0-beta.20",
     "@paulrobertlloyd/mf2tojf2": "^2.1.0",
     "debug": "^4.3.2",
     "express": "^5.0.0",
