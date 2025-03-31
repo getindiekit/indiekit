@@ -50,9 +50,9 @@
     "markdown-it-deflist": "^3.0.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-image-figures": "^2.1.1",
-    "markdown-it-prism": "^2.2.0",
+    "markdown-it-prism": "^3.0.0",
     "nunjucks": "^3.2.3",
-    "sharp": "^0.33.0"
+    "sharp": "^0.34.0"
   },
   "publishConfig": {
     "access": "public"
