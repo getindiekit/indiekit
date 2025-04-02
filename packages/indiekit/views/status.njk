@@ -153,7 +153,7 @@
         value: {
           text: syndicationTargetsHtml(card) | indent(4)
         }
-      } if publication.syndicationTargets.length > 0]
+      } if publication.syndicationTargets | length > 0]
     }) }}
   {% endcall %}
 
