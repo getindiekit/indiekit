@@ -85,7 +85,7 @@
         value: {
           text: channelsHtml | indent(4)
         }
-      } if publication.channels, {
+      } if publication.channels | length > 0, {
         key: {
           text: __("status.publication.postTypes")
         },
