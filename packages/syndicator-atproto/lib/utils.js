@@ -1,0 +1,120 @@
+import { RichText } from "@atproto/api";
+import brevity from "brevity";
+import { htmlToText } from "html-to-text";
+
+const AT_URI = /at:\/\/(?<did>did:[^/]+)\/(?:[^/]+)\/(?<rkey>[^/]+)/;
+
+export const createRichText = async (client, text) => {
+  const rt = new RichText({ text });
+  await rt.detectFacets(client);
+
+  return rt;
+};
+
+/**
+ * Get post parts (UID and CID)
+ * @param {string} url - Post URL
+ * @returns {object} Parts
+ */
+export const getPostParts = (url) => {
+  const pathParts = new URL(url).pathname.split("/");
+
+  // Extract DID and post ID from the path
+  const did = pathParts[2];
+  const rkey = pathParts[4];
+
+  return { did, rkey };
+};
+
+/**
+ * Convert AT Protocol URI to post URL
+ * @param {string} profileUrl - Profile URL
+ * @param {string} uri - AT Proto URI
+ * @returns {string|undefined} Post URL
+ */
+export const uriToPostUrl = (profileUrl, uri) => {
+  const match = uri.match(AT_URI);
+
+  if (match) {
+    const { did, rkey } = match.groups;
+
+    return `${profileUrl}/${did}/post/${rkey}`;
+  }
+};
+
+/**
+ * Get post parameters from given JF2 properties
+ * @param {object} properties - JF2 properties
+ * @param {object} [options] - Options
+ * @param {boolean} [options.includePermalink] - Include permalink in post
+ * @param {string} [options.serviceUrl] - Service URL
+ * @returns {string} Post text
+ */
+export const getPostText = (properties, options = {}) => {
+  const { includePermalink, serviceUrl } = options;
+
+  let text;
+  if (properties.content && properties.content.html) {
+    text = htmlToStatusText(properties.content.html, serviceUrl);
+  }
+
+  // Truncate status if longer than 300 characters
+  text = brevity.shorten(
+    text,
+    properties.url,
+    includePermalink // https://indieweb.org/permashortlink
+      ? properties.url
+      : false,
+    false, // https://indieweb.org/permashortcitation
+    300,
+  );
+
+  // Show permalink below status, not within brackets
+  text = text.replace(`(${properties.url})`, `\n\n${properties.url}`);
+
+  return text;
+};
+
+/**
+ * Convert HTML to plain text, appending last link href if present
+ * @param {string} html - HTML
+ * @param {string} serviceUrl - Service URL, i.e. https://bsky.social
+ * @returns {string} Text
+ */
+export const htmlToStatusText = (html, serviceUrl) => {
+  // Get all the link references
+  let hrefs = [...html.matchAll(/href="(https?:\/\/.+?)"/g)];
+
+  // Remove any links to service
+  // HTML may contain Mastodon usernames or hashtag links
+  hrefs = hrefs.filter((href) => {
+    const hrefHostname = new URL(href[1]).hostname;
+    const serviceHostname = new URL(serviceUrl).hostname;
+    return hrefHostname !== serviceHostname;
+  });
+
+  // Get the last link mentioned, or return false
+  const lastHref = hrefs.length > 0 ? hrefs.at(-1)[1] : false;
+
+  // Convert HTML to plain text, removing any links
+  const text = htmlToText(html, {
+    selectors: [
+      {
+        selector: "a",
+        options: {
+          ignoreHref: true,
+        },
+      },
+      {
+        selector: "img",
+        format: "skip",
+      },
+    ],
+    wordwrap: false,
+  });
+
+  // Append the last link if present
+  const statusText = lastHref ? `${text} ${lastHref}` : text;
+
+  return statusText;
+};
