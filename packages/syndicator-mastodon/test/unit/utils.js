@@ -139,7 +139,7 @@ describe("syndicator-mastodon/lib/utils", () => {
     assert.equal(result, "1234567890987654321");
   });
 
-  it("Convert HTML to status text", () => {
+  it("Converts HTML to status text", () => {
     const result = htmlToStatusText(
       "<p>I ate a <em>cheese</em> sandwich, which was nice.</p>",
       "https://mastodon.example",
@@ -148,7 +148,7 @@ describe("syndicator-mastodon/lib/utils", () => {
     assert.equal(result, "I ate a cheese sandwich, which was nice.");
   });
 
-  it("Convert HTML to status text, appending last link href if present", () => {
+  it("Converts HTML to status text, appending last link href if present", () => {
     const result = htmlToStatusText(
       '<p>Hello <a href="/hello">world</a>, hello <a href="https://moon.example">moon</a>.</p>',
       "https://mastodon.example",
