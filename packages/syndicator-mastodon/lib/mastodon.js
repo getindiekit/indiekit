@@ -138,7 +138,7 @@ export const mastodon = ({
       }
 
       // Do not syndicate reposts of other URLs
-      return false;
+      return;
     }
 
     if (properties["like-of"]) {
@@ -148,7 +148,7 @@ export const mastodon = ({
       }
 
       // Do not syndicate likes of other URLs
-      return false;
+      return;
     }
 
     const status = createStatus(properties, {

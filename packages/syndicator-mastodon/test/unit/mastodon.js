@@ -112,7 +112,7 @@ describe("syndicator-mastodon/lib/mastodon", () => {
       me,
     );
 
-    assert.equal(result, false);
+    assert.equal(result, undefined);
   });
 
   it("Posts a repost of a Mastodon status to Mastodon", async () => {
@@ -132,7 +132,7 @@ describe("syndicator-mastodon/lib/mastodon", () => {
       me,
     );
 
-    assert.equal(result, false);
+    assert.equal(result, undefined);
   });
 
   it("Posts a quote status to Mastodon", async () => {
