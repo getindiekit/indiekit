@@ -230,6 +230,10 @@ const sidebarPlugins = [
     link: "/plugins/syndicators",
     items: [
       {
+        text: "Bluesky",
+        link: "/plugins/syndicators/bluesky",
+      },
+      {
         text: "Internet Archive",
         link: "/plugins/syndicators/internet-archive",
       },

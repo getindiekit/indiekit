@@ -4,5 +4,6 @@ A [syndicator](../../concepts#syndicator) enables content to be posted to third-
 
 ## Official plug-ins
 
+- [Bluesky](bluesky.md) `@indiekit/syndicator-bluesky`
 - [Internet Archive](internet-archive.md) `@indiekit/syndicator-internet-archive`
 - [Mastodon](mastodon.md) `@indiekit/syndicator-mastodon`
