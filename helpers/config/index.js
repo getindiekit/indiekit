@@ -57,6 +57,11 @@ export const testConfig = async (options) => {
     "@indiekit-test/store": {
       user: "user",
     },
+    "@indiekit/syndicator-internet-archive": {
+      checked: true,
+      accessKey: "abcd1234",
+      secretKey: "1234abcd",
+    },
     "@indiekit/syndicator-mastodon": {
       checked: true,
       url: "https://mastodon.example",
