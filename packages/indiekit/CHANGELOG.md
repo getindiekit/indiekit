@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
+
+
+### Bug Fixes
+
+* **indiekit:** correct conditional check for configured channels on status page ([54fc3f1](https://github.com/getindiekit/indiekit/commit/54fc3f106dd79fab36737d4febcb446eb0c1ba9e))
+* **indiekit:** correct conditional check for configured syndication targets on status page ([944d2da](https://github.com/getindiekit/indiekit/commit/944d2da9f41c4a42c2f27a9f680b96912d06aa82))
+
+
+### Features
+
+* add Italian localisation ([8204b7d](https://github.com/getindiekit/indiekit/commit/8204b7dca75ed747d0851fa9c283057c51da5186))
+
+
+
+
+
 # [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
 
 

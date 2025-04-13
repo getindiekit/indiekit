@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
+
+
+### Features
+
+* add Italian localisation ([8204b7d](https://github.com/getindiekit/indiekit/commit/8204b7dca75ed747d0851fa9c283057c51da5186))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2024-04-19)
 
 

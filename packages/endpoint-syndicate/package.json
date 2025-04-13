@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-syndicate",
-  "version": "1.0.0-beta.20",
+  "version": "1.0.0-beta.21",
   "description": "Syndication endpoint for Indiekit. Provides an endpoint you can ping to check that recently published posts have been posted to configured syndication targets.",
   "keywords": [
     "indiekit",
@@ -33,7 +33,7 @@
     "directory": "packages/endpoint-syndicate"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.20",
+    "@indiekit/error": "^1.0.0-beta.21",
     "express": "^5.0.0",
     "jsonwebtoken": "^9.0.0"
   },

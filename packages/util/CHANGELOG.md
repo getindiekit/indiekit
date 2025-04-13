@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
+
+
+### Bug Fixes
+
+* **util:** sanitise nested values ([e70b9a7](https://github.com/getindiekit/indiekit/commit/e70b9a7ed448656e038b16db98fae5fb5d1a9a89))
+
+
+
+
+
 # [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
 
 

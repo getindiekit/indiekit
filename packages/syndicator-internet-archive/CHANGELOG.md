@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
+
+
+### Bug Fixes
+
+* **syndicator-internet-archive:** append errors to existing info objection ([5b9fd9a](https://github.com/getindiekit/indiekit/commit/5b9fd9a237e1c9568ef610d796eb5f0d78d25665))
+
+
+
+
+
 # [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
 
 **Note:** Version bump only for package @indiekit/syndicator-internet-archive

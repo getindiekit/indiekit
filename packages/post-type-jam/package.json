@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/post-type-jam",
-  "version": "1.0.0-beta.20",
+  "version": "1.0.0-beta.21",
   "description": "Jam post type for Indiekit",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/post-type-jam"
   },
   "dependencies": {
-    "@indiekit/util": "^1.0.0-beta.20"
+    "@indiekit/util": "^1.0.0-beta.21"
   },
   "publishConfig": {
     "access": "public"

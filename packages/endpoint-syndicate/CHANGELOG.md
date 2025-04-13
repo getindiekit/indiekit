@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
+
+
+### Bug Fixes
+
+* **endpoint-syndicate:** don’t add syndicated url if no value returned from syndicator ([8621bb1](https://github.com/getindiekit/indiekit/commit/8621bb1576b90d2774ece23e8d740e469b3baa5f))
+
+
+
+
+
 # [1.0.0-beta.20](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2025-03-29)
 
 
