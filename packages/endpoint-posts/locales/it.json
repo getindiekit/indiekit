@@ -1,0 +1,127 @@
+{
+  "posts": {
+    "create": {
+      "action": "Nuovo post",
+      "title": "Crea un nuovo %s post"
+    },
+    "delete": {
+      "action": "Elimina post",
+      "cancel": "No: torna al post",
+      "submit": "Sono sicuro: elimina questo post",
+      "title": "Sei sicuro di voler eliminare questo post?"
+    },
+    "error": {
+      "content": {
+        "empty": "Inserisci del contenuto"
+      },
+      "featured-alt": {
+        "empty": "Inserisci una descrizione di questa immagine"
+      },
+      "geo": {
+        "invalid": "Inserisci coordinate valide"
+      },
+      "media": {
+        "empty": "Inserisci un percorso file o un indirizzo web come %s"
+      },
+      "name": {
+        "empty": "Inserisci un titolo"
+      },
+      "type": {
+        "empty": "Seleziona un tipo di post"
+      },
+      "url": {
+        "empty": "Inserisci un indirizzo web come %s"
+      }
+    },
+    "form": {
+      "advancedOptions": "Opzioni avanzate",
+      "back": "Cambia tipo di post",
+      "cancel": "Annulla",
+      "category": {
+        "hint": "Separare ogni categoria con una virgola",
+        "label": "Categorie",
+        "tag": "categoria"
+      },
+      "content": {
+        "label": "Contenuto"
+      },
+      "continue": "Continua",
+      "featured": {
+        "alt": "Descrizione accessibile",
+        "label": "Immagine in evidenza"
+      },
+      "geo": {
+        "hint": "Latitudine e longitudine, ad esempio %s",
+        "label": "Coordinate della posizione"
+      },
+      "location": {
+        "country-name": "Paese",
+        "label": "Posizione",
+        "locality": "Città o paese",
+        "name": "Sede",
+        "postal-code": "Codice postale",
+        "street-address": "Indirizzo"
+      },
+      "media": {
+        "label": "Percorso del file o URL"
+      },
+      "mp-channel": {
+        "label": "Canale"
+      },
+      "mp-slug": {
+        "label": "Slug dell'URL"
+      },
+      "mp-syndicate-to": {
+        "label": "Distribuisci a"
+      },
+      "name": {
+        "label": "Titolo"
+      },
+      "publish": "Pubblica post",
+      "publishDraft": "Salva bozza",
+      "published": {
+        "label": "Data di pubblicazione",
+        "now": "Ora",
+        "scheduled": "Data e ora specifiche"
+      },
+      "summary": {
+        "label": "Riepilogo"
+      },
+      "update": "Aggiorna post",
+      "updateDraft": "Aggiorna bozza",
+      "visibility": {
+        "label": "Visibilità"
+      }
+    },
+    "new": {
+      "title": "Che tipo di post vuoi creare?"
+    },
+    "post": {
+      "properties": "Proprietà",
+      "syndicate": "Distribuisci post"
+    },
+    "posts": {
+      "none": "Nessun post",
+      "title": "Post pubblicati"
+    },
+    "status": {
+      "deleted": "Eliminato",
+      "draft": "Bozza",
+      "private": "Privato",
+      "public": "Pubblico",
+      "published": "Pubblicato",
+      "syndicated": "Distribuito",
+      "unlisted": "Non elencato"
+    },
+    "title": "Post",
+    "undelete": {
+      "action": "Ripristina post",
+      "submit": "Sono sicuro: ripristina questo post",
+      "title": "Sei sicuro di voler ripristinare questo post?"
+    },
+    "update": {
+      "action": "Modifica post",
+      "title": "Aggiorna il post %s"
+    }
+  }
+}

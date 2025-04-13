@@ -6,6 +6,7 @@ export const locales = new Set([
   "fr",
   "hi",
   "id",
+  "it",
   "nl",
   "pl",
   "pt",

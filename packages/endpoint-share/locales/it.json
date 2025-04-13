@@ -1,0 +1,30 @@
+{
+  "share": {
+    "bookmark-of": {
+      "label": "URL"
+    },
+    "content": {
+      "label": "Contenuto"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Inserisci un indirizzo web come %s"
+      },
+      "name": {
+        "empty": "Inserisci un titolo"
+      }
+    },
+    "name": {
+      "label": "Titolo"
+    },
+    "submit": "Pubblicare",
+    "title": "Condividi"
+  },
+  "status": {
+    "bookmarklet": {
+      "guidance": "Trascina questo collegamento sulla barra dei segnalibri: %s",
+      "label": "Condividi pagina",
+      "title": "Condividi bookmarklet"
+    }
+  }
+}

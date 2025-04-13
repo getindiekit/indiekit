@@ -1,0 +1,39 @@
+{
+  "BadRequestError": {
+    "invalid": "Nella richiesta manca un parametro obbligatorio, include un parametro o un valore di parametro non supportato, ripete lo stesso parametro, utilizza più di un metodo per includere un token di accesso o è altrimenti malformata",
+    "invalidValue": "Valore non valido fornito per: `%s`",
+    "missingParameter": "Parametro mancante: `%s`",
+    "missingProperty": "Non %s incluso nella richiesta",
+    "missingResource": "Nessun %s trovato a questo URL",
+    "missingToken": "Nessun token al portatore fornito su richiesta",
+    "title": "Richiesta errata"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "La richiesta richiede privilegi più elevati rispetto a quelli forniti dal token di accesso",
+    "invalidMe": "L'URL di pubblicazione non corrisponde a quello fornito dal token di accesso",
+    "invalidRedirect": "Tentativo di reindirizzamento non valido",
+    "invalidState": "Valore non valido per `state`",
+    "title": "Vietato"
+  },
+  "NotFoundError": {
+    "page": "Se hai inserito un indirizzo web, controlla che sia corretto",
+    "record": "Nessun record di database trovato per %s",
+    "title": "Non trovato"
+  },
+  "NotImplementedError": {
+    "database": "Questa funzionalità richiede un database",
+    "postType": "Nessuna configurazione fornita per il tipo di post %s",
+    "query": "Query non supportata per `{{key}}`: ` {{value}}`",
+    "secret": "`SECRET` mancante",
+    "title": "Non implementato"
+  },
+  "UnauthorizedError": {
+    "invalidCode": "Il codice di autorizzazione fornito è scaduto, revocato, malformato o non valido per altri motivi",
+    "invalidToken": "Il token di accesso fornito è scaduto, revocato, malformato o non valido per altri motivi",
+    "title": "Non autorizzato"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Tipo di supporto non supportato",
+    "type": "Il tipo di supporto %s non è supportato"
+  }
+}

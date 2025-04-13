@@ -1,0 +1,60 @@
+{
+  "addAnother": {
+    "add": "Aggiungine un altro %s",
+    "delete": "Elimina"
+  },
+  "backLink": {
+    "text": "Indietro"
+  },
+  "characterCount": {
+    "char": {
+      "one": "%s carattere",
+      "other": "%s caratteri"
+    },
+    "word": {
+      "one": "%s parola",
+      "other": "%s parole"
+    }
+  },
+  "error": "Errore",
+  "errorSummary": {
+    "title": "C'è un problema"
+  },
+  "fileInput": {
+    "uploadFile": "Carica file…",
+    "uploadingFile": "Caricamento file"
+  },
+  "geoInput": {
+    "denied": "Impossibile ottenere il permesso per utilizzare la posizione attuale",
+    "failed": "Impossibile ottenere la posizione attuale",
+    "getCurrentPosition": "Usa la posizione attuale"
+  },
+  "important": "Importante",
+  "noValue": "Non impostato",
+  "optionalValue": "(opzionale)",
+  "pagination": {
+    "defaultType": "risultati",
+    "item": "Pagina %s",
+    "next": "Prossimo %s",
+    "page": "pagina",
+    "previous": "Precedente %s"
+  },
+  "skipLink": {
+    "text": "Salta al contenuto"
+  },
+  "success": "Successo",
+  "tagInput": {
+    "added": "{{tag}} {{name}} aggiunto.",
+    "defaultTag": "etichetta",
+    "defaultTags": "etichette",
+    "delete": "Elimina {{tag}}{{name}}.",
+    "deleted": "{{tag}} {{name}} eliminato.",
+    "edit": "Modifica {{tag}}.",
+    "instruction": "{{list}} {{tags}}. Use left and right arrow keys to navigate, Invio or Tab to create, Canc to delete {{tags}}.",
+    "noneSelected": "Non {{tags}} selezionato.",
+    "placeholder": "Aggiungi {{tags}}",
+    "selected": "{{tag}} {{name}} selezionato. Premi Invio per modificare, Canc per eliminare.",
+    "updated": "{{tag}} aggiornato a {{name}}."
+  },
+  "warning": "Avvertimento"
+}
