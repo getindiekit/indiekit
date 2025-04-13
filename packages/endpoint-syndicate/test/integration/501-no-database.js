@@ -7,7 +7,6 @@ import supertest from "supertest";
 
 const server = await testServer();
 const request = supertest.agent(server);
-
 describe("endpoint-syndicate POST /syndicate", () => {
   before(async () => {
     await request
