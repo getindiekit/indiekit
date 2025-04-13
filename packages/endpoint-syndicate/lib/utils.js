@@ -87,8 +87,13 @@ export const syndicateToTargets = async (publication, properties) => {
       try {
         const syndicatedUrl = await target.syndicate(properties, publication);
 
-        // Add syndicated URL to list of syndicated URLs
-        syndicatedUrls.push(syndicatedUrl);
+        if (syndicatedUrl) {
+          // Add syndicated URL to list of syndicated URLs
+          syndicatedUrls.push(syndicatedUrl);
+        } else {
+          // Add failed syndication target to list of failed targets
+          failedTargets.push(target.info.uid);
+        }
       } catch (error) {
         // Add failed syndication target to list of failed targets
         failedTargets.push(target.info.uid);
