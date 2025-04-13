@@ -29,32 +29,26 @@ export default class InternetArchiveSyndicator {
   }
 
   get info() {
-    const service = {
-      name: "Internet Archive",
-      url: "https://web.archive.org/",
-      photo: "/assets/@indiekit-syndicator-internet-archive/icon.svg",
-    };
-
-    if (!this.options?.accessKey) {
-      return {
-        error: "Access key required",
-        service,
-      };
-    }
-
-    if (!this.options?.secretKey) {
-      return {
-        error: "Secret key required",
-        service,
-      };
-    }
-
-    return {
+    const info = {
       checked: this.options.checked,
       name: this.options.name,
       uid: this.options.uid,
-      service,
+      service: {
+        name: "Internet Archive",
+        url: "https://web.archive.org/",
+        photo: "/assets/@indiekit-syndicator-internet-archive/icon.svg",
+      },
     };
+
+    if (!this.options?.secretKey) {
+      info.error = "Secret key required";
+    }
+
+    if (!this.options?.accessKey) {
+      info.error = "Access key required";
+    }
+
+    return info;
   }
 
   async syndicate(properties) {
