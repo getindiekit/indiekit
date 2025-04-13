@@ -3,7 +3,7 @@ import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
 
-import { mastodon } from "./lib/mastodon.js";
+import { Mastodon } from "./lib/mastodon.js";
 
 const defaults = {
   accessToken: process.env.MASTODON_ACCESS_TOKEN,
@@ -85,12 +85,14 @@ export default class MastodonSyndicator {
 
   async syndicate(properties, publication) {
     try {
-      return await mastodon({
+      const mastodon = new Mastodon({
         accessToken: this.options.accessToken,
         characterLimit: this.options.characterLimit,
         includePermalink: this.options.includePermalink,
         serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
-      }).post(properties, publication.me);
+      });
+
+      return await mastodon.post(properties, publication.me);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,
