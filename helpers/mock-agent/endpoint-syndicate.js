@@ -11,7 +11,8 @@ export function mockClient() {
 
   const statusId = "1234567890987654321";
   const storeOrigin = "https://store.example";
-  const syndicatorOrigin = "https://mastodon.example";
+  const mastodonOrigin = "https://mastodon.example";
+  const internetArchiveOrigin = "https://web.archive.org";
   const syndicatorResponseOptions = {
     headers: { "Content-type": "application/json" },
   };
@@ -28,9 +29,9 @@ export function mockClient() {
     .intercept({ path: /\/user\/.*\.(md|jpg)/, method: "PATCH" })
     .reply(201);
 
-  // Post status to syndication target
+  // Successfully syndicate post to Mastodon
   agent
-    .get(syndicatorOrigin)
+    .get(mastodonOrigin)
     .intercept({ path: `/api/v1/statuses`, method: "POST" })
     .reply(
       200,
@@ -41,6 +42,14 @@ export function mockClient() {
       syndicatorResponseOptions,
     )
     .persist();
+
+  // Fail syndicating post to Internet Archive
+  agent
+    .get(internetArchiveOrigin)
+    .intercept({ path: "/save", method: "POST" })
+    .reply(401, {
+      message: "You need to be logged in to use Save Page Now.",
+    });
 
   return agent;
 }
