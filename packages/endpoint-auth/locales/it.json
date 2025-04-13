@@ -1,0 +1,58 @@
+{
+  "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Accedi",
+        "text": "Accedi {{client}} come {{me}}",
+        "title": "Accedi"
+      },
+      "authorize": {
+        "submit": "Consentire",
+        "text": "{{client}} sta richiedendo l'autorizzazione per accedere a {{me}}",
+        "title": "Autorizza l'applicazione"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "pkce": {
+        "text": "{{client}} non utilizza Proof of Key Code Exchange (PKCE), che è più sicuro."
+      },
+      "redirect": "Dopo l'autorizzazione verrai reindirizzato a %s"
+    },
+    "error": {
+      "password": {
+        "invalid": "Inserisci una password valida",
+        "missing": "Inserisci una password"
+      }
+    },
+    "guidance": {
+      "authentication": {
+        "redeemCode": "Riscatta un codice di autorizzazione per un token di accesso",
+        "title": "Ottieni le autorizzazioni di accesso di un utente",
+        "verifyToken": "Verifica un token di accesso"
+      },
+      "authorization": {
+        "redeemCode": "Riscatta un codice di autorizzazione per l'URL del profilo di un utente",
+        "requestCode": "Richiedi un codice di autorizzazione",
+        "requestCodeResponse": "Se l'utente approva la richiesta, l'endpoint genererà un codice di autorizzazione e reindirizzerà al client:",
+        "title": "Ottieni l'identità di un utente"
+      },
+      "discovery": "Per utilizzare questo endpoint di autenticazione, aggiungi i seguenti valori a `<head>` del tuo sito web:",
+      "title": "Utilizzo di questo endpoint IndieAuth"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Inserisci una password da utilizzare per l'autenticazione delle richieste"
+      },
+      "secret": {
+        "hint": "Utilizza il seguente valore per %s nelle tue variabili di ambiente",
+        "label": "Password segreta"
+      },
+      "setup": {
+        "text": "È necessaria una password segreta prima che {{app}} possa autenticare le richieste IndieAuth."
+      },
+      "submit": "Genera password segreta",
+      "title": "Nuova password"
+    }
+  }
+}

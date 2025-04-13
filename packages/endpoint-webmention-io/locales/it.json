@@ -1,0 +1,16 @@
+{
+  "webmention-io": {
+    "mention": {
+      "bookmark-of": "aggiunto ai segnalibri %s",
+      "in-reply-to": "risposto a %s",
+      "like-of": "preferito %s",
+      "mention-of": "menzionato %s",
+      "repost-of": "ripubblicato %s",
+      "rsvp": "risposto a %s"
+    },
+    "title": "Webmentions",
+    "webmentions": {
+      "none": "Nessuna webmentions"
+    }
+  }
+}

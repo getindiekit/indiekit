@@ -1,0 +1,105 @@
+{
+  "guidance": {
+    "discovery": "Per consentire a %s di essere rilevato da un client Micropub e richiedere l'autorizzazione per pubblicare sul tuo sito web, aggiungi i seguenti valori all'interno del tag `<head>` del tuo sito:"
+  },
+  "homepage": {
+    "title": "Benvenuto!"
+  },
+  "offline": {
+    "description": "Questa pagina non può essere visualizzata perché al momento sei offline.",
+    "title": "Offline"
+  },
+  "plugin": {
+    "options": "Opzioni"
+  },
+  "scope": {
+    "block": {
+      "label": "Blocca utenti"
+    },
+    "channels": {
+      "label": "Gestisci canali"
+    },
+    "create": {
+      "label": "Crea post"
+    },
+    "delete": {
+      "label": "Elimina post e media"
+    },
+    "draft": {
+      "label": "Crea e aggiorna solo bozze di post"
+    },
+    "email": {
+      "label": "Indirizzo email"
+    },
+    "follow": {
+      "label": "Gestisci l'elenco seguente"
+    },
+    "label": "Permessi richiesti",
+    "media": {
+      "label": "Carica contenuti multimediali"
+    },
+    "mute": {
+      "label": "Silenzia gli utenti"
+    },
+    "none": {
+      "label": "Non disponi di autorizzazioni di pubblicazione"
+    },
+    "notSupported": {
+      "hint": "Non supportato"
+    },
+    "profile": {
+      "label": "Informazioni sul profilo"
+    },
+    "read": {
+      "label": "Leggi canali"
+    },
+    "update": {
+      "label": "Aggiorna i post"
+    }
+  },
+  "session": {
+    "login": {
+      "description": "Accedi per verificare di essere il proprietario di %s",
+      "me": "Indirizzo Web",
+      "submit": "Continua",
+      "title": "Accedi"
+    },
+    "logout": {
+      "title": "Esci"
+    }
+  },
+  "status": {
+    "application": {
+      "accessToken": "Token di accesso",
+      "authorizationEndpoint": "Endpoint di autorizzazione",
+      "installedPlugins": "Plug-in installati",
+      "locale": "Lingua",
+      "localeNotAvailable": "{{app}} non è ancora stato tradotto in {{locale}}",
+      "mediaEndpoint": "Endpoint multimediale",
+      "micropubEndpoint": "Endpoint Micropub",
+      "name": "Nome",
+      "summaryTitle": "Impostazioni dell'applicazione",
+      "themeColor": "Colore del tema",
+      "themeColorScheme": "Tema",
+      "themeColorSchemeValue": {
+        "automatic": "Automatico",
+        "dark": "Scuro",
+        "light": "Luce"
+      },
+      "timeZone": "Zona oraria",
+      "version": "Versione"
+    },
+    "publication": {
+      "channels": "Canali",
+      "locale": "Lingua",
+      "me": "Indirizzo Web",
+      "mediaStore": "Archivio multimediale",
+      "postTypes": "Tipi di post",
+      "preset": "Preimpostato",
+      "store": "Archivio contenuti",
+      "summaryTitle": "Impostazioni di pubblicazione",
+      "syndicationTargets": "Destinazioni di distribuzione"
+    },
+    "title": "Status del server"
+  }
+}

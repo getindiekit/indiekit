@@ -11,6 +11,7 @@ Indiekit has been localised into the following languages:
 - `fr`: Français (with contributions from David Legrand)
 - `hi`: हिन्दी (Hindi, with contributions from Sesa Malinda)
 - `id`: bahasa Indonesia (with contributions from Zeky Chandra)
+- `it`: Italiano (with contributions from [Giacomo Debidda](https://github.com/jackdbd))
 - `nl`: Nederlands
 - `pl`: Polski (with contributions from Arookei The Wolf)
 - `pt`: Português
