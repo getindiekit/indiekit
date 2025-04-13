@@ -36,15 +36,6 @@ describe("syndicator-mastodon", () => {
     assert.ok(mastodon.info.service);
   });
 
-  it("Returns error information if no server URL provided", async () => {
-    const result = new MastodonSyndicator({
-      accessToken: "token",
-      user: "username",
-    });
-
-    assert.equal(result.info.error, "Server URL required");
-  });
-
   it("Returns error information if no username provided", () => {
     const result = new MastodonSyndicator({
       accessToken: "token",

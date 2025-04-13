@@ -7,6 +7,7 @@ import { mastodon } from "./lib/mastodon.js";
 
 const defaults = {
   accessToken: process.env.MASTODON_ACCESS_TOKEN,
+  url: "https://mastodon.social",
   characterLimit: 500,
   checked: false,
   includePermalink: false,
@@ -28,13 +29,11 @@ export default class MastodonSyndicator {
   }
 
   get #url() {
-    return this.options?.url ? new URL(this.options.url) : false;
+    return new URL(this.options.url);
   }
 
   get #user() {
-    return this.options?.user
-      ? `@${this.options.user.replace("@", "")}`
-      : false;
+    return this.options?.user ? `@${this.options.user.replace("@", "")}` : "";
   }
 
   get environment() {
@@ -42,40 +41,30 @@ export default class MastodonSyndicator {
   }
 
   get info() {
-    const service = {
-      name: "Mastodon",
-      photo: "/assets/@indiekit-syndicator-mastodon/icon.svg",
-    };
     const user = this.#user;
     const url = this.#url;
-
-    if (!url) {
-      return {
-        error: "Server URL required",
-        service,
-      };
-    }
-
-    if (!user) {
-      return {
-        error: "User name required",
-        service,
-      };
-    }
-
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
-    service.url = url.href;
 
-    return {
+    const info = {
       checked: this.options.checked,
       name: `${user}@${url.hostname}`,
       uid,
-      service,
+      service: {
+        name: "Mastodon",
+        photo: "/assets/@indiekit-syndicator-mastodon/icon.svg",
+        url: url.href,
+      },
       user: {
         name: user,
         url: uid,
       },
     };
+
+    if (!user) {
+      info.error = "User name required";
+    }
+
+    return info;
   }
 
   get prompts() {
