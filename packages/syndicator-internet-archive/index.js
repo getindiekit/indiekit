@@ -2,7 +2,7 @@ import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
 
-import { internetArchive } from "./lib/internet-archive.js";
+import { InternetArchive } from "./lib/internet-archive.js";
 
 const defaults = {
   accessKey: process.env.INTERNET_ARCHIVE_ACCESS_KEY,
@@ -53,7 +53,12 @@ export default class InternetArchiveSyndicator {
 
   async syndicate(properties) {
     try {
-      return await internetArchive(this.options).save(properties);
+      const internetArchive = new InternetArchive({
+        accessKey: this.options.accessKey,
+        secretKey: this.options.secretKey,
+      });
+
+      return await internetArchive.save(properties);
     } catch (error) {
       throw new IndiekitError(error.message, {
         cause: error,

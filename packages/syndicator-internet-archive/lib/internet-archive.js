@@ -1,18 +1,36 @@
 /**
  * Save Page Now 2 (SPN2) API
- * @param {object} options - Options
- * @returns {object} SPN2 response
+ * @class
  * @see {@link https://docs.google.com/document/d/1Nsv52MvSjbLb2PCpHlat0gkzw0EvtSgpKHu4mk0MnrA/}
  */
-export const internetArchive = (options) => ({
-  async client(path, method = "GET", data) {
+export class InternetArchive {
+  /**
+   * @param {object} options - Internet Archive SPN2 options
+   * @param {string} options.accessKey - S3 access key
+   * @param {string} options.secretKey - S3 secret key
+   */
+  constructor(options) {
+    this.accessKey = options.accessKey;
+    this.secretKey = options.secretKey;
+  }
+
+  /**
+   * Initialise Internet Archive SPN2 client
+   * @access private
+   * @param {string} path - Path
+   * @param {string} [method] - Method
+   * @param {object} [data] - Data
+   * @returns {Promise<object>} Response body
+   * @throws {Error} Failed response
+   */
+  async #client(path, method = "GET", data) {
     const url = new URL(path, "https://web.archive.org");
 
     const response = await fetch(url.href, {
       method,
       headers: {
         accept: "application/json",
-        authorization: `LOW ${options.accessKey}:${options.secretKey}`,
+        authorization: `LOW ${this.accessKey}:${this.secretKey}`,
       },
       ...(data && { body: new URLSearchParams(data).toString() }),
     });
@@ -25,24 +43,30 @@ export const internetArchive = (options) => ({
     }
 
     return body;
-  },
+  }
 
   /**
    * Make capture request
    * @param {object} url - URL to archive
-   * @returns {Promise<Response>} Capture response
+   * @returns {Promise<{
+   *   job_id: string;
+   *   job_id: string;
+   * }>} Capture response
    */
   async capture(url) {
-    return this.client("/save", "POST", { url });
-  },
+    return this.#client("/save", "POST", { url });
+  }
 
   /**
    * Make status request
    * @param {object} jobId - Capture job ID
-   * @returns {Promise<Response>} Status response
+   * @returns {Promise<{
+   *   original_url: string;
+   *   timestamp: string;
+   * }>} Status response
    */
   async status(jobId) {
-    const response = await this.client(`/save/status/${jobId}`);
+    const response = await this.#client(`/save/status/${jobId}`);
 
     switch (response.status) {
       case "success": {
@@ -60,7 +84,7 @@ export const internetArchive = (options) => ({
         return this.status(jobId);
       }
     }
-  },
+  }
 
   /**
    * Save to Internet Archive
@@ -76,5 +100,5 @@ export const internetArchive = (options) => ({
 
     // Return syndicated URL
     return `https://web.archive.org/web/${timestamp}/${original_url}`;
-  },
-});
+  }
+}
