@@ -1,11 +1,11 @@
 /* Config */
 @import url("./config/custom-properties.css");
-/* @import url("./config/font-face.css"); */
 
 /* Base */
 @import url("./base/embedded.css");
 @import url("./base/forms.css");
 @import url("./base/grouping.css");
+@import url("./base/interactive.css");
 @import url("./base/sections.css");
 @import url("./base/tables.css");
 @import url("./base/text.css");

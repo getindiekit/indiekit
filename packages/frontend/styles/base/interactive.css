@@ -1,0 +1,19 @@
+/*
+ * Interactive content
+ * ===================
+ * https://html.spec.whatwg.org/#interactive-elements
+ */
+
+details {
+  summary {
+    display: block;
+  }
+
+  summary::before {
+    content: "⏵\00A0";
+  }
+
+  &[open] summary::before {
+    content: "⏷\00A0";
+  }
+}
