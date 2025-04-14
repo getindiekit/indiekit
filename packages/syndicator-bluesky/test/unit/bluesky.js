@@ -9,11 +9,11 @@ import { Bluesky } from "../../lib/bluesky.js";
 import { createRichText, uriToPostUrl } from "../../lib/utils.js";
 
 const BLUESKY_LIKE_URL =
-  /^https:\/\/bsky\.app\/profile\/[^/]+\/did:plc:[a-z0-9]+\/like\/[\w\d]+$/;
+  /^https:\/\/bsky\.app\/profile\/did:plc:[a-z0-9]+\/like\/[\w\d]+$/;
 const BLUESKY_POST_URL =
-  /^https:\/\/bsky\.app\/profile\/[^/]+\/did:plc:[a-z0-9]+\/post\/[\w\d]+$/;
+  /^https:\/\/bsky\.app\/profile\/did:plc:[a-z0-9]+\/post\/[\w\d]+$/;
 const BLUESKY_REPOST_URL =
-  /^https:\/\/bsky\.app\/profile\/[^/]+\/did:plc:[a-z0-9]+\/repost\/[\w\d]+$/;
+  /^https:\/\/bsky\.app\/profile\/did:plc:[a-z0-9]+\/repost\/[\w\d]+$/;
 
 const aliceAccount = {
   email: "alice@alice.test",
@@ -64,7 +64,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
     // Bluesky client under test
     bluesky = new Bluesky({
-      profileUrl: `https://bsky.app/profile/${aliceAccount.handle}`,
+      profileUrl: `https://bsky.app/profile`,
       serviceUrl: network.pds.url,
       identifier: aliceAccount.handle,
       password: aliceAccount.password,

@@ -29,8 +29,7 @@ export default class BlueskySyndicator {
   }
 
   get #profileUrl() {
-    const userName = this.options.handle.replace("@", "");
-    return new URL(this.options.profileUrl).href + "/" + userName;
+    return new URL(this.options.profileUrl).href;
   }
 
   get #serviceUrl() {
@@ -48,10 +47,13 @@ export default class BlueskySyndicator {
   }
 
   get info() {
+    const userName = this.options.handle.replace("@", "");
+    const url = new URL(this.options.profileUrl).href + "/" + userName;
+
     const info = {
       checked: this.options.checked,
       name: this.#user,
-      uid: this.#profileUrl,
+      uid: url,
       service: {
         name: "Bluesky",
         photo: "/assets/@indiekit-syndicator-bluesky/icon.svg",
@@ -59,7 +61,7 @@ export default class BlueskySyndicator {
       },
       user: {
         name: this.#user,
-        url: this.#profileUrl,
+        url,
       },
     };
 
