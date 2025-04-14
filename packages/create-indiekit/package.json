@@ -19,7 +19,7 @@
   "type": "module",
   "main": "index.js",
   "bin": {
-    "create-indiekit": "bin/create.js"
+    "create-indiekit": "bin/create.js delete-me"
   },
   "files": [
     "bin",
@@ -34,6 +34,10 @@
     "type": "git",
     "url": "https://github.com/getindiekit/indiekit.git",
     "directory": "packages/create-indiekit"
+  },
+  "scripts": {
+    "create": "node bin/create.js",
+    "test": "node --test --test-reporter=spec"
   },
   "dependencies": {
     "@indiekit/preset-eleventy": "^1.0.0-beta.20",
