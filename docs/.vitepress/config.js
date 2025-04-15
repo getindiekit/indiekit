@@ -328,7 +328,7 @@ export default {
       },
       {
         text: "🇺🇦",
-        link: "https://www.withukraine.org",
+        link: "https://u24.gov.ua",
       },
     ],
     sidebar: {
