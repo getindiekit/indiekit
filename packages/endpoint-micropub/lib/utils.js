@@ -31,11 +31,6 @@ export const getPostTemplateProperties = (properties) => {
   const templateProperties = structuredClone(properties);
 
   for (let key in templateProperties) {
-    // Pass mp-channel to template as channel
-    if (key === "mp-channel") {
-      templateProperties.channel = templateProperties["mp-channel"];
-    }
-
     // Remove server commands from post template properties
     if (key.startsWith("mp-")) {
       delete templateProperties[key];

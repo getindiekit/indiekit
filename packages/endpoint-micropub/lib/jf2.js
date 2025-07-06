@@ -99,7 +99,8 @@ export const normaliseProperties = (publication, properties, timeZone) => {
 
   const publicationHasChannels = channels && Object.keys(channels).length > 0;
   if (publicationHasChannels) {
-    properties["mp-channel"] = getChannelProperty(properties, channels);
+    properties.channel = getChannelProperty(properties, channels);
+    delete properties["mp-channel"];
   }
 
   if (properties["mp-syndicate-to"]) {
