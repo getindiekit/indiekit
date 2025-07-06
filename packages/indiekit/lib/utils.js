@@ -11,7 +11,7 @@ const secretKey = randomBytes(32);
 /**
  * Encrypt a string
  * @param {string} string - String to encrypt
- * @param {string|NodeJS.ArrayBufferView} iv - Initialization vector
+ * @param {string} iv - Initialization vector
  * @returns {string} Encrypted hash
  */
 export const encrypt = (string, iv) => {
@@ -24,7 +24,7 @@ export const encrypt = (string, iv) => {
 /**
  * Decrypt a string
  * @param {string} hash - Hash to decrypt
- * @param {string|NodeJS.ArrayBufferView} iv - Initialization vector
+ * @param {string} iv - Initialization vector
  * @returns {string} Decrypted string
  */
 export const decrypt = (hash, iv) => {
