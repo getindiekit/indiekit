@@ -47,7 +47,7 @@ export default class BlueskySyndicator {
   }
 
   get info() {
-    const userName = this.options.handle.replace("@", "");
+    const userName = this.options?.handle?.replace("@", "");
     const url = new URL(this.options.profileUrl).href + "/" + userName;
 
     const info = {
@@ -75,8 +75,8 @@ export default class BlueskySyndicator {
   async syndicate(properties, publication) {
     try {
       const bluesky = new Bluesky({
-        identifier: this.options.handle,
-        password: this.options.password,
+        identifier: this.options?.handle,
+        password: this.options?.password,
         profileUrl: this.#profileUrl,
         serviceUrl: this.#serviceUrl,
         includePermalink: this.options.includePermalink,
