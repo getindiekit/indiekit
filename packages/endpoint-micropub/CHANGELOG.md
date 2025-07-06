@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.23](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2025-07-06)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** normalise channel property earlier. fixes [#793](https://github.com/getindiekit/indiekit/issues/793) ([01626fb](https://github.com/getindiekit/indiekit/commit/01626fbad04671b074221d8b8e90199f00013985))
+
+
+
+
+
 # [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
 
 **Note:** Version bump only for package @indiekit/endpoint-micropub
