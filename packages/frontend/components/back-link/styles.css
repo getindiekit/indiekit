@@ -5,10 +5,6 @@
   --back-link-chevron-size: 0.5em;
   --back-link-chevron-thickness: var(--text-thickness);
 
-  :root[dir="rtl"] & {
-    --back-link-chevron-rotation: 45deg;
-  }
-
   display: inline-block;
   font: var(--font-caption);
   margin-inline: calc(var(--back-link-padding) * -1);
@@ -43,4 +39,8 @@
     inset: 0;
     position: absolute;
   }
+}
+
+:root[dir="rtl"] .back-link {
+  --back-link-chevron-rotation: 45deg;
 }
