@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.24](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2025-07-11)
+
+
+### Bug Fixes
+
+* **frontend:** compiled nested css gets corrupted by lightningcss ([9ab7982](https://github.com/getindiekit/indiekit/commit/9ab79823607183219b66dbec03c3b646b523b1ef))
+
+
+
+
+
 # [1.0.0-beta.23](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2025-07-06)
 
 
