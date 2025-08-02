@@ -72,8 +72,6 @@ export class IndiekitError extends Error {
     if (options.uri) {
       this.uri = options.uri;
     }
-
-    Error.captureStackTrace(this, IndiekitError);
   }
 
   getError(name) {
