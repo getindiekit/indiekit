@@ -145,8 +145,8 @@
   );
   inset-inline-end: 0;
   overflow: auto;
+  overflow-wrap: break-word;
   padding: var(--space-l);
   position: fixed;
-  word-wrap: break-word;
   z-index: 1009;
 }

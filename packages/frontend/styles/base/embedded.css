@@ -13,9 +13,9 @@ img,
 embed,
 object {
   block-size: auto;
+  break-inside: avoid;
   display: block;
   max-inline-size: 100%;
-  page-break-inside: avoid;
 }
 
 @media (prefers-color-scheme: dark) {
