@@ -138,10 +138,10 @@ export default class GitlabStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
+      throw new IndiekitError(error.cause.description, {
+        cause: error.cause,
         plugin: this.name,
-        status: error.status,
+        status: error.cause.response.status,
       });
     }
   }
@@ -162,10 +162,10 @@ export default class GitlabStore {
 
       return readResponse.text();
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
+      throw new IndiekitError(error.cause.description, {
+        cause: error.cause,
         plugin: this.name,
-        status: error.status,
+        status: error.cause.response.status,
       });
     }
   }
@@ -211,10 +211,10 @@ export default class GitlabStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
+      throw new IndiekitError(error.cause.description, {
+        cause: error.cause,
         plugin: this.name,
-        status: error.status,
+        status: error.cause.response.status,
       });
     }
   }
@@ -238,10 +238,10 @@ export default class GitlabStore {
 
       return true;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
+      throw new IndiekitError(error.cause.description, {
+        cause: error.cause,
         plugin: this.name,
-        status: error.status,
+        status: error.cause.response.status,
       });
     }
   }

@@ -27,7 +27,7 @@ export function mockClient() {
   agent
     .get(origin)
     .intercept({ path: /.*401\.txt/, method: "POST" })
-    .reply(401);
+    .reply(401, "Unauthorized");
 
   // Read file
   agent
@@ -51,13 +51,13 @@ export function mockClient() {
   agent
     .get(origin)
     .intercept({ path: /.*401\.txt\/raw\?ref=main/ })
-    .reply(401);
+    .reply(401, "Unauthorized");
 
   // Read raw file (Not Found)
   agent
     .get(origin)
     .intercept({ path: /.*404\.txt/ })
-    .reply(404)
+    .reply(404, "Not Found")
     .persist();
 
   // Update file
@@ -96,7 +96,7 @@ export function mockClient() {
   agent
     .get(origin)
     .intercept({ path: commitPath, method: "POST", body: /.*401\.txt/ })
-    .reply(401);
+    .reply(401, "Unauthorized");
 
   // Delete file
   agent
@@ -112,7 +112,7 @@ export function mockClient() {
   agent
     .get(origin)
     .intercept({ path: /.*401\.txt/, method: "DELETE" })
-    .reply(401);
+    .reply(401, "Unauthorized");
 
   return agent;
 }
