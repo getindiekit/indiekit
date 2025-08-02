@@ -16,8 +16,9 @@ const defaults = {
 const router = express.Router();
 
 export default class MediaEndpoint {
+  name = "Micropub media endpoint";
+
   constructor(options = {}) {
-    this.name = "Micropub media endpoint";
     this.options = deepmerge(defaults, options);
     this.mountPath = this.options.mountPath;
   }

@@ -14,6 +14,8 @@ const defaults = {
 };
 
 export default class MastodonSyndicator {
+  name = "Mastodon syndicator";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.accessToken] - Access token
@@ -24,7 +26,6 @@ export default class MastodonSyndicator {
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
   constructor(options = {}) {
-    this.name = "Mastodon syndicator";
     this.options = { ...defaults, ...options };
   }
 

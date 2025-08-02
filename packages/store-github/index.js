@@ -29,6 +29,8 @@ const crudErrorMessage = ({ error, operation, filePath, branch, repo }) => {
 };
 
 export default class GithubStore {
+  name = "GitHub store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.user] - Username
@@ -37,7 +39,6 @@ export default class GithubStore {
    * @param {string} [options.token] - Personal access token
    */
   constructor(options = {}) {
-    this.name = "GitHub store";
     this.options = { ...defaults, ...options };
   }
 

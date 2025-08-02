@@ -13,8 +13,9 @@ const defaults = {
 };
 
 export default class ReplyPostType {
+  name = "Reply post type";
+
   constructor(options = {}) {
-    this.name = "Reply post type";
     this.options = { ...defaults, ...options };
   }
 

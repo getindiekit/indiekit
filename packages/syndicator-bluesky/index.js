@@ -14,6 +14,8 @@ const defaults = {
 };
 
 export default class BlueskySyndicator {
+  name = "Bluesky syndicator";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.profileUrl] - Profile URL
@@ -24,7 +26,6 @@ export default class BlueskySyndicator {
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
   constructor(options = {}) {
-    this.name = "Bluesky syndicator";
     this.options = { ...defaults, ...options };
   }
 

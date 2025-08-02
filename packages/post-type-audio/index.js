@@ -14,8 +14,9 @@ const defaults = {
 };
 
 export default class AudioPostType {
+  name = "Audio post type";
+
   constructor(options = {}) {
-    this.name = "Audio post type";
     this.options = { ...defaults, ...options };
   }
 

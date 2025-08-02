@@ -19,6 +19,8 @@ const defaults = {
 };
 
 export default class S3Store {
+  name = "S3 store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.accessKey] - Access key
@@ -28,7 +30,6 @@ export default class S3Store {
    * @param {string} [options.bucket] - Bucket name
    */
   constructor(options = {}) {
-    this.name = "S3 store";
     this.options = { ...defaults, ...options };
   }
 

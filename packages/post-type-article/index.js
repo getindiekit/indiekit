@@ -13,8 +13,9 @@ const defaults = {
 };
 
 export default class ArticlePostType {
+  name = "Article post type";
+
   constructor(options = {}) {
-    this.name = "Article post type";
     this.options = { ...defaults, ...options };
   }
 

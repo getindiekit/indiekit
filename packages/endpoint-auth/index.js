@@ -21,8 +21,9 @@ const defaults = {
 const router = express.Router({ caseSensitive: true, mergeParams: true });
 
 export default class AuthorizationEndpoint {
+  name = "IndieAuth endpoint";
+
   constructor(options = {}) {
-    this.name = "IndieAuth endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

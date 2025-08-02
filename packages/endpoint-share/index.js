@@ -7,8 +7,9 @@ const defaults = { mountPath: "/share" };
 const router = express.Router();
 
 export default class ShareEndpoint {
+  name = "Share endpoint";
+
   constructor(options = {}) {
-    this.name = "Share endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

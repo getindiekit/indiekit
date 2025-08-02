@@ -14,8 +14,9 @@ const defaults = {
 };
 
 export default class RsvpPostType {
+  name = "RSVP post type";
+
   constructor(options = {}) {
-    this.name = "RSVP post type";
     this.options = { ...defaults, ...options };
   }
 

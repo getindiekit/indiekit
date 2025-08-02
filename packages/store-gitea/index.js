@@ -11,6 +11,8 @@ const defaults = {
 };
 
 export default class GiteaStore {
+  name = "Gitea store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.instance] - Instance URL
@@ -20,7 +22,6 @@ export default class GiteaStore {
    * @param {string} [options.token] - Access token
    */
   constructor(options = {}) {
-    this.name = "Gitea store";
     this.options = { ...defaults, ...options };
   }
 

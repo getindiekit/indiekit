@@ -7,8 +7,9 @@ const defaults = { mountPath: "/micropub" };
 const router = express.Router();
 
 export default class MicropubEndpoint {
+  name = "Micropub endpoint";
+
   constructor(options = {}) {
-    this.name = "Micropub endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

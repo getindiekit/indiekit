@@ -17,8 +17,9 @@ const defaults = {
 };
 
 export default class EventPostType {
+  name = "Event post type";
+
   constructor(options = {}) {
-    this.name = "Event post type";
     this.options = { ...defaults, ...options };
   }
 

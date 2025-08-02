@@ -11,8 +11,9 @@ const defaults = {
 };
 
 export default class NotePostType {
+  name = "Note post type";
+
   constructor(options = {}) {
-    this.name = "Note post type";
     this.options = { ...defaults, ...options };
   }
 

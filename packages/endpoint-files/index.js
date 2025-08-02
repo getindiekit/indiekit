@@ -13,8 +13,9 @@ const defaults = { mountPath: "/files" };
 const router = express.Router();
 
 export default class FilesEndpoint {
+  name = "File management endpoint";
+
   constructor(options = {}) {
-    this.name = "File management endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

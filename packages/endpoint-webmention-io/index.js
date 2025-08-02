@@ -9,8 +9,9 @@ const defaults = {
 const router = express.Router();
 
 export default class WebmentionEndpoint {
+  name = "Webmention.io endpoint";
+
   constructor(options = {}) {
-    this.name = "Webmention.io endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

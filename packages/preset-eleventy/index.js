@@ -2,9 +2,7 @@ import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
 
 export default class EleventyPreset {
-  constructor() {
-    this.name = "Eleventy preset";
-  }
+  name = "Eleventy preset";
 
   get info() {
     return {

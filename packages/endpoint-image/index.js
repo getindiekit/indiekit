@@ -10,8 +10,9 @@ const defaults = { mountPath: "/image" };
 const router = express.Router();
 
 export default class ImageEndpoint {
+  name = "Image resizing endpoint";
+
   constructor(options = {}) {
-    this.name = "Image resizing endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

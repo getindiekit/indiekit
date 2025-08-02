@@ -14,6 +14,8 @@ const defaults = {
  * @typedef {import("bitbucket").APIClient} APIClient
  */
 export default class BitbucketStore {
+  name = "Bitbucket store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.user] - Username
@@ -22,7 +24,6 @@ export default class BitbucketStore {
    * @param {string} [options.password] - Password
    */
   constructor(options = {}) {
-    this.name = "Bitbucket store";
     this.options = { ...defaults, ...options };
   }
 

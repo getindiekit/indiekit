@@ -13,6 +13,8 @@ const defaults = {
 };
 
 export default class InternetArchiveSyndicator {
+  name = "Internet Archive syndicator";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.accessKey] - S3 access key
@@ -20,7 +22,6 @@ export default class InternetArchiveSyndicator {
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
   constructor(options = {}) {
-    this.name = "Internet Archive syndicator";
     this.options = { ...defaults, ...options };
   }
 

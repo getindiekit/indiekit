@@ -11,8 +11,9 @@ const defaults = {
 const router = express.Router();
 
 export default class jsonFeedEndpoint {
+  name = "JSON Feed";
+
   constructor(options = {}) {
-    this.name = "JSON Feed";
     this.options = { ...defaults, ...options };
     this.feedName = this.options.feedName;
     this.mountPath = this.options.mountPath;

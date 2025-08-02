@@ -6,8 +6,9 @@ const defaults = {
 };
 
 export default class HugoPreset {
+  name = "Hugo preset";
+
   constructor(options = {}) {
-    this.name = "Hugo preset";
     this.options = { ...defaults, ...options };
   }
 

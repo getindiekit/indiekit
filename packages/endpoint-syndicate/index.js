@@ -6,8 +6,9 @@ const defaults = { mountPath: "/syndicate" };
 const router = express.Router();
 
 export default class SyndicateEndpoint {
+  name = "Syndication endpoint";
+
   constructor(options = {}) {
-    this.name = "Syndication endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

@@ -14,8 +14,9 @@ const defaults = {
 };
 
 export default class BookmarkPostType {
+  name = "Bookmark post type";
+
   constructor(options = {}) {
-    this.name = "Bookmark post type";
     this.options = { ...defaults, ...options };
   }
 

@@ -13,6 +13,8 @@ const defaults = {
 };
 
 export default class FtpStore {
+  name = "FTP store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.host] - FTP hostname
@@ -22,7 +24,6 @@ export default class FtpStore {
    * @param {string} [options.directory] - Directory
    */
   constructor(options = {}) {
-    this.name = "FTP store";
     this.options = { ...defaults, ...options };
   }
 

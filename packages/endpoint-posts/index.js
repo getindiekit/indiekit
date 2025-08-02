@@ -16,8 +16,9 @@ const defaults = { mountPath: "/posts" };
 const router = express.Router();
 
 export default class PostsEndpoint {
+  name = "Post management endpoint";
+
   constructor(options = {}) {
-    this.name = "Post management endpoint";
     this.options = { ...defaults, ...options };
     this.mountPath = this.options.mountPath;
   }

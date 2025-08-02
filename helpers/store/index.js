@@ -9,8 +9,9 @@ const defaults = {
  * @property {object} response - HTTP response
  */
 export default class TestStore {
+  name = "Test store";
+
   constructor(options = {}) {
-    this.name = "Test store";
     this.options = { ...defaults, ...options };
   }
 

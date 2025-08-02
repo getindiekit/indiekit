@@ -13,8 +13,9 @@ const defaults = {
 };
 
 export default class RepostPostType {
+  name = "Repost post type";
+
   constructor(options = {}) {
-    this.name = "Repost post type";
     this.options = { ...defaults, ...options };
   }
 

@@ -14,8 +14,9 @@ const defaults = {
  * @property {object} response - Response
  */
 export default class FileSystemStore {
+  name = "File system store";
+
   constructor(options = {}) {
-    this.name = "File system store";
     this.options = { ...defaults, ...options };
   }
 

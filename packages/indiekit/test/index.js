@@ -41,9 +41,7 @@ describe("indiekit", async () => {
 
   it("Adds endpoint", () => {
     const TestEndpoint = class {
-      constructor() {
-        this.name = "Test endpoint";
-      }
+      name = "Test endpoint";
     };
 
     const testEndpoint = new TestEndpoint();
@@ -54,9 +52,7 @@ describe("indiekit", async () => {
 
   it("Adds publication preset", () => {
     const TestPreset = class {
-      constructor() {
-        this.name = "Test preset";
-      }
+      name = "Test preset";
 
       get info() {
         return { name: "Test" };

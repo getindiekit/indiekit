@@ -16,6 +16,8 @@ const defaults = {
  * @typedef {import("@gitbeaker/rest").RepositoryFiles} RepositoryFiles
  */
 export default class GitlabStore {
+  name = "GitLab store";
+
   /**
    * @param {object} [options] - Plug-in options
    * @param {string} [options.instance] - Instance URL
@@ -26,7 +28,6 @@ export default class GitlabStore {
    * @param {string} [options.token] - Access token
    */
   constructor(options = {}) {
-    this.name = "GitLab store";
     this.options = { ...defaults, ...options };
     this.projectId = options.projectId || `${options.user}/${options.repo}`;
   }

@@ -13,8 +13,9 @@ const defaults = {
 };
 
 export default class LikePostType {
+  name = "Like post type";
+
   constructor(options = {}) {
-    this.name = "Like post type";
     this.options = { ...defaults, ...options };
   }
 

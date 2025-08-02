@@ -11,8 +11,9 @@ const defaults = {
 };
 
 export default class JamPostType {
+  name = "Jam post type";
+
   constructor(options = {}) {
-    this.name = "Jam post type";
     this.options = { ...defaults, ...options };
   }
 

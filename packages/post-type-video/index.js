@@ -14,8 +14,9 @@ const defaults = {
 };
 
 export default class PhotoPostType {
+  name = "Video post type";
+
   constructor(options = {}) {
-    this.name = "Video post type";
     this.options = { ...defaults, ...options };
   }
 
