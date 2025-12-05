@@ -25,7 +25,7 @@ export const getCategories = async (Indiekit) => {
   }
 
   if (categoryList) {
-    return categoryList.sort();
+    return categoryList.toSorted();
   }
 
   return [];

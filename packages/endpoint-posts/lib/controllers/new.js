@@ -16,7 +16,7 @@ export const newController = {
     const { scope } = request.session;
 
     const postTypeItems = Object.values(publication.postTypes)
-      .sort((a, b) => {
+      .toSorted((a, b) => {
         return a.name.localeCompare(b.name);
       })
       .map((postType) => ({
@@ -54,7 +54,7 @@ export const newController = {
     const postsPath = path.dirname(request.baseUrl + request.path);
 
     const postTypeItems = Object.values(publication.postTypes)
-      .sort((a, b) => {
+      .toSorted((a, b) => {
         return a.name.localeCompare(b.name);
       })
       .map((postType) => ({

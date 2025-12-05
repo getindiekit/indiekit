@@ -26,6 +26,7 @@ export const getPostData = async (postsCollection, url) => {
           $ne: "draft",
         },
       })
+      // eslint-disable-next-line unicorn/no-array-sort
       .sort({ "properties.published": -1 })
       .limit(1)
       .toArray();

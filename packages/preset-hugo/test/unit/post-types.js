@@ -3,10 +3,11 @@ import { describe, it } from "node:test";
 
 import { getPostTypes } from "../../lib/post-types.js";
 
-const postTypes = new Map();
-postTypes.set("article", { name: "Journal post" });
-postTypes.set("note", { name: "Micro post" });
-postTypes.set("puppy", { name: "Puppy post" });
+const postTypes = new Map([
+  ["article", { name: "Journal post" }],
+  ["note", { name: "Micro post" }],
+  ["puppy", { name: "Puppy post" }],
+]);
 
 describe("preset-hugo/lib/post-types", () => {
   it("Gets paths and URLs for configured post types", () => {

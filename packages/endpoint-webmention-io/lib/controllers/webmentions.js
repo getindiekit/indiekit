@@ -69,10 +69,10 @@ export const webmentionsController = (options) => {
         });
       }
 
-      const cursor = {};
-
-      cursor.next = {
-        href: `?page=${page + 1}`,
+      const cursor = {
+        next: {
+          href: `?page=${page + 1}`,
+        },
       };
 
       if (Number(page) > 0) {

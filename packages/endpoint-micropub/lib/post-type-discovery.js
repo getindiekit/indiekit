@@ -13,15 +13,16 @@ export const getPostType = (postTypes, properties) => {
     return properties.type;
   }
 
-  const basePostTypes = new Map();
+  const basePostTypes = new Map([
+    ["rsvp", "rsvp"],
+    ["repost", "repost-of"],
+    ["like", "like-of"],
+    ["reply", "in-reply-to"],
+    ["video", "video"],
+    ["photo", "photo"],
+  ]);
 
   // Types defined in Post Type Discovery specification
-  basePostTypes.set("rsvp", "rsvp");
-  basePostTypes.set("repost", "repost-of");
-  basePostTypes.set("like", "like-of");
-  basePostTypes.set("reply", "in-reply-to");
-  basePostTypes.set("video", "video");
-  basePostTypes.set("photo", "photo");
 
   // Types defined in post type configuration
   for (const [type, { discovery }] of Object.entries(postTypes)) {

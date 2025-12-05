@@ -1,4 +1,13 @@
 /**
+ * Return properties as JSON
+ * @param {object} properties - JF2 properties
+ * @returns {string} Properties as JSON
+ */
+const jsonPostTemplate = (properties) => {
+  return JSON.stringify(properties);
+};
+
+/**
  * Get post template
  * @param {object} publication - Publication configuration
  * @param {Function} [publication.postTemplate] - Publication post template
@@ -18,5 +27,5 @@ export const getPostTemplate = ({ postTemplate, preset }) => {
     return preset.postTemplate.bind(preset);
   }
 
-  return (properties) => JSON.stringify(properties);
+  return jsonPostTemplate;
 };
