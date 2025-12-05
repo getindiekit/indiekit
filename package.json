@@ -51,7 +51,7 @@
   "dependencies": {
     "dotenv": "^17.0.0",
     "husky": "^9.0.0",
-    "lerna": "^8.0.0",
+    "lerna": "^9.0.0",
     "sharp": "^0.34.1"
   },
   "devDependencies": {
