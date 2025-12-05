@@ -1,4 +1,4 @@
-{%- set tags = opts.items if (opts.items | isArray) else [opts.items] -%}
+{%- set tags = [opts.items] if (opts.items is mapping or opts.items is string) else opts.items -%}
 <dl class="prose--caption">
   <dt class="-!-visually-hidden">{{ opts.label }}</dt>
   {% for tag in tags %}<dd class="tag">{{ tag }}</dd>{% endfor %}
