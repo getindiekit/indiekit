@@ -115,7 +115,6 @@ export class Bluesky {
       media,
     };
 
-    /** @type {any} */
     const embed = images?.length > 0 ? recordWithMedia : record;
 
     /** @type {import('@atproto/api').AppBskyFeedPost.Record} */
@@ -124,7 +123,10 @@ export class Bluesky {
       text: richText.text,
       facets: richText.facets,
       createdAt: new Date().toISOString(),
-      embed,
+      embed:
+        /** @type {import('@atproto/api').AppBskyFeedPost.Record['embed']} */ (
+          embed
+        ),
     };
 
     const quotePost = await client.post(postData);

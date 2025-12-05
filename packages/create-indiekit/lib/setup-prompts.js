@@ -1,9 +1,11 @@
+/**
+ * @type {import('prompts').PromptObject<string>[]} Setup prompt questions
+ */
 export const setupPrompts = [
   {
     type: "text",
     name: "me",
     message: "What is your website’s URL?",
-    description: "i.e. https://website.example",
     validate: (value) =>
       URL.canParse(value)
         ? true

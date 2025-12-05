@@ -1,6 +1,6 @@
 /**
  * Check if a value is empty
- * @param {any} value - Value to check
+ * @param {number|object|string|undefined} value - Value to check
  * @returns {boolean} Value is empty
  */
 export const isEmpty = (value) => {
