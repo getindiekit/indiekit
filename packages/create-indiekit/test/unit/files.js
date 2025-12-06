@@ -7,7 +7,7 @@ describe("create-indiekit/lib/files", () => {
   it("Gets file contents", async () => {
     const result = await getFileContents("template.gitignore");
 
-    assert.equal(result, "node_modules/\n");
+    assert.equal(result.startsWith("# Environment"), true);
   });
 
   it("Throws error getting file contents", async () => {
@@ -31,7 +31,8 @@ describe("create-indiekit/lib/files", () => {
       },
       {
         path: ".gitignore",
-        contents: "node_modules/\n",
+        contents:
+          "# Environment\n.env\n\n# Node\nnode_modules/\nnpm-debug.log\n",
       },
     ]);
   });
