@@ -10,7 +10,7 @@ describe("create-indiekit/lib/docker", () => {
   it("Gets Docker Compose file contents", async () => {
     const result = await getDockerComposeFileContent(["FOO", "BAR"]);
 
-    assert.equal(result.includes('version: "3.9"'), true);
+    assert.equal(result.includes("name: indiekit"), true);
     assert.match(result, /- FOO\n/);
     assert.match(result, /- BAR\n/);
   });

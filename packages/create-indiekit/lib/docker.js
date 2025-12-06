@@ -9,13 +9,11 @@ import { getPlugin } from "./utils.js";
  */
 export const getDockerComposeFileContent = (environment) => {
   const compose = {
-    version: "3.9",
+    name: "indiekit",
     services: {
       indiekit: {
-        container_name: "indiekit",
-        image: "getindiekit/indiekit",
-        restart: "always",
         build: ".",
+        restart: "always",
         ports: ["${HTTP_PORT:-3000}:3000"],
         environment: [
           "MONGO_URL=mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@mongo",
@@ -25,7 +23,6 @@ export const getDockerComposeFileContent = (environment) => {
         ],
       },
       mongo: {
-        container_name: "mongo",
         image: "mongo:4",
         restart: "always",
         volumes: ["mongo:/data/db"],
@@ -36,9 +33,7 @@ export const getDockerComposeFileContent = (environment) => {
       },
     },
     volumes: {
-      mongo: {
-        external: true,
-      },
+      mongo: {},
     },
   };
 
