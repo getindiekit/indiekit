@@ -1,5 +1,5 @@
 import { strict as assert } from "node:assert";
-import { describe, it, mock } from "node:test";
+import { before, describe, it, mock } from "node:test";
 
 import { IndiekitError } from "@indiekit/error";
 import { mockAgent } from "@indiekit-test/mock-agent";
@@ -12,6 +12,10 @@ const me = "https://website.example";
 const indieauth = new IndieAuth({ me });
 
 describe("indiekit/lib/indieauth", () => {
+  before(async () => {
+    process.env.PASSWORD_SECRET = "foo";
+  });
+
   it("Exchanges authorization code for access token", async () => {
     const result = await indieauth.authorizationCodeGrant(
       "https://token-endpoint.example",

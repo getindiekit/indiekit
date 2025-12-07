@@ -191,6 +191,8 @@ export const IndieAuth = class {
       if (devMode) {
         request.session.access_token = process.env.NODE_ENV;
         request.session.scope = "create update delete media";
+      } else if (!process.env.PASSWORD_SECRET) {
+        return response.redirect("/auth/new-password");
       }
 
       // If have session has access token and scope, go to next middleware
