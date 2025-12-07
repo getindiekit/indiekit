@@ -64,6 +64,10 @@ export const setupPrompts = [
         title: "GitLab",
         value: "@indiekit/store-gitlab",
       },
+      {
+        title: "S3-compatible",
+        value: "@indiekit/store-s3",
+      },
     ],
   },
   {
@@ -76,6 +80,10 @@ export const setupPrompts = [
     name: "syndicatorPlugins",
     message: "Which websites do you want to syndicate your posts to?",
     choices: [
+      {
+        title: "Bluesky",
+        value: "@indiekit/syndicator-bluesky",
+      },
       {
         title: "Mastodon",
         value: "@indiekit/syndicator-mastodon",
