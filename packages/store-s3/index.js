@@ -46,6 +46,31 @@ export default class S3Store {
     };
   }
 
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "region",
+        message: "In which region is your S3-compatible storage located?",
+        description: "i.e. us-west",
+      },
+      {
+        type: "text",
+        name: "endpoint",
+        message: "What is your S3-compatible endpoint?",
+        validate: (value) =>
+          URL.canParse(value)
+            ? true
+            : "Enter a valid URL, for example https://s3-example-us-west-1.amazonaws.com",
+      },
+      {
+        type: "text",
+        name: "bucket",
+        message: "Which bucket do you want to save files in?",
+      },
+    ];
+  }
+
   /**
    * Get S3 client interface
    * @returns {S3Client} S3 client interface

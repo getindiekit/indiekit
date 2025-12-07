@@ -31,6 +31,13 @@ describe("store-s3", () => {
     assert.equal(s3.info.uid, "https://s3.example/website");
   });
 
+  it("Gets plug-in installation prompts", () => {
+    assert.equal(
+      s3.prompts[0].message,
+      "In which region is your S3-compatible storage located?",
+    );
+  });
+
   it("Initiates plug-in", async () => {
     const indiekit = await Indiekit.initialize({
       config: {
