@@ -27,7 +27,7 @@ describe("create-indiekit/lib/files", () => {
     assert.deepEqual(result, [
       {
         path: "README.md",
-        contents: `# Indiekit server for https://website.example\n\nLearn more at <https://getindiekit.com>\n`,
+        contents: `# Indiekit server for <https://website.example>\n\nLearn more at <https://getindiekit.com>\n`,
       },
       {
         path: ".gitignore",

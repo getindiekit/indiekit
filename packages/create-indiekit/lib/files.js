@@ -38,7 +38,7 @@ export const getFiles = async (setup) => {
   const files = [
     {
       path: "README.md",
-      contents: `# Indiekit server for ${me}\n\nLearn more at <https://getindiekit.com>\n`,
+      contents: `# Indiekit server for <${me}>\n\nLearn more at <https://getindiekit.com>\n`,
     },
     {
       path: ".gitignore",
