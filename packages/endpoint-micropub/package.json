@@ -35,7 +35,7 @@
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.21",
     "@indiekit/util": "^1.0.0-beta.21",
-    "@paulrobertlloyd/mf2tojf2": "^2.1.0",
+    "@paulrobertlloyd/mf2tojf2": "^3.0.0",
     "debug": "^4.3.2",
     "express": "^5.0.0",
     "lodash": "^4.17.21",
