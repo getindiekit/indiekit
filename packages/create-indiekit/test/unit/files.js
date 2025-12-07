@@ -46,5 +46,6 @@ describe("create-indiekit/lib/files", () => {
     assert.equal(result[2].path, "docker-compose.yml");
     assert.equal(result[3].path, "Dockerfile");
     assert.equal(result[4].path, ".dockerignore");
+    assert.equal(result[5].path, ".env");
   });
 });

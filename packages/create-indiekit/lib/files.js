@@ -3,7 +3,11 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
-import { getDockerComposeFileContent, getDockerEnvironment } from "./docker.js";
+import {
+  getDockerComposeFileContent,
+  getDockerEnvironment,
+  getDockerEnvironmentFileContent,
+} from "./docker.js";
 
 /**
  * Get file contents
@@ -57,6 +61,10 @@ export const getFiles = async (setup) => {
       {
         path: ".dockerignore",
         contents: await getFileContents("template.dockerignore"),
+      },
+      {
+        path: ".env",
+        contents: getDockerEnvironmentFileContent(environment),
       },
     );
   }

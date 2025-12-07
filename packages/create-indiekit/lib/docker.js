@@ -1,3 +1,4 @@
+import { randomString } from "@indiekit/util";
 import YAML from "yaml";
 
 import { getPlugin } from "./utils.js";
@@ -38,6 +39,31 @@ export const getDockerComposeFileContent = (environment) => {
   };
 
   return YAML.stringify(compose);
+};
+
+/**
+ * Get .env file contents
+ * @param {Array} environment - Environment variables
+ * @returns {string} .env file contents
+ */
+export const getDockerEnvironmentFileContent = (environment) => {
+  let dotenv = "";
+
+  dotenv += `MONGO_INITDB_ROOT_USERNAME='admin'\n`;
+  dotenv += `MONGO_INITDB_ROOT_PASSWORD='${randomString(24)}'\n`;
+  dotenv += `SECRET='${randomString(24)}'\n\n`;
+  dotenv += `# TODO: Add a password secret\n`;
+  dotenv += `# PASSWORD_SECRET='<REQUIRED>'\n`;
+
+  if (environment.length > 0) {
+    dotenv += `\n# TODO: Add plug-in secrets\n`;
+  }
+
+  for (const variable of environment) {
+    dotenv += `# ${variable}='<REQUIRED>'\n`;
+  }
+
+  return dotenv;
 };
 
 /**
