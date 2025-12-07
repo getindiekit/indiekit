@@ -24,29 +24,37 @@ jobs:
     steps:
       - name: Remove temporary files
         run: sudo rm -rf /tmp/*
+
       - name: Remove hosted tool cache
         run: sudo rm -rf /opt/hostedtoolcache
-      - name: Git checkout
-        uses: actions/checkout@v4
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+
       - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.11.0
+        uses: supercharge/mongodb-github-action@1.12.1
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
+
       - name: Download localisations
         uses: localazy/download@v1
         with:
           read_key: ${{ secrets.LOCALAZY_READ_KEY }}
           write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
+
       - name: Install packages and symlink local dependencies
         # Can’t use npm ci due to https://github.com/npm/cli/issues/4828
         run: npm i --package-lock=false
-      - name: Lint code
+
+      - name: Run linter
         run: npm run lint
+
       - name: Run tests
         env:
           NODE_ENV: test
