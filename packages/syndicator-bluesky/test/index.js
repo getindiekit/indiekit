@@ -54,6 +54,13 @@ describe("syndicator-bluesky", async () => {
     assert.ok(bluesky.info.service);
   });
 
+  it("Gets plug-in installation prompts", () => {
+    assert.equal(
+      bluesky.prompts[0].message,
+      "What is your Bluesky handle (without the @)?",
+    );
+  });
+
   it("Returns error information if no username provided", () => {
     const result = new BlueskySyndicator({
       password: "password",

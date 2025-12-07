@@ -73,6 +73,16 @@ export default class BlueskySyndicator {
     return info;
   }
 
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "handle",
+        message: "What is your Bluesky handle (without the @)?",
+      },
+    ];
+  }
+
   async syndicate(properties, publication) {
     try {
       const bluesky = new Bluesky({
