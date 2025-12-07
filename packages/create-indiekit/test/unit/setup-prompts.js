@@ -11,7 +11,7 @@ describe("create-indiekit/lib/setup-prompts", () => {
   it("Asks for a valid URL", () => {
     assert.equal(
       setupPrompts[0].validate("foo.bar"),
-      "Enter a valid URL, for example, https://website.example",
+      "Enter a valid URL, for example https://website.example",
     );
     assert.equal(setupPrompts[0].validate("https://foo.bar"), true);
   });

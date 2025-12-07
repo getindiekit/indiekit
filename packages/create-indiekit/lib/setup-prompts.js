@@ -9,7 +9,7 @@ export const setupPrompts = [
     validate: (value) =>
       URL.canParse(value)
         ? true
-        : "Enter a valid URL, for example, https://website.example",
+        : "Enter a valid URL, for example https://website.example",
   },
   {
     type: "confirm",
