@@ -10,6 +10,7 @@ export const locales = new Set([
   "nl",
   "pl",
   "pt",
+  "pt-BR",
   "sr",
   "sv",
   "zh-Hans-CN",
