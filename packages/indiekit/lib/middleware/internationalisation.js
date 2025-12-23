@@ -23,7 +23,7 @@ export const internationalisation = (Indiekit) =>
 
       // Override system locale with configured value
       if (locale) {
-        response.locals.setLocale(locale);
+        request.setLocale(locale);
       }
 
       next();
