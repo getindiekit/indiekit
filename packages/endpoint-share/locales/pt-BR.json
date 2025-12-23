@@ -1,0 +1,30 @@
+{
+  "share": {
+    "bookmark-of": {
+      "label": "URL"
+    },
+    "content": {
+      "label": "Conteúdo"
+    },
+    "error": {
+      "bookmark-of": {
+        "empty": "Digite um endereço da web como %s"
+      },
+      "name": {
+        "empty": "Digite um título"
+      }
+    },
+    "name": {
+      "label": "Título"
+    },
+    "submit": "Publicar",
+    "title": "Compartilhar"
+  },
+  "status": {
+    "bookmarklet": {
+      "guidance": "Arraste este link para a sua barra de favoritos: %s",
+      "label": "Compartilhar página",
+      "title": "Compartilhar marcador"
+    }
+  }
+}

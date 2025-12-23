@@ -1,0 +1,39 @@
+{
+  "BadRequestError": {
+    "invalid": "A solicitação não contém um parâmetro obrigatório, inclui um parâmetro ou valor de parâmetro não suportado, repete o mesmo parâmetro, usa mais de um método para incluir um token de acesso ou está malformada de alguma outra forma.",
+    "invalidValue": "Valor inválido fornecido para: `%s`",
+    "missingParameter": "Parâmetro ausente: `%s `",
+    "missingProperty": "Não %s incluído no pedido",
+    "missingResource": "Não %s foi encontrado nessa URL",
+    "missingToken": "Nenhum bearer token foi fornecido pela solicitação.",
+    "title": "Solicitação incorreta"
+  },
+  "ForbiddenError": {
+    "insufficientScope": "A solicitação requer privilégios superiores aos fornecidos pelo token de acesso",
+    "invalidMe": "A URL de publicação não corresponde ao fornecido pelo token de acesso",
+    "invalidRedirect": "Tentativa de redirecionamento inválida",
+    "invalidState": "Valor inválido para `state`",
+    "title": "Proibido"
+  },
+  "NotFoundError": {
+    "page": "Se você digitou um endereço da web, verifique se está correto",
+    "record": "Nenhum registro no banco de dados encontrado para %s",
+    "title": "Não encontrado"
+  },
+  "NotImplementedError": {
+    "database": "Essa funcionalidade requer um banco de dados",
+    "postType": "Nenhuma configuração fornecida para %s tipo de postagem",
+    "query": "Query não suportada para `{{key}}`: `{{value}}`",
+    "secret": "Ausência da chave `SECRET`",
+    "title": "Não implementado"
+  },
+  "UnauthorizedError": {
+    "invalidCode": "O código de autorização fornecido expirou, foi revogado, está incorreto ou é inválido por outros motivos",
+    "invalidToken": "O token de acesso fornecido expirou, foi revogado, está mal formatado ou inválido por outros motivos",
+    "title": "Não autorizado"
+  },
+  "UnsupportedMediaTypeError": {
+    "title": "Tipo de mídia não suportado",
+    "type": "O %s O tipo de mídia não é compatível."
+  }
+}

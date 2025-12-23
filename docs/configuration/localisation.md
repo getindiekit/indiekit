@@ -15,6 +15,7 @@ Indiekit has been localised into the following languages:
 - `nl`: Nederlands
 - `pl`: Polski (with contributions from Arookei The Wolf)
 - `pt`: Português
+- `pt-BR`: Português Brasileiro (with contributions from [Bruno Pulis](https://github.com/brunopulis))
 - `sr`: Srpski (with contributions from Anđela Radojlović)
 - `sv`: Svenska (with contributions from [Carl Räfting](https://github.com/carlrafting))
 - `zh-Hans-CN`: 中文 (Simplified Chinese, with contributions from [Xie Yanbo](https://github.com/xyb) and [藍](https://github.com/kwaa))

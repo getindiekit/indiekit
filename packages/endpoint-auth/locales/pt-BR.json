@@ -1,0 +1,58 @@
+{
+  "auth": {
+    "consent": {
+      "authenticate": {
+        "submit": "Entrar",
+        "text": "Faça login em {{client}} como {{me}}",
+        "title": "Entrar"
+      },
+      "authorize": {
+        "submit": "Permitir",
+        "text": "{{client}} está solicitando permissão para acessar {{me}}",
+        "title": "Autorizar aplicação"
+      },
+      "password": {
+        "label": "Senha"
+      },
+      "pkce": {
+        "text": "{{client}} não utiliza o método Proof of Key Code Exchange (PKCE), que é mais seguro."
+      },
+      "redirect": "Após a autorização, você será redirecionado para %s"
+    },
+    "error": {
+      "password": {
+        "invalid": "Digite uma senha válida",
+        "missing": "Digite uma senha"
+      }
+    },
+    "guidance": {
+      "authentication": {
+        "redeemCode": "Resgate um código de autorização para obter um token de acesso",
+        "title": "Obter as permissões de acesso de um usuário",
+        "verifyToken": "Verificar um token de acesso"
+      },
+      "authorization": {
+        "redeemCode": "Resgatar um código de autorização para o URL do perfil de um usuário",
+        "requestCode": "Solicitar um código de autorização",
+        "requestCodeResponse": "Se o usuário aprovar a solicitação, o endpoint gerará um código de autorização e redirecionará de volta para o cliente:",
+        "title": "Obter a identidade de um usuário"
+      },
+      "discovery": "Para usar este endpoint de autenticação, adicione os seguintes valores ao seu site: `<head>`:",
+      "title": "Utilizando este endpoint do IndieAuth"
+    },
+    "newPassword": {
+      "password": {
+        "hint": "Digite uma senha para usar na autenticação das requisições"
+      },
+      "secret": {
+        "hint": "Utilize o seguinte valor para %s em suas variáveis de ambiente",
+        "label": "Senha secreta"
+      },
+      "setup": {
+        "text": "Uma senha secreta é necessária antes de {{app}} para autenticar as requisições do IndieAuth."
+      },
+      "submit": "Gerar senha secreta",
+      "title": "Nova senha"
+    }
+  }
+}
