@@ -35,5 +35,10 @@ export const getPostTypes = ({ postTypes, publication }) => {
         .map((entry) => entry[0]);
   }
 
-  return postTypes;
+  // Only return fully configured post types
+  const configuredPostTypes = Object.fromEntries(
+    Object.entries(postTypes).filter(([, value]) => value.properties),
+  );
+
+  return configuredPostTypes;
 };

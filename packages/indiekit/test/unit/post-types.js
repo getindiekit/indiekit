@@ -35,6 +35,7 @@ describe("indiekit/lib/post-types", () => {
   it("Returns custom post types", async () => {
     const config = await testConfig({ usePostTypes: true });
     const indiekit = await Indiekit.initialize({ config });
+    await indiekit.installPlugins();
     await indiekit.updatePublicationConfig();
     const { note: result } = getPostTypes(indiekit);
 
