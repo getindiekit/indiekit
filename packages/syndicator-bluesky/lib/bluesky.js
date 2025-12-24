@@ -4,6 +4,7 @@ import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 
 import {
   createRichText,
+  getPostImage,
   getPostText,
   getPostParts,
   uriToPostUrl,
@@ -184,9 +185,22 @@ export class Bluesky {
         throw await IndiekitError.fromFetch(mediaResponse);
       }
 
-      const blob = await mediaResponse.blob();
+      let blob = await mediaResponse.blob();
+      let encoding = mediaResponse.headers.get("Content-Type");
+
+      // Compress image to meet maximum file size limit
+      if (encoding?.startsWith("image/")) {
+        const buffer = Buffer.from(await blob.arrayBuffer());
+        const image = await getPostImage(buffer, encoding);
+
+        blob = new Blob([new Uint8Array(image.buffer)], {
+          type: image.mimeType,
+        });
+        encoding = image.mimeType;
+      }
+
       const response = await client.com.atproto.repo.uploadBlob(blob, {
-        encoding: mediaResponse.headers.get("Content-Type"),
+        encoding,
       });
 
       return response.data.blob;
