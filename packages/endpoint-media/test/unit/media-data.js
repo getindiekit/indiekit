@@ -32,7 +32,7 @@ describe("endpoint-media/lib/media-data", async () => {
       },
     });
 
-    const config = await testConfig({ usePostTypes: true });
+    const config = await testConfig();
     const collections = new Map([["media", mediaCollection]]);
 
     application = { collections };

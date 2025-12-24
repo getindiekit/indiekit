@@ -39,7 +39,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       },
     });
 
-    const config = await testConfig({ usePostTypes: true });
+    const config = await testConfig();
     const collections = new Map([["posts", postsCollection]]);
 
     application = { collections };

@@ -10,7 +10,6 @@ describe("indiekit/lib/post-types", () => {
   it("Merges values from custom and preset post types", async () => {
     const config = await testConfig({
       plugins: ["@indiekit/preset-jekyll"],
-      usePostTypes: true,
     });
     const indiekit = await Indiekit.initialize({ config });
     await indiekit.installPlugins();
@@ -33,7 +32,7 @@ describe("indiekit/lib/post-types", () => {
   });
 
   it("Returns custom post types", async () => {
-    const config = await testConfig({ usePostTypes: true });
+    const config = await testConfig();
     const indiekit = await Indiekit.initialize({ config });
     await indiekit.installPlugins();
     await indiekit.updatePublicationConfig();

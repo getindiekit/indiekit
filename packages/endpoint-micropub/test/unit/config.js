@@ -6,7 +6,7 @@ import { testConfig } from "@indiekit-test/config";
 
 import { getConfig, queryConfig } from "../../lib/config.js";
 
-const config = await testConfig({ usePostTypes: true });
+const config = await testConfig();
 const list = ["blog", "indieweb", "microblog", "web", "website"];
 
 describe("endpoint-micropub/lib/config", () => {
