@@ -1,6 +1,7 @@
 import { RichText } from "@atproto/api";
 import brevity from "brevity";
 import { htmlToText } from "html-to-text";
+import sharp from "sharp";
 
 const AT_URI = /at:\/\/(?<did>did:[^/]+)\/(?<type>[^/]+)\/(?<rkey>[^/]+)/;
 
@@ -81,6 +82,42 @@ export const getPostText = (properties, includePermalink) => {
 
   return text;
 };
+
+/**
+ * Constrain image buffer to be under 1MB
+ * @param {Buffer} buffer - Image buffer
+ * @param {number} maxBytes - Maximum byte length
+ * @param {number} [quality] - Image quality
+ * @returns {Promise<Buffer>} Compressed image
+ */
+export async function constrainImage(buffer, maxBytes, quality = 90) {
+  const compressed = await sharp(buffer).jpeg({ quality }).toBuffer();
+
+  if (compressed.byteLength > maxBytes) {
+    return constrainImage(buffer, maxBytes, quality - 5);
+  }
+
+  return compressed;
+}
+
+/**
+ * Compress image buffer to be under 1MB for Bluesky
+ * @param {Buffer} buffer - Image buffer
+ * @param {string} mimeType - Original MIME type
+ * @returns {Promise<{buffer: Buffer, mimeType: string}>} Compressed image
+ */
+export async function getPostImage(buffer, mimeType) {
+  const MAX_SIZE = 1024 * 1024; // 1MB
+
+  // If file size already under 1MB, return unchanged
+  if (buffer.length < MAX_SIZE) {
+    return { buffer, mimeType };
+  }
+
+  const compressed = await constrainImage(buffer, MAX_SIZE);
+
+  return { buffer: compressed, mimeType: "image/jpeg" };
+}
 
 /**
  * Convert HTML to plain text, appending last link href if present

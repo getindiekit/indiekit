@@ -3,17 +3,36 @@ import { after, before, describe, it } from "node:test";
 
 import { TestNetworkNoAppView } from "@atproto/dev-env";
 import { getFixture } from "@indiekit-test/fixtures";
+import sharp from "sharp";
 
 import {
   createRichText,
+  constrainImage,
+  getPostImage,
   getPostParts,
   getPostText,
   htmlToStatusText,
   uriToPostUrl,
 } from "../../lib/utils.js";
 
-describe("syndicator-bluesky/lib/utils", () => {
+describe("syndicator-bluesky/lib/utils", async () => {
   let network;
+
+  const largeImage = await sharp({
+    create: {
+      width: 640,
+      height: 640,
+      channels: 4,
+      background: { r: 255, g: 128, b: 0, alpha: 1 },
+      noise: {
+        type: "gaussian",
+        mean: 128,
+        sigma: 30,
+      },
+    },
+  })
+    .png()
+    .toBuffer();
 
   before(async () => {
     network = await TestNetworkNoAppView.create({
@@ -43,6 +62,43 @@ describe("syndicator-bluesky/lib/utils", () => {
         },
       },
     ]);
+  });
+
+  it("Returns unconstrained image if already small enough", async () => {
+    const maxBytes = 1024 * 1024; // 1MB
+
+    const smallImage = await sharp({
+      create: {
+        width: 100,
+        height: 100,
+        channels: 3,
+        background: { r: 255, g: 0, b: 0 },
+      },
+    })
+      .jpeg({ quality: 90 })
+      .toBuffer();
+
+    const result = await constrainImage(smallImage, maxBytes);
+
+    assert.deepStrictEqual(result, smallImage);
+  });
+
+  it("Compresses image larger than maximum file size", async () => {
+    const maxBytes = 100 * 1024; // 100KB
+    const result = await constrainImage(largeImage, maxBytes, 90);
+    const metadata = await sharp(result).metadata();
+
+    assert.ok(result.byteLength <= maxBytes);
+    assert.strictEqual(metadata.format, "jpeg");
+  });
+
+  it("Gets resized post image", async () => {
+    const result = await getPostImage(largeImage, "image/png");
+    const metadata = await sharp(result.buffer).metadata();
+    const maxBytes = 1024 * 1024; // 1MB
+
+    assert.ok(metadata.size <= maxBytes);
+    assert.equal(result.mimeType, "image/jpeg");
   });
 
   it("Gets post parts", () => {
