@@ -13,10 +13,11 @@ describe("endpoint-micropub/lib/post-data", async () => {
   const properties = {
     type: "entry",
     published: "2020-07-26T20:10:57.062Z",
-    name: "Foo",
+    content: "Foo",
+    category: ["foo", "bar"],
     "mp-slug": "foo",
   };
-  const url = "https://website.example/foo";
+  const url = "https://website.example/notes/foo/";
 
   before(() => {
     mock.method(console, "info", () => {});
@@ -25,20 +26,6 @@ describe("endpoint-micropub/lib/post-data", async () => {
 
   beforeEach(async () => {
     const postsCollection = database.collection("posts");
-    await postsCollection.insertOne({
-      path: "foo",
-      properties: {
-        type: "entry",
-        content: "hello world",
-        published: "2019-08-17T23:56:38.977+01:00",
-        category: ["foo", "bar"],
-        "mp-slug": "baz",
-        "mp-syndicate-to": "https://archive.org/",
-        "post-type": "note",
-        url,
-      },
-    });
-
     const config = await testConfig();
     const collections = new Map([["posts", postsCollection]]);
 
@@ -57,7 +44,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
     assert.equal(result.properties["post-type"], "note");
     assert.equal(result.properties.slug, "foo");
     assert.equal(result.properties.type, "entry");
-    assert.equal(result.properties.url, "https://website.example/notes/foo/");
+    assert.equal(result.properties.url, url);
   });
 
   it("Throws error creating post data for non-configured post type", async () => {
@@ -75,7 +62,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
     const result = await postData.read(application, url);
 
     assert.equal(result.properties["post-type"], "note");
-    assert.equal(result.properties.url, "https://website.example/foo");
+    assert.equal(result.properties.url, url);
   });
 
   it("Updates post by adding properties", async () => {
@@ -88,6 +75,18 @@ describe("endpoint-micropub/lib/post-data", async () => {
     );
 
     assert.ok(result.properties.syndication);
+  });
+
+  it("Doesn’t update post if no changes", async () => {
+    const operation = { replace: { content: ["Foo"] } };
+    const result = await postData.update(
+      application,
+      publication,
+      url,
+      operation,
+    );
+
+    assert.equal(result, undefined);
   });
 
   it("Updates post by replacing properties", async () => {
