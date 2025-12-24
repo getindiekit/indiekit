@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Bug Fixes
+
+* **indiekit:** only return configured post types. fixes [#795](https://github.com/getindiekit/indiekit/issues/795) ([3e58b87](https://github.com/getindiekit/indiekit/commit/3e58b8784e6f5ac7512a35b63204a9d4a521cbf0))
+* **indiekit:** use correct locale for error validation strings. fixes [#796](https://github.com/getindiekit/indiekit/issues/796) ([7c399af](https://github.com/getindiekit/indiekit/commit/7c399af2a356a4b479db41eeaff1d05181dc81a9))
+
+
+### Features
+
+* add Brazilian Portuguese localisation from Bruno Pulis ([bd86503](https://github.com/getindiekit/indiekit/commit/bd86503da1970b7276b277c077cb2e2161f4e5c8))
+* **indiekit:** redirect to new password form if no password secret set ([0d24f03](https://github.com/getindiekit/indiekit/commit/0d24f03a7831e6d2bc1ce3c6ef7d7d16e8f6cd50))
+
+
+
+
+
 # [1.0.0-beta.24](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2025-07-11)
 
 **Note:** Version bump only for package @indiekit/indiekit

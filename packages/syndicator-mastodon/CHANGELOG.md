@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Features
+
+* **syndicator-mastodon:** validate url setup prompt ([a718025](https://github.com/getindiekit/indiekit/commit/a718025891a126a17ec772853637404dbd152300))
+
+
+
+
+
 # [1.0.0-beta.23](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2025-07-06)
 
 **Note:** Version bump only for package @indiekit/syndicator-mastodon

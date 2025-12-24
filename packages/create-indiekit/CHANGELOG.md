@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Features
+
+* **create-indiekit:** add s3-compatible and bluesky to setup prompts ([0ddb4f6](https://github.com/getindiekit/indiekit/commit/0ddb4f633ebcf7d90edd1d7a27c10612b14906b4))
+* **create-indiekit:** generate .env file for use with docker ([5eafd28](https://github.com/getindiekit/indiekit/commit/5eafd2810e44acf6afcc96649767a7ddc0b0b486))
+* **create-indiekit:** update generated .gitignore file ([f669c71](https://github.com/getindiekit/indiekit/commit/f669c715400d5e7adccc398b289a427df00abe2c))
+* **create-indiekit:** update generated docker-compose.yml file ([f3b7eb8](https://github.com/getindiekit/indiekit/commit/f3b7eb84e8cc29dba0390cf963e3ed7ea199ce77))
+* **create-indiekit:** update generated README.md file ([692e923](https://github.com/getindiekit/indiekit/commit/692e9231ba1a6f4a51d92b2d8868ad7bffd425ef))
+* **create-indiekit:** update url validation setup prompt ([58dba1d](https://github.com/getindiekit/indiekit/commit/58dba1dbd7e35c9fb2ba0e54a1f96d43faffc984))
+
+
+
+
+
 # [1.0.0-beta.23](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2025-07-06)
 
 **Note:** Version bump only for package create-indiekit

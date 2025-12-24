@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** don’t update post if no properties have changed. fixes [#747](https://github.com/getindiekit/indiekit/issues/747) ([9f726fb](https://github.com/getindiekit/indiekit/commit/9f726fb80d25e4c28822839e88be31e24a424073))
+* **indiekit:** only return configured post types. fixes [#795](https://github.com/getindiekit/indiekit/issues/795) ([3e58b87](https://github.com/getindiekit/indiekit/commit/3e58b8784e6f5ac7512a35b63204a9d4a521cbf0))
+* **indiekit:** use correct locale for error validation strings. fixes [#796](https://github.com/getindiekit/indiekit/issues/796) ([7c399af](https://github.com/getindiekit/indiekit/commit/7c399af2a356a4b479db41eeaff1d05181dc81a9))
+* **store-gitlab:** error responses ([ee005ae](https://github.com/getindiekit/indiekit/commit/ee005aee8ff545acb21734bee5257f6f83ef5b49))
+* **syndicator-bluesky:** handle empty content in post. fixes [#790](https://github.com/getindiekit/indiekit/issues/790) ([299d62e](https://github.com/getindiekit/indiekit/commit/299d62ecd5fee9482e44868bf9dc45e678f109e7))
+
+
+### Features
+
+* add Brazilian Portuguese localisation from Bruno Pulis ([bd86503](https://github.com/getindiekit/indiekit/commit/bd86503da1970b7276b277c077cb2e2161f4e5c8))
+* **create-indiekit:** add s3-compatible and bluesky to setup prompts ([0ddb4f6](https://github.com/getindiekit/indiekit/commit/0ddb4f633ebcf7d90edd1d7a27c10612b14906b4))
+* **create-indiekit:** generate .env file for use with docker ([5eafd28](https://github.com/getindiekit/indiekit/commit/5eafd2810e44acf6afcc96649767a7ddc0b0b486))
+* **create-indiekit:** update generated .gitignore file ([f669c71](https://github.com/getindiekit/indiekit/commit/f669c715400d5e7adccc398b289a427df00abe2c))
+* **create-indiekit:** update generated docker-compose.yml file ([f3b7eb8](https://github.com/getindiekit/indiekit/commit/f3b7eb84e8cc29dba0390cf963e3ed7ea199ce77))
+* **create-indiekit:** update generated README.md file ([692e923](https://github.com/getindiekit/indiekit/commit/692e9231ba1a6f4a51d92b2d8868ad7bffd425ef))
+* **create-indiekit:** update url validation setup prompt ([58dba1d](https://github.com/getindiekit/indiekit/commit/58dba1dbd7e35c9fb2ba0e54a1f96d43faffc984))
+* **frontend:** use built-in nunjucks operators ([ac4d808](https://github.com/getindiekit/indiekit/commit/ac4d808506b0c0a7308c36e8c0be24f88418bf92))
+* **indiekit:** redirect to new password form if no password secret set ([0d24f03](https://github.com/getindiekit/indiekit/commit/0d24f03a7831e6d2bc1ce3c6ef7d7d16e8f6cd50))
+* **post-type-event:** use nunjucks in operator ([3696c7f](https://github.com/getindiekit/indiekit/commit/3696c7f643425187e3275686771f0431d5d56e8b))
+* **store-s3:** add setup prompts ([d459097](https://github.com/getindiekit/indiekit/commit/d4590975b60efb8b71a216322d00bc0146a863fa))
+* **syndicator-bluesky:** add setup prompts ([5bb5f44](https://github.com/getindiekit/indiekit/commit/5bb5f44b88d832c31a24ee1731bde4642a1d79fd))
+* **syndicator-bluesky:** compress images prior to uploading ([432a448](https://github.com/getindiekit/indiekit/commit/432a448a8a4fea5783be26d2ac5c2adb7b349330))
+* **syndicator-mastodon:** validate url setup prompt ([a718025](https://github.com/getindiekit/indiekit/commit/a718025891a126a17ec772853637404dbd152300))
+
+
+
+
+
 # [1.0.0-beta.24](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2025-07-11)
 
 

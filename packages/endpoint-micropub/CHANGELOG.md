@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Bug Fixes
+
+* **endpoint-micropub:** don’t update post if no properties have changed. fixes [#747](https://github.com/getindiekit/indiekit/issues/747) ([9f726fb](https://github.com/getindiekit/indiekit/commit/9f726fb80d25e4c28822839e88be31e24a424073))
+
+
+
+
+
 # [1.0.0-beta.23](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2025-07-06)
 
 

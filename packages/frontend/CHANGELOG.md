@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Features
+
+* add Brazilian Portuguese localisation from Bruno Pulis ([bd86503](https://github.com/getindiekit/indiekit/commit/bd86503da1970b7276b277c077cb2e2161f4e5c8))
+* **frontend:** use built-in nunjucks operators ([ac4d808](https://github.com/getindiekit/indiekit/commit/ac4d808506b0c0a7308c36e8c0be24f88418bf92))
+
+
+
+
+
 # [1.0.0-beta.24](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2025-07-11)
 
 

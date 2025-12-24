@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+**Note:** Version bump only for package @indiekit/store-github
+
+
+
+
+
 # [1.0.0-beta.21](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2025-04-13)
 
 **Note:** Version bump only for package @indiekit/store-github

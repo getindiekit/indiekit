@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+**Note:** Version bump only for package @indiekit/post-type-article
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2024-04-08)
 
 

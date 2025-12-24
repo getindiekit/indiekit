@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-files",
-  "version": "1.0.0-beta.21",
+  "version": "1.0.0-beta.25",
   "description": "File management endpoint for Indiekit. View files uploaded to your media endpoint and upload new files to it.",
   "keywords": [
     "indiekit",
@@ -35,7 +35,7 @@
     "directory": "packages/endpoint-files"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.21",
+    "@indiekit/error": "^1.0.0-beta.25",
     "express": "^5.0.0",
     "express-validator": "^7.0.0"
   },

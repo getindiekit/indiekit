@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
+
+
+### Features
+
+* add Brazilian Portuguese localisation from Bruno Pulis ([bd86503](https://github.com/getindiekit/indiekit/commit/bd86503da1970b7276b277c077cb2e2161f4e5c8))
+
+
+
+
+
 # [1.0.0-beta.24](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2025-07-11)
 
 **Note:** Version bump only for package @indiekit/endpoint-posts
