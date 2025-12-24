@@ -58,13 +58,7 @@ Architectural decisions made on this project are documented using Architecture D
 
 ## Releasing
 
-[Lerna](https://lerna.js.org) is used to manage and publish packages from this monorepo.
-
-To release a new version, use the following command:
-
-```sh
-npx lerna publish --conventional-commits
-```
+[Lerna](https://lerna.js.org) is used to manage and publish packages from this monorepo via a [trusted publishing workflow](.github/workflows/publish.yml).
 
 ## Contributing
 
