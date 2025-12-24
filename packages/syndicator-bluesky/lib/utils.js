@@ -56,7 +56,7 @@ export const uriToPostUrl = (profileUrl, uri) => {
  * @returns {string} Post text
  */
 export const getPostText = (properties, includePermalink) => {
-  let text;
+  let text = "";
 
   if (properties.name && properties.name !== "") {
     // Post has a non-empty title, show title with a link to post

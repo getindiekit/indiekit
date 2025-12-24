@@ -56,6 +56,14 @@ describe("syndicator-bluesky/lib/utils", () => {
     });
   });
 
+  it("Gets post text for post with no content", () => {
+    const result = getPostText(
+      JSON.parse(getFixture("jf2/photo-untitled.jf2")),
+    );
+
+    assert.equal(result, "");
+  });
+
   it("Gets post text with article post name and URL", () => {
     const result = getPostText(
       JSON.parse(getFixture("jf2/article-content-provided-html-text.jf2")),
