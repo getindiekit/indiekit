@@ -7,7 +7,7 @@ import makeDebug from "debug";
 import { getSyndicateToProperty, normaliseProperties } from "./jf2.js";
 import { getPostType } from "./post-type-discovery.js";
 import * as updateMf2 from "./update.js";
-import { renderPath } from "./utils.js";
+import { getPostTemplateProperties, renderPath } from "./utils.js";
 
 const debug = makeDebug("indiekit:endpoint-micropub:post-data");
 
@@ -119,7 +119,7 @@ export const postData = {
     let { path: _originalPath, properties } = await this.read(application, url);
 
     // Save incoming properties for later comparison
-    const _originalProperties = structuredClone(properties);
+    let oldProperties = structuredClone(properties);
 
     // Add properties
     if (operation.add) {
@@ -143,6 +143,7 @@ export const postData = {
 
     // Normalise properties
     properties = normaliseProperties(publication, properties, timeZone);
+    oldProperties = normaliseProperties(publication, oldProperties, timeZone);
 
     // Post type
     const type = getPostType(postTypes, properties);
@@ -164,8 +165,10 @@ export const postData = {
     );
     properties.url = getCanonicalUrl(updatedUrl, me);
 
-    // Return if no changes to properties detected
-    if (isDeepStrictEqual(properties, _originalProperties)) {
+    // Return if no changes to template properties detected
+    const newProperties = getPostTemplateProperties(properties);
+    oldProperties = getPostTemplateProperties(oldProperties);
+    if (isDeepStrictEqual(newProperties, oldProperties)) {
       return;
     }
 
