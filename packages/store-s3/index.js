@@ -1,6 +1,10 @@
 import path from "node:path";
 import process from "node:process";
 
+/**
+ * @typedef {import('@aws-sdk/client-s3').ObjectCannedACL} ObjectCannedACL
+ */
+
 import {
   CopyObjectCommand,
   DeleteObjectCommand,
@@ -10,12 +14,14 @@ import {
 } from "@aws-sdk/client-s3";
 import { IndiekitError } from "@indiekit/error";
 
+/** @type {{accessKey: string, secretKey: string, region: string, endpoint: string, bucket: string, acl: ObjectCannedACL}} */
 const defaults = {
   accessKey: process.env.S3_ACCESS_KEY,
   secretKey: process.env.S3_SECRET_KEY,
   region: "",
   endpoint: "",
   bucket: "",
+  acl: "public-read",
 };
 
 export default class S3Store {
@@ -28,6 +34,7 @@ export default class S3Store {
    * @param {string} [options.region] - Region name
    * @param {string} [options.endpoint] - Endpoint URL
    * @param {string} [options.bucket] - Bucket name
+   * @param {ObjectCannedACL} [options.acl] - Access Control List (ACL) policy
    */
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
@@ -116,6 +123,7 @@ export default class S3Store {
    */
   async createFile(filePath, content) {
     const putCommand = new PutObjectCommand({
+      ACL: this.options.acl,
       Bucket: this.options.bucket,
       Key: filePath,
       Body: content,
@@ -182,6 +190,7 @@ export default class S3Store {
    */
   async updateFile(filePath, content, options) {
     const putCommand = new PutObjectCommand({
+      ACL: this.options.acl,
       Bucket: this.options.bucket,
       Key: filePath,
       Body: content,

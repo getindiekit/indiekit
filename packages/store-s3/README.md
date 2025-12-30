@@ -37,3 +37,4 @@ Add `@indiekit/store-s3` to your list of plug-ins, specifying options as require
 | `region`    | `string` | Your S3 region name, for example `"us-west"`. _Required_.                |
 | `endpoint`  | `string` | Your S3 endpoint. _Required_.                                            |
 | `bucket`    | `string` | Your S3 bucket name. _Required_.                                         |
+| `acl`       | `string` | Access Control List (ACL) policy, defaults to `"public-read"`.           |
