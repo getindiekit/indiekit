@@ -28,6 +28,7 @@ export default class S3Store {
    * @param {string} [options.region] - Region name
    * @param {string} [options.endpoint] - Endpoint URL
    * @param {string} [options.bucket] - Bucket name
+   * @param {string} [options.acl] - Access Control List (ACL) policy
    */
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
@@ -115,11 +116,17 @@ export default class S3Store {
    * @returns {Promise<string>} File created
    */
   async createFile(filePath, content) {
-    const putCommand = new PutObjectCommand({
-      Bucket: this.options.bucket,
-      Key: filePath,
-      Body: content,
-    });
+    const params = {
+    Bucket: this.options.bucket,
+    Key: filePath,
+    Body: content,
+    };
+
+    if (this.options.acl) {
+      params.ACL = this.options.acl;
+    }
+
+    const putCommand = new PutObjectCommand(params);
 
     try {
       const fileExists = await this.fileExists(filePath);
@@ -181,11 +188,15 @@ export default class S3Store {
    * @returns {Promise<string>} Updated file URL
    */
   async updateFile(filePath, content, options) {
-    const putCommand = new PutObjectCommand({
+    const params = {
       Bucket: this.options.bucket,
       Key: filePath,
       Body: content,
-    });
+    };
+    if (this.options.acl) {
+      params.ACL = this.options.acl;
+    }
+    const putCommand = new PutObjectCommand(params);
 
     try {
       const { ETag } = await this.client().send(putCommand);
