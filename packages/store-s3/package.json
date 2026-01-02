@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/store-s3",
-  "version": "1.0.0-beta.25",
+  "version": "1.0.0-beta.26",
   "description": "S3-compatible content store adaptor for Indiekit",
   "keywords": [
     "indiekit",

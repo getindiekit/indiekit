@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.26](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2026-01-02)
+
+
+### Features
+
+* **store-s3:** add ACL option ([630a508](https://github.com/getindiekit/indiekit/commit/630a50868e4e9de1909e2a8fb77b856297e6740d))
+
+
+
+
+
 # [1.0.0-beta.25](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2025-12-24)
 
 
