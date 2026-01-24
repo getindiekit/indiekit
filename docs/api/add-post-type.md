@@ -148,6 +148,7 @@ Indiekit provides automatic support for the following field types:
 - `location`
 - `name`
 - `summary`
+- `photo`
 
 Installing other post type plug-ins will add to this list, and these fields can be shared by other post type plug-ins.
 
