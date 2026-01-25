@@ -27,6 +27,10 @@
     );
   }
 
+  [data-color-scheme="dark"] & {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="white" d="M0 8h32L16 24z"/></svg%3E');
+  }
+
   @media (prefers-color-scheme: dark) {
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="white" d="M0 8h32L16 24z"/></svg%3E');
   }

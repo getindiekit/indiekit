@@ -37,16 +37,6 @@ radios-field {
   position: absolute;
   z-index: 1;
 
-  &:checked {
-    background: var(--color-background)
-      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="4"/></svg>')
-      center center / 100% auto no-repeat;
-
-    @media (prefers-color-scheme: dark) {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><circle fill="white" cx="8" cy="8" r="4"/></svg>');
-    }
-  }
-
   &:focus-visible {
     border-color: var(--color-on-background);
     border-width: var(--input-border-width-focus);
@@ -62,6 +52,14 @@ radios-field {
     & + .radios__label {
       cursor: default;
     }
+  }
+
+  &:checked {
+    background: radial-gradient(
+      currentColor 0%,
+      currentColor 40%,
+      transparent 40%
+    );
   }
 }
 

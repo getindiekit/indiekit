@@ -93,6 +93,13 @@
     );
   }
 
+  .CodeMirror-cursor {
+    background-color: currentColor;
+    border-color: currentColor;
+    border-radius: 2px;
+    inline-size: 2px;
+  }
+
   .CodeMirror-selected {
     background: var(--color-selection);
   }
