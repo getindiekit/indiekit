@@ -23,8 +23,9 @@ To customise the behaviour of this plug-in, add `@indiekit/endpoint-image` to yo
 
 ## Options
 
-| Option      | Type       | Description                                                        |
-| :---------- | :--------- | :----------------------------------------------------------------- |
-| `cache`     | `Function` | [Keyv store](https://github.com/lukechilds/keyv).                  |
-| `me`        | `string`   | Publication URL. Used as prefix to image paths.                    |
-| `mountPath` | `string`   | Path to image resizing endpoint. _Optional_, defaults to `/image`. |
+| Option      | Type       | Description                                                                                                                                                                  |
+| :---------- | :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cache`     | `Function` | [Keyv store](https://github.com/lukechilds/keyv).                                                                                                                            |
+| `domains`   | `Array`    | List of domains to allow remote image resizing for. _Optional_, defaults to the [value provided for `publication.me`.](https://getindiekit.com/configuration/publication#me) |
+| `me`        | `string`   | Publication URL. Used as prefix to image paths.                                                                                                                              |
+| `mountPath` | `string`   | Path to image resizing endpoint. _Optional_, defaults to `/image`.                                                                                                           |

@@ -6,7 +6,7 @@ import {
   createIPXNodeServer,
 } from "ipx";
 
-const defaults = { mountPath: "/image" };
+const defaults = { domains: [], mountPath: "/image" };
 const router = express.Router();
 
 export default class ImageEndpoint {
@@ -14,6 +14,7 @@ export default class ImageEndpoint {
 
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
+    this.domains = this.options.domains;
     this.mountPath = this.options.mountPath;
   }
 
@@ -23,9 +24,15 @@ export default class ImageEndpoint {
   }
 
   _routes(indiekitConfig) {
+    const domains = Array.isArray(this.domains) ? this.domains : [this.domains];
+
     const ipx = createIPX({
-      storage: ipxFSStorage({ dir: "./public" }),
-      httpStorage: ipxHttpStorage({ domains: indiekitConfig.publication.me }),
+      storage: ipxFSStorage({
+        dir: "./public",
+      }),
+      httpStorage: ipxHttpStorage({
+        domains: [indiekitConfig.publication.me, ...domains],
+      }),
     });
 
     router.use(createIPXNodeServer(ipx));
