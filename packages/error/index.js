@@ -75,6 +75,10 @@ export class IndiekitError extends Error {
   }
 
   getError(name) {
+    // Ensure name is a string before calling replace
+    if (typeof name !== "string") {
+      name = String(name || "unknown");
+    }
     name = name.replace(" ", "_").toLowerCase();
 
     const error = errors[name];
