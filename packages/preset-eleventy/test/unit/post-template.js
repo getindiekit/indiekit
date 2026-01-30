@@ -104,9 +104,31 @@ repostOf: https://website.example
 inReplyTo: https://website.example
 visibility: private
 syndication: https://website.example/post/12345
+permalink: https://website.example/posts/cheese-sandwich/
 ---
 
 I ate a [cheese](https://en.wikipedia.org/wiki/Cheese) sandwich, which was nice.
+`,
+    );
+  });
+
+  it("Renders post template with permalink from url", () => {
+    const result = getPostTemplate({
+      published: "2020-02-02",
+      name: "Test Post",
+      url: "/posts/2020/02/02/test-post",
+      content: "Test content",
+    });
+
+    assert.equal(
+      result,
+      `---
+date: 2020-02-02
+title: Test Post
+permalink: /posts/2020/02/02/test-post/
+---
+
+Test content
 `,
     );
   });

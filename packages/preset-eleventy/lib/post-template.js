@@ -55,7 +55,14 @@ const getFrontMatter = (properties) => {
   delete properties.published; // Use `date`
   delete properties.slug; // use `page.fileSlug`
   delete properties.type; // Not required
-  delete properties.url; // Not required
+
+  // Convert url to Eleventy permalink so generated URL matches Indiekit's stored URL
+  // Add trailing slash to generate /path/index.html instead of /path.html
+  if (properties.url) {
+    const url = properties.url;
+    properties.permalink = url.endsWith("/") ? url : `${url}/`;
+  }
+  delete properties.url;
 
   const frontMatter = YAML.stringify(properties, { lineWidth: 0 });
   return `---\n${frontMatter}---\n`;
