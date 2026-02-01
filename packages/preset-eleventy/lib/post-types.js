@@ -7,18 +7,34 @@ import plur from "plur";
  */
 export const getPostTypes = (postTypes) => {
   for (const type of postTypes.keys()) {
-    const collection = plur(type);
+    // Special handling for "page" post type - root-level slash pages
+    // These go to /{slug} instead of /content/pages/{date}-{slug}
+    if (type === "page") {
+      postTypes.set(type, {
+        ...postTypes.get(type),
+        post: {
+          path: `pages/{slug}.md`,
+          url: `{slug}`,
+        },
+        media: {
+          path: `media/pages/{filename}`,
+        },
+      });
+    } else {
+      // Standard post types - dated URLs under /content/
+      const collection = plur(type);
 
-    postTypes.set(type, {
-      ...postTypes.get(type),
-      post: {
-        path: `${collection}/{yyyy}-{MM}-{dd}-{slug}.md`,
-        url: `content/${collection}/{yyyy}-{MM}-{dd}-{slug}`,
-      },
-      media: {
-        path: `media/${collection}/{yyyy}/{MM}/{dd}/{filename}`,
-      },
-    });
+      postTypes.set(type, {
+        ...postTypes.get(type),
+        post: {
+          path: `${collection}/{yyyy}-{MM}-{dd}-{slug}.md`,
+          url: `content/${collection}/{yyyy}-{MM}-{dd}-{slug}`,
+        },
+        media: {
+          path: `media/${collection}/{yyyy}/{MM}/{dd}/{filename}`,
+        },
+      });
+    }
   }
 
   return postTypes;
