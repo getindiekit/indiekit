@@ -35,11 +35,11 @@
     "directory": "packages/syndicator-bluesky"
   },
   "dependencies": {
-    "@atproto/api": "^0.19.3",
+    "@atproto/api": "^0.19.6",
     "@indiekit/error": "^1.0.0-beta.27",
     "@indiekit/util": "^1.0.0-beta.25",
     "brevity": "^0.2.9",
-    "html-to-text": "^9.0.0",
+    "html-to-text": "^10.0.0",
     "sharp": "^0.34.5"
   },
   "publishConfig": {

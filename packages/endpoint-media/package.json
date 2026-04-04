@@ -35,12 +35,12 @@
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.27",
     "@indiekit/util": "^1.0.0-beta.25",
-    "debug": "^4.3.2",
+    "debug": "^4.4.3",
     "deepmerge": "^4.3.1",
     "express": "^5.0.0",
-    "file-type": "^21.0.0",
+    "file-type": "^22.0.0",
     "newbase60": "^1.3.1",
-    "sharp": "^0.34.0"
+    "sharp": "^0.34.5"
   },
   "publishConfig": {
     "access": "public"
