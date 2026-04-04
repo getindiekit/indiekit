@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.27",
-    "express": "^5.0.0",
-    "sanitize-html": "^2.14.0"
+    "express": "^5.2.1",
+    "sanitize-html": "^2.17.2"
   },
   "publishConfig": {
     "access": "public"

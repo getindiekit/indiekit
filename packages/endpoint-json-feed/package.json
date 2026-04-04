@@ -34,8 +34,8 @@
     "directory": "packages/endpoint-json-feed"
   },
   "dependencies": {
-    "express": "^5.0.0",
-    "mime-types": "^3.0.0"
+    "express": "^5.2.1",
+    "mime-types": "^3.0.2"
   },
   "publishConfig": {
     "access": "public"

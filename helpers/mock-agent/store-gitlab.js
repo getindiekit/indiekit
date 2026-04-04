@@ -60,42 +60,30 @@ export function mockClient() {
     .reply(404, "Not Found")
     .persist();
 
-  // Update file
-  agent
-    .get(origin)
-    .intercept({ path: filePath, method: "PUT" })
-    .reply(
-      200,
-      { file_path: "foo.txt", branch: "main" },
-      { headers: { "content-type": "application/json" } },
-    );
-
   // Update and rename file
   agent
     .get(origin)
-    .intercept({ path: commitPath, method: "POST", body: /previous_path/ })
+    .intercept({ path: commitPath, method: "POST" })
     .reply(
       200,
       { file_path: "bar.txt", message: "message" },
       { headers: { "content-type": "application/json" } },
-    )
-    .persist();
+    );
 
-  // Update commit
+  // Update file
   agent
     .get(origin)
-    .intercept({ path: commitPath, method: "POST", body: /.*(foo|bar).txt/ })
+    .intercept({ path: commitPath, method: "POST" })
     .reply(
       200,
       { file_path: "foo.txt", message: "message" },
       { headers: { "content-type": "application/json" } },
-    )
-    .persist();
+    );
 
-  // Update commit (Unauthorized)
+  // Update file (Unauthorized)
   agent
     .get(origin)
-    .intercept({ path: commitPath, method: "POST", body: /.*401\.txt/ })
+    .intercept({ path: commitPath, method: "POST" })
     .reply(401, "Unauthorized");
 
   // Delete file

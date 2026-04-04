@@ -35,8 +35,8 @@
     "directory": "packages/endpoint-image"
   },
   "dependencies": {
-    "express": "^5.0.0",
-    "ipx": "^3.0.0"
+    "express": "^5.2.1",
+    "ipx": "^3.1.1"
   },
   "publishConfig": {
     "access": "public"

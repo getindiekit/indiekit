@@ -38,10 +38,10 @@
     "@indiekit/error": "^1.0.0-beta.27",
     "@indiekit/util": "^1.0.0-beta.25",
     "bcrypt": "^6.0.0",
-    "express": "^5.0.0",
-    "express-validator": "^7.0.0",
-    "jsonwebtoken": "^9.0.0",
-    "microformats-parser": "^2.0.0"
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "microformats-parser": "^2.0.4"
   },
   "publishConfig": {
     "access": "public"

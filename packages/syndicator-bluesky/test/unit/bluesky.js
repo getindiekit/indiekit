@@ -83,7 +83,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
   it("Throws error posting a like", async () => {
     await assert.rejects(bluesky.postLike("https://foo.bar"), {
-      message: `Error: Params must have the property "repo"`,
+      message: `Invalid com.atproto.repo.getRecord params: Missing required key "repo"`,
     });
   });
 
@@ -95,7 +95,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
   it("Throws error posting a repost", async () => {
     await assert.rejects(bluesky.postRepost("https://foo.bar"), {
-      message: `Error: Params must have the property "repo"`,
+      message: `Invalid com.atproto.repo.getRecord params: Missing required key "repo"`,
     });
   });
 
@@ -118,7 +118,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
   it("Throws error posting a quote post", async () => {
     await assert.rejects(bluesky.postQuotePost(postUrl, "Plain text"), {
-      message: `Invalid app.bsky.feed.post record: Record must have the property "text"`,
+      message: `Invalid app.bsky.feed.post record: Missing required key "text" at $.record`,
     });
   });
 
@@ -141,7 +141,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
   it("Throws error posting a post", async () => {
     await assert.rejects(bluesky.postPost("Plain text"), {
-      message: `Invalid app.bsky.feed.post record: Record must have the property "text"`,
+      message: `Invalid app.bsky.feed.post record: Missing required key "text" at $.record`,
     });
   });
 
