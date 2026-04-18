@@ -12,7 +12,7 @@ Meet [Indiekit](https://getindiekit.com), the little Node.js server with all the
 
 Indiekit is [supported by its community](https://github.com/sponsors/getindiekit). Special thanks to:
 
-<!-- sponsors-readme --><a href="https://github.com/sentience"><img src="https://github.com/sentience.png" width="60px" alt="Kevin Yank" /></a><a href="https://github.com/abhas"><img src="https://github.com/abhas.png" width="60px" alt="Abhas Abhinav" /></a><!-- sponsors-readme -->
+<!-- sponsors-readme --><a href="https://github.com/sentience"><img src="https://github.com/sentience.png" width="60px" alt="Kevin Yank" /></a><a href="https://github.com/abhas"><img src="https://github.com/abhas.png" width="60px" alt="Abhas Abhinav" /></a><a href="https://github.com/jphastings"><img src="https://github.com/jphastings.png" width="60px" alt="JP Hastings-Edrei" /></a><a href="https://github.com/gerwitz"><img src="https://github.com/gerwitz.png" width="60px" alt="Hans Gerwitz" /></a><a href="https://github.com/eclecticpassions"><img src="https://github.com/eclecticpassions.png" width="60px" alt="Naty S" /></a><!-- sponsors-readme -->
 
 ## Features
 
