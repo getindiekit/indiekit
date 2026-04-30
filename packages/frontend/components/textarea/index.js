@@ -103,6 +103,51 @@ export const TextareaFieldComponent = class extends HTMLElement {
       unorderedListStyle: "-",
     });
 
+    // Highlight link text > click toolbar link button > 
+    // Generates Markdown link syntax with empty () and cursor placement for quickly pasting URL
+    document.addEventListener('click', function(e) {
+      const linkButton = e.target.closest('.link');
+      if (linkButton) {
+        e.preventDefault();
+        e.stopPropagation();
+    
+        const cm = document.querySelector('.CodeMirror').CodeMirror;
+        const selectedText = cm.getSelection();
+        
+        if (selectedText) {
+          const linkTemplate = `[${selectedText}]()`;
+          cm.replaceSelection(linkTemplate);
+          cm.focus();
+          
+          // Move cursor into the bracket for direct pasting
+          const cursorPos = cm.getCursor();
+          cm.setSelection(
+            {line: cursorPos.line, ch: cursorPos.ch - 1},
+            {line: cursorPos.line, ch: cursorPos.ch - 1}
+          );
+        }
+        return false;
+      }
+    }, true);
+
+    // Auto convert clipboard URL to Markdown link syntax when pasting a URL to highlighted link text directly
+    // (no need to press link button in editor toolbar)
+    const cm = document.querySelector('.CodeMirror').CodeMirror;
+    cm.on('paste', function(_cm, e) {
+      const selectedText = cm.getSelection();
+      if (!selectedText) return;
+      
+      const pastedText = e.clipboardData?.getData('text/plain') || '';
+      const urlMatch = pastedText.match(/https?:\/\/[^\s]+/);
+      
+      if (urlMatch) {
+        e.preventDefault();
+        const link = `[${selectedText}](${urlMatch[0]})`;
+        cm.replaceSelection(link);
+      }
+    });
+    
+    
     // Restore label behaviour
     /** @type {HTMLTextAreaElement} */
     const $codeMirrorTextarea = this.querySelector(".CodeMirror textarea");
