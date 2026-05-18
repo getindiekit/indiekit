@@ -37,7 +37,7 @@
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.27",
     "express": "^5.2.1",
-    "sanitize-html": "^2.17.2"
+    "sanitize-html": "^2.17.4"
   },
   "publishConfig": {
     "access": "public"
