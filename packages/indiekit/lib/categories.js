@@ -25,7 +25,7 @@ export const getCategories = async (Indiekit) => {
   }
 
   if (categoryList) {
-    return categoryList.toSorted();
+    return categoryList.toSorted((a, b) => a.localeCompare(b));
   }
 
   return [];
