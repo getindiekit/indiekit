@@ -2,7 +2,6 @@ import { Buffer } from "node:buffer";
 import path from "node:path";
 import process from "node:process";
 
-// eslint-disable-next-line import/no-unresolved
 import { Gitlab } from "@gitbeaker/rest";
 import { IndiekitError } from "@indiekit/error";
 

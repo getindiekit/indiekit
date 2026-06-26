@@ -43,7 +43,6 @@ export const formatDate = (string, tokens, options = {}) => {
   // Convert options object to options expected for `FormatOptionsWithTZ`
   const formatOptions = {
     ...options,
-    // eslint-disable-next-line import/namespace
     ...(options.locale && { locale: locales[formattedLocale] }),
   };
 

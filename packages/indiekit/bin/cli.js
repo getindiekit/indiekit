@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { createRequire } from "node:module";
 
-import { Indiekit } from "@indiekit/indiekit";
 import { Command } from "commander";
 import makeDebug from "debug";
 
 import { defaultConfig } from "../config/defaults.js";
+
+import { Indiekit } from "@indiekit/indiekit";
 
 const require = createRequire(import.meta.url);
 const package_ = require("../package.json");

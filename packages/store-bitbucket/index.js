@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
-// eslint-disable-next-line import/default
+// eslint-disable-next-line import-x/default
 import bitbucket from "bitbucket";
 
 const defaults = {
@@ -66,7 +66,7 @@ export default class BitbucketStore {
    * @returns {APIClient} Bitbucket client interface
    */
   get #client() {
-    // eslint-disable-next-line import/no-named-as-default-member
+    // eslint-disable-next-line import-x/no-named-as-default-member
     const { Bitbucket } = bitbucket;
     return new Bitbucket({
       auth: {

@@ -1,4 +1,4 @@
-import importPlugin from "eslint-plugin-import";
+import importPlugin from "eslint-plugin-import-x";
 import js from "@eslint/js";
 import prettier from "eslint-config-prettier";
 import jsdoc from "eslint-plugin-jsdoc";
@@ -8,7 +8,12 @@ import * as webComponents from "eslint-plugin-wc";
 import globals from "globals";
 
 export default [
-  importPlugin.flatConfigs.recommended,
+  {
+    ...importPlugin.flatConfigs.recommended,
+    settings: {
+      "import-x/resolver-next": [importPlugin.createNodeResolver()],
+    },
+  },
   js.configs.recommended,
   jsdoc.configs["flat/recommended"],
   sortClassMembers.configs["flat/recommended"],
@@ -26,8 +31,8 @@ export default [
     files: ["**/{packages,helpers}/**/*.js"],
     languageOptions: { globals: { ...globals.node }, ecmaVersion: "latest" },
     rules: {
-      "import/no-named-as-default": 0,
-      "import/order": [
+      "import-x/no-named-as-default": 0,
+      "import-x/order": [
         "error",
         {
           alphabetize: { order: "asc" },
