@@ -18,7 +18,7 @@ const nodeVersion = ">=24";
  */
 export async function init() {
   const { log } = console;
-  const bugsUrl = chalk.cyan(`${bugs.url}`);
+  const bugsUrl = chalk.cyan(bugs.url);
   const nameVersion = chalk.white(`(${name} v${version})`);
 
   log(`\n${chalk.bold("Welcome to Indiekit!")} ${nameVersion}`);

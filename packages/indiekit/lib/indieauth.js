@@ -88,7 +88,7 @@ export const IndieAuth = class {
         const { redirect } = request.query;
         this.redirectUri = redirect
           ? `${callbackUrl}?redirect=${redirect}`
-          : `${callbackUrl}`;
+          : callbackUrl;
 
         this.clientId = clientId;
         const state = generateState(this.clientId, this.iv);
