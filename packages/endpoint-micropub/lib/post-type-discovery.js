@@ -6,13 +6,12 @@
  * @see {@link https://ptd.spec.indieweb.org/#algorithm}
  */
 export const getPostType = (postTypes, properties) => {
-  const propertiesMap = new Map(Object.entries(properties));
-
   // If post has the event type, it’s an event
   if (properties.type && properties.type === "event") {
     return properties.type;
   }
 
+  // Types defined in Post Type Discovery specification
   const basePostTypes = new Map([
     ["rsvp", "rsvp"],
     ["repost", "repost-of"],
@@ -21,8 +20,6 @@ export const getPostType = (postTypes, properties) => {
     ["video", "video"],
     ["photo", "photo"],
   ]);
-
-  // Types defined in Post Type Discovery specification
 
   // Types defined in post type configuration
   for (const [type, { discovery }] of Object.entries(postTypes)) {
@@ -33,6 +30,7 @@ export const getPostType = (postTypes, properties) => {
     basePostTypes.set(type, discovery);
   }
 
+  const propertiesMap = new Map(Object.entries(properties));
   for (const basePostType of basePostTypes) {
     if (propertiesMap.has(basePostType[1])) {
       return basePostType[0];
