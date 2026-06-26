@@ -91,10 +91,11 @@ export const getPostText = (properties, includePermalink) => {
  * @returns {Promise<Buffer>} Compressed image
  */
 export async function constrainImage(buffer, maxBytes, quality = 90) {
-  const compressed = await sharp(buffer).jpeg({ quality }).toBuffer();
+  let compressed = await sharp(buffer).jpeg({ quality }).toBuffer();
 
-  if (compressed.byteLength > maxBytes) {
-    return constrainImage(buffer, maxBytes, quality - 5);
+  while (compressed.byteLength > maxBytes) {
+    quality -= 5;
+    compressed = await sharp(buffer).jpeg({ quality }).toBuffer();
   }
 
   return compressed;
