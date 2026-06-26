@@ -31,6 +31,19 @@ export default class GitlabStore {
     this.projectId = options.projectId || `${options.user}/${options.repo}`;
   }
 
+  /**
+   * @access private
+   * @returns {object} GitLab interfaces
+   */
+  get #client() {
+    const client = new Gitlab({
+      host: this.options.instance,
+      token: this.options.token,
+    });
+
+    return client;
+  }
+
   get environment() {
     return ["GITLAB_TOKEN"];
   }
@@ -71,19 +84,6 @@ export default class GitlabStore {
         initial: defaults.branch,
       },
     ];
-  }
-
-  /**
-   * @access private
-   * @returns {object} GitLab interfaces
-   */
-  get #client() {
-    const client = new Gitlab({
-      host: this.options.instance,
-      token: this.options.token,
-    });
-
-    return client;
   }
 
   /**

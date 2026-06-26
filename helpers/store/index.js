@@ -15,14 +15,6 @@ export default class TestStore {
     this.options = { ...defaults, ...options };
   }
 
-  get info() {
-    const { baseUrl, user } = this.options;
-    return {
-      name: "Test store",
-      uid: `${baseUrl}/${user}`,
-    };
-  }
-
   /**
    * @access private
    * @param {string} path - Request path
@@ -52,6 +44,14 @@ export default class TestStore {
         status: error.status,
       });
     }
+  }
+
+  get info() {
+    const { baseUrl, user } = this.options;
+    return {
+      name: "Test store",
+      uid: `${baseUrl}/${user}`,
+    };
   }
 
   /**

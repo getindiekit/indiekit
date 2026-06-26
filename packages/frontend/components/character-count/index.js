@@ -29,29 +29,6 @@ export const CharacterCountComponent = class extends HTMLElement {
     this.$visibleCountMessage.setAttribute("aria-hidden", "true");
   }
 
-  connectedCallback() {
-    this.i18nChar = this.getAttribute("i18n-char") || `%s character`;
-    this.i18nChars = this.getAttribute("i18n-chars") || `%s characters`;
-    this.i18nWord = this.getAttribute("i18n-word") || `%s word`;
-    this.i18nWords = this.getAttribute("i18n-words") || `%s words`;
-
-    this.$textarea = this.querySelector("textarea");
-    this.$textarea.addEventListener("keyup", this.#handleKeyUp.bind(this));
-    this.$textarea.addEventListener("focus", this.#handleFocus.bind(this));
-    this.$textarea.addEventListener("blur", this.#handleBlur.bind(this));
-    window.addEventListener("pageshow", this.#updateCountMessages.bind(this));
-    this.#updateCountMessages();
-
-    this.$textareaDescription = this.querySelector(
-      `#${this.$textarea.id}-info`,
-    );
-    this.$textareaDescription.classList.add("-!-visually-hidden");
-    this.$textareaDescription.insertAdjacentElement(
-      "afterend",
-      this.$visibleCountMessage,
-    );
-  }
-
   /**
    * Update visible character counter and keep track of when the last update
    * happened for each keypress
@@ -181,5 +158,28 @@ export const CharacterCountComponent = class extends HTMLElement {
     }
 
     return `${characterCount}, ${wordCount}`;
+  }
+
+  connectedCallback() {
+    this.i18nChar = this.getAttribute("i18n-char") || `%s character`;
+    this.i18nChars = this.getAttribute("i18n-chars") || `%s characters`;
+    this.i18nWord = this.getAttribute("i18n-word") || `%s word`;
+    this.i18nWords = this.getAttribute("i18n-words") || `%s words`;
+
+    this.$textarea = this.querySelector("textarea");
+    this.$textarea.addEventListener("keyup", this.#handleKeyUp.bind(this));
+    this.$textarea.addEventListener("focus", this.#handleFocus.bind(this));
+    this.$textarea.addEventListener("blur", this.#handleBlur.bind(this));
+    window.addEventListener("pageshow", this.#updateCountMessages.bind(this));
+    this.#updateCountMessages();
+
+    this.$textareaDescription = this.querySelector(
+      `#${this.$textarea.id}-info`,
+    );
+    this.$textareaDescription.classList.add("-!-visually-hidden");
+    this.$textareaDescription.insertAdjacentElement(
+      "afterend",
+      this.$visibleCountMessage,
+    );
   }
 };

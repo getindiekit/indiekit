@@ -27,40 +27,6 @@ export default class FtpStore {
     this.options = { ...defaults, ...options };
   }
 
-  get environment() {
-    return ["FTP_PASSWORD", "FTP_USER"];
-  }
-
-  get info() {
-    const { directory, host, user } = this.options;
-
-    return {
-      name: `${user} on ${host}`,
-      uid: `sftp://${host}/${directory}`,
-    };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "host",
-        message: "Where is your FTP server hosted?",
-        description: "i.e. ftp.server.example",
-      },
-      {
-        type: "text",
-        name: "user",
-        message: "What is your FTP username?",
-      },
-      {
-        type: "text",
-        name: "directory",
-        message: "Which directory do you want to save files in?",
-      },
-    ];
-  }
-
   /**
    * Get FTP client interface
    * @access private
@@ -105,6 +71,40 @@ export default class FtpStore {
    */
   #absolutePath(filePath) {
     return path.join(this.options.directory, filePath);
+  }
+
+  get environment() {
+    return ["FTP_PASSWORD", "FTP_USER"];
+  }
+
+  get info() {
+    const { directory, host, user } = this.options;
+
+    return {
+      name: `${user} on ${host}`,
+      uid: `sftp://${host}/${directory}`,
+    };
+  }
+
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "host",
+        message: "Where is your FTP server hosted?",
+        description: "i.e. ftp.server.example",
+      },
+      {
+        type: "text",
+        name: "user",
+        message: "What is your FTP username?",
+      },
+      {
+        type: "text",
+        name: "directory",
+        message: "Which directory do you want to save files in?",
+      },
+    ];
   }
 
   /**
