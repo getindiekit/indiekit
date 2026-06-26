@@ -66,7 +66,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
   });
 
   it("Updates post by adding properties", async () => {
-    const operation = { add: { syndication: ["http://website.example"] } };
+    const operation = { add: { syndication: ["https://website.example"] } };
     const result = await postData.update(
       application,
       publication,
@@ -134,7 +134,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
         content: ["updated content"],
       },
       add: {
-        syndication: ["http://website.example"],
+        syndication: ["https://website.example"],
       },
       delete: ["mp-syndicate-to"],
     };

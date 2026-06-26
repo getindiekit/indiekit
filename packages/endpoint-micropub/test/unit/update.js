@@ -17,10 +17,10 @@ const properties = {
 
 describe("endpoint-media/lib/update", () => {
   it("Add properties to object", () => {
-    const additions = { syndication: ["http://website.example"] };
+    const additions = { syndication: ["https://website.example"] };
     const result = addProperties(properties, additions);
 
-    assert.deepEqual(result.syndication, ["http://website.example"]);
+    assert.deepEqual(result.syndication, ["https://website.example"]);
   });
 
   it("Add properties to existing value", () => {

@@ -12,7 +12,7 @@ export function mockClient() {
   const job_id = "ac58789b-f3ca-48d0-9ea6-1d1225e98695";
   const origin = "https://web.archive.org";
   const timestamp = "20180326070330";
-  const url = "http://website.example/post/1";
+  const url = "https://website.example/post/1";
 
   // Request capture
   agent

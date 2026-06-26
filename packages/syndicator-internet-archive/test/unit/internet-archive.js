@@ -13,7 +13,7 @@ describe("syndicator-internet-archive/lib/internet-archive", async () => {
     secretKey: "secret",
   });
   const job_id = "ac58789b-f3ca-48d0-9ea6-1d1225e98695";
-  const url = "http://website.example/post/1";
+  const url = "https://website.example/post/1";
 
   it("Makes capture request", async () => {
     const result = await internetArchive.capture(url);

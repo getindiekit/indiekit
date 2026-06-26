@@ -14,7 +14,7 @@ describe("syndicator-internet-archive", () => {
     secretKey: "secret",
   });
 
-  const url = "http://website.example/post/1";
+  const url = "https://website.example/post/1";
 
   it("Gets plug-in environment", () => {
     assert.deepEqual(internetArchive.environment, [
