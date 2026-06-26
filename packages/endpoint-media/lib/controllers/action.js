@@ -29,7 +29,6 @@ export const actionController = (imageProcessing) =>
       }
 
       let data;
-      let file;
       let content;
       switch (action) {
         case "media": {
@@ -40,7 +39,7 @@ export const actionController = (imageProcessing) =>
             );
           }
 
-          file = await mediaTransform(imageProcessing, files.file);
+          const file = await mediaTransform(imageProcessing, files.file);
 
           data = await mediaData.create(application, publication, file);
           content = await mediaContent.upload(publication, data, file);

@@ -143,7 +143,6 @@ export default class GithubStore {
   async createFile(filePath, content, { message }) {
     const { branch, repo } = this.options;
 
-    let createResponse;
     try {
       const fileExists = await this.fileExists(filePath);
       if (fileExists) {
@@ -151,7 +150,7 @@ export default class GithubStore {
       }
 
       debug(`Try creating file ${filePath} in repo ${repo}, branch ${branch}`);
-      createResponse = await this.#client(filePath, "PUT", {
+      const createResponse = await this.#client(filePath, "PUT", {
         branch,
         content: Buffer.from(content).toString("base64"),
         message,
