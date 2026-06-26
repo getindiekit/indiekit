@@ -31,7 +31,7 @@ export const endpoint = {
    * @param {object} [jsonBody] - JSON body
    * @returns {Promise<object>} Response data
    */
-  async post(url, accessToken, jsonBody = false) {
+  async post(url, accessToken, jsonBody) {
     const endpointResponse = await fetch(url, {
       method: "POST",
       headers: {

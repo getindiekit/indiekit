@@ -185,10 +185,13 @@ export const getPostUrl = (id) => {
 /**
  * Get syndication target `items` for checkboxes component
  * @param {object} publication - Publication configuration
- * @param {boolean} [checkTargets] - Select ’checked’ targets
+ * @param {boolean} [shouldCheckTargets] - Select ’checked’ targets
  * @returns {object} Items for checkboxes component
  */
-export const getSyndicateToItems = (publication, checkTargets = false) => {
+export const getSyndicateToItems = (
+  publication,
+  shouldCheckTargets = false,
+) => {
   return publication.syndicationTargets.map((target) => ({
     label: target.info.service.name,
     ...(target?.info?.error
@@ -199,7 +202,7 @@ export const getSyndicateToItems = (publication, checkTargets = false) => {
       : {
           hint: target?.info.uid,
           value: target?.info.uid,
-          ...(checkTargets && { checked: target.options.checked }),
+          ...(shouldCheckTargets && { checked: target.options.checked }),
         }),
   }));
 };

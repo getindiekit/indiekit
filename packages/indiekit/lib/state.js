@@ -28,10 +28,10 @@ export const generateState = (clientId, iv) => {
 export const validateState = (state, clientId, iv) => {
   try {
     state = JSON.parse(decrypt(state, iv));
-    const validClient = state.clientId === clientId;
-    const validDate = state.date > Date.now() - 1000 * 60 * 10;
+    const isValidClient = state.clientId === clientId;
+    const isValidDate = state.date > Date.now() - 1000 * 60 * 10;
 
-    if (validClient && validDate) {
+    if (isValidClient && isValidDate) {
       return state;
     }
   } catch {

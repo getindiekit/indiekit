@@ -98,7 +98,7 @@
       name: "post-status",
       value: "published",
       text: __("posts.form.update") if postStatus === "published" else __("posts.form.publish")
-    }) | indent(4) if not draftMode }}
+    }) | indent(4) if not isDraftMode }}
 
     {{ button({
       name: "post-status",

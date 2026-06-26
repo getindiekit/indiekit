@@ -7,10 +7,10 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
  * @type {import("express").RequestHandler}
  */
 export const postController = async (request, response) => {
-  const { draftMode, postName, postsPath, postStatus, properties, scope } =
+  const { isDraftMode, postName, postsPath, postStatus, properties, scope } =
     response.locals;
 
-  const postEditable = draftMode ? postStatus === "draft" : true;
+  const isPostEditable = isDraftMode ? postStatus === "draft" : true;
 
   response.render("post", {
     title: postName,
@@ -22,7 +22,7 @@ export const postController = async (request, response) => {
       scope &&
       checkScope(scope, "update") &&
       !properties.deleted &&
-      postEditable
+      isPostEditable
         ? {
             href: path.join(request.baseUrl + request.path, "/update"),
             icon: "updatePost",
