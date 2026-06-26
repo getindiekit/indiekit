@@ -35,8 +35,8 @@ export const defaultConfig = {
     postTypes: {},
     preset: undefined,
     slugSeparator: "-",
-    storeMessageTemplate: (metaData) =>
-      `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
+    storeMessageTemplate: (metadata) =>
+      `${metadata.action} ${metadata.postType} ${metadata.fileType}`,
     syndicationTargets: [],
   },
 };

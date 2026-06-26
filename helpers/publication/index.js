@@ -13,7 +13,7 @@ export const publication = {
   store: new TestStore({
     user: "user",
   }),
-  storeMessageTemplate: (metaData) =>
-    `${metaData.action} ${metaData.postType} ${metaData.fileType}`,
+  storeMessageTemplate: (metadata) =>
+    `${metadata.action} ${metadata.postType} ${metadata.fileType}`,
   preset: new JekyllPreset(),
 };

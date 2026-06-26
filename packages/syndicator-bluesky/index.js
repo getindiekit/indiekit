@@ -48,8 +48,8 @@ export default class BlueskySyndicator {
   }
 
   get info() {
-    const userName = this.options?.handle?.replace("@", "");
-    const url = new URL(this.options.profileUrl).href + "/" + userName;
+    const username = this.options?.handle?.replace("@", "");
+    const url = new URL(this.options.profileUrl).href + "/" + username;
 
     const info = {
       checked: this.options.checked,
