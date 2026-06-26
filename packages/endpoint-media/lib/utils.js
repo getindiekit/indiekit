@@ -27,7 +27,7 @@ export const getMediaProperties = (mediaData) => {
  */
 export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
-  const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+  const { timeZone } = new Intl.DateTimeFormat().resolvedOptions();
   let tokens = {};
 
   // Add date tokens

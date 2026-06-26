@@ -69,7 +69,7 @@ export const renderPath = async (
   publication,
 ) => {
   const dateObject = new Date(properties.published);
-  const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
+  const { timeZone } = new Intl.DateTimeFormat().resolvedOptions();
   const { slugSeparator } = publication;
   let tokens = {};
 
