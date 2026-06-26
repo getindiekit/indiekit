@@ -70,9 +70,7 @@ describe("endpoint-media/lib/utils", () => {
         aggregate: () => ({
           toArray: async () => [],
         }),
-        count() {
-          return 1;
-        },
+        count: () => 1,
         path: "foo",
         properties: {
           type: "entry",
