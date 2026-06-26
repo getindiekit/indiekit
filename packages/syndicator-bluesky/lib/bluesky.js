@@ -206,7 +206,7 @@ export class Bluesky {
       return response.data.blob;
     } catch (error) {
       const message = error.message;
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
   }
 
@@ -271,7 +271,7 @@ export class Bluesky {
       return this.postPost(richText, images);
     } catch (error) {
       const message = error.message;
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
   }
 }

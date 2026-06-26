@@ -170,7 +170,7 @@ export default class GithubStore {
         branch,
       });
       debug(message);
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
   }
 
@@ -196,7 +196,7 @@ export default class GithubStore {
         branch,
       });
       debug(message);
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
 
     const { content } = await readResponse.json();
@@ -230,7 +230,7 @@ export default class GithubStore {
         branch,
       });
       debug(message);
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
 
     const { sha } = await readResponse.json();
@@ -255,7 +255,7 @@ export default class GithubStore {
         branch,
       });
       debug(message);
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
 
     const file = await updateResponse.json();
@@ -294,7 +294,7 @@ export default class GithubStore {
         branch,
       });
       debug(message);
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
 
     const { sha } = await readResponse.json();
@@ -316,7 +316,7 @@ export default class GithubStore {
         branch,
       });
       debug(message);
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
 
     return true;
