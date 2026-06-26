@@ -36,7 +36,7 @@ export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
       }
 
       // Update respective media property with location of upload
-      properties[mediaProperty] = properties[mediaProperty] || [];
+      properties[mediaProperty] ||= [];
       properties[mediaProperty].push(response.headers.get("location"));
     }
   }

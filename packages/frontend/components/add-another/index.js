@@ -146,7 +146,7 @@ export const AddAnotherComponent = class extends HTMLElement {
     const $$items = this.querySelectorAll(".add-another__list-item");
 
     for (const [index, $item] of $$items.entries()) {
-      $item.id = $item.id || `${this.id}-${index}`;
+      $item.id ||= `${this.id}-${index}`;
       $item.setAttribute("aria-label", `Item ${index + 1}`);
 
       // If no delete button, add one (if more than 1 item in list)
