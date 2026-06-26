@@ -14,7 +14,7 @@ export const NotificationBannerComponent = class extends HTMLElement {
     if (!this.getAttribute("tabindex")) {
       this.setAttribute("tabindex", "-1");
 
-      this.addEventListener("blur", function () {
+      this.addEventListener("blur", () => {
         this.removeAttribute("tabindex");
       });
     }
