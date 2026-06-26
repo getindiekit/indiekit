@@ -4,9 +4,11 @@ import process from "node:process";
 import { init } from "../index.js";
 import { isCompatibleNodeVersion } from "../lib/utils.js";
 
-if (!isCompatibleNodeVersion(process.versions.node, 20)) {
+const minimumMajorVersion = 20;
+
+if (!isCompatibleNodeVersion(process.versions.node, minimumMajorVersion)) {
   console.info(`Node.js v${process.versions.node} is not supported.`);
-  console.info(`Please use Node.js v${20} or higher.`);
+  console.info(`Please use Node.js v${minimumMajorVersion} or higher.`);
   process.exit(1);
 }
 
