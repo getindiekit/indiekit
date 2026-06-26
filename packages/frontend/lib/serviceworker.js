@@ -86,17 +86,17 @@ async function trimCache(cacheName, maxItems) {
   }
 }
 
-globalThis.addEventListener("install", async (event) => {
+addEventListener("install", async (event) => {
   event.waitUntil(
     (async () => {
       await updateAssetCache();
       await cacheClients();
-      globalThis.skipWaiting();
+      skipWaiting();
     })(),
   );
 });
 
-globalThis.addEventListener("activate", async (event) => {
+addEventListener("activate", async (event) => {
   event.waitUntil(
     (async () => {
       await clearOldCaches();
@@ -106,12 +106,12 @@ globalThis.addEventListener("activate", async (event) => {
 });
 
 if (registration.navigationPreload) {
-  globalThis.addEventListener("activate", (event) => {
+  addEventListener("activate", (event) => {
     event.waitUntil(registration.navigationPreload.enable());
   });
 }
 
-globalThis.addEventListener("message", (event) => {
+addEventListener("message", (event) => {
   if (event.data.command !== "trimCaches") {
     return;
   }
@@ -120,7 +120,7 @@ globalThis.addEventListener("message", (event) => {
   trimCache(imageCacheName, maxImages);
 });
 
-globalThis.addEventListener("fetch", (event) => {
+addEventListener("fetch", (event) => {
   const request = event.request;
 
   // Ignore non-GET requests
