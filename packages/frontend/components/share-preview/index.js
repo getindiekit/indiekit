@@ -31,8 +31,11 @@ export const SharePreviewComponent = class extends HTMLElement {
    * @param {HTMLOutputElement} $outputElement - Output element
    */
   updatePreview($outputElement) {
-    const { classList, dataset, htmlFor } = $outputElement;
-    const $inputElement = document.querySelector(`[name=${htmlFor}]`);
+    const { classList, dataset } = $outputElement;
+    const htmlFor = $outputElement.htmlFor.value;
+    const $inputElement = document.querySelector(
+      `[name=${CSS.escape(htmlFor)}]`,
+    );
 
     if (!$inputElement) {
       return;

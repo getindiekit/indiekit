@@ -94,7 +94,7 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
    */
   unCheckAllInputsExcept($input) {
     const $$inputsWithSameName = document.querySelectorAll(
-      `input[type="checkbox"][name="${$input.name}"]`,
+      `input[type="checkbox"][name="${CSS.escape($input.name)}"]`,
     );
 
     for (const $inputWithSameName of $$inputsWithSameName) {
@@ -116,7 +116,7 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
    */
   unCheckExclusiveInputs($input) {
     const $$inputsWithSameNameAndExclusiveBehaviour = document.querySelectorAll(
-      `input[data-behaviour="exclusive"][type="checkbox"][name="${$input.name}"]`,
+      `input[data-behaviour="exclusive"][type="checkbox"][name="${CSS.escape($input.name)}"]`,
     );
 
     for (const $exclusiveInput of $$inputsWithSameNameAndExclusiveBehaviour) {

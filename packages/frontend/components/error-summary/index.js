@@ -140,7 +140,8 @@ export const ErrorSummaryComponent = class extends HTMLElement {
     }
 
     return (
-      document.querySelector(`label[for="${inputId}"]`) ||
+      (inputId &&
+        document.querySelector(`label[for="${CSS.escape(inputId)}"]`)) ||
       $input.closest("label")
     );
   }
