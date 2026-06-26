@@ -27,6 +27,22 @@ export default class BitbucketStore {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @access private
+   * @returns {APIClient} Bitbucket client interface
+   */
+  get #client() {
+    // eslint-disable-next-line import-x/no-named-as-default-member
+    const { Bitbucket } = bitbucket;
+    return new Bitbucket({
+      auth: {
+        username: this.options.user,
+        password: this.options.password,
+      },
+      notice: false,
+    });
+  }
+
   get environment() {
     return ["BITBUCKET_PASSWORD"];
   }
@@ -59,22 +75,6 @@ export default class BitbucketStore {
         initial: defaults.branch,
       },
     ];
-  }
-
-  /**
-   * @access private
-   * @returns {APIClient} Bitbucket client interface
-   */
-  get #client() {
-    // eslint-disable-next-line import-x/no-named-as-default-member
-    const { Bitbucket } = bitbucket;
-    return new Bitbucket({
-      auth: {
-        username: this.options.user,
-        password: this.options.password,
-      },
-      notice: false,
-    });
   }
 
   /**

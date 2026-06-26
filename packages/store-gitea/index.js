@@ -25,6 +25,46 @@ export default class GiteaStore {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @access private
+   * @param {string} filePath - Request path
+   * @param {string} [method] - Request method
+   * @param {object} [body] - Request body
+   * @returns {Promise<Response>} Gitea client interface
+   */
+  async #client(filePath, method = "GET", body) {
+    const { instance, user, repo, token } = this.options;
+    const apiPath = path.join(
+      `api/v1/repos/${user}/${repo}/contents`,
+      filePath,
+    );
+    const url = new URL(apiPath, instance);
+
+    try {
+      const response = await fetch(url.href, {
+        method,
+        headers: {
+          authorization: `token ${token}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.message);
+      }
+
+      return response;
+    } catch (error) {
+      throw new IndiekitError(error.message, {
+        cause: error.cause,
+        plugin: this.name,
+        status: error.status,
+      });
+    }
+  }
+
   get environment() {
     return ["GITEA_TOKEN"];
   }
@@ -64,46 +104,6 @@ export default class GiteaStore {
         initial: defaults.branch,
       },
     ];
-  }
-
-  /**
-   * @access private
-   * @param {string} filePath - Request path
-   * @param {string} [method] - Request method
-   * @param {object} [body] - Request body
-   * @returns {Promise<Response>} Gitea client interface
-   */
-  async #client(filePath, method = "GET", body) {
-    const { instance, user, repo, token } = this.options;
-    const apiPath = path.join(
-      `api/v1/repos/${user}/${repo}/contents`,
-      filePath,
-    );
-    const url = new URL(apiPath, instance);
-
-    try {
-      const response = await fetch(url.href, {
-        method,
-        headers: {
-          authorization: `token ${token}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (!response.ok) {
-        const body = await response.json();
-        throw new Error(body.message);
-      }
-
-      return response;
-    } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.status,
-      });
-    }
   }
 
   /**

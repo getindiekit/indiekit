@@ -20,6 +20,16 @@ export default class FileSystemStore {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * Get absolute file path
+   * @access private
+   * @param {string} filePath - Path to file
+   * @returns {string} Absolute file path
+   */
+  #absolutePath(filePath) {
+    return path.join(this.options.directory, filePath);
+  }
+
   get info() {
     const { directory } = this.options;
 
@@ -37,16 +47,6 @@ export default class FileSystemStore {
         message: "Which directory do you want to save files in?",
       },
     ];
-  }
-
-  /**
-   * Get absolute file path
-   * @access private
-   * @param {string} filePath - Path to file
-   * @returns {string} Absolute file path
-   */
-  #absolutePath(filePath) {
-    return path.join(this.options.directory, filePath);
   }
 
   /**

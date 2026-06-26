@@ -42,40 +42,6 @@ export default class GithubStore {
     this.options = { ...defaults, ...options };
   }
 
-  get environment() {
-    return ["GITHUB_TOKEN"];
-  }
-
-  get info() {
-    const { repo, user } = this.options;
-
-    return {
-      name: `${user}/${repo} on GitHub`,
-      uid: `https://github.com/${user}/${repo}`,
-    };
-  }
-
-  get prompts() {
-    return [
-      {
-        type: "text",
-        name: "user",
-        message: "What is your GitHub username?",
-      },
-      {
-        type: "text",
-        name: "repo",
-        message: "Which repository is your publication stored on?",
-      },
-      {
-        type: "text",
-        name: "branch",
-        message: "Which branch are you publishing from?",
-        initial: defaults.branch,
-      },
-    ];
-  }
-
   /**
    * @access private
    * @param {string} filePath - Request path
@@ -110,6 +76,40 @@ export default class GithubStore {
         status: error.status,
       });
     }
+  }
+
+  get environment() {
+    return ["GITHUB_TOKEN"];
+  }
+
+  get info() {
+    const { repo, user } = this.options;
+
+    return {
+      name: `${user}/${repo} on GitHub`,
+      uid: `https://github.com/${user}/${repo}`,
+    };
+  }
+
+  get prompts() {
+    return [
+      {
+        type: "text",
+        name: "user",
+        message: "What is your GitHub username?",
+      },
+      {
+        type: "text",
+        name: "repo",
+        message: "Which repository is your publication stored on?",
+      },
+      {
+        type: "text",
+        name: "branch",
+        message: "Which branch are you publishing from?",
+        initial: defaults.branch,
+      },
+    ];
   }
 
   /**
