@@ -222,7 +222,7 @@ export const getLocationProperty = (properties) => {
       type: "geo",
       latitude,
       longitude,
-      ...(altitude ? { altitude } : {}),
+      ...(altitude && { altitude }),
     };
   }
 
