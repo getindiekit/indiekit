@@ -51,29 +51,31 @@ export const replaceEntries = async (object, replacements) => {
       throw new TypeError("Replacement value should be an array");
     }
 
-    // Replacement given as mf2, but data stored as JF2
-    switch (value.length) {
-      case 0: {
-        // Array is empty, don’t perform replacement
-        continue;
-      }
+    const replacement = await resolveReplacement(value);
 
-      case 1: {
-        // Array contains a single value, save as JF2
-        const jf2 = await mf2ToJf2(value[0], false);
-        object = _.set(object, key, jf2);
-        break;
-      }
-
-      default: {
-        // Array contains multiple values, save as array
-        object = _.set(object, key, value);
-        break;
-      }
+    if (replacement !== undefined) {
+      object = _.set(object, key, replacement);
     }
   }
 
   return object;
+};
+
+/**
+ * Resolve replacement value from mf2 array to JF2
+ * @param {Array<object>} value - Replacement value array (mf2)
+ * @returns {Promise<object|undefined>} Resolved value, or undefined if empty
+ */
+const resolveReplacement = async (value) => {
+  if (value.length === 0) {
+    return;
+  }
+
+  if (value.length === 1) {
+    return mf2ToJf2(value[0], false);
+  }
+
+  return value;
 };
 
 /**
