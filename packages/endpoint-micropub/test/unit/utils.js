@@ -41,15 +41,18 @@ describe("endpoint-media/lib/utils", () => {
   });
 
   it("Renders relative path if at publication URL", () => {
-    const result = relativeMediaPath("http://foo.bar/media/", "http://foo.bar");
+    const result = relativeMediaPath(
+      "https://foo.bar/media/",
+      "https://foo.bar",
+    );
 
     assert.equal(result, "/media/");
   });
 
   it("Renders relative path if at publication URL which has a path", () => {
     const result = relativeMediaPath(
-      "http://foo.bar/baz/media/",
-      "http://foo.bar/baz/",
+      "https://foo.bar/baz/media/",
+      "https://foo.bar/baz/",
     );
 
     assert.equal(result, "media/");
