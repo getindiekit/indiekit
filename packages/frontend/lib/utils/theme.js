@@ -31,7 +31,7 @@ export const _getValidatedColor = ({
       colorToChange: newColor,
       mixingColor,
       mixingAmount: 0.15,
-      tries: ++tries,
+      tries: tries + 1,
     });
   }
 

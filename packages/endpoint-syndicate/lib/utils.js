@@ -5,35 +5,29 @@
  * @returns {Promise<object>} Post data for given URL else recently published post
  */
 export const getPostData = async (postsCollection, url) => {
-  let postData = {};
-
   if (url) {
-    // Get item in database which matching URL
-    postData = await postsCollection.findOne({
+    return postsCollection.findOne({
       "properties.url": url,
     });
-  } else {
-    // Get published posts awaiting syndication and return first item
-    const items = await postsCollection
-      .find({
-        "properties.mp-syndicate-to": {
-          $exists: true,
-        },
-        "properties.syndication": {
-          $exists: false,
-        },
-        "properties.post-status": {
-          $ne: "draft",
-        },
-      })
-      // eslint-disable-next-line unicorn/no-array-sort
-      .sort({ "properties.published": -1 })
-      .limit(1)
-      .toArray();
-    postData = items[0];
   }
 
-  return postData;
+  const items = await postsCollection
+    .find({
+      "properties.mp-syndicate-to": {
+        $exists: true,
+      },
+      "properties.syndication": {
+        $exists: false,
+      },
+      "properties.post-status": {
+        $ne: "draft",
+      },
+    })
+    .sort({ "properties.published": -1 })
+    .limit(1)
+    .toArray();
+
+  return items[0];
 };
 
 /**
