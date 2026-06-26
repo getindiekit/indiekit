@@ -105,7 +105,6 @@ export const ErrorSummaryComponent = class extends HTMLElement {
    */
   getAssociatedLegendOrLabel($input) {
     const $fieldset = $input.closest("fieldset");
-    const inputId = $input.getAttribute("id");
 
     if ($fieldset) {
       const $$legends = $fieldset.querySelectorAll("legend");
@@ -138,6 +137,8 @@ export const ErrorSummaryComponent = class extends HTMLElement {
         }
       }
     }
+
+    const inputId = $input.getAttribute("id");
 
     return (
       (inputId &&

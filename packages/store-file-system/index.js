@@ -58,11 +58,12 @@ export default class FileSystemStore {
   async createFile(filePath, content) {
     try {
       const absolutePath = this.#absolutePath(filePath);
-      const dirname = path.dirname(absolutePath);
 
       if (existsSync(absolutePath)) {
         return;
       }
+
+      const dirname = path.dirname(absolutePath);
 
       if (!existsSync(dirname)) {
         await fs.mkdir(dirname, { recursive: true });

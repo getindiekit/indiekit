@@ -297,11 +297,11 @@ export const getSlugProperty = (properties, separator) => {
  * @returns {Array|undefined} Resolved syndication targets
  */
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
-  const property = [];
-
   if (!syndicationTargets || syndicationTargets.length === 0) {
     return;
   }
+
+  const property = [];
 
   for (const target of syndicationTargets) {
     const { uid } = target.info;

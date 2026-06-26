@@ -9,11 +9,11 @@ const debug = makeDebug(`indiekit:mongodb`);
  * @returns {Promise<object>} MongoDB client
  */
 export const getMongodbClient = async (mongodbUrl) => {
-  let client;
-
   if (!mongodbUrl) {
     return;
   }
+
+  let client;
 
   const connectTimeoutMS = 5000;
   try {

@@ -27,15 +27,15 @@ export const actionController = async (request, response, next) => {
       );
     }
 
-    // Toggle draft mode if `draft` scope
-    const draftMode = hasScope === "draft";
-
     // Check for URL if not creating a new post
     if (action !== "create" && !url) {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.missingParameter", "url"),
       );
     }
+
+    // Toggle draft mode if `draft` scope
+    const draftMode = hasScope === "draft";
 
     let data;
     let jf2;
