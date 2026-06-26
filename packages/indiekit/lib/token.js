@@ -8,7 +8,7 @@ export const findBearerToken = (request) => {
   }
 
   if (request.headers?.authorization) {
-    const bearerToken = request.headers.authorization.trim().split(/\s+/)[1];
+    const bearerToken = request.headers.authorization.trim().split(/\s+/, 2)[1];
     return bearerToken;
   }
 

@@ -35,7 +35,7 @@ export const addPluginConfig = async (pluginName, config) => {
  */
 export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
   const requiredMajorVersion = Number.parseInt(
-    currentVersion.split(".")[0],
+    currentVersion.split(".", 1)[0],
     10,
   );
 

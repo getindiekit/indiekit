@@ -40,7 +40,7 @@ export const getFileProperties = async (publication, file, timeZone) => {
  */
 export const getMediaType = async (file) => {
   const { mime } = await fileTypeFromBuffer(file.data);
-  const type = mime.split("/")[0];
+  const type = mime.split("/", 1)[0];
 
   if (type === "image") {
     return "photo";

@@ -15,7 +15,7 @@ export const EventDurationComponent = class extends HTMLElement {
         const initialValue = $dateInput.value;
         if (this.$allDayToggle.checked) {
           $dateInput.type = "date";
-          $dateInput.value = initialValue.split("T")[0];
+          $dateInput.value = initialValue.split("T", 1)[0];
         } else {
           $dateInput.type = "datetime-local";
           $dateInput.value = `${initialValue}T12:30`;

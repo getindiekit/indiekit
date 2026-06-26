@@ -14,7 +14,7 @@ export const introspectionController = {
 
       if (!token) {
         // Remove ‘Bearer ’ from authorization header
-        token = request.headers.authorization.trim().split(/\s+/)[1];
+        token = request.headers.authorization.trim().split(/\s+/, 2)[1];
       }
 
       let accessToken = verifyToken(token);
