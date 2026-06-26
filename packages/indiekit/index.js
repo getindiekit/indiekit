@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { createRequire } from "node:module";
 import process from "node:process";
 
@@ -154,9 +153,9 @@ export const Indiekit = class {
 
   async updatePublicationConfig() {
     if (!this.publication.me) {
-      console.error("No publication URL in configuration");
-      console.info("https://getindiekit.com/configuration/publication#me");
-      process.exit();
+      throw new Error(
+        "No publication URL in configuration. See https://getindiekit.com/configuration/publication#me",
+      );
     }
 
     this.publication.categories = await getCategories(this);
@@ -169,10 +168,7 @@ export const Indiekit = class {
   stop(server, name) {
     server.close(() => {
       console.info(`Stopping ${name}`);
-
       this.closeMongodbClient();
-
-      process.exit(0);
     });
   }
 

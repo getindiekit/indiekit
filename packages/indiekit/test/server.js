@@ -26,17 +26,13 @@ describe("indiekit server", async () => {
     assert.equal(publication.me, "https://website.example");
   });
 
-  it("Exits process if no publication URL in configuration", async () => {
-    mock.method(console, "error", () => {});
-    mock.method(console, "info", () => {});
-    mock.method(process, "exit", () => {});
-
+  it("Throws error if no publication URL in configuration", async () => {
     publication.me = undefined;
-    await assert.rejects(indiekit.server({ port: 1234 }));
-    const result = console.error.mock.calls[0].arguments[0];
 
-    assert.equal(result.includes("No publication URL in configuration"), true);
-    assert.equal(process.exit.mock.calls.length, 1);
+    await assert.rejects(indiekit.server({ port: 1234 }), (error) => {
+      assert.match(error.message, /No publication URL in configuration/);
+      return true;
+    });
   });
 
   it("Returns a server bound to given port", async () => {

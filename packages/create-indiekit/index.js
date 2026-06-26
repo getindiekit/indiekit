@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { createRequire } from "node:module";
 
 import create from "base-create";
@@ -9,7 +8,6 @@ import { getFiles } from "./lib/files.js";
 import { getPackageValues } from "./lib/package.js";
 import { setupPrompts } from "./lib/setup-prompts.js";
 
-// eslint-ignore import/order
 const require = createRequire(import.meta.url);
 const { name, version, bugs } = require("./package.json");
 
