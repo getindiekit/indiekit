@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/no-array-callback-reference, unicorn/no-array-method-this-argument */
+/* eslint-disable unicorn/no-array-method-this-argument */
 import { ObjectId } from "mongodb";
 
 /**
