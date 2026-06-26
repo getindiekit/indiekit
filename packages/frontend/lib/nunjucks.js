@@ -28,15 +28,13 @@ export const templates = (app) => {
   const parser = nunjucks.configure(views, options);
 
   // Add filters
-  for (const filter of Object.keys(filters)) {
-    // eslint-disable-next-line import-x/namespace
-    parser.addFilter(filter, filters[filter]);
+  for (const [filter, filterFunction] of Object.entries(filters)) {
+    parser.addFilter(filter, filterFunction);
   }
 
   // Add globals
-  for (const global of Object.keys(globals)) {
-    // eslint-disable-next-line import-x/namespace
-    parser.addGlobal(global, nunjucks.runtime.markSafe(globals[global]));
+  for (const [global, globalFunction] of Object.entries(globals)) {
+    parser.addGlobal(global, nunjucks.runtime.markSafe(globalFunction));
   }
 
   return parser;
