@@ -6,6 +6,7 @@ import _ from "lodash";
  * @returns {object} Field data
  */
 export function fieldData(key) {
+  // eslint-disable-next-line unicorn/no-this-outside-of-class
   const { errors, properties } = this.ctx;
   const errorData = _.get(errors, key);
 

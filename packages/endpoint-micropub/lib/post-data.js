@@ -66,16 +66,16 @@ export const postData = {
       ? "draft"
       : properties["post-status"] || "published";
 
-    const postData = { path, properties };
+    const data = { path, properties };
 
     // Add data to posts collection (or replace existing if present)
     const postsCollection = application?.collections?.get("posts");
     if (postsCollection) {
       const query = { "properties.url": properties.url };
-      await postsCollection.replaceOne(query, postData, { upsert: true });
+      await postsCollection.replaceOne(query, data, { upsert: true });
     }
 
-    return postData;
+    return data;
   },
 
   /**
@@ -90,12 +90,12 @@ export const postData = {
     const query = { "properties.url": url };
     const postsCollection = application?.collections?.get("posts");
 
-    const postData = await postsCollection.findOne(query);
-    if (!postData) {
+    const data = await postsCollection.findOne(query);
+    if (!data) {
       throw IndiekitError.notFound(url);
     }
 
-    return postData;
+    return data;
   },
 
   /**
@@ -116,7 +116,10 @@ export const postData = {
     const postsCollection = application?.collections?.get("posts");
 
     // Read properties
-    let { path: _originalPath, properties } = await this.read(application, url);
+    let { path: _originalPath, properties } = await postData.read(
+      application,
+      url,
+    );
 
     // Save incoming properties for later comparison
     let oldProperties = structuredClone(properties);
@@ -176,11 +179,11 @@ export const postData = {
     properties.updated = getDate(timeZone);
 
     // Update data in posts collection
-    const postData = { _originalPath, path, properties };
+    const data = { _originalPath, path, properties };
     const query = { "properties.url": url };
-    await postsCollection.replaceOne(query, postData);
+    await postsCollection.replaceOne(query, data);
 
-    return postData;
+    return data;
   },
 
   /**
@@ -200,7 +203,7 @@ export const postData = {
     const postsCollection = application?.collections?.get("posts");
 
     // Read properties
-    const { properties } = await this.read(application, url);
+    const { properties } = await postData.read(application, url);
 
     // Make a copy of existing properties
     const _deletedProperties = structuredClone(properties);
@@ -228,11 +231,11 @@ export const postData = {
     );
 
     // Update data in posts collection
-    const postData = { path, properties, _deletedProperties };
+    const data = { path, properties, _deletedProperties };
     const query = { "properties.url": url };
-    await postsCollection.replaceOne(query, postData);
+    await postsCollection.replaceOne(query, data);
 
-    return postData;
+    return data;
   },
 
   /**
@@ -252,7 +255,7 @@ export const postData = {
     const postsCollection = application?.collections?.get("posts");
 
     // Read deleted properties
-    const { _deletedProperties } = await this.read(application, url);
+    const { _deletedProperties } = await postData.read(application, url);
 
     // Restore previously deleted properties
     const properties = _deletedProperties;
@@ -276,10 +279,10 @@ export const postData = {
       : properties["post-status"] || "published";
 
     // Update data in posts collection
-    const postData = { path, properties };
+    const data = { path, properties };
     const query = { "properties.url": url };
-    await postsCollection.replaceOne(query, postData);
+    await postsCollection.replaceOne(query, data);
 
-    return postData;
+    return data;
   },
 };
