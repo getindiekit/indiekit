@@ -43,9 +43,11 @@ export const getGeoProperty = (geo) => {
  * @returns {string|undefined} Latitude and longitude, comma separated
  */
 export const getGeoValue = (location) => {
-  if (location && location.geo) {
+  if (location?.geo) {
     return [location.geo.latitude, location.geo.longitude].toString();
-  } else if (location && location.type === "geo") {
+  }
+
+  if (location?.type === "geo") {
     return [location.latitude, location.longitude].toString();
   }
 };
@@ -91,13 +93,15 @@ export const getPhotoUrl = (publication, properties) => {
 
   if (!photo) {
     return false;
-  } else if (URL.canParse(photo.url)) {
-    return photo;
-  } else {
-    return {
-      url: new URL(photo.url, publication.me).href,
-    };
   }
+
+  if (URL.canParse(photo.url)) {
+    return photo;
+  }
+
+  return {
+    url: new URL(photo.url, publication.me).href,
+  };
 };
 
 /**

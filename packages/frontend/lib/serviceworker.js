@@ -179,19 +179,19 @@ globalThis.addEventListener("fetch", (event) => {
         if (responseFromCache) {
           // CACHE
           return responseFromCache;
-        } else {
-          const responseFromFetch = await fetch(request);
-
-          // NETWORK
-          // If request is for an image, save a copy to images cache
-          if (/\.(jpe?g|png|gif|svg|webp)/.test(request.url)) {
-            const copy = responseFromFetch.clone();
-            const imagesCache = await caches.open(imageCacheName);
-            await imagesCache.put(request, copy);
-          }
-
-          return responseFromFetch;
         }
+
+        const responseFromFetch = await fetch(request);
+
+        // NETWORK
+        // If request is for an image, save a copy to images cache
+        if (/\.(jpe?g|png|gif|svg|webp)/.test(request.url)) {
+          const copy = responseFromFetch.clone();
+          const imagesCache = await caches.open(imageCacheName);
+          await imagesCache.put(request, copy);
+        }
+
+        return responseFromFetch;
       } catch (error) {
         console.error(error);
 

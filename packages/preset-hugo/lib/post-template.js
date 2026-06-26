@@ -13,9 +13,9 @@ const getContent = (properties) => {
     const content =
       properties.content.text || properties.content.html || properties.content;
     return `\n${content}\n`;
-  } else {
-    return "";
   }
+
+  return "";
 };
 
 /**
