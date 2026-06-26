@@ -112,10 +112,12 @@ if (registration.navigationPreload) {
 }
 
 globalThis.addEventListener("message", (event) => {
-  if (event.data.command == "trimCaches") {
-    trimCache(pagesCacheName, maxPages);
-    trimCache(imageCacheName, maxImages);
+  if (event.data.command !== "trimCaches") {
+    return;
   }
+
+  trimCache(pagesCacheName, maxPages);
+  trimCache(imageCacheName, maxImages);
 });
 
 globalThis.addEventListener("fetch", (event) => {

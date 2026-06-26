@@ -49,10 +49,12 @@ export const FileInputFieldController = class extends HTMLElement {
     });
 
     $fileInputButton.addEventListener("keyup", (event) => {
-      if (["Spacebar", " "].includes(event.key)) {
-        event.preventDefault();
-        event.target.click();
+      if (!["Spacebar", " "].includes(event.key)) {
+        return;
       }
+
+      event.preventDefault();
+      event.target.click();
     });
 
     // Add event to file input

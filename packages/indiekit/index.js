@@ -116,10 +116,12 @@ export const Indiekit = class {
   }
 
   closeMongodbClient() {
-    if (this.mongodbClient) {
-      console.info(`Closing MongoDB client`);
-      this.mongodbClient.close();
+    if (!this.mongodbClient) {
+      return;
     }
+
+    console.info(`Closing MongoDB client`);
+    this.mongodbClient.close();
   }
 
   get cache() {

@@ -4,8 +4,10 @@
  * @param {HTMLElement} $wrapper - Element to wrap with
  */
 export const wrapElement = ($element, $wrapper) => {
-  if ($element?.parentNode) {
-    $element.parentNode.insertBefore($wrapper, $element);
-    $wrapper.append($element);
+  if (!$element?.parentNode) {
+    return;
   }
+
+  $element.parentNode.insertBefore($wrapper, $element);
+  $wrapper.append($element);
 };

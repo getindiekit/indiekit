@@ -13,17 +13,19 @@ export const SharePreviewComponent = class extends HTMLElement {
    * Resize parent window to fit output preview and input form
    */
   resizeWindow() {
-    if (this.$form) {
-      const { scrollWidth, scrollHeight } = this.$form;
-
-      const chromeWidth = globalThis.outerWidth - window.innerWidth;
-      const chromeHeight = globalThis.outerHeight - window.innerHeight;
-
-      const width = scrollWidth + chromeWidth;
-      const height = scrollHeight + chromeHeight;
-
-      window.resizeTo(width, height);
+    if (!this.$form) {
+      return;
     }
+
+    const { scrollWidth, scrollHeight } = this.$form;
+
+    const chromeWidth = globalThis.outerWidth - window.innerWidth;
+    const chromeHeight = globalThis.outerHeight - window.innerHeight;
+
+    const width = scrollWidth + chromeWidth;
+    const height = scrollHeight + chromeHeight;
+
+    window.resizeTo(width, height);
   }
 
   /**

@@ -79,10 +79,12 @@ export const CharacterCountComponent = class extends HTMLElement {
    * @access private
    */
   #updateIfValueChanged() {
-    if (this.$textarea.value !== this.lastInputValue) {
-      this.lastInputValue = this.$textarea.value;
-      this.#updateCountMessages();
+    if (this.$textarea.value === this.lastInputValue) {
+      return;
     }
+
+    this.lastInputValue = this.$textarea.value;
+    this.#updateCountMessages();
   }
 
   /**

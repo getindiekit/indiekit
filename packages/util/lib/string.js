@@ -61,18 +61,19 @@ export const randomString = (length = 16) =>
  * @example slugify('Foo bar baz', { separator: '_'} ) => 'foo_bar_baz'
  */
 export const slugify = (string, options) => {
-  if (typeof string === "string") {
-    const slug = slugifyString(string, {
-      customReplacements: [
-        ["'", ""],
-        ["’", ""],
-      ],
-      decamelize: false,
-      separator: "-",
-      ...options,
-    });
-    return slug;
+  if (typeof string !== "string") {
+    return;
   }
+
+  return slugifyString(string, {
+    customReplacements: [
+      ["'", ""],
+      ["'", ""],
+    ],
+    decamelize: false,
+    separator: "-",
+    ...options,
+  });
 };
 
 /**
