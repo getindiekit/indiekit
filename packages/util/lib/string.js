@@ -16,14 +16,13 @@ export const excerpt = (string, value = 100, locale = "en") => {
   let excerpt = "";
   let n = 0;
   let words = 0;
-  [...segments].map((segment) => {
+
+  for (const segment of segments) {
     words = segment.isWordLike ? n++ : n;
     if (words < value) {
       excerpt += segment.segment;
     }
-
-    return excerpt;
-  });
+  }
 
   if (words > value) {
     excerpt += "…";
