@@ -97,7 +97,7 @@ export class Mastodon {
       return attachment.id;
     } catch (error) {
       const message = error.message;
-      throw new Error(message);
+      throw new Error(message, { cause: error });
     }
   }
 
