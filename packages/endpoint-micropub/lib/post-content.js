@@ -16,7 +16,7 @@ export const postContent = {
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
-    const metaData = {
+    const metadata = {
       action: "create",
       result: "created",
       fileType: "post",
@@ -24,7 +24,7 @@ export const postContent = {
     };
     const templateProperties = getPostTemplateProperties(properties);
     const content = await postTemplate(templateProperties);
-    const message = storeMessageTemplate(metaData);
+    const message = storeMessageTemplate(metadata);
 
     await store.createFile(path, content, { message });
 
@@ -50,7 +50,7 @@ export const postContent = {
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { _originalPath, path, properties } = postData;
-    const metaData = {
+    const metadata = {
       action: "update",
       result: "updated",
       fileType: "post",
@@ -58,7 +58,7 @@ export const postContent = {
     };
     const templateProperties = getPostTemplateProperties(properties);
     const content = await postTemplate(templateProperties);
-    const message = storeMessageTemplate(metaData);
+    const message = storeMessageTemplate(metadata);
     const hasUpdatedUrl = url !== properties.url;
 
     _originalPath === path
@@ -93,13 +93,13 @@ export const postContent = {
 
     const { store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
-    const metaData = {
+    const metadata = {
       action: "delete",
       result: "deleted",
       fileType: "post",
       postType: properties["post-type"],
     };
-    const message = storeMessageTemplate(metaData);
+    const message = storeMessageTemplate(metadata);
 
     await store.deleteFile(path, { message });
 
@@ -123,7 +123,7 @@ export const postContent = {
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
-    const metaData = {
+    const metadata = {
       action: "undelete",
       result: "undeleted",
       fileType: "post",
@@ -131,7 +131,7 @@ export const postContent = {
     };
     const templateProperties = getPostTemplateProperties(properties);
     const content = await postTemplate(templateProperties);
-    const message = storeMessageTemplate(metaData);
+    const message = storeMessageTemplate(metadata);
 
     await store.createFile(path, content, { message });
 

@@ -15,13 +15,13 @@ export const mediaContent = {
 
     const { mediaStore, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
-    const metaData = {
+    const metadata = {
       action: "upload",
       result: "uploaded",
       fileType: "file",
       postType: properties["media-type"],
     };
-    const message = storeMessageTemplate(metaData);
+    const message = storeMessageTemplate(metadata);
 
     await mediaStore.createFile(path, file.data, { message });
 
@@ -46,13 +46,13 @@ export const mediaContent = {
 
     const { mediaStore, storeMessageTemplate } = publication;
     const { path, properties } = mediaData;
-    const metaData = {
+    const metadata = {
       action: "delete",
       result: "deleted",
       fileType: "file",
       postType: properties["media-type"],
     };
-    const message = storeMessageTemplate(metaData);
+    const message = storeMessageTemplate(metadata);
 
     await mediaStore.deleteFile(path, { message });
 
