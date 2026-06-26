@@ -35,10 +35,7 @@ export const isCompatibleNodeVersion = (
   currentVersion,
   minimumMajorVersion,
 ) => {
-  const requiredMajorVersion = Number.parseInt(
-    currentVersion.split(".", 1)[0],
-    10,
-  );
+  const requiredMajorVersion = Number(currentVersion.split(".", 1)[0]);
 
   return requiredMajorVersion >= minimumMajorVersion;
 };
