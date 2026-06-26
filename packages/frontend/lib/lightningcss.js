@@ -14,7 +14,7 @@ const require = createRequire(import.meta.url);
  */
 function resolveModuleFilePath(filePath) {
   if (filePath.includes("~")) {
-    const moduleFilePath = filePath.split("~")[1];
+    const moduleFilePath = filePath.split("~", 2)[1];
     return require.resolve(moduleFilePath);
   }
 
