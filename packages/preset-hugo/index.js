@@ -7,6 +7,7 @@ const defaults = {
 
 export default class HugoPreset {
   name = "Hugo preset";
+  postTypes;
 
   constructor(options = {}) {
     this.options = { ...defaults, ...options };

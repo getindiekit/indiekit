@@ -12,6 +12,9 @@ import {
 } from "./token.js";
 
 export const IndieAuth = class {
+  clientId;
+  redirectUri;
+
   constructor(options = {}) {
     this.codeVerifier = randomString(100);
     this.devMode = options.devMode;
