@@ -17,7 +17,7 @@ export const getCursor = async (collection, after, before, limit) => {
   };
   const query = {};
   const options = {
-    limit: Number.parseInt(String(limit), 10) || 40,
+    limit: limit ? Math.trunc(limit) : 40,
     sort: { _id: -1 },
   };
 
