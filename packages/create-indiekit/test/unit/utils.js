@@ -1,9 +1,9 @@
 import { strict as assert } from "node:assert";
-import { describe, it, mock } from "node:test";
+import { describe, it } from "node:test";
 
 import {
   addPluginConfig,
-  checkNodeVersion,
+  isCompatibleNodeVersion,
   getPlugin,
 } from "../../lib/utils.js";
 
@@ -19,20 +19,8 @@ describe("create-indiekit/lib/utils", () => {
   });
 
   it("Checks if Node.js version meets minimum requirement", () => {
-    mock.method(console, "info", () => {});
-    mock.method(process, "exit", () => {});
-
-    checkNodeVersion("12.15", 16);
-
-    assert.equal(
-      console.info.mock.calls[0].arguments[0],
-      "Node.js v12.15 is not supported.",
-    );
-    assert.equal(
-      console.info.mock.calls[1].arguments[0],
-      "Please use Node.js v16 or higher.",
-    );
-    assert.equal(process.exit.mock.calls.length, 1);
+    assert.equal(isCompatibleNodeVersion("12.15", 16), false);
+    assert.equal(isCompatibleNodeVersion("16.15", 12), true);
   });
 
   it("Gets question prompts specified by plug-in", async () => {

@@ -1,6 +1,3 @@
-#!/usr/bin/env node
-import process from "node:process";
-
 import chalk from "chalk";
 import prompts from "prompts";
 
@@ -32,18 +29,18 @@ export const addPluginConfig = async (pluginName, config) => {
  * Check if Node.js version meets minimum requirement
  * @param {string} currentVersion - Current Node.js version
  * @param {number} minimumMajorVersion - Minimum major version required
+ * @returns {boolean} Current version meets minimum Node.js requirement
  */
-export const checkNodeVersion = (currentVersion, minimumMajorVersion) => {
+export const isCompatibleNodeVersion = (
+  currentVersion,
+  minimumMajorVersion,
+) => {
   const requiredMajorVersion = Number.parseInt(
     currentVersion.split(".", 1)[0],
     10,
   );
 
-  if (requiredMajorVersion < minimumMajorVersion) {
-    console.info(`Node.js v${currentVersion} is not supported.`);
-    console.info(`Please use Node.js v${minimumMajorVersion} or higher.`);
-    process.exit(1);
-  }
+  return requiredMajorVersion >= minimumMajorVersion;
 };
 
 /**

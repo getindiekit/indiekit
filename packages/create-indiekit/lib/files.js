@@ -1,7 +1,5 @@
-#!/usr/bin/env node
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import process from "node:process";
 
 import {
   getDockerComposeFileContent,
@@ -23,7 +21,7 @@ export const getFileContents = async (fileName) => {
     return contents;
   } catch (error) {
     console.error(error.message);
-    process.exit(1);
+    return "";
   }
 };
 

@@ -10,15 +10,15 @@ describe("create-indiekit/lib/files", () => {
     assert.equal(result.startsWith("# Environment"), true);
   });
 
-  it("Throws error getting file contents", async () => {
+  it("Logs error getting file contents", async () => {
     mock.method(console, "error", () => {});
     mock.method(process, "exit", () => {});
 
-    await getFileContents("template.foo");
-    const result = console.error.mock.calls[0].arguments[0];
+    const result = await getFileContents("template.foo");
+    const message = console.error.mock.calls[0].arguments[0];
 
-    assert.equal(result.includes("ENOENT: no such file or directory"), true);
-    assert.equal(process.exit.mock.calls.length, 1);
+    assert.equal(result, "");
+    assert.equal(message.includes("ENOENT: no such file or directory"), true);
   });
 
   it("Gets files to create", async () => {
