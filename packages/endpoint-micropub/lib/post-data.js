@@ -17,11 +17,11 @@ export const postData = {
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {object} properties - JF2 properties
-   * @param {boolean} [draftMode] - Draft mode
+   * @param {boolean} [isDraftMode] - Draft mode
    * @returns {Promise<object>} Post data
    */
-  async create(application, publication, properties, draftMode = false) {
-    debug(`Create %O`, { draftMode, properties });
+  async create(application, publication, properties, isDraftMode = false) {
+    debug(`Create %O`, { isDraftMode, properties });
 
     const { timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
@@ -62,7 +62,7 @@ export const postData = {
 
     // Post status
     // Draft mode: Only create post with a `draft` post-status
-    properties["post-status"] = draftMode
+    properties["post-status"] = isDraftMode
       ? "draft"
       : properties["post-status"] || "published";
 
@@ -245,11 +245,11 @@ export const postData = {
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @param {boolean} [draftMode] - Draft mode
+   * @param {boolean} [isDraftMode] - Draft mode
    * @returns {Promise<object>} Post data
    */
-  async undelete(application, publication, url, draftMode) {
-    debug(`Undelete ${url} %O`, { draftMode });
+  async undelete(application, publication, url, isDraftMode) {
+    debug(`Undelete ${url} %O`, { isDraftMode });
 
     const { postTypes } = publication;
     const postsCollection = application?.collections?.get("posts");
@@ -274,7 +274,7 @@ export const postData = {
 
     // Post status
     // Draft mode: Only restore post with a `draft` post-status
-    properties["post-status"] = draftMode
+    properties["post-status"] = isDraftMode
       ? "draft"
       : properties["post-status"] || "published";
 

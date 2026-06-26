@@ -117,11 +117,11 @@ export const CharacterCountComponent = class extends HTMLElement {
    * Count number of characters (or words) in given string
    * @access private
    * @param {string} string - The text to count the characters of
-   * @param {boolean} [countWords] - Count words instead of characters
+   * @param {boolean} [shouldCountWords] - Count words instead of characters
    * @returns {number} the number of characters (or words) in the text
    */
-  #count(string, countWords = false) {
-    if (countWords) {
+  #count(string, shouldCountWords = false) {
+    if (shouldCountWords) {
       // Matches consecutive non-whitespace characters up to a word boundary
       const tokens = string.match(/\S+\b/g) ?? [];
       return tokens.length;

@@ -24,7 +24,7 @@ export const postData = {
     const { name, fields, h } = publication.postTypes[postType];
 
     // Only select ‘checked’ syndication targets on first view
-    const checkTargets = Object.entries(properties).length === 0;
+    const shouldCheckTargets = Object.entries(properties).length === 0;
 
     response.locals = {
       accessToken: access_token,
@@ -37,7 +37,10 @@ export const postData = {
       properties,
       scope,
       showAdvancedOptions: false,
-      syndicationTargetItems: getSyndicateToItems(publication, checkTargets),
+      syndicationTargetItems: getSyndicateToItems(
+        publication,
+        shouldCheckTargets,
+      ),
       type: h,
       ...response.locals,
     };
@@ -73,7 +76,7 @@ export const postData = {
         action: action || "create",
         allDay,
         channelItems: getChannelItems(publication),
-        draftMode: scope?.includes("draft"),
+        isDraftMode: scope?.includes("draft"),
         fields,
         geo,
         h,

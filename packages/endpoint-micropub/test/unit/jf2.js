@@ -388,7 +388,7 @@ describe("endpoint-micropub/lib/jf2", () => {
   });
 
   it("Doesn’t add unused syndication target", () => {
-    const properties = false;
+    const properties = {};
     const syndicationTargets = [
       {
         info: { uid: "https://example.website/" },

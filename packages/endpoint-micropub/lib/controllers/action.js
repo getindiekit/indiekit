@@ -35,7 +35,7 @@ export const actionController = async (request, response, next) => {
     }
 
     // Toggle draft mode if `draft` scope
-    const draftMode = hasScope === "draft";
+    const isDraftMode = hasScope === "draft";
 
     let data;
     let jf2;
@@ -52,7 +52,12 @@ export const actionController = async (request, response, next) => {
           ? await uploadMedia(application.mediaEndpoint, token, jf2, files)
           : jf2;
 
-        data = await postData.create(application, publication, jf2, draftMode);
+        data = await postData.create(
+          application,
+          publication,
+          jf2,
+          isDraftMode,
+        );
         content = await postContent.create(publication, data);
         break;
       }
@@ -83,7 +88,7 @@ export const actionController = async (request, response, next) => {
         }
 
         // Draft mode: Only update posts that have `draft` post status
-        if (draftMode && data.properties["post-status"] !== "draft") {
+        if (isDraftMode && data.properties["post-status"] !== "draft") {
           throw IndiekitError.insufficientScope(
             response.locals.__("ForbiddenError.insufficientScope"),
             { scope: action },
@@ -105,7 +110,7 @@ export const actionController = async (request, response, next) => {
           application,
           publication,
           url,
-          draftMode,
+          isDraftMode,
         );
         content = await postContent.undelete(publication, data);
         break;
