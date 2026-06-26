@@ -3,6 +3,7 @@ import { getPostTypes } from "./lib/post-types.js";
 
 export default class EleventyPreset {
   name = "Eleventy preset";
+  postTypes;
 
   get info() {
     return {

@@ -30,6 +30,9 @@ export const Indiekit = class {
     return new Indiekit(config);
   }
 
+  mongodbClient;
+  mongodbClientError;
+
   /**
    * @private
    * @param {object} config - Indiekit configuration
