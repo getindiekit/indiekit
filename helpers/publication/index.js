@@ -4,9 +4,7 @@ import TestStore from "@indiekit-test/store";
 export const publication = {
   categories: `https://website.example/categories.json`,
   me: "https://website.example",
-  postTemplate(properties) {
-    return JSON.stringify(properties);
-  },
+  postTemplate: (properties) => JSON.stringify(properties),
   mediaStore: new TestStore({
     user: "user",
   }),
