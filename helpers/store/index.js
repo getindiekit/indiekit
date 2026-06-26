@@ -88,7 +88,7 @@ export default class TestStore {
    * @returns {Promise<string>} Updated file URL
    */
   async updateFile(path, content, { message, newPath }) {
-    path = path || newPath;
+    path ||= newPath;
     await this.#client(path, "PATCH", { content, message, newPath });
     return `${this.info.uid}/${path}`;
   }

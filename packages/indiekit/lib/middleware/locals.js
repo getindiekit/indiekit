@@ -29,7 +29,7 @@ export const locals = (Indiekit) =>
       application.localeUsed = response.locals.getLocale();
       application.package = Indiekit.package;
       application.shortcuts = getShortcuts(Indiekit, response);
-      application.url = application.url || getUrl(request);
+      application.url ||= getUrl(request);
 
       if (request.accepts("html")) {
         application.cssPath = `/assets/app-${cssHash}.css`;
@@ -54,10 +54,8 @@ export const locals = (Indiekit) =>
       request.app.locals.validationSchemas = Indiekit.validationSchemas;
 
       // Persist scope and token
-      request.app.locals.scope =
-        request.app.locals.scope || request.session.scope;
-      request.app.locals.token =
-        request.app.locals.token || request.session.access_token;
+      request.app.locals.scope ||= request.session.scope;
+      request.app.locals.token ||= request.session.access_token;
 
       return next();
     } catch (error) {

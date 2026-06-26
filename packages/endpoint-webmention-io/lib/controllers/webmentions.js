@@ -58,7 +58,7 @@ export const webmentionsController = (options) => {
           item.locale = application.locale;
           item.title = getMentionTitle(item);
           item.description = { html };
-          item.published = item.published || item["wm-received"];
+          item.published ||= item["wm-received"];
           item.user = {
             avatar: { src: item.author.photo },
             name: getAuthorName(item),
