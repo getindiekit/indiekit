@@ -72,26 +72,30 @@ export const actionController = (imageProcessing) =>
     } catch (error) {
       let nextError = error;
 
-      // Hoist not found error to controller to localise response
-      if (error.name === "NotFoundError") {
-        nextError = IndiekitError.notFound(
-          response.locals.__("NotFoundError.record", error.message),
-        );
-      }
-
-      // Hoist unsupported media type error to controller to localise response
-      if (error.name === "UnsupportedMediaTypeError") {
-        nextError = IndiekitError.unsupportedMediaType(
-          response.locals.__("UnsupportedMediaTypeError.type", error.message),
-        );
-      }
-
-      // Hoist unsupported post type error to controller to localise response
-      if (error.name === "NotImplementedError") {
-        nextError = IndiekitError.notImplemented(
-          response.locals.__("NotImplementedError.postType", error.message),
-          { uri: "https://getindiekit.com/configuration/post-types" },
-        );
+      switch (error.name) {
+        case "NotFoundError": {
+          // Hoist not found error to controller to localise response
+          nextError = IndiekitError.notFound(
+            response.locals.__("NotFoundError.record", error.message),
+          );
+          break;
+        }
+        case "UnsupportedMediaTypeError": {
+          // Hoist unsupported media type error to controller to localise response
+          nextError = IndiekitError.unsupportedMediaType(
+            response.locals.__("UnsupportedMediaTypeError.type", error.message),
+          );
+          break;
+        }
+        case "NotImplementedError": {
+          // Hoist unsupported post type error to controller to localise response
+          nextError = IndiekitError.notImplemented(
+            response.locals.__("NotImplementedError.postType", error.message),
+            { uri: "https://getindiekit.com/configuration/post-types" },
+          );
+          break;
+        }
+        default:
       }
 
       return next(nextError);
