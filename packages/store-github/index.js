@@ -324,7 +324,7 @@ export default class GithubStore {
   init(Indiekit) {
     const required_configs = ["baseUrl", "branch", "repo", "token", "user"];
     for (const required of required_configs) {
-      if (!this.options[required]) {
+      if (!Object.hasOwn(this.options, required)) {
         const message = `Could not initialize ${this.name}: ${required} not set. See https://www.npmjs.com/package/@indiekit/store-github for details.`;
         debug(message);
         console.error(message);

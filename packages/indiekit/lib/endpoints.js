@@ -16,10 +16,9 @@ export const getEndpointUrls = (application, request) => {
     "micropubEndpoint",
     "tokenEndpoint",
   ]) {
-    endpoints[endpoint] =
-      application[endpoint] && URL.canParse(application[endpoint])
-        ? application[endpoint]
-        : new URL(application[endpoint], getUrl(request)).href;
+    endpoints[endpoint] = URL.canParse(application[endpoint])
+      ? application[endpoint]
+      : new URL(application[endpoint], getUrl(request)).href;
   }
 
   return endpoints;

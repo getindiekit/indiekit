@@ -61,7 +61,7 @@ export const icon = (name, title) => {
       "M24 4.2c2 0 4.3 1.3 5 2.8l15 28c2.5 5-2 9-5 9H9c-3 0-7.5-4-5-9L19 7c.8-1.5 3-2.8 5-2.8Zm0 4c-.8 0-1.5.6-2 1.6L8 36.1C6.7 38.5 8 40 9.5 40h29c1.5 0 2.8-1.5 1.5-3.8L26 9.8c-.5-1-1.2-1.4-2-1.4ZM26 32v4h-4v-4h4Zm0-16v14h-4V16h4Z",
   };
 
-  if (!paths[name]) {
+  if (!Object.hasOwn(paths, name)) {
     return;
   }
 

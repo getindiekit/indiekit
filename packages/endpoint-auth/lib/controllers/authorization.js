@@ -31,7 +31,7 @@ export const authorizationController = {
         "response_type",
         "state",
       ]) {
-        if (!request.query[parameter]) {
+        if (!Object.hasOwn(request.query, parameter)) {
           throw IndiekitError.badRequest(
             response.locals.__("BadRequestError.missingParameter", parameter),
           );

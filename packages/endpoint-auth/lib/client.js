@@ -27,7 +27,7 @@ export const getApplicationInformation = (body, client) => {
 
       const keys = ["logo", "name", "url"];
       for (const key of keys) {
-        if (properties[key] && properties[key][0]) {
+        if (Object.hasOwn(properties, [key][0])) {
           /** @type {object|string} Image or string */
           const property = properties[key][0];
           client[key] = property.value || property;
