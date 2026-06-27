@@ -8,14 +8,13 @@ export const attributes = (attributes) => {
 
   for (const name in attributes) {
     if (Object.prototype.hasOwnProperty.call(attributes, name)) {
-      if (!attributes[name]) {
+      const value = attributes[name];
+
+      if (!value) {
         return html;
       }
 
-      html +=
-        typeof attributes[name] === "boolean"
-          ? ` ${name}`
-          : ` ${name}="${attributes[name]}"`;
+      html += typeof value === "boolean" ? ` ${name}` : ` ${name}="${value}"`;
     }
   }
 

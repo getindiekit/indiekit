@@ -68,7 +68,7 @@ export const formController = {
 
       // Convert media values object to Array
       for (const key of ["audio", "photo", "video"]) {
-        if (values[key]) {
+        if (Object.hasOwn(values, key)) {
           values[key] = Object.values(values[key]);
         }
       }

@@ -97,7 +97,7 @@ export const queryController = async (request, response, next) => {
 
       default: {
         // Query configuration value (can be filtered, limited and offset)
-        if (config[q]) {
+        if (Object.hasOwn(config, q)) {
           response.json({
             [q]: queryConfig(config[q], { filter, limit, offset }),
           });

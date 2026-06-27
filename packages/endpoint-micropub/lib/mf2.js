@@ -21,7 +21,7 @@ export const getMf2Properties = (mf2, requestedProperties) => {
     const selectedProperties = {};
 
     for (const key of requestedProperties) {
-      if (properties[key]) {
+      if (Object.hasOwn(properties, key)) {
         selectedProperties[key] = properties[key];
       }
     }
