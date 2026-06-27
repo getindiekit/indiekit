@@ -5,16 +5,19 @@ import plur from "plur";
  * @param {Map} postTypes - Post type configuration
  * @returns {object} Updated post type configuration
  */
+/**
+ * Get paths and URLs for configured post types
+ * @param {Map} postTypes - Post type configuration
+ * @returns {object} Updated post type configuration
+ */
 export const getPostTypes = (postTypes) => {
+  const updates = new Map();
+
   for (const type of postTypes.keys()) {
     const collection = plur(type);
 
     if (type === "article") {
-      /**
-       * Posts use `_posts` folder
-       * @see {@link https://jekyllrb.com/docs/posts/}
-       */
-      postTypes.set("article", {
+      updates.set("article", {
         ...postTypes.get("article"),
         post: {
           path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
@@ -25,11 +28,7 @@ export const getPostTypes = (postTypes) => {
         },
       });
     } else {
-      /**
-       * Other post types use collection folders
-       * @see {@link https://jekyllrb.com/docs/collections/}
-       */
-      postTypes.set(type, {
+      updates.set(type, {
         ...postTypes.get(type),
         post: {
           path: `_${collection}/{yyyy}-{MM}-{dd}-{slug}.md`,
@@ -40,6 +39,10 @@ export const getPostTypes = (postTypes) => {
         },
       });
     }
+  }
+
+  for (const [type, value] of updates) {
+    postTypes.set(type, value);
   }
 
   return postTypes;
