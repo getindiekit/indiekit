@@ -174,6 +174,9 @@ export const Indiekit = class {
     server.close(() => {
       console.info(`Stopping ${name}`);
       this.closeMongodbClient();
+
+      // eslint-disable-next-line unicorn/no-process-exit
+      process.exit(0);
     });
   }
 
