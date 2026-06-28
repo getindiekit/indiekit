@@ -1,6 +1,7 @@
 import process from "node:process";
 import * as dotenv from "dotenv";
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 dotenv.config();
 
 const config = {
