@@ -59,4 +59,5 @@ jobs:
         env:
           NODE_ENV: test
           SECRET: ${{ secrets.SECRET }}
+          PASSWORD_SECRET: ${{ secrets.PASSWORD_SECRET }}
         run: npm test
