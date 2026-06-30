@@ -1,7 +1,7 @@
 import { createRequire } from "node:module";
+import { styleText } from "node:util";
 
 import create from "base-create";
-import chalk from "chalk";
 import prompts from "prompts";
 
 import { getFiles } from "./lib/files.js";
@@ -18,12 +18,12 @@ const nodeVersion = ">=24";
  */
 export async function init() {
   const { log } = console;
-  const bugsUrl = chalk.cyan(bugs.url);
-  const nameVersion = chalk.white(`(${name} v${version})`);
+  const bugsUrl = styleText("cyan", bugs.url);
+  const nameVersion = styleText("white", `(${name} v${version})`);
 
-  log(`\n${chalk.bold("Welcome to Indiekit!")} ${nameVersion}`);
+  log(`\n${styleText("bold", "Welcome to Indiekit!")} ${nameVersion}`);
   log(`If you encounter a problem, visit ${bugsUrl} to file a new issue.\n`);
-  log(`${chalk.green(">")} ${chalk.white("Gathering details…")}`);
+  log(`${styleText("green", ">")} ${styleText("white", "Gathering details…")}`);
 
   // Ask setup questions
   const setup = await prompts(setupPrompts);

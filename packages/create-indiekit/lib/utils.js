@@ -1,4 +1,5 @@
-import chalk from "chalk";
+import { styleText } from "node:util";
+
 import prompts from "prompts";
 
 /**
@@ -11,7 +12,9 @@ export const addPluginConfig = async (pluginName, config) => {
   const plugin = await getPlugin(pluginName);
   const { info } = console;
 
-  info(`${chalk.green(">")} ${chalk.white(`Configuring ${plugin.name}…`)}`);
+  info(
+    `${styleText("green", "v")} ${styleText("white", `Configuring ${plugin.name}…`)}`,
+  );
 
   // Add plug-in to list of installed plug-ins
   config.plugins.push(pluginName);
