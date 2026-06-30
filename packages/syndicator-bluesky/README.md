@@ -4,7 +4,7 @@
 
 ## Installation
 
-`npm i @indiekit/syndicator-bluesky`
+`npm install @indiekit/syndicator-bluesky`
 
 ## Requirements
 

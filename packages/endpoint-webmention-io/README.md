@@ -4,7 +4,7 @@ Webmention.io endpoint for Indiekit. View webmentions collected by the Webmentio
 
 ## Installation
 
-`npm i @indiekit/endpoint-webmention-io`
+`npm install @indiekit/endpoint-webmention-io`
 
 ## Usage
 
