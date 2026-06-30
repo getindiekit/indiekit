@@ -49,8 +49,7 @@ jobs:
           write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
 
       - name: Install packages and symlink local dependencies
-        # Can’t use npm ci due to https://github.com/npm/cli/issues/4828
-        run: npm i --package-lock=false
+        run: npm ci
 
       - name: Run linter
         run: npm run lint
