@@ -37,7 +37,10 @@ export default [
           "newlines-between": "always",
         },
       ],
-      "jsdoc/no-undefined-types": [1, { definedTypes: ["NodeJS"] }],
+      "jsdoc/no-undefined-types": [
+        1,
+        { definedTypes: ["NodeJS", "RequestInit"] },
+      ],
       "jsdoc/require-hyphen-before-param-description": "warn",
       "unicorn/comment-content": "off",
       "unicorn/consistent-optional-chaining": "off",

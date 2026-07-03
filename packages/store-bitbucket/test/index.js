@@ -2,21 +2,22 @@ import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
 import { Indiekit } from "@indiekit/indiekit";
-import nock from "nock";
+import { mockAgent } from "@indiekit-test/mock-agent";
 
 import BitbucketStore from "../index.js";
 
-describe("store-bitbucket", () => {
+await mockAgent("store-bitbucket");
+
+describe("store-bitbucket", async () => {
   const bitbucket = new BitbucketStore({
+    email: "username@website.example",
     user: "username",
-    password: "password",
+    token: "abcd1234",
     repo: "repo",
   });
 
-  const bitbucketUrl = "https://api.bitbucket.org";
-
   it("Gets plug-in environment", () => {
-    assert.deepEqual(bitbucket.environment, ["BITBUCKET_PASSWORD"]);
+    assert.deepEqual(bitbucket.environment, ["BITBUCKET_TOKEN"]);
   });
 
   it("Gets plug-in info", () => {
@@ -28,7 +29,7 @@ describe("store-bitbucket", () => {
   it("Gets plug-in installation prompts", () => {
     assert.equal(
       bitbucket.prompts[0].message,
-      "What is your Bitbucket username?",
+      "What is your Bitbucket workspace?",
     );
   });
 
@@ -50,47 +51,19 @@ describe("store-bitbucket", () => {
   });
 
   it("Checks if file exists", async () => {
-    nock(bitbucketUrl)
-      .get("/2.0/repositories/username/repo/src/main/foo.txt")
-      .query({ format: "meta" })
-      .reply(201, { path: "foo.txt", type: "meta" });
-    nock(bitbucketUrl)
-      .post("/2.0/repositories/username/repo/src/main/bar.txt")
-      .query({ format: "meta" })
-      .replyWithError("Not found");
-
     assert.equal(await bitbucket.fileExists("foo.txt"), true);
-    assert.equal(await bitbucket.fileExists("bar.txt"), false);
+    assert.equal(await bitbucket.fileExists("404.txt"), false);
   });
 
   it("Creates file", async () => {
-    nock(bitbucketUrl).post("/2.0/repositories/username/repo/src").reply(201, {
-      "content-type": "application/json",
-    });
-
-    const result = await bitbucket.createFile("foo.txt", "foo", {
+    const result = await bitbucket.createFile("new.txt", "new", {
       message: "Message",
     });
 
-    assert.equal(result, "https://bitbucket.org/username/repo/foo.txt");
+    assert.equal(result, "https://bitbucket.org/username/repo/new.txt");
   });
 
   it("Doesn’t create file if already exists", async () => {
-    nock(bitbucketUrl).post("/2.0/repositories/username/repo/src").reply(201, {
-      "content-type": "application/json",
-    });
-
-    // Create file
-    await bitbucket.createFile("foo.txt", "foo", {
-      message: "Message",
-    });
-
-    nock(bitbucketUrl)
-      .get("/2.0/repositories/username/repo/src/main/foo.txt")
-      .query({ format: "meta" })
-      .reply(201, { path: "foo.txt", type: "meta" });
-
-    // Create file a second time
     const result = await bitbucket.createFile("foo.txt", "foo", {
       message: "Message",
     });
@@ -99,47 +72,27 @@ describe("store-bitbucket", () => {
   });
 
   it("Throws error creating file", async () => {
-    nock(bitbucketUrl)
-      .post("/2.0/repositories/username/repo/src")
-      .replyWithError("Not found");
-
     await assert.rejects(
-      bitbucket.createFile("foo.txt", "foo", { message: "Message" }),
+      bitbucket.createFile("401.txt", "foo", { message: "Message" }),
       {
-        message:
-          "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
+        message: "Bitbucket store: Unauthorized",
       },
     );
   });
 
   it("Reads file", async () => {
-    nock(bitbucketUrl)
-      .get("/2.0/repositories/username/repo/src/main/foo.txt")
-      .query({ format: "rendered" })
-      .reply(201, { raw: "foo", type: "rendered" });
-
     const result = await bitbucket.readFile("foo.txt");
 
     assert.equal(result, "foo");
   });
 
   it("Throws error reading file", async () => {
-    nock(bitbucketUrl)
-      .get("/2.0/repositories/username/repo/src/main/foo.txt")
-      .query({ format: "rendered" })
-      .replyWithError("Not found");
-
-    await assert.rejects(bitbucket.readFile("foo.txt"), {
-      message:
-        "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src/main/foo.txt?format=rendered failed, reason: Not found",
+    await assert.rejects(bitbucket.readFile("404.txt"), {
+      message: "Bitbucket store: Not found",
     });
   });
 
   it("Updates file", async () => {
-    nock(bitbucketUrl).post("/2.0/repositories/username/repo/src").reply(201, {
-      "content-type": "application/json",
-    });
-
     const result = await bitbucket.updateFile("foo.txt", "foo", {
       message: "Message",
     });
@@ -148,13 +101,6 @@ describe("store-bitbucket", () => {
   });
 
   it("Updates and renames file", async () => {
-    nock(bitbucketUrl)
-      .post("/2.0/repositories/username/repo/src")
-      .twice()
-      .reply(201, {
-        "content-type": "application/json",
-      });
-
     const result = await bitbucket.updateFile("foo.txt", "foo", {
       message: "Message",
       newPath: "bar.txt",
@@ -164,24 +110,15 @@ describe("store-bitbucket", () => {
   });
 
   it("Throws error updating file", async () => {
-    nock(bitbucketUrl)
-      .post("/2.0/repositories/username/repo/src")
-      .replyWithError("Not found");
-
     await assert.rejects(
-      bitbucket.updateFile("foo.txt", "foo", { message: "Message" }),
+      bitbucket.updateFile("401.txt", "foo", { message: "Message" }),
       {
-        message:
-          "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
+        message: "Bitbucket store: Unauthorized",
       },
     );
   });
 
   it("Deletes a file", async () => {
-    nock(bitbucketUrl).post("/2.0/repositories/username/repo/src").reply(201, {
-      "content-type": "application/json",
-    });
-
     const result = await bitbucket.deleteFile("foo.txt", {
       message: "Message",
     });
@@ -190,15 +127,10 @@ describe("store-bitbucket", () => {
   });
 
   it("Throws error deleting a file", async () => {
-    nock(bitbucketUrl)
-      .post("/2.0/repositories/username/repo/src")
-      .replyWithError("Not found");
-
     await assert.rejects(
-      bitbucket.deleteFile("foo.txt", { message: "Message" }),
+      bitbucket.deleteFile("401.txt", { message: "Message" }),
       {
-        message:
-          "Bitbucket store: request to https://api.bitbucket.org/2.0/repositories/username/repo/src failed, reason: Not found",
+        message: "Bitbucket store: Unauthorized",
       },
     );
   });

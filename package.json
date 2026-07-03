@@ -97,7 +97,6 @@
     "mock-req-res": "^1.2.1",
     "mock-session": "^0.0.5",
     "mongodb-memory-server": "^11.2.0",
-    "nock": "^14.0.16",
     "prettier": "^3.9.4",
     "stylelint": "^17.14.0",
     "stylelint-config-recommended": "^18.0.0",
