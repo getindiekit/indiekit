@@ -11,7 +11,7 @@ import { setupPrompts } from "./lib/setup-prompts.js";
 const require = createRequire(import.meta.url);
 const { name, version, bugs } = require("./package.json");
 
-const nodeVersion = ">=24";
+const nodeVersion = ">=26";
 
 /**
  * @returns {Promise<object>} init
