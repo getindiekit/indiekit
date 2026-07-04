@@ -28,6 +28,7 @@
   "type": "module",
   "main": "index.js",
   "files": [
+    "assets",
     "lib",
     "locales",
     "index.js"
