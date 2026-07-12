@@ -60,16 +60,16 @@
     "commander": "^15.0.0",
     "compression": "^1.8.1",
     "cookie-session": "^2.1.1",
-    "cosmiconfig": "^9.0.2",
+    "cosmiconfig": "^10.0.0",
     "debug": "^4.4.3",
     "deepmerge": "^4.3.1",
     "express": "^5.2.1",
     "express-fileupload": "^1.5.2",
-    "express-rate-limit": "^8.3.2",
+    "express-rate-limit": "^8.6.2",
     "i18n": "^0.15.3",
     "keyv": "^5.6.0",
     "lodash": "^4.18.1",
-    "mongodb": "^7.4.0"
+    "mongodb": "^7.5.0"
   },
   "publishConfig": {
     "access": "public"
