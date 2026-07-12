@@ -3,16 +3,35 @@ import { IndiekitError } from "@indiekit/error";
 import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
+  /**
+   * @type {HTMLElement}
+   */
+  $uploadProgress;
+
+  /**
+   * @type {HTMLInputElement}
+   */
+  $fileInputPath;
+
+  /**
+   * @type {HTMLElement}
+   */
+  $fileInputPicker;
+
+  /**
+   * @type {HTMLTemplateElement}
+   */
+  $fileInputPickerTemplate;
+
+  /**
+   * @type {HTMLTemplateElement}
+   */
+  $errorMessageTemplate;
+
   connectedCallback() {
     this.endpoint = this.getAttribute("endpoint");
 
-    /**
-     * @type {HTMLElement}
-     */
     this.$uploadProgress = this.querySelector(".file-input__progress");
-    /**
-     * @type {HTMLInputElement}
-     */
     this.$fileInputPath = this.querySelector(".file-input__path");
     this.$fileInputPicker = this.querySelector(".file-input__picker");
     this.$fileInputPickerTemplate = this.querySelector("#file-input-picker");
@@ -38,8 +57,9 @@ export const FileInputFieldController = class extends HTMLElement {
     }
 
     // Make file input label behave like a button to trigger file input
-    const $fileInputButton =
-      this.$fileInputPicker.querySelector(`.file-input__button`);
+    const $fileInputButton = /** @type {HTMLElement} */ (
+      this.$fileInputPicker.querySelector(`.file-input__button`)
+    );
 
     $fileInputButton.addEventListener("keydown", (event) => {
       // Prevent default behaviour, including scrolling using spacebar
@@ -48,7 +68,9 @@ export const FileInputFieldController = class extends HTMLElement {
       }
 
       if (event.key === "Enter") {
-        event.target.click();
+        const $target = /** @type {HTMLElement} */ (event.target);
+
+        $target.click();
       }
     });
 
@@ -58,7 +80,10 @@ export const FileInputFieldController = class extends HTMLElement {
       }
 
       event.preventDefault();
-      event.target.click();
+
+      const $target = /** @type {HTMLElement} */ (event.target);
+
+      $target.click();
     });
 
     // Add event to file input
@@ -74,8 +99,10 @@ export const FileInputFieldController = class extends HTMLElement {
   async fetch(event) {
     this.$uploadProgress.hidden = false;
 
+    const $target = /** @type {HTMLInputElement} */ (event.target);
     const formData = new FormData();
-    formData.append("file", event.target.files[0]);
+
+    formData.append("file", $target.files[0]);
 
     try {
       this.$fileInputPath.readOnly = true;
@@ -104,14 +131,22 @@ export const FileInputFieldController = class extends HTMLElement {
   }
 
   showErrorMessage(message) {
-    const $input = this.querySelector(".input");
-    const $inputButtonGroup = this.querySelector(".input-button-group");
+    const $input = /** @type {HTMLElement} */ (this.querySelector(".input"));
+    const $inputButtonGroup = /** @type {HTMLElement} */ (
+      this.querySelector(".input-button-group")
+    );
 
     // Create error message
-    let $errorMessage = this.$errorMessageTemplate.content.cloneNode(true);
-    $inputButtonGroup.before($errorMessage);
-    $errorMessage = this.querySelector(".error-message");
-    const $errorMessageText = this.querySelector(".error-message__text");
+    const $errorMessageFragment =
+      this.$errorMessageTemplate.content.cloneNode(true);
+    $inputButtonGroup.before($errorMessageFragment);
+
+    const $errorMessage = /** @type {HTMLElement} */ (
+      this.querySelector(".error-message")
+    );
+    const $errorMessageText = /** @type {HTMLElement} */ (
+      this.querySelector(".error-message__text")
+    );
 
     // Add error class to field
     this.classList.add("field--error");

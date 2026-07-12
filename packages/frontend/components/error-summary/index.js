@@ -20,8 +20,8 @@ export const ErrorSummaryComponent = class extends HTMLElement {
     this.setAttribute("tabindex", "-1");
 
     // …and remove it on blur as error summary doesn’t need to be focused again
-    this.addEventListener("blur", function (event) {
-      event.target.removeAttribute("tabindex");
+    this.addEventListener("blur", () => {
+      this.removeAttribute("tabindex");
     });
 
     this.focus();

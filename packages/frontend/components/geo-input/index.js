@@ -1,6 +1,26 @@
 import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const GeoInputFieldComponent = class extends HTMLElement {
+  /**
+   * @type {HTMLInputElement}
+   */
+  $geoInput;
+
+  /**
+   * @type {HTMLButtonElement}
+   */
+  $geoInputButton;
+
+  /**
+   * @type {HTMLTemplateElement}
+   */
+  $geoInputButtonTemplate;
+
+  /**
+   * @type {HTMLTemplateElement}
+   */
+  $errorMessageTemplate;
+
   connectedCallback() {
     this.i18nDenied = this.getAttribute("i18n-denied");
     this.i18nFailed = this.getAttribute("i18n-failed");
@@ -66,10 +86,9 @@ export const GeoInputFieldComponent = class extends HTMLElement {
    * @param {GeolocationPositionError} error - Position error
    */
   positionError(error) {
-    /**
-     * @satisfies {HTMLButtonElement}
-     */
-    const $button = this.querySelector(".button");
+    const $button = /** @type {HTMLButtonElement} */ (
+      this.querySelector(".button")
+    );
 
     $button.disabled = true;
 
@@ -81,14 +100,22 @@ export const GeoInputFieldComponent = class extends HTMLElement {
   }
 
   showErrorMessage(message) {
-    const $input = this.querySelector(".input");
-    const $inputButtonGroup = this.querySelector(".input-button-group");
+    const $input = /** @type {HTMLElement} */ (this.querySelector(".input"));
+    const $inputButtonGroup = /** @type {HTMLElement} */ (
+      this.querySelector(".input-button-group")
+    );
 
     // Create error message
-    let $errorMessage = this.$errorMessageTemplate.content.cloneNode(true);
-    $inputButtonGroup.before($errorMessage);
-    $errorMessage = this.querySelector(".error-message");
-    const $errorMessageText = this.querySelector(".error-message__text");
+    const $errorMessageFragment =
+      this.$errorMessageTemplate.content.cloneNode(true);
+    $inputButtonGroup.before($errorMessageFragment);
+
+    const $errorMessage = /** @type {HTMLElement} */ (
+      this.querySelector(".error-message")
+    );
+    const $errorMessageText = /** @type {HTMLElement} */ (
+      this.querySelector(".error-message__text")
+    );
 
     // Add error class to field
     this.classList.add("field--error");

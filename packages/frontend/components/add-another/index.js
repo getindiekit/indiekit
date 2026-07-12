@@ -1,6 +1,26 @@
 const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]`;
 
 export const AddAnotherComponent = class extends HTMLElement {
+  /**
+   * @type {HTMLTemplateElement}
+   */
+  $addButtonTemplate;
+
+  /**
+   * @type {HTMLTemplateElement}
+   */
+  $deleteButtonTemplate;
+
+  /**
+   * @type {NodeListOf<Element>}
+   */
+  $$fields;
+
+  /**
+   * @type {HTMLElement}
+   */
+  $list;
+
   connectedCallback() {
     this.$addButtonTemplate = this.querySelector("#add-button");
     this.$deleteButtonTemplate = this.querySelector("#delete-button");
@@ -17,10 +37,16 @@ export const AddAnotherComponent = class extends HTMLElement {
    */
   add(event) {
     event.preventDefault();
+
     const $newItem = this.createItem();
+    const $focusable = /** @type {HTMLElement} */ (
+      $newItem.querySelector(focusableSelector)
+    );
+
     this.$list.append($newItem);
     this.updateItems();
-    $newItem.querySelector(focusableSelector).focus();
+
+    $focusable.focus();
   }
 
   /**
@@ -29,7 +55,12 @@ export const AddAnotherComponent = class extends HTMLElement {
    */
   delete(event) {
     event.preventDefault();
-    event.target.closest("li").remove();
+
+    const $target = /** @type {HTMLElement} */ (event.target);
+    const $listItem = /** @type {HTMLElement} */ ($target.closest("li"));
+
+    $listItem.remove();
+
     this.updateItems();
     this.focusHeading();
   }
@@ -100,7 +131,7 @@ export const AddAnotherComponent = class extends HTMLElement {
    */
   createItem() {
     const $$items = this.querySelectorAll(".add-another__list-item");
-    const $item = $$items[0].cloneNode(true);
+    const $item = /** @type {HTMLLIElement} */ ($$items[0].cloneNode(true));
     const uid = Date.now().toString();
 
     const $$fields = $item.querySelectorAll(".field--error");
@@ -114,7 +145,9 @@ export const AddAnotherComponent = class extends HTMLElement {
     }
 
     const $$inputs = $item.querySelectorAll("input, select, textarea");
-    for (const $input of $$inputs) {
+    for (const $element of $$inputs) {
+      const $input = /** @type {HTMLInputElement} */ ($element);
+
       $input.id = $input.id.replace("-0", `-${uid}`);
       $input.name = $input.name.replace("[0]", `[${uid}]`);
       $input.value = "";
@@ -145,7 +178,9 @@ export const AddAnotherComponent = class extends HTMLElement {
   updateItems() {
     const $$items = this.querySelectorAll(".add-another__list-item");
 
-    for (const [index, $item] of $$items.entries()) {
+    for (const [index, $element] of $$items.entries()) {
+      const $item = /** @type {HTMLElement} */ ($element);
+
       $item.id ||= `${this.id}-${index}`;
       $item.setAttribute("aria-label", `Item ${index + 1}`);
 

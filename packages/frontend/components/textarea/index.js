@@ -94,7 +94,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
       },
       element: this.$textarea,
       imageUploadEndpoint: this.editorEndpoint,
-      imageUploadFunction: this.uploadFile,
+      imageUploadFunction: this.uploadFile(this.editorEndpoint),
       minHeight: "6rem",
       previewClass: ["editor-preview", "s-flow"],
       status,
@@ -108,7 +108,9 @@ export const TextareaFieldComponent = class extends HTMLElement {
     document.addEventListener(
       "click",
       function (event) {
-        const linkButton = event.target?.closest(".link");
+        const linkButton = /** @type {HTMLElement} */ (event.target)?.closest(
+          ".link",
+        );
         if (linkButton) {
           event.preventDefault();
           event.stopPropagation();
@@ -169,9 +171,9 @@ export const TextareaFieldComponent = class extends HTMLElement {
     const $editorToolbar = this.querySelector(".editor-toolbar");
     if ($editorToolbar) {
       // Use custom SVG icons
-      const buttons = $editorToolbar.querySelectorAll("button");
-      for (const button of buttons) {
-        button.innerHTML = getButtonSvg(button.classList[0]);
+      const $$buttons = $editorToolbar.querySelectorAll("button");
+      for (const $button of $$buttons) {
+        $button.innerHTML = getButtonSvg($button.classList[0]);
       }
 
       // Get toolbar height to offset editor and preview in fullscreen mode
@@ -188,28 +190,30 @@ export const TextareaFieldComponent = class extends HTMLElement {
     }
   }
 
-  /**
-   * Upload file
-   * @param {object} file - File
-   * @param {function(string): void} onSuccess - Success callback
-   * @param {function(string): void} onError - Error callback
-   * @returns {Promise<string>} - File URL or error message
-   */
-  async uploadFile(file, onSuccess, onError) {
-    const formData = new FormData();
-    formData.append("file", file);
+  uploadFile(endpoint) {
+    /**
+     * @param {object} file - File
+     * @param {function(string): void} onSuccess - Success callback
+     * @param {function(string): void} onError - Error callback
+     */
+    return async (file, onSuccess, onError) => {
+      const formData = new FormData();
+      formData.append("file", file);
 
-    try {
-      const endpointResponse = await fetch(this.options.imageUploadEndpoint, {
-        method: "POST",
-        body: formData,
-      });
+      try {
+        const endpointResponse = await fetch(endpoint, {
+          method: "POST",
+          body: formData,
+        });
 
-      return endpointResponse.ok
-        ? onSuccess(endpointResponse.headers.get("location"))
-        : onError(endpointResponse.statusText);
-    } catch (error) {
-      onError(error.message);
-    }
+        if (endpointResponse.ok) {
+          onSuccess(endpointResponse.headers.get("location") ?? "");
+        } else {
+          onError(endpointResponse.statusText);
+        }
+      } catch (error) {
+        onError(error.message);
+      }
+    };
   }
 };
