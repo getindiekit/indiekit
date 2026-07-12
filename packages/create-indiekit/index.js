@@ -4,6 +4,7 @@ import { styleText } from "node:util";
 import create from "base-create";
 import prompts from "prompts";
 
+import { SetupCancelledError } from "./lib/errors.js";
 import { getFiles } from "./lib/files.js";
 import { getPackageValues } from "./lib/package.js";
 import { setupPrompts } from "./lib/setup-prompts.js";
@@ -31,10 +32,7 @@ export async function init() {
   // far, so a cancelled run carries on and scaffolds using empty answers.
   const setup = await prompts(setupPrompts, {
     onCancel() {
-      const error = new Error("Setup cancelled");
-      error.code = "ERR_SETUP_CANCELLED";
-
-      throw error;
+      throw new SetupCancelledError();
     },
   });
 
