@@ -1,17 +1,22 @@
 import { IndiekitError } from "@indiekit/error";
 
+/**
+ * @typedef TestStoreOptions
+ * @property {string} [baseUrl] - Base URL
+ * @property {string} user - User
+ */
+
 const defaults = {
   baseUrl: "https://store.example",
 };
 
-/**
- * @typedef Response
- * @property {object} response - HTTP response
- */
 export default class TestStore {
   name = "Test store";
 
-  constructor(options = {}) {
+  /**
+   * @param {TestStoreOptions} [options] - Options
+   */
+  constructor(options) {
     this.options = { ...defaults, ...options };
   }
 
