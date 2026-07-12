@@ -7,7 +7,7 @@ import { forceHttps } from "../../../lib/middleware/force-https.js";
 
 describe("indiekit/lib/middleware/error", () => {
   it("Redirect HTTP requests to HTTPS", async () => {
-    mock.method(console, "info", () => {});
+    const consoleInfo = mock.method(console, "info", () => {});
 
     const request = mockRequest({
       headers: {
@@ -21,7 +21,7 @@ describe("indiekit/lib/middleware/error", () => {
     await forceHttps(request, response, next);
 
     assert.equal(
-      console.info.mock.calls[0].arguments[0],
+      consoleInfo.mock.calls[0].arguments[0],
       "Redirecting request to https",
     );
     assert.equal(response.redirect.calledWith(302), true);

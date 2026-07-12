@@ -3,7 +3,7 @@ import i18n from "i18n";
 /**
  * Set locale
  * @param {object} Indiekit - Indiekit instance
- * @returns {import("express").RequestHandler} Next middleware
+ * @returns {RequestHandler} Next middleware
  */
 export const internationalisation = (Indiekit) =>
   function (request, response, next) {
@@ -31,3 +31,7 @@ export const internationalisation = (Indiekit) =>
       next(error);
     }
   };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

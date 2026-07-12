@@ -2,6 +2,10 @@ import makeDebug from "debug";
 
 const debug = makeDebug("indiekit:request");
 
+/**
+ * Debug logging
+ * @type {RequestHandler}
+ */
 export const logging = (request, response, next) => {
   // Send debug logging output to console.info
   debug.log = console.info.bind(console);
@@ -10,5 +14,9 @@ export const logging = (request, response, next) => {
   debug("Headers", request.headers);
   debug("Body", request.body);
 
-  next();
+  return next();
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

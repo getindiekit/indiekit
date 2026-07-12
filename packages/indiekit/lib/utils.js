@@ -11,7 +11,7 @@ const secretKey = randomBytes(32);
 /**
  * Encrypt a string
  * @param {string} string - String to encrypt
- * @param {string} iv - Initialization vector
+ * @param {Buffer} iv - Initialization vector
  * @returns {string} Encrypted hash
  */
 export const encrypt = (string, iv) => {
@@ -24,15 +24,11 @@ export const encrypt = (string, iv) => {
 /**
  * Decrypt a string
  * @param {string} hash - Hash to decrypt
- * @param {string} iv - Initialization vector
+ * @param {Buffer} iv - Initialization vector
  * @returns {string} Decrypted string
  */
 export const decrypt = (hash, iv) => {
-  const decipher = createDecipheriv(
-    algorithm,
-    secretKey,
-    Buffer.from(iv, "hex"),
-  );
+  const decipher = createDecipheriv(algorithm, secretKey, iv);
   const decrypted = Buffer.concat([
     decipher.update(Buffer.from(hash, "hex")),
     decipher.final(),

@@ -1,3 +1,9 @@
+/**
+ * Get client information
+ * @param {Request} request - Request
+ * @param {Response} response - Response
+ * @returns {Promise<Response>} Sent response
+ */
 export const get = async (request, response) => {
   const { name: client_name, url: client_uri } = request.app.locals.application;
   const { href: client_id } = new URL("id", client_uri);
@@ -11,3 +17,7 @@ export const get = async (request, response) => {
     logo_uri,
   });
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

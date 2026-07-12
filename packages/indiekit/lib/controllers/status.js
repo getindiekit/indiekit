@@ -1,7 +1,11 @@
+/**
+ * Get status page
+ * @type {RequestHandler}
+ */
 export const viewStatus = (request, response) => {
   const { scope } = request.app.locals;
 
-  response.render("status", {
+  return response.render("status", {
     title: response.locals.__("status.title"),
     scope: scope?.split(" "),
     actions: [
@@ -12,3 +16,7 @@ export const viewStatus = (request, response) => {
     ],
   });
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

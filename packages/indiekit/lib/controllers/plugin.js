@@ -2,6 +2,10 @@ import path from "node:path";
 
 import { getPackageData } from "../utils.js";
 
+/**
+ * Get plugins page
+ * @type {RequestHandler}
+ */
 export const list = (request, response) => {
   const { installedPlugins } = response.app.locals;
 
@@ -20,7 +24,7 @@ export const list = (request, response) => {
     return plugin;
   });
 
-  response.render("plugins/list", {
+  return response.render("plugins/list", {
     parent: {
       href: "/status/",
       text: response.locals.__("status.title"),
@@ -30,6 +34,10 @@ export const list = (request, response) => {
   });
 };
 
+/**
+ * Get plugin page
+ * @type {RequestHandler}
+ */
 export const view = (request, response) => {
   const { installedPlugins } = response.app.locals;
   const { pluginId } = request.params;
@@ -37,7 +45,7 @@ export const view = (request, response) => {
   const plugin = [...installedPlugins].find((plugin) => plugin.id === pluginId);
   plugin.package = getPackageData(plugin.filePath);
 
-  response.render("plugins/view", {
+  return response.render("plugins/view", {
     parent: {
       href: path.dirname(request.path),
       text: response.locals.__("status.application.installedPlugins"),
@@ -50,3 +58,7 @@ export const view = (request, response) => {
     plugin,
   });
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

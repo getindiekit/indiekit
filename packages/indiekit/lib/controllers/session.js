@@ -1,3 +1,7 @@
+/**
+ * Get login page
+ * @type {RequestHandler}
+ */
 export const login = (request, response) => {
   if (request.session.access_token) {
     return response.redirect("/");
@@ -9,7 +13,15 @@ export const login = (request, response) => {
   });
 };
 
+/**
+ * Logout
+ * @type {RequestHandler}
+ */
 export const logout = (request, response) => {
   request.session = undefined;
   return response.redirect("/");
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

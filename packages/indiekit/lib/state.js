@@ -3,7 +3,7 @@ import { decrypt, encrypt } from "./utils.js";
 /**
  * Generate unique encrypted state value
  * @param {string} clientId - Client ID
- * @param {object} iv - Initialization vector
+ * @param {Buffer} iv - Initialization vector
  * @returns {string} State
  */
 export const generateState = (clientId, iv) => {
