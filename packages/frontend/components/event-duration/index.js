@@ -1,4 +1,14 @@
 export const EventDurationComponent = class extends HTMLElement {
+  /**
+   * @type {HTMLInputElement}
+   */
+  $allDayToggle;
+
+  /**
+   * @type {NodeListOf<HTMLInputElement>}
+   */
+  $$dateTimeInputs;
+
   connectedCallback() {
     this.$allDayToggle = this.querySelector(`input[type="checkbox"]`);
     this.$$dateTimeInputs = this.querySelectorAll(

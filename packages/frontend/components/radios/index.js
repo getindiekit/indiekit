@@ -32,7 +32,7 @@ export const RadiosFieldComponent = class extends HTMLElement {
    * @param {Event} event - Event
    */
   toggleConditionals(event) {
-    const $target = event.target;
+    const $target = /** @type {HTMLInputElement} */ (event.target);
 
     // Only consider radios with conditional reveals, those which have an
     // `aria-controls` attribute
@@ -40,7 +40,8 @@ export const RadiosFieldComponent = class extends HTMLElement {
       `input[type="radio"][aria-controls]`,
     );
 
-    for (const $input of $$allInputs) {
+    for (const $element of $$allInputs) {
+      const $input = /** @type {HTMLInputElement} */ ($element);
       const hasSameFormOwner = $input.form === $target.form;
       const hasSameName = $input.name === $target.name;
 

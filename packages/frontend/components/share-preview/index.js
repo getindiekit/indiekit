@@ -2,7 +2,9 @@ export const SharePreviewComponent = class extends HTMLElement {
   connectedCallback() {
     this.$form = this.closest("form");
     this.$$outputs = this.querySelectorAll("output");
-    for (const $output of this.$$outputs) {
+    for (const $element of this.$$outputs) {
+      const $output = /** @type {HTMLOutputElement} */ ($element);
+
       this.updatePreview($output);
     }
 
@@ -35,8 +37,8 @@ export const SharePreviewComponent = class extends HTMLElement {
   updatePreview($outputElement) {
     const { classList, dataset } = $outputElement;
     const htmlFor = $outputElement.htmlFor.value;
-    const $inputElement = document.querySelector(
-      `[name=${CSS.escape(htmlFor)}]`,
+    const $inputElement = /** @type {HTMLInputElement | null} */ (
+      document.querySelector(`[name=${CSS.escape(htmlFor)}]`)
     );
 
     if (!$inputElement) {

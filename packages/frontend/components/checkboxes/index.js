@@ -31,7 +31,7 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
    * @param {Event} event - Event
    */
   toggleConditional(event) {
-    const $target = event.target;
+    const $target = /** @type {HTMLInputElement} */ (event.target);
 
     // If the checkbox conditionally-reveals content, sync the state
     if ($target.hasAttribute("aria-controls")) {
@@ -97,7 +97,9 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
       `input[type="checkbox"][name="${CSS.escape($input.name)}"]`,
     );
 
-    for (const $inputWithSameName of $$inputsWithSameName) {
+    for (const $element of $$inputsWithSameName) {
+      const $inputWithSameName = /** @type {HTMLInputElement} */ ($element);
+
       const hasSameFormOwner = $input.form === $inputWithSameName.form;
       if (hasSameFormOwner && $inputWithSameName !== $input) {
         $inputWithSameName.checked = false;
@@ -119,7 +121,9 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
       `input[data-behaviour="exclusive"][type="checkbox"][name="${CSS.escape($input.name)}"]`,
     );
 
-    for (const $exclusiveInput of $$inputsWithSameNameAndExclusiveBehaviour) {
+    for (const $element of $$inputsWithSameNameAndExclusiveBehaviour) {
+      const $exclusiveInput = /** @type {HTMLInputElement} */ ($element);
+
       const hasSameFormOwner = $input.form === $exclusiveInput.form;
       if (hasSameFormOwner) {
         $exclusiveInput.checked = false;
