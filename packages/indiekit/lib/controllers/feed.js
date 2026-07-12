@@ -1,3 +1,9 @@
+/**
+ * Get JF2 feed
+ * @param {Request} request - Request
+ * @param {Response} response - Response
+ * @returns {Promise<Response>} Sent response
+ */
 export const jf2 = async (request, response) => {
   const { application } = request.app.locals;
   const feedUrl = new URL(request.originalUrl, application.url).href;
@@ -21,3 +27,7 @@ export const jf2 = async (request, response) => {
     children: posts.map((post) => post.properties),
   });
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

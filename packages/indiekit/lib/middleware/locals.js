@@ -12,7 +12,7 @@ const cssHash = sha1(await styles());
 /**
  * Expose configuration to frontend templates and plug-ins
  * @param {object} Indiekit - Indiekit instance
- * @returns {import("express").RequestHandler} Next middleware
+ * @returns {RequestHandler} Next middleware
  */
 export const locals = (Indiekit) =>
   async function (request, response, next) {
@@ -62,3 +62,7 @@ export const locals = (Indiekit) =>
       return next(error);
     }
   };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

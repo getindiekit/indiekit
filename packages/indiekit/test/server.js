@@ -30,6 +30,7 @@ describe("indiekit server", async () => {
     publication.me = undefined;
 
     await assert.rejects(indiekit.server({ port: 1234 }), (error) => {
+      assert.ok(error instanceof Error);
       assert.match(error.message, /No publication URL in configuration/);
       return true;
     });

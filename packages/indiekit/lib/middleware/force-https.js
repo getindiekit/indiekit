@@ -1,6 +1,6 @@
 /**
  * Redirect HTTP requests to HTTPS (typically on Heroku)
- * @type {import("express").RequestHandler}
+ * @type {RequestHandler}
  */
 export function forceHttps(request, response, next) {
   const protocol = request.headers["x-forwarded-proto"];
@@ -16,3 +16,7 @@ export function forceHttps(request, response, next) {
 
   next();
 }
+
+/**
+ * @import { RequestHandler } from "express"
+ */

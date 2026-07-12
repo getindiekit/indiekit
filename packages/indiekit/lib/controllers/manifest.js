@@ -1,5 +1,11 @@
 import { getBackgroundColor, getThemeColor } from "@indiekit/frontend";
 
+/**
+ * Get app manifest
+ * @param {Request} request - Request
+ * @param {Response} response - Response
+ * @returns {Promise<Response>} Sent response
+ */
 export const get = async (request, response) => {
   const { application } = request.app.locals;
 
@@ -48,3 +54,7 @@ export const get = async (request, response) => {
     }),
   });
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

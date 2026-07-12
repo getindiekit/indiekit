@@ -31,10 +31,10 @@ describe("indiekit", async () => {
   });
 
   it("Doesn’t allow duplicate database collections", async () => {
-    mock.method(console, "warn", () => {});
+    const consoleWarn = mock.method(console, "warn", () => {});
 
     indiekit.addCollection("test");
-    const result = console.warn.mock.calls[0].arguments[0];
+    const result = consoleWarn.mock.calls[0].arguments[0];
 
     assert.equal(result.includes(`Collection ‘test’ already added`), true);
   });

@@ -6,19 +6,19 @@ const debug = makeDebug("indiekit:error");
 
 /**
  * Return not found error
- * @type {import("express").RequestHandler}
+ * @type {RequestHandler}
  */
 export const notFound = (request, response, next) => {
   const error = IndiekitError.notFound(
     response.locals.__("NotFoundError.page"),
   );
 
-  next(error);
+  return next(error);
 };
 
 /**
  * Return error
- * @type {import("express").ErrorRequestHandler}
+ * @type {ErrorRequestHandler}
  */
 // eslint-disable-next-line no-unused-vars
 export const internalServer = (error, request, response, next) => {
@@ -37,7 +37,7 @@ export const internalServer = (error, request, response, next) => {
   debug("Error", error);
 
   if (request.accepts("html")) {
-    response.render("error", {
+    return response.render("error", {
       title: response.locals.__(`${error.name}.title:${error.name}`),
       content: error.message,
       name: error.name,
@@ -45,8 +45,10 @@ export const internalServer = (error, request, response, next) => {
       status,
       uri: error.uri,
     });
-  } else if (request.accepts("json")) {
-    response.json({
+  }
+
+  if (request.accepts("json")) {
+    return response.json({
       error: error.code || error.name,
       error_description: error.message || error.cause?.message,
       ...(error.uri && { error_uri: error.uri }),
@@ -54,7 +56,11 @@ export const internalServer = (error, request, response, next) => {
       ...(isDevelopment && { stack: cleanStack(error.stack) }),
       ...(isDevelopment && error.cause && { cause: error.cause }),
     });
-  } else {
-    response.send(error.toString());
   }
+
+  return response.send(error.toString());
 };
+
+/**
+ * @import { ErrorRequestHandler, RequestHandler } from "express"
+ */

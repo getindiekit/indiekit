@@ -19,23 +19,23 @@ describe("indiekit/lib/cache", async () => {
   });
 
   it("Returns undefined and logs error if remote not found", async () => {
-    mock.method(console, "error", () => {});
+    const consoleError = mock.method(console, "error", () => {});
 
     const url = "https://website.example/404.json";
     const result = await getCachedResponse(cache, 0, url);
 
-    assert.equal(console.error.mock.calls[0].arguments[1], "Not Found");
+    assert.equal(consoleError.mock.calls[0].arguments[1], "Not Found");
     assert.equal(result, undefined);
   });
 
   it("Returns undefined and logs error if remote not reachable", async () => {
-    mock.method(console, "error", () => {});
+    const consoleError = mock.method(console, "error", () => {});
 
     const url = "https://foo.bar/categories.json";
     const result = await getCachedResponse(cache, 0, url);
 
     assert.equal(
-      console.error.mock.calls[0].arguments[0] instanceof Error,
+      consoleError.mock.calls[0].arguments[0] instanceof Error,
       true,
     );
     assert.equal(result, undefined);
