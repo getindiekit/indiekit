@@ -8,10 +8,10 @@ import Color from "color";
  * @param {object} [options.colorToValidate] - Color to validate against
  * @param {number} [options.minimumContrastRatio] - Minimum contrast ratio
  * @param {object} options.mixingColor - Color to mix with original
- * @param {number} options.mixingAmount - Amount of color to mix with original
+ * @param {number} [options.mixingAmount] - Amount of color to mix with original
  * @param {number} [options.tries] - Tries
  * @param {number} [options.maxTries] - Maximum tries
- * @returns {string} RGB hex code, i.e. "#7f1de4"
+ * @returns {import("color").ColorInstance} RGB hex code, i.e. "#7f1de4"
  */
 export const _getValidatedColor = ({
   colorToChange,
