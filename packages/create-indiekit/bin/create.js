@@ -3,6 +3,7 @@ import process from "node:process";
 
 import { init } from "../index.js";
 import { getCliResult, parseCliArguments } from "../lib/cli.js";
+import { SetupCancelledError } from "../lib/errors.js";
 import { isCompatibleNodeVersion } from "../lib/utils.js";
 
 const minimumSupportedVersion = "24.17";
@@ -33,7 +34,7 @@ if (!process.stdin.isTTY) {
 try {
   await init();
 } catch (error) {
-  if (error.code === "ERR_SETUP_CANCELLED") {
+  if (error instanceof SetupCancelledError) {
     console.error(error.message);
     process.exit(1);
   }
