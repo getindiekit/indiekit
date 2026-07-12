@@ -27,7 +27,8 @@ describe("error", () => {
         indiekitError();
       },
       (error) => {
-        assert.equal(error instanceof IndiekitError, true);
+        assert.ok(error instanceof IndiekitError);
+        assert.ok(error.cause instanceof Error);
         assert.equal(error.code, "indiekit");
         assert.equal(error.message, "Message");
         assert.equal(error.name, "IndiekitError");
