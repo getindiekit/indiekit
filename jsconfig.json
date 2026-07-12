@@ -1,10 +1,18 @@
 {
-  "compilerOptions": {
-    "checkJs": true,
-    "module": "nodenext",
-    "resolveJsonModule": true,
-    "target": "es2023"
-  },
-  "exclude": ["node_modules", "packages/frontend/lib/serviceworker.js"],
-  "typeRoots": ["types", "./node_modules/@types"]
+  "extends": "./jsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./jsconfig.dev.json"
+    },
+    {
+      "path": "./jsconfig.client.json"
+    },
+    {
+      "path": "./jsconfig.server.json"
+    },
+    {
+      "path": "./jsconfig.serviceworker.json"
+    }
+  ]
 }
