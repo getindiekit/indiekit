@@ -1,0 +1,12 @@
+{
+  "extends": "./jsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "target": "ES2015",
+    "types": ["node"]
+  },
+  "include": [
+    "./packages/frontend/components/**/*.js",
+    "./packages/frontend/scripts/**/*.js"
+  ]
+}

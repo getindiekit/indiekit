@@ -54,6 +54,9 @@ jobs:
       - name: Run linter
         run: npm run lint
 
+      - name: Run typechecker
+        run: npm run typecheck
+
       - name: Run tests
         env:
           NODE_ENV: test
