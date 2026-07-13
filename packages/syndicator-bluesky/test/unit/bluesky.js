@@ -15,18 +15,6 @@ const BLUESKY_POST_URL =
 const BLUESKY_REPOST_URL =
   /^https:\/\/bsky\.app\/profile\/did:plc:[a-z0-9]+\/repost\/[\w\d]+$/;
 
-const aliceAccount = {
-  email: "alice@alice.test",
-  handle: "alice.test",
-  password: "password",
-};
-
-const bobAccount = {
-  email: "bob@bob.test",
-  handle: "bob.test",
-  password: "password",
-};
-
 describe("syndicator-bluesky/lib/bluesky", () => {
   const me = "https://website.example";
   const photo = [{ url: "https://website.example/photo1.jpg", alt: "Photo" }];
@@ -46,13 +34,21 @@ describe("syndicator-bluesky/lib/bluesky", () => {
     seedAgent = new AtpAgent({ service: network.pds.url });
 
     // Create Alice’s account
-    await seedClient.createAccount("alice", aliceAccount);
+    const alice = await seedClient.createAccount("alice", {
+      email: "alice@alice.test",
+      handle: "alice.test",
+      password: "password",
+    });
 
     // Create and login to Bob’s account
-    const bob = await seedClient.createAccount("bob", bobAccount);
+    const bob = await seedClient.createAccount("bob", {
+      email: "bob@bob.test",
+      handle: "bob.test",
+      password: "password",
+    });
     await seedAgent.login({
-      identifier: bobAccount.handle,
-      password: bobAccount.password,
+      identifier: bob.handle,
+      password: bob.password,
     });
 
     // Create a post by Bob
@@ -66,8 +62,8 @@ describe("syndicator-bluesky/lib/bluesky", () => {
     bluesky = new Bluesky({
       profileUrl: `https://bsky.app/profile`,
       serviceUrl: network.pds.url,
-      identifier: aliceAccount.handle,
-      password: aliceAccount.password,
+      identifier: alice.handle,
+      password: alice.password,
     });
   });
 
