@@ -22,9 +22,15 @@ describe("syndicator-internet-archive/lib/internet-archive", async () => {
   });
 
   it("Throws error making capture request", async () => {
-    await assert.rejects(new InternetArchive({}).capture(url), {
-      message: "You need to be logged in to use Save Page Now.",
-    });
+    await assert.rejects(
+      new InternetArchive({
+        accessKey: "",
+        secretKey: "",
+      }).capture(url),
+      {
+        message: "You need to be logged in to use Save Page Now.",
+      },
+    );
   });
 
   it("Makes status request", async () => {
@@ -44,8 +50,14 @@ describe("syndicator-internet-archive/lib/internet-archive", async () => {
   });
 
   it("Throws error making status request", async () => {
-    await assert.rejects(new InternetArchive({}).status(job_id), {
-      message: "You need to be logged in to use Save Page Now.",
-    });
+    await assert.rejects(
+      new InternetArchive({
+        accessKey: "",
+        secretKey: "",
+      }).status(job_id),
+      {
+        message: "You need to be logged in to use Save Page Now.",
+      },
+    );
   });
 });
