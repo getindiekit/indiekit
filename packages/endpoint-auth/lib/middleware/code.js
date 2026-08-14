@@ -10,7 +10,7 @@ import { getRequestParameters } from "../utils.js";
  * Validate authorization code before redeeming
  * @type {import("express").RequestHandler}
  */
-export const codeValidator = (request, response, next) => {
+export const codeValidator = async (request, response, next) => {
   try {
     const { client, usePkce } = request.app.locals;
     const parameters = getRequestParameters(request);
@@ -46,7 +46,7 @@ export const codeValidator = (request, response, next) => {
     }
 
     // Validate `redirect_uri`
-    const validRedirect = validateRedirect(redirect_uri, client_id);
+    const validRedirect = await validateRedirect(redirect_uri, client_id);
     if (!validRedirect) {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.invalidValue", "redirect_uri"),

@@ -49,6 +49,53 @@ export const mockClient = () => {
   // Client information (Not Found)
   agent.get(origin).intercept({ path: "/404" }).reply(404);
 
+  // Declared `redirect_uri` (HTML `<link>` tag)
+  agent
+    .get(origin)
+    .intercept({ path: "/declares-redirect" })
+    .reply(
+      200,
+      `<html><head>
+        <link rel="redirect_uri" href="https://redirect.example/callback">
+      </head><body><p>Client</p></body></html>`,
+      { headers: { "content-type": "text/html" } },
+    )
+    .persist();
+
+  // Declared `redirect_uri` (HTTP `Link` header)
+  agent
+    .get(origin)
+    .intercept({ path: "/declares-redirect-header" })
+    .reply(200, "<html><head></head><body><p>Client</p></body></html>", {
+      headers: {
+        "content-type": "text/html",
+        link: '<https://redirect.example/callback>; rel="redirect_uri"',
+      },
+    })
+    .persist();
+
+  // Declared `redirect_uri` containing a pattern, which is matched literally
+  agent
+    .get(origin)
+    .intercept({ path: "/declares-wildcard" })
+    .reply(
+      200,
+      `<html><head>
+        <link rel="redirect_uri" href="https://*.extension.example/">
+      </head><body><p>Client</p></body></html>`,
+      { headers: { "content-type": "text/html" } },
+    )
+    .persist();
+
+  // No declared `redirect_uri`
+  agent
+    .get(origin)
+    .intercept({ path: "/declares-nothing" })
+    .reply(200, "<html><head></head><body><p>Client</p></body></html>", {
+      headers: { "content-type": "text/html" },
+    })
+    .persist();
+
   // Profile URL response
   agent
     .get(origin)
