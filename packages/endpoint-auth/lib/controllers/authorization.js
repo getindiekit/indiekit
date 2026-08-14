@@ -65,7 +65,7 @@ export const authorizationController = {
         request.query;
 
       // Validate `redirect_uri`
-      const validRedirect = validateRedirect(
+      const validRedirect = await validateRedirect(
         String(redirect_uri),
         String(client_id),
       );
