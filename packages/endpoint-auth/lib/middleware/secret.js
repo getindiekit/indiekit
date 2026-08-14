@@ -12,7 +12,7 @@ export const hasSecret = (request, response, next) => {
       response.locals.__("NotImplementedError.secret"),
     );
 
-    next(error);
+    return next(error);
   }
 
   next();
