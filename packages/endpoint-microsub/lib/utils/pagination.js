@@ -140,7 +140,7 @@ export function generatePagingCursors(items, limit, hasMore, before) {
  * @returns {number} Validated limit
  */
 export function parseLimit(limit) {
-  const parsed = Number.parseInt(limit, 10);
+  const parsed = Math.trunc(Number(limit));
   if (Number.isNaN(parsed) || parsed < 1) {
     return DEFAULT_LIMIT;
   }

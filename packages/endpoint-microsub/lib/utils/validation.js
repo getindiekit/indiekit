@@ -32,11 +32,11 @@ export function validateAction(action) {
 /**
  * Validate channel UID
  * @param {string} channel - Channel UID to validate
- * @param {boolean} [required] - Whether channel is required
+ * @param {boolean} [isRequired] - Whether channel is required
  * @throws {IndiekitError} If channel is invalid
  */
-export function validateChannel(channel, required = true) {
-  if (required && !channel) {
+export function validateChannel(channel, isRequired = true) {
+  if (isRequired && !channel) {
     throw new IndiekitError("Missing required parameter: channel", {
       status: 400,
     });
@@ -101,14 +101,16 @@ export function validateChannelName(name) {
  * @returns {Array} Parsed array
  */
 export function parseArrayParameter(body, parameterName) {
+  const value = body[parameterName];
+
   // Direct array
-  if (Array.isArray(body[parameterName])) {
-    return body[parameterName];
+  if (Array.isArray(value)) {
+    return value;
   }
 
   // Single value
-  if (body[parameterName]) {
-    return [body[parameterName]];
+  if (value) {
+    return [value];
   }
 
   // Indexed values (param[0], param[1], ...)
@@ -120,9 +122,9 @@ export function parseArrayParameter(body, parameterName) {
   }
 
   // Array notation (param[])
-  if (body[`${parameterName}[]`]) {
-    const values = body[`${parameterName}[]`];
-    return Array.isArray(values) ? values : [values];
+  const bracketValues = body[`${parameterName}[]`];
+  if (bracketValues) {
+    return Array.isArray(bracketValues) ? bracketValues : [bracketValues];
   }
 
   return result;

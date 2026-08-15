@@ -14,7 +14,7 @@ import { get as getTimeline, action as timelineAction } from "./timeline.js";
  * Route GET requests to appropriate action handler
  * @param {object} request - Express request
  * @param {object} response - Express response
- * @param {Function} next - Express next function
+ * @param {import("express").NextFunction} next - Express next function
  * @returns {Promise<void>}
  */
 export async function get(request, response, next) {
@@ -55,7 +55,7 @@ export async function get(request, response, next) {
  * Route POST requests to appropriate action handler
  * @param {object} request - Express request
  * @param {object} response - Express response
- * @param {Function} next - Express next function
+ * @param {import("express").NextFunction} next - Express next function
  * @returns {Promise<void>}
  */
 export async function post(request, response, next) {
