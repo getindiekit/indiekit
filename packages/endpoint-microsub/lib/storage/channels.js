@@ -53,7 +53,6 @@ export async function createChannel(application, { name, userId }) {
   // Get max order for user
   const maxOrderResult = await collection
     .find({ userId })
-    // eslint-disable-next-line unicorn/no-array-sort -- MongoDB cursor method
     .sort({ order: -1 })
     .limit(1)
     .toArray();
@@ -85,7 +84,7 @@ export async function getChannels(application, userId) {
   const itemsCollection = getItemsCollection(application);
 
   const filter = userId ? { userId } : {};
-  // eslint-disable-next-line unicorn/no-array-callback-reference, unicorn/no-array-sort -- MongoDB methods
+  // eslint-disable-next-line unicorn/no-array-callback-reference -- MongoDB methods
   const channels = await collection.find(filter).sort({ order: 1 }).toArray();
 
   // Get unread counts for each channel

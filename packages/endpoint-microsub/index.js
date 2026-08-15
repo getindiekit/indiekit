@@ -36,7 +36,7 @@ export default class MicrosubEndpoint {
    * Initialize plugin
    * @param {object} indiekit - Indiekit instance
    */
-  init(indiekit) {
+  async init(indiekit) {
     console.info("[Microsub] Initializing endpoint-microsub plugin");
 
     // Register MongoDB collections
@@ -53,11 +53,13 @@ export default class MicrosubEndpoint {
       indiekit.config.application.microsubEndpoint = this.mountPath;
     }
 
-    // Create indexes for optimal performance (runs in background)
+    // Create indexes for optimal performance
     if (indiekit.database) {
-      createIndexes(indiekit).catch((error) => {
+      try {
+        await createIndexes(indiekit);
+      } catch (error) {
         console.warn("[Microsub] Index creation failed:", error.message);
-      });
+      }
     }
   }
 }
