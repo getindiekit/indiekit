@@ -97,19 +97,25 @@ export class Bluesky {
     const client = await this.#client();
     const post = await this.getPost(postUrl);
 
-    /** @type {import('@atproto/api').AppBskyEmbedRecord.Main} */
+    /**
+     * @type {import('@atproto/api').AppBskyEmbedRecord.Main}
+     */
     const record = {
       $type: "app.bsky.embed.record",
       record: { uri: post.uri, cid: post.cid },
     };
 
-    /** @type {import('@atproto/api').AppBskyEmbedImages.Main & { $type: "app.bsky.embed.images" }} */
+    /**
+     * @type {import('@atproto/api').AppBskyEmbedImages.Main & { $type: "app.bsky.embed.images" }}
+     */
     const media = {
       $type: "app.bsky.embed.images",
       images,
     };
 
-    /** @type {import('@atproto/api').AppBskyEmbedRecordWithMedia.Main} */
+    /**
+     * @type {import('@atproto/api').AppBskyEmbedRecordWithMedia.Main}
+     */
     const recordWithMedia = {
       $type: "app.bsky.embed.recordWithMedia",
       record,
@@ -118,7 +124,9 @@ export class Bluesky {
 
     const embed = images?.length > 0 ? recordWithMedia : record;
 
-    /** @type {import('@atproto/api').AppBskyFeedPost.Record} */
+    /**
+     * @type {import('@atproto/api').AppBskyFeedPost.Record}
+     */
     const postData = {
       $type: "app.bsky.feed.post",
       text: richText.text,
@@ -144,7 +152,9 @@ export class Bluesky {
   async postPost(richText, images) {
     const client = await this.#client();
 
-    /** @type {import('@atproto/api').AppBskyFeedPost.Record} */
+    /**
+     * @type {import('@atproto/api').AppBskyFeedPost.Record}
+     */
     const postData = {
       $type: "app.bsky.feed.post",
       text: richText.text,

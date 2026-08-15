@@ -147,14 +147,18 @@ export const TextareaFieldComponent = class extends HTMLElement {
     });
 
     // Restore label behaviour
-    /** @type {HTMLTextAreaElement} */
+    /**
+     * @type {HTMLTextAreaElement}
+     */
     const $codeMirrorTextarea = this.querySelector(".CodeMirror textarea");
     this.$label.addEventListener("click", () => {
       $codeMirrorTextarea.focus();
     });
 
     // Update character count
-    /** @type {HTMLElement} */
+    /**
+     * @type {HTMLElement}
+     */
     const $characters = this.querySelector(".editor-statusbar .characters");
     editor.codemirror.on("update", () => {
       if ($characters) {

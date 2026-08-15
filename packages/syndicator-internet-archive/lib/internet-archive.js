@@ -35,7 +35,9 @@ export class InternetArchive {
       ...(data && { body: new URLSearchParams(data).toString() }),
     });
 
-    /** @type {object} */
+    /**
+     * @type {object}
+     */
     const body = await response.json();
 
     if (!response.ok) {

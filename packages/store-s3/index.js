@@ -14,7 +14,9 @@ import {
 } from "@aws-sdk/client-s3";
 import { IndiekitError } from "@indiekit/error";
 
-/** @type {{accessKey: string, secretKey: string, region: string, endpoint: string, bucket: string, acl: ObjectCannedACL}} */
+/**
+ * @type {{accessKey: string, secretKey: string, region: string, endpoint: string, bucket: string, acl: ObjectCannedACL}}
+ */
 const defaults = {
   accessKey: process.env.S3_ACCESS_KEY,
   secretKey: process.env.S3_SECRET_KEY,

@@ -6,9 +6,13 @@ export const FileInputFieldController = class extends HTMLElement {
   connectedCallback() {
     this.endpoint = this.getAttribute("endpoint");
 
-    /** @type {HTMLElement} */
+    /**
+     * @type {HTMLElement}
+     */
     this.$uploadProgress = this.querySelector(".file-input__progress");
-    /** @type {HTMLInputElement} */
+    /**
+     * @type {HTMLInputElement}
+     */
     this.$fileInputPath = this.querySelector(".file-input__path");
     this.$fileInputPicker = this.querySelector(".file-input__picker");
     this.$fileInputPickerTemplate = this.querySelector("#file-input-picker");
