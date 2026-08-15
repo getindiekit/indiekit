@@ -387,6 +387,33 @@ describe("endpoint-micropub/lib/jf2", () => {
     assert.deepEqual(result, ["https://example.website/"]);
   });
 
+  it("Doesn’t throw when `mp-syndicate-to` is not an array", () => {
+    // Converting mf2 to JF2 turns an empty array into an empty object, so a
+    // client that sends `"mp-syndicate-to": []` — an unticked syndication
+    // list — arrives here with a value that has no `.includes`
+    const syndicationTargets = [{ info: { uid: "https://example.website/" } }];
+
+    for (const value of [{}, 1, true]) {
+      const result = getSyndicateToProperty(
+        { "mp-syndicate-to": value },
+        syndicationTargets,
+      );
+
+      assert.equal(result, undefined);
+    }
+  });
+
+  it("Adds syndication target given as a string", () => {
+    // A single target collapses to a string during mf2 to JF2 conversion
+    const syndicationTargets = [{ info: { uid: "https://example.website/" } }];
+    const result = getSyndicateToProperty(
+      { "mp-syndicate-to": "https://example.website/" },
+      syndicationTargets,
+    );
+
+    assert.deepEqual(result, ["https://example.website/"]);
+  });
+
   it("Doesn’t add unused syndication target", () => {
     const properties = {};
     const syndicationTargets = [

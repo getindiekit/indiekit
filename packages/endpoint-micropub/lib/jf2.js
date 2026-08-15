@@ -301,13 +301,24 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
     return;
   }
 
+  // Converting mf2 to JF2 leaves this property in one of three shapes: an
+  // array for several targets, a string for one, and an empty *object* for
+  // none. Calling `.includes` on it directly threw a TypeError and failed the
+  // whole post for any client sending `"mp-syndicate-to": []`, which is what
+  // an unticked syndication list produces.
+  const syndicateTo = properties["mp-syndicate-to"];
+  const requested = Array.isArray(syndicateTo)
+    ? syndicateTo
+    : typeof syndicateTo === "string"
+      ? [syndicateTo]
+      : [];
+
   const property = [];
 
   for (const target of syndicationTargets) {
     const { uid } = target.info;
-    const syndicateTo = properties["mp-syndicate-to"];
 
-    if (syndicateTo?.includes(uid)) {
+    if (requested.includes(uid)) {
       property.push(uid);
     }
   }
