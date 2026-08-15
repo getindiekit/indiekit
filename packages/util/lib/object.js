@@ -28,7 +28,7 @@ export const isEmpty = (value) => {
  * @returns {object} Sanitised object
  */
 export const sanitise = (object) => {
-  if (object == undefined || typeof object !== "object") {
+  if (typeof object !== "object" || object == undefined) {
     return object;
   }
 

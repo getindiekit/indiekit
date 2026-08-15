@@ -58,7 +58,7 @@ export const getPostType = (postTypes, properties) => {
   // If post has `name` and content, it’s an article
   // This is a deviation from the Post Type Algorithm, which identifies a post
   // as a note if the content is prefixed with the `name` value.
-  if (properties.name && content) {
+  if (content && properties.name) {
     return "article";
   }
 
