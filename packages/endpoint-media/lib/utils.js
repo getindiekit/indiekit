@@ -1,4 +1,4 @@
-import { dateTokens, formatDate, supplant } from "@indiekit/util";
+import { getDateTokenValues, supplant } from "@indiekit/util";
 import newbase60 from "newbase60";
 
 import { mediaTypeCount } from "./media-type-count.js";
@@ -27,18 +27,10 @@ export const getMediaProperties = (mediaData) => {
  */
 export const renderPath = async (path, properties, application) => {
   const dateObject = new Date(properties.published);
-  const { timeZone } = new Intl.DateTimeFormat().resolvedOptions();
-  let tokens = {};
+  const { locale, timeZone } = application;
 
   // Add date tokens
-  for (const dateToken of dateTokens) {
-    tokens[dateToken] = formatDate(properties.published, dateToken, {
-      locale: application.locale,
-      timeZone:
-        application.timeZone === "server" ? timeZone : application.timeZone,
-      useAdditionalDayOfYearTokens: true,
-    });
-  }
+  const tokens = getDateTokenValues(properties.published, locale, timeZone);
 
   // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject);
