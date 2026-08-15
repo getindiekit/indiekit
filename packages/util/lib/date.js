@@ -124,6 +124,30 @@ export const getDate = (setting, dateString = "") => {
 };
 
 /**
+ * Get values for date tokens
+ * @param {string} dateString - Date, i.e. 2023-08-28T12:30+01:00
+ * @param {string} [locale] - Locale
+ * @param {string} [timeZone] - Time zone
+ * @returns {object} Values for date tokens
+ */
+export const getDateTokenValues = (dateString, locale, timeZone) => {
+  let tokens = {};
+
+  for (const dateToken of dateTokens) {
+    tokens[dateToken] = formatDate(dateString, dateToken, {
+      locale,
+      timeZone:
+        timeZone === "server"
+          ? new Intl.DateTimeFormat().resolvedOptions().timeZone
+          : timeZone,
+      useAdditionalDayOfYearTokens: true,
+    });
+  }
+
+  return tokens;
+};
+
+/**
  * Check if a string can be parsed as a date
  * @param {string} string - String
  * @returns {boolean} String is a date
