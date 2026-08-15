@@ -28,7 +28,9 @@ export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
       });
 
       if (!response.ok) {
-        /** @type {object} */
+        /**
+         * @type {object}
+         */
         const body = await response.json();
 
         const message = body.error_description || response.statusText;

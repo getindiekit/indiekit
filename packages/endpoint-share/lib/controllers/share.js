@@ -50,7 +50,9 @@ export const shareController = {
         throw await IndiekitError.fromFetch(micropubResponse);
       }
 
-      /** @type {object} */
+      /**
+       * @type {object}
+       */
       const body = await micropubResponse.json();
 
       const message = encodeURIComponent(body.success_description);

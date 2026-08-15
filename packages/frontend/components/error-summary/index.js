@@ -62,7 +62,9 @@ export const ErrorSummaryComponent = class extends HTMLElement {
 
     const fragment = this.getFragmentFromUrl($target.href);
 
-    /** @satisfies {HTMLInputElement} */
+    /**
+     * @satisfies {HTMLInputElement}
+     */
     const $input = document.querySelector(`#${fragment}`);
     if (!$input) {
       return false;
