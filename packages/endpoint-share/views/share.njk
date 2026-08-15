@@ -26,7 +26,7 @@
   {{ input({
     name: "bookmark-of",
     type: "url",
-    value: fieldData("bookmark-of").value or data.url,
+    value: fieldData("bookmark-of").value or properties.url,
     label: __("share.bookmark-of.label"),
     attributes: {
       "placeholder": "https://"
@@ -36,14 +36,14 @@
 
   {{ input({
     name: "name",
-    value: fieldData("name").value,
+    value: fieldData("name").value or properties.name,
     label: __("share.name.label"),
     errorMessage: fieldData("name").errorMessage
   }) }}
 
   {{ textarea({
     name: "content",
-    value: content,
+    value: fieldData("content").value or properties.content,
     optional: true,
     label: __("share.content.label")
   }) }}

@@ -11,7 +11,7 @@ export const shareController = {
 
     response.render("share", {
       title: response.locals.__("share.title"),
-      data: { content, name, url },
+      properties: { content, name, url },
       success,
       minimalui: request.params.path === "bookmarklet",
     });
@@ -23,14 +23,14 @@ export const shareController = {
    */
   async post(request, response) {
     const { application } = request.app.locals;
-    const data = request.body || {};
-    data["bookmark-of"] = data.url || data["bookmark-of"];
+    const properties = request.body || {};
+    properties["bookmark-of"] = properties.url || properties["bookmark-of"];
 
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
       return response.status(422).render("share", {
         title: response.locals.__("share.title"),
-        data,
+        properties,
         errors: errors.mapped(),
         minimalui: request.params.path === "bookmarklet",
       });
@@ -43,7 +43,7 @@ export const shareController = {
           accept: "application/json",
           "content-type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams(data).toString(),
+        body: new URLSearchParams(properties).toString(),
       });
 
       if (!micropubResponse.ok) {
@@ -62,7 +62,7 @@ export const shareController = {
       response.status(error.status || 500);
       response.render("share", {
         title: response.locals.__("share.title"),
-        data,
+        properties,
         error,
         minimalui: request.params.path === "bookmarklet",
       });
