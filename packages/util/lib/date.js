@@ -40,10 +40,10 @@ export const dateTokens = [
 export const formatDate = (string, tokens, options = {}) => {
   const formattedLocale = String(options.locale || "en").replace("-", "");
 
-  // Convert options object to options expected for `FormatOptionsWithTZ`
   const formatOptions = {
-    ...options,
     ...(options.locale && { locale: locales[formattedLocale] }),
+    ...(options.timeZone && { in: tz(options.timeZone) }),
+    useAdditionalDayOfYearTokens: options.useAdditionalDayOfYearTokens,
   };
 
   const date = string === "now" ? new Date() : parseISO(string);
