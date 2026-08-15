@@ -33,7 +33,7 @@ export const renderPath = async (path, properties, application) => {
   // Add date tokens
   for (const dateToken of dateTokens) {
     tokens[dateToken] = formatDate(properties.published, dateToken, {
-      locale: application.locals,
+      locale: application.locale,
       timeZone:
         application.timeZone === "server" ? timeZone : application.timeZone,
       useAdditionalDayOfYearTokens: true,
