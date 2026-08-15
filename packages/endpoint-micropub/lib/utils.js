@@ -1,4 +1,4 @@
-import { dateTokens, formatDate, isDate, supplant } from "@indiekit/util";
+import { getDateTokenValues, isDate, supplant } from "@indiekit/util";
 import newbase60 from "newbase60";
 
 import { postTypeCount } from "./post-type-count.js";
@@ -69,19 +69,11 @@ export const renderPath = async (
   publication,
 ) => {
   const dateObject = new Date(properties.published);
-  const { timeZone } = new Intl.DateTimeFormat().resolvedOptions();
+  const { locale, timeZone } = application;
   const { slugSeparator } = publication;
-  let tokens = {};
 
   // Add date tokens
-  for (const dateToken of dateTokens) {
-    tokens[dateToken] = formatDate(properties.published, dateToken, {
-      locale: application.locale,
-      timeZone:
-        application.timeZone === "server" ? timeZone : application.timeZone,
-      useAdditionalDayOfYearTokens: true,
-    });
-  }
+  const tokens = getDateTokenValues(properties.published, locale, timeZone);
 
   // Add day of the year (NewBase60) token
   tokens.D60 = newbase60.DateToSxg(dateObject);
