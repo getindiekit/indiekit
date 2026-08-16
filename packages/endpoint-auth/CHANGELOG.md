@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
+
+### Bug Fixes
+
+* **endpoint-auth:** restrict client discovery to domain names ([94c2beb](https://github.com/getindiekit/indiekit/commit/94c2bebbaafd2e58af13bba5c9a914ccb1a96107))
+* **endpoint-auth:** return after passing secret error to next() ([ad11106](https://github.com/getindiekit/indiekit/commit/ad111061544d4a8b6b0b8eb1ad8bfeb09261a007))
+
+### Features
+
+* **endpoint-auth:** validate cross-host redirect_uri against client_id ([838af42](https://github.com/getindiekit/indiekit/commit/838af42afa2f73e1cca0282040fe6ac8b21c9acd))
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 **Note:** Version bump only for package @indiekit/endpoint-auth

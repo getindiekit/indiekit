@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
+
+### Bug Fixes
+
+* **util:** correctly provide timeZone option when formatting dates ([beda3c0](https://github.com/getindiekit/indiekit/commit/beda3c023c08bdc28377ff28fbba04a71111f438))
+
+### Features
+
+* **util:** add getDateTokenValues method ([50a5ad9](https://github.com/getindiekit/indiekit/commit/50a5ad9b7534bd14c4b46d8b219fcba906e7f14a))
+* **util:** add getMongodbClient method ([cac3822](https://github.com/getindiekit/indiekit/commit/cac3822296121eefc2d4611dbcf6ab8ef3ea33ed))
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 **Note:** Version bump only for package @indiekit/util

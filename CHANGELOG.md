@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
+
+### Bug Fixes
+
+* **endpoint-auth:** restrict client discovery to domain names ([94c2beb](https://github.com/getindiekit/indiekit/commit/94c2bebbaafd2e58af13bba5c9a914ccb1a96107))
+* **endpoint-auth:** return after passing secret error to next() ([ad11106](https://github.com/getindiekit/indiekit/commit/ad111061544d4a8b6b0b8eb1ad8bfeb09261a007))
+* **endpoint-media:** locale typo ([312536e](https://github.com/getindiekit/indiekit/commit/312536e7566ea0f70e85ebf795a846e2f9862615))
+* **endpoint-micropub:** don't assume mp-syndicate-to is an array ([a7819e7](https://github.com/getindiekit/indiekit/commit/a7819e79a6c9999b060b6ede0adbf450ce816a53))
+* **endpoint-posts:** use correct template variable for syndicate form source_url ([afea6f0](https://github.com/getindiekit/indiekit/commit/afea6f05d05aa64f30682df1d69a449f246a90be))
+* **endpoint-share:** fieldData helper expects properties object ([2e68625](https://github.com/getindiekit/indiekit/commit/2e68625038d402678d712ef86c915041b7705b72))
+* **util:** correctly provide timeZone option when formatting dates ([beda3c0](https://github.com/getindiekit/indiekit/commit/beda3c023c08bdc28377ff28fbba04a71111f438))
+
+### Features
+
+* **endpoint-auth:** validate cross-host redirect_uri against client_id ([838af42](https://github.com/getindiekit/indiekit/commit/838af42afa2f73e1cca0282040fe6ac8b21c9acd))
+* **endpoint-media:** use getDateTokenValues utility method ([75b566f](https://github.com/getindiekit/indiekit/commit/75b566fdbe086f8941089518caa7e24ec93205da))
+* **endpoint-micropub:** use getDateTokenValues utility method ([c2db523](https://github.com/getindiekit/indiekit/commit/c2db523b39bf47e605a9010153c7fb88713d196b))
+* **indiekit:** use getMongodbClient utility method ([2d9f4f2](https://github.com/getindiekit/indiekit/commit/2d9f4f273d6116eb751baad4c8a9088ea6911ebc))
+* **syndicator-bluesky:** add categories to post as hashtags ([5f1d5d9](https://github.com/getindiekit/indiekit/commit/5f1d5d9e897dfce4b2e9e8769813670ed325870f)), closes [#875](https://github.com/getindiekit/indiekit/issues/875) [#hashtags](https://github.com/getindiekit/indiekit/issues/hashtags) [app.bsky.richtext.facet#tag](https://github.com/app.bsky.richtext.facet/issues/tag)
+* **syndicator-mastodon:** add categories to status as hashtags ([5a7d89e](https://github.com/getindiekit/indiekit/commit/5a7d89efa65707b0ba8df0caf2faefd79f4738bc))
+* **util:** add getDateTokenValues method ([50a5ad9](https://github.com/getindiekit/indiekit/commit/50a5ad9b7534bd14c4b46d8b219fcba906e7f14a))
+* **util:** add getMongodbClient method ([cac3822](https://github.com/getindiekit/indiekit/commit/cac3822296121eefc2d4611dbcf6ab8ef3ea33ed))
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 

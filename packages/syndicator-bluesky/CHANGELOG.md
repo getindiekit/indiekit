@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
+
+### Features
+
+* **syndicator-bluesky:** add categories to post as hashtags ([5f1d5d9](https://github.com/getindiekit/indiekit/commit/5f1d5d9e897dfce4b2e9e8769813670ed325870f)), closes [#875](https://github.com/getindiekit/indiekit/issues/875) [#hashtags](https://github.com/getindiekit/indiekit/issues/hashtags) [app.bsky.richtext.facet#tag](https://github.com/app.bsky.richtext.facet/issues/tag)
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 **Note:** Version bump only for package @indiekit/syndicator-bluesky
