@@ -17,6 +17,7 @@ export class Bluesky {
    * @param {string} options.password - Password
    * @param {string} options.profileUrl - Profile URL
    * @param {string} options.serviceUrl - Service URL
+   * @param {boolean} [options.includeCategories] - Add categories as hashtags
    * @param {boolean} [options.includePermalink] - Include permalink in status
    */
   constructor(options) {
@@ -24,6 +25,7 @@ export class Bluesky {
     this.password = options.password;
     this.profileUrl = options.profileUrl;
     this.serviceUrl = options.serviceUrl;
+    this.includeCategories = options.includeCategories || false;
     this.includePermalink = options.includePermalink || false;
   }
 
@@ -249,7 +251,11 @@ export class Bluesky {
       if (repostUrl) {
         // Syndicate repost of Bluesky URL with content as a quote post
         if (isSameOrigin(repostUrl, this.profileUrl) && properties.content) {
-          const text = getPostText(properties, this.includePermalink);
+          const text = getPostText(
+            properties,
+            this.includePermalink,
+            this.includeCategories,
+          );
           const richText = await createRichText(client, text);
 
           return this.postQuotePost(repostUrl, richText, images);
@@ -275,7 +281,11 @@ export class Bluesky {
         return;
       }
 
-      const text = getPostText(properties, this.includePermalink);
+      const text = getPostText(
+        properties,
+        this.includePermalink,
+        this.includeCategories,
+      );
       const richText = await createRichText(client, text);
 
       return this.postPost(richText, images);

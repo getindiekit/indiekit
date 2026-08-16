@@ -51,12 +51,54 @@ export const uriToPostUrl = (profileUrl, uri) => {
 };
 
 /**
+ * Get hashtags for given categories
+ *
+ * Uses the last segment of a hierarchical category, and removes any characters
+ * Bluesky doesn’t recognise as part of a tag, so that `holidays/family trips`
+ * becomes `#familytrips`. Tags longer than 64 characters are dropped, as
+ * `detectFacets` ignores them.
+ * @param {Array|string} [category] - JF2 `category` property
+ * @returns {Array} Hashtags
+ */
+export const createHashtags = (category) => {
+  if (!category) {
+    return [];
+  }
+
+  const categories = Array.isArray(category) ? category : [category];
+  const hashtags = [];
+
+  for (const item of categories) {
+    if (typeof item !== "string") {
+      continue;
+    }
+
+    const name = item
+      .split("/")
+      .at(-1)
+      .replaceAll(/[^\p{L}\p{N}_]/gu, "");
+    const hashtag = `#${name}`;
+
+    if (name && name.length <= 64 && !hashtags.includes(hashtag)) {
+      hashtags.push(hashtag);
+    }
+  }
+
+  return hashtags;
+};
+
+/**
  * Get post test from given JF2 properties
  * @param {object} properties - JF2 properties
  * @param {boolean} [includePermalink] - Include permalink in post
+ * @param {boolean} [includeCategories] - Add categories as hashtags
  * @returns {string} Post text
  */
-export const getPostText = (properties, includePermalink) => {
+export const getPostText = (
+  properties,
+  includePermalink,
+  includeCategories,
+) => {
   let text = "";
 
   if (properties.name && properties.name !== "") {
@@ -66,7 +108,18 @@ export const getPostText = (properties, includePermalink) => {
     text = htmlToStatusText(properties.content.html);
   }
 
-  // Truncate status if longer than 300 characters
+  // Show hashtags at the end of a post, where Bluesky links them. Skip any
+  // already written into the post content. `createRichText` runs
+  // `detectFacets`, which turns them into tag facets.
+  const hashtags = includeCategories
+    ? createHashtags(properties.category).filter(
+        (hashtag) =>
+          !new RegExp(String.raw`${hashtag}(?![\p{L}\p{N}_])`, "iu").test(text),
+      )
+    : [];
+  const suffix = hashtags.length > 0 ? `\n\n${hashtags.join(" ")}` : "";
+
+  // Truncate status if longer than 300 characters, leaving room for hashtags
   text = brevity.shorten(
     text,
     properties.url,
@@ -74,13 +127,13 @@ export const getPostText = (properties, includePermalink) => {
       ? properties.url
       : false,
     false, // https://indieweb.org/permashortcitation
-    300,
+    300 - suffix.length,
   );
 
   // Show permalink below status, not within brackets
   text = text.replace(`(${properties.url})`, `\n\n${properties.url}`);
 
-  return text;
+  return text + suffix;
 };
 
 /**
