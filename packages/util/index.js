@@ -1,4 +1,4 @@
-export { getCursor, getObjectId } from "./lib/collection.js";
+export { getCursor, getMongodbClient, getObjectId } from "./lib/mongodb.js";
 export {
   dateTokens,
   formatDate,

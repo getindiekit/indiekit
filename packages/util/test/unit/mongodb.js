@@ -1,12 +1,15 @@
 import { strict as assert } from "node:assert";
-import { after, beforeEach, describe, it } from "node:test";
+import { after, beforeEach, describe, it, mock } from "node:test";
 
 import { testDatabase } from "@indiekit-test/database";
 import { ObjectId } from "mongodb";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
-import { getCursor } from "../../lib/collection.js";
+import { getCursor, getMongodbClient } from "../../lib/mongodb.js";
 
-describe("util/lib/collection", async () => {
+const mongod = await MongoMemoryServer.create();
+
+describe("util/lib/mongodb", async () => {
   const { client, database, mongoServer } = await testDatabase();
   let items;
 
@@ -16,6 +19,7 @@ describe("util/lib/collection", async () => {
   });
 
   after(async () => {
+    mongod.stop();
     await client.close();
     await mongoServer.stop();
   });
@@ -47,5 +51,35 @@ describe("util/lib/collection", async () => {
     assert.equal(result.items.length, 1);
     assert.equal(result.hasNext, true);
     assert.equal(result.hasPrev, false);
+  });
+
+  it("Connects to MongoDB database", async () => {
+    const mongodbUrl = mongod.getUri();
+    const result = await getMongodbClient(mongodbUrl);
+
+    assert.equal(result.client.s.url, mongodbUrl);
+
+    result.client.close();
+  });
+
+  it("Returns error if can’t create a MongoDB client", async () => {
+    mock.method(console, "error", () => {});
+
+    await getMongodbClient("https://foo.bar");
+    const result = console.error.mock.calls[0].arguments[0];
+
+    assert.equal(
+      result,
+      `Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"`,
+    );
+  });
+
+  it("Returns error if can’t connect to MongoDB client", async () => {
+    mock.method(console, "error", () => {});
+
+    await getMongodbClient("mongodb://foo:bar@localhost");
+    const result = console.error.mock.calls[0].arguments[0];
+
+    assert.equal(result, `Authentication failed.`);
   });
 });

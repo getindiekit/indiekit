@@ -1,5 +1,8 @@
 /* eslint-disable unicorn/no-array-method-this-argument */
-import { ObjectId } from "mongodb";
+import makeDebug from "debug";
+import { ObjectId, MongoClient } from "mongodb";
+
+const debug = makeDebug(`indiekit:util:mongodb`);
 
 /**
  * Get pagination cursor
@@ -46,6 +49,45 @@ export const getCursor = async (collection, after, before, limit) => {
   }
 
   return cursor;
+};
+
+/**
+ * Connect to MongoDB client
+ * @param {string} mongodbUrl - MongoDB URL
+ * @returns {Promise<object>} MongoDB client
+ */
+export const getMongodbClient = async (mongodbUrl) => {
+  if (!mongodbUrl) {
+    return;
+  }
+
+  let client;
+
+  const connectTimeoutMS = 5000;
+  try {
+    debug(`Try creating MongoDB client`);
+    client = new MongoClient(mongodbUrl, {
+      connectTimeoutMS,
+    });
+  } catch (error) {
+    debug(
+      `Could not create MongoDB client with ${connectTimeoutMS}ms: ${error.message}`,
+    );
+    console.error(error.message);
+    return { error };
+  }
+
+  try {
+    debug(`Try connecting to MongoDB client`);
+    await client.connect();
+  } catch (error) {
+    debug(`Could not connect to MongoDB client: ${error.message}`);
+    console.error(error.message);
+    await client.close();
+    return { error };
+  }
+
+  return { client };
 };
 
 /**
