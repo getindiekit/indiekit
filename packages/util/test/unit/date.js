@@ -199,14 +199,14 @@ describe("util/lib/date", () => {
   });
 
   it("Gets values for date tokens", () => {
-    const result = getDateTokenValues("2007-06-05T04:03:02+0100");
-    const resultWithOptions = getDateTokenValues(
+    const result1 = getDateTokenValues("2007-06-05T04:03:02+0100", "en", "UTC");
+    const result2 = getDateTokenValues(
       "2007-06-05T04:03:02+0100",
       "fr",
       "Asia/Hong_Kong",
     );
 
-    assert.deepEqual(result, {
+    assert.deepEqual(result1, {
       y: "2007",
       yyyy: "2007",
       M: "6",
@@ -219,10 +219,10 @@ describe("util/lib/date", () => {
       DDD: "156",
       d: "5",
       dd: "05",
-      h: "4",
-      hh: "04",
-      H: "4",
-      HH: "04",
+      h: "3",
+      hh: "03",
+      H: "3",
+      HH: "03",
       m: "3",
       mm: "03",
       s: "2",
@@ -231,8 +231,8 @@ describe("util/lib/date", () => {
       T: "1181012582000",
     });
 
-    assert.equal(resultWithOptions.H, "11");
-    assert.equal(resultWithOptions.MMM, "juin");
+    assert.equal(result2.H, "11");
+    assert.equal(result2.MMM, "juin");
   });
 
   it("Check if a string can be parsed as a date", () => {
