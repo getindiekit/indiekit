@@ -6,6 +6,7 @@ import { getFixture } from "@indiekit-test/fixtures";
 import sharp from "sharp";
 
 import {
+  createHashtags,
   createRichText,
   constrainImage,
   getPostImage,
@@ -126,6 +127,79 @@ describe("syndicator-bluesky/lib/utils", async () => {
     );
 
     assert.equal(result, "What I had for lunch https://foo.bar/lunchtime");
+  });
+
+  it("Gets post text with categories added as hashtags", () => {
+    const result = getPostText(
+      JSON.parse(getFixture("jf2/note-category-provided.jf2")),
+      false,
+      true,
+    );
+
+    assert.equal(
+      result,
+      "I ate a cheese sandwich, which was nice.\n\n#lunch #cheesesandwiches",
+    );
+  });
+
+  it("Gets post text without hashtags if categories not included", () => {
+    const result = getPostText(
+      JSON.parse(getFixture("jf2/note-category-provided.jf2")),
+    );
+
+    assert.equal(result, "I ate a cheese sandwich, which was nice.");
+  });
+
+  it("Gets post text without repeating hashtags already in content", () => {
+    const result = getPostText(
+      {
+        content: { html: "<p>I ate a cheese sandwich. #lunch</p>" },
+        category: ["lunch", "food"],
+      },
+      false,
+      true,
+    );
+
+    assert.equal(result, "I ate a cheese sandwich. #lunch\n\n#food");
+  });
+
+  it("Gets post text with hashtags within the character limit", () => {
+    const result = getPostText(
+      {
+        content: { html: `<p>${"cheese ".repeat(60).trim()}</p>` },
+        category: ["lunch"],
+      },
+      false,
+      true,
+    );
+
+    assert.ok(result.length <= 300);
+    assert.ok(result.endsWith("\n\n#lunch"));
+  });
+
+  it("Gets hashtags from categories", () => {
+    assert.deepEqual(createHashtags(["lunch", "food"]), ["#lunch", "#food"]);
+  });
+
+  it("Gets hashtag from last segment of a hierarchical category", () => {
+    assert.deepEqual(createHashtags(["holidays/family trips"]), [
+      "#familytrips",
+    ]);
+  });
+
+  it("Gets hashtags without characters Bluesky doesn\u{2019}t recognise", () => {
+    assert.deepEqual(createHashtags(["cheese sandwiches", "web-design"]), [
+      "#cheesesandwiches",
+      "#webdesign",
+    ]);
+  });
+
+  it("Gets no hashtag for a category longer than 64 characters", () => {
+    assert.deepEqual(createHashtags(["a".repeat(65)]), []);
+  });
+
+  it("Gets no hashtags if no categories given", () => {
+    assert.deepEqual(createHashtags(), []);
   });
 
   it("Gets post text with HTML content", () => {

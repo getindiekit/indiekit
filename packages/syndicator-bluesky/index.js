@@ -9,6 +9,7 @@ const defaults = {
   password: process.env.BLUESKY_PASSWORD,
   profileUrl: "https://bsky.app/profile",
   serviceUrl: "https://bsky.social",
+  includeCategories: false,
   includePermalink: false,
   checked: false,
 };
@@ -22,6 +23,7 @@ export default class BlueskySyndicator {
    * @param {string} [options.serviceUrl] - Service URL
    * @param {string} [options.handle] - Handle
    * @param {string} [options.password] - Password
+   * @param {boolean} [options.includeCategories] - Add categories as hashtags
    * @param {boolean} [options.includePermalink] - Include permalink in status
    * @param {boolean} [options.checked] - Check syndicator in UI
    */
@@ -90,6 +92,7 @@ export default class BlueskySyndicator {
         password: this.options?.password,
         profileUrl: this.#profileUrl,
         serviceUrl: this.#serviceUrl,
+        includeCategories: this.options.includeCategories,
         includePermalink: this.options.includePermalink,
       });
 

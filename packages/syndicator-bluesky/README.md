@@ -27,13 +27,24 @@ Add `@indiekit/syndicator-bluesky` to your list of plug-ins, specifying options 
 }
 ```
 
+Enabling the `includeCategories` option adds a post’s categories to the end of the post as hashtags, which Bluesky turns into tag facets:
+
+```text
+I ate a cheese sandwich, which was nice.
+
+#lunch #cheesesandwiches
+```
+
+Characters Bluesky doesn’t recognise as part of a tag are removed, and only the last segment of a hierarchical category is used, so `holidays/family trips` becomes `#familytrips`. Any hashtag already written into the post content is not repeated.
+
 ## Options
 
-| Option             | Type      | Description                                                                                                                 |
-| :----------------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `handle`           | `string`  | Your Bluesky handle (without the `@`). _Required_.                                                                          |
-| `password`         | `string`  | A Bluesky app password. _Required_, defaults to `process.env.BLUESKY_PASSWORD`.                                             |
-| `profileUrl`       | `string`  | Bluesky profile URL prefix. Used in the URL returned in syndicated URLs. _Optional_, defaults to `https://bsky.app/profile` |
-| `serviceUrl`       | `string`  | Bluesky service URL. Used to connect to a Bluesky service API. _Optional_, defaults to `https://bsky.social`                |
-| `checked`          | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. _Optional_, defaults to `false`.               |
-| `includePermalink` | `boolean` | Always include a link to the original post. _Optional_, defaults to `false`.                                                |
+| Option              | Type      | Description                                                                                                                 |
+| :------------------ | :-------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `handle`            | `string`  | Your Bluesky handle (without the `@`). _Required_.                                                                          |
+| `password`          | `string`  | A Bluesky app password. _Required_, defaults to `process.env.BLUESKY_PASSWORD`.                                             |
+| `profileUrl`        | `string`  | Bluesky profile URL prefix. Used in the URL returned in syndicated URLs. _Optional_, defaults to `https://bsky.app/profile` |
+| `serviceUrl`        | `string`  | Bluesky service URL. Used to connect to a Bluesky service API. _Optional_, defaults to `https://bsky.social`                |
+| `checked`           | `boolean` | Tell a Micropub client whether this syndicator should be enabled by default. _Optional_, defaults to `false`.               |
+| `includeCategories` | `boolean` | Add a post’s categories to the end of the post as hashtags. _Optional_, defaults to `false`.                                |
+| `includePermalink`  | `boolean` | Always include a link to the original post. _Optional_, defaults to `false`.                                                |
