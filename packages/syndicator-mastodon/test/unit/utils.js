@@ -4,6 +4,7 @@ import { describe, it } from "node:test";
 import { getFixture } from "@indiekit-test/fixtures";
 
 import {
+  createHashtags,
   createStatus,
   getStatusIdFromUrl,
   htmlToStatusText,
@@ -129,6 +130,93 @@ describe("syndicator-mastodon/lib/utils", () => {
 
     assert.equal(result.status, "Here’s the cheese sandwich I ate.");
     assert.deepEqual(result.mediaIds, ["1", "2", "3", "4"]);
+  });
+
+  it("Creates a status with categories added as hashtags", () => {
+    const result = createStatus(
+      JSON.parse(getFixture("jf2/note-category-provided.jf2")),
+      {
+        includeCategories: true,
+        serverUrl: "https://mastodon.example",
+      },
+    );
+
+    assert.equal(
+      result.status,
+      "I ate a cheese sandwich, which was nice.\n\n#lunch #cheesesandwiches",
+    );
+  });
+
+  it("Creates a status without hashtags if categories not included", () => {
+    const result = createStatus(
+      JSON.parse(getFixture("jf2/note-category-provided.jf2")),
+      {
+        serverUrl: "https://mastodon.example",
+      },
+    );
+
+    assert.equal(result.status, "I ate a cheese sandwich, which was nice.");
+  });
+
+  it("Creates a status without repeating hashtags already in content", () => {
+    const result = createStatus(
+      {
+        content: { html: "<p>I ate a cheese sandwich. #lunch</p>" },
+        category: ["lunch", "food"],
+      },
+      {
+        includeCategories: true,
+        serverUrl: "https://mastodon.example",
+      },
+    );
+
+    assert.equal(result.status, "I ate a cheese sandwich. #lunch\n\n#food");
+  });
+
+  it("Creates a status with hashtags within the character limit", () => {
+    const result = createStatus(
+      {
+        content: { html: `<p>${"cheese ".repeat(20).trim()}</p>` },
+        category: ["lunch"],
+      },
+      {
+        characterLimit: 50,
+        includeCategories: true,
+        serverUrl: "https://mastodon.example",
+      },
+    );
+
+    assert.ok(result.status.length <= 50);
+    assert.ok(result.status.endsWith("\n\n#lunch"));
+  });
+
+  it("Gets hashtags from categories", () => {
+    assert.deepEqual(createHashtags(["lunch", "food"]), ["#lunch", "#food"]);
+  });
+
+  it("Gets hashtag from a category given as a string", () => {
+    assert.deepEqual(createHashtags("lunch"), ["#lunch"]);
+  });
+
+  it("Gets no hashtags if no categories given", () => {
+    assert.deepEqual(createHashtags(), []);
+  });
+
+  it("Gets hashtag from last segment of a hierarchical category", () => {
+    assert.deepEqual(createHashtags(["holidays/family trips"]), [
+      "#familytrips",
+    ]);
+  });
+
+  it("Gets hashtags without characters Mastodon doesn’t recognise", () => {
+    assert.deepEqual(createHashtags(["cheese sandwiches", "web-design"]), [
+      "#cheesesandwiches",
+      "#webdesign",
+    ]);
+  });
+
+  it("Gets hashtags without duplicates or empty values", () => {
+    assert.deepEqual(createHashtags(["lunch", "lunch", "!!!", ""]), ["#lunch"]);
   });
 
   it("Gets status ID from Mastodon permalink", () => {
