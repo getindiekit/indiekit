@@ -108,5 +108,9 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.62.4",
     "lightningcss-linux-x64-gnu": "^1.33.0"
+  },
+  "overrides": {
+    "sharp": "^0.35.3",
+    "js-yaml": "4.3.1"
   }
 }
