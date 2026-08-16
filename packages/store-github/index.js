@@ -5,7 +5,7 @@ import process from "node:process";
 import { IndiekitError } from "@indiekit/error";
 import makeDebug from "debug";
 
-const debug = makeDebug(`indiekit-store:github`);
+const debug = makeDebug(`indiekit:store-github`);
 
 const defaults = {
   baseUrl: "https://api.github.com",
