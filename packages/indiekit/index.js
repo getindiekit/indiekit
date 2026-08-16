@@ -1,6 +1,7 @@
 import { createRequire } from "node:module";
 import process from "node:process";
 
+import { getMongodbClient } from "@indiekit/util";
 import KeyvMongo from "@keyv/mongo";
 import makeDebug from "debug";
 import Keyv from "keyv";
@@ -10,7 +11,6 @@ import { locales } from "./config/locales.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getLocaleCatalog } from "./lib/locale-catalog.js";
-import { getMongodbClient } from "./lib/mongodb.js";
 import { getInstalledPlugins } from "./lib/plugins.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
