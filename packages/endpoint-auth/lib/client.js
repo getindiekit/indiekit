@@ -1,4 +1,54 @@
+import net from "node:net";
+
 import { mf2 } from "microformats-parser";
+
+const FETCH_TIMEOUT = 5000;
+
+/**
+ * Check whether a URL may be fetched when discovering client information
+ *
+ * A client identifier’s host name must be a domain name: IP addresses are not
+ * permitted except loopback, and the authorization endpoint is told not to
+ * fetch those. So no IP literal is worth fetching, which is why this refuses
+ * them outright rather than sorting internal ranges from public ones.
+ * @param {URL} url - URL to check
+ * @returns {boolean} URL is safe to fetch
+ * @see {@link https://indieauth.spec.indieweb.org/#client-identifier}
+ * @see {@link https://indieauth.spec.indieweb.org/#client-information-discovery}
+ */
+const isFetchableOrigin = (url) => {
+  if (url.protocol !== "https:" && url.protocol !== "http:") {
+    return false;
+  }
+
+  const hostname = url.hostname.replaceAll(/^\[|]$/g, "").toLowerCase();
+
+  if (hostname === "localhost" || hostname.endsWith(".localhost")) {
+    return false;
+  }
+
+  // Any IP literal, loopback or not: none are valid client identifiers
+  if (net.isIP(hostname) !== 0) {
+    return false;
+  }
+
+  // Decimal, hexadecimal and octal encodings of an address (`2130706433`,
+  // `0x7f000001`, `0177.0.0.1`) are resolved by the system resolver but are
+  // not recognised by `net.isIP`, so they would otherwise pass as domain names
+  if (
+    /^\d+$/.test(hostname) ||
+    /^0x[\da-f]+$/.test(hostname) ||
+    /^[\d.]+$/.test(hostname)
+  ) {
+    return false;
+  }
+
+  // A domain name is trusted without resolving it, so one pointing at an
+  // internal address still passes. The specification suggests resolving first
+  // and rejecting the loopback range; doing that safely also means connecting
+  // to the address that was checked, which needs a custom dispatcher.
+  return true;
+};
 
 /**
  * Get client information from application Microformat
@@ -71,13 +121,33 @@ export const getClientMetadata = (body, client) => {
  * @see {@link https://indieauth.spec.indieweb.org/#client-information-discovery}
  */
 export const getClientInformation = async (clientId) => {
-  let client = {
+  let clientUrl;
+  try {
+    clientUrl = new URL(clientId);
+  } catch {
+    return { id: clientId, name: clientId, url: clientId };
+  }
+
+  const client = {
     id: clientId,
-    name: new URL(clientId).host,
-    url: new URL(clientId).href,
+    name: clientUrl.host,
+    url: clientUrl.href,
   };
 
-  const clientResponse = await fetch(clientId);
+  if (!isFetchableOrigin(clientUrl)) {
+    return client;
+  }
+
+  let clientResponse;
+  try {
+    clientResponse = await fetch(clientId, {
+      signal: AbortSignal.timeout(FETCH_TIMEOUT),
+    });
+  } catch {
+    // Unreachable, refused, TLS failure or timed out
+    return client;
+  }
+
   if (!clientResponse.ok) {
     // Use information derived from clientId
     return client;
@@ -89,7 +159,14 @@ export const getClientInformation = async (clientId) => {
     // Use information from client JSON metadata
     return getClientMetadata(body, client);
   } catch {
-    // Use information from client HTML microformats (deprecated)
-    return getApplicationInformation(body, client);
+    try {
+      // Use information from client HTML microformats (deprecated)
+      return getApplicationInformation(body, client);
+    } catch {
+      // Neither client metadata nor parseable HTML. `mf2()` throws on an empty
+      // or non-HTML body, which would otherwise fail the whole authorization
+      // request over a client that simply serves JSON
+      return client;
+    }
   }
 };

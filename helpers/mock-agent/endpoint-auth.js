@@ -49,6 +49,22 @@ export const mockClient = () => {
   // Client information (Not Found)
   agent.get(origin).intercept({ path: "/404" }).reply(404);
 
+  // Client information (body that is neither metadata nor parseable HTML)
+  agent
+    .get(origin)
+    .intercept({ path: "/json" })
+    .reply(200, '{"foo":"bar"}')
+    .persist();
+
+  // An internal address that client discovery must refuse to fetch. Serves the
+  // same markup as a valid client, so a regression shows up as this client’s
+  // name replacing the fallback derived from `client_id`.
+  agent
+    .get("https://169.254.169.254")
+    .intercept({ path: "/" })
+    .reply(200, getFixture("html/client.html"))
+    .persist();
+
   // Declared `redirect_uri` (HTML `<link>` tag)
   agent
     .get(origin)
