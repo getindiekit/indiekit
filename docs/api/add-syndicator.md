@@ -83,7 +83,7 @@ A string representing the URL for the syndicated content if successful, else [`I
 
 ```js
 import { IndiekitError } from "@indiekit/error";
-import exampleClient from 'example-client';
+import exampleClient from "example-client";
 
 export default class ExampleStore {
   constructor(options) {

@@ -82,12 +82,12 @@ export default class RecipePostType {
   get validationSchemas() {
     return {
       "ingredient": {
-        errorMessage: (value, { req }) => 'Add some ingredients',
+        errorMessage: (value, { req }) => "Add some ingredients",
         exists: { if: (value, { req }) => isRequired(req, "ingredient") },
         notEmpty: true,
       },
       "instructions": {
-        errorMessage: (value, { req }) => 'Add instructions',
+        errorMessage: (value, { req }) => "Add instructions",
         exists: { if: (value, { req }) => isRequired(req, "instructions") },
         notEmpty: true,
       }
@@ -218,12 +218,12 @@ For example, to check that a recipe post type includes values for the `ingredien
 get validationSchemas() {
   return {
     "ingredient": {
-      errorMessage: (value, { req }) => 'Add some ingredients',
+      errorMessage: (value, { req }) => "Add some ingredients",
       exists: { if: (value, { req }) => isRequired(req, "ingredient") },
       notEmpty: true,
     },
     "instructions": {
-      errorMessage: (value, { req }) => 'Add instructions',
+      errorMessage: (value, { req }) => "Add instructions",
       exists: { if: (value, { req }) => isRequired(req, "instructions") },
       notEmpty: true,
     }

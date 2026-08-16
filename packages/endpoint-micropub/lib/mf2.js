@@ -59,7 +59,7 @@ export const jf2ToMf2 = (postData, shouldIncludeObjectId = true) => {
       mf2.properties[key] = [jf2ToMf2({ properties: properties[key] }, false)];
     }
 
-    // Convert values to arrays (i.e. 'a' => ['a'])
+    // Convert values to arrays (i.e. "a" => ["a"])
     else if (Object.prototype.hasOwnProperty.call(properties, key)) {
       const value = properties[key];
       mf2.properties[key] = Array.isArray(value) ? value : [value];

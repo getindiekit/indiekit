@@ -110,7 +110,7 @@ Used to register the plug-in. Accepts an `Indiekit` instance to allow its modifi
 
 ```js
 import { IndiekitError } from "@indiekit/error";
-import exampleClient from 'example-client';
+import exampleClient from "example-client";
 
 export default class ExampleStore {
   constructor() {

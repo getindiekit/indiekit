@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 
 /**
- * @typedef {import('@aws-sdk/client-s3').ObjectCannedACL} ObjectCannedACL
+ * @typedef {import("@aws-sdk/client-s3").ObjectCannedACL} ObjectCannedACL
  */
 
 import {

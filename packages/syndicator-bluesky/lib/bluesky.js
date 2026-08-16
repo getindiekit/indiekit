@@ -98,7 +98,7 @@ export class Bluesky {
     const post = await this.getPost(postUrl);
 
     /**
-     * @type {import('@atproto/api').AppBskyEmbedRecord.Main}
+     * @type {import("@atproto/api").AppBskyEmbedRecord.Main}
      */
     const record = {
       $type: "app.bsky.embed.record",
@@ -106,7 +106,7 @@ export class Bluesky {
     };
 
     /**
-     * @type {import('@atproto/api').AppBskyEmbedImages.Main & { $type: "app.bsky.embed.images" }}
+     * @type {import("@atproto/api").AppBskyEmbedImages.Main & { $type: "app.bsky.embed.images" }}
      */
     const media = {
       $type: "app.bsky.embed.images",
@@ -114,7 +114,7 @@ export class Bluesky {
     };
 
     /**
-     * @type {import('@atproto/api').AppBskyEmbedRecordWithMedia.Main}
+     * @type {import("@atproto/api").AppBskyEmbedRecordWithMedia.Main}
      */
     const recordWithMedia = {
       $type: "app.bsky.embed.recordWithMedia",
@@ -125,7 +125,7 @@ export class Bluesky {
     const embed = images?.length > 0 ? recordWithMedia : record;
 
     /**
-     * @type {import('@atproto/api').AppBskyFeedPost.Record}
+     * @type {import("@atproto/api").AppBskyFeedPost.Record}
      */
     const postData = {
       $type: "app.bsky.feed.post",
@@ -133,7 +133,7 @@ export class Bluesky {
       facets: richText.facets,
       createdAt: new Date().toISOString(),
       embed:
-        /** @type {import('@atproto/api').AppBskyFeedPost.Record['embed']} */ (
+        /** @type {import("@atproto/api").AppBskyFeedPost.Record["embed"]} */ (
           embed
         ),
     };
@@ -153,7 +153,7 @@ export class Bluesky {
     const client = await this.#client();
 
     /**
-     * @type {import('@atproto/api').AppBskyFeedPost.Record}
+     * @type {import("@atproto/api").AppBskyFeedPost.Record}
      */
     const postData = {
       $type: "app.bsky.feed.post",

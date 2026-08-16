@@ -9,11 +9,11 @@ import { fileTypeFromBuffer } from "file-type";
  * @param {object} file - Original file object
  * @param {object} timeZone - Application time zone
  * @returns {Promise<object>} File properties
- * @example fileData('Brighton Pier.jpg') => {
- *   ext: '.jpg'
- *   filename: 'brighton-pier.jpg',
- *   'content-type': image/jpeg,
- *   published: '2020-07-19T22:59:23.497Z',
+ * @example fileData("Brighton Pier.jpg") => {
+ *   ext: ".jpg"
+ *   filename: "brighton-pier.jpg",
+ *   "content-type": "image/jpeg",
+ *   published: "2020-07-19T22:59:23.497Z",
  * }
  */
 export const getFileProperties = async (publication, file, timeZone) => {
@@ -35,8 +35,8 @@ export const getFileProperties = async (publication, file, timeZone) => {
 /**
  * Derive media type (and return equivalent IndieWeb post type)
  * @param {object} file - File object
- * @returns {Promise<string>} Post type ('photo', 'video' or 'audio')
- * @example getMediaType('brighton-pier.jpg') => 'photo'
+ * @returns {Promise<string>} Post type ("photo", "video" or "audio")
+ * @example getMediaType("brighton-pier.jpg") => "photo"
  */
 export const getMediaType = async (file) => {
   const { mime } = await fileTypeFromBuffer(file.data);

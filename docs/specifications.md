@@ -89,7 +89,7 @@ Microsub is not currently supported by Indiekit, but might be in the future.
 
 ![Webmention icon](/icons/webmention.svg){.icon}
 
-[Webmention](https://webmention.net/draft) is a simple way to notify any URL when you mention it on your site. From the receiver's perspective, it's a way to request notifications when other sites mention it.
+[Webmention](https://webmention.net/draft) is a simple way to notify any URL when you mention it on your site. From the receiver’s perspective, it’s a way to request notifications when other sites mention it.
 
 * [ ] [Sending Webmentions](https://webmention.net/draft/#sending-webmentions)
 * [ ] [Receiving Webmentions](https://webmention.net/draft/#receiving-webmentions)

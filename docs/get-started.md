@@ -152,7 +152,7 @@ To ensure your Indiekit server’s endpoints can be discovered by [Micropub clie
 
 ### 5. Authorize your Micropub client
 
-Any [application that supports the Micropub API](clients.md) will ask you to enter your website's URL.
+Any [application that supports the Micropub API](clients.md) will ask you to enter your website’s URL.
 
 You will then be directed to an authentication page on your Indiekit server. Here you can select which permissions you wish to grant the application before entering your password to allow access.
 

@@ -1,5 +1,5 @@
 /**
- * @type {import('prompts').PromptObject<string>[]} Setup prompt questions
+ * @type {import("prompts").PromptObject<string>[]} Setup prompt questions
  */
 export const setupPrompts = [
   {

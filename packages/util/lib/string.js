@@ -58,7 +58,7 @@ export const randomString = (length = 16) =>
  * @param {string} string - String to slugify
  * @param {object} [options] - Slugify options
  * @returns {string|undefined} Slugified string
- * @example slugify('Foo bar baz', { separator: '_'} ) => 'foo_bar_baz'
+ * @example slugify("Foo bar baz", { separator: "_"} ) => "foo_bar_baz"
  */
 export const slugify = (string, options) => {
   if (typeof string !== "string") {

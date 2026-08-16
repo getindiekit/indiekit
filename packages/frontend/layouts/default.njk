@@ -108,7 +108,7 @@
   if (navigator.serviceWorker) {
     window.addEventListener("load", () => {
       navigator.serviceWorker.register("/serviceworker.js", {
-        scope: '/'
+        scope: "/"
       });
       if (navigator.serviceWorker.controller) {
         navigator.serviceWorker.controller.postMessage({
