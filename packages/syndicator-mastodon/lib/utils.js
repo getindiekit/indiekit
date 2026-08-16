@@ -9,13 +9,20 @@ import { htmlToText } from "html-to-text";
  * @param {object} properties - JF2 properties
  * @param {object} [options] - Options
  * @param {number} [options.characterLimit] - Character limit
+ * @param {boolean} [options.includeCategories] - Add categories as hashtags
  * @param {boolean} [options.includePermalink] - Include permalink in status
  * @param {Array} [options.mediaIds] - Mastodon media IDs
  * @param {string} [options.serverUrl] - Server URL
  * @returns {object} Status parameters
  */
 export const createStatus = (properties, options = {}) => {
-  const { characterLimit, includePermalink, mediaIds, serverUrl } = options;
+  const {
+    characterLimit,
+    includeCategories,
+    includePermalink,
+    mediaIds,
+    serverUrl,
+  } = options;
   const parameters = {};
 
   let status;
@@ -38,6 +45,18 @@ export const createStatus = (properties, options = {}) => {
 
   // Truncate status if longer than 500 characters
   if (status) {
+    // Show hashtags at the end of a status, where Mastodon displays them as
+    // links. Skip any already written into the post content.
+    const hashtags = includeCategories
+      ? createHashtags(properties.category).filter(
+          (hashtag) =>
+            !new RegExp(String.raw`${hashtag}(?![\p{L}\p{N}_])`, "iu").test(
+              status,
+            ),
+        )
+      : [];
+    const suffix = hashtags.length > 0 ? `\n\n${hashtags.join(" ")}` : "";
+
     const statusText = brevity.shorten(
       status,
       properties.url,
@@ -45,14 +64,14 @@ export const createStatus = (properties, options = {}) => {
         ? properties.url
         : false,
       false, // https://indieweb.org/permashortcitation
-      characterLimit,
+      // Leave room for the hashtags added below
+      characterLimit ? characterLimit - suffix.length : characterLimit,
     );
 
     // Show permalink below status, not within brackets
-    parameters.status = statusText.replace(
-      `(${properties.url})`,
-      `\n\n${properties.url}`,
-    );
+    parameters.status =
+      statusText.replace(`(${properties.url})`, `\n\n${properties.url}`) +
+      suffix;
   }
 
   // Add media IDs
@@ -81,6 +100,42 @@ export const createStatus = (properties, options = {}) => {
   }
 
   return parameters;
+};
+
+/**
+ * Get hashtags for given categories
+ *
+ * Uses the last segment of a hierarchical category, and removes any characters
+ * Mastodon doesn’t recognise as part of a hashtag, so that `holidays/family
+ * trips` becomes `#familytrips`.
+ * @param {Array|string} [category] - JF2 `category` property
+ * @returns {Array} Hashtags
+ */
+export const createHashtags = (category) => {
+  if (!category) {
+    return [];
+  }
+
+  const categories = Array.isArray(category) ? category : [category];
+  const hashtags = [];
+
+  for (const item of categories) {
+    if (typeof item !== "string") {
+      continue;
+    }
+
+    const name = item
+      .split("/")
+      .at(-1)
+      .replaceAll(/[^\p{L}\p{N}_]/gu, "");
+    const hashtag = `#${name}`;
+
+    if (name && !hashtags.includes(hashtag)) {
+      hashtags.push(hashtag);
+    }
+  }
+
+  return hashtags;
 };
 
 /**

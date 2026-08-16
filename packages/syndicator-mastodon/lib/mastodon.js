@@ -10,12 +10,14 @@ export class Mastodon {
    * @param {string} options.accessToken - Access token
    * @param {string} options.serverUrl - Server URL
    * @param {number} options.characterLimit - Server character limit
+   * @param {boolean} [options.includeCategories] - Add categories as hashtags
    * @param {boolean} [options.includePermalink] - Include permalink in status
    */
   constructor(options) {
     this.accessToken = options.accessToken;
     this.characterLimit = options.characterLimit;
     this.serverUrl = options.serverUrl;
+    this.includeCategories = options.includeCategories || false;
     this.includePermalink = options.includePermalink || false;
   }
 
@@ -158,6 +160,7 @@ export class Mastodon {
 
     const status = createStatus(properties, {
       characterLimit: this.characterLimit,
+      includeCategories: this.includeCategories,
       includePermalink: this.includePermalink,
       mediaIds,
       serverUrl: this.serverUrl,

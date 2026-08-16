@@ -10,6 +10,7 @@ const defaults = {
   url: "https://mastodon.social",
   characterLimit: 500,
   checked: false,
+  includeCategories: false,
   includePermalink: false,
 };
 
@@ -20,6 +21,7 @@ export default class MastodonSyndicator {
    * @param {object} [options] - Plug-in options
    * @param {string} [options.accessToken] - Access token
    * @param {number} [options.characterLimit] - Server character limit
+   * @param {boolean} [options.includeCategories] - Add categories as hashtags
    * @param {boolean} [options.includePermalink] - Include permalink in status
    * @param {string} [options.url] - Server URL
    * @param {string} [options.user] - Username
@@ -92,6 +94,7 @@ export default class MastodonSyndicator {
       const mastodon = new Mastodon({
         accessToken: this.options.accessToken,
         characterLimit: this.options.characterLimit,
+        includeCategories: this.options.includeCategories,
         includePermalink: this.options.includePermalink,
         serverUrl: `${this.#url.protocol}//${this.#url.hostname}`,
       });
