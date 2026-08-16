@@ -103,6 +103,7 @@ describe("endpoint-micropub/lib/post-content", () => {
     };
     await postContent.create(pub, data);
     assert.equal(getSyndicationUrl.mock.calls.length, 1);
+    assert.deepEqual(data.properties.syndication, ["https://news.indieweb.org/en/"]);
   });
 
   it("Does not call getSyndicationUrl on syndicator not in mp-syndicate-to", async () => {
