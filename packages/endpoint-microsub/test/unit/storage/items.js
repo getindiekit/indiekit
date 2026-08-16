@@ -1,8 +1,8 @@
 import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
 
+import { getObjectId } from "@indiekit/util";
 import { testDatabase } from "@indiekit-test/database";
-import { ObjectId } from "mongodb";
 
 import {
   createIndexes,
@@ -18,8 +18,8 @@ const application = {
   collections: new Map([["microsub_items", items]]),
 };
 
-const channelId = new ObjectId();
-const otherChannelId = new ObjectId();
+const channelId = getObjectId();
+const otherChannelId = getObjectId();
 
 /**
  * Insert timeline items, oldest first

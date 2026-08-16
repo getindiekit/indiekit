@@ -3,7 +3,7 @@
  * @module storage/items
  */
 
-import { ObjectId } from "mongodb";
+import { getObjectId } from "@indiekit/util";
 
 import {
   buildPaginationQuery,
@@ -24,7 +24,7 @@ function getCollection(application) {
 /**
  * Get timeline items for a channel
  * @param {object} application - Indiekit application
- * @param {ObjectId|string} channelId - Channel ObjectId
+ * @param {object|string} channelId - Channel ObjectId or its string form
  * @param {object} options - Query options
  * @param {string} [options.before] - Before cursor
  * @param {string} [options.after] - After cursor
@@ -35,7 +35,7 @@ function getCollection(application) {
 export async function getTimelineItems(application, channelId, options = {}) {
   const collection = getCollection(application);
   const objectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
+    typeof channelId === "string" ? getObjectId(channelId) : channelId;
   const limit = parseLimit(options.limit);
 
   const baseQuery = { channelId: objectId };
@@ -116,7 +116,7 @@ function transformToJf2(item, userId) {
 /**
  * Mark items as read
  * @param {object} application - Indiekit application
- * @param {ObjectId|string} channelId - Channel ObjectId
+ * @param {object|string} channelId - Channel ObjectId or its string form
  * @param {Array} entryIds - Array of entry IDs to mark as read
  * @param {string} userId - User ID
  * @returns {Promise<number>} Number of items updated
@@ -124,7 +124,7 @@ function transformToJf2(item, userId) {
 export async function markItemsRead(application, channelId, entryIds, userId) {
   const collection = getCollection(application);
   const channelObjectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
+    typeof channelId === "string" ? getObjectId(channelId) : channelId;
 
   // Handle "last-read-entry" special value
   if (entryIds.includes("last-read-entry")) {
@@ -139,7 +139,7 @@ export async function markItemsRead(application, channelId, entryIds, userId) {
   const objectIds = entryIds
     .map((id) => {
       try {
-        return new ObjectId(id);
+        return getObjectId(id);
       } catch {
         return;
       }
@@ -165,7 +165,7 @@ export async function markItemsRead(application, channelId, entryIds, userId) {
 /**
  * Mark items as unread
  * @param {object} application - Indiekit application
- * @param {ObjectId|string} channelId - Channel ObjectId
+ * @param {object|string} channelId - Channel ObjectId or its string form
  * @param {Array} entryIds - Array of entry IDs to mark as unread
  * @param {string} userId - User ID
  * @returns {Promise<number>} Number of items updated
@@ -178,13 +178,13 @@ export async function markItemsUnread(
 ) {
   const collection = getCollection(application);
   const channelObjectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
+    typeof channelId === "string" ? getObjectId(channelId) : channelId;
 
   // Convert string IDs to ObjectIds where possible
   const objectIds = entryIds
     .map((id) => {
       try {
-        return new ObjectId(id);
+        return getObjectId(id);
       } catch {
         return;
       }
@@ -210,20 +210,20 @@ export async function markItemsUnread(
 /**
  * Remove items from channel
  * @param {object} application - Indiekit application
- * @param {ObjectId|string} channelId - Channel ObjectId
+ * @param {object|string} channelId - Channel ObjectId or its string form
  * @param {Array} entryIds - Array of entry IDs to remove
  * @returns {Promise<number>} Number of items removed
  */
 export async function removeItems(application, channelId, entryIds) {
   const collection = getCollection(application);
   const channelObjectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
+    typeof channelId === "string" ? getObjectId(channelId) : channelId;
 
   // Convert string IDs to ObjectIds where possible
   const objectIds = entryIds
     .map((id) => {
       try {
-        return new ObjectId(id);
+        return getObjectId(id);
       } catch {
         return;
       }
