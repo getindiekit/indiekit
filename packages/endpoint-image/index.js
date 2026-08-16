@@ -3,7 +3,7 @@ import {
   createIPX,
   ipxFSStorage,
   ipxHttpStorage,
-  createIPXNodeServer,
+  createIPXNodeHandler,
 } from "ipx";
 
 const defaults = { domains: [], mountPath: "/image" };
@@ -35,7 +35,7 @@ export default class ImageEndpoint {
       }),
     });
 
-    router.use(createIPXNodeServer(ipx));
+    router.use(createIPXNodeHandler(ipx));
 
     return router;
   }
