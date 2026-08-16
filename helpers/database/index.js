@@ -1,4 +1,4 @@
-import { getMongodbClient } from "@indiekit/indiekit/lib/mongodb.js";
+import { getMongodbClient } from "@indiekit/util";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
 export const testDatabase = async () => {
