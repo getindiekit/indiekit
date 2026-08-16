@@ -3,7 +3,7 @@
  * @module utils/pagination
  */
 
-import { ObjectId } from "mongodb";
+import { getObjectId } from "@indiekit/util";
 
 /**
  * Default pagination limit
@@ -68,7 +68,7 @@ export function buildPaginationQuery({ before, after, baseQuery = {} }) {
         { published: { $gt: cursor.timestamp } },
         {
           published: cursor.timestamp,
-          _id: { $gt: new ObjectId(cursor.id) },
+          _id: { $gt: getObjectId(cursor.id) },
         },
       ];
     }
@@ -80,7 +80,7 @@ export function buildPaginationQuery({ before, after, baseQuery = {} }) {
         { published: { $lt: cursor.timestamp } },
         {
           published: cursor.timestamp,
-          _id: { $lt: new ObjectId(cursor.id) },
+          _id: { $lt: getObjectId(cursor.id) },
         },
       ];
     }
