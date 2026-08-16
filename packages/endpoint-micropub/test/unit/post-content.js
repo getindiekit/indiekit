@@ -1,5 +1,5 @@
 import { strict as assert } from "node:assert";
-import { describe, it } from "node:test";
+import { describe, it, mock } from "node:test";
 
 import { mockAgent } from "@indiekit-test/mock-agent";
 import { deletedPostData, postData } from "@indiekit-test/post-data";
@@ -85,5 +85,62 @@ describe("endpoint-micropub/lib/post-content", () => {
     await assert.rejects(postContent.undelete(false, postData), {
       message: "postTemplate is not a function",
     });
+  });
+
+  it("Calls getSyndicationUrl on targeted syndicator and sets syndication property", async () => {
+    const getSyndicationUrl = mock.fn(async () => "https://news.indieweb.org/en/");
+    const syndicator = {
+      info: { uid: "https://news.indieweb.org/en/" },
+      getSyndicationUrl,
+    };
+    const pub = { ...publication, syndicationTargets: [syndicator] };
+    const data = {
+      path: "foo.md",
+      properties: {
+        ...postData.properties,
+        "mp-syndicate-to": ["https://news.indieweb.org/en/"],
+      },
+    };
+    await postContent.create(pub, data);
+    assert.equal(getSyndicationUrl.mock.calls.length, 1);
+  });
+
+  it("Does not call getSyndicationUrl on syndicator not in mp-syndicate-to", async () => {
+    const getSyndicationUrl = mock.fn(async () => "https://news.indieweb.org/en/");
+    const syndicator = {
+      info: { uid: "https://news.indieweb.org/en/" },
+      getSyndicationUrl,
+    };
+    const pub = { ...publication, syndicationTargets: [syndicator] };
+    const data = {
+      path: "foo.md",
+      properties: {
+        ...postData.properties,
+        "mp-syndicate-to": ["https://other.example/"],
+      },
+    };
+    await postContent.create(pub, data);
+    assert.equal(getSyndicationUrl.mock.calls.length, 0);
+  });
+
+  it("Appends to existing syndication without duplicates", async () => {
+    const getSyndicationUrl = mock.fn(async () => "https://news.indieweb.org/en/");
+    const syndicator = {
+      info: { uid: "https://news.indieweb.org/en/" },
+      getSyndicationUrl,
+    };
+    const pub = { ...publication, syndicationTargets: [syndicator] };
+    const data = {
+      path: "foo.md",
+      properties: {
+        ...postData.properties,
+        syndication: ["https://news.indieweb.org/en/"],
+        "mp-syndicate-to": ["https://news.indieweb.org/en/"],
+      },
+    };
+    await postContent.create(pub, data);
+    // getSyndicationUrl was called but returned a duplicate — syndication stays length 1
+    assert.equal(getSyndicationUrl.mock.calls.length, 1);
+    assert.deepEqual(data.properties.syndication, ["https://news.indieweb.org/en/"]);
   });
 });
