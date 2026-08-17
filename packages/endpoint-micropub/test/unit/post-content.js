@@ -144,4 +144,21 @@ describe("endpoint-micropub/lib/post-content", () => {
     assert.equal(getSyndicationUrl.mock.calls.length, 1);
     assert.deepEqual(data.properties.syndication, ["https://news.indieweb.org/en/"]);
   });
+
+  it("Silently skips syndicator when getSyndicationUrl throws", async () => {
+    const syndicator = {
+      info: { uid: "https://news.indieweb.org/en/" },
+      getSyndicationUrl: async () => { throw new Error("network error"); },
+    };
+    const pub = { ...publication, syndicationTargets: [syndicator] };
+    const data = {
+      path: "foo.md",
+      properties: {
+        ...postData.properties,
+        "mp-syndicate-to": ["https://news.indieweb.org/en/"],
+      },
+    };
+    await assert.doesNotReject(() => postContent.create(pub, data));
+    assert.equal(data.properties.syndication, undefined);
+  });
 });
