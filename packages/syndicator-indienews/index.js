@@ -19,6 +19,8 @@ function createTarget(options = {}) {
   const uid = `https://news.indieweb.org/${language}/`;
 
   return {
+    name: `IndieNews (${language})`,
+
     get info() {
       return {
         checked,
@@ -45,7 +47,7 @@ export default class SyndicatorIndieNews {
    * @param {IndieNewsPluginOptions | IndieNewsPluginOptions[]} [options] - Plug-in options, or array of options for multiple languages
    */
   constructor(options = {}) {
-    this.targets = [options].flat().map((options) => createTarget(options));
+    this.targets = [options].flat().map((targetOptions) => createTarget(targetOptions));
   }
 
   /**
