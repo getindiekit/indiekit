@@ -1,12 +1,17 @@
 /**
- * @typedef {object} PluginOptions
+ * @import { Indiekit } from "@indiekit/indiekit";
+ */
+
+/**
+ * @typedef {object} IndieNewsPluginOptions
  * @property {string} [language] - IndieNews language code (default: "en")
  * @property {boolean} [checked] - Pre-check in Micropub clients (default: false)
  */
 
 /**
  * Create a single IndieNews syndicator target for a given language.
- * @param {PluginOptions} options
+ * @param {IndieNewsPluginOptions} options - Options object (per language)
+ * @returns {object} Syndicator target
  */
 function createTarget(options = {}) {
   const language = options.language ?? "en";
@@ -33,16 +38,19 @@ function createTarget(options = {}) {
   };
 }
 
-export default class SyndicatorIndienews {
-  name = "IndieNews syndicator";
+export default class SyndicatorIndieNews {
+  name = "IndieNews Syndicator";
 
   /**
-   * @param {PluginOptions | PluginOptions[]} [options] - Plug-in options, or array of options for multiple languages
+   * @param {IndieNewsPluginOptions | IndieNewsPluginOptions[]} [options] - Plug-in options, or array of options for multiple languages
    */
   constructor(options = {}) {
-    this.targets = [options].flat().map(createTarget);
+    this.targets = [options].flat().map((options) => createTarget(options));
   }
 
+  /**
+   * @param {Indiekit} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addSyndicator(this.targets);
   }

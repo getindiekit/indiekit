@@ -1,10 +1,10 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import SyndicatorIndienews from "../index.js";
+import SyndicatorIndieNews from "../index.js";
 
 describe("syndicator-indienews", () => {
   describe("single language (default)", () => {
-    const syndicator = new SyndicatorIndienews();
+    const syndicator = new SyndicatorIndieNews();
 
     it("creates one target", () => {
       assert.equal(syndicator.targets.length, 1);
@@ -25,7 +25,10 @@ describe("syndicator-indienews", () => {
   });
 
   describe("single language (configured)", () => {
-    const syndicator = new SyndicatorIndienews({ language: "es", checked: true });
+    const syndicator = new SyndicatorIndieNews({
+      language: "es",
+      checked: true,
+    });
 
     it("creates one target with configured language", () => {
       assert.equal(syndicator.targets.length, 1);
@@ -38,7 +41,7 @@ describe("syndicator-indienews", () => {
   });
 
   describe("multiple languages", () => {
-    const syndicator = new SyndicatorIndienews([
+    const syndicator = new SyndicatorIndieNews([
       { language: "en" },
       { language: "es", checked: true },
     ]);
@@ -59,13 +62,16 @@ describe("syndicator-indienews", () => {
 
   describe("getSyndicationUrl", () => {
     it("returns the uid for the configured language", async () => {
-      const syndicator = new SyndicatorIndienews({ language: "en" });
+      const syndicator = new SyndicatorIndieNews({ language: "en" });
       const result = await syndicator.targets[0].getSyndicationUrl();
       assert.equal(result, "https://news.indieweb.org/en/");
     });
 
     it("each target returns its own uid", async () => {
-      const syndicator = new SyndicatorIndienews([{ language: "en" }, { language: "es" }]);
+      const syndicator = new SyndicatorIndieNews([
+        { language: "en" },
+        { language: "es" },
+      ]);
       const [en, es] = await Promise.all(syndicator.targets.map((t) => t.getSyndicationUrl()));
       assert.equal(en, "https://news.indieweb.org/en/");
       assert.equal(es, "https://news.indieweb.org/es/");
@@ -74,7 +80,10 @@ describe("syndicator-indienews", () => {
 
   describe("init", () => {
     it("registers all targets with Indiekit", () => {
-      const syndicator = new SyndicatorIndienews([{ language: "en" }, { language: "es" }]);
+      const syndicator = new SyndicatorIndieNews([
+        { language: "en" },
+        { language: "es" },
+      ]);
       const added = [];
       const mockIndiekit = { addSyndicator: (targets) => added.push(...targets) };
       syndicator.init(mockIndiekit);
@@ -82,7 +91,7 @@ describe("syndicator-indienews", () => {
     });
 
     it("registers single target with Indiekit", () => {
-      const syndicator = new SyndicatorIndienews({ language: "en" });
+      const syndicator = new SyndicatorIndieNews({ language: "en" });
       const added = [];
       const mockIndiekit = { addSyndicator: (targets) => added.push(...targets) };
       syndicator.init(mockIndiekit);
