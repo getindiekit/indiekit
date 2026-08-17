@@ -7,12 +7,13 @@ export default class SyndicatorIndienews {
    */
   constructor(options = {}) {
     this.language = options.language ?? "en";
+    this.checked = options.checked ?? false;
   }
 
   get info() {
     const uid = `https://news.indieweb.org/${this.language}/`;
     return {
-      checked: false,
+      checked: this.checked,
       name: `IndieNews (${this.language})`,
       uid,
       service: {

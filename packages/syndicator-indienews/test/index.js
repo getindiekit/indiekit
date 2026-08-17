@@ -19,6 +19,16 @@ describe("syndicator-indienews", () => {
       assert.equal(syndicator.info.service.name, "IndieNews");
       assert.equal(syndicator.info.service.url, "https://news.indieweb.org");
     });
+
+    it("defaults checked to false", () => {
+      const syndicator = new SyndicatorIndienews();
+      assert.equal(syndicator.info.checked, false);
+    });
+
+    it("respects checked option", () => {
+      const syndicator = new SyndicatorIndienews({ checked: true });
+      assert.equal(syndicator.info.checked, true);
+    });
   });
 
   describe("getSyndicationUrl", () => {
