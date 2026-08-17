@@ -25,7 +25,25 @@ Add `@indiekit/syndicator-indienews` to your list of plug-ins, specifying option
 
 When you create a post with `mp-syndicate-to: https://news.indieweb.org/en/`, Indiekit will write `https://news.indieweb.org/en/` into the `syndication` property of your post. Your Webmention sender can then notify IndieNews.
 
+### Multiple languages
+
+To offer syndication to multiple IndieNews language channels, pass an array of options:
+
+```json
+{
+  "plugins": ["@indiekit/syndicator-indienews"],
+  "@indiekit/syndicator-indienews": [
+    { "language": "en" },
+    { "language": "es" }
+  ]
+}
+```
+
+Each entry appears as a separate syndication target in your Micropub client.
+
 ## Options
+
+Each options object (or the single options object) supports:
 
 | Option     | Type     | Description                                                                                                    |
 | :--------- | :------- | :------------------------------------------------------------------------------------------------------------- |

@@ -1,34 +1,47 @@
+/**
+ * Create a single IndieNews syndicator target for a given language.
+ * @param {object} options
+ * @param {string} [options.language] - Language code (default: "en")
+ * @param {boolean} [options.checked] - Pre-check in Micropub clients (default: false)
+ */
+function createTarget(options = {}) {
+  const language = options.language ?? "en";
+  const checked = options.checked ?? false;
+  const uid = `https://news.indieweb.org/${language}/`;
+
+  return {
+    get info() {
+      return {
+        checked,
+        name: `IndieNews (${language})`,
+        uid,
+        service: {
+          name: "IndieNews",
+          photo: "https://news.indieweb.org/favicon.ico",
+          url: "https://news.indieweb.org",
+        },
+      };
+    },
+
+    async getSyndicationUrl() {
+      return uid;
+    },
+  };
+}
+
 export default class SyndicatorIndienews {
   name = "IndieNews syndicator";
 
   /**
-   * @param {object} [options] - Plug-in options
+   * @param {object | object[]} [options] - Plug-in options, or array of options for multiple languages
    * @param {string} [options.language] - Language code (default: "en")
+   * @param {boolean} [options.checked] - Pre-check in Micropub clients (default: false)
    */
   constructor(options = {}) {
-    this.language = options.language ?? "en";
-    this.checked = options.checked ?? false;
-  }
-
-  get info() {
-    const uid = `https://news.indieweb.org/${this.language}/`;
-    return {
-      checked: this.checked,
-      name: `IndieNews (${this.language})`,
-      uid,
-      service: {
-        name: "IndieNews",
-        photo: "https://news.indieweb.org/favicon.ico",
-        url: "https://news.indieweb.org",
-      },
-    };
-  }
-
-  async getSyndicationUrl() {
-    return this.info.uid;
+    this.targets = [options].flat().map(createTarget);
   }
 
   init(Indiekit) {
-    Indiekit.addSyndicator(this);
+    Indiekit.addSyndicator(this.targets);
   }
 }
