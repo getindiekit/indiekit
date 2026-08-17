@@ -1,8 +1,12 @@
 /**
+ * @typedef {object} PluginOptions
+ * @property {string} [language] - IndieNews language code (default: "en")
+ * @property {boolean} [checked] - Pre-check in Micropub clients (default: false)
+ */
+
+/**
  * Create a single IndieNews syndicator target for a given language.
- * @param {object} options
- * @param {string} [options.language] - Language code (default: "en")
- * @param {boolean} [options.checked] - Pre-check in Micropub clients (default: false)
+ * @param {PluginOptions} options
  */
 function createTarget(options = {}) {
   const language = options.language ?? "en";
@@ -33,9 +37,7 @@ export default class SyndicatorIndienews {
   name = "IndieNews syndicator";
 
   /**
-   * @param {object | object[]} [options] - Plug-in options, or array of options for multiple languages
-   * @param {string} [options.language] - Language code (default: "en")
-   * @param {boolean} [options.checked] - Pre-check in Micropub clients (default: false)
+   * @param {PluginOptions | PluginOptions[]} [options] - Plug-in options, or array of options for multiple languages
    */
   constructor(options = {}) {
     this.targets = [options].flat().map(createTarget);
