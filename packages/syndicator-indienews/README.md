@@ -23,7 +23,12 @@ Add `@indiekit/syndicator-indienews` to your list of plug-ins, specifying option
 }
 ```
 
-When you create a post with `mp-syndicate-to: https://news.indieweb.org/en/`, Indiekit will write `https://news.indieweb.org/en/` into the `syndication` property of your post. Your Webmention sender can then notify IndieNews.
+When you create a post with `mp-syndicate-to: https://news.indieweb.org/en/`, Indiekit will write `https://news.indieweb.org/en/` into the `syndication` property of your post.
+
+For IndieNews to discover your post, two additional things must happen:
+
+1. **Your post template must include the `syndication` value** as a `u-syndication` link in your post's HTML markup, so that the URL is visible to Webmention senders.
+2. **Your site must send a Webmention** to the IndieNews channel URL after publishing. This can be done with a Webmention sending service or tool such as [Telegraph](https://telegraph.p3k.io) or [webmention.app](https://webmention.app).
 
 ### Multiple languages
 
