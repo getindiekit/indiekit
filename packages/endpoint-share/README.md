@@ -26,3 +26,21 @@ To customise the behaviour of this plug-in, add `@indiekit/endpoint-share` to yo
 | Option      | Type     | Description                                             |
 | :---------- | :------- | :------------------------------------------------------ |
 | `mountPath` | `string` | Path to share screen. _Optional_, defaults to `/share`. |
+
+## Pre-filling the form
+
+The share endpoint accepts query parameters to pre-fill form fields. This allows external services and browser extensions to populate the form automatically.
+
+| Parameter | Description                        |
+| :-------- | :--------------------------------- |
+| `url`     | URL to bookmark.                   |
+| `name`    | Title of the post.                 |
+| `content` | Body text of the post. _Optional_. |
+
+To enable services like [ShareOpenly](https://shareopenly.org) to share to your site, add a `<link>` element with `rel="share-url"` to your homepage:
+
+```html
+<link rel="share-url" href="https://example.com/share?url={url}&name={title}&content={text}">
+```
+
+Replace `https://example.com/share` with the URL of your share endpoint.
