@@ -23,7 +23,7 @@ Add `@indiekit/syndicator-indienews` to your list of plug-ins, specifying option
 }
 ```
 
-When you create a post with `mp-syndicate-to: https://news.indieweb.org/en/`, Indiekit will write `https://news.indieweb.org/en/` into the `syndication` property of your post.
+When you create a post with `mp-syndicate-to: https://news.indieweb.org/en`, Indiekit will write `https://news.indieweb.org/en` into the `syndication` property of your post.
 
 For IndieNews to discover your post, two additional things must happen:
 

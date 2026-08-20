@@ -11,7 +11,7 @@ describe("syndicator-indienews", () => {
     });
 
     it("target uid defaults to english", () => {
-      assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/en/");
+      assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/en");
     });
 
     it("target checked defaults to false", () => {
@@ -32,7 +32,7 @@ describe("syndicator-indienews", () => {
 
     it("creates one target with configured language", () => {
       assert.equal(syndicator.targets.length, 1);
-      assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/es/");
+      assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/es");
     });
 
     it("respects checked option", () => {
@@ -51,11 +51,11 @@ describe("syndicator-indienews", () => {
     });
 
     it("first target is english", () => {
-      assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/en/");
+      assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/en");
     });
 
     it("second target is spanish with checked", () => {
-      assert.equal(syndicator.targets[1].info.uid, "https://news.indieweb.org/es/");
+      assert.equal(syndicator.targets[1].info.uid, "https://news.indieweb.org/es");
       assert.equal(syndicator.targets[1].info.checked, true);
     });
   });
@@ -64,7 +64,7 @@ describe("syndicator-indienews", () => {
     it("returns the uid for the configured language", async () => {
       const syndicator = new SyndicatorIndieNews({ language: "en" });
       const result = await syndicator.targets[0].getSyndicationUrl();
-      assert.equal(result, "https://news.indieweb.org/en/");
+      assert.equal(result, "https://news.indieweb.org/en");
     });
 
     it("each target returns its own uid", async () => {
@@ -73,8 +73,8 @@ describe("syndicator-indienews", () => {
         { language: "es" },
       ]);
       const [en, es] = await Promise.all(syndicator.targets.map((t) => t.getSyndicationUrl()));
-      assert.equal(en, "https://news.indieweb.org/en/");
-      assert.equal(es, "https://news.indieweb.org/es/");
+      assert.equal(en, "https://news.indieweb.org/en");
+      assert.equal(es, "https://news.indieweb.org/es");
     });
   });
 

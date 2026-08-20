@@ -16,7 +16,7 @@
 function createTarget(options = {}) {
   const language = options.language ?? "en";
   const checked = options.checked ?? false;
-  const uid = `https://news.indieweb.org/${language}/`;
+  const uid = `https://news.indieweb.org/${language}`;
 
   return {
     name: `IndieNews (${language})`,
