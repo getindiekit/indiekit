@@ -121,9 +121,15 @@ export const IndieAuth = class {
         const { application } = request.app.locals;
         const { code, redirect, state } = request.query;
 
-        // Check redirect is to a local path
+        // Check redirect is to a local path. The character class excludes `.`
+        // and `-`, so a protocol-relative URL such as //website.example cannot
+        // match, but neither can a legitimate path such as /auth/new-password.
+        // Allow the characters a path may contain and reject a second leading
+        // slash (or a backslash, which browsers normalise to one) instead.
         if (redirect) {
-          const validRedirect = redirect.match(/^\/[\w&/=?]*$/);
+          const validRedirect = redirect.match(
+            /^\/(?![/\\])[\w&/=?.\-~:%+@#]*$/,
+          );
 
           if (!validRedirect) {
             throw IndiekitError.forbidden(
