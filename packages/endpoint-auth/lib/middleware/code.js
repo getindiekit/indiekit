@@ -2,7 +2,6 @@ import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
 
 import { verifyCode } from "../pkce.js";
-import { validateRedirect } from "../redirect.js";
 import { verifyToken } from "../token.js";
 import { getRequestParameters } from "../utils.js";
 
@@ -12,7 +11,6 @@ import { getRequestParameters } from "../utils.js";
  */
 export const codeValidator = async (request, response, next) => {
   try {
-    const { client, usePkce } = request.app.locals;
     const parameters = getRequestParameters(request);
     const { client_id, code, code_verifier, grant_type, redirect_uri } =
       parameters;
@@ -45,22 +43,7 @@ export const codeValidator = async (request, response, next) => {
       );
     }
 
-    // Validate `client_id` against that provided in authorization request
-    if (getCanonicalUrl(client_id) !== getCanonicalUrl(client.id)) {
-      throw IndiekitError.unauthorized(
-        response.locals.__("BadRequestError.invalidValue", "client_id"),
-      );
-    }
-
-    // Validate `redirect_uri`
-    const validRedirect = await validateRedirect(redirect_uri, client_id);
-    if (!validRedirect) {
-      throw IndiekitError.badRequest(
-        response.locals.__("BadRequestError.invalidValue", "redirect_uri"),
-      );
-    }
-
-    // Verify token
+    // Verify the code before reading anything from it
     try {
       request.verifiedToken = verifyToken(code);
     } catch {
@@ -69,9 +52,45 @@ export const codeValidator = async (request, response, next) => {
       );
     }
 
-    // PKCE (Proof Key for Code Exchange)
-    if (usePkce) {
-      const { code_challenge } = request.verifiedToken;
+    // An authorization code records the client it was issued to and the
+    // redirect it was issued for. A code missing either cannot be checked
+    // against the request, so it is not one this server issued.
+    if (
+      !request.verifiedToken.client_id ||
+      !request.verifiedToken.redirect_uri
+    ) {
+      throw IndiekitError.unauthorized(
+        response.locals.__("UnauthorizedError.invalidToken"),
+      );
+    }
+
+    // Validate `client_id` against the client the code was issued to. Reading
+    // this from the code rather than from application state is what ties the
+    // two requests together: `app.locals` is shared by every request the
+    // server handles, so it holds whichever authorization request happened
+    // last, which need not be the one that produced this code.
+    if (
+      getCanonicalUrl(client_id) !==
+      getCanonicalUrl(String(request.verifiedToken.client_id))
+    ) {
+      throw IndiekitError.unauthorized(
+        response.locals.__("BadRequestError.invalidValue", "client_id"),
+      );
+    }
+
+    // Validate `redirect_uri` against the one the code was issued for. It was
+    // checked against the client's metadata during the authorization request,
+    // so matching it here is what remains to be done.
+    if (redirect_uri !== request.verifiedToken.redirect_uri) {
+      throw IndiekitError.badRequest(
+        response.locals.__("BadRequestError.invalidValue", "redirect_uri"),
+      );
+    }
+
+    // PKCE (Proof Key for Code Exchange). Whether it applies is recorded in
+    // the code itself, by the presence of the challenge it was issued with.
+    const { code_challenge } = request.verifiedToken;
+    if (code_challenge) {
       const verifiedCode = verifyCode(code_verifier, code_challenge);
       if (!verifiedCode) {
         throw IndiekitError.unauthorized(

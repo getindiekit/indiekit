@@ -11,7 +11,9 @@ await mockAgent("endpoint-auth");
 const server = await testServer();
 const request = supertest.agent(server);
 
-describe("endpoint-auth POST /auth", () => {
+describe("endpoint-auth POST /auth/token", () => {
+  // Begin an authorization request as this client, so that whatever
+  // application-wide state the server keeps refers to it.
   before(async () => {
     await request
       .get("/auth")
@@ -21,27 +23,26 @@ describe("endpoint-auth POST /auth", () => {
       .query({ state: "12345" });
   });
 
-  it("Returns URL encoded profile", async () => {
+  // The authorization code records the client it was issued to. Redeeming it
+  // as a different client must fail, whatever authorization request happened
+  // most recently on the server.
+  it("Rejects a code issued to a different client", async () => {
     const code = signToken({
-      access_token: "token",
-      client_id: "https://auth-endpoint.example",
+      client_id: "https://other-client.example",
       me: "https://website.example",
-      redirect_uri: "https://auth-endpoint.example/redirect",
-      scope: "create update delete media",
-      token_type: "Bearer",
+      redirect_uri: "https://other-client.example/redirect",
+      scope: "create",
     });
-    const response = await request
-      .post("/auth")
-      .set("accept", "application/x-www-form-urlencoded")
+    const result = await request
+      .post("/auth/token")
+      .set("accept", "application/json")
       .query({ client_id: "https://auth-endpoint.example" })
       .query({ code })
       .query({ grant_type: "authorization_code" })
       .query({ redirect_uri: "https://auth-endpoint.example/redirect" });
-    const responseTextRegexp = /me=(?<me>.*)/;
-    const result = response.text.match(responseTextRegexp).groups;
 
-    assert.equal(response.status, 200);
-    assert.equal(result.me, encodeURIComponent("https://website.example"));
+    assert.notEqual(result.status, 200);
+    assert.equal(result.body.access_token, undefined);
   });
 
   after(() => server.close());
