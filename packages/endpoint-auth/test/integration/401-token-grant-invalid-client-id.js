@@ -24,7 +24,9 @@ describe("endpoint-auth POST /auth/token", () => {
   it("Returns 401 error invalid `client_id`", async () => {
     const code = signToken({
       access_token: "token",
+      client_id: "https://auth-endpoint.example",
       me: "https://website.example",
+      redirect_uri: "https://website.example/redirect",
       scope: "create update delete media",
       token_type: "Bearer",
     });

@@ -24,7 +24,9 @@ describe("endpoint-auth POST /auth/token", () => {
   it("Returns 400 error invalid `redirect_uri`", async () => {
     const code = signToken({
       access_token: "token",
+      client_id: "https://auth-endpoint.example",
       me: "https://website.example",
+      redirect_uri: "https://auth-endpoint.example/redirect",
       scope: "create update delete media",
       token_type: "Bearer",
     });
