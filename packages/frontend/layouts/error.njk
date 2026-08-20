@@ -12,8 +12,10 @@
 {% block content %}
 {{ prose({ text: content | linkTo(uri) }) }}
 
+{% if stack %}
 {{ details({
   summary: "Status code: <code>" + status + "</code>",
   text: "```\n" + stack + "\n```"
 }) }}
+{% endif %}
 {% endblock %}
