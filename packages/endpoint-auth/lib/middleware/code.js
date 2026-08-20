@@ -17,13 +17,20 @@ export const codeValidator = async (request, response, next) => {
     const { client_id, code, code_verifier, grant_type, redirect_uri } =
       parameters;
 
+    // This middleware guards two routes: the authorization endpoint, where a
+    // code is exchanged for a profile URL, and the token endpoint, where it is
+    // exchanged for an access token. Clients predating the 2020 specification
+    // perform the former without `grant_type` — indieauth.com still does — so
+    // accept its omission there. The token endpoint continues to require it.
+    const isProfileExchange = request.path === "/";
+
     // Validate presence of required parameters
-    for (const parameter of [
-      "client_id",
-      "code",
-      "grant_type",
-      "redirect_uri",
-    ]) {
+    const requiredParameters = ["client_id", "code", "redirect_uri"];
+    if (!isProfileExchange) {
+      requiredParameters.push("grant_type");
+    }
+
+    for (const parameter of requiredParameters) {
       if (!Object.keys(parameters).includes(parameter)) {
         throw IndiekitError.badRequest(
           response.locals.__("BadRequestError.missingParameter", parameter),
@@ -31,8 +38,8 @@ export const codeValidator = async (request, response, next) => {
       }
     }
 
-    // `grant_type` must equal `authorization_code`
-    if (grant_type !== "authorization_code") {
+    // `grant_type` must equal `authorization_code` where given
+    if ((grant_type ?? "authorization_code") !== "authorization_code") {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.invalidValue", "grant_type"),
       );
