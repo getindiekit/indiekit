@@ -15,5 +15,5 @@
 {{ details({
   summary: "Status code: <code>" + status + "</code>",
   text: "```\n" + stack + "\n```"
-}) }}
+}) if stack }}
 {% endblock %}

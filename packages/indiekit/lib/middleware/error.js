@@ -25,6 +25,13 @@ export const internalServer = (error, request, response, next) => {
   const status = error.status || 500;
   response.status(status);
 
+  // A stack trace describes the server: absolute paths, dependency versions and
+  // the shape of its internals. `cause` can carry more still, since it holds
+  // whatever a wrapped error was given. Neither helps whoever made the request,
+  // so send them only in development, matching how `devMode` is derived in
+  // lib/routes.js.
+  const isDevelopment = process.env.NODE_ENV === "development";
+
   // Send debug logging output to console.error
   debug.log = console.error.bind(console);
   debug("Error", error);
@@ -34,7 +41,7 @@ export const internalServer = (error, request, response, next) => {
       title: response.locals.__(`${error.name}.title:${error.name}`),
       content: error.message,
       name: error.name,
-      stack: error.stack,
+      ...(isDevelopment && { stack: error.stack }),
       status,
       uri: error.uri,
     });
@@ -44,8 +51,8 @@ export const internalServer = (error, request, response, next) => {
       error_description: error.message || error.cause?.message,
       ...(error.uri && { error_uri: error.uri }),
       ...(error.scope && { scope: error.scope }),
-      stack: cleanStack(error.stack),
-      ...(error.cause && { cause: error.cause }),
+      ...(isDevelopment && { stack: cleanStack(error.stack) }),
+      ...(isDevelopment && error.cause && { cause: error.cause }),
     });
   } else {
     response.send(error.toString());
