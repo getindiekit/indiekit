@@ -7,6 +7,7 @@ import {
   getPostData,
   getSyndicationTarget,
   hasSyndicationUrl,
+  syndicateToTargets,
 } from "../../lib/utils.js";
 
 const { client, database, mongoServer } = await testDatabase();
@@ -66,6 +67,25 @@ describe("endpoint-syndicate/lib/token", () => {
     const result = getSyndicationTarget(targets, "https://mastodon.example");
 
     assert.equal(result, undefined);
+  });
+
+  it("Syndicates to a single target given as a string", async () => {
+    // Converting mf2 to JF2 collapses a single-item array to a string, so a
+    // post sent to one target arrives here as a string rather than an array.
+    const target = {
+      info: { uid: "https://mastodon.example/" },
+      async syndicate() {
+        return "https://mastodon.example/@username/67890";
+      },
+    };
+    const publication = { syndicationTargets: [target] };
+    const properties = { "mp-syndicate-to": "https://mastodon.example/" };
+
+    const result = await syndicateToTargets(publication, properties);
+
+    assert.deepEqual(result.syndicatedUrls, [
+      "https://mastodon.example/@username/67890",
+    ]);
   });
 
   it("Checks if target already returned a syndication URL", () => {

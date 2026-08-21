@@ -70,7 +70,9 @@ export const getSyndicationTarget = (syndicationTargets, syndicateTo) => {
 export const syndicateToTargets = async (publication, properties) => {
   const { syndicationTargets } = publication;
   const syndicateTo = properties["mp-syndicate-to"];
-  const syndicateToUrls = Array.isArray ? syndicateTo : [syndicateTo];
+  const syndicateToUrls = Array.isArray(syndicateTo)
+    ? syndicateTo
+    : [syndicateTo];
   const syndicatedUrls = properties.syndication || [];
   const failedTargets = [];
 
