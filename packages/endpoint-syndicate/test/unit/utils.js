@@ -48,6 +48,25 @@ describe("endpoint-syndicate/lib/token", () => {
     );
   });
 
+  it("Gets a post with targets still awaiting syndication", async () => {
+    // A post syndicated to one of two targets keeps the failed target in
+    // `mp-syndicate-to` and gains a `syndication` URL for the one that worked.
+    const collection = database.collection("posts-partially-syndicated");
+    await collection.insertOne({
+      properties: {
+        type: "entry",
+        "mp-syndicate-to": "https://bsky.example/",
+        syndication: ["https://mastodon.example/@username/67890"],
+        url: "https://website.example/post/67890",
+      },
+    });
+
+    const result = await getPostData(collection, "");
+
+    assert.ok(result, "expected the post to be awaiting syndication");
+    assert.equal(result.properties["mp-syndicate-to"], "https://bsky.example/");
+  });
+
   it("Gets syndication target for syndication URL", () => {
     const targets = [{ info: { uid: "https://mastodon.example" } }];
     const result = getSyndicationTarget(targets, "https://mastodon.example");

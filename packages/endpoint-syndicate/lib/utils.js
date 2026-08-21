@@ -11,13 +11,15 @@ export const getPostData = async (postsCollection, url) => {
     });
   }
 
+  // A post is awaiting syndication while `mp-syndicate-to` remains: it is
+  // deleted once every target has returned a URL, and replaced with the
+  // targets that failed otherwise. Posts already syndicated to some of their
+  // targets are therefore still awaiting the rest, and `syndicateToTargets`
+  // skips the ones already done.
   const items = await postsCollection
     .find({
       "properties.mp-syndicate-to": {
         $exists: true,
-      },
-      "properties.syndication": {
-        $exists: false,
       },
       "properties.post-status": {
         $ne: "draft",
