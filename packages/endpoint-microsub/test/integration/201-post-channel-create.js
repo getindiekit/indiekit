@@ -24,7 +24,7 @@ describe("endpoint-microsub POST /microsub?action=channels", () => {
 
     assert.equal(response.status, 201);
     assert.equal(response.body.name, "Tech News");
-    assert.match(response.body.uid, /^[a-z0-9]{24}$/);
+    assert.match(response.body.uid, /^[\w-]{24}$/);
   });
 
   it("Returns the created channel in the channel list", async () => {

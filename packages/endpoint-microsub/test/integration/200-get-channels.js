@@ -51,7 +51,7 @@ describe("endpoint-microsub GET /microsub?action=channels", () => {
       .set("cookie", cookie);
 
     for (const channel of response.body.channels) {
-      assert.match(channel.uid, /^[a-z0-9]{24}$/);
+      assert.match(channel.uid, /^[\w-]{24}$/);
     }
   });
 

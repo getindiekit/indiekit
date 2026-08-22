@@ -3,7 +3,11 @@
  * @module storage/channels
  */
 
+import makeDebug from "debug";
+
 import { generateChannelUid } from "../utils/uid.js";
+
+const debug = makeDebug("indiekit:endpoint-microsub");
 
 /**
  * Get channels collection from application
@@ -188,9 +192,7 @@ export async function deleteChannel(application, uid, userId) {
   const itemsDeleted = await itemsCollection.deleteMany({
     channelId: channel._id,
   });
-  console.info(
-    `[Microsub] Deleted channel ${uid}: ${itemsDeleted.deletedCount} items`,
-  );
+  debug(`Deleted channel ${uid}: ${itemsDeleted.deletedCount} items`);
 
   const result = await collection.deleteOne({ _id: channel._id });
   return result.deletedCount > 0;
