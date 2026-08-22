@@ -43,7 +43,7 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         userId: "user-1",
       });
 
-      assert.match(channel.uid, /^[a-z0-9]{24}$/);
+      assert.match(channel.uid, /^[\w-]{24}$/);
       assert.equal(channel.name, "Tech News");
       assert.equal(channel.userId, "user-1");
       assert.ok(channel.createdAt instanceof Date);

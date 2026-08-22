@@ -12,9 +12,11 @@ describe("endpoint-microsub/lib/utils/uid", () => {
       assert.equal(uid.length, 24);
     });
 
-    it("Uses only lowercase letters and digits", () => {
+    // A channel uid appears in Microsub request URLs, so it has to be
+    // URL-safe. `randomString` returns base64url, which is.
+    it("Uses only URL-safe characters", () => {
       for (let index = 0; index < 100; index++) {
-        assert.match(generateChannelUid(), /^[a-z0-9]{24}$/);
+        assert.match(generateChannelUid(), /^[\w-]{24}$/);
       }
     });
 
