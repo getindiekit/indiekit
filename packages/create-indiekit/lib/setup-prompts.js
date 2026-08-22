@@ -49,6 +49,10 @@ export const setupPrompts = [
         value: "@indiekit/store-bitbucket",
       },
       {
+        title: "File system",
+        value: "@indiekit/store-file-system",
+      },
+      {
         title: "FTP",
         value: "@indiekit/store-ftp",
       },
