@@ -1,5 +1,7 @@
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=20.5.0
+# Adjust NODE_VERSION as desired. Indiekit requires Node.js v24.17 or later.
+# Floating on the major version keeps security updates flowing, rather than
+# pinning to a patch release that will eventually be too old to run Indiekit.
+ARG NODE_VERSION=24
 FROM node:${NODE_VERSION}-alpine
 
 # Create app directory

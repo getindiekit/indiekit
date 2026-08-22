@@ -12,6 +12,9 @@ describe("create-indiekit/lib/docker", () => {
     const result = await getDockerComposeFileContent(["FOO", "BAR"]);
 
     assert.equal(result.includes("name: indiekit"), true);
+    // Guard against regressing to an end-of-life MongoDB image: `mongo:4`
+    // resolves to v4.4.29, which predates the fix for CVE-2025-14847.
+    assert.equal(result.includes("image: mongo:8"), true);
     assert.match(result, /- FOO\n/);
     assert.match(result, /- BAR\n/);
   });
