@@ -81,6 +81,10 @@ export const syndicateToTargets = async (publication, properties) => {
     const alreadySyndicated = hasSyndicationUrl(syndicatedUrls, url);
 
     if (target && !alreadySyndicated) {
+      if (typeof target.syndicate !== "function") {
+        continue;
+      }
+
       try {
         const syndicatedUrl = await target.syndicate(properties, publication);
 
