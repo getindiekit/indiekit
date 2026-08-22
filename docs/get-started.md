@@ -32,8 +32,10 @@ A [MongoDB](https://www.mongodb.com) database is optional, but required for the 
 - Syndicating posts
 - Viewing and deleting previously uploaded media files
 
-> [!NOTE]
-> This project is known to work with MongoDB v4.4 or later. It may also work with the last openly licenced version, v4.0.3, but this has not been tested.
+> [!IMPORTANT]
+> Use a currently supported MongoDB release. Version 4.4.29 and earlier — which includes the `mongo:4` Docker tag — are affected by [CVE-2025-14847](https://www.mongodb.com/company/blog/news/mongodb-server-security-update-december-2025) (“MongoBleed”), an unauthenticated remote memory disclosure that can leak credentials and access tokens. It is fixed in 4.4.30, 5.0.32, 6.0.27, 7.0.28, 8.0.17 and 8.2.3.
+>
+> MongoDB has been licensed under the SSPL since v4.0.4. If you would rather not run SSPL-licensed software, [FerretDB](https://www.ferretdb.com) is an Apache-2.0 licensed database that implements the MongoDB wire protocol (it has not been tested with Indiekit). Note that v4.0.3, the last openly licensed MongoDB release, predates the fix above and should not be used.
 
 You don’t need access to a [Git](https://git-scm.com) repository, but some hosts can deploy and update your server automatically when you commit changes.
 
