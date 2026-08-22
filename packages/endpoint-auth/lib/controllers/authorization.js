@@ -25,12 +25,7 @@ export const authorizationController = {
       }
 
       // Validate presence of required parameters
-      for (const parameter of [
-        "client_id",
-        "redirect_uri",
-        "response_type",
-        "state",
-      ]) {
+      for (const parameter of ["client_id", "redirect_uri", "state"]) {
         if (!Object.hasOwn(request.query, parameter)) {
           throw IndiekitError.badRequest(
             response.locals.__("BadRequestError.missingParameter", parameter),
@@ -38,8 +33,14 @@ export const authorizationController = {
         }
       }
 
-      // `response_type` must be `code` (or deprecated `id`)
-      if (!/^(code|id)$/.test(String(request.query.response_type))) {
+      // `response_type` must be `code` (or deprecated `id`). Clients predating
+      // the current specification omit it entirely for authentication-only
+      // requests, which is what indieauth.com sends, so treat a missing value
+      // as `id` rather than rejecting the request. Nothing downstream branches
+      // on it: whether an access token is issued depends on the requested
+      // scope.
+      const responseType = request.query.response_type ?? "id";
+      if (!/^(code|id)$/.test(String(responseType))) {
         throw IndiekitError.badRequest(
           response.locals.__("BadRequestError.invalidValue", "response_type"),
         );
