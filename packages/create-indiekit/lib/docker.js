@@ -24,7 +24,7 @@ export const getDockerComposeFileContent = (environment) => {
         ],
       },
       mongo: {
-        image: "mongo:4",
+        image: "mongo:8",
         restart: "always",
         volumes: ["mongo:/data/db"],
         environment: [
