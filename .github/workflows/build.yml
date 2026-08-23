@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         node-version: [24.17]
-        mongodb-version: [4]
+        mongodb-version: [8]
     steps:
       - name: Remove temporary files
         run: sudo rm -rf /tmp/*
