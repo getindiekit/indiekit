@@ -10,14 +10,14 @@ const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-auth GET /auth", () => {
-  it("Accepts a request with no `response_type`", async () => {
-    // Clients predating the current specification omit `response_type` for
-    // authentication-only requests, sending an empty `scope` alongside it.
-    // indieauth.com still signs users in this way.
+  it("Accepts a request from indieauth.com with no `response_type`", async () => {
+    // indieauth.com omits `response_type` for authentication-only requests,
+    // sending an empty `scope` alongside it. Every other client is still
+    // required to send it, covered by 200-authorization-no-response-type.
     const result = await request
       .get("/auth")
-      .query({ client_id: "https://auth-endpoint.example" })
-      .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
+      .query({ client_id: "https://indieauth.com/" })
+      .query({ redirect_uri: "https://indieauth.com/auth/redirect" })
       .query({ scope: "" })
       .query({ state: "12345" });
 

@@ -1,5 +1,5 @@
 import { IndiekitError } from "@indiekit/error";
-import { getCanonicalUrl } from "@indiekit/util";
+import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 
 import { getClientInformation } from "../client.js";
 import { createRequestUri } from "../pushed-authorization-request.js";
@@ -24,22 +24,37 @@ export const authorizationController = {
         return next(true);
       }
 
+      // Deprecated exception, delete this block and restore
+      // `request.query.response_type` below: indieauth.com omits
+      // `response_type`, the pre-specification form of an authentication-only
+      // request (`id`). Its replacement, indielogin.com, sends
+      // `response_type=code` and needs none of this. `client_id` is not yet
+      // known to be a URL, so it is checked before being compared.
+      // @see {@link https://github.com/aaronpk/IndieAuth.com/blob/main/controllers/auth-web.rb#L518}
+      const clientId = String(request.query.client_id);
+      const isDeprecatedClient =
+        URL.canParse(clientId) &&
+        isSameOrigin(clientId, "https://indieauth.com");
+      const responseType =
+        request.query.response_type ?? (isDeprecatedClient ? "id" : undefined);
+
       // Validate presence of required parameters
-      for (const parameter of ["client_id", "redirect_uri", "state"]) {
-        if (!Object.hasOwn(request.query, parameter)) {
+      const requiredParameters = {
+        client_id: request.query.client_id,
+        redirect_uri: request.query.redirect_uri,
+        response_type: responseType,
+        state: request.query.state,
+      };
+
+      for (const [parameter, value] of Object.entries(requiredParameters)) {
+        if (value === undefined) {
           throw IndiekitError.badRequest(
             response.locals.__("BadRequestError.missingParameter", parameter),
           );
         }
       }
 
-      // `response_type` must be `code` (or deprecated `id`). Clients predating
-      // the current specification omit it entirely for authentication-only
-      // requests, which is what indieauth.com sends, so treat a missing value
-      // as `id` rather than rejecting the request. Nothing downstream branches
-      // on it: whether an access token is issued depends on the requested
-      // scope.
-      const responseType = request.query.response_type ?? "id";
+      // `response_type` must be `code` (or deprecated `id`)
       if (!/^(code|id)$/.test(String(responseType))) {
         throw IndiekitError.badRequest(
           response.locals.__("BadRequestError.invalidValue", "response_type"),
