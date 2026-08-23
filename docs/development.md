@@ -1,6 +1,8 @@
 # Setting up a local development environment
 
-To begin local development on the Indiekit project, clone this repository, configure a [content store](concepts#content-store), [publication preset](concepts#publication-preset) and [syndicator](concepts#syndication), and create a MongoDB database you can connect to.
+To begin local development on the Indiekit project, clone this repository, run `npm install`, then copy `.env.example` to `.env`. To run the server you will also want a [content store](concepts#content-store), [publication preset](concepts#publication-preset) and [syndicator](concepts#syndication), and a MongoDB database to connect to.
+
+Running the tests needs none of that — see [Tests](#tests).
 
 ## Project structure
 
@@ -32,42 +34,26 @@ Express waits for a resolved configuration file before starting the server.
 
 ## MongoDB
 
-Indiekit uses a MongoDB database for persistence. A convenient way to run MongoDB locally is to use [Docker Compose](https://docs.docker.com/compose/). Since the filesystem of a Docker container is ephemeral, you will need to create a [Docker volume](https://docs.docker.com/storage/volumes/). You can do this with the following docker command:
+Indiekit uses a MongoDB database for persistence. The repository ships a
+`compose.yml` that runs one, so you do not need to install MongoDB locally:
 
 ```sh
-docker volume create mongo-data
+npm run db:up
 ```
 
-Create a `docker-compose.yml` file that runs a service on an available port of your Docker host (e.g. 27018) and uses the Docker volume you have just created.
+This starts MongoDB on port 27018 of your host, storing its data in a named
+Docker volume so it survives a restart. Use `npm run db:down` to stop it, or
+`npm run db:reset` to stop it and discard the data.
 
-```yml
-version: '3.9'
-services:
-  mongo:
-    container_name: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD
-    image: mongo:7.0.11
-    network_mode: bridge
-    ports:
-    - '27018:27017'
-    restart: always
-    volumes:
-      - mongo-data:/data/db
-volumes:
-  mongo-data:
-    external: true
-```
+The port defaults to 27018 rather than 27017 so that it does not collide with
+a MongoDB already installed on your machine. Set `MONGO_PORT` to change it.
 
-This configuration tells Docker to run the `mongo` service on port 27017 of the `mongo` container, and expose port 27018 on the Docker host (e.g. your computer).
-
-You can set the necessary environment variables in a `.env` file:
+Copy `.env.example` to `.env` to get a matching `MONGO_URL`:
 
 ```dotenv
-MONGO_INITDB_ROOT_USERNAME="username"
-MONGO_INITDB_ROOT_PASSWORD="password"
-MONGO_URL="mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@localhost:27018"
+MONGO_INITDB_ROOT_USERNAME="indiekit"
+MONGO_INITDB_ROOT_PASSWORD="indiekit"
+MONGO_URL="mongodb://indiekit:indiekit@localhost:27018"
 ```
 
 > [!TIP]
@@ -75,6 +61,9 @@ MONGO_URL="mongodb://$MONGO_INITDB_ROOT_USERNAME:$MONGO_INITDB_ROOT_PASSWORD@loc
 
 > [!TIP]
 > To inspect data stored in a MongoDB database, use the [MongoDB shell](https://www.mongodb.com/products/tools/shell) or an application like [Compass](https://www.mongodb.com/products/tools/compass).
+
+> [!NOTE]
+> MongoDB is optional. Leave `MONGO_URL` unset to run Indiekit without persistence; see the [README](https://github.com/getindiekit/indiekit#readme) for which features need a database.
 
 ## Configure a content store
 
@@ -170,6 +159,12 @@ The project uses both unit and integration tests. Run tests using the following 
 ```sh
 npm test
 ```
+
+The test suite needs no setup at all: it starts its own in-memory MongoDB, so
+no database has to be running, and the `test` script supplies development
+defaults for `NODE_ENV`, `SECRET` and `PASSWORD_SECRET`. A clean checkout can
+run `npm install && npm test` straight away. Setting `SECRET` or
+`PASSWORD_SECRET` in the environment overrides the default.
 
 To run a single test suite, use `node` followed by the path to the test. For example:
 

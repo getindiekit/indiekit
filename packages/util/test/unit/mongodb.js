@@ -74,12 +74,27 @@ describe("util/lib/mongodb", async () => {
     );
   });
 
+  // Uses an in-memory server with authentication enabled rather than whatever
+  // happens to be listening on port 27017. The suite must not depend on a
+  // service it did not start: `docs/development.md` puts MongoDB on 27018, so
+  // a correctly configured machine would otherwise fail here after a
+  // 30-second server-selection timeout.
   it("Returns error if can’t connect to MongoDB client", async () => {
+    const authServer = await MongoMemoryServer.create({
+      auth: { enable: true },
+    });
     mock.method(console, "error", () => {});
 
-    await getMongodbClient("mongodb://foo:bar@localhost");
-    const result = console.error.mock.calls[0].arguments[0];
+    try {
+      const uri = authServer
+        .getUri()
+        .replace("mongodb://", "mongodb://foo:bar@");
+      await getMongodbClient(uri);
+      const result = console.error.mock.calls[0].arguments[0];
 
-    assert.equal(result, `Authentication failed.`);
+      assert.equal(result, `Authentication failed.`);
+    } finally {
+      await authServer.stop();
+    }
   });
 });
