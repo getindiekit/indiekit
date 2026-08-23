@@ -43,6 +43,16 @@ describe("util/lib/mongodb", async () => {
     assert.equal(result.hasPrev, true);
   });
 
+  // `?after=` and `?before=` arrive as strings, never as ObjectId instances,
+  // so the cursor has to coerce them itself.
+  it("Gets pagination cursor after ID given as a string", async () => {
+    const afterItem = await items.findOne({ name: "baz" });
+    const result = await getCursor(items, String(afterItem._id));
+    // bar, foo
+    assert.equal(result.items.length, 2);
+    assert.equal(result.hasPrev, true);
+  });
+
   it("Gets pagination cursor after and before IDs", async () => {
     const after = await items.findOne({ name: "baz" });
     const before = await items.findOne({ name: "foo" });
