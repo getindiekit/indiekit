@@ -29,6 +29,9 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "dev": "node --watch-path=./ packages/indiekit/bin/cli.js serve",
+    "db:up": "docker compose up --detach --wait",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down --volumes",
     "debug": "indiekit serve --debug",
     "start": "indiekit serve",
     "lint:prettier": "prettier . --check",
@@ -39,9 +42,9 @@
     "lint:css:fix": "stylelint '**/*.css' --fix",
     "lint": "npm run lint:prettier && npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:prettier:fix && npm run lint:js:fix && npm run lint:css:fix",
-    "test": "NODE_ENV=test node --test --test-reporter=spec",
-    "test:coverage": "NODE_ENV=test node --test --experimental-test-coverage",
-    "test:lcov": "NODE_ENV=test node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info"
+    "test": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --test --test-reporter=spec",
+    "test:coverage": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --test --experimental-test-coverage",
+    "test:lcov": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info"
   },
   "workspaces": [
     "helpers/*",

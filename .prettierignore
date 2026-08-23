@@ -4,3 +4,4 @@ docs/**/*.md
 **/locales/*.json
 *.html
 CHANGELOG.md
+*.env.example
