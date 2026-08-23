@@ -40,7 +40,10 @@ The share endpoint accepts query parameters to pre-fill form fields. This allows
 To enable services like [ShareOpenly](https://shareopenly.org) to share to your site, add a `<link>` element with `rel="share-url"` to your homepage:
 
 ```html
-<link rel="share-url" href="https://example.com/share?url={url}&name={title}&content={text}">
+<link
+  rel="share-url"
+  href="https://example.com/share?url={url}&name={title}&content={text}"
+/>
 ```
 
 Replace `https://example.com/share` with the URL of your share endpoint.
