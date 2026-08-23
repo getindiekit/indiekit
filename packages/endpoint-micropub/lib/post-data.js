@@ -90,6 +90,12 @@ export const postData = {
     const query = { "properties.url": url };
     const postsCollection = application?.collections?.get("posts");
 
+    if (!postsCollection) {
+      throw IndiekitError.notImplemented(
+        "Reading, updating, deleting and restoring posts requires a database",
+      );
+    }
+
     const data = await postsCollection.findOne(query);
     if (!data) {
       throw IndiekitError.notFound(url);
