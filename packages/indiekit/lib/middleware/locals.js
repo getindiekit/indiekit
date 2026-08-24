@@ -29,7 +29,7 @@ export const locals = (Indiekit) =>
       application.localeUsed = response.locals.getLocale();
       application.package = Indiekit.package;
       application.shortcuts = getShortcuts(Indiekit, response);
-      application.url ||= getUrl(request);
+      application.url = Indiekit.applicationUrl || getUrl(request);
 
       if (request.accepts("html")) {
         application.cssPath = `/assets/app-${cssHash}.css`;
