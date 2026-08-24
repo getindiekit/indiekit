@@ -35,7 +35,7 @@ describe("preset-eleventy", async () => {
 
   it("Gets publication post types", () => {
     assert.deepEqual(eleventy.postTypes.get("article").post, {
-      path: "articles/{yyyy}-{MM}-{dd}-{slug}.md",
+      path: "articles/{yyyy}/{MM}/{dd}/{slug}.md",
       url: "articles/{yyyy}/{MM}/{dd}/{slug}",
     });
   });
