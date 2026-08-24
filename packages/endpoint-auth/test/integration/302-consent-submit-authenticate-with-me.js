@@ -6,6 +6,7 @@ import { testServer } from "@indiekit-test/server";
 import supertest from "supertest";
 
 import { createPasswordHash } from "../../lib/password.js";
+import { verifyToken } from "../../lib/token.js";
 
 await mockAgent("endpoint-auth");
 const server = await testServer();
@@ -19,7 +20,7 @@ describe("endpoint-auth POST /auth/consent", () => {
     const response = await request
       .get("/auth")
       .query({ client_id: "https://auth-endpoint.example" })
-      .query({ me: "https://website.example" })
+      .query({ me: "https://another.example" })
       .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
       .query({ response_type: "code" })
       .query({ state: "12345" });
@@ -34,6 +35,8 @@ describe("endpoint-auth POST /auth/consent", () => {
       .send({ password: "foo" });
     const { host, protocol } = new URL(response.request.url);
     const issuer = encodeURIComponent(`${protocol}//${host}`);
+    const code = new URL(response.headers.location).searchParams.get("code");
+    const decoded = verifyToken(code);
 
     assert.equal(response.status, 302);
     assert.match(
@@ -41,6 +44,7 @@ describe("endpoint-auth POST /auth/consent", () => {
       /code=(.*)&iss=(.*)&state=(.*)&me=(.*)/,
     );
     assert.ok(response.headers.location.includes(`iss=${issuer}`));
+    assert.equal(decoded.me, "https://website.example/");
   });
 
   after(() => server.close());
