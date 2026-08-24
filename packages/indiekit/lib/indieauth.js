@@ -242,7 +242,11 @@ export const IndieAuth = class {
 
         next();
       } catch (error) {
-        if (request.method === "GET") {
+        const isApiRequest =
+          request.headers.authorization?.toLowerCase().startsWith("bearer ") ||
+          request.headers.accept?.includes("application/json");
+
+        if (!isApiRequest && request.method === "GET") {
           return response.redirect(
             `/session/login?redirect=${request.originalUrl}`,
           );
