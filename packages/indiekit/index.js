@@ -41,6 +41,10 @@ export const Indiekit = class {
     this.config = config;
     this.package = package_;
 
+    // Captured before any request is served: `locals` middleware assigns to
+    // `config.application.url`, so the configured value has to be read here to
+    // stay distinguishable from one derived from a request.
+    this.applicationUrl = config.application?.url;
     this.collections = new Map();
     this.endpoints = new Set();
     this.installedPlugins = new Set();
