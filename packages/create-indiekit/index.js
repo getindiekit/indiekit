@@ -26,7 +26,17 @@ export async function init() {
   log(`${styleText("green", ">")} ${styleText("white", "Gathering details…")}`);
 
   // Ask setup questions
-  const setup = await prompts(setupPrompts);
+  //
+  // Without `onCancel`, cancelling resolves with whatever has been answered so
+  // far, so a cancelled run carries on and scaffolds using empty answers.
+  const setup = await prompts(setupPrompts, {
+    onCancel() {
+      const error = new Error("Setup cancelled.");
+      error.code = "ERR_SETUP_CANCELLED";
+
+      throw error;
+    },
+  });
 
   // Get values for package.json based on answers
   const { config, dependencies } = await getPackageValues(setup);
