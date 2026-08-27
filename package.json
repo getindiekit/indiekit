@@ -105,7 +105,7 @@
     "stylelint-config-recommended": "^18.0.0",
     "stylelint-order": "^8.1.1",
     "supertest": "^7.2.2",
-    "undici": "7.29.0",
+    "undici": "8.9.0",
     "vitepress": "^1.6.4"
   },
   "optionalDependencies": {
