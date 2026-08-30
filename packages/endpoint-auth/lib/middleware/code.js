@@ -65,10 +65,8 @@ export const codeValidator = async (request, response, next) => {
     }
 
     // Validate `client_id` against the client the code was issued to. Reading
-    // this from the code rather than from application state is what ties the
-    // two requests together: `app.locals` is shared by every request the
-    // server handles, so it holds whichever authorization request happened
-    // last, which need not be the one that produced this code.
+    // it from the code, rather than from state shared across requests, is what
+    // ties this exchange to the authorization request that produced the code.
     if (
       getCanonicalUrl(client_id) !==
       getCanonicalUrl(String(request.verifiedToken.client_id))

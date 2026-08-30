@@ -10,9 +10,9 @@ const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-auth POST /auth/token", () => {
-  // No authorization request precedes this exchange, so nothing has populated
-  // `request.app.locals`. The response should describe the problem, not fail
-  // with an unhandled error.
+  // No authorization request precedes this exchange, so the code itself has to
+  // carry everything needed to validate it. The response should describe the
+  // problem, not fail with an unhandled error.
   it("Returns an error, not 500, with no preceding authorization request", async () => {
     const code = signToken({
       client_id: "https://client.example",
