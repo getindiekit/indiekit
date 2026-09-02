@@ -42,6 +42,12 @@ Available for [Android](https://play.google.com/store/apps/details?id=blog.micro
 
 Available at <https://micropublish.net>.
 
+## Plume 
+Browser extension
+
+Post to your IndieWeb blog from any page — toolbar composer or right-click capture. Cross-browser, multi-account
+Available at <https://rmdes.github.io/plume/>
+
 ## Sparkles
 
 ![Sparkles icon](/clients/sparkles.png){.icon}
