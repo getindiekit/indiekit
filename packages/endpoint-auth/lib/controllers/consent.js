@@ -1,6 +1,7 @@
 import process from "node:process";
 
 import { IndiekitError } from "@indiekit/error";
+import { getCanonicalUrl } from "@indiekit/util";
 import { validationResult } from "express-validator";
 
 import { getRequestUriData } from "../pushed-authorization-request.js";
@@ -47,7 +48,7 @@ export const consentController = {
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
   post(request, response) {
-    const { application } = request.app.locals;
+    const { application, publication } = request.app.locals;
 
     let scope = request.body?.scope;
     const {
@@ -78,13 +79,16 @@ export const consentController = {
       scope = scope.join(" ");
     }
 
+    // Always use canonical publication URL, per IndieAuth spec §5.2
+    const canonicalMe = getCanonicalUrl(publication.me);
+
     // Create authorization code
     const code = signToken({
       client_id,
       ...(code_challenge && { code_challenge }),
       ...(code_challenge_method && { code_challenge_method }),
       jti: crypto.randomUUID(),
-      me,
+      me: canonicalMe,
       redirect_uri,
       ...(scope && { scope }),
     });
