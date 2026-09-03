@@ -11,20 +11,27 @@
 /**
  * Create a single IndieNews syndicator target for a given language.
  * @param {IndieNewsPluginOptions} options - Options object (per language)
+ * @param {boolean} includeLanguage - Whether to include the language in the target name
  * @returns {object} Syndicator target
  */
-function createTarget(options = {}) {
+function createTarget(options = {}, includeLanguage) {
   const language = options.language ?? "en";
+  const languageName = new Intl.DisplayNames([language], {
+    type: "language",
+  }).of(language);
+  const name = includeLanguage
+    ? `IndieNews (${languageName ?? language})`
+    : "IndieNews";
   const checked = options.checked ?? false;
   const uid = `https://news.indieweb.org/${language}`;
 
   return {
-    name: `IndieNews (${language})`,
+    name,
 
     get info() {
       return {
         checked,
-        name: `IndieNews (${language})`,
+        name,
         uid,
         service: {
           name: "IndieNews",
@@ -47,7 +54,10 @@ export default class SyndicatorIndieNews {
    * @param {IndieNewsPluginOptions | IndieNewsPluginOptions[]} [options] - Plug-in options, or array of options for multiple languages
    */
   constructor(options = {}) {
-    this.targets = [options].flat().map((targetOptions) => createTarget(targetOptions));
+    const targetOptions = [options].flat();
+    this.targets = targetOptions.map((options) =>
+      createTarget(options, targetOptions.length > 1),
+    );
   }
 
   /**

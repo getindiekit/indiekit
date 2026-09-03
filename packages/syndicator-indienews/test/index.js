@@ -8,6 +8,8 @@ describe("syndicator-indienews", () => {
 
     it("creates one target", () => {
       assert.equal(syndicator.targets.length, 1);
+      assert.equal(syndicator.targets[0].name, "IndieNews");
+      assert.equal(syndicator.targets[0].info.name, "IndieNews");
     });
 
     it("target uid defaults to english", () => {
@@ -32,6 +34,8 @@ describe("syndicator-indienews", () => {
 
     it("creates one target with configured language", () => {
       assert.equal(syndicator.targets.length, 1);
+      assert.equal(syndicator.targets[0].name, "IndieNews");
+      assert.equal(syndicator.targets[0].info.name, "IndieNews");
       assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/es");
     });
 
@@ -51,12 +55,28 @@ describe("syndicator-indienews", () => {
     });
 
     it("first target is english", () => {
+      assert.equal(syndicator.targets[0].name, "IndieNews (English)");
+      assert.equal(syndicator.targets[0].info.name, "IndieNews (English)");
       assert.equal(syndicator.targets[0].info.uid, "https://news.indieweb.org/en");
     });
 
     it("second target is spanish with checked", () => {
+      assert.equal(syndicator.targets[1].name, "IndieNews (español)");
+      assert.equal(syndicator.targets[1].info.name, "IndieNews (español)");
       assert.equal(syndicator.targets[1].info.uid, "https://news.indieweb.org/es");
       assert.equal(syndicator.targets[1].info.checked, true);
+    });
+  });
+
+  describe("unsupported language", () => {
+    const syndicator = new SyndicatorIndieNews([
+      { language: "en" },
+      { language: "xx" },
+    ]);
+
+    it("uses language code in target name", () => {
+      assert.equal(syndicator.targets[1].name, "IndieNews (xx)");
+      assert.equal(syndicator.targets[1].info.name, "IndieNews (xx)");
     });
   });
 
