@@ -16,11 +16,18 @@
  */
 function createTarget(options = {}, includeLanguage) {
   const language = options.language ?? "en";
-  const languageName = new Intl.DisplayNames([language], {
-    type: "language",
-  }).of(language);
+  let languageName = language;
+
+  try {
+    languageName = new Intl.DisplayNames([language], {
+      type: "language",
+    }).of(language) ?? language;
+  } catch {
+    // Use the configured code when it is not a valid language tag.
+  }
+
   const name = includeLanguage
-    ? `IndieNews (${languageName ?? language})`
+    ? `IndieNews (${languageName})`
     : "IndieNews";
   const checked = options.checked ?? false;
   const uid = `https://news.indieweb.org/${language}`;

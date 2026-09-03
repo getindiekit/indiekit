@@ -80,6 +80,18 @@ describe("syndicator-indienews", () => {
     });
   });
 
+  describe("invalid language", () => {
+    const syndicator = new SyndicatorIndieNews([
+      { language: "en" },
+      { language: "not a language tag" },
+    ]);
+
+    it("uses the raw language code in target name", () => {
+      assert.equal(syndicator.targets[1].name, "IndieNews (not a language tag)");
+      assert.equal(syndicator.targets[1].info.name, "IndieNews (not a language tag)");
+    });
+  });
+
   describe("getSyndicationUrl", () => {
     it("returns the uid for the configured language", async () => {
       const syndicator = new SyndicatorIndieNews({ language: "en" });
