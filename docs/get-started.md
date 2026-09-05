@@ -129,6 +129,9 @@ Follow these steps to create this value:
 3. enter the password you want to use and click ‘Generate password secret’.
 4. copy the value shown and set it for `PASSWORD_SECRET` in your environment variables.
 
+> [!WARNING]
+> The generated value contains `$` characters, which Docker Compose and direnv read as the start of a variable. In an `.env` or `.envrc` file, wrap the value in single quotes (`PASSWORD_SECRET='…'`); in `compose.yml`, write each `$` as `$$`. Otherwise everything after the third `$` is silently dropped and you will not be able to sign in. The `.env` file created by `npm create indiekit` is already quoted.
+
 #### `MONGO_URL` (optional)
 
 A [MongoDB connection string](https://www.mongodb.com/docs/manual/reference/connection-string/) if you want to use features that require a database.
