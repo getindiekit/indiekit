@@ -71,5 +71,6 @@ export const testConfig = async (options) => {
     "@indiekit/endpoint-webmention-io": {
       token: "abcd1234",
     },
+    "@indiekit/endpoint-auth": options["@indiekit/endpoint-auth"],
   };
 };
