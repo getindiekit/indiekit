@@ -8,7 +8,7 @@ export const postTypeCount = {
    * @returns {Promise<object>} Post count
    */
   async get(postsCollection, properties) {
-    if (!postsCollection || !postsCollection.count()) {
+    if (!postsCollection) {
       console.warn("No database configuration provided");
       console.info(
         "See https://getindiekit.com/configuration/application/#mongodburl",
