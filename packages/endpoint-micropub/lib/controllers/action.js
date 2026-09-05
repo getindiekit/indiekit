@@ -132,11 +132,16 @@ export const actionController = async (request, response, next) => {
         response.locals.__("NotFoundError.record", error.message),
       );
     } else if (error.name === "NotImplementedError") {
-      // Hoist unsupported post type error to controller to localise response
-      nextError = IndiekitError.notImplemented(
-        response.locals.__("NotImplementedError.postType", error.message),
-        { uri: "https://getindiekit.com/configuration/post-types" },
-      );
+      // Hoist not implemented errors to controller to localise response
+      nextError =
+        error.cause === "database"
+          ? IndiekitError.notImplemented(
+              response.locals.__("NotImplementedError.database"),
+            )
+          : IndiekitError.notImplemented(
+              response.locals.__("NotImplementedError.postType", error.message),
+              { uri: "https://getindiekit.com/configuration/post-types" },
+            );
     }
 
     return next(nextError);

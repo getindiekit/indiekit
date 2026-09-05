@@ -91,9 +91,8 @@ export const postData = {
     const postsCollection = application?.collections?.get("posts");
 
     if (!postsCollection) {
-      throw IndiekitError.notImplemented(
-        "Reading, updating, deleting and restoring posts requires a database",
-      );
+      // Localised by the controller; `cause` tells it which case this is
+      throw IndiekitError.notImplemented("database", { cause: "database" });
     }
 
     const data = await postsCollection.findOne(query);
