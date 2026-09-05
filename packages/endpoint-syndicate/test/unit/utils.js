@@ -126,4 +126,23 @@ describe("endpoint-syndicate/lib/token", () => {
       false,
     );
   });
+
+  it("Skips syndicator target without syndicate method", async () => {
+    const targetWithoutSyndicate = {
+      info: { uid: "https://example.com/" },
+      // no syndicate method
+    };
+    const publication = {
+      syndicationTargets: [targetWithoutSyndicate],
+    };
+    const properties = {
+      "mp-syndicate-to": ["https://example.com/"],
+      url: "https://me.example/post/1",
+    };
+
+    const result = await syndicateToTargets(publication, properties);
+
+    assert.deepEqual(result.syndicatedUrls, []);
+    assert.equal(result.failedTargets, undefined);
+  });
 });
