@@ -2,7 +2,7 @@
  * Get post data
  * @param {object} postsCollection - Posts database collection
  * @param {string} url - URL of existing post (optional)
- * @returns {Promise<object>} Post data for given URL else recently published post
+ * @returns {Promise<object>} Post data for given URL else oldest post awaiting syndication
  */
 export const getPostData = async (postsCollection, url) => {
   if (url) {
@@ -15,7 +15,8 @@ export const getPostData = async (postsCollection, url) => {
   // deleted once every target has returned a URL, and replaced with the
   // targets that failed otherwise. Posts already syndicated to some of their
   // targets are therefore still awaiting the rest, and `syndicateToTargets`
-  // skips the ones already done.
+  // skips the ones already done. Oldest first, so a backlog is syndicated in
+  // the order it was published.
   const items = await postsCollection
     .find({
       "properties.mp-syndicate-to": {
@@ -25,7 +26,7 @@ export const getPostData = async (postsCollection, url) => {
         $ne: "draft",
       },
     })
-    .sort({ "properties.published": -1 })
+    .sort({ "properties.published": 1 })
     .limit(1)
     .toArray();
 
