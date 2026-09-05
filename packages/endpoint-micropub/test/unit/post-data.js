@@ -68,10 +68,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
   it("Throws reading post data without a database", async () => {
     await assert.rejects(
       postData.read({ ...application, collections: undefined }, url),
-      {
-        message:
-          "Reading, updating, deleting and restoring posts requires a database",
-      },
+      { cause: "database", message: "database" },
     );
   });
 
