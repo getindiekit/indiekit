@@ -1,10 +1,8 @@
 import { Buffer } from "node:buffer";
 
-import { sanitise, ISO_6709_RE } from "@indiekit/util";
-import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
+import { getObjectId, sanitise, ISO_6709_RE } from "@indiekit/util";
 import formatcoords from "formatcoords";
 
-import { endpoint } from "./endpoint.js";
 import { statusTypes } from "./status-types.js";
 
 /**
@@ -151,25 +149,30 @@ export const getPostName = (publication, properties) => {
 };
 
 /**
- * Query Micropub endpoint for post data
- * @param {string} uid - Item UID
- * @param {string} micropubEndpoint - Micropub endpoint
- * @param {string} accessToken - Access token
- * @returns {Promise<object>} JF2 properties
+ * Get post properties
+ * @param {string} uid - Post ID
+ * @param {object} application - Application configuration
+ * @returns {Promise<object|false>} JF2 properties, else false if not found
  */
-export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
-  const micropubUrl = new URL(micropubEndpoint);
-  micropubUrl.searchParams.append("q", "source");
-
-  const micropubResponse = await endpoint.get(micropubUrl.href, accessToken);
-
-  if (micropubResponse?.items?.length > 0) {
-    const jf2 = mf2tojf2(micropubResponse);
-    const items = jf2.children || [jf2];
-    return items.find((item) => item.uid === uid);
+export const getPostProperties = async (uid, application) => {
+  const postsCollection = application?.collections?.get("posts");
+  if (!postsCollection) {
+    return false;
   }
 
-  return false;
+  let postData;
+  try {
+    postData = await postsCollection.findOne({ _id: getObjectId(uid) });
+  } catch {
+    // Not a valid ObjectId
+    return false;
+  }
+
+  if (!postData?.properties) {
+    return false;
+  }
+
+  return { ...postData.properties, uid: postData._id.toString() };
 };
 
 /**

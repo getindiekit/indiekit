@@ -54,11 +54,7 @@ export const postData = {
       const { action, uid } = request.params;
       const { access_token, scope } = request.session;
 
-      const properties = await getPostProperties(
-        uid,
-        application.micropubEndpoint,
-        access_token,
-      );
+      const properties = await getPostProperties(uid, application);
 
       if (!properties) {
         throw IndiekitError.notFound(response.locals.__("NotFoundError.page"));
