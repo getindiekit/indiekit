@@ -24,7 +24,9 @@ describe("endpoint-auth POST /auth/token", () => {
   it("Returns JSON access token", async () => {
     const code = signToken({
       access_token: "token",
+      client_id: "https://auth-endpoint.example",
       me: "https://website.example",
+      redirect_uri: "https://auth-endpoint.example/redirect",
       scope: "create update delete media",
       token_type: "Bearer",
     });
