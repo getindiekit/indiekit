@@ -44,24 +44,27 @@ export default class MastodonSyndicator {
   }
 
   get info() {
+    const info = {
+      checked: this.options.checked,
+      service: {
+        name: "Mastodon",
+        photo: "/assets/@indiekit-syndicator-mastodon/icon.svg",
+      },
+    };
+
+    if (!URL.canParse(this.options.url)) {
+      info.error = "Valid server URL required";
+      return info;
+    }
+
     const user = this.#user;
     const url = this.#url;
     const uid = `${url.protocol}//${path.join(url.hostname, user)}`;
 
-    const info = {
-      checked: this.options.checked,
-      name: `${user}@${url.hostname}`,
-      uid,
-      service: {
-        name: "Mastodon",
-        photo: "/assets/@indiekit-syndicator-mastodon/icon.svg",
-        url: url.href,
-      },
-      user: {
-        name: user,
-        url: uid,
-      },
-    };
+    info.name = `${user}@${url.hostname}`;
+    info.uid = uid;
+    info.service.url = url.href;
+    info.user = { name: user, url: uid };
 
     if (!user) {
       info.error = "User name required";

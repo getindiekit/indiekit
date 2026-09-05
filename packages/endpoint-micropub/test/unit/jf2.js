@@ -519,4 +519,18 @@ describe("endpoint-micropub/lib/jf2", () => {
 
     assert.equal(result.name, "What I had for lunch");
   });
+
+  it("Skips syndication target whose info can’t be read getting syndicate-to property", () => {
+    const uid = "https://mastodon.example/@username";
+    const result = getSyndicateToProperty({ "mp-syndicate-to": [uid] }, [
+      {
+        get info() {
+          throw new Error("Valid server URL required");
+        },
+      },
+      { info: { uid } },
+    ]);
+
+    assert.deepEqual(result, [uid]);
+  });
 });

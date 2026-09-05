@@ -19,12 +19,22 @@ export const getConfig = (application, publication) => {
     "syndicate-to",
   ];
 
-  // Ensure syndication targets use absolute URLs
-  const syndicateTo = syndicationTargets.map((target) => target.info);
-  for (const info of syndicateTo) {
-    if (info.service && info.service.photo) {
+  // Ensure syndication targets use absolute URLs. A target whose `info`
+  // can’t be read is left out rather than failing the whole query.
+  const syndicateTo = [];
+  for (const target of syndicationTargets) {
+    let info;
+    try {
+      info = target.info;
+    } catch {
+      continue;
+    }
+
+    if (info.service?.photo) {
       info.service.photo = new URL(info.service.photo, url).href;
     }
+
+    syndicateTo.push(info);
   }
 
   return {
