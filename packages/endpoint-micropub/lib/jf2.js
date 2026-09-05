@@ -316,7 +316,13 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
   const property = [];
 
   for (const target of syndicationTargets) {
-    const { uid } = target.info;
+    let uid;
+    try {
+      ({ uid } = target.info);
+    } catch {
+      // A target whose `info` can’t be read can’t be syndicated to
+      continue;
+    }
 
     if (requested.includes(uid)) {
       property.push(uid);

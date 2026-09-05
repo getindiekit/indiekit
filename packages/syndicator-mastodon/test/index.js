@@ -45,6 +45,16 @@ describe("syndicator-mastodon", () => {
     assert.equal(result.info.error, "User name required");
   });
 
+  it("Returns error information if server URL invalid", () => {
+    const result = new MastodonSyndicator({
+      accessToken: "token",
+      url: "",
+      user: "username",
+    });
+
+    assert.equal(result.info.error, "Valid server URL required");
+  });
+
   it("Gets plug-in installation prompts", () => {
     assert.equal(
       mastodon.prompts[0].message,
