@@ -67,6 +67,28 @@ describe("endpoint-syndicate/lib/token", () => {
     assert.equal(result.properties["mp-syndicate-to"], "https://bsky.example/");
   });
 
+  it("Gets oldest post awaiting syndication first", async () => {
+    const collection = database.collection("posts-awaiting-syndication");
+    await collection.insertMany(
+      [
+        "2023-01-26T12:00:00Z",
+        "2023-01-26T10:00:00Z",
+        "2023-01-26T11:00:00Z",
+      ].map((published, index) => ({
+        properties: {
+          type: "entry",
+          "mp-syndicate-to": "https://mastodon.example/",
+          published,
+          url: `https://website.example/post/${index}`,
+        },
+      })),
+    );
+
+    const result = await getPostData(collection, "");
+
+    assert.equal(result.properties.published, "2023-01-26T10:00:00Z");
+  });
+
   it("Gets syndication target for syndication URL", () => {
     const targets = [{ info: { uid: "https://mastodon.example" } }];
     const result = getSyndicationTarget(targets, "https://mastodon.example");
