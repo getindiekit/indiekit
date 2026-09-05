@@ -168,4 +168,31 @@ describe("endpoint-micropub/lib/post-data", async () => {
       },
     );
   });
+  it("Throws error updating post data for non-configured post type", async () => {
+    publication.postTypes = {};
+
+    await assert.rejects(
+      postData.update(application, publication, url, {
+        add: { category: ["baz"] },
+      }),
+      { message: "note" },
+    );
+  });
+
+  it("Throws error deleting post data for non-configured post type", async () => {
+    publication.postTypes = {};
+
+    await assert.rejects(postData.delete(application, publication, url), {
+      message: "note",
+    });
+  });
+
+  it("Throws error undeleting post data for non-configured post type", async () => {
+    await postData.delete(application, publication, url);
+    publication.postTypes = {};
+
+    await assert.rejects(postData.undelete(application, publication, url), {
+      message: "note",
+    });
+  });
 });

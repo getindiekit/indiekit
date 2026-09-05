@@ -11,6 +11,21 @@ import { getPostTemplateProperties, renderPath } from "./utils.js";
 
 const debug = makeDebug("indiekit:endpoint-micropub:post-data");
 
+/**
+ * Get post type configuration, which must include a post path
+ * @param {object} postTypes - Publication post types
+ * @param {string} type - Post type
+ * @returns {object} Post type configuration
+ */
+const getTypeConfig = (postTypes, type) => {
+  const typeConfig = postTypes[type];
+  if (!typeConfig?.post?.path) {
+    throw IndiekitError.notImplemented(type);
+  }
+
+  return typeConfig;
+};
+
 export const postData = {
   /**
    * Create post data
@@ -40,10 +55,7 @@ export const postData = {
     properties["post-type"] = type;
 
     // Get post type configuration
-    const typeConfig = postTypes[type];
-    if (!typeConfig || !typeConfig.post?.path) {
-      throw IndiekitError.notImplemented(type);
-    }
+    const typeConfig = getTypeConfig(postTypes, type);
 
     // Post paths
     const path = await renderPath(
@@ -150,7 +162,7 @@ export const postData = {
 
     // Post type
     const type = getPostType(postTypes, properties);
-    const typeConfig = postTypes[type];
+    const typeConfig = getTypeConfig(postTypes, type);
     properties["post-type"] = type;
 
     // Post paths
@@ -220,7 +232,7 @@ export const postData = {
 
     // Post type
     const type = properties["post-type"];
-    const typeConfig = postTypes[type];
+    const typeConfig = getTypeConfig(postTypes, type);
 
     // Post paths
     const path = await renderPath(
@@ -262,7 +274,7 @@ export const postData = {
 
     // Post type
     const type = properties["post-type"];
-    const typeConfig = postTypes[type];
+    const typeConfig = getTypeConfig(postTypes, type);
 
     // Post paths
     const path = await renderPath(
