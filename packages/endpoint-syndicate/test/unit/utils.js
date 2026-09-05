@@ -126,4 +126,17 @@ describe("endpoint-syndicate/lib/token", () => {
       false,
     );
   });
+
+  it("Ignores syndication values that aren’t URLs", () => {
+    const syndication = ["twitter", "https://mastodon.example/@username/67890"];
+
+    assert.equal(
+      hasSyndicationUrl(syndication, "https://mastodon.example"),
+      true,
+    );
+    assert.equal(
+      hasSyndicationUrl(["twitter"], "https://mastodon.example"),
+      false,
+    );
+  });
 });

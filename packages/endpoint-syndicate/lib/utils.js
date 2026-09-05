@@ -40,6 +40,11 @@ export const getPostData = async (postsCollection, url) => {
  */
 export const hasSyndicationUrl = (syndicatedUrls, syndicateTo) => {
   return syndicatedUrls.some((url) => {
+    // `syndication` is stored as given, so may hold values that aren’t URLs
+    if (!URL.canParse(url)) {
+      return false;
+    }
+
     const { origin } = new URL(url);
     return syndicateTo.includes(origin);
   });
