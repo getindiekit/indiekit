@@ -1,6 +1,5 @@
 import path from "node:path";
 
-import { IndiekitError } from "@indiekit/error";
 import brevity from "brevity";
 import { htmlToText } from "html-to-text";
 
@@ -79,18 +78,15 @@ export const createStatus = (properties, options = {}) => {
     parameters.mediaIds = mediaIds;
   }
 
-  // If post is in reply to a status, add respective parameter
+  // If post is in reply to a status on this server, add respective parameter.
+  // Replies to statuses on other servers are resolved before posting.
   if (properties["in-reply-to"]) {
     const inReplyTo = properties["in-reply-to"];
     const inReplyToHostname = new URL(inReplyTo).hostname;
     const serverHostname = new URL(serverUrl).hostname;
 
     if (inReplyToHostname === serverHostname) {
-      // Reply to status
-      const statusId = getStatusIdFromUrl(inReplyTo);
-      parameters.inReplyToId = statusId;
-    } else {
-      throw IndiekitError.badRequest("Not a reply to a URL at this target");
+      parameters.inReplyToId = getStatusIdFromUrl(inReplyTo);
     }
   }
 
