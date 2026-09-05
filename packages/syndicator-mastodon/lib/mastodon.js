@@ -34,6 +34,27 @@ export class Mastodon {
   }
 
   /**
+   * Resolve the URL of a status on another server to a status ID on this one
+   *
+   * Searching with `resolve` asks the server to fetch the status over
+   * ActivityPub if it hasn’t seen it before.
+   * @param {string} statusUrl - URL of status on another server
+   * @returns {Promise<string|undefined>} Status ID, if resolved
+   * @see {@link https://docs.joinmastodon.org/methods/search/}
+   */
+  async resolveRemoteStatus(statusUrl) {
+    const { v2 } = this.#client();
+    const { statuses } = await v2.search.list({
+      q: statusUrl,
+      type: "statuses",
+      resolve: true,
+      limit: 1,
+    });
+
+    return statuses[0]?.id;
+  }
+
+  /**
    * Post a favourite
    * @param {string} statusUrl - URL of status to favourite
    * @returns {Promise<string>} Mastodon status URL
@@ -165,6 +186,15 @@ export class Mastodon {
       mediaIds,
       serverUrl: this.serverUrl,
     });
+
+    // Thread reply to a status on another server, if it can be resolved
+    const inReplyTo = properties["in-reply-to"];
+    if (status && inReplyTo && !isSameOrigin(inReplyTo, this.serverUrl)) {
+      const statusId = await this.resolveRemoteStatus(inReplyTo);
+      if (statusId) {
+        status.inReplyToId = statusId;
+      }
+    }
 
     if (status) {
       return this.postStatus(status);
