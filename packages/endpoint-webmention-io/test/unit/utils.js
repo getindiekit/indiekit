@@ -55,6 +55,17 @@ describe("endpoint-webmention-io/lib/utils", () => {
         "another.example/likes/1",
       );
     });
+
+    await t.test("from author name if author URL isn’t a URL", () => {
+      assert.equal(
+        getAuthorName({ author: { name: "Paul", url: "paul" } }),
+        "Paul",
+      );
+    });
+
+    await t.test("from author URL if it isn’t a URL", () => {
+      assert.equal(getAuthorName({ author: { url: "paul" } }), "paul");
+    });
   });
 
   it("Normalises paragraphs", async (t) => {

@@ -25,5 +25,15 @@ describe("endpoint-webmention-io GET /webmentions", () => {
     assert.equal(result.includes("This looks interesting"), true);
   });
 
+  it("Omits avatar if author has no photo", async () => {
+    const response = await request
+      .get("/webmentions")
+      .set("cookie", testCookie());
+    const dom = new JSDOM(response.text);
+    const result = dom.window.document.querySelectorAll("img.avatar");
+
+    assert.equal(result.length, 0);
+  });
+
   after(() => server.close());
 });
