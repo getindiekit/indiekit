@@ -35,6 +35,7 @@ export const webmentionsController = (options) => {
         headers: {
           accept: "application/json",
         },
+        signal: AbortSignal.timeout(15_000),
       });
 
       if (!endpointResponse.ok) {
@@ -60,9 +61,9 @@ export const webmentionsController = (options) => {
           item.description = { html };
           item.published ||= item["wm-received"];
           item.user = {
-            avatar: { src: item.author.photo },
+            ...(item.author?.photo && { avatar: { src: item.author.photo } }),
             name: getAuthorName(item),
-            url: item.author.url,
+            url: item.author?.url,
           };
 
           return item;

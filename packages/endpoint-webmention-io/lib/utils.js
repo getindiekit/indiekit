@@ -50,11 +50,17 @@ export const getMentionTitle = (jf2) => {
  * @returns {string} Mention title
  */
 export const getAuthorName = (jf2) => {
-  let url = jf2.author?.url || jf2.url;
-  url = new URL(url);
-  url = url.hostname + url.pathname.replace(/\/$/, "");
+  if (jf2.author?.name) {
+    return jf2.author.name;
+  }
 
-  return jf2.author?.name || url;
+  const url = jf2.author?.url || jf2.url;
+  if (!URL.canParse(url)) {
+    return url;
+  }
+
+  const { hostname, pathname } = new URL(url);
+  return hostname + pathname.replace(/\/$/, "");
 };
 
 /**
