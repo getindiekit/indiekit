@@ -56,7 +56,7 @@
   }
 
   & pre {
-    background-color: var(--color-offset);
+    --syntax-background: var(--color-offset);
     border-inline-start: var(--border-width-thickest) solid var(--color-outline);
     font: var(--font-code);
     overflow: scroll;
