@@ -1,3 +1,5 @@
+import { highlightAll } from "microlighter";
+
 import { AddAnotherComponent } from "../components/add-another/index.js";
 import { CheckboxesFieldComponent } from "../components/checkboxes/index.js";
 import { ErrorSummaryComponent } from "../components/error-summary/index.js";
@@ -21,3 +23,5 @@ customElements.define("radios-field", RadiosFieldComponent);
 customElements.define("share-preview", SharePreviewComponent);
 customElements.define("tag-input-field", TagInputFieldComponent);
 customElements.define("textarea-field", TextareaFieldComponent);
+
+highlightAll();

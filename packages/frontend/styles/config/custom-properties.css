@@ -64,15 +64,6 @@ html {
   --color-selection: hsl(var(--tint-yellow) 50% / 30%);
   --color-shadow: hsl(var(--tint-neutral) 10% / 0.15);
 
-  /* Syntax highlighting */
-  --color-token-comment: var(--color-on-offset);
-  --color-token-operator: var(--color-on-background);
-  --color-token-function: #900;
-  --color-token-keyword: #069;
-  --color-token-selector: #009;
-  --color-token-string: #c06;
-  --color-token-variable: #399;
-
   /* Fluid type scale */
   /* clamp(min=320, preferred, max=960) */
   --font-size-xs: clamp(0.75rem, 0.6875rem + 0.3125vw, 0.875rem); /* 12 → 14 */
