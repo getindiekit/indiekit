@@ -7,6 +7,7 @@ import { introspectionController } from "./lib/controllers/introspection.js";
 import { metadataController } from "./lib/controllers/metadata.js";
 import { passwordController } from "./lib/controllers/password.js";
 import { tokenController } from "./lib/controllers/token.js";
+import { userinfoController } from "./lib/controllers/userinfo.js";
 import { codeValidator } from "./lib/middleware/code.js";
 import { hasSecret } from "./lib/middleware/secret.js";
 import {
@@ -29,11 +30,14 @@ export default class AuthorizationEndpoint {
   }
 
   get routesPublic() {
+    const authorization = authorizationController(this.options);
+    const token = tokenController(this.options);
+
     router.use(hasSecret);
 
     // Authorization
-    router.get("/", authorizationController.get, documentationController);
-    router.post("/", codeValidator, authorizationController.post);
+    router.get("/", authorization.get, documentationController);
+    router.post("/", codeValidator, authorization.post);
     router.get("/consent", consentController.get);
     router.post("/consent", consentValidator, consentController.post);
     router.get("/new-password", passwordController.get);
@@ -41,7 +45,8 @@ export default class AuthorizationEndpoint {
 
     // Authentication
     router.get("/token", introspectionController.post);
-    router.post("/token", codeValidator, tokenController.post);
+    router.post("/token", codeValidator, token.post);
+    router.get("/userinfo", userinfoController(this.options));
 
     // Verification
     router.post("/introspect", introspectionController.post);
@@ -77,6 +82,11 @@ export default class AuthorizationEndpoint {
     // Only mount if token endpoint not already configured
     if (!Indiekit.config.application.tokenEndpoint) {
       Indiekit.config.application.tokenEndpoint = `${this.mountPath}/token`;
+    }
+
+    // Only mount if user information endpoint not already configured
+    if (!Indiekit.config.application.userinfoEndpoint) {
+      Indiekit.config.application.userinfoEndpoint = `${this.mountPath}/userinfo`;
     }
   }
 }

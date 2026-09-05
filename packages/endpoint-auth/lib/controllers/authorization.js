@@ -2,10 +2,16 @@ import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 
 import { getClientInformation } from "../client.js";
+import { getProfileInformation } from "../profile.js";
 import { createRequestUri } from "../pushed-authorization-request.js";
 import { validateRedirect } from "../redirect.js";
 
-export const authorizationController = {
+/**
+ * @param {object} [options] - Plug-in options
+ * @param {object} [options.profile] - Configured profile information
+ * @returns {object} Controller
+ */
+export const authorizationController = (options = {}) => ({
   /**
    * Authorization request
    *
@@ -117,13 +123,20 @@ export const authorizationController = {
    * @see {@link https://indieauth.spec.indieweb.org/#profile-url-response}
    */
   async post(request, response) {
-    const profileToken = { me: request.verifiedToken.me };
+    const { me, scope } = request.verifiedToken;
+    const profileToken = { me };
+
+    // Include profile information if `profile` scope was granted
+    const profile = scope?.split(" ").includes("profile")
+      ? await getProfileInformation(me, options.profile)
+      : undefined;
 
     if (request.accepts("application/json")) {
-      response.json(profileToken);
+      response.json({ ...profileToken, ...(profile && { profile }) });
     } else {
+      // Profile information is only defined for JSON responses
       response.set("content-type", "application/x-www-form-urlencoded");
       response.send(new URLSearchParams(profileToken).toString());
     }
   },
-};
+});

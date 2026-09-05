@@ -22,6 +22,7 @@ describe("endpoint-auth GET /auth/metadata", () => {
     assert.ok(result.scopes_supported);
     assert.ok(result.service_documentation);
     assert.ok(result.token_endpoint);
+    assert.ok(result.userinfo_endpoint);
     assert.equal(result.ui_locales_supported, "en");
   });
 
