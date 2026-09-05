@@ -123,48 +123,68 @@ addEventListener("message", (event) => {
 addEventListener("fetch", (event) => {
   const request = event.request;
 
-  // Ignore non-GET requests
-  if (request.method !== "GET") {
+  // Ignore cross-origin and non-GET requests. Cross-origin images (avatars,
+  // for example) are left to the browser: their opaque responses can’t be
+  // inspected and each is padded to several megabytes when cached.
+  const requestUrl = new URL(request.url);
+  if (requestUrl.origin !== location.origin || request.method !== "GET") {
     return;
   }
 
-  const retrieveFromCache = caches.match(request);
+  // Never cache authentication and session pages. Cached responses would
+  // show a stale signed-in state, and their URLs carry one-time codes.
+  if (/^\/(auth|session)(?:\/|$)/.test(requestUrl.pathname)) {
+    event.respondWith(fetch(request));
+    return;
+  }
 
   // For HTML requests, try network, fall back to cache, else show offline page
   if (
     request.mode === "navigate" ||
-    request.headers.get("Accept").includes("text/html")
+    (request.headers.get("Accept") || "").includes("text/html")
   ) {
     event.respondWith(
       (async () => {
-        // CHECK CACHE
-        const timer = setTimeout(async () => {
-          const responseFromCache = await retrieveFromCache;
-          if (responseFromCache) {
-            return responseFromCache;
-          }
-        }, timeout);
+        const responseFromCache = await caches.match(request);
+        const responseFromNetwork = (async () => {
+          const preloadResponse = await Promise.resolve(event.preloadResponse);
+          return preloadResponse || (await fetch(request));
+        })();
 
         try {
-          const preloadResponse = await Promise.resolve(event.preloadResponse);
-          const responseFromPreloadOrFetch =
-            preloadResponse || (await fetch(request));
+          // Only give up on a slow network when there is a cached copy to
+          // show instead; otherwise waiting beats showing the offline page
+          const response = responseFromCache
+            ? await Promise.race([
+                responseFromNetwork,
+                new Promise((resolve, reject) => {
+                  setTimeout(
+                    () => reject(new Error("Network timeout")),
+                    timeout,
+                  );
+                }),
+              ])
+            : await responseFromNetwork;
 
           // NETWORK
           // Save a copy of page to pages cache
-          clearTimeout(timer);
-          const copy = responseFromPreloadOrFetch.clone();
+          const copy = response.clone();
           const pagesCache = await caches.open(pagesCacheName);
           await pagesCache.put(request, copy);
 
-          return responseFromPreloadOrFetch;
+          return response;
         } catch (error) {
           console.error(error, request);
 
           // CACHE or OFFLINE PAGE
-          clearTimeout(timer);
-          const responseFromCache = await retrieveFromCache;
-          return responseFromCache || caches.match("/offline");
+          return (
+            responseFromCache ||
+            (await caches.match("/offline")) ||
+            new Response("Offline", {
+              status: 503,
+              headers: { "Content-Type": "text/plain" },
+            })
+          );
         }
       })(),
     );
@@ -176,7 +196,7 @@ addEventListener("fetch", (event) => {
   event.respondWith(
     (async () => {
       try {
-        const responseFromCache = await retrieveFromCache;
+        const responseFromCache = await caches.match(request);
 
         if (responseFromCache) {
           // CACHE
@@ -206,6 +226,11 @@ addEventListener("fetch", (event) => {
             },
           });
         }
+
+        return new Response("Network error", {
+          status: 503,
+          headers: { "Content-Type": "text/plain" },
+        });
       }
     })(),
   );
