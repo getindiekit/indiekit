@@ -69,6 +69,16 @@ describe("syndicator-bluesky", async () => {
     assert.equal(result.info.error, "User identifier required");
   });
 
+  it("Returns error information if profile URL invalid", () => {
+    const result = new BlueskySyndicator({
+      handle: "alice.test",
+      password: "password",
+      profileUrl: "",
+    });
+
+    assert.equal(result.info.error, "Valid profile URL required");
+  });
+
   it("Initiates plug-in", async () => {
     const indiekit = await Indiekit.initialize({ config: {} });
     bluesky.init(indiekit);

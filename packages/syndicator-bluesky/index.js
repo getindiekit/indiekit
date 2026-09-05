@@ -50,23 +50,29 @@ export default class BlueskySyndicator {
   }
 
   get info() {
-    const username = this.options?.handle?.replace("@", "");
-    const url = new URL(this.options.profileUrl).href + "/" + username;
-
     const info = {
       checked: this.options.checked,
-      name: this.#user,
-      uid: url,
       service: {
         name: "Bluesky",
         photo: "/assets/@indiekit-syndicator-bluesky/icon.svg",
-        url: this.#serviceUrl,
-      },
-      user: {
-        name: this.#user,
-        url,
       },
     };
+
+    if (
+      !URL.canParse(this.options.profileUrl) ||
+      !URL.canParse(this.options.serviceUrl)
+    ) {
+      info.error = "Valid profile URL required";
+      return info;
+    }
+
+    const username = this.options?.handle?.replace("@", "");
+    const url = this.#profileUrl + "/" + username;
+
+    info.name = this.#user;
+    info.uid = url;
+    info.service.url = this.#serviceUrl;
+    info.user = { name: this.#user, url };
 
     if (!this.#user) {
       info.error = "User identifier required";

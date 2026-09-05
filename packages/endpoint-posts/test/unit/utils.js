@@ -279,4 +279,24 @@ describe("endpoint-posts/lib/utils", () => {
     assert.equal(result[1].label, "Internet Archive");
     assert.equal(result[1].value, undefined);
   });
+
+  it("Disables syndication target whose info can’t be read", () => {
+    const result = getSyndicateToItems({
+      syndicationTargets: [
+        ...publication.syndicationTargets,
+        {
+          name: "Broken syndicator",
+          get info() {
+            throw new Error("Valid server URL required");
+          },
+        },
+      ],
+    });
+
+    assert.equal(result.length, 3);
+    assert.equal(result[2].disabled, true);
+    assert.equal(result[2].hint, "Valid server URL required");
+    assert.equal(result[2].label, "Broken syndicator");
+    assert.equal(result[2].value, undefined);
+  });
 });

@@ -192,17 +192,27 @@ export const getSyndicateToItems = (
   publication,
   shouldCheckTargets = false,
 ) => {
-  return publication.syndicationTargets.map((target) => ({
-    label: target.info.service.name,
-    ...(target?.info?.error
-      ? {
-          disabled: true,
-          hint: target?.info?.error || false,
-        }
-      : {
-          hint: target?.info.uid,
-          value: target?.info.uid,
-          ...(shouldCheckTargets && { checked: target.options.checked }),
-        }),
-  }));
+  return publication.syndicationTargets.map((target) => {
+    // A target whose `info` can’t be read is shown disabled, with the reason
+    let info;
+    try {
+      info = target.info;
+    } catch (error) {
+      info = { error: error.message, service: { name: target.name } };
+    }
+
+    return {
+      label: info.service?.name,
+      ...(info.error
+        ? {
+            disabled: true,
+            hint: info.error,
+          }
+        : {
+            hint: info.uid,
+            value: info.uid,
+            ...(shouldCheckTargets && { checked: target.options.checked }),
+          }),
+    };
+  });
 };

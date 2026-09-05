@@ -34,6 +34,31 @@ describe("endpoint-micropub/lib/config", () => {
     assert.equal(result["syndicate-to"][0].user.name, "@username");
   });
 
+  it("Omits syndication target whose info can’t be read", () => {
+    const application = {
+      url: "https://endpoint.example",
+    };
+    const mastodon = new MastodonSyndicator({
+      url: "https://mastodon.example",
+      user: "username",
+    });
+    const broken = {
+      get info() {
+        throw new Error("Valid server URL required");
+      },
+    };
+    const publication = {
+      categories: [],
+      channels: {},
+      postTypes: config.publication.postTypes,
+      syndicationTargets: [broken, mastodon],
+    };
+    const result = getConfig(application, publication);
+
+    assert.equal(result["syndicate-to"].length, 1);
+    assert.equal(result["syndicate-to"][0].service.name, "Mastodon");
+  });
+
   it("Filters a list", () => {
     const result = queryConfig(list, { filter: "web" });
 
