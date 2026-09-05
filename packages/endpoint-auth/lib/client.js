@@ -16,7 +16,7 @@ const FETCH_TIMEOUT = 5000;
  * @see {@link https://indieauth.spec.indieweb.org/#client-identifier}
  * @see {@link https://indieauth.spec.indieweb.org/#client-information-discovery}
  */
-const isFetchableOrigin = (url) => {
+export const isFetchableOrigin = (url) => {
   if (url.protocol !== "https:" && url.protocol !== "http:") {
     return false;
   }

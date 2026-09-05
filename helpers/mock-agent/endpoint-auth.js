@@ -112,6 +112,31 @@ export const mockClient = () => {
     })
     .persist();
 
+  // Profile information (h-card on the user’s site)
+  agent
+    .get("https://website.example")
+    .intercept({ path: "/" })
+    .reply(200, getFixture("html/profile.html"), {
+      headers: { "content-type": "text/html" },
+    })
+    .persist();
+
+  // Profile information (no h-card on the user’s site)
+  agent
+    .get("https://no-hcard.example")
+    .intercept({ path: "/" })
+    .reply(200, getFixture("html/page.html"), {
+      headers: { "content-type": "text/html" },
+    })
+    .persist();
+
+  // Profile information (Not Found)
+  agent
+    .get("https://profile-404.example")
+    .intercept({ path: "/" })
+    .reply(404)
+    .persist();
+
   // Profile URL response
   agent
     .get(origin)

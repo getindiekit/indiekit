@@ -28,6 +28,7 @@ You will also need to set the following environment variables:
 
 ## Options
 
-| Option      | Type     | Description                                                      |
-| :---------- | :------- | :--------------------------------------------------------------- |
-| `mountPath` | `string` | Path to authorization endpoint. _Optional_, defaults to `/auth`. |
+| Option      | Type     | Description                                                                                                                                                                      |
+| :---------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mountPath` | `string` | Path to authorization endpoint. _Optional_, defaults to `/auth`.                                                                                                                 |
+| `profile`   | `object` | Profile information (`name`, `url`, `photo`) returned to clients granted the `profile` scope. _Optional_; anything not configured is discovered from the h-card on your website. |
