@@ -145,6 +145,34 @@ describe("syndicator-mastodon/lib/mastodon", () => {
     );
   });
 
+  it("Posts a threaded reply to a status on another server", async () => {
+    const result = await mastodon.post(
+      {
+        content: {
+          html: "<p>I ate a cheese sandwich too!</p>",
+        },
+        "in-reply-to": "https://deadbird.example/username/1234567890987654321",
+      },
+      me,
+    );
+
+    assert.equal(result, "https://mastodon.example/@username/reply");
+  });
+
+  it("Posts an unthreaded reply if status on another server can’t be resolved", async () => {
+    const result = await mastodon.post(
+      {
+        content: {
+          html: "<p>I ate a cheese sandwich too!</p>",
+        },
+        "in-reply-to": "https://unknown.example/post",
+      },
+      me,
+    );
+
+    assert.equal(result, statusUrl);
+  });
+
   it("Posts a status with photo to Mastodon", async () => {
     const result = await mastodon.post(
       {
