@@ -7,6 +7,7 @@ const postTypes = new Map([
   ["article", { name: "Journal post" }],
   ["note", { name: "Micro post" }],
   ["puppy", { name: "Puppy post" }],
+  ["page", { name: "Page" }],
 ]);
 
 describe("preset-jekyll/lib/post-types", () => {
@@ -41,6 +42,16 @@ describe("preset-jekyll/lib/post-types", () => {
       },
       media: {
         path: "media/puppies/{yyyy}/{MM}/{dd}/{filename}",
+      },
+    });
+    assert.deepEqual(result.get("page"), {
+      name: "Page",
+      post: {
+        path: "{slug}/index.md",
+        url: "{slug}",
+      },
+      media: {
+        path: "media/pages/{filename}",
       },
     });
   });

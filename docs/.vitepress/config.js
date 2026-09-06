@@ -186,6 +186,10 @@ const sidebarPlugins = [
         link: "/plugins/post-types/note",
       },
       {
+        text: "Page",
+        link: "/plugins/post-types/page",
+      },
+      {
         text: "Photo",
         link: "/plugins/post-types/photo",
       },
