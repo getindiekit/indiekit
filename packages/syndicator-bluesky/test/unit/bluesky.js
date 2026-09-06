@@ -210,6 +210,31 @@ describe("syndicator-bluesky/lib/bluesky", () => {
     assert.match(result, BLUESKY_POST_URL);
   });
 
+  it("Posts a post with clickable link text to Bluesky", async () => {
+    const result = await bluesky.post(
+      {
+        content: {
+          html: '<p>I like <a href="https://cheese.example">cheese</a>.</p>',
+        },
+        url: "https://foo.bar",
+      },
+      me,
+    );
+    const post = await bluesky.getPost(result);
+    const facets = post.value.facets.filter(
+      (facet) => facet.features[0].uri === "https://cheese.example",
+    );
+
+    // The link text, and the URL appended to the text
+    assert.deepEqual(
+      facets.map((facet) => facet.index),
+      [
+        { byteStart: 7, byteEnd: 13 },
+        { byteStart: 15, byteEnd: 37 },
+      ],
+    );
+  });
+
   it("Posts a post with photo to Bluesky", async () => {
     const result = await bluesky.post(
       {

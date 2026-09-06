@@ -4,6 +4,8 @@ import { getCanonicalUrl, isSameOrigin } from "@indiekit/util";
 
 import {
   createRichText,
+  getHtmlLinks,
+  getLinkFacets,
   getPostImage,
   getPostText,
   getPostParts,
@@ -280,7 +282,11 @@ export class Bluesky {
       this.includePermalink,
       this.includeCategories,
     );
-    const richText = await createRichText(client, text);
+    const richText = await createRichText(
+      client,
+      text,
+      getLinkFacets(text, getHtmlLinks(properties.content?.html || "")),
+    );
 
     return this.postPost(richText, images);
   }
