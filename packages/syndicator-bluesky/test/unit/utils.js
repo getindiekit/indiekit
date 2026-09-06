@@ -9,6 +9,8 @@ import {
   createHashtags,
   createRichText,
   constrainImage,
+  getHtmlLinks,
+  getLinkFacets,
   getPostImage,
   getPostParts,
   getPostText,
@@ -235,6 +237,66 @@ describe("syndicator-bluesky/lib/utils", async () => {
     );
 
     assert.equal(result, "Hello world, hello moon. https://moon.example");
+  });
+
+  it("Gets links from HTML", () => {
+    const result = getHtmlLinks(
+      '<p>Hello <a href="/hello">world</a>, hello <a href="https://moon.example"><em>moon</em> base</a>.</p>',
+    );
+
+    assert.deepEqual(result, [
+      { text: "moon base", url: "https://moon.example" },
+    ]);
+  });
+
+  it("Gets link facets for link text within post text", () => {
+    const result = getLinkFacets("Héllo moon, moon.", [
+      { text: "moon", url: "https://moon.example" },
+      { text: "moon", url: "https://moon.example/2" },
+      { text: "https://sun.example", url: "https://sun.example" },
+      { text: "mars", url: "https://mars.example" },
+    ]);
+
+    assert.deepEqual(result, [
+      {
+        index: { byteStart: 7, byteEnd: 11 },
+        features: [
+          {
+            $type: "app.bsky.richtext.facet#link",
+            uri: "https://moon.example",
+          },
+        ],
+      },
+      {
+        index: { byteStart: 13, byteEnd: 17 },
+        features: [
+          {
+            $type: "app.bsky.richtext.facet#link",
+            uri: "https://moon.example/2",
+          },
+        ],
+      },
+    ]);
+  });
+
+  it("Converts text to rich text with link facets, keeping detected ones", async () => {
+    const agent = network.getSeedClient();
+    const text = "foo https://bar.baz moon";
+    const facets = getLinkFacets(text, [
+      { text: "moon", url: "https://moon.example" },
+      { text: "bar.baz", url: "https://overlap.example" },
+    ]);
+    const result = await createRichText(agent, text, facets);
+
+    assert.deepEqual(
+      result.facets.map(
+        (facet) =>
+          /** @type {import("@atproto/api").AppBskyRichtextFacet.Link} */ (
+            facet.features[0]
+          ).uri,
+      ),
+      ["https://bar.baz", "https://moon.example"],
+    );
   });
 
   it("Converts Bluesky URI to post URL", () => {

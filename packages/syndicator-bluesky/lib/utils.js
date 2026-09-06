@@ -9,13 +9,92 @@ const AT_URI = /at:\/\/(?<did>did:[^/]+)\/(?<type>[^/]+)\/(?<rkey>[^/]+)/;
  * Convert plain text to rich text
  * @param {import("@atproto/api").Agent} client - AT Protocol agent
  * @param {string} text - Text to convert
+ * @param {Array<object>} [facets] - Facets to add to those detected in text
  * @returns {Promise<RichText>} Rich text
  */
-export const createRichText = async (client, text) => {
+export const createRichText = async (client, text, facets = []) => {
   const rt = new RichText({ text });
   await rt.detectFacets(client);
 
+  // Add facets that don’t overlap a detected one, such as a URL in the text
+  const detected = rt.facets || [];
+  const added = facets.filter((facet) =>
+    detected.every(
+      ({ index }) =>
+        !(
+          facet.index.byteStart < index.byteEnd &&
+          index.byteStart < facet.index.byteEnd
+        ),
+    ),
+  );
+
+  if (added.length > 0) {
+    rt.facets = [...detected, ...added].toSorted(
+      (a, b) => a.index.byteStart - b.index.byteStart,
+    );
+  }
+
   return rt;
+};
+
+/**
+ * Get links from HTML
+ * @param {string} html - HTML
+ * @returns {Array<{text: string, url: string}>} Link text and URL
+ */
+export const getHtmlLinks = (html) => {
+  const links = [];
+
+  for (const match of html.matchAll(
+    /<a\s[^>]*href=["'](?<url>https?:\/\/[^"']+)["'][^>]*>(?<html>.*?)<\/a>/gis,
+  )) {
+    const text = match.groups.html.replaceAll(/<[^>]+>/g, "").trim();
+    if (text) {
+      links.push({ text, url: match.groups.url });
+    }
+  }
+
+  return links;
+};
+
+/**
+ * Get link facets for link text found in post text
+ *
+ * Bluesky only links URLs it finds in the text, so the text of an HTML link
+ * needs a facet pointing at its URL. Facet indices are byte offsets.
+ * @param {string} text - Post text
+ * @param {Array<{text: string, url: string}>} links - Link text and URL
+ * @returns {Array<object>} Link facets
+ * @see {@link https://docs.bsky.app/docs/advanced-guides/post-richtext}
+ */
+export const getLinkFacets = (text, links) => {
+  const encoder = new TextEncoder();
+  const facets = [];
+  let searchFrom = 0;
+
+  for (const link of links) {
+    // A URL as its own text is detected by Bluesky already
+    if (link.text === link.url) {
+      continue;
+    }
+
+    const start = text.indexOf(link.text, searchFrom);
+    if (start === -1) {
+      continue;
+    }
+
+    const byteStart = encoder.encode(text.slice(0, start)).byteLength;
+    const byteEnd = byteStart + encoder.encode(link.text).byteLength;
+
+    facets.push({
+      index: { byteStart, byteEnd },
+      features: [{ $type: "app.bsky.richtext.facet#link", uri: link.url }],
+    });
+
+    searchFrom = start + link.text.length;
+  }
+
+  return facets;
 };
 
 /**
