@@ -9,6 +9,7 @@ const sidebar = [
     text: "Introduction",
     items: [
       { text: "Get started", link: "/get-started" },
+      { text: "Run in a container", link: "/docker" },
       { text: "How Indiekit works", link: "/introduction" },
       { text: "Core concepts", link: "/concepts" },
       { text: "Sponsors", link: "/sponsors" },
