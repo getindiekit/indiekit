@@ -16,7 +16,20 @@ export const getPostTypes = (postTypes) => {
   for (const type of postTypes.keys()) {
     const collection = plur(type);
 
-    if (type === "article") {
+    if (type === "page") {
+      // A page has no date; an index file in its own directory is served at
+      // its URL without a permalink setting
+      updates.set("page", {
+        ...postTypes.get("page"),
+        post: {
+          path: "{slug}/index.md",
+          url: "{slug}",
+        },
+        media: {
+          path: "media/pages/{filename}",
+        },
+      });
+    } else if (type === "article") {
       updates.set("article", {
         ...postTypes.get("article"),
         post: {
