@@ -30,6 +30,8 @@
     "title": "Fichiers",
     "upload": {
       "action": "Téléverser un fichier",
+      "partial": "%s fichiers sur %s téléversé",
+      "success": "%s fichiers téléversé",
       "title": "Téléverser un nouveau fichier"
     }
   }

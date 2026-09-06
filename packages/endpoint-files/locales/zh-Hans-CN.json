@@ -30,6 +30,8 @@
     "title": "文件",
     "upload": {
       "action": "上传文件",
+      "partial": "已上传 %s 个文件（共 %s 个）",
+      "success": "已上传 %s 个文件",
       "title": "上传新文件"
     }
   }

@@ -30,6 +30,8 @@
     "title": "Filer",
     "upload": {
       "action": "Ladda upp fil",
+      "partial": "%s av %s filer uppladdade",
+      "success": "%s filer uppladdade",
       "title": "Ladda upp en ny fil"
     }
   }

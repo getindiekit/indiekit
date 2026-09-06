@@ -30,6 +30,8 @@
     "title": "Arquivos",
     "upload": {
       "action": "Carregar arquivo",
+      "partial": "%s de %s arquivos carregados",
+      "success": "%s arquivos carregados",
       "title": "Carregar um novo arquivo"
     }
   }

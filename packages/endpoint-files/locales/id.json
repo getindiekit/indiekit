@@ -30,6 +30,8 @@
     "title": "File",
     "upload": {
       "action": "Unggah berkas",
+      "partial": "%s dari %s file telah diunggah",
+      "success": "%s file diunggah",
       "title": "Unggah file baru"
     }
   }

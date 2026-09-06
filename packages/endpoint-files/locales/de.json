@@ -30,6 +30,8 @@
     "title": "Dateien",
     "upload": {
       "action": "Datei hochladen",
+      "partial": "%s von %s Dateien hochgeladen",
+      "success": "%s Dateien hochgeladen",
       "title": "Laden Sie eine neue Datei hoch"
     }
   }

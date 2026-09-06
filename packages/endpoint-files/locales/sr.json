@@ -30,6 +30,8 @@
     "title": "Datoteke",
     "upload": {
       "action": "Otpremi datoteku",
+      "partial": "Otpremljeno %s od %s datoteka",
+      "success": "%s datoteka otpremljeno",
       "title": "Otpremite novu datoteku"
     }
   }

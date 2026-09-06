@@ -23,7 +23,9 @@
     "title": "Files",
     "upload": {
       "action": "Upload file",
-      "title": "Upload a new file"
+      "title": "Upload a new file",
+      "success": "%s files uploaded",
+      "partial": "%s of %s files uploaded"
     },
     "form": {
       "submit": "Upload",

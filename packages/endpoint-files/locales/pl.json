@@ -30,6 +30,8 @@
     "title": "Pliki",
     "upload": {
       "action": "Przesyłanie pliku",
+      "partial": "Przesłano %s z %s plików",
+      "success": "Przesłano %s plików",
       "title": "Prześlij nowy plik"
     }
   }

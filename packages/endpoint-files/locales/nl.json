@@ -30,6 +30,8 @@
     "title": "Bestanden",
     "upload": {
       "action": "Upload bestand",
+      "partial": "%s van de %s bestanden geüpload",
+      "success": "%s bestanden geüpload",
       "title": "Upload een nieuw bestand"
     }
   }

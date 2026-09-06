@@ -6,6 +6,9 @@
     type: "file",
     value: fieldData("file").value,
     label: __("files.form.file.label"),
+    attributes: {
+      multiple: true
+    },
     errorMessage: fieldData("file").errorMessage
   }) | indent(2) }}
 {% endblock %}
