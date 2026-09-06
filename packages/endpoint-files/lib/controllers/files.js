@@ -34,9 +34,10 @@ export const filesController = async (request, response, next) => {
         item.id = item.uid;
         item.icon = item["media-type"];
         item.locale = application.locale;
-        item.photo = {
-          url: item.url,
-        };
+        // Only a photo can be shown as a thumbnail
+        if (item["media-type"] === "photo") {
+          item.photo = { url: item.url };
+        }
         item.title = item.url ? getFileName(item.url) : "File";
         item.url = path.join(request.baseUrl, request.path, item.uid);
 

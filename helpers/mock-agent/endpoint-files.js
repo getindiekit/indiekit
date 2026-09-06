@@ -23,7 +23,13 @@ export function mockClient() {
       items: [
         {
           uid: "123",
+          "media-type": "photo",
           url: photoOrigin,
+        },
+        {
+          uid: "456",
+          "media-type": "audio",
+          url: "https://website.example/audio.mp3",
         },
       ],
     })
