@@ -46,28 +46,53 @@ export const formController = {
       throw new Error(response.locals.__("files.error.file.empty"));
     }
 
-    const file = Array.isArray(request.files.file)
-      ? request.files.file[0]
-      : request.files.file;
-    const { data, name } = file;
-    const formData = new FormData();
-    formData.append("file", new Blob([new Uint8Array(data)]), name);
+    // One file or several; upload in turn, as a content store may not
+    // accept concurrent writes
+    const files = [request.files.file].flat();
+    const uploaded = [];
+    let lastError;
 
-    try {
-      const mediaResponse = await endpoint.post(
-        mediaEndpoint,
-        accessToken,
-        formData,
+    for (const { data, name } of files) {
+      const formData = new FormData();
+      formData.append("file", new Blob([new Uint8Array(data)]), name);
+
+      try {
+        uploaded.push(
+          await endpoint.post(mediaEndpoint, accessToken, formData),
+        );
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (uploaded.length === 0) {
+      response.status(
+        lastError instanceof IndiekitError ? lastError.status : 500,
       );
-      const message = encodeURIComponent(mediaResponse.success_description);
-
-      response.redirect(`${request.baseUrl}?success=${message}`);
-    } catch (error) {
-      response.status(error instanceof IndiekitError ? error.status : 500);
-      response.render("file-form", {
+      return response.render("file-form", {
         title: response.locals.__("files.upload.title"),
-        error,
+        error: lastError,
       });
     }
+
+    let message;
+    if (files.length === 1) {
+      message = uploaded[0].success_description;
+    } else if (uploaded.length === files.length) {
+      message = response.locals.__(
+        "files.upload.success",
+        String(files.length),
+      );
+    } else {
+      message = response.locals.__(
+        "files.upload.partial",
+        String(uploaded.length),
+        String(files.length),
+      );
+    }
+
+    response.redirect(
+      `${request.baseUrl}?success=${encodeURIComponent(message)}`,
+    );
   },
 };

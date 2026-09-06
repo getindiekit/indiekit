@@ -73,7 +73,8 @@ export function mockClient() {
           location: photoOrigin,
         },
       },
-    );
+    )
+    .persist();
 
   // Upload file to external media endpoint (Unauthorized)
   agent
@@ -82,7 +83,19 @@ export function mockClient() {
       path: "/",
       method: "POST",
     })
-    .reply(401, {});
+    .reply(401, {})
+    .persist();
+
+  // Upload files to external media endpoint (first succeeds, second fails)
+  const partialOrigin = "https://partial-post-upload.example";
+  agent
+    .get(partialOrigin)
+    .intercept({ path: "/", method: "POST" })
+    .reply(201, { success: "create", success_description: photoOrigin });
+  agent
+    .get(partialOrigin)
+    .intercept({ path: "/", method: "POST" })
+    .reply(400, { error: "invalid_request", error_description: "Too big" });
 
   // Delete file at external media endpoint
   agent
