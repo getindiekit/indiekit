@@ -9,22 +9,12 @@ import supertest from "supertest";
 
 await mockAgent("endpoint-files");
 const server = await testServer({
-  application: { mediaEndpoint: "https://media-endpoint.example" },
+  application: { mediaEndpoint: "https://partial-post-upload.example" },
 });
 const request = supertest.agent(server);
 
 describe("endpoint-files POST /files/upload", () => {
-  it("Uploads file and redirects to files page", async () => {
-    const result = await request
-      .post("/files/upload")
-      .set("cookie", testCookie())
-      .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg");
-
-    assert.equal(result.status, 302);
-    assert.match(result.text, /Found. Redirecting to \/files\?success/);
-  });
-
-  it("Uploads several files and redirects to files page", async () => {
+  it("Uploads the files it can and says how many", async () => {
     const result = await request
       .post("/files/upload")
       .set("cookie", testCookie())
@@ -34,7 +24,7 @@ describe("endpoint-files POST /files/upload", () => {
     assert.equal(result.status, 302);
     assert.equal(
       decodeURIComponent(result.headers.location),
-      "/files?success=2 files uploaded",
+      "/files?success=1 of 2 files uploaded",
     );
   });
 
