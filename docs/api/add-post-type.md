@@ -39,7 +39,7 @@ new Indiekit.addPostType(type, options);
 
     The value must match one of the field names provided in `config.fields`.
 
-    In most cases this option is required. Only post types already defined in the [post type discovery][] algorithm (`article`, `event`, `like`, `note`, `photo`, `repost`, `rsvp`, `reply` and `video`) can ignore this option.
+    In most cases this option is required. Only post types already defined in the [post type discovery][] algorithm (`article`, `event`, `like`, `note`, `photo`, `repost`, `rsvp`, `reply` and `video`), or post types using their own vocabulary (an `h` value other than `entry`), can ignore this option.
 
 `validationSchemas`
 : An object containing [Schema](#postfield) objects.
@@ -196,7 +196,7 @@ In the above example, because both `ingredient` and `instructions` are new field
 
 When receiving Micropub requests from other clients, Indiekit needs to know what post type to assign given the properties in that request. The [post type discovery] algorithm handles this for common post types, but new post types need to be identified using another means.
 
-Indicating which property a post type will have that others won’t is a way of achieving this.
+Indicating which property a post type will have that others won’t is a way of achieving this. A post type that uses its own Microformats vocabulary, such as `h-recipe`, is identified by that vocabulary instead, so it doesn’t need a discovery property.
 
 The property to use for discovery can be added to `config.discovery`, for example:
 
