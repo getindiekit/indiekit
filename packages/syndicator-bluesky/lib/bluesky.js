@@ -63,6 +63,23 @@ export class Bluesky {
   }
 
   /**
+   * Get reply reference for a Bluesky post
+   *
+   * A reply records both its parent and the root of the thread; replying to a
+   * reply keeps that reply’s root.
+   * @param {string} postUrl - URL of post being replied to
+   * @returns {Promise<import("@atproto/api").AppBskyFeedPost.ReplyRef>} Reply reference
+   * @see {@link https://docs.bsky.app/docs/tutorials/creating-a-post#replies}
+   */
+  async getReplyRef(postUrl) {
+    const post = await this.getPost(postUrl);
+    const parent = { uri: post.uri, cid: post.cid };
+    const root = post.value.reply?.root || parent;
+
+    return { root, parent };
+  }
+
+  /**
    * Post a like
    * @param {string} postUrl - URL of post to like
    * @returns {Promise<string>} Bluesky post URL
@@ -149,9 +166,10 @@ export class Bluesky {
    * Post a post
    * @param {object} richText - Rich text
    * @param {object} [images] - Images
+   * @param {object} [reply] - Reply reference
    * @returns {Promise<string>} Bluesky post URL
    */
-  async postPost(richText, images) {
+  async postPost(richText, images, reply) {
     const client = await this.#client();
 
     /**
@@ -162,6 +180,7 @@ export class Bluesky {
       text: richText.text,
       facets: richText.facets,
       createdAt: new Date().toISOString(),
+      ...(reply && { reply }),
       ...(images?.length > 0 && {
         embed: {
           $type: "app.bsky.embed.images",
@@ -275,6 +294,13 @@ export class Bluesky {
       return;
     }
 
+    // Thread reply to a Bluesky post
+    const inReplyTo = properties["in-reply-to"];
+    const reply =
+      inReplyTo && isSameOrigin(inReplyTo, this.profileUrl)
+        ? await this.getReplyRef(inReplyTo)
+        : undefined;
+
     const text = getPostText(
       properties,
       this.includePermalink,
@@ -282,6 +308,6 @@ export class Bluesky {
     );
     const richText = await createRichText(client, text);
 
-    return this.postPost(richText, images);
+    return this.postPost(richText, images, reply);
   }
 }
