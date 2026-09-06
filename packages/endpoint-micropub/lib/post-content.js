@@ -16,6 +16,30 @@ export const postContent = {
 
     const { postTemplate, store, storeMessageTemplate } = publication;
     const { path, properties } = postData;
+
+    // Call getSyndicationUrl on any targeted syndicator that implements it
+    const syndicationTargets = publication.syndicationTargets ?? [];
+    const requestedUids = [properties["mp-syndicate-to"] ?? []].flat();
+    for (const target of syndicationTargets) {
+      if (
+        typeof target.getSyndicationUrl === "function" &&
+        requestedUids.includes(target.info.uid)
+      ) {
+        try {
+          const urls = [await target.getSyndicationUrl(publication)]
+            .flat()
+            .filter(Boolean);
+          const existing = [properties.syndication ?? []].flat();
+          const newUrls = urls.filter((url) => !existing.includes(url));
+          if (newUrls.length > 0) {
+            properties.syndication = [...existing, ...newUrls];
+          }
+        } catch (error) {
+          debug(`getSyndicationUrl failed for ${target.info.uid}: %O`, error);
+        }
+      }
+    }
+
     const metadata = {
       action: "create",
       result: "created",
