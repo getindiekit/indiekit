@@ -7,6 +7,22 @@ import plur from "plur";
  */
 export const getPostTypes = (postTypes) => {
   for (const type of postTypes.keys()) {
+    // A page has no date and lives at the root of the content directory
+    if (type === "page") {
+      postTypes.set(type, {
+        ...postTypes.get(type),
+        post: {
+          path: "content/{slug}.md",
+          url: "{slug}",
+        },
+        media: {
+          path: "static/pages/{filename}",
+          url: "pages/{filename}",
+        },
+      });
+      continue;
+    }
+
     const section = plur(type);
 
     /**
