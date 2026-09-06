@@ -20,3 +20,4 @@ docs/.cache
 
 # Localisation keys
 localazy.keys.json
+.worktrees
