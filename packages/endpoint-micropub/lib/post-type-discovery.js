@@ -11,6 +11,13 @@ export const getPostType = (postTypes, properties) => {
     return properties.type;
   }
 
+  // A post type with its own vocabulary is identified by that vocabulary
+  for (const [type, { h }] of Object.entries(postTypes)) {
+    if (h && h !== "entry" && h === properties.type) {
+      return type;
+    }
+  }
+
   // Types defined in Post Type Discovery specification
   const basePostTypes = new Map([
     ["rsvp", "rsvp"],
