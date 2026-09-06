@@ -1,0 +1,61 @@
+name: docker-nightly
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  changed:
+    runs-on: ubuntu-latest
+    if: github.repository == 'getindiekit/indiekit'
+    permissions:
+      contents: read
+      packages: read
+    outputs:
+      build: ${{ steps.check.outputs.build }}
+      sha: ${{ steps.check.outputs.sha }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compare main with the last nightly
+        id: check
+        run: |
+          set -uo pipefail
+          sha=$(git rev-parse HEAD)
+          short=${sha:0:7}
+          echo "sha=$short" >> "$GITHUB_OUTPUT"
+          # A nightly always tags its image main-<short>. If the registry
+          # already has that tag, main has not moved since the last nightly.
+          # Any failure (no package yet, registry down) falls through to
+          # build=true: the check is an optimisation, never a gate.
+          if docker manifest inspect "ghcr.io/${{ github.repository }}:main-$short" >/dev/null 2>&1; then
+            echo "main-$short is already published; skipping"
+            echo "build=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  image:
+    needs: changed
+    if: needs.changed.outputs.build == 'true'
+    uses: ./.github/workflows/docker-image.yml
+    with:
+      ref: main
+      tags: |
+        ghcr.io/${{ github.repository }}:nightly
+        ghcr.io/${{ github.repository }}:main-${{ needs.changed.outputs.sha }}
+      version: main-${{ needs.changed.outputs.sha }}
+    permissions:
+      contents: read
+      packages: write
