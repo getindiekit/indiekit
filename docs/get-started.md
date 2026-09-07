@@ -48,10 +48,10 @@ You don’t need access to a [Git](https://git-scm.com) repository, but some hos
 Run the following command in your terminal to start the configuration wizard:
 
 ```sh
-npm create indiekit [directory]
+npm create indiekit directory_name
 ```
 
-where `[directory]` is the name of the directory within which you want to save your configuration and other files.
+where `directory_name` is the name of the directory within which you want to save your configuration and other files.
 
 This is the fastest way to set up a new Indiekit server from scratch.
 
