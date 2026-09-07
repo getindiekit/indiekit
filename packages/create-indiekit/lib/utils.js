@@ -29,18 +29,31 @@ export const addPluginConfig = async (pluginName, config) => {
 };
 
 /**
+ * Pack a version's major and minor into a single comparable number.
+ * The patch segment is ignored. Minor is padded to three digits, so
+ * "24.100" sorts above "24.9".
+ * @param {string} version - Version to pack, i.e. "24.17.0"
+ * @returns {number} Comparable value, i.e. 24017
+ */
+function majorMinorValue(version) {
+  const MINOR_PADDING = 1000;
+  const [major, minor = 0] = version.split(".").map(Number);
+  return major * MINOR_PADDING + minor;
+}
+
+/**
  * Check if Node.js version meets minimum requirement
  * @param {string} currentVersion - Current Node.js version
- * @param {number} minimumMajorVersion - Minimum major version required
+ * @param {string} minimumSupportedVersion - Minimum version required
  * @returns {boolean} Current version meets minimum Node.js requirement
  */
 export const isCompatibleNodeVersion = (
   currentVersion,
-  minimumMajorVersion,
+  minimumSupportedVersion,
 ) => {
-  const requiredMajorVersion = Number(currentVersion.split(".", 1)[0]);
-
-  return requiredMajorVersion >= minimumMajorVersion;
+  return (
+    majorMinorValue(currentVersion) >= majorMinorValue(minimumSupportedVersion)
+  );
 };
 
 /**

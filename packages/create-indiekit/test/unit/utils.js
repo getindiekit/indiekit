@@ -19,8 +19,20 @@ describe("create-indiekit/lib/utils", () => {
   });
 
   it("Checks if Node.js version meets minimum requirement", () => {
-    assert.equal(isCompatibleNodeVersion("12.15", 16), false);
-    assert.equal(isCompatibleNodeVersion("16.15", 12), true);
+    assert.equal(isCompatibleNodeVersion("24.17", "24.17"), true);
+    assert.equal(isCompatibleNodeVersion("24.16", "24.17"), false);
+    assert.equal(isCompatibleNodeVersion("24.15", "24"), true);
+
+    // Patch versions ignored
+    assert.equal(isCompatibleNodeVersion("24.17.0", "24.17.9"), true);
+
+    // Minor compared numerically, not lexically or as a decimal
+    assert.equal(isCompatibleNodeVersion("24.9.0", "24.17"), false);
+    assert.equal(isCompatibleNodeVersion("24.100.0", "24.9"), true);
+
+    // Major wins over minor
+    assert.equal(isCompatibleNodeVersion("26.4.0", "24.17"), true);
+    assert.equal(isCompatibleNodeVersion("25.0.0", "24.17"), true);
   });
 
   it("Gets question prompts specified by plug-in", async () => {
