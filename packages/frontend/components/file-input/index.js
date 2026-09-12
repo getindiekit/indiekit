@@ -124,7 +124,9 @@ export const FileInputFieldController = class extends HTMLElement {
       this.$fileInputPath.readOnly = false;
       this.$uploadProgress.hidden = true;
     } catch (error) {
-      this.showErrorMessage(error.message);
+      this.showErrorMessage(
+        error instanceof Error ? error.message : String(error),
+      );
       this.$fileInputPath.readOnly = false;
       this.$uploadProgress.hidden = true;
     }
