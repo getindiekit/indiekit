@@ -35,8 +35,14 @@ export default class ImageEndpoint {
       }),
     });
 
-    router.use(createIPXNodeHandler(ipx));
+    const handler = /** @type {RequestHandler} */ (createIPXNodeHandler(ipx));
+
+    router.use(handler);
 
     return router;
   }
 }
+
+/**
+ * @import { RequestHandler } from "express"
+ */
