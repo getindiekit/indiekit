@@ -4,6 +4,11 @@ import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
   /**
+   * @type {string|null}
+   */
+  endpoint;
+
+  /**
    * @type {HTMLElement}
    */
   $uploadProgress;

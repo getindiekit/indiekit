@@ -35,6 +35,11 @@ const getButtonSvg = (name) => {
 };
 
 export const TextareaFieldComponent = class extends HTMLElement {
+  /**
+   * @type {HTMLTextAreaElement}
+   */
+  $textarea;
+
   connectedCallback() {
     this.editor = this.getAttribute("editor");
 
