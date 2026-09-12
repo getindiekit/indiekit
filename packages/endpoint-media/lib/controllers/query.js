@@ -4,8 +4,17 @@ import { getCursor } from "@indiekit/util";
 import { getMediaProperties } from "../utils.js";
 
 /**
+ * @typedef {object} QueryParameters
+ * @property {string} [after] - Return items after this item ID
+ * @property {string} [before] - Return items before this item ID
+ * @property {string} [limit] - Number of items to return
+ * @property {string} [q] - Query
+ * @property {string} [url] - URL of post to return
+ */
+
+/**
  * Query uploaded files
- * @type {import("express").RequestHandler}
+ * @type {import("express").RequestHandler<Record<string, string>, unknown, unknown, QueryParameters>}
  */
 export const queryController = async (request, response, next) => {
   const { application } = request.app.locals;
@@ -39,31 +48,26 @@ export const queryController = async (request, response, next) => {
             );
           }
 
-          response.json(getMediaProperties(mediaData));
-        } else {
-          // Return properties for all uploaded files
-          let cursor = {
-            items: [],
-            hasNext: false,
-            hasPrev: false,
-          };
+          return response.json(getMediaProperties(mediaData));
+        }
+        // Return properties for all uploaded files
+        let cursor = {
+          items: [],
+          hasNext: false,
+          hasPrev: false,
+        };
 
-          if (mediaCollection) {
-            cursor = await getCursor(mediaCollection, after, before, limit);
-          }
-
-          response.json({
-            items: cursor.items.map((mediaData) =>
-              getMediaProperties(mediaData),
-            ),
-            paging: {
-              ...(cursor.hasNext && { after: cursor.lastItem }),
-              ...(cursor.hasPrev && { before: cursor.firstItem }),
-            },
-          });
+        if (mediaCollection) {
+          cursor = await getCursor(mediaCollection, after, before, limit);
         }
 
-        break;
+        return response.json({
+          items: cursor.items.map((mediaData) => getMediaProperties(mediaData)),
+          paging: {
+            ...(cursor.hasNext && { after: cursor.lastItem }),
+            ...(cursor.hasPrev && { before: cursor.firstItem }),
+          },
+        });
       }
 
       default: {
