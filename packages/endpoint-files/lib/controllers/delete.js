@@ -35,10 +35,10 @@ export const deleteController = {
       const mediaResponse = await endpoint.post(mediaUrl.href, accessToken);
       const message = encodeURIComponent(mediaResponse.success_description);
 
-      response.redirect(`${request.baseUrl}?success=${message}`);
+      return response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("file-delete", {
+      return response.render("file-delete", {
         title: response.locals.__("files.delete.title"),
         parent: { text: fileName },
         error,

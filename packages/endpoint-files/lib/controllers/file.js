@@ -7,7 +7,7 @@ import path from "node:path";
 export const fileController = async (request, response) => {
   const { fileName, filesPath, scope } = response.locals;
 
-  response.render("file", {
+  return response.render("file", {
     title: fileName,
     parent: {
       href: filesPath,
