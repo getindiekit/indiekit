@@ -86,4 +86,10 @@ describe("endpoint-media/lib/media-data", async () => {
       message: "No media data to delete",
     });
   });
+
+  it("stores a UUIDv7 uid", async () => {
+    const result = await mediaData.create(application, publication, file);
+
+    assert.match(result.properties.uid, /^[\da-f]{8}-[\da-f]{4}-7/);
+  });
 });
