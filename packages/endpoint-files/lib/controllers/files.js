@@ -59,7 +59,7 @@ export const filesController = async (request, response, next) => {
       };
     }
 
-    response.render("files", {
+    return response.render("files", {
       title: response.locals.__("files.files.title"),
       actions: [
         scope.includes("create") || scope.includes("media")

@@ -41,13 +41,16 @@ export const formController = {
     }
 
     // Caught by validation, but needed to satisfy nullable UploadedFile typedef
-    if (!Object.entries(request?.files)) {
+    if (!request.files?.file) {
       throw new Error(response.locals.__("files.error.file.empty"));
     }
 
-    const { data, name } = request.files.file;
+    const file = Array.isArray(request.files.file)
+      ? request.files.file[0]
+      : request.files.file;
+    const { data, name } = file;
     const formData = new FormData();
-    formData.append("file", new Blob([data]), name);
+    formData.append("file", new Blob([new Uint8Array(data)]), name);
 
     try {
       const mediaResponse = await endpoint.post(
