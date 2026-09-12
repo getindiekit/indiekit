@@ -11,8 +11,7 @@ const indiekitError = () => {
 
 describe("error", () => {
   it("Gets error", () => {
-    const error = new IndiekitError();
-    const result = error.getError("bad_request");
+    const result = IndiekitError.getError("bad_request");
 
     assert.deepEqual(result, {
       code: "bad_request",
