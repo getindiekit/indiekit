@@ -1,5 +1,6 @@
 import path from "node:path";
 
+import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
 
 import { endpoint } from "../endpoint.js";
@@ -62,7 +63,7 @@ export const formController = {
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
-      response.status(error.status || 500);
+      response.status(error instanceof IndiekitError ? error.status : 500);
       response.render("file-form", {
         title: response.locals.__("files.upload.title"),
         error,

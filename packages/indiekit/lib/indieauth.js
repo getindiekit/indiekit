@@ -179,7 +179,7 @@ export const IndieAuth = class {
         // Redirect to requested resource
         return response.redirect(redirect || "/");
       } catch (error) {
-        response.status(error.status || 500);
+        response.status(error instanceof IndiekitError ? error.status : 500);
         return response.render("session/login", {
           title: response.locals.__("session.login.title"),
           error,

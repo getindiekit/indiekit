@@ -1,4 +1,5 @@
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { IndiekitError } from "@indiekit/error";
 
 import { endpoint } from "../endpoint.js";
 
@@ -41,7 +42,7 @@ export const deleteController = {
 
       return response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
-      response.status(error.status || 500);
+      response.status(error instanceof IndiekitError ? error.status : 500);
       return response.render("post-delete", {
         title: response.locals.__(`posts.${action}.title`),
         parent: { text: postName },
