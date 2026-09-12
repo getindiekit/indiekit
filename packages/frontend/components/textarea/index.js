@@ -49,7 +49,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
       return;
     }
 
-    this.editorEndpoint = this.getAttribute("editor-endpoint");
+    this.editorEndpoint = this.getAttribute("editor-endpoint") ?? undefined;
     this.editorId = this.getAttribute("editor-id");
     this.editorImageUpload = this.getAttribute("editor-image-upload");
     this.editorLocale = this.getAttribute("editor-locale");
@@ -105,7 +105,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
       minHeight: "6rem",
       previewClass: ["editor-preview", "s-flow"],
       status,
-      // @ts-ignore
+      // @ts-expect-error
       toolbar,
       unorderedListStyle: "-",
     });

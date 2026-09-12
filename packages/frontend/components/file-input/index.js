@@ -5,7 +5,7 @@ import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
   /**
-   * @type {string|null}
+   * @type {string}
    */
   endpoint;
 
@@ -35,7 +35,13 @@ export const FileInputFieldController = class extends HTMLElement {
   $errorMessageTemplate;
 
   connectedCallback() {
-    this.endpoint = this.getAttribute("endpoint");
+    const endpoint = this.getAttribute("endpoint");
+
+    if (!endpoint) {
+      throw new Error("File input requires an `endpoint` attribute");
+    }
+
+    this.endpoint = endpoint;
 
     this.$uploadProgress = getElement(this, ".file-input__progress");
     this.$fileInputPath = getElement(this, ".file-input__path");
@@ -105,12 +111,17 @@ export const FileInputFieldController = class extends HTMLElement {
    * @param {Event} event - File input event
    */
   async fetch(event) {
+    const $target = /** @type {HTMLInputElement} */ (event.target);
+    const [file] = $target.files ?? [];
+
+    if (!file) {
+      return;
+    }
+
     this.$uploadProgress.hidden = false;
 
-    const $target = /** @type {HTMLInputElement} */ (event.target);
     const formData = new FormData();
-
-    formData.append("file", $target.files[0]);
+    formData.append("file", file);
 
     try {
       this.$fileInputPath.readOnly = true;
@@ -127,8 +138,13 @@ export const FileInputFieldController = class extends HTMLElement {
         throw await IndiekitError.fromFetch(endpointResponse);
       }
 
-      this.$fileInputPath.value =
-        await endpointResponse.headers.get("location");
+      const location = endpointResponse.headers.get("location");
+
+      if (!location) {
+        throw new Error("No location for uploaded file");
+      }
+
+      this.$fileInputPath.value = location;
       this.$fileInputPath.readOnly = false;
       this.$uploadProgress.hidden = true;
     } catch (error) {

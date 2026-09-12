@@ -36,6 +36,7 @@ export const SharePreviewComponent = class extends HTMLElement {
    */
   updatePreview($outputElement) {
     const { classList, dataset } = $outputElement;
+    const placeholder = dataset.placeholder ?? "";
     const htmlFor = $outputElement.htmlFor.value;
     const $inputElement = /** @type {HTMLInputElement | null} */ (
       document.querySelector(`[name=${CSS.escape(htmlFor)}]`)
@@ -46,7 +47,7 @@ export const SharePreviewComponent = class extends HTMLElement {
     }
 
     classList.add("placeholder");
-    $outputElement.value = dataset.placeholder;
+    $outputElement.value = placeholder;
 
     $inputElement.addEventListener("input", () => {
       if ($inputElement.value) {
@@ -54,7 +55,7 @@ export const SharePreviewComponent = class extends HTMLElement {
         $outputElement.value = decodeURIComponent($inputElement.value);
       } else {
         classList.add("placeholder");
-        $outputElement.value = dataset.placeholder;
+        $outputElement.value = placeholder;
       }
     });
   }

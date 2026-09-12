@@ -46,13 +46,8 @@ export const CharacterCountComponent = class extends HTMLElement {
     this.$screenReaderCountMessage = document.createElement("p");
     this.$screenReaderCountMessage.className = "-!-visually-hidden";
     this.$screenReaderCountMessage.setAttribute("aria-live", "polite");
-    this.$textareaDescription.insertAdjacentElement(
-      "afterend",
-      this.$screenReaderCountMessage,
-    );
 
     this.$visibleCountMessage = document.createElement("p");
-    this.$visibleCountMessage.className = this.$textareaDescription.className;
     this.$visibleCountMessage.setAttribute("aria-hidden", "true");
   }
 
@@ -204,6 +199,11 @@ export const CharacterCountComponent = class extends HTMLElement {
 
     this.$textareaDescription = getElement(this, `#${this.$textarea.id}-info`);
     this.$textareaDescription.classList.add("-!-visually-hidden");
+    this.$textareaDescription.insertAdjacentElement(
+      "afterend",
+      this.$screenReaderCountMessage,
+    );
+    this.$visibleCountMessage.className = this.$textareaDescription.className;
     this.$textareaDescription.insertAdjacentElement(
       "afterend",
       this.$visibleCountMessage,
