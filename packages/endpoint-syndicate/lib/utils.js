@@ -102,7 +102,7 @@ export const syndicateToTargets = async (publication, properties) => {
       } catch (error) {
         // Add failed syndication target to list of failed targets
         failedTargets.push(target.info.uid);
-        console.error(error.message);
+        console.error(error);
       }
     }
   }
