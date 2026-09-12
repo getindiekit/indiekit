@@ -9,7 +9,7 @@ export const shareController = {
   get(request, response) {
     const { content, name, url, success } = request.query;
 
-    response.render("share", {
+    return response.render("share", {
       title: response.locals.__("share.title"),
       properties: { content, name, url },
       success,
