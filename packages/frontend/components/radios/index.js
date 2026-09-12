@@ -3,6 +3,11 @@
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/radios/radios.mjs}
  */
 export const RadiosFieldComponent = class extends HTMLElement {
+  /**
+   * @type {NodeListOf<HTMLInputElement>}
+   */
+  $$inputTargets;
+
   connectedCallback() {
     this.$$inputTargets = this.querySelectorAll("input");
     for (const $input of this.$$inputTargets) {
