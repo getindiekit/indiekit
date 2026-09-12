@@ -1,3 +1,5 @@
+import { getElement } from "../../scripts/utils/get-element";
+
 /**
  * Based on the Character count component from the GOV.UK Design System.
  * Provides a visible, real-time character and word count, and visually
@@ -193,16 +195,14 @@ export const CharacterCountComponent = class extends HTMLElement {
     this.i18nWord = this.getAttribute("i18n-word") || `%s word`;
     this.i18nWords = this.getAttribute("i18n-words") || `%s words`;
 
-    this.$textarea = this.querySelector("textarea");
+    this.$textarea = getElement(this, "textarea");
     this.$textarea.addEventListener("keyup", this.#handleKeyUp.bind(this));
     this.$textarea.addEventListener("focus", this.#handleFocus.bind(this));
     this.$textarea.addEventListener("blur", this.#handleBlur.bind(this));
     window.addEventListener("pageshow", this.#updateCountMessages.bind(this));
     this.#updateCountMessages();
 
-    this.$textareaDescription = this.querySelector(
-      `#${this.$textarea.id}-info`,
-    );
+    this.$textareaDescription = getElement(this, `#${this.$textarea.id}-info`);
     this.$textareaDescription.classList.add("-!-visually-hidden");
     this.$textareaDescription.insertAdjacentElement(
       "afterend",

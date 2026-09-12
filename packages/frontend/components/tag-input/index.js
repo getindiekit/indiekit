@@ -1,11 +1,13 @@
 import TagInput from "@accessible-components/tag-input";
 
+import { getElement } from "../../scripts/utils/get-element";
+
 export const TagInputFieldComponent = class extends HTMLElement {
   connectedCallback() {
-    this.$errorMessage = this.querySelector(".error-message");
-    this.$hint = this.querySelector(".hint");
-    this.$replacedLabel = this.querySelector(".label");
-    this.$replacedInput = this.querySelector(".input");
+    this.$errorMessage = getElement(this, ".error-message");
+    this.$hint = getElement(this, ".hint");
+    this.$replacedLabel = getElement(this, ".label");
+    this.$replacedInput = getElement(this, ".input");
     this.value = this.$replacedInput.getAttribute("value");
 
     const tags = this.value ? this.value.split(",") : [];
@@ -35,7 +37,8 @@ export const TagInputFieldComponent = class extends HTMLElement {
       this.insertBefore(this.$errorMessage, this.querySelector(".tag-input"));
     }
 
-    this.querySelector(".tag-input-label").classList.add("label");
+    const $tagInputLabel = getElement(this, ".tag-input-label");
+    $tagInputLabel.classList.add("label");
 
     this.$replacedLabel.remove();
     this.$replacedInput.remove();
@@ -43,7 +46,7 @@ export const TagInputFieldComponent = class extends HTMLElement {
     /**
      * @type {HTMLInputElement}
      */
-    const $tagInputInput = this.querySelector(".tag-input__input");
+    const $tagInputInput = getElement(this, ".tag-input__input");
 
     // Add a tag when the Comma key is pressed. This matches the parsing done
     // when JavaScript is not enabled, meaning hint text correct in both cases.
