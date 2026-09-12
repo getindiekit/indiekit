@@ -37,20 +37,17 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 /**
  * Convert JF2 post data to mf2
  * @param {Jf2PostData} postData - Post data
- * @param {boolean} [shouldIncludeObjectId] - Include ObjectID from post data
  * @returns {MicroformatRoot} mf2
  */
-export const jf2ToMf2 = (postData, shouldIncludeObjectId = true) => {
-  const { properties, _id } = postData;
+export const jf2ToMf2 = (postData) => {
+  const { properties } = postData;
 
   /**
    * @type {Mf2Draft}
    */
   const mf2 = {
     type: [`h-${properties.type}`],
-    properties: {
-      ...(shouldIncludeObjectId && _id && { uid: [_id] }),
-    },
+    properties: {},
   };
 
   delete properties.type;
@@ -59,7 +56,7 @@ export const jf2ToMf2 = (postData, shouldIncludeObjectId = true) => {
   for (const key in properties) {
     // Convert nested vocabulary to mf2 (i.e. h-card, h-geo, h-adr)
     if (Object.prototype.hasOwnProperty.call(properties[key], "type")) {
-      mf2.properties[key] = [jf2ToMf2({ properties: properties[key] }, false)];
+      mf2.properties[key] = [jf2ToMf2({ properties: properties[key] })];
     }
 
     // Convert values to arrays (i.e. "a" => ["a"])

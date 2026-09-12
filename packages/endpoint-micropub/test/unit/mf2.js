@@ -8,13 +8,12 @@ import { jf2ToMf2 } from "../../lib/mf2.js";
 describe("endpoint-micropub/lib/mf2", () => {
   it("Convert JF2 to mf2", () => {
     const properties = JSON.parse(getFixture("jf2/all-properties.jf2"));
-    const postData = { _id: 123, properties };
+    const postData = { properties };
     const result = jf2ToMf2(postData);
 
     assert.deepEqual(result, {
       type: ["h-entry"],
       properties: {
-        uid: [123],
         url: ["https://website.example/posts/cheese-sandwich"],
         name: ["What I had for lunch"],
         content: [
@@ -67,5 +66,27 @@ describe("endpoint-micropub/lib/mf2", () => {
         "mp-syndicate-to": ["https://mastodon.example"],
       },
     });
+  });
+
+  it("passes a stored uid through, and invents none without one", () => {
+    const withUid = jf2ToMf2({
+      properties: {
+        type: "entry",
+        uid: "01a0966c-ef50-79c5-a36d-33c045813e4b",
+      },
+    });
+    assert.deepEqual(withUid.properties.uid, [
+      "01a0966c-ef50-79c5-a36d-33c045813e4b",
+    ]);
+
+    const withoutUid = jf2ToMf2({
+      _id: "6aa54e8a9bb0f7b129092770",
+      properties: { type: "entry" },
+    });
+    assert.equal(
+      withoutUid.properties.uid,
+      undefined,
+      "synthesised a uid from _id",
+    );
   });
 });
