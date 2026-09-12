@@ -28,7 +28,7 @@ export const queryController = async (request, response, next) => {
     const config = getConfig(application, publication);
     const limit = Number(request.query.limit) || 0;
     const offset = Number(request.query.offset) || 0;
-    let { after, before, filter, properties, q, url } = request.query;
+    let { after, before, filter, properties, q, uid, url } = request.query;
 
     if (!q) {
       throw IndiekitError.badRequest(
@@ -50,20 +50,26 @@ export const queryController = async (request, response, next) => {
       }
 
       case "source": {
-        if (url) {
-          // Return mf2 for a given URL (optionally filtered by properties)
+        if (url || uid) {
+          // Return mf2 for a given post (optionally filtered by properties).
+          // `url` is what the Micropub specification defines; `uid` is an
+          // extension, and the only identifier the posts interface holds.
           let postData;
 
           if (postsCollection) {
-            postData = await postsCollection.findOne({
-              "properties.url": url,
-            });
+            postData = await postsCollection.findOne(
+              url ? { "properties.url": url } : { "properties.uid": uid },
+            );
           }
 
           if (!postData) {
-            throw IndiekitError.badRequest(
-              response.locals.__("BadRequestError.missingResource", "post"),
-            );
+            throw url
+              ? IndiekitError.badRequest(
+                  response.locals.__("BadRequestError.missingResource", "post"),
+                )
+              : IndiekitError.notFound(
+                  response.locals.__("NotFoundError.record", "post"),
+                );
           }
 
           const mf2 = jf2ToMf2(postData);
