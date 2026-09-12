@@ -19,6 +19,7 @@ describe("endpoint-micropub/lib/post-type-count", () => {
           published,
           name: "Foo",
           url: "https://website.example/foo",
+          uid: "0191f6e0-1234-7abc-8def-0123456789ab",
         },
       },
       {
@@ -28,6 +29,7 @@ describe("endpoint-micropub/lib/post-type-count", () => {
           published,
           name: "Bar",
           url: "https://website.example/bar",
+          uid: "0191f6e0-5678-7abc-8def-0123456789ab",
         },
       },
     ]);
@@ -48,10 +50,10 @@ describe("endpoint-micropub/lib/post-type-count", () => {
     assert.equal(result, 2);
   });
 
-  it("Doesn’t count the post being updated, by its ID", async () => {
+  it("Doesn’t count the post being updated, by its uid", async () => {
     const post = await posts.findOne({});
     const result = await postTypeCount.get(posts, {
-      uid: post._id.toString(),
+      uid: post.properties.uid,
       type: "entry",
       published,
       "post-type": "note",
