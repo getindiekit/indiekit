@@ -120,10 +120,10 @@ export const authorizationController = {
     const profileToken = { me: request.verifiedToken.me };
 
     if (request.accepts("application/json")) {
-      response.json(profileToken);
-    } else {
-      response.set("content-type", "application/x-www-form-urlencoded");
-      response.send(new URLSearchParams(profileToken).toString());
+      return response.json(profileToken);
     }
+
+    response.set("content-type", "application/x-www-form-urlencoded");
+    return response.send(new URLSearchParams(profileToken).toString());
   },
 };

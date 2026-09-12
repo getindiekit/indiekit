@@ -23,9 +23,9 @@ export const introspectionController = {
         ...accessToken,
       };
 
-      response.json(accessToken);
+      return response.json(accessToken);
     } catch {
-      response.json({
+      return response.json({
         active: false,
       });
     }

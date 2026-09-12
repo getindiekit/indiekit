@@ -20,10 +20,10 @@ export const tokenController = {
     };
 
     if (request.accepts("application/json")) {
-      response.json(accessToken);
-    } else {
-      response.set("content-type", "application/x-www-form-urlencoded");
-      response.send(new URLSearchParams(accessToken).toString());
+      return response.json(accessToken);
     }
+
+    response.set("content-type", "application/x-www-form-urlencoded");
+    return response.send(new URLSearchParams(accessToken).toString());
   },
 };

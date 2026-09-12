@@ -24,16 +24,15 @@ export const consentController = {
       const authType = scope === undefined ? "authenticate" : "authorize";
 
       if (process.env.PASSWORD_SECRET) {
-        response.render("consent", {
+        return response.render("consent", {
           title: response.locals.__(`auth.consent.${authType}.title`),
           authType,
           me,
           redirect_uri,
           scopeItems: getScopeItems(scope, response),
         });
-      } else {
-        response.redirect(request.baseUrl + "/new-password?setup=true");
       }
+      return response.redirect(request.baseUrl + "/new-password?setup=true");
     } catch {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.invalidValue", "request_uri"),
