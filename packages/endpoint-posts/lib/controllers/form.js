@@ -2,6 +2,7 @@ import path from "node:path";
 
 import { jf2ToMf2 } from "@indiekit/endpoint-micropub/lib/mf2.js";
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { IndiekitError } from "@indiekit/error";
 import { formatLocalToZonedDate, sanitise } from "@indiekit/util";
 import { validationResult } from "express-validator";
 
@@ -104,7 +105,7 @@ export const formController = {
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
-      response.status(error.status || 500);
+      response.status(error instanceof IndiekitError ? error.status : 500);
       response.render("post-form", {
         title: response.locals.__(
           `posts.${action}.title`,

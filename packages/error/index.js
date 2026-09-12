@@ -159,8 +159,14 @@ export class IndiekitError extends Error {
     this.message = options.plugin ? `${options.plugin}: ${message}` : message;
     this.code = options.code || "indiekit";
     this.name = IndiekitError.getError(this.code)?.name || this.name;
+
+    const status = Number(
+      options.status || IndiekitError.getError(this.code)?.status,
+    );
     this.status =
-      options.status || IndiekitError.getError(this.code)?.status || 500;
+      Number.isSafeInteger(status) && status >= 100 && status < 1000
+        ? status
+        : 500;
 
     if (options.scope) {
       this.scope = options.scope;

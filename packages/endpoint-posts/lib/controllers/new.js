@@ -1,6 +1,7 @@
 import path from "node:path";
 
 import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
+import { IndiekitError } from "@indiekit/error";
 import { validationResult } from "express-validator";
 
 export const newController = {
@@ -77,7 +78,7 @@ export const newController = {
 
       response.redirect(`${request.baseUrl}/create?type=${type}`);
     } catch (error) {
-      response.status(error.status || 500);
+      response.status(error instanceof IndiekitError ? error.status : 500);
       response.render("new", {
         title: response.locals.__(`posts.new.title`),
         error,

@@ -1,3 +1,5 @@
+import { IndiekitError } from "@indiekit/error";
+
 import { endpoint } from "../endpoint.js";
 
 export const deleteController = {
@@ -37,7 +39,7 @@ export const deleteController = {
 
       return response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
-      response.status(error.status || 500);
+      response.status(error instanceof IndiekitError ? error.status : 500);
       return response.render("file-delete", {
         title: response.locals.__("files.delete.title"),
         parent: { text: fileName },
