@@ -10,7 +10,7 @@ import { mediaTypeCount } from "./media-type-count.js";
  */
 export const getMediaProperties = (mediaData) => {
   return {
-    uid: mediaData._id,
+    uid: mediaData.properties.uid,
     "content-type": mediaData.properties["content-type"],
     "media-type": mediaData.properties["media-type"],
     published: mediaData.properties.published,
