@@ -5,6 +5,5 @@ export { appIcon, shortcutIcon } from "./lib/sharp.js";
 export { templates } from "./lib/nunjucks.js";
 export { scripts } from "./lib/esbuild.js";
 export { styles } from "./lib/lightningcss.js";
+export { tagInputSanitizer } from "./lib/utils/validation.js";
 export { getBackgroundColor, getThemeColor } from "./lib/utils/theme.js";
-
-export { tagInputSanitizer } from "./components/tag-input/sanitizer.js";
