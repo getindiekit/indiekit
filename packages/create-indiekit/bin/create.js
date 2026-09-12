@@ -35,7 +35,7 @@ try {
   await init();
 } catch (error) {
   if (error instanceof SetupCancelledError) {
-    console.error(error.message);
+    console.error(error);
     process.exit(1);
   }
 
