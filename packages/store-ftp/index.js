@@ -40,11 +40,7 @@ export default class FtpStore {
       await client.connect({ host, username, password, port });
       return client;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 
@@ -140,11 +136,7 @@ export default class FtpStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     } finally {
       await client.end();
     }
@@ -165,11 +157,7 @@ export default class FtpStore {
         readStreamOptions: { encoding: "utf8" },
       });
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     } finally {
       await client.end();
     }
@@ -201,11 +189,7 @@ export default class FtpStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     } finally {
       await client.end();
     }
@@ -224,11 +208,7 @@ export default class FtpStore {
 
       return await client.delete(absolutePath);
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     } finally {
       await client.end();
     }

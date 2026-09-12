@@ -44,6 +44,27 @@ export default class GitlabStore {
     return client;
   }
 
+  /**
+   * Convert an error thrown by `@gitbeaker` into an IndiekitError
+   * @access private
+   * @param {unknown} caught - Caught error
+   * @returns {IndiekitError} Indiekit error
+   */
+  #error(caught) {
+    const { cause } =
+      /** @type {{ cause?: { description?: string, response?: { status?: number } } }} */ (
+        caught
+      );
+
+    return cause?.description
+      ? new IndiekitError(cause.description, {
+          cause,
+          plugin: this.name,
+          status: cause.response?.status,
+        })
+      : IndiekitError.fromCaught(caught, { plugin: this.name });
+  }
+
   get environment() {
     return ["GITLAB_TOKEN"];
   }
@@ -138,11 +159,7 @@ export default class GitlabStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.cause.description, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.cause.response.status,
-      });
+      throw this.#error(error);
     }
   }
 
@@ -162,11 +179,7 @@ export default class GitlabStore {
 
       return readResponse.text();
     } catch (error) {
-      throw new IndiekitError(error.cause.description, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.cause.response.status,
-      });
+      throw this.#error(error);
     }
   }
 
@@ -211,11 +224,7 @@ export default class GitlabStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.cause.description, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.cause.response.status,
-      });
+      throw this.#error(error);
     }
   }
 
@@ -238,11 +247,7 @@ export default class GitlabStore {
 
       return true;
     } catch (error) {
-      throw new IndiekitError(error.cause.description, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.cause.response.status,
-      });
+      throw this.#error(error);
     }
   }
 
