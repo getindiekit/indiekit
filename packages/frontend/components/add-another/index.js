@@ -1,3 +1,5 @@
+import { getElement } from "../../scripts/utils/get-element";
+
 const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]`;
 
 export const AddAnotherComponent = class extends HTMLElement {
@@ -22,10 +24,10 @@ export const AddAnotherComponent = class extends HTMLElement {
   $list;
 
   connectedCallback() {
-    this.$addButtonTemplate = this.querySelector("#add-button");
-    this.$deleteButtonTemplate = this.querySelector("#delete-button");
+    this.$addButtonTemplate = getElement(this, "#add-button");
+    this.$deleteButtonTemplate = getElement(this, "#delete-button");
     this.$$fields = this.querySelectorAll(".field");
-    this.$list = this.querySelector(".add-another__list");
+    this.$list = getElement(this, ".add-another__list");
 
     this.updateItems();
     this.createAddButton();
@@ -70,7 +72,7 @@ export const AddAnotherComponent = class extends HTMLElement {
    * @returns {HTMLLegendElement} - Group legend
    */
   getHeading() {
-    return this.querySelector("legend");
+    return getElement(this, "legend");
   }
 
   /**
@@ -91,7 +93,7 @@ export const AddAnotherComponent = class extends HTMLElement {
 
     this.append($addButton);
 
-    $addButton = this.querySelector(".add-another__add");
+    $addButton = getElement(this, ".add-another__add");
     $addButton.addEventListener("click", (event) => this.add(event));
   }
 
