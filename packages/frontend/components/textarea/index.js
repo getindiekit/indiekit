@@ -212,7 +212,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
           onError(endpointResponse.statusText);
         }
       } catch (error) {
-        onError(error.message);
+        onError(error instanceof Error ? error.message : String(error));
       }
     };
   }
