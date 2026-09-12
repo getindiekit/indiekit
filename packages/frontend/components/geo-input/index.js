@@ -1,3 +1,4 @@
+import { getElement } from "../../scripts/utils/get-element.js";
 import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const GeoInputFieldComponent = class extends HTMLElement {
@@ -25,10 +26,10 @@ export const GeoInputFieldComponent = class extends HTMLElement {
     this.i18nDenied = this.getAttribute("i18n-denied");
     this.i18nFailed = this.getAttribute("i18n-failed");
 
-    this.$geoInput = this.querySelector(".geo-input");
-    this.$geoInputButton = this.querySelector(".geo-input__button");
-    this.$geoInputButtonTemplate = this.querySelector("#geo-input-button");
-    this.$errorMessageTemplate = this.querySelector("#error-message");
+    this.$geoInput = getElement(this, ".geo-input");
+    this.$geoInputButton = getElement(this, ".geo-input__button");
+    this.$geoInputButtonTemplate = getElement(this, "#geo-input-button");
+    this.$errorMessageTemplate = getElement(this, "#error-message");
 
     if (!navigator.geolocation) {
       return;
@@ -50,7 +51,7 @@ export const GeoInputFieldComponent = class extends HTMLElement {
       $inputButtonGroup.append($geoInputButton);
 
       // Update `this.$geoInputButton`
-      this.$geoInputButton = this.querySelector(".geo-input__button");
+      this.$geoInputButton = getElement(this, ".geo-input__button");
     }
 
     // Add event to cloned button

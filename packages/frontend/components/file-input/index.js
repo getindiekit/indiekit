@@ -1,5 +1,6 @@
 import { IndiekitError } from "@indiekit/error";
 
+import { getElement } from "../../scripts/utils/get-element.js";
 import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
@@ -36,11 +37,11 @@ export const FileInputFieldController = class extends HTMLElement {
   connectedCallback() {
     this.endpoint = this.getAttribute("endpoint");
 
-    this.$uploadProgress = this.querySelector(".file-input__progress");
-    this.$fileInputPath = this.querySelector(".file-input__path");
-    this.$fileInputPicker = this.querySelector(".file-input__picker");
-    this.$fileInputPickerTemplate = this.querySelector("#file-input-picker");
-    this.$errorMessageTemplate = this.querySelector("#error-message");
+    this.$uploadProgress = getElement(this, ".file-input__progress");
+    this.$fileInputPath = getElement(this, ".file-input__path");
+    this.$fileInputPicker = getElement(this, ".file-input__picker");
+    this.$fileInputPickerTemplate = getElement(this, "#file-input-picker");
+    this.$errorMessageTemplate = getElement(this, "#error-message");
 
     if (!this.$fileInputPicker) {
       // Create group to hold input and button
@@ -58,7 +59,7 @@ export const FileInputFieldController = class extends HTMLElement {
       $inputButtonGroup.append($fileInputPicker);
 
       // Update `this.$fileInputPicker`
-      this.$fileInputPicker = this.querySelector(".file-input__picker");
+      this.$fileInputPicker = getElement(this, ".file-input__picker");
     }
 
     // Make file input label behave like a button to trigger file input
@@ -92,8 +93,10 @@ export const FileInputFieldController = class extends HTMLElement {
     });
 
     // Add event to file input
-    const $fileInputFile =
-      this.$fileInputPicker.querySelector(`.file-input__file`);
+    const $fileInputFile = getElement(
+      this.$fileInputPicker,
+      ".file-input__file",
+    );
     $fileInputFile.addEventListener("change", (event) => this.fetch(event));
   }
 

@@ -1,5 +1,7 @@
 import EasyMDE from "easymde";
 
+import { getElement } from "../../scripts/utils/get-element";
+
 const paths = {
   bold: "M17 30c6.1 0 10-3 10-8 0-3.5-2.7-6.3-6.5-6.5V15c3-.4 5-3 5-6 0-4.5-3.5-7-9-7H5v28h12ZM12 7h2c2.5 0 4 1 4 3 0 1.5-1.5 3-4 3h-2V7Zm0 18v-7h2.3c3.1 0 4.7 1.1 4.7 3.4 0 2.5-1.4 3.6-4.8 3.6H12Z",
   code: "m13.5 8.5-3-3L2 14C.5 15.5.5 16.5 2 18l8.5 8.5 3-3L6 16l7.5-7.5Zm5 0 3-3L30 14c1.5 1.5 1.5 2.5 0 4l-8.5 8.5-3-3L26 16l-7.5-7.5Z",
@@ -53,8 +55,8 @@ export const TextareaFieldComponent = class extends HTMLElement {
     this.editorLocale = this.getAttribute("editor-locale");
     this.editorStatus = this.getAttribute("editor-status");
     this.editorToolbar = this.getAttribute("editor-toolbar");
-    this.$label = this.querySelector("label");
-    this.$textarea = this.querySelector("textarea");
+    this.$label = getElement(this, "label");
+    this.$textarea = getElement(this, "textarea");
 
     const status =
       this?.editorStatus === "false"
@@ -157,7 +159,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
     /**
      * @type {HTMLTextAreaElement}
      */
-    const $codeMirrorTextarea = this.querySelector(".CodeMirror textarea");
+    const $codeMirrorTextarea = getElement(this, ".CodeMirror textarea");
     this.$label.addEventListener("click", () => {
       $codeMirrorTextarea.focus();
     });
@@ -166,7 +168,7 @@ export const TextareaFieldComponent = class extends HTMLElement {
     /**
      * @type {HTMLElement}
      */
-    const $characters = this.querySelector(".editor-statusbar .characters");
+    const $characters = getElement(this, ".editor-statusbar .characters");
     editor.codemirror.on("update", () => {
       if ($characters) {
         $characters.innerHTML = String(editor.value().length);

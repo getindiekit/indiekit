@@ -1,3 +1,5 @@
+import { getElement } from "../../scripts/utils/get-element";
+
 export const EventDurationComponent = class extends HTMLElement {
   /**
    * @type {HTMLInputElement}
@@ -10,7 +12,7 @@ export const EventDurationComponent = class extends HTMLElement {
   $$dateTimeInputs;
 
   connectedCallback() {
-    this.$allDayToggle = this.querySelector(`input[type="checkbox"]`);
+    this.$allDayToggle = getElement(this, `input[type="checkbox"]`);
     this.$$dateTimeInputs = this.querySelectorAll(
       `input[type="datetime-local"]`,
     );
