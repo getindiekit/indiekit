@@ -123,7 +123,8 @@ export const actionController = async (request, response, next) => {
       .status(content.status)
       .location(content.location)
       .json(content.json);
-  } catch (error) {
+  } catch (error_) {
+    const error = error_ instanceof Error ? error_ : new Error(String(error_));
     let nextError = error;
 
     if (error.name === "NotFoundError") {
