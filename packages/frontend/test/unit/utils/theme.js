@@ -8,7 +8,7 @@ import {
   getBackgroundColor,
   getThemeColor,
   getThemeCustomProperties,
-} from "../../lib/utils/theme.js";
+} from "../../../lib/utils/theme.js";
 
 describe("frontend/lib/globals/icon", () => {
   it("Generates an accessible colour with sufficient contrast", () => {

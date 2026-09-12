@@ -1,4 +1,4 @@
-import { wrapElement } from "../../lib/utils/wrap-element.js";
+import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const GeoInputFieldComponent = class extends HTMLElement {
   connectedCallback() {
