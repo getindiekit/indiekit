@@ -69,7 +69,9 @@ export const actionController = (imageProcessing) =>
         .status(content.status)
         .location(content.location)
         .json(content.json);
-    } catch (error) {
+    } catch (error_) {
+      const error =
+        error_ instanceof Error ? error_ : new Error(String(error_));
       let nextError = error;
 
       switch (error.name) {
