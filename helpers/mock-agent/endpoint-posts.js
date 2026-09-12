@@ -35,34 +35,39 @@ export function mockClient() {
     })
     .persist();
 
-  // Get source information for all items from external micropub endpoint
+  // Get source information for a single post by uid from external micropub endpoint
   agent
     .get(micropubEndpointOrigin)
     .intercept({
-      path: "/?q=source",
+      path: "/",
+      query: { q: "source", uid: "123" },
     })
     .reply(200, {
-      items: [
-        {
-          type: ["h-entry"],
-          properties: {
-            uid: ["123"],
-            name: ["Foobar"],
-            "post-type": ["note"],
-            published: ["2024-12-21"],
-            url: [postOrigin],
-          },
-        },
-        {
-          type: ["h-entry"],
-          properties: {
-            uid: ["401"],
-            name: ["401"],
-            "post-type": ["note"],
-            url: [postBadOrigin],
-          },
-        },
-      ],
+      type: ["h-entry"],
+      properties: {
+        uid: ["123"],
+        name: ["Foobar"],
+        "post-type": ["note"],
+        published: ["2024-12-21"],
+        url: [postOrigin],
+      },
+    })
+    .persist();
+
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", uid: "401" },
+    })
+    .reply(200, {
+      type: ["h-entry"],
+      properties: {
+        uid: ["401"],
+        name: ["401"],
+        "post-type": ["note"],
+        url: [postBadOrigin],
+      },
     })
     .persist();
 
