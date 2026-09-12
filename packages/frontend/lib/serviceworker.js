@@ -10,7 +10,7 @@ const placeholderImage = `<svg xmlns="http://www.w3.org/2000/svg"><defs><path id
 
 /**
  * Update asset cache
- * @returns {Promise<Cache>} - Updated asset cache
+ * @returns {Promise<void>} - Updated asset cache
  */
 async function updateAssetCache() {
   try {
@@ -21,8 +21,6 @@ async function updateAssetCache() {
 
     // These items must be cached for service worker to complete installation
     await assetCache.addAll(["APP_CSS_PATH", "APP_JS_PATH", "/offline"]);
-
-    return assetCache;
   } catch (error) {
     console.error("Error updating asset cache", error);
   }
@@ -30,7 +28,7 @@ async function updateAssetCache() {
 
 /**
  * Cache the page(s) that initiate the service worker
- * @returns {Promise<Cache>} - Updated page cache
+ * @returns {Promise<void>} - Updated page cache
  */
 async function cacheClients() {
   const pages = [];
@@ -43,8 +41,6 @@ async function cacheClients() {
 
     const pagesCache = await caches.open(pagesCacheName);
     await pagesCache.addAll(pages);
-
-    return pagesCache;
   } catch (error) {
     console.error("Error updating client cache", error);
   }
