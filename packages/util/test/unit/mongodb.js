@@ -64,9 +64,10 @@ describe("util/lib/mongodb", async () => {
 
   it("Returns error if can’t create a MongoDB client", async () => {
     mock.method(console, "error", () => {});
+    const consoleError = mock.method(console, "error", () => {});
 
     await getMongodbClient("https://foo.bar");
-    const result = console.error.mock.calls[0].arguments[0];
+    const result = consoleError.mock.calls[0].arguments[0];
 
     assert.equal(
       result,
@@ -84,13 +85,14 @@ describe("util/lib/mongodb", async () => {
       auth: { enable: true },
     });
     mock.method(console, "error", () => {});
+    const consoleError = mock.method(console, "error", () => {});
 
     try {
       const uri = authServer
         .getUri()
         .replace("mongodb://", "mongodb://foo:bar@");
       await getMongodbClient(uri);
-      const result = console.error.mock.calls[0].arguments[0];
+      const result = consoleError.mock.calls[0].arguments[0];
 
       assert.equal(result, `Authentication failed.`);
     } finally {
