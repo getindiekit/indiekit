@@ -9,6 +9,31 @@
  * @see {@link https://dav-idc.com/making-a-character-count-component-more-accessible}
  */
 export const CharacterCountComponent = class extends HTMLElement {
+  /**
+   * @type {string}
+   */
+  i18nChar;
+
+  /**
+   * @type {string}
+   */
+  i18nChars;
+
+  /**
+   * @type {string}
+   */
+  i18nWord;
+
+  /**
+   * @type {string}
+   */
+  i18nWords;
+
+  /**
+   * @type {HTMLTextAreaElement}
+   */
+  $textarea;
+
   constructor() {
     super();
 
