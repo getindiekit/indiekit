@@ -52,7 +52,7 @@ export const getServiceWorker = async (application) => {
       .replace("APP_JS_PATH", application.jsPath);
     return serviceworker;
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
   }
 };
 
