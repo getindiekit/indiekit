@@ -189,37 +189,32 @@ export class Bluesky {
       return;
     }
 
-    try {
-      const mediaUrl = getCanonicalUrl(url, me);
-      const mediaResponse = await fetch(mediaUrl);
+    const mediaUrl = getCanonicalUrl(url, me);
+    const mediaResponse = await fetch(mediaUrl);
 
-      if (!mediaResponse.ok) {
-        throw await IndiekitError.fromFetch(mediaResponse);
-      }
-
-      let blob = await mediaResponse.blob();
-      let encoding = mediaResponse.headers.get("Content-Type");
-
-      // Compress image to meet maximum file size limit
-      if (encoding?.startsWith("image/")) {
-        const buffer = Buffer.from(await blob.arrayBuffer());
-        const image = await getPostImage(buffer, encoding);
-
-        blob = new Blob([new Uint8Array(image.buffer)], {
-          type: image.mimeType,
-        });
-        encoding = image.mimeType;
-      }
-
-      const response = await client.com.atproto.repo.uploadBlob(blob, {
-        encoding,
-      });
-
-      return response.data.blob;
-    } catch (error) {
-      const message = error.message;
-      throw new Error(message, { cause: error });
+    if (!mediaResponse.ok) {
+      throw await IndiekitError.fromFetch(mediaResponse);
     }
+
+    let blob = await mediaResponse.blob();
+    let encoding = mediaResponse.headers.get("Content-Type");
+
+    // Compress image to meet maximum file size limit
+    if (encoding?.startsWith("image/")) {
+      const buffer = Buffer.from(await blob.arrayBuffer());
+      const image = await getPostImage(buffer, encoding);
+
+      blob = new Blob([new Uint8Array(image.buffer)], {
+        type: image.mimeType,
+      });
+      encoding = image.mimeType;
+    }
+
+    const response = await client.com.atproto.repo.uploadBlob(blob, {
+      encoding,
+    });
+
+    return response.data.blob;
   }
 
   /**
@@ -229,69 +224,64 @@ export class Bluesky {
    * @returns {Promise<string|boolean>} URL of syndicated status
    */
   async post(properties, me) {
-    try {
-      const client = await this.#client();
+    const client = await this.#client();
 
-      // Upload photos
-      let images = [];
-      if (properties.photo) {
-        // Trim to 4 photos as Bluesky doesn’t support more
-        const photos = properties.photo.slice(0, 4);
-        const uploads = photos.map(async (photo) => {
-          return {
-            alt: photo.alt || "",
-            image: await this.uploadMedia(photo, me),
-          };
-        });
+    // Upload photos
+    let images = [];
+    if (properties.photo) {
+      // Trim to 4 photos as Bluesky doesn’t support more
+      const photos = properties.photo.slice(0, 4);
+      const uploads = photos.map(async (photo) => {
+        return {
+          alt: photo.alt || "",
+          image: await this.uploadMedia(photo, me),
+        };
+      });
 
-        images = await Promise.all(uploads);
-      }
-
-      const repostUrl = properties["repost-of"];
-      if (repostUrl) {
-        // Syndicate repost of Bluesky URL with content as a quote post
-        if (isSameOrigin(repostUrl, this.profileUrl) && properties.content) {
-          const text = getPostText(
-            properties,
-            this.includePermalink,
-            this.includeCategories,
-          );
-          const richText = await createRichText(client, text);
-
-          return this.postQuotePost(repostUrl, richText, images);
-        }
-
-        // Syndicate repost of Bluesky URL as a repost
-        if (isSameOrigin(repostUrl, this.profileUrl)) {
-          return this.postRepost(repostUrl);
-        }
-
-        // Do not syndicate reposts of other URLs
-        return;
-      }
-
-      const likeOfUrl = properties["like-of"];
-      if (likeOfUrl) {
-        // Syndicate like of Bluesky URL as a like
-        if (isSameOrigin(likeOfUrl, this.profileUrl)) {
-          return this.postLike(likeOfUrl);
-        }
-
-        // Do not syndicate likes of other URLs
-        return;
-      }
-
-      const text = getPostText(
-        properties,
-        this.includePermalink,
-        this.includeCategories,
-      );
-      const richText = await createRichText(client, text);
-
-      return this.postPost(richText, images);
-    } catch (error) {
-      const message = error.message;
-      throw new Error(message, { cause: error });
+      images = await Promise.all(uploads);
     }
+
+    const repostUrl = properties["repost-of"];
+    if (repostUrl) {
+      // Syndicate repost of Bluesky URL with content as a quote post
+      if (isSameOrigin(repostUrl, this.profileUrl) && properties.content) {
+        const text = getPostText(
+          properties,
+          this.includePermalink,
+          this.includeCategories,
+        );
+        const richText = await createRichText(client, text);
+
+        return this.postQuotePost(repostUrl, richText, images);
+      }
+
+      // Syndicate repost of Bluesky URL as a repost
+      if (isSameOrigin(repostUrl, this.profileUrl)) {
+        return this.postRepost(repostUrl);
+      }
+
+      // Do not syndicate reposts of other URLs
+      return;
+    }
+
+    const likeOfUrl = properties["like-of"];
+    if (likeOfUrl) {
+      // Syndicate like of Bluesky URL as a like
+      if (isSameOrigin(likeOfUrl, this.profileUrl)) {
+        return this.postLike(likeOfUrl);
+      }
+
+      // Do not syndicate likes of other URLs
+      return;
+    }
+
+    const text = getPostText(
+      properties,
+      this.includePermalink,
+      this.includeCategories,
+    );
+    const richText = await createRichText(client, text);
+
+    return this.postPost(richText, images);
   }
 }
