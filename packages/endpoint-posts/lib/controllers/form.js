@@ -90,14 +90,10 @@ export const formController = {
 
       const mf2 = jf2ToMf2({ properties: sanitise(values) });
 
-      let jsonBody = mf2;
-      if (action === "update") {
-        jsonBody = {
-          action,
-          url: properties.url,
-          replace: mf2.properties,
-        };
-      }
+      const jsonBody =
+        action === "update"
+          ? { action, url: properties.url, replace: mf2.properties }
+          : mf2;
 
       const micropubResponse = await endpoint.post(
         micropubEndpoint,

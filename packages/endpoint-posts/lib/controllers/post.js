@@ -4,7 +4,7 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 
 /**
  * View published post
- * @type {import("express").RequestHandler}
+ * @type {import("express").RequestHandler<{ uid: string }>}
  */
 export const postController = async (request, response) => {
   const { isDraftMode, postName, postsPath, postStatus, properties, scope } =
@@ -12,7 +12,7 @@ export const postController = async (request, response) => {
 
   const isPostEditable = isDraftMode ? postStatus === "draft" : true;
 
-  response.render("post", {
+  return response.render("post", {
     title: postName,
     parent: {
       href: postsPath,

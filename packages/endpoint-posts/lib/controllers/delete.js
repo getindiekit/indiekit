@@ -39,10 +39,10 @@ export const deleteController = {
       );
       const message = encodeURIComponent(micropubResponse.success_description);
 
-      response.redirect(`${request.baseUrl}?success=${message}`);
+      return response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {
       response.status(error.status || 500);
-      response.render("post-delete", {
+      return response.render("post-delete", {
         title: response.locals.__(`posts.${action}.title`),
         parent: { text: postName },
         error,

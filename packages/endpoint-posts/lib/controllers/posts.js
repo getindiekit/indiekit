@@ -71,7 +71,7 @@ export const postsController = async (request, response, next) => {
       };
     }
 
-    response.render("posts", {
+    return response.render("posts", {
       title: response.locals.__("posts.posts.title"),
       actions: [
         scope && checkScope(scope, "create")
