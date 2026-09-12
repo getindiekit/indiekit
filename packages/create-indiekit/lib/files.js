@@ -20,7 +20,7 @@ export const getFileContents = async (fileName) => {
 
     return contents;
   } catch (error) {
-    console.error(error.message);
+    console.error(error instanceof Error ? error.message : String(error));
     return "";
   }
 };
