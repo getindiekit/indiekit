@@ -10,7 +10,7 @@ export const passwordController = {
   get(request, response) {
     const { name } = request.app.locals.application;
 
-    response.render("new-password", {
+    return response.render("new-password", {
       title: response.locals.__("auth.newPassword.title"),
       notice: request.query.setup
         ? response.locals.__("auth.newPassword.setup.text", { app: name })
