@@ -5,8 +5,20 @@ import { getConfig, queryConfig } from "../config.js";
 import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
 /**
+ * @typedef {object} QueryParameters
+ * @property {string} [after] - Return items after this item ID
+ * @property {string} [before] - Return items before this item ID
+ * @property {string} [filter] - Value to filter items by
+ * @property {string} [limit] - Number of items to return
+ * @property {string} [offset] - Offset to start limit of items
+ * @property {string|string[]} [properties] - mf2 properties to select
+ * @property {string} [q] - Query
+ * @property {string} [url] - URL of post to return
+ */
+
+/**
  * Query published posts
- * @type {import("express").RequestHandler}
+ * @type {import("express").RequestHandler<Record<string, string>, unknown, unknown, QueryParameters>}
  */
 export const queryController = async (request, response, next) => {
   const { application, publication } = request.app.locals;
@@ -55,60 +67,57 @@ export const queryController = async (request, response, next) => {
           }
 
           const mf2 = jf2ToMf2(postData);
-          response.json(getMf2Properties(mf2, properties));
-        } else {
-          // Return mf2 for published posts
-          let cursor = {
-            items: [],
-            hasNext: false,
-            hasPrev: false,
-          };
+          return response.json(getMf2Properties(mf2, properties));
+        }
+        // Return mf2 for published posts
+        let cursor = {
+          items: [],
+          hasNext: false,
+          hasPrev: false,
+        };
 
-          if (postsCollection) {
-            cursor = await getCursor(postsCollection, after, before, limit);
-          }
-
-          const items = [];
-          for (let item of cursor.items) {
-            if (item.properties) {
-              items.push(jf2ToMf2(item));
-            } else {
-              /**
-               * @todo Consider better way to handle item with no properties
-               * - notify user and remove item from database?
-               * - notify user and don’t delete item from database?
-               * - fail silently?
-               */
-              console.warn(`Item ignored because it has no properties`, item);
-            }
-          }
-
-          response.json({
-            items,
-            paging: {
-              ...(cursor.hasNext && { after: cursor.lastItem }),
-              ...(cursor.hasPrev && { before: cursor.firstItem }),
-            },
-          });
+        if (postsCollection) {
+          cursor = await getCursor(postsCollection, after, before, limit);
         }
 
-        break;
+        const items = [];
+        for (let item of cursor.items) {
+          if (item.properties) {
+            items.push(jf2ToMf2(item));
+          } else {
+            /**
+             * @todo Consider better way to handle item with no properties
+             * - notify user and remove item from database?
+             * - notify user and don’t delete item from database?
+             * - fail silently?
+             */
+            console.warn(`Item ignored because it has no properties`, item);
+          }
+        }
+
+        return response.json({
+          items,
+          paging: {
+            ...(cursor.hasNext && { after: cursor.lastItem }),
+            ...(cursor.hasPrev && { before: cursor.firstItem }),
+          },
+        });
       }
 
       default: {
         // Query configuration value (can be filtered, limited and offset)
         if (Object.hasOwn(config, q)) {
-          response.json({
+          return response.json({
             [q]: queryConfig(config[q], { filter, limit, offset }),
           });
-        } else {
-          throw IndiekitError.notImplemented(
-            response.locals.__("NotImplementedError.query", {
-              key: "q",
-              value: q,
-            }),
-          );
         }
+
+        throw IndiekitError.notImplemented(
+          response.locals.__("NotImplementedError.query", {
+            key: "q",
+            value: q,
+          }),
+        );
       }
     }
   } catch (error) {

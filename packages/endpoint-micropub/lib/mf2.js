@@ -36,13 +36,16 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 
 /**
  * Convert JF2 post data to mf2
- * @param {object} postData - Post data
+ * @param {Jf2PostData} postData - Post data
  * @param {boolean} [shouldIncludeObjectId] - Include ObjectID from post data
- * @returns {object} mf2
+ * @returns {MicroformatRoot} mf2
  */
 export const jf2ToMf2 = (postData, shouldIncludeObjectId = true) => {
   const { properties, _id } = postData;
 
+  /**
+   * @type {Mf2Draft}
+   */
   const mf2 = {
     type: [`h-${properties.type}`],
     properties: {
