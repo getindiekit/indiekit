@@ -81,26 +81,21 @@ export class Mastodon {
       return;
     }
 
-    try {
-      const mediaUrl = getCanonicalUrl(url, me);
-      const mediaResponse = await fetch(mediaUrl);
+    const mediaUrl = getCanonicalUrl(url, me);
+    const mediaResponse = await fetch(mediaUrl);
 
-      if (!mediaResponse.ok) {
-        throw await IndiekitError.fromFetch(mediaResponse);
-      }
-
-      const { v2 } = this.#client();
-      const blob = await mediaResponse.blob();
-      const attachment = await v2.media.create({
-        file: new Blob([blob]),
-        description: alt,
-      });
-
-      return attachment.id;
-    } catch (error) {
-      const message = error.message;
-      throw new Error(message, { cause: error });
+    if (!mediaResponse.ok) {
+      throw await IndiekitError.fromFetch(mediaResponse);
     }
+
+    const { v2 } = this.#client();
+    const blob = await mediaResponse.blob();
+    const attachment = await v2.media.create({
+      file: new Blob([blob]),
+      description: alt,
+    });
+
+    return attachment.id;
   }
 
   /**
