@@ -2,9 +2,23 @@ import { strict as assert } from "node:assert";
 import { afterEach, before, describe, it, mock } from "node:test";
 
 // Service worker globals
+
+/**
+ * @type {Record<string, Array<(event: object) => void>>}
+ */
 const handlers = {};
+
+/**
+ * @type {{ fetch: (...args: unknown[]) => Promise<Response>, cacheMatchCount: number }}
+ */
+const state = {
+  fetch: () => {
+    throw new Error("state.fetch was not set by this test");
+  },
+  cacheMatchCount: 0,
+};
+
 const stores = new Map();
-const state = { fetch: undefined, cacheMatchCount: 0 };
 
 const location = new URL("https://indiekit.test/");
 const cacheKey = (request) =>
@@ -98,11 +112,15 @@ const dispatchFetch = (url, { accept = "text/html" } = {}) => {
 
 /**
  * Await a response, failing if none arrives within a second of real time
- * @param {Promise<Response>} result - Response promise
+ * @param {Promise<Response>|undefined} result - Response promise
  * @returns {Promise<Response>} Response
  */
-const settle = (result) =>
-  Promise.race([
+const settle = (result) => {
+  if (!result) {
+    throw new Error("Service worker did not respond");
+  }
+
+  return Promise.race([
     result,
     new Promise((resolve, reject) => {
       AbortSignal.timeout(1000).addEventListener("abort", () =>
@@ -110,6 +128,7 @@ const settle = (result) =>
       );
     }),
   ]);
+};
 
 describe("frontend/lib/serviceworker", () => {
   before(async () => {
