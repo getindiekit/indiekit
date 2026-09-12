@@ -69,20 +69,34 @@ export const getMongodbClient = async (mongodbUrl) => {
     client = new MongoClient(mongodbUrl, {
       connectTimeoutMS,
     });
-  } catch (error) {
+  } catch (error_) {
+    const error =
+      error_ instanceof Error
+        ? error_
+        : new Error(String(error_), { cause: error_ });
+
     debug(
-      `Could not create MongoDB client with ${connectTimeoutMS}ms: ${error.message}`,
+      `Could not create MongoDB client with %dms: %O`,
+      connectTimeoutMS,
+      error,
     );
-    console.error(error.message);
+    console.error(`Could not create MongoDB client: ${error.message}`);
+
     return { error };
   }
 
   try {
     debug(`Try connecting to MongoDB client`);
     await client.connect();
-  } catch (error) {
-    debug(`Could not connect to MongoDB client: ${error.message}`);
-    console.error(error.message);
+  } catch (error_) {
+    const error =
+      error_ instanceof Error
+        ? error_
+        : new Error(String(error_), { cause: error_ });
+
+    debug(`Could not connect to MongoDB client: %O`, error);
+    console.error(`Could not connect to MongoDB: ${error.message}`);
+
     await client.close();
     return { error };
   }

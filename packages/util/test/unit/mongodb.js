@@ -71,7 +71,7 @@ describe("util/lib/mongodb", async () => {
 
     assert.equal(
       result,
-      `Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"`,
+      `Could not create MongoDB client: Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"`,
     );
   });
 
@@ -94,7 +94,10 @@ describe("util/lib/mongodb", async () => {
       await getMongodbClient(uri);
       const result = consoleError.mock.calls[0].arguments[0];
 
-      assert.equal(result, `Authentication failed.`);
+      assert.equal(
+        result,
+        `Could not connect to MongoDB: Authentication failed.`,
+      );
     } finally {
       await authServer.stop();
     }
