@@ -70,11 +70,7 @@ export default class GithubStore {
 
       return response;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 

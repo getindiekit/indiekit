@@ -59,11 +59,7 @@ export default class BitbucketStore {
 
       return response;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error.cause,
-        plugin: this.name,
-        status: error.cause?.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 

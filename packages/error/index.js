@@ -90,6 +90,27 @@ export class IndiekitError extends Error {
   }
 
   /**
+   * Wrap a caught value in an Indiekit error
+   * @param {unknown} caught - Caught value
+   * @param {object} [options] - Options
+   * @param {string} [options.plugin] - Plug-in name
+   * @returns {IndiekitError} Indiekit error
+   */
+  static fromCaught(caught, options = {}) {
+    const error = caught instanceof Error ? caught : new Error(String(caught));
+    const { cause, status, statusCode } =
+      /** @type {{ cause?: { status?: number }, status?: number, statusCode?: number }} */ (
+        error
+      );
+
+    return new IndiekitError(error.message, {
+      ...options,
+      cause: error,
+      status: status ?? statusCode ?? cause?.status,
+    });
+  }
+
+  /**
    * Create an error from an unsuccessful fetch response
    * @param {Response} response - Fetch response
    * @returns {Promise<IndiekitError>} Indiekit error

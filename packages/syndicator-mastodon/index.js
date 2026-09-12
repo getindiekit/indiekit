@@ -104,11 +104,7 @@ export default class MastodonSyndicator {
 
       return await mastodon.post(properties, publication.me);
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.statusCode,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 

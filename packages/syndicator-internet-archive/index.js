@@ -61,11 +61,7 @@ export default class InternetArchiveSyndicator {
 
       return await internetArchive.save(properties);
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 

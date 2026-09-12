@@ -76,11 +76,7 @@ export default class FileSystemStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 
@@ -107,11 +103,7 @@ export default class FileSystemStore {
 
       return url.href;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 
@@ -128,11 +120,7 @@ export default class FileSystemStore {
 
       return true;
     } catch (error) {
-      throw new IndiekitError(error.message, {
-        cause: error,
-        plugin: this.name,
-        status: error.status,
-      });
+      throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
   }
 
