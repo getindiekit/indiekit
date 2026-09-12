@@ -198,7 +198,8 @@ export const getSyndicateToItems = (
     try {
       info = target.info;
     } catch (error) {
-      info = { error: error.message, service: { name: target.name } };
+      const message = error instanceof Error ? error.message : String(error);
+      info = { error: message, service: { name: target.name } };
     }
 
     return {
