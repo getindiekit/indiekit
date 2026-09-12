@@ -100,7 +100,7 @@ export const AddAnotherComponent = class extends HTMLElement {
   /**
    * Get delete button
    * @param {HTMLElement} element - Containing element
-   * @returns {HTMLButtonElement} - Delete button
+   * @returns {HTMLButtonElement|null} - Delete button
    */
   getDeleteButton(element) {
     return element.querySelector(".add-another__delete");
@@ -111,8 +111,10 @@ export const AddAnotherComponent = class extends HTMLElement {
    * @param {HTMLElement} element - Containing element
    */
   createDeleteButton(element) {
-    const $deleteButton =
-      this.$deleteButtonTemplate.content.firstElementChild.cloneNode(true);
+    const $deleteButton = getElement(
+      this.$deleteButtonTemplate.content,
+      ".add-another__delete",
+    ).cloneNode(true);
 
     element.append($deleteButton);
   }
@@ -123,6 +125,11 @@ export const AddAnotherComponent = class extends HTMLElement {
    */
   updateDeleteButton(element) {
     const $deleteButton = this.getDeleteButton(element);
+
+    if (!$deleteButton) {
+      return;
+    }
+
     $deleteButton.setAttribute("aria-labelledby", `delete-title ${element.id}`);
     $deleteButton.addEventListener("click", (event) => this.delete(event));
   }
@@ -163,6 +170,11 @@ export const AddAnotherComponent = class extends HTMLElement {
     const $$labels = $item.querySelectorAll("label");
     for (const $label of $$labels) {
       const forAttribute = $label.getAttribute("for");
+
+      if (!forAttribute) {
+        continue;
+      }
+
       $label.setAttribute("for", forAttribute.replace("-0", `-${uid}`));
     }
 
@@ -192,13 +204,13 @@ export const AddAnotherComponent = class extends HTMLElement {
         this.createDeleteButton($item);
       }
 
+      const $deleteButton = this.getDeleteButton($item);
+
       // If has delete button
-      if (this.getDeleteButton($item)) {
+      if ($deleteButton) {
         if ($$items.length === 1) {
-          // If only 1 item in list, remove button
-          this.getDeleteButton($item).remove();
+          $deleteButton.remove();
         } else {
-          // Else update button attributes
           this.updateDeleteButton($item);
         }
       }

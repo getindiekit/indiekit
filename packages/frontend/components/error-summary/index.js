@@ -62,10 +62,14 @@ export const ErrorSummaryComponent = class extends HTMLElement {
 
     const fragment = this.getFragmentFromUrl($target.href);
 
-    /**
-     * @satisfies {HTMLInputElement}
-     */
-    const $input = document.querySelector(`#${fragment}`);
+    if (!fragment) {
+      return false;
+    }
+
+    const $input = /** @type {HTMLInputElement|null} */ (
+      document.querySelector(`#${CSS.escape(fragment)}`)
+    );
+
     if (!$input) {
       return false;
     }
@@ -85,11 +89,12 @@ export const ErrorSummaryComponent = class extends HTMLElement {
 
   /**
    * Get fragment name from a URL
-   * @param {string} url - URL
-   * @returns {string|boolean} Fragment name (without the hash)
+   * @param {string} url - Absolute or relative URL, or a bare fragment
+   * @returns {string|undefined} Fragment name (without hash), undefined if none
    */
   getFragmentFromUrl(url) {
-    return !url.startsWith("#") && url.split("#").pop();
+    const index = url.indexOf("#");
+    return index === -1 ? undefined : url.slice(index + 1);
   }
 
   /**
@@ -103,7 +108,7 @@ export const ErrorSummaryComponent = class extends HTMLElement {
    * - The first `<label>` that is associated with the input using for="inputId"
    * - The closest parent `<label>`
    * @param {HTMLInputElement} $input - The input
-   * @returns {HTMLLegendElement|HTMLLabelElement} Associated legend or label
+   * @returns {HTMLLegendElement|HTMLLabelElement|null} Associated legend or label
    */
   getAssociatedLegendOrLabel($input) {
     const $fieldset = $input.closest("fieldset");
