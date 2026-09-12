@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "ESNext",
-    "types": []
+    "types": [],
+    "useUnknownInCatchVariables": true
   },
   "exclude": ["./node_modules", "./_site"],
   "typeAcquisition": {
