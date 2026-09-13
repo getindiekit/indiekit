@@ -31,5 +31,15 @@ describe("endpoint-files POST /files/upload", () => {
     assert.match(result, /Unauthorized/);
   });
 
+  it("Returns 401 error uploading several files", async () => {
+    const response = await request
+      .post("/files/upload")
+      .set("cookie", testCookie({ scope: "profile" }))
+      .attach("file", getFixture("file-types/photo.jpg", false), "photo.jpg")
+      .attach("file", getFixture("file-types/photo.jpg", false), "photo2.jpg");
+
+    assert.equal(response.status, 401);
+  });
+
   after(() => server.close());
 });
