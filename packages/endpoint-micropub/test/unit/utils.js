@@ -40,6 +40,19 @@ describe("endpoint-media/lib/utils", () => {
     });
   });
 
+  it("Removes uid from post template properties", () => {
+    const result = getPostTemplateProperties({
+      name: "foo",
+      uid: "0198f5b2-4a3e-7000-8000-000000000000",
+    });
+
+    assert.equal(
+      Object.hasOwn(result, "uid"),
+      false,
+      "uid was written into the post template",
+    );
+  });
+
   it("Renders relative path if at publication URL", () => {
     const result = relativeMediaPath(
       "https://foo.bar/media/",
