@@ -37,6 +37,8 @@ The share endpoint accepts query parameters to pre-fill form fields. This allows
 | `name`    | Title of the post.                 |
 | `content` | Body text of the post. _Optional_. |
 
+The form also offers a checkbox for each syndication target the publication has configured; the targets chosen are sent to the Micropub endpoint as `mp-syndicate-to`, one value per target.
+
 To enable services like [ShareOpenly](https://shareopenly.org) to share to your site, add a `<link>` element with `rel="share-url"` to your homepage:
 
 <!-- prettier-ignore -->
