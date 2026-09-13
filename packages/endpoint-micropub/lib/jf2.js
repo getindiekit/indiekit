@@ -79,6 +79,13 @@ export const normaliseProperties = (publication, properties, timeZone) => {
     properties.content = getContentProperty(properties);
   }
 
+  if (properties.category) {
+    properties.category = getCategoryProperty(properties);
+    if (properties.category.length === 0) {
+      delete properties.category;
+    }
+  }
+
   if (properties.location) {
     properties.location = getLocationProperty(properties);
   }
@@ -112,6 +119,33 @@ export const normaliseProperties = (publication, properties, timeZone) => {
   }
 
   return properties;
+};
+
+/**
+ * Get category property
+ *
+ * Categories arrive as typed: a client may send one with surrounding
+ * whitespace, an empty value, or the same word in another case. Each of
+ * those would otherwise become a distinct category on the site.
+ * @param {object} properties - JF2 properties
+ * @returns {Array<string>} `category` property, trimmed, without empties, and
+ * with case-insensitive duplicates folded onto the first spelling given
+ */
+export const getCategoryProperty = (properties) => {
+  const seen = new Set();
+  const category = [];
+
+  for (const value of toArray(properties.category)) {
+    const name = String(value).trim();
+    const key = name.toLowerCase();
+
+    if (name && !seen.has(key)) {
+      seen.add(key);
+      category.push(name);
+    }
+  }
+
+  return category;
 };
 
 /**

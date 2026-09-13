@@ -508,6 +508,38 @@ describe("endpoint-micropub/lib/jf2", () => {
     assert.equal(result["mp-syndicate-to"], undefined);
   });
 
+  it("Normalises JF2 (category property)", () => {
+    const result = normaliseProperties(
+      publication,
+      { category: [" Food ", "food", "", " ".repeat(3), "Lunch", "FOOD"] },
+      "UTC",
+    );
+
+    // Trimmed, empties dropped, duplicates folded case-insensitively onto
+    // the first spelling given
+    assert.deepEqual(result.category, ["Food", "Lunch"]);
+  });
+
+  it("Normalises JF2 (single category)", () => {
+    const result = normaliseProperties(
+      publication,
+      { category: " rss " },
+      "UTC",
+    );
+
+    assert.deepEqual(result.category, ["rss"]);
+  });
+
+  it("Normalises JF2 (removes category left empty)", () => {
+    const result = normaliseProperties(
+      publication,
+      { category: ["", "  "] },
+      "UTC",
+    );
+
+    assert.equal(result.category, undefined);
+  });
+
   it("Normalises JF2 (trims name property)", () => {
     const result = normaliseProperties(
       publication,
