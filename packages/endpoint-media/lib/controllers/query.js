@@ -22,7 +22,7 @@ export const queryController = async (request, response, next) => {
 
   try {
     const limit = Number(request.query.limit) || 0;
-    const { after, before, q, url } = request.query;
+    const { after, before, q, uid, url } = request.query;
 
     if (!q) {
       throw IndiekitError.badRequest(
@@ -32,20 +32,26 @@ export const queryController = async (request, response, next) => {
 
     switch (q) {
       case "source": {
-        if (url) {
-          // Return properties for a given URL
+        if (url || uid) {
+          // Return properties for a given file. `url` is what the
+          // Micropub specification defines; `uid` is an extension, and
+          // the only identifier the files interface holds.
           let mediaData;
 
           if (mediaCollection) {
-            mediaData = await mediaCollection.findOne({
-              "properties.url": url,
-            });
+            mediaData = await mediaCollection.findOne(
+              url ? { "properties.url": url } : { "properties.uid": uid },
+            );
           }
 
           if (!mediaData) {
-            throw IndiekitError.badRequest(
-              response.locals.__("BadRequestError.missingResource", "file"),
-            );
+            throw url
+              ? IndiekitError.badRequest(
+                  response.locals.__("BadRequestError.missingResource", "file"),
+                )
+              : IndiekitError.notFound(
+                  response.locals.__("NotFoundError.record", "file"),
+                );
           }
 
           return response.json(getMediaProperties(mediaData));

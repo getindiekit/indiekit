@@ -7,19 +7,28 @@ import { endpoint } from "./endpoint.js";
  * @param {string} uid - Item UID
  * @param {string} mediaEndpoint - Micropub media endpoint
  * @param {string} accessToken - Access token
- * @returns {Promise<object>} JF2 properties
+ * @returns {Promise<object|boolean>} JF2 properties, or false if not found
  */
 export const getFileProperties = async (uid, mediaEndpoint, accessToken) => {
   const mediaUrl = new URL(mediaEndpoint);
   mediaUrl.searchParams.append("q", "source");
+  mediaUrl.searchParams.append("uid", uid);
 
-  const mediaResponse = await endpoint.get(mediaUrl.href, accessToken);
+  try {
+    // `q=source&uid=` returns properties for a single file, already flat
+    // JF2 (unlike the Micropub equivalent, the media endpoint has no mf2
+    // to convert), so there's nothing to unwrap before returning it.
+    return await endpoint.get(mediaUrl.href, accessToken);
+  } catch (error) {
+    // `endpoint.get` throws on any error response. A file that is simply
+    // gone is the caller's own not-found page, not an error to show the
+    // reader; anything else is a real failure and must keep travelling.
+    if (error.status === 404) {
+      return false;
+    }
 
-  if (mediaResponse?.items?.length > 0) {
-    return mediaResponse.items.find((item) => item.uid === uid);
+    throw error;
   }
-
-  return false;
 };
 
 /**
