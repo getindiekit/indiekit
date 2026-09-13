@@ -11,26 +11,24 @@ The current status of Indiekit’s support for IndieWeb specifications and proto
 ### Discovery
 
 * [x] [IndieAuth server metadata](https://indieauth.spec.indieweb.org/#indieauth-server-metadata)
-* [x] [Application information](https://indieauth.spec.indieweb.org/#application-information)
+* [x] [Client metadata](https://indieauth.spec.indieweb.org/#client-metadata)
 
 ### Authorization
 
 * [x] Redeem `authorization_code` for a [profile URL](https://indieauth.spec.indieweb.org/#profile-url-response)
 * [x] Redeem `authorization_code` for an [access token](https://indieauth.spec.indieweb.org/#access-token-response)
-* [ ] Redeem `authorization_code` for [profile information](https://indieauth.spec.indieweb.org/#profile-information)
+* [x] Redeem `authorization_code` for [profile information](https://indieauth.spec.indieweb.org/#profile-information)
 * [ ] Redeem `refresh_token` for a [refreshed access token](https://indieauth.spec.indieweb.org/#refresh-tokens)
 * [x] [Error responses](https://indieauth.spec.indieweb.org/#error-responses)
 
 Indiekit uses Proof Key for Code Exchange (PKCE), but doesn’t require clients to issue a code challenge. This is to support clients using earlier versions of IndieAuth.
 
+The `profile` scope is supported to provide access to the user's name, profile photo and website. The `email` scope is not currently supported.
+
 ### Access tokens
 
 * [x] [Token introspection](https://indieauth.spec.indieweb.org/#access-token-verification)
 * [ ] [Token revocation](https://indieauth.spec.indieweb.org/#token-revocation)
-
-### User information
-
-* [ ] [Get user information](https://indieauth.spec.indieweb.org/#user-information)
 
 ## Micropub
 
