@@ -1,7 +1,7 @@
 export const scopes = {
   // IndieAuth scopes
   email: { supported: false },
-  profile: { supported: false },
+  profile: { supported: true },
   // Micropub scopes
   create: { supported: true },
   draft: { supported: true },
