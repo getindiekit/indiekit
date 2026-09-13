@@ -155,7 +155,7 @@ export const getPostName = (publication, properties) => {
  * @param {string} uid - Item UID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
- * @returns {Promise<object>} JF2 properties
+ * @returns {Promise<object|boolean>} JF2 properties, or false if not found
  */
 export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
   const micropubUrl = new URL(micropubEndpoint);
