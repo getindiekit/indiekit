@@ -101,18 +101,16 @@ describe("syndicator-mastodon/lib/utils", () => {
     assert.equal(result.inReplyToId, "1234567890987654321");
   });
 
-  it("Throws creating a status if post is off-service reply", () => {
-    assert.throws(
-      () => {
-        createStatus(JSON.parse(getFixture("jf2/reply-off-service.jf2")), {
-          serverUrl: "https://mastodon.example",
-        });
-      },
+  it("Creates a status for a reply to a URL on another server", () => {
+    const result = createStatus(
+      JSON.parse(getFixture("jf2/reply-off-service.jf2")),
       {
-        name: "BadRequestError",
-        message: "Not a reply to a URL at this target",
+        serverUrl: "https://mastodon.example",
       },
     );
+
+    assert.equal(result.status, "I ate a cheese sandwich too!");
+    assert.equal(result.inReplyToId, undefined);
   });
 
   it("Creates a status with a photo", () => {

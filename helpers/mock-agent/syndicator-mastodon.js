@@ -46,6 +46,48 @@ export function mockClient() {
     .intercept({ path: `/api/v1/statuses/404/reblog`, method: "POST" })
     .reply(404, { error: "Record not found" }, responseOptions);
 
+  // Search for a status on another server (found)
+  agent
+    .get(instanceOrigin)
+    .intercept({
+      path: (path) =>
+        path.startsWith("/api/v2/search?") &&
+        path.includes(encodeURIComponent("https://deadbird.example/")),
+    })
+    .reply(
+      200,
+      { accounts: [], hashtags: [], statuses: [{ id: "111" }] },
+      responseOptions,
+    )
+    .persist();
+
+  // Search for a status on another server (not found)
+  agent
+    .get(instanceOrigin)
+    .intercept({
+      path: (path) =>
+        path.startsWith("/api/v2/search?") &&
+        path.includes(encodeURIComponent("https://unknown.example/")),
+    })
+    .reply(200, { accounts: [], hashtags: [], statuses: [] }, responseOptions)
+    .persist();
+
+  // Post status in reply to a status on another server
+  agent
+    .get(instanceOrigin)
+    .intercept({
+      path: `/api/v1/statuses`,
+      headers: { authorization: "Bearer token" },
+      method: "POST",
+      body: (body) => body.includes('"in_reply_to_id":"111"'),
+    })
+    .reply(
+      200,
+      { id: "222", url: `https://mastodon.example/@username/reply` },
+      responseOptions,
+    )
+    .persist();
+
   // Post status
   agent
     .get(instanceOrigin)
