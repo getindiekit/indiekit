@@ -43,8 +43,9 @@ describe("endpoint-syndicate POST /syndicate", () => {
       .send({ url: "https://website.example" });
 
     assert.equal(result.status, 200);
+    assert.equal(result.body.success_description, "Syndicated 1 post");
     assert.equal(
-      result.body.success_description,
+      result.body.results[0].success_description,
       "Post updated at https://website.example/notes/foobar/",
     );
   });

@@ -5,6 +5,7 @@ import { testDatabase } from "@indiekit-test/database";
 
 import {
   getPostData,
+  getPostsAwaitingSyndication,
   getSyndicationTarget,
   hasSyndicationUrl,
   syndicateToTargets,
@@ -65,6 +66,40 @@ describe("endpoint-syndicate/lib/token", () => {
 
     assert.ok(result, "expected the post to be awaiting syndication");
     assert.equal(result.properties["mp-syndicate-to"], "https://bsky.example/");
+  });
+
+  it("Gets every post awaiting syndication, oldest first", async () => {
+    const collection = database.collection("posts-all-awaiting-syndication");
+    await collection.insertMany([
+      {
+        properties: {
+          published: "2024-02-01T00:00:00.000Z",
+          "mp-syndicate-to": "https://mastodon.example/",
+        },
+      },
+      {
+        properties: {
+          published: "2024-01-01T00:00:00.000Z",
+          "mp-syndicate-to": "https://mastodon.example/",
+        },
+      },
+      {
+        properties: {
+          published: "2024-03-01T00:00:00.000Z",
+          "post-status": "draft",
+          "mp-syndicate-to": "https://mastodon.example/",
+        },
+      },
+      { properties: { published: "2024-04-01T00:00:00.000Z" } },
+    ]);
+
+    const result = await getPostsAwaitingSyndication(collection);
+
+    // The draft and the post with no targets are left alone
+    assert.deepEqual(
+      result.map((post) => post.properties.published),
+      ["2024-01-01T00:00:00.000Z", "2024-02-01T00:00:00.000Z"],
+    );
   });
 
   it("Gets oldest post awaiting syndication first", async () => {

@@ -33,7 +33,7 @@ describe("endpoint-syndicate POST /syndicate", () => {
       .set("accept", "application/json")
       .send({
         syndication: {
-          url: "https://website.example/notes/foobar/",
+          source_url: "https://website.example/notes/foobar/",
           redirect_uri: "/posts/12345",
         },
         access_token: token,
