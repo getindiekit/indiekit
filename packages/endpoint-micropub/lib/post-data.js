@@ -233,7 +233,9 @@ export const postData = {
 
     // Delete all properties, except those required for path creation
     for (const key in _deletedProperties) {
-      if (!["post-type", "published", "slug", "type", "url"].includes(key)) {
+      if (
+        !["post-type", "published", "slug", "type", "uid", "url"].includes(key)
+      ) {
         delete properties[key];
       }
     }
