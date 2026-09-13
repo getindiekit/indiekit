@@ -1,7 +1,9 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
+import { testToken } from "@indiekit-test/token";
 import { mockResponse } from "mock-req-res";
+import { MockAgent, setGlobalDispatcher } from "undici";
 
 import {
   getChannelItems,
@@ -10,6 +12,7 @@ import {
   getLocationProperty,
   getPhotoUrl,
   getPostName,
+  getPostProperties,
   getPostStatusBadges,
   getPostUrl,
   getSyndicateToItems,
@@ -257,6 +260,57 @@ describe("endpoint-posts/lib/utils", () => {
         text: "posts.status.deleted",
       },
     ]);
+  });
+
+  it("Fetches a post that isn’t on the Micropub endpoint’s first page of results", async () => {
+    const micropubEndpoint = "https://micropub-endpoint-uid-lookup.example";
+    const targetUid = "target-uid";
+    const targetUrl = "https://website.example/notes/target/";
+
+    const agent = new MockAgent();
+    agent.disableNetConnect();
+    setGlobalDispatcher(agent);
+
+    // A default-sized listing page (the shape `q=source` returns with no
+    // `url`/`uid` and no explicit `limit`) that does not include the
+    // target post — it's older than the newest page of results.
+    const items = Array.from({ length: 40 }, (_, index) => ({
+      type: ["h-entry"],
+      properties: {
+        uid: [`other-${index}`],
+        name: [`Post ${index}`],
+        "post-type": ["note"],
+        published: ["2024-12-21"],
+        url: [`https://website.example/notes/other-${index}/`],
+      },
+    }));
+
+    agent
+      .get(micropubEndpoint)
+      .intercept({ path: "/", query: { q: "source" } })
+      .reply(200, { items });
+
+    agent
+      .get(micropubEndpoint)
+      .intercept({ path: "/", query: { q: "source", uid: targetUid } })
+      .reply(200, {
+        type: ["h-entry"],
+        properties: {
+          uid: [targetUid],
+          name: ["Target post"],
+          "post-type": ["note"],
+          published: ["2024-12-21"],
+          url: [targetUrl],
+        },
+      });
+
+    const result = await getPostProperties(
+      targetUid,
+      micropubEndpoint,
+      testToken(),
+    );
+
+    assert.equal(result.uid, targetUid);
   });
 
   it("Gets post URL", () => {
