@@ -1,5 +1,5 @@
 import { strict as assert } from "node:assert";
-import { after, before, describe, it } from "node:test";
+import { after, before, describe, it, mock } from "node:test";
 
 import { testDatabase } from "@indiekit-test/database";
 
@@ -101,6 +101,89 @@ describe("indiekit/lib/migrate-uid", () => {
       const collection = database.collection("backfill-empty");
 
       assert.equal(await backfillUids(collection), 0);
+    });
+
+    it("resumes correctly after a partial run, without restarting the per-second sequence", async () => {
+      const collection = database.collection("backfill-resume");
+      // 5000 documents sharing one second, so the sequence overflows into a
+      // second millisecond partway through, same as the "more than 4096" case.
+      const documents = Array.from({ length: 5000 }, (_, index) => ({
+        properties: { url: `https://website.example/resume-${index}` },
+      }));
+      await collection.insertMany(documents);
+
+      // Simulate a completed first boot.
+      await backfillUids(collection);
+
+      // Simulate a crash partway through a second boot: strip the uid back
+      // off the later half, as if those documents were never reached.
+      const stored = await collection.find({}, { sort: { _id: 1 } }).toArray();
+      const laterHalf = stored.slice(2500).map((document) => document._id);
+      await collection.updateMany(
+        { _id: { $in: laterHalf } },
+        { $unset: { "properties.uid": "" } },
+      );
+
+      // Resume: this must continue the sequence, not restart it at 0 — a
+      // restart would reuse the timestamp+sequence range already given to
+      // the kept-uid documents, and the final order would stop matching _id.
+      const updated = await backfillUids(collection);
+      assert.equal(updated, 2500);
+
+      const final = await collection.find({}, { sort: { _id: 1 } }).toArray();
+      const uids = final.map((document) => document.properties.uid);
+      assert.deepEqual(
+        uids,
+        uids.toSorted(compare),
+        "uid order does not match _id order after resuming",
+      );
+    });
+
+    it("does not overwrite a uid another process already assigned", async () => {
+      const collection = database.collection("backfill-concurrent");
+      await collection.insertOne({
+        properties: { url: "https://website.example/concurrent" },
+      });
+
+      // A second process' run reaching this document first.
+      const [existing] = await collection.find({}).toArray();
+      await collection.updateOne(
+        { _id: existing._id, "properties.uid": { $exists: false } },
+        { $set: { "properties.uid": "already-set-by-another-process" } },
+      );
+
+      const updated = await backfillUids(collection);
+      assert.equal(updated, 0, "overwrote a uid set by a concurrent run");
+
+      const stored = await collection.findOne({ _id: existing._id });
+      assert.equal(
+        stored.properties.uid,
+        "already-set-by-another-process",
+        "overwrote a uid set by a concurrent run",
+      );
+    });
+
+    it("skips a document whose _id is not an ObjectId, instead of crashing", async () => {
+      const collection = database.collection("backfill-foreign-id");
+      mock.method(console, "warn", () => {});
+
+      await collection.insertMany([
+        {
+          _id: "foreign-string-id",
+          properties: { url: "https://website.example/foreign" },
+        },
+        { properties: { url: "https://website.example/ordinary" } },
+      ]);
+
+      const updated = await backfillUids(collection);
+      assert.equal(updated, 1, "did not backfill the ordinary document too");
+
+      const foreign = await collection.findOne({ _id: "foreign-string-id" });
+      assert.equal(
+        foreign.properties.uid,
+        undefined,
+        "assigned a uid to a document with a non-ObjectId _id",
+      );
     });
   });
 });
