@@ -26,6 +26,28 @@ export const postData = {
     // Only select ‘checked’ syndication targets on first view
     const shouldCheckTargets = Object.entries(properties).length === 0;
 
+    // A bookmarklet or a reader’s ‘Post’ button can hand over a URL and a
+    // title. The URL goes to the field the post type has for one, or to its
+    // content when it has none; the title only where the type has a name.
+    // Anything already in the form wins.
+    const { name: queryName, url: queryUrl } = request.query;
+    if (queryUrl) {
+      const urlField = [
+        "bookmark-of",
+        "in-reply-to",
+        "like-of",
+        "repost-of",
+      ].find((field) => fields?.[field]);
+      const target = urlField || (fields?.content && "content");
+      if (target) {
+        properties[target] ||= String(queryUrl);
+      }
+    }
+
+    if (queryName && fields?.name) {
+      properties.name ||= String(queryName);
+    }
+
     response.locals = {
       accessToken: access_token,
       action: "create",
