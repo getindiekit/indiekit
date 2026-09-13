@@ -1,0 +1,60 @@
+name: docker-preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Branch, tag or commit to build
+        required: true
+        type: string
+        default: main
+      channel:
+        description: Channel name for the moving tag, e.g. preview-v1 or rc
+        required: true
+        type: string
+
+jobs:
+  tags:
+    runs-on: ubuntu-latest
+    if: github.repository == 'getindiekit/indiekit'
+    permissions:
+      contents: read
+    outputs:
+      tags: ${{ steps.derive.outputs.tags }}
+      version: ${{ steps.derive.outputs.version }}
+    steps:
+      - name: Checkout ref
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Validate channel and derive tags
+        id: derive
+        env:
+          CHANNEL: ${{ inputs.channel }}
+        run: |
+          set -euo pipefail
+          [[ "$CHANNEL" =~ ^[a-z0-9][a-z0-9.-]*$ ]] || { echo "channel must match ^[a-z0-9][a-z0-9.-]*$"; exit 1; }
+          for reserved in latest nightly beta; do
+            [ "$CHANNEL" = "$reserved" ] && { echo "channel '$CHANNEL' is reserved for the release and nightly workflows"; exit 1; }
+          done
+          short=$(git rev-parse --short=7 HEAD)
+          image=ghcr.io/${{ github.repository }}
+          echo "version=$CHANNEL-$short" >> "$GITHUB_OUTPUT"
+          {
+            echo 'tags<<EOF'
+            echo "$image:$CHANNEL"
+            echo "$image:$CHANNEL-$short"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+  image:
+    needs: tags
+    uses: ./.github/workflows/docker-image.yml
+    with:
+      ref: ${{ inputs.ref }}
+      tags: ${{ needs.tags.outputs.tags }}
+      version: ${{ needs.tags.outputs.version }}
+    permissions:
+      contents: read
+      packages: write

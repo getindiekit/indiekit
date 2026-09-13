@@ -42,7 +42,7 @@ A [MongoDB](https://www.mongodb.com) database is optional, but required for the 
 
 ## Get started
 
-Learn how to [set up an Indiekit server](docs/get-started.md) and view an [example server configuration](https://github.com/getindiekit/example-config).
+Learn how to [set up an Indiekit server](docs/get-started.md) and view an [example server configuration](https://github.com/getindiekit/example-config). A container image is published on each release at `ghcr.io/getindiekit/indiekit`; see [docs/docker.md](docs/docker.md).
 
 ## Documentation website
 
