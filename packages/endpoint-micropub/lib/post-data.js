@@ -147,6 +147,11 @@ export const postData = {
     // Save incoming properties for later comparison
     let oldProperties = structuredClone(properties);
 
+    // Keep `uid` stable regardless of what the client asks to add, replace
+    // or delete: it's a durable identifier for this post, so an update
+    // operation must never be able to reassign or drop it.
+    const { uid } = properties;
+
     // Add properties
     if (operation.add) {
       properties = updateMf2.addProperties(properties, operation.add);
@@ -166,6 +171,8 @@ export const postData = {
         ? updateMf2.deleteProperties(properties, operation.delete)
         : updateMf2.deleteEntries(properties, operation.delete);
     }
+
+    properties.uid = uid;
 
     // Normalise properties
     properties = normaliseProperties(publication, properties, timeZone);

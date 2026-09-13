@@ -209,6 +209,68 @@ describe("endpoint-micropub/lib/post-data", async () => {
     assert.equal(deleted.properties.uid, created.properties.uid);
   });
 
+  it("keeps uid when a client tries to replace it via update", async () => {
+    const created = await postData.create(application, publication, {
+      ...structuredClone(properties),
+      "mp-slug": "keep-uid-replace",
+    });
+
+    const operation = { replace: { uid: ["pwned-by-client"] } };
+    await postData.update(
+      application,
+      publication,
+      created.properties.url,
+      operation,
+    );
+
+    // Once `uid` is neutralised, replacing only `uid` is a no-op, so
+    // `update` legitimately returns `undefined` here (see "Doesn’t update
+    // post if no changes" above) — check the stored record instead.
+    const stored = await postData.read(application, created.properties.url);
+    assert.equal(stored.properties.uid, created.properties.uid);
+  });
+
+  it("keeps uid when a client tries to add to it via update", async () => {
+    const created = await postData.create(application, publication, {
+      ...structuredClone(properties),
+      "mp-slug": "keep-uid-add",
+    });
+
+    const operation = { add: { uid: ["pwned-by-client"] } };
+    await postData.update(
+      application,
+      publication,
+      created.properties.url,
+      operation,
+    );
+
+    const stored = await postData.read(application, created.properties.url);
+    assert.equal(stored.properties.uid, created.properties.uid);
+  });
+
+  it("keeps uid when a client tries to delete it via update, combined with another operation", async () => {
+    const created = await postData.create(application, publication, {
+      ...structuredClone(properties),
+      "mp-slug": "keep-uid-delete",
+    });
+
+    // `delete` as the only operation is rejected before `postData.update` is
+    // ever called (see `action.js`), so the reachable attack pairs it with
+    // an operation that passes that check.
+    const operation = {
+      replace: { content: ["changed"] },
+      delete: ["uid"],
+    };
+    const result = await postData.update(
+      application,
+      publication,
+      created.properties.url,
+      operation,
+    );
+
+    assert.equal(result.properties.uid, created.properties.uid);
+  });
+
   it("ignores a uid supplied by the client", async () => {
     const created = await postData.create(application, publication, {
       ...structuredClone(properties),
