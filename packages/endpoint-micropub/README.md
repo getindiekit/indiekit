@@ -38,4 +38,6 @@ To customise the behaviour of this plug-in, add `@indiekit/endpoint-micropub` to
 - Previously published posts (list): `/micropub?q=source`
 - Source content: `/micropub?q=source&url=WEBSITE_URL`
 
-List queries support `filter`, `limit` and `offset` and parameters. For example, `/micropub?q=source&filter=web&limit=10&offset=10`.
+List queries support `filter`, `limit` and `offset` parameters. For example, `/micropub?q=category&filter=web&limit=10&offset=10`.
+
+The list of published posts is paged with `after` and `before` rather than `offset`, and can be narrowed with `filter` (a case-insensitive match on a post’s name and content) and `category` (posts with that category). For example, `/micropub?q=source&filter=web&category=indieweb&limit=10`.

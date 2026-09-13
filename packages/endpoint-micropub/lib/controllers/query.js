@@ -8,7 +8,8 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
  * @typedef {object} QueryParameters
  * @property {string|string[]} [after] - Return items after this item ID
  * @property {string|string[]} [before] - Return items before this item ID
- * @property {string} [filter] - Value to filter items by
+ * @property {string} [category] - Only return posts with this category
+ * @property {string} [filter] - Value to filter items by (for posts, a case-insensitive match on name and content)
  * @property {string} [limit] - Number of items to return
  * @property {string} [offset] - Offset to start limit of items
  * @property {string|string[]} [properties] - mf2 properties to select
@@ -29,7 +30,8 @@ export const queryController = async (request, response, next) => {
     const config = getConfig(application, publication);
     const limit = Number(request.query.limit) || 0;
     const offset = Number(request.query.offset) || 0;
-    let { after, before, filter, properties, q, uid, url } = request.query;
+    let { after, before, category, filter, properties, q, uid, url } =
+      request.query;
 
     if (!q) {
       throw IndiekitError.badRequest(
@@ -87,7 +89,25 @@ export const queryController = async (request, response, next) => {
         };
 
         if (postsCollection) {
-          cursor = await getCursor(postsCollection, after, before, limit);
+          // `filter` matches the name or content, `category` a category.
+          // Both are cast to strings so that, whatever the query parser
+          // yields, nothing reaches the database as an operator.
+          const pattern =
+            filter && new RegExp(RegExp.escape(String(filter)), "i");
+          const postsFilter = {
+            ...(category && { "properties.category": String(category) }),
+            ...(pattern && {
+              $or: [
+                { "properties.name": pattern },
+                { "properties.content.text": pattern },
+                { "properties.content": pattern },
+              ],
+            }),
+          };
+
+          cursor = await getCursor(postsCollection, after, before, limit, {
+            filter: postsFilter,
+          });
         }
 
         const items = [];
