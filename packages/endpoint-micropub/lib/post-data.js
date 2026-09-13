@@ -1,3 +1,4 @@
+import { randomUUIDv7 } from "node:crypto";
 import { isDeepStrictEqual } from "node:util";
 
 import { IndiekitError } from "@indiekit/error";
@@ -22,6 +23,13 @@ export const postData = {
    */
   async create(application, publication, properties, isDraftMode = false) {
     debug(`Create %O`, { isDraftMode, properties });
+
+    // Ignore any `uid` supplied by the client: a client-supplied value
+    // would otherwise reach `postTypeCount.get()` via `renderPath()`,
+    // below, before the real uid is assigned — skewing today's count for
+    // this post type and letting a client influence another post's
+    // numbering.
+    delete properties.uid;
 
     const { timeZone } = application;
     const { me, postTypes, syndicationTargets } = publication;
@@ -66,12 +74,22 @@ export const postData = {
       ? "draft"
       : properties["post-status"] || "published";
 
-    const data = { path, properties };
-
     // Add data to posts collection (or replace existing if present)
     const postsCollection = application?.collections?.get("posts");
+    const query = { "properties.url": properties.url };
+
+    // Keep `uid` stable when a post already exists at this URL: it is
+    // meant to be a durable identifier for the post, so rotating it on
+    // every update would invalidate identifiers already handed out once
+    // something starts relying on it staying the same.
+    const existing = await postsCollection?.findOne(query, {
+      projection: { "properties.uid": 1 },
+    });
+    properties.uid = existing?.properties?.uid || randomUUIDv7();
+
+    const data = { path, properties };
+
     if (postsCollection) {
-      const query = { "properties.url": properties.url };
       await postsCollection.replaceOne(query, data, { upsert: true });
     }
 
@@ -129,6 +147,11 @@ export const postData = {
     // Save incoming properties for later comparison
     let oldProperties = structuredClone(properties);
 
+    // Keep `uid` stable regardless of what the client asks to add, replace
+    // or delete: it's a durable identifier for this post, so an update
+    // operation must never be able to reassign or drop it.
+    const { uid } = properties;
+
     // Add properties
     if (operation.add) {
       properties = updateMf2.addProperties(properties, operation.add);
@@ -148,6 +171,8 @@ export const postData = {
         ? updateMf2.deleteProperties(properties, operation.delete)
         : updateMf2.deleteEntries(properties, operation.delete);
     }
+
+    properties.uid = uid;
 
     // Normalise properties
     properties = normaliseProperties(publication, properties, timeZone);
@@ -215,7 +240,9 @@ export const postData = {
 
     // Delete all properties, except those required for path creation
     for (const key in _deletedProperties) {
-      if (!["post-type", "published", "slug", "type", "url"].includes(key)) {
+      if (
+        !["post-type", "published", "slug", "type", "uid", "url"].includes(key)
+      ) {
         delete properties[key];
       }
     }

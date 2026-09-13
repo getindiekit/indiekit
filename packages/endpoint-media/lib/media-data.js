@@ -1,3 +1,5 @@
+import { randomUUIDv7 } from "node:crypto";
+
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
 import makeDebug from "debug";
@@ -57,12 +59,22 @@ export const mediaData = {
     const urlPathSegment = properties.url.split("/");
     properties.filename = urlPathSegment.at(-1);
 
-    const mediaData = { path, properties };
-
     // Add data to media collection (or replace existing if present)
     const mediaCollection = application?.collections?.get("media");
+    const query = { "properties.url": properties.url };
+
+    // Keep `uid` stable when media already exists at this URL: it is
+    // meant to be a durable identifier for the media item, so rotating it
+    // on every update would invalidate identifiers already handed out
+    // once something starts relying on it staying the same.
+    const existing = await mediaCollection?.findOne(query, {
+      projection: { "properties.uid": 1 },
+    });
+    properties.uid = existing?.properties?.uid || randomUUIDv7();
+
+    const mediaData = { path, properties };
+
     if (mediaCollection) {
-      const query = { "properties.url": properties.url };
       await mediaCollection.replaceOne(query, mediaData, { upsert: true });
     }
 

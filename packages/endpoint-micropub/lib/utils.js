@@ -39,6 +39,9 @@ export const getPostTemplateProperties = (properties) => {
     // Remove post-type property, only needed internally
     if (key === "post-type") {
       delete templateProperties["post-type"];
+    } else if (key === "uid") {
+      // Remove uid property, looked up in the database, not stored in the file
+      delete templateProperties.uid;
     }
   }
 

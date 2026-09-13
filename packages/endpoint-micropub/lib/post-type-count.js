@@ -1,5 +1,3 @@
-import { getObjectId } from "@indiekit/util";
-
 export const postTypeCount = {
   /**
    * Count the number of posts of a given type
@@ -22,6 +20,7 @@ export const postTypeCount = {
     const startDate = new Date(new Date(properties.published).toDateString());
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 1);
+
     const response = await postsCollection
       .aggregate([
         {
@@ -40,7 +39,7 @@ export const postTypeCount = {
             },
             // Don’t count the post being updated
             ...(properties.uid && {
-              _id: { $ne: getObjectId(properties.uid) },
+              "properties.uid": { $ne: properties.uid },
             }),
             ...(properties.url && {
               "properties.url": { $ne: properties.url },

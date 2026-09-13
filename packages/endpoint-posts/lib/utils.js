@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
 
+import { IndiekitError } from "@indiekit/error";
 import { sanitise, ISO_6709_RE } from "@indiekit/util";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
@@ -155,21 +156,28 @@ export const getPostName = (publication, properties) => {
  * @param {string} uid - Item UID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
- * @returns {Promise<object>} JF2 properties
+ * @returns {Promise<object|boolean>} JF2 properties, or false if not found
  */
 export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
   const micropubUrl = new URL(micropubEndpoint);
   micropubUrl.searchParams.append("q", "source");
+  micropubUrl.searchParams.append("uid", uid);
 
-  const micropubResponse = await endpoint.get(micropubUrl.href, accessToken);
+  try {
+    // `q=source&uid=` returns mf2 for a single post (the same shape as
+    // `q=source&url=`), so wrap it as `items` before flattening to JF2.
+    const mf2 = await endpoint.get(micropubUrl.href, accessToken);
+    return mf2tojf2({ items: [mf2] });
+  } catch (error) {
+    // `endpoint.get` throws on any error response. A post that is simply gone
+    // is the caller's own not-found page, not an error to show the reader;
+    // anything else is a real failure and must keep travelling.
+    if (error instanceof IndiekitError && error.status === 404) {
+      return false;
+    }
 
-  if (micropubResponse?.items?.length > 0) {
-    const jf2 = mf2tojf2(micropubResponse);
-    const items = jf2.children || [jf2];
-    return items.find((item) => item.uid === uid);
+    throw error;
   }
-
-  return false;
 };
 
 /**

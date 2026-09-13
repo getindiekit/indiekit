@@ -11,6 +11,7 @@ import { locales } from "./config/locales.js";
 import { getCategories } from "./lib/categories.js";
 import { getIndiekitConfig } from "./lib/config.js";
 import { getLocaleCatalog } from "./lib/locale-catalog.js";
+import { backfillUids } from "./lib/migrate-uid.js";
 import { getInstalledPlugins } from "./lib/plugins.js";
 import { getPostTemplate } from "./lib/post-template.js";
 import { getPostTypes } from "./lib/post-types.js";
@@ -187,6 +188,27 @@ export const Indiekit = class {
   async server(options = {}) {
     await this.connectMongodbClient();
     await this.installPlugins();
+
+    // Posts and media created before `properties.uid` existed have no
+    // identifier to look them up by. Backfill before serving: a half-migrated
+    // collection would answer some lookups and 404 others.
+    //
+    // The list is deliberately literal, not `this.collections`: the backfill's
+    // `$set: { "properties.uid": ... }` CREATES a `properties` subdocument, so
+    // running it against any other collection a plugin registers — a cache, a
+    // token store, a queue — would silently graft an unrelated field onto data
+    // this migration has no business touching.
+    for (const name of ["posts", "media"]) {
+      const collection = this.collections.get(name);
+      if (collection) {
+        const updated = await backfillUids(collection);
+        debug(`Checked ‘${name}’ for missing uids: ${updated} added`);
+        if (updated > 0) {
+          console.info(`Added a uid to ${updated} items in ‘${name}’`);
+        }
+      }
+    }
+
     await this.updatePublicationConfig();
 
     const app = expressConfig(this);
