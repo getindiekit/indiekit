@@ -18,6 +18,9 @@
       "label": "Titre"
     },
     "submit": "Publier",
+    "syndicate-to": {
+      "label": "Publier également sur"
+    },
     "title": "Partager"
   },
   "status": {

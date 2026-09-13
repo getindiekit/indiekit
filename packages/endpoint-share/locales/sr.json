@@ -18,6 +18,9 @@
       "label": "Naslov"
     },
     "submit": "Objaviti",
+    "syndicate-to": {
+      "label": "Sindicate to"
+    },
     "title": "Podeli"
   },
   "status": {

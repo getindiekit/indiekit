@@ -48,6 +48,16 @@
     label: __("share.content.label")
   }) }}
 
+  {{ checkboxes({
+    name: "mp-syndicate-to",
+    values: properties["mp-syndicate-to"],
+    fieldset: {
+      legend: __("share.syndicate-to.label"),
+      optional: true
+    },
+    items: syndicationTargetItems
+  }) if syndicationTargetItems.length }}
+
   {{ input({
     name: "access_token",
     type: "hidden",

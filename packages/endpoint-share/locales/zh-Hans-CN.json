@@ -18,6 +18,9 @@
       "label": "标题"
     },
     "submit": "发布",
+    "syndicate-to": {
+      "label": "内容联合到"
+    },
     "title": "分享"
   },
   "status": {

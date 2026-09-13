@@ -18,6 +18,9 @@
       "label": "Titel"
     },
     "submit": "Publiceer",
+    "syndicate-to": {
+      "label": "Syndicaat voor"
+    },
     "title": "Delen"
   },
   "status": {
