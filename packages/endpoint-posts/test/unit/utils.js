@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
-import { describe, it } from "node:test";
+import { after, before, describe, it } from "node:test";
 
+import { testDatabase } from "@indiekit-test/database";
+import { postData } from "@indiekit-test/post-data";
 import { mockResponse } from "mock-req-res";
 
 import {
@@ -10,6 +12,7 @@ import {
   getLocationProperty,
   getPhotoUrl,
   getPostName,
+  getPostProperties,
   getPostStatusBadges,
   getPostUrl,
   getSyndicateToItems,
@@ -257,6 +260,53 @@ describe("endpoint-posts/lib/utils", () => {
         text: "posts.status.deleted",
       },
     ]);
+  });
+
+  describe("getPostProperties", () => {
+    let client;
+    let mongoServer;
+    let application;
+    let uid;
+
+    before(async () => {
+      ({ client, mongoServer } = await testDatabase());
+      const posts = client.db().collection("posts");
+      application = { collections: new Map([["posts", posts]]) };
+      ({ insertedId: uid } = await posts.insertOne({ ...postData }));
+    });
+
+    it("Gets post properties by ID", async () => {
+      const result = await getPostProperties(uid.toString(), application);
+
+      assert.equal(result.name, "note");
+      assert.equal(result.uid, uid.toString());
+    });
+
+    it("Returns false if no post with ID", async () => {
+      const result = await getPostProperties(
+        "000000000000000000000000",
+        application,
+      );
+
+      assert.equal(result, false);
+    });
+
+    it("Returns false if ID is not an ObjectId", async () => {
+      const result = await getPostProperties("123", application);
+
+      assert.equal(result, false);
+    });
+
+    it("Returns false if no database", async () => {
+      const result = await getPostProperties(uid.toString(), {});
+
+      assert.equal(result, false);
+    });
+
+    after(async () => {
+      await client.close();
+      await mongoServer.stop();
+    });
   });
 
   it("Gets post URL", () => {

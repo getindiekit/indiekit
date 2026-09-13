@@ -2,45 +2,46 @@ import { strict as assert } from "node:assert";
 import { after, describe, it } from "node:test";
 
 import { testDatabase } from "@indiekit-test/database";
-import { mockAgent } from "@indiekit-test/mock-agent";
-import { postData } from "@indiekit-test/post-data";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 import { JSDOM } from "jsdom";
 import supertest from "supertest";
 
-await mockAgent("endpoint-posts");
 const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
-  application: {
-    micropubEndpoint: "https://micropub-endpoint.example",
-    mongodbUrl: mongoUri,
-  },
+  application: { mongodbUrl: mongoUri },
 });
 const request = supertest.agent(server);
 
-const { insertedId } = await client
+// Cursor pagination returns 40 posts by default; the oldest post here is
+// the 41st most recent, so it never appears in a `?q=source` listing
+const { insertedIds } = await client
   .db("indiekit")
   .collection("posts")
-  .insertOne({
-    ...postData,
-    properties: {
-      ...postData.properties,
-      name: "Foobar",
-      url: "https://website.example/foobar",
-    },
-  });
-const uid = insertedId.toString();
+  .insertMany(
+    Array.from({ length: 41 }, (_, index) => ({
+      path: `post-${index}.md`,
+      properties: {
+        name: `Post ${index}`,
+        "post-status": "published",
+        "post-type": "note",
+        published: new Date(2020, 0, 1 + index).toISOString(),
+        url: `https://website.example/post-${index}`,
+      },
+    })),
+  );
+const oldestUid = insertedIds[0].toString();
 
 describe("endpoint-posts GET /posts/:uid", () => {
-  it("Returns published post", async () => {
+  it("Returns post that is not among the 40 most recent", async () => {
     const response = await request
-      .get(`/posts/${uid}`)
+      .get(`/posts/${oldestUid}`)
       .set("cookie", testCookie());
     const dom = new JSDOM(response.text);
     const result = dom.window.document.querySelector("title").textContent;
 
-    assert.equal(result, "Foobar - Test configuration");
+    assert.equal(response.status, 200);
+    assert.equal(result, "Post 0 - Test configuration");
   });
 
   after(async () => {
