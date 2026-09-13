@@ -16,6 +16,7 @@ A [post type](../../concepts#post-type) provides an interface for creating and e
 - [Audio](audio.md) `@indiekit/post-type-audio`
 - [Event](event.md) `@indiekit/post-type-event`
 - [Jam](jam.md) `@indiekit/post-type-jam`
+- [Page](page.md) `@indiekit/post-type-page`
 - [Repost](repost.md) `@indiekit/post-type-repost`
 - [RSVP](rsvp.md) `@indiekit/post-type-rsvp`
 - [Video](video.md) `@indiekit/post-type-video`

@@ -7,6 +7,7 @@ const postTypes = new Map([
   ["article", { name: "Journal post" }],
   ["note", { name: "Micro post" }],
   ["puppy", { name: "Puppy post" }],
+  ["page", { name: "Page" }],
 ]);
 
 describe("preset-eleventy/lib/post-types", () => {
@@ -41,6 +42,16 @@ describe("preset-eleventy/lib/post-types", () => {
       },
       media: {
         path: "media/puppies/{yyyy}/{MM}/{dd}/{filename}",
+      },
+    });
+    assert.deepEqual(result.get("page"), {
+      name: "Page",
+      post: {
+        path: "{slug}.md",
+        url: "{slug}",
+      },
+      media: {
+        path: "media/pages/{filename}",
       },
     });
   });

@@ -7,6 +7,7 @@ const postTypes = new Map([
   ["article", { name: "Journal post" }],
   ["note", { name: "Micro post" }],
   ["puppy", { name: "Puppy post" }],
+  ["page", { name: "Page" }],
 ]);
 
 describe("preset-hugo/lib/post-types", () => {
@@ -44,6 +45,17 @@ describe("preset-hugo/lib/post-types", () => {
       media: {
         path: "static/puppies/{filename}",
         url: "puppies/{filename}",
+      },
+    });
+    assert.deepEqual(result.get("page"), {
+      name: "Page",
+      post: {
+        path: "content/{slug}.md",
+        url: "{slug}",
+      },
+      media: {
+        path: "static/pages/{filename}",
+        url: "pages/{filename}",
       },
     });
   });
