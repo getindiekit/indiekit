@@ -9,6 +9,7 @@ import { getMediaProperties } from "../utils.js";
  * @property {string} [before] - Return items before this item ID
  * @property {string} [limit] - Number of items to return
  * @property {string} [q] - Query
+ * @property {string} [uid] - UID of file to return
  * @property {string} [url] - URL of post to return
  */
 

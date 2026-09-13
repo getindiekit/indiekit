@@ -1,5 +1,7 @@
 import { Buffer } from "node:buffer";
 
+import { IndiekitError } from "@indiekit/error";
+
 import { endpoint } from "./endpoint.js";
 
 /**
@@ -23,7 +25,7 @@ export const getFileProperties = async (uid, mediaEndpoint, accessToken) => {
     // `endpoint.get` throws on any error response. A file that is simply
     // gone is the caller's own not-found page, not an error to show the
     // reader; anything else is a real failure and must keep travelling.
-    if (error.status === 404) {
+    if (error instanceof IndiekitError && error.status === 404) {
       return false;
     }
 

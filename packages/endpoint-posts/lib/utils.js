@@ -1,5 +1,6 @@
 import { Buffer } from "node:buffer";
 
+import { IndiekitError } from "@indiekit/error";
 import { sanitise, ISO_6709_RE } from "@indiekit/util";
 import { mf2tojf2 } from "@paulrobertlloyd/mf2tojf2";
 import formatcoords from "formatcoords";
@@ -171,7 +172,7 @@ export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
     // `endpoint.get` throws on any error response. A post that is simply gone
     // is the caller's own not-found page, not an error to show the reader;
     // anything else is a real failure and must keep travelling.
-    if (error.status === 404) {
+    if (error instanceof IndiekitError && error.status === 404) {
       return false;
     }
 

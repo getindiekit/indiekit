@@ -13,6 +13,7 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
  * @property {string} [offset] - Offset to start limit of items
  * @property {string|string[]} [properties] - mf2 properties to select
  * @property {string} [q] - Query
+ * @property {string} [uid] - UID of post to return
  * @property {string} [url] - URL of post to return
  */
 
