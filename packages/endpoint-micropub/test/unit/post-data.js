@@ -222,6 +222,20 @@ describe("endpoint-micropub/lib/post-data", async () => {
     );
   });
 
+  it("Keeps uid when deleting a post", async () => {
+    const created = await postData.create(application, publication, {
+      ...structuredClone(properties),
+    });
+
+    const deleted = await postData.delete(
+      application,
+      publication,
+      created.properties.url,
+    );
+
+    assert.equal(deleted.properties.uid, created.properties.uid);
+  });
+
   it("Ignores a uid supplied by the client", async () => {
     const created = await postData.create(application, publication, {
       ...structuredClone(properties),
