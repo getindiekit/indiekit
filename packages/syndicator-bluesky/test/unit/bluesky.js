@@ -195,6 +195,54 @@ describe("syndicator-bluesky/lib/bluesky", () => {
     assert.match(result, BLUESKY_POST_URL);
   });
 
+  it("Posts a threaded reply to a Bluesky post", async () => {
+    const result = await bluesky.post(
+      {
+        content: { html: "<p>Me too!</p>" },
+        "in-reply-to": postUrl,
+        "post-type": "reply",
+      },
+      me,
+    );
+    const parent = await bluesky.getPost(postUrl);
+    const reply = await bluesky.getPost(result);
+
+    assert.match(result, BLUESKY_POST_URL);
+    assert.equal(reply.value.reply.parent.uri, parent.uri);
+    assert.equal(reply.value.reply.root.uri, parent.uri);
+  });
+
+  it("Roots a reply to a reply at the original post", async () => {
+    const firstReplyUrl = await bluesky.post(
+      { content: { html: "<p>Me too!</p>" }, "in-reply-to": postUrl },
+      me,
+    );
+    const result = await bluesky.post(
+      { content: { html: "<p>And me.</p>" }, "in-reply-to": firstReplyUrl },
+      me,
+    );
+    const original = await bluesky.getPost(postUrl);
+    const first = await bluesky.getPost(firstReplyUrl);
+    const second = await bluesky.getPost(result);
+
+    assert.equal(second.value.reply.parent.uri, first.uri);
+    assert.equal(second.value.reply.root.uri, original.uri);
+  });
+
+  it("Posts a reply to a URL on another site without threading", async () => {
+    const result = await bluesky.post(
+      {
+        content: { html: "<p>Me too!</p>" },
+        "in-reply-to": "https://another.example/post/1",
+      },
+      me,
+    );
+    const post = await bluesky.getPost(result);
+
+    assert.match(result, BLUESKY_POST_URL);
+    assert.equal(post.value.reply, undefined);
+  });
+
   it("Posts a post to Bluesky", async () => {
     const result = await bluesky.post(
       {
