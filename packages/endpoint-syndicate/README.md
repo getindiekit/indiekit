@@ -30,6 +30,9 @@ To customise the behaviour of this plug-in, add `@indiekit/endpoint-syndicate` t
 ## Supported endpoint queries
 
 - URL to syndicate: `/syndicate?source_url=https%3A%2F%2Fwebsite.example%2Fposts%2F1`
+- Every post awaiting syndication, oldest first: `/syndicate`
+
+A request without `source_url` works through every published post that still has a syndication target to reach, one at a time, and responds with a result for each. A second such request arriving while one is still running is told that syndication is already in progress.
 
 ## Authorization
 

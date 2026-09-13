@@ -21,13 +21,15 @@ export function mockClient() {
   agent
     .get(storeOrigin)
     .intercept({ path: /\/user\/.*\.(md|jpg)/, method: "PUT" })
-    .reply(201);
+    .reply(201)
+    .persist();
 
   // Update file on content store
   agent
     .get(storeOrigin)
     .intercept({ path: /\/user\/.*\.(md|jpg)/, method: "PATCH" })
-    .reply(201);
+    .reply(201)
+    .persist();
 
   // Successfully syndicate post to Mastodon
   agent

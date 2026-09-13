@@ -1,4 +1,30 @@
 /**
+ * Get every post awaiting syndication
+ *
+ * A post is awaiting syndication while `mp-syndicate-to` remains: it is
+ * deleted once every target has returned a URL, and replaced with the
+ * targets that failed otherwise. Posts already syndicated to some of their
+ * targets are therefore still awaiting the rest, and `syndicateToTargets`
+ * skips the ones already done. Oldest first, so a backlog is syndicated in
+ * the order it was published.
+ * @param {object} postsCollection - Posts database collection
+ * @returns {Promise<Array<object>>} Post data, oldest first
+ */
+export const getPostsAwaitingSyndication = async (postsCollection) => {
+  return postsCollection
+    .find({
+      "properties.mp-syndicate-to": {
+        $exists: true,
+      },
+      "properties.post-status": {
+        $ne: "draft",
+      },
+    })
+    .sort({ "properties.published": 1 })
+    .toArray();
+};
+
+/**
  * Get post data
  * @param {object} postsCollection - Posts database collection
  * @param {string} url - URL of existing post (optional)
@@ -11,26 +37,8 @@ export const getPostData = async (postsCollection, url) => {
     });
   }
 
-  // A post is awaiting syndication while `mp-syndicate-to` remains: it is
-  // deleted once every target has returned a URL, and replaced with the
-  // targets that failed otherwise. Posts already syndicated to some of their
-  // targets are therefore still awaiting the rest, and `syndicateToTargets`
-  // skips the ones already done. Oldest first, so a backlog is syndicated in
-  // the order it was published.
-  const items = await postsCollection
-    .find({
-      "properties.mp-syndicate-to": {
-        $exists: true,
-      },
-      "properties.post-status": {
-        $ne: "draft",
-      },
-    })
-    .sort({ "properties.published": 1 })
-    .limit(1)
-    .toArray();
-
-  return items[0];
+  const [oldest] = await getPostsAwaitingSyndication(postsCollection);
+  return oldest;
 };
 
 /**
