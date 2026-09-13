@@ -179,6 +179,11 @@ export const postData = {
         : updateMf2.deleteEntries(properties, operation.delete);
     }
 
+    // Keep `uid` stable regardless of what the client asked to add, replace
+    // or delete: it’s a durable identifier for this post, so an update
+    // operation must never be able to reassign or drop it.
+    properties.uid = oldProperties.uid;
+
     // Normalise properties
     properties = normaliseProperties(publication, properties, timeZone);
     oldProperties = normaliseProperties(publication, oldProperties, timeZone);
