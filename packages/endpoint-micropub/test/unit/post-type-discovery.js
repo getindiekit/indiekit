@@ -7,7 +7,48 @@ describe("endpoint-media/lib/post-type-discovery", () => {
   const postTypes = {
     audio: { discovery: "audio" },
     bookmark: { discovery: "bookmark-of" },
+    page: { h: "page" },
+    recipe: { h: "recipe", discovery: "ingredient" },
   };
+
+  it("Discovers post type from its vocabulary", () => {
+    const result = getPostType(postTypes, {
+      type: "page",
+      name: "About",
+      content: "All about me.",
+    });
+
+    assert.equal(result, "page");
+  });
+
+  it("Discovers post type from its vocabulary before its discovery property", () => {
+    const result = getPostType(postTypes, {
+      type: "recipe",
+      name: "Cheese sandwich",
+      content: "Put cheese between bread.",
+    });
+
+    assert.equal(result, "recipe");
+  });
+
+  it("Discovers article post type for entry vocabulary with name and content", () => {
+    const result = getPostType(postTypes, {
+      type: "entry",
+      name: "About",
+      content: "All about me.",
+    });
+
+    assert.equal(result, "article");
+  });
+
+  it("Falls back to note for an unconfigured vocabulary", () => {
+    const result = getPostType(postTypes, {
+      type: "review",
+      content: "Five stars.",
+    });
+
+    assert.equal(result, "note");
+  });
 
   it("Discovers note post type", () => {
     const result = getPostType(postTypes, {
