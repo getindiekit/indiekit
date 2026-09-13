@@ -35,23 +35,60 @@ export function mockClient() {
     })
     .persist();
 
-  // Get source information for all items from external media endpoint
+  // A default-sized listing page (the shape `q=source` returns with no
+  // `uid`/`url` and no explicit `limit`) that does not include the file
+  // fetched by uid below — it's older than the newest page of uploads.
+  const items = Array.from({ length: 40 }, (_, index) => ({
+    uid: `other-${index}`,
+    url: `https://website.example/other-${index}.jpg`,
+  }));
+
   agent
     .get(mediaEndpointOrigin)
     .intercept({
       path: "/?q=source",
     })
+    .reply(200, { items })
+    .persist();
+
+  // Get source information for a single file by uid from external media endpoint
+  agent
+    .get(mediaEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", uid: "123" },
+    })
     .reply(200, {
-      items: [
-        {
-          uid: "123",
-          url: photoOrigin,
-        },
-        {
-          uid: "401",
-          url: photoBadOrigin,
-        },
-      ],
+      uid: "123",
+      "media-type": "photo",
+      url: photoOrigin,
+    })
+    .persist();
+
+  agent
+    .get(mediaEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", uid: "401" },
+    })
+    .reply(200, {
+      uid: "401",
+      "media-type": "photo",
+      url: photoBadOrigin,
+    })
+    .persist();
+
+  // Get source information for a file older than the newest page of uploads
+  agent
+    .get(mediaEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", uid: "target-uid" },
+    })
+    .reply(200, {
+      uid: "target-uid",
+      "media-type": "photo",
+      url: "https://website.example/target.jpg",
     })
     .persist();
 
