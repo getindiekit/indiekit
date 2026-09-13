@@ -194,10 +194,17 @@ export const Indiekit = class {
     // collection would answer some lookups and 404 others.
     // @todo Remove with `migrate-uid.js` once every existing database has
     // been backfilled: at v1.0.0 or the move off MongoDB (#821).
+    //
+    // The list is deliberately literal, not `this.collections`: the backfill's
+    // `$set: { "properties.uid": ... }` CREATES a `properties` subdocument, so
+    // running it against any other collection a plugin registers — a cache, a
+    // token store, a queue — would silently graft an unrelated field onto data
+    // this migration has no business touching.
     for (const name of ["posts", "media"]) {
       const collection = this.collections.get(name);
       if (collection) {
         const updated = await backfillUids(collection);
+        debug(`Checked ‘${name}’ for missing uids: ${updated} added`);
         if (updated > 0) {
           console.info(`Added a uid to ${updated} items in ‘${name}’`);
         }
