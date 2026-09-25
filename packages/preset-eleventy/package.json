@@ -35,9 +35,9 @@
     "directory": "packages/preset-eleventy"
   },
   "dependencies": {
-    "camelcase-keys": "^10.0.2",
+    "camelcase-keys": "^10.0.3",
     "plur": "^6.0.0",
-    "yaml": "^2.9.0"
+    "yaml": "^2.9.1"
   },
   "publishConfig": {
     "access": "public"

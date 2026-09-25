@@ -39,8 +39,8 @@
     "@indiekit/error": "^1.0.0-beta.28",
     "@indiekit/util": "^1.0.0-beta.29",
     "brevity": "^0.2.9",
-    "html-to-text": "^10.0.0",
-    "sharp": "^0.35.3"
+    "html-to-text": "^10.0.1",
+    "sharp": "^0.35.4"
   },
   "publishConfig": {
     "access": "public"

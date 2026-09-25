@@ -26,10 +26,10 @@
   },
   "dependencies": {
     "@date-fns/tz": "^1.5.0",
-    "@sindresorhus/slugify": "^3.0.0",
+    "@sindresorhus/slugify": "^3.0.1",
     "date-fns": "^4.4.0",
     "debug": "^4.4.3",
-    "mongodb": "^7.5.0"
+    "mongodb": "^7.6.0"
   },
   "publishConfig": {
     "access": "public"
