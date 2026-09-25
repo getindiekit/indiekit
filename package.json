@@ -52,7 +52,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "dotenv": "^17.4.2",
+    "dotenv": "^18.0.4",
     "husky": "^9.1.7",
     "lerna": "^10.0.0",
     "sharp": "^0.35.3"
@@ -80,7 +80,7 @@
     "@types/express-fileupload": "^1.5.1",
     "@types/i18n": "^0.13.12",
     "@types/lodash": "^4.17.25",
-    "@types/serviceworker": "^0.0.199",
+    "@types/serviceworker": "^0.0.202",
     "aws-sdk-client-mock": "^4.1.0",
     "cookie-session": "^2.1.1",
     "create-indiekit": "*",
