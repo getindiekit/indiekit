@@ -1,6 +1,5 @@
 import { mock } from "node:test";
 
-import "dotenv/config.js";
 import { Indiekit } from "@indiekit/indiekit";
 import { testConfig } from "@indiekit-test/config";
 import getPort from "get-port";

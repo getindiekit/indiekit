@@ -1,5 +1,3 @@
-import "dotenv/config.js";
-
 const defaultOptions = {
   locale: "en",
   usePostTypes: true,

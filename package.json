@@ -42,9 +42,9 @@
     "lint:css:fix": "stylelint '**/*.css' --fix",
     "lint": "npm run lint:prettier && npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:prettier:fix && npm run lint:js:fix && npm run lint:css:fix",
-    "test": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --test --test-reporter=spec",
-    "test:coverage": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --test --experimental-test-coverage",
-    "test:lcov": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info",
+    "test": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --env-file-if-exists=.env --test --test-reporter=spec",
+    "test:coverage": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --env-file-if-exists=.env --test --experimental-test-coverage",
+    "test:lcov": "NODE_ENV=test SECRET=${SECRET:-test} PASSWORD_SECRET=${PASSWORD_SECRET:-test} node --env-file-if-exists=.env --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info",
     "typecheck": "tsc -p jsconfig.dev.json && tsc -p jsconfig.client.json && tsc -p jsconfig.server.json && tsc -p jsconfig.serviceworker.json"
   },
   "workspaces": [
@@ -52,7 +52,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "dotenv": "^18.0.4",
     "husky": "^9.1.7",
     "lerna": "^10.0.1",
     "sharp": "^0.35.4"

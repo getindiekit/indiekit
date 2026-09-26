@@ -1,8 +1,9 @@
+import { existsSync } from "node:fs";
 import process from "node:process";
-import * as dotenv from "dotenv";
 
-// eslint-disable-next-line unicorn/no-top-level-side-effects
-dotenv.config();
+if (existsSync(".env")) {
+  process.loadEnvFile();
+}
 
 const config = {
   application: {
