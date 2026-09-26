@@ -18,8 +18,9 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        node-version: [24.17]
+        node-version: [24.17, 26]
         mongodb-version: [8]
     steps:
       - name: Remove temporary files
@@ -51,10 +52,15 @@ jobs:
       - name: Install packages and symlink local dependencies
         run: npm ci
 
+      - name: Show bundled Undici version
+        run: node -p "process.versions.undici"
+
       - name: Run linter
+        if: matrix.node-version == '24.17'
         run: npm run lint
 
       - name: Run typechecker
+        if: matrix.node-version == '24.17'
         run: npm run typecheck
 
       - name: Run tests

@@ -1,4 +1,4 @@
-import { setGlobalDispatcher } from "undici";
+import { setGlobalDispatcher } from "@indiekit-test/undici";
 
 /**
  * @param {string} name - Base name of mock client file
