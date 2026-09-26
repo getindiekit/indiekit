@@ -75,5 +75,21 @@ export default [
     files: ["**/test/**/*.js"],
     rules: { "unicorn/no-process-exit": 0 },
   },
+  {
+    files: ["**/{packages,helpers}/**/*.js"],
+    ignores: ["helpers/undici/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: ["undici", "undici-v7", "undici-v8"].map((name) => ({
+            name,
+            message:
+              "Import from @indiekit-test/undici so dispatchers match the Undici bundled with Node.js.",
+          })),
+        },
+      ],
+    },
+  },
   prettier,
 ];

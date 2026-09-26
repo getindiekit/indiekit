@@ -2,8 +2,8 @@ import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
 import { testToken } from "@indiekit-test/token";
+import { MockAgent, setGlobalDispatcher } from "@indiekit-test/undici";
 import { mockResponse } from "mock-req-res";
-import { MockAgent, setGlobalDispatcher } from "undici";
 
 import {
   getChannelItems,

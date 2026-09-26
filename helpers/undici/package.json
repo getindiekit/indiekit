@@ -1,0 +1,11 @@
+{
+  "name": "@indiekit-test/undici",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "undici-v7": "npm:undici@^7.30.0",
+    "undici-v8": "npm:undici@^8.11.2"
+  }
+}
