@@ -101,7 +101,6 @@
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "microformats-parser": "^2.0.6",
-    "mock-fs": "^5.5.0",
     "mock-req-res": "^1.2.1",
     "mock-session": "^0.0.5",
     "mongodb-memory-server": "^11.3.0",
