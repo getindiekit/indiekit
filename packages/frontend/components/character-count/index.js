@@ -1,3 +1,5 @@
+import { getElement } from "../../scripts/utils/get-element";
+
 /**
  * Based on the Character count component from the GOV.UK Design System.
  * Provides a visible, real-time character and word count, and visually
@@ -9,6 +11,31 @@
  * @see {@link https://dav-idc.com/making-a-character-count-component-more-accessible}
  */
 export const CharacterCountComponent = class extends HTMLElement {
+  /**
+   * @type {string}
+   */
+  i18nChar;
+
+  /**
+   * @type {string}
+   */
+  i18nChars;
+
+  /**
+   * @type {string}
+   */
+  i18nWord;
+
+  /**
+   * @type {string}
+   */
+  i18nWords;
+
+  /**
+   * @type {HTMLTextAreaElement}
+   */
+  $textarea;
+
   constructor() {
     super();
 
@@ -19,13 +46,8 @@ export const CharacterCountComponent = class extends HTMLElement {
     this.$screenReaderCountMessage = document.createElement("p");
     this.$screenReaderCountMessage.className = "-!-visually-hidden";
     this.$screenReaderCountMessage.setAttribute("aria-live", "polite");
-    this.$textareaDescription.insertAdjacentElement(
-      "afterend",
-      this.$screenReaderCountMessage,
-    );
 
     this.$visibleCountMessage = document.createElement("p");
-    this.$visibleCountMessage.className = this.$textareaDescription.className;
     this.$visibleCountMessage.setAttribute("aria-hidden", "true");
   }
 
@@ -168,17 +190,20 @@ export const CharacterCountComponent = class extends HTMLElement {
     this.i18nWord = this.getAttribute("i18n-word") || `%s word`;
     this.i18nWords = this.getAttribute("i18n-words") || `%s words`;
 
-    this.$textarea = this.querySelector("textarea");
+    this.$textarea = getElement(this, "textarea");
     this.$textarea.addEventListener("keyup", this.#handleKeyUp.bind(this));
     this.$textarea.addEventListener("focus", this.#handleFocus.bind(this));
     this.$textarea.addEventListener("blur", this.#handleBlur.bind(this));
     window.addEventListener("pageshow", this.#updateCountMessages.bind(this));
     this.#updateCountMessages();
 
-    this.$textareaDescription = this.querySelector(
-      `#${this.$textarea.id}-info`,
-    );
+    this.$textareaDescription = getElement(this, `#${this.$textarea.id}-info`);
     this.$textareaDescription.classList.add("-!-visually-hidden");
+    this.$textareaDescription.insertAdjacentElement(
+      "afterend",
+      this.$screenReaderCountMessage,
+    );
+    this.$visibleCountMessage.className = this.$textareaDescription.className;
     this.$textareaDescription.insertAdjacentElement(
       "afterend",
       this.$visibleCountMessage,

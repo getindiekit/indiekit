@@ -3,6 +3,11 @@
  * @see {@link https://github.com/alphagov/govuk-frontend/blob/main/packages/govuk-frontend/src/govuk/components/checkboxes/checkboxes.mjs}
  */
 export const CheckboxesFieldComponent = class extends HTMLElement {
+  /**
+   * @type {NodeListOf<HTMLInputElement>}
+   */
+  $$inputTargets;
+
   connectedCallback() {
     this.$$inputTargets = this.querySelectorAll("input");
     for (const $input of this.$$inputTargets) {
