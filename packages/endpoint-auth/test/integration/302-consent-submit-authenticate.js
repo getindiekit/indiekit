@@ -6,6 +6,7 @@ import { testServer } from "@indiekit-test/server";
 import supertest from "supertest";
 
 import { createPasswordHash } from "../../lib/password.js";
+import { verifyToken } from "../../lib/token.js";
 
 await mockAgent("endpoint-auth");
 const server = await testServer();
@@ -31,9 +32,12 @@ describe("endpoint-auth POST /auth/consent", () => {
       .type("form")
       .query({ request_uri: `urn:ietf:params:oauth:request_uri:${reference}` })
       .send({ password: "foo" });
+    const code = new URL(result.headers.location).searchParams.get("code");
+    const decoded = verifyToken(code);
 
     assert.equal(result.status, 302);
     assert.match(result.headers.location, /code=(.*)&iss=(.*)&state=(.*)/);
+    assert.equal(decoded.me, "https://website.example/");
   });
 
   after(() => server.close());
