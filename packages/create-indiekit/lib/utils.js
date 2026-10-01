@@ -13,7 +13,7 @@ export const addPluginConfig = async (pluginName, config) => {
   const { info } = console;
 
   info(
-    `${styleText("green", "v")} ${styleText("white", `Configuring ${plugin.name}…`)}`,
+    `${styleText("green", ">")} ${styleText("white", `Configuring ${plugin.name}…`)}`,
   );
 
   // Add plug-in to list of installed plug-ins
