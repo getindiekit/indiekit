@@ -116,6 +116,9 @@
     "@rollup/rollup-linux-x64-gnu": "^4.63.5",
     "lightningcss-linux-x64-gnu": "^1.33.0"
   },
+  "overrides": {
+    "sharp": "$sharp"
+  },
   "allowScripts": {
     "better-sqlite3@12.11.1": true
   }
