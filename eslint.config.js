@@ -46,6 +46,7 @@ export default [
       "unicorn/no-unsafe-buffer-conversion": "off",
       "unicorn/no-unsafe-string-replacement": "off",
       "unicorn/prefer-array-from-map": "off",
+      "unicorn/prefer-combined-guards": "off",
       "unicorn/prefer-continue": "off",
       "unicorn/prefer-iterator-to-array": "off",
       "unicorn/prefer-minimal-ternary": "off",

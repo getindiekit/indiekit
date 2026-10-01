@@ -74,11 +74,13 @@ export const RadiosFieldComponent = class extends HTMLElement {
 
     const $target = document.querySelector(`#${targetId}`);
 
-    if ($target && $target.classList.contains("radios__conditional")) {
-      const inputIsChecked = input.checked;
-
-      input.setAttribute("aria-expanded", inputIsChecked.toString());
-      $target.classList.toggle("radios__conditional--hidden", !inputIsChecked);
+    if (!$target?.classList.contains("radios__conditional")) {
+      return;
     }
+
+    const inputIsChecked = input.checked;
+
+    input.setAttribute("aria-expanded", inputIsChecked.toString());
+    $target.classList.toggle("radios__conditional--hidden", !inputIsChecked);
   }
 };

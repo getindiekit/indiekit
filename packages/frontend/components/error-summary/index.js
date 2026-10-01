@@ -89,7 +89,7 @@ export const ErrorSummaryComponent = class extends HTMLElement {
    * @returns {string|boolean} Fragment name (without the hash)
    */
   getFragmentFromUrl(url) {
-    return url.startsWith("#") ? false : url.split("#").pop();
+    return !url.startsWith("#") && url.split("#").pop();
   }
 
   /**

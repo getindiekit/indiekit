@@ -51,35 +51,29 @@ export const TextareaFieldComponent = class extends HTMLElement {
     this.$label = this.querySelector("label");
     this.$textarea = this.querySelector("textarea");
 
-    const status =
-      this?.editorStatus === "false"
-        ? false
-        : [
-            ...(this.editorImageUpload === "false" ? [] : ["upload-image"]),
-            "words",
-            "characters",
-            "autosave",
-          ];
+    const status = this?.editorStatus !== "false" && [
+      ...(this.editorImageUpload === "false" ? [] : ["upload-image"]),
+      "words",
+      "characters",
+      "autosave",
+    ];
 
-    const toolbar =
-      this?.editorToolbar === "false"
-        ? false
-        : [
-            "bold",
-            "italic",
-            "heading",
-            "quote",
-            "ordered-list",
-            "unordered-list",
-            "table",
-            "code",
-            "link",
-            ...(this.editorImageUpload === "false" ? [] : ["upload-image"]),
-            "|",
-            "undo",
-            "side-by-side",
-            "fullscreen",
-          ];
+    const toolbar = this?.editorToolbar !== "false" && [
+      "bold",
+      "italic",
+      "heading",
+      "quote",
+      "ordered-list",
+      "unordered-list",
+      "table",
+      "code",
+      "link",
+      ...(this.editorImageUpload === "false" ? [] : ["upload-image"]),
+      "|",
+      "undo",
+      "side-by-side",
+      "fullscreen",
+    ];
 
     const editor = new EasyMDE({
       autoDownloadFontAwesome: false,
@@ -111,21 +105,24 @@ export const TextareaFieldComponent = class extends HTMLElement {
         const linkButton = /** @type {HTMLElement} */ (event.target)?.closest(
           ".link",
         );
-        if (linkButton) {
-          event.preventDefault();
-          event.stopPropagation();
 
-          const linkTemplate = `[${editor.codemirror.getSelection()}]()`;
-          editor.codemirror.replaceSelection(linkTemplate);
-          editor.codemirror.focus();
-
-          // Move cursor into the bracket for direct pasting
-          const cursorPosition = editor.codemirror.getCursor();
-          editor.codemirror.setSelection(
-            { line: cursorPosition.line, ch: cursorPosition.ch - 1 },
-            { line: cursorPosition.line, ch: cursorPosition.ch - 1 },
-          );
+        if (!linkButton) {
+          return;
         }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const linkTemplate = `[${editor.codemirror.getSelection()}]()`;
+        editor.codemirror.replaceSelection(linkTemplate);
+        editor.codemirror.focus();
+
+        // Move cursor into the bracket for direct pasting
+        const cursorPosition = editor.codemirror.getCursor();
+        editor.codemirror.setSelection(
+          { line: cursorPosition.line, ch: cursorPosition.ch - 1 },
+          { line: cursorPosition.line, ch: cursorPosition.ch - 1 },
+        );
       },
       { capture: true },
     );
@@ -141,15 +138,18 @@ export const TextareaFieldComponent = class extends HTMLElement {
       const pastedText = event.clipboardData?.getData("text/plain") || "";
       const urlMatch = pastedText.match(/https?:\/\/[^\s]+/);
 
-      if (urlMatch) {
-        event.preventDefault();
-        const link = `[${selectedText}](${urlMatch[0]})`;
-        editor.codemirror.replaceSelection(link);
+      if (!urlMatch) {
+        return;
       }
+
+      event.preventDefault();
+
+      const link = `[${selectedText}](${urlMatch[0]})`;
+      editor.codemirror.replaceSelection(link);
     });
 
-    // Restore label behaviour
     /**
+     * Restore label behaviour
      * @type {HTMLTextAreaElement}
      */
     const $codeMirrorTextarea = this.querySelector(".CodeMirror textarea");
@@ -157,8 +157,8 @@ export const TextareaFieldComponent = class extends HTMLElement {
       $codeMirrorTextarea.focus();
     });
 
-    // Update character count
     /**
+     * Update character count
      * @type {HTMLElement}
      */
     const $characters = this.querySelector(".editor-statusbar .characters");
@@ -169,25 +169,27 @@ export const TextareaFieldComponent = class extends HTMLElement {
     });
 
     const $editorToolbar = this.querySelector(".editor-toolbar");
-    if ($editorToolbar) {
-      // Use custom SVG icons
-      const $$buttons = $editorToolbar.querySelectorAll("button");
-      for (const $button of $$buttons) {
-        $button.innerHTML = getButtonSvg($button.classList[0]);
-      }
-
-      // Get toolbar height to offset editor and preview in fullscreen mode
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          this.style.setProperty(
-            "--toolbar-height",
-            `${entry.contentRect.height}px`,
-          );
-        }
-      });
-
-      resizeObserver.observe($editorToolbar);
+    if (!$editorToolbar) {
+      return;
     }
+
+    // Use custom SVG icons
+    const $$buttons = $editorToolbar.querySelectorAll("button");
+    for (const $button of $$buttons) {
+      $button.innerHTML = getButtonSvg($button.classList[0]);
+    }
+
+    // Get toolbar height to offset editor and preview in fullscreen mode
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        this.style.setProperty(
+          "--toolbar-height",
+          `${entry.contentRect.height}px`,
+        );
+      }
+    });
+
+    resizeObserver.observe($editorToolbar);
   }
 
   uploadFile(endpoint) {

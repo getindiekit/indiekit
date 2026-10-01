@@ -121,12 +121,14 @@ export const getPostParts = (url) => {
 export const uriToPostUrl = (profileUrl, uri) => {
   const match = uri.match(AT_URI);
 
-  if (match) {
-    let { did, rkey, type } = match.groups;
-    type = type.split(".").at(-1);
-
-    return `${profileUrl}/${did}/${type}/${rkey}`;
+  if (!match) {
+    return;
   }
+
+  let { did, rkey, type } = match.groups;
+  type = type.split(".").at(-1);
+
+  return `${profileUrl}/${did}/${type}/${rkey}`;
 };
 
 /**
@@ -262,7 +264,7 @@ export const htmlToStatusText = (html) => {
   let hrefs = [...html.matchAll(/href="(https?:\/\/.+?)"/g)];
 
   // Get the last link mentioned, or return false
-  const lastHref = hrefs.length > 0 ? hrefs.at(-1)[1] : false;
+  const lastHref = hrefs.length > 0 && hrefs.at(-1)[1];
 
   // Convert HTML to plain text, removing any links
   const text = htmlToText(html, {

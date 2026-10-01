@@ -74,15 +74,17 @@ export const CheckboxesFieldComponent = class extends HTMLElement {
 
     const $target = document.querySelector(`#${targetId}`);
 
-    if ($target && $target.classList.contains("checkboxes__conditional")) {
-      const inputIsChecked = input.checked;
-
-      input.setAttribute("aria-expanded", inputIsChecked.toString());
-      $target.classList.toggle(
-        "checkboxes__conditional--hidden",
-        !inputIsChecked,
-      );
+    if (!$target?.classList.contains("checkboxes__conditional")) {
+      return;
     }
+
+    const inputIsChecked = input.checked;
+
+    input.setAttribute("aria-expanded", inputIsChecked.toString());
+    $target.classList.toggle(
+      "checkboxes__conditional--hidden",
+      !inputIsChecked,
+    );
   }
 
   /**

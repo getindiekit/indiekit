@@ -33,14 +33,16 @@ export const passwordController = {
       });
     }
 
-    if (data.password) {
-      const secret = await createPasswordHash(data.password);
-
-      response.render("new-password", {
-        title: response.locals.__("auth.newPassword.title"),
-        data,
-        secret,
-      });
+    if (!data.password) {
+      return;
     }
+
+    const secret = await createPasswordHash(data.password);
+
+    response.render("new-password", {
+      title: response.locals.__("auth.newPassword.title"),
+      data,
+      secret,
+    });
   },
 };

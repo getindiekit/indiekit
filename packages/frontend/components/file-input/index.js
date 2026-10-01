@@ -67,11 +67,13 @@ export const FileInputFieldController = class extends HTMLElement {
         event.preventDefault();
       }
 
-      if (event.key === "Enter") {
-        const $target = /** @type {HTMLElement} */ (event.target);
-
-        $target.click();
+      if (event.key !== "Enter") {
+        return;
       }
+
+      const $target = /** @type {HTMLElement} */ (event.target);
+
+      $target.click();
     });
 
     $fileInputButton.addEventListener("keyup", (event) => {

@@ -68,9 +68,8 @@ export default class S3Store {
         name: "endpoint",
         message: "What is your S3-compatible endpoint?",
         validate: (value) =>
-          URL.canParse(value)
-            ? true
-            : "Enter a valid URL, for example https://s3-example-us-west-1.amazonaws.com",
+          URL.canParse(value) ||
+          "Enter a valid URL, for example https://s3-example-us-west-1.amazonaws.com",
       },
       {
         type: "text",

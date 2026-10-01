@@ -10,7 +10,7 @@ export const postController = async (request, response) => {
   const { isDraftMode, postName, postsPath, postStatus, properties, scope } =
     response.locals;
 
-  const isPostEditable = isDraftMode ? postStatus === "draft" : true;
+  const isPostEditable = !isDraftMode || postStatus === "draft";
 
   return response.render("post", {
     title: postName,
