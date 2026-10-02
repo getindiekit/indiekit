@@ -28,7 +28,8 @@ describe("syndicator-internet-archive/lib/internet-archive", async () => {
         secretKey: "",
       }).capture(url),
       {
-        message: "You need to be logged in to use Save Page Now.",
+        message:
+          "Internet Archive syndicator: No access key. Set the `accessKey` option or `INTERNET_ARCHIVE_ACCESS_KEY`.",
       },
     );
   });
@@ -56,7 +57,8 @@ describe("syndicator-internet-archive/lib/internet-archive", async () => {
         secretKey: "",
       }).status(job_id),
       {
-        message: "You need to be logged in to use Save Page Now.",
+        message:
+          "Internet Archive syndicator: No access key. Set the `accessKey` option or `INTERNET_ARCHIVE_ACCESS_KEY`.",
       },
     );
   });
