@@ -1,7 +1,23 @@
 import path from "node:path";
 
+import { IndiekitError } from "@indiekit/error";
 import { getDate, slugify } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
+
+/**
+ * Get file type from file data
+ * @param {object} file - File object
+ * @returns {Promise<import("file-type").FileTypeResult>} File type
+ */
+const getFileType = async (file) => {
+  const fileType = await fileTypeFromBuffer(file.data);
+  if (!fileType) {
+    // Message is the media type; controller localises the error
+    throw IndiekitError.unsupportedMediaType(file.mimetype || "unknown");
+  }
+
+  return fileType;
+};
 
 /**
  * Derive properties from file data
@@ -17,7 +33,7 @@ import { fileTypeFromBuffer } from "file-type";
  * }
  */
 export const getFileProperties = async (publication, file, timeZone) => {
-  const { ext } = await fileTypeFromBuffer(file.data);
+  const { ext } = await getFileType(file);
   const published = getPublishedProperty(timeZone);
 
   let basename = path.basename(file.name, path.extname(file.name));
@@ -39,7 +55,7 @@ export const getFileProperties = async (publication, file, timeZone) => {
  * @example getMediaType("brighton-pier.jpg") => "photo"
  */
 export const getMediaType = async (file) => {
-  const { mime } = await fileTypeFromBuffer(file.data);
+  const { mime } = await getFileType(file);
   const type = mime.split("/", 1)[0];
 
   if (type === "image") {

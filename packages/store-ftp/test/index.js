@@ -81,7 +81,7 @@ describe("store-ftp", () => {
   it("Doesn’t create file if already exists", async () => {
     await ftp.createFile("foo.md", "foobar");
 
-    assert.equal(await ftp.createFile("foo.md", "foobar"), undefined);
+    assert.equal(await ftp.createFile("foo.md", "foobar"), false);
   });
 
   it("Throws error creating file with no password", async () => {
@@ -110,6 +110,7 @@ describe("store-ftp", () => {
   });
 
   it("Throws error creating file", async () => {
+    // @ts-ignore: Testing invalid input
     await assert.rejects(ftp.createFile(undefined, ""), {
       message: `FTP store: The "path" argument must be of type string. Received undefined`,
     });
@@ -120,6 +121,7 @@ describe("store-ftp", () => {
   });
 
   it("Throws error reading file", async () => {
+    // @ts-ignore: Testing invalid input
     await assert.rejects(ftp.readFile(undefined), {
       message: `FTP store: The "path" argument must be of type string. Received undefined`,
     });
@@ -149,6 +151,7 @@ describe("store-ftp", () => {
   });
 
   it("Throws error updating file", async () => {
+    // @ts-ignore: Testing invalid input
     await assert.rejects(ftp.updateFile(undefined, "foobar"), {
       message: `FTP store: The "path" argument must be of type string. Received undefined`,
     });
@@ -159,6 +162,7 @@ describe("store-ftp", () => {
   });
 
   it("Throws error deleting file", async () => {
+    // @ts-ignore: Testing invalid input
     await assert.rejects(ftp.deleteFile(undefined), {
       message: `FTP store: The "path" argument must be of type string. Received undefined`,
     });

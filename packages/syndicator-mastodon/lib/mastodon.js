@@ -93,7 +93,7 @@ export class Mastodon {
    * Upload media and return Mastodon media id
    * @param {object} media - JF2 media object
    * @param {string} me - Publication URL
-   * @returns {Promise<string>} Mastodon media id
+   * @returns {Promise<string|undefined>} Mastodon media id
    */
   async uploadMedia(media, me) {
     const { alt, url } = media;
@@ -123,7 +123,7 @@ export class Mastodon {
    * Post to Mastodon
    * @param {object} properties - JF2 properties
    * @param {string} me - Publication URL
-   * @returns {Promise<string|boolean>} URL of syndicated status
+   * @returns {Promise<string|undefined>} URL of syndicated status
    */
   async post(properties, me) {
     let mediaIds = [];
@@ -138,7 +138,8 @@ export class Mastodon {
         uploads.push(this.uploadMedia(photo, me));
       }
 
-      mediaIds = await Promise.all(uploads);
+      const uploadedIds = await Promise.all(uploads);
+      mediaIds = uploadedIds.filter((id) => id !== undefined);
     }
 
     if (properties["repost-of"]) {

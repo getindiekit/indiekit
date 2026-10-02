@@ -16,6 +16,10 @@ async function _getUserConfig(configFilePath) {
     ? explorer.load(configFilePath)
     : explorer.search());
 
+  if (!result) {
+    throw new Error("No Indiekit configuration found");
+  }
+
   return result.config;
 }
 

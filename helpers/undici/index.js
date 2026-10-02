@@ -13,7 +13,7 @@ const copies = {
 };
 
 export const bundledVersion = process.versions.undici;
-export const packageName = copies[Number(bundledVersion.split(".", 1)[0])];
+export const packageName = copies[Number(bundledVersion?.split(".", 1)[0])];
 
 if (!packageName) {
   throw new Error(

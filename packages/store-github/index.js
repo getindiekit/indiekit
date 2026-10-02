@@ -139,7 +139,7 @@ export default class GithubStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<string>} Created file URL
+   * @returns {Promise<string|false>} Created file URL
    * @see {@link https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents}
    */
   async createFile(filePath, content, { message }) {
@@ -148,7 +148,7 @@ export default class GithubStore {
     try {
       const fileExists = await this.fileExists(filePath);
       if (fileExists) {
-        return;
+        return false;
       }
 
       debug(`Try creating file ${filePath} in repo ${repo}, branch ${branch}`);

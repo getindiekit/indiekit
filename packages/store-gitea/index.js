@@ -130,13 +130,13 @@ export default class GiteaStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<string>} Created file URL
+   * @returns {Promise<string|false>} Created file URL
    * @see {@link https://gitea.com/api/swagger#/repository/repoCreateFile}
    */
   async createFile(filePath, content, { message }) {
     const fileExists = await this.fileExists(filePath);
     if (fileExists) {
-      return;
+      return false;
     }
 
     const createResponse = await this.#client(filePath, "POST", {

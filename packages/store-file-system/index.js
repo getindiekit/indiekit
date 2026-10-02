@@ -53,14 +53,14 @@ export default class FileSystemStore {
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @returns {Promise<string>} Created file URL
+   * @returns {Promise<string|false>} Created file URL
    */
   async createFile(filePath, content) {
     try {
       const absolutePath = this.#absolutePath(filePath);
 
       if (existsSync(absolutePath)) {
-        return;
+        return false;
       }
 
       const dirname = path.dirname(absolutePath);

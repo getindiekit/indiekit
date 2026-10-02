@@ -62,7 +62,7 @@ describe("store-github", async () => {
       message: "Message",
     });
 
-    assert.equal(result, undefined);
+    assert.equal(result, false);
   });
 
   it("Throws error creating file with no token", async () => {

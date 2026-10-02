@@ -15,13 +15,13 @@ const debug = makeDebug("indiekit:endpoint-micropub:post-data");
 /**
  * Get post type configuration, which must include a post path
  * @param {object} postTypes - Publication post types
- * @param {string} type - Post type
+ * @param {string|null} type - Post type
  * @returns {object} Post type configuration
  */
 const getTypeConfig = (postTypes, type) => {
-  const typeConfig = postTypes[type];
+  const typeConfig = type ? postTypes[type] : undefined;
   if (!typeConfig?.post?.path) {
-    throw IndiekitError.notImplemented(type);
+    throw IndiekitError.notImplemented(String(type));
   }
 
   return typeConfig;

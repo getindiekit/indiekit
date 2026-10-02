@@ -70,7 +70,7 @@ describe("store-gitlab", async () => {
       message: "Message",
     });
 
-    assert.equal(result, undefined);
+    assert.equal(result, false);
   });
 
   it("Creates file with projectId at custom instance", async () => {

@@ -19,7 +19,7 @@ export const actionController = (imageProcessing) =>
 
     try {
       // Check provided scope
-      const { scope } = session;
+      const scope = session?.scope;
       const hasScope = checkScope(scope);
       if (!hasScope) {
         throw IndiekitError.insufficientScope(

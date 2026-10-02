@@ -84,7 +84,7 @@ export class Bluesky {
   /**
    * Post a like
    * @param {string} postUrl - URL of post to like
-   * @returns {Promise<string>} Bluesky post URL
+   * @returns {Promise<string|undefined>} Bluesky post URL
    */
   async postLike(postUrl) {
     const client = await this.#client();
@@ -97,7 +97,7 @@ export class Bluesky {
   /**
    * Post a repost
    * @param {string} postUrl - URL of post to repost
-   * @returns {Promise<string>} Bluesky post URL
+   * @returns {Promise<string|undefined>} Bluesky post URL
    */
   async postRepost(postUrl) {
     const client = await this.#client();
@@ -112,9 +112,9 @@ export class Bluesky {
    * @param {string} postUrl - URL of post to quote
    * @param {object} richText - Rich text
    * @param {import("@atproto/api").AppBskyEmbedImages.Image[]} [images] - Images
-   * @returns {Promise<string>} Bluesky post URL
+   * @returns {Promise<string|undefined>} Bluesky post URL
    */
-  async postQuotePost(postUrl, richText, images) {
+  async postQuotePost(postUrl, richText, images = []) {
     const client = await this.#client();
     const post = await this.getPost(postUrl);
 
@@ -143,7 +143,7 @@ export class Bluesky {
       media,
     };
 
-    const embed = images?.length > 0 ? recordWithMedia : record;
+    const embed = images.length > 0 ? recordWithMedia : record;
 
     /**
      * @type {import("@atproto/api").AppBskyFeedPost.Record}
@@ -167,11 +167,11 @@ export class Bluesky {
   /**
    * Post a post
    * @param {object} richText - Rich text
-   * @param {object} [images] - Images
+   * @param {import("@atproto/api").AppBskyEmbedImages.Image[]} [images] - Images
    * @param {object} [reply] - Reply reference
-   * @returns {Promise<string>} Bluesky post URL
+   * @returns {Promise<string|undefined>} Bluesky post URL
    */
-  async postPost(richText, images, reply) {
+  async postPost(richText, images = [], reply) {
     const client = await this.#client();
 
     /**
@@ -183,7 +183,7 @@ export class Bluesky {
       facets: richText.facets,
       createdAt: new Date().toISOString(),
       ...(reply && { reply }),
-      ...(images?.length > 0 && {
+      ...(images.length > 0 && {
         embed: {
           $type: "app.bsky.embed.images",
           images,
@@ -200,7 +200,7 @@ export class Bluesky {
    * Upload media
    * @param {object} media - JF2 media object
    * @param {string} me - Publication URL
-   * @returns {Promise<import("@atproto/api").BlobRef>} Blob reference for the uploaded media
+   * @returns {Promise<import("@atproto/api").BlobRef|undefined>} Blob reference for the uploaded media
    */
   async uploadMedia(media, me) {
     const client = await this.#client();
@@ -218,7 +218,7 @@ export class Bluesky {
     }
 
     let blob = await mediaResponse.blob();
-    let encoding = mediaResponse.headers.get("Content-Type");
+    let encoding = mediaResponse.headers.get("Content-Type") ?? undefined;
 
     // Compress image to meet maximum file size limit
     if (encoding?.startsWith("image/")) {
@@ -242,13 +242,16 @@ export class Bluesky {
    * Post to Bluesky
    * @param {object} properties - JF2 properties
    * @param {string} me - Publication URL
-   * @returns {Promise<string|boolean>} URL of syndicated status
+   * @returns {Promise<string|undefined>} URL of syndicated status
    */
   async post(properties, me) {
     const client = await this.#client();
 
     // Upload photos
-    let images = [];
+    /**
+     * @type {import("@atproto/api").AppBskyEmbedImages.Image[]}
+     */
+    const images = [];
     if (properties.photo) {
       // Trim to 4 photos as Bluesky doesn’t support more
       const photos = properties.photo.slice(0, 4);
@@ -259,7 +262,13 @@ export class Bluesky {
         };
       });
 
-      images = await Promise.all(uploads);
+      // Skip photos without a URL that could be uploaded
+      const uploaded = await Promise.all(uploads);
+      for (const { alt, image } of uploaded) {
+        if (image) {
+          images.push({ alt, image });
+        }
+      }
     }
 
     const repostUrl = properties["repost-of"];

@@ -63,7 +63,7 @@ export const getApplicationInformation = (body, client) => {
   for (const item of items) {
     const { properties, type } = item;
 
-    if (/^h-(?:x-)?app$/.test(type[0])) {
+    if (type && /^h-(?:x-)?app$/.test(type[0])) {
       // If no URL property, use baseUrl
       if (!properties.url) {
         properties.url = [client.url];

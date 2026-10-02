@@ -18,7 +18,8 @@ export const actionController = async (request, response, next) => {
 
   try {
     // Check provided scope
-    const { scope, token } = session;
+    const scope = session?.scope;
+    const token = session?.token;
     const hasScope = checkScope(scope, action);
     if (!hasScope) {
       throw IndiekitError.insufficientScope(

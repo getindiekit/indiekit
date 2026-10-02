@@ -26,7 +26,12 @@ export const getChannelItems = (publication) => {
  * @returns {object} JF2 geo location property
  */
 export const getGeoProperty = (geo) => {
-  const { latitude, longitude } = geo.match(ISO_6709_RE).groups;
+  const groups = geo.match(ISO_6709_RE)?.groups;
+  if (!groups) {
+    throw IndiekitError.badRequest(`Invalid geographic coordinates: ${geo}`);
+  }
+
+  const { latitude, longitude } = groups;
 
   return {
     type: "geo",

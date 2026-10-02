@@ -100,6 +100,7 @@ describe("syndicator-bluesky/lib/utils", async () => {
     const metadata = await sharp(result.buffer).metadata();
     const maxBytes = 1024 * 1024; // 1MB
 
+    assert.ok(metadata.size);
     assert.ok(metadata.size <= maxBytes);
     assert.equal(result.mimeType, "image/jpeg");
   });
@@ -288,6 +289,7 @@ describe("syndicator-bluesky/lib/utils", async () => {
     ]);
     const result = await createRichText(agent, text, facets);
 
+    assert.ok(result.facets);
     assert.deepEqual(
       result.facets.map(
         (facet) =>

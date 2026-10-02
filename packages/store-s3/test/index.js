@@ -73,7 +73,7 @@ describe("store-s3", () => {
   it("Doesn’t create file if already exists", async () => {
     mockS3Client.on(GetObjectCommand).resolves({ ETag: "true" });
 
-    assert.equal(await s3.createFile("foo.md", "foobar"), undefined);
+    assert.equal(await s3.createFile("foo.md", "foobar"), false);
   });
 
   it("Throws error creating file", async () => {

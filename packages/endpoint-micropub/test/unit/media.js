@@ -53,6 +53,7 @@ describe("endpoint-micropub/lib/media", () => {
   });
 
   it("Throws error no media endpoint URL", async () => {
+    // @ts-ignore: Testing invalid input
     await assert.rejects(uploadMedia(undefined, token, properties, files), {
       message: "Failed to parse URL from undefined",
     });
