@@ -93,9 +93,17 @@ export default class BlueskySyndicator {
 
   async syndicate(properties, publication) {
     try {
+      const { handle, password } = this.options;
+
+      if (!password) {
+        throw IndiekitError.unauthorized(
+          "No password. Set the `password` option or `BLUESKY_PASSWORD`.",
+        );
+      }
+
       const bluesky = new Bluesky({
-        identifier: this.options?.handle,
-        password: this.options?.password,
+        identifier: handle,
+        password,
         profileUrl: this.#profileUrl,
         serviceUrl: this.#serviceUrl,
         includeCategories: this.options.includeCategories,
