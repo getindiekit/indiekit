@@ -152,4 +152,24 @@ describe("store-s3", () => {
       message: "S3 store: Couldn’t delete object",
     });
   });
+
+  it("Throws error creating file if no access key", async () => {
+    const s3NoKeys = new S3Store({ accessKey: "", secretKey: "" });
+
+    await assert.rejects(s3NoKeys.createFile("foo.md", "foobar"), {
+      message:
+        "S3 store: No access key. Set the `accessKey` option or `S3_ACCESS_KEY`.",
+      status: 401,
+    });
+  });
+
+  it("Throws error creating file if no secret key", async () => {
+    const s3NoSecret = new S3Store({ accessKey: "abcd1234", secretKey: "" });
+
+    await assert.rejects(s3NoSecret.createFile("foo.md", "foobar"), {
+      message:
+        "S3 store: No secret key. Set the `secretKey` option or `S3_SECRET_KEY`.",
+      status: 401,
+    });
+  });
 });
