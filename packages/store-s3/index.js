@@ -15,7 +15,7 @@ import {
 import { IndiekitError } from "@indiekit/error";
 
 /**
- * @type {{accessKey: string, secretKey: string, region: string, endpoint: string, bucket: string, acl: ObjectCannedACL}}
+ * @type {{accessKey: string|undefined, secretKey: string|undefined, region: string, endpoint: string, bucket: string, acl: ObjectCannedACL}}
  */
 const defaults = {
   accessKey: process.env.S3_ACCESS_KEY,
@@ -84,10 +84,24 @@ export default class S3Store {
    * @returns {S3Client} S3 client interface
    */
   client() {
+    const { accessKey, secretKey } = this.options;
+
+    if (!accessKey) {
+      throw IndiekitError.unauthorized(
+        "No access key. Set the `accessKey` option or `S3_ACCESS_KEY`.",
+      );
+    }
+
+    if (!secretKey) {
+      throw IndiekitError.unauthorized(
+        "No secret key. Set the `secretKey` option or `S3_SECRET_KEY`.",
+      );
+    }
+
     const client = new S3Client({
       credentials: {
-        accessKeyId: this.options.accessKey,
-        secretAccessKey: this.options.secretKey,
+        accessKeyId: accessKey,
+        secretAccessKey: secretKey,
       },
       endpoint: this.options.endpoint,
       region: this.options.region,
