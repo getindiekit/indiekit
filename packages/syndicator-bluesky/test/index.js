@@ -95,13 +95,15 @@ describe("syndicator-bluesky", async () => {
     assert.ok(result);
   });
 
-  it("Throws error getting syndicated URL if password missing", async () => {
+  it("Throws error getting syndicated URL with no password", async () => {
     const blueskyNoPassword = new BlueskySyndicator({
       handle: "alice.test",
     });
 
     await assert.rejects(blueskyNoPassword.syndicate(properties, publication), {
-      message: `Bluesky syndicator: Input must have the property "password"`,
+      message:
+        "Bluesky syndicator: No password. Set the `password` option or `BLUESKY_PASSWORD`.",
+      status: 401,
     });
   });
 });
