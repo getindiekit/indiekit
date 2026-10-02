@@ -3,8 +3,9 @@ import posix from "node:path/posix";
 /**
  * Get canonical URL
  * @param {string} string - URL or path
- * @param {string} [baseUrl] - Base URL
+ * @param {string} [baseUrl] - Base URL or path
  * @returns {string} Canonical URL
+ * @throws {TypeError} If `string` is not a URL and no `baseUrl` is given
  * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
  */
 export const getCanonicalUrl = (string, baseUrl) => {
@@ -12,7 +13,11 @@ export const getCanonicalUrl = (string, baseUrl) => {
 
   try {
     return new URL(string, baseUrl).href;
-  } catch {
+  } catch (error) {
+    if (!baseUrl) {
+      throw error;
+    }
+
     return posix.join(baseUrl, string);
   }
 };

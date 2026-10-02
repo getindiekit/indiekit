@@ -27,6 +27,13 @@ describe("util/lib/url", () => {
     assert.equal(getCanonicalUrl("path5", "path4"), "path4/path5");
   });
 
+  it("Throws getting canonical URL from path without base URL", () => {
+    assert.throws(() => getCanonicalUrl("path6"), {
+      name: "TypeError",
+      code: "ERR_INVALID_URL",
+    });
+  });
+
   it("Checks if parsed URL string has given origin", () => {
     assert.equal(
       isSameOrigin(
