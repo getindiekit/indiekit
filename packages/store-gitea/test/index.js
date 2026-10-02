@@ -79,7 +79,20 @@ describe("store-github", async () => {
     assert.equal(result, "https://gitea.instance/username/repo/new.txt");
   });
 
-  it("Throws error creating file", async () => {
+  it("Throws error creating file with no token", async () => {
+    const giteaNoKeys = new GiteaStore({});
+
+    await assert.rejects(
+      giteaNoKeys.createFile("new.txt", "new", { message: "Message" }),
+      {
+        message:
+          "Gitea store: No token. Set the `token` option or `GITEA_TOKEN`.",
+        status: 401,
+      },
+    );
+  });
+
+  it("Throws error creating file with unauthorized access", async () => {
     await assert.rejects(
       gitea.createFile("401.txt", "foo", { message: "Message" }),
       {
