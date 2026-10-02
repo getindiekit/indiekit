@@ -93,8 +93,16 @@ export default class MastodonSyndicator {
 
   async syndicate(properties, publication) {
     try {
+      const { accessToken } = this.options;
+
+      if (!accessToken) {
+        throw IndiekitError.unauthorized(
+          "No access token. Set the `accessToken` option or `MASTODON_ACCESS_TOKEN`.",
+        );
+      }
+
       const mastodon = new Mastodon({
-        accessToken: this.options.accessToken,
+        accessToken,
         characterLimit: this.options.characterLimit,
         includeCategories: this.options.includeCategories,
         includePermalink: this.options.includePermalink,
