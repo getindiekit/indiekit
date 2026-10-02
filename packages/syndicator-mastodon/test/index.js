@@ -24,6 +24,8 @@ describe("syndicator-mastodon", () => {
     me: "https://website.example",
   };
 
+  const url = "https://website.example/post/1";
+
   it("Gets plug-in environment", () => {
     assert.deepEqual(mastodon.environment, ["MASTODON_ACCESS_TOKEN"]);
   });
@@ -81,15 +83,29 @@ describe("syndicator-mastodon", () => {
     );
   });
 
+  it("Throws error getting syndicated URL with no access token", async () => {
+    const mastodonNoKeys = new MastodonSyndicator({ accessToken: "" });
+
+    await assert.rejects(mastodonNoKeys.syndicate({ url }), {
+      message:
+        "Mastodon syndicator: No access token. Set the `accessToken` option or `MASTODON_ACCESS_TOKEN`.",
+      status: 401,
+    });
+  });
+
   it("Throws error getting syndicated URL if access token invalid", async () => {
-    const mastodonNoToken = new MastodonSyndicator({
+    const mastodonInvalidToken = new MastodonSyndicator({
       accessToken: "invalid",
       url: "https://mastodon.example",
       user: "username",
     });
 
-    await assert.rejects(mastodonNoToken.syndicate(properties, publication), {
-      message: "Mastodon syndicator: The access token is invalid",
-    });
+    await assert.rejects(
+      mastodonInvalidToken.syndicate(properties, publication),
+      {
+        message: "Mastodon syndicator: The access token is invalid",
+        status: 401,
+      },
+    );
   });
 });
