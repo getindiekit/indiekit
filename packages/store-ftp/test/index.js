@@ -84,6 +84,29 @@ describe("store-ftp", () => {
     assert.equal(await ftp.createFile("foo.md", "foobar"), undefined);
   });
 
+  it("Throws error creating file with no password", async () => {
+    const ftpNoKeys = new FtpStore({
+      user: "username",
+    });
+
+    await assert.rejects(ftpNoKeys.createFile("new.txt", "new"), {
+      message:
+        "FTP store: No password. Set the `password` option or `FTP_PASSWORD`.",
+      status: 401,
+    });
+  });
+
+  it("Throws error creating file with no user", async () => {
+    const ftpNoKeys = new FtpStore({
+      password: "password",
+    });
+
+    await assert.rejects(ftpNoKeys.createFile("new.txt", "new"), {
+      message: "FTP store: No username. Set the `user` option or `FTP_USER`.",
+      status: 401,
+    });
+  });
+
   it("Throws error creating file", async () => {
     await assert.rejects(ftp.createFile(undefined, ""), {
       message: `FTP store: The "path" argument must be of type string. Received undefined`,

@@ -37,6 +37,18 @@ export default class FtpStore {
     const client = new Client();
 
     try {
+      if (!username) {
+        throw IndiekitError.unauthorized(
+          "No username. Set the `user` option or `FTP_USER`.",
+        );
+      }
+
+      if (!password) {
+        throw IndiekitError.unauthorized(
+          "No password. Set the `password` option or `FTP_PASSWORD`.",
+        );
+      }
+
       await client.connect({ host, username, password, port });
       return client;
     } catch (error) {
