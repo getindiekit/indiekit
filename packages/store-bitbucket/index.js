@@ -33,17 +33,30 @@ export default class BitbucketStore {
    */
   async #client(requestPath = "", requestOptions = {}) {
     const { user, repo, email, token } = this.options;
-    const apiPath = path.join(
-      "2.0/repositories",
-      user,
-      repo,
-      "src",
-      requestPath,
-    );
-    const url = new URL(apiPath, "https://api.bitbucket.org");
-    const credentials = Buffer.from(`${email}:${token}`).toString("base64");
 
     try {
+      if (!token) {
+        throw IndiekitError.unauthorized(
+          "No token. Set the `token` option or `BITBUCKET_TOKEN`.",
+        );
+      }
+
+      if (!user || !repo) {
+        throw IndiekitError.badRequest(
+          "No workspace or repository. Set the `user` and `repo` options.",
+        );
+      }
+
+      const apiPath = path.join(
+        "2.0/repositories",
+        user,
+        repo,
+        "src",
+        requestPath,
+      );
+      const url = new URL(apiPath, "https://api.bitbucket.org");
+      const credentials = Buffer.from(`${email}:${token}`).toString("base64");
+
       const response = await fetch(url.href, {
         ...requestOptions,
         headers: {
@@ -125,13 +138,13 @@ export default class BitbucketStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<string|undefined>} Created file URL
+   * @returns {Promise<string|false>} Created file URL
    * @see {@link https://developer.atlassian.com/cloud/bitbucket/rest/api-group-source/#api-repositories-workspace-repo-slug-src-post}
    */
   async createFile(filePath, content, { message }) {
     const fileExists = await this.fileExists(filePath);
     if (fileExists) {
-      return;
+      return false;
     }
 
     const body = new FormData();
