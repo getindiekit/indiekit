@@ -68,10 +68,39 @@ describe("store-bitbucket", async () => {
       message: "Message",
     });
 
-    assert.equal(result, undefined);
+    assert.equal(result, false);
   });
 
-  it("Throws error creating file", async () => {
+  it("Throws error creating file with no token", async () => {
+    const bitbucketNoKeys = new BitbucketStore({
+      user: "username",
+      repo: "repo",
+    });
+
+    await assert.rejects(
+      bitbucketNoKeys.createFile("new.txt", "new", { message: "Message" }),
+      {
+        message:
+          "Bitbucket store: No token. Set the `token` option or `BITBUCKET_TOKEN`.",
+        status: 401,
+      },
+    );
+  });
+
+  it("Throws error creating file with no workspace or repository", async () => {
+    const bitbucketNoRepo = new BitbucketStore({ token: "abcd1234" });
+
+    await assert.rejects(
+      bitbucketNoRepo.createFile("new.txt", "new", { message: "Message" }),
+      {
+        message:
+          "Bitbucket store: No workspace or repository. Set the `user` and `repo` options.",
+        status: 400,
+      },
+    );
+  });
+
+  it("Throws error creating file with unauthorized access", async () => {
     await assert.rejects(
       bitbucket.createFile("401.txt", "foo", { message: "Message" }),
       {
