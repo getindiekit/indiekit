@@ -44,6 +44,12 @@ export default class BitbucketStore {
     const credentials = Buffer.from(`${email}:${token}`).toString("base64");
 
     try {
+      if (!token) {
+        throw IndiekitError.unauthorized(
+          "No token. Set the `token` option or `BITBUCKET_TOKEN`.",
+        );
+      }
+
       const response = await fetch(url.href, {
         ...requestOptions,
         headers: {
