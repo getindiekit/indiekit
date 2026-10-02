@@ -63,14 +63,13 @@ describe("syndicator-internet-archive", () => {
     assert.equal(result, `https://web.archive.org/web/20180326070330/${url}`);
   });
 
-  it("Throws error getting syndicated URL with no API keys", async () => {
+  it("Throws error getting syndicated URL with no access key", async () => {
     const internetArchiveNoKeys = new InternetArchiveSyndicator({});
 
     await assert.rejects(internetArchiveNoKeys.syndicate({ url }), {
-      code: "indiekit",
       message:
-        "Internet Archive syndicator: You need to be logged in to use Save Page Now.",
-      name: "IndiekitError",
+        "Internet Archive syndicator: No access key. Set the `accessKey` option or `INTERNET_ARCHIVE_ACCESS_KEY`.",
+      status: 401,
     });
   });
 });
