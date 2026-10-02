@@ -81,7 +81,20 @@ describe("store-gitlab", async () => {
     assert.equal(result, "https://gitlab.instance/projects/1234/new.txt");
   });
 
-  it("Throws error creating file", async () => {
+  it("Throws error creating file with no token", async () => {
+    const gitLabNoKeys = new GitlabStore({ token: "" });
+
+    await assert.rejects(
+      gitLabNoKeys.createFile("new.txt", "new", { message: "Message" }),
+      {
+        message:
+          "GitLab store: No token. Set the `token` option or `GITLAB_TOKEN`.",
+        status: 401,
+      },
+    );
+  });
+
+  it("Throws error creating file with unauthorized access", async () => {
     await assert.rejects(
       gitlab.createFile("401.txt", "foo", { message: "Message" }),
       {
