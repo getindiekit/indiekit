@@ -41,6 +41,12 @@ export default class GiteaStore {
     const url = new URL(apiPath, instance);
 
     try {
+      if (!token) {
+        throw IndiekitError.unauthorized(
+          "No token. Set the `token` option or `GITEA_TOKEN`.",
+        );
+      }
+
       const response = await fetch(url.href, {
         method,
         headers: {
