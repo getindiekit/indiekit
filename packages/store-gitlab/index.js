@@ -36,10 +36,15 @@ export default class GitlabStore {
    * @returns {object} GitLab interfaces
    */
   get #client() {
-    const client = new Gitlab({
-      host: this.options.instance,
-      token: this.options.token,
-    });
+    const { instance, token } = this.options;
+
+    if (!token) {
+      throw IndiekitError.unauthorized(
+        "No token. Set the `token` option or `GITLAB_TOKEN`.",
+      );
+    }
+
+    const client = new Gitlab({ host: instance, token });
 
     return client;
   }
