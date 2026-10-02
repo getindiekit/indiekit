@@ -15,7 +15,8 @@ import { getPostStatusBadges, getPostName, getPhotoUrl } from "../utils.js";
 export const postsController = async (request, response, next) => {
   try {
     const { application, publication } = request.app.locals;
-    const { access_token, scope } = request.session;
+    const access_token = request.session?.access_token;
+    const scope = request.session?.scope;
     const { after, before, success } = request.query;
     const limit = Number(request.query.limit) || 12;
 

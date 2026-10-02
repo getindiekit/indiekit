@@ -68,7 +68,7 @@ describe("store-github", async () => {
       message: "Message",
     });
 
-    assert.equal(result, undefined);
+    assert.equal(result, false);
   });
 
   it("Creates file at custom instance", async () => {

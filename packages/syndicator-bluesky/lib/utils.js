@@ -48,9 +48,14 @@ export const getHtmlLinks = (html) => {
   for (const match of html.matchAll(
     /<a\s[^>]*href=["'](?<url>https?:\/\/[^"']+)["'][^>]*>(?<html>.*?)<\/a>/gis,
   )) {
-    const text = match.groups.html.replaceAll(/<[^>]+>/g, "").trim();
+    const { groups } = match;
+    if (!groups) {
+      continue;
+    }
+
+    const text = groups.html.replaceAll(/<[^>]+>/g, "").trim();
     if (text) {
-      links.push({ text, url: match.groups.url });
+      links.push({ text, url: groups.url });
     }
   }
 
@@ -121,14 +126,14 @@ export const getPostParts = (url) => {
 export const uriToPostUrl = (profileUrl, uri) => {
   const match = uri.match(AT_URI);
 
-  if (!match) {
+  if (!match?.groups) {
     return;
   }
 
-  let { did, rkey, type } = match.groups;
-  type = type.split(".").at(-1);
+  const { did, rkey, type } = match.groups;
+  const postType = type.slice(type.lastIndexOf(".") + 1);
 
-  return `${profileUrl}/${did}/${type}/${rkey}`;
+  return `${profileUrl}/${did}/${postType}/${rkey}`;
 };
 
 /**
@@ -157,7 +162,7 @@ export const createHashtags = (category) => {
     const name = item
       .split("/")
       .at(-1)
-      .replaceAll(/[^\p{L}\p{N}_]/gu, "");
+      ?.replaceAll(/[^\p{L}\p{N}_]/gu, "");
     const hashtag = `#${name}`;
 
     if (name && name.length <= 64 && !hashtags.includes(hashtag)) {
@@ -263,8 +268,8 @@ export const htmlToStatusText = (html) => {
   // Get all the link references
   let hrefs = [...html.matchAll(/href="(https?:\/\/.+?)"/g)];
 
-  // Get the last link mentioned, or return false
-  const lastHref = hrefs.length > 0 && hrefs.at(-1)[1];
+  // Get the last link mentioned, if any
+  const lastHref = hrefs.at(-1)?.[1];
 
   // Convert HTML to plain text, removing any links
   const text = htmlToText(html, {

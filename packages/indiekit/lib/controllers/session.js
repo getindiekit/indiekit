@@ -3,7 +3,7 @@
  * @type {RequestHandler}
  */
 export const login = (request, response) => {
-  if (request.session.access_token) {
+  if (request.session?.access_token) {
     return response.redirect("/");
   }
 

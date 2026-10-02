@@ -77,6 +77,9 @@ export const queryController = async (request, response, next) => {
           return response.json(getMf2Properties(mf2, properties));
         }
         // Return mf2 for published posts
+        /**
+         * @type {{ items: object[], hasNext: boolean, hasPrev: boolean, firstItem?: string, lastItem?: string }}
+         */
         let cursor = {
           items: [],
           hasNext: false,

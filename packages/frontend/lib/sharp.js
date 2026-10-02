@@ -32,7 +32,12 @@ export const appIcon = async (size, themeColor, purpose = "any") => {
  * @returns {Promise<Buffer>} PNG file
  */
 export const shortcutIcon = async (size, name) => {
-  return sharp(Buffer.from(icon(name)))
+  const svg = icon(name);
+  if (!svg) {
+    throw new Error(`Unknown icon: ${name}`);
+  }
+
+  return sharp(Buffer.from(svg))
     .resize(Number(size))
     .png({ colours: 16 })
     .toBuffer();

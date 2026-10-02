@@ -1,4 +1,5 @@
 import { strict as assert } from "node:assert";
+import { Buffer } from "node:buffer";
 import { describe, it } from "node:test";
 
 import { getFixture } from "@indiekit-test/fixtures";
@@ -34,5 +35,22 @@ describe("endpoint-media/lib/file", () => {
     assert.equal(result.filename, "photo-1.jpg");
     assert.equal(result.md5, "be7d321488de26f2eb38834af7162164");
     assert.equal(isValid(parseISO(result.published)), true);
+  });
+
+  it("Throws error if file type can’t be determined", async () => {
+    const file = {
+      data: Buffer.from("Plain text"),
+      mimetype: "text/plain",
+      name: "notes.txt",
+    };
+
+    await assert.rejects(getMediaType(file), {
+      name: "UnsupportedMediaTypeError",
+      message: "text/plain",
+      status: 415,
+    });
+    await assert.rejects(getFileProperties({}, file, "UTC"), {
+      name: "UnsupportedMediaTypeError",
+    });
   });
 });

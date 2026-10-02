@@ -54,8 +54,20 @@ export const randomString = (length = 16) =>
   randomBytes(length).toString("base64url").slice(0, length);
 
 /**
- * Slugify a string
+ * @overload
  * @param {string} string - String to slugify
+ * @param {object} [options] - Slugify options
+ * @returns {string} Slugified string
+ */
+/**
+ * @overload
+ * @param {unknown} string - Value to slugify
+ * @param {object} [options] - Slugify options
+ * @returns {string|undefined} Slugified string, if value is a string
+ */
+/**
+ * Slugify a string
+ * @param {unknown} string - String to slugify
  * @param {object} [options] - Slugify options
  * @returns {string|undefined} Slugified string
  * @example slugify("Foo bar baz", { separator: "_"} ) => "foo_bar_baz"

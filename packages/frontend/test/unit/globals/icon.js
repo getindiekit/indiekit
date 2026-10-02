@@ -7,6 +7,7 @@ describe("frontend/lib/globals/icon", () => {
   it("Renders SVG icon", () => {
     const result = icon("note");
 
+    assert.ok(result);
     assert.equal(result.includes(`<svg class="icon"`), true);
     assert.equal(
       result.includes(
@@ -19,6 +20,7 @@ describe("frontend/lib/globals/icon", () => {
   it("Renders SVG icon with title", () => {
     const result = icon("note", "Note");
 
+    assert.ok(result);
     assert.equal(result.includes(`<title id="note-title">Note</title>`), true);
   });
 

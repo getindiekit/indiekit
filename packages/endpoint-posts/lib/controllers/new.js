@@ -14,7 +14,7 @@ export const newController = {
     const { publication } = request.app.locals;
     const postsPath = path.dirname(request.baseUrl + request.path);
     const postType = request.query.type;
-    const { scope } = request.session;
+    const scope = request.session?.scope;
 
     const postTypeItems = Object.values(publication.postTypes)
       .toSorted((a, b) => {

@@ -6,15 +6,15 @@ import { htmlToText } from "html-to-text";
 /**
  * Get status parameters from given JF2 properties
  * @param {object} properties - JF2 properties
- * @param {object} [options] - Options
+ * @param {object} options - Options
  * @param {number} [options.characterLimit] - Character limit
  * @param {boolean} [options.includeCategories] - Add categories as hashtags
  * @param {boolean} [options.includePermalink] - Include permalink in status
  * @param {Array} [options.mediaIds] - Mastodon media IDs
- * @param {string} [options.serverUrl] - Server URL
+ * @param {string} options.serverUrl - Server URL
  * @returns {object} Status parameters
  */
-export const createStatus = (properties, options = {}) => {
+export const createStatus = (properties, options) => {
   const {
     characterLimit,
     includeCategories,
@@ -123,7 +123,7 @@ export const createHashtags = (category) => {
     const name = item
       .split("/")
       .at(-1)
-      .replaceAll(/[^\p{L}\p{N}_]/gu, "");
+      ?.replaceAll(/[^\p{L}\p{N}_]/gu, "");
     const hashtag = `#${name}`;
 
     if (name && !hashtags.includes(hashtag)) {
@@ -163,8 +163,8 @@ export const htmlToStatusText = (html, serverUrl) => {
     return hrefHostname !== serverHostname;
   });
 
-  // Get the last link mentioned, or return false
-  const lastHref = hrefs.length > 0 && hrefs.at(-1)[1];
+  // Get the last link mentioned, if any
+  const lastHref = hrefs.at(-1)?.[1];
 
   // Convert HTML to plain text, removing any links
   const text = htmlToText(html, {

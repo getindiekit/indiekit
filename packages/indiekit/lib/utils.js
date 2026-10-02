@@ -40,7 +40,7 @@ export const decrypt = (hash, iv) => {
 /**
  * Get serviceworker.js and update asset versions
  * @param {object} application - Application locals
- * @returns {Promise<string>} - serviceworker.js file
+ * @returns {Promise<string|undefined>} - serviceworker.js file, if found
  */
 export const getServiceWorker = async (application) => {
   try {

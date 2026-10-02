@@ -54,8 +54,8 @@ export const locals = (Indiekit) =>
       request.app.locals.validationSchemas = Indiekit.validationSchemas;
 
       // Persist scope and token
-      request.app.locals.scope ||= request.session.scope;
-      request.app.locals.token ||= request.session.access_token;
+      request.app.locals.scope ||= request.session?.scope;
+      request.app.locals.token ||= request.session?.access_token;
 
       return next();
     } catch (error) {

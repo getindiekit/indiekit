@@ -1,8 +1,7 @@
 {
   "extends": "./jsconfig.base.json",
   "compilerOptions": {
-    "types": ["node"],
-    "strictNullChecks": true
+    "types": ["node"]
   },
   "include": ["./*.config.js"]
 }

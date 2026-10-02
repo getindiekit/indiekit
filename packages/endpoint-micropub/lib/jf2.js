@@ -215,15 +215,19 @@ export const getLocationProperty = (properties) => {
   if (typeof location === "string" && location.startsWith("geo:")) {
     const geoUriRegexp =
       /geo:(?<latitude>[\d+.?-]*),(?<longitude>[\d+.?-]*)(?:,(?<altitude>[\d+.?-]*))?/;
-    const { latitude, longitude, altitude } =
-      location.match(geoUriRegexp).groups;
+    const groups = location.match(geoUriRegexp)?.groups;
 
-    location = {
-      type: "geo",
-      latitude,
-      longitude,
-      ...(altitude && { altitude }),
-    };
+    // Leave an un-parseable Geo URI as given
+    if (groups) {
+      const { latitude, longitude, altitude } = groups;
+
+      location = {
+        type: "geo",
+        latitude,
+        longitude,
+        ...(altitude && { altitude }),
+      };
+    }
   }
 
   return location;
@@ -278,6 +282,9 @@ export const getSlugProperty = (properties, separator) => {
   const suggested = properties["mp-slug"];
   const { name, published } = properties;
 
+  /**
+   * @type {string}
+   */
   let string;
   if (suggested) {
     string = suggested;

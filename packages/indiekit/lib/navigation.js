@@ -9,8 +9,10 @@ export const getNavigation = (Indiekit, request, response) => {
   const { database, endpoints } = Indiekit;
 
   // Default navigation items
+  const isLoggedIn = Boolean(request.session?.access_token);
+
   let navigation = [
-    request.session.access_token
+    isLoggedIn
       ? {
           href: "/session/logout",
           text: "session.logout.title",
@@ -21,7 +23,7 @@ export const getNavigation = (Indiekit, request, response) => {
         },
   ];
 
-  if (request.session.access_token) {
+  if (isLoggedIn) {
     navigation.push({
       href: "/status",
       text: "status.title",

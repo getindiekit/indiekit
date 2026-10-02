@@ -119,7 +119,7 @@ export default class FtpStore {
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @returns {Promise<string>} File created
+   * @returns {Promise<string|false>} File created
    */
   async createFile(filePath, content) {
     const client = await this.#client();
@@ -131,7 +131,7 @@ export default class FtpStore {
       // Return if file already exists
       const fileExists = await client.exists(absolutePath);
       if (fileExists) {
-        return;
+        return false;
       }
 
       // Create directory if doesn’t exist

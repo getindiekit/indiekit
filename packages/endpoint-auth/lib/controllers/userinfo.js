@@ -20,6 +20,10 @@ export const userinfoController =
       try {
         // Remove ‘Bearer ’ from authorization header
         const token = request.headers.authorization?.trim().split(/\s+/, 2)[1];
+        if (!token) {
+          throw new Error("No token");
+        }
+
         accessToken = verifyToken(token);
       } catch {
         throw IndiekitError.unauthorized(

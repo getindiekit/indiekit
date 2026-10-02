@@ -197,6 +197,9 @@ export const IndieAuth = class {
     const { devMode, me } = this;
 
     return async function (request, response, next) {
+      // `cookie-session` only returns `null` once a session has been cleared
+      request.session ??= {};
+
       if (devMode) {
         request.session.access_token = process.env.NODE_ENV;
         request.session.scope = "create update delete media";

@@ -44,6 +44,7 @@ describe("error", () => {
         indiekitError();
       },
       (error) => {
+        assert.ok(error instanceof IndiekitError);
         assert.equal(error.toString(), "IndiekitError: Message");
         return true;
       },

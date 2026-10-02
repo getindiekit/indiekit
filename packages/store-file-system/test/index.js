@@ -64,7 +64,7 @@ describe("store-file-system", () => {
 
     const result = await fileSystem.createFile("bar.txt", "foo");
 
-    assert.equal(result, undefined);
+    assert.equal(result, false);
   });
 
   it("Throws error creating file", async () => {

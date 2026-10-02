@@ -138,14 +138,14 @@ export default class GitlabStore {
    * @param {string} content - File content
    * @param {object} options - Options
    * @param {string} options.message - Commit message
-   * @returns {Promise<string>} Created file URL
+   * @returns {Promise<string|false>} Created file URL
    * @see {@link https://docs.gitlab.com/ee/api/repository_files.html#create-new-file-in-repository}
    */
   async createFile(filePath, content, { message }) {
     try {
       const fileExists = await this.fileExists(filePath);
       if (fileExists) {
-        return;
+        return false;
       }
 
       const createResponse = await this.#client.RepositoryFiles.create(

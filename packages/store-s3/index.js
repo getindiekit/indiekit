@@ -134,7 +134,7 @@ export default class S3Store {
    * Create file
    * @param {string} filePath - Path to file
    * @param {string} content - File content
-   * @returns {Promise<string>} File created
+   * @returns {Promise<string|false>} File created
    */
   async createFile(filePath, content) {
     const putCommand = new PutObjectCommand({
@@ -147,7 +147,7 @@ export default class S3Store {
     try {
       const fileExists = await this.fileExists(filePath);
       if (fileExists) {
-        return;
+        return false;
       }
 
       const { ETag } = await this.client().send(putCommand);
@@ -158,6 +158,8 @@ export default class S3Store {
 
         return url.href;
       }
+
+      return false;
     } catch (error) {
       throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
@@ -177,11 +179,11 @@ export default class S3Store {
     try {
       const { Body } = await this.client().send(getCommand);
 
-      if (Body) {
-        const content = await Body.transformToString();
-
-        return content;
+      if (!Body) {
+        throw new Error(`No content returned for ${filePath}`);
       }
+
+      return await Body.transformToString();
     } catch (error) {
       throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
@@ -193,7 +195,7 @@ export default class S3Store {
    * @param {string} content - File content
    * @param {object} [options] - Options
    * @param {string} [options.newPath] - New path to file
-   * @returns {Promise<string>} Updated file URL
+   * @returns {Promise<string|false>} Updated file URL
    */
   async updateFile(filePath, content, options) {
     const putCommand = new PutObjectCommand({
@@ -229,6 +231,8 @@ export default class S3Store {
 
         return url.href;
       }
+
+      return false;
     } catch (error) {
       throw IndiekitError.fromCaught(error, { plugin: this.name });
     }
@@ -246,9 +250,9 @@ export default class S3Store {
     });
 
     try {
-      const thing = await this.client().send(deleteCommand);
+      await this.client().send(deleteCommand);
 
-      return thing.DeleteMarker;
+      return true;
     } catch (error) {
       throw IndiekitError.fromCaught(error, { plugin: this.name });
     }

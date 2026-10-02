@@ -1,6 +1,6 @@
 /**
  * Check provided scope(s) satisfies required scope
- * @param {string} scope - Provided scope (space separated)
+ * @param {string} [scope] - Provided scope (space separated)
  * @param {string} [action] - Required action
  * @returns {boolean} `true` if provided scope includes action
  */

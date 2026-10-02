@@ -40,7 +40,7 @@ export const getFileProperties = async (uid, mediaEndpoint, accessToken) => {
  */
 export const getFileName = (url) => {
   const { pathname } = new URL(url);
-  return pathname.split("/").pop();
+  return pathname.slice(pathname.lastIndexOf("/") + 1);
 };
 
 /**
