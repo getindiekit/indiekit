@@ -10,12 +10,18 @@ import {
 /**
  * List webmentions
  * @param {object} options - Endpoint options
- * @param {string} options.token - Access token
+ * @param {string} [options.token] - Access token
  * @returns {import("express").RequestHandler} - Controller
  */
 export const webmentionsController = (options) => {
   return async (request, response, next) => {
     try {
+      if (!options.token) {
+        throw IndiekitError.unauthorized(
+          "No token. Set the `token` option or `WEBMENTION_IO_TOKEN`.",
+        );
+      }
+
       const { application, publication } = request.app.locals;
       const domain = new URL(publication.me).hostname;
       const limit = Number(request.query.limit) || 20;
