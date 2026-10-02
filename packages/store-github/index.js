@@ -55,6 +55,12 @@ export default class GithubStore {
     const url = new URL(apiPath, baseUrl);
 
     try {
+      if (!token) {
+        throw IndiekitError.unauthorized(
+          "No token. Set the `token` option or `GITHUB_TOKEN`.",
+        );
+      }
+
       const response = await fetch(url.href, {
         method,
         headers: {
