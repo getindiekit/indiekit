@@ -65,7 +65,23 @@ describe("store-github", async () => {
     assert.equal(result, undefined);
   });
 
-  it("Throws error creating file", async () => {
+  it("Throws error creating file with no token", async () => {
+    const gitHubNoKeys = new GithubStore({});
+
+    await assert.rejects(
+      gitHubNoKeys.createFile("new.txt", "new", { message: "Message" }),
+      (error) => {
+        assert.ok(
+          error.message.includes(
+            "GitHub store: No token. Set the `token` option or `GITHUB_TOKEN`.",
+          ),
+        );
+        return true;
+      },
+    );
+  });
+
+  it("Throws error creating file with unauthorized access", async () => {
     await assert.rejects(
       github.createFile("401.txt", "foo", { message: "Message" }),
       (error) => {
