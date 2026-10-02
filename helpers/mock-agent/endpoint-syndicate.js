@@ -48,7 +48,8 @@ export function mockClient() {
     .get(internetArchiveOrigin)
     .intercept({ path: "/save", method: "POST" })
     .reply(401, {
-      message: "You need to be logged in to use Save Page Now.",
+      message:
+        "Internet Archive syndicator: No access key. Set the `accessKey` option or `INTERNET_ARCHIVE_ACCESS_KEY`.",
     });
 
   return agent;

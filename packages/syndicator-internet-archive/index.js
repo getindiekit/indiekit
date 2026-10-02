@@ -54,10 +54,21 @@ export default class InternetArchiveSyndicator {
 
   async syndicate(properties) {
     try {
-      const internetArchive = new InternetArchive({
-        accessKey: this.options.accessKey,
-        secretKey: this.options.secretKey,
-      });
+      const { accessKey, secretKey } = this.options;
+
+      if (!accessKey) {
+        throw IndiekitError.unauthorized(
+          "No access key. Set the `accessKey` option or `INTERNET_ARCHIVE_ACCESS_KEY`.",
+        );
+      }
+
+      if (!secretKey) {
+        throw IndiekitError.unauthorized(
+          "No secret key. Set the `secretKey` option or `INTERNET_ARCHIVE_SECRET_KEY`.",
+        );
+      }
+
+      const internetArchive = new InternetArchive({ accessKey, secretKey });
 
       return await internetArchive.save(properties);
     } catch (error) {
