@@ -17,7 +17,7 @@ describe("preset-eleventy/lib/post-types", () => {
     assert.deepEqual(result.get("article"), {
       name: "Journal post",
       post: {
-        path: "articles/{yyyy}-{MM}-{dd}-{slug}.md",
+        path: "articles/{yyyy}/{MM}/{dd}/{slug}.md",
         url: "articles/{yyyy}/{MM}/{dd}/{slug}",
       },
       media: {
@@ -27,7 +27,7 @@ describe("preset-eleventy/lib/post-types", () => {
     assert.deepEqual(result.get("note"), {
       name: "Micro post",
       post: {
-        path: "notes/{yyyy}-{MM}-{dd}-{slug}.md",
+        path: "notes/{yyyy}/{MM}/{dd}/{slug}.md",
         url: "notes/{yyyy}/{MM}/{dd}/{slug}",
       },
       media: {
@@ -37,7 +37,7 @@ describe("preset-eleventy/lib/post-types", () => {
     assert.deepEqual(result.get("puppy"), {
       name: "Puppy post",
       post: {
-        path: "puppies/{yyyy}-{MM}-{dd}-{slug}.md",
+        path: "puppies/{yyyy}/{MM}/{dd}/{slug}.md",
         url: "puppies/{yyyy}/{MM}/{dd}/{slug}",
       },
       media: {
@@ -54,5 +54,19 @@ describe("preset-eleventy/lib/post-types", () => {
         path: "media/pages/{filename}",
       },
     });
+  });
+
+  it("Advertises a post URL Eleventy serves from the same path", () => {
+    const result = getPostTypes(postTypes);
+
+    for (const type of ["article", "note", "puppy"]) {
+      const { path, url } = result.get(type).post;
+
+      assert.equal(
+        path,
+        `${url}.md`,
+        `${type}: Eleventy derives a page's URL from its input path, so a post written to \`${path}\` is not served at \`${url}\``,
+      );
+    }
   });
 });
