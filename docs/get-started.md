@@ -55,6 +55,8 @@ where `directory_name` is the name of the directory within which you want to sav
 
 This is the fastest way to set up a new Indiekit server from scratch.
 
+Prefer containers? See [Run Indiekit in a container](/docker).
+
 > Alternatively, you can clone this [example configuration](https://github.com/getindiekit/example-config) repository on GitHub and manually edit the values in the configuration file.
 
 The wizard will walk you through every step of configuring a new server, and will ask you questions about:
