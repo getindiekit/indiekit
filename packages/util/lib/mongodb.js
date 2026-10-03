@@ -24,10 +24,15 @@ export const getCursor = async (collection, after, before, limit) => {
     sort: { _id: -1 },
   };
 
+  // The id arrives as a string from the query string, and only the collection
+  // knows what its own ids are. MongoDB collections have no `castId`, so they
+  // keep coercing to an ObjectId as before.
+  const castId = collection.castId ?? getObjectId;
+
   if (before) {
-    query._id = { $gt: getObjectId(before) };
+    query._id = { $gt: castId(before) };
   } else if (after) {
-    query._id = { $lt: getObjectId(after) };
+    query._id = { $lt: castId(after) };
   }
 
   const items = await collection.find(query, options).toArray();
