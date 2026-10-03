@@ -54,10 +54,10 @@
   "dependencies": {
     "husky": "^9.1.7",
     "lerna": "^10.0.1",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@atproto/dev-env": "^0.6.9",
+    "@atproto/dev-env": "^0.6.10",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@eslint/js": "^10.0.1",
@@ -85,14 +85,14 @@
     "cookie-session": "^2.1.1",
     "create-indiekit": "*",
     "date-fns": "^4.4.0",
-    "eslint": "^10.11.0",
+    "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-node": "^0.4.0",
     "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-jsdoc": "^65.0.1",
-    "eslint-plugin-unicorn": "^76.0.0",
+    "eslint-plugin-jsdoc": "^65.0.2",
+    "eslint-plugin-unicorn": "^77.0.0",
     "eslint-plugin-wc": "^3.1.0",
-    "globals": "^17.12.0",
+    "globals": "^17.13.0",
     "i18n": "^0.15.4",
     "jsdom": "^30.1.1",
     "lint-staged": "^17.6.0",
@@ -108,11 +108,11 @@
     "stylelint": "^17.16.0",
     "stylelint-config-recommended": "^18.0.0",
     "stylelint-order": "^8.1.1",
-    "supertest": "^7.3.0",
+    "supertest": "^7.3.1",
     "vitepress": "^1.6.4"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.63.6",
+    "@rollup/rollup-linux-x64-gnu": "^4.64.0",
     "lightningcss-linux-x64-gnu": "^1.33.0"
   },
   "overrides": {

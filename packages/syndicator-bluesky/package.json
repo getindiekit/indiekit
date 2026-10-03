@@ -35,12 +35,12 @@
     "directory": "packages/syndicator-bluesky"
   },
   "dependencies": {
-    "@atproto/api": "^0.22.0",
+    "@atproto/api": "^0.23.0",
     "@indiekit/error": "^1.0.0-beta.28",
     "@indiekit/util": "^1.0.0-beta.29",
     "brevity": "^0.2.9",
     "html-to-text": "^10.0.1",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.5"
   },
   "publishConfig": {
     "access": "public"
