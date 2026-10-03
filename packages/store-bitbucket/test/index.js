@@ -89,10 +89,10 @@ describe("store-bitbucket", async () => {
   });
 
   it("Throws error creating file with no workspace or repository", async () => {
-    const bitbucketNoRepo = new BitbucketStore({ token: "abcd1234" });
+    const bitbucketNoWorkspace = new BitbucketStore({ token: "abcd1234" });
 
     await assert.rejects(
-      bitbucketNoRepo.createFile("new.txt", "new", { message: "Message" }),
+      bitbucketNoWorkspace.createFile("new.txt", "new", { message: "Message" }),
       {
         message:
           "Bitbucket store: No workspace or repository. Set the `user` and `repo` options.",

@@ -57,10 +57,11 @@ export default [
       "unicorn/name-replacements": [
         "error",
         {
-          allowList: { application: true, utils: true },
+          allowList: { application: true, repo: true, utils: true },
           replacements: { application: false },
         },
       ],
+      "unicorn/no-asterisk-prefix-in-documentation-comments": "off",
     },
   },
   {

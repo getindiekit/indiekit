@@ -1,4 +1,4 @@
-import markdownIt from "../markdown-it.js";
+import { markdownParser } from "../markdown-it.js";
 
 /**
  * Add Markdown link to text
@@ -22,8 +22,8 @@ export const linkTo = (string, href) => {
  */
 export const markdown = (string, value) => {
   if (value === "inline") {
-    return markdownIt.renderInline(string);
+    return markdownParser().renderInline(string);
   }
 
-  return markdownIt.render(string);
+  return markdownParser().render(string);
 };
