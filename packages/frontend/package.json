@@ -52,7 +52,7 @@
     "markdown-it-image-figures": "^2.1.1",
     "microlighter": "^2.2.0",
     "nunjucks": "^3.2.4",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.5"
   },
   "publishConfig": {
     "access": "public"

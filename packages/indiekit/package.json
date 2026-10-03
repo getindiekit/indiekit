@@ -55,7 +55,7 @@
     "@indiekit/post-type-reply": "^1.0.0-beta.29",
     "@indiekit/preset-jekyll": "^1.0.0-beta.28",
     "@indiekit/util": "^1.0.0-beta.29",
-    "@keyv/mongo": "^3.1.0",
+    "@keyv/mongo": "^6.1.0",
     "clean-stack": "^6.0.0",
     "commander": "^15.0.0",
     "compression": "^1.8.2",
@@ -63,11 +63,11 @@
     "cosmiconfig": "^10.0.1",
     "debug": "^4.4.3",
     "deepmerge": "^4.3.1",
-    "express": "^5.2.1",
+    "express": "^5.3.0",
     "express-fileupload": "^1.5.2",
-    "express-rate-limit": "^8.7.0",
+    "express-rate-limit": "^8.7.1",
     "i18n": "^0.15.4",
-    "keyv": "^5.6.0",
+    "keyv": "^6.1.0",
     "lodash": "^4.18.1"
   },
   "publishConfig": {
