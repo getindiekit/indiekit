@@ -4,22 +4,22 @@ import markdownItDeflist from "markdown-it-deflist";
 import markdownItFootnote from "markdown-it-footnote";
 import markdownItImageFigures from "markdown-it-image-figures";
 
-export default (() => {
-  const options = {
+/**
+ * Creates a configured markdown-it parser
+ * @returns {ReturnType<typeof markdownIt>} Configured markdown-it instance
+ */
+export function markdownParser() {
+  return markdownIt({
     html: true,
     breaks: true,
     typographer: true,
-  };
-
-  const parser = markdownIt(options);
-  parser.use(markdownItAbbr);
-  parser.use(markdownItDeflist);
-  parser.use(markdownItFootnote);
-  parser.use(markdownItImageFigures, {
-    async: true,
-    lazy: true,
-    figcaption: true,
-  });
-
-  return parser;
-})();
+  })
+    .use(markdownItAbbr)
+    .use(markdownItDeflist)
+    .use(markdownItFootnote)
+    .use(markdownItImageFigures, {
+      async: true,
+      lazy: true,
+      figcaption: true,
+    });
+}

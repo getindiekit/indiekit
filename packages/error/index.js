@@ -139,10 +139,8 @@ export class IndiekitError extends Error {
    * @param {string} [name] - Error code or name
    * @returns {{ code: string, name: string, status: number }|undefined} Error values
    */
-  static getError(name) {
-    const code = String(name || "unknown")
-      .replaceAll(" ", "_")
-      .toLowerCase();
+  static getError(name = "unknown") {
+    const code = String(name).replaceAll(" ", "_").toLowerCase();
     const error = errors[code];
 
     if (!error) return;

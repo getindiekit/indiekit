@@ -234,7 +234,7 @@ export default class GithubStore {
       throw new Error(message, { cause: error });
     }
 
-    const { sha } = await readResponse.json();
+    const { sha = false } = await readResponse.json();
     const updateFilePath = newPath || filePath;
 
     let updateResponse;
@@ -244,7 +244,7 @@ export default class GithubStore {
         branch,
         content: Buffer.from(content).toString("base64"),
         message,
-        sha: sha || false,
+        sha,
       });
       debug(`Updated file ${filePath}`);
     } catch (error) {
