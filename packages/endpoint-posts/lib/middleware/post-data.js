@@ -51,7 +51,7 @@ export const postData = {
   async read(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
-      const { action, uid } = request.params;
+      const { action = "create", uid } = request.params;
       const { access_token, scope } = request.session;
 
       const properties = await getPostProperties(
@@ -73,7 +73,7 @@ export const postData = {
 
       response.locals = {
         accessToken: access_token,
-        action: action || "create",
+        action,
         allDay,
         channelItems: getChannelItems(publication),
         isDraftMode: scope?.includes("draft"),

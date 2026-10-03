@@ -22,11 +22,11 @@ export const getPostTypes = ({ postTypes, publication }) => {
 
   // Add fallback values
   for (const [type, postType] of Object.entries(postTypes)) {
-    const { fields, h, name } = postType;
+    const { fields, h = "entry", name } = postType;
 
     postType.type = type;
     postType.name = name || _.upperFirst(type);
-    postType.h = h || "entry";
+    postType.h = h;
     postType.properties = fields && Object.keys(fields);
     postType["required-properties"] =
       fields &&

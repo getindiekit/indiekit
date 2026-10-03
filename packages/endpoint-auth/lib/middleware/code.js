@@ -12,8 +12,13 @@ import { getRequestParameters } from "../utils.js";
 export const codeValidator = async (request, response, next) => {
   try {
     const parameters = getRequestParameters(request);
-    const { client_id, code, code_verifier, grant_type, redirect_uri } =
-      parameters;
+    const {
+      client_id,
+      code,
+      code_verifier,
+      grant_type = "authorization_code",
+      redirect_uri,
+    } = parameters;
 
     // This middleware guards two routes: the authorization endpoint, where a
     // code is exchanged for a profile URL, and the token endpoint, where it is
@@ -37,7 +42,7 @@ export const codeValidator = async (request, response, next) => {
     }
 
     // `grant_type` must equal `authorization_code` where given
-    if ((grant_type ?? "authorization_code") !== "authorization_code") {
+    if (grant_type !== "authorization_code") {
       throw IndiekitError.badRequest(
         response.locals.__("BadRequestError.invalidValue", "grant_type"),
       );
