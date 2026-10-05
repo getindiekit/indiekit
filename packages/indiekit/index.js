@@ -211,6 +211,18 @@ export const Indiekit = class {
       }
     }
 
+    // `_id` came indexed; `properties.uid` does not. Every paginated query
+    // sorts and ranges on it, and MongoDB abandons an unindexed sort once it
+    // needs more than 32MB, so a large enough collection would stop listing
+    // at all. Creating an index that already exists is a no-op.
+    for (const name of ["posts", "media"]) {
+      const collection = this.collections.get(name);
+      if (collection) {
+        await collection.createIndex({ "properties.uid": 1 });
+        debug(`Indexed ‘properties.uid’ on ‘${name}’`);
+      }
+    }
+
     await this.updatePublicationConfig();
 
     const app = expressConfig(this);
