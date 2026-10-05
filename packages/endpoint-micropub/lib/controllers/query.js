@@ -6,8 +6,8 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
 /**
  * @typedef {object} QueryParameters
- * @property {string} [after] - Return items after this item ID
- * @property {string} [before] - Return items before this item ID
+ * @property {string|string[]} [after] - Return items after this item ID
+ * @property {string|string[]} [before] - Return items before this item ID
  * @property {string} [filter] - Value to filter items by
  * @property {string} [limit] - Number of items to return
  * @property {string} [offset] - Offset to start limit of items
