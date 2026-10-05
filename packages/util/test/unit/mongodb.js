@@ -10,7 +10,16 @@ import { getCursor, getMongodbClient } from "../../lib/mongodb.js";
  * @param {object} cursor - Pagination cursor
  * @returns {string[]} Names of the items it holds, in order
  */
-const names = (cursor) => cursor.items.map((item) => item.name);
+const names = (cursor) => cursor.items.map((item) => item.properties.name);
+
+/**
+ * A uid for the item created at a given position, shaped like the UUIDv7 the
+ * endpoints assign and sorting the same way: by when the item was created.
+ * @param {number} index - Position in creation order
+ * @returns {string} Uid
+ */
+const uidAt = (index) =>
+  `0199c0f0-0000-7000-8000-${String(index).padStart(12, "0")}`;
 
 const mongod = await MongoMemoryServer.create();
 
@@ -35,18 +44,18 @@ describe("util/lib/mongodb", async () => {
     const seed = async (count) => {
       await items.insertMany(
         Array.from({ length: count }, (_, index) => ({
-          name: `item-${index}`,
+          properties: { name: `item-${index}`, uid: uidAt(index) },
         })),
       );
     };
 
     /**
      * @param {string} name - Item name
-     * @returns {Promise<object>} That item’s ID
+     * @returns {Promise<string>} That item’s uid
      */
-    const idOf = async (name) => {
-      const item = await items.findOne({ name });
-      return item._id;
+    const uidOf = async (name) => {
+      const item = await items.findOne({ "properties.name": name });
+      return item.properties.uid;
     };
 
     beforeEach(async () => {
@@ -61,8 +70,8 @@ describe("util/lib/mongodb", async () => {
       const result = await getCursor(items, undefined, undefined, 3);
 
       assert.deepEqual(names(result), ["item-4", "item-3", "item-2"]);
-      assert.equal(String(result.firstItem), String(await idOf("item-4")));
-      assert.equal(String(result.lastItem), String(await idOf("item-2")));
+      assert.equal(result.firstItem, await uidOf("item-4"));
+      assert.equal(result.lastItem, await uidOf("item-2"));
       assert.equal(result.hasNext, true);
       assert.equal(result.hasPrev, false);
     });
@@ -89,7 +98,12 @@ describe("util/lib/mongodb", async () => {
     it("Pages forwards from an item", async () => {
       await seed(9);
 
-      const result = await getCursor(items, await idOf("item-6"), undefined, 3);
+      const result = await getCursor(
+        items,
+        await uidOf("item-6"),
+        undefined,
+        3,
+      );
 
       assert.deepEqual(names(result), ["item-5", "item-4", "item-3"]);
       assert.equal(result.hasNext, true);
@@ -100,7 +114,12 @@ describe("util/lib/mongodb", async () => {
       await seed(9);
 
       // Third page of three starts at item-2; going back belongs on page two
-      const result = await getCursor(items, undefined, await idOf("item-2"), 3);
+      const result = await getCursor(
+        items,
+        undefined,
+        await uidOf("item-2"),
+        3,
+      );
 
       assert.deepEqual(names(result), ["item-5", "item-4", "item-3"]);
       assert.equal(result.hasNext, true);
@@ -123,7 +142,12 @@ describe("util/lib/mongodb", async () => {
     it("Pages backwards to a partial first page", async () => {
       await seed(9);
 
-      const result = await getCursor(items, undefined, await idOf("item-7"), 3);
+      const result = await getCursor(
+        items,
+        undefined,
+        await uidOf("item-7"),
+        3,
+      );
 
       assert.deepEqual(names(result), ["item-8"]);
       assert.equal(result.hasNext, true);
@@ -135,40 +159,47 @@ describe("util/lib/mongodb", async () => {
 
       const result = await getCursor(
         items,
-        await idOf("item-6"),
-        await idOf("item-2"),
+        await uidOf("item-6"),
+        await uidOf("item-2"),
         3,
       );
 
       assert.deepEqual(names(result), ["item-5", "item-4", "item-3"]);
     });
 
-    it("Ignores a cursor that isn’t an ID", async () => {
+    it("Ignores a repeated cursor parameter", async () => {
       await seed(5);
+      const uid = await uidOf("item-2");
 
-      const result = await getCursor(items, "not-an-id", undefined, 3);
+      const result = await getCursor(items, undefined, [uid, uid], 3);
 
       assert.deepEqual(names(result), ["item-4", "item-3", "item-2"]);
       assert.equal(result.hasPrev, false);
     });
 
-    it("Ignores a repeated cursor parameter", async () => {
+    it("Pages on from a cursor naming an item that no longer exists", async () => {
       await seed(5);
-      const id = String(await idOf("item-2"));
+      const uid = await uidOf("item-2");
+      await items.deleteOne({ "properties.uid": uid });
 
-      const result = await getCursor(items, undefined, [id, id], 3);
-
-      assert.deepEqual(names(result), ["item-4", "item-3", "item-2"]);
-    });
-
-    it("Ignores a cursor naming an item that no longer exists", async () => {
-      await seed(5);
-      const id = await idOf("item-2");
-      await items.deleteOne({ _id: id });
-
-      const result = await getCursor(items, id, undefined, 3);
+      const result = await getCursor(items, uid, undefined, 3);
 
       assert.deepEqual(names(result), ["item-1", "item-0"]);
+    });
+
+    it("Omits items that have no uid", async () => {
+      await seed(5);
+      await items.insertOne({ properties: { name: "item-x" } });
+
+      const result = await getCursor(items);
+
+      assert.deepEqual(names(result), [
+        "item-4",
+        "item-3",
+        "item-2",
+        "item-1",
+        "item-0",
+      ]);
     });
   });
 
