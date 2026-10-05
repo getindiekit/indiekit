@@ -5,8 +5,8 @@ import { getMediaProperties } from "../utils.js";
 
 /**
  * @typedef {object} QueryParameters
- * @property {string} [after] - Return items after this item ID
- * @property {string} [before] - Return items before this item ID
+ * @property {string|string[]} [after] - Return items after this item ID
+ * @property {string|string[]} [before] - Return items before this item ID
  * @property {string} [limit] - Number of items to return
  * @property {string} [q] - Query
  * @property {string} [uid] - UID of file to return
