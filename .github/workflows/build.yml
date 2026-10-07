@@ -45,6 +45,7 @@ jobs:
 
       - name: Download localisations
         uses: localazy/download@v1
+        if: ${{ secrets.LOCALAZY_READ_KEY != '' && github.event_name == 'pull_request' }}
         with:
           read_key: ${{ secrets.LOCALAZY_READ_KEY }}
           write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
