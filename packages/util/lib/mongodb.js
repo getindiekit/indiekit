@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-array-method-this-argument */
 import makeDebug from "debug";
-import { ObjectId, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 
 const debug = makeDebug(`indiekit:util:mongodb`);
 
@@ -153,13 +153,4 @@ export const getMongodbClient = async (mongodbUrl) => {
   }
 
   return { client };
-};
-
-/**
- * Get object ID
- * @param {string|ObjectId} uid - Item UID
- * @returns {ObjectId} Object ID
- */
-export const getObjectId = (uid) => {
-  return new ObjectId(uid);
 };
