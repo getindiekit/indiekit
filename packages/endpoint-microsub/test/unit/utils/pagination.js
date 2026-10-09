@@ -15,12 +15,11 @@ import {
 } from "../../../lib/utils/pagination.js";
 
 /**
- * Create mock items for testing
- * @param {number} count - Number of items
+ * Create five mock items for testing, newest first
  * @returns {Array} Mock items
  */
-function createMockItems(count) {
-  return Array.from({ length: count }, (_, index) => ({
+function createMockItems() {
+  return Array.from({ length: 5 }, (_, index) => ({
     _id: getObjectId(),
     published: new Date(Date.now() - index * 1000),
   }));
@@ -164,7 +163,7 @@ describe("endpoint-microsub/lib/utils/pagination", () => {
     });
 
     it("Returns after cursor when hasMore is true", () => {
-      const items = createMockItems(5);
+      const items = createMockItems();
       const cursors = generatePagingCursors(items, 5, true);
 
       assert.ok(cursors.after);
@@ -172,7 +171,7 @@ describe("endpoint-microsub/lib/utils/pagination", () => {
     });
 
     it("Returns only before cursor when hasMore is false", () => {
-      const items = createMockItems(5);
+      const items = createMockItems();
       const cursors = generatePagingCursors(items, 10, false);
 
       assert.ok(cursors.before);
@@ -180,7 +179,7 @@ describe("endpoint-microsub/lib/utils/pagination", () => {
     });
 
     it("Reverses items and sets cursors when using before", () => {
-      const items = createMockItems(5);
+      const items = createMockItems();
       const originalFirstId = items[0]._id.toString();
 
       const cursors = generatePagingCursors(items, 5, true, "some-before");
