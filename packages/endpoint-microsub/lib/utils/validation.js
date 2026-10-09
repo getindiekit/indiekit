@@ -12,7 +12,7 @@ export const VALID_ACTIONS = ["channels", "timeline"];
 
 /**
  * Validate action parameter
- * @param {string} action - Action to validate
+ * @param {string|null} [action] - Action to validate
  * @throws {IndiekitError} If action is invalid
  */
 export function validateAction(action) {
@@ -31,7 +31,7 @@ export function validateAction(action) {
 
 /**
  * Validate channel UID
- * @param {string} channel - Channel UID to validate
+ * @param {string} [channel] - Channel UID to validate
  * @param {boolean} [isRequired] - Whether channel is required
  * @throws {IndiekitError} If channel is invalid
  */
@@ -51,7 +51,7 @@ export function validateChannel(channel, isRequired = true) {
 
 /**
  * Validate entry/entries parameter
- * @param {string|Array} entry - Entry ID(s) to validate
+ * @param {string|Array} [entry] - Entry ID(s) to validate
  * @returns {Array} Array of entry IDs
  * @throws {IndiekitError} If entry is invalid
  */

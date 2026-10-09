@@ -20,7 +20,7 @@ import {
  */
 function createMockItems() {
   return Array.from({ length: 5 }, (_, index) => ({
-    _id: getObjectId(),
+    _id: getObjectId(String(index + 1).padStart(24, "0")),
     published: new Date(Date.now() - index * 1000),
   }));
 }

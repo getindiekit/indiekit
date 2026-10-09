@@ -102,7 +102,7 @@ export async function getChannels(application, userId) {
       return {
         uid: channel.uid,
         name: channel.name,
-        unread: unreadCount > 0 ? unreadCount : false,
+        unread: unreadCount > 0 && unreadCount,
       };
     }),
   );

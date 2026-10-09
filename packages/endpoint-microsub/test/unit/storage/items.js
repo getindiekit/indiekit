@@ -18,8 +18,8 @@ const application = {
   collections: new Map([["microsub_items", items]]),
 };
 
-const channelId = getObjectId();
-const otherChannelId = getObjectId();
+const channelId = getObjectId("000000000000000000000001");
+const otherChannelId = getObjectId("000000000000000000000002");
 
 /**
  * Insert timeline items, oldest first

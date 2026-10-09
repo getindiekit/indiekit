@@ -17,7 +17,7 @@ export const MAX_LIMIT = 100;
 
 /**
  * Encode a cursor from timestamp and ID
- * @param {Date} timestamp - Item timestamp
+ * @param {Date|string} timestamp - Item timestamp
  * @param {string} id - Item ID
  * @returns {string} Base64-encoded cursor
  */
@@ -31,7 +31,7 @@ export function encodeCursor(timestamp, id) {
 
 /**
  * Decode a cursor string
- * @param {string} cursor - Base64-encoded cursor
+ * @param {string|null} [cursor] - Base64-encoded cursor
  * @returns {object|undefined} Decoded cursor with timestamp and id
  */
 export function decodeCursor(cursor) {
@@ -103,7 +103,7 @@ export function buildPaginationSort(before) {
 
 /**
  * Generate pagination cursors from items
- * @param {Array} items - Array of items
+ * @param {Array|null} items - Array of items
  * @param {number} limit - Items per page
  * @param {boolean} hasMore - Whether more items exist
  * @param {string} [before] - Original before cursor
@@ -136,7 +136,7 @@ export function generatePagingCursors(items, limit, hasMore, before) {
 
 /**
  * Parse and validate limit parameter
- * @param {string|number} limit - Requested limit
+ * @param {string|number} [limit] - Requested limit
  * @returns {number} Validated limit
  */
 export function parseLimit(limit) {

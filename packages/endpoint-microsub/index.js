@@ -58,7 +58,10 @@ export default class MicrosubEndpoint {
       try {
         await createIndexes(indiekit);
       } catch (error) {
-        console.warn("[Microsub] Index creation failed:", error.message);
+        console.warn(
+          "[Microsub] Index creation failed:",
+          error instanceof Error ? error.message : String(error),
+        );
       }
     }
   }
