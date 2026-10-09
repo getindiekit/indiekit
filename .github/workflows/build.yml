@@ -63,8 +63,4 @@ jobs:
         run: npm run typecheck
 
       - name: Run tests
-        env:
-          NODE_ENV: test
-          PASSWORD_SECRET: ${{ secrets.PASSWORD_SECRET }}
-          SECRET: ${{ secrets.SECRET }}
         run: npm test
