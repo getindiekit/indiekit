@@ -17,6 +17,8 @@ jobs:
   test:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    env:
+      HAS_LOCALAZY_KEY: ${{ secrets.LOCALAZY_READ_KEY != '' }}
     strategy:
       fail-fast: false
       matrix:
@@ -44,6 +46,7 @@ jobs:
           mongodb-version: ${{ matrix.mongodb-version }}
 
       - name: Download localisations
+        if: env.HAS_LOCALAZY_KEY == 'true'
         uses: localazy/download@v1
         with:
           read_key: ${{ secrets.LOCALAZY_READ_KEY }}
