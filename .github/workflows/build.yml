@@ -47,7 +47,6 @@ jobs:
         uses: localazy/download@v1
         with:
           read_key: ${{ secrets.LOCALAZY_READ_KEY }}
-          write_key: ${{ secrets.LOCALAZY_WRITE_KEY }}
 
       - name: Install packages and symlink local dependencies
         run: npm ci
