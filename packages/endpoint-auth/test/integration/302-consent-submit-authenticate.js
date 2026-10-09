@@ -32,7 +32,8 @@ describe("endpoint-auth POST /auth/consent", () => {
       .type("form")
       .query({ request_uri: `urn:ietf:params:oauth:request_uri:${reference}` })
       .send({ password: "foo" });
-    const code = new URL(result.headers.location).searchParams.get("code");
+    const code =
+      new URL(result.headers.location).searchParams.get("code") ?? "MISSING";
     const decoded = verifyToken(code);
 
     assert.equal(result.status, 302);

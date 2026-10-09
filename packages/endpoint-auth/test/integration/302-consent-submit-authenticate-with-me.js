@@ -35,7 +35,8 @@ describe("endpoint-auth POST /auth/consent", () => {
       .send({ password: "foo" });
     const { host, protocol } = new URL(response.request.url);
     const issuer = encodeURIComponent(`${protocol}//${host}`);
-    const code = new URL(response.headers.location).searchParams.get("code");
+    const code =
+      new URL(response.headers.location).searchParams.get("code") ?? "MISSING";
     const decoded = verifyToken(code);
 
     assert.equal(response.status, 302);
