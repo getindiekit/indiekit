@@ -30,6 +30,14 @@
     "getCurrentPosition": "Użyj bieżącej lokalizacji"
   },
   "important": "Ważne",
+  "mediaBrowser": {
+    "browse": "Przeglądaj media…",
+    "cancel": "Anuluj",
+    "empty": "Nie przesłano jeszcze żadnych plików",
+    "error": "Nie można wczytać plików",
+    "more": "Pokaż więcej",
+    "title": "Wybierz plik"
+  },
   "noValue": "Nie ustawiono",
   "optionalValue": "(opcjonalnie)",
   "pagination": {

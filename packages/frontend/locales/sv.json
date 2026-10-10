@@ -30,6 +30,14 @@
     "getCurrentPosition": "Använd aktuell plats"
   },
   "important": "Viktigt",
+  "mediaBrowser": {
+    "browse": "Bläddra bland media…",
+    "cancel": "Avbryt",
+    "empty": "Inga filer har laddats upp än",
+    "error": "Det gick inte att läsa in filerna",
+    "more": "Visa fler",
+    "title": "Välj en fil"
+  },
   "noValue": "Ej angett",
   "optionalValue": "(valfritt)",
   "pagination": {

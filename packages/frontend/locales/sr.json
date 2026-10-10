@@ -30,6 +30,14 @@
     "getCurrentPosition": "Koristite trenutnu lokaciju"
   },
   "important": "Važno",
+  "mediaBrowser": {
+    "browse": "Pregledaj medije…",
+    "cancel": "Otkaži",
+    "empty": "Još nijedna datoteka nije otpremljena",
+    "error": "Nije moguće učitati datoteke",
+    "more": "Prikaži više",
+    "title": "Izaberi datoteku"
+  },
   "noValue": "Nije rešeno",
   "optionalValue": "(opcionalno)",
   "pagination": {

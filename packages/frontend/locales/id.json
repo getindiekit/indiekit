@@ -30,6 +30,14 @@
     "getCurrentPosition": "Gunakan lokasi saat ini"
   },
   "important": "Penting",
+  "mediaBrowser": {
+    "browse": "Telusuri media…",
+    "cancel": "Batal",
+    "empty": "Belum ada berkas yang diunggah",
+    "error": "Tidak dapat memuat berkas",
+    "more": "Tampilkan lebih banyak",
+    "title": "Pilih berkas"
+  },
   "noValue": "Tidak ada",
   "optionalValue": "(opsional)",
   "pagination": {

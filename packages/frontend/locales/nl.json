@@ -30,6 +30,14 @@
     "getCurrentPosition": "Huidige locatie gebruiken"
   },
   "important": "Belangrijk",
+  "mediaBrowser": {
+    "browse": "Media bekijken…",
+    "cancel": "Annuleren",
+    "empty": "Er zijn nog geen bestanden geüpload",
+    "error": "Kan bestanden niet laden",
+    "more": "Meer tonen",
+    "title": "Kies een bestand"
+  },
   "noValue": "Niet ingesteld",
   "optionalValue": "(optioneel)",
   "pagination": {

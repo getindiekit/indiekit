@@ -30,6 +30,14 @@
     "getCurrentPosition": "Usar a localização actual"
   },
   "important": "Importante",
+  "mediaBrowser": {
+    "browse": "Procurar multimédia…",
+    "cancel": "Cancelar",
+    "empty": "Ainda não foram carregados ficheiros",
+    "error": "Não foi possível carregar os ficheiros",
+    "more": "Mostrar mais",
+    "title": "Escolher um ficheiro"
+  },
   "noValue": "Não definido",
   "optionalValue": "(opcional)",
   "pagination": {

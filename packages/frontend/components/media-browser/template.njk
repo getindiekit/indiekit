@@ -1,0 +1,22 @@
+{% from "../button/macro.njk" import button with context %}
+<template id="media-browser" data-label="{{ __("mediaBrowser.browse") }}">
+  <dialog class="media-browser" aria-labelledby="media-browser-title">
+    <h2 class="media-browser__title" id="media-browser-title">{{ __("mediaBrowser.title") }}</h2>
+    <ul class="media-browser__files" role="list"></ul>
+    <p class="media-browser__empty" hidden>{{ __("mediaBrowser.empty") }}</p>
+    <p class="media-browser__error" hidden>{{ __("mediaBrowser.error") }}</p>
+    <div class="button-group">
+      {{ button({
+        classes: "button--secondary media-browser__more",
+        type: "button",
+        text: __("mediaBrowser.more"),
+        attributes: { hidden: true }
+      }) | indent(6) }}
+      {{ button({
+        classes: "button--secondary media-browser__close",
+        type: "button",
+        text: __("mediaBrowser.cancel")
+      }) | indent(6) }}
+    </div>
+  </dialog>
+</template>

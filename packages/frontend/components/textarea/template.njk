@@ -1,3 +1,4 @@
+{% from "../media-browser/macro.njk" import mediaBrowser with context %}
 {% from "../error-message/macro.njk" import errorMessage with context %}
 {% from "../field/macro.njk" import field with context %}
 {% from "../hint/macro.njk" import hint with context %}
@@ -37,4 +38,8 @@
   {%- if describedBy %} aria-describedby="{{ describedBy }}"{% endif %}
   {%- if opts.autocomplete %} autocomplete="{{ opts.autocomplete}}"{% endif %}
   {{- attributes(opts.attributes) }}>{{ opts.value }}</textarea>
+{%- set fieldAttributes = opts.field.attributes or {} %}
+{%- if fieldAttributes["editor-endpoint"] and fieldAttributes["editor-toolbar"] != "false" %}
+{{ mediaBrowser() }}
+{%- endif %}
 {%- endcall %}

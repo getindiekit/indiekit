@@ -1,6 +1,7 @@
 {% from "../button/macro.njk" import button with context %}
 {% from "../error-message/macro.njk" import errorMessage with context %}
 {% from "../input/macro.njk" import input with context %}
+{% from "../media-browser/macro.njk" import mediaBrowser with context %}
 {% from "../progress/macro.njk" import progress with context %}
 {% set id = opts.id or opts.name | slugify({ decamelize: true }) %}
 {% call input({
@@ -35,8 +36,14 @@
     <div class="file-input__picker">
       <label class="file-input__button button button--secondary" for="{{ id }}-file" role="button" tabindex="0">{{ __("fileInput.uploadFile") }}</label>
       <input class="file-input__file" hidden id="{{ id }}-file" type="file"{% if opts.accept %} accept="{{ opts.accept }}"{% endif %}>
+      {{ button({
+        classes: "button--secondary file-input__browse",
+        type: "button",
+        text: __("mediaBrowser.browse")
+      }) | indent(6) }}
     </div>
   </template>
+  {{ mediaBrowser() | indent(2) }}
   <template id="error-message">
     {{ errorMessage({
       id: id + "-error"

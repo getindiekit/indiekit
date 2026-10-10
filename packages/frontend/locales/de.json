@@ -30,6 +30,14 @@
     "getCurrentPosition": "Aktuellen Standort verwenden"
   },
   "important": "Wichtig",
+  "mediaBrowser": {
+    "browse": "Medien durchsuchen…",
+    "cancel": "Abbrechen",
+    "empty": "Es wurden noch keine Dateien hochgeladen",
+    "error": "Dateien konnten nicht geladen werden",
+    "more": "Mehr anzeigen",
+    "title": "Datei auswählen"
+  },
   "noValue": "Nicht festgelegt",
   "optionalValue": "(fakultativ)",
   "pagination": {
