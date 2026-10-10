@@ -11,7 +11,7 @@ export const attributes = (attributes) => {
       const value = attributes[name];
 
       if (!value) {
-        return html;
+        continue;
       }
 
       html += typeof value === "boolean" ? ` ${name}` : ` ${name}="${value}"`;
