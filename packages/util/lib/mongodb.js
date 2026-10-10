@@ -27,7 +27,8 @@ const getBoundary = (value) => {
 /**
  * Get pagination cursor
  *
- * Items are ordered by `properties.uid`. A UUIDv7 leads with a 48-bit
+ * Items are ordered by `properties.uid`, unless another key is given, and a
+ * query can confine every page to a subset. A UUIDv7 leads with a 48-bit
  * millisecond timestamp, so comparing two of them as strings compares when
  * they were created — the ordering `_id` gave, now carried by a property of
  * the item itself rather than by the database. Cursor values are the same
@@ -40,13 +41,36 @@ const getBoundary = (value) => {
  * @param {string|string[]} [after] - Items created after item with this uid
  * @param {string|string[]} [before] - Items created before item with this uid
  * @param {number} [limit] - Number of items to return within cursor
+ * @param {object} [options] - Options
+ * @param {object} [options.filter] - Query every page is confined to
+ * @param {string} [options.key] - Path of the time-ordered identifier the
+ *   items are listed and paged by
  * @returns {Promise<object>} Pagination cursor
  */
-export const getCursor = async (collection, after, before, limit) => {
+export const getCursor = async (
+  collection,
+  after,
+  before,
+  limit,
+  { filter = {}, key = "properties.uid" } = {},
+) => {
   const cursor = {
     items: [],
     hasNext: false,
     hasPrev: false,
+  };
+
+  /**
+   * @param {object} item - Database document
+   * @returns {string} The item's identifier at `key`
+   */
+  const identifier = (item) => {
+    let value = item;
+    for (const segment of key.split(".")) {
+      value = value?.[segment];
+    }
+
+    return value;
   };
 
   // `before` wins when both are given
@@ -60,11 +84,9 @@ export const getCursor = async (collection, after, before, limit) => {
   /**
    * @type {Record<string, object>}
    */
-  const query = { "properties.uid": { $type: "string" } };
+  const query = { ...filter, [key]: { $type: "string" } };
   if (boundary) {
-    query["properties.uid"] = isPagingBackwards
-      ? { $gt: boundary }
-      : { $lt: boundary };
+    query[key] = isPagingBackwards ? { $gt: boundary } : { $lt: boundary };
   }
 
   const options = {
@@ -73,7 +95,7 @@ export const getCursor = async (collection, after, before, limit) => {
     // the smallest uids above it. Taking them in the listing’s own descending
     // order would instead take the largest — the newest items in the
     // collection — so that going back from page three landed on page one.
-    sort: { "properties.uid": isPagingBackwards ? 1 : -1 },
+    sort: { [key]: isPagingBackwards ? 1 : -1 },
   };
 
   const items = await collection.find(query, options).toArray();
@@ -85,16 +107,18 @@ export const getCursor = async (collection, after, before, limit) => {
 
   if (items.length > 0) {
     cursor.items = items;
-    cursor.lastItem = items.at(-1).properties.uid;
-    cursor.firstItem = items[0].properties.uid;
+    cursor.lastItem = identifier(items.at(-1));
+    cursor.firstItem = identifier(items[0]);
     cursor.hasNext = Boolean(
       await collection.findOne({
-        "properties.uid": { $lt: cursor.lastItem },
+        ...filter,
+        [key]: { $lt: cursor.lastItem },
       }),
     );
     cursor.hasPrev = Boolean(
       await collection.findOne({
-        "properties.uid": { $gt: cursor.firstItem },
+        ...filter,
+        [key]: { $gt: cursor.firstItem },
       }),
     );
   }

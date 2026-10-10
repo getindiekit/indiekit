@@ -136,6 +136,10 @@ const sidebarPlugins = [
         link: "/plugins/endpoints/media",
       },
       {
+        text: "Microsub",
+        link: "/plugins/endpoints/microsub",
+      },
+      {
         text: "Posts",
         link: "/plugins/endpoints/posts",
       },

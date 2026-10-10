@@ -8,6 +8,7 @@ An [endpoint](../../concepts#endpoint) is a path on your Indiekit server that ap
 - [Files](files.md) `@indiekit/endpoint-files`
 - [Image resizing](image.md) `@indiekit/endpoint-image`
 - [Micropub](micropub.md) `@indiekit/endpoint-micropub`
+- [Microsub](microsub.md) `@indiekit/endpoint-microsub`
 - [Media](media.md) `@indiekit/endpoint-media`
 - [Posts](posts.md) `@indiekit/endpoint-posts`
 - [Share](share.md) `@indiekit/endpoint-share`
