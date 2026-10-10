@@ -187,6 +187,44 @@ describe("util/lib/mongodb", async () => {
       assert.deepEqual(names(result), ["item-1", "item-0"]);
     });
 
+    it("Pages within a filter", async () => {
+      await seed(5);
+      // item-3 and item-1 match, newest first; item-4 never counts
+      const filter = { "properties.name": { $in: ["item-1", "item-3"] } };
+      const page = await getCursor(items, undefined, undefined, 1, { filter });
+      assert.deepEqual(names(page), ["item-3"]);
+      assert.equal(page.hasNext, true);
+      assert.equal(page.hasPrev, false);
+
+      const next = await getCursor(items, page.lastItem, undefined, 1, {
+        filter,
+      });
+      assert.deepEqual(names(next), ["item-1"]);
+      assert.equal(next.hasNext, false);
+      assert.equal(next.hasPrev, true);
+    });
+
+    it("Orders and pages on another key", async () => {
+      await items.insertMany(
+        Array.from({ length: 3 }, (_, index) => ({
+          id: uidAt(index),
+          properties: { name: `item-${index}` },
+        })),
+      );
+
+      const page = await getCursor(items, undefined, undefined, 2, {
+        key: "id",
+      });
+      assert.deepEqual(names(page), ["item-2", "item-1"]);
+      assert.equal(page.lastItem, uidAt(1));
+
+      const next = await getCursor(items, page.lastItem, undefined, 2, {
+        key: "id",
+      });
+      assert.deepEqual(names(next), ["item-0"]);
+      assert.equal(next.hasPrev, true);
+    });
+
     it("Omits items that have no uid", async () => {
       await seed(5);
       await items.insertOne({ properties: { name: "item-x" } });

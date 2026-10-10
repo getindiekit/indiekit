@@ -3,14 +3,10 @@
  * @module storage/items
  */
 
+import { getCursor } from "@indiekit/util";
 import { ObjectId } from "mongodb";
 
-import {
-  buildPaginationQuery,
-  buildPaginationSort,
-  generatePagingCursors,
-  parseLimit,
-} from "../utils/pagination.js";
+import { parseLimit } from "../utils/pagination.js";
 
 /**
  * Get items collection from application
@@ -38,40 +34,31 @@ export async function getTimelineItems(application, channelId, options = {}) {
     typeof channelId === "string" ? new ObjectId(channelId) : channelId;
   const limit = parseLimit(options.limit);
 
-  const baseQuery = { channelId: objectId };
+  // Items are listed and paged by their `id`, a UUIDv7 stamped with the
+  // publication date, through the same cursor posts and media use.
+  const cursor = await getCursor(
+    collection,
+    options.after,
+    options.before,
+    limit,
+    { filter: { channelId: objectId }, key: "id" },
+  );
 
-  const query = buildPaginationQuery({
-    before: options.before,
-    after: options.after,
-    baseQuery,
-  });
+  const items = cursor.items.map((item) =>
+    transformToJf2(item, options.userId),
+  );
 
-  const sort = buildPaginationSort(options.before);
-
-  // Fetch one extra to check if there are more
-  const items = await collection
-    // eslint-disable-next-line unicorn/no-array-callback-reference -- MongoDB query object
-    .find(query)
-    // eslint-disable-next-line unicorn/no-array-sort -- MongoDB cursor method
-    .sort(sort)
-    .limit(limit + 1)
-    .toArray();
-
-  const hasMore = items.length > limit;
-  if (hasMore) {
-    items.pop();
+  // Microsub paging: `after` continues down to older items, `before` back
+  // up to newer ones
+  const paging = {};
+  if (cursor.hasNext) {
+    paging.after = cursor.lastItem;
+  }
+  if (cursor.hasPrev) {
+    paging.before = cursor.firstItem;
   }
 
-  // Transform to jf2 format
-  const jf2Items = items.map((item) => transformToJf2(item, options.userId));
-
-  // Generate paging cursors
-  const paging = generatePagingCursors(items, limit, hasMore, options.before);
-
-  return {
-    items: jf2Items,
-    paging,
-  };
+  return { items, paging };
 }
 
 /**
@@ -86,7 +73,7 @@ function transformToJf2(item, userId) {
     uid: item.uid,
     url: item.url,
     published: item.published?.toISOString(),
-    _id: item._id.toString(),
+    _id: item.id,
     _is_read: userId ? item.readBy?.includes(userId) : false,
   };
 
@@ -135,23 +122,12 @@ export async function markItemsRead(application, channelId, entryIds, userId) {
     return result.modifiedCount;
   }
 
-  // Convert string IDs to ObjectIds where possible
-  const objectIds = entryIds
-    .map((id) => {
-      try {
-        return new ObjectId(id);
-      } catch {
-        return;
-      }
-    })
-    .filter(Boolean);
-
-  // Match by _id, uid, or url
+  // Match by the id clients see, the feed's own uid, or url
   const result = await collection.updateMany(
     {
       channelId: channelObjectId,
       $or: [
-        ...(objectIds.length > 0 ? [{ _id: { $in: objectIds } }] : []),
+        { id: { $in: entryIds } },
         { uid: { $in: entryIds } },
         { url: { $in: entryIds } },
       ],
@@ -180,23 +156,12 @@ export async function markItemsUnread(
   const channelObjectId =
     typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
-  // Convert string IDs to ObjectIds where possible
-  const objectIds = entryIds
-    .map((id) => {
-      try {
-        return new ObjectId(id);
-      } catch {
-        return;
-      }
-    })
-    .filter(Boolean);
-
-  // Match by _id, uid, or url
+  // Match by the id clients see, the feed's own uid, or url
   const result = await collection.updateMany(
     {
       channelId: channelObjectId,
       $or: [
-        ...(objectIds.length > 0 ? [{ _id: { $in: objectIds } }] : []),
+        { id: { $in: entryIds } },
         { uid: { $in: entryIds } },
         { url: { $in: entryIds } },
       ],
@@ -219,22 +184,11 @@ export async function removeItems(application, channelId, entryIds) {
   const channelObjectId =
     typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
-  // Convert string IDs to ObjectIds where possible
-  const objectIds = entryIds
-    .map((id) => {
-      try {
-        return new ObjectId(id);
-      } catch {
-        return;
-      }
-    })
-    .filter(Boolean);
-
-  // Match by _id, uid, or url
+  // Match by the id clients see, the feed's own uid, or url
   const result = await collection.deleteMany({
     channelId: channelObjectId,
     $or: [
-      ...(objectIds.length > 0 ? [{ _id: { $in: objectIds } }] : []),
+      { id: { $in: entryIds } },
       { uid: { $in: entryIds } },
       { url: { $in: entryIds } },
     ],
@@ -251,8 +205,9 @@ export async function removeItems(application, channelId, entryIds) {
 export async function createIndexes(application) {
   const collection = getCollection(application);
 
-  // Primary query indexes
-  await collection.createIndex({ channelId: 1, published: -1 });
+  // Primary query indexes: `id` orders and pages the timeline, `uid` is the
+  // feed's own identifier and keeps an item from being stored twice
+  await collection.createIndex({ channelId: 1, id: 1 }, { unique: true });
   await collection.createIndex({ channelId: 1, uid: 1 }, { unique: true });
 
   // URL matching index for mark_read operations

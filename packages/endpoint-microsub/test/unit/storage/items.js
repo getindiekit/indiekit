@@ -11,6 +11,7 @@ import {
   markItemsUnread,
   removeItems,
 } from "../../../lib/storage/items.js";
+import { uuidv7At } from "../../../lib/utils/uid.js";
 
 const { client, database, mongoServer } = await testDatabase();
 const items = database.collection("microsub_items");
@@ -28,16 +29,21 @@ const otherChannelId = new ObjectId("000000000000000000000002");
  * @returns {Promise<Array>} Inserted item documents
  */
 async function insertItems(count, overrides = {}) {
-  const documents = Array.from({ length: count }, (_, index) => ({
-    channelId,
-    type: "entry",
-    uid: `item-${index}`,
-    url: `https://website.example/${index}`,
-    name: `Item ${index}`,
-    published: new Date(Date.UTC(2026, 0, index + 1)),
-    readBy: [],
-    ...overrides,
-  }));
+  const documents = Array.from({ length: count }, (_, index) => {
+    const published = new Date(Date.UTC(2026, 0, index + 1));
+
+    return {
+      channelId,
+      id: uuidv7At(published),
+      type: "entry",
+      uid: `item-${index}`,
+      url: `https://website.example/${index}`,
+      name: `Item ${index}`,
+      published,
+      readBy: [],
+      ...overrides,
+    };
+  });
 
   await items.insertMany(documents);
 
@@ -77,6 +83,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
       await insertItems(2);
       await items.insertOne({
         channelId: otherChannelId,
+        id: uuidv7At(new Date()),
         uid: "other",
         published: new Date(),
       });
@@ -114,6 +121,28 @@ describe("endpoint-microsub/lib/storage/items", () => {
       assert.ok(result.paging.after);
     });
 
+    it("Pages back to newer items using the before cursor", async () => {
+      await insertItems(4);
+
+      const first = await getTimelineItems(application, channelId, {
+        limit: 2,
+      });
+      const second = await getTimelineItems(application, channelId, {
+        limit: 2,
+        after: first.paging.after,
+      });
+      const back = await getTimelineItems(application, channelId, {
+        limit: 2,
+        before: second.paging.before,
+      });
+
+      assert.deepEqual(
+        back.items.map((item) => item.name),
+        ["Item 3", "Item 2"],
+      );
+      assert.equal("before" in back.paging, false);
+    });
+
     it("Pages through items using the after cursor", async () => {
       await insertItems(4);
 
@@ -141,7 +170,8 @@ describe("endpoint-microsub/lib/storage/items", () => {
       assert.equal(result[0].author, "Alice");
       assert.deepEqual(result[0].category, ["indieweb"]);
       assert.equal(typeof result[0].published, "string");
-      assert.equal(typeof result[0]._id, "string");
+      const stored = await items.findOne({ uid: "item-0" });
+      assert.equal(result[0]._id, stored.id);
     });
 
     it("Omits optional fields that are absent", async () => {
@@ -219,14 +249,14 @@ describe("endpoint-microsub/lib/storage/items", () => {
       assert.equal(count, 1);
     });
 
-    it("Matches items by ObjectId", async () => {
+    it("Matches items by the id clients see", async () => {
       await insertItems(1);
       const item = await items.findOne({ uid: "item-0" });
 
       const count = await markItemsRead(
         application,
         channelId,
-        [item._id.toString()],
+        [item.id],
         "user-1",
       );
 
@@ -342,7 +372,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
       const indexes = await items.indexes();
       const keys = new Set(indexes.map((index) => JSON.stringify(index.key)));
 
-      assert.ok(keys.has(JSON.stringify({ channelId: 1, published: -1 })));
+      assert.ok(keys.has(JSON.stringify({ channelId: 1, id: 1 })));
       assert.ok(keys.has(JSON.stringify({ channelId: 1, uid: 1 })));
       assert.ok(keys.has(JSON.stringify({ channelId: 1, url: 1 })));
     });

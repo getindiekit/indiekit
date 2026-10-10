@@ -6,6 +6,8 @@ import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 import supertest from "supertest";
 
+import { uuidv7At } from "../../lib/utils/uid.js";
+
 const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
   application: { mongodbUrl: mongoUri },
@@ -37,14 +39,19 @@ describe("endpoint-microsub POST /microsub?action=timeline", () => {
       .findOne({ uid: fixture.channelUid });
 
     await items.insertMany(
-      Array.from({ length: 3 }, (_, index) => ({
-        channelId: channel._id,
-        type: "entry",
-        uid: `item-${index}`,
-        url: `https://website.example/${index}`,
-        published: new Date(Date.UTC(2026, 0, index + 1)),
-        readBy: [],
-      })),
+      Array.from({ length: 3 }, (_, index) => {
+        const published = new Date(Date.UTC(2026, 0, index + 1));
+
+        return {
+          channelId: channel._id,
+          id: uuidv7At(published),
+          type: "entry",
+          uid: `item-${index}`,
+          url: `https://website.example/${index}`,
+          published,
+          readBy: [],
+        };
+      }),
     );
   });
 
