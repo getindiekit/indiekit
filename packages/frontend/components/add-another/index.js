@@ -1,6 +1,6 @@
 import { getElement } from "../../scripts/utils/get-element";
 
-const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]`;
+const focusableSelector = `button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])`;
 
 export const AddAnotherComponent = class extends HTMLElement {
   /**
