@@ -14,4 +14,18 @@ describe("frontend/lib/globals/attributes", () => {
 
     assert.equal(result, ' id="foo" data-value="bar" readonly');
   });
+
+  it("Skips an attribute without a value, not those after it", () => {
+    const result = attributes({
+      editor: true,
+      "editor-locale": undefined,
+      "editor-status": "false",
+      "editor-toolbar": "false",
+    });
+
+    assert.equal(
+      result,
+      ' editor editor-status="false" editor-toolbar="false"',
+    );
+  });
 });
