@@ -90,7 +90,7 @@ const sidebarPlugins = [
         link: "/plugins/stores/ftp",
       },
       {
-        text: "Gitea",
+        text: "Gitea (Forgejo)",
         link: "/plugins/stores/gitea",
       },
       {
