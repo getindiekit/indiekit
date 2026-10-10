@@ -175,20 +175,3 @@ export async function removeItems(application, channel, entryIds) {
 
   return result.deletedCount;
 }
-
-/**
- * Create indexes for efficient queries
- * @param {object} application - Indiekit application
- * @returns {Promise<void>}
- */
-export async function createIndexes(application) {
-  const collection = getItemsCollection(application);
-
-  // Primary query indexes: `id` orders and pages the timeline, `uid` is the
-  // feed's own identifier and keeps an item from being stored twice
-  await collection.createIndex({ channel: 1, id: 1 }, { unique: true });
-  await collection.createIndex({ channel: 1, uid: 1 }, { unique: true });
-
-  // URL matching index for mark_read operations
-  await collection.createIndex({ channel: 1, url: 1 });
-}

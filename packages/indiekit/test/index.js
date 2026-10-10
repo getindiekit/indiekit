@@ -30,6 +30,29 @@ describe("indiekit", async () => {
     assert.equal(indiekit.collections.has("test"), true);
   });
 
+  it("Creates the indexes a collection declares", async () => {
+    indiekit.addCollection("indexed", [
+      { key: { "properties.uid": 1 } },
+      { key: { channel: 1, id: 1 }, unique: true },
+    ]);
+
+    await indiekit.createIndexes();
+
+    const indexes = await indiekit.collections.get("indexed").indexes();
+    const keys = new Map(
+      indexes.map((index) => [JSON.stringify(index.key), index]),
+    );
+    assert.ok(keys.has(JSON.stringify({ "properties.uid": 1 })));
+    assert.equal(keys.get(JSON.stringify({ channel: 1, id: 1 })).unique, true);
+  });
+
+  it("Declares a collection with no indexes by default", async () => {
+    indiekit.addCollection("plain");
+
+    assert.deepEqual(indiekit.collectionIndexes.get("plain"), []);
+    await assert.doesNotReject(() => indiekit.createIndexes());
+  });
+
   it("Doesn’t allow duplicate database collections", async () => {
     const consoleWarn = mock.method(console, "warn", () => {});
 

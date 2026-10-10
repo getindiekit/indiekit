@@ -31,7 +31,9 @@ export default class MediaEndpoint {
   }
 
   init(Indiekit) {
-    Indiekit.addCollection("media");
+    // Every paginated query sorts and ranges on `properties.uid`, and MongoDB
+    // abandons an unindexed sort once it needs more than 32MB
+    Indiekit.addCollection("media", [{ key: { "properties.uid": 1 } }]);
     Indiekit.addEndpoint(this);
 
     // Only mount if media endpoint not already configured

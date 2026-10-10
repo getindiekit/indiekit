@@ -5,7 +5,6 @@ import { uuidv7At } from "@indiekit/util";
 import { testDatabase } from "@indiekit-test/database";
 
 import {
-  createIndexes,
   getTimelineItems,
   markItemsRead,
   markItemsUnread,
@@ -350,19 +349,6 @@ describe("endpoint-microsub/lib/storage/items", () => {
       const count = await removeItems(application, channel, ["nonexistent"]);
 
       assert.equal(count, 0);
-    });
-  });
-
-  describe("createIndexes", () => {
-    it("Creates the expected indexes", async () => {
-      await createIndexes(application);
-
-      const indexes = await items.indexes();
-      const keys = new Set(indexes.map((index) => JSON.stringify(index.key)));
-
-      assert.ok(keys.has(JSON.stringify({ channel: 1, id: 1 })));
-      assert.ok(keys.has(JSON.stringify({ channel: 1, uid: 1 })));
-      assert.ok(keys.has(JSON.stringify({ channel: 1, url: 1 })));
     });
   });
 });

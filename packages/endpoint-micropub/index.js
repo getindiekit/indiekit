@@ -22,7 +22,9 @@ export default class MicropubEndpoint {
   }
 
   init(Indiekit) {
-    Indiekit.addCollection("posts");
+    // Every paginated query sorts and ranges on `properties.uid`, and MongoDB
+    // abandons an unindexed sort once it needs more than 32MB
+    Indiekit.addCollection("posts", [{ key: { "properties.uid": 1 } }]);
     Indiekit.addEndpoint(this);
 
     // Only mount if micropub endpoint not already configured
