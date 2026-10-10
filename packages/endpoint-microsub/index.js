@@ -37,13 +37,8 @@ export default class MicrosubEndpoint {
    * @param {object} indiekit - Indiekit instance
    */
   async init(indiekit) {
-    console.info("[Microsub] Initializing endpoint-microsub plugin");
-
-    // Register MongoDB collections
     indiekit.addCollection("microsub_channels");
     indiekit.addCollection("microsub_items");
-
-    console.info("[Microsub] Registered MongoDB collections");
 
     // Register endpoint
     indiekit.addEndpoint(this);
@@ -53,16 +48,8 @@ export default class MicrosubEndpoint {
       indiekit.config.application.microsubEndpoint = this.mountPath;
     }
 
-    // Create indexes for optimal performance
     if (indiekit.database) {
-      try {
-        await createIndexes(indiekit);
-      } catch (error) {
-        console.warn(
-          "[Microsub] Index creation failed:",
-          error instanceof Error ? error.message : String(error),
-        );
-      }
+      await createIndexes(indiekit);
     }
   }
 }

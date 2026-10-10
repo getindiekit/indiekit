@@ -23,7 +23,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=24.17"
   },
   "type": "module",
   "main": "index.js",
@@ -45,7 +45,7 @@
     "@indiekit/error": "^1.0.0-beta.25",
     "@indiekit/util": "^1.0.0-beta.28",
     "debug": "^4.4.3",
-    "express": "^5.0.0"
+    "express": "^5.3.0"
   },
   "publishConfig": {
     "access": "public"

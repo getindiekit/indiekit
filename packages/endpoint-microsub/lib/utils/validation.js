@@ -6,7 +6,7 @@
 import { IndiekitError } from "@indiekit/error";
 
 /**
- * Valid Microsub actions (PR 1: channels and timeline only)
+ * Microsub actions this endpoint supports
  */
 export const VALID_ACTIONS = ["channels", "timeline"];
 
