@@ -20,7 +20,7 @@ export const FileInputFieldController = class extends HTMLElement {
   $fileInputPath;
 
   /**
-   * @type {HTMLElement}
+   * @type {HTMLElement | null}
    */
   $fileInputPicker;
 
@@ -45,7 +45,8 @@ export const FileInputFieldController = class extends HTMLElement {
 
     this.$uploadProgress = getElement(this, ".file-input__progress");
     this.$fileInputPath = getElement(this, ".file-input__path");
-    this.$fileInputPicker = getElement(this, ".file-input__picker");
+    // The picker exists only in its template until it is added below
+    this.$fileInputPicker = this.querySelector(".file-input__picker");
     this.$fileInputPickerTemplate = getElement(this, "#file-input-picker");
     this.$errorMessageTemplate = getElement(this, "#error-message");
 

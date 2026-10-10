@@ -165,10 +165,11 @@ export const TextareaFieldComponent = class extends HTMLElement {
     });
 
     /**
-     * Update character count
-     * @type {HTMLElement}
+     * Update character count, if the status bar is shown (it can be turned
+     * off with `editor-status="false"`)
+     * @type {HTMLElement | null}
      */
-    const $characters = getElement(this, ".editor-statusbar .characters");
+    const $characters = this.querySelector(".editor-statusbar .characters");
     editor.codemirror.on("update", () => {
       if ($characters) {
         $characters.innerHTML = String(editor.value().length);

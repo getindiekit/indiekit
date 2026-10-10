@@ -4,8 +4,9 @@ import { getElement } from "../../scripts/utils/get-element";
 
 export const TagInputFieldComponent = class extends HTMLElement {
   connectedCallback() {
-    this.$errorMessage = getElement(this, ".error-message");
-    this.$hint = getElement(this, ".hint");
+    // A hint and an error message are only rendered when given
+    this.$errorMessage = this.querySelector(".error-message");
+    this.$hint = this.querySelector(".hint");
     this.$replacedLabel = getElement(this, ".label");
     this.$replacedInput = getElement(this, ".input");
     this.value = this.$replacedInput.getAttribute("value");

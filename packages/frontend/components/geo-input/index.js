@@ -8,7 +8,7 @@ export const GeoInputFieldComponent = class extends HTMLElement {
   $geoInput;
 
   /**
-   * @type {HTMLButtonElement}
+   * @type {HTMLButtonElement | null}
    */
   $geoInputButton;
 
@@ -27,7 +27,8 @@ export const GeoInputFieldComponent = class extends HTMLElement {
     this.i18nFailed = this.getAttribute("i18n-failed");
 
     this.$geoInput = getElement(this, ".geo-input");
-    this.$geoInputButton = getElement(this, ".geo-input__button");
+    // The button exists only in its template until it is added below
+    this.$geoInputButton = this.querySelector(".geo-input__button");
     this.$geoInputButtonTemplate = getElement(this, "#geo-input-button");
     this.$errorMessageTemplate = getElement(this, "#error-message");
 
