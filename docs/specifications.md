@@ -81,7 +81,13 @@ The following [scopes](https://indieweb.org/scope) are supported:
 
 [Microsub](https://indieweb.org/Microsub-spec) provides a standardized way for clients to consume and interact with feeds collected by a server.
 
-Microsub is not currently supported by Indiekit, but might be in the future.
+* [x] [Channels](https://indieweb.org/Microsub-spec#Channels) (listing, [creating](https://indieweb.org/Microsub-spec#Create_a_Channel), [updating](https://indieweb.org/Microsub-spec#Update_a_Channel), [deleting](https://indieweb.org/Microsub-spec#Delete_a_Channel) and [ordering](https://indieweb.org/Microsub-spec#Set_Channel_Order) channels)
+* [x] [Timelines](https://indieweb.org/Microsub-spec#Timelines) ([retrieving entries](https://indieweb.org/Microsub-spec#Retrieve_Entries_in_a_Channel) with [paging](https://indieweb.org/Microsub-spec#Paging), [marking entries read or unread](https://indieweb.org/Microsub-spec#Mark_Entries_Read) and [removing entries](https://indieweb.org/Microsub-spec#Remove_Entry_from_a_Channel))
+* [ ] [Search](https://indieweb.org/Microsub-spec#Search)
+* [ ] [Preview](https://indieweb.org/Microsub-spec#Preview)
+* [ ] [Following](https://indieweb.org/Microsub-spec#Following) and [unfollowing](https://indieweb.org/Microsub-spec#Unfollowing) feeds
+* [ ] [Muting](https://indieweb.org/Microsub-spec#Muting) and [unmuting](https://indieweb.org/Microsub-spec#Unmuting) users
+* [ ] [Blocking](https://indieweb.org/Microsub-spec#Blocking) users
 
 ## Webmention
 
