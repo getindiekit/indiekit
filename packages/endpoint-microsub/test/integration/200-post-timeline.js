@@ -1,12 +1,11 @@
 import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
 
+import { uuidv7At } from "@indiekit/util";
 import { testDatabase } from "@indiekit-test/database";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 import supertest from "supertest";
-
-import { uuidv7At } from "../../lib/utils/uid.js";
 
 const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
@@ -40,7 +39,7 @@ describe("endpoint-microsub POST /microsub?action=timeline", () => {
 
         return {
           channel: fixture.channelUid,
-          id: uuidv7At(published),
+          id: uuidv7At(published.getTime()),
           type: "entry",
           uid: `item-${index}`,
           url: `https://website.example/${index}`,
@@ -138,7 +137,10 @@ describe("endpoint-microsub POST /microsub?action=timeline", () => {
       });
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Invalid timeline method/);
+    assert.match(
+      response.text,
+      /Invalid value provided for: <code>method<\/code>/,
+    );
   });
 
   it("Returns 404 for an unknown channel", async () => {

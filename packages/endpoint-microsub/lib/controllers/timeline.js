@@ -12,7 +12,6 @@ import {
   markItemsUnread,
   removeItems,
 } from "../storage/items.js";
-import { getUserId } from "../utils/auth.js";
 import {
   validateChannel,
   validateEntries,
@@ -26,18 +25,17 @@ import {
  * @param {object} response - Express response
  */
 export async function get(request, response) {
-  const { application } = request.app.locals;
-  const userId = getUserId(request);
+  const { application, publication } = request.app.locals;
+  const { __ } = response.locals;
+  const userId = publication.me;
   const { channel, before, after, limit } = request.query;
 
-  validateChannel(channel);
+  validateChannel(__, channel);
 
   // Verify channel exists
   const channelDocument = await getChannel(application, channel, userId);
   if (!channelDocument) {
-    throw new IndiekitError("Channel not found", {
-      status: 404,
-    });
+    throw IndiekitError.notFound(__("microsub.error.channelNotFound"));
   }
 
   const timeline = await getTimelineItems(application, channelDocument.uid, {
@@ -58,18 +56,17 @@ export async function get(request, response) {
  * @returns {Promise<void>}
  */
 export async function action(request, response) {
-  const { application } = request.app.locals;
-  const userId = getUserId(request);
+  const { application, publication } = request.app.locals;
+  const { __ } = response.locals;
+  const userId = publication.me;
   const { method, channel } = request.body;
 
-  validateChannel(channel);
+  validateChannel(__, channel);
 
   // Verify channel exists
   const channelDocument = await getChannel(application, channel, userId);
   if (!channelDocument) {
-    throw new IndiekitError("Channel not found", {
-      status: 404,
-    });
+    throw IndiekitError.notFound(__("microsub.error.channelNotFound"));
   }
 
   // Get entry IDs from request
@@ -77,7 +74,7 @@ export async function action(request, response) {
 
   switch (method) {
     case "mark_read": {
-      validateEntries(entries);
+      validateEntries(__, entries);
       const count = await markItemsRead(
         application,
         channelDocument.uid,
@@ -88,7 +85,7 @@ export async function action(request, response) {
     }
 
     case "mark_unread": {
-      validateEntries(entries);
+      validateEntries(__, entries);
       const count = await markItemsUnread(
         application,
         channelDocument.uid,
@@ -99,7 +96,7 @@ export async function action(request, response) {
     }
 
     case "remove": {
-      validateEntries(entries);
+      validateEntries(__, entries);
       const count = await removeItems(
         application,
         channelDocument.uid,
@@ -109,9 +106,9 @@ export async function action(request, response) {
     }
 
     default: {
-      throw new IndiekitError(`Invalid timeline method: ${method}`, {
-        status: 400,
-      });
+      throw IndiekitError.badRequest(
+        __("BadRequestError.invalidValue", "method"),
+      );
     }
   }
 }

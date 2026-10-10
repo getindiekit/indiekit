@@ -3,29 +3,12 @@
  * @module storage/channels
  */
 
+import { randomString } from "@indiekit/util";
 import makeDebug from "debug";
 
-import { generateChannelUid } from "../utils/uid.js";
+import { getChannelsCollection, getItemsCollection } from "./collections.js";
 
 const debug = makeDebug("indiekit:endpoint-microsub");
-
-/**
- * Get channels collection from application
- * @param {object} application - Indiekit application
- * @returns {object} MongoDB collection
- */
-function getCollection(application) {
-  return application.collections.get("microsub_channels");
-}
-
-/**
- * Get items collection for unread counts
- * @param {object} application - Indiekit application
- * @returns {object} MongoDB collection
- */
-function getItemsCollection(application) {
-  return application.collections.get("microsub_items");
-}
 
 /**
  * Create a new channel
@@ -36,7 +19,7 @@ function getItemsCollection(application) {
  * @returns {Promise<object>} Created channel
  */
 export async function createChannel(application, { name, userId }) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
 
   // Generate unique UID with retry on collision
   let uid;
@@ -44,7 +27,7 @@ export async function createChannel(application, { name, userId }) {
   const maxAttempts = 5;
 
   while (attempts < maxAttempts) {
-    uid = generateChannelUid();
+    uid = randomString(24);
     const existing = await collection.findOne({ uid });
     if (!existing) break;
     attempts++;
@@ -84,7 +67,7 @@ export async function createChannel(application, { name, userId }) {
  * @returns {Promise<Array>} Array of channels with unread counts
  */
 export async function getChannels(application, userId) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
   const itemsCollection = getItemsCollection(application);
 
   const filter = userId ? { userId } : {};
@@ -130,7 +113,7 @@ export async function getChannels(application, userId) {
  * @returns {Promise<object|null>} Channel or null
  */
 export async function getChannel(application, uid, userId) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
   const query = { uid };
   if (userId) query.userId = userId;
 
@@ -146,7 +129,7 @@ export async function getChannel(application, uid, userId) {
  * @returns {Promise<object|null>} Updated channel
  */
 export async function updateChannel(application, uid, updates, userId) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
   const query = { uid };
   if (userId) query.userId = userId;
 
@@ -172,7 +155,7 @@ export async function updateChannel(application, uid, updates, userId) {
  * @returns {Promise<boolean>} True if deleted
  */
 export async function deleteChannel(application, uid, userId) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
   const itemsCollection = getItemsCollection(application);
   const query = { uid };
   if (userId) query.userId = userId;
@@ -202,7 +185,7 @@ export async function deleteChannel(application, uid, userId) {
  * @returns {Promise<void>}
  */
 export async function reorderChannels(application, channelUids, userId) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
 
   // Update order for each channel
   const operations = channelUids.map((uid, index) => ({
@@ -224,7 +207,7 @@ export async function reorderChannels(application, channelUids, userId) {
  * @returns {Promise<object>} Notifications channel
  */
 export async function ensureNotificationsChannel(application, userId) {
-  const collection = getCollection(application);
+  const collection = getChannelsCollection(application);
 
   const existing = await collection.findOne({
     uid: "notifications",

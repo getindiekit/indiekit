@@ -1,12 +1,11 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
 
+import { uuidv7At } from "@indiekit/util";
 import { testDatabase } from "@indiekit-test/database";
 import { testServer } from "@indiekit-test/server";
 import { testCookie } from "@indiekit-test/session";
 import supertest from "supertest";
-
-import { uuidv7At } from "../../lib/utils/uid.js";
 
 const { client, mongoServer, mongoUri } = await testDatabase();
 const server = await testServer({
@@ -37,7 +36,7 @@ describe("endpoint-microsub GET /microsub?action=timeline", () => {
 
         return {
           channel: fixture.channelUid,
-          id: uuidv7At(published),
+          id: uuidv7At(published.getTime()),
           type: "entry",
           uid: `item-${index}`,
           url: `https://website.example/${index}`,
@@ -87,7 +86,7 @@ describe("endpoint-microsub GET /microsub?action=timeline", () => {
       .set("cookie", cookie);
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Missing required parameter: channel/);
+    assert.match(response.text, /Missing parameter: <code>channel<\/code>/);
   });
 
   after(async () => {

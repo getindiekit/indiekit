@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
 
+import { uuidv7At } from "@indiekit/util";
 import { testDatabase } from "@indiekit-test/database";
 
 import {
@@ -10,7 +11,6 @@ import {
   markItemsUnread,
   removeItems,
 } from "../../../lib/storage/items.js";
-import { uuidv7At } from "../../../lib/utils/uid.js";
 
 const { client, database, mongoServer } = await testDatabase();
 const items = database.collection("microsub_items");
@@ -33,7 +33,7 @@ async function insertItems(count, overrides = {}) {
 
     return {
       channel,
-      id: uuidv7At(published),
+      id: uuidv7At(published.getTime()),
       type: "entry",
       uid: `item-${index}`,
       url: `https://website.example/${index}`,
@@ -82,7 +82,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
       await insertItems(2);
       await items.insertOne({
         channel: otherChannel,
-        id: uuidv7At(new Date()),
+        id: uuidv7At(Date.now()),
         uid: "other",
         published: new Date(),
       });

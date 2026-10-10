@@ -50,7 +50,7 @@ describe("endpoint-microsub POST /microsub?action=channels", () => {
       .send({ action: "channels" });
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Missing required parameter: name/);
+    assert.match(response.text, /Missing parameter: <code>name<\/code>/);
   });
 
   it("Returns 400 when name exceeds 100 characters", async () => {

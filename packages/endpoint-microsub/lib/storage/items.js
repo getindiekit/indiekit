@@ -7,14 +7,7 @@ import { getCursor } from "@indiekit/util";
 
 import { parseLimit } from "../utils/pagination.js";
 
-/**
- * Get items collection from application
- * @param {object} application - Indiekit application
- * @returns {object} MongoDB collection
- */
-function getCollection(application) {
-  return application.collections.get("microsub_items");
-}
+import { getItemsCollection } from "./collections.js";
 
 /**
  * Get timeline items for a channel
@@ -28,7 +21,7 @@ function getCollection(application) {
  * @returns {Promise<object>} Timeline with items and paging
  */
 export async function getTimelineItems(application, channel, options = {}) {
-  const collection = getCollection(application);
+  const collection = getItemsCollection(application);
   const limit = parseLimit(options.limit);
 
   // Items are listed and paged by their `id`, a UUIDv7 stamped with the
@@ -106,7 +99,7 @@ function transformToJf2(item, userId) {
  * @returns {Promise<number>} Number of items updated
  */
 export async function markItemsRead(application, channel, entryIds, userId) {
-  const collection = getCollection(application);
+  const collection = getItemsCollection(application);
 
   // Handle "last-read-entry" special value
   if (entryIds.includes("last-read-entry")) {
@@ -142,7 +135,7 @@ export async function markItemsRead(application, channel, entryIds, userId) {
  * @returns {Promise<number>} Number of items updated
  */
 export async function markItemsUnread(application, channel, entryIds, userId) {
-  const collection = getCollection(application);
+  const collection = getItemsCollection(application);
 
   // Match by the id clients see, the feed's own uid, or url
   const result = await collection.updateMany(
@@ -168,7 +161,7 @@ export async function markItemsUnread(application, channel, entryIds, userId) {
  * @returns {Promise<number>} Number of items removed
  */
 export async function removeItems(application, channel, entryIds) {
-  const collection = getCollection(application);
+  const collection = getItemsCollection(application);
 
   // Match by the id clients see, the feed's own uid, or url
   const result = await collection.deleteMany({
@@ -189,7 +182,7 @@ export async function removeItems(application, channel, entryIds) {
  * @returns {Promise<void>}
  */
 export async function createIndexes(application) {
-  const collection = getCollection(application);
+  const collection = getItemsCollection(application);
 
   // Primary query indexes: `id` orders and pages the timeline, `uid` is the
   // feed's own identifier and keeps an item from being stored twice

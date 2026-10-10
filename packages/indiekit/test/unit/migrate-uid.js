@@ -1,9 +1,10 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it, mock } from "node:test";
 
+import { uuidv7At } from "@indiekit/util";
 import { testDatabase } from "@indiekit-test/database";
 
-import { backfillUids, uuidv7At } from "../../lib/migrate-uid.js";
+import { backfillUids } from "../../lib/migrate-uid.js";
 
 // UUIDs sort as strings; a plain `.sort()` would coerce and compare lexically
 // by default anyway, but the compare function keeps `unicorn/require-array-sort-compare` happy.

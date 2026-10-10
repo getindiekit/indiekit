@@ -1,15 +1,8 @@
 {
   "microsub": {
-    "title": "Microsub",
-    "channels": {
-      "title": "Channels"
-    },
-    "timeline": {
-      "title": "Timeline"
-    },
     "error": {
       "channelNotFound": "Channel not found",
-      "invalidAction": "Invalid action"
+      "nameTooLong": "Channel name must be %s characters or less"
     }
   }
 }

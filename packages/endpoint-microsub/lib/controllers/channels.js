@@ -12,7 +12,6 @@ import {
   deleteChannel,
   reorderChannels,
 } from "../storage/channels.js";
-import { getUserId } from "../utils/auth.js";
 import {
   validateChannel,
   validateChannelName,
@@ -26,10 +25,9 @@ import {
  * @param {object} response - Express response
  */
 export async function list(request, response) {
-  const { application } = request.app.locals;
-  const userId = getUserId(request);
+  const { application, publication } = request.app.locals;
 
-  const channels = await getChannels(application, userId);
+  const channels = await getChannels(application, publication.me);
 
   response.json({ channels });
 }
@@ -42,19 +40,18 @@ export async function list(request, response) {
  * @returns {Promise<void>}
  */
 export async function action(request, response) {
-  const { application } = request.app.locals;
-  const userId = getUserId(request);
+  const { application, publication } = request.app.locals;
+  const { __ } = response.locals;
+  const userId = publication.me;
   const { method, name, uid } = request.body;
 
   // Delete channel
   if (method === "delete") {
-    validateChannel(uid);
+    validateChannel(__, uid);
 
     const deleted = await deleteChannel(application, uid, userId);
     if (!deleted) {
-      throw new IndiekitError("Channel not found or cannot be deleted", {
-        status: 404,
-      });
+      throw IndiekitError.notFound(__("microsub.error.channelNotFound"));
     }
 
     return response.json({ deleted: uid });
@@ -64,9 +61,9 @@ export async function action(request, response) {
   if (method === "order") {
     const channelUids = parseArrayParameter(request.body, "channels");
     if (channelUids.length === 0) {
-      throw new IndiekitError("Missing channels[] parameter", {
-        status: 400,
-      });
+      throw IndiekitError.badRequest(
+        __("BadRequestError.missingParameter", "channels"),
+      );
     }
 
     await reorderChannels(application, channelUids, userId);
@@ -77,17 +74,15 @@ export async function action(request, response) {
 
   // Update existing channel
   if (uid) {
-    validateChannel(uid);
+    validateChannel(__, uid);
 
     if (name) {
-      validateChannelName(name);
+      validateChannelName(__, name);
     }
 
     const channel = await updateChannel(application, uid, { name }, userId);
     if (!channel) {
-      throw new IndiekitError("Channel not found", {
-        status: 404,
-      });
+      throw IndiekitError.notFound(__("microsub.error.channelNotFound"));
     }
 
     return response.json({
@@ -97,7 +92,7 @@ export async function action(request, response) {
   }
 
   // Create new channel
-  validateChannelName(name);
+  validateChannelName(__, name);
 
   const channel = await createChannel(application, { name, userId });
 

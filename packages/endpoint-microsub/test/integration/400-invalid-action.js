@@ -21,7 +21,10 @@ describe("endpoint-microsub invalid action", () => {
       .set("cookie", cookie);
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Invalid action/);
+    assert.match(
+      response.text,
+      /Invalid value provided for: <code>action<\/code>/,
+    );
   });
 
   it("Returns 400 for an unsupported POST action", async () => {
@@ -32,7 +35,10 @@ describe("endpoint-microsub invalid action", () => {
       .send({ action: "bogus" });
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Invalid action/);
+    assert.match(
+      response.text,
+      /Invalid value provided for: <code>action<\/code>/,
+    );
   });
 
   it("Returns 400 when POST has no action", async () => {
@@ -43,7 +49,7 @@ describe("endpoint-microsub invalid action", () => {
       .send({ name: "Tech News" });
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Missing required parameter: action/);
+    assert.match(response.text, /Missing parameter: <code>action<\/code>/);
   });
 
   after(async () => {

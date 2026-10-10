@@ -68,7 +68,7 @@ describe("endpoint-microsub POST /microsub?action=channels (order)", () => {
       .send({ action: "channels", method: "order" });
 
     assert.equal(response.status, 400);
-    assert.match(response.text, /Missing channels\[\] parameter/);
+    assert.match(response.text, /Missing parameter: <code>channels<\/code>/);
   });
 
   after(async () => {

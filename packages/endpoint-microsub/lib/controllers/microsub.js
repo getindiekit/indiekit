@@ -29,7 +29,7 @@ export async function get(request, response, next) {
       });
     }
 
-    validateAction(action);
+    validateAction(response.locals.__, action);
 
     switch (action) {
       case "channels": {
@@ -41,9 +41,9 @@ export async function get(request, response, next) {
       }
 
       default: {
-        throw new IndiekitError(`Unsupported GET action: ${action}`, {
-          status: 400,
-        });
+        throw IndiekitError.badRequest(
+          response.locals.__("BadRequestError.invalidValue", "action"),
+        );
       }
     }
   } catch (error) {
@@ -61,7 +61,7 @@ export async function get(request, response, next) {
 export async function post(request, response, next) {
   try {
     const action = request.body.action || request.query.action;
-    validateAction(action);
+    validateAction(response.locals.__, action);
 
     switch (action) {
       case "channels": {
@@ -73,9 +73,9 @@ export async function post(request, response, next) {
       }
 
       default: {
-        throw new IndiekitError(`Unsupported POST action: ${action}`, {
-          status: 400,
-        });
+        throw IndiekitError.badRequest(
+          response.locals.__("BadRequestError.invalidValue", "action"),
+        );
       }
     }
   } catch (error) {

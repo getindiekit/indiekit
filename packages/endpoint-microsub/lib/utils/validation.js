@@ -11,64 +11,72 @@ import { IndiekitError } from "@indiekit/error";
 export const VALID_ACTIONS = ["channels", "timeline"];
 
 /**
+ * Longest channel name accepted
+ */
+export const MAX_NAME_LENGTH = 100;
+
+/**
  * Validate action parameter
+ * @param {Function} __ - Localisation function
  * @param {string|null} [action] - Action to validate
  * @throws {IndiekitError} If action is invalid
  */
-export function validateAction(action) {
+export function validateAction(__, action) {
   if (!action) {
-    throw new IndiekitError("Missing required parameter: action", {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.missingParameter", "action"),
+    );
   }
 
   if (!VALID_ACTIONS.includes(action)) {
-    throw new IndiekitError(`Invalid action: ${action}`, {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.invalidValue", "action"),
+    );
   }
 }
 
 /**
  * Validate channel UID
+ * @param {Function} __ - Localisation function
  * @param {string} [channel] - Channel UID to validate
  * @param {boolean} [isRequired] - Whether channel is required
  * @throws {IndiekitError} If channel is invalid
  */
-export function validateChannel(channel, isRequired = true) {
+export function validateChannel(__, channel, isRequired = true) {
   if (isRequired && !channel) {
-    throw new IndiekitError("Missing required parameter: channel", {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.missingParameter", "channel"),
+    );
   }
 
   if (channel && typeof channel !== "string") {
-    throw new IndiekitError("Invalid channel parameter", {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.invalidValue", "channel"),
+    );
   }
 }
 
 /**
  * Validate entry/entries parameter
+ * @param {Function} __ - Localisation function
  * @param {string|Array} [entry] - Entry ID(s) to validate
  * @returns {Array} Array of entry IDs
  * @throws {IndiekitError} If entry is invalid
  */
-export function validateEntries(entry) {
+export function validateEntries(__, entry) {
   if (!entry) {
-    throw new IndiekitError("Missing required parameter: entry", {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.missingParameter", "entry"),
+    );
   }
 
   // Normalize to array
   const entries = Array.isArray(entry) ? entry : [entry];
 
   if (entries.length === 0) {
-    throw new IndiekitError("Entry parameter cannot be empty", {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.missingProperty", "entry"),
+    );
   }
 
   return entries;
@@ -76,20 +84,21 @@ export function validateEntries(entry) {
 
 /**
  * Validate channel name
+ * @param {Function} __ - Localisation function
  * @param {string} name - Channel name to validate
  * @throws {IndiekitError} If name is invalid
  */
-export function validateChannelName(name) {
+export function validateChannelName(__, name) {
   if (!name || typeof name !== "string") {
-    throw new IndiekitError("Missing required parameter: name", {
-      status: 400,
-    });
+    throw IndiekitError.badRequest(
+      __("BadRequestError.missingParameter", "name"),
+    );
   }
 
-  if (name.length > 100) {
-    throw new IndiekitError("Channel name must be 100 characters or less", {
-      status: 400,
-    });
+  if (name.length > MAX_NAME_LENGTH) {
+    throw IndiekitError.badRequest(
+      __("microsub.error.nameTooLong", MAX_NAME_LENGTH),
+    );
   }
 }
 

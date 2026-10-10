@@ -68,7 +68,7 @@ describe("endpoint-microsub POST /microsub?action=channels (delete)", () => {
       .send({ action: "channels", method: "delete", uid: "nonexistent" });
 
     assert.equal(response.status, 404);
-    assert.match(response.text, /Channel not found or cannot be deleted/);
+    assert.match(response.text, /Channel not found/);
   });
 
   it("Refuses to delete the notifications channel", async () => {
