@@ -43,7 +43,7 @@
 
   <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
 
-  <script async defer src="{{ application.jsPath | url(application.url) }}" type="module"></script>
+  <script src="{{ application.jsPath | url(application.url) }}" type="module"></script>
 
   <style>
     :root {
