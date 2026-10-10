@@ -1,12 +1,22 @@
 {% extends "document.njk" %}
 
+{% set endpoints = {
+  authorization_endpoint: application.authorizationEndpoint,
+  token_endpoint: application.tokenEndpoint,
+  micropub: application.micropubEndpoint,
+  microsub: application.microsubEndpoint,
+  "share-url": application.shareEndpoint + "?url={url}&name={title}&content={text}"
+} %}
+
 {% set discovery %}
 {{ __("guidance.discovery", application.name) | safe }}
 
 ```html
-<link rel="micropub" href="{{ application.micropubEndpoint }}">
-<link rel="authorization_endpoint" href="{{ application.authorizationEndpoint }}">
-<link rel="token_endpoint" href="{{ application.tokenEndpoint }}">
+{% for rel, href in endpoints %}
+{% if href %}
+<link rel="{{ rel }}" href="{{ href | safe }}">
+{% endif %}
+{% endfor %}
 ```
 {% endset %}
 

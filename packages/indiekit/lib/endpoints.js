@@ -9,12 +9,15 @@ import { getUrl } from "./utils.js";
 export const getEndpointUrls = (application, request) => {
   const endpoints = {};
 
+  // @todo Provide a method for plug-ins to register named endpoints
   for (const endpoint of [
     "authorizationEndpoint",
     "introspectionEndpoint",
     "mediaEndpoint",
     "micropubEndpoint",
+    "microsubEndpoint",
     "tokenEndpoint",
+    "shareEndpoint",
   ]) {
     endpoints[endpoint] = URL.canParse(application[endpoint])
       ? application[endpoint]
