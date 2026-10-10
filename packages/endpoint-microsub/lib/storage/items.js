@@ -4,7 +4,6 @@
  */
 
 import { getCursor } from "@indiekit/util";
-import { ObjectId } from "mongodb";
 
 import { parseLimit } from "../utils/pagination.js";
 
@@ -20,7 +19,7 @@ function getCollection(application) {
 /**
  * Get timeline items for a channel
  * @param {object} application - Indiekit application
- * @param {object|string} channelId - Channel ObjectId or its string form
+ * @param {string} channel - Channel uid
  * @param {object} options - Query options
  * @param {string} [options.before] - Before cursor
  * @param {string} [options.after] - After cursor
@@ -28,10 +27,8 @@ function getCollection(application) {
  * @param {string} [options.userId] - User ID for read state
  * @returns {Promise<object>} Timeline with items and paging
  */
-export async function getTimelineItems(application, channelId, options = {}) {
+export async function getTimelineItems(application, channel, options = {}) {
   const collection = getCollection(application);
-  const objectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
   const limit = parseLimit(options.limit);
 
   // Items are listed and paged by their `id`, a UUIDv7 stamped with the
@@ -41,7 +38,7 @@ export async function getTimelineItems(application, channelId, options = {}) {
     options.after,
     options.before,
     limit,
-    { filter: { channelId: objectId }, key: "id" },
+    { filter: { channel }, key: "id" },
   );
 
   const items = cursor.items.map((item) =>
@@ -103,20 +100,18 @@ function transformToJf2(item, userId) {
 /**
  * Mark items as read
  * @param {object} application - Indiekit application
- * @param {object|string} channelId - Channel ObjectId or its string form
+ * @param {string} channel - Channel uid
  * @param {Array} entryIds - Array of entry IDs to mark as read
  * @param {string} userId - User ID
  * @returns {Promise<number>} Number of items updated
  */
-export async function markItemsRead(application, channelId, entryIds, userId) {
+export async function markItemsRead(application, channel, entryIds, userId) {
   const collection = getCollection(application);
-  const channelObjectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
   // Handle "last-read-entry" special value
   if (entryIds.includes("last-read-entry")) {
     const result = await collection.updateMany(
-      { channelId: channelObjectId },
+      { channel },
       { $addToSet: { readBy: userId } },
     );
     return result.modifiedCount;
@@ -125,7 +120,7 @@ export async function markItemsRead(application, channelId, entryIds, userId) {
   // Match by the id clients see, the feed's own uid, or url
   const result = await collection.updateMany(
     {
-      channelId: channelObjectId,
+      channel,
       $or: [
         { id: { $in: entryIds } },
         { uid: { $in: entryIds } },
@@ -141,25 +136,18 @@ export async function markItemsRead(application, channelId, entryIds, userId) {
 /**
  * Mark items as unread
  * @param {object} application - Indiekit application
- * @param {object|string} channelId - Channel ObjectId or its string form
+ * @param {string} channel - Channel uid
  * @param {Array} entryIds - Array of entry IDs to mark as unread
  * @param {string} userId - User ID
  * @returns {Promise<number>} Number of items updated
  */
-export async function markItemsUnread(
-  application,
-  channelId,
-  entryIds,
-  userId,
-) {
+export async function markItemsUnread(application, channel, entryIds, userId) {
   const collection = getCollection(application);
-  const channelObjectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
   // Match by the id clients see, the feed's own uid, or url
   const result = await collection.updateMany(
     {
-      channelId: channelObjectId,
+      channel,
       $or: [
         { id: { $in: entryIds } },
         { uid: { $in: entryIds } },
@@ -175,18 +163,16 @@ export async function markItemsUnread(
 /**
  * Remove items from channel
  * @param {object} application - Indiekit application
- * @param {object|string} channelId - Channel ObjectId or its string form
+ * @param {string} channel - Channel uid
  * @param {Array} entryIds - Array of entry IDs to remove
  * @returns {Promise<number>} Number of items removed
  */
-export async function removeItems(application, channelId, entryIds) {
+export async function removeItems(application, channel, entryIds) {
   const collection = getCollection(application);
-  const channelObjectId =
-    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
   // Match by the id clients see, the feed's own uid, or url
   const result = await collection.deleteMany({
-    channelId: channelObjectId,
+    channel,
     $or: [
       { id: { $in: entryIds } },
       { uid: { $in: entryIds } },
@@ -207,9 +193,9 @@ export async function createIndexes(application) {
 
   // Primary query indexes: `id` orders and pages the timeline, `uid` is the
   // feed's own identifier and keeps an item from being stored twice
-  await collection.createIndex({ channelId: 1, id: 1 }, { unique: true });
-  await collection.createIndex({ channelId: 1, uid: 1 }, { unique: true });
+  await collection.createIndex({ channel: 1, id: 1 }, { unique: true });
+  await collection.createIndex({ channel: 1, uid: 1 }, { unique: true });
 
   // URL matching index for mark_read operations
-  await collection.createIndex({ channelId: 1, url: 1 });
+  await collection.createIndex({ channel: 1, url: 1 });
 }

@@ -95,7 +95,7 @@ export async function getChannels(application, userId) {
   const channelsWithCounts = await Promise.all(
     channels.map(async (channel) => {
       const unreadCount = await itemsCollection.countDocuments({
-        channelId: channel._id,
+        channel: channel.uid,
         readBy: { $ne: userId },
       });
 
@@ -182,20 +182,16 @@ export async function deleteChannel(application, uid, userId) {
     return false;
   }
 
-  // Find the channel first to get its ObjectId
-  const channel = await collection.findOne(query);
-  if (!channel) {
+  const result = await collection.deleteOne(query);
+  if (result.deletedCount === 0) {
     return false;
   }
 
   // Delete all items in channel
-  const itemsDeleted = await itemsCollection.deleteMany({
-    channelId: channel._id,
-  });
+  const itemsDeleted = await itemsCollection.deleteMany({ channel: uid });
   debug(`Deleted channel ${uid}: ${itemsDeleted.deletedCount} items`);
 
-  const result = await collection.deleteOne({ _id: channel._id });
-  return result.deletedCount > 0;
+  return true;
 }
 
 /**

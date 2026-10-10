@@ -125,7 +125,7 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         userId: "user-1",
       });
       const stored = await channels.findOne({ uid: channel.uid });
-      await items.insertOne({ channelId: stored._id, readBy: ["user-1"] });
+      await items.insertOne({ channel: stored.uid, readBy: ["user-1"] });
 
       const result = await getChannels(application, "user-1");
 
@@ -139,9 +139,9 @@ describe("endpoint-microsub/lib/storage/channels", () => {
       });
       const stored = await channels.findOne({ uid: channel.uid });
       await items.insertMany([
-        { channelId: stored._id, readBy: [] },
-        { channelId: stored._id, readBy: [] },
-        { channelId: stored._id, readBy: ["user-1"] },
+        { channel: stored.uid, readBy: [] },
+        { channel: stored.uid, readBy: [] },
+        { channel: stored.uid, readBy: ["user-1"] },
       ]);
 
       const result = await getChannels(application, "user-1");
@@ -240,11 +240,11 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         userId: "user-1",
       });
       const stored = await channels.findOne({ uid: channel.uid });
-      await items.insertOne({ channelId: stored._id });
+      await items.insertOne({ channel: stored.uid });
 
       await deleteChannel(application, channel.uid, "user-1");
 
-      assert.equal(await items.countDocuments({ channelId: stored._id }), 0);
+      assert.equal(await items.countDocuments({ channel: stored.uid }), 0);
     });
 
     it("Refuses to delete the notifications channel", async () => {

@@ -2,7 +2,6 @@ import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
 
 import { testDatabase } from "@indiekit-test/database";
-import { ObjectId } from "mongodb";
 
 import {
   createIndexes,
@@ -19,8 +18,8 @@ const application = {
   collections: new Map([["microsub_items", items]]),
 };
 
-const channelId = new ObjectId("000000000000000000000001");
-const otherChannelId = new ObjectId("000000000000000000000002");
+const channel = "channel-1";
+const otherChannel = "channel-2";
 
 /**
  * Insert timeline items, oldest first
@@ -33,7 +32,7 @@ async function insertItems(count, overrides = {}) {
     const published = new Date(Date.UTC(2026, 0, index + 1));
 
     return {
-      channelId,
+      channel,
       id: uuidv7At(published),
       type: "entry",
       uid: `item-${index}`,
@@ -62,7 +61,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
   describe("getTimelineItems", () => {
     it("Returns an empty timeline when the channel has no items", async () => {
-      const result = await getTimelineItems(application, channelId);
+      const result = await getTimelineItems(application, channel);
 
       assert.deepEqual(result.items, []);
       assert.deepEqual(result.paging, {});
@@ -71,7 +70,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Returns items newest first", async () => {
       await insertItems(3);
 
-      const result = await getTimelineItems(application, channelId);
+      const result = await getTimelineItems(application, channel);
 
       assert.deepEqual(
         result.items.map((item) => item.name),
@@ -82,21 +81,13 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Excludes items from other channels", async () => {
       await insertItems(2);
       await items.insertOne({
-        channelId: otherChannelId,
+        channel: otherChannel,
         id: uuidv7At(new Date()),
         uid: "other",
         published: new Date(),
       });
 
-      const result = await getTimelineItems(application, channelId);
-
-      assert.equal(result.items.length, 2);
-    });
-
-    it("Accepts a channel ID as a string", async () => {
-      await insertItems(2);
-
-      const result = await getTimelineItems(application, channelId.toString());
+      const result = await getTimelineItems(application, channel);
 
       assert.equal(result.items.length, 2);
     });
@@ -104,7 +95,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Applies the requested limit", async () => {
       await insertItems(5);
 
-      const result = await getTimelineItems(application, channelId, {
+      const result = await getTimelineItems(application, channel, {
         limit: 2,
       });
 
@@ -114,7 +105,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Returns an after cursor when more items remain", async () => {
       await insertItems(5);
 
-      const result = await getTimelineItems(application, channelId, {
+      const result = await getTimelineItems(application, channel, {
         limit: 2,
       });
 
@@ -124,14 +115,14 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Pages back to newer items using the before cursor", async () => {
       await insertItems(4);
 
-      const first = await getTimelineItems(application, channelId, {
+      const first = await getTimelineItems(application, channel, {
         limit: 2,
       });
-      const second = await getTimelineItems(application, channelId, {
+      const second = await getTimelineItems(application, channel, {
         limit: 2,
         after: first.paging.after,
       });
-      const back = await getTimelineItems(application, channelId, {
+      const back = await getTimelineItems(application, channel, {
         limit: 2,
         before: second.paging.before,
       });
@@ -146,10 +137,10 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Pages through items using the after cursor", async () => {
       await insertItems(4);
 
-      const first = await getTimelineItems(application, channelId, {
+      const first = await getTimelineItems(application, channel, {
         limit: 2,
       });
-      const second = await getTimelineItems(application, channelId, {
+      const second = await getTimelineItems(application, channel, {
         limit: 2,
         after: first.paging.after,
       });
@@ -163,7 +154,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Transforms items to jf2", async () => {
       await insertItems(1, { author: "Alice", category: ["indieweb"] });
 
-      const { items: result } = await getTimelineItems(application, channelId);
+      const { items: result } = await getTimelineItems(application, channel);
 
       assert.equal(result[0].type, "entry");
       assert.equal(result[0].uid, "item-0");
@@ -177,7 +168,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Omits optional fields that are absent", async () => {
       await insertItems(1);
 
-      const { items: result } = await getTimelineItems(application, channelId);
+      const { items: result } = await getTimelineItems(application, channel);
 
       assert.equal("author" in result[0], false);
       assert.equal("category" in result[0], false);
@@ -189,7 +180,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
         inReplyTo: ["https://website.example/replied"],
       });
 
-      const { items: result } = await getTimelineItems(application, channelId);
+      const { items: result } = await getTimelineItems(application, channel);
 
       assert.deepEqual(result[0]["like-of"], ["https://website.example/liked"]);
       assert.deepEqual(result[0]["in-reply-to"], [
@@ -200,7 +191,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Reports read state for the given user", async () => {
       await insertItems(1, { readBy: ["user-1"] });
 
-      const { items: result } = await getTimelineItems(application, channelId, {
+      const { items: result } = await getTimelineItems(application, channel, {
         userId: "user-1",
       });
 
@@ -210,7 +201,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Reports items as unread for a different user", async () => {
       await insertItems(1, { readBy: ["user-2"] });
 
-      const { items: result } = await getTimelineItems(application, channelId, {
+      const { items: result } = await getTimelineItems(application, channel, {
         userId: "user-1",
       });
 
@@ -224,14 +215,14 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const count = await markItemsRead(
         application,
-        channelId,
+        channel,
         ["item-0", "item-1"],
         "user-1",
       );
 
       assert.equal(count, 2);
       assert.equal(
-        await items.countDocuments({ channelId, readBy: "user-1" }),
+        await items.countDocuments({ channel, readBy: "user-1" }),
         2,
       );
     });
@@ -241,7 +232,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const count = await markItemsRead(
         application,
-        channelId,
+        channel,
         ["https://website.example/0"],
         "user-1",
       );
@@ -255,7 +246,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const count = await markItemsRead(
         application,
-        channelId,
+        channel,
         [item.id],
         "user-1",
       );
@@ -268,7 +259,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const count = await markItemsRead(
         application,
-        channelId,
+        channel,
         ["last-read-entry"],
         "user-1",
       );
@@ -279,14 +270,14 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Does not mark items in other channels", async () => {
       await insertItems(1);
       await items.insertOne({
-        channelId: otherChannelId,
+        channel: otherChannel,
         uid: "item-0",
         readBy: [],
       });
 
-      await markItemsRead(application, channelId, ["item-0"], "user-1");
+      await markItemsRead(application, channel, ["item-0"], "user-1");
 
-      const other = await items.findOne({ channelId: otherChannelId });
+      const other = await items.findOne({ channel: otherChannel });
 
       assert.deepEqual(other.readBy, []);
     });
@@ -294,7 +285,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Does not add a duplicate user to readBy", async () => {
       await insertItems(1, { readBy: ["user-1"] });
 
-      await markItemsRead(application, channelId, ["item-0"], "user-1");
+      await markItemsRead(application, channel, ["item-0"], "user-1");
 
       const item = await items.findOne({ uid: "item-0" });
 
@@ -308,7 +299,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const count = await markItemsUnread(
         application,
-        channelId,
+        channel,
         ["item-0"],
         "user-1",
       );
@@ -323,7 +314,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Leaves other users' read state intact", async () => {
       await insertItems(1, { readBy: ["user-1", "user-2"] });
 
-      await markItemsUnread(application, channelId, ["item-0"], "user-1");
+      await markItemsUnread(application, channel, ["item-0"], "user-1");
 
       const item = await items.findOne({ uid: "item-0" });
 
@@ -335,31 +326,28 @@ describe("endpoint-microsub/lib/storage/items", () => {
     it("Deletes the given items", async () => {
       await insertItems(3);
 
-      const count = await removeItems(application, channelId, [
+      const count = await removeItems(application, channel, [
         "item-0",
         "item-1",
       ]);
 
       assert.equal(count, 2);
-      assert.equal(await items.countDocuments({ channelId }), 1);
+      assert.equal(await items.countDocuments({ channel }), 1);
     });
 
     it("Does not delete items in other channels", async () => {
       await insertItems(1);
-      await items.insertOne({ channelId: otherChannelId, uid: "item-0" });
+      await items.insertOne({ channel: otherChannel, uid: "item-0" });
 
-      await removeItems(application, channelId, ["item-0"]);
+      await removeItems(application, channel, ["item-0"]);
 
-      assert.equal(
-        await items.countDocuments({ channelId: otherChannelId }),
-        1,
-      );
+      assert.equal(await items.countDocuments({ channel: otherChannel }), 1);
     });
 
     it("Returns 0 when nothing matches", async () => {
       await insertItems(1);
 
-      const count = await removeItems(application, channelId, ["nonexistent"]);
+      const count = await removeItems(application, channel, ["nonexistent"]);
 
       assert.equal(count, 0);
     });
@@ -372,9 +360,9 @@ describe("endpoint-microsub/lib/storage/items", () => {
       const indexes = await items.indexes();
       const keys = new Set(indexes.map((index) => JSON.stringify(index.key)));
 
-      assert.ok(keys.has(JSON.stringify({ channelId: 1, id: 1 })));
-      assert.ok(keys.has(JSON.stringify({ channelId: 1, uid: 1 })));
-      assert.ok(keys.has(JSON.stringify({ channelId: 1, url: 1 })));
+      assert.ok(keys.has(JSON.stringify({ channel: 1, id: 1 })));
+      assert.ok(keys.has(JSON.stringify({ channel: 1, uid: 1 })));
+      assert.ok(keys.has(JSON.stringify({ channel: 1, url: 1 })));
     });
   });
 });

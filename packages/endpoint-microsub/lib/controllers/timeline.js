@@ -40,7 +40,7 @@ export async function get(request, response) {
     });
   }
 
-  const timeline = await getTimelineItems(application, channelDocument._id, {
+  const timeline = await getTimelineItems(application, channelDocument.uid, {
     before,
     after,
     limit,
@@ -80,7 +80,7 @@ export async function action(request, response) {
       validateEntries(entries);
       const count = await markItemsRead(
         application,
-        channelDocument._id,
+        channelDocument.uid,
         entries,
         userId,
       );
@@ -91,7 +91,7 @@ export async function action(request, response) {
       validateEntries(entries);
       const count = await markItemsUnread(
         application,
-        channelDocument._id,
+        channelDocument.uid,
         entries,
         userId,
       );
@@ -102,7 +102,7 @@ export async function action(request, response) {
       validateEntries(entries);
       const count = await removeItems(
         application,
-        channelDocument._id,
+        channelDocument.uid,
         entries,
       );
       return response.json({ result: "ok", removed: count });

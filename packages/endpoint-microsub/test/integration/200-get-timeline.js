@@ -31,16 +31,12 @@ describe("endpoint-microsub GET /microsub?action=timeline", () => {
 
     fixture.channelUid = created.body.uid;
 
-    const channel = await database
-      .collection("microsub_channels")
-      .findOne({ uid: fixture.channelUid });
-
     await database.collection("microsub_items").insertMany(
       Array.from({ length: 3 }, (_, index) => {
         const published = new Date(Date.UTC(2026, 0, index + 1));
 
         return {
-          channelId: channel._id,
+          channel: fixture.channelUid,
           id: uuidv7At(published),
           type: "entry",
           uid: `item-${index}`,
