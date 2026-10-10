@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Fügen Sie dem `<head>` Ihrer Website die folgenden Werte hinzu, damit Micropub-Clients %s erkennen und um Erlaubnis bitten, auf Ihrer Website posten zu dürfen:"
+    "discovery": "Fügen Sie diesen Code in den `<head>` Ihrer Website ein. Apps können dann %s finden und um Erlaubnis zum Veröffentlichen bitten."
   },
   "homepage": {
     "title": "Willkommen!"

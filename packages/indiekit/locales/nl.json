@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Om ervoor te zorgen dat %s kan worden ontdekt door Micropub-clients en toestemming kan vragen om op uw website te posten, voegt u de volgende waarden toe aan de `<head>` van uw website:"
+    "discovery": "Voeg deze code toe aan de `<head>` van je website. Apps kunnen dan %s vinden en toestemming vragen om te plaatsen."
   },
   "homepage": {
     "title": "Welkom!"

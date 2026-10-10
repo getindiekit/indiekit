@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Så att %s kan upptäckas av Micropub-klienter och begära tillstånd att posta på din webbplats, lägg till följande värden till din webbplats `<head>`:"
+    "discovery": "Lägg till denna kod på `<head>` på din webbplats. Appar kan sedan hitta %s och be om tillstånd att posta."
   },
   "homepage": {
     "title": "Välkommen!"

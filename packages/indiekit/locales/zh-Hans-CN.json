@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "为使 %s 可以被 Micropub 客户端发现并请求在您的网站上发帖的权限，请将以下值添加到您网站的 `<head>`："
+    "discovery": "将这个代码添加到你网站的`<head>` 中。应用程序随后可以找到%s并请求发布权限。"
   },
   "homepage": {
     "title": "欢迎！"

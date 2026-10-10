@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Aby %s mógł zostać wykryty przez klientów Micropub i poprosić o pozwolenie na publikowanie w Twojej witrynie, dodaj następujące wartości do `<head>` witryny:"
+    "discovery": "Dodaj ten kod do `<head>` swojej strony. Aplikacje mogą wtedy znaleźć %s i poprosić o pozwolenie na publikację."
   },
   "homepage": {
     "title": "Witaj!"

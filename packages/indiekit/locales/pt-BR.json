@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Para que %s possam ser descobertos pelos clientes do Micropub e solicitar permissão para publicar no seu site. Adicione os seguintes valores ao `<head>`:"
+    "discovery": "Adicione esse código ao `<head>` do seu site. Os aplicativos podem então encontrar o %s e pedir permissão para postar."
   },
   "homepage": {
     "title": "Bem-vindo!"
