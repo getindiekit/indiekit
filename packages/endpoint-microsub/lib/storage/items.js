@@ -3,7 +3,7 @@
  * @module storage/items
  */
 
-import { getObjectId } from "@indiekit/util";
+import { ObjectId } from "mongodb";
 
 import {
   buildPaginationQuery,
@@ -35,7 +35,7 @@ function getCollection(application) {
 export async function getTimelineItems(application, channelId, options = {}) {
   const collection = getCollection(application);
   const objectId =
-    typeof channelId === "string" ? getObjectId(channelId) : channelId;
+    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
   const limit = parseLimit(options.limit);
 
   const baseQuery = { channelId: objectId };
@@ -124,7 +124,7 @@ function transformToJf2(item, userId) {
 export async function markItemsRead(application, channelId, entryIds, userId) {
   const collection = getCollection(application);
   const channelObjectId =
-    typeof channelId === "string" ? getObjectId(channelId) : channelId;
+    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
   // Handle "last-read-entry" special value
   if (entryIds.includes("last-read-entry")) {
@@ -139,7 +139,7 @@ export async function markItemsRead(application, channelId, entryIds, userId) {
   const objectIds = entryIds
     .map((id) => {
       try {
-        return getObjectId(id);
+        return new ObjectId(id);
       } catch {
         return;
       }
@@ -178,13 +178,13 @@ export async function markItemsUnread(
 ) {
   const collection = getCollection(application);
   const channelObjectId =
-    typeof channelId === "string" ? getObjectId(channelId) : channelId;
+    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
   // Convert string IDs to ObjectIds where possible
   const objectIds = entryIds
     .map((id) => {
       try {
-        return getObjectId(id);
+        return new ObjectId(id);
       } catch {
         return;
       }
@@ -217,13 +217,13 @@ export async function markItemsUnread(
 export async function removeItems(application, channelId, entryIds) {
   const collection = getCollection(application);
   const channelObjectId =
-    typeof channelId === "string" ? getObjectId(channelId) : channelId;
+    typeof channelId === "string" ? new ObjectId(channelId) : channelId;
 
   // Convert string IDs to ObjectIds where possible
   const objectIds = entryIds
     .map((id) => {
       try {
-        return getObjectId(id);
+        return new ObjectId(id);
       } catch {
         return;
       }

@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
-import { getObjectId } from "@indiekit/util";
+import { ObjectId } from "mongodb";
 
 import {
   buildPaginationQuery,
@@ -20,7 +20,7 @@ import {
  */
 function createMockItems() {
   return Array.from({ length: 5 }, (_, index) => ({
-    _id: getObjectId(String(index + 1).padStart(24, "0")),
+    _id: new ObjectId(String(index + 1).padStart(24, "0")),
     published: new Date(Date.now() - index * 1000),
   }));
 }
