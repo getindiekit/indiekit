@@ -57,7 +57,7 @@
     "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@atproto/dev-env": "^0.6.11",
+    "@atproto/dev-env": "^0.6.17",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@eslint/js": "^10.0.1",
@@ -79,7 +79,7 @@
     "@types/express": "^5.0.6",
     "@types/express-fileupload": "^1.5.1",
     "@types/i18n": "^0.13.12",
-    "@types/lodash": "^4.17.25",
+    "@types/lodash": "^4.17.26",
     "@types/serviceworker": "^0.0.203",
     "aws-sdk-client-mock": "^4.1.0",
     "cookie-session": "^2.1.1",
@@ -89,7 +89,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-node": "^0.4.0",
     "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-jsdoc": "^65.2.2",
+    "eslint-plugin-jsdoc": "^65.2.4",
     "eslint-plugin-unicorn": "^77.0.0",
     "eslint-plugin-wc": "^3.1.0",
     "globals": "^17.13.0",
@@ -104,15 +104,15 @@
     "mock-req-res": "^1.2.1",
     "mock-session": "^0.0.5",
     "mongodb-memory-server": "^11.3.0",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "stylelint": "^17.16.0",
     "stylelint-config-recommended": "^18.0.0",
-    "stylelint-order": "^8.1.1",
+    "stylelint-order": "^8.1.2",
     "supertest": "^7.3.1",
     "vitepress": "^1.6.4"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.64.3",
+    "@rollup/rollup-linux-x64-gnu": "^4.64.5",
     "lightningcss-linux-x64-gnu": "^1.33.0"
   },
   "overrides": {
