@@ -1,6 +1,7 @@
 import EasyMDE from "easymde";
 
 import { getElement } from "../../scripts/utils/get-element";
+import { openMediaBrowser } from "../../scripts/utils/media-browser.js";
 
 const paths = {
   bold: "M17 30c6.1 0 10-3 10-8 0-3.5-2.7-6.3-6.5-6.5V15c3-.4 5-3 5-6 0-4.5-3.5-7-9-7H5v28h12ZM12 7h2c2.5 0 4 1 4 3 0 1.5-1.5 3-4 3h-2V7Zm0 18v-7h2.3c3.1 0 4.7 1.1 4.7 3.4 0 2.5-1.4 3.6-4.8 3.6H12Z",
@@ -21,6 +22,8 @@ const paths = {
   undo: "M2 24h-.1A2 2 0 0 1 0 22V9h4v7.5A15 15 0 0 1 32 24h-4a11 11 0 0 0-21.2-4H15v4H2Z",
   "unordered-list":
     "M9 2h22v4H9Zm0 12h22v4H9Zm0 12h22v4H9ZM3 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm0 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
+  "browse-media":
+    "M1 1h13v13H1V1Zm17 0h13v13H18V1ZM1 18h13v13H1V18Zm17 0h13v13H18V18Z",
   "upload-image":
     "M2 0h28a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0Zm26 24-9-14-7 11-3-4.8L4 24h24Z",
 };
@@ -57,6 +60,9 @@ export const TextareaFieldComponent = class extends HTMLElement {
     this.editorToolbar = this.getAttribute("editor-toolbar");
     this.$label = getElement(this, "label");
     this.$textarea = getElement(this, "textarea");
+    this.$mediaBrowserTemplate = /** @type {HTMLTemplateElement | null} */ (
+      this.querySelector("#media-browser")
+    );
 
     const status = this?.editorStatus !== "false" && [
       ...(this.editorImageUpload === "false" ? [] : ["upload-image"]),
@@ -76,6 +82,16 @@ export const TextareaFieldComponent = class extends HTMLElement {
       "code",
       "link",
       ...(this.editorImageUpload === "false" ? [] : ["upload-image"]),
+      ...(this.$mediaBrowserTemplate
+        ? [
+            {
+              name: "browse-media",
+              action: () => this.browseMedia(editor),
+              className: "browse-media",
+              title: this.$mediaBrowserTemplate.dataset.label || "",
+            },
+          ]
+        : []),
       "|",
       "undo",
       "side-by-side",
@@ -198,6 +214,32 @@ export const TextareaFieldComponent = class extends HTMLElement {
     });
 
     resizeObserver.observe($editorToolbar);
+  }
+
+  /**
+   * Insert a file already uploaded to the media endpoint
+   * @param {EasyMDE} editor - Editor
+   */
+  browseMedia(editor) {
+    const template = this.$mediaBrowserTemplate;
+    const endpoint = this.editorEndpoint;
+    if (!template || !endpoint) {
+      return;
+    }
+
+    openMediaBrowser(template, {
+      endpoint,
+      onSelect(file) {
+        const name = decodeURIComponent(file.url.split("/").at(-1) || "");
+        const markdown =
+          file["media-type"] === "photo"
+            ? `![](${file.url})`
+            : `[${name}](${file.url})`;
+
+        editor.codemirror.replaceSelection(markdown);
+        editor.codemirror.focus();
+      },
+    });
   }
 
   uploadFile(endpoint) {

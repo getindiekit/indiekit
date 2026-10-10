@@ -30,6 +30,14 @@
     "getCurrentPosition": "Usa la posizione attuale"
   },
   "important": "Importante",
+  "mediaBrowser": {
+    "browse": "Sfoglia i media…",
+    "cancel": "Annulla",
+    "empty": "Nessun file è stato ancora caricato",
+    "error": "Impossibile caricare i file",
+    "more": "Mostra altri",
+    "title": "Scegli un file"
+  },
   "noValue": "Non impostato",
   "optionalValue": "(opzionale)",
   "pagination": {

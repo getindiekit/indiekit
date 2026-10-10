@@ -1,0 +1,56 @@
+.media-browser {
+  border: 0;
+  border-radius: var(--border-radius-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  inline-size: min(48rem, 100% - var(--space-l));
+  max-block-size: min(40rem, 100% - var(--space-l));
+  outline: var(--border-width-thickest) solid var(--color-shadow);
+  padding: var(--space-m);
+
+  &::backdrop {
+    background-color: var(--color-shadow);
+  }
+}
+
+.media-browser__title {
+  font: var(--font-label);
+}
+
+.media-browser__files {
+  display: grid;
+  gap: var(--space-s);
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  list-style: none;
+  padding: 0;
+}
+
+.media-browser__file {
+  background-color: var(--color-offset);
+  border: var(--border-width-thin) solid var(--color-shadow);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  font: var(--font-caption);
+  inline-size: 100%;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  padding: var(--space-xs);
+
+  & img {
+    aspect-ratio: 1;
+    block-size: auto;
+    inline-size: 100%;
+    object-fit: cover;
+  }
+
+  &:focus-visible,
+  &:hover {
+    border-color: var(--color-primary);
+  }
+}
+
+/* Buttons and messages are shown and hidden with the `hidden` attribute */
+.media-browser [hidden] {
+  display: none;
+}

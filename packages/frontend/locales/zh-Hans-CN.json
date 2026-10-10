@@ -30,6 +30,14 @@
     "getCurrentPosition": "使用当前位置"
   },
   "important": "重要",
+  "mediaBrowser": {
+    "browse": "浏览媒体…",
+    "cancel": "取消",
+    "empty": "尚未上传任何文件",
+    "error": "无法加载文件",
+    "more": "显示更多",
+    "title": "选择文件"
+  },
   "noValue": "未设置",
   "optionalValue": "（可选）",
   "pagination": {

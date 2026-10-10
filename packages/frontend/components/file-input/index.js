@@ -1,6 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 
 import { getElement } from "../../scripts/utils/get-element.js";
+import { openMediaBrowser } from "../../scripts/utils/media-browser.js";
 import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
@@ -107,6 +108,24 @@ export const FileInputFieldController = class extends HTMLElement {
       ".file-input__file",
     );
     $fileInputFile.addEventListener("change", (event) => this.fetch(event));
+
+    // Choose a file already uploaded instead
+    const $fileInputBrowse = this.$fileInputPicker.querySelector(
+      ".file-input__browse",
+    );
+    const $mediaBrowserTemplate = /** @type {HTMLTemplateElement | null} */ (
+      this.querySelector("#media-browser")
+    );
+    if ($fileInputBrowse && $mediaBrowserTemplate) {
+      $fileInputBrowse.addEventListener("click", () =>
+        openMediaBrowser($mediaBrowserTemplate, {
+          endpoint: this.endpoint,
+          onSelect: (file) => {
+            this.$fileInputPath.value = file.url;
+          },
+        }),
+      );
+    }
   }
 
   /**

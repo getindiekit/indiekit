@@ -30,6 +30,14 @@
     "getCurrentPosition": "Use current location"
   },
   "important": "Important",
+  "mediaBrowser": {
+    "browse": "Browse media…",
+    "cancel": "Cancel",
+    "empty": "No files have been uploaded yet",
+    "error": "Unable to load files",
+    "more": "Show more",
+    "title": "Choose a file"
+  },
   "noValue": "Not set",
   "optionalValue": "(optional)",
   "pagination": {

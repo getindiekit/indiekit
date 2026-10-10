@@ -30,6 +30,14 @@
     "getCurrentPosition": "Utiliser la position actuelle"
   },
   "important": "Important",
+  "mediaBrowser": {
+    "browse": "Parcourir les médias…",
+    "cancel": "Annuler",
+    "empty": "Aucun fichier n’a encore été téléversé",
+    "error": "Impossible de charger les fichiers",
+    "more": "Afficher plus",
+    "title": "Choisir un fichier"
+  },
   "noValue": "Non définie",
   "optionalValue": "(facultatif)",
   "pagination": {
