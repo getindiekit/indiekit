@@ -1,0 +1,8 @@
+{
+  "microsub": {
+    "error": {
+      "channelNotFound": "未找到频道",
+      "nameTooLong": "频道名称必须少于或等于 %s 个字符"
+    }
+  }
+}

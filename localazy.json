@@ -16,6 +16,12 @@
       },
       {
         "file": "en.json",
+        "path": "packages/endpoint-microsub/locales",
+        "pattern": "packages/endpoint-microsub/locales/en.json",
+        "module": "endpoint-microsub"
+      },
+      {
+        "file": "en.json",
         "path": "packages/endpoint-posts/locales",
         "pattern": "packages/endpoint-posts/locales/en.json",
         "module": "endpoint-posts"

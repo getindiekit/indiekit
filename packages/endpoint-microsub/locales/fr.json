@@ -1,0 +1,8 @@
+{
+  "microsub": {
+    "error": {
+      "channelNotFound": "Canal non trouvé",
+      "nameTooLong": "Le nom du canal doit être composé de %s caractères ou moins"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "microsub": {
+    "error": {
+      "channelNotFound": "चैनल नहीं मिला",
+      "nameTooLong": "चैनल का नाम %s अक्षरों या उससे कम का होना चाहिए"
+    }
+  }
+}

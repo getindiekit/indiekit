@@ -1,0 +1,8 @@
+{
+  "microsub": {
+    "error": {
+      "channelNotFound": "Saluran tidak ditemukan",
+      "nameTooLong": "Nama saluran harus terdiri dari %s karakter atau kurang"
+    }
+  }
+}
