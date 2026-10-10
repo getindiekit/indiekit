@@ -14,12 +14,6 @@
     "name": "Paul Robert Lloyd",
     "url": "https://paulrobertlloyd.com"
   },
-  "contributors": [
-    {
-      "name": "Ricardo Mendes",
-      "url": "https://rmendes.net/"
-    }
-  ],
   "license": "MIT",
   "engines": {
     "node": ">=24.17"
