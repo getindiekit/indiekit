@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Sehingga %s dapat ditemukan oleh klien Micropub dan meminta izin untuk memposting ke situs web Anda, tambahkan nilai berikut ke situs web Anda `<head>`:"
+    "discovery": "Tambahkan kode ini ke `<head>` situs web Anda. Aplikasi kemudian dapat menemukan %s dan meminta izin untuk memposting."
   },
   "homepage": {
     "title": "Selamat datang!"

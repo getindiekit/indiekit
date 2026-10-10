@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "Per consentire a %s di essere rilevato da un client Micropub e richiedere l'autorizzazione per pubblicare sul tuo sito web, aggiungi i seguenti valori all'interno del tag `<head>` del tuo sito:"
+    "discovery": "Aggiungi questo codice al `<head>` del tuo sito web. Le app possono quindi trovare %s e chiedere il permesso di pubblicare."
   },
   "homepage": {
     "title": "Benvenuto!"

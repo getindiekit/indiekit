@@ -1,6 +1,6 @@
 {
   "guidance": {
-    "discovery": "So that %s can be discovered by Micropub clients and request permission to post to your website, add the following values to your website’s `<head>`:"
+    "discovery": "Add this code to the `<head>` of your website. Apps can then find %s and ask for permission to post."
   },
   "homepage": {
     "title": "Welcome!"
