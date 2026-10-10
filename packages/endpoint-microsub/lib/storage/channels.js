@@ -21,21 +21,9 @@ const debug = makeDebug("indiekit:endpoint-microsub");
 export async function createChannel(application, { name, userId }) {
   const collection = getChannelsCollection(application);
 
-  // Generate unique UID with retry on collision
-  let uid;
-  let attempts = 0;
-  const maxAttempts = 5;
-
-  while (attempts < maxAttempts) {
-    uid = randomString(24);
-    const existing = await collection.findOne({ uid });
-    if (!existing) break;
-    attempts++;
-  }
-
-  if (attempts >= maxAttempts) {
-    throw new Error("Failed to generate unique channel UID");
-  }
+  // 24 base64url characters are 144 random bits: a collision is not a case
+  // to handle, and the uid is what clients and URLs name the channel by
+  const uid = randomString(24);
 
   // Get max order for user
   const maxOrderResult = await collection
@@ -92,10 +80,10 @@ export async function getChannels(application, userId) {
 
   // Always include notifications channel first
   const notificationsChannel = channelsWithCounts.find(
-    (c) => c.uid === "notifications",
+    (channel) => channel.uid === "notifications",
   );
   const otherChannels = channelsWithCounts.filter(
-    (c) => c.uid !== "notifications",
+    (channel) => channel.uid !== "notifications",
   );
 
   if (notificationsChannel) {
