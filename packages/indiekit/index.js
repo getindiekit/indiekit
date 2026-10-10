@@ -47,6 +47,7 @@ export const Indiekit = class {
     // stay distinguishable from one derived from a request.
     this.applicationUrl = config.application?.url;
     this.collections = new Map();
+    this.collectionIndexes = new Map();
     this.endpoints = new Set();
     this.installedPlugins = new Set();
     this.locale = config.application?.locale;
@@ -58,12 +59,37 @@ export const Indiekit = class {
     this.validationSchemas = new Map();
   }
 
-  addCollection(name) {
+  /**
+   * Add a database collection
+   * @param {string} name - Collection name
+   * @param {Array<{key: object}>} [indexes] - Indexes to create on it, each
+   *   a `key` plus any `createIndex` options, such as `unique`
+   */
+  addCollection(name, indexes = []) {
     if (this.collections.has(name)) {
       console.warn(`Collection ‘${name}’ already added`);
     } else if (this.database) {
       this.collections.set(name, this.database.collection(name));
+      this.collectionIndexes.set(name, indexes);
       debug(`Added database collection: ${name}`);
+    }
+  }
+
+  /**
+   * Create the indexes collections declared
+   *
+   * Creating an index that already exists is a no-op, so this runs on every
+   * start. A plug-in declares its indexes where it adds the collection; the
+   * core creates them once the database is connected and before serving.
+   * @returns {Promise<void>}
+   */
+  async createIndexes() {
+    for (const [name, indexes] of this.collectionIndexes) {
+      const collection = this.collections.get(name);
+      for (const { key, ...options } of indexes) {
+        await collection.createIndex(key, options);
+        debug(`Indexed ${JSON.stringify(key)} on ‘${name}’`);
+      }
     }
   }
 
@@ -211,17 +237,7 @@ export const Indiekit = class {
       }
     }
 
-    // `_id` came indexed; `properties.uid` does not. Every paginated query
-    // sorts and ranges on it, and MongoDB abandons an unindexed sort once it
-    // needs more than 32MB, so a large enough collection would stop listing
-    // at all. Creating an index that already exists is a no-op.
-    for (const name of ["posts", "media"]) {
-      const collection = this.collections.get(name);
-      if (collection) {
-        await collection.createIndex({ "properties.uid": 1 });
-        debug(`Indexed ‘properties.uid’ on ‘${name}’`);
-      }
-    }
+    await this.createIndexes();
 
     await this.updatePublicationConfig();
 

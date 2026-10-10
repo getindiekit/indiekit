@@ -1,7 +1,6 @@
 import express from "express";
 
 import { microsubController } from "./lib/controllers/microsub.js";
-import { createIndexes } from "./lib/storage/items.js";
 
 const defaults = {
   mountPath: "/microsub",
@@ -38,7 +37,14 @@ export default class MicrosubEndpoint {
    */
   async init(indiekit) {
     indiekit.addCollection("microsub_channels");
-    indiekit.addCollection("microsub_items");
+    // `id` orders and pages the timeline, `uid` is the feed's own identifier
+    // and keeps an item from being stored twice, `url` is what clients mark
+    // read by
+    indiekit.addCollection("microsub_items", [
+      { key: { channel: 1, id: 1 }, unique: true },
+      { key: { channel: 1, uid: 1 }, unique: true },
+      { key: { channel: 1, url: 1 } },
+    ]);
 
     // Register endpoint
     indiekit.addEndpoint(this);
@@ -46,10 +52,6 @@ export default class MicrosubEndpoint {
     // Set microsub endpoint URL in config
     if (!indiekit.config.application.microsubEndpoint) {
       indiekit.config.application.microsubEndpoint = this.mountPath;
-    }
-
-    if (indiekit.database) {
-      await createIndexes(indiekit);
     }
   }
 }
