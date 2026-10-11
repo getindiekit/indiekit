@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.31](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-auth:** refuse a repeated URL parameter or a client_id with dot segments ([409a2fd](https://github.com/getindiekit/indiekit/commit/409a2fddbd601a35c344d0b046ad738376ac3bb1))
+* **endpoint-auth:** refuse incomplete or plain PKCE parameters ([eebff21](https://github.com/getindiekit/indiekit/commit/eebff21cbb2efa27966d3922fadb637a08f7d3a6))
+
+
 # [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
 
 ### Bug Fixes

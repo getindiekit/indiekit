@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-posts",
-  "version": "1.0.0-beta.30",
+  "version": "1.0.0-beta.31",
   "description": "Post management endpoint for Indiekit. View posts published by your Micropub endpoint and publish new posts to it.",
   "keywords": [
     "indiekit",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@indiekit/endpoint-micropub": "^1.0.0-beta.30",
     "@indiekit/error": "^1.0.0-beta.30",
-    "@indiekit/frontend": "^1.0.0-beta.30",
+    "@indiekit/frontend": "^1.0.0-beta.31",
     "@indiekit/util": "^1.0.0-beta.30",
     "@paulrobertlloyd/mf2tojf2": "^3.0.0",
     "express": "^5.3.0",

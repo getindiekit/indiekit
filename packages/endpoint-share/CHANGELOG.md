@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.31](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-share:** use correctly resolved share endpoint URL ([c32ce0b](https://github.com/getindiekit/indiekit/commit/c32ce0b4514c170d7b4e348f24a174c63c514a47))
+
+
 # [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
 
 ### Bug Fixes

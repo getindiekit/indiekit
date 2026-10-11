@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.31](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2026-10-11)
+
+### Bug Fixes
+
+* **frontend:** focus the editor through CodeMirror so mobile keeps its toolbar icons ([4096813](https://github.com/getindiekit/indiekit/commit/409681399a2951a8403c0a4b7995dacebf82f2c5))
+
+
 # [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
 
 ### Bug Fixes
