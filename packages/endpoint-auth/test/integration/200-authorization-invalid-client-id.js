@@ -27,5 +27,22 @@ describe("endpoint-auth GET /auth", () => {
     );
   });
 
+  it("Returns documentation with invalid `client_id` error for a dot path segment", async () => {
+    const result = await request
+      .get("/auth")
+      .query({ client_id: "https://auth-endpoint.example/foo/../bar" })
+      .query({ redirect_uri: "https://auth-endpoint.example/redirect" })
+      .query({ response_type: "code" })
+      .query({ state: "12345" });
+
+    assert.equal(result.status, 200);
+    assert.equal(
+      result.text.includes(
+        "Invalid value provided for: <code>client_id</code>",
+      ),
+      true,
+    );
+  });
+
   after(() => server.close());
 });
