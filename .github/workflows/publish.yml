@@ -2,6 +2,11 @@ name: publish
 
 on:
   workflow_dispatch:
+    inputs:
+      from-package:
+        description: Publish package.json versions not yet on npm (no version bump)
+        type: boolean
+        default: false
 
 # Ensure only one release workflow runs at a time
 concurrency:
@@ -42,4 +47,9 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Publish to npm
-        run: npx lerna publish --conventional-commits --yes
+        run: |
+          if [ "${{ inputs.from-package }}" = "true" ]; then
+            npx lerna publish from-package --yes
+          else
+            npx lerna publish --conventional-commits --yes
+          fi
