@@ -8,6 +8,7 @@ import { getEndpointUrls } from "../../lib/endpoints.js";
 const application = {
   mediaEndpoint: "/media",
   tokenEndpoint: "/token",
+  userinfoEndpoint: "/auth/userinfo",
 };
 
 describe("indiekit/lib/endpoints", () => {
@@ -22,6 +23,10 @@ describe("indiekit/lib/endpoints", () => {
 
     assert.equal(result.mediaEndpoint, "https://server.example/media");
     assert.equal(result.tokenEndpoint, "https://server.example/token");
+    assert.equal(
+      result.userinfoEndpoint,
+      "https://server.example/auth/userinfo",
+    );
   });
 
   it("Gets endpoints from publication configuration", () => {
