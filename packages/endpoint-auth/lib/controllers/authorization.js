@@ -85,6 +85,28 @@ export const authorizationController = (options = {}) => ({
       const { code_challenge, code_challenge_method, redirect_uri, client_id } =
         request.query;
 
+      // PKCE is optional, but once requested needs both parameters and S256
+      if (code_challenge || code_challenge_method) {
+        const pkceParameters = { code_challenge, code_challenge_method };
+
+        for (const [parameter, value] of Object.entries(pkceParameters)) {
+          if (!value) {
+            throw IndiekitError.badRequest(
+              response.locals.__("BadRequestError.missingParameter", parameter),
+            );
+          }
+        }
+
+        if (code_challenge_method !== "S256") {
+          throw IndiekitError.badRequest(
+            response.locals.__(
+              "BadRequestError.invalidValue",
+              "code_challenge_method",
+            ),
+          );
+        }
+      }
+
       // Validate `redirect_uri`
       const validRedirect = await validateRedirect(
         String(redirect_uri),
