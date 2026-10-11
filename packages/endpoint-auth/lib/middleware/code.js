@@ -94,6 +94,15 @@ export const codeValidator = async (request, response, next) => {
     // the code itself, by the presence of the challenge it was issued with.
     const { code_challenge } = request.verifiedToken;
     if (code_challenge) {
+      if (!code_verifier) {
+        throw IndiekitError.badRequest(
+          response.locals.__(
+            "BadRequestError.missingParameter",
+            "code_verifier",
+          ),
+        );
+      }
+
       const verifiedCode = verifyCode(code_verifier, code_challenge);
       if (!verifiedCode) {
         throw IndiekitError.unauthorized(
