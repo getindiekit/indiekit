@@ -1,6 +1,6 @@
 import EasyMDE from "easymde";
 
-import { getElement } from "../../scripts/utils/get-element";
+import { getElement } from "../../scripts/utils/get-element.js";
 import { openMediaBrowser } from "../../scripts/utils/media-browser.js";
 
 const paths = {
@@ -171,14 +171,9 @@ export const TextareaFieldComponent = class extends HTMLElement {
       editor.codemirror.replaceSelection(link);
     });
 
-    /**
-     * Restore label behaviour
-     * @type {HTMLTextAreaElement}
-     */
-    const $codeMirrorTextarea = getElement(this, ".CodeMirror textarea");
-    this.$label.addEventListener("click", () => {
-      $codeMirrorTextarea.focus();
-    });
+    // Restore label behaviour. CodeMirror edits through a textarea on desktop
+    // but a contenteditable element on mobile, so focus it through its API
+    this.$label.addEventListener("click", () => editor.codemirror.focus());
 
     /**
      * Update character count, if the status bar is shown (it can be turned
