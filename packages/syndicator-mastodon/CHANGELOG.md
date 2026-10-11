@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* report an invalid syndicator URL instead of throwing ([f553c34](https://github.com/getindiekit/indiekit/commit/f553c34d30ec51ef89f9fd6127bdf1f8f55e2d6e)), closes [#930](https://github.com/getindiekit/indiekit/issues/930)
+* **syndicator-mastodon:** remove useless try/catch ([9951ad9](https://github.com/getindiekit/indiekit/commit/9951ad9fd1a74f40a28921eecc628bf1b191a5ee))
+* **syndicator-mastodon:** thread replies to statuses on other servers ([db3ed51](https://github.com/getindiekit/indiekit/commit/db3ed515c3214a2e779302f38739b3ff10e6319b)), closes [#926](https://github.com/getindiekit/indiekit/issues/926)
+
+### Features
+
+* add fromCaught method to IndiekitError ([cbf3654](https://github.com/getindiekit/indiekit/commit/cbf36543c81c87bcb2c06c2202041c61c2fff206))
+* **syndicator-mastodon:** require access token ([ebf6225](https://github.com/getindiekit/indiekit/commit/ebf6225235ef7b78ac38bc9538e43fa24c999908))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Features

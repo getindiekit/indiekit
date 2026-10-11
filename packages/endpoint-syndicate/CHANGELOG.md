@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-syndicate:** call Array.isArray when wrapping a single target ([3a2b7cf](https://github.com/getindiekit/indiekit/commit/3a2b7cf5ff05c2cfc2a065938ca071720f580b58))
+* **endpoint-syndicate:** ignore syndication values that aren’t URLs ([9dcbc57](https://github.com/getindiekit/indiekit/commit/9dcbc5702ad90f390861c42815bbce4f4529d5b7)), closes [#932](https://github.com/getindiekit/indiekit/issues/932)
+* **endpoint-syndicate:** retry targets a post has not syndicated to yet ([40647cb](https://github.com/getindiekit/indiekit/commit/40647cb3fd159af0cee25577f7462716547c2f20))
+* **endpoint-syndicate:** syndicate posts awaiting syndication oldest first ([9a4d0a4](https://github.com/getindiekit/indiekit/commit/9a4d0a4d8211264b4a5d80d62ce69373415bf2a5)), closes [#584](https://github.com/getindiekit/indiekit/issues/584)
+
+### Features
+
+* **endpoint-syndicate:** log full error when syndicating to targets ([fcbb89b](https://github.com/getindiekit/indiekit/commit/fcbb89bc332195df187a1435f5a7775fb6c5916c))
+* **endpoint-syndicate:** syndicate every post awaiting syndication ([f8c7376](https://github.com/getindiekit/indiekit/commit/f8c73766c219cd688eaf20da52d29300097976b6))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 **Note:** Version bump only for package @indiekit/endpoint-syndicate

@@ -1,6 +1,6 @@
 {
   "name": "@indiekit/endpoint-share",
-  "version": "1.0.0-beta.29",
+  "version": "1.0.0-beta.30",
   "description": "Share endpoint for Indiekit. Provides a simple interface for bookmarking websites and publishing them on your website.",
   "keywords": [
     "indiekit",
@@ -36,7 +36,7 @@
     "directory": "packages/endpoint-share"
   },
   "dependencies": {
-    "@indiekit/error": "^1.0.0-beta.28",
+    "@indiekit/error": "^1.0.0-beta.30",
     "express": "^5.3.0",
     "express-validator": "^7.3.2"
   },

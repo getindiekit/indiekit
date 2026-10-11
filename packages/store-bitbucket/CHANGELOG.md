@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Features
+
+* add fromCaught method to IndiekitError ([cbf3654](https://github.com/getindiekit/indiekit/commit/cbf36543c81c87bcb2c06c2202041c61c2fff206))
+* **store-bitbucket:** require user, repo and token ([13275e7](https://github.com/getindiekit/indiekit/commit/13275e7b5e59c68fcc3488409f75881cd10d3cf9))
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 

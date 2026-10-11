@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-webmention-io:** cope with authors without a photo or a valid URL ([98dbd80](https://github.com/getindiekit/indiekit/commit/98dbd80068af1004da9e5e4a4d3d303403c0837e)), closes [#934](https://github.com/getindiekit/indiekit/issues/934)
+
+### Features
+
+* **endpoint-webmention-io:** require token ([e67466f](https://github.com/getindiekit/indiekit/commit/e67466f22163a3d0b84cdcf21d297c4b6cbe98c9))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 **Note:** Version bump only for package @indiekit/endpoint-webmention-io

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-files:** look up files by uid so older files don't 404 ([5394361](https://github.com/getindiekit/indiekit/commit/5394361d16270c3207945dc6d814bfa09d3849f2)), closes [#924](https://github.com/getindiekit/indiekit/issues/924)
+* **endpoint-files:** only show a thumbnail for photos ([19a0ced](https://github.com/getindiekit/indiekit/commit/19a0ced3da8ebefda14d5aefa74b8b95750a585c)), closes [#956](https://github.com/getindiekit/indiekit/issues/956)
+* only use a status code from an Indiekit error ([1dfa574](https://github.com/getindiekit/indiekit/commit/1dfa574bc8b3d38779b165d1a2a7ece868ff13f0))
+
+### Features
+
+* **endpoint-files:** upload several files at once ([0c10dc7](https://github.com/getindiekit/indiekit/commit/0c10dc73e56e5f99e01bbc5040982ee54c72a301)), closes [#952](https://github.com/getindiekit/indiekit/issues/952)
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 **Note:** Version bump only for package @indiekit/endpoint-files

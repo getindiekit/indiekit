@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-micropub:** keep uid when deleting a post ([737cb1b](https://github.com/getindiekit/indiekit/commit/737cb1b6402545f3ddafc9143509f79947f2126c))
+* **endpoint-posts:** handle non-Error value for syndication target ([5d54559](https://github.com/getindiekit/indiekit/commit/5d54559f7a8815a3527a49c868bc296ddbc13e1b))
+* **endpoint-posts:** look up posts by uid so older posts don't 404 ([becdf26](https://github.com/getindiekit/indiekit/commit/becdf2665ca8adca03564d2ad53724796725e4fa)), closes [#924](https://github.com/getindiekit/indiekit/issues/924)
+* only use a status code from an Indiekit error ([1dfa574](https://github.com/getindiekit/indiekit/commit/1dfa574bc8b3d38779b165d1a2a7ece868ff13f0))
+* report an invalid syndicator URL instead of throwing ([f553c34](https://github.com/getindiekit/indiekit/commit/f553c34d30ec51ef89f9fd6127bdf1f8f55e2d6e)), closes [#930](https://github.com/getindiekit/indiekit/issues/930)
+
+### Features
+
+* **endpoint-posts:** pre-fill the create form from url and name query parameters ([2f89cd1](https://github.com/getindiekit/indiekit/commit/2f89cd1492890b2caff07b1ef578b55c0d30d1d6))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Bug Fixes

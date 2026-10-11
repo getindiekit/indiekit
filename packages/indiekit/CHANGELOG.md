@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **indiekit:** accept local redirect paths containing - . and % ([f326f60](https://github.com/getindiekit/indiekit/commit/f326f60636b5220fe89ec88a730ff6ac246a3299))
+* **indiekit:** advertise the userinfo endpoint as an absolute URL ([fcad0d3](https://github.com/getindiekit/indiekit/commit/fcad0d32bc243e24501d8e10a0591f260db56350))
+* **indiekit:** derive application URL from each request ([2e20ad0](https://github.com/getindiekit/indiekit/commit/2e20ad0ce97fba338728cf7b996af66cd77adbfe))
+* **indiekit:** make the uid backfill resumable and concurrency-safe ([8b9fb87](https://github.com/getindiekit/indiekit/commit/8b9fb87310b14ac4049bf86f5c935247f8a9df0e))
+* **indiekit:** only send stack traces and error causes in development ([5df480a](https://github.com/getindiekit/indiekit/commit/5df480a01b996441bd3fca765bd60ec277c2dfc2))
+* **indiekit:** trace the uid backfill even when it's a no-op ([9058317](https://github.com/getindiekit/indiekit/commit/9058317b802fe0d606b0529fbd8f3cade1ec18b3))
+* only use a status code from an Indiekit error ([1dfa574](https://github.com/getindiekit/indiekit/commit/1dfa574bc8b3d38779b165d1a2a7ece868ff13f0))
+* return 401 for GET requests with invalid bearer token ([69910bf](https://github.com/getindiekit/indiekit/commit/69910bfaa2b89146a1168c705ff413e771240f89)), closes [#825](https://github.com/getindiekit/indiekit/issues/825)
+
+### Features
+
+* **endpoint-microsub:** add core Microsub server with channels and timeline ([b6a74a5](https://github.com/getindiekit/indiekit/commit/b6a74a5a49355aac879ed6d6cd1e38cda28f6b01)), closes [#975](https://github.com/getindiekit/indiekit/issues/975)
+* **indiekit:** add a UUIDv7 backfill for posts without a uid ([2581772](https://github.com/getindiekit/indiekit/commit/2581772c373b4151b27523b3742e879fb6210a51))
+* **indiekit:** backfill missing uids before serving requests ([59b0ff2](https://github.com/getindiekit/indiekit/commit/59b0ff230a658e9691f784b7b977c3aebb6fd42b))
+* **indiekit:** declare a collection's indexes with addCollection ([df0b8f8](https://github.com/getindiekit/indiekit/commit/df0b8f8650908b055002d0d0a1de16a8c1ea30e6))
+* **indiekit:** index post and media data on properties.uid ([42fe338](https://github.com/getindiekit/indiekit/commit/42fe33865b2527b6456c0b8b0aa967516a9b2784))
+* **indiekit:** log full error when getting serviceworker.js ([ed98b43](https://github.com/getindiekit/indiekit/commit/ed98b434aa76d46d034997ba55d4545c7bee0d60))
+* **indiekit:** make homepage guidance simpler and remove mention of Micropub ([526ed5d](https://github.com/getindiekit/indiekit/commit/526ed5d9397f1b0957657094b41cd41706e6153c))
+* **indiekit:** show more configured endpoints in homepage guidance ([5637cf4](https://github.com/getindiekit/indiekit/commit/5637cf472be50c45ce35db206056b3676b3b4ec0))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Features

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **frontend:** close the tabindex clause in add-another's focusable selector ([47b995d](https://github.com/getindiekit/indiekit/commit/47b995d42675d0352689c98c8690225b26254cd2))
+* **frontend:** don't drop attributes after one without a value ([24b659a](https://github.com/getindiekit/indiekit/commit/24b659aa5ba8cb92722c6b8c84982d870c3a3e91))
+* **frontend:** don't throw looking up elements that may be absent ([88287f1](https://github.com/getindiekit/indiekit/commit/88287f1cead53b31bfde5c2d89b47e8c7371a6e8))
+* **frontend:** ensure photo in card layout retains 1:1 aspect ratio ([d143206](https://github.com/getindiekit/indiekit/commit/d14320615f8398a9a10e06ae559ea7da9fd986e3))
+* **frontend:** handle missing values in components ([1637377](https://github.com/getindiekit/indiekit/commit/16373774cafb236256acf013b7788dc8fb91d6ad))
+* **frontend:** handle non-Error values in component error paths ([7a2170e](https://github.com/getindiekit/indiekit/commit/7a2170e760a9f166fe67ac1d5f253f9af14ceaa1))
+* **frontend:** load the app script once the page is parsed ([1bdd4df](https://github.com/getindiekit/indiekit/commit/1bdd4dffb7c71a28289a90bc96ca06a219e4d6f1))
+* **frontend:** serve cached page on a slow network, skip cross-origin and auth requests ([c4619ae](https://github.com/getindiekit/indiekit/commit/c4619aea765db73c2507a8f8afb69e7dfddbd4c5)), closes [#936](https://github.com/getindiekit/indiekit/issues/936)
+* **indiekit:** only send stack traces and error causes in development ([5df480a](https://github.com/getindiekit/indiekit/commit/5df480a01b996441bd3fca765bd60ec277c2dfc2))
+
+### Features
+
+* add page post type ([8f1fdbe](https://github.com/getindiekit/indiekit/commit/8f1fdbe0c482d4cdede9a69e55690eaa078ad26e)), closes [#954](https://github.com/getindiekit/indiekit/issues/954)
+* **frontend:** choose an existing media file from the editor and file fields ([4d71529](https://github.com/getindiekit/indiekit/commit/4d71529bb4daf9514a8f342ab6556875da988bd5))
+* **frontend:** replace markdown-it-prism with microlighter ([2d21f8c](https://github.com/getindiekit/indiekit/commit/2d21f8cf4443a39b147ef8d8043d1cfc498035fe))
+* **frontend:** use url filter for absolute urls in default layout ([0f8640e](https://github.com/getindiekit/indiekit/commit/0f8640ecfc83d0aaea1a2c5645b4d7ef794ce19d))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 **Note:** Version bump only for package @indiekit/frontend

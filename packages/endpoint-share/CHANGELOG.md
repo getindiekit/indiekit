@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* only use a status code from an Indiekit error ([1dfa574](https://github.com/getindiekit/indiekit/commit/1dfa574bc8b3d38779b165d1a2a7ece868ff13f0))
+
+### Features
+
+* **endpoint-share:** let the share form choose syndication targets ([54f193e](https://github.com/getindiekit/indiekit/commit/54f193e43742fbd9fa61c65211fee4f7438fee55))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Bug Fixes

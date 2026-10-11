@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* report an invalid syndicator URL instead of throwing ([f553c34](https://github.com/getindiekit/indiekit/commit/f553c34d30ec51ef89f9fd6127bdf1f8f55e2d6e)), closes [#930](https://github.com/getindiekit/indiekit/issues/930)
+* **syndicator-bluesky:** remove useless try/catch ([10a6022](https://github.com/getindiekit/indiekit/commit/10a6022c87e1c24e0ec2a189e3d955de34f7c587))
+* **syndicator-bluesky:** thread replies to Bluesky posts ([471577c](https://github.com/getindiekit/indiekit/commit/471577ca89d5aaf918946ddc20fdca1c84402caa)), closes [#946](https://github.com/getindiekit/indiekit/issues/946)
+
+### Features
+
+* add fromCaught method to IndiekitError ([cbf3654](https://github.com/getindiekit/indiekit/commit/cbf36543c81c87bcb2c06c2202041c61c2fff206))
+* **syndicator-bluesky:** make link text in post content clickable ([7b38485](https://github.com/getindiekit/indiekit/commit/7b384859e360736e889f9a487c9acc8202dbbc98)), closes [#948](https://github.com/getindiekit/indiekit/issues/948)
+* **syndicator-bluesky:** require password ([8c91c9f](https://github.com/getindiekit/indiekit/commit/8c91c9fcd4fcf048f0c714a125ff184b0b1b7cdc))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Features

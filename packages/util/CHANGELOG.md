@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **util:** return correct page when paging backwards ([38fab19](https://github.com/getindiekit/indiekit/commit/38fab191d3245838b07fa298acbf816e2f6dff1d))
+* **util:** throw getting canonical URL from path without base URL ([525ebe3](https://github.com/getindiekit/indiekit/commit/525ebe38cd13cc6d726b654d8efc2500e687c394))
+
+### Features
+
+* **endpoint-microsub:** add core Microsub server with channels and timeline ([b6a74a5](https://github.com/getindiekit/indiekit/commit/b6a74a5a49355aac879ed6d6cd1e38cda28f6b01)), closes [#975](https://github.com/getindiekit/indiekit/issues/975)
+* **util:** paginate on properties.uid ([b2a1d2f](https://github.com/getindiekit/indiekit/commit/b2a1d2f27395fa7776cdc4b23ad40a85b33cc2bb))
+* **util:** provide clearer debug message when connecting to mongodb ([8b8a351](https://github.com/getindiekit/indiekit/commit/8b8a3512d3464569963912629c851fa5a14f3562))
+* **util:** remove getObjectId helper ([5827617](https://github.com/getindiekit/indiekit/commit/58276178849bda7b0936bc5afb78adaf6bff5c28))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Bug Fixes

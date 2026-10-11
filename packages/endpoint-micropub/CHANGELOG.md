@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-micropub:** count other posts of a type when rendering the n token ([2634ac0](https://github.com/getindiekit/indiekit/commit/2634ac0bea6841b548e318a29ccf7a9473b2f17d)), closes [#746](https://github.com/getindiekit/indiekit/issues/746)
+* **endpoint-micropub:** don't let a client reassign a post's uid ([b5a7ce1](https://github.com/getindiekit/indiekit/commit/b5a7ce1acfe4ab5d305d7ddf98cf08284de04414))
+* **endpoint-micropub:** drop unawaited count() check that leaked an operation past the test ([a354434](https://github.com/getindiekit/indiekit/commit/a35443439d2bfdeff491308793c5c26832c61fe5))
+* **endpoint-micropub:** keep uid when deleting a post ([737cb1b](https://github.com/getindiekit/indiekit/commit/737cb1b6402545f3ddafc9143509f79947f2126c))
+* **endpoint-micropub:** localise the database error and keep post-type errors distinct ([676ed0b](https://github.com/getindiekit/indiekit/commit/676ed0b0871ea35e25dc6904a76cc44edf7480ce))
+* **endpoint-micropub:** normalise categories on write ([77a6266](https://github.com/getindiekit/indiekit/commit/77a6266489c995d6c22a8af5214737c654dbeed2))
+* **endpoint-micropub:** normalise caught error in action controller ([f4430f8](https://github.com/getindiekit/indiekit/commit/f4430f8831fb7c030c911b90647ee9adea1070f7))
+* **endpoint-micropub:** reject unconfigured post type on update, delete and undelete ([057a0ac](https://github.com/getindiekit/indiekit/commit/057a0acd76f1016969a5fcd7ccbb62e220265dd7)), closes [#928](https://github.com/getindiekit/indiekit/issues/928)
+* **endpoint-micropub:** throw a clear error reading posts without a database ([5d30610](https://github.com/getindiekit/indiekit/commit/5d30610fab02cba01fe1587aa19235648c18179b))
+* **endpoint-posts:** look up posts by uid so older posts don't 404 ([becdf26](https://github.com/getindiekit/indiekit/commit/becdf2665ca8adca03564d2ad53724796725e4fa)), closes [#924](https://github.com/getindiekit/indiekit/issues/924)
+* report an invalid syndicator URL instead of throwing ([f553c34](https://github.com/getindiekit/indiekit/commit/f553c34d30ec51ef89f9fd6127bdf1f8f55e2d6e)), closes [#930](https://github.com/getindiekit/indiekit/issues/930)
+* return 401 for GET requests with invalid bearer token ([69910bf](https://github.com/getindiekit/indiekit/commit/69910bfaa2b89146a1168c705ff413e771240f89)), closes [#825](https://github.com/getindiekit/indiekit/issues/825)
+
+### Features
+
+* add page post type ([8f1fdbe](https://github.com/getindiekit/indiekit/commit/8f1fdbe0c482d4cdede9a69e55690eaa078ad26e)), closes [#954](https://github.com/getindiekit/indiekit/issues/954)
+* **endpoint-micropub,endpoint-media:** store a UUIDv7 uid on create ([e1f3ae7](https://github.com/getindiekit/indiekit/commit/e1f3ae703c09501dffb71e7d74255c5824cb6fb0))
+* **endpoint-micropub:** discover post type from its vocabulary ([1878252](https://github.com/getindiekit/indiekit/commit/1878252711cbeab31aeeecea06a09e0e923748aa)), closes [#950](https://github.com/getindiekit/indiekit/issues/950)
+* **endpoint-micropub:** filter the list of posts by text and category ([b792c1a](https://github.com/getindiekit/indiekit/commit/b792c1a03713ae639468ea309f4486ea05852dc5))
+* **indiekit:** declare a collection's indexes with addCollection ([df0b8f8](https://github.com/getindiekit/indiekit/commit/df0b8f8650908b055002d0d0a1de16a8c1ea30e6))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Bug Fixes

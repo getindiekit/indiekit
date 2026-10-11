@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Features
+
+* add fromCaught method to IndiekitError ([cbf3654](https://github.com/getindiekit/indiekit/commit/cbf36543c81c87bcb2c06c2202041c61c2fff206))
+* **store-s3:** require access and secret keys ([ffde16e](https://github.com/getindiekit/indiekit/commit/ffde16efc9fea66af1578242c94570ae9a5b1937))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 **Note:** Version bump only for package @indiekit/store-s3

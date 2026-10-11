@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-auth:** accept code exchange without `grant_type` at /auth ([d649606](https://github.com/getindiekit/indiekit/commit/d649606a75d7d4f12fb5103d55e9ed7aae4a813e))
+* **endpoint-auth:** bind code exchange to the code's own claims ([456cd6d](https://github.com/getindiekit/indiekit/commit/456cd6d221f859a6c62a304943f57c2fc82c11b3))
+* **endpoint-auth:** limit missing `response_type` to indieauth.com ([fa1d368](https://github.com/getindiekit/indiekit/commit/fa1d368f28908da9a501785e9ae53c24f0279623))
+* **endpoint-auth:** refuse a missing code_verifier instead of failing ([b7ad28a](https://github.com/getindiekit/indiekit/commit/b7ad28ac2112d65ff6c9834aa4b4642a5e42d4c2))
+* **endpoint-auth:** use publication me when signing authorization code ([0e900a7](https://github.com/getindiekit/indiekit/commit/0e900a7587eeffe3663c988ff8f973d9f8b3977c)), closes [#911](https://github.com/getindiekit/indiekit/issues/911)
+* **indiekit:** advertise the userinfo endpoint as an absolute URL ([fcad0d3](https://github.com/getindiekit/indiekit/commit/fcad0d32bc243e24501d8e10a0591f260db56350))
+
+### Features
+
+* **endpoint-auth:** support profile scope and add userinfo endpoint ([7a27fa6](https://github.com/getindiekit/indiekit/commit/7a27fa641effe83a69e6d858bea4066bddb1c717)), closes [#885](https://github.com/getindiekit/indiekit/issues/885)
+* **endpoint-auth:** use url filter for endpoint urls ([07f959e](https://github.com/getindiekit/indiekit/commit/07f959e575846d686b7f1e113d81e5f06ca798a3))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Bug Fixes

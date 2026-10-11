@@ -1,6 +1,6 @@
 {
   "name": "create-indiekit",
-  "version": "1.0.0-beta.29",
+  "version": "1.0.0-beta.30",
   "description": "Get started with Indiekit",
   "keywords": [
     "express",
@@ -36,18 +36,18 @@
     "directory": "packages/create-indiekit"
   },
   "dependencies": {
-    "@indiekit/preset-eleventy": "^1.0.0-beta.28",
-    "@indiekit/preset-hugo": "^1.0.0-beta.28",
-    "@indiekit/preset-jekyll": "^1.0.0-beta.28",
-    "@indiekit/store-bitbucket": "^1.0.0-beta.28",
-    "@indiekit/store-file-system": "^1.0.0-beta.28",
-    "@indiekit/store-ftp": "^1.0.0-beta.29",
-    "@indiekit/store-gitea": "^1.0.0-beta.28",
-    "@indiekit/store-github": "^1.0.0-beta.29",
-    "@indiekit/store-gitlab": "^1.0.0-beta.28",
-    "@indiekit/syndicator-bluesky": "^1.0.0-beta.29",
-    "@indiekit/syndicator-mastodon": "^1.0.0-beta.29",
-    "@indiekit/util": "^1.0.0-beta.29",
+    "@indiekit/preset-eleventy": "^1.0.0-beta.30",
+    "@indiekit/preset-hugo": "^1.0.0-beta.30",
+    "@indiekit/preset-jekyll": "^1.0.0-beta.30",
+    "@indiekit/store-bitbucket": "^1.0.0-beta.30",
+    "@indiekit/store-file-system": "^1.0.0-beta.30",
+    "@indiekit/store-ftp": "^1.0.0-beta.30",
+    "@indiekit/store-gitea": "^1.0.0-beta.30",
+    "@indiekit/store-github": "^1.0.0-beta.30",
+    "@indiekit/store-gitlab": "^1.0.0-beta.30",
+    "@indiekit/syndicator-bluesky": "^1.0.0-beta.30",
+    "@indiekit/syndicator-mastodon": "^1.0.0-beta.30",
+    "@indiekit/util": "^1.0.0-beta.30",
     "base-create": "^3.0.8",
     "prompts": "^2.4.2",
     "yaml": "^2.9.1"

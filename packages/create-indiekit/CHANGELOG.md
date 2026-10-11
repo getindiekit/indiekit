@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **create-indiekit:** check node compatibility against major and minor version ([06cab9e](https://github.com/getindiekit/indiekit/commit/06cab9e385dbdf912f7905cfb8eb065dc5e0f87e))
+* **create-indiekit:** generate a Dockerfile that runs, on a patched MongoDB ([46f17f1](https://github.com/getindiekit/indiekit/commit/46f17f1629a9265349481f352aff683e1ecc14b1))
+* **create-indiekit:** handle command-line arguments ([8914c57](https://github.com/getindiekit/indiekit/commit/8914c5748a74963e11fe0e5ecd9c97206640afce))
+* **create-indiekit:** resolve error when getting file contents ([5fe21db](https://github.com/getindiekit/indiekit/commit/5fe21db54599f5f8ff158d110fc4543d08550a57))
+* **create-indiekit:** use correct character for configuration message ([57204af](https://github.com/getindiekit/indiekit/commit/57204afae9a8466c3705985d61e81a4ed89a0cd3))
+
+### Features
+
+* **create-indiekit:** log full error if setup cancelled ([f337e01](https://github.com/getindiekit/indiekit/commit/f337e012036055680a407d724de977d9f14760d2))
+* **create-indiekit:** offer the file system content store ([577ba98](https://github.com/getindiekit/indiekit/commit/577ba980e383b2e1a50d7893c8f1877a58975c45))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 **Note:** Version bump only for package create-indiekit

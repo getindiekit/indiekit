@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **endpoint-files:** look up files by uid so older files don't 404 ([5394361](https://github.com/getindiekit/indiekit/commit/5394361d16270c3207945dc6d814bfa09d3849f2)), closes [#924](https://github.com/getindiekit/indiekit/issues/924)
+* **endpoint-media:** normalise caught error in action controller ([ba30ff4](https://github.com/getindiekit/indiekit/commit/ba30ff4bb2748d898dce5cbc063c8a8032415003))
+
+### Features
+
+* **endpoint-micropub,endpoint-media:** store a UUIDv7 uid on create ([e1f3ae7](https://github.com/getindiekit/indiekit/commit/e1f3ae703c09501dffb71e7d74255c5824cb6fb0))
+* **indiekit:** declare a collection's indexes with addCollection ([df0b8f8](https://github.com/getindiekit/indiekit/commit/df0b8f8650908b055002d0d0a1de16a8c1ea30e6))
+
+
 # [1.0.0-beta.29](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2026-08-16)
 
 ### Bug Fixes

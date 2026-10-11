@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.30](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2026-10-11)
+
+### Bug Fixes
+
+* **preset-eleventy:** write posts where the advertised URL resolves ([0047ea8](https://github.com/getindiekit/indiekit/commit/0047ea85016b258d721c1ffec99b59c81a6d73f1)), closes [#902](https://github.com/getindiekit/indiekit/issues/902)
+
+### Features
+
+* add page post type ([8f1fdbe](https://github.com/getindiekit/indiekit/commit/8f1fdbe0c482d4cdede9a69e55690eaa078ad26e)), closes [#954](https://github.com/getindiekit/indiekit/issues/954)
+
+
 # [1.0.0-beta.28](https://github.com/getindiekit/indiekit/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2026-07-04)
 
 **Note:** Version bump only for package @indiekit/preset-eleventy
