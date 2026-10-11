@@ -18,6 +18,7 @@ export const getEndpointUrls = (application, request) => {
     "microsubEndpoint",
     "tokenEndpoint",
     "shareEndpoint",
+    "userinfoEndpoint",
   ]) {
     endpoints[endpoint] = URL.canParse(application[endpoint])
       ? application[endpoint]
