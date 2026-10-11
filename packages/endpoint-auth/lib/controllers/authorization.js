@@ -70,7 +70,16 @@ export const authorizationController = (options = {}) => ({
       for (const parameter of ["client_id", "me", "redirect_uri"]) {
         let uri = request.query[parameter];
 
-        if (uri && !URL.canParse(String(uri))) {
+        // A repeated parameter arrives as an array, which is not one URL.
+        // `client_id` must also have no `.` or `..` path segment, checked on
+        // the raw value since parsing it as a URL would resolve them.
+        // @see {@link https://indieauth.spec.indieweb.org/#client-identifier}
+        if (
+          Array.isArray(uri) ||
+          (uri && !URL.canParse(String(uri))) ||
+          (parameter === "client_id" &&
+            /^[^:]+:\/\/[^/?#]*[^?#]*\/\.{1,2}(\/|[?#]|$)/.test(String(uri)))
+        ) {
           throw IndiekitError.badRequest(
             response.locals.__("BadRequestError.invalidValue", parameter),
           );
