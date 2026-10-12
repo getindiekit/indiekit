@@ -4,31 +4,34 @@ const focusableSelector = `button:not([disabled]), input:not([disabled]):not([ty
 
 export const AddAnotherComponent = class extends HTMLElement {
   /**
-   * @type {HTMLTemplateElement}
+   * @returns {HTMLTemplateElement} Add button template
    */
-  $addButtonTemplate;
+  get $addButtonTemplate() {
+    return getElement(this, "#add-button");
+  }
 
   /**
-   * @type {HTMLTemplateElement}
+   * @returns {HTMLTemplateElement} Delete button template
    */
-  $deleteButtonTemplate;
+  get $deleteButtonTemplate() {
+    return getElement(this, "#delete-button");
+  }
 
   /**
-   * @type {NodeListOf<Element>}
+   * @returns {NodeListOf<Element>} Fields
    */
-  $$fields;
+  get $$fields() {
+    return this.querySelectorAll(".field");
+  }
 
   /**
-   * @type {HTMLElement}
+   * @returns {HTMLElement} List
    */
-  $list;
+  get $list() {
+    return getElement(this, ".add-another__list");
+  }
 
   connectedCallback() {
-    this.$addButtonTemplate = getElement(this, "#add-button");
-    this.$deleteButtonTemplate = getElement(this, "#delete-button");
-    this.$$fields = this.querySelectorAll(".field");
-    this.$list = getElement(this, ".add-another__list");
-
     this.updateItems();
     this.createAddButton();
   }

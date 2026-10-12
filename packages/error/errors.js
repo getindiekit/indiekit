@@ -1,3 +1,6 @@
+/**
+ * @type {Record<string, { status: number, name: string }>}
+ */
 export const errors = {
   indiekit: {
     status: 500,

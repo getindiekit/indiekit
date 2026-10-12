@@ -29,10 +29,12 @@ export const ErrorSummaryComponent = class extends HTMLElement {
 
   /**
    * Click event handler
-   * @param {object} event - Click event
+   * @param {Event} event - Click event
    */
   handleClick(event) {
-    if (this.focusTarget(event.target)) {
+    const $target = /** @type {HTMLAnchorElement} */ (event.target);
+
+    if (this.focusTarget($target)) {
       event.preventDefault();
     }
   }

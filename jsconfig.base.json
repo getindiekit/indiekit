@@ -5,13 +5,12 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
+    "noImplicitAny": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false,
-    "strictNullChecks": true,
+    "strict": true,
     "target": "ESNext",
-    "types": [],
-    "useUnknownInCatchVariables": true
+    "types": []
   },
   "exclude": ["./node_modules", "./_site"],
   "typeAcquisition": {

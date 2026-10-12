@@ -23,7 +23,7 @@ export const TagInputFieldComponent = class extends HTMLElement {
       ariaTagSelected: this.getAttribute("i18n-selected"),
       ariaNoTagsSelected: this.getAttribute("i18n-none-selected"),
       ariaInputLabel: this.getAttribute("i18n-instruction"),
-      disabled: this.$replacedInput.getAttribute("disabled"),
+      disabled: this.$replacedInput.hasAttribute("disabled"),
       label: this.$replacedLabel.getHTML(),
       name: this.$replacedInput.getAttribute("name"),
       placeholder: this.getAttribute("placeholder"),
