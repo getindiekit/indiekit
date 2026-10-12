@@ -53,8 +53,7 @@
   ],
   "dependencies": {
     "husky": "^9.1.7",
-    "lerna": "^10.1.0",
-    "sharp": "^0.35.5"
+    "lerna": "^10.1.0"
   },
   "devDependencies": {
     "@atproto/dev-env": "^0.6.17",
@@ -114,9 +113,6 @@
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.64.5",
     "lightningcss-linux-x64-gnu": "^1.33.0"
-  },
-  "overrides": {
-    "sharp": "$sharp"
   },
   "allowScripts": {
     "better-sqlite3@12.11.1": true
