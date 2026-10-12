@@ -35,8 +35,8 @@ jobs:
         run: |
           set -euo pipefail
           [[ "$CHANNEL" =~ ^[a-z0-9][a-z0-9.-]*$ ]] || { echo "channel must match ^[a-z0-9][a-z0-9.-]*$"; exit 1; }
-          for reserved in latest nightly beta; do
-            [ "$CHANNEL" = "$reserved" ] && { echo "channel '$CHANNEL' is reserved for the release and nightly workflows"; exit 1; }
+          for reserved in latest beta; do
+            [ "$CHANNEL" = "$reserved" ] && { echo "channel '$CHANNEL' is reserved for the release workflow"; exit 1; }
           done
           short=$(git rev-parse --short=7 HEAD)
           image=ghcr.io/${{ github.repository }}

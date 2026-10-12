@@ -101,7 +101,6 @@ The first image appears with the first release after this lands; until then no t
 | `1.0.0-beta.29` | The release tag | Each GitHub release |
 | `beta` | The newest prerelease | Each GitHub release while Indiekit is in beta |
 | `latest`, `1`, `1.0` | The newest stable release | From the first stable release onward |
-| `nightly`, `main-<sha>` | `main` | Every night `main` has changed |
 | `<channel>`, `<channel>-<sha>` | Any ref, on request | When a maintainer publishes a preview |
 
 Images are built for `linux/amd64` and `linux/arm64`.
