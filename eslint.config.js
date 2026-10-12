@@ -48,6 +48,7 @@ export default [
       "unicorn/prefer-array-from-map": "off",
       "unicorn/prefer-combined-guards": "off",
       "unicorn/prefer-continue": "off",
+      "unicorn/prefer-default-parameters": "off",
       "unicorn/prefer-iterator-to-array": "off",
       "unicorn/prefer-minimal-ternary": "off",
       "unicorn/prefer-private-class-fields": "off",
