@@ -6,50 +6,55 @@ import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const FileInputFieldController = class extends HTMLElement {
   /**
-   * @type {string}
+   * @type {HTMLButtonElement|null} Geolocation button
    */
-  endpoint;
+  // eslint-disable-next-line unicorn/no-null
+  $fileInputPicker = null;
 
   /**
-   * @type {HTMLElement}
+   * @returns {string} Media endpoint URL
    */
-  $uploadProgress;
-
-  /**
-   * @type {HTMLInputElement}
-   */
-  $fileInputPath;
-
-  /**
-   * @type {HTMLElement | null}
-   */
-  $fileInputPicker;
-
-  /**
-   * @type {HTMLTemplateElement}
-   */
-  $fileInputPickerTemplate;
-
-  /**
-   * @type {HTMLTemplateElement}
-   */
-  $errorMessageTemplate;
-
-  connectedCallback() {
+  get endpoint() {
     const endpoint = this.getAttribute("endpoint");
 
     if (!endpoint) {
       throw new Error("File input requires an `endpoint` attribute");
     }
 
-    this.endpoint = endpoint;
+    return endpoint;
+  }
 
-    this.$uploadProgress = getElement(this, ".file-input__progress");
-    this.$fileInputPath = getElement(this, ".file-input__path");
+  /**
+   * @returns {HTMLElement} Upload progress
+   */
+  get $uploadProgress() {
+    return getElement(this, ".file-input__progress");
+  }
+
+  /**
+   * @returns {HTMLInputElement} File input path
+   */
+  get $fileInputPath() {
+    return getElement(this, ".file-input__path");
+  }
+
+  /**
+   * @returns {HTMLTemplateElement} File input picker template
+   */
+  get $fileInputPickerTemplate() {
+    return getElement(this, "#file-input-picker");
+  }
+
+  /**
+   * @returns {HTMLTemplateElement} Error message template
+   */
+  get $errorMessageTemplate() {
+    return getElement(this, "#error-message");
+  }
+
+  connectedCallback() {
     // The picker exists only in its template until it is added below
     this.$fileInputPicker = this.querySelector(".file-input__picker");
-    this.$fileInputPickerTemplate = getElement(this, "#file-input-picker");
-    this.$errorMessageTemplate = getElement(this, "#error-message");
 
     if (!this.$fileInputPicker) {
       // Create group to hold input and button
@@ -178,6 +183,10 @@ export const FileInputFieldController = class extends HTMLElement {
     }
   }
 
+  /**
+   * Show error message
+   * @param {string|null} message - Message
+   */
   showErrorMessage(message) {
     const $input = /** @type {HTMLElement} */ (this.querySelector(".input"));
     const $inputButtonGroup = /** @type {HTMLElement} */ (

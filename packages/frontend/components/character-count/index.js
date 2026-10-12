@@ -12,29 +12,24 @@ import { getElement } from "../../scripts/utils/get-element";
  */
 export const CharacterCountComponent = class extends HTMLElement {
   /**
-   * @type {string}
+   * @type {string|null}
    */
-  i18nChar;
+  i18nChar = "%s character";
 
   /**
-   * @type {string}
+   * @type {string|null}
    */
-  i18nChars;
+  i18nChars = "%s characters";
 
   /**
-   * @type {string}
+   * @type {string|null}
    */
-  i18nWord;
+  i18nWord = "%s word";
 
   /**
-   * @type {string}
+   * @type {string|null}
    */
-  i18nWords;
-
-  /**
-   * @type {HTMLTextAreaElement}
-   */
-  $textarea;
+  i18nWords = "%s words";
 
   constructor() {
     super();
@@ -171,26 +166,32 @@ export const CharacterCountComponent = class extends HTMLElement {
     const characters = this.#count(string);
     const words = this.#count(string, true);
 
-    let characterCount = this.i18nChars.replace("%s", String(characters));
+    let characterCount = this.i18nChars?.replace("%s", String(characters));
     if (characters === 1) {
-      characterCount = this.i18nChar.replace("%s", String(characters));
+      characterCount = this.i18nChar?.replace("%s", String(characters));
     }
 
-    let wordCount = this.i18nWords.replace("%s", String(words));
+    let wordCount = this.i18nWords?.replace("%s", String(words));
     if (words === 1) {
-      wordCount = this.i18nWord.replace("%s", String(words));
+      wordCount = this.i18nWord?.replace("%s", String(words));
     }
 
     return `${characterCount}, ${wordCount}`;
   }
 
-  connectedCallback() {
-    this.i18nChar = this.getAttribute("i18n-char") || `%s character`;
-    this.i18nChars = this.getAttribute("i18n-chars") || `%s characters`;
-    this.i18nWord = this.getAttribute("i18n-word") || `%s word`;
-    this.i18nWords = this.getAttribute("i18n-words") || `%s words`;
+  /**
+   * @returns {HTMLTextAreaElement} Textarea
+   */
+  get $textarea() {
+    return getElement(this, "textarea");
+  }
 
-    this.$textarea = getElement(this, "textarea");
+  connectedCallback() {
+    this.i18nChar = this.getAttribute("i18n-char");
+    this.i18nChars = this.getAttribute("i18n-chars");
+    this.i18nWord = this.getAttribute("i18n-word");
+    this.i18nWords = this.getAttribute("i18n-words");
+
     this.$textarea.addEventListener("keyup", this.#handleKeyUp.bind(this));
     this.$textarea.addEventListener("focus", this.#handleFocus.bind(this));
     this.$textarea.addEventListener("blur", this.#handleBlur.bind(this));

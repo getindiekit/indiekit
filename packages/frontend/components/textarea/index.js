@@ -3,6 +3,9 @@ import EasyMDE from "easymde";
 import { getElement } from "../../scripts/utils/get-element.js";
 import { openMediaBrowser } from "../../scripts/utils/media-browser.js";
 
+/**
+ * @type {Record<string, string>}
+ */
 const paths = {
   bold: "M17 30c6.1 0 10-3 10-8 0-3.5-2.7-6.3-6.5-6.5V15c3-.4 5-3 5-6 0-4.5-3.5-7-9-7H5v28h12ZM12 7h2c2.5 0 4 1 4 3 0 1.5-1.5 3-4 3h-2V7Zm0 18v-7h2.3c3.1 0 4.7 1.1 4.7 3.4 0 2.5-1.4 3.6-4.8 3.6H12Z",
   code: "m13.5 8.5-3-3L2 14C.5 15.5.5 16.5 2 18l8.5 8.5 3-3L6 16l7.5-7.5Zm5 0 3-3L30 14c1.5 1.5 1.5 2.5 0 4l-8.5 8.5-3-3L26 16l-7.5-7.5Z",
@@ -41,9 +44,11 @@ const getButtonSvg = (name) => {
 
 export const TextareaFieldComponent = class extends HTMLElement {
   /**
-   * @type {HTMLTextAreaElement}
+   * @returns {HTMLTextAreaElement} Textarea
    */
-  $textarea;
+  get $textarea() {
+    return getElement(this, "textarea");
+  }
 
   connectedCallback() {
     this.editor = this.getAttribute("editor");
@@ -59,7 +64,6 @@ export const TextareaFieldComponent = class extends HTMLElement {
     this.editorStatus = this.getAttribute("editor-status");
     this.editorToolbar = this.getAttribute("editor-toolbar");
     this.$label = getElement(this, "label");
-    this.$textarea = getElement(this, "textarea");
     this.$mediaBrowserTemplate = /** @type {HTMLTemplateElement | null} */ (
       this.querySelector("#media-browser")
     );
@@ -237,13 +241,23 @@ export const TextareaFieldComponent = class extends HTMLElement {
     });
   }
 
+  /**
+   * Upload file to media endpoint
+   * @param {string} [endpoint] - Media endpoint URL
+   * @returns {(file: File, onSuccess: (url: string) => void, onError: (error: string) => void) => Promise<void>} Upload function
+   */
   uploadFile(endpoint) {
     /**
-     * @param {object} file - File
-     * @param {function(string): void} onSuccess - Success callback
-     * @param {function(string): void} onError - Error callback
+     * @param {File} file - File
+     * @param {(url: string) => void} onSuccess - Success callback
+     * @param {(error: string) => void} onError - Error callback
      */
     return async (file, onSuccess, onError) => {
+      if (!endpoint) {
+        onError("No media endpoint configured");
+        return;
+      }
+
       const formData = new FormData();
       formData.append("file", file);
 

@@ -4,12 +4,13 @@
  */
 export const RadiosFieldComponent = class extends HTMLElement {
   /**
-   * @type {NodeListOf<HTMLInputElement>}
+   * @returns {NodeListOf<HTMLInputElement>} Input targets
    */
-  $$inputTargets;
+  get $$inputTargets() {
+    return this.querySelectorAll("input");
+  }
 
   connectedCallback() {
-    this.$$inputTargets = this.querySelectorAll("input");
     for (const $input of this.$$inputTargets) {
       const targetId = $input.dataset.ariaControls;
       const $conditional = document.querySelector(`#${targetId}`);

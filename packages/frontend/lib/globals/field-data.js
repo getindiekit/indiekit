@@ -1,9 +1,22 @@
 import _ from "lodash";
 
 /**
+ * @typedef {object} FieldError
+ * @property {unknown} value - Submitted value
+ * @property {string} msg - Error message
+ */
+
+/**
+ * @typedef {object} FieldData
+ * @property {unknown} value - Field value
+ * @property {{ text: string }} [errorMessage] - Error message
+ */
+
+/**
  * Get field data
+ * @this {{ ctx: { errors?: Record<string, FieldError>, properties?: object } }}
  * @param {string} key - Key name
- * @returns {object} Field data
+ * @returns {FieldData} Field data
  */
 export function fieldData(key) {
   // eslint-disable-next-line unicorn/no-this-outside-of-class

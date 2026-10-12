@@ -3,38 +3,53 @@ import { wrapElement } from "../../scripts/utils/wrap-element.js";
 
 export const GeoInputFieldComponent = class extends HTMLElement {
   /**
-   * @type {HTMLInputElement}
+   * @type {HTMLButtonElement|null} Geolocation button
    */
-  $geoInput;
+  // eslint-disable-next-line unicorn/no-null
+  $geoInputButton = null;
 
   /**
-   * @type {HTMLButtonElement | null}
+   * @returns {HTMLInputElement} Geolocation input
    */
-  $geoInputButton;
+  get $geoInput() {
+    return getElement(this, ".geo-input");
+  }
 
   /**
-   * @type {HTMLTemplateElement}
+   * @returns {HTMLTemplateElement} Geolocation button template
    */
-  $geoInputButtonTemplate;
+  get $geoInputButtonTemplate() {
+    return getElement(this, "#geo-input-button");
+  }
 
   /**
-   * @type {HTMLTemplateElement}
+   * @returns {HTMLTemplateElement} Error message template
    */
-  $errorMessageTemplate;
+  get $errorMessageTemplate() {
+    return getElement(this, "#error-message");
+  }
+
+  /**
+   * @returns {string|null} Localised ‘denied’ message
+   */
+  get i18nDenied() {
+    return this.getAttribute("i18n-denied");
+  }
+
+  /**
+   * @returns {string|null} Localised ‘failed’ message
+   */
+  get i18nFailed() {
+    return this.getAttribute("i18n-failed");
+  }
 
   connectedCallback() {
-    this.i18nDenied = this.getAttribute("i18n-denied");
-    this.i18nFailed = this.getAttribute("i18n-failed");
-
-    this.$geoInput = getElement(this, ".geo-input");
-    // The button exists only in its template until it is added below
-    this.$geoInputButton = this.querySelector(".geo-input__button");
-    this.$geoInputButtonTemplate = getElement(this, "#geo-input-button");
-    this.$errorMessageTemplate = getElement(this, "#error-message");
-
     if (!navigator.geolocation) {
       return;
     }
+
+    // This button exists only in its template until it is added below
+    this.$geoInputButton = this.querySelector(".geo-input__button");
 
     if (!this.$geoInputButton) {
       // Create group to hold input and button
@@ -101,6 +116,10 @@ export const GeoInputFieldComponent = class extends HTMLElement {
     }
   }
 
+  /**
+   * Show error message
+   * @param {string|null} message - Message
+   */
   showErrorMessage(message) {
     const $input = /** @type {HTMLElement} */ (this.querySelector(".input"));
     const $inputButtonGroup = /** @type {HTMLElement} */ (

@@ -12,7 +12,7 @@ import {
 /**
  * Stand-in for the localiser: the key and its values, space-separated
  * @param {string} key - Locale key
- * @param {...string} values - Values
+ * @param {...(string | number)} values - Values
  * @returns {string} Message
  */
 const __ = (key, ...values) => [key, ...values].join(" ");
