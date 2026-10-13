@@ -16,11 +16,11 @@ const request = supertest.agent(server);
 describe("endpoint-posts GET /posts", () => {
   it("Returns list of published posts", async () => {
     const response = await request.get("/posts").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result =
-      dom.window.document.querySelector(".card__title a").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $a = document.querySelector(".card__title a");
 
-    assert.equal(result.includes("Foobar"), true);
+    assert.ok($a, "a element not found");
+    assert.equal($a.textContent.includes("Foobar"), true);
   });
 
   after(() => server.close());

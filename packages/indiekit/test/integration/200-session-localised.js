@@ -11,10 +11,11 @@ const request = supertest.agent(server);
 describe("indiekit GET /session/login", () => {
   it("Returns localised page", async () => {
     const response = await request.get("/session/login");
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
-    assert.equal(result, "Anmelden - Test configuration");
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Anmelden - Test configuration");
   });
 
   after(() => server.close());

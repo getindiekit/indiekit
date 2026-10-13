@@ -17,14 +17,12 @@ describe("endpoint-share POST /share", () => {
       .send("name=Foobar")
       .send("content=Test+of+sharing+a+bookmark")
       .send("bookmark-of=https://example.website");
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $p = document.querySelector(`notification-banner[type="error"] p`);
 
     assert.equal(response.status, 400);
-    assert.match(
-      result.querySelector(`notification-banner[type="error"] p`).textContent,
-      /\bNo bearer token provided by request\b/g,
-    );
+    assert.ok($p, "p element not found");
+    assert.match($p.textContent, /\bNo bearer token provided by request\b/g);
   });
 
   after(() => server.close());

@@ -29,18 +29,20 @@ describe("endpoint-auth POST /auth/consent", () => {
       .type("form")
       .query({ request_uri: `urn:ietf:params:oauth:request_uri:${reference}` })
       .send({ scope: ["create"] });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $passwordError = document.querySelector(
+      "#password-error .error-message__text",
+    );
 
     assert.equal(response.status, 422);
+    assert.ok($title, "title element not found");
     assert.equal(
-      result.querySelector("title").textContent,
+      $title.textContent,
       "Error: Authorize application - Test configuration",
     );
-    assert.equal(
-      result.querySelector("#password-error .error-message__text").textContent,
-      "Enter a password",
-    );
+    assert.ok($passwordError, "#password-error element not found");
+    assert.equal($passwordError.textContent, "Enter a password");
   });
 
   after(() => server.close());

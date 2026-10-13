@@ -15,11 +15,12 @@ describe("endpoint-posts GET /posts/create", () => {
       .get("/posts/create")
       .set("cookie", testCookie())
       .query({ type: "note" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
+    assert.ok($title, "title element not found");
     assert.equal(
-      result,
+      $title.textContent,
       "Create a new custom note post type post - Test configuration",
     );
   });

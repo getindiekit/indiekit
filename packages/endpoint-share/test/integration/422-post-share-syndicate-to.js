@@ -20,13 +20,16 @@ describe("endpoint-share POST /share", () => {
       .post("/share")
       .set("cookie", testCookie())
       .send("mp-syndicate-to=https://mastodon.example/@username");
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector(
-      'input[name="mp-syndicate-to"][value="https://mastodon.example/@username"]',
+    const { document } = new JSDOM(response.text).window;
+    const $input = /** @type {HTMLInputElement} */ (
+      document.querySelector(
+        'input[name="mp-syndicate-to"][value="https://mastodon.example/@username"]',
+      )
     );
 
     assert.equal(response.status, 422);
-    assert.equal(result.checked, true);
+    assert.ok($input, "input element not found");
+    assert.equal($input.checked, true);
   });
 
   after(() => server.close());

@@ -74,6 +74,7 @@
     "@types/express": "^5.0.6",
     "@types/express-fileupload": "^1.5.1",
     "@types/i18n": "^0.13.12",
+    "@types/jsdom": "^30.0.0",
     "@types/lodash": "^4.17.26",
     "@types/serviceworker": "^0.0.203",
     "aws-sdk-client-mock": "^4.1.0",

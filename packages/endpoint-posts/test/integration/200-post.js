@@ -18,10 +18,11 @@ describe("endpoint-posts GET /posts/:uid", () => {
     const response = await request
       .get(`/posts/123`)
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
-    assert.equal(result, `Foobar - Test configuration`);
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, `Foobar - Test configuration`);
   });
 
   after(() => server.close());
