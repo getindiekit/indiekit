@@ -62,8 +62,8 @@ describe("indiekit/lib/indieauth", () => {
     const next = mock.fn();
     await indieauth.authenticate()(request, response, next);
 
-    assert.equal(request.session.access_token, "JWT");
-    assert.equal(request.session.scope, "create");
+    assert.equal(request.session?.access_token, "JWT");
+    assert.equal(request.session?.scope, "create");
     assert.equal(next.mock.calls.length, 1);
   });
 
@@ -84,8 +84,8 @@ describe("indiekit/lib/indieauth", () => {
     const next = mock.fn();
     await indieauth.authenticate()(request, response, next);
 
-    assert.equal(request.session.access_token, process.env.NODE_ENV);
-    assert.equal(request.session.scope, "create update delete media");
+    assert.equal(request.session?.access_token, process.env.NODE_ENV);
+    assert.equal(request.session?.scope, "create update delete media");
     assert.equal(next.mock.calls.length, 1);
   });
 
