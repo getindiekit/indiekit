@@ -2,7 +2,7 @@
  * Upload attached file(s) via media endpoint
  * @param {string} mediaEndpoint - Media endpoint URL
  * @param {string} token - Bearer token
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} files - Files to upload
  * @returns {Promise<object>} Uploaded file locations
  */

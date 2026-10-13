@@ -36,11 +36,11 @@ export const getMf2Properties = (mf2, requestedProperties) => {
 
 /**
  * Convert JF2 post data to mf2
- * @param {Jf2PostData} postData - Post data
+ * @param {Jf2Properties} jf2 - JF2
  * @returns {MicroformatRoot} mf2
  */
-export const jf2ToMf2 = (postData) => {
-  const { properties } = postData;
+export const jf2ToMf2 = (jf2) => {
+  const { properties } = jf2;
 
   /**
    * @type {Mf2Draft}

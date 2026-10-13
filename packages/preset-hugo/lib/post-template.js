@@ -5,7 +5,7 @@ import YAML from "yaml";
 /**
  * Get content
  * @access private
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {string} Content
  */
 const getContent = (properties) => {
@@ -21,7 +21,7 @@ const getContent = (properties) => {
 /**
  * Get front matter
  * @access private
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {string} frontMatterFormat - Front matter format
  * @returns {string} Front matter in chosen format
  */
@@ -88,7 +88,7 @@ const getFrontMatter = (properties, frontMatterFormat) => {
 
 /**
  * Get post template
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {string} [frontMatterFormat] - Front matter format
  * @returns {string} Rendered template
  */
