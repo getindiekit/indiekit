@@ -89,13 +89,16 @@ export const queryController = async (request, response, next) => {
         };
 
         if (postsCollection) {
-          // `filter` matches the name or content, `category` a category.
-          // Both are cast to strings so that, whatever the query parser
-          // yields, nothing reaches the database as an operator.
+          // `filter` matches the name or content, `category` a category and
+          // `post-type` a post type. All are cast to strings so that, whatever
+          // the query parser yields, nothing reaches the database as an
+          // operator.
+          const postType = request.query["post-type"];
           const pattern =
             filter && new RegExp(RegExp.escape(String(filter)), "i");
           const postsFilter = {
             ...(category && { "properties.category": String(category) }),
+            ...(postType && { "properties.post-type": String(postType) }),
             ...(pattern && {
               $or: [
                 { "properties.name": pattern },
