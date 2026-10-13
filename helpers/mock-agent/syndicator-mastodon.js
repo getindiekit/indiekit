@@ -15,6 +15,10 @@ export function mockClient() {
     id,
     url: `https://mastodon.example/@username/${id}`,
   };
+  const remoteStatusResponse = {
+    id: "111",
+    url: "https://deadbird.example/username/1234567890987654321",
+  };
   const responseOptions = {
     headers: { "Content-type": "application/json" },
   };
@@ -45,6 +49,20 @@ export function mockClient() {
     .get(instanceOrigin)
     .intercept({ path: `/api/v1/statuses/404/reblog`, method: "POST" })
     .reply(404, { error: "Record not found" }, responseOptions);
+
+  // Post favourite of a status on another server
+  agent
+    .get(instanceOrigin)
+    .intercept({ path: `/api/v1/statuses/111/favourite`, method: "POST" })
+    .reply(200, remoteStatusResponse, responseOptions)
+    .persist();
+
+  // Post reblog of a status on another server
+  agent
+    .get(instanceOrigin)
+    .intercept({ path: `/api/v1/statuses/111/reblog`, method: "POST" })
+    .reply(200, remoteStatusResponse, responseOptions)
+    .persist();
 
   // Search for a status on another server (found)
   agent
