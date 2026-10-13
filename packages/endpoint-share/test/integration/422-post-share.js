@@ -12,23 +12,22 @@ const request = supertest.agent(server);
 describe("endpoint-share POST /share", () => {
   it("Returns 422 error invalid form submission", async () => {
     const response = await request.post("/share").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $nameError = document.querySelector(
+      "#name-error .error-message__text",
+    );
+    const $bookmarkOfError = document.querySelector(
+      "#bookmark-of-error .error-message__text",
+    );
 
     assert.equal(response.status, 422);
-    assert.equal(
-      result.querySelector("title").textContent,
-      "Error: Share - Test configuration",
-    );
-    assert.equal(
-      result.querySelector("#name-error .error-message__text").textContent,
-      "Enter a title",
-    );
-    assert.equal(
-      result.querySelector("#bookmark-of-error .error-message__text")
-        .textContent,
-      "Invalid value",
-    );
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Error: Share - Test configuration");
+    assert.ok($nameError, "span element not found");
+    assert.equal($nameError.textContent, "Enter a title");
+    assert.ok($bookmarkOfError, "span element not found");
+    assert.equal($bookmarkOfError.textContent, "Invalid value");
   });
 
   after(() => server.close());

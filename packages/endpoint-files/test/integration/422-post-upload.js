@@ -14,18 +14,20 @@ describe("endpoint-files POST /posts/create", () => {
     const response = await request
       .post("/files/upload")
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $fileError = document.querySelector(
+      "#file-error .error-message__text",
+    );
 
     assert.equal(response.status, 422);
+    assert.ok($title, "title element not found");
     assert.equal(
-      result.querySelector("title").textContent,
+      $title.textContent,
       "Error: Upload a new file - Test configuration",
     );
-    assert.equal(
-      result.querySelector("#file-error .error-message__text").textContent,
-      "Choose a file to upload",
-    );
+    assert.ok($fileError, "#file-error element not found");
+    assert.equal($fileError.textContent, "Choose a file to upload");
   });
 
   after(() => server.close());

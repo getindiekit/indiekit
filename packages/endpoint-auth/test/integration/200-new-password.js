@@ -11,13 +11,11 @@ const request = supertest.agent(server);
 describe("endpoint-auth GET /auth/new-password", () => {
   it("Returns new password page", async () => {
     const response = await request.get("/auth/new-password");
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
-    assert.equal(
-      result.querySelector("title").textContent,
-      "New password - Test configuration",
-    );
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "New password - Test configuration");
   });
 
   after(() => server.close());

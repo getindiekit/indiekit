@@ -12,10 +12,11 @@ const request = supertest.agent(server);
 describe("endpoint-share GET /share", () => {
   it("Returns share page", async () => {
     const response = await request.get("/share").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
-    assert.equal(result, "Share - Test configuration");
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Share - Test configuration");
   });
 
   after(() => server.close());

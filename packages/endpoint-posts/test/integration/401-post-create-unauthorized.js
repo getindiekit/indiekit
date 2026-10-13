@@ -24,13 +24,12 @@ describe("endpoint-files POST /posts/create", () => {
       .send({ type: "entry" })
       .send({ content: "Foobar" })
       .send({ published: "2023-08-28T12:30" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector(
-      `notification-banner[type="error"] p`,
-    ).textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $p = document.querySelector(`notification-banner[type="error"] p`);
 
     assert.equal(response.status, 401);
-    assert.match(result, /Unauthorized/);
+    assert.ok($p, "p element not found");
+    assert.match($p.textContent, /Unauthorized/);
   });
 
   after(() => server.close());

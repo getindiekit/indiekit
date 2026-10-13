@@ -24,11 +24,12 @@ describe("endpoint-share POST /share", () => {
   it("Sends each chosen syndication target to the Micropub endpoint", async () => {
     // Read the targets the form offers rather than assuming their uids
     const form = await request.get("/share").set("cookie", testCookie());
-    const dom = new JSDOM(form.text);
-    const targets = [
-      ...dom.window.document.querySelectorAll('input[name="mp-syndicate-to"]'),
-    ].map((input) => input.value);
-    assert.equal(targets.length, 2);
+    const { document } = new JSDOM(form.text).window;
+    const $$inputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+      document.querySelectorAll('input[name="mp-syndicate-to"]')
+    );
+    const inputValues = [...$$inputs].map((input) => input.value);
+    assert.equal(inputValues.length, 2);
 
     const result = await request
       .post("/share")
@@ -36,8 +37,8 @@ describe("endpoint-share POST /share", () => {
       .send(`access_token=${testToken()}`)
       .send("name=Foobar")
       .send("bookmark-of=https://example.website")
-      .send(`mp-syndicate-to=${encodeURIComponent(targets[0])}`)
-      .send(`mp-syndicate-to=${encodeURIComponent(targets[1])}`);
+      .send(`mp-syndicate-to=${encodeURIComponent(inputValues[0])}`)
+      .send(`mp-syndicate-to=${encodeURIComponent(inputValues[1])}`);
 
     assert.equal(result.status, 302);
 
@@ -59,7 +60,7 @@ describe("endpoint-share POST /share", () => {
       .query({ url });
 
     // Both targets, as separate values, not one comma-joined string
-    assert.deepEqual(post.body.properties["mp-syndicate-to"], targets);
+    assert.deepEqual(post.body.properties["mp-syndicate-to"], inputValues);
   });
 
   after(async () => {

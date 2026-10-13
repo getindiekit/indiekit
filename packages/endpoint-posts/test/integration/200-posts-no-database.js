@@ -12,17 +12,14 @@ const request = supertest.agent(server);
 describe("endpoint-posts GET /posts", () => {
   it("Returns no published posts (no database)", async () => {
     const response = await request.get("/posts").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $p = document.querySelector(".main__container p");
 
-    assert.equal(
-      result.querySelector("title").textContent,
-      "Published posts - Test configuration",
-    );
-    assert.match(
-      result.querySelector(".main__container p").textContent,
-      /No posts/,
-    );
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Published posts - Test configuration");
+    assert.ok($p, "p element not found");
+    assert.match($p.textContent, /No posts/);
   });
 
   after(() => server.close());

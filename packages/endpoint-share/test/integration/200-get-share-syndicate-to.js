@@ -17,13 +17,15 @@ const request = supertest.agent(server);
 describe("endpoint-share GET /share", () => {
   it("Renders a checkbox for each syndication target", async () => {
     const response = await request.get("/share").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelectorAll(
-      'input[type="checkbox"][name="mp-syndicate-to"]',
+    const { document } = new JSDOM(response.text).window;
+    const $$inputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+      document.querySelectorAll(
+        'input[type="checkbox"][name="mp-syndicate-to"]',
+      )
     );
 
-    assert.equal(result.length, 2);
-    assert.ok([...result].every((input) => input.value));
+    assert.equal($$inputs.length, 2);
+    assert.ok([...$$inputs].every((input) => input.value));
   });
 
   after(() => server.close());

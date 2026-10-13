@@ -19,13 +19,12 @@ describe("endpoint-files POST /posts/:uid/delete", () => {
       .post(`/posts/401/delete`)
       .set("cookie", testCookie())
       .send({ url: "https://website.example/401" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector(
-      `notification-banner[type="error"] p`,
-    ).textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $p = document.querySelector(`notification-banner[type="error"] p`);
 
     assert.equal(response.status, 401);
-    assert.match(result, /Unauthorized/);
+    assert.ok($p, "p element not found");
+    assert.match($p.textContent, /Unauthorized/);
   });
 
   after(() => server.close());
