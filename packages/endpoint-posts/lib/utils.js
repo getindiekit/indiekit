@@ -89,7 +89,7 @@ export const getLocationProperty = (values) => {
 /**
  * Get photo URL
  * @param {object} publication - Publication configuration
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {object|boolean} Photo object, with URL
  */
 export const getPhotoUrl = (publication, properties) => {
@@ -142,7 +142,7 @@ export const getPostStatusBadges = (post, response) => {
 /**
  * Get post name, falling back to post type name
  * @param {object} publication - Publication configuration
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {string} Post name or post type name
  */
 export const getPostName = (publication, properties) => {

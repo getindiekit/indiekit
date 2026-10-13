@@ -32,7 +32,7 @@ export const postData = {
    * Create post data
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
-   * @param {object} properties - JF2 properties
+   * @param {Jf2Properties} properties - JF2 properties
    * @param {boolean} [isDraftMode] - Draft mode
    * @returns {Promise<object>} Post data
    */

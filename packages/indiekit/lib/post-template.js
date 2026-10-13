@@ -1,6 +1,6 @@
 /**
  * Return properties as JSON
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {string} Properties as JSON
  */
 const jsonPostTemplate = (properties) => {
