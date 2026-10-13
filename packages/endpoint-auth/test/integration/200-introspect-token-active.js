@@ -22,5 +22,17 @@ describe("endpoint-auth POST /auth/introspect", () => {
     assert.ok(result.body.scope);
   });
 
+  it("Returns active access token sent in the request body", async () => {
+    const result = await request
+      .post("/auth/introspect")
+      .type("form")
+      .send({ token: testToken() })
+      .set("accept", "application/json");
+
+    assert.equal(result.status, 200);
+    assert.equal(result.body.active, true);
+    assert.equal(result.body.me, "https://website.example");
+  });
+
   after(() => server.close());
 });

@@ -33,15 +33,17 @@ export const findBearerToken = (request) => {
  * @returns {Promise<object>} Token values to verify
  */
 export const introspectToken = async (introspectionEndpoint, bearerToken) => {
-  const introspectionUrl = new URL(introspectionEndpoint);
-  introspectionUrl.searchParams.append("token", bearerToken);
-
-  const introspectionResponse = await fetch(introspectionUrl, {
+  // Send the token in the request body, never the URL, where it would be
+  // logged by servers and proxies along the way
+  // @see {@link https://www.rfc-editor.org/rfc/rfc7662#section-2.1}
+  const introspectionResponse = await fetch(introspectionEndpoint, {
     method: "POST",
     headers: {
       accept: "application/json",
       authorization: `Bearer ${bearerToken}`,
+      "content-type": "application/x-www-form-urlencoded",
     },
+    body: new URLSearchParams({ token: bearerToken }),
   });
 
   if (!introspectionResponse.ok) {
