@@ -11,10 +11,14 @@ const request = supertest.agent(server);
 describe("endpoint-auth GET /auth", () => {
   it("Returns service documentation if no authorization query", async () => {
     const response = await request.get("/auth");
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
-    assert.equal(result, "Using this IndieAuth endpoint - Test configuration");
+    assert.ok($title, "title element not found");
+    assert.equal(
+      $title.textContent,
+      "Using this IndieAuth endpoint - Test configuration",
+    );
   });
 
   after(() => server.close());

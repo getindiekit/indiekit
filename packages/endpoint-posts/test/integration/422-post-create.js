@@ -17,22 +17,23 @@ describe("endpoint-posts POST /posts/create", () => {
       .send({ type: "entry" })
       .send({ postType: "note" })
       .send({ geo: "foobar" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $contentError = document.querySelector(
+      "#content-error .error-message__text",
+    );
+    const $geoError = document.querySelector("#geo-error .error-message__text");
 
     assert.equal(response.status, 422);
+    assert.ok($title, "title element not found");
     assert.equal(
-      result.querySelector("title").textContent,
+      $title.textContent,
       "Error: Create a new custom note post type post - Test configuration",
     );
-    assert.equal(
-      result.querySelector("#content-error .error-message__text").textContent,
-      "Enter some content",
-    );
-    assert.equal(
-      result.querySelector("#geo-error .error-message__text").textContent,
-      "Enter valid coordinates",
-    );
+    assert.ok($contentError, "span element not found");
+    assert.equal($contentError.textContent, "Enter some content");
+    assert.ok($geoError, "span element not found");
+    assert.equal($geoError.textContent, "Enter valid coordinates");
   });
 
   after(() => server.close());

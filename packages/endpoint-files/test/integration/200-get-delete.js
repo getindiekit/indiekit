@@ -18,11 +18,12 @@ describe("endpoint-files GET /files/:uid/delete", () => {
     const response = await request
       .get(`/files/123/delete`)
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
+    assert.ok($title, "title element not found");
     assert.equal(
-      result,
+      $title.textContent,
       "Are you sure you want to delete this file? - Test configuration",
     );
   });

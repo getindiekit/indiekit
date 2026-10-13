@@ -14,11 +14,12 @@ describe("endpoint-posts GET /posts/new", () => {
     const response = await request
       .get("/posts/new")
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
+    assert.ok($title, "title element not found");
     assert.equal(
-      result,
+      $title.textContent,
       "What type of post do you want to create? - Test configuration",
     );
   });

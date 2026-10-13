@@ -14,13 +14,11 @@ describe("indiekit GET /status", () => {
     const response = await request
       .get("/status")
       .auth(testToken(), { type: "bearer" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
 
-    assert.equal(
-      result.querySelector("title").textContent,
-      "Server status - Test configuration",
-    );
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Server status - Test configuration");
   });
 
   after(() => server.close());

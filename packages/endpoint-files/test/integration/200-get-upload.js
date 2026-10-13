@@ -14,11 +14,13 @@ describe("endpoint-files GET /files/:uid/delete", () => {
     const response = await request
       .get("/files/upload")
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelector("title").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $input = document.querySelector("input[name=file][multiple]");
 
-    assert.equal(result, "Upload a new file - Test configuration");
-    assert.ok(dom.window.document.querySelector("input[name=file][multiple]"));
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Upload a new file - Test configuration");
+    assert.ok($input, "input element not found");
   });
 
   after(() => server.close());

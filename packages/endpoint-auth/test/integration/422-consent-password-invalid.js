@@ -29,18 +29,17 @@ describe("endpoint-auth POST /auth/token", () => {
       .type("form")
       .query({ request_uri: `urn:ietf:params:oauth:request_uri:${reference}` })
       .send({ password: "foo" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $title = document.querySelector("title");
+    const $passwordError = document.querySelector(
+      "#password-error .error-message__text",
+    );
 
     assert.equal(response.status, 422);
-    assert.equal(
-      result.querySelector("title").textContent,
-      "Error: Sign in - Test configuration",
-    );
-    assert.equal(
-      result.querySelector("#password-error .error-message__text").textContent,
-      "Enter a valid password",
-    );
+    assert.ok($title, "title element not found");
+    assert.equal($title.textContent, "Error: Sign in - Test configuration");
+    assert.ok($passwordError, "#password-error  element not found");
+    assert.equal($passwordError.textContent, "Enter a valid password");
   });
 
   after(() => server.close());

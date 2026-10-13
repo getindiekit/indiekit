@@ -16,18 +16,18 @@ const request = supertest.agent(server);
 describe("endpoint-files GET /files", () => {
   it("Returns list of uploaded files", async () => {
     const response = await request.get("/files").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result =
-      dom.window.document.querySelector(".card__title a").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $a = document.querySelector(".card__title a");
 
-    assert.equal(result.includes("photo.jpg"), true);
+    assert.ok($a, "a element not found");
+    assert.equal($a.textContent.includes("photo.jpg"), true);
   });
 
   it("Shows a thumbnail for a photo but not for other media", async () => {
     const response = await request.get("/files").set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const cards = [...dom.window.document.querySelectorAll(".card")];
-    const result = cards.map((card) =>
+    const { document } = new JSDOM(response.text).window;
+    const $$cards = [...document.querySelectorAll(".card")];
+    const result = $$cards.map((card) =>
       Boolean(card.querySelector(".card__photo")),
     );
 

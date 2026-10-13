@@ -18,21 +18,21 @@ describe("endpoint-webmention-io GET /webmentions", () => {
     const response = await request
       .get("/webmentions")
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result =
-      dom.window.document.querySelector(".card__body p").textContent;
+    const { document } = new JSDOM(response.text).window;
+    const $p = document.querySelector(".card__body p");
 
-    assert.equal(result.includes("This looks interesting"), true);
+    assert.ok($p, "p element not found");
+    assert.equal($p.textContent.includes("This looks interesting"), true);
   });
 
   it("Omits avatar if author has no photo", async () => {
     const response = await request
       .get("/webmentions")
       .set("cookie", testCookie());
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document.querySelectorAll("img.avatar");
+    const { document } = new JSDOM(response.text).window;
+    const $img = document.querySelectorAll("img.avatar");
 
-    assert.equal(result.length, 0);
+    assert.equal($img.length, 0);
   });
 
   after(() => server.close());

@@ -14,13 +14,11 @@ describe("endpoint-auth POST /auth/new-password", () => {
       .post("/auth/new-password")
       .type("form")
       .send({ password: "foo" });
-    const dom = new JSDOM(response.text);
-    const result = dom.window.document;
+    const { document } = new JSDOM(response.text).window;
+    const $textarea = document.querySelector("#secret");
 
-    assert.match(
-      result.querySelector("#secret").textContent,
-      /^\$2[aby]\$.{56}$/,
-    );
+    assert.ok($textarea, "textarea element not found");
+    assert.match($textarea.textContent, /^\$2[aby]\$.{56}$/);
   });
 
   after(() => server.close());
