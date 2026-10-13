@@ -35,6 +35,45 @@ export function mockClient() {
     })
     .persist();
 
+  // Get source information for posts filtered by post type and text
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: {
+        q: "source",
+        limit: "12",
+        "post-type": "bookmark",
+        filter: "lunch & dinner",
+      },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      paging: { after: "456" },
+    })
+    .persist();
+
+  // Get source information for posts filtered by a post type with no posts
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", "post-type": "photo" },
+    })
+    .reply(200, { items: [] })
+    .persist();
+
   // Get source information for a single post by uid from external micropub endpoint
   agent
     .get(micropubEndpointOrigin)

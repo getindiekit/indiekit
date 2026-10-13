@@ -19,10 +19,25 @@ export const postsController = async (request, response, next) => {
     const scope = request.session?.scope;
     const { after, before, success } = request.query;
     const limit = Number(request.query.limit) || 12;
+    const postType = String(request.query["post-type"] || "");
+    const filter = String(request.query.filter || "");
+
+    // Filters are passed to Micropub and kept when paging
+    const filters = new URLSearchParams();
+    if (postType) {
+      filters.set("post-type", postType);
+    }
+
+    if (filter) {
+      filters.set("filter", filter);
+    }
 
     const micropubUrl = new URL(application.micropubEndpoint);
     micropubUrl.searchParams.append("q", "source");
     micropubUrl.searchParams.append("limit", String(limit));
+    for (const [key, value] of filters) {
+      micropubUrl.searchParams.append(key, value);
+    }
 
     if (after) {
       micropubUrl.searchParams.append("after", String(after));
@@ -59,18 +74,32 @@ export const postsController = async (request, response, next) => {
     }
 
     const cursor = {};
+    const pageHref = (key, value) => {
+      const parameters = new URLSearchParams(filters);
+      parameters.set(key, value);
+      return `?${parameters}`;
+    };
 
     if (micropubResponse?.paging?.after) {
       cursor.next = {
-        href: `?after=${micropubResponse.paging.after}`,
+        href: pageHref("after", micropubResponse.paging.after),
       };
     }
 
     if (micropubResponse?.paging?.before) {
       cursor.previous = {
-        href: `?before=${micropubResponse.paging.before}`,
+        href: pageHref("before", micropubResponse.paging.before),
       };
     }
+
+    const postTypeItems = [
+      { value: "", text: response.locals.__("posts.posts.allPostTypes") },
+      ...Object.entries(publication.postTypes).map(([type, { name }]) => ({
+        value: type,
+        text: name,
+        selected: type === postType,
+      })),
+    ];
 
     return response.render("posts", {
       title: response.locals.__("posts.posts.title"),
@@ -84,6 +113,9 @@ export const postsController = async (request, response, next) => {
           : {},
       ],
       cursor,
+      filter,
+      filtered: filters.size > 0,
+      postTypeItems,
       posts,
       limit,
       count: micropubResponse._count,
