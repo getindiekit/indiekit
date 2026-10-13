@@ -1,7 +1,7 @@
 /**
  * Accepts a JF2 object and attempts to determine the post type
  * @param {object} postTypes - Configured post types
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {string|null} The post type or null if unknown
  * @see {@link https://ptd.spec.indieweb.org/#algorithm}
  */

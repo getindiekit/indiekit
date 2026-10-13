@@ -2,7 +2,7 @@ export const postTypeCount = {
   /**
    * Count the number of posts of a given type
    * @param {object} postsCollection - Posts database collection
-   * @param {object} properties - JF2 properties
+   * @param {Jf2Properties} properties - JF2 properties
    * @returns {Promise<object>} Post count
    */
   async get(postsCollection, properties) {
