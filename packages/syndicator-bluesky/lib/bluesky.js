@@ -237,7 +237,7 @@ export class Bluesky {
 
   /**
    * Post to Bluesky
-   * @param {object} properties - JF2 properties
+   * @param {Jf2Properties} properties - JF2 properties
    * @param {string} me - Publication URL
    * @returns {Promise<string|undefined>} URL of syndicated status
    */

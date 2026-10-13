@@ -90,7 +90,7 @@ export class InternetArchive {
 
   /**
    * Save to Internet Archive
-   * @param {object} properties - JF2 properties
+   * @param {Jf2Properties} properties - JF2 properties
    * @returns {Promise<string>} URL of archived web page
    */
   async save(properties) {

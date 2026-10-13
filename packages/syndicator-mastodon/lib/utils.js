@@ -5,7 +5,7 @@ import { htmlToText } from "html-to-text";
 
 /**
  * Get status parameters from given JF2 properties
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} options - Options
  * @param {number} [options.characterLimit] - Character limit
  * @param {boolean} [options.includeCategories] - Add categories as hashtags

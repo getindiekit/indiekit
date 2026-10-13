@@ -80,7 +80,7 @@ export const getSyndicationTarget = (syndicationTargets, syndicateTo) => {
 /**
  * Syndicate URLs to configured syndication targets
  * @param {object} publication - Publication configuration
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {Promise<object>} Syndication target
  */
 export const syndicateToTargets = async (publication, properties) => {
