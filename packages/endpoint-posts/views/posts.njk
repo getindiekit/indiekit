@@ -1,6 +1,27 @@
 {% extends "document.njk" %}
 
 {% block content %}
+  <form method="get" action="{{ parentUrl }}" role="search">
+    {% call fieldset({
+      attributes: { "aria-label": __("posts.posts.submit") }
+    }) %}
+      {{ select({
+        name: "post-type",
+        label: __("posts.posts.postType"),
+        items: postTypeItems
+      }) }}
+      {{ input({
+        name: "filter",
+        type: "search",
+        label: __("posts.posts.filter"),
+        value: filter
+      }) }}
+      {{ button({
+        classes: "button--secondary",
+        text: __("posts.posts.submit")
+      }) }}
+    {% endcall %}
+  </form>
   {%- if posts | length > 0 %}
   {{ cardGrid({
     cardSize: "16rem",
@@ -8,6 +29,6 @@
   }) }}
   {{ pagination(cursor) }}
   {%- else -%}
-  {{ prose({ text: __("posts.posts.none") }) }}
+  {{ prose({ text: __("posts.posts.noneMatching") if filtered else __("posts.posts.none") }) }}
   {%- endif %}
 {% endblock %}
