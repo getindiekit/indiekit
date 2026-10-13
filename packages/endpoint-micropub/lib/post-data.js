@@ -34,7 +34,7 @@ export const postData = {
    * @param {object} publication - Publication configuration
    * @param {Jf2Properties} properties - JF2 properties
    * @param {boolean} [isDraftMode] - Draft mode
-   * @returns {Promise<object>} Post data
+   * @returns {Promise<Jf2PostData>} Post data
    */
   async create(application, publication, properties, isDraftMode = false) {
     debug(`Create %O`, { isDraftMode, properties });
@@ -112,7 +112,7 @@ export const postData = {
    * Read post data
    * @param {object} application - Application configuration
    * @param {string} url - URL of existing post
-   * @returns {Promise<object>} Post data
+   * @returns {Promise<Jf2PostData>} Post data
    */
   async read(application, url) {
     debug(`Read ${url}`);
@@ -141,7 +141,7 @@ export const postData = {
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {object} operation - Requested operation(s)
-   * @returns {Promise<object>} Post data
+   * @returns {Promise<Jf2PostData|undefined>} Post data
    */
   async update(application, publication, url, operation) {
     debug(`Update ${url} %O`, { operation });
@@ -233,7 +233,7 @@ export const postData = {
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @returns {Promise<object>} Post data
+   * @returns {Promise<Jf2PostData>} Post data
    */
   async delete(application, publication, url) {
     debug(`Delete ${url}`);
@@ -288,7 +288,7 @@ export const postData = {
    * @param {object} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {boolean} [isDraftMode] - Draft mode
-   * @returns {Promise<object>} Post data
+   * @returns {Promise<Jf2PostData>} Post data
    */
   async undelete(application, publication, url, isDraftMode) {
     debug(`Undelete ${url} %O`, { isDraftMode });

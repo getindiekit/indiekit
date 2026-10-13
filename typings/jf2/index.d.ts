@@ -13,5 +13,8 @@ interface Jf2GeoProperty {
 interface Jf2PostData {
   /** BSON ObjectId, being refactored out of post data */
   _id?: unknown;
+  _deletedProperties?: Jf2Properties;
+  _originalPath?: string;
+  path: string;
   properties: Jf2Properties;
 }

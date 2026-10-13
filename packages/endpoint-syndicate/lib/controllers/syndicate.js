@@ -15,7 +15,7 @@ const batch = { isRunning: false };
  * Syndicate a post to its targets and record the result on the post
  * @param {object} application - Application configuration
  * @param {object} publication - Publication configuration
- * @param {object} postData - Post data
+ * @param {Jf2PostData} postData - Post data
  * @param {string} bearerToken - Access token for the Micropub update
  * @returns {Promise<object>} Micropub response body
  */

@@ -81,7 +81,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       operation,
     );
 
-    assert.ok(result.properties.syndication);
+    assert.ok(result?.properties.syndication);
   });
 
   it("Doesn’t update post if no changes", async () => {
@@ -105,7 +105,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       operation,
     );
 
-    assert.deepEqual(result.properties.content, {
+    assert.deepEqual(result?.properties.content, {
       html: "<p>hello moon</p>",
       text: "hello moon",
     });
@@ -120,7 +120,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       operation,
     );
 
-    assert.deepEqual(result.properties.category, ["bar"]);
+    assert.deepEqual(result?.properties.category, ["bar"]);
   });
 
   it("Updates post by deleting properties", async () => {
@@ -132,7 +132,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       operation,
     );
 
-    assert.equal(result.properties.category, undefined);
+    assert.equal(result?.properties.category, undefined);
   });
 
   it("Updates post by adding, deleting and updating properties", async () => {
@@ -152,7 +152,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       operation,
     );
 
-    assert.deepEqual(result.properties.content, {
+    assert.deepEqual(result?.properties.content, {
       html: "<p>updated content</p>",
       text: "updated content",
     });
@@ -303,7 +303,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
       operation,
     );
 
-    assert.equal(result.properties.uid, created.properties.uid);
+    assert.equal(result?.properties.uid, created.properties.uid);
   });
 
   it("Ignores a uid supplied by the client", async () => {
