@@ -15,8 +15,12 @@ export function mockClient() {
   agent
     .get(tokenEndpointOrigin)
     .intercept({
-      path: "/introspect?token=JWT",
-      headers: { authorization: "Bearer JWT" },
+      path: "/introspect",
+      body: "token=JWT",
+      headers: {
+        authorization: "Bearer JWT",
+        "content-type": "application/x-www-form-urlencoded",
+      },
       method: "POST",
     })
     .reply(200, {
@@ -29,8 +33,12 @@ export function mockClient() {
   agent
     .get(tokenEndpointOrigin)
     .intercept({
-      path: "/introspect?token=another",
-      headers: { authorization: "Bearer another" },
+      path: "/introspect",
+      body: "token=another",
+      headers: {
+        authorization: "Bearer another",
+        "content-type": "application/x-www-form-urlencoded",
+      },
       method: "POST",
     })
     .reply(200, {
@@ -43,8 +51,12 @@ export function mockClient() {
   agent
     .get(tokenEndpointOrigin)
     .intercept({
-      path: "/introspect?token=invalid",
-      headers: { authorization: "Bearer invalid" },
+      path: "/introspect",
+      body: "token=invalid",
+      headers: {
+        authorization: "Bearer invalid",
+        "content-type": "application/x-www-form-urlencoded",
+      },
       method: "POST",
     })
     .reply(200, { active: false });
@@ -53,8 +65,12 @@ export function mockClient() {
   agent
     .get(tokenEndpointOrigin)
     .intercept({
-      path: "/introspect/token?token=JWT",
-      headers: { authorization: "Bearer JWT" },
+      path: "/introspect/token",
+      body: "token=JWT",
+      headers: {
+        authorization: "Bearer JWT",
+        "content-type": "application/x-www-form-urlencoded",
+      },
       method: "POST",
     })
     .reply(404, { message: "Not found" });
