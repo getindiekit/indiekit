@@ -6,7 +6,7 @@ import { signToken } from "@indiekit/endpoint-auth/lib/token.js";
  * @param {boolean} [options.invalid] - Invalidate token
  * @param {string} [options.me] - Publication URL
  * @param {string} [options.scope] - Permissions scope
- * @returns {object} Access token
+ * @returns {string} Access token
  */
 export const testToken = (options = {}) => {
   const expiresIn = options?.invalid ? "0s" : "10m";
