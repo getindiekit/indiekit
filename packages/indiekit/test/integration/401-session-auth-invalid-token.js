@@ -18,11 +18,11 @@ describe("indiekit GET /session/auth", () => {
     const authUrlRegexp =
       /client_id=(?<client_id>.*)&code_challenge_method=S256&code_challenge=(?<code_challenge>.*)&me=(?<me>.*)&response_type=code&scope=(?<scope>.*)&state=(?<state>.*)/;
     const { location } = response.headers;
-    const parameters = location.match(authUrlRegexp).groups;
+    const parameters = location?.match(authUrlRegexp)?.groups;
     const result = await request
       .get("/session/auth")
       .query({ code: "invalid" })
-      .query({ state: parameters.state });
+      .query({ state: parameters?.state });
 
     assert.equal(result.status, 401);
     assert.equal(

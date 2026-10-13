@@ -77,6 +77,7 @@
     "@types/jsdom": "^30.0.0",
     "@types/lodash": "^4.17.26",
     "@types/serviceworker": "^0.0.203",
+    "@types/supertest": "^7.2.1",
     "aws-sdk-client-mock": "^4.1.0",
     "cookie-session": "^2.1.1",
     "create-indiekit": "*",

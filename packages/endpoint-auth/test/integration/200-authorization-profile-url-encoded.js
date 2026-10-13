@@ -38,10 +38,10 @@ describe("endpoint-auth POST /auth", () => {
       .query({ grant_type: "authorization_code" })
       .query({ redirect_uri: "https://auth-endpoint.example/redirect" });
     const responseTextRegexp = /me=(?<me>.*)/;
-    const result = response.text.match(responseTextRegexp).groups;
+    const result = response?.text?.match(responseTextRegexp)?.groups;
 
     assert.equal(response.status, 200);
-    assert.equal(result.me, encodeURIComponent("https://website.example"));
+    assert.equal(result?.me, encodeURIComponent("https://website.example"));
   });
 
   after(() => server.close());
