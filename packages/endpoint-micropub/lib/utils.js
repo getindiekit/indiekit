@@ -24,7 +24,7 @@ export const decodeQueryParameter = (value) => {
 
 /**
  * Get post template properties
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {object} Template properties
  */
 export const getPostTemplateProperties = (properties) => {
@@ -57,7 +57,7 @@ export const relativeMediaPath = (url, me) =>
 /**
  * Render path from URI template and properties
  * @param {string} path - URI template path
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} application - Application configuration
  * @param {object} publication - Publication configuration
  * @returns {Promise<string>} Path

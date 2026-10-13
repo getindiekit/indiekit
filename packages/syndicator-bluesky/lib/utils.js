@@ -175,7 +175,7 @@ export const createHashtags = (category) => {
 
 /**
  * Get post test from given JF2 properties
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {boolean} [includePermalink] - Include permalink in post
  * @param {boolean} [includeCategories] - Add categories as hashtags
  * @returns {string} Post text

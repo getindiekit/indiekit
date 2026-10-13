@@ -62,7 +62,7 @@ export const mf2ToJf2 = async (body, requestReferences) => {
 /**
  * Normalise JF2 properties
  * @param {object} publication - Publication configuration
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {string} timeZone - Application time zone
  * @returns {object} Normalised JF2 properties
  */
@@ -127,7 +127,7 @@ export const normaliseProperties = (publication, properties, timeZone) => {
  * Categories arrive as typed: a client may send one with surrounding
  * whitespace, an empty value, or the same word in another case. Each of
  * those would otherwise become a distinct category on the site.
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {Array<string>} `category` property, trimmed, without empties, and
  * with case-insensitive duplicates folded onto the first spelling given
  */
@@ -150,7 +150,7 @@ export const getCategoryProperty = (properties) => {
 
 /**
  * Get audio property
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} me - Publication URL
  * @returns {Array} `audio` property
  */
@@ -174,7 +174,7 @@ export const getAudioProperty = (properties, me) => {
  *
  * The first item in a publication’s configured channels is considered the
  * default channel.
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} channels - Publication channels
  * @returns {Array} `mp-channel` property
  * @see {@link https://github.com/indieweb/micropub-extensions/issues/40}
@@ -206,7 +206,7 @@ export const getChannelProperty = (properties, channels) => {
  *
  * JF2 allows for the provision of both plaintext and HTML representations.
  * Use existing values, or add HTML representation if only plaintext provided.
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @returns {object} `content` property
  * @see {@link https://www.w3.org/TR/jf2/#html-content}
  */
@@ -269,7 +269,7 @@ export const getLocationProperty = (properties) => {
 
 /**
  * Get photo property (adding text alternatives where provided)
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} me - Publication URL
  * @returns {Array} `photo` property
  */
@@ -293,7 +293,7 @@ export const getPhotoProperty = (properties, me) => {
 
 /**
  * Get video property
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {object} me - Publication URL
  * @returns {Array} `video` property
  */
@@ -308,7 +308,7 @@ export const getVideoProperty = (properties, me) => {
 
 /**
  * Get slug
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {string} separator - Slug separator
  * @returns {string} Array containing slug value
  */
@@ -333,7 +333,7 @@ export const getSlugProperty = (properties, separator) => {
 
 /**
  * Get `mp-syndicate-to` property
- * @param {object} properties - JF2 properties
+ * @param {Jf2Properties} properties - JF2 properties
  * @param {Array} syndicationTargets - Configured syndication targets
  * @returns {Array|undefined} Resolved syndication targets
  */
