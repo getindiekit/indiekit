@@ -120,7 +120,12 @@
     },
     "posts": {
       "title": "Published posts",
-      "none": "No posts"
+      "none": "No posts",
+      "noneMatching": "No posts match these filters",
+      "postType": "Post type",
+      "allPostTypes": "All post types",
+      "filter": "Search",
+      "submit": "Filter posts"
     },
     "title": "Posts"
   }
