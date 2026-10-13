@@ -3,8 +3,7 @@ name: docker-check
 on:
   pull_request:
     paths:
-      - Dockerfile
-      - .dockerignore
+      - docker/**
       - package-lock.json
       - .github/workflows/docker-*.yml
   workflow_dispatch:
@@ -26,6 +25,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: docker/Dockerfile
           push: false
           load: true
           tags: indiekit:check
