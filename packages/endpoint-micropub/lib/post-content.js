@@ -8,7 +8,7 @@ export const postContent = {
   /**
    * Create post
    * @param {object} publication - Publication configuration
-   * @param {object} postData - Post data
+   * @param {Jf2PostData} postData - Post data
    * @returns {Promise<object>} Response data
    */
   async create(publication, postData) {
@@ -41,7 +41,7 @@ export const postContent = {
   /**
    * Update post
    * @param {object} publication - Publication configuration
-   * @param {object} postData - Post data
+   * @param {Jf2PostData} postData - Post data
    * @param {string} url - Files attached to request
    * @returns {Promise<object>} Response data
    */
@@ -85,7 +85,7 @@ export const postContent = {
   /**
    * Delete post
    * @param {object} publication - Publication configuration
-   * @param {object} postData - Post data
+   * @param {Jf2PostData} postData - Post data
    * @returns {Promise<object>} Response data
    */
   async delete(publication, postData) {
@@ -115,7 +115,7 @@ export const postContent = {
   /**
    * Undelete post
    * @param {object} publication - Publication configuration
-   * @param {object} postData - Post data
+   * @param {Jf2PostData} postData - Post data
    * @returns {Promise<object>} Response data
    */
   async undelete(publication, postData) {
