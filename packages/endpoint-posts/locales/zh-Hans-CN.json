@@ -101,7 +101,12 @@
       "syndicate": "辛迪加帖子"
     },
     "posts": {
+      "allPostTypes": "所有帖子类型",
+      "filter": "搜索",
       "none": "没有帖子",
+      "noneMatching": "没有符合这些筛选条件的帖子",
+      "postType": "帖子类型",
+      "submit": "筛选帖子",
       "title": "已发布的帖子"
     },
     "status": {

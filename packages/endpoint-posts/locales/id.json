@@ -101,7 +101,12 @@
       "syndicate": "Pos sindikat"
     },
     "posts": {
+      "allPostTypes": "Semua jenis posting",
+      "filter": "Cari",
       "none": "Tidak ada postingan",
+      "noneMatching": "Tidak ada postingan yang cocok dengan filter ini",
+      "postType": "Jenis posting",
+      "submit": "Filter postingan",
       "title": "Postingan yang diterbitkan"
     },
     "status": {
