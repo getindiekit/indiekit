@@ -8,7 +8,7 @@
  * skips the ones already done. Oldest first, so a backlog is syndicated in
  * the order it was published.
  * @param {object} postsCollection - Posts database collection
- * @returns {Promise<Array<object>>} Post data, oldest first
+ * @returns {Promise<Array<Jf2PostData>>} Post data, oldest first
  */
 export const getPostsAwaitingSyndication = async (postsCollection) => {
   return postsCollection
@@ -28,7 +28,7 @@ export const getPostsAwaitingSyndication = async (postsCollection) => {
  * Get post data
  * @param {object} postsCollection - Posts database collection
  * @param {string} url - URL of existing post (optional)
- * @returns {Promise<object>} Post data for given URL else oldest post awaiting syndication
+ * @returns {Promise<Jf2PostData>} Post data for given URL else oldest post awaiting syndication
  */
 export const getPostData = async (postsCollection, url) => {
   if (url) {
