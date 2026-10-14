@@ -128,6 +128,35 @@ export function mockClient() {
     })
     .persist();
 
+  // Get source information for posts filtered by text that must not be
+  // rendered as markup
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: {
+        q: "source",
+        limit: "12",
+        filter: "<script>alert(1)</script>",
+      },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
+    })
+    .persist();
+
   // Get source information for a single post by uid from external micropub endpoint
   agent
     .get(micropubEndpointOrigin)

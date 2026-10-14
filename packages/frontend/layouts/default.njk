@@ -41,7 +41,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <title>{% if errors %}Error: {% endif %}{{ title + " - " if title }}{{ application.name }}</title>
+  {% set pageTitle = documentTitle or title %}
+  <title>{% if errors %}Error: {% endif %}{{ pageTitle + " - " if pageTitle }}{{ application.name }}</title>
 
   <script src="{{ application.jsPath | url(application.url) }}" type="module"></script>
 

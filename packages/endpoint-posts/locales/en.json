@@ -120,8 +120,17 @@
     },
     "posts": {
       "title": "Published posts",
+      "titleFiltered": "{{{title}}}: {{{summary}}}",
       "none": "No posts",
       "noneMatching": "No posts match these filters",
+      "count": {
+        "one": "%s post",
+        "other": "%s posts"
+      },
+      "countMatching": {
+        "one": "%s post matching “{{{query}}}”",
+        "other": "%s posts matching “{{{query}}}”"
+      },
       "postType": "Post type",
       "allPostTypes": "All post types",
       "filter": "Search",
