@@ -39,6 +39,7 @@ export const postsController = async (request, response, next) => {
     const limit = Number(request.query.limit) || 12;
     const postType = String(request.query["post-type"] || "");
     const filter = String(request.query.filter || "");
+    const parentUrl = request.baseUrl + request.path;
 
     // Filters are passed to Micropub and kept when paging
     const filters = new URLSearchParams();
@@ -112,12 +113,31 @@ export const postsController = async (request, response, next) => {
       };
     }
 
+    // One link per post type, plus one for all of them. Other filters are
+    // kept; `after` and `before` are not in `filters`, so a cursor naming an
+    // item in the result set being left behind is dropped by construction.
+    const postTypeHref = (type) => {
+      const parameters = new URLSearchParams(filters);
+
+      if (type) {
+        parameters.set("post-type", type);
+      } else {
+        parameters.delete("post-type");
+      }
+
+      return parameters.size > 0 ? `?${parameters}` : parentUrl;
+    };
+
     const postTypeItems = [
-      { value: "", text: response.locals.__("posts.posts.allPostTypes") },
+      {
+        href: postTypeHref(""),
+        text: response.locals.__("posts.posts.allPostTypes"),
+        attributes: { "aria-current": postType ? undefined : "true" },
+      },
       ...Object.entries(publication.postTypes).map(([type, { name }]) => ({
-        value: type,
+        href: postTypeHref(type),
         text: name,
-        selected: type === postType,
+        attributes: { "aria-current": type === postType ? "true" : undefined },
       })),
     ];
 
@@ -134,12 +154,12 @@ export const postsController = async (request, response, next) => {
       ],
       cursor,
       filter,
-      filtered: filters.size > 0,
+      postType,
       postTypeItems,
       posts,
       limit,
-      count: micropubResponse._count,
-      parentUrl: request.baseUrl + request.path,
+      count: micropubResponse?._count,
+      parentUrl,
       statusTypes,
       success,
     });
