@@ -32,6 +32,7 @@ export function mockClient() {
           },
         },
       ],
+      _count: 1,
     })
     .persist();
 
@@ -61,6 +62,31 @@ export function mockClient() {
         },
       ],
       paging: { after: "456" },
+      _count: 1,
+    })
+    .persist();
+
+  // Get source information for posts filtered by post type alone
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", "post-type": "bookmark" },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
     })
     .persist();
 
@@ -71,7 +97,35 @@ export function mockClient() {
       path: "/",
       query: { q: "source", limit: "12", "post-type": "photo" },
     })
-    .reply(200, { items: [] })
+    .reply(200, { items: [], _count: 0 })
+    .persist();
+
+  // Get source information for posts filtered by text alone
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: {
+        q: "source",
+        limit: "12",
+        filter: "lunch & dinner",
+      },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
+    })
     .persist();
 
   // Get source information for a single post by uid from external micropub endpoint
