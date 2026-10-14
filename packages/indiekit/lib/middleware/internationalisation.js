@@ -16,6 +16,9 @@ export const internationalisation = (Indiekit) =>
         indent: "  ",
         objectNotation: true,
         queryParameter: "lang",
+        // A key a locale has not translated yet falls back to its English
+        // value rather than being rendered as the key itself
+        retryInDefaultLocale: true,
         staticCatalog: Object.fromEntries(localeCatalog),
       });
 
