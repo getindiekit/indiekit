@@ -15,7 +15,7 @@ export const mediaData = {
    * @param {object} application - Application configuration
    * @param {object} publication - Publication configuration
    * @param {object} file - File
-   * @returns {Promise<object>} Media data
+   * @returns {Promise<Jf2MediaData>} Media data
    */
   async create(application, publication, file) {
     debug(`Create %O`, { file });
@@ -85,7 +85,7 @@ export const mediaData = {
    * Read media data
    * @param {object} application - Application configuration
    * @param {string} url - URL of existing media
-   * @returns {Promise<object>} Media data
+   * @returns {Promise<Jf2MediaData>} Media data
    */
   async read(application, url) {
     debug(`Read ${url}`);
