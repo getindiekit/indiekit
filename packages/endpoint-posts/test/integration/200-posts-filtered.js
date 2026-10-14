@@ -136,13 +136,27 @@ describe("endpoint-posts GET /posts?post-type=*&filter=*", () => {
     );
   });
 
-  it("Says when nothing matches", async () => {
+  it("Says when no post of a type exists", async () => {
     const document = await getDocument({ "post-type": "photo" });
 
     assert.equal(document.querySelectorAll(".card").length, 0);
     assert.equal(
       document.querySelector(".section__title").textContent.trim(),
-      "No posts match these filters",
+      "Custom photo post type · No posts",
+    );
+  });
+
+  it("Plays back the search term when nothing matches it", async () => {
+    const document = await getDocument({ filter: "zzz" });
+
+    assert.equal(document.querySelectorAll(".card").length, 0);
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "No posts matching “zzz”",
+    );
+    assert.equal(
+      document.title,
+      "Published posts: No posts matching “zzz” - Test configuration",
     );
   });
 
