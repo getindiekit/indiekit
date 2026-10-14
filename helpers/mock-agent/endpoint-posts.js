@@ -100,6 +100,16 @@ export function mockClient() {
     .reply(200, { items: [], _count: 0 })
     .persist();
 
+  // Get source information for a search matching no posts
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", filter: "zzz" },
+    })
+    .reply(200, { items: [], _count: 0 })
+    .persist();
+
   // Get source information for posts filtered by text alone
   agent
     .get(micropubEndpointOrigin)

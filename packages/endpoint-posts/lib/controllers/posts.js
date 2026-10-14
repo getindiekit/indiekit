@@ -131,19 +131,19 @@ export const postsController = async (request, response, next) => {
 
     let listSummary;
     if (count === 0) {
-      listSummary = response.locals.__(
-        postType || filter ? "posts.posts.noneMatching" : "posts.posts.none",
-      );
+      listSummary = filter
+        ? response.locals.__("posts.posts.noneMatching", { query: filter })
+        : response.locals.__("posts.posts.none");
     } else {
       listSummary = filter
         ? response.locals.__n("posts.posts.countMatching", count, {
             query: filter,
           })
         : response.locals.__n("posts.posts.count", count);
+    }
 
-      if (postTypeName) {
-        listSummary = `${postTypeName} · ${listSummary}`;
-      }
+    if (postTypeName) {
+      listSummary = `${postTypeName} · ${listSummary}`;
     }
 
     const title = response.locals.__("posts.posts.title");
