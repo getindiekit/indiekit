@@ -101,7 +101,12 @@
       "syndicate": "Publicación del sindicato"
     },
     "posts": {
+      "allPostTypes": "Todos los tipos de publicación",
+      "filter": "Buscar",
       "none": "No hay publicaciones",
+      "noneMatching": "Ninguna publicación coincide con estos filtros",
+      "postType": "Tipo de publicación",
+      "submit": "Filtrar publicaciones",
       "title": "Publicaciones publicadas"
     },
     "status": {

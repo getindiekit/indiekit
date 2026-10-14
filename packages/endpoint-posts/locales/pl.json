@@ -101,7 +101,12 @@
       "syndicate": "Post syndykatu"
     },
     "posts": {
+      "allPostTypes": "Wszystkie rodzaje postów",
+      "filter": "Szukaj",
       "none": "Brak postów",
+      "noneMatching": "Żaden post nie pasuje do tych filtrów",
+      "postType": "Rodzaj postu",
+      "submit": "Filtruj posty",
       "title": "Opublikowane posty"
     },
     "status": {

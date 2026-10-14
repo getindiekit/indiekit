@@ -32,6 +32,138 @@ export function mockClient() {
           },
         },
       ],
+      _count: 1,
+    })
+    .persist();
+
+  // Get source information for posts filtered by post type and text
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: {
+        q: "source",
+        limit: "12",
+        "post-type": "bookmark",
+        filter: "lunch & dinner",
+      },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      paging: { after: "456" },
+      _count: 1,
+    })
+    .persist();
+
+  // Get source information for posts filtered by post type alone
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", "post-type": "bookmark" },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
+    })
+    .persist();
+
+  // Get source information for posts filtered by a post type with no posts
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", "post-type": "photo" },
+    })
+    .reply(200, { items: [], _count: 0 })
+    .persist();
+
+  // Get source information for a search matching no posts
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", filter: "zzz" },
+    })
+    .reply(200, { items: [], _count: 0 })
+    .persist();
+
+  // Get source information for posts filtered by text alone
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: {
+        q: "source",
+        limit: "12",
+        filter: "lunch & dinner",
+      },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
+    })
+    .persist();
+
+  // Get source information for posts filtered by text that must not be
+  // rendered as markup
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: {
+        q: "source",
+        limit: "12",
+        filter: "<script>alert(1)</script>",
+      },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
     })
     .persist();
 

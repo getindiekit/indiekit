@@ -101,7 +101,12 @@
       "syndicate": "Syndicaatspost"
     },
     "posts": {
+      "allPostTypes": "Alle soorten posten",
+      "filter": "Zoeken",
       "none": "Geen posten",
+      "noneMatching": "Geen posten komen overeen met deze filters",
+      "postType": "Soort post",
+      "submit": "Posten filteren",
       "title": "Gepubliceerde posten"
     },
     "status": {

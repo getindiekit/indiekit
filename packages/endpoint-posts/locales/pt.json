@@ -101,7 +101,12 @@
       "syndicate": "Distribuir postagem"
     },
     "posts": {
+      "allPostTypes": "Todos os tipos de postagem",
+      "filter": "Pesquisar",
       "none": "Nenhuma postagem",
+      "noneMatching": "Nenhuma postagem corresponde a estes filtros",
+      "postType": "Tipo de postagem",
+      "submit": "Filtrar postagens",
       "title": "Postagens publicadas"
     },
     "status": {

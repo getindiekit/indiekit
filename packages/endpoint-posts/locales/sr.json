@@ -101,7 +101,12 @@
       "syndicate": "Sindikat post"
     },
     "posts": {
+      "allPostTypes": "Sve vrste postova",
+      "filter": "Pretraga",
       "none": "Nema postova",
+      "noneMatching": "Nijedan post ne odgovara ovim filterima",
+      "postType": "Vrsta posta",
+      "submit": "Filtriraj postove",
       "title": "Objavljene postova"
     },
     "status": {

@@ -19,10 +19,26 @@ export const postsController = async (request, response, next) => {
     const scope = request.session?.scope;
     const { after, before, success } = request.query;
     const limit = Number(request.query.limit) || 12;
+    const postType = String(request.query["post-type"] || "");
+    const filter = String(request.query.filter || "");
+    const parentUrl = request.baseUrl + request.path;
+
+    // Filters are passed to Micropub and kept when paging
+    const filters = new URLSearchParams();
+    if (postType) {
+      filters.set("post-type", postType);
+    }
+
+    if (filter) {
+      filters.set("filter", filter);
+    }
 
     const micropubUrl = new URL(application.micropubEndpoint);
     micropubUrl.searchParams.append("q", "source");
     micropubUrl.searchParams.append("limit", String(limit));
+    for (const [key, value] of filters) {
+      micropubUrl.searchParams.append(key, value);
+    }
 
     if (after) {
       micropubUrl.searchParams.append("after", String(after));
@@ -59,21 +75,89 @@ export const postsController = async (request, response, next) => {
     }
 
     const cursor = {};
+    const pageHref = (key, value) => {
+      const parameters = new URLSearchParams(filters);
+      parameters.set(key, value);
+      return `?${parameters}`;
+    };
 
     if (micropubResponse?.paging?.after) {
       cursor.next = {
-        href: `?after=${micropubResponse.paging.after}`,
+        href: pageHref("after", micropubResponse.paging.after),
       };
     }
 
     if (micropubResponse?.paging?.before) {
       cursor.previous = {
-        href: `?before=${micropubResponse.paging.before}`,
+        href: pageHref("before", micropubResponse.paging.before),
       };
     }
 
+    // One link per post type, plus one for all of them. Other filters are
+    // kept; `after` and `before` are not in `filters`, so a cursor naming an
+    // item in the result set being left behind is dropped by construction.
+    const postTypeHref = (type) => {
+      const parameters = new URLSearchParams(filters);
+
+      if (type) {
+        parameters.set("post-type", type);
+      } else {
+        parameters.delete("post-type");
+      }
+
+      return parameters.size > 0 ? `?${parameters}` : parentUrl;
+    };
+
+    const postTypeItems = [
+      {
+        href: postTypeHref(""),
+        text: response.locals.__("posts.posts.allPostTypes"),
+        attributes: { "aria-current": postType ? undefined : "true" },
+      },
+      ...Object.entries(publication.postTypes).map(([type, { name }]) => ({
+        href: postTypeHref(type),
+        text: name,
+        attributes: { "aria-current": type === postType ? "true" : undefined },
+      })),
+    ];
+
+    // The heading states what the controls do not already show. The post type
+    // is marked on its own link, so it is a prefix rather than part of the
+    // sentence — which also keeps the post type's name, which is not
+    // translated, out of a translated sentence. The search term's control is
+    // collapsed, so it is played back.
+    const count = micropubResponse?._count || 0;
+    const postTypeName = publication.postTypes[postType]?.name;
+
+    let listSummary;
+    if (count === 0) {
+      listSummary = filter
+        ? response.locals.__("posts.posts.noneMatching", { query: filter })
+        : response.locals.__("posts.posts.none");
+    } else {
+      listSummary = filter
+        ? response.locals.__n("posts.posts.countMatching", count, {
+            query: filter,
+          })
+        : response.locals.__n("posts.posts.count", count);
+    }
+
+    if (postTypeName) {
+      listSummary = `${postTypeName} · ${listSummary}`;
+    }
+
+    const title = response.locals.__("posts.posts.title");
+
     return response.render("posts", {
-      title: response.locals.__("posts.posts.title"),
+      title,
+      documentTitle:
+        postType || filter
+          ? response.locals.__("posts.posts.titleFiltered", {
+              title,
+              summary: listSummary,
+            })
+          : undefined,
+      listSummary,
       actions: [
         scope && checkScope(scope, "create")
           ? {
@@ -84,10 +168,13 @@ export const postsController = async (request, response, next) => {
           : {},
       ],
       cursor,
+      filter,
+      postType,
+      postTypeItems,
       posts,
       limit,
-      count: micropubResponse._count,
-      parentUrl: request.baseUrl + request.path,
+      count,
+      parentUrl,
       statusTypes,
       success,
     });

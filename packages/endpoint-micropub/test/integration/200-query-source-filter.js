@@ -21,14 +21,15 @@ const query = (parameters) =>
     .set("accept", "application/json")
     .query({ q: "source", ...parameters });
 
-describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*", () => {
+describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*&post-type=*", () => {
   before(async () => {
-    // Two notes with content and one with a name only; the test
+    // Two notes with content, one with a name only and a bookmark; the test
     // configuration has no article post type, so no post may carry both
     for (const post of [
       "h=entry&name=Cheese+sandwich&category=food",
       "h=entry&content=Bicycle+ride+at+dawn&category=cycling",
       "h=entry&content=Building+for+the+web&category=food",
+      "h=entry&bookmark-of=https%3A%2F%2Fbookmark.example%2F&name=Saved+for+later",
     ]) {
       const created = await request
         .post("/micropub")
@@ -58,6 +59,15 @@ describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*", () => {
     assert.equal(result.body.items.length, 2);
   });
 
+  it("Filters posts by post type", async () => {
+    const bookmarks = await query({ "post-type": "bookmark" });
+    const notes = await query({ "post-type": "note" });
+
+    assert.equal(bookmarks.body.items.length, 1);
+    assert.equal(bookmarks.body.items[0].properties.name[0], "Saved for later");
+    assert.equal(notes.body.items.length, 3);
+  });
+
   it("Combines filters and keeps paging", async () => {
     const page = await query({ category: "food", limit: 1 });
     const next = await query({
@@ -75,10 +85,39 @@ describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*", () => {
     assert.equal(next.body.paging.after, undefined);
   });
 
-  it("Returns nothing when no post matches", async () => {
-    const result = await query({ filter: "sandwich", category: "cycling" });
+  it("Counts every matching post, not just the page", async () => {
+    const page = await query({ limit: 1 });
+
+    assert.equal(page.body.items.length, 1);
+    assert.equal(page.body._count, 4);
+  });
+
+  it("Counts posts matching each filter", async () => {
+    const bookmarks = await query({ "post-type": "bookmark" });
+    const food = await query({ category: "food" });
+    const both = await query({ "post-type": "note", filter: "sandwich" });
+
+    assert.equal(bookmarks.body._count, 1);
+    assert.equal(food.body._count, 2);
+    assert.equal(both.body._count, 1);
+  });
+
+  it("Counts nothing when no post matches", async () => {
+    const result = await query({ "post-type": "photo" });
 
     assert.deepEqual(result.body.items, []);
+    assert.equal(result.body._count, 0);
+  });
+
+  it("Returns nothing when no post matches", async () => {
+    const result = await query({ filter: "sandwich", category: "cycling" });
+    const byPostType = await query({
+      filter: "sandwich",
+      "post-type": "photo",
+    });
+
+    assert.deepEqual(result.body.items, []);
+    assert.deepEqual(byPostType.body.items, []);
   });
 
   after(async () => {

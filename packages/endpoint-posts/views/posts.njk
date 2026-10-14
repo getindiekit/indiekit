@@ -1,13 +1,43 @@
 {% extends "document.njk" %}
+{% from "navigation/macro.njk" import navigation with context %}
 
 {% block content %}
-  {%- if posts.length > 0 %}
-  {{ cardGrid({
-    cardSize: "16rem",
-    items: posts
+  {{ navigation({
+    classes: "navigation--filters",
+    label: __("posts.posts.postType"),
+    items: postTypeItems
   }) }}
-  {{ pagination(cursor) }}
-  {%- else -%}
-  {{ prose({ text: __("posts.posts.none") }) }}
-  {%- endif %}
+  {% call details({
+    summary: __("posts.posts.filter"),
+    open: filter | length
+  }) %}
+    <form method="get" action="{{ parentUrl }}" role="search">
+      {% if postType %}
+      {{ input({
+        name: "post-type",
+        type: "hidden",
+        value: postType
+      }) }}
+      {% endif %}
+      {{ input({
+        name: "filter",
+        type: "search",
+        label: __("posts.posts.filter"),
+        value: filter
+      }) }}
+      {{ button({
+        classes: "button--secondary",
+        text: __("posts.posts.submit")
+      }) }}
+    </form>
+  {% endcall %}
+  {% call section({ id: "posts", title: listSummary | escape }) %}
+    {%- if posts.length > 0 %}
+    {{ cardGrid({
+      cardSize: "16rem",
+      items: posts
+    }) }}
+    {{ pagination(cursor) }}
+    {%- endif %}
+  {% endcall %}
 {% endblock %}

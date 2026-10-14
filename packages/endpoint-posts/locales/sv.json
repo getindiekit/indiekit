@@ -101,7 +101,12 @@
       "syndicate": "Syndikera inlägg"
     },
     "posts": {
+      "allPostTypes": "Alla typer av inlägg",
+      "filter": "Sök",
       "none": "Inga inlägg",
+      "noneMatching": "Inga inlägg matchar dessa filter",
+      "postType": "Typ av inlägg",
+      "submit": "Filtrera inlägg",
       "title": "Publicerade inlägg"
     },
     "status": {
