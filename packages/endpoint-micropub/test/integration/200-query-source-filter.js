@@ -85,6 +85,30 @@ describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*&post-type
     assert.equal(next.body.paging.after, undefined);
   });
 
+  it("Counts every matching post, not just the page", async () => {
+    const page = await query({ limit: 1 });
+
+    assert.equal(page.body.items.length, 1);
+    assert.equal(page.body._count, 4);
+  });
+
+  it("Counts posts matching each filter", async () => {
+    const bookmarks = await query({ "post-type": "bookmark" });
+    const food = await query({ category: "food" });
+    const both = await query({ "post-type": "note", filter: "sandwich" });
+
+    assert.equal(bookmarks.body._count, 1);
+    assert.equal(food.body._count, 2);
+    assert.equal(both.body._count, 1);
+  });
+
+  it("Counts nothing when no post matches", async () => {
+    const result = await query({ "post-type": "photo" });
+
+    assert.deepEqual(result.body.items, []);
+    assert.equal(result.body._count, 0);
+  });
+
   it("Returns nothing when no post matches", async () => {
     const result = await query({ filter: "sandwich", category: "cycling" });
     const byPostType = await query({
