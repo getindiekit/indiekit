@@ -5,7 +5,7 @@ import { mediaTypeCount } from "./media-type-count.js";
 
 /**
  * Get media properties
- * @param {object} mediaData - Media data
+ * @param {Jf2MediaData} mediaData - Media data
  * @returns {object} Media properties
  */
 export const getMediaProperties = (mediaData) => {

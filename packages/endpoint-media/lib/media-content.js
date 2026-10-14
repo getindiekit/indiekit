@@ -6,7 +6,7 @@ export const mediaContent = {
   /**
    * Upload file to content store
    * @param {object} publication - Publication configuration
-   * @param {object} mediaData - Media data
+   * @param {Jf2MediaData} mediaData - Media data
    * @param {object} file - File to upload
    * @returns {Promise<object>} Data to use in response
    */
@@ -38,7 +38,7 @@ export const mediaContent = {
   /**
    * Delete file from content store
    * @param {object} publication - Publication configuration
-   * @param {object} mediaData - Post data
+   * @param {Jf2MediaData} mediaData - Post data
    * @returns {Promise<object>} Response data
    */
   async delete(publication, mediaData) {
