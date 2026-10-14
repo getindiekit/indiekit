@@ -1,15 +1,24 @@
 {% extends "document.njk" %}
+{% from "navigation/macro.njk" import navigation with context %}
 
 {% block content %}
-  <form method="get" action="{{ parentUrl }}" role="search">
-    {% call fieldset({
-      attributes: { "aria-label": __("posts.posts.submit") }
-    }) %}
-      {{ select({
+  {{ navigation({
+    classes: "navigation--filters",
+    label: __("posts.posts.postType"),
+    items: postTypeItems
+  }) }}
+  {% call details({
+    summary: __("posts.posts.filter"),
+    open: filter | length
+  }) %}
+    <form method="get" action="{{ parentUrl }}" role="search">
+      {% if postType %}
+      {{ input({
         name: "post-type",
-        label: __("posts.posts.postType"),
-        items: postTypeItems
+        type: "hidden",
+        value: postType
       }) }}
+      {% endif %}
       {{ input({
         name: "filter",
         type: "search",
@@ -20,8 +29,8 @@
         classes: "button--secondary",
         text: __("posts.posts.submit")
       }) }}
-    {% endcall %}
-  </form>
+    </form>
+  {% endcall %}
   {%- if posts.length > 0 %}
   {{ cardGrid({
     cardSize: "16rem",
@@ -29,6 +38,6 @@
   }) }}
   {{ pagination(cursor) }}
   {%- else -%}
-  {{ prose({ text: __("posts.posts.noneMatching") if filtered else __("posts.posts.none") }) }}
+  {{ prose({ text: __("posts.posts.noneMatching") if filter or postType else __("posts.posts.none") }) }}
   {%- endif %}
 {% endblock %}
