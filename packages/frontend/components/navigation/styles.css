@@ -17,3 +17,33 @@
       var(--navigation-item-current-color);
   }
 }
+
+.navigation--filters {
+  /* Each filter is a pill, so the shared underline marking the current item
+     is turned off and a filled background marks it instead. */
+  --navigation-item-current-color: transparent;
+
+  margin-block-end: var(--space-s);
+
+  & .navigation__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-inline: 0;
+  }
+
+  & .navigation__list-item a {
+    background-color: var(--color-offset);
+    border-radius: var(--border-radius-small);
+    color: var(--color-on-offset);
+    font: var(--font-caption);
+    padding-block: var(--space-2xs);
+    padding-inline: var(--space-s);
+    text-decoration: none;
+  }
+
+  & .navigation__list-item a[aria-current="true"] {
+    background-color: var(--color-on-offset);
+    color: var(--color-offset);
+  }
+}
