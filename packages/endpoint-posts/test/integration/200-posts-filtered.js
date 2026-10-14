@@ -109,6 +109,76 @@ describe("endpoint-posts GET /posts?post-type=*&filter=*", () => {
     assert.equal(searched.querySelector("details").hasAttribute("open"), true);
   });
 
+  it("Heads the list with the number of posts", async () => {
+    const document = await getDocument({});
+
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "1 post",
+    );
+  });
+
+  it("Prefixes the heading with the chosen post type", async () => {
+    const document = await getDocument({ "post-type": "bookmark" });
+
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "Custom bookmark post type · 1 post",
+    );
+  });
+
+  it("Plays back the search term, whose control is collapsed", async () => {
+    const document = await getDocument({ filter: "lunch & dinner" });
+
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "1 post matching “lunch & dinner”",
+    );
+  });
+
+  it("Says when nothing matches", async () => {
+    const document = await getDocument({ "post-type": "photo" });
+
+    assert.equal(document.querySelectorAll(".card").length, 0);
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "No posts match these filters",
+    );
+  });
+
+  it("Plays the heading back in the document title", async () => {
+    const unfiltered = await getDocument({});
+    const filtered = await getDocument({
+      "post-type": "bookmark",
+      filter: "lunch & dinner",
+    });
+
+    assert.equal(unfiltered.title, "Published posts - Test configuration");
+    assert.equal(
+      filtered.title,
+      "Published posts: Custom bookmark post type · 1 post matching “lunch & dinner” - Test configuration",
+    );
+    assert.equal(
+      unfiltered.querySelector(".heading__title").textContent.trim(),
+      "Published posts",
+    );
+  });
+
+  it("Escapes a search term exactly once, in the heading and the title", async () => {
+    const document = await getDocument({ filter: "<script>alert(1)</script>" });
+    const heading = document.querySelector(".section__title");
+
+    assert.equal(heading.querySelectorAll("script").length, 0);
+    assert.equal(
+      heading.textContent.trim(),
+      "1 post matching “<script>alert(1)</script>”",
+    );
+    assert.equal(
+      document.title,
+      "Published posts: 1 post matching “<script>alert(1)</script>” - Test configuration",
+    );
+  });
+
   it("Keeps filters in pagination links", async () => {
     const document = await getDocument({
       "post-type": "bookmark",

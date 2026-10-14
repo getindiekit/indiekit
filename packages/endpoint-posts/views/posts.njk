@@ -31,13 +31,13 @@
       }) }}
     </form>
   {% endcall %}
-  {%- if posts.length > 0 %}
-  {{ cardGrid({
-    cardSize: "16rem",
-    items: posts
-  }) }}
-  {{ pagination(cursor) }}
-  {%- else -%}
-  {{ prose({ text: __("posts.posts.noneMatching") if filter or postType else __("posts.posts.none") }) }}
-  {%- endif %}
+  {% call section({ id: "posts", title: listSummary | escape }) %}
+    {%- if posts.length > 0 %}
+    {{ cardGrid({
+      cardSize: "16rem",
+      items: posts
+    }) }}
+    {{ pagination(cursor) }}
+    {%- endif %}
+  {% endcall %}
 {% endblock %}

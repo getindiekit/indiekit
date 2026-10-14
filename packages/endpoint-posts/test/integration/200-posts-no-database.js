@@ -19,9 +19,9 @@ describe("endpoint-posts GET /posts", () => {
       result.querySelector("title").textContent,
       "Published posts - Test configuration",
     );
-    assert.match(
-      result.querySelector(".main__container p").textContent,
-      /No posts/,
+    assert.equal(
+      result.querySelector(".section__title").textContent.trim(),
+      "No posts",
     );
   });
 
