@@ -122,7 +122,7 @@
       "title": "Published posts",
       "titleFiltered": "{{{title}}}: {{{summary}}}",
       "none": "No posts",
-      "noneMatching": "No posts match these filters",
+      "noneMatching": "No posts matching “{{{query}}}”",
       "count": {
         "one": "%s post",
         "other": "%s posts"
