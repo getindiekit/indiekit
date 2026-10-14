@@ -90,6 +90,7 @@ export const queryController = async (request, response, next) => {
           hasNext: false,
           hasPrev: false,
         };
+        let count = 0;
 
         if (postsCollection) {
           // `filter` matches the name or content, `category` a category and
@@ -114,6 +115,14 @@ export const queryController = async (request, response, next) => {
           cursor = await getCursor(postsCollection, after, before, limit, {
             filter: postsFilter,
           });
+
+          // Every matching post, not just this page. `getCursor` lists and
+          // pages by a string `properties.uid`, so a post without one is
+          // unreachable and is left out of the count as well.
+          count = await postsCollection.countDocuments({
+            ...postsFilter,
+            "properties.uid": { $type: "string" },
+          });
         }
 
         const items = [];
@@ -137,6 +146,7 @@ export const queryController = async (request, response, next) => {
             ...(cursor.hasNext && { after: cursor.lastItem }),
             ...(cursor.hasPrev && { before: cursor.firstItem }),
           },
+          _count: count,
         });
       }
 
