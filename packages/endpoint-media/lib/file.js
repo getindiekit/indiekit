@@ -5,8 +5,16 @@ import { getDate, slugify } from "@indiekit/util";
 import { fileTypeFromBuffer } from "file-type";
 
 /**
+ * @typedef {object} FileProperties
+ * @property {Uint8Array|ArrayBuffer} data - Data
+ * @property {string} name - Name
+ * @property {string} [mimetype] - MIME type
+ * @property {string} [md5] - Name as MD5 hash
+ */
+
+/**
  * Get file type from file data
- * @param {object} file - File object
+ * @param {FileProperties} file - File properties
  * @returns {Promise<import("file-type").FileTypeResult>} File type
  */
 const getFileType = async (file) => {
@@ -22,7 +30,7 @@ const getFileType = async (file) => {
 /**
  * Derive properties from file data
  * @param {object} publication - Publication configuration
- * @param {object} file - Original file object
+ * @param {FileProperties} file - Original file properties
  * @param {object} timeZone - Application time zone
  * @returns {Promise<object>} File properties
  * @example fileData("Brighton Pier.jpg") => {
@@ -50,7 +58,7 @@ export const getFileProperties = async (publication, file, timeZone) => {
 
 /**
  * Derive media type (and return equivalent IndieWeb post type)
- * @param {object} file - File object
+ * @param {FileProperties} file - File properties
  * @returns {Promise<string>} Post type ("photo", "video" or "audio")
  * @example getMediaType("brighton-pier.jpg") => "photo"
  */
