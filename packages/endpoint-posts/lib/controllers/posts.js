@@ -141,8 +141,43 @@ export const postsController = async (request, response, next) => {
       })),
     ];
 
+    // The heading states what the controls do not already show. The post type
+    // is marked on its own link, so it is a prefix rather than part of the
+    // sentence — which also keeps the post type's name, which is not
+    // translated, out of a translated sentence. The search term's control is
+    // collapsed, so it is played back.
+    const count = micropubResponse?._count || 0;
+    const postTypeName = publication.postTypes[postType]?.name;
+
+    let listSummary;
+    if (count === 0) {
+      listSummary = response.locals.__(
+        postType || filter ? "posts.posts.noneMatching" : "posts.posts.none",
+      );
+    } else {
+      listSummary = filter
+        ? response.locals.__n("posts.posts.countMatching", count, {
+            query: filter,
+          })
+        : response.locals.__n("posts.posts.count", count);
+
+      if (postTypeName) {
+        listSummary = `${postTypeName} · ${listSummary}`;
+      }
+    }
+
+    const title = response.locals.__("posts.posts.title");
+
     return response.render("posts", {
-      title: response.locals.__("posts.posts.title"),
+      title,
+      documentTitle:
+        postType || filter
+          ? response.locals.__("posts.posts.titleFiltered", {
+              title,
+              summary: listSummary,
+            })
+          : undefined,
+      listSummary,
       actions: [
         scope && checkScope(scope, "create")
           ? {
@@ -158,7 +193,7 @@ export const postsController = async (request, response, next) => {
       postTypeItems,
       posts,
       limit,
-      count: micropubResponse?._count,
+      count,
       parentUrl,
       statusTypes,
       success,

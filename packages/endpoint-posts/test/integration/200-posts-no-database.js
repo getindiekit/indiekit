@@ -14,12 +14,12 @@ describe("endpoint-posts GET /posts", () => {
     const response = await request.get("/posts").set("cookie", testCookie());
     const { document } = new JSDOM(response.text).window;
     const $title = document.querySelector("title");
-    const $p = document.querySelector(".main__container p");
+    const $heading = document.querySelector(".section__title");
 
     assert.ok($title, "title element not found");
     assert.equal($title.textContent, "Published posts - Test configuration");
-    assert.ok($p, "p element not found");
-    assert.match($p.textContent, /No posts/);
+    assert.ok($heading, "heading element not found");
+    assert.equal($heading.textContent.trim(), "No posts");
   });
 
   after(() => server.close());
