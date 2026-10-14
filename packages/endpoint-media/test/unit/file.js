@@ -9,10 +9,22 @@ import { getFileProperties, getMediaType } from "../../lib/file.js";
 
 describe("endpoint-media/lib/file", () => {
   it("Derives media type and returns equivalent post type", async () => {
-    const audio = { data: getFixture("file-types/audio.mp3", false) };
-    const photo = { data: getFixture("file-types/photo.jpg", false) };
-    const video = { data: getFixture("file-types/video.mp4", false) };
-    const other = { data: getFixture("file-types/font.ttf", false) };
+    const audio = {
+      data: getFixture("file-types/audio.mp3", false),
+      name: "audio.mp3",
+    };
+    const photo = {
+      data: getFixture("file-types/photo.jpg", false),
+      name: "photo.jpg",
+    };
+    const video = {
+      data: getFixture("file-types/video.mp4", false),
+      name: "video.mp4",
+    };
+    const other = {
+      data: getFixture("file-types/font.ttf", false),
+      name: "font.ttf",
+    };
 
     assert.equal(await getMediaType(audio), "audio");
     assert.equal(await getMediaType(photo), "photo");
