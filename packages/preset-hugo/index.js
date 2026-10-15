@@ -48,6 +48,9 @@ export default class HugoPreset {
     return getPostTemplate(properties, this.options.frontMatterFormat);
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     this.postTypes = getPostTypes(Indiekit.postTypes);
 

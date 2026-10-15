@@ -21,6 +21,9 @@ export default class ShareEndpoint {
     return router;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
     Indiekit.config.application.shareEndpoint = this.options.mountPath;

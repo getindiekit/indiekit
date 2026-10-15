@@ -40,6 +40,9 @@ export default class BookmarkPostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("bookmark", this);
   }

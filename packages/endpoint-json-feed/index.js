@@ -25,6 +25,9 @@ export default class jsonFeedEndpoint {
     return router;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
     Indiekit.config.application.jsonFeed = path.join(

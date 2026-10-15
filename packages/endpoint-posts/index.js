@@ -100,6 +100,9 @@ export default class PostsEndpoint {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
     Indiekit.addPostType(false, this);
