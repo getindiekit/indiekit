@@ -131,7 +131,12 @@ export const actionController = async (request, response, next) => {
     const error = error_ instanceof Error ? error_ : new Error(String(error_));
     let nextError = error;
 
-    if (error.name === "NotFoundError") {
+    if (error.name === "BadRequestError" && error.cause === "notDeleted") {
+      // Hoist undelete of a post that isn’t deleted to localise response
+      nextError = IndiekitError.badRequest(
+        response.locals.__("BadRequestError.missingResource", "deleted post"),
+      );
+    } else if (error.name === "NotFoundError") {
       // Hoist not found error to controller to localise response
       nextError = IndiekitError.notFound(
         response.locals.__("NotFoundError.record", error.message),

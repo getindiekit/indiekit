@@ -194,6 +194,14 @@ describe("endpoint-micropub/lib/post-data", async () => {
     });
   });
 
+  it("Throws error undeleting post that isn’t deleted", async () => {
+    await assert.rejects(postData.undelete(application, publication, url), {
+      name: "BadRequestError",
+      message: url,
+      cause: "notDeleted",
+    });
+  });
+
   it("Throws error undeleting post data for non-configured post type", async () => {
     await postData.delete(application, publication, url);
     publication.postTypes = {};
