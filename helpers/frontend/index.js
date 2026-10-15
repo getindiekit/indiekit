@@ -38,6 +38,9 @@ export default class FrontendEndpoint {
     return router;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
   }

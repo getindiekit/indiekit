@@ -76,6 +76,9 @@ export default class InternetArchiveSyndicator {
     }
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addSyndicator(this);
   }

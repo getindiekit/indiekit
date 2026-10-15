@@ -3,6 +3,11 @@ import "i18n";
 import { Collection } from "mongodb";
 
 declare global {
+  /** The Indiekit instance passed to each plug-in’s `init()` */
+  type IndiekitInstance = InstanceType<
+    typeof import("../../packages/indiekit/index.js").Indiekit
+  >;
+
   /** A resolved content store plug-in */
   interface IndiekitStore {
     info: { name: string; uid: string };

@@ -226,6 +226,9 @@ export default class FtpStore {
     }
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addStore(this);
   }

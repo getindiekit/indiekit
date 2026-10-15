@@ -30,6 +30,9 @@ export default class MediaEndpoint {
     return router;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     // Every paginated query sorts and ranges on `properties.uid`, and MongoDB
     // abandons an unindexed sort once it needs more than 32MB
