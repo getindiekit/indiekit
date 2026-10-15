@@ -105,10 +105,8 @@ export const getDate = (setting, dateString = "") => {
   const outputTimeZone = setting === "server" ? timeZone : setting;
 
   // Short dates, i.e. 2019-02-01
-  // Don’t covert dates without a given time
-  const dateHasTime = dateString ? dateString.includes("T") : false;
-  const dateIsShort = dateString && !dateHasTime;
-  if (dateIsShort) {
+  const isDateShort = /^\d{4}-\d{2}-\d{2}$/.test(dateString);
+  if (isDateShort) {
     const offset = format(dateTime, "XXX", {
       in: tz(outputTimeZone),
     });
