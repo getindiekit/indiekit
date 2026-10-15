@@ -323,6 +323,9 @@ export default class GithubStore {
     return true;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     const required_configs = ["baseUrl", "branch", "repo", "token", "user"];
     for (const required of required_configs) {

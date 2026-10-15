@@ -254,6 +254,9 @@ export default class S3Store {
     }
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addStore(this);
   }

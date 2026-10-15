@@ -40,6 +40,9 @@ export default class AudioPostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("audio", this);
   }

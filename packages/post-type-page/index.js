@@ -25,6 +25,9 @@ export default class PagePostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("page", this);
   }

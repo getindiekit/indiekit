@@ -38,6 +38,9 @@ export default class ReplyPostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("reply", this);
   }

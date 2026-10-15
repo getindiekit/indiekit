@@ -71,6 +71,9 @@ export default class AuthorizationEndpoint {
     return router;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
 
