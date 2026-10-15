@@ -40,6 +40,9 @@ export default class RepostPostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("repost", this);
   }

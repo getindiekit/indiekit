@@ -18,6 +18,9 @@ export default class ImageEndpoint {
     this.mountPath = this.options.mountPath;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
     Indiekit.config.application.imageEndpoint = this.options.mountPath;

@@ -52,6 +52,9 @@ export default class FilesEndpoint {
     return router;
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addEndpoint(this);
     Indiekit.config.application.filesEndpoint = this.mountPath;

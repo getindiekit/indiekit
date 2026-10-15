@@ -15,6 +15,9 @@ export default class JekyllPreset {
     return getPostTemplate(properties);
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     this.postTypes = getPostTypes(Indiekit.postTypes);
 

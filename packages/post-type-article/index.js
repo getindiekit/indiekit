@@ -27,6 +27,9 @@ export default class ArticlePostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("article", this);
   }

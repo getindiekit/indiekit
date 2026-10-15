@@ -47,6 +47,9 @@ export default class PhotoPostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("photo", this);
   }

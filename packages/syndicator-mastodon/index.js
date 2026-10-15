@@ -115,6 +115,9 @@ export default class MastodonSyndicator {
     }
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addSyndicator(this);
   }
