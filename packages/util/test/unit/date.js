@@ -192,6 +192,12 @@ describe("util/lib/date", () => {
     assert.equal(result, "2020-01-02T16:00:00.000Z");
   });
 
+  it("Converts space-separated offset datetime to UTC", () => {
+    const result = getDate("UTC", "2026-09-30 12:00:00-0000");
+
+    assert.equal(result, "2026-09-30T12:00:00.000Z");
+  });
+
   it("Converts offset to Z offset datetime from `UTC`", () => {
     const result = getDate("UTC", "2020-01-02T12:00:00.000-04:00");
 
