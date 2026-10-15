@@ -124,6 +124,9 @@ export default class FileSystemStore {
     }
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addStore(this);
   }

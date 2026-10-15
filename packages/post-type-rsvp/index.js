@@ -38,6 +38,9 @@ export default class RsvpPostType {
     };
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addPostType("rsvp", this);
   }

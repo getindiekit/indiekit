@@ -116,6 +116,9 @@ export default class BlueskySyndicator {
     }
   }
 
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   */
   init(Indiekit) {
     Indiekit.addSyndicator(this);
   }
