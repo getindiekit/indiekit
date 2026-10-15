@@ -299,6 +299,11 @@ export const postData = {
     // Read deleted properties
     const { _deletedProperties } = await postData.read(application, url);
 
+    // Only a deleted post can be undeleted
+    if (!_deletedProperties) {
+      throw IndiekitError.badRequest(url, { cause: "notDeleted" });
+    }
+
     // Restore previously deleted properties
     const properties = _deletedProperties;
 
