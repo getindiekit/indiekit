@@ -30,6 +30,9 @@ export default class FileSystemStore {
     return path.join(this.options.directory, filePath);
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { directory } = this.options;
 
@@ -39,6 +42,9 @@ export default class FileSystemStore {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
@@ -131,3 +137,7 @@ export default class FileSystemStore {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */
