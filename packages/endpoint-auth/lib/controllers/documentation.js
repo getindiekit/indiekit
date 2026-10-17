@@ -1,6 +1,6 @@
 /**
  * Service documentation
- * @type {import("express").ErrorRequestHandler}
+ * @type {ErrorRequestHandler}
  */
 export const documentationController = (error, request, response, next) => {
   if (request.accepts("html")) {
@@ -12,3 +12,7 @@ export const documentationController = (error, request, response, next) => {
     return next(error);
   }
 };
+
+/**
+ * @import { ErrorRequestHandler } from "express"
+ */

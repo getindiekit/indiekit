@@ -15,7 +15,10 @@ import { getMediaProperties } from "../utils.js";
 
 /**
  * Query uploaded files
- * @type {import("express").RequestHandler<Record<string, string>, unknown, unknown, QueryParameters>}
+ * @param {Request<Record<string, string>, unknown, unknown, QueryParameters>} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
+ * @returns {Promise<void>}
  */
 export const queryController = async (request, response, next) => {
   const { application } = request.app.locals;
@@ -55,7 +58,7 @@ export const queryController = async (request, response, next) => {
                 );
           }
 
-          return response.json(getMediaProperties(mediaData));
+          return void response.json(getMediaProperties(mediaData));
         }
         // Return properties for all uploaded files
         let cursor = {
@@ -68,7 +71,7 @@ export const queryController = async (request, response, next) => {
           cursor = await getCursor(mediaCollection, after, before, limit);
         }
 
-        return response.json({
+        return void response.json({
           items: cursor.items.map((mediaData) => getMediaProperties(mediaData)),
           paging: {
             ...(cursor.hasNext && { after: cursor.lastItem }),
@@ -90,3 +93,7 @@ export const queryController = async (request, response, next) => {
     next(error);
   }
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

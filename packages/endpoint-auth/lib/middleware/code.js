@@ -7,7 +7,10 @@ import { getRequestParameters } from "../utils.js";
 
 /**
  * Validate authorization code before redeeming
- * @type {import("express").RequestHandler}
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
+ * @returns {Promise<void>}
  */
 export const codeValidator = async (request, response, next) => {
   try {
@@ -116,3 +119,7 @@ export const codeValidator = async (request, response, next) => {
     return next(error);
   }
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

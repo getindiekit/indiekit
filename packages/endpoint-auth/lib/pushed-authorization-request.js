@@ -9,7 +9,7 @@
 
 /**
  * Create a PAR URI
- * @param {import("express").Request} request - Request
+ * @param {Request} request - Request
  * @returns {string} OAuth request URI
  */
 export const createRequestUri = (request) => {
@@ -21,7 +21,7 @@ export const createRequestUri = (request) => {
 
 /**
  * Get data from PAR URI
- * @param {import("express").Request} request - Request
+ * @param {Request} request - Request
  * @returns {object} Saved payload
  */
 export const getRequestUriData = (request) => {
@@ -30,3 +30,7 @@ export const getRequestUriData = (request) => {
 
   return request.app.locals[reference];
 };
+
+/**
+ * @import { Request } from "express"
+ */

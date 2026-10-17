@@ -1,7 +1,7 @@
 /**
  * Get shortcuts
  * @param {object} Indiekit - Indiekit instance
- * @param {import("express").Response} response - Response
+ * @param {Response} response - Response
  * @returns {object} Shortcuts
  */
 export const getShortcuts = (Indiekit, response) => {
@@ -46,3 +46,7 @@ export const getShortcuts = (Indiekit, response) => {
 
   return shortcuts;
 };
+
+/**
+ * @import { Response } from "express"
+ */

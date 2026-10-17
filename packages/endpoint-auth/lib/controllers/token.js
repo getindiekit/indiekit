@@ -11,7 +11,9 @@ export const tokenController = (options = {}) => ({
    * Authorization code request
    *
    * Redeem verified authorization code for an access token.
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    * @see {@link https://indieauth.spec.indieweb.org/#redeeming-the-authorization-code}
    * @see {@link https://indieauth.spec.indieweb.org/#access-token-response}
    */
@@ -31,10 +33,17 @@ export const tokenController = (options = {}) => ({
       : undefined;
 
     if (request.accepts("application/json")) {
-      return response.json({ ...accessToken, ...(profile && { profile }) });
+      return void response.json({
+        ...accessToken,
+        ...(profile && { profile }),
+      });
     }
 
     response.set("content-type", "application/x-www-form-urlencoded");
-    return response.send(new URLSearchParams(accessToken).toString());
+    return void response.send(new URLSearchParams(accessToken).toString());
   },
 });
+
+/**
+ * @import { Request, Response } from "express"
+ */

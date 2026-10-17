@@ -20,7 +20,10 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
 
 /**
  * Query published posts
- * @type {import("express").RequestHandler<Record<string, string>, unknown, unknown, QueryParameters>}
+ * @param {Request<Record<string, string>, unknown, unknown, QueryParameters>} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
+ * @returns {Promise<void>}
  */
 export const queryController = async (request, response, next) => {
   const { application, publication } = request.app.locals;
@@ -76,7 +79,7 @@ export const queryController = async (request, response, next) => {
           }
 
           const mf2 = jf2ToMf2(postData);
-          return response.json(getMf2Properties(mf2, properties));
+          return void response.json(getMf2Properties(mf2, properties));
         }
         // Return mf2 for published posts
         /**
@@ -125,7 +128,7 @@ export const queryController = async (request, response, next) => {
           }
         }
 
-        return response.json({
+        return void response.json({
           items,
           paging: {
             ...(cursor.hasNext && { after: cursor.lastItem }),
@@ -137,7 +140,7 @@ export const queryController = async (request, response, next) => {
       default: {
         // Query configuration value (can be filtered, limited and offset)
         if (Object.hasOwn(config, q)) {
-          return response.json({
+          return void response.json({
             [q]: queryConfig(config[q], { filter, limit, offset }),
           });
         }
@@ -154,3 +157,7 @@ export const queryController = async (request, response, next) => {
     next(error);
   }
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

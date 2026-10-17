@@ -21,7 +21,7 @@ export default class MicrosubEndpoint {
 
   /**
    * Microsub API routes (authenticated)
-   * @returns {import("express").Router} Express router
+   * @returns {Router} Express router
    */
   get routes() {
     // Main Microsub endpoint - dispatches based on action parameter
@@ -55,3 +55,7 @@ export default class MicrosubEndpoint {
     }
   }
 }
+
+/**
+ * @import { Router } from "express"
+ */

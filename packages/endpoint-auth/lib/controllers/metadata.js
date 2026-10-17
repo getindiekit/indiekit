@@ -1,5 +1,8 @@
 import { supportedScopes } from "../scope.js";
 
+/**
+ * @type {RequestHandler}
+ */
 export const metadataController = (request, response) => {
   const { application } = request.app.locals;
 
@@ -18,3 +21,7 @@ export const metadataController = (request, response) => {
 
   return response.json(metadata);
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

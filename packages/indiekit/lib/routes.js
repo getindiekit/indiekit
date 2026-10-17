@@ -27,7 +27,7 @@ const limit = rateLimit({
 /**
  * Expose configuration to frontend templates and plug-ins
  * @param {object} Indiekit - Indiekit instance
- * @returns {import("express").Router} Express router
+ * @returns {Router} Express router
  */
 export const routes = (Indiekit) => {
   const { endpoints, installedPlugins, publication } = Indiekit;
@@ -127,3 +127,7 @@ export const routes = (Indiekit) => {
 
   return router;
 };
+
+/**
+ * @import { Router } from "express"
+ */

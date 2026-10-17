@@ -58,7 +58,7 @@ export const getServiceWorker = async (application) => {
 
 /**
  * Get fully resolved server URL
- * @param {import("express").Request} request - Request
+ * @param {Request} request - Request
  * @returns {string} Fully resolved URL
  */
 export const getUrl = (request) => {
@@ -77,3 +77,7 @@ export const getPackageData = (filePath) => {
     return {};
   }
 };
+
+/**
+ * @import { Request } from "express"
+ */

@@ -5,7 +5,10 @@ import { getFileName } from "../utils.js";
 
 /**
  * List uploaded files
- * @type {import("express").RequestHandler}
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
+ * @returns {Promise<void>}
  */
 export const filesController = async (request, response, next) => {
   try {
@@ -80,3 +83,7 @@ export const filesController = async (request, response, next) => {
     next(error);
   }
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

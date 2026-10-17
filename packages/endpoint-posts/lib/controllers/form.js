@@ -12,7 +12,9 @@ import { getLocationProperty } from "../utils.js";
 export const formController = {
   /**
    * Get post to create/update
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async get(request, response) {
     const { action, postsPath, postType, name, scope } = response.locals;
@@ -40,7 +42,9 @@ export const formController = {
 
   /**
    * Post to Micropub endpoint
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async post(request, response) {
     const { micropubEndpoint, timeZone } = request.app.locals.application;
@@ -116,3 +120,7 @@ export const formController = {
     }
   },
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

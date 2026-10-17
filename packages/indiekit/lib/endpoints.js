@@ -3,7 +3,7 @@ import { getUrl } from "./utils.js";
 /**
  * Get provided endpoint URL, else add path to application URL
  * @param {object} application - Application configuration
- * @param {import("express").Request} request - Request
+ * @param {Request} request - Request
  * @returns {object} Endpoint URLs
  */
 export const getEndpointUrls = (application, request) => {
@@ -27,3 +27,7 @@ export const getEndpointUrls = (application, request) => {
 
   return endpoints;
 };
+
+/**
+ * @import { Request } from "express"
+ */

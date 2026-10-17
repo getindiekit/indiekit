@@ -5,7 +5,7 @@ import { createPasswordHash } from "../password.js";
 export const passwordController = {
   /**
    * New password request
-   * @type {import("express").RequestHandler}
+   * @type {RequestHandler}
    */
   get(request, response) {
     const { name } = request.app.locals.application;
@@ -20,7 +20,9 @@ export const passwordController = {
 
   /**
    * New password response
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async post(request, response) {
     const data = request.body;
@@ -46,3 +48,7 @@ export const passwordController = {
     });
   },
 };
+
+/**
+ * @import { Request, RequestHandler, Response } from "express"
+ */
