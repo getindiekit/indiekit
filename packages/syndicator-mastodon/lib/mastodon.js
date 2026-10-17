@@ -91,7 +91,7 @@ export class Mastodon {
 
   /**
    * Upload media and return Mastodon media id
-   * @param {object} media - JF2 media object
+   * @param {Jf2MediaItem} media - JF2 media object
    * @param {string} me - Publication URL
    * @returns {Promise<string|undefined>} Mastodon media id
    */
