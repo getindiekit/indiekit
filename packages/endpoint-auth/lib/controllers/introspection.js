@@ -5,7 +5,7 @@ export const introspectionController = {
    * Access token verification request
    *
    * Redeem verified authorization code for a profile URL.
-   * @type {import("express").RequestHandler}
+   * @type {RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#access-token-verification}
    */
   post(request, response) {
@@ -35,3 +35,7 @@ export const introspectionController = {
     }
   },
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

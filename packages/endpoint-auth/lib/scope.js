@@ -23,7 +23,7 @@ export const supportedScopes = Object.entries(scopes)
 /**
  * Get `items` object for checkboxes component
  * @param {Array|string} scope - Selected scope(s)
- * @param {import("express").Response} response - Response
+ * @param {Response} response - Response
  * @returns {object|undefined} Items for checkboxes component
  */
 export function getScopeItems(scope, response) {
@@ -46,3 +46,7 @@ export function getScopeItems(scope, response) {
     value,
   }));
 }
+
+/**
+ * @import { Response } from "express"
+ */

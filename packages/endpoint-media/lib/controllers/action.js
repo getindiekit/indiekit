@@ -8,7 +8,7 @@ import { checkScope } from "../scope.js";
 /**
  * Perform requested file action
  * @param {object} imageProcessing - Sharp image processing options
- * @returns {import("express").RequestHandler} - Next middleware
+ * @returns {RequestHandler} - Next middleware
  */
 export const actionController = (imageProcessing) =>
   async function (request, response, next) {
@@ -103,3 +103,7 @@ export const actionController = (imageProcessing) =>
       return next(nextError);
     }
   };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

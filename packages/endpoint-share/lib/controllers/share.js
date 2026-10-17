@@ -28,7 +28,7 @@ const getSyndicateToItems = (publication) =>
 export const shareController = {
   /**
    * View share page
-   * @type {import("express").RequestHandler}
+   * @type {RequestHandler}
    */
   get(request, response) {
     const { publication } = request.app.locals;
@@ -45,7 +45,9 @@ export const shareController = {
 
   /**
    * Post share content
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async post(request, response) {
     const { application, publication } = request.app.locals;
@@ -108,3 +110,7 @@ export const shareController = {
     }
   },
 };
+
+/**
+ * @import { Request, RequestHandler, Response } from "express"
+ */

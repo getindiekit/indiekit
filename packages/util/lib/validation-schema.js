@@ -1,6 +1,6 @@
 /**
  * Check if field is required
- * @param {import("express").Request} request - Request
+ * @param {Request} request - Request
  * @param {string} field - Field name
  * @returns {boolean} Field is required
  */
@@ -10,3 +10,7 @@ export const isRequired = (request, field) => {
 
   return postTypeConfig["required-properties"].includes(field);
 };
+
+/**
+ * @import { Request } from "express"
+ */

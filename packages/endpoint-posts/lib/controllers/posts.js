@@ -10,7 +10,10 @@ import { getPostStatusBadges, getPostName, getPhotoUrl } from "../utils.js";
 
 /**
  * List published posts
- * @type {import("express").RequestHandler}
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
+ * @returns {Promise<void>}
  */
 export const postsController = async (request, response, next) => {
   try {
@@ -95,3 +98,7 @@ export const postsController = async (request, response, next) => {
     next(error);
   }
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

@@ -191,7 +191,7 @@ export const IndieAuth = class {
   /**
    * Authenticate user (i.e. check they are who they say they are) by
    * checking bearer token matches access token saved in current session.
-   * @returns {import("express").RequestHandler} Next middleware
+   * @returns {RequestHandler} Next middleware
    */
   authenticate() {
     const { devMode, me } = this;
@@ -260,3 +260,7 @@ export const IndieAuth = class {
     };
   }
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

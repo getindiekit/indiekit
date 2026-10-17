@@ -1,6 +1,6 @@
 /**
  * Get request parameters from either query string or JSON body
- * @param {import("express").Request} request - Request
+ * @param {Request} request - Request
  * @returns {object} - Request parameters
  */
 export const getRequestParameters = (request) => {
@@ -10,3 +10,7 @@ export const getRequestParameters = (request) => {
 
   return request.query;
 };
+
+/**
+ * @import { Request } from "express"
+ */

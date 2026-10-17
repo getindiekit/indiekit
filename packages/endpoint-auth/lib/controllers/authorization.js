@@ -17,7 +17,10 @@ export const authorizationController = (options = {}) => ({
    *
    * Validate parameters in request before redirecting to consent form
    * where the user is prompted to authenticate themselves.
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @param {NextFunction} next - Express next function
+   * @returns {Promise<void>}
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-request}
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
@@ -149,7 +152,9 @@ export const authorizationController = (options = {}) => ({
    * Authorization code request
    *
    * Redeem verified authorization code for a profile URL.
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    * @see {@link https://indieauth.spec.indieweb.org/#redeeming-the-authorization-code}
    * @see {@link https://indieauth.spec.indieweb.org/#profile-url-response}
    */
@@ -163,10 +168,17 @@ export const authorizationController = (options = {}) => ({
       : undefined;
 
     if (request.accepts("application/json")) {
-      return response.json({ ...profileToken, ...(profile && { profile }) });
+      return void response.json({
+        ...profileToken,
+        ...(profile && { profile }),
+      });
     }
 
     response.set("content-type", "application/x-www-form-urlencoded");
-    return response.send(new URLSearchParams(profileToken).toString());
+    return void response.send(new URLSearchParams(profileToken).toString());
   },
 });
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

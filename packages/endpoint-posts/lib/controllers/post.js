@@ -4,7 +4,9 @@ import { checkScope } from "@indiekit/endpoint-micropub/lib/scope.js";
 
 /**
  * View published post
- * @type {import("express").RequestHandler<{ uid: string }>}
+ * @param {Request<{uid: string}>} request - Express request
+ * @param {Response} response - Express response
+ * @returns {Promise<void>}
  */
 export const postController = async (request, response) => {
   const { isDraftMode, postName, postsPath, postStatus, properties, scope } =
@@ -49,3 +51,7 @@ export const postController = async (request, response) => {
     success: request.query.success,
   });
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

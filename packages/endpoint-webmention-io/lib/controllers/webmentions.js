@@ -11,7 +11,7 @@ import {
  * List webmentions
  * @param {object} options - Endpoint options
  * @param {string} [options.token] - Access token
- * @returns {import("express").RequestHandler} - Controller
+ * @returns {RequestHandler} - Controller
  */
 export const webmentionsController = (options) => {
   return async (request, response, next) => {
@@ -98,3 +98,7 @@ export const webmentionsController = (options) => {
     }
   };
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

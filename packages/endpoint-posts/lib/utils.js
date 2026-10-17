@@ -113,7 +113,7 @@ export const getPhotoUrl = (publication, properties) => {
 /**
  * Get post status badges
  * @param {object} post - Post
- * @param {import("express").Response} response - Response
+ * @param {Response} response - Response
  * @returns {Array} Badges
  */
 export const getPostStatusBadges = (post, response) => {
@@ -230,3 +230,7 @@ export const getSyndicateToItems = (
     };
   });
 };
+
+/**
+ * @import { Response} from "express"
+ */
