@@ -81,10 +81,16 @@ export default class FtpStore {
     return path.join(this.options.directory, filePath);
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["FTP_PASSWORD", "FTP_USER"];
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { directory, host, user } = this.options;
 
@@ -94,13 +100,15 @@ export default class FtpStore {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
         type: "text",
         name: "host",
         message: "Where is your FTP server hosted?",
-        description: "i.e. ftp.server.example",
       },
       {
         type: "text",
@@ -157,7 +165,7 @@ export default class FtpStore {
   /**
    * Read file
    * @param {string} filePath - Path to file
-   * @returns {Promise<string|NodeJS.WritableStream|Buffer>} File content
+   * @returns {Promise<string>} File content
    */
   async readFile(filePath) {
     const client = await this.#client();
@@ -165,9 +173,12 @@ export default class FtpStore {
     try {
       const absolutePath = this.#absolutePath(filePath);
 
-      return await client.get(absolutePath, undefined, {
+      // With no destination, the client returns the content itself
+      const content = await client.get(absolutePath, undefined, {
         readStreamOptions: { encoding: "utf8" },
       });
+
+      return String(content);
     } catch (error) {
       throw IndiekitError.fromCaught(error, { plugin: this.name });
     } finally {
@@ -235,3 +246,7 @@ export default class FtpStore {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */
