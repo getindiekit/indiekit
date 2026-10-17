@@ -2,16 +2,14 @@ import plur from "plur";
 
 /**
  * Get paths and URLs for configured post types
- * @param {Map} postTypes - Post type configuration
- * @returns {object} Updated post type configuration
- */
-/**
- * Get paths and URLs for configured post types
- * @param {Map} postTypes - Post type configuration
- * @returns {object} Updated post type configuration
+ * @param {Map<string, Partial<IndiekitPostType>>} postTypes - Post type configuration
+ * @returns {Record<string, Partial<IndiekitPostType>>} Updated post type configuration
  */
 export const getPostTypes = (postTypes) => {
-  const updates = new Map();
+  /**
+   * @type {Record<string, Partial<IndiekitPostType>>}
+   */
+  const presetPostTypes = {};
 
   for (const type of postTypes.keys()) {
     const collection = plur(type);
@@ -19,7 +17,7 @@ export const getPostTypes = (postTypes) => {
     if (type === "page") {
       // A page has no date; an index file in its own directory is served at
       // its URL without a permalink setting
-      updates.set("page", {
+      presetPostTypes.page = {
         ...postTypes.get("page"),
         post: {
           path: "{slug}/index.md",
@@ -28,9 +26,9 @@ export const getPostTypes = (postTypes) => {
         media: {
           path: "media/pages/{filename}",
         },
-      });
+      };
     } else if (type === "article") {
-      updates.set("article", {
+      presetPostTypes.article = {
         ...postTypes.get("article"),
         post: {
           path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
@@ -39,9 +37,9 @@ export const getPostTypes = (postTypes) => {
         media: {
           path: "media/{yyyy}/{MM}/{dd}/{filename}",
         },
-      });
+      };
     } else {
-      updates.set(type, {
+      presetPostTypes[type] = {
         ...postTypes.get(type),
         post: {
           path: `_${collection}/{yyyy}-{MM}-{dd}-{slug}.md`,
@@ -50,13 +48,9 @@ export const getPostTypes = (postTypes) => {
         media: {
           path: `media/${collection}/{yyyy}/{MM}/{dd}/{filename}`,
         },
-      });
+      };
     }
   }
 
-  for (const [type, value] of updates) {
-    postTypes.set(type, value);
-  }
-
-  return postTypes;
+  return presetPostTypes;
 };

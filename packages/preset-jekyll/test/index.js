@@ -34,7 +34,8 @@ describe("preset-jekyll", async () => {
   });
 
   it("Gets publication post types", () => {
-    assert.deepEqual(jekyll.postTypes.get("article").post, {
+    assert.ok(jekyll.postTypes, "no post types configured");
+    assert.deepEqual(jekyll.postTypes.article.post, {
       path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
       url: "{yyyy}/{MM}/{dd}/{slug}",
     });
