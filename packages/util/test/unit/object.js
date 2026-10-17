@@ -6,12 +6,15 @@ import { sanitise } from "../../lib/object.js";
 describe("util/lib/object", () => {
   it("Does not sanitise primitive", async (t) => {
     await t.test("Boolean", () => {
+      // @ts-ignore: Testing invalid input
       assert.equal(sanitise(true), true);
     });
     await t.test("Number", () => {
+      // @ts-ignore: Testing invalid input
       assert.equal(sanitise(1), 1);
     });
     await t.test("String", () => {
+      // @ts-ignore: Testing invalid input
       assert.equal(sanitise("foo"), "foo");
     });
   });

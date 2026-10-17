@@ -7,7 +7,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { getCursor, getMongodbClient } from "../../lib/mongodb.js";
 
 /**
- * @param {object} cursor - Pagination cursor
+ * @param {PaginationCursor} cursor - Pagination cursor
  * @returns {string[]} Names of the items it holds, in order
  */
 const names = (cursor) => cursor.items.map((item) => item.properties.name);
@@ -55,7 +55,7 @@ describe("util/lib/mongodb", async () => {
      */
     const uidOf = async (name) => {
       const item = await items.findOne({ "properties.name": name });
-      return item.properties.uid;
+      return item?.properties.uid;
     };
 
     beforeEach(async () => {
@@ -245,7 +245,12 @@ describe("util/lib/mongodb", async () => {
     const mongodbUrl = mongod.getUri();
     const result = await getMongodbClient(mongodbUrl);
 
-    assert.equal(result.client.s.url, mongodbUrl);
+    assert.ok(result?.client, "no MongoDB client");
+    // `s` is internal to the driver, so is missing from its types
+    const client = /** @type {MongoClient & { s: { url: string } }} */ (
+      result.client
+    );
+    assert.equal(client.s.url, mongodbUrl);
 
     result.client.close();
   });
@@ -291,3 +296,8 @@ describe("util/lib/mongodb", async () => {
     }
   });
 });
+
+/**
+ * @import { MongoClient } from "mongodb"
+ * @import { PaginationCursor } from "../../lib/mongodb.js"
+ */

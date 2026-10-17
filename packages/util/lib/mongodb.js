@@ -37,7 +37,7 @@ const getBoundary = (value) => {
  *
  * Items are listed newest first. Paging forwards (`after`) takes the items
  * below that one, paging backwards (`before`) the items above it.
- * @param {object} collection - Database collection
+ * @param {Collection} collection - Database collection
  * @param {string|string[]} [after] - Items created after item with this uid
  * @param {string|string[]} [before] - Items created before item with this uid
  * @param {number} [limit] - Number of items to return within cursor
@@ -45,7 +45,7 @@ const getBoundary = (value) => {
  * @param {object} [options.filter] - Query every page is confined to
  * @param {string} [options.key] - Path of the time-ordered identifier the
  *   items are listed and paged by
- * @returns {Promise<object>} Pagination cursor
+ * @returns {Promise<PaginationCursor>} Pagination cursor
  */
 export const getCursor = async (
   collection,
@@ -54,6 +54,9 @@ export const getCursor = async (
   limit,
   { filter = {}, key = "properties.uid" } = {},
 ) => {
+  /**
+   * @type {PaginationCursor}
+   */
   const cursor = {
     items: [],
     hasNext: false,
@@ -61,16 +64,19 @@ export const getCursor = async (
   };
 
   /**
-   * @param {object} item - Database document
+   * @param {Document} [item] - Database document
    * @returns {string} The item's identifier at `key`
    */
   const identifier = (item) => {
+    /**
+     * @type {unknown}
+     */
     let value = item;
     for (const segment of key.split(".")) {
-      value = value?.[segment];
+      value = /** @type {Document|undefined} */ (value)?.[segment];
     }
 
-    return value;
+    return /** @type {string} */ (value);
   };
 
   // `before` wins when both are given
@@ -89,6 +95,9 @@ export const getCursor = async (
     query[key] = isPagingBackwards ? { $gt: boundary } : { $lt: boundary };
   }
 
+  /**
+   * @type {FindOptions}
+   */
   const options = {
     limit: limit ? Math.trunc(limit) : 40,
     // Paging backwards wants the items *adjacent* to the boundary, which are
@@ -129,7 +138,8 @@ export const getCursor = async (
 /**
  * Connect to MongoDB client
  * @param {string} mongodbUrl - MongoDB URL
- * @returns {Promise<object>} MongoDB client
+ * @returns {Promise<{client?: MongoClient, error?: Error}|undefined>}
+ *   MongoDB client, or the error that prevented connecting to it
  */
 export const getMongodbClient = async (mongodbUrl) => {
   if (!mongodbUrl) {
@@ -178,3 +188,16 @@ export const getMongodbClient = async (mongodbUrl) => {
 
   return { client };
 };
+
+/**
+ * @typedef {object} PaginationCursor
+ * @property {Document[]} items - Items on this page
+ * @property {boolean} hasNext - Older items follow this page
+ * @property {boolean} hasPrev - Newer items precede this page
+ * @property {string} [firstItem] - Identifier of the first item on this page
+ * @property {string} [lastItem] - Identifier of the last item on this page
+ */
+
+/**
+ * @import { Collection, Document, FindOptions } from "mongodb"
+ */
