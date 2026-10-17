@@ -1,10 +1,6 @@
 import path from "node:path";
 import process from "node:process";
 
-/**
- * @typedef {import("@aws-sdk/client-s3").ObjectCannedACL} ObjectCannedACL
- */
-
 import {
   CopyObjectCommand,
   DeleteObjectCommand,
@@ -262,3 +258,7 @@ export default class S3Store {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { ObjectCannedACL } from "@aws-sdk/client-s3"
+ */

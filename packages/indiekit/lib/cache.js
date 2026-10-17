@@ -1,6 +1,5 @@
 /**
  * Get cached response value
- * @typedef {import("keyv").Keyv} Keyv
  * @param {Keyv} cache - Application cache (returns `false` if no database)
  * @param {number} ttl - Time to live
  * @param {string} url - URL to fetch and cache (used as key)
@@ -30,3 +29,7 @@ export const getCachedResponse = async (cache, ttl, url) => {
 
   return cachedResponse;
 };
+
+/**
+ * @import { Keyv } from "keyv"
+ */

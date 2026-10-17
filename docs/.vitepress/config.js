@@ -255,7 +255,7 @@ const sidebarPlugins = [
 ];
 
 /**
- * @type {import("vitepress").UserConfig}
+ * @type {UserConfig}
  */
 export default {
   title: "Indiekit",
@@ -350,3 +350,7 @@ export default {
     ],
   },
 };
+
+/**
+ * import { UserConfig } from "vitepress"
+ */
