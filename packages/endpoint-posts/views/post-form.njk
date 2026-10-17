@@ -60,7 +60,7 @@
         optional: true
       },
       items: channelItems
-    }) | indent(2) if publication.channels }}
+    }) | indent(2) if publication.channels | length > 0 }}
 
     {{ radios({
       inline: true,
