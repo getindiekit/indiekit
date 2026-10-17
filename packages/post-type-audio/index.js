@@ -20,6 +20,9 @@ export default class AudioPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -29,12 +32,21 @@ export default class AudioPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "audio.*": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/music/audio.mp3"),
-        exists: { if: (value, { req }) => isRequired(req, "audio") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) =>
+            req.__(`posts.error.media.empty`, "/music/audio.mp3")
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "audio")
+          ),
+        },
         notEmpty: true,
       },
     };
@@ -47,3 +59,7 @@ export default class AudioPostType {
     Indiekit.addPostType("audio", this);
   }
 }
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Schema } from "express-validator"
+ */
