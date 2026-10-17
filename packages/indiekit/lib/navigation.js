@@ -1,8 +1,8 @@
 /**
  * Get navigation items
  * @param {object} Indiekit - Indiekit instance
- * @param {import("express").Request} request - Request
- * @param {import("express").Response} response - Response
+ * @param {Request} request - Request
+ * @param {Response} response - Response
  * @returns {object} Shortcuts
  */
 export const getNavigation = (Indiekit, request, response) => {
@@ -56,3 +56,7 @@ export const getNavigation = (Indiekit, request, response) => {
 
   return navigation;
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

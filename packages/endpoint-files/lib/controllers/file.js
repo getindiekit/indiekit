@@ -2,7 +2,9 @@ import path from "node:path";
 
 /**
  * View uploaded file
- * @type {import("express").RequestHandler}
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @returns {Promise<void>}
  */
 export const fileController = async (request, response) => {
   const { fileName, filesPath, scope } = response.locals;
@@ -25,3 +27,7 @@ export const fileController = async (request, response) => {
     ],
   });
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

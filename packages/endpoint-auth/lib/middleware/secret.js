@@ -4,7 +4,7 @@ import { IndiekitError } from "@indiekit/error";
 
 /**
  * Check that server secret has been set
- * @type {import("express").RequestHandler}
+ * @type {RequestHandler}
  */
 export const hasSecret = (request, response, next) => {
   if (!process.env.SECRET) {
@@ -17,3 +17,7 @@ export const hasSecret = (request, response, next) => {
 
   next();
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

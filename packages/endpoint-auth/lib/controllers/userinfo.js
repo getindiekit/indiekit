@@ -9,7 +9,7 @@ import { verifyToken } from "../token.js";
  * Return profile information for the user an access token was issued to.
  * @param {object} [options] - Plug-in options
  * @param {object} [options.profile] - Configured profile information
- * @returns {import("express").RequestHandler} Controller
+ * @returns {RequestHandler} Controller
  * @see {@link https://indieauth.spec.indieweb.org/#user-information}
  */
 export const userinfoController =
@@ -46,3 +46,7 @@ export const userinfoController =
       next(error);
     }
   };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

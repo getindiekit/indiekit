@@ -11,7 +11,7 @@ import { signToken } from "../token.js";
 export const consentController = {
   /**
    * View consent form
-   * @type {import("express").RequestHandler}
+   * @type {RequestHandler}
    */
   get(request, response) {
     if (!request.query.request_uri) {
@@ -43,7 +43,7 @@ export const consentController = {
 
   /**
    * Submit consent form
-   * @type {import("express").RequestHandler}
+   * @type {RequestHandler}
    * @see {@link https://indieauth.spec.indieweb.org/#authorization-response}
    */
   post(request, response) {
@@ -108,3 +108,7 @@ export const consentController = {
     response.redirect(redirect.href);
   },
 };
+
+/**
+ * @import { RequestHandler } from "express"
+ */

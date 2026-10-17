@@ -12,18 +12,18 @@ import { get as getTimeline, action as timelineAction } from "./timeline.js";
 
 /**
  * Route GET requests to appropriate action handler
- * @param {object} request - Express request
- * @param {object} response - Express response
- * @param {import("express").NextFunction} next - Express next function
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
  * @returns {Promise<void>}
  */
 export async function get(request, response, next) {
   try {
-    const { action } = request.query;
+    const action = String(request.query.action ?? "");
 
     if (!action) {
       // Return basic endpoint info
-      return response.json({
+      return void response.json({
         type: "microsub",
         actions: ["channels", "timeline"],
       });
@@ -53,9 +53,9 @@ export async function get(request, response, next) {
 
 /**
  * Route POST requests to appropriate action handler
- * @param {object} request - Express request
- * @param {object} response - Express response
- * @param {import("express").NextFunction} next - Express next function
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
  * @returns {Promise<void>}
  */
 export async function post(request, response, next) {
@@ -84,3 +84,7 @@ export async function post(request, response, next) {
 }
 
 export const microsubController = { get, post };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

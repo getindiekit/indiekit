@@ -5,7 +5,9 @@ import { endpoint } from "../endpoint.js";
 export const deleteController = {
   /**
    * Confirm file to delete
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async get(request, response) {
     const { fileName, filesPath, scope } = response.locals;
@@ -23,7 +25,9 @@ export const deleteController = {
 
   /**
    * Post delete action to media endpoint
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async post(request, response) {
     const { mediaEndpoint } = request.app.locals.application;
@@ -48,3 +52,7 @@ export const deleteController = {
     }
   },
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

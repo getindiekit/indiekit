@@ -16,7 +16,6 @@ import { views } from "../lib/views.js";
 const debug = makeDebug(`indiekit:express`);
 
 /**
- * @typedef {import("express").Application} Application
  * @param {object} Indiekit - Indiekit instance
  * @returns {Application} Express application
  */
@@ -76,3 +75,7 @@ export const expressConfig = (Indiekit) => {
 
   return app;
 };
+
+/**
+ * @import { Application } from "express"
+ */

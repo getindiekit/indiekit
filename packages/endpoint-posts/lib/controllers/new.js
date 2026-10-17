@@ -7,7 +7,9 @@ import { validationResult } from "express-validator";
 export const newController = {
   /**
    * Get new post type to create
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async get(request, response) {
     const action = "create";
@@ -48,7 +50,9 @@ export const newController = {
 
   /**
    * Redirect to post creation form for selected post type
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async post(request, response) {
     const { publication } = request.app.locals;
@@ -86,3 +90,7 @@ export const newController = {
     }
   },
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */

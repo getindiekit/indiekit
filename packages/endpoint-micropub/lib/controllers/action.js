@@ -8,7 +8,10 @@ import { checkScope } from "../scope.js";
 
 /**
  * Perform requested post action
- * @type {import("express").RequestHandler}
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
+ * @param {NextFunction} next - Express next function
+ * @returns {Promise<void>}
  */
 export const actionController = async (request, response, next) => {
   const { app, body, files, query, session } = request;
@@ -149,3 +152,7 @@ export const actionController = async (request, response, next) => {
     return next(nextError);
   }
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

@@ -64,6 +64,7 @@ declare global {
     tokenEndpoint: string;
     ttl: number;
     url: string;
+    userinfoEndpoint: string;
 
     // Added per request by `lib/middleware/locals.js`
     collections: Map<string, any>;

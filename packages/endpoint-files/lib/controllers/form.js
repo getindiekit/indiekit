@@ -8,7 +8,9 @@ import { endpoint } from "../endpoint.js";
 export const formController = {
   /**
    * Get file to upload
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async get(request, response) {
     const { filesPath, scope } = response.locals;
@@ -27,7 +29,9 @@ export const formController = {
 
   /**
    * Post file to media endpoint
-   * @type {import("express").RequestHandler}
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @returns {Promise<void>}
    */
   async post(request, response) {
     const { mediaEndpoint } = request.app.locals.application;
@@ -96,3 +100,7 @@ export const formController = {
     );
   },
 };
+
+/**
+ * @import { Request, Response } from "express"
+ */
