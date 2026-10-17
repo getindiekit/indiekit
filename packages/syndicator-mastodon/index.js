@@ -39,11 +39,20 @@ export default class MastodonSyndicator {
     return this.options?.user ? `@${this.options.user.replace("@", "")}` : "";
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["MASTODON_ACCESS_TOKEN"];
   }
 
+  /**
+   * @returns {IndiekitSyndicationTargetInfo} Syndication target information
+   */
   get info() {
+    /**
+     * @type {IndiekitSyndicationTargetInfo}
+     */
     const info = {
       checked: this.options.checked,
       service: {
@@ -73,6 +82,9 @@ export default class MastodonSyndicator {
     return info;
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
@@ -91,6 +103,11 @@ export default class MastodonSyndicator {
     ];
   }
 
+  /**
+   * @param {Jf2Properties} properties - JF2 properties
+   * @param {Pick<IndiekitPublication, "me">} publication - Publication configuration
+   * @returns {Promise<string|undefined>} URL of syndicated post
+   */
   async syndicate(properties, publication) {
     try {
       const { accessToken } = this.options;
@@ -122,3 +139,7 @@ export default class MastodonSyndicator {
     Indiekit.addSyndicator(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */
