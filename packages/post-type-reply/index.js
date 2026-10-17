@@ -19,6 +19,9 @@ export default class ReplyPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -27,6 +30,9 @@ export default class ReplyPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "in-reply-to": {
@@ -47,3 +53,7 @@ export default class ReplyPostType {
     Indiekit.addPostType("reply", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
