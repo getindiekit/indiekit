@@ -19,6 +19,9 @@ export default class ReplyPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -27,12 +30,21 @@ export default class ReplyPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "in-reply-to": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "in-reply-to") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) =>
+            req.__(`posts.error.url.empty`, "https://example.org")
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "in-reply-to")
+          ),
+        },
         isURL: true,
       },
     };
@@ -45,3 +57,7 @@ export default class ReplyPostType {
     Indiekit.addPostType("reply", this);
   }
 }
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Schema } from "express-validator"
+ */
