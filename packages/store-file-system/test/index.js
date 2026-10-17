@@ -10,8 +10,8 @@ import { Indiekit } from "@indiekit/indiekit";
 import FileSystemStore from "../index.js";
 
 describe("store-file-system", () => {
-  let directory;
-  let fileSystem;
+  let /** @type {string} */ directory;
+  let /** @type {FileSystemStore} */ fileSystem;
 
   beforeEach(async () => {
     directory = await fs.mkdtemp(path.join(os.tmpdir(), "indiekit-"));
@@ -68,6 +68,7 @@ describe("store-file-system", () => {
   });
 
   it("Throws error creating file", async () => {
+    // @ts-ignore: Testing invalid input
     await assert.rejects(fileSystem.createFile(undefined, "foo"), {
       message: `File system store: The "path" argument must be of type string. Received undefined`,
     });
