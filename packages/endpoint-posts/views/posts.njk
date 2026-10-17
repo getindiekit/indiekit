@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- if posts.length > 0 %}
+  {%- if posts | length > 0 %}
   {{ cardGrid({
     cardSize: "16rem",
     items: posts
