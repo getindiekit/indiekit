@@ -81,10 +81,16 @@ export default class FtpStore {
     return path.join(this.options.directory, filePath);
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["FTP_PASSWORD", "FTP_USER"];
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { directory, host, user } = this.options;
 
@@ -94,13 +100,15 @@ export default class FtpStore {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
         type: "text",
         name: "host",
         message: "Where is your FTP server hosted?",
-        description: "i.e. ftp.server.example",
       },
       {
         type: "text",
@@ -233,3 +241,7 @@ export default class FtpStore {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */
