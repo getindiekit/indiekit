@@ -67,10 +67,16 @@ export default class GiteaStore {
     }
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["GITEA_TOKEN"];
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { instance, repo, user } = this.options;
 
@@ -80,13 +86,15 @@ export default class GiteaStore {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
         type: "text",
         name: "instance",
         message: "Where is Gitea hosted?",
-        description: "i.e. https://gitea.com",
         initial: defaults.instance,
       },
       {
@@ -226,3 +234,7 @@ export default class GiteaStore {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */
