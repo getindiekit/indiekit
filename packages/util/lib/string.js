@@ -91,15 +91,20 @@ export const slugify = (string, options) => {
 /**
  * Substitute variables enclosed in { } braces with data from object
  * @param {string} string - String to parse
- * @param {object} object - Properties to use
+ * @param {Record<string, unknown>} object - Properties to use
  * @returns {string} String with substituted
  */
 export const supplant = (string, object) => {
+  /**
+   * @param {string} match - Matched placeholder, i.e. `{name}`
+   * @param {string} p1 - Placeholder name, i.e. `name`
+   * @returns {string} Replacement
+   */
   const replacer = function (match, p1) {
     const r = object[p1];
 
     if (typeof r === "string" || typeof r === "number") {
-      return r;
+      return String(r);
     }
 
     return match;
