@@ -17,7 +17,7 @@ export const MAX_NAME_LENGTH = 100;
 
 /**
  * Validate action parameter
- * @param {(key: string, ...values: Array<string | number>) => string} __ - Localisation function
+ * @param {i18n.__} __ - Localisation function
  * @param {string|null} [action] - Action to validate
  * @throws {IndiekitError} If action is invalid
  */
@@ -37,7 +37,7 @@ export function validateAction(__, action) {
 
 /**
  * Validate channel UID
- * @param {(key: string, ...values: Array<string | number>) => string} __ - Localisation function
+ * @param {i18n.__} __ - Localisation function
  * @param {string} [channel] - Channel UID to validate
  * @param {boolean} [isRequired] - Whether channel is required
  * @throws {IndiekitError} If channel is invalid
@@ -58,7 +58,7 @@ export function validateChannel(__, channel, isRequired = true) {
 
 /**
  * Validate entry/entries parameter
- * @param {(key: string, ...values: Array<string | number>) => string} __ - Localisation function
+ * @param {i18n.__} __ - Localisation function
  * @param {string|Array} [entry] - Entry ID(s) to validate
  * @returns {Array} Array of entry IDs
  * @throws {IndiekitError} If entry is invalid
@@ -84,7 +84,7 @@ export function validateEntries(__, entry) {
 
 /**
  * Validate channel name
- * @param {(key: string, ...values: Array<string | number>) => string} __ - Localisation function
+ * @param {i18n.__} __ - Localisation function
  * @param {string} name - Channel name to validate
  * @throws {IndiekitError} If name is invalid
  */
@@ -97,7 +97,7 @@ export function validateChannelName(__, name) {
 
   if (name.length > MAX_NAME_LENGTH) {
     throw IndiekitError.badRequest(
-      __("microsub.error.nameTooLong", MAX_NAME_LENGTH),
+      __("microsub.error.nameTooLong", String(MAX_NAME_LENGTH)),
     );
   }
 }
@@ -138,3 +138,7 @@ export function parseArrayParameter(body, parameterName) {
 
   return result;
 }
+
+/**
+ * @import i18n from "i18n"
+ */
