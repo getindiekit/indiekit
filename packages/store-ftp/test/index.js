@@ -22,7 +22,7 @@ describe("store-ftp", () => {
     password: "foo",
   });
 
-  let server;
+  let /** @type {Server} */ server;
 
   before(async () => {
     server = await createSftpMockServer({
@@ -168,3 +168,7 @@ describe("store-ftp", () => {
     });
   });
 });
+
+/**
+ * @import { Server } from "ssh2"
+ */
