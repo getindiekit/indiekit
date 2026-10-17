@@ -7,7 +7,7 @@ const AT_URI = /at:\/\/(?<did>did:[^/]+)\/(?<type>[^/]+)\/(?<rkey>[^/]+)/;
 
 /**
  * Convert plain text to rich text
- * @param {import("@atproto/api").Agent} client - AT Protocol agent
+ * @param {Agent} client - AT Protocol agent
  * @param {string} text - Text to convert
  * @param {Array<object>} [facets] - Facets to add to those detected in text
  * @returns {Promise<RichText>} Rich text
@@ -293,3 +293,7 @@ export const htmlToStatusText = (html) => {
 
   return statusText;
 };
+
+/**
+ * @import { Agent } from "@atproto/api"
+ */

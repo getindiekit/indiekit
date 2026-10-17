@@ -293,9 +293,7 @@ describe("syndicator-bluesky/lib/utils", async () => {
     assert.deepEqual(
       result.facets.map(
         (facet) =>
-          /** @type {import("@atproto/api").AppBskyRichtextFacet.Link} */ (
-            facet.features[0]
-          ).uri,
+          /** @type {AppBskyRichtextFacet.Link} */ (facet.features[0]).uri,
       ),
       ["https://bar.baz", "https://moon.example"],
     );
@@ -313,3 +311,7 @@ describe("syndicator-bluesky/lib/utils", async () => {
     );
   });
 });
+
+/**
+ * @import { AppBskyRichtextFacet } from "@atproto/api"
+ */

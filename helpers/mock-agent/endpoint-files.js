@@ -1,7 +1,7 @@
 import { MockAgent } from "@indiekit-test/undici";
 
 /**
- * @returns {import("undici-v8").MockAgent} Undici MockAgent
+ * @returns {MockAgent} Undici MockAgent
  * @see {@link https://undici.nodejs.org/#/docs/api/MockAgent}
  */
 export function mockClient() {
@@ -165,3 +165,7 @@ export function mockClient() {
 
   return agent;
 }
+
+/**
+ * import { MockAgent } from "undici-v8"
+ */

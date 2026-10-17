@@ -1,5 +1,5 @@
 /**
- * @type {import("prompts").PromptObject<string>[]} Setup prompt questions
+ * @type {PromptObject<string>[]} Setup prompt questions
  */
 export const setupPrompts = [
   {
@@ -99,3 +99,7 @@ export const setupPrompts = [
     message: "Do you want to deploy your server using Docker?",
   },
 ];
+
+/**
+ * @import { PromptObject } from "prompts"
+ */

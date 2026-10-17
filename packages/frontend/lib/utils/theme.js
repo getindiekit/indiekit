@@ -11,7 +11,7 @@ import Color from "color";
  * @param {number} [options.mixingAmount] - Amount of color to mix with original
  * @param {number} [options.tries] - Tries
  * @param {number} [options.maxTries] - Maximum tries
- * @returns {import("color").ColorInstance} RGB hex code, i.e. "#7f1de4"
+ * @returns {ColorInstance} RGB hex code, i.e. "#7f1de4"
  */
 export const _getValidatedColor = ({
   colorToChange,
@@ -113,3 +113,7 @@ export const getThemeCustomProperties = (string) => {
 --color-primary-on-background-light: ${primaryOnBackgroundLight};
 --color-primary-on-background-dark: ${primaryOnBackgroundDark};`;
 };
+
+/**
+ * @import { ColorInstance } from "color"
+ */
