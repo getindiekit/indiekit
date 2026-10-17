@@ -4,6 +4,7 @@ import { describe, it } from "node:test";
 import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mockAgent } from "@indiekit-test/mock-agent";
+import { testPublication } from "@indiekit-test/publication";
 
 import MastodonSyndicator from "../index.js";
 
@@ -20,11 +21,9 @@ describe("syndicator-mastodon", () => {
     getFixture("jf2/article-content-provided-html-text.jf2"),
   );
 
-  const publication = {
+  const publication = testPublication({
     me: "https://website.example",
-  };
-
-  const url = "https://website.example/post/1";
+  });
 
   it("Gets plug-in environment", () => {
     assert.deepEqual(mastodon.environment, ["MASTODON_ACCESS_TOKEN"]);
@@ -86,7 +85,7 @@ describe("syndicator-mastodon", () => {
   it("Throws error getting syndicated URL with no access token", async () => {
     const mastodonNoKeys = new MastodonSyndicator({ accessToken: "" });
 
-    await assert.rejects(mastodonNoKeys.syndicate({ url }), {
+    await assert.rejects(mastodonNoKeys.syndicate(properties, publication), {
       message:
         "Mastodon syndicator: No access token. Set the `accessToken` option or `MASTODON_ACCESS_TOKEN`.",
       status: 401,

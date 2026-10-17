@@ -184,6 +184,7 @@ describe("syndicator-mastodon/lib/utils", () => {
       },
     );
 
+    assert.ok(result.status);
     assert.ok(result.status.length <= 50);
     assert.ok(result.status.endsWith("\n\n#lunch"));
   });

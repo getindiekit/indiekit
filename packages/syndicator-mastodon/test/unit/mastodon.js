@@ -68,6 +68,7 @@ describe("syndicator-mastodon/lib/mastodon", () => {
   });
 
   it("Returns false passing an object to media upload function", async () => {
+    // @ts-expect-error Testing invalid input
     const result = await mastodon.uploadMedia({ foo: "bar" }, me);
 
     assert.equal(result, undefined);
@@ -143,6 +144,15 @@ describe("syndicator-mastodon/lib/mastodon", () => {
       result,
       "https://mastodon.example/@username/1234567890987654321",
     );
+  });
+
+  it("Doesn’t post a status with no text or media to Mastodon", async () => {
+    const result = await mastodon.post(
+      { "bookmark-of": "https://foo.bar/lunchtime" },
+      me,
+    );
+
+    assert.equal(result, undefined);
   });
 
   it("Posts a threaded reply to a status on another server", async () => {
