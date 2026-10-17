@@ -21,6 +21,9 @@ export default class PhotoPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -29,6 +32,9 @@ export default class PhotoPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "photo.*.url": {
@@ -54,3 +60,7 @@ export default class PhotoPostType {
     Indiekit.addPostType("photo", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
