@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
 
-import { AtpAgent } from "@atproto/api";
+import { AtpAgent, AppBskyRichtextFacet } from "@atproto/api";
 import { TestNetworkNoAppView } from "@atproto/dev-env";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
@@ -19,10 +19,10 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   const me = "https://website.example";
   const photo = [{ url: "https://website.example/photo1.jpg", alt: "Photo" }];
 
-  let bluesky;
-  let postUrl;
-  let network;
-  let seedAgent;
+  let /** @type {Bluesky} */ bluesky;
+  let /** @type {string} */ postUrl;
+  let /** @type {TestNetworkNoAppView} */ network;
+  let /** @type {AtpAgent} */ seedAgent;
   let seedClient;
 
   before(async () => {
@@ -74,6 +74,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Posts a like", async () => {
     const result = await bluesky.postLike(postUrl);
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_LIKE_URL);
   });
 
@@ -86,6 +87,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Posts a repost", async () => {
     const result = await bluesky.postRepost(postUrl);
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_REPOST_URL);
   });
 
@@ -96,7 +98,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   });
 
   it("Posts a quote post", async () => {
-    const richText = await createRichText(bluesky, "Me too!");
+    const richText = await createRichText(seedAgent, "Me too!");
     const result = await bluesky.postQuotePost(postUrl, richText);
 
     assert.match(result, BLUESKY_POST_URL);
@@ -105,21 +107,23 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Posts a quote post with images", async () => {
     await mockAgent("syndicator-bluesky");
 
-    const richText = await createRichText(bluesky, "Me too!");
-    const images = await bluesky.uploadMedia(photo[0], me);
+    const richText = await createRichText(seedAgent, "Me too!");
+    const image = await bluesky.uploadMedia(photo[0], me);
+    const images = image ? [{ alt: photo[0].alt, image }] : [];
     const result = await bluesky.postQuotePost(postUrl, richText, images);
 
     assert.match(result, BLUESKY_POST_URL);
   });
 
   it("Throws error posting a quote post", async () => {
+    // @ts-expect-error: Testing invalid plain text input
     await assert.rejects(bluesky.postQuotePost(postUrl, "Plain text"), {
       message: `Invalid app.bsky.feed.post record: Missing required key "text" at $.record`,
     });
   });
 
   it("Posts a post", async () => {
-    const richText = await createRichText(bluesky, "I like ham sandwiches");
+    const richText = await createRichText(seedAgent, "I like ham sandwiches");
     const result = await bluesky.postPost(richText);
 
     assert.match(result, BLUESKY_POST_URL);
@@ -128,14 +132,16 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Posts a post with images", async () => {
     await mockAgent("syndicator-bluesky");
 
-    const richText = await createRichText(bluesky, "I like ham sandwiches");
-    const images = await bluesky.uploadMedia(photo[0], me);
+    const richText = await createRichText(seedAgent, "I like ham sandwiches");
+    const image = await bluesky.uploadMedia(photo[0], me);
+    const images = image ? [{ alt: photo[0].alt, image }] : [];
     const result = await bluesky.postPost(richText, images);
 
     assert.match(result, BLUESKY_POST_URL);
   });
 
   it("Throws error posting a post", async () => {
+    // @ts-expect-error: Testing invalid plain text input
     await assert.rejects(bluesky.postPost("Plain text"), {
       message: `Invalid app.bsky.feed.post record: Missing required key "text" at $.record`,
     });
@@ -146,6 +152,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
     const result = await bluesky.uploadMedia(photo[0], me);
 
+    assert.ok(result, "no media uploaded");
     assert.equal(result.mimeType, "image/jpeg");
     assert.equal(result.size, 789);
   });
@@ -161,6 +168,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Posts a like of a Bluesky post to Bluesky", async () => {
     const result = await bluesky.post({ "like-of": postUrl }, me);
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_LIKE_URL);
   });
 
@@ -173,6 +181,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Posts a repost of a Bluesky post to Bluesky", async () => {
     const result = await bluesky.post({ "repost-of": postUrl }, me);
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_REPOST_URL);
   });
 
@@ -192,6 +201,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       me,
     );
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_POST_URL);
   });
 
@@ -204,12 +214,13 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       },
       me,
     );
+    assert.ok(result, "no post");
+
     const parent = await bluesky.getPost(postUrl);
     const reply = await bluesky.getPost(result);
-
     assert.match(result, BLUESKY_POST_URL);
-    assert.equal(reply.value.reply.parent.uri, parent.uri);
-    assert.equal(reply.value.reply.root.uri, parent.uri);
+    assert.equal(reply.value.reply?.parent.uri, parent.uri);
+    assert.equal(reply.value.reply?.root.uri, parent.uri);
   });
 
   it("Roots a reply to a reply at the original post", async () => {
@@ -217,16 +228,20 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       { content: { html: "<p>Me too!</p>" }, "in-reply-to": postUrl },
       me,
     );
+    assert.ok(firstReplyUrl, "no post");
+
     const result = await bluesky.post(
       { content: { html: "<p>And me.</p>" }, "in-reply-to": firstReplyUrl },
       me,
     );
+    assert.ok(result, "no post");
+
     const original = await bluesky.getPost(postUrl);
     const first = await bluesky.getPost(firstReplyUrl);
     const second = await bluesky.getPost(result);
 
-    assert.equal(second.value.reply.parent.uri, first.uri);
-    assert.equal(second.value.reply.root.uri, original.uri);
+    assert.equal(second.value.reply?.parent.uri, first.uri);
+    assert.equal(second.value.reply?.root.uri, original.uri);
   });
 
   it("Posts a reply to a URL on another site without threading", async () => {
@@ -237,6 +252,8 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       },
       me,
     );
+    assert.ok(result, "no post");
+
     const post = await bluesky.getPost(result);
 
     assert.match(result, BLUESKY_POST_URL);
@@ -255,6 +272,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       me,
     );
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_POST_URL);
   });
 
@@ -268,10 +286,16 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       },
       me,
     );
+    assert.ok(result, "no post");
+
     const post = await bluesky.getPost(result);
-    const facets = post.value.facets.filter(
-      (facet) => facet.features[0].uri === "https://cheese.example",
-    );
+    const facets = (post.value.facets ?? []).filter((facet) => {
+      const [feature] = facet.features;
+      return (
+        AppBskyRichtextFacet.isLink(feature) &&
+        feature.uri === "https://cheese.example"
+      );
+    });
 
     // The link text, and the URL appended to the text
     assert.deepEqual(
@@ -296,6 +320,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
       me,
     );
 
+    assert.ok(result, "no post");
     assert.match(result, BLUESKY_POST_URL);
   });
 });

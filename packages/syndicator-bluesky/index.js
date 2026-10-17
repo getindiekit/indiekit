@@ -42,14 +42,23 @@ export default class BlueskySyndicator {
   get #user() {
     return this.options?.handle
       ? `@${this.options.handle.replace("@", "")}`
-      : false;
+      : "";
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["BLUESKY_PASSWORD"];
   }
 
+  /**
+   * @returns {IndiekitSyndicationTargetInfo} Syndication target information
+   */
   get info() {
+    /**
+     * @type {IndiekitSyndicationTargetInfo}
+     */
     const info = {
       checked: this.options.checked,
       service: {
@@ -81,6 +90,9 @@ export default class BlueskySyndicator {
     return info;
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
@@ -91,6 +103,11 @@ export default class BlueskySyndicator {
     ];
   }
 
+  /**
+   * @param {Jf2Properties} properties - JF2 properties
+   * @param {Pick<IndiekitPublication, "me">} publication - Publication configuration
+   * @returns {Promise<string|undefined>} URL of syndicated post
+   */
   async syndicate(properties, publication) {
     try {
       const { handle, password } = this.options;
@@ -123,3 +140,7 @@ export default class BlueskySyndicator {
     Indiekit.addSyndicator(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */

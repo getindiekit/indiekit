@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { after, before, describe, it } from "node:test";
 
+import { AtpAgent } from "@atproto/api";
 import { TestNetworkNoAppView } from "@atproto/dev-env";
 import { getFixture } from "@indiekit-test/fixtures";
 import sharp from "sharp";
@@ -19,7 +20,8 @@ import {
 } from "../../lib/utils.js";
 
 describe("syndicator-bluesky/lib/utils", async () => {
-  let network;
+  let /** @type {TestNetworkNoAppView} */ network;
+  let /** @type {AtpAgent} */ seedAgent;
 
   const largeImage = await sharp({
     create: {
@@ -41,6 +43,8 @@ describe("syndicator-bluesky/lib/utils", async () => {
     network = await TestNetworkNoAppView.create({
       dbPostgresSchema: "api_atp_agent",
     });
+
+    seedAgent = new AtpAgent({ service: network.pds.url });
   });
 
   after(async () => {
@@ -48,8 +52,7 @@ describe("syndicator-bluesky/lib/utils", async () => {
   });
 
   it("Converts plain text to rich text", async () => {
-    const agent = network.getSeedClient();
-    const result = await createRichText(agent, "foo https://bar.baz");
+    const result = await createRichText(seedAgent, "foo https://bar.baz");
 
     assert.deepEqual(result.facets, [
       {
@@ -281,13 +284,12 @@ describe("syndicator-bluesky/lib/utils", async () => {
   });
 
   it("Converts text to rich text with link facets, keeping detected ones", async () => {
-    const agent = network.getSeedClient();
     const text = "foo https://bar.baz moon";
     const facets = getLinkFacets(text, [
       { text: "moon", url: "https://moon.example" },
       { text: "bar.baz", url: "https://overlap.example" },
     ]);
-    const result = await createRichText(agent, text, facets);
+    const result = await createRichText(seedAgent, text, facets);
 
     assert.ok(result.facets);
     assert.deepEqual(
@@ -308,6 +310,13 @@ describe("syndicator-bluesky/lib/utils", async () => {
     assert.equal(
       result,
       "https://app.example/profile/did:plc:ix4srp5t7rswkoachemlkzdt/post/3llped5ya3b22",
+    );
+  });
+
+  it("Throws error converting invalid Bluesky URI to post URL", () => {
+    assert.throws(
+      () => uriToPostUrl("https://app.example/profile", "https://foo.bar"),
+      { message: "Not a valid AT URI: https://foo.bar" },
     );
   });
 });
