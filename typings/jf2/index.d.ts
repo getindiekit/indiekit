@@ -27,3 +27,8 @@ interface Jf2MediaData {
   path: string;
   properties: Jf2Properties;
 }
+
+interface Jf2MediaItem {
+  url?: string;
+  alt?: string;
+}
