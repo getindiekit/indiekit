@@ -38,10 +38,16 @@ export default class S3Store {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["S3_ACCESS_KEY", "S3_SECRET_KEY"];
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { endpoint, bucket } = this.options;
 
@@ -51,13 +57,15 @@ export default class S3Store {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
         type: "text",
         name: "region",
         message: "In which region is your S3-compatible storage located?",
-        description: "i.e. us-west",
       },
       {
         type: "text",
@@ -264,4 +272,5 @@ export default class S3Store {
 
 /**
  * @import { ObjectCannedACL } from "@aws-sdk/client-s3"
+ * @import { PromptObject } from "prompts"
  */
