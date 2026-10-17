@@ -20,6 +20,9 @@ export default class BookmarkPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -29,12 +32,21 @@ export default class BookmarkPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "bookmark-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "bookmark-of") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) =>
+            req.__(`posts.error.url.empty`, "https://example.org")
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "bookmark-of")
+          ),
+        },
         isURL: true,
       },
     };
@@ -47,3 +59,7 @@ export default class BookmarkPostType {
     Indiekit.addPostType("bookmark", this);
   }
 }
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Schema } from "express-validator"
+ */
