@@ -21,6 +21,9 @@ export default class PhotoPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -29,18 +32,32 @@ export default class PhotoPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "photo.*.url": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/photos/image.jpg"),
-        exists: { if: (value, { req }) => isRequired(req, "photo") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) =>
+            req.__(`posts.error.media.empty`, "/photos/image.jpg")
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "photo")
+          ),
+        },
         notEmpty: true,
       },
       "photo.*.alt": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.mp-photo-alt.empty`),
-        exists: { if: (value, { req }) => isRequired(req, "mp-photo-alt") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) => req.__(`posts.error.mp-photo-alt.empty`)
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "mp-photo-alt")
+          ),
+        },
         notEmpty: true,
       },
     };
@@ -53,3 +70,7 @@ export default class PhotoPostType {
     Indiekit.addPostType("photo", this);
   }
 }
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Schema } from "express-validator"
+ */
