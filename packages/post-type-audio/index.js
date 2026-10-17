@@ -20,6 +20,9 @@ export default class AudioPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -29,6 +32,9 @@ export default class AudioPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "audio.*": {
@@ -49,3 +55,7 @@ export default class AudioPostType {
     Indiekit.addPostType("audio", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
