@@ -19,8 +19,8 @@ export class InternetArchive {
    * @access private
    * @param {string} path - Path
    * @param {string} [method] - Method
-   * @param {object} [data] - Data
-   * @returns {Promise<object>} Response body
+   * @param {Record<string, string>} [data] - Data
+   * @returns {Promise<unknown>} Response body
    * @throws {Error} Failed response
    */
   async #client(path, method = "GET", data) {
@@ -35,9 +35,6 @@ export class InternetArchive {
       ...(data && { body: new URLSearchParams(data).toString() }),
     });
 
-    /**
-     * @type {object}
-     */
     const body = await response.json();
 
     if (!response.ok) {
@@ -49,26 +46,25 @@ export class InternetArchive {
 
   /**
    * Make capture request
-   * @param {object} url - URL to archive
-   * @returns {Promise<{
-   *   job_id: string;
-   *   job_id: string;
-   * }>} Capture response
+   * @param {string} url - URL to archive
+   * @returns {Promise<CaptureResponse>} Capture response
    */
   async capture(url) {
-    return this.#client("/save", "POST", { url });
+    const response = await this.#client("/save", "POST", { url });
+
+    return /** @type {CaptureResponse} */ (response);
   }
 
   /**
-   * Make status request
-   * @param {object} jobId - Capture job ID
-   * @returns {Promise<{
-   *   original_url: string;
-   *   timestamp: string;
-   * }>} Status response
+   * Make status request, polling until the capture has finished
+   * @param {string} jobId - Capture job ID
+   * @returns {Promise<StatusSuccessResponse>} Status response
+   * @throws {Error} Capture failed
    */
   async status(jobId) {
-    const response = await this.#client(`/save/status/${jobId}`);
+    const response = /** @type {StatusResponse} */ (
+      await this.#client(`/save/status/${jobId}`)
+    );
 
     switch (response.status) {
       case "success": {
@@ -104,3 +100,31 @@ export class InternetArchive {
     return `https://web.archive.org/web/${timestamp}/${original_url}`;
   }
 }
+
+/**
+ * @typedef {object} CaptureResponse
+ * @property {string} job_id - Capture job ID
+ * @property {string} url - URL being captured
+ */
+
+/**
+ * @typedef {object} StatusPendingResponse
+ * @property {"pending"} status - Capture is in progress
+ */
+
+/**
+ * @typedef {object} StatusSuccessResponse
+ * @property {"success"} status - Capture has finished
+ * @property {string} original_url - URL that was captured
+ * @property {string} timestamp - Capture timestamp, i.e. `20180326070330`
+ */
+
+/**
+ * @typedef {object} StatusErrorResponse
+ * @property {"error"} status - Capture has failed
+ * @property {string} message - Reason the capture failed
+ */
+
+/**
+ * @typedef {StatusPendingResponse|StatusSuccessResponse|StatusErrorResponse} StatusResponse
+ */
