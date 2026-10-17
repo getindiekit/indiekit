@@ -41,7 +41,9 @@ export const formatDate = (string, tokens, options = {}) => {
   const formattedLocale = String(options.locale || "en").replace("-", "");
 
   const formatOptions = {
-    ...(options.locale && { locale: locales[formattedLocale] }),
+    ...(options.locale && {
+      locale: locales[/** @type {keyof typeof locales} */ (formattedLocale)],
+    }),
     ...(options.timeZone && { in: tz(options.timeZone) }),
     useAdditionalDayOfYearTokens: options.useAdditionalDayOfYearTokens,
   };
@@ -126,9 +128,12 @@ export const getDate = (setting, dateString = "") => {
  * @param {string} dateString - Date, i.e. 2023-08-28T12:30+01:00
  * @param {string} [locale] - Locale
  * @param {string} [timeZone] - Time zone
- * @returns {object} Values for date tokens
+ * @returns {Record<string, string>} Values for date tokens
  */
 export const getDateTokenValues = (dateString, locale, timeZone) => {
+  /**
+   * @type {Record<string, string>}
+   */
   let tokens = {};
 
   for (const dateToken of dateTokens) {

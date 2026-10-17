@@ -27,3 +27,7 @@ export {
   isRequiredField,
   localisedMessage,
 } from "./lib/validation-schema.js";
+
+/**
+ * @typedef {import("mongodb").MongoClient} MongoClient
+ */
