@@ -19,6 +19,9 @@ export default class RepostPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -27,6 +30,9 @@ export default class RepostPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "repost-of": {
@@ -47,3 +53,7 @@ export default class RepostPostType {
     Indiekit.addPostType("repost", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
