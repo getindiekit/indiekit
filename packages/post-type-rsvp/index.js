@@ -20,6 +20,9 @@ export default class RsvpPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -28,6 +31,9 @@ export default class RsvpPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       rsvp: {
@@ -45,3 +51,7 @@ export default class RsvpPostType {
     Indiekit.addPostType("rsvp", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
