@@ -51,6 +51,7 @@ declare global {
     post?: { path?: string; url?: string };
     media?: { path?: string; url?: string };
     fields?: Record<string, any>;
+    "required-properties"?: string[];
   }
 
   interface IndiekitApplication {
