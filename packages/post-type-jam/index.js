@@ -17,6 +17,9 @@ export default class JamPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -26,6 +29,9 @@ export default class JamPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "jam-of.url": {
@@ -56,3 +62,7 @@ export default class JamPostType {
     Indiekit.addPostType("jam", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
