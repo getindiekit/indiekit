@@ -8,8 +8,8 @@ import { getFixture } from "@indiekit-test/fixtures";
 import BlueskySyndicator from "../index.js";
 
 describe("syndicator-bluesky", async () => {
-  let bluesky;
-  let network;
+  let /** @type {BlueskySyndicator} */ bluesky;
+  let /** @type {TestNetworkNoAppView} */ network;
 
   before(async () => {
     network = await TestNetworkNoAppView.create({
@@ -108,3 +108,7 @@ describe("syndicator-bluesky", async () => {
     });
   });
 });
+
+/**
+ * @import { Bluesky } from "../lib/bluesky.js"
+ */
