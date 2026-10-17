@@ -14,7 +14,7 @@ describe("preset-jekyll/lib/post-types", () => {
   it("Gets paths and URLs for configured post types", () => {
     const result = getPostTypes(postTypes);
 
-    assert.deepEqual(result.get("article"), {
+    assert.deepEqual(result.article, {
       name: "Journal post",
       post: {
         path: "_posts/{yyyy}-{MM}-{dd}-{slug}.md",
@@ -24,7 +24,7 @@ describe("preset-jekyll/lib/post-types", () => {
         path: "media/{yyyy}/{MM}/{dd}/{filename}",
       },
     });
-    assert.deepEqual(result.get("note"), {
+    assert.deepEqual(result.note, {
       name: "Micro post",
       post: {
         path: "_notes/{yyyy}-{MM}-{dd}-{slug}.md",
@@ -34,7 +34,7 @@ describe("preset-jekyll/lib/post-types", () => {
         path: "media/notes/{yyyy}/{MM}/{dd}/{filename}",
       },
     });
-    assert.deepEqual(result.get("puppy"), {
+    assert.deepEqual(result.puppy, {
       name: "Puppy post",
       post: {
         path: "_puppies/{yyyy}-{MM}-{dd}-{slug}.md",
@@ -44,7 +44,7 @@ describe("preset-jekyll/lib/post-types", () => {
         path: "media/puppies/{yyyy}/{MM}/{dd}/{filename}",
       },
     });
-    assert.deepEqual(result.get("page"), {
+    assert.deepEqual(result.page, {
       name: "Page",
       post: {
         path: "{slug}/index.md",
