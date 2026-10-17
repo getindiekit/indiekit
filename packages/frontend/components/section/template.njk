@@ -10,7 +10,9 @@
       {{ opts.title | safe }}
     </h2>
     {% endif %}
-    {{ actions({ items: opts.actions }) | indent(4) if opts.actions.length }}
+    {{ actions({
+      items: opts.actions
+    }) | indent(4) if opts.actions | length > 0 }}
   </header>
   {% endif %}
   <div class="section__main">

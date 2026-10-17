@@ -4,7 +4,7 @@
     {{- action.text | safe -}}
   </a>
 {% endmacro %}
-{%- if opts.items.length === 1 %}
+{%- if opts.items | length === 1 %}
 <div class="{{ classes("actions", opts) }}">
   {{ _actionLink(opts.items[0]) | trim }}
 </div>

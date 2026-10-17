@@ -6,6 +6,6 @@
         <span class="p-name">{{ opts.name }}</span>
       </a>
     </div>
-    {{ navigation(opts.navigation) | indent(4) if opts.navigation.items.length > 0 }}
+    {{ navigation(opts.navigation) | indent(4) if opts.navigation.items | length > 0 }}
   </div>
 </header>

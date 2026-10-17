@@ -16,5 +16,7 @@
     {% endif %}
     {{ opts.text }}
   </h1>
-  {{ actions({ items: opts.actions }) | indent(2) if opts.actions.length }}
+  {{ actions({
+    items: opts.actions
+  }) | indent(2) if opts.actions | length > 0 }}
 </header>

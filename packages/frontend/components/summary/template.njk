@@ -11,7 +11,9 @@
     </dd>
     {% if row.actions %}
     <dd class="{{ classes("summary__actions", row.actions) }}">
-      {{ actions({ items: row.actions }) | indent(6) if row.actions.length }}
+      {{ actions({
+        items: row.actions
+      }) | indent(6) if row.actions | length > 0 }}
     </dd>
     {% endif %}
   </div>
