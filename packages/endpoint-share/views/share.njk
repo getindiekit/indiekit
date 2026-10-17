@@ -56,7 +56,7 @@
       optional: true
     },
     items: syndicationTargetItems
-  }) if syndicationTargetItems.length }}
+  }) if syndicationTargetItems | length > 0 }}
 
   {{ input({
     name: "access_token",
