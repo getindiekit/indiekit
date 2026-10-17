@@ -1,7 +1,7 @@
 {% extends "document.njk" %}
 
 {% block content %}
-  {%- if webmentions.length > 0 %}
+  {%- if webmentions | length > 0 %}
   {% for item in webmentions %}
     {{ mention({
       user: {
