@@ -13,11 +13,23 @@ const defaults = {
   token: process.env.GITHUB_TOKEN,
 };
 
+/**
+ * Get a message explaining why a file operation failed
+ * @param {object} options - Options
+ * @param {unknown} options.error - Caught error
+ * @param {"create"|"read"|"update"|"delete"} options.operation - File operation
+ * @param {string} options.filePath - Path to file
+ * @param {string} options.branch - Branch
+ * @param {string} [options.repo] - Repository
+ * @returns {string} Error message
+ */
 const crudErrorMessage = ({ error, operation, filePath, branch, repo }) => {
   const summary = `Could not ${operation} file ${filePath} in repo ${repo}, branch ${branch}`;
 
+  const errorMessage = error instanceof Error ? error.message : error;
+
   const details = [
-    `Original error message: ${error.message}`,
+    `Original error message: ${errorMessage}`,
     `Ensure the GitHub token is not expired and has the necessary permissions`,
     `You can check your tokens here: https://github.com/settings/tokens`,
   ];
@@ -80,10 +92,16 @@ export default class GithubStore {
     }
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["GITHUB_TOKEN"];
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { repo, user } = this.options;
 
@@ -93,6 +111,9 @@ export default class GithubStore {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
@@ -339,3 +360,7 @@ export default class GithubStore {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { PromptObject } from "prompts"
+ */
