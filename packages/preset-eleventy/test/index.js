@@ -25,6 +25,7 @@ describe("preset-eleventy", async () => {
   eleventy.init(indiekit);
 
   it("Initiates plug-in", async () => {
+    assert.ok(indiekit.publication.preset);
     assert.equal(indiekit.publication.preset.info.name, "Eleventy");
   });
 
@@ -34,7 +35,8 @@ describe("preset-eleventy", async () => {
   });
 
   it("Gets publication post types", () => {
-    assert.deepEqual(eleventy.postTypes.get("article").post, {
+    assert.ok(eleventy.postTypes, "no post types configured");
+    assert.deepEqual(eleventy.postTypes.article.post, {
       path: "articles/{yyyy}/{MM}/{dd}/{slug}.md",
       url: "articles/{yyyy}/{MM}/{dd}/{slug}",
     });
