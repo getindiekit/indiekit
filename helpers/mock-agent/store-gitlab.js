@@ -44,7 +44,7 @@ export function mockClient() {
   agent
     .get(origin)
     .intercept({ path: /.*(foo|bar).txt\/raw\?ref=main/ })
-    .reply(200, "foo")
+    .reply(200, "foo", { headers: { "content-type": "text/plain" } })
     .persist();
 
   // Read raw file (Unauthorized)
