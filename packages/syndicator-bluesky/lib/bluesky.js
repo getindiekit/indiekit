@@ -195,7 +195,7 @@ export class Bluesky {
 
   /**
    * Upload media
-   * @param {object} media - JF2 media object
+   * @param {Jf2MediaItem} media - JF2 media object
    * @param {string} me - Publication URL
    * @returns {Promise<import("@atproto/api").BlobRef|undefined>} Blob reference for the uploaded media
    */
