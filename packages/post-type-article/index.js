@@ -19,6 +19,9 @@ export default class ArticlePostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
