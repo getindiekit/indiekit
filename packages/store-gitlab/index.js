@@ -30,7 +30,7 @@ export default class GitlabStore {
 
   /**
    * @access private
-   * @returns {object} GitLab interfaces
+   * @returns {Gitlab} GitLab interfaces
    */
   get #client() {
     const { instance, token } = this.options;
@@ -67,10 +67,16 @@ export default class GitlabStore {
       : IndiekitError.fromCaught(caught, { plugin: this.name });
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["GITLAB_TOKEN"];
   }
 
+  /**
+   * @returns {IndiekitStoreInfo} Store information
+   */
   get info() {
     const { instance, projectId, repo, user } = this.options;
     const path = projectId ? `/projects/${projectId}` : `/${user}/${repo}`;
@@ -81,13 +87,15 @@ export default class GitlabStore {
     };
   }
 
+  /**
+   * @returns {PromptObject[]} Set-up questions for `create-indiekit`
+   */
   get prompts() {
     return [
       {
         type: "text",
         name: "instance",
         message: "Where is GitLab hosted?",
-        description: "i.e. https://gitlab.com",
         initial: defaults.instance,
       },
       {
@@ -179,7 +187,10 @@ export default class GitlabStore {
         this.options.branch,
       );
 
-      return readResponse.text();
+      // `@gitbeaker` returns a string for text responses, otherwise a Blob
+      return typeof readResponse === "string"
+        ? readResponse
+        : readResponse.text();
     } catch (error) {
       throw this.#error(error);
     }
@@ -197,27 +208,31 @@ export default class GitlabStore {
    */
   async updateFile(filePath, content, { message, newPath }) {
     try {
+      /**
+       * @type {CommitAction[]}
+       */
+      const actions = [
+        {
+          action: "update",
+          content: Buffer.from(content).toString("base64"),
+          encoding: "base64",
+          filePath,
+        },
+      ];
+
+      if (newPath) {
+        actions.push({
+          action: "move",
+          filePath: newPath,
+          previousPath: filePath,
+        });
+      }
+
       await this.#client.Commits.create(
         this.projectId,
         this.options.branch,
         message,
-        [
-          {
-            action: "update",
-            content: Buffer.from(content).toString("base64"),
-            encoding: "base64",
-            filePath,
-          },
-          ...(newPath
-            ? [
-                {
-                  action: "move",
-                  filePath: newPath,
-                  previousPath: filePath,
-                },
-              ]
-            : []),
-        ],
+        actions,
       );
 
       const updateFilePath = newPath || filePath;
@@ -260,3 +275,8 @@ export default class GitlabStore {
     Indiekit.addStore(this);
   }
 }
+
+/**
+ * @import { CommitAction } from "@gitbeaker/rest"
+ * @import { PromptObject } from "prompts"
+ */
