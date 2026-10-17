@@ -25,11 +25,20 @@ export default class InternetArchiveSyndicator {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {string[]} Environment variables used by this plug-in
+   */
   get environment() {
     return ["INTERNET_ARCHIVE_ACCESS_KEY", "INTERNET_ARCHIVE_SECRET_KEY"];
   }
 
+  /**
+   * @returns {IndiekitSyndicationTargetInfo} Syndication target information
+   */
   get info() {
+    /**
+     * @type {IndiekitSyndicationTargetInfo}
+     */
     const info = {
       checked: this.options.checked,
       name: this.options.name,
@@ -52,6 +61,10 @@ export default class InternetArchiveSyndicator {
     return info;
   }
 
+  /**
+   * @param {Jf2Properties} properties - JF2 properties
+   * @returns {Promise<string|undefined>} URL of syndicated post
+   */
   async syndicate(properties) {
     try {
       const { accessKey, secretKey } = this.options;
