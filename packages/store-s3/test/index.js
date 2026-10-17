@@ -22,7 +22,6 @@ describe("store-s3", () => {
 
   const mockS3Client = mockClient(new S3Client());
 
-  // @ts-ignore
   mock.method(s3, "client", () => mockS3Client);
 
   it("Gets plug-in info", () => {
