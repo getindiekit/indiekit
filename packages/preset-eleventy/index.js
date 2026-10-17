@@ -3,6 +3,10 @@ import { getPostTypes } from "./lib/post-types.js";
 
 export default class EleventyPreset {
   name = "Eleventy preset";
+
+  /**
+   * @type {Record<string, Partial<IndiekitPostType>>|undefined}
+   */
   postTypes;
 
   get info() {
@@ -11,6 +15,11 @@ export default class EleventyPreset {
     };
   }
 
+  /**
+   * Get post template
+   * @param {Jf2Properties} properties - JF2 properties
+   * @returns {string} Rendered post template
+   */
   postTemplate(properties) {
     return getPostTemplate(properties);
   }
