@@ -20,6 +20,9 @@ export default class BookmarkPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -29,6 +32,9 @@ export default class BookmarkPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "bookmark-of": {
@@ -49,3 +55,7 @@ export default class BookmarkPostType {
     Indiekit.addPostType("bookmark", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
