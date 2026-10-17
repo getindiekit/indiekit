@@ -9,7 +9,7 @@ const AT_URI = /at:\/\/(?<did>did:[^/]+)\/(?<type>[^/]+)\/(?<rkey>[^/]+)/;
  * Convert plain text to rich text
  * @param {Agent} client - AT Protocol agent
  * @param {string} text - Text to convert
- * @param {Array<object>} [facets] - Facets to add to those detected in text
+ * @param {AppBskyRichtextFacet.Main[]} [facets] - Facets to add to those detected in text
  * @returns {Promise<RichText>} Rich text
  */
 export const createRichText = async (client, text, facets = []) => {
@@ -69,12 +69,16 @@ export const getHtmlLinks = (html) => {
  * needs a facet pointing at its URL. Facet indices are byte offsets.
  * @param {string} text - Post text
  * @param {Array<{text: string, url: string}>} links - Link text and URL
- * @returns {Array<object>} Link facets
+ * @returns {AppBskyRichtextFacet.Main[]} Link facets
  * @see {@link https://docs.bsky.app/docs/advanced-guides/post-richtext}
  */
 export const getLinkFacets = (text, links) => {
   const encoder = new TextEncoder();
+  /**
+   * @type {AppBskyRichtextFacet.Main[]}
+   */
   const facets = [];
+
   let searchFrom = 0;
 
   for (const link of links) {
@@ -105,7 +109,7 @@ export const getLinkFacets = (text, links) => {
 /**
  * Get post parts (UID and CID)
  * @param {string} url - Post URL
- * @returns {object} Parts
+ * @returns {{ did: string, rkey: string }} Parts
  */
 export const getPostParts = (url) => {
   const pathParts = new URL(url).pathname.split("/");
@@ -121,13 +125,13 @@ export const getPostParts = (url) => {
  * Convert Bluesky URI to post URL
  * @param {string} profileUrl - Profile URL
  * @param {string} uri - Bluesky URI
- * @returns {string|undefined} Post URL
+ * @returns {string} Post URL
  */
 export const uriToPostUrl = (profileUrl, uri) => {
   const match = uri.match(AT_URI);
 
   if (!match?.groups) {
-    return;
+    throw new Error(`Not a valid AT URI: ${uri}`);
   }
 
   const { did, rkey, type } = match.groups;
@@ -143,8 +147,8 @@ export const uriToPostUrl = (profileUrl, uri) => {
  * Bluesky doesn’t recognise as part of a tag, so that `holidays/family trips`
  * becomes `#familytrips`. Tags longer than 64 characters are dropped, as
  * `detectFacets` ignores them.
- * @param {Array|string} [category] - JF2 `category` property
- * @returns {Array} Hashtags
+ * @param {Array<unknown>|string} [category] - JF2 `category` property
+ * @returns {string[]} Hashtags
  */
 export const createHashtags = (category) => {
   if (!category) {
@@ -152,6 +156,10 @@ export const createHashtags = (category) => {
   }
 
   const categories = Array.isArray(category) ? category : [category];
+
+  /**
+   * @type {string[]}
+   */
   const hashtags = [];
 
   for (const item of categories) {
@@ -295,5 +303,5 @@ export const htmlToStatusText = (html) => {
 };
 
 /**
- * @import { Agent } from "@atproto/api"
+ * @import { Agent, AppBskyRichtextFacet } from "@atproto/api"
  */

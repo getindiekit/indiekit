@@ -4,12 +4,13 @@ import { after, before, describe, it } from "node:test";
 import { TestNetworkNoAppView } from "@atproto/dev-env";
 import { Indiekit } from "@indiekit/indiekit";
 import { getFixture } from "@indiekit-test/fixtures";
+import { testPublication } from "@indiekit-test/publication";
 
 import BlueskySyndicator from "../index.js";
 
 describe("syndicator-bluesky", async () => {
-  let bluesky;
-  let network;
+  let /** @type {BlueskySyndicator} */ bluesky;
+  let /** @type {TestNetworkNoAppView} */ network;
 
   before(async () => {
     network = await TestNetworkNoAppView.create({
@@ -38,9 +39,9 @@ describe("syndicator-bluesky", async () => {
     getFixture("jf2/article-content-provided-html-text.jf2"),
   );
 
-  const publication = {
+  const publication = testPublication({
     me: "https://website.test",
-  };
+  });
 
   it("Gets plug-in environment", () => {
     assert.deepEqual(bluesky.environment, ["BLUESKY_PASSWORD"]);
@@ -108,3 +109,7 @@ describe("syndicator-bluesky", async () => {
     });
   });
 });
+
+/**
+ * @import { Bluesky } from "../lib/bluesky.js"
+ */

@@ -51,7 +51,7 @@ export class Bluesky {
    * @returns {Promise<{
    *   uri: string;
    *   cid: string;
-   *   value: import("@atproto/api").AppBskyFeedPost.Record;
+   *   value: AppBskyFeedPost.Record;
    * }>} Bluesky post record
    */
   async getPost(postUrl) {
@@ -70,7 +70,7 @@ export class Bluesky {
    * A reply records both its parent and the root of the thread; replying to a
    * reply keeps that reply’s root.
    * @param {string} postUrl - URL of post being replied to
-   * @returns {Promise<import("@atproto/api").AppBskyFeedPost.ReplyRef>} Reply reference
+   * @returns {Promise<AppBskyFeedPost.ReplyRef>} Reply reference
    * @see {@link https://docs.bsky.app/docs/tutorials/creating-a-post#replies}
    */
   async getReplyRef(postUrl) {
@@ -84,7 +84,7 @@ export class Bluesky {
   /**
    * Post a like
    * @param {string} postUrl - URL of post to like
-   * @returns {Promise<string|undefined>} Bluesky post URL
+   * @returns {Promise<string>} Bluesky post URL
    */
   async postLike(postUrl) {
     const client = await this.#client();
@@ -97,7 +97,7 @@ export class Bluesky {
   /**
    * Post a repost
    * @param {string} postUrl - URL of post to repost
-   * @returns {Promise<string|undefined>} Bluesky post URL
+   * @returns {Promise<string>} Bluesky post URL
    */
   async postRepost(postUrl) {
     const client = await this.#client();
@@ -110,9 +110,9 @@ export class Bluesky {
   /**
    * Post a quote post
    * @param {string} postUrl - URL of post to quote
-   * @param {object} richText - Rich text
+   * @param {RichText} richText - Rich text
    * @param {AppBskyEmbedImages.Image[]} [images] - Images
-   * @returns {Promise<string|undefined>} Bluesky post URL
+   * @returns {Promise<string>} Bluesky post URL
    */
   async postQuotePost(postUrl, richText, images = []) {
     const client = await this.#client();
@@ -163,10 +163,10 @@ export class Bluesky {
 
   /**
    * Post a post
-   * @param {object} richText - Rich text
+   * @param {RichText} richText - Rich text
    * @param {AppBskyEmbedImages.Image[]} [images] - Images
-   * @param {object} [reply] - Reply reference
-   * @returns {Promise<string|undefined>} Bluesky post URL
+   * @param {AppBskyFeedPost.ReplyRef} [reply] - Reply reference
+   * @returns {Promise<string>} Bluesky post URL
    */
   async postPost(richText, images = [], reply) {
     const client = await this.#client();
@@ -197,7 +197,7 @@ export class Bluesky {
    * Upload media
    * @param {Jf2MediaItem} media - JF2 media object
    * @param {string} me - Publication URL
-   * @returns {Promise<import("@atproto/api").BlobRef|undefined>} Blob reference for the uploaded media
+   * @returns {Promise<BlobRef|undefined>} Blob reference for the uploaded media
    */
   async uploadMedia(media, me) {
     const client = await this.#client();
@@ -250,7 +250,10 @@ export class Bluesky {
      */
     const images = [];
     if (properties.photo) {
-      // Trim to 4 photos as Bluesky doesn’t support more
+      /**
+       * Trim to 4 photos as Bluesky doesn’t support more
+       * @type {Jf2MediaItem[]}
+       */
       const photos = properties.photo.slice(0, 4);
       const uploads = photos.map(async (photo) => {
         return {
@@ -325,5 +328,5 @@ export class Bluesky {
 }
 
 /**
- * @import { AppBskyEmbedImages, AppBskyEmbedRecord, AppBskyEmbedRecordWithMedia, AppBskyFeedPost } from "@atproto/api"
+ * @import { AppBskyEmbedImages, AppBskyEmbedRecord, AppBskyEmbedRecordWithMedia, AppBskyFeedPost, BlobRef, RichText } from "@atproto/api"
  */
