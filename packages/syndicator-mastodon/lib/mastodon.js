@@ -4,6 +4,14 @@ import { createRestAPIClient } from "masto";
 
 import { createStatus, getStatusIdFromUrl } from "./utils.js";
 
+/**
+ * @typedef {object} StatusParameters
+ * @property {string} [status] - Text content of the status
+ * @property {string[]} [mediaIds] - IDs of media attachments
+ * @property {string} [inReplyToId] - ID of the status being replied to
+ * @property {mastodon.v1.StatusVisibility} [visibility] - Visibility
+ */
+
 export class Mastodon {
   /**
    * @param {object} options - Mastodon options
@@ -24,7 +32,7 @@ export class Mastodon {
   /**
    * Initialise Mastodon client
    * @access private
-   * @returns {object} Mastodon client
+   * @returns {mastodon.rest.Client} Mastodon client
    */
   #client() {
     return createRestAPIClient({
@@ -57,36 +65,41 @@ export class Mastodon {
   /**
    * Post a favourite
    * @param {string} statusUrl - URL of status to favourite
-   * @returns {Promise<string>} Mastodon status URL
+   * @returns {Promise<string|undefined>} Mastodon status URL
    */
   async postFavourite(statusUrl) {
     const { v1 } = this.#client();
     const statusId = getStatusIdFromUrl(statusUrl);
     const status = await v1.statuses.$select(statusId).favourite();
-    return status.url;
+    return status.url ?? undefined;
   }
 
   /**
    * Post a reblog
    * @param {string} statusUrl - URL of status to reblog
-   * @returns {Promise<string>} Mastodon status URL
+   * @returns {Promise<string|undefined>} Mastodon status URL
    */
   async postReblog(statusUrl) {
     const { v1 } = this.#client();
     const statusId = getStatusIdFromUrl(statusUrl);
     const status = await v1.statuses.$select(statusId).reblog();
-    return status.url;
+    return status.url ?? undefined;
   }
 
   /**
    * Post a status
-   * @param {object} parameters - Status parameters
-   * @returns {Promise<string>} Mastodon status URL
+   * @param {StatusParameters} parameters - Status parameters
+   * @returns {Promise<string|undefined>} Mastodon status URL
    */
   async postStatus(parameters) {
     const { v1 } = this.#client();
-    const status = await v1.statuses.create(parameters);
-    return status.url;
+
+    // Always send `mediaIds`, even if empty, so masto accepts a status with
+    // text, media or both (it requires one or the other)
+    const { mediaIds = [], ...rest } = parameters;
+    const status = await v1.statuses.create({ ...rest, mediaIds });
+
+    return status.url ?? undefined;
   }
 
   /**
@@ -126,6 +139,9 @@ export class Mastodon {
    * @returns {Promise<string|undefined>} URL of syndicated status
    */
   async post(properties, me) {
+    /**
+     * @type {string[]}
+     */
     let mediaIds = [];
 
     // Upload photos
@@ -183,17 +199,24 @@ export class Mastodon {
       serverUrl: this.serverUrl,
     });
 
+    // Do not syndicate a status with neither text nor media
+    if (!status.status && !status.mediaIds?.length) {
+      return;
+    }
+
     // Thread reply to a status on another server, if it can be resolved
     const inReplyTo = properties["in-reply-to"];
-    if (status && inReplyTo && !isSameOrigin(inReplyTo, this.serverUrl)) {
+    if (inReplyTo && !isSameOrigin(inReplyTo, this.serverUrl)) {
       const statusId = await this.resolveRemoteStatus(inReplyTo);
       if (statusId) {
         status.inReplyToId = statusId;
       }
     }
 
-    if (status) {
-      return this.postStatus(status);
-    }
+    return this.postStatus(status);
   }
 }
+
+/**
+ * @import { mastodon } from "masto"
+ */

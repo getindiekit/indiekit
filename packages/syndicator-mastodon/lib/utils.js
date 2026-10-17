@@ -10,9 +10,9 @@ import { htmlToText } from "html-to-text";
  * @param {number} [options.characterLimit] - Character limit
  * @param {boolean} [options.includeCategories] - Add categories as hashtags
  * @param {boolean} [options.includePermalink] - Include permalink in status
- * @param {Array} [options.mediaIds] - Mastodon media IDs
+ * @param {string[]} [options.mediaIds] - Mastodon media IDs
  * @param {string} options.serverUrl - Server URL
- * @returns {object} Status parameters
+ * @returns {StatusParameters} Status parameters
  */
 export const createStatus = (properties, options) => {
   const {
@@ -104,8 +104,8 @@ export const createStatus = (properties, options) => {
  * Uses the last segment of a hierarchical category, and removes any characters
  * Mastodon doesn’t recognise as part of a hashtag, so that `holidays/family
  * trips` becomes `#familytrips`.
- * @param {Array|string} [category] - JF2 `category` property
- * @returns {Array} Hashtags
+ * @param {Array<unknown>|string} [category] - JF2 `category` property
+ * @returns {string[]} Hashtags
  */
 export const createHashtags = (category) => {
   if (!category) {
@@ -113,6 +113,10 @@ export const createHashtags = (category) => {
   }
 
   const categories = Array.isArray(category) ? category : [category];
+
+  /**
+   * @type {string[]}
+   */
   const hashtags = [];
 
   for (const item of categories) {
@@ -188,3 +192,7 @@ export const htmlToStatusText = (html, serverUrl) => {
 
   return statusText;
 };
+
+/**
+ * @import { StatusParameters } from "./mastodon.js"
+ */
