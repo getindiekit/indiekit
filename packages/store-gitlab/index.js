@@ -11,9 +11,6 @@ const defaults = {
   token: process.env.GITLAB_TOKEN,
 };
 
-/**
- * @typedef {import("@gitbeaker/rest").RepositoryFiles} RepositoryFiles
- */
 export default class GitlabStore {
   name = "GitLab store";
 
