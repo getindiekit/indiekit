@@ -19,6 +19,9 @@ export default class LikePostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -27,12 +30,21 @@ export default class LikePostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "like-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "like-of") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) =>
+            req.__(`posts.error.url.empty`, "https://example.org")
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "like-of")
+          ),
+        },
         isURL: true,
       },
     };
@@ -45,3 +57,7 @@ export default class LikePostType {
     Indiekit.addPostType("like", this);
   }
 }
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Schema } from "express-validator"
+ */
