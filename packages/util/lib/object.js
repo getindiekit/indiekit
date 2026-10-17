@@ -1,6 +1,6 @@
 /**
  * Check if a value is empty
- * @param {number|object|string|undefined} value - Value to check
+ * @param {unknown} value - Value to check
  * @returns {boolean} Value is empty
  */
 export const isEmpty = (value) => {
@@ -24,8 +24,9 @@ export const isEmpty = (value) => {
 
 /**
  * Remove properties with empty values from object
- * @param {object} object - Object to sanitise
- * @returns {object} Sanitised object
+ * @template T
+ * @param {T} object - Object to sanitise
+ * @returns {T} Sanitised object
  */
 export const sanitise = (object) => {
   if (typeof object !== "object" || object == undefined) {
@@ -40,22 +41,23 @@ export const sanitise = (object) => {
     );
 
     // Filter out empty items
-    return sanitisedArray.filter((item) => !isEmpty(item));
+    return /** @type {T} */ (sanitisedArray.filter((item) => !isEmpty(item)));
   }
 
   // Object
-  for (const [key, value] of Object.entries(object)) {
+  const record = /** @type {Record<string, unknown>} */ (object);
+  for (const [key, value] of Object.entries(record)) {
     if (typeof value === "object" && value !== null) {
       // Recursively sanitise nested objects
-      object[key] = sanitise(value);
+      record[key] = sanitise(value);
 
       // Remove key if the sanitised value is empty
-      if (isEmpty(object[key])) {
-        delete object[key];
+      if (isEmpty(record[key])) {
+        delete record[key];
       }
     } else if (isEmpty(value)) {
       // Remove empty primitive values
-      delete object[key];
+      delete record[key];
     }
   }
 
