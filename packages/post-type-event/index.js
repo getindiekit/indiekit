@@ -23,6 +23,9 @@ export default class EventPostType {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -31,6 +34,9 @@ export default class EventPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       start: {
@@ -48,3 +54,7 @@ export default class EventPostType {
     Indiekit.addPostType("event", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
