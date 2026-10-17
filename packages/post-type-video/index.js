@@ -13,13 +13,16 @@ const defaults = {
   },
 };
 
-export default class PhotoPostType {
+export default class VideoPostType {
   name = "Video post type";
 
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -28,12 +31,21 @@ export default class PhotoPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "video.*": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/movies/video.mp4"),
-        exists: { if: (value, { req }) => isRequired(req, "video") },
+        errorMessage: /** @type {FieldMessageFactory} */ (
+          (value, { req }) =>
+            req.__(`posts.error.media.empty`, "/movies/video.mp4")
+        ),
+        exists: {
+          if: /** @type {CustomValidator} */ (
+            (value, { req }) => isRequired(req, "video")
+          ),
+        },
         notEmpty: true,
       },
     };
@@ -46,3 +58,7 @@ export default class PhotoPostType {
     Indiekit.addPostType("video", this);
   }
 }
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Schema } from "express-validator"
+ */
