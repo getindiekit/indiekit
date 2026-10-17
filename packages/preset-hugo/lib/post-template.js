@@ -48,7 +48,9 @@ const getFrontMatter = (properties, frontMatterFormat) => {
     ...(properties.deleted && { expiryDate: properties.deleted }),
     ...(properties.name && { title: properties.name }),
     ...(properties.photo && {
-      images: properties.photo.map((image) => image.url),
+      images: properties.photo.map(
+        (/** @type {Jf2MediaItem} */ photo) => photo.url,
+      ),
     }),
     ...properties,
   };

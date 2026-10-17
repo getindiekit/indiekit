@@ -14,7 +14,7 @@ describe("preset-hugo/lib/post-types", () => {
   it("Gets paths and URLs for configured post types", () => {
     const result = getPostTypes(postTypes);
 
-    assert.deepEqual(result.get("article"), {
+    assert.deepEqual(result.article, {
       name: "Journal post",
       post: {
         path: "content/articles/{slug}.md",
@@ -25,7 +25,7 @@ describe("preset-hugo/lib/post-types", () => {
         url: "articles/{filename}",
       },
     });
-    assert.deepEqual(result.get("note"), {
+    assert.deepEqual(result.note, {
       name: "Micro post",
       post: {
         path: "content/notes/{slug}.md",
@@ -36,7 +36,7 @@ describe("preset-hugo/lib/post-types", () => {
         url: "notes/{filename}",
       },
     });
-    assert.deepEqual(result.get("puppy"), {
+    assert.deepEqual(result.puppy, {
       name: "Puppy post",
       post: {
         path: "content/puppies/{slug}.md",
@@ -47,7 +47,7 @@ describe("preset-hugo/lib/post-types", () => {
         url: "puppies/{filename}",
       },
     });
-    assert.deepEqual(result.get("page"), {
+    assert.deepEqual(result.page, {
       name: "Page",
       post: {
         path: "content/{slug}.md",

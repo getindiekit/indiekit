@@ -7,6 +7,10 @@ const defaults = {
 
 export default class HugoPreset {
   name = "Hugo preset";
+
+  /**
+   * @type {Record<string, Partial<IndiekitPostType>>|undefined}
+   */
   postTypes;
 
   constructor(options = {}) {
@@ -44,6 +48,11 @@ export default class HugoPreset {
     ];
   }
 
+  /**
+   * Get post template
+   * @param {Jf2Properties} properties - JF2 properties
+   * @returns {string} Rendered post template
+   */
   postTemplate(properties) {
     return getPostTemplate(properties, this.options.frontMatterFormat);
   }
