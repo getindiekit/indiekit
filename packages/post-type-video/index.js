@@ -13,13 +13,16 @@ const defaults = {
   },
 };
 
-export default class PhotoPostType {
+export default class VideoPostType {
   name = "Video post type";
 
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
   }
 
+  /**
+   * @returns {Partial<IndiekitPostType>} Post type config
+   */
   get config() {
     return {
       name: this.options.name,
@@ -28,6 +31,9 @@ export default class PhotoPostType {
     };
   }
 
+  /**
+   * @returns {Schema} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       "video.*": {
@@ -48,3 +54,7 @@ export default class PhotoPostType {
     Indiekit.addPostType("video", this);
   }
 }
+
+/**
+ * @import { Schema } from "express-validator"
+ */
