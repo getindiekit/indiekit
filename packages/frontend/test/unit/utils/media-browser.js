@@ -24,7 +24,7 @@ class DialogStub extends HTMLElement {
     this.dispatchEvent(new window.Event("close"));
   }
 }
-for (const name of ["showModal", "close"]) {
+for (const name of /** @type {const} */ (["showModal", "close"])) {
   window.HTMLDialogElement.prototype[name] = DialogStub.prototype[name];
 }
 
@@ -47,12 +47,20 @@ document.body.innerHTML = `
 /**
  * Stub the media endpoint: one response per call, in order
  * @param {...object} pages - `q=source` response bodies
- * @returns {object} Mock function, to inspect the requests
+ * @returns {Mock<typeof fetch>} Mock function, to inspect the requests
  */
 const mockMediaEndpoint = (...pages) =>
   mock.method(globalThis, "fetch", async () =>
     Response.json(pages.shift() ?? { items: [], paging: {} }),
   );
+
+/**
+ * Find an element in the media browser dialog
+ * @param {HTMLDialogElement} dialog - Media browser dialog
+ * @param {string} selector - Element selector
+ * @returns {HTMLElement|null} Element, if found
+ */
+const find = (dialog, selector) => dialog.querySelector(selector);
 
 const photo = {
   "media-type": "photo",
@@ -66,13 +74,22 @@ const audio = {
 };
 
 describe("frontend/scripts/utils/media-browser", () => {
+  /**
+   * @type {typeof import("../../../scripts/utils/media-browser.js").openMediaBrowser}
+   */
   let openMediaBrowser;
+
+  /**
+   * @type {HTMLTemplateElement}
+   */
   let template;
 
   before(async () => {
     ({ openMediaBrowser } =
       await import("../../../scripts/utils/media-browser.js"));
-    template = document.querySelector("#media-browser");
+    template = /** @type {HTMLTemplateElement} */ (
+      document.querySelector("#media-browser")
+    );
   });
 
   afterEach(() => {
@@ -90,7 +107,9 @@ describe("frontend/scripts/utils/media-browser", () => {
       onSelect: () => {},
     });
 
-    const request = new URL(fetch.mock.calls[0].arguments[0]);
+    const request = new URL(
+      /** @type {string} */ (fetch.mock.calls[0].arguments[0]),
+    );
     assert.equal(request.pathname, "/media");
     assert.equal(request.searchParams.get("q"), "source");
     assert.equal(dialog.hasAttribute("open"), true);
@@ -107,7 +126,7 @@ describe("frontend/scripts/utils/media-browser", () => {
       endpoint: "/media",
       onSelect,
     });
-    dialog.querySelector(".media-browser__file")?.click();
+    find(dialog, ".media-browser__file")?.click();
 
     assert.deepEqual(onSelect.mock.calls[0].arguments, [photo]);
     assert.equal(dialog.isConnected, false);
@@ -123,13 +142,15 @@ describe("frontend/scripts/utils/media-browser", () => {
       endpoint: "/media",
       onSelect: () => {},
     });
-    const more = dialog.querySelector(".media-browser__more");
+    const more = find(dialog, ".media-browser__more");
     assert.equal(more?.hidden, false);
 
     more?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const request = new URL(fetch.mock.calls[1].arguments[0]);
+    const request = new URL(
+      /** @type {string} */ (fetch.mock.calls[1].arguments[0]),
+    );
     assert.equal(request.searchParams.get("after"), photo.uid);
     assert.equal(dialog.querySelectorAll(".media-browser__file").length, 2);
     assert.equal(more?.hidden, true);
@@ -143,7 +164,7 @@ describe("frontend/scripts/utils/media-browser", () => {
       onSelect: () => {},
     });
 
-    assert.equal(dialog.querySelector(".media-browser__empty")?.hidden, false);
+    assert.equal(find(dialog, ".media-browser__empty")?.hidden, false);
   });
 
   it("Says so when files can’t be loaded", async () => {
@@ -158,7 +179,7 @@ describe("frontend/scripts/utils/media-browser", () => {
       onSelect: () => {},
     });
 
-    assert.equal(dialog.querySelector(".media-browser__error")?.hidden, false);
+    assert.equal(find(dialog, ".media-browser__error")?.hidden, false);
   });
 
   it("Removes the dialog when cancelled", async () => {
@@ -168,8 +189,13 @@ describe("frontend/scripts/utils/media-browser", () => {
       endpoint: "/media",
       onSelect: () => {},
     });
-    dialog.querySelector(".media-browser__close")?.click();
+    find(dialog, ".media-browser__close")?.click();
 
     assert.equal(dialog.isConnected, false);
   });
 });
+
+/**
+ * @import { Mock } from "node:test"
+ * @import mediaBrowser from "../../../scripts/utils/media-browser.js"
+ */

@@ -4,10 +4,10 @@ import Color from "color";
  * Generate an accessible colour with sufficient contrast
  * @see {@link https://medium.com/confrere/e735c3f2f45e}
  * @param {object} options - Options
- * @param {object} options.colorToChange - Original colour
- * @param {object} [options.colorToValidate] - Color to validate against
+ * @param {ColorInstance} options.colorToChange - Original colour
+ * @param {ColorInstance} [options.colorToValidate] - Color to validate against
  * @param {number} [options.minimumContrastRatio] - Minimum contrast ratio
- * @param {object} options.mixingColor - Color to mix with original
+ * @param {ColorInstance} options.mixingColor - Color to mix with original
  * @param {number} [options.mixingAmount] - Amount of color to mix with original
  * @param {number} [options.tries] - Tries
  * @param {number} [options.maxTries] - Maximum tries
