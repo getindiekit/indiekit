@@ -11,10 +11,12 @@ describe("create-indiekit/lib/utils", () => {
   it("Adds plug-in to Indiekit configuration", async () => {
     const result = await addPluginConfig("@indiekit/preset-jekyll", {
       plugins: [],
+      publication: { me: "https://website.example" },
     });
 
     assert.deepEqual(result, {
       plugins: ["@indiekit/preset-jekyll"],
+      publication: { me: "https://website.example" },
     });
   });
 
@@ -39,6 +41,7 @@ describe("create-indiekit/lib/utils", () => {
     const { name, prompts } = await getPlugin("@indiekit/preset-hugo");
 
     assert.equal(name, "Hugo preset");
+    assert.ok(prompts);
     assert.equal(
       prompts[0].message,
       "Which front matter format are you using?",

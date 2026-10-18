@@ -11,7 +11,7 @@ describe("create-indiekit/lib/package", () => {
       me: "https://website.example",
       presetPlugin: "@indiekit/preset-jekyll",
       storePlugin: "@indiekit-test/store",
-      syndicationPlugins: [],
+      syndicatorPlugins: [],
     });
 
     assert.deepEqual(result, {

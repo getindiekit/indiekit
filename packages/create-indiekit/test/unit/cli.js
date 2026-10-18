@@ -35,6 +35,7 @@ describe("create-indiekit/lib/cli", () => {
   it("Shows usage", () => {
     const result = getCliResult(parseCliArguments(["--help"]));
 
+    assert.ok(result);
     assert.equal(result.code, 0);
     assert.equal(result.message, usage);
   });
@@ -42,6 +43,7 @@ describe("create-indiekit/lib/cli", () => {
   it("Shows version number", () => {
     const result = getCliResult(parseCliArguments(["--version"]));
 
+    assert.ok(result);
     assert.equal(result.code, 0);
     assert.equal(result.message, version);
   });
@@ -49,6 +51,7 @@ describe("create-indiekit/lib/cli", () => {
   it("Rejects an unrecognised option", () => {
     const result = getCliResult(parseCliArguments(["--foo"]));
 
+    assert.ok(result);
     assert.equal(result.code, 1);
     assert.match(result.message, /Unknown option: --foo/);
   });
@@ -56,6 +59,7 @@ describe("create-indiekit/lib/cli", () => {
   it("Asks for a directory before any questions are asked", () => {
     const result = getCliResult(parseCliArguments([]));
 
+    assert.ok(result);
     assert.equal(result.code, 1);
     assert.match(result.message, /Provide a directory/);
   });

@@ -27,8 +27,8 @@ export const getFileContents = async (fileName) => {
 
 /**
  * Get files to create
- * @param {object} setup - Setup answers
- * @returns {Promise<Array>} - Files to create
+ * @param {SetupAnswers} setup - Setup answers
+ * @returns {Promise<Array<{ path: string, contents: string }>>} Files to create
  */
 export const getFiles = async (setup) => {
   const { me, useDocker } = setup;
@@ -69,3 +69,7 @@ export const getFiles = async (setup) => {
 
   return files;
 };
+
+/**
+ * @import { SetupAnswers } from "./setup-prompts.js"
+ */
