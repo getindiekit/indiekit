@@ -29,6 +29,9 @@ export const htmlToMarkdown = (string) => {
   // Normalise text as HTML before converting to Markdown
   string = markdownToHtml(string);
 
+  /**
+   * @type {TurndownService.Options}
+   */
   const options = {
     codeBlockStyle: "fenced",
     emDelimiter: "*",
