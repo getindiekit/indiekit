@@ -5,7 +5,7 @@ import { getPlugin } from "./utils.js";
 
 /**
  * Get Docker Compose file contents
- * @param {Array} environment - Environment variables
+ * @param {string[]} environment - Environment variables
  * @returns {string} Docker Compose file contents
  */
 export const getDockerComposeFileContent = (environment) => {
@@ -43,7 +43,7 @@ export const getDockerComposeFileContent = (environment) => {
 
 /**
  * Get .env file contents
- * @param {Array} environment - Environment variables
+ * @param {string[]} environment - Environment variables
  * @returns {string} .env file contents
  */
 export const getDockerEnvironmentFileContent = (environment) => {
@@ -68,12 +68,15 @@ export const getDockerEnvironmentFileContent = (environment) => {
 
 /**
  * Get environment variables required by plug-ins
- * @param {object} setup - Setup answers
- * @returns {Promise<Array>} Environment variables
+ * @param {SetupAnswers} setup - Setup answers
+ * @returns {Promise<string[]>} Environment variables
  */
 export const getDockerEnvironment = async (setup) => {
   const { storePlugin, syndicatorPlugins } = setup;
 
+  /**
+   * @type {string[]}
+   */
   let variables = [];
 
   if (storePlugin) {
@@ -90,3 +93,7 @@ export const getDockerEnvironment = async (setup) => {
 
   return variables;
 };
+
+/**
+ * @import { SetupAnswers } from "./setup-prompts.js"
+ */

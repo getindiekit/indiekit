@@ -31,11 +31,13 @@ export async function init() {
   //
   // Without `onCancel`, cancelling resolves with whatever has been answered so
   // far, so a cancelled run carries on and scaffolds using empty answers.
-  const setup = await prompts(setupPrompts, {
-    onCancel() {
-      throw new SetupCancelledError();
-    },
-  });
+  const setup = /** @type {SetupAnswers} */ (
+    await prompts(setupPrompts, {
+      onCancel() {
+        throw new SetupCancelledError();
+      },
+    })
+  );
 
   // Get values for package.json based on answers
   const { config, dependencies } = await getPackageValues(setup);
@@ -61,3 +63,7 @@ export async function init() {
     skipGitignore: true,
   });
 }
+
+/**
+ * @import { SetupAnswers } from "./lib/setup-prompts.js"
+ */
