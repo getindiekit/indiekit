@@ -19,7 +19,7 @@ Options:
  * Parsed non-strictly so that an unrecognised option is reported by name
  * rather than throwing, and so a future option cannot crash an older binary.
  * @param {string[]} argv - Arguments, excluding the Node and script paths
- * @returns {object} Parsed arguments
+ * @returns {CliArguments} Parsed arguments
  */
 export const parseCliArguments = (argv) => {
   const { values, positionals } = parseArgs({
@@ -45,8 +45,8 @@ export const parseCliArguments = (argv) => {
 /**
  * Get the message and exit code for a set of parsed arguments, or false if
  * the setup flow should run
- * @param {object} parsed - Parsed arguments from `parseCliArguments`
- * @returns {object|boolean} Message and exit code, else false
+ * @param {CliArguments} parsed - Parsed arguments from `parseCliArguments`
+ * @returns {CliResult|false} Message and exit code, else false
  */
 export const getCliResult = (parsed) => {
   if (parsed.help) {
@@ -73,3 +73,17 @@ export const getCliResult = (parsed) => {
 
   return false;
 };
+
+/**
+ * @typedef {object} CliArguments
+ * @property {boolean} help - Show usage
+ * @property {boolean} version - Show version number
+ * @property {string} [directory] - Directory to create the server in
+ * @property {string} [unknownOption] - First option not recognised
+ */
+
+/**
+ * @typedef {object} CliResult
+ * @property {string} message - Message to show
+ * @property {number} code - Exit code
+ */

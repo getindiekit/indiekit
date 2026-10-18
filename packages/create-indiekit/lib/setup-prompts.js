@@ -101,5 +101,17 @@ export const setupPrompts = [
 ];
 
 /**
+ * Answers to setup questions
+ * @typedef {object} SetupAnswers
+ * @property {string} me - Website URL
+ * @property {boolean} [usePreset] - Use a publication preset
+ * @property {string} [presetPlugin] - Publication preset package
+ * @property {string} [storePlugin] - Content store package
+ * @property {boolean} [useSyndication] - Syndicate posts
+ * @property {string[]} [syndicatorPlugins] - Syndicator packages
+ * @property {boolean} [useDocker] - Deploy using Docker
+ */
+
+/**
  * @import { PromptObject } from "prompts"
  */

@@ -32,6 +32,7 @@ describe("create-indiekit/lib/docker", () => {
 
   it("Gets environment variables required by plug-ins", async () => {
     const setup = {
+      me: "https://website.example",
       storePlugin: "@indiekit-test/store", // Plug-in with no environment
       syndicatorPlugins: [
         "@indiekit/syndicator-internet-archive",
