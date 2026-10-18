@@ -5,8 +5,8 @@ import prompts from "prompts";
 /**
  * Add plug-in to Indiekit configuration
  * @param {string} pluginName - Name of selected plug-in
- * @param {object} config - Indiekit configuration
- * @returns {Promise<object>} Updated configuration
+ * @param {NewIndiekitConfig} config - Indiekit configuration
+ * @returns {Promise<IndiekitConfig>} Updated configuration
  */
 export const addPluginConfig = async (pluginName, config) => {
   const plugin = await getPlugin(pluginName);
@@ -20,7 +20,7 @@ export const addPluginConfig = async (pluginName, config) => {
   config.plugins.push(pluginName);
 
   // Add any plug-in configuration values
-  const pluginConfig = await prompts(plugin.prompts);
+  const pluginConfig = await prompts(plugin.prompts ?? []);
   if (Object.keys(pluginConfig).length > 0) {
     config[pluginName] = pluginConfig;
   }
@@ -59,7 +59,7 @@ export const isCompatibleNodeVersion = (
 /**
  * Get question prompts specified by plug-in
  * @param {string} pluginName - Plug-in name
- * @returns {Promise<object>} Plug-in
+ * @returns {Promise<IndiekitPlugin>} Plug-in
  */
 export const getPlugin = async (pluginName) => {
   const { default: IndiekitPlugin } = await import(pluginName);
@@ -67,3 +67,8 @@ export const getPlugin = async (pluginName) => {
 
   return plugin;
 };
+
+/**
+ * Configuration written by `create-indiekit`, which always lists plug-ins
+ * @typedef {IndiekitConfig & { plugins: string[] }} NewIndiekitConfig
+ */

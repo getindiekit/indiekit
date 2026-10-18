@@ -2,12 +2,15 @@ import { addPluginConfig } from "./utils.js";
 
 /**
  * Get package values
- * @param {object} setup - Setup answers
- * @returns {Promise<object>} Package values
+ * @param {SetupAnswers} setup - Setup answers
+ * @returns {Promise<{ config: NewIndiekitConfig, dependencies: string[] }>} Package values
  */
 export const getPackageValues = async (setup) => {
   const { me, presetPlugin, storePlugin, syndicatorPlugins } = setup;
 
+  /**
+   * @type {NewIndiekitConfig}
+   */
   const config = {
     plugins: [],
     publication: { me },
@@ -37,3 +40,8 @@ export const getPackageValues = async (setup) => {
     dependencies,
   };
 };
+
+/**
+ * @import { SetupAnswers } from "./setup-prompts.js"
+ * @import { NewIndiekitConfig } from "./utils.js"
+ */
