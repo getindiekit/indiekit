@@ -12,10 +12,17 @@ export async function createPasswordHash(password) {
 }
 
 /**
- * Verify password
+ * Verify password against the hash in `PASSWORD_SECRET`
  * @param {string} password - Password
  * @returns {Promise<boolean>} Password valid
  */
 export async function verifyPassword(password) {
-  return bcrypt.compare(password, process.env.PASSWORD_SECRET);
+  const passwordHash = process.env.PASSWORD_SECRET;
+
+  // With no password set, no password can be valid
+  if (!passwordHash) {
+    return false;
+  }
+
+  return bcrypt.compare(password, passwordHash);
 }

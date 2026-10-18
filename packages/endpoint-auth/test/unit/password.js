@@ -14,4 +14,9 @@ describe("endpoint-auth/lib/client", () => {
     assert.equal(await verifyPassword("foo"), true);
     assert.equal(await verifyPassword("bar"), false);
   });
+
+  it("Rejects any password if no password is set", async () => {
+    delete process.env.PASSWORD_SECRET;
+    assert.equal(await verifyPassword("foo"), false);
+  });
 });
