@@ -52,8 +52,9 @@ export const codeValidator = async (request, response, next) => {
     }
 
     // Verify the code before reading anything from it
+    let verifiedToken;
     try {
-      request.verifiedToken = verifyToken(code);
+      verifiedToken = verifyToken(code);
     } catch {
       throw IndiekitError.unauthorized(
         response.locals.__("UnauthorizedError.invalidToken"),
@@ -64,13 +65,21 @@ export const codeValidator = async (request, response, next) => {
     // redirect it was issued for. A code missing either cannot be checked
     // against the request, so it is not one this server issued.
     if (
-      !request.verifiedToken.client_id ||
-      !request.verifiedToken.redirect_uri
+      !verifiedToken.client_id ||
+      !verifiedToken.me ||
+      !verifiedToken.redirect_uri
     ) {
       throw IndiekitError.unauthorized(
         response.locals.__("UnauthorizedError.invalidToken"),
       );
     }
+
+    request.verifiedToken = {
+      ...verifiedToken,
+      client_id: verifiedToken.client_id,
+      me: verifiedToken.me,
+      redirect_uri: verifiedToken.redirect_uri,
+    };
 
     // Validate `client_id` against the client the code was issued to. Reading
     // it from the code, rather than from state shared across requests, is what

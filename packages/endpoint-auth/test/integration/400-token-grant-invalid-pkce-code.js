@@ -32,6 +32,7 @@ describe("endpoint-auth POST /auth/token", () => {
       client_id: "https://auth-endpoint.example",
       code_challenge: codeChallenge,
       code_challenge_method: "S256",
+      me: "https://website.example",
       redirect_uri: "https://auth-endpoint.example/redirect",
       scope: "create update delete media",
       token_type: "Bearer",
