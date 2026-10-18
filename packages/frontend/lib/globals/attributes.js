@@ -1,6 +1,6 @@
 /**
  * Generate space-separated list of HTML attribute key values
- * @param {object} attributes - Attributes
+ * @param {Record<string, string|boolean|number|undefined>} attributes - Attributes
  * @returns {string} Space-separated list of HTML attribute key values
  */
 export const attributes = (attributes) => {

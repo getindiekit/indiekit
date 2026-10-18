@@ -20,7 +20,7 @@ export const friendlyUrl = (string) => {
 /**
  * Get transformed image URL
  * @param {string} string - Image URL (or path)
- * @param {object} application - Application configuration
+ * @param {Pick<IndiekitApplication, "url"> & {imageEndpoint: string}} application - Application configuration
  * @param {object} [kwargs] - Transform options
  * @param {number} [kwargs.width] - Width of transformed image
  * @param {number} [kwargs.height] - Height of transformed image
