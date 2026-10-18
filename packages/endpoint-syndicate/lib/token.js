@@ -1,6 +1,5 @@
-import process from "node:process";
-
 import { IndiekitError } from "@indiekit/error";
+import { getSecret } from "@indiekit/util";
 import jwt from "jsonwebtoken";
 
 export const findBearerToken = (request) => {
@@ -37,7 +36,7 @@ export const signToken = (verifiedToken, url) =>
       me: url,
       scope: "update",
     },
-    process.env.SECRET,
+    getSecret("SECRET"),
     {
       expiresIn: "10m",
     },
@@ -46,11 +45,24 @@ export const signToken = (verifiedToken, url) =>
 /**
  * Verify that token provided by signature was issued by Netlify
  * @param {string} signature - JSON Web Signature
- * @returns {object} JSON Web Token
+ * @returns {JwtPayload} JSON Web Token payload
+ * @throws {JsonWebTokenError} Signature invalid
  * @see {@link https://docs.netlify.com/site-deploys/notifications/#payload-signature}
  */
-export const verifyToken = (signature) =>
-  jwt.verify(signature, process.env.WEBHOOK_SECRET, {
+export const verifyToken = (signature) => {
+  const payload = jwt.verify(signature, getSecret("WEBHOOK_SECRET"), {
     algorithms: ["HS256"],
     issuer: ["netlify"],
   });
+
+  // Netlify signs webhooks with an object payload
+  if (typeof payload === "string") {
+    throw new jwt.JsonWebTokenError("Signature payload is not an object");
+  }
+
+  return payload;
+};
+
+/**
+ * @import { JsonWebTokenError, JwtPayload } from "jsonwebtoken"
+ */

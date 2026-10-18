@@ -16,11 +16,12 @@ const server = await testServer({
   plugins: ["@indiekit/syndicator-mastodon"],
 });
 const request = supertest.agent(server);
+const webhookSecret = "webhook-secret";
 
 describe("endpoint-syndicate POST /syndicate", () => {
   before(async () => {
     process.env.SECRET = "secret";
-    process.env.WEBHOOK_SECRET = "webhook-secret";
+    process.env.WEBHOOK_SECRET = webhookSecret;
 
     await request
       .post("/micropub")
@@ -38,7 +39,7 @@ describe("endpoint-syndicate POST /syndicate", () => {
       .set("accept", "application/json")
       .set(
         "x-webhook-signature",
-        jwt.sign({ iss: "netlify", sha256 }, process.env.WEBHOOK_SECRET),
+        jwt.sign({ iss: "netlify", sha256 }, webhookSecret),
       )
       .send({ url: "https://website.example" });
 

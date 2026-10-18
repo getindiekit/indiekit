@@ -67,4 +67,15 @@ describe("endpoint-syndicate/lib/token", () => {
     assert.equal(result.iss, "netlify");
     assert.equal(result.sha256, sha256);
   });
+
+  it("Throws error verifying signature without webhook secret", () => {
+    delete process.env.WEBHOOK_SECRET;
+
+    assert.throws(() => verifyToken(signature), {
+      code: "not_implemented",
+      message: "No secret. Set the `WEBHOOK_SECRET` environment variable.",
+    });
+
+    process.env.WEBHOOK_SECRET = "webhook-secret";
+  });
 });

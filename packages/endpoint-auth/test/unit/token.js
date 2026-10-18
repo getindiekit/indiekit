@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
+import jwt from "jsonwebtoken";
+
 import { signToken, verifyToken } from "../../lib/token.js";
 
 describe("endpoint-auth/lib/token", () => {
@@ -20,5 +22,14 @@ describe("endpoint-auth/lib/token", () => {
     assert.equal(result.foo, "bar");
     assert.ok(result.exp);
     assert.ok(result.iat);
+  });
+
+  it("Throws error verifying token with a string payload", () => {
+    const signedToken = jwt.sign("foo", "test");
+
+    assert.throws(() => verifyToken(signedToken), {
+      name: "JsonWebTokenError",
+      message: "Token payload is not an object",
+    });
   });
 });
