@@ -8,6 +8,7 @@ export {
   getDateTokenValues,
   isDate,
 } from "./lib/date.js";
+export { getSecret } from "./lib/environment.js";
 export { sanitise } from "./lib/object.js";
 export { ISO_6709_RE } from "./lib/regex.js";
 export {
