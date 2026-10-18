@@ -11,8 +11,9 @@ describe("create-indiekit/lib/setup-prompts", () => {
 
   it("Offers a content store that needs no credentials", async () => {
     const question = setupPrompts.find((p) => p.name === "storePlugin");
-    const values = question.choices.map((choice) => choice.value);
+    assert.ok(Array.isArray(question?.choices));
 
+    const values = question.choices.map((choice) => choice.value);
     assert.ok(values.includes("@indiekit/store-file-system"));
 
     // Without this, every offered store requires an account and a token, so
@@ -22,10 +23,16 @@ describe("create-indiekit/lib/setup-prompts", () => {
   });
 
   it("Asks for a valid URL", () => {
+    // `prompts` calls `validate` with just the value, but `@types/prompts`
+    // declares it with the arguments its other function options receive
+    const validate = /** @type {(value: string) => boolean | string} */ (
+      setupPrompts[0].validate
+    );
+
     assert.equal(
-      setupPrompts[0].validate("foo.bar"),
+      validate("foo.bar"),
       "Enter a valid URL, for example https://website.example",
     );
-    assert.equal(setupPrompts[0].validate("https://foo.bar"), true);
+    assert.equal(validate("https://foo.bar"), true);
   });
 });
