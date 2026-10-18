@@ -89,6 +89,7 @@
     "@types/serviceworker": "^0.0.203",
     "@types/ssh2-sftp-client": "^9.0.6",
     "@types/superagent": "^8.1.11",
+    "@types/turndown": "^5.0.6",
     "aws-sdk-client-mock": "^4.1.0",
     "cookie-session": "^2.1.1",
     "create-indiekit": "*",
