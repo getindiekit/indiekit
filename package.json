@@ -87,6 +87,7 @@
     "@types/prompts": "^2.4.9",
     "@types/sanitize-html": "^2.16.2",
     "@types/serviceworker": "^0.0.203",
+    "@types/ssh2-sftp-client": "^9.0.6",
     "aws-sdk-client-mock": "^4.1.0",
     "cookie-session": "^2.1.1",
     "create-indiekit": "*",
