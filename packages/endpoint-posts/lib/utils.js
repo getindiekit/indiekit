@@ -23,7 +23,7 @@ export const getChannelItems = (publication) => {
 /**
  * Get geographic coordinates property
  * @param {string} geo - Latitude and longitude, comma separated
- * @returns {object} JF2 geo location property
+ * @returns {Jf2GeoProperty} JF2 geo location property
  */
 export const getGeoProperty = (geo) => {
   const groups = geo.match(ISO_6709_RE)?.groups;
