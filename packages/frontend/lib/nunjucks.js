@@ -7,7 +7,7 @@ import * as globals from "./globals/index.js";
 
 /**
  * @param {Application} app - Express
- * @returns {object} Nunjucks environment
+ * @returns {Environment} Nunjucks environment
  */
 export const templates = (app) => {
   const appViews = app ? app.settings.views : [];
@@ -41,4 +41,5 @@ export const templates = (app) => {
 
 /**
  * @import { Application } from "express"
+ * @import { Environment } from "nunjucks"
  */

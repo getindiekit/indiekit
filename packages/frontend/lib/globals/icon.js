@@ -66,13 +66,15 @@ export const icon = (name, title) => {
     return;
   }
 
+  const path = paths[/** @type {keyof typeof paths} */ (name)];
+
   const svg = title
     ? `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" aria-labelledby="${name}-title" role="img">
     <title id="${name}-title">${title}</title>
-    <path fill="currentColor" d="${paths[name]}"/>
+    <path fill="currentColor" d="${path}"/>
   </svg>`
     : `<svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 48 48" focusable="false" aria-hidden="true">
-    <path fill="currentColor" d="${paths[name]}"/>
+    <path fill="currentColor" d="${path}"/>
   </svg>`;
 
   const icon = svg.replaceAll(/(\s{2,}|\r\n\t|\n|\r\t)/gm, "");

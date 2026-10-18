@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
+
 import { friendlyUrl, imageUrl } from "../../../lib/filters/index.js";
 
 describe("frontend/lib/filters/url", () => {
@@ -11,10 +13,10 @@ describe("frontend/lib/filters/url", () => {
   });
 
   it("Gets image URL", () => {
-    const application = {
+    const application = testApplication({
       imageEndpoint: "/image",
       url: "https://server.example",
-    };
+    });
     const result = imageUrl("/path/to/image.jpg", application);
 
     assert.equal(
@@ -24,10 +26,10 @@ describe("frontend/lib/filters/url", () => {
   });
 
   it("Gets transformed image URL", () => {
-    const application = {
+    const application = testApplication({
       imageEndpoint: "/image",
       url: "https://server.example",
-    };
+    });
     const result = imageUrl("/path/to/image.jpg", application, {
       width: 100,
       height: 100,

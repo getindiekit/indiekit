@@ -18,9 +18,17 @@ const state = {
   cacheMatchCount: 0,
 };
 
+/**
+ * @type {Map<string, Map<string, Response>>}
+ */
 const stores = new Map();
 
 const location = new URL("https://indiekit.test/");
+
+/**
+ * @param {string|Request} request - Request, or its URL
+ * @returns {string} Cache key
+ */
 const cacheKey = (request) =>
   typeof request === "string"
     ? new URL(request, location).href
@@ -34,50 +42,81 @@ Object.assign(globalThis, {
     claim: async () => {},
     matchAll: async () => [],
   },
+  /**
+   * @param {string} type - Event type
+   * @param {(event: object) => void} handler - Event handler
+   */
   addEventListener: (type, handler) => {
     handlers[type] ||= [];
     handlers[type].push(handler);
   },
-  fetch: (...arguments_) => state.fetch(...arguments_),
+  fetch: (/** @type {unknown[]} */ ...arguments_) => state.fetch(...arguments_),
   caches: {
+    /**
+     * @param {string} name - Cache name
+     * @returns {Promise<object>} Cache
+     */
     async open(name) {
       if (!stores.has(name)) {
         stores.set(name, new Map());
       }
 
-      const store = stores.get(name);
+      const store = /** @type {Map<string, Response>} */ (stores.get(name));
       return {
+        /**
+         * @param {string[]} urls - URLs to cache
+         */
         async addAll(urls) {
           for (const url of urls) {
             store.set(cacheKey(url), new Response(`cached ${url}`));
           }
         },
+        /**
+         * @param {string|Request} request - Request, or its URL
+         * @returns {Promise<boolean>} Entry was deleted
+         */
         async delete(request) {
           return store.delete(cacheKey(request));
         },
         async keys() {
           return [...store.keys()].map((url) => new Request(url));
         },
+        /**
+         * @param {string|Request} request - Request, or its URL
+         * @returns {Promise<Response|undefined>} Cached response
+         */
         async match(request) {
           return store.get(cacheKey(request))?.clone();
         },
+        /**
+         * @param {string|Request} request - Request, or its URL
+         * @param {Response} response - Response to cache
+         */
         async put(request, response) {
           store.set(cacheKey(request), response);
         },
       };
     },
+    /**
+     * @param {string|Request} request - Request, or its URL
+     * @returns {Promise<Response|undefined>} Cached response
+     */
     async match(request) {
       state.cacheMatchCount++;
       const key = cacheKey(request);
       for (const store of stores.values()) {
         if (store.has(key)) {
-          return store.get(key).clone();
+          return store.get(key)?.clone();
         }
       }
     },
     async keys() {
       return [...stores.keys()];
     },
+    /**
+     * @param {string} name - Cache name
+     * @returns {Promise<boolean>} Cache was deleted
+     */
     async delete(name) {
       return stores.delete(name);
     },
@@ -98,6 +137,9 @@ const dispatchFetch = (url, { accept = "text/html" } = {}) => {
   const event = {
     request: new Request(new URL(url, location), { headers: { accept } }),
     preloadResponse: undefined,
+    /**
+     * @param {Promise<Response>} response - Response
+     */
     respondWith(response) {
       result = response;
     },
