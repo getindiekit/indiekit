@@ -15,7 +15,8 @@ const { name, version, bugs } = require("./package.json");
 const nodeVersion = ">=24";
 
 /**
- * @returns {Promise<object>} init
+ * Ask setup questions, then create an Indiekit server from the answers
+ * @returns {Promise<void>}
  */
 export async function init() {
   const { log } = console;
