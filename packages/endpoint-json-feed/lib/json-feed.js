@@ -2,10 +2,11 @@ import mime from "mime-types";
 
 /**
  * Generate JSON Feed
- * @param {object} application - Application configuration
+ * @param {Pick<IndiekitApplication, "locale" | "name" | "url">} application - Application configuration
  * @param {string} feedUrl - Feed URL
- * @param {object} posts - JF2 posts
- * @returns {object} JSON Feed
+ * @param {Jf2PostData[]} posts - JF2 posts
+ * @returns {JsonFeed} JSON Feed
+ * @see {@link https://jsonfeed.org/version/1.1}
  */
 export const jsonFeed = (application, feedUrl, posts) => ({
   version: "https://jsonfeed.org/version/1.1",

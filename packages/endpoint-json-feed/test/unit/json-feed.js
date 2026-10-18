@@ -22,6 +22,7 @@ describe("endpoint-json-feed/lib/json-feed", () => {
     const result = jsonFeed(application, feedUrl, posts);
 
     assert.equal(result.items[0].summary, "A very satisfactory meal.");
+    assert.ok(result.items[0].attachments);
     assert.equal(result.items[0].attachments.length, 3);
     assert.deepEqual(result.items[0].tags, ["lunch", "food"]);
   });
