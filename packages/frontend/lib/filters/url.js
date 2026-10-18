@@ -18,7 +18,7 @@ export const friendlyUrl = (string) => {
 /**
  * Get transformed image URL
  * @param {string} string - Image URL (or path)
- * @param {object} application - Application configuration
+ * @param {IndiekitApplication} application - Application configuration
  * @param {object} [kwargs] - Transform options
  * @param {number} [kwargs.width] - Width of transformed image
  * @param {number} [kwargs.height] - Height of transformed image
@@ -26,8 +26,8 @@ export const friendlyUrl = (string) => {
  * @returns {string} Resized image URL
  */
 export const imageUrl = (string, application, kwargs) => {
-  // Don’t transform SVG images
-  if (string.includes(".svg")) {
+  // Don’t transform SVG images, or any image if there’s no image endpoint
+  if (string.includes(".svg") || !application.imageEndpoint) {
     return string;
   }
 

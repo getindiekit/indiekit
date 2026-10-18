@@ -7,6 +7,7 @@ describe("frontend/lib/globals/error-list", () => {
   it("Transforms errors provided by express-validator", () => {
     const result = errorList({
       me: {
+        type: "field",
         value: "foo",
         msg: "Enter a valid URL",
         path: "fooBar[0].url",

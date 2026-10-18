@@ -3,8 +3,8 @@ import { slugify } from "@indiekit/util";
 /**
  * Transform errors provided by express-validator into array that can be
  * consumed by the error summary component
- * @param {object} errorMap - Mapped error response from express-validator
- * @returns {Array} List of errors
+ * @param {Record<string, FieldValidationError>} errorMap - Mapped error response from express-validator
+ * @returns {Array<{ text: string, href: string }>} List of errors
  */
 export const errorList = (errorMap) => {
   // For each field that has errors, return only the first error
@@ -19,3 +19,7 @@ export const errorList = (errorMap) => {
 
   return errorList;
 };
+
+/**
+ * @import { FieldValidationError } from "express-validator"
+ */

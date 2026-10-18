@@ -1,4 +1,9 @@
 export const tagInputSanitizer = {
+  /**
+   * Get tags entered as JSON or as comma-separated values
+   * @param {string} value - Entered tags
+   * @returns {string[]} Tags
+   */
   customSanitizer: (value) => {
     try {
       // Entered using progressively enhanced tag input, for example:
