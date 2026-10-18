@@ -9,6 +9,21 @@ import { statusTypes } from "../status-types.js";
 import { getPostStatusBadges, getPostName, getPhotoUrl } from "../utils.js";
 
 /**
+ * Get plain text from a JF2 `content` value
+ * @param {Jf2Value} content - JF2 `content` value
+ * @returns {string|undefined} Plain text
+ */
+const getContentText = (content) => {
+  if (typeof content === "string") {
+    return content;
+  }
+
+  if (typeof content === "object" && !Array.isArray(content)) {
+    return typeof content.text === "string" ? content.text : undefined;
+  }
+};
+
+/**
  * List published posts
  * @param {Request} request - Express request
  * @param {Response} response - Express response
@@ -43,18 +58,20 @@ export const postsController = async (request, response, next) => {
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
-        item.id = item.uid;
+        const uid = String(item.uid);
+        const contentText = getContentText(item.content);
+
+        item.id = uid;
         item.icon = item["post-type"];
         item.locale = application.locale;
         item.photo = getPhotoUrl(publication, item);
         item.description = {
           text:
             item.summary ||
-            (item.content?.text &&
-              excerpt(item.content.text, 30, publication.locale)),
+            (contentText && excerpt(contentText, 30, publication.locale)),
         };
         item.title = getPostName(publication, item);
-        item.url = path.join(request.baseUrl, request.path, item.uid);
+        item.url = path.join(request.baseUrl, request.path, uid);
         item.badges = getPostStatusBadges(item, response);
 
         return item;
@@ -100,5 +117,6 @@ export const postsController = async (request, response, next) => {
 };
 
 /**
+ * @import { Jf2Value } from "@paulrobertlloyd/mf2tojf2"
  * @import { NextFunction, Request, Response } from "express"
  */
