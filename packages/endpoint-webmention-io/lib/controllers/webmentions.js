@@ -48,10 +48,13 @@ export const webmentionsController = (options) => {
         throw await IndiekitError.fromFetch(endpointResponse);
       }
 
+      /**
+       * @type {WebmentionIoFeed}
+       */
       const body = await endpointResponse.json();
 
       let webmentions;
-      if (body?.children?.length > 0) {
+      if (body.children && body.children.length > 0) {
         webmentions = body.children.map((item) => {
           let html;
           if (item.content?.html) {
@@ -60,29 +63,33 @@ export const webmentionsController = (options) => {
             html = `<p>${item.content.text}</p>`;
           }
 
-          item.id = item["wm-id"];
-          item.icon = getMentionType(item["wm-property"]);
-          item.locale = application.locale;
-          item.title = getMentionTitle(item);
-          item.description = { html };
-          item.published ||= item["wm-received"];
-          item.user = {
-            ...(item.author?.photo && { avatar: { src: item.author.photo } }),
-            name: getAuthorName(item),
-            url: item.author?.url,
+          return {
+            ...item,
+            id: item["wm-id"],
+            icon: getMentionType(item["wm-property"]),
+            locale: application.locale,
+            title: getMentionTitle(item),
+            description: { html },
+            published: item.published || item["wm-received"],
+            user: {
+              ...(item.author?.photo && { avatar: { src: item.author.photo } }),
+              name: getAuthorName(item),
+              url: item.author?.url,
+            },
           };
-
-          return item;
         });
       }
 
+      /**
+       * @type {{ next: { href: string }, previous?: { href: string } }}
+       */
       const cursor = {
         next: {
           href: `?page=${page + 1}`,
         },
       };
 
-      if (Number(page) > 0) {
+      if (page > 0) {
         cursor.previous = {
           href: `?page=${page - 1}`,
         };
