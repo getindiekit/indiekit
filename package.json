@@ -83,6 +83,7 @@
     "@types/lodash": "^4.17.26",
     "@types/mime-types": "^3.0.1",
     "@types/mock-req-res": "^1.1.6",
+    "@types/node": "^24.19.2",
     "@types/nunjucks": "^3.2.6",
     "@types/prompts": "^2.4.9",
     "@types/sanitize-html": "^2.16.2",
