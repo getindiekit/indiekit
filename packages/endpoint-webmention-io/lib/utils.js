@@ -28,13 +28,19 @@ export const getMentionType = (wmProperty) => {
   }
 };
 
+/**
+ * Convert first character of a string to upper case
+ * @param {string} string - String to convert
+ * @returns {string} String with first character in upper case
+ * @example upperFirst("hello world"); // "Hello world"
+ */
 const upperFirst = (string) => {
   return String(string).charAt(0).toUpperCase() + String(string).slice(1);
 };
 
 /**
  * Get mention title
- * @param {object} jf2 - JF2
+ * @param {Pick<WebmentionIoEntry, "wm-property" | "name">} jf2 - JF2
  * @returns {string} Mention title
  */
 export const getMentionTitle = (jf2) => {
@@ -46,8 +52,8 @@ export const getMentionTitle = (jf2) => {
 
 /**
  * Get author name
- * @param {object} jf2 - JF2
- * @returns {string} Mention title
+ * @param {Pick<WebmentionIoEntry, "author" | "url">} jf2 - JF2
+ * @returns {string|undefined} Author name
  */
 export const getAuthorName = (jf2) => {
   if (jf2.author?.name) {
@@ -55,7 +61,7 @@ export const getAuthorName = (jf2) => {
   }
 
   const url = jf2.author?.url || jf2.url;
-  if (!URL.canParse(url)) {
+  if (!url || !URL.canParse(url)) {
     return url;
   }
 
