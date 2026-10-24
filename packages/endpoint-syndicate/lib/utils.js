@@ -1,4 +1,34 @@
 /**
+ * Syndication target, as used to syndicate a post
+ *
+ * `syndicate` is a method signature, so that targets whose `syndicate`
+ * accepts a full publication configuration are also accepted
+ * @typedef {{
+ *   info: {
+ *    name?: string,
+ *    uid?: string
+ *   },
+ *   syndicate(
+ *     properties: Jf2Properties,
+ *     publication: SyndicationPublication,
+ *   ): Promise<string|undefined>,
+ * }} SyndicationTarget
+ */
+
+/**
+ * Publication, as used to syndicate a post
+ * @typedef {object} SyndicationPublication
+ * @property {SyndicationTarget[]} syndicationTargets - Syndication targets
+ */
+
+/**
+ * Result of syndicating a post to its targets
+ * @typedef {object} SyndicationResult
+ * @property {string[]} [failedTargets] - Targets that didn’t return a URL
+ * @property {string[]} syndicatedUrls - Syndicated URLs
+ */
+
+/**
  * Get every post awaiting syndication
  *
  * A post is awaiting syndication while `mp-syndicate-to` remains: it is
@@ -7,11 +37,11 @@
  * targets are therefore still awaiting the rest, and `syndicateToTargets`
  * skips the ones already done. Oldest first, so a backlog is syndicated in
  * the order it was published.
- * @param {object} postsCollection - Posts database collection
- * @returns {Promise<Array<Jf2PostData>>} Post data, oldest first
+ * @param {Collection} postsCollection - Posts database collection
+ * @returns {Promise<Jf2PostData[]>} Post data, oldest first
  */
 export const getPostsAwaitingSyndication = async (postsCollection) => {
-  return postsCollection
+  const posts = await postsCollection
     .find({
       "properties.mp-syndicate-to": {
         $exists: true,
@@ -22,19 +52,23 @@ export const getPostsAwaitingSyndication = async (postsCollection) => {
     })
     .sort({ "properties.published": 1 })
     .toArray();
+
+  return /** @type {Jf2PostData[]} */ (/** @type {unknown} */ (posts));
 };
 
 /**
  * Get post data
- * @param {object} postsCollection - Posts database collection
- * @param {string} url - URL of existing post (optional)
- * @returns {Promise<Jf2PostData>} Post data for given URL else oldest post awaiting syndication
+ * @param {Collection} postsCollection - Posts database collection
+ * @param {string} [url] - URL of existing post
+ * @returns {Promise<Jf2PostData|null|undefined>} Post data for given URL else oldest post awaiting syndication
  */
 export const getPostData = async (postsCollection, url) => {
   if (url) {
-    return postsCollection.findOne({
+    const post = await postsCollection.findOne({
       "properties.url": url,
     });
+
+    return /** @type {Jf2PostData|null} */ (/** @type {unknown} */ (post));
   }
 
   const [oldest] = await getPostsAwaitingSyndication(postsCollection);
@@ -43,7 +77,7 @@ export const getPostData = async (postsCollection, url) => {
 
 /**
  * Check if target already returned a syndication URL
- * @param {Array} syndicatedUrls - Syndication URLs
+ * @param {string[]} syndicatedUrls - Syndication URLs
  * @param {string} syndicateTo - Syndication target
  * @returns {boolean} Target returned a syndication URL
  */
@@ -61,9 +95,10 @@ export const hasSyndicationUrl = (syndicatedUrls, syndicateTo) => {
 
 /**
  * Get syndication target for syndication URL
- * @param {Array} syndicationTargets - Publication syndication targets
+ * @template {{info: { ame?: string, uid?: string}}} Target
+ * @param {Target[]} syndicationTargets - Publication syndication targets
  * @param {string} syndicateTo - Syndication URL
- * @returns {object|undefined} Publication syndication target
+ * @returns {Target|undefined} Publication syndication target
  */
 export const getSyndicationTarget = (syndicationTargets, syndicateTo) => {
   return syndicationTargets.find((target) => {
@@ -79,9 +114,9 @@ export const getSyndicationTarget = (syndicationTargets, syndicateTo) => {
 
 /**
  * Syndicate URLs to configured syndication targets
- * @param {object} publication - Publication configuration
+ * @param {SyndicationPublication} publication - Publication configuration
  * @param {Jf2Properties} properties - JF2 properties
- * @returns {Promise<object>} Syndication target
+ * @returns {Promise<SyndicationResult>} Syndicated URLs and any failed targets
  */
 export const syndicateToTargets = async (publication, properties) => {
   const { syndicationTargets } = publication;
@@ -89,14 +124,22 @@ export const syndicateToTargets = async (publication, properties) => {
   const syndicateToUrls = Array.isArray(syndicateTo)
     ? syndicateTo
     : [syndicateTo];
+  /**
+   * @type {string[]}
+   */
   const syndicatedUrls = properties.syndication || [];
+  /**
+   * @type {string[]}
+   */
   const failedTargets = [];
 
   for (const url of syndicateToUrls) {
     const target = getSyndicationTarget(syndicationTargets, url);
+    const uid = target?.info.uid;
     const alreadySyndicated = hasSyndicationUrl(syndicatedUrls, url);
 
-    if (target && !alreadySyndicated) {
+    // `getSyndicationTarget` only returns a target with a `uid`
+    if (target && uid && !alreadySyndicated) {
       try {
         const syndicatedUrl = await target.syndicate(properties, publication);
 
@@ -105,11 +148,11 @@ export const syndicateToTargets = async (publication, properties) => {
           syndicatedUrls.push(syndicatedUrl);
         } else {
           // Add failed syndication target to list of failed targets
-          failedTargets.push(target.info.uid);
+          failedTargets.push(uid);
         }
       } catch (error) {
         // Add failed syndication target to list of failed targets
-        failedTargets.push(target.info.uid);
+        failedTargets.push(uid);
         console.error(error);
       }
     }
@@ -120,3 +163,7 @@ export const syndicateToTargets = async (publication, properties) => {
     syndicatedUrls,
   };
 };
+
+/**
+ * @import { Collection } from "mongodb"
+ */

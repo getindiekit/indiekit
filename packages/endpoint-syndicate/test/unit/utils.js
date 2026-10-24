@@ -34,6 +34,7 @@ describe("endpoint-syndicate/lib/token", () => {
   it("Gets post for given URL from database", async () => {
     const result = await getPostData(postsCollection, url);
 
+    assert.ok(result);
     assert.equal(
       result.properties["mp-syndicate-to"],
       "https://mastodon.example/",
@@ -43,6 +44,7 @@ describe("endpoint-syndicate/lib/token", () => {
   it("Gets post data from database", async () => {
     const result = await getPostData(postsCollection, "");
 
+    assert.ok(result);
     assert.equal(
       result.properties["mp-syndicate-to"],
       "https://mastodon.example/",
@@ -121,6 +123,7 @@ describe("endpoint-syndicate/lib/token", () => {
 
     const result = await getPostData(collection, "");
 
+    assert.ok(result);
     assert.equal(result.properties.published, "2023-01-26T10:00:00Z");
   });
 
@@ -128,6 +131,7 @@ describe("endpoint-syndicate/lib/token", () => {
     const targets = [{ info: { uid: "https://mastodon.example" } }];
     const result = getSyndicationTarget(targets, "https://mastodon.example");
 
+    assert.ok(result);
     assert.equal(result.info.uid, "https://mastodon.example");
   });
 

@@ -13,11 +13,11 @@ const batch = { isRunning: false };
 
 /**
  * Syndicate a post to its targets and record the result on the post
- * @param {object} application - Application configuration
- * @param {object} publication - Publication configuration
+ * @param {Pick<IndiekitApplication, "micropubEndpoint">} application - Application configuration
+ * @param {IndiekitPublication} publication - Publication configuration
  * @param {Jf2PostData} postData - Post data
  * @param {string} bearerToken - Access token for the Micropub update
- * @returns {Promise<object>} Micropub response body
+ * @returns {Promise<MicropubResponseBody>} Micropub response body
  */
 const syndicatePost = async (
   application,
@@ -54,7 +54,7 @@ const syndicatePost = async (
   }
 
   /**
-   * @type {object}
+   * @type {MicropubResponseBody}
    */
   const body = await micropubResponse.json();
 
@@ -69,6 +69,13 @@ const syndicatePost = async (
 };
 
 export const syndicateController = {
+  /**
+   * Syndicate post(s) awaiting syndication
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @param {NextFunction} next - Next middleware
+   * @returns {Promise<Response|void>} Response
+   */
   async post(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
@@ -94,9 +101,14 @@ export const syndicateController = {
         });
       }
 
+      /**
+       * Respond with JSON, or redirect with success message
+       * @param {MicropubResponseBody} body - Response body
+       * @returns {Response|void} Response
+       */
       const respond = (body) => {
         if (redirectUri && redirectUri.startsWith("/")) {
-          const message = encodeURIComponent(body.success_description);
+          const message = encodeURIComponent(body.success_description || "");
           return response.redirect(`${redirectUri}?success=${message}`);
         }
 
@@ -172,3 +184,7 @@ export const syndicateController = {
     }
   },
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */
