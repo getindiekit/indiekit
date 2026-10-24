@@ -39,7 +39,9 @@ describe("endpoint-auth POST /auth/token", () => {
       .query({ redirect_uri: "https://auth-endpoint.example/redirect" });
     const responseTextRegexp =
       /access_token=(?<access_token>.*)&token_type=(?<token_type>.*)&me=(?<me>.*)&scope=(?<scope>.*)/;
-    const result = response.text.match(responseTextRegexp).groups;
+    const result = response.text.match(responseTextRegexp)?.groups;
+
+    assert.ok(result, "response did not match");
 
     assert.equal(response.status, 200);
     assert.ok(result.access_token);
