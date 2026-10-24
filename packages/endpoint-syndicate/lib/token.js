@@ -2,9 +2,14 @@ import { IndiekitError } from "@indiekit/error";
 import { getSecret } from "@indiekit/util";
 import jwt from "jsonwebtoken";
 
+/**
+ * Find bearer token in request
+ * @param {Partial<Pick<Request, "body"|"headers"|"query">>} request - Request
+ * @returns {string} Bearer token
+ */
 export const findBearerToken = (request) => {
-  if (request.headers?.["x-webhook-signature"] && request.body?.url) {
-    const signature = request.headers["x-webhook-signature"];
+  const signature = request.headers?.["x-webhook-signature"];
+  if (typeof signature === "string" && request.body?.url) {
     const verifiedToken = verifyToken(signature);
     const bearerToken = signToken(verifiedToken, request.body.url);
     return bearerToken;
@@ -16,7 +21,7 @@ export const findBearerToken = (request) => {
     return bearerToken;
   }
 
-  if (request.query?.token) {
+  if (typeof request.query?.token === "string") {
     const bearerToken = request.query.token;
     return bearerToken;
   }
@@ -26,7 +31,7 @@ export const findBearerToken = (request) => {
 
 /**
  * Generate short-lived bearer token with update scope
- * @param {object} verifiedToken - JSON Web Token
+ * @param {JwtPayload} verifiedToken - JSON Web Token
  * @param {string} url - Publication URL
  * @returns {string} Signed JSON Web Token
  */
@@ -64,5 +69,6 @@ export const verifyToken = (signature) => {
 };
 
 /**
+ * @import { Request } from "express"
  * @import { JsonWebTokenError, JwtPayload } from "jsonwebtoken"
  */
