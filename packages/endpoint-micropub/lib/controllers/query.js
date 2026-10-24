@@ -96,13 +96,20 @@ export const queryController = async (request, response, next) => {
           // `filter` matches the name or content, `category` a category and
           // `post-type` a post type. All are cast to strings so that, whatever
           // the query parser yields, nothing reaches the database as an
-          // operator.
-          const postType = request.query["post-type"];
+          // operator. `post-type` may be given more than once, so it is
+          // normalised to an array and one post type is a special case of many
+          // rather than a separate path.
+          const postTypes = [request.query["post-type"]]
+            .flat()
+            .filter(Boolean)
+            .map(String);
           const pattern =
             filter && new RegExp(RegExp.escape(String(filter)), "i");
           const postsFilter = {
             ...(category && { "properties.category": String(category) }),
-            ...(postType && { "properties.post-type": String(postType) }),
+            ...(postTypes.length > 0 && {
+              "properties.post-type": { $in: postTypes },
+            }),
             ...(pattern && {
               $or: [
                 { "properties.name": pattern },
