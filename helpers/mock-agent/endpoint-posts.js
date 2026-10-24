@@ -90,6 +90,54 @@ export function mockClient() {
     })
     .persist();
 
+  // Get source information for posts filtered by several post types
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", "post-type": ["bookmark", "note"] },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
+    })
+    .persist();
+
+  // Same two post types, given in the other order
+  agent
+    .get(micropubEndpointOrigin)
+    .intercept({
+      path: "/",
+      query: { q: "source", limit: "12", "post-type": ["note", "bookmark"] },
+    })
+    .reply(200, {
+      items: [
+        {
+          type: ["h-entry"],
+          properties: {
+            uid: ["456"],
+            name: ["Lunch spots"],
+            "post-type": ["bookmark"],
+            published: ["2024-12-22"],
+            url: ["https://website.example/lunch-spots"],
+          },
+        },
+      ],
+      _count: 1,
+    })
+    .persist();
+
   // Get source information for posts filtered by a post type with no posts
   agent
     .get(micropubEndpointOrigin)

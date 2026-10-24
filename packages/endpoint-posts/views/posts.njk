@@ -1,24 +1,19 @@
 {% extends "document.njk" %}
-{% from "navigation/macro.njk" import navigation with context %}
 
 {% block content %}
-  {{ navigation({
-    classes: "navigation--filters",
-    label: __("posts.posts.postType"),
-    items: postTypeItems
-  }) }}
   {% call details({
     summary: __("posts.posts.filter"),
-    open: filter | length
+    open: isFiltered
   }) %}
     <form method="get" action="{{ parentUrl }}" role="search">
-      {% if postType %}
-      {{ input({
+      {{ checkboxes({
         name: "post-type",
-        type: "hidden",
-        value: postType
-      }) }}
-      {% endif %}
+        values: postTypes,
+        fieldset: {
+          legend: __("posts.posts.postType")
+        },
+        items: postTypeItems
+      }) | indent(6) }}
       {{ input({
         name: "filter",
         type: "search",
