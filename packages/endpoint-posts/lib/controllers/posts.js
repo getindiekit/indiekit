@@ -37,14 +37,19 @@ export const postsController = async (request, response, next) => {
     const scope = request.session?.scope;
     const { after, before, success } = request.query;
     const limit = Number(request.query.limit) || 12;
-    const postType = String(request.query["post-type"] || "");
+    // Repeated parameters arrive as an array, so one post type is a special
+    // case of many rather than a separate path.
+    const postTypes = [request.query["post-type"]]
+      .flat()
+      .filter(Boolean)
+      .map(String);
     const filter = String(request.query.filter || "");
     const parentUrl = request.baseUrl + request.path;
 
     // Filters are passed to Micropub and kept when paging
     const filters = new URLSearchParams();
-    if (postType) {
-      filters.set("post-type", postType);
+    for (const type of postTypes) {
+      filters.append("post-type", type);
     }
 
     if (filter) {
@@ -113,41 +118,22 @@ export const postsController = async (request, response, next) => {
       };
     }
 
-    // One link per post type, plus one for all of them. Other filters are
-    // kept; `after` and `before` are not in `filters`, so a cursor naming an
-    // item in the result set being left behind is dropped by construction.
-    const postTypeHref = (type) => {
-      const parameters = new URLSearchParams(filters);
+    // A checkbox per configured post type. Nothing checked means every post
+    // type, which is what an absent parameter already means, so there is no
+    // control for it.
+    const postTypeItems = Object.entries(publication.postTypes).map(
+      ([type, { name }]) => ({ value: type, label: name }),
+    );
 
-      if (type) {
-        parameters.set("post-type", type);
-      } else {
-        parameters.delete("post-type");
-      }
-
-      return parameters.size > 0 ? `?${parameters}` : parentUrl;
-    };
-
-    const postTypeItems = [
-      {
-        href: postTypeHref(""),
-        text: response.locals.__("posts.posts.allPostTypes"),
-        attributes: { "aria-current": postType ? undefined : "true" },
-      },
-      ...Object.entries(publication.postTypes).map(([type, { name }]) => ({
-        href: postTypeHref(type),
-        text: name,
-        attributes: { "aria-current": type === postType ? "true" : undefined },
-      })),
-    ];
-
-    // The heading states what the controls do not already show. The post type
-    // is marked on its own link, so it is a prefix rather than part of the
-    // sentence — which also keeps the post type's name, which is not
-    // translated, out of a translated sentence. The search term's control is
-    // collapsed, so it is played back.
+    // The heading states what the controls do not already show, and a post
+    // type's name is a configured string rather than a locale key, so it is a
+    // label joined to the sentence rather than part of it. Taken in the
+    // publication's own order, so the same selection always reads the same way
+    // whatever order the query string gives.
     const count = micropubResponse?._count || 0;
-    const postTypeName = publication.postTypes[postType]?.name;
+    const selectedNames = Object.entries(publication.postTypes)
+      .filter(([type]) => postTypes.includes(type))
+      .map(([, { name }]) => name);
 
     let listSummary;
     if (count === 0) {
@@ -162,21 +148,21 @@ export const postsController = async (request, response, next) => {
         : response.locals.__n("posts.posts.count", count);
     }
 
-    if (postTypeName) {
-      listSummary = `${postTypeName} · ${listSummary}`;
+    if (selectedNames.length > 0) {
+      listSummary = `${selectedNames.join(", ")} · ${listSummary}`;
     }
 
+    const isFiltered = postTypes.length > 0 || Boolean(filter);
     const title = response.locals.__("posts.posts.title");
 
     return response.render("posts", {
       title,
-      documentTitle:
-        postType || filter
-          ? response.locals.__("posts.posts.titleFiltered", {
-              title,
-              summary: listSummary,
-            })
-          : undefined,
+      documentTitle: isFiltered
+        ? response.locals.__("posts.posts.titleFiltered", {
+            title,
+            summary: listSummary,
+          })
+        : undefined,
       listSummary,
       actions: [
         scope && checkScope(scope, "create")
@@ -189,7 +175,8 @@ export const postsController = async (request, response, next) => {
       ],
       cursor,
       filter,
-      postType,
+      isFiltered,
+      postTypes,
       postTypeItems,
       posts,
       limit,
