@@ -36,15 +36,20 @@ describe("endpoint-syndicate POST /syndicate", () => {
 
     assert.equal(result.status, 200);
     assert.equal(result.body.success_description, "Syndicated 2 posts");
+
+    /**
+     * @type {Array<{url: string, success_description: string}>}
+     */
+    const results = result.body.results;
     assert.deepEqual(
-      result.body.results.map((post) => post.url),
+      results.map((post) => post.url),
       [
         "https://website.example/notes/foo/",
         "https://website.example/notes/bar/",
       ],
     );
     assert.deepEqual(
-      result.body.results.map((post) => post.success_description),
+      results.map((post) => post.success_description),
       [
         "Post updated at https://website.example/notes/foo/",
         "Post updated at https://website.example/notes/bar/",
