@@ -90,15 +90,26 @@ export const queryController = async (request, response, next) => {
           hasNext: false,
           hasPrev: false,
         };
+        let count = 0;
 
         if (postsCollection) {
-          // `filter` matches the name or content, `category` a category.
-          // Both are cast to strings so that, whatever the query parser
-          // yields, nothing reaches the database as an operator.
+          // `filter` matches the name or content, `category` a category and
+          // `post-type` a post type. All are cast to strings so that, whatever
+          // the query parser yields, nothing reaches the database as an
+          // operator. `post-type` may be given more than once, so it is
+          // normalised to an array and one post type is a special case of many
+          // rather than a separate path.
+          const postTypes = [request.query["post-type"]]
+            .flat()
+            .filter(Boolean)
+            .map(String);
           const pattern =
             filter && new RegExp(RegExp.escape(String(filter)), "i");
           const postsFilter = {
             ...(category && { "properties.category": String(category) }),
+            ...(postTypes.length > 0 && {
+              "properties.post-type": { $in: postTypes },
+            }),
             ...(pattern && {
               $or: [
                 { "properties.name": pattern },
@@ -110,6 +121,14 @@ export const queryController = async (request, response, next) => {
 
           cursor = await getCursor(postsCollection, after, before, limit, {
             filter: postsFilter,
+          });
+
+          // Every matching post, not just this page. `getCursor` lists and
+          // pages by a string `properties.uid`, so a post without one is
+          // unreachable and is left out of the count as well.
+          count = await postsCollection.countDocuments({
+            ...postsFilter,
+            "properties.uid": { $type: "string" },
           });
         }
 
@@ -134,6 +153,7 @@ export const queryController = async (request, response, next) => {
             ...(cursor.hasNext && { after: cursor.lastItem }),
             ...(cursor.hasPrev && { before: cursor.firstItem }),
           },
+          _count: count,
         });
       }
 

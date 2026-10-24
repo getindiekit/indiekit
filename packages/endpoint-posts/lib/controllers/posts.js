@@ -37,10 +37,31 @@ export const postsController = async (request, response, next) => {
     const scope = request.session?.scope;
     const { after, before, success } = request.query;
     const limit = Number(request.query.limit) || 12;
+    // Repeated parameters arrive as an array, so one post type is a special
+    // case of many rather than a separate path.
+    const postTypes = [request.query["post-type"]]
+      .flat()
+      .filter(Boolean)
+      .map(String);
+    const filter = String(request.query.filter || "");
+    const parentUrl = request.baseUrl + request.path;
+
+    // Filters are passed to Micropub and kept when paging
+    const filters = new URLSearchParams();
+    for (const type of postTypes) {
+      filters.append("post-type", type);
+    }
+
+    if (filter) {
+      filters.set("filter", filter);
+    }
 
     const micropubUrl = new URL(application.micropubEndpoint);
     micropubUrl.searchParams.append("q", "source");
     micropubUrl.searchParams.append("limit", String(limit));
+    for (const [key, value] of filters) {
+      micropubUrl.searchParams.append(key, value);
+    }
 
     if (after) {
       micropubUrl.searchParams.append("after", String(after));
@@ -79,21 +100,70 @@ export const postsController = async (request, response, next) => {
     }
 
     const cursor = {};
+    const pageHref = (key, value) => {
+      const parameters = new URLSearchParams(filters);
+      parameters.set(key, value);
+      return `?${parameters}`;
+    };
 
     if (micropubResponse?.paging?.after) {
       cursor.next = {
-        href: `?after=${micropubResponse.paging.after}`,
+        href: pageHref("after", micropubResponse.paging.after),
       };
     }
 
     if (micropubResponse?.paging?.before) {
       cursor.previous = {
-        href: `?before=${micropubResponse.paging.before}`,
+        href: pageHref("before", micropubResponse.paging.before),
       };
     }
 
+    // A checkbox per configured post type. Nothing checked means every post
+    // type, which is what an absent parameter already means, so there is no
+    // control for it.
+    const postTypeItems = Object.entries(publication.postTypes).map(
+      ([type, { name }]) => ({ value: type, label: name }),
+    );
+
+    // The heading states what the controls do not already show, and a post
+    // type's name is a configured string rather than a locale key, so it is a
+    // label joined to the sentence rather than part of it. Taken in the
+    // publication's own order, so the same selection always reads the same way
+    // whatever order the query string gives.
+    const count = micropubResponse?._count || 0;
+    const selectedNames = Object.entries(publication.postTypes)
+      .filter(([type]) => postTypes.includes(type))
+      .map(([, { name }]) => name);
+
+    let listSummary;
+    if (count === 0) {
+      listSummary = filter
+        ? response.locals.__("posts.posts.noneMatching", { query: filter })
+        : response.locals.__("posts.posts.none");
+    } else {
+      listSummary = filter
+        ? response.locals.__n("posts.posts.countMatching", count, {
+            query: filter,
+          })
+        : response.locals.__n("posts.posts.count", count);
+    }
+
+    if (selectedNames.length > 0) {
+      listSummary = `${selectedNames.join(", ")} · ${listSummary}`;
+    }
+
+    const isFiltered = postTypes.length > 0 || Boolean(filter);
+    const title = response.locals.__("posts.posts.title");
+
     return response.render("posts", {
-      title: response.locals.__("posts.posts.title"),
+      title,
+      documentTitle: isFiltered
+        ? response.locals.__("posts.posts.titleFiltered", {
+            title,
+            summary: listSummary,
+          })
+        : undefined,
+      listSummary,
       actions: [
         scope && checkScope(scope, "create")
           ? {
@@ -104,10 +174,14 @@ export const postsController = async (request, response, next) => {
           : {},
       ],
       cursor,
+      filter,
+      isFiltered,
+      postTypes,
+      postTypeItems,
       posts,
       limit,
-      count: micropubResponse._count,
-      parentUrl: request.baseUrl + request.path,
+      count,
+      parentUrl,
       statusTypes,
       success,
     });
