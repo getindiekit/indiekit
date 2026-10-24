@@ -8,6 +8,7 @@
     <form method="get" action="{{ parentUrl }}" role="search">
       {{ checkboxes({
         name: "post-type",
+        inline: true,
         values: postTypes,
         fieldset: {
           legend: __("posts.posts.postType")
