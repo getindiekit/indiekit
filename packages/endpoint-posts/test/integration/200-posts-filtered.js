@@ -73,6 +73,16 @@ describe("endpoint-posts GET /posts?post-type=*&filter=*", () => {
     ]);
   });
 
+  it("Lays the post type checkboxes out inline", async () => {
+    const document = await getDocument({});
+    const $checkboxes = document.querySelector(".checkboxes");
+
+    // A publication can configure a dozen or more post types, which stack to
+    // most of a screen in the component's default column layout.
+    assert.ok($checkboxes, "checkboxes not found");
+    assert.equal($checkboxes.classList.contains("checkboxes--inline"), true);
+  });
+
   it("Checks several post types at once", async () => {
     const document = await getDocument({ "post-type": ["bookmark", "note"] });
     const checked = [
