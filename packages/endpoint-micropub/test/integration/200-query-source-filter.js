@@ -85,6 +85,23 @@ describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*&post-type
     assert.equal(next.body.paging.after, undefined);
   });
 
+  it("Filters posts by several post types", async () => {
+    const both = await query({ "post-type": ["note", "bookmark"] });
+    const justNotes = await query({ "post-type": ["note"] });
+
+    assert.equal(both.body.items.length, 4);
+    assert.equal(both.body._count, 4);
+    assert.equal(justNotes.body.items.length, 3);
+    assert.equal(justNotes.body._count, 3);
+  });
+
+  it("Treats a post type that would be an operator as a string", async () => {
+    const result = await query({ "post-type": ['{"$ne":"note"}', "bookmark"] });
+
+    assert.equal(result.body.items.length, 1);
+    assert.equal(result.body.items[0].properties.name[0], "Saved for later");
+  });
+
   it("Counts every matching post, not just the page", async () => {
     const page = await query({ limit: 1 });
 
