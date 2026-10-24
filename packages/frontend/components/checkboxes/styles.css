@@ -10,6 +10,14 @@ checkboxes-field {
   flex-direction: column;
 }
 
+@media (width >= 30rem) {
+  .checkboxes--inline {
+    column-gap: var(--space-xl);
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
 .checkboxes__item {
   margin-block: var(--space-2xs);
   padding-block: var(--space-xs);
