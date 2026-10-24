@@ -39,74 +39,70 @@ describe("endpoint-posts GET /posts?post-type=*&filter=*", () => {
     );
   });
 
-  it("Marks the chosen post type as the current filter", async () => {
+  it("Checks the chosen post type and no other", async () => {
     const document = await getDocument({ "post-type": "bookmark" });
-    const current = document.querySelectorAll(
-      '.navigation--filters a[aria-current="true"]',
-    );
+    const checked = [
+      ...document.querySelectorAll('[name="post-type"]:checked'),
+    ].map((input) => input.value);
 
-    assert.equal(current.length, 1);
-    assert.equal(current[0].textContent.trim(), "Custom bookmark post type");
+    assert.deepEqual(checked, ["bookmark"]);
   });
 
-  it("Marks every post type as current when none is chosen", async () => {
+  it("Checks nothing when no post type is chosen", async () => {
     const document = await getDocument({});
-    const current = document.querySelectorAll(
-      '.navigation--filters a[aria-current="true"]',
-    );
+    const checked = document.querySelectorAll('[name="post-type"]:checked');
 
-    assert.equal(current.length, 1);
-    assert.equal(current[0].textContent.trim(), "All post types");
+    assert.equal(checked.length, 0);
   });
 
-  it("Keeps the search term in the post type links and drops the cursor", async () => {
-    const document = await getDocument({
-      "post-type": "bookmark",
-      filter: "lunch & dinner",
-    });
-    const links = [...document.querySelectorAll(".navigation--filters a")];
-    const note = links.find(
-      (link) => link.textContent.trim() === "Custom note post type",
-    );
-    const url = new URL(
-      note.getAttribute("href"),
-      "https://website.example/posts",
+  it("Offers a checkbox for every configured post type", async () => {
+    const document = await getDocument({});
+    const values = [...document.querySelectorAll('[name="post-type"]')].map(
+      (input) => input.value,
     );
 
-    assert.equal(url.searchParams.get("post-type"), "note");
-    assert.equal(url.searchParams.get("filter"), "lunch & dinner");
-    assert.equal(url.searchParams.has("after"), false);
-    assert.equal(url.searchParams.has("before"), false);
-  });
-
-  it("Links to the unfiltered list from the all post types pill", async () => {
-    const document = await getDocument({ "post-type": "bookmark" });
-    const links = [...document.querySelectorAll(".navigation--filters a")];
-    const all = links.find(
-      (link) => link.textContent.trim() === "All post types",
-    );
-
-    assert.equal(all.getAttribute("href"), "/posts/");
-  });
-
-  it("Keeps the post type when the search form is submitted", async () => {
-    const document = await getDocument({ "post-type": "bookmark" });
-
-    assert.equal(
-      document.querySelector('form[role="search"] [name="post-type"]').value,
+    // The publication's post types are the configured ones merged with those
+    // the loaded post type plugins bring, keyed in alphabetical order.
+    assert.deepEqual(values, [
+      "article",
       "bookmark",
-    );
+      "like",
+      "note",
+      "photo",
+      "reply",
+    ]);
   });
 
-  it("Collapses the search unless a search term is in use", async () => {
+  it("Checks several post types at once", async () => {
+    const document = await getDocument({ "post-type": ["bookmark", "note"] });
+    const checked = [
+      ...document.querySelectorAll('[name="post-type"]:checked'),
+    ].map((input) => input.value);
+
+    assert.deepEqual(checked, ["bookmark", "note"]);
+  });
+
+  it("Carries the post type in the form itself", async () => {
+    const document = await getDocument({ "post-type": "bookmark" });
+    const input = document.querySelector(
+      'form[role="search"] [name="post-type"][value="bookmark"]',
+    );
+
+    assert.ok(input, "post-type checkbox not found inside the search form");
+    assert.equal(input.checked, true);
+  });
+
+  it("Opens the details for either control in use", async () => {
     const unfiltered = await getDocument({});
     const searched = await getDocument({ filter: "lunch & dinner" });
+    const byType = await getDocument({ "post-type": "bookmark" });
 
     assert.equal(
       unfiltered.querySelector("details").hasAttribute("open"),
       false,
     );
     assert.equal(searched.querySelector("details").hasAttribute("open"), true);
+    assert.equal(byType.querySelector("details").hasAttribute("open"), true);
   });
 
   it("Heads the list with the number of posts", async () => {
@@ -124,6 +120,28 @@ describe("endpoint-posts GET /posts?post-type=*&filter=*", () => {
     assert.equal(
       document.querySelector(".section__title").textContent.trim(),
       "Custom bookmark post type · 1 post",
+    );
+  });
+
+  it("Joins several post types in the heading and the title", async () => {
+    const document = await getDocument({ "post-type": ["bookmark", "note"] });
+
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "Custom bookmark post type, Custom note post type · 1 post",
+    );
+    assert.equal(
+      document.title,
+      "Published posts: Custom bookmark post type, Custom note post type · 1 post - Test configuration",
+    );
+  });
+
+  it("Joins post types in the publication's order, not the query's", async () => {
+    const document = await getDocument({ "post-type": ["note", "bookmark"] });
+
+    assert.equal(
+      document.querySelector(".section__title").textContent.trim(),
+      "Custom bookmark post type, Custom note post type · 1 post",
     );
   });
 
