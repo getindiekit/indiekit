@@ -11,10 +11,13 @@ checkboxes-field {
 }
 
 @media (width >= 30rem) {
+  /* A publication can configure a dozen or more post types. Wrapping them by
+     width leaves ragged rows, so they are laid out in columns that align
+     whatever each label's length. */
   .checkboxes--inline {
     column-gap: var(--space-xl);
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   }
 }
 
