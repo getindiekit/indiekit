@@ -5,7 +5,7 @@
     summary: __("posts.posts.filter"),
     open: isFiltered
   }) %}
-    <form method="get" action="{{ parentUrl }}" role="search">
+    <form class="fieldset" method="get" action="{{ parentUrl }}" role="search">
       {{ checkboxes({
         name: "post-type",
         inline: true,
@@ -15,18 +15,21 @@
         },
         items: postTypeItems
       }) | indent(6) }}
+
       {{ input({
         name: "filter",
         type: "search",
         label: __("posts.posts.filter"),
         value: filter
       }) }}
+
       {{ button({
         classes: "button--secondary",
         text: __("posts.posts.submit")
       }) }}
     </form>
   {% endcall %}
+
   {% call section({ id: "posts", title: listSummary | escape }) %}
     {%- if posts | length > 0 %}
     {{ cardGrid({
