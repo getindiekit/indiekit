@@ -6,8 +6,6 @@ import path from "node:path";
  * @returns {string} Friendly URL
  */
 export const friendlyUrl = (string) => {
-  string = String(string);
-
   try {
     const { host, pathname } = new URL(string);
 

@@ -9,8 +9,6 @@ import posix from "node:path/posix";
  * @see {@link https://indieauth.spec.indieweb.org/#url-canonicalization}
  */
 export const getCanonicalUrl = (string, baseUrl) => {
-  string = String(string);
-
   try {
     return new URL(string, baseUrl).href;
   } catch (error) {
