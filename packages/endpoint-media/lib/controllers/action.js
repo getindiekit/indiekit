@@ -3,7 +3,7 @@ import { IndiekitError } from "@indiekit/error";
 import { mediaContent } from "../media-content.js";
 import { mediaData } from "../media-data.js";
 import { mediaTransform } from "../media-transform.js";
-import { checkScope } from "../scope.js";
+import { hasScope } from "../scope.js";
 
 /**
  * Perform requested file action
@@ -20,8 +20,7 @@ export const actionController = (imageProcessing) =>
     try {
       // Check provided scope
       const scope = session?.scope;
-      const hasScope = checkScope(scope);
-      if (!hasScope) {
+      if (!hasScope(scope)) {
         throw IndiekitError.insufficientScope(
           response.locals.__("ForbiddenError.insufficientScope"),
           { scope: action },

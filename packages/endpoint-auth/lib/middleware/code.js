@@ -1,7 +1,7 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
 
-import { verifyCode } from "../pkce.js";
+import { isVerifiedCode } from "../pkce.js";
 import { verifyToken } from "../token.js";
 import { getRequestParameters } from "../utils.js";
 
@@ -115,7 +115,7 @@ export const codeValidator = async (request, response, next) => {
         );
       }
 
-      const verifiedCode = verifyCode(code_verifier, code_challenge);
+      const verifiedCode = isVerifiedCode(code_verifier, code_challenge);
       if (!verifiedCode) {
         throw IndiekitError.unauthorized(
           response.locals.__("BadRequestError.invalidValue", "code_verifier"),

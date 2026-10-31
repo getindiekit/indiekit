@@ -4,7 +4,7 @@
  * @param {string} [action] - Required action
  * @returns {boolean} `true` if provided scope includes action
  */
-export const checkScope = (scope, action = "media") => {
+export const hasScope = (scope, action = "media") => {
   // Default scope request is `create`
   if (!scope) {
     scope = "create";

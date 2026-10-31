@@ -176,14 +176,14 @@ export const createHashtags = (category) => {
 /**
  * Get post test from given JF2 properties
  * @param {object} properties - JF2 properties
- * @param {boolean} [includePermalink] - Include permalink in post
- * @param {boolean} [includeCategories] - Add categories as hashtags
+ * @param {boolean} [shouldIncludePermalink] - Include permalink in post
+ * @param {boolean} [shouldIncludeCategories] - Add categories as hashtags
  * @returns {string} Post text
  */
 export const getPostText = (
   properties,
-  includePermalink,
-  includeCategories,
+  shouldIncludePermalink,
+  shouldIncludeCategories,
 ) => {
   let text = "";
 
@@ -197,7 +197,7 @@ export const getPostText = (
   // Show hashtags at the end of a post, where Bluesky links them. Skip any
   // already written into the post content. `createRichText` runs
   // `detectFacets`, which turns them into tag facets.
-  const hashtags = includeCategories
+  const hashtags = shouldIncludeCategories
     ? createHashtags(properties.category).filter(
         (hashtag) =>
           !new RegExp(String.raw`${hashtag}(?![\p{L}\p{N}_])`, "iu").test(text),
@@ -209,7 +209,7 @@ export const getPostText = (
   text = brevity.shorten(
     text,
     properties.url,
-    includePermalink // https://indieweb.org/permashortlink
+    shouldIncludePermalink // https://indieweb.org/permashortlink
       ? properties.url
       : false,
     false, // https://indieweb.org/permashortcitation

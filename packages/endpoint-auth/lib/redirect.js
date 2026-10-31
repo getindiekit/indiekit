@@ -33,7 +33,7 @@ export const validateRedirect = async (redirectUri, clientId) => {
   const declaredUris = await getDeclaredRedirectUris(clientId);
 
   return declaredUris.some((declaredUri) =>
-    matchesDeclaredUri(redirectUrl, declaredUri),
+    doesMatchDeclaredUri(redirectUrl, declaredUri),
   );
 };
 
@@ -108,7 +108,7 @@ const parseLinkHeader = (header) => {
  * @returns {boolean} Redirect URL matches declared URI
  * @see {@link https://github.com/indieweb/indieauth/issues/22#issuecomment-544204967}
  */
-const matchesDeclaredUri = (redirectUrl, declaredUri) => {
+const doesMatchDeclaredUri = (redirectUrl, declaredUri) => {
   let declaredUrl;
   try {
     declaredUrl = new URL(declaredUri);

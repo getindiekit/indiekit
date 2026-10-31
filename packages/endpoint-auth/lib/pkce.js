@@ -7,7 +7,11 @@ import { createHash } from "node:crypto";
  * @param {string} [challengeMethod] - Code challenge method
  * @returns {boolean} - Code challenge result
  */
-export const verifyCode = (verifier, challenge, challengeMethod = "sha256") => {
+export const isVerifiedCode = (
+  verifier,
+  challenge,
+  challengeMethod = "sha256",
+) => {
   const base64Digest = createHash(challengeMethod)
     .update(verifier)
     .digest("base64url");

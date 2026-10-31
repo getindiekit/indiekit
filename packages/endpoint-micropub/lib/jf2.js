@@ -12,10 +12,10 @@ import { decodeQueryParameter, relativeMediaPath, toArray } from "./utils.js";
 /**
  * Create JF2 object from form-encoded request
  * @param {object} body - Form-encoded request body
- * @param {boolean} [requestReferences] - Request data for any referenced URLs
+ * @param {boolean} [canFetchReferences] - Fetch data for any referenced URLs
  * @returns {Promise<object>} Micropub action
  */
-export const formEncodedToJf2 = async (body, requestReferences) => {
+export const formEncodedToJf2 = async (body, canFetchReferences) => {
   const jf2 = {
     type: body.h || "entry",
   };
@@ -34,7 +34,7 @@ export const formEncodedToJf2 = async (body, requestReferences) => {
     }
   }
 
-  if (requestReferences) {
+  if (canFetchReferences) {
     return fetchReferences(jf2);
   }
 
@@ -44,15 +44,15 @@ export const formEncodedToJf2 = async (body, requestReferences) => {
 /**
  * Convert mf2 to JF2
  * @param {object} body - Form-encoded request body
- * @param {boolean} [requestReferences] - Request data for any referenced URLs
+ * @param {boolean} [canFetchReferences] - Fetch data for any referenced URLs
  * @returns {Promise<object>} Micropub action
  */
-export const mf2ToJf2 = async (body, requestReferences) => {
+export const mf2ToJf2 = async (body, canFetchReferences) => {
   const mf2 = {
     items: [body],
   };
 
-  if (requestReferences) {
+  if (canFetchReferences) {
     return mf2tojf2referenced(mf2);
   }
 
