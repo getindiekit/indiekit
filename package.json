@@ -52,7 +52,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@atproto/dev-env": "^0.6.23",
+    "@atproto/dev-env": "^0.7.1",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eslint/js": "^10.0.1",
@@ -80,7 +80,7 @@
     "@types/i18n": "^0.13.12",
     "@types/jsdom": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/lodash": "^4.17.26",
+    "@types/lodash": "^4.17.27",
     "@types/mime-types": "^3.0.1",
     "@types/mock-req-res": "^1.1.6",
     "@types/node": "^24.19.2",
@@ -95,12 +95,12 @@
     "cookie-session": "^2.1.1",
     "create-indiekit": "*",
     "date-fns": "^4.4.0",
-    "eslint": "^10.13.0",
+    "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-node": "^0.4.0",
     "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-jsdoc": "^65.3.12",
-    "eslint-plugin-unicorn": "^78.0.0",
+    "eslint-plugin-jsdoc": "^65.4.2",
+    "eslint-plugin-unicorn": "^79.0.0",
     "eslint-plugin-wc": "^3.1.0",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
@@ -124,7 +124,7 @@
     "vitepress": "^1.6.4"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.64.10",
+    "@rollup/rollup-linux-x64-gnu": "^4.67.2",
     "lightningcss-linux-x64-gnu": "^1.33.0"
   },
   "allowScripts": {
