@@ -101,8 +101,21 @@
       "syndicate": "Syndicaatspost"
     },
     "posts": {
+      "count": {
+        "one": "%s bericht",
+        "other": "%s berichten"
+      },
+      "countMatching": {
+        "one": "%s bericht dat overeenkomt met “{{{query}}}”",
+        "other": "%s berichten die overeenkomen met “{{{query}}}”"
+      },
+      "filter": "Zoekopdracht",
       "none": "Geen posten",
-      "title": "Gepubliceerde posten"
+      "noneMatching": "Geen berichten gevonden die overeenkomen met “{{{query}}}”",
+      "postType": "Berichttype",
+      "submit": "Filter berichten",
+      "title": "Gepubliceerde posten",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Verwijderd",

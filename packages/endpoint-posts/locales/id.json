@@ -101,8 +101,21 @@
       "syndicate": "Pos sindikat"
     },
     "posts": {
+      "count": {
+        "one": "%s posting",
+        "other": "%s postingan"
+      },
+      "countMatching": {
+        "one": "%s postingan yang cocok dengan “{{{query}}}”",
+        "other": "%s postingan yang cocok dengan “{{{query}}}”"
+      },
+      "filter": "Mencari",
       "none": "Tidak ada postingan",
-      "title": "Postingan yang diterbitkan"
+      "noneMatching": "Tidak ada postingan yang cocok dengan “{{{query}}}”",
+      "postType": "Jenis postingan",
+      "submit": "Filter postingan",
+      "title": "Postingan yang diterbitkan",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Dihapus",

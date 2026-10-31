@@ -101,8 +101,21 @@
       "syndicate": "Sindikat post"
     },
     "posts": {
+      "count": {
+        "one": "%s objava",
+        "other": "%s objava"
+      },
+      "countMatching": {
+        "one": "%s objava koja odgovara upitu „{{{query}}}”",
+        "other": "%s objava koje odgovaraju upitu „{{{query}}}”"
+      },
+      "filter": "Pretraga",
       "none": "Nema postova",
-      "title": "Objavljene postova"
+      "noneMatching": "Nema objava koje odgovaraju upitu „{{{query}}}”",
+      "postType": "Vrsta objave",
+      "submit": "Filtriraj objave",
+      "title": "Objavljene postova",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Izbrisano",

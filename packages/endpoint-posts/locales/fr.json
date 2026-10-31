@@ -101,8 +101,21 @@
       "syndicate": "Distribuer le post"
     },
     "posts": {
+      "count": {
+        "one": "%s publication",
+        "other": "%s publications"
+      },
+      "countMatching": {
+        "one": "%s publication correspondant à « {{{query}}} »",
+        "other": "%s publications correspondant à « {{{query}}} »"
+      },
+      "filter": "Recherche",
       "none": "Aucune publication",
-      "title": "Articles publiés"
+      "noneMatching": "Aucun article ne correspond à « {{{query}}} »",
+      "postType": "Type de publication",
+      "submit": "Filtrer les publications",
+      "title": "Articles publiés",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Supprimé",

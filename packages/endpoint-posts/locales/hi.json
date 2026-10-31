@@ -101,8 +101,21 @@
       "syndicate": "सिंडिकेट पोस्ट"
     },
     "posts": {
+      "count": {
+        "one": "%s पोस्ट",
+        "other": "%s पोस्ट"
+      },
+      "countMatching": {
+        "one": "%s पोस्ट मिलान “{{{query}}}”",
+        "other": "%s पोस्ट जो “{{{query}}}” से मेल खाती हैं"
+      },
+      "filter": "खोज",
       "none": "कोई पोस्ट नहीं",
-      "title": "प्रकाशित पोस्ट"
+      "noneMatching": "“{{{query}}}” से मेल खाने वाली कोई पोस्ट नहीं है",
+      "postType": "पद प्रकार",
+      "submit": "पोस्ट फ़िल्टर करें",
+      "title": "प्रकाशित पोस्ट",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "हटाए गए",
