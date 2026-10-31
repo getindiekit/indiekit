@@ -101,8 +101,21 @@
       "syndicate": "Distribuir postagem"
     },
     "posts": {
+      "count": {
+        "one": "%s postagem",
+        "other": "%s posts"
+      },
+      "countMatching": {
+        "one": "%s postagem correspondente a “{{{query}}}”",
+        "other": "%s posts correspondentes a “{{{query}}}”"
+      },
+      "filter": "Procurar",
       "none": "Nenhuma postagem",
-      "title": "Postagens publicadas"
+      "noneMatching": "Nenhuma publicação correspondente a “{{{query}}}”",
+      "postType": "Tipo de postagem",
+      "submit": "Filtrar publicações",
+      "title": "Postagens publicadas",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Eliminado",

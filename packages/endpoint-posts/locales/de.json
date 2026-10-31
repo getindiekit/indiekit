@@ -101,8 +101,21 @@
       "syndicate": "Syndikatsposten"
     },
     "posts": {
+      "count": {
+        "one": "%s Beitrag",
+        "other": "%s Beiträge"
+      },
+      "countMatching": {
+        "one": "%s Beitrag passend zu “{{{query}}}”",
+        "other": "%s Beiträge, die dem \"{{{query}}\" entsprechen"
+      },
+      "filter": "Suchen",
       "none": "Keine Beiträge",
-      "title": "Veröffentlichte Beiträge"
+      "noneMatching": "Keine Beiträge gefunden, die dem „{{{query}}}“ entsprechen.",
+      "postType": "Beitragstyp",
+      "submit": "Beiträge filtern",
+      "title": "Veröffentlichte Beiträge",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Gelöscht",

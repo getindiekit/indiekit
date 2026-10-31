@@ -101,8 +101,21 @@
       "syndicate": "辛迪加帖子"
     },
     "posts": {
+      "count": {
+        "one": "%s帖子",
+        "other": "%s帖子"
+      },
+      "countMatching": {
+        "one": "%s 帖子匹配“{{{query}}}”",
+        "other": "%s 帖子与“{{{query}}}”匹配"
+      },
+      "filter": "搜索",
       "none": "没有帖子",
-      "title": "已发布的帖子"
+      "noneMatching": "没有与“{{{query}}}”匹配的帖子",
+      "postType": "帖子类型",
+      "submit": "筛选帖子",
+      "title": "已发布的帖子",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "已删除",

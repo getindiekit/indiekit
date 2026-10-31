@@ -101,8 +101,21 @@
       "syndicate": "Syndikera inlägg"
     },
     "posts": {
+      "count": {
+        "one": "%s inlägg",
+        "other": "%s inlägg"
+      },
+      "countMatching": {
+        "one": "%s inlägg som matchar “{{{query}}}”",
+        "other": "%s inlägg som matchar “{{{query}}}”"
+      },
+      "filter": "Söka",
       "none": "Inga inlägg",
-      "title": "Publicerade inlägg"
+      "noneMatching": "Inga inlägg som matchar “{{{query}}}”",
+      "postType": "Inläggstyp",
+      "submit": "Filtrera inlägg",
+      "title": "Publicerade inlägg",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Raderad",

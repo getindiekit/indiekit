@@ -101,8 +101,21 @@
       "syndicate": "Sindicar"
     },
     "posts": {
+      "count": {
+        "one": "%s publicación",
+        "other": "%s publicaciones"
+      },
+      "countMatching": {
+        "one": "%s publicación que coincida con “{{{query}}}”",
+        "other": "%s publicaciones que coinciden con “{{{query}}}”"
+      },
+      "filter": "Buscar",
       "none": "No hay publicaciones",
-      "title": "Publicaciones publicadas"
+      "noneMatching": "No hay publicaciones que coincidan con “{{{query}}}”",
+      "postType": "Tipo de publicación",
+      "submit": "Filtrar publicaciones",
+      "title": "Publicaciones publicadas",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Eliminado",

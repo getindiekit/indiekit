@@ -101,8 +101,21 @@
       "syndicate": "Post syndykatu"
     },
     "posts": {
+      "count": {
+        "one": "%s post",
+        "other": "%s postów"
+      },
+      "countMatching": {
+        "one": "%s wpis pasujący do „{{{query}}}”",
+        "other": "%s postów pasujących do „{{{query}}}”"
+      },
+      "filter": "Szukaj",
       "none": "Brak postów",
-      "title": "Opublikowane posty"
+      "noneMatching": "Brak postów pasujących do „{{{query}}}”",
+      "postType": "Typ posta",
+      "submit": "Filtruj posty",
+      "title": "Opublikowane posty",
+      "titleFiltered": "{{{title}}}: {{{summary}}}"
     },
     "status": {
       "deleted": "Usunięto",
