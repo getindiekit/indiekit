@@ -18,11 +18,26 @@ describe("syndicator-mastodon/lib/mastodon", () => {
   const photo = [{ url: "https://website.example/photo1.jpg", alt: "Photo" }];
   const statusUrl = "https://mastodon.example/@username/1234567890987654321";
   const statusUrlNotFound = "https://mastodon.example/@username/404";
+  const remoteStatusUrl =
+    "https://deadbird.example/username/1234567890987654321";
+  const unknownUrl = "https://unknown.example/post";
 
   it("Posts a favourite", async () => {
     const result = await mastodon.postFavourite(statusUrl);
 
     assert.equal(result, statusUrl);
+  });
+
+  it("Posts a favourite of a status on another server", async () => {
+    const result = await mastodon.postFavourite(remoteStatusUrl);
+
+    assert.equal(result, remoteStatusUrl);
+  });
+
+  it("Doesn’t post a favourite if status on another server can’t be resolved", async () => {
+    const result = await mastodon.postFavourite(unknownUrl);
+
+    assert.equal(result, undefined);
   });
 
   it("Throws error posting a favourite", async () => {
@@ -35,6 +50,12 @@ describe("syndicator-mastodon/lib/mastodon", () => {
     const result = await mastodon.postReblog(statusUrl);
 
     assert.equal(result, statusUrl);
+  });
+
+  it("Posts a reblog of a status on another server", async () => {
+    const result = await mastodon.postReblog(remoteStatusUrl);
+
+    assert.equal(result, remoteStatusUrl);
   });
 
   it("Throws error posting a reblog", async () => {
@@ -82,11 +103,14 @@ describe("syndicator-mastodon/lib/mastodon", () => {
     );
   });
 
-  it("Doesn’t post a favourite of a URL to Mastodon", async () => {
-    const result = await mastodon.post(
-      { "like-of": "https://foo.bar/lunchtime" },
-      me,
-    );
+  it("Posts a favourite of a status on another server to Mastodon", async () => {
+    const result = await mastodon.post({ "like-of": remoteStatusUrl }, me);
+
+    assert.equal(result, remoteStatusUrl);
+  });
+
+  it("Doesn’t post a favourite of a URL that isn’t a status to Mastodon", async () => {
+    const result = await mastodon.post({ "like-of": unknownUrl }, me);
 
     assert.equal(result, undefined);
   });
@@ -100,9 +124,38 @@ describe("syndicator-mastodon/lib/mastodon", () => {
     );
   });
 
-  it("Doesn’t post a repost of a URL to Mastodon", async () => {
+  it("Posts a repost of a status on another server to Mastodon", async () => {
+    const result = await mastodon.post({ "repost-of": remoteStatusUrl }, me);
+
+    assert.equal(result, remoteStatusUrl);
+  });
+
+  it("Doesn’t post a repost of a URL that isn’t a status to Mastodon", async () => {
+    const result = await mastodon.post({ "repost-of": unknownUrl }, me);
+
+    assert.equal(result, undefined);
+  });
+
+  it("Posts a quote status of a status on another server to Mastodon", async () => {
     const result = await mastodon.post(
-      { "repost-of": "https://foo.bar/lunchtime" },
+      {
+        content: { html: "<p>Someone else who likes cheese sandwiches.</p>" },
+        "repost-of": remoteStatusUrl,
+        "post-type": "repost",
+      },
+      me,
+    );
+
+    assert.equal(result, statusUrl);
+  });
+
+  it("Doesn’t post a quote status of a URL that isn’t a status to Mastodon", async () => {
+    const result = await mastodon.post(
+      {
+        content: { html: "<p>Someone else who likes cheese sandwiches.</p>" },
+        "repost-of": unknownUrl,
+        "post-type": "repost",
+      },
       me,
     );
 

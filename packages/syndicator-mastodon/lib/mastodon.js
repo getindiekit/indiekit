@@ -34,6 +34,18 @@ export class Mastodon {
   }
 
   /**
+   * Get ID of a status on this server, resolving it if on another server
+   * @access private
+   * @param {string} statusUrl - URL of status
+   * @returns {Promise<string|undefined>} Status ID, if found
+   */
+  async #getStatusId(statusUrl) {
+    return isSameOrigin(statusUrl, this.serverUrl)
+      ? getStatusIdFromUrl(statusUrl)
+      : this.resolveRemoteStatus(statusUrl);
+  }
+
+  /**
    * Resolve the URL of a status on another server to a status ID on this one
    *
    * Searching with `resolve` asks the server to fetch the status over
@@ -57,11 +69,15 @@ export class Mastodon {
   /**
    * Post a favourite
    * @param {string} statusUrl - URL of status to favourite
-   * @returns {Promise<string>} Mastodon status URL
+   * @returns {Promise<string|undefined>} Mastodon status URL
    */
   async postFavourite(statusUrl) {
+    const statusId = await this.#getStatusId(statusUrl);
+    if (!statusId) {
+      return;
+    }
+
     const { v1 } = this.#client();
-    const statusId = getStatusIdFromUrl(statusUrl);
     const status = await v1.statuses.$select(statusId).favourite();
     return status.url;
   }
@@ -69,11 +85,15 @@ export class Mastodon {
   /**
    * Post a reblog
    * @param {string} statusUrl - URL of status to reblog
-   * @returns {Promise<string>} Mastodon status URL
+   * @returns {Promise<string|undefined>} Mastodon status URL
    */
   async postReblog(statusUrl) {
+    const statusId = await this.#getStatusId(statusUrl);
+    if (!statusId) {
+      return;
+    }
+
     const { v1 } = this.#client();
-    const statusId = getStatusIdFromUrl(statusUrl);
     const status = await v1.statuses.$select(statusId).reblog();
     return status.url;
   }
@@ -142,12 +162,15 @@ export class Mastodon {
       mediaIds = uploadedIds.filter((id) => id !== undefined);
     }
 
-    if (properties["repost-of"]) {
-      // Syndicate repost of Mastodon URL with content as a reblog
-      if (
-        isSameOrigin(properties["repost-of"], this.serverUrl) &&
-        properties.content
-      ) {
+    const repostOf = properties["repost-of"];
+    if (repostOf) {
+      // Syndicate repost of status with content as a quote status
+      if (properties.content) {
+        // Do not syndicate reposts of URLs that aren’t statuses
+        if (!(await this.#getStatusId(repostOf))) {
+          return;
+        }
+
         const status = createStatus(properties, {
           characterLimit: this.characterLimit,
           mediaIds,
@@ -156,23 +179,13 @@ export class Mastodon {
         return this.postStatus(status);
       }
 
-      // Syndicate repost of Mastodon URL as a reblog
-      if (isSameOrigin(properties["repost-of"], this.serverUrl)) {
-        return this.postReblog(properties["repost-of"]);
-      }
-
-      // Do not syndicate reposts of other URLs
-      return;
+      // Syndicate repost of status as a reblog
+      return this.postReblog(repostOf);
     }
 
+    // Syndicate like of status as a favourite
     if (properties["like-of"]) {
-      // Syndicate like of Mastodon URL as a like
-      if (isSameOrigin(properties["like-of"], this.serverUrl)) {
-        return this.postFavourite(properties["like-of"]);
-      }
-
-      // Do not syndicate likes of other URLs
-      return;
+      return this.postFavourite(properties["like-of"]);
     }
 
     const status = createStatus(properties, {
