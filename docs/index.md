@@ -12,6 +12,9 @@ hero:
       text: Get Started
       link: /get-started
     - theme: alt
+      text: Try Indiekit
+      link: /try
+    - theme: alt
       text: View on GitHub
       link: https://github.com/getindiekit/indiekit
 features:

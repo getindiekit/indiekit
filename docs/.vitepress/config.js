@@ -8,6 +8,7 @@ const sidebar = [
   {
     text: "Introduction",
     items: [
+      { text: "Try Indiekit", link: "/try" },
       { text: "Get started", link: "/get-started" },
       { text: "Run in a container", link: "/docker" },
       { text: "How Indiekit works", link: "/introduction" },
