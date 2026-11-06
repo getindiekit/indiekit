@@ -27,10 +27,10 @@
   "dependencies": {
     "@date-fns/tz": "^1.5.0",
     "@indiekit/error": "^1.0.0-beta.30",
-    "@sindresorhus/slugify": "^3.0.1",
+    "@sindresorhus/slugify": "^4.0.1",
     "date-fns": "^4.4.0",
     "debug": "^4.4.3",
-    "mongodb": "^7.8.0"
+    "mongodb": "^7.9.0"
   },
   "publishConfig": {
     "access": "public"
