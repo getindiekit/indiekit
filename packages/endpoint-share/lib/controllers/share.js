@@ -3,8 +3,8 @@ import { validationResult } from "express-validator";
 
 /**
  * Get syndication target `items` for checkboxes component
- * @param {object} publication - Publication configuration
- * @returns {Array<object>} Items for checkboxes component
+ * @param {IndiekitPublication} publication - Publication configuration
+ * @returns {CheckboxesItem[]} Items for checkboxes component
  */
 const getSyndicateToItems = (publication) =>
   publication.syndicationTargets.map((target) => {
@@ -91,11 +91,11 @@ export const shareController = {
       }
 
       /**
-       * @type {object}
+       * @type {MicropubResponseBody}
        */
       const body = await micropubResponse.json();
 
-      const message = encodeURIComponent(body.success_description);
+      const message = encodeURIComponent(body.success_description || "");
 
       response.redirect(`?success=${message}`);
     } catch (error) {
