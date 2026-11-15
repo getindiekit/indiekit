@@ -39,7 +39,9 @@ export const deleteController = {
 
     try {
       const mediaResponse = await endpoint.post(mediaUrl.href, accessToken);
-      const message = encodeURIComponent(mediaResponse.success_description);
+      const message = encodeURIComponent(
+        mediaResponse.success_description || "",
+      );
 
       return response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {

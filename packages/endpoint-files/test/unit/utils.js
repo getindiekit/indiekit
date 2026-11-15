@@ -28,6 +28,7 @@ describe("endpoint-files/lib/utils", () => {
       testToken(),
     );
 
+    assert.ok(result);
     assert.equal(result.uid, "target-uid");
   });
 });

@@ -30,10 +30,12 @@ export const filesController = async (request, response, next) => {
       mediaUrl.searchParams.append("before", String(before));
     }
 
-    const mediaResponse = await endpoint.get(mediaUrl.href, access_token);
+    const mediaResponse = /** @type {MicropubMediaSourceListResponse} */ (
+      await endpoint.get(mediaUrl.href, access_token)
+    );
 
     let files;
-    if (mediaResponse?.items?.length > 0) {
+    if (mediaResponse?.items?.length) {
       files = mediaResponse.items.map((item) => {
         item.id = item.uid;
         item.icon = item["media-type"];
@@ -49,6 +51,9 @@ export const filesController = async (request, response, next) => {
       });
     }
 
+    /**
+     * @type {{ next?: { href: string }, previous?: { href: string } }}
+     */
     const cursor = {};
 
     if (mediaResponse?.paging?.after) {
