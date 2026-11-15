@@ -37,7 +37,7 @@ export const getFileProperties = async (publication, file, timeZone) => {
   const published = getPublishedProperty(timeZone);
 
   let basename = path.basename(file.name, path.extname(file.name));
-  basename = slugify(basename, publication.slugSeparator);
+  basename = slugify(basename, { separator: publication.slugSeparator });
 
   return {
     "content-type": file.mimetype,

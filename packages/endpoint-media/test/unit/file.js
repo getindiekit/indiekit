@@ -37,6 +37,19 @@ describe("endpoint-media/lib/file", () => {
     assert.equal(isValid(parseISO(result.published)), true);
   });
 
+  it("Derives file name using publication’s slug separator", async () => {
+    const publication = {
+      slugSeparator: "_",
+    };
+    const file = {
+      data: getFixture("file-types/photo.jpg", false),
+      name: "Photo 1.jpeg",
+    };
+    const result = await getFileProperties(publication, file, "UTC");
+
+    assert.equal(result.filename, "photo_1.jpg");
+  });
+
   it("Throws error if file type can’t be determined", async () => {
     const file = {
       data: Buffer.from("Plain text"),
