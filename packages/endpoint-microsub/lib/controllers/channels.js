@@ -21,8 +21,8 @@ import {
 /**
  * List all channels
  * GET ?action=channels
- * @param {object} request - Express request
- * @param {object} response - Express response
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
  */
 export async function list(request, response) {
   const { application, publication } = request.app.locals;
@@ -35,8 +35,8 @@ export async function list(request, response) {
 /**
  * Handle channel actions (create, update, delete, order)
  * POST ?action=channels
- * @param {object} request - Express request
- * @param {object} response - Express response
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
  * @returns {Promise<void>}
  */
 export async function action(request, response) {
@@ -54,7 +54,7 @@ export async function action(request, response) {
       throw IndiekitError.notFound(__("microsub.error.channelNotFound"));
     }
 
-    return response.json({ deleted: uid });
+    return void response.json({ deleted: uid });
   }
 
   // Reorder channels
@@ -69,7 +69,7 @@ export async function action(request, response) {
     await reorderChannels(application, channelUids, userId);
 
     const channels = await getChannels(application, userId);
-    return response.json({ channels });
+    return void response.json({ channels });
   }
 
   // Update existing channel
@@ -85,7 +85,7 @@ export async function action(request, response) {
       throw IndiekitError.notFound(__("microsub.error.channelNotFound"));
     }
 
-    return response.json({
+    return void response.json({
       uid: channel.uid,
       name: channel.name,
     });
@@ -103,3 +103,7 @@ export async function action(request, response) {
 }
 
 export const channelsController = { list, action };
+
+/**
+ * @import { Request, Response } from "express"
+ */

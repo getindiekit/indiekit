@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it, mock } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
 import { testDatabase } from "@indiekit-test/database";
 
 import {
@@ -18,12 +19,12 @@ mock.method(console, "info", () => {}); // Disable console.info
 const { client, database, mongoServer } = await testDatabase();
 const channels = database.collection("microsub_channels");
 const items = database.collection("microsub_items");
-const application = {
+const application = testApplication({
   collections: new Map([
     ["microsub_channels", channels],
     ["microsub_items", items],
   ]),
-};
+});
 
 describe("endpoint-microsub/lib/storage/channels", () => {
   beforeEach(async () => {
@@ -57,6 +58,7 @@ describe("endpoint-microsub/lib/storage/channels", () => {
 
       const stored = await channels.findOne({ uid: channel.uid });
 
+      assert.ok(stored);
       assert.equal(stored.name, "Tech News");
     });
 
@@ -125,6 +127,9 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         userId: "user-1",
       });
       const stored = await channels.findOne({ uid: channel.uid });
+
+      assert.ok(stored);
+
       await items.insertOne({ channel: stored.uid, readBy: ["user-1"] });
 
       const result = await getChannels(application, "user-1");
@@ -138,6 +143,9 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         userId: "user-1",
       });
       const stored = await channels.findOne({ uid: channel.uid });
+
+      assert.ok(stored);
+
       await items.insertMany([
         { channel: stored.uid, readBy: [] },
         { channel: stored.uid, readBy: [] },
@@ -168,6 +176,7 @@ describe("endpoint-microsub/lib/storage/channels", () => {
 
       const result = await getChannel(application, channel.uid, "user-1");
 
+      assert.ok(result);
       assert.equal(result.name, "Tech News");
     });
 
@@ -205,6 +214,7 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         "user-1",
       );
 
+      assert.ok(result);
       assert.equal(result.name, "New name");
     });
 
@@ -240,6 +250,9 @@ describe("endpoint-microsub/lib/storage/channels", () => {
         userId: "user-1",
       });
       const stored = await channels.findOne({ uid: channel.uid });
+
+      assert.ok(stored);
+
       await items.insertOne({ channel: stored.uid });
 
       await deleteChannel(application, channel.uid, "user-1");
@@ -312,7 +325,7 @@ describe("endpoint-microsub/lib/storage/channels", () => {
       const first = await ensureNotificationsChannel(application, "user-1");
       const second = await ensureNotificationsChannel(application, "user-1");
 
-      assert.equal(second._id.toString(), first._id.toString());
+      assert.equal(String(second._id), String(first._id));
       assert.equal(await channels.countDocuments({ uid: "notifications" }), 1);
     });
   });

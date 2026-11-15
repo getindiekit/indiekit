@@ -14,6 +14,9 @@ const server = await testServer({
 const request = supertest.agent(server);
 const cookie = testCookie();
 
+/**
+ * @type {Record<string, string>}
+ */
 const uids = {};
 
 describe("endpoint-microsub POST /microsub?action=channels (order)", () => {
@@ -44,7 +47,9 @@ describe("endpoint-microsub POST /microsub?action=channels (order)", () => {
 
     assert.equal(response.status, 200);
     assert.deepEqual(
-      response.body.channels.map((channel) => channel.name),
+      response.body.channels.map(
+        (/** @type {MicrosubChannel} */ channel) => channel.name,
+      ),
       ["Third", "First", "Second"],
     );
   });
@@ -55,7 +60,9 @@ describe("endpoint-microsub POST /microsub?action=channels (order)", () => {
       .set("cookie", cookie);
 
     assert.deepEqual(
-      response.body.channels.map((channel) => channel.name),
+      response.body.channels.map(
+        (/** @type {MicrosubChannel} */ channel) => channel.name,
+      ),
       ["Third", "First", "Second"],
     );
   });

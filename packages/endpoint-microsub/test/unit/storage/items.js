@@ -2,6 +2,7 @@ import { strict as assert } from "node:assert";
 import { after, beforeEach, describe, it } from "node:test";
 
 import { uuidv7At } from "@indiekit/util";
+import { testApplication } from "@indiekit-test/application";
 import { testDatabase } from "@indiekit-test/database";
 
 import {
@@ -13,9 +14,9 @@ import {
 
 const { client, database, mongoServer } = await testDatabase();
 const items = database.collection("microsub_items");
-const application = {
+const application = testApplication({
   collections: new Map([["microsub_items", items]]),
-};
+});
 
 const channel = "channel-1";
 const otherChannel = "channel-2";
@@ -23,8 +24,8 @@ const otherChannel = "channel-2";
 /**
  * Insert timeline items, oldest first
  * @param {number} count - Number of items to insert
- * @param {object} [overrides] - Fields to merge into each item
- * @returns {Promise<Array>} Inserted item documents
+ * @param {Partial<MicrosubItemDocument>} [overrides] - Fields to merge into each item
+ * @returns {Promise<MicrosubItemDocument[]>} Inserted item documents
  */
 async function insertItems(count, overrides = {}) {
   const documents = Array.from({ length: count }, (_, index) => {
@@ -154,13 +155,15 @@ describe("endpoint-microsub/lib/storage/items", () => {
       await insertItems(1, { author: "Alice", category: ["indieweb"] });
 
       const { items: result } = await getTimelineItems(application, channel);
-
       assert.equal(result[0].type, "entry");
       assert.equal(result[0].uid, "item-0");
       assert.equal(result[0].author, "Alice");
       assert.deepEqual(result[0].category, ["indieweb"]);
       assert.equal(typeof result[0].published, "string");
+
       const stored = await items.findOne({ uid: "item-0" });
+
+      assert.ok(stored);
       assert.equal(result[0]._id, stored.id);
     });
 
@@ -241,7 +244,10 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
     it("Matches items by the id clients see", async () => {
       await insertItems(1);
+
       const item = await items.findOne({ uid: "item-0" });
+
+      assert.ok(item);
 
       const count = await markItemsRead(
         application,
@@ -278,6 +284,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const other = await items.findOne({ channel: otherChannel });
 
+      assert.ok(other);
       assert.deepEqual(other.readBy, []);
     });
 
@@ -288,6 +295,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const item = await items.findOne({ uid: "item-0" });
 
+      assert.ok(item);
       assert.deepEqual(item.readBy, ["user-1"]);
     });
   });
@@ -307,6 +315,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const item = await items.findOne({ uid: "item-0" });
 
+      assert.ok(item);
       assert.deepEqual(item.readBy, []);
     });
 
@@ -317,6 +326,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
 
       const item = await items.findOne({ uid: "item-0" });
 
+      assert.ok(item);
       assert.deepEqual(item.readBy, ["user-2"]);
     });
   });
@@ -352,3 +362,7 @@ describe("endpoint-microsub/lib/storage/items", () => {
     });
   });
 });
+
+/**
+ * @import { MicrosubItemDocument } from "../../../lib/storage/items.js"
+ */

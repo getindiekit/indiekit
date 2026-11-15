@@ -5,16 +5,16 @@
 
 /**
  * Get the channels collection
- * @param {object} application - Indiekit application
- * @returns {object} MongoDB collection
+ * @param {IndiekitApplication} application - Indiekit application
+ * @returns {Collection} MongoDB collection
  */
 export const getChannelsCollection = (application) =>
   application.collections.get("microsub_channels");
 
 /**
  * Get the timeline items collection
- * @param {object} application - Indiekit application
- * @returns {object} MongoDB collection
+ * @param {IndiekitApplication} application - Indiekit application
+ * @returns {Collection} MongoDB collection
  */
 export const getItemsCollection = (application) =>
   application.collections.get("microsub_items");

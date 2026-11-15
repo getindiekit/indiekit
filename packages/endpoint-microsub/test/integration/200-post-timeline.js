@@ -19,6 +19,9 @@ const cookie = testCookie();
 const database = client.db("indiekit");
 const items = database.collection("microsub_items");
 
+/**
+ * @type {{ channelUid?: string }}
+ */
 const fixture = {};
 
 describe("endpoint-microsub POST /microsub?action=timeline", () => {
@@ -79,7 +82,9 @@ describe("endpoint-microsub POST /microsub?action=timeline", () => {
     const response = await request
       .get(`/microsub?action=timeline&channel=${fixture.channelUid}`)
       .set("cookie", cookie);
-    const item = response.body.items.find((index) => index.uid === "item-2");
+    const item = response.body.items.find(
+      (/** @type {MicrosubPost} */ index) => index.uid === "item-2",
+    );
 
     assert.equal(item._is_read, true);
   });
