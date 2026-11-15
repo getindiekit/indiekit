@@ -66,6 +66,9 @@ export default class PostsEndpoint {
     return router;
   }
 
+  /**
+   * @returns {Schema<keyof ParamSchema|"tagInput">} Validation schemas for fields
+   */
   get validationSchemas() {
     return {
       category: {
@@ -95,7 +98,9 @@ export default class PostsEndpoint {
         errorMessage: localisedMessage("posts.error.geo.invalid"),
         exists: { if: hasValue("geo") },
         custom: {
-          options: (value) => value.match(ISO_6709_RE),
+          options: /** @type {CustomValidator} */ (
+            (value) => value.match(ISO_6709_RE)
+          ),
         },
       },
       name: {
@@ -115,3 +120,7 @@ export default class PostsEndpoint {
     Indiekit.config.application.postsEndpoint = this.mountPath;
   }
 }
+
+/**
+ * @import { CustomValidator, ParamSchema, Schema } from "express-validator"
+ */

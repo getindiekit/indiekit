@@ -12,12 +12,19 @@ import {
 } from "../utils.js";
 
 export const postData = {
+  /**
+   * Add data for a new post to response locals
+   * @param {Request} request - Express request
+   * @param {Response} response - Express response
+   * @param {NextFunction} next - Next middleware
+   */
   create(request, response, next) {
     const { publication } = request.app.locals;
-    const { access_token, scope } = request.session;
+    const access_token = request.session?.access_token;
+    const scope = request.session?.scope;
 
     // Create new post object with default values
-    const postType = request.query.type || "note";
+    const postType = String(request.query.type || "note");
     const properties = request.body || {};
 
     // Get post type config
@@ -70,11 +77,19 @@ export const postData = {
     next();
   },
 
+  /**
+   * Add data for an existing post to response locals
+   * @param {Request<{ uid: string, action?: string }>} request - Express request
+   * @param {Response} response - Express response
+   * @param {NextFunction} next - Next middleware
+   * @returns {Promise<void>}
+   */
   async read(request, response, next) {
     try {
       const { application, publication } = request.app.locals;
       const { action = "create", uid } = request.params;
-      const { access_token, scope } = request.session;
+      const access_token = request.session?.access_token;
+      const scope = request.session?.scope;
 
       const properties = await getPostProperties(
         uid,
@@ -121,3 +136,7 @@ export const postData = {
     }
   },
 };
+
+/**
+ * @import { NextFunction, Request, Response } from "express"
+ */

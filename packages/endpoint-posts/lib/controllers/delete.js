@@ -42,7 +42,9 @@ export const deleteController = {
         micropubUrl.href,
         accessToken,
       );
-      const message = encodeURIComponent(micropubResponse.success_description);
+      const message = encodeURIComponent(
+        micropubResponse.success_description || "",
+      );
 
       return response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {

@@ -105,7 +105,9 @@ export const formController = {
         accessToken,
         jsonBody,
       );
-      const message = encodeURIComponent(micropubResponse.success_description);
+      const message = encodeURIComponent(
+        micropubResponse.success_description || "",
+      );
 
       response.redirect(`${request.baseUrl}?success=${message}`);
     } catch (error) {

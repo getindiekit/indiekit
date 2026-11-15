@@ -1,3 +1,14 @@
+/**
+ * Post status type
+ * @typedef {object} StatusType
+ * @property {string} [color] - Badge colour
+ * @property {string} [icon] - Icon name
+ * @property {string} text - Locale string key
+ */
+
+/**
+ * @type {Record<string, StatusType>}
+ */
 export const statusTypes = {
   deleted: {
     color: "red",

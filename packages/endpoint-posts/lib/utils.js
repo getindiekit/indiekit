@@ -9,9 +9,28 @@ import { endpoint } from "./endpoint.js";
 import { statusTypes } from "./status-types.js";
 
 /**
+ * Badge for post status
+ * @typedef {object} PostStatusBadge
+ * @property {string} [color] - Badge colour
+ * @property {string} size - Badge size
+ * @property {string} text - Badge text
+ */
+
+/**
+ * Syndication target, as used to list targets in a form
+ *
+ * `info` may throw if a target is misconfigured, so is only partially relied
+ * upon, and `options` is only read for a target’s `checked` state
+ * @typedef {object} SyndicateToTarget
+ * @property {string} [name] - Plug-in name
+ * @property {{ error?: string, service?: { name?: string }, uid?: string }} info - Target information
+ * @property {{ checked?: boolean }} [options] - Plug-in options
+ */
+
+/**
  * Get channel `items` for checkboxes component
- * @param {object} publication - Publication configuration
- * @returns {object} Items for checkboxes component
+ * @param {IndiekitPublication} publication - Publication configuration
+ * @returns {CheckboxesItem[]} Items for checkboxes component
  */
 export const getChannelItems = (publication) => {
   return Object.entries(publication.channels).map(([uid, channel]) => ({
@@ -45,7 +64,7 @@ export const getGeoProperty = (geo) => {
 
 /**
  * Get comma separated geographic coordinates
- * @param {object} location - JF2 location property
+ * @param {Jf2Properties} [location] - JF2 location property
  * @returns {string|undefined} Latitude and longitude, comma separated
  */
 export const getGeoValue = (location) => {
@@ -60,8 +79,8 @@ export const getGeoValue = (location) => {
 
 /**
  * Get location property
- * @param {object} values - Latitude and longitude, comma separated
- * @returns {object} JF2 location property
+ * @param {Jf2Properties} values - Form values, with `geo` and/or `location`
+ * @returns {Jf2Properties} JF2 location property
  */
 export const getLocationProperty = (values) => {
   const { geo, location } = values;
@@ -88,9 +107,9 @@ export const getLocationProperty = (values) => {
 
 /**
  * Get photo URL
- * @param {object} publication - Publication configuration
+ * @param {IndiekitPublication} publication - Publication configuration
  * @param {Jf2Properties} properties - JF2 properties
- * @returns {object|boolean} Photo object, with URL
+ * @returns {Jf2MediaItem|false} Photo object, with URL
  */
 export const getPhotoUrl = (publication, properties) => {
   const photo = Array.isArray(properties.photo)
@@ -112,11 +131,14 @@ export const getPhotoUrl = (publication, properties) => {
 
 /**
  * Get post status badges
- * @param {object} post - Post
+ * @param {Jf2Properties} post - Post
  * @param {Response} response - Response
- * @returns {Array} Badges
+ * @returns {PostStatusBadge[]} Badges
  */
 export const getPostStatusBadges = (post, response) => {
+  /**
+   * @type {PostStatusBadge[]}
+   */
   const badges = [];
 
   if (post["post-status"]) {
@@ -141,7 +163,7 @@ export const getPostStatusBadges = (post, response) => {
 
 /**
  * Get post name, falling back to post type name
- * @param {object} publication - Publication configuration
+ * @param {{ postTypes: Record<string, Pick<IndiekitPostType, "name">> }} publication - Publication configuration
  * @param {Jf2Properties} properties - JF2 properties
  * @returns {string} Post name or post type name
  */
@@ -161,7 +183,7 @@ export const getPostName = (publication, properties) => {
  * @param {string} uid - Item UID
  * @param {string} micropubEndpoint - Micropub endpoint
  * @param {string} accessToken - Access token
- * @returns {Promise<object|boolean>} JF2 properties, or false if not found
+ * @returns {Promise<Jf2Properties|false>} JF2 properties, or false if not found
  */
 export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
   const micropubUrl = new URL(micropubEndpoint);
@@ -172,7 +194,7 @@ export const getPostProperties = async (uid, micropubEndpoint, accessToken) => {
     // `q=source&uid=` returns mf2 for a single post (the same shape as
     // `q=source&url=`), so wrap it as `items` before flattening to JF2.
     const mf2 = await endpoint.get(micropubUrl.href, accessToken);
-    return mf2tojf2({ items: [mf2] });
+    return mf2tojf2(/** @type {Mf2} */ ({ items: [mf2] }));
   } catch (error) {
     // `endpoint.get` throws on any error response. A post that is simply gone
     // is the caller's own not-found page, not an error to show the reader;
@@ -197,9 +219,9 @@ export const getPostUrl = (id) => {
 
 /**
  * Get syndication target `items` for checkboxes component
- * @param {object} publication - Publication configuration
+ * @param {{ syndicationTargets: SyndicateToTarget[] }} publication - Publication configuration
  * @param {boolean} [shouldCheckTargets] - Select ’checked’ targets
- * @returns {object} Items for checkboxes component
+ * @returns {CheckboxesItem[]} Items for checkboxes component
  */
 export const getSyndicateToItems = (
   publication,
@@ -225,12 +247,13 @@ export const getSyndicateToItems = (
         : {
             hint: info.uid,
             value: info.uid,
-            ...(shouldCheckTargets && { checked: target.options.checked }),
+            ...(shouldCheckTargets && { checked: target.options?.checked }),
           }),
     };
   });
 };
 
 /**
- * @import { Response} from "express"
+ * @import { Mf2 } from "@paulrobertlloyd/mf2tojf2"
+ * @import { Response } from "express"
  */
