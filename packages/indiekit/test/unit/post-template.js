@@ -9,7 +9,8 @@ import { getPostTemplate } from "../../lib/post-template.js";
 describe("indiekit/lib/post-templates", () => {
   it("Gets custom post template", () => {
     const publication = {
-      postTemplate: (properties) => JSON.stringify(properties),
+      postTemplate: (/** @type {Jf2Properties} */ properties) =>
+        JSON.stringify(properties),
     };
     const postTemplate = getPostTemplate(publication);
     const result = postTemplate({ published: "2021-01-21" });

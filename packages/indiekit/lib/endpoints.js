@@ -4,14 +4,20 @@ import { getUrl } from "./utils.js";
  * Get provided endpoint URL, else add path to application URL
  *
  * An endpoint with no URL, as its plug-in isn’t installed, is left out.
- * @param {object} application - Application configuration
+ * @param {Partial<IndiekitApplicationConfig>} application - Application configuration
  * @param {Request} request - Request
- * @returns {object} Endpoint URLs
+ * @returns {Partial<Record<EndpointName, string>>} Endpoint URLs
  */
 export const getEndpointUrls = (application, request) => {
+  /**
+   * @type {Partial<Record<EndpointName, string>>}
+   */
   const endpoints = {};
 
-  // @todo Provide a method for plug-ins to register named endpoints
+  /**
+   * @todo Provide a method for plug-ins to register named endpoints
+   * @type {EndpointName[]}
+   */
   const endpointNames = [
     "authorizationEndpoint",
     "introspectionEndpoint",
@@ -37,6 +43,12 @@ export const getEndpointUrls = (application, request) => {
 
   return endpoints;
 };
+
+/**
+ * @typedef {"authorizationEndpoint" | "introspectionEndpoint" | "mediaEndpoint"
+ *   | "micropubEndpoint" | "microsubEndpoint" | "tokenEndpoint"
+ *   | "shareEndpoint" | "userinfoEndpoint"} EndpointName
+ */
 
 /**
  * @import { Request } from "express"

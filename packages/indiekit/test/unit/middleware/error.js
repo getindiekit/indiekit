@@ -7,9 +7,13 @@ import { mockRequest, mockResponse } from "mock-req-res";
 import { notFound, internalServer } from "../../../lib/middleware/error.js";
 
 const jsonRequest = () =>
-  mockRequest({ accepts: (mimeType) => mimeType.includes("json") });
+  mockRequest({
+    accepts: (/** @type {string} */ mimeType) => mimeType.includes("json"),
+  });
 const htmlRequest = () =>
-  mockRequest({ accepts: (mimeType) => mimeType.includes("html") });
+  mockRequest({
+    accepts: (/** @type {string} */ mimeType) => mimeType.includes("html"),
+  });
 
 describe("indiekit/lib/middleware/error", () => {
   it("Passes error onto next middleware", () => {
@@ -36,7 +40,7 @@ describe("indiekit/lib/middleware/error", () => {
   it("Renders error as HTML", () => {
     const testError = new IndiekitError("Error message");
     const request = mockRequest({
-      accepts: (mimeType) => mimeType.includes("html"),
+      accepts: (/** @type {string} */ mimeType) => mimeType.includes("html"),
     });
     const response = mockResponse({
       locals: { __() {} },
@@ -51,7 +55,7 @@ describe("indiekit/lib/middleware/error", () => {
   it("Renders error as JSON", () => {
     const testError = new IndiekitError("Error message");
     const request = mockRequest({
-      accepts: (mimeType) => mimeType.includes("json"),
+      accepts: (/** @type {string} */ mimeType) => mimeType.includes("json"),
     });
     const response = mockResponse();
     const next = mock.fn();

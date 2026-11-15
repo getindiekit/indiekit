@@ -2,7 +2,7 @@ import i18n from "i18n";
 
 /**
  * Set locale
- * @param {object} Indiekit - Indiekit instance
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
  * @returns {RequestHandler} Next middleware
  */
 export const internationalisation = (Indiekit) =>

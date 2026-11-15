@@ -7,10 +7,13 @@ const require = createRequire(import.meta.url);
 
 /**
  * Add catalog of localised strings to application configuration
- * @param {object} Indiekit - Indiekit instance
- * @returns {object} Catalog of localised strings
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
+ * @returns {Map<string, LocaleCatalog>} Catalog of localised strings
  */
 export const getLocaleCatalog = (Indiekit) => {
+  /**
+   * @type {Map<string, LocaleCatalog>}
+   */
   const catalog = new Map();
 
   for (const locale of Indiekit.locales) {
@@ -25,14 +28,25 @@ export const getLocaleCatalog = (Indiekit) => {
 
     // Plug-in translations
     for (const plugin of Indiekit.installedPlugins) {
+      if (!plugin.filePath) {
+        continue;
+      }
+
       const localePath = path.join(plugin.filePath, `locales/${locale}.json`);
       try {
         translations.push(require(localePath));
       } catch {} // eslint-disable-line no-empty
     }
 
-    catalog.set(locale, deepmerge.all(translations));
+    catalog.set(
+      locale,
+      /** @type {LocaleCatalog} */ (deepmerge.all(translations)),
+    );
   }
 
   return catalog;
 };
+
+/**
+ * @import { LocaleCatalog } from "i18n"
+ */

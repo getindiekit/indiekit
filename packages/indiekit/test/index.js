@@ -8,6 +8,9 @@ import TestStore from "@indiekit-test/store";
 import { Indiekit } from "../index.js";
 
 describe("indiekit", async () => {
+  /**
+   * @type {IndiekitInstance}
+   */
   let indiekit;
   const { client, mongoServer, mongoUri } = await testDatabase();
 
@@ -38,12 +41,15 @@ describe("indiekit", async () => {
 
     await indiekit.createIndexes();
 
+    /**
+     * @type {Array<{ key: object, unique?: boolean }>}
+     */
     const indexes = await indiekit.collections.get("indexed").indexes();
     const keys = new Map(
       indexes.map((index) => [JSON.stringify(index.key), index]),
     );
     assert.ok(keys.has(JSON.stringify({ "properties.uid": 1 })));
-    assert.equal(keys.get(JSON.stringify({ channel: 1, id: 1 })).unique, true);
+    assert.equal(keys.get(JSON.stringify({ channel: 1, id: 1 }))?.unique, true);
   });
 
   it("Declares a collection with no indexes by default", async () => {
@@ -65,12 +71,14 @@ describe("indiekit", async () => {
   it("Adds endpoint", () => {
     const TestEndpoint = class {
       name = "Test endpoint";
+
+      init() {}
     };
 
     const testEndpoint = new TestEndpoint();
     indiekit.addEndpoint(testEndpoint);
 
-    assert.equal([...indiekit.endpoints].at(-1).name, "Test endpoint");
+    assert.equal([...indiekit.endpoints].at(-1)?.name, "Test endpoint");
   });
 
   it("Adds publication preset", () => {
@@ -80,11 +88,14 @@ describe("indiekit", async () => {
       get info() {
         return { name: "Test" };
       }
+
+      init() {}
     };
 
     const testPreset = new TestPreset();
     indiekit.addPreset(testPreset);
 
+    assert.ok(indiekit.publication.preset);
     assert.equal(indiekit.publication.preset.info.name, "Test");
   });
 

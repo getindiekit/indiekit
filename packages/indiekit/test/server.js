@@ -1,4 +1,5 @@
 import { strict as assert } from "node:assert";
+import { once } from "node:events";
 import { before, describe, it, mock } from "node:test";
 
 import { testConfig } from "@indiekit-test/config";
@@ -6,8 +7,18 @@ import { testConfig } from "@indiekit-test/config";
 import { Indiekit } from "../index.js";
 
 describe("indiekit server", async () => {
+  /**
+   * @type {IndiekitInstance}
+   */
   let indiekit;
-  let application, publication;
+  /**
+   * @type {Partial<IndiekitApplicationConfig>}
+   */
+  let application;
+  /**
+   * @type {IndiekitPublicationConfig}
+   */
+  let publication;
 
   before(async () => {
     const config = await testConfig();
@@ -41,8 +52,13 @@ describe("indiekit server", async () => {
     publication.me = "https://website.example";
     const result = await indiekit.server({ port: 1234 });
 
-    assert.match(result._connectionKey, /::::1234/);
+    if (!result.listening) {
+      await once(result, "listening");
+    }
 
+    const address = result.address();
     result.close();
+
+    assert.equal(typeof address === "object" && address?.port, 1234);
   });
 });

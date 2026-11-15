@@ -3,8 +3,8 @@ import { fileURLToPath } from "node:url";
 
 /**
  * Get list of directories containing view templates
- * @param {object} Indiekit - Indiekit instance
- * @returns {Array} Directories containing view templates
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
+ * @returns {string[]} Directories containing view templates
  */
 export const views = (Indiekit) => {
   // Application views

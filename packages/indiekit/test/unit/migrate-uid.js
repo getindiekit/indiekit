@@ -8,6 +8,12 @@ import { backfillUids } from "../../lib/migrate-uid.js";
 
 // UUIDs sort as strings; a plain `.sort()` would coerce and compare lexically
 // by default anyway, but the compare function keeps `unicorn/require-array-sort-compare` happy.
+/**
+ * Compare strings in code unit order
+ * @param {string} a - First string
+ * @param {string} b - Second string
+ * @returns {number} Sort order
+ */
 const compare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
 describe("indiekit/lib/migrate-uid", () => {
@@ -52,8 +58,17 @@ describe("indiekit/lib/migrate-uid", () => {
   });
 
   describe("backfillUids", () => {
+    /**
+     * @type {TestDatabase["client"]}
+     */
     let client;
+    /**
+     * @type {TestDatabase["database"]}
+     */
     let database;
+    /**
+     * @type {TestDatabase["mongoServer"]}
+     */
     let mongoServer;
 
     before(async () => {
@@ -67,8 +82,11 @@ describe("indiekit/lib/migrate-uid", () => {
 
     it("Gives every document a uid, in _id order, and leaves existing ones alone", async () => {
       const collection = database.collection("backfill-posts");
-      // 5000 documents sharing one second: more than the 4096-value sequence
-      // holds, which is the case a bulk import produces.
+      /**
+       * 5000 documents sharing one second: more than the 4096-value sequence
+       * holds, which is the case a bulk import produces.
+       * @type {Array<{ properties: { url: string, uid?: string } }>}
+       */
       const documents = Array.from({ length: 5000 }, (_, index) => ({
         properties: { url: `https://website.example/post-${index}` },
       }));
@@ -157,6 +175,8 @@ describe("indiekit/lib/migrate-uid", () => {
       assert.equal(updated, 0, "overwrote a uid set by a concurrent run");
 
       const stored = await collection.findOne({ _id: existing._id });
+
+      assert.ok(stored);
       assert.equal(
         stored.properties.uid,
         "already-set-by-another-process",
@@ -170,6 +190,7 @@ describe("indiekit/lib/migrate-uid", () => {
 
       await collection.insertMany([
         {
+          // @ts-expect-error: Testing a document whose _id isn’t an ObjectId
           _id: "foreign-string-id",
           properties: { url: "https://website.example/foreign" },
         },
@@ -179,7 +200,10 @@ describe("indiekit/lib/migrate-uid", () => {
       const updated = await backfillUids(collection);
       assert.equal(updated, 1, "did not backfill the ordinary document too");
 
+      // @ts-expect-error: Testing a document whose _id isn’t an ObjectId
       const foreign = await collection.findOne({ _id: "foreign-string-id" });
+
+      assert.ok(foreign);
       assert.equal(
         foreign.properties.uid,
         undefined,
@@ -188,3 +212,7 @@ describe("indiekit/lib/migrate-uid", () => {
     });
   });
 });
+
+/**
+ * @typedef {Awaited<ReturnType<typeof testDatabase>>} TestDatabase
+ */

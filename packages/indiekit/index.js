@@ -22,6 +22,13 @@ const package_ = require("./package.json");
 const debug = makeDebug(`indiekit:index`);
 
 export const Indiekit = class {
+  /**
+   * Create an Indiekit instance from configuration
+   * @param {object} [options] - Options
+   * @param {IndiekitConfig} [options.config] - Configuration object
+   * @param {string} [options.configFilePath] - Configuration file path
+   * @returns {Promise<Indiekit>} Indiekit instance
+   */
   static async initialize(options = {}) {
     const config = await getIndiekitConfig({
       config: options.config,
@@ -31,12 +38,19 @@ export const Indiekit = class {
     return new Indiekit(config);
   }
 
+  /**
+   * @type {MongoClient|undefined}
+   */
   mongodbClient;
+
+  /**
+   * @type {Error|undefined}
+   */
   mongodbClientError;
 
   /**
    * @private
-   * @param {object} config - Indiekit configuration
+   * @param {IndiekitResolvedConfig} config - Indiekit configuration
    */
   constructor(config) {
     this.config = config;
@@ -54,7 +68,9 @@ export const Indiekit = class {
     this.locales = locales;
     this.mongodbUrl = config.application?.mongodbUrl;
     this.postTypes = new Map();
-    this.publication = this.config.publication;
+    // The same object as `config.publication`, which holds configuration until
+    // `updatePublicationConfig()` completes it, before any request is served
+    this.publication = /** @type {IndiekitPublication} */ (config.publication);
     this.stores = new Set();
     this.validationSchemas = new Map();
   }
@@ -62,7 +78,7 @@ export const Indiekit = class {
   /**
    * Add a database collection
    * @param {string} name - Collection name
-   * @param {Array<{key: object}>} [indexes] - Indexes to create on it, each
+   * @param {Array<{key: Record<string, 1|-1>, unique?: boolean}>} [indexes] - Indexes to create on it, each
    *   a `key` plus any `createIndex` options, such as `unique`
    */
   addCollection(name, indexes = []) {
@@ -93,11 +109,22 @@ export const Indiekit = class {
     }
   }
 
+  /**
+   * Add an endpoint
+   * @param {IndiekitEndpoint} endpoint - Endpoint plug-in
+   */
   addEndpoint(endpoint) {
     this.endpoints.add(endpoint);
     debug(`Added endpoint: ${endpoint.name}`);
   }
 
+  /**
+   * Add a post type
+   *
+   * A plug-in that only adds validation schemas passes `false` as the type.
+   * @param {string|false} type - Post type
+   * @param {IndiekitPostTypePlugin} postType - Post type plug-in
+   */
   addPostType(type, postType) {
     if (postType.config) {
       this.postTypes.set(type, {
@@ -115,25 +142,35 @@ export const Indiekit = class {
     }
   }
 
+  /**
+   * Add a publication preset
+   * @param {IndiekitPreset} preset - Preset plug-in
+   */
   addPreset(preset) {
     this.publication.preset = preset;
     debug(`Added publication preset: ${preset.name}`);
   }
 
+  /**
+   * Add a content store
+   * @param {IndiekitStore} store - Content store plug-in
+   */
   addStore(store) {
     this.stores.add(store);
     debug(`Added content store: ${store.name}`);
   }
 
+  /**
+   * Add one or more syndication targets
+   * @param {IndiekitSyndicationTarget|IndiekitSyndicationTarget[]} syndicator - Syndicator plug-in(s)
+   */
   addSyndicator(syndicator) {
-    syndicator = Array.isArray(syndicator) ? syndicator : [syndicator];
-    this.publication.syndicationTargets = [
+    const syndicationTargets = [
       ...this.publication.syndicationTargets,
-      ...syndicator,
+      ...(Array.isArray(syndicator) ? syndicator : [syndicator]),
     ];
-    const names = this.publication.syndicationTargets.map(
-      (target) => target.name,
-    );
+    this.publication.syndicationTargets = syndicationTargets;
+    const names = syndicationTargets.map((target) => target.name);
     debug(`Added ${names.length} syndication target/s: ${names.join(", ")}`);
   }
 
@@ -159,7 +196,7 @@ export const Indiekit = class {
   }
 
   get cache() {
-    return this.mongodbClient
+    return this.mongodbClient && this.mongodbUrl
       ? new Keyv(new KeyvMongo(this.mongodbUrl))
       : false;
   }
@@ -194,13 +231,21 @@ export const Indiekit = class {
       );
     }
 
+    // A publication can start without a content store, but can’t save posts
     this.publication.categories = await getCategories(this);
-    this.publication.mediaStore = getMediaStore(this);
+    this.publication.mediaStore = /** @type {IndiekitStore} */ (
+      getMediaStore(this)
+    );
     this.publication.postTemplate = getPostTemplate(this.publication);
     this.publication.postTypes = getPostTypes(this);
-    this.publication.store = getStore(this);
+    this.publication.store = /** @type {IndiekitStore} */ (getStore(this));
   }
 
+  /**
+   * Stop server and close database connection
+   * @param {Server} server - HTTP server
+   * @param {string} [name] - Application name
+   */
   stop(server, name) {
     server.close(() => {
       console.info(`Stopping ${name}`);
@@ -211,6 +256,12 @@ export const Indiekit = class {
     });
   }
 
+  /**
+   * Start server
+   * @param {object} [options] - Options
+   * @param {string|number} [options.port] - Port to listen on
+   * @returns {Promise<Server>} HTTP server
+   */
   async server(options = {}) {
     await this.connectMongodbClient();
     await this.installPlugins();
@@ -259,3 +310,8 @@ export const Indiekit = class {
     return server;
   }
 };
+
+/**
+ * @import { MongoClient } from "@indiekit/util"
+ * @import { Server } from "node:http"
+ */

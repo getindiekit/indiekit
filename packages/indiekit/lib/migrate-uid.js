@@ -19,7 +19,7 @@ import { uuidv7At } from "@indiekit/util";
  * @todo Remove once every existing database has been backfilled: at v1.0.0
  * or the move off MongoDB (#821), whichever comes first. A fresh install
  * never needs it.
- * @param {object} collection - MongoDB collection
+ * @param {Collection} collection - MongoDB collection
  * @returns {Promise<number>} Number of documents updated
  */
 export const backfillUids = async (collection) => {

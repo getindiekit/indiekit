@@ -1,9 +1,16 @@
 /**
+ * Navigation item, as rendered
+ * @typedef {IndiekitNavigationItem & {
+ *   attributes?: Record<string, string>,
+ * }} NavigationItem
+ */
+
+/**
  * Get navigation items
- * @param {object} Indiekit - Indiekit instance
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
  * @param {Request} request - Request
  * @param {Response} response - Response
- * @returns {object} Shortcuts
+ * @returns {NavigationItem[]} Navigation items
  */
 export const getNavigation = (Indiekit, request, response) => {
   const { database, endpoints } = Indiekit;
@@ -11,6 +18,9 @@ export const getNavigation = (Indiekit, request, response) => {
   // Default navigation items
   const isLoggedIn = Boolean(request.session?.access_token);
 
+  /**
+   * @type {NavigationItem[]}
+   */
   let navigation = [
     isLoggedIn
       ? {
