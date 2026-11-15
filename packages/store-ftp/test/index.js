@@ -158,7 +158,7 @@ describe("store-ftp", () => {
   });
 
   it("Deletes file", async () => {
-    assert.equal(await ftp.deleteFile("foo.md"), "Successfully deleted foo.md");
+    assert.equal(await ftp.deleteFile("foo.md"), true);
   });
 
   it("Throws error deleting file", async () => {

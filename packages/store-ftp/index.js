@@ -210,7 +210,7 @@ export default class FtpStore {
   /**
    * Delete file
    * @param {string} filePath - Path to file
-   * @returns {Promise<string>} File deleted
+   * @returns {Promise<boolean>} File deleted
    */
   async deleteFile(filePath) {
     const client = await this.#client();
@@ -218,7 +218,9 @@ export default class FtpStore {
     try {
       const absolutePath = this.#absolutePath(filePath);
 
-      return await client.delete(absolutePath);
+      await client.delete(absolutePath);
+
+      return true;
     } catch (error) {
       throw IndiekitError.fromCaught(error, { plugin: this.name });
     } finally {
