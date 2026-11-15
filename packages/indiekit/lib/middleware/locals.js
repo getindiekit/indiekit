@@ -11,7 +11,7 @@ const cssHash = sha1(await styles());
 
 /**
  * Expose configuration to frontend templates and plug-ins
- * @param {object} Indiekit - Indiekit instance
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
  * @returns {RequestHandler} Next middleware
  */
 export const locals = (Indiekit) =>
@@ -39,10 +39,11 @@ export const locals = (Indiekit) =>
         application.navigation = getNavigation(Indiekit, request, response);
       }
 
-      request.app.locals.application = {
+      // Configuration, with values plug-ins and this request have added
+      request.app.locals.application = /** @type {IndiekitApplication} */ ({
         ...application,
         ...getEndpointUrls(application, request),
-      };
+      });
 
       // Installed plug-ins
       request.app.locals.installedPlugins = Indiekit.installedPlugins;

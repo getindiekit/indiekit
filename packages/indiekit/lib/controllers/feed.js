@@ -7,6 +7,10 @@
 export const jf2 = async (request, response) => {
   const { application } = request.app.locals;
   const feedUrl = new URL(request.originalUrl, application.url).href;
+
+  /**
+   * @type {Jf2PostData[]}
+   */
   let posts = [];
 
   const postsCollection = application?.collections?.get("posts");

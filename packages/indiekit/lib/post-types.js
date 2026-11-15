@@ -2,13 +2,15 @@ import _ from "lodash";
 
 /**
  * Get merged preset and custom post types
- * @param {object} Indiekit - Indiekit instance
- * @param {Map} Indiekit.postTypes - Application post types
- * @param {object} Indiekit.publication - Publication configuration
- * @returns {object} Merged configuration
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
+ * @returns {Record<string, IndiekitPostType>} Merged configuration
  */
-export const getPostTypes = ({ postTypes, publication }) => {
-  postTypes = Object.fromEntries(postTypes);
+export const getPostTypes = ({
+  config,
+  postTypes: pluginPostTypes,
+  publication,
+}) => {
+  let postTypes = Object.fromEntries(pluginPostTypes);
 
   // Add publication preset values
   if (publication.preset?.postTypes) {
@@ -16,8 +18,8 @@ export const getPostTypes = ({ postTypes, publication }) => {
   }
 
   // Add user configuration values
-  if (publication.postTypes) {
-    postTypes = _.merge(postTypes, publication.postTypes);
+  if (config.publication.postTypes) {
+    postTypes = _.merge(postTypes, config.publication.postTypes);
   }
 
   // Add fallback values
@@ -35,10 +37,13 @@ export const getPostTypes = ({ postTypes, publication }) => {
         .map((entry) => entry[0]);
   }
 
-  // Only return fully configured post types
-  const configuredPostTypes = Object.fromEntries(
-    Object.entries(postTypes).filter(([, value]) => value.properties),
-  );
+  // Only return fully configured post types, now with a type and name
+  const fullyConfiguredPostTypes =
+    /** @type {Record<string, IndiekitPostType>} */ (
+      Object.fromEntries(
+        Object.entries(postTypes).filter(([, value]) => value.properties),
+      )
+    );
 
-  return configuredPostTypes;
+  return fullyConfiguredPostTypes;
 };

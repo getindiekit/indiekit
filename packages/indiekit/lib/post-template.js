@@ -10,9 +10,9 @@ const jsonPostTemplate = (properties) => {
 /**
  * Get post template
  * @param {object} publication - Publication configuration
- * @param {function(object): string} [publication.postTemplate] - Publication post template
- * @param {object} [publication.preset] - Publication preset
- * @returns {function(object): string} Post template rendering function
+ * @param {IndiekitPublication["postTemplate"]} [publication.postTemplate] - Publication post template
+ * @param {IndiekitPreset} [publication.preset] - Publication preset
+ * @returns {IndiekitPublication["postTemplate"]} Post template rendering function
  */
 export const getPostTemplate = ({ postTemplate, preset }) => {
   if (postTemplate) {
@@ -20,7 +20,7 @@ export const getPostTemplate = ({ postTemplate, preset }) => {
   }
 
   if (preset?.postTemplate) {
-    /*
+    /**
      * Bind to preset so that `this` in `postTemplate`
      * function maintains context of its parent class
      */

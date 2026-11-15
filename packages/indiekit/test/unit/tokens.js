@@ -83,10 +83,12 @@ describe("indiekit/lib/tokens", () => {
 
   it("Verifies an access token", () => {
     const result = verifyTokenValues(me, {
+      active: true,
       me: "https://website.example",
       scope: "create update delete media",
     });
 
+    assert.ok(result);
     assert.equal(result.me, "https://website.example");
   });
 });

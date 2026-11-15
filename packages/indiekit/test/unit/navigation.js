@@ -1,39 +1,38 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
+import { testConfig } from "@indiekit-test/config";
 import { mockRequest, mockResponse } from "mock-req-res";
 
+import { Indiekit } from "../../index.js";
 import { getNavigation } from "../../lib/navigation.js";
 
-const Indiekit = {
-  application: { locale: "en" },
-  installedPlugins: new Set(),
-  endpoints: new Set([
+const indiekit = await Indiekit.initialize({ config: await testConfig() });
+indiekit.addEndpoint({
+  id: "foo",
+  init() {},
+  name: "Foo plug-in",
+  navigationItems: [
     {
-      id: "foo",
-      name: "Foo plug-in",
-      navigationItems: [
-        {
-          href: "/foo",
-          text: "Foo",
-          requiresDatabase: true,
-        },
-        {
-          href: "/bar",
-          text: "Bar",
-        },
-      ],
+      href: "/foo",
+      text: "Foo",
+      requiresDatabase: true,
     },
-  ]),
-};
+    {
+      href: "/bar",
+      text: "Bar",
+    },
+  ],
+});
+
 const response = mockResponse({
-  locals: { __: (value) => value },
+  locals: { __: (/** @type {string} */ value) => value },
 });
 
 describe("indiekit/lib/navigation", () => {
   it("Returns logged out navigation", () => {
     const result = getNavigation(
-      Indiekit,
+      indiekit,
       mockRequest({ path: "/bar", session: {} }),
       response,
     );
@@ -43,7 +42,7 @@ describe("indiekit/lib/navigation", () => {
 
   it("Returns navigation items that require a database", () => {
     const result = getNavigation(
-      Indiekit,
+      indiekit,
       mockRequest({ path: "/bar", session: {} }),
       response,
     );
@@ -54,7 +53,7 @@ describe("indiekit/lib/navigation", () => {
 
   it("Returns logged in navigation", () => {
     const result = getNavigation(
-      Indiekit,
+      indiekit,
       mockRequest({ path: "/bar", session: { access_token: "token" } }),
       response,
     );
@@ -64,12 +63,13 @@ describe("indiekit/lib/navigation", () => {
 
   it("Indicates current item in navigation", () => {
     const result = getNavigation(
-      Indiekit,
+      indiekit,
       mockRequest({ path: "/bar", session: { access_token: "token" } }),
       response,
     );
 
     assert.equal(result[0].href, "/bar");
+    assert.ok(result[0].attributes);
     assert.equal(result[0].attributes["aria-current"], "true");
   });
 });

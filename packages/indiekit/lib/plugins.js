@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 
 /**
  * Add plug-ins to application configuration
- * @param {object} Indiekit - Indiekit instance
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
  */
 export async function getInstalledPlugins(Indiekit) {
   for await (const pluginName of Indiekit.config.plugins) {
@@ -27,9 +27,9 @@ export async function getInstalledPlugins(Indiekit) {
 
 /**
  * Get installed plug-in
- * @param {Set} installedPlugins - Installed plug-ins
+ * @param {Set<IndiekitPlugin>} installedPlugins - Installed plug-ins
  * @param {string} pluginName - Plug-in Name
- * @returns {string} Plug-in ID
+ * @returns {IndiekitPlugin|undefined} Installed plug-in
  */
 export const getInstalledPlugin = (installedPlugins, pluginName) => {
   return [...installedPlugins].find(

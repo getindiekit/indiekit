@@ -165,7 +165,7 @@ describe("indiekit/lib/indieauth", () => {
         application: { url: "http://localhost" },
       },
     });
-    await indieauth.login()(request, response);
+    await indieauth.login()(request, response, () => {});
 
     assert.equal(response.status.calledWith(401), true);
     assert.equal(response.render.calledWith("session/login"), true);
@@ -179,7 +179,7 @@ describe("indiekit/lib/indieauth", () => {
     const response = mockResponse({
       locals: { __: () => ({ session: {} }) },
     });
-    await indieauth.authorize()(request, response);
+    await indieauth.authorize()(request, response, () => {});
 
     assert.equal(response.status.calledWith(400), true);
     assert.equal(response.render.calledWith("session/login"), true);

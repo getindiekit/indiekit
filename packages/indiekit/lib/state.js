@@ -19,22 +19,36 @@ export const generateState = (clientId, iv) => {
 };
 
 /**
+ * State, as generated using `generateState` method
+ * @typedef {object} State
+ * @property {string} clientId - Client ID
+ * @property {number} date - Time generated, in milliseconds
+ */
+
+/**
  * Validate state generated using `generateState` method
- * @param {object} state - State
+ * @param {string} state - State
  * @param {string} clientId - Client ID
- * @param {object} iv - Initialization vector
- * @returns {object|boolean|undefined} Validated state object, returns false on failure
+ * @param {Buffer} iv - Initialization vector
+ * @returns {State|false|undefined} Validated state object, returns false on failure
  */
 export const validateState = (state, clientId, iv) => {
   try {
-    state = JSON.parse(decrypt(state, iv));
-    const isValidClient = state.clientId === clientId;
-    const isValidDate = state.date > Date.now() - 1000 * 60 * 10;
+    /**
+     * @type {State}
+     */
+    const decryptedState = JSON.parse(decrypt(state, iv));
+    const isValidClient = decryptedState.clientId === clientId;
+    const isValidDate = decryptedState.date > Date.now() - 1000 * 60 * 10;
 
     if (isValidClient && isValidDate) {
-      return state;
+      return decryptedState;
     }
   } catch {
     return false;
   }
 };
+
+/**
+ * @import { Buffer } from "node:buffer"
+ */

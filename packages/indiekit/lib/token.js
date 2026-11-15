@@ -1,6 +1,12 @@
 import { IndiekitError } from "@indiekit/error";
 import { getCanonicalUrl } from "@indiekit/util";
 
+/**
+ * Find bearer token in request
+ * @param {Partial<Pick<Request, "body"|"headers"|"query"|"session">>} request - Express request
+ * @returns {string} Bearer token
+ * @throws {IndiekitError} No bearer token provided by request
+ */
 export const findBearerToken = (request) => {
   if (request.session?.access_token) {
     const bearerToken = request.session.access_token;
@@ -19,7 +25,7 @@ export const findBearerToken = (request) => {
   }
 
   if (request.query?.token) {
-    const bearerToken = request.query.token;
+    const bearerToken = String(request.query.token);
     return bearerToken;
   }
 
@@ -29,8 +35,8 @@ export const findBearerToken = (request) => {
 /**
  * Introspect token values
  * @param {string} introspectionEndpoint - Introspection endpoint
- * @param {object} bearerToken - OAuth bearer token
- * @returns {Promise<object>} Token values to verify
+ * @param {string} bearerToken - OAuth bearer token
+ * @returns {Promise<IndieAuthTokenVerificationResponse>} Token values to verify
  */
 export const introspectToken = async (introspectionEndpoint, bearerToken) => {
   // Send the token in the request body, never the URL, where it would be
@@ -54,13 +60,14 @@ export const introspectToken = async (introspectionEndpoint, bearerToken) => {
 };
 
 /**
- * @param {object} me - Publication URL
- * @param {object} tokenValues - Token values to verify
- * @returns {object} Verified token values
+ * Verify token values are for the publication
+ * @param {string} me - Publication URL
+ * @param {IndieAuthTokenVerificationResponse} tokenValues - Token values to verify
+ * @returns {IndieAuthTokenVerificationResponse|false} Verified token values
  */
 export const verifyTokenValues = (me, tokenValues) => {
   // Normalize publication and token URLs before comparing
-  const tokenValuesMe = getCanonicalUrl(tokenValues.me);
+  const tokenValuesMe = getCanonicalUrl(String(tokenValues.me));
   const publicationMe = getCanonicalUrl(me);
   const isAuthenticated = tokenValuesMe === publicationMe;
 
@@ -70,3 +77,7 @@ export const verifyTokenValues = (me, tokenValues) => {
 
   return tokenValues;
 };
+
+/**
+ * @import { Request } from "express"
+ */

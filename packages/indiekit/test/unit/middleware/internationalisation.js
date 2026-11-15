@@ -10,6 +10,7 @@ describe("indiekit/lib/middleware/internationalisation", () => {
     const request = mockRequest();
     const response = mockResponse();
     const next = mock.fn();
+    // @ts-expect-error: Testing invalid input
     await internationalisation(false)(request, response, next);
 
     assert.equal(next.mock.calls.length, 1);

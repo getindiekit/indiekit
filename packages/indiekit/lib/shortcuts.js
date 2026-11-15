@@ -1,13 +1,24 @@
 /**
+ * Shortcut item, as rendered
+ * @typedef {Pick<IndiekitShortcutItem, "name"|"url"> &
+ *   Partial<Pick<IndiekitShortcutItem, "iconName"|"requiresDatabase">> & {
+ *     icons?: Array<{src: string, sizes: string}>,
+ *   }} ShortcutItem
+ */
+
+/**
  * Get shortcuts
- * @param {object} Indiekit - Indiekit instance
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
  * @param {Response} response - Response
- * @returns {object} Shortcuts
+ * @returns {ShortcutItem[]} Shortcuts
  */
 export const getShortcuts = (Indiekit, response) => {
   const { database, endpoints } = Indiekit;
 
-  // Default shortcut items
+  /**
+   * Default shortcut items
+   * @type {ShortcutItem[]}
+   */
   let shortcuts = [];
 
   // Add shortcut items from endpoint plug-ins

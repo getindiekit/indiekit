@@ -39,7 +39,7 @@ export const decrypt = (hash, iv) => {
 
 /**
  * Get serviceworker.js and update asset versions
- * @param {object} application - Application locals
+ * @param {IndiekitApplication} application - Application locals
  * @returns {Promise<string|undefined>} - serviceworker.js file, if found
  */
 export const getServiceWorker = async (application) => {
@@ -48,8 +48,8 @@ export const getServiceWorker = async (application) => {
     let serviceworker = await readFile(filePath, { encoding: "utf8" });
     serviceworker = serviceworker
       .replace("APP_VERSION", application.package.version)
-      .replace("APP_CSS_PATH", application.cssPath)
-      .replace("APP_JS_PATH", application.jsPath);
+      .replace("APP_CSS_PATH", String(application.cssPath))
+      .replace("APP_JS_PATH", String(application.jsPath));
     return serviceworker;
   } catch (error) {
     console.error(error);
@@ -68,7 +68,7 @@ export const getUrl = (request) => {
 /**
  * Get package JSON object
  * @param {string} filePath - File path
- * @returns {object} package.json
+ * @returns {{description?: string, version?: string}} package.json
  */
 export const getPackageData = (filePath) => {
   try {

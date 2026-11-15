@@ -35,6 +35,10 @@ export const defaultConfig = {
     postTypes: {},
     preset: undefined,
     slugSeparator: "-",
+    /**
+     * @param {IndiekitStoreMessageMetadata} metadata - Details of the change
+     * @returns {string} Message
+     */
     storeMessageTemplate: (metadata) =>
       `${metadata.action} ${metadata.postType} ${metadata.fileType}`,
     syndicationTargets: [],

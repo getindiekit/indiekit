@@ -12,6 +12,7 @@ describe("indiekit/lib/state", () => {
     const state = generateState(clientId, iv);
     const result = validateState(state, clientId, iv);
 
+    assert.ok(result);
     assert.equal(
       String(result.date).slice(0, 10),
       String(Date.now()).slice(0, 10),

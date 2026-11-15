@@ -1,9 +1,9 @@
 /**
  * Get cached response value
- * @param {Keyv} cache - Application cache (returns `false` if no database)
- * @param {number} ttl - Time to live
+ * @param {Keyv|false} cache - Application cache (returns `false` if no database)
+ * @param {number|undefined} ttl - Time to live
  * @param {string} url - URL to fetch and cache (used as key)
- * @returns {Promise<object>} Cached response value
+ * @returns {Promise<unknown>} Cached response value
  */
 export const getCachedResponse = async (cache, ttl, url) => {
   let cachedResponse = cache && (await cache.get(url));

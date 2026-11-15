@@ -16,7 +16,7 @@ import { views } from "../lib/views.js";
 const debug = makeDebug(`indiekit:express`);
 
 /**
- * @param {object} Indiekit - Indiekit instance
+ * @param {IndiekitInstance} Indiekit - Indiekit instance
  * @returns {Application} Express application
  */
 export const expressConfig = (Indiekit) => {

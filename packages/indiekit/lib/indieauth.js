@@ -12,10 +12,24 @@ import {
 } from "./token.js";
 
 export const IndieAuth = class {
-  clientId;
-  redirectUri;
+  /**
+   * Client ID, set by `login()` before an authorization code is redeemed
+   * @type {string}
+   */
+  clientId = "";
 
-  constructor(options = {}) {
+  /**
+   * Redirect URI, set by `login()` before an authorization code is redeemed
+   * @type {string}
+   */
+  redirectUri = "";
+
+  /**
+   * @param {object} options - Options
+   * @param {boolean} [options.devMode] - Skip authentication
+   * @param {string} options.me - Publication URL
+   */
+  constructor(options) {
     this.codeVerifier = randomString(100);
     this.devMode = options.devMode;
     this.iv = randomBytes(16);
@@ -52,7 +66,7 @@ export const IndieAuth = class {
    * Exchange authorization code for access token
    * @param {string} tokenEndpoint - Token endpoint
    * @param {string} code - Code received from authentication endpoint
-   * @returns {Promise<object>} Access token
+   * @returns {Promise<IndieAuthAccessTokenResponse>} Access token
    */
   async authorizationCodeGrant(tokenEndpoint, code) {
     const tokenUrl = new URL(tokenEndpoint);
@@ -78,7 +92,7 @@ export const IndieAuth = class {
 
   /**
    * Redirect user to IndieAuth login
-   * @returns {object} HTTP response
+   * @returns {RequestHandler} HTTP response
    */
   login() {
     return async (request, response) => {
@@ -113,7 +127,7 @@ export const IndieAuth = class {
   /**
    * Authorize user (i.e. check they are allowed access) by verifying
    * authorization code with token endpoint (which grants an access token).
-   * @returns {object} HTTP response
+   * @returns {RequestHandler} HTTP response
    */
   authorize() {
     return async (request, response) => {
@@ -127,9 +141,9 @@ export const IndieAuth = class {
         // Allow the characters a path may contain and reject a second leading
         // slash (or a backslash, which browsers normalise to one) instead.
         if (redirect) {
-          const validRedirect = redirect.match(
-            /^\/(?![/\\])[\w&/=?.\-~:%+@#]*$/,
-          );
+          const validRedirect =
+            typeof redirect === "string" &&
+            redirect.match(/^\/(?![/\\])[\w&/=?.\-~:%+@#]*$/);
 
           if (!validRedirect) {
             throw IndiekitError.forbidden(
@@ -151,7 +165,7 @@ export const IndieAuth = class {
         }
 
         // Check for state mismatch
-        if (!validateState(state, this.clientId, this.iv)) {
+        if (!validateState(String(state), this.clientId, this.iv)) {
           throw IndiekitError.forbidden(
             response.locals.__("ForbiddenError.invalidState"),
           );
@@ -160,7 +174,7 @@ export const IndieAuth = class {
         // Request access token
         const authorizedToken = await this.authorizationCodeGrant(
           application.tokenEndpoint,
-          code,
+          String(code),
         );
 
         // Check that access token is valid
@@ -170,14 +184,16 @@ export const IndieAuth = class {
           );
         }
 
-        // Set session token values
-        request.session.access_token = authorizedToken.access_token;
+        // Set session token values. `cookie-session` only returns `null` once
+        // a session has been cleared
+        const session = (request.session ??= {});
+        session.access_token = authorizedToken.access_token;
         if (authorizedToken.scope) {
-          request.session.scope = authorizedToken.scope;
+          session.scope = authorizedToken.scope;
         }
 
         // Redirect to requested resource
-        return response.redirect(redirect || "/");
+        return response.redirect(typeof redirect === "string" ? redirect : "/");
       } catch (error) {
         response.status(error instanceof IndiekitError ? error.status : 500);
         return response.render("session/login", {
