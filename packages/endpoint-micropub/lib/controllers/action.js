@@ -120,7 +120,11 @@ export const actionController = async (request, response, next) => {
         break;
       }
 
-      default:
+      default: {
+        throw IndiekitError.badRequest(
+          response.locals.__("BadRequestError.invalidValue", "action"),
+        );
+      }
     }
 
     response
