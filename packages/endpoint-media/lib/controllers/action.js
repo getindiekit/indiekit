@@ -38,6 +38,13 @@ export const actionController = (imageProcessing) =>
             );
           }
 
+          // Only one file can be uploaded at a time
+          if (Array.isArray(files.file)) {
+            throw IndiekitError.badRequest(
+              response.locals.__("BadRequestError.invalidValue", "file"),
+            );
+          }
+
           const file = await mediaTransform(imageProcessing, files.file);
 
           data = await mediaData.create(application, publication, file);
@@ -61,7 +68,11 @@ export const actionController = (imageProcessing) =>
           break;
         }
 
-        default:
+        default: {
+          throw IndiekitError.badRequest(
+            response.locals.__("BadRequestError.invalidValue", "action"),
+          );
+        }
       }
 
       // Deleting a file leaves nothing to locate
