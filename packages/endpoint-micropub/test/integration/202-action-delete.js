@@ -40,6 +40,7 @@ describe("endpoint-micropub POST /micropub", () => {
       });
 
     assert.equal(result.status, 200);
+    assert.equal(result.header.location, undefined);
     assert.match(result.body.success_description, /\bPost deleted\b/);
   });
 

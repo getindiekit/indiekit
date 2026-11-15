@@ -127,10 +127,12 @@ export const actionController = async (request, response, next) => {
       }
     }
 
-    response
-      .status(content.status)
-      .location(content.location)
-      .json(content.json);
+    // Deleting a post leaves nothing to locate
+    if (content.location) {
+      response.location(content.location);
+    }
+
+    response.status(content.status).json(content.json);
   } catch (error_) {
     const error = error_ instanceof Error ? error_ : new Error(String(error_));
     let nextError = error;
