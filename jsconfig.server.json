@@ -2,6 +2,7 @@
   "extends": "./jsconfig.base.json",
   "include": [
     "./indiekit.config.js",
+    "./helpers/**/*.js",
     "./packages/**/*.js",
     "./typings/**/*.d.ts"
   ],

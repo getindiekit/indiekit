@@ -6,6 +6,7 @@
  * dispatchers are only compatible within the same major version. Always import
  * `MockAgent`, `setGlobalDispatcher` etc. from here, never from `undici`.
  * @see {@link https://github.com/nodejs/undici#supported-versions}
+ * @type {Record<number, string>}
  */
 const copies = {
   7: "undici-v7", // Bundled with Node.js 24.x
@@ -21,7 +22,10 @@ if (!packageName) {
   );
 }
 
-const undici = await import(packageName);
+// Copies share the same API, so are typed as the oldest supported copy
+const undici = /** @type {typeof import("undici-v7")} */ (
+  await import(packageName)
+);
 
 export const { Agent, MockAgent, getGlobalDispatcher, setGlobalDispatcher } =
   undici;

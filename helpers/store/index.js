@@ -97,10 +97,11 @@ export default class TestStore {
   /**
    * Delete file
    * @param {string} path - Path to file
-   * @param {string} message - Commit message
+   * @param {object} options - Options
+   * @param {string} options.message - Commit message
    * @returns {Promise<boolean>} File deleted
    */
-  async deleteFile(path, message) {
+  async deleteFile(path, { message }) {
     await this.#client(path, "DELETE", { message });
     return true;
   }

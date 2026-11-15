@@ -3,6 +3,11 @@ const defaultOptions = {
   usePostTypes: true,
 };
 
+/**
+ * Get test configuration
+ * @param {IndiekitConfig & { locale?: string, usePostTypes?: boolean }} [options] - Configuration to merge, and test options
+ * @returns {Promise<IndiekitConfig>} Test configuration
+ */
 export const testConfig = async (options) => {
   options = { ...defaultOptions, ...options };
 
