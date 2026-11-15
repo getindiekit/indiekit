@@ -5,10 +5,10 @@ const debug = makeDebug("indiekit:endpoint-media:media-content");
 export const mediaContent = {
   /**
    * Upload file to content store
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2MediaData} mediaData - Media data
-   * @param {object} file - File to upload
-   * @returns {Promise<object>} Data to use in response
+   * @param {{data: Uint8Array}} file - File to upload
+   * @returns {Promise<MicropubActionResponse>} Data to use in response
    */
   async upload(publication, mediaData, file) {
     debug(`Upload %O`, { mediaData });
@@ -37,9 +37,9 @@ export const mediaContent = {
 
   /**
    * Delete file from content store
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2MediaData} mediaData - Post data
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<MicropubActionResponse>} Response data
    */
   async delete(publication, mediaData) {
     debug(`Delete %O`, { mediaData });

@@ -2,9 +2,10 @@ import sharp from "sharp";
 
 /**
  * Apply media transformation
- * @param {object} imageProcessing - Sharp image processing options
- * @param {object} file - File
- * @returns {Promise<object>} Media file
+ * @template {{ data: Buffer, mimetype: string }} File
+ * @param {{ resize?: ResizeOptions }} imageProcessing - Sharp image processing options
+ * @param {File} file - File
+ * @returns {Promise<File>} Media file
  */
 export const mediaTransform = async (imageProcessing, file) => {
   // Function currently only supports transforming images
@@ -18,3 +19,8 @@ export const mediaTransform = async (imageProcessing, file) => {
 
   return file;
 };
+
+/**
+ * @import { Buffer } from "node:buffer"
+ * @import { ResizeOptions } from "sharp"
+ */

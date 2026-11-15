@@ -4,9 +4,11 @@ import { before, describe, it, mock } from "node:test";
 import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "@indiekit-test/media-data";
 import { mockAgent } from "@indiekit-test/mock-agent";
-import { publication } from "@indiekit-test/publication";
+import { testPublication } from "@indiekit-test/publication";
 
 import { mediaContent } from "../../lib/media-content.js";
+
+const publication = testPublication();
 
 await mockAgent("endpoint-media");
 
@@ -36,6 +38,7 @@ describe("endpoint-media/lib/media-content", () => {
   });
 
   it("Throws error uploading a file", async () => {
+    // @ts-expect-error: Testing invalid input
     await assert.rejects(mediaContent.upload(false, mediaData, file), {
       message: "storeMessageTemplate is not a function",
     });

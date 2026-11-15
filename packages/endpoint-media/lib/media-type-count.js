@@ -1,9 +1,9 @@
 export const mediaTypeCount = {
   /**
    * Count the number of media of a given type
-   * @param {object} postsCollection - Posts database collection
-   * @param {object} properties - Media properties
-   * @returns {Promise<object>} Media count
+   * @param {Collection|undefined} postsCollection - Posts database collection
+   * @param {Jf2Properties} properties - Media properties
+   * @returns {Promise<number|undefined>} Media count
    */
   async get(postsCollection, properties) {
     if (!postsCollection || !postsCollection.count()) {

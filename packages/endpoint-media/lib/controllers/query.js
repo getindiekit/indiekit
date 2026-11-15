@@ -60,7 +60,10 @@ export const queryController = async (request, response, next) => {
 
           return void response.json(getMediaProperties(mediaData));
         }
-        // Return properties for all uploaded files
+        /**
+         * Return properties for all uploaded files
+         * @type {Awaited<ReturnType<typeof getCursor>>}
+         */
         let cursor = {
           items: [],
           hasNext: false,
@@ -72,7 +75,9 @@ export const queryController = async (request, response, next) => {
         }
 
         return void response.json({
-          items: cursor.items.map((mediaData) => getMediaProperties(mediaData)),
+          items: cursor.items.map((mediaData) =>
+            getMediaProperties(/** @type {Jf2MediaData} */ (mediaData)),
+          ),
           paging: {
             ...(cursor.hasNext && { after: cursor.lastItem }),
             ...(cursor.hasPrev && { before: cursor.firstItem }),
