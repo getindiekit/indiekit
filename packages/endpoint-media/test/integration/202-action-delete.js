@@ -36,6 +36,7 @@ describe("endpoint-media POST /media", () => {
       });
 
     assert.equal(result.status, 200);
+    assert.equal(result.header.location, undefined);
     assert.match(result.body.success_description, /\bFile deleted\b/);
   });
 
