@@ -19,16 +19,25 @@ import {
 } from "../utils/validation.js";
 
 /**
+ * @typedef {object} TimelineQueryParameters
+ * @property {string} [channel] - Channel UID
+ * @property {string|string[]} [before] - Return items before this item ID
+ * @property {string|string[]} [after] - Return items after this item ID
+ * @property {string} [limit] - Number of items to return
+ */
+
+/**
  * Get timeline items for a channel
  * GET ?action=timeline&channel=<uid>
- * @param {object} request - Express request
- * @param {object} response - Express response
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
  */
 export async function get(request, response) {
   const { application, publication } = request.app.locals;
   const { __ } = response.locals;
   const userId = publication.me;
-  const { channel, before, after, limit } = request.query;
+  const { channel, before, after, limit } =
+    /** @type {TimelineQueryParameters} */ (request.query);
 
   validateChannel(__, channel);
 
@@ -51,8 +60,8 @@ export async function get(request, response) {
 /**
  * Handle timeline actions (mark_read, mark_unread, remove)
  * POST ?action=timeline
- * @param {object} request - Express request
- * @param {object} response - Express response
+ * @param {Request} request - Express request
+ * @param {Response} response - Express response
  * @returns {Promise<void>}
  */
 export async function action(request, response) {
@@ -81,7 +90,7 @@ export async function action(request, response) {
         entries,
         userId,
       );
-      return response.json({ result: "ok", updated: count });
+      return void response.json({ result: "ok", updated: count });
     }
 
     case "mark_unread": {
@@ -92,7 +101,7 @@ export async function action(request, response) {
         entries,
         userId,
       );
-      return response.json({ result: "ok", updated: count });
+      return void response.json({ result: "ok", updated: count });
     }
 
     case "remove": {
@@ -102,7 +111,7 @@ export async function action(request, response) {
         channelDocument.uid,
         entries,
       );
-      return response.json({ result: "ok", removed: count });
+      return void response.json({ result: "ok", removed: count });
     }
 
     default: {
@@ -114,3 +123,7 @@ export async function action(request, response) {
 }
 
 export const timelineController = { get, action };
+
+/**
+ * @import { Request, Response } from "express"
+ */

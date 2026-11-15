@@ -32,7 +32,9 @@ describe("endpoint-microsub GET /microsub?action=channels", () => {
 
     assert.equal(response.status, 200);
     assert.deepEqual(
-      response.body.channels.map((channel) => channel.name),
+      response.body.channels.map(
+        (/** @type {MicrosubChannel} */ channel) => channel.name,
+      ),
       ["Tech News", "Photos"],
     );
   });

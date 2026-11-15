@@ -11,12 +11,24 @@ import { getChannelsCollection, getItemsCollection } from "./collections.js";
 const debug = makeDebug("indiekit:endpoint-microsub");
 
 /**
+ * Channel, as stored in the database
+ * @typedef {object} MicrosubChannelDocument
+ * @property {unknown} [_id] - BSON ObjectId
+ * @property {string} uid - Channel UID
+ * @property {string} name - Channel name
+ * @property {string} [userId] - User ID
+ * @property {number} order - Position in channel list
+ * @property {Date} createdAt - Date created
+ * @property {Date} updatedAt - Date last updated
+ */
+
+/**
  * Create a new channel
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {object} data - Channel data
  * @param {string} data.name - Channel name
  * @param {string} [data.userId] - User ID
- * @returns {Promise<object>} Created channel
+ * @returns {Promise<MicrosubChannelDocument>} Created channel
  */
 export async function createChannel(application, { name, userId }) {
   const collection = getChannelsCollection(application);
@@ -34,6 +46,9 @@ export async function createChannel(application, { name, userId }) {
 
   const order = maxOrderResult.length > 0 ? maxOrderResult[0].order + 1 : 0;
 
+  /**
+   * @type {MicrosubChannelDocument}
+   */
   const channel = {
     uid,
     name,
@@ -50,15 +65,18 @@ export async function createChannel(application, { name, userId }) {
 
 /**
  * Get all channels for a user
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} [userId] - User ID (optional for single-user mode)
- * @returns {Promise<Array>} Array of channels with unread counts
+ * @returns {Promise<MicrosubChannel[]>} Array of channels with unread counts
  */
 export async function getChannels(application, userId) {
   const collection = getChannelsCollection(application);
   const itemsCollection = getItemsCollection(application);
 
   const filter = userId ? { userId } : {};
+  /**
+   * @type {MicrosubChannelDocument[]}
+   */
   // eslint-disable-next-line unicorn/no-array-callback-reference -- MongoDB methods
   const channels = await collection.find(filter).sort({ order: 1 }).toArray();
 
@@ -95,13 +113,16 @@ export async function getChannels(application, userId) {
 
 /**
  * Get a single channel by UID
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} uid - Channel UID
  * @param {string} [userId] - User ID
- * @returns {Promise<object|null>} Channel or null
+ * @returns {Promise<MicrosubChannelDocument|null>} Channel or null
  */
 export async function getChannel(application, uid, userId) {
   const collection = getChannelsCollection(application);
+  /**
+   * @type {{ uid: string, userId?: string }}
+   */
   const query = { uid };
   if (userId) query.userId = userId;
 
@@ -110,14 +131,17 @@ export async function getChannel(application, uid, userId) {
 
 /**
  * Update a channel
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} uid - Channel UID
- * @param {object} updates - Fields to update
+ * @param {Partial<Pick<MicrosubChannelDocument, "name">>} updates - Fields to update
  * @param {string} [userId] - User ID
- * @returns {Promise<object|null>} Updated channel
+ * @returns {Promise<MicrosubChannelDocument|null>} Updated channel
  */
 export async function updateChannel(application, uid, updates, userId) {
   const collection = getChannelsCollection(application);
+  /**
+   * @type {{ uid: string, userId?: string }}
+   */
   const query = { uid };
   if (userId) query.userId = userId;
 
@@ -137,7 +161,7 @@ export async function updateChannel(application, uid, updates, userId) {
 
 /**
  * Delete a channel and all its items
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} uid - Channel UID
  * @param {string} [userId] - User ID
  * @returns {Promise<boolean>} True if deleted
@@ -145,6 +169,9 @@ export async function updateChannel(application, uid, updates, userId) {
 export async function deleteChannel(application, uid, userId) {
   const collection = getChannelsCollection(application);
   const itemsCollection = getItemsCollection(application);
+  /**
+   * @type {{ uid: string, userId?: string }}
+   */
   const query = { uid };
   if (userId) query.userId = userId;
 
@@ -167,8 +194,8 @@ export async function deleteChannel(application, uid, userId) {
 
 /**
  * Reorder channels
- * @param {object} application - Indiekit application
- * @param {Array} channelUids - Ordered array of channel UIDs
+ * @param {IndiekitApplication} application - Indiekit application
+ * @param {unknown[]} channelUids - Ordered array of channel UIDs, as sent
  * @param {string} [userId] - User ID
  * @returns {Promise<void>}
  */
@@ -190,9 +217,9 @@ export async function reorderChannels(application, channelUids, userId) {
 
 /**
  * Ensure notifications channel exists
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} [userId] - User ID
- * @returns {Promise<object>} Notifications channel
+ * @returns {Promise<MicrosubChannelDocument>} Notifications channel
  */
 export async function ensureNotificationsChannel(application, userId) {
   const collection = getChannelsCollection(application);
@@ -206,7 +233,10 @@ export async function ensureNotificationsChannel(application, userId) {
     return existing;
   }
 
-  // Create notifications channel
+  /**
+   * Create notifications channel
+   * @type {MicrosubChannelDocument}
+   */
   const channel = {
     uid: "notifications",
     name: "Notifications",

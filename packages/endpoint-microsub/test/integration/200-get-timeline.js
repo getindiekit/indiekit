@@ -18,6 +18,9 @@ const cookie = testCookie();
 // Indiekit uses ‘indiekit’ as its default database, not ‘test’
 const database = client.db("indiekit");
 
+/**
+ * @type {{ channelUid?: string }}
+ */
 const fixture = {};
 
 describe("endpoint-microsub GET /microsub?action=timeline", () => {
@@ -55,7 +58,7 @@ describe("endpoint-microsub GET /microsub?action=timeline", () => {
 
     assert.equal(response.status, 200);
     assert.deepEqual(
-      response.body.items.map((item) => item.name),
+      response.body.items.map((/** @type {MicrosubPost} */ item) => item.name),
       ["Item 2", "Item 1", "Item 0"],
     );
   });

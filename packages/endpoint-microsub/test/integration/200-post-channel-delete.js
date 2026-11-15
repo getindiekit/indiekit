@@ -55,7 +55,9 @@ describe("endpoint-microsub POST /microsub?action=channels (delete)", () => {
     const response = await request
       .get("/microsub?action=channels")
       .set("cookie", cookie);
-    const uids = response.body.channels.map((channel) => channel.uid);
+    const uids = response.body.channels.map(
+      (/** @type {MicrosubChannel} */ channel) => channel.uid,
+    );
 
     assert.equal(uids.includes(uid), false);
   });

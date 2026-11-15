@@ -37,9 +37,13 @@ export function validateAction(__, action) {
 
 /**
  * Validate channel UID
+ *
+ * Asserts `channel` is a string, so only skip `isRequired` where a missing
+ * channel isn’t then used as one
  * @param {i18n.__} __ - Localisation function
- * @param {string} [channel] - Channel UID to validate
+ * @param {unknown} [channel] - Channel UID to validate
  * @param {boolean} [isRequired] - Whether channel is required
+ * @returns {asserts channel is string} Channel UID is a string
  * @throws {IndiekitError} If channel is invalid
  */
 export function validateChannel(__, channel, isRequired = true) {
@@ -59,8 +63,8 @@ export function validateChannel(__, channel, isRequired = true) {
 /**
  * Validate entry/entries parameter
  * @param {i18n.__} __ - Localisation function
- * @param {string|Array} [entry] - Entry ID(s) to validate
- * @returns {Array} Array of entry IDs
+ * @param {unknown} [entry] - Entry ID(s) to validate
+ * @returns {unknown[]} Array of entry IDs
  * @throws {IndiekitError} If entry is invalid
  */
 export function validateEntries(__, entry) {
@@ -85,7 +89,8 @@ export function validateEntries(__, entry) {
 /**
  * Validate channel name
  * @param {i18n.__} __ - Localisation function
- * @param {string} name - Channel name to validate
+ * @param {unknown} name - Channel name to validate
+ * @returns {asserts name is string} Channel name is a string
  * @throws {IndiekitError} If name is invalid
  */
 export function validateChannelName(__, name) {
@@ -105,9 +110,9 @@ export function validateChannelName(__, name) {
 /**
  * Parse array parameter from request
  * Handles both array[] and array[0], array[1] formats
- * @param {object} body - Request body
+ * @param {Record<string, unknown>} body - Request body
  * @param {string} parameterName - Parameter name
- * @returns {Array} Parsed array
+ * @returns {unknown[]} Parsed array
  */
 export function parseArrayParameter(body, parameterName) {
   const value = body[parameterName];
@@ -123,6 +128,9 @@ export function parseArrayParameter(body, parameterName) {
   }
 
   // Indexed values (param[0], param[1], ...)
+  /**
+   * @type {unknown[]}
+   */
   const result = [];
   let index = 0;
   while (body[`${parameterName}[${index}]`] !== undefined) {

@@ -37,7 +37,9 @@ describe("endpoint-microsub POST /microsub?action=channels", () => {
     const response = await request
       .get("/microsub?action=channels")
       .set("cookie", cookie);
-    const uids = response.body.channels.map((channel) => channel.uid);
+    const uids = response.body.channels.map(
+      (/** @type {MicrosubChannel} */ channel) => channel.uid,
+    );
 
     assert.ok(uids.includes(created.body.uid));
   });

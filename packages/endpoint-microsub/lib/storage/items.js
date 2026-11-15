@@ -10,15 +10,41 @@ import { parseLimit } from "../utils/pagination.js";
 import { getItemsCollection } from "./collections.js";
 
 /**
+ * Timeline item, as stored in the database
+ * @typedef {object} MicrosubItemDocument
+ * @property {string} id - UUIDv7, stamped with publication date
+ * @property {string} channel - Channel UID
+ * @property {string} [type] - Item type, i.e. `entry`
+ * @property {string} [uid] - Feed’s own item UID
+ * @property {string} [url] - Item URL
+ * @property {string} [name] - Item name
+ * @property {unknown} [content] - Item content
+ * @property {string} [summary] - Item summary
+ * @property {Date} [published] - Date published
+ * @property {Date} [updated] - Date updated
+ * @property {unknown} [author] - Item author
+ * @property {string[]} [category] - Categories
+ * @property {unknown[]} [photo] - Photos
+ * @property {unknown[]} [video] - Videos
+ * @property {unknown[]} [audio] - Audio
+ * @property {string[]} [likeOf] - URLs this item likes
+ * @property {string[]} [repostOf] - URLs this item reposts
+ * @property {string[]} [bookmarkOf] - URLs this item bookmarks
+ * @property {string[]} [inReplyTo] - URLs this item replies to
+ * @property {unknown} [source] - Feed the item came from
+ * @property {string[]} [readBy] - IDs of users who have read the item
+ */
+
+/**
  * Get timeline items for a channel
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} channel - Channel uid
  * @param {object} options - Query options
- * @param {string} [options.before] - Before cursor
- * @param {string} [options.after] - After cursor
- * @param {number} [options.limit] - Items per page
+ * @param {string|string[]} [options.before] - Before cursor
+ * @param {string|string[]} [options.after] - After cursor
+ * @param {string|number} [options.limit] - Items per page
  * @param {string} [options.userId] - User ID for read state
- * @returns {Promise<object>} Timeline with items and paging
+ * @returns {Promise<MicrosubTimelineResponse>} Timeline with items and paging
  */
 export async function getTimelineItems(application, channel, options = {}) {
   const collection = getItemsCollection(application);
@@ -35,11 +61,14 @@ export async function getTimelineItems(application, channel, options = {}) {
   );
 
   const items = cursor.items.map((item) =>
-    transformToJf2(item, options.userId),
+    transformToJf2(/** @type {MicrosubItemDocument} */ (item), options.userId),
   );
 
-  // Microsub paging: `after` continues down to older items, `before` back
-  // up to newer ones
+  /**
+   * Microsub paging: `after` continues down to older items, `before` back
+   * up to newer ones
+   * @type {MicrosubPaging}
+   */
   const paging = {};
   if (cursor.hasNext) {
     paging.after = cursor.lastItem;
@@ -53,11 +82,14 @@ export async function getTimelineItems(application, channel, options = {}) {
 
 /**
  * Transform database item to jf2 format
- * @param {object} item - Database item
+ * @param {MicrosubItemDocument} item - Database item
  * @param {string} [userId] - User ID for read state
- * @returns {object} jf2 item
+ * @returns {MicrosubPost} jf2 item
  */
 function transformToJf2(item, userId) {
+  /**
+   * @type {MicrosubPost}
+   */
   const jf2 = {
     type: item.type,
     uid: item.uid,
@@ -73,16 +105,16 @@ function transformToJf2(item, userId) {
   if (item.summary) jf2.summary = item.summary;
   if (item.updated) jf2.updated = item.updated.toISOString();
   if (item.author) jf2.author = item.author;
-  if (item.category?.length > 0) jf2.category = item.category;
-  if (item.photo?.length > 0) jf2.photo = item.photo;
-  if (item.video?.length > 0) jf2.video = item.video;
-  if (item.audio?.length > 0) jf2.audio = item.audio;
+  if (item.category?.length) jf2.category = item.category;
+  if (item.photo?.length) jf2.photo = item.photo;
+  if (item.video?.length) jf2.video = item.video;
+  if (item.audio?.length) jf2.audio = item.audio;
 
   // Interaction types
-  if (item.likeOf?.length > 0) jf2["like-of"] = item.likeOf;
-  if (item.repostOf?.length > 0) jf2["repost-of"] = item.repostOf;
-  if (item.bookmarkOf?.length > 0) jf2["bookmark-of"] = item.bookmarkOf;
-  if (item.inReplyTo?.length > 0) jf2["in-reply-to"] = item.inReplyTo;
+  if (item.likeOf?.length) jf2["like-of"] = item.likeOf;
+  if (item.repostOf?.length) jf2["repost-of"] = item.repostOf;
+  if (item.bookmarkOf?.length) jf2["bookmark-of"] = item.bookmarkOf;
+  if (item.inReplyTo?.length) jf2["in-reply-to"] = item.inReplyTo;
 
   // Source
   if (item.source) jf2._source = item.source;
@@ -92,9 +124,9 @@ function transformToJf2(item, userId) {
 
 /**
  * Mark items as read
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} channel - Channel uid
- * @param {Array} entryIds - Array of entry IDs to mark as read
+ * @param {unknown[]} entryIds - Array of entry IDs to mark as read
  * @param {string} userId - User ID
  * @returns {Promise<number>} Number of items updated
  */
@@ -128,9 +160,9 @@ export async function markItemsRead(application, channel, entryIds, userId) {
 
 /**
  * Mark items as unread
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} channel - Channel uid
- * @param {Array} entryIds - Array of entry IDs to mark as unread
+ * @param {unknown[]} entryIds - Array of entry IDs to mark as unread
  * @param {string} userId - User ID
  * @returns {Promise<number>} Number of items updated
  */
@@ -155,9 +187,9 @@ export async function markItemsUnread(application, channel, entryIds, userId) {
 
 /**
  * Remove items from channel
- * @param {object} application - Indiekit application
+ * @param {IndiekitApplication} application - Indiekit application
  * @param {string} channel - Channel uid
- * @param {Array} entryIds - Array of entry IDs to remove
+ * @param {unknown[]} entryIds - Array of entry IDs to remove
  * @returns {Promise<number>} Number of items removed
  */
 export async function removeItems(application, channel, entryIds) {

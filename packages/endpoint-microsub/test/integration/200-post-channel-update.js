@@ -56,7 +56,9 @@ describe("endpoint-microsub POST /microsub?action=channels (update)", () => {
     const response = await request
       .get("/microsub?action=channels")
       .set("cookie", cookie);
-    const channel = response.body.channels.find((c) => c.uid === uid);
+    const channel = response.body.channels.find(
+      (/** @type {MicrosubChannel} */ c) => c.uid === uid,
+    );
 
     assert.equal(channel.name, "After");
   });
