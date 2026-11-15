@@ -9,7 +9,7 @@ function errorBody(message) {
 }
 
 /**
- * @returns {MockAgent} Undici MockAgent
+ * @returns {InstanceType<typeof MockAgent>} Undici MockAgent
  * @see {@link https://undici.nodejs.org/#/docs/api/MockAgent}
  */
 export function mockClient() {

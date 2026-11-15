@@ -16,6 +16,7 @@ describe("@indiekit-test/undici", () => {
       with: { type: "json" },
     });
 
+    assert.ok(bundledVersion);
     assert.equal(
       package_.version.split(".", 1)[0],
       bundledVersion.split(".", 1)[0],
