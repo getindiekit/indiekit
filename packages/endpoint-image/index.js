@@ -12,6 +12,11 @@ const router = express.Router();
 export default class ImageEndpoint {
   name = "Image resizing endpoint";
 
+  /**
+   * @param {object} [options] - Plugin options
+   * @param {string|string[]} [options.domains] - Domains to allow remote image resizing for
+   * @param {string} [options.mountPath] - Path to mount image endpoint
+   */
   constructor(options = {}) {
     this.options = { ...defaults, ...options };
     this.domains = this.options.domains;
@@ -26,7 +31,11 @@ export default class ImageEndpoint {
     Indiekit.config.application.imageEndpoint = this.options.mountPath;
   }
 
-  _routes(indiekitConfig) {
+  /**
+   * @param {IndiekitInstance} Indiekit - Indiekit instance
+   * @returns {Router} Routes that don’t require authentication
+   */
+  _routes(Indiekit) {
     const domains = Array.isArray(this.domains) ? this.domains : [this.domains];
 
     const ipx = createIPX({
@@ -34,7 +43,7 @@ export default class ImageEndpoint {
         dir: "./public",
       }),
       httpStorage: ipxHttpStorage({
-        domains: [indiekitConfig.publication.me, ...domains],
+        domains: [Indiekit.publication.me, ...domains],
       }),
     });
 
@@ -47,5 +56,5 @@ export default class ImageEndpoint {
 }
 
 /**
- * @import { RequestHandler } from "express"
+ * @import { RequestHandler, Router } from "express"
  */
