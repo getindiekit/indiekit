@@ -81,7 +81,7 @@ export const formController = {
 
     let message;
     if (files.length === 1) {
-      message = uploaded[0].success_description;
+      message = uploaded[0].success_description || "";
     } else if (uploaded.length === files.length) {
       message = response.locals.__(
         "files.upload.success",

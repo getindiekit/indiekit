@@ -5,7 +5,7 @@ export const endpoint = {
    * Micropub media query
    * @param {string} url - URL
    * @param {string} accessToken - Access token
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<unknown>} Response data
    */
   async get(url, accessToken) {
     const endpointResponse = await fetch(url, {
@@ -20,7 +20,10 @@ export const endpoint = {
     }
 
     return endpointResponse.status === 204
-      ? { success_description: endpointResponse.headers.get("location") }
+      ? {
+          success_description:
+            endpointResponse.headers.get("location") || undefined,
+        }
       : await endpointResponse.json();
   },
 
@@ -29,7 +32,7 @@ export const endpoint = {
    * @param {string} url - URL
    * @param {string} accessToken - Access token
    * @param {FormData} [formData] - Form data
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<MicropubResponseBody>} Response data
    */
   async post(url, accessToken, formData) {
     const endpointResponse = await fetch(url, {
