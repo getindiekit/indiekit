@@ -19,23 +19,26 @@ import {
 } from "../../lib/jf2.js";
 
 await mockAgent("endpoint-micropub");
-const publication = {
-  channels: {
-    posts: {
-      name: "Posts",
+// Partial configuration, with only the values used by these functions
+const publication = /** @type {IndiekitPublication} */ (
+  /** @type {unknown} */ ({
+    channels: {
+      posts: {
+        name: "Posts",
+      },
+      pages: {
+        name: "Pages",
+      },
     },
-    pages: {
-      name: "Pages",
-    },
-  },
-  slugSeparator: "-",
-  syndicationTargets: [
-    {
-      name: "Example social network",
-      info: { uid: "https://mastodon.example/" },
-    },
-  ],
-};
+    slugSeparator: "-",
+    syndicationTargets: [
+      {
+        name: "Example social network",
+        info: { uid: "https://mastodon.example/" },
+      },
+    ],
+  })
+);
 
 describe("endpoint-micropub/lib/jf2", () => {
   it("Creates JF2 object from form-encoded request", async () => {
@@ -367,6 +370,9 @@ describe("endpoint-micropub/lib/jf2", () => {
     const properties = JSON.parse(
       getFixture("jf2/article-syndicate-to-provided.jf2"),
     );
+    /**
+     * @type {IndiekitSyndicationTarget[]}
+     */
     const syndicationTargets = [];
     const result = getSyndicateToProperty(properties, syndicationTargets);
 
@@ -448,6 +454,9 @@ describe("endpoint-micropub/lib/jf2", () => {
         "syndicate-to": "https://another.example",
       },
     };
+    /**
+     * @type {IndiekitSyndicationTarget[]}
+     */
     const syndicationTargets = [];
     const result = getSyndicateToProperty(properties, syndicationTargets);
 
@@ -556,6 +565,9 @@ describe("endpoint-micropub/lib/jf2", () => {
     const uid = "https://mastodon.example/@username";
     const result = getSyndicateToProperty({ "mp-syndicate-to": [uid] }, [
       {
+        /**
+         * @returns {never} Never returns, as `info` can’t be read
+         */
         get info() {
           throw new Error("Valid server URL required");
         },

@@ -1,15 +1,22 @@
 /**
+ * mf2 item, with optional type so it can be removed from a response
+ * @typedef {object} Mf2Item
+ * @property {string[]} [type] - Item type, i.e. `h-entry`
+ * @property {Record<string, unknown>} properties - Item properties
+ */
+
+/**
  * Return mf2 properties of a post
- * @param {object} mf2 - mf2 object
+ * @param {Mf2Item|{items: Mf2Item[]}} mf2 - mf2 item, or mf2 with items
  * @param {Array<string>|string} [requestedProperties] - mf2 properties to select
- * @returns {Promise<object>} mf2 with requested properties
+ * @returns {Mf2Item|{items: Mf2Item[]}} mf2 with requested properties
  */
 export const getMf2Properties = (mf2, requestedProperties) => {
   if (!requestedProperties) {
     return mf2;
   }
 
-  const item = mf2.items ? mf2.items[0] : mf2;
+  const item = "items" in mf2 ? mf2.items[0] : mf2;
   const { properties } = item;
 
   // Return requested properties
@@ -18,6 +25,9 @@ export const getMf2Properties = (mf2, requestedProperties) => {
       ? requestedProperties
       : [requestedProperties];
 
+    /**
+     * @type {Record<string, unknown>}
+     */
     const selectedProperties = {};
 
     for (const key of requestedProperties) {

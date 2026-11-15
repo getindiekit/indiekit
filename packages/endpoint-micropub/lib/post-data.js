@@ -14,9 +14,9 @@ const debug = makeDebug("indiekit:endpoint-micropub:post-data");
 
 /**
  * Get post type configuration, which must include a post path
- * @param {object} postTypes - Publication post types
+ * @param {Record<string, IndiekitPostType>} postTypes - Publication post types
  * @param {string|null} type - Post type
- * @returns {object} Post type configuration
+ * @returns {IndiekitPostType & { post: { path: string, url?: string } }} Post type configuration
  */
 const getTypeConfig = (postTypes, type) => {
   const typeConfig = type ? postTypes[type] : undefined;
@@ -24,14 +24,16 @@ const getTypeConfig = (postTypes, type) => {
     throw IndiekitError.notImplemented(String(type));
   }
 
-  return typeConfig;
+  return /** @type {IndiekitPostType & { post: { path: string } }} */ (
+    typeConfig
+  );
 };
 
 export const postData = {
   /**
    * Create post data
-   * @param {object} application - Application configuration
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitApplication} application - Application configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2Properties} properties - JF2 properties
    * @param {boolean} [isDraftMode] - Draft mode
    * @returns {Promise<Jf2PostData>} Post data
@@ -110,7 +112,7 @@ export const postData = {
 
   /**
    * Read post data
-   * @param {object} application - Application configuration
+   * @param {IndiekitApplication} application - Application configuration
    * @param {string} url - URL of existing post
    * @returns {Promise<Jf2PostData>} Post data
    */
@@ -137,10 +139,10 @@ export const postData = {
    * Update post data
    *
    * Add, delete or replace properties and/or replace property values
-   * @param {object} application - Application configuration
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitApplication} application - Application configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {string} url - URL of existing post
-   * @param {object} operation - Requested operation(s)
+   * @param {MicropubUpdateOperation} operation - Requested operation(s)
    * @returns {Promise<Jf2PostData|undefined>} Post data
    */
   async update(application, publication, url, operation) {
@@ -201,7 +203,7 @@ export const postData = {
       publication,
     );
     const updatedUrl = await renderPath(
-      typeConfig.post.url,
+      typeConfig.post.url || typeConfig.post.path,
       properties,
       application,
       publication,
@@ -230,8 +232,8 @@ export const postData = {
    * Delete post data
    *
    * Delete (most) properties, keeping a record of deleted for later retrieval
-   * @param {object} application - Application configuration
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitApplication} application - Application configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @returns {Promise<Jf2PostData>} Post data
    */
@@ -284,8 +286,8 @@ export const postData = {
    * Undelete post data
    *
    * Restore previously deleted properties
-   * @param {object} application - Application configuration
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitApplication} application - Application configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {string} url - URL of existing post
    * @param {boolean} [isDraftMode] - Draft mode
    * @returns {Promise<Jf2PostData>} Post data

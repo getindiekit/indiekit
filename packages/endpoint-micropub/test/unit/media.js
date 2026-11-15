@@ -19,6 +19,9 @@ const mediaEndpoint = "https://media-endpoint.example";
 const token = testToken();
 
 describe("endpoint-micropub/lib/media", () => {
+  /**
+   * @type {Jf2Properties}
+   */
   let properties;
 
   beforeEach(() => {
@@ -38,12 +41,15 @@ describe("endpoint-micropub/lib/media", () => {
   });
 
   it("Uploads attached files via media endpoint", async () => {
-    const files = {
-      photo: [
-        { data: getFixture("file-types/photo.jpg"), name: "photo2.jpg" },
-        { buffer: getFixture("file-types/photo.jpg"), name: "photo3.jpg" },
-      ],
-    };
+    // Partial fixtures, standing in for files attached to a request
+    const files = /** @type {Parameters<typeof uploadMedia>[3]} */ (
+      /** @type {unknown} */ ({
+        photo: [
+          { data: getFixture("file-types/photo.jpg"), name: "photo2.jpg" },
+          { buffer: getFixture("file-types/photo.jpg"), name: "photo3.jpg" },
+        ],
+      })
+    );
     const result = await uploadMedia(mediaEndpoint, token, properties, files);
 
     assert.deepEqual(result.photo, [

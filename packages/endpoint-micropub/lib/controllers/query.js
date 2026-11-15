@@ -12,6 +12,7 @@ import { getMf2Properties, jf2ToMf2 } from "../mf2.js";
  * @property {string} [filter] - Value to filter items by (for posts, a case-insensitive match on name and content)
  * @property {string} [limit] - Number of items to return
  * @property {string} [offset] - Offset to start limit of items
+ * @property {string|string[]} [post-type] - Only return posts of these post types
  * @property {string|string[]} [properties] - mf2 properties to select
  * @property {string} [q] - Query
  * @property {string} [uid] - UID of post to return
@@ -83,7 +84,7 @@ export const queryController = async (request, response, next) => {
         }
         // Return mf2 for published posts
         /**
-         * @type {{ items: object[], hasNext: boolean, hasPrev: boolean, firstItem?: string, lastItem?: string }}
+         * @type {{ items: Array<Record<string, unknown>>, hasNext: boolean, hasPrev: boolean, firstItem?: string, lastItem?: string }}
          */
         let cursor = {
           items: [],
@@ -161,7 +162,14 @@ export const queryController = async (request, response, next) => {
         // Query configuration value (can be filtered, limited and offset)
         if (Object.hasOwn(config, q)) {
           return void response.json({
-            [q]: queryConfig(config[q], { filter, limit, offset }),
+            [q]: queryConfig(
+              config[/** @type {keyof MicropubConfigResponse} */ (q)],
+              {
+                filter,
+                limit,
+                offset,
+              },
+            ),
           });
         }
 

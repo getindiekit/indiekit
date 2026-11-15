@@ -2,57 +2,60 @@ import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
 import MastodonSyndicator from "@indiekit/syndicator-mastodon";
+import { testApplication } from "@indiekit-test/application";
 import { testConfig } from "@indiekit-test/config";
+import { testPublication } from "@indiekit-test/publication";
 
 import { getConfig, queryConfig } from "../../lib/config.js";
 
 const config = await testConfig();
+// Test post types are configured, but don’t yet have the `type` Indiekit adds
+const postTypes = /** @type {Record<string, IndiekitPostType>} */ (
+  config.publication?.postTypes
+);
 const list = ["blog", "indieweb", "microblog", "web", "website"];
 
 describe("endpoint-micropub/lib/config", () => {
   it("Returns queryable config", () => {
-    const application = {
-      url: "https://endpoint.example",
-    };
+    const application = testApplication({ url: "https://endpoint.example" });
     const mastodon = new MastodonSyndicator({
       checked: true,
       url: "https://mastodon.example",
       user: "username",
     });
-    const publication = {
+    const publication = testPublication({
       categories: ["foo", "bar"],
-      channels: {},
-      postTypes: config.publication.postTypes,
+      postTypes,
       syndicationTargets: [mastodon],
-    };
+    });
     const result = getConfig(application, publication);
 
     assert.deepEqual(result.categories, ["foo", "bar"]);
-    assert.equal(result["post-types"][0].path, undefined);
+    assert.equal(Object.hasOwn(result["post-types"][0], "path"), false);
     assert.equal(result["syndicate-to"][0].checked, true);
     assert.equal(result["syndicate-to"][0].service.name, "Mastodon");
-    assert.equal(result["syndicate-to"][0].user.name, "@username");
+    assert.equal(result["syndicate-to"][0].user?.name, "@username");
   });
 
   it("Omits syndication target whose info can’t be read", () => {
-    const application = {
-      url: "https://endpoint.example",
-    };
+    const application = testApplication({ url: "https://endpoint.example" });
     const mastodon = new MastodonSyndicator({
       url: "https://mastodon.example",
       user: "username",
     });
-    const broken = {
+    // A syndicator whose configuration is invalid
+    const broken = new (class extends MastodonSyndicator {
+      /**
+       * @returns {never} Never returns, as `info` can’t be read
+       */
       get info() {
         throw new Error("Valid server URL required");
-      },
-    };
-    const publication = {
-      categories: [],
-      channels: {},
-      postTypes: config.publication.postTypes,
+      }
+    })();
+    const publication = testPublication({
+      postTypes,
       syndicationTargets: [broken, mastodon],
-    };
+    });
     const result = getConfig(application, publication);
 
     assert.equal(result["syndicate-to"].length, 1);
