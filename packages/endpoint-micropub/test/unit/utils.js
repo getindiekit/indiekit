@@ -1,6 +1,9 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
+import { testPublication } from "@indiekit-test/publication";
+
 import {
   decodeQueryParameter,
   getPostTemplateProperties,
@@ -65,23 +68,8 @@ describe("endpoint-media/lib/utils", () => {
       channel: ["foo", "bar"],
       slug: "foo",
     };
-    const application = {
-      posts: {
-        aggregate: () => ({
-          toArray: async () => [],
-        }),
-        count: () => 1,
-        path: "foo",
-        properties: {
-          type: "entry",
-          published: "2019-08-17T23:56:38.977+01:00",
-          "post-type": "note",
-        },
-      },
-    };
-    const publication = {
-      slugSeparator: "_",
-    };
+    const application = testApplication();
+    const publication = testPublication({ slugSeparator: "_" });
     const result = await renderPath(
       template,
       properties,

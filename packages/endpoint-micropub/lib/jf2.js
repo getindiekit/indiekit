@@ -11,11 +11,14 @@ import { decodeQueryParameter, relativeMediaPath, toArray } from "./utils.js";
 
 /**
  * Create JF2 object from form-encoded request
- * @param {object} body - Form-encoded request body
+ * @param {Record<string, string|string[]>} body - Form-encoded request body
  * @param {boolean} [canFetchReferences] - Fetch data for any referenced URLs
- * @returns {Promise<object>} Micropub action
+ * @returns {Promise<Jf2Properties>} JF2 properties
  */
 export const formEncodedToJf2 = async (body, canFetchReferences) => {
+  /**
+   * @type {Jf2Properties}
+   */
   const jf2 = {
     type: body.h || "entry",
   };
@@ -43,14 +46,14 @@ export const formEncodedToJf2 = async (body, canFetchReferences) => {
 
 /**
  * Convert mf2 to JF2
- * @param {object} body - Form-encoded request body
+ * @param {Record<string, unknown>} body - mf2 item, i.e. a JSON request body
  * @param {boolean} [canFetchReferences] - Fetch data for any referenced URLs
- * @returns {Promise<object>} Micropub action
+ * @returns {Promise<Jf2Properties>} JF2 properties
  */
 export const mf2ToJf2 = async (body, canFetchReferences) => {
-  const mf2 = {
+  const mf2 = /** @type {Mf2} */ ({
     items: [body],
-  };
+  });
 
   if (canFetchReferences) {
     return mf2tojf2referenced(mf2);
@@ -61,10 +64,10 @@ export const mf2ToJf2 = async (body, canFetchReferences) => {
 
 /**
  * Normalise JF2 properties
- * @param {object} publication - Publication configuration
+ * @param {IndiekitPublication} publication - Publication configuration
  * @param {Jf2Properties} properties - JF2 properties
  * @param {string} timeZone - Application time zone
- * @returns {object} Normalised JF2 properties
+ * @returns {Jf2Properties} Normalised JF2 properties
  */
 export const normaliseProperties = (publication, properties, timeZone) => {
   const { channels, me, slugSeparator } = publication;
@@ -133,6 +136,9 @@ export const normaliseProperties = (publication, properties, timeZone) => {
  */
 export const getCategoryProperty = (properties) => {
   const seen = new Set();
+  /**
+   * @type {string[]}
+   */
   const category = [];
 
   for (const value of toArray(properties.category)) {
@@ -151,12 +157,11 @@ export const getCategoryProperty = (properties) => {
 /**
  * Get audio property
  * @param {Jf2Properties} properties - JF2 properties
- * @param {object} me - Publication URL
- * @returns {Array} `audio` property
+ * @param {string} me - Publication URL
+ * @returns {Jf2MediaItem[]} `audio` property
  */
 export const getAudioProperty = (properties, me) => {
-  let { audio } = properties;
-  audio = Array.isArray(audio) ? audio : [audio];
+  const audio = toArray(properties.audio);
 
   return audio.map((item) => ({
     url: relativeMediaPath(item.url || item, me),
@@ -175,26 +180,29 @@ export const getAudioProperty = (properties, me) => {
  * The first item in a publication’s configured channels is considered the
  * default channel.
  * @param {Jf2Properties} properties - JF2 properties
- * @param {object} channels - Publication channels
- * @returns {Array} `mp-channel` property
+ * @param {IndiekitPublication["channels"]} channels - Publication channels
+ * @returns {string[]} `mp-channel` property
  * @see {@link https://github.com/indieweb/micropub-extensions/issues/40}
  */
 export const getChannelProperty = (properties, channels) => {
-  channels = Object.keys(channels);
+  const channelUids = Object.keys(channels);
   const mpChannel = properties["mp-channel"];
   const providedChannels = Array.isArray(mpChannel) ? mpChannel : [mpChannel];
+  /**
+   * @type {Set<string>}
+   */
   const selectedChannels = new Set();
 
   // Only select channels that have been configured
   for (const uid of providedChannels) {
-    if (channels.includes(uid)) {
+    if (channelUids.includes(uid)) {
       selectedChannels.add(uid);
     }
   }
 
   // If no channels provided, use default channel UID
   if (selectedChannels.size === 0) {
-    const defaultChannel = channels[0];
+    const defaultChannel = channelUids[0];
     selectedChannels.add(defaultChannel);
   }
 
@@ -207,7 +215,7 @@ export const getChannelProperty = (properties, channels) => {
  * JF2 allows for the provision of both plaintext and HTML representations.
  * Use existing values, or add HTML representation if only plaintext provided.
  * @param {Jf2Properties} properties - JF2 properties
- * @returns {object} `content` property
+ * @returns {{ html?: string, text?: string }} `content` property
  * @see {@link https://www.w3.org/TR/jf2/#html-content}
  */
 export const getContentProperty = (properties) => {
@@ -240,8 +248,8 @@ export const getContentProperty = (properties) => {
 
 /**
  * Get location property, parsing a Geo URI if provided
- * @param {object|string} properties - JF2 properties
- * @returns {object} `location` property
+ * @param {Jf2Properties} properties - JF2 properties
+ * @returns {Jf2Properties|string} `location` property
  */
 export const getLocationProperty = (properties) => {
   let { location } = properties;
@@ -270,12 +278,11 @@ export const getLocationProperty = (properties) => {
 /**
  * Get photo property (adding text alternatives where provided)
  * @param {Jf2Properties} properties - JF2 properties
- * @param {object} me - Publication URL
- * @returns {Array} `photo` property
+ * @param {string} me - Publication URL
+ * @returns {Jf2MediaItem[]} `photo` property
  */
 export const getPhotoProperty = (properties, me) => {
-  let { photo } = properties;
-  photo = Array.isArray(photo) ? photo : [photo];
+  const photo = toArray(properties.photo);
 
   let photoAlt = properties["mp-photo-alt"];
   if (photoAlt) {
@@ -294,12 +301,11 @@ export const getPhotoProperty = (properties, me) => {
 /**
  * Get video property
  * @param {Jf2Properties} properties - JF2 properties
- * @param {object} me - Publication URL
- * @returns {Array} `video` property
+ * @param {string} me - Publication URL
+ * @returns {Jf2MediaItem[]} `video` property
  */
 export const getVideoProperty = (properties, me) => {
-  let { video } = properties;
-  video = Array.isArray(video) ? video : [video];
+  const video = toArray(properties.video);
 
   return video.map((item) => ({
     url: relativeMediaPath(item.url || item, me),
@@ -334,8 +340,8 @@ export const getSlugProperty = (properties, separator) => {
 /**
  * Get `mp-syndicate-to` property
  * @param {Jf2Properties} properties - JF2 properties
- * @param {Array} syndicationTargets - Configured syndication targets
- * @returns {Array|undefined} Resolved syndication targets
+ * @param {Array<{info: {uid?: string}}>} [syndicationTargets] - Configured syndication targets
+ * @returns {string[]|undefined} Resolved syndication targets
  */
 export const getSyndicateToProperty = (properties, syndicationTargets) => {
   if (!syndicationTargets || syndicationTargets.length === 0) {
@@ -354,6 +360,9 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
       ? [syndicateTo]
       : [];
 
+  /**
+   * @type {string[]}
+   */
   const property = [];
 
   for (const target of syndicationTargets) {
@@ -365,7 +374,7 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
       continue;
     }
 
-    if (requested.includes(uid)) {
+    if (uid && requested.includes(uid)) {
       property.push(uid);
     }
   }
@@ -374,3 +383,7 @@ export const getSyndicateToProperty = (properties, syndicationTargets) => {
     return property;
   }
 };
+
+/**
+ * @import { Mf2 } from "@paulrobertlloyd/mf2tojf2"
+ */

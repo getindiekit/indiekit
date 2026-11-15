@@ -1,8 +1,8 @@
 /**
  * Return queryable publication configuration
- * @param {object} application - Application configuration
- * @param {object} publication - Publication configuration
- * @returns {object} Queryable configuration
+ * @param {IndiekitApplication} application - Application configuration
+ * @param {IndiekitPublication} publication - Publication configuration
+ * @returns {Required<MicropubConfigResponse>} Queryable configuration
  */
 export const getConfig = (application, publication) => {
   const { mediaEndpoint, url } = application;
@@ -21,6 +21,9 @@ export const getConfig = (application, publication) => {
 
   // Ensure syndication targets use absolute URLs. A target whose `info`
   // can’t be read is left out rather than failing the whole query.
+  /**
+   * @type {IndiekitSyndicationTargetInfo[]}
+   */
   const syndicateTo = [];
   for (const target of syndicationTargets) {
     let info;
@@ -58,12 +61,12 @@ export const getConfig = (application, publication) => {
 
 /**
  * Query config value
- * @param {Array} property - Property to query
+ * @param {unknown} property - Property to query
  * @param {object} options - List options (filter, limit, offset)
  * @param {string} [options.filter] - Value to filter items by
  * @param {number} [options.limit] - Limit of items to return
  * @param {number} [options.offset] - Offset to start limit of items
- * @returns {Array} Updated config property
+ * @returns {unknown} Updated config property
  */
 export const queryConfig = (property, options) => {
   const { filter, limit } = options;

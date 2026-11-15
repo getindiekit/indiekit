@@ -14,6 +14,11 @@ const server = await testServer({
 });
 const request = supertest.agent(server);
 
+/**
+ * Query published posts
+ * @param {Record<string, number|string|string[]>} parameters - Query parameters
+ * @returns {Test} Request
+ */
 const query = (parameters) =>
   request
     .get("/micropub")
@@ -143,3 +148,7 @@ describe("endpoint-micropub GET /micropub?q=source&filter=*&category=*&post-type
     server.close((error) => process.exit(error ? 1 : 0));
   });
 });
+
+/**
+ * @import { Test } from "supertest"
+ */

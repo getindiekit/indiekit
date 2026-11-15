@@ -7,9 +7,9 @@ const debug = makeDebug("indiekit:endpoint-micropub:post-content");
 export const postContent = {
   /**
    * Create post
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2PostData} postData - Post data
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<MicropubActionResponse>} Response data
    */
   async create(publication, postData) {
     debug(`Create %O`, { postData });
@@ -40,10 +40,10 @@ export const postContent = {
 
   /**
    * Update post
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2PostData} postData - Post data
    * @param {string} url - Files attached to request
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<MicropubActionResponse>} Response data
    */
   async update(publication, postData, url) {
     debug(`Update ${url} %O`, { postData });
@@ -61,12 +61,12 @@ export const postContent = {
     const message = storeMessageTemplate(metadata);
     const hasUpdatedUrl = url !== properties.url;
 
-    _originalPath === path
-      ? await store.updateFile(path, content, { message })
-      : await store.updateFile(_originalPath, content, {
+    _originalPath && _originalPath !== path
+      ? await store.updateFile(_originalPath, content, {
           message,
           newPath: path,
-        });
+        })
+      : await store.updateFile(path, content, { message });
 
     delete postData._originalPath;
 
@@ -84,9 +84,9 @@ export const postContent = {
 
   /**
    * Delete post
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2PostData} postData - Post data
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<MicropubActionResponse>} Response data
    */
   async delete(publication, postData) {
     debug(`Delete %O`, { postData });
@@ -114,9 +114,9 @@ export const postContent = {
 
   /**
    * Undelete post
-   * @param {object} publication - Publication configuration
+   * @param {IndiekitPublication} publication - Publication configuration
    * @param {Jf2PostData} postData - Post data
-   * @returns {Promise<object>} Response data
+   * @returns {Promise<MicropubActionResponse>} Response data
    */
   async undelete(publication, postData) {
     debug(`Undelete %O`, { postData });

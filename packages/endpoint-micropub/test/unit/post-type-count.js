@@ -52,6 +52,8 @@ describe("endpoint-micropub/lib/post-type-count", () => {
 
   it("Doesn’t count the post being updated, by its uid", async () => {
     const post = await posts.findOne({});
+    assert.ok(post);
+
     const result = await postTypeCount.get(posts, {
       uid: post.properties.uid,
       type: "entry",

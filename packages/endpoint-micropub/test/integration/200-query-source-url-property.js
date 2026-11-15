@@ -15,6 +15,9 @@ const server = await testServer({
 const request = supertest.agent(server);
 
 describe("endpoint-micropub GET /micropub?q=source&properties=*", () => {
+  /**
+   * @type {Response}
+   */
   let response;
 
   before(async () => {
@@ -44,3 +47,7 @@ describe("endpoint-micropub GET /micropub?q=source&properties=*", () => {
     server.close((error) => process.exit(error ? 1 : 0));
   });
 });
+
+/**
+ * @import { Response } from "supertest"
+ */

@@ -11,6 +11,9 @@ const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-micropub POST /micropub", () => {
+  /**
+   * @type {Response}
+   */
   let response;
 
   before(async () => {
@@ -47,3 +50,7 @@ describe("endpoint-micropub POST /micropub", () => {
 
   after(() => server.close());
 });
+
+/**
+ * @import { Response } from "supertest"
+ */

@@ -25,7 +25,7 @@ export const decodeQueryParameter = (value) => {
 /**
  * Get post template properties
  * @param {Jf2Properties} properties - JF2 properties
- * @returns {object} Template properties
+ * @returns {Jf2Properties} Template properties
  */
 export const getPostTemplateProperties = (properties) => {
   const templateProperties = structuredClone(properties);
@@ -58,8 +58,8 @@ export const relativeMediaPath = (url, me) =>
  * Render path from URI template and properties
  * @param {string} path - URI template path
  * @param {Jf2Properties} properties - JF2 properties
- * @param {object} application - Application configuration
- * @param {object} publication - Publication configuration
+ * @param {IndiekitApplication} application - Application configuration
+ * @param {IndiekitPublication} publication - Publication configuration
  * @returns {Promise<string>} Path
  */
 export const renderPath = async (
@@ -81,7 +81,7 @@ export const renderPath = async (
   // Add count of post-type for the day
   const postsCollection = application?.collections?.get("posts");
   const count = await postTypeCount.get(postsCollection, properties);
-  tokens.n = count + 1;
+  tokens.n = String((count ?? 0) + 1);
 
   // Add slug token
   tokens.slug = properties.slug;
@@ -100,8 +100,9 @@ export const renderPath = async (
 };
 
 /**
- * Convert string to array if not already an array
- * @param {string|Array} object - String or array to convert
- * @returns {Array} Array
+ * Convert value to array if not already an array
+ * @template T
+ * @param {T|T[]} object - Value or array to convert
+ * @returns {T[]} Array
  */
 export const toArray = (object) => (Array.isArray(object) ? object : [object]);

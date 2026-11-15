@@ -1,13 +1,20 @@
 import { strict as assert } from "node:assert";
 import { after, before, beforeEach, describe, it, mock } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
 
 import { postData } from "../../lib/post-data.js";
 
 describe("endpoint-micropub/lib/post-data", async () => {
+  /**
+   * @type {IndiekitApplication}
+   */
   let application;
+  /**
+   * @type {IndiekitPublication}
+   */
   let publication;
   const { client, database, mongoServer } = await testDatabase();
   const properties = {
@@ -29,8 +36,9 @@ describe("endpoint-micropub/lib/post-data", async () => {
     const config = await testConfig();
     const collections = new Map([["posts", postsCollection]]);
 
-    application = { collections };
-    publication = config.publication;
+    application = testApplication({ collections });
+    // Unresolved test configuration, with only the values these functions use
+    publication = /** @type {IndiekitPublication} */ (config.publication);
   });
 
   after(async () => {
@@ -67,7 +75,7 @@ describe("endpoint-micropub/lib/post-data", async () => {
 
   it("Throws reading post data without a database", async () => {
     await assert.rejects(
-      postData.read({ ...application, collections: undefined }, url),
+      postData.read({ ...application, collections: new Map() }, url),
       { cause: "database", message: "database" },
     );
   });
@@ -318,6 +326,8 @@ describe("endpoint-micropub/lib/post-data", async () => {
   it("Doesn’t let a client-supplied uid skew the post-type count used in the path", async () => {
     const postsCollection = database.collection("posts");
     const skewPublication = structuredClone(publication);
+    assert.ok(skewPublication.postTypes.note.post);
+
     skewPublication.postTypes.note.post.path =
       "src/content/notes/{n}-{slug}.md";
 

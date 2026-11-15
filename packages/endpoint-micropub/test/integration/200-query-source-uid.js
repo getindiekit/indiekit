@@ -14,6 +14,11 @@ const server = await testServer({
 });
 const request = supertest.agent(server);
 
+/**
+ * Create a post
+ * @param {string} name - Post name
+ * @returns {Promise<Response>} Response
+ */
 const createPost = async (name) =>
   request
     .post("/micropub")
@@ -22,6 +27,11 @@ const createPost = async (name) =>
     .send("h=entry")
     .send(`name=${name}`);
 
+/**
+ * Get UID of a post
+ * @param {string} url - Post URL
+ * @returns {Promise<string>} Post UID
+ */
 const getUid = async (url) => {
   const result = await request
     .get("/micropub")
@@ -35,6 +45,9 @@ const getUid = async (url) => {
 };
 
 describe("endpoint-micropub GET /micropub?q=source&uid=*", () => {
+  /**
+   * @type {string}
+   */
   let seededUid;
 
   before(async () => {
@@ -60,3 +73,7 @@ describe("endpoint-micropub GET /micropub?q=source&uid=*", () => {
     server.close((error) => process.exit(error ? 1 : 0));
   });
 });
+
+/**
+ * @import { Response } from "supertest"
+ */

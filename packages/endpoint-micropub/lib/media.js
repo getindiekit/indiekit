@@ -3,8 +3,8 @@
  * @param {string} mediaEndpoint - Media endpoint URL
  * @param {string} token - Bearer token
  * @param {Jf2Properties} properties - JF2 properties
- * @param {object} files - Files to upload
- * @returns {Promise<object>} Uploaded file locations
+ * @param {Record<string, MediaUpload|MediaUpload[]>} files - Files to upload
+ * @returns {Promise<Jf2Properties>} JF2 properties, with uploaded file locations
  */
 export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
   for await (let [mediaProperty, media] of Object.entries(files)) {
@@ -16,7 +16,7 @@ export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
 
       // Create multipart/form-data
       const formData = new FormData();
-      formData.append("file", new Blob([data]), name);
+      formData.append("file", new Blob([new Uint8Array(data)]), name);
 
       // Upload file via media endpoint
       const response = await fetch(mediaEndpoint, {
@@ -29,7 +29,7 @@ export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
 
       if (!response.ok) {
         /**
-         * @type {object}
+         * @type {MicropubResponseBody}
          */
         const body = await response.json();
 
@@ -45,3 +45,12 @@ export const uploadMedia = async (mediaEndpoint, token, properties, files) => {
 
   return properties;
 };
+
+/**
+ * File attached to a request, as used to upload it
+ * @typedef {Pick<UploadedFile, "data"|"name">} MediaUpload
+ */
+
+/**
+ * @import { UploadedFile } from "express-fileupload"
+ */
