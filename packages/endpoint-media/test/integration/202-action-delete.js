@@ -16,6 +16,9 @@ const server = await testServer({
 const request = supertest.agent(server);
 
 describe("endpoint-media POST /media", () => {
+  /**
+   * @type {Response}
+   */
   let response;
 
   before(async () => {
@@ -46,3 +49,7 @@ describe("endpoint-media POST /media", () => {
     server.close((error) => process.exit(error ? 1 : 0));
   });
 });
+
+/**
+ * @import { Response } from "supertest"
+ */

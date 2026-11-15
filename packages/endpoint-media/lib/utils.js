@@ -6,7 +6,7 @@ import { mediaTypeCount } from "./media-type-count.js";
 /**
  * Get media properties
  * @param {Jf2MediaData} mediaData - Media data
- * @returns {object} Media properties
+ * @returns {Jf2Properties} Media properties
  */
 export const getMediaProperties = (mediaData) => {
   return {
@@ -21,8 +21,8 @@ export const getMediaProperties = (mediaData) => {
 /**
  * Render path from URI template and properties
  * @param {string} path - URI template path
- * @param {object} properties - Media properties
- * @param {object} application - Application configuration
+ * @param {Jf2Properties} properties - Media properties
+ * @param {IndiekitApplication} application - Application configuration
  * @returns {Promise<string>} Path
  */
 export const renderPath = async (path, properties, application) => {
@@ -38,7 +38,7 @@ export const renderPath = async (path, properties, application) => {
   // Add count of media type for the day
   const postsCollection = application?.collections?.get("posts");
   const count = await mediaTypeCount.get(postsCollection, properties);
-  tokens.n = count + 1;
+  tokens.n = String((count ?? 0) + 1);
 
   // Add file extension token
   tokens.ext = properties.ext;

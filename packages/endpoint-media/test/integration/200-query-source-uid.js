@@ -14,6 +14,9 @@ const server = await testServer({
 const request = supertest.agent(server);
 
 describe("endpoint-media GET /media?q=source&uid=*", () => {
+  /**
+   * @type {string}
+   */
   let seededUid;
 
   before(async () => {

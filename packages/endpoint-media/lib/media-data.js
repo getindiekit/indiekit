@@ -12,9 +12,9 @@ const debug = makeDebug("indiekit:endpoint-media:media-data");
 export const mediaData = {
   /**
    * Create media data
-   * @param {object} application - Application configuration
-   * @param {object} publication - Publication configuration
-   * @param {object} file - File
+   * @param {IndiekitApplication} application - Application configuration
+   * @param {IndiekitPublication} publication - Publication configuration
+   * @param {FileProperties} file - File
    * @returns {Promise<Jf2MediaData>} Media data
    */
   async create(application, publication, file) {
@@ -83,7 +83,7 @@ export const mediaData = {
 
   /**
    * Read media data
-   * @param {object} application - Application configuration
+   * @param {IndiekitApplication} application - Application configuration
    * @param {string} url - URL of existing media
    * @returns {Promise<Jf2MediaData>} Media data
    */
@@ -103,7 +103,7 @@ export const mediaData = {
 
   /**
    * Delete media data
-   * @param {object} application - Application configuration
+   * @param {IndiekitApplication} application - Application configuration
    * @param {string} url - URL of existing post
    * @returns {Promise<boolean>} Media data deleted
    */
@@ -121,3 +121,7 @@ export const mediaData = {
     throw new Error("No media data to delete");
   },
 };
+
+/**
+ * @import { FileProperties } from "./file.js"
+ */

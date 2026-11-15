@@ -29,10 +29,10 @@ const getFileType = async (file) => {
 
 /**
  * Derive properties from file data
- * @param {object} publication - Publication configuration
+ * @param {IndiekitPublication} publication - Publication configuration
  * @param {FileProperties} file - Original file properties
- * @param {object} timeZone - Application time zone
- * @returns {Promise<object>} File properties
+ * @param {string} timeZone - Application time zone
+ * @returns {Promise<Jf2Properties>} File properties
  * @example fileData("Brighton Pier.jpg") => {
  *   ext: ".jpg"
  *   filename: "brighton-pier.jpg",
@@ -75,7 +75,7 @@ export const getMediaType = async (file) => {
 
 /**
  * Get published date
- * @param {object} timeZone - Publication time zone
+ * @param {string} timeZone - Publication time zone
  * @returns {string} ISO 8601 date
  */
 export const getPublishedProperty = (timeZone) => {

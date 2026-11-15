@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { after, before, beforeEach, describe, it, mock } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
 import { testConfig } from "@indiekit-test/config";
 import { testDatabase } from "@indiekit-test/database";
 import { getFixture } from "@indiekit-test/fixtures";
@@ -8,7 +9,13 @@ import { getFixture } from "@indiekit-test/fixtures";
 import { mediaData } from "../../lib/media-data.js";
 
 describe("endpoint-media/lib/media-data", async () => {
+  /**
+   * @type {IndiekitApplication}
+   */
   let application;
+  /**
+   * @type {IndiekitPublication}
+   */
   let publication;
   const { client, database, mongoServer } = await testDatabase();
   const file = {
@@ -35,8 +42,9 @@ describe("endpoint-media/lib/media-data", async () => {
     const config = await testConfig();
     const collections = new Map([["media", mediaCollection]]);
 
-    application = { collections };
-    publication = config.publication;
+    application = testApplication({ collections });
+    // Unresolved test configuration, with only the values these functions use
+    publication = /** @type {IndiekitPublication} */ (config.publication);
   });
 
   after(async () => {

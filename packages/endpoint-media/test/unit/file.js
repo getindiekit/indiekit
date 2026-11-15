@@ -3,6 +3,7 @@ import { Buffer } from "node:buffer";
 import { describe, it } from "node:test";
 
 import { getFixture } from "@indiekit-test/fixtures";
+import { testPublication } from "@indiekit-test/publication";
 import { isValid, parseISO } from "date-fns";
 
 import { getFileProperties, getMediaType } from "../../lib/file.js";
@@ -33,9 +34,9 @@ describe("endpoint-media/lib/file", () => {
   });
 
   it("Derives properties from file data", async () => {
-    const publication = {
+    const publication = testPublication({
       slugSeparator: "-",
-    };
+    });
     const file = {
       data: getFixture("file-types/photo.jpg", false),
       name: "Photo 1.jpeg",
@@ -50,9 +51,9 @@ describe("endpoint-media/lib/file", () => {
   });
 
   it("Derives file name using publication’s slug separator", async () => {
-    const publication = {
+    const publication = testPublication({
       slugSeparator: "_",
-    };
+    });
     const file = {
       data: getFixture("file-types/photo.jpg", false),
       name: "Photo 1.jpeg",
@@ -74,7 +75,9 @@ describe("endpoint-media/lib/file", () => {
       message: "text/plain",
       status: 415,
     });
-    await assert.rejects(getFileProperties({}, file, "UTC"), {
+    const publication = testPublication({ slugSeparator: "-" });
+
+    await assert.rejects(getFileProperties(publication, file, "UTC"), {
       name: "UnsupportedMediaTypeError",
     });
   });

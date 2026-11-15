@@ -1,6 +1,8 @@
 import { strict as assert } from "node:assert";
 import { before, describe, it, mock } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
+
 import { renderPath } from "../../lib/utils.js";
 
 describe("endpoint-media/lib/util", () => {
@@ -17,9 +19,17 @@ describe("endpoint-media/lib/util", () => {
   });
 
   it("Renders path from URI template and properties", async () => {
-    const dateToken = await renderPath("{yyyy}/{MM}", properties, {});
-    const fileToken = await renderPath("{filename}", properties, {});
-    const md5Token = await renderPath("{md5}", properties, {});
+    const dateToken = await renderPath(
+      "{yyyy}/{MM}",
+      properties,
+      testApplication(),
+    );
+    const fileToken = await renderPath(
+      "{filename}",
+      properties,
+      testApplication(),
+    );
+    const md5Token = await renderPath("{md5}", properties, testApplication());
 
     assert.match(dateToken, /^\d{4}\/\d{2}/);
     assert.match(fileToken, /^foo-1\.jpg/);
