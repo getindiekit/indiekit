@@ -22,7 +22,7 @@ export const createRequestUri = (request) => {
 /**
  * Get data from PAR URI
  * @param {Request} request - Request
- * @returns {object} Saved payload
+ * @returns {IndieAuthAuthorizationRequest} Saved authorization request
  */
 export const getRequestUriData = (request) => {
   const { request_uri } = request.query;

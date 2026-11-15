@@ -1,7 +1,7 @@
 /**
  * Get request parameters from either query string or JSON body
  * @param {Request} request - Request
- * @returns {object} - Request parameters
+ * @returns {IndieAuthCodeRedemptionRequest} - Request parameters
  */
 export const getRequestParameters = (request) => {
   if (Object.entries(request.query).length === 0) {

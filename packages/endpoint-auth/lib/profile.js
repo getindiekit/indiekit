@@ -6,19 +6,23 @@ const FETCH_TIMEOUT = 5000;
 
 /**
  * Get first value of a microformats property, as a string
- * @param {Array} [values] - Property values
+ * @param {MicroformatProperty[]} [values] - Property values
  * @returns {string|undefined} Value
  */
 const getValue = (values) => {
   const value = values?.[0];
-  return typeof value === "object" ? value.value : value;
+  if (typeof value === "object") {
+    return typeof value.value === "string" ? value.value : undefined;
+  }
+
+  return value;
 };
 
 /**
  * Discover profile information from the representative h-card on a user’s
  * site, preferring an h-card whose URL is the profile URL
  * @param {string} me - Profile URL
- * @returns {Promise<object>} Discovered profile information
+ * @returns {Promise<IndieAuthProfile>} Discovered profile information
  * @see {@link https://microformats.org/wiki/representative-h-card-parsing}
  */
 const discoverProfile = async (me) => {
@@ -71,18 +75,22 @@ const discoverProfile = async (me) => {
  * Get profile information for a user, using configured values first and
  * filling in anything missing from the h-card on their site
  * @param {string} me - Profile URL
- * @param {object} [configured] - Configured profile information
- * @param {string} [configured.name] - Name
- * @param {string} [configured.url] - URL
- * @param {string} [configured.photo] - Photo URL
- * @returns {Promise<object|undefined>} Profile information, if any
+ * @param {IndieAuthProfile} [configured] - Configured profile information
+ * @returns {Promise<IndieAuthProfile|undefined>} Profile information, if any
  * @see {@link https://indieauth.spec.indieweb.org/#profile-information}
  */
 export const getProfileInformation = async (me, configured = {}) => {
   const discovered = await discoverProfile(me);
+  /**
+   * @type {IndieAuthProfile}
+   */
   const profile = {};
 
-  for (const key of ["name", "url", "photo"]) {
+  /**
+   * @type {Array<"name"|"url"|"photo">}
+   */
+  const keys = ["name", "url", "photo"];
+  for (const key of keys) {
     const value = configured[key] || discovered[key];
     if (value) {
       profile[key] = value;

@@ -9,7 +9,7 @@ import { validateRedirect } from "../redirect.js";
 /**
  * @param {object} [options] - Plug-in options
  * @param {object} [options.profile] - Configured profile information
- * @returns {object} Controller
+ * @returns {{get: RequestHandler, post: RequestHandler}} Controller
  */
 export const authorizationController = (options = {}) => ({
   /**
@@ -180,5 +180,5 @@ export const authorizationController = (options = {}) => ({
 });
 
 /**
- * @import { NextFunction, Request, Response } from "express"
+ * @import { NextFunction, Request, RequestHandler, Response } from "express"
  */

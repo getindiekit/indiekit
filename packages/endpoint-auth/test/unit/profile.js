@@ -23,6 +23,7 @@ describe("endpoint-auth/lib/profile", () => {
       name: "Jane Doe",
     });
 
+    assert.ok(result);
     assert.equal(result.name, "Jane Doe");
     assert.equal(result.photo, "https://website.example/photo.jpg");
   });

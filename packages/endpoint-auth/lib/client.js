@@ -5,6 +5,15 @@ import { mf2 } from "microformats-parser";
 const FETCH_TIMEOUT = 5000;
 
 /**
+ * Information about a client, shown when asking for consent
+ * @typedef {object} ClientInformation
+ * @property {string} id - Client ID
+ * @property {string} name - Client name
+ * @property {string} url - Client URL
+ * @property {string} [logo] - Client logo URL
+ */
+
+/**
  * Check whether a URL may be fetched when discovering client information
  *
  * A client identifier’s host name must be a domain name: IP addresses are not
@@ -53,8 +62,8 @@ export const isFetchableOrigin = (url) => {
 /**
  * Get client information from application Microformat
  * @param {string} body - Response body
- * @param {object} client - Fallback client information
- * @returns {object} Client information
+ * @param {ClientInformation} client - Fallback client information
+ * @returns {ClientInformation} Client information
  * @deprecated since 11 July 2024
  * @see {@link https://indieauth.spec.indieweb.org/20220212/#application-information}
  */
@@ -75,14 +84,20 @@ export const getApplicationInformation = (body, client) => {
         continue;
       }
 
+      /**
+       * @type {Array<"logo" | "name" | "url">}
+       */
       const keys = ["logo", "name", "url"];
       for (const key of keys) {
         if (Object.hasOwn(properties, [key][0])) {
-          /**
-           * @type {object|string} Image or string
-           */
           const property = properties[key][0];
-          client[key] = property.value || property;
+          const value =
+            typeof property === "string" ? property : property.value;
+
+          // Only plain values, such as an image’s URL, describe the client
+          if (typeof value === "string") {
+            client[key] = value;
+          }
         }
       }
     }
@@ -94,11 +109,14 @@ export const getApplicationInformation = (body, client) => {
 /**
  * Get client information from client metadata
  * @param {string} body - Response body
- * @param {object} client - Fallback client information
- * @returns {object} Client information
+ * @param {ClientInformation} client - Fallback client information
+ * @returns {ClientInformation} Client information
  * @see {@link https://indieauth.spec.indieweb.org/#client-metadata}
  */
 export const getClientMetadata = (body, client) => {
+  /**
+   * @type {IndieAuthClientMetadata}
+   */
   const json = JSON.parse(body);
 
   // Client metadata MUST include `client_id`
@@ -117,7 +135,7 @@ export const getClientMetadata = (body, client) => {
 /**
  * Get client information
  * @param {string} clientId - Client ID
- * @returns {Promise<object>} Information about the client
+ * @returns {Promise<ClientInformation>} Information about the client
  * @see {@link https://indieauth.spec.indieweb.org/#client-information-discovery}
  */
 export const getClientInformation = async (clientId) => {
