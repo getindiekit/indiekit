@@ -9,8 +9,16 @@ import supertest from "supertest";
 const server = await testServer();
 const request = supertest.agent(server);
 
+/**
+ * Get value of form field
+ * @param {JSDOM} dom - DOM
+ * @param {string} selector - Field selector
+ * @returns {string|undefined} Field value
+ */
 const value = (dom, selector) =>
-  dom.window.document.querySelector(selector)?.value;
+  /** @type {HTMLInputElement|HTMLTextAreaElement|null} */ (
+    dom.window.document.querySelector(selector)
+  )?.value;
 
 describe("endpoint-posts GET /posts/create?url=&name=", () => {
   it("Pre-fills the URL field and name of a bookmark", async () => {

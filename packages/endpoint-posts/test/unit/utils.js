@@ -1,6 +1,7 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
+import { testPublication } from "@indiekit-test/publication";
 import { testToken } from "@indiekit-test/token";
 import { MockAgent, setGlobalDispatcher } from "@indiekit-test/undici";
 import { mockResponse } from "mock-req-res";
@@ -18,7 +19,7 @@ import {
   getSyndicateToItems,
 } from "../../lib/utils.js";
 
-const publication = {
+const publication = testPublication({
   me: "https://website.example",
   channels: {
     posts: {
@@ -30,31 +31,34 @@ const publication = {
   },
   postTypes: {
     article: {
+      type: "article",
       name: "Journal entry",
     },
   },
-  syndicationTargets: [
-    {
-      info: {
-        service: {
-          name: "Mastodon",
-        },
-        uid: "https://mastodon.example/@username",
+});
+
+// Partial syndication targets, as read when listing them in a form
+const syndicationTargets = [
+  {
+    info: {
+      service: {
+        name: "Mastodon",
       },
-      options: {
-        checked: true,
+      uid: "https://mastodon.example/@username",
+    },
+    options: {
+      checked: true,
+    },
+  },
+  {
+    info: {
+      error: "Secret key required",
+      service: {
+        name: "Internet Archive",
       },
     },
-    {
-      info: {
-        error: "Secret key required",
-        service: {
-          name: "Internet Archive",
-        },
-      },
-    },
-  ],
-};
+  },
+];
 
 describe("endpoint-posts/lib/utils", () => {
   it("Gets channel `items` for checkboxes component", () => {
@@ -246,7 +250,9 @@ describe("endpoint-posts/lib/utils", () => {
 
   it("Gets post status badges", () => {
     const post = { deleted: true, "post-status": "unlisted" };
-    const response = mockResponse({ locals: { __: (value) => value } });
+    const response = mockResponse({
+      locals: { __: (/** @type {string} */ value) => value },
+    });
 
     assert.deepEqual(getPostStatusBadges(post, response), [
       {
@@ -310,6 +316,7 @@ describe("endpoint-posts/lib/utils", () => {
       testToken(),
     );
 
+    assert.ok(result);
     assert.equal(result.uid, targetUid);
   });
 
@@ -321,7 +328,7 @@ describe("endpoint-posts/lib/utils", () => {
   });
 
   it("Gets syndication target `items` for checkboxes component", () => {
-    const result = getSyndicateToItems(publication, true);
+    const result = getSyndicateToItems({ syndicationTargets }, true);
 
     assert.equal(result.length, 2);
     assert.equal(result[0].checked, true);
@@ -337,9 +344,12 @@ describe("endpoint-posts/lib/utils", () => {
   it("Disables syndication target whose info can’t be read", () => {
     const result = getSyndicateToItems({
       syndicationTargets: [
-        ...publication.syndicationTargets,
+        ...syndicationTargets,
         {
           name: "Broken syndicator",
+          /**
+           * @returns {never} Never returns, as `info` can’t be read
+           */
           get info() {
             throw new Error("Valid server URL required");
           },

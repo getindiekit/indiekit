@@ -71,11 +71,17 @@ export const postsController = async (request, response, next) => {
       micropubUrl.searchParams.append("before", String(before));
     }
 
-    const micropubResponse = await endpoint.get(micropubUrl.href, access_token);
+    const micropubResponse = /** @type {MicropubSourceListResponse} */ (
+      await endpoint.get(micropubUrl.href, access_token)
+    );
 
     let posts;
-    if (micropubResponse?.items?.length > 0) {
+    if (micropubResponse?.items?.length) {
       const jf2 = mf2tojf2(micropubResponse);
+      /**
+       * @type {Jf2Properties[]}
+       * Items are decorated with values for the view, beyond JF2 values
+       */
       const items = jf2.children || [jf2];
 
       posts = items.map((item) => {
@@ -99,7 +105,17 @@ export const postsController = async (request, response, next) => {
       });
     }
 
+    /**
+     * @type {{ next?: { href: string }, previous?: { href: string } }}
+     */
     const cursor = {};
+
+    /**
+     * Get URL of a page of results, keeping any filters
+     * @param {string} key - Paging parameter
+     * @param {string} value - Paging value
+     * @returns {string} Page URL
+     */
     const pageHref = (key, value) => {
       const parameters = new URLSearchParams(filters);
       parameters.set(key, value);
