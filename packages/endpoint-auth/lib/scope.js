@@ -22,9 +22,9 @@ export const supportedScopes = Object.entries(scopes)
 
 /**
  * Get `items` object for checkboxes component
- * @param {Array|string} scope - Selected scope(s)
+ * @param {string[]|string|undefined} scope - Selected scope(s)
  * @param {Response} response - Response
- * @returns {object|undefined} Items for checkboxes component
+ * @returns {CheckboxesItem[]|undefined} Items for checkboxes component
  */
 export function getScopeItems(scope, response) {
   if (!scope) {

@@ -54,7 +54,7 @@ export const codeValidator = async (request, response, next) => {
     // Verify the code before reading anything from it
     let verifiedToken;
     try {
-      verifiedToken = verifyToken(code);
+      verifiedToken = verifyToken(String(code));
     } catch {
       throw IndiekitError.unauthorized(
         response.locals.__("UnauthorizedError.invalidToken"),
@@ -85,7 +85,7 @@ export const codeValidator = async (request, response, next) => {
     // it from the code, rather than from state shared across requests, is what
     // ties this exchange to the authorization request that produced the code.
     if (
-      getCanonicalUrl(client_id) !==
+      getCanonicalUrl(String(client_id)) !==
       getCanonicalUrl(String(request.verifiedToken.client_id))
     ) {
       throw IndiekitError.unauthorized(

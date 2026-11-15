@@ -8,10 +8,11 @@ import { getScopeItems } from "../../lib/scope.js";
 describe("endpoint-auth/lib/scope", () => {
   it("Gets `items` object for checkboxes component (string scope)", () => {
     const response = mockResponse({
-      locals: { __: (value) => value },
+      locals: { __: (/** @type {string} */ value) => value },
     });
     const result = getScopeItems("create update", response);
 
+    assert.ok(result);
     assert.equal(result.length, 2);
     assert.equal(result[0].checked, true);
     assert.equal(result[0].value, "create");
@@ -19,10 +20,11 @@ describe("endpoint-auth/lib/scope", () => {
 
   it("Gets `items` object for checkboxes component (Array scope)", () => {
     const response = mockResponse({
-      locals: { __: (value) => value },
+      locals: { __: (/** @type {string} */ value) => value },
     });
     const result = getScopeItems(["create", "update"], response);
 
+    assert.ok(result);
     assert.equal(result.length, 2);
     assert.equal(result[0].checked, true);
     assert.equal(result[0].value, "create");

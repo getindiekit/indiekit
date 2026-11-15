@@ -23,7 +23,7 @@ describe("endpoint-auth/lib/pushed-authorization-request", () => {
     const request = mockRequest({
       app: {
         locals: {
-          qGaan5uh5l9yp2AM: { foo: "bar" },
+          qGaan5uh5l9yp2AM: { state: "12345" },
         },
       },
       query: {
@@ -32,6 +32,6 @@ describe("endpoint-auth/lib/pushed-authorization-request", () => {
     });
     const result = getRequestUriData(request);
 
-    assert.equal(result.foo, "bar");
+    assert.equal(result.state, "12345");
   });
 });

@@ -4,7 +4,7 @@ import { signToken } from "../token.js";
 /**
  * @param {object} [options] - Plug-in options
  * @param {object} [options.profile] - Configured profile information
- * @returns {object} Controller
+ * @returns {{post: RequestHandler}} Controller
  */
 export const tokenController = (options = {}) => ({
   /**
@@ -45,5 +45,5 @@ export const tokenController = (options = {}) => ({
 });
 
 /**
- * @import { Request, Response } from "express"
+ * @import { Request, RequestHandler, Response } from "express"
  */

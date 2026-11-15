@@ -11,6 +11,9 @@ const server = await testServer();
 const request = supertest.agent(server);
 
 describe("endpoint-auth POST /auth/consent", () => {
+  /**
+   * @type {string|undefined}
+   */
   let reference;
 
   before(async () => {
