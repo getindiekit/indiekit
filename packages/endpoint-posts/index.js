@@ -1,7 +1,12 @@
 import path from "node:path";
 
 import { tagInputSanitizer } from "@indiekit/frontend";
-import { ISO_6709_RE, isRequired } from "@indiekit/util";
+import {
+  hasValue,
+  ISO_6709_RE,
+  isRequiredField,
+  localisedMessage,
+} from "@indiekit/util";
 import express from "express";
 
 import { deleteController } from "./lib/controllers/delete.js";
@@ -64,37 +69,38 @@ export default class PostsEndpoint {
   get validationSchemas() {
     return {
       category: {
-        exists: { if: (value, { req }) => req.body?.category },
+        exists: { if: hasValue("category") },
         tagInput: tagInputSanitizer,
         isArray: true,
       },
       content: {
-        errorMessage: (value, { req }) => req.__("posts.error.content.empty"),
-        exists: { if: (value, { req }) => isRequired(req, "content") },
+        errorMessage: localisedMessage("posts.error.content.empty"),
+        exists: { if: isRequiredField("content") },
         notEmpty: true,
       },
       "featured.url": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/photos/image.jpg"),
-        exists: { if: (value, { req }) => isRequired(req, "featured") },
+        errorMessage: localisedMessage(
+          "posts.error.media.empty",
+          "/photos/image.jpg",
+        ),
+        exists: { if: isRequiredField("featured") },
         notEmpty: true,
       },
       "featured.alt": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.featured-alt.empty`),
-        exists: { if: (value, { req }) => req.body?.featured.url },
+        errorMessage: localisedMessage("posts.error.featured-alt.empty"),
+        exists: { if: hasValue("featured.url") },
         notEmpty: true,
       },
       geo: {
-        errorMessage: (value, { req }) => req.__(`posts.error.geo.invalid`),
-        exists: { if: (value, { req }) => req.body?.geo },
+        errorMessage: localisedMessage("posts.error.geo.invalid"),
+        exists: { if: hasValue("geo") },
         custom: {
           options: (value) => value.match(ISO_6709_RE),
         },
       },
       name: {
-        errorMessage: (value, { req }) => req.__("posts.error.name.empty"),
-        exists: { if: (value, { req }) => isRequired(req, "name") },
+        errorMessage: localisedMessage("posts.error.name.empty"),
+        exists: { if: isRequiredField("name") },
         notEmpty: true,
       },
     };

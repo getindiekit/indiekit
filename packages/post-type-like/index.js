@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Like",
@@ -30,9 +30,11 @@ export default class LikePostType {
   get validationSchemas() {
     return {
       "like-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "like-of") },
+        errorMessage: localisedMessage(
+          "posts.error.url.empty",
+          "https://example.org",
+        ),
+        exists: { if: isRequiredField("like-of") },
         isURL: true,
       },
     };

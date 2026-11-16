@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "RSVP",
@@ -31,8 +31,8 @@ export default class RsvpPostType {
   get validationSchemas() {
     return {
       rsvp: {
-        errorMessage: (value, { req }) => req.__("posts.error.rsvp.empty"),
-        exists: { if: (value, { req }) => isRequired(req, "rsvp") },
+        errorMessage: localisedMessage("posts.error.rsvp.empty"),
+        exists: { if: isRequiredField("rsvp") },
         notEmpty: true,
       },
     };

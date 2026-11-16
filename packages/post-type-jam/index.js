@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Jam",
@@ -29,23 +29,21 @@ export default class JamPostType {
   get validationSchemas() {
     return {
       "jam-of.url": {
-        errorMessage: (value, { req }) =>
-          req.__(
-            `posts.error.url.empty`,
-            "https://www.youtube.com/watch?v=g5nzLQ63c9E",
-          ),
-        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+        errorMessage: localisedMessage(
+          "posts.error.url.empty",
+          "https://www.youtube.com/watch?v=g5nzLQ63c9E",
+        ),
+        exists: { if: isRequiredField("jam-of") },
         isURL: true,
       },
       "jam-of.name": {
-        errorMessage: (value, { req }) => req.__(`posts.error.jam.name.empty`),
-        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+        errorMessage: localisedMessage("posts.error.jam.name.empty"),
+        exists: { if: isRequiredField("jam-of") },
         notEmpty: true,
       },
       "jam-of.author": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.jam.author.empty`),
-        exists: { if: (value, { req }) => isRequired(req, "jam-of") },
+        errorMessage: localisedMessage("posts.error.jam.author.empty"),
+        exists: { if: isRequiredField("jam-of") },
         notEmpty: true,
       },
     };

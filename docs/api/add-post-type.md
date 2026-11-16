@@ -83,12 +83,12 @@ export default class RecipePostType {
     return {
       "ingredient": {
         errorMessage: (value, { req }) => "Add some ingredients",
-        exists: { if: (value, { req }) => isRequired(req, "ingredient") },
+        exists: { if: isRequiredField("ingredient") },
         notEmpty: true,
       },
       "instructions": {
         errorMessage: (value, { req }) => "Add instructions",
-        exists: { if: (value, { req }) => isRequired(req, "instructions") },
+        exists: { if: isRequiredField("instructions") },
         notEmpty: true,
       }
     }
@@ -219,12 +219,12 @@ get validationSchemas() {
   return {
     "ingredient": {
       errorMessage: (value, { req }) => "Add some ingredients",
-      exists: { if: (value, { req }) => isRequired(req, "ingredient") },
+      exists: { if: isRequiredField("ingredient") },
       notEmpty: true,
     },
     "instructions": {
       errorMessage: (value, { req }) => "Add instructions",
-      exists: { if: (value, { req }) => isRequired(req, "instructions") },
+      exists: { if: isRequiredField("instructions") },
       notEmpty: true,
     }
   }

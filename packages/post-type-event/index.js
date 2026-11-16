@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Event",
@@ -34,8 +34,8 @@ export default class EventPostType {
   get validationSchemas() {
     return {
       start: {
-        errorMessage: (value, { req }) => req.__("posts.error.start.empty"),
-        exists: { if: (value, { req }) => isRequired(req, "start") },
+        errorMessage: localisedMessage("posts.error.start.empty"),
+        exists: { if: isRequiredField("start") },
         notEmpty: true,
       },
     };
