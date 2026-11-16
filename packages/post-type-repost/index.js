@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Repost",
@@ -30,9 +30,11 @@ export default class RepostPostType {
   get validationSchemas() {
     return {
       "repost-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "repost-of") },
+        errorMessage: localisedMessage(
+          "posts.error.url.empty",
+          "https://example.org",
+        ),
+        exists: { if: isRequiredField("repost-of") },
         isURL: true,
       },
     };

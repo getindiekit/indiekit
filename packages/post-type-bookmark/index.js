@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Bookmark",
@@ -32,9 +32,11 @@ export default class BookmarkPostType {
   get validationSchemas() {
     return {
       "bookmark-of": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "bookmark-of") },
+        errorMessage: localisedMessage(
+          "posts.error.url.empty",
+          "https://example.org",
+        ),
+        exists: { if: isRequiredField("bookmark-of") },
         isURL: true,
       },
     };

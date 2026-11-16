@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Reply",
@@ -30,9 +30,11 @@ export default class ReplyPostType {
   get validationSchemas() {
     return {
       "in-reply-to": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.url.empty`, "https://example.org"),
-        exists: { if: (value, { req }) => isRequired(req, "in-reply-to") },
+        errorMessage: localisedMessage(
+          "posts.error.url.empty",
+          "https://example.org",
+        ),
+        exists: { if: isRequiredField("in-reply-to") },
         isURL: true,
       },
     };

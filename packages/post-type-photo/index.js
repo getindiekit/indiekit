@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Photo",
@@ -32,15 +32,16 @@ export default class PhotoPostType {
   get validationSchemas() {
     return {
       "photo.*.url": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/photos/image.jpg"),
-        exists: { if: (value, { req }) => isRequired(req, "photo") },
+        errorMessage: localisedMessage(
+          "posts.error.media.empty",
+          "/photos/image.jpg",
+        ),
+        exists: { if: isRequiredField("photo") },
         notEmpty: true,
       },
       "photo.*.alt": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.mp-photo-alt.empty`),
-        exists: { if: (value, { req }) => isRequired(req, "mp-photo-alt") },
+        errorMessage: localisedMessage("posts.error.mp-photo-alt.empty"),
+        exists: { if: isRequiredField("mp-photo-alt") },
         notEmpty: true,
       },
     };

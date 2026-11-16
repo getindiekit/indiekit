@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Audio",
@@ -32,9 +32,11 @@ export default class AudioPostType {
   get validationSchemas() {
     return {
       "audio.*": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/music/audio.mp3"),
-        exists: { if: (value, { req }) => isRequired(req, "audio") },
+        errorMessage: localisedMessage(
+          "posts.error.media.empty",
+          "/music/audio.mp3",
+        ),
+        exists: { if: isRequiredField("audio") },
         notEmpty: true,
       },
     };

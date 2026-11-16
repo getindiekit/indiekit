@@ -1,6 +1,6 @@
 /**
  * Check if field is required
- * @param {Request} request - Request
+ * @param {Meta["req"]} request - Request
  * @param {string} field - Field name
  * @returns {boolean} Field is required
  */
@@ -8,9 +8,30 @@ export const isRequired = (request, field) => {
   const { postTypes } = request.app.locals.publication;
   const postTypeConfig = postTypes[request.body.postType];
 
-  return postTypeConfig["required-properties"].includes(field);
+  return !!postTypeConfig["required-properties"]?.includes(field);
 };
 
 /**
- * @import { Request } from "express"
+ * Only validate a field if the post type requires it
+ * @param {string} field - Field name
+ * @returns {CustomValidator} Validator
+ */
+export const isRequiredField =
+  (field) =>
+  (value, { req }) =>
+    isRequired(req, field);
+
+/**
+ * Localised validation error message
+ * @param {string} key - Locale string key
+ * @param {...string} parameters - Values to substitute
+ * @returns {FieldMessageFactory} Error message
+ */
+export const localisedMessage =
+  (key, ...parameters) =>
+  (value, { req }) =>
+    req.__(key, ...parameters);
+
+/**
+ * @import { CustomValidator, FieldMessageFactory, Meta } from "express-validator"
  */

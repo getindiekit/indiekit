@@ -1,4 +1,4 @@
-import { isRequired } from "@indiekit/util";
+import { isRequiredField, localisedMessage } from "@indiekit/util";
 
 const defaults = {
   name: "Video",
@@ -31,9 +31,11 @@ export default class PhotoPostType {
   get validationSchemas() {
     return {
       "video.*": {
-        errorMessage: (value, { req }) =>
-          req.__(`posts.error.media.empty`, "/movies/video.mp4"),
-        exists: { if: (value, { req }) => isRequired(req, "video") },
+        errorMessage: localisedMessage(
+          "posts.error.media.empty",
+          "/movies/video.mp4",
+        ),
+        exists: { if: isRequiredField("video") },
         notEmpty: true,
       },
     };
