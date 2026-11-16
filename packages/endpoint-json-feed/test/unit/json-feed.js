@@ -1,17 +1,18 @@
 import { strict as assert } from "node:assert";
 import { describe, it } from "node:test";
 
+import { testApplication } from "@indiekit-test/application";
 import { getFixture } from "@indiekit-test/fixtures";
 
 import { jsonFeed } from "../../lib/json-feed.js";
 
 describe("endpoint-json-feed/lib/json-feed", () => {
   it("Generates JSON Feed", () => {
-    const application = {
+    const application = testApplication({
       name: "Test",
       url: "https://server.example",
       locale: "en",
-    };
+    });
     const feedUrl = "https://server.example/feed.json";
     const posts = [
       {

@@ -2,7 +2,7 @@ import mime from "mime-types";
 
 /**
  * Generate JSON Feed
- * @param {Pick<IndiekitApplication, "locale" | "name" | "url">} application - Application configuration
+ * @param {IndiekitApplication} application - Application configuration
  * @param {string} feedUrl - Feed URL
  * @param {Jf2PostData[]} posts - JF2 posts
  * @returns {JsonFeed} JSON Feed
