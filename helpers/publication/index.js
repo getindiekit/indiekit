@@ -1,19 +1,24 @@
 import JekyllPreset from "@indiekit/preset-jekyll";
 import TestStore from "@indiekit-test/store";
 
-export const publication = {
-  categories: `https://website.example/categories.json`,
+/**
+ * Create publication configuration for testing
+ * @param {Partial<IndiekitPublication>} [values] - Values to use instead
+ * @returns {IndiekitPublication} Publication configuration
+ */
+export const testPublication = (values) => ({
+  categories: [],
+  channels: {},
+  locale: "en",
   me: "https://website.example",
-  postTemplate: (/** @type {Jf2Properties} */ properties) =>
-    JSON.stringify(properties),
-  mediaStore: new TestStore({
-    user: "user",
-  }),
-  store: new TestStore({
-    user: "user",
-  }),
-  storeMessageTemplate: (
-    /** @type {Parameters<IndiekitPublication["storeMessageTemplate"]>[0]} */ metadata,
-  ) => `${metadata.action} ${metadata.postType} ${metadata.fileType}`,
+  mediaStore: new TestStore({ user: "user" }),
+  postTemplate: (properties) => JSON.stringify(properties),
+  postTypes: {},
   preset: new JekyllPreset(),
-};
+  slugSeparator: "-",
+  store: new TestStore({ user: "user" }),
+  storeMessageTemplate: (metadata) =>
+    `${metadata.action} ${metadata.postType} ${metadata.fileType}`,
+  syndicationTargets: [],
+  ...values,
+});
