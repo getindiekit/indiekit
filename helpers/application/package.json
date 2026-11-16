@@ -1,0 +1,7 @@
+{
+  "name": "@indiekit-test/application",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "license": "MIT"
+}
