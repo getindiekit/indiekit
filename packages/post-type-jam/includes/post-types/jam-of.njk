@@ -2,6 +2,8 @@
   html: card({
     url: property.url if property.url,
     title: "<cite>" + property.name + "</cite>" if property.name,
-    description: "by " + property.author if property.author
+    description: {
+      text: "by " + property.author
+    } if property.author
   })
 }) if property }}
