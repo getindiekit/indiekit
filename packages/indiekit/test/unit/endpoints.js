@@ -42,4 +42,16 @@ describe("indiekit/lib/endpoints", () => {
     assert.equal(result.mediaEndpoint, "https://website.example/media");
     assert.equal(result.tokenEndpoint, "https://server.example/token");
   });
+
+  it("Leaves out endpoints that aren’t configured", () => {
+    const result = getEndpointUrls(
+      { tokenEndpoint: "/token" },
+      mockRequest({
+        headers: { host: "server.example" },
+        protocol: "https",
+      }),
+    );
+
+    assert.deepEqual(result, { tokenEndpoint: "https://server.example/token" });
+  });
 });
