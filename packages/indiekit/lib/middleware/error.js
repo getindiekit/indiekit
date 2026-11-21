@@ -1,5 +1,4 @@
-import { IndiekitError } from "@indiekit/error";
-import cleanStack from "clean-stack";
+import { cleanStack, IndiekitError } from "@indiekit/error";
 import makeDebug from "debug";
 
 const debug = makeDebug("indiekit:error");
@@ -41,7 +40,7 @@ export const internalServer = (error, request, response, next) => {
       title: response.locals.__(`${error.name}.title:${error.name}`),
       content: error.message,
       name: error.name,
-      ...(isDevelopment && { stack: error.stack }),
+      ...(isDevelopment && { stack: cleanStack(error.stack) }),
       status,
       uri: error.uri,
     });

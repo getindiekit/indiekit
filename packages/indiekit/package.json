@@ -56,7 +56,6 @@
     "@indiekit/preset-jekyll": "^1.0.0-beta.30",
     "@indiekit/util": "^1.0.0-beta.30",
     "@keyv/mongo": "^6.1.0",
-    "clean-stack": "^7.0.0",
     "commander": "^15.1.0",
     "compression": "^1.8.2",
     "cookie-session": "^2.1.1",
