@@ -20,6 +20,7 @@
   "files": [
     "assets",
     "components",
+    "dist",
     "layouts",
     "lib",
     "locales",
@@ -27,6 +28,12 @@
     "styles",
     "index.js"
   ],
+  "scripts": {
+    "build": "node build.js",
+    "clean": "node build.js --clean",
+    "prepack": "node build.js",
+    "postpack": "node build.js --clean"
+  },
   "bugs": {
     "url": "https://github.com/getindiekit/indiekit/issues"
   },

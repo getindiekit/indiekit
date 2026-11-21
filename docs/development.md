@@ -152,6 +152,16 @@ To enable authentication, use the `production` flag:
 npm run dev --production
 ```
 
+### Frontend scripts and styles
+
+The frontend’s stylesheets and client-side JavaScript are combined into a single CSS file and a single JavaScript file. When working on Indiekit, this happens each time the server starts, so after `npm run dev` restarts the server, reload the page to see your changes.
+
+Published releases include these files already built, in `packages/frontend/dist`. Running `npm run build --workspace=@indiekit/frontend` creates the same files in your clone, which is useful for checking what a release will serve. While that folder exists, the server uses it and ignores changes to the source files, so remove it when you’re done:
+
+```sh
+npm run clean --workspace=@indiekit/frontend
+```
+
 ## Tests
 
 The project uses both unit and integration tests. Run tests using the following command:

@@ -2,8 +2,6 @@ import fs from "node:fs";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 
-import { bundleAsync } from "lightningcss";
-
 const require = createRequire(import.meta.url);
 
 /**
@@ -21,7 +19,16 @@ function resolveModuleFilePath(filePath) {
   return filePath;
 }
 
-export const styles = async () => {
+/**
+ * Bundle styles
+ *
+ * lightningcss is a development dependency, so it is only imported when the
+ * prebuilt bundle is unavailable (for example, when working on Indiekit from a
+ * clone of its repository).
+ * @returns {Promise<string>} Bundled CSS
+ */
+export const bundleStyles = async () => {
+  const { bundleAsync } = await import("lightningcss");
   const inputFile = fileURLToPath(
     new URL("../styles/app.css", import.meta.url),
   );
