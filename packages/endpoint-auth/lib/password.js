@@ -1,6 +1,6 @@
 import process from "node:process";
 
-import bcrypt from "bcrypt";
+import { hash, compare } from "bcryptjs";
 
 /**
  * Create password hash
@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
  * @returns {Promise<string>} Password hash
  */
 export async function createPasswordHash(password) {
-  return bcrypt.hash(password, 10);
+  return hash(password, 10);
 }
 
 /**
@@ -24,5 +24,5 @@ export async function verifyPassword(password) {
     return false;
   }
 
-  return bcrypt.compare(password, passwordHash);
+  return compare(password, passwordHash);
 }
