@@ -5,4 +5,8 @@ export { appIcon, shortcutIcon } from "./lib/sharp.js";
 export { templates } from "./lib/nunjucks.js";
 export { scripts, styles } from "./lib/assets.js";
 export { tagInputSanitizer } from "./lib/utils/validation.js";
-export { getBackgroundColor, getThemeColor } from "./lib/utils/theme.js";
+export {
+  defaultThemeColor,
+  getBackgroundColor,
+  getThemeColor,
+} from "./lib/utils/theme.js";

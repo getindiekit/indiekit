@@ -1,11 +1,13 @@
 import process from "node:process";
 
+import { defaultThemeColor } from "@indiekit/frontend";
+
 export const defaultConfig = {
   application: {
     mongodbUrl: process.env.MONGO_URL || false,
     name: "Indiekit",
     port: process.env.PORT || "3000",
-    themeColor: "#04f",
+    themeColor: defaultThemeColor,
     themeColorScheme: "automatic",
     timeZone: "UTC",
     ttl: 604_800, // 7 days

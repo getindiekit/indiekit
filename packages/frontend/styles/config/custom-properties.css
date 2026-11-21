@@ -11,6 +11,12 @@ html {
   --color-neutral20: hsl(var(--tint-neutral) 20%);
   --color-neutral10: hsl(var(--tint-neutral) 10%);
 
+  /* Primary palette, derived from --color-primary (set by the server) */
+  --color-on-primary: var(--color-neutral99);
+  --color-primary-variant: var(--color-primary);
+  --color-primary-on-background-light: var(--color-primary);
+  --color-primary-on-background-dark: var(--color-primary);
+
   /* Red palette */
   --tint-red: 8 100%;
   --color-red90: hsl(var(--tint-red) 90%);
@@ -37,6 +43,31 @@ html {
   --color-yellow90: hsl(var(--tint-yellow) 90%);
   --color-yellow50: hsl(var(--tint-yellow) 50%);
   --color-yellow10: hsl(var(--tint-yellow) 10%);
+}
+
+/*
+ * Primary colour variants. Browsers without relative colour syntax use the
+ * primary colour unchanged, as set above.
+ */
+@supports (color: oklch(from red l c h)) {
+  html {
+    /* Darker and less saturated than the primary colour */
+    --color-primary-variant: hsl(
+      from var(--color-primary) h calc(s * 0.9) calc(l * 0.85)
+    );
+
+    /*
+     * Primary colour, limited to a lightness (in OKLCH, which matches
+     * perceived lightness) that keeps a contrast ratio of at least 4.5:1
+     * against the background in light and dark color schemes.
+     */
+    --color-primary-on-background-light: oklch(
+      from var(--color-primary) min(l, 0.5) c h
+    );
+    --color-primary-on-background-dark: oklch(
+      from var(--color-primary) max(l, 0.7) c h
+    );
+  }
 }
 
 :root {

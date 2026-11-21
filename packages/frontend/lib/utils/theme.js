@@ -1,41 +1,126 @@
-import Color from "color";
+/**
+ * Theme colours.
+ *
+ * Only the hue of the configured theme colour is calculated here. It tints
+ * the neutral palette, and is used for colours given outside the stylesheet,
+ * such as in the web app manifest. Variants of the primary colour are derived
+ * in CSS, using relative colour syntax (see `styles/config/custom-properties.css`).
+ */
 
 /**
- * Generate an accessible colour with sufficient contrast
- * @see {@link https://medium.com/confrere/e735c3f2f45e}
- * @param {object} options - Options
- * @param {ColorInstance} options.colorToChange - Original colour
- * @param {ColorInstance} [options.colorToValidate] - Color to validate against
- * @param {number} [options.minimumContrastRatio] - Minimum contrast ratio
- * @param {ColorInstance} options.mixingColor - Color to mix with original
- * @param {number} [options.mixingAmount] - Amount of color to mix with original
- * @param {number} [options.tries] - Tries
- * @param {number} [options.maxTries] - Maximum tries
- * @returns {ColorInstance} RGB hex code, i.e. "#7f1de4"
+ * Parse hexadecimal colour
+ * @param {string} string - Hexadecimal colour, i.e. `#04f` or `#0044ff`
+ * @returns {[number, number, number]} Red, green and blue channels (0–255)
  */
-export const _getValidatedColor = ({
-  colorToChange,
-  colorToValidate = new Color("white"),
-  minimumContrastRatio = 4.5,
-  mixingColor,
-  mixingAmount,
-  tries = 0,
-  maxTries = 8,
-}) => {
-  const newColor = colorToChange.mix(mixingColor, mixingAmount);
-  if (
-    newColor.contrast(colorToValidate) < minimumContrastRatio &&
-    tries < maxTries
-  ) {
-    return _getValidatedColor({
-      colorToChange: newColor,
-      mixingColor,
-      mixingAmount: 0.15,
-      tries: tries + 1,
-    });
+export const parseHex = (string) => {
+  const match =
+    typeof string === "string" &&
+    /^#([\da-f]{3}|[\da-f]{6})$/i.exec(string.trim());
+
+  if (!match) {
+    throw new TypeError(`Expected a hexadecimal colour, got “${string}”`);
   }
 
-  return newColor;
+  const hex =
+    match[1].length === 3 ? [...match[1]].map((c) => c + c).join("") : match[1];
+
+  return [
+    Number.parseInt(hex.slice(0, 2), 16),
+    Number.parseInt(hex.slice(2, 4), 16),
+    Number.parseInt(hex.slice(4, 6), 16),
+  ];
+};
+
+/**
+ * Format colour as six-digit hexadecimal
+ * @param {string} string - Hexadecimal colour, i.e. `#04f` or `#0044FF`
+ * @returns {string} Hexadecimal colour, i.e. `#0044ff`
+ */
+export const formatHex = (string) =>
+  "#" +
+  parseHex(string)
+    .map((channel) => channel.toString(16).padStart(2, "0"))
+    .join("");
+
+/**
+ * Get hue of a colour, rounded to the nearest degree
+ * @param {string} string - Hexadecimal colour
+ * @returns {number} Hue (0–359)
+ */
+export const getHue = (string) => {
+  const [r, g, b] = parseHex(string).map((channel) => channel / 255);
+  const min = Math.min(r, g, b);
+  const max = Math.max(r, g, b);
+  const delta = max - min;
+
+  let hue;
+  switch (max) {
+    case min: {
+      // Grey has no hue
+      hue = 0;
+      break;
+    }
+
+    case r: {
+      hue = (g - b) / delta;
+      break;
+    }
+
+    case g: {
+      hue = 2 + (b - r) / delta;
+      break;
+    }
+
+    default: {
+      hue = 4 + (r - g) / delta;
+    }
+  }
+
+  hue = Math.min(hue * 60, 360);
+  if (hue < 0) {
+    hue += 360;
+  }
+
+  // Normalise before rounding, as the previous colour library did, so that
+  // results are unchanged (adding 360 can round a value like 7.4999… to 7.5)
+  hue = ((hue % 360) + 360) % 360;
+
+  return Number(hue.toFixed(0)) % 360;
+};
+
+/**
+ * Default theme colour, used if the configured colour isn’t valid
+ */
+export const defaultThemeColor = "#04f";
+
+/**
+ * Invalid theme colours that have been warned about, so that a warning isn’t
+ * logged every time a page is rendered
+ * @type {Set<string>}
+ */
+const invalidColors = new Set();
+
+/**
+ * Get theme colour, or the default theme colour if not valid
+ *
+ * The theme is used on every page, including error pages, so an invalid
+ * colour falls back to the default rather than stopping pages from rendering.
+ * @param {unknown} string - Color (as hexadecimal)
+ * @returns {string} Hexadecimal colour
+ */
+const getValidThemeColor = (string) => {
+  try {
+    return formatHex(/** @type {string} */ (string));
+  } catch (error) {
+    if (!invalidColors.has(String(string))) {
+      invalidColors.add(String(string));
+      console.warn(
+        `${/** @type {Error} */ (error).message}. Using default theme colour ${defaultThemeColor} instead.`,
+      );
+    }
+
+    return formatHex(defaultThemeColor);
+  }
 };
 
 /**
@@ -44,17 +129,8 @@ export const _getValidatedColor = ({
  * @param {string} colorScheme - Color scheme
  * @returns {string} CSS color value (HSL)
  */
-export const getBackgroundColor = (string, colorScheme = "light") => {
-  const primary = new Color(string).hsl().round();
-
-  return new Color({
-    h: primary.hue(),
-    s: 5,
-    l: colorScheme === "light" ? 99 : 10,
-  })
-    .hsl()
-    .toString();
-};
+export const getBackgroundColor = (string, colorScheme = "light") =>
+  `hsl(${getHue(getValidThemeColor(string))}, 5%, ${colorScheme === "light" ? 99 : 10}%)`;
 
 /**
  * Return theme color
@@ -62,14 +138,8 @@ export const getBackgroundColor = (string, colorScheme = "light") => {
  * @param {string} colorScheme - Color scheme
  * @returns {string} CSS color value (HSL)
  */
-export const getThemeColor = (string, colorScheme = "light") => {
-  const primary = new Color(string).hsl().round();
-  const h = primary.hue();
-  const s = 5;
-  const l = colorScheme === "light" ? 95 : 20;
-
-  return new Color({ h, s, l }).hsl().toString();
-};
+export const getThemeColor = (string, colorScheme = "light") =>
+  `hsl(${getHue(getValidThemeColor(string))}, 5%, ${colorScheme === "light" ? 95 : 20}%)`;
 
 /**
  * Return theme color as CSS custom properties
@@ -77,43 +147,9 @@ export const getThemeColor = (string, colorScheme = "light") => {
  * @returns {string} CSS custom properties
  */
 export const getThemeCustomProperties = (string) => {
-  const primary = new Color(string).hsl().round();
-  const primaryHue = primary.hue();
-  const primarySaturation = 5;
-
-  // Calculate neutral lightest and darkest hues used in custom properties
-  const neutral99 = new Color(getBackgroundColor(string));
-  const neutral10 = new Color(getBackgroundColor(string, "dark"));
-
-  // Generate a darker variant of primary colour
-  const primaryVariant = primary.darken(0.15).desaturate(0.1);
-
-  // Switch neutral colour used on primary background based on lightness
-  const onPrimary = primary.isLight() ? neutral99 : neutral99;
-
-  // Generate a shade of primary colour that contrasts with background
-  const primaryOnBackgroundLight = new Color(
-    _getValidatedColor({
-      colorToChange: primary,
-      mixingColor: neutral10,
-    }),
-  ).hsl();
-  const primaryOnBackgroundDark = new Color(
-    _getValidatedColor({
-      colorToChange: primary,
-      mixingColor: neutral99,
-    }),
-  ).hsl();
+  const color = getValidThemeColor(string);
 
   return `
---tint-neutral: ${primaryHue} ${primarySaturation}%;
---color-primary: ${primary};
---color-on-primary: ${onPrimary};
---color-primary-variant: ${primaryVariant};
---color-primary-on-background-light: ${primaryOnBackgroundLight};
---color-primary-on-background-dark: ${primaryOnBackgroundDark};`;
+--tint-neutral: ${getHue(color)} 5%;
+--color-primary: ${color};`;
 };
-
-/**
- * @import { ColorInstance } from "color"
- */
