@@ -13,6 +13,19 @@
 #     -e PUBLICATION_URL -e MONGO_URL -e SECRET -e PASSWORD_SECRET \
 #     ghcr.io/getindiekit/indiekit
 ARG NODE_VERSION=26
+
+# Build stage: prebuild the frontend’s scripts and styles, which needs the
+# frontend’s development dependencies (esbuild and lightningcss).
+FROM node:${NODE_VERSION}-alpine AS build
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY helpers ./helpers
+COPY packages ./packages
+RUN npm ci --ignore-scripts --workspace=@indiekit/frontend \
+  && npm run build --workspace=@indiekit/frontend
+
+# Runtime stage
 FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /app
@@ -30,6 +43,7 @@ COPY --chown=node:node package.json package-lock.json ./
 COPY --chown=node:node helpers ./helpers
 COPY --chown=node:node packages ./packages
 RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+COPY --from=build --chown=node:node /app/packages/frontend/dist ./packages/frontend/dist
 
 EXPOSE 3000
 CMD ["node", "packages/indiekit/bin/cli.js", "serve"]
