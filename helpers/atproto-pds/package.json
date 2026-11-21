@@ -1,0 +1,12 @@
+{
+  "name": "@indiekit-test/atproto-pds",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@atproto/api": "^0.32.0",
+    "@atproto/common-web": "^0.5.17",
+    "@atproto/lex-data": "^0.1.10"
+  }
+}

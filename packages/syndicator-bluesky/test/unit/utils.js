@@ -1,9 +1,10 @@
 import { strict as assert } from "node:assert";
-import { after, before, describe, it } from "node:test";
+import { before, describe, it } from "node:test";
 
 import { AtpAgent } from "@atproto/api";
-import { TestNetworkNoAppView } from "@atproto/dev-env";
+import { MockPds } from "@indiekit-test/atproto-pds";
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import sharp from "sharp";
 
 import {
@@ -20,7 +21,8 @@ import {
 } from "../../lib/utils.js";
 
 describe("syndicator-bluesky/lib/utils", async () => {
-  let /** @type {TestNetworkNoAppView} */ network;
+  const pds = new MockPds();
+
   let /** @type {AtpAgent} */ seedAgent;
 
   const largeImage = await sharp({
@@ -40,15 +42,9 @@ describe("syndicator-bluesky/lib/utils", async () => {
     .toBuffer();
 
   before(async () => {
-    network = await TestNetworkNoAppView.create({
-      dbPostgresSchema: "api_atp_agent",
-    });
+    await mockAgent("syndicator-bluesky", { pds });
 
-    seedAgent = new AtpAgent({ service: network.pds.url });
-  });
-
-  after(async () => {
-    await network.close();
+    seedAgent = new AtpAgent({ service: pds.origin });
   });
 
   it("Converts plain text to rich text", async () => {

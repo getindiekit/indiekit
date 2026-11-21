@@ -1,38 +1,28 @@
 import { strict as assert } from "node:assert";
-import { after, before, describe, it } from "node:test";
+import { before, describe, it } from "node:test";
 
-import { TestNetworkNoAppView } from "@atproto/dev-env";
 import { Indiekit } from "@indiekit/indiekit";
+import { MockPds } from "@indiekit-test/atproto-pds";
 import { getFixture } from "@indiekit-test/fixtures";
+import { mockAgent } from "@indiekit-test/mock-agent";
 import { testPublication } from "@indiekit-test/publication";
 
 import BlueskySyndicator from "../index.js";
 
 describe("syndicator-bluesky", async () => {
+  const pds = new MockPds();
+  pds.createAccount("alice.test");
+
   let /** @type {BlueskySyndicator} */ bluesky;
-  let /** @type {TestNetworkNoAppView} */ network;
 
   before(async () => {
-    network = await TestNetworkNoAppView.create({
-      dbPostgresSchema: "api_atp_agent",
-    });
-
-    const client = network.getSeedClient();
-    await client.createAccount("alice", {
-      email: "alice@alice.test",
-      handle: "alice.test",
-      password: "password",
-    });
+    await mockAgent("syndicator-bluesky", { pds });
 
     bluesky = new BlueskySyndicator({
       handle: "alice.test",
       password: "password",
-      serviceUrl: network.pds.url,
+      serviceUrl: pds.origin,
     });
-  });
-
-  after(async () => {
-    await network.close();
   });
 
   const properties = JSON.parse(
