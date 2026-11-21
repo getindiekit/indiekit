@@ -45,7 +45,6 @@
   "dependencies": {
     "@indiekit/error": "^1.0.0-beta.30",
     "@indiekit/util": "^1.0.0-beta.30",
-    "color": "^5.0.3",
     "lodash": "^4.18.1",
     "markdown-it": "^15.0.3",
     "markdown-it-abbr": "^2.0.0",
