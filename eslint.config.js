@@ -18,12 +18,7 @@ export default [
   unicorn.configs["recommended"],
   webComponents.configs["flat/recommended"],
   {
-    ignores: [
-      "**/.cache/",
-      "_site",
-      "docs/.vitepress/config.js",
-      "eslint.config.js",
-    ],
+    ignores: ["**/.cache/", "_site", "docs/.vitepress/", "eslint.config.js"],
   },
   {
     files: ["**/{packages,helpers}/**/*.js"],

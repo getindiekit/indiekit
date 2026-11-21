@@ -12,3 +12,9 @@ updates:
       interval: "monthly"
     cooldown:
       default-days: 7
+  - package-ecosystem: "npm"
+    directory: "/docs"
+    schedule:
+      interval: "monthly"
+    cooldown:
+      default-days: 7

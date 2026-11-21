@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "indiekit-docs",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "markdown-it-anchor": "^10.1.0",
+    "markdown-it-deflist": "^4.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-task-lists": "^2.1.1"
+  }
+}
