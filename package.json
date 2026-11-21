@@ -52,10 +52,10 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@atproto/dev-env": "^0.7.19",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
     "@eslint/js": "^10.0.1",
+    "@indiekit-test/atproto-pds": "*",
     "@indiekit-test/config": "*",
     "@indiekit-test/database": "*",
     "@indiekit-test/fixtures": "*",
@@ -119,8 +119,5 @@
   },
   "optionalDependencies": {
     "lightningcss-linux-x64-gnu": "^1.33.0"
-  },
-  "allowScripts": {
-    "better-sqlite3@12.11.1": true
   }
 }

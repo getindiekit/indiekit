@@ -1,8 +1,8 @@
 import { strict as assert } from "node:assert";
-import { after, before, describe, it } from "node:test";
+import { before, describe, it } from "node:test";
 
 import { AtpAgent, AppBskyRichtextFacet } from "@atproto/api";
-import { TestNetworkNoAppView } from "@atproto/dev-env";
+import { MockPds } from "@indiekit-test/atproto-pds";
 import { mockAgent } from "@indiekit-test/mock-agent";
 
 import { Bluesky } from "../../lib/bluesky.js";
@@ -19,56 +19,30 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   const me = "https://website.example";
   const photo = [{ url: "https://website.example/photo1.jpg", alt: "Photo" }];
 
+  const pds = new MockPds();
+  pds.createAccount("alice.test");
+  pds.createAccount("bob.test");
+
   let /** @type {Bluesky} */ bluesky;
   let /** @type {string} */ postUrl;
-  let /** @type {TestNetworkNoAppView} */ network;
   let /** @type {AtpAgent} */ seedAgent;
-  let seedClient;
 
   before(async () => {
-    network = await TestNetworkNoAppView.create({
-      dbPostgresSchema: "api_atp_agent",
-    });
+    await mockAgent("syndicator-bluesky", { pds });
 
-    seedClient = network.getSeedClient();
-    seedAgent = new AtpAgent({ service: network.pds.url });
-
-    // Create Alice’s account
-    const alice = await seedClient.createAccount("alice", {
-      email: "alice@alice.test",
-      handle: "alice.test",
-      password: "password",
-    });
-
-    // Create and login to Bob’s account
-    const bob = await seedClient.createAccount("bob", {
-      email: "bob@bob.test",
-      handle: "bob.test",
-      password: "password",
-    });
-    await seedAgent.login({
-      identifier: bob.handle,
-      password: bob.password,
-    });
+    seedAgent = new AtpAgent({ service: pds.origin });
 
     // Create a post by Bob
-    const bobPost = await seedAgent.app.bsky.feed.post.create(
-      { repo: bob.did },
-      { text: "I like cheese.", createdAt: new Date().toISOString() },
-    );
+    const bobPost = pds.createPost("bob.test", "I like cheese.");
     postUrl = uriToPostUrl("https://bsky.app/profile", bobPost.uri);
 
     // Bluesky client under test
     bluesky = new Bluesky({
       profileUrl: `https://bsky.app/profile`,
-      serviceUrl: network.pds.url,
-      identifier: alice.handle,
-      password: alice.password,
+      serviceUrl: pds.origin,
+      identifier: "alice.test",
+      password: "password",
     });
-  });
-
-  after(async () => {
-    await network.close();
   });
 
   it("Posts a like", async () => {
@@ -80,7 +54,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
   it("Throws error posting a like", async () => {
     await assert.rejects(bluesky.postLike("https://foo.bar"), {
-      message: `Invalid com.atproto.repo.getRecord params: Missing required key "repo"`,
+      message: `Invalid com.atproto.repo.getRecord params: Params must have the property "repo"`,
     });
   });
 
@@ -93,7 +67,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
 
   it("Throws error posting a repost", async () => {
     await assert.rejects(bluesky.postRepost("https://foo.bar"), {
-      message: `Invalid com.atproto.repo.getRecord params: Missing required key "repo"`,
+      message: `Invalid com.atproto.repo.getRecord params: Params must have the property "repo"`,
     });
   });
 
@@ -105,8 +79,6 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   });
 
   it("Posts a quote post with images", async () => {
-    await mockAgent("syndicator-bluesky");
-
     const richText = await createRichText(seedAgent, "Me too!");
     const image = await bluesky.uploadMedia(photo[0], me);
     const images = image ? [{ alt: photo[0].alt, image }] : [];
@@ -118,7 +90,7 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Throws error posting a quote post", async () => {
     // @ts-expect-error: Testing invalid plain text input
     await assert.rejects(bluesky.postQuotePost(postUrl, "Plain text"), {
-      message: `Invalid app.bsky.feed.post record: Missing required key "text" at $.record`,
+      message: `Invalid app.bsky.feed.post record: Record must have the property "text"`,
     });
   });
 
@@ -130,8 +102,6 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   });
 
   it("Posts a post with images", async () => {
-    await mockAgent("syndicator-bluesky");
-
     const richText = await createRichText(seedAgent, "I like ham sandwiches");
     const image = await bluesky.uploadMedia(photo[0], me);
     const images = image ? [{ alt: photo[0].alt, image }] : [];
@@ -143,13 +113,11 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   it("Throws error posting a post", async () => {
     // @ts-expect-error: Testing invalid plain text input
     await assert.rejects(bluesky.postPost("Plain text"), {
-      message: `Invalid app.bsky.feed.post record: Missing required key "text" at $.record`,
+      message: `Invalid app.bsky.feed.post record: Record must have the property "text"`,
     });
   });
 
   it("Uploads media", async () => {
-    await mockAgent("syndicator-bluesky");
-
     const result = await bluesky.uploadMedia(photo[0], me);
 
     assert.ok(result, "no media uploaded");
@@ -158,8 +126,6 @@ describe("syndicator-bluesky/lib/bluesky", () => {
   });
 
   it("Throws error fetching media to upload", async () => {
-    await mockAgent("syndicator-bluesky");
-
     await assert.rejects(bluesky.uploadMedia({ url: `${me}/404.jpg` }, me), {
       message: "Not Found",
     });
