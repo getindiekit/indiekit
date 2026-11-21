@@ -175,3 +175,24 @@ export class IndiekitError extends Error {
     }
   }
 }
+
+/**
+ * Remove Node.js internal frames from a stack trace
+ * @param {string} [stack] - Stack trace
+ * @returns {string|undefined} Stack trace without Node.js frames
+ */
+export const cleanStack = (stack) => {
+  if (!stack) {
+    return stack;
+  }
+
+  const lines = stack.split("\n");
+  const cleaned = lines.filter(
+    (line) => !/^\s+at (?:(?:async|new) )?(?:.*\()?node:/.test(line),
+  );
+
+  // Keep the full stack if every frame was internal, as it is all there is
+  const hasFrames = cleaned.some((line) => /^\s+at /.test(line));
+
+  return hasFrames ? cleaned.join("\n") : stack;
+};
