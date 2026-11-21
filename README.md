@@ -48,7 +48,7 @@ Learn how to [set up an Indiekit server](docs/get-started.md) and view an [examp
 
 The documentation website is generated using [VitePress](https://vitepress.vuejs.org). To view this site locally:
 
-1. Install this project’s dependencies: `npm install`
+1. Install the documentation dependencies: `npm install --prefix docs`
 2. Start the Vite server: `npm run docs:dev`
 3. View the documentation: <http://127.0.0.1:5173>
 
