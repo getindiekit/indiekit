@@ -46,10 +46,15 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
+      # Release tooling has its own lockfile, so it isn’t installed with the
+      # workspace but its versions are still pinned for this job
+      - name: Install release tooling
+        run: npm ci --prefix .github/release --ignore-scripts
+
       - name: Publish to npm
         run: |
           if [ "${{ inputs.from-package }}" = "true" ]; then
-            npx lerna publish from-package --yes
+            .github/release/node_modules/.bin/lerna publish from-package --yes
           else
-            npx lerna publish --conventional-commits --yes
+            .github/release/node_modules/.bin/lerna publish --conventional-commits --yes
           fi

@@ -1,0 +1,12 @@
+{
+  "name": "indiekit-release",
+  "private": true,
+  "description": "Release tooling for the publish workflow, installed separately from the workspace",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@lerna-lite/cli": "^5.9.0",
+    "@lerna-lite/publish": "^5.9.0",
+    "@lerna-lite/version": "^5.9.0"
+  }
+}
