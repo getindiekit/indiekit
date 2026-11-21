@@ -60,7 +60,7 @@ Architectural decisions made on this project are documented using Architecture D
 
 ## Releasing
 
-[Lerna](https://lerna.js.org) is used to manage and publish packages from this monorepo via a [trusted publishing workflow](.github/workflows/publish.yml).
+[Lerna-Lite](https://github.com/lerna-lite/lerna-lite) is used to version and publish packages from this monorepo via a [trusted publishing workflow](.github/workflows/publish.yml). It is installed separately from the workspace, in [`.github/release`](.github/release), so contributors don’t need to install it.
 
 ## Contributing
 
