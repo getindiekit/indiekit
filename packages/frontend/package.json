@@ -43,22 +43,24 @@
     "directory": "packages/frontend"
   },
   "dependencies": {
-    "@accessible-components/tag-input": "^0.2.0",
     "@indiekit/error": "^1.0.0-beta.30",
     "@indiekit/util": "^1.0.0-beta.30",
     "color": "^5.0.3",
-    "easymde": "^2.21.0",
-    "esbuild": "^0.28.2",
-    "lightningcss": "^1.33.0",
     "lodash": "^4.18.1",
     "markdown-it": "^15.0.3",
     "markdown-it-abbr": "^2.0.0",
     "markdown-it-deflist": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-image-figures": "^2.1.1",
-    "microlighter": "^2.2.0",
     "nunjucks": "^3.2.4",
     "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@accessible-components/tag-input": "^0.2.0",
+    "easymde": "^2.21.0",
+    "esbuild": "^0.28.2",
+    "lightningcss": "^1.33.0",
+    "microlighter": "^2.2.0"
   },
   "publishConfig": {
     "access": "public"
