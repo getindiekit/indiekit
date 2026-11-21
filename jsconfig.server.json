@@ -8,6 +8,7 @@
   ],
   "exclude": [
     "./packages/frontend/components",
+    "./packages/frontend/dist",
     "./packages/frontend/lib/serviceworker.js",
     "./packages/frontend/scripts",
     "./packages/frontend/test/unit/serviceworker.js"

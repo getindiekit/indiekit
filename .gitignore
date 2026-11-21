@@ -21,3 +21,6 @@ docs/.cache
 
 # Localisation keys
 localazy.keys.json
+
+# Prebuilt frontend bundles (see packages/frontend/build.js)
+packages/frontend/dist/
