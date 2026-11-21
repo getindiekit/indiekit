@@ -4,8 +4,6 @@ import { createRequire } from "node:module";
 import { Command } from "commander";
 import makeDebug from "debug";
 
-import { defaultConfig } from "../config/defaults.js";
-
 import { Indiekit } from "@indiekit/indiekit";
 
 const require = createRequire(import.meta.url);
@@ -20,11 +18,7 @@ program
   .command("serve")
   .description("start the indiekit server")
   .option("-d, --debug [scope]", "enable debugging")
-  .option(
-    "-p, --port <port>",
-    "port to bind on",
-    defaultConfig.application.port,
-  )
+  .option("-p, --port <port>", "port to bind on (overrides application.port)")
   .action(async (options) => {
     const { debug, port } = options;
 
