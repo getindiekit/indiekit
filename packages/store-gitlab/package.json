@@ -33,7 +33,7 @@
     "directory": "packages/store-gitlab"
   },
   "dependencies": {
-    "@gitbeaker/rest": "^44.0.5",
+    "@gitbeaker/rest": "^44.1.10",
     "@indiekit/error": "^1.0.0-beta.30"
   },
   "publishConfig": {

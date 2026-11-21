@@ -6,6 +6,6 @@
   "license": "MIT",
   "dependencies": {
     "undici-v7": "npm:undici@^7.30.2",
-    "undici-v8": "npm:undici@^8.12.4"
+    "undici-v8": "npm:undici@^8.13.1"
   }
 }
