@@ -1,5 +1,8 @@
 # Get started
 
+> [!TIP]
+> Want to see Indiekit working before setting it up yourself? [Try Indiekit](/try) with the quickstart.
+
 ## What is Indiekit?
 
 The [IndieWeb](https://indieweb.org) is a community of personal websites, connected by simple standards. These follow the principles of publishing content at your own domain name and owning your data.
