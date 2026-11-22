@@ -46,7 +46,9 @@ export const testConfig = async (options) => {
       locale: options.locale,
       mediaEndpoint: options?.application?.mediaEndpoint,
       micropubEndpoint: options?.application?.micropubEndpoint,
-      mongodbUrl: options?.application?.mongodbUrl,
+      // Don’t connect to a database unless a test provides one, even if
+      // MONGO_URL is set in the environment
+      mongodbUrl: options?.application?.mongodbUrl ?? false,
       name: "Test configuration",
       timeZone: "UTC",
       tokenEndpoint: options?.application?.tokenEndpoint,
