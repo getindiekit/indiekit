@@ -113,6 +113,18 @@ Install all dependencies:
 npm install
 ```
 
+### Updating the lockfile
+
+Some dependencies, such as esbuild and lightningcss, have a separate package for each platform’s binary. `package-lock.json` needs to list all of them, so that installs work on Linux (in CI and the Docker image) as well as on your own computer.
+
+If `package-lock.json` needs regenerating, run:
+
+```sh
+npm install --package-lock-only
+```
+
+Avoid deleting `package-lock.json` and running `npm install`, as npm then only records the packages installed for your own platform ([npm/cli#4828](https://github.com/npm/cli/issues/4828)). If this has already happened, delete the affected packages’ entries from `package-lock.json`, then run the command above.
+
 ### Environment variables
 
 Update your `.env` file with the environment variables required by the Indiekit server, the MongoDB database, the Indiekit content store and the Indiekit syndicators.
