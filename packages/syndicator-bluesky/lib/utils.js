@@ -128,7 +128,7 @@ export const getPostParts = (url) => {
  * @returns {string} Post URL
  */
 export const uriToPostUrl = (profileUrl, uri) => {
-  const match = uri.match(AT_URI);
+  const match = AT_URI.exec(uri);
 
   if (!match?.groups) {
     throw new Error(`Not a valid AT URI: ${uri}`);

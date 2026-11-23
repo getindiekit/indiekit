@@ -81,7 +81,6 @@ describe("endpoint-auth/lib/redirect", () => {
     );
     assert.equal(
       await validateRedirect(
-        // eslint-disable-next-line unicorn/prefer-https -- downgraded scheme is the condition under test
         "http://redirect.example/callback",
         `${origin}/declares-redirect`,
       ),

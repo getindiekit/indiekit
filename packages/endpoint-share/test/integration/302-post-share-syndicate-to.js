@@ -49,7 +49,7 @@ describe("endpoint-share POST /share", () => {
         "https://share.example",
       ).searchParams.get("success") ?? "",
     );
-    const url = message.match(/https?:\/\/\S+$/)?.[0];
+    const url = /https?:\/\/\S+$/.exec(message)?.[0];
     assert.ok(url, `no post URL in ${message}`);
 
     const post = await request

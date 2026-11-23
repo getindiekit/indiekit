@@ -31,8 +31,10 @@ export default class BitbucketStore {
    * @returns {Promise<Response>} Fetch response
    * @see {@link https://developer.atlassian.com/cloud/bitbucket/rest/api-group-source/}
    */
-  async #client(requestPath = "", requestOptions = {}) {
+  async #client(requestPath, requestOptions = {}) {
     const { user, repo, email, token } = this.options;
+
+    requestPath ||= "";
 
     try {
       if (!token) {
